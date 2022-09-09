@@ -120,16 +120,6 @@ export interface GetYuScreen_getYuScreen_productSlots {
   showOnOnboarding: boolean | null;
 }
 
-export interface GetYuScreen_getYuScreen_productCarousel_items_images_image {
-  id: string;
-  uri: string | null;
-}
-
-export interface GetYuScreen_getYuScreen_productCarousel_items_images {
-  image: GetYuScreen_getYuScreen_productCarousel_items_images_image;
-  width: number;
-}
-
 export interface GetYuScreen_getYuScreen_productCarousel_items_button_onPress {
   productId: string;
   nextRouteId: string | null;
@@ -148,13 +138,40 @@ export interface GetYuScreen_getYuScreen_productCarousel_items_button {
   event: GetYuScreen_getYuScreen_productCarousel_items_button_event | null;
 }
 
+export interface GetYuScreen_getYuScreen_productCarousel_items_contentContainerStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreen_getYuScreen_productCarousel_items_descriptionMarkdownStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreen_getYuScreen_productCarousel_items_images_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_productCarousel_items_images {
+  image: GetYuScreen_getYuScreen_productCarousel_items_images_image;
+  width: number;
+}
+
+export interface GetYuScreen_getYuScreen_productCarousel_items_titleMarkdownStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetYuScreen_getYuScreen_productCarousel_items {
-  images: GetYuScreen_getYuScreen_productCarousel_items_images[] | null;
-  altText: string;
-  title: string | null;
-  description: string | null;
   backgroundColor: string | null;
   button: GetYuScreen_getYuScreen_productCarousel_items_button | null;
+  contentContainerStyles: GetYuScreen_getYuScreen_productCarousel_items_contentContainerStyles[] | null;
+  descriptionMarkdown: string | null;
+  descriptionMarkdownStyles: GetYuScreen_getYuScreen_productCarousel_items_descriptionMarkdownStyles[] | null;
+  images: GetYuScreen_getYuScreen_productCarousel_items_images[] | null;
+  titleMarkdown: string | null;
+  titleMarkdownStyles: GetYuScreen_getYuScreen_productCarousel_items_titleMarkdownStyles[] | null;
 }
 
 export interface GetYuScreen_getYuScreen_productCarousel {

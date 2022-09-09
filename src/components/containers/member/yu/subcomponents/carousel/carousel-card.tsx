@@ -1,12 +1,14 @@
-import { Image, TextTemplate } from "@atoms";
+import { Image } from "@atoms";
 import { Button } from "@molecules";
 import { YuScreenCarousel_items as CarouselItem } from "@graphql/_core/schema";
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { BUTTON_HEIGHT, BUTTON_HORIZONTAL_MARGIN, CARD_WIDTH_FULL, CARD_WIDTH_NARROW, styles } from "./styles";
 import { CAROUSEL_CARD } from "@ids";
 import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
-import { Colours, Style } from "@styles";
+import { Style } from "@styles";
+import { mapServerStyles } from "@components/sdui";
+import Markdown from "@components/molecules/markdown/markdown";
 
 interface Props extends CarouselItem {
   marginRight: number;
@@ -14,17 +16,43 @@ interface Props extends CarouselItem {
 }
 
 export const CarouselCard = memo(
-  ({ title, backgroundColor, description, button, images, marginRight, variant = "narrow" }: Props) => {
+  ({
+    backgroundColor,
+    button,
+    contentContainerStyles,
+    descriptionMarkdown,
+    descriptionMarkdownStyles,
+    images,
+    titleMarkdown,
+    titleMarkdownStyles,
+    marginRight,
+    variant = "narrow",
+  }: Props) => {
     const handlePress = useYuScreenOnPressHandler({ event: button?.event, onPress: button?.onPress });
 
     const cardWidth = variant === "narrow" ? CARD_WIDTH_NARROW : CARD_WIDTH_FULL;
 
+    const [titleStyles, descriptionStyles] = useMemo(
+      () =>
+        [titleMarkdownStyles, descriptionMarkdownStyles].map((serverStyles, index) => {
+          const markdownStyles = mapServerStyles(serverStyles);
+          return {
+            text: {
+              ...defaultMarkdownStyles[index],
+              ...markdownStyles,
+            },
+            bold: {
+              ...defaultMarkdownStyles[index],
+              ...markdownStyles,
+            },
+          };
+        }),
+      [titleMarkdownStyles, descriptionMarkdownStyles]
+    );
+
     return (
       <View
-        style={StyleSheet.flatten([
-          styles.carouselCardWrapper,
-          { marginRight, width: cardWidth, backgroundColor: backgroundColor || Colours.neutral.white },
-        ])}
+        style={StyleSheet.flatten([styles.carouselCardWrapper, { marginRight, width: cardWidth }, { backgroundColor }])}
       >
         <View style={styles.backgroundImageWrapper} testID={CAROUSEL_CARD}>
           {images.map(({ image, width }, columnedImageIndex) => (
@@ -36,18 +64,9 @@ export const CarouselCard = memo(
             </View>
           ))}
         </View>
-        <View
-          style={StyleSheet.flatten([
-            styles.contentWrapper,
-            { backgroundColor: title || description ? Colours.neutral.white : "transparent" },
-          ])}
-        >
-          {!title ? null : <TextTemplate type="l1b">{title}</TextTemplate>}
-          {!description ? null : (
-            <View style={styles.descriptionWrapper}>
-              <TextTemplate type="l1">{description}</TextTemplate>
-            </View>
-          )}
+        <View style={[styles.contentWrapper, mapServerStyles(contentContainerStyles)]}>
+          {!titleMarkdown ? null : <Markdown markdownStyles={titleStyles} text={titleMarkdown} />}
+          {!descriptionMarkdown ? null : <Markdown markdownStyles={descriptionStyles} text={descriptionMarkdown} />}
           {!button ? null : (
             <View style={styles.carouselCardButton}>
               <View
@@ -70,3 +89,20 @@ const getWidthMultiplier = ({ index, variant }: { index: number; variant: Props[
 
   return !index ? 1.2 : 1.5;
 };
+
+const markdownStyle = {
+  fontSize: Style.adjust(14),
+  lineHeight: Style.adjust(16),
+  paddingBottom: 0,
+};
+
+const defaultMarkdownStyles = [
+  {
+    ...markdownStyle,
+    paddingTop: 0,
+  },
+  {
+    ...markdownStyle,
+    paddingTop: Style.adjust(4),
+  },
+];
