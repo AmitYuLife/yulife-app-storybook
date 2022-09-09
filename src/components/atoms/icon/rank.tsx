@@ -11,7 +11,7 @@ interface Props {
 export const Rank = memo(({ isWinner, isDraw, testID }: Props) => {
   if (isDraw) {
     return (
-      <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24" fill="none">
+      <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24" fill="none" testID={testID}>
         <Path
           d="M4 13.5V22.9086C4 23.6455 4.7699 24.1293 5.43383 23.8096L12 20.648L18.5662 23.8096C19.2301 24.1293 20 23.6455 20 22.9086V13.5L12 17.82L4 13.5Z"
           fill="#DEDEF0"

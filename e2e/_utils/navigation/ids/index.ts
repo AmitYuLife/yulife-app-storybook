@@ -342,6 +342,7 @@ export const SINGLE_USER = "SINGLE_USER";
 export const LEFT_USER = "LEFT_USER";
 export const RIGHT_USER = "RIGHT_USER";
 export const AV_STATS = (value: number) => `AV_STATS_${value}`;
+export const DRAW = (value: number) => `DRAW_${value}`;
 
 // YUCOIN POWER
 export const EARN_RATE = (earnRate: number) => `EARN_RATE_${earnRate}`;

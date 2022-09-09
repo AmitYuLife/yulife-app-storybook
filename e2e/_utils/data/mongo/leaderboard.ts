@@ -1,5 +1,5 @@
 import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_18, CUSTOMER_16, CUSTOMER_17, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_40, CUSTOMER_47 } from "../postgres/customers";
+import { CUSTOMER_18, CUSTOMER_16, CUSTOMER_17, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_40, CUSTOMER_47, CUSTOMER_50 } from "../postgres/customers";
 
 const LEADERBOARD_1_ID = generateRandomPostgresId()
 const LEADERBOARD_2_ID = generateRandomPostgresId() + "ABCDEF"
@@ -212,6 +212,20 @@ export const USER_47_LEADERBOARD = {
     data: {
         leaderboardId: LEADERBOARD_1_ID,
         userId: CUSTOMER_47.data.customerId,
+        name: USER_18_LEADERBOARD.data.name,
+        creatorName: CUSTOMER_18.data.firstName,
+        consent: true,
+        primaryBusinessLeaderboard: true,
+        hasAccepted: true,
+    }
+} as IDatabaseItem
+
+export const USER_50_LEADERBOARD = {
+    type: "mongo",
+    modelName: "user_leaderboards",
+    data: {
+        leaderboardId: LEADERBOARD_1_ID,
+        userId: CUSTOMER_50.data.customerId,
         name: USER_18_LEADERBOARD.data.name,
         creatorName: CUSTOMER_18.data.firstName,
         consent: true,

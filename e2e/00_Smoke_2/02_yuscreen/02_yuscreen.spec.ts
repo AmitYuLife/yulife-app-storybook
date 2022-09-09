@@ -158,7 +158,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
         })
     })
     // Skipping due to survey title needing to be changed
-    ScenarioSkip("I can complete a survey on the yuscreen", scenario.start, async () => {
+    Scenario("I can complete a survey on the yuscreen", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(true, CUSTOMER_17, AUTH_17), async () => {
             Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
             When("I tap the locked boots", when.tapAvatarItem("boots", "locked"), async () => {

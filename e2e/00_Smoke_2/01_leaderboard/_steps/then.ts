@@ -1,4 +1,4 @@
-import { navigation, LEADERBOARD_NAME, LEADERBOARD_STATUS, LEADERBOARD_SCROLL_LIST, INSPECT_SCREEN, YUMOJI, INSPECT_ACTIVITY , USER_INFO, INSPECT_DATA, CHALLENGE_DUEL_BUTTON, INSPECT_ACTIVITY_SECTION, COMPARISON_STATS_SECTION, COMPARISON_NAMES, COMPARISON_ACTIVITY, COMPARISON_ACTIVITY_MINE, COMPARISON_ACTIVITY_OPPONENT, USER_YUMOJI_AVATAR, INSPECT_SECTION_HEADER, INSPECT_ACTIVITY_HEADER, INSPECT_ACTIVITY_PERIOD, WINNER, SECOND_POSITION, SINGLE_USER, LEFT_USER, RIGHT_USER, AV_STATS, CHALLENGE_FRIEND_BUTTON, DUELS_HUB, EMPTY_DUELS_HUB, EMPTY_USER_YUMOJI_AVATAR} from "@utils"
+import { navigation, LEADERBOARD_NAME, LEADERBOARD_STATUS, LEADERBOARD_SCROLL_LIST, INSPECT_SCREEN, YUMOJI, INSPECT_ACTIVITY , USER_INFO, INSPECT_DATA, CHALLENGE_DUEL_BUTTON, INSPECT_ACTIVITY_SECTION, COMPARISON_STATS_SECTION, COMPARISON_NAMES, COMPARISON_ACTIVITY, COMPARISON_ACTIVITY_MINE, COMPARISON_ACTIVITY_OPPONENT, USER_YUMOJI_AVATAR, INSPECT_SECTION_HEADER, INSPECT_ACTIVITY_HEADER, INSPECT_ACTIVITY_PERIOD, WINNER, SECOND_POSITION, SINGLE_USER, LEFT_USER, RIGHT_USER, AV_STATS, CHALLENGE_FRIEND_BUTTON, DUELS_HUB, EMPTY_DUELS_HUB, EMPTY_USER_YUMOJI_AVATAR, DRAW} from "@utils"
 import { screens } from "@appScreens"
 
 export const {
@@ -8,7 +8,8 @@ export const {
     multipleTextVisible,
     textNotVisible,
     wait,
-    textVisibleAtIndex
+    textVisibleAtIndex,
+    idVisibleAtIndex
 } = navigation.common
 
 export const {
@@ -23,7 +24,8 @@ export const {
     onCreateAvatarScreen,
     onAvatarCompletionScreen,
     onYuscreen,
-    onSkinToneScreen
+    onSkinToneScreen,
+    onChooseAvatarBodyScreen
 } = screens.yuscreen
 
 export const onLeaderboardConsent = async () => {
@@ -203,4 +205,17 @@ export const challengeSomebodyButtonVisible = async () => {
 export const myMindfulnessDataVisible = async () => {
     await idVisible(COMPARISON_ACTIVITY("Average mindfulness"), 1000)()
     await idVisible(AV_STATS(0), 1000)()
+}
+
+export const stepsComparativeDrawResults = (opponentAvSteps: number, myAvSteps: number) => async () => {
+    await idVisible(COMPARISON_ACTIVITY("Average steps"), 1000)()
+    await idVisible(COMPARISON_ACTIVITY_OPPONENT(opponentAvSteps))() 
+    await idVisible(COMPARISON_ACTIVITY_MINE(myAvSteps))()  
+    await idVisibleAtIndex(DRAW(opponentAvSteps), 0)() 
+    await idVisibleAtIndex(DRAW(myAvSteps), 1)() 
+}
+
+export const winStreakVisible = (winStreak: number) => async () => {
+    await idVisible(INSPECT_ACTIVITY("Win streak"))()
+    await idVisible(INSPECT_DATA(winStreak, ""))()  
 }
