@@ -10,7 +10,7 @@ import FastImage from "react-native-fast-image";
 
 export const BUTTON_HEIGHT = Style.adjust(48);
 
-const YUCOIN_IMAGE = require("./assets/yucoin.png");
+const YUCOIN_IMAGE = require("@assets/yuscreen/create-yumoji-prompt/yucoin.png");
 
 const YUCOIN_HEIGHT = Style.adjust(51);
 const YUCOIN_WIDTH = Style.adjust(48);

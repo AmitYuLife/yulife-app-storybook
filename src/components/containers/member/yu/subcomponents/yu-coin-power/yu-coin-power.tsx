@@ -12,8 +12,8 @@ interface Props {
   pressable?: boolean;
 }
 
-const YUCOIN_POWER_IMAGE = require("./assets/ycPowerBg.png");
-const YUCOIN_POWER_INTERACTIVE_IMAGE = require("./assets/ycPowerInteractiveBg.png");
+const YUCOIN_POWER_IMAGE = require("@assets/yuscreen/yu-coin-power/yu-coin-power-background.png");
+const YUCOIN_POWER_INTERACTIVE_IMAGE = require("@assets/yuscreen/yu-coin-power/yu-coin-power-interactive-background.png");
 
 export const YuCoinPower: FC<Props> = memo(({ pressable = true }) => {
   const YuCoinPowerWrapper = pressable ? TouchableOpacityWithDelay : View;

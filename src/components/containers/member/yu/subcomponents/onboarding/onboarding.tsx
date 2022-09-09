@@ -16,8 +16,8 @@ import { ONBOARDING_SCREEN } from "@ids";
 import { OnboardingHandler } from "../../hooks/useOnboardingDismissalHandler";
 import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
 
-const BACKGROUND_IMAGE = require("./assets/onboarding-background.png");
-const ITEM_SLOT_CONTAINER_IMAGE = require("./assets/item-slot-container.png");
+const BACKGROUND_IMAGE = require("@assets/yuscreen/onboarding/onboarding-background.png");
+const ITEM_SLOT_CONTAINER_IMAGE = require("@assets/yuscreen/onboarding/item-slot-container.png");
 
 interface Props {
   onboarding: OnboardingProps;
