@@ -37,7 +37,7 @@ export const ServerDropdown = memo(() => {
   return (
     <View style={styles.wrapper}>
       <TextTemplate type="l3">{translations["screens.login.server_location.short"]}</TextTemplate>
-      <TouchableOpacityWithDelay onPress={handlePress} style={styles.touchable}>
+      <TouchableOpacityWithDelay onPress={handlePress} style={styles.touchable} accessibilityLabel={server}>
         <View style={styles.innerWrapper}>
           <GlobeSvg />
           <View style={styles.textWrapper}>

@@ -7,6 +7,10 @@ import { Button, LinkGroup, PressableWithDelay, TextInput, TextInputError } from
 import { ServerDropdown } from "./server-dropdown";
 import { useTranslation, useKeyboardListeners } from "@hooks";
 import { Style } from "@styles";
+import { getModalState } from "@redux/app/app.selectors";
+import { useSelector } from "react-redux";
+import { MODALS } from "@navigation/constants";
+import { TextInputPassword } from "@components/molecules/text-input/text-input-password";
 
 export type LoginFormProps = {
   disabled: boolean;
@@ -37,8 +41,14 @@ export const LoginForm = (props: LoginFormProps) => {
     onResetPasswordPress,
   } = props;
 
-  const t = useTranslation(["screens.login.help", "screens.login.heading", "screens.login.ctaLabel"]);
+  const t = useTranslation([
+    "screens.login.help",
+    "screens.login.heading",
+    "screens.login.ctaLabel",
+    "screens.login.accessibility.hideKeyboard",
+  ]);
   const isShowingKeyboard = useKeyboardListeners();
+  const currentModal = useSelector(getModalState);
   const links = React.useMemo(
     () => [
       {
@@ -46,12 +56,24 @@ export const LoginForm = (props: LoginFormProps) => {
         onPress: onResetPasswordPress,
       },
     ],
-    []
+    [t, onResetPasswordPress]
   );
 
   return (
-    <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
-      <PressableWithDelay style={styles.fullScreenWrapper} onPress={isShowingKeyboard ? Keyboard.dismiss : () => null}>
+    <Animatable.View
+      duration={1000}
+      animation="fadeIn"
+      style={styles.flex}
+      useNativeDriver={true}
+      importantForAccessibility={currentModal === MODALS.blurredOverlay ? "no-hide-descendants" : "auto"}
+    >
+      <PressableWithDelay
+        style={styles.fullScreenWrapper}
+        accessible={isShowingKeyboard ? true : false}
+        importantForAccessibility={isShowingKeyboard ? "auto" : "no"}
+        accessibilityLabel={t["screens.login.accessibility.hideKeyboard"]}
+        onPress={isShowingKeyboard ? Keyboard.dismiss : () => null}
+      >
         <View />
       </PressableWithDelay>
       {isShowingKeyboard ? null : (
@@ -73,13 +95,12 @@ export const LoginForm = (props: LoginFormProps) => {
         value={email}
       />
       <Pad height={12} />
-      <TextInput
+      <TextInputPassword
         testID={INPUT_LOGIN_PASSWORD(TextInput.Types.PASSWORD)}
         errorMessage={passwordError}
         hasError={!!passwordError}
         onChange={onPasswordChange}
         value={password}
-        type={TextInput.Types.PASSWORD}
       />
       {!loginError ? null : (
         <View style={styles.centerWrapper}>

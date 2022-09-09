@@ -30,6 +30,11 @@ export default {
         heading: "Select your company location",
         description: "Your reward store items will depend on the location where your company is located",
       },
+      accessibility: {
+        hideKeyboard: "Hide keyboard",
+        alertErrorTitle: "Login failed",
+        alertErrorDefaultMessage: "Something wrong",
+      },
     },
     daily: {
       todayYuCoin: {
@@ -284,6 +289,16 @@ export default {
   molecules: {
     coinConfetti: {
       accessibilityLabel: "Plus %{coins} Yu Coin",
+    },
+  },
+  atoms: {
+    textInputPassword: {
+      hide: {
+        accessibilityLabel: "Hide",
+      },
+      show: {
+        accessibilityLabel: "Show",
+      },
     },
   },
   topBar: {

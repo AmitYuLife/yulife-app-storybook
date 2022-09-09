@@ -51,7 +51,11 @@ const BlurredOverlay = ({ children, withBlurBackground, wrapperStyle }: IProps) 
   const { handlePress } = usePressedInWithDelay({ onPress: handleClose });
 
   return (
-    <Animated.View testID="blur-provider.overlay-container" style={[styles.wrapper, { opacity, ...wrapperStyle }]}>
+    <Animated.View
+      testID="blur-provider.overlay-container"
+      style={[styles.wrapper, { opacity, ...wrapperStyle }]}
+      accessibilityViewIsModal={true}
+    >
       {!withBlurBackground ? null : <BlurView blurAmount={5} blurType="light" style={styles.blur} />}
       <View style={styles.blur} onTouchStart={handlePress} />
       {cloneElement(children, { closeOverlay: handlePress })}
