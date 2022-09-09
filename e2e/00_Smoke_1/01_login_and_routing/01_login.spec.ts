@@ -146,7 +146,7 @@ Feature("As a user I can get past the login screen", async () => {
                         })
                     })
                     When("I tap the YuCoin icon", when.tapID(YUCOIN_POWER_INFO), async () => {
-                        Then("I should see 1.6 km cycling", then.textVisible("1.6 km cycling"))
+                        Then("I should see 1.6 km cycling", then.textVisible("1.6km cycling"))
                     })
                     When("I tap to close the screen", when.tapID(BUTTON_CLOSE), async () => {
                         When("I go back from this screen", when.tapID(BACK_BUTTON), async () => {
@@ -178,7 +178,7 @@ Feature("As a user I can get past the login screen", async () => {
                         Then("I should see correct data 20 steps, 7 mi, 13 min mindful", then.onTodaysYucoin(20, "7.0 / 6.0 mi", 13))
                     })
                     When("I tap the Info icon", when.tapID(YUCOIN_POWER_INFO), async () => {
-                        Then("I should see 1.0 mi cycling", then.textVisible("1.0 mi cycling"))
+                        Then("I should see 1.0mi cycling", then.textVisible("1.0mi cycling"))
                     })
                     When("I tap on YuCoin coin", when.tapID(BUTTON_CLOSE), async () => {
                         When("I tap on I for activity feed info", when.tapID(ACTIVITY_FEED), async () => {

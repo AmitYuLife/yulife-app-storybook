@@ -1,6 +1,6 @@
 import {navigation} from "@utils"
 import { screens } from "@appScreens"
-import { AVATAR_ITEM, RIGHT_STATUS_ICON, BACKGROUND_COLOUR_PRODUCT, ONBOARDING_SCREEN } from "@ids"
+import { AVATAR_ITEM, RIGHT_STATUS_ICON, BACKGROUND_COLOUR_PRODUCT, ONBOARDING_SCREEN, TEXT_TEMPLATE, EARN_RATE, YUCOIN_TITLE } from "@ids"
 
 export const {
     idVisible,
@@ -117,19 +117,15 @@ export const wellbeingProductInfo = (packageType: string) => async () => {
     await expect(element(by.text(packageType))).toBeVisible()
 }
 
-export const yuCoinPowerInfo = (yuCoinPower: number) => async () => {
+export const yuCoinPowerInfo = (yuCoinPower: string, earnRate: number) => async () => {
 
-    const yuCoinPowerTitle = "YuCoin\nPower"
-    const powerBoost = `For every 1 YuCoin you would have earned, you now earn ${yuCoinPower}!`
-    const baseYucoinPower = "Equipping yourself with policies boosts your YuCoin Power in the Yuniverse."
+    const yuCoinPowerText = "Equipping yourself with policies boosts your YuCoin Power in the Yuniverse."
+    const yuCoinEarnedText = `For every 1 YuCoin you would have earned, you now earn ${yuCoinPower}!`
 
-    await expect(element(by.text(yuCoinPowerTitle))).toBeVisible();
-    if(yuCoinPower < 2) {
-        await expect(element(by.text(baseYucoinPower))).toBeVisible()
-    } else {
-        await expect(element(by.text(baseYucoinPower))).toBeVisible()
-        await expect(element(by.text(powerBoost))).toBeVisible()
-    }
+    await idVisible(EARN_RATE(earnRate))();
+    await idVisible(YUCOIN_TITLE)();
+    await textVisible(yuCoinEarnedText)();
+    await expect(element(by.text(yuCoinPowerText))).toBeVisible();
 
 }
 

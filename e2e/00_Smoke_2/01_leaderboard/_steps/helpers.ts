@@ -11,7 +11,7 @@ export const CREATE_AVATAR = async () => {
     })
     When("I tap a body type", when.tapID(MALE_BODY), async () => {
         When("I tap continue", when.tapText("Continue"), async () => {
-            Then("I should be on the Yumoji builder", then.onAvatarBuilder("Skin Tone"))
+            Then("I should be on the Yumoji builder", then.onSkinToneScreen("Skin Tone"))
             Then("The male body should be selected", then.idVisible(BODY_TYPE("male")))
             Then("I should see a skin tone", then.idVisible(COLOUR("#FFC89F")))
         })

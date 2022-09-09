@@ -76,11 +76,11 @@ export const DENTAL_PRODUCT_VIEW = async (packageType: string, membershipEnding:
     })
 }
 
-export const WELLBEING_PRODUCT_VIEW = async (packageType: string, yuCoinPower: number) => {
+export const WELLBEING_PRODUCT_VIEW = async (packageType: string, yuCoinPower: string, earnRate: number) => {
     When(`I tap Wellbeing Access`, when.tapText("Wellbeing Access"), async () => {
         Then("I should see correct product details", then.wellbeingProductInfo(packageType))
         When("I tap the YuCoin icon", when.tapID(YUCOIN_POWER_INFO), async () => {
-            Then("I should see correct YuCoin Power text", then.yuCoinPowerInfo(yuCoinPower))
+            Then("I should see correct YuCoin Power text", then.yuCoinPowerInfo(yuCoinPower, earnRate))
             When("I click Got it", when.tapText("Got it!"), async () => {
                 Then("I should see Wellbein Access", then.textVisibleAtIndex("Wellbeing Access", 1))
             })
@@ -88,13 +88,15 @@ export const WELLBEING_PRODUCT_VIEW = async (packageType: string, yuCoinPower: n
     })
 }
 
-export const YUCOIN_POWER = async (customer:any, yuCoinPower: number) => {
+export const YUCOIN_POWER = async (customer:any, yuCoinPower: string, earnRate: number) => {
     
     const firstName = customer.data.firstName
     const lastName = customer.data.lastName
 
     When(`I tap YuCoin`, when.tapText("YuCoin"), async () => {
-        Then("I should see correct YuCoin Power text", then.yuCoinPowerInfo(yuCoinPower))
+        When("I wait", when.wait(4000), async () => {
+            Then("I should see correct YuCoin Power text", then.yuCoinPowerInfo(yuCoinPower, earnRate))
+        })
         When("I click Got it", when.tapText("Got it!"), async () => {
             Then("I should see again my name", then.textVisible(`${firstName} ${lastName}`))
         })
@@ -123,3 +125,4 @@ export const ONBOARDING_YUSCREEN = async (customer: any, packType: string, yuCoi
         })
     })
 }
+

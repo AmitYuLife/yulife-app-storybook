@@ -22,7 +22,8 @@ export const {
     onAvatarBuilder,
     onCreateAvatarScreen,
     onAvatarCompletionScreen,
-    onYuscreen
+    onYuscreen,
+    onSkinToneScreen
 } = screens.yuscreen
 
 export const onLeaderboardConsent = async () => {

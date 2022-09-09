@@ -46,7 +46,7 @@ export const INSPECT_SCREEN = "INSPECT_SCREEN";
 
 
 // buttons
-export const BUTTON_LOGIN = "BUTTON_LOGIN";
+export const BUTTON_LOGIN = (disabled: boolean) => `BUTTON_LOGIN_${disabled})`;
 export const BUTTON_SIGNUP_BONUS_NEXT = "BUTTON_SIGNUP_BONUS_NEXT";
 export const BUTTON_INTRO_SCREEN = (index: number) => `BUTTON_INTRO_SCREEN_${index}`;
 export const BUTTON_TOP_LEFT_BAR = "BUTTON_TOP_LEFT_BAR";
@@ -342,3 +342,7 @@ export const SINGLE_USER = "SINGLE_USER";
 export const LEFT_USER = "LEFT_USER";
 export const RIGHT_USER = "RIGHT_USER";
 export const AV_STATS = (value: number) => `AV_STATS_${value}`;
+
+// YUCOIN POWER
+export const EARN_RATE = (earnRate: number) => `EARN_RATE_${earnRate}`;
+export const YUCOIN_TITLE = "YUCOIN_TITLE";

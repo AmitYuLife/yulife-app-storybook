@@ -48,9 +48,7 @@ export const passwordHidden = async (): Promise<void> => {
 };
 
 export const loginButtonIsActive = async (): Promise<void> => {
-    const target = element(by.id(BUTTON_LOGIN));
-    await waitFor(target).toExist();
-    await expect(target).toHaveLabel("enabled");
+    await idVisible(BUTTON_LOGIN(false))()
 };
 
 export const combinationErrorMessagePresent = async (): Promise<void> => {
@@ -184,3 +182,4 @@ export const dailyCoreActivities = (steps = 0, mindfulness = 0, stepsCoin = 0, m
     await textVisibleAtIndex(`${stepsCoin}/120`,0)
     await textVisibleAtIndex(`${mindfulCoin}/120`,1)
 }
+

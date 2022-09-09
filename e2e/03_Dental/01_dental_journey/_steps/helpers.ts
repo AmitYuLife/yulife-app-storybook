@@ -312,7 +312,9 @@ export const CHOOSE_PLAN_AND_CHECKOUT = async () => {
                 When("I continue to checkout", when.continueCheckoutDental, async () => {
                     Then("I should see exising card ending with 4242", then.textVisible("Purchase with **** 4242"))
                     When("I tap purchase with existing card", when.tapText("Purchase with **** 4242"), async () => {
-                        Then(`I should be on the ${nextScreen} screen`, then.isOnScreen(nextScreen))
+                        When("I wait for the application process screen to load", when.wait(5000), async () => {
+                            Then(`I should be on the ${nextScreen} screen`, then.isOnScreen(nextScreen))
+                        })
                     })
                 })
             })
