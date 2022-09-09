@@ -23,7 +23,7 @@ export interface ContentItemYuCoinPower {
    */
   marginHorizontal: number | null;
   /**
-   * Supported at RN client version >=3.47.0
+   * RN client version >=3.47.0
    */
   interactive: boolean | null;
 }

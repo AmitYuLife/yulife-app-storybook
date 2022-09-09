@@ -9,16 +9,6 @@ import { SduiActionType } from "./globalTypes";
 // GraphQL fragment: YuScreenCarouselItem
 // ====================================================
 
-export interface YuScreenCarouselItem_images_image {
-  id: string;
-  uri: string | null;
-}
-
-export interface YuScreenCarouselItem_images {
-  image: YuScreenCarouselItem_images_image;
-  width: number;
-}
-
 export interface YuScreenCarouselItem_button_onPress {
   productId: string;
   nextRouteId: string | null;
@@ -37,11 +27,38 @@ export interface YuScreenCarouselItem_button {
   event: YuScreenCarouselItem_button_event | null;
 }
 
+export interface YuScreenCarouselItem_contentContainerStyles {
+  property: string;
+  value: string;
+}
+
+export interface YuScreenCarouselItem_descriptionMarkdownStyles {
+  property: string;
+  value: string;
+}
+
+export interface YuScreenCarouselItem_images_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface YuScreenCarouselItem_images {
+  image: YuScreenCarouselItem_images_image;
+  width: number;
+}
+
+export interface YuScreenCarouselItem_titleMarkdownStyles {
+  property: string;
+  value: string;
+}
+
 export interface YuScreenCarouselItem {
-  images: YuScreenCarouselItem_images[] | null;
-  altText: string;
-  title: string | null;
-  description: string | null;
   backgroundColor: string | null;
   button: YuScreenCarouselItem_button | null;
+  contentContainerStyles: YuScreenCarouselItem_contentContainerStyles[] | null;
+  descriptionMarkdown: string | null;
+  descriptionMarkdownStyles: YuScreenCarouselItem_descriptionMarkdownStyles[] | null;
+  images: YuScreenCarouselItem_images[] | null;
+  titleMarkdown: string | null;
+  titleMarkdownStyles: YuScreenCarouselItem_titleMarkdownStyles[] | null;
 }
