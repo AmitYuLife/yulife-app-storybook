@@ -111,9 +111,10 @@ function ChallengeProgressScreen({
   }, [appButton]);
 
   const handleOpenFiit = useCallback(() => openFiit(), []);
-  const openFaqUrl = useCallback(async () => await handleLinkPress(appButton?.options?.faqUrl)(), [
-    appButton?.options?.faqUrl,
-  ]);
+  const openFaqUrl = useCallback(
+    async () => await handleLinkPress(appButton?.options?.faqUrl || appButton?.tutorialUrl)(),
+    [appButton?.options?.faqUrl, appButton?.tutorialUrl]
+  );
 
   return (
     <View style={StyleSheet.flatten([styles.wrapper, { backgroundColor: backgroundColour }])}>
