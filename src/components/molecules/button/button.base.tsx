@@ -165,6 +165,7 @@ function Main({
       onPress={onPress}
       accessibilityLabel={accessibilityLabel || title}
       accessibilityRole={"button"}
+      accessibilityState={{ disabled, busy: isLoading }}
     >
       <View style={styles.mainWrapper}>
         <Animated.View

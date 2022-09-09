@@ -16,7 +16,7 @@ const PlusPoints = ({ coins, testID }: IProps) => (
     <View style={styles.plusWrapper}>
       <Plus scale={0.8} />
     </View>
-    <TextTemplate type={"h1"} textAlign="center" color={Colours.darkHotPink} testID={testID}>
+    <TextTemplate type={"h1"} textAlign="center" color={Colours.darkHotPink} testID={testID} accessible={false}>
       {`${addCommasToNumber(coins)}`}
     </TextTemplate>
   </View>

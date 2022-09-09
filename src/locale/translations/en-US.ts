@@ -100,6 +100,7 @@ export default {
       heading: "Sign-up bounty\nunlocked!",
       subheading: "Use your YuCoin for vouchers from Amazon, Lululemon, Target and many more!",
       ctaLabel: "Next",
+      ctaAccessibility: "Get started with Yulife",
     },
     settings: {
       fitnessTrackers: {
@@ -278,6 +279,11 @@ export default {
         cta_label: "Save changes",
         cta_label_secondary: "Back",
       },
+    },
+  },
+  molecules: {
+    coinConfetti: {
+      accessibilityLabel: "Plus %{coins} Yu Coin",
     },
   },
   topBar: {
