@@ -34,15 +34,14 @@ export const onEmptyYuscreen = (customer) => async () => {
     await expect(element(by.text(`${firstName} ${lastName}`))).toBeVisible()
 }
 
-export const onYuscreen = (customer) => async () => {
-    const firstName = customer.data.firstName
-    const lastName = customer.data.lastName
+export const onYuscreen = (customer: any) => async () => {
+    const fullName = customer.data.fullName
 
     const yuscreen = element(by.id(YUSCREEN))
 
     await expect(yuscreen).toBeVisible()
 
-    await expect(element(by.text(`${firstName} ${lastName}`))).toBeVisible()
+    await expect(element(by.text(fullName))).toBeVisible()
 
 }
 
@@ -319,6 +318,24 @@ export const onCertificate = (productName: string, customer:any, customerGroupPo
     
     await expect(element(by.text("Cover start date"))).toBeVisible()
     await expect(element(by.text(dateJoined))).toBeVisible()
+}
+
+export const onChooseAvatarBodyScreen = async () => {
+    const createTitle = element(by.text("Create your Yumoji to step into the Yuniverse"))
+    await expect(createTitle).toBeVisible()
+
+    const femaleBody = element(by.id(FEMALE_BODY))
+    await expect(femaleBody).toBeVisible()
+
+    const maleBody = element(by.id(MALE_BODY))
+    await expect(maleBody).toBeVisible()
+
+    const continueButtonText = element(by.text("Continue"))
+    await expect(continueButtonText).toBeVisible() 
+
+    const laterButtonText = element(by.text("I'll do this later"))
+    await expect(laterButtonText).toBeVisible() 
+
 }
 
 export const onSkinToneScreen = (screen: string) => async () => {

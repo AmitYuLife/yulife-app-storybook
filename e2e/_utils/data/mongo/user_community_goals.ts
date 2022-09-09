@@ -62,5 +62,3 @@ export const USER_COMMUNITY_GOALS_3 = {
 } as IDatabaseItem
 
 
-
-

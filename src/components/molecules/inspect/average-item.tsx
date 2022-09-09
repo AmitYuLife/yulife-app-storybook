@@ -11,6 +11,7 @@ import {
   WINNER,
   SECOND_POSITION,
   AV_STATS,
+  DRAW,
 } from "@ids";
 
 export interface IAverageItem {
@@ -48,7 +49,7 @@ const AverageItem = ({ icon, name, value, opponentValue, opponentIsWinner, label
             <View style={styles.leftRankWrapper}>
               <Rank
                 isWinner={!opponentIsWinner}
-                testID={!opponentIsWinner ? WINNER(value) : SECOND_POSITION(value)}
+                testID={isDraw ? DRAW(value) : !opponentIsWinner ? WINNER(value) : SECOND_POSITION(value)}
                 isDraw={isDraw}
               />
             </View>
@@ -63,7 +64,9 @@ const AverageItem = ({ icon, name, value, opponentValue, opponentIsWinner, label
             <View style={styles.rightRankWrapper}>
               <Rank
                 isWinner={opponentIsWinner}
-                testID={opponentIsWinner ? WINNER(opponentValue) : SECOND_POSITION(opponentValue)}
+                testID={
+                  isDraw ? DRAW(value) : opponentIsWinner ? WINNER(opponentValue) : SECOND_POSITION(opponentValue)
+                }
                 isDraw={isDraw}
               />
             </View>

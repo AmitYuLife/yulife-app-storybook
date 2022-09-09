@@ -751,3 +751,17 @@ export const CUSTOMER_49 = {
         status: "onboarded"
     }
 } as IDatabaseItem
+
+export const CUSTOMER_50 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Lynton",
+        lastName: "Stock",
+        dateOfBirth: moment().subtract(45, "years").toDate(),
+        status: "onboarded",
+        fullName: "Lynton Stock"
+    }
+} as IDatabaseItem
