@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_10, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_45, CUSTOMER_46, CUSTOMER_48, CUSTOMER_49, CUSTOMER_9, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5 } from "./customers";
+import { CUSTOMER_10, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_45, CUSTOMER_46, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_9, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5 } from "./customers";
 import moment from "moment"
 
 
@@ -363,7 +363,7 @@ export const CPE_48_WELLBEING = {
     data: {
         customer_product_id: "YUCPID0000000148",
         customer_id: CUSTOMER_48.data.customerId,
-        earn_rate: 10,
+        earn_rate: 1,
         product_variant_id: "YuLife_Wellbeing_01_03",
         archived: false
     }
@@ -411,8 +411,20 @@ export const CPE_49_WELLBEING = {
     data: {
         customer_product_id: "YUCPID0000000152",
         customer_id: CUSTOMER_49.data.customerId,
-        earn_rate: 10,
+        earn_rate: 1,
         product_variant_id: "YuLife_Wellbeing_01_03",
+        archived: false
+    }
+} as IDatabaseItem
+
+export const CPE_51_GDent = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000000153",
+        customer_id: CUSTOMER_51.data.customerId,
+        earn_rate: 5,
+        product_variant_id: "Bupa_GDent_01_01",
         archived: false
     }
 } as IDatabaseItem

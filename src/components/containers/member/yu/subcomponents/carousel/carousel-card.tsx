@@ -55,6 +55,7 @@ export const CarouselCard = memo(
     );
     return (
       <View
+        testID={CAROUSEL_CARD}
         style={StyleSheet.flatten([
           defaultStyles,
           styles.carouselCardWrapper,
@@ -62,7 +63,7 @@ export const CarouselCard = memo(
           style,
         ])}
       >
-        <View style={styles.backgroundImageWrapper} testID={CAROUSEL_CARD}>
+        <View style={styles.backgroundImageWrapper}>
           {images.map(({ image, width }, columnedImageIndex) => (
             <View key={image.id} style={columnedImageIndex ? styles.backgroundImageLeft : styles.backgroundImageRight}>
               <Image

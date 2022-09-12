@@ -1,6 +1,6 @@
 import {navigation} from "@utils"
 import { screens } from "@appScreens"
-import { AVATAR_ITEM, RIGHT_STATUS_ICON, BACKGROUND_COLOUR_PRODUCT, ONBOARDING_SCREEN, TEXT_TEMPLATE, EARN_RATE, YUCOIN_TITLE } from "@ids"
+import { AVATAR_ITEM, RIGHT_STATUS_ICON, BACKGROUND_COLOUR_PRODUCT, ONBOARDING_SCREEN, YUCOIN_POWER } from "@ids"
 
 export const {
     idVisible,
@@ -71,6 +71,9 @@ export const productSlotsAreCorrect = (status:string)=> async()=>{
         await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(0)).toBeVisible() // life insurance button
         await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(1)).toBeVisible() // more protection coming soon button
     }
+    if (status === "groupDental"){
+        await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#EFFBF7")))).toBeVisible() // group dental slot
+    }
 }
 
 export const dentalProductInfo = (packageType: string, membershipEnding: string) => async () => {
@@ -117,15 +120,33 @@ export const wellbeingProductInfo = (packageType: string) => async () => {
     await expect(element(by.text(packageType))).toBeVisible()
 }
 
-export const yuCoinPowerInfo = (yuCoinPower: string, earnRate: number) => async () => {
+export const groupDentalProductInfo = (packageType: string, yuCoinPower: string) => async () => {
 
-    const yuCoinPowerText = "Equipping yourself with policies boosts your YuCoin Power in the Yuniverse."
-    const yuCoinEarnedText = `For every 1 YuCoin you would have earned, you now earn ${yuCoinPower}!`
+    const policyName = "Dental Cover"
+    const policyDescription = "Dental insurance with Bupa, provided by your employer for your protection collection."
+    const paidBy = "Employer Paid"
 
-    await idVisible(EARN_RATE(earnRate))();
-    await idVisible(YUCOIN_TITLE)();
-    await textVisible(yuCoinEarnedText)();
-    await expect(element(by.text(yuCoinPowerText))).toBeVisible();
+    await expect(element(by.text(policyName))).toBeVisible();
+    await expect(element(by.text(paidBy))).toBeVisible();
+    await expect(element(by.text(policyDescription))).toBeVisible()
+    await expect(element(by.text(packageType))).toBeVisible()
+    await expect(element(by.id(YUCOIN_POWER(5)))).toBeVisible();
+}
+
+export const yuCoinPowerInfo = (yuCoinPower: number) => async () => {
+
+    const yuCoinPowerTitle = "YuCoin\nPower"
+    const powerBoost = `For every 1 YuCoin you would have earned, you now earn ${yuCoinPower}!`
+    const baseYucoinPower = "Equipping yourself with policies boosts your YuCoin Power in the Yuniverse."
+    const wellbeingEarn = "You can earn YuCoin for your wellbeing activites!"
+
+    await expect(element(by.text(yuCoinPowerTitle))).toBeVisible();
+    if(yuCoinPower < 2) {
+        await expect(element(by.text(wellbeingEarn))).toBeVisible()
+    } else {
+        await expect(element(by.text(baseYucoinPower))).toBeVisible()
+        await expect(element(by.text(powerBoost))).toBeVisible()
+    }
 
 }
 
@@ -152,34 +173,48 @@ export const onboardingYuscreenV4 = (yuCoinPower:string, status: string)=> async
     const lifeInsurance = "Life Insurance"
     const criticalIllness = "Critical Illness"
     const incomeProtextion = "Income Protection"
+    const groupDental = "Dental Cover"
 
-    if (status === "wellbeing only"){
-        await textVisibleAtIndex(yuCoinPower, 0)()
-        await textVisibleAtIndex(yuCoinPower, 1)()
-        await expect(element(by.text(WellbeingProduct))).toBeVisible()
-        await textVisible(noProductText)()
-        await textNotVisible(availableProducts)()
-        await textVisible(yuCoinText)()
-        await textVisible(powerText)()
-        await textVisible(paidBy)()
-    }
-    if (status === "dentalAndPli"){
-        await textVisible(yuCoinPower, 0)()
-        await textVisible(yuCoinText)()
-        await textVisible(powerText)()
-        await textVisible(availableProducts)()
-    }
-    if (status === "4Products"){
-        await textVisible(yuCoinPower, 1)()
-        await textVisible(yuCoinText)()
-        await textVisible(powerText)()
-        await textVisible(lifeInsurance)()
-        await textVisibleAtIndex(paidBy, 0)()
-        await textVisible(criticalIllness)()
-        await textVisibleAtIndex(paidBy, 1)()
-        await textVisible(incomeProtextion)()
-        await textVisibleAtIndex(paidBy, 2)()
-        await textVisible(availableProducts)()
+    switch (status) {
+        case "wellbeing only":
+            await textVisibleAtIndex(yuCoinPower, 0)()
+            await textVisibleAtIndex(yuCoinPower, 1)()
+            await expect(element(by.text(WellbeingProduct))).toBeVisible()
+            await textVisible(noProductText)()
+            await textNotVisible(availableProducts)()
+            await textVisible(yuCoinText)()
+            await textVisible(powerText)()  
+            await textVisible(paidBy)()
+            break;
+        case "dentalAndPli":
+            await textVisible(yuCoinPower, 0)()
+            await textVisible(yuCoinText)()
+            await textVisible(powerText)()
+            await textVisible(availableProducts)()
+            await textNotVisible(noProductText)()
+            break;
+        case "3 Products Slots":
+            await textVisible(yuCoinPower, 1)()
+            await textVisible(yuCoinText)()
+            await textVisible(powerText)()
+            await textVisible(lifeInsurance)()
+            await textVisibleAtIndex(paidBy, 0)()
+            await textVisible(criticalIllness)()
+            await textVisibleAtIndex(paidBy, 1)()
+            await textVisible(incomeProtextion)()
+            await textVisibleAtIndex(paidBy, 2)()
+            await textVisible(availableProducts)()
+            break;
+        case "groupDental":
+            await textVisible(yuCoinPower)()
+            await textVisible(yuCoinText)()
+            await textVisible(powerText)()
+            await textVisible(noProductText)()
+            await textVisible(groupDental)()
+            await textVisible(paidBy)()
+            break;
+        default:
+            break;
     }
 
     await expect(element(by.id(ONBOARDING_SCREEN))).toBeVisible()
