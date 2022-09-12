@@ -34,11 +34,21 @@ export interface YuScreenOnboarding_placeholder_rightStatusIcon {
   uri: string | null;
 }
 
-export interface YuScreenOnboarding_placeholder_onPress {
+export interface YuScreenOnboarding_placeholder_onPress_productAction {
   productId: string;
   nextRouteId: string | null;
   nextModalId: string | null;
   shouldBeNormalised: boolean | null;
+}
+
+export interface YuScreenOnboarding_placeholder_onPress_sduiAction {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface YuScreenOnboarding_placeholder_onPress {
+  productAction: YuScreenOnboarding_placeholder_onPress_productAction | null;
+  sduiAction: YuScreenOnboarding_placeholder_onPress_sduiAction | null;
 }
 
 export interface YuScreenOnboarding_placeholder_event {
@@ -50,7 +60,7 @@ export interface YuScreenOnboarding_placeholder {
   id: string;
   leftText: string | null;
   leftTextColour: string | null;
-  status: YuProductStatus;
+  status: YuProductStatus | null;
   title: string;
   titleColour: string;
   text: string | null;

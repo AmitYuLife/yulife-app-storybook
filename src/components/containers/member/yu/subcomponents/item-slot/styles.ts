@@ -52,6 +52,7 @@ export const styles = StyleSheet.create({
     position: "absolute",
     top: Style.adjust(1),
     zIndex: 2,
+    paddingLeft: Style.adjust(4),
   },
   slotSocket: {
     borderRadius: Style.adjust(8),

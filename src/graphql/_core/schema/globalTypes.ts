@@ -230,6 +230,11 @@ export enum YuProductStatus {
   unlockable = "unlockable",
 }
 
+export enum YuScreenCarouselItemVariant {
+  full = "full",
+  narrow = "narrow",
+}
+
 export enum YuWorld {
   desert = "desert",
   forest = "forest",

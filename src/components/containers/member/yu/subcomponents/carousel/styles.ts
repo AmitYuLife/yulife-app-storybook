@@ -9,7 +9,6 @@ export const BUTTON_HEIGHT = Style.adjust(40);
 
 export const styles = StyleSheet.create({
   carouselCardWrapper: {
-    marginLeft: Style.adjust(16),
     height: CARD_HEIGHT,
     borderRadius: Style.adjust(8),
     overflow: "hidden",

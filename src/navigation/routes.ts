@@ -216,6 +216,10 @@ export default [
       .default,
   },
   {
+    name: ROUTES.allProducts,
+    component: require("../components/containers/products/all-products/all-products.container").default,
+  },
+  {
     name: ROUTES.wellbeingHubItems,
     component: require("../components/containers/wellbeing-hub/wellbeing-hub-items.container").default,
   },

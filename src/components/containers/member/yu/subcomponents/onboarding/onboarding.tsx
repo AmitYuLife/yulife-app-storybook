@@ -15,6 +15,8 @@ import { View as AnimatedView } from "react-native-animatable";
 import { ONBOARDING_SCREEN } from "@ids";
 import { OnboardingHandler } from "../../hooks/useOnboardingDismissalHandler";
 import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
+import { useSelector } from "react-redux";
+import { getRouteState } from "@redux/app/app.selectors";
 
 const BACKGROUND_IMAGE = require("@assets/yuscreen/onboarding/onboarding-background.png");
 const ITEM_SLOT_CONTAINER_IMAGE = require("@assets/yuscreen/onboarding/item-slot-container.png");
@@ -36,6 +38,7 @@ export const Onboarding: FC<Props> = ({
   onDismiss,
   productSlots,
 }) => {
+  const currentRoute = useSelector(getRouteState);
   const itemPlaceholder = useMemo<ItemSlotProps>(
     () => ({ ...placeholder, onPress: dismissByPlaceholder ? onDismiss : null }),
     [dismissByPlaceholder, onDismiss, placeholder]
@@ -45,7 +48,7 @@ export const Onboarding: FC<Props> = ({
     productSlots,
   ]);
 
-  const handlePress = useYuScreenOnPressHandler({ event, onPress: onDismiss });
+  const handlePress = useYuScreenOnPressHandler({ event, onPress: onDismiss, currentRoute });
 
   return (
     <AnimatedView useNativeDriver={true} animation="fadeInUpBig" duration={500} style={styles.container}>

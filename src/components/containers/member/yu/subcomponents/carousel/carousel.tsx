@@ -30,7 +30,14 @@ const renderItem = (itemsLength: number) => ({
   item,
   index,
 }: ListRenderItemInfo<ComponentProps<typeof CarouselCard>>): React.ReactElement | null => (
-  <CarouselCard {...item} marginRight={index === itemsLength - 1 ? Style.adjust(16) : 0} />
+  <CarouselCard
+    {...item}
+    variant={item.variant}
+    style={{
+      marginRight: index === itemsLength - 1 ? Style.adjust(16) : 0,
+      marginLeft: itemsLength < 2 ? Style.adjust(24) : Style.adjust(16),
+    }}
+  />
 );
 
 const styles = StyleSheet.create({

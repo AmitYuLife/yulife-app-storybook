@@ -1,4 +1,9 @@
-import { GQL_FRAGMENT_REMOTE_IMAGE, GQL_FRAGMENT_SDUI_ACTION } from "@graphql/_fragments/shared.gql";
+import {
+  GQL_FRAGMENT_REMOTE_IMAGE,
+  GQL_FRAGMENT_SDUI_ACTION,
+  GQL_FRAGMENT_SDUI_STYLE,
+  GQL_FRAGMENT_VARIABLE_REMOTE_IMAGE,
+} from "@graphql/_fragments/shared.gql";
 import gql from "graphql-tag";
 
 export const GQL_FRAGMENT_YU_SCREEN_POPOVER = gql`
@@ -224,5 +229,63 @@ export const GQL_QUERY_PRODUCT_PAYMENT_HISTORY_ITEM = gql`
     amount
     date
     status
+  }
+`;
+
+export const GQL_FRAGMENT_PRODUCT_ACTION = gql`
+  fragment ProductAction on ProductAction {
+    productId
+    nextRouteId
+    nextModalId
+    shouldBeNormalised
+  }
+`;
+
+export const GQL_FRAGMENT_YU_SCREEN_PRODUCT_BUTTON_ACTION = gql`
+  ${GQL_FRAGMENT_PRODUCT_ACTION}
+  ${GQL_FRAGMENT_SDUI_ACTION}
+
+  fragment YuScreenProductButtonAction on YuScreenProductButtonAction {
+    productAction {
+      ...ProductAction
+    }
+    sduiAction {
+      ...SduiAction
+    }
+  }
+`;
+
+export const GQl_FRAGMENT_YU_SCREEN_CAROUSEL_ITEM = gql`
+  ${GQL_FRAGMENT_VARIABLE_REMOTE_IMAGE}
+  ${GQL_FRAGMENT_SDUI_ACTION}
+  ${GQL_FRAGMENT_YU_SCREEN_PRODUCT_BUTTON_ACTION}
+  ${GQL_FRAGMENT_SDUI_STYLE}
+
+  fragment YuScreenCarouselItem on YuScreenCarouselItem {
+    backgroundColor
+    button {
+      label
+      onPress {
+        ...YuScreenProductButtonAction
+      }
+      event {
+        ...SduiAction
+      }
+    }
+    contentContainerStyles {
+      ...SduiStyle
+    }
+    descriptionMarkdown
+    descriptionMarkdownStyles {
+      ...SduiStyle
+    }
+    images {
+      ...VariableRemoteImage
+    }
+    titleMarkdown
+    titleMarkdownStyles {
+      ...SduiStyle
+    }
+    variant
   }
 `;

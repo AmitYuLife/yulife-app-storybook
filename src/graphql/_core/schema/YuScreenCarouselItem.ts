@@ -3,17 +3,27 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { SduiActionType } from "./globalTypes";
+import { SduiActionType, YuScreenCarouselItemVariant } from "./globalTypes";
 
 // ====================================================
 // GraphQL fragment: YuScreenCarouselItem
 // ====================================================
 
-export interface YuScreenCarouselItem_button_onPress {
+export interface YuScreenCarouselItem_button_onPress_productAction {
   productId: string;
   nextRouteId: string | null;
   nextModalId: string | null;
   shouldBeNormalised: boolean | null;
+}
+
+export interface YuScreenCarouselItem_button_onPress_sduiAction {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface YuScreenCarouselItem_button_onPress {
+  productAction: YuScreenCarouselItem_button_onPress_productAction | null;
+  sduiAction: YuScreenCarouselItem_button_onPress_sduiAction | null;
 }
 
 export interface YuScreenCarouselItem_button_event {
@@ -61,4 +71,5 @@ export interface YuScreenCarouselItem {
   images: YuScreenCarouselItem_images[] | null;
   titleMarkdown: string | null;
   titleMarkdownStyles: YuScreenCarouselItem_titleMarkdownStyles[] | null;
+  variant: YuScreenCarouselItemVariant | null;
 }

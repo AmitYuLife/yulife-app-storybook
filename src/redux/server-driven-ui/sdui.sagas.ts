@@ -3,7 +3,7 @@ import { Navigation } from "react-native-navigation";
 import { all, call, select, ActionPattern, takeEvery, takeLeading, put } from "redux-saga/effects";
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { MODALS } from "@navigation/constants";
-import { showYuModal, TAB_ROUTES } from "@navigation/root";
+import { pushToScreen, showYuModal, TAB_ROUTES } from "@navigation/root";
 import { handleLinkPress } from "@services/app-link";
 import Intercom from "@intercom/intercom-react-native";
 import Logger from "@services/logging/logger";
@@ -84,7 +84,7 @@ function* navigateTo({ payload }: ProductStepAction) {
     const otherProps = isPayloadObject ? { productId: payload.productId || data?.productId } : {};
 
     yield call(() =>
-      Navigation.push(currentRoute, {
+      pushToScreen(currentRoute, {
         component: {
           id: routeId,
           name: routeId,
