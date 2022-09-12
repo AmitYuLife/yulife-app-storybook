@@ -77,8 +77,10 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(Style.DEVICE_HEIGHT < 844 ? 78 : 108),
   } as ViewStyle,
   yugiContainer: {
-    marginTop: Style.adjust(Style.DEVICE_HEIGHT < 844 ? 65 : 95),
-    marginRight: Style.adjust(13),
+    position: "absolute",
+  } as ViewStyle,
+  lottie: {
+    width: Style.DEVICE_WIDTH,
   } as ViewStyle,
 });
 

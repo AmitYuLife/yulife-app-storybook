@@ -15,11 +15,11 @@ import { GetUnityRewards } from "@graphql/_core/schema";
 import { initializeAnimation } from "./world-animations";
 import { getAssets } from "./unity.data";
 import styles from "./unity.styles";
-import { YugiStickerSvg } from "./assets/yuniversal-images/yugi-sticker-svg";
 
 // placeholder image
 const PLANETARY_BACKGROUND = require("./assets/yuniversal-images/planetary_background.png");
 
+const YUGI_ANIMATION = require("./assets/yuniversal-animations/yugi.json");
 enum UNITY_REWARD_PAGE {
   INTRO,
   CONGRATULATORY,
@@ -375,14 +375,15 @@ const Unity: FC<IProps> = ({ level, repeatedUnity, onSkip }) => {
           {!isYuniversal ? null : (
             <Image resizeMode="contain" style={styles.backgroundImage} source={PLANETARY_BACKGROUND} />
           )}
+          <View style={styles.yugiContainer}>
+            <LottieView resizeMode="cover" style={styles.lottie} source={YUGI_ANIMATION} autoPlay={true} loop={false} />
+          </View>
           <View style={styles.afterwordText}>
             <TextTemplate color={color} type="b2" textAlign="center">
               {data?.getUnityRewards?.afterword?.description}
             </TextTemplate>
           </View>
-          <View style={styles.yugiContainer}>
-            <YugiStickerSvg />
-          </View>
+
           <View style={styles.buttonWrapper}>
             <Button size="Large" onPress={finishUnity} label={data?.getUnityRewards?.afterword?.cta} />
           </View>
