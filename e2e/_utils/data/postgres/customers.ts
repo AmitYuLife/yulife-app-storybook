@@ -765,3 +765,16 @@ export const CUSTOMER_50 = {
         fullName: "Lynton Stock"
     }
 } as IDatabaseItem
+
+export const CUSTOMER_51 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Ted",
+        lastName: "Karcher",
+        dateOfBirth: moment().subtract(45, "years").toDate(),
+        status: "onboarded",
+    }
+} as IDatabaseItem

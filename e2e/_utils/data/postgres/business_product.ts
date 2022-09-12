@@ -51,3 +51,14 @@ export const BUSINESS_PRODUCT_1_WB = generateProductRecords({
     productId: "YUG0000005",
     businessAccountId: BUSINESS_ACCOUNT_6.data.business_account_id,
 });
+
+export const BUSINESS_PRODUCT_4_GDental = generateProductRecords({
+    productCode: ProductCode.groupDental,
+    carrier: Carrier.YuLife,
+    productId: "YUG0000006",
+    policyName: "Justice League Policy GDental",
+    businessAccountId:  BUSINESS_ACCOUNT_6.data.business_account_id,
+    reviewDate: "2030-02-02T00:00:00Z",
+    startDate: "2020-02-02T00:00:00Z",
+    endDate: "2030-02-02T00:00:00Z",
+});

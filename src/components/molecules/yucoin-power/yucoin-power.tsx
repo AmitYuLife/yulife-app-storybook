@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Style, Colours } from "@styles";
 import Svg, { Rect, Circle, Path, Defs, LinearGradient, Stop, Text } from "react-native-svg";
-import { YUCOIN_POWER_INFO } from "@ids";
+import { YUCOIN_POWER } from "@ids";
 
 interface IProps {
   coins: string | number;
@@ -17,7 +17,7 @@ const YuCoinPower = ({ coins, width = Style.adjust(281), height, hideInfoIcon }:
   const localHeight = height || Math.ceil(width * HEIGHT_WIDTH_MULTIPLIER);
 
   return (
-    <Svg width={width} height={localHeight} viewBox="0 0 281 50" fill="none" testID={YUCOIN_POWER_INFO}>
+    <Svg width={width} height={localHeight} viewBox="0 0 281 50" fill="none" testID={YUCOIN_POWER(coins)}>
       <Rect y={5} width={281} height={40} rx={8} fill="#EDB720" />
       <Rect y={4} width={281} height={39} rx={8} fill="url(#prefix__paint0_linear_908:45001)" />
       {hideInfoIcon ? null : (
