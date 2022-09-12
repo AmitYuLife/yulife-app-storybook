@@ -11,6 +11,8 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { BACKGROUND_COLOUR_PRODUCT, RIGHT_STATUS_ICON } from "@ids";
 import { OnboardingHandler } from "../../hooks/useOnboardingDismissalHandler";
 import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
+import { useSelector } from "react-redux";
+import { getRouteState } from "@redux/app/app.selectors";
 
 export interface ItemSlotProps extends Omit<ProductSlots, "onPress"> {
   onPress?: YuScreenProductButtonAction | OnboardingHandler;
@@ -34,7 +36,8 @@ export const ItemSlot: FC<ItemSlotProps> = memo(
     topShadowColour,
     socketType = "yuscreen",
   }) => {
-    const handlePress = useYuScreenOnPressHandler({ event, onPress });
+    const currentRoute = useSelector(getRouteState);
+    const handlePress = useYuScreenOnPressHandler({ event, onPress, currentRoute });
 
     const ItemSlotWrapper = onPress ? TouchableOpacityWithDelay : View;
 

@@ -9,10 +9,12 @@ import { OnboardingHandler } from "./useOnboardingDismissalHandler";
 interface Props {
   event?: SduiAction;
   onPress?: OnboardingHandler | YuScreenProductButtonAction;
+  currentRoute: string;
 }
 
-export const useYuScreenOnPressHandler = ({ event, onPress }: Props) => {
+export const useYuScreenOnPressHandler = ({ event, onPress, currentRoute }: Props) => {
   const dispatch = useDispatch();
+
   return useCallback(async () => {
     if (typeof onPress === "function") {
       try {
@@ -25,13 +27,19 @@ export const useYuScreenOnPressHandler = ({ event, onPress }: Props) => {
       return;
     }
 
-    if (onPress?.productId) {
+    if (onPress?.productAction) {
       try {
-        await navigateToProduct(onPress);
+        await navigateToProduct(onPress.productAction, currentRoute);
         logEvent(dispatch, event);
       } catch (e) {
         Logger.error(e, { where: "use-yu-screen-on-press-handler-navigate-to-product" });
       }
+
+      return;
     }
-  }, [dispatch, event, onPress]);
+
+    if (onPress.sduiAction) {
+      dispatch(onPress.sduiAction);
+    }
+  }, [dispatch, event, onPress, currentRoute]);
 };

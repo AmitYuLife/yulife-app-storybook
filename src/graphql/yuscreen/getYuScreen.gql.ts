@@ -2,11 +2,11 @@ import {
   GQL_FRAGMENT_REMOTE_IMAGE,
   GQL_FRAGMENT_SDUI_ACTION,
   GQL_FRAGMENT_VARIABLE_REMOTE_IMAGE,
-  GQL_FRAGMENT_SDUI_STYLE,
 } from "@graphql/_fragments/shared.gql";
 import gql from "graphql-tag";
 import client from "@graphql/_core/client";
 import { GetYuScreen } from "@graphql/_core/schema";
+import { GQl_FRAGMENT_YU_SCREEN_CAROUSEL_ITEM, GQL_FRAGMENT_YU_SCREEN_PRODUCT_BUTTON_ACTION } from "./_fragments.gql";
 
 const GQL_FRAGMENT_YU_SCREEN_ONBOARDING = gql`
   fragment YuScreenOnboarding on YuScreenOnboarding {
@@ -23,15 +23,6 @@ const GQL_FRAGMENT_YU_SCREEN_ONBOARDING = gql`
       ...YuScreenProduct
     }
     dismissByPlaceholder
-  }
-`;
-
-const GQL_FRAGMENT_YU_SCREEN_PRODUCT_BUTTON_ACTION = gql`
-  fragment YuScreenProductButtonAction on YuScreenProductButtonAction {
-    productId
-    nextRouteId
-    nextModalId
-    shouldBeNormalised
   }
 `;
 
@@ -67,40 +58,6 @@ const GQL_FRAGMENT_YU_SCREEN_PRODUCT_SLOT_ITEM = gql`
       ...SduiAction
     }
     showOnOnboarding
-  }
-`;
-
-const GQl_FRAGMENT_YU_SCREEN_CAROUSEL_ITEM = gql`
-  ${GQL_FRAGMENT_VARIABLE_REMOTE_IMAGE}
-  ${GQL_FRAGMENT_SDUI_ACTION}
-  ${GQL_FRAGMENT_YU_SCREEN_PRODUCT_BUTTON_ACTION}
-  ${GQL_FRAGMENT_SDUI_STYLE}
-
-  fragment YuScreenCarouselItem on YuScreenCarouselItem {
-    backgroundColor
-    button {
-      label
-      onPress {
-        ...YuScreenProductButtonAction
-      }
-      event {
-        ...SduiAction
-      }
-    }
-    contentContainerStyles {
-      ...SduiStyle
-    }
-    descriptionMarkdown
-    descriptionMarkdownStyles {
-      ...SduiStyle
-    }
-    images {
-      ...VariableRemoteImage
-    }
-    titleMarkdown
-    titleMarkdownStyles {
-      ...SduiStyle
-    }
   }
 `;
 

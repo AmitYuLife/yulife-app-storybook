@@ -24,11 +24,21 @@ export interface YuScreenProduct_rightStatusIcon {
   uri: string | null;
 }
 
-export interface YuScreenProduct_onPress {
+export interface YuScreenProduct_onPress_productAction {
   productId: string;
   nextRouteId: string | null;
   nextModalId: string | null;
   shouldBeNormalised: boolean | null;
+}
+
+export interface YuScreenProduct_onPress_sduiAction {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface YuScreenProduct_onPress {
+  productAction: YuScreenProduct_onPress_productAction | null;
+  sduiAction: YuScreenProduct_onPress_sduiAction | null;
 }
 
 export interface YuScreenProduct_event {
@@ -40,7 +50,7 @@ export interface YuScreenProduct {
   id: string;
   leftText: string | null;
   leftTextColour: string | null;
-  status: YuProductStatus;
+  status: YuProductStatus | null;
   title: string;
   titleColour: string;
   text: string | null;
