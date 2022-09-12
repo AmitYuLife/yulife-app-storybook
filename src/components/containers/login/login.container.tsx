@@ -6,7 +6,7 @@ import { TOKEN_EXPIRATION, SESSION_EXPIRED_ERROR } from "@services/constants";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { Style } from "@styles/index";
 import React, { useState, useCallback, useMemo } from "react";
-import { Keyboard, Platform } from "react-native";
+import { AccessibilityInfo, Alert, Keyboard, Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { useDispatch } from "react-redux";
 import { LoginMethod, IntercomHashMethod } from "@graphql/_core/schema/globalTypes";
@@ -15,6 +15,7 @@ import { loginUserSuccess } from "@redux/user/user.actions";
 import { setToken } from "@services/storage";
 import { LoginScreen } from "@screens";
 import { validateEmail, validatePassword } from "./login.helpers";
+import { t } from "@locale";
 
 const trimGraphQLError = (message: string) => message.replace(/^GraphQL error: /, "");
 
@@ -84,12 +85,20 @@ const LoginContainer: React.FC<Props> = ({
     [componentId, dispatch]
   );
 
-  const handleError = useCallback(() => {
-    if (isUsingOtp) {
-      setWasLogginCalled(false);
-      setIsUsingOtp(false);
-    }
-  }, [isUsingOtp]);
+  const handleError = useCallback(
+    async (errorMessage: string) => {
+      if (isUsingOtp) {
+        setWasLogginCalled(false);
+        setIsUsingOtp(false);
+      }
+
+      const isScreenReaderEnabled = await AccessibilityInfo.isScreenReaderEnabled();
+      if (isScreenReaderEnabled) {
+        Alert.alert(t("screens.login.accessibility.alertErrorTitle"), errorMessage);
+      }
+    },
+    [isUsingOtp]
+  );
 
   const onLogIn = useCallback(
     async (authorised: boolean) => {
@@ -112,10 +121,10 @@ const LoginContainer: React.FC<Props> = ({
             // no need to send the user to healthkit-connect if device is an ipad
             await goToNext(Style.isIPad() ? true : authorised, results.data.loginUser.user.redeemedOnboarding);
           } else {
-            handleError();
+            handleError(t("screens.login.accessibility.alertErrorDefaultMessage"));
           }
         } catch (e) {
-          handleError();
+          handleError(trimGraphQLError(e?.message));
         }
       }
     },

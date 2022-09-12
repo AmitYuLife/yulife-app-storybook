@@ -59,6 +59,8 @@ export function TertiaryButtonBase(props: IProps) {
           styles.main,
           { height },
         ]}
+        accessibilityLabel={title}
+        accessibilityRole={"button"}
       >
         <View style={styles.leftSide} testID={`${testID}-text-view`}>
           {LeftIcon || <Icon uri={iconUri} button={leftIcon} />}

@@ -48,6 +48,7 @@ import { Rank } from "./rank";
 import { FlagUK } from "./flag-uk";
 import { FlagUS } from "./flag-us";
 import { FlagSA } from "./flag-sa";
+import { Eye } from "./eye";
 
 export default {
   Clock,
@@ -102,4 +103,5 @@ export default {
   FlagUK,
   FlagUS,
   FlagSA,
+  Eye,
 };

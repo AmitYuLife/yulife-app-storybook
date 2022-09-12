@@ -50,6 +50,7 @@ export const getIcon = (type: TextInputTypes) => {
     case "Email":
       return Mail;
     case "Password":
+    case "PasswordReveal":
       return Lock;
     case "Text":
       return Giraffe;
@@ -90,6 +91,7 @@ export const getPlaceholder = ({ type, placeholder }: IGetPlaceholder) => {
       return placeholder;
     case "Board":
       return "Group name";
+    case "PasswordReveal":
     default:
       return "";
   }

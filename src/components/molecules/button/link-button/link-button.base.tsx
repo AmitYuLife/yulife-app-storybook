@@ -79,6 +79,8 @@ function Main({ height, color, testID, disabled, onPressIn, onPressOut, onPress,
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
       onPress={onPress}
+      accessibilityLabel={title}
+      accessibilityRole={"button"}
     >
       <Animated.View style={[styles.main, { height, opacity: fadeAnim }]} testID={`${testID}-text-view`}>
         <Text bold={true} style={[styles.title, { color }, underline && styles.underline, disabledStyles]}>

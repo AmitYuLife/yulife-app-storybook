@@ -15,7 +15,7 @@ import {
 import styles from "./text-input.styles";
 import { TextInputTypes, TEXT_INPUT_TYPES } from "./text-input.types";
 
-interface IProps {
+export interface IProps {
   value: string;
   onChange: (value: string) => void;
   hasError?: boolean;
