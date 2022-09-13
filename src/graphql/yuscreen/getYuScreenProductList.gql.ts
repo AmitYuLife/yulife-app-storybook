@@ -5,6 +5,7 @@ export const GQL_QUERY_GET_YU_SCREEN_PRODUCT_LIST = gql`
     getYuScreenProductList {
       heading
       body {
+        id
         backgroundColor
         button {
           label

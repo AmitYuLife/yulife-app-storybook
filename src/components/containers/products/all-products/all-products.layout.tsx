@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
-import { Colours, Style } from "@styles";
+import { Colours, Style, TOP_BAR } from "@styles";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { handleNavigateBack } from "@navigation/utils";
 import { useSelector } from "react-redux";
@@ -15,7 +15,7 @@ export const AllProductsLayout = ({ children }: Props) => {
 
   return (
     <SafeAreaView style={[styles.flex, styles.bgWhite]}>
-      <ScrollView style={styles.flex}>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.flex}>
         <View style={styles.topPad} />
         {children}
       </ScrollView>
@@ -26,7 +26,7 @@ export const AllProductsLayout = ({ children }: Props) => {
 
 const styles = StyleSheet.create({
   topPad: {
-    height: Style.adjust(60),
+    height: TOP_BAR.HEIGHT + Style.adjust(32),
   },
   flex: {
     flex: 1,

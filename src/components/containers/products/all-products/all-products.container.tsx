@@ -4,7 +4,7 @@ import { Colours, Style } from "@styles";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_YU_SCREEN_PRODUCT_LIST } from "@graphql/yuscreen/getYuScreenProductList.gql";
-import { GetYuScreenProductList } from "@graphql/_core/schema";
+import { GetYuScreenProductList, GetYuScreenProductList_getYuScreenProductList_body } from "@graphql/_core/schema";
 import { CarouselCard } from "@components/containers/member/yu/subcomponents/carousel/carousel-card";
 import { AllProductsLayout } from "./all-products.layout";
 import { YuScreenCarouselItemVariant } from "@graphql/_core/schema/globalTypes";
@@ -15,7 +15,9 @@ interface Props {
   componentId: string;
 }
 const AllProductsScreen = ({ componentId }: Props) => {
-  const { data, error, loading } = useQuery<GetYuScreenProductList>(GQL_QUERY_GET_YU_SCREEN_PRODUCT_LIST);
+  const { data, error, loading } = useQuery<GetYuScreenProductList>(GQL_QUERY_GET_YU_SCREEN_PRODUCT_LIST, {
+    fetchPolicy: "cache-and-network",
+  });
 
   useBackHandler(() => {
     handleNavigateBack(componentId)();
@@ -41,18 +43,19 @@ const AllProductsScreen = ({ componentId }: Props) => {
   }
 
   const {
-    getYuScreenProductList: { body, heading },
-  } = data;
+    body,
+    heading,
+  }: { body: GetYuScreenProductList_getYuScreenProductList_body[]; heading: string } = data?.getYuScreenProductList;
 
   return (
     <AllProductsLayout>
       {!heading ? null : (
-        <TextTemplate textAlign="center" type="h2">
+        <TextTemplate textAlign="center" type="h3">
           {heading}
         </TextTemplate>
       )}
       {body.map((item) => (
-        <View key={item.descriptionMarkdown} style={styles.cardWrapper}>
+        <View key={item.id} style={styles.cardWrapper}>
           <CarouselCard {...item} variant={YuScreenCarouselItemVariant.full} />
         </View>
       ))}
@@ -65,7 +68,7 @@ const styles = StyleSheet.create({
   cardWrapper: {
     width: Style.DEVICE_WIDTH,
     alignItems: "center",
-    marginTop: Style.adjust(16),
+    marginTop: Style.adjust(24),
   },
 
   center: {
