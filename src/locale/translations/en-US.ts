@@ -68,6 +68,10 @@ export default {
           accessibilityLabel: ", %{cycling} cycled",
         },
       },
+      panel: {
+        title: "Stay tuned!",
+        description: "The next event will start soon.",
+      },
     },
     inspect: {
       duel: {

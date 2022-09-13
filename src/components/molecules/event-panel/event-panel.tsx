@@ -15,20 +15,18 @@ import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
 interface IProps {
   componentId?: string;
   event: IEvent;
-  currentWorld: number;
   width: number;
   onJoin: (event: IEvent) => Promise<void>;
   onLayout?: (event: LayoutChangeEvent) => void;
 }
 
-const EventPanel = ({ event, currentWorld, componentId, width, onJoin, onLayout }: IProps) => {
+const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => {
   const {
     centredScreen: {
       online: { eventPanel },
     },
   } = useSelector(getDailyStepsTheme);
   const dispatch = useDispatch();
-  const fontColour = useMemo(() => (currentWorld === 1 ? Colours.neutral.white : Colours.neutral.n800), [currentWorld]);
   const PROGRESS_BAR_WIDTH = useMemo(() => width / 1.2 + 5, [width]);
   const buttonWrapperStyle = useMemo(
     () => ({
@@ -77,7 +75,7 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin, onLayout 
       <View style={containerStyles.wrapper} onLayout={onLayout}>
         <View style={containerStyles.container}>
           <View style={styles.header}>
-            <TextTemplate type="b1b" color={fontColour}>
+            <TextTemplate type="b1b" color={eventPanel.fontColor}>
               {event.title}
             </TextTemplate>
             {event.joined ? (
@@ -95,9 +93,9 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin, onLayout 
                   width={Style.adjust(16)}
                   height={Style.adjust(16)}
                   style={styles.challengeIcon}
-                  tintColor={fontColour}
+                  tintColor={eventPanel.fontColor}
                 />
-                <TextTemplate type="l1" color={fontColour}>
+                <TextTemplate type="l1" color={eventPanel.fontColor}>
                   {challenge.description}
                 </TextTemplate>
               </View>
@@ -124,14 +122,14 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin, onLayout 
                 width={Style.adjust(16)}
                 height={Style.adjust(16)}
                 style={styles.challengeIcon}
-                tintColor={fontColour}
+                tintColor={eventPanel.fontColor}
               />
-              <TextTemplate type="l1b" color={fontColour}>
+              <TextTemplate type="l1b" color={eventPanel.fontColor}>
                 {event?.tags?.tag}
               </TextTemplate>
             </View>
             {!event?.tags?.joined ? null : (
-              <TextTemplate type="l1b" color={fontColour}>
+              <TextTemplate type="l1b" color={eventPanel.fontColor}>
                 {event.tags.joined}
               </TextTemplate>
             )}

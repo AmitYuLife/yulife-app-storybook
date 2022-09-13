@@ -8,13 +8,7 @@ const onClose = () => console.log("closed");
 export const PanelStories = () => (
   <ScrollView>
     {[0, 1, 2, 3].map((currentWorld) => (
-      <Panel
-        key={currentWorld}
-        title="Stay tuned!"
-        description="The next event will start soon."
-        currentWorld={currentWorld}
-        onClose={onClose}
-      />
+      <Panel key={currentWorld} title="Stay tuned!" description="The next event will start soon." onClose={onClose} />
     ))}
   </ScrollView>
 );

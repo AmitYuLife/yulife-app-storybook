@@ -13,6 +13,7 @@ export interface ICentredScreen {
   image: CenteredScreenImages;
   style: { backgroundColor: string };
   eventPanel?: {
+    fontColor?: string;
     borderColor?: string;
     backgroundColor?: string;
   };
@@ -90,6 +91,7 @@ const planetsColors = {
     forest: {
       backgroundColor: "rgb(255, 252, 216)",
       eventPanel: {
+        fontColor: Colours.neutral.n800,
         borderColor: "#EDEDD1",
         backgroundColor: "#FFFFE5",
       },
@@ -97,6 +99,7 @@ const planetsColors = {
     ocean: {
       backgroundColor: "rgb(1,62,116)",
       eventPanel: {
+        fontColor: Colours.neutral.white,
         borderColor: Colours.ocean.up202,
         backgroundColor: Colours.ocean.up203,
       },
@@ -104,6 +107,7 @@ const planetsColors = {
     desert: {
       backgroundColor: "rgb(255,249,225)",
       eventPanel: {
+        fontColor: Colours.neutral.n800,
         borderColor: "#F3EDD1",
         backgroundColor: "#FFFBE9",
       },
@@ -111,6 +115,7 @@ const planetsColors = {
     mountain: {
       backgroundColor: "rgb(248, 212, 219)",
       eventPanel: {
+        fontColor: Colours.neutral.n800,
         borderColor: "#F4D1DB",
         backgroundColor: "#FFE7EC",
       },
@@ -120,6 +125,7 @@ const planetsColors = {
     forest: {
       backgroundColor: "#FFE8E8",
       eventPanel: {
+        fontColor: Colours.neutral.n800,
         borderColor: "#EDEDD1",
         backgroundColor: "#FFFFE5",
       },
@@ -127,6 +133,7 @@ const planetsColors = {
     ocean: {
       backgroundColor: "#35DBFF",
       eventPanel: {
+        fontColor: Colours.neutral.white,
         borderColor: Colours.ocean.up202,
         backgroundColor: Colours.ocean.up203,
       },
@@ -134,6 +141,7 @@ const planetsColors = {
     desert: {
       backgroundColor: "#FFE2C8",
       eventPanel: {
+        fontColor: Colours.neutral.n800,
         borderColor: "#F3EDD1",
         backgroundColor: "#FFFBE9",
       },
@@ -141,6 +149,7 @@ const planetsColors = {
     mountain: {
       backgroundColor: "#FFE2C8",
       eventPanel: {
+        fontColor: Colours.neutral.n800,
         borderColor: "#F4D1DB",
         backgroundColor: "#FFE7EC",
       },
@@ -183,6 +192,11 @@ const getCurrentWorldTheme = (
           online: {
             image: "yuniversal_1",
             style: { backgroundColor: "" },
+            eventPanel: {
+              fontColor: Colours.neutral.white,
+              borderColor: "#370888",
+              backgroundColor: "#300774",
+            },
           },
         },
         hasWhiteGlow: true,

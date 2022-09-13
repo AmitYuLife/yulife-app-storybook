@@ -165,9 +165,8 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
       {!showPanel ? null : (
         <View style={styles.panel}>
           <Panel
-            title="Stay tuned!"
-            description="The next event will start soon."
-            currentWorld={currentWorld}
+            title={t("screens.daily.panel.title")}
+            description={t("screens.daily.panel.description")}
             onClose={closePanel}
           />
         </View>
