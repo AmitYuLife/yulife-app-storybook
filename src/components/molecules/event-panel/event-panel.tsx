@@ -7,9 +7,10 @@ import { Button, PressableWithDelay } from "@molecules";
 import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
-import styles, { getCurrentWorldStyle } from "./event-panel.styles";
-import { useDispatch } from "react-redux";
+import styles from "./event-panel.styles";
+import { useDispatch, useSelector } from "react-redux";
 import { updateUserGoal } from "@redux/user/user.actions";
+import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
 
 interface IProps {
   componentId?: string;
@@ -21,7 +22,11 @@ interface IProps {
 }
 
 const EventPanel = ({ event, currentWorld, componentId, width, onJoin, onLayout }: IProps) => {
-  const { wrapper, container } = getCurrentWorldStyle(currentWorld);
+  const {
+    centredScreen: {
+      online: { eventPanel },
+    },
+  } = useSelector(getDailyStepsTheme);
   const dispatch = useDispatch();
   const fontColour = useMemo(() => (currentWorld === 1 ? Colours.neutral.white : Colours.neutral.n800), [currentWorld]);
   const PROGRESS_BAR_WIDTH = useMemo(() => width / 1.2 + 5, [width]);
@@ -34,11 +39,14 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin, onLayout 
 
   const containerStyles = useMemo(
     () => ({
-      wrapper: [styles.wrapper, wrapper],
-      container: [styles.container, container],
+      wrapper: [styles.wrapper, { backgroundColor: eventPanel.borderColor }],
+      container: [
+        styles.container,
+        { backgroundColor: eventPanel.backgroundColor, borderColor: eventPanel.borderColor },
+      ],
       badgeContainer: [styles.badgeContainer, { backgroundColor: event?.badge?.backgroundColor || "#F86F63" }],
     }),
-    [container, event?.badge?.backgroundColor, wrapper]
+    [eventPanel, event?.badge?.backgroundColor]
   );
 
   const onNavigateToDetails = useCallback(async () => {

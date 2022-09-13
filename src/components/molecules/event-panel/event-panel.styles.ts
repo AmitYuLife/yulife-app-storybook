@@ -1,4 +1,4 @@
-import { Colours, Style } from "@styles";
+import { Style } from "@styles";
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
@@ -63,49 +63,3 @@ export default StyleSheet.create({
     marginRight: 5,
   },
 });
-
-export const getCurrentWorldStyle = (world: number) => {
-  switch (world) {
-    case 1:
-      return {
-        wrapper: {
-          backgroundColor: Colours.ocean.up202,
-        },
-        container: {
-          borderColor: Colours.ocean.up202,
-          backgroundColor: Colours.ocean.up203,
-        },
-      };
-    case 2:
-      return {
-        wrapper: {
-          backgroundColor: "#F3EDD1",
-        },
-        container: {
-          borderColor: "#F3EDD1",
-          backgroundColor: "#FFFBE9",
-        },
-      };
-    case 3:
-      return {
-        wrapper: {
-          backgroundColor: "#F4D1DB",
-        },
-        container: {
-          borderColor: "#F4D1DB",
-          backgroundColor: "#FFE7EC",
-        },
-      };
-    case 0:
-    default:
-      return {
-        wrapper: {
-          backgroundColor: "#EDEDD1",
-        },
-        container: {
-          borderColor: "#EDEDD1",
-          backgroundColor: "#FFFFE5",
-        },
-      };
-  }
-};

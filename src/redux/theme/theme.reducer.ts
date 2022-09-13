@@ -12,6 +12,15 @@ import { CHANGE_PANEL_VISIBILITY } from "./theme.action";
 export interface ICentredScreen {
   image: CenteredScreenImages;
   style: { backgroundColor: string };
+  eventPanel?: {
+    borderColor?: string;
+    backgroundColor?: string;
+  };
+}
+
+enum Planets {
+  EARTH = "earth",
+  RED = "red",
 }
 
 export interface IThemeStore {
@@ -32,13 +41,14 @@ export interface IThemeStore {
   };
 }
 
-export const getInitialState = (newBackgroundAssets = false): IThemeStore => ({
+export const getInitialState = (newBackgroundAssets = false, currentPlanet = Planets.EARTH): IThemeStore => ({
   dailyStepsScreen: {
     centredScreen: {
       offline: { image: "gray_forest", style: { backgroundColor: "rgb(235, 235, 235)" } },
       online: {
-        image: newBackgroundAssets ? "new_forest" : "large_forest",
-        style: { backgroundColor: "rgb(255, 252, 216)" },
+        image: newBackgroundAssets ? "new_forest" : (`${currentPlanet}_forest` as CenteredScreenImages),
+        style: { backgroundColor: planetsColors[currentPlanet].forest.backgroundColor },
+        eventPanel: planetsColors[currentPlanet].forest.eventPanel,
       },
     },
     hasWhiteGlow: false,
@@ -63,6 +73,79 @@ const themeReducer = (state: IThemeStore = getInitialState(), action: SyncAction
     default:
       return state;
   }
+};
+
+const getPlanetByLevel = (level: number) => {
+  if (level < 200) {
+    return Planets.EARTH;
+  }
+
+  if (level > 199 && level < 401) {
+    return Planets.RED;
+  }
+};
+
+const planetsColors = {
+  [Planets.EARTH]: {
+    forest: {
+      backgroundColor: "rgb(255, 252, 216)",
+      eventPanel: {
+        borderColor: "#EDEDD1",
+        backgroundColor: "#FFFFE5",
+      },
+    },
+    ocean: {
+      backgroundColor: "rgb(1,62,116)",
+      eventPanel: {
+        borderColor: Colours.ocean.up202,
+        backgroundColor: Colours.ocean.up203,
+      },
+    },
+    desert: {
+      backgroundColor: "rgb(255,249,225)",
+      eventPanel: {
+        borderColor: "#F3EDD1",
+        backgroundColor: "#FFFBE9",
+      },
+    },
+    mountain: {
+      backgroundColor: "rgb(248, 212, 219)",
+      eventPanel: {
+        borderColor: "#F4D1DB",
+        backgroundColor: "#FFE7EC",
+      },
+    },
+  },
+  [Planets.RED]: {
+    forest: {
+      backgroundColor: "#FFE8E8",
+      eventPanel: {
+        borderColor: "#EDEDD1",
+        backgroundColor: "#FFFFE5",
+      },
+    },
+    ocean: {
+      backgroundColor: "#35DBFF",
+      eventPanel: {
+        borderColor: Colours.ocean.up202,
+        backgroundColor: Colours.ocean.up203,
+      },
+    },
+    desert: {
+      backgroundColor: "#FFE2C8",
+      eventPanel: {
+        borderColor: "#F3EDD1",
+        backgroundColor: "#FFFBE9",
+      },
+    },
+    mountain: {
+      backgroundColor: "#FFE2C8",
+      eventPanel: {
+        borderColor: "#F4D1DB",
+        backgroundColor: "#FFE7EC",
+      },
+    },
+  },
 };
 
 const getCurrentWorldTheme = (
@@ -90,6 +173,7 @@ const getCurrentWorldTheme = (
   }
 
   const currentWorld = getCurrentWorld(currentLevel);
+  const currentPlanet = getPlanetByLevel(currentLevel);
 
   if (yuniversalMap) {
     return {
@@ -121,8 +205,9 @@ const getCurrentWorldTheme = (
           centredScreen: {
             offline: { image: "gray_mountain", style: { backgroundColor: "rgb(235,235,235)" } },
             online: {
-              image: newBackgroundAssets ? "new_mountain" : "mountain",
-              style: { backgroundColor: "rgb(248, 212, 219)" },
+              image: newBackgroundAssets ? "new_mountain" : (`${currentPlanet}_mountain` as CenteredScreenImages),
+              style: { backgroundColor: planetsColors[currentPlanet].mountain.backgroundColor },
+              eventPanel: planetsColors[currentPlanet].mountain.eventPanel,
             },
           },
           hasWhiteGlow: true,
@@ -142,8 +227,9 @@ const getCurrentWorldTheme = (
           centredScreen: {
             offline: { image: "gray_desert", style: { backgroundColor: "rgb(235,235,235)" } },
             online: {
-              image: newBackgroundAssets ? "new_desert" : "desert",
-              style: { backgroundColor: "rgb(255,249,225)" },
+              image: newBackgroundAssets ? "new_desert" : (`${currentPlanet}_desert` as CenteredScreenImages),
+              style: { backgroundColor: planetsColors[currentPlanet].desert.backgroundColor },
+              eventPanel: planetsColors[currentPlanet].desert.eventPanel,
             },
           },
           hasWhiteGlow: true,
@@ -162,7 +248,11 @@ const getCurrentWorldTheme = (
         dailyStepsScreen: {
           centredScreen: {
             offline: { image: "gray_ocean", style: { backgroundColor: "#747474" } },
-            online: { image: newBackgroundAssets ? "new_ocean" : "ocean", style: { backgroundColor: "rgb(1,62,116)" } },
+            online: {
+              image: newBackgroundAssets ? "new_ocean" : (`${currentPlanet}_ocean` as CenteredScreenImages),
+              style: { backgroundColor: planetsColors[currentPlanet].ocean.backgroundColor },
+              eventPanel: planetsColors[currentPlanet].ocean.eventPanel,
+            },
           },
           hasWhiteGlow: false,
           isLight: true,
@@ -177,7 +267,7 @@ const getCurrentWorldTheme = (
       };
     case 0:
     default:
-      return getInitialState(newBackgroundAssets);
+      return getInitialState(newBackgroundAssets, currentPlanet);
   }
 };
 
