@@ -39,7 +39,11 @@ export const useYuScreenOnPressHandler = ({ event, onPress, currentRoute }: Prop
     }
 
     if (onPress.sduiAction) {
-      dispatch(onPress.sduiAction);
+      dispatch({
+        type: onPress.sduiAction.type,
+        payload: { serverPayload: onPress.sduiAction.payload },
+      });
+      logEvent(dispatch, event);
     }
   }, [dispatch, event, onPress, currentRoute]);
 };
