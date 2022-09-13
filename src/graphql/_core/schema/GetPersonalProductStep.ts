@@ -12,6 +12,7 @@ import {
   ContentItemButtonSize,
   CoverType,
   YuProductStatus,
+  ContentItemImageSize,
   ContentItemRowIconTextBannerType,
   AvatarPartType,
   YuWorld,
@@ -644,12 +645,25 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemI
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemImage_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemImage {
   __typename: "ContentItemImage";
   id: string;
   image: GetPersonalProductStep_getPersonalProductStep_body_ContentItemImage_image | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemImage_styles[] | null;
   wrapperStyles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemImage_wrapperStyles[] | null;
+  /**
+   * Supported RN version 3.48.0
+   */
+  onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemImage_onPress | null;
+  /**
+   * Supported RN version 3.48.0
+   */
+  contentItemImageSize: ContentItemImageSize | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_styles {
@@ -2125,12 +2139,25 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage {
   __typename: "ContentItemImage";
   id: string;
   image: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image | null;
   styles: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_styles[] | null;
   wrapperStyles: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_wrapperStyles[] | null;
+  /**
+   * Supported RN version 3.48.0
+   */
+  onPress: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_onPress | null;
+  /**
+   * Supported RN version 3.48.0
+   */
+  contentItemImageSize: ContentItemImageSize | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderProductInfo_coverList_slotBackgroundUrl {

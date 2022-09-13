@@ -1,4 +1,4 @@
-import { ProductStepAction } from "./sdui.types";
+import { SduiActionWithServerPayload } from "./sdui.types";
 
 type ParsedJson<T> = {
   isValid: boolean;
@@ -26,7 +26,7 @@ export function getServerPayload(payload: unknown) {
   const type = typeof payload;
 
   if (type === "object" && !!payload) {
-    return (payload as ProductStepAction["payload"])?.serverPayload;
+    return (payload as SduiActionWithServerPayload["payload"])?.serverPayload;
   }
 
   if (type === "string") {

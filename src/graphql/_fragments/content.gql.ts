@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+import { GQL_FRAGMENT_SDUI_ACTION, GQL_FRAGMENT_SDUI_STYLE } from "./shared.gql";
 
 export const GQL_FRAGMENT_CONTENT_ITEM_CONFIRM = gql`
   fragment ContentItemConfirm on ContentItemConfirm {
@@ -392,6 +393,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM_OVERLAY = gql`
 `;
 
 export const GQL_FRAGMENT_CONTENT_ITEM_IMAGE = gql`
+  ${GQL_FRAGMENT_SDUI_STYLE}
+  ${GQL_FRAGMENT_SDUI_ACTION}
+
   fragment ContentItemImage on ContentItemImage {
     id
     image {
@@ -404,6 +408,10 @@ export const GQL_FRAGMENT_CONTENT_ITEM_IMAGE = gql`
     wrapperStyles {
       ...SduiStyle
     }
+    onPress {
+      ...SduiAction
+    }
+    contentItemImageSize: size
   }
 `;
 

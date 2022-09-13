@@ -1,10 +1,10 @@
 import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { Colours, Style, TOP_BAR } from "@styles";
-import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { handleNavigateBack } from "@navigation/utils";
 import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
+import { GenericHeadingAbsolute } from "@organisms";
 
 interface Props {
   children: Element | Element[];
@@ -19,7 +19,7 @@ export const AllProductsLayout = ({ children }: Props) => {
         <View style={styles.topPad} />
         {children}
       </ScrollView>
-      <TopBarAbsolute hasWhiteBackground={true} leftIcon="Back" onPressLeftIcon={handleNavigateBack(currentRoute)} />
+      <GenericHeadingAbsolute logo="yulife" onLeftIconPress={handleNavigateBack(currentRoute)} />
     </SafeAreaView>
   );
 };

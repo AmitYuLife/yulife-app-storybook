@@ -22,6 +22,11 @@ export interface ISetIsLoading {
   payload: LoadingState;
 }
 
+export interface SduiActionWithServerPayload {
+  type: SduiActionType;
+  payload?: { serverPayload?: string };
+}
+
 export interface ProductStepAction {
   type: SduiActionType;
   payload: ProductStepDefaultFields & { serverPayload: string };

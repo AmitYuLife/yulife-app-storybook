@@ -1,23 +1,36 @@
-import React, { memo, useMemo, useRef } from "react";
-import { Animated, StyleSheet, View, ViewStyle } from "react-native";
+import React, { memo, useCallback, useMemo, useRef, useState } from "react";
+import { Animated, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { mapServerStyles } from "@components/sdui";
 import { Absolute, Body } from "./sections";
 import {
   GetYuScreenProductDetails_getYuScreenProductDetails_body as PropsBody,
   GetYuScreenProductDetails_getYuScreenProductDetails_absolute as PropsAbsolute,
+  GetYuScreenProductDetails_getYuScreenProductDetails_header as PropsHeader,
+  GetYuScreenProductDetails_getYuScreenProductDetails_footer as PropsFooter,
   SduiStyle,
 } from "@graphql/_core/schema";
 import { UiContext } from "./product-details.context";
+import { Header } from "./sections/header";
+import { Footer } from "./sections/footer";
 
 interface Props {
   body: PropsBody[];
+  header: PropsHeader[];
   absolute: PropsAbsolute[];
+  footer: PropsFooter[];
   containerStyles: SduiStyle[];
+  footerStyles: SduiStyle[];
 }
 
 export const ProductDetailsScreen = memo((props: Props) => {
-  const { body, absolute, containerStyles } = props;
+  const { body, header, footer, footerStyles, absolute, containerStyles } = props;
   const { current: scrollValue } = useRef(new Animated.Value(0));
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const footerStyle = mapServerStyles(footerStyles);
+
+  const handleHeaderLayout = useCallback((event: LayoutChangeEvent) => {
+    setHeaderHeight(event.nativeEvent.layout.height);
+  }, []);
 
   const { background, foreground } = useMemo(() => {
     return absolute.reduce(
@@ -40,8 +53,10 @@ export const ProductDetailsScreen = memo((props: Props) => {
     >
       <View style={[styles.wrapper, mapServerStyles(containerStyles)]}>
         <Absolute absolute={background} />
-        <Body body={body} />
+        <Body headerHeight={headerHeight} body={body} />
+        <Footer footerStyle={footerStyle} footer={footer} />
         <Absolute absolute={foreground} />
+        <Header onLayout={handleHeaderLayout} header={header} />
       </View>
     </UiContext.Provider>
   );

@@ -10,7 +10,7 @@ import Logger from "@services/logging/logger";
 import { SyncAction } from "@redux/_core/types";
 import { getRouteState } from "../app/app.selectors";
 import { submitPersonalProductStep, backPersonalProductStep } from "@graphql/personalProduct";
-import { ProductStepAction } from "./sdui.types";
+import { SduiActionWithServerPayload, ProductStepAction } from "./sdui.types";
 import { parseJSON, getServerPayload } from "./sdui.helpers";
 import { setLoadingState } from "./sdui.actions";
 import { getYuScreenProductSlots } from "@graphql/yuscreen";
@@ -19,7 +19,7 @@ import { refreshUserProfile } from "../user/user.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { getYuScreen } from "@graphql/yuscreen/getYuScreen.gql";
 
-function* navigateBack({ payload }: ProductStepAction) {
+function* navigateBack({ payload }: SduiActionWithServerPayload) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
   const userFeatures: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
@@ -98,7 +98,7 @@ function* navigateTo({ payload }: ProductStepAction) {
   }
 }
 
-function* setBottomTab({ payload }: ProductStepAction) {
+function* setBottomTab({ payload }: SduiActionWithServerPayload) {
   const { isValid, data } = parseJSON(getServerPayload(payload), ["routeId"]);
 
   if (isValid) {
@@ -122,7 +122,7 @@ function* setBottomTab({ payload }: ProductStepAction) {
   }
 }
 
-function* openUrl({ payload }: ProductStepAction) {
+function* openUrl({ payload }: SduiActionWithServerPayload) {
   try {
     yield call(handleLinkPress(payload.serverPayload));
   } catch (e) {
@@ -214,7 +214,7 @@ function* logEvent(action: SyncAction<string>) {
   }
 }
 
-function* openModal(action: ProductStepAction) {
+function* openModal(action: SduiActionWithServerPayload) {
   try {
     const serverPayload = JSON.parse(action.payload.serverPayload);
 
@@ -240,7 +240,7 @@ function* openModal(action: ProductStepAction) {
   }
 }
 
-function* openAlertDialog(action: ProductStepAction) {
+function* openAlertDialog(action: SduiActionWithServerPayload) {
   try {
     const dispatch = reduxStore.dispatch;
     const serverPayload = JSON.parse(action.payload.serverPayload);
@@ -251,7 +251,7 @@ function* openAlertDialog(action: ProductStepAction) {
       Alert.alert(
         title,
         message,
-        buttons.map((button: { text: string; onPress: ProductStepAction }) => ({
+        buttons.map((button: { text: string; onPress: SduiActionWithServerPayload }) => ({
           ...button,
           onPress: !button.onPress ? null : () => dispatch(button.onPress),
         }))

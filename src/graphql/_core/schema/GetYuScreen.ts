@@ -211,7 +211,7 @@ export interface GetYuScreen_getYuScreen_productCarousel_items {
 }
 
 export interface GetYuScreen_getYuScreen_productCarousel {
-  heading: string;
+  heading: string | null;
   items: (GetYuScreen_getYuScreen_productCarousel_items | null)[];
 }
 
