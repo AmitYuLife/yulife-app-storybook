@@ -4,15 +4,15 @@ import { useDispatch } from "react-redux";
 import { GenericHeading } from "@organisms";
 import { Colours, TOP_BAR } from "@styles";
 import { useBackHandler } from "@hooks";
-import { ProductStepAction } from "@redux/server-driven-ui/sdui.types";
+import { SduiActionWithServerPayload } from "@redux/server-driven-ui/sdui.types";
 
 interface Props {
   leftIcon: ComponentProps<typeof GenericHeading>["leftIcon"];
   rightIcon: ComponentProps<typeof GenericHeading>["rightIcon"];
   logo: ComponentProps<typeof GenericHeading>["logo"];
   heading: ComponentProps<typeof GenericHeading>["heading"];
-  onLeftIconPress: ProductStepAction;
-  onRightIconPress: ProductStepAction;
+  onLeftIconPress: SduiActionWithServerPayload;
+  onRightIconPress: SduiActionWithServerPayload;
 }
 
 export const ContentItemHeaderBar = memo((props: Props) => {
@@ -20,7 +20,7 @@ export const ContentItemHeaderBar = memo((props: Props) => {
   const dispatch = useDispatch();
 
   const pressAction = useCallback(
-    (action: ProductStepAction) => {
+    (action: SduiActionWithServerPayload) => {
       if (!action) {
         return null;
       }
@@ -59,7 +59,10 @@ export const ContentItemHeaderBar = memo((props: Props) => {
 
 const styles = StyleSheet.create({
   wrapper: {
+    height: TOP_BAR.TOP_BAR_WITH_PAD,
     paddingTop: TOP_BAR.PADDING_TOP,
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: Colours.neutral.white,
   } as ViewStyle,
 });

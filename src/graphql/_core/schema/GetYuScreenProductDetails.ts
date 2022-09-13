@@ -9,6 +9,7 @@ import {
   SduiActionType,
   ContentItemButtonSize,
   ContentItemRowIconTextBannerType,
+  ContentItemImageSize,
   RNViewPointerEvents,
 } from "./globalTypes";
 
@@ -21,13 +22,19 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_containerSt
   value: string;
 }
 
-export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemPad {
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_footerStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemCollapsingGenericHeader {
   __typename:
-    | "ContentItemPad"
     | "ContentItemCollapsingGenericHeader"
     | "ContentItemPerks"
     | "ContentItemSelectedPackageCard"
-    | "ContentItemAppDownloadPrompt";
+    | "ContentItemAppDownloadPrompt"
+    | "ContentItemFade"
+    | "ContentItemHeaderBar";
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader_styles {
@@ -289,23 +296,200 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   value: string;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage {
   __typename: "ContentItemImage";
   id: string;
   image: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage_image | null;
   styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage_styles[] | null;
   wrapperStyles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage_wrapperStyles[] | null;
+  /**
+   * Supported RN version 3.48.0
+   */
+  onPress: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage_onPress | null;
+  /**
+   * Supported RN version 3.48.0
+   */
+  contentItemImageSize: ContentItemImageSize | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemInfoCard_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemInfoCard_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemInfoCard_hyperlink {
+  title: string;
+  url: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemInfoCard {
+  __typename: "ContentItemInfoCard";
+  id: string;
+  image: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemInfoCard_image | null;
+  markdown: string;
+  styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemInfoCard_styles[] | null;
+  hyperlink: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemInfoCard_hyperlink | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemPad_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemPad {
+  __typename: "ContentItemPad";
+  id: string;
+  amount: number;
+  pointerEvents: RNViewPointerEvents | null;
+  styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemPad_styles[] | null;
 }
 
 export type GetYuScreenProductDetails_getYuScreenProductDetails_body =
-  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemPad
+  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemCollapsingGenericHeader
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemText
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemKeyValueBox
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemBeneficiariesSection
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner
-  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage;
+  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage
+  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemInfoCard
+  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemPad;
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemProductDetailsHeader {
+  __typename:
+    | "ContentItemProductDetailsHeader"
+    | "ContentItemCollapsingGenericHeader"
+    | "ContentItemText"
+    | "ContentItemBeneficiariesSection"
+    | "ContentItemRowIconTextBanner"
+    | "ContentItemKeyValueBox"
+    | "ContentItemImage"
+    | "ContentItemPerks"
+    | "ContentItemSelectedPackageCard"
+    | "ContentItemAppDownloadPrompt"
+    | "ContentItemHeaderBar"
+    | "ContentItemInfoCard";
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton {
+  __typename: "ContentItemButton";
+  id: string;
+  label: string;
+  buttonType: ContentItemButtonType | null;
+  value: string | null;
+  disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
+  onPress: GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_onPress | null;
+  event: GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_event | null;
+  icon: GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_icon | null;
+  rightIcon: GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_rightIcon | null;
+  styles: GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_styles[] | null;
+  buttonSize: ContentItemButtonSize | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemFade {
+  __typename: "ContentItemFade";
+  id: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemPad_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemPad {
+  __typename: "ContentItemPad";
+  id: string;
+  amount: number;
+  pointerEvents: RNViewPointerEvents | null;
+  styles: GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemPad_styles[] | null;
+}
+
+export type GetYuScreenProductDetails_getYuScreenProductDetails_footer =
+  | GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemProductDetailsHeader
+  | GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton
+  | GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemFade
+  | GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemPad;
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemProductDetailsHeader {
+  __typename:
+    | "ContentItemProductDetailsHeader"
+    | "ContentItemPad"
+    | "ContentItemCollapsingGenericHeader"
+    | "ContentItemText"
+    | "ContentItemButton"
+    | "ContentItemBeneficiariesSection"
+    | "ContentItemRowIconTextBanner"
+    | "ContentItemKeyValueBox"
+    | "ContentItemImage"
+    | "ContentItemPerks"
+    | "ContentItemSelectedPackageCard"
+    | "ContentItemAppDownloadPrompt"
+    | "ContentItemFade"
+    | "ContentItemInfoCard";
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemHeaderBar_onLeftIconPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemHeaderBar_onRightIconPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemHeaderBar {
+  __typename: "ContentItemHeaderBar";
+  logo: string | null;
+  heading: string | null;
+  leftIcon: string | null;
+  rightIcon: string | null;
+  onLeftIconPress: GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemHeaderBar_onLeftIconPress | null;
+  onRightIconPress: GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemHeaderBar_onRightIconPress | null;
+}
+
+export type GetYuScreenProductDetails_getYuScreenProductDetails_header =
+  | GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemProductDetailsHeader
+  | GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemHeaderBar;
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemProductDetailsHeader {
   __typename:
@@ -318,7 +502,10 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_it
     | "ContentItemImage"
     | "ContentItemPerks"
     | "ContentItemSelectedPackageCard"
-    | "ContentItemAppDownloadPrompt";
+    | "ContentItemAppDownloadPrompt"
+    | "ContentItemFade"
+    | "ContentItemHeaderBar"
+    | "ContentItemInfoCard";
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemPad_styles {
@@ -384,9 +571,21 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails {
    */
   containerStyles: GetYuScreenProductDetails_getYuScreenProductDetails_containerStyles[] | null;
   /**
+   * Supported RN version 3.48.0
+   */
+  footerStyles: GetYuScreenProductDetails_getYuScreenProductDetails_footerStyles[] | null;
+  /**
    * Content displayed inside the scrollview area
    */
   body: GetYuScreenProductDetails_getYuScreenProductDetails_body[] | null;
+  /**
+   * Supported RN version 3.48.0
+   */
+  footer: GetYuScreenProductDetails_getYuScreenProductDetails_footer[] | null;
+  /**
+   * Supported RN version 3.48.0
+   */
+  header: GetYuScreenProductDetails_getYuScreenProductDetails_header[] | null;
   absolute: GetYuScreenProductDetails_getYuScreenProductDetails_absolute[] | null;
 }
 

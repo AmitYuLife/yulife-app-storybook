@@ -75,6 +75,6 @@ export interface YuScreenCarousel_items {
 }
 
 export interface YuScreenCarousel {
-  heading: string;
+  heading: string | null;
   items: (YuScreenCarousel_items | null)[];
 }

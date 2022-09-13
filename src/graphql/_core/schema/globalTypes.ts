@@ -70,6 +70,10 @@ export enum ContentItemFormTextInputType {
   text = "text",
 }
 
+export enum ContentItemImageSize {
+  fill = "fill",
+}
+
 export enum ContentItemProgressBarType {
   default = "default",
   yuCoin = "yuCoin",

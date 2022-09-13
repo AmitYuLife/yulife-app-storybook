@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { SduiActionType, ContentItemImageSize } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: GetPerkSubscriptionInfo
 // ====================================================
@@ -39,12 +41,25 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
   value: string;
 }
 
+export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemImage_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemImage {
   __typename: "ContentItemImage";
   id: string;
   image: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemImage_image | null;
   styles: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemImage_styles[] | null;
   wrapperStyles: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemImage_wrapperStyles[] | null;
+  /**
+   * Supported RN version 3.48.0
+   */
+  onPress: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemImage_onPress | null;
+  /**
+   * Supported RN version 3.48.0
+   */
+  contentItemImageSize: ContentItemImageSize | null;
 }
 
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemMarkdown {

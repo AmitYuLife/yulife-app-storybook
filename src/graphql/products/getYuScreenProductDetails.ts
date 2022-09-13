@@ -13,6 +13,9 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER_CONTAINER_ACTIONS,
   GQL_FRAGMENT_CONTENT_ITEM_PRODUCT_DETAILS_HEADER_FUNDING,
   GQL_FRAGMENT_CONTENT_ITEM_PRODUCT_DETAILS_HEADER_FUNDING_THEME,
+  GQL_FRAGMENT_CONTENT_ITEM_FADE,
+  GQL_FRAGMENT_CONTENT_ITEM_HEADER_BAR,
+  GQL_FRAGMENT_CONTENT_ITEM_INFO_CARD,
 } from "@graphql/_fragments/content.gql";
 import {
   GQL_FRAGMENT_REMOTE_IMAGE,
@@ -39,10 +42,16 @@ export const GQL_QUERY_GET_YU_SCREEN_PRODUCT_DETAILS = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_IMAGE}
   ${GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER}
   ${GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER_CONTAINER_ACTIONS}
+  ${GQL_FRAGMENT_CONTENT_ITEM_FADE}
+  ${GQL_FRAGMENT_CONTENT_ITEM_HEADER_BAR}
+  ${GQL_FRAGMENT_CONTENT_ITEM_INFO_CARD}
 
   query GetYuScreenProductDetails($customerProductId: String!) {
     getYuScreenProductDetails(customerProductId: $customerProductId) {
       containerStyles {
+        ...SduiStyle
+      }
+      footerStyles {
         ...SduiStyle
       }
       body {
@@ -67,6 +76,30 @@ export const GQL_QUERY_GET_YU_SCREEN_PRODUCT_DETAILS = gql`
         }
         ... on ContentItemImage {
           ...ContentItemImage
+        }
+        ... on ContentItemInfoCard {
+          ...ContentItemInfoCard
+        }
+        ... on ContentItemPad {
+          ...ContentItemPad
+        }
+      }
+      footer {
+        __typename
+        ... on ContentItemButton {
+          ...ContentItemButton
+        }
+        ... on ContentItemFade {
+          ...ContentItemFade
+        }
+        ... on ContentItemPad {
+          ...ContentItemPad
+        }
+      }
+      header {
+        __typename
+        ... on ContentItemHeaderBar {
+          ...ContentItemHeaderBar
         }
       }
       absolute {
