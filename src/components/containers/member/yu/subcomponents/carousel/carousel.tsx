@@ -17,10 +17,13 @@ export const Carousel: FC<YuScreenCarousel> = memo(({ heading, items }) => {
   });
 
   return (
-    <View>
-      <View style={styles.carouselTitleWrapper}>
-        <TextTemplate type="b1b">{heading}</TextTemplate>
-      </View>
+    <View style={styles.carouselWrapper}>
+      {!heading ? null : (
+        <View style={styles.carouselTitleWrapper}>
+          <TextTemplate type="b1b">{heading}</TextTemplate>
+        </View>
+      )}
+
       <FlatList disableThrottle={true} onScroll={handleScroll} data={items} renderItem={renderItem(items.length)} />
     </View>
   );
@@ -41,8 +44,11 @@ const renderItem = (itemsLength: number) => ({
 );
 
 const styles = StyleSheet.create({
+  carouselWrapper: {
+    paddingTop: Style.adjust(32),
+  },
   carouselTitleWrapper: {
     paddingHorizontal: Style.adjust(32),
-    paddingVertical: Style.adjust(16),
+    paddingBottom: Style.adjust(16),
   },
 });
