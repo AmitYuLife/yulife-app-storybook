@@ -63,6 +63,7 @@ export interface GetYuScreenProductList_getYuScreenProductList_body_titleMarkdow
 }
 
 export interface GetYuScreenProductList_getYuScreenProductList_body {
+  id: string;
   backgroundColor: string | null;
   button: GetYuScreenProductList_getYuScreenProductList_body_button | null;
   contentContainerStyles: GetYuScreenProductList_getYuScreenProductList_body_contentContainerStyles[] | null;
