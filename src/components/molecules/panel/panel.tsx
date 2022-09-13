@@ -1,22 +1,26 @@
 import React, { memo, useMemo } from "react";
 import { CloseSvg, TextTemplate } from "@atoms";
 import { Stars3 } from "@atoms/icon/stars-icon";
-import { Colours, Style } from "@styles";
+import { Style } from "@styles";
 import { StyleSheet, View } from "react-native";
 import { PressableWithDelay } from "@molecules";
+import { useSelector } from "react-redux";
+import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
 
 interface IProps {
   title: string;
   description: string;
-  currentWorld: number;
   onClose: () => void;
 }
 
-const Panel = ({ title, description, currentWorld, onClose }: IProps) => {
-  const fontColour = useMemo(() => (currentWorld === 1 ? Colours.neutral.white : Colours.neutral.n800), [currentWorld]);
-  const wrapper = useMemo(() => ({ ...styles.wrapper, backgroundColor: getBackgroundColor(currentWorld) }), [
-    currentWorld,
-  ]);
+const Panel = ({ title, description, onClose }: IProps) => {
+  const {
+    centredScreen: {
+      online: { eventPanel },
+    },
+  } = useSelector(getDailyStepsTheme);
+
+  const wrapper = useMemo(() => ({ ...styles.wrapper, backgroundColor: eventPanel.backgroundColor }), [eventPanel]);
 
   return (
     <View style={wrapper}>
@@ -25,14 +29,14 @@ const Panel = ({ title, description, currentWorld, onClose }: IProps) => {
       </View>
       <View style={styles.closeButton}>
         <PressableWithDelay onPress={onClose}>
-          <CloseSvg stroke={fontColour} />
+          <CloseSvg stroke={eventPanel.fontColor} />
         </PressableWithDelay>
       </View>
-      <TextTemplate type="b1b" color={fontColour}>
+      <TextTemplate type="b1b" color={eventPanel.fontColor}>
         {title}
       </TextTemplate>
       <View style={styles.description}>
-        <TextTemplate type="b2" color={fontColour}>
+        <TextTemplate type="b2" color={eventPanel.fontColor}>
           {description}
         </TextTemplate>
       </View>
@@ -59,18 +63,5 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(8),
   },
 });
-
-const getBackgroundColor = (currentWorld: number) => {
-  switch (currentWorld) {
-    case 1:
-      return Colours.ocean.up203;
-    case 2:
-      return "#FFFBE9";
-    case 3:
-      return "#FFE7EC";
-    default:
-      return "#FFFFE5";
-  }
-};
 
 export default memo(Panel);

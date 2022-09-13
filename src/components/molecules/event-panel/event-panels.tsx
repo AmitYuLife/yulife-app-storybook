@@ -23,7 +23,7 @@ interface IProps {
 const CARD_WIDTH = Style.DEVICE_WIDTH * 0.8;
 const INITIAL_PADDING = Style.DEVICE_WIDTH * 0.1 + 5;
 
-const EventPanels = ({ events = [], currentWorld, componentId, onJoin }: IProps) => {
+const EventPanels = ({ events = [], componentId, onJoin }: IProps) => {
   const [adHeight, setAdHeight] = useState(143);
 
   const onLayout = useCallback((e) => setAdHeight(e?.nativeEvent?.layout?.height || 148), [adHeight]);
@@ -44,17 +44,10 @@ const EventPanels = ({ events = [], currentWorld, componentId, onJoin }: IProps)
       }
 
       return (
-        <EventPanel
-          onLayout={onLayout}
-          onJoin={onJoin}
-          width={CARD_WIDTH}
-          event={item}
-          currentWorld={currentWorld}
-          componentId={componentId}
-        />
+        <EventPanel onLayout={onLayout} onJoin={onJoin} width={CARD_WIDTH} event={item} componentId={componentId} />
       );
     },
-    [onJoin, currentWorld, componentId, adHeight, onLayout]
+    [onJoin, componentId, adHeight, onLayout]
   );
 
   const keyExtractor = useCallback((event: IEvent) => event.id, []);
