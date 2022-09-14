@@ -7,6 +7,49 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.48.0] - 2022-09-14
+
+### Features
+
+- Feature XSE-1345: Add AllProducts screen
+- Feature XSE-1249: Update YuScreen carousel card
+
+### Bugfixes
+
+- Bugfix XSE-1368: Fix sdui action in useYuScreenOnPressHandler
+- Bugfix: Add FAQ link on meditation when using a different option app
+
+### Tasks
+
+- Task: YuScreen V4 US
+- Revert "Task: YuScreen V4 US"
+- Task: YuScreen V4 US
+- Task: Everything US YuScreen left
+- Task GS-393: Event Panel Space Themes
+- Task GS-442: Implement New Today Screen Designs
+- Task GS-431: Add Yuniversal Yugi animation
+- Task XSE-1364: Support markdown / styles
+- Task GS-440: Login screen accessibility
+- Task GS-441: Sign-up bonus screen accessibility
+- Task GS-413: Add FAQ button on challenge progress screen
+
+### Chores
+
+- Chore: Make heading not requried for carousel
+- Chore: Change image component to use one from @atoms for consistency
+- Chore: Move yuscreen assets to assets directory
+- Chore: Improve YuScreen earn rate spacing
+
+### Extra
+
+- Detox/fixes 12 9
+- Hotfix: Product List Use ID as key and increase padding
+- Detox/gdental
+- Detox/draw state
+- Detox/fixes 8 9
+- Detox/products vs slots
+- Hotfix: Allow interaction to be toggled on yucoin power content item
+
 ## [3.47.0] - 2022-09-07
 
 ### Features
