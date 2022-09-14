@@ -36,7 +36,6 @@ export const onEmptyYuscreen = (customer) => async () => {
 
 export const onYuscreen = (customer: any) => async () => {
     const fullName = customer.data.fullName
-
     const yuscreen = element(by.id(YUSCREEN))
 
     await expect(yuscreen).toBeVisible()
@@ -149,10 +148,10 @@ export const onSurveyScreen = async () => {
 }
 
 export const onSurveySubmitScreen = async () => {
-    const title = element(by.text("What Would You Like To See?"))
+    const bodyCopy = element(by.text("We appreciate your feedback. Thank you for helping us make YuLife the best insurance company in the world!"))
     const buttonCopy = element(by.text("Close"))
 
-    await expect(title).toBeVisible()
+    await expect(bodyCopy).toBeVisible()
     await expect(buttonCopy).toBeVisible()
 
 }

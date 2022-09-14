@@ -237,6 +237,8 @@ export const CUSTOMER_17 = {
         lastName: "Howard",
         dateOfBirth: moment().subtract(27, "years").toDate(),
         status: "onboarded",
+        fullName: "Ryan Howard",
+
     }
 } as IDatabaseItem
 
@@ -250,6 +252,7 @@ export const CUSTOMER_18 = {
         lastName: "Scott",
         dateOfBirth: moment().subtract(42, "years").toDate(),
         status: "onboarded",
+        fullName: "Michael Scott"
     }
 } as IDatabaseItem
 

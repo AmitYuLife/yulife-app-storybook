@@ -218,6 +218,7 @@ export const FIB_SALARY_INPUT = "FIB_SALARY_INPUT"
 export const FIB_SALARY_INPUT_VALUE =(value:string) => `FIB_SALARY_INPUT_VALUE_${value}`
 export const FIB_BROWSE_SCREEN =  "FIB_BROWSE_SCREEN"
 export const YUMOJI_PODIUM = (index: number) => `YUMOJI_PODIUM${index}`
+
 export const EMPTY_AVATAR = "EMPTY_AVATAR";
 export const YEAR_SCROLLER = "YEAR_SCROLLER"
 export const MONTH_SCROLLER = "MONTH_SCROLLER"
@@ -347,3 +348,5 @@ export const DRAW = (value: number) => `DRAW_${value}`;
 // YUCOIN POWER
 export const EARN_RATE = (earnRate: number) => `EARN_RATE_${earnRate}`;
 export const YUCOIN_TITLE = "YUCOIN_TITLE";
+
+export const LIST_YUMOJI = (index: number) => `LIST_YUMOJI_${index}`;

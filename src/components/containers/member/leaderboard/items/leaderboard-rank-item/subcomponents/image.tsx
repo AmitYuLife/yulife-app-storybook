@@ -4,7 +4,7 @@ import { AvatarEmpty } from "@molecules";
 import FastImage, { ImageStyle } from "react-native-fast-image";
 import { Style } from "@styles";
 
-export function Image({ uri }: { uri: string }) {
+export function Image({ uri, testID }: { uri: string; testID: string }) {
   if (!uri) {
     return (
       <View style={emptyStyles.wrapper}>
@@ -14,7 +14,7 @@ export function Image({ uri }: { uri: string }) {
   }
 
   return (
-    <View style={filledStyles.wrapper}>
+    <View style={filledStyles.wrapper} testID={testID}>
       <FastImage source={{ uri }} style={filledStyles.image} />
     </View>
   );

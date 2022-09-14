@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { View, Animated } from "react-native";
-import { LEADERBOARD_NAME } from "@ids";
+import { LEADERBOARD_NAME, LIST_YUMOJI } from "@ids";
 import { Image } from "./subcomponents/image";
 import { Rank } from "./subcomponents/rank";
 import { Name } from "./subcomponents/name";
@@ -49,7 +49,7 @@ const _ListRankItem = ({
           {isCurrentUser && <View style={baseStyles.currentUser} />}
           <View style={baseStyles.borderWrapper} testID={RANK(name)}>
             <Rank rank={rank} />
-            <Image uri={uri} />
+            <Image uri={uri} testID={LIST_YUMOJI(index)} />
             <Name name={name} bold={isCurrentUser} />
             <Score score={score} bold={isCurrentUser} />
           </View>

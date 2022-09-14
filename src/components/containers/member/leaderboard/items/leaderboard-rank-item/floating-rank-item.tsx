@@ -8,6 +8,7 @@ import { Score } from "./subcomponents/score";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { GetLeaderboard_getLeaderboard } from "@graphql/_core/schema";
 import { PAGE_SIZE } from "../../active-leaderboard/active-leaderboard.container";
+import { LIST_YUMOJI } from "@ids";
 
 interface Props {
   onPress?: () => void;
@@ -83,7 +84,7 @@ const FloatingRankItem = ({
           ])}
         >
           <Rank rank={position} style={floatingItemStyles.text} />
-          <Image uri={avatarRemoteFiles?.pngMini} />
+          <Image uri={avatarRemoteFiles?.pngMini} testID={LIST_YUMOJI(position)} />
           <Name name={name} bold={true} style={floatingItemStyles.text} />
           <Score score={steps} bold={true} style={floatingItemStyles.text} />
         </View>
