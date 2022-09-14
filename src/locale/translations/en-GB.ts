@@ -110,6 +110,7 @@ export default {
       subheading: "Use your YuCoin for vouchers from Amazon, Asos, M&S, and many more!",
       ctaLabel: "Next",
       ctaAccessibility: "Get started with Yulife",
+      subheadingAccessibility: "Use your yucoin for vouchers from Amazon, Asos, M&S, and many more!",
     },
     settings: {
       fitnessTrackers: {
@@ -292,7 +293,7 @@ export default {
   },
   molecules: {
     coinConfetti: {
-      accessibilityLabel: "Plus %{coins} Yu Coin",
+      accessibilityLabel: "Plus %{coins} yucoin",
     },
   },
   atoms: {

@@ -110,6 +110,7 @@ export default {
       subheading: "Use your YuCoin for vouchers from Amazon, Lululemon, Target and many more!",
       ctaLabel: "Next",
       ctaAccessibility: "Get started with Yulife",
+      subheadingAccessibility: "Use your yucoin for vouchers from Amazon, Asos, M&S, and many more!",
     },
     settings: {
       fitnessTrackers: {

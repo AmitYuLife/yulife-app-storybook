@@ -59,6 +59,7 @@ export const TextTemplate = memo(
         accessible={accessible}
         accessibilityLabel={accessibilityLabel}
         accessibilityRole={accessibilityRole}
+        importantForAccessibility={accessible ? "auto" : "no-hide-descendants"}
       >
         {children}
       </Text>
