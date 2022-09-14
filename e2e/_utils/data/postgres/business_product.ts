@@ -1,3 +1,4 @@
+
 import { Carrier, ProductCode, generateProductRecords } from "@yu-life/yulife-bdd-framework"
 import { BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_6 } from "./business";
 
@@ -9,7 +10,6 @@ export const BUSINESS_PRODUCT_3 = generateProductRecords({
     businessAccountId:  BUSINESS_ACCOUNT_3.data.business_account_id,
     reviewDate: "2031-01-05T00:00:00Z",
     startDate: "2021-01-05T00:00:00Z",
-    endDate: "2031-01-05T00:00:00Z",
 });
 
 export const BUSINESS_PRODUCT_4_RGL = generateProductRecords({
@@ -20,7 +20,6 @@ export const BUSINESS_PRODUCT_4_RGL = generateProductRecords({
     businessAccountId:  BUSINESS_ACCOUNT_4.data.business_account_id,
     reviewDate: "2030-02-02T00:00:00Z",
     startDate: "2020-02-02T00:00:00Z",
-    endDate: "2030-02-02T00:00:00Z",
 });
 
 export const BUSINESS_PRODUCT_4_GIP = generateProductRecords({
@@ -31,7 +30,6 @@ export const BUSINESS_PRODUCT_4_GIP = generateProductRecords({
     businessAccountId:  BUSINESS_ACCOUNT_4.data.business_account_id,
     reviewDate: "2030-02-02T00:00:00Z",
     startDate: "2020-02-02T00:00:00Z",
-    endDate: "2030-02-02T00:00:00Z",
 });
 
 export const BUSINESS_PRODUCT_4_GCI = generateProductRecords({
@@ -42,7 +40,6 @@ export const BUSINESS_PRODUCT_4_GCI = generateProductRecords({
     businessAccountId:  BUSINESS_ACCOUNT_4.data.business_account_id,
     reviewDate: "2030-02-02T00:00:00Z",
     startDate: "2020-02-02T00:00:00Z",
-    endDate: "2030-02-02T00:00:00Z",
 });
 
 export const BUSINESS_PRODUCT_1_WB = generateProductRecords({
@@ -54,11 +51,10 @@ export const BUSINESS_PRODUCT_1_WB = generateProductRecords({
 
 export const BUSINESS_PRODUCT_4_GDental = generateProductRecords({
     productCode: ProductCode.groupDental,
-    carrier: Carrier.YuLife,
+    carrier: Carrier.Bupa,
     productId: "YUG0000006",
     policyName: "Justice League Policy GDental",
     businessAccountId:  BUSINESS_ACCOUNT_6.data.business_account_id,
     reviewDate: "2030-02-02T00:00:00Z",
     startDate: "2020-02-02T00:00:00Z",
-    endDate: "2030-02-02T00:00:00Z",
 });

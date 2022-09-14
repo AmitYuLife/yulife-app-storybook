@@ -7,7 +7,7 @@ import { CUSTOMER_2, AUTH_2, CUSTOMER_18, AUTH_18, CUSTOMER_17, AUTH_17, AUTH_19
 import {
     GET_STARTED_BUTTON, MALE_BODY, COLOUR, VIEW_TOP_RIGHT_COIN_COUNTER, NAV_BAR,
     CHECK_BOX_STATE, SURVEY_SCREEN, SURVEY_TEXT_BOX, FEMALE_BODY,
-    BODY_TYPE, YUSCREEN_AVATAR, YUSCREEN, YUMOJI_PODIUM, LEADERBOARD_TITLE, YUCOIN_POWER, TEXT_TEMPLATE, YUCOIN_TITLE
+    BODY_TYPE, YUSCREEN_AVATAR, YUSCREEN, YUMOJI_PODIUM, LEADERBOARD_TITLE, YUCOIN_POWER, TEXT_TEMPLATE, YUCOIN_TITLE, LIST_YUMOJI
 } from "@ids";
 
 
@@ -106,7 +106,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                     })
                     When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
                         Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
-                        Then("I should see my Yumoji", then.idVisible(YUMOJI_PODIUM(1)))
+                        Then("I should see my Yumoji", then.idVisible(YUMOJI_PODIUM(2)))
                     })
                 })
             })
@@ -133,36 +133,39 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
             })
         })
     })       
-    // user's yumoji does not load on yu screen or leaderboard when i log in
+
     Scenario("I can view my Yumoji after I login, and edit it", scenario.start, async () => {
-        Given("I login", given.loginToYuScreen(false, CUSTOMER_17, AUTH_17), async () => {
-            Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
-            When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                Then("I should see myself in the leaderboard", then.idVisible(YUMOJI_PODIUM(2)))
-                Then("I should see my coin balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(560)))
-                When("I go back to the yuscreen", when.tapID(NAV_BAR("yu")), async () => {
-                    Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_17))
-                    Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_17))
-                    Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
-                    When("I tap the edit Yumoji button", when.tapID(YUSCREEN_AVATAR), async () => {
-                        Then("I should be on the create Yumoji screen", then.onCreateAvatarScreen)
-                        When("I proceed to edit my Yumoji", when.editYumoji("#FFC89F", "scruffy_sidepart", "#212121", "fat_lumberjack", "#2B2B2B", "#3C9172", "glasses_5"), async () => {
-                            Then("I should be awarded 100 yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(660)))
-                            When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                                Then("I should see my Yumoji", then.idVisible(YUMOJI_PODIUM(2)))
-                            })
-                        })    
+        Given("I have done yesterday 309 steps", given.addStepsHistoricalData(10000), async () => {
+            Given("I login", given.loginToYuScreen(false, CUSTOMER_17, AUTH_17), async () => {
+                Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
+                When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
+                    Then("I should see myself in the podium", then.idVisible(YUMOJI_PODIUM(1)))
+                    Then("I should see my yumoji in the leaderboard at the correct rank", then.idVisible(LIST_YUMOJI(1)))
+                    Then("I should see my coin balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(560)))
+                    When("I go back to the yuscreen", when.tapID(NAV_BAR("yu")), async () => {
+                        Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_17))
+                        Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
+                        When("I tap tzhe edit Yumoji button", when.tapID(YUSCREEN_AVATAR), async () => {
+                            Then("I should be on the create Yumoji screen", then.onCreateAvatarScreen)
+                            When("I proceed to edit my Yumoji", when.editYumoji("#FFC89F", "scruffy_sidepart", "#212121", "fat_lumberjack", "#2B2B2B", "#3C9172", "glasses_5"), async () => {
+                                Then("I should be awarded 100 yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(660)))
+                                When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
+                                    Then("I should see myself in the podium", then.idVisible(YUMOJI_PODIUM(1)))
+                                    Then("I should see my yumoji in the leaderboard at the correct rank", then.idVisible(LIST_YUMOJI(1)))                                
+                                })
+                            })    
+                        })
                     })
                 })
             })
         })
     })
-    // Skipping due to survey title needing to be changed
     Scenario("I can complete a survey on the yuscreen", scenario.start, async () => {
-        Given("I login", given.loginToYuScreen(true, CUSTOMER_17, AUTH_17), async () => {
+        Given("I login", given.loginToYuScreen(false, CUSTOMER_17, AUTH_17), async () => {
             Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
             When("I tap the locked boots", when.tapAvatarItem("boots", "locked"), async () => {
-                Then("I should be on the survey screen", then.textVisible("What Would You Like To See?"))
+                Then("I should be on the survey screen", then.idVisible(SURVEY_SCREEN))
+                Then("I should see the survey screen body copy", then.textVisible("We’d love to take your feedback onboard. Out of the following, which would you like to see covered?"))
             })
             When("I tap an option", when.tapText("Dental insurance"), async () => {
                 Then("This option should be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", true)))
