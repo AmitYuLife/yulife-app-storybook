@@ -32,7 +32,7 @@ function* navigateBack({ payload }: SduiActionWithServerPayload) {
 
   try {
     // update YuScreen slots incase any journey progression has changed
-    const updateYuScreen = userFeatures.yuScreenV4Us ? getYuScreen : getYuScreenProductSlots;
+    const updateYuScreen = userFeatures.yuScreenV4beta ? getYuScreen : getYuScreenProductSlots;
     yield call(updateYuScreen);
 
     // Dispatch additional actions supplied by the server
@@ -159,7 +159,7 @@ function* finishStepJourney(action: ProductStepAction) {
 
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
   const userFeatures: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
-  const refetchQuery = userFeatures.yuScreenV4Us ? "GetYuScreen" : "YuScreenProductSlots";
+  const refetchQuery = userFeatures.yuScreenV4beta ? "GetYuScreen" : "YuScreenProductSlots";
 
   try {
     yield call(
