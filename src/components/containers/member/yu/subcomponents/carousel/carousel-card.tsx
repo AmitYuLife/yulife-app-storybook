@@ -64,12 +64,11 @@ export const CarouselCard = memo(
         ])}
       >
         <View style={styles.backgroundImageWrapper}>
-          {images.map(({ image, width }, columnedImageIndex) => (
-            <View key={image.id} style={columnedImageIndex ? styles.backgroundImageLeft : styles.backgroundImageRight}>
+          {images.map(({ image, width }, imageIndex) => (
+            <View key={image.id} style={imageIndex ? styles.backgroundImageLeft : styles.backgroundImageRight}>
               <Image
-                width={Style.adjust(
-                  width * getWidthMultiplier({ index: columnedImageIndex, variant: nullSafeVariant })
-                )}
+                suppressLoadingUi={true}
+                width={Style.adjust(width * getWidthMultiplier({ index: imageIndex, variant: nullSafeVariant }))}
                 source={{ uri: image.uri }}
               />
             </View>
