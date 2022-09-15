@@ -2,7 +2,7 @@ import * as React from "react";
 import { FC } from "react";
 import { VIEW_CONFETTI_COIN } from "@ids";
 import { Style } from "@styles";
-import { Image, View } from "react-native";
+import { Image, Platform, View } from "react-native";
 import AnimatedPlusPoints from "../plus-points/animated-plus-points";
 import PlusPoints from "../plus-points/plus-points";
 import styles from "./coin-confetti.styles";
@@ -22,7 +22,7 @@ const CoinConfetti: FC<IProps> = ({ coins, isExpanded, animationType }) => (
     testID={VIEW_CONFETTI_COIN(coins)}
     style={styles.wrapper}
     accessibilityLabel={t("molecules.coinConfetti.accessibilityLabel", { coins: addCommasToNumber(coins) })}
-    accessible={true}
+    accessible={Platform.select({ ios: false, android: true })}
   >
     <Image source={require("../../../../assets/coin-confetti/coin.png")} style={styles.coinImage} />
     <View style={styles.confettiWrapper}>

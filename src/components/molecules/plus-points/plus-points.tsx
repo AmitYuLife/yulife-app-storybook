@@ -1,10 +1,11 @@
 import React, { memo } from "react";
-import { View } from "react-native";
+import { Platform, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Colours } from "@styles";
 import { addCommasToNumber } from "@utils";
 import Plus from "./assets/plus";
 import styles from "./plus-points.styles";
+import { t } from "@locale";
 
 interface IProps {
   coins: number;
@@ -12,7 +13,12 @@ interface IProps {
 }
 
 const PlusPoints = ({ coins, testID }: IProps) => (
-  <View style={styles.textWrapper}>
+  <View
+    style={styles.textWrapper}
+    accessibilityLabel={t("molecules.coinConfetti.accessibilityLabel", { coins: addCommasToNumber(coins) })}
+    accessible={Platform.select({ ios: true, android: false })}
+    importantForAccessibility={"no"}
+  >
     <View style={styles.plusWrapper}>
       <Plus scale={0.8} />
     </View>

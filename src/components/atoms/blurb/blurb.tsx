@@ -7,10 +7,16 @@ interface IProps {
   label: string;
   wrapperStyle?: ViewStyle;
   textStyle?: TextStyle;
+  accessible?: boolean;
+  accessibilityLabel?: string;
 }
 
-const Blurb: FC<IProps> = ({ label, wrapperStyle, textStyle }) => (
-  <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle])}>
+const Blurb: FC<IProps> = ({ label, wrapperStyle, textStyle, accessible, accessibilityLabel }) => (
+  <View
+    style={StyleSheet.flatten([styles.wrapper, wrapperStyle])}
+    accessible={accessible}
+    accessibilityLabel={accessibilityLabel}
+  >
     <Text style={StyleSheet.flatten([styles.base, textStyle])}>{label}</Text>
   </View>
 );
