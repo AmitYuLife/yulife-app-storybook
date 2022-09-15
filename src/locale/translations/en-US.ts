@@ -339,4 +339,14 @@ export default {
       accessibilityTextValue: "5 out of 5",
     },
   },
+  timeUnits: {
+    days: "days",
+    day: "day",
+    hours: "hours",
+    hour: "hour",
+    minutes: "minutes",
+    minute: "minute",
+    seconds: "seconds",
+    second: "second",
+  },
 };
