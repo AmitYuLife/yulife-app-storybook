@@ -10,10 +10,10 @@ interface IProps {
 
 function ChallengeUnavailableModal(props: IProps) {
   const { nextAvailableAt, onPressCta } = props;
-  const [timeRemaining, setTimeRemaining] = React.useState(getTimeRemaining(nextAvailableAt));
+  const [timeRemaining, setTimeRemaining] = React.useState(getTimeRemaining(nextAvailableAt).time);
 
   useInterval(() => {
-    setTimeRemaining(getTimeRemaining(nextAvailableAt));
+    setTimeRemaining(getTimeRemaining(nextAvailableAt).time);
   }, 1000);
 
   return <ChallengeUnavailableScreen timeRemaining={timeRemaining} onPressCta={onPressCta} />;

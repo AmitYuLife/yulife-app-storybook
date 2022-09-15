@@ -106,7 +106,7 @@ type RemainingTimeProps = {
 const REFRESH_TIME = 1000 * 60;
 
 const RemainingTime = ({ endDateTime }: RemainingTimeProps) => {
-  const [time, setTime] = useState<string>(getTimeRemaining(endDateTime, "short"));
+  const [time, setTime] = useState<string>(getTimeRemaining(endDateTime, "short").time);
 
   const handleTimeDisplay = useCallback(() => {
     if (moment().isSameOrAfter(endDateTime)) {
@@ -114,7 +114,7 @@ const RemainingTime = ({ endDateTime }: RemainingTimeProps) => {
       return;
     }
 
-    setTime(getTimeRemaining(endDateTime, "short"));
+    setTime(getTimeRemaining(endDateTime, "short").time);
   }, [endDateTime]);
 
   useInterval(handleTimeDisplay, !DETOX_ENABLED && time ? REFRESH_TIME : null);

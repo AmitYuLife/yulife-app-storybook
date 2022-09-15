@@ -1,4 +1,4 @@
-import React, { memo, useState, useCallback, useEffect } from "react";
+import React, { memo, useState, useCallback, useEffect, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Navigation } from "react-native-navigation";
 import moment from "moment";
@@ -8,6 +8,7 @@ import { getTimeRemaining } from "@utils";
 import useInterval from "@use-it/interval";
 import { DETOX_ENABLED } from "@services/socket";
 import { MODALS } from "@navigation/constants";
+import { t } from "@locale";
 
 const REFRESH_RATE_ONE_MINUTE = 1000 * 60;
 const REFRESH_RATE_ONE_SECOND = 1000;
@@ -21,6 +22,7 @@ interface IProps {
 
 const SurgeModal = ({ title, description, multiplier, endDateTime }: IProps) => {
   const [time, setTime] = useState<string>("0s");
+  const [timeAccessibility, setTimeAccessibility] = useState<string>(`0 ${t("timeUnits.seconds")}`);
   const [refreshRate, setRefreshRate] = useState(REFRESH_RATE_ONE_MINUTE);
 
   const handleTimeDisplay = useCallback(() => {
@@ -32,11 +34,18 @@ const SurgeModal = ({ title, description, multiplier, endDateTime }: IProps) => 
     const secondsRemaining = moment(endDateTime).diff(moment(), "seconds");
 
     setRefreshRate(secondsRemaining <= 120 ? REFRESH_RATE_ONE_SECOND : REFRESH_RATE_ONE_MINUTE);
-    setTime(getTimeRemaining(endDateTime, "short"));
+    const { time: remainingTime, accessibility } = getTimeRemaining(endDateTime, "short");
+    setTime(remainingTime);
+    setTimeAccessibility(accessibility);
   }, [endDateTime]);
 
   useEffect(handleTimeDisplay, [endDateTime, handleTimeDisplay]);
   useInterval(handleTimeDisplay, !DETOX_ENABLED && time ? refreshRate : null);
+
+  const descriptionAccessibilityLabel = useMemo(
+    () => description.replace("$multiplier$", multiplier).replace("$endDateTime$", timeAccessibility),
+    [description, multiplier, timeAccessibility]
+  );
 
   const parser = description.split("$");
   return (
@@ -44,7 +53,7 @@ const SurgeModal = ({ title, description, multiplier, endDateTime }: IProps) => 
       <View style={styles.title}>
         <TextTemplate type={"h2"}>{title}</TextTemplate>
       </View>
-      <TextTemplate type="b2" textAlign="center">
+      <TextTemplate type="b2" textAlign="center" accessibilityLabel={descriptionAccessibilityLabel}>
         {parser.map((text, index) => {
           if (text === "multiplier" || text === "endDateTime") {
             return (

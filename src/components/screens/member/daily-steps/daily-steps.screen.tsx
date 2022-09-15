@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { View, Platform } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { isIphoneX } from "react-native-iphone-x-helper";
@@ -22,6 +22,8 @@ import { MODALS } from "@navigation/constants";
 import { InformationIcon } from "@atoms/icon/information-icon";
 import { YUCOIN_POWER_INFO, DAILYSTEP_SCREEN_COIN } from "@ids";
 import { t } from "@locale";
+import { useSelector } from "react-redux";
+import { getModalState } from "@redux/app/app.selectors";
 
 interface IProps extends IConnectedScreenProps {
   showCounter?: boolean;
@@ -49,13 +51,24 @@ const DailyStepsScreen = ({
   hasEvents,
   hideInformationIcon,
 }: Props) => {
+  const currentModal = useSelector(getModalState);
+  const androidImportantForAccessibility = useMemo(
+    () => (currentModal === MODALS.blurredOverlay ? "no-hide-descendants" : "auto"),
+    [currentModal]
+  );
   const onSurgePress = useCallback(async () => {
     const children = <SurgeModal {...userSurge} />;
     await showFloatingModal({ children, lottie: userSurge?.lottie, modalId: MODALS.surgeOverlay });
   }, [userSurge]);
 
   return (
-    <Animatable.View duration={750} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
+    <Animatable.View
+      duration={750}
+      animation="fadeIn"
+      style={styles.flex}
+      useNativeDriver={true}
+      importantForAccessibility={androidImportantForAccessibility}
+    >
       <CentredScreen
         footerImage={!hasPermission ? centredScreen.offline.image : centredScreen.online.image}
         style={!hasPermission ? centredScreen.offline.style : centredScreen.online.style}

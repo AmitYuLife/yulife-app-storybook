@@ -26,12 +26,14 @@ const OfflineScreen = ({ level, onPress }: IProps) => {
     <CentredScreen {...centerScreenStyle}>
       <View style={styles.wrapper}>
         <View style={styles.contentWrapper}>
-          <TextTemplate type="h1" color={textColour} textAlign="center">
-            {translations["screens.offline.heading"]}
-          </TextTemplate>
-          <TextTemplate type="b2" color={textColour} textAlign="center">
-            {translations["screens.offline.subheading"]}
-          </TextTemplate>
+          <View accessible={true}>
+            <TextTemplate type="h1" color={textColour} textAlign="center">
+              {translations["screens.offline.heading"]}
+            </TextTemplate>
+            <TextTemplate type="b2" color={textColour} textAlign="center">
+              {translations["screens.offline.subheading"]}
+            </TextTemplate>
+          </View>
           <View style={styles.buttonWrapper}>
             <Button onPress={onPress} size="Medium" label={translations["screens.offline.ctaLabel"]} />
           </View>

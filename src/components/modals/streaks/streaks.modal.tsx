@@ -132,7 +132,7 @@ const StreaksModal: React.FC<Props> = ({
   getUserStart: dispatchGetUserStart,
 }) => {
   const [isLoading, setLoading] = React.useState(false);
-  const [timeRemaining, setTimeRemaining] = React.useState(getTimeRemaining(nextStreakAvailableAt, "medium"));
+  const [timeRemaining, setTimeRemaining] = React.useState(getTimeRemaining(nextStreakAvailableAt, "medium").time);
 
   useBackHandler(() => {
     if (onPressCtaSecondary) {
@@ -150,7 +150,7 @@ const StreaksModal: React.FC<Props> = ({
   React.useEffect(() => {
     if (streakMax === streakCompleted && !streakAwardId) {
       const callback = () => {
-        setTimeRemaining(getTimeRemaining(nextStreakAvailableAt, "medium"));
+        setTimeRemaining(getTimeRemaining(nextStreakAvailableAt, "medium").time);
         timer = setTimeout(callback, 1000);
       };
 

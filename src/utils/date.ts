@@ -1,5 +1,6 @@
 import moment from "moment";
 import { padNum } from "@utils";
+import { t } from "@locale";
 
 export const DATE_FORMAT = "YYYY-MM-DD";
 export const DATE_FORMAT_WITH_TZ = "YYYY-MM-DDTHH:mm:ssZ";
@@ -12,7 +13,7 @@ export function addSecondsToChallengeEndDateTime(endDateTime: string, seconds = 
 }
 
 export function getTimeRemaining(nextAvailableAt: string, format?: TimeType) {
-  return `${getTime(Math.abs(moment().diff(moment(nextAvailableAt), "seconds")), format)}`;
+  return getTime(Math.abs(moment().diff(moment(nextAvailableAt), "seconds")), format);
 }
 
 export function getTime(nextAvailable: number, format?: TimeType) {
@@ -21,8 +22,13 @@ export function getTime(nextAvailable: number, format?: TimeType) {
   const minutes = Math.floor(nextAvailable / 60) % 60;
   const seconds = nextAvailable % 60;
 
+  const daysOrDay = days > 1 ? t("timeUnits.days") : t("timeUnits.day");
+  const hoursOrHour = hours > 1 ? t("timeUnits.hours") : t("timeUnits.hour");
+  const minutesOrMinute = minutes > 1 ? t("timeUnits.minutes") : t("timeUnits.minute");
+  const secondsOrSecond = seconds > 1 ? t("timeUnits.seconds") : t("timeUnits.second");
+
   if (hours < 1 && minutes < 1 && seconds < 1) {
-    return "0s";
+    return { time: "0s", accessibility: `0 ${t("timeUnits.seconds")}` };
   }
 
   const paddedHours = padNum(hours);
@@ -32,44 +38,45 @@ export function getTime(nextAvailable: number, format?: TimeType) {
   const isMedium = format === "medium";
 
   if (days < 1 && hours < 1 && minutes < 1) {
-    return `${seconds}s`;
+    return { time: `${seconds}s`, accessibility: `${seconds} ${secondsOrSecond}` };
   }
 
   if (days < 1 && hours < 1) {
+    const accessibility = `${paddedMinutes} ${minutesOrMinute} and ${paddedSeconds} ${secondsOrSecond}`;
     if (isShort) {
-      return `${minutes}m`;
+      return { time: `${minutes}m`, accessibility };
     }
 
     if (isMedium) {
-      return `${paddedMinutes}m ${paddedSeconds}s`;
+      return { time: `${paddedMinutes}m ${paddedSeconds}s`, accessibility };
     }
 
-    return `${paddedMinutes}:${paddedSeconds}`;
+    return { time: `${paddedMinutes}:${paddedSeconds}`, accessibility };
   }
 
   if (days < 1) {
+    const accessibility = `${paddedHours} ${hoursOrHour} ${paddedMinutes} ${minutesOrMinute} and ${paddedSeconds} ${secondsOrSecond}`;
     if (isShort) {
-      return `${paddedHours}h ${paddedMinutes}m`;
+      return { time: `${paddedHours}h ${paddedMinutes}m`, accessibility };
     }
 
     if (isMedium) {
-      return `${paddedHours}h ${paddedMinutes}m ${paddedSeconds}s`;
+      return { time: `${paddedHours}h ${paddedMinutes}m ${paddedSeconds}s`, accessibility };
     }
 
-    return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+    return { time: `${paddedHours}:${paddedMinutes}:${paddedSeconds}`, accessibility };
   }
 
-  const daysOrDay = days > 1 ? "days" : "day";
-
+  const accessibility = `${days} ${daysOrDay} ${paddedHours} ${hoursOrHour} ${paddedMinutes} ${minutesOrMinute} and ${paddedSeconds} ${secondsOrSecond}`;
   if (isShort) {
-    return `${days}d ${paddedHours}h ${paddedMinutes}m`;
+    return { time: `${days}d ${paddedHours}h ${paddedMinutes}m`, accessibility };
   }
 
   if (isMedium) {
-    return `${days}d ${paddedHours}h ${paddedMinutes}m ${paddedSeconds}s`;
+    return { time: `${days}d ${paddedHours}h ${paddedMinutes}m ${paddedSeconds}s`, accessibility };
   }
 
-  return `${days} ${daysOrDay} and ${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+  return { time: `${days} ${daysOrDay} and ${paddedHours}:${paddedMinutes}:${paddedSeconds}`, accessibility };
 }
 
 export function displaySecondsAsMinutes(amount: number): { minutes: number; seconds: number } {
