@@ -18,6 +18,7 @@ export const AllProductsLayout = ({ children }: Props) => {
       <ScrollView showsVerticalScrollIndicator={false} style={styles.flex}>
         <View style={styles.topPad} />
         {children}
+        <View style={styles.bottomPad} />
       </ScrollView>
       <GenericHeadingAbsolute logo="yulife" onLeftIconPress={handleNavigateBack(currentRoute)} />
     </SafeAreaView>
@@ -27,6 +28,9 @@ export const AllProductsLayout = ({ children }: Props) => {
 const styles = StyleSheet.create({
   topPad: {
     height: TOP_BAR.HEIGHT + Style.adjust(32),
+  },
+  bottomPad: {
+    height: Style.adjust(24),
   },
   flex: {
     flex: 1,
