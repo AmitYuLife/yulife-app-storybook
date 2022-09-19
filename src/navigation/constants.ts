@@ -94,6 +94,7 @@ export const MODALS = {
   challengeDetails: "yulife.modals.ChallengeDetails",
   challengeUnavailable: "yulife.modals.ChallengeUnavailable",
   chest: "yulife.modals.Chest",
+  EOTWChest: "yulife.modals.EOTWChest",
   createLeaderboard: "yulife.modals.CreateLeaderboard",
   collectReward: "yulife.modals.CollectReward",
   feedback: "yulife.modals.Feedback",

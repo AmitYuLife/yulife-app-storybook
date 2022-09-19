@@ -279,6 +279,10 @@ export default [
     component: require("../components/modals/animated-chest/animated-chest").default,
   },
   {
+    name: MODALS.EOTWChest,
+    component: require("../components/modals/eotw-chest/eotw-chest").default,
+  },
+  {
     name: MODALS.collectReward,
     component: require("../components/modals/collect-reward/collect-reward.modal").default,
   },

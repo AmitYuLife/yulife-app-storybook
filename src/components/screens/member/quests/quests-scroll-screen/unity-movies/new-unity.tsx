@@ -243,7 +243,6 @@ const Unity: FC<IProps> = ({ level, repeatedUnity, onSkip }) => {
   const { color, waves, background, background_xl, foreground, foreground_xl } = useMemo(() => getAssets(level), [
     level,
   ]);
-
   return (
     <View style={styles.wrapper} testID={YUNITY_REACHED(Math.floor(level / 50))}>
       <LottieView
@@ -358,7 +357,6 @@ const Unity: FC<IProps> = ({ level, repeatedUnity, onSkip }) => {
           <Chest
             chestType={data.getUnityRewards.chest.chestType}
             items={data.getUnityRewards.chest.items}
-            openOnPress={false}
             chestState={chestState}
             setChestState={setChestState}
           />

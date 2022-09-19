@@ -34,6 +34,26 @@ export const GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
         type
         value
       }
+      yuniversalChest {
+        chestType
+        title
+        items {
+          icon {
+            id
+            uri(options: { width: 180, height: 180 })
+          }
+          description
+          backgroundColour
+          shadowColour
+          textColour
+          starColour
+          tooltip {
+            title
+            description
+            cta
+          }
+        }
+      }
     }
   }
 `;
