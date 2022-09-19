@@ -1,6 +1,6 @@
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import moment from "moment";
-import { addSecondsToChallengeEndDateTime } from "@utils";
+import { addSecondsToChallengeEndDateTime, getCurrentPlanetByLevel, Planets } from "@utils";
 import {
   GetCurrentUser,
   LoginUser,
@@ -33,6 +33,7 @@ export interface ILevelsStore {
   yuniversalMap: number;
   yuniversalLevel: number;
   nextLevelAvailableAt: string;
+  currentPlanet: string;
 }
 
 export const getInitialState = (): ILevelsStore => ({
@@ -68,6 +69,7 @@ export const getInitialState = (): ILevelsStore => ({
   yuniversalMap: 0,
   yuniversalLevel: 0,
   nextLevelAvailableAt: "",
+  currentPlanet: Planets.EARTH,
 });
 
 const levelsReducer = (state: ILevelsStore = getInitialState(), action: SyncAction): ILevelsStore => {
@@ -146,6 +148,7 @@ const getUserSuccess = (state: ILevelsStore, data: GetCurrentUser): ILevelsStore
   yuniversalMap: data?.getCurrentUser?.coinLedger?.yuniversalMap || 0,
   yuniversalLevel: data?.getCurrentUser?.coinLedger?.yuniversalLevel || 0,
   nextLevelAvailableAt: data?.getCurrentUser?.coinLedger?.nextLevelAvailableAt || "",
+  currentPlanet: getCurrentPlanetByLevel(data?.getCurrentUser?.coinLedger?.currentLevel || 1),
 });
 
 const loginUserSuccess = (state: ILevelsStore, data: LoginUser): ILevelsStore => ({
@@ -155,6 +158,7 @@ const loginUserSuccess = (state: ILevelsStore, data: LoginUser): ILevelsStore =>
   yuniversalMap: data?.loginUser?.user?.coinLedger?.yuniversalMap || 0,
   yuniversalLevel: data?.loginUser?.user?.coinLedger?.yuniversalLevel || 0,
   nextLevelAvailableAt: data?.loginUser?.user?.coinLedger?.nextLevelAvailableAt || "",
+  currentPlanet: getCurrentPlanetByLevel(data?.loginUser?.user?.coinLedger?.currentLevel),
 });
 
 const isCancellingChallenge = (state: ILevelsStore): ILevelsStore => ({

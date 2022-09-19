@@ -6,33 +6,22 @@ import LevelStar from "./level.star";
 import styles from "./level.styles";
 import { QuestsMapLevel } from "../../quests.context";
 
-const getTextColor = (level: number) => {
-  switch (true) {
-    case level > 14 && level < 22:
-      return "rgb(225, 210, 88)";
-    case level > 64 && level < 72:
-      return "rgb(233, 210, 10)";
+const getWorldColor = (currentWorld: number) => {
+  switch (currentWorld) {
+    case 1:
+      return "#042872";
+    case 2:
+      return "#51002D";
+    case 3:
+      return "#3B0472";
     default:
-      return "#fff";
-  }
-};
-
-const getStarColor = (level: number, isCompleted: boolean) => {
-  switch (true) {
-    case level > 71 && level < 100:
-    case level > 50 && level < 65:
-      return isCompleted ? "rgb(142, 227, 255)" : "rgba(142, 227, 255, 0.4)";
-    case level > 64 && level < 72:
-      return isCompleted ? "rgb(233, 210, 10)" : "rgba(233, 210, 10, 0.3)";
-    case level > 14 && level < 22:
-      return isCompleted ? "rgb(225, 210, 88)" : "rgba(225, 210, 88, 0.3)";
-    default:
-      return isCompleted ? "white" : "rgba(255,255,255, 0.4)";
+      return "#195139";
   }
 };
 
 const getLevelLockIcon = (currentLevel: number, normalizedLevel: number) => {
   const normalizedCurrentLevel = getNormalizedLevel(currentLevel);
+  const currentWorld = getCurrentWorld(currentLevel);
   switch (true) {
     case normalizedLevel === 20 && normalizedCurrentLevel < 19:
     case normalizedLevel === 41 && normalizedCurrentLevel < 40:
@@ -49,9 +38,9 @@ const getLevelLockIcon = (currentLevel: number, normalizedLevel: number) => {
     case normalizedLevel === 191 && normalizedCurrentLevel < 190:
     case normalizedLevel === 195 && normalizedCurrentLevel < 194:
     case normalizedLevel === 198 && normalizedCurrentLevel < 197:
-      return <DoubleLock colour={getLockColor(normalizedLevel)} />;
+      return <DoubleLock colour={getWorldColor(currentWorld)} />;
     default:
-      return <Lock colour={getLockColor(normalizedLevel)} />;
+      return <Lock colour={getWorldColor(currentWorld)} />;
   }
 };
 
@@ -61,10 +50,13 @@ export default function getLevelButton(
   level: QuestsMapLevel,
   normalizedLevel: number
 ) {
+  const currentWorld = getCurrentWorld(currentLevel);
+  const color = getWorldColor(currentWorld);
+
   // step right up, we have more horrible logic, come and see the horrible logic!
   if (level.level % 50 === 0) {
     if (level.level > currentLevel) {
-      return <Lock colour={getLockColor(normalizedLevel)} />;
+      return <Lock colour={color} />;
     }
 
     return (
@@ -76,7 +68,7 @@ export default function getLevelButton(
 
   if (level.level === currentLevel) {
     if (nextAvailable < 0) {
-      const style = StyleSheet.flatten([styles.textPending, { color: !level.isActive ? "rgb(79, 151,139)" : "white" }]);
+      const style = StyleSheet.flatten([styles.textPending, { color: !level.isActive ? color : "white" }]);
       const nextAvailableFormatted = getQuestScreenTimer(Math.abs(nextAvailable));
 
       return (
@@ -107,13 +99,12 @@ export default function getLevelButton(
   }
 
   if (level.level < currentLevel) {
-    const color = getTextColor(normalizedLevel);
     return (
       <View style={styles.column}>
         <Text style={StyleSheet.flatten([styles.text, { textAlign: "center", color }])}>{level.level}</Text>
         <View style={styles.stars}>
           {Array.from({ length: 3 }).map((_, i) => (
-            <LevelStar key={`${level.id}_${i}`} colour={getStarColor(normalizedLevel, level.rating > i)} />
+            <LevelStar key={`${level.id}_${i}`} colour={color} />
           ))}
         </View>
       </View>
@@ -121,28 +112,8 @@ export default function getLevelButton(
   }
 
   if (level.isChestLevel) {
-    return <Chest colour={getLockColor(normalizedLevel)} />;
+    return <Chest colour={color} />;
   }
 
   return getLevelLockIcon(currentLevel, normalizedLevel);
-}
-
-function getLockColor(level: number) {
-  if (level > 64 && level < 72) {
-    return "rgb(118, 82, 48)";
-  }
-
-  const world = getCurrentWorld(level);
-
-  switch (world) {
-    case 3:
-      return "rgb(87, 133, 188)";
-    case 2:
-      return "rgb(183, 136, 67)";
-    case 1:
-      return "rgb(4, 40, 114)";
-    case 0:
-    default:
-      return "rgb(73, 133, 193)";
-  }
 }

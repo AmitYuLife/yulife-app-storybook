@@ -1,6 +1,6 @@
 import React, { memo, useState, useRef, useCallback, useEffect, FC, useContext } from "react";
 import { QUESTS_SCREEN } from "@ids";
-import { getCurrentEpisode, getCurrentWorld, getNormalizedLevel } from "@utils";
+import { getCurrentEpisode, getCurrentPlanetByLevel, getCurrentWorld, getNormalizedLevel } from "@utils";
 import { FlatList, SafeAreaView, View, ViewabilityConfigCallbackPair } from "react-native";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { IMapSlice, mapSlices } from "./assets";
@@ -48,8 +48,11 @@ const QuestsScreen: FC<IProps> = ({ hideUnity, unity, repeatedUnity, onLeftMenuP
 
   const scrollToActiveLevel = useCallback(() => {
     const currentWorld = getCurrentWorld(activeLevel);
+    const currentPlanet = getCurrentPlanetByLevel(currentLevel);
     const normalizedLevel = getNormalizedLevel(activeLevel);
-    const result = mapSlices.find((slice) => slice.slots.some((item) => item.index === normalizedLevel - 1));
+    const result = mapSlices(currentPlanet).find((slice) =>
+      slice.slots.some((item) => item.index === normalizedLevel - 1)
+    );
 
     if (result && result.episodeSettings) {
       timer.current = global.setTimeout(() => {
