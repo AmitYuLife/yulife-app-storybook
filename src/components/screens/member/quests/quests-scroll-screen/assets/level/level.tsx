@@ -1,18 +1,12 @@
 import { LEVEL_CHALLENGE_BUTTON } from "@ids";
 import { TouchableOpacityWithDelay } from "@molecules/index";
 import moment from "moment";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Style } from "../../../../../../../styles";
+import { Style, Colours } from "@styles";
 import { IMapSlice } from "../index";
 import getLevelButton from "./level.content";
-import {
-  getBackgroundColor,
-  getButtonPosition,
-  getShadowColor,
-  getShadowPosition,
-  getPulseColor,
-} from "./level.helpers";
+import { getBackgroundColor, getButtonPosition, getPulseColor } from "./level.helpers";
 import styles, { CIRCLE_SIZE } from "./level.styles";
 import Pulse from "./pulse";
 import useInterval from "@use-it/interval";
@@ -46,9 +40,17 @@ function LevelBubble(props: IProps) {
   const currentWorld = getCurrentWorld(level.level);
   const normalizedLevel = getNormalizedLevel(level.level);
   const bubbleBackgroundColor = getBackgroundColor(nextAvailableTimer, level, currentWorld);
-  const shadowStyle = getShadowPosition(style);
-  const shadowColor = getShadowColor(normalizedLevel);
   const bubblePulseColor = getPulseColor(normalizedLevel);
+  const bubbleBorder = useMemo(
+    () =>
+      level.isDone && !level.isActive
+        ? {
+            borderWidth: 1.5,
+            borderColor: Colours.neutral.white,
+          }
+        : {},
+    [level.isDone, level.isActive]
+  );
 
   return (
     <>
@@ -61,16 +63,12 @@ function LevelBubble(props: IProps) {
           style={pulseStyle}
         />
       )}
-      {!shadowColor || level.isActive ? null : (
-        <View style={StyleSheet.flatten([styles.bubble, shadowStyle])}>
-          <View style={[styles.bubbleButton, shadowColor]} />
-        </View>
-      )}
       <View style={StyleSheet.flatten([styles.bubble, style])}>
         <TouchableOpacityWithDelay
           onPress={level.onPress}
           style={StyleSheet.flatten([
             styles.bubbleButton,
+            bubbleBorder,
             {
               backgroundColor: bubbleBackgroundColor,
             },

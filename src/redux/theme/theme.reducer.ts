@@ -2,7 +2,7 @@
 import { StreakTypes } from "@organisms/game-icon-button/streak.button";
 import { GetCurrentUser, LoginUser } from "@graphql/_core/schema";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
-import { getCurrentWorld } from "@utils";
+import { getCurrentPlanetByLevel, getCurrentWorld, Planets } from "@utils";
 import { SyncAction } from "../_core/types";
 import { TopBarTypes } from "@organisms/top-bar/top-bar.helpers";
 import { Colours } from "@styles";
@@ -18,12 +18,6 @@ export interface ICentredScreen {
     backgroundColor?: string;
   };
 }
-
-enum Planets {
-  EARTH = "earth",
-  RED = "red",
-}
-
 export interface IThemeStore {
   dailyStepsScreen: {
     centredScreen: {
@@ -73,16 +67,6 @@ const themeReducer = (state: IThemeStore = getInitialState(), action: SyncAction
       return changePanelVisibility(state, action.payload);
     default:
       return state;
-  }
-};
-
-const getPlanetByLevel = (level: number) => {
-  if (level < 200) {
-    return Planets.EARTH;
-  }
-
-  if (level > 199 && level < 401) {
-    return Planets.RED;
   }
 };
 
@@ -182,7 +166,7 @@ const getCurrentWorldTheme = (
   }
 
   const currentWorld = getCurrentWorld(currentLevel);
-  const currentPlanet = getPlanetByLevel(currentLevel);
+  const currentPlanet = getCurrentPlanetByLevel(currentLevel);
 
   if (yuniversalMap) {
     return {

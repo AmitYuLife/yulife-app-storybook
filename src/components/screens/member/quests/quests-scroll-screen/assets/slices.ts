@@ -1,6 +1,7 @@
 import { isIphoneX as getIsIphone } from "react-native-iphone-x-helper";
 import { episodeSettings, IEpisodeSettings } from "./slices.settings";
 import { TopBarTypes, TOP_BAR_TYPES } from "@components/organisms/top-bar/top-bar.helpers";
+import { Planets } from "@utils";
 
 interface IMapSliceSlot {
   bottom?: number;
@@ -19,11 +20,294 @@ export interface IMapSlice {
 
 const isIphoneX = getIsIphone();
 
-export const interstitialsSlices: { [x: string]: IMapSlice[] } = {
+const planetsInterstitials = {
+  [Planets.EARTH]: {
+    w1s0: require("@assets/quest-slices/planets/earth/interstitials/w1s0.png"),
+    w2s0: require("@assets/quest-slices/planets/earth/interstitials/w2s0.png"),
+    w2s1: require("@assets/quest-slices/planets/earth/interstitials/w2s1.png"),
+    w3s0: require("@assets/quest-slices/planets/earth/interstitials/w3s0.png"),
+    w3s1: require("@assets/quest-slices/planets/earth/interstitials/w3s1.png"),
+    w4s0: require("@assets/quest-slices/planets/earth/interstitials/w4s0.png"),
+    w4s1: require("@assets/quest-slices/planets/earth/interstitials/w4s1.png"),
+    w5s0: require("@assets/quest-slices/planets/earth/interstitials/w5s0.png"),
+  },
+  [Planets.RED]: {
+    w1s0: require("@assets/quest-slices/planets/red/interstitials/w1s0.png"),
+    w2s0: require("@assets/quest-slices/planets/red/interstitials/w2s0.png"),
+    w2s1: require("@assets/quest-slices/planets/red/interstitials/w2s1.png"),
+    w3s0: require("@assets/quest-slices/planets/red/interstitials/w3s0.png"),
+    w3s1: require("@assets/quest-slices/planets/red/interstitials/w3s1.png"),
+    w4s0: require("@assets/quest-slices/planets/red/interstitials/w4s0.png"),
+    w4s1: require("@assets/quest-slices/planets/red/interstitials/w4s1.png"),
+    w5s0: require("@assets/quest-slices/planets/red/interstitials/w5s0.png"),
+  },
+};
+
+const planetWordSlices = {
+  [Planets.EARTH]: {
+    w1s0: require("@assets/quest-slices/planets/earth/w1s0.png"),
+    w1s1: require("@assets/quest-slices/planets/earth/w1s1.png"),
+    w1s2: require("@assets/quest-slices/planets/earth/w1s2.png"),
+    w1s3: require("@assets/quest-slices/planets/earth/w1s3.png"),
+    w1s4: require("@assets/quest-slices/planets/earth/w1s4.png"),
+    w1s5: require("@assets/quest-slices/planets/earth/w1s5.png"),
+    w1s6: require("@assets/quest-slices/planets/earth/w1s6.png"),
+    w1s7: require("@assets/quest-slices/planets/earth/w1s7.png"),
+    w1s8: require("@assets/quest-slices/planets/earth/w1s8.png"),
+    w1s9: require("@assets/quest-slices/planets/earth/w1s9.png"),
+    w1s10: require("@assets/quest-slices/planets/earth/w1s10.png"),
+    w1s11: require("@assets/quest-slices/planets/earth/w1s11.png"),
+    w1s12: require("@assets/quest-slices/planets/earth/w1s12.png"),
+    w1s13: require("@assets/quest-slices/planets/earth/w1s13.png"),
+    w1s14: require("@assets/quest-slices/planets/earth/w1s14.png"),
+    w1s15: require("@assets/quest-slices/planets/earth/w1s15.png"),
+    w1s16: require("@assets/quest-slices/planets/earth/w1s16.png"),
+    w1s17: require("@assets/quest-slices/planets/earth/w1s17.png"),
+    w1s18: require("@assets/quest-slices/planets/earth/w1s18.png"),
+    w1s19: require("@assets/quest-slices/planets/earth/w1s19.png"),
+    w1s20: require("@assets/quest-slices/planets/earth/w1s20.png"),
+    w1s21: require("@assets/quest-slices/planets/earth/w1s21.png"),
+    w1s22: require("@assets/quest-slices/planets/earth/w1s22.png"),
+    w1s23: require("@assets/quest-slices/planets/earth/w1s23.png"),
+    w1s24: require("@assets/quest-slices/planets/earth/w1s24.png"),
+    w1s25: require("@assets/quest-slices/planets/earth/w1s25.png"),
+    w1s26: require("@assets/quest-slices/planets/earth/w1s26.png"),
+    w1s27: require("@assets/quest-slices/planets/earth/w1s27.png"),
+    w1s28: require("@assets/quest-slices/planets/earth/w1s28.png"),
+    w1s29: require("@assets/quest-slices/planets/earth/w1s29.png"),
+    w2s0: require("@assets/quest-slices/planets/earth/w2s0.png"),
+    w2s1: require("@assets/quest-slices/planets/earth/w2s1.png"),
+    w2s2: require("@assets/quest-slices/planets/earth/w2s2.png"),
+    w2s3: require("@assets/quest-slices/planets/earth/w2s3.png"),
+    w2s4: require("@assets/quest-slices/planets/earth/w2s4.png"),
+    w2s5: require("@assets/quest-slices/planets/earth/w2s5.png"),
+    w2s6: require("@assets/quest-slices/planets/earth/w2s6.png"),
+    w2s7: require("@assets/quest-slices/planets/earth/w2s7.png"),
+    w2s8: require("@assets/quest-slices/planets/earth/w2s8.png"),
+    w2s9: require("@assets/quest-slices/planets/earth/w2s9.png"),
+    w2s10: require("@assets/quest-slices/planets/earth/w2s10.png"),
+    w2s11: require("@assets/quest-slices/planets/earth/w2s11.png"),
+    w2s12: require("@assets/quest-slices/planets/earth/w2s12.png"),
+    w2s13: require("@assets/quest-slices/planets/earth/w2s13.png"),
+    w2s14: require("@assets/quest-slices/planets/earth/w2s14.png"),
+    w2s15: require("@assets/quest-slices/planets/earth/w2s15.png"),
+    w2s16: require("@assets/quest-slices/planets/earth/w2s16.png"),
+    w2s17: require("@assets/quest-slices/planets/earth/w2s17.png"),
+    w2s18: require("@assets/quest-slices/planets/earth/w2s18.png"),
+    w2s19: require("@assets/quest-slices/planets/earth/w2s19.png"),
+    w2s20: require("@assets/quest-slices/planets/earth/w2s20.png"),
+    w2s21: require("@assets/quest-slices/planets/earth/w2s21.png"),
+    w2s22: require("@assets/quest-slices/planets/earth/w2s22.png"),
+    w2s23: require("@assets/quest-slices/planets/earth/w2s23.png"),
+    w2s24: require("@assets/quest-slices/planets/earth/w2s24.png"),
+    w2s25: require("@assets/quest-slices/planets/earth/w2s25.png"),
+    w2s26: require("@assets/quest-slices/planets/earth/w2s26.png"),
+    w2s27: require("@assets/quest-slices/planets/earth/w2s27.png"),
+    w2s28: require("@assets/quest-slices/planets/earth/w2s28.png"),
+    w3s0: require("@assets/quest-slices/planets/earth/w3s0.png"),
+    w3s1: require("@assets/quest-slices/planets/earth/w3s1.png"),
+    w3s2: require("@assets/quest-slices/planets/earth/w3s2.png"),
+    w3s3: require("@assets/quest-slices/planets/earth/w3s3.png"),
+    w3s4: require("@assets/quest-slices/planets/earth/w3s4.png"),
+    w3s5: require("@assets/quest-slices/planets/earth/w3s5.png"),
+    w3s6: require("@assets/quest-slices/planets/earth/w3s6.png"),
+    w3s7: require("@assets/quest-slices/planets/earth/w3s7.png"),
+    w3s8: require("@assets/quest-slices/planets/earth/w3s8.png"),
+    w3s9: require("@assets/quest-slices/planets/earth/w3s9.png"),
+    w3s10: require("@assets/quest-slices/planets/earth/w3s10.png"),
+    w3s11: require("@assets/quest-slices/planets/earth/w3s11.png"),
+    w3s12: require("@assets/quest-slices/planets/earth/w3s12.png"),
+    w3s13: require("@assets/quest-slices/planets/earth/w3s13.png"),
+    w3s14: require("@assets/quest-slices/planets/earth/w3s14.png"),
+    w3s15: require("@assets/quest-slices/planets/earth/w3s15.png"),
+    w3s16: require("@assets/quest-slices/planets/earth/w3s16.png"),
+    w3s17: require("@assets/quest-slices/planets/earth/w3s17.png"),
+    w3s18: require("@assets/quest-slices/planets/earth/w3s18.png"),
+    w3s19: require("@assets/quest-slices/planets/earth/w3s19.png"),
+    w3s20: require("@assets/quest-slices/planets/earth/w3s20.png"),
+    w3s21: require("@assets/quest-slices/planets/earth/w3s21.png"),
+    w3s22: require("@assets/quest-slices/planets/earth/w3s22.png"),
+    w3s23: require("@assets/quest-slices/planets/earth/w3s23.png"),
+    w3s24: require("@assets/quest-slices/planets/earth/w3s24.png"),
+    w3s25: require("@assets/quest-slices/planets/earth/w3s25.png"),
+    w3s26: require("@assets/quest-slices/planets/earth/w3s26.png"),
+    w3s27: require("@assets/quest-slices/planets/earth/w3s27.png"),
+    w3s28: require("@assets/quest-slices/planets/earth/w3s28.png"),
+    w4s0: require("@assets/quest-slices/planets/earth/w4s0.png"),
+    w4s1: require("@assets/quest-slices/planets/earth/w4s1.png"),
+    w4s2: require("@assets/quest-slices/planets/earth/w4s2.png"),
+    w4s3: require("@assets/quest-slices/planets/earth/w4s3.png"),
+    w4s4: require("@assets/quest-slices/planets/earth/w4s4.png"),
+    w4s5: require("@assets/quest-slices/planets/earth/w4s5.png"),
+    w4s6: require("@assets/quest-slices/planets/earth/w4s6.png"),
+    w4s7: require("@assets/quest-slices/planets/earth/w4s7.png"),
+    w4s8: require("@assets/quest-slices/planets/earth/w4s8.png"),
+    w4s9: require("@assets/quest-slices/planets/earth/w4s9.png"),
+    w4s10: require("@assets/quest-slices/planets/earth/w4s10.png"),
+    w4s11: require("@assets/quest-slices/planets/earth/w4s11.png"),
+    w4s12: require("@assets/quest-slices/planets/earth/w4s12.png"),
+    w4s13: require("@assets/quest-slices/planets/earth/w4s13.png"),
+    w4s14: require("@assets/quest-slices/planets/earth/w4s14.png"),
+    w4s15: require("@assets/quest-slices/planets/earth/w4s15.png"),
+    w4s16: require("@assets/quest-slices/planets/earth/w4s16.png"),
+    w4s17: require("@assets/quest-slices/planets/earth/w4s17.png"),
+    w4s18: require("@assets/quest-slices/planets/earth/w4s18.png"),
+    w4s19: require("@assets/quest-slices/planets/earth/w4s19.png"),
+    w4s20: require("@assets/quest-slices/planets/earth/w4s20.png"),
+    w4s21: require("@assets/quest-slices/planets/earth/w4s21.png"),
+    w4s22: require("@assets/quest-slices/planets/earth/w4s22.png"),
+    w4s23: require("@assets/quest-slices/planets/earth/w4s23.png"),
+    w4s24: require("@assets/quest-slices/planets/earth/w4s24.png"),
+    w4s25: require("@assets/quest-slices/planets/earth/w4s25.png"),
+    w4s26: require("@assets/quest-slices/planets/earth/w4s26.png"),
+    w4s27: require("@assets/quest-slices/planets/earth/w4s27.png"),
+    w4s28: require("@assets/quest-slices/planets/earth/w4s28.png"),
+    w4s29: require("@assets/quest-slices/planets/earth/w4s29.png"),
+    w4s30: require("@assets/quest-slices/planets/earth/w4s30.png"),
+  },
+  [Planets.RED]: {
+    w1s0: require("@assets/quest-slices/planets/red/w1s0.png"),
+    w1s1: require("@assets/quest-slices/planets/red/w1s1.png"),
+    w1s2: require("@assets/quest-slices/planets/red/w1s2.png"),
+    w1s3: require("@assets/quest-slices/planets/red/w1s3.png"),
+    w1s4: require("@assets/quest-slices/planets/red/w1s4.png"),
+    w1s5: require("@assets/quest-slices/planets/red/w1s5.png"),
+    w1s6: require("@assets/quest-slices/planets/red/w1s6.png"),
+    w1s7: require("@assets/quest-slices/planets/red/w1s7.png"),
+    w1s8: require("@assets/quest-slices/planets/red/w1s8.png"),
+    w1s9: require("@assets/quest-slices/planets/red/w1s9.png"),
+    w1s10: require("@assets/quest-slices/planets/red/w1s10.png"),
+    w1s11: require("@assets/quest-slices/planets/red/w1s11.png"),
+    w1s12: require("@assets/quest-slices/planets/red/w1s12.png"),
+    w1s13: require("@assets/quest-slices/planets/red/w1s13.png"),
+    w1s14: require("@assets/quest-slices/planets/red/w1s14.png"),
+    w1s15: require("@assets/quest-slices/planets/red/w1s15.png"),
+    w1s16: require("@assets/quest-slices/planets/red/w1s16.png"),
+    w1s17: require("@assets/quest-slices/planets/red/w1s17.png"),
+    w1s18: require("@assets/quest-slices/planets/red/w1s18.png"),
+    w1s19: require("@assets/quest-slices/planets/red/w1s19.png"),
+    w1s20: require("@assets/quest-slices/planets/red/w1s20.png"),
+    w1s21: require("@assets/quest-slices/planets/red/w1s21.png"),
+    w1s22: require("@assets/quest-slices/planets/red/w1s22.png"),
+    w1s23: require("@assets/quest-slices/planets/red/w1s23.png"),
+    w1s24: require("@assets/quest-slices/planets/red/w1s24.png"),
+    w1s25: require("@assets/quest-slices/planets/red/w1s25.png"),
+    w1s26: require("@assets/quest-slices/planets/red/w1s26.png"),
+    w1s27: require("@assets/quest-slices/planets/red/w1s27.png"),
+    w1s28: require("@assets/quest-slices/planets/red/w1s28.png"),
+    w1s29: require("@assets/quest-slices/planets/red/w1s29.png"),
+    w2s0: require("@assets/quest-slices/planets/red/w2s0.png"),
+    w2s1: require("@assets/quest-slices/planets/red/w2s1.png"),
+    w2s2: require("@assets/quest-slices/planets/red/w2s2.png"),
+    w2s3: require("@assets/quest-slices/planets/red/w2s3.png"),
+    w2s4: require("@assets/quest-slices/planets/red/w2s4.png"),
+    w2s5: require("@assets/quest-slices/planets/red/w2s5.png"),
+    w2s6: require("@assets/quest-slices/planets/red/w2s6.png"),
+    w2s7: require("@assets/quest-slices/planets/red/w2s7.png"),
+    w2s8: require("@assets/quest-slices/planets/red/w2s8.png"),
+    w2s9: require("@assets/quest-slices/planets/red/w2s9.png"),
+    w2s10: require("@assets/quest-slices/planets/red/w2s10.png"),
+    w2s11: require("@assets/quest-slices/planets/red/w2s11.png"),
+    w2s12: require("@assets/quest-slices/planets/red/w2s12.png"),
+    w2s13: require("@assets/quest-slices/planets/red/w2s13.png"),
+    w2s14: require("@assets/quest-slices/planets/red/w2s14.png"),
+    w2s15: require("@assets/quest-slices/planets/red/w2s15.png"),
+    w2s16: require("@assets/quest-slices/planets/red/w2s16.png"),
+    w2s17: require("@assets/quest-slices/planets/red/w2s17.png"),
+    w2s18: require("@assets/quest-slices/planets/red/w2s18.png"),
+    w2s19: require("@assets/quest-slices/planets/red/w2s19.png"),
+    w2s20: require("@assets/quest-slices/planets/red/w2s20.png"),
+    w2s21: require("@assets/quest-slices/planets/red/w2s21.png"),
+    w2s22: require("@assets/quest-slices/planets/red/w2s22.png"),
+    w2s23: require("@assets/quest-slices/planets/red/w2s23.png"),
+    w2s24: require("@assets/quest-slices/planets/red/w2s24.png"),
+    w2s25: require("@assets/quest-slices/planets/red/w2s25.png"),
+    w2s26: require("@assets/quest-slices/planets/red/w2s26.png"),
+    w2s27: require("@assets/quest-slices/planets/red/w2s27.png"),
+    w2s28: require("@assets/quest-slices/planets/red/w2s28.png"),
+    w3s0: require("@assets/quest-slices/planets/red/w3s0.png"),
+    w3s1: require("@assets/quest-slices/planets/red/w3s1.png"),
+    w3s2: require("@assets/quest-slices/planets/red/w3s2.png"),
+    w3s3: require("@assets/quest-slices/planets/red/w3s3.png"),
+    w3s4: require("@assets/quest-slices/planets/red/w3s4.png"),
+    w3s5: require("@assets/quest-slices/planets/red/w3s5.png"),
+    w3s6: require("@assets/quest-slices/planets/red/w3s6.png"),
+    w3s7: require("@assets/quest-slices/planets/red/w3s7.png"),
+    w3s8: require("@assets/quest-slices/planets/red/w3s8.png"),
+    w3s9: require("@assets/quest-slices/planets/red/w3s9.png"),
+    w3s10: require("@assets/quest-slices/planets/red/w3s10.png"),
+    w3s11: require("@assets/quest-slices/planets/red/w3s11.png"),
+    w3s12: require("@assets/quest-slices/planets/red/w3s12.png"),
+    w3s13: require("@assets/quest-slices/planets/red/w3s13.png"),
+    w3s14: require("@assets/quest-slices/planets/red/w3s14.png"),
+    w3s15: require("@assets/quest-slices/planets/red/w3s15.png"),
+    w3s16: require("@assets/quest-slices/planets/red/w3s16.png"),
+    w3s17: require("@assets/quest-slices/planets/red/w3s17.png"),
+    w3s18: require("@assets/quest-slices/planets/red/w3s18.png"),
+    w3s19: require("@assets/quest-slices/planets/red/w3s19.png"),
+    w3s20: require("@assets/quest-slices/planets/red/w3s20.png"),
+    w3s21: require("@assets/quest-slices/planets/red/w3s21.png"),
+    w3s22: require("@assets/quest-slices/planets/red/w3s22.png"),
+    w3s23: require("@assets/quest-slices/planets/red/w3s23.png"),
+    w3s24: require("@assets/quest-slices/planets/red/w3s24.png"),
+    w3s25: require("@assets/quest-slices/planets/red/w3s25.png"),
+    w3s26: require("@assets/quest-slices/planets/red/w3s26.png"),
+    w3s27: require("@assets/quest-slices/planets/red/w3s27.png"),
+    w3s28: require("@assets/quest-slices/planets/red/w3s28.png"),
+    w4s0: require("@assets/quest-slices/planets/red/w4s0.png"),
+    w4s1: require("@assets/quest-slices/planets/red/w4s1.png"),
+    w4s2: require("@assets/quest-slices/planets/red/w4s2.png"),
+    w4s3: require("@assets/quest-slices/planets/red/w4s3.png"),
+    w4s4: require("@assets/quest-slices/planets/red/w4s4.png"),
+    w4s5: require("@assets/quest-slices/planets/red/w4s5.png"),
+    w4s6: require("@assets/quest-slices/planets/red/w4s6.png"),
+    w4s7: require("@assets/quest-slices/planets/red/w4s7.png"),
+    w4s8: require("@assets/quest-slices/planets/red/w4s8.png"),
+    w4s9: require("@assets/quest-slices/planets/red/w4s9.png"),
+    w4s10: require("@assets/quest-slices/planets/red/w4s10.png"),
+    w4s11: require("@assets/quest-slices/planets/red/w4s11.png"),
+    w4s12: require("@assets/quest-slices/planets/red/w4s12.png"),
+    w4s13: require("@assets/quest-slices/planets/red/w4s13.png"),
+    w4s14: require("@assets/quest-slices/planets/red/w4s14.png"),
+    w4s15: require("@assets/quest-slices/planets/red/w4s15.png"),
+    w4s16: require("@assets/quest-slices/planets/red/w4s16.png"),
+    w4s17: require("@assets/quest-slices/planets/red/w4s17.png"),
+    w4s18: require("@assets/quest-slices/planets/red/w4s18.png"),
+    w4s19: require("@assets/quest-slices/planets/red/w4s19.png"),
+    w4s20: require("@assets/quest-slices/planets/red/w4s20.png"),
+    w4s21: require("@assets/quest-slices/planets/red/w4s21.png"),
+    w4s22: require("@assets/quest-slices/planets/red/w4s22.png"),
+    w4s23: require("@assets/quest-slices/planets/red/w4s23.png"),
+    w4s24: require("@assets/quest-slices/planets/red/w4s24.png"),
+    w4s25: require("@assets/quest-slices/planets/red/w4s25.png"),
+    w4s26: require("@assets/quest-slices/planets/red/w4s26.png"),
+    w4s27: require("@assets/quest-slices/planets/red/w4s27.png"),
+    w4s28: require("@assets/quest-slices/planets/red/w4s28.png"),
+    w4s29: require("@assets/quest-slices/planets/red/w4s29.png"),
+    w4s30: require("@assets/quest-slices/planets/red/w4s30.png"),
+  },
+};
+
+const planetsLoadingSlices = {
+  [Planets.EARTH]: {
+    w1s1: require("@assets/quest-slices/planets/earth/loading/w1s1.png"),
+    w2s1: require("@assets/quest-slices/planets/earth/loading/w2s1.png"),
+    w3s1: require("@assets/quest-slices/planets/earth/loading/w3s1.png"),
+    w4s1: require("@assets/quest-slices/planets/earth/loading/w4s1.png"),
+  },
+  [Planets.RED]: {
+    w1s1: require("@assets/quest-slices/planets/red/loading/w1s1.png"),
+    w2s1: require("@assets/quest-slices/planets/red/loading/w2s1.png"),
+    w3s1: require("@assets/quest-slices/planets/red/loading/w3s1.png"),
+    w4s1: require("@assets/quest-slices/planets/red/loading/w4s1.png"),
+  },
+};
+
+export const interstitialsSlices = (currentPlanet: Planets): { [x: string]: IMapSlice[] } => ({
   forest: [
     {
       id: "MAP_SLICE_W01_INTERSTITIALS_01",
-      image: require("../../../../../../../assets/quest-slices/interstitials/w1s0.png"),
+      image: planetsInterstitials[currentPlanet].w1s0,
       slots: [],
       topBarType: TOP_BAR_TYPES.FOREST,
     },
@@ -31,13 +315,13 @@ export const interstitialsSlices: { [x: string]: IMapSlice[] } = {
   ocean: [
     {
       id: "MAP_SLICE_W02_INTERSTITIALS_01",
-      image: require("../../../../../../../assets/quest-slices/interstitials/w2s0.png"),
+      image: planetsInterstitials[currentPlanet].w2s0,
       slots: [],
       topBarType: TOP_BAR_TYPES.DEFAULT,
     },
     {
       id: "MAP_SLICE_W02_INTERSTITIALS_02",
-      image: require("../../../../../../../assets/quest-slices/interstitials/w2s1.png"),
+      image: planetsInterstitials[currentPlanet].w2s1,
       slots: [],
       topBarType: TOP_BAR_TYPES.DEFAULT,
     },
@@ -45,13 +329,13 @@ export const interstitialsSlices: { [x: string]: IMapSlice[] } = {
   desert: [
     {
       id: "MAP_SLICE_W03_INTERSTITIALS_01",
-      image: require("../../../../../../../assets/quest-slices/interstitials/w3s0.png"),
+      image: planetsInterstitials[currentPlanet].w3s0,
       slots: [],
       topBarType: TOP_BAR_TYPES.DEFAULT,
     },
     {
       id: "MAP_SLICE_W03_INTERSTITIALS_02",
-      image: require("../../../../../../../assets/quest-slices/interstitials/w3s1.png"),
+      image: planetsInterstitials[currentPlanet].w3s1,
       slots: [],
       topBarType: TOP_BAR_TYPES.DEFAULT,
     },
@@ -59,13 +343,13 @@ export const interstitialsSlices: { [x: string]: IMapSlice[] } = {
   mountain: [
     {
       id: "MAP_SLICE_W04_INTERSTITIALS_01",
-      image: require("../../../../../../../assets/quest-slices/interstitials/w4s0.png"),
+      image: planetsInterstitials[currentPlanet].w4s0,
       slots: [],
       topBarType: TOP_BAR_TYPES.WHITE,
     },
     {
       id: "MAP_SLICE_W04_INTERSTITIALS_02",
-      image: require("../../../../../../../assets/quest-slices/interstitials/w4s1.png"),
+      image: planetsInterstitials[currentPlanet].w4s1,
       slots: [],
       topBarType: TOP_BAR_TYPES.WHITE,
     },
@@ -74,14 +358,14 @@ export const interstitialsSlices: { [x: string]: IMapSlice[] } = {
   last: [
     {
       id: "MAP_SLICE_W05_INTERSTITIALS_01",
-      image: require("../../../../../../../assets/quest-slices/interstitials/w5s0.png"),
+      image: planetsInterstitials[currentPlanet].w5s0,
       slots: [],
       topBarType: TOP_BAR_TYPES.WHITE,
     },
   ],
-};
+});
 
-const WorldSlices: IMapSlice[] = [
+const WorldSlices = (currentPlanet: Planets): IMapSlice[] => [
   /**
    *  FOREST WORLD
    *  first episode
@@ -89,14 +373,14 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w1s1,
     id: "MAP_SLICE_W01E00",
-    image: require("../../../../../../../assets/quest-slices/w1s0.png"),
+    image: planetWordSlices[currentPlanet].w1s0,
     slots: [{ index: 1, left: 187, top: 8 }],
     topBarType: TOP_BAR_TYPES.FOREST,
   },
   {
     episodeSettings: episodeSettings.w1s1,
     id: "MAP_SLICE_W01E01",
-    image: require("../../../../../../../assets/quest-slices/w1s1.png"),
+    image: planetWordSlices[currentPlanet].w1s1,
     slots: [
       { bottom: 36, index: 2, left: 96 },
       { bottom: 36, index: 0, left: 187 },
@@ -108,7 +392,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w1s1,
     id: "MAP_SLICE_W01E02",
-    image: require("../../../../../../../assets/quest-slices/w1s2.png"),
+    image: planetWordSlices[currentPlanet].w1s2,
     slots: [
       { bottom: 36, index: 5, left: 187 },
       { index: 6, left: 187, top: 8 },
@@ -117,7 +401,7 @@ const WorldSlices: IMapSlice[] = [
   },
   {
     id: "MAP_SLICE_W01E03",
-    image: require("../../../../../../../assets/quest-slices/w1s3.png"),
+    image: planetWordSlices[currentPlanet].w1s3,
     slots: [],
     topBarType: TOP_BAR_TYPES.FOREST,
   },
@@ -125,7 +409,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w1s2,
     id: "MAP_SLICE_W01E04",
-    image: require("../../../../../../../assets/quest-slices/w1s4.png"),
+    image: planetWordSlices[currentPlanet].w1s4,
     slots: [
       { bottom: 36, index: 7, left: 187 },
       { index: 8, left: 187, top: 8 },
@@ -135,7 +419,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w1s2,
     id: "MAP_SLICE_W01E05",
-    image: require("../../../../../../../assets/quest-slices/w1s5.png"),
+    image: planetWordSlices[currentPlanet].w1s5,
     slots: [
       { bottom: 36, index: 9, left: 187 },
       { index: 10, left: 286, top: 8 },
@@ -147,21 +431,21 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w1s2,
     id: "MAP_SLICE_W01E06",
-    image: require("../../../../../../../assets/quest-slices/w1s6.png"),
+    image: planetWordSlices[currentPlanet].w1s6,
     slots: [{ bottom: 36, index: 13, left: 187 }],
     topBarType: TOP_BAR_TYPES.FOREST,
   },
   // next episode
   {
     id: "MAP_SLICE_W01E07",
-    image: require("../../../../../../../assets/quest-slices/w1s7.png"),
+    image: planetWordSlices[currentPlanet].w1s7,
     slots: [],
     topBarType: TOP_BAR_TYPES.FOREST,
   },
   {
     episodeSettings: episodeSettings.w1s3,
     id: "MAP_SLICE_W01E08",
-    image: require("../../../../../../../assets/quest-slices/w1s8.png"),
+    image: planetWordSlices[currentPlanet].w1s8,
     slots: [
       { index: 14, left: 187, top: 20 },
       { index: 15, left: 96, top: 20 },
@@ -172,7 +456,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w1s3,
     id: "MAP_SLICE_W01E09",
-    image: require("../../../../../../../assets/quest-slices/w1s9.png"),
+    image: planetWordSlices[currentPlanet].w1s9,
     slots: [
       { index: 16, bottom: 16, left: 96 },
       { bottom: 16, index: 18, left: 286 },
@@ -183,21 +467,21 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w1s3,
     id: "MAP_SLICE_W01E10",
-    image: require("../../../../../../../assets/quest-slices/w1s10.png"),
+    image: planetWordSlices[currentPlanet].w1s10,
     slots: [{ bottom: 8, index: 20, left: 187 }],
     topBarType: TOP_BAR_TYPES.FOREST,
   },
   // next episode
   {
     id: "MAP_SLICE_W01E11",
-    image: require("../../../../../../../assets/quest-slices/w1s11.png"),
+    image: planetWordSlices[currentPlanet].w1s11,
     slots: [],
     topBarType: TOP_BAR_TYPES.FOREST,
   },
   {
     episodeSettings: episodeSettings.w1s4,
     id: "MAP_SLICE_W01E12",
-    image: require("../../../../../../../assets/quest-slices/w1s12.png"),
+    image: planetWordSlices[currentPlanet].w1s12,
     slots: [
       { bottom: 40, index: 21, left: 187 },
       { top: 20, index: 22, left: 283 },
@@ -208,7 +492,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w1s4,
     id: "MAP_SLICE_W01E13",
-    image: require("../../../../../../../assets/quest-slices/w1s13.png"),
+    image: planetWordSlices[currentPlanet].w1s13,
     slots: [
       { bottom: 20, index: 23, left: 283 },
       { bottom: 24, index: 25, left: 93 },
@@ -219,7 +503,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w1s4,
     id: "MAP_SLICE_W01E14",
-    image: require("../../../../../../../assets/quest-slices/w1s14.png"),
+    image: planetWordSlices[currentPlanet].w1s14,
     slots: [{ bottom: 24, index: 27, left: 187 }],
     topBarType: TOP_BAR_TYPES.FOREST,
   },
@@ -227,14 +511,14 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w1s5,
     id: "MAP_SLICE_W01E15",
-    image: require("../../../../../../../assets/quest-slices/w1s15.png"),
+    image: planetWordSlices[currentPlanet].w1s15,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   {
     episodeSettings: episodeSettings.w1s5,
     id: "MAP_SLICE_W01E16",
-    image: require("../../../../../../../assets/quest-slices/w1s16.png"),
+    image: planetWordSlices[currentPlanet].w1s16,
     slots: [
       { index: 28, left: 187, top: 88 },
       { index: 29, left: 187, top: 8 },
@@ -244,7 +528,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w1s5,
     id: "MAP_SLICE_W01E17",
-    image: require("../../../../../../../assets/quest-slices/w1s17.png"),
+    image: planetWordSlices[currentPlanet].w1s17,
     slots: [
       { index: 30, left: 187, bottom: 30 },
       { top: 8, index: 31, left: 283 },
@@ -256,7 +540,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w1s5,
     id: "MAP_SLICE_W01E18",
-    image: require("../../../../../../../assets/quest-slices/w1s18.png"),
+    image: planetWordSlices[currentPlanet].w1s18,
     slots: [
       {
         index: 34,
@@ -270,14 +554,14 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w1s6,
     id: "MAP_SLICE_W01E19",
-    image: require("../../../../../../../assets/quest-slices/w1s19.png"),
+    image: planetWordSlices[currentPlanet].w1s19,
     slots: [{ top: 8, index: 35, left: 187 }],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   {
     episodeSettings: episodeSettings.w1s6,
     id: "MAP_SLICE_W01E20",
-    image: require("../../../../../../../assets/quest-slices/w1s20.png"),
+    image: planetWordSlices[currentPlanet].w1s20,
     slots: [
       { index: 36, left: 93, bottom: 36 },
       { index: 37, left: 283, bottom: 36 },
@@ -289,7 +573,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w1s6,
     id: "MAP_SLICE_W01E21",
-    image: require("../../../../../../../assets/quest-slices/w1s21.png"),
+    image: planetWordSlices[currentPlanet].w1s21,
     slots: [
       { index: 40, left: 187, bottom: 36 },
       { index: 41, left: 187, top: 8 },
@@ -298,7 +582,7 @@ const WorldSlices: IMapSlice[] = [
   },
   {
     id: "MAP_SLICE_W01E22",
-    image: require("../../../../../../../assets/quest-slices/w1s22.png"),
+    image: planetWordSlices[currentPlanet].w1s22,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
@@ -306,7 +590,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w1s7,
     id: "MAP_SLICE_W01E23",
-    image: require("../../../../../../../assets/quest-slices/w1s23.png"),
+    image: planetWordSlices[currentPlanet].w1s23,
     slots: [
       { top: 8, index: 42, left: 93 },
       { top: 8, index: 43, left: 283 },
@@ -316,7 +600,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w1s7,
     id: "MAP_SLICE_W01E24",
-    image: require("../../../../../../../assets/quest-slices/w1s24.png"),
+    image: planetWordSlices[currentPlanet].w1s24,
     slots: [
       { index: 44, left: 187, bottom: 36 },
       { top: 24, index: 45, left: 93 },
@@ -327,7 +611,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w1s7,
     id: "MAP_SLICE_W01E25",
-    image: require("../../../../../../../assets/quest-slices/w1s25.png"),
+    image: planetWordSlices[currentPlanet].w1s25,
     slots: [
       { index: 47, left: 187, bottom: 8 },
       { top: 36, index: 48, left: 187 },
@@ -337,32 +621,32 @@ const WorldSlices: IMapSlice[] = [
   // next episode
   {
     id: "MAP_SLICE_W01E26",
-    image: require("../../../../../../../assets/quest-slices/w1s26.png"),
+    image: planetWordSlices[currentPlanet].w1s26,
     slots: [],
     topBarType: TOP_BAR_TYPES.FOREST,
   },
   {
     id: "MAP_SLICE_W01E27",
-    image: require("../../../../../../../assets/quest-slices/w1s27.png"),
+    image: planetWordSlices[currentPlanet].w1s27,
     slots: [],
     topBarType: TOP_BAR_TYPES.FOREST,
   },
   {
     episodeSettings: episodeSettings.w1s8,
     id: "MAP_SLICE_W01E28",
-    image: require("../../../../../../../assets/quest-slices/w1s28.png"),
+    image: planetWordSlices[currentPlanet].w1s28,
     slots: [],
     topBarType: TOP_BAR_TYPES.FOREST,
   },
   {
     episodeSettings: episodeSettings.w1s8,
     id: "MAP_SLICE_W01E29",
-    image: require("../../../../../../../assets/quest-slices/w1s29.png"),
+    image: planetWordSlices[currentPlanet].w1s29,
     slots: [{ bottom: 0, index: 49, left: 187 }],
     topBarType: TOP_BAR_TYPES.FOREST,
   },
   // FOREST TO OCEAN INTERSTITIALS
-  ...interstitialsSlices.ocean,
+  ...interstitialsSlices(currentPlanet).ocean,
   /**
    *  OCEAN WORLD
    *  first episode
@@ -370,14 +654,14 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w2s1,
     id: "MAP_SLICE_W02E00",
-    image: require("../../../../../../../assets/quest-slices/w2s0.png"),
+    image: planetWordSlices[currentPlanet].w2s0,
     slots: [{ index: 51, left: 187, top: 8 }],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   {
     episodeSettings: episodeSettings.w2s1,
     id: "MAP_SLICE_W02E01",
-    image: require("../../../../../../../assets/quest-slices/w2s1.png"),
+    image: planetWordSlices[currentPlanet].w2s1,
     slots: [
       { bottom: 36, index: 52, left: 96 },
       { bottom: 36, index: 50, left: 187 },
@@ -389,7 +673,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w2s1,
     id: "MAP_SLICE_W02E02",
-    image: require("../../../../../../../assets/quest-slices/w2s2.png"),
+    image: planetWordSlices[currentPlanet].w2s2,
     slots: [
       { bottom: 36, index: 55, left: 187 },
       { index: 56, left: 187, top: 8 },
@@ -398,7 +682,7 @@ const WorldSlices: IMapSlice[] = [
   },
   {
     id: "MAP_SLICE_W02E03",
-    image: require("../../../../../../../assets/quest-slices/w2s3.png"),
+    image: planetWordSlices[currentPlanet].w2s3,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
@@ -406,7 +690,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w2s2,
     id: "MAP_SLICE_W02E04",
-    image: require("../../../../../../../assets/quest-slices/w2s4.png"),
+    image: planetWordSlices[currentPlanet].w2s4,
     slots: [
       { bottom: 36, index: 57, left: 187 },
       { index: 58, left: 187, top: 8 },
@@ -416,7 +700,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w2s2,
     id: "MAP_SLICE_W02E05",
-    image: require("../../../../../../../assets/quest-slices/w2s5.png"),
+    image: planetWordSlices[currentPlanet].w2s5,
     slots: [
       { bottom: 36, index: 59, left: 187 },
       { index: 60, left: 286, top: 8 },
@@ -428,21 +712,21 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w2s2,
     id: "MAP_SLICE_W02E06",
-    image: require("../../../../../../../assets/quest-slices/w2s6.png"),
+    image: planetWordSlices[currentPlanet].w2s6,
     slots: [{ bottom: 36, index: 63, left: 187 }],
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
   // next episode
   {
     id: "MAP_SLICE_W02E07",
-    image: require("../../../../../../../assets/quest-slices/w2s7.png"),
+    image: planetWordSlices[currentPlanet].w2s7,
     slots: [],
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
   {
     episodeSettings: episodeSettings.w2s3,
     id: "MAP_SLICE_W02E08",
-    image: require("../../../../../../../assets/quest-slices/w2s8.png"),
+    image: planetWordSlices[currentPlanet].w2s8,
     slots: [
       { bottom: 40, index: 65, left: 96 },
       { bottom: 40, index: 64, left: 187 },
@@ -455,7 +739,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w2s3,
     id: "MAP_SLICE_W02E09",
-    image: require("../../../../../../../assets/quest-slices/w2s9.png"),
+    image: planetWordSlices[currentPlanet].w2s9,
     slots: [
       { bottom: 36, index: 69, left: 187 },
       { index: 70, left: 187, top: 8 },
@@ -464,7 +748,7 @@ const WorldSlices: IMapSlice[] = [
   },
   {
     id: "MAP_SLICE_W02E10",
-    image: require("../../../../../../../assets/quest-slices/w2s10.png"),
+    image: planetWordSlices[currentPlanet].w2s10,
     slots: [],
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
@@ -472,14 +756,14 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w2s4,
     id: "MAP_SLICE_W02E11",
-    image: require("../../../../../../../assets/quest-slices/w2s11.png"),
+    image: planetWordSlices[currentPlanet].w2s11,
     slots: [{ index: 71, left: 187, top: 40 }],
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
   {
     episodeSettings: episodeSettings.w2s4,
     id: "MAP_SLICE_W02E12",
-    image: require("../../../../../../../assets/quest-slices/w2s12.png"),
+    image: planetWordSlices[currentPlanet].w2s12,
     slots: [
       { bottom: 0, index: 72, left: 283 },
       { bottom: 0, index: 73, left: 93 },
@@ -490,7 +774,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w2s4,
     id: "MAP_SLICE_W02E13",
-    image: require("../../../../../../../assets/quest-slices/w2s13.png"),
+    image: planetWordSlices[currentPlanet].w2s13,
     slots: [
       { bottom: 0, index: 75, left: 283 },
       { bottom: 0, index: 76, left: 93 },
@@ -501,14 +785,14 @@ const WorldSlices: IMapSlice[] = [
   // next episode
   {
     id: "MAP_SLICE_W02E14",
-    image: require("../../../../../../../assets/quest-slices/w2s14.png"),
+    image: planetWordSlices[currentPlanet].w2s14,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   {
     episodeSettings: episodeSettings.w2s5,
     id: "MAP_SLICE_W02E15",
-    image: require("../../../../../../../assets/quest-slices/w2s15.png"),
+    image: planetWordSlices[currentPlanet].w2s15,
     slots: [
       { bottom: 0, index: 78, left: 187 },
       { index: 79, left: 187, top: 40 },
@@ -518,7 +802,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w2s5,
     id: "MAP_SLICE_W02E16",
-    image: require("../../../../../../../assets/quest-slices/w2s16.png"),
+    image: planetWordSlices[currentPlanet].w2s16,
     slots: [
       { bottom: 0, index: 80, left: 187 },
       { index: 81, left: 283, top: 40 },
@@ -530,7 +814,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w2s5,
     id: "MAP_SLICE_W02E17",
-    image: require("../../../../../../../assets/quest-slices/w2s17.png"),
+    image: planetWordSlices[currentPlanet].w2s17,
     slots: [{ bottom: 0, index: 84, left: 187 }],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
@@ -538,14 +822,14 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w2s6,
     id: "MAP_SLICE_W02E18",
-    image: require("../../../../../../../assets/quest-slices/w2s18.png"),
+    image: planetWordSlices[currentPlanet].w2s18,
     slots: [{ index: 85, left: 187, top: 40 }],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   {
     episodeSettings: episodeSettings.w2s6,
     id: "MAP_SLICE_W02E19",
-    image: require("../../../../../../../assets/quest-slices/w2s19.png"),
+    image: planetWordSlices[currentPlanet].w2s19,
     slots: [
       { bottom: 0, index: 86, left: 93 },
       { bottom: 0, index: 88, left: 283 },
@@ -557,7 +841,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w2s6,
     id: "MAP_SLICE_W02E20",
-    image: require("../../../../../../../assets/quest-slices/w2s20.png"),
+    image: planetWordSlices[currentPlanet].w2s20,
     slots: [
       { bottom: 0, index: 90, left: 187 },
       { index: 91, left: 187, top: 40 },
@@ -567,14 +851,14 @@ const WorldSlices: IMapSlice[] = [
   // next episode
   {
     id: "MAP_SLICE_W02E21",
-    image: require("../../../../../../../assets/quest-slices/w2s21.png"),
+    image: planetWordSlices[currentPlanet].w2s21,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   {
     episodeSettings: episodeSettings.w2s7,
     id: "MAP_SLICE_W02E22",
-    image: require("../../../../../../../assets/quest-slices/w2s22.png"),
+    image: planetWordSlices[currentPlanet].w2s22,
     slots: [
       { index: 92, left: 93, top: 8 },
       { index: 93, left: 283, top: 8 },
@@ -584,7 +868,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w2s7,
     id: "MAP_SLICE_W02E23",
-    image: require("../../../../../../../assets/quest-slices/w2s23.png"),
+    image: planetWordSlices[currentPlanet].w2s23,
     slots: [
       { bottom: 28, index: 94, left: 187 },
       { index: 95, left: 93, top: 28 },
@@ -595,7 +879,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w2s7,
     id: "MAP_SLICE_W02E24",
-    image: require("../../../../../../../assets/quest-slices/w2s24.png"),
+    image: planetWordSlices[currentPlanet].w2s24,
     slots: [
       { bottom: 0, index: 97, left: 187 },
       { index: 98, left: 187, top: 46 },
@@ -605,31 +889,31 @@ const WorldSlices: IMapSlice[] = [
   // next episode
   {
     id: "MAP_SLICE_W02E25",
-    image: require("../../../../../../../assets/quest-slices/w2s25.png"),
+    image: planetWordSlices[currentPlanet].w2s25,
     slots: [],
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
   {
     id: "MAP_SLICE_W02E26",
-    image: require("../../../../../../../assets/quest-slices/w2s26.png"),
+    image: planetWordSlices[currentPlanet].w2s26,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   {
     id: "MAP_SLICE_W02E27",
-    image: require("../../../../../../../assets/quest-slices/w2s27.png"),
+    image: planetWordSlices[currentPlanet].w2s27,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   {
     episodeSettings: episodeSettings.w2s8,
     id: "MAP_SLICE_W02E28",
-    image: require("../../../../../../../assets/quest-slices/w2s28.png"),
+    image: planetWordSlices[currentPlanet].w2s28,
     slots: [{ bottom: 10, index: 99, left: 187 }],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   // OCEAN TO DESERT INTERSTITIALS
-  ...interstitialsSlices.desert,
+  ...interstitialsSlices(currentPlanet).desert,
   /**
    *  DESERT WORLD
    *  first episode
@@ -637,14 +921,14 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w3s1,
     id: "MAP_SLICE_W03E00",
-    image: require("../../../../../../../assets/quest-slices/w3s0.png"),
+    image: planetWordSlices[currentPlanet].w3s0,
     slots: [{ index: 101, left: 187, top: 8 }],
     topBarType: TOP_BAR_TYPES.DESERT,
   },
   {
     episodeSettings: episodeSettings.w3s1,
     id: "MAP_SLICE_W03E01",
-    image: require("../../../../../../../assets/quest-slices/w3s1.png"),
+    image: planetWordSlices[currentPlanet].w3s1,
     slots: [
       { bottom: 36, index: 102, left: 96 },
       { bottom: 36, index: 100, left: 187 },
@@ -656,7 +940,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w3s1,
     id: "MAP_SLICE_W03E02",
-    image: require("../../../../../../../assets/quest-slices/w3s2.png"),
+    image: planetWordSlices[currentPlanet].w3s2,
     slots: [
       { bottom: 36, index: 105, left: 187 },
       { index: 106, left: 187, top: 8 },
@@ -665,7 +949,7 @@ const WorldSlices: IMapSlice[] = [
   },
   {
     id: "MAP_SLICE_W03E03",
-    image: require("../../../../../../../assets/quest-slices/w3s3.png"),
+    image: planetWordSlices[currentPlanet].w3s3,
     slots: [],
     topBarType: TOP_BAR_TYPES.DESERT,
   },
@@ -673,7 +957,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w3s2,
     id: "MAP_SLICE_W03E04",
-    image: require("../../../../../../../assets/quest-slices/w3s4.png"),
+    image: planetWordSlices[currentPlanet].w3s4,
     slots: [
       { bottom: 36, index: 107, left: 187 },
       { index: 108, left: 187, top: 8 },
@@ -683,7 +967,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w3s2,
     id: "MAP_SLICE_W03E05",
-    image: require("../../../../../../../assets/quest-slices/w3s5.png"),
+    image: planetWordSlices[currentPlanet].w3s5,
     slots: [
       { bottom: 36, index: 109, left: 187 },
       { index: 110, left: 286, top: 8 },
@@ -695,21 +979,21 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w3s2,
     id: "MAP_SLICE_W03E06",
-    image: require("../../../../../../../assets/quest-slices/w3s6.png"),
+    image: planetWordSlices[currentPlanet].w3s6,
     slots: [{ bottom: 36, index: 113, left: 187 }],
     topBarType: TOP_BAR_TYPES.DESERT,
   },
   // next episode
   {
     id: "MAP_SLICE_W03E07",
-    image: require("../../../../../../../assets/quest-slices/w3s7.png"),
+    image: planetWordSlices[currentPlanet].w3s7,
     slots: [],
     topBarType: TOP_BAR_TYPES.DESERT,
   },
   {
     episodeSettings: episodeSettings.w3s3,
     id: "MAP_SLICE_W03E08",
-    image: require("../../../../../../../assets/quest-slices/w3s8.png"),
+    image: planetWordSlices[currentPlanet].w3s8,
     slots: [
       { index: 115, left: 96, top: 8 },
       { index: 114, left: 187, top: 8 },
@@ -720,7 +1004,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w3s3,
     id: "MAP_SLICE_W03E09",
-    image: require("../../../../../../../assets/quest-slices/w3s9.png"),
+    image: planetWordSlices[currentPlanet].w3s9,
     slots: [
       { bottom: 36, index: 116, left: 96 },
       { bottom: 36, index: 118, left: 283 },
@@ -731,21 +1015,21 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w3s3,
     id: "MAP_SLICE_W03E10",
-    image: require("../../../../../../../assets/quest-slices/w3s10.png"),
+    image: planetWordSlices[currentPlanet].w3s10,
     slots: [{ bottom: 36, index: 120, left: 187 }],
     topBarType: TOP_BAR_TYPES.DESERT,
   },
   // next episode
   {
     id: "MAP_SLICE_W03E11",
-    image: require("../../../../../../../assets/quest-slices/w3s11.png"),
+    image: planetWordSlices[currentPlanet].w3s11,
     slots: [],
     topBarType: TOP_BAR_TYPES.DESERT,
   },
   {
     episodeSettings: episodeSettings.w3s4,
     id: "MAP_SLICE_W03E12",
-    image: require("../../../../../../../assets/quest-slices/w3s12.png"),
+    image: planetWordSlices[currentPlanet].w3s12,
     slots: [
       { bottom: 0, index: 121, left: 187 },
       { index: 122, left: 283, top: 40 },
@@ -756,7 +1040,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w3s4,
     id: "MAP_SLICE_W03E13",
-    image: require("../../../../../../../assets/quest-slices/w3s13.png"),
+    image: planetWordSlices[currentPlanet].w3s13,
     slots: [
       { bottom: 0, index: 123, left: 283 },
       { bottom: 0, index: 125, left: 93 },
@@ -767,7 +1051,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w3s4,
     id: "MAP_SLICE_W03E14",
-    image: require("../../../../../../../assets/quest-slices/w3s14.png"),
+    image: planetWordSlices[currentPlanet].w3s14,
     slots: [{ bottom: 0, index: 127, left: 187 }],
     topBarType: TOP_BAR_TYPES.DESERT,
   },
@@ -775,14 +1059,14 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w3s5,
     id: "MAP_SLICE_W03E15",
-    image: require("../../../../../../../assets/quest-slices/w3s15.png"),
+    image: planetWordSlices[currentPlanet].w3s15,
     slots: [{ index: 128, left: 187, top: 8 }],
     topBarType: TOP_BAR_TYPES.DESERT,
   },
   {
     episodeSettings: episodeSettings.w3s5,
     id: "MAP_SLICE_W03E16",
-    image: require("../../../../../../../assets/quest-slices/w3s16.png"),
+    image: planetWordSlices[currentPlanet].w3s16,
     slots: [
       { bottom: 40, index: 129, left: 187 },
       { index: 130, left: 187, top: 8 },
@@ -792,7 +1076,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w3s5,
     id: "MAP_SLICE_W03E17",
-    image: require("../../../../../../../assets/quest-slices/w3s17.png"),
+    image: planetWordSlices[currentPlanet].w3s17,
     slots: [
       { bottom: 40, index: 131, left: 286 },
       { bottom: 40, index: 132, left: 187 },
@@ -804,14 +1088,14 @@ const WorldSlices: IMapSlice[] = [
   // next episode
   {
     id: "MAP_SLICE_W03E18",
-    image: require("../../../../../../../assets/quest-slices/w3s18.png"),
+    image: planetWordSlices[currentPlanet].w3s18,
     slots: [],
     topBarType: TOP_BAR_TYPES.DESERT,
   },
   {
     episodeSettings: episodeSettings.w3s6,
     id: "MAP_SLICE_W03E19",
-    image: require("../../../../../../../assets/quest-slices/w3s19.png"),
+    image: planetWordSlices[currentPlanet].w3s19,
     slots: [
       { bottom: 40, index: 135, left: 187 },
       { index: 136, left: 187, top: 8 },
@@ -822,7 +1106,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w3s6,
     id: "MAP_SLICE_W03E20",
-    image: require("../../../../../../../assets/quest-slices/w3s20.png"),
+    image: planetWordSlices[currentPlanet].w3s20,
     slots: [
       { bottom: 40, index: 138, left: 187 },
       { index: 139, left: 96, top: 8 },
@@ -833,21 +1117,21 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w3s6,
     id: "MAP_SLICE_W03E21",
-    image: require("../../../../../../../assets/quest-slices/w3s21.png"),
+    image: planetWordSlices[currentPlanet].w3s21,
     slots: [{ bottom: 40, index: 141, left: 187 }],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   // next episode
   {
     id: "MAP_SLICE_W03E22",
-    image: require("../../../../../../../assets/quest-slices/w3s22.png"),
+    image: planetWordSlices[currentPlanet].w3s22,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   {
     episodeSettings: episodeSettings.w3s7,
     id: "MAP_SLICE_W03E23",
-    image: require("../../../../../../../assets/quest-slices/w3s23.png"),
+    image: planetWordSlices[currentPlanet].w3s23,
     slots: [
       { bottom: 40, index: 142, left: 93 },
       { bottom: 40, index: 143, left: 283 },
@@ -858,7 +1142,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w3s7,
     id: "MAP_SLICE_W03E24",
-    image: require("../../../../../../../assets/quest-slices/w3s24.png"),
+    image: planetWordSlices[currentPlanet].w3s24,
     slots: [
       { bottom: 30, index: 145, left: 93 },
       { bottom: 30, index: 146, left: 283 },
@@ -869,33 +1153,33 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w3s7,
     id: "MAP_SLICE_W03E25",
-    image: require("../../../../../../../assets/quest-slices/w3s25.png"),
+    image: planetWordSlices[currentPlanet].w3s25,
     slots: [{ bottom: 0, index: 148, left: 187 }],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   // next episode
   {
     id: "MAP_SLICE_W03E26",
-    image: require("../../../../../../../assets/quest-slices/w3s26.png"),
+    image: planetWordSlices[currentPlanet].w3s26,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   {
     id: "MAP_SLICE_W03E27",
-    image: require("../../../../../../../assets/quest-slices/w3s27.png"),
+    image: planetWordSlices[currentPlanet].w3s27,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   {
     episodeSettings: episodeSettings.w3s8,
     id: "MAP_SLICE_W03E28",
-    image: require("../../../../../../../assets/quest-slices/w3s28.png"),
+    image: planetWordSlices[currentPlanet].w3s28,
     slots: [{ bottom: 10, index: 149, left: 187 }],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
 
   // OCEAN TO DESERT INTERSTITIALS
-  ...interstitialsSlices.mountain,
+  ...interstitialsSlices(currentPlanet).mountain,
   /**
    *  MOUNTAIN WORLD
    *  first episode
@@ -903,14 +1187,14 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s1,
     id: "MAP_SLICE_W04E00",
-    image: require("../../../../../../../assets/quest-slices/w4s0.png"),
+    image: planetWordSlices[currentPlanet].w4s0,
     slots: [{ index: 151, top: 8, left: 187 }],
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
   {
     episodeSettings: episodeSettings.w4s1,
     id: "MAP_SLICE_W04E01",
-    image: require("../../../../../../../assets/quest-slices/w4s1.png"),
+    image: planetWordSlices[currentPlanet].w4s1,
     slots: [
       { index: 150, bottom: 36, left: 187 },
       { index: 152, bottom: 36, left: 100 },
@@ -922,7 +1206,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s1,
     id: "MAP_SLICE_W04E02",
-    image: require("../../../../../../../assets/quest-slices/w4s2.png"),
+    image: planetWordSlices[currentPlanet].w4s2,
     slots: [
       { index: 155, bottom: 36, left: 187 },
       { index: 156, top: 10, left: 187 },
@@ -931,7 +1215,7 @@ const WorldSlices: IMapSlice[] = [
   },
   {
     id: "MAP_SLICE_W04E03",
-    image: require("../../../../../../../assets/quest-slices/w4s3.png"),
+    image: planetWordSlices[currentPlanet].w4s3,
     slots: [],
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
@@ -940,7 +1224,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s2,
     id: "MAP_SLICE_W04E04",
-    image: require("../../../../../../../assets/quest-slices/w4s4.png"),
+    image: planetWordSlices[currentPlanet].w4s4,
     slots: [
       { index: 157, bottom: 45, left: 95 },
       { index: 158, top: 8, left: 187 },
@@ -950,7 +1234,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s2,
     id: "MAP_SLICE_W04E05",
-    image: require("../../../../../../../assets/quest-slices/w4s5.png"),
+    image: planetWordSlices[currentPlanet].w4s5,
     slots: [
       { index: 159, top: 8, left: 290 },
       { index: 160, bottom: 40, left: 187 },
@@ -961,7 +1245,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s2,
     id: "MAP_SLICE_W04E06",
-    image: require("../../../../../../../assets/quest-slices/w4s6.png"),
+    image: planetWordSlices[currentPlanet].w4s6,
     slots: [
       { index: 163, top: 8, left: 187 },
       { index: 162, top: 110, left: 187 },
@@ -970,21 +1254,21 @@ const WorldSlices: IMapSlice[] = [
   },
   {
     id: "MAP_SLICE_W04E07",
-    image: require("../../../../../../../assets/quest-slices/w4s7.png"),
+    image: planetWordSlices[currentPlanet].w4s7,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   // next episode
   {
     id: "MAP_SLICE_W04E08",
-    image: require("../../../../../../../assets/quest-slices/w4s8.png"),
+    image: planetWordSlices[currentPlanet].w4s8,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   {
     episodeSettings: episodeSettings.w4s3,
     id: "MAP_SLICE_W04E09",
-    image: require("../../../../../../../assets/quest-slices/w4s9.png"),
+    image: planetWordSlices[currentPlanet].w4s9,
     slots: [
       { index: 164, bottom: 40, left: 187 },
       { index: 165, bottom: 40, left: 97 },
@@ -997,7 +1281,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s3,
     id: "MAP_SLICE_W04E10",
-    image: require("../../../../../../../assets/quest-slices/w4s10.png"),
+    image: planetWordSlices[currentPlanet].w4s10,
     slots: [
       { index: 169, bottom: 30, left: 187 },
       { index: 170, bottom: 120, left: 187 },
@@ -1007,7 +1291,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s3,
     id: "MAP_SLICE_W04E11",
-    image: require("../../../../../../../assets/quest-slices/w4s11.png"),
+    image: planetWordSlices[currentPlanet].w4s11,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
@@ -1015,14 +1299,14 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s4,
     id: "MAP_SLICE_W04E12",
-    image: require("../../../../../../../assets/quest-slices/w4s12.png"),
+    image: planetWordSlices[currentPlanet].w4s12,
     slots: [{ index: 171, bottom: 80, left: 187 }],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   {
     episodeSettings: episodeSettings.w4s4,
     id: "MAP_SLICE_W04E13",
-    image: require("../../../../../../../assets/quest-slices/w4s13.png"),
+    image: planetWordSlices[currentPlanet].w4s13,
     slots: [
       { index: 172, bottom: 8, left: 282 },
       { index: 173, bottom: 8, left: 187 },
@@ -1034,7 +1318,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s4,
     id: "MAP_SLICE_W04E14",
-    image: require("../../../../../../../assets/quest-slices/w4s14.png"),
+    image: planetWordSlices[currentPlanet].w4s14,
     slots: [
       { index: 176, bottom: 8, left: 282 },
       { index: 177, bottom: 90, left: 282 },
@@ -1043,7 +1327,7 @@ const WorldSlices: IMapSlice[] = [
   },
   {
     id: "MAP_SLICE_W04E15",
-    image: require("../../../../../../../assets/quest-slices/w4s15.png"),
+    image: planetWordSlices[currentPlanet].w4s15,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
@@ -1051,7 +1335,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s5,
     id: "MAP_SLICE_W04E16",
-    image: require("../../../../../../../assets/quest-slices/w4s16.png"),
+    image: planetWordSlices[currentPlanet].w4s16,
     slots: [
       { index: 178, bottom: 24, left: 187 },
       { index: 179, top: 8, left: 187 },
@@ -1061,7 +1345,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s5,
     id: "MAP_SLICE_W04E17",
-    image: require("../../../../../../../assets/quest-slices/w4s17.png"),
+    image: planetWordSlices[currentPlanet].w4s17,
     slots: [
       { index: 180, bottom: 35, left: 187 },
       { index: 181, top: 8, left: 282 },
@@ -1073,7 +1357,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s5,
     id: "MAP_SLICE_W04E18",
-    image: require("../../../../../../../assets/quest-slices/w4s18.png"),
+    image: planetWordSlices[currentPlanet].w4s18,
     slots: [{ index: 184, bottom: 30, left: 187 }],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
@@ -1081,14 +1365,14 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s6,
     id: "MAP_SLICE_W04E19",
-    image: require("../../../../../../../assets/quest-slices/w4s19.png"),
+    image: planetWordSlices[currentPlanet].w4s19,
     slots: [{ index: 185, top: 8, left: 187 }],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   {
     episodeSettings: episodeSettings.w4s6,
     id: "MAP_SLICE_W04E20",
-    image: require("../../../../../../../assets/quest-slices/w4s20.png"),
+    image: planetWordSlices[currentPlanet].w4s20,
     slots: [
       { index: 186, bottom: 40, left: 97 },
       { index: 187, top: 8, left: 97 },
@@ -1100,7 +1384,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s6,
     id: "MAP_SLICE_W04E21",
-    image: require("../../../../../../../assets/quest-slices/w4s21.png"),
+    image: planetWordSlices[currentPlanet].w4s21,
     slots: [
       { index: 190, bottom: 30, left: 187 },
       { index: 191, top: 10, left: 187 },
@@ -1110,7 +1394,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s6,
     id: "MAP_SLICE_W04E22",
-    image: require("../../../../../../../assets/quest-slices/w4s22.png"),
+    image: planetWordSlices[currentPlanet].w4s22,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
@@ -1118,14 +1402,14 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s7,
     id: "MAP_SLICE_W04E23",
-    image: require("../../../../../../../assets/quest-slices/w4s23.png"),
+    image: planetWordSlices[currentPlanet].w4s23,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   {
     episodeSettings: episodeSettings.w4s7,
     id: "MAP_SLICE_W04E24",
-    image: require("../../../../../../../assets/quest-slices/w4s24.png"),
+    image: planetWordSlices[currentPlanet].w4s24,
     slots: [
       { index: 192, top: 8, left: 97 },
       { index: 193, top: 8, left: 277 },
@@ -1135,7 +1419,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s7,
     id: "MAP_SLICE_W04E25",
-    image: require("../../../../../../../assets/quest-slices/w4s25.png"),
+    image: planetWordSlices[currentPlanet].w4s25,
     slots: [
       { index: 194, bottom: 30, left: 187 },
       { index: 195, top: 30, left: 97 },
@@ -1146,7 +1430,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s7,
     id: "MAP_SLICE_W04E26",
-    image: require("../../../../../../../assets/quest-slices/w4s26.png"),
+    image: planetWordSlices[currentPlanet].w4s26,
     slots: [
       { index: 197, bottom: 8, left: 187 },
       { index: 198, top: 30, left: 187 },
@@ -1156,7 +1440,7 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s7,
     id: "MAP_SLICE_W04E27",
-    image: require("../../../../../../../assets/quest-slices/w4s27.png"),
+    image: planetWordSlices[currentPlanet].w4s27,
     slots: [],
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
@@ -1164,51 +1448,64 @@ const WorldSlices: IMapSlice[] = [
   {
     episodeSettings: episodeSettings.w4s8,
     id: "MAP_SLICE_W04E28",
-    image: require("../../../../../../../assets/quest-slices/w4s28.png"),
+    image: planetWordSlices[currentPlanet].w4s28,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   {
     episodeSettings: episodeSettings.w4s8,
     id: "MAP_SLICE_W04E29",
-    image: require("../../../../../../../assets/quest-slices/w4s29.png"),
+    image: planetWordSlices[currentPlanet].w4s29,
     slots: [],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
   {
     episodeSettings: episodeSettings.w4s8,
     id: "MAP_SLICE_W04E30",
-    image: require("../../../../../../../assets/quest-slices/w4s30.png"),
+    image: planetWordSlices[currentPlanet].w4s30,
     slots: [{ index: 199, bottom: 0, left: 187 }],
     topBarType: TOP_BAR_TYPES.WHITE,
   },
 ];
 // placeholder interstitials for mountain
-export default isIphoneX ? [...interstitialsSlices.forest, ...WorldSlices, ...interstitialsSlices.last] : WorldSlices;
 
-export const loadingSlices: { [x: string]: IMapSlice } = {
+const getWorldSlices = (currentPlanet: Planets): IMapSlice[] => {
+  if (isIphoneX) {
+    return [
+      ...interstitialsSlices(currentPlanet).forest,
+      ...WorldSlices(currentPlanet),
+      ...interstitialsSlices(currentPlanet).last,
+    ];
+  }
+
+  return WorldSlices(currentPlanet);
+};
+
+export default getWorldSlices;
+
+export const loadingSlices = (currentPlanet: Planets): { [x: string]: IMapSlice } => ({
   forest: {
     id: "MAP_SLICE_W01_LOADING_01",
-    image: require("../../../../../../../assets/quest-slices/loading/w1s1.png"),
+    image: planetsLoadingSlices[currentPlanet].w1s1,
     slots: [],
     topBarType: TOP_BAR_TYPES.FOREST,
   },
   ocean: {
     id: "MAP_SLICE_W02_LOADING_01",
-    image: require("../../../../../../../assets/quest-slices/loading/w2s1.png"),
+    image: planetsLoadingSlices[currentPlanet].w2s1,
     slots: [],
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
   desert: {
     id: "MAP_SLICE_W03_LOADING_01",
-    image: require("../../../../../../../assets/quest-slices/loading/w3s1.png"),
+    image: planetsLoadingSlices[currentPlanet].w3s1,
     slots: [],
     topBarType: TOP_BAR_TYPES.DESERT,
   },
   mountain: {
     id: "MAP_SLICE_W04_LOADING_01",
-    image: require("../../../../../../../assets/quest-slices/loading/w4s1.png"),
+    image: planetsLoadingSlices[currentPlanet].w4s1,
     slots: [],
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
-};
+});
