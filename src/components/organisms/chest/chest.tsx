@@ -1,16 +1,15 @@
-import React, { FC, memo, useEffect, useRef, useCallback, useMemo, RefObject } from "react";
+import React, { FC, memo, useEffect, useRef, useMemo, RefObject } from "react";
 import { View, Animated, Easing } from "react-native";
 import LottieView from "lottie-react-native";
 import { Style } from "@styles";
 import { DETOX_ENABLED } from "@services/socket";
 import { ChestCard } from "@organisms";
 import styles, { cardPositions } from "./chest.styles";
-import { PressableWithDelay } from "@components/molecules";
 import { useAssets } from "./hooks/useAssets";
 
 export type ChestType = "FOREST" | "OCEAN" | "DESERT" | "MOUNTAIN" | "CELESTIAL";
 
-interface ChestItem {
+export interface ChestItemType {
   icon: { id: string; uri: string };
   description: string;
   backgroundColour: string;
@@ -26,8 +25,7 @@ interface ChestItem {
 
 interface IProps {
   chestType: ChestType;
-  items: ChestItem[];
-  openOnPress?: boolean;
+  items: ChestItemType[];
   chestState: CHEST_STATE;
   setChestState: React.Dispatch<React.SetStateAction<CHEST_STATE>>;
 }
@@ -38,7 +36,7 @@ export enum CHEST_STATE {
   OPEN,
 }
 
-const Chest: FC<IProps> = ({ chestType, items, openOnPress = true, chestState, setChestState }) => {
+const Chest: FC<IProps> = ({ chestType, items, chestState, setChestState }) => {
   const timeout = useRef<NodeJS.Timeout>();
 
   const { chestShakingLottie, chestOpeningLottie } = useAssets(chestType);
@@ -118,7 +116,6 @@ const Chest: FC<IProps> = ({ chestType, items, openOnPress = true, chestState, s
             ]),
         {
           start: (cb) => {
-            setChestState(CHEST_STATE.OPEN);
             cb({ finished: true });
           },
           stop: () => null,
@@ -139,31 +136,24 @@ const Chest: FC<IProps> = ({ chestType, items, openOnPress = true, chestState, s
 
   useEffect(() => {
     if (chestState === CHEST_STATE.OPENING) {
+      timeout.current = global.setTimeout(() => {
+        setChestState(CHEST_STATE.OPEN);
+      }, 3000);
       openChestSequence.start();
     }
   }, [chestState]);
 
-  const onChestPress = useCallback(() => {
-    if (openOnPress && chestState === CHEST_STATE.CLOSED) {
-      setChestState(CHEST_STATE.OPENING);
-    }
-
-    lottieChestRef.current.play();
-  }, [openOnPress, chestState, setChestState]);
-
   return (
     <View style={styles.container}>
       <View style={styles.chestLottieWrapper}>
-        <PressableWithDelay onPress={onChestPress}>
-          <LottieView
-            resizeMode="cover"
-            style={styles.chestLottie}
-            source={chestState === CHEST_STATE.CLOSED ? chestShakingLottie : chestOpeningLottie}
-            autoPlay={true}
-            loop={false}
-            ref={lottieChestRef}
-          />
-        </PressableWithDelay>
+        <LottieView
+          resizeMode="cover"
+          style={styles.chestLottie}
+          source={chestState === CHEST_STATE.CLOSED ? chestShakingLottie : chestOpeningLottie}
+          autoPlay={true}
+          loop={false}
+          ref={lottieChestRef}
+        />
       </View>
       <Animated.View
         style={[

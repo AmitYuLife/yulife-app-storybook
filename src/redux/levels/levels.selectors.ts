@@ -1,6 +1,9 @@
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { createSelector } from "reselect";
-import { CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot_milestones } from "@graphql/_core/schema";
+import {
+  CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot_milestones,
+  CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_yuniversalChest,
+} from "@graphql/_core/schema";
 import { IReduxState } from "../_core/reducers";
 import { getChallengesAmountAvailable, getAvailableChallengesForToday } from "./levels.helpers";
 
@@ -9,6 +12,7 @@ export interface IActiveLevel {
     type: string;
     value: number;
   };
+  yuniversalChest: CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_yuniversalChest | null;
   coins: number;
   endDateTime: string;
   initialPedometerResult: number;

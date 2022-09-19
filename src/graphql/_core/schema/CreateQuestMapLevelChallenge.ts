@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { FitKitType } from "./globalTypes";
+import { FitKitType, RewardsChestType } from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CreateQuestMapLevelChallenge
@@ -44,11 +44,39 @@ export interface CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_chest
   value: number | null;
 }
 
+export interface CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_yuniversalChest_items_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_yuniversalChest_items_tooltip {
+  title: string;
+  description: string;
+  cta: string;
+}
+
+export interface CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_yuniversalChest_items {
+  icon: CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_yuniversalChest_items_icon;
+  description: string;
+  backgroundColour: string;
+  shadowColour: string;
+  textColour: string;
+  starColour: string | null;
+  tooltip: CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_yuniversalChest_items_tooltip | null;
+}
+
+export interface CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_yuniversalChest {
+  chestType: RewardsChestType;
+  title: string;
+  items: CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_yuniversalChest_items[];
+}
+
 export interface CreateQuestMapLevelChallenge_createQuestMapLevelChallenge {
   challenge: CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_challenge | null;
   levelSlot: CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot | null;
   nextLevelAvailableAt: string | null;
   chest: CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_chest | null;
+  yuniversalChest: CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_yuniversalChest | null;
 }
 
 export interface CreateQuestMapLevelChallenge {

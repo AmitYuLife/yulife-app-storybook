@@ -186,6 +186,14 @@ export default {
         title: "Pick a body type",
       },
     },
+    eotwChest: {
+      title: "You have earned",
+      spaceTravelText: "You’re exactly where you’ve been, floating above your world, but it’s not longer alone.",
+      travelButton: "Travel",
+      beginningButton: "A new beginning",
+      claimButton: "Claim rewards",
+      openChestButton: "Open the chest",
+    },
   },
   permissions: {
     android: {

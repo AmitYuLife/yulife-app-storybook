@@ -20,7 +20,7 @@ export const GQL_QUERY_GET_UNITY_REWARDS = gql`
         items {
           icon {
             id
-            uri
+            uri(options: { width: 180, height: 180 })
           }
           description
           backgroundColour

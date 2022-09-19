@@ -42,6 +42,7 @@ export const getInitialState = (): ILevelsStore => ({
       type: "yucoin",
       value: null,
     },
+    yuniversalChest: null,
     coins: 0,
     endDateTime: "",
     initialPedometerResult: 0,
@@ -173,7 +174,7 @@ const isCancellingChallenge = (state: ILevelsStore): ILevelsStore => ({
 const challengeStartSuccess = (
   state: ILevelsStore,
   {
-    createQuestMapLevelChallenge: { challenge, levelSlot, chest },
+    createQuestMapLevelChallenge: { challenge, levelSlot, chest, yuniversalChest },
     videoPlayerIsActive,
     hideExternalLinks, // TODO: Delete this after our meditopia player goes live for everyone
   }: ChallengeStartPayload
@@ -185,6 +186,7 @@ const challengeStartSuccess = (
       type: chest?.type || "yucoin",
       value: chest?.value || null,
     },
+    yuniversalChest,
     shouldEndOnLastGoalAchieved: levelSlot.shouldEndOnLastGoalAchieved,
     fitKitTypes: levelSlot.fitKitTypes,
     endDateTime: addSecondsToChallengeEndDateTime(challenge.endDateTime),
