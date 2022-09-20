@@ -24,6 +24,7 @@ export interface ChestItemType {
 }
 
 interface IProps {
+  levelId: string;
   chestType: ChestType;
   items: ChestItemType[];
   chestState: CHEST_STATE;
@@ -36,8 +37,24 @@ export enum CHEST_STATE {
   OPEN,
 }
 
-const Chest: FC<IProps> = ({ chestType, items, chestState, setChestState }) => {
+const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestState }) => {
   const timeout = useRef<NodeJS.Timeout>();
+
+  const location = useMemo(() => {
+    switch (chestType) {
+      case "FOREST":
+        return "forest chest";
+      case "OCEAN":
+        return "ocean chest";
+      case "DESERT":
+        return "desert chest";
+      case "MOUNTAIN":
+        return "mountain chest";
+      case "CELESTIAL":
+      default:
+        return "celestial chest";
+    }
+  }, [chestType]);
 
   const { chestShakingLottie, chestOpeningLottie } = useAssets(chestType);
   const lottieChestRef: RefObject<LottieView> = useRef();
@@ -184,6 +201,8 @@ const Chest: FC<IProps> = ({ chestType, items, chestState, setChestState }) => {
                 textColour={item.textColour}
                 icon={item.icon}
                 tooltip={item.tooltip}
+                location={location}
+                levelId={levelId}
               />
             </Animated.View>
           )

@@ -1,6 +1,8 @@
 import React, { memo, FC, useRef, useCallback, useMemo } from "react";
 import { View } from "react-native";
 import { Navigation } from "react-native-navigation";
+import { useDispatch } from "react-redux";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { MODALS } from "@navigation/constants";
 import { Image, TextTemplate, TooltipIcon } from "@atoms";
 import { PressableWithDelay } from "@molecules";
@@ -26,6 +28,8 @@ interface IProps {
     description: string;
     cta: string;
   };
+  location: string;
+  levelId: string;
 }
 
 const ChestCard: FC<IProps> = ({
@@ -36,7 +40,10 @@ const ChestCard: FC<IProps> = ({
   textColour,
   icon,
   tooltip,
+  location,
+  levelId,
 }) => {
+  const dispatch = useDispatch();
   const tooltipIconRef = useRef<View>();
 
   const onClose = useCallback(() => Navigation.dismissOverlay(MODALS.blurredOverlay), []);
@@ -49,7 +56,14 @@ const ChestCard: FC<IProps> = ({
         <InfoMessage title={tooltip?.title} text={tooltip?.description} onPress={onClose} buttonLabel={tooltip?.cta} />
       ),
     });
-  }, [tooltipIconRef, tooltip, onClose]);
+    dispatch(
+      logMixpanelEventActionCreator("information_viewed", {
+        name: tooltip?.title,
+        location,
+        levelId,
+      })
+    );
+  }, [tooltipIconRef, tooltip, onClose, location, levelId, dispatch]);
 
   const cardOuterStyle = useMemo(() => [styles.cardOuter, { backgroundColor: shadowColour }], [shadowColour]);
   const cardInnerStyle = useMemo(() => [styles.cardInner, { backgroundColor: backgroundColour }], [backgroundColour]);

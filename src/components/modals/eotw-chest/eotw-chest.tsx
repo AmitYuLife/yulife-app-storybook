@@ -8,6 +8,7 @@ interface IProps {
   chestType: ChestType;
   title: string;
   level: number;
+  levelId: string;
   avatar: ImageSourcePropType;
   items: ChestItemType[];
   onPressCta: () => void;
