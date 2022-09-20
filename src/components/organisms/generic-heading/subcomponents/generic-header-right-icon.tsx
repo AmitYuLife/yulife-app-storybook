@@ -7,6 +7,7 @@ import { IGenericHeadingProps, YuCoinCounter } from "@organisms";
 import PlusSvg from "@atoms/plus/plus-svg";
 import styles from "../generic-heading.styles";
 import { labels } from "@navigation/root";
+import { t } from "@locale";
 
 type IIcon = IGenericHeadingProps["rightIcon"];
 
@@ -44,6 +45,7 @@ const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon }: IProps) 
       onPress={handleOnPress}
       style={styles.rightIconTouchable}
       testID={testID}
+      accessibilityLabel={getAccessibilityLabel(icon)}
     >
       {getIcon(icon, color)}
     </TouchableOpacityWithDelay>
@@ -51,6 +53,18 @@ const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon }: IProps) 
 };
 
 export default GenericHeaderRightIcon;
+
+const accessibilityLabels = {
+  SETTINGS: t("genericHeading.rightIcon.settings.accessibilityLabel"),
+  CLOSE: t("genericHeading.rightIcon.close.accessibilityLabel"),
+  EDIT: t("genericHeading.rightIcon.edit.accessibilityLabel"),
+  PLUS: t("genericHeading.rightIcon.plus.accessibilityLabel"),
+  Done: t("genericHeading.rightIcon.done.accessibilityLabel"),
+  SAVE: t("genericHeading.rightIcon.save.accessibilityLabel"),
+  COINS: t("genericHeading.rightIcon.coins.accessibilityLabel"),
+};
+
+const getAccessibilityLabel = (icon: IIcon) => accessibilityLabels[icon];
 
 const getIcon = (icon: IIcon, color: string) => {
   switch (icon) {
@@ -74,7 +88,7 @@ const getIcon = (icon: IIcon, color: string) => {
     case "CLOSE":
       return (
         <View>
-          <CloseSvg stroke={color} />
+          <CloseSvg stroke={color} accessible={false} />
         </View>
       );
     case "Done":

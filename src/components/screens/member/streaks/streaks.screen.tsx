@@ -11,6 +11,7 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Style } from "@styles";
 import { DETOX_ENABLED } from "@services/socket";
 import { BuffArea } from "@graphql/_core/schema/globalTypes";
+import { t } from "@locale";
 
 interface IProps {
   isLoading: boolean;
@@ -18,6 +19,7 @@ interface IProps {
   subHeading: string | string[];
   ribbonLabel: string;
   timeRemaining: string;
+  accessibilityTimeRemaining: string;
   streakAwardId: string;
   streakCompleted: number;
   streakMax: number;
@@ -42,6 +44,7 @@ const StreaksScreen = ({
   onClose,
   onPressCtaSecondary,
   reward,
+  accessibilityTimeRemaining,
 }: IProps) => {
   const currentStreakCompleted = onPressCtaSecondary ? streakCompleted : streakCompleted - 1;
   const isStreakCompleted = streakMax === streakCompleted && !streakAwardId;
@@ -53,6 +56,30 @@ const StreaksScreen = ({
   const streakInfo = getStreakInfo(streakMax, heading, subHeading, reward, currentStreakCompleted);
   const buffTypes = useMemo(() => [BuffArea.streak], []);
 
+  const accessibilityLabel = useMemo(
+    () =>
+      isStreakCompleted
+        ? t("screens.streak.accessibility.streakCompleted", {
+            header: streakInfo?.header,
+            ribbonLabel,
+            time: accessibilityTimeRemaining,
+          })
+        : t("screens.streak.accessibility.streakStart", {
+            header: streakInfo?.header,
+            subHeader: streakInfo?.subHeader,
+            streakCompleted,
+            streakMax,
+          }),
+    [
+      isStreakCompleted,
+      streakInfo?.header,
+      streakInfo?.subHeader,
+      ribbonLabel,
+      accessibilityTimeRemaining,
+      streakCompleted,
+      streakMax,
+    ]
+  );
   return (
     <>
       <GenericHeadingPad />
@@ -64,15 +91,17 @@ const StreaksScreen = ({
           )}
         </View>
 
-        <TextTemplate type={Style.isShortToMedium() ? "h2" : "h1"} textAlign="center">
-          {streakInfo?.header}
-        </TextTemplate>
-        <View style={styles.streaksWrapper}>
-          {isStreakCompleted ? (
-            <StreakCompletion timeRemaining={timeRemaining} isNotValidTime={isNotValidTime} label={ribbonLabel} />
-          ) : (
-            <StreakStart heading={streakInfo?.subHeader} streakMax={streakMax} streakCompleted={streakCompleted} />
-          )}
+        <View accessible={true} accessibilityLabel={accessibilityLabel}>
+          <TextTemplate type={Style.isShortToMedium() ? "h2" : "h1"} textAlign="center">
+            {streakInfo?.header}
+          </TextTemplate>
+          <View style={styles.streaksWrapper}>
+            {isStreakCompleted ? (
+              <StreakCompletion timeRemaining={timeRemaining} isNotValidTime={isNotValidTime} label={ribbonLabel} />
+            ) : (
+              <StreakStart heading={streakInfo?.subHeader} streakMax={streakMax} streakCompleted={streakCompleted} />
+            )}
+          </View>
         </View>
         <View style={styles.buttonWrapper}>
           <Button

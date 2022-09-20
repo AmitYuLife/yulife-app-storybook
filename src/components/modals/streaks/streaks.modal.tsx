@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/react-hooks";
 import { GQL_MUTATION_COLLECT_AWARD, CollectAwardMutationTuple } from "@graphql/member";
 import { getTimeRemaining } from "@utils";
-import * as React from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getStreakAwardId } from "@redux/streaks/streaks.selectors";
@@ -9,7 +9,7 @@ import { getUserStart } from "@redux/user/user.actions";
 import { StreaksScreen } from "@screens";
 import { useBackHandler } from "@hooks";
 import { Navigation } from "react-native-navigation";
-import { streakCopy } from "./copy";
+import { IStreakCopy, streakCopy } from "./copy";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -41,64 +41,61 @@ const getStreakCompleted = ({
 const getLabelCtaPrimary = ({
   streakMax,
   isDoneToday,
-  reward,
   streakAwardId,
   streakCompleted,
-  type,
-}: Pick<Props, "isDoneToday" | "streakCompleted" | "streakMax" | "reward" | "streakAwardId" | "type">) => {
+  copy,
+}: Pick<Props, "isDoneToday" | "streakCompleted" | "streakMax" | "streakAwardId"> & { copy: IStreakCopy }) => {
+  const { ctaLabelDone, ctaLabelCollect, ctaLabelTakeChallenge } = copy;
   if (getStreakCompleted({ streakAwardId, streakCompleted, streakMax }) === streakMax) {
     if (!streakAwardId) {
-      return streakCopy.ctaLabelDone;
+      return ctaLabelDone;
     }
 
-    return streakCopy.ctaLabelCollect
-      .replace("${reward}", reward)
-      .replace("${type}", type === "yucoin" ? "YuCoin" : type);
+    return ctaLabelCollect;
   }
 
   if (isDoneToday) {
-    return streakCopy.ctaLabelDone;
+    return ctaLabelDone;
   }
 
-  return streakCopy.ctaLabelTakeChallenge;
+  return ctaLabelTakeChallenge;
 };
 
 const getSubHeading = ({
   isDoneToday,
   streakMax,
-  reward,
   streakAwardId,
   streakCompleted,
-}: Pick<Props, "streakCompleted" | "isDoneToday" | "streakMax" | "reward" | "streakAwardId">) => {
+  copy,
+}: Pick<Props, "streakCompleted" | "isDoneToday" | "streakMax" | "streakAwardId"> & { copy: IStreakCopy }) => {
+  const { subheadingCollected, subheadingCompleted, subheadingTodayStreakDone } = copy;
   if (getStreakCompleted({ streakAwardId, streakCompleted, streakMax }) === streakMax) {
     if (!streakAwardId) {
-      return streakCopy.subheadingCollected;
+      return subheadingCollected;
     }
 
-    return streakCopy.subheadingCompleted;
+    return subheadingCompleted;
   }
 
   if (isDoneToday) {
-    return streakCopy.subheadingTodayStreakDone;
+    return subheadingTodayStreakDone;
   }
 
   const streakNumber = streakMax - streakCompleted;
 
-  return getSubHeadingInstructions(streakCompleted, streakNumber)
-    .replace("${streakMax}", streakNumber.toString())
-    .replace("${reward}", reward);
+  return getSubHeadingInstructions(streakCompleted, streakNumber, copy);
 };
 
-const getSubHeadingInstructions = (streakCompleted: number, streakNumber: number) => {
+const getSubHeadingInstructions = (streakCompleted: number, streakNumber: number, copy: IStreakCopy) => {
   if (streakCompleted === 0) {
-    return streakCopy.subheadingInstructionsFirstDay;
+    return copy.subheadingInstructionsFirstDay;
   }
 
   if (streakNumber === 1) {
-    return streakCopy.subheadingInstructionsToday;
+    return copy.subheadingInstructionsToday;
   }
 
-  return streakCopy.subheadingInstructions;
+  return copy.subheadingInstructions;
 };
 
 const getHeading = ({
@@ -106,16 +103,17 @@ const getHeading = ({
   streakMax,
   streakAwardId,
   streakCompleted,
-}: Pick<Props, "streakAwardId" | "isDoneToday" | "streakMax" | "streakCompleted">) => {
+  copy,
+}: Pick<Props, "streakAwardId" | "isDoneToday" | "streakMax" | "streakCompleted"> & { copy: IStreakCopy }) => {
   if (getStreakCompleted({ streakAwardId, streakCompleted, streakMax }) === streakMax) {
-    return streakCopy.headingCompleted;
+    return copy.headingCompleted;
   }
 
   if (isDoneToday) {
-    return streakCopy.headingCompletedTodayStreak;
+    return copy.headingCompletedTodayStreak;
   }
 
-  return streakCopy.headingStartStreakDay;
+  return copy.headingStartStreakDay;
 };
 
 const StreaksModal: React.FC<Props> = ({
@@ -131,8 +129,8 @@ const StreaksModal: React.FC<Props> = ({
   type,
   getUserStart: dispatchGetUserStart,
 }) => {
-  const [isLoading, setLoading] = React.useState(false);
-  const [timeRemaining, setTimeRemaining] = React.useState(getTimeRemaining(nextStreakAvailableAt, "medium").time);
+  const [isLoading, setLoading] = useState(false);
+  const [timeRemaining, setTimeRemaining] = useState(getTimeRemaining(nextStreakAvailableAt, "medium"));
 
   useBackHandler(() => {
     if (onPressCtaSecondary) {
@@ -147,10 +145,10 @@ const StreaksModal: React.FC<Props> = ({
     Navigation.dismissModal(componentId);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (streakMax === streakCompleted && !streakAwardId) {
       const callback = () => {
-        setTimeRemaining(getTimeRemaining(nextStreakAvailableAt, "medium").time);
+        setTimeRemaining(getTimeRemaining(nextStreakAvailableAt, "medium"));
         timer = setTimeout(callback, 1000);
       };
 
@@ -188,18 +186,23 @@ const StreaksModal: React.FC<Props> = ({
       }
     : onPressCtaPrimary;
 
+  const copy = useMemo(() => {
+    const remainingStreak = (streakMax - streakCompleted).toString();
+    const streakType = type === "yucoin" ? "YuCoin" : type;
+    return streakCopy(remainingStreak, reward, streakType);
+  }, [streakMax, streakCompleted, type]);
+
   return (
     <StreaksScreen
-      heading={getHeading({ isDoneToday, streakMax, streakAwardId, streakCompleted })}
-      subHeading={getSubHeading({ isDoneToday, streakMax, reward, streakAwardId, streakCompleted })}
+      heading={getHeading({ isDoneToday, streakMax, streakAwardId, streakCompleted, copy })}
+      subHeading={getSubHeading({ isDoneToday, streakMax, streakAwardId, streakCompleted, copy })}
       ribbonLabel={`${reward} ${type === "yucoin" ? "YuCoin" : "Voucher"}`}
       primaryButtonLabel={getLabelCtaPrimary({
         streakMax,
         isDoneToday,
-        reward,
         streakAwardId,
         streakCompleted,
-        type,
+        copy,
       })}
       streakAwardId={streakAwardId}
       streakCompleted={getStreakCompleted({ streakAwardId, streakCompleted, streakMax })}
@@ -209,7 +212,8 @@ const StreaksModal: React.FC<Props> = ({
       isLoading={isLoading}
       onPressCtaSecondary={onPressCtaSecondary}
       onClose={handleClose}
-      timeRemaining={timeRemaining}
+      timeRemaining={timeRemaining.time}
+      accessibilityTimeRemaining={timeRemaining.accessibility}
     />
   );
 };

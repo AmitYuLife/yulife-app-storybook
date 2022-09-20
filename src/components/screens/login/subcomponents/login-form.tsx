@@ -1,5 +1,5 @@
-import * as React from "react";
-import { View, Keyboard, StyleSheet } from "react-native";
+import React, { useMemo } from "react";
+import { View, Keyboard, StyleSheet, AccessibilityPropsAndroid } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD } from "@ids";
 import { Pad, TextTemplate } from "@atoms";
@@ -49,7 +49,7 @@ export const LoginForm = (props: LoginFormProps) => {
   ]);
   const isShowingKeyboard = useKeyboardListeners();
   const currentModal = useSelector(getModalState);
-  const links = React.useMemo(
+  const links = useMemo(
     () => [
       {
         label: t["screens.login.help"],
@@ -59,13 +59,28 @@ export const LoginForm = (props: LoginFormProps) => {
     [t, onResetPasswordPress]
   );
 
+  const { androidImportantForAccessibility, accessibilityElementsHidden } = useMemo(
+    () =>
+      currentModal === MODALS.blurredOverlay
+        ? {
+            androidImportantForAccessibility: "no-hide-descendants" as AccessibilityPropsAndroid["importantForAccessibility"],
+            accessibilityElementsHidden: true,
+          }
+        : {
+            androidImportantForAccessibility: "auto" as AccessibilityPropsAndroid["importantForAccessibility"],
+            accessibilityElementsHidden: false,
+          },
+    [currentModal]
+  );
+
   return (
     <Animatable.View
       duration={1000}
       animation="fadeIn"
       style={styles.flex}
       useNativeDriver={true}
-      importantForAccessibility={currentModal === MODALS.blurredOverlay ? "no-hide-descendants" : "auto"}
+      importantForAccessibility={androidImportantForAccessibility}
+      accessibilityElementsHidden={accessibilityElementsHidden}
     >
       <PressableWithDelay
         style={styles.fullScreenWrapper}

@@ -36,6 +36,42 @@ export default {
         alertErrorDefaultMessage: "Something wrong",
       },
     },
+    streak: {
+      headingCompleted: "You smashed that Streak!",
+      ctaLabelDone: "Done",
+      ctaLabelCollect: "Collect %{reward} %{type}",
+      ctaLabelTakeChallenge: "Take a challenge",
+      subheadingCollected: "Well done! The reward has been collected.",
+      subheadingCompleted: "You did it!",
+      subheadingInstructions: "Complete challenges %{streakMax} more days in a row to earn a bonus %{reward} YuCoin",
+      subheadingInstructionsToday: "Complete a challenge today to earn a bonus %{reward} YuCoin",
+      subheadingInstructionsFirstDay: "Complete challenges %{streakMax} days in a row to earn a bonus %{reward} YuCoin",
+      subheadingTodayStreakDone: {
+        day1: "Great start! Keep it up to earn %{reward} YuCoin.",
+        day2: "You’re on your way to a bonus %{reward} YuCoin.",
+        day3: "Just two more days and you’ll earn %{reward} YuCoin.",
+        day4: "You’re just one day away from %{reward} YuCoin.",
+        day5: "%{reward} YuCoin.",
+      },
+      headingCompletedTodayStreak: {
+        day1: "First day done!",
+        day2: "Two days down!",
+        day3: "You’re over the hump!",
+        day4: "Home stretch!",
+        day5: "You smashed that Streak!",
+      },
+      headingStartStreakDay: {
+        day1: "Start your Streak",
+        day2: "Off to a good start",
+        day3: "Keep it going",
+        day4: "Keep it up",
+        day5: "Close out your Streak",
+      },
+      accessibility: {
+        streakStart: "%{header} %{subHeader} %{streakCompleted} out of %{streakMax} days completed.",
+        streakCompleted: "%{header} %{ribbonLabel} has been collected, begin your next streak in %{time}",
+      },
+    },
     daily: {
       todayYuCoin: {
         accessibilityLabel: "Today's yucoin",
@@ -323,6 +359,31 @@ export default {
     totalBank: {
       icon: {
         accessibilityLabel: "%{coins} yucoin to spend",
+      },
+    },
+  },
+  genericHeading: {
+    rightIcon: {
+      settings: {
+        accessibilityLabel: "Settings",
+      },
+      edit: {
+        accessibilityLabel: "Edit",
+      },
+      plus: {
+        accessibilityLabel: "Plus",
+      },
+      done: {
+        accessibilityLabel: "Done",
+      },
+      save: {
+        accessibilityLabel: "Save",
+      },
+      close: {
+        accessibilityLabel: "Close",
+      },
+      coins: {
+        accessibilityLabel: "Coins",
       },
     },
   },
