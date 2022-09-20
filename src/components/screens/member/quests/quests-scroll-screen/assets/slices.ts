@@ -656,7 +656,7 @@ const WorldSlices = (currentPlanet: Planets): IMapSlice[] => [
     id: "MAP_SLICE_W02E00",
     image: planetWordSlices[currentPlanet].w2s0,
     slots: [{ index: 51, left: 187, top: 8 }],
-    topBarType: TOP_BAR_TYPES.WHITE,
+    topBarType: TOP_BAR_TYPES.DEFAULT,
   },
   {
     episodeSettings: episodeSettings.w2s1,
@@ -668,7 +668,7 @@ const WorldSlices = (currentPlanet: Planets): IMapSlice[] => [
       { bottom: 36, index: 53, left: 286 },
       { index: 54, left: 187, top: 8 },
     ],
-    topBarType: TOP_BAR_TYPES.WHITE,
+    topBarType: TOP_BAR_TYPES.DEFAULT,
   },
   {
     episodeSettings: episodeSettings.w2s1,
@@ -678,13 +678,13 @@ const WorldSlices = (currentPlanet: Planets): IMapSlice[] => [
       { bottom: 36, index: 55, left: 187 },
       { index: 56, left: 187, top: 8 },
     ],
-    topBarType: TOP_BAR_TYPES.WHITE,
+    topBarType: TOP_BAR_TYPES.DEFAULT,
   },
   {
     id: "MAP_SLICE_W02E03",
     image: planetWordSlices[currentPlanet].w2s3,
     slots: [],
-    topBarType: TOP_BAR_TYPES.WHITE,
+    topBarType: TOP_BAR_TYPES.DEFAULT,
   },
   // next episode
   {
@@ -695,7 +695,7 @@ const WorldSlices = (currentPlanet: Planets): IMapSlice[] => [
       { bottom: 36, index: 57, left: 187 },
       { index: 58, left: 187, top: 8 },
     ],
-    topBarType: TOP_BAR_TYPES.WHITE,
+    topBarType: TOP_BAR_TYPES.DEFAULT,
   },
   {
     episodeSettings: episodeSettings.w2s2,
@@ -707,7 +707,7 @@ const WorldSlices = (currentPlanet: Planets): IMapSlice[] => [
       { index: 61, left: 187, top: 8 },
       { index: 62, left: 96, top: 8 },
     ],
-    topBarType: TOP_BAR_TYPES.WHITE,
+    topBarType: TOP_BAR_TYPES.DEFAULT,
   },
   {
     episodeSettings: episodeSettings.w2s2,
@@ -1506,6 +1506,6 @@ export const loadingSlices = (currentPlanet: Planets): { [x: string]: IMapSlice 
     id: "MAP_SLICE_W04_LOADING_01",
     image: planetsLoadingSlices[currentPlanet].w4s1,
     slots: [],
-    topBarType: TOP_BAR_TYPES.DEFAULT,
+    topBarType: TOP_BAR_TYPES.MOUNTAIN,
   },
 });
