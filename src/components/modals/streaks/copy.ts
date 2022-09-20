@@ -1,9 +1,13 @@
+import { t } from "@locale";
+
 export interface IStreakCopy {
   ctaLabelDone: string;
   ctaLabelCollect: string;
   ctaLabelTakeChallenge: string;
   subheadingCollected: string;
   subheadingCompleted: string;
+  subheadingInstructionsFirstDay: string;
+  subheadingInstructionsToday: string;
   subheadingTodayStreakDone: string[];
   subheadingInstructions: string;
   headingCompleted: string;
@@ -11,35 +15,35 @@ export interface IStreakCopy {
   headingStartStreakDay: string[];
 }
 
-export const streakCopy = {
-  ctaLabelDone: "Done",
-  ctaLabelCollect: "Collect ${reward} ${type}",
-  ctaLabelTakeChallenge: "Take a challenge",
-  subheadingCollected: "Well done! The reward has been collected.",
-  subheadingCompleted: "You did it!",
+export const streakCopy = (streakMax: string, reward: string, type: string): IStreakCopy => ({
+  ctaLabelDone: t("screens.streak.ctaLabelDone"),
+  ctaLabelCollect: t("screens.streak.ctaLabelCollect", { reward, type }),
+  ctaLabelTakeChallenge: t("screens.streak.ctaLabelTakeChallenge"),
+  subheadingCollected: t("screens.streak.subheadingCollected"),
+  subheadingCompleted: t("screens.streak.subheadingCompleted"),
   subheadingTodayStreakDone: [
-    "Great start! Keep it up to earn ${reward} YuCoin.",
-    "You’re on your way to a bonus ${reward} YuCoin.",
-    "Just two more days and you’ll earn ${reward} YuCoin.",
-    "You’re just one day away from ${reward} YuCoin.",
-    "${reward} YuCoin.",
+    t("screens.streak.subheadingTodayStreakDone.day1", { reward }),
+    t("screens.streak.subheadingTodayStreakDone.day2", { reward }),
+    t("screens.streak.subheadingTodayStreakDone.day3", { reward }),
+    t("screens.streak.subheadingTodayStreakDone.day4", { reward }),
+    t("screens.streak.subheadingTodayStreakDone.day5", { reward }),
   ],
-  subheadingInstructions: "Complete challenges ${streakMax} more days in a row to earn a bonus ${reward} YuCoin",
-  subheadingInstructionsToday: "Complete a challenge today to earn a bonus ${reward} YuCoin",
-  subheadingInstructionsFirstDay: "Complete challenges ${streakMax} days in a row to earn a bonus ${reward} YuCoin",
-  headingCompleted: "You smashed that Streak!",
+  subheadingInstructions: t("screens.streak.subheadingInstructions", { reward, streakMax }),
+  subheadingInstructionsToday: t("screens.streak.subheadingInstructionsToday", { reward }),
+  subheadingInstructionsFirstDay: t("screens.streak.subheadingInstructionsFirstDay", { reward, streakMax }),
+  headingCompleted: t("screens.streak.headingCompleted"),
   headingCompletedTodayStreak: [
-    "First day done!",
-    "Two days down!",
-    "You’re over the hump!",
-    "Home stretch!",
-    "You smashed that Streak!",
+    t("screens.streak.headingCompletedTodayStreak.day1"),
+    t("screens.streak.headingCompletedTodayStreak.day2"),
+    t("screens.streak.headingCompletedTodayStreak.day3"),
+    t("screens.streak.headingCompletedTodayStreak.day4"),
+    t("screens.streak.headingCompletedTodayStreak.day5"),
   ],
   headingStartStreakDay: [
-    "Start your Streak",
-    "Off to a good start",
-    "Keep it going",
-    "Keep it up",
-    "Close out your Streak",
+    t("screens.streak.headingStartStreakDay.day1"),
+    t("screens.streak.headingStartStreakDay.day2"),
+    t("screens.streak.headingStartStreakDay.day3"),
+    t("screens.streak.headingStartStreakDay.day4"),
+    t("screens.streak.headingStartStreakDay.day5"),
   ],
-};
+});

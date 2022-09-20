@@ -26,5 +26,6 @@ storiesOf("StreaksScreen", module)
       streakCompleted={1}
       streakMax={100}
       subHeading="sub heading"
+      accessibilityTimeRemaining="14 h"
     />
   ));
