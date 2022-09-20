@@ -16,6 +16,7 @@ interface IProps {
   chestType: ChestType;
   title: string;
   level: number;
+  levelId: string;
   items: ChestItemType[];
   avatar: ImageSourcePropType;
   onPressCta: () => void;
@@ -27,7 +28,7 @@ enum EOTW_CHEST_PAGE {
 }
 
 const TRAVEL_ANIMATION = require("./assets/Travel_animation.json");
-const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, onPressCta, avatar }) => {
+const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, levelId, onPressCta, avatar }) => {
   const [chestState, setChestState] = useState(CHEST_STATE.CLOSED);
   const [page, setPage] = useState(EOTW_CHEST_PAGE.CHEST);
   const [beginningButton, setBeginningButton] = useState(false);
@@ -102,7 +103,13 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, onPr
               </TextTemplate>
             </View>
           )}
-          <Chest chestType={chestType} items={items} chestState={chestState} setChestState={setChestState} />
+          <Chest
+            levelId={levelId}
+            chestType={chestType}
+            items={items}
+            chestState={chestState}
+            setChestState={setChestState}
+          />
           {chestState === CHEST_STATE.OPENING ? null : (
             <View style={styles.buttonWrapper}>
               <Button size="Large" onPress={onChestPageButtonPress} label={chestButtonLabel} />

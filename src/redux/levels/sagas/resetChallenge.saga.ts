@@ -33,6 +33,7 @@ export function showEOTWChestModal(active: IActiveLevel, level: number, avatar: 
         chestType: active.yuniversalChest.chestType,
         title: active.yuniversalChest.title,
         level: level,
+        levelId: active.levelSlotId,
         items: active.yuniversalChest.items,
         avatar,
         onPressCta: () => {

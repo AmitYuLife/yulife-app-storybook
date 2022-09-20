@@ -21,13 +21,14 @@ import { QuestsMapContext } from "./quests.context";
 interface IProps extends IConnectedScreenProps {
   hideUnity?: () => void | null;
   unity: number;
+  levelId: string;
   repeatedUnity: boolean;
   componentId: string;
 }
 
 type CurrentWorld = 0 | 1 | 2 | 3;
 
-const QuestsScreen: FC<IProps> = ({ hideUnity, unity, repeatedUnity, onLeftMenuPress, componentId }) => {
+const QuestsScreen: FC<IProps> = ({ hideUnity, unity, levelId, repeatedUnity, onLeftMenuPress, componentId }) => {
   const { isLoading, currentLevel, activeLevel } = useContext(QuestsMapContext);
   const features = useSelector(getUserFeatures);
   const [isOnCurrentEpisode, setIsOnCurrentEpisode] = useState(false);
@@ -97,7 +98,7 @@ const QuestsScreen: FC<IProps> = ({ hideUnity, unity, repeatedUnity, onLeftMenuP
 
   if (unity) {
     if (features.newGamePlus) {
-      return <NewUnity level={unity} repeatedUnity={repeatedUnity} onSkip={hideUnity} />;
+      return <NewUnity level={unity} levelId={levelId} repeatedUnity={repeatedUnity} onSkip={hideUnity} />;
     }
 
     return <Unity level={unity} onSkip={hideUnity} />;

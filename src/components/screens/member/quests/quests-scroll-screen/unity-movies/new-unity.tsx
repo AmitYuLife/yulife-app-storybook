@@ -29,11 +29,12 @@ enum UNITY_REWARD_PAGE {
 
 interface IProps {
   level: number;
+  levelId: string;
   repeatedUnity: boolean;
   onSkip: () => void;
 }
 
-const Unity: FC<IProps> = ({ level, repeatedUnity, onSkip }) => {
+const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
   const [displayWaves, setDisplayWaves] = useState(false);
   const [page, setPage] = useState(UNITY_REWARD_PAGE.INTRO);
   const [introFinished, setIntroFinished] = useState(false);
@@ -355,6 +356,7 @@ const Unity: FC<IProps> = ({ level, repeatedUnity, onSkip }) => {
             </Animated.View>
           )}
           <Chest
+            levelId={levelId}
             chestType={data.getUnityRewards.chest.chestType}
             items={data.getUnityRewards.chest.items}
             chestState={chestState}
