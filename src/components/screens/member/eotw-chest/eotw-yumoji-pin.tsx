@@ -18,7 +18,7 @@ const EOTWYumojiIcon: FC<IProps> = memo(({ avatar, scale }) => {
         alignItems: "center",
         justifyContent: "flex-start",
       } as ViewStyle,
-      avatar: {
+      avatarContainer: {
         position: "absolute",
         margin: 5,
         paddingTop: AVATAR_RADIUS,
@@ -27,17 +27,28 @@ const EOTWYumojiIcon: FC<IProps> = memo(({ avatar, scale }) => {
         borderRadius: AVATAR_RADIUS / 2 - 2,
         transform: scale ? [{ scale }] : undefined,
         overflow: "hidden",
+        alignItems: "center",
+        justifyContent: "flex-start",
+      } as Animated.WithAnimatedObject<ViewStyle>,
+      avatar: {
+        position: "absolute",
+        paddingTop: AVATAR_RADIUS,
+        width: AVATAR_RADIUS - 4,
+        height: 2.3 * (AVATAR_RADIUS - 4),
+        transform: scale ? [{ scale }] : undefined,
       } as Animated.WithAnimatedObject<ImageStyle>,
       pin: {
         transform: scale ? [{ scale }] : undefined,
       } as Animated.WithAnimatedObject<ImageStyle>,
     }),
-    []
+    [scale]
   );
   return (
     <View style={styles.containerStyle}>
       <Animated.Image width={YUMOJI_WIDTH} height={YUMOJI_HEIGHT} source={YUMOJI_PIN} style={styles.pin} />
-      <Animated.Image style={styles.avatar} resizeMode="center" width={AVATAR_RADIUS - 2} source={avatar} />
+      <Animated.View style={styles.avatarContainer}>
+        <Animated.Image style={styles.avatar} resizeMode="center" width={AVATAR_RADIUS - 2} source={avatar} />
+      </Animated.View>
     </View>
   );
 });
