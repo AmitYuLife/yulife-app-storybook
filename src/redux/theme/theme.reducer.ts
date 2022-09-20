@@ -110,32 +110,32 @@ const planetsColors = {
       backgroundColor: "#FFE8E8",
       eventPanel: {
         fontColor: Colours.neutral.n800,
-        borderColor: "#EDEDD1",
-        backgroundColor: "#FFFFE5",
+        borderColor: "#EFD5D8",
+        backgroundColor: "#FFEFF1",
       },
     },
     ocean: {
       backgroundColor: "#35DBFF",
       eventPanel: {
-        fontColor: Colours.neutral.white,
-        borderColor: Colours.ocean.up202,
-        backgroundColor: Colours.ocean.up203,
+        fontColor: Colours.neutral.n800,
+        borderColor: "#44D2F1",
+        backgroundColor: "#85E9FF",
       },
     },
     desert: {
       backgroundColor: "#FFE2C8",
       eventPanel: {
         fontColor: Colours.neutral.n800,
-        borderColor: "#F3EDD1",
-        backgroundColor: "#FFFBE9",
+        borderColor: "#F6DFD2",
+        backgroundColor: "#FFF9E9",
       },
     },
     mountain: {
       backgroundColor: "#FFE2C8",
       eventPanel: {
         fontColor: Colours.neutral.n800,
-        borderColor: "#F4D1DB",
-        backgroundColor: "#FFE7EC",
+        borderColor: "#EFD5D8",
+        backgroundColor: "#FFEFF1",
       },
     },
   },
