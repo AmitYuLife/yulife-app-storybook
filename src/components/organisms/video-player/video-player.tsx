@@ -47,6 +47,7 @@ interface IProps {
   yuCoin: number;
   stars: number;
   lottie?: GqlLottie;
+  eventType: string;
 }
 
 const commonProps = {
@@ -73,6 +74,7 @@ const VideoPlayer = ({
   yuCoin,
   stars,
   lottie,
+  eventType,
 }: IProps) => {
   const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
   const [appCurrentState, setAppCurrentState] = useState<AppStateStatus>("active");
@@ -199,7 +201,7 @@ const VideoPlayer = ({
         lottieRef?.current?.play();
       }
 
-      reduxDispatch(logMixpanelEventActionCreator("video_player_button_start_pressed"));
+      reduxDispatch(logMixpanelEventActionCreator("video_player_button_start_pressed", { type: eventType }));
     } catch (err) {
       Logger.error(err, { location: "video-player-handleStartButton" });
       dispatch({ type: ActionTypes.SET_START_ERROR_MESSAGE, payload: startErrorMessage });
