@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.49.0] - 2022-09-21
+
+### Bugfixes
+
+- Bugfix: Chest opening animation
+- Bugfix: Space travel yumoji pin crop
+- Bugfix: Accessibility surge modal and offline screen
+- Bugfix: Ignore ilustration for ios accessibility
+
+### Tasks
+
+- Task: Change EOTW copies
+- Task GS-455: [EotW Tracking] 157 - information_viewed
+- Task: Change event panel colours to match red planet style
+- Task GS-444: Streak accessibility
+- Task: EotW Chest Updates
+- Task GS-433: Implement New World Quest Screen Designs
+
+### Chores
+
+- Chore: Improve meditopia tracking
+- Chore: Add bottom padding on AllProducts screen
+- Chore: Suppress carousel card loading UI
+
 ## [3.48.0] - 2022-09-14
 
 ### Features
