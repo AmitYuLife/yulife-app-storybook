@@ -39,6 +39,9 @@ export default StyleSheet.create({
     flex: 1,
     paddingHorizontal: Style.adjust(24),
   } as ViewStyle,
+  progressWrapper: {
+    alignItems: "center",
+  } as ViewStyle,
   lottieWrapper: {
     width: Style.adjust(220),
     height: Style.adjust(220),
