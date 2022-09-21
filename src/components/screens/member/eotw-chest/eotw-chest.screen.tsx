@@ -126,11 +126,6 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, leve
             avatar={avatar}
             travel={travel}
           />
-          <View style={styles.spaceTravelText}>
-            <TextTemplate color={color} type="b2" textAlign="center">
-              {t("screens.eotwChest.spaceTravelText")}
-            </TextTemplate>
-          </View>
           <View style={styles.buttonWrapper}>
             {travel ? null : (
               <Button size="Large" onPress={onSpaceTravelButtonPress} label={t("screens.eotwChest.travelButton")} />

@@ -1,11 +1,18 @@
-import React, { FC, memo, useEffect, useRef, useMemo, RefObject } from "react";
-import { View, Animated, Easing } from "react-native";
+import React, { FC, memo, useEffect, useRef, useMemo, RefObject, useCallback } from "react";
+import { View, Animated, Easing, TouchableOpacity, ViewStyle } from "react-native";
 import LottieView from "lottie-react-native";
 import { Style } from "@styles";
 import { DETOX_ENABLED } from "@services/socket";
 import { ChestCard } from "@organisms";
 import styles, { cardPositions } from "./chest.styles";
 import { useAssets } from "./hooks/useAssets";
+import InfoMessage from "@organisms/info-message/info-message";
+import { showTooltipPopupRelativeToPoint } from "@organisms/tooltip-popup/tooltip-popup.helper";
+import cardStyles, { CARD_WIDTH } from "../chest-card/chest-card.styles";
+import { Navigation } from "react-native-navigation";
+import { MODALS } from "@navigation/constants";
+import { useDispatch } from "react-redux";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 export type ChestType = "FOREST" | "OCEAN" | "DESERT" | "MOUNTAIN" | "CELESTIAL";
 
@@ -39,6 +46,7 @@ export enum CHEST_STATE {
 
 const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestState }) => {
   const timeout = useRef<NodeJS.Timeout>();
+  const dispatch = useDispatch();
 
   const location = useMemo(() => {
     switch (chestType) {
@@ -153,12 +161,64 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
 
   useEffect(() => {
     if (chestState === CHEST_STATE.OPENING) {
+      setImmediate(() => {
+        lottieChestRef.current.play(0);
+      });
       timeout.current = global.setTimeout(() => {
         setChestState(CHEST_STATE.OPEN);
       }, 3000);
       openChestSequence.start();
     }
   }, [chestState]);
+
+  const infoClose = useCallback(() => Navigation.dismissOverlay(MODALS.blurredOverlay), []);
+
+  const { infoHandlers, cardWrappers, infoCardWrappers } = useMemo(
+    () => ({
+      infoHandlers: items.map(({ tooltip }, index) => () => {
+        if (!tooltip) {
+          return;
+        }
+
+        showTooltipPopupRelativeToPoint({
+          x: cardXs[index] + CARD_WIDTH - 20,
+          y: cardPositions.endY + 40,
+          beakPosition: "autoVertical",
+          children: (
+            <InfoMessage
+              title={tooltip?.title}
+              text={tooltip?.description}
+              onPress={infoClose}
+              buttonLabel={tooltip?.cta}
+            />
+          ),
+        });
+        dispatch(
+          logMixpanelEventActionCreator("information_viewed", {
+            name: tooltip?.title,
+            location,
+            levelId,
+          })
+        );
+      }),
+      cardWrappers: items.map((_, index) => ({
+        ...styles.cardWrapper,
+        zIndex: index === 1 ? 2 : 1,
+        opacity: cardOpacities.current[index],
+        transform: [{ translateY: cardYs.current[index] }, { translateX: cardXs[index] }],
+      })),
+      infoCardWrappers: items.map(
+        (_, index) =>
+          ({
+            zIndex: 10,
+            position: "absolute",
+            top: cardPositions.endY,
+            left: cardXs[index],
+          } as ViewStyle)
+      ),
+    }),
+    [items, cardXs, infoClose, dispatch, location, levelId]
+  );
 
   return (
     <View style={styles.container}>
@@ -167,11 +227,12 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
           resizeMode="cover"
           style={styles.chestLottie}
           source={chestState === CHEST_STATE.CLOSED ? chestShakingLottie : chestOpeningLottie}
-          autoPlay={true}
+          autoPlay={chestState === CHEST_STATE.CLOSED}
           loop={false}
           ref={lottieChestRef}
         />
       </View>
+
       <Animated.View
         style={[
           styles.cardList,
@@ -182,17 +243,7 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
       >
         {items.map((item, index) =>
           index > 2 ? null : (
-            <Animated.View
-              key={item.description}
-              style={[
-                styles.cardWrapper,
-                {
-                  zIndex: index === 1 ? 2 : 1,
-                  opacity: cardOpacities.current[index],
-                  transform: [{ translateY: cardYs.current[index] }, { translateX: cardXs[index] }],
-                },
-              ]}
-            >
+            <Animated.View key={item.description} style={cardWrappers[index]}>
               <ChestCard
                 description={item.description}
                 backgroundColour={item.backgroundColour}
@@ -200,14 +251,22 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
                 starColour={item.starColour}
                 textColour={item.textColour}
                 icon={item.icon}
-                tooltip={item.tooltip}
-                location={location}
-                levelId={levelId}
               />
             </Animated.View>
           )
         )}
       </Animated.View>
+      {chestState !== CHEST_STATE.OPEN
+        ? null
+        : items.map((item, index) =>
+            index > 2 ? null : (
+              <View key={`info_${item.description}`} style={infoCardWrappers[index]}>
+                <TouchableOpacity onPress={infoHandlers[index]}>
+                  <View style={cardStyles.cardOuter} />
+                </TouchableOpacity>
+              </View>
+            )
+          )}
     </View>
   );
 };
