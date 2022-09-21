@@ -67,6 +67,8 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
   const { chestShakingLottie, chestOpeningLottie } = useAssets(chestType);
   const lottieChestRef: RefObject<LottieView> = useRef();
 
+  const openingChestOpacity = useRef(new Animated.Value(0.1));
+
   const cardListY = useRef(new Animated.Value(0));
   const cardOpacities = useRef([new Animated.Value(0), new Animated.Value(0), new Animated.Value(0)]);
   const cardYs = useRef([
@@ -82,6 +84,18 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
   const openChestSequence = useMemo(
     () =>
       Animated.parallel([
+        Animated.sequence([
+          Animated.timing(openingChestOpacity.current, { toValue: 1, duration: 0, useNativeDriver: true }),
+
+          {
+            start: (cb) => {
+              lottieChestRef.current.play(0);
+              cb({ finished: true });
+            },
+            stop: () => null,
+            reset: () => null,
+          },
+        ]),
         Animated.timing(cardOpacities.current[0], {
           toValue: 1,
           useNativeDriver: true,
@@ -118,6 +132,7 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
           duration: DETOX_ENABLED ? 0 : 500,
           delay: DETOX_ENABLED ? 0 : 2200,
         }),
+
         DETOX_ENABLED
           ? null
           : Animated.sequence([
@@ -139,13 +154,6 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
                 ])
               ),
             ]),
-        {
-          start: (cb) => {
-            cb({ finished: true });
-          },
-          stop: () => null,
-          reset: () => null,
-        },
       ]),
     [items.length]
   );
@@ -161,9 +169,6 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
 
   useEffect(() => {
     if (chestState === CHEST_STATE.OPENING) {
-      setImmediate(() => {
-        lottieChestRef.current.play(0);
-      });
       timeout.current = global.setTimeout(() => {
         setChestState(CHEST_STATE.OPEN);
       }, 3000);
@@ -220,18 +225,37 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
     [items, cardXs, infoClose, dispatch, location, levelId]
   );
 
+  const openingChestLottieWrapper = useMemo(
+    () => ({
+      ...styles.chestLottieWrapper,
+      opacity: openingChestOpacity.current,
+    }),
+    []
+  );
+
   return (
     <View style={styles.container}>
-      <View style={styles.chestLottieWrapper}>
+      {chestState !== CHEST_STATE.CLOSED ? null : (
+        <View style={styles.chestLottieWrapper}>
+          <LottieView
+            resizeMode="cover"
+            style={styles.chestLottie}
+            source={chestShakingLottie}
+            autoPlay={true}
+            loop={false}
+          />
+        </View>
+      )}
+      <Animated.View style={openingChestLottieWrapper}>
         <LottieView
           resizeMode="cover"
           style={styles.chestLottie}
-          source={chestState === CHEST_STATE.CLOSED ? chestShakingLottie : chestOpeningLottie}
-          autoPlay={chestState === CHEST_STATE.CLOSED}
+          source={chestOpeningLottie}
+          autoPlay={false}
           loop={false}
           ref={lottieChestRef}
         />
-      </View>
+      </Animated.View>
 
       <Animated.View
         style={[
