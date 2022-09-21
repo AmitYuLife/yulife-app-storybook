@@ -6,7 +6,6 @@ import { initializeAnimation } from "./world-animations";
 import { getAssets } from "./unity.data";
 import styles from "./unity.styles";
 import LottieView from "lottie-react-native";
-import { isIphoneX } from "react-native-iphone-x-helper";
 import { YUNITY_REACHED } from "@ids";
 import Lightbox from "./lightbox/lightbox";
 import { getHeading } from "./lightbox/lightbox.data";
@@ -124,7 +123,7 @@ class Unity extends React.PureComponent<IProps, IState> {
   public render() {
     const { onSkip, level } = this.props;
     const { displayWaves, showLightbox } = this.state;
-    const { color, waves, background, background_xl, foreground, foreground_xl } = getAssets(level);
+    const { color, waves, background, foreground } = getAssets(level);
 
     return (
       <>
@@ -133,7 +132,7 @@ class Unity extends React.PureComponent<IProps, IState> {
             <>
               <LottieView
                 resizeMode="cover"
-                style={[styles.fullScreenLottie, { opacity: displayWaves ? 1 : 0 }]}
+                style={{ ...styles.fullScreenLottie, opacity: displayWaves ? 1 : 0 }}
                 source={waves}
                 autoPlay={false}
                 loop={DETOX_ENABLED ? false : true}
@@ -142,7 +141,7 @@ class Unity extends React.PureComponent<IProps, IState> {
               <LottieView
                 resizeMode="cover"
                 style={styles.fullScreenLottie}
-                source={isIphoneX() ? background_xl : background}
+                source={background}
                 autoPlay={false}
                 loop={false}
                 ref={(anim) => (this.backgroundAnim = anim)}
@@ -150,7 +149,7 @@ class Unity extends React.PureComponent<IProps, IState> {
               <LottieView
                 resizeMode="cover"
                 style={styles.fullScreenLottie}
-                source={isIphoneX() ? foreground_xl : foreground}
+                source={foreground}
                 autoPlay={false}
                 loop={DETOX_ENABLED ? false : true}
                 ref={(anim) => (this.foregroundAnim = anim)}

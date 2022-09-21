@@ -1,29 +1,32 @@
 import { Style } from "@styles";
 import { StyleSheet, ViewStyle, ImageStyle } from "react-native";
 
+export const CARD_WIDTH = Style.adjust(106);
+export const CARD_HEIGHT = Style.adjust(144);
+
 const styles = StyleSheet.create({
   cardOuter: {
-    width: Style.adjust(106),
-    height: Style.adjust(148),
+    width: CARD_WIDTH,
+    height: CARD_HEIGHT + 4,
     borderRadius: Style.adjust(8),
   } as ViewStyle,
   cardInner: {
-    width: Style.adjust(106),
-    height: Style.adjust(144),
+    width: CARD_WIDTH,
+    height: CARD_HEIGHT,
     borderRadius: Style.adjust(8),
   } as ViewStyle,
   stars: {
     position: "absolute",
     top: 0,
     left: 0,
-    width: Style.adjust(106),
-    height: Style.adjust(144),
+    width: CARD_WIDTH,
+    height: CARD_HEIGHT,
   } as ViewStyle,
   shine: {
     position: "absolute",
     top: 0,
     left: 0,
-    width: Style.adjust(106),
+    width: CARD_WIDTH,
     height: Style.adjust(116),
   } as ViewStyle,
   icon: {

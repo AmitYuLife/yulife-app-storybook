@@ -1,17 +1,10 @@
-import React, { memo, FC, useRef, useCallback, useMemo } from "react";
-import { View } from "react-native";
-import { Navigation } from "react-native-navigation";
-import { useDispatch } from "react-redux";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { MODALS } from "@navigation/constants";
 import { Image, TextTemplate, TooltipIcon } from "@atoms";
-import { PressableWithDelay } from "@molecules";
-import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
-import InfoMessage from "@organisms/info-message/info-message";
 import { Style } from "@styles";
+import React, { FC, memo, useMemo, useRef } from "react";
+import { View } from "react-native";
 import styles from "./chest-card.styles";
-import { StarsSvg } from "./stars-svg";
 import { ShineSvg } from "./shine-svg";
+import { StarsSvg } from "./stars-svg";
 
 interface IProps {
   description: string;
@@ -23,47 +16,10 @@ interface IProps {
     id: string;
     uri: string;
   };
-  tooltip?: {
-    title: string;
-    description: string;
-    cta: string;
-  };
-  location: string;
-  levelId: string;
 }
 
-const ChestCard: FC<IProps> = ({
-  description,
-  backgroundColour,
-  shadowColour,
-  starColour,
-  textColour,
-  icon,
-  tooltip,
-  location,
-  levelId,
-}) => {
-  const dispatch = useDispatch();
+const ChestCard: FC<IProps> = ({ description, backgroundColour, shadowColour, starColour, textColour, icon }) => {
   const tooltipIconRef = useRef<View>();
-
-  const onClose = useCallback(() => Navigation.dismissOverlay(MODALS.blurredOverlay), []);
-
-  const openPopUp = useCallback(() => {
-    showTooltipPopupRelativeToView({
-      viewRef: tooltipIconRef,
-      beakPosition: "autoVertical",
-      children: (
-        <InfoMessage title={tooltip?.title} text={tooltip?.description} onPress={onClose} buttonLabel={tooltip?.cta} />
-      ),
-    });
-    dispatch(
-      logMixpanelEventActionCreator("information_viewed", {
-        name: tooltip?.title,
-        location,
-        levelId,
-      })
-    );
-  }, [tooltipIconRef, tooltip, onClose, location, levelId, dispatch]);
 
   const cardOuterStyle = useMemo(() => [styles.cardOuter, { backgroundColor: shadowColour }], [shadowColour]);
   const cardInnerStyle = useMemo(() => [styles.cardInner, { backgroundColor: backgroundColour }], [backgroundColour]);
@@ -87,9 +43,7 @@ const ChestCard: FC<IProps> = ({
         <ShineSvg />
       </View>
       <View ref={tooltipIconRef} style={styles.tooltipIcon} collapsable={false}>
-        <PressableWithDelay onPress={openPopUp}>
-          <TooltipIcon />
-        </PressableWithDelay>
+        <TooltipIcon />
       </View>
     </View>
   );

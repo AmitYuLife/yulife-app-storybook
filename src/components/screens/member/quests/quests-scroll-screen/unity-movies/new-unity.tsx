@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback, useMemo, useState, FC, useRef } from "react";
 import { Animated, View, Image } from "react-native";
 import LottieView from "lottie-react-native";
-import { isIphoneX } from "react-native-iphone-x-helper";
 import { labels } from "@navigation/root";
 import { useQuery } from "@apollo/react-hooks";
 import { DETOX_ENABLED } from "@services/socket";
@@ -15,6 +14,7 @@ import { GetUnityRewards } from "@graphql/_core/schema";
 import { initializeAnimation } from "./world-animations";
 import { getAssets } from "./unity.data";
 import styles from "./unity.styles";
+import { t } from "@locale";
 
 // placeholder image
 const PLANETARY_BACKGROUND = require("./assets/yuniversal-images/planetary_background.png");
@@ -76,6 +76,8 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
   const foregroundAnim = useRef<LottieView>();
   const backgroundAnim = useRef<LottieView>();
   const wavesAnim = useRef<LottieView>();
+  const travelRef = useRef<LottieView>(null);
+
   const timeout = useRef<NodeJS.Timeout>();
 
   const fadeInIntroPageHeading = useMemo(() => createAnimation(animatedValues.introPageHeadingOpacity, 1, 0, 500), []);
@@ -199,9 +201,11 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
     }, 500);
   }, [data, timeout, fadeOutCongratulatoryPage, fadeInChestPage, finishUnity]);
 
-  const chestButtonLabel = useMemo(() => (chestState === CHEST_STATE.OPEN ? "Claim rewards" : "Open the chest"), [
-    chestState,
-  ]);
+  const chestButtonLabel = useMemo(
+    () =>
+      chestState === CHEST_STATE.OPEN ? t("screens.eotwChest.claimButton") : t("screens.eotwChest.openChestButton"),
+    [chestState]
+  );
 
   const onChestPageButtonPress = useCallback(() => {
     if (chestState === CHEST_STATE.CLOSED) {
@@ -221,7 +225,9 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
     fadeOutCongratulatoryPage.start();
     timeout.current = global.setTimeout(() => {
       setPage(UNITY_REWARD_PAGE.AFTERWORD);
-      fadeInAfterwordPage.start();
+      fadeInAfterwordPage.start(() => {
+        travelRef.current.play();
+      });
     }, 500);
   }, [chestState, data, fadeOutCongratulatoryPage, fadeInAfterwordPage, timeout, finishUnity]);
 
@@ -241,14 +247,16 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
     );
   };
 
-  const { color, waves, background, background_xl, foreground, foreground_xl } = useMemo(() => getAssets(level), [
-    level,
+  const { color, waves, background, foreground } = useMemo(() => getAssets(level), [level]);
+  const fullScreenLottieStyle = useMemo(() => ({ ...styles.fullScreenLottie, opacity: displayWaves ? 1 : 0 }), [
+    displayWaves,
   ]);
+
   return (
     <View style={styles.wrapper} testID={YUNITY_REACHED(Math.floor(level / 50))}>
       <LottieView
         resizeMode="cover"
-        style={[styles.fullScreenLottie, { opacity: displayWaves ? 1 : 0 }]}
+        style={fullScreenLottieStyle}
         source={waves}
         autoPlay={false}
         loop={DETOX_ENABLED ? false : true}
@@ -257,7 +265,7 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
       <LottieView
         resizeMode="cover"
         style={styles.fullScreenLottie}
-        source={isIphoneX() ? background_xl : background}
+        source={background}
         autoPlay={false}
         loop={false}
         ref={backgroundAnim}
@@ -268,7 +276,7 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
           <LottieView
             resizeMode="cover"
             style={styles.fullScreenLottie}
-            source={isIphoneX() ? foreground_xl : foreground}
+            source={foreground}
             autoPlay={false}
             loop={DETOX_ENABLED ? false : true}
             ref={foregroundAnim}
@@ -341,13 +349,6 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
 
       {page !== UNITY_REWARD_PAGE.CHEST ? null : (
         <Animated.View style={[{ opacity: animatedValues.chestPageOpacity }, styles.chestPage]}>
-          {chestState !== CHEST_STATE.OPEN ? null : (
-            <Animated.View style={[styles.chestTitleWrapper]}>
-              <TextTemplate color={color} type="h3" textAlign="center">
-                You have earned
-              </TextTemplate>
-            </Animated.View>
-          )}
           {chestState !== CHEST_STATE.CLOSED || !data?.getUnityRewards?.chest?.title ? null : (
             <Animated.View style={[styles.chestTitleWrapper]}>
               <TextTemplate color={color} type="h3" textAlign="center">
@@ -376,7 +377,14 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
             <Image resizeMode="contain" style={styles.backgroundImage} source={PLANETARY_BACKGROUND} />
           )}
           <View style={styles.yugiContainer}>
-            <LottieView resizeMode="cover" style={styles.lottie} source={YUGI_ANIMATION} autoPlay={true} loop={false} />
+            <LottieView
+              resizeMode="cover"
+              style={styles.lottie}
+              ref={travelRef}
+              source={YUGI_ANIMATION}
+              autoPlay={false}
+              loop={false}
+            />
           </View>
           <View style={styles.afterwordText}>
             <TextTemplate color={color} type="b2" textAlign="center">
