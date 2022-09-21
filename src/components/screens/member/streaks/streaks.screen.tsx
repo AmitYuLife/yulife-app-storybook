@@ -91,7 +91,7 @@ const StreaksScreen = ({
           )}
         </View>
 
-        <View accessible={true} accessibilityLabel={accessibilityLabel}>
+        <View accessible={true} accessibilityLabel={accessibilityLabel} style={styles.progressWrapper}>
           <TextTemplate type={Style.isShortToMedium() ? "h2" : "h1"} textAlign="center">
             {streakInfo?.header}
           </TextTemplate>
