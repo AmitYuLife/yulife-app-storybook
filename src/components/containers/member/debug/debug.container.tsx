@@ -31,6 +31,7 @@ const DebugContainer: React.FC<Props> = (props) => {
     "level-selector",
     "video-player",
     "inspect",
+    "features",
     "inspect-opponent",
     ...(data?.getDebugCodes || []),
     "send-test-push",
@@ -47,6 +48,15 @@ const DebugContainer: React.FC<Props> = (props) => {
     id: code,
     onPress: async () => {
       try {
+        if (code === "features") {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.userFeatures,
+              name: ROUTES.userFeatures,
+            },
+          });
+        }
+
         if (code === "level-selector") {
           return Navigation.push(props.componentId, {
             component: {
