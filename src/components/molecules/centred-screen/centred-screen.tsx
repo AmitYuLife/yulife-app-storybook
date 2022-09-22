@@ -15,20 +15,24 @@ interface Props {
 
 export type CenteredScreenImages =
   | "forest"
+  | "large_forest"
   | "earth_forest"
   | "gray_forest"
   | "challenge_success_forest"
   | "challenge_failed_forest"
   | "earth_ocean"
+  | "ocean"
   | "gray_ocean"
   | "challenge_success_ocean"
   | "challenge_failed_ocean"
   | "earth_desert"
+  | "desert"
   | "gray_desert"
   | "challenge_success_desert"
   | "challenge_failed_desert"
   | "gray_mountain"
   | "earth_mountain"
+  | "mountain"
   | "challenge_mountain"
   | "new_forest"
   | "new_ocean"
@@ -66,6 +70,11 @@ const IMAGES: Record<
     style: StyleSheet.flatten([styles.imageBase, styles.imageForest]),
     isLottie: false,
   },
+  large_forest: {
+    source: require("@assets/centred-screen/planets/earth/forest.png"),
+    style: StyleSheet.flatten([styles.imageBase, styles.imageNewForest]),
+    isLottie: false,
+  },
   earth_forest: {
     source: require("@assets/centred-screen/planets/earth/forest.png"),
     style: StyleSheet.flatten([styles.imageBase, styles.imageNewForest]),
@@ -78,6 +87,11 @@ const IMAGES: Record<
   },
   challenge_failed_forest: {
     source: require("@assets/centred-screen/challenge_failed_forest.png"),
+    style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest]),
+    isLottie: false,
+  },
+  ocean: {
+    source: require("@assets/centred-screen/planets/earth/ocean.png"),
     style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest]),
     isLottie: false,
   },
@@ -101,6 +115,11 @@ const IMAGES: Record<
     style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest]),
     isLottie: false,
   },
+  desert: {
+    source: require("@assets/centred-screen/planets/earth/desert.png"),
+    style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest]),
+    isLottie: false,
+  },
   earth_desert: {
     source: require("@assets/centred-screen/planets/earth/desert.png"),
     style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest]),
@@ -120,6 +139,11 @@ const IMAGES: Record<
   challenge_success_desert: {
     source: require("@assets/centred-screen/challenge_success_desert.png"),
     style: StyleSheet.flatten([styles.imageBase, styles.challengeImage]),
+    isLottie: false,
+  },
+  mountain: {
+    source: require("@assets/centred-screen/planets/earth/mountain.png"),
+    style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest]),
     isLottie: false,
   },
   earth_mountain: {
