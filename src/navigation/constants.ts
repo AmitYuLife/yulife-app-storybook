@@ -88,6 +88,7 @@ export const ROUTES = {
 
   //debug
   levelSelector: "yulife.debug.levelSelector",
+  userFeatures: "yulife.debug.userFeatures",
 };
 
 export const MODALS = {

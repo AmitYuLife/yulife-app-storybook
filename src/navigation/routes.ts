@@ -132,6 +132,11 @@ export default [
       .default,
   },
 
+  {
+    name: ROUTES.userFeatures,
+    component: require("../components/containers/member/debug/user-features/user-features.container").default,
+  },
+
   // meditation
 
   {
