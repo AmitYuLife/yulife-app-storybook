@@ -16,9 +16,23 @@ export const CHECK_PRODUCT_BUTTON_LINK = async ( productButton: string, productO
     When(`I tap on ${productButton}`, when.tapText(productButton), async () => {
         Then(`I should be on the first ${productOnboardingViewText} onboarding screen`, then.idVisible(TEXT_TEMPLATE(productOnboardingViewText)));
         When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 1), async () => {
-            When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 1), async () => {
+            When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
                 Then(`I should not see ${productOnboardingViewText} onboarding screen`, then.textNotVisible(productOnboardingViewText))
 
+            })
+        })
+    })
+}
+
+export const CHECK_CAROUSEL_DENTAL_BUTTON_LINK = async () => {
+    const browseMoreProtection = "Browse more protection"
+    const dentalPriceFrom = "From £12.99 per month"
+    
+    When("I swipe down the Yu screen page", when.swipeFromText(browseMoreProtection,"up", "fast"), async () => {
+        When(`I tap on ${dentalPriceFrom}`, when.tapText(dentalPriceFrom), async () => {
+            Then(`I should be on the first Bupa Dental Plan for YuLife onboarding screen`, then.textVisible("Bupa Dental Plan for YuLife", 2000));
+            When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
+                Then(`I should see carousel ${browseMoreProtection} onboarding screen`, then.textVisible(browseMoreProtection))
             })
         })
     })
@@ -33,7 +47,7 @@ export const CHECK_CAROUSEL_BUTTON_LINK = async ( direction:string, productButto
         When(`I swipe right from ${dentalPriceFrom}`, when.swipeFromText(dentalPriceFrom, direction, "fast"), async () => {
             When(`I tap on ${productButton}`, when.tapText(productButton), async () => {
                 Then(`I should be on the first ${productOnboardingViewText} onboarding screen`, then.textVisible(productOnboardingViewText, 2000));
-                When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 1), async () => {
+                When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
                     Then(`I should see carousel ${browseMoreProtection} onboarding screen`, then.textVisible(browseMoreProtection))
                 })
             })
@@ -108,7 +122,7 @@ export const CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED = async ( productButto
 
     When(`I tap on ${productButton}`, when.tapText(productButton), async () => {
         Then(`I should payment overdue screen`, then.paymentOverdueInfo)
-        When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 1), async () => {
+        When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
             Then("I should be able to see Dental insurance", then.textVisible("Dental"))
         })
     })

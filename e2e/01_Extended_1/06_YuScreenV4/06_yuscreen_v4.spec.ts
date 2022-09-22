@@ -17,7 +17,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
             helper.WELLBEING_PRODUCT_VIEW("Epic", 10)
         })
     })
-
+    
     Scenario("I can create my Yumoji on new Yuscreen V4 and navigate to products via slots and carousel", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_44, AUTH_44), async () => {
             helper.ONBOARDING_YUSCREEN("dentalAndPli", "5")
@@ -27,7 +27,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live")
             helper.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
             helper.CHECK_PRODUCT_BUTTON_LINK("Life Insurance", "Personal Life Insurance");
-            helper.CHECK_CAROUSEL_BUTTON_LINK("right", "From £12.99 per month", "Bupa Dental Plan for YuLife");
+            helper.CHECK_CAROUSEL_DENTAL_BUTTON_LINK();
             helper.CHECK_CAROUSEL_BUTTON_LINK("left", "Extend your life insurance", "Life Insurance");
         })
     })

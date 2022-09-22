@@ -348,5 +348,6 @@ export const DRAW = (value: number) => `DRAW_${value}`;
 // YUCOIN POWER
 export const EARN_RATE = (earnRate: number) => `EARN_RATE_${earnRate}`;
 export const YUCOIN_TITLE = "YUCOIN_TITLE";
+export const YUCOIN_POWER_TEXT = "YUCOIN_POWER_TEXT";
 
 export const LIST_YUMOJI = (index: number) => `LIST_YUMOJI_${index}`;

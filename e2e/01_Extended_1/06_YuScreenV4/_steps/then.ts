@@ -1,6 +1,6 @@
 import {navigation} from "@utils"
 import { screens } from "@appScreens"
-import { AVATAR_ITEM, RIGHT_STATUS_ICON, BACKGROUND_COLOUR_PRODUCT, ONBOARDING_SCREEN, YUCOIN_POWER } from "@ids"
+import { AVATAR_ITEM, RIGHT_STATUS_ICON, BACKGROUND_COLOUR_PRODUCT, ONBOARDING_SCREEN, YUCOIN_POWER, TEXT_TEMPLATE } from "@ids"
 
 export const {
     idVisible,
@@ -72,7 +72,8 @@ export const productSlotsAreCorrect = (status:string)=> async()=>{
         await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(1)).toBeVisible() // more protection coming soon button
     }
     if (status === "groupDental"){
-        await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#EFFBF7")))).toBeVisible() // group dental slot
+        await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(0)).toBeVisible() // group dental slot
+        await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(1)).toBeVisible() // more protection coming soon button
     }
 }
 
@@ -126,7 +127,7 @@ export const groupDentalProductInfo = (packageType: string, yuCoinPower: string)
     const policyDescription = "Dental insurance with Bupa, provided by your employer for your protection collection."
     const paidBy = "Employer Paid"
 
-    await expect(element(by.text(policyName))).toBeVisible();
+    await idVisible(TEXT_TEMPLATE("Dental Cover"))();
     await expect(element(by.text(paidBy))).toBeVisible();
     await expect(element(by.text(policyDescription))).toBeVisible()
     await expect(element(by.text(packageType))).toBeVisible()
