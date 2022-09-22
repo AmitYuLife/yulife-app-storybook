@@ -21,8 +21,10 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should be on the forest chest screen", then.isOnChestScreen("Forest"))
         })
         When("I tap 'Open the chest'", when.tapText("Open the chest"), async()=>{
-            Then("I should see You have earned text", then.textVisible("You have earned"))
-            Then("I should see the three rewards earned for completing forest", then.forestThreeRewardsVisible)   
+            When("I wait 5 secs for the page to load", when.wait(5000), async () => {
+                Then("I should see You have earned text", then.textVisible("You have earned"))
+                Then("I should see the three rewards earned for completing forest", then.forestThreeRewardsVisible)   
+            })
         })
         When("I tap Claim rewards", when.tapText("Claim rewards"), async () => {
             Then("I should have unlocked the second ocean world", then.idVisible(QUESTS_SCREEN(1), 5000))
@@ -53,8 +55,10 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should be on the ocean chest screen", then.isOnChestScreen("Ocean"))
         })
         When("I tap 'Open the chest'", when.tapText("Open the chest"), async()=>{
-            Then("I should see You have earned text", then.textVisible("You have earned"))
-            Then("I should see the three rewards earned for completing ocean", then.oceanThreeRewardsVisible)   
+            When("I wait 5 secs for the page to load", when.wait(5000), async () => {
+                Then("I should see You have earned text", then.textVisible("You have earned"))
+                Then("I should see the three rewards earned for completing ocean", then.oceanThreeRewardsVisible)   
+            })
         })
         When("I tap Claim rewards", when.tapText("Claim rewards"), async () => {
             Then("I should see the level 99 challenge button on the second world (ocean)", then.idVisible(LEVEL_CHALLENGE_BUTTON(99)))
@@ -92,24 +96,26 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                         Then("The desert yunity screen should be correct", then.yunityCorrect("Desert"))
                         Then("I should be on the desert chest screen", then.isOnChestScreen("Desert"))
                         When("I tap 'Open the chest'", when.tapText("Open the chest"), async()=>{
-                            Then("I should see You have earned text", then.textVisible("You have earned"))
-                            Then("I should see the three rewards earned for completing desert", then.desertThreeRewardsVisible)   
-                            When("I tap Claim rewards", when.tapText("Claim rewards"), async () => {
-                                Then("I should see the level 149 challenge button on the desert third world", then.idVisible(LEVEL_CHALLENGE_BUTTON(149)))
-                                Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27910)))
-                                When("I complete a level 149 meditation challenge", when.completeNewWorldMeditation(149), async () => {
-                                    Then("I should see the level 149 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(149)))
-                                    When("I complete a second level 149 meditation challenge", when.completeNewWorldMeditation(149), async () => {
-                                        Then("I should be on new Yunity with the mountain world screen", then.idVisible(QUESTS_SCREEN(3), 3000))
-                                        Then("I should see the level 151 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(151)))
-                                        Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27990)))
-                                        When("I scroll back down to the desert third world", when.scrollFromID(LEVEL_CHALLENGE_BUTTON(151), "up", "slow"), async () => {
-                                            When("I scroll back down to the desert third world", when.scrollFromID(LEVEL_CHALLENGE_BUTTON(150), "up", "fast"), async () => {
-                                                Then("I should see the level 149 challenge", then.idVisible(LEVEL_CHALLENGE_BUTTON(149)))
-                                                When("I tap the level 149 challenge button", when.tapID(LEVEL_CHALLENGE_BUTTON(149)), async () => {
-                                                    Then("I should see the short stroll challenge I just completed with the correct stars", then.onChallengeHistory("short stroll", 149, [10], [3], 0))
-                                                    Then("I should see the meditation challenges I just completed with the correct stars", then.onChallengeHistory("meditation", 149, [40, 40], [1, 1], 10))
-                                                    Then("I should see the number of minutes for meditation", then.textVisible("10 mins"))
+                            When("I wait 5 secs for the page to load", when.wait(5000), async () => {
+                                Then("I should see You have earned text", then.textVisible("You have earned"))
+                                Then("I should see the three rewards earned for completing desert", then.desertThreeRewardsVisible)   
+                                When("I tap Claim rewards", when.tapText("Claim rewards"), async () => {
+                                    Then("I should see the level 149 challenge button on the desert third world", then.idVisible(LEVEL_CHALLENGE_BUTTON(149)))
+                                    Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27910)))
+                                    When("I complete a level 149 meditation challenge", when.completeNewWorldMeditation(149), async () => {
+                                        Then("I should see the level 149 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(149)))
+                                        When("I complete a second level 149 meditation challenge", when.completeNewWorldMeditation(149), async () => {
+                                            Then("I should be on new Yunity with the mountain world screen", then.idVisible(QUESTS_SCREEN(3), 3000))
+                                            Then("I should see the level 151 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(151)))
+                                            Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27990)))
+                                            When("I scroll back down to the desert third world", when.scrollFromID(LEVEL_CHALLENGE_BUTTON(151), "up", "slow"), async () => {
+                                                When("I scroll back down to the desert third world", when.scrollFromID(LEVEL_CHALLENGE_BUTTON(150), "up", "fast"), async () => {
+                                                    Then("I should see the level 149 challenge", then.idVisible(LEVEL_CHALLENGE_BUTTON(149)))
+                                                    When("I tap the level 149 challenge button", when.tapID(LEVEL_CHALLENGE_BUTTON(149)), async () => {
+                                                        Then("I should see the short stroll challenge I just completed with the correct stars", then.onChallengeHistory("short stroll", 149, [10], [3], 0))
+                                                        Then("I should see the meditation challenges I just completed with the correct stars", then.onChallengeHistory("meditation", 149, [40, 40], [1, 1], 10))
+                                                        Then("I should see the number of minutes for meditation", then.textVisible("10 mins"))
+                                                    })
                                                 })
                                             })
                                         })
@@ -139,18 +145,20 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                         When("I tap 'Continue'",  when.tapText("Continue"), async () => {
                             Then("I should see that I have earned a Yunity Mountain Chest", then.mountainChestMessageVisible)
                             When("I tap 'Open the chest'", when.tapText("Open the chest"), async()=>{
-                                Then("I should see You have earned text", then.textVisible("You have earned"))
-                                Then("I should see the two rewards earned for completing mountain", then.mountainTwoRewardsVisible)   
-                                When("I tap Claim rewards", when.tapText("Claim rewards"), async () => {
-                                    Then("I should be on the Explore the Yuniverse screen", then.isOnExploreYuniverseScreen)
-                                    When("I tap Explore the Yuniverse", when.tapText("Explore the Yuniverse", 2000), async () => {
-                                        Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
-                                        Then("I should see my Yucoin total for today", then.textVisible("210 YuCoin today", 2000))
-                                        When("I tap the YuCoin image", when.tapID(YUCOIN, 2000), async () => {
-                                            Then("I should see 10 Yu coin power", then.idVisible(YUCOIN_POWER(10)))
-                                            When("I tap on I for activity feed info", when.tapID(ACTIVITY_FEED, 1000), async () => {
-                                                Then("I should see 10 YuCoin for 2000 steps", then.textVisible("10 YuCoin for 2000 steps"))
-                                                Then("I should NOT see 20 YuCoin for 1.6 km cycling", then.textNotVisible("20 YuCoin for 1.6 km cycling"))
+                                When("I wait 5 secs for the page to load", when.wait(5000), async () => {
+                                    Then("I should see You have earned text", then.textVisible("You have earned"))
+                                    Then("I should see the two rewards earned for completing mountain", then.mountainTwoRewardsVisible)   
+                                    When("I tap Claim rewards", when.tapText("Claim rewards"), async () => {
+                                        Then("I should be on the Explore the Yuniverse screen", then.isOnExploreYuniverseScreen)
+                                        When("I tap Explore the Yuniverse", when.tapText("Explore the Yuniverse", 2000), async () => {
+                                            Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
+                                            Then("I should see my Yucoin total for today", then.textVisible("210 YuCoin today", 2000))
+                                            When("I tap the YuCoin image", when.tapID(YUCOIN, 2000), async () => {
+                                                Then("I should see 10 Yu coin power", then.idVisible(YUCOIN_POWER(10)))
+                                                When("I tap on I for activity feed info", when.tapID(ACTIVITY_FEED, 1000), async () => {
+                                                    Then("I should see 10 YuCoin for 2000 steps", then.textVisible("10 YuCoin for 2000 steps"))
+                                                    Then("I should NOT see 20 YuCoin for 1.6 km cycling", then.textNotVisible("20 YuCoin for 1.6 km cycling"))
+                                                })
                                             })
                                         })
                                     })

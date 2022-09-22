@@ -138,7 +138,7 @@ export const addPaymentDetails = async () => {
     const cardCVCInput = element(by.type("Stripe.STPCardCVCInputTextField"))
     const postcodeInput = element(by.type("Stripe.STPPostalCodeInputTextField"))
 
-    await navigateViaText("Continue to payment") 
+    await navigateViaText("Continue to payment", 2000) 
     await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Add payment details", "down")()
     await navigateViaText("Add payment details")
     await slowType(cardNumberInput, cardNumber, 500)()
@@ -186,9 +186,11 @@ export const continueCheckoutDental = async () => {
 
     await navigateViaText("Continue to checkout")
     await typeViaID(CONTENT_ITEM_INPUT("title"), "Mr\n")()
+    await wait(2000)()
     await tapText("Continue")()
-    await scrollFromID(PRODUCT_STEP_BODY_SCROLL_VIEW, "up", "fast")()
-    await tapText("Continue")()
+    await swipeFromText("Postcode*", "up", "fast")()
+    await wait(2000)()
+    await tapText("Continue")() 
     await scrollFromID(PRODUCT_STEP_BODY_SCROLL_VIEW, "up", "fast")()
     await tapText(acceptStatement)()
     await tapText(acceptAndRead)()

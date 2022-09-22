@@ -11,7 +11,9 @@ export const {
     textVisible,
     idNotVisible,
     textNotVisible,
-    multipleTextVisible
+    multipleTextVisible,
+    textVisibleAtIndex,
+    idVisibleAtIndex
 } = navigation.common
 
 export const {
@@ -94,6 +96,7 @@ export const packageVisible = (packageType: any) => async () => {
             await expect(element(by.text("up to £1,000")).atIndex(1)).toBeVisible()
             await expect(element(by.text("up to £300"))).toBeVisible()
             await expect(element(by.text("Paid in full"))).toBeVisible()
+            await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW,"Conditions apply", "down")()
             await expect(element(by.text("Conditions apply"))).toBeVisible()
             break;
         case "Rare":
@@ -118,6 +121,7 @@ export const packageVisible = (packageType: any) => async () => {
             await expect(element(by.text("up to £1,000")).atIndex(1)).toBeVisible()
             await expect(element(by.text("up to £400"))).toBeVisible()
             await expect(element(by.text("Paid in full"))).toBeVisible()
+            await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW,"Conditions apply", "down")()
             await expect(element(by.text("Conditions apply"))).toBeVisible()
             break;
         case "Epic":
@@ -142,6 +146,7 @@ export const packageVisible = (packageType: any) => async () => {
             await expect(element(by.text("up to £1,000")).atIndex(1)).toBeVisible()
             await expect(element(by.text("up to £500"))).toBeVisible()
             await expect(element(by.text("Paid in full"))).toBeVisible()
+            await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW,"Conditions apply", "down")()
             await expect(element(by.text("Conditions apply"))).toBeVisible()
             break;
         default:

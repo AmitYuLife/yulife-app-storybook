@@ -2,7 +2,7 @@ import { When, Then } from "@yu-life/yulife-bdd-framework";
 import * as when from "./when"
 import * as then from "./then"
 import { CUSTOMER_37, AUTH_37 } from "@data";
-import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, YUCOIN_POWER, TEXT_TEMPLATE, COVER_TYPE, BUTTON_CLOSE_CHALLENGE, BACK_BUTTON, PACKAGE_INFO, BUTTON_CLOSE, DENTAL_TOOLTIP_INFO } from "@ids";
+import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, YUCOIN_POWER, TEXT_TEMPLATE, COVER_TYPE, BUTTON_CLOSE_CHALLENGE, BACK_BUTTON, PACKAGE_INFO, BUTTON_CLOSE, DENTAL_TOOLTIP_INFO, YUCOIN_POWER_TEXT } from "@ids";
 import { addCommasToNumber } from "_utils/appScreens/rewards";
 import { capitalizeFirstLetter } from "@navigation";
 import moment from "moment"
@@ -122,11 +122,14 @@ export const PLANS = async () => {
    
     When("I scroll to the bottom of the page", when.swipeFromText("Paid in full", "up", "fast"), async () => {
         Then("I should see Epic", then.idVisible(TEXT_TEMPLATE("epic")))
-        // Then("I should see Your Perks YuCoin Power text", then.multipleTextVisible(["Your Perks", "YuCoin Power"]))  //need to find a fix multiple text found
-        Then("I should see the correct YuCoin power", then.idVisible(YUCOIN_POWER("6")))
-        // Then("I should see the Chest Reward perk", then.multipleTextVisible([chestRewardsTitle, chestRewardsCopy]))  //need to find a fix multiple text found
-        // Then("I should see the Streak Bounty perk", then.multipleTextVisible([streakBountyTitle, streakBountyCopy])) //need to find a fix multiple text found
-        // Then("I should see the Increased Steps perk", then.multipleTextVisible([stepLimitTitle, stepLimitCopy]))     //need to find a fix multiple text found
+        Then("I should see Your Perks text", then.textVisibleAtIndex("Your Perks", 2)) 
+        Then("I should see the correct YuCoin power", then.idVisibleAtIndex(YUCOIN_POWER("6"), 0)) 
+        Then("I should see the Chest Reward perk title", then.textVisibleAtIndex(chestRewardsTitle, 2))  
+        Then("I should see the Chest Reward perk info", then.textVisibleAtIndex(chestRewardsCopy, 2))  
+        Then("I should see the Streak Bounty perk title", then.textVisibleAtIndex(streakBountyTitle, 2)) 
+        Then("I should see the Streak Bounty perk info", then.textVisibleAtIndex(streakBountyCopy, 1)) 
+        Then("I should see the Increased Steps perk title", then.textVisibleAtIndex(stepLimitTitle, 2))     
+        Then("I should see the Increased Steps perk info", then.textVisible(stepLimitCopy))     
     })
 
     When("I tap Continue", when.tapText("Continue"), async () => {
@@ -135,7 +138,7 @@ export const PLANS = async () => {
         Then("I should see £27.99 / month", then.textVisible("£27.99 / month"))
         // Then("I should see corect Start Date", then.textVisible(eligibleStartDateCopy))  //need to find a how this days is calculated
         Then("I should see also Benefit from", then.textVisible("You'll also benefit from:"))
-        Then("I should see the correct YuCoin power", then.idVisible(YUCOIN_POWER(6)))
+        Then("I should see the correct YuCoin power", then.idVisibleAtIndex(YUCOIN_POWER(6), 0))
         Then("I should see the Chest Reward perk", then.multipleTextVisible([chestRewardsTitle, chestRewardsCopy]))
         Then("I should see the Ordo toothbrush", then.multipleTextVisible([toothBrushTitle, toothBrushCopy]))
         When("I scroll a little down on the page", when.swipeFromText(streakBountyTitle , "up", "slow", 0.4), async () => {
@@ -189,26 +192,29 @@ export const CHECKOUT = async () => {
     const perksText = "Your YuLife perks are now unlocked, including YuCoin Power and your new gloves!"
     const checkoutSummary = "*Subject to confirmation from Bupa and successful first payment, we will notify you of any changes to your application status. Any claims for treatments prior to this date will not be eligible"
     const onboardStepPerformed = "Information about your policy lives here, with details of cover amounts and how to make a claim"
+    const warningText = "You are not covered, and cannot claim for any treatments carried out before your cover starts."
 
 
     When(`I tap Purchase cover`, when.tapText("Purchase cover"), async () => {
-        Then(`I should be on the ${nextScreen} screen`, then.isOnScreen(nextScreen))
-        Then("I should see more info text", then.textVisible(exclusiveText))
-        When(`I tap More details`, when.tapText("More details"), async () => {
+        When("I wait for the page to load", when.wait(5000), async () => {
             Then(`I should be on the ${nextScreen} screen`, then.isOnScreen(nextScreen))
-            Then("I should see policy Live on text", then.textVisible(policyLiveOn))  
-            // Then("I shoul see correct date in the text", then.textVisible(startOfnextMonthFormated)) //need to find a how this days is calculated
-            Then("I should see warning text", then.textVisible(warningText))
-            Then("I should see perks text", then.textVisible(perksText))
-            Then("I should see the correct YuCoin power", then.idVisible(YUCOIN_POWER(6)))
-            Then("I should see Package details", then.textVisible("Package details"))
-            When("I scroll to the bottom of the page", when.swipeFromText("Package details", "up", "slow"), async () => {
-                Then("I should see Membership Guide", then.textVisible("Membership Guide"))
-                Then("I should see Product information (IPID)", then.textVisible("Product Information (IPID)"))
-                Then("I should see FAQs", then.textVisible("FAQs"))
-                Then("I should see checkout summary text", then.textVisible(checkoutSummary))
-                When("I tap on Close button", when.tapID(BUTTON_CLOSE_CHALLENGE), async () => {
-                    Then("I should see Onboard Performed text", then.textVisible(onboardStepPerformed))
+            Then("I should see more info text", then.textVisible(exclusiveText))
+            When(`I tap More details`, when.tapText("More details", 1000), async () => {
+                Then(`I should be on the ${nextScreen} screen`, then.isOnScreen(nextScreen))
+                Then("I should see policy Live on text", then.textVisible(policyLiveOn))  
+                // Then("I shoul see correct date in the text", then.textVisible(startOfnextMonthFormated)) //need to find a how this days is calculated
+                Then("I should see warning text", then.textVisible(warningText))
+                Then("I should see perks text", then.textVisible(perksText))
+                Then("I should see the correct YuCoin power", then.idVisibleAtIndex(YUCOIN_POWER("6"), 0)) // cant find this
+                Then("I should see Package details tab", then.textVisible("Package details"))
+                When("I scroll to the bottom of the page", when.swipeFromText("Package details", "up", "slow"), async () => {
+                    Then("I should see Membership Guide", then.textVisible("Membership Guide"))
+                    Then("I should see Product information (IPID)", then.textVisible("Product Information (IPID)"))
+                    Then("I should see FAQs", then.textVisible("FAQs"))
+                    Then("I should see checkout summary text", then.textVisible(checkoutSummary))
+                    When("I tap on Close button", when.tapID(BUTTON_CLOSE_CHALLENGE, 2000), async () => {
+                        Then("I should see Onboard Performed text", then.textVisible(onboardStepPerformed))
+                    })
                 })
             })
         })
@@ -310,10 +316,12 @@ export const CHOOSE_PLAN_AND_CHECKOUT = async () => {
             When("I scroll a little down on the page", when.swipeFromText(streakBountyTitle , "up", "fast"), async () => {
                 Then("I should see again Continue to checkout", then.textVisible("Continue to checkout"))
                 When("I continue to checkout", when.continueCheckoutDental, async () => {
-                    Then("I should see exising card ending with 4242", then.textVisible("Purchase with **** 4242"))
-                    When("I tap purchase with existing card", when.tapText("Purchase with **** 4242"), async () => {
-                        When("I wait for the application process screen to load", when.wait(5000), async () => {
-                            Then(`I should be on the ${nextScreen} screen`, then.isOnScreen(nextScreen))
+                    When("I wait 5 secs for the page to load", when.wait(5000), async () => {
+                        Then("I should see exising card ending with 4242", then.textVisible("Purchase with **** 4242"))
+                        When("I tap purchase with existing card", when.tapText("Purchase with **** 4242"), async () => {
+                            When("I wait for the application process screen to load", when.wait(5000), async () => {
+                                Then(`I should be on the ${nextScreen} screen`, then.isOnScreen(nextScreen))
+                            })
                         })
                     })
                 })

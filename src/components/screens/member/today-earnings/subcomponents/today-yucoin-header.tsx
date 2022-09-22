@@ -8,7 +8,6 @@ import { BuffArea } from "@graphql/_core/schema/globalTypes";
 import { YuCoinIcon } from "@atoms/icon/yucoin-icon";
 import { PressableWithDelay } from "@molecules";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
-import { YUCOIN_POWER } from "@ids";
 interface IProps {
   yuCoinToday: string | number;
   yuCoinPower: string | number;
@@ -31,7 +30,7 @@ const TodayYuCoinHeader = ({ yuCoinToday, yuCoinPower }: IProps) => {
             {yuCoinToday} YuCoin
           </TextTemplate>
         </View>
-        <View style={styles.yuCoinPower} testID={YUCOIN_POWER(yuCoinPower)}>
+        <View style={styles.yuCoinPower}>
           <PressableWithDelay onPress={showYuCoinPowerExplainedOverlay}>
             <YuCoinPower coins={yuCoinPower} />
           </PressableWithDelay>

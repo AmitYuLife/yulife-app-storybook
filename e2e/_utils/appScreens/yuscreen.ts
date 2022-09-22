@@ -16,7 +16,8 @@ export const {
     expectIsVisibleViaID,
     expectIsVisibleViaText,
     multipleTextVisible,
-    textVisibleAtIndex
+    textVisibleAtIndex,
+    idVisibleAtIndex
 } = navigation.common
 
 export const onEmptyYuscreen = (customer) => async () => {
@@ -217,7 +218,7 @@ export const onYuscreenV4 = (customer:any, productStatus, earnRate: string)=> as
 
     switch (productStatus) {
         case "wellbeing only":
-            await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE")))).toBeVisible()
+            await idVisibleAtIndex(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"), 0)()
             await expect(element(by.text(WellbeingProduct))).toBeVisible()
             await expect(element(by.text(noProductText))).toBeVisible()
             await swipeFromText(browseMoreProtection,"up", "slow")()

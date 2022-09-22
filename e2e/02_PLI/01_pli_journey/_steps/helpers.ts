@@ -636,14 +636,17 @@ export const FAST_CHECKOUT = async ( isCovered: boolean, cover: string) => {
     const nextScreenBody = (nextScreenTitle == "Item unlocked!\nYou've powered up your protection.") ? `Congratulations, you've successully purchased ${cover} cover, your policy is now active.` : 
     "Based on your answers we’ll need additional information. We’ll reach out shortly by email and text to let you know what to do next. No payment will be taken from you.\n\nIn the meantime, you are now covered by Accidental Death Benefit provided by your selected policy:"
 
-    When("I continue on contact details screen", when.continueOnContactsPage, async () => {
-        Then("I should be on the checkout page", then.isOnScreen("Checkout"))
-        When("I add GP details", when.addGPDetails, async () => {
-            Then("I should be on the checkout page", then.isOnScreen("Checkout"))
-            Then("I should see existing card ending in 4444", then.textVisible("Purchase with **** 4444"))
-            When("I tap purchase with existing card", when.tapText("Purchase with **** 4444"), async () => {
-                Then("I should see We've got you covered", then.textVisible("Item unlocked!\nYou've powered up your protection."))
-                Then(`I should see the ${nextScreenBody}`, then.isOnScreen(nextScreenBody))
+    When("I continue on and click through the contact details screen", when.scrollDownOnContactsPage, async () => {
+        Then("I should see continue", then.textVisible("Continue"))
+        When("I click continue", when.tapText("Continue"), async () => {
+            Then("I should be on the next checkout page", then.textVisible("We may need to request a medical report from your doctor."))
+            When("I add GP details", when.addGPDetails, async () => {
+                Then("I should be on the checkout page", then.isOnScreen("Checkout"))
+                Then("I should see existing card ending in 4444", then.textVisible("Purchase with **** 4444"))
+                When("I tap purchase with existing card", when.tapText("Purchase with **** 4444"), async () => {
+                    Then("I should see We've got you covered", then.textVisible("Item unlocked!\nYou've powered up your protection."))
+                    Then(`I should see the ${nextScreenBody}`, then.isOnScreen(nextScreenBody))
+                })
             })
         })
     })
