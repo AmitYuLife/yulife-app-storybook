@@ -13,7 +13,6 @@ import { TextTemplate } from "@atoms/text/text-template";
 import { Button, TouchableOpacityWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
 import styles, { SCROLL_PADDING } from "./menu.screen.styles";
-import { t } from "@locale";
 
 export interface IMenuLink {
   condition?: boolean;
@@ -69,11 +68,7 @@ const MenuScreen = ({ onDebugPress, onInvitePress, onPressClose, links, version,
           <View style={styles.bottomPadding} />
         </ScrollView>
       </View>
-      <TouchableOpacityWithDelay
-        onPress={onPressClose}
-        style={styles.closeWrapper}
-        accessibilityLabel={t("genericHeading.rightIcon.close.accessibilityLabel")}
-      >
+      <TouchableOpacityWithDelay onPress={onPressClose} style={styles.closeWrapper}>
         <CloseSvg />
       </TouchableOpacityWithDelay>
       {!showReferralButton ? null : (
@@ -131,7 +126,6 @@ const Links = ({ links }: { links: IProps["links"] }) => (
                 onPress={onPress}
                 testID={MENU_ITEM(label)}
                 hitSlop={HIT_SLOP}
-                accessibilityLabel={label}
               >
                 {!source ? null : (
                   <View style={styles.iconWrapper}>
@@ -147,24 +141,21 @@ const Links = ({ links }: { links: IProps["links"] }) => (
 );
 
 const DebugAndVersion = ({ onDebugPress, version }: Pick<IProps, "onDebugPress" | "version">) => (
-  <View accessible={true} accessibilityLabel={t("screens.menu.version.accessibilityLabel", { version })}>
-    <TouchableOpacityWithDelay
-      style={styles.debugVersionWrapper}
-      onPress={onDebugPress}
-      activeOpacity={onDebugPress ? 0.7 : 1}
-      hitSlop={HIT_SLOP}
-      importantForAccessibility="no"
-    >
-      <TextTemplate color={Colours.neutral.n400} type="l3">{`Version ${version}${
-        onDebugPress ? " | " : ""
-      }`}</TextTemplate>
-      {!onDebugPress ? null : (
-        <TextTemplate color={Colours.neutral.n400} type="l3" decoration="underline">
-          Debug menu
-        </TextTemplate>
-      )}
-    </TouchableOpacityWithDelay>
-  </View>
+  <TouchableOpacityWithDelay
+    style={styles.debugVersionWrapper}
+    onPress={onDebugPress}
+    activeOpacity={onDebugPress ? 0.7 : 1}
+    hitSlop={HIT_SLOP}
+  >
+    <TextTemplate color={Colours.neutral.n400} type="l3">{`Version ${version}${
+      onDebugPress ? " | " : ""
+    }`}</TextTemplate>
+    {!onDebugPress ? null : (
+      <TextTemplate color={Colours.neutral.n400} type="l3" decoration="underline">
+        Debug menu
+      </TextTemplate>
+    )}
+  </TouchableOpacityWithDelay>
 );
 
 export default MenuScreen;

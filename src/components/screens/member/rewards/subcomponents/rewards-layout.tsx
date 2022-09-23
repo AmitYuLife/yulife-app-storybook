@@ -4,7 +4,6 @@ import { TOP_BAR } from "@styles";
 import { REWARDS_SCREEN } from "@ids";
 import { NavBar } from "@components/organisms";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
-import { useAccessibilityHiddenElements } from "@hooks";
 
 const WRAPPER_MARGIN_TOP = Platform.select({
   ios: 0,
@@ -18,15 +17,9 @@ interface Props {
 
 export function RewardsListLayout(props: Props) {
   const { children, onLeftMenuPress, hasBackButton } = props;
-  const { androidImportantForAccessibility, accessibilityElementsHidden } = useAccessibilityHiddenElements();
 
   return (
-    <View
-      style={styles.wrapper}
-      testID={REWARDS_SCREEN}
-      importantForAccessibility={androidImportantForAccessibility}
-      accessibilityElementsHidden={accessibilityElementsHidden}
-    >
+    <View style={styles.wrapper} testID={REWARDS_SCREEN}>
       <View style={styles.topbarFiller} />
       <View style={styles.listWrapper}>{children}</View>
       <TopBarAbsolute leftIcon={hasBackButton ? "Back" : "Menu"} onPressLeftIcon={onLeftMenuPress} />

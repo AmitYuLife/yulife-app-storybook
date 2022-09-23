@@ -1,5 +1,5 @@
-import React, { memo, useCallback } from "react";
-import { View, Platform } from "react-native";
+import React, { memo, useCallback, useMemo } from "react";
+import { View, Platform, AccessibilityPropsAndroid } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { IThemeStore } from "@redux/theme/theme.reducer";
@@ -22,7 +22,8 @@ import { MODALS } from "@navigation/constants";
 import { InformationIcon } from "@atoms/icon/information-icon";
 import { YUCOIN_POWER_INFO, DAILYSTEP_SCREEN_COIN } from "@ids";
 import { t } from "@locale";
-import { useAccessibilityHiddenElements } from "@hooks";
+import { useSelector } from "react-redux";
+import { getModalState } from "@redux/app/app.selectors";
 
 interface IProps extends IConnectedScreenProps {
   showCounter?: boolean;
@@ -50,7 +51,20 @@ const DailyStepsScreen = ({
   hasEvents,
   hideInformationIcon,
 }: Props) => {
-  const { androidImportantForAccessibility, accessibilityElementsHidden } = useAccessibilityHiddenElements();
+  const currentModal = useSelector(getModalState);
+  const { androidImportantForAccessibility, accessibilityElementsHidden } = useMemo(
+    () =>
+      currentModal === MODALS.blurredOverlay
+        ? {
+            androidImportantForAccessibility: "no-hide-descendants" as AccessibilityPropsAndroid["importantForAccessibility"],
+            accessibilityElementsHidden: true,
+          }
+        : {
+            androidImportantForAccessibility: "auto" as AccessibilityPropsAndroid["importantForAccessibility"],
+            accessibilityElementsHidden: false,
+          },
+    [currentModal]
+  );
 
   const onSurgePress = useCallback(async () => {
     const children = <SurgeModal {...userSurge} />;

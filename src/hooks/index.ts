@@ -12,4 +12,3 @@ export * from "./useTapBackTwiceToExit";
 export * from "./usePressedInWithDelay";
 export * from "./useStatusBarStyle";
 export * from "./useGetLottieJson";
-export * from "./useAccessibilityHiddenElements";
