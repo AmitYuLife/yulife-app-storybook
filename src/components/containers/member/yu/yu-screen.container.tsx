@@ -12,7 +12,7 @@ const YuScreenContainer = memo(({ componentId }: Props) => {
   const [popover, setPopover] = useState(null);
   const avatar = useSelector(getUserAvatar);
   const earnRate = useSelector(getUserEarnRate);
-  const { yuScreenV4Us: showV4 } = useSelector(getUserFeatures);
+  const { yuScreenV4: showV4 } = useSelector(getUserFeatures);
 
   const yumojiRemoteUrl = avatar.avatarRemoteFiles?.pngFull;
 

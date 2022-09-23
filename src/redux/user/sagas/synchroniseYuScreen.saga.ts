@@ -12,7 +12,7 @@ export default function* synchroniseYuScreenSaga() {
 
     // New notification sent for the customer. Update the YuScreen product slots.
     if (hasNotification) {
-      const updateYuScreen = userFeatures.yuScreenV4Us ? getYuScreen : getYuScreenProductSlots;
+      const updateYuScreen = userFeatures.yuScreenV4 ? getYuScreen : getYuScreenProductSlots;
       yield call(updateYuScreen);
     }
 
