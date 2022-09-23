@@ -75,18 +75,20 @@ Feature("As a user I can get past the login screen", async () => {
     });
 
     Scenario("I can view all unauthenticated screens", scenario.start, async () => {
-        Given("I am on the login screen", given.onLoginScreen, async () => {
-            When("I press forgot password", when.tapText("Need help logging in?"), async () => {
-                Then("I should be on the forgot password screen", then.onPasswordHelp)
-            })
-            When("I enter an email", when.typeViaID(INPUT_RESET_PASSWORD, "test@email.com"), async () => {
-                When("I tap 'email me...' ", when.tapText("Email me a magic link"), async () => {
-                    Then("I should be on the email sent screen", then.textVisible("Email sent"))
-                    When("I press back", when.tapText("Back"), async () => {
-                        Then("I should be on the forgot password screen", then.onPasswordHelp)
-                    })
-                    When("I press back", when.tapText("Back"), async () => {
-                        Then("I should be on the login screen", given.onLoginScreen)
+        Given("I select region United Kingdom", given.selectRegionIfVissible("United Kingdom"), async () => {
+            Given("I am on the login screen", given.onLoginScreen, async () => {
+                When("I press forgot password", when.tapText("Need help logging in?"), async () => {
+                    Then("I should be on the forgot password screen", then.onPasswordHelp)
+                })
+                When("I enter an email", when.typeViaID(INPUT_RESET_PASSWORD, "test@email.com"), async () => {
+                    When("I tap 'email me...' ", when.tapText("Email me a magic link"), async () => {
+                        Then("I should be on the email sent screen", then.textVisible("Email sent"))
+                        When("I press back", when.tapText("Back"), async () => {
+                            Then("I should be on the forgot password screen", then.onPasswordHelp)
+                        })
+                        When("I press back", when.tapText("Back"), async () => {
+                            Then("I should be on the login screen", given.onLoginScreen)
+                        })
                     })
                 })
             })

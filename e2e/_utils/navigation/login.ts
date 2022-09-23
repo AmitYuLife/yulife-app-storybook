@@ -10,9 +10,11 @@ export const loginAsUser = (
     customer = CUSTOMER_1,
     auth = AUTH_1 as IDatabaseItem,
     fitkitAuth = true,
+    region = "United Kingdom"
 ) => async () => {
     console.log("CUSTOMER ID: ", customer.data.customerId)
     await authoriseFitkit(fitkitAuth)()
+    await selectRegionIfVissible(region)();
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     await loginField.tap();
@@ -90,10 +92,11 @@ export const dismissStreakIfVisible = async () => {
     }
 }
 
-export const loginOnly = (customer: any, auth: any, fitkitAuth?: boolean) => async () => {
+export const loginOnly = (customer: any, auth: any, fitkitAuth?: boolean, region = "United Kingdom") => async () => {
     if (fitkitAuth) {
         await authoriseFitkit(fitkitAuth)()
     }
+    await selectRegionIfVissible(region)();
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     await loginField.tap();
@@ -120,5 +123,14 @@ export const loginToYuScreen = (skipIntro = true, customer = CUSTOMER_1, auth = 
     await logInAndGoToTab("yu", customer, auth, true)()
     if (skipIntro === true) {
         await completeOnboardingIntro()
+    }
+}
+
+export const selectRegionIfVissible = (region: string) => async () => {
+    try {
+        await expect(element(by.text("Select your company location"))).toBeVisible();
+        await tapText(region)()
+    } catch (e) {
+
     }
 }
