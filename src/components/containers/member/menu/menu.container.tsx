@@ -15,6 +15,9 @@ import assets, { LINKS, LinkTypes } from "./assets";
 import { IS_DEVELOP } from "@utils";
 import { showYuModal } from "@navigation/root";
 import Logger from "@services/logging/logger";
+import { t } from "@locale";
+import { useNavigationComponentDidAppear, useNavigationComponentDidDisappear } from "@hooks";
+import { setMenuScreenStateActive } from "@redux/app/app.actions";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();
@@ -61,6 +64,14 @@ const MenuContainer = () => {
     );
   }, [dispatch]);
 
+  useNavigationComponentDidAppear(() => {
+    dispatch(setMenuScreenStateActive(true));
+  }, ROUTES.menu);
+
+  useNavigationComponentDidDisappear(() => {
+    dispatch(setMenuScreenStateActive(false));
+  }, ROUTES.menu);
+
   const handlePressLink = React.useCallback(
     (link: LinkTypes) => (): null => {
       switch (link) {
@@ -106,43 +117,43 @@ const MenuContainer = () => {
     () => [
       {
         condition: true,
-        label: "Activity History",
+        label: t("screens.menu.activityHistory.label"),
         onPress: handlePressLink(LINKS.ACTIVITY),
         source: assets[LINKS.ACTIVITY],
       },
       {
         condition: true,
-        label: "My Account",
+        label: t("screens.menu.myAccount.label"),
         onPress: handlePressLink(LINKS.MEMBER),
         source: assets[LINKS.MEMBER],
       },
       {
         condition: true,
-        label: "Wellbeing Hub",
+        label: t("screens.menu.wellbeingHub.label"),
         onPress: handlePressLink(LINKS.WELLBEING_HUB),
         source: assets[LINKS.WELLBEING_HUB],
       },
       {
         condition: true,
-        label: "Settings",
+        label: t("screens.menu.settings.label"),
         onPress: handlePressLink(LINKS.SETTINGS),
         source: assets[LINKS.SETTINGS],
       },
       {
         condition: features.showHelperTools,
-        label: "Tools",
+        label: t("screens.menu.tools.label"),
         onPress: handlePressLink(LINKS.TOOLS),
         source: assets[LINKS.SETTINGS],
       },
       {
         condition: true,
-        label: "Chat",
+        label: t("screens.menu.chat.label"),
         onPress: handlePressLink(LINKS.SUPPORT),
         source: assets[LINKS.SUPPORT],
       },
       {
         condition: true,
-        label: "Log out",
+        label: t("screens.menu.logout.label"),
         onPress: handlePressLink(LINKS.LOGOUT),
         source: assets[LINKS.LOGOUT],
       },

@@ -16,3 +16,6 @@ export const getRouteState = createSelector(reducer, routeSelector);
 
 const modalSelector = (state: IAppStore): string => state.activeModal;
 export const getModalState = createSelector(reducer, modalSelector);
+
+const menuScreenStateSelector = (state: IAppStore): boolean => state.isMenuScreenActive;
+export const getMenuScreenStateActive = createSelector(reducer, menuScreenStateSelector);

@@ -17,6 +17,7 @@ import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { getTopBarType, getWorldData } from "./quests-screen.helpers";
 import { QuestsMapContext } from "./quests.context";
+import { useAccessibilityHiddenElements } from "@hooks";
 
 interface IProps extends IConnectedScreenProps {
   hideUnity?: () => void | null;
@@ -35,6 +36,7 @@ const QuestsScreen: FC<IProps> = ({ hideUnity, unity, levelId, repeatedUnity, on
   const [topBarType, setTopBarType] = useState(getTopBarType(currentLevel));
   const flatList = useRef<FlatList<IMapSlice>>();
   const timer = useRef<NodeJS.Timeout>();
+  const { androidImportantForAccessibility, accessibilityElementsHidden } = useAccessibilityHiddenElements();
 
   const handleViewableItemsChanged = useRef<ViewabilityConfigCallbackPair["onViewableItemsChanged"]>(
     ({ viewableItems }) => {
@@ -105,7 +107,12 @@ const QuestsScreen: FC<IProps> = ({ hideUnity, unity, levelId, repeatedUnity, on
   }
 
   return (
-    <SafeAreaView style={styles.wrapper} testID={QUESTS_SCREEN(getCurrentWorld(currentLevel))}>
+    <SafeAreaView
+      style={styles.wrapper}
+      testID={QUESTS_SCREEN(getCurrentWorld(currentLevel))}
+      importantForAccessibility={androidImportantForAccessibility}
+      accessibilityElementsHidden={accessibilityElementsHidden}
+    >
       <ScrollyQuest
         initialScrollIndex={initialScrollIndex}
         data={slices}

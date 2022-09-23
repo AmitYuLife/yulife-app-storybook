@@ -230,6 +230,32 @@ export default {
       claimButton: "Claim rewards",
       openChestButton: "Open the chest",
     },
+    menu: {
+      version: {
+        accessibilityLabel: "yu life app version %{version}",
+      },
+      activityHistory: {
+        label: "Activity History",
+      },
+      myAccount: {
+        label: "My Account",
+      },
+      wellbeingHub: {
+        label: "Wellbeing Hub",
+      },
+      settings: {
+        label: "Settings",
+      },
+      tools: {
+        label: "Tools",
+      },
+      chat: {
+        label: "Chat",
+      },
+      logout: {
+        label: "Log out",
+      },
+    },
   },
   permissions: {
     android: {
