@@ -7,8 +7,9 @@ export const {
 } = navigation.login
 
 
-export const logInWithStreakScreen = (customer = CUSTOMER_1, auth = AUTH_1, fitkitAuth = true) => async () => {
+export const logInWithStreakScreen = (customer = CUSTOMER_1, auth = AUTH_1, fitkitAuth = true, region = "United Kingdom") => async () => {
     await authoriseFitkit(fitkitAuth)()
+    await navigateViaText(region)
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     await loginField.tap();

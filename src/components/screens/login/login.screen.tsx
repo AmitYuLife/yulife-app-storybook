@@ -8,7 +8,6 @@ import { LoginForm, LoginFormProps } from "./subcomponents/login-form";
 import { getIsAppFreshlyInstalled } from "@redux/device/device.selectors";
 import { markAppAsInstalled } from "@redux/device/device.actions";
 import { ServerList } from "./subcomponents/server-list";
-import { DETOX_ENABLED } from "@services/socket";
 
 type LoginScreenProps = LoginFormProps;
 
@@ -17,7 +16,7 @@ type Page = "region" | "login";
 const LoginScreen = memo((props: LoginScreenProps) => {
   const dispatch = useDispatch();
   const isAppFreshlyInstalled = useSelector(getIsAppFreshlyInstalled);
-  const [activePage, setActivePage] = useState<Page>(isAppFreshlyInstalled && !DETOX_ENABLED ? "region" : "login");
+  const [activePage, setActivePage] = useState<Page>(isAppFreshlyInstalled ? "region" : "login");
 
   const setLoginAsActive = useCallback(() => {
     setActivePage("login");
