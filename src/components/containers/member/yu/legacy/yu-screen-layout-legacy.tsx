@@ -16,7 +16,6 @@ import { YuProductStatus } from "@graphql/_core/schema/globalTypes";
 import { setScreenViewForBurgerMenu } from "@navigation/utils";
 import { PAD_TOP } from "./yu-screen.legacy";
 import { YUSCREEN_V3 } from "@ids";
-import { useAccessibilityHiddenElements } from "@hooks";
 
 interface Props {
   children: React.ReactChild;
@@ -62,7 +61,6 @@ const OFFSET = Style.adjust(60);
 const _YuScreenLayoutLegacy = ({ children, testID = YUSCREEN_V3(true) }: Props) => {
   const { popover } = useContext(YuScreenContext);
   const [performOnboarding] = useMutation(GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP);
-  const { androidImportantForAccessibility, accessibilityElementsHidden } = useAccessibilityHiddenElements();
 
   const dismissPopover = useCallback(() => {
     performOnboarding({ variables: { step: popover.id }, refetchQueries: ["YuScreenProductSlots"] });
@@ -76,12 +74,7 @@ const _YuScreenLayoutLegacy = ({ children, testID = YUSCREEN_V3(true) }: Props) 
   }, [popover]);
 
   return (
-    <SafeAreaView
-      style={styles.wrapper}
-      testID={testID}
-      importantForAccessibility={androidImportantForAccessibility}
-      accessibilityElementsHidden={accessibilityElementsHidden}
-    >
+    <SafeAreaView style={styles.wrapper} testID={testID}>
       {children}
       <TopBarAbsolute hasWhiteBackground={true} onPressLeftIcon={openMenu} />
       <NavBar activeIndex={2} />

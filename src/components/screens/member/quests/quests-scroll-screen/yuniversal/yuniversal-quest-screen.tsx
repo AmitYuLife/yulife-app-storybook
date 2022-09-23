@@ -14,7 +14,6 @@ import { IConnectedScreenProps } from "@app/typings";
 import { GetQuestMap_levels } from "@graphql/_core/schema";
 import { getLevelsProps } from "./yuniversal-quest-screen.helpers";
 import { QUESTS_SCREEN_YUNIVERSAL } from "@ids";
-import { useAccessibilityHiddenElements } from "@hooks";
 
 const BACKGROUND_IMAGE = require("@assets/yuniversal/yuniversal_quest_map_1.png");
 const SHOW_TITLE = Style.DEVICE_HEIGHT >= media.DEVICES.iPhone12.height;
@@ -36,7 +35,6 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
   const showChestModalCopy = useSelector(getShowChestCopy);
   const challengesStatus = useSelector(getChallengesStatus);
   const nextLevelAvailableAt = useSelector(getNextLevelAvailableAt);
-  const { androidImportantForAccessibility, accessibilityElementsHidden } = useAccessibilityHiddenElements();
 
   const levelMap = getLevelsProps(
     componentId,
@@ -49,12 +47,7 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
   );
 
   return (
-    <View
-      style={styles.container}
-      testID={QUESTS_SCREEN_YUNIVERSAL(yuniversalLevel)}
-      importantForAccessibility={androidImportantForAccessibility}
-      accessibilityElementsHidden={accessibilityElementsHidden}
-    >
+    <View style={styles.container} testID={QUESTS_SCREEN_YUNIVERSAL(yuniversalLevel)}>
       <View style={styles.backgroundImage} />
       <Image resizeMode="cover" style={styles.backgroundImage} source={BACKGROUND_IMAGE} />
       {!levelMap?.length ? null : (
