@@ -22,7 +22,7 @@ const personalProducts = ["personal-products-reset-fib", "personal-products-rese
 const DebugContainer: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
 
-  const { yuScreenV4Us } = useSelector(getUserFeatures);
+  const { yuScreenV4 } = useSelector(getUserFeatures);
 
   const [resetData]: ResetDataMutationTuple = useMutation(GQL_MUTATION_RESET_DATA);
   const { data } = useQuery(GQL_QUERY_DEBUG_CODES);
@@ -42,7 +42,7 @@ const DebugContainer: React.FC<Props> = (props) => {
     Navigation.popToRoot(props.componentId);
   };
 
-  const refreshPersonalProducts = yuScreenV4Us ? getYuScreen : getYuScreenProductSlots;
+  const refreshPersonalProducts = yuScreenV4 ? getYuScreen : getYuScreenProductSlots;
 
   const listData = list.map((code) => ({
     id: code,

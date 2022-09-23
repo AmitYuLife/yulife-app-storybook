@@ -11,6 +11,7 @@ import {
   ContentItemKeyValueBox,
   ContentItemInfoCard,
   ContentItemPad,
+  ContentItemMarkdown,
 } from "@components/sdui";
 import { ProductDetailsButton } from "../subcomponents/product-details.button";
 import media from "@styles/media";
@@ -82,6 +83,8 @@ const renderItemContent = (item: BodyItems): JSX.Element => {
       return <ContentItemInfoCard key={item.id} {...item} />;
     case "ContentItemPad":
       return <ContentItemPad key={item.id} {...item} />;
+    case "ContentItemMarkdown":
+      return <ContentItemMarkdown key={item.id} {...item} />;
     default:
       return null;
   }

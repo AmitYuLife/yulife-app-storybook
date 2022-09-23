@@ -16,6 +16,7 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_FADE,
   GQL_FRAGMENT_CONTENT_ITEM_HEADER_BAR,
   GQL_FRAGMENT_CONTENT_ITEM_INFO_CARD,
+  GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN,
 } from "@graphql/_fragments/content.gql";
 import {
   GQL_FRAGMENT_REMOTE_IMAGE,
@@ -37,6 +38,7 @@ export const GQL_QUERY_GET_YU_SCREEN_PRODUCT_DETAILS = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_COLLAPSING_GENERIC_HEADER}
   ${GQL_FRAGMENT_CONTENT_ITEM_PAD}
   ${GQL_FRAGMENT_CONTENT_ITEM_TEXT}
+  ${GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN}
   ${GQL_FRAGMENT_CONTENT_ITEM_BUTTON}
   ${GQL_FRAGMENT_CONTENT_ITEM_BENEFICIARIES_SECTION}
   ${GQL_FRAGMENT_CONTENT_ITEM_IMAGE}
@@ -82,6 +84,9 @@ export const GQL_QUERY_GET_YU_SCREEN_PRODUCT_DETAILS = gql`
         }
         ... on ContentItemPad {
           ...ContentItemPad
+        }
+        ... on ContentItemMarkdown {
+          ...ContentItemMarkdown
         }
       }
       footer {

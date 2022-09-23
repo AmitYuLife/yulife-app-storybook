@@ -950,7 +950,7 @@ export const CUSTOMER_43_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_43.data.customerId,
         features: {
-            yuScreenV4Us: true,
+            yuScreenV4: true,
             showCreateLeaderboard: true,
             showAdvancedLeaderboards: true,
             hasCoveaFibActive: false,
@@ -967,7 +967,7 @@ export const CUSTOMER_44_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_44.data.customerId,
         features: {
-            yuScreenV4Us: true,
+            yuScreenV4: true,
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
         }
@@ -981,7 +981,7 @@ export const CUSTOMER_45_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_45.data.customerId,
         features: {
-            yuScreenV4Us: true,
+            yuScreenV4: true,
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
         }
@@ -995,7 +995,7 @@ export const CUSTOMER_46_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_46.data.customerId,
         features: {
-            yuScreenV4Us: true,
+            yuScreenV4: true,
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
         }
@@ -1009,7 +1009,7 @@ export const CUSTOMER_48_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_48.data.customerId,
         features: {
-            yuScreenV4Us: true,
+            yuScreenV4: true,
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
         }
@@ -1023,7 +1023,7 @@ export const CUSTOMER_49_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_49.data.customerId,
         features: {
-            yuScreenV4Us: true,
+            yuScreenV4: true,
             hasBupaDentActive: true,
         }
     }
@@ -1036,7 +1036,7 @@ export const CUSTOMER_51_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_51.data.customerId,
         features: {
-            yuScreenV4Us: true,
+            yuScreenV4: true,
         }
     }
 } as IDatabaseItem
