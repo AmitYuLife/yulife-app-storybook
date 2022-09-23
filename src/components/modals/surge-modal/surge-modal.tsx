@@ -50,7 +50,7 @@ const SurgeModal = ({ title, description, multiplier, endDateTime }: IProps) => 
   const parser = description.split("$");
   return (
     <View style={styles.contentWrapper}>
-      <View style={styles.title}>
+      <View style={styles.title} accessibilityLabel={title}>
         <TextTemplate type={"h2"}>{title}</TextTemplate>
       </View>
       <TextTemplate type="b2" textAlign="center" accessibilityLabel={descriptionAccessibilityLabel}>

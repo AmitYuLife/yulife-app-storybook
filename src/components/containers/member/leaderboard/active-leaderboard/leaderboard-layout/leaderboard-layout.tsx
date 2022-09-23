@@ -6,14 +6,21 @@ import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { setScreenViewForBurgerMenu } from "@navigation/utils";
+import { useAccessibilityHiddenElements } from "@hooks";
 
 interface Props {
   children: React.ReactNode;
 }
 
 export const LeaderboardLayout = ({ children }: Props) => {
+  const { androidImportantForAccessibility, accessibilityElementsHidden } = useAccessibilityHiddenElements();
+
   return (
-    <View style={styles.wrapper}>
+    <View
+      style={styles.wrapper}
+      importantForAccessibility={androidImportantForAccessibility}
+      accessibilityElementsHidden={accessibilityElementsHidden}
+    >
       <View style={styles.topPad} />
       {children}
       <View style={styles.bottomPad} />

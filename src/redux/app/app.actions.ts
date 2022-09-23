@@ -11,6 +11,7 @@ export const UPDATE_APP_STATE_ACTIVE = "UPDATE_APP_STATE_ACTIVE";
 export const UPDATE_CURRENT_ROUTE = "UPDATE_CURRENT_ROUTE";
 export const UPDATE_CURRENT_MODAL = "UPDATE_CURRENT_MODAL";
 export const UPDATE_OFFLINE_STATE = "UPDATE_OFFLINE_STATE";
+export const MENU_SCREEN_STATE_ACTIVE = "MENU_SCREEN_STATE_ACTIVE";
 
 export const updateAppState = (appState: string): SyncAction<string> => ({
   payload: appState,
@@ -56,4 +57,9 @@ export const checkConnection = (hasDelay = false) => ({
 export const setMainRoot = (url: string) => ({
   payload: url,
   type: SET_MAIN_ROOT,
+});
+
+export const setMenuScreenStateActive = (payload: boolean) => ({
+  payload,
+  type: MENU_SCREEN_STATE_ACTIVE,
 });
