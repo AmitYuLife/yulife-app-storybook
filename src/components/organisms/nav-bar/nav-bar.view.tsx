@@ -50,11 +50,11 @@ const NavBarView = (props: NavBarProps) => {
     rewardsAccessibilityValue,
   ] = useMemo(
     () => [
-      { text: t("navbar.yucoin.accessibilityTextValue") },
-      { text: t("navbar.quest.accessibilityTextValue") },
-      { text: t("navbar.yu.accessibilityTextValue") },
-      { text: t("navbar.leaderboard.accessibilityTextValue") },
-      { text: t("navbar.rewards.accessibilityTextValue") },
+      { text: t("navbar.yucoin.accessibility_text_value") },
+      { text: t("navbar.quest.accessibility_text_value") },
+      { text: t("navbar.yu.accessibility_text_value") },
+      { text: t("navbar.leaderboard.accessibility_text_value") },
+      { text: t("navbar.rewards.accessibility_text_value") },
     ],
     []
   );
@@ -64,7 +64,7 @@ const NavBarView = (props: NavBarProps) => {
       <View style={[styles.wrapper, displayElevation && styles.elevation]}>
         <View
           accessibilityState={{ selected: activeIndex === 0 }}
-          accessibilityLabel={t("navbar.yucoin.accessibilityLabel")}
+          accessibilityLabel={t("navbar.yucoin.accessibility_label")}
           accessibilityValue={yuCoinAccessibilityValue}
           accessibilityRole={"tab"}
           accessible={true}
@@ -79,7 +79,7 @@ const NavBarView = (props: NavBarProps) => {
         </View>
         <View
           accessibilityState={{ selected: activeIndex === 1 }}
-          accessibilityLabel={t("navbar.quest.accessibilityLabel")}
+          accessibilityLabel={t("navbar.quest.accessibility_label")}
           accessibilityValue={questAccessibilityValue}
           accessibilityRole={"tab"}
           accessible={true}
@@ -95,7 +95,7 @@ const NavBarView = (props: NavBarProps) => {
         </View>
         <View
           accessibilityState={{ selected: activeIndex === 2 }}
-          accessibilityLabel={t("navbar.yu.accessibilityLabel")}
+          accessibilityLabel={t("navbar.yu.accessibility_label")}
           accessibilityValue={yuAccessibilityValue}
           accessibilityRole={"tab"}
           accessible={true}
@@ -111,7 +111,7 @@ const NavBarView = (props: NavBarProps) => {
         </View>
         <View
           accessibilityState={{ selected: activeIndex === 3 }}
-          accessibilityLabel={t("navbar.leaderboard.accessibilityLabel")}
+          accessibilityLabel={t("navbar.leaderboard.accessibility_label")}
           accessibilityValue={leaderboardAccessibilityValue}
           accessibilityRole={"tab"}
           accessible={true}
@@ -126,7 +126,7 @@ const NavBarView = (props: NavBarProps) => {
         </View>
         <View
           accessibilityState={{ selected: activeIndex === 4 }}
-          accessibilityLabel={t("navbar.rewards.accessibilityLabel")}
+          accessibilityLabel={t("navbar.rewards.accessibility_label")}
           accessibilityValue={rewardsAccessibilityValue}
           accessibilityRole={"tab"}
           accessible={true}

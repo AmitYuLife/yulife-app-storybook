@@ -132,30 +132,30 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
         video={video}
         onLeftIconPress={onLeftIconPress}
         onRightIconPress={onRightIconPress}
-        startErrorMessage={t("createChallengeError")}
+        startErrorMessage={t("create_challenge_error")}
       />
       <Modal animationType="slide" visible={showModal} onRequestClose={() => setShowModal(false)}>
         <GenericModal
           isPrimaryOnePressOnly={true}
           heading={
             !showError
-              ? t("modals.genericModal.cancelChallenge.heading")
-              : t("modals.genericModal.onMeditopiaError.heading")
+              ? t("modals.generic_modal.cancel_challenge.heading")
+              : t("modals.generic_modal.on_meditopia_error.heading")
           }
           subheading={
             !showError
-              ? t("modals.genericModal.cancelChallenge.subheading")
-              : t("modals.genericModal.onMeditopiaError.subheading")
+              ? t("modals.generic_modal.cancel_challenge.subheading")
+              : t("modals.generic_modal.on_meditopia_error.subheading")
           }
           ctaLabel={
             !showError
-              ? t("modals.genericModal.cancelChallenge.ctaLabel")
-              : t("modals.genericModal.onMeditopiaError.ctaLabel")
+              ? t("modals.generic_modal.cancel_challenge.cta_label")
+              : t("modals.generic_modal.on_meditopia_error.cta_label")
           }
           ctaLabelSecondary={
             !showError
-              ? t("modals.genericModal.cancelChallenge.ctaLabelSecondary")
-              : t("modals.genericModal.onMeditopiaError.ctaLabelSecondary")
+              ? t("modals.generic_modal.cancel_challenge.cta_label_secondary")
+              : t("modals.generic_modal.on_meditopia_error.cta_label_secondary")
           }
           onPress={onPress}
           onPressSecondary={onPressSecondary}

@@ -33,7 +33,7 @@ const _Surge = ({ endDateTime, multiplier, onPress }: Props) => {
       label={time.shortFormat}
       labelTestID={TEXT_TEMPLATE(minifiedFromNow(moment(endDateTime)).shortFormat)}
       Icon={<LottieView style={styles.lottie} source={LottieIcon} autoPlay={true} loop={true} />}
-      accessibilityLabel={t("screens.daily.surge.accessibilityLabel", {
+      accessibilityLabel={t("screens.daily.surge.accessibility_label", {
         multiplier: multiplier.replace("x", ""),
         time: time.longFormat,
       })}

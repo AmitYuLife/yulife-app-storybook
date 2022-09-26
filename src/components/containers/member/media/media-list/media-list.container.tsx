@@ -59,7 +59,7 @@ const MediaListContainer = ({
     }
 
     const otherApp = {
-      title: t("screens.challengeProgress.howMeditateWithOtherAppsLabel"),
+      title: t("screens.challenge_progress.how_meditate_with_other_apps_label"),
       tutorialUrl,
     };
 

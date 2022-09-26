@@ -17,7 +17,7 @@ const SystemPermissionsSection = ({ systemPermission, loading, showInfoPopup }: 
   return (
     <View>
       <View style={styles.settingsHeader}>
-        <SettingsHeader title={t("screens.permissions.systemSection.header")} />
+        <SettingsHeader title={t("screens.permissions.system_section.header")} />
       </View>
 
       {systemPermission?.map(({ id, title, status, description, requirement }) => (
@@ -29,14 +29,14 @@ const SystemPermissionsSection = ({ systemPermission, loading, showInfoPopup }: 
           requirement={requirement}
           loading={loading}
           showInfoPopup={showInfoPopup}
-          errorMessage={t("screens.permissions.statusDisconnected")}
-          infoMessage={t("screens.permissions.statusUnknown")}
+          errorMessage={t("screens.permissions.status_disconnected")}
+          infoMessage={t("screens.permissions.status_unknown")}
         />
       ))}
 
       <SecondaryButton
         size="Fill"
-        label={t("screens.permissions.systemSection.secondaryButton")}
+        label={t("screens.permissions.system_section.secondary_button")}
         wrapperStyle={styles.paddingHorizontal24}
         onPress={openSettings}
         leftIcon={<ChainIcon />}

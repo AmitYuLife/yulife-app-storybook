@@ -203,7 +203,9 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
 
   const chestButtonLabel = useMemo(
     () =>
-      chestState === CHEST_STATE.OPEN ? t("screens.eotwChest.claimButton") : t("screens.eotwChest.openChestButton"),
+      chestState === CHEST_STATE.OPEN
+        ? t("screens.eotw_chest.claim_button")
+        : t("screens.eotw_chest.open_chest_button"),
     [chestState]
   );
 

@@ -90,7 +90,7 @@ const DailyStepsScreen = ({
           onPress={onCoinPress}
           activeOpacity={1}
           testID={DAILYSTEP_SCREEN_COIN}
-          accessibilityLabel={t("screens.daily.todayYuCoin.accessibilityLabel")}
+          accessibilityLabel={t("screens.daily.today_yu_coin.accessibility_label")}
         >
           {hideInformationIcon || !hasPermission ? null : (
             <View style={styles.informationIcon} testID={YUCOIN_POWER_INFO}>

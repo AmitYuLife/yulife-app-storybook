@@ -33,10 +33,10 @@ const YumojiBuilderContainer = () => {
   const appDispatch = useDispatch();
   const avatar = useSelector(getUserAvatar);
   const translations = useTranslation([
-    "modals.genericModal.yumoji_builder.heading",
-    "modals.genericModal.yumoji_builder.subheading",
-    "modals.genericModal.yumoji_builder.cta_label",
-    "modals.genericModal.yumoji_builder.cta_label_secondary",
+    "modals.generic_modal.yumoji_builder.heading",
+    "modals.generic_modal.yumoji_builder.subheading",
+    "modals.generic_modal.yumoji_builder.cta_label",
+    "modals.generic_modal.yumoji_builder.cta_label_secondary",
   ]);
 
   const hasYumoji = !!avatar?.avatarRemoteFiles?.pngFull;
@@ -72,11 +72,11 @@ const YumojiBuilderContainer = () => {
 
   const updateAvatar = useCallback(() => {
     showGenericModal(
-      translations["modals.genericModal.yumoji_builder.heading"],
-      translations["modals.genericModal.yumoji_builder.subheading"],
+      translations["modals.generic_modal.yumoji_builder.heading"],
+      translations["modals.generic_modal.yumoji_builder.subheading"],
       handleAvatarUpdate,
-      translations["modals.genericModal.yumoji_builder.cta_label"],
-      translations["modals.genericModal.yumoji_builder.cta_label_secondary"]
+      translations["modals.generic_modal.yumoji_builder.cta_label"],
+      translations["modals.generic_modal.yumoji_builder.cta_label_secondary"]
     );
   }, [handleAvatarUpdate, translations]);
 

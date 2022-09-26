@@ -15,7 +15,7 @@ interface IProps {
 const PlusPoints = ({ coins, testID }: IProps) => (
   <View
     style={styles.textWrapper}
-    accessibilityLabel={t("molecules.coinConfetti.accessibilityLabel", { coins: addCommasToNumber(coins) })}
+    accessibilityLabel={t("molecules.coin_confetti.accessibility_label", { coins: addCommasToNumber(coins) })}
     accessible={Platform.select({ ios: true, android: false })}
     importantForAccessibility={"no"}
   >

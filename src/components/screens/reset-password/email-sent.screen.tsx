@@ -14,13 +14,13 @@ interface IProps {
 const EmailSentScreen: FC<IProps> = ({ onCtaPress, onSecondaryCtaPress, email }) => (
   <CentredScreen footerImage="forest" BackgroundGradient={<UnauthorisedGradient />}>
     <Pad height={120} />
-    <Heading style={styles.heading} label={t("screens.resetPasswordSubmitted.heading")} />
+    <Heading style={styles.heading} label={t("screens.reset_password_submitted.heading")} />
     <Pad height={9} />
-    <Blurb label={t("screens.resetPasswordSubmitted.subheading", { email })} />
+    <Blurb label={t("screens.reset_password_submitted.subheading", { email })} />
     <Pad height={45} />
-    <Button label={t("screens.resetPasswordSubmitted.ctaLabel")} onPress={onCtaPress} />
+    <Button label={t("screens.reset_password_submitted.cta_label")} onPress={onCtaPress} />
     <Pad height={10} />
-    <LinkButton label={t("screens.resetPasswordSubmitted.ctaLabelSecondary")} onPress={onSecondaryCtaPress} />
+    <LinkButton label={t("screens.reset_password_submitted.cta_label_secondary")} onPress={onSecondaryCtaPress} />
   </CentredScreen>
 );
 

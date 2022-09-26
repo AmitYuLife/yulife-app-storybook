@@ -21,7 +21,7 @@ const CoinConfetti: FC<IProps> = ({ coins, isExpanded, animationType }) => (
   <View
     testID={VIEW_CONFETTI_COIN(coins)}
     style={styles.wrapper}
-    accessibilityLabel={t("molecules.coinConfetti.accessibilityLabel", { coins: addCommasToNumber(coins) })}
+    accessibilityLabel={t("molecules.coin_confetti.accessibility_label", { coins: addCommasToNumber(coins) })}
     accessible={Platform.select({ ios: false, android: true })}
   >
     <Image source={require("../../../../assets/coin-confetti/coin.png")} style={styles.coinImage} />

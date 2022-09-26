@@ -29,7 +29,7 @@ export default function Right({ shouldHighlightCoins, textStyle, colour, icon }:
     <TouchableOpacityWithDelay
       onPress={labels[4].onPress}
       style={styles.coinsWrapper}
-      accessibilityLabel={t("topBar.totalBank.icon.accessibilityLabel", { coins: addCommasToNumber(coins) })}
+      accessibilityLabel={t("top_bar.total_bank.icon.accessibility_label", { coins: addCommasToNumber(coins) })}
     >
       <YuCoinCounter shouldHighlightCoins={shouldHighlightCoins} textStyle={textStyle} colour={colour} />
     </TouchableOpacityWithDelay>

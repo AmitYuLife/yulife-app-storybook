@@ -39,7 +39,9 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, leve
 
   const chestButtonLabel = useMemo(
     () =>
-      chestState === CHEST_STATE.OPEN ? t("screens.eotwChest.claimButton") : t("screens.eotwChest.openChestButton"),
+      chestState === CHEST_STATE.OPEN
+        ? t("screens.eotw_chest.claim_button")
+        : t("screens.eotw_chest.open_chest_button"),
     [chestState]
   );
 
@@ -92,7 +94,7 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, leve
           {chestState !== CHEST_STATE.OPEN ? null : (
             <View style={styles.chestTitleWrapper}>
               <TextTemplate color={color} type="h3" textAlign="center">
-                {t("screens.eotwChest.title")}
+                {t("screens.eotw_chest.title")}
               </TextTemplate>
             </View>
           )}
@@ -128,10 +130,10 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, leve
           />
           <View style={styles.buttonWrapper}>
             {travel ? null : (
-              <Button size="Large" onPress={onSpaceTravelButtonPress} label={t("screens.eotwChest.travelButton")} />
+              <Button size="Large" onPress={onSpaceTravelButtonPress} label={t("screens.eotw_chest.travel_button")} />
             )}
             {!beginningButton ? null : (
-              <Button size="Large" onPress={onBeginningButtonPress} label={t("screens.eotwChest.beginningButton")} />
+              <Button size="Large" onPress={onBeginningButtonPress} label={t("screens.eotw_chest.beginning_button")} />
             )}
           </View>
         </View>

@@ -49,13 +49,13 @@ function* showFailedEvents(failedEvents: Partial<Events>[]) {
   yield call(() =>
     showGenericModal(
       failedEvents.length > 1
-        ? t("screens.eventFail.multipleEventsTitle")
-        : t("screens.eventFail.title", { event: failedEvents[0].title }),
-      t("screens.eventFail.description"),
+        ? t("screens.event_fail.multiple_events_title")
+        : t("screens.event_fail.title", { event: failedEvents[0].title }),
+      t("screens.event_fail.description"),
       () => {
         Navigation.dismissModal(MODALS.generic);
       },
-      t("screens.eventFail.cta"),
+      t("screens.event_fail.cta"),
       null,
       null
     )

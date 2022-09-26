@@ -94,7 +94,7 @@ const MediaListScreen = ({
             ))
           )}
           <View style={styles.additionalInfo}>
-            <TextTemplate type="l1b">{t("screens.mediaList.differentAppSectionLabel")}</TextTemplate>
+            <TextTemplate type="l1b">{t("screens.media_list.different_app_section_label")}</TextTemplate>
           </View>
           <View>
             {buttons.map((button) => (
@@ -113,7 +113,7 @@ const MediaListScreen = ({
             <SecondaryButton
               isLoading={otherAppLoading === "otherApp"}
               size="Fill"
-              label={t("screens.mediaList.differentAppCtaLabel")}
+              label={t("screens.media_list.different_app_cta_label")}
               onPress={handleOtherAppPress}
             />
           </View>

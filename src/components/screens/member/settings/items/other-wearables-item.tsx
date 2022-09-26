@@ -17,8 +17,8 @@ const OtherWearablesItem = () => {
         passProps: {
           onPress: () => Navigation.dismissModal(MODALS.info),
           type: "otherWearables",
-          heading: t("screens.infoModal.otherWearables.heading", { platform }),
-          ctaLabel: t("screens.infoModal.otherWearables.ctaLabel"),
+          heading: t("screens.info_modal.other_wearables.heading", { platform }),
+          ctaLabel: t("screens.info_modal.other_wearables.cta_label"),
         },
       },
     });
@@ -26,7 +26,7 @@ const OtherWearablesItem = () => {
 
   return (
     <View style={styles.wrapper}>
-      <ItemTitle name={t("screens.infoModal.otherWearables.item")} onPressInfo={onPress} />
+      <ItemTitle name={t("screens.info_modal.other_wearables.item")} onPressInfo={onPress} />
     </View>
   );
 };

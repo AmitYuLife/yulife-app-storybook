@@ -13,30 +13,30 @@ interface IProps {
 
 const SignUpRewardScreen: React.FC<IProps> = ({ isLoading, onCollectPress, yuCoin }) => {
   const translations = useTranslation([
-    "screens.signupReward.heading",
-    "screens.signupReward.subheading",
-    "screens.signupReward.ctaLabel",
-    "screens.signupReward.ctaAccessibility",
-    "screens.signupReward.subheadingAccessibility",
+    "screens.signup_reward.heading",
+    "screens.signup_reward.subheading",
+    "screens.signup_reward.cta_label",
+    "screens.signup_reward.cta_accessibility",
+    "screens.signup_reward.subheading_accessibility",
   ]);
 
   return (
     <CentredScreen footerImage="forest">
       <Pad height={74} />
       <CoinConfetti coins={yuCoin} />
-      <Heading style={styles.heading} bold={true} label={translations["screens.signupReward.heading"]} />
+      <Heading style={styles.heading} bold={true} label={translations["screens.signup_reward.heading"]} />
       <Pad height={16} />
       <Blurb
         textStyle={styles.message}
         wrapperStyle={styles.messageWrapper}
-        label={translations["screens.signupReward.subheading"]}
-        accessibilityLabel={translations["screens.signupReward.subheadingAccessibility"]}
+        label={translations["screens.signup_reward.subheading"]}
+        accessibilityLabel={translations["screens.signup_reward.subheading_accessibility"]}
         accessible={true}
       />
       <Pad height={40} />
       <Button
-        label={translations["screens.signupReward.ctaLabel"]}
-        accessibilityLabel={translations["screens.signupReward.ctaAccessibility"]}
+        label={translations["screens.signup_reward.cta_label"]}
+        accessibilityLabel={translations["screens.signup_reward.cta_accessibility"]}
         onPress={onCollectPress}
         isLoading={isLoading}
         disabled={isLoading}

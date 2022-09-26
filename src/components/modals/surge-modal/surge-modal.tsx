@@ -22,7 +22,7 @@ interface IProps {
 
 const SurgeModal = ({ title, description, multiplier, endDateTime }: IProps) => {
   const [time, setTime] = useState<string>("0s");
-  const [timeAccessibility, setTimeAccessibility] = useState<string>(`0 ${t("timeUnits.seconds")}`);
+  const [timeAccessibility, setTimeAccessibility] = useState<string>(`0 ${t("time_units.seconds")}`);
   const [refreshRate, setRefreshRate] = useState(REFRESH_RATE_ONE_MINUTE);
 
   const handleTimeDisplay = useCallback(() => {

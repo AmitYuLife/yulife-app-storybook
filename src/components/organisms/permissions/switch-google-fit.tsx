@@ -20,7 +20,7 @@ const SwitchGoogleFitSection = ({ connectGoogleFit }: IProps) => {
         <GoogleFitIcon height={80} width={80} />
       </View>
       <View style={styles.switchGoogleFitWrapper}>
-        <TextTemplate type="b2">{t("screens.permissions.switchToGoogleFit")}</TextTemplate>
+        <TextTemplate type="b2">{t("screens.permissions.switch_to_google_fit")}</TextTemplate>
       </View>
       <Button
         size="Fill"

@@ -43,7 +43,7 @@ export default memo(Left);
 
 const getAccessibilityLabel = (iconType: LeftIconTypes) => {
   if (iconType === "Menu") {
-    return t("topBar.menu.icon.accessibilityLabel");
+    return t("top_bar.menu.icon.accessibility_label");
   }
 
   return iconType;
