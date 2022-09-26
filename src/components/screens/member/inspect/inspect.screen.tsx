@@ -37,7 +37,7 @@ const InspectScreen = ({
   inspectOtherUser,
 }: InspectProps) => {
   const actionButtonLabel = useMemo(
-    () => (inspectOtherUser ? t("screens.inspect.duel.challengeDuel") : t("screens.inspect.duel.challengeSomebody")),
+    () => (inspectOtherUser ? t("screens.inspect.duel.challenge_duel") : t("screens.inspect.duel.challenge_somebody")),
     [inspectOtherUser]
   );
 

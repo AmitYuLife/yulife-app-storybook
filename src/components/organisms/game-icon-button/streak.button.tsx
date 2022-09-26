@@ -27,7 +27,7 @@ const _Streak = () => {
       onPress={createHandlePress(streak)}
       label={`${currentStreak || 0}/${maxStreak || 1}`}
       Icon={<StreakIcon isDoneToday={isDoneToday} />}
-      accessibilityLabel={t("screens.daily.streak.accessibilityLabel", {
+      accessibilityLabel={t("screens.daily.streak.accessibility_label", {
         currentStreak: currentStreak || 0,
         maxStreak: maxStreak || 1,
       })}

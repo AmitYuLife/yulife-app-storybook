@@ -77,8 +77,8 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   const accessibilityLabel = useMemo(
     () =>
       hasNotification
-        ? t("screens.daily.challengeButton.backToChallenge.accessibilityLabel")
-        : t("screens.daily.challengeButton.takeChallenge.accessibilityLabel", { challenges: availableForToday }),
+        ? t("screens.daily.challenge_button.back_to_challenge.accessibility_label")
+        : t("screens.daily.challenge_button.take_challenge.accessibility_label", { challenges: availableForToday }),
     [hasNotification, availableForToday]
   );
 
@@ -136,7 +136,7 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
           <TextTemplate
             type="h1"
             color={textStyle.color}
-            accessibilityLabel={t("screens.daily.dailyPassive.coins.accessibilityLabel", { coins: dailyEarnedCoins })}
+            accessibilityLabel={t("screens.daily.daily_passive.coins.accessibility_label", { coins: dailyEarnedCoins })}
           >
             <Counter duration={1200} value={dailyEarnedCoins} textStyle={counterStyle} /> YuCoin today
           </TextTemplate>
@@ -147,11 +147,13 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
               steps={dailySteps}
               cycling={dailyCycling}
               mindfulness={usePassiveMeditation && dailyMeditation > 0 ? mindfulTotalToDisplay : null}
-              stepsAccessibilityLabel={t("screens.daily.dailyPassive.steps.accessibilityLabel", { steps: dailySteps })}
-              mindfulnessAccessibilityLabel={t("screens.daily.dailyPassive.mindfulness.accessibilityLabel", {
+              stepsAccessibilityLabel={t("screens.daily.daily_passive.steps.accessibility_label", {
+                steps: dailySteps,
+              })}
+              mindfulnessAccessibilityLabel={t("screens.daily.daily_passive.mindfulness.accessibility_label", {
                 mindfulness: mindfulTotal.minutes,
               })}
-              cyclingAccessibilityLabel={t("screens.daily.dailyPassive.cycling.accessibilityLabel", {
+              cyclingAccessibilityLabel={t("screens.daily.daily_passive.cycling.accessibility_label", {
                 cycling: dailyCycling,
               })}
             />

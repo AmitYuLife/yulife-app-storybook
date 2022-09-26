@@ -17,8 +17,8 @@ export const TextInputPassword = memo(({ errorMessage, hasError, onChange, value
   const accessibilityLabel = useMemo(
     () =>
       showPassword
-        ? t("atoms.textInputPassword.hide.accessibilityLabel")
-        : t("atoms.textInputPassword.show.accessibilityLabel"),
+        ? t("atoms.text_input_password.hide.accessibility_label")
+        : t("atoms.text_input_password.show.accessibility_label"),
     [showPassword]
   );
 

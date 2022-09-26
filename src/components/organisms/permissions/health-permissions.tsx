@@ -37,10 +37,10 @@ const HealthPermissionsSection = ({
   });
 
   const healthAppSectionTitle = Platform.select({
-    ios: t("screens.permissions.healthSection.iosHeader"),
+    ios: t("screens.permissions.health_section.ios_header"),
     android: showSamsungHealth
-      ? t("screens.permissions.healthSection.samsungHeader")
-      : t("screens.permissions.healthSection.androidHeader"),
+      ? t("screens.permissions.health_section.samsung_header")
+      : t("screens.permissions.health_section.android_header"),
   });
 
   const openHealthApp = useCallback(() => {
@@ -72,8 +72,8 @@ const HealthPermissionsSection = ({
           requirement={requirement}
           loading={loading}
           showInfoPopup={showInfoPopup}
-          errorMessage={t("screens.permissions.statusAskPermissions")}
-          infoMessage={t("screens.permissions.statusUnknown")}
+          errorMessage={t("screens.permissions.status_ask_permissions")}
+          infoMessage={t("screens.permissions.status_unknown")}
         />
       ))}
 

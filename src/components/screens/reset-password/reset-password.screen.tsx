@@ -27,19 +27,19 @@ const ResetPasswordScreen: FunctionComponent<IProps> = ({
   onSubmitPress,
 }) => {
   const translations = useTranslation([
-    "screens.resetPassword.heading",
-    "screens.resetPassword.subheading",
-    "screens.resetPassword.ctaLabel",
-    "screens.resetPassword.ctaLabelSecondary",
-    "screens.resetPassword.submitting",
+    "screens.reset_password.heading",
+    "screens.reset_password.subheading",
+    "screens.reset_password.cta_label",
+    "screens.reset_password.cta_label_secondary",
+    "screens.reset_password.submitting",
   ]);
 
   return (
     <CentredScreen footerImage="forest" BackgroundGradient={<UnauthorisedGradient />}>
       <Pad height={120} />
-      <Heading style={styles.heading} label={translations["screens.resetPassword.heading"]} />
+      <Heading style={styles.heading} label={translations["screens.reset_password.heading"]} />
       <Pad height={9} />
-      <Blurb wrapperStyle={styles.blurbWrapper} label={translations["screens.resetPassword.subheading"]} />
+      <Blurb wrapperStyle={styles.blurbWrapper} label={translations["screens.reset_password.subheading"]} />
       <Pad height={21} />
       <TextInput
         testID={INPUT_RESET_PASSWORD}
@@ -53,11 +53,11 @@ const ResetPasswordScreen: FunctionComponent<IProps> = ({
       <Button
         isLoading={isSubmitting}
         disabled={disableSubmit || isSubmitting}
-        label={translations[isSubmitting ? "screens.resetPassword.submitting" : "screens.resetPassword.ctaLabel"]}
+        label={translations[isSubmitting ? "screens.reset_password.submitting" : "screens.reset_password.cta_label"]}
         onPress={onSubmitPress}
       />
       <Pad height={10} />
-      <LinkButton label={translations["screens.resetPassword.ctaLabelSecondary"]} onPress={onCancelPress} />
+      <LinkButton label={translations["screens.reset_password.cta_label_secondary"]} onPress={onCancelPress} />
     </CentredScreen>
   );
 };

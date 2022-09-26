@@ -44,8 +44,8 @@ export const LoginForm = (props: LoginFormProps) => {
   const t = useTranslation([
     "screens.login.help",
     "screens.login.heading",
-    "screens.login.ctaLabel",
-    "screens.login.accessibility.hideKeyboard",
+    "screens.login.cta_label",
+    "screens.login.accessibility.hide_keyboard",
   ]);
   const isShowingKeyboard = useKeyboardListeners();
   const currentModal = useSelector(getModalState);
@@ -86,7 +86,7 @@ export const LoginForm = (props: LoginFormProps) => {
         style={styles.fullScreenWrapper}
         accessible={isShowingKeyboard ? true : false}
         importantForAccessibility={isShowingKeyboard ? "auto" : "no"}
-        accessibilityLabel={t["screens.login.accessibility.hideKeyboard"]}
+        accessibilityLabel={t["screens.login.accessibility.hide_keyboard"]}
         onPress={isShowingKeyboard ? Keyboard.dismiss : () => null}
       >
         <View />
@@ -128,7 +128,7 @@ export const LoginForm = (props: LoginFormProps) => {
         testID={BUTTON_LOGIN(disabled)}
         isLoading={isLoggingIn}
         disabled={isLoggingIn || disabled}
-        label={t["screens.login.ctaLabel"]}
+        label={t["screens.login.cta_label"]}
         onPress={onLogInPress}
         size="Large"
       />

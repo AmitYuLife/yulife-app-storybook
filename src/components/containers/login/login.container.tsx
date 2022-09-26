@@ -94,7 +94,7 @@ const LoginContainer: React.FC<Props> = ({
 
       const isScreenReaderEnabled = await AccessibilityInfo.isScreenReaderEnabled();
       if (isScreenReaderEnabled) {
-        Alert.alert(t("screens.login.accessibility.alertErrorTitle"), errorMessage);
+        Alert.alert(t("screens.login.accessibility.alert_error_title"), errorMessage);
       }
     },
     [isUsingOtp]
@@ -121,7 +121,7 @@ const LoginContainer: React.FC<Props> = ({
             // no need to send the user to healthkit-connect if device is an ipad
             await goToNext(Style.isIPad() ? true : authorised, results.data.loginUser.user.redeemedOnboarding);
           } else {
-            handleError(t("screens.login.accessibility.alertErrorDefaultMessage"));
+            handleError(t("screens.login.accessibility.alert_error_default_message"));
           }
         } catch (e) {
           handleError(trimGraphQLError(e?.message));

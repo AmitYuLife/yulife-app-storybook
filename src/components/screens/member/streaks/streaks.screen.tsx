@@ -59,12 +59,12 @@ const StreaksScreen = ({
   const accessibilityLabel = useMemo(
     () =>
       isStreakCompleted
-        ? t("screens.streak.accessibility.streakCompleted", {
+        ? t("screens.streak.accessibility.streak_completed", {
             header: streakInfo?.header,
             ribbonLabel,
             time: accessibilityTimeRemaining,
           })
-        : t("screens.streak.accessibility.streakStart", {
+        : t("screens.streak.accessibility.streak_start", {
             header: streakInfo?.header,
             subHeader: streakInfo?.subHeader,
             streakCompleted,

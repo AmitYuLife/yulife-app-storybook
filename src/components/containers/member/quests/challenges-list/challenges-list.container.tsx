@@ -53,7 +53,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
   const name = useMemo(() => levelName || `level ${level}`, [level, levelName]);
 
   const setError = useCallback(() => {
-    setErrorState(t("createChallengeError"));
+    setErrorState(t("create_challenge_error"));
   }, []);
 
   const onDismissFitkitConnect = useCallback(() => {

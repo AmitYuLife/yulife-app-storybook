@@ -22,13 +22,13 @@ export function getTime(nextAvailable: number, format?: TimeType) {
   const minutes = Math.floor(nextAvailable / 60) % 60;
   const seconds = nextAvailable % 60;
 
-  const daysOrDay = days > 1 ? t("timeUnits.days") : t("timeUnits.day");
-  const hoursOrHour = hours > 1 ? t("timeUnits.hours") : t("timeUnits.hour");
-  const minutesOrMinute = minutes > 1 ? t("timeUnits.minutes") : t("timeUnits.minute");
-  const secondsOrSecond = seconds > 1 ? t("timeUnits.seconds") : t("timeUnits.second");
+  const daysOrDay = days > 1 ? t("time_units.days") : t("time_units.day");
+  const hoursOrHour = hours > 1 ? t("time_units.hours") : t("time_units.hour");
+  const minutesOrMinute = minutes > 1 ? t("time_units.minutes") : t("time_units.minute");
+  const secondsOrSecond = seconds > 1 ? t("time_units.seconds") : t("time_units.second");
 
   if (hours < 1 && minutes < 1 && seconds < 1) {
-    return { time: "0s", accessibility: `0 ${t("timeUnits.seconds")}` };
+    return { time: "0s", accessibility: `0 ${t("time_units.seconds")}` };
   }
 
   const paddedHours = padNum(hours);

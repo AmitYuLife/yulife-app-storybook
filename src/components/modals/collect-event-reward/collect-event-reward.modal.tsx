@@ -126,19 +126,19 @@ export default function CollectEventRewardModal({ event, rewards, completed = fa
   const { title, descriptionTitle, description, cta, status } = useMemo(() => {
     if (eventFinished) {
       return {
-        title: t("screens.eventCompleted.title", { event }),
-        descriptionTitle: t("screens.eventCompleted.descriptionTitle"),
-        description: t("screens.eventCompleted.description"),
-        cta: t("screens.eventCompleted.cta"),
+        title: t("screens.event_completed.title", { event }),
+        descriptionTitle: t("screens.event_completed.description_title"),
+        description: t("screens.event_completed.description"),
+        cta: t("screens.event_completed.cta"),
         status: eventState.COMPLETED,
       };
     }
 
     return {
-      title: t("screens.collectRewardModal.title", { event }),
-      descriptionTitle: t("screens.collectRewardModal.descriptionTitle"),
-      description: t("screens.collectRewardModal.description"),
-      cta: t("screens.collectRewardModal.cta"),
+      title: t("screens.collect_reward_modal.title", { event }),
+      descriptionTitle: t("screens.collect_reward_modal.description_title"),
+      description: t("screens.collect_reward_modal.description"),
+      cta: t("screens.collect_reward_modal.cta"),
       status: eventState.IN_PROGRESS,
     };
   }, [eventFinished]);

@@ -36,7 +36,7 @@ const MediaList = ({ title, thumbnail, duration, reward, onPress }: IProps) => {
           <TextTemplate type="b2b">{title}</TextTemplate>
           <View style={styles.details}>
             <TextTemplate type="l2b">
-              {t("screens.mediaList.videoDurationRewardLabel", { formattedDuration, reward })}
+              {t("screens.media_list.video_duration_reward_label", { formattedDuration, reward })}
             </TextTemplate>
             <RNImage source={require("@assets/icons/yucoin.png")} resizeMode="contain" style={styles.coin} />
           </View>

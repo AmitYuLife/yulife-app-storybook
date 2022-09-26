@@ -55,13 +55,13 @@ const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon }: IProps) 
 export default GenericHeaderRightIcon;
 
 const accessibilityLabels = {
-  SETTINGS: t("genericHeading.rightIcon.settings.accessibilityLabel"),
-  CLOSE: t("genericHeading.rightIcon.close.accessibilityLabel"),
-  EDIT: t("genericHeading.rightIcon.edit.accessibilityLabel"),
-  PLUS: t("genericHeading.rightIcon.plus.accessibilityLabel"),
-  Done: t("genericHeading.rightIcon.done.accessibilityLabel"),
-  SAVE: t("genericHeading.rightIcon.save.accessibilityLabel"),
-  COINS: t("genericHeading.rightIcon.coins.accessibilityLabel"),
+  SETTINGS: t("generic_heading.right_icon.settings.accessibility_label"),
+  CLOSE: t("generic_heading.right_icon.close.accessibility_label"),
+  EDIT: t("generic_heading.right_icon.edit.accessibility_label"),
+  PLUS: t("generic_heading.right_icon.plus.accessibility_label"),
+  Done: t("generic_heading.right_icon.done.accessibility_label"),
+  SAVE: t("generic_heading.right_icon.save.accessibility_label"),
+  COINS: t("generic_heading.right_icon.coins.accessibility_label"),
 };
 
 const getAccessibilityLabel = (icon: IIcon) => accessibilityLabels[icon];

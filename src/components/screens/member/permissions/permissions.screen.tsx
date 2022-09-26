@@ -91,7 +91,7 @@ const PermissionsScreen = ({
       <GenericHeadingPad />
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollViewContainer}>
         <View style={styles.messageWrapper}>
-          <TextTemplate type="b2">{t("screens.permissions.infoMessage")}</TextTemplate>
+          <TextTemplate type="b2">{t("screens.permissions.info_message")}</TextTemplate>
         </View>
         {!showSamsungHealth ? null : <SwitchGoogleFitSection connectGoogleFit={connectGoogleFit} />}
         <SystemPermissionsSection loading={loading} systemPermission={systemPermission} showInfoPopup={showPopup} />

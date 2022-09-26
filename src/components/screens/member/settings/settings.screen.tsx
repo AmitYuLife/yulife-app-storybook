@@ -129,7 +129,7 @@ export default class SettingsScreen extends PureComponent<IProps> {
         <SettingsHeader title={section.title} />
         <View style={styles.fitnessTrackersItemWrapper}>
           <View style={{ marginBottom: Style.adjust(24) }}>
-            <TextTemplate type="b2">{t("screens.settings.fitnessTrackers.title")}</TextTemplate>
+            <TextTemplate type="b2">{t("screens.settings.fitness_trackers.title")}</TextTemplate>
           </View>
           {section.items.map((item, i) => (
             <ConnectionsItem {...item} key={i} />

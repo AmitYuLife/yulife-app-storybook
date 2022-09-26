@@ -1,0 +1,409 @@
+{
+  "format": {
+    "date_short": "DD/MM/YYYY",
+    "date_readable_short": "DD MMM",
+    "date_readable": "DD MMM YYYY"
+  },
+  "validator": {
+    "email": "Please enter a valid email address.",
+    "password": "Please enter a password."
+  },
+  "meditation": "Meditation",
+  "button": {
+    "close": "Close",
+    "dismiss": "Dismiss",
+    "claim": "Claim"
+  },
+  "create_challenge_error": "Sorry, there was a problem starting your challenge. \n Please try again!",
+  "screens": {
+    "weekly_quests": {
+      "title": "Weekly quests",
+      "time_remaining": "Time remaining"
+    },
+    "login": {
+      "heading": "Welcome!",
+      "cta_label": "Log in",
+      "help": "Need help logging in?",
+      "server_location": {
+        "short": "Company location",
+        "long": "Please select your company's location",
+        "heading": "Select your company location",
+        "description": "Your reward store items will depend on the location where your company is located"
+      },
+      "accessibility": {
+        "hide_keyboard": "Hide keyboard",
+        "alert_error_title": "Login failed",
+        "alert_error_default_message": "Something wrong"
+      }
+    },
+    "streak": {
+      "heading_completed": "You smashed that Streak!",
+      "cta_label_done": "Done",
+      "cta_label_collect": "Collect %{reward} %{type}",
+      "cta_label_take_challenge": "Take a challenge",
+      "subheading_collected": "Well done! The reward has been collected.",
+      "subheading_completed": "You did it!",
+      "subheading_instructions": "Complete challenges %{streakMax} more days in a row to earn a bonus %{reward} YuCoin",
+      "subheading_instructions_today": "Complete a challenge today to earn a bonus %{reward} YuCoin",
+      "subheading_instructions_first_day": "Complete challenges %{streakMax} days in a row to earn a bonus %{reward} YuCoin",
+      "subheading_today_streak_done": {
+        "day1": "Great start! Keep it up to earn %{reward} YuCoin.",
+        "day2": "You’re on your way to a bonus %{reward} YuCoin.",
+        "day3": "Just two more days and you’ll earn %{reward} YuCoin.",
+        "day4": "You’re just one day away from %{reward} YuCoin.",
+        "day5": "%{reward} YuCoin."
+      },
+      "heading_completed_today_streak": {
+        "day1": "First day done!",
+        "day2": "Two days down!",
+        "day3": "You’re over the hump!",
+        "day4": "Home stretch!",
+        "day5": "You smashed that Streak!"
+      },
+      "heading_start_streak_day": {
+        "day1": "Start your Streak",
+        "day2": "Off to a good start",
+        "day3": "Keep it going",
+        "day4": "Keep it up",
+        "day5": "Close out your Streak"
+      },
+      "accessibility": {
+        "streak_start": "%{header} %{subHeader} %{streakCompleted} out of %{streakMax} days completed.",
+        "streak_completed": "%{header} %{ribbonLabel} has been collected, begin your next streak in %{time}"
+      }
+    },
+    "daily": {
+      "today_yu_coin": {
+        "accessibility_label": "Today's yucoin"
+      },
+      "streak": {
+        "accessibility_label": "Streak %{currentStreak} out of %{maxStreak} days"
+      },
+      "surge": {
+        "accessibility_label": "%{multiplier} times surge %{time} remaining"
+      },
+      "challenge_button": {
+        "take_challenge": {
+          "accessibility_label": "Take a challenge (%{challenges} left today)"
+        },
+        "back_to_challenge": {
+          "accessibility_label": "Back to challenge"
+        }
+      },
+      "daily_passive": {
+        "coins": {
+          "accessibility_label": "%{coins} yucoin earned today"
+        },
+        "steps": {
+          "accessibility_label": "%{steps} steps"
+        },
+        "mindfulness": {
+          "accessibility_label": ", %{mindfulness} mindful minutes"
+        },
+        "cycling": {
+          "accessibility_label": ", %{cycling} cycled"
+        }
+      },
+      "panel": {
+        "title": "Stay tuned!",
+        "description": "The next event will start soon."
+      }
+    },
+    "inspect": {
+      "duel": {
+        "challenge_duel": "Challenge to duel",
+        "challenge_somebody": "Challenge somebody"
+      }
+    },
+    "reset_password_submitted": {
+      "heading": "Email sent",
+      "subheading": "Check your inbox! If %{email} matches our records, a password recovery email is on way. If you do not receive an email, please contact support@yulife.com.",
+      "cta_label": "Return to login",
+      "cta_label_secondary": "Back"
+    },
+    "reset_password": {
+      "heading": "Need help?",
+      "subheading": "No problem! Enter your account email and we will send a magic link straight to your inbox, no password necessary!",
+      "cta_label": "Email me a magic link",
+      "cta_label_secondary": "Back",
+      "submitting": "Submitting ..."
+    },
+    "no_access": {
+      "heading": "Sorry!",
+      "subheading": "You are not able to use this app at the moment."
+    },
+    "offline": {
+      "heading": "You're offline",
+      "subheading": "Check your internet connection.",
+      "cta_label": "Got it"
+    },
+    "signup_reward": {
+      "heading": "Sign-up bounty\nunlocked!",
+      "subheading": "Use your YuCoin for vouchers from Amazon, Asos, M&S, and many more!",
+      "cta_label": "Next",
+      "cta_accessibility": "Get started with Yulife",
+      "subheading_accessibility": "Use your yucoin for vouchers from Amazon, Asos, M&S, and many more!"
+    },
+    "settings": {
+      "fitness_trackers": {
+        "title": "Connect your fitness tracker to get rewarded for additional daily steps. Don’t forget to still keep your phone with you during challenges!"
+      }
+    },
+    "info_modal": {
+      "other_wearables": {
+        "heading": "As long as your wearable connects up to %{platform} we will sync up at the end of each day to reward you for all your steps.",
+        "cta_label": "Got it",
+        "item": "Other wearables"
+      }
+    },
+    "permissions": {
+      "title": "Activity permissions",
+      "description": "Status and management of account and system level permissions.",
+      "info_message": "Manage your permissions to get fully rewarded with YuCoin for your activities.",
+      "switch_to_google_fit": "Samsung Health does not currently sync all the data we need in order to reward you for your activities. To sync mindful minutes, cycling & 3rd party apps, please switch to Google Fit.",
+      "heading": "Permissions",
+      "status_unknown": "**Status: Unknown**\nWe can not determine the status of the permission. Probably all is in working order.",
+      "status_disconnected": "**Status: Disconnected**\nTo reconnect check your phone settings. Please [visit our FAQ](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) for additional help.",
+      "status_ask_permissions": "**Permission not connected**\nTo connect use the “Connect” button. Please [visit our FAQ](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) for additional help.",
+      "system_section": {
+        "header": "System Permissions",
+        "secondary_button": "System Settings"
+      },
+      "health_section": {
+        "ios_header": "Apple Health Permissions",
+        "android_header": "Google Fit Permissions",
+        "samsung_header": "Samsung Health Permissions"
+      }
+    },
+    "event_fail": {
+      "title": "%{event} event has ended",
+      "multiple_events_title": "A couple of your events have ended",
+      "description": "Hurry up to catch a spot for the next one and win big prizes.",
+      "cta": "OK"
+    },
+    "event_completed": {
+      "title": "%{event} event finished",
+      "multiple_events_title": "A couple of your events have finished",
+      "description_title": "Great job!",
+      "description": "You collected all milestone rewards. Good job! \n This event will be closed.",
+      "cta": "Great!"
+    },
+    "collect_reward_modal": {
+      "title": "%{event} event",
+      "description_title": "Great job!",
+      "description": "You have reached the event milestone!\nCongratulations. Claim your rewards",
+      "cta": "Claim"
+    },
+    "media_list": {
+      "different_app_cta_label": "Use a different app",
+      "different_app_section_label": "Or use an app",
+      "video_duration_reward_label": "%{formattedDuration} min • Earn %{reward}"
+    },
+    "challenge_progress": {
+      "how_meditate_with_other_apps_label": "How do I meditate with other apps"
+    },
+    "yumoji_builder": {
+      "create": {
+        "button": "Continue",
+        "title": "Create your Yumoji to step into the Yuniverse",
+        "link": "I'll do this later"
+      },
+      "edit": {
+        "title": "Pick a body type"
+      }
+    },
+    "eotw_chest": {
+      "title": "You have earned",
+      "space_travel_text": "You’re exactly where you’ve been, floating above your world, but it’s not longer alone.",
+      "travel_button": "Travel",
+      "beginning_button": "A new beginning",
+      "claim_button": "Claim rewards",
+      "open_chest_button": "Open the chest"
+    }
+  },
+  "permissions": {
+    "android": {
+      "activity_recognition": {
+        "title": "Physical Recognition",
+        "requirement": "Required for: Steps, Mindfulness & Cycling",
+        "description": "Needed by the YuLife app to get activity data from your phone."
+      },
+      "activity_recognition_samsung_health": {
+        "title": "Physical Recognition",
+        "requirement": "Required for: Steps",
+        "description": "Needed by the YuLife app to get activity data from your phone."
+      },
+      "location": {
+        "title": "Location",
+        "requirement": "Required for: Cycling",
+        "description": "Needed by the YuLife app to get activity data from your phone."
+      },
+      "fitness_activity_read": {
+        "title": "Steps",
+        "requirement": "Requires: Physical Recognition",
+        "description": "Needed by the YuLife app to read steps data tracked in your Google Fit account."
+      },
+      "mindfulness_read": {
+        "title": "Mindful Minutes",
+        "requirement": "Requires: Physical Recognition",
+        "description": "Needed by the YuLife app to sync mindful minutes from your meditation sessions to your Google Fit account."
+      },
+      "distance_read": {
+        "title": "Cycling Distance",
+        "requirement": "Requires: Physical Recognition, Location",
+        "description": "Needed by the YuLife app to get cycling/biking data tracked in your Google Fit account."
+      },
+      "workouts_read": {
+        "title": "Workouts",
+        "requirement": "Requires: Physical Recognition",
+        "description": "Needed by the YuLife app to get workout (e.g. Fiit) data tracked in your Google Fit account."
+      },
+      "samsung_steps_count_trend": {
+        "title": "Daily steps count trend",
+        "requirement": "Requires: Physical recognition",
+        "description": "Needed by the YuLife app to read steps data tracked in your Samsung Health account."
+      },
+      "samsung_steps_count": {
+        "title": "Step count",
+        "requirement": "Requires: Physical recognition",
+        "description": "Needed by the YuLife app to read steps data tracked in your Samsung Health account."
+      },
+      "samsung_mindful": {
+        "title": "Mindful minutes (Unsupported)",
+        "description": "Meditation is not supported by Samsung Health. To get rewarded switch to Google Fit."
+      },
+      "samsung_cycling": {
+        "title": "Cycling (Unsupported)",
+        "description": "Cycling is not supported by Samsung Health. To get rewarded switch to Google Fit."
+      }
+    },
+    "ios": {
+      "motion_and_fitness": {
+        "title": "Motion & Fitness",
+        "description": "Required for the YuLife app to reward you for your daily activities."
+      },
+      "steps_read": {
+        "title": "Steps",
+        "description": "Needed by the YuLife app to read steps data tracked in your Apple Health account."
+      },
+      "mindfulness_read": {
+        "title": "Mindful Minutes",
+        "description": "Needed by the YuLife app to sync mindful minutes from your meditation sessions to your Apple Health account."
+      },
+      "cycling_read": {
+        "title": "Cycling Distance",
+        "description": "Needed by the YuLife app to get cycling/biking data tracked in your Apple Health account."
+      },
+      "workouts_read": {
+        "title": "Workouts",
+        "description": "Needed by the YuLife app to get workout (e.g. Fiit) data tracked in your Apple Health account."
+      }
+    }
+  },
+  "modals": {
+    "generic_modal": {
+      "cancel_challenge": {
+        "heading": "Call it quits?",
+        "subheading": "Your current progress will be lost but you can retry any time",
+        "cta_label": "Exit challenge",
+        "cta_label_secondary": "Cancel"
+      },
+      "on_meditopia_error": {
+        "heading": "Uh oh, something’s not quite right.",
+        "subheading": "We couldn’t load the media. Please check your connection and try again. If you continue to see this message reach out to us via chat.",
+        "cta_label": "Retry",
+        "cta_label_secondary": "Quest menu"
+      },
+      "yumoji_builder": {
+        "heading": "Yu look great!",
+        "subheading": "Do you want to save these changes?",
+        "cta_label": "Save changes",
+        "cta_label_secondary": "Back"
+      }
+    }
+  },
+  "molecules": {
+    "coin_confetti": {
+      "accessibility_label": "Plus %{coins} yucoin"
+    }
+  },
+  "atoms": {
+    "text_input_password": {
+      "hide": {
+        "accessibility_label": "Hide"
+      },
+      "show": {
+        "accessibility_label": "Show"
+      }
+    }
+  },
+  "top_bar": {
+    "menu": {
+      "icon": {
+        "accessibility_label": "Menu"
+      }
+    },
+    "total_bank": {
+      "icon": {
+        "accessibility_label": "%{coins} yucoin to spend"
+      }
+    }
+  },
+  "generic_heading": {
+    "right_icon": {
+      "settings": {
+        "accessibility_label": "Settings"
+      },
+      "edit": {
+        "accessibility_label": "Edit"
+      },
+      "plus": {
+        "accessibility_label": "Plus"
+      },
+      "done": {
+        "accessibility_label": "Done"
+      },
+      "save": {
+        "accessibility_label": "Save"
+      },
+      "close": {
+        "accessibility_label": "Close"
+      },
+      "coins": {
+        "accessibility_label": "Coins"
+      }
+    }
+  },
+  "navbar": {
+    "yucoin": {
+      "accessibility_label": "Open yucoin",
+      "accessibility_text_value": "1 out of 5"
+    },
+    "quest": {
+      "accessibility_label": "Open quest",
+      "accessibility_text_value": "2 out of 5"
+    },
+    "yu": {
+      "accessibility_label": "Open yu screen",
+      "accessibility_text_value": "3 out of 5"
+    },
+    "leaderboard": {
+      "accessibility_label": "Open leaderboard",
+      "accessibility_text_value": "4 out of 5"
+    },
+    "rewards": {
+      "accessibility_label": "Open rewards",
+      "accessibility_text_value": "5 out of 5"
+    }
+  },
+  "time_units": {
+    "days": "days",
+    "day": "day",
+    "hours": "hours",
+    "hour": "hour",
+    "minutes": "minutes",
+    "minute": "minute",
+    "seconds": "seconds",
+    "second": "second"
+  }
+}

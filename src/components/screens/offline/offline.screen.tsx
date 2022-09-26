@@ -19,7 +19,7 @@ const OfflineScreen = ({ level, onPress }: IProps) => {
   const translations = useTranslation([
     "screens.offline.heading",
     "screens.offline.subheading",
-    "screens.offline.ctaLabel",
+    "screens.offline.cta_label",
   ]);
 
   return (
@@ -35,7 +35,7 @@ const OfflineScreen = ({ level, onPress }: IProps) => {
             </TextTemplate>
           </View>
           <View style={styles.buttonWrapper}>
-            <Button onPress={onPress} size="Medium" label={translations["screens.offline.ctaLabel"]} />
+            <Button onPress={onPress} size="Medium" label={translations["screens.offline.cta_label"]} />
           </View>
         </View>
       </View>
