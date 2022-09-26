@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_1, CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_10, CUSTOMER_11, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_ARCHIVED, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_22, CUSTOMER_23, CUSTOMER_ALPHA, CUSTOMER_24, CUSTOMER_25, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_38, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_43, CUSTOMER_44, CUSTOMER_45, CUSTOMER_46, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_47, CUSTOMER_48, CUSTOMER_49, CUSTOMER_50, CUSTOMER_51 } from '../postgres/customers';
+import { CUSTOMER_1, CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_10, CUSTOMER_11, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_ARCHIVED, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_22, CUSTOMER_23, CUSTOMER_ALPHA, CUSTOMER_24, CUSTOMER_25, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_38, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_43, CUSTOMER_44, CUSTOMER_45, CUSTOMER_46, CUSTOMER_47, CUSTOMER_48, CUSTOMER_49, CUSTOMER_50, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_MEDITOPIA_1, CUSTOMER_MEDITOPIA_2, CUSTOMER_MEDITOPIA_3, CUSTOMER_51 } from '../postgres/customers';
 import moment = require('moment');
 import { AUTH_TEMPLATE } from "./_templates"
 
@@ -615,6 +615,47 @@ export const AUTH_51 = {
     }
 }  as IDatabaseItem
 
+export const AUTH_MEDITOPIA_1 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        _id: generateRandomMongoId(),
+        lastIp: "35.176.60.174",
+        password: "letmein",
+        scope: "user",
+        strategy: "0",
+        used: false,
+        userId: CUSTOMER_MEDITOPIA_1.data.customerId
+    }
+} as IDatabaseItem
+
+export const AUTH_MEDITOPIA_2 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        _id: generateRandomMongoId(),
+        lastIp: "35.176.60.174",
+        password: "letmein",
+        scope: "user",
+        strategy: "0",
+        used: false,
+        userId: CUSTOMER_MEDITOPIA_2.data.customerId
+    }
+} as IDatabaseItem
+
+export const AUTH_MEDITOPIA_3 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        _id: generateRandomMongoId(),
+        lastIp: "35.176.60.174",
+        password: "letmein",
+        scope: "user",
+        strategy: "0",
+        used: false,
+        userId: CUSTOMER_MEDITOPIA_3.data.customerId
+    }
+} as IDatabaseItem
 
 export const AUTH_DENTAL_1 = {
     type: "mongo",

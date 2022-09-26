@@ -42,6 +42,8 @@ export const REWARD_STORE_SETTINGS_SCREEN = "REWARD_STORE_SETTINGS_SCREEN"
 export const PERK_SCREEN = "PERK_SCREEN"
 export const EVENT_DIALOG_SCREEN = "EVENT_DIALOG_SCREEN";
 export const HEALTH_SCREEN = "HEALTH_SCREEN";
+export const MEDITOPIA_CHALLENGE_LOAD_SCREEN = "MEDITOPIA_CHALLENGE_LOAD_SCREEN";
+export const CHOOSE_MEDITOPIA_SCREEN = "CHOOSE_MEDITOPIA_SCREEN";
 export const INSPECT_SCREEN = "INSPECT_SCREEN";
 
 
@@ -81,11 +83,16 @@ export const ACTIVITY_FEED = "ACTIVITY_FEED"
 export const YUCOIN_POWER_INFO = "YUCOIN_POWER_INFO"
 export const RIGHT_PRODUCT_STEP_MULTI_BUTTON = "RIGHT_PRODUCT_STEP_MULTI_BUTTON";
 export const LEFT_PRODUCT_STEP_MULTI_BUTTON = "LEFT_PRODUCT_STEP_MULTI_BUTTON";
+export const USE_OTHER_APP_BUTTON = "USE_OTHER_APP_BUTTON";
+export const YU_COIN_COUNT = (coins: number) => `YU_COIN_COUNT_${coins}`;
+export const BUTTON_LIST_SCREEN = (index: number) => `BUTTON_LIST_SCREEN_${index}`;
+export const SCREEN_CLOSE = "SCREEN_CLOSE";
 export const INFO_PANEL_CTA_ERROR_BUTTON = "INFO_PANEL_CTA_ERROR_BUTTON";
 export const INFO_PANEL_CTA_WARNING_BUTTON = "INFO_PANEL_CTA_WARNING_BUTTON";
 export const INFO_PANEL_CTA_SUCCESS_BUTTON = "INFO_PANEL_CTA_SUCCESS_BUTTON";
 export const INFO_PANEL_CTA_NOTIFICATION_BUTTON = "INFO_PANEL_CTA_NOTIFICATION_BUTTON";
 export const INSPECT_BUTTON = "INSPECT_BUTTON";
+
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;
 export const VIEW_TOP_RIGHT_COIN_COUNTER = (coins: number) => `VIEW_TOP_RIGHT_COIN_COUNTER_${coins}`;
@@ -110,6 +117,8 @@ export const HORIZONTAL_SCROLLER = 'HORIZONTAL_SCROLLER'
 export const DAILYSTEP_SCREEN_COIN =  "DAILYSTEP_SCREEN_COIN";
 export const STATUS_ICON = (value:string) => `STATUS_ICON_${value}`
 export const MEDITATION_ITEM = (value:string) => `MEDITATION_ITEM_${value}`
+export const MEDITATION_STAR_REWARD = (star: number) => `MEDITATION_REWARD_${star}`
+export const MEDITATION_YUCOIN_REWARD = (yucoin: number) => `MEDITATION_REWARD_${yucoin}`
 export const CHALLENGE_HISTORY_YUCOIN_STARS = (yuCoin: string, stars: number, challengeType: string, index: number) => `CHALLENGE_HISTORY_YUCOIN+${yuCoin}_${stars}_${challengeType}_${index}`
 
 // modals
@@ -315,6 +324,27 @@ export const YUMOJI_OUTFIT_RADIO = (title: string) => `YUMOJI_OUTFIT_RADIO${titl
 export const YUMOJI_OUTFIT_LABEL = (title: string) => `YUMOJI_OUTFIT_LABEL${title}`
 export const DENTAL_TOOLTIP_INFO = "DENTAL_TOOLTIP_INFO"
 
+// MEDITOPIA
+export const MEDITOPIA_LOGO = "MEDITOPIA_LOGO";
+export const VIDEO_PLAYER_TIMER = "VIDEO_PLAYER_TIMER";
+export const VIDEO_PROGRESS_BAR = "VIDEO_PROGRESS_BAR";
+export const VIDEO_PLAY_PAUSE_BUTTON = (paused: boolean) => `VIDEO_PLAY_PAUSE_BUTTON_${paused}`;
+export const MEDITOPIA_TIMER_MINUTES = (mins: string) => `MEDITOPIA_TIMER_MINUTES_${mins}`;
+export const MEDITOPIA_TIMER_SECS = (secs: string) =>  `MEDITOPIA_TIMER_SECS_${secs}`;
+export const LOADING_BAR = "LOADING_BAR";
+export const CHALLENGE_DETAILS_SCREEN = "CHALLENGE_DETAILS_SCREEN";
+export const TAKE_CHALLENGE_BUTTON = (text: string) => `TAKE_CHALLENGE_BUTTON_${text}`
+export const SET_UP_BUTTON =  (text: string) => `SET_UP_BUTTON_${text}`
+export const REWARD_AMOUNT = (amount: number) => `REWARD_AMOUNT_${amount}`
+export const CHALLENGE_TYPE = (challengeType: string) => `CHALLENGE_TYPE_${challengeType}`
+export const TARGET = (target: string) => `TARGET_${target}`;
+export const TODAYS_MEDITATION_SCREEN = "TODAYS_MEDITATION_SCREEN";
+export const TODAYS_MEDITATION_HEADER = (header: string) => `TODAYS_MEDITATION_HEADER_${header}`
+export const TODAYS_MEDITATION_DESCRIPTION = (description: string) =>  `TODAYS_MEDITATION_DESCRIPTION_${description}`
+export const VIDEO_PLAYER_SCREEN = "VIDEO_PLAYER_SCREEN";
+export const VIDEO_LOGO = "VIDEO_LOGO";
+export const MEDITATION_PARTNER_LOGO = "MEDITATION_PARTNER_LOGO";
+export const VIDEO_PLAYER = "VIDEO_PLAYER";
 // INSPECT SCREEN
 export const YUMOJI = "YUMOJI";
 export const INSPECT_DATA = (value: number, label: string) => `INSPECT_DATA${value}_${label}`;

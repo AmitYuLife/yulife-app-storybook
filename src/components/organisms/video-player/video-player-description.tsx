@@ -5,7 +5,7 @@ import { t } from "@locale";
 import { Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { StarIcon } from "@atoms/icon/star-icon";
-
+import { MEDITATION_STAR_REWARD, MEDITATION_YUCOIN_REWARD } from "@ids";
 interface IProps {
   title: string;
   description: string;
@@ -43,14 +43,14 @@ const VideoPlayerDescription = ({ title, description, duration, stars, yuCoin, l
             {durationFormatted} {timeType === "min" ? "mins" : "secs"}
           </TextTemplate>
         </View>
-        <View style={styles.stars}>
+        <View style={styles.stars} testID={MEDITATION_STAR_REWARD(stars)}>
           {Array.from({ length: stars }).map((_, index) => (
             <View key={index} style={styles.starIcon}>
               <StarIcon />
             </View>
           ))}
         </View>
-        <View style={styles.yuCoin}>
+        <View style={styles.yuCoin} testID={MEDITATION_YUCOIN_REWARD(yuCoin)}>
           <TextTemplate type="b2">{yuCoin}</TextTemplate>
           <RNImage source={require("@assets/icons/yucoin.png")} resizeMode="contain" style={styles.coin} />
         </View>

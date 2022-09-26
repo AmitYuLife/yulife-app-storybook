@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { REWARDS_SCREEN, REWARDS_LIST_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, BACK_BUTTON} from "@ids";
+import { REWARDS_SCREEN, REWARDS_LIST_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, WEGIFT_DETAILS, BACK_BUTTON} from "@ids";
 import { CORE_REWARDS_JOHN_LEWIS, CORE_REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_3, AUTH_3, CORE_REWARDS_NIKE, CUSTOMER_4, AUTH_4, CUSTOMER_2, AUTH_2, REWARD_LEDGER_1 } from "@data";
 
 

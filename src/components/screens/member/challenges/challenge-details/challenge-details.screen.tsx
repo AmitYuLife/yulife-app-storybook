@@ -8,6 +8,7 @@ import Milestones, { IMilestoneProps } from "./milestones";
 import { GenericHeadingAbsolute } from "@organisms";
 import { Style } from "@styles";
 import { useBackHandler } from "@hooks";
+import { CHALLENGE_DETAILS_SCREEN, TAKE_CHALLENGE_BUTTON, SET_UP_BUTTON, CHALLENGE_TYPE } from "@ids";
 
 interface IOwnProps {
   heading: string;
@@ -40,7 +41,7 @@ function ChallengeDetailsScreen({
 
   return (
     <>
-      <View style={styles.wrapper}>
+      <View style={styles.wrapper} testID={CHALLENGE_DETAILS_SCREEN}>
         <Image
           source={{ uri: imageUri }}
           width={Style.adjust(235)}
@@ -56,7 +57,7 @@ function ChallengeDetailsScreen({
             },
           ])}
         >
-          <Text bold={true} style={styles.heading}>
+          <Text bold={true} style={styles.heading} testID={CHALLENGE_TYPE(heading)}>
             {heading}
           </Text>
           <Milestones milestones={milestones} />
@@ -67,11 +68,17 @@ function ChallengeDetailsScreen({
           label={isLoading ? data.loading : data.ctaLabel}
           onPress={onPressCta}
           wrapperStyle={styles.ctaButton}
+          testID={TAKE_CHALLENGE_BUTTON(data.ctaLabel)}
         />
         {!onPressSetUp ? (
           <Text style={styles.footer}>{data.footer}</Text>
         ) : (
-          <SecondaryButton label={data.setUpLabel} onPress={onPressSetUp} wrapperStyle={styles.setUp} />
+          <SecondaryButton
+            label={data.setUpLabel}
+            onPress={onPressSetUp}
+            wrapperStyle={styles.setUp}
+            testID={SET_UP_BUTTON(data.setUpLabel)}
+          />
         )}
         {!error ? null : <Text style={styles.error}>{error}</Text>}
       </View>

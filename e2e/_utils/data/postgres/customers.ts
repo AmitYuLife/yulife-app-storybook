@@ -699,6 +699,45 @@ export const CUSTOMER_DENTAL_1 = {
         lastName: "Todd",
         dateOfBirth: moment().subtract(23, "years").toDate(),
         status: "onboarded",
+    },
+} as IDatabaseItem
+
+export const CUSTOMER_MEDITOPIA_1 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "David",
+        lastName: "Reit",
+        dateOfBirth: moment().subtract(42, "years").toDate(),
+        status: "onboarded",
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_MEDITOPIA_2 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Steph",
+        lastName: "Reit",
+        dateOfBirth: moment().subtract(41, "years").toDate(),
+        status: "onboarded",
+        }
+} as IDatabaseItem
+
+export const CUSTOMER_MEDITOPIA_3 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Jack",
+        lastName: "Reit",
+        dateOfBirth: moment().subtract(40, "years").toDate(),
+        status: "onboarded",
     }
 } as IDatabaseItem
 

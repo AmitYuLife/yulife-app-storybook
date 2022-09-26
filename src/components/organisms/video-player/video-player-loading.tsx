@@ -4,9 +4,10 @@ import LottieView from "lottie-react-native";
 import { Style, Colours } from "@styles";
 import { TextTemplate } from "@atoms";
 const lottieJson = require("./meditation-anim-lottie.json");
+import { MEDITOPIA_CHALLENGE_LOAD_SCREEN } from "@ids";
 
 const VideoPlayerLoading = () => (
-  <View style={styles.wrapper}>
+  <View style={styles.wrapper} testID={MEDITOPIA_CHALLENGE_LOAD_SCREEN}>
     <LottieView resizeMode="cover" style={styles.lottie} source={lottieJson} autoPlay={true} />
     <View style={styles.loading}>
       <TextTemplate type="b1b" color={Colours.neutral.n400}>

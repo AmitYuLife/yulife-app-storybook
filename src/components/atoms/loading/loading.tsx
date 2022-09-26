@@ -1,6 +1,7 @@
 import { Colours } from "@styles/index";
 import * as React from "react";
 import { ActivityIndicator, ActivityIndicatorProps, StyleSheet, ViewStyle } from "react-native";
+import { LOADING_BAR } from "@ids";
 
 interface Props {
   size?: ActivityIndicatorProps["size"];
@@ -8,7 +9,13 @@ interface Props {
 }
 
 const Loading = ({ size = "large", style }: Props) => (
-  <ActivityIndicator animating={true} color={Colours.darkHotPink} style={[styles.wrapper, style]} size={size} />
+  <ActivityIndicator
+    animating={true}
+    color={Colours.darkHotPink}
+    style={[styles.wrapper, style]}
+    size={size}
+    testID={LOADING_BAR}
+  />
 );
 
 export default Loading;

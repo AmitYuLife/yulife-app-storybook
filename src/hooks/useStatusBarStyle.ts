@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 export const useStatusBarStyle = (componentId: string, condition: boolean) => {
   const currentScreen = useSelector(getRouteState);
 
-
   useEffect(() => {
     if (currentScreen === componentId && Platform.OS === "ios") {
       Navigation.mergeOptions(componentId, {

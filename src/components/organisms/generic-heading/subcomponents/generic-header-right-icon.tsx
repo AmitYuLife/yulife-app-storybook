@@ -7,6 +7,7 @@ import { IGenericHeadingProps, YuCoinCounter } from "@organisms";
 import PlusSvg from "@atoms/plus/plus-svg";
 import styles from "../generic-heading.styles";
 import { labels } from "@navigation/root";
+import { SCREEN_CLOSE } from "@ids";
 import { t } from "@locale";
 
 type IIcon = IGenericHeadingProps["rightIcon"];
@@ -87,7 +88,7 @@ const getIcon = (icon: IIcon, color: string) => {
 
     case "CLOSE":
       return (
-        <View>
+        <View testID={SCREEN_CLOSE}>
           <CloseSvg stroke={color} accessible={false} />
         </View>
       );
