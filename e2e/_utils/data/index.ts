@@ -27,6 +27,7 @@ export * from "./mongo/goal_invitation"
 export * from "./mongo/goal_events"
 export * from "./mongo/ad_banners"
 
+
 export * from "./postgres/business";
 export * from "./postgres/customers";
 export * from "./postgres/business_employees";

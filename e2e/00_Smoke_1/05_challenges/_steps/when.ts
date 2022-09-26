@@ -16,6 +16,5 @@ export const {
 
 export const {
     startChallenge,
-    dismissChestUnlock,
 } = screens.challenges
 

@@ -346,3 +346,9 @@ export const tapTextAtIndex = (text: string, index = 0, waitTime = 0) => async (
     await waitFor(target).toBeVisible().withTimeout(waitTime)
     await target.tap()
 }
+
+export const minimiseAndReopenApp = async () => {
+    await device.sendToHome();
+    await device.launchApp({newInstance: false});
+    await navigateViaText("Awesome");
+}

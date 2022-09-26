@@ -14,7 +14,14 @@ import {
 } from "@graphql/_core/schema";
 import MediaListLoading from "./media-list-loading";
 import { Source } from "react-native-fast-image";
-
+import {
+  USE_OTHER_APP_BUTTON,
+  BUTTON_LIST_SCREEN,
+  TODAYS_MEDITATION_SCREEN,
+  TODAYS_MEDITATION_HEADER,
+  TODAYS_MEDITATION_DESCRIPTION,
+  MEDITATION_PARTNER_LOGO,
+} from "@ids";
 export interface IVideo extends Video {
   reward: number;
   stars: number;
@@ -64,19 +71,19 @@ const MediaListScreen = ({
   const handleOtherAppPress = useCallback(() => handleOtherMeditationApp("otherApp"), [otherAppLoading]);
 
   return (
-    <View style={styles.flex}>
+    <View style={styles.flex} testID={TODAYS_MEDITATION_SCREEN}>
       <GenericHeadingPad />
       <View style={styles.wrapper}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.header}>
+          <View style={styles.header} testID={TODAYS_MEDITATION_HEADER(title)}>
             <TextTemplate type="b1b">{title}</TextTemplate>
           </View>
           <View style={styles.description}>
-            <TextTemplate type="b2" textAlign="center">
+            <TextTemplate type="b2" textAlign="center" testID={TODAYS_MEDITATION_DESCRIPTION(description)}>
               {description}
             </TextTemplate>
             <View style={styles.appLogo}>
-              <Image source={logo} width={98} height={20} />
+              <Image source={logo} width={98} height={20} testID={MEDITATION_PARTNER_LOGO} />
             </View>
           </View>
           {loading ? (
@@ -97,8 +104,9 @@ const MediaListScreen = ({
             <TextTemplate type="l1b">{t("screens.media_list.different_app_section_label")}</TextTemplate>
           </View>
           <View>
-            {buttons.map((button) => (
+            {buttons.map((button, index) => (
               <SecondaryButton
+                testID={BUTTON_LIST_SCREEN(index)}
                 key={button.title}
                 isLoading={otherAppLoading === button.options.appName}
                 label={button.title}
@@ -115,6 +123,7 @@ const MediaListScreen = ({
               size="Fill"
               label={t("screens.media_list.different_app_cta_label")}
               onPress={handleOtherAppPress}
+              testID={USE_OTHER_APP_BUTTON}
             />
           </View>
         </ScrollView>

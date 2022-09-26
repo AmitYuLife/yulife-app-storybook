@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -24,7 +24,7 @@ Feature("App store review should behave correctly", async()=>{
     Scenario("App store review pop up and i should tap on Not really and after that Give feedback", scenario.start, async () => {
         Given("I am in the app should pop up app review", given.loginAsUser(CUSTOMER_36, AUTH_36), async () => {    
             Then("I should see text Enjoying YuLife?", then.idVisible(APPREVIEW_TEXT("Enjoying YuLife?"), 5000))
-            When("I tap the button Not really", when.tapText("Not really",1,true), async () => {
+            When("I tap the button Not really", when.tapText("Not really", 2000 ,true), async () => {
                 Then("I should see text We’re sorry to hear that", then.idVisible(APPREVIEW_TEXT("We’re sorry to hear that")))
                 Then("I should see text We’d love a chance to do better. Would you mind leaving us a few tips?", then.textVisible("We’d love a chance to do better. Would you mind leaving us a few tips?"))
                 When("I tap the button Give feedback", when.tapText("Give feedback",1,true), async () => {
@@ -40,7 +40,7 @@ Feature("App store review should behave correctly", async()=>{
     Scenario("App store review pop up and i should tap on Not really and after that No thanks", scenario.start, async () => {
         Given("I am in the app should pop up app review", given.loginAsUser(CUSTOMER_36, AUTH_36), async () => {    
                 Then("I should see text Enjoying YuLife?", then.idVisible(APPREVIEW_TEXT("Enjoying YuLife?"), 5000))
-                When("I tap the button Not really", when.tapText("Not really",1,true), async () => {
+                When("I tap the button Not really", when.tapText("Not really", 2000 ,true), async () => {
                     Then("I should see text We’d love a chance to do better. Would you mind leaving us a few tips?", then.textVisible("We’d love a chance to do better. Would you mind leaving us a few tips?"))
                     When("I tap the button Give feedback", when.tapText("No thanks",1,true), async () => {
                         Then("I should  see the daily steps screen", then.onDailySteps())

@@ -11,7 +11,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     Scenario("I can complete a meditation challenge in the first world", scenario.start, async () => {
         Given("I login as a user who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_7, AUTH_7), async () => {
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(640)))
-            When("I send the mindfulness data", when.sendMindfulnessData(), async () => {
+            When("I send the mindfulness data", when.sendMindfulnessData(320), async () => {
                 When("I start a meditation challenge", when.startChallengeFromQuests(5, "meditation"), async () => {
                     Then("I should see the meditation modal", then.meditationAppModalVisible)
                     When("I tap I'm using a different app", when.tapText("I'm using a different app"), async () => {

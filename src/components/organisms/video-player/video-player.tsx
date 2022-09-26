@@ -19,6 +19,7 @@ import VideoPlayerTimer from "./video-player-timer";
 import { Button, PressableWithDelay, VidePlayerButton } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { PlayIcon } from "@atoms/icon/play-icon";
+import { VIDEO_PLAYER_TIMER, VIDEO_PROGRESS_BAR, VIDEO_PLAY_PAUSE_BUTTON, VIDEO_PLAYER, VIDEO_LOGO } from "@ids";
 import { DETOX_ENABLED } from "@services/socket";
 import Logger from "@services/logging/logger";
 import { useDispatch, useSelector } from "react-redux";
@@ -250,7 +251,7 @@ const VideoPlayer = ({
 
   return (
     <>
-      <PressableWithDelay onPress={handleFocusScreen} style={styles.container}>
+      <PressableWithDelay onPress={handleFocusScreen} style={styles.container} testID={VIDEO_PLAYER}>
         <Video
           audioOnly={lottieUri ? true : false}
           source={{
@@ -291,13 +292,19 @@ const VideoPlayer = ({
 
         {!state.musicControlMounted ? null : (
           <Animated.View style={[styles.videoLogo, { opacity }]}>
-            <Image suppressLoadingUi={true} source={{ uri: videoLogo }} resizeMode="cover" width={Style.adjust(151)} />
+            <Image
+              suppressLoadingUi={true}
+              source={{ uri: videoLogo }}
+              resizeMode="cover"
+              width={Style.adjust(151)}
+              testID={VIDEO_LOGO}
+            />
           </Animated.View>
         )}
 
         {!state.musicControlMounted ? null : (
           <>
-            <View style={styles.currentProgressTime}>
+            <View style={styles.currentProgressTime} testID={VIDEO_PLAYER_TIMER}>
               <VideoPlayerTimer textType="time" time={state.currentProgressInMilliSeconds} colour={themeColour} />
               {!state.isBuffering ? null : (
                 <View style={styles.loading}>
@@ -305,7 +312,7 @@ const VideoPlayer = ({
                 </View>
               )}
             </View>
-            <Animated.View style={[styles.progressBarContainer, { opacity }]}>
+            <Animated.View style={[styles.progressBarContainer, { opacity }]} testID={VIDEO_PROGRESS_BAR}>
               <View style={styles.currentProgress}>
                 <VideoPlayerTimer textType="l2b" time={state.currentProgressInMilliSeconds} colour={themeColour} />
               </View>
@@ -325,7 +332,7 @@ const VideoPlayer = ({
                 <VideoPlayerTimer textType="l2b" time={state.durationInMilliSeconds} colour={themeColour} />
               </View>
             </Animated.View>
-            <Animated.View style={[styles.buttonWrapper, { opacity }]}>
+            <Animated.View style={[styles.buttonWrapper, { opacity }]} testID={VIDEO_PLAY_PAUSE_BUTTON(state.isPaused)}>
               <VidePlayerButton onPress={onButtonAction} isPaused={state.isPaused} />
             </Animated.View>
           </>
