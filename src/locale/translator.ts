@@ -4,9 +4,9 @@ import { Language } from "./types";
 
 const translations: Record<Language, () => any> = {
   // lazy requires (metro bundler does not support symlinks)
-  "en-US": () => require("@locale/translations/en-US"),
-  "en-GB": () => require("@locale/translations/en-GB"),
-  en: () => require("@locale/translations/en-GB"),
+  "en-US": () => require("./translations/en-US.json"),
+  "en-GB": () => require("./translations/en-GB.json"),
+  en: () => require("./translations/en-GB.json"),
 };
 
 class Translator {
