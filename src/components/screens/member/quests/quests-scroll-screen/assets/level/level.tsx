@@ -45,7 +45,7 @@ function LevelBubble(props: IProps) {
     () =>
       level.isDone && !level.isActive
         ? {
-            borderWidth: 1.5,
+            borderWidth: 2,
             borderColor: Colours.neutral.white,
           }
         : {},
