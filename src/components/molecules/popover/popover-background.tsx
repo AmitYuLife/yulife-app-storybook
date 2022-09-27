@@ -4,6 +4,7 @@ import { DarkScreen } from "@atoms";
 import { Style } from "@styles";
 import styles from "./popover.styles";
 import { PressableWithDelay, TouchableOpacityWithDelay } from "..";
+import { POPOVER } from "@ids";
 
 interface IProps {
   targetX?: number;
@@ -39,6 +40,7 @@ const PopoverBackground: FC<IProps> = ({ targetX, targetY, targetSize = Style.ad
           onPress={onTouchTarget}
           key="popover_target_pressable"
           style={[styles.absolute, target]}
+          testID={POPOVER}
         />
       ) : null}
     </View>

@@ -4,7 +4,9 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as helper from "./_steps/helpers"
-import { CUSTOMER_37, AUTH_37, CUSTOMER_PLI_2, AUTH_PLI_2, CUSTOMER_PLI_3, AUTH_PLI_3, CUSTOMER_PLI_4, AUTH_PLI_4 } from "@data";
+import { CUSTOMER_37, AUTH_37, CUSTOMER_PLI_2, AUTH_PLI_2, CUSTOMER_PLI_3, AUTH_PLI_3, CUSTOMER_PLI_4, AUTH_PLI_4,  } from "@data";
+import {  POPOVER } from "@ids";
+
 import * as helper_dental from "03_Dental/01_dental_journey/_steps/helpers";
 
 Feature("PLI HAPPY", async()=>{
@@ -169,7 +171,7 @@ Feature("PLI HAPPY", async()=>{
                 When("I tap off the tooltip", when.tapText(`${CUSTOMER_PLI_2.data.firstName} ${CUSTOMER_PLI_2.data.lastName}`), async () => {
                     Then("I should be back on the YuScreen", then.onYuscreenV3(CUSTOMER_PLI_2))
                 })
-                When("I tap the chest", when.tapUnlockableItem("chest"), async () => {
+                When("I tap the chest", when.tapID(POPOVER), async () => {
                     helper.ONBOARDING();
                 })
             })
@@ -184,7 +186,7 @@ Feature("PLI HAPPY", async()=>{
                 When("I tap off the tooltip", when.tapText(`${CUSTOMER_PLI_3.data.firstName} ${CUSTOMER_PLI_3.data.lastName}`), async () => {
                     Then("I should be back on the YuScreen", then.onYuscreenV3(CUSTOMER_PLI_3))
                 })
-                When("I tap the chest", when.tapUnlockableItem("chest"), async () => {
+                When("I tap the chest", when.tapID(POPOVER), async () => {
                     helper.ONBOARDING();
                 })
             })
@@ -199,7 +201,7 @@ Feature("PLI HAPPY", async()=>{
                 When("I tap off the tooltip", when.tapText(`${CUSTOMER_PLI_4.data.firstName} ${CUSTOMER_PLI_4.data.lastName}`), async () => {
                     Then("I should be back on the YuScreen", then.onYuscreenV3(CUSTOMER_PLI_4))
                 })
-                When("I tap the chest", when.tapUnlockableItem("chest"), async () => {
+                When("I tap the chest", when.tapID(POPOVER), async () => {
                     helper.ONBOARDING();
                 })
             })
