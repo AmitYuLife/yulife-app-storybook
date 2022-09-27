@@ -72,8 +72,8 @@ export const productSlotsAreCorrect = (status:string)=> async()=>{
         await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(1)).toBeVisible() // more protection coming soon button
     }
     if (status === "groupDental"){
-        await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(0)).toBeVisible() // group dental slot
-        await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(1)).toBeVisible() // more protection coming soon button
+        await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#EFFBF7")))).toBeVisible() // group dental slot
+        await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE")))).toBeVisible() // more protection coming soon button
     }
 }
 
@@ -136,12 +136,10 @@ export const groupDentalProductInfo = (packageType: string, yuCoinPower: string)
 
 export const yuCoinPowerInfo = (yuCoinPower: number) => async () => {
 
-    const yuCoinPowerTitle = "YuCoin\nPower"
     const powerBoost = `For every 1 YuCoin you would have earned, you now earn ${yuCoinPower}!`
     const baseYucoinPower = "Equipping yourself with policies boosts your YuCoin Power in the Yuniverse."
     const wellbeingEarn = "You can earn YuCoin for your wellbeing activites!"
 
-    await expect(element(by.text(yuCoinPowerTitle))).toBeVisible();
     if(yuCoinPower < 2) {
         await expect(element(by.text(wellbeingEarn))).toBeVisible()
     } else {
@@ -161,9 +159,9 @@ export const paymentOverdueInfo = async () => {
 
 }
 
-export const onboardingYuscreenV4 = (yuCoinPower:string, status: string)=> async()=>{
-    const WellbeingProduct = "Wellbeing Access"
+export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string)=> async()=>{
     const noProductText = "More protection coming soon"
+    const wellbeingAccessText = "Wellbeing Access"
     const availableProducts = "More protection"
     const protectionTitle = "Protection with personality"
     const protectionOptionText = "Take a step closer to financial wellbeing, with policies designed to be as unique as you."
@@ -173,19 +171,21 @@ export const onboardingYuscreenV4 = (yuCoinPower:string, status: string)=> async
     const paidBy = "Employer paid"
     const lifeInsurance = "Life Insurance"
     const criticalIllness = "Critical Illness"
-    const incomeProtextion = "Income Protection"
+    const incomeProtection = "Income Protection"
     const groupDental = "Dental Cover"
+    const productYuCoin = "10"
+    const dentalYuCoin = "5"
 
-    switch (status) {
+    switch (packType) {
         case "wellbeing only":
             await textVisibleAtIndex(yuCoinPower, 0)()
+            await textVisible(yuCoinText)()
+            await textVisible(powerText)() 
             await textVisibleAtIndex(yuCoinPower, 1)()
-            await expect(element(by.text(WellbeingProduct))).toBeVisible()
+            await textVisible(wellbeingAccessText)()
+            await textVisible(paidBy)()
             await textVisible(noProductText)()
             await textNotVisible(availableProducts)()
-            await textVisible(yuCoinText)()
-            await textVisible(powerText)()  
-            await textVisible(paidBy)()
             break;
         case "dentalAndPli":
             await textVisible(yuCoinPower, 0)()
@@ -195,24 +195,28 @@ export const onboardingYuscreenV4 = (yuCoinPower:string, status: string)=> async
             await textNotVisible(noProductText)()
             break;
         case "3 Products Slots":
-            await textVisible(yuCoinPower, 1)()
+            await textVisible(yuCoinPower)()
             await textVisible(yuCoinText)()
             await textVisible(powerText)()
             await textVisible(lifeInsurance)()
             await textVisibleAtIndex(paidBy, 0)()
+            await textVisibleAtIndex(productYuCoin, 0)()
             await textVisible(criticalIllness)()
             await textVisibleAtIndex(paidBy, 1)()
-            await textVisible(incomeProtextion)()
+            await textVisibleAtIndex(productYuCoin, 1)()
+            await textVisible(incomeProtection)()
             await textVisibleAtIndex(paidBy, 2)()
+            await textVisibleAtIndex(productYuCoin, 2)()
             await textVisible(availableProducts)()
             break;
         case "groupDental":
-            await textVisible(yuCoinPower)()
+            await textVisibleAtIndex(yuCoinPower, 0)()
             await textVisible(yuCoinText)()
             await textVisible(powerText)()
-            await textVisible(noProductText)()
+            await textVisibleAtIndex(dentalYuCoin, 1)()
             await textVisible(groupDental)()
             await textVisible(paidBy)()
+            await textVisible(noProductText)()
             break;
         default:
             break;
