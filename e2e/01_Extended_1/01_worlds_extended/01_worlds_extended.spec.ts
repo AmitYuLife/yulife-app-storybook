@@ -17,12 +17,10 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see the level 50 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(50)))
         })
         When("I tap this level 50 button", when.tapID(LEVEL_CHALLENGE_BUTTON(50)), async () => {
-            Then("The yunity screens should be correct", then.yunityCorrect("Forest"))
-            Then("I should be on the forest chest screen", then.isOnChestScreen("Forest"))
+            Then("The yunity screens should be Forest", then.yunityCorrect("Forest"))
         })
         When("I tap 'Open the chest'", when.tapText("Open the chest"), async()=>{
             When("I wait 5 secs for the page to load", when.wait(5000), async () => {
-                Then("I should see You have earned text", then.textVisible("You have earned"))
                 Then("I should see the three rewards earned for completing forest", then.forestThreeRewardsVisible)   
             })
         })
@@ -52,11 +50,9 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         })
         When("I tap the level 100 ocean unity challenge", when.tapID(LEVEL_CHALLENGE_BUTTON(100)), async () => {
             Then("The yunity screens should be Ocean", then.yunityCorrect("Ocean"))
-            Then("I should be on the ocean chest screen", then.isOnChestScreen("Ocean"))
         })
         When("I tap 'Open the chest'", when.tapText("Open the chest"), async()=>{
             When("I wait 5 secs for the page to load", when.wait(5000), async () => {
-                Then("I should see You have earned text", then.textVisible("You have earned"))
                 Then("I should see the three rewards earned for completing ocean", then.oceanThreeRewardsVisible)   
             })
         })
@@ -94,10 +90,8 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                     Then("I should see the level 150 desert unity challenge", then.idVisible(LEVEL_CHALLENGE_BUTTON(150)))
                     When("I tap the level 150 desert unity challenge", when.tapID(LEVEL_CHALLENGE_BUTTON(150)), async () => {
                         Then("The desert yunity screen should be correct", then.yunityCorrect("Desert"))
-                        Then("I should be on the desert chest screen", then.isOnChestScreen("Desert"))
                         When("I tap 'Open the chest'", when.tapText("Open the chest"), async()=>{
                             When("I wait 5 secs for the page to load", when.wait(5000), async () => {
-                                Then("I should see You have earned text", then.textVisible("You have earned"))
                                 Then("I should see the three rewards earned for completing desert", then.desertThreeRewardsVisible)   
                                 When("I tap Claim rewards", when.tapText("Claim rewards"), async () => {
                                     Then("I should see the level 149 challenge button on the desert third world", then.idVisible(LEVEL_CHALLENGE_BUTTON(149)))
@@ -142,23 +136,19 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                     When("I tap the level 200 unity challenge", when.tapID(LEVEL_CHALLENGE_BUTTON(200)), async () => {
                         Then("I should see the first part of the mountain yunity screen", then.mountainYunityFirstPartCorrect)
                         Then("The mountain yunity screen should be correct", then.yunityCorrect("Mountain1"))
-                        When("I tap 'Continue'",  when.tapText("Continue"), async () => {
-                            Then("I should see that I have earned a Yunity Mountain Chest", then.mountainChestMessageVisible)
-                            When("I tap 'Open the chest'", when.tapText("Open the chest"), async()=>{
-                                When("I wait 5 secs for the page to load", when.wait(5000), async () => {
-                                    Then("I should see You have earned text", then.textVisible("You have earned"))
-                                    Then("I should see the two rewards earned for completing mountain", then.mountainTwoRewardsVisible)   
-                                    When("I tap Claim rewards", when.tapText("Claim rewards"), async () => {
-                                        Then("I should be on the Explore the Yuniverse screen", then.isOnExploreYuniverseScreen)
-                                        When("I tap Explore the Yuniverse", when.tapText("Explore the Yuniverse", 2000), async () => {
-                                            Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
-                                            Then("I should see my Yucoin total for today", then.textVisible("210 YuCoin today", 2000))
-                                            When("I tap the YuCoin image", when.tapID(YUCOIN, 2000), async () => {
-                                                Then("I should see 10 Yu coin power", then.idVisible(YUCOIN_POWER(10)))
-                                                When("I tap on I for activity feed info", when.tapID(ACTIVITY_FEED, 1000), async () => {
-                                                    Then("I should see 10 YuCoin for 2000 steps", then.textVisible("10 YuCoin for 2000 steps"))
-                                                    Then("I should NOT see 20 YuCoin for 1.6 km cycling", then.textNotVisible("20 YuCoin for 1.6 km cycling"))
-                                                })
+                        When("I tap 'Open the chest'", when.tapText("Open the chest"), async()=>{
+                            When("I wait 5 secs for the page to load", when.wait(5000), async () => {
+                                Then("I should see the two rewards earned for completing mountain", then.mountainTwoRewardsVisible)   
+                                When("I tap Claim rewards", when.tapText("Claim rewards"), async () => {
+                                    Then("I should be on the Explore the Yuniverse screen", then.isOnExploreYuniverseScreen)
+                                    When("I tap Explore the Yuniverse", when.tapText("Explore the Yuniverse", 2000), async () => {
+                                        Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
+                                        Then("I should see my Yucoin total for today", then.textVisible("210 YuCoin today", 2000))
+                                        When("I tap the YuCoin image", when.tapID(YUCOIN, 2000), async () => {
+                                            Then("I should see 10 Yu coin power", then.idVisible(YUCOIN_POWER(10)))
+                                            When("I tap on I for activity feed info", when.tapID(ACTIVITY_FEED, 1000), async () => {
+                                                Then("I should see 10 YuCoin for 2000 steps", then.textVisible("10 YuCoin for 2000 steps"))
+                                                Then("I should NOT see 20 YuCoin for 1.6 km cycling", then.textNotVisible("20 YuCoin for 1.6 km cycling"))
                                             })
                                         })
                                     })
