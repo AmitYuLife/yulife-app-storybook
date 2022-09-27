@@ -15,12 +15,12 @@ interface IProps {
 
 const Panel = ({ title, description, onClose }: IProps) => {
   const {
-    centredScreen: {
-      online: { eventPanel },
-    },
+    centredScreen: { online },
   } = useSelector(getDailyStepsTheme);
 
-  const wrapper = useMemo(() => ({ ...styles.wrapper, backgroundColor: eventPanel.backgroundColor }), [eventPanel]);
+  const wrapper = useMemo(() => ({ ...styles.wrapper, backgroundColor: online?.eventPanel?.backgroundColor }), [
+    online?.eventPanel,
+  ]);
 
   return (
     <View style={wrapper}>
@@ -29,14 +29,14 @@ const Panel = ({ title, description, onClose }: IProps) => {
       </View>
       <View style={styles.closeButton}>
         <PressableWithDelay onPress={onClose}>
-          <CloseSvg stroke={eventPanel.fontColor} />
+          <CloseSvg stroke={online?.eventPanel.fontColor} />
         </PressableWithDelay>
       </View>
-      <TextTemplate type="b1b" color={eventPanel.fontColor}>
+      <TextTemplate type="b1b" color={online?.eventPanel.fontColor}>
         {title}
       </TextTemplate>
       <View style={styles.description}>
-        <TextTemplate type="b2" color={eventPanel.fontColor}>
+        <TextTemplate type="b2" color={online?.eventPanel.fontColor}>
           {description}
         </TextTemplate>
       </View>

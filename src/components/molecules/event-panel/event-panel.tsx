@@ -22,9 +22,7 @@ interface IProps {
 
 const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => {
   const {
-    centredScreen: {
-      online: { eventPanel },
-    },
+    centredScreen: { online },
   } = useSelector(getDailyStepsTheme);
   const dispatch = useDispatch();
   const PROGRESS_BAR_WIDTH = useMemo(() => width / 1.2 + 5, [width]);
@@ -37,14 +35,14 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => 
 
   const containerStyles = useMemo(
     () => ({
-      wrapper: [styles.wrapper, { backgroundColor: eventPanel.borderColor }],
+      wrapper: [styles.wrapper, { backgroundColor: online?.eventPanel?.borderColor }],
       container: [
         styles.container,
-        { backgroundColor: eventPanel.backgroundColor, borderColor: eventPanel.borderColor },
+        { backgroundColor: online?.eventPanel.backgroundColor, borderColor: online?.eventPanel?.borderColor },
       ],
       badgeContainer: [styles.badgeContainer, { backgroundColor: event?.badge?.backgroundColor || "#F86F63" }],
     }),
-    [eventPanel, event?.badge?.backgroundColor]
+    [online?.eventPanel, event?.badge?.backgroundColor]
   );
 
   const onNavigateToDetails = useCallback(async () => {
@@ -75,7 +73,7 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => 
       <View style={containerStyles.wrapper} onLayout={onLayout}>
         <View style={containerStyles.container}>
           <View style={styles.header}>
-            <TextTemplate type="b1b" color={eventPanel.fontColor}>
+            <TextTemplate type="b1b" color={online?.eventPanel?.fontColor}>
               {event.title}
             </TextTemplate>
             {event.joined ? (
@@ -93,9 +91,9 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => 
                   width={Style.adjust(16)}
                   height={Style.adjust(16)}
                   style={styles.challengeIcon}
-                  tintColor={eventPanel.fontColor}
+                  tintColor={online?.eventPanel?.fontColor}
                 />
-                <TextTemplate type="l1" color={eventPanel.fontColor}>
+                <TextTemplate type="l1" color={online?.eventPanel?.fontColor}>
                   {challenge.description}
                 </TextTemplate>
               </View>
@@ -122,14 +120,14 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => 
                 width={Style.adjust(16)}
                 height={Style.adjust(16)}
                 style={styles.challengeIcon}
-                tintColor={eventPanel.fontColor}
+                tintColor={online?.eventPanel.fontColor}
               />
-              <TextTemplate type="l1b" color={eventPanel.fontColor}>
+              <TextTemplate type="l1b" color={online?.eventPanel.fontColor}>
                 {event?.tags?.tag}
               </TextTemplate>
             </View>
             {!event?.tags?.joined ? null : (
-              <TextTemplate type="l1b" color={eventPanel.fontColor}>
+              <TextTemplate type="l1b" color={online?.eventPanel.fontColor}>
                 {event.tags.joined}
               </TextTemplate>
             )}
