@@ -42,8 +42,8 @@ export const getInitialState = (newBackgroundAssets = false, currentPlanet = Pla
       offline: { image: "gray_forest", style: { backgroundColor: "rgb(235, 235, 235)" } },
       online: {
         image: newBackgroundAssets ? "new_forest" : (`${currentPlanet}_forest` as CenteredScreenImages),
-        style: { backgroundColor: planetsColors[currentPlanet].forest.backgroundColor },
-        eventPanel: planetsColors[currentPlanet].forest.eventPanel,
+        style: { backgroundColor: planetsColors[currentPlanet]?.forest?.backgroundColor },
+        eventPanel: planetsColors[currentPlanet]?.forest?.eventPanel,
       },
     },
     hasWhiteGlow: false,
