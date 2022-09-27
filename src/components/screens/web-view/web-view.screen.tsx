@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import WebView from "react-native-webview";
-import { View, StyleSheet, KeyboardAvoidingView, Linking } from "react-native";
+import { View, StyleSheet, KeyboardAvoidingView, Linking, Platform } from "react-native";
 import Config from "react-native-config";
 import { ShouldStartLoadRequest } from "react-native-webview/lib/WebViewTypes";
 import { Style, TOP_BAR } from "@styles";
@@ -18,6 +18,12 @@ export function WebViewScreen(props: Props) {
 
   const handleInsideLinks = (event: ShouldStartLoadRequest) => {
     if (!event.url.toLowerCase().startsWith("http")) {
+      // Ios treats the url "about:blank" as a supported url, but cannot handle it within the web-view.
+      // needs to keep the loading status to true when this happens
+      if (Platform.OS === "ios" && event.url.toLowerCase() === "about:blank") {
+        return true;
+      }
+
       Linking.openURL(event.url);
       return false;
     }
@@ -31,6 +37,14 @@ export function WebViewScreen(props: Props) {
     throw new Error("There was an error loading the webview");
   }
 
+  const onRenderProcessGone = useCallback((e) => {
+    setErrorState(e.nativeEvent.didCrash);
+  }, []);
+
+  const onError = useCallback(() => {
+    setErrorState(true);
+  }, []);
+
   return (
     <View>
       <GenericHeadingPad />
@@ -42,8 +56,8 @@ export function WebViewScreen(props: Props) {
           contentContainerStyle={styles.flex}
         >
           <WebView
-            onRenderProcessGone={(e) => setErrorState(e.nativeEvent.didCrash)}
-            onError={() => setErrorState(true)}
+            onRenderProcessGone={onRenderProcessGone}
+            onError={onError}
             style={{ width: Style.DEVICE_WIDTH }}
             source={{ uri, headers: { yu_client_token: Config.YU_CLIENT_TOKEN } }}
             onShouldStartLoadWithRequest={handleInsideLinks}
