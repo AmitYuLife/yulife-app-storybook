@@ -28,7 +28,6 @@ export default function* endChallengeSaga() {
         const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
         const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
         const result: Unpacked<typeof getEndResult> = yield call(getEndResult, active, stepsBlackListApps, features);
-
         let challengeData: UpdateQuestMapActiveChallenge;
         let challengeStatus = "active";
         let updateActiveChallengeCount = 0;
