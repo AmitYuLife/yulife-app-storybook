@@ -21,7 +21,7 @@ export const CPE_1 = {
         "is_banned_from_product": false,
         "archived": false,
         "archived_at": null,
-        "taken_up": true,
+        "taken_up": null,
         "accounted_for_join_date": null,
         "accounted_for_leave_date": null,
         "is_joiner": null,
@@ -169,7 +169,7 @@ export const CPE_DENTAL_1 = {
         startDate: moment().format(),
         endDate: moment("2199-12-31", "YYYY-MM-DD").format(),
         world_id: "forest",
-        taken_up: true
+        taken_up: null
     }
 } as IDatabaseItem
 
@@ -184,7 +184,7 @@ export const CPE_DENTAL_2 = {
         startDate: moment().format(),
         endDate: moment("2199-12-31", "YYYY-MM-DD").format(),
         world_id: "forest",
-        taken_up: true
+        taken_up: null
     }
 } as IDatabaseItem
 
@@ -199,7 +199,7 @@ export const CPE_DENTAL_3 = {
         startDate: moment().format(),
         endDate: moment("2199-12-31", "YYYY-MM-DD").format(),
         world_id: "ocean",
-        taken_up: true
+        taken_up: null
     }
 } as IDatabaseItem
 
@@ -224,7 +224,7 @@ export const CPE_PLI_2 = {
         modified_at: "2022-07-28T11:56:07.233Z",
         product_variant_id: "Covea_FIB_02_01",
         world_id: "forest",
-        taken_up: true
+        taken_up: false
     }
 } as IDatabaseItem
 
@@ -248,7 +248,7 @@ export const CPE_PLI_3 = {
         modified_at: "2022-07-28T11:56:07.233Z",
         product_variant_id: "Covea_FIB_02_01",
         world_id: "forest",
-        taken_up: true
+        taken_up: false
     }
 } as IDatabaseItem
 
@@ -272,7 +272,7 @@ export const CPE_PLI_4 = {
         modified_at: "2022-07-28T11:56:07.233Z",
         product_variant_id: "Covea_FIB_02_01",
         world_id: "forest",
-        taken_up: true
+        taken_up: false
     }
 } as IDatabaseItem
 
@@ -296,7 +296,7 @@ export const CPE_PLI_5 = {
         modified_at: "2022-07-28T11:56:07.233Z",
         product_variant_id: "Covea_FIB_02_01",
         world_id: "ocean",
-        taken_up: true
+        taken_up: false
     }
 } as IDatabaseItem
 
@@ -320,7 +320,7 @@ export const CPE_PLI_6 = {
         modified_at: "2022-07-28T11:56:07.233Z",
         product_variant_id: "Covea_FIB_02_01",
         world_id: "ocean",
-        taken_up: true
+        taken_up: false
     }
 } as IDatabaseItem
 
