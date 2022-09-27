@@ -134,7 +134,7 @@ export const UNDERWRITING_EMPLOYMENT = async (answer: YesNo) => {
 
 export const UNDERWRITING_HEIGHT = async (answer: string) => {
     When(`I tap on Enter your height`, when.tapText("Please enter your height"), async () => {
-        Then("I should see the first value on the scroll picker", then.idVisible(SCROLL_PICKER_ACTIVE_ITEM("150 cm")));
+        Then("I should see the first value on the scroll picker", then.idVisible(SCROLL_PICKER_ACTIVE_ITEM("122 cm")));
         When(`I choose ${answer}`, when.swipeOnPicker(SCROLL_PICKER("heightCm"), SCROLL_PICKER_ACTIVE_ITEM(answer), "down"), async () => {
             Then(`I should have selected ${answer}`, then.idVisible(SCROLL_PICKER_ACTIVE_ITEM(answer)))
             When("I tap Select", when.tapText("Select"), async () => {

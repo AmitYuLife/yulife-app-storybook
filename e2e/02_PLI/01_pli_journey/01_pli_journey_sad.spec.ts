@@ -5,6 +5,8 @@ import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as helper from "./_steps/helpers"
 import { CUSTOMER_37, AUTH_37, CUSTOMER_PLI_5, AUTH_PLI_5 } from "@data";
+import {  POPOVER } from "@ids";
+
 
 Feature("PLI SAD", async()=>{
     Scenario("As a user with High BMI, I cannot get PLI", scenario.start, async()=>{
@@ -166,7 +168,7 @@ Feature("PLI SAD", async()=>{
                 When("I tap off the tooltip", when.tapText(`${CUSTOMER_PLI_5.data.firstName} ${CUSTOMER_PLI_5.data.lastName}`), async () => {
                     Then("I should be back on the YuScreen", then.onYuscreenV3(CUSTOMER_PLI_5))
                 })
-                When("I tap the chest", when.tapUnlockableItem("chest"), async () => {
+                When("I tap the chest", when.tapID(POPOVER), async () => {
                     helper.REJECTED("Answers")
                 })
             })
