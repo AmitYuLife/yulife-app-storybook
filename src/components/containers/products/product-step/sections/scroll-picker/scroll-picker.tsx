@@ -1,10 +1,43 @@
+import React, { useContext, useMemo, useState } from "react";
 import { ScrollPickerModal } from "@components/modals";
-import React, { useContext, useState } from "react";
 import { IProductStepScrollPicker, ProductStepContext } from "../../product-step.context";
+import { ContentItemScrollPicker_variants_wheels } from "@graphql/_core/schema";
 
 export const ProductStepScrollPicker = () => {
   const { scrollPicker, setScrollPicker, dynamicData, setDynamicData } = useContext(ProductStepContext);
   const [state, setState] = useState<Record<string, string | number>>({});
+
+  const pickers = useMemo(() => {
+    if (!scrollPicker) {
+      return [];
+    }
+
+    const { variants, activeVariantIndex } = scrollPicker;
+    const variant = variants[activeVariantIndex];
+
+    return variant.wheels.map((wheel) => {
+      const items = buildItems(wheel);
+      const wheelAnswerKeyValueIndex = items.findIndex((item) => item.value === dynamicData[wheel.answerKey]);
+      const safeWheelAnswerKeyValueIndex = wheelAnswerKeyValueIndex < 0 ? 0 : wheelAnswerKeyValueIndex;
+      const currentAnswerIndex = +dynamicData[wheel.answerKey];
+
+      const defaultIndex = !isNaN(currentAnswerIndex)
+        ? currentAnswerIndex
+        : wheel.initialStepIndex || safeWheelAnswerKeyValueIndex;
+
+      return {
+        id: wheel.answerKey,
+        defaultIndex,
+        items,
+        onIndexChange: (index: number) =>
+          setState((oldState) => ({
+            ...oldState,
+            ...(variant.answerKey ? { [variant.answerKey]: variant.id } : {}),
+            [wheel.answerKey]: items[index].value,
+          })),
+      };
+    });
+  }, [scrollPicker]);
 
   if (!scrollPicker) {
     return null;
@@ -13,36 +46,9 @@ export const ProductStepScrollPicker = () => {
   const { variants, activeVariantIndex, answerKey, displayFormat } = scrollPicker;
   const variant = variants[activeVariantIndex];
 
-  const pickers = variant.wheels.map((wheel) => {
-    const items = Array.from({ length: wheel.max - wheel.min + 1 }).map((_, i) => {
-      const value = i + wheel.min;
-
-      return {
-        value,
-        label: buildScrollItemLabel(wheel, value),
-      };
-    });
-
-    const defaultIndex = !dynamicData[wheel.answerKey]
-      ? 0
-      : items.findIndex((item) => item.value === dynamicData[wheel.answerKey]);
-
-    return {
-      id: wheel.answerKey,
-      defaultIndex,
-      items,
-      onIndexChange: (index: number) =>
-        setState((oldState) => ({
-          ...oldState,
-          ...(variant.answerKey ? { [variant.answerKey]: variant.id } : {}),
-          [wheel.answerKey]: items[index].value,
-        })),
-    };
-  });
-
   return (
     <>
-      {scrollPicker.variants.map((item, i) =>
+      {variants.map((item, i) =>
         i !== activeVariantIndex ? null : (
           <ScrollPickerModal
             key={item.id}
@@ -106,4 +112,15 @@ const buildDisplayButtonLabel = (
   }
 
   return "";
+};
+
+const buildItems = (wheel: ContentItemScrollPicker_variants_wheels) => {
+  return Array.from({ length: wheel.max - wheel.min + 1 }).map((_, i) => {
+    const value = i + wheel.min;
+
+    return {
+      value,
+      label: buildScrollItemLabel(wheel, value),
+    };
+  });
 };

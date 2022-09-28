@@ -1000,6 +1000,10 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_variants_wheels {
   answerKey: string;
+  /**
+   * Supported RN version 3.50.0
+   */
+  initialStepIndex: number | null;
   min: number;
   max: number;
   step: number;

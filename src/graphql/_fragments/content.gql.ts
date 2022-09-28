@@ -916,6 +916,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_SCROLL_PICKER = gql`
       toggleIndex
       wheels {
         answerKey
+        initialStepIndex
         min
         max
         step
