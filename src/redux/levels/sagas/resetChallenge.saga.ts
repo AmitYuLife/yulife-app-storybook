@@ -17,7 +17,7 @@ export default function* resetChallengeSaga() {
     if (active.chest.value > 0) {
       yield call(showChestModal, active);
     } else if (active.yuniversalChest) {
-      yield call(showEOTWChestModal, active, level, { uri: avatar.avatarRemoteFiles.pngMini });
+      yield call(showEOTWChestModal, active, level, { uri: avatar?.avatarRemoteFiles?.pngMini });
     }
   }
 

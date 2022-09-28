@@ -40,7 +40,40 @@ export const getStaticPosition = (
   viewWidth: number,
   viewHeight: number
 ) => {
-  const auto = { left: 0, top: 0, beakLeft: 0, beakTop: 0, beakTransform: [{ rotate: "0deg" }] };
+  const showTooltipBellow = anchorY - Style.getSafeAreaStart() < viewHeight;
+  const showToolTipRight = Style.DEVICE_WIDTH - anchorX > viewWidth;
+
+  const autoVerticalTop = {
+    top: anchorY + BEAK_WIDTH,
+    left: Math.max(0, Math.min(anchorX - viewWidth / 2, Style.DEVICE_WIDTH - viewWidth)),
+    beakLeft: anchorX + BEAK_ROTATION_MARGIN - BEAK_HEIGHT / 2,
+    beakTop: anchorY - BEAK_ROTATION_MARGIN + Style.adjust(1),
+    beakTransform: [{ rotate: "90deg" }],
+  };
+
+  const autoVerticalBottom = {
+    top: anchorY - viewHeight - BEAK_WIDTH,
+    left: Math.max(0, Math.min(anchorX - viewWidth / 2, Style.DEVICE_WIDTH - viewWidth)),
+    beakLeft: anchorX + BEAK_ROTATION_MARGIN - BEAK_HEIGHT / 2,
+    beakTop: anchorY - BEAK_WIDTH - BEAK_ROTATION_MARGIN - Style.adjust(1),
+    beakTransform: [{ rotate: "-90deg" }],
+  };
+
+  const autoHorizontalLeft = {
+    top: Math.max(0, anchorY - viewHeight / 2),
+    left: anchorX - viewWidth - BEAK_WIDTH + Style.adjust(1),
+    beakLeft: anchorX - BEAK_WIDTH,
+    beakTop: anchorY - BEAK_HEIGHT / 2,
+    beakTransform: [{ rotate: "180deg" }],
+  };
+
+  const autoHorizontalRight = {
+    top: Math.max(0, anchorY - viewHeight / 2),
+    left: anchorX + BEAK_WIDTH - Style.adjust(1),
+    beakLeft: anchorX,
+    beakTop: anchorY - BEAK_HEIGHT / 2,
+    beakTransform: [{ rotate: "0deg" }],
+  };
 
   const bottomCommonPosition = {
     top: anchorY - viewHeight - BEAK_WIDTH,
@@ -82,9 +115,8 @@ export const getStaticPosition = (
     rightTop: { ...rightCommonPosition, top: anchorY - BEAK_HEIGHT / 2 - WRAPPER_MARGIN },
     rightBottom: { ...rightCommonPosition, top: anchorY - viewHeight + BEAK_HEIGHT / 2 + WRAPPER_MARGIN },
     rightCenter: { ...rightCommonPosition, top: anchorY - viewHeight / 2 },
-    // autoVertical and autoHorizontal not supported here
-    autoVertical: auto,
-    autoHorizontal: auto,
+    autoVertical: showTooltipBellow ? autoVerticalBottom : autoVerticalTop,
+    autoHorizontal: showToolTipRight ? autoHorizontalRight : autoHorizontalLeft,
   };
 
   return positions[beakPosition];

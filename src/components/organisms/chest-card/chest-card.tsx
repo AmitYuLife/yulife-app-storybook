@@ -12,13 +12,22 @@ interface IProps {
   shadowColour: string;
   starColour: string;
   textColour: string;
+  hasTooltip: boolean;
   icon: {
     id: string;
     uri: string;
   };
 }
 
-const ChestCard: FC<IProps> = ({ description, backgroundColour, shadowColour, starColour, textColour, icon }) => {
+const ChestCard: FC<IProps> = ({
+  description,
+  backgroundColour,
+  shadowColour,
+  starColour,
+  textColour,
+  icon,
+  hasTooltip,
+}) => {
   const tooltipIconRef = useRef<View>();
 
   const cardOuterStyle = useMemo(() => [styles.cardOuter, { backgroundColor: shadowColour }], [shadowColour]);
@@ -42,9 +51,11 @@ const ChestCard: FC<IProps> = ({ description, backgroundColour, shadowColour, st
       <View style={styles.shine}>
         <ShineSvg />
       </View>
-      <View ref={tooltipIconRef} style={styles.tooltipIcon} collapsable={false}>
-        <TooltipIcon />
-      </View>
+      {!hasTooltip ? null : (
+        <View ref={tooltipIconRef} style={styles.tooltipIcon} collapsable={false}>
+          <TooltipIcon />
+        </View>
+      )}
     </View>
   );
 };

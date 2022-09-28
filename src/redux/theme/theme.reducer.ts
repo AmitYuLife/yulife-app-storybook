@@ -178,8 +178,8 @@ const getCurrentWorldTheme = (
             style: { backgroundColor: "" },
             eventPanel: {
               fontColor: Colours.neutral.white,
-              borderColor: "#370888",
-              backgroundColor: "#300774",
+              borderColor: "#300774",
+              backgroundColor: "#370888",
             },
           },
         },
