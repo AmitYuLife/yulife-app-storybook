@@ -17,13 +17,8 @@ export const ProductStepScrollPicker = () => {
 
     return variant.wheels.map((wheel) => {
       const items = buildItems(wheel);
-      const wheelAnswerKeyValueIndex = items.findIndex((item) => item.value === dynamicData[wheel.answerKey]);
-      const safeWheelAnswerKeyValueIndex = wheelAnswerKeyValueIndex < 0 ? 0 : wheelAnswerKeyValueIndex;
-      const currentAnswerIndex = +dynamicData[wheel.answerKey];
-
-      const defaultIndex = !isNaN(currentAnswerIndex)
-        ? currentAnswerIndex
-        : wheel.initialStepIndex || safeWheelAnswerKeyValueIndex;
+      const storedAnswer = dynamicData[wheel.answerKey] as number;
+      const defaultIndex = getDefaultIndex({ items, storedAnswer, initialStepIndex: wheel.initialStepIndex });
 
       return {
         id: wheel.answerKey,
@@ -123,4 +118,22 @@ const buildItems = (wheel: ContentItemScrollPicker_variants_wheels) => {
       label: buildScrollItemLabel(wheel, value),
     };
   });
+};
+
+const getDefaultIndex = ({
+  storedAnswer,
+  items,
+  initialStepIndex,
+}: {
+  storedAnswer?: number;
+  items: ReturnType<typeof buildItems>;
+  initialStepIndex: number;
+}) => {
+  if (storedAnswer) {
+    const storedAnswerIndex = items.findIndex((item) => item.value === storedAnswer);
+
+    return storedAnswerIndex < -1 ? 0 : storedAnswerIndex;
+  }
+
+  return initialStepIndex || 0;
 };
