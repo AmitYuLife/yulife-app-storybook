@@ -61,6 +61,10 @@ export interface ContentItemScrollPicker_displayFormat {
 
 export interface ContentItemScrollPicker_variants_wheels {
   answerKey: string;
+  /**
+   * Supported RN version 3.50.0
+   */
+  initialStepIndex: number | null;
   min: number;
   max: number;
   step: number;
