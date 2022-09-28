@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.50.0] - 2022-09-28
+
+### Features
+
+- Task: Add user features to debug menu
+
+### Bugfixes
+
+- Bugfix: EOTW fixes
+- Bugfix ENG-2920: handle about blank links on ios
+- Bugfix: Event panel border
+- Bugfix: Display uncompleted star on quests and improvements
+- Bugfix: Missing background image 2
+- Bugfix: Streaks styles
+- Bugfix: Quest slice assets and topbar colour
+
+### Tasks
+
+- Task XSE-1387: Make ProductStepScrollPicker to handle data set specific initial default index
+- Task: Add Quests map prompt state
+- Revert Task GS-454: Menu Accessibility
+- Task GS-454: Menu accessibility
+
+### Chores
+
+- Chore: Import locales from relative path, add suffix
+- Chore: Detox taken up CPE
+- Chore: Standardise snake case in i18n
+
+### Extra
+
+- Detox/pli fixes 27 9
+- Detox: extended fixes 27_9
+- Detox: Remove taken up status of personal products
+- Detox/fixes 26 9
+- Detox/meditopia 1
+- Hotfix: Handle YuScreenProductDetails ContentItemMarkdown, use toggle yuScreenV4
+- detox:add select region to the app tests
+- Detox/fixes 20 9
+
 ## [3.49.0] - 2022-09-21
 
 ### Bugfixes
