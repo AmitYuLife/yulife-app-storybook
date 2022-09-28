@@ -44,8 +44,12 @@ export enum CHEST_STATE {
   OPEN,
 }
 
+const CHEST_LID_OPENING_DURATION = 2300;
+const CHEST_CARDS_FADE_IN_DURATION = 500;
+const CHEST_CARDS_ANIMATION_OFFSET = 200;
+const CHEST_CARD_OSCILLATION_DURATION = 2500;
+
 const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestState }) => {
-  const timeout = useRef<NodeJS.Timeout>();
   const dispatch = useDispatch();
 
   const location = useMemo(() => {
@@ -83,77 +87,82 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
 
   const openChestSequence = useMemo(
     () =>
-      Animated.parallel([
-        Animated.sequence([
-          Animated.timing(openingChestOpacity.current, { toValue: 1, duration: 0, useNativeDriver: true }),
-
-          {
-            start: (cb) => {
-              lottieChestRef.current.play(0);
-              cb({ finished: true });
-            },
-            stop: () => null,
-            reset: () => null,
+      Animated.sequence([
+        Animated.timing(openingChestOpacity.current, { toValue: 1, duration: 0, useNativeDriver: true }),
+        {
+          start: (cb) => {
+            lottieChestRef.current.play(0);
+            cb({ finished: true });
           },
+          stop: () => null,
+          reset: () => null,
+        },
+        Animated.delay(DETOX_ENABLED ? 0 : CHEST_LID_OPENING_DURATION),
+        Animated.stagger(DETOX_ENABLED ? 0 : CHEST_CARDS_ANIMATION_OFFSET, [
+          Animated.parallel([
+            Animated.timing(cardOpacities.current[0], {
+              toValue: 1,
+              useNativeDriver: true,
+              duration: DETOX_ENABLED ? 0 : CHEST_CARDS_FADE_IN_DURATION,
+            }),
+            Animated.timing(cardYs.current[0], {
+              toValue: cardPositions.endY,
+              useNativeDriver: true,
+              duration: DETOX_ENABLED ? 0 : CHEST_CARDS_FADE_IN_DURATION,
+            }),
+          ]),
+          Animated.parallel([
+            Animated.timing(cardOpacities.current[1], {
+              toValue: 1,
+              useNativeDriver: true,
+              duration: DETOX_ENABLED ? 0 : CHEST_CARDS_FADE_IN_DURATION,
+            }),
+            Animated.timing(cardYs.current[1], {
+              toValue: items.length > 2 ? cardPositions.endYMiddle : cardPositions.endY,
+              useNativeDriver: true,
+              duration: DETOX_ENABLED ? 0 : CHEST_CARDS_FADE_IN_DURATION,
+            }),
+          ]),
+          Animated.parallel([
+            Animated.timing(cardOpacities.current[2], {
+              toValue: 1,
+              useNativeDriver: true,
+              duration: DETOX_ENABLED ? 0 : CHEST_CARDS_FADE_IN_DURATION,
+            }),
+            Animated.timing(cardYs.current[2], {
+              toValue: Style.adjust(155),
+              useNativeDriver: true,
+              duration: DETOX_ENABLED ? 0 : CHEST_CARDS_FADE_IN_DURATION,
+            }),
+          ]),
         ]),
-        Animated.timing(cardOpacities.current[0], {
-          toValue: 1,
-          useNativeDriver: true,
-          duration: DETOX_ENABLED ? 0 : 500,
-          delay: DETOX_ENABLED ? 0 : 1800,
-        }),
-        Animated.timing(cardYs.current[0], {
-          toValue: cardPositions.endY,
-          useNativeDriver: true,
-          duration: DETOX_ENABLED ? 0 : 500,
-          delay: DETOX_ENABLED ? 0 : 1800,
-        }),
-        Animated.timing(cardOpacities.current[1], {
-          toValue: 1,
-          useNativeDriver: true,
-          duration: DETOX_ENABLED ? 0 : 500,
-          delay: DETOX_ENABLED ? 0 : 2000,
-        }),
-        Animated.timing(cardYs.current[1], {
-          toValue: items.length > 2 ? cardPositions.endYMiddle : cardPositions.endY,
-          useNativeDriver: true,
-          duration: DETOX_ENABLED ? 0 : 500,
-          delay: DETOX_ENABLED ? 0 : 2000,
-        }),
-        Animated.timing(cardOpacities.current[2], {
-          toValue: 1,
-          useNativeDriver: true,
-          duration: DETOX_ENABLED ? 0 : 500,
-          delay: DETOX_ENABLED ? 0 : 2200,
-        }),
-        Animated.timing(cardYs.current[2], {
-          toValue: Style.adjust(155),
-          useNativeDriver: true,
-          duration: DETOX_ENABLED ? 0 : 500,
-          delay: DETOX_ENABLED ? 0 : 2200,
-        }),
 
+        {
+          start: (cb) => {
+            setChestState(CHEST_STATE.OPEN);
+            cb({ finished: true });
+          },
+          stop: () => null,
+          reset: () => null,
+        },
         DETOX_ENABLED
           ? null
-          : Animated.sequence([
-              Animated.delay(3000),
-              Animated.loop(
-                Animated.sequence([
-                  Animated.timing(cardListY.current, {
-                    toValue: Style.adjust(20),
-                    useNativeDriver: true,
-                    duration: 2500,
-                    easing: Easing.inOut(Easing.ease),
-                  }),
-                  Animated.timing(cardListY.current, {
-                    toValue: 0,
-                    useNativeDriver: true,
-                    duration: 2500,
-                    easing: Easing.inOut(Easing.ease),
-                  }),
-                ])
-              ),
-            ]),
+          : Animated.loop(
+              Animated.sequence([
+                Animated.timing(cardListY.current, {
+                  toValue: Style.adjust(20),
+                  useNativeDriver: true,
+                  duration: CHEST_CARD_OSCILLATION_DURATION,
+                  easing: Easing.inOut(Easing.ease),
+                }),
+                Animated.timing(cardListY.current, {
+                  toValue: 0,
+                  useNativeDriver: true,
+                  duration: CHEST_CARD_OSCILLATION_DURATION,
+                  easing: Easing.inOut(Easing.ease),
+                }),
+              ])
+            ),
       ]),
     [items.length]
   );
@@ -161,17 +170,13 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
   useEffect(() => {
     return () => {
       openChestSequence.stop();
-      if (timeout.current) {
-        clearTimeout(timeout.current);
-      }
     };
   }, []);
 
   useEffect(() => {
     if (chestState === CHEST_STATE.OPENING) {
-      timeout.current = global.setTimeout(() => {
-        setChestState(CHEST_STATE.OPEN);
-      }, 3000);
+      openingChestOpacity.current.setValue(1);
+      lottieChestRef.current.play(0);
       openChestSequence.start();
     }
   }, [chestState]);
@@ -275,6 +280,7 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
                 starColour={item.starColour}
                 textColour={item.textColour}
                 icon={item.icon}
+                hasTooltip={!!item.tooltip}
               />
             </Animated.View>
           )
@@ -286,7 +292,7 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
             index > 2 ? null : (
               <View key={`info_${item.description}`} style={infoCardWrappers[index]}>
                 <TouchableOpacity onPress={infoHandlers[index]}>
-                  <View style={cardStyles.cardOuter} />
+                  <View style={cardStyles.cardInner} />
                 </TouchableOpacity>
               </View>
             )

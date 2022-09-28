@@ -1,13 +1,14 @@
 import * as React from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { useSelector } from "react-redux";
-import { LevelLine, Stars, Text } from "@atoms";
+import { LevelLine, Stars, TextTemplate } from "@atoms";
 import { AnimatedPlusPoints, Button, CentredScreen } from "@molecules";
 import { getChallengeSuccessCopy } from "@redux/copy/copy.selectors";
 import { formatCyclingMetersToKmWithOneDecimal } from "../challenge-progress/subcomponents/progress-bar.helpers";
 import Assets from "./assets";
 import { getStyle } from "./challenge-success.helpers";
-import styles from "./challenge-success.screen.styles";
+import styles, { LINE_COLOR, SCORE_COLOR } from "./challenge-success.screen.styles";
+import { t } from "@locale";
 
 interface IProps {
   onPressCta: () => void;
@@ -33,7 +34,7 @@ export default function ChallengeSuccessScreen({
   currentWorld,
 }: IProps) {
   const copy = useSelector(getChallengeSuccessCopy);
-  const { backgroundImage, backgroundStyle, textStyle, lineColour = "rgb(251, 207, 39)" } = getStyle(
+  const { backgroundImage, backgroundStyle, textStyle, lineColour = LINE_COLOR } = getStyle(
     currentWorld,
     yuniversalMap
   );
@@ -46,24 +47,39 @@ export default function ChallengeSuccessScreen({
           <View style={styles.levelLineWrapper}>
             <LevelLine colour={lineColour} />
           </View>
-          <Text style={StyleSheet.flatten([styles.level, textStyle])}>{`level ${level}`}</Text>
+          <View style={styles.level}>
+            <TextTemplate type="l1" color={textStyle?.color} textAlign="center">
+              {yuniversalMap
+                ? t("screens.challenge_success.stage", { level })
+                : t("screens.challenge_success.level", { level })}
+            </TextTemplate>
+          </View>
         </View>
       </View>
-
-      <Text bold={true} style={StyleSheet.flatten([styles.heading, textStyle])}>
-        {copy.footer}
-      </Text>
+      <View style={styles.heading}>
+        <TextTemplate type="h1" color={textStyle?.color} textAlign="center">
+          {copy.footer}
+        </TextTemplate>
+      </View>
       <View>
         <View style={styles.plusPointsWrapper}>
           <AnimatedPlusPoints type="challenge-success" coins={reward} />
         </View>
         <Image source={Assets.challengeSuccess} />
-        <Text bold={true} style={styles.score}>
-          {renderScore(score, unit)}
-        </Text>
+        <View style={styles.score}>
+          <TextTemplate type="h2" color={SCORE_COLOR} textAlign="center">
+            {renderScore(score, unit)}
+          </TextTemplate>
+        </View>
       </View>
 
-      <Button label={copy.ctaLabel} isLoading={loading} onPress={onPressCta} size="Small" wrapperStyle={styles.cta} />
+      <Button
+        label={t("screens.challenge_success.cta_label")}
+        isLoading={loading}
+        onPress={onPressCta}
+        size="Small"
+        wrapperStyle={styles.cta}
+      />
     </CentredScreen>
   );
 }

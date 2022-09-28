@@ -202,6 +202,12 @@
     "challenge_progress": {
       "how_meditate_with_other_apps_label": "How do I meditate with other apps"
     },
+    "challenge_success": {
+      "cta_label": "collect",
+      "footer": "Well done!", 
+      "level": "level %{level}",
+      "stage": "Stage %{level}"
+    },
     "yumoji_builder": {
       "create": {
         "button": "Continue",
