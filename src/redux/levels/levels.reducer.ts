@@ -288,7 +288,7 @@ const challengeLoading = (state: ILevelsStore, isLoading: boolean): ILevelsStore
   },
 });
 
-const getScore = (data: QuestMapActiveChallenge["incomingData"]) => {
+export const getScore = (data: QuestMapActiveChallenge["incomingData"]) => {
   if (!data) {
     return 0;
   }

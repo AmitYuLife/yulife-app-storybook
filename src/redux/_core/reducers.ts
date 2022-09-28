@@ -32,6 +32,7 @@ import dailyCyclingReducer, {
 import fitkitReducer, { getInitialState as getInitialFitkitState } from "../fitkit/fitkit.reducer";
 import { IFitkitStore } from "@redux/fitkit/fitkit.reducer";
 import adBannersReducer, { getInitialAdbannersState, IAdBannersStore } from "../ad-banners/ad-banners.reducer";
+import questsReducer, { getInitialState as getInitialQuestState, IQuestStore } from "../quests/quests.reducer";
 
 export interface IReduxState {
   app: IAppStore;
@@ -50,6 +51,7 @@ export interface IReduxState {
   sdui: ISduiStore;
   fitkit: IFitkitStore;
   adBanners: IAdBannersStore;
+  quests: IQuestStore;
 }
 
 export const initialState: IReduxState = {
@@ -69,6 +71,7 @@ export const initialState: IReduxState = {
   sdui: getInitialSduiState(),
   fitkit: getInitialFitkitState(),
   adBanners: getInitialAdbannersState(),
+  quests: getInitialQuestState(),
 };
 
 // this alias is created for testing purposes
@@ -91,6 +94,7 @@ const combinedReducers = combineReducers({
   sdui: sduiReducer,
   fitkit: fitkitReducer,
   adBanners: adBannersReducer,
+  quests: questsReducer,
 });
 
 export default combinedReducers;
