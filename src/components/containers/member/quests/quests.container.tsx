@@ -10,7 +10,6 @@ import {
   getChallengeIsActive,
   getHideExternalLinks,
   getVideoPlayerIsActive,
-  getYuniversalProgress,
 } from "@redux/levels/levels.selectors";
 import { displayStreaksCompletedAction } from "@redux/streaks/streaks.actions";
 import {
@@ -26,11 +25,12 @@ import { useTapBackTwiceToExit } from "@hooks";
 import { useMutation } from "@apollo/react-hooks";
 import { CancelQuestMapLevelChallenge, CancelQuestMapLevelChallengeVariables } from "@graphql/_core/schema";
 import { GQL_MUTATION_CANCEL_MAP_LEVEL_CHALLENGE } from "@graphql/challenges";
+import { getQuestsPrompt } from "@redux/quests/quests.selectors";
 
 const QuestsContainer: FC<IMainTabsProps> = (props) => {
   const dispatch = useDispatch();
   const activeLevel = useSelector(getActiveLevel);
-  const { yuniversalMap } = useSelector(getYuniversalProgress);
+  const prompt = useSelector(getQuestsPrompt);
   const challengeIsActive = useSelector(getChallengeIsActive);
   const hideExternalLinks = useSelector(getHideExternalLinks);
   const videoPlayerIsActive = useSelector(getVideoPlayerIsActive);
@@ -42,19 +42,7 @@ const QuestsContainer: FC<IMainTabsProps> = (props) => {
 
   const { componentId, onLeftMenuPress } = props;
 
-  const {
-    coins,
-    endDateTime,
-    level,
-    milestones,
-    rating,
-    score,
-    status,
-    subtype,
-    unit,
-    isLoading,
-    levelSlotId,
-  } = activeLevel;
+  const { endDateTime, milestones, score, status, subtype, unit, isLoading, levelSlotId } = activeLevel;
 
   useEffect(() => {
     if (!challengeIsActive && levelSlotId && !status) {
@@ -83,7 +71,9 @@ const QuestsContainer: FC<IMainTabsProps> = (props) => {
 
   useTapBackTwiceToExit(props.componentId);
 
-  const currentWorld = useMemo(() => getCurrentWorld(level), [level]);
+  const currentWorld = useMemo(() => prompt?.active?.level && getCurrentWorld(prompt?.active?.level), [
+    prompt?.active?.level,
+  ]);
 
   const screenProps = useMemo(
     () => ({
@@ -110,17 +100,17 @@ const QuestsContainer: FC<IMainTabsProps> = (props) => {
     return <QuestsScreenOffline fitkitAvailable={false} onLeftMenuPress={onLeftMenuPress} />;
   }
 
-  if (status) {
-    if (status === "success") {
+  if (prompt) {
+    if (prompt.active.status === "success") {
       return (
         <ChallengeSuccessScreen
-          level={level}
-          yuniversalMap={yuniversalMap}
+          level={prompt.active.level}
+          yuniversalMap={prompt.yuniversalMap}
           onPressCta={() => handleResetChallenge(true)}
-          rating={rating}
-          reward={coins}
-          score={score}
-          unit={unit as any}
+          rating={prompt.active.rating}
+          reward={prompt.active.coins}
+          score={prompt.active.score}
+          unit={prompt.unit as any}
           loading={false}
           currentWorld={currentWorld}
         />
@@ -129,8 +119,8 @@ const QuestsContainer: FC<IMainTabsProps> = (props) => {
 
     return (
       <ChallengeFailedScreen
-        level={level}
-        yuniversalMap={yuniversalMap}
+        level={prompt.active.level}
+        yuniversalMap={prompt.yuniversalMap}
         onPress={handleResetChallenge}
         loading={false}
         currentWorld={currentWorld}
