@@ -169,7 +169,7 @@ export const CPE_DENTAL_1 = {
         startDate: moment().format(),
         endDate: moment("2199-12-31", "YYYY-MM-DD").format(),
         world_id: "forest",
-        taken_up: null
+        taken_up: true
     }
 } as IDatabaseItem
 
@@ -184,7 +184,7 @@ export const CPE_DENTAL_2 = {
         startDate: moment().format(),
         endDate: moment("2199-12-31", "YYYY-MM-DD").format(),
         world_id: "forest",
-        taken_up: null
+        taken_up: true
     }
 } as IDatabaseItem
 
@@ -199,7 +199,7 @@ export const CPE_DENTAL_3 = {
         startDate: moment().format(),
         endDate: moment("2199-12-31", "YYYY-MM-DD").format(),
         world_id: "ocean",
-        taken_up: null
+        taken_up: true
     }
 } as IDatabaseItem
 
