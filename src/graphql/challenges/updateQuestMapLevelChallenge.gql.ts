@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import client from "@graphql/_core/client";
 
 import { ChallengePayload } from "@graphql/_core/schema/globalTypes";

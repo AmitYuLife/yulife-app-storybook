@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getCopy } from "@redux/copy/copy.selectors";
 import { getUserStart } from "@redux/user/user.actions";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 
 interface IProps {
   componentId: string;

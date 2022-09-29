@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import { useLazyQuery, useMutation } from "@apollo/react-hooks";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { TodayEarningLoadingScreen, TodayEarningsScreen } from "@components/screens";
 import { GQL_QUERY_GET_TODAY_EARNINGS } from "@graphql/todayEarnings";
 import { GetTodayEarnings, UpsertDailyPassives, UpsertDailyPassivesVariables } from "@graphql/_core/schema";

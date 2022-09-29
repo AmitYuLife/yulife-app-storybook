@@ -4,7 +4,7 @@ import { NavBar } from "@organisms";
 import { Colours, Style } from "@styles";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { Popover } from "@components/molecules";
 import { TextTemplate } from "@atoms";
 import { GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP } from "@graphql/onboardingSteps/performMobileOnboardingStep.gql";

@@ -18,7 +18,7 @@ import {
   showLevelUnavailableModal,
   getLevelAction,
 } from "./quests-screen.container.helpers";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_QUEST_MAP } from "@graphql/challenges";
 import { getShowChestCopy } from "@redux/copy/copy.selectors";
 import { GetQuestMap } from "@graphql/_core/schema";

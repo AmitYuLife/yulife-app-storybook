@@ -1,4 +1,4 @@
-import { ApolloQueryResult } from "apollo-client";
+import { ApolloQueryResult } from "@apollo/client";
 import { ROUTES, MODALS } from "@navigation/constants";
 import { call, select, take, delay } from "redux-saga/effects";
 import { UPDATE_CURRENT_ROUTE } from "../../app/app.actions";

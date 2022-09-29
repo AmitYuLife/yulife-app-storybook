@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import client from "../_core/client";
 import { SetUserQuestProgress, SetUserQuestProgressVariables } from "../_core/schema";
 import { GQL_QUERY_GET_QUEST_MAP } from "@graphql/challenges";

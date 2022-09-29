@@ -1,4 +1,4 @@
-import { NetworkStatus } from "apollo-client";
+import { NetworkStatus } from "@apollo/client";
 import React, { useCallback, useEffect, memo } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { SearchInput, SearchList, SearchListEmpty, SearchItem, ISearchItem } from "@molecules";

@@ -1,5 +1,5 @@
-import { OperationVariables } from "@apollo/react-common";
-import { LazyQueryHookOptions, QueryTuple, useLazyQuery } from "@apollo/react-hooks";
+import { OperationVariables } from "@apollo/client";
+import { LazyQueryHookOptions, QueryTuple, useLazyQuery } from "@apollo/client";
 import { getRouteState } from "@redux/app/app.selectors";
 import { DocumentNode } from "graphql";
 import { useEffect, useRef } from "react";

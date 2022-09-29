@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import client from "../_core/client";
 
 import { SubmitUnity, SubmitUnityVariables } from "../_core/schema";

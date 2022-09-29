@@ -21,7 +21,7 @@ import {
   GQL_FRAGMENT_SDUI_ACTION,
   GQL_FRAGMENT_SDUI_STYLE,
 } from "@graphql/_fragments/shared.gql";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_FAQS}

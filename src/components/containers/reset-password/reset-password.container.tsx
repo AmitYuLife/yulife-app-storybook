@@ -3,7 +3,7 @@ import React, { useState, useMemo, FC, useCallback } from "react";
 import { Navigation } from "react-native-navigation";
 import { EmailSentScreen, ResetPasswordScreen } from "@screens";
 import { validateEmail } from "../login/login.helpers";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import Logger from "@services/logging/logger";
 
 interface IProps {

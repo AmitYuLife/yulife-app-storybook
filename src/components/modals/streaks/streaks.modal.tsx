@@ -1,4 +1,4 @@
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { GQL_MUTATION_COLLECT_AWARD, CollectAwardMutationTuple } from "@graphql/member";
 import { getTimeRemaining } from "@utils";
 import React, { useMemo, useState, useEffect } from "react";

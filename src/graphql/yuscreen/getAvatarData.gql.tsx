@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_QUERY_AVATAR = gql`
   query Avatar($bodyType: AvatarBodyType, $partType: AvatarPartType, $colorSchemeIds: [String]) {

@@ -3,7 +3,7 @@ import { View, Animated, ViewStyle, FlatList as RNFlatList } from "react-native"
 import { AvatarPartType, CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
 import { Loading, FlatList, TextTemplate } from "@atoms";
 import { Colours } from "@styles";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GetYumojiPartUrlSetSwiper, GetYumojiPartUrlSetSwiperVariables } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YUMOJI_PART_URL_SET_SWIPER } from "@graphql/yuscreen/getYumojiPartUrlSetSwiper.gql";
 import { useScrollHandlers } from "../hooks/useScrollHandlers";

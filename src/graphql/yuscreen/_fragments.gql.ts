@@ -4,7 +4,7 @@ import {
   GQL_FRAGMENT_SDUI_STYLE,
   GQL_FRAGMENT_VARIABLE_REMOTE_IMAGE,
 } from "@graphql/_fragments/shared.gql";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_FRAGMENT_YU_SCREEN_POPOVER = gql`
   fragment YuScreenPopover on YuScreenPopover {

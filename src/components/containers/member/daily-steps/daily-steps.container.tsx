@@ -9,7 +9,7 @@ import { DailyStepsScreen } from "@screens";
 import { FitkitContext } from "@services/fitkit/fitkit.helpers";
 import { useNavigationComponentDidAppear, useTapBackTwiceToExit } from "@hooks";
 import { getUserNotification, getUserSurge, getUserEventsWithAds } from "@redux/user/user.selectors";
-import { useLazyQuery } from "@apollo/react-hooks";
+import { useLazyQuery } from "@apollo/client";
 import { GetDailyScreenCustomIcon } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_DAILY_SCREEN_CUSTOM_ICON } from "@graphql/dailyScreenCustomIcon";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";

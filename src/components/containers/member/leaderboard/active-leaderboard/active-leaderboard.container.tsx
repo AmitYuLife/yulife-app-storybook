@@ -7,7 +7,7 @@ import { LeaderboardLayout } from "./leaderboard-layout/leaderboard-layout";
 import { getLeaderboardsCopy } from "@redux/copy/copy.selectors";
 import { updateLeaderboardConsent } from "@redux/user/user.actions";
 import ConsentGuard from "./consent-guard/consent-guard";
-import { NetworkStatus } from "apollo-client";
+import { NetworkStatus } from "@apollo/client";
 import { LeaderboardContentContainer } from "./leaderboard-content/leaderboard-content";
 import { LeaderboardSkeleton } from "./leaderboard-layout/subcomponents/leaderboard-skeleton/leaderboard-skeleton";
 import { MODALS, ROUTES } from "@navigation/constants";

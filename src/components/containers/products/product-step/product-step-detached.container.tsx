@@ -11,7 +11,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import { useDispatch } from "react-redux";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import {
   ContentItemPad,
   ContentItemDocuments,

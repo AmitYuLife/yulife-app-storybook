@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_FRAGMENT_VARIABLE_REMOTE_IMAGE = gql`
   fragment VariableRemoteImage on VariableRemoteImage {

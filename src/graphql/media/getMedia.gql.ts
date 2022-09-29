@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import client from "@graphql/_core/client";
 import { GQL_FRAGMENT_MEDIA } from "@graphql/_fragments/media.gql";
 import { GetMediaVariables, GetMedia_getMedia } from "@graphql/_core/schema";

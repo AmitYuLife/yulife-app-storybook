@@ -5,7 +5,7 @@ import { Keyboard } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { CreateLeaderboardScreen } from "@screens";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import Logger from "@services/logging/logger";
 
 type ConnectedDispatch = typeof mapDispatchToProps;

@@ -1,5 +1,5 @@
 import { GQL_FRAGMENT_GOAL } from "@graphql/_fragments";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_MUTATION_JOIN_GOAL = gql`
   ${GQL_FRAGMENT_GOAL}

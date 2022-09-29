@@ -1,13 +1,16 @@
 import { DETOX_ENABLED } from "@services/socket";
 import { getToken } from "@services/storage";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
-import { defaultDataIdFromObject, InMemoryCache, NormalizedCacheObject } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
-import { ApolloClient } from "apollo-client";
-import { from } from "apollo-link";
-import { setContext } from "apollo-link-context";
-import { onError } from "apollo-link-error";
-import { createHttpLink } from "apollo-link-http";
+import { setContext } from "@apollo/client/link/context";
+import {
+  ApolloClient,
+  defaultDataIdFromObject,
+  InMemoryCache,
+  NormalizedCacheObject,
+  from,
+  createHttpLink,
+} from "@apollo/client";
 import moment from "moment";
 import { Platform } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -71,9 +74,7 @@ const dataIdFromObject = (object: any) => {
   }
 };
 
-const cache = new InMemoryCache({
-  dataIdFromObject,
-});
+const cache = new InMemoryCache({ dataIdFromObject });
 
 persistCache({
   cache,
@@ -115,11 +116,6 @@ const authMiddleware = setContext(async (_, { headers }) => {
   };
 });
 
-const errorAfterware = onError(() => {
-  // might wanna do something here
-  // console.error("Error ... ", error);
-});
-
 const retryLink = createRetryLink(() => {
   store.dispatch(updateOfflineState(true));
 });
@@ -130,7 +126,7 @@ export default () => {
   if (!client) {
     client = new ApolloClient({
       cache,
-      link: from([authMiddleware, retryLink, errorAfterware, httpLink()]),
+      link: from([authMiddleware, retryLink, httpLink()]),
     });
   }
 

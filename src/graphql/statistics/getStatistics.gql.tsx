@@ -1,5 +1,5 @@
 import { GQL_FRAGMENT_USER_STATISTICS_DETAILS } from "@graphql/_fragments/userStatisticsDetails.gql";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_QUERY_GET_STATISTICS = gql`
   ${GQL_FRAGMENT_USER_STATISTICS_DETAILS}

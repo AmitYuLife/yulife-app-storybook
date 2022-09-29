@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import { GQL_FRAGMENT_AVATAR } from "./_fragments.gql";
 import { GQL_FRAGMENT_AVATAR_REMOTE_FILES } from "../_fragments/avatarRemoteFiles.gql";
 import { GetYuliferWithAvatar_getYulifer } from "@graphql/_core/schema";

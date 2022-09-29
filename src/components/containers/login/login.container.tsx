@@ -1,4 +1,4 @@
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { GQL_MUTATION_LOGIN_USER, LoginUserMutationTuple } from "@graphql/user";
 import { bottomTabs, ROUTES } from "@navigation/constants";
 import { setAuthenticatedRoot } from "@navigation/root";

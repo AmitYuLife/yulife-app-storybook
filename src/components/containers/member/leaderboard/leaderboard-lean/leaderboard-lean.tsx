@@ -5,7 +5,7 @@ import { GetLeaderboard, GetLeaderboardVariables } from "@graphql/_core/schema";
 import { IReduxState } from "@redux/_core/reducers";
 import { getActiveLeaderboard, getCurrentUserId, getUserFeatures } from "@redux/user/user.selectors";
 import { connect, ConnectedProps } from "react-redux";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GQL_QUERY_LEADERBOARD } from "@graphql/member";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";

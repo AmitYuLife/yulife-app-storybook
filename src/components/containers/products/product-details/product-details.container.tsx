@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_YU_SCREEN_PRODUCT_DETAILS } from "@graphql/products/getYuScreenProductDetails";
 import { GetYuScreenProductDetails, GetYuScreenProductDetailsVariables } from "@graphql/_core/schema";
 import { ProductDetailsScreen } from "./product-details.screen";

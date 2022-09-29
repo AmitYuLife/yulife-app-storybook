@@ -1,6 +1,6 @@
 import { GQL_FRAGMENT_CONTENT_ITEM_LOTTIE } from "@graphql/_fragments/content.gql";
 import { GQL_FRAGMENT_SDUI_ACTION } from "@graphql/_fragments/shared.gql";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import client from "@graphql/_core/client";
 import { GetUserSurge } from "@graphql/_core/schema";
 

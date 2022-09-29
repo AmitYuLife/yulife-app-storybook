@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useReducer, useRef } from "react";
-import { useMutation, useLazyQuery, useQuery } from "@apollo/react-hooks";
+import { useMutation, useLazyQuery, useQuery } from "@apollo/client";
 import { Loading } from "@atoms";
 import { AvatarBodyType } from "@graphql/_core/schema/globalTypes";
 import YumojiBuilder from "@components/screens/member/yu-screen/yumoji-builder/yumoji-builder";

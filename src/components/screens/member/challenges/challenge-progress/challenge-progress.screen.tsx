@@ -13,7 +13,7 @@ import { PressableWithDelay, SecondaryButton, TertiaryButton } from "@molecules"
 import { ExternalAppLinksOverlay } from "./subcomponents/external-app-links-overlay";
 import { Style } from "@styles";
 import { TopBarType } from "@graphql/_core/schema/globalTypes";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/getQuestMapChallengeDetails.gql";
 import { GetQuestMapLevelChallengeDetails, GetQuestMapLevelChallengeDetailsVariables } from "@graphql/_core/schema";
 import { fromGql } from "@organisms/top-bar/top-bar.helpers";

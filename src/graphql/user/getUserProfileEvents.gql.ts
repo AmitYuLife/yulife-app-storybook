@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import client from "@graphql/_core/client";
 import { GetUserProfileEvents } from "@graphql/_core/schema";
 import { GQL_FRAGMENT_GOAL } from "@graphql/_fragments";

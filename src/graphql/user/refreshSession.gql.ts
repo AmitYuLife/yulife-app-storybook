@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import { ExecutionResult } from "graphql";
 import client from "../_core/client";
 import { RefreshSession, RefreshSessionVariables } from "../_core/schema";

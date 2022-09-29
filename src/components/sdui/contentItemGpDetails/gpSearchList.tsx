@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { SearchListEmpty, SearchItem, ISearchItem } from "@molecules";
-import { NetworkStatus } from "apollo-boost";
+import { NetworkStatus } from "@apollo/client";
 import { Colours } from "@styles";
 import { MedicalPractices_getMedicalPractices as MedicalPractices } from "@graphql/_core/schema";
 

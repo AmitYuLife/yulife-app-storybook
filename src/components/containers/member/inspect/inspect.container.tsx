@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import React, { memo, useCallback, useMemo } from "react";
 import { View, StyleSheet } from "react-native";
 import { Navigation } from "react-native-navigation";

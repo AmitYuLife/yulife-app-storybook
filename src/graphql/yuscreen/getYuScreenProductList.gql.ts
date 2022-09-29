@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_QUERY_GET_YU_SCREEN_PRODUCT_LIST = gql`
   query GetYuScreenProductList {

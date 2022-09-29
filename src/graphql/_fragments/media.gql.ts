@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import { GQL_FRAGMENT_CONTENT_ITEM_LOTTIE } from "./content.gql";
 import { GQL_FRAGMENT_SDUI_ACTION } from "./shared.gql";
 

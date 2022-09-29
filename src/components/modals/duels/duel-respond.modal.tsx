@@ -3,7 +3,7 @@ import { Navigation } from "react-native-navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { View, Alert, StyleSheet } from "react-native";
 import { getUserStart } from "@redux/user/user.actions";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/client";
 import { GQL_MUTATION_RESPOND_TO_DUEL, GQL_QUERY_GET_DUELS, RespondToDuelMutationTuple } from "@graphql/duels";
 import { GetDuels_getDuels } from "@graphql/_core/schema/GetDuels";
 import { GetDuellerDetails_getDuellerDetails } from "@graphql/_core/schema/GetDuellerDetails";

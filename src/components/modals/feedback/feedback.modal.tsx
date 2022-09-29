@@ -7,7 +7,7 @@ import {
   GQL_PENDING_PROMPTS_FORM,
   SUPPORTED_TYPES,
 } from "@graphql/member";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/client";
 import { PendingPromptsForm } from "@graphql/_core/schema";
 import { AnswerInput } from "@graphql/_core/schema/globalTypes";
 import { FeedbackForm } from "@organisms";

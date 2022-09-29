@@ -1,5 +1,5 @@
 import { GQL_FRAGMENT_USER } from "@graphql/_fragments/user.gql";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import { Platform } from "react-native";
 import client from "../_core/client";
 import { GetCurrentUser } from "../_core/schema";

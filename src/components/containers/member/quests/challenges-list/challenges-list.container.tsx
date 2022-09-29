@@ -6,7 +6,7 @@ import { GetQuestMapLevel, GetQuestMapLevel_getQuestMapLevel_slots } from "@grap
 import { challengeStartSuccessAction } from "@redux/levels/levels.actions";
 import { BlurProvider, IToggleBlur } from "@atoms";
 import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/client";
 import { handleLinkPress } from "@services/app-link";
 import { getCurrentWorld, isSamsung } from "@utils";
 import { ChallengesLoading } from "@components/molecules";

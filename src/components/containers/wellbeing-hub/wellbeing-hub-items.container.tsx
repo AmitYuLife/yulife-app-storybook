@@ -4,7 +4,7 @@ import { Navigation } from "react-native-navigation";
 import { Style } from "@styles";
 import WellBeingHub from "@components/screens/wellbeing-hub/wellbeing-hub";
 import { GQL_QUERY_GET_CURRENT_USER } from "@graphql/user";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_WELLBEING_HUB_ITEMS } from "@graphql/wellbeingHub";
 import { GetWellbeingHubItems } from "@graphql/_core/schema";
 

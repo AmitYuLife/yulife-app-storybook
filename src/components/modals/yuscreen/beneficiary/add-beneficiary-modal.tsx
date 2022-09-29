@@ -4,7 +4,7 @@ import { Navigation } from "react-native-navigation";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { useBackHandler } from "@hooks";
 import AddBeneficiaryModalScreen from "./add-beneficiary-modal.screen";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import {
   CreateOrUpdateBeneficiaryMutationTuple,
   GQL_MUTATION_CREATE_OR_UPDATE_BENEFICIARY,

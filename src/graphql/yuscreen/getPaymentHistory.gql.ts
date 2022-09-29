@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import { GQL_QUERY_PRODUCT_PAYMENT_HISTORY_ITEM, GQL_QUERY_PRODUCT_PAYMENT_HISTORY_INFO_PANEL } from "./_fragments.gql";
 
 export const GQL_QUERY_PRODUCT_PAYMENT_HISTORY = gql`

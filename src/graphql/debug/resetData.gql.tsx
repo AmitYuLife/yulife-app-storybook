@@ -1,5 +1,5 @@
-import { MutationTuple } from "@apollo/react-hooks";
-import gql from "graphql-tag";
+import { MutationTuple } from "@apollo/client";
+import { gql } from "@apollo/client";
 import { ResetData, ResetDataVariables } from "../_core/schema";
 
 export const GQL_MUTATION_RESET_DATA = gql`

@@ -2,7 +2,7 @@ import * as React from "react";
 import { View, SectionList, SectionListRenderItem, SectionListData } from "react-native";
 import styles from "./completed-duels.styles";
 import { GQL_QUERY_GET_DUELS_COMPLETED } from "@graphql/duels/getDuelsCompleted.gql";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GetDuelsCompleted, GetDuelsCompleted_getDuelsCompleted_duels } from "@graphql/_core/schema";
 import { DuelEntry, DuelEmpty } from "../subcomponents";
 import { useSelector } from "react-redux";

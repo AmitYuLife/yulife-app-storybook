@@ -8,7 +8,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { truncate } from "@utils";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import {
   GetProductBeneficiaries,
   GetProductBeneficiaries_getProductBeneficiaries_beneficiaries,
