@@ -134,7 +134,7 @@ export const UNDERWRITING_EMPLOYMENT = async (answer: YesNo) => {
 
 export const UNDERWRITING_HEIGHT = async (answer: string) => {
     When(`I tap on Enter your height`, when.tapText("Please enter your height"), async () => {
-        Then("I should see the first value on the scroll picker", then.idVisible(SCROLL_PICKER_ACTIVE_ITEM("122 cm")));
+        Then("I should see the first value on the scroll picker", then.idVisible(SCROLL_PICKER_ACTIVE_ITEM("150 cm")));
         When(`I choose ${answer}`, when.swipeOnPicker(SCROLL_PICKER("heightCm"), SCROLL_PICKER_ACTIVE_ITEM(answer), "down"), async () => {
             Then(`I should have selected ${answer}`, then.idVisible(SCROLL_PICKER_ACTIVE_ITEM(answer)))
             When("I tap Select", when.tapText("Select"), async () => {
@@ -633,7 +633,7 @@ export const FAST_REVIEW_SCREEN = async () => {
 
 export const FAST_CHECKOUT = async ( isCovered: boolean, cover: string) => {
     const nextScreenTitle = isCovered ? "Item unlocked!\nYou've powered up your protection." : "We’ll be in touch"
-    const nextScreenBody = (nextScreenTitle == "Item unlocked!\nYou've powered up your protection.") ? `Congratulations, you've successully purchased ${cover} cover, your policy is now active.` : 
+    const nextScreenBody = (nextScreenTitle == "Item unlocked!\nYou've powered up your protection.") ? `Congratulations, you’ve successully purchased\n${cover} cover, your policy is now active.` : 
     "Based on your answers we’ll need additional information. We’ll reach out shortly by email and text to let you know what to do next. No payment will be taken from you.\n\nIn the meantime, you are now covered by Accidental Death Benefit provided by your selected policy:"
 
     When("I continue on and click through the contact details screen", when.scrollDownOnContactsPage, async () => {
