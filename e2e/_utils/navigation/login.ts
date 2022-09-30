@@ -51,8 +51,8 @@ export const loginAsPLIUser = (
 }
 
 
-export const logInAndGoToTab = (tab?: "yucoin" | "quests" | "leaderboard" | "rewards" | "yu", customer = CUSTOMER_1, auth = AUTH_1, fitkitAuth = true) => async () => {
-    await loginAsUser(customer, auth, fitkitAuth)()
+export const logInAndGoToTab = (tab?: "yucoin" | "quests" | "leaderboard" | "rewards" | "yu", customer = CUSTOMER_1, auth = AUTH_1, fitkitAuth = true, region = "United Kingdom") => async () => {
+    await loginAsUser(customer, auth, fitkitAuth, region)()
     await navigateViaID(NAV_BAR(tab))
 }
 

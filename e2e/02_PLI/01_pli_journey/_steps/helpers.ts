@@ -2,7 +2,7 @@ import { When, Then } from "@yu-life/yulife-bdd-framework";
 import * as when from "./when"
 import * as then from "./then"
 import { CUSTOMER_37, AUTH_37 } from "@data";
-import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, PACKAGE_TYPES, BACK_BUTTON, PACKAGE_INFO, TEXT_TEMPLATE, EDIT_BUTTON, DATE_PICKER, DATE_INPUT, HORIZONTAL_SCROLLER, SCROLL_NUMBER_PICKER } from "@ids";
+import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, PACKAGE_TYPES, BACK_BUTTON, PACKAGE_INFO, TEXT_TEMPLATE, EDIT_BUTTON, DATE_PICKER, DATE_INPUT, HORIZONTAL_SCROLLER, SCROLL_NUMBER_PICKER, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids";
 import { addCommasToNumber } from "_utils/appScreens/rewards";
 import { capitalizeFirstLetter } from "@navigation";
 import { MonthlyCoverPrices, TotalCoverPrices} from "./types"
@@ -36,7 +36,7 @@ export const ONBOARDING = async () => {
     })
 }
 
-export const INTRO_START = async () => {
+export const INTRO_START = async (customer = CUSTOMER_37) => {
 
     const forest = "Forest Pathfinder"
     const ocean = "Ocean Explorer"
@@ -68,7 +68,7 @@ export const INTRO_START = async () => {
         Then("I should see the correct copy in YuCoin", then.correctPliIntroCopy("YuCoin"))
         Then("I should see the correct text on the screen", then.textVisible(priceTime))
         When("I tap Get started button", when.tapText("Get started"), async () => {
-            Then("I should be on the Let's get personal screen", then.isOnLetsGetPersonalScreen(CUSTOMER_37.data.firstName))
+            Then("I should be on the Let's get personal screen", then.isOnLetsGetPersonalScreen(`${customer.data.firstName}`))
         })
     })
 }
@@ -79,9 +79,9 @@ export const INTRO_INFO = async () => {
     })
 }
 
-export const INTRO_HONESTY = async () => {
+export const INTRO_HONESTY = async (customer = CUSTOMER_37) => {
     When("I tap Yes, I promise", when.tapText("Yes, I promise"), async () => {
-        Then("I should be on the name screen", then.isOnNameScreen(CUSTOMER_37))
+        Then("I should be on the name screen", then.isOnNameScreen(customer))
     })
 }
 
@@ -555,7 +555,7 @@ export const MAXIMUM_SUM_ASSURED = async (cover: coverLevel, mothprice: MonthlyC
 
 export const CHECKOUT = async ( isCovered: boolean, cover: string) => {
     const nextScreenTitle = isCovered ? "Item unlocked!\nYou've powered up your protection." : "We’ll be in touch"
-    const nextScreenBody = (nextScreenTitle == "Item unlocked!\nYou've powered up your protection.") ? `Congratulations, you've successully purchased ${cover} cover, your policy is now active.` : 
+    const nextScreenBody = (nextScreenTitle == "Item unlocked!\nYou've powered up your protection.") ? `Congratulations, you’ve successully purchased\n${cover} cover, your policy is now active.` : 
     "Based on your answers we’ll need additional information. We’ll reach out shortly by email and text to let you know what to do next. No payment will be taken from you.\n\nIn the meantime, you are now covered by Accidental Death Benefit provided by your selected policy:"
 
     When("I add contact details", when.addContactDetails, async () => {
@@ -649,5 +649,19 @@ export const FAST_CHECKOUT = async ( isCovered: boolean, cover: string) => {
                 })
             })
         })
+    })
+}
+
+export const GET_PRODUCT = async ( productButton: string, productOnboardingViewText:string) => {
+    When(`I tap on ${productButton}`, when.tapText(productButton), async () => {
+        Then(`I should be on the first ${productOnboardingViewText} onboarding screen`, then.idVisible(TEXT_TEMPLATE(productOnboardingViewText)));
+    })
+}
+
+export const REVIEW_V4_YUSCREEN = async (totalYucoinCount: number, earnRate: string) => {
+    When("I tap Continue", when.tapText("Continue"), async () => {
+        Then(`I should have ${totalYucoinCount} YuCoins`, then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(totalYucoinCount)))
+        Then("I should see correct earn rate after i purcahsed PLI", then.textVisibleAtIndex(earnRate, 0))
+        Then("I should see correct earn reflected in PLI product slot", then.textVisibleAtIndex(earnRate, 1))
     })
 }
