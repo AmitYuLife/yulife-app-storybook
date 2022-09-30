@@ -40,7 +40,7 @@ function GenericHeading(props: IGenericHeadingProps) {
         <View style={styles.centerWrapper}>
           <View style={styles.relative}>
             {typeof heading === "string" ? (
-              <TextTemplate numberOfLines={1} type="b1b" color={color}>
+              <TextTemplate numberOfLines={1} type="b1b" color={color} accessibilityLabel={heading}>
                 {heading}
               </TextTemplate>
             ) : (

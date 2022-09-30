@@ -8,6 +8,7 @@ import { BuffArea } from "@graphql/_core/schema/globalTypes";
 import { YuCoinIcon } from "@atoms/icon/yucoin-icon";
 import { PressableWithDelay } from "@molecules";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
+import { t } from "@locale";
 interface IProps {
   yuCoinToday: string | number;
   yuCoinPower: string | number;
@@ -22,16 +23,29 @@ const TodayYuCoinHeader = ({ yuCoinToday, yuCoinPower }: IProps) => {
         <ActiveBuffsButton iconWidth={25} iconHeight={25} style={styles.activeBuffs} buffTypes={buffTypes} />
       </View>
       <View style={styles.wrapper}>
-        <View style={styles.textWrapper}>
+        <View
+          style={styles.textWrapper}
+          accessible={true}
+          accessibilityLabel={t("screens.today_earning.yucoin_header.coins.accessibility.accessibility_label", {
+            coins: yuCoinToday,
+          })}
+        >
           <TextTemplate type="l1" color={Colours.orange}>
-            earned today
+            {t("screens.today_earning.yucoin_header.coins.earned_today")}
           </TextTemplate>
           <TextTemplate type="h1" color={Colours.orange}>
-            {yuCoinToday} YuCoin
+            {t("screens.today_earning.yucoin_header.coins.amount", { coins: yuCoinToday })}
           </TextTemplate>
         </View>
         <View style={styles.yuCoinPower}>
-          <PressableWithDelay onPress={showYuCoinPowerExplainedOverlay}>
+          <PressableWithDelay
+            onPress={showYuCoinPowerExplainedOverlay}
+            accessibilityLabel={t(
+              "screens.today_earning.yucoin_header.yucoin_power.accessibility.accessibility_label",
+              { power: yuCoinPower }
+            )}
+            accessibilityRole={"button"}
+          >
             <YuCoinPower coins={yuCoinPower} />
           </PressableWithDelay>
         </View>

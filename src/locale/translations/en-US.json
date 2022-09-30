@@ -16,6 +16,56 @@
   },
   "create_challenge_error": "Sorry, there was a problem starting your challenge. \n Please try again!",
   "screens": {
+    "today_earning": {
+      "yucoin_header": {
+        "coins": {
+          "earned_today": "earned today",
+          "amount": "%{coins} YuCoin",
+          "accessibility": {
+            "accessibility_label": "%{coins} yu coin earned today"
+          }
+        },
+        "yucoin_power": {
+          "accessibility": {
+            "accessibility_label": "%{power} yu coin power"
+          }
+        }
+      },
+      "toast": {
+        "use_google_fit": {
+          "message": "Samsung Health does not support all core activities. To get the full experience and rewards, consider using Google Fit.",
+          "ctaLabel": "Connect to Google Fit"
+        },
+        "system_location_permission": {
+          "message": "To earn Yucoin for cycling, we need location permission to collect data on cycling activity.",
+          "ctaLabel": "Grant Permission",
+          "accessibility": {
+            "accessibility_label": "To earn yu coin for cycling, we need location permission to collect data on cycling activity."
+          }
+        },
+        "google_fit_location_permission": {
+          "message": "To earn Yucoin for cycling, we need location permission to collect data on cycling activity and connect to Google Fit.",
+          "cta_label": "Grant Permission",
+          "accessibility": {
+            "accessibility_label": "To earn yu coin for cycling, we need location permission to collect data on cycling activity and connect to Google Fit."
+          }
+        }
+      },
+      "activity_feed": {
+        "daily_core_activities": {
+          "accessibility": {
+            "accessibility_label": "Daily core activities info"
+          }
+        }
+      },
+      "alert": {
+        "never_ask_again": {
+          "title": "Permission Error",
+          "message": "Unfortunately we are not able to enable permissions, you will need to give location permissions through system settings",
+          "cta_label": "Open app settings"
+        }
+      }
+    },
     "weekly_quests": {
       "title": "Weekly quests",
       "time_remaining": "Time remaining"
@@ -377,6 +427,14 @@
       },
       "coins": {
         "accessibility_label": "Coins"
+      }
+    },
+    "left_icon": {
+      "back": {
+        "accessibility_label": "Back"
+      },
+      "close": {
+        "accessibility_label": "Close"
       }
     }
   },
