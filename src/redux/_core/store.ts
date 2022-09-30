@@ -3,15 +3,18 @@ import Logger from "@services/logging/logger";
 import Config from "react-native-config";
 import { applyMiddleware, compose, createStore, Store } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { persistReducer, persistStore } from "redux-persist";
+import { createMigrate, persistReducer, persistStore } from "redux-persist";
 import createSagaMiddleware from "redux-saga";
+import { migrations } from "./migrations";
 import combinedReducers, { IReduxState } from "./reducers";
 import sagas from "./sagas";
 
 const persistConfig = {
   blacklist: ["app", "pedometer", "avatarCache", "notifications", "sdui", "fitkit"],
   key: "root",
+  version: 1,
   storage: AsyncStorage,
+  migrate: createMigrate(migrations, { debug: false }),
 };
 
 const sagaMiddleware = createSagaMiddleware({
