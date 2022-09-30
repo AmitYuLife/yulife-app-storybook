@@ -59,7 +59,7 @@ export default function PersonalProductStepContinueModal({ productId, componentI
     }
   }, [resetStep, handleContinue, productId]);
 
-  if (loading && !data?.copy) {
+  if (loading || !data?.copy) {
     return (
       <View style={[styles.flex, styles.imageWrapper]}>
         <Loading />
