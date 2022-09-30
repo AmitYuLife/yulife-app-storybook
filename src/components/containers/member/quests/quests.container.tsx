@@ -22,7 +22,7 @@ import {
 import QuestsScreenContainer from "@screens/member/quests/quests-scroll-screen/quests-screen.container";
 import { BlurProvider } from "@atoms/index";
 import { useTapBackTwiceToExit } from "@hooks";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { CancelQuestMapLevelChallenge, CancelQuestMapLevelChallengeVariables } from "@graphql/_core/schema";
 import { GQL_MUTATION_CANCEL_MAP_LEVEL_CHALLENGE } from "@graphql/challenges";
 import { getQuestsPrompt } from "@redux/quests/quests.selectors";

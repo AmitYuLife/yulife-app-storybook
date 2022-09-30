@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_GET_MEDICAL_PRACTICES = gql`
   query MedicalPractices($name: String!) {

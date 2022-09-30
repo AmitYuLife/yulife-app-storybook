@@ -1,5 +1,5 @@
 import { Source } from "react-native-fast-image";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_YUMOJI_REMOTE_FITTING_ROOM, GQL_QUERY_GET_YUMOJI_REMOTE_PARTS } from "@graphql/yuscreen";
 import {
   GetYumojiRemoteFittingRoom,

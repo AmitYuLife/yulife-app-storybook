@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import client from "../_core/client";
 import { GetMagicLink, GetMagicLinkVariables } from "../_core/schema";
 

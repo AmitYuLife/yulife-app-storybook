@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useContext, useEffect, useState } from "react";
 import Logger from "@services/logging/logger";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/client";
 import { useStripe, PaymentSheet, PaymentSheetError } from "@stripe/stripe-react-native";
 import {
   ContentItemPersonalProductSelectPaymentButton as GqlSelectPaymentBtn,

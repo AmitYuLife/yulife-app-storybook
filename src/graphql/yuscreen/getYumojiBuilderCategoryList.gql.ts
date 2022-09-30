@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_QUERY_GET_YUMOJI_BUILDER_CATEGORY_LIST = gql`
   query GetYumojiBuilderCategoryList {

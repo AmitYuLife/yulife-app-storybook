@@ -1,6 +1,6 @@
-import { MutationTuple } from "@apollo/react-hooks";
+import { MutationTuple } from "@apollo/client";
 import { RemoveBeneficiaryFromProduct, RemoveBeneficiaryFromProductVariables } from "@graphql/_core/schema";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_MUTATION_REMOVE_BENEFICIARY_FROM_PRODUCT = gql`
   mutation RemoveBeneficiaryFromProduct($productId: ID!, $beneficiaryId: ID!) {

@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_QUERY_GET_MOBILE_PAYMENT_CARD_SETUP = gql`
   query GetMobilePaymentCardSetup {

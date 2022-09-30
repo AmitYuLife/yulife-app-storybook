@@ -4,7 +4,7 @@ import { WellbeingHubDetailsLoading } from "@components/screens/wellbeing-hub/we
 import { Navigation } from "react-native-navigation";
 import { GQL_QUERY_GET_WELLBEING_HUB_DETAILS } from "@graphql/wellbeingHub";
 import { GetWellbeingHubItem } from "@graphql/_core/schema";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { Platform } from "react-native";
 
 interface Props {

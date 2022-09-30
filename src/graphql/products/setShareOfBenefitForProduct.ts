@@ -1,6 +1,6 @@
-import { MutationTuple } from "@apollo/react-hooks";
+import { MutationTuple } from "@apollo/client";
 import { SetShareOfBenefitForProduct, SetShareOfBenefitForProductVariables } from "@graphql/_core/schema";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_MUTATION_SET_SHARE_OF_BENEFIT_FOR_PRODUCT = gql`
   mutation SetShareOfBenefitForProduct($productId: ID!, $shares: [BeneficiaryShareOfBenefit!]!) {

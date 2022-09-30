@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { BeneficiaryScreen } from "@components/screens/products/fib/beneficiaries/beneficiary.screen";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_PRODUCT_BENEFICIARIES } from "@graphql/products/getProductBeneficiaries";
 import {
   GetProductBeneficiaries,

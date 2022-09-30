@@ -1,7 +1,7 @@
 import React, { memo, useEffect } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { useDispatch } from "react-redux";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP } from "@graphql/personalProduct/getPersonalProductStep.gql";
 import { GetPersonalProductStep, GetPersonalProductStepVariables } from "@graphql/_core/schema";
 import { Loading } from "@atoms";

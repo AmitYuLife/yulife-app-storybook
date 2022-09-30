@@ -3,7 +3,7 @@ import {
   GQL_FRAGMENT_SDUI_ACTION,
   GQL_FRAGMENT_VARIABLE_REMOTE_IMAGE,
 } from "@graphql/_fragments/shared.gql";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import client from "@graphql/_core/client";
 import { GetYuScreen } from "@graphql/_core/schema";
 import { GQl_FRAGMENT_YU_SCREEN_CAROUSEL_ITEM, GQL_FRAGMENT_YU_SCREEN_PRODUCT_BUTTON_ACTION } from "./_fragments.gql";

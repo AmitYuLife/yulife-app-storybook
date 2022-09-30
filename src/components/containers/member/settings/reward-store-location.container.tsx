@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/client";
 import { Navigation } from "react-native-navigation";
 import Logger from "@services/logging/logger";
 import {

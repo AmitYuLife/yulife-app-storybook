@@ -17,7 +17,7 @@ import {
   GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE,
   GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE,
 } from "@graphql/challenges";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import {
   challengeCancelAction,

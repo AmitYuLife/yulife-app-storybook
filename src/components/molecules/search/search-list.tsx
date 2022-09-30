@@ -3,7 +3,7 @@ import { FlatList, ListRenderItem, KeyboardAvoidingView, Platform } from "react-
 import SearchListEmpty from "./search-list-empty";
 import { Colours } from "@styles";
 import { StyleSheet, ViewStyle } from "react-native";
-import { NetworkStatus } from "apollo-boost";
+import { NetworkStatus } from "@apollo/client";
 import { ISearchItem } from "./search-item";
 import { SEARCH_FLAT_LIST } from "@ids";
 

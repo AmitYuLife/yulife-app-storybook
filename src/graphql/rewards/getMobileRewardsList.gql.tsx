@@ -1,5 +1,5 @@
 import { GQL_FRAGMENT_REMOTE_IMAGE } from "@graphql/_fragments/shared.gql";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_QUERY_GET_MOBILE_REWARDS_LIST = gql`
   ${GQL_FRAGMENT_REMOTE_IMAGE}

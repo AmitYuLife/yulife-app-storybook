@@ -1,4 +1,4 @@
-import { RetryLink } from "apollo-link-retry";
+import { RetryLink } from "@apollo/client/link/retry";
 import moment from "moment";
 
 export const MAX_OPERATIONS_ATTEMPTS = 3;

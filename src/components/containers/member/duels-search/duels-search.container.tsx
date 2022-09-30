@@ -12,7 +12,7 @@ import {
   SearchForDuelOpponent_searchForDuelOpponent,
 } from "@graphql/_core/schema/SearchForDuelOpponent";
 import RecentOpponents from "./subcomponents/recent-opponents";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GetDuels } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_DUELS } from "@graphql/duels";
 import { getCurrentUserId } from "@redux/user/user.selectors";

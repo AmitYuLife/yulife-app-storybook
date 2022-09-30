@@ -1,5 +1,5 @@
-import gql from "graphql-tag";
-import { MutationTuple } from "@apollo/react-hooks";
+import { gql } from "@apollo/client";
+import { MutationTuple } from "@apollo/client";
 import { ReplyToLeaderboardInvite, ReplyToLeaderboardInviteVariables } from "@graphql/_core/schema";
 
 export const GQL_MUTATION_REPLY_TO_LEADERBOARD_INVITE = gql`

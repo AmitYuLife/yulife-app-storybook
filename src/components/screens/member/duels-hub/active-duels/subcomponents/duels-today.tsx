@@ -6,7 +6,7 @@ import { Button } from "@molecules";
 import { DuelEntry } from "../../subcomponents";
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GetDuelsToday } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_DUELS_TODAY } from "@graphql/duels/getDuelsToday.gql";
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";

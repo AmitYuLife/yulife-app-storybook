@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { Navigation } from "react-native-navigation";
 import { GQL_MUTATION_UPDATE_CYCLING_MEASUREMENT } from "@graphql/user";
 import {

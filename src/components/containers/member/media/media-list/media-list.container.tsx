@@ -1,5 +1,5 @@
 import React, { useCallback, memo, useMemo, useState } from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { Navigation } from "react-native-navigation";
 import { MediaListScreen } from "@components/screens";
 import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_CONTENT } from "@graphql/challenges/getQuestMapChallengeContent.gql";

@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import client from "../_core/client";
 import { SubmitPersonalProductStep, SubmitPersonalProductStepVariables } from "@graphql/_core/schema";
 

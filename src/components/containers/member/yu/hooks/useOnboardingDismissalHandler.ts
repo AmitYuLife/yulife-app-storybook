@@ -1,6 +1,6 @@
 import { useCallback, useContext, useState } from "react";
 import { Navigation } from "react-native-navigation";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP } from "@graphql/onboardingSteps/performMobileOnboardingStep.gql";
 import { MobileOnboardingStepPerformed } from "@graphql/_core/schema/globalTypes";
 import { ROUTES } from "@navigation/constants";

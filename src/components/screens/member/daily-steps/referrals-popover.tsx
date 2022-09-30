@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect, memo, useCallback } from "react";
 import { View, Image } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { setOnboardingReferralsBadge } from "@redux/onboarding/onboarding.actions";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import {
   GetReferralOnboardingPopover,
   GetReferralOnboardingPopover_getReferralOnboardingPopover,

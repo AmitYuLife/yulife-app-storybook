@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_FRAGMENT_USER_STATISTICS_DETAILS = gql`
   fragment UserStatisticDetails on UserStatisticDetails {

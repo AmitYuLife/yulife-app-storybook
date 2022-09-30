@@ -7,7 +7,7 @@ import { updateConnectionStart } from "@redux/user/user.actions";
 import { Connection, getUserConnections, getUserFeatures } from "@redux/user/user.selectors";
 import { SettingsScreen } from "@screens/index";
 import { getSettingsCopy } from "@redux/copy/copy.selectors";
-import { useQuery, useMutation, useApolloClient } from "@apollo/react-hooks";
+import { useQuery, useMutation, useApolloClient } from "@apollo/client";
 import {
   GQL_QUERY_GET_USER_NOTIFICATIONS_SETTINGS,
   GQL_MUTATION_UPDATE_USER_NOTIFICATIONS_SETTINGS,

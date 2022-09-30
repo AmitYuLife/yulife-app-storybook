@@ -3,7 +3,7 @@ import {
   GQL_FRAGMENT_SDUI_STYLE,
   GQL_FRAGMENT_SDUI_ACTION,
 } from "@graphql/_fragments/shared.gql";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import {
   GQL_FRAGMENT_CONTENT_ITEM_BUTTON,
   GQL_FRAGMENT_CONTENT_ITEM_HEADER_BAR,

@@ -1,5 +1,5 @@
-import { MutationTuple } from "@apollo/react-hooks";
-import gql from "graphql-tag";
+import { MutationTuple } from "@apollo/client";
+import { gql } from "@apollo/client";
 import client from "../_core/client";
 import { UpsertDailyPassives, UpsertDailyPassivesVariables } from "../_core/schema";
 import { ChallengesPayload } from "../_core/schema/globalTypes";

@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, TextStyle, View, ViewStyle } from "react-native
 import { Loading, TextTemplate, Image, Pad } from "@atoms";
 import { Button, LinkButton } from "@molecules";
 import { Style } from "@styles";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_CONTINUE_MODAL,
   GQL_MUTATION_RESET_PERSONAL_PRODUCT_STEP,

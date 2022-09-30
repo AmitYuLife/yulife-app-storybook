@@ -1,6 +1,6 @@
 import client from "@graphql/_core/client";
 import { GetQuestMapLevelChallengeDetails, GetQuestMapLevelChallengeDetailsVariables } from "@graphql/_core/schema";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS = gql`
   query GetQuestMapLevelChallengeDetails($levelSlotId: String!) {

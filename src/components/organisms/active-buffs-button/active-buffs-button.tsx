@@ -10,7 +10,7 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import ActiveBuffsModal from "@components/modals/active-buffs/active-buffs.modal";
 import { showOverlayWithChild } from "@modals/blurred-overlay/showOverlayWithChild";
 import { Style } from "@styles";
-import { useLazyQuery } from "@apollo/react-hooks";
+import { useLazyQuery } from "@apollo/client";
 import Logger from "@services/logging/logger";
 import { getRouteState } from "@redux/app/app.selectors";
 

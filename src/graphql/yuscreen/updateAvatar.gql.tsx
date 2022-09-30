@@ -1,7 +1,7 @@
-import { MutationTuple } from "@apollo/react-hooks";
+import { MutationTuple } from "@apollo/client";
 import { GQL_FRAGMENT_AVATAR_REMOTE_FILES } from "../_fragments/avatarRemoteFiles.gql";
 import { UpdateAvatarVariables, UpdateAvatar } from "@graphql/_core/schema";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_MUTATION_UPDATE_AVATAR = gql`
   ${GQL_FRAGMENT_AVATAR_REMOTE_FILES}

@@ -17,7 +17,7 @@ import { Colours } from "@styles";
 import { SURVEY_SCREEN, SURVEY_TEXT_BOX } from "@ids";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { CheckBox } from "@molecules";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_YU_SCREEN_PRODUCT_SURVEY } from "@graphql/yuscreen";
 import { GetYuScreenProductSurvey } from "@graphql/_core/schema";
 

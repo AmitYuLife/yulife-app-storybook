@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useMemo, useState, FC, useRef } from "re
 import { Animated, View, Image } from "react-native";
 import LottieView from "lottie-react-native";
 import { labels } from "@navigation/root";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { DETOX_ENABLED } from "@services/socket";
 import { YUNITY_REACHED } from "@ids";
 import { TextTemplate } from "@atoms";

@@ -4,7 +4,7 @@ import { MODALS } from "@navigation/constants";
 import { useBackHandler } from "@hooks";
 import AppReviewModalScreen from "@screens/app-review/app-review.screen";
 import InAppReview from "react-native-in-app-review";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import {
   GQL_SUBMIT_APP_STORE_REVIEW_ACTION,
   SubmitAppStoreReviewActionMutationTuple,

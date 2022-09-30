@@ -1,4 +1,4 @@
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { eventState } from "@components/screens/member/events/collect-event-reward/collect-event-reward.screen";
 import { GQL_MUTATION_CLAIM_GOAL_REWARDS } from "@graphql/goals/claimGoalRewards.gql";
 import { ClaimGoalRewards, ClaimGoalRewardsVariables } from "@graphql/_core/schema";

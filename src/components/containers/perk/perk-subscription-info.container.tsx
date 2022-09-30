@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { Navigation } from "react-native-navigation";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_PERK_SUBSCRIPTION_INFO } from "@graphql/perks/getPerkSubscriptionInfo.gql";
 import { GetPerkSubscriptionInfo } from "@graphql/_core/schema";
 import { PerkSubscriptionInfoLoadingScreen, PerkSubscriptionInfoScreen } from "@components/screens";

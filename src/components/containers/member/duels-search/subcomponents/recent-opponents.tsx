@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { Loading, Text } from "@atoms";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_RECENT_DUEL_OPPONENTS } from "@graphql/duels/getRecentDuelOpponents.gql";
 import { GetRecentDuelOpponents } from "@graphql/_core/schema";
 import { DuelImage } from "@components/screens/member/duels-hub/subcomponents";

@@ -1,6 +1,6 @@
-import { MutationTuple } from "@apollo/react-hooks";
+import { MutationTuple } from "@apollo/client";
 import { CreateOrUpdateBeneficiary, CreateOrUpdateBeneficiaryVariables } from "@graphql/_core/schema";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_MUTATION_CREATE_OR_UPDATE_BENEFICIARY = gql`
   mutation CreateOrUpdateBeneficiary($beneficiary: CustomerBeneficiaryUpdate) {

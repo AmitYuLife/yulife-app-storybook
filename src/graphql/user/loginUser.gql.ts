@@ -1,7 +1,7 @@
-import { MutationTuple } from "@apollo/react-hooks";
+import { MutationTuple } from "@apollo/client";
 import { LoginUserVariables, LoginUser } from "@graphql/_core/schema";
 import { GQL_FRAGMENT_USER } from "@graphql/_fragments/user.gql";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_MUTATION_LOGIN_USER = gql`
   ${GQL_FRAGMENT_USER}

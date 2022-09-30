@@ -5,7 +5,7 @@ import { MODALS } from "@navigation/constants";
 import { Loading, Text, TextTemplate } from "@atoms";
 import { YuCoinIcon } from "@atoms/icon/yucoin-icon";
 import { Button } from "@molecules";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
 import { useBackHandler } from "@hooks";
 import { GQL_QUERY_GET_YU_COIN_POWER_EXPLAINED } from "@graphql/yuscreen/getYuCoinPowerExplained";

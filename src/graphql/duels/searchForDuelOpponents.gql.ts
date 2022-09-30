@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_QUERY_SEARCH_FOR_DUEL_OPPONENT = gql`
   query SearchForDuelOpponent($query: String!, $limit: Int) {

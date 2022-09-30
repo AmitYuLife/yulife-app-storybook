@@ -2,7 +2,7 @@ import React from "react";
 import { TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_YU_SCREEN_PRODUCT_LIST } from "@graphql/yuscreen/getYuScreenProductList.gql";
 import { GetYuScreenProductList, GetYuScreenProductList_getYuScreenProductList_body } from "@graphql/_core/schema";
 import { CarouselCard } from "@components/containers/member/yu/subcomponents/carousel/carousel-card";

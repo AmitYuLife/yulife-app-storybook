@@ -5,7 +5,7 @@ import { Button } from "@molecules";
 import styles from "./duel-options.styles";
 import { DuelStepProps, DEFAULT_DUEL_AMOUNT_LABEL } from "../../duels.types";
 import { GQL_QUERY_GET_DUEL_TEMPLATES } from "@graphql/duels/getDuelTemplates.gql";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GetDuelTemplates } from "@graphql/_core/schema";
 import WagerDropdown from "./subcomponents/wager-dropdown/wager-dropdown";
 import { DUEL_OPTIONS_SCREEN } from "@ids";

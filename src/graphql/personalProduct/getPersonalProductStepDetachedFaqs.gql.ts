@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED_FAQS = gql`
   query GetPersonalProductStepDetachedFaqs($productId: String!) {

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { DocumentNode } from "graphql";
-import { useLazyQuery, LazyQueryHookOptions } from "@apollo/react-hooks";
-import { QueryResult } from "@apollo/react-common";
+import { useLazyQuery, LazyQueryHookOptions } from "@apollo/client";
+import { QueryResult } from "@apollo/client";
 
 export function useDebouncedQuery<TData, TVariables>(
   gql: DocumentNode,

@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_ACTIVITY_HISTORY } from "@graphql/user";
 import { processResult, queryFitKitByTypes, queryAggregatedBiking, querySteps } from "@services/fitkit/fitkit.helpers";
 import moment from "moment";

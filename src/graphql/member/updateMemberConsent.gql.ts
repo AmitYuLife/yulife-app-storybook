@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import client from "../_core/client";
 import { UpdateMemberConsent, UpdateMemberConsentVariables } from "../_core/schema";
 import { MobileConsentInput } from "../_core/schema/globalTypes";

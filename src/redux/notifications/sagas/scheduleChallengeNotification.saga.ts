@@ -1,4 +1,4 @@
-import { ApolloQueryResult } from "apollo-client";
+import { ApolloQueryResult } from "@apollo/client";
 import moment from "moment";
 import PushNotification from "react-native-push-notification";
 import { call } from "redux-saga/effects";

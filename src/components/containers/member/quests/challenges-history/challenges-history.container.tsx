@@ -4,7 +4,7 @@ import { GetQuestMapLevel } from "@graphql/_core/schema";
 import { IConnectedScreenProps } from "@app/typings";
 import { ChallengesHistoryScreen } from "@screens";
 import { useBackHandler } from "@hooks";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_QUEST_MAP_LEVEL } from "@graphql/challenges";
 import { ChallengesLoading } from "@components/molecules";
 

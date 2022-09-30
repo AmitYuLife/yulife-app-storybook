@@ -1,6 +1,6 @@
 import { GQL_FRAGMENT_CONTENT_ITEM_IMAGE, GQL_FRAGMENT_CONTENT_ITEM_TEXT } from "@graphql/_fragments/content.gql";
 import { GQL_FRAGMENT_SDUI_STYLE } from "@graphql/_fragments/shared.gql";
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const GQL_QUERY_GET_PERK_SUBSCRIPTION_INFO = gql`
   ${GQL_FRAGMENT_SDUI_STYLE}

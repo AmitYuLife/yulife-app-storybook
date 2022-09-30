@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Navigation } from "react-native-navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserStart } from "@redux/user/user.actions";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/client";
 import { Alert, View } from "react-native";
 import moment from "moment";
 import { DuelBackground, DuelOptions, DuelInviteIntro } from "./subcomponents";

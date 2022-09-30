@@ -1,5 +1,5 @@
-import gql from "graphql-tag";
-import { MutationTuple } from "@apollo/react-hooks";
+import { gql } from "@apollo/client";
+import { MutationTuple } from "@apollo/client";
 import { CreateLeaderboard, CreateLeaderboardVariables } from "@graphql/_core/schema";
 
 export const GQL_MUTATION_CREATE_LEADERBOARD = gql`

@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import { GQL_FRAGMENT_MILESTONE } from "./challengeMilestone.gql";
 
 export const GQL_FRAGMENT_CHALLENGE_TEMPLATE = gql`

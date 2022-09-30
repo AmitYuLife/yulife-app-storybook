@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, memo } from "react";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { ReferralsScreen, ReferralsLoadingScreen } from "@components/screens";
 import { GQL_QUERY_GET_REFERRAL_INFORMATION } from "@graphql/referrals";
 import { GetReferralInformation } from "@graphql/_core/schema/GetReferralInformation";

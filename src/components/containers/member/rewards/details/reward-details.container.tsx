@@ -2,7 +2,7 @@ import React, { FC, useEffect, useCallback } from "react";
 import { Alert, Keyboard, Linking } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   RedeemRewardMutationTuple,
   GQL_MUTATION_REDEEM_REWARD,
