@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { StyleSheet, View, Platform, Alert, PermissionsAndroid, Linking } from "react-native";
+import { StyleSheet, View, Platform, Alert, PermissionsAndroid, Linking, AccessibilityRole } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { Block, Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
@@ -12,6 +12,7 @@ import {
   GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal as IQuestionMarkModal,
   GetTodayEarnings_getTodayEarnings_activityFeed_toast as IToast,
   GetTodayEarnings_getTodayEarnings_activityFeed_wellDoneBanner as IWellDoneBanner,
+  GetTodayEarnings_getTodayEarnings_activityFeed_titleAccessibility as IAccessibility,
 } from "@graphql/_core/schema";
 import ActivityFeedPopMenu from "./activity-feed-pop-menu";
 import { ROUTES } from "@navigation/constants";
@@ -28,13 +29,16 @@ import RNFitKit from "@yu-life/react-native-fitkit";
 import { FitKitTypes } from "@services/fitkit/fitkit.service";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
+import { useTranslation } from "@hooks";
 
 interface IProps {
   id: string;
   title: string;
+  titleAccessibility: IAccessibility;
   emptyMessage: string;
   wellDoneBanner: IWellDoneBanner;
   button: IButton;
+  buttonAccessibility: IAccessibility;
   toast: IToast;
   questionMarkModal: IQuestionMarkModal;
   activityProgress: IActivityProgress[];
@@ -44,8 +48,10 @@ interface IProps {
 const ActivityFeed = ({
   id,
   title,
+  titleAccessibility,
   wellDoneBanner,
   button,
+  buttonAccessibility,
   toast,
   questionMarkModal,
   activityProgress,
@@ -58,6 +64,23 @@ const ActivityFeed = ({
   const questionMarkRef = useRef<View>();
   const { authorise, authoriseFitKitTypes } = useFitKit();
   const hasNotification = useSelector(getHasNotification);
+  const t = useTranslation([
+    "screens.today_earning.alert.never_ask_again.title",
+    "screens.today_earning.alert.never_ask_again.message",
+    "screens.today_earning.alert.never_ask_again.cta_label",
+    "screens.today_earning.activity_feed.daily_core_activities.accessibility.accessibility_label",
+    "screens.daily.challenge_button.back_to_challenge.accessibility_label",
+    "screens.daily.challenge_button.back_to_challenge.accessibility_label",
+    "screens.today_earning.toast.use_google_fit.message",
+    "screens.today_earning.toast.use_google_fit.message",
+    "screens.today_earning.toast.use_google_fit.ctaLabel",
+    "screens.today_earning.toast.system_location_permission.accessibility.accessibility_label",
+    "screens.today_earning.toast.system_location_permission.message",
+    "screens.today_earning.toast.system_location_permission.ctaLabel",
+    "screens.today_earning.toast.google_fit_location_permission.accessibility.accessibility_label",
+    "screens.today_earning.toast.google_fit_location_permission.message",
+    "screens.today_earning.toast.google_fit_location_permission.cta_label",
+  ]);
 
   const checkCyclingPermissions = useCallback(async () => {
     const [cyclingAuthorised, isGranted] = await Promise.all([
@@ -104,11 +127,11 @@ const ActivityFeed = ({
 
     if (result === "never_ask_again") {
       return Alert.alert(
-        "Permission Error",
-        "Unfortunately we are not able to enable permissions, you will need to give location permissions through system settings",
+        t["screens.today_earning.alert.never_ask_again.title"],
+        t["screens.today_earning.alert.never_ask_again.message"],
         [
           {
-            text: "Open app settings",
+            text: t["screens.today_earning.alert.never_ask_again.cta_label"],
             onPress: Linking.openSettings,
           },
         ]
@@ -203,10 +226,22 @@ const ActivityFeed = ({
   return (
     <Block style={[styles.wrapper, wellDoneBanner ? { paddingBottom: 0 } : null]}>
       <View style={styles.headerWrapper}>
-        <TextTemplate type="b2b">{title}</TextTemplate>
+        <TextTemplate
+          type="b2b"
+          accessibilityLabel={titleAccessibility?.accessibilityLabel}
+          accessibilityRole={titleAccessibility?.accessibilityRole as AccessibilityRole}
+        >
+          {title}
+        </TextTemplate>
         {!questionMarkModal ? null : (
           <View style={styles.headerIconsWrapper}>
-            <PressableWithDelay onPress={openPopUp}>
+            <PressableWithDelay
+              onPress={openPopUp}
+              accessibilityLabel={
+                t["screens.today_earning.activity_feed.daily_core_activities.accessibility.accessibility_label"]
+              }
+              accessibilityRole={"button"}
+            >
               <View style={styles.questionMarkIcon} ref={questionMarkRef} collapsable={false}>
                 <Image
                   width={Style.adjust(24)}
@@ -221,12 +256,17 @@ const ActivityFeed = ({
       </View>
 
       {!emptyMessage ? null : (
-        <View style={styles.progressWrapper}>
+        <View style={styles.progressWrapper} accessibilityLabel={emptyMessage}>
           <TextTemplate type="l1">{emptyMessage}</TextTemplate>
         </View>
       )}
-      {parseActivityProgress?.map(({ iconUrl, ...props }, key) => (
-        <View key={key} style={styles.progressWrapper}>
+      {parseActivityProgress?.map(({ iconUrl, accessibility, ...props }, key) => (
+        <View
+          key={key}
+          style={styles.progressWrapper}
+          accessibilityLabel={accessibility?.accessibilityLabel}
+          accessible={true}
+        >
           <ActivityProgress {...props} iconUrl={iconUrl.uri} />
         </View>
       ))}
@@ -236,7 +276,16 @@ const ActivityFeed = ({
           <Button
             onPress={onTakeChallengePress}
             size="Large"
-            label={hasNotification ? "Back to challenge" : button?.label}
+            label={
+              hasNotification
+                ? t["screens.daily.challenge_button.back_to_challenge.accessibility_label"]
+                : button?.label
+            }
+            accessibilityLabel={
+              hasNotification
+                ? t["screens.daily.challenge_button.back_to_challenge.accessibility_label"]
+                : buttonAccessibility?.accessibilityLabel
+            }
           />
         </View>
       )}
@@ -250,13 +299,19 @@ const ActivityFeed = ({
             backgroundColor={toast?.backgroundColor}
             borderColor={toast?.borderColor}
           >
-            <View style={styles.toastDescription}>
-              <TextTemplate type="l3b">
-                Samsung Health does not support all core activities. To get the full experience and rewards, consider
-                using Google Fit.
+            <View
+              style={styles.toastDescription}
+              accessibilityLabel={t["screens.today_earning.toast.use_google_fit.message"]}
+            >
+              <TextTemplate type="l3b" accessible={true}>
+                {t["screens.today_earning.toast.use_google_fit.message"]}
               </TextTemplate>
             </View>
-            <Button onPress={onGoogleFitConnect} size="Fill" label="Connect to Google Fit" />
+            <Button
+              onPress={onGoogleFitConnect}
+              size="Fill"
+              label={t["screens.today_earning.toast.use_google_fit.ctaLabel"]}
+            />
           </Toast>
         </View>
       )}
@@ -269,12 +324,21 @@ const ActivityFeed = ({
             backgroundColor={toast?.backgroundColor}
             borderColor={toast?.borderColor}
           >
-            <View style={styles.toastDescription}>
+            <View
+              style={styles.toastDescription}
+              accessibilityLabel={
+                t["screens.today_earning.toast.system_location_permission.accessibility.accessibility_label"]
+              }
+            >
               <TextTemplate type="l3b">
-                To earn Yucoin for cycling, we need location permission to collect data on cycling activity.
+                {t["screens.today_earning.toast.system_location_permission.message"]}
               </TextTemplate>
             </View>
-            <Button onPress={onGrantPermission} size="Fill" label="Grant Permission" />
+            <Button
+              onPress={onGrantPermission}
+              size="Fill"
+              label={t["screens.today_earning.toast.system_location_permission.ctaLabel"]}
+            />
           </Toast>
         </View>
       )}
@@ -288,13 +352,21 @@ const ActivityFeed = ({
             backgroundColor={toast?.backgroundColor}
             borderColor={toast?.borderColor}
           >
-            <View style={styles.toastDescription}>
+            <View
+              style={styles.toastDescription}
+              accessibilityLabel={
+                t["screens.today_earning.toast.google_fit_location_permission.accessibility.accessibility_label"]
+              }
+            >
               <TextTemplate type="l3b">
-                To earn Yucoin for cycling, we need location permission to collect data on cycling activity and connect
-                to Google Fit.
+                {t["screens.today_earning.toast.google_fit_location_permission.message"]}
               </TextTemplate>
             </View>
-            <Button onPress={onGrantGoogleFitCyclingPermission} size="Fill" label="Grant Permission" />
+            <Button
+              onPress={onGrantGoogleFitCyclingPermission}
+              size="Fill"
+              label={t["screens.today_earning.toast.google_fit_location_permission.cta_label"]}
+            />
           </Toast>
         </View>
       )}

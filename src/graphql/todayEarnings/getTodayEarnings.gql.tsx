@@ -10,6 +10,10 @@ export const GQL_QUERY_GET_TODAY_EARNINGS = gql`
       activityFeed {
         id
         title
+        titleAccessibility {
+          accessibilityLabel
+          accessibilityRole
+        }
         emptyMessage
         wellDoneBanner {
           uri(options: { width: 654, height: 272 })
@@ -20,6 +24,10 @@ export const GQL_QUERY_GET_TODAY_EARNINGS = gql`
             type
           }
           type
+        }
+        buttonAccessibility {
+          accessibilityLabel
+          accessibilityRole
         }
         toast {
           backgroundColor
@@ -56,6 +64,10 @@ export const GQL_QUERY_GET_TODAY_EARNINGS = gql`
           rating
           maxLength
           currentPosition
+          accessibility {
+            accessibilityLabel
+            accessibilityRole
+          }
           iconUrl {
             uri(options: { width: 64, height: 64 })
           }

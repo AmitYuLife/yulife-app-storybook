@@ -46,7 +46,7 @@ const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon }: IProps) 
       onPress={handleOnPress}
       style={styles.rightIconTouchable}
       testID={testID}
-      accessibilityLabel={getAccessibilityLabel(icon)}
+      accessibilityLabel={accessibilityLabels[icon] ?? ""}
     >
       {getIcon(icon, color)}
     </TouchableOpacityWithDelay>
@@ -64,8 +64,6 @@ const accessibilityLabels = {
   SAVE: t("generic_heading.right_icon.save.accessibility_label"),
   COINS: t("generic_heading.right_icon.coins.accessibility_label"),
 };
-
-const getAccessibilityLabel = (icon: IIcon) => accessibilityLabels[icon];
 
 const getIcon = (icon: IIcon, color: string) => {
   switch (icon) {
