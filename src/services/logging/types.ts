@@ -42,6 +42,7 @@ export type MixpanelEvent =
   | "screen_view"
   | "settings_toggle"
   | "survey_completed"
+  | "transition_screen_view"
   | "user_action"
   | "user_connection_state"
   | "wellbeing_item_button_pressed"

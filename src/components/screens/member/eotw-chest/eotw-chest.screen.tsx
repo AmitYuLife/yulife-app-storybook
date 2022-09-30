@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState, FC, useRef, useEffect, memo } from "react";
 import { ImageSourcePropType, StyleSheet, View } from "react-native";
+import { useDispatch } from "react-redux";
 import LottieView from "lottie-react-native";
 import { Chest, ChestType, ChestItemType, CHEST_STATE } from "@organisms";
 import { Button } from "@molecules";
@@ -11,6 +12,7 @@ import EOTWSpaceTravel from "./eotw-space-travel";
 import { Style } from "@styles";
 import { t } from "@locale";
 import { SPACE_TRAVEL_ANIMATION_DURATION } from "./eotw-planet-animation-config";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 interface IProps {
   chestType: ChestType;
@@ -32,6 +34,7 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, leve
   const [chestState, setChestState] = useState(CHEST_STATE.CLOSED);
   const [page, setPage] = useState(EOTW_CHEST_PAGE.CHEST);
   const [beginningButton, setBeginningButton] = useState(false);
+  const dispatch = useDispatch();
 
   const travelRef = useRef<LottieView>(null);
 
@@ -52,7 +55,13 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, leve
     }
 
     setPage(EOTW_CHEST_PAGE.SPACE_TRAVEL);
-  }, [chestState]);
+    dispatch(
+      logMixpanelEventActionCreator("transition_screen_view", {
+        name: "space travel",
+        levelId,
+      })
+    );
+  }, [chestState, dispatch]);
 
   const onSpaceTravelButtonPress = useCallback(() => {
     setTravel(true);

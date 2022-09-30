@@ -15,10 +15,10 @@ export default function* resetChallengeSaga() {
   const avatar: ReturnType<typeof getUserAvatar> = yield select(getUserAvatar);
 
   if (active?.status === "success") {
-    if ((active?.chest?.value ?? 0) > 0) {
-      yield call(showChestModal, active);
-    } else if (active.yuniversalChest) {
+    if (active.yuniversalChest) {
       yield call(showEOTWChestModal, active, level, { uri: avatar?.avatarRemoteFiles?.pngMini });
+    } else if ((active?.chest?.value ?? 0) > 0) {
+      yield call(showChestModal, active);
     }
   }
 
