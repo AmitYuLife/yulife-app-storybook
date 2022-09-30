@@ -94,7 +94,7 @@ export const WELLBEING_PRODUCT_VIEW = async (packageType: string, yuCoinPower: n
 
     When(`I tap Wellbeing Access`, when.tapText("Wellbeing Access"), async () => {
         Then("I should see correct product details", then.wellbeingProductInfo(packageType))
-        When("I tap the YuCoin icon", when.tapID(YUCOIN_POWER(1)), async () => {
+        When("I tap the YuCoin icon", when.tapID(YUCOIN_POWER(10)), async () => {
             Then("I should see correct YuCoin Power text", then.yuCoinPowerInfo(yuCoinPower))
             When("I click Got it", when.tapText("Got it!"), async () => {
                 Then("I should see Wellbeing Access", then.textVisibleAtIndex("Wellbeing Access", 1))

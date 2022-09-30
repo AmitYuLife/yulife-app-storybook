@@ -32,9 +32,10 @@ export const completeNewWorldShortStroll = (levelNumber: number) => async () => 
     await sendSteps(400, 35000)()
     await waitFor(element(by.text("collect"))).toBeVisible().withTimeout(5000)
     await navigateViaText("collect")
-    await waitFor(element(by.text("Done"))).toBeVisible().withTimeout(5000)
-    await navigateViaText("Done")
+    await waitFor(element(by.text("collect"))).toBeVisible().withTimeout(5000)
     await navigateViaText("collect")
+    await wait(10000)()
+    await navigateViaText("Done")
 }
 
 export const completeNewWorldMeditation = (levelNumber: number) => async () => {

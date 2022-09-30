@@ -1,11 +1,10 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_22, AUTH_22, CUSTOMER_23, AUTH_23, CUSTOMER_24, AUTH_24, CUSTOMER_39, AUTH_39, CUSTOMER_41, AUTH_41 } from "@data";
 import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, QUESTS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, YUCOIN, QUESTS_SCREEN_YUNIVERSAL, CHALLENGE_TILE, STEPS_COUNT, DAILY_STEPS_SCREEN, ACTIVITY_FEED, YUCOIN_POWER } from "@ids";
-
 
 Feature("As a user I can complete challenges across multiple worlds", async () => {
     Scenario("I can transition from the first world (forest) to the second world (ocean)", scenario.start, () => {

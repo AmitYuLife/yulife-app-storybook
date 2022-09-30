@@ -98,9 +98,10 @@ export const onTodaysYucoin = (steps = 0, mindfulness = 0) => async () => {
 }
 
 export const forestThreeRewardsVisible = () => async () => {
-    await textVisible("1 day 2x surge")
-    await textVisible("+1 Challenge per day")
-    await textVisible("Ocean Outfit")
+    await textVisible("1 day 2x surge")()
+    await textVisible("+1 Challenge per day")()
+    await textVisible("Ocean Outfit")()
+    await wait(5000)()
     await navigateViaText("Claim rewards")
 }
 
