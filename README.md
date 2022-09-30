@@ -232,6 +232,42 @@ You may also be asked to create an OAuth Consent Screen. You only need to enter 
 
 You should now be able to log in to your Google Account in the simulator or device.
 
+## Schema migrations
+
+If you ever make a code change that changes the redux store, create a migration file to execute the changes so that your changes can be executed and tested through the various environments.
+
+### Creating a migration
+
+All migrations should be created in: `src/redux/_core/migrations`
+
+Always when creating a migration follow this file name format: `version_name_of_the_migration`
+
+Example: `0001_add_user_new_fields`
+
+All migration versions needs to follow this format:
+`src/redux/_core/migrations/index.ts`
+
+```
+export const migrations = {
+  "0": initial,
+  "1": update_something,
+  "2": add_something
+};
+
+```
+
+Then you need to update the migration version in: `src/redux/_core/store.ts:15`
+
+```
+const persistConfig = {
+  blacklist: ["app", "pedometer", "avatarCache", "notifications", "sdui", "fitkit"],
+  key: "root",
+  version: 1 <-(update here),
+  storage: AsyncStorage,
+  migrate: createMigrate(migrations, { debug: false }),
+};
+```
+
 ## Debugging
 
 You can use the react native debugger.
