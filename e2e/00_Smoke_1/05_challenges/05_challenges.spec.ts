@@ -71,29 +71,57 @@ Feature("As a user I can take a challenge", async () => {
         Given("I am on the quest tab as a user with a chest challenge", given.logInAndGoToTab("quests", CUSTOMER_9, AUTH_9), async () => {
             Then("I should see my coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(760)))
             Then("I should see level 7 unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(7)))
-            When("I tap level 7", when.tapID(LEVEL_CHALLENGE_BUTTON(7)), async () => {
-                Then("I should see a screen telling me to take a challenge to unlock a chest", then.textVisible("take a challenge to unlock the chest"))
-                When("I tap 'lets do it'", when.tapText("let's do it"), async () => {
-                    Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
-                    Then("I should see the brisk walk challenge", then.idVisible(CHALLENGE_TILE("brisk walk")))
-                    Then("I should see the long walk challenge", then.idVisible(CHALLENGE_TILE("long walk")))
-                    Then("I should see the meditation challenge", then.idVisible(CHALLENGE_TILE("meditation")))
-                    When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
-                        Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
-                        When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
-                            Then("I should see the well done screen", then.onChallengeComplete(3050, 7))
-                            When("I tap collect on the well done screen", when.tapText("collect", 5000), async () => {
-                                Then("I should see the first day streak screen", then.textVisible("First day done!", 10000))
-                                    When("I dismiss the streak screen", when.tapText("Done", 5000), async()=>{
-                                        Then("I should see the chest unlocked screen telling me I get 200 yucoin", then.textVisible("you get 200 yucoin"))
-                                        When("I dismiss the chest unlock screen", when.tapText("collect", 5000), async () => {
-                                            Then("I should be on the quest screen", then.idVisible(LEVEL_CHALLENGE_BUTTON(8), 3000))
-                                            When("I back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-                                                Then("I should see my updated coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(1030)))
-                                                Then("I should see the number of steps I just completed", then.idVisible(STEPS_COUNT(3050)))
-                                                Then("I should see the number of coins I've earned today (270)", then.textVisible("270 YuCoin today"))
-                                            })
-                                        })
+        })
+        When("I tap level 7", when.tapID(LEVEL_CHALLENGE_BUTTON(7)), async () => {
+            Then("I should see a screen telling me to take a challenge to unlock a chest", then.textVisible("take a challenge to unlock the chest"))
+        })
+        When("I tap 'lets do it'", when.tapText("let's do it"), async () => {
+            Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
+            Then("I should see the brisk walk challenge", then.idVisible(CHALLENGE_TILE("brisk walk")))
+            Then("I should see the long walk challenge", then.idVisible(CHALLENGE_TILE("long walk")))
+            Then("I should see the meditation challenge", then.idVisible(CHALLENGE_TILE("meditation")))
+        })
+        When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
+            Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
+        })
+        When("I walk over `3000 steps", when.sendSteps(3050, 35000), async () => {
+            Then("I should` see the well done screen", then.onChallengeComplete(3050, 7))
+        })
+        When("I tap collect on the well done screen", when.tapText("collect", 5000), async () => {
+            Then("I should see the chest  screen telling me I get 200 yucoin", then.textVisible("you get 200 yucoin"))
+        })
+        When("I tap collect on the well done screen", when.tapText("collect", 5000), async () => {
+            Then("I should see the first day streak screen", then.textVisible("First day done!", 10000))
+        })
+        When("I dismiss the streak screen", when.tapText("Done", 5000), async()=>{
+            Then("I should be on the quest screen", then.idVisible(LEVEL_CHALLENGE_BUTTON(8), 3000))
+        })
+        When("I back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+            Then("I should see my updated coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(1030)))
+            Then("I should see the number of steps I just completed", then.idVisible(STEPS_COUNT(3050)))
+            Then("I should see the number of coins I've earned today (270)", then.textVisible("270 YuCoin today"))
+        })
+    })
+                                           
+    Scenario("I can complete today's challenge and then the homepage button updates to invite a colleague", scenario.start, async () => {
+        Given("I am on the quest tab as a user with a daily challenge", given.logInAndGoToTab("quests", CUSTOMER_35, AUTH_35), async () => {
+            Then("I should see my coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(3280)))
+            When("I tap level 6", when.tapID(LEVEL_CHALLENGE_BUTTON(6)), async () => {
+                Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
+                Then("I should see the long walk challenge", then.idVisible(CHALLENGE_TILE("long walk")))
+                Then("I should see the meditation challenge", then.idVisible(CHALLENGE_TILE("meditation")))
+                When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
+                    Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
+                    When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+                        Then("I should see the well done screen", then.onChallengeComplete(3050, 6))
+                        When("I tap collect on the well done screen", when.tapText("collect", 5000), async () => {
+                            Then("I should see the first day streak screen", then.textVisible("First day done!", 10000))
+                            When("I dismiss the streak screen", when.tapText("Done", 5000), async()=>{
+                                Then("I should be on the quest screen", then.idVisible(LEVEL_CHALLENGE_BUTTON(7), 3000))
+                                When("I tap yucoin in the tab", when.tapID(NAV_BAR("yucoin")), async () => {
+                                    Then("I should see the Invite a colleague button", then.idVisible("REFERRALS_BUTTON_HOMEPAGE"))
+                                    When("I tap on the invite button", when.tapID("REFERRALS_BUTTON_HOMEPAGE"), async () => {
+                                        Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage)
                                     })
                                 })
                             })
@@ -102,34 +130,7 @@ Feature("As a user I can take a challenge", async () => {
                 })
             })
         })
-        Scenario("I can complete today's challenge and then the homepage button updates to invite a colleague", scenario.start, async () => {
-            Given("I am on the quest tab as a user with a daily challenge", given.logInAndGoToTab("quests", CUSTOMER_35, AUTH_35), async () => {
-                Then("I should see my coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(3280)))
-                When("I tap level 6", when.tapID(LEVEL_CHALLENGE_BUTTON(6)), async () => {
-                    Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
-                    Then("I should see the long walk challenge", then.idVisible(CHALLENGE_TILE("long walk")))
-                    Then("I should see the meditation challenge", then.idVisible(CHALLENGE_TILE("meditation")))
-                    When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
-                        Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
-                        When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
-                            Then("I should see the well done screen", then.onChallengeComplete(3050, 6))
-                            When("I tap collect on the well done screen", when.tapText("collect", 5000), async () => {
-                                Then("I should see the first day streak screen", then.textVisible("First day done!", 10000))
-                                When("I dismiss the streak screen", when.tapText("Done", 5000), async()=>{
-                                    Then("I should be on the quest screen", then.idVisible(LEVEL_CHALLENGE_BUTTON(7), 3000))
-                                    When("I tap yucoin in the tab", when.tapID(NAV_BAR("yucoin")), async () => {
-                                        Then("I should see the Invite a colleague button", then.idVisible("REFERRALS_BUTTON_HOMEPAGE"))
-                                        When("I tap on the invite button", when.tapID("REFERRALS_BUTTON_HOMEPAGE"), async () => {
-                                            Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage)
-                                        })
-                                    })
-                                })
-                            })
-                        })
-                    })
-                })
-            })
-        })
+    })
 
 })
 
