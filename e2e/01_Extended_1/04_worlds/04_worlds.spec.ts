@@ -94,7 +94,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         })
     })
 
-    Scenario("I can finish a walking chalenge in the third world", scenario.start, async () => {
+    Scenario("I can finish a walking challenge in the third world", scenario.start, async () => {
         Given("I login as a user with the second world unlocked", given.logInAndGoToTab("quests", CUSTOMER_12, AUTH_12), async () => {
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27700)))
             Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
@@ -140,7 +140,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         })
     })
 
-    Scenario("I can finish a walking chalenge in the fourth world", scenario.start, async () => {
+    Scenario("I can finish a walking challenge in the fourth world", scenario.start, async () => {
         Given("I login as a user with the second world unlocked", given.logInAndGoToTab("quests", CUSTOMER_13, AUTH_13), async () => {
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50200)))
             When("I start a walking challenge", when.startChallengeFromQuests(175, "short stroll"), async () => {

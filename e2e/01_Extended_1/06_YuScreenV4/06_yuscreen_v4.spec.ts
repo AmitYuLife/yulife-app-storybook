@@ -8,7 +8,7 @@ import * as helper from "./_steps/helpers"
 
 
 Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () => {
-    Scenario("I can create my Yumoji on new Yuscreen V4 and see no product state", scenario.start, async () => {
+    Scenario("I can create my Yumoji on new Yuscreen V4 and see no product state/no pli product slot as I am permanently rejected", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_43, AUTH_43), async () => {
             helper.ONBOARDING_YUSCREEN("wellbeing only", "10")
             helper.YUSCREEN_V4(CUSTOMER_43, "wellbeing only", "10")
@@ -42,9 +42,9 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
         })
     })
 
-    Scenario("I can create my Yumoji on new Yuscreen V4, having rejected product PLI, should see the correct slots and carousel", scenario.start, async () => {
+    Scenario("I can create my Yumoji on new Yuscreen V4, having permanently rejected product PLI, should see the correct slots and carousel", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_46, AUTH_46), async () => {
-            Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_46, "PliRejectedAndDentalInactive", "5" ))
+            Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_46, "PliPermanentlyRejectedAndDentalInactive", "5" ))
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live")
             helper.CHECK_PRODUCT_BUTTON_LINK("Fill the gap with Dental", "Dental Insurance");
         })

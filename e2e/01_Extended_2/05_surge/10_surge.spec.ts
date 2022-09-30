@@ -15,7 +15,7 @@ Feature("Surges work as intended", async () => {
                 Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
                 Then("I should see the reward value 10x higher than normal (600)", then.idVisibleAtIndex(CHALLENGE_REWARD("600"),0))
                 When("I complete a short stroll challenge", when.completeShortStroll(200, 40000), async () => {
-                    Then("I should see the well done screen", then.textVisible("well done!"))
+                    Then("I should see the well done screen", then.textVisible("Well done!"))
                     Then("I should see +600 reward", then.idVisible(CHALLENGE_REWARD(600)))
                     When("I tap collect", when.tapText("collect"), async () => {
                         When("I tap done", when.tapText("Done"), async () => {
@@ -47,7 +47,7 @@ Feature("Surges work as intended", async () => {
                 Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
                 Then("I should see the reward value is normal (120)", then.idVisibleAtIndex(CHALLENGE_REWARD("120"),0))
                 When("I complete a short stroll challenge", when.completeShortStroll(200, 40000), async () => {
-                    Then("I should see the well done screen", then.textVisible("well done!"))
+                    Then("I should see the well done screen", then.textVisible("Well done!"))
                     Then("I should see +120 reward", then.idVisible(CHALLENGE_REWARD(120)))
                     When("I tap collect", when.tapText("collect"), async () => {
                         When("I tap done", when.tapText("Done"), async () => {

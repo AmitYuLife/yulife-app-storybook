@@ -255,10 +255,9 @@ export const onYuscreenV4 = (customer:any, productStatus, earnRate: string)=> as
             await expect(element(by.text(dentalPriceFrom))).toBeNotVisible()
             await expect(element(by.text(extendLifeInsurance))).toBeVisible()
             break;
-        case "PliRejectedAndDentalInactive":
+        case "PliPermanentlyRejectedAndDentalInactive":
             await expect(element(by.text(dentalYuCoinPower))).toBeVisible()
             await expect(element(by.text(addDental))).toBeVisible()
-            await expect(element(by.text(lifeInsurance))).toBeVisible()
             await swipeFromText(browseMoreProtection,"up", "slow")()
             await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible()
             await expect(element(by.text(dentalPriceFrom))).toBeVisible()
