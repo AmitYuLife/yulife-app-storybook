@@ -216,7 +216,14 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string)=> as
             await textVisibleAtIndex(dentalYuCoin, 1)()
             await textVisible(groupDental)()
             await textVisible(paidBy)()
+            await textVisible(availableProducts)()
+            break;
+        case "0EarnRate":
+            await textVisible(incomeProtection)()
+            await textVisible(powerText)()
             await textVisible(noProductText)()
+            await textVisible(paidBy)()
+            await textVisible(yuCoinPower)()
             break;
         default:
             break;

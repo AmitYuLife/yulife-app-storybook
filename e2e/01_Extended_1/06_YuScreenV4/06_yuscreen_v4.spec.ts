@@ -2,7 +2,7 @@ import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, Scenar
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as then from "./_steps/then"
-import {  CUSTOMER_43, AUTH_43, CUSTOMER_44, AUTH_44, CUSTOMER_45, AUTH_45, CUSTOMER_46, AUTH_46, CUSTOMER_48, AUTH_48, CUSTOMER_49, AUTH_49, CUSTOMER_51, AUTH_51, CPE_48_WELLBEING } from "@data";
+import {  CUSTOMER_43, AUTH_43, CUSTOMER_44, AUTH_44, CUSTOMER_45, AUTH_45, CUSTOMER_46, AUTH_46, CUSTOMER_48, AUTH_48, CUSTOMER_49, AUTH_49, CUSTOMER_51, AUTH_51, CUSTOMER_53, AUTH_53, } from "@data";
 
 import * as helper from "./_steps/helpers"
 
@@ -18,15 +18,15 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
         })
     })
 
-    ScenarioSkip("I can create my Yumoji on new Yuscreen V4 and navigate to products via slots and carousel", scenario.start, async () => {
+    Scenario("I can create my Yumoji on new Yuscreen V4 and navigate to products via slots and carousel", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_44, AUTH_44), async () => {
             helper.ONBOARDING_YUSCREEN("dentalAndPli", "5")
             helper.YUSCREEN_V4(CUSTOMER_44, "dentalAndPli", "5")
             helper.CREATE_DEFAULT_YUMOJI(300);
             helper.YUCOIN_POWER_CHECK(CUSTOMER_44, 5)
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live")
-            helper.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
-            helper.CHECK_PRODUCT_BUTTON_LINK("Life Insurance", "Personal Life Insurance");
+            helper.CHECK_PRODUCT_BUTTON_LINK("Fill the gap with Dental", "Dental Insurance");
+            helper.CHECK_PRODUCT_BUTTON_LINK("Add Life insurance", "Personal Life Insurance");
             helper.CHECK_CAROUSEL_DENTAL_BUTTON_LINK();
             helper.CHECK_CAROUSEL_BUTTON_LINK("left", "Extend your life insurance", "Life Insurance");
         })
@@ -75,6 +75,13 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
             helper.CREATE_DEFAULT_YUMOJI(300);
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("groupDental")
             helper.GROUP_DENTAL_PRODUCT_VIEW("Common", "5")
+        })
+    })
+
+    Scenario("As a YuLifer with Zero Earn Rate i should NOT see earnRate in productSlot", scenario.start, async () => {
+        Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_53, AUTH_53, true, "United States"), async () => {
+            helper.ONBOARDING_YUSCREEN("0EarnRate", "1")
+            helper.YUSCREEN_V4(CUSTOMER_53, "0EarnRateSlot", "1")
         })
     })
 })
