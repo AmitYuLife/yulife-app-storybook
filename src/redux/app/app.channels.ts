@@ -1,10 +1,10 @@
 import NetInfo from "@react-native-community/netinfo";
-import { AppState, Linking, Platform } from "react-native";
+import { AppState, AppStateStatus, Linking, Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { eventChannel } from "redux-saga";
 
 export function appStateChannel() {
-  return eventChannel((emitter) => {
+  return eventChannel<AppStateStatus>((emitter) => {
     AppState.addEventListener("change", emitter);
 
     const unlisten = () => {
