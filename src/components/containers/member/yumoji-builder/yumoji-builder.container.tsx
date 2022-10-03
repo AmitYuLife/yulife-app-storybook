@@ -27,6 +27,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
 import { updateUserAvatarRemoteFiles } from "@redux/user/user.actions";
 import { getUserAvatar } from "@redux/user/user.selectors";
+import { filterRefetchQueries } from "@graphql/_core/filterRefetchQueries";
 
 const YumojiBuilderContainer = () => {
   const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
@@ -54,7 +55,7 @@ const YumojiBuilderContainer = () => {
           })),
         },
         // TODO: work out how to avoid refetch and instead set the fragment direct instead of re-fetching
-        refetchQueries: ["GetLeaderboard"],
+        refetchQueries: filterRefetchQueries(["GetLeaderboard"]),
       });
 
       appDispatch(updateUserAvatarRemoteFiles(response?.data?.updateUserAvatarParts?.avatarRemoteFiles));
