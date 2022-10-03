@@ -90,11 +90,11 @@ export const DENTAL_PRODUCT_VIEW = async (packageType: string, membershipEnding:
     })
 }
 
-export const WELLBEING_PRODUCT_VIEW = async (packageType: string, yuCoinPower: number) => {
+export const WELLBEING_PRODUCT_VIEW = async (packageType: string, wellbeingAccessYuCoin: number, yuCoinPower: number) => {
 
     When(`I tap Wellbeing Access`, when.tapText("Wellbeing Access"), async () => {
         Then("I should see correct product details", then.wellbeingProductInfo(packageType))
-        When("I tap the YuCoin icon", when.tapID(YUCOIN_POWER(10)), async () => {
+        When("I tap the Wellbeing YuCoin icon", when.tapID(YUCOIN_POWER(wellbeingAccessYuCoin)), async () => {
             Then("I should see correct YuCoin Power text", then.yuCoinPowerInfo(yuCoinPower))
             When("I click Got it", when.tapText("Got it!"), async () => {
                 Then("I should see Wellbeing Access", then.textVisibleAtIndex("Wellbeing Access", 1))
@@ -102,6 +102,7 @@ export const WELLBEING_PRODUCT_VIEW = async (packageType: string, yuCoinPower: n
         })
     })
 }
+
 
 export const YUCOIN_POWER_CHECK = async (customer:any, yuCoinPower: number) => {
     
