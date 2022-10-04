@@ -15,7 +15,8 @@ export const {
 } = navigation.common
 
 export const {
-    onYuscreenV3
+    onYuscreenV3,
+    onYuscreenV4
 } = screens.yuscreen
 
 const  add30Years = moment().add(30, 'y').format("Do MMMM YYYY")

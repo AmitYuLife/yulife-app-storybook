@@ -4,8 +4,9 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as helper from "./_steps/helpers"
-import { CUSTOMER_37, AUTH_37, CUSTOMER_PLI_5, AUTH_PLI_5 } from "@data";
+import { CUSTOMER_37, AUTH_37, CUSTOMER_PLI_5, AUTH_PLI_5, CUSTOMER_PLI_6, AUTH_PLI_6 } from "@data";
 import {  POPOVER } from "@ids";
+import * as helper_V4 from "01_Extended_1/06_YuScreenV4/_steps/helpers";
 
 
 Feature("PLI SAD", async()=>{
@@ -172,6 +173,13 @@ Feature("PLI SAD", async()=>{
                     helper.REJECTED("Answers")
                 })
             })
+        })
+    })
+
+    Scenario("As a user with failed payment on PLI i should see payment overdue warning when want to buy Dental", scenario.start, async()=>{
+        Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false,  CUSTOMER_PLI_6, AUTH_PLI_6), async()=>{
+            Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_PLI_6, "PliPermanentlyRejectedAndDentalInactive", "10" ))
+            helper_V4.CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED("Fill the gap with Dental")    //slot text should be the same after navigate through it 
         })
     })
 })

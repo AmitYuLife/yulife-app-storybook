@@ -124,7 +124,7 @@ export const CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED = async ( productButto
     When(`I tap on ${productButton}`, when.tapText(productButton), async () => {
         Then(`I should payment overdue screen`, then.paymentOverdueInfo)
         When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
-            Then("I should be able to see Dental insurance", then.textVisible("Dental"))
+            Then("I should be able to see Dental insurance", then.textVisible(productButton))
         })
     })
 }

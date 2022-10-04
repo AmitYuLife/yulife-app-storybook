@@ -210,3 +210,27 @@ export const CUSTOMER_QUOTE_DENTAL_3 = {
         coverType: "common"
     }
 } as IDatabaseItem;
+
+export const CUSTOMER_QUOTE_PLI_6 = {
+    type: "postgres",
+    modelName,
+    data: {
+        quoteId: "YUCPID0000000156_QUOTE_PLI_6",
+        customer_product_id : "YUCPID0000000156",
+        insurance_type : "Family Income Benefit",
+        underwriting : "{}",
+        insurance_monthly_payment : 6.85,
+        insurance_cover_amount : 187500.0,
+        insurance_term_years : 31,
+        risk_rate : 0.01720584552,
+        risk_premium_with_loading : 3.3074366181619372,
+        bmi_loading : 1.0,
+        cover_loading : 1.0252134,
+        valid_till : moment().subtract(30, "d").format(),
+        archived : false,
+        cover_type : "common",
+        risk_premium_wl_gender_spec : 3.6622398,
+        risk_rate_gender_spec : 0.019051593
+    }
+} as IDatabaseItem;
+    

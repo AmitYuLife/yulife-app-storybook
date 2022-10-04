@@ -210,4 +210,37 @@ export const mediaContentToggle = {
         }
     }
 } as IDatabaseItem
+
+export const allTogglesTrueFor_PLI_V4 = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: generateRandomMongoId(),
+        features: {
+            "showNotifications":true,
+            "showBuildNumber":true,
+            "showSettings":true,
+            "familyIncomeBenefits":true,
+            "showCreateLeaderboard":true,
+            "showAdvancedLeaderboards":true,
+            "disableUserEntries":true,
+            "showLastSynced":true,
+            "statsShowCoinRecommendationCard":true,
+            "statsShowCyclingRecommendationCard":true,
+            "statsShowCyclingGeneralCard":true,
+            "statsShowCyclingBestScoreCard":true,
+            "statsShowCyclingGraphCard":true,
+            "showSurge":true,
+            "newGamePlus":true,
+            "showReferrals":true,
+            "yuScreenV3":true,
+            "showRewardStoreSelection":true,
+            yuScreenV4: true,
+            hasCoveaFibActive: true,
+            hasBupaDentActive: true,
+            showDailyScreenCustomIcon: true,
+        }
+    }
+} as IDatabaseItem
     
