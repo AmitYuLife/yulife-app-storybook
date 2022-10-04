@@ -34,11 +34,11 @@
       "toast": {
         "use_google_fit": {
           "message": "Samsung Health does not support all core activities. To get the full experience and rewards, consider using Google Fit.",
-          "ctaLabel": "Connect to Google Fit"
+          "cta_label": "Connect to Google Fit"
         },
         "system_location_permission": {
           "message": "To earn Yucoin for cycling, we need location permission to collect data on cycling activity.",
-          "ctaLabel": "Grant Permission",
+          "cta_label": "Grant Permission",
           "accessibility": {
             "accessibility_label": "To earn yu coin for cycling, we need location permission to collect data on cycling activity."
           }
@@ -206,6 +206,32 @@
         "item": "Other wearables"
       }
     },
+    "menu": {
+      "version": {
+        "accessibility_label": "yu life app version %{version}"
+      },
+      "activity_history": {
+        "label": "Activity History"
+      },
+      "my_account": {
+        "label": "My Account"
+      },
+      "wellbeing_hub": {
+        "label": "Wellbeing Hub"
+      },
+      "settings": {
+        "label": "Settings"
+      },
+      "tools": {
+        "label": "Tools"
+      },
+      "chat": {
+        "label": "Chat"
+      },
+      "logout": {
+        "label": "Log out"
+      }
+    },
     "permissions": {
       "title": "Activity permissions",
       "description": "Status and management of account and system level permissions.",
@@ -254,7 +280,7 @@
     },
     "challenge_success": {
       "cta_label": "collect",
-      "footer": "Well done!", 
+      "footer": "Well done!",
       "level": "level %{level}",
       "stage": "Stage %{level}"
     },
