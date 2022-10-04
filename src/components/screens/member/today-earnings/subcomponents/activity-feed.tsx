@@ -73,10 +73,10 @@ const ActivityFeed = ({
     "screens.daily.challenge_button.back_to_challenge.accessibility_label",
     "screens.today_earning.toast.use_google_fit.message",
     "screens.today_earning.toast.use_google_fit.message",
-    "screens.today_earning.toast.use_google_fit.ctaLabel",
+    "screens.today_earning.toast.use_google_fit.cta_label",
     "screens.today_earning.toast.system_location_permission.accessibility.accessibility_label",
     "screens.today_earning.toast.system_location_permission.message",
-    "screens.today_earning.toast.system_location_permission.ctaLabel",
+    "screens.today_earning.toast.system_location_permission.cta_label",
     "screens.today_earning.toast.google_fit_location_permission.accessibility.accessibility_label",
     "screens.today_earning.toast.google_fit_location_permission.message",
     "screens.today_earning.toast.google_fit_location_permission.cta_label",
@@ -310,7 +310,7 @@ const ActivityFeed = ({
             <Button
               onPress={onGoogleFitConnect}
               size="Fill"
-              label={t["screens.today_earning.toast.use_google_fit.ctaLabel"]}
+              label={t["screens.today_earning.toast.use_google_fit.cta_label"]}
             />
           </Toast>
         </View>
@@ -337,7 +337,7 @@ const ActivityFeed = ({
             <Button
               onPress={onGrantPermission}
               size="Fill"
-              label={t["screens.today_earning.toast.system_location_permission.ctaLabel"]}
+              label={t["screens.today_earning.toast.system_location_permission.cta_label"]}
             />
           </Toast>
         </View>
