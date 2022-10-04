@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_45, CUSTOMER_46, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_53, CUSTOMER_9, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5 } from "./customers";
+import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_45, CUSTOMER_46, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_53, CUSTOMER_9, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_PLI_6 } from "./customers";
 import moment from "moment"
 
 
@@ -464,5 +464,30 @@ export const CPE_53_GIP = {
         product_variant_id: "AIG_GIP_01_03",
         archived: false,
         taken_up: true
+    }
+} as IDatabaseItem
+
+
+export const CPE_PLI_7 = {
+    type: "postgres",
+    modelName: "customer_product_entity",
+    data: {
+        customerId: CUSTOMER_PLI_6.data.customerId,
+        customerProductId: "YUCPID0000000156",
+        earn_rate: 10,
+        start_date: "2022-07-28",
+        end_date: "2199-12-31",
+        underwriting_step: null,
+        is_banned_from_product: false,
+        archived: false,
+        accounted_for_join_date: null,
+        accounted_for_leave_date: null,
+        is_joiner: null,
+        created_at: "2022-07-28T11:52:03.774Z",
+        created_by_id: null,
+        modified_at: "2022-07-28T11:56:07.233Z",
+        product_variant_id: "Covea_FIB_02_01",
+        world_id: "ocean",
+        taken_up: false
     }
 } as IDatabaseItem
