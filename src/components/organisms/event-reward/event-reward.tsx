@@ -11,7 +11,7 @@ import { GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
 import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { showInfoMessageTooltipViewRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
-import { GOAL_TOOLTIP_INFO } from "@ids";
+import { GOAL_TOOLTIP_INFO, CLAIM_BUTTON, ANIMATED_CIRCLE } from "@ids";
 import Svg, { Circle } from "react-native-svg";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useDispatch } from "react-redux";
@@ -128,6 +128,7 @@ const EventReward = ({
           size="ExtraSmall"
           shadowColor="transparent"
           label="Claim"
+          testID={CLAIM_BUTTON}
         />
       );
     }
@@ -195,7 +196,7 @@ const EventReward = ({
   return (
     <PressableWithDelay onPress={claimReward}>
       <View style={wrapperStyle}>
-        <View style={styles.circleWrapper}>
+        <View style={styles.circleWrapper} testID={ANIMATED_CIRCLE(statusColor)}>
           <Svg width={CIRCLE_SIZE} height={CIRCLE_SIZE} viewBox={`0 0 ${CIRCLE_SIZE} ${CIRCLE_SIZE}`} fill="none">
             <Circle
               cx={HALF_SIZE}

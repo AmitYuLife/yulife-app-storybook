@@ -1,10 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
-import moment = require('moment');
-import { GOALS_1 } from "./goals";
-
-
-
+import { GOALS_1, GOALS_2 } from "./goals";
 
 const type = "mongo"
 const modelName = "goal_reward_milestones"
@@ -42,3 +37,57 @@ export const GOAL_REWARD_MILESTONES_2 = {
         rewardTooltip: "From now you will be able to participate in future individual and community events. In community events you can work together with your colleagues and friends to achieve goals and win prizes.",
     }
 } as IDatabaseItem
+
+export const GOAL_REWARD_MILESTONE_3 = {
+    type,
+    modelName,
+    data:{
+        goal: GOALS_2.data._id,
+        animated: true,
+        rewardBackgroundImageKey: "cms/1651149900294_CoinBack.png",
+        rewardImageKey: "cms/1650355411333_CoinTop.png",
+        targetValue: 0.2,
+        rewardType: "coin",
+        rewardValue: 50,
+        rewardTitle: "${amount} YuCoin",
+        rewardDescription: "1 Profile viewed",
+        parentType: "goals",
+        earnRateBased: true, 
+    }
+};
+
+export const GOAL_REWARD_MILESTONE_4 = {
+    type,
+    modelName,
+    data:{
+        goal: GOALS_2.data._id,
+        animated: true,
+        rewardBackgroundImageKey: "cms/1651149900294_CoinBack.png",
+        rewardImageKey: "cms/1650355411333_CoinTop.png",
+        targetValue: 0.6,
+        rewardType: "coin",
+        rewardValue: 50,
+        rewardTitle: "${amount} YuCoin",
+        rewardDescription: "3 Profiles viewed",
+        parentType: "goals",
+        earnRateBased: true, 
+    }
+};
+
+export const GOAL_REWARD_MILESTONE_5 = {
+    type,
+    modelName,
+    data:{
+        goal: GOALS_2.data._id,
+        animated: true,
+        rewardBackgroundImageKey: "cms/1651149900294_CoinBack.png",
+        rewardImageKey: "cms/1650355411333_CoinTop.png",
+        targetValue: 1,
+        rewardType: "coin",
+        rewardValue: 50,
+        rewardTitle: "${amount} YuCoin",
+        rewardDescription: "5 Profiles viewed",
+        parentType: "goals",
+        earnRateBased: true, 
+    }
+};

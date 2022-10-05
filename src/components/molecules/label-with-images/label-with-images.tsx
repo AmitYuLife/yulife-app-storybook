@@ -2,6 +2,7 @@ import React, { memo, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Image } from "@atoms";
 import { Colours, Style } from "@styles";
+import { NUM_OF_STARS } from "@ids";
 
 interface IStarWrapper {
   labelImages: ILabelImage[];
@@ -17,7 +18,7 @@ const LabelWithImages = ({ labelImages, backgroundColor }: IStarWrapper) => {
   const labelStyle = useMemo(() => ({ ...styles.labelBackground, backgroundColor }), [backgroundColor]);
   return (
     <View style={styles.labelWrapper}>
-      <View style={labelStyle}>
+      <View style={labelStyle} testID={NUM_OF_STARS(labelImages.length)}>
         {labelImages.map((labelImage, index) => (
           <View style={styles.labelImageWrapper} key={`${labelImage.id}_${index}`}>
             <Image

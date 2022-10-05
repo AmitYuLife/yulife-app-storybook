@@ -45,6 +45,7 @@ export const HEALTH_SCREEN = "HEALTH_SCREEN";
 export const MEDITOPIA_CHALLENGE_LOAD_SCREEN = "MEDITOPIA_CHALLENGE_LOAD_SCREEN";
 export const CHOOSE_MEDITOPIA_SCREEN = "CHOOSE_MEDITOPIA_SCREEN";
 export const INSPECT_SCREEN = "INSPECT_SCREEN";
+export const YUCOIN_EXPLAINED_SCROLL_VIEW = "YUCOIN_EXPLAINED_SCROLL_VIEW";
 
 
 // buttons
@@ -382,3 +383,12 @@ export const YUCOIN_TITLE = "YUCOIN_TITLE";
 export const YUCOIN_POWER_TEXT = "YUCOIN_POWER_TEXT";
 
 export const LIST_YUMOJI = (index: number) => `LIST_YUMOJI_${index}`;
+
+// EVENTS
+export const EVENT_DESCRIPTION = (description: string) =>  `EVENT_DESCRIPTION_${description}`;
+export const NEW_EVENT_ICON = "NEW_EVENT_ICON";
+export const EVENT_PROGRESS_BAR = (progress: number) => `EVENT_PROGRESS_BAR_${progress}`;
+export const CLAIM_BUTTON = "CLAIM_BUTTON";
+export const GREAT_BUTTON = "GREAT_BUTTON";
+export const ANIMATED_CIRCLE = (colour: string) => `ANIMATED_CIRCLE_${colour}`
+export const NUM_OF_STARS = (number: number) => `NUM_OF_STARS+${number}`

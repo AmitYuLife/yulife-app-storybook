@@ -3,6 +3,7 @@ import { Colours } from "@styles";
 import Svg, { Path, Rect, Circle, G } from "react-native-svg";
 import { ViewStyle, StyleSheet, Animated, Easing } from "react-native";
 import { DETOX_ENABLED } from "@services/socket";
+import { EVENT_PROGRESS_BAR } from "@ids";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -70,6 +71,7 @@ export interface IProgressBarProps {
   milestones?: ProgressBarMilestone[];
   type?: "full" | "compact";
   style?: ViewStyle;
+  testID?: string;
 }
 
 const ProgressBar = ({ width, current, max, milestones = [], type = "full", style }: IProgressBarProps) => {
@@ -105,7 +107,13 @@ const ProgressBar = ({ width, current, max, milestones = [], type = "full", styl
   const svgHeight = adjustedHeight + 8;
 
   return (
-    <Svg width={adjustedWidth} height={svgHeight} viewBox={viewBox} style={StyleSheet.flatten([svgStyle, style])}>
+    <Svg
+      width={adjustedWidth}
+      height={svgHeight}
+      viewBox={viewBox}
+      style={StyleSheet.flatten([svgStyle, style])}
+      testID={EVENT_PROGRESS_BAR(progress)}
+    >
       {/* progress bar border */}
       <Rect
         stroke={Colours.neutral.n200}
