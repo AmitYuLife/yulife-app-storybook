@@ -834,6 +834,90 @@ export const CUSTOMER_53 = {
     }
 } as IDatabaseItem
 
+export const CUSTOMER_52 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Niamh",
+        lastName: "Karia",
+        dateOfBirth: moment().subtract(32, "years").toDate(),
+        status: "onboarded",
+        fullName: "Niamh Karia"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_54 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Sasha",
+        lastName: "Stock",
+        dateOfBirth: moment().subtract(31, "years").toDate(),
+        status: "onboarded",
+        fullName: "Sasha Stock"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_55 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Simone",
+        lastName: "Posner",
+        dateOfBirth: moment().subtract(30, "years").toDate(),
+        status: "onboarded",
+        fullName: "Simone Posner"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_56 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Milton",
+        lastName: "Thake",
+        dateOfBirth: moment().subtract(31, "years").toDate(),
+        status: "onboarded",
+        fullName: "Milton Thake"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_57 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Stephen",
+        lastName: "Michael",
+        dateOfBirth: moment().subtract(34, "years").toDate(),
+        status: "onboarded",
+        fullName: "Stephen Michael"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_58 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Paris",
+        lastName: "Hilton",
+        dateOfBirth: moment().subtract(33, "years").toDate(),
+        status: "onboarded",
+        fullName: "Paris Hilton"
+    }
+} as IDatabaseItem
+
 export const CUSTOMER_PLI_6 = {
     type: "postgres",
     modelName: "customer",

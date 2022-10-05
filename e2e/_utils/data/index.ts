@@ -26,6 +26,9 @@ export * from "./mongo/goal_reward_milestones"
 export * from "./mongo/goal_invitation"
 export * from "./mongo/goal_events"
 export * from "./mongo/ad_banners"
+export * from "./mongo/goal_team"
+export * from "./mongo/goal_participation"
+
 
 
 export * from "./postgres/business";

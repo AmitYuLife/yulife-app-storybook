@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_1, CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_10, CUSTOMER_11, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_ARCHIVED, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_22, CUSTOMER_23, CUSTOMER_ALPHA, CUSTOMER_24, CUSTOMER_25, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_38, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_43, CUSTOMER_44, CUSTOMER_45, CUSTOMER_46, CUSTOMER_47, CUSTOMER_48, CUSTOMER_49, CUSTOMER_50, CUSTOMER_53, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_PLI_6, CUSTOMER_MEDITOPIA_1, CUSTOMER_MEDITOPIA_2, CUSTOMER_MEDITOPIA_3, CUSTOMER_51 } from '../postgres/customers';
+import { CUSTOMER_1, CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_10, CUSTOMER_11, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_ARCHIVED, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_22, CUSTOMER_23, CUSTOMER_ALPHA, CUSTOMER_24, CUSTOMER_25, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_38, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_43, CUSTOMER_44, CUSTOMER_45, CUSTOMER_46, CUSTOMER_47, CUSTOMER_48, CUSTOMER_49, CUSTOMER_50, CUSTOMER_53, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_PLI_6, CUSTOMER_MEDITOPIA_1, CUSTOMER_MEDITOPIA_2, CUSTOMER_MEDITOPIA_3, CUSTOMER_51, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58 } from '../postgres/customers';
 import moment = require('moment');
 import { AUTH_TEMPLATE } from "./_templates"
 
@@ -742,5 +742,71 @@ export const AUTH_PLI_6 = {
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
         userId: CUSTOMER_PLI_6.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_52 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_52.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_54 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_54.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_55 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_55.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_56 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_56.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_57 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_57.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_58 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_58.data.customerId,
     }
 }  as IDatabaseItem

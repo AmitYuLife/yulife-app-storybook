@@ -18,3 +18,13 @@ export const {
     startChallenge,
 } = screens.challenges
 
+export const tapChallenge = (challenge: string) => async () => {
+    await tapText(challenge)()
+}
+
+export const {
+    scrollFromID,
+    scrollUntilIdVisible,
+    scrollUntilTextVisible,
+    scrollFromText
+} = navigation.scrolling

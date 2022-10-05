@@ -1,7 +1,7 @@
 
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_22, CUSTOMER_23, CUSTOMER_24, CUSTOMER_19, CUSTOMER_16, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_38, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_44, CUSTOMER_47, CUSTOMER_50, CUSTOMER_MEDITOPIA_2, CUSTOMER_MEDITOPIA_3 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_22, CUSTOMER_23, CUSTOMER_24, CUSTOMER_19, CUSTOMER_16, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_38, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_44, CUSTOMER_47, CUSTOMER_50, CUSTOMER_MEDITOPIA_2, CUSTOMER_MEDITOPIA_3, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58 } from '../postgres/customers';
 import {
     CHALLENGE_2, CHALLENGE_USER_6_A, CHALLENGE_USER_7_A, CHALLENGE_USER_7_B, CHALLENGE_USER_7_C, CHALLENGE_USER_7_D,
     CHALLENGE_USER_8_B, CHALLENGE_USER_8_A, CHALLENGE_USER_9_B, CHALLENGE_USER_9_A, CHALLENGE_USER_9_C, CHALLENGE_USER_9_D,
@@ -909,5 +909,91 @@ export const COIN_LEDGER_35 = {
             currentBalance: 500,
             currentStreak: 1,
             currentLevel: 1
+        }
+    } as IDatabaseItem
+
+    export const COIN_LEDGER_52 = {
+        type:"mongo",
+        modelName:"coinledger",
+        data:{
+            _id: generateRandomMongoId(),
+            customerId: CUSTOMER_52.data.customerId,
+            userId: CUSTOMER_52.data.customerId,
+            transactions: [],
+            currentBalance: 500,
+            currentStreak: 1,
+            currentLevel: 1
+        }
+    } as IDatabaseItem
+
+    export const COIN_LEDGER_54 = {
+        type:"mongo",
+        modelName:"coinledger",
+        data:{
+            _id: generateRandomMongoId(),
+            customerId: CUSTOMER_54.data.customerId,
+            userId: CUSTOMER_54.data.customerId,
+            transactions: [],
+            currentBalance: 400,
+            currentStreak: 2,
+            currentLevel: 2
+        }
+    } as IDatabaseItem
+
+    export const COIN_LEDGER_55 = {
+        type:"mongo",
+        modelName:"coinledger",
+        data:{
+            _id: generateRandomMongoId(),
+            customerId: CUSTOMER_55.data.customerId,
+            userId: CUSTOMER_55.data.customerId,
+            transactions: [],
+            currentBalance: 401,
+            currentStreak: 3,
+            currentLevel: 2
+        }
+    } as IDatabaseItem
+
+    export const COIN_LEDGER_56 = {
+        type:"mongo",
+        modelName:"coinledger",
+        data:{
+            _id: generateRandomMongoId(),
+            customerId: CUSTOMER_56.data.customerId,
+            userId: CUSTOMER_56.data.customerId,
+            transactions: [],
+            currentBalance: 451,
+            currentStreak: 3,
+            currentLevel: 3
+        }
+    } as IDatabaseItem
+
+
+    export const COIN_LEDGER_57 = {
+        type:"mongo",
+        modelName:"coinledger",
+        data:{
+            _id: generateRandomMongoId(),
+            customerId: CUSTOMER_57.data.customerId,
+            userId: CUSTOMER_57.data.customerId,
+            transactions: [],
+            currentBalance: 455,
+            currentStreak: 4,
+            currentLevel: 4
+        }
+    } as IDatabaseItem
+
+
+    export const COIN_LEDGER_58 = {
+        type:"mongo",
+        modelName:"coinledger",
+        data:{
+            _id: generateRandomMongoId(),
+            customerId: CUSTOMER_58.data.customerId,
+            userId: CUSTOMER_58.data.customerId,
+            transactions: [],
+            currentBalance: 465,
+            currentStreak: 5,
+            currentLevel: 4
         }
     } as IDatabaseItem

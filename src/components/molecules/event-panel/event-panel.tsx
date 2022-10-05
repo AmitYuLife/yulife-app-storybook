@@ -11,6 +11,7 @@ import styles from "./event-panel.styles";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserGoal } from "@redux/user/user.actions";
 import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
+import { EVENT_DESCRIPTION, NEW_EVENT_ICON } from "@ids";
 
 interface IProps {
   componentId?: string;
@@ -93,7 +94,11 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => 
                   style={styles.challengeIcon}
                   tintColor={online?.eventPanel?.fontColor}
                 />
-                <TextTemplate type="l1" color={online?.eventPanel?.fontColor}>
+                <TextTemplate
+                  type="l1"
+                  color={online?.eventPanel?.fontColor}
+                  testID={EVENT_DESCRIPTION(challenge.description)}
+                >
                   {challenge.description}
                 </TextTemplate>
               </View>
@@ -142,7 +147,7 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => 
                   source={event.badge.icon}
                 />
               )}
-              <TextTemplate color={Colours.neutral.white} type={"l1b"}>
+              <TextTemplate color={Colours.neutral.white} type={"l1b"} testID={NEW_EVENT_ICON}>
                 {event.badge.text}
               </TextTemplate>
             </View>

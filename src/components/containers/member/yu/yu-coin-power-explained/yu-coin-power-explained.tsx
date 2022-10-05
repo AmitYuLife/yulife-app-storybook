@@ -9,7 +9,7 @@ import { useQuery } from "@apollo/client";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
 import { useBackHandler } from "@hooks";
 import { GQL_QUERY_GET_YU_COIN_POWER_EXPLAINED } from "@graphql/yuscreen/getYuCoinPowerExplained";
-import { EARN_RATE, TEXT_TEMPLATE, YUCOIN_TITLE } from "@ids";
+import { EARN_RATE, TEXT_TEMPLATE, YUCOIN_TITLE, YUCOIN_EXPLAINED_SCROLL_VIEW } from "@ids";
 import { GetYuCoinPowerExplained } from "@graphql/_core/schema";
 import { Style } from "@styles";
 import { YuCoinPowerSVG } from "./yu-coin-power-svg";
@@ -53,7 +53,7 @@ const YuCoinPowerExplained = memo(() => {
 
   return (
     <GenericOverlay onClose={dismissOverlay}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} testID={YUCOIN_EXPLAINED_SCROLL_VIEW}>
         <View style={styles.wrapper}>
           <View style={styles.yuCoinIconWrapper}>
             <YuCoinIcon />

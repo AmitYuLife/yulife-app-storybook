@@ -65,7 +65,7 @@ export const isOnInspectScreen = async () => {
 
 export const personalDataVisible = (name: string, level: string, world: string) => async () => {
     await idVisible(YUMOJI)()
-    await idVisible(USER_INFO(`${name} ${level}`))
+    await idVisible(USER_INFO(`${name} ${level}`))()
     await textVisible(world)()
 }
 
