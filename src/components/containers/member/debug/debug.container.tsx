@@ -25,7 +25,7 @@ const DebugContainer: React.FC<Props> = (props) => {
   const { yuScreenV4 } = useSelector(getUserFeatures);
 
   const [resetData]: ResetDataMutationTuple = useMutation(GQL_MUTATION_RESET_DATA);
-  const { data } = useQuery(GQL_QUERY_DEBUG_CODES);
+  const { data } = useQuery(GQL_QUERY_DEBUG_CODES, { fetchPolicy: "no-cache" });
 
   const list = [
     "level-selector",
