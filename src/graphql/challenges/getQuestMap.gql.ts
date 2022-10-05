@@ -1,6 +1,8 @@
 import { gql } from "@apollo/client";
+import { GQL_FRAGMENT_WEEKLY_GOAL_PROGRESS } from "@graphql/_fragments";
 
 export const GQL_QUERY_GET_QUEST_MAP = gql`
+  ${GQL_FRAGMENT_WEEKLY_GOAL_PROGRESS}
   query GetQuestMap {
     levels: getQuestMapLevelList {
       id
@@ -13,18 +15,9 @@ export const GQL_QUERY_GET_QUEST_MAP = gql`
       id
       endDateTime
       hasUnclaimedRewards
+      hasJoined
       activityProgress {
-        id
-        activitySubTotal
-        yuCoinSubTotal
-        currentPosition
-        maxLength
-        isClaimable
-        isClaimed
-        iconUrl {
-          id
-          uri
-        }
+        ...MobileWeeklyActivityProgress
       }
     }
   }

@@ -17,6 +17,8 @@ interface IProps {
   isCompleted?: boolean;
   isClaimable?: boolean;
   onPress?: () => void;
+  isJoined?: boolean;
+  isSelected?: boolean;
 }
 
 export const ActivityProgress = (props: IProps) => {
@@ -29,18 +31,27 @@ export const ActivityProgress = (props: IProps) => {
 };
 
 export const ClaimableActivityProgress = (props: IProps) => {
-  const { isClaimable, isCompleted } = props;
+  const { isClaimable, isCompleted, isSelected, isJoined } = props;
   const t = useTranslation(["button.claim"]);
-  const style = useMemo(
-    () => (isCompleted ? styles.completedActivityBlock : isClaimable ? styles.claimableActivityBlock : {}),
-    [isClaimable, isCompleted]
-  );
+  const style = useMemo(() => {
+    if (isCompleted) {
+      return styles.completedActivityBlock;
+    }
+
+    if (isClaimable) {
+      return styles.claimableActivityBlock;
+    }
+
+    if (isSelected) {
+      return styles.selectedActivityBlock;
+    }
+
+    return {};
+  }, [isClaimable, isCompleted, isSelected]);
 
   const isAvailableToClaim = isClaimable && !isCompleted;
-  const Wrapper = isAvailableToClaim ? PressableWithDelay : View;
-
   return (
-    <Wrapper onPress={props.onPress}>
+    <PressableWithDelay onPress={props.onPress}>
       <Block style={[styles.claimableActivity, style]}>
         <View style={styles.claimableActivityProgress}>
           <View>
@@ -54,14 +65,14 @@ export const ClaimableActivityProgress = (props: IProps) => {
                     </TextTemplate>
                   </View>
                 </View>
-              ) : (
+              ) : !isJoined ? null : (
                 <Progress {...props} />
               )}
             </View>
           </View>
         </View>
       </Block>
-    </Wrapper>
+    </PressableWithDelay>
   );
 };
 
@@ -156,6 +167,9 @@ const styles = StyleSheet.create({
   },
   claimableActivityBlock: {
     backgroundColor: Colours.primary.p400,
+    borderColor: Colours.primary.p400,
+  },
+  selectedActivityBlock: {
     borderColor: Colours.primary.p400,
   },
   claimableActivity: {

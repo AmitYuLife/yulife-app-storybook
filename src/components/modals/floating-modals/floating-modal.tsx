@@ -5,6 +5,8 @@ import { Style } from "@styles";
 import { ContentItemLottie } from "@components/sdui";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import { useTranslation } from "@hooks";
+import { Source } from "react-native-fast-image";
+import { Image } from "@atoms";
 
 interface IProps {
   closeOverlay?: () => void;
@@ -12,6 +14,7 @@ interface IProps {
   height?: number;
   paddingTop?: number;
   lottie?: GqlLottie;
+  icon?: Source;
   isCloseButtonSecondary?: boolean;
 }
 
@@ -19,6 +22,7 @@ const FloatingModal = ({
   closeOverlay,
   children,
   lottie,
+  icon,
   height = Style.adjust(420),
   paddingTop = Style.adjust(124),
   isCloseButtonSecondary,
@@ -31,6 +35,11 @@ const FloatingModal = ({
       {!lottie ? null : (
         <View style={styles.iconWrapper}>
           <ContentItemLottie {...lottie} />
+        </View>
+      )}
+      {!icon ? null : (
+        <View style={styles.iconWrapper}>
+          <Image width={Style.adjust(140)} height={Style.adjust(140)} source={icon} />
         </View>
       )}
       {children}
