@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.51.0] - 2022-10-05
+
+### Bugfixes
+
+- Bugfix: No-cache fetch policy for debug menu
+- Bugfix: package.json cleanup
+- Bugfix: Fix possible undefined data in PersonalProductStepContinueModal
+- Bugfix: Missing background image
+
+### Tasks
+
+- Task: Weekly quests Selection
+- Task GS-454: Menu accessibility
+- Task GS-445: Today earning accessibility
+- Task GS-455: Eotw tracking fixes
+
+### Chores
+
+- Chore: Skip encrypted storage errors for ios while on background
+- Chore: upgrade gradle
+- Chore: Prevent refetch of queries that have not run yet :angcry:
+- Chore: Add redux migration into README
+- Chore: upgrade apollo
+
+### Extra
+
+- detox: should not able to get Dental with failed Pli payment test
+- Detox/extended fixes 3 10
+- detox/zeroEarnRate
+- Detox/extended fixes 29 9
+- Detox/smoke1 fixes 29 9
+- Detox/dental fixes 28 9
+- Hotfix: Fix defaultIndex value in ProductStepScrollPicker
+
 ## [3.50.0] - 2022-09-28
 
 ### Features
