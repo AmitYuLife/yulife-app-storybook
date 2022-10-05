@@ -146,7 +146,7 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
           reset: () => null,
         },
         DETOX_ENABLED
-          ? null
+          ? Animated.delay(0)
           : Animated.loop(
               Animated.sequence([
                 Animated.timing(cardListY.current, {
