@@ -68,7 +68,9 @@
     },
     "weekly_quests": {
       "title": "Weekly quests",
-      "time_remaining": "Time remaining"
+      "time_remaining": "Time remaining",
+      "choose_challenge": "Choose a challenge",
+      "accept_challenge": "Accept challenge"
     },
     "login": {
       "heading": "Welcome!",

@@ -1,8 +1,8 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useMemo, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import moment from "moment";
 import useInterval from "@use-it/interval";
-import { Pad, TextTemplate } from "@atoms";
+import { Loading, Pad, TextTemplate } from "@atoms";
 import {
   GetMobileGameWeeklies,
   ClaimMobileGameWeeklyRewards as ClaimWeeklies,
@@ -20,22 +20,52 @@ import { ClaimableActivityProgress } from "@organisms";
 import { useTranslation } from "@hooks";
 import { useDispatch } from "react-redux";
 import { getUserStart } from "@redux/user/user.actions";
+import { Button } from "@components/molecules";
+import { JoinWeeklyGoal, JoinWeeklyGoalVariables } from "@graphql/_core/schema/JoinWeeklyGoal";
+import { GQL_MUTATION_JOIN_WEEKLY_GOAL } from "@graphql/weeklies/joinWeeklyGoal.gql";
 
 const handleCloseOverlay = () => Navigation.dismissOverlay(MODALS.blurredOverlay);
 
 export const WeeklyQuestsModal = memo(() => {
   const dispatch = useDispatch();
-  const t = useTranslation(["screens.weekly_quests.title", "screens.weekly_quests.time_remaining"]);
-  const { data } = useQuery<GetMobileGameWeeklies>(GQL_QUERY_GET_GAME_WEEKLIES, { fetchPolicy: "no-cache" });
+  const [selectedEvent, selectEvent] = useState<number | null>(null);
+  const t = useTranslation([
+    "screens.weekly_quests.title",
+    "screens.weekly_quests.time_remaining",
+    "screens.weekly_quests.accept_challenge",
+    "screens.weekly_quests.choose_challenge",
+  ]);
+  const { data, loading: weekliesLoading } = useQuery<GetMobileGameWeeklies>(GQL_QUERY_GET_GAME_WEEKLIES, {
+    fetchPolicy: "no-cache",
+  });
   const [claim] = useMutation<ClaimWeeklies, ClaimWeekliesVars>(GQL_MUTATION_CLAIM_WEEKLY_GAME_REWARDS, {
     refetchQueries: ["GetMobileGameWeeklies", "GetQuestMap"],
   });
+
+  const [join, { loading: joinLoading }] = useMutation<JoinWeeklyGoal, JoinWeeklyGoalVariables>(
+    GQL_MUTATION_JOIN_WEEKLY_GOAL,
+    {
+      refetchQueries: ["GetMobileGameWeeklies", "GetQuestMap"],
+    }
+  );
+
+  const joinWeekly = useCallback(() => {
+    if (selectedEvent) {
+      join({ variables: { goalId: data?.getMobileGameWeeklies?.activityProgress?.[selectedEvent].id } });
+    }
+  }, [data?.getMobileGameWeeklies?.activityProgress, join, selectedEvent]);
+
+  const eventNotSelected = useMemo(() => selectedEvent === null, [selectedEvent]);
 
   if (!data?.getMobileGameWeeklies?.id) {
     return null;
   }
 
-  const { endDateTime, activityProgress } = data.getMobileGameWeeklies;
+  const { endDateTime, activityProgress, hasJoined } = data.getMobileGameWeeklies;
+
+  if (weekliesLoading) {
+    return <Loading />;
+  }
 
   return (
     <View>
@@ -51,8 +81,10 @@ export const WeeklyQuestsModal = memo(() => {
         </View>
         <RemainingTime endDateTime={endDateTime} />
       </View>
-      {activityProgress.map((activity) => {
-        const onPress = !activity.isClaimable
+      {activityProgress.map((activity, index) => {
+        const onPress = !hasJoined
+          ? () => selectEvent(index)
+          : !activity.isClaimable
           ? noop
           : async () => {
               try {
@@ -70,9 +102,26 @@ export const WeeklyQuestsModal = memo(() => {
             onPress={onPress}
             iconUrl={activity.iconUrl.uri}
             isCompleted={activity.isClaimed}
+            isJoined={activity.isJoined}
+            isSelected={index === selectedEvent}
           />
         );
       })}
+      {hasJoined ? null : (
+        <>
+          <Pad height={Style.adjust(30)} />
+          <Button
+            disabled={eventNotSelected}
+            isLoading={joinLoading}
+            label={
+              eventNotSelected
+                ? t["screens.weekly_quests.choose_challenge"]
+                : t["screens.weekly_quests.accept_challenge"]
+            }
+            onPress={joinWeekly}
+          />
+        </>
+      )}
       <Pad height={Style.adjust(96)} />
     </View>
   );

@@ -20,6 +20,7 @@ export interface GetMobileGameWeeklies_getMobileGameWeeklies_activityProgress {
   maxLength: number;
   isClaimable: boolean;
   isClaimed: boolean;
+  isJoined: boolean;
   iconUrl: GetMobileGameWeeklies_getMobileGameWeeklies_activityProgress_iconUrl;
 }
 
@@ -27,6 +28,7 @@ export interface GetMobileGameWeeklies_getMobileGameWeeklies {
   id: string;
   endDateTime: string | null;
   hasUnclaimedRewards: boolean;
+  hasJoined: boolean;
   activityProgress: GetMobileGameWeeklies_getMobileGameWeeklies_activityProgress[];
 }
 

@@ -137,3 +137,20 @@ export const GQL_FRAGMENT_GOAL_DETAILS = gql`
     }
   }
 `;
+
+export const GQL_FRAGMENT_WEEKLY_GOAL_PROGRESS = gql`
+  fragment MobileWeeklyActivityProgress on MobileWeeklyActivityProgress {
+    id
+    activitySubTotal
+    yuCoinSubTotal
+    currentPosition
+    maxLength
+    isClaimable
+    isClaimed
+    isJoined
+    iconUrl {
+      id
+      uri
+    }
+  }
+`;
