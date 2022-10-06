@@ -35,13 +35,22 @@ const WORLD_IMAGES = [
   { image: require("@assets/yuscreen/worlds/mountain.png") },
 ];
 
+const YUNIVERSAL_IMAGE = require("@assets/yuscreen/worlds/yuniversal.png");
 const WORLD_NAME = ["Forest", "Ocean", "Desert", "Mountain"];
 
-export function getCurrentWorldImage(currentWorld: number) {
+export function getCurrentWorldImage(currentWorld: number, isYuniversal: boolean) {
+  if (isYuniversal) {
+    return YUNIVERSAL_IMAGE;
+  }
+
   return WORLD_IMAGES[currentWorld].image ?? WORLD_IMAGES[0].image;
 }
 
-export function getCurrentWorldText(currentWorld: number) {
+export function getCurrentWorldText(currentWorld: number, isYuniversal: boolean) {
+  if (isYuniversal) {
+    return "Yuniversal";
+  }
+
   return WORLD_NAME[currentWorld] ?? "Forest";
 }
 

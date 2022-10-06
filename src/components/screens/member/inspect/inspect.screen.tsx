@@ -20,6 +20,7 @@ export interface InspectProps {
   yumoji: string;
   userName: string;
   level: number;
+  yuniversalMap: number;
   inspectOtherUser: boolean;
   onClose: () => void;
   challengeDuel: () => void;
@@ -34,6 +35,7 @@ const InspectScreen = ({
   activity,
   userName,
   level,
+  yuniversalMap,
   inspectOtherUser,
 }: InspectProps) => {
   const actionButtonLabel = useMemo(
@@ -49,7 +51,7 @@ const InspectScreen = ({
         contentContainerStyle={styles.containerStyle}
         testID={USER_INFO(`${userName} ${level}`)}
       >
-        <NameAndLevel name={userName} level={level} />
+        <NameAndLevel name={userName} level={level} yuniversalMap={yuniversalMap} />
         <View style={styles.yumojiWrapper} testID={YUMOJI}>
           <Yumoji
             width={AVATAR_WIDTH}

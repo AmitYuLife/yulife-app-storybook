@@ -84,6 +84,7 @@ export interface GetStatistics_getStatistics_current_sections {
 export interface GetStatistics_getStatistics_current {
   avatar: GetStatistics_getStatistics_current_avatar;
   level: number;
+  yuniversalMap: number;
   fullName: string;
   sections: GetStatistics_getStatistics_current_sections;
 }
@@ -121,6 +122,7 @@ export interface GetStatistics_getStatistics_opponent_sections {
 export interface GetStatistics_getStatistics_opponent {
   avatar: GetStatistics_getStatistics_opponent_avatar;
   level: number;
+  yuniversalMap: number;
   fullName: string;
   sections: GetStatistics_getStatistics_opponent_sections;
 }

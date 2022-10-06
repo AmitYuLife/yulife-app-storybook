@@ -12,6 +12,7 @@ export const GQL_QUERY_GET_STATISTICS = gql`
           uri
         }
         level
+        yuniversalMap
         fullName
         sections {
           general {
@@ -43,6 +44,7 @@ export const GQL_QUERY_GET_STATISTICS = gql`
           uri
         }
         level
+        yuniversalMap
         fullName
         sections {
           activity {
