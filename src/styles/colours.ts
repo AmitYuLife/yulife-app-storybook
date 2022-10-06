@@ -82,6 +82,7 @@ export default {
     ocean: "#5ba9d5",
     desert: "#f86f63",
     mountain: "#ca45b3",
+    yuniversal: "#8008D9",
   },
   navNotification: {
     body: "rgb(226, 1, 119)",

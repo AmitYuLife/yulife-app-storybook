@@ -114,6 +114,7 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
     <InspectScreen
       userName={current.fullName}
       level={current.level}
+      yuniversalMap={current.yuniversalMap}
       general={general}
       duel={duel}
       activity={averageActivity}
