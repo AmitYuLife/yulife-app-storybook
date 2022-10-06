@@ -151,3 +151,13 @@ export const GROUP_DENTAL_PRODUCT_VIEW = async (packageType: string, yuCoinPower
         Then("I should see correct product details", then.groupDentalProductInfo(packageType, yuCoinPower))
     })
 }
+
+export const REJECTION_SCREEN_INFO = async ( productButton: string, rejectionReason: string) => {
+
+    When(`I tap on ${productButton}`, when.tapText(productButton), async () => {
+        Then(`I should see ${rejectionReason}`, then.ageRejectionTextInfo(rejectionReason))
+        When("I close this screen", when.tapText("Continue"), async () => {
+            Then(`I should be able to see ${productButton}`, then.textVisible(productButton))
+        })
+    })
+}

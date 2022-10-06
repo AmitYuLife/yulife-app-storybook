@@ -930,3 +930,42 @@ export const CUSTOMER_PLI_6 = {
         status: "onboarded",
     }
 } as IDatabaseItem
+
+export const CUSTOMER_PLI_7 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Pli",
+        lastName: "RejectedAge",
+        dateOfBirth: moment().subtract(17, "years").toDate(),
+        status: "onboarded",
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_PLI_9 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Dental",
+        lastName: "RejectedAge",
+        dateOfBirth: moment().subtract(17, "years").toDate(),
+        status: "onboarded",
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_PLI_10 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "PLI",
+        lastName: "RejectedCovid",
+        dateOfBirth: moment().subtract(23, "years").toDate(),
+        status: "onboarded",
+    }
+} as IDatabaseItem
