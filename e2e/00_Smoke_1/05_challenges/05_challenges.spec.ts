@@ -86,13 +86,15 @@ Feature("As a user I can take a challenge", async () => {
         When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
             Then("I should see the well done screen", then.onChallengeComplete(3050, 7))
         })
-        When("I tap collect on the well done screen", when.tapText("collect", 5000), async () => {
-            Then("I should see the first day streak screen", then.textVisible("First day done!", 10000))
-        })
-        When("I dismiss the streak screen", when.tapText("Done", 5000), async()=>{
+        When("I tap collect on the well done screen", when.tapText("collect", 1000), async () => {
             Then("I should see the chest unlocked screen telling me I get 200 yucoin", then.textVisible("you get 200 yucoin"))
         })
-        When("I dismiss the chest unlock screen", when.tapText("collect", 5000), async () => {
+        When("I tap collect on the collect reward screen", when.tapText("collect", 1000), async () => {
+            When("I wait for the screen to load", when.wait(5000), async () => {
+                Then("I should see the first day streak screen", then.textVisible("First day done!"))
+            })
+        })
+        When("I dismiss the streak screen", when.tapText("Done", 5000), async()=>{
             Then("I should be on the quest screen", then.idVisible(LEVEL_CHALLENGE_BUTTON(8), 3000))
         })
         When("I back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
