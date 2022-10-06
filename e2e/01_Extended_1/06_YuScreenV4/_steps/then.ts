@@ -243,3 +243,29 @@ export const onLifeInsuranceOverview = async () => {
 export const onDentalInsuranceOverview = async () => {
     await textVisible("Bupa Dental Plan for YuLife", 3000)()
 }
+
+export const ageRejectionTextInfo = (rejectionReason: string)=> async()=>{
+
+    const rejectionTitle = "Sorry about this!"
+    const rejectionPLIAgeText = "Based on your age we are unable to offer you personal life insurance."
+    const rejectionDentalAgeText = "Based on the information you provided we’re not able to offer you dental insurance right now. For more information please email support@yulife.com"
+    const rejectionCovidText = "Based on your answers, we’re not able to offer you personal life insurance right now.\n\nYou will be able to try again on 05/03/2023." // this date was put in seed data customer product progression
+
+    switch (rejectionReason) {
+        case "pliAgeRejected":
+            await expect(element(by.text(rejectionTitle))).toBeVisible();
+            await expect(element(by.text(rejectionPLIAgeText))).toBeVisible()
+            break;
+        case "dentalAgeRejected":
+            await expect(element(by.text(rejectionTitle))).toBeVisible();
+            await expect(element(by.text(rejectionDentalAgeText))).toBeVisible()
+            break;
+        case "pliCovidRejected":
+            await expect(element(by.text(rejectionTitle))).toBeVisible();
+            await expect(element(by.text(rejectionCovidText))).toBeVisible()
+            break;
+        default:
+            break;
+    }
+
+}

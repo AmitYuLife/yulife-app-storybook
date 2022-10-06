@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as helper from "./_steps/helpers"
-import { CUSTOMER_37, AUTH_37, CUSTOMER_PLI_5, AUTH_PLI_5, CUSTOMER_PLI_6, AUTH_PLI_6 } from "@data";
+import { CUSTOMER_37, AUTH_37, CUSTOMER_PLI_5, AUTH_PLI_5, CUSTOMER_PLI_6, AUTH_PLI_6, CUSTOMER_PLI_7, AUTH_PLI_7, CUSTOMER_PLI_9, AUTH_PLI_9, CUSTOMER_PLI_10, AUTH_PLI_10 } from "@data";
 import {  POPOVER } from "@ids";
 import * as helper_V4 from "01_Extended_1/06_YuScreenV4/_steps/helpers";
 
@@ -180,6 +180,30 @@ Feature("PLI SAD", async()=>{
         Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false,  CUSTOMER_PLI_6, AUTH_PLI_6), async()=>{
             Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_PLI_6, "PliPermanentlyRejectedAndDentalInactive", "10" ))
             helper_V4.CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED("Fill the gap with Dental")    //slot text should be the same after navigate through it 
+        })
+    })
+
+    Scenario("As a user with age rejection for PLI, i still should see the product slot and be able to get Dental", scenario.start, async()=>{
+        Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false,  CUSTOMER_PLI_7, AUTH_PLI_7), async()=>{
+            Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_PLI_7, "PliPermanentlyRejectedAndDentalInactive", "10" ))
+            helper_V4.REJECTION_SCREEN_INFO("Add Life insurance", "pliAgeRejected")
+            helper_V4.CHECK_PRODUCT_BUTTON_LINK("Fill the gap with Dental", "Dental Insurance");
+        })
+    })
+
+    Scenario("As a user with age rejection for Dental, i still should see the product slot and be able to get PLI", scenario.start, async()=>{
+        Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false,  CUSTOMER_PLI_9, AUTH_PLI_9), async()=>{
+            Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_PLI_9, "PliPermanentlyRejectedAndDentalInactive", "10" ))
+            helper_V4.REJECTION_SCREEN_INFO("Fill the gap with Dental", "dentalAgeRejected")
+            helper_V4.CHECK_PRODUCT_BUTTON_LINK("Add Life insurance", "Personal Life Insurance");
+        })
+    })
+
+    Scenario("As a user with covid rejection for PLI, i still should see the product slot and be able to get Dental", scenario.start, async()=>{
+        Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false,  CUSTOMER_PLI_10, AUTH_PLI_10), async()=>{
+            Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_PLI_10, "PliPermanentlyRejectedAndDentalInactive", "10" ))
+            helper_V4.REJECTION_SCREEN_INFO("Add Life insurance", "pliCovidRejected")
+            helper_V4.CHECK_PRODUCT_BUTTON_LINK("Fill the gap with Dental", "Dental Insurance");
         })
     })
 })

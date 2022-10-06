@@ -281,3 +281,62 @@ export const CUSTOMER_PLI_PROGRESSION_18 = {
         "step_data" : "{}",
     },
 }
+
+export const CUSTOMER_PLI_PROGRESSION_7 = {
+    type: "postgres",
+    modelName,
+    data: {
+        "customer_product_progression_id" : generateRandomPostgresId(),
+        "customer_product_id" : "YUCPID0000000157",
+        "step_id" : "Covea_FIB_02_rejection_age",
+        "step_data" : "{}",
+        "archived" : false,
+        "archived_at" : null,
+        "created_at" : "2022-10-04T10:37:46.600Z",
+        "created_by_id" : null,
+        "modified_at" : "2022-10-04T10:37:46.600Z",
+        "modified_by_id" : null,
+        "archive_reason" : null,
+        "session_id" : "868140ea-8b3b-4201-b5f9-bc0e3e909dee"
+    },
+}
+
+export const CUSTOMER_PLI_PROGRESSION_9 = {
+    type: "postgres",
+    modelName,
+    data: {
+        "customer_product_progression_id" : generateRandomPostgresId(),
+        "customer_product_id" : "YUCPID0000000158",
+        "step_id" : "Bupa_Dent_01_rejection_age",
+        "step_data" : "{}",
+        "archived" : false,
+        "archived_at" : null,
+        "created_at" : "2022-10-04T10:37:46.600Z",
+        "created_by_id" : null,
+        "modified_at" : "2022-10-04T10:37:46.600Z",
+        "modified_by_id" : null,
+        "archive_reason" : null,
+        "session_id" : "868140ea-8b3b-4201-b5f9-bc0e3e909dee"
+    },
+}
+
+export const CUSTOMER_PLI_PROGRESSION_10 = {
+    type: "postgres",
+    modelName,
+    data: {
+        "customer_product_progression_id" : generateRandomPostgresId(),
+        "customer_product_id" : "YUCPID0000000159",
+        "step_id" : "Covea_FIB_02_rejection_covid",
+        "step_data" : "{\"rejectionCanRetryOn\":\"2023-03-05T00:00:00.000Z\"}",
+        "archived" : false,
+        "archived_at" : null,
+        "created_at" : "2022-10-04T10:37:46.600Z",
+        "created_by_id" : null,
+        "modified_at" : "2022-10-04T10:37:46.600Z",
+        "modified_by_id" : null,
+        "archive_reason" : null,
+        "session_id" : "868140ea-8b3b-4201-b5f9-bc0e3e909dee"
+    },
+}
+    
+    
