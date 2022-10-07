@@ -274,6 +274,7 @@ export function getSlotImageProps(challengeType: string, currentWorld: number, y
     case "meditation":
       return MEDITATION[index] || MEDITATION[0];
     case "fiit":
+    case "fiit class":
     case "cycling":
       return CYCLING[index] || CYCLING[0];
     default:
