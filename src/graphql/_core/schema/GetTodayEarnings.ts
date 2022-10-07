@@ -73,11 +73,17 @@ export interface GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModa
   iconUrl: GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_toast_iconUrl;
 }
 
+export interface GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_accessibility {
+  accessibilityLabel: string;
+  accessibilityRole: string | null;
+}
+
 export interface GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal {
   header: string;
   iconUrl: GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_iconUrl;
   body: GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_body[];
   toast: GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_toast;
+  accessibility: GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_accessibility;
 }
 
 export interface GetTodayEarnings_getTodayEarnings_activityFeed_activityProgress_accessibility {

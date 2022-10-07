@@ -7,17 +7,24 @@ import { StyleSheet, View } from "react-native";
 import {
   GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_body as IBody,
   GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_toast as IToast,
+  GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_accessibility as IAccesibility,
 } from "@graphql/_core/schema";
 import { ROUTES } from "@navigation/constants";
+import { useTranslation } from "@hooks";
 
 interface IProps {
   header: string;
   body: IBody[];
   toast: IToast;
+  accessibility: IAccesibility;
 }
 
-const ActivityFeedPopMenu = ({ header, body, toast }: IProps) => {
+const ActivityFeedPopMenu = ({ header, body, toast, accessibility }: IProps) => {
   const onClose = useCallback(() => Navigation.dismissAllOverlays(), []);
+  const t = useTranslation([
+    "screens.today_earning.activity_feed.daily_core_activities.question_mark.toast.title",
+    "generic_heading.right_icon.close.accessibility_label",
+  ]);
 
   const onSettingPress = useCallback(() => {
     onClose();
@@ -28,14 +35,21 @@ const ActivityFeedPopMenu = ({ header, body, toast }: IProps) => {
       },
     });
   }, [onClose]);
+
   return (
-    <PressableWithDelay onPress={onClose} style={styles.wrapper}>
+    <PressableWithDelay onPress={onClose} style={styles.wrapper} importantForAccessibility="no" accessible={false}>
       <Block style={styles.block}>
-        <View style={styles.close}>
+        <PressableWithDelay
+          onPress={onClose}
+          style={styles.close}
+          accessibilityLabel={t["generic_heading.right_icon.close.accessibility_label"]}
+        >
           <CloseSvg size={Style.adjust(12)} />
-        </View>
-        <TextTemplate type="l2">{header}</TextTemplate>
-        <View style={styles.bodyWrapper}>
+        </PressableWithDelay>
+        <TextTemplate type="l2" accessibilityLabel={accessibility.accessibilityLabel}>
+          {header}
+        </TextTemplate>
+        <View style={styles.bodyWrapper} accessible={false}>
           {body.map(({ title, iconUrl }) => (
             <View style={styles.body} key={title}>
               <Image
@@ -57,9 +71,19 @@ const ActivityFeedPopMenu = ({ header, body, toast }: IProps) => {
             borderColor={toast?.borderColor}
           >
             <View style={styles.description}>
-              <TextTemplate type="l3b">{toast?.description}</TextTemplate>
+              <TextTemplate type="l3b" accessibilityLabel={toast?.description}>
+                {toast?.description}
+              </TextTemplate>
             </View>
-            <Hyperlink title="Go to settings" type="l3b" onPress={onSettingPress} />
+            <Hyperlink
+              accessible={true}
+              accessibilityLabel={
+                t["screens.today_earning.activity_feed.daily_core_activities.question_mark.toast.title"]
+              }
+              title={t["screens.today_earning.activity_feed.daily_core_activities.question_mark.toast.title"]}
+              type="l3b"
+              onPress={onSettingPress}
+            />
           </Toast>
         </View>
       </Block>
