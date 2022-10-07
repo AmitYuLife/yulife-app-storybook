@@ -292,7 +292,7 @@
       "stage": "Stage %{level}"
     },
     "challenge_failed": {
-      "cta_label": "Collect",
+      "cta_label": "Okay, got it",
       "heading": "You didn’t make it",
       "footer": "So close! Why not try again?",
       "level": "Level %{level}",
