@@ -13,11 +13,13 @@ export const CGP_31 = {
     data:{
         business_product_id: BUSINESS_PRODUCT_3.product.data.product_id,
         customer_product_id: CPE_31.data.customer_product_id,
-        category_id:1,
-        salary: 60000,
-        country: "UK",
+        category_id: 1,
         start_date: moment().subtract(3, "months").toDate(),
-        date_of_birth: CUSTOMER_31.data.date_of_birth
+        data:{
+            salary: 60000,
+            country: "UK",
+            date_of_birth: CUSTOMER_31.data.date_of_birth
+        }
     }
 } as IDatabaseItem
 
@@ -28,10 +30,12 @@ export const CGP_32_RGL = {
         business_product_id: BUSINESS_PRODUCT_4_RGL.product.data.product_id,
         customer_product_id: CPE_32_RGL.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: moment().subtract(1, "year").toDate(),
-        date_of_birth: CUSTOMER_32.data.date_of_birth
+        data: {
+            salary: 100000,
+            country: "UK",
+            date_of_birth: CUSTOMER_32.data.date_of_birth,  
+        }
     }
 } as IDatabaseItem
 
@@ -42,10 +46,12 @@ export const CGP_32_GIP = {
         business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
         customer_product_id: CPE_32_GIP.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: moment().subtract(1, "year").toDate(),
-        date_of_birth: CUSTOMER_32.data.date_of_birth
+        data:{
+            date_of_birth: CUSTOMER_32.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
     }
 } as IDatabaseItem
 
@@ -56,10 +62,12 @@ export const CGP_32_GCI = {
         business_product_id: BUSINESS_PRODUCT_4_GCI.product.data.product_id,
         customer_product_id: CPE_32_GCI.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: moment().subtract(1, "year").toDate(),
-        date_of_birth: CUSTOMER_32.data.date_of_birth
+        data:{
+            date_of_birth: CUSTOMER_32.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
     }
 } as IDatabaseItem
 
@@ -70,10 +78,12 @@ export const CGP_33_RGL = {
         business_product_id: BUSINESS_PRODUCT_4_RGL.product.data.product_id,
         customer_product_id: CPE_33_RGL.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: CUSTOMER_33.data.start_date,
-        date_of_birth: CUSTOMER_33.data.date_of_birth
+        data : {
+            salary: 100000,
+            country: "UK",
+            date_of_birth: CUSTOMER_33.data.date_of_birth,
+        }
     }
 } as IDatabaseItem
 
@@ -84,10 +94,12 @@ export const CGP_33_GIP = {
         business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
         customer_product_id: CPE_33_GIP.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: CUSTOMER_33.data.start_date,
-        date_of_birth: CUSTOMER_33.data.date_of_birth
+        data : {
+            date_of_birth: CUSTOMER_33.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
     }
 } as IDatabaseItem
 
@@ -98,10 +110,12 @@ export const CGP_33_GCI = {
         business_product_id: BUSINESS_PRODUCT_4_GCI.product.data.product_id,
         customer_product_id: CPE_33_GCI.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: CUSTOMER_33.data.start_date,
-        date_of_birth: CUSTOMER_33.data.date_of_birth
+        data : {
+            date_of_birth: CUSTOMER_33.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
     }
 } as IDatabaseItem
 
@@ -112,10 +126,12 @@ export const CGP_34_RGL = {
         business_product_id: BUSINESS_PRODUCT_4_RGL.product.data.product_id,
         customer_product_id: CPE_34_RGL.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: CUSTOMER_34.data.start_date,
-        date_of_birth: CUSTOMER_34.data.date_of_birth
+        data : {
+            date_of_birth: CUSTOMER_34.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
     }
 } as IDatabaseItem
 
@@ -126,10 +142,12 @@ export const CGP_34_GIP = {
         business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
         customer_product_id: CPE_34_GIP.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: CUSTOMER_34.data.start_date,
-        date_of_birth: CUSTOMER_34.data.date_of_birth
+        data : {
+            salary: 100000,
+            country: "UK",
+            date_of_birth: CUSTOMER_34.data.date_of_birth,
+        }
     }
 } as IDatabaseItem
 
@@ -140,10 +158,12 @@ export const CGP_34_GCI = {
         business_product_id: BUSINESS_PRODUCT_4_GCI.product.data.product_id,
         customer_product_id: CPE_34_GCI.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: CUSTOMER_34.data.start_date,
-        date_of_birth: CUSTOMER_34.data.date_of_birth
+        data : {
+            salary: 100000,
+            country: "UK",
+            date_of_birth: CUSTOMER_34.data.date_of_birth,
+        }
     }
 } as IDatabaseItem
 
@@ -154,11 +174,13 @@ export const CGP_43_WELLBEING = {
         business_product_id: BUSINESS_PRODUCT_1_WB.product.data.product_id,
         customer_product_id: CPE_43_WELLBEING.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: CUSTOMER_43.data.start_date,
-        date_of_birth: CUSTOMER_43.data.date_of_birth
-    }
+        data: {
+            date_of_birth: CUSTOMER_43.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
+    },
 } as IDatabaseItem
 
 export const CGP_48_RGL = {
@@ -168,10 +190,12 @@ export const CGP_48_RGL = {
         business_product_id: BUSINESS_PRODUCT_4_RGL.product.data.product_id,
         customer_product_id: CPE_48_RGL.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: CUSTOMER_48.data.start_date,
-        date_of_birth: CUSTOMER_48.data.date_of_birth
+        data: {
+            date_of_birth: CUSTOMER_48.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
     }
 } as IDatabaseItem
 
@@ -182,10 +206,12 @@ export const CGP_48_GIP = {
         business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
         customer_product_id: CPE_48_GIP.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: CUSTOMER_48.data.start_date,
-        date_of_birth: CUSTOMER_48.data.date_of_birth
+        data: {
+            date_of_birth: CUSTOMER_48.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
     }
 } as IDatabaseItem
 
@@ -196,10 +222,12 @@ export const CGP_48_GCI = {
         business_product_id: BUSINESS_PRODUCT_4_GCI.product.data.product_id,
         customer_product_id: CPE_48_GCI.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: CUSTOMER_48.data.start_date,
-        date_of_birth: CUSTOMER_48.data.date_of_birth
+        data: {
+            date_of_birth: CUSTOMER_48.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
     }
 } as IDatabaseItem
 
@@ -210,10 +238,12 @@ export const CGP_48_WELLBEING = {
         business_product_id: BUSINESS_PRODUCT_1_WB.product.data.product_id,
         customer_product_id: CPE_48_WELLBEING.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: CUSTOMER_48.data.start_date,
-        date_of_birth: CUSTOMER_48.data.date_of_birth
+        data: {
+            date_of_birth: CUSTOMER_48.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
     }
 } as IDatabaseItem
 
@@ -224,10 +254,12 @@ export const CGP_49_RGL = {
         business_product_id: BUSINESS_PRODUCT_4_RGL.product.data.product_id,
         customer_product_id: CPE_49_RGL.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: CUSTOMER_49.data.start_date,
-        date_of_birth: CUSTOMER_49.data.date_of_birth
+        data: {
+            date_of_birth: CUSTOMER_49.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
     }
 } as IDatabaseItem
 
@@ -238,10 +270,12 @@ export const CGP_49_GIP = {
         business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
         customer_product_id: CPE_49_GIP.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: CUSTOMER_49.data.start_date,
-        date_of_birth: CUSTOMER_49.data.date_of_birth
+        data: {
+            date_of_birth: CUSTOMER_49.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
     }
 } as IDatabaseItem
 
@@ -252,10 +286,12 @@ export const CGP_49_GCI = {
         business_product_id: BUSINESS_PRODUCT_4_GCI.product.data.product_id,
         customer_product_id: CPE_49_GCI.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: CUSTOMER_49.data.start_date,
-        date_of_birth: CUSTOMER_49.data.date_of_birth
+        data: {
+            date_of_birth: CUSTOMER_49.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
     }
 } as IDatabaseItem
 
@@ -266,10 +302,12 @@ export const CGP_49_WELLBEING = {
         business_product_id: BUSINESS_PRODUCT_1_WB.product.data.product_id,
         customer_product_id: CPE_49_WELLBEING.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: CUSTOMER_49.data.start_date,
-        date_of_birth: CUSTOMER_49.data.date_of_birth
+        data: {
+            date_of_birth: CUSTOMER_49.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
     }
 } as IDatabaseItem
 
@@ -280,10 +318,12 @@ export const CGP_51_GDental = {
         business_product_id: BUSINESS_PRODUCT_4_GDental.product.data.product_id,
         customer_product_id: CPE_51_GDent.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: CUSTOMER_51.data.start_date,
-        date_of_birth: CUSTOMER_51.data.date_of_birth
+        data: {
+            date_of_birth: CUSTOMER_51.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
     }
 } as IDatabaseItem
 
@@ -294,9 +334,11 @@ export const CGP_53_GIP = {
         business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
         customer_product_id: CPE_53_GIP.data.customer_product_id,
         category_id: 1,
-        salary: 100000,
-        country: "UK",
         start_date: CUSTOMER_53.data.start_date,
-        date_of_birth: CUSTOMER_53.data.date_of_birth
+        data: {
+            date_of_birth: CUSTOMER_53.data.date_of_birth,    
+            salary: 100000,
+            country: "UK",  
+        }
     }
 } as IDatabaseItem

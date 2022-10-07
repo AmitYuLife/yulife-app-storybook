@@ -6,7 +6,7 @@ import { getCurrentWorld, getCurrentWorldImage, getCurrentWorldText } from "@uti
 import { useSelector } from "react-redux";
 import { getUserName } from "@redux/user/user.selectors";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
-import { TEXT_TEMPLATE } from "@ids";
+import { TEXT_TEMPLATE, USER_WORLD, USER_LEVEL } from "@ids";
 
 interface IProps {
   name?: string;
@@ -37,11 +37,15 @@ const NameAndLevel = ({ name, level, yuniversalMap, hideWorldIcon, useWorldColor
       <View style={styles.worldDetails}>
         {hideWorldIcon ? null : <Image style={styles.image} source={worldIcon} />}
         <View style={styles.worldTextWrapper}>
-          <TextTemplate type={"l2b"} color={getWorldColor(worldName)}>
+          <TextTemplate type={"l2b"} color={getWorldColor(worldName)} testID={USER_WORLD(worldName)}>
             {worldName}
           </TextTemplate>
           {isYuniversal ? null : (
-            <TextTemplate type={"l2b"} color={useWorldColor ? getWorldColor(worldName) : undefined}>
+            <TextTemplate
+              type={"l2b"}
+              color={useWorldColor ? getWorldColor(worldName) : undefined}
+              testID={USER_LEVEL(currentLevel)}
+            >
               {` Level ${currentLevel}`}
             </TextTemplate>
           )}
