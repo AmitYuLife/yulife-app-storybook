@@ -70,26 +70,27 @@ export const showChestModal = (
     },
   });
 
-export const showChallengeUnavailableModal = (nextAvailableAt: string) =>
+export const showChallengeUnavailableModal = (nextAvailableAt: string, isYuniversalLevel = false) =>
   showYuModal({
     component: {
       id: MODALS.challengeUnavailable,
       name: MODALS.challengeUnavailable,
       passProps: {
+        isYuniversalLevel,
         nextAvailableAt,
         onPressCta: dismissChallengeUnavailableModal,
       },
     },
   });
 
-export const showLevelUnavailableModal = (level: number, isUniversalLevel = false) =>
+export const showLevelUnavailableModal = (level: number, isYuniversalLevel = false) =>
   showYuModal({
     component: {
       id: MODALS.levelUnavailable,
       name: MODALS.levelUnavailable,
       passProps: {
         level,
-        isUniversalLevel,
+        isYuniversalLevel,
         onPressCta: dismissLevelUnavailableModal,
       },
     },

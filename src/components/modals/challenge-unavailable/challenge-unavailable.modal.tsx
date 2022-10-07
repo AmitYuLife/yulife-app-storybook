@@ -4,19 +4,26 @@ import { ChallengeUnavailableScreen } from "@screens";
 import useInterval from "@use-it/interval";
 
 interface IProps {
+  isYuniversalLevel?: boolean;
   nextAvailableAt: string;
   onPressCta: () => void;
 }
 
 function ChallengeUnavailableModal(props: IProps) {
-  const { nextAvailableAt, onPressCta } = props;
+  const { nextAvailableAt, onPressCta, isYuniversalLevel } = props;
   const [timeRemaining, setTimeRemaining] = React.useState(getTimeRemaining(nextAvailableAt).time);
 
   useInterval(() => {
     setTimeRemaining(getTimeRemaining(nextAvailableAt).time);
   }, 1000);
 
-  return <ChallengeUnavailableScreen timeRemaining={timeRemaining} onPressCta={onPressCta} />;
+  return (
+    <ChallengeUnavailableScreen
+      timeRemaining={timeRemaining}
+      onPressCta={onPressCta}
+      isYuniversalLevel={isYuniversalLevel}
+    />
+  );
 }
 
 export default ChallengeUnavailableModal;
