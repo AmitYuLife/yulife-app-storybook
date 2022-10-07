@@ -1,6 +1,5 @@
 import { MODALS, ROUTES } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
-import { clearChallengeStatusPrompt } from "@redux/quests/quests.actions";
 import { getQuestsPrompt } from "@redux/quests/quests.selectors";
 import { getUserAvatar } from "@redux/user/user.selectors";
 import { Source } from "react-native-fast-image";
@@ -17,12 +16,11 @@ export default function* resetChallengeSaga() {
   if (active?.status === "success") {
     if (active.yuniversalChest) {
       yield call(showEOTWChestModal, active, level, { uri: avatar?.avatarRemoteFiles?.pngMini });
-    } else if ((active?.chest?.value ?? 0) > 0) {
+    } else if ((active?.chest?.value || 0) > 0) {
       yield call(showChestModal, active);
     }
   }
 
-  yield put(clearChallengeStatusPrompt());
   yield put(challengeResetSuccessAction());
 }
 

@@ -223,10 +223,10 @@ const challengeEndSuccess = (state: ILevelsStore, challenge: QuestMapActiveChall
     coins: challenge?.yuCoinAwarded || state.active.coins,
     level: challenge?.level || state.active.level,
     isLoading: false,
-    milestonesLog: challenge?.milestoneLog || state.active.milestonesLog,
+    milestonesLog: challenge?.milestoneLog || state.active?.milestonesLog || [],
     rating: challenge?.rating || state.active.rating,
     score: getScore(challenge?.incomingData) || state.active.score,
-    status: (challenge?.milestoneLog || state.active.milestonesLog).length > 0 ? "success" : "failed",
+    status: (challenge?.milestoneLog || state.active?.milestonesLog || []).length > 0 ? "success" : "failed",
     challengeIsActive: false,
   },
 });

@@ -2,10 +2,11 @@ import {
   CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_yuniversalChest,
   UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge as QuestMapActiveChallenge,
 } from "@graphql/_core/schema";
-import { CLEAR_CHALLENGE_STATUS_PROMPT, SET_CHALLENGE_STATUS_PROMPT } from "./quests.actions";
+import { SET_CHALLENGE_STATUS_PROMPT } from "./quests.actions";
 import { SyncAction } from "@redux/_core/types";
 import { IActiveLevel } from "@redux/levels/levels.selectors";
 import { getScore } from "@redux/levels/levels.reducer";
+import { CHALLENGE_RESET_SUCCESS } from "@redux/levels/levels.actions";
 
 interface IQuestPrompt {
   active: IActiveLevel;
@@ -23,11 +24,11 @@ export const getInitialState = (): IQuestStore => ({
 
 const questsReducer = (state: IQuestStore = getInitialState(), action: SyncAction): IQuestStore => {
   switch (action.type) {
-    case CLEAR_CHALLENGE_STATUS_PROMPT:
+    case CHALLENGE_RESET_SUCCESS:
       return { ...state, prompt: undefined };
 
     case SET_CHALLENGE_STATUS_PROMPT:
-      return challengeEndSuccess(state, action.payload);
+      return setChallengeStatusPrompt(state, action.payload);
 
     default:
       return state;
@@ -36,7 +37,7 @@ const questsReducer = (state: IQuestStore = getInitialState(), action: SyncActio
 
 export default questsReducer;
 
-const challengeEndSuccess = (
+const setChallengeStatusPrompt = (
   state: IQuestStore,
   {
     active,
@@ -63,13 +64,13 @@ const challengeEndSuccess = (
       ...state?.prompt?.active,
       chest,
       yuniversalChest,
-      coins: active?.yuCoinAwarded || state.prompt?.active.coins,
-      level: active?.level || state.prompt?.active.level,
+      coins: active?.yuCoinAwarded || state.prompt?.active?.coins,
+      level: active?.level || state.prompt?.active?.level,
       isLoading: false,
-      milestonesLog: active?.milestoneLog || state.prompt?.active.milestonesLog,
-      rating: active?.rating || state.prompt?.active.rating,
-      score: getScore(active?.incomingData) || state.prompt?.active.score,
-      status: (active?.milestoneLog || state.prompt?.active.milestonesLog).length > 0 ? "success" : "failed",
+      milestonesLog: active?.milestoneLog || state.prompt?.active?.milestonesLog || [],
+      rating: active?.rating || state.prompt?.active?.rating,
+      score: getScore(active?.incomingData) || state.prompt?.active?.score,
+      status: (active?.milestoneLog || state.prompt?.active?.milestonesLog || []).length > 0 ? "success" : "failed",
       challengeIsActive: false,
     },
     yuniversalLevel,
