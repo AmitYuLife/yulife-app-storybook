@@ -70,12 +70,6 @@ export default function getLevelButton(
     if (level.level > currentLevel) {
       return <Lock colour={color} />;
     }
-
-    return (
-      <Text style={styles.text} bold={true}>
-        {level.level}
-      </Text>
-    );
   }
 
   if (level.level === currentLevel) {

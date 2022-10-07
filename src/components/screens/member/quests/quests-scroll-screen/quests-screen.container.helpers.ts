@@ -162,15 +162,15 @@ export function getLevelAction({
   }
 
   if (isNext) {
-    if (isUnityLevel) {
-      return "DispatchSubmitUnityAction";
-    }
-
-    if (levelAvailable && isChestLevel) {
-      return "ShowChestModal";
-    }
-
     if (levelAvailable) {
+      if (isUnityLevel) {
+        return "DispatchSubmitUnityAction";
+      }
+
+      if (isChestLevel) {
+        return "ShowChestModal";
+      }
+
       return "GoToChallengesList";
     }
 
