@@ -55,6 +55,11 @@
         "daily_core_activities": {
           "accessibility": {
             "accessibility_label": "Daily core activities info"
+          },
+          "question_mark": {
+            "toast": {
+              "title": "Go to settings"
+            }
           }
         }
       },

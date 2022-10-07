@@ -10,10 +10,16 @@ interface IHyperLink {
   url?: string;
   type?: ITextTemplateType;
   onPress?: () => void;
+  accessible?: boolean;
+  accessibilityLabel?: string;
 }
 
-const Hyperlink = ({ title, url, onPress, type = "b2" }: IHyperLink) => (
-  <TouchableOpacityWithDelay onPress={onPress || handleLinkPress(url)}>
+const Hyperlink = ({ title, url, onPress, type = "b2", accessible, accessibilityLabel }: IHyperLink) => (
+  <TouchableOpacityWithDelay
+    onPress={onPress || handleLinkPress(url)}
+    accessible={accessible}
+    accessibilityLabel={accessibilityLabel}
+  >
     <TextTemplate type={type} color={Colours.darkHotPink} decoration="underline">
       {title}
     </TextTemplate>

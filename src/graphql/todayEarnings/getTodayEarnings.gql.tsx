@@ -56,6 +56,10 @@ export const GQL_QUERY_GET_TODAY_EARNINGS = gql`
               uri(options: { width: 114, height: 128 })
             }
           }
+          accessibility {
+            accessibilityLabel
+            accessibilityRole
+          }
         }
         activityProgress {
           type
