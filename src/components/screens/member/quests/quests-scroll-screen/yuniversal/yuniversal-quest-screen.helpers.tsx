@@ -1,8 +1,5 @@
 import { ITodayChallengesStatus } from "@redux/levels/levels.selectors";
-import {
-  GetQuestMap_levels,
-  GetMobileCopy_getMobileCopy_screens_challenges_showChestModal as ShowChestModalCopy,
-} from "@graphql/_core/schema";
+import { GetQuestMap_levels } from "@graphql/_core/schema";
 import { slots } from "./level/level-slots";
 import {
   goToChallengesList,
@@ -130,7 +127,6 @@ interface ILevelProps {
 
 const getLevelProps = (
   componentId: string,
-  showChestModalCopy: ShowChestModalCopy,
   challengesStatus: ITodayChallengesStatus,
   yuniversalLevel: number,
   yuniversalMap: number,
@@ -175,7 +171,7 @@ const getLevelProps = (
         ...commonProps,
         ...slotColours.active,
         isActive: true,
-        onPress: () => showChestModal(componentId, level, yuniversalMap, true, showChestModalCopy),
+        onPress: () => showChestModal(componentId, level, yuniversalMap, true),
       };
     case "TimeGated":
       return {
@@ -200,7 +196,7 @@ const getLevelProps = (
         withOverlay: true,
         isActive: false,
         icon: lockIcon,
-        onPress: () => showChestModal(componentId, level, yuniversalMap, false, showChestModalCopy),
+        onPress: () => showChestModal(componentId, level, yuniversalMap, false),
       };
     case "Locked":
     default:
@@ -209,14 +205,13 @@ const getLevelProps = (
         ...slotColours.locked,
         isActive: false,
         icon: lockIcon,
-        onPress: () => showLevelUnavailableModal(level.level),
+        onPress: () => showLevelUnavailableModal(level.level, true),
       };
   }
 };
 
 export const getLevelsProps = (
   componentId: string,
-  showChestModalCopy: ShowChestModalCopy,
   challengesStatus: ITodayChallengesStatus,
   yuniversalLevel: number,
   yuniversalMap: number,
@@ -226,7 +221,6 @@ export const getLevelsProps = (
   levelList.reduce((acc, level) => {
     const levelProps = getLevelProps(
       componentId,
-      showChestModalCopy,
       challengesStatus,
       yuniversalLevel,
       yuniversalMap,

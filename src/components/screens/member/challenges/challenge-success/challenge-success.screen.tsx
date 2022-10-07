@@ -1,14 +1,12 @@
 import * as React from "react";
 import { Image, StyleSheet, View } from "react-native";
-import { useSelector } from "react-redux";
 import { LevelLine, Stars, TextTemplate } from "@atoms";
+import { t } from "@locale";
 import { AnimatedPlusPoints, Button, CentredScreen } from "@molecules";
-import { getChallengeSuccessCopy } from "@redux/copy/copy.selectors";
 import { formatCyclingMetersToKmWithOneDecimal } from "../challenge-progress/subcomponents/progress-bar.helpers";
 import Assets from "./assets";
 import { getStyle } from "./challenge-success.helpers";
 import styles, { LINE_COLOR, SCORE_COLOR } from "./challenge-success.screen.styles";
-import { t } from "@locale";
 
 interface IProps {
   onPressCta: () => void;
@@ -22,18 +20,8 @@ interface IProps {
   currentWorld: number;
 }
 
-export default function ChallengeSuccessScreen({
-  level,
-  yuniversalMap,
-  onPressCta,
-  rating,
-  reward,
-  score,
-  unit,
-  loading,
-  currentWorld,
-}: IProps) {
-  const copy = useSelector(getChallengeSuccessCopy);
+export default function ChallengeSuccessScreen(props: IProps) {
+  const { level, yuniversalMap, onPressCta, rating, reward, score, unit, loading, currentWorld } = props;
   const { backgroundImage, backgroundStyle, textStyle, lineColour = LINE_COLOR } = getStyle(
     currentWorld,
     yuniversalMap
@@ -58,7 +46,7 @@ export default function ChallengeSuccessScreen({
       </View>
       <View style={styles.heading}>
         <TextTemplate type="h1" color={textStyle?.color} textAlign="center">
-          {copy.footer}
+          {t("screens.challenge_success.footer")}
         </TextTemplate>
       </View>
       <View>

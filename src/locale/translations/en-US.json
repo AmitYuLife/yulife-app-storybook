@@ -281,10 +281,29 @@
       "how_meditate_with_other_apps_label": "How do I meditate with other apps"
     },
     "challenge_success": {
-      "cta_label": "collect",
+      "cta_label": "Collect",
       "footer": "Well done!",
-      "level": "level %{level}",
+      "level": "Level %{level}",
       "stage": "Stage %{level}"
+    },
+    "challenge_failed": {
+      "cta_label": "Collect",
+      "heading": "You didn’t make it",
+      "footer": "So close! Why not try again?",
+      "level": "Level %{level}",
+      "stage": "Stage %{level}"
+    },
+    "level_locked": {
+      "cta_label": "Got it",
+      "level": "Unlock at level %{level}",
+      "stage": "Unlock at stage %{level}"
+    },
+    "challenge_chest_modal": {
+      "cta_label_is_next": "Let's do it",
+      "cta_label_is_not_next": "Got it",
+      "heading_is_next": "Take a challenge to unlock the chest",
+      "heading_is_not_next_level": "Unlock at level %{level}",
+      "heading_is_not_next_stage": "Unlock at stage %{level}"
     },
     "yumoji_builder": {
       "create": {

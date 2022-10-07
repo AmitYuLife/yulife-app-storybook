@@ -2,6 +2,7 @@ import { GetQuestMap_levels } from "@graphql/_core/schema";
 import { Navigation } from "react-native-navigation";
 import { ROUTES, bottomTabs, MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
+import { t } from "@locale";
 
 const dismissChestModal = () => Navigation.dismissModal(MODALS.chest);
 
@@ -23,30 +24,39 @@ export const goToChallengesList = (componentId: string, level: number, levelName
     },
   });
 
+const buildChestModalCopy = (isNext: boolean, level: number, yuniversalMap: number) => {
+  if (isNext) {
+    return {
+      ctaLabel: t("screens.challenge_chest_modal.cta_label_is_next"),
+      heading: t("screens.challenge_chest_modal.heading_is_next"),
+    };
+  }
+
+  if (yuniversalMap) {
+    return {
+      ctaLabel: t("screens.challenge_chest_modal.cta_label_is_not_next"),
+      heading: t("screens.challenge_chest_modal.heading_is_not_next_stage", { level }),
+    };
+  }
+
+  return {
+    ctaLabel: t("screens.challenge_chest_modal.cta_label_is_not_next"),
+    heading: t("screens.challenge_chest_modal.heading_is_not_next_level", { level }),
+  };
+};
+
 export const showChestModal = (
   componentId: string,
   level: GetQuestMap_levels,
   yuniversalMap: number,
-  isNext: boolean,
-  {
-    ctaLabelIsNext,
-    ctaLabelIsNotNext,
-    headingIsNext,
-    headingIsNotNext,
-  }: {
-    ctaLabelIsNext: string;
-    ctaLabelIsNotNext: string;
-    headingIsNext: string;
-    headingIsNotNext: string;
-  }
+  isNext: boolean
 ) =>
   showYuModal({
     component: {
       id: MODALS.chest,
       name: MODALS.chest,
       passProps: {
-        ctaLabel: isNext ? ctaLabelIsNext : ctaLabelIsNotNext,
-        heading: isNext ? headingIsNext : `${headingIsNotNext} ${level.level}`,
+        ...buildChestModalCopy(isNext, level.level, yuniversalMap),
         isLocked: true,
         onPressCta: () => {
           if (isNext) {
@@ -72,13 +82,14 @@ export const showChallengeUnavailableModal = (nextAvailableAt: string) =>
     },
   });
 
-export const showLevelUnavailableModal = (level: number) =>
+export const showLevelUnavailableModal = (level: number, isUniversalLevel = false) =>
   showYuModal({
     component: {
       id: MODALS.levelUnavailable,
       name: MODALS.levelUnavailable,
       passProps: {
         level,
+        isUniversalLevel,
         onPressCta: dismissLevelUnavailableModal,
       },
     },
