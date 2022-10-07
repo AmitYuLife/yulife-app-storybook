@@ -1,7 +1,6 @@
 import React, { FC, memo } from "react";
 import { View, Image } from "react-native";
 import { useSelector } from "react-redux";
-import { getShowChestCopy } from "@redux/copy/copy.selectors";
 import { getChallengesStatus, getNextLevelAvailableAt } from "@redux/levels/levels.selectors";
 import styles from "./yuniversal-quest-screen.styles";
 import { NavBar, TopBar } from "@organisms";
@@ -32,13 +31,11 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
   levelList,
   onLeftMenuPress,
 }) => {
-  const showChestModalCopy = useSelector(getShowChestCopy);
   const challengesStatus = useSelector(getChallengesStatus);
   const nextLevelAvailableAt = useSelector(getNextLevelAvailableAt);
 
   const levelMap = getLevelsProps(
     componentId,
-    showChestModalCopy,
     challengesStatus,
     yuniversalLevel,
     yuniversalMap,

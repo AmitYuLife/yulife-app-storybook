@@ -1,32 +1,33 @@
 import * as React from "react";
-import { PureComponent } from "react";
 import { Image, View } from "react-native";
-import { Text } from "@atoms";
+import { t } from "@locale";
+import { TextTemplate } from "@atoms";
 import { Button } from "@molecules";
 import assets from "./assets";
 import styles from "./level-locked.styles";
 
-interface IProps {
+type LevelLockedScreenProps = {
+  isUniversalLevel?: boolean;
   level: number;
   onPressCta: () => void;
-}
+};
 
-class LevelLockedScreen extends PureComponent<IProps> {
-  public render() {
-    const { level, onPressCta } = this.props;
+const LevelLockedScreen: React.FC<LevelLockedScreenProps> = (props) => {
+  const { level, onPressCta, isUniversalLevel } = props;
 
-    return (
-      <View style={styles.wrapper}>
-        <View style={styles.imageWrapper}>
-          <Image source={assets.levelUnavailable} />
-        </View>
-        <Text bold={true} style={styles.heading}>
-          unlock at level {level}
-        </Text>
-        <Button size="Medium" label="got it" onPress={onPressCta} />
+  return (
+    <View style={styles.wrapper}>
+      <View style={styles.imageWrapper}>
+        <Image source={assets.levelUnavailable} />
       </View>
-    );
-  }
-}
+      <View style={styles.textWrapper}>
+        <TextTemplate type="h3">
+          {t(isUniversalLevel ? "screens.level_locked.stage" : "screens.level_locked.level", { level })}
+        </TextTemplate>
+      </View>
+      <Button size="Medium" label={t("screens.level_locked.cta_label")} onPress={onPressCta} />
+    </View>
+  );
+};
 
 export default LevelLockedScreen;

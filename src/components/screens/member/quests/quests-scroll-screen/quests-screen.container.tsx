@@ -20,7 +20,6 @@ import {
 } from "./quests-screen.container.helpers";
 import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_QUEST_MAP } from "@graphql/challenges";
-import { getShowChestCopy } from "@redux/copy/copy.selectors";
 import { GetQuestMap } from "@graphql/_core/schema";
 import { YuniversalQuestsScreen } from "./yuniversal/yuniversal-quest-screen";
 import { QuestsMapContext } from "./quests.context";
@@ -96,7 +95,6 @@ function QuestsScreenContainer(props: Props) {
   const [repeatedUnity, setRepeatedUnity] = useState(false);
 
   const dispatch = useDispatch();
-  const showChestModalCopy = useSelector(getShowChestCopy);
   const challengesStatus = useSelector(getChallengesStatus);
   const nextLevelAvailableAt = useSelector(getNextLevelAvailableAt);
   const currentLevel = useSelector(getCurrentLevel);
@@ -149,7 +147,7 @@ function QuestsScreenContainer(props: Props) {
                 setRepeatedUnity(false);
                 break;
               case "ShowChestModal":
-                showChestModal(componentId, itemLevel, null, levelStatus.isNext, showChestModalCopy);
+                showChestModal(componentId, itemLevel, null, levelStatus.isNext);
                 break;
               case "ShowChallengeUnavailableModal":
                 showChallengeUnavailableModal(nextLevelAvailableAt);

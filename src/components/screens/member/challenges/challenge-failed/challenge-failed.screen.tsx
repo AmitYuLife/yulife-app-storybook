@@ -1,11 +1,10 @@
 import { LevelLine, Stars, Text } from "@atoms";
 import * as React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { useSelector } from "react-redux";
-import { getChallengeFailedCopy } from "@redux/copy/copy.selectors";
 import styles from "./challenge-failed.screen.styles";
 import { CenteredScreenImages } from "@molecules/centred-screen/centred-screen";
 import { Button, CentredScreen } from "@molecules";
+import { t } from "@locale";
 
 interface IProps {
   level?: number;
@@ -16,7 +15,6 @@ interface IProps {
 }
 
 export default function ChallengeFailedScreen({ level, yuniversalMap, onPress, loading, currentWorld }: IProps) {
-  const copy = useSelector(getChallengeFailedCopy);
   const { backgroundImage, backgroundStyle, textStyle, lineColour = "rgb(226, 226, 226)" } = getStyle(
     currentWorld,
     yuniversalMap
@@ -33,14 +31,24 @@ export default function ChallengeFailedScreen({ level, yuniversalMap, onPress, l
           <View style={styles.levelLineWrapper}>
             <LevelLine colour={lineColour} />
           </View>
-          <Text style={StyleSheet.flatten([styles.level, textStyle])}>{`level ${level}`}</Text>
+          <Text style={StyleSheet.flatten([styles.level, textStyle])}>
+            {yuniversalMap
+              ? t("screens.challenge_failed.stage", { level })
+              : t("screens.challenge_failed.level", { level })}
+          </Text>
         </View>
       </View>
       <Text bold={true} style={StyleSheet.flatten([styles.heading, textStyle])}>
-        {copy.heading}
+        {t("screens.challenge_failed.heading")}
       </Text>
-      <Text style={StyleSheet.flatten([styles.secondaryText, textStyle])}>{copy.footer}</Text>
-      <Button isLoading={loading} wrapperStyle={styles.cta} onPress={onPress} label={copy.ctaLabel} size="Medium" />
+      <Text style={StyleSheet.flatten([styles.secondaryText, textStyle])}>{t("screens.challenge_failed.footer")}</Text>
+      <Button
+        isLoading={loading}
+        wrapperStyle={styles.cta}
+        onPress={onPress}
+        label={t("screens.challenge_failed.cta_label")}
+        size="Medium"
+      />
     </CentredScreen>
   );
 }
