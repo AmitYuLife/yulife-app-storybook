@@ -4,8 +4,8 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as helper from "./_steps/helpers"
-import { NAV_BAR, LEADERBOARD_INFO_BUTTON, LEADERBOARD_INFO, BACK_BUTTON, PLUS_BUTTON, LEADERBOARD_EMAIL_INPUT, GROUP_NAME_INPUT, LEADERBOARD_SWITCH, LEADERBOARD_TITLE, MENU_ICON, INSPECT_SCREEN, RANK, CHALLENGE_FRIEND_BUTTON, DAILY_STEPS_SCREEN, LEADERBOARD_TOP_SCREEN, LEADERBOARD_SCROLL_LIST } from "@ids";
-import { CUSTOMER_16, AUTH_16, USER_16_LEADERBOARD, CUSTOMER_17, AUTH_17, CUSTOMER_18, USER_18_LEADERBOARD, CUSTOMER_19, AUTH_19, CUSTOMER_20, CUSTOMER_21, USER_19_LEADERBOARD_B, CUSTOMER_47, AUTH_47, AUTH_21, USER_20_LEADERBOARD, AUTH_20, AUTH_48, CUSTOMER_48, CUSTOMER_50, AUTH_50 } from "@data";
+import { NAV_BAR, LEADERBOARD_INFO, BACK_BUTTON, PLUS_BUTTON, LEADERBOARD_EMAIL_INPUT, GROUP_NAME_INPUT, LEADERBOARD_SWITCH, LEADERBOARD_TITLE, MENU_ICON, INSPECT_SCREEN, RANK, CHALLENGE_FRIEND_BUTTON, DAILY_STEPS_SCREEN, LEADERBOARD_SCROLL_LIST, YUMOJI, USER_WORLD, USER_LEVEL, TEXT_TEMPLATE } from "@ids";
+import { CUSTOMER_16, AUTH_16, USER_16_LEADERBOARD, CUSTOMER_17, AUTH_17, CUSTOMER_18, USER_18_LEADERBOARD, CUSTOMER_19, AUTH_19, CUSTOMER_20, CUSTOMER_21, USER_19_LEADERBOARD_B, CUSTOMER_47, AUTH_47, AUTH_21, USER_20_LEADERBOARD, AUTH_20, CUSTOMER_50, AUTH_50, COIN_LEDGER_47, COIN_LEDGER_18} from "@data";
 
 Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can consent to my company leaderboard", scenario.start, async () => {
@@ -206,10 +206,13 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_47, CUSTOMER_50]))
             }) 
         })
-        When("I click on user Michael's name", when.clickUser("Michael Scott"), async () => {
+        When("I click on user Michael's name", when.clickUser(CUSTOMER_18.data.fullName), async () => {
             Then("I should be on the Inspect screen", then.isOnInspectScreen)
-            Then("I should see Michael's avatar, world and name", then.personalDataVisible("Michael Scott", "Level 1", "Forest"))
-            Then("I should see the Duel stats", then.duelStatsVisible(2, 3))
+            Then("Michael's name is visible", then.idVisible(TEXT_TEMPLATE(CUSTOMER_18.data.fullName))) 
+            Then("Michael's world is visible", then.idVisible(USER_WORLD("Forest")))
+            Then("Michael's level is visible", then.idVisible(USER_LEVEL(COIN_LEDGER_18.data.currentLevel)))
+            Then("Michael's empty yumoji is visible", then.idVisible(YUMOJI))
+            Then("I should see Michael's Duel stats", then.duelStatsVisible(2, 3))
         })
         When("I scroll down to the challenge button", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.2), async () => {
             Then("I should see the Challenge to duel button", then.challengeToDuelButtonVisible)
@@ -223,7 +226,6 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
         When("I scroll down", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.6), async () => {
             Then("I should see the average cycling and mindfulness comparative data", then.comparativeUserCyclingMindfulnessStats(4, 0.1, 16, 0))
-
         })
     })
 
@@ -244,10 +246,13 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_47, CUSTOMER_50]))
             }) 
         })
-        When("I click on user Michael's name", when.clickUser("Michael Scott"), async () => {
+        When("I click on user Michael's name", when.clickUser(CUSTOMER_18.data.fullName), async () => {
             Then("I should be on the Inspect screen", then.isOnInspectScreen)
-            Then("I should see Michael's avatar, world and name", then.personalDataVisible("Michael Scott", "Level 1", "Forest"))
-            Then("I should see the Duel stats", then.duelStatsVisible(2, 3))
+            Then("Michael's name is visible", then.idVisible(TEXT_TEMPLATE(CUSTOMER_18.data.fullName))) 
+            Then("Michael's world is visible", then.idVisible(USER_WORLD("Forest")))
+            Then("Michael's level is visible", then.idVisible(USER_LEVEL(COIN_LEDGER_18.data.currentLevel)))
+            Then("Michael's empty yumoji is visible", then.idVisible(YUMOJI))
+            Then("I should see Michael's Duel stats", then.duelStatsVisible(2, 3))
         })
         When("I scroll down to the challenge button", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.2), async () => {
             Then("I should see the Challenge to duel button", then.challengeToDuelButtonVisible)
@@ -277,8 +282,11 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
         When("I click on my own name", when.tapID(RANK(CUSTOMER_47.data.fullName)), async () => {
             Then("I should be on the Inspect screen", then.isOnInspectScreen)
-            Then("I should see my avatar, world and name", then.personalDataVisible("Gill Stock", "Level 1", "Forest"))
-            Then("I should see the Duel stats", then.myDuelStatsVisible(2))
+            Then("My name is visible", then.idVisible(TEXT_TEMPLATE(CUSTOMER_47.data.fullName))) 
+            Then("My world is visible", then.idVisible(USER_WORLD("Forest")))
+            Then("My level is visible", then.idVisible(USER_LEVEL(COIN_LEDGER_47.data.currentLevel)))
+            Then("My yumoji is", then.idVisible(YUMOJI))
+            Then("I should see my Duel stats", then.myDuelStatsVisible(2))
         })
         When("I scroll down to the challenge button", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.2), async () => {
             Then("I should see the Challenge somebody to duel button", then.challengeSomebodyButtonVisible)
@@ -355,9 +363,12 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_50, CUSTOMER_47]))
             }) 
         })
-        When("I click on user Michael's name", when.clickUser("Michael Scott"), async () => {
+        When("I click on user Michael's name", when.clickUser(CUSTOMER_18.data.fullName), async () => {
             Then("I should be on the Inspect screen", then.isOnInspectScreen)
-            Then("I should see Michael's avatar, world and name", then.personalDataVisible("Michael Scott", "Level 1", "Forest"))
+            Then("Michael's name is visible", then.idVisible(TEXT_TEMPLATE(CUSTOMER_18.data.fullName))) 
+            Then("Michael's world is visible", then.idVisible(USER_WORLD("Forest")))
+            Then("Michael's level is visible", then.idVisible(USER_LEVEL(COIN_LEDGER_18.data.currentLevel)))
+            Then("Michael's empty yumoji is visible", then.idVisible(YUMOJI))
             Then("I should see the win streak stats", then.winStreakVisible(2))
         })
         When("I scroll down to the challenge button", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.2), async () => {

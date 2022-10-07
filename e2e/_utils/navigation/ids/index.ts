@@ -376,6 +376,8 @@ export const LEFT_USER = "LEFT_USER";
 export const RIGHT_USER = "RIGHT_USER";
 export const AV_STATS = (value: number) => `AV_STATS_${value}`;
 export const DRAW = (value: number) => `DRAW_${value}`;
+export const USER_WORLD = (worldName: string) => `USER_WORLD_${worldName}`;
+export const USER_LEVEL = (level: number) => `USER_LEVEL_${level};`
 
 // YUCOIN POWER
 export const EARN_RATE = (earnRate: number) => `EARN_RATE_${earnRate}`;

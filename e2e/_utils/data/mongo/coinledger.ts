@@ -541,7 +541,6 @@ export const COIN_LEDGER_17 = {
         currentBalance: 360,
         currentLevel: 2,
         nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
-
     }
 } as IDatabaseItem
 
@@ -564,7 +563,6 @@ export const COIN_LEDGER_18 = {
                 "totalCoins": 320,
                 "level": 1
             },
-
             {
                 "_id": generateRandomMongoId(),
                 "coins": 60,
@@ -578,7 +576,7 @@ export const COIN_LEDGER_18 = {
         ],
         activeStreakId: "YU_STREAK_001",
         currentBalance: 320,
-        currentLevel: 2,
+        currentLevel: 4,
         nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
     }
 } as IDatabaseItem
