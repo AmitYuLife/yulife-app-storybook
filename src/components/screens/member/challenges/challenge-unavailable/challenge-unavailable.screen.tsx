@@ -5,25 +5,27 @@ import { Button } from "@molecules";
 import assets from "./assets";
 import styles from "./challenge-unavailable.styles";
 import { CHALLENGE_UNAVAILABLE } from "@ids";
+import { t } from "@locale";
 
 interface IProps {
+  isYuniversalLevel?: boolean;
   onPressCta: () => void;
   timeRemaining: string;
 }
 
-const ChallengeUnavailableScreen = ({ onPressCta, timeRemaining }: IProps) => {
+const ChallengeUnavailableScreen = ({ onPressCta, timeRemaining, isYuniversalLevel }: IProps) => {
   return (
     <View style={styles.wrapper} testID={CHALLENGE_UNAVAILABLE}>
       <View style={styles.imageWrapper}>
         <Image source={assets.challengeUnavailable} />
       </View>
       <Text bold={true} style={styles.text}>
-        You have just completed a level
+        {t(isYuniversalLevel ? "screens.challenge_unavailable.stage" : "screens.challenge_unavailable.level")}
       </Text>
       <Text bold={true} style={styles.heading}>
-        The next level will be available in {timeRemaining}
+        {t("screens.challenge_unavailable.next", { timeRemaining })}
       </Text>
-      <Button size="Medium" label="got it" onPress={onPressCta} />
+      <Button size="Medium" label={t("screens.challenge_unavailable.cta_label")} onPress={onPressCta} />
     </View>
   );
 };

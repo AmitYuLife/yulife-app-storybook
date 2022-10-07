@@ -179,7 +179,7 @@ const getLevelProps = (
         ...slotColours.locked,
         isActive: false,
         nextLevelAvailableAt,
-        onPress: () => showChallengeUnavailableModal(nextLevelAvailableAt),
+        onPress: () => showChallengeUnavailableModal(nextLevelAvailableAt, true),
       };
     case "HardTimeGated":
       return {
@@ -187,7 +187,7 @@ const getLevelProps = (
         ...slotColours.waiting,
         isActive: true,
         nextLevelAvailableAt,
-        onPress: () => showChallengeUnavailableModal(nextLevelAvailableAt),
+        onPress: () => showChallengeUnavailableModal(nextLevelAvailableAt, true),
       };
     case "ChestLocked":
       return {
