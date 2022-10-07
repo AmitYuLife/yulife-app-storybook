@@ -3,7 +3,7 @@ import Video from "react-native-video";
 import moment from "moment";
 import MusicControl, { Command } from "react-native-music-control";
 import { Animated, StyleSheet, View, AppStateStatus } from "react-native";
-import { Image, Loading, TextTemplate } from "@atoms";
+import { Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import {
   IState,
@@ -114,13 +114,7 @@ const VideoPlayer = ({
 
   useEffect(() => {
     (async () => {
-      if (
-        !state.isDone &&
-        !state.isPaused &&
-        appCurrentState === "active" &&
-        videoPlayerIsActive &&
-        Math.trunc(state.durationInSeconds) === Math.trunc(state.currentProgressInSeconds)
-      ) {
+      if (state.isDoneOnBackground && !state.isPaused && appCurrentState === "active" && videoPlayerIsActive) {
         await onEnd();
       }
     })();
@@ -168,11 +162,6 @@ const VideoPlayer = ({
     dispatch({ type: ActionTypes.SET_DURATION, payload: time });
   }, []);
 
-  const onBuffer = useCallback(({ isBuffering }) => {
-    dispatch({ type: ActionTypes.SET_BUFFERING, payload: isBuffering });
-    reduxDispatch(logMixpanelEventActionCreator("video_player_is_buffering", { isBuffering }));
-  }, []);
-
   const onButtonAction = useCallback(() => {
     if (state.showFocusScreen) {
       return;
@@ -213,11 +202,11 @@ const VideoPlayer = ({
 
   const handleOnEnd = useCallback(async () => {
     if (appCurrentState !== "active") {
+      dispatch({ type: ActionTypes.SET_IS_DONE_ON_BACKGROUND });
       return;
     }
 
     try {
-      dispatch({ type: ActionTypes.SET_IS_DONE });
       await onEnd();
     } catch (err) {
       Logger.error(err, { location: "video-player-handleOnEnd" });
@@ -254,10 +243,7 @@ const VideoPlayer = ({
       <PressableWithDelay onPress={handleFocusScreen} style={styles.container} testID={VIDEO_PLAYER}>
         <Video
           audioOnly={lottieUri ? true : false}
-          source={{
-            uri: videoUrl,
-            type: "mp4",
-          }}
+          source={{ uri: videoUrl }}
           minLoadRetryCount={20}
           disableFocus={true}
           poster={poster}
@@ -267,7 +253,6 @@ const VideoPlayer = ({
           onLoad={onLoad}
           onEnd={handleOnEnd}
           onProgress={onProgress}
-          onBuffer={onBuffer}
           paused={state.isPaused}
           playInBackground={true}
           ignoreSilentSwitch="ignore"
@@ -306,11 +291,6 @@ const VideoPlayer = ({
           <>
             <View style={styles.currentProgressTime} testID={VIDEO_PLAYER_TIMER}>
               <VideoPlayerTimer textType="time" time={state.currentProgressInMilliSeconds} colour={themeColour} />
-              {!state.isBuffering ? null : (
-                <View style={styles.loading}>
-                  <Loading />
-                </View>
-              )}
             </View>
             <Animated.View style={[styles.progressBarContainer, { opacity }]} testID={VIDEO_PROGRESS_BAR}>
               <View style={styles.currentProgress}>

@@ -20,6 +20,7 @@ export interface IDailyMeditationStore {
   inAppDailyMeditation: number;
   exchangeRate: ExchangeRate;
   meditationPassiveMilestones: PassiveMeditationMilestones;
+  inAppMeditationLastUpdated: string;
   lastUpdated: string;
 }
 
@@ -33,6 +34,7 @@ export const getInitialState = (): IDailyMeditationStore => ({
     surge: 1,
   },
   meditationPassiveMilestones: [],
+  inAppMeditationLastUpdated: "",
   lastUpdated: moment().startOf("day").format(),
 });
 
@@ -64,7 +66,7 @@ const dailyMeditationReducer = (
       return loginUserSuccess(state, action.payload);
 
     case UPDATE_IN_APP_MEDITATION:
-      return { ...state, inAppDailyMeditation: state.inAppDailyMeditation + action.payload };
+      return updateInAppMeditation(state, action.payload);
 
     case LOGOUT_SUCCESS:
       return getInitialState();
@@ -133,5 +135,17 @@ const loginUserSuccess = (state: IDailyMeditationStore, res: LoginUser) => ({
   exchangeRate: res?.loginUser?.user?.passiveMeditation?.exchange || getInitialState().exchangeRate,
   meditationPassiveMilestones: res?.loginUser?.user?.passiveMeditation?.levelSlot?.milestones || [],
 });
+
+const updateInAppMeditation = (state: IDailyMeditationStore, inAppDailyMeditation: number) => {
+  if (moment().diff(state.inAppMeditationLastUpdated, "minutes") < 2) {
+    return state;
+  }
+
+  return {
+    ...state,
+    inAppDailyMeditation: state.inAppDailyMeditation + inAppDailyMeditation,
+    inAppMeditationLastUpdated: moment().format(),
+  };
+};
 
 export default dailyMeditationReducer;
