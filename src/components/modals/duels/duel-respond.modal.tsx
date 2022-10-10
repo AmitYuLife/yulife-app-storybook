@@ -18,6 +18,7 @@ import styles from "./duel-respond.styles";
 import { GQL_QUERY_GET_DUELLER_DETAILS } from "@graphql/duels/getDuellerDetails";
 import { useBackHandler } from "@hooks";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
+import { filterRefetchQueries } from "@graphql/_core/filterRefetchQueries";
 
 interface IProps {
   duelId: string;
@@ -72,7 +73,7 @@ const DuelRespondModal: React.FC<IProps> = ({
   const startDateTime = inviteStartDateTime || moment().add(1, "day").startOf("day").format(DATE_FORMAT_WITHOUT_TZ);
 
   const [respondToInvite]: RespondToDuelMutationTuple = useMutation(GQL_MUTATION_RESPOND_TO_DUEL, {
-    refetchQueries: ["GetDuelInvitations"],
+    refetchQueries: filterRefetchQueries(["GetDuelInvitations"]),
   });
 
   const handlePress = useCallback(
