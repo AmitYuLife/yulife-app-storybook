@@ -6,9 +6,9 @@ import { sendSteps } from "@socket";
 
 export const onChallengeComplete = (stepCount: number, level = 1) => async () => {
     const steps = `${stepCount} steps`
-    const challengeLevel = `level ${level}`
+    const challengeLevel = `Level ${level}`
 
-    const screenCopy = ["Well done!", "collect", steps, challengeLevel]
+    const screenCopy = ["Well done!", "Collect", steps, challengeLevel]
 
     await wait(3000)()
     for (const i of screenCopy) {
@@ -25,7 +25,7 @@ export const onMeditationChallengeComplete = (minutes: number, level: number) =>
         timeSpent = `${minutes} minutes`
     }
 
-    const screenCopy = ["Well done!", "collect", timeSpent, challengeLevel]
+    const screenCopy = ["Well done!", "Collect", timeSpent, challengeLevel]
 
     for (const i of screenCopy) {
         await waitFor(element(by.text(i))).toBeVisible().withTimeout(10000)
@@ -244,14 +244,14 @@ export const completeMeditopiaContentSession = async () => {
 }
 
 export const onMeditopiaChallengeComplete = (minutes: number, level: number, yuCoin: string) => async () => {
-    const challengeLevel = `level ${level}`
+    const challengeLevel = `Level ${level}`
 
     let timeSpent = `${minutes} minute`
     if (minutes > 1) {
         timeSpent = `${minutes} minutes`
     }
 
-    const screenCopy = ["Well done!", "collect", timeSpent, challengeLevel, yuCoin]
+    const screenCopy = ["Well done!", "Collect", timeSpent, challengeLevel, yuCoin]
 
     for (const i of screenCopy) {
         await waitFor(element(by.text(i))).toBeVisible().withTimeout(10000)

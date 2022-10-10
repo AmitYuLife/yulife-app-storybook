@@ -150,8 +150,8 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             When("I go to quests", when.tapID(NAV_BAR("quests")), async () => {
                 Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
                 When("I tap the locked level 4 button", when.tapID(LEVEL_CHALLENGE_BUTTON(4)), async () => {
-                    Then("I should see a popup telling me I will unlock this at level 4", then.textVisible("unlock at level 4"))
-                    When("I tap 'got it'", when.tapText("got it"), async () => {
+                    Then("I should see a popup telling me I will unlock this at level 4", then.textVisible("Unlock at level 4"))
+                    When("I tap 'got it'", when.tapText("Got it"), async () => {
                         Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
                         When("I tap the unlocked level 3 button", when.tapID(LEVEL_CHALLENGE_BUTTON(3)), async () => {
                             Then("I should be on the level 3 quest screen", then.idVisible(CHALLENGE_SET))

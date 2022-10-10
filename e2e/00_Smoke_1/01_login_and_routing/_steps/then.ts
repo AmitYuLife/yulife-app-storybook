@@ -154,7 +154,7 @@ export const challengeScreenIsVisible = async (): Promise<void> => {
 };
 
 export const unlockAtLevelVisible = (level: number) => async (): Promise<void> => {
-    await expectIsVisibleViaText(`unlock at level ${level}`);
+    await expectIsVisibleViaText(`Unlock at level ${level}`);
 };
 
 export const challengeIsAvailable = (challenge: string) => async (): Promise<void> => {

@@ -27,15 +27,15 @@ export const {
 export const completeNewWorldShortStroll = (levelNumber: number) => async () => {
 
     await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelNumber))
-    await navigateViaText("let's do it")
+    await navigateViaText("Let's do it")
     await startChallenge("short stroll")()
     await sendSteps(400, 35000)()
-    await waitFor(element(by.text("collect"))).toBeVisible().withTimeout(5000)
-    await navigateViaText("collect")
-    await waitFor(element(by.text("collect"))).toBeVisible().withTimeout(5000)
-    await navigateViaText("collect")
-    await wait(10000)()
+    await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
+    await navigateViaText("Collect")
+    await waitFor(element(by.text("Done"))).toBeVisible().withTimeout(5000)
     await navigateViaText("Done")
+    await navigateViaText("Collect")
+    await wait(10000)()
 }
 
 export const completeNewWorldMeditation = (levelNumber: number) => async () => {
@@ -45,21 +45,21 @@ export const completeNewWorldMeditation = (levelNumber: number) => async () => {
         value: 180,
         type: "MindfulSession"
     }]
-    const chestCTAVisible = await booleanTextVisible("let's do it")
-    const collectCTAVIsible = await booleanTextVisible("collect")
+    const chestCTAVisible = await booleanTextVisible("Let's do it")
+    const collectCTAVIsible = await booleanTextVisible("Collect")
     await fitKitAddSampleQueries(record)
     await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelNumber))
 
     if (chestCTAVisible === true) {
-        await navigateViaText("let's do it")
+        await navigateViaText("Let's do it")
     }
 
     await startChallenge("meditation")()
     await navigateViaText("I'm using a different app")
     await wait(78000)()
-    await navigateViaText("collect")
+    await navigateViaText("Collect")
     if (collectCTAVIsible === true) {
-        await navigateViaText("collect")
+        await navigateViaText("Collect")
     }
 
 }
@@ -67,8 +67,8 @@ export const completeNewWorldMeditation = (levelNumber: number) => async () => {
 export const completYuniversWorldShortStroll = async () => {
     await startChallenge("short stroll")()
     await sendSteps(400, 35000)()
-    await waitFor(element(by.text("collect"))).toBeVisible().withTimeout(5000)
-    await navigateViaText("collect")
+    await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
+    await navigateViaText("Collect")
     await waitFor(element(by.text("Done"))).toBeVisible().withTimeout(5000)
     await navigateViaText("Done")
 }
