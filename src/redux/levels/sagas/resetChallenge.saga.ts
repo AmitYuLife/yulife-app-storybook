@@ -1,3 +1,4 @@
+import { t } from "@locale";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { getUserAvatar } from "@redux/user/user.selectors";
@@ -59,8 +60,8 @@ export function showChestModal(active: IActiveLevel) {
       id: MODALS.chest,
       name: MODALS.chest,
       passProps: {
-        ctaLabel: "collect",
-        heading: `you get ${active.chest.value} yucoin`,
+        ctaLabel: t("screens.challenge_chest_modal.cta_label_is_completed"),
+        heading: t("screens.challenge_chest_modal.heading_is_completed", { yucoin: active.chest.value }),
         isLocked: false,
         onPressCta: () => {
           Navigation.dismissModal(MODALS.chest);
