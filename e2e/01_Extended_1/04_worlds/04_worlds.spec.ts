@@ -22,7 +22,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                                 Then("I should no longer see the modal", then.textNotVisible("Choose an app to start"))
                                 When("I wait to complete this challenge", when.wait(63000), async () => {
                                     Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(3, 5))
-                                    When("I tap collect", when.tapText("collect"), async () => {
+                                    When("I tap collect", when.tapText("Collect"), async () => {
                                         Then("I should see the streak completed screen", then.completedTodayStreakCopyVisible(5))
                                         Then("I should see the number of points I just earned", then.textVisible("Collect 2500 YuCoin"))
                                         When("I tap the collect 2500 yucoin CTA", when.tapText("Collect 2500 YuCoin"), async () => {
@@ -52,7 +52,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                 Then("I should be on the short stroll challenge", then.textVisible("0 steps"))
                 When("I walk 450 steps", when.sendSteps(450, 33000), async () => {
                     Then("I should be on the challenge complete screen", then.onChallengeComplete(450, 90))
-                    When("I tap collect", when.tapText("collect"), async () => {
+                    When("I tap collect", when.tapText("Collect"), async () => {
                         Then("I should see the 'Completed streak day 1' screen", then.completedTodayStreakCopyVisible(1))
                         When("I tap done", when.tapText("Done"), async () => {
                             Then("I should be on quests", then.idVisible(QUESTS_SCREEN(1)))
@@ -77,7 +77,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                         Then("I should no longer see the modal", then.textNotVisible("Choose an app to start"))
                         When("I wait to complete this challenge", when.wait(63000), async () => {
                             Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(3, 90))
-                            When("I tap collect", when.tapText("collect"), async () => {
+                            When("I tap collect", when.tapText("Collect"), async () => {
                                 Then("I should see the 'Completed streak day 1' screen", then.completedTodayStreakCopyVisible(1))
                                 When("I tap done", when.tapText("Done"), async () => {
                                     Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17740)))
@@ -102,7 +102,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                 Then("I should be on the short stroll challenge", then.textVisible("0 steps"))
                 When("I walk over 500 steps", when.sendSteps(600, 33000), async () => {
                     Then("I should be on the challenge complete screen", then.onChallengeComplete(600, 115))
-                    When("I tap collect", when.tapText("collect"), async () => {
+                    When("I tap collect", when.tapText("Collect"), async () => {
                         When("I tap done", when.tapText("Done"), async () => {
                             Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
                             When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
@@ -127,7 +127,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                         Then("I should no longer see the modal", then.textNotVisible("Choose an app to start"))
                         When("I wait to complete this challenge", when.wait(66000), async () => {
                             Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(5, 115))
-                            When("I tap collect", when.tapText("collect"), async () => {
+                            When("I tap collect", when.tapText("Collect"), async () => {
                                 When("I tap done", when.tapText("Done"), async () => {
                                     Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
                                     Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27730)))
@@ -147,7 +147,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                 Then("I should be on the short stroll challenge", then.textVisible("0 steps"))
                 When("I walk over 500 steps", when.sendSteps(550, 33000), async () => {
                     Then("I should be on the challenge complete screen", then.onChallengeComplete(550, 175))
-                    When("I tap collect", when.tapText("collect"), async () => {
+                    When("I tap collect", when.tapText("Collect"), async () => {
                         When("I tap done", when.tapText("Done"), async () => {
                             Then("I should be on quests", then.idVisible(QUESTS_SCREEN(3)))
                             When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
@@ -171,7 +171,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                         Then("I should no longer see the modal", then.textNotVisible("Choose an app to start"))
                         When("I wait to complete this challenge", when.wait(63000), async () => {
                             Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(5, 175))
-                            When("I tap collect", when.tapText("collect"), async () => {
+                            When("I tap collect", when.tapText("Collect"), async () => {
                                 When("I tap Done", when.tapText("Done"), async () => {
                                     Then("I should be on quests", then.idVisible(QUESTS_SCREEN(3)))
                                     Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50230)))

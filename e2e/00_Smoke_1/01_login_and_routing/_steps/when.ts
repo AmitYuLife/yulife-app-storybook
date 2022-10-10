@@ -105,7 +105,7 @@ export const clickBackToMap = async (): Promise<void> => {
 };
 
 export const clickOnGotIt = async (): Promise<void> => {
-    const target = element(by.text("got it"));
+    const target = element(by.text("Got it"));
     await waitFor(target).toExist().withTimeout(5000);
     await target.tap();
 };

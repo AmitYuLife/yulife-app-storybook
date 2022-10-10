@@ -180,7 +180,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap at level 2", when.tapIDAtPoint(QUESTS_SCREEN_YUNIVERSAL(2), 187, 655), async () => {
             Then("I should i just completed a level", then.textVisible("You have just completed a level"))
         })
-        When("I press got it", when.tapText("got it"), async () => {
+        When("I press got it", when.tapText("Got it"), async () => {
             Then("Level 2 should exist in the screen", then.idExist(QUESTS_SCREEN_YUNIVERSAL(2)))
         })
         When("I go back to the daily steps screen", when.tapID(NAV_BAR("yucoin")), async()=>{

@@ -17,7 +17,7 @@ Feature("Surges work as intended", async () => {
                 When("I complete a short stroll challenge", when.completeShortStroll(200, 40000), async () => {
                     Then("I should see the well done screen", then.textVisible("Well done!"))
                     Then("I should see +600 reward", then.idVisible(CHALLENGE_REWARD(600)))
-                    When("I tap collect", when.tapText("collect"), async () => {
+                    When("I tap collect", when.tapText("Collect"), async () => {
                         When("I tap done", when.tapText("Done"), async () => {
                             Then("I should see I have 800 YuCoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(800)))
                         })
@@ -49,7 +49,7 @@ Feature("Surges work as intended", async () => {
                 When("I complete a short stroll challenge", when.completeShortStroll(200, 40000), async () => {
                     Then("I should see the well done screen", then.textVisible("Well done!"))
                     Then("I should see +120 reward", then.idVisible(CHALLENGE_REWARD(120)))
-                    When("I tap collect", when.tapText("collect"), async () => {
+                    When("I tap collect", when.tapText("Collect"), async () => {
                         When("I tap done", when.tapText("Done"), async () => {
                             Then("I should see I have 320 YuCoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(320)))
                         })
