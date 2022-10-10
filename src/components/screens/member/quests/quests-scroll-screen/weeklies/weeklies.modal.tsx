@@ -28,7 +28,7 @@ const handleCloseOverlay = () => Navigation.dismissOverlay(MODALS.blurredOverlay
 
 export const WeeklyQuestsModal = memo(() => {
   const dispatch = useDispatch();
-  const [selectedEvent, selectEvent] = useState<number | null>(null);
+  const [selectedEvent, selectEvent] = useState<number | null>(-1);
   const t = useTranslation([
     "screens.weekly_quests.title",
     "screens.weekly_quests.time_remaining",
@@ -49,13 +49,18 @@ export const WeeklyQuestsModal = memo(() => {
     }
   );
 
-  const joinWeekly = useCallback(() => {
-    if (selectedEvent) {
-      join({ variables: { goalId: data?.getMobileGameWeeklies?.activityProgress?.[selectedEvent].id } });
+  const joinWeekly = useCallback(async () => {
+    try {
+      const goalId = data?.getMobileGameWeeklies?.activityProgress?.[selectedEvent]?.id;
+      if (goalId) {
+        await join({ variables: { goalId } });
+      }
+    } catch (e) {
+      // fail safe
     }
   }, [data?.getMobileGameWeeklies?.activityProgress, join, selectedEvent]);
 
-  const eventNotSelected = useMemo(() => selectedEvent === null, [selectedEvent]);
+  const eventNotSelected = useMemo(() => selectedEvent === -1, [selectedEvent]);
 
   if (!data?.getMobileGameWeeklies?.id) {
     return null;
