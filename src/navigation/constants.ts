@@ -39,6 +39,8 @@ export const ROUTES = {
   cyclingMeasurement: "yulife.member.cyclingMeasurement",
   rewardStoreLocation: "yulife.member.rewardStoreLocation",
   permissions: "yulife.member.permissions",
+  courseDetails: "yulife.member.courseDetails",
+  yuniversityCourses: "yulife.member.yuniversityCourses",
 
   //tools
   tools: "yulife.member.tools",

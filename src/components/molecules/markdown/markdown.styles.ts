@@ -34,6 +34,14 @@ const markdownStyle = (props: IMarkdownStyle) =>
       ...textTemplateStyle.h3,
       ...props?.h3,
     },
+    h4: {
+      ...textTemplateStyle.b1b,
+      ...props?.h3,
+    },
+    h5: {
+      ...textTemplateStyle.b2b,
+      ...props?.h3,
+    },
     hr: {
       alignSelf: "stretch",
       height: 1,

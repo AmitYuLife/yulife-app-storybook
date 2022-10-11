@@ -72,3 +72,5 @@ export { default as AdBanner } from "./ad-banner/ad-banner";
 export { default as PermissionItem } from "./permissions/permission-item";
 export { default as NameAndLevel } from "./name-and-level/name-and-level";
 export { default as ActivityAvatar } from "./inspect/activity-avatar";
+export { default as CourseContentItem } from "./yuniversity/course-content-item";
+export { default as Module } from "./yuniversity/module";

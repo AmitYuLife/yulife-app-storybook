@@ -194,6 +194,10 @@ class Markdown extends React.PureComponent<IProps, IState> {
         return this.renderText(node, key, concatStyles(extras, styles.h2));
       case "h3":
         return this.renderText(node, key, concatStyles(extras, styles.h3));
+      case "h4":
+        return this.renderText(node, key, concatStyles(extras, styles.h4));
+      case "h5":
+        return this.renderText(node, key, concatStyles(extras, styles.h5));
       case "hr":
         return this.renderLine(key);
       case "div":
