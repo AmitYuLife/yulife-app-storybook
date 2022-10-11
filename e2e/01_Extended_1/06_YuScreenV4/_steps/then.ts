@@ -140,11 +140,25 @@ const powerBoost = `For every 1 YuCoin you would have earned, you now earn ${yuC
     const baseYucoinPower = "Equipping yourself with policies boosts your YuCoin Power in the Yuniverse."
     const wellbeingEarn = "You can earn YuCoin for your wellbeing activites!"
 
+    await textVisibleAtIndex(`${yuCoinPower}`,1)
+    await textVisibleAtIndex(`${yuCoinPower}`,2)
+    await textVisibleAtIndex(`${yuCoinPower}`,3)
+    await expectIsVisibleViaText(`${yuCoinPower * 6}`)
+    await expectIsVisibleViaText(`${yuCoinPower * 20}`)
+    await expectIsVisibleViaText(`${addCommasToNumber(yuCoinPower * 250)}`)
+
     if(yuCoinPower < 2) {
         await expect(element(by.text(wellbeingEarn))).toBeVisible()
+
     } else {
         await expect(element(by.text(baseYucoinPower))).toBeVisible()
         await expect(element(by.text(powerBoost))).toBeVisible()
+        await expectIsVisibleViaText("2000 steps")
+        await expectIsVisibleViaText("1.6km cycling")
+        await expectIsVisibleViaText("5 mindful minutes")
+        await expectIsVisibleViaText("complete 1 challenge")
+        await expectIsVisibleViaText("open 1 chest")
+        await expectIsVisibleViaText("complete 1 streak")
     }
 
 }
@@ -268,4 +282,8 @@ export const ageRejectionTextInfo = (rejectionReason: string)=> async()=>{
             break;
     }
 
+}
+
+export function addCommasToNumber(x: number) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
