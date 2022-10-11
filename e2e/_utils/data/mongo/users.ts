@@ -807,9 +807,9 @@ export const USER_44 = {
             productType: "Yulife",
             option: "epic",
             type: "employer",
-            earnRate: 5,
+            earnRate: 1,
         }],
-        earnRate: 5,
+        earnRate: 1,
     }
 } as IDatabaseItem
 
