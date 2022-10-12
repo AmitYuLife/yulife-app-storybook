@@ -5,38 +5,7 @@ import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import Markdown from "@components/molecules/markdown/markdown";
 import { CourseContentItem, Module } from "@components/molecules";
-
-interface IGqlModule {
-  icon: { id: string; uri: string };
-  iconHeight: number;
-  iconWidth: number;
-  title: string;
-  description: string;
-  ctaLabel: string;
-  ctaEnabled: boolean;
-  downloadLink?: string;
-}
-
-interface IChapter {
-  id: string;
-  completed: boolean;
-  tags: string;
-  title: string;
-  image: { id: string; uri: string };
-  status: { icon: { id: string; uri: string }; text: string };
-}
-
-export interface IGqlCourse {
-  image: { id: string; uri: string };
-  title: string;
-  tags: string;
-  markdown: string;
-  chapters: IChapter[];
-  moduleQuiz: IGqlModule;
-  moduleNotes: IGqlModule;
-  moduleCertificate: IGqlModule;
-  completed: boolean;
-}
+import { GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails as IGqlCourse } from "@graphql/_core/schema/GetInAppYuniversityCourseModuleDetails";
 
 export interface ICourseProps {
   onClose: () => void;

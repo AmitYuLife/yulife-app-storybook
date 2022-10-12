@@ -10,23 +10,15 @@ import { Animated, NativeScrollEvent, View } from "react-native";
 import { Source } from "react-native-fast-image";
 import { Navigation } from "react-native-navigation";
 import style, { CONTENT_MARGIN_TOP, HEADER_HEIGHT, TITLE_HEIGHT } from "./styles";
-import { ICourseItem } from "@components/molecules/yuniversity/course-content-item";
+import { GetInAppYuniversityCourses_getInAppYuniversityCourses_courses as ICourse } from "@graphql/_core/schema/GetInAppYuniversityCourses";
 
-interface IHeaderProps {
+export interface IHeaderProps {
   title: string;
   label: string;
   source: Source;
   backgroundColor: string;
   headerTextColor: string;
   onLeftIconPress: () => void;
-}
-
-type Module = ICourseItem & { id: string };
-
-export interface ICourse {
-  id: string;
-  title: string;
-  modules: Module[];
 }
 
 interface IProps {
@@ -90,11 +82,14 @@ const YuniversityCoursesScreen: FC<IProps> = ({ headerProps, categoryImageUri, c
   );
 
   const onPress = useCallback(
-    () =>
+    (moduleId: string) =>
       Navigation.push(ROUTES.yuniversityCourses, {
         component: {
           id: ROUTES.courseDetails,
           name: ROUTES.courseDetails,
+          passProps: {
+            moduleId,
+          },
         },
       }),
     []
@@ -132,15 +127,15 @@ const YuniversityCoursesScreen: FC<IProps> = ({ headerProps, categoryImageUri, c
                 <View style={style.courseWrapper}>
                   <Markdown text={courseTitle} />
                 </View>
-                {modules.map(({ tags, title: moduleTitle, id: courseId, image: moduleImage, status }) => {
+                {modules.map(({ tags, title: moduleTitle, id: moduleId, image: moduleImage, status }) => {
                   return (
                     <CourseContentItem
                       tags={tags}
                       title={moduleTitle}
-                      onPress={onPress}
+                      onPress={() => onPress(moduleId)}
                       image={moduleImage}
                       status={status}
-                      key={courseId}
+                      key={moduleId}
                     />
                   );
                 })}

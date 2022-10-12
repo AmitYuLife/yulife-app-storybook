@@ -11,7 +11,7 @@ interface IStatus {
   text: string;
 }
 
-export interface ICourseItem {
+interface ICourseItem {
   tags: string;
   title: string;
   image: { uri: string; id: string };

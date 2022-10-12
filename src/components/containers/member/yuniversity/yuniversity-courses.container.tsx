@@ -1,66 +1,45 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, memo } from "react";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
-import YuniversityCoursesScreen, { ICourse } from "@components/screens/member/yuniversity/yuniversity.screen";
+import YuniversityCoursesScreen, { IHeaderProps } from "@components/screens/member/yuniversity/yuniversity.screen";
 import { Loading } from "@atoms";
-import { getYuniversityCategoryCourses } from "./mock-data";
+import { useQuery } from "@apollo/client";
+import { GQL_QUERY_GET_YUNIVERSITY_COURSES } from "@graphql/yuniversity/getInAppYuniversityCourses.gql";
+import { GetInAppYuniversityCourses } from "@graphql/_core/schema/GetInAppYuniversityCourses";
 
-interface ICategoryCourses {
-  headerImage: {
-    id: string;
-    uri: string;
-  };
-  category: string;
-  categoryImage: {
-    id: string;
-    uri: string;
-  };
-  headerColour: string;
-  courses: ICourse[];
-}
-
-interface IHeaderProps {
-  title: string;
-  label: string;
-  source: { uri: string };
-  backgroundColor: string;
-  headerTextColor: string;
-  onLeftIconPress: () => void;
-}
-
-interface IGetCategoryCourses {
-  getYuniversityCategoryCourses: ICategoryCourses;
-}
-
-const UserFeatures = () => {
+const YuniversityCoursesContainer = () => {
   const onLeftIconPress = useCallback(() => Navigation.pop(ROUTES.wellbeingHubItems), []);
+  const { data, loading } = useQuery<GetInAppYuniversityCourses>(GQL_QUERY_GET_YUNIVERSITY_COURSES, {
+    fetchPolicy: "network-only",
+  });
 
-  const [data, setData] = useState<IGetCategoryCourses>(null);
+  const { title, headerImage, headerColour, courses, categoryImage } = data?.getInAppYuniversityCourses || {};
 
-  useEffect(() => {
-    setTimeout(() => setData({ getYuniversityCategoryCourses }), 1000);
-  }, []);
   const headerProps = {
     title: "Yuniversity",
     label: "Semper prorsum",
-    source: { uri: data?.getYuniversityCategoryCourses.headerImage.uri },
-    backgroundColor: data?.getYuniversityCategoryCourses.headerColour,
+    source: { uri: headerImage?.uri },
+    backgroundColor: headerColour,
     headerTextColor: "black",
     onLeftIconPress,
   } as IHeaderProps;
 
-  if (!data?.getYuniversityCategoryCourses) {
+  if (loading) {
     return <Loading />;
+  }
+
+  if (!data?.getInAppYuniversityCourses?.courses?.length) {
+    return null;
   }
 
   return (
     <YuniversityCoursesScreen
-      category={data?.getYuniversityCategoryCourses.category}
-      categoryImageUri={data?.getYuniversityCategoryCourses.categoryImage.uri}
+      category={title}
+      categoryImageUri={categoryImage.uri}
       headerProps={headerProps}
-      courses={data?.getYuniversityCategoryCourses.courses}
+      courses={courses}
     />
   );
 };
 
-export default UserFeatures;
+export default memo(YuniversityCoursesContainer);
