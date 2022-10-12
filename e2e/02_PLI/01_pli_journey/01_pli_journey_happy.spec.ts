@@ -60,8 +60,8 @@ Feature("PLI HAPPY", async()=>{
     Scenario
     ("As pregnant female with all conditions but under control, I should be able to purchase PLI", scenario.start, async()=>{
         Given("I login as a user with Covea FIB enabled", given.logInAndGoToTab("yu", CUSTOMER_44, AUTH_44), async()=>{
-            helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "5")
-            helper_V4.YUSCREEN_V4(CUSTOMER_44, "dentalAndPli", "5")
+            helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "1")
+            helper_V4.YUSCREEN_V4(CUSTOMER_44, "dentalAndPli", "1")
             helper_V4.CREATE_DEFAULT_YUMOJI(300);
             helper_V4.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live")
             helper.GET_PRODUCT("Add Life insurance", "Personal Life Insurance")
