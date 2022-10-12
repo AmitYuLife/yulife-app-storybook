@@ -18,7 +18,7 @@ export const onChallengeComplete = (stepCount: number, level = 1) => async () =>
 }
 
 export const onMeditationChallengeComplete = (minutes: number, level: number) => async () => {
-    const challengeLevel = `level ${level}`
+    const challengeLevel = `Level ${level}`
 
     let timeSpent = `${minutes} minute`
     if (minutes > 1) {

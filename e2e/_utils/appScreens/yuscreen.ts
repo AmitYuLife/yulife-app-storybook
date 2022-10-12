@@ -186,7 +186,7 @@ export const onYuscreenV3 = (customer:any)=> async()=>{
     await expect(element(by.id(YUSCREEN_V3(true)))).toBeVisible()
 }
 
-export const onYuscreenV4 = (customer:any, productStatus, earnRate: string)=> async()=>{
+export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: string)=> async()=>{
     const firstName = customer.data.firstName
     const lastName = customer.data.lastName
     const createYumujiHeading = "Earn 100 YuCoin";
@@ -216,15 +216,15 @@ export const onYuscreenV4 = (customer:any, productStatus, earnRate: string)=> as
     await expect(element(by.text(createYumujiHeading))).toBeVisible()
     await expect(element(by.text(createYumujiText))).toBeVisible()
     await expect(element(by.text(createYumujiCTA))).toBeVisible()
-    await textVisibleAtIndex(earnRate, 0)()
+    await textVisibleAtIndex(yuCoinPower, 0)()
     await textVisible("YuCoin")()
     await textVisible("Power")()
 
-    switch (productStatus) {
+    switch (packType) {
         case "wellbeing only":
-            await textVisibleAtIndex(earnRate, 0)()
+            await textVisibleAtIndex(yuCoinPower, 0)()
             await idVisibleAtIndex(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"), 0)()
-            await textVisibleAtIndex(earnRate, 1)()
+            await textVisibleAtIndex(yuCoinPower, 1)()
             await expect(element(by.text(WellbeingProduct))).toBeVisible()
             await expect(element(by.text(paidBy))).toBeVisible()
             await expect(element(by.text(noProductText))).toBeVisible()
@@ -234,7 +234,7 @@ export const onYuscreenV4 = (customer:any, productStatus, earnRate: string)=> as
             await expect(element(by.text(surveyLabel))).toBeVisible()
             break;
         case "dentalAndPliInactive":
-            await textVisibleAtIndex(earnRate, 0)()
+            await textVisibleAtIndex(yuCoinPower, 0)()
             await expect(element(by.text(dentalInsurance))).toBeVisible()
             await expect(element(by.text(dentalYuCoinPower))).toBeVisible()
             await expect(element(by.text(PLIYuCoinPower))).toBeVisible()
@@ -247,8 +247,8 @@ export const onYuscreenV4 = (customer:any, productStatus, earnRate: string)=> as
             await swipeFromText(extendLifeInsurance, "right", "fast")()
             break;
         case "dentalActiveAndPliInactive":
-            await textVisibleAtIndex(earnRate, 0)()
-            await textVisibleAtIndex(earnRate, 1)()
+            await textVisibleAtIndex(yuCoinPower, 0)()
+            await textVisibleAtIndex(yuCoinPower, 1)()
             await expect(element(by.text(dentalInsurance))).toBeVisible()
             await expect(element(by.text(PLIYuCoinPower))).toBeVisible()
             await expect(element(by.text(addLifeInsurance))).toBeVisible()
@@ -267,7 +267,7 @@ export const onYuscreenV4 = (customer:any, productStatus, earnRate: string)=> as
             await expect(element(by.text(extendLifeInsurance))).toBeNotVisible()
             break;
         case "6 Products Slots":
-            await textVisibleAtIndex(earnRate, 0)()
+            await textVisibleAtIndex(yuCoinPower, 0)()
             await textVisibleAtIndex(lifeInsurance, 0)()
             await textVisibleAtIndex(paidBy, 0)()
             await textVisibleAtIndex("10", 0)()
@@ -290,7 +290,7 @@ export const onYuscreenV4 = (customer:any, productStatus, earnRate: string)=> as
             await expect(element(by.text(noProductText))).toBeNotVisible()
             break;
         case "5 Products Slots":
-            await textVisibleAtIndex(earnRate, 0)()
+            await textVisibleAtIndex(yuCoinPower, 0)()
             await textVisibleAtIndex(lifeInsurance, 0)()
             await textVisibleAtIndex(paidBy, 0)()
             await textVisibleAtIndex("10", 0)()
@@ -311,7 +311,7 @@ export const onYuscreenV4 = (customer:any, productStatus, earnRate: string)=> as
             await expect(element(by.text(dentalPriceFrom))).toBeVisible()
             break;
         case "groupDental":
-            await textVisibleAtIndex(earnRate, 0)()
+            await textVisibleAtIndex(yuCoinPower, 0)()
             await expect(element(by.text(groupDental))).toBeVisible()
             await expect(element(by.text(paidBy))).toBeVisible()
             await expect(element(by.text(noProductText))).toBeVisible()
@@ -319,7 +319,7 @@ export const onYuscreenV4 = (customer:any, productStatus, earnRate: string)=> as
             await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible()
             break;
         case "dentalAndPli":
-            await textVisibleAtIndex(earnRate, 0)()
+            await textVisibleAtIndex(yuCoinPower, 0)()
             await expect(element(by.text(dentalYuCoinPower))).toBeVisible()
             await expect(element(by.text(addDental))).toBeVisible()
             await expect(element(by.text(PLIYuCoinPower))).toBeVisible()

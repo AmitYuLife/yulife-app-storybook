@@ -1,4 +1,4 @@
-import { navigation, expectIsVisibleViaText, CHALLENGE_HISTORY_YUCOIN_STARS, navigateViaText, wait } from "@utils"
+import { navigation, expectIsVisibleViaText, CHALLENGE_HISTORY_YUCOIN_STARS, navigateViaText, wait, CHALLENGE_UNAVAILABLE, TEXT_TEMPLATE } from "@utils"
 import { screens } from "@appScreens"
 
 export const {
@@ -161,3 +161,13 @@ export const desertThreeRewardsVisible = () => async () => {
     await navigateViaText("Claim rewards")
 }
  
+export const nextLevelLocked = () => async () => {
+    const timeLeft = /12:3[0-9]:[0-9][0-9]/
+    await idVisible(CHALLENGE_UNAVAILABLE)()
+    await idVisible(TEXT_TEMPLATE(`The next one will be available in ${timeLeft}`))()
+    await textVisible("You have just completed a level")()
+}
+
+export const nextYuniverseLevelLocked = (level: string) => async () => {
+    await textVisible(`Unlock at level ${level}`)()
+}

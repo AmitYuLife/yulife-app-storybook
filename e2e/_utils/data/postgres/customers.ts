@@ -969,3 +969,59 @@ export const CUSTOMER_PLI_10 = {
         status: "onboarded",
     }
 } as IDatabaseItem
+
+export const CUSTOMER_60 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Ivan",
+        lastName: "Varga",
+        dateOfBirth: moment().subtract(33, "years").toDate(),
+        status: "onboarded",
+        fullName: "Ivan Varga"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_61 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Alex",
+        lastName: "Breban",
+        dateOfBirth: moment().subtract(33, "years").toDate(),
+        status: "onboarded",
+        fullName: "Alex Breban"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_63 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Sam",
+        lastName: "Simms",
+        dateOfBirth: moment().subtract(33, "years").toDate(),
+        status: "onboarded",
+        fullName: "Sam Simms"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_64 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Tony",
+        lastName: "Blair",
+        dateOfBirth: moment().subtract(33, "years").toDate(),
+        status: "onboarded",
+        fullName: "Tony Blair"
+    }
+} as IDatabaseItem

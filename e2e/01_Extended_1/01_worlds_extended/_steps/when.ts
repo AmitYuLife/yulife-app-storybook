@@ -1,5 +1,5 @@
 import { screens } from "@appScreens"
-import { navigation, navigateViaID, LEVEL_CHALLENGE_BUTTON, QUESTS_SCREEN_YUNIVERSAL } from "@utils"
+import { navigation, navigateViaID, LEVEL_CHALLENGE_BUTTON, QUESTS_SCREEN_YUNIVERSAL, textVisible } from "@utils"
 export { authoriseFitkit, sendSteps } from "@socket";
 import { sendSteps, fitKitAddSampleQueries, sendMindfulnessData } from "@socket"
 import moment = require("moment");
@@ -25,17 +25,18 @@ export const {
 
 
 export const completeNewWorldShortStroll = (levelNumber: number) => async () => {
-
     await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelNumber))
+    await textVisible("Take a challenge to unlock the chest")()
+    await textVisible("later")()
     await navigateViaText("Let's do it")
     await startChallenge("short stroll")()
     await sendSteps(400, 35000)()
     await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
     await navigateViaText("Collect")
-    await waitFor(element(by.text("Done"))).toBeVisible().withTimeout(5000)
+    await wait(3000)()
     await navigateViaText("Done")
     await navigateViaText("Collect")
-    await wait(10000)()
+    await wait(1000)()
 }
 
 export const completeNewWorldMeditation = (levelNumber: number) => async () => {
@@ -75,4 +76,21 @@ export const completYuniversWorldShortStroll = async () => {
 
 export const tapExploreYuniverse = async () => {
     await tapText("Explore the Yuniverse", 2000)
+}
+
+export const completeChallenge = (levelNumber: number, challengeType: string) => async () => {
+    await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelNumber))
+    await startChallenge(challengeType)()
+    await sendSteps(400, 35000)()
+    await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
+    await navigateViaText("Collect")
+    await navigateViaText("Done")
+}
+
+export const completeSecondChallenge = (levelNumber: number, challengeType: string) => async () => {
+    await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelNumber))
+    await startChallenge(challengeType)()
+    await sendSteps(400, 35000)()
+    await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
+    await navigateViaText("Collect")
 }
