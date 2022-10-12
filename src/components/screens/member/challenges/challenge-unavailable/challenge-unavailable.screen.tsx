@@ -4,7 +4,7 @@ import { Text } from "@atoms";
 import { Button } from "@molecules";
 import assets from "./assets";
 import styles from "./challenge-unavailable.styles";
-import { CHALLENGE_UNAVAILABLE } from "@ids";
+import { CHALLENGE_UNAVAILABLE, TEXT_TEMPLATE } from "@ids";
 import { t } from "@locale";
 
 interface IProps {
@@ -22,7 +22,11 @@ const ChallengeUnavailableScreen = ({ onPressCta, timeRemaining, isYuniversalLev
       <Text bold={true} style={styles.text}>
         {t(isYuniversalLevel ? "screens.challenge_unavailable.stage" : "screens.challenge_unavailable.level")}
       </Text>
-      <Text bold={true} style={styles.heading}>
+      <Text
+        bold={true}
+        style={styles.heading}
+        testID={TEXT_TEMPLATE(t("screens.challenge_unavailable.next", { timeRemaining }))}
+      >
         {t("screens.challenge_unavailable.next", { timeRemaining })}
       </Text>
       <Button size="Medium" label={t("screens.challenge_unavailable.cta_label")} onPress={onPressCta} />
