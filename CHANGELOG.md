@@ -7,6 +7,47 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.52.0] - 2022-10-12
+
+### Bugfixes
+
+- Bugfix: copy for collect chest modal
+- Bugfix: Revert quests prompt
+- Bugfix: refetch duels invitations
+- Bugfix: copy for challenge unavailable
+- Bugfix: Video player sometimes not ending challenge and double meditation minutes
+- Bugfix GS-482: Fiit previous level asset
+- Bugfix: Video player button on big screens
+- Bugfix: unity available the next day
+
+### Tasks
+
+- Task GS-484: Fetch CPD components from server
+- Task: Create CPD components
+- Task GS-448: Today earning info popup
+- Task GS-476: Add yuniversal state for name and level
+
+### Chores
+
+- Chore: Redux migration to add inAppMeditationLastUpdated into meditation reducer
+- Chore: copy changes for stage/level
+
+### Extra
+
+- Detox/fixes pli 12 10
+- Detox/worlds new scenarios
+- detox: add text and amount assertion for new yuCoin Power
+- Detox/fixes db change
+- detox: copy changes in test
+- Hotfix: weeklies join fix
+- Hotfix: failed copy
+- Hotfix ENG-2945: meditation crash
+- Detox/smoke 2 fixes 6 10
+- Detox/smoke 1 fixes 6 10
+- detox: add test for rejection reason
+- Detox/earn rate
+- Detox/extended worlds chest fix
+
 ## [3.51.0] - 2022-10-05
 
 ### Bugfixes
