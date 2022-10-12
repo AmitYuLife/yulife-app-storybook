@@ -243,7 +243,7 @@ const VideoPlayer = ({
       <PressableWithDelay onPress={handleFocusScreen} style={styles.container} testID={VIDEO_PLAYER}>
         <Video
           audioOnly={lottieUri ? true : false}
-          source={{ uri: videoUrl }}
+          source={{ uri: videoUrl, type: "mp4" }}
           minLoadRetryCount={20}
           disableFocus={true}
           poster={poster}
