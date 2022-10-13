@@ -14,6 +14,7 @@ export const GQL_QUERY_GET_WELLBEING_HUB_ITEMS = gql`
       }
       title
       description
+      route
     }
   }
 `;
