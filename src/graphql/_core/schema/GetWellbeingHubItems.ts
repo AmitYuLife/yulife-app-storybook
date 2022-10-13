@@ -25,6 +25,7 @@ export interface GetWellbeingHubItems_wellbeingHubItems {
   icon: GetWellbeingHubItems_wellbeingHubItems_icon | null;
   title: string;
   description: string;
+  route: string | null;
 }
 
 export interface GetWellbeingHubItems {
