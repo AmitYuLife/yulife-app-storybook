@@ -8,6 +8,7 @@ export * from "./ChallengeTemplate";
 export * from "./ClaimGoalRewards";
 export * from "./ClaimMobileGameWeeklyRewards";
 export * from "./CollectAward";
+export * from "./CompleteInAppYuniversityModuleChapter";
 export * from "./ConfirmPaymentCard";
 export * from "./ContentItemAgePercentCoverPicker";
 export * from "./ContentItemAgePercentCoverPickerAgeOption";

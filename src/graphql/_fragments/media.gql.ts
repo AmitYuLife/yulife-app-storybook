@@ -35,5 +35,6 @@ export const GQL_FRAGMENT_MEDIA = gql`
     lottie {
       ...ContentItemLottie
     }
+    sourceType
   }
 `;

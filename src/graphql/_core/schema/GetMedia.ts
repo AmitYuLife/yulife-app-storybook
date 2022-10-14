@@ -59,14 +59,15 @@ export interface GetMedia_getMedia {
   title: string;
   description: string;
   shortDescription: string;
-  duration: number;
+  duration: number | null;
   theme: string;
   media: GetMedia_getMedia_media;
   cover: GetMedia_getMedia_cover;
   thumbnail: GetMedia_getMedia_thumbnail;
-  logo: GetMedia_getMedia_logo;
+  logo: GetMedia_getMedia_logo | null;
   videoLogo: GetMedia_getMedia_videoLogo | null;
   lottie: GetMedia_getMedia_lottie | null;
+  sourceType: string | null;
 }
 
 export interface GetMedia {

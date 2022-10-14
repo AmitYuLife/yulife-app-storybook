@@ -59,14 +59,15 @@ export interface GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeConte
   title: string;
   description: string;
   shortDescription: string;
-  duration: number;
+  duration: number | null;
   theme: string;
   media: GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_media;
   cover: GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_cover;
   thumbnail: GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_thumbnail;
-  logo: GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_logo;
+  logo: GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_logo | null;
   videoLogo: GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_videoLogo | null;
   lottie: GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_lottie | null;
+  sourceType: string | null;
 }
 
 export interface GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent {

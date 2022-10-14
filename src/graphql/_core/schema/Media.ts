@@ -59,12 +59,13 @@ export interface Media {
   title: string;
   description: string;
   shortDescription: string;
-  duration: number;
+  duration: number | null;
   theme: string;
   media: Media_media;
   cover: Media_cover;
   thumbnail: Media_thumbnail;
-  logo: Media_logo;
+  logo: Media_logo | null;
   videoLogo: Media_videoLogo | null;
   lottie: Media_lottie | null;
+  sourceType: string | null;
 }

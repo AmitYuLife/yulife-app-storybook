@@ -152,6 +152,10 @@ export default [
     component: require("../components/containers/member/media/media-list/media-list.container").default,
   },
   {
+    name: ROUTES.yuniversityMediaPlayer,
+    component: require("../components/containers/member/media/media-player/yuniversity-media-player.container").default,
+  },
+  {
     name: ROUTES.mediaPlayer,
     component: require("../components/containers/member/media/media-player/media-player.container").default,
   },

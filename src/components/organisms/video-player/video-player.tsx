@@ -31,12 +31,12 @@ import LottieView from "lottie-react-native";
 
 interface IProps {
   source: string;
-  poster: string;
+  poster?: string;
   title: string;
   description: string;
   shortDescription: string;
   thumbnail: string;
-  logo: string;
+  logo?: string;
   videoLogo?: string;
   onStart: () => void;
   onEnd: () => void;
@@ -45,10 +45,12 @@ interface IProps {
   onRightIconPress: () => void;
   startErrorMessage?: string;
   theme: "light" | "dark";
-  yuCoin: number;
-  stars: number;
+  yuCoin?: number;
+  stars?: number;
   lottie?: GqlLottie;
   eventType: string;
+  videoSourceType?: string;
+  showTimer?: boolean;
 }
 
 const commonProps = {
@@ -76,6 +78,8 @@ const VideoPlayer = ({
   stars,
   lottie,
   eventType,
+  videoSourceType = "mp4",
+  showTimer = true,
 }: IProps) => {
   const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
   const [appCurrentState, setAppCurrentState] = useState<AppStateStatus>("active");
@@ -237,13 +241,14 @@ const VideoPlayer = ({
         : source,
     [source, DETOX_ENABLED]
   );
+  const videoSource = useMemo(() => ({ uri: videoUrl, type: videoSourceType }), [videoUrl, videoSourceType]);
 
   return (
     <>
       <PressableWithDelay onPress={handleFocusScreen} style={styles.container} testID={VIDEO_PLAYER}>
         <Video
           audioOnly={lottieUri ? true : false}
-          source={{ uri: videoUrl, type: "mp4" }}
+          source={videoSource}
           minLoadRetryCount={20}
           disableFocus={true}
           poster={poster}
@@ -275,7 +280,7 @@ const VideoPlayer = ({
           </View>
         )}
 
-        {!state.musicControlMounted ? null : (
+        {!state.musicControlMounted || !videoLogo ? null : (
           <Animated.View style={[styles.videoLogo, { opacity }]}>
             <Image
               suppressLoadingUi={true}
@@ -289,9 +294,11 @@ const VideoPlayer = ({
 
         {!state.musicControlMounted ? null : (
           <>
-            <View style={styles.currentProgressTime} testID={VIDEO_PLAYER_TIMER}>
-              <VideoPlayerTimer textType="time" time={state.currentProgressInMilliSeconds} colour={themeColour} />
-            </View>
+            {!showTimer ? null : (
+              <View style={styles.currentProgressTime} testID={VIDEO_PLAYER_TIMER}>
+                <VideoPlayerTimer textType="time" time={state.currentProgressInMilliSeconds} colour={themeColour} />
+              </View>
+            )}
             <Animated.View style={[styles.progressBarContainer, { opacity }]} testID={VIDEO_PROGRESS_BAR}>
               <View style={styles.currentProgress}>
                 <VideoPlayerTimer textType="l2b" time={state.currentProgressInMilliSeconds} colour={themeColour} />
