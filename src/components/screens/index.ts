@@ -42,6 +42,7 @@ export { default as ChallengeExitScreen } from "./member/challenges/challenge-ex
 export { default as LevelLockedScreen } from "./member/challenges/level-locked/level-locked.screen";
 export { default as MediaListScreen } from "./member/media/media-list/media-list.screen";
 export { default as MediaPlayerScreen } from "./member/media/media-player/media-player.screen";
+export { default as YuniversityMediaPlayerScreen } from "./member/media/media-player/yuniversity-media-player.screen";
 
 // rewards screens
 export { default as AviosRewardConfirmedScreen } from "./member/rewards/confirmed/avios-confirmed.screen";

@@ -5,7 +5,12 @@ import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import Markdown from "@components/molecules/markdown/markdown";
 import { CourseContentItem, Module } from "@components/molecules";
-import { GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails as IGqlCourse } from "@graphql/_core/schema/GetInAppYuniversityCourseModuleDetails";
+import {
+  GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails as IGqlCourse,
+  GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_chapters_videoMedia as IGqlMedia,
+} from "@graphql/_core/schema/GetInAppYuniversityCourseModuleDetails";
+import { Navigation } from "react-native-navigation";
+import { ROUTES } from "@navigation/constants";
 
 export interface ICourseProps {
   onClose: () => void;
@@ -14,11 +19,25 @@ export interface ICourseProps {
 
 const CourseDetailsScreen = ({
   onClose,
-  course: { image, title, tags, markdown, chapters, moduleQuiz, moduleNotes, moduleCertificate },
+  course: { id: moduleId, image, title, tags, markdown, chapters, moduleQuiz, moduleNotes, moduleCertificate },
 }: ICourseProps) => {
-  const onChapterPress = useCallback(() => {
-    /*do something*/
-  }, []);
+  const onChapterPress = useCallback(
+    (video: IGqlMedia, chapterId: string) => {
+      return () =>
+        Navigation.push(ROUTES.courseDetails, {
+          component: {
+            id: ROUTES.yuniversityMediaPlayer,
+            name: ROUTES.yuniversityMediaPlayer,
+            passProps: {
+              video,
+              moduleId,
+              chapterId,
+            },
+          },
+        });
+    },
+    [moduleId]
+  );
   const downloadNotes = useCallback(() => {
     /*do something*/
   }, []);
@@ -71,11 +90,11 @@ const CourseDetailsScreen = ({
             <Markdown text={markdown} />
           </View>
         </View>
-        {chapters.map(({ tags: chapterTags, title: chapterTitle, id, image: chapterImage, status }) => (
+        {chapters.map(({ tags: chapterTags, title: chapterTitle, id, image: chapterImage, status, videoMedia }) => (
           <CourseContentItem
             tags={chapterTags}
             title={chapterTitle}
-            onPress={onChapterPress}
+            onPress={onChapterPress(videoMedia, id)}
             image={chapterImage}
             status={status}
             key={id}

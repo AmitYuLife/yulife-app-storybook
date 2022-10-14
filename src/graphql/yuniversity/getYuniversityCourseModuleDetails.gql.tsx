@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 export const GQL_QUERY_GET_YUNIVERSITY_COURSE_MODULE_DETAILS = gql`
   query GetInAppYuniversityCourseModuleDetails($id: String!) {
     getInAppYuniversityCourseModuleDetails(id: $id) {
+      id
       image {
         id
         uri
@@ -25,7 +26,30 @@ export const GQL_QUERY_GET_YUNIVERSITY_COURSE_MODULE_DETAILS = gql`
         }
         tags
         title
-        videoUri
+        videoMedia {
+          id
+          title
+          description
+          shortDescription
+          theme
+          media {
+            id
+            uri
+          }
+          cover {
+            id
+            uri
+          }
+          videoLogo {
+            id
+            uri
+          }
+          thumbnail {
+            id
+            uri
+          }
+          sourceType
+        }
       }
       moduleNotes {
         iconWidth

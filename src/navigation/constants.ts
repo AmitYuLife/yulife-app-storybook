@@ -87,6 +87,7 @@ export const ROUTES = {
   // media
   mediaList: "yulife.media.list",
   mediaPlayer: "yulife.media.player",
+  yuniversityMediaPlayer: "yulife.media.yuniversityMediaPlayer",
 
   //debug
   levelSelector: "yulife.debug.levelSelector",
