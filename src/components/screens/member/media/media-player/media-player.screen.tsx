@@ -50,7 +50,7 @@ const MediaPlayerScreen = ({
       onError={onError}
       startErrorMessage={startErrorMessage}
       lottie={video?.lottie}
-      eventType="mindfullness/move"
+      eventType="mindfullness"
     />
   );
 };
