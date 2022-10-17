@@ -177,9 +177,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string)=> as
     const noProductText = "More protection coming soon"
     const wellbeingAccessText = "Wellbeing Access"
     const availableProducts = "More protection"
-    const protectionTitle = "Protection with personality"
-    const protectionOptionText = "Take a step closer to financial wellbeing, with policies designed to be as unique as you."
-    const buttonText = "Show me the way"
+    const buttonText = "Check out my power"
     const yuCoinText = "YuCoin"
     const powerText = "Power"
     const paidBy = "Employer paid"
@@ -189,6 +187,8 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string)=> as
     const groupDental = "Dental Cover"
     const productYuCoin = "10"
     const dentalYuCoin = "5"
+    const protectionPowered= "Protection, powered up!"
+    const earnRewardsCopy = "Earn rewards faster with increased YuCoin power"
 
     switch (packType) {
         case "wellbeing only":
@@ -222,6 +222,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string)=> as
             await textVisibleAtIndex(paidBy, 2)()
             await textVisibleAtIndex(productYuCoin, 2)()
             await textVisible(availableProducts)()
+
             break;
         case "groupDental":
             await textVisibleAtIndex(yuCoinPower, 0)()
@@ -238,15 +239,16 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string)=> as
             await textVisible(noProductText)()
             await textVisible(paidBy)()
             await textVisible(yuCoinPower)()
+
             break;
         default:
             break;
     }
 
     await expect(element(by.id(ONBOARDING_SCREEN))).toBeVisible()
-    await expect(element(by.text(protectionTitle))).toBeVisible()
-    await expect(element(by.text(protectionOptionText))).toBeVisible()
-    await swipeFromText(protectionTitle, "up", "slow")()
+    await textVisible(protectionPowered)()
+    await expect(element(by.text(earnRewardsCopy))).toBeVisible()
+    await swipeFromText(protectionPowered, "up", "slow")()
     await expect(element(by.text(buttonText))).toBeVisible()
 }
 

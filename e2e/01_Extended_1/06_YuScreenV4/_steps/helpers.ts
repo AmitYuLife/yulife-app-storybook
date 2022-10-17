@@ -129,7 +129,7 @@ export const CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED = async ( productButto
     })
 }
 
-export const YUSCREEN_V4 = async (customer: any, packType: string, yuCoinPower: string, buttonText = "Show me the way") => {
+export const YUSCREEN_V4 = async (customer: any, packType: string, yuCoinPower: string, buttonText = "Check out my power") => {
     
     const yuMojiBuilder = "Create your Yumoji to step into the Yuniverse"
 

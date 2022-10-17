@@ -177,10 +177,14 @@ Feature("PLI SAD", async()=>{
     })
 
     Scenario("As a user with failed payment on PLI i should see payment overdue warning when want to buy Dental", scenario.start, async()=>{
-        Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false,  CUSTOMER_PLI_6, AUTH_PLI_6), async()=>{
-            Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_PLI_6, "PliPermanentlyRejectedAndDentalInactive", "10" ))
-            helper_V4.CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED("Fill the gap with Dental")    //slot text should be the same after navigate through it 
+        Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false,  CUSTOMER_PLI_6, AUTH_PLI_6), async() => {
+            When("I tap check out my power", when.tapCheckOutMyPower, async () => {
+                When("I tap I'll do this later", when.tapIllDoThisLater, async () => {
+                    Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_PLI_6, "PliPermanentlyRejectedAndDentalInactive", "10" ))
+                })
+            })
         })
+        helper_V4.CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED("Fill the gap with Dental")    //slot text should be the same after navigate through it 
     })
 
     Scenario("As a user with age rejection for PLI, i still should see the product slot and be able to get Dental", scenario.start, async()=>{
