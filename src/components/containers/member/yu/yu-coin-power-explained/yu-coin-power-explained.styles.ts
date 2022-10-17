@@ -93,9 +93,12 @@ export const styles = StyleSheet.create({
     fontSize: Style.adjust(40),
     lineHeight: Style.adjust(40),
   },
+  yuCoinTitle: {
+    flex: 1,
+  },
   yuCoinPowerDescription: {
     marginLeft: "auto",
-    flexShrink: 1,
+    flex: 2,
   },
   wrapper: {
     paddingBottom: Style.adjust(100),
