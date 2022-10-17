@@ -90,3 +90,11 @@ export const createDefaultYumoji = async () => {
     await textNotVisible("Create Yumoji", 3000)()
 
 }
+
+export const tapCheckOutMyPower = async () => {
+    await tapText("Check out my power")()
+}
+
+export const tapIllDoThisLater = async () => {
+    await tapText("I'll do this later")()
+}
