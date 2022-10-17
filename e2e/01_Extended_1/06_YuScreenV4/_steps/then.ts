@@ -177,6 +177,8 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string)=> as
     const noProductText = "More protection coming soon"
     const wellbeingAccessText = "Wellbeing Access"
     const availableProducts = "More protection"
+    const protectionPowered = "Protection, powered up!"
+    const earnRewardsCopy = "Earn rewards faster with increased YuCoin power"
     const buttonText = "Check out my power"
     const yuCoinText = "YuCoin"
     const powerText = "Power"
@@ -246,7 +248,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string)=> as
     }
 
     await expect(element(by.id(ONBOARDING_SCREEN))).toBeVisible()
-    await textVisible(protectionPowered)()
+    await expect(element(by.text(protectionPowered))).toBeVisible()
     await expect(element(by.text(earnRewardsCopy))).toBeVisible()
     await swipeFromText(protectionPowered, "up", "slow")()
     await expect(element(by.text(buttonText))).toBeVisible()

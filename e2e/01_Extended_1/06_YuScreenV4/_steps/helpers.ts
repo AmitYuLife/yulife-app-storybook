@@ -56,7 +56,7 @@ export const CHECK_CAROUSEL_BUTTON_LINK = async ( direction:string, productButto
 }
 
 export const PAYMENT_FAILED = async () => {
-    Then("I should see correct status icon if payment failed", then.idVisible(RIGHT_STATUS_ICON))
+    Then("I should see correct status icon if payment failed", then.idVisibleAtIndex((RIGHT_STATUS_ICON), 0))
 }
 
 export const CORRECT_PRODUCT_SLOT_BACKGROUND = async (status:string) => {

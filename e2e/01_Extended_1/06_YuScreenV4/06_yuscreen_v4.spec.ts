@@ -2,7 +2,10 @@ import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, Scenar
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as then from "./_steps/then"
+import * as when from "./_steps/when"
 import {  CUSTOMER_43, AUTH_43, CUSTOMER_44, AUTH_44, CUSTOMER_45, AUTH_45, CUSTOMER_46, AUTH_46, CUSTOMER_48, AUTH_48, CUSTOMER_49, AUTH_49, CUSTOMER_51, AUTH_51, CUSTOMER_53, AUTH_53, CPE_48_WELLBEING } from "@data";
+import { AVATAR_ITEM, RIGHT_STATUS_ICON, BACKGROUND_COLOUR_PRODUCT, ONBOARDING_SCREEN, YUCOIN_POWER, TEXT_TEMPLATE } from "@ids"
+
 
 import * as helper from "./_steps/helpers"
 
@@ -34,7 +37,11 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
 
     Scenario("I can create my Yumoji on new Yuscreen V4, and see the exclamation point near the product i have (payment failed)", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_45, AUTH_45), async () => {
-            Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_45, "dentalActiveAndPliInactive", "6" ))
+            When("I tap check out my power", when.tapCheckOutMyPower, async () => {
+                When("I tap I'll do this later", when.tapIllDoThisLater, async () => {
+                    Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_45, "dentalActiveAndPliInactive", "6" ))
+                })
+            })
             helper.PAYMENT_FAILED()
             helper.CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED("Add Life insurance")
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("dental only")
