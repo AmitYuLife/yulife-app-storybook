@@ -147,6 +147,7 @@ export enum LoginMethod {
 }
 
 export enum MobileOnboardingStepPerformed {
+  employeeDashboardOnboarding = "employeeDashboardOnboarding",
   newYumojiBuilder = "newYumojiBuilder",
   passiveCycling = "passiveCycling",
   personalProductLaunchDental = "personalProductLaunchDental",

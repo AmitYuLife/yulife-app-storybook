@@ -144,8 +144,6 @@ export * from "./GetYuScreen";
 export * from "./GetYuScreenProductDetails";
 export * from "./GetYuScreenProductList";
 export * from "./GetYuScreenProductSurvey";
-export * from "./GetYulifer";
-export * from "./GetYuliferWithAvatar";
 export * from "./GetYumojiBuilderCategoryList";
 export * from "./GetYumojiBuilderInitialParts";
 export * from "./GetYumojiBuilderItemsForCategory";
