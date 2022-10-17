@@ -73,7 +73,7 @@ const YuCoinPowerExplained = memo(() => {
                   {yuCoin.earnRate}
                 </Text>
               </View>
-              <View testID={YUCOIN_TITLE}>
+              <View style={styles.yuCoinTitle} testID={YUCOIN_TITLE}>
                 <Markdown text={yuCoin.title} markdownStyles={titleMarkdownStyles} />
               </View>
               <View style={styles.yuCoinPowerDescription}>
