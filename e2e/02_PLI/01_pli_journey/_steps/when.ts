@@ -234,3 +234,11 @@ export const scrollDownOnContactsPage = async () => {
     await swipeFromText("Postcode*", "up", "fast")()
     await wait(2000)()
 }
+
+export const tapCheckOutMyPower = async () => {
+    await tapText("Check out my power")()
+}
+
+export const tapIllDoThisLater = async () => {
+    await tapText("I'll do this later")()
+}
