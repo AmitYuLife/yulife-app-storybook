@@ -28,7 +28,6 @@ export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepD
     | "ContentItemDatePicker"
     | "ContentItemScrollPicker"
     | "ContentItemMultiSelect"
-    | "ContentItemPersonalProductConfirm"
     | "ContentItemPersonalProductReviewItem"
     | "ContentItemPersonalProductFaqs"
     | "ContentItemPackageCards"

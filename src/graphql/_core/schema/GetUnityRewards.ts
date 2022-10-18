@@ -67,4 +67,6 @@ export interface GetUnityRewards {
 
 export interface GetUnityRewardsVariables {
   level: number;
+  yuniversalMap?: number | null;
+  yuniversalLevel?: number | null;
 }

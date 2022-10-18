@@ -1,8 +1,8 @@
-import React, { FC, memo } from "react";
+import React, { FC, memo, useCallback } from "react";
 import { View } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LottieView from "lottie-react-native";
-import { getChallengesStatus, getNextLevelAvailableAt } from "@redux/levels/levels.selectors";
+import { getChallengesStatus, getCurrentLevel, getNextLevelAvailableAt } from "@redux/levels/levels.selectors";
 import styles from "./yuniversal-quest-screen.styles";
 import { NavBar, TopBar } from "@organisms";
 import { TextTemplate } from "@atoms";
@@ -14,6 +14,8 @@ import { IConnectedScreenProps } from "@app/typings";
 import { GetQuestMap_levels } from "@graphql/_core/schema";
 import { getLevelsProps } from "./yuniversal-quest-screen.helpers";
 import { QUESTS_SCREEN_YUNIVERSAL } from "@ids";
+import { getUserAvatar } from "@redux/user/user.selectors";
+import { submitUnityAction } from "@redux/levels/levels.actions";
 
 const BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversal_quest_map_1.json");
 const SHOW_TITLE = Style.DEVICE_HEIGHT >= media.DEVICES.iPhone12.height;
@@ -32,8 +34,18 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
   levelList,
   onLeftMenuPress,
 }) => {
+  const dispatch = useDispatch();
   const challengesStatus = useSelector(getChallengesStatus);
   const nextLevelAvailableAt = useSelector(getNextLevelAvailableAt);
+  const currentLevel = useSelector(getCurrentLevel);
+  const avatar = useSelector(getUserAvatar);
+
+  const submitUnity = useCallback(
+    (levelId: string) => {
+      dispatch(submitUnityAction({ levelId }));
+    },
+    [dispatch]
+  );
 
   const levelMap = getLevelsProps(
     componentId,
@@ -41,7 +53,10 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
     yuniversalLevel,
     yuniversalMap,
     levelList,
-    nextLevelAvailableAt
+    nextLevelAvailableAt,
+    currentLevel,
+    { uri: avatar.avatarRemoteFiles.pngMini },
+    submitUnity
   );
 
   return (
