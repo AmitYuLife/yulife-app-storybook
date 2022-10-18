@@ -7,7 +7,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
   } as ViewStyle,
-  backgroundImage: {
+  backgroundLottie: {
     width: Style.DEVICE_WIDTH,
     height: (Style.DEVICE_WIDTH * 812) / 375,
     position: "absolute",
