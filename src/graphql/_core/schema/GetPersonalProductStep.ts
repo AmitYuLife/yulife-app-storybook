@@ -1240,15 +1240,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
   swiperTopText: string | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemGpDetails_onSubmit {
-  type: SduiActionType;
-}
-
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemGpDetails {
   __typename: "ContentItemGpDetails";
   id: string;
-  answerKey: string;
-  onSubmit: GetPersonalProductStep_getPersonalProductStep_body_ContentItemGpDetails_onSubmit;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_onPress {

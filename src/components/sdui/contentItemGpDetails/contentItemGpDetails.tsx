@@ -5,7 +5,6 @@ import { GQL_GET_MEDICAL_PRACTICES } from "@graphql/products";
 import {
   MedicalPractices as MedicalPracticesGql,
   MedicalPracticesVariables,
-  ContentItemGpDetails as GqlGpDetails,
   MedicalPractices_getMedicalPractices as MedicalPractices,
   MedicalPractices_getMedicalPractices_practicioners as MedicalPractioners,
 } from "@graphql/_core/schema";
@@ -18,7 +17,7 @@ import { GpDoctorDetails } from "./gpDoctorDetails";
 import { GpSearchList } from "./gpSearchList";
 import { SEARCH_INPUT } from "@ids";
 
-interface Props extends GqlGpDetails {
+interface Props {
   fields: Record<string, string>;
   onCompletePractise: (practice: MedicalPractices) => void;
   onCompleteGp: (gp: Pick<MedicalPractioners, "name">) => void;

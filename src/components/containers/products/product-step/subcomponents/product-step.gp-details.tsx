@@ -1,14 +1,11 @@
 import React, { memo, useCallback, useContext, useMemo } from "react";
 import {
-  ContentItemGpDetails as GqlGpDetails,
   MedicalPractices_getMedicalPractices as MedicalPractices,
   MedicalPractices_getMedicalPractices_practicioners as MedicalPractitioners,
 } from "@graphql/_core/schema";
 import { ContentItemGpDetails } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
 import { LOCAL_GP_ANSWER_KEY } from "../utils";
-
-type Props = GqlGpDetails;
 
 type GpDetails = {
   [LOCAL_GP_ANSWER_KEY.GpPractice]: string;
@@ -29,7 +26,7 @@ const formatGpDetails = (practice: MedicalPractices): Omit<GpDetails, "gpName"> 
   gpPostcode: practice.postCode || " ",
 });
 
-export const ProductStepContentItemGpDetails = memo((props: Props) => {
+export const ProductStepContentItemGpDetails = memo(() => {
   const { dynamicData, setDynamicData } = useContext(ProductStepContext);
 
   const fields = useMemo<GpDetails>(
@@ -76,7 +73,6 @@ export const ProductStepContentItemGpDetails = memo((props: Props) => {
 
   return (
     <ContentItemGpDetails
-      {...props}
       onCompletePractise={onCompletePractise}
       onCompleteGp={onCompleteGp}
       onUpdateFormField={onUpdateFormField}

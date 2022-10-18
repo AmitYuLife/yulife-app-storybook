@@ -9,6 +9,7 @@ export const GQL_QUERY_GET_USER_PROFILE = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_LOTTIE}
   ${GQL_FRAGMENT_SDUI_ACTION}
   ${GQL_FRAGMENT_GOAL}
+
   query GetUserProfile {
     getUserProfile {
       gameSettings {
