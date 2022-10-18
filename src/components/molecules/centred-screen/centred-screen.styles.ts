@@ -38,6 +38,5 @@ export default StyleSheet.create({
   } as ImageStyle,
   lottie: {
     width: Style.DEVICE_WIDTH,
-    bottom: -2,
   } as ImageStyle,
 });

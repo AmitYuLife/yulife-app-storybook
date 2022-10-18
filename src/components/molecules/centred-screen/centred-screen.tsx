@@ -127,12 +127,6 @@ const IMAGES: Record<
     style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest]),
     isLottie: false,
   },
-  // leaving this as an example here for introducing lottie json animations
-  // mountain: {
-  //   source: require("@assets/centred-screen/mountain.json"),
-  //   style: styles.lottie,
-  //   isLottie: true,
-  // },
   gray_mountain: {
     source: require("@assets/centred-screen/gray_mountain.png"),
     style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest]),
@@ -165,8 +159,8 @@ const IMAGES: Record<
     isFullScreen: true,
   },
   yuniversal_1: {
-    source: require("@assets/yuniversal/yuniversal_1.png"),
-    isFullScreen: true,
+    source: require("@assets/yuniversal/yuniversal_1.json"),
+    isLottie: true,
   },
   gray_yuniversal_1: {
     source: require("@assets/yuniversal/gray_yuniversal_1.png"),
@@ -211,14 +205,14 @@ const BackgroundWrapper: React.FC = ({ children }) => {
 function _Background({ footerImage }: Pick<Props, "footerImage">) {
   const { source, style, isLottie, isFullScreen } = IMAGES[footerImage];
 
-  if (isFullScreen) {
+  if (isFullScreen && !isLottie) {
     return <Image source={source} width={Style.DEVICE_WIDTH} height={Style.DEVICE_HEIGHT} />;
   }
 
   return (
     <BackgroundWrapper>
       {isLottie ? (
-        <LottieView style={style} source={source} autoPlay={true} loop={true} />
+        <LottieView style={{ ...styles.lottie, ...style }} source={source} autoPlay={true} loop={true} />
       ) : (
         <RNImage resizeMode="cover" style={style} source={source} />
       )}
