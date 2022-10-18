@@ -82,7 +82,7 @@ function getStyle(currentWorld: number, yuniversalMap?: number) {
     default:
       return {
         backgroundImage: "challenge_failed_forest",
-        backgroundStyle: null,
+        backgroundStyle: { backgroundColor: "#FFFDD4" },
       };
   }
 }
