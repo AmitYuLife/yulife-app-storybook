@@ -1,6 +1,7 @@
 import React, { FC, memo } from "react";
-import { View, Image } from "react-native";
+import { View } from "react-native";
 import { useSelector } from "react-redux";
+import LottieView from "lottie-react-native";
 import { getChallengesStatus, getNextLevelAvailableAt } from "@redux/levels/levels.selectors";
 import styles from "./yuniversal-quest-screen.styles";
 import { NavBar, TopBar } from "@organisms";
@@ -14,7 +15,7 @@ import { GetQuestMap_levels } from "@graphql/_core/schema";
 import { getLevelsProps } from "./yuniversal-quest-screen.helpers";
 import { QUESTS_SCREEN_YUNIVERSAL } from "@ids";
 
-const BACKGROUND_IMAGE = require("@assets/yuniversal/yuniversal_quest_map_1.png");
+const BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversal_quest_map_1.json");
 const SHOW_TITLE = Style.DEVICE_HEIGHT >= media.DEVICES.iPhone12.height;
 
 interface IProps extends IConnectedScreenProps {
@@ -45,11 +46,16 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
 
   return (
     <View style={styles.container} testID={QUESTS_SCREEN_YUNIVERSAL(yuniversalLevel)}>
-      <View style={styles.backgroundImage} />
-      <Image resizeMode="cover" style={styles.backgroundImage} source={BACKGROUND_IMAGE} />
+      <LottieView
+        resizeMode="cover"
+        style={styles.backgroundLottie}
+        source={BACKGROUND_ANIMATION}
+        autoPlay={true}
+        loop={true}
+      />
       {!levelMap?.length ? null : (
         <View style={styles.levelsWrapper}>
-          <YuniversalQuestSvg width={styles.backgroundImage.width} height={styles.backgroundImage.height}>
+          <YuniversalQuestSvg width={styles.backgroundLottie.width} height={styles.backgroundLottie.height}>
             {levelMap.map((level) => (
               <LevelBubble {...level} key={level.text} />
             ))}
