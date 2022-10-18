@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GQL_QUERY_GET_UNITY_REWARDS = gql`
-  query GetUnityRewards($level: Int!) {
-    getUnityRewards(level: $level) {
+  query GetUnityRewards($level: Int!, $yuniversalMap: Int, $yuniversalLevel: Int) {
+    getUnityRewards(level: $level, yuniversalMap: $yuniversalMap, yuniversalLevel: $yuniversalLevel) {
       intro {
         heading
         subHeading

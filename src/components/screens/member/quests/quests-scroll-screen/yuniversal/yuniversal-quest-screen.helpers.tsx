@@ -10,6 +10,9 @@ import {
 } from "../quests-screen.container.helpers";
 import { Colours } from "@styles";
 import { ILevelBubbleProps } from "./level/level-bubble";
+import { showYuModal } from "@navigation/root";
+import { MODALS, ROUTES } from "@navigation/constants";
+import { Navigation } from "react-native-navigation";
 
 type LevelButtonState =
   | "Completed"
@@ -131,7 +134,10 @@ const getLevelProps = (
   yuniversalLevel: number,
   yuniversalMap: number,
   level: GetQuestMap_levels,
-  nextLevelAvailableAt: string
+  nextLevelAvailableAt: string,
+  currentLevel: number,
+  avatar: { uri: string },
+  submitUnity: (levelId: string) => void
 ): ILevelProps => {
   const levelButtonState = getLevelButtonState(challengesStatus, yuniversalLevel, level.level, !!level.levelChest);
 
@@ -171,7 +177,34 @@ const getLevelProps = (
         ...commonProps,
         ...slotColours.active,
         isActive: true,
-        onPress: () => showChestModal(componentId, level, yuniversalMap, true),
+        onPress: () => {
+          showYuModal({
+            component: {
+              id: MODALS.EOTWChest,
+              name: MODALS.EOTWChest,
+              passProps: {
+                level: currentLevel,
+                levelId: level.id,
+                yuniversalLevel,
+                yuniversalMap,
+                avatar,
+                onPressCta: () => {
+                  Navigation.mergeOptions(ROUTES.dailySteps, {
+                    bottomTabs: {
+                      currentTabIndex: 0,
+                    },
+                    statusBar: {
+                      drawBehind: false,
+                      visible: true,
+                    },
+                  });
+                  Navigation.dismissModal(MODALS.EOTWChest);
+                },
+              },
+            },
+          });
+          submitUnity(level.id);
+        },
       };
     case "TimeGated":
       return {
@@ -216,7 +249,10 @@ export const getLevelsProps = (
   yuniversalLevel: number,
   yuniversalMap: number,
   levelList: GetQuestMap_levels[],
-  nextLevelAvailableAt: string
+  nextLevelAvailableAt: string,
+  currentLevel: number,
+  avatar: { uri: string },
+  submitUnity: (levelId: string) => void
 ): ILevelProps[] =>
   levelList.reduce((acc, level) => {
     const levelProps = getLevelProps(
@@ -225,7 +261,10 @@ export const getLevelsProps = (
       yuniversalLevel,
       yuniversalMap,
       level,
-      nextLevelAvailableAt
+      nextLevelAvailableAt,
+      currentLevel,
+      avatar,
+      submitUnity
     );
     if (levelProps) {
       acc.push(levelProps);
