@@ -6,6 +6,9 @@ export const yuCoinPowerHeight = calculteHeightFromWidth(Style.DEVICE_WIDTH);
 
 const yuCoinPowerOrange = "#D17C00";
 
+const HEADER_WRAPPER_MARGIN_HORIZONTAL = Style.adjust(26);
+const YU_COIN_POWER_WRAPPER_MARGIN_HORIZONTAL = HEADER_WRAPPER_MARGIN_HORIZONTAL + 2;
+
 export const styles = StyleSheet.create({
   activitiesWrapper: {
     paddingHorizontal: Style.adjust(24),
@@ -58,7 +61,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderTopLeftRadius: Style.adjust(8),
     borderTopRightRadius: Style.adjust(8),
-    marginHorizontal: Style.adjust(28),
+    marginHorizontal: HEADER_WRAPPER_MARGIN_HORIZONTAL,
     marginTop: Style.adjust(40),
     paddingBottom: Style.adjust(16),
     paddingHorizontal: Style.adjust(24),
@@ -81,9 +84,8 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     height: yuCoinPowerHeight,
     alignItems: "center",
-    paddingHorizontal: Style.adjust(27),
+    paddingHorizontal: YU_COIN_POWER_WRAPPER_MARGIN_HORIZONTAL,
     width: Style.DEVICE_WIDTH,
-    color: yuCoinPowerOrange,
   },
   yuCoinPowerEarnRateWrapper: {
     paddingRight: Style.adjust(10),
@@ -94,7 +96,7 @@ export const styles = StyleSheet.create({
     lineHeight: Style.adjust(40),
   },
   yuCoinTitle: {
-    flex: 1,
+    paddingRight: Style.adjust(8),
   },
   yuCoinPowerDescription: {
     marginLeft: "auto",
