@@ -189,8 +189,6 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string)=> as
     const groupDental = "Dental Cover"
     const productYuCoin = "10"
     const dentalYuCoin = "5"
-    const protectionPowered= "Protection, powered up!"
-    const earnRewardsCopy = "Earn rewards faster with increased YuCoin power"
 
     switch (packType) {
         case "wellbeing only":
