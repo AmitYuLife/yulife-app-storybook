@@ -212,7 +212,13 @@ function _Background({ footerImage }: Pick<Props, "footerImage">) {
   return (
     <BackgroundWrapper>
       {isLottie ? (
-        <LottieView style={{ ...styles.lottie, ...style }} source={source} autoPlay={true} loop={true} />
+        <LottieView
+          loop={true}
+          autoPlay={true}
+          source={source}
+          resizeMode="cover"
+          style={{ ...styles.lottie, ...style }}
+        />
       ) : (
         <RNImage resizeMode="cover" style={style} source={source} />
       )}
