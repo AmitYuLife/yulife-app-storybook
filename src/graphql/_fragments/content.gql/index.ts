@@ -60,3 +60,6 @@ export * from "./contentItemText.gql";
 export * from "./contentItemTextInput.gql";
 export * from "./contentItemYuCoinPower.gql";
 export * from "./yuScreenItemSlot.gql";
+export * from "./contentItemYugiConfirm.gql";
+export * from "./contentItemPersonalProductInfo.gql";
+export * from "./contentItemSelectedPackageAccordion.gql";

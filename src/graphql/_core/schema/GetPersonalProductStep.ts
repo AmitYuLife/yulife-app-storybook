@@ -1184,9 +1184,26 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemY
   interactive: boolean | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content_markdownContainerStyle {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content {
   id: string;
+  title: string | null;
+  markdown: string;
+  perkId: string | null;
   parsedMarkdown: string | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content_styles[] | null;
+  markdownContainerStyle:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content_markdownContainerStyle[]
+    | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_buttonOnPress {
