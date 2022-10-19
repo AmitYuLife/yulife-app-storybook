@@ -14,21 +14,25 @@ interface IProps {
   video: Media;
   moduleId: string;
   chapterId: string;
+  onEnd: () => void;
 }
 
-const YuniversityMediaPlayerContainer = ({ componentId, video, moduleId, chapterId }: IProps) => {
+const YuniversityMediaPlayerContainer = ({ componentId, video, moduleId, chapterId, onEnd }: IProps) => {
   const [completeChapter]: CompleteYuniversityModuleChapterTuple = useMutation(
     GQL_MUTATION_COMPLETE_IN_APP_YUNIVERSITY_MODULE_CHAPTER
   );
+
   const onStart = useCallback(async () => {
     /* do something*/
   }, []);
+
   const endChallenge = useCallback(async () => {
     await completeChapter({
       variables: { moduleId, chapterId },
     });
+    onEnd();
     await Navigation.popTo(ROUTES.courseDetails);
-  }, [moduleId, chapterId, completeChapter]);
+  }, [moduleId, chapterId, completeChapter, onEnd]);
 
   const onError = useCallback(() => {
     /* do something*/

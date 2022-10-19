@@ -25,3 +25,5 @@ export { default as InspectDetailsItem } from "./inspect/details-item";
 export { default as ChestCard } from "./chest-card/chest-card";
 export { default as AvatarItems } from "./inspect/avatar-items";
 export { ActivityProgress, ClaimableActivityProgress } from "./activity-progress/activity-progress";
+export { default as ChapterContentItem } from "./yuniversity/chapter-content-item";
+export { default as ModuleContentItem } from "./yuniversity/module-content-item";
