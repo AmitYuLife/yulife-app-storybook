@@ -1,10 +1,10 @@
-import { GQL_FRAGMENT_CONTENT_ITEM_TEXT } from "@graphql/_fragments/content.gql";
-import { GQL_FRAGMENT_SDUI_STYLE } from "@graphql/_fragments/shared.gql";
+import { GQL_FRAGMENT_CONTENT_ITEM_FORM, GQL_FRAGMENT_CONTENT_ITEM_TEXT } from "@graphql/_fragments/content.gql";
 import { gql } from "@apollo/client";
 
 export const GQL_QUERY_GET_REWARD_ITEM_DETAILS = gql`
-  ${GQL_FRAGMENT_SDUI_STYLE}
   ${GQL_FRAGMENT_CONTENT_ITEM_TEXT}
+  ${GQL_FRAGMENT_CONTENT_ITEM_FORM}
+
   query GetRewardItemDetails($id: ID!) {
     getRewardItemDetails(id: $id) {
       id
@@ -26,19 +26,17 @@ export const GQL_QUERY_GET_REWARD_ITEM_DETAILS = gql`
         alertMessage
       }
       content {
+        __typename
         ... on ContentItemText {
-          __typename
           ...ContentItemText
         }
         ... on ContentItemMarkdown {
-          __typename
           id
           title
           markdown
           parsedMarkdown
         }
         ... on ContentItemBox {
-          __typename
           id
           title
           markdown
@@ -46,7 +44,6 @@ export const GQL_QUERY_GET_REWARD_ITEM_DETAILS = gql`
           canCopy
         }
         ... on ContentItemButton {
-          __typename
           id
           label
           uri
@@ -56,7 +53,6 @@ export const GQL_QUERY_GET_REWARD_ITEM_DETAILS = gql`
           }
         }
         ... on ContentItemImage {
-          __typename
           id
           image {
             id
@@ -64,53 +60,7 @@ export const GQL_QUERY_GET_REWARD_ITEM_DETAILS = gql`
           }
         }
         ... on ContentItemForm {
-          __typename
-          elements {
-            ... on ContentItemFormSelectInput {
-              __typename
-              id
-              name
-              placeholder
-              modalPlaceholder
-              defaultOption {
-                label
-                value
-              }
-              options {
-                label
-                value
-              }
-              icon {
-                id
-                uri
-              }
-              validation {
-                regex
-                message
-              }
-            }
-            ... on ContentItemFormTextInput {
-              __typename
-              id
-              name
-              placeholder
-              defaultValue
-              type
-              icon {
-                id
-                uri
-              }
-              validation {
-                regex
-                message
-              }
-            }
-            ... on ContentItemFormSubmitButton {
-              __typename
-              id
-              label
-            }
-          }
+          ...ContentItemForm
         }
       }
     }

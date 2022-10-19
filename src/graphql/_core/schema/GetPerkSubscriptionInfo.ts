@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { SduiActionType, ContentItemImageSize } from "./globalTypes";
+import { SduiActionType, ContentItemImageSize, ContentItemFormTextInputType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetPerkSubscriptionInfo
@@ -92,33 +92,6 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
   icon: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_icon | null;
 }
 
-export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput_options {
-  label: string | null;
-  value: string | null;
-}
-
-export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput_icon {
-  id: string;
-  uri: string | null;
-}
-
-export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput_validation {
-  regex: string;
-  message: string;
-}
-
-export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput {
-  __typename: "ContentItemFormSelectInput";
-  id: string;
-  name: string;
-  placeholder: string;
-  options: (GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput_options | null)[];
-  icon: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput_icon | null;
-  validation:
-    | (GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput_validation | null)[]
-    | null;
-}
-
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormTextInput_icon {
   id: string;
   uri: string | null;
@@ -135,9 +108,44 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
   name: string;
   placeholder: string;
   defaultValue: string | null;
+  type: ContentItemFormTextInputType | null;
   icon: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormTextInput_icon | null;
   validation:
     | (GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormTextInput_validation | null)[]
+    | null;
+}
+
+export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput_defaultOption {
+  label: string | null;
+  value: string | null;
+}
+
+export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput_options {
+  label: string | null;
+  value: string | null;
+}
+
+export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput_validation {
+  regex: string;
+  message: string;
+}
+
+export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput {
+  __typename: "ContentItemFormSelectInput";
+  id: string;
+  name: string;
+  placeholder: string;
+  modalPlaceholder: string;
+  defaultOption: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput_defaultOption | null;
+  icon: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput_icon | null;
+  options: (GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput_options | null)[];
+  validation:
+    | (GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput_validation | null)[]
     | null;
 }
 
@@ -148,8 +156,8 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
 }
 
 export type GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements =
-  | GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput
   | GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormTextInput
+  | GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSelectInput
   | GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormSubmitButton;
 
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm {
