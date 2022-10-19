@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     width: Style.adjust(16),
     height: Style.adjust(16),
     marginTop: -2,
+    borderRadius: Style.adjust(5),
   } as ImageStyle,
   text: {
     fontSize: Style.adjust(30),
