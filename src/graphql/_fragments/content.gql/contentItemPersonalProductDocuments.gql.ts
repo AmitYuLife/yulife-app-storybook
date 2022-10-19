@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const GQL_FRAGMENT_CONTENT_ITEM_DOCUMENTS = gql`
+export const GQL_FRAGMENT_CONTENT_ITEM_PERSONAL_PRODUCT_DOCUMENTS = gql`
   fragment ContentItemPersonalProductDocuments on ContentItemPersonalProductDocuments {
     id
     headingImage {
