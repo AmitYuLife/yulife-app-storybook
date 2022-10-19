@@ -93,6 +93,7 @@ export interface GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCours
   iconWidth: number;
   iconHeight: number;
   icon: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_moduleQuiz_icon;
+  yucoin: number | null;
   title: string;
   description: string | null;
   ctaLabel: string | null;

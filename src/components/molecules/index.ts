@@ -74,3 +74,4 @@ export { default as NameAndLevel } from "./name-and-level/name-and-level";
 export { default as ActivityAvatar } from "./inspect/activity-avatar";
 export { default as CourseContentItem } from "./yuniversity/course-content-item";
 export { default as Module } from "./yuniversity/module";
+export { default as YuniversityModuleReward } from "./yuniversity/module-reward";

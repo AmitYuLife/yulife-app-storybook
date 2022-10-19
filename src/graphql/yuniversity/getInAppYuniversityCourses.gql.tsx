@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GQL_QUERY_GET_YUNIVERSITY_COURSES = gql`
-  query GetInAppYuniversityCourses {
-    getInAppYuniversityCourses {
+  query GetInAppYuniversityCourses($category: String!) {
+    getInAppYuniversityCourses(category: $category) {
       id
       title
       headerImage {
@@ -17,8 +17,10 @@ export const GQL_QUERY_GET_YUNIVERSITY_COURSES = gql`
       courses {
         id
         title
+        description
         modules {
           id
+          slug
           tags
           title
           image {
@@ -37,3 +39,5 @@ export const GQL_QUERY_GET_YUNIVERSITY_COURSES = gql`
     }
   }
 `;
+
+export const COURSE_CATEGORY_CPD = "cpd";

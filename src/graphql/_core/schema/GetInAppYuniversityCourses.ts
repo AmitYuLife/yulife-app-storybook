@@ -34,6 +34,7 @@ export interface GetInAppYuniversityCourses_getInAppYuniversityCourses_courses_m
 
 export interface GetInAppYuniversityCourses_getInAppYuniversityCourses_courses_modules {
   id: string;
+  slug: string;
   tags: string;
   title: string;
   image: GetInAppYuniversityCourses_getInAppYuniversityCourses_courses_modules_image;
@@ -43,6 +44,7 @@ export interface GetInAppYuniversityCourses_getInAppYuniversityCourses_courses_m
 export interface GetInAppYuniversityCourses_getInAppYuniversityCourses_courses {
   id: string;
   title: string;
+  description: string;
   modules: (GetInAppYuniversityCourses_getInAppYuniversityCourses_courses_modules | null)[] | null;
 }
 
@@ -57,4 +59,8 @@ export interface GetInAppYuniversityCourses_getInAppYuniversityCourses {
 
 export interface GetInAppYuniversityCourses {
   getInAppYuniversityCourses: GetInAppYuniversityCourses_getInAppYuniversityCourses;
+}
+
+export interface GetInAppYuniversityCoursesVariables {
+  category: string;
 }

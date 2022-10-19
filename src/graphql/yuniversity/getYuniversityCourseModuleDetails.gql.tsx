@@ -70,6 +70,7 @@ export const GQL_QUERY_GET_YUNIVERSITY_COURSE_MODULE_DETAILS = gql`
           id
           uri
         }
+        yucoin
         title
         description
         ctaLabel

@@ -1,43 +1,26 @@
 import React, { memo, useCallback } from "react";
-import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import { ChapterContentItem, GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import Markdown from "@components/molecules/markdown/markdown";
-import { CourseContentItem, Module } from "@components/molecules";
+import { Module, YuniversityModuleReward } from "@components/molecules";
 import {
-  GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails as IGqlCourse,
+  GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails as IGqlCourseModuleDetails,
   GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_chapters_videoMedia as IGqlMedia,
 } from "@graphql/_core/schema/GetInAppYuniversityCourseModuleDetails";
-import { Navigation } from "react-native-navigation";
-import { ROUTES } from "@navigation/constants";
 
-export interface ICourseProps {
+export interface ICourseModuleDetailsProps {
   onClose: () => void;
-  course: IGqlCourse;
+  moduleDetails: IGqlCourseModuleDetails;
+  onChapterPress: (video: IGqlMedia, chapterId: string) => void;
 }
 
 const CourseDetailsScreen = ({
   onClose,
-  course: { id: moduleId, image, title, tags, markdown, chapters, moduleQuiz, moduleNotes, moduleCertificate },
-}: ICourseProps) => {
-  const onChapterPress = useCallback(
-    (video: IGqlMedia, chapterId: string) => {
-      return () =>
-        Navigation.push(ROUTES.courseDetails, {
-          component: {
-            id: ROUTES.yuniversityMediaPlayer,
-            name: ROUTES.yuniversityMediaPlayer,
-            passProps: {
-              video,
-              moduleId,
-              chapterId,
-            },
-          },
-        });
-    },
-    [moduleId]
-  );
+  onChapterPress,
+  moduleDetails: { image, title, tags, markdown, chapters, moduleQuiz, moduleNotes, moduleCertificate },
+}: ICourseModuleDetailsProps) => {
   const downloadNotes = useCallback(() => {
     /*do something*/
   }, []);
@@ -47,25 +30,6 @@ const CourseDetailsScreen = ({
   const openCertificate = useCallback(() => {
     /*do something*/
   }, []);
-
-  const quizChildren = (
-    <View style={styles.quizRewardWrapper}>
-      <TextTemplate textAlign="center" type={"b2"}>
-        Earn
-      </TextTemplate>
-      <View style={styles.quizRewardAmountWrapper}>
-        <TextTemplate textAlign="center" type={"b2b"}>
-          200
-        </TextTemplate>
-        <Image
-          style={styles.quizReward}
-          height={Style.adjust(20)}
-          width={Style.adjust(20)}
-          source={require("@assets/icons/yucoin.png")}
-        />
-      </View>
-    </View>
-  );
 
   return (
     <View style={styles.wrapper}>
@@ -91,18 +55,20 @@ const CourseDetailsScreen = ({
           </View>
         </View>
         {chapters.map(({ tags: chapterTags, title: chapterTitle, id, image: chapterImage, status, videoMedia }) => (
-          <CourseContentItem
+          <ChapterContentItem
             tags={chapterTags}
             title={chapterTitle}
-            onPress={onChapterPress(videoMedia, id)}
+            onChapterPress={onChapterPress}
             image={chapterImage}
             status={status}
+            slug={id}
+            video={videoMedia}
             key={id}
           />
         ))}
         <Module {...moduleNotes} onPress={downloadNotes} />
         <Module {...moduleQuiz} onPress={startQuiz}>
-          {quizChildren}
+          <YuniversityModuleReward coin={moduleQuiz.yucoin} />
         </Module>
         <Module {...moduleCertificate} onPress={openCertificate} />
       </ScrollView>

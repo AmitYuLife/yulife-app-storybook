@@ -8021,7 +8021,24 @@
           {
             "name": "getInAppYuniversityCourses",
             "description": null,
-            "args": [],
+            "args": [
+              {
+                "name": "category",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -27395,7 +27412,7 @@
             "deprecationReason": null
           },
           {
-            "name": "image",
+            "name": "logo",
             "description": null,
             "args": [],
             "type": {
@@ -27458,10 +27475,26 @@
       },
       {
         "kind": "OBJECT",
-        "name": "EmployeeDashboardAvailableCard",
+        "name": "EmployeeDashboardAvailableProduct",
         "description": null,
         "specifiedByUrl": null,
         "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "backgroundImage",
             "description": null,
@@ -27475,7 +27508,7 @@
             "deprecationReason": null
           },
           {
-            "name": "heading",
+            "name": "backgroundColor",
             "description": null,
             "args": [],
             "type": {
@@ -27487,13 +27520,33 @@
             "deprecationReason": null
           },
           {
-            "name": "body",
+            "name": "title",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "description",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -27503,9 +27556,13 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -27687,15 +27744,19 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "NON_NULL",
+                "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "OBJECT",
-                  "name": "EmployeeDashboardOwnedProduct",
-                  "ofType": null
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "EmployeeDashboardOwnedProduct",
+                    "ofType": null
+                  }
                 }
               }
             },
@@ -27707,15 +27768,19 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "NON_NULL",
+                "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "OBJECT",
-                  "name": "EmployeeDashboardAvailableCard",
-                  "ofType": null
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "EmployeeDashboardAvailableProduct",
+                    "ofType": null
+                  }
                 }
               }
             },
@@ -34068,6 +34133,18 @@
             "deprecationReason": null
           },
           {
+            "name": "yucoin",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "description",
             "description": null,
             "args": [],
@@ -34340,6 +34417,22 @@
             "deprecationReason": null
           },
           {
+            "name": "slug",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "tags",
             "description": null,
             "args": [],
@@ -34429,6 +34522,22 @@
           },
           {
             "name": "title",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "description",
             "description": null,
             "args": [],
             "type": {

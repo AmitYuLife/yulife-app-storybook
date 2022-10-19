@@ -2,13 +2,10 @@ import React, { FC, useCallback, useMemo, useRef, useState, memo } from "react";
 import { TextTemplate } from "@atoms";
 import { Image } from "@atoms/image/image";
 import Markdown from "@components/molecules/markdown/markdown";
-import { CourseContentItem } from "@molecules";
-import { ROUTES } from "@navigation/constants";
-import { GenericHeadingAbsolute } from "@organisms";
+import { GenericHeadingAbsolute, ModuleContentItem } from "@organisms";
 import { Style } from "@styles";
 import { Animated, NativeScrollEvent, View } from "react-native";
 import { Source } from "react-native-fast-image";
-import { Navigation } from "react-native-navigation";
 import style, { CONTENT_MARGIN_TOP, HEADER_HEIGHT, TITLE_HEIGHT } from "./styles";
 import { GetInAppYuniversityCourses_getInAppYuniversityCourses_courses as ICourse } from "@graphql/_core/schema/GetInAppYuniversityCourses";
 
@@ -26,9 +23,10 @@ interface IProps {
   categoryImageUri: string;
   courses: ICourse[];
   headerProps: IHeaderProps;
+  onModulePress: (moduleSlug: string) => void;
 }
 
-const YuniversityCoursesScreen: FC<IProps> = ({ headerProps, categoryImageUri, category, courses }) => {
+const YuniversityCoursesScreen: FC<IProps> = ({ headerProps, categoryImageUri, category, courses, onModulePress }) => {
   const { source: headerImageSource, backgroundColor, headerTextColor, onLeftIconPress, label, title } =
     headerProps || {};
   const [showHeading, setHeadingVisibilty] = useState(true);
@@ -81,20 +79,6 @@ const YuniversityCoursesScreen: FC<IProps> = ({ headerProps, categoryImageUri, c
     [headerTextColor]
   );
 
-  const onPress = useCallback(
-    (moduleId: string) =>
-      Navigation.push(ROUTES.yuniversityCourses, {
-        component: {
-          id: ROUTES.courseDetails,
-          name: ROUTES.courseDetails,
-          passProps: {
-            moduleId,
-          },
-        },
-      }),
-    []
-  );
-
   return (
     <View style={[style.wrapper, { backgroundColor }]}>
       <View style={statusBarCoverStyle} />
@@ -121,21 +105,23 @@ const YuniversityCoursesScreen: FC<IProps> = ({ headerProps, categoryImageUri, c
             <Image height={Style.adjust(46)} width={Style.adjust(72)} source={{ uri: categoryImageUri }} />
           </View>
 
-          {courses.map(({ title: courseTitle, modules, id }) => {
+          {courses.map(({ title: courseTitle, description, modules, id }) => {
             return (
               <View key={id}>
                 <View style={style.courseWrapper}>
-                  <Markdown text={courseTitle} />
+                  <TextTemplate type={"b1b"}>{courseTitle}</TextTemplate>
+                  <Markdown text={description} />
                 </View>
-                {modules.map(({ tags, title: moduleTitle, id: moduleId, image: moduleImage, status }) => {
+                {modules.map(({ tags, title: moduleTitle, id: moduleId, slug, image: moduleImage, status }) => {
                   return (
-                    <CourseContentItem
+                    <ModuleContentItem
                       tags={tags}
                       title={moduleTitle}
-                      onPress={() => onPress(moduleId)}
+                      onModulePress={onModulePress}
                       image={moduleImage}
                       status={status}
                       key={moduleId}
+                      slug={slug}
                     />
                   );
                 })}
