@@ -51,6 +51,18 @@ const CourseDetailsContainer = ({ moduleId }: IProps) => {
     getData();
   }, [getData]);
 
+  const startQuiz = useCallback(() => {
+    Navigation.push(ROUTES.courseDetails, {
+      component: {
+        id: ROUTES.yuniversityQuiz,
+        name: ROUTES.yuniversityQuiz,
+        passProps: {
+          moduleId,
+        },
+      },
+    });
+  }, [moduleId]);
+
   if (loading) {
     return <Loading />;
   }
@@ -64,6 +76,7 @@ const CourseDetailsContainer = ({ moduleId }: IProps) => {
       onClose={onClose}
       moduleDetails={data.getInAppYuniversityCourseModuleDetails}
       onChapterPress={onChapterPress}
+      startQuiz={startQuiz}
     />
   );
 };

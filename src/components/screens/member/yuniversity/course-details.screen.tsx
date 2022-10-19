@@ -14,19 +14,19 @@ export interface ICourseModuleDetailsProps {
   onClose: () => void;
   moduleDetails: IGqlCourseModuleDetails;
   onChapterPress: (video: IGqlMedia, chapterId: string) => void;
+  startQuiz: () => void;
 }
 
 const CourseDetailsScreen = ({
   onClose,
   onChapterPress,
+  startQuiz,
   moduleDetails: { image, title, tags, markdown, chapters, moduleQuiz, moduleNotes, moduleCertificate },
 }: ICourseModuleDetailsProps) => {
   const downloadNotes = useCallback(() => {
     /*do something*/
   }, []);
-  const startQuiz = useCallback(() => {
-    /*do something*/
-  }, []);
+
   const openCertificate = useCallback(() => {
     /*do something*/
   }, []);

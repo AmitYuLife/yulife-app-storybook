@@ -93,6 +93,10 @@ export default [
     component: require("../components/containers/member/inspect/inspect.container").default,
   },
   {
+    name: ROUTES.yuniversityQuiz,
+    component: require("../components/containers/member/yuniversity/yuniversity-quiz.container").default,
+  },
+  {
     name: ROUTES.courseDetails,
     component: require("../components/containers/member/yuniversity/course-details.container").default,
   },
