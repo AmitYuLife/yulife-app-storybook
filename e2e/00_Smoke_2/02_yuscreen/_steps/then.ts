@@ -51,7 +51,7 @@ export const {
 export const yuCoinPowerInfo = (yuCoinPower: string, earnRate: number) => async () => {
 
     const yuCoinPowerText = "Equipping yourself with policies boosts your YuCoin Power in the Yuniverse."
-    const yuCoinEarnedText = `For every 1 YuCoin you would have earned, you now earn ${yuCoinPower}!`
+    const yuCoinEarnedText = `For every 1 YuCoin you would\nhave earned, you now earn ${yuCoinPower}!`
 
     await idVisible(EARN_RATE(earnRate))();
     await idVisible(YUCOIN_TITLE)();

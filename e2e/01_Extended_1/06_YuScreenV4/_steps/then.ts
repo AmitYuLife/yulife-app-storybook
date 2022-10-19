@@ -136,7 +136,7 @@ export const groupDentalProductInfo = (packageType: string, yuCoinPower: string)
 
 export const yuCoinPowerInfo = (yuCoinPower: number) => async () => {
 
-const powerBoost = `For every 1 YuCoin you would have earned, you now earn ${yuCoinPower}!`
+    const powerBoost = `For every 1 YuCoin you would\nhave earned, you now earn ${yuCoinPower}!`
     const baseYucoinPower = "Equipping yourself with policies boosts your YuCoin Power in the Yuniverse."
     const wellbeingEarn = "You can earn YuCoin for your wellbeing activites!"
 

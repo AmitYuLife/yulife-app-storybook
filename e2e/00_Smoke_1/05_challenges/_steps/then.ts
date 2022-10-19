@@ -52,7 +52,7 @@ export const yuCoinPowerInfo = (yuCoinPower: number) => async () => {
 
     const baseYucoinPower = "Equipping yourself with policies boosts your YuCoin Power in the Yuniverse."
     const yuCoinPowerTitle = "YuCoin\nPower"
-    const powerBoost = `For every 1 YuCoin you would have earned, you now earn ${yuCoinPower}!`
+    const powerBoost = `For every 1 YuCoin you would\nhave earned, you now earn ${yuCoinPower}!`
 
     await expect(element(by.text(yuCoinPowerTitle))).toBeVisible();
     await expect(element(by.text(baseYucoinPower))).toBeVisible()
