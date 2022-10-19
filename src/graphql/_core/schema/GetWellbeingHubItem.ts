@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { OS } from "./globalTypes";
+import { OS, ContentItemFormTextInputType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetWellbeingHubItem
@@ -77,33 +77,6 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemImage {
   image: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemImage_image | null;
 }
 
-export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_options {
-  label: string | null;
-  value: string | null;
-}
-
-export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_icon {
-  id: string;
-  uri: string | null;
-}
-
-export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_validation {
-  regex: string;
-  message: string;
-}
-
-export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput {
-  __typename: "ContentItemFormSelectInput";
-  id: string;
-  name: string;
-  placeholder: string;
-  options: (GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_options | null)[];
-  icon: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_icon | null;
-  validation:
-    | (GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_validation | null)[]
-    | null;
-}
-
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormTextInput_icon {
   id: string;
   uri: string | null;
@@ -120,9 +93,44 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_el
   name: string;
   placeholder: string;
   defaultValue: string | null;
+  type: ContentItemFormTextInputType | null;
   icon: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormTextInput_icon | null;
   validation:
     | (GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormTextInput_validation | null)[]
+    | null;
+}
+
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_defaultOption {
+  label: string | null;
+  value: string | null;
+}
+
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_options {
+  label: string | null;
+  value: string | null;
+}
+
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_validation {
+  regex: string;
+  message: string;
+}
+
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput {
+  __typename: "ContentItemFormSelectInput";
+  id: string;
+  name: string;
+  placeholder: string;
+  modalPlaceholder: string;
+  defaultOption: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_defaultOption | null;
+  icon: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_icon | null;
+  options: (GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_options | null)[];
+  validation:
+    | (GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_validation | null)[]
     | null;
 }
 
@@ -133,8 +141,8 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_el
 }
 
 export type GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements =
-  | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput
   | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormTextInput
+  | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput
   | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSubmitButton;
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm {

@@ -81,40 +81,6 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemIm
   image: GetRewardItemDetails_getRewardItemDetails_content_ContentItemImage_image | null;
 }
 
-export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_defaultOption {
-  label: string | null;
-  value: string | null;
-}
-
-export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_options {
-  label: string | null;
-  value: string | null;
-}
-
-export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_icon {
-  id: string;
-  uri: string | null;
-}
-
-export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_validation {
-  regex: string;
-  message: string;
-}
-
-export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput {
-  __typename: "ContentItemFormSelectInput";
-  id: string;
-  name: string;
-  placeholder: string;
-  modalPlaceholder: string;
-  defaultOption: GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_defaultOption | null;
-  options: (GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_options | null)[];
-  icon: GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_icon | null;
-  validation:
-    | (GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_validation | null)[]
-    | null;
-}
-
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormTextInput_icon {
   id: string;
   uri: string | null;
@@ -138,6 +104,40 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemFo
     | null;
 }
 
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_defaultOption {
+  label: string | null;
+  value: string | null;
+}
+
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_options {
+  label: string | null;
+  value: string | null;
+}
+
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_validation {
+  regex: string;
+  message: string;
+}
+
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput {
+  __typename: "ContentItemFormSelectInput";
+  id: string;
+  name: string;
+  placeholder: string;
+  modalPlaceholder: string;
+  defaultOption: GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_defaultOption | null;
+  icon: GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_icon | null;
+  options: (GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_options | null)[];
+  validation:
+    | (GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_validation | null)[]
+    | null;
+}
+
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSubmitButton {
   __typename: "ContentItemFormSubmitButton";
   id: string;
@@ -145,8 +145,8 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemFo
 }
 
 export type GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements =
-  | GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput
   | GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormTextInput
+  | GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput
   | GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSubmitButton;
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm {
