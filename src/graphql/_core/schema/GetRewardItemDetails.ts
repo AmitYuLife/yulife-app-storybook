@@ -7,6 +7,7 @@ import {
   ContentItemButtonType,
   SduiActionType,
   ContentItemButtonSize,
+  ContentItemImageSize,
   ContentItemFormTextInputType,
 } from "./globalTypes";
 
@@ -45,12 +46,27 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemTe
   styles: GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles[] | null;
 }
 
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemMarkdown_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemMarkdown_markdownContainerStyle {
+  property: string;
+  value: string;
+}
+
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemMarkdown {
   __typename: "ContentItemMarkdown";
   id: string;
   title: string | null;
   markdown: string;
+  perkId: string | null;
   parsedMarkdown: string | null;
+  styles: GetRewardItemDetails_getRewardItemDetails_content_ContentItemMarkdown_styles[] | null;
+  markdownContainerStyle:
+    | GetRewardItemDetails_getRewardItemDetails_content_ContentItemMarkdown_markdownContainerStyle[]
+    | null;
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemBox {
@@ -111,10 +127,35 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemIm
   uri: string | null;
 }
 
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemImage_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemImage_wrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemImage_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemImage {
   __typename: "ContentItemImage";
   id: string;
   image: GetRewardItemDetails_getRewardItemDetails_content_ContentItemImage_image | null;
+  styles: GetRewardItemDetails_getRewardItemDetails_content_ContentItemImage_styles[] | null;
+  wrapperStyles: GetRewardItemDetails_getRewardItemDetails_content_ContentItemImage_wrapperStyles[] | null;
+  /**
+   * Supported RN version 3.48.0
+   */
+  onPress: GetRewardItemDetails_getRewardItemDetails_content_ContentItemImage_onPress | null;
+  /**
+   * Supported RN version 3.48.0
+   */
+  contentItemImageSize: ContentItemImageSize | null;
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormTextInput_icon {

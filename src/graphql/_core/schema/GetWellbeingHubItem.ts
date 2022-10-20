@@ -8,6 +8,7 @@ import {
   ContentItemButtonType,
   SduiActionType,
   ContentItemButtonSize,
+  ContentItemImageSize,
   ContentItemFormTextInputType,
 } from "./globalTypes";
 
@@ -42,12 +43,27 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText {
   styles: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText_styles[] | null;
 }
 
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdown_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdown_markdownContainerStyle {
+  property: string;
+  value: string;
+}
+
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdown {
   __typename: "ContentItemMarkdown";
   id: string;
   title: string | null;
   markdown: string;
+  perkId: string | null;
   parsedMarkdown: string | null;
+  styles: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdown_styles[] | null;
+  markdownContainerStyle:
+    | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdown_markdownContainerStyle[]
+    | null;
 }
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemBox {
@@ -108,10 +124,35 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemImage_i
   uri: string | null;
 }
 
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemImage_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemImage_wrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemImage_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemImage {
   __typename: "ContentItemImage";
   id: string;
   image: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemImage_image | null;
+  styles: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemImage_styles[] | null;
+  wrapperStyles: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemImage_wrapperStyles[] | null;
+  /**
+   * Supported RN version 3.48.0
+   */
+  onPress: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemImage_onPress | null;
+  /**
+   * Supported RN version 3.48.0
+   */
+  contentItemImageSize: ContentItemImageSize | null;
 }
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormTextInput_icon {

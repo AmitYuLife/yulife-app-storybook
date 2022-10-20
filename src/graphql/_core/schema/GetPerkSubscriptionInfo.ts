@@ -68,12 +68,27 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
   contentItemImageSize: ContentItemImageSize | null;
 }
 
+export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemMarkdown_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemMarkdown_markdownContainerStyle {
+  property: string;
+  value: string;
+}
+
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemMarkdown {
   __typename: "ContentItemMarkdown";
   id: string;
   title: string | null;
   markdown: string;
+  perkId: string | null;
   parsedMarkdown: string | null;
+  styles: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemMarkdown_styles[] | null;
+  markdownContainerStyle:
+    | GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemMarkdown_markdownContainerStyle[]
+    | null;
 }
 
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemBox {

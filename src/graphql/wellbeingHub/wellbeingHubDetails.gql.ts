@@ -1,10 +1,20 @@
-import { GQL_FRAGMENT_CONTENT_ITEM_BUTTON, GQL_FRAGMENT_CONTENT_ITEM_FORM, GQL_FRAGMENT_CONTENT_ITEM_TEXT } from "@graphql/_fragments/content.gql";
+import {
+  GQL_FRAGMENT_CONTENT_ITEM_BOX,
+  GQL_FRAGMENT_CONTENT_ITEM_BUTTON,
+  GQL_FRAGMENT_CONTENT_ITEM_FORM,
+  GQL_FRAGMENT_CONTENT_ITEM_IMAGE,
+  GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN,
+  GQL_FRAGMENT_CONTENT_ITEM_TEXT,
+} from "@graphql/_fragments/content.gql";
 import { gql } from "@apollo/client";
 
 export const GQL_QUERY_GET_WELLBEING_HUB_DETAILS = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_TEXT}
-  ${GQL_FRAGMENT_CONTENT_ITEM_FORM}
+  ${GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN}
+  ${GQL_FRAGMENT_CONTENT_ITEM_BOX}
   ${GQL_FRAGMENT_CONTENT_ITEM_BUTTON}
+  ${GQL_FRAGMENT_CONTENT_ITEM_IMAGE}
+  ${GQL_FRAGMENT_CONTENT_ITEM_FORM}
 
   query GetWellbeingHubItem($id: ID!, $os: OS) {
     wellbeingHubItem(id: $id, os: $os) {
@@ -25,27 +35,16 @@ export const GQL_QUERY_GET_WELLBEING_HUB_DETAILS = gql`
           ...ContentItemText
         }
         ... on ContentItemMarkdown {
-          id
-          title
-          markdown
-          parsedMarkdown
+          ...ContentItemMarkdown
         }
         ... on ContentItemBox {
-          id
-          title
-          markdown
-          parsedMarkdown
-          canCopy
+          ...ContentItemBox
         }
         ... on ContentItemButton {
           ...ContentItemButton
         }
         ... on ContentItemImage {
-          id
-          image {
-            id
-            uri
-          }
+          ...ContentItemImage
         }
         ... on ContentItemForm {
           ...ContentItemForm
