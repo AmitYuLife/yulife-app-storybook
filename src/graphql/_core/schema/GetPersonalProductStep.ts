@@ -271,6 +271,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemB
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
@@ -720,6 +721,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemC
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button {
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
@@ -974,6 +976,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button {
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
@@ -1097,6 +1100,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemR
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton {
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
@@ -1288,6 +1292,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemM
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons {
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
@@ -1456,6 +1461,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemA
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button {
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
@@ -1717,6 +1723,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
@@ -1759,6 +1766,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons {
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
@@ -1808,6 +1816,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons {
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
@@ -2228,6 +2237,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button {
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
@@ -2326,6 +2336,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button {
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;

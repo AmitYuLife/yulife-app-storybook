@@ -3,7 +3,13 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { SduiActionType, ContentItemImageSize, ContentItemFormTextInputType } from "./globalTypes";
+import {
+  SduiActionType,
+  ContentItemImageSize,
+  ContentItemButtonType,
+  ContentItemButtonSize,
+  ContentItemFormTextInputType,
+} from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetPerkSubscriptionInfo
@@ -79,17 +85,48 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
   canCopy: boolean | null;
 }
 
+export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_icon {
   id: string;
   uri: string | null;
 }
 
+export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_styles {
+  property: string;
+  value: string;
+}
+
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
-  uri: string | null;
+  buttonType: ContentItemButtonType | null;
+  value: string | null;
+  disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
+  onPress: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_onPress | null;
+  event: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_event | null;
   icon: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_icon | null;
+  rightIcon: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_rightIcon | null;
+  styles: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_styles[] | null;
+  buttonSize: ContentItemButtonSize | null;
 }
 
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemForm_elements_ContentItemFormTextInput_icon {

@@ -85,7 +85,7 @@ const getItemContent = (itemContent: ItemContent, itemId: string, itemTitle: str
 };
 
 const onButtonPress = async (itemContent: ItemContentButton, itemTitle: string, itemId: string) => {
-  const { uri, label } = itemContent;
+  const { contentItemButtonUri: uri, label } = itemContent;
   const metaData = { id: itemId, title: itemTitle };
 
   try {

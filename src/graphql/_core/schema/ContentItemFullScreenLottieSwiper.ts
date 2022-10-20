@@ -43,6 +43,7 @@ export interface ContentItemFullScreenLottieSwiper_button_styles {
 
 export interface ContentItemFullScreenLottieSwiper_button {
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;

@@ -247,6 +247,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
 
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button {
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
@@ -519,6 +520,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
@@ -607,6 +609,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
 
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerButton {
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;

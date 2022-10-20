@@ -1,4 +1,5 @@
 import {
+  GQL_FRAGMENT_CONTENT_ITEM_BUTTON,
   GQL_FRAGMENT_CONTENT_ITEM_FORM,
   GQL_FRAGMENT_CONTENT_ITEM_IMAGE,
   GQL_FRAGMENT_CONTENT_ITEM_TEXT,
@@ -9,6 +10,7 @@ export const GQL_QUERY_GET_PERK_SUBSCRIPTION_INFO = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_IMAGE}
   ${GQL_FRAGMENT_CONTENT_ITEM_TEXT}
   ${GQL_FRAGMENT_CONTENT_ITEM_FORM}
+  ${GQL_FRAGMENT_CONTENT_ITEM_BUTTON}
 
   query GetPerkSubscriptionInfo($perkId: ID!) {
     getPerkSubscriptionInfo(perkId: $perkId) {
@@ -34,13 +36,7 @@ export const GQL_QUERY_GET_PERK_SUBSCRIPTION_INFO = gql`
           canCopy
         }
         ... on ContentItemButton {
-          id
-          label
-          uri
-          icon {
-            id
-            uri
-          }
+          ...ContentItemButton
         }
         ... on ContentItemImage {
           id

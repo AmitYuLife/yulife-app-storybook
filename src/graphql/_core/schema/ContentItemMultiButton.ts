@@ -36,6 +36,7 @@ export interface ContentItemMultiButton_buttons_styles {
 
 export interface ContentItemMultiButton_buttons {
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
