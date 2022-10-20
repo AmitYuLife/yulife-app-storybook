@@ -17,17 +17,17 @@ import { Navigation } from "react-native-navigation";
 type LevelButtonState =
   | "Completed"
   | "Available"
-  | "ChestAvailable"
+  | "UnityAvailable"
   | "TimeGated"
   | "HardTimeGated"
-  | "ChestLocked"
+  | "UnityLocked"
   | "Locked";
 
 const getLevelButtonState = (
   challengesStatus: ITodayChallengesStatus,
   yuniversalLevel: number,
   level: number,
-  hasChest: boolean
+  isLast: boolean
 ): LevelButtonState => {
   if (level < yuniversalLevel - 1) {
     return "Completed";
@@ -35,8 +35,8 @@ const getLevelButtonState = (
 
   if (level === yuniversalLevel - 1) {
     if (challengesStatus.hasDone && challengesStatus.isAvailable) {
-      if (hasChest) {
-        return "ChestAvailable";
+      if (isLast) {
+        return "UnityAvailable";
       }
 
       return "Available";
@@ -46,8 +46,8 @@ const getLevelButtonState = (
   }
 
   if (level > yuniversalLevel) {
-    if (hasChest) {
-      return "ChestLocked";
+    if (isLast) {
+      return "UnityLocked";
     }
 
     return "Locked";
@@ -61,8 +61,8 @@ const getLevelButtonState = (
     return "HardTimeGated";
   }
 
-  if (hasChest) {
-    return "ChestAvailable";
+  if (isLast) {
+    return "UnityAvailable";
   }
 
   return "Available";
@@ -137,9 +137,10 @@ const getLevelProps = (
   nextLevelAvailableAt: string,
   currentLevel: number,
   avatar: { uri: string },
-  submitUnity: (levelId: string) => void
+  submitUnity: (levelId: string) => void,
+  isLast: boolean
 ): ILevelProps => {
-  const levelButtonState = getLevelButtonState(challengesStatus, yuniversalLevel, level.level, !!level.levelChest);
+  const levelButtonState = getLevelButtonState(challengesStatus, yuniversalLevel, level.level, isLast);
 
   const levelSlot = slots.find((slot) => slot.level === level.level);
 
@@ -172,7 +173,7 @@ const getLevelProps = (
         isActive: true,
         onPress: () => goToChallengesList(componentId, level.level, levelSlot.name, yuniversalMap),
       };
-    case "ChestAvailable":
+    case "UnityAvailable":
       return {
         ...commonProps,
         ...slotColours.active,
@@ -222,7 +223,7 @@ const getLevelProps = (
         nextLevelAvailableAt,
         onPress: () => showChallengeUnavailableModal(nextLevelAvailableAt, true),
       };
-    case "ChestLocked":
+    case "UnityLocked":
       return {
         ...commonProps,
         ...slotColours.chestLocked,
@@ -254,7 +255,7 @@ export const getLevelsProps = (
   avatar: { uri: string },
   submitUnity: (levelId: string) => void
 ): ILevelProps[] =>
-  levelList.reduce((acc, level) => {
+  levelList.reduce((acc, level, index) => {
     const levelProps = getLevelProps(
       componentId,
       challengesStatus,
@@ -264,7 +265,8 @@ export const getLevelsProps = (
       nextLevelAvailableAt,
       currentLevel,
       avatar,
-      submitUnity
+      submitUnity,
+      index === levelList.length - 1
     );
     if (levelProps) {
       acc.push(levelProps);
