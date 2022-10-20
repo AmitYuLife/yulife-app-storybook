@@ -106,6 +106,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
           passProps: {
             createChallenge,
             levelSlotId: slot.id,
+            fitKitTypes: slot.fitKitTypes,
             ...internalContent,
             tutorialUrl: slot.details.tutorialUrl,
           },
@@ -147,6 +148,8 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
                       return;
                     }
 
+                    setSlot(levelSlot);
+
                     // Check for isAuthorised only for samsung, for other devices the default will be true so the switchToGoogleFit modal will not be shown
                     let activityFromGoogleFitAuthorised;
                     let samsungHealthStepsAuthorised;
@@ -162,10 +165,13 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
                     }
 
                     // TODO: show this popup for other devices if not authorised for the challenges that user select to start
-                    const isOtherTypesThenSteps = levelSlot.fitKitTypes.some((type) =>
+                    const isNotStepsAndMediationTypes = levelSlot.fitKitTypes.some((type) =>
                       nonSamsungHealthTypesThatRequirePermissions.includes(type)
                     );
-                    if (!activityFromGoogleFitAuthorised && isOtherTypesThenSteps && isSamsung()) {
+                    const isStepsAndMeditation = levelSlot.fitKitTypes.some((type) =>
+                      samsungHealthAvailablePermissions.includes(type)
+                    );
+                    if (!activityFromGoogleFitAuthorised && isNotStepsAndMediationTypes && isSamsung()) {
                       await showYuModal({
                         component: {
                           id: MODALS.switchToGoogleFit,
@@ -175,7 +181,6 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
                               await authoriseFitKitTypes(levelSlot.fitKitTypes);
                             },
                             onConnected: () => {
-                              setSlot(levelSlot);
                               showOverlay();
                             },
                           },
@@ -186,7 +191,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
 
                     if (
                       isSamsung() &&
-                      levelSlot.fitKitTypes.includes(FitKitType.StepCount) &&
+                      isStepsAndMeditation &&
                       !(samsungHealthStepsAuthorised || activityFromGoogleFitAuthorised)
                     ) {
                       const route = ROUTES.onboardingFitKitConnect;
@@ -199,7 +204,6 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
                             onDismiss: onDismissFitkitConnect,
                             navigateToNext: () => {
                               Navigation.pop(route);
-                              setSlot(levelSlot);
                               showOverlay();
                             },
                           },
@@ -209,7 +213,6 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
                       return;
                     }
 
-                    setSlot(levelSlot);
                     showOverlay();
                   },
                 };
@@ -240,7 +243,6 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
 };
 
 const nonSamsungHealthTypesThatRequirePermissions = [
-  FitKitType.MindfulSession,
   FitKitType.Flexibility,
   FitKitType.HIIT,
   FitKitType.Pilates,
@@ -249,5 +251,7 @@ const nonSamsungHealthTypesThatRequirePermissions = [
   FitKitType.Swimming,
   FitKitType.Yoga,
 ];
+
+const samsungHealthAvailablePermissions = [FitKitType.StepCount, FitKitType.MindfulSession];
 
 export default memo(ChallengesListContainer);
