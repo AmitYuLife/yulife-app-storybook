@@ -24,6 +24,10 @@ export function getCurrentYuniverse(currentLevel: number) {
   return Math.floor((currentLevel - 1) / 200);
 }
 
+export function getCurrentPlanet(currentLevel: number) {
+  return Math.ceil(currentLevel / 200);
+}
+
 export function getNormalizedLevel(level: number) {
   return (Math.floor(level - 1) % 200) + 1;
 }
@@ -145,7 +149,9 @@ export const getCurrentPlanetByLevel = (currentLevel: number) => {
     return Planets.EARTH;
   }
 
-  if (currentLevel > 200 && currentLevel < 401) {
+  // until we define other planets it's better to
+  // serve same assets than nothing and break the app
+  if (currentLevel > 200) {
     return Planets.RED;
   }
 };

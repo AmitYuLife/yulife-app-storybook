@@ -13,6 +13,7 @@ import { Style } from "@styles";
 import { t } from "@locale";
 import { SPACE_TRAVEL_ANIMATION_DURATION } from "./eotw-planet-animation-config";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { getCurrentPlanet } from "@utils";
 
 interface IProps {
   chestType: ChestType;
@@ -35,6 +36,7 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, leve
   const [page, setPage] = useState(EOTW_CHEST_PAGE.CHEST);
   const [beginningButton, setBeginningButton] = useState(false);
   const dispatch = useDispatch();
+  const currentPlanet = getCurrentPlanet(level);
 
   const travelRef = useRef<LottieView>(null);
 
@@ -131,7 +133,7 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, leve
       {page !== EOTW_CHEST_PAGE.SPACE_TRAVEL ? null : (
         <View style={styles.spaceTravelPage}>
           <EOTWSpaceTravel
-            currentPlanet={2}
+            currentPlanet={currentPlanet}
             width={Style.DEVICE_WIDTH - 50}
             height={Style.DEVICE_HEIGHT - 50}
             avatar={avatar}
