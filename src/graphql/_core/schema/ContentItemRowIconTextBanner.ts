@@ -51,6 +51,7 @@ export interface ContentItemRowIconTextBanner_bannerButton_styles {
 
 export interface ContentItemRowIconTextBanner_bannerButton {
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;

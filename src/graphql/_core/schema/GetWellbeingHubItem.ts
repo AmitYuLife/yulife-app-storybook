@@ -3,7 +3,13 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { OS, ContentItemFormTextInputType } from "./globalTypes";
+import {
+  OS,
+  ContentItemButtonType,
+  SduiActionType,
+  ContentItemButtonSize,
+  ContentItemFormTextInputType,
+} from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetWellbeingHubItem
@@ -53,17 +59,48 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemBox {
   canCopy: boolean | null;
 }
 
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_icon {
   id: string;
   uri: string | null;
 }
 
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_styles {
+  property: string;
+  value: string;
+}
+
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
-  uri: string | null;
+  buttonType: ContentItemButtonType | null;
+  value: string | null;
+  disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
+  onPress: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_onPress | null;
+  event: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_event | null;
   icon: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_icon | null;
+  rightIcon: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_rightIcon | null;
+  styles: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_styles[] | null;
+  buttonSize: ContentItemButtonSize | null;
 }
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemImage_image {

@@ -7,6 +7,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_BUTTON = gql`
 
   fragment ContentItemButton on ContentItemButton {
     id
+    contentItemButtonUri: uri
     label
     buttonType: type
     value

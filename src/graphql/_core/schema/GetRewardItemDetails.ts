@@ -3,7 +3,12 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ContentItemFormTextInputType } from "./globalTypes";
+import {
+  ContentItemButtonType,
+  SduiActionType,
+  ContentItemButtonSize,
+  ContentItemFormTextInputType,
+} from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetRewardItemDetails
@@ -57,17 +62,48 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemBo
   canCopy: boolean | null;
 }
 
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_icon {
   id: string;
   uri: string | null;
 }
 
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_styles {
+  property: string;
+  value: string;
+}
+
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
-  uri: string | null;
+  buttonType: ContentItemButtonType | null;
+  value: string | null;
+  disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
+  onPress: GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_onPress | null;
+  event: GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_event | null;
   icon: GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_icon | null;
+  rightIcon: GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_rightIcon | null;
+  styles: GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_styles[] | null;
+  buttonSize: ContentItemButtonSize | null;
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemImage_image {

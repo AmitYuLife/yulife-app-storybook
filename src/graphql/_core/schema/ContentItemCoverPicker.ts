@@ -64,6 +64,7 @@ export interface ContentItemCoverPicker_customCover_button_styles {
 
 export interface ContentItemCoverPicker_customCover_button {
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;

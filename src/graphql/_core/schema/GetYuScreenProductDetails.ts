@@ -137,6 +137,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
@@ -214,6 +215,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_bannerButton {
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
@@ -435,6 +437,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_Cont
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;

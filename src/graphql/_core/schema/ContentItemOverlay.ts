@@ -36,6 +36,7 @@ export interface ContentItemOverlay_buttons_styles {
 
 export interface ContentItemOverlay_buttons {
   id: string;
+  contentItemButtonUri: string | null;
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
