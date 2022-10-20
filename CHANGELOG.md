@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.53.0] - 2022-10-20
+
+### Bugfixes
+
+- Bugfix: Space travel chests and animations past 400
+- Bugfix GS-464: Add border radius to level icon
+- Bugfix: Lottie resize mode
+- Bugfix GS-497: Implement forest failed screen
+- Bugfix XSE-1382: Balance YuCoin explained spacing
+- Bugfix: Medipotia tracking
+
+### Tasks
+
+- Task GS: Replace yuniversal chests with unity
+- Task: Create yuniversity quiz container
+- Task: Yuniversity data from db
+- Task GS-481: Celestial unity
+- Task GS-463: 7 Stages In Space Idle Animation
+- Task GS-434: Yuniverse Today Screen Idle Animation
+- Task: Yuniversity chapter media
+- Task: Route navigation for wellbeing hub
+
+### Chores
+
+- Chore: Add ContentItemForm fragment
+- Chore: Add missing gql fragments
+- Chore: Distribute GQL fragments into files
+- Chore: Clean up YuCoin power explained styles
+- Chore: Initialise distribution of gql fragments into files
+- Chore: Add pre-commit check for redux migrations if changes has been made to reducers
+
+### Extra
+
+- Detox/extended 1 fixes 18 10
+- Detox/fixes pli
+- Hotfix: replace Lulu with Athleta
+- Detox/fixes extended 1 17 10
+- Detox/fixes pli 17 10
+- Purge: getYulifer
+
 ## [3.52.0] - 2022-10-12
 
 ### Bugfixes
