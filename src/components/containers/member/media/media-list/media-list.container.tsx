@@ -1,4 +1,5 @@
 import React, { useCallback, memo, useMemo, useState } from "react";
+import { Platform } from "react-native";
 import { useQuery } from "@apollo/client";
 import { Navigation } from "react-native-navigation";
 import { MediaListScreen } from "@components/screens";
@@ -9,22 +10,28 @@ import {
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent as IInternalContent,
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
 } from "@graphql/_core/schema";
-import { ROUTES } from "@navigation/constants";
+import { MODALS, ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { useDispatch } from "react-redux";
 import { updateChallengeAppButton } from "@redux/levels/levels.actions";
 import { t } from "@locale";
 import { useBackHandler } from "@hooks";
+import RNFitKit from "@yu-life/react-native-fitkit";
+import { showYuModal } from "@navigation/root";
+import { useFitKit } from "@services/fitkit/fitkit.hooks";
+import { FitKitType } from "@graphql/_core/schema/globalTypes";
 interface IProps extends IInternalContent {
   componentId: string;
   createChallenge: (hideExternalLinks?: boolean) => void;
   levelSlotId: string;
+  fitKitTypes: FitKitType[];
   tutorialUrl: string;
 }
 
 const MediaListContainer = ({
   createChallenge,
   levelSlotId,
+  fitKitTypes,
   contentMediaTags,
   title,
   description,
@@ -33,6 +40,7 @@ const MediaListContainer = ({
   tutorialUrl,
 }: IProps) => {
   const [otherAppLoading, setOtherAppLoading] = useState("");
+  const { authoriseFitKitTypes } = useFitKit();
   const dispatch = useDispatch();
   const { data, loading } = useQuery<GetQuestMapLevelChallengeContent, GetQuestMapLevelChallengeContentVariables>(
     GQL_QUERY_GET_QUEST_MAP_CHALLENGE_CONTENT,
@@ -54,6 +62,25 @@ const MediaListContainer = ({
   });
 
   const handleOtherMeditationApp = useCallback(async (appName: string, button?: IButton) => {
+    const activityFromGoogleFitAuthorised = await RNFitKit.isAuthorised({
+      read: [],
+      platform: "GoogleFit",
+    });
+
+    if (!activityFromGoogleFitAuthorised && Platform.OS === "android") {
+      return await showYuModal({
+        component: {
+          id: MODALS.switchToGoogleFit,
+          name: MODALS.switchToGoogleFit,
+          passProps: {
+            onConnect: async () => {
+              await authoriseFitKitTypes(fitKitTypes);
+            },
+          },
+        },
+      });
+    }
+
     if (!appName) {
       return;
     }
