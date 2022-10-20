@@ -141,10 +141,22 @@ const updateInAppMeditation = (state: IDailyMeditationStore, inAppDailyMeditatio
     return state;
   }
 
+  const lastUpdated = moment(state.inAppMeditationLastUpdated).startOf("day").format();
+  const today = moment().startOf("day").format();
+  const inAppMeditationLastUpdated = moment().format();
+
+  if (lastUpdated !== today) {
+    return {
+      ...state,
+      inAppDailyMeditation,
+      inAppMeditationLastUpdated,
+    };
+  }
+
   return {
     ...state,
     inAppDailyMeditation: state.inAppDailyMeditation + inAppDailyMeditation,
-    inAppMeditationLastUpdated: moment().format(),
+    inAppMeditationLastUpdated: inAppMeditationLastUpdated,
   };
 };
 
