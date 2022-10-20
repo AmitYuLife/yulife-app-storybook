@@ -59,7 +59,7 @@ const EOTWPlanet: FC<IPlanetProps> = memo(({ position: { bottom, left }, icon, s
     yumojiScale: new Animated.Value(state === PLANET_STATE.PREVIOUS ? 1 : 0),
     starOpacity: new Animated.Value(0),
     spinningAnimationScale: new Animated.Value(state === PLANET_STATE.CURRENT ? 1 : 0.1),
-    planetScale: new Animated.Value(state === PLANET_STATE.PREVIOUS ? 1 : 0.1),
+    planetScale: new Animated.Value(state === PLANET_STATE.PREVIOUS || state === PLANET_STATE.PASSED ? 1 : 0.1),
     unrevealedPlanetOpacity: new Animated.Value(1),
   });
 
