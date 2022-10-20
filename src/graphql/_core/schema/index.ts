@@ -15,6 +15,7 @@ export * from "./ContentItemAgePercentCoverPickerAgeOption";
 export * from "./ContentItemAgePercentCoverPickerPercentOption";
 export * from "./ContentItemAnswerKeys";
 export * from "./ContentItemBeneficiariesSection";
+export * from "./ContentItemBox";
 export * from "./ContentItemButton";
 export * from "./ContentItemCollapsingGenericHeader";
 export * from "./ContentItemCollapsingHeaderAgePercentProductInfo";
