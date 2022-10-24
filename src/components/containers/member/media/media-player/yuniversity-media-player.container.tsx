@@ -17,16 +17,12 @@ interface IProps {
   onEnd: () => void;
 }
 
-const YuniversityMediaPlayerContainer = ({ componentId, video, moduleId, chapterId, onEnd }: IProps) => {
+const YuniversityMediaPlayerContainer = ({ video, moduleId, chapterId, onEnd }: IProps) => {
   const [completeChapter]: CompleteYuniversityModuleChapterTuple = useMutation(
     GQL_MUTATION_COMPLETE_IN_APP_YUNIVERSITY_MODULE_CHAPTER
   );
 
-  const onStart = useCallback(async () => {
-    /* do something*/
-  }, []);
-
-  const endChallenge = useCallback(async () => {
+  const onChapterEnd = useCallback(async () => {
     await completeChapter({
       variables: { moduleId, chapterId },
     });
@@ -37,19 +33,10 @@ const YuniversityMediaPlayerContainer = ({ componentId, video, moduleId, chapter
   const onError = useCallback(() => {
     /* do something*/
   }, []);
-  const onLeftIconPress = useCallback(() => Navigation.popTo(ROUTES.courseDetails), [componentId]);
-  const onRightIconPress = useCallback(() => Navigation.popTo(ROUTES.courseDetails), [componentId]);
+  const onClose = useCallback(() => Navigation.popTo(ROUTES.courseDetails), []);
 
   return (
-    <YuniversityMediaPlayerScreen
-      onStart={onStart}
-      onEnd={endChallenge}
-      onError={onError}
-      video={video}
-      onLeftIconPress={onLeftIconPress}
-      onRightIconPress={onRightIconPress}
-      startErrorMessage={""}
-    />
+    <YuniversityMediaPlayerScreen onEnd={onChapterEnd} onError={onError} video={video} onLeftIconPress={onClose} />
   );
 };
 
