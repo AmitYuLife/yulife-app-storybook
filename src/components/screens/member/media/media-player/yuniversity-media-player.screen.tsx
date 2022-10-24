@@ -1,48 +1,21 @@
-import React, { memo, useCallback } from "react";
-import { VideoPlayer } from "@organisms";
+import React, { memo } from "react";
 import { Media } from "@graphql/_core/schema";
+import VideoPlayer from "react-native-video-controls";
 
 interface IProps {
   video: Media;
   onLeftIconPress: () => void;
-  onRightIconPress: () => void;
-  onStart: () => void;
   onEnd: () => void;
   onError: () => void;
-  startErrorMessage?: string;
 }
 
-const YuniversityMediaPlayerScreen = ({
-  video,
-  onLeftIconPress,
-  onRightIconPress,
-  onStart,
-  onEnd,
-  onError,
-  startErrorMessage,
-}: IProps) => {
-  const onStartMedia = useCallback(async () => {
-    await onStart();
-  }, [onStart]);
-
+const YuniversityMediaPlayerScreen = ({ video, onLeftIconPress, onEnd }: IProps) => {
   return (
     <VideoPlayer
-      source={video.media.uri}
-      poster={video.cover.uri}
-      title={video.title}
-      thumbnail={video.thumbnail.uri}
-      description={video.description}
-      shortDescription={video.shortDescription}
-      theme={video.theme as "light" | "dark"}
-      onLeftIconPress={onLeftIconPress}
-      onRightIconPress={onRightIconPress}
-      onStart={onStartMedia}
+      source={{ uri: video.media.uri }}
+      onBack={onLeftIconPress}
       onEnd={onEnd}
-      onError={onError}
-      startErrorMessage={startErrorMessage}
-      eventType=""
-      showTimer={false}
-      videoSourceType={video.sourceType}
+      // videoSourceType={video.sourceType}
     />
   );
 };
