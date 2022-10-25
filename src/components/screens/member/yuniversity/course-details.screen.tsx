@@ -1,10 +1,13 @@
 import React, { memo, useCallback } from "react";
-import { ChapterContentItem, GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { Colours, Style } from "@styles";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
+import { Navigation } from "react-native-navigation";
+import { MODALS, ROUTES } from "@navigation/constants";
+import { Colours, Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
-import Markdown from "@components/molecules/markdown/markdown";
-import { Module, YuniversityModuleReward } from "@components/molecules";
+import { Module, YuniversityModuleReward } from "@molecules";
+import { ChapterContentItem, GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import Markdown from "@molecules/markdown/markdown";
+import { CoverType } from "@graphql/_core/schema/globalTypes";
 import {
   GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails as IGqlCourseModuleDetails,
   GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_chapters_videoMedia as IGqlMedia,
@@ -21,15 +24,44 @@ const CourseDetailsScreen = ({
   onClose,
   onChapterPress,
   startQuiz,
-  moduleDetails: { image, title, tags, markdown, chapters, moduleQuiz, moduleNotes, moduleCertificate },
+  moduleDetails: {
+    image,
+    title,
+    tags,
+    markdown,
+    chapters,
+    moduleQuiz,
+    moduleNotes,
+    moduleCertificate,
+    moduleCertificateDetails,
+  },
 }: ICourseModuleDetailsProps) => {
   const downloadNotes = useCallback(() => {
     /*do something*/
   }, []);
 
   const openCertificate = useCallback(() => {
-    /*do something*/
-  }, []);
+    const { subtitle, description, values } = moduleCertificateDetails;
+    Navigation.push(ROUTES.courseDetails, {
+      component: {
+        id: MODALS.policyCertificate,
+        name: MODALS.policyCertificate,
+        passProps: {
+          coverType: CoverType.rare,
+          keyValuePairs: values,
+          content: [
+            {
+              type: "body",
+              content: description,
+            },
+          ],
+          title: moduleCertificateDetails.title,
+          subtitle,
+          imageUri: moduleCertificateDetails.image.uri,
+        },
+      },
+    });
+  }, [moduleCertificateDetails]);
 
   return (
     <View style={styles.wrapper}>

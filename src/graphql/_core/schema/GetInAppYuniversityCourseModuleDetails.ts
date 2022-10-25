@@ -115,6 +115,24 @@ export interface GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCours
   ctaEnabled: boolean | null;
 }
 
+export interface GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_moduleCertificateDetails_values {
+  label: string;
+  value: string;
+}
+
+export interface GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_moduleCertificateDetails_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_moduleCertificateDetails {
+  title: string;
+  subtitle: string;
+  description: string;
+  values: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_moduleCertificateDetails_values[];
+  image: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_moduleCertificateDetails_image;
+}
+
 export interface GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails {
   id: string;
   image: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_image;
@@ -125,6 +143,7 @@ export interface GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCours
   moduleNotes: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_moduleNotes | null;
   moduleQuiz: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_moduleQuiz | null;
   moduleCertificate: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_moduleCertificate | null;
+  moduleCertificateDetails: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_moduleCertificateDetails | null;
   completed: boolean | null;
 }
 

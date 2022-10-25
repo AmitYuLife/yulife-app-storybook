@@ -6,10 +6,11 @@ import { CoverType } from "@graphql/_core/schema/globalTypes";
 
 interface Props {
   title: string;
+  subtitle?: string;
   coverType: CoverType;
 }
 
-export const ContentHead = ({ title, coverType }: Props) => {
+export const ContentHead = ({ title, subtitle, coverType }: Props) => {
   const { certificateBackground, certificatePrimary } = mapCoverToColor(coverType);
   return (
     <View style={styles.wrapper}>
@@ -18,6 +19,11 @@ export const ContentHead = ({ title, coverType }: Props) => {
         <TextTemplate textAlign="center" color={certificatePrimary} type="h3">
           {title}
         </TextTemplate>
+        {!subtitle ? null : (
+          <TextTemplate textAlign="center" color={certificatePrimary} type="b2">
+            {subtitle}
+          </TextTemplate>
+        )}
       </View>
     </View>
   );
