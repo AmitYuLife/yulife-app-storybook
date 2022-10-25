@@ -9,7 +9,7 @@ import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalP
 import { YuWorld } from "@graphql/_core/schema/globalTypes";
 import { ProductStepContext } from "../product-step.context";
 import { mapServerStyles } from "@components/sdui";
-import { PACKAGE_INFO } from "@ids";
+import { PACKAGE_INFO, YULIFE_BUPA_LOGO } from "@ids";
 
 export const ProductStepProductInfo = memo((props: Props) => {
   const { customerProductId, setDynamicData } = useContext(ProductStepContext);
@@ -55,6 +55,7 @@ export const ProductStepProductInfo = memo((props: Props) => {
               width={Style.DEVICE_WIDTH - Style.adjust(200)}
               theme="light"
               style={styles.icon}
+              testID={YULIFE_BUPA_LOGO}
             />
           )}
         </View>

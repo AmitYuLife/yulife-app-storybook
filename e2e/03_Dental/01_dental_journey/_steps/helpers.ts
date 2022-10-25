@@ -2,7 +2,7 @@ import { When, Then } from "@yu-life/yulife-bdd-framework";
 import * as when from "./when"
 import * as then from "./then"
 import { CUSTOMER_37, AUTH_37 } from "@data";
-import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, YUCOIN_POWER, TEXT_TEMPLATE, COVER_TYPE, BUTTON_CLOSE_CHALLENGE, BACK_BUTTON, PACKAGE_INFO, BUTTON_CLOSE, DENTAL_TOOLTIP_INFO, YUCOIN_POWER_TEXT } from "@ids";
+import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, YUCOIN_POWER, TEXT_TEMPLATE, COVER_TYPE, BUTTON_CLOSE_CHALLENGE, BACK_BUTTON, PACKAGE_INFO, BUTTON_CLOSE, DENTAL_TOOLTIP_INFO, YUCOIN_POWER_TEXT, YULIFE_BUPA_LOGO } from "@ids";
 import moment from "moment"
 import { calculateStartDate } from "./dates"
 
@@ -22,6 +22,8 @@ export const ONBOARDING = async () => {
             When("I tap on the right part of the screen", when.navigateThroughTheFullSwiper, async () => {
                 When("I tap on explore now", when.dismissDentalModal, async () => {
                     Then("I should see the intro screen", then.textVisible("Bupa Dental Plan for YuLife"));
+                    Then("I should see Protecting you in the Yuniverse and beyond", then.textVisible("Protecting you in the Yuniverse and beyond"));
+                    Then("I should see Yulife Bupa Logo", then.idVisible(YULIFE_BUPA_LOGO));
                 })
             })
         })
@@ -134,6 +136,7 @@ export const PLANS = async () => {
     })
 
     When("I tap Continue", when.tapText("Continue"), async () => {
+        Then("I should see Yulife Bupa Logo", then.idVisible(YULIFE_BUPA_LOGO));
         Then("I should be on the Summary page", then.isOnScreen("Summary"))
         Then("I should see Epic", then.idVisible(COVER_TYPE("epic")))
         Then("I should see £27.99 / month", then.textVisible("£27.99 / month"))

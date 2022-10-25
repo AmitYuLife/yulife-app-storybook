@@ -1,5 +1,5 @@
 import { navigation } from "@utils"
-import { DATE_INPUT, PERCENTAGE_COVERED, REFERRALS_INVITE_BUTTON, PRODUCT_STEP_BODY_SCROLL_VIEW } from "@ids"
+import { DATE_INPUT, PERCENTAGE_COVERED, REFERRALS_INVITE_BUTTON, PRODUCT_STEP_BODY_SCROLL_VIEW, YULIFE_BUPA_LOGO } from "@ids"
 import { screens } from "@appScreens"
 import { scrollUntilTextVisible, swipeFromText } from "_utils/navigation/scrolling"
 import moment from "moment"
@@ -75,6 +75,7 @@ export const packageVisible = (packageType: any) => async () => {
 
     switch (packageType) {
         case "Common":
+            await expect(element(by.id(YULIFE_BUPA_LOGO))).toBeVisible()
             await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW,"Restorative treatment", "down")()
             await multipleTextVisible(preventitiveTreatment)
             await expect(element(by.text("up to £205"))).toBeVisible()
@@ -100,6 +101,7 @@ export const packageVisible = (packageType: any) => async () => {
             await expect(element(by.text("Conditions apply"))).toBeVisible()
             break;
         case "Rare":
+            await expect(element(by.id(YULIFE_BUPA_LOGO))).toBeVisible()
             await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW,"Restorative treatment", "down")()
             await multipleTextVisible(preventitiveTreatment)
             await expect(element(by.text("up to £255"))).toBeVisible()
@@ -125,6 +127,7 @@ export const packageVisible = (packageType: any) => async () => {
             await expect(element(by.text("Conditions apply"))).toBeVisible()
             break;
         case "Epic":
+            await expect(element(by.id(YULIFE_BUPA_LOGO))).toBeVisible()
             await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW,"Restorative treatment", "down")()
             await multipleTextVisible(preventitiveTreatment)
             await expect(element(by.text("up to £385"))).toBeVisible()
@@ -172,6 +175,7 @@ export const dentalProductInfo = (packageType: string, membershipEnding: string)
     await expect(element(by.text(packageType))).toBeVisible()
     await expect(element(by.text(name))).toBeVisible();
     await expect(element(by.text(membershipNumber))).toBeVisible();
+    await expect(element(by.id(YULIFE_BUPA_LOGO))).toBeVisible()
     await swipeFromText(membershipNumber, "up", "fast")()
     await expect(element(by.text(coverFor))).toBeVisible();
     await expect(element(by.text(bupaClaim))).toBeVisible();

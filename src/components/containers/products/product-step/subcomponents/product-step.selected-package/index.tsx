@@ -8,6 +8,7 @@ import styles from "./product-step.selected-package.styles";
 import { RightSide } from "./subcomponents/right-side";
 import { Price } from "./subcomponents/price";
 import { Title } from "./subcomponents/title";
+import { YULIFE_BUPA_LOGO } from "@ids";
 
 type Props = Omit<GqlProps, "previousPrice" | "backgroundUrl">;
 
@@ -23,11 +24,12 @@ export const ProductStepSelectedPackageCard = memo((props: Props) => {
     return [styles.wrapper, backgroundColor];
   }, [coverType]);
 
+  console.log("url2", providerLogo.url);
   return (
     <View style={wrapperStyle}>
       <View style={styles.inner}>
         <View style={styles.leftSide}>
-          <Image source={providerLogo.url} width={providerLogo.width} />
+          <Image source={providerLogo.url} width={providerLogo.width} testID={YULIFE_BUPA_LOGO} />
           <Title title={slotInfo.name} />
           <Price price={price} priceDescription={priceDescription} />
         </View>
