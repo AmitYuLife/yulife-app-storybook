@@ -325,6 +325,7 @@ export const YUMOJI_OUTFIT_RADIO = (title: string) => `YUMOJI_OUTFIT_RADIO${titl
 export const YUMOJI_OUTFIT_LABEL = (title: string) => `YUMOJI_OUTFIT_LABEL${title}`
 export const DENTAL_TOOLTIP_INFO = "DENTAL_TOOLTIP_INFO"
 export const POPOVER = "POPOVER"
+export const YULIFE_BUPA_LOGO = "YULIFE_BUPA_LOGO"
 
 // MEDITOPIA
 export const MEDITOPIA_LOGO = "MEDITOPIA_LOGO";
