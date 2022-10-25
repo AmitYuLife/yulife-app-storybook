@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useCallback, ComponentProps } from "react";
-import { StyleSheet, View, ViewStyle, Animated, ScrollView, Platform } from "react-native";
+import { StyleSheet, View, ViewStyle, Animated, ScrollView, Platform, ImageStyle } from "react-native";
 import { Style } from "@styles";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
@@ -9,7 +9,7 @@ import { useBackHandler } from "@hooks";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { CertificateLayout } from "./subcomponents/certificate/certificate-layout";
 import { ContentKeyValues } from "./subcomponents/certificate/content-key-values";
-import { ProductColorTheme } from "@atoms";
+import { Image, ProductColorTheme } from "@atoms";
 import { ContentBody } from "./subcomponents/certificate/content-body";
 import { ContentHead } from "./subcomponents/certificate/content-head";
 import media from "@styles/media";
@@ -24,11 +24,21 @@ interface ProductDetailsModalProps {
   keyValuePairs: Pair[];
   content: ComponentProps<typeof ContentBody>["items"];
   title: string;
+  subtitle?: string;
+  imageUri?: string;
   disclaimer?: string;
 }
 
 const ProductDetailsModal = (props: ProductDetailsModalProps) => {
-  const { coverType = CoverType.common, keyValuePairs = [], content = [], title = "", disclaimer = null } = props;
+  const {
+    coverType = CoverType.common,
+    keyValuePairs = [],
+    content = [],
+    title = "",
+    subtitle,
+    imageUri,
+    disclaimer = null,
+  } = props;
 
   const translateY = useRef(new Animated.Value(Style.DEVICE_HEIGHT)).current;
 
@@ -51,11 +61,19 @@ const ProductDetailsModal = (props: ProductDetailsModalProps) => {
     <GenericOverlay onClose={dismissOverlay}>
       <ScrollView style={styles.wrapper} contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
         <CertificateLayout coverType={coverType}>
-          <ContentHead title={title} coverType={coverType} />
+          <ContentHead title={title} subtitle={subtitle} coverType={coverType} />
           <ProductColorTheme.Separator coverType={coverType} />
           <ContentBody items={content} />
           <ProductColorTheme.Separator coverType={coverType} />
           <ContentKeyValues pairs={keyValuePairs} />
+          {!imageUri ? null : (
+            <Image
+              style={styles.image}
+              height={Style.adjust(84)}
+              width={Style.adjust(132)}
+              source={{ uri: imageUri }}
+            />
+          )}
         </CertificateLayout>
         {!disclaimer ? null : <GroupProductDisclaimer text={disclaimer} containerStyle={styles.disclaimer} />}
         <View style={styles.bottomPad} />
@@ -84,6 +102,13 @@ const styles = StyleSheet.create({
   bottomPad: {
     height: BOTTOM_PADDING,
   } as ViewStyle,
+  image: {
+    width: Style.adjust(132),
+    height: Style.adjust(84),
+    marginTop: Style.adjust(-40),
+    marginBottom: Style.adjust(80),
+    marginLeft: Style.adjust(19),
+  } as ImageStyle,
   disclaimer: {
     marginTop: Style.adjust(16),
   },

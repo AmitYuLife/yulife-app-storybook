@@ -88,6 +88,19 @@ export const GQL_QUERY_GET_YUNIVERSITY_COURSE_MODULE_DETAILS = gql`
         ctaLabel
         ctaEnabled
       }
+      moduleCertificateDetails {
+        title
+        subtitle
+        description
+        values {
+          label
+          value
+        }
+        image {
+          id
+          uri
+        }
+      }
       completed
     }
   }
