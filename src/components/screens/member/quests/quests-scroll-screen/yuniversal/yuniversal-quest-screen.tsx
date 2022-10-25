@@ -5,9 +5,6 @@ import LottieView from "lottie-react-native";
 import { getChallengesStatus, getCurrentLevel, getNextLevelAvailableAt } from "@redux/levels/levels.selectors";
 import styles from "./yuniversal-quest-screen.styles";
 import { NavBar, TopBar } from "@organisms";
-import { TextTemplate } from "@atoms";
-import { Style } from "@styles";
-import media from "@styles/media";
 import { YuniversalQuestSvg } from "./yuniversal-quest-svg";
 import { LevelBubble } from "./level/level-bubble";
 import { IConnectedScreenProps } from "@app/typings";
@@ -18,7 +15,6 @@ import { getUserAvatar } from "@redux/user/user.selectors";
 import { submitUnityAction } from "@redux/levels/levels.actions";
 
 const BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversal_quest_map_1.json");
-const SHOW_TITLE = Style.DEVICE_HEIGHT >= media.DEVICES.iPhone12.height;
 
 interface IProps extends IConnectedScreenProps {
   componentId: string;
@@ -75,13 +71,6 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
               <LevelBubble {...level} key={level.text} />
             ))}
           </YuniversalQuestSvg>
-        </View>
-      )}
-      {!SHOW_TITLE ? null : (
-        <View style={styles.titleWrapper}>
-          <TextTemplate type="b1" color="white" textAlign="center">
-            The Yuniversal
-          </TextTemplate>
         </View>
       )}
       <View style={styles.topBarWrapper}>

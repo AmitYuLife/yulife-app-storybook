@@ -1,6 +1,6 @@
 import { StyleSheet, ViewStyle, ImageStyle } from "react-native";
 import { Style, Media } from "@styles";
-import { PADDING_TOP, TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
+import { PADDING_TOP } from "@styles/top-bar.styles";
 
 export default StyleSheet.create({
   container: {
@@ -12,12 +12,6 @@ export default StyleSheet.create({
     height: (Style.DEVICE_WIDTH * 812) / 375,
     position: "absolute",
   } as ImageStyle,
-  titleWrapper: {
-    position: "absolute",
-    top: TOP_BAR_WITH_PAD + Style.adjust(30),
-    left: 0,
-    right: 0,
-  } as ViewStyle,
   topBarWrapper: {
     left: 0,
     position: "absolute",
