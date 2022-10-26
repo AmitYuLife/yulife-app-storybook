@@ -1,4 +1,4 @@
-import { CenteredScreenImages } from "@molecules/centred-screen/centred-screen";
+import { CenteredScreenImages } from "@redux/theme/theme.reducer";
 
 export function getStyle(currentWorld: number, yuniversalMap?: number) {
   if (yuniversalMap) {
