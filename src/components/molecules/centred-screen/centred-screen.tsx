@@ -4,6 +4,7 @@ import LottieView from "lottie-react-native";
 import styles from "./centred-screen.styles";
 import { Style } from "@styles";
 import { Image } from "@atoms";
+import { CenteredScreenImages } from "@redux/theme/theme.reducer";
 
 interface Props {
   children?: React.ReactNode;
@@ -12,34 +13,6 @@ interface Props {
   testID?: string;
   BackgroundGradient?: JSX.Element;
 }
-
-export type CenteredScreenImages =
-  | "forest"
-  | "earth_forest"
-  | "gray_forest"
-  | "challenge_success_forest"
-  | "challenge_failed_forest"
-  | "earth_ocean"
-  | "gray_ocean"
-  | "challenge_success_ocean"
-  | "challenge_failed_ocean"
-  | "earth_desert"
-  | "gray_desert"
-  | "challenge_success_desert"
-  | "challenge_failed_desert"
-  | "gray_mountain"
-  | "earth_mountain"
-  | "challenge_mountain"
-  | "new_forest"
-  | "new_ocean"
-  | "new_desert"
-  | "new_mountain"
-  | "yuniversal_1"
-  | "gray_yuniversal_1"
-  | "red_forest"
-  | "red_ocean"
-  | "red_desert"
-  | "red_mountain";
 
 function CentredScreen({ children, footerImage, style, testID, BackgroundGradient = null }: Props) {
   return (

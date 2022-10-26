@@ -2,9 +2,9 @@ import { LevelLine, Stars, Text } from "@atoms";
 import * as React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import styles from "./challenge-failed.screen.styles";
-import { CenteredScreenImages } from "@molecules/centred-screen/centred-screen";
 import { Button, CentredScreen } from "@molecules";
 import { t } from "@locale";
+import { CenteredScreenImages } from "@redux/theme/theme.reducer";
 
 interface IProps {
   level?: number;

@@ -1,14 +1,15 @@
+import { CenteredScreenImages } from "@redux/theme/theme.reducer";
 import { PersistedState } from "redux-persist";
 import { IReduxState } from "../reducers";
 
-const MISSING_CENTER_IMAGES = new Map<string, string>([
+const MISSING_CENTER_IMAGES = new Map<string, CenteredScreenImages>([
   ["large_forest", "earth_forest"],
   ["mountain", "earth_mountain"],
   ["desert", "earth_desert"],
   ["ocean", "earth_ocean"],
 ]);
 
-export default (state: PersistedState & IReduxState) => {
+export default (state: PersistedState & IReduxState): PersistedState & IReduxState => {
   if (MISSING_CENTER_IMAGES.has(state.theme?.dailyStepsScreen?.centredScreen?.online?.image)) {
     const {
       theme: {
@@ -28,7 +29,7 @@ export default (state: PersistedState & IReduxState) => {
       ...stateProps,
       theme: {
         ...themeProps,
-        dailyStepsScreenProps: {
+        dailyStepsScreen: {
           ...dailyStepsScreenProps,
           centredScreen: {
             ...centredScreenProps,

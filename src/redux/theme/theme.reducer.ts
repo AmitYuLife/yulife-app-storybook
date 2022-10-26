@@ -6,9 +6,35 @@ import { getCurrentPlanetByLevel, getCurrentWorld, Planets } from "@utils";
 import { SyncAction } from "../_core/types";
 import { TopBarTypes } from "@organisms/top-bar/top-bar.helpers";
 import { Colours } from "@styles";
-import { CenteredScreenImages } from "@molecules/centred-screen/centred-screen";
 import { CHANGE_PANEL_VISIBILITY } from "./theme.action";
 
+export type CenteredScreenImages =
+  | "forest"
+  | "earth_forest"
+  | "gray_forest"
+  | "challenge_success_forest"
+  | "challenge_failed_forest"
+  | "earth_ocean"
+  | "gray_ocean"
+  | "challenge_success_ocean"
+  | "challenge_failed_ocean"
+  | "earth_desert"
+  | "gray_desert"
+  | "challenge_success_desert"
+  | "challenge_failed_desert"
+  | "gray_mountain"
+  | "earth_mountain"
+  | "challenge_mountain"
+  | "new_forest"
+  | "new_ocean"
+  | "new_desert"
+  | "new_mountain"
+  | "yuniversal_1"
+  | "gray_yuniversal_1"
+  | "red_forest"
+  | "red_ocean"
+  | "red_desert"
+  | "red_mountain";
 export interface ICentredScreen {
   image: CenteredScreenImages;
   style: { backgroundColor: string };

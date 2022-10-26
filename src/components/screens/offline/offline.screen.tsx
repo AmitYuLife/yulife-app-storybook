@@ -4,9 +4,9 @@ import React, { memo } from "react";
 import { View, ViewStyle } from "react-native";
 import styles from "./offline.screen.styles";
 import { getCurrentWorld } from "@utils";
-import { CenteredScreenImages } from "@molecules/centred-screen/centred-screen";
 import { Colours } from "@styles";
 import { useTranslation } from "@hooks";
+import { CenteredScreenImages } from "@redux/theme/theme.reducer";
 
 interface IProps {
   level: number;
