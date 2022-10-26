@@ -447,14 +447,14 @@ declare module "tipsi-stripe" {
 
 declare module "react-native-video-controls" {
   import * as React from "react";
-  import { VideoProperties } from "react-native-video";
+  import { VideoProperties, LoadError } from "react-native-video";
 
   type VideoControlsProps = {
     onEnterFullscreen?: () => void;
     onExitFullscreen?: () => void;
     onHideControls?: () => void;
     onShowControls?: () => void;
-    onError?: () => void;
+    onError?: (error: LoadError) => void;
     onPause?: () => void;
     onPlay?: () => void;
     onBack?: () => void;
