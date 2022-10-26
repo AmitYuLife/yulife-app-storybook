@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.54.0] - 2022-10-26
+
+### Bugfixes
+
+- Bugfix: Redux migrations
+- Bugfix ENG-2956: Allow in-app meditation for samsung users
+- Bugfix ENG-2912: In-app Meditopia challenge crashing
+- Bugfix ENG-2961: Mindful minutes roll over
+
+### Tasks
+
+- Task: Yuniversity Certificate
+- Task: Remove yuniversal title from space map
+- Task: React native video controls
+
+### Chores
+
+- Chore: Add migration VScode snippet
+- Chore: Separate sdui sagas to own files, standardize naming to reflect action type
+- Chore: Use spread ContentItem fragments
+- Chore: Add ContentItemButton fragment
+
+### Extra
+
+- detox:assert that YuLifeBupa logo is visible
+
 ## [3.53.0] - 2022-10-20
 
 ### Bugfixes
