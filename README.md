@@ -242,6 +242,8 @@ All migrations should be created in: `src/redux/_core/migrations`
 
 Always when creating a migration follow this file name format: `version_name_of_the_migration`
 
+Please use the snippet called `migration` to make sure all the types/initial file structure are correct
+
 Example: `0001_add_user_new_fields`
 
 All migration versions needs to follow this format:
