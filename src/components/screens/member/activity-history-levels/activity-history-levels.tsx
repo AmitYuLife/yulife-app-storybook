@@ -46,7 +46,7 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
   public shouldComponentUpdate(nextProps: IProps, nextState: IState) {
     // Check if there are items first then check if there are new items for current month
     return (
-      (!!this.props.items.length && this.props.items[0].items.length !== nextProps.items[0].items.length) ||
+      (!!this.props.items.length && this.props.items[0].items.length !== nextProps?.items[0]?.items.length) ||
       this.props.cyclingMeasurement !== nextProps.cyclingMeasurement ||
       this.props.items.length !== nextProps.items.length ||
       this.props.loading !== nextProps.loading ||
