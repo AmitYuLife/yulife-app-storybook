@@ -126,7 +126,7 @@ export const CGP_34_RGL = {
         business_product_id: BUSINESS_PRODUCT_4_RGL.product.data.product_id,
         customer_product_id: CPE_34_RGL.data.customer_product_id,
         category_id: 1,
-        start_date: CUSTOMER_34.data.start_date,
+        start_date: moment().toDate(),
         data : {
             date_of_birth: CUSTOMER_34.data.date_of_birth,
             salary: 100000,
@@ -142,7 +142,7 @@ export const CGP_34_GIP = {
         business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
         customer_product_id: CPE_34_GIP.data.customer_product_id,
         category_id: 1,
-        start_date: CUSTOMER_34.data.start_date,
+        start_date: moment().toDate(),
         data : {
             salary: 100000,
             country: "UK",
@@ -158,7 +158,7 @@ export const CGP_34_GCI = {
         business_product_id: BUSINESS_PRODUCT_4_GCI.product.data.product_id,
         customer_product_id: CPE_34_GCI.data.customer_product_id,
         category_id: 1,
-        start_date: CUSTOMER_34.data.start_date,
+        start_date: moment().toDate(),
         data : {
             salary: 100000,
             country: "UK",
