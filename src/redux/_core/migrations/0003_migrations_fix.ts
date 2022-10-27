@@ -1,10 +1,12 @@
+import { getInitialState } from "@redux/theme/theme.reducer";
 import { PersistedState } from "redux-persist";
 import { IReduxState } from "../reducers";
 
 export default (state: PersistedState & IReduxState): PersistedState & IReduxState => {
   const dailyStepsScreen =
     state.theme?.dailyStepsScreen ||
-    ((state.theme as any)?.dailyStepsScreenProps as IReduxState["theme"]["dailyStepsScreen"]);
+    ((state.theme as any)?.dailyStepsScreenProps as IReduxState["theme"]["dailyStepsScreen"]) ||
+    getInitialState().dailyStepsScreen;
 
   const inAppMeditationLastUpdated =
     typeof state.dailyMeditation?.inAppMeditationLastUpdated === "string"
