@@ -1,7 +1,7 @@
 
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_1, CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_8, CUSTOMER_14, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA, CUSTOMER_21, CUSTOMER_23, CUSTOMER_20, CUSTOMER_19, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_9, CUSTOMER_15, CUSTOMER_22, CUSTOMER_24, CUSTOMER_13, CUSTOMER_25, CUSTOMER_12, CUSTOMER_10, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_38, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_43, CUSTOMER_44, CUSTOMER_45, CUSTOMER_46, CUSTOMER_47, CUSTOMER_50, CUSTOMER_MEDITOPIA_1, CUSTOMER_MEDITOPIA_2, CUSTOMER_MEDITOPIA_3, CUSTOMER_PLI_6, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_PLI_7, CUSTOMER_PLI_9, CUSTOMER_PLI_10, CUSTOMER_60, CUSTOMER_61, CUSTOMER_63, CUSTOMER_64 } from '../postgres/customers';
+import { CUSTOMER_1, CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_8, CUSTOMER_14, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA, CUSTOMER_21, CUSTOMER_23, CUSTOMER_20, CUSTOMER_19, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_9, CUSTOMER_15, CUSTOMER_22, CUSTOMER_24, CUSTOMER_13, CUSTOMER_25, CUSTOMER_12, CUSTOMER_10, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_38, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_43, CUSTOMER_44, CUSTOMER_45, CUSTOMER_46, CUSTOMER_47, CUSTOMER_50, CUSTOMER_MEDITOPIA_1, CUSTOMER_MEDITOPIA_2, CUSTOMER_MEDITOPIA_3, CUSTOMER_PLI_6, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_PLI_7, CUSTOMER_PLI_9, CUSTOMER_PLI_10, CUSTOMER_60, CUSTOMER_61, CUSTOMER_63, CUSTOMER_64, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51 } from '../postgres/customers';
 
 const type = "mongo"
 const modelName = "users"
@@ -860,6 +860,40 @@ export const USER_47 = {
     }
 } as IDatabaseItem
 
+export const USER_48 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_48.data.customerId,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            type: "employer",
+            earnRate: 31,
+        }],
+        earnRate: 31,
+    }
+} as IDatabaseItem
+
+export const USER_49 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_49.data.customerId,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            type: "employer",
+            earnRate: 31,
+        }],
+        earnRate: 31,
+    }
+} as IDatabaseItem
+
 export const USER_50 = {
     type: "mongo",
     modelName: "users",
@@ -868,6 +902,23 @@ export const USER_50 = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_50.data.customerId,
         nickname:"Lynton",
+    }
+} as IDatabaseItem
+
+export const USER_51 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_51.data.customerId,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            type: "employer",
+            earnRate: 5,
+        }],
+        earnRate: 5,
     }
 } as IDatabaseItem
 

@@ -74,8 +74,8 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
             helper.WELLBEING_PRODUCT_VIEW("Epic", 1, 31)
         })
     })
-
-    Scenario("As a YuLifer with Group Dental product i should see correct Product Details", scenario.start, async () => {
+// please keep as skip for now until xsell have implemented all group dental updates
+    ScenarioSkip("As a YuLifer with Group Dental product i should see correct Product Details", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_51, AUTH_51), async () => {
             helper.ONBOARDING_YUSCREEN("groupDental", "5")
             helper.YUSCREEN_V4(CUSTOMER_51, "groupDental", "5")
