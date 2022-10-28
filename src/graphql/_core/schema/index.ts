@@ -147,6 +147,7 @@ export * from "./GetUserNotificationsSettings";
 export * from "./GetUserProfile";
 export * from "./GetUserProfileEvents";
 export * from "./GetUserSurge";
+export * from "./GetWellbeingHubCategories";
 export * from "./GetWellbeingHubItem";
 export * from "./GetWellbeingHubItems";
 export * from "./GetYuCoinPowerExplained";

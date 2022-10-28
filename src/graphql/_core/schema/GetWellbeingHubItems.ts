@@ -36,4 +36,5 @@ export interface GetWellbeingHubItemsVariables {
   os?: OS | null;
   width?: number | null;
   height?: number | null;
+  categories?: (string | null)[] | null;
 }

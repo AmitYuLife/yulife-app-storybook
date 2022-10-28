@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
-import { Style } from "@styles";
-import { YugiHeader } from "@molecules";
+import { Colours, Style } from "@styles";
+import { t } from "@locale";
+import { ChipList, YugiHeader } from "@molecules";
 import WellBeingServiceCard from "@components/screens/wellbeing-hub/sub-components/wellbeing-service-card";
 import WellBeingServiceCardSkeleton from "@components/screens/wellbeing-hub/sub-components/wellbeing-service-card-skeleton";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
@@ -10,15 +11,22 @@ import WellBeingServiceNoResults from "@components/screens/wellbeing-hub/sub-com
 import { WELLBEING_HUB_SCREEN, WELLBEING_HUB_SCROLL_VIEW } from "@ids";
 import { TheOwlFenceIcon } from "@atoms/icon/the-owl-fence-icon";
 import { YugiWellBeingIcon } from "@atoms/icon/yugi-wellbeing-icon";
+import { useSelector } from "react-redux";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { ChipProps } from "@components/molecules/chip-list/chip-list";
 
 interface IProps {
   loading: boolean;
   userFirstName: string;
+  categoryChips: ChipProps[];
   cards: WellbeingCard[];
+  selectedCategory?: string;
   handleClose: () => void;
 }
 
-const WellBeingHub: FC<IProps> = ({ loading, userFirstName, cards, handleClose }) => {
+const WellBeingHub: FC<IProps> = ({ loading, categoryChips, userFirstName, cards, handleClose }) => {
+  const { enableWellbeingHubCategories } = useSelector(getUserFeatures);
+
   if (cards?.length === 0 && !loading) {
     return <WellBeingServiceNoResults handleClose={handleClose} />;
   }
@@ -26,16 +34,19 @@ const WellBeingHub: FC<IProps> = ({ loading, userFirstName, cards, handleClose }
   return (
     <View style={styles.flex} testID={WELLBEING_HUB_SCREEN}>
       <GenericHeadingPad />
-      <ScrollView showsVerticalScrollIndicator={false} testID={WELLBEING_HUB_SCROLL_VIEW}>
-        {loading ? null : (
-          <View style={styles.header}>
-            <YugiHeader
-              title={`Hi ${userFirstName}!`}
-              description="Welcome to this quick-access hub to all your company’s wellbeing benefits."
-              icon={<YugiWellBeingIcon />}
-            />
+      <ScrollView showsVerticalScrollIndicator={false} testID={WELLBEING_HUB_SCROLL_VIEW} stickyHeaderIndices={[1]}>
+        <View style={styles.header}>
+          <YugiHeader
+            title={t("screens.wellbeing_hub.header_title", { name: userFirstName })}
+            description={t("screens.wellbeing_hub.header_description")}
+            icon={<YugiWellBeingIcon />}
+          />
+        </View>
+        {enableWellbeingHubCategories ? (
+          <View>
+            <ChipList chips={categoryChips} style={styles.pills} />
           </View>
-        )}
+        ) : null}
         <View style={styles.wrapper}>
           <View style={styles.cardWrapper}>
             {loading ? (
@@ -61,6 +72,11 @@ const styles = StyleSheet.create({
   header: {
     paddingTop: Style.adjust(32),
     paddingLeft: Style.adjust(24),
+    marginBottom: Style.adjust(24),
+  },
+  pills: {
+    paddingLeft: Style.adjust(27),
+    backgroundColor: Colours.neutral.white,
   },
   wrapper: {
     paddingLeft: Style.adjust(24),
@@ -79,7 +95,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   } as ViewStyle,
   cardWrapper: {
-    marginTop: Style.adjust(40),
+    marginTop: Style.adjust(10),
     alignItems: "center",
   } as ViewStyle,
   owl: {
