@@ -9,20 +9,21 @@ import { IConnectionsSectionItem } from "../settings.screen";
 import styles from "./item.styles";
 import ItemTitle from "./item-title";
 import { toCapitalLetter } from "@utils";
+import { t } from "@locale";
 
 const formatDate = (timestamp: number) => {
   const toFormat = moment.unix(timestamp).local();
   const today = moment();
 
   if (today.isSameOrBefore(toFormat, "days")) {
-    return toFormat.format("HH:mm");
+    return toFormat.format(t("format.time_short"));
   }
 
   if (today.isSameOrBefore(toFormat, "years")) {
-    return toFormat.format("HH:mm Do MMM");
+    return toFormat.format(t("format.date_time_readable_short"));
   }
 
-  return toFormat.format("HH:mm Do MMM YYYY");
+  return toFormat.format(t("format.date_time_readable"));
 };
 
 const ConnectionsItem: FC<IConnectionsSectionItem> = ({
