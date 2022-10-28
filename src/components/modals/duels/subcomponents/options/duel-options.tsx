@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { View } from "react-native";
-import { Text, Loading, BlurProvider } from "@atoms";
+import { Loading, BlurProvider, TextTemplate } from "@atoms";
 import { Button } from "@molecules";
 import styles from "./duel-options.styles";
 import { DuelStepProps, DEFAULT_DUEL_AMOUNT_LABEL } from "../../duels.types";
@@ -12,6 +12,7 @@ import { DUEL_OPTIONS_SCREEN } from "@ids";
 import { ListPicker } from "@components/molecules";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { Navigation } from "react-native-navigation";
+import { t } from "@locale";
 
 interface IOptions {
   id: string;
@@ -61,20 +62,26 @@ export default function DuelOptions({
         <View style={styles.safeAreaView}>
           <TopBarAbsolute leftIcon="Close" onPressLeftIcon={onPressLeftIcon} rightIcon="Coins" />
           <View style={styles.wrapper} testID={DUEL_OPTIONS_SCREEN}>
-            <Text style={styles.description}>
-              You&apos;re challenging{" "}
-              <Text style={styles.description} bold={true}>
-                {opponent.firstName} {opponent.lastName}
-              </Text>{" "}
-              to a duel. Whoever registers the most steps during the duel, wins!
-            </Text>
-            <Text style={styles.description}>
-              The duel starts tomorrow and lasts all day. Results announcing the winner will appear the next morning.
-            </Text>
+            <View style={styles.description}>
+              <TextTemplate type="b1" textAlign="left">
+                {t("modals.duels.duel_options.header_1")}{" "}
+                <TextTemplate type="b1b" textAlign="left">
+                  {opponent?.firstName && opponent?.lastName
+                    ? `${opponent.firstName} ${opponent.lastName}`
+                    : t("modals.duels.duel_options.colleague")}
+                </TextTemplate>{" "}
+                {t("modals.duels.duel_options.header_2")}
+              </TextTemplate>
+            </View>
+            <View style={styles.description}>
+              <TextTemplate type="b1" textAlign="left">
+                {t("modals.duels.duel_options.subheader_1")}
+              </TextTemplate>
+            </View>
             <View style={styles.flexRow}>
-              <Text style={styles.question} bold={true}>
-                What are you duelling for?
-              </Text>
+              <TextTemplate type="b1b" textAlign="left">
+                {t("modals.duels.duel_options.subheader_2")}
+              </TextTemplate>
             </View>
             <View>
               <WagerDropdown yucoin={yucoin} pickerAmountLabel={pickerAmountLabel} onPress={toggleOverlay} />
