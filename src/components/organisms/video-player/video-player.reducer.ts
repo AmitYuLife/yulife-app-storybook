@@ -12,6 +12,7 @@ export enum ActionTypes {
   SET_START_ERROR_MESSAGE = "SET_START_ERROR_MESSAGE",
   SET_STARTING = "SET_STARTING",
   SET_IS_DONE_ON_BACKGROUND = "SET_IS_DONE_ON_BACKGROUND",
+  SET_RETRIES = "SET_RETRIES",
 }
 
 export interface IState {
@@ -27,6 +28,7 @@ export interface IState {
   isDoneOnBackground: boolean;
   showFocusScreen: boolean;
   startErrorMessage: string;
+  retries: number;
 }
 
 export interface IAction {
@@ -47,6 +49,7 @@ export const INITIAL_STATE: IState = {
   isDoneOnBackground: false,
   showFocusScreen: false,
   startErrorMessage: null,
+  retries: 3,
 };
 
 export const setMusicControlInitialConfig = () => {
@@ -147,6 +150,14 @@ export const reducer = (state: IState, action: IAction): IState => {
       return {
         ...state,
         isDoneOnBackground: true,
+      };
+    }
+
+    case ActionTypes.SET_RETRIES: {
+      return {
+        ...state,
+        retries: state.retries - 1,
+        isPaused: true,
       };
     }
   }
