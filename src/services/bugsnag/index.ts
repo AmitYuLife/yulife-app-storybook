@@ -13,8 +13,9 @@ export default function getClient(): BugsnagClient {
       onError: function (event: Event) {
         if (event.errors?.[0]?.errorMessage) {
           const { errorMessage } = event.errors[0];
+          const isNetworkError = /Network request failed/.test(errorMessage);
           // Ignore the network errors
-          if (errorMessage === "Network error: Network request failed") {
+          if (isNetworkError) {
             return false;
           }
         }
