@@ -121,7 +121,7 @@ export default function CollectEventRewardModal({ event, rewards, completed = fa
         handleModalClose();
       }
     }
-  }, [eventFinished]);
+  }, [eventFinished, unclaimedRewardIds]);
 
   const { title, descriptionTitle, description, cta, status } = useMemo(() => {
     if (eventFinished) {
