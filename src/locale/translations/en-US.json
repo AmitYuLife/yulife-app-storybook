@@ -444,6 +444,15 @@
         "cta_label": "Save changes",
         "cta_label_secondary": "Back"
       }
+    },
+    "duels": {
+      "duel_options": {
+        "header_1": "You're challenging",
+        "header_2": "to a duel. Whoever registers the most steps during the duel, wins!",
+        "subheader_1": "The duel starts tomorrow and lasts all day. Results announcing the winner will appear the next morning.",
+        "subheader_2": "What are you duelling for?",
+        "colleague": "a colleague"
+      }
     }
   },
   "molecules": {

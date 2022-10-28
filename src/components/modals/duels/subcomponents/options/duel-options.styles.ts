@@ -12,12 +12,8 @@ export default StyleSheet.create({
     flexDirection: "row",
   } as ViewStyle,
   description: {
-    textAlign: "left",
-    fontSize: Style.adjust(20),
-    lineHeight: Style.adjust(24),
-    marginBottom: 24,
+    marginBottom: Style.adjust(24),
   } as TextStyle,
-  question: { textAlign: "left", fontSize: Style.adjust(20), lineHeight: Style.adjust(24) } as TextStyle,
   buttonWrapper: {
     marginTop: 20,
     marginBottom: 30,
