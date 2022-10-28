@@ -335,6 +335,11 @@
       "beginning_button": "A new beginning",
       "claim_button": "Claim rewards",
       "open_chest_button": "Open the chest"
+    },
+    "wellbeing_hub": {
+      "category_all": "All",
+      "header_title": "Hi %{name}",
+      "header_description": "Welcome to this quick-access hub to all your company’s wellbeing benefits"
     }
   },
   "permissions": {

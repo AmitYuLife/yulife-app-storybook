@@ -1,11 +1,10 @@
-import * as React from "react";
-import { ListRenderItemInfo, StyleSheet, View } from "react-native";
+import React, { memo, useMemo } from "react";
+import { ListRenderItemInfo, StyleSheet, View, ViewStyle } from "react-native";
 import { FlatList, TextTemplate } from "@atoms";
 import PressableWithDelay from "../pressable-delay/pressable-delay";
-import { memo } from "react";
 import { Colours, Style } from "@styles";
 
-type ChipProps = {
+export type ChipProps = {
   value: string;
   isSelected: boolean;
   onPress: (value: string) => void;
@@ -13,24 +12,29 @@ type ChipProps = {
 
 type ChipListProps = {
   chips: ChipProps[];
+  style?: ViewStyle;
 };
 
-const _ChipList = ({ chips }: ChipListProps) => (
-  <View style={styles.wrapper}>
-    <FlatList
-      data={chips}
-      horizontal={true}
-      pagingEnabled={false}
-      decelerationRate={0.9}
-      showsVerticalScrollIndicator={false}
-      showsHorizontalScrollIndicator={false}
-      keyExtractor={keyExtractor}
-      renderItem={renderItem}
-      contentContainerStyle={styles.flatList}
-      ItemSeparatorComponent={Separator}
-    />
-  </View>
-);
+const _ChipList = ({ chips, style }: ChipListProps) => {
+  const flatlistStyle = useMemo(() => [styles.flatList, style], [style]);
+
+  return (
+    <View style={styles.wrapper}>
+      <FlatList
+        data={chips}
+        horizontal={true}
+        pagingEnabled={false}
+        decelerationRate={0.9}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+        contentContainerStyle={flatlistStyle}
+        ItemSeparatorComponent={Separator}
+      />
+    </View>
+  );
+};
 
 export const ChipList = memo(_ChipList);
 
@@ -75,11 +79,12 @@ const Chip = memo(
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: Style.adjust(40),
+    height: Style.adjust(50),
   },
   flatList: {
     paddingHorizontal: Style.adjust(16),
     justifyContent: "space-between",
+    paddingTop: Style.adjust(10),
   },
   chipWrapper: {
     flex: 1,
@@ -90,7 +95,7 @@ const styles = StyleSheet.create({
   chip: {
     justifyContent: "center",
     alignItems: "center",
-    height: Style.adjust(28),
+    height: Style.adjust(32),
     borderRadius: Style.adjust(99),
     paddingHorizontal: Style.adjust(12),
   },
