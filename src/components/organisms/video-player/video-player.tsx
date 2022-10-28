@@ -85,6 +85,7 @@ const VideoPlayer = ({
   const [appCurrentState, setAppCurrentState] = useState<AppStateStatus>("active");
   const opacity = useRef(new Animated.Value(1)).current;
   const lottieRef = useRef<LottieView>();
+  const playerRef = useRef<Video>();
   const themeColour = useMemo(() => (theme === "light" ? Colours.neutral.white : Colours.neutral.n800), [theme]);
   const reduxDispatch = useDispatch();
   const videoPlayerIsActive = useSelector(getVideoPlayerIsActive);
@@ -195,6 +196,10 @@ const VideoPlayer = ({
         lottieRef?.current?.play();
       }
 
+      if (state.startErrorMessage) {
+        dispatch({ type: ActionTypes.SET_START_ERROR_MESSAGE, payload: "" });
+      }
+
       reduxDispatch(logMixpanelEventActionCreator("video_player_button_start_pressed", { type: eventType }));
     } catch (err) {
       Logger.error(err, { location: "video-player-handleStartButton" });
@@ -229,10 +234,19 @@ const VideoPlayer = ({
     }
   }, [state.isPaused, state.showFocusScreen]);
 
-  const handleOnError = useCallback(async (err) => {
-    onError();
-    Logger.error(err, { location: "video-player-onError" });
-  }, []);
+  const handleOnError = useCallback(
+    async (err) => {
+      Logger.error(err, { location: "video-player-onError" });
+      if (state.retries > 0 && state.musicControlMounted) {
+        playerRef.current.seek(state.currentProgressInSeconds);
+        dispatch({ type: ActionTypes.SET_RETRIES });
+        return dispatch({ type: ActionTypes.PLAY_PLAYER });
+      }
+
+      onError();
+    },
+    [state.currentProgressInSeconds, state.musicControlMounted, state.retries]
+  );
 
   const videoUrl = useMemo(
     () =>
@@ -247,6 +261,7 @@ const VideoPlayer = ({
     <>
       <PressableWithDelay onPress={handleFocusScreen} style={styles.container} testID={VIDEO_PLAYER}>
         <Video
+          ref={playerRef}
           audioOnly={lottieUri ? true : false}
           source={videoSource}
           minLoadRetryCount={20}
