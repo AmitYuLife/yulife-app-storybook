@@ -2,7 +2,10 @@
   "format": {
     "date_short": "DD/MM/YYYY",
     "date_readable_short": "DD MMM",
-    "date_readable": "DD MMM YYYY"
+    "date_readable": "DD MMM YYYY",
+    "date_time_readable_short": "HH:mm Do MMM",
+    "date_time_readable": "HH:mm Do MMM YYYY",
+    "time_short": "HH:mm"
   },
   "validator": {
     "email": "Please enter a valid email address.",
