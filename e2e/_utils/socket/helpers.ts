@@ -149,3 +149,54 @@ export const addPilatesHistoricalData = (value:number) => async () => {
     }]
     await fitKitAddSampleQueries(record)
 }
+
+export const addSteps32DaysHistoricalData = (value: number) => async () => {
+    const record = [] 
+    let i = 1;
+    while (i <= 32) {
+        let steps = value + i
+        const data = {
+            startTime: moment().subtract(i,"day").startOf("day").add(10,"minutes").toDate().toString(),
+            endTime: moment().subtract(i,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
+            value: steps,
+            type: "StepCount"
+        }
+        record.push(data)
+        i++
+    }
+    await fitKitAddAggregatedQueries(record)
+}   
+
+export const addCycling32DaysHistoricalData = (value: number) => async () => {
+    const record = [] 
+    let i = 1;
+    while (i <= 32) {
+        let steps = value + (i * 100)
+        const data = {
+            startTime: moment().subtract(i,"day").startOf("day").add(10,"minutes").toDate().toString(),
+            endTime: moment().subtract(i,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
+            value: steps,
+            type: "Biking"
+        }
+        record.push(data)
+        i++
+    }
+    await fitKitAddAggregatedQueries(record)
+}   
+
+export const addMins32DaysHistoricalData = (value: number) => async () => {
+    const record = [] 
+    let i = 1;
+    while (i <= 32) {
+        let steps = value + i
+        const data = {
+            startTime: moment().subtract(i,"day").startOf("day").add(10,"minutes").toDate().toString(),
+            endTime: moment().subtract(i,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
+            value: steps,
+            type: "MindfulSession"
+        }
+        record.push(data)
+        i++
+    }
+    await fitKitAddSampleQueries(record)
+}

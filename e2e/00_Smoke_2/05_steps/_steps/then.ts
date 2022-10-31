@@ -8,14 +8,19 @@ export const {
     multipleTextVisible,
     textNotVisible,
     idNotVisible,
-    expectIsVisibleViaText
+    expectIsVisibleViaText,
+    textVisibleAtIndex,
+    idVisibleAtIndex
 } = navigation.common
 
 export const {
     scrollFromID,
     scrollFromText,
     scrollUntilIdVisible,
-    swipeFromText
+    swipeFromText,
+    activityHistoryScrollStepDataCorrect,
+    activityHistoryScrollCyclingDataCorrect,
+    activityHistoryScrollMinsDataCorrect
 } = navigation.scrolling
 
 export const {
@@ -52,10 +57,6 @@ export const leaderboardVisible = (customers: any[], steps?: number[], scrollToT
 
 export const leaderboardStatus = (leaderboardName: string, status: "active" | "inactive") => async () => {
     await expect(element(by.id(LEADERBOARD_STATUS(leaderboardName, status)))).toBeVisible()
-}
-
-export const canSeeTodaysSteps = () => async () => {
-    await expectIsVisibleViaText("Short stroll (75,000 steps)", 1000)
 }
 
 export const {

@@ -7,6 +7,7 @@ import styles from "./activity-history-levels.styles";
 import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
 import { KM_TO_METERS, METER_TO_MILES } from "@redux/daily-cycling/daily-cycling.selectors";
 import { Colours } from "@styles";
+import { TEXT_TEMPLATE } from "@ids";
 
 export interface IChallenge {
   earned: number;
@@ -30,6 +31,7 @@ export interface ItemProps {
   cycling?: number;
   cyclingYucoin?: number;
   cyclingMeasurement: DistanceMeasurementType;
+  testID?: string;
 }
 
 export default function ActivityHistoryLevelsItem({
@@ -45,6 +47,7 @@ export default function ActivityHistoryLevelsItem({
   cycling,
   cyclingYucoin,
   cyclingMeasurement,
+  testID,
 }: ItemProps) {
   const typeText = steps === 1 ? "step" : "steps";
   const cyclingData =
@@ -56,7 +59,7 @@ export default function ActivityHistoryLevelsItem({
       ? `${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} mindful min`
       : `${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} mindful mins`;
   return (
-    <View style={styles.listItemWrapper}>
+    <View style={styles.listItemWrapper} testID={testID}>
       <View style={styles.levelWrapper}>
         <View style={styles.divider} />
         {!level ? null : (
@@ -90,14 +93,18 @@ export default function ActivityHistoryLevelsItem({
           </View>
           <View style={styles.activityLabelsWrapper}>
             <View style={styles.activityLabelWrapper}>
-              <TextTemplate type="b2" numberOfLines={1}>
+              <TextTemplate
+                type="b2"
+                numberOfLines={1}
+                testID={TEXT_TEMPLATE(`${addCommasToNumber(steps)} ${typeText}`)}
+              >
                 {`${addCommasToNumber(steps)} ${typeText}`}
               </TextTemplate>
             </View>
 
             {!mindfulSeconds ? null : (
               <View style={styles.activityLabelWrapper}>
-                <TextTemplate type="b2" numberOfLines={1}>
+                <TextTemplate type="b2" numberOfLines={1} testID={TEXT_TEMPLATE(mindfulTotalToDisplay)}>
                   {mindfulTotalToDisplay}
                 </TextTemplate>
               </View>
@@ -105,7 +112,7 @@ export default function ActivityHistoryLevelsItem({
 
             {!cycling ? null : (
               <View style={styles.activityLabelWrapper}>
-                <TextTemplate type="b2" numberOfLines={1}>
+                <TextTemplate type="b2" numberOfLines={1} testID={TEXT_TEMPLATE(cyclingText)}>
                   {cyclingText}
                 </TextTemplate>
               </View>
