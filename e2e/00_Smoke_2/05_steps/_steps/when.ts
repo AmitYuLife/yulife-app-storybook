@@ -1,8 +1,6 @@
 import { navigation } from "@navigation"
-export { sendSteps, addSteps3DaysHistoricalData, addStepsHistoricalData } from "@socket";
+export { sendSteps, addSteps3DaysHistoricalData, addStepsHistoricalData, addSteps32DaysHistoricalData, addCycling32DaysHistoricalData, addMins32DaysHistoricalData, addMindfulnessHistoricalData} from "@socket";
 import { screens } from "@appScreens"
-
-
 
 export const {
     tapID,
@@ -23,7 +21,11 @@ export const {
 
 export const {
     scrollFromID,
-    swipeFromText
+    swipeFromText,
+    scrollUntilTextVisible,
+    scrollUntilIdVisible,
+    swipeToText,
+    swipeToID
 } = navigation.scrolling
 
 export const turnOffLeaderboard = (leaderboardID: string) => async () => {
@@ -37,4 +39,3 @@ export const turnOffLeaderboard = (leaderboardID: string) => async () => {
 export const {
     tapMenuItem
 } = screens.menu
-

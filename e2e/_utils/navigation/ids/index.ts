@@ -47,7 +47,6 @@ export const CHOOSE_MEDITOPIA_SCREEN = "CHOOSE_MEDITOPIA_SCREEN";
 export const INSPECT_SCREEN = "INSPECT_SCREEN";
 export const YUCOIN_EXPLAINED_SCROLL_VIEW = "YUCOIN_EXPLAINED_SCROLL_VIEW";
 
-
 // buttons
 export const BUTTON_LOGIN = (disabled: boolean) => `BUTTON_LOGIN_${disabled})`;
 export const BUTTON_SIGNUP_BONUS_NEXT = "BUTTON_SIGNUP_BONUS_NEXT";

@@ -1,4 +1,7 @@
-import { booleanIdVisible, booleanTextVisible, navigateViaText } from "./common"
+import { ACTIVITY_HISTORY_SCREEN, TEXT_TEMPLATE} from "@ids"
+import { booleanIdVisible, booleanTextVisible, navigateViaText, wait } from "./common"
+import { addCommasToNumber } from "_utils/appScreens/rewards"
+
 
 export const scrollFromText = (text: string, direction: any, speed: any, percentage?: any) => async () => {
     const target = element(by.text(text))
@@ -41,8 +44,6 @@ export const scrollToAndTapText = (scrollViewid: string, text: string, direction
     await element(by.text(text)).tap()
 }
 
-
-
 export const swipeToText = (scrollID: any, targetText: string, direction: "up" | "down" | "left" | "right", maxAttempts = 10) => async()=>{
     let targetTextVisible = await booleanTextVisible(targetText)
     let scroller = element(by.id(scrollID))
@@ -70,7 +71,7 @@ export const swipeToText = (scrollID: any, targetText: string, direction: "up" |
 
 export const swipeToID = (scrollID: any, targetID: string, direction: Detox.Direction, maxAttempts = 10) => async () => {
     try{
-        expect(element(by.id(targetID))).toBeVisible()
+        await expect(element(by.id(targetID))).toBeVisible()
     }catch(e){
         let targetIDVisible = await booleanIdVisible(targetID)
         let scroller = element(by.id(scrollID))
@@ -94,5 +95,60 @@ export const swipeToID = (scrollID: any, targetID: string, direction: Detox.Dire
             }
             currentAttempt += 1
         }
+    }
+}
+
+export const activityHistoryScrollStepDataCorrect = async () => { 
+    let scrollPercentage = 0
+
+    if (device.name.includes("(iPhone 11 Pro)")) {
+        scrollPercentage = 0.1
+    } else {
+        scrollPercentage = 0.13
+    }
+    for (let i = 2001; i <= 2032; i++)  {
+        await expect(element(by.id(TEXT_TEMPLATE(`${addCommasToNumber(i)} steps`)))).toBeVisible()
+        await scrollFromID(ACTIVITY_HISTORY_SCREEN, "up", "slow", scrollPercentage)()
+    }
+}
+
+export const formatCyclingMetersToKmWithOneDecimal = (meters: number): string => {
+    return `${(meters / 1000).toFixed(1)} km`;
+  };
+
+  
+export const activityHistoryScrollCyclingDataCorrect = async () => { 
+    let scrollPercentage = 0
+
+    if (device.name.includes("(iPhone 11 Pro)")) {
+        scrollPercentage = 0.13
+    } else {
+        scrollPercentage = 0.16 
+    }
+    for (let i = 3100; i <= 6200; i += 100)  {
+        await expect(element(by.id(TEXT_TEMPLATE(`${formatCyclingMetersToKmWithOneDecimal(i)} cycled`)))).toBeVisible()
+        await scrollFromID(ACTIVITY_HISTORY_SCREEN, "up", "slow", scrollPercentage)()
+    }
+}
+
+export function formatMindfulMins(totalSeconds: number){
+    let minutes = Math.floor(totalSeconds / 60);
+    let extraSeconds = totalSeconds % 60;
+    let extraSecondsTwoDP = extraSeconds < 10 ? `0${extraSeconds}` : extraSeconds;
+    return `${minutes}:${extraSecondsTwoDP}`;
+}
+
+export const activityHistoryScrollMinsDataCorrect = async () => { 
+    let scrollPercentage = 0
+
+    if (device.name.includes("(iPhone 11 Pro)")) {
+        scrollPercentage = 0.13
+    } else {
+        scrollPercentage = 0.16 
+    }
+    for (let i = 301; i <= 332; i++)  {
+        console.log({cycled: `${i} mindful mins`});
+        await expect(element(by.id(TEXT_TEMPLATE(`${formatMindfulMins(i)} mindful mins`)))).toBeVisible()
+        await scrollFromID(ACTIVITY_HISTORY_SCREEN, "up", "slow", scrollPercentage)()
     }
 }
