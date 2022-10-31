@@ -3,6 +3,8 @@ import Video from "react-native-video";
 import moment from "moment";
 import MusicControl, { Command } from "react-native-music-control";
 import { Animated, StyleSheet, View, AppStateStatus } from "react-native";
+import LottieView from "lottie-react-native";
+import Config from "react-native-config";
 import { Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import {
@@ -27,7 +29,6 @@ import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useAppState, useBackHandler, useGetLottieJson } from "@hooks";
 import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
-import LottieView from "lottie-react-native";
 
 interface IProps {
   source: string;
@@ -255,7 +256,16 @@ const VideoPlayer = ({
         : source,
     [source, DETOX_ENABLED]
   );
-  const videoSource = useMemo(() => ({ uri: videoUrl, type: videoSourceType }), [videoUrl, videoSourceType]);
+  const videoSource = useMemo(
+    () => ({
+      uri: videoUrl,
+      type: videoSourceType,
+      headers: {
+        yu_client_token: Config.YU_CLIENT_TOKEN,
+      },
+    }),
+    [videoUrl, videoSourceType]
+  );
 
   return (
     <>
