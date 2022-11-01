@@ -144,12 +144,19 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPad_dynamicStyles {
+  property: string;
+  value: string;
+  defaultValue: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPad {
   __typename: "ContentItemPad";
   id: string;
   amount: number;
   pointerEvents: RNViewPointerEvents | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPad_styles[] | null;
+  dynamicStyles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPad_dynamicStyles[] | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown_styles {
@@ -258,7 +265,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemB
   uri: string | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_rightIcon {
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -282,7 +289,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemB
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_icon | null;
-  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_rightIcon | null;
+  contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -709,7 +716,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemC
   uri: string | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_rightIcon {
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -732,7 +739,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemC
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_icon | null;
-  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_rightIcon | null;
+  contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -964,7 +971,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
   uri: string | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_rightIcon {
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -987,7 +994,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_icon | null;
-  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_rightIcon | null;
+  contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -1088,7 +1095,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemR
   uri: string | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_rightIcon {
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -1111,7 +1118,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemR
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_icon | null;
-  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_rightIcon | null;
+  contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -1280,7 +1287,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemM
   uri: string | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_rightIcon {
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -1303,7 +1310,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemM
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_icon | null;
-  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_rightIcon | null;
+  contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -1449,7 +1456,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemA
   uri: string | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_rightIcon {
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -1472,7 +1479,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemA
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_icon | null;
-  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_rightIcon | null;
+  contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_contentItemButtonRightIcon | null;
   styles:
     | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_styles[]
     | null;
@@ -1710,7 +1717,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   uri: string | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_rightIcon {
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -1734,7 +1741,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   onPress: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_icon | null;
-  rightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_rightIcon | null;
+  contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -1754,7 +1761,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   uri: string | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_rightIcon {
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -1777,7 +1784,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   onPress: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_icon | null;
-  rightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_rightIcon | null;
+  contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -1804,7 +1811,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   uri: string | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_rightIcon {
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -1827,7 +1834,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   onPress: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_icon | null;
-  rightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_rightIcon | null;
+  contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -1856,12 +1863,19 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemPad_dynamicStyles {
+  property: string;
+  value: string;
+  defaultValue: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemPad {
   __typename: "ContentItemPad";
   id: string;
   amount: number;
   pointerEvents: RNViewPointerEvents | null;
   styles: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemPad_styles[] | null;
+  dynamicStyles: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemPad_dynamicStyles[] | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown_styles {
@@ -1959,9 +1973,10 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
   logo: string | null;
   heading: string | null;
   leftIcon: string | null;
-  rightIcon: string | null;
+  contentItemHeaderBarRightIcon: string | null;
   onLeftIconPress: GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress | null;
   onRightIconPress: GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onRightIconPress | null;
+  publishKeyHeight: string | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressBar {
@@ -1970,6 +1985,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
   maxLength: number;
   currentPosition: number;
   progressType: ContentItemProgressBarType | null;
+  publishKeyHeight: string | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps_theme_barColour {
@@ -2225,7 +2241,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   uri: string | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_rightIcon {
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -2248,7 +2264,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   onPress: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_icon | null;
-  rightIcon: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_rightIcon | null;
+  contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_contentItemButtonRightIcon | null;
   styles:
     | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_styles[]
     | null;
@@ -2324,7 +2340,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   uri: string | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button_rightIcon {
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -2347,7 +2363,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   onPress: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button_icon | null;
-  rightIcon: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button_rightIcon | null;
+  contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button_contentItemButtonRightIcon | null;
   styles:
     | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button_styles[]
     | null;

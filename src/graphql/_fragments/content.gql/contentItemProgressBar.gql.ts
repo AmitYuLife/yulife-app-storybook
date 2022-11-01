@@ -6,5 +6,6 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_BAR = gql`
     maxLength
     currentPosition
     progressType: type
+    publishKeyHeight
   }
 `;

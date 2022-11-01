@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface GetWellbeingHubCategories_wellbeingHubCategories {
-  id: string | null;
+  id: string;
   name: string;
 }
 

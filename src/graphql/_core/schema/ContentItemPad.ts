@@ -14,9 +14,16 @@ export interface ContentItemPad_styles {
   value: string;
 }
 
+export interface ContentItemPad_dynamicStyles {
+  property: string;
+  value: string;
+  defaultValue: string;
+}
+
 export interface ContentItemPad {
   id: string;
   amount: number;
   pointerEvents: RNViewPointerEvents | null;
   styles: ContentItemPad_styles[] | null;
+  dynamicStyles: ContentItemPad_dynamicStyles[] | null;
 }

@@ -235,7 +235,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   uri: string | null;
 }
 
-export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button_rightIcon {
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -258,7 +258,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   onPress: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button_onPress | null;
   event: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button_event | null;
   icon: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button_icon | null;
-  rightIcon: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button_rightIcon | null;
+  contentItemButtonRightIcon: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button_contentItemButtonRightIcon | null;
   styles:
     | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button_styles[]
     | null;
@@ -507,7 +507,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   uri: string | null;
 }
 
-export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton_rightIcon {
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -531,7 +531,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   onPress: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton_onPress | null;
   event: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton_event | null;
   icon: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton_icon | null;
-  rightIcon: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton_rightIcon | null;
+  contentItemButtonRightIcon: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -541,12 +541,21 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   value: string;
 }
 
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPad_dynamicStyles {
+  property: string;
+  value: string;
+  defaultValue: string;
+}
+
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPad {
   __typename: "ContentItemPad";
   id: string;
   amount: number;
   pointerEvents: RNViewPointerEvents | null;
   styles: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPad_styles[] | null;
+  dynamicStyles:
+    | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPad_dynamicStyles[]
+    | null;
 }
 
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemMarkdown_styles {
@@ -597,7 +606,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   uri: string | null;
 }
 
-export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerButton_rightIcon {
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -620,7 +629,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   onPress: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerButton_onPress | null;
   event: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerButton_event | null;
   icon: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerButton_icon | null;
-  rightIcon: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerButton_rightIcon | null;
+  contentItemButtonRightIcon: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
   styles:
     | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerButton_styles[]
     | null;

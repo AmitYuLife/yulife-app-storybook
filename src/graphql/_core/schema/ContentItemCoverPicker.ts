@@ -52,7 +52,7 @@ export interface ContentItemCoverPicker_customCover_button_icon {
   uri: string | null;
 }
 
-export interface ContentItemCoverPicker_customCover_button_rightIcon {
+export interface ContentItemCoverPicker_customCover_button_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -75,7 +75,7 @@ export interface ContentItemCoverPicker_customCover_button {
   onPress: ContentItemCoverPicker_customCover_button_onPress | null;
   event: ContentItemCoverPicker_customCover_button_event | null;
   icon: ContentItemCoverPicker_customCover_button_icon | null;
-  rightIcon: ContentItemCoverPicker_customCover_button_rightIcon | null;
+  contentItemButtonRightIcon: ContentItemCoverPicker_customCover_button_contentItemButtonRightIcon | null;
   styles: ContentItemCoverPicker_customCover_button_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }

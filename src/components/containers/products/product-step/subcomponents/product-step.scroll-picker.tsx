@@ -28,7 +28,7 @@ export const ProductStepContentItemScrollPicker = memo(
     return (
       <View style={styles.wrapper}>
         <TertiaryButton
-          rightIconUri={button.rightIcon.uri}
+          rightIconUri={button.contentItemButtonRightIcon.uri}
           iconUri={button.icon.uri}
           label={(dynamicData[answerKey] as string) || button.label}
           onPress={handlePress}

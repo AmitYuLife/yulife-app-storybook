@@ -15,6 +15,10 @@ import {
 // GraphQL query operation: GetPerkSubscriptionInfo
 // ====================================================
 
+export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemPad {
+  __typename: "ContentItemPad" | "ContentItemRadio" | "ContentItemHeaderBar" | "ContentItemProgressBar";
+}
+
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemText_styles {
   property: string;
   value: string;
@@ -115,7 +119,7 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
   uri: string | null;
 }
 
-export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_rightIcon {
+export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -139,7 +143,7 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
   onPress: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_onPress | null;
   event: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_event | null;
   icon: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_icon | null;
-  rightIcon: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_rightIcon | null;
+  contentItemButtonRightIcon: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_contentItemButtonRightIcon | null;
   styles: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -218,6 +222,7 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
 }
 
 export type GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content =
+  | GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemPad
   | GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemText
   | GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemImage
   | GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemMarkdown

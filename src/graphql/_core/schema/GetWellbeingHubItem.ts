@@ -26,6 +26,10 @@ export interface GetWellbeingHubItem_wellbeingHubItem_icon {
   uri: string | null;
 }
 
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemPad {
+  __typename: "ContentItemPad" | "ContentItemRadio" | "ContentItemHeaderBar" | "ContentItemProgressBar";
+}
+
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText_styles {
   property: string;
   value: string;
@@ -90,7 +94,7 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_
   uri: string | null;
 }
 
-export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_rightIcon {
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -114,7 +118,7 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton 
   onPress: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_onPress | null;
   event: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_event | null;
   icon: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_icon | null;
-  rightIcon: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_rightIcon | null;
+  contentItemButtonRightIcon: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_contentItemButtonRightIcon | null;
   styles: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -229,6 +233,7 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm {
 }
 
 export type GetWellbeingHubItem_wellbeingHubItem_content =
+  | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemPad
   | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText
   | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdown
   | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemBox

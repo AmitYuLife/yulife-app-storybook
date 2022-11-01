@@ -65,3 +65,5 @@ export * from "./contentItemYugiConfirm.gql";
 export * from "./contentItemPersonalProductInfo.gql";
 export * from "./contentItemSelectedPackageAccordion.gql";
 export * from "./contentItemBox.gql";
+export * from "./contentItem.gql";
+export * from "./absoluteContentItem.gql";

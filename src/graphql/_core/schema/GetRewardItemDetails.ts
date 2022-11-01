@@ -29,6 +29,10 @@ export interface GetRewardItemDetails_getRewardItemDetails_availableDenomination
   alertMessage: string | null;
 }
 
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemPad {
+  __typename: "ContentItemPad" | "ContentItemRadio" | "ContentItemHeaderBar" | "ContentItemProgressBar";
+}
+
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles {
   property: string;
   value: string;
@@ -93,7 +97,7 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemBu
   uri: string | null;
 }
 
-export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_rightIcon {
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -117,7 +121,7 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemBu
   onPress: GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_onPress | null;
   event: GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_event | null;
   icon: GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_icon | null;
-  rightIcon: GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_rightIcon | null;
+  contentItemButtonRightIcon: GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_contentItemButtonRightIcon | null;
   styles: GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -232,6 +236,7 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemFo
 }
 
 export type GetRewardItemDetails_getRewardItemDetails_content =
+  | GetRewardItemDetails_getRewardItemDetails_content_ContentItemPad
   | GetRewardItemDetails_getRewardItemDetails_content_ContentItemText
   | GetRewardItemDetails_getRewardItemDetails_content_ContentItemMarkdown
   | GetRewardItemDetails_getRewardItemDetails_content_ContentItemBox

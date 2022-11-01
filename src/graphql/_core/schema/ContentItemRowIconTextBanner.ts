@@ -39,7 +39,7 @@ export interface ContentItemRowIconTextBanner_bannerButton_icon {
   uri: string | null;
 }
 
-export interface ContentItemRowIconTextBanner_bannerButton_rightIcon {
+export interface ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -62,7 +62,7 @@ export interface ContentItemRowIconTextBanner_bannerButton {
   onPress: ContentItemRowIconTextBanner_bannerButton_onPress | null;
   event: ContentItemRowIconTextBanner_bannerButton_event | null;
   icon: ContentItemRowIconTextBanner_bannerButton_icon | null;
-  rightIcon: ContentItemRowIconTextBanner_bannerButton_rightIcon | null;
+  contentItemButtonRightIcon: ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
   styles: ContentItemRowIconTextBanner_bannerButton_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }

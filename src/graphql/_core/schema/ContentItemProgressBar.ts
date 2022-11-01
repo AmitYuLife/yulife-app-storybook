@@ -14,4 +14,5 @@ export interface ContentItemProgressBar {
   maxLength: number;
   currentPosition: number;
   progressType: ContentItemProgressBarType | null;
+  publishKeyHeight: string | null;
 }

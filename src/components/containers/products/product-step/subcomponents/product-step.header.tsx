@@ -10,7 +10,7 @@ import { ProductStepAction } from "@redux/server-driven-ui/sdui.types";
 type Props = GqlHeader;
 
 export const ProductStepContentItemHeader = memo(
-  ({ onLeftIconPress, onRightIconPress, leftIcon, rightIcon, logo, heading }: Props) => {
+  ({ onLeftIconPress, onRightIconPress, leftIcon, contentItemHeaderBarRightIcon: rightIcon, logo, heading }: Props) => {
     const { productId, stepId, isLoading } = useContext(ProductStepContext);
 
     const dispatch = useDispatch();

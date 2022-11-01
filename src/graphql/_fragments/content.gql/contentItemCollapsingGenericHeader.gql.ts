@@ -12,7 +12,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_COLLAPSING_GENERIC_HEADER = gql`
     styles {
       ...SduiStyle
     }
-    rightIcon {
+    contentItemCollapsingGenericHeaderRightIcon: rightIcon {
       ...RemoteImage
     }
     collapsedRightIcon {

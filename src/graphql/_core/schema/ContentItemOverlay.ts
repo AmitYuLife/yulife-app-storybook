@@ -24,7 +24,7 @@ export interface ContentItemOverlay_buttons_icon {
   uri: string | null;
 }
 
-export interface ContentItemOverlay_buttons_rightIcon {
+export interface ContentItemOverlay_buttons_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -47,7 +47,7 @@ export interface ContentItemOverlay_buttons {
   onPress: ContentItemOverlay_buttons_onPress | null;
   event: ContentItemOverlay_buttons_event | null;
   icon: ContentItemOverlay_buttons_icon | null;
-  rightIcon: ContentItemOverlay_buttons_rightIcon | null;
+  contentItemButtonRightIcon: ContentItemOverlay_buttons_contentItemButtonRightIcon | null;
   styles: ContentItemOverlay_buttons_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
