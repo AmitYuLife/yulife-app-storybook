@@ -23,8 +23,7 @@ const NameAndLevel = ({ name, level, yuniversalMap, hideWorldIcon, useWorldColor
 
   const userName = name || storedUserName;
   const currentLevel = level || storedCurrentLevel;
-  const isYuniversal = !!(yuniversalMap || storedYuniversalMap);
-
+  const isYuniversal = yuniversalMap === undefined ? !!storedYuniversalMap : !!yuniversalMap;
   const currentWorld = getCurrentWorld(currentLevel);
   const worldIcon = getCurrentWorldImage(currentWorld, isYuniversal);
   const worldName = getCurrentWorldText(currentWorld, isYuniversal);
