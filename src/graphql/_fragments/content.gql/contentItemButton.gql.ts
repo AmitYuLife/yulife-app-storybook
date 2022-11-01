@@ -25,7 +25,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_BUTTON = gql`
       id
       uri
     }
-    rightIcon {
+    contentItemButtonRightIcon: rightIcon {
       id
       uri
     }

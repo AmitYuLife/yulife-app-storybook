@@ -23,7 +23,8 @@ export interface ContentItemHeaderBar {
   logo: string | null;
   heading: string | null;
   leftIcon: string | null;
-  rightIcon: string | null;
+  contentItemHeaderBarRightIcon: string | null;
   onLeftIconPress: ContentItemHeaderBar_onLeftIconPress | null;
   onRightIconPress: ContentItemHeaderBar_onRightIconPress | null;
+  publishKeyHeight: string | null;
 }

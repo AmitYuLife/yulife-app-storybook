@@ -8,12 +8,13 @@ export const GQL_FRAGMENT_CONTENT_ITEM_HEADER_BAR = gql`
     logo
     heading
     leftIcon
-    rightIcon
+    contentItemHeaderBarRightIcon: rightIcon
     onLeftIconPress {
       ...SduiAction
     }
     onRightIconPress {
       ...SduiAction
     }
+    publishKeyHeight
   }
 `;

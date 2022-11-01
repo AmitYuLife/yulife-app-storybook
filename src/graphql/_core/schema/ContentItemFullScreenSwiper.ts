@@ -28,7 +28,7 @@ export interface ContentItemFullScreenSwiper_button_icon {
   uri: string | null;
 }
 
-export interface ContentItemFullScreenSwiper_button_rightIcon {
+export interface ContentItemFullScreenSwiper_button_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -51,7 +51,7 @@ export interface ContentItemFullScreenSwiper_button {
   onPress: ContentItemFullScreenSwiper_button_onPress | null;
   event: ContentItemFullScreenSwiper_button_event | null;
   icon: ContentItemFullScreenSwiper_button_icon | null;
-  rightIcon: ContentItemFullScreenSwiper_button_rightIcon | null;
+  contentItemButtonRightIcon: ContentItemFullScreenSwiper_button_contentItemButtonRightIcon | null;
   styles: ContentItemFullScreenSwiper_button_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }

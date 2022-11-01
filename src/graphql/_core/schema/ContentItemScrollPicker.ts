@@ -24,7 +24,7 @@ export interface ContentItemScrollPicker_button_icon {
   uri: string | null;
 }
 
-export interface ContentItemScrollPicker_button_rightIcon {
+export interface ContentItemScrollPicker_button_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -47,7 +47,7 @@ export interface ContentItemScrollPicker_button {
   onPress: ContentItemScrollPicker_button_onPress | null;
   event: ContentItemScrollPicker_button_event | null;
   icon: ContentItemScrollPicker_button_icon | null;
-  rightIcon: ContentItemScrollPicker_button_rightIcon | null;
+  contentItemButtonRightIcon: ContentItemScrollPicker_button_contentItemButtonRightIcon | null;
   styles: ContentItemScrollPicker_button_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }

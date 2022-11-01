@@ -10,7 +10,14 @@ import { ProductStepDetachedNavigationContext } from "../../product-step-detache
 type Props = GqlHeaderBar;
 
 export const ProductStepContentItemHeaderDetached = memo((props: Props) => {
-  const { leftIcon, logo, heading, onLeftIconPress, onRightIconPress, rightIcon } = props;
+  const {
+    leftIcon,
+    logo,
+    heading,
+    onLeftIconPress,
+    onRightIconPress,
+    contentItemHeaderBarRightIcon: rightIcon,
+  } = props;
   const { nestedHistory, popNestedHistory } = useContext(ProductStepDetachedNavigationContext);
 
   const dispatch = useDispatch();

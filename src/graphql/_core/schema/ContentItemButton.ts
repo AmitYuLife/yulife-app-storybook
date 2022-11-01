@@ -24,7 +24,7 @@ export interface ContentItemButton_icon {
   uri: string | null;
 }
 
-export interface ContentItemButton_rightIcon {
+export interface ContentItemButton_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -47,7 +47,7 @@ export interface ContentItemButton {
   onPress: ContentItemButton_onPress | null;
   event: ContentItemButton_event | null;
   icon: ContentItemButton_icon | null;
-  rightIcon: ContentItemButton_rightIcon | null;
+  contentItemButtonRightIcon: ContentItemButton_contentItemButtonRightIcon | null;
   styles: ContentItemButton_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }

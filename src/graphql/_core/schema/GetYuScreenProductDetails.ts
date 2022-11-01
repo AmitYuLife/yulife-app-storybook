@@ -124,7 +124,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   uri: string | null;
 }
 
-export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton_rightIcon {
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -148,7 +148,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   onPress: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton_onPress | null;
   event: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton_event | null;
   icon: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton_icon | null;
-  rightIcon: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton_rightIcon | null;
+  contentItemButtonRightIcon: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton_contentItemButtonRightIcon | null;
   styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -203,7 +203,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   uri: string | null;
 }
 
-export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_bannerButton_rightIcon {
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -226,7 +226,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   onPress: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_bannerButton_onPress | null;
   event: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_bannerButton_event | null;
   icon: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_bannerButton_icon | null;
-  rightIcon: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_bannerButton_rightIcon | null;
+  contentItemButtonRightIcon: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
   styles:
     | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_bannerButton_styles[]
     | null;
@@ -348,12 +348,19 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   value: string;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemPad_dynamicStyles {
+  property: string;
+  value: string;
+  defaultValue: string;
+}
+
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemPad {
   __typename: "ContentItemPad";
   id: string;
   amount: number;
   pointerEvents: RNViewPointerEvents | null;
   styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemPad_styles[] | null;
+  dynamicStyles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemPad_dynamicStyles[] | null;
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemMarkdown_styles {
@@ -424,7 +431,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_Cont
   uri: string | null;
 }
 
-export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_rightIcon {
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -448,7 +455,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_Cont
   onPress: GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_onPress | null;
   event: GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_event | null;
   icon: GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_icon | null;
-  rightIcon: GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_rightIcon | null;
+  contentItemButtonRightIcon: GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_contentItemButtonRightIcon | null;
   styles: GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -463,12 +470,19 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_Cont
   value: string;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemPad_dynamicStyles {
+  property: string;
+  value: string;
+  defaultValue: string;
+}
+
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemPad {
   __typename: "ContentItemPad";
   id: string;
   amount: number;
   pointerEvents: RNViewPointerEvents | null;
   styles: GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemPad_styles[] | null;
+  dynamicStyles: GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemPad_dynamicStyles[] | null;
 }
 
 export type GetYuScreenProductDetails_getYuScreenProductDetails_footer =
@@ -511,9 +525,10 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_Cont
   logo: string | null;
   heading: string | null;
   leftIcon: string | null;
-  rightIcon: string | null;
+  contentItemHeaderBarRightIcon: string | null;
   onLeftIconPress: GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemHeaderBar_onLeftIconPress | null;
   onRightIconPress: GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemHeaderBar_onRightIconPress | null;
+  publishKeyHeight: string | null;
 }
 
 export type GetYuScreenProductDetails_getYuScreenProductDetails_header =
@@ -543,12 +558,21 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_it
   value: string;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemPad_dynamicStyles {
+  property: string;
+  value: string;
+  defaultValue: string;
+}
+
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemPad {
   __typename: "ContentItemPad";
   id: string;
   amount: number;
   pointerEvents: RNViewPointerEvents | null;
   styles: GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemPad_styles[] | null;
+  dynamicStyles:
+    | GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemPad_dynamicStyles[]
+    | null;
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemCollapsingGenericHeader_styles {
@@ -556,7 +580,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_it
   value: string;
 }
 
-export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemCollapsingGenericHeader_rightIcon {
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemCollapsingGenericHeader_contentItemCollapsingGenericHeaderRightIcon {
   id: string;
   uri: string | null;
 }
@@ -578,7 +602,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_it
   styles:
     | GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemCollapsingGenericHeader_styles[]
     | null;
-  rightIcon: GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemCollapsingGenericHeader_rightIcon | null;
+  contentItemCollapsingGenericHeaderRightIcon: GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemCollapsingGenericHeader_contentItemCollapsingGenericHeaderRightIcon | null;
   collapsedRightIcon: GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemCollapsingGenericHeader_collapsedRightIcon | null;
   onPressRightIcon: GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemCollapsingGenericHeader_onPressRightIcon | null;
 }

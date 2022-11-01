@@ -85,9 +85,10 @@ const ProductStepDetachedContainer = (props: any) => {
           heading={null}
           logo="yulife"
           leftIcon="BACK"
-          rightIcon="CLOSE"
+          contentItemHeaderBarRightIcon="CLOSE"
           onLeftIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
           onRightIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
+          publishKeyHeight={null}
         />
       </View>
     </ProductStepDetachedNavigationContext.Provider>

@@ -24,7 +24,7 @@ export interface ContentItemMultiButton_buttons_icon {
   uri: string | null;
 }
 
-export interface ContentItemMultiButton_buttons_rightIcon {
+export interface ContentItemMultiButton_buttons_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -47,7 +47,7 @@ export interface ContentItemMultiButton_buttons {
   onPress: ContentItemMultiButton_buttons_onPress | null;
   event: ContentItemMultiButton_buttons_event | null;
   icon: ContentItemMultiButton_buttons_icon | null;
-  rightIcon: ContentItemMultiButton_buttons_rightIcon | null;
+  contentItemButtonRightIcon: ContentItemMultiButton_buttons_contentItemButtonRightIcon | null;
   styles: ContentItemMultiButton_buttons_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }

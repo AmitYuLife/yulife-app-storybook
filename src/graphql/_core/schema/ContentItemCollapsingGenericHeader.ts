@@ -14,7 +14,7 @@ export interface ContentItemCollapsingGenericHeader_styles {
   value: string;
 }
 
-export interface ContentItemCollapsingGenericHeader_rightIcon {
+export interface ContentItemCollapsingGenericHeader_contentItemCollapsingGenericHeaderRightIcon {
   id: string;
   uri: string | null;
 }
@@ -33,7 +33,7 @@ export interface ContentItemCollapsingGenericHeader {
   id: string;
   title: string | null;
   styles: ContentItemCollapsingGenericHeader_styles[] | null;
-  rightIcon: ContentItemCollapsingGenericHeader_rightIcon | null;
+  contentItemCollapsingGenericHeaderRightIcon: ContentItemCollapsingGenericHeader_contentItemCollapsingGenericHeaderRightIcon | null;
   collapsedRightIcon: ContentItemCollapsingGenericHeader_collapsedRightIcon | null;
   onPressRightIcon: ContentItemCollapsingGenericHeader_onPressRightIcon | null;
 }

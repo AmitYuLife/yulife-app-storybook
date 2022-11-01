@@ -20,7 +20,7 @@ export const ContentItemButton = memo((props: Props) => {
     onPress,
     styles,
     icon,
-    rightIcon,
+    contentItemButtonRightIcon: rightIcon,
     buttonSize,
     buttonType,
     event,

@@ -83,7 +83,7 @@ export interface ContentItemAgePercentCoverPicker_customCover_button_icon {
   uri: string | null;
 }
 
-export interface ContentItemAgePercentCoverPicker_customCover_button_rightIcon {
+export interface ContentItemAgePercentCoverPicker_customCover_button_contentItemButtonRightIcon {
   id: string;
   uri: string | null;
 }
@@ -106,7 +106,7 @@ export interface ContentItemAgePercentCoverPicker_customCover_button {
   onPress: ContentItemAgePercentCoverPicker_customCover_button_onPress | null;
   event: ContentItemAgePercentCoverPicker_customCover_button_event | null;
   icon: ContentItemAgePercentCoverPicker_customCover_button_icon | null;
-  rightIcon: ContentItemAgePercentCoverPicker_customCover_button_rightIcon | null;
+  contentItemButtonRightIcon: ContentItemAgePercentCoverPicker_customCover_button_contentItemButtonRightIcon | null;
   styles: ContentItemAgePercentCoverPicker_customCover_button_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
