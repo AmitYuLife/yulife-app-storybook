@@ -19,5 +19,5 @@ export type Unpacked<T> = T extends Array<infer U>
   ? U
   : T;
 
-type Noop = () => void;
-export const noop: Noop = () => void 0;
+export type VoidFunction = () => void;
+export const noop: VoidFunction = () => void 0;
