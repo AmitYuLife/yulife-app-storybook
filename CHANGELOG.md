@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.55.0] - 2022-11-02
+
+### Features
+
+- Feature GS-453: Categorise Wellbeing Hub
+
+### Bugfixes
+
+- Bugfix: Yuniversal icon and level on inspect leaderboard
+- Bugfix ENG-2978: Error yulife.modal.collectEventReward unable to find reward for this id
+- Bugfix ENG-2977: TypeError in yulife.modals.duelInvite
+- Bugfix: change condition to ignore network errors in bugsnag
+- Bugfix ENG-2974: TypeError in yulife.member.ActivityHistory
+
+### Tasks
+
+- Task: Send client token in video headers
+- Task: use localised date time format
+- Task: Log yuniversity video player events
+
+### Chores
+
+- Chore: Pass onPress as function from Product wrappers to ContentItemButton
+- Chore: Wrap ContentItemProgressBar with ProductStepProgressBar
+- Chore: Sync SDUI GQL
+- Chore: Add retry system on video-player if onError is trigged
+- Chore: Update redux migration githooks to check if store version has been updated
+
+### Extra
+
+- Detox/fixes smoke1 1 10
+- Detox/version and script patch
+- Detox/queries sent
+- Hotfix: increment the version redux store nr
+- Detox/extended 1 fixes 25 10
+
 ## [3.54.0] - 2022-10-26
 
 ### Bugfixes
