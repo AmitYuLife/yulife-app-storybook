@@ -1,6 +1,5 @@
 import { useQuery } from "@apollo/client";
 import React, { memo, useCallback, useMemo } from "react";
-import { View, StyleSheet } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { useSelector } from "react-redux";
 import InspectScreen from "@components/screens/member/inspect/inspect.screen";
@@ -8,11 +7,10 @@ import { ROUTES } from "@navigation/constants";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { GQL_QUERY_GET_STATISTICS } from "@graphql/statistics/getStatistics.gql";
 import { GetStatistics, GetDuels } from "@graphql/_core/schema";
-import { Loading } from "@atoms";
-import { Style } from "@styles";
 import { useBackHandler } from "@hooks";
 import { GQL_QUERY_GET_DUELS } from "@graphql/duels";
 import { onDuelPress } from "../leaderboard/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog.helpers";
+import LoadingScreen from "@components/screens/member/loading/loading.screen";
 
 interface IProps {
   componentId: string;
@@ -102,12 +100,8 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
     [current]
   );
 
-  if (loading && !data?.getStatistics?.current) {
-    return (
-      <View style={styles.wrapper}>
-        <Loading />
-      </View>
-    );
+  if (loading || !data?.getStatistics?.current) {
+    return <LoadingScreen onClose={onClose} />;
   }
 
   return (
@@ -133,11 +127,5 @@ const openDuelHub = () =>
       name: ROUTES.duelsHub,
     },
   });
-
-const styles = StyleSheet.create({
-  wrapper: {
-    height: Style.DEVICE_HEIGHT,
-  },
-});
 
 export default memo(InspectContainer);
