@@ -1,5 +1,7 @@
 import moment = require("moment");
-export const monthYear = moment().format('MMMM YYYY')
+export const yesterdaysMonthYear = moment().subtract(1, 'month').format('MMMM YYYY')
+
+
 
 
 
