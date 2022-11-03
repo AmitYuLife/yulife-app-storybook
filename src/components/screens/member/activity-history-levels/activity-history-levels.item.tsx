@@ -1,6 +1,6 @@
 import { StarInline, TextTemplate } from "@atoms/index";
 import { GetActivityHistory_getActivityHistoryWithLevels_sources as Sources } from "@graphql/_core/schema";
-import * as React from "react";
+import React, { useCallback } from "react";
 import { View } from "react-native";
 import { displaySecondsAsMinutes, padNum, addCommasToNumber } from "@utils";
 import styles from "./activity-history-levels.styles";
@@ -8,6 +8,7 @@ import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
 import { KM_TO_METERS, METER_TO_MILES } from "@redux/daily-cycling/daily-cycling.selectors";
 import { Colours } from "@styles";
 import { TEXT_TEMPLATE } from "@ids";
+import { useTranslation } from "@hooks";
 
 export interface IChallenge {
   earned: number;
@@ -25,6 +26,7 @@ export interface ItemProps {
   monthAndYear?: string;
   steps: number;
   sources?: Partial<Sources>;
+  cyclingSources?: Partial<Sources>;
   yucoin: number;
   mindfulSeconds?: number;
   mindfulYucoin?: number;
@@ -41,6 +43,7 @@ export default function ActivityHistoryLevelsItem({
   level,
   steps,
   sources,
+  cyclingSources,
   yucoin,
   mindfulSeconds,
   mindfulYucoin,
@@ -49,15 +52,37 @@ export default function ActivityHistoryLevelsItem({
   cyclingMeasurement,
   testID,
 }: ItemProps) {
-  const typeText = steps === 1 ? "step" : "steps";
-  const cyclingData =
-    cyclingMeasurement === DistanceMeasurementType.km ? cycling / KM_TO_METERS : cycling * METER_TO_MILES;
-  const cyclingText = `${cyclingData.toFixed(1)} ${cyclingMeasurement} cycled`;
+  const translations = useTranslation([
+    "activity_types.steps.singular",
+    "activity_types.steps.plural",
+    "activity_types.cycling.plural",
+    "activity_types.meditation.singular",
+    "activity_types.meditation.plural",
+  ]);
+
+  const generateCyclingText = useCallback(
+    (val) => {
+      const cyclingData = cyclingMeasurement === DistanceMeasurementType.km ? val / KM_TO_METERS : val * METER_TO_MILES;
+      return `${cyclingData.toFixed(1)} ${cyclingMeasurement} ${translations["activity_types.cycling.plural"]}`;
+    },
+    [translations, cyclingMeasurement]
+  );
+
+  const generateStepsText = useCallback(
+    (val) => {
+      return val === 1 ? translations["activity_types.steps.singular"] : translations["activity_types.steps.plural"];
+    },
+    [translations]
+  );
+
+  const typeText = generateStepsText(steps);
+  const cyclingText = generateCyclingText(cycling);
   const mindfulTotal = displaySecondsAsMinutes(mindfulSeconds);
   const mindfulTotalToDisplay =
     mindfulTotal.minutes === 1
-      ? `${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} mindful min`
-      : `${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} mindful mins`;
+      ? `${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} ${translations["activity_types.steps.singular"]}`
+      : `${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} ${translations["activity_types.steps.plural"]}`;
+
   return (
     <View style={styles.listItemWrapper} testID={testID}>
       <View style={styles.levelWrapper}>
@@ -102,6 +127,8 @@ export default function ActivityHistoryLevelsItem({
               </TextTemplate>
             </View>
 
+            {renderSourcesText(sources, (val) => generateStepsText(val))}
+
             {!mindfulSeconds ? null : (
               <View style={styles.activityLabelWrapper}>
                 <TextTemplate type="b2" numberOfLines={1} testID={TEXT_TEMPLATE(mindfulTotalToDisplay)}>
@@ -118,7 +145,8 @@ export default function ActivityHistoryLevelsItem({
               </View>
             )}
 
-            {renderSourcesText(sources)}
+            {renderSourcesText(cyclingSources, (val) => generateCyclingText(val))}
+
             {!challenges.length ? (
               <View style={styles.activityLabelWrapper}>
                 <TextTemplate type="b2" numberOfLines={1}>
@@ -156,9 +184,10 @@ export default function ActivityHistoryLevelsItem({
           </View>
           <View style={styles.yuCoinEarnedColumn}>
             {renderCoinEarnedValue(yucoin)}
+            {renderSourcesColumnSpacing(sources, () => renderCoinEarnedValue("-"))}
             {!mindfulSeconds ? null : renderCoinEarnedValue(mindfulYucoin || "0")}
             {!cycling ? null : renderCoinEarnedValue(cyclingYucoin || "0")}
-            {renderSourcesColumnSpacing(sources, () => renderCoinEarnedValue("-"))}
+            {renderSourcesColumnSpacing(cyclingSources, () => renderCoinEarnedValue("-"))}
             {challenges.length ? null : renderCoinEarnedValue(0)}
             {challenges.map(({ earned }, index) => renderCoinEarnedValue(earned, { key: index }))}
           </View>
@@ -196,41 +225,31 @@ function showSources(sources: Partial<Sources>) {
     return false;
   }
 
-  if (!sources.garmin && !sources.fitbit) {
+  if (!sources.garmin && !sources.fitbit && !sources.strava) {
     return false;
   }
 
   return true;
 }
 
-function renderSourcesText(sources: Partial<Sources>) {
+function renderSourcesText(sources: Partial<Sources>, generateText: (arg: number) => string) {
   if (!showSources(sources)) {
     return null;
   }
 
   return (
     <>
-      {!sources.device ? null : (
-        <View style={styles.activityLabelWrapper}>
-          <TextTemplate type="b2" numberOfLines={1}>
-            {`phone / ${sources.device} steps`}
-          </TextTemplate>
-        </View>
-      )}
-      {!sources.fitbit ? null : (
-        <View style={styles.activityLabelWrapper}>
-          <TextTemplate type="b2" numberOfLines={1}>
-            {`fitbit / ${sources.fitbit} steps`}
-          </TextTemplate>
-        </View>
-      )}
-      {!sources.garmin ? null : (
-        <View style={styles.activityLabelWrapper}>
-          <TextTemplate type="b2" numberOfLines={1}>
-            {`garmin / ${sources.garmin} steps`}
-          </TextTemplate>
-        </View>
-      )}
+      {Object.keys(sources)
+        .sort()
+        .map((key: keyof Sources) =>
+          !sources[key] || (key as unknown) === "__typename" ? null : (
+            <View key={key} style={styles.activitySourceLabelWrapper}>
+              <TextTemplate type="b2" numberOfLines={1}>
+                &nbsp; - {key !== "device" ? key : "phone"} / {generateText(sources[key])}
+              </TextTemplate>
+            </View>
+          )
+        )}
     </>
   );
 }
@@ -245,6 +264,7 @@ function renderSourcesColumnSpacing(sources: Partial<Sources>, render: () => Rea
       {!sources.device ? null : render()}
       {!sources.fitbit ? null : render()}
       {!sources.garmin ? null : render()}
+      {!sources.strava ? null : render()}
     </>
   );
 }

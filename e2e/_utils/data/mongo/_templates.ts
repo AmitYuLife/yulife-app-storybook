@@ -243,4 +243,52 @@ export const allTogglesTrueFor_PLI_V4 = {
         }
     }
 } as IDatabaseItem
+
+export const DEFAULT_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: generateRandomMongoId(),
+        features: {
+            "showNotifications": true,
+            "showStreaks": true,
+            "showCounter": true,
+            "showBuildNumber": true,
+            "showSettings": true,
+            "showCreateLeaderboard": true,
+            "showAdvancedLeaderboards": true,
+            "disableUserEntries": true,
+            "fitbit": true,
+            "showConnections": true,
+            "showLastSynced": true,
+            "newPassiveValidationRule": true,
+            "usePassiveMeditation": true,
+            "statsShowCoinGeneralTotalYearned": true,
+            "statsShowCoinRecommendationCard": true,
+            "statsShowCoinGeneralTotalRedeemedCard": true,
+            "statsShowCoinAchievementCard": true,
+            "statsShowChallengeGeneralCard": true,
+            "statsShowChallengeRecommendationCard": true,
+            "statsShowChallengeComparisonCard": true,
+            "statsShowStepsRecommendationCard": true,
+            "statsShowStepsGeneralCard": true,
+            "statsShowStepsBestScoreCard": true,
+            "statsShowStepsGraphCard": true,
+            "statsShowMindfulnessRecommendationCard": true,
+            "statsShowMindfulnessGeneralCard": true,
+            "statsShowMindfulnessBestScoreCard": true,
+            "statsShowMindfulnessGraphCard": true,
+            "statsShowCyclingRecommendationCard": true,
+            "statsShowCyclingGeneralCard": true,
+            "statsShowCyclingBestScoreCard": true,
+            "statsShowCyclingGraphCard": true,
+            "showStats": true,
+            hideSmartHealthScreen: true,
+            hideYuMatterScreen: false,
+            newGamePlus: true,
+            unitySurge: true,
+        }
+    }
+} as IDatabaseItem
     

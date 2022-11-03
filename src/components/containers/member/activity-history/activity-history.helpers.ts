@@ -26,7 +26,7 @@ export function groupDatesByMonth(dates: ItemProps[]) {
 }
 
 export function countSources(sources: Partial<Sources>) {
-  if (!sources.garmin && !sources.fitbit) {
+  if (!sources.garmin && !sources.fitbit && !sources.strava) {
     return 0;
   }
 

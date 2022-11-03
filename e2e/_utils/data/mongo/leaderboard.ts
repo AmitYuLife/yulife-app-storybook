@@ -1,10 +1,13 @@
 import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_18, CUSTOMER_16, CUSTOMER_17, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_40, CUSTOMER_47, CUSTOMER_50, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_66 } from "../postgres/customers";
+import { CUSTOMER_18, CUSTOMER_16, CUSTOMER_17, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_40, CUSTOMER_47, CUSTOMER_50, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_66, CUSTOMER_65 } from "../postgres/customers";
 
 const LEADERBOARD_1_ID = generateRandomPostgresId()
 const LEADERBOARD_2_ID = generateRandomPostgresId() + "ABCDEF"
 const LEADERBOARD_3_ID = generateRandomPostgresId() + "GHIJKL"
 const LEADERBOARD_4_ID = generateRandomPostgresId() + "MNOPQR"
+const LEADERBOARD_5_ID = generateRandomPostgresId() + "STUVWX"
+
+
 
 const CREATOR_NAME_2 = "a653cbea0c6604cb3876c79f7e8549f6"
 
@@ -313,6 +316,20 @@ export const USER_58_LEADERBOARD = {
     data: {
         leaderboardId: LEADERBOARD_4_ID,
         userId: CUSTOMER_58.data.customerId,
+        name: USER_54_LEADERBOARD.data.name,
+        creatorName: CUSTOMER_54.data.firstName,
+        consent: true,
+        primaryBusinessLeaderboard: true,
+        hasAccepted: true,
+    }
+} as IDatabaseItem
+
+export const USER_65_LEADERBOARD = {
+    type: "mongo",
+    modelName: "user_leaderboards",
+    data: {
+        leaderboardId: LEADERBOARD_5_ID,
+        userId: CUSTOMER_65.data.customerId,
         name: USER_54_LEADERBOARD.data.name,
         creatorName: CUSTOMER_54.data.firstName,
         consent: true,

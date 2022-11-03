@@ -10,6 +10,7 @@
 export interface GetActivityHistory_getActivityHistoryWithLevels_sources {
   garmin: number | null;
   fitbit: number | null;
+  strava: number | null;
   device: number | null;
 }
 
@@ -19,6 +20,13 @@ export interface GetActivityHistory_getActivityHistoryWithLevels_challenges {
   milestones: number | null;
   name: string | null;
   score: string | null;
+}
+
+export interface GetActivityHistory_getActivityHistoryWithLevels_cyclingSources {
+  garmin: number | null;
+  fitbit: number | null;
+  strava: number | null;
+  device: number | null;
 }
 
 export interface GetActivityHistory_getActivityHistoryWithLevels {
@@ -34,6 +42,7 @@ export interface GetActivityHistory_getActivityHistoryWithLevels {
   mindfulSeconds: number | null;
   mindfulYucoin: number | null;
   cycling: number | null;
+  cyclingSources: GetActivityHistory_getActivityHistoryWithLevels_cyclingSources | null;
   cyclingYucoin: number | null;
 }
 

@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_19, CUSTOMER_35, CUSTOMER_40, CUSTOMER_42, CUSTOMER_47, CUSTOMER_50, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_66 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_19, CUSTOMER_35, CUSTOMER_40, CUSTOMER_42, CUSTOMER_47, CUSTOMER_50, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_66, CUSTOMER_65 } from '../postgres/customers';
 import moment = require('moment');
 import { SHORT_STROLL_MILESTONE_1, LONG_WALK_MILESTONE_1, MEDITATION_MILESTONE_1 } from './map_milestone_templates';
 import { MEDITATION_1, LONG_WALK_1, SHORT_STROLL_1, CYCLING_1 } from './map_level_slot_templates';
@@ -1849,5 +1849,159 @@ export const CHALLENGE_USER_58_A = {
                 isNewType: true,
             },
         ],
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_65_A = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_65.data.customerId,
+        date: moment().subtract(1, "days").format("YYYY-MM-DD").toString(),
+        startTime: moment().subtract(1, "days").startOf("day").toDate(),
+        startDateTime: moment().subtract(1, "days").startOf("day").add(1, "hour").toString(),
+        endDateTime: moment().subtract(1, "days").endOf("day").toString(),
+        createdAt: moment().subtract(1, "days").startOf("day").toDate(),
+        updatedAt: moment().subtract(1, "days").startOf("day").toDate(),
+        levelSlotTemplateId: "DAILY_PASSIVE_003",
+        status: "completed",
+        sources: {
+            garmin: {
+              distance: 1000
+            },
+            strava: {
+                distance: 1000
+            },
+            fitbit: {
+                distance: 1000
+            }
+          },
+        passive: true,
+        isNewType: true,
+        subtype: CYCLING_1.data.subtype,
+        incomingData: {
+            distance: 3000
+        },
+        level: 4,
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                id: CYCLING_1.data.id,
+                completed: moment().subtract(1, "day").toDate(),
+                data: {
+                    distance: 3000,
+                },
+                yuCoinAwarded: 10
+            }
+        ],
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_65_B = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_65.data.customerId,
+        date: moment().subtract(2, "days").format("YYYY-MM-DD").toString(),
+        startTime: moment().subtract(2, "days").toDate(),
+        startDateTime: moment().subtract(2, "days").toString(),
+        endDateTime: moment().subtract(2, "days").toString(),
+        createdAt: moment().subtract(2, "days").toDate(),
+        updatedAt: moment().subtract(2, "days").toDate(),
+        levelSlotTemplateId: "DAILY_PASSIVE_003",
+        status: "completed",
+        sources: {
+            fitbit: {
+              distance: 4000
+            }
+          },
+        passive: true,
+        isNewType: true,
+        subtype: CYCLING_1.data.subtype,
+        incomingData: {
+            distance: 4000
+        },
+        level: 4,
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                id: CYCLING_1.data.id,
+                completed: moment().subtract(2, "day").toDate(),
+                data: {
+                    distance: 4000,
+                },
+                yuCoinAwarded: 10
+            }
+        ],
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_65_C = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_65.data.customerId,
+        date: moment().subtract(3, "days").format("YYYY-MM-DD").toString(),
+        startTime: moment().subtract(3, "days").toDate(),
+        startDateTime: moment().subtract(3, "days").toString(),
+        endDateTime: moment().subtract(3, "days").toString(),
+        createdAt: moment().subtract(3, "days").toDate(),
+        updatedAt: moment().subtract(3, "days").toDate(),
+        levelSlotTemplateId: "DAILY_PASSIVE_003",
+        status: "completed",
+        sources: {
+            strava: {
+              distance: 5000
+            }
+          },
+        passive: true,
+        isNewType: true,
+        subtype: CYCLING_1.data.subtype,
+        incomingData: {
+            distance: 5000
+        },
+        level: 4,
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                id: CYCLING_1.data.id,
+                completed: moment().subtract(3, "day").toDate(),
+                data: {
+                    distance: 5000,
+                },
+                yuCoinAwarded: 10
+            }
+        ],
+    }
+} as IDatabaseItem;
+
+// we need this to not overwrite activityLastReceived date in users table
+export const ONBOARDING_CHALLENGE_65_A = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_65.data.customerId,
+        "isNewType": true,
+        "yuCoinAwarded": 200,
+        "XPAwarded": 0,
+        "rating": 0,
+        "incomingData": {},
+        "sources": {},
+        "passive": true,
+        "levelSlotTemplateId": "MAIN_ONBOARDING_001",
+        "status": "completed",
+        "date": moment().format("YYYY-MM-DD").toString(),
+        "milestoneLog": [],
     }
 } as IDatabaseItem;

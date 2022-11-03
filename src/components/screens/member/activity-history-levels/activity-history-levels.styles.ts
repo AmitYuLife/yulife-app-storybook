@@ -13,6 +13,11 @@ export default StyleSheet.create({
     height: rowHeight,
     marginLeft: distanceTwoThree,
   } as ViewStyle,
+  activitySourceLabelWrapper: {
+    height: rowHeight,
+    marginLeft: distanceTwoThree,
+    width: Style.adjust(180),
+  } as ViewStyle,
   activityLabelsWrapper: {
     width: Style.adjust(150),
   } as ViewStyle,

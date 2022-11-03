@@ -1,6 +1,6 @@
 
-import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22, CUSTOMER_24, CUSTOMER_19, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_ALPHA, CUSTOMER_34, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_43, CUSTOMER_44, CUSTOMER_45, CUSTOMER_46, CUSTOMER_48, CUSTOMER_49, CUSTOMER_50, CUSTOMER_51, CUSTOMER_53, CUSTOMER_MEDITOPIA_1, CUSTOMER_MEDITOPIA_2, CUSTOMER_MEDITOPIA_3, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_PLI_6, CUSTOMER_PLI_7, CUSTOMER_PLI_9, CUSTOMER_PLI_10, CUSTOMER_DENTAL_1, CUSTOMER_47, CUSTOMER_52, CUSTOMER_60, CUSTOMER_61, CUSTOMER_63, CUSTOMER_64, CUSTOMER_66 } from '../postgres/customers';
-import { allTogglesTrue, allTogglesTrueFor_PLI, mediaContentToggle, allTogglesTrueFor_PLI_V4 } from "./_templates";
+import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22, CUSTOMER_24, CUSTOMER_19, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_ALPHA, CUSTOMER_34, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_43, CUSTOMER_44, CUSTOMER_45, CUSTOMER_46, CUSTOMER_48, CUSTOMER_49, CUSTOMER_50, CUSTOMER_51, CUSTOMER_53, CUSTOMER_MEDITOPIA_1, CUSTOMER_MEDITOPIA_2, CUSTOMER_MEDITOPIA_3, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_PLI_6, CUSTOMER_PLI_7, CUSTOMER_PLI_9, CUSTOMER_PLI_10, CUSTOMER_DENTAL_1, CUSTOMER_47, CUSTOMER_52, CUSTOMER_60, CUSTOMER_61, CUSTOMER_63, CUSTOMER_64, CUSTOMER_66, CUSTOMER_65 } from '../postgres/customers';
+import { allTogglesTrue, allTogglesTrueFor_PLI, mediaContentToggle, allTogglesTrueFor_PLI_V4, DEFAULT_TOGGLES } from "./_templates";
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5 } from "../postgres/business";
 
@@ -111,10 +111,10 @@ export const CUSTOMER_10_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_10.data.customerId,
-        features: {
-            hideSmartHealthScreen: true,
-            hideYuMatterScreen: true,
-        },
+        features: 
+            DEFAULT_TOGGLES.data.features, 
+            hideSmartHealthScreen: true, 
+            hideYuMatterScreen: true
     }
 } as IDatabaseItem
 
@@ -124,9 +124,11 @@ export const CUSTOMER_12_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_12.data.customerId,
-        features: {
-            hideSmartHealthScreen: true, hideYuMatterScreen: true, unitySurge: true
-        },
+        features:
+            DEFAULT_TOGGLES.data.features,
+            hideSmartHealthScreen: true, 
+            hideYuMatterScreen: true, 
+            unitySurge: true
     }
 } as IDatabaseItem
 
@@ -136,7 +138,10 @@ export const CUSTOMER_13_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_13.data.customerId,
-        features: { hideSmartHealthScreen: true, hideYuMatterScreen: false },
+        features: 
+            DEFAULT_TOGGLES.data.features,
+            hideSmartHealthScreen: true, 
+            hideYuMatterScreen: false ,
     }
 } as IDatabaseItem
 
@@ -225,11 +230,11 @@ export const CUSTOMER_18_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_18.data.customerId,
-        features: {
+        features: 
+            DEFAULT_TOGGLES.data.features,
             hideSmartHealthScreen: false,
             hideYuMatterScreen: true,
             showDuels: true
-        },
     }
 } as IDatabaseItem
 
@@ -239,9 +244,9 @@ export const CUSTOMER_19_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_19.data.customerId,
-        features: {
+        features: 
+            DEFAULT_TOGGLES.data.features,
             showDuels: true
-        },
     }
 } as IDatabaseItem
 
@@ -303,45 +308,8 @@ export const CUSTOMER_22_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_22.data.customerId,
-        features: {
-            "showNotifications": true,
-            "showStreaks": true,
-            "showCounter": true,
-            "showBuildNumber": true,
-            "showSettings": true,
-            "showCreateLeaderboard": true,
-            "showAdvancedLeaderboards": true,
-            "disableUserEntries": true,
-            "fitbit": true,
-            "showConnections": true,
-            "showLastSynced": true,
-            "newPassiveValidationRule": true,
-            "usePassiveMeditation": true,
-            "statsShowCoinGeneralTotalYearned": true,
-            "statsShowCoinRecommendationCard": true,
-            "statsShowCoinGeneralTotalRedeemedCard": true,
-            "statsShowCoinAchievementCard": true,
-            "statsShowChallengeGeneralCard": true,
-            "statsShowChallengeRecommendationCard": true,
-            "statsShowChallengeComparisonCard": true,
-            "statsShowStepsRecommendationCard": true,
-            "statsShowStepsGeneralCard": true,
-            "statsShowStepsBestScoreCard": true,
-            "statsShowStepsGraphCard": true,
-            "statsShowMindfulnessRecommendationCard": true,
-            "statsShowMindfulnessGeneralCard": true,
-            "statsShowMindfulnessBestScoreCard": true,
-            "statsShowMindfulnessGraphCard": true,
-            "statsShowCyclingRecommendationCard": true,
-            "statsShowCyclingGeneralCard": true,
-            "statsShowCyclingBestScoreCard": true,
-            "statsShowCyclingGraphCard": true,
-            "showStats": true,
-            hideSmartHealthScreen: true,
-            hideYuMatterScreen: false,
-            newGamePlus: true,
-            unitySurge: true,
-        }
+        features: 
+        DEFAULT_TOGGLES.data.features,
     }
 } as IDatabaseItem
 
@@ -496,46 +464,9 @@ export const CUSTOMER_31_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_31.data.customerId,
-        features: {
-            "showNotifications": true,
-            "showStreaks": true,
-            "showCounter": true,
-            "showBuildNumber": true,
-            "showSettings": true,
-            "showCreateLeaderboard": true,
-            "showAdvancedLeaderboards": true,
-            "disableUserEntries": true,
-            "fitbit": true,
-            "showConnections": true,
-            "showLastSynced": true,
-            "newPassiveValidationRule": true,
-            "usePassiveMeditation": true,
-            "statsShowCoinGeneralTotalYearned": true,
-            "statsShowCoinRecommendationCard": true,
-            "statsShowCoinGeneralTotalRedeemedCard": true,
-            "statsShowCoinAchievementCard": true,
-            "statsShowChallengeGeneralCard": true,
-            "statsShowChallengeRecommendationCard": true,
-            "statsShowChallengeComparisonCard": true,
-            "statsShowStepsRecommendationCard": true,
-            "statsShowStepsGeneralCard": true,
-            "statsShowStepsBestScoreCard": true,
-            "statsShowStepsGraphCard": true,
-            "statsShowMindfulnessRecommendationCard": true,
-            "statsShowMindfulnessGeneralCard": true,
-            "statsShowMindfulnessBestScoreCard": true,
-            "statsShowMindfulnessGraphCard": true,
-            "statsShowCyclingRecommendationCard": true,
-            "statsShowCyclingGeneralCard": true,
-            "statsShowCyclingBestScoreCard": true,
-            "statsShowCyclingGraphCard": true,
-            "showStats": true,
-            hideSmartHealthScreen: true,
-            hideYuMatterScreen: false,
-            newGamePlus: true,
-            unitySurge: true,
+        features: 
+            DEFAULT_TOGGLES.data.features,
             yuScreenV3: true
-        }
     }
 } as IDatabaseItem
 
@@ -546,47 +477,10 @@ export const CUSTOMER_32_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_32.data.customerId,
-        features: {
-            "showNotifications": true,
-            "showStreaks": true,
-            "showCounter": true,
-            "showBuildNumber": true,
-            "showSettings": true,
-            "showCreateLeaderboard": true,
-            "showAdvancedLeaderboards": true,
-            "disableUserEntries": true,
-            "fitbit": true,
-            "showConnections": true,
-            "showLastSynced": true,
-            "newPassiveValidationRule": true,
-            "usePassiveMeditation": true,
-            "statsShowCoinGeneralTotalYearned": true,
-            "statsShowCoinRecommendationCard": true,
-            "statsShowCoinGeneralTotalRedeemedCard": true,
-            "statsShowCoinAchievementCard": true,
-            "statsShowChallengeGeneralCard": true,
-            "statsShowChallengeRecommendationCard": true,
-            "statsShowChallengeComparisonCard": true,
-            "statsShowStepsRecommendationCard": true,
-            "statsShowStepsGeneralCard": true,
-            "statsShowStepsBestScoreCard": true,
-            "statsShowStepsGraphCard": true,
-            "statsShowMindfulnessRecommendationCard": true,
-            "statsShowMindfulnessGeneralCard": true,
-            "statsShowMindfulnessBestScoreCard": true,
-            "statsShowMindfulnessGraphCard": true,
-            "statsShowCyclingRecommendationCard": true,
-            "statsShowCyclingGeneralCard": true,
-            "statsShowCyclingBestScoreCard": true,
-            "statsShowCyclingGraphCard": true,
-            "showStats": true,
-            hideSmartHealthScreen: true,
-            hideYuMatterScreen: false,
-            newGamePlus: true,
-            unitySurge: true,
+        features: 
+            DEFAULT_TOGGLES.data.features,
             yuScreenV3: true,
             hasBeneficiariesEnabled: true
-        }
     }
 } as IDatabaseItem
 
@@ -596,47 +490,10 @@ export const CUSTOMER_33_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_33.data.customerId,
-        features: {
-            "showNotifications": true,
-            "showStreaks": true,
-            "showCounter": true,
-            "showBuildNumber": true,
-            "showSettings": true,
-            "showCreateLeaderboard": true,
-            "showAdvancedLeaderboards": true,
-            "disableUserEntries": true,
-            "fitbit": true,
-            "showConnections": true,
-            "showLastSynced": true,
-            "newPassiveValidationRule": true,
-            "usePassiveMeditation": true,
-            "statsShowCoinGeneralTotalYearned": true,
-            "statsShowCoinRecommendationCard": true,
-            "statsShowCoinGeneralTotalRedeemedCard": true,
-            "statsShowCoinAchievementCard": true,
-            "statsShowChallengeGeneralCard": true,
-            "statsShowChallengeRecommendationCard": true,
-            "statsShowChallengeComparisonCard": true,
-            "statsShowStepsRecommendationCard": true,
-            "statsShowStepsGeneralCard": true,
-            "statsShowStepsBestScoreCard": true,
-            "statsShowStepsGraphCard": true,
-            "statsShowMindfulnessRecommendationCard": true,
-            "statsShowMindfulnessGeneralCard": true,
-            "statsShowMindfulnessBestScoreCard": true,
-            "statsShowMindfulnessGraphCard": true,
-            "statsShowCyclingRecommendationCard": true,
-            "statsShowCyclingGeneralCard": true,
-            "statsShowCyclingBestScoreCard": true,
-            "statsShowCyclingGraphCard": true,
-            "showStats": true,
-            hideSmartHealthScreen: true,
-            hideYuMatterScreen: false,
-            newGamePlus: true,
-            unitySurge: true,
+        features: 
+            DEFAULT_TOGGLES.data.features,
             yuScreenV3: true,
             hasBeneficiariesEnabled: true
-        }
     }
 } as IDatabaseItem
 
@@ -646,51 +503,14 @@ export const CUSTOMER_34_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_34.data.customerId,
-        features: {
-            "showNotifications": true,
-            "showStreaks": true,
-            "showCounter": true,
-            "showBuildNumber": true,
-            "showSettings": true,
-            "showCreateLeaderboard": true,
-            "showAdvancedLeaderboards": true,
-            "disableUserEntries": true,
-            "fitbit": true,
-            "showConnections": true,
-            "showLastSynced": true,
-            "newPassiveValidationRule": true,
-            "usePassiveMeditation": true,
-            "statsShowCoinGeneralTotalYearned": true,
-            "statsShowCoinRecommendationCard": true,
-            "statsShowCoinGeneralTotalRedeemedCard": true,
-            "statsShowCoinAchievementCard": true,
-            "statsShowChallengeGeneralCard": true,
-            "statsShowChallengeRecommendationCard": true,
-            "statsShowChallengeComparisonCard": true,
-            "statsShowStepsRecommendationCard": true,
-            "statsShowStepsGeneralCard": true,
-            "statsShowStepsBestScoreCard": true,
-            "statsShowStepsGraphCard": true,
-            "statsShowMindfulnessRecommendationCard": true,
-            "statsShowMindfulnessGeneralCard": true,
-            "statsShowMindfulnessBestScoreCard": true,
-            "statsShowMindfulnessGraphCard": true,
-            "statsShowCyclingRecommendationCard": true,
-            "statsShowCyclingGeneralCard": true,
-            "statsShowCyclingBestScoreCard": true,
-            "statsShowCyclingGraphCard": true,
-            "showStats": true,
-            hideSmartHealthScreen: true,
-            hideYuMatterScreen: false,
-            newGamePlus: true,
-            unitySurge: true,
+        features: 
+            DEFAULT_TOGGLES.data.features,
             yuScreenV3: true,
             hasBeneficiariesEnabled: false,
             showCommunityGoals: true,
             "showGoals": true,
             useCoreChallengesService: true,
             useActiveChallengesService: true
-        }
     }
 } as IDatabaseItem
 
@@ -701,9 +521,9 @@ export const CUSTOMER_ALPHA_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_ALPHA.data.customerId,
-        features: {
+        features: 
+            DEFAULT_TOGGLES.data.features,
             yuScreenV3: true
-        }
     }
 } as IDatabaseItem
 
@@ -891,45 +711,8 @@ export const CUSTOMER_41_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_41.data.customerId,
-        features: {
-            "showNotifications": true,
-            "showStreaks": true,
-            "showCounter": true,
-            "showBuildNumber": true,
-            "showSettings": true,
-            "showCreateLeaderboard": true,
-            "showAdvancedLeaderboards": true,
-            "disableUserEntries": true,
-            "fitbit": true,
-            "showConnections": true,
-            "showLastSynced": true,
-            "newPassiveValidationRule": true,
-            "usePassiveMeditation": true,
-            "statsShowCoinGeneralTotalYearned": true,
-            "statsShowCoinRecommendationCard": true,
-            "statsShowCoinGeneralTotalRedeemedCard": true,
-            "statsShowCoinAchievementCard": true,
-            "statsShowChallengeGeneralCard": true,
-            "statsShowChallengeRecommendationCard": true,
-            "statsShowChallengeComparisonCard": true,
-            "statsShowStepsRecommendationCard": true,
-            "statsShowStepsGeneralCard": true,
-            "statsShowStepsBestScoreCard": true,
-            "statsShowStepsGraphCard": true,
-            "statsShowMindfulnessRecommendationCard": true,
-            "statsShowMindfulnessGeneralCard": true,
-            "statsShowMindfulnessBestScoreCard": true,
-            "statsShowMindfulnessGraphCard": true,
-            "statsShowCyclingRecommendationCard": true,
-            "statsShowCyclingGeneralCard": true,
-            "statsShowCyclingBestScoreCard": true,
-            "statsShowCyclingGraphCard": true,
-            "showStats": true,
-            hideSmartHealthScreen: true,
-            hideYuMatterScreen: false,
-            newGamePlus: true,
-            unitySurge: true,
-        }
+        features: DEFAULT_TOGGLES.data.features,
+
     }
 } as IDatabaseItem
 
@@ -979,14 +762,13 @@ export const CUSTOMER_43_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_43.data.customerId,
-        features: {
+        features: 
+            DEFAULT_TOGGLES.data.features,
             yuScreenV4: true,
             showCreateLeaderboard: true,
             showAdvancedLeaderboards: true,
             hasCoveaFibActive: false,
             hasBupaDentActive: false,
-
-        }
     }
 } as IDatabaseItem
 
@@ -996,11 +778,11 @@ export const CUSTOMER_44_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_44.data.customerId,
-        features: {
+        features: 
+            DEFAULT_TOGGLES.data.features,
             yuScreenV4: true,
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
-        }
     }
 } as IDatabaseItem
 
@@ -1010,11 +792,11 @@ export const CUSTOMER_45_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_45.data.customerId,
-        features: {
+        features: 
+            DEFAULT_TOGGLES.data.features,
             yuScreenV4: true,
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
-        }
     }
 } as IDatabaseItem
 
@@ -1024,11 +806,11 @@ export const CUSTOMER_46_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_46.data.customerId,
-        features: {
+        features: 
+            DEFAULT_TOGGLES.data.features,
             yuScreenV4: true,
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
-        }
     }
 } as IDatabaseItem
 
@@ -1038,11 +820,11 @@ export const CUSTOMER_48_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_48.data.customerId,
-        features: {
+        features: 
+            DEFAULT_TOGGLES.data.features,
             yuScreenV4: true,
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
-        }
     }
 } as IDatabaseItem
 
@@ -1052,10 +834,10 @@ export const CUSTOMER_49_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_49.data.customerId,
-        features: {
+        features: 
+            DEFAULT_TOGGLES.data.features,
             yuScreenV4: true,
             hasBupaDentActive: true,
-        }
     }
 } as IDatabaseItem
 
@@ -1065,10 +847,10 @@ export const CUSTOMER_51_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_51.data.customerId,
-        features: {
+        features: 
+            DEFAULT_TOGGLES.data.features,
             yuScreenV4: true,
             hasBupaDentActive: true,
-        }
     }
 } as IDatabaseItem
 
@@ -1078,9 +860,9 @@ export const CUSTOMER_53_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_53.data.customerId,
-        features: {
+        features:
+            DEFAULT_TOGGLES.data.features,
             yuScreenV4: true,
-        }
     }
 } as IDatabaseItem
 
@@ -1170,11 +952,11 @@ export const CUSTOMER_47_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_47.data.customerId,
-        features: {
+        features: 
+            DEFAULT_TOGGLES.data.features,
             showDuels: true,
             showInspect: true,
             passiveCyclingEnabled: true,
-        },
     }
 } as IDatabaseItem
 
@@ -1184,11 +966,11 @@ export const CUSTOMER_50_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_50.data.customerId,
-        features: {
+        features: 
+            DEFAULT_TOGGLES.data.features,
             showDuels: true,
             showInspect: true,
             passiveCyclingEnabled: true,
-        },
     }
 } as IDatabaseItem
 
@@ -1236,45 +1018,7 @@ export const CUSTOMER_60_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_60.data.customerId,
-        features: {
-            "showNotifications": true,
-            "showStreaks": true,
-            "showCounter": true,
-            "showBuildNumber": true,
-            "showSettings": true,
-            "showCreateLeaderboard": true,
-            "showAdvancedLeaderboards": true,
-            "disableUserEntries": true,
-            "fitbit": true,
-            "showConnections": true,
-            "showLastSynced": true,
-            "newPassiveValidationRule": true,
-            "usePassiveMeditation": true,
-            "statsShowCoinGeneralTotalYearned": true,
-            "statsShowCoinRecommendationCard": true,
-            "statsShowCoinGeneralTotalRedeemedCard": true,
-            "statsShowCoinAchievementCard": true,
-            "statsShowChallengeGeneralCard": true,
-            "statsShowChallengeRecommendationCard": true,
-            "statsShowChallengeComparisonCard": true,
-            "statsShowStepsRecommendationCard": true,
-            "statsShowStepsGeneralCard": true,
-            "statsShowStepsBestScoreCard": true,
-            "statsShowStepsGraphCard": true,
-            "statsShowMindfulnessRecommendationCard": true,
-            "statsShowMindfulnessGeneralCard": true,
-            "statsShowMindfulnessBestScoreCard": true,
-            "statsShowMindfulnessGraphCard": true,
-            "statsShowCyclingRecommendationCard": true,
-            "statsShowCyclingGeneralCard": true,
-            "statsShowCyclingBestScoreCard": true,
-            "statsShowCyclingGraphCard": true,
-            "showStats": true,
-            hideSmartHealthScreen: true,
-            hideYuMatterScreen: false,
-            newGamePlus: true,
-            unitySurge: true,
-        }
+        features: DEFAULT_TOGGLES.data.features
     }
 } as IDatabaseItem
 
@@ -1284,45 +1028,7 @@ export const CUSTOMER_61_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_61.data.customerId,
-        features: {
-            "showNotifications": true,
-            "showStreaks": true,
-            "showCounter": true,
-            "showBuildNumber": true,
-            "showSettings": true,
-            "showCreateLeaderboard": true,
-            "showAdvancedLeaderboards": true,
-            "disableUserEntries": true,
-            "fitbit": true,
-            "showConnections": true,
-            "showLastSynced": true,
-            "newPassiveValidationRule": true,
-            "usePassiveMeditation": true,
-            "statsShowCoinGeneralTotalYearned": true,
-            "statsShowCoinRecommendationCard": true,
-            "statsShowCoinGeneralTotalRedeemedCard": true,
-            "statsShowCoinAchievementCard": true,
-            "statsShowChallengeGeneralCard": true,
-            "statsShowChallengeRecommendationCard": true,
-            "statsShowChallengeComparisonCard": true,
-            "statsShowStepsRecommendationCard": true,
-            "statsShowStepsGeneralCard": true,
-            "statsShowStepsBestScoreCard": true,
-            "statsShowStepsGraphCard": true,
-            "statsShowMindfulnessRecommendationCard": true,
-            "statsShowMindfulnessGeneralCard": true,
-            "statsShowMindfulnessBestScoreCard": true,
-            "statsShowMindfulnessGraphCard": true,
-            "statsShowCyclingRecommendationCard": true,
-            "statsShowCyclingGeneralCard": true,
-            "statsShowCyclingBestScoreCard": true,
-            "statsShowCyclingGraphCard": true,
-            "showStats": true,
-            hideSmartHealthScreen: true,
-            hideYuMatterScreen: false,
-            newGamePlus: true,
-            unitySurge: true,
-        }
+        features: DEFAULT_TOGGLES.data.features
     }
 } as IDatabaseItem
 
@@ -1332,45 +1038,7 @@ export const CUSTOMER_63_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_63.data.customerId,
-        features: {
-            "showNotifications": true,
-            "showStreaks": true,
-            "showCounter": true,
-            "showBuildNumber": true,
-            "showSettings": true,
-            "showCreateLeaderboard": true,
-            "showAdvancedLeaderboards": true,
-            "disableUserEntries": true,
-            "fitbit": true,
-            "showConnections": true,
-            "showLastSynced": true,
-            "newPassiveValidationRule": true,
-            "usePassiveMeditation": true,
-            "statsShowCoinGeneralTotalYearned": true,
-            "statsShowCoinRecommendationCard": true,
-            "statsShowCoinGeneralTotalRedeemedCard": true,
-            "statsShowCoinAchievementCard": true,
-            "statsShowChallengeGeneralCard": true,
-            "statsShowChallengeRecommendationCard": true,
-            "statsShowChallengeComparisonCard": true,
-            "statsShowStepsRecommendationCard": true,
-            "statsShowStepsGeneralCard": true,
-            "statsShowStepsBestScoreCard": true,
-            "statsShowStepsGraphCard": true,
-            "statsShowMindfulnessRecommendationCard": true,
-            "statsShowMindfulnessGeneralCard": true,
-            "statsShowMindfulnessBestScoreCard": true,
-            "statsShowMindfulnessGraphCard": true,
-            "statsShowCyclingRecommendationCard": true,
-            "statsShowCyclingGeneralCard": true,
-            "statsShowCyclingBestScoreCard": true,
-            "statsShowCyclingGraphCard": true,
-            "showStats": true,
-            hideSmartHealthScreen: true,
-            hideYuMatterScreen: false,
-            newGamePlus: true,
-            unitySurge: true,
-        }
+        features: DEFAULT_TOGGLES.data.features
     }
 } as IDatabaseItem
 
@@ -1380,45 +1048,23 @@ export const CUSTOMER_64_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_64.data.customerId,
-        features: {
-            "showNotifications": true,
-            "showStreaks": true,
-            "showCounter": true,
-            "showBuildNumber": true,
-            "showSettings": true,
-            "showCreateLeaderboard": true,
-            "showAdvancedLeaderboards": true,
-            "disableUserEntries": true,
-            "fitbit": true,
-            "showConnections": true,
-            "showLastSynced": true,
-            "newPassiveValidationRule": true,
-            "usePassiveMeditation": true,
-            "statsShowCoinGeneralTotalYearned": true,
-            "statsShowCoinRecommendationCard": true,
-            "statsShowCoinGeneralTotalRedeemedCard": true,
-            "statsShowCoinAchievementCard": true,
-            "statsShowChallengeGeneralCard": true,
-            "statsShowChallengeRecommendationCard": true,
-            "statsShowChallengeComparisonCard": true,
-            "statsShowStepsRecommendationCard": true,
-            "statsShowStepsGeneralCard": true,
-            "statsShowStepsBestScoreCard": true,
-            "statsShowStepsGraphCard": true,
-            "statsShowMindfulnessRecommendationCard": true,
-            "statsShowMindfulnessGeneralCard": true,
-            "statsShowMindfulnessBestScoreCard": true,
-            "statsShowMindfulnessGraphCard": true,
-            "statsShowCyclingRecommendationCard": true,
-            "statsShowCyclingGeneralCard": true,
-            "statsShowCyclingBestScoreCard": true,
-            "statsShowCyclingGraphCard": true,
-            "showStats": true,
-            hideSmartHealthScreen: true,
-            hideYuMatterScreen: false,
-            newGamePlus: true,
-            unitySurge: true,
-        }
+        features: DEFAULT_TOGGLES.data.features
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_65_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_65.data.customerId,
+        features: 
+        DEFAULT_TOGGLES.data.features,
+            "showTodayEarningsScreen": true,
+            "yuScreenV3": true,
+            "showPermissionSettings": true,
+            "showGoals": true,
+            passiveCyclingEnabled: true,
     }
 } as IDatabaseItem
 
