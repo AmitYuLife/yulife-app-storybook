@@ -39,7 +39,7 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => 
       wrapper: [styles.wrapper, { backgroundColor: online?.eventPanel?.borderColor }],
       container: [
         styles.container,
-        { backgroundColor: online?.eventPanel.backgroundColor, borderColor: online?.eventPanel?.borderColor },
+        { backgroundColor: online?.eventPanel?.backgroundColor, borderColor: online?.eventPanel?.borderColor },
       ],
       badgeContainer: [styles.badgeContainer, { backgroundColor: event?.badge?.backgroundColor || "#F86F63" }],
     }),
@@ -125,14 +125,14 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => 
                 width={Style.adjust(16)}
                 height={Style.adjust(16)}
                 style={styles.challengeIcon}
-                tintColor={online?.eventPanel.fontColor}
+                tintColor={online?.eventPanel?.fontColor}
               />
-              <TextTemplate type="l1b" color={online?.eventPanel.fontColor}>
+              <TextTemplate type="l1b" color={online?.eventPanel?.fontColor}>
                 {event?.tags?.tag}
               </TextTemplate>
             </View>
             {!event?.tags?.joined ? null : (
-              <TextTemplate type="l1b" color={online?.eventPanel.fontColor}>
+              <TextTemplate type="l1b" color={online?.eventPanel?.fontColor}>
                 {event.tags.joined}
               </TextTemplate>
             )}
