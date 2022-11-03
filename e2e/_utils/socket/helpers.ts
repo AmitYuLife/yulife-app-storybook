@@ -81,7 +81,7 @@ export const addCyclingData = (value:number) => async () => {
         startTime: moment().startOf("day").add(10,"minutes").toDate().toString(),
         endTime: moment().endOf("day").subtract(10,"minutes").toDate().toString(),
         value,
-        type: "Biking"
+        type: "Biking",
     }]
 
     await fitKitAddAggregatedQueries(record)
@@ -92,7 +92,7 @@ export const addStepsHistoricalData = (value:number, dayToSubstract = 1) => asyn
         startTime: moment().subtract(dayToSubstract,"day").startOf("day").add(10,"minutes").toDate().toString(),
         endTime: moment().subtract(dayToSubstract, "day").endOf("day").subtract(10,"minutes").toDate().toString(),
         value,
-        type: "StepCount"
+        type: "StepCount",
     }]
     await fitKitAddAggregatedQueries(record)
 }
@@ -103,7 +103,7 @@ export const addSteps3DaysHistoricalData = (value: number) => async () => {
         startTime: moment().subtract(2,"day").startOf("day").add(10,"minutes").toDate().toString(),
         endTime: moment().subtract(2,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
         value,
-        type: "StepCount"
+        type: "StepCount",
     }, {
         startTime: moment().subtract(3,"day").startOf("day").add(10,"minutes").toDate().toString(),
         endTime: moment().subtract(3,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
@@ -125,6 +125,27 @@ export const addCyclingHistoricalData = (value:number, dayToSubstract = 1) => as
         endTime: moment().subtract(dayToSubstract,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
         value,
         type: "Biking"
+    }]
+    await fitKitAddAggregatedQueries(record)
+}
+
+export const addCycling3DaysHistoricalData = (value: number) => async () => {
+    const record = [{
+        startTime: moment().subtract(2,"day").startOf("day").add(10,"minutes").toDate().toString(),
+        endTime: moment().subtract(2,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
+        value,
+        type: "Biking",
+    }, {
+        startTime: moment().subtract(3,"day").startOf("day").add(10,"minutes").toDate().toString(),
+        endTime: moment().subtract(3,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
+        value,
+        type: "Biking",
+    }, 
+    {
+        startTime: moment().subtract(4,"day").startOf("day").add(10,"minutes").toDate().toString(),
+        endTime: moment().subtract(4,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
+        value,
+        type: "Biking",
     }]
     await fitKitAddAggregatedQueries(record)
 }

@@ -205,7 +205,12 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
 
     const item = items[section].items[row];
     const challengeCount = item.challenges.length ? item.challenges.length : 1;
-    const rows = (item.mindfulSeconds ? 1 : 0) + (item.cycling ? 1 : 0) + countSources(item.sources) + challengeCount;
+    const rows =
+      (item.mindfulSeconds ? 1 : 0) +
+      (item.cycling ? 1 : 0) +
+      countSources(item.sources) +
+      countSources(item.cyclingSources) +
+      challengeCount;
     const dividers = Style.adjust(40);
     const height = rows * rowHeight + dividers + bottomDividerHeight;
 

@@ -6,7 +6,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { updateConnectionStart } from "@redux/user/user.actions";
 import { Connection, getUserConnections, getUserFeatures } from "@redux/user/user.selectors";
 import { SettingsScreen } from "@screens/index";
-import { getSettingsCopy } from "@redux/copy/copy.selectors";
+import { useTranslation } from "@hooks";
 import { useQuery, useMutation, useApolloClient } from "@apollo/client";
 import {
   GQL_QUERY_GET_USER_NOTIFICATIONS_SETTINGS,
@@ -38,7 +38,13 @@ function SettingsContainer({ componentId }: IOwnProps) {
   // redux selectors
   const connections = useSelector(getUserConnections);
   const features = useSelector(getUserFeatures);
-  const settingsCopy = useSelector(getSettingsCopy);
+
+  const translations = useTranslation([
+    "screens.settings.info.heading",
+    "screens.settings.info.cta_label",
+    "screens.settings.tracker_info.heading",
+    "screens.settings.tracker_info.cta_label",
+  ]);
 
   // local state
   const [isTimeModalVisible, setIsTimeModalVisible] = React.useState<boolean>(false);
@@ -107,7 +113,14 @@ function SettingsContainer({ componentId }: IOwnProps) {
 
   const handleConnectionInfoPress = React.useCallback(
     (c: Connection) => () => {
-      const { heading, subheading, ctaLabel } = settingsCopy;
+      // TODO: we probably need to add a `type` so we know if it's a device or an app
+      let heading = translations["screens.settings.info.heading"];
+      let ctaLabel = translations["screens.settings.info.cta_label"];
+      if (c.name.toLowerCase() === "strava") {
+        heading = translations["screens.settings.tracker_info.heading"];
+        ctaLabel = translations["screens.settings.tracker_info.cta_label"];
+      }
+
       showYuModal({
         component: {
           id: MODALS.info,
@@ -116,13 +129,12 @@ function SettingsContainer({ componentId }: IOwnProps) {
             onPress: () => Navigation.dismissModal(MODALS.info),
             type: c.name,
             heading: heading.replace("${connection}", c.name.charAt(0).toUpperCase() + c.name.slice(1)),
-            subheading,
             ctaLabel,
           },
         },
       });
     },
-    [settingsCopy]
+    [translations]
   );
 
   const gameSettings = {

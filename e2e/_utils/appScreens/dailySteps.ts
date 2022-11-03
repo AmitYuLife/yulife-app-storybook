@@ -10,6 +10,12 @@ export const onDailySteps = (steps = 0, yucoins = 0) => async () => {
     // await expectIsVisibleViaText("Earn more")
 }
 
+export const onDailyCycling = (cycling: string, yucoins = 0) => async () => {
+    await expectIsVisibleViaID(DAILY_STEPS_SCREEN);
+    await expectIsVisibleViaText(`${cycling}`, 5000)
+    await expectIsVisibleViaText(`${yucoins} YuCoin today`) 
+}
+
 // note need to add IDs to yucoins as if they are the same, detox cannot match
 export const onTodaysYucoin = (steps = 0, cycling: string, mindfulness = 0) => async () => {
     await expectIsVisibleViaID(TODAYS_EARNINGS)

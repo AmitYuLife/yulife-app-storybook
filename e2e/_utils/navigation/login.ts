@@ -2,7 +2,7 @@ import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, BUTTON_LOGIN, NAV_BAR, BUTTON_
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import { completeOnboardingIntro, navigateViaID, navigateViaText } from "./common";
 import { authoriseFitkit } from "@socket";
-import { CUSTOMER_1, AUTH_1, USER_32 } from "@data";
+import { CUSTOMER_1, AUTH_1 } from "@data";
 import { tapText, wait } from "@navigation";
 
 

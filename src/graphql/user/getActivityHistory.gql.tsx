@@ -8,6 +8,7 @@ export const GQL_QUERY_GET_ACTIVITY_HISTORY = gql`
       sources {
         garmin
         fitbit
+        strava
         device
       }
       yucoin
@@ -25,6 +26,12 @@ export const GQL_QUERY_GET_ACTIVITY_HISTORY = gql`
       mindfulSeconds
       mindfulYucoin
       cycling
+      cyclingSources {
+        garmin
+        fitbit
+        strava
+        device
+      }
       cyclingYucoin
     }
   }

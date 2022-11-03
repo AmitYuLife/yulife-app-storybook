@@ -17,6 +17,19 @@
     "dismiss": "Dismiss",
     "claim": "Claim"
   },
+  "activity_types": {
+    "steps": {
+      "singular": "step",
+      "plural": "steps"
+    },
+    "cycling": {
+      "plural": "cycled"
+    },
+    "meditation": {
+      "singular": "mindful min",
+      "plural": "mindful mins"
+    }
+  },
   "create_challenge_error": "Sorry, there was a problem starting your challenge. \n Please try again!",
   "screens": {
     "today_earning": {
@@ -205,6 +218,14 @@
       "subheading_accessibility": "Use your yucoin for vouchers from Amazon, Asos, M&S, and many more!"
     },
     "settings": {
+      "info": {
+        "heading": "Your YuLife app will capture your steps and cycling distance from both your phone's health app and your ${connection} device. We'll award you YuCoin for whichever device records the highest!",
+        "cta_label": "okay, got it"
+      },
+      "tracker_info": {
+        "heading": "Your YuLife app will capture your cycling distance from both your phone's health app and your ${connection} app. We'll award you YuCoin for whichever app records the highest!",
+        "cta_label": "okay, got it"
+      },
       "fitness_trackers": {
         "title": "Connect your fitness tracker to get rewarded for additional daily steps. Don’t forget to still keep your phone with you during challenges!"
       }
