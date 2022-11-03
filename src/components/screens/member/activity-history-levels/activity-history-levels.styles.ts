@@ -119,7 +119,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   listItemContentWrapper: {
     flex: 1,
-    paddingRight: Style.adjust(15),
+    paddingRight: Style.adjust(Style.isIphoneXS ? 10 : 15),
     paddingTop: Style.adjust(20),
   } as ViewStyle,
   listItemRow: {
