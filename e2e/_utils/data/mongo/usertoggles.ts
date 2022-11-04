@@ -111,10 +111,11 @@ export const CUSTOMER_10_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_10.data.customerId,
-        features: 
-            DEFAULT_TOGGLES.data.features, 
+        features: {
+            ...DEFAULT_TOGGLES.data.features, 
             hideSmartHealthScreen: true, 
             hideYuMatterScreen: true
+        }   
     }
 } as IDatabaseItem
 
@@ -124,11 +125,12 @@ export const CUSTOMER_12_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_12.data.customerId,
-        features:
-            DEFAULT_TOGGLES.data.features,
+        features: {
+        ...DEFAULT_TOGGLES.data.features,
             hideSmartHealthScreen: true, 
             hideYuMatterScreen: true, 
             unitySurge: true
+        } 
     }
 } as IDatabaseItem
 
@@ -138,14 +140,13 @@ export const CUSTOMER_13_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_13.data.customerId,
-        features: 
-            DEFAULT_TOGGLES.data.features,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
             hideSmartHealthScreen: true, 
             hideYuMatterScreen: false ,
+        }
     }
 } as IDatabaseItem
-
-
 
 export const CUSTOMER_14_TOGGLES = {
     type: "mongo",
@@ -231,10 +232,12 @@ export const CUSTOMER_18_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_18.data.customerId,
         features: 
-            DEFAULT_TOGGLES.data.features,
+        {
+            ...DEFAULT_TOGGLES.data.features,
             hideSmartHealthScreen: false,
             hideYuMatterScreen: true,
             showDuels: true
+        }  
     }
 } as IDatabaseItem
 
@@ -244,9 +247,10 @@ export const CUSTOMER_19_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_19.data.customerId,
-        features: 
-            DEFAULT_TOGGLES.data.features,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
             showDuels: true
+        }
     }
 } as IDatabaseItem
 
@@ -301,15 +305,15 @@ export const CUSTOMER_20_TOGGLES = {
     }
 } as IDatabaseItem
 
-
 export const CUSTOMER_22_TOGGLES = {
     type: "mongo",
     modelName: "usertoggles",
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_22.data.customerId,
-        features: 
-        DEFAULT_TOGGLES.data.features,
+        features: {
+        ...DEFAULT_TOGGLES.data.features,
+        }
     }
 } as IDatabaseItem
 
@@ -464,9 +468,10 @@ export const CUSTOMER_31_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_31.data.customerId,
-        features: 
-            DEFAULT_TOGGLES.data.features,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
             yuScreenV3: true
+        }
     }
 } as IDatabaseItem
 
@@ -477,10 +482,11 @@ export const CUSTOMER_32_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_32.data.customerId,
-        features: 
-            DEFAULT_TOGGLES.data.features,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
             yuScreenV3: true,
             hasBeneficiariesEnabled: true
+        }
     }
 } as IDatabaseItem
 
@@ -490,10 +496,11 @@ export const CUSTOMER_33_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_33.data.customerId,
-        features: 
-            DEFAULT_TOGGLES.data.features,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
             yuScreenV3: true,
             hasBeneficiariesEnabled: true
+        }
     }
 } as IDatabaseItem
 
@@ -503,14 +510,15 @@ export const CUSTOMER_34_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_34.data.customerId,
-        features: 
-            DEFAULT_TOGGLES.data.features,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
             yuScreenV3: true,
             hasBeneficiariesEnabled: false,
             showCommunityGoals: true,
             "showGoals": true,
             useCoreChallengesService: true,
             useActiveChallengesService: true
+        }
     }
 } as IDatabaseItem
 
@@ -521,9 +529,10 @@ export const CUSTOMER_ALPHA_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_ALPHA.data.customerId,
-        features: 
-            DEFAULT_TOGGLES.data.features,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
             yuScreenV3: true
+        }
     }
 } as IDatabaseItem
 
@@ -711,8 +720,9 @@ export const CUSTOMER_41_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_41.data.customerId,
-        features: DEFAULT_TOGGLES.data.features,
-
+        features: { 
+            ...DEFAULT_TOGGLES.data.features
+        }
     }
 } as IDatabaseItem
 
@@ -762,13 +772,14 @@ export const CUSTOMER_43_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_43.data.customerId,
-        features: 
-            DEFAULT_TOGGLES.data.features,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
             yuScreenV4: true,
             showCreateLeaderboard: true,
             showAdvancedLeaderboards: true,
             hasCoveaFibActive: false,
             hasBupaDentActive: false,
+        }
     }
 } as IDatabaseItem
 
@@ -778,11 +789,12 @@ export const CUSTOMER_44_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_44.data.customerId,
-        features: 
-            DEFAULT_TOGGLES.data.features,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
             yuScreenV4: true,
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
+        }
     }
 } as IDatabaseItem
 
@@ -792,11 +804,12 @@ export const CUSTOMER_45_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_45.data.customerId,
-        features: 
-            DEFAULT_TOGGLES.data.features,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
             yuScreenV4: true,
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
+        }
     }
 } as IDatabaseItem
 
@@ -806,11 +819,12 @@ export const CUSTOMER_46_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_46.data.customerId,
-        features: 
-            DEFAULT_TOGGLES.data.features,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
             yuScreenV4: true,
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
+        }
     }
 } as IDatabaseItem
 
@@ -820,11 +834,12 @@ export const CUSTOMER_48_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_48.data.customerId,
-        features: 
-            DEFAULT_TOGGLES.data.features,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
             yuScreenV4: true,
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
+        }
     }
 } as IDatabaseItem
 
@@ -834,10 +849,11 @@ export const CUSTOMER_49_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_49.data.customerId,
-        features: 
-            DEFAULT_TOGGLES.data.features,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
             yuScreenV4: true,
             hasBupaDentActive: true,
+        }
     }
 } as IDatabaseItem
 
@@ -847,10 +863,11 @@ export const CUSTOMER_51_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_51.data.customerId,
-        features: 
-            DEFAULT_TOGGLES.data.features,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
             yuScreenV4: true,
             hasBupaDentActive: true,
+        }
     }
 } as IDatabaseItem
 
@@ -860,9 +877,10 @@ export const CUSTOMER_53_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_53.data.customerId,
-        features:
-            DEFAULT_TOGGLES.data.features,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
             yuScreenV4: true,
+        }
     }
 } as IDatabaseItem
 
@@ -952,11 +970,12 @@ export const CUSTOMER_47_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_47.data.customerId,
-        features: 
-            DEFAULT_TOGGLES.data.features,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
             showDuels: true,
             showInspect: true,
             passiveCyclingEnabled: true,
+        }
     }
 } as IDatabaseItem
 
@@ -966,11 +985,12 @@ export const CUSTOMER_50_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_50.data.customerId,
-        features: 
-            DEFAULT_TOGGLES.data.features,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
             showDuels: true,
             showInspect: true,
             passiveCyclingEnabled: true,
+        }
     }
 } as IDatabaseItem
 
@@ -1018,7 +1038,9 @@ export const CUSTOMER_60_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_60.data.customerId,
-        features: DEFAULT_TOGGLES.data.features
+        features: {
+            ...DEFAULT_TOGGLES.data.features
+        }
     }
 } as IDatabaseItem
 
@@ -1028,7 +1050,9 @@ export const CUSTOMER_61_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_61.data.customerId,
-        features: DEFAULT_TOGGLES.data.features
+        features: { 
+            ...DEFAULT_TOGGLES.data.features
+        }
     }
 } as IDatabaseItem
 
@@ -1038,7 +1062,9 @@ export const CUSTOMER_63_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_63.data.customerId,
-        features: DEFAULT_TOGGLES.data.features
+        features: {
+            ...DEFAULT_TOGGLES.data.features
+        }
     }
 } as IDatabaseItem
 
@@ -1048,7 +1074,9 @@ export const CUSTOMER_64_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_64.data.customerId,
-        features: DEFAULT_TOGGLES.data.features
+        features: {
+            ...DEFAULT_TOGGLES.data.features
+        }
     }
 } as IDatabaseItem
 
@@ -1058,13 +1086,14 @@ export const CUSTOMER_65_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_65.data.customerId,
-        features: 
-        DEFAULT_TOGGLES.data.features,
+        features: {
+        ...DEFAULT_TOGGLES.data.features,
             "showTodayEarningsScreen": true,
             "yuScreenV3": true,
             "showPermissionSettings": true,
             "showGoals": true,
             passiveCyclingEnabled: true,
+        }
     }
 } as IDatabaseItem
 
