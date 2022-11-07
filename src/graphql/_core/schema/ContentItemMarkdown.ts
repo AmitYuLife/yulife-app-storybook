@@ -23,6 +23,7 @@ export interface ContentItemMarkdown {
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
+  markdownStyles: string | null;
   styles: ContentItemMarkdown_styles[] | null;
   markdownContainerStyle: ContentItemMarkdown_markdownContainerStyle[] | null;
 }

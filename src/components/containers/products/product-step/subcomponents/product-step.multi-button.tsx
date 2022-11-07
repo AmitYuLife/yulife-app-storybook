@@ -6,7 +6,7 @@ import { Style } from "@styles";
 import { ContentItemButton, mapServerStyles } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
 import { useDispatch, useSelector } from "react-redux";
-import { getSduiLoading, getSduiLoadingForKey } from "@redux/server-driven-ui/sdui.selectors";
+import { getSduiLoadingForKey } from "@redux/server-driven-ui/sdui.selectors";
 import { RIGHT_PRODUCT_STEP_MULTI_BUTTON, LEFT_PRODUCT_STEP_MULTI_BUTTON } from "@ids";
 
 type Props = GqlMultiButton;
@@ -15,7 +15,6 @@ export const ProductStepContentItemMultiButton = memo((props: Props) => {
   const dispatch = useDispatch();
   const { productId, stepId, dynamicData } = useContext(ProductStepContext);
   const disabled = useSelector(getSduiLoadingForKey("__disabled"));
-  const loadingState = useSelector(getSduiLoading);
 
   const buildDynamicOnPress = useCallback(
     ({ onPress, value, id }: GqlButton) => () =>
@@ -44,7 +43,7 @@ export const ProductStepContentItemMultiButton = memo((props: Props) => {
             onPress={buildDynamicOnPress(button)}
             buttonSize={ContentItemButtonSize.Fill}
             disabled={disabled}
-            isLoading={loadingState[`${stepId} - ${button.id}` as keyof typeof loadingState]}
+            isLoading={disabled}
           />
         </View>
       ))}

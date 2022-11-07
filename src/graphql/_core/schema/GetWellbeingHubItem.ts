@@ -64,6 +64,7 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdow
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
+  markdownStyles: string | null;
   styles: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdown_styles[] | null;
   markdownContainerStyle:
     | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdown_markdownContainerStyle[]

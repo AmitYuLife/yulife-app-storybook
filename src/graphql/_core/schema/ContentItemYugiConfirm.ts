@@ -25,6 +25,7 @@ export interface ContentItemYugiConfirm_content {
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
+  markdownStyles: string | null;
   styles: ContentItemYugiConfirm_content_styles[] | null;
   markdownContainerStyle: ContentItemYugiConfirm_content_markdownContainerStyle[] | null;
 }

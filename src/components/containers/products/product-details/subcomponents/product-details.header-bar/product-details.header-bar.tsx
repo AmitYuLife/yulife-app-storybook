@@ -1,4 +1,4 @@
-import React, { ComponentProps, memo, useMemo } from "react";
+import React, { ComponentProps, memo, useCallback, useMemo } from "react";
 import { ContentItemHeaderBar as GqlHeader } from "@graphql/_core/schema/ContentItemHeaderBar";
 import { ContentItemHeaderBar } from "@components/sdui";
 import { useSelector, useDispatch } from "react-redux";
@@ -51,14 +51,17 @@ export const ProductDetailsHeaderBar = memo(
       return true;
     });
 
+    const handleLeftIconPress = useCallback(() => dispatch(dynamicLeftIconOnPress), [dynamicLeftIconOnPress]);
+    const handleRightIconPress = useCallback(() => dispatch(dynamicRightIconOnPress), [dynamicRightIconOnPress]);
+
     return (
       <ContentItemHeaderBar
         heading={heading}
         logo={logo as "yulife"}
         leftIcon={leftIcon as ComponentProps<typeof ContentItemHeaderBar>["leftIcon"]}
         rightIcon={rightIcon as ComponentProps<typeof ContentItemHeaderBar>["rightIcon"]}
-        onLeftIconPress={dynamicLeftIconOnPress}
-        onRightIconPress={dynamicRightIconOnPress}
+        onLeftIconPress={dynamicLeftIconOnPress && handleLeftIconPress}
+        onRightIconPress={dynamicRightIconOnPress && handleRightIconPress}
       />
     );
   }

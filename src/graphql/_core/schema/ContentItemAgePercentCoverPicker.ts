@@ -42,6 +42,7 @@ export interface ContentItemAgePercentCoverPicker_restrictedPercentInfoCardText 
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
+  markdownStyles: string | null;
   styles: ContentItemAgePercentCoverPicker_restrictedPercentInfoCardText_styles[] | null;
   markdownContainerStyle:
     | ContentItemAgePercentCoverPicker_restrictedPercentInfoCardText_markdownContainerStyle[]
@@ -64,6 +65,7 @@ export interface ContentItemAgePercentCoverPicker_ageText {
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
+  markdownStyles: string | null;
   styles: ContentItemAgePercentCoverPicker_ageText_styles[] | null;
   markdownContainerStyle: ContentItemAgePercentCoverPicker_ageText_markdownContainerStyle[] | null;
 }

@@ -40,3 +40,9 @@ export type YuScreenNextRoute = {
   shouldBeNormalised?: boolean;
   productId: string;
 };
+
+export interface SduiSagaAction {
+  type: SduiActionType;
+  payload: string;
+  contextPayload: Record<string, any>;
+}

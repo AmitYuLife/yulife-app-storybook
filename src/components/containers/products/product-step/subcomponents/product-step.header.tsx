@@ -1,4 +1,4 @@
-import React, { ComponentProps, memo, useContext, useMemo } from "react";
+import React, { ComponentProps, memo, useCallback, useContext, useMemo } from "react";
 import { ContentItemHeaderBar as GqlHeader } from "@graphql/_core/schema/ContentItemHeaderBar";
 import { ContentItemHeaderBar } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
@@ -38,16 +38,19 @@ export const ProductStepContentItemHeader = memo(
       } as ProductStepAction;
     }, [onRightIconPress, productId, stepId, disabled]);
 
+    const handleLeftIconPress = useCallback(() => dispatch(dynamicLeftIconOnPress), [dynamicLeftIconOnPress]);
+    const handleRightIconPress = useCallback(() => dispatch(dynamicRightIconOnPress), [dynamicRightIconOnPress]);
+
     useBackHandler(() => {
       // go back
       if (dynamicLeftIconOnPress) {
-        dispatch(dynamicLeftIconOnPress);
+        handleLeftIconPress();
         return true;
       }
 
       // if can't go back, close
       if (dynamicRightIconOnPress) {
-        dispatch(dynamicRightIconOnPress);
+        handleRightIconPress();
       }
 
       // if neither - :pepe-f:
@@ -60,8 +63,8 @@ export const ProductStepContentItemHeader = memo(
         logo={logo as "yulife"}
         leftIcon={leftIcon as ComponentProps<typeof ContentItemHeaderBar>["leftIcon"]}
         rightIcon={rightIcon as ComponentProps<typeof ContentItemHeaderBar>["rightIcon"]}
-        onLeftIconPress={dynamicLeftIconOnPress}
-        onRightIconPress={dynamicRightIconOnPress}
+        onLeftIconPress={dynamicLeftIconOnPress && handleLeftIconPress}
+        onRightIconPress={dynamicRightIconOnPress && handleRightIconPress}
       />
     );
   }

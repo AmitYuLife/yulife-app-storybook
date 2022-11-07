@@ -1,7 +1,7 @@
 import { call, put, all } from "redux-saga/effects";
 import { submitPersonalProductStep } from "@graphql/personalProduct";
 import { setLoadingState } from "../sdui.actions";
-import { parseJSON } from "../sdui.helpers";
+import { parseJSON } from "@utils";
 import { ProductStepAction } from "../sdui.types";
 
 export function* sduiActionProductUnderwritingStepPushSaga(action: ProductStepAction) {

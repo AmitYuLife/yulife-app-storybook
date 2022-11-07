@@ -575,6 +575,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
+  markdownStyles: string | null;
   styles: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemMarkdown_styles[] | null;
   markdownContainerStyle:
     | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemMarkdown_markdownContainerStyle[]

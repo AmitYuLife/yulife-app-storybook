@@ -10,6 +10,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN = gql`
     markdown
     perkId
     parsedMarkdown
+    markdownStyles
     styles {
       ...SduiStyle
     }

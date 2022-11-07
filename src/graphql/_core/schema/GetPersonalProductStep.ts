@@ -176,10 +176,16 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemM
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
+  markdownStyles: string | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown_styles[] | null;
   markdownContainerStyle:
     | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown_markdownContainerStyle[]
     | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_styles {
+  property: string;
+  value: string;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon_icon {
@@ -220,6 +226,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemR
   id: string;
   iconOptions: boolean;
   answerKey: string;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_styles[] | null;
   choices: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices[];
 }
 
@@ -1222,6 +1229,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemY
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
+  markdownStyles: string | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content_styles[] | null;
   markdownContainerStyle:
     | GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content_markdownContainerStyle[]
@@ -1422,6 +1430,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemA
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
+  markdownStyles: string | null;
   styles:
     | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restrictedPercentInfoCardText_styles[]
     | null;
@@ -1446,6 +1455,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemA
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
+  markdownStyles: string | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_ageText_styles[] | null;
   markdownContainerStyle:
     | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_ageText_markdownContainerStyle[]
@@ -1906,6 +1916,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
+  markdownStyles: string | null;
   styles: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown_styles[] | null;
   markdownContainerStyle:
     | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown_markdownContainerStyle[]
@@ -2093,6 +2104,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
+  markdownStyles: string | null;
   styles: GetPersonalProductStep_getPersonalProductStep_header_ContentItemMarkdown_styles[] | null;
   markdownContainerStyle:
     | GetPersonalProductStep_getPersonalProductStep_header_ContentItemMarkdown_markdownContainerStyle[]

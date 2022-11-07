@@ -34,6 +34,7 @@ export interface AbsoluteContentItem_item_ContentItemMarkdown {
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
+  markdownStyles: string | null;
   styles: AbsoluteContentItem_item_ContentItemMarkdown_styles[] | null;
   markdownContainerStyle: AbsoluteContentItem_item_ContentItemMarkdown_markdownContainerStyle[] | null;
 }
@@ -233,6 +234,11 @@ export interface AbsoluteContentItem_item_ContentItemPad {
   dynamicStyles: AbsoluteContentItem_item_ContentItemPad_dynamicStyles[] | null;
 }
 
+export interface AbsoluteContentItem_item_ContentItemRadio_styles {
+  property: string;
+  value: string;
+}
+
 export interface AbsoluteContentItem_item_ContentItemRadio_choices_renderAsIcon_icon {
   id: string;
   uri: string | null;
@@ -269,6 +275,7 @@ export interface AbsoluteContentItem_item_ContentItemRadio {
   id: string;
   iconOptions: boolean;
   answerKey: string;
+  styles: AbsoluteContentItem_item_ContentItemRadio_styles[] | null;
   choices: AbsoluteContentItem_item_ContentItemRadio_choices[];
 }
 
