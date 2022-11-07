@@ -16,8 +16,9 @@ import { GQL_MUTATION_UPSERT_DAILY_PASSIVES } from "@graphql/challenges/upsertDa
 import AsyncStorage from "@react-native-community/async-storage";
 import { useBackHandler } from "@hooks";
 import { getLastUpdated } from "@redux/pedometer/pedometer.selectors";
-import { DATE_FORMAT } from "@utils";
+import { DATE_FORMAT, getCurrentWorld, getCurrentYuniverse } from "@utils";
 import { restartPedometerOnNewDay } from "@redux/pedometer/pedometer.actions";
+import { getCurrentLevel } from "@redux/levels/levels.selectors";
 
 interface IProps {
   componentId: string;
@@ -32,6 +33,10 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
   const dailySteps = useSelector(getDailySteps);
   const pedometerLastUpdate = useSelector(getLastUpdated);
   const features = useSelector(getUserFeatures);
+  const currentLevel = useSelector(getCurrentLevel);
+  const currentYuniverse = getCurrentYuniverse(currentLevel);
+  const currentWorld = getCurrentWorld(currentLevel);
+
   const dispatch = useDispatch();
   const [upsertDailyPassives] = useMutation<UpsertDailyPassives, UpsertDailyPassivesVariables>(
     GQL_MUTATION_UPSERT_DAILY_PASSIVES
@@ -113,6 +118,8 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
     <TodayEarningsScreen
       isGoogleFitAuthorised={isGoogleFitAuthorised}
       onLeftIconPress={onLeftIconPress}
+      currentYuniverse={currentYuniverse}
+      currentWorld={currentWorld}
       {...data?.getTodayEarnings}
     />
   );

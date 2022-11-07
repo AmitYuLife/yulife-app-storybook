@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Svg, { Path } from "react-native-svg";
 import { Colours } from "@styles";
 
@@ -66,4 +66,4 @@ const Gems = ({ isGrayScale, gemsToShow }: IProps) => {
   );
 };
 
-export default Gems;
+export default memo(Gems);

@@ -5,16 +5,18 @@ import { labels } from "@navigation/root";
 import { useQuery } from "@apollo/client";
 import { DETOX_ENABLED } from "@services/socket";
 import { YUNITY_REACHED } from "@ids";
-import { TextTemplate } from "@atoms";
+import { TextTemplate, YuCoinBadge } from "@atoms";
 import { Button } from "@molecules";
 import { Chest, CHEST_STATE } from "@organisms";
-import YuCoin from "@screens/member/daily-steps/assets/yu-coin";
 import { GQL_QUERY_GET_UNITY_REWARDS } from "@graphql/challenges";
 import { GetUnityRewards } from "@graphql/_core/schema";
 import { initializeAnimation } from "./world-animations";
 import { getAssets } from "./unity.data";
 import styles from "./unity.styles";
 import { t } from "@locale";
+import { useSelector } from "react-redux";
+import { getCurrentWorld, getCurrentYuniverse } from "@utils";
+import { getCurrentLevel } from "@redux/levels/levels.selectors";
 
 // placeholder image
 const PLANETARY_BACKGROUND = require("./assets/yuniversal-images/planetary_background.png");
@@ -40,6 +42,10 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
   const [introFinished, setIntroFinished] = useState(false);
   const [chestState, setChestState] = useState(CHEST_STATE.CLOSED);
   const isYuniversal = useMemo(() => level % 200 === 0, [level]);
+
+  const currentLevel = useSelector(getCurrentLevel);
+  const currentYuniverse = getCurrentYuniverse(currentLevel);
+  const currentWorld = getCurrentWorld(currentLevel);
 
   const { data, loading } = useQuery<GetUnityRewards>(GQL_QUERY_GET_UNITY_REWARDS, {
     variables: { level },
@@ -329,7 +335,18 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
             </View>
           </View>
           <View style={styles.congratulatoryContent}>
-            <YuCoin />
+            <View style={styles.yucoinBadgeWrapper}>
+              <View style={styles.yucoinBadge}>
+                <YuCoinBadge
+                  hasWhiteGlow={false}
+                  isGrayScale={false}
+                  width={200}
+                  height={200}
+                  currentWorld={currentWorld}
+                  currentYuniverse={currentYuniverse}
+                />
+              </View>
+            </View>
             <TextTemplate color={color} type="h3" textAlign="center">
               {data?.getUnityRewards?.congratulatory.title}
             </TextTemplate>

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { memo } from "react";
 import { Path, Defs, LinearGradient, Stop } from "react-native-svg";
 import { Colours } from "@styles";
 
@@ -88,4 +88,4 @@ const CycleTwoOrnament = ({ isGrayScale }: IProps) => {
   );
 };
 
-export default CycleTwoOrnament;
+export default memo(CycleTwoOrnament);

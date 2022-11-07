@@ -82,6 +82,14 @@ const styles = StyleSheet.create({
   lottie: {
     width: Style.DEVICE_WIDTH,
   } as ViewStyle,
+  yucoinBadgeWrapper: {
+    width: Style.adjust(218),
+    height: Style.adjust(218),
+  } as ViewStyle,
+  yucoinBadge: {
+    ...StyleSheet.absoluteFillObject,
+    margin: 9,
+  } as ViewStyle,
 });
 
 export default styles;

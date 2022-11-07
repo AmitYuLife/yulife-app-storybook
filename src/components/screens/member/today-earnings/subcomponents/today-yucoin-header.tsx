@@ -1,54 +1,58 @@
 import React, { memo, useMemo } from "react";
 import { ImageStyle, StyleSheet, View, ViewStyle } from "react-native";
 import { YuCoinPower } from "@components/molecules";
-import { TextTemplate } from "@atoms";
+import { TextTemplate, YuCoinBadge } from "@atoms";
 import { Colours, Style } from "@styles";
 import { ActiveBuffsButton } from "@organisms";
 import { BuffArea } from "@graphql/_core/schema/globalTypes";
-import { YuCoinIcon } from "@atoms/icon/yucoin-icon";
 import { PressableWithDelay } from "@molecules";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 import { t } from "@locale";
 interface IProps {
   yuCoinToday: string | number;
   yuCoinPower: string | number;
+  currentWorld: number;
+  currentYuniverse: number;
 }
-const TodayYuCoinHeader = ({ yuCoinToday, yuCoinPower }: IProps) => {
+const TodayYuCoinHeader = ({ yuCoinToday, yuCoinPower, currentWorld, currentYuniverse }: IProps) => {
   const buffTypes = useMemo(() => [BuffArea.stepsMilestone], []);
 
   return (
-    <View>
+    <View style={styles.wrapper}>
       <View style={styles.yuCoinWrapper}>
-        <YuCoinIcon />
+        <YuCoinBadge
+          hasWhiteGlow={false}
+          width={110}
+          height={116}
+          currentWorld={currentWorld}
+          currentYuniverse={currentYuniverse}
+        />
         <ActiveBuffsButton iconWidth={25} iconHeight={25} style={styles.activeBuffs} buffTypes={buffTypes} />
       </View>
-      <View style={styles.wrapper}>
-        <View
-          style={styles.textWrapper}
-          accessible={true}
-          accessibilityLabel={t("screens.today_earning.yucoin_header.coins.accessibility.accessibility_label", {
-            coins: yuCoinToday,
+      <View
+        style={styles.textWrapper}
+        accessible={true}
+        accessibilityLabel={t("screens.today_earning.yucoin_header.coins.accessibility.accessibility_label", {
+          coins: yuCoinToday,
+        })}
+      >
+        <TextTemplate type="l1" color={Colours.orange}>
+          {t("screens.today_earning.yucoin_header.coins.earned_today")}
+        </TextTemplate>
+        <TextTemplate type="h1" color={Colours.orange}>
+          {t("screens.today_earning.yucoin_header.coins.amount", { coins: yuCoinToday })}
+        </TextTemplate>
+      </View>
+      <View style={styles.yuCoinPower}>
+        <PressableWithDelay
+          onPress={showYuCoinPowerExplainedOverlay}
+          accessibilityLabel={t("screens.today_earning.yucoin_header.yucoin_power.accessibility.accessibility_label", {
+            power: yuCoinPower,
           })}
+          accessibilityRole={"button"}
         >
-          <TextTemplate type="l1" color={Colours.orange}>
-            {t("screens.today_earning.yucoin_header.coins.earned_today")}
-          </TextTemplate>
-          <TextTemplate type="h1" color={Colours.orange}>
-            {t("screens.today_earning.yucoin_header.coins.amount", { coins: yuCoinToday })}
-          </TextTemplate>
-        </View>
-        <View style={styles.yuCoinPower}>
-          <PressableWithDelay
-            onPress={showYuCoinPowerExplainedOverlay}
-            accessibilityLabel={t(
-              "screens.today_earning.yucoin_header.yucoin_power.accessibility.accessibility_label",
-              { power: yuCoinPower }
-            )}
-            accessibilityRole={"button"}
-          >
-            <YuCoinPower coins={yuCoinPower} />
-          </PressableWithDelay>
-        </View>
+          <YuCoinPower coins={yuCoinPower} />
+        </PressableWithDelay>
       </View>
     </View>
   );
@@ -69,8 +73,7 @@ const styles = StyleSheet.create({
   yuCoinWrapper: {
     position: "absolute",
     alignSelf: "center",
-    top: Style.adjust(7),
-    zIndex: 2,
+    top: Style.adjust(-53),
   } as ViewStyle,
   activeBuffs: {
     position: "absolute",

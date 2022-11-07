@@ -75,6 +75,7 @@ export const styles = StyleSheet.create({
   yuCoinIconWrapper: {
     position: "absolute",
     alignSelf: "center",
+    top: Style.adjust(-59),
     zIndex: 1,
   },
   yuCoinPowerSvgWrapper: {
