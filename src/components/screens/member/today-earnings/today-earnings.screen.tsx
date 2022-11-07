@@ -15,14 +15,23 @@ interface IProps {
   activityFeed: IActivityFeed[];
   isGoogleFitAuthorised: boolean;
   onLeftIconPress: () => void;
+  currentWorld: number;
+  currentYuniverse: number;
 }
 
-const TodayEarningsScreen = ({ header, activityFeed, onLeftIconPress, isGoogleFitAuthorised }: IProps) => {
+const TodayEarningsScreen = ({
+  header,
+  activityFeed,
+  onLeftIconPress,
+  isGoogleFitAuthorised,
+  currentWorld,
+  currentYuniverse,
+}: IProps) => {
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
       <ScrollView testID={TODAYS_EARNINGS} style={styles.wrapper} showsVerticalScrollIndicator={false}>
-        <TodayYuCoinHeader {...header} />
+        <TodayYuCoinHeader {...header} currentWorld={currentWorld} currentYuniverse={currentYuniverse} />
         <View style={styles.activityFeedWrapper}>
           {activityFeed.map((item) => (
             <ActivityFeed key={item.id} {...item} isGoogleFitAuthorised={isGoogleFitAuthorised} />

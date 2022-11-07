@@ -35,7 +35,6 @@ import { StepsIcon } from "./steps-icon";
 import { CyclingIcon } from "./cycling-icon";
 import { MindfulnessIcon } from "./mindfulness-icon";
 import { StarIcon } from "./star-icon";
-import { YuCoinIcon } from "./yucoin-icon";
 import { LockIcon } from "./lock";
 import { Stars1, Stars2, Stars3 } from "./stars-icon";
 import { InformationIcon } from "./information-icon";
@@ -88,7 +87,6 @@ export default {
   CyclingIcon,
   MindfulnessIcon,
   StarIcon,
-  YuCoinIcon,
   Stars1,
   Stars2,
   LockIcon,

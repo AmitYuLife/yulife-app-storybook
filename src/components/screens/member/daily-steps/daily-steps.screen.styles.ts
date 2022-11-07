@@ -69,4 +69,12 @@ export default StyleSheet.create({
     top: Style.adjust(40),
     left: Style.adjust(37),
   },
+  yucoinBadgeWrapper: {
+    width: Style.adjust(218),
+    height: Style.adjust(218),
+  },
+  yucoinBadge: {
+    ...StyleSheet.absoluteFillObject,
+    margin: 9,
+  },
 });

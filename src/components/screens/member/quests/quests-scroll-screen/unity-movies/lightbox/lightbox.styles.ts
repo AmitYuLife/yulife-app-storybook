@@ -76,6 +76,14 @@ const styles = StyleSheet.create({
     paddingTop: Style.adjust(Math.pow(scaleFactor, 4) * 10),
     paddingBottom: Style.adjust(Math.pow(scaleFactor, 4) * 10),
   } as ViewStyle,
+  yucoinBadgeWrapper: {
+    width: Style.adjust(218),
+    height: Style.adjust(218),
+  } as ViewStyle,
+  yucoinBadge: {
+    ...StyleSheet.absoluteFillObject,
+    margin: 9,
+  } as ViewStyle,
 });
 
 export default styles;

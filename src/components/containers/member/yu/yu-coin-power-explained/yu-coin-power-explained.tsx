@@ -2,8 +2,7 @@ import React, { memo, useCallback } from "react";
 import { View, ScrollView } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
-import { Loading, Text, TextTemplate } from "@atoms";
-import { YuCoinIcon } from "@atoms/icon/yucoin-icon";
+import { Loading, Text, TextTemplate, YuCoinBadge } from "@atoms";
 import { Button } from "@molecules";
 import { useQuery } from "@apollo/client";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
@@ -21,11 +20,16 @@ import {
   yuCoinPowerHeight,
 } from "./yu-coin-power-explained.styles";
 import YuCoinPowerExplainedActivityGroup from "./yu-coin-power-explained-activity-group";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logEvent } from "../helpers/logEvent";
+import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { getCurrentWorld, getCurrentYuniverse } from "@utils";
 
 const YuCoinPowerExplained = memo(() => {
   const dispatch = useDispatch();
+  const currentLevel = useSelector(getCurrentLevel);
+  const currentYuniverse = getCurrentYuniverse(currentLevel);
+  const currentWorld = getCurrentWorld(currentLevel);
   const { data } = useQuery<GetYuCoinPowerExplained>(GQL_QUERY_GET_YU_COIN_POWER_EXPLAINED, {
     fetchPolicy: "no-cache",
   });
@@ -50,15 +54,20 @@ const YuCoinPowerExplained = memo(() => {
   }
 
   const { activities, button, heading, yuCoin } = data.getYuCoinPowerExplained;
-
   return (
     <GenericOverlay onClose={dismissOverlay}>
       <ScrollView showsVerticalScrollIndicator={false} testID={YUCOIN_EXPLAINED_SCROLL_VIEW}>
         <View style={styles.wrapper}>
-          <View style={styles.yuCoinIconWrapper}>
-            <YuCoinIcon />
-          </View>
           <View style={styles.headerWrapper}>
+            <View style={styles.yuCoinIconWrapper}>
+              <YuCoinBadge
+                hasWhiteGlow={false}
+                width={110}
+                height={116}
+                currentWorld={currentWorld}
+                currentYuniverse={currentYuniverse}
+              />
+            </View>
             <TextTemplate type="b1b" testID={TEXT_TEMPLATE(heading)} textAlign="center">
               {heading}
             </TextTemplate>

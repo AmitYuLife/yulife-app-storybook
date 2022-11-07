@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { memo } from "react";
 import { Path, Defs, LinearGradient, Stop } from "react-native-svg";
 import { Colours } from "@styles";
 
@@ -85,4 +85,4 @@ const Crown = ({ isGrayScale }: IProps) => {
   );
 };
 
-export default Crown;
+export default memo(Crown);

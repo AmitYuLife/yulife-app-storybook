@@ -5,12 +5,11 @@ import { isIphoneX } from "react-native-iphone-x-helper";
 import { IThemeStore } from "@redux/theme/theme.reducer";
 import { DAILY_STEPS_SCREEN } from "@ids";
 import { IConnectedScreenProps } from "@app/typings";
-import { Pad } from "@atoms";
+import { Pad, YuCoinBadge } from "@atoms";
 import { TouchableOpacityWithDelay, CentredScreen } from "@molecules";
 import { Surge, Streak, TopBar, NavBar, DailyStepsContent, CustomIcon } from "@organisms";
 import { Style } from "@styles";
 import styles from "./daily-steps.screen.styles";
-import YuCoin from "./assets/yu-coin";
 import ReferralsPopover from "./referrals-popover";
 import {
   GetDailyScreenCustomIcon_getDailyScreenCustomIcon,
@@ -24,6 +23,8 @@ import { YUCOIN_POWER_INFO, DAILYSTEP_SCREEN_COIN } from "@ids";
 import { t } from "@locale";
 import { useSelector } from "react-redux";
 import { getModalState } from "@redux/app/app.selectors";
+import { getCurrentWorld, getCurrentYuniverse } from "@utils";
+import { getCurrentLevel } from "@redux/levels/levels.selectors";
 
 interface IProps extends IConnectedScreenProps {
   showCounter?: boolean;
@@ -52,6 +53,10 @@ const DailyStepsScreen = ({
   hideInformationIcon,
 }: Props) => {
   const currentModal = useSelector(getModalState);
+  const currentLevel = useSelector(getCurrentLevel);
+  const currentYuniverse = getCurrentYuniverse(currentLevel);
+  const currentWorld = getCurrentWorld(currentLevel);
+
   const { androidImportantForAccessibility, accessibilityElementsHidden } = useMemo(
     () =>
       currentModal === MODALS.blurredOverlay
@@ -97,7 +102,18 @@ const DailyStepsScreen = ({
               <InformationIcon />
             </View>
           )}
-          <YuCoin hasWhiteGlow={hasWhiteGlow} isGrayScale={!hasPermission} />
+          <View style={styles.yucoinBadgeWrapper}>
+            <View style={styles.yucoinBadge}>
+              <YuCoinBadge
+                hasWhiteGlow={hasWhiteGlow}
+                isGrayScale={!hasPermission}
+                width={200}
+                height={200}
+                currentWorld={currentWorld}
+                currentYuniverse={currentYuniverse}
+              />
+            </View>
+          </View>
         </TouchableOpacityWithDelay>
         <DailyStepsContent />
         <View style={styles.leftIconList}>
