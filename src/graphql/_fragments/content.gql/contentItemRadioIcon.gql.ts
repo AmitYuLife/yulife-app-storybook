@@ -13,5 +13,11 @@ export const GQL_FRAGMENT_CONTENT_ITEM_RADIO_ICON = gql`
     selectedStyles {
       ...SduiStyle
     }
+    wrapperStyles {
+      ...SduiStyle
+    }
+    boxOptionHeight
+    imageWidth
+    imageHeight
   }
 `;

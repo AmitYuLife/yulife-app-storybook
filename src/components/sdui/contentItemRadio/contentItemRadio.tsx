@@ -11,6 +11,8 @@ interface Props extends GqlRadio {
   onChange: (value: string) => void;
 }
 
+const DEFAULT_ICON_IMAGE_SIZE = 32;
+
 export const ContentItemRadio = memo(({ onChange, choices, value: initialValue, iconOptions }: Props) => {
   const [selectedValue, setSelectedValue] = useState(initialValue);
 
@@ -25,28 +27,37 @@ export const ContentItemRadio = memo(({ onChange, choices, value: initialValue, 
   if (iconOptions) {
     return (
       <View style={styles.radioIconWrapper}>
-        {choices.map(({ label, value, renderAsIcon }) => {
-          return (
-            <View key={value} style={styles.boxWrapper}>
+        {choices.map(
+          ({
+            label,
+            value,
+            renderAsIcon: { icon, textColor, wrapperStyles, selectedStyles, boxOptionHeight, imageHeight, imageWidth },
+          }) => (
+            <View key={value} style={[styles.boxWrapper, mapServerStyles(wrapperStyles)]}>
               <BoxOption
                 onPress={onValueChange(value)}
                 isSelected={value === selectedValue}
-                selectedStyle={mapServerStyles(renderAsIcon.selectedStyles)}
+                selectedStyle={mapServerStyles(selectedStyles)}
+                innerHeight={boxOptionHeight ?? Style.adjust(boxOptionHeight)}
               >
                 <View style={styles.innerWrapper}>
-                  <View style={styles.boxIconWrapper}>
-                    <Image height={Style.adjust(32)} width={Style.adjust(32)} source={renderAsIcon.icon} />
-                  </View>
-                  <View style={styles.boxTextWrapper}>
-                    <TextTemplate type="b2b" color={renderAsIcon.textColor}>
-                      {label}
-                    </TextTemplate>
-                  </View>
+                  <Image
+                    height={Style.adjust(imageHeight || DEFAULT_ICON_IMAGE_SIZE)}
+                    width={Style.adjust(imageWidth || DEFAULT_ICON_IMAGE_SIZE)}
+                    source={icon}
+                  />
+                  {!label ? null : (
+                    <View style={styles.boxTextWrapper}>
+                      <TextTemplate type="b2b" color={textColor}>
+                        {label}
+                      </TextTemplate>
+                    </View>
+                  )}
                 </View>
               </BoxOption>
             </View>
-          );
-        })}
+          )
+        )}
       </View>
     );
   }
@@ -88,12 +99,10 @@ const styles = StyleSheet.create({
     marginTop: "auto",
     height: "100%",
   } as ViewStyle,
-  boxIconWrapper: {
-    marginBottom: Style.adjust(8),
-  } as ViewStyle,
   boxTextWrapper: {
     height: Style.adjust(32),
     justifyContent: "flex-end",
     paddingBottom: Style.adjust(8),
+    marginTop: Style.adjust(8),
   } as ViewStyle,
 });

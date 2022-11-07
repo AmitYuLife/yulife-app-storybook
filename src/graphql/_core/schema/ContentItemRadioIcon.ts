@@ -17,8 +17,17 @@ export interface ContentItemRadioIcon_selectedStyles {
   value: string;
 }
 
+export interface ContentItemRadioIcon_wrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemRadioIcon {
   icon: ContentItemRadioIcon_icon | null;
   textColor: string;
   selectedStyles: ContentItemRadioIcon_selectedStyles[];
+  wrapperStyles: ContentItemRadioIcon_wrapperStyles[] | null;
+  boxOptionHeight: number | null;
+  imageWidth: number | null;
+  imageHeight: number | null;
 }

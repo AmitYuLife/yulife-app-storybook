@@ -192,10 +192,21 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemR
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon_wrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon {
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon_icon | null;
   textColor: string;
   selectedStyles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon_selectedStyles[];
+  wrapperStyles:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon_wrapperStyles[]
+    | null;
+  boxOptionHeight: number | null;
+  imageWidth: number | null;
+  imageHeight: number | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices {

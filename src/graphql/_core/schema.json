@@ -7798,6 +7798,30 @@
             "deprecationReason": null
           },
           {
+            "name": "getYuStoreCSMs",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "YuStoreImage",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "getCurrentUser",
             "description": null,
             "args": [],
@@ -13563,6 +13587,55 @@
                   "ofType": {
                     "kind": "SCALAR",
                     "name": "ID",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "requestYuStoreQuote",
+            "description": null,
+            "args": [
+              {
+                "name": "perkId",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "licenses",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
                     "ofType": null
                   }
                 },
@@ -26418,7 +26491,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "YuStoreProductImage",
+        "name": "YuStoreImage",
         "description": null,
         "specifiedByUrl": null,
         "fields": [
@@ -26824,7 +26897,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "YuStoreImages",
+        "name": "YuStoreProductImages",
         "description": null,
         "specifiedByUrl": null,
         "fields": [
@@ -26834,7 +26907,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "YuStoreProductImage",
+              "name": "YuStoreImage",
               "ofType": null
             },
             "isDeprecated": false,
@@ -26849,7 +26922,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "YuStoreProductImage",
+                "name": "YuStoreImage",
                 "ofType": null
               }
             },
@@ -26865,7 +26938,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "YuStoreProductImage",
+                "name": "YuStoreImage",
                 "ofType": null
               }
             },
@@ -26881,7 +26954,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "YuStoreProductImage",
+                "name": "YuStoreImage",
                 "ofType": null
               }
             },
@@ -27137,7 +27210,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "YuStoreImages",
+                "name": "YuStoreProductImages",
                 "ofType": null
               }
             },
@@ -29592,6 +29665,62 @@
                   }
                 }
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "wrapperStyles",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SduiStyle",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "boxOptionHeight",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "imageWidth",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "imageHeight",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null

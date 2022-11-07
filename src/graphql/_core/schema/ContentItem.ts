@@ -243,10 +243,19 @@ export interface ContentItem_ContentItemRadio_choices_renderAsIcon_selectedStyle
   value: string;
 }
 
+export interface ContentItem_ContentItemRadio_choices_renderAsIcon_wrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItem_ContentItemRadio_choices_renderAsIcon {
   icon: ContentItem_ContentItemRadio_choices_renderAsIcon_icon | null;
   textColor: string;
   selectedStyles: ContentItem_ContentItemRadio_choices_renderAsIcon_selectedStyles[];
+  wrapperStyles: ContentItem_ContentItemRadio_choices_renderAsIcon_wrapperStyles[] | null;
+  boxOptionHeight: number | null;
+  imageWidth: number | null;
+  imageHeight: number | null;
 }
 
 export interface ContentItem_ContentItemRadio_choices {
