@@ -147,7 +147,6 @@ export const activityHistoryScrollMinsDataCorrect = async () => {
         scrollPercentage = 0.16 
     }
     for (let i = 301; i <= 332; i++)  {
-        console.log({cycled: `${i} mindful mins`});
         await expect(element(by.id(TEXT_TEMPLATE(`${formatMindfulMins(i)} mindful mins`)))).toBeVisible()
         await scrollFromID(ACTIVITY_HISTORY_SCREEN, "up", "slow", scrollPercentage)()
     }

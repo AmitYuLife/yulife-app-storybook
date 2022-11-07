@@ -100,7 +100,7 @@ Feature("As a user my activity is monitored correctly", async () => {
         })
         When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
             Then("I should be on activity history", then.idVisible(ACTIVITY_HISTORY_SCREEN, 2500))
-            Then("I should see all km cycled from the past 32 days ago loaded in", then.activityHistoryScrollMinsDataCorrect)
+            Then("I should see all mindful minutes from the past 32 days ago loaded in", then.activityHistoryScrollMinsDataCorrect)
         }) 
     })
 })
