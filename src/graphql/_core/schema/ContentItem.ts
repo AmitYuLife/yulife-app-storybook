@@ -34,6 +34,7 @@ export interface ContentItem_ContentItemMarkdown {
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
+  markdownStyles: string | null;
   styles: ContentItem_ContentItemMarkdown_styles[] | null;
   markdownContainerStyle: ContentItem_ContentItemMarkdown_markdownContainerStyle[] | null;
 }
@@ -233,6 +234,11 @@ export interface ContentItem_ContentItemPad {
   dynamicStyles: ContentItem_ContentItemPad_dynamicStyles[] | null;
 }
 
+export interface ContentItem_ContentItemRadio_styles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItem_ContentItemRadio_choices_renderAsIcon_icon {
   id: string;
   uri: string | null;
@@ -269,6 +275,7 @@ export interface ContentItem_ContentItemRadio {
   id: string;
   iconOptions: boolean;
   answerKey: string;
+  styles: ContentItem_ContentItemRadio_styles[] | null;
   choices: ContentItem_ContentItemRadio_choices[];
 }
 

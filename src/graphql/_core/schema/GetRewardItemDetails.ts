@@ -67,6 +67,7 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemMa
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
+  markdownStyles: string | null;
   styles: GetRewardItemDetails_getRewardItemDetails_content_ContentItemMarkdown_styles[] | null;
   markdownContainerStyle:
     | GetRewardItemDetails_getRewardItemDetails_content_ContentItemMarkdown_markdownContainerStyle[]

@@ -89,6 +89,7 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
+  markdownStyles: string | null;
   styles: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemMarkdown_styles[] | null;
   markdownContainerStyle:
     | GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemMarkdown_markdownContainerStyle[]

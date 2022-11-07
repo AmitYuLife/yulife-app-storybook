@@ -5,6 +5,7 @@ import { Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { BoxOption, CheckBox } from "@molecules";
+import { useSduiActionUpdateBus } from "../_hooks";
 
 interface Props extends GqlRadio {
   value: string;
@@ -13,67 +14,83 @@ interface Props extends GqlRadio {
 
 const DEFAULT_ICON_IMAGE_SIZE = 32;
 
-export const ContentItemRadio = memo(({ onChange, choices, value: initialValue, iconOptions }: Props) => {
-  const [selectedValue, setSelectedValue] = useState(initialValue);
+export const ContentItemRadio = memo(
+  ({ onChange, choices, value: initialValue, iconOptions, answerKey, styles: serverStyles }: Props) => {
+    const [selectedValue, setSelectedValue] = useState(initialValue);
+    const { updateBus } = useSduiActionUpdateBus();
 
-  const onValueChange = useCallback(
-    (val: string) => () => {
-      setSelectedValue(val);
-      onChange(val);
-    },
-    [onChange]
-  );
+    const onValueChange = useCallback(
+      (val: string) => () => {
+        setSelectedValue(val);
 
-  if (iconOptions) {
+        if (onChange) {
+          onChange(val);
+        }
+
+        updateBus(answerKey, val);
+      },
+      [onChange, answerKey]
+    );
+
+    if (iconOptions) {
+      return (
+        <View style={[styles.radioIconWrapper, mapServerStyles(serverStyles)]}>
+          {choices.map(
+            ({
+              label,
+              value,
+              renderAsIcon: {
+                icon,
+                textColor,
+                wrapperStyles,
+                selectedStyles,
+                boxOptionHeight,
+                imageHeight,
+                imageWidth,
+              },
+            }) => (
+              <View key={value} style={[styles.boxWrapper, mapServerStyles(wrapperStyles)]}>
+                <BoxOption
+                  onPress={onValueChange(value)}
+                  isSelected={value === selectedValue}
+                  selectedStyle={mapServerStyles(selectedStyles)}
+                  innerHeight={boxOptionHeight ?? Style.adjust(boxOptionHeight)}
+                >
+                  <View style={styles.innerWrapper}>
+                    <Image
+                      height={Style.adjust(imageHeight || DEFAULT_ICON_IMAGE_SIZE)}
+                      width={Style.adjust(imageWidth || DEFAULT_ICON_IMAGE_SIZE)}
+                      source={icon}
+                    />
+                    {!label ? null : (
+                      <View style={styles.boxTextWrapper}>
+                        <TextTemplate type="b2b" color={textColor}>
+                          {label}
+                        </TextTemplate>
+                      </View>
+                    )}
+                  </View>
+                </BoxOption>
+              </View>
+            )
+          )}
+        </View>
+      );
+    }
+
     return (
-      <View style={styles.radioIconWrapper}>
-        {choices.map(
-          ({
-            label,
-            value,
-            renderAsIcon: { icon, textColor, wrapperStyles, selectedStyles, boxOptionHeight, imageHeight, imageWidth },
-          }) => (
-            <View key={value} style={[styles.boxWrapper, mapServerStyles(wrapperStyles)]}>
-              <BoxOption
-                onPress={onValueChange(value)}
-                isSelected={value === selectedValue}
-                selectedStyle={mapServerStyles(selectedStyles)}
-                innerHeight={boxOptionHeight ?? Style.adjust(boxOptionHeight)}
-              >
-                <View style={styles.innerWrapper}>
-                  <Image
-                    height={Style.adjust(imageHeight || DEFAULT_ICON_IMAGE_SIZE)}
-                    width={Style.adjust(imageWidth || DEFAULT_ICON_IMAGE_SIZE)}
-                    source={icon}
-                  />
-                  {!label ? null : (
-                    <View style={styles.boxTextWrapper}>
-                      <TextTemplate type="b2b" color={textColor}>
-                        {label}
-                      </TextTemplate>
-                    </View>
-                  )}
-                </View>
-              </BoxOption>
+      <View style={[styles.radioWrapper, mapServerStyles(serverStyles)]}>
+        {choices.map(({ label, value }) => {
+          return (
+            <View key={value}>
+              <CheckBox checked={value === selectedValue} value={value} label={label} onChange={onValueChange(value)} />
             </View>
-          )
-        )}
+          );
+        })}
       </View>
     );
   }
-
-  return (
-    <View style={styles.radioWrapper}>
-      {choices.map(({ label, value }) => {
-        return (
-          <View key={value}>
-            <CheckBox checked={value === selectedValue} value={value} label={label} onChange={onValueChange(value)} />
-          </View>
-        );
-      })}
-    </View>
-  );
-});
+);
 
 const styles = StyleSheet.create({
   radioWrapper: {

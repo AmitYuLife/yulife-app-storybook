@@ -1,9 +1,11 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import Markdown from "@components/molecules/markdown/markdown";
 import { Style } from "@styles";
 import { ITextTemplateType } from "@atoms/text/text-template";
+import { getMarkdownStyles } from "../markdown/markdown.styles";
+import { parseJSON } from "@utils";
 
 interface IProps {
   markdown: string;
@@ -11,11 +13,19 @@ interface IProps {
   titleType?: ITextTemplateType;
   wrapperStyle?: ViewStyle;
   markdownContainerStyle?: ViewStyle;
+  markdownStyles?: string;
 }
 
 const HeadingAndCopy = (props: IProps) => {
   const { markdown, markdownContainerStyle, title, titleType = "h3", wrapperStyle } = props;
   const titleMarginTop = !title ? {} : { marginTop: Style.adjust(30) };
+
+  const safeMarkdownStyles = useMemo(() => {
+    const { data, isValid } = parseJSON(props.markdownStyles);
+    const safeData = isValid ? data : {};
+
+    return getMarkdownStyles(safeData);
+  }, [props.markdownStyles]);
 
   return (
     <View style={[styles.wrapper, titleMarginTop, wrapperStyle]}>
@@ -23,6 +33,7 @@ const HeadingAndCopy = (props: IProps) => {
       <Markdown
         text={markdown}
         containerStyle={StyleSheet.flatten([styles.markdownContainer, markdownContainerStyle])}
+        markdownStyles={safeMarkdownStyles}
       />
     </View>
   );

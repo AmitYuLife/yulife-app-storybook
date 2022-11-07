@@ -9,7 +9,6 @@ import { View } from "react-native";
  * because in Product journey, its parent
  * needs to be relatively positioned
  */
-
 export const ProductStepProgressBar = (props: GqlProps) => {
   return (
     <View>

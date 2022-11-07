@@ -6,8 +6,9 @@ import { getRouteState } from "@redux/app/app.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { Navigation } from "react-native-navigation";
 import { call, select, all, put } from "redux-saga/effects";
-import { parseJSON, getServerPayload } from "../sdui.helpers";
+import { getServerPayload } from "../sdui.helpers";
 import { SduiActionWithServerPayload } from "../sdui.types";
+import { parseJSON } from "@utils";
 
 export function* sduiActionNavigateBackSaga({ payload }: SduiActionWithServerPayload) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);

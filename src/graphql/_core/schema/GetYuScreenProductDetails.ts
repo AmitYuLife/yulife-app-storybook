@@ -380,6 +380,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
+  markdownStyles: string | null;
   styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemMarkdown_styles[] | null;
   markdownContainerStyle:
     | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemMarkdown_markdownContainerStyle[]

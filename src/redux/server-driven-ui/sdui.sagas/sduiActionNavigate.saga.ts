@@ -1,8 +1,9 @@
 import { pushToScreen } from "@navigation/root";
 import { getRouteState } from "@redux/app/app.selectors";
 import { call, select } from "redux-saga/effects";
-import { parseJSON, getServerPayload } from "../sdui.helpers";
+import { getServerPayload } from "../sdui.helpers";
 import { ProductStepAction } from "../sdui.types";
+import { parseJSON } from "@utils";
 
 export function* sduiActionNavigateSaga({ payload }: ProductStepAction) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);

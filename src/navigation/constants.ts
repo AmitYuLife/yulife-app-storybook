@@ -31,6 +31,7 @@ export const ROUTES = {
   chooseLeaderboard: "yulife.member.chooseLeaderboard",
   debug: "yulife.member.Debug",
   yuScreen: "yulife.member.Yuscreen",
+  journey: "yulife.member.journey",
   yumojiBuilder: "yulife.member.yumojiBuilder",
   yuProductSurvey: "yulife.member.YuProductSurvey",
   changeMemberNickname: "yulife.member.changeMemberNickname",

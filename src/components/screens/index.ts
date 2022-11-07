@@ -1,3 +1,5 @@
+export { SduiScreen } from "./sdui/sdui.screen";
+
 // root screens
 export { default as LoginScreen } from "./login/login.screen";
 export { default as ResetPasswordScreen } from "./reset-password/reset-password.screen";

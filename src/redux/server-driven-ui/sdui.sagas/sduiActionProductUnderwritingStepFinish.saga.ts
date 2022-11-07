@@ -4,7 +4,7 @@ import { refreshUserProfile } from "@redux/user/user.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { Navigation } from "react-native-navigation";
 import { call, select, put } from "redux-saga/effects";
-import { parseJSON } from "../sdui.helpers";
+import { parseJSON } from "@utils";
 import { ProductStepAction } from "../sdui.types";
 
 export function* sduiActionProductUnderwritingStepFinishSaga(action: ProductStepAction) {

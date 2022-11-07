@@ -2,6 +2,10 @@ import { MODALS, ROUTES } from "./constants";
 
 export default [
   {
+    name: ROUTES.journey,
+    component: require("../components/containers/journey/journey.container").default,
+  },
+  {
     name: ROUTES.noAccess,
     component: require("../components/containers/no-access/no-access.container").default,
   },

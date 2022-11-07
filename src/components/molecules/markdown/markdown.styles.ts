@@ -14,7 +14,7 @@ export interface IMarkdownStyle {
   strong?: Record<string, string | number>;
 }
 
-const markdownStyle = (props: IMarkdownStyle) =>
+export const getMarkdownStyles = (props: IMarkdownStyle) =>
   ({
     block: {
       marginBottom: Style.adjust(10),
@@ -119,4 +119,4 @@ const markdownStyle = (props: IMarkdownStyle) =>
     },
   } as StyleProp<any>);
 
-export default markdownStyle;
+export default getMarkdownStyles;

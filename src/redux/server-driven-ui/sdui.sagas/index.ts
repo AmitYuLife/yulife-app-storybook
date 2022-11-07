@@ -11,6 +11,8 @@ import { sduiActionProductUnderwritingStepPushSaga } from "./sduiActionProductUn
 import { sduiActionOpenModalSaga } from "./sduiActionOpenModal.saga";
 import { sduiActionOpenAlertDialogSaga } from "./sduiActionOpenAlertDialog.saga";
 import { sduiActionLogEventSaga } from "./sduiActionLogEvent.saga";
+import { sduiActionSendMutation } from "./sduiActionSendMutation.saga";
+import { sduiActionGenericNavigateBack } from "./sduiActionGenericNavigateBack.saga";
 
 export default [
   takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE_BACK as ActionPattern, sduiActionNavigateBackSaga),
@@ -32,5 +34,7 @@ export default [
   ),
   takeLeading(SduiActionType.SDUI_ACTION_OPEN_MODAL as ActionPattern, sduiActionOpenModalSaga),
   takeLeading(SduiActionType.SDUI_ACTION_OPEN_ALERT_DIALOG as ActionPattern, sduiActionOpenAlertDialogSaga),
+  takeLeading(SduiActionType.SDUI_ACTION_SEND_MUTATION as ActionPattern, sduiActionSendMutation),
+  takeLeading(SduiActionType.SDUI_ACTION_GENERIC_NAVIGATE_BACK as ActionPattern, sduiActionGenericNavigateBack),
   takeEvery(SduiActionType.SDUI_ACTION_LOG_EVENT as ActionPattern, sduiActionLogEventSaga),
 ];
