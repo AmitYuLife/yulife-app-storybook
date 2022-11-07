@@ -27,6 +27,8 @@ const SHADOW_HEIGHT = media.select(
   4
 );
 
+const DEFAULT_INNER_HEIGHT = Style.adjust(104);
+
 const BoxOption = memo(
   ({
     testID,
@@ -36,13 +38,14 @@ const BoxOption = memo(
     selectedStyle,
     wrapperStyle,
     innerWrapperStyle,
-    innerHeight = Style.adjust(104),
+    innerHeight,
     disabled,
   }: Props) => {
     const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress });
     const { translateY } = useAnimation({ isSelected, isPressedIn });
 
-    const totalHeight = innerHeight + SHADOW_HEIGHT;
+    const safeInnerHeight = innerHeight || DEFAULT_INNER_HEIGHT;
+    const totalHeight = safeInnerHeight + SHADOW_HEIGHT;
 
     return (
       <TouchableWithDelay
@@ -59,7 +62,7 @@ const BoxOption = memo(
               styles.innerWrapper,
               innerWrapperStyle,
               (isSelected || isPressedIn) && selectedStyle,
-              { transform: [{ translateY }], height: innerHeight },
+              { transform: [{ translateY }], height: safeInnerHeight },
             ]}
           >
             {children}
