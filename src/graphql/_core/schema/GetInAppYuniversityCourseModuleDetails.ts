@@ -145,6 +145,7 @@ export interface GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCours
   moduleCertificate: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_moduleCertificate | null;
   moduleCertificateDetails: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_moduleCertificateDetails | null;
   completed: boolean | null;
+  quiz: string;
 }
 
 export interface GetInAppYuniversityCourseModuleDetails {

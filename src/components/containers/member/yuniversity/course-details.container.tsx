@@ -54,14 +54,14 @@ const CourseDetailsContainer = ({ moduleId }: IProps) => {
   const startQuiz = useCallback(() => {
     Navigation.push(ROUTES.courseDetails, {
       component: {
-        id: ROUTES.yuniversityQuiz,
-        name: ROUTES.yuniversityQuiz,
+        id: ROUTES.journey,
+        name: ROUTES.journey,
         passProps: {
-          moduleId,
+          journeyId: data?.getInAppYuniversityCourseModuleDetails.quiz,
         },
       },
     });
-  }, [moduleId]);
+  }, [moduleId, data?.getInAppYuniversityCourseModuleDetails.quiz]);
 
   if (loading) {
     return <Loading />;
