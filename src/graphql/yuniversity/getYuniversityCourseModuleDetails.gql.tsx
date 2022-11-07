@@ -102,6 +102,7 @@ export const GQL_QUERY_GET_YUNIVERSITY_COURSE_MODULE_DETAILS = gql`
         }
       }
       completed
+      quiz
     }
   }
 `;
