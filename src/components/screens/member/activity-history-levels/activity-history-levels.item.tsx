@@ -80,8 +80,8 @@ export default function ActivityHistoryLevelsItem({
   const mindfulTotal = displaySecondsAsMinutes(mindfulSeconds);
   const mindfulTotalToDisplay =
     mindfulTotal.minutes === 1
-      ? `${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} ${translations["activity_types.steps.singular"]}`
-      : `${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} ${translations["activity_types.steps.plural"]}`;
+      ? `${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} ${translations["activity_types.meditation.singular"]}`
+      : `${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} ${translations["activity_types.meditation.plural"]}`;
 
   return (
     <View style={styles.listItemWrapper} testID={testID}>
