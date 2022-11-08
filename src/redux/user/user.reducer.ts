@@ -4,7 +4,6 @@ import {
   GetCurrentUser,
   GetCurrentUser_getCurrentUser_connections,
   GetCurrentUser_getCurrentUser_leaderboards,
-  GetCurrentUser_getCurrentUser_business,
   LoginUser,
   UpdateLeaderboardConsentVariables,
   UpdateMemberConsent,
@@ -51,7 +50,6 @@ export type ILeaderboard = GetCurrentUser_getCurrentUser_leaderboards & {
 };
 
 type Connection = GetCurrentUser_getCurrentUser_connections & { isLoading?: boolean };
-type Business = (GetCurrentUser_getCurrentUser_business & { isLoading?: boolean }) | null;
 type SurgeLottie = GetUserProfile_getUserProfile_surge_lottie;
 
 export enum MembershipTypes {
@@ -91,7 +89,6 @@ export interface IUserStore {
     activity: SurgeActivity;
     rate: number;
   };
-  business: Business;
   surge: {
     endDateTime: string;
     multiplier: string;
@@ -150,12 +147,6 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
     visibility: false,
     activity: null,
     rate: 1,
-  },
-  business: {
-    businessAccountName: "",
-    alpha: true,
-    isGroup: false,
-    isWellbeingAccess: false,
   },
   surge: {
     endDateTime: "",
@@ -284,15 +275,6 @@ const updatePersistedState = (persistedState: IUserStore) => {
     newState.sessionCount = 0;
   }
 
-  if (!persistedState.business) {
-    newState.business = {
-      businessAccountName: "",
-      alpha: true,
-      isGroup: false,
-      isWellbeingAccess: false,
-    };
-  }
-
   if (!persistedState.lastName || !persistedState.firstName) {
     newState.firstName = "";
     newState.lastName = "";
@@ -364,12 +346,6 @@ const getUserSuccess = (
       mobileConsent,
       userFeatures = [],
       connections = [],
-      business = {
-        businessAccountName: "",
-        alpha: true,
-        isGroup: false,
-        isWellbeingAccess: false,
-      },
     },
   }: GetCurrentUser
 ): IUserStore => {
@@ -390,7 +366,6 @@ const getUserSuccess = (
     features: userFeatures.reduce(reduceUserFeatures, {}),
     leaderboards,
     activeLeaderboardId,
-    business,
   };
 };
 

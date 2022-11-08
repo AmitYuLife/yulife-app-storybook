@@ -9,13 +9,6 @@ import { FitKitType } from "./globalTypes";
 // GraphQL fragment: User
 // ====================================================
 
-export interface User_business {
-  businessAccountName: string | null;
-  alpha: boolean | null;
-  isGroup: boolean | null;
-  isWellbeingAccess: boolean | null;
-}
-
 export interface User_connections {
   name: string | null;
   isConnected: boolean | null;
@@ -207,7 +200,6 @@ export interface User {
   onboardingDate: string | null;
   redeemedOnboarding: boolean | null;
   businessAccountId: string | null;
-  business: User_business | null;
   membershipType: string | null;
   challengesDoneToday: number | null;
   connections: (User_connections | null)[] | null;
