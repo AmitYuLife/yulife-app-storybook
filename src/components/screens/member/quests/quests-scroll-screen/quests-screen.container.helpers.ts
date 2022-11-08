@@ -83,14 +83,14 @@ export const showChallengeUnavailableModal = (nextAvailableAt: string, isYuniver
     },
   });
 
-export const showLevelUnavailableModal = (level: number, isYuniversalLevel = false) =>
+export const showLevelUnavailableModal = (level: number, name?: string) =>
   showYuModal({
     component: {
       id: MODALS.levelUnavailable,
       name: MODALS.levelUnavailable,
       passProps: {
         level,
-        isYuniversalLevel,
+        name,
         onPressCta: dismissLevelUnavailableModal,
       },
     },

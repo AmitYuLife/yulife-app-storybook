@@ -325,7 +325,7 @@
     "level_locked": {
       "cta_label": "Got it",
       "level": "Unlock at level %{level}",
-      "stage": "Unlock at stage %{level}"
+      "stage": "Unlock at %{name}"
     },
     "challenge_unavailable": {
       "cta_label": "Got it",
