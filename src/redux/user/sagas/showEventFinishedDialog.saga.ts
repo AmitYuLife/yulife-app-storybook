@@ -4,7 +4,7 @@ import { t } from "@locale";
 import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { showGenericModal } from "@navigation/utils";
-import { getModalState } from "@redux/app/app.selectors";
+import { getModalState, getRouteState } from "@redux/app/app.selectors";
 import { Unpacked } from "@utils";
 import { Navigation } from "react-native-navigation";
 import { all, call, select } from "redux-saga/effects";
@@ -12,9 +12,9 @@ import { updateUserProfile, updateUserProfileEvents } from "../user.actions";
 import { IUserStore } from "../user.reducer";
 
 function* showCompletedEvents(completedEvents: Partial<Events>[]) {
-  const activeModal: ReturnType<typeof getModalState> = yield select(getModalState);
+  const activeRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
 
-  if (activeModal === MODALS.collectEventReward) {
+  if (activeRoute === MODALS.collectEventReward) {
     return;
   }
 
