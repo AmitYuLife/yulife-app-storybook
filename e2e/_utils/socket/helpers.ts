@@ -66,7 +66,7 @@ export const onAppBootstrap = (cb: VoidFunction) => {
 }
 
 
-export const sendMindfulnessData = (value: number) => async () => {
+export const sendMindfulnessData = (value: number, waitTime = 0) => async () => {
     const record = [{
         startTime: moment().add(60, "seconds").toDate().toString(),
         endTime: moment().add(80, "seconds").toDate().toString(),
@@ -74,7 +74,9 @@ export const sendMindfulnessData = (value: number) => async () => {
         type: "MindfulSession"
     }]
     await fitKitAddSampleQueries(record)
+    await wait(waitTime)()
 }
+
 
 export const addCyclingData = (value:number) => async () => {
     const record = [{

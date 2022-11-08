@@ -51,7 +51,7 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
     levelList,
     nextLevelAvailableAt,
     currentLevel,
-    { uri: avatar.avatarRemoteFiles.pngMini },
+    { uri: avatar?.avatarRemoteFiles?.pngMini },
     submitUnity
   );
 
