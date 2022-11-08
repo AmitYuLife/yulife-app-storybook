@@ -12,12 +12,6 @@ export const GQL_FRAGMENT_USER = gql`
     onboardingDate
     redeemedOnboarding
     businessAccountId
-    business {
-      businessAccountName
-      alpha
-      isGroup
-      isWellbeingAccess
-    }
     membershipType
     challengesDoneToday
     connections {

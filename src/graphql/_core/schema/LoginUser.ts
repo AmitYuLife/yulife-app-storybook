@@ -9,13 +9,6 @@ import { LoginMethod, IntercomHashMethod, FitKitType } from "./globalTypes";
 // GraphQL mutation operation: LoginUser
 // ====================================================
 
-export interface LoginUser_loginUser_user_business {
-  businessAccountName: string | null;
-  alpha: boolean | null;
-  isGroup: boolean | null;
-  isWellbeingAccess: boolean | null;
-}
-
 export interface LoginUser_loginUser_user_connections {
   name: string | null;
   isConnected: boolean | null;
@@ -207,7 +200,6 @@ export interface LoginUser_loginUser_user {
   onboardingDate: string | null;
   redeemedOnboarding: boolean | null;
   businessAccountId: string | null;
-  business: LoginUser_loginUser_user_business | null;
   membershipType: string | null;
   challengesDoneToday: number | null;
   connections: (LoginUser_loginUser_user_connections | null)[] | null;
