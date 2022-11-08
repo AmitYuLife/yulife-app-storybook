@@ -239,7 +239,7 @@ const getLevelProps = (
         ...slotColours.locked,
         isActive: false,
         icon: lockIcon,
-        onPress: () => showLevelUnavailableModal(level.level, true),
+        onPress: () => showLevelUnavailableModal(level.level, levelSlot.name),
       };
   }
 };
