@@ -27,6 +27,8 @@ interface IProps {
   completed?: boolean;
 }
 
+const iconHeight = Style.isShortToMedium() ? Style.DEVICE_WIDTH - 105 : 330;
+
 const lottie = {
   __typename: "ContentItemLottie",
   id: "event-reward-lottie",
@@ -35,7 +37,7 @@ const lottie = {
   autoPlay: true,
   loop: false,
   aspectRatio: 1,
-  styles: [{ property: "height", value: Style.adjust(330).toString() }],
+  styles: [{ property: "height", value: Style.adjust(iconHeight).toString() }],
   onAnimationEnd: null as any,
 };
 
