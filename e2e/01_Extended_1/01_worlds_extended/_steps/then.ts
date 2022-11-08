@@ -1,12 +1,13 @@
-import { navigation, expectIsVisibleViaText, CHALLENGE_HISTORY_YUCOIN_STARS, navigateViaText, wait, CHALLENGE_UNAVAILABLE, TEXT_TEMPLATE } from "@utils"
+import { navigation, expectIsVisibleViaText, CHALLENGE_HISTORY_YUCOIN_STARS, navigateViaText, wait, CHALLENGE_UNAVAILABLE, TEXT_TEMPLATE, CHALLENGE_SET, CHALLENGE_TILE, CHALLENGE_HISTORY_STARS, QUESTS_SCREEN_YUNIVERSAL } from "@utils"
 import { screens } from "@appScreens"
+import { swipeFromText } from "_utils/navigation/scrolling"
 
 export const {
     idVisible,
     textVisible,
     textNotVisible,
     idExist,
-    textVisibleAtIndex
+    textVisibleAtIndex,
 } = navigation.common
 
 export const {
@@ -17,6 +18,9 @@ export const {
     onMeditationChallengeComplete
 } = screens.challenges
 
+export const {
+    scrollFromText
+} = navigation.scrolling
 
 
 export const onChallengeHistory = (challengeType: string, levelNum: number, yucoinNums: number[], starsCount: number[], timeSpent?: number, steps?: number) => async () => {
@@ -170,4 +174,49 @@ export const nextLevelLocked = () => async () => {
 
 export const nextYuniverseLevelLocked = (level: string) => async () => {
     await textVisible(`Unlock at level ${level}`)()
+}
+
+export const challengesAvailableVisible = async () => {
+    await idVisible(CHALLENGE_SET)()
+    await idVisible(CHALLENGE_TILE("short stroll"))()
+    await idVisible(CHALLENGE_TILE("brisk walk"))()
+    await idVisible(CHALLENGE_TILE("long walk"))()
+    await idVisible(CHALLENGE_TILE("meditation"))()
+    await swipeFromText("meditation", "up", "fast")()
+    await idVisible(CHALLENGE_TILE("fiit class"))()
+    await swipeFromText("fiit class", "down", "fast")()
+}
+
+export const challengeStarsCorrect = (starCount: number, challengeType: string, ) => async () => {
+    for (let i = 0; i < starCount; i += 1) {
+        await expect(element(by.id(CHALLENGE_HISTORY_STARS(i, challengeType)))).toBeVisible()
+    }
+}
+
+export const yuniverseChallengesVisible = async () => {
+    await idVisible(CHALLENGE_SET)()
+    await idVisible(CHALLENGE_TILE("short stroll"))()
+    await idVisible(CHALLENGE_TILE("meditation"))()
+    await swipeFromText("meditation", "up", "fast")()
+    await idVisible(CHALLENGE_TILE("fiit class"))()
+    await swipeFromText("fiit class", "down", "fast")()
+}
+
+export const challengesAndYuCoinsAwardedVisible = async () => {
+    await textVisible("short stroll")()
+    await textVisibleAtIndex("0 min", 0)()
+    await textVisible("20 yucoin")()
+    await challengeStarsCorrect(3, "short stroll")()
+    await textVisible("brisk walk")()
+    await textVisibleAtIndex("0 min", 1)()
+    await textVisible("100 yucoin")()
+    await challengeStarsCorrect(3, "brisk walk")()
+    await textVisible("long walk")()
+    await textVisibleAtIndex("0 min", 2)()
+    await textVisible("80 yucoin")()
+    await challengeStarsCorrect(2, "long walk")()
+    await textVisible("meditation")()
+    await textVisible("10 mins")()
+    await textVisible("40 yucoin")()
+    await challengeStarsCorrect(1, "meditation")()
 }

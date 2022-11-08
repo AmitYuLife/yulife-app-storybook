@@ -397,3 +397,4 @@ export const NUM_OF_STARS = (number: number) => `NUM_OF_STARS+${number}`
 
 // CHALLENGES
 export const TIME_REMAINING = (timeRemaing: string) => `TIME_REMAINING_${timeRemaing}`;
+export const LEVEL_STAR_COUNT = (starArrLength: number) => `LEVEL_STAR_COUNT_${starArrLength}`

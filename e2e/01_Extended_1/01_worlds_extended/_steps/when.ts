@@ -94,3 +94,26 @@ export const completeSecondChallenge = (levelNumber: number, challengeType: stri
     await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
     await navigateViaText("Collect")
 }
+
+export const selectAndCompleteWalkingChallenge = (challengeType: string, steps: number) => async () => {
+    await startChallenge(challengeType)()
+    await sendSteps(steps, 35000)()
+    await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
+    await navigateViaText("Collect")
+}
+
+export const tapYuniverseLevelForFirstTime = (x: number, y: number) => async () => {
+    await element(by.id(QUESTS_SCREEN_YUNIVERSAL(1))).tapAtPoint({x:x, y:y});
+}
+
+export const tapYuniverseLevelAfterFirstTime = (x: number, y: number) => async () => {
+    await element(by.id(QUESTS_SCREEN_YUNIVERSAL(2))).tapAtPoint({x:x, y:y});
+}
+
+export const selectAndCompleteMeditationChallenge = (challengeType: string, mindfulnessdata: number) => async () => {
+    await startChallenge(challengeType)()
+    await tapText("I'm using a different app")()
+    await sendMindfulnessData(mindfulnessdata, 75000)()
+    await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
+    await navigateViaText("Collect")
+}
