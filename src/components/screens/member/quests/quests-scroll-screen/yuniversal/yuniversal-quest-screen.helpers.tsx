@@ -230,7 +230,7 @@ const getLevelProps = (
         withOverlay: true,
         isActive: false,
         icon: lockIcon,
-        onPress: () => showChestModal(componentId, level, yuniversalMap, false),
+        onPress: () => showChestModal(componentId, level, yuniversalMap, false, levelSlot.name),
       };
     case "Locked":
     default:

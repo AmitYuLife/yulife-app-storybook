@@ -24,7 +24,7 @@ export const goToChallengesList = (componentId: string, level: number, levelName
     },
   });
 
-const buildChestModalCopy = (isNext: boolean, level: number, yuniversalMap: number) => {
+const buildChestModalCopy = (isNext: boolean, level: number, name?: string) => {
   if (isNext) {
     return {
       ctaLabel: t("screens.challenge_chest_modal.cta_label_is_next"),
@@ -32,10 +32,10 @@ const buildChestModalCopy = (isNext: boolean, level: number, yuniversalMap: numb
     };
   }
 
-  if (yuniversalMap) {
+  if (name) {
     return {
       ctaLabel: t("screens.challenge_chest_modal.cta_label_is_not_next"),
-      heading: t("screens.challenge_chest_modal.heading_is_not_next_stage", { level }),
+      heading: t("screens.challenge_chest_modal.heading_is_not_next_stage", { name }),
     };
   }
 
@@ -49,14 +49,15 @@ export const showChestModal = (
   componentId: string,
   level: GetQuestMap_levels,
   yuniversalMap: number,
-  isNext: boolean
+  isNext: boolean,
+  name?: string
 ) =>
   showYuModal({
     component: {
       id: MODALS.chest,
       name: MODALS.chest,
       passProps: {
-        ...buildChestModalCopy(isNext, level.level, yuniversalMap),
+        ...buildChestModalCopy(isNext, level.level, name),
         isLocked: true,
         onPressCta: () => {
           if (isNext) {

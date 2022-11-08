@@ -339,7 +339,7 @@
       "cta_label_is_completed": "Collect",
       "heading_is_next": "Take a challenge to unlock the chest",
       "heading_is_not_next_level": "Unlock at level %{level}",
-      "heading_is_not_next_stage": "Unlock at stage %{level}",
+      "heading_is_not_next_stage": "Unlock at %{name}",
       "heading_is_completed": "You get %{yucoin} YuCoin"
     },
     "yumoji_builder": {
