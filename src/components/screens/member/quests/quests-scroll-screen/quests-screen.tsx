@@ -2,13 +2,11 @@ import React, { memo, useState, useRef, useCallback, useEffect, FC, useContext }
 import { QUESTS_SCREEN } from "@ids";
 import { getCurrentEpisode, getCurrentPlanetByLevel, getCurrentWorld, getNormalizedLevel } from "@utils";
 import { FlatList, SafeAreaView, View, ViewabilityConfigCallbackPair } from "react-native";
-import { IConnectedScreenProps } from "../../../../../typings";
 import { IMapSlice, mapSlices } from "./assets";
 import offsets from "./assets/offsets";
 import styles from "./quests-screen.styles";
 import ScrollyQuest from "./subcomponents/scrolly-quest";
 import Unity from "./unity-movies/unity";
-import NewUnity from "./unity-movies/new-unity";
 import { NavBar, TopBar } from "@organisms";
 import QuestsLoadingOverlay from "./subcomponents/quests.loading";
 import { WeeklyQuestsButton } from "./weeklies/weeklies.button";
@@ -17,6 +15,7 @@ import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { getTopBarType, getWorldData } from "./quests-screen.helpers";
 import { QuestsMapContext } from "./quests.context";
+import { IConnectedScreenProps } from "@app/typings";
 
 interface IProps extends IConnectedScreenProps {
   hideUnity?: () => void | null;
@@ -97,11 +96,7 @@ const QuestsScreen: FC<IProps> = ({ hideUnity, unity, levelId, repeatedUnity, on
   const { initialScrollIndex, slices, snapOffsets } = getWorldData(currentLevel);
 
   if (unity) {
-    if (features.newGamePlus) {
-      return <NewUnity level={unity} levelId={levelId} repeatedUnity={repeatedUnity} onSkip={hideUnity} />;
-    }
-
-    return <Unity level={unity} onSkip={hideUnity} />;
+    return <Unity level={unity} levelId={levelId} repeatedUnity={repeatedUnity} onSkip={hideUnity} />;
   }
 
   return (
