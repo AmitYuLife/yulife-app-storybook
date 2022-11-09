@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.56.0] - 2022-11-09
+
+### Features
+
+- Feature XSE-1408: Generic SDUI
+
+### Bugfixes
+
+- Bugfix ENG-2984: Collect event reward modal stuck after collecting rewards
+- Bugfix GS-552: Locked Yuniverse Stages Have Incorrect Copy (Chest)
+- Bugfix GS-552: Locked Yuniverse Stages Have Incorrect Copy
+- BugFix ENG-2986: change lottie size in small devices
+- Bugfix: Fix BoxOption safe default prop
+- Bugfix ENG-2981: Activity History cuts off bits
+- Bugfix: Event panel redux state
+- Bugfix: No data for inspect
+
+### Tasks
+
+- Task: Yuniversity quiz
+- Task GS-529: Update yucoin in new planet
+
+### Chores
+
+- Chore: Make configurable radio icons
+- Chore: Fix android build failures happening since Nov 4th 2022
+
+### Extra
+
+- GS-137: Remove business from getCurrentUser
+- Detox/logic 200 plus
+- Purge: Old unity
+- Detox - Fixes 07/11
+- Detox/toggles fix
+- Changes required for Strava
+
 ## [3.55.0] - 2022-11-02
 
 ### Features
