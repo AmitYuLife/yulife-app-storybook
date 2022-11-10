@@ -1,9 +1,9 @@
-import React, { useCallback, memo, useEffect } from "react";
+import React, { useCallback, memo } from "react";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import CourseDetailsScreen from "@components/screens/member/yuniversity/course-details.screen";
 import { Loading } from "@atoms";
-import { useLazyQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import {
   GetInAppYuniversityCourseModuleDetails as GetModuleDetails,
   GetInAppYuniversityCourseModuleDetailsVariables as GetModuleDetailsVariables,
@@ -18,16 +18,11 @@ interface IProps {
 const CourseDetailsContainer = ({ moduleId }: IProps) => {
   const onClose = useCallback(() => Navigation.pop(ROUTES.courseDetails), []);
 
-  const [getCourseModuleDetails, { data, loading }] = useLazyQuery<GetModuleDetails, GetModuleDetailsVariables>(
+  const { data, loading } = useQuery<GetModuleDetails, GetModuleDetailsVariables>(
     GQL_QUERY_GET_YUNIVERSITY_COURSE_MODULE_DETAILS,
-    { fetchPolicy: "network-only" }
-  );
 
-  const getData = useCallback(() => {
-    getCourseModuleDetails({
-      variables: { id: moduleId },
-    });
-  }, [getCourseModuleDetails, moduleId]);
+    { variables: { id: moduleId }, fetchPolicy: "no-cache" }
+  );
 
   const onChapterPress = useCallback(
     (video: IGqlMedia, chapterId: string) => {
@@ -39,17 +34,12 @@ const CourseDetailsContainer = ({ moduleId }: IProps) => {
             video,
             moduleId,
             chapterId,
-            onEnd: getData,
           },
         },
       });
     },
-    [moduleId, getData]
+    [moduleId]
   );
-
-  useEffect(() => {
-    getData();
-  }, [getData]);
 
   const startQuiz = useCallback(() => {
     Navigation.push(ROUTES.courseDetails, {
