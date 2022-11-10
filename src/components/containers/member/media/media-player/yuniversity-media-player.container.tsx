@@ -18,10 +18,9 @@ interface IProps {
   video: Media;
   moduleId: string;
   chapterId: string;
-  onEnd: () => void;
 }
 
-const YuniversityMediaPlayerContainer = ({ video, moduleId, chapterId, onEnd }: IProps) => {
+const YuniversityMediaPlayerContainer = ({ video, moduleId, chapterId }: IProps) => {
   const [completeChapter]: CompleteYuniversityModuleChapterTuple = useMutation(
     GQL_MUTATION_COMPLETE_IN_APP_YUNIVERSITY_MODULE_CHAPTER
   );
@@ -41,10 +40,10 @@ const YuniversityMediaPlayerContainer = ({ video, moduleId, chapterId, onEnd }: 
     logYuniversityEvents({ type: "cpdVideoEnd", moduleId, chapterId });
     await completeChapter({
       variables: { moduleId, chapterId },
+      refetchQueries: ["GetInAppYuniversityCourseModuleDetails"],
     });
-    onEnd();
     await Navigation.popTo(ROUTES.courseDetails);
-  }, [moduleId, chapterId, completeChapter, onEnd, logYuniversityEvents]);
+  }, [moduleId, chapterId, completeChapter, logYuniversityEvents]);
 
   const onError = useCallback(
     (e: LoadError) => {
