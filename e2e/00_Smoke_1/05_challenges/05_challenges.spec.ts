@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as helper from "./_steps/helpers"
-import { QUESTS_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, CHALLENGE_PROGRESS_BAR, GENERIC_SCREEN_CTA, BUTTON_CLOSE_CHALLENGE, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, STEPS_COUNT, LEFT_PRODUCT_STEP_MULTI_BUTTON, YOUR_YUCOIN_SCREEN , DAILY_STEPS_SCREEN, YUCOIN, YUCOIN_POWER, CHALLENGE_REWARD, BACK_BUTTON, LEADERBOARD_TITLE, INSPECT_SCREEN, LEADERBOARD_SCROLL_LIST, GREAT_BUTTON, YUCOIN_EXPLAINED_SCROLL_VIEW} from "@ids";
+import { QUESTS_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, CHALLENGE_PROGRESS_BAR, GENERIC_SCREEN_CTA, BUTTON_CLOSE_CHALLENGE, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, STEPS_COUNT, LEFT_PRODUCT_STEP_MULTI_BUTTON, YOUR_YUCOIN_SCREEN , DAILY_STEPS_SCREEN, YUCOIN, YUCOIN_POWER, CHALLENGE_REWARD, BACK_BUTTON, LEADERBOARD_TITLE, INSPECT_SCREEN, LEADERBOARD_SCROLL_LIST, GREAT_BUTTON, YUCOIN_EXPLAINED_SCROLL_VIEW, DAILYSTEP_SCREEN_COIN} from "@ids";
 import { CUSTOMER_9, AUTH_9, CUSTOMER_35, AUTH_35, CUSTOMER_52, AUTH_52, COIN_LEDGER_12, USER_54_LEADERBOARD, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, GOAL_REWARD_MILESTONE_3, GOAL_REWARD_MILESTONE_4, GOAL_REWARD_MILESTONE_5, USER_52 } from "@data";
 
 Feature("As a user I can take a challenge", async () => {
@@ -135,7 +135,7 @@ Feature("As a user I can take a challenge", async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("yucoin", CUSTOMER_52, AUTH_52), async () => {
             Then("I should be on the yucoin screen", then.idVisible(DAILY_STEPS_SCREEN))
         })
-        When("I tap the yucoin", when.tapID(YUCOIN), async () => {
+        When("I tap the yucoin", when.tapID(DAILYSTEP_SCREEN_COIN), async () => {
             Then("I should be on today's earning screen and see the correct yucoin earn power", then.onTodaysEarnings(0, "0.0 / 9.6 km", 0, "78"))
         })
         When("I tap 13", when.tapID(YUCOIN_POWER("13")), async () => {

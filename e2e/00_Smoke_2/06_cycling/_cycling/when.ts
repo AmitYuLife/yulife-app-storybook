@@ -27,3 +27,7 @@ export const {
 export const {
     tapMenuItem
 } = screens.menu
+
+export const tapChallenge = (challenge: string) => async () => {
+    await tapText(challenge)()
+}

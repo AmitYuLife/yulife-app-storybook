@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { GOALS_1, GOALS_2 } from "./goals";
+import { GOALS_1, GOALS_2, GOALS_3 } from "./goals";
 
 const type = "mongo"
 const modelName = "goal_events"
@@ -25,3 +25,13 @@ export const GOAL_EVENTS_2 = {
     }
 } as IDatabaseItem
 
+export const GOAL_EVENTS_3 = {
+    type,
+    modelName,
+    data:{
+        goal: GOALS_3.data._id,
+        type: "passive_challenge_cycling",
+        targetValue: 10000,
+        parentType: "goals",
+    }
+} as IDatabaseItem
