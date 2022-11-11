@@ -5,7 +5,8 @@ export const {
     loginAsUser,
     loginOnly,
     loginAndCollectSignupBonus,
-    loginToYuScreen
+    loginToYuScreen,
+    logInAndGoToTab
 } = navigation.login
 
 export const triggerAppUpdateState = async (): Promise<void> => {
