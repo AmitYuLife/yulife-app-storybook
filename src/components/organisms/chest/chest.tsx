@@ -13,6 +13,7 @@ import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { CELESTIAL_CARD } from "@ids";
 
 export type ChestType = "FOREST" | "OCEAN" | "DESERT" | "MOUNTAIN" | "CELESTIAL";
 
@@ -272,7 +273,7 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
       >
         {items.map((item, index) =>
           index > 2 ? null : (
-            <Animated.View key={item.description} style={cardWrappers[index]}>
+            <Animated.View key={item.description} style={cardWrappers[index]} testID={CELESTIAL_CARD(item.description)}>
               <ChestCard
                 description={item.description}
                 backgroundColour={item.backgroundColour}

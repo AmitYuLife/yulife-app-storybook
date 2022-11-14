@@ -1,0 +1,278 @@
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
+import * as scenario from "./_steps/scenario"
+import * as given from "./_steps/given"
+import * as when from "./_steps/when"
+import * as then from "./_steps/then"
+import { CUSTOMER_69, AUTH_69, CUSTOMER_70, AUTH_70 } from "@data";
+import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, QUESTS_SCREEN_YUNIVERSAL, DAILY_STEPS_SCREEN, WELLDONE_BANNER, CELESTIAL_CHEST_SCREEN, SPACE_TRAVEL_SCREEN, YUSCREEN, TEXT_TEMPLATE, USER_LEVEL, LEVEL_STAR_COUNT } from "@ids";
+
+Feature("End of the world/Yuniverse", async () => {
+    Scenario("I complete level 200, enter EOTW with a yucoin surge of 2 and take 4 challenges at level 1", scenario.start, () => {
+        Given("I login as a user on level 200 with a earn rate of 6", given.logInAndGoToTab("yucoin", CUSTOMER_69, AUTH_69), async () => {
+            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left)"))
+        })
+        When("I tap take a challenge", when.tapText("Take a challenge (4 left)"), async () => {
+            Then("I should see the level 200 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(200)))
+        })
+        When("I tap level 200 button", when.tapID(LEVEL_CHALLENGE_BUTTON(200)), async () => {
+            Then("I should see that I have achieved Yunity Mountain", then.yunityCorrect("Mountain"))
+            Then("I should see the correct rewards in the chest for moving into EOTW/yuniverse", then.mountainTwoRewardsVisible)
+        })
+        When("I wait", when.wait(5000), async () => {
+            When("I tap claim rewards", when.tapText("Claim rewards"), async () => {
+                Then("I am on explore the yuniverse screen", then.isOnExploreYuniverseScreen)
+            })
+        })
+        When("I tap explore the yuniverse", when.tapText("Explore the Yuniverse"), async () => {
+            Then("I should be on the yucoin", then.idVisible(DAILY_STEPS_SCREEN))
+            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left)"))
+        })
+        When("I tap take a challenge", when.tapText("Take a challenge (4 left)"), async () => {
+            Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(1)))
+        })
+        When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(1, 187, 537), async () => {
+            Then("I should be on the quest screen and see 5 challenges unlocked", then.yuniverseChallengesVisible)
+            Then("I should see the 2x surge yucoin value for the 5 unlocked challenges", then.yuniverseChallengesYuCoinValuesCorrect(6))
+        })
+
+        // first challenge - short stroll
+        When("I complete a short stroll challenge", when.selectAndCompleteWalkingChallenge("short stroll", 400), async () => {
+            Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(1, 12, 400))
+        })
+        When("I tap collect", when.tapText("Collect"), async () => {
+            When("I tap done", when.tapText("Done", 3000), async () => {
+                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700 + 12)))
+                Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(2)))
+            })
+        })
+        When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+            Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left)"))
+            Then("I should see the correct number of steps done today", then.stepsDoneToday(400))
+            Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(0, 12))
+            Then("I can see the correct surge value and duration", then.iCanSeeSurgeIcon("2x", "7d"))
+        })
+        When("I go to the today's earnings screen", when.tapText("400 steps"), async () => {
+            Then("I see the correct yucoin earned today so far", then.textVisible("12 YuCoin"))
+            Then("I can see my total steps", then.textVisible("400 / 12000 steps"))
+        })
+        When("I swipe down the screen", when.swipeFromText("0 / 30 mindful mins", "up", "fast"), async () => {
+            Then("I can see 1/4 challenges completed today", then.textVisible("Today's challenges (1/4)"))
+            Then("I can see my short stroll completed today", then.textVisible("Short stroll (400 steps)"))
+            Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left)"))
+        })
+        When("I tap take a challenge", when.tapText("Take a challenge (3 left)"), async () => {
+            Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(2)))
+        })
+        When("I tap level 1 button a second time", when.tapYuniverseLevelAfterFirstTime(187, 537), async () => {
+            Then("I should be on the quest screen and see all 5 challenges available to me to take", then.yuniverseChallengesVisible)
+        })
+
+        // second challenge - brisk walk 
+        When("I complete a brisk walk challenge", when.selectAndCompleteWalkingChallenge("brisk walk", 1200), async () => {
+            Then("I should see the correct number of yucoin earned and steps completed in the task", then.stepsChallengeDataCorrect(1, 60, (400 + 1200)))
+        })
+        When("I tap collect", when.tapText("Collect"), async () => {
+            Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(2)))
+            Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17712 + 60)))
+        })
+        When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+            Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left)"))
+            Then("I should see the correct number of steps done today", then.stepsDoneToday(1200)) 
+            Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(12, 60))
+            Then("I can see the correct surge value and duration", then.iCanSeeSurgeIcon("2x", "7d"))
+        })
+        When("I go to the today's earnings screen", when.tapText("1,200 steps"), async () => {
+            Then("I see the correct yucoin earned today so far", then.textVisible("72 YuCoin"))
+            Then("I can see my total steps", then.textVisible("1200 / 12000 steps"))
+        })
+        When("I swipe down the screen", when.swipeFromText("Daily core activities", "up", "fast"), async () => {
+            Then("I can see 2/4 challenges completed today", then.textVisible("Today's challenges (2/4)"))
+            Then("I can see my short stroll completed today", then.textVisible("Brisk walk (1,600 steps)"))
+            Then("I can see my short stroll completed today", then.textVisible("Short stroll (400 steps)"))
+            Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left)"))
+        })
+        When("I tap take a challenge", when.tapText("Take a challenge (2 left)"), async () => {
+            Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(2)))
+        })
+        When("I tap level 1 button a third time", when.tapYuniverseLevelAfterFirstTime(187, 537), async () => {
+            Then("I should be on the quest screen and see all 5 challenges available to me to take", then.yuniverseChallengesVisible)
+        })
+
+        // third challenge - long walk 
+
+        When("I complete a long walk challenge at level 251", when.selectAndCompleteWalkingChallenge("long walk", 2000), async () => {
+            Then("I should see the correct number of yucoin earned and steps completed in the task", then.stepsChallengeDataCorrect(1, 72, (400 + 1200 + 2000)))
+        })
+        When("I tap collect", when.tapText("Collect"), async () => {
+            Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(2)))
+            Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17772 + 78)))
+        })
+        When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+            Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left)"))
+            Then("I should see the correct number of steps done today", then.stepsDoneToday(2000)) 
+            Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(72, 78))
+            Then("I can see the correct surge value and duration", then.iCanSeeSurgeIcon("2x", "7d"))
+        })
+        When("I go to the today's earnings screen", when.tapText("2,000 steps"), async () => {
+            Then("I see the correct yucoin earned today so far", then.textVisible("150 YuCoin"))
+            Then("I can see my total steps", then.textVisible("2000 / 12000 steps"))
+        })
+        When("I swipe down the screen", when.swipeFromText("Today's challenges (3/4)", "up", "fast"), async () => {
+            Then("I can see 3/4 challenges completed today", then.textVisible("Today's challenges (3/4)"))
+            Then("I can see my short stroll completed today", then.textVisible("Long walk (3,600 steps)"))
+            Then("I can see my short stroll completed today", then.textVisible("Brisk walk (1,600 steps)"))
+            Then("I can see my short stroll completed today", then.textVisible("Short stroll (400 steps)"))
+            Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left)"))
+        })
+        When("I tap take a challenge", when.tapText("Take a challenge (1 left)"), async () => {
+            Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(2)))
+        })
+        When("I tap level 1 button a fourth time", when.tapYuniverseLevelAfterFirstTime(187, 537), async () => {
+            Then("I should be on the quest screen and see all 5 challenges available to me to take", then.yuniverseChallengesVisible)
+        })
+
+        // fourth challenge - meditation
+
+        When("I complete a meditation challenge at level 1", when.selectAndCompleteMeditationChallenge("meditation", 180), async () => {
+            // we need triggerAppUpdateState to mimic a user leaving the app to meditate and then returning to the yulife app
+            When("I trigger app update", when.triggerAppUpdateState, async () => {
+                When("I wait", when.wait(5000), async () => {
+                    When("I tap awesome", when.tapText("Awesome"), async () => {
+                        When("I go to quests tab", when.tapID(NAV_BAR("quests")), async () => {
+                            Then("I should see the correct number of yucoin earned and steps completed in the task", then.meditationChallengeDataCorrect(1, 24, 3))
+                        })
+                    })
+                })
+            })
+        })
+        When("I tap collect", when.tapText("Collect"), async () => {
+            Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(2)))
+            Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17850 + 24)))
+        })
+        When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+            Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
+            Then("I should see the correct number of steps done today", then.stepsDoneToday(2000)) 
+            Then("I should see the correct number of steps done today", then.textVisible("3 min")) 
+            Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(150, 24))
+            Then("I can see the correct surge value and duration", then.iCanSeeSurgeIcon("2x", "7d"))
+        })
+        When("I go to the today's earnings screen", when.tapText("2,000 steps"), async () => {
+            Then("I see the correct yucoin earned today so far", then.textVisible("174 YuCoin"))
+            Then("I can see my total steps", then.textVisible("2000 / 12000 steps"))
+            Then("I can see my total mins", then.textVisible("3 / 30 mindful mins"))
+        })
+        When("I swipe down the screen", when.swipeFromText("Today's challenges (4/4)", "up", "fast"), async () => {
+            Then("I can see 4/4 challenges completed today", then.textVisible("Today's challenges (4/4)"))
+            Then("I can see my mins completed today", then.textVisible("Meditation (3 mins)"))
+            Then("I can see my short stroll completed today", then.textVisible("Long walk (3,600 steps)"))
+            Then("I can see my short stroll completed today", then.textVisible("Brisk walk (1,600 steps)"))
+            Then("I can see my short stroll completed today", then.textVisible("Short stroll (400 steps)"))
+            Then("I should not see any challenges left", then.textNotVisible("Take a challenge (1 left)"))
+            Then("I should see the welldone banner as I have completed 4 challenges today", then.idVisible(WELLDONE_BANNER))
+        })
+    }) 
+
+    Scenario("I complete level 7 in EOTW, I finish EOTW and enter the red planet with a yucoin surge of 2", scenario.start, () => {
+        Given("I login as a user on level 207 with a earn rate of 6", given.logInAndGoToTab("yucoin", CUSTOMER_70, AUTH_70), async () => {
+            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left)"))
+        })
+        When("I go to the yu tab", when.tapID(NAV_BAR("yu")), async () => {
+            Then("I should see my fullname", then.textVisible(`${CUSTOMER_70.data.fullName}`))
+            Then("I should see I am in the Yuniversal world", then.textVisible("Yuniversal"))
+        })
+        When("I create my yumoji", when.createDefaultYumoji, async () => {
+            Then("I am back on the yuscreen", then.idVisible(YUSCREEN))
+        })
+        When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+            When("I tap take a challenge", when.tapText("Take a challenge (4 left)"), async () => {
+                Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(7)))
+            })
+        })
+        When("I tap level 7 button", when.tapYuniverseLevelForFirstTime(7, 187, 263), async () => {
+            Then("I should be on the celestial chest screen", then.celestialChestEarned)
+        })
+        When("I tap open the chest", when.tapText("Open the chest"), async () => {
+            Then("I can see the 3 celestial chest rewards", then.celestialChestAwardsVisible)
+        })
+        When("I tap claim rewards", when.tapText("Claim rewards"), async () => {
+            Then("I am on the space travel screen", then.idVisible(SPACE_TRAVEL_SCREEN))
+        })
+        When("I tap travel", when.tapText("Travel"), async () => {
+            When("I wait", when.wait(7000), async () => {
+                When("I tap a new beginning", when.tapText("A new beginning"), async () => {
+                    Then("I should be on the yucoin screen", then.idVisible(DAILY_STEPS_SCREEN))
+                })
+            })
+        })
+        When("I go to the yu tab", when.tapID(NAV_BAR("yu")), async () => {
+            Then("I should see I am now in the Forest world", then.textVisible("Forest"))
+            Then("I should see I am now on level 201", then.idVisible(USER_LEVEL(201)))
+        })
+        When("I go to the quests tab", when.tapID(NAV_BAR("quests")), async () => {
+            Then("I should see level 201 unlocked in the red planet", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
+        })
+        When("I tap level 201 button", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
+            Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
+        })
+        When("I complete a short stroll challenge at level 201", when.selectAndCompleteWalkingChallenge("short stroll", 400), async () => {
+            When("I tap collect", when.tapText("Collect"), async () => {
+                When("I tap done", when.tapText("Done"), async () => {
+                    Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
+                    Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(19806)))
+                })
+            })
+        })
+        When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+            Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left)"))
+        })
+        When("I tap take a challenge", when.tapText("Take a challenge (3 left)"), async () => {
+            Then("I should see the level 201 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
+        })
+        When("I tap level 201 button a second time", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
+            Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
+        })
+        When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("brisk walk", 800), async () => {
+            When("I tap collect", when.tapText("Collect"), async () => {
+                Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
+                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(19836)))
+            })
+        })
+        When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+            Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left)"))
+        })
+        When("I tap take a challenge", when.tapText("Take a challenge (2 left)"), async () => {
+            Then("I should see the level 201 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
+        })
+        When("I tap level 201 button a third time", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
+            Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
+        })
+        When("I complete a long walk challenge at level 201", when.selectAndCompleteWalkingChallenge("long walk", 2000), async () => {
+            When("I tap collect", when.tapText("Collect"), async () => {
+                Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
+                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(19866)))
+            })
+        })
+        When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+            Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left)"))
+        })
+        When("I tap take a challenge", when.tapText("Take a challenge (1 left)"), async () => {
+            Then("I should see the level 201 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
+        })
+        When("I tap level 201 button a fourth time", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
+            Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
+        })
+        When("I complete a meditation challenge at level 201", when.selectAndCompleteMeditationChallenge("meditation", 180), async () => {
+            When("I tap collect", when.tapText("Collect"), async () => {
+                Then("I should see the level 201 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
+                Then("I should see level 201 has 3 stars", then.idVisible(LEVEL_STAR_COUNT(3)))
+                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(19878)))
+            })
+        })
+        When("I tap level 201", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
+            Then("I should see all the challenges I completed along with the yucoin awarded", then.challengesAndYuCoinsAwardedVisible)
+        })
+        When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+            Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
+        })
+    })
+})

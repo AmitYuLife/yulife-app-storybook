@@ -20,7 +20,7 @@ import { openGoogleFit } from "@services/app-link";
 import { androidAlertCopy } from "@components/screens/onboarding/fitkit-connect/copy";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { buildFitKitPermissions, FitKitAndroidSystemPermission } from "@services/fitkit/fitkit.permissions";
-import { ACTIVITY_FEED } from "@ids";
+import { ACTIVITY_FEED, WELLDONE_BANNER } from "@ids";
 import { useSelector } from "react-redux";
 import { getHasNotification } from "@redux/levels/levels.selectors";
 import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-permissions";
@@ -372,7 +372,7 @@ const ActivityFeed = ({
       )}
 
       {!wellDoneBanner ? null : (
-        <View style={styles.wellDoneBanner}>
+        <View style={styles.wellDoneBanner} testID={WELLDONE_BANNER}>
           <Image width={Style.adjust(327)} height={Style.adjust(120)} source={{ uri: wellDoneBanner.uri }} />
         </View>
       )}
