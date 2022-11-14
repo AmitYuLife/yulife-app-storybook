@@ -4,7 +4,7 @@ import { StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 
-interface IModule {
+export interface IModule {
   icon: { id: string; uri: string };
   iconHeight: number;
   iconWidth: number;

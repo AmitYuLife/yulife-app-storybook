@@ -82,6 +82,7 @@ export interface GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCours
   description: string | null;
   ctaLabel: string | null;
   ctaEnabled: boolean | null;
+  uri: string | null;
 }
 
 export interface GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_moduleQuiz_icon {
