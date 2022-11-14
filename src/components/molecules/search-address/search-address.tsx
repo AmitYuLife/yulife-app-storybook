@@ -1,10 +1,10 @@
 import { NetworkStatus } from "@apollo/client";
 import React, { useCallback, useEffect, memo } from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { View, StyleSheet, ViewStyle, SafeAreaView } from "react-native";
 import { SearchInput, SearchList, SearchListEmpty, SearchItem, ISearchItem } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useBackHandler } from "@hooks";
-import { Colours, Style } from "@styles";
+import { Colours } from "@styles";
 
 export interface ISearchAddress {
   onClose: () => void;
@@ -52,29 +52,28 @@ export default memo((props: ISearchAddress) => {
   }, []);
 
   return (
-    <View style={styles.wrapper}>
-      <GenericHeadingPad />
-      <SearchInput styleProps={searchInputStyles} title={searchTitle} query={query} onChangeText={onChangeText} />
-      <SearchList
-        data={addressList}
-        wrapperStyles={{ height: Style.DEVICE_HEIGHT }}
-        networkStatus={networkStatus}
-        onRefresh={onRefresh}
-        loading={loading}
-        searchItem={SearchItem}
-        keyExtractor={keyExtractor}
-        emptyElement={<SearchListEmpty emptyText={emptyText} />}
-      />
-      <GenericHeadingAbsolute heading={headingText} onLeftIconPress={onClose} hideBorder={false} />
-    </View>
+    <SafeAreaView style={StyleSheet.absoluteFill}>
+      <View style={styles.wrapper}>
+        <GenericHeadingPad />
+        <SearchInput styleProps={searchInputStyles} title={searchTitle} query={query} onChangeText={onChangeText} />
+        <SearchList
+          data={addressList}
+          networkStatus={networkStatus}
+          onRefresh={onRefresh}
+          loading={loading}
+          searchItem={SearchItem}
+          keyExtractor={keyExtractor}
+          emptyElement={<SearchListEmpty emptyText={emptyText} />}
+        />
+        <GenericHeadingAbsolute heading={headingText} onLeftIconPress={onClose} hideBorder={false} />
+      </View>
+    </SafeAreaView>
   );
 });
 
 const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: Colours.neutral.n50,
-    position: "absolute",
-    width: "100%",
-    top: Style.adjust(9),
+    ...StyleSheet.absoluteFillObject,
   } as ViewStyle,
 });
