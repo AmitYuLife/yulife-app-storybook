@@ -46,6 +46,8 @@ export const MEDITOPIA_CHALLENGE_LOAD_SCREEN = "MEDITOPIA_CHALLENGE_LOAD_SCREEN"
 export const CHOOSE_MEDITOPIA_SCREEN = "CHOOSE_MEDITOPIA_SCREEN";
 export const INSPECT_SCREEN = "INSPECT_SCREEN";
 export const YUCOIN_EXPLAINED_SCROLL_VIEW = "YUCOIN_EXPLAINED_SCROLL_VIEW";
+export const CELESTIAL_CHEST_SCREEN = "CELESTIAL_CHEST_SCREEN";
+export const SPACE_TRAVEL_SCREEN = "SPACE_TRAVEL_SCREEN";
 
 // buttons
 export const BUTTON_LOGIN = (disabled: boolean) => `BUTTON_LOGIN_${disabled})`;
@@ -120,6 +122,7 @@ export const MEDITATION_ITEM = (value:string) => `MEDITATION_ITEM_${value}`
 export const MEDITATION_STAR_REWARD = (star: number) => `MEDITATION_REWARD_${star}`
 export const MEDITATION_YUCOIN_REWARD = (yucoin: number) => `MEDITATION_REWARD_${yucoin}`
 export const CHALLENGE_HISTORY_YUCOIN_STARS = (yuCoin: string, stars: number, challengeType: string, index: number) => `CHALLENGE_HISTORY_YUCOIN+${yuCoin}_${stars}_${challengeType}_${index}`
+export const WELLDONE_BANNER = "WELLDONE_BANNER";
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`
@@ -398,3 +401,6 @@ export const NUM_OF_STARS = (number: number) => `NUM_OF_STARS+${number}`
 // CHALLENGES
 export const TIME_REMAINING = (timeRemaing: string) => `TIME_REMAINING_${timeRemaing}`;
 export const LEVEL_STAR_COUNT = (starArrLength: number) => `LEVEL_STAR_COUNT_${starArrLength}`
+
+// ETOW
+export const CELESTIAL_CARD = (description: string) => `CELESTIAL_CARD_${description}`;

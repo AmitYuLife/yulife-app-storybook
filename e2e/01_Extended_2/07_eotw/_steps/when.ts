@@ -1,0 +1,56 @@
+import { screens } from "@appScreens"
+import { navigation, QUESTS_SCREEN_YUNIVERSAL, MALE_BODY } from "@utils"
+export { authoriseFitkit, sendSteps } from "@socket";
+import { sendSteps, sendMindfulnessData, sendReduxEvent } from "@socket"
+
+export const {
+    tapText,
+    tapID,
+    reloadAppToTab,
+    navigateViaText,
+    wait,
+    booleanTextVisible,
+    tapIDAtPoint
+} = navigation.common
+
+export const {
+    startChallenge,
+    startChallengeFromQuests,
+} = screens.challenges
+
+export const {
+    scrollFromID,
+    swipeFromText
+} = navigation.scrolling
+
+export const selectAndCompleteWalkingChallenge = (challengeType: string, steps: number) => async () => {
+    await startChallenge(challengeType)()
+    await sendSteps(steps, 45000)()
+}
+
+export const selectAndCompleteMeditationChallenge = (challengeType: string, mindfulnessdata: number) => async () => {
+    await startChallenge(challengeType)()
+    await tapText("I'm using a different app")()
+    await sendMindfulnessData(mindfulnessdata, 80000)()
+}
+
+export const tapYuniverseLevelForFirstTime = (questScreen: number, x: number, y: number) => async () => {
+    await element(by.id(QUESTS_SCREEN_YUNIVERSAL(questScreen))).tapAtPoint({x:x, y:y});
+}
+
+export const tapYuniverseLevelAfterFirstTime = (x: number, y: number) => async () => {
+    await element(by.id(QUESTS_SCREEN_YUNIVERSAL(2))).tapAtPoint({x:x, y:y});
+}
+
+export const triggerAppUpdateState = async (): Promise<void> => {
+    await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: "active" });
+}
+
+export const createDefaultYumoji = async () => {
+    await tapText("Create your Yumoji")()
+    await tapID(MALE_BODY)()
+    await tapText("Continue")()
+    await tapText("Save")()
+    await tapText("Save changes")()
+    await tapText("Done")()
+}

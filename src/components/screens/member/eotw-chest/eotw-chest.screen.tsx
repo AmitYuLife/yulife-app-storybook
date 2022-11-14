@@ -14,6 +14,7 @@ import { t } from "@locale";
 import { SPACE_TRAVEL_ANIMATION_DURATION } from "./eotw-planet-animation-config";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { getCurrentPlanet } from "@utils";
+import { CELESTIAL_CHEST_SCREEN, TEXT_TEMPLATE } from "@ids";
 
 interface IProps {
   chestType: ChestType;
@@ -92,7 +93,7 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, leve
 
   const { color, waves } = useMemo(() => getAssets(level - 1), [level]);
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={CELESTIAL_CHEST_SCREEN}>
       <LottieView
         resizeMode="cover"
         style={styles.fullScreenLottie}
@@ -111,7 +112,7 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, leve
           )}
           {chestState !== CHEST_STATE.CLOSED ? null : (
             <View style={styles.chestTitleWrapper}>
-              <TextTemplate color={color} type="h3" textAlign="center">
+              <TextTemplate color={color} type="h3" textAlign="center" testID={TEXT_TEMPLATE(title)}>
                 {title}
               </TextTemplate>
             </View>

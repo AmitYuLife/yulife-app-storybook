@@ -4,6 +4,7 @@ import React, { FC, memo, useCallback, useMemo } from "react";
 import { ImageSourcePropType, View, ViewStyle } from "react-native";
 import EOTWPlanet, { IPlanetProps, PLANET_ASSETS, PLANET_STATE } from "./eotw-planet";
 import { PLANET_RADIUS } from "./eotw-planet-animation-config";
+import { SPACE_TRAVEL_SCREEN } from "@ids";
 
 interface IProps {
   currentPlanet: number;
@@ -121,7 +122,7 @@ const EOTWSpaceTravel: FC<IProps> = memo(({ currentPlanet, width, height, avatar
   );
 
   return (
-    <View style={containerStyle}>
+    <View style={containerStyle} testID={SPACE_TRAVEL_SCREEN}>
       <Image
         source={PLANET_ASSETS.paths}
         resizeMode="stretch"
