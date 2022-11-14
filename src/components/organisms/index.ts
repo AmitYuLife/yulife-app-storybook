@@ -27,3 +27,4 @@ export { default as AvatarItems } from "./inspect/avatar-items";
 export { ActivityProgress, ClaimableActivityProgress } from "./activity-progress/activity-progress";
 export { default as ChapterContentItem } from "./yuniversity/chapter-content-item";
 export { default as ModuleContentItem } from "./yuniversity/module-content-item";
+export { default as ModuleNotes } from "./yuniversity//module-notes";

@@ -5,7 +5,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { Colours, Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
 import { Module, YuniversityModuleReward } from "@molecules";
-import { ChapterContentItem, GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import { ChapterContentItem, GenericHeadingAbsolute, GenericHeadingPad, ModuleNotes } from "@organisms";
 import Markdown from "@molecules/markdown/markdown";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import {
@@ -36,10 +36,6 @@ const CourseDetailsScreen = ({
     moduleCertificateDetails,
   },
 }: ICourseModuleDetailsProps) => {
-  const downloadNotes = useCallback(() => {
-    /*do something*/
-  }, []);
-
   const openCertificate = useCallback(() => {
     const { subtitle, description, values } = moduleCertificateDetails;
     Navigation.push(ROUTES.courseDetails, {
@@ -71,7 +67,7 @@ const CourseDetailsScreen = ({
           <Image
             style={styles.courseImage}
             height={Style.adjust(39)}
-            width={Style.adjust(60)}
+            width={Style.adjust(61)}
             source={{ uri: image.uri }}
           />
           <View style={styles.titleWrapper}>
@@ -98,7 +94,7 @@ const CourseDetailsScreen = ({
             key={id}
           />
         ))}
-        <Module {...moduleNotes} onPress={downloadNotes} />
+        <ModuleNotes {...moduleNotes} />
         <Module {...moduleQuiz} onPress={startQuiz}>
           <YuniversityModuleReward coin={moduleQuiz.yucoin} />
         </Module>

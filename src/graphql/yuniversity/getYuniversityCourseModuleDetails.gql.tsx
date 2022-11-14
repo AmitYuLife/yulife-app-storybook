@@ -62,6 +62,7 @@ export const GQL_QUERY_GET_YUNIVERSITY_COURSE_MODULE_DETAILS = gql`
         description
         ctaLabel
         ctaEnabled
+        uri
       }
       moduleQuiz {
         iconWidth
