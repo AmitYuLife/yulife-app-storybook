@@ -1,21 +1,27 @@
-import React, { memo, ReactElement } from "react";
+import React, { memo, isValidElement, ReactElement, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
-import { Button, SecondaryButton } from "@molecules";
-import { Style } from "@styles";
+import { Button, PressableWithDelay, SecondaryButton } from "@molecules";
+import { Style, Colours } from "@styles";
 import { ContentItemLottie } from "@components/sdui";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import { useTranslation } from "@hooks";
 import { Source } from "react-native-fast-image";
-import { Image } from "@atoms";
+import { CloseSvg, Image } from "@atoms";
 
 interface IProps {
   closeOverlay?: () => void;
-  children: ReactElement;
+  children: ReactElement | ((props: IFloatingModalContentProps) => ReactElement);
   height?: number;
   paddingTop?: number;
   lottie?: GqlLottie;
+  showCloseIcon?: boolean;
+  showCloseButton?: boolean;
   icon?: Source;
   isCloseButtonSecondary?: boolean;
+}
+
+export interface IFloatingModalContentProps {
+  onClose?: () => void;
 }
 
 const FloatingModal = ({
@@ -23,6 +29,8 @@ const FloatingModal = ({
   children,
   lottie,
   icon,
+  showCloseIcon = true,
+  showCloseButton = true,
   height = Style.adjust(420),
   paddingTop = Style.adjust(124),
   isCloseButtonSecondary,
@@ -30,8 +38,22 @@ const FloatingModal = ({
   const CloseButton = isCloseButtonSecondary ? SecondaryButton : Button;
   const translation = useTranslation(["button.close"]);
 
+  const content = useMemo(() => {
+    if (isValidElement(children)) {
+      return children;
+    }
+
+    const Content = children;
+    return <Content onClose={closeOverlay} />;
+  }, [children, closeOverlay]);
+
   return (
     <View style={[styles.wrapper, { paddingTop, minHeight: height }]}>
+      {!showCloseIcon ? null : (
+        <PressableWithDelay onPress={closeOverlay} style={styles.closeWrapper}>
+          <CloseSvg stroke={Colours.darkestGray} size={Style.adjust(24)} />
+        </PressableWithDelay>
+      )}
       {!lottie ? null : (
         <View style={styles.iconWrapper}>
           <ContentItemLottie {...lottie} />
@@ -42,12 +64,14 @@ const FloatingModal = ({
           <Image width={Style.adjust(140)} height={Style.adjust(140)} source={icon} />
         </View>
       )}
-      {children}
-      <CloseButton
-        onPress={closeOverlay}
-        label={translation["button.close"]}
-        wrapperStyle={styles.buttonWrapperStyle}
-      />
+      {content}
+      {!showCloseButton ? null : (
+        <CloseButton
+          onPress={closeOverlay}
+          label={translation["button.close"]}
+          wrapperStyle={styles.buttonWrapperStyle}
+        />
+      )}
     </View>
   );
 };
@@ -57,6 +81,11 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderTopLeftRadius: Style.adjust(20),
     borderTopRightRadius: Style.adjust(20),
+  },
+  closeWrapper: {
+    position: "absolute",
+    top: Style.adjust(16),
+    right: Style.adjust(16),
   },
   iconWrapper: {
     height: Style.adjust(140),

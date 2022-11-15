@@ -24,7 +24,8 @@ export { default as Chest, CHEST_STATE, ChestType, ChestItemType } from "./chest
 export { default as InspectDetailsItem } from "./inspect/details-item";
 export { default as ChestCard } from "./chest-card/chest-card";
 export { default as AvatarItems } from "./inspect/avatar-items";
-export { ActivityProgress, ClaimableActivityProgress } from "./activity-progress/activity-progress";
+export { ActivityProgress } from "./activity-progress/activity-progress";
+export { default as ActivityClaimable } from "./activity-claimable/activity-claimable";
 export { default as ChapterContentItem } from "./yuniversity/chapter-content-item";
 export { default as ModuleContentItem } from "./yuniversity/module-content-item";
 export { default as ModuleNotes } from "./yuniversity//module-notes";

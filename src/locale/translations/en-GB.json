@@ -89,8 +89,14 @@
     },
     "weekly_quests": {
       "title": "Weekly quests",
-      "time_remaining": "Time remaining",
-      "choose_challenge": "Choose a challenge",
+      "quest_resets_in": "Quests resets in",
+      "come_back_in": "Come back in",
+      "reward": "Reward",
+      "pick_challenge": "Pick your challenge",
+      "claimable_activity": "Done! Claim your reward",
+      "claimed_activity": "Good job! Be sure to return next week.",
+      "lets_go": "Let's go!",
+      "in_progress": "In progress",
       "accept_challenge": "Accept challenge"
     },
     "login": {
