@@ -1,4 +1,4 @@
-import React, { memo, useContext } from "react";
+import React, { memo, useCallback, useContext } from "react";
 import { MODALS } from "@navigation/constants";
 import { WeeklyQuestsModal } from "./weeklies.modal";
 import { showFloatingModal } from "@components/modals/floating-modals/showFloatingModal";
@@ -6,28 +6,32 @@ import { Weeklies } from "@organisms";
 import { QuestsMapContext } from "../quests.context";
 
 const ICON = require("@assets/icons/weeklies.png");
+const CLAIMED_ICON = require("@assets/icons/trophy.png");
 
 type Props = {
   isVisible: boolean;
 };
 
-const handlePress = async () => {
+const handlePress = async (isClaimed?: boolean) => {
   await showFloatingModal({
-    children: <WeeklyQuestsModal />,
+    children: WeeklyQuestsModal,
     modalId: MODALS.weeklyQuestsOverlay,
-    isCloseButtonSecondary: true,
-    icon: ICON,
+    showCloseButton: false,
+    icon: isClaimed ? CLAIMED_ICON : ICON,
   });
 };
 
 export const WeeklyQuestsButton = memo(({ isVisible }: Props) => {
   const { weeklies } = useContext(QuestsMapContext);
 
+  const claimableRewards = weeklies?.activityProgress?.filter?.((e) => e.isClaimable)?.length;
+  const isClaimed = !!weeklies?.activityProgress.find((e) => e.isClaimed);
+
+  const onPress = useCallback(() => handlePress(isClaimed), [isClaimed]);
+
   if (!isVisible || !weeklies?.endDateTime) {
     return null;
   }
 
-  const claimableRewards = weeklies?.activityProgress?.filter?.((e) => e.isClaimable)?.length;
-
-  return <Weeklies onPress={handlePress} claimableRewards={claimableRewards} endDateTime={weeklies.endDateTime} />;
+  return <Weeklies onPress={onPress} claimableRewards={claimableRewards} endDateTime={weeklies.endDateTime} />;
 });

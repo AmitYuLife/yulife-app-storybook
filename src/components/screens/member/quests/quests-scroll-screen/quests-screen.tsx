@@ -113,7 +113,7 @@ const QuestsScreen: FC<IProps> = ({ hideUnity, unity, levelId, repeatedUnity, on
       </View>
       <NavBar activeIndex={1} />
       <QuestsLoadingOverlay />
-      <View style={styles.rightIconList}>
+      <View style={styles.leftIconList}>
         <WeeklyQuestsButton isVisible={features?.showWeeklies && isOnCurrentEpisode} />
       </View>
     </SafeAreaView>

@@ -1,10 +1,9 @@
-import { TextTemplate, Image, Block } from "@atoms";
+import { TextTemplate, Image } from "@atoms";
 import { Colours, Style } from "@styles";
-import React, { memo, useMemo } from "react";
+import React, { memo } from "react";
 import { StyleSheet, View, Image as RNImage } from "react-native";
-import { ProgressBar, PressableWithDelay } from "@molecules";
+import { ProgressBar } from "@molecules";
 import { StarIcon } from "@atoms/icon/star-icon";
-import { useTranslation } from "@hooks";
 
 interface IProps {
   activitySubTotal: string;
@@ -16,7 +15,6 @@ interface IProps {
   isDisabled?: boolean;
   isCompleted?: boolean;
   isClaimable?: boolean;
-  onPress?: () => void;
   isJoined?: boolean;
   isSelected?: boolean;
 }
@@ -27,52 +25,6 @@ export const ActivityProgress = (props: IProps) => {
       <Activity {...props} />
       <Progress {...props} />
     </View>
-  );
-};
-
-export const ClaimableActivityProgress = (props: IProps) => {
-  const { isClaimable, isCompleted, isSelected, isJoined } = props;
-  const t = useTranslation(["button.claim"]);
-  const style = useMemo(() => {
-    if (isCompleted) {
-      return styles.completedActivityBlock;
-    }
-
-    if (isClaimable) {
-      return styles.claimableActivityBlock;
-    }
-
-    if (isSelected) {
-      return styles.selectedActivityBlock;
-    }
-
-    return {};
-  }, [isClaimable, isCompleted, isSelected]);
-
-  const isAvailableToClaim = isClaimable && !isCompleted;
-  return (
-    <PressableWithDelay onPress={props.onPress}>
-      <Block style={[styles.claimableActivity, style]}>
-        <View style={styles.claimableActivityProgress}>
-          <View>
-            <Activity {...props} />
-            <View style={styles.progressWrapper}>
-              {isAvailableToClaim ? (
-                <View style={styles.wrapper}>
-                  <View style={styles.claim}>
-                    <TextTemplate textAlign="center" color={Colours.neutral.white} type="l1b">
-                      {t["button.claim"]}
-                    </TextTemplate>
-                  </View>
-                </View>
-              ) : !isJoined ? null : (
-                <Progress {...props} />
-              )}
-            </View>
-          </View>
-        </View>
-      </Block>
-    </PressableWithDelay>
   );
 };
 
@@ -164,29 +116,6 @@ const styles = StyleSheet.create({
   completedActivityBlock: {
     backgroundColor: Colours.products.fib.commonLight,
     borderColor: Colours.status.su400,
-  },
-  claimableActivityBlock: {
-    backgroundColor: Colours.primary.p400,
-    borderColor: Colours.primary.p400,
-  },
-  selectedActivityBlock: {
-    borderColor: Colours.primary.p400,
-  },
-  claimableActivity: {
-    marginHorizontal: Style.adjust(24),
-    marginTop: Style.adjust(16),
-    paddingHorizontal: Style.adjust(16),
-    paddingBottom: Style.adjust(16),
-  },
-  claimableActivityProgress: {
-    marginTop: Style.adjust(16),
-  },
-  claim: {
-    marginTop: Style.adjust(6),
-    width: Style.adjust(80),
-    borderWidth: 1,
-    borderColor: Colours.neutral.white,
-    borderRadius: 99,
   },
 });
 

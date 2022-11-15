@@ -30,9 +30,9 @@ export default StyleSheet.create({
   wrapper: {
     flex: 1,
   } as ViewStyle,
-  rightIconList: {
+  leftIconList: {
     position: "absolute",
-    right: Style.adjust(16),
+    left: Style.adjust(16),
     top: TOP_BAR.TOP_BAR_WITH_PAD,
     alignItems: "center",
     justifyContent: "center",
