@@ -64,14 +64,17 @@ export const onCyclingEventDetailsScreen = async () => {
     const eventDescriptionTitle = GOALS_3.data.descriptionTitle
     const eventDescription = GOALS_3.data.description
 
-    await multipleTextVisible([eventTitle, eventDescriptionTitle, eventDescription])()
+    await textVisible(eventTitle)()
+    await textVisible(eventDescriptionTitle)()
+    await swipeFromText(eventDescriptionTitle, "up", "fast", 0.2)()
+    await textVisible(eventDescription)()
 
-    await swipeFromText(eventDescriptionTitle, "up", "fast")()
+    await swipeFromText(eventDescription, "up", "fast")()
+
     for (const info of GOALS_3.data.info) {
         await textVisible(info.title)();
         await textVisible(info.description)();
     }
-    await swipeFromText(eventDescriptionTitle, "down", "fast")()
 }
 
 export const eventCompletedVisible = (numberOfKm: number, progressWidth: number) => async () => {
