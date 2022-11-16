@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.57.0] - 2022-11-16
+
+### Bugfixes
+
+- Bugfix: Yu screen onboarding offset
+- Bugfix: Close button for surge modal
+- Bugfix ENG-2994: EOTW challenge bug
+- Bugfix XSE-1448/ Adress search list UI fix
+
+### Tasks
+
+- Task: View yuniversity course module notes
+- Task: Refetch yuniversity course module
+
+### Chores
+
+- Chore: Add container styles to sdui screen
+
+### Extra
+
+- Detox - Fixes 15-11
+- GS-532: Weekly quest system UI implementation
+- Detox - Fixes 14/11
+- Detox/eotw e2e
+- Detox/passive cycling
+
 ## [3.56.0] - 2022-11-09
 
 ### Features
