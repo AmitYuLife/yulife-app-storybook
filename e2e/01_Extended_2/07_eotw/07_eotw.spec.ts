@@ -1,9 +1,9 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_69, AUTH_69, CUSTOMER_70, AUTH_70 } from "@data";
+import { CUSTOMER_69, AUTH_69, CUSTOMER_70, AUTH_70, USER_70 } from "@data";
 import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, QUESTS_SCREEN_YUNIVERSAL, DAILY_STEPS_SCREEN, WELLDONE_BANNER, CELESTIAL_CHEST_SCREEN, SPACE_TRAVEL_SCREEN, YUSCREEN, TEXT_TEMPLATE, USER_LEVEL, LEVEL_STAR_COUNT } from "@ids";
 
 Feature("End of the world/Yuniverse", async () => {
@@ -192,7 +192,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should be on the celestial chest screen", then.celestialChestEarned)
         })
         When("I tap open the chest", when.tapText("Open the chest"), async () => {
-            Then("I can see the 3 celestial chest rewards", then.celestialChestAwardsVisible)
+            Then("I can see the 3 celestial chest rewards", then.celestialChestAwardsVisible(USER_70))
         })
         When("I tap claim rewards", when.tapText("Claim rewards"), async () => {
             Then("I am on the space travel screen", then.idVisible(SPACE_TRAVEL_SCREEN))
@@ -218,7 +218,7 @@ Feature("End of the world/Yuniverse", async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 When("I tap done", when.tapText("Done"), async () => {
                     Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
-                    Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(19806)))
+                    Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(19006)))
                 })
             })
         })
@@ -234,7 +234,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("brisk walk", 800), async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
-                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(19836)))
+                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(19036)))
             })
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
@@ -249,7 +249,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I complete a long walk challenge at level 201", when.selectAndCompleteWalkingChallenge("long walk", 2000), async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
-                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(19866)))
+                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(19066)))
             })
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
@@ -265,7 +265,7 @@ Feature("End of the world/Yuniverse", async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 Then("I should see the level 201 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
                 Then("I should see level 201 has 3 stars", then.idVisible(LEVEL_STAR_COUNT(3)))
-                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(19878)))
+                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(19078)))
             })
         })
         When("I tap level 201", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
