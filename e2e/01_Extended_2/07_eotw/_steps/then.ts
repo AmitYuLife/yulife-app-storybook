@@ -1,5 +1,6 @@
 import { navigation, navigateViaText, wait, CHALLENGE_SET, CHALLENGE_TILE, TEXT_TEMPLATE, SURGE_ICON, CELESTIAL_CARD, CELESTIAL_CHEST_SCREEN, CHALLENGE_HISTORY_STARS } from "@utils"
 import { screens } from "@appScreens"
+import { USER_1 } from "@data"
 
 
 export const {
@@ -124,11 +125,13 @@ export const celestialChestEarned = async () => {
     await textVisible("You've earned the\nCelestial Chest!")() 
 } 
 
-export const celestialChestAwardsVisible = async () => {
+export const celestialChestAwardsVisible = (user: typeof USER_1) => async () => {
+    const yuCoinEarnt = user.data.earnRate * 200
+
     await textVisible("You have earned")()
     await idVisible(CELESTIAL_CARD("Weekly\nQuest"))() 
     await idVisible(CELESTIAL_CARD("25\nDonations"))() 
-    await idVisible(CELESTIAL_CARD("2000\nYuCoin"))() 
+    await idVisible(CELESTIAL_CARD(`${yuCoinEarnt}\nYuCoin`))() 
 }
 
 export const challengesAvailableVisible = async () => {
