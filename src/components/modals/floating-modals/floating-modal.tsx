@@ -49,11 +49,6 @@ const FloatingModal = ({
 
   return (
     <View style={[styles.wrapper, { paddingTop, minHeight: height }]}>
-      {!showCloseIcon ? null : (
-        <PressableWithDelay onPress={closeOverlay} style={styles.closeWrapper}>
-          <CloseSvg stroke={Colours.darkestGray} size={Style.adjust(24)} />
-        </PressableWithDelay>
-      )}
       {!lottie ? null : (
         <View style={styles.iconWrapper}>
           <ContentItemLottie {...lottie} />
@@ -71,6 +66,11 @@ const FloatingModal = ({
           label={translation["button.close"]}
           wrapperStyle={styles.buttonWrapperStyle}
         />
+      )}
+      {!showCloseIcon ? null : (
+        <PressableWithDelay onPress={closeOverlay} style={styles.closeWrapper}>
+          <CloseSvg stroke={Colours.darkestGray} size={Style.adjust(24)} />
+        </PressableWithDelay>
       )}
     </View>
   );
