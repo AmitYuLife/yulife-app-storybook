@@ -1,5 +1,5 @@
 import React, { ComponentProps, memo, useContext, useCallback } from "react";
-import { View, StyleSheet, ViewStyle, Platform, SafeAreaView } from "react-native";
+import { View, StyleSheet, ViewStyle, Platform, SafeAreaView, PixelRatio } from "react-native";
 import { NavBar } from "@organisms";
 import { Colours, Style } from "@styles";
 import { Navigation } from "react-native-navigation";
@@ -55,7 +55,11 @@ const WIDTH = Style.adjust(156);
 const ITEM_SLOT_POSITION_CONSTANT = Style.adjust(8);
 const ITEM_SLOT_POSITION_MULTIPLIER = Style.adjust(70);
 const NAME_AND_TITLE_HEIGHT = Style.adjust(80);
-const TARGET_Y_CONSTANT = PAD_TOP + NAME_AND_TITLE_HEIGHT + DEVICE_ADJUSTMENT + ITEM_SLOT_POSITION_CONSTANT;
+const DPI_TOP_OFFSET = 48;
+const PIXEL_RATIO_MULTIPLIER = -22;
+const DPI_OFFSET = DPI_TOP_OFFSET + PIXEL_RATIO_MULTIPLIER * (PixelRatio.get() * 2);
+const TARGET_Y_CONSTANT =
+  DPI_OFFSET + PAD_TOP + NAME_AND_TITLE_HEIGHT + DEVICE_ADJUSTMENT + ITEM_SLOT_POSITION_CONSTANT;
 const OFFSET = Style.adjust(60);
 
 const _YuScreenLayoutLegacy = ({ children, testID = YUSCREEN_V3(true) }: Props) => {
