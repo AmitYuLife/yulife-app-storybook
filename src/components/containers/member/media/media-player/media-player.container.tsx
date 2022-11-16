@@ -96,11 +96,14 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
       variables: { levelSlotId, payload: { value: video.duration } },
     });
 
-    dispatch(challengeEndSuccessAction({ ...data?.updateQuestMapLevelChallenge?.challenge }));
-    dispatch(updateInAppMeditation(video.duration));
+    if (data?.updateQuestMapLevelChallenge) {
+      dispatch(challengeEndSuccessAction({ ...data?.updateQuestMapLevelChallenge?.challenge }));
+      dispatch(updateInAppMeditation(video.duration));
 
-    await Navigation.popTo(ROUTES.quests);
-    Logger.logMixpanelEvent("meditopia_challenge_end", { levelSlotId, duration: video.duration });
+      await Navigation.popTo(ROUTES.quests);
+
+      Logger.logMixpanelEvent("meditopia_challenge_end", { levelSlotId, duration: video.duration });
+    }
   }, [video.duration, levelSlotId]);
 
   const onError = useCallback(() => {
