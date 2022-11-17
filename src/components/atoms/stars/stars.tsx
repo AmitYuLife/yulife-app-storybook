@@ -3,6 +3,7 @@ import { SFC } from "react";
 import { View } from "react-native";
 import { StarLeft, StarMid, StarRight } from "./assets";
 import styles from "./stars.styles";
+import { CHALLENGE_STARS } from "@ids";
 
 interface IProps {
   isLeftHighlighted?: boolean;
@@ -12,7 +13,7 @@ interface IProps {
 
 const Stars: SFC<IProps> = ({ isLeftHighlighted, isMidHighlighted, isRightHighlighted }) => {
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={CHALLENGE_STARS(isLeftHighlighted, isMidHighlighted, isRightHighlighted)}>
       <StarLeft isHighlighted={isLeftHighlighted} />
       <View style={styles.starMidWrapper}>
         <StarMid isHighlighted={isMidHighlighted} />
