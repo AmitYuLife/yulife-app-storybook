@@ -11,5 +11,8 @@ export const GQL_FRAGMENT_CONTENT_ITEM_TEXT_INPUT = gql`
       validationName
       validationValue
     }
+    styles {
+      ...SduiStyle
+    }
   }
 `;

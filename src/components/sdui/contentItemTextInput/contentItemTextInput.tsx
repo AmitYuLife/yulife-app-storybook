@@ -7,46 +7,65 @@ import { Style } from "@styles";
 import { ContentItemFormTextInputType } from "@graphql/_core/schema/globalTypes";
 import { TextTemplate } from "@atoms";
 import media, { DEVICES } from "@styles/media";
+import { useSduiActionUpdateBus } from "../_hooks";
+import { addCommasToNumber } from "@utils";
+import { mapServerStyles } from "../_utils/mapServerStyles";
 
 interface Props extends GqlTextInput {
   value: string;
   onChange: (value: string) => void;
 }
 
-export const ContentItemTextInput = memo(({ onChange, id, heading, value, prefixValue, type, validation }: Props) => {
-  const [indentWidth, setIndentWidth] = useState(0);
+export const ContentItemTextInput = memo(
+  ({ answerKey, onChange, id, heading, value, prefixValue, type, validation, styles: serverStyles }: Props) => {
+    const [indentWidth, setIndentWidth] = useState(0);
+    const [selectedValue, setSelectedValue] = useState(formatValue(value));
+    const { updateBus } = useSduiActionUpdateBus();
 
-  const handleTextLayout = useCallback((event: LayoutChangeEvent) => {
-    setIndentWidth(event.nativeEvent.layout.width + 8);
-  }, []);
+    const handleTextLayout = useCallback((event: LayoutChangeEvent) => {
+      setIndentWidth(event.nativeEvent.layout.width + 8);
+    }, []);
 
-  const errorMessage =
-    (validation?.length &&
-      value &&
-      validation.find((v) => !new RegExp(v.validationValue).test(value))?.validationName) ||
-    "";
+    const onValueChange = useCallback(
+      (val: string) => {
+        if (onChange) {
+          onChange(val);
+        }
 
-  return (
-    <View style={styles.inputWrapper}>
-      {prefixValue ? (
-        <View style={styles.prefixWrapper} onLayout={handleTextLayout}>
-          <TextTemplate type="h3">{prefixValue}</TextTemplate>
-        </View>
-      ) : null}
-      <TextField
-        type={mapTextFieldType(type)}
-        placeholderIndentSize={indentWidth}
-        value={value}
-        placeholder={heading}
-        key={id}
-        onChange={onChange}
-        testID={CONTENT_ITEM_INPUT(id)}
-        showError={!!errorMessage}
-        errorMessage={errorMessage}
-      />
-    </View>
-  );
-});
+        updateBus(answerKey, val);
+        setSelectedValue(formatValue(val));
+      },
+      [answerKey, onChange, updateBus]
+    );
+
+    const errorMessage =
+      (validation?.length &&
+        selectedValue &&
+        validation.find((v) => !new RegExp(v.validationValue).test(selectedValue))?.validationName) ||
+      "";
+
+    return (
+      <View style={[styles.inputWrapper, mapServerStyles(serverStyles)]}>
+        {prefixValue ? (
+          <View style={styles.prefixWrapper} onLayout={handleTextLayout}>
+            <TextTemplate type="h3">{prefixValue}</TextTemplate>
+          </View>
+        ) : null}
+        <TextField
+          type={mapTextFieldType(type)}
+          placeholderIndentSize={indentWidth}
+          value={selectedValue}
+          placeholder={heading}
+          key={id}
+          onChange={onValueChange}
+          testID={CONTENT_ITEM_INPUT(id)}
+          showError={!!errorMessage}
+          errorMessage={errorMessage}
+        />
+      </View>
+    );
+  }
+);
 
 const TOP = media.select(
   [
@@ -80,4 +99,16 @@ const mapTextFieldType = (type: ContentItemFormTextInputType): ComponentProps<ty
     default:
       return "Text";
   }
+};
+
+const formatValue = (value: unknown) => {
+  if (!value) {
+    return null;
+  }
+
+  if (typeof value === "number") {
+    return String(addCommasToNumber(value));
+  }
+
+  return value as string;
 };

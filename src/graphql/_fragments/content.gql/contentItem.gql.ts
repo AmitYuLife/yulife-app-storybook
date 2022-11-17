@@ -9,6 +9,7 @@ import { GQL_FRAGMENT_CONTENT_ITEM_PAD } from "./contentItemPad.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_BAR } from "./contentItemProgressBar.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_RADIO } from "./contentItemRadio.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_TEXT } from "./contentItemText.gql";
+import { GQL_FRAGMENT_CONTENT_ITEM_TEXT_INPUT } from "./contentItemTextInput.gql";
 
 export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN}
@@ -17,6 +18,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_IMAGE}
   ${GQL_FRAGMENT_CONTENT_ITEM_FORM}
   ${GQL_FRAGMENT_CONTENT_ITEM_TEXT}
+  ${GQL_FRAGMENT_CONTENT_ITEM_TEXT_INPUT}
   ${GQL_FRAGMENT_CONTENT_ITEM_PAD}
   ${GQL_FRAGMENT_CONTENT_ITEM_RADIO}
   ${GQL_FRAGMENT_CONTENT_ITEM_HEADER_BAR}
@@ -41,6 +43,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
     }
     ... on ContentItemText {
       ...ContentItemText
+    }
+    ... on ContentItemTextInput {
+      ...ContentItemTextInput
     }
     ... on ContentItemPad {
       ...ContentItemPad

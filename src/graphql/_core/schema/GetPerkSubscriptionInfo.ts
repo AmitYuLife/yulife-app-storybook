@@ -15,8 +15,13 @@ import {
 // GraphQL query operation: GetPerkSubscriptionInfo
 // ====================================================
 
-export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemPad {
-  __typename: "ContentItemPad" | "ContentItemRadio" | "ContentItemHeaderBar" | "ContentItemProgressBar";
+export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemTextInput {
+  __typename:
+    | "ContentItemTextInput"
+    | "ContentItemPad"
+    | "ContentItemRadio"
+    | "ContentItemHeaderBar"
+    | "ContentItemProgressBar";
 }
 
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemText_styles {
@@ -223,7 +228,7 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
 }
 
 export type GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content =
-  | GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemPad
+  | GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemTextInput
   | GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemText
   | GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemImage
   | GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemMarkdown

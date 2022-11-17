@@ -748,8 +748,8 @@
                 "ofType": null
               }
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use getUserFeatures query instead"
           },
           {
             "name": "mobileConsent",
@@ -760,8 +760,8 @@
               "name": "MobileConsent",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use getUserMobileConsent query instead"
           },
           {
             "name": "redeemedOnboarding",
@@ -796,8 +796,8 @@
               "name": "CoinLedger",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use getUserCoinLedger query instead"
           },
           {
             "name": "passiveChallenge",
@@ -833,8 +833,8 @@
               "name": "ActiveChallenge",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use getUserActiveChallenge query instead"
           },
           {
             "name": "activeStreak",
@@ -845,8 +845,8 @@
               "name": "ActiveStreak",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use getUserActiveStreak query instead"
           },
           {
             "name": "activeMultiplier",
@@ -873,8 +873,8 @@
                 "ofType": null
               }
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use getUserLeaderboards query instead"
           },
           {
             "name": "todayActivity",
@@ -889,8 +889,8 @@
                 "ofType": null
               }
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use getUserTodayActivity query instead"
           },
           {
             "name": "challengesDoneToday",
@@ -945,8 +945,8 @@
                 "ofType": null
               }
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use getUserConnections query instead"
           },
           {
             "name": "gpName",
@@ -1113,8 +1113,8 @@
               "name": "UserBusiness",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use getUserBusiness instead"
           },
           {
             "name": "wootricId",
@@ -7311,6 +7311,22 @@
             "deprecationReason": null
           },
           {
+            "name": "getActiveAndInactiveCount",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ActiveAndInactiveCount",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "getCompanySettings",
             "description": null,
             "args": [],
@@ -7890,6 +7906,138 @@
                 "name": "ShippingAddress",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "getUserFeatures",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "UserFeature",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "getUserConnections",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Connection",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "getUserMobileConsent",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "MobileConsent",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "getUserActiveChallenge",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ActiveChallenge",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "getUserCoinLedger",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CoinLedger",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "getUserActiveStreak",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ActiveStreak",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "getUserTodayActivity",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ActivityHistoryChallenge",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "getUserLeaderboards",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Leaderboard",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "getUserBusiness",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "UserBusiness",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -10396,6 +10544,35 @@
                 "name": "MedicalPractice",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "getCustomerProductFromProductId",
+            "description": null,
+            "args": [
+              {
+                "name": "productId",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CustomerProductData",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -23095,6 +23272,42 @@
       },
       {
         "kind": "OBJECT",
+        "name": "ActiveAndInactiveCount",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": [
+          {
+            "name": "active",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "inactive",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "TeamSettingValue",
         "description": null,
         "specifiedByUrl": null,
@@ -23576,7 +23789,7 @@
             "deprecationReason": null
           },
           {
-            "name": "monthlyActiveEmployees",
+            "name": "monthlyActiveEmployeesPercentage",
             "description": null,
             "args": [],
             "type": {
@@ -29660,6 +29873,26 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "styles",
+            "description": "Supported RN version 3.58.0",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SduiStyle",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -33740,6 +33973,11 @@
           {
             "kind": "OBJECT",
             "name": "ContentItemText",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContentItemTextInput",
             "ofType": null
           },
           {
@@ -61224,6 +61462,46 @@
       },
       {
         "kind": "OBJECT",
+        "name": "CustomerProductData",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": [
+          {
+            "name": "customerProductId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "YuProductStatus",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "JourneyData",
         "description": null,
         "specifiedByUrl": null,
@@ -61339,6 +61617,12 @@
           },
           {
             "name": "POP",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "RESET",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
