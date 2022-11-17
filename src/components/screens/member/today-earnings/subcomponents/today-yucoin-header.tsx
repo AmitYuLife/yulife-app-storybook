@@ -18,7 +18,7 @@ const TodayYuCoinHeader = ({ yuCoinToday, yuCoinPower, currentWorld, currentYuni
   const buffTypes = useMemo(() => [BuffArea.stepsMilestone], []);
 
   return (
-    <View style={styles.wrapper}>
+    <>
       <View style={styles.yuCoinWrapper}>
         <YuCoinBadge
           hasWhiteGlow={false}
@@ -29,32 +29,37 @@ const TodayYuCoinHeader = ({ yuCoinToday, yuCoinPower, currentWorld, currentYuni
         />
         <ActiveBuffsButton iconWidth={25} iconHeight={25} style={styles.activeBuffs} buffTypes={buffTypes} />
       </View>
-      <View
-        style={styles.textWrapper}
-        accessible={true}
-        accessibilityLabel={t("screens.today_earning.yucoin_header.coins.accessibility.accessibility_label", {
-          coins: yuCoinToday,
-        })}
-      >
-        <TextTemplate type="l1" color={Colours.orange}>
-          {t("screens.today_earning.yucoin_header.coins.earned_today")}
-        </TextTemplate>
-        <TextTemplate type="h1" color={Colours.orange}>
-          {t("screens.today_earning.yucoin_header.coins.amount", { coins: yuCoinToday })}
-        </TextTemplate>
-      </View>
-      <View style={styles.yuCoinPower}>
-        <PressableWithDelay
-          onPress={showYuCoinPowerExplainedOverlay}
-          accessibilityLabel={t("screens.today_earning.yucoin_header.yucoin_power.accessibility.accessibility_label", {
-            power: yuCoinPower,
+      <View style={styles.wrapper}>
+        <View
+          style={styles.textWrapper}
+          accessible={true}
+          accessibilityLabel={t("screens.today_earning.yucoin_header.coins.accessibility.accessibility_label", {
+            coins: yuCoinToday,
           })}
-          accessibilityRole={"button"}
         >
-          <YuCoinPower coins={yuCoinPower} />
-        </PressableWithDelay>
+          <TextTemplate type="l1" color={Colours.orange}>
+            {t("screens.today_earning.yucoin_header.coins.earned_today")}
+          </TextTemplate>
+          <TextTemplate type="h1" color={Colours.orange}>
+            {t("screens.today_earning.yucoin_header.coins.amount", { coins: yuCoinToday })}
+          </TextTemplate>
+        </View>
+        <View style={styles.yuCoinPower}>
+          <PressableWithDelay
+            onPress={showYuCoinPowerExplainedOverlay}
+            accessibilityLabel={t(
+              "screens.today_earning.yucoin_header.yucoin_power.accessibility.accessibility_label",
+              {
+                power: yuCoinPower,
+              }
+            )}
+            accessibilityRole={"button"}
+          >
+            <YuCoinPower coins={yuCoinPower} />
+          </PressableWithDelay>
+        </View>
       </View>
-    </View>
+    </>
   );
 };
 
@@ -73,12 +78,13 @@ const styles = StyleSheet.create({
   yuCoinWrapper: {
     position: "absolute",
     alignSelf: "center",
-    top: Style.adjust(-53),
+    top: Style.adjust(-13),
+    zIndex: 2,
   } as ViewStyle,
   activeBuffs: {
     position: "absolute",
-    right: 0,
-    top: 0,
+    right: Style.adjust(18),
+    top: Style.adjust(18),
   } as ViewStyle,
   activeBuffIcon: {
     width: Style.adjust(26),
