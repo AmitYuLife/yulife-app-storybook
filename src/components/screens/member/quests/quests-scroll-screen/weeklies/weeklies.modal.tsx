@@ -62,7 +62,7 @@ export const WeeklyQuestsModal = memo(({ onClose }: IFloatingModalContentProps) 
   );
 
   const claimReward = useCallback(async () => {
-    await claim();
+    await claim({ variables: { rewardIds: [activeActivity?.id] } });
     dispatch(getUserStart());
 
     onClose();
