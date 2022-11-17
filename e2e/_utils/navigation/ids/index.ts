@@ -397,6 +397,7 @@ export const CLAIM_BUTTON = "CLAIM_BUTTON";
 export const GREAT_BUTTON = "GREAT_BUTTON";
 export const ANIMATED_CIRCLE = (colour: string) => `ANIMATED_CIRCLE_${colour}`
 export const NUM_OF_STARS = (number: number) => `NUM_OF_STARS+${number}`
+export const CHALLENGE_STARS = (isLefttHighlighted: boolean, isMidHighlighted: boolean, isRightHighlighted: boolean) => `CHALLENGE_STARS_${isLefttHighlighted}_${isMidHighlighted}_${isRightHighlighted}`
 
 // CHALLENGES
 export const TIME_REMAINING = (timeRemaing: string) => `TIME_REMAINING_${timeRemaing}`;

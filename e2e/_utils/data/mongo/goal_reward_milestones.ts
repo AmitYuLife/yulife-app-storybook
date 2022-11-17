@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { GOALS_1, GOALS_2, GOALS_3 } from "./goals";
+import { GOALS_1, GOALS_2, GOALS_3, GOALS_4 } from "./goals";
 
 const type = "mongo"
 const modelName = "goal_reward_milestones"
@@ -141,6 +141,60 @@ export const GOAL_REWARD_MILESTONE_8 = {
         rewardValue: 150,
         rewardTitle: "150 YuCoin",
         rewardDescription: "10km cycled",
+        parentType: "goals",
+        earnRateBased: true, 
+    }
+};
+
+export const GOAL_REWARD_MILESTONE_9 = {
+    type,
+    modelName,
+    data:{
+        goal: GOALS_4.data._id,
+        animated: true,
+        rewardBackgroundImageKey: "cms/1651149900294_CoinBack.png",
+        rewardImageKey: "cms/1650355411333_CoinTop.png",
+        targetValue: 0.25,
+        rewardType: "coin",
+        rewardValue: 100,
+        rewardTitle: "100 YuCoin",
+        rewardDescription: "1 perfect challenge",
+        parentType: "goals",
+        earnRateBased: true, 
+    }
+};
+
+export const GOAL_REWARD_MILESTONE_10 = {
+    type,
+    modelName,
+    data:{
+        goal: GOALS_4.data._id,
+        animated: true,
+        rewardBackgroundImageKey: "cms/1651149900294_CoinBack.png",
+        rewardImageKey: "cms/1650355411333_CoinTop.png",
+        targetValue: 0.75,
+        rewardType: "coin",
+        rewardValue: 150,
+        rewardTitle: "150 YuCoin",
+        rewardDescription: "3 perfect challenges",
+        parentType: "goals",
+        earnRateBased: true, 
+    }
+};
+
+export const GOAL_REWARD_MILESTONE_11 = {
+    type,
+    modelName,
+    data:{
+        goal: GOALS_4.data._id,
+        animated: true,
+        rewardBackgroundImageKey: "cms/1651149900294_CoinBack.png",
+        rewardImageKey: "cms/1650355411333_CoinTop.png",
+        targetValue: 1,
+        rewardType: "coin",
+        rewardValue: 200,
+        rewardTitle: "200 YuCoin",
+        rewardDescription: "4 perfect challenges",
         parentType: "goals",
         earnRateBased: true, 
     }
