@@ -60,6 +60,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemT
   validationValue: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_styles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput {
   __typename: "ContentItemTextInput";
   id: string;
@@ -68,6 +73,10 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemT
   type: ContentItemFormTextInputType | null;
   prefixValue: string | null;
   validation: (GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation | null)[] | null;
+  /**
+   * Supported RN version 3.58.0
+   */
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_styles[] | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductSelectPaymentButton_button_infoBtnLeftIcon {

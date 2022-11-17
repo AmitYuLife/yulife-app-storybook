@@ -178,6 +178,11 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   validationValue: string;
 }
 
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemTextInput_styles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemTextInput {
   __typename: "ContentItemTextInput";
   id: string;
@@ -188,6 +193,10 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   validation:
     | (GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemTextInput_validation | null)[]
     | null;
+  /**
+   * Supported RN version 3.58.0
+   */
+  styles: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemTextInput_styles[] | null;
 }
 
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_styles {

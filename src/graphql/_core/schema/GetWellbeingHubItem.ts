@@ -26,8 +26,13 @@ export interface GetWellbeingHubItem_wellbeingHubItem_icon {
   uri: string | null;
 }
 
-export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemPad {
-  __typename: "ContentItemPad" | "ContentItemRadio" | "ContentItemHeaderBar" | "ContentItemProgressBar";
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemTextInput {
+  __typename:
+    | "ContentItemTextInput"
+    | "ContentItemPad"
+    | "ContentItemRadio"
+    | "ContentItemHeaderBar"
+    | "ContentItemProgressBar";
 }
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText_styles {
@@ -234,7 +239,7 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm {
 }
 
 export type GetWellbeingHubItem_wellbeingHubItem_content =
-  | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemPad
+  | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemTextInput
   | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText
   | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdown
   | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemBox

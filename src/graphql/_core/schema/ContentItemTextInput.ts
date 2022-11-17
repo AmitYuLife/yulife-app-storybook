@@ -14,6 +14,11 @@ export interface ContentItemTextInput_validation {
   validationValue: string;
 }
 
+export interface ContentItemTextInput_styles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemTextInput {
   id: string;
   heading: string | null;
@@ -21,4 +26,8 @@ export interface ContentItemTextInput {
   type: ContentItemFormTextInputType | null;
   prefixValue: string | null;
   validation: (ContentItemTextInput_validation | null)[] | null;
+  /**
+   * Supported RN version 3.58.0
+   */
+  styles: ContentItemTextInput_styles[] | null;
 }

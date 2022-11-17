@@ -218,6 +218,30 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemText {
   styles: GetSduiJourney_getSduiJourney_body_ContentItemText_styles[] | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemTextInput_validation {
+  validationName: string;
+  validationValue: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemTextInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemTextInput {
+  __typename: "ContentItemTextInput";
+  id: string;
+  heading: string | null;
+  answerKey: string;
+  type: ContentItemFormTextInputType | null;
+  prefixValue: string | null;
+  validation: (GetSduiJourney_getSduiJourney_body_ContentItemTextInput_validation | null)[] | null;
+  /**
+   * Supported RN version 3.58.0
+   */
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemTextInput_styles[] | null;
+}
+
 export interface GetSduiJourney_getSduiJourney_body_ContentItemPad_styles {
   property: string;
   value: string;
@@ -320,6 +344,7 @@ export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemImage
   | GetSduiJourney_getSduiJourney_body_ContentItemForm
   | GetSduiJourney_getSduiJourney_body_ContentItemText
+  | GetSduiJourney_getSduiJourney_body_ContentItemTextInput
   | GetSduiJourney_getSduiJourney_body_ContentItemPad
   | GetSduiJourney_getSduiJourney_body_ContentItemRadio
   | GetSduiJourney_getSduiJourney_body_ContentItemHeaderBar
@@ -528,6 +553,30 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemText {
   styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemText_styles[] | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextInput_validation {
+  validationName: string;
+  validationValue: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextInput {
+  __typename: "ContentItemTextInput";
+  id: string;
+  heading: string | null;
+  answerKey: string;
+  type: ContentItemFormTextInputType | null;
+  prefixValue: string | null;
+  validation: (GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextInput_validation | null)[] | null;
+  /**
+   * Supported RN version 3.58.0
+   */
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextInput_styles[] | null;
+}
+
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemPad_styles {
   property: string;
   value: string;
@@ -632,6 +681,7 @@ export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemImage
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemForm
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemText
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextInput
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemPad
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemRadio
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemHeaderBar

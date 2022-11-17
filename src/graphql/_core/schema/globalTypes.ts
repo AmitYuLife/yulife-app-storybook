@@ -209,6 +209,7 @@ export enum SduiActionType {
 export enum SubmitSduiJourneyAction {
   POP = "POP",
   PUSH = "PUSH",
+  RESET = "RESET",
 }
 
 export enum TopBarType {

@@ -214,6 +214,30 @@ export interface AbsoluteContentItem_item_ContentItemText {
   styles: AbsoluteContentItem_item_ContentItemText_styles[] | null;
 }
 
+export interface AbsoluteContentItem_item_ContentItemTextInput_validation {
+  validationName: string;
+  validationValue: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemTextInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemTextInput {
+  __typename: "ContentItemTextInput";
+  id: string;
+  heading: string | null;
+  answerKey: string;
+  type: ContentItemFormTextInputType | null;
+  prefixValue: string | null;
+  validation: (AbsoluteContentItem_item_ContentItemTextInput_validation | null)[] | null;
+  /**
+   * Supported RN version 3.58.0
+   */
+  styles: AbsoluteContentItem_item_ContentItemTextInput_styles[] | null;
+}
+
 export interface AbsoluteContentItem_item_ContentItemPad_styles {
   property: string;
   value: string;
@@ -316,6 +340,7 @@ export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemImage
   | AbsoluteContentItem_item_ContentItemForm
   | AbsoluteContentItem_item_ContentItemText
+  | AbsoluteContentItem_item_ContentItemTextInput
   | AbsoluteContentItem_item_ContentItemPad
   | AbsoluteContentItem_item_ContentItemRadio
   | AbsoluteContentItem_item_ContentItemHeaderBar

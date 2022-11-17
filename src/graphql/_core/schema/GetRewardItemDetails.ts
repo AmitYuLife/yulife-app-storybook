@@ -29,8 +29,13 @@ export interface GetRewardItemDetails_getRewardItemDetails_availableDenomination
   alertMessage: string | null;
 }
 
-export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemPad {
-  __typename: "ContentItemPad" | "ContentItemRadio" | "ContentItemHeaderBar" | "ContentItemProgressBar";
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemTextInput {
+  __typename:
+    | "ContentItemTextInput"
+    | "ContentItemPad"
+    | "ContentItemRadio"
+    | "ContentItemHeaderBar"
+    | "ContentItemProgressBar";
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles {
@@ -237,7 +242,7 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemFo
 }
 
 export type GetRewardItemDetails_getRewardItemDetails_content =
-  | GetRewardItemDetails_getRewardItemDetails_content_ContentItemPad
+  | GetRewardItemDetails_getRewardItemDetails_content_ContentItemTextInput
   | GetRewardItemDetails_getRewardItemDetails_content_ContentItemText
   | GetRewardItemDetails_getRewardItemDetails_content_ContentItemMarkdown
   | GetRewardItemDetails_getRewardItemDetails_content_ContentItemBox
