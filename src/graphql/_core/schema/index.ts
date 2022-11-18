@@ -140,6 +140,7 @@ export * from "./GetReferralOnboardingPopover";
 export * from "./GetRewardItemDetails";
 export * from "./GetRewards";
 export * from "./GetSduiJourney";
+export * from "./GetSduiStaticStep";
 export * from "./GetSession";
 export * from "./GetStatistics";
 export * from "./GetTodayEarnings";

@@ -1,6 +1,10 @@
 import { MODALS, ROUTES } from "./constants";
 
-export default [
+const routesForRegistration = [
+  {
+    name: ROUTES.sduiStatic,
+    component: require("../components/containers/sdui-static/sdui-static.container").default,
+  },
   {
     name: ROUTES.journey,
     component: require("../components/containers/journey/journey.container").default,
@@ -401,3 +405,7 @@ export default [
     component: require("../components/modals/collect-event-reward/collect-event-reward.modal").default,
   },
 ];
+
+export default routesForRegistration;
+export const preRegisteredRoutes = routesForRegistration.map(({ name }) => name);
+export const dynamicallyRegisteredRoutes: string[] = [];

@@ -2,9 +2,10 @@ import { persistor, store } from "@redux/_core/store";
 import { setMainRoot } from "@redux/app/app.actions";
 import { SplashScreen } from "@screens/index";
 import * as React from "react";
-import { Linking, Platform, StyleSheet, Text, View } from "react-native";
+import { LayoutChangeEvent, Linking, Platform, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { PersistGate } from "redux-persist/integration/react";
 import Logger from "@services/logging/logger";
+import { useSafeAreaViewOffset } from "../../../hooks/useSafeAreaViewOffset";
 
 interface IProps {
   componentId: string;
@@ -39,28 +40,40 @@ export const AppLoadingContainer: React.FC<IProps> = () => {
   const handleAnimationStart = React.useCallback(() => setRenderPersistor(true), []);
   const handleAnimationEnd = React.useCallback(() => setAnimationEnded(true), []);
   const handleLayout = React.useCallback(() => setPersistorBoostrapped(true), []);
+  const { setSafeAreaViewOffset } = useSafeAreaViewOffset();
+
+  const handleWrapperLayout = (event: LayoutChangeEvent) => {
+    setSafeAreaViewOffset({ y: event.nativeEvent.layout.y });
+  };
 
   return (
-    <View style={styles.wrapper}>
-      <SplashScreen onAnimationStart={handleAnimationStart} onAnimationEnd={handleAnimationEnd} />
-      {!renderPersistor ? null : (
-        <PersistGate persistor={persistor}>
-          {(bootstrapped: boolean) => {
-            if (!bootstrapped) {
-              return null;
-            }
+    <SafeAreaView style={styles.flex}>
+      <View onLayout={handleWrapperLayout} style={styles.flex}>
+        <View style={styles.wrapper}>
+          <SplashScreen onAnimationStart={handleAnimationStart} onAnimationEnd={handleAnimationEnd} />
+          {!renderPersistor ? null : (
+            <PersistGate persistor={persistor}>
+              {(bootstrapped: boolean) => {
+                if (!bootstrapped) {
+                  return null;
+                }
 
-            return <View onLayout={handleLayout} />;
-          }}
-        </PersistGate>
-      )}
-    </View>
+                return <View onLayout={handleLayout} />;
+              }}
+            </PersistGate>
+          )}
+        </View>
+      </View>
+    </SafeAreaView>
   );
 };
 
 export default AppLoadingContainer;
 
 const styles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
   wrapper: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "white",
