@@ -1,4 +1,4 @@
-export const buildInitialProductStepDynamicDataState = (stepData: string) => {
+export const buildInitialSduiStepDynamicDataState = (stepData: string) => {
   if (!stepData) {
     return {};
   }

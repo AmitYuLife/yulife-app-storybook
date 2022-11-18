@@ -1,34 +1,43 @@
 import { mapServerStyles } from "@components/sdui";
-import { SduiProvider } from "@components/sdui/_context/SduiProvider";
+import { SduiDispatchContext } from "@components/sdui/_context/SduiProvider";
+import { SduiLocalActionTypes } from "@components/sdui/_types/sdui.types";
 import {
   AbsoluteContentItem,
   ContentItem,
   GetSduiJourney_getSduiJourney_containerStyles as ContainerStyle,
 } from "@graphql/_core/schema";
-import React, { memo, useMemo } from "react";
+import { buildInitialSduiStepDynamicDataState } from "@utils/sduiData";
+import React, { memo, useContext, useEffect, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Absolute, Body } from "./sections";
 
 interface Props {
   body?: ContentItem[];
   absolute?: AbsoluteContentItem[];
-  isLoading?: boolean;
   containerStyles?: ContainerStyle[];
+  stepData?: string;
+  stepId?: string;
 }
 
-export const SduiScreen = memo(({ body, absolute, isLoading, containerStyles }: Props) => {
+export const SduiScreen = memo(({ body, absolute, containerStyles, stepData, stepId }: Props) => {
+  const sduiDispatch = useContext(SduiDispatchContext);
   const { background, foreground } = useSeparateZedAxis(absolute || []);
 
   const wrapperStyles = useMemo(() => mapServerStyles(containerStyles), [containerStyles]);
 
+  useEffect(() => {
+    sduiDispatch({
+      type: SduiLocalActionTypes.SET_DYNAMIC_DATA,
+      payload: buildInitialSduiStepDynamicDataState(stepData),
+    });
+  }, [stepId]);
+
   return (
-    <SduiProvider isLoading={isLoading}>
-      <View style={[styles.wrapper, wrapperStyles]}>
-        <Absolute items={background} />
-        <Body items={body} />
-        <Absolute items={foreground} />
-      </View>
-    </SduiProvider>
+    <View style={[styles.wrapper, wrapperStyles]}>
+      <Absolute items={background} />
+      <Body items={body} />
+      <Absolute items={foreground} />
+    </View>
   );
 });
 

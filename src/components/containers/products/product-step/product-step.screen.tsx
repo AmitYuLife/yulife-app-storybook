@@ -8,7 +8,7 @@ import {
   GetPersonalProductStep_getPersonalProductStep_footer,
   GetPersonalProductStep_getPersonalProductStep_header,
 } from "@graphql/_core/schema";
-import { buildInitialProductStepDynamicDataState } from "@utils/products";
+import { buildInitialSduiStepDynamicDataState } from "@utils/sduiData";
 
 interface Props {
   productId: string;
@@ -48,7 +48,7 @@ export const ProductStepScreen = memo((props: Props) => {
   const [scrollPicker, setScrollPicker] = useState(null as IProductStepScrollPicker);
   const [headerHeight, setHeaderHeight] = useState(0);
   const [headerBottom, setHeaderBottom] = useState(null);
-  const [dynamicData, setDynamicData] = useState(buildInitialProductStepDynamicDataState(stepData));
+  const [dynamicData, setDynamicData] = useState(buildInitialSduiStepDynamicDataState(stepData));
   const { current: scrollValue } = useRef(new Animated.Value(0));
   const [componentsLayout, setComponentsLayout] = useState({} as IStepComponentsLayout);
 
@@ -65,7 +65,7 @@ export const ProductStepScreen = memo((props: Props) => {
   useEffect(() => {
     if (isMounted.current) {
       Keyboard.dismiss();
-      setDynamicData(buildInitialProductStepDynamicDataState(stepData));
+      setDynamicData(buildInitialSduiStepDynamicDataState(stepData));
       stepIdRef.current = stepId;
     }
 

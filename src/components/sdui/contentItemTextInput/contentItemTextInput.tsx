@@ -7,65 +7,65 @@ import { Style } from "@styles";
 import { ContentItemFormTextInputType } from "@graphql/_core/schema/globalTypes";
 import { TextTemplate } from "@atoms";
 import media, { DEVICES } from "@styles/media";
-import { useSduiActionUpdateBus } from "../_hooks";
 import { addCommasToNumber } from "@utils";
 import { mapServerStyles } from "../_utils/mapServerStyles";
+import { useSduiOnChange } from "../_hooks/useSduiOnChange";
 
 interface Props extends GqlTextInput {
   value: string;
   onChange: (value: string) => void;
 }
 
-export const ContentItemTextInput = memo(
-  ({ answerKey, onChange, id, heading, value, prefixValue, type, validation, styles: serverStyles }: Props) => {
-    const [indentWidth, setIndentWidth] = useState(0);
-    const [selectedValue, setSelectedValue] = useState(formatValue(value));
-    const { updateBus } = useSduiActionUpdateBus();
+export const ContentItemTextInputBase = ({
+  onChange,
+  id,
+  heading,
+  value,
+  prefixValue,
+  type,
+  validation,
+  styles: serverStyles,
+}: Props) => {
+  const [indentWidth, setIndentWidth] = useState(0);
 
-    const handleTextLayout = useCallback((event: LayoutChangeEvent) => {
-      setIndentWidth(event.nativeEvent.layout.width + 8);
-    }, []);
+  const handleTextLayout = useCallback((event: LayoutChangeEvent) => {
+    setIndentWidth(event.nativeEvent.layout.width + 8);
+  }, []);
 
-    const onValueChange = useCallback(
-      (val: string) => {
-        if (onChange) {
-          onChange(val);
-        }
+  const errorMessage =
+    (validation?.length &&
+      value &&
+      validation.find((v) => !new RegExp(v.validationValue).test(value))?.validationName) ||
+    "";
 
-        updateBus(answerKey, val);
-        setSelectedValue(formatValue(val));
-      },
-      [answerKey, onChange, updateBus]
-    );
+  return (
+    <View style={[styles.inputWrapper, mapServerStyles(serverStyles)]}>
+      {prefixValue ? (
+        <View style={styles.prefixWrapper} onLayout={handleTextLayout}>
+          <TextTemplate type="h3">{prefixValue}</TextTemplate>
+        </View>
+      ) : null}
+      <TextField
+        type={mapTextFieldType(type)}
+        placeholderIndentSize={indentWidth}
+        value={value}
+        placeholder={heading}
+        key={id}
+        onChange={onChange}
+        testID={CONTENT_ITEM_INPUT(id)}
+        showError={!!errorMessage}
+        errorMessage={errorMessage}
+      />
+    </View>
+  );
+};
 
-    const errorMessage =
-      (validation?.length &&
-        selectedValue &&
-        validation.find((v) => !new RegExp(v.validationValue).test(selectedValue))?.validationName) ||
-      "";
+export const ContentItemTextInput = memo((props: Props) => {
+  const { answerKey } = props;
+  const { value, onChange } = useSduiOnChange<string>(answerKey, formatValue);
 
-    return (
-      <View style={[styles.inputWrapper, mapServerStyles(serverStyles)]}>
-        {prefixValue ? (
-          <View style={styles.prefixWrapper} onLayout={handleTextLayout}>
-            <TextTemplate type="h3">{prefixValue}</TextTemplate>
-          </View>
-        ) : null}
-        <TextField
-          type={mapTextFieldType(type)}
-          placeholderIndentSize={indentWidth}
-          value={selectedValue}
-          placeholder={heading}
-          key={id}
-          onChange={onValueChange}
-          testID={CONTENT_ITEM_INPUT(id)}
-          showError={!!errorMessage}
-          errorMessage={errorMessage}
-        />
-      </View>
-    );
-  }
-);
+  return <ContentItemTextInputBase {...props} value={value} onChange={onChange} />;
+});
 
 const TOP = media.select(
   [
