@@ -61,6 +61,18 @@ export const WeeklyQuestsModal = memo(({ onClose }: IFloatingModalContentProps) 
     }
   );
 
+  const joinWeekly = useCallback(async () => {
+    const goalId = data?.getMobileGameWeeklies?.activityProgress?.[selectedEvent]?.id;
+    await join({ variables: { goalId } });
+    selectEvent(null);
+  }, [data?.getMobileGameWeeklies?.activityProgress, join, selectedEvent]);
+
+  const eventNotSelected = useMemo(() => selectedEvent === -1, [selectedEvent]);
+
+  const activeActivity = useMemo(() => data?.getMobileGameWeeklies?.activityProgress?.find((e) => e.isJoined), [
+    data?.getMobileGameWeeklies?.activityProgress,
+  ]);
+
   const claimReward = useCallback(async () => {
     await claim({ variables: { rewardIds: [activeActivity?.id] } });
     dispatch(getUserStart());
@@ -72,19 +84,7 @@ export const WeeklyQuestsModal = memo(({ onClose }: IFloatingModalContentProps) 
       showCloseButton: false,
       icon: SUCCESS_ICON,
     });
-  }, [claim, dispatch, onClose]);
-
-  const joinWeekly = useCallback(async () => {
-    const goalId = data?.getMobileGameWeeklies?.activityProgress?.[selectedEvent]?.id;
-    await join({ variables: { goalId } });
-  }, [data?.getMobileGameWeeklies?.activityProgress, join, selectedEvent]);
-
-  const eventNotSelected = useMemo(() => selectedEvent === -1, [selectedEvent]);
-
-  const activeActivity = useMemo(() => {
-    const active = data?.getMobileGameWeeklies?.activityProgress?.find((e) => e.isJoined);
-    return active;
-  }, [data?.getMobileGameWeeklies?.activityProgress]);
+  }, [activeActivity, claim, dispatch, onClose]);
 
   const { endDateTime, activityProgress, hasJoined } = data?.getMobileGameWeeklies || {};
 
