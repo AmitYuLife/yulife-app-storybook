@@ -1,11 +1,14 @@
 import React, { FC, useCallback } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { GetRewardItemDetails_getRewardItemDetails } from "@graphql/_core/schema";
+import {
+  GetRewardItemDetails_getRewardItemDetails,
+  GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton as ContentItemButton,
+} from "@graphql/_core/schema";
 import { Wrapper } from "@atoms";
 import styles from "./reward-details.screen.styles";
 import { GetItemContent } from "./helpers/getItemContent";
 import { GenericHeadingPad } from "@organisms";
-import { handleContentHyperlink, IContentHyperLinkProps } from "@services/app-link";
+import { handleContentHyperlink } from "@services/app-link";
 import { TopBarLeftIconTypes } from "@organisms/top-bar/top-bar.helpers";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { SCROLLABLE_LAYOUT } from "@ids";
@@ -22,13 +25,13 @@ const RewardDetailsScreen: FC<Props> = ({ rewardItem, onPressTopBar, isLoading, 
   const isShowingKeyboard = useKeyboardListeners();
 
   const handleLink = useCallback(
-    (item: IContentHyperLinkProps) =>
+    (item: ContentItemButton) =>
       handleContentHyperlink({
         id: item.id,
         name: rewardItem.name,
-        title: item.title,
+        title: item.label,
         componentID: "rewards_details",
-        uri: item.uri,
+        uri: item.contentItemButtonUri,
         label: item.label,
       }),
     []
