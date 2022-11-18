@@ -10,7 +10,7 @@ interface SduiStaticProps {
 }
 
 const SduiStatic = ({ stepId }: SduiStaticProps) => {
-  const { data, loading } = useQuery<GetSduiStaticStep, GetSduiStaticStepVariables>(GQL_QUERY_GET_SDUI_STATIC_STEP, {
+  const { data } = useQuery<GetSduiStaticStep, GetSduiStaticStepVariables>(GQL_QUERY_GET_SDUI_STATIC_STEP, {
     variables: {
       stepId,
     },
@@ -19,7 +19,7 @@ const SduiStatic = ({ stepId }: SduiStaticProps) => {
 
   return (
     <SduiStaticLayout isLoading={!data?.getSduiStaticStep}>
-      <SduiScreen isLoading={loading} {...(data?.getSduiStaticStep || {})} />
+      <SduiScreen {...(data?.getSduiStaticStep || {})} />
     </SduiStaticLayout>
   );
 };

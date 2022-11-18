@@ -191,7 +191,6 @@ const absolute: Array<AbsoluteContentItem> = [
       onPress: {
         type: SduiActionType.SDUI_ACTION_SEND_MUTATION,
         payload: JSON.stringify({
-          selectKeys: [ANSWER_KEY],
           mutation: "submitSduiJourney",
           action: "action",
           journeyId: "YuniversityQuiz",

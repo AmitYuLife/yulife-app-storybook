@@ -3,6 +3,23 @@ import { SduiContextAction, SduiLocalActionTypes, SduiReducerState } from "../_t
 
 const reducer = (state: SduiReducerState, action: SduiContextAction) => {
   switch (action.type) {
+    case SduiLocalActionTypes.SET_DYNAMIC_DATA: {
+      return {
+        ...state,
+        dynamicData: action.payload,
+      };
+    }
+
+    case SduiLocalActionTypes.UPDATE_DYNAMIC_DATA: {
+      return {
+        ...state,
+        dynamicData: {
+          ...state.dynamicData,
+          ...action.payload,
+        },
+      };
+    }
+
     case SduiLocalActionTypes.UPDATE_BUS: {
       return {
         ...state,
@@ -19,8 +36,9 @@ const reducer = (state: SduiReducerState, action: SduiContextAction) => {
   }
 };
 
-const INITIAL_REDUCER_STATE = Object.freeze({
+export const INITIAL_REDUCER_STATE = Object.freeze({
   bus: {},
+  dynamicData: {},
 });
 
 export function useSduiReducer() {

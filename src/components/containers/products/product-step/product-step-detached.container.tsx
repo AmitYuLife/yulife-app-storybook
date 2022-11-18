@@ -39,7 +39,7 @@ import {
   ProductStepSelectedPackageCards,
 } from "./subcomponents";
 import { IProductStepScrollPicker, ProductStepContext } from "./product-step.context";
-import { buildInitialProductStepDynamicDataState } from "@utils/products";
+import { buildInitialSduiStepDynamicDataState } from "@utils/sduiData";
 import { DynamicData } from "@redux/server-driven-ui/sdui.types";
 import { ProductStepDetachedNavigationContext } from "./product-step-detached-navigation.context";
 import { PRODUCT_STEP_BODY_SCROLL_VIEW } from "@ids";
@@ -56,7 +56,7 @@ const ProductStepDetachedContainer = (props: Props) => {
   const dispatch = useDispatch();
 
   const [nestedHistory, setNestedHistory] = useState([] as string[]);
-  const [dynamicData, setDynamicData] = useState<DynamicData>(buildInitialProductStepDynamicDataState(null));
+  const [dynamicData, setDynamicData] = useState<DynamicData>(buildInitialSduiStepDynamicDataState(null));
   const [scrollPicker, setScrollPicker] = useState(null as IProductStepScrollPicker);
   const [headerHeight, setHeaderHeight] = useState(0);
   const [headerBottom, setHeaderBottom] = useState(null);
@@ -120,7 +120,7 @@ const ProductStepDetachedContainer = (props: Props) => {
     if (data?.getPersonalProductStepDetached) {
       const step = data.getPersonalProductStepDetached;
       setDetachedStep(step);
-      setDynamicData(buildInitialProductStepDynamicDataState(step.stepData));
+      setDynamicData(buildInitialSduiStepDynamicDataState(step.stepData));
     }
   }, [data]);
 

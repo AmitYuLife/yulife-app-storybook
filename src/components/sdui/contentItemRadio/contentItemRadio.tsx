@@ -1,11 +1,11 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { ContentItemRadio as GqlRadio } from "@graphql/_core/schema";
 import { Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { BoxOption, CheckBox } from "@molecules";
-import { useSduiActionUpdateBus } from "../_hooks";
+import { useSduiOnChange } from "../_hooks/useSduiOnChange";
 
 interface Props extends GqlRadio {
   value: string;
@@ -14,83 +14,76 @@ interface Props extends GqlRadio {
 
 const DEFAULT_ICON_IMAGE_SIZE = 32;
 
-export const ContentItemRadio = memo(
-  ({ onChange, choices, value: initialValue, iconOptions, answerKey, styles: serverStyles }: Props) => {
-    const [selectedValue, setSelectedValue] = useState(initialValue);
-    const { updateBus } = useSduiActionUpdateBus();
+export const ContentItemRadioBase = ({ onChange, choices, value, iconOptions, styles: serverStyles }: Props) => {
+  const onValueChange = useCallback(
+    (val: string) => () => {
+      onChange(val);
+    },
+    [onChange]
+  );
 
-    const onValueChange = useCallback(
-      (val: string) => () => {
-        setSelectedValue(val);
-
-        if (onChange) {
-          onChange(val);
-        }
-
-        updateBus(answerKey, val);
-      },
-      [onChange, answerKey]
-    );
-
-    if (iconOptions) {
-      return (
-        <View style={[styles.radioIconWrapper, mapServerStyles(serverStyles)]}>
-          {choices.map(
-            ({
-              label,
-              value,
-              renderAsIcon: {
-                icon,
-                textColor,
-                wrapperStyles,
-                selectedStyles,
-                boxOptionHeight,
-                imageHeight,
-                imageWidth,
-              },
-            }) => (
-              <View key={value} style={[styles.boxWrapper, mapServerStyles(wrapperStyles)]}>
-                <BoxOption
-                  onPress={onValueChange(value)}
-                  isSelected={value === selectedValue}
-                  selectedStyle={mapServerStyles(selectedStyles)}
-                  innerHeight={boxOptionHeight ?? Style.adjust(boxOptionHeight)}
-                >
-                  <View style={styles.innerWrapper}>
-                    <Image
-                      height={Style.adjust(imageHeight || DEFAULT_ICON_IMAGE_SIZE)}
-                      width={Style.adjust(imageWidth || DEFAULT_ICON_IMAGE_SIZE)}
-                      source={icon}
-                    />
-                    {!label ? null : (
-                      <View style={styles.boxTextWrapper}>
-                        <TextTemplate type="b2b" color={textColor}>
-                          {label}
-                        </TextTemplate>
-                      </View>
-                    )}
-                  </View>
-                </BoxOption>
-              </View>
-            )
-          )}
-        </View>
-      );
-    }
-
+  if (iconOptions) {
     return (
-      <View style={[styles.radioWrapper, mapServerStyles(serverStyles)]}>
-        {choices.map(({ label, value }) => {
-          return (
-            <View key={value}>
-              <CheckBox checked={value === selectedValue} value={value} label={label} onChange={onValueChange(value)} />
+      <View style={[styles.radioIconWrapper, mapServerStyles(serverStyles)]}>
+        {choices.map(
+          ({
+            label,
+            value: currentValue,
+            renderAsIcon: { icon, textColor, wrapperStyles, selectedStyles, boxOptionHeight, imageHeight, imageWidth },
+          }) => (
+            <View key={currentValue} style={[styles.boxWrapper, mapServerStyles(wrapperStyles)]}>
+              <BoxOption
+                onPress={onValueChange(currentValue)}
+                isSelected={currentValue === value}
+                selectedStyle={mapServerStyles(selectedStyles)}
+                innerHeight={boxOptionHeight ?? Style.adjust(boxOptionHeight)}
+              >
+                <View style={styles.innerWrapper}>
+                  <Image
+                    height={Style.adjust(imageHeight || DEFAULT_ICON_IMAGE_SIZE)}
+                    width={Style.adjust(imageWidth || DEFAULT_ICON_IMAGE_SIZE)}
+                    source={icon}
+                  />
+                  {!label ? null : (
+                    <View style={styles.boxTextWrapper}>
+                      <TextTemplate type="b2b" color={textColor}>
+                        {label}
+                      </TextTemplate>
+                    </View>
+                  )}
+                </View>
+              </BoxOption>
             </View>
-          );
-        })}
+          )
+        )}
       </View>
     );
   }
-);
+
+  return (
+    <View style={[styles.radioWrapper, mapServerStyles(serverStyles)]}>
+      {choices.map(({ label, value: currentValue }) => {
+        return (
+          <View key={currentValue}>
+            <CheckBox
+              checked={currentValue === value}
+              value={value}
+              label={label}
+              onChange={onValueChange(currentValue)}
+            />
+          </View>
+        );
+      })}
+    </View>
+  );
+};
+
+export const ContentItemRadio = memo((props: Props) => {
+  const { answerKey } = props;
+  const { value, onChange } = useSduiOnChange<string>(answerKey);
+
+  return <ContentItemRadioBase {...props} value={value} onChange={onChange} />;
+});
 
 const styles = StyleSheet.create({
   radioWrapper: {

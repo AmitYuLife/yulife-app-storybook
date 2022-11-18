@@ -11,13 +11,11 @@ ACCEPTED_MUTATIONS_MAP.set("submitSduiJourney", submitSduiJourney);
 interface IParsedJson {
   dispatchActions?: SduiAction[];
   mutation: string;
-  selectKeys: string[];
   refetchQueries: string[];
 }
 const SERVER_DYNAMIC_DATA_FALLBACK: IParsedJson = {
   dispatchActions: [],
   mutation: "",
-  selectKeys: [],
   refetchQueries: [],
 };
 
@@ -39,14 +37,9 @@ export function* sduiActionSendMutation(action: SduiSagaAction) {
       return;
     }
 
-    const filteredBusPayload: Record<string, any> = {};
-    for (const selectKey of serverDynamicData.selectKeys || []) {
-      filteredBusPayload[selectKey] = contextPayload?.bus?.[selectKey];
-    }
-
     const mutationArgs = {
       ...serverDynamicData,
-      data: JSON.stringify(filteredBusPayload),
+      data: JSON.stringify(contextPayload?.dynamicData),
     };
 
     yield call(currentMutation, {
