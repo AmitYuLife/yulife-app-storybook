@@ -13,11 +13,13 @@ import { addCommasToNumber } from "@utils";
 import React, { FC, useCallback, useMemo, useRef, useState } from "react";
 import { Animated, NativeScrollEvent, Platform, View } from "react-native";
 import { Source } from "react-native-fast-image";
+import LinearGradient from "react-native-linear-gradient";
 import style, {
   CONTENT_MARGIN_TOP,
   FAQ_ICON_DIMENSION,
   FAQ_VERTICAL_PADDING,
   HEADER_HEIGHT,
+  SMOOTH_GRADIENT_COLORS,
 } from "./event-dialog.styles";
 
 const PROGRESS_BAR_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
@@ -255,7 +257,7 @@ const EventDialogScreen: FC<IProps> = ({
         </Animated.View>
       )}
       {!button ? null : (
-        <View style={style.ctaWrapper}>
+        <LinearGradient style={style.ctaWrapper} colors={SMOOTH_GRADIENT_COLORS}>
           <Button
             label={button.label}
             size="Fill"
@@ -263,7 +265,7 @@ const EventDialogScreen: FC<IProps> = ({
             shadowColor={button.shadowColor || undefined}
             backgroundColor={button.backgroundColor || undefined}
           />
-        </View>
+        </LinearGradient>
       )}
     </View>
   );

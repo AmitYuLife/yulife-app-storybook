@@ -18,6 +18,13 @@ export const FAQ_VERTICAL_PADDING = 15;
 
 export const FAQ_HORIZONTAL_PADDING = 18;
 
+export const SMOOTH_GRADIENT_COLORS = [
+  "rgba(250, 250, 254, 0)",
+  Colours.neutral.n50,
+  Colours.neutral.n50,
+  Colours.neutral.n50,
+];
+
 export default StyleSheet.create({
   wrapper: { flexGrow: 1 },
   statusBarCover: {
@@ -46,7 +53,8 @@ export default StyleSheet.create({
   contentWrapper: {
     marginTop: CONTENT_MARGIN_TOP,
     backgroundColor: Colours.neutral.n50,
-    paddingVertical: Style.adjust(24),
+    paddingTop: Style.adjust(20),
+    paddingBottom: Style.adjust(30),
     borderTopLeftRadius: Style.adjust(8),
     borderTopRightRadius: Style.adjust(8),
     minHeight: "100%",
@@ -66,6 +74,6 @@ export default StyleSheet.create({
     bottom: 0,
     width: Style.DEVICE_WIDTH,
     padding: Style.adjust(32),
-    paddingTop: 0,
+    paddingTop: Style.adjust(50),
   },
 });
