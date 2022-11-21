@@ -573,5 +573,34 @@
     "minute": "minute",
     "seconds": "seconds",
     "second": "second"
+  },
+  "save_image": {
+    "save_button": "Save as image",
+    "unavailable": {
+      "title": "Unable to save",
+      "description": "This feature is not available on your device."
+    },
+    "no_permission": {
+      "title": "Permission Required",
+      "description": "We need your permission to save the image on your device.",
+      "cancel_label": "Cancel",
+      "confirm_label": "Confirm"
+    },
+    "blocked": {
+      "title": "Unable to save",
+      "description": "Please check your permissions and make sure the YuLife app has access to Photos.",
+      "description_android": "Please check your permissions and make sure the YuLife app has Media access.",
+      "cancel_label": "Cancel",
+      "confirm_label": "Open App Settings"
+    },
+    "error": {
+      "title": "Unable to save",
+      "description": "Please check your permissions and make sure the YuLife app has access to Photos.",
+      "description_android": "Please check your permissions and make sure the YuLife app has Media access."
+    },
+    "image_saved": {
+      "title": "Image saved",
+      "description": "You'll find the image in the Photos app."
+    }
   }
 }

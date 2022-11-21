@@ -40,8 +40,8 @@ const CourseDetailsScreen = ({
     const { subtitle, description, values } = moduleCertificateDetails;
     Navigation.push(ROUTES.courseDetails, {
       component: {
-        id: MODALS.policyCertificate,
-        name: MODALS.policyCertificate,
+        id: MODALS.yuniversityCertificate,
+        name: MODALS.yuniversityCertificate,
         passProps: {
           coverType: CoverType.rare,
           keyValuePairs: values,

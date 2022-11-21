@@ -29,3 +29,4 @@ export { default as ActivityClaimable } from "./activity-claimable/activity-clai
 export { default as ChapterContentItem } from "./yuniversity/chapter-content-item";
 export { default as ModuleContentItem } from "./yuniversity/module-content-item";
 export { default as ModuleNotes } from "./yuniversity//module-notes";
+export { default as Certificate } from "./certificate/certificate";

@@ -2,9 +2,14 @@ import React from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { Medal } from "./background-medal";
 import { mapCoverToColor, Style } from "@styles";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { ConcentricSet } from "./background-concentric";
 import { CornerFlowerSet } from "./background-corner-flower";
+
+enum CoverType {
+  common = "common",
+  epic = "epic",
+  rare = "rare",
+}
 
 interface Props {
   children: React.ReactChild | React.ReactChild[];
@@ -41,7 +46,6 @@ const styles = StyleSheet.create({
   shapeWrapper: {
     width: "100%",
     paddingBottom: Style.adjust(27),
-    marginTop: Style.adjust(16),
   } as ViewStyle,
   borderWrapper: {
     borderRadius: 8,

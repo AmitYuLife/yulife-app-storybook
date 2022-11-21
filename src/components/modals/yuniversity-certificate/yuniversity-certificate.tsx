@@ -1,28 +1,43 @@
-import React, { ComponentProps } from "react";
+import React, { useRef, useCallback, ComponentProps, memo } from "react";
 import { StyleSheet, View, ViewStyle, ScrollView, Platform } from "react-native";
 import { Style } from "@styles";
 import { Navigation } from "react-native-navigation";
+import ViewShot from "react-native-view-shot";
 import { MODALS } from "@navigation/constants";
-import { GroupProductDisclaimer } from "@molecules";
+import { SecondaryButton } from "@molecules";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
-import { useBackHandler } from "@hooks";
+import { useBackHandler, useSaveImage } from "@hooks";
 import media from "@styles/media";
 import { Certificate } from "@organisms";
+import { t } from "@locale";
 
-interface ProductDetailsModalProps extends ComponentProps<typeof Certificate> {
-  disclaimer?: string;
-}
+type YuniversityCertificateModalProps = ComponentProps<typeof Certificate>;
 
-const ProductDetailsModal = (props: ProductDetailsModalProps) => {
-  const { disclaimer = null, ...certificateProps } = props;
-
+const YuniversityCertificateModal = (props: YuniversityCertificateModalProps) => {
   useBackHandler(dismissOverlay);
+
+  const viewShotRef = useRef<ViewShot>();
+  const { ready, saveImage } = useSaveImage();
+
+  const takeScreenshot = useCallback(async () => {
+    const uri = await viewShotRef?.current?.capture();
+    if (uri) {
+      saveImage(uri);
+    }
+  }, [saveImage]);
 
   return (
     <GenericOverlay onClose={dismissOverlay}>
       <ScrollView style={styles.wrapper} contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-        <Certificate {...certificateProps} />
-        {!disclaimer ? null : <GroupProductDisclaimer text={disclaimer} containerStyle={styles.disclaimer} />}
+        <ViewShot ref={viewShotRef}>
+          <Certificate {...props} />
+        </ViewShot>
+        <SecondaryButton
+          wrapperStyle={styles.buttonWrapper}
+          label={t("save_image.save_button")}
+          onPress={takeScreenshot}
+          disabled={!ready}
+        />
         <View style={styles.bottomPad} />
       </ScrollView>
     </GenericOverlay>
@@ -53,11 +68,14 @@ const styles = StyleSheet.create({
   disclaimer: {
     marginTop: Style.adjust(16),
   } as ViewStyle,
+  buttonWrapper: {
+    marginTop: Style.adjust(20),
+  } as ViewStyle,
 });
 
-export default ProductDetailsModal;
+export default memo(YuniversityCertificateModal);
 
 function dismissOverlay() {
-  Navigation.pop(MODALS.policyCertificate);
+  Navigation.pop(MODALS.yuniversityCertificate);
   return true;
 }
