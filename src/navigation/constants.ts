@@ -37,10 +37,13 @@ export const ROUTES = {
   yuProductSurvey: "yulife.member.YuProductSurvey",
   changeMemberNickname: "yulife.member.changeMemberNickname",
   inspect: "yulife.member.inspect",
+
   // settings
   cyclingMeasurement: "yulife.member.cyclingMeasurement",
   rewardStoreLocation: "yulife.member.rewardStoreLocation",
   permissions: "yulife.member.permissions",
+
+  // yuniversity
   yuniversityQuiz: "yulife.member.yuniversityQuiz",
   courseDetails: "yulife.member.courseDetails",
   yuniversityCourses: "yulife.member.yuniversityCourses",
@@ -135,6 +138,7 @@ export const MODALS = {
   whatsNew: "yulife.modals.whatsNew",
   collectEventReward: "yulife.modal.collectEventReward",
   weeklyQuestsOverlay: "yulife.overlay.weeklyQuests",
+  yuniversityCertificate: "yulife.modals.yuniversityCertificate",
 };
 
 export const bottomTabs: OptionsBottomTabs = {

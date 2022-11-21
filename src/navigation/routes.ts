@@ -404,6 +404,10 @@ const routesForRegistration = [
     name: MODALS.collectEventReward,
     component: require("../components/modals/collect-event-reward/collect-event-reward.modal").default,
   },
+  {
+    name: MODALS.yuniversityCertificate,
+    component: require("../components/modals/yuniversity-certificate/yuniversity-certificate").default,
+  },
 ];
 
 export default routesForRegistration;

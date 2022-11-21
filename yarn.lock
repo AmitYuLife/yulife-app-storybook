@@ -2754,6 +2754,11 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
+"@react-native-camera-roll/camera-roll@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@react-native-camera-roll/camera-roll/-/camera-roll-5.1.0.tgz#5cfb3cf02d72ab03b3d6a0bdda392e2896c8d55f"
+  integrity sha512-74pavpt2T2U3V0r5d+pn4NChJbRNcydqakp3NVmosod35Lzxrt9My7kCLDdHXW2S6J6DhgXb/n36/heZQB4AUA==
+
 "@react-native-community/async-storage@^1.11.0":
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.11.0.tgz#bf81b8813080846f150c67f531987c429b442166"
@@ -13706,6 +13711,11 @@ react-native-navigation@^7.26.0:
     react-lifecycles-compat "2.0.0"
     tslib "1.9.3"
 
+react-native-permissions@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-3.6.1.tgz#73adcc1cef8cd57a9ef167b4507405f4ff5749c4"
+  integrity sha512-fzPpPQXeD34inUccqtoResSwYubfrwUguP4qrVUUv8+KSMjYSaHGoS5HaIJLZHlN9gO+TvLJZ2L5ZljTsb6qnQ==
+
 react-native-push-notification@8.1.1:
   version "8.1.1"
   resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-8.1.1.tgz#a41d20c70ea5a7709417e96261b225461f8dc73a"
@@ -13758,6 +13768,11 @@ react-native-video@^5.2.0:
     keymirror "^0.1.1"
     prop-types "^15.7.2"
     shaka-player "^2.5.9"
+
+react-native-view-shot@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-view-shot/-/react-native-view-shot-3.5.0.tgz#129e92b893aca25918c6ecddc08ff44f29d70c27"
+  integrity sha512-+/a0zcEcCzAwuzQTU7CmwR1/bDcuy3Yj7093xI3Dhcjccb3FwxNiRyIBonsMSj3fQMmBcqV5d8DGCAeOJ5Ij3A==
 
 react-native-web-linear-gradient@^1.1.2:
   version "1.1.2"

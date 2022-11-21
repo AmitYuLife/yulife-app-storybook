@@ -18,3 +18,4 @@ export { default as SwitchToGoogleFitModal } from "./switch-to-googlefit-modal/s
 export { default as WhatsNewModal } from "./whats-new/whats-new";
 export { default as FloatingModal } from "./floating-modals/floating-modal";
 export { default as SurgeModal } from "./surge-modal/surge-modal";
+export { default as YuniversityCertificateModal } from "./yuniversity-certificate/yuniversity-certificate";

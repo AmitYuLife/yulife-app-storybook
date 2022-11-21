@@ -56,6 +56,8 @@
 	<string>We use your pedometer to track how many steps you've taken during the day.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Send photos to resolve app issues</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>In order to save this image YuLife will need to be able to add to your photos.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Send photos to resolve app issues</string>
 	<key>UIAppFonts</key>

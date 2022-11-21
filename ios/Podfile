@@ -13,6 +13,12 @@ target 'YuLife' do
     :hermes_enabled => false
   )
 
+  pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-PhotoLibraryAddOnly', :path => "#{permissions_path}/PhotoLibraryAddOnly"
+
+  pod 'react-native-cameraroll', :path => '../node_modules/@react-native-camera-roll/camera-roll'
+
   target 'YuLifeTests' do
     inherit! :complete
     # Pods for testing
