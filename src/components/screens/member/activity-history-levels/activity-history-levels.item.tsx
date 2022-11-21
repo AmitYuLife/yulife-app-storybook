@@ -70,7 +70,7 @@ export default function ActivityHistoryLevelsItem({
 
   const generateStepsText = useCallback(
     (val) => {
-      return val === 1 ? translations["activity_types.steps.singular"] : translations["activity_types.steps.plural"];
+      return `${addCommasToNumber(val)} ${val === 1 ? translations["activity_types.steps.singular"] : translations["activity_types.steps.plural"]}`;
     },
     [translations]
   );
@@ -121,9 +121,9 @@ export default function ActivityHistoryLevelsItem({
               <TextTemplate
                 type="b2"
                 numberOfLines={1}
-                testID={TEXT_TEMPLATE(`${addCommasToNumber(steps)} ${typeText}`)}
+                testID={TEXT_TEMPLATE(typeText)}
               >
-                {`${addCommasToNumber(steps)} ${typeText}`}
+                {typeText}
               </TextTemplate>
             </View>
 
