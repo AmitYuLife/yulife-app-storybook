@@ -4,6 +4,7 @@ import { GQL_FRAGMENT_CONTENT_ITEM_BUTTON } from "./contentItemButton.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_FORM } from "./contentItemForm.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_HEADER_BAR } from "./contentItemHeaderBar.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_IMAGE } from "./contentItemImage.gql";
+import { GQL_FRAGMENT_CONTENT_ITEM_LOTTIE } from "./contentItemLottie.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN } from "./contentItemMarkdown.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_PAD } from "./contentItemPad.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_BAR } from "./contentItemProgressBar.gql";
@@ -19,6 +20,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_FORM}
   ${GQL_FRAGMENT_CONTENT_ITEM_TEXT}
   ${GQL_FRAGMENT_CONTENT_ITEM_TEXT_INPUT}
+  ${GQL_FRAGMENT_CONTENT_ITEM_LOTTIE}
   ${GQL_FRAGMENT_CONTENT_ITEM_PAD}
   ${GQL_FRAGMENT_CONTENT_ITEM_RADIO}
   ${GQL_FRAGMENT_CONTENT_ITEM_HEADER_BAR}
@@ -46,6 +48,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
     }
     ... on ContentItemTextInput {
       ...ContentItemTextInput
+    }
+    ... on ContentItemLottie {
+      ...ContentItemLottie
     }
     ... on ContentItemPad {
       ...ContentItemPad

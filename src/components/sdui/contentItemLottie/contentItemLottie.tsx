@@ -5,6 +5,7 @@ import { mapServerStyles } from "../_utils/mapServerStyles";
 import { useDispatch } from "react-redux";
 import { Animated, StyleSheet, ViewStyle } from "react-native";
 import { Style } from "@styles";
+import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";
 
 type Props = Omit<GqlLottie, "onAnimationEnd"> & {
   shouldPlay?: boolean;
@@ -13,7 +14,7 @@ type Props = Omit<GqlLottie, "onAnimationEnd"> & {
 };
 
 const GRACE_PERIOD = 2000;
-
+// If you require this component to be used with SDUI, use the wrapped version ContentItemLottieSdui below.
 export const ContentItemLottie = memo((props: Props) => {
   const [shouldLoop, setShouldLoop] = useState(false);
   const lottieRef = useRef<LottieView>(null);
@@ -90,6 +91,13 @@ export const ContentItemLottie = memo((props: Props) => {
       />
     </Animated.View>
   );
+});
+
+// Wrapped version of ContentItemLottie with SduiStateContext.
+export const ContentItemLottieSdui = memo((props: Props) => {
+  const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(props.onAnimationEnd);
+
+  return <ContentItemLottie {...props} onAnimationEnd={handleSduiAction} />;
 });
 
 const styles = StyleSheet.create({
