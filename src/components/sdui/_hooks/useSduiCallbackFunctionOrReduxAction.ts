@@ -28,7 +28,7 @@ export function useSduiCallbackFunctionOrReduxAction(action: VoidFunctionOrSduiA
     if (callback) {
       callback();
     }
-  }, [sduiContext, action, callback]);
+  }, [dispatch, sduiContext, action, callback]);
 
   return { handleSduiAction };
 }
