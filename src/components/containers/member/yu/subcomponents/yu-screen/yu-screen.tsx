@@ -9,6 +9,7 @@ import { Onboarding } from "../onboarding/onboarding";
 import { YuScreenLayout } from "./yu-screen-layout";
 import { YuScreenSkeleton } from "./yu-screen-skeleton";
 import { YuScreenContext } from "../../context/yu-screen.context";
+import { Copy } from "../copy/copy";
 import { useQueryOnScreenSeenOnce, useStatusBarStyle } from "@hooks";
 import { ROUTES } from "@navigation/constants";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
@@ -29,7 +30,7 @@ export const YuScreen = memo(({ componentId }: Props) => {
   const showOnboarding = !!onboarding && !onboardingDismissed;
   useStatusBarStyle(componentId, showOnboarding);
 
-  if (!data || earnRate === null) {
+  if (!data?.getYuScreen || earnRate === null) {
     return (
       <YuScreenLayout>
         <YuScreenSkeleton />
@@ -37,7 +38,7 @@ export const YuScreen = memo(({ componentId }: Props) => {
     );
   }
 
-  const { productCarousel, productSlots, surveyFooter, yumojiPrompt, carrierLogo } = data?.getYuScreen || {};
+  const { productCarousel, productSlots, surveyFooter, yumojiPrompt, carrierLogo, enrollCopy } = data.getYuScreen;
 
   if (showOnboarding) {
     return (
@@ -53,6 +54,7 @@ export const YuScreen = memo(({ componentId }: Props) => {
       <NameAndLevel useWorldColor={true} hideWorldIcon={true} />
       <YumojiAndSlots productSlots={productSlots} yumojiPrompt={yumojiPrompt} />
       {productCarousel ? <Carousel heading={productCarousel.heading} items={productCarousel.items} /> : null}
+      {!enrollCopy ? null : <Copy title={enrollCopy.title} description={enrollCopy.description} />}
       {carrierLogo ? (
         <View style={styles.carrierLogoWrapper}>
           <Image source={carrierLogo.image} width={carrierLogo.width} />

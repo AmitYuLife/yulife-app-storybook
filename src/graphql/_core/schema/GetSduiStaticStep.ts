@@ -218,6 +218,30 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemText {
   styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemText_styles[] | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextInput_validation {
+  validationName: string;
+  validationValue: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextInput {
+  __typename: "ContentItemTextInput";
+  id: string;
+  heading: string | null;
+  answerKey: string;
+  type: ContentItemFormTextInputType | null;
+  prefixValue: string | null;
+  validation: (GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextInput_validation | null)[] | null;
+  /**
+   * Supported RN version 3.58.0
+   */
+  styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextInput_styles[] | null;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemPad_styles {
   property: string;
   value: string;
@@ -320,6 +344,7 @@ export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemImage
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemForm
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemText
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextInput
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemPad
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemRadio
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemHeaderBar
@@ -528,6 +553,30 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTe
   styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemText_styles[] | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextInput_validation {
+  validationName: string;
+  validationValue: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextInput {
+  __typename: "ContentItemTextInput";
+  id: string;
+  heading: string | null;
+  answerKey: string;
+  type: ContentItemFormTextInputType | null;
+  prefixValue: string | null;
+  validation: (GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextInput_validation | null)[] | null;
+  /**
+   * Supported RN version 3.58.0
+   */
+  styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextInput_styles[] | null;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemPad_styles {
   property: string;
   value: string;
@@ -632,6 +681,7 @@ export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemImage
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemForm
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemText
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextInput
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemPad
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRadio
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHeaderBar

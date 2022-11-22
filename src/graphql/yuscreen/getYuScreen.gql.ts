@@ -100,6 +100,13 @@ const GQL_FRAGMENT_YU_SCREEN_YUMOJI_PROMPT = gql`
   }
 `;
 
+const GQL_FRAGMENT_YU_SCREEN_ENROLLCOPY = gql`
+  fragment YuScreenEnrollCopy on YuScreenEnrollCopy {
+    title
+    description
+  }
+`;
+
 export const GQL_QUERY_GET_YU_SCREEN = gql`
   ${GQL_FRAGMENT_YU_SCREEN_ONBOARDING}
   ${GQL_FRAGMENT_YU_SCREEN_PRODUCT_SLOT_ITEM}
@@ -107,6 +114,7 @@ export const GQL_QUERY_GET_YU_SCREEN = gql`
   ${GQL_FRAGMENT_YU_SCREEN_SURVEY_FOOTER}
   ${GQL_FRAGMENT_YU_SCREEN_YUMOJI_PROMPT}
   ${GQL_FRAGMENT_VARIABLE_REMOTE_IMAGE}
+  ${GQL_FRAGMENT_YU_SCREEN_ENROLLCOPY}
 
   query GetYuScreen {
     getYuScreen {
@@ -127,6 +135,9 @@ export const GQL_QUERY_GET_YU_SCREEN = gql`
       }
       carrierLogo {
         ...VariableRemoteImage
+      }
+      enrollCopy {
+        ...YuScreenEnrollCopy
       }
     }
   }
