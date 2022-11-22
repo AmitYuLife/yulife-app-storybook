@@ -27,13 +27,13 @@ function ChallengesHistoryContainer({ level, yuniversalMap, levelName, onPressAc
 
   const name = useMemo(() => levelName || `level ${level}`, [level, levelName]);
 
+  //use default policy to avoid issues if app goes to background mode during query
   const { loading, data } = useQuery<GetQuestMapLevel>(GQL_QUERY_GET_QUEST_MAP_LEVEL, {
     variables: { level, yuniversalMap },
-    fetchPolicy: "network-only",
   });
 
-  return loading ? (
-    <ChallengesLoading currentLevel={level} yuniversalMap={yuniversalMap} />
+  return loading || !data?.getQuestMapLevel ? (
+    <ChallengesLoading onBackPress={handleClose} currentLevel={level} yuniversalMap={yuniversalMap} />
   ) : (
     <ChallengesHistoryScreen
       level={data?.getQuestMapLevel}
