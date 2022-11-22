@@ -126,7 +126,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
       render={({ showOverlay }: IToggleBlur) => (
         <>
           {loading ? (
-            <ChallengesLoading currentLevel={level} yuniversalMap={yuniversalMap} />
+            <ChallengesLoading onBackPress={handleNavPress} currentLevel={level} yuniversalMap={yuniversalMap} />
           ) : (
             <ChallengesListScreen
               challenges={slots.map((levelSlot) => {
