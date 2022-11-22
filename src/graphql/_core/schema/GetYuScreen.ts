@@ -259,6 +259,11 @@ export interface GetYuScreen_getYuScreen_carrierLogo {
   width: number;
 }
 
+export interface GetYuScreen_getYuScreen_enrollCopy {
+  title: string;
+  description: string;
+}
+
 export interface GetYuScreen_getYuScreen {
   onboarding: GetYuScreen_getYuScreen_onboarding | null;
   productSlots: (GetYuScreen_getYuScreen_productSlots | null)[];
@@ -266,6 +271,7 @@ export interface GetYuScreen_getYuScreen {
   surveyFooter: GetYuScreen_getYuScreen_surveyFooter | null;
   yumojiPrompt: GetYuScreen_getYuScreen_yumojiPrompt;
   carrierLogo: GetYuScreen_getYuScreen_carrierLogo | null;
+  enrollCopy: GetYuScreen_getYuScreen_enrollCopy | null;
 }
 
 export interface GetYuScreen {
