@@ -43,8 +43,8 @@ const WellBeingHub: FC<IProps> = ({ loading, categoryChips, userFirstName, cards
           />
         </View>
         {enableWellbeingHubCategories ? (
-          <View>
-            <ChipList chips={categoryChips} style={styles.pills} />
+          <View style={styles.categoryChipsContainer}>
+            <ChipList chips={categoryChips} style={styles.categoryChips} />
           </View>
         ) : null}
         <View style={styles.wrapper}>
@@ -74,9 +74,12 @@ const styles = StyleSheet.create({
     paddingLeft: Style.adjust(24),
     marginBottom: Style.adjust(24),
   },
-  pills: {
-    paddingLeft: Style.adjust(27),
+  categoryChipsContainer: {
+    flex: 1,
     backgroundColor: Colours.neutral.white,
+  },
+  categoryChips: {
+    paddingLeft: Style.adjust(27),
   },
   wrapper: {
     paddingLeft: Style.adjust(24),
