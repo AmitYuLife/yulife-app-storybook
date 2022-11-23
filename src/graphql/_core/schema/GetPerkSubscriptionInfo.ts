@@ -18,10 +18,12 @@ import {
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemTextInput {
   __typename:
     | "ContentItemTextInput"
+    | "ContentItemLottie"
     | "ContentItemPad"
     | "ContentItemRadio"
     | "ContentItemHeaderBar"
-    | "ContentItemProgressBar";
+    | "ContentItemProgressBar"
+    | "ContentItemTextGroup";
 }
 
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemText_styles {

@@ -242,6 +242,27 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextInput {
   styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextInput_styles[] | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemLottie_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemLottie_onAnimationEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemLottie {
+  __typename: "ContentItemLottie";
+  id: string;
+  uri: string;
+  autoPlay: boolean;
+  loop: boolean;
+  styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemLottie_styles[] | null;
+  onAnimationEnd: GetSduiStaticStep_getSduiStaticStep_body_ContentItemLottie_onAnimationEnd | null;
+  aspectRatio: number | null;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemPad_styles {
   property: string;
   value: string;
@@ -337,6 +358,46 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemProgressBar
   publishKeyHeight: string | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup_items_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup_items_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup_items_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup_items_labelStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup_items {
+  label: string;
+  onPress: GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup_items_onPress | null;
+  rightIcon: GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup_items_rightIcon | null;
+  styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup_items_styles[] | null;
+  labelStyles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup_items_labelStyles[] | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup {
+  __typename: "ContentItemTextGroup";
+  id: string;
+  items: GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup_items[];
+  styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup_styles[] | null;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemMarkdown
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemBox
@@ -345,10 +406,12 @@ export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemForm
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemText
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextInput
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemLottie
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemPad
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemRadio
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemHeaderBar
-  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemProgressBar;
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemProgressBar
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown_styles {
   property: string;
@@ -577,6 +640,27 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTe
   styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextInput_styles[] | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemLottie_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemLottie_onAnimationEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemLottie {
+  __typename: "ContentItemLottie";
+  id: string;
+  uri: string;
+  autoPlay: boolean;
+  loop: boolean;
+  styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemLottie_styles[] | null;
+  onAnimationEnd: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemLottie_onAnimationEnd | null;
+  aspectRatio: number | null;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemPad_styles {
   property: string;
   value: string;
@@ -674,6 +758,46 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemPr
   publishKeyHeight: string | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup_items_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup_items_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup_items_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup_items_labelStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup_items {
+  label: string;
+  onPress: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup_items_onPress | null;
+  rightIcon: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup_items_rightIcon | null;
+  styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup_items_styles[] | null;
+  labelStyles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup_items_labelStyles[] | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup {
+  __typename: "ContentItemTextGroup";
+  id: string;
+  items: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup_items[];
+  styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup_styles[] | null;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBox
@@ -682,10 +806,12 @@ export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemForm
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemText
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextInput
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemLottie
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemPad
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRadio
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHeaderBar
-  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProgressBar;
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProgressBar
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_styles {
   property: string;

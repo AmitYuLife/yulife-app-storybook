@@ -32,10 +32,12 @@ export interface GetRewardItemDetails_getRewardItemDetails_availableDenomination
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemTextInput {
   __typename:
     | "ContentItemTextInput"
+    | "ContentItemLottie"
     | "ContentItemPad"
     | "ContentItemRadio"
     | "ContentItemHeaderBar"
-    | "ContentItemProgressBar";
+    | "ContentItemProgressBar"
+    | "ContentItemTextGroup";
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles {

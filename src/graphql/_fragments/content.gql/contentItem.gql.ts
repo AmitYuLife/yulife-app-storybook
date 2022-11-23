@@ -11,6 +11,7 @@ import { GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_BAR } from "./contentItemProgressBar
 import { GQL_FRAGMENT_CONTENT_ITEM_RADIO } from "./contentItemRadio.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_TEXT } from "./contentItemText.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_TEXT_INPUT } from "./contentItemTextInput.gql";
+import { GQL_FRAGMENT_CONTENT_ITEM_TEXT_GROUP } from "./contentItemTextGroup.gql";
 
 export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN}
@@ -25,6 +26,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_RADIO}
   ${GQL_FRAGMENT_CONTENT_ITEM_HEADER_BAR}
   ${GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_BAR}
+  ${GQL_FRAGMENT_CONTENT_ITEM_TEXT_GROUP}
 
   fragment ContentItem on ContentItem {
     __typename
@@ -63,6 +65,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
     }
     ... on ContentItemProgressBar {
       ...ContentItemProgressBar
+    }
+    ... on ContentItemTextGroup {
+      ...ContentItemTextGroup
     }
   }
 `;
