@@ -9,6 +9,7 @@ import {
   ContentItemButtonSize,
   ContentItemImageSize,
   ContentItemFormTextInputType,
+  ContentItemRowIconTextBannerType,
   RNViewPointerEvents,
   ContentItemProgressBarType,
 } from "./globalTypes";
@@ -242,6 +243,109 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemTextInput {
   styles: GetSduiJourney_getSduiJourney_body_ContentItemTextInput_styles[] | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_bannerIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_bannerButton_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_bannerButton_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_bannerButton_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_bannerButton_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_bannerButton {
+  id: string;
+  contentItemButtonUri: string | null;
+  label: string;
+  buttonType: ContentItemButtonType | null;
+  value: string | null;
+  disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
+  onPress: GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_bannerButton_onPress | null;
+  event: GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_bannerButton_event | null;
+  icon: GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_bannerButton_icon | null;
+  contentItemButtonRightIcon: GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_bannerButton_styles[] | null;
+  buttonSize: ContentItemButtonSize | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_containerActions_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_containerActions_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_containerActions {
+  id: string;
+  event: GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_containerActions_event | null;
+  onPress: GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_containerActions_onPress;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner {
+  __typename: "ContentItemRowIconTextBanner";
+  id: string;
+  /**
+   * determines client-side style template e.g. error for red
+   */
+  bannerType: ContentItemRowIconTextBannerType;
+  markdown: string;
+  bannerIcon: GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_bannerIcon;
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_styles[] | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  titleMarkdown: string | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  showCloseIcon: boolean | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  bannerButton: GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_bannerButton | null;
+  /**
+   * RN client version >= 3.45.0: icon field is required, so showIcon is used
+   * here for backward compatibility to conditionally hide the icon
+   */
+  showIcon: boolean | null;
+  /**
+   * RN client version >= 3.45.0
+   * This field is intended to make the entire info panel pressable.
+   */
+  containerActions: GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_containerActions | null;
+}
+
 export interface GetSduiJourney_getSduiJourney_body_ContentItemLottie_styles {
   property: string;
   value: string;
@@ -398,6 +502,48 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemTextGroup {
   styles: GetSduiJourney_getSduiJourney_body_ContentItemTextGroup_styles[] | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemAccordion_headerIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemAccordion_infoIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemAccordion_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemAccordion_items_info_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemAccordion_items_info {
+  onPress: GetSduiJourney_getSduiJourney_body_ContentItemAccordion_items_info_onPress | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemAccordion_items {
+  leftText: string;
+  rightTextBody: string | null;
+  rightTextLabel: string | null;
+  info: GetSduiJourney_getSduiJourney_body_ContentItemAccordion_items_info | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemAccordion {
+  __typename: "ContentItemAccordion";
+  id: string;
+  heading: string | null;
+  headerIcon: GetSduiJourney_getSduiJourney_body_ContentItemAccordion_headerIcon | null;
+  infoIcon: GetSduiJourney_getSduiJourney_body_ContentItemAccordion_infoIcon | null;
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemAccordion_styles[] | null;
+  items: GetSduiJourney_getSduiJourney_body_ContentItemAccordion_items[];
+  subheading: string | null;
+}
+
 export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemMarkdown
   | GetSduiJourney_getSduiJourney_body_ContentItemBox
@@ -406,12 +552,14 @@ export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemForm
   | GetSduiJourney_getSduiJourney_body_ContentItemText
   | GetSduiJourney_getSduiJourney_body_ContentItemTextInput
+  | GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner
   | GetSduiJourney_getSduiJourney_body_ContentItemLottie
   | GetSduiJourney_getSduiJourney_body_ContentItemPad
   | GetSduiJourney_getSduiJourney_body_ContentItemRadio
   | GetSduiJourney_getSduiJourney_body_ContentItemHeaderBar
   | GetSduiJourney_getSduiJourney_body_ContentItemProgressBar
-  | GetSduiJourney_getSduiJourney_body_ContentItemTextGroup;
+  | GetSduiJourney_getSduiJourney_body_ContentItemTextGroup
+  | GetSduiJourney_getSduiJourney_body_ContentItemAccordion;
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown_styles {
   property: string;
@@ -640,6 +788,109 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextInpu
   styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextInput_styles[] | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_bannerIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_bannerButton_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_bannerButton_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_bannerButton_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_bannerButton_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_bannerButton {
+  id: string;
+  contentItemButtonUri: string | null;
+  label: string;
+  buttonType: ContentItemButtonType | null;
+  value: string | null;
+  disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
+  onPress: GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_bannerButton_onPress | null;
+  event: GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_bannerButton_event | null;
+  icon: GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_bannerButton_icon | null;
+  contentItemButtonRightIcon: GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_bannerButton_styles[] | null;
+  buttonSize: ContentItemButtonSize | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_containerActions_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_containerActions_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_containerActions {
+  id: string;
+  event: GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_containerActions_event | null;
+  onPress: GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_containerActions_onPress;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner {
+  __typename: "ContentItemRowIconTextBanner";
+  id: string;
+  /**
+   * determines client-side style template e.g. error for red
+   */
+  bannerType: ContentItemRowIconTextBannerType;
+  markdown: string;
+  bannerIcon: GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_bannerIcon;
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_styles[] | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  titleMarkdown: string | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  showCloseIcon: boolean | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  bannerButton: GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_bannerButton | null;
+  /**
+   * RN client version >= 3.45.0: icon field is required, so showIcon is used
+   * here for backward compatibility to conditionally hide the icon
+   */
+  showIcon: boolean | null;
+  /**
+   * RN client version >= 3.45.0
+   * This field is intended to make the entire info panel pressable.
+   */
+  containerActions: GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_containerActions | null;
+}
+
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemLottie_styles {
   property: string;
   value: string;
@@ -798,6 +1049,48 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGrou
   styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup_styles[] | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion_headerIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion_infoIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion_items_info_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion_items_info {
+  onPress: GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion_items_info_onPress | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion_items {
+  leftText: string;
+  rightTextBody: string | null;
+  rightTextLabel: string | null;
+  info: GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion_items_info | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion {
+  __typename: "ContentItemAccordion";
+  id: string;
+  heading: string | null;
+  headerIcon: GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion_headerIcon | null;
+  infoIcon: GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion_infoIcon | null;
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion_styles[] | null;
+  items: GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion_items[];
+  subheading: string | null;
+}
+
 export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemBox
@@ -806,12 +1099,14 @@ export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemForm
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemText
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextInput
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemLottie
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemPad
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemRadio
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemHeaderBar
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemProgressBar
-  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup;
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion;
 
 export interface GetSduiJourney_getSduiJourney_absolute_styles {
   property: string;

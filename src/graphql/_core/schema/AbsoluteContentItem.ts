@@ -9,6 +9,7 @@ import {
   ContentItemButtonSize,
   ContentItemImageSize,
   ContentItemFormTextInputType,
+  ContentItemRowIconTextBannerType,
   RNViewPointerEvents,
   ContentItemProgressBarType,
 } from "./globalTypes";
@@ -238,6 +239,109 @@ export interface AbsoluteContentItem_item_ContentItemTextInput {
   styles: AbsoluteContentItem_item_ContentItemTextInput_styles[] | null;
 }
 
+export interface AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemRowIconTextBanner_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton {
+  id: string;
+  contentItemButtonUri: string | null;
+  label: string;
+  buttonType: ContentItemButtonType | null;
+  value: string | null;
+  disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
+  onPress: AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton_onPress | null;
+  event: AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton_event | null;
+  icon: AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton_icon | null;
+  contentItemButtonRightIcon: AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
+  styles: AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton_styles[] | null;
+  buttonSize: ContentItemButtonSize | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemRowIconTextBanner_containerActions_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemRowIconTextBanner_containerActions_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemRowIconTextBanner_containerActions {
+  id: string;
+  event: AbsoluteContentItem_item_ContentItemRowIconTextBanner_containerActions_event | null;
+  onPress: AbsoluteContentItem_item_ContentItemRowIconTextBanner_containerActions_onPress;
+}
+
+export interface AbsoluteContentItem_item_ContentItemRowIconTextBanner {
+  __typename: "ContentItemRowIconTextBanner";
+  id: string;
+  /**
+   * determines client-side style template e.g. error for red
+   */
+  bannerType: ContentItemRowIconTextBannerType;
+  markdown: string;
+  bannerIcon: AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerIcon;
+  styles: AbsoluteContentItem_item_ContentItemRowIconTextBanner_styles[] | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  titleMarkdown: string | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  showCloseIcon: boolean | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  bannerButton: AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton | null;
+  /**
+   * RN client version >= 3.45.0: icon field is required, so showIcon is used
+   * here for backward compatibility to conditionally hide the icon
+   */
+  showIcon: boolean | null;
+  /**
+   * RN client version >= 3.45.0
+   * This field is intended to make the entire info panel pressable.
+   */
+  containerActions: AbsoluteContentItem_item_ContentItemRowIconTextBanner_containerActions | null;
+}
+
 export interface AbsoluteContentItem_item_ContentItemLottie_styles {
   property: string;
   value: string;
@@ -394,6 +498,48 @@ export interface AbsoluteContentItem_item_ContentItemTextGroup {
   styles: AbsoluteContentItem_item_ContentItemTextGroup_styles[] | null;
 }
 
+export interface AbsoluteContentItem_item_ContentItemAccordion_headerIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemAccordion_infoIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemAccordion_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemAccordion_items_info_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemAccordion_items_info {
+  onPress: AbsoluteContentItem_item_ContentItemAccordion_items_info_onPress | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemAccordion_items {
+  leftText: string;
+  rightTextBody: string | null;
+  rightTextLabel: string | null;
+  info: AbsoluteContentItem_item_ContentItemAccordion_items_info | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemAccordion {
+  __typename: "ContentItemAccordion";
+  id: string;
+  heading: string | null;
+  headerIcon: AbsoluteContentItem_item_ContentItemAccordion_headerIcon | null;
+  infoIcon: AbsoluteContentItem_item_ContentItemAccordion_infoIcon | null;
+  styles: AbsoluteContentItem_item_ContentItemAccordion_styles[] | null;
+  items: AbsoluteContentItem_item_ContentItemAccordion_items[];
+  subheading: string | null;
+}
+
 export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemMarkdown
   | AbsoluteContentItem_item_ContentItemBox
@@ -402,12 +548,14 @@ export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemForm
   | AbsoluteContentItem_item_ContentItemText
   | AbsoluteContentItem_item_ContentItemTextInput
+  | AbsoluteContentItem_item_ContentItemRowIconTextBanner
   | AbsoluteContentItem_item_ContentItemLottie
   | AbsoluteContentItem_item_ContentItemPad
   | AbsoluteContentItem_item_ContentItemRadio
   | AbsoluteContentItem_item_ContentItemHeaderBar
   | AbsoluteContentItem_item_ContentItemProgressBar
-  | AbsoluteContentItem_item_ContentItemTextGroup;
+  | AbsoluteContentItem_item_ContentItemTextGroup
+  | AbsoluteContentItem_item_ContentItemAccordion;
 
 export interface AbsoluteContentItem_styles {
   property: string;
