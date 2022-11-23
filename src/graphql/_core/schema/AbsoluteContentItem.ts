@@ -238,6 +238,27 @@ export interface AbsoluteContentItem_item_ContentItemTextInput {
   styles: AbsoluteContentItem_item_ContentItemTextInput_styles[] | null;
 }
 
+export interface AbsoluteContentItem_item_ContentItemLottie_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemLottie_onAnimationEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemLottie {
+  __typename: "ContentItemLottie";
+  id: string;
+  uri: string;
+  autoPlay: boolean;
+  loop: boolean;
+  styles: AbsoluteContentItem_item_ContentItemLottie_styles[] | null;
+  onAnimationEnd: AbsoluteContentItem_item_ContentItemLottie_onAnimationEnd | null;
+  aspectRatio: number | null;
+}
+
 export interface AbsoluteContentItem_item_ContentItemPad_styles {
   property: string;
   value: string;
@@ -333,6 +354,46 @@ export interface AbsoluteContentItem_item_ContentItemProgressBar {
   publishKeyHeight: string | null;
 }
 
+export interface AbsoluteContentItem_item_ContentItemTextGroup_items_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemTextGroup_items_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemTextGroup_items_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemTextGroup_items_labelStyles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemTextGroup_items {
+  label: string;
+  onPress: AbsoluteContentItem_item_ContentItemTextGroup_items_onPress | null;
+  rightIcon: AbsoluteContentItem_item_ContentItemTextGroup_items_rightIcon | null;
+  styles: AbsoluteContentItem_item_ContentItemTextGroup_items_styles[] | null;
+  labelStyles: AbsoluteContentItem_item_ContentItemTextGroup_items_labelStyles[] | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemTextGroup_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemTextGroup {
+  __typename: "ContentItemTextGroup";
+  id: string;
+  items: AbsoluteContentItem_item_ContentItemTextGroup_items[];
+  styles: AbsoluteContentItem_item_ContentItemTextGroup_styles[] | null;
+}
+
 export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemMarkdown
   | AbsoluteContentItem_item_ContentItemBox
@@ -341,10 +402,12 @@ export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemForm
   | AbsoluteContentItem_item_ContentItemText
   | AbsoluteContentItem_item_ContentItemTextInput
+  | AbsoluteContentItem_item_ContentItemLottie
   | AbsoluteContentItem_item_ContentItemPad
   | AbsoluteContentItem_item_ContentItemRadio
   | AbsoluteContentItem_item_ContentItemHeaderBar
-  | AbsoluteContentItem_item_ContentItemProgressBar;
+  | AbsoluteContentItem_item_ContentItemProgressBar
+  | AbsoluteContentItem_item_ContentItemTextGroup;
 
 export interface AbsoluteContentItem_styles {
   property: string;

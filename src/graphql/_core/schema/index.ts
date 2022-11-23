@@ -80,6 +80,7 @@ export * from "./ContentItemSelectedPackageCard";
 export * from "./ContentItemSelectedPackageCardProviderLogo";
 export * from "./ContentItemSelectedPackageCards";
 export * from "./ContentItemText";
+export * from "./ContentItemTextGroup";
 export * from "./ContentItemTextInput";
 export * from "./ContentItemYuCoinPower";
 export * from "./ContentItemYugiConfirm";

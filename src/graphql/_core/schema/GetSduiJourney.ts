@@ -242,6 +242,27 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemTextInput {
   styles: GetSduiJourney_getSduiJourney_body_ContentItemTextInput_styles[] | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemLottie_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemLottie_onAnimationEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemLottie {
+  __typename: "ContentItemLottie";
+  id: string;
+  uri: string;
+  autoPlay: boolean;
+  loop: boolean;
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemLottie_styles[] | null;
+  onAnimationEnd: GetSduiJourney_getSduiJourney_body_ContentItemLottie_onAnimationEnd | null;
+  aspectRatio: number | null;
+}
+
 export interface GetSduiJourney_getSduiJourney_body_ContentItemPad_styles {
   property: string;
   value: string;
@@ -337,6 +358,46 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemProgressBar {
   publishKeyHeight: string | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemTextGroup_items_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemTextGroup_items_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemTextGroup_items_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemTextGroup_items_labelStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemTextGroup_items {
+  label: string;
+  onPress: GetSduiJourney_getSduiJourney_body_ContentItemTextGroup_items_onPress | null;
+  rightIcon: GetSduiJourney_getSduiJourney_body_ContentItemTextGroup_items_rightIcon | null;
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemTextGroup_items_styles[] | null;
+  labelStyles: GetSduiJourney_getSduiJourney_body_ContentItemTextGroup_items_labelStyles[] | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemTextGroup_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemTextGroup {
+  __typename: "ContentItemTextGroup";
+  id: string;
+  items: GetSduiJourney_getSduiJourney_body_ContentItemTextGroup_items[];
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemTextGroup_styles[] | null;
+}
+
 export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemMarkdown
   | GetSduiJourney_getSduiJourney_body_ContentItemBox
@@ -345,10 +406,12 @@ export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemForm
   | GetSduiJourney_getSduiJourney_body_ContentItemText
   | GetSduiJourney_getSduiJourney_body_ContentItemTextInput
+  | GetSduiJourney_getSduiJourney_body_ContentItemLottie
   | GetSduiJourney_getSduiJourney_body_ContentItemPad
   | GetSduiJourney_getSduiJourney_body_ContentItemRadio
   | GetSduiJourney_getSduiJourney_body_ContentItemHeaderBar
-  | GetSduiJourney_getSduiJourney_body_ContentItemProgressBar;
+  | GetSduiJourney_getSduiJourney_body_ContentItemProgressBar
+  | GetSduiJourney_getSduiJourney_body_ContentItemTextGroup;
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown_styles {
   property: string;
@@ -577,6 +640,27 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextInpu
   styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextInput_styles[] | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemLottie_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemLottie_onAnimationEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemLottie {
+  __typename: "ContentItemLottie";
+  id: string;
+  uri: string;
+  autoPlay: boolean;
+  loop: boolean;
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemLottie_styles[] | null;
+  onAnimationEnd: GetSduiJourney_getSduiJourney_absolute_item_ContentItemLottie_onAnimationEnd | null;
+  aspectRatio: number | null;
+}
+
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemPad_styles {
   property: string;
   value: string;
@@ -674,6 +758,46 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProgress
   publishKeyHeight: string | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup_items_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup_items_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup_items_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup_items_labelStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup_items {
+  label: string;
+  onPress: GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup_items_onPress | null;
+  rightIcon: GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup_items_rightIcon | null;
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup_items_styles[] | null;
+  labelStyles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup_items_labelStyles[] | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup {
+  __typename: "ContentItemTextGroup";
+  id: string;
+  items: GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup_items[];
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup_styles[] | null;
+}
+
 export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemBox
@@ -682,10 +806,12 @@ export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemForm
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemText
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextInput
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemLottie
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemPad
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemRadio
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemHeaderBar
-  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemProgressBar;
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemProgressBar
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup;
 
 export interface GetSduiJourney_getSduiJourney_absolute_styles {
   property: string;

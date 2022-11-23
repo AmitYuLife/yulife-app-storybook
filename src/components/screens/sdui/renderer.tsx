@@ -11,6 +11,7 @@ import {
   ContentItemRadio,
   ContentItemHeaderBar,
   ContentItemProgressBar,
+  ContentItemTextGroup,
 } from "@components/sdui";
 import { ContentItem } from "@graphql/_core/schema";
 
@@ -25,6 +26,7 @@ export const componentMap = {
   ContentItemRadio,
   ContentItemHeaderBar,
   ContentItemProgressBar,
+  ContentItemTextGroup,
 } as Record<string, (props: any) => JSX.Element>;
 
 export const renderItemContent = (item: ContentItem): JSX.Element | null => {

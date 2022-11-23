@@ -238,6 +238,27 @@ export interface ContentItem_ContentItemTextInput {
   styles: ContentItem_ContentItemTextInput_styles[] | null;
 }
 
+export interface ContentItem_ContentItemLottie_styles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemLottie_onAnimationEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItem_ContentItemLottie {
+  __typename: "ContentItemLottie";
+  id: string;
+  uri: string;
+  autoPlay: boolean;
+  loop: boolean;
+  styles: ContentItem_ContentItemLottie_styles[] | null;
+  onAnimationEnd: ContentItem_ContentItemLottie_onAnimationEnd | null;
+  aspectRatio: number | null;
+}
+
 export interface ContentItem_ContentItemPad_styles {
   property: string;
   value: string;
@@ -333,6 +354,46 @@ export interface ContentItem_ContentItemProgressBar {
   publishKeyHeight: string | null;
 }
 
+export interface ContentItem_ContentItemTextGroup_items_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItem_ContentItemTextGroup_items_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItem_ContentItemTextGroup_items_styles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemTextGroup_items_labelStyles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemTextGroup_items {
+  label: string;
+  onPress: ContentItem_ContentItemTextGroup_items_onPress | null;
+  rightIcon: ContentItem_ContentItemTextGroup_items_rightIcon | null;
+  styles: ContentItem_ContentItemTextGroup_items_styles[] | null;
+  labelStyles: ContentItem_ContentItemTextGroup_items_labelStyles[] | null;
+}
+
+export interface ContentItem_ContentItemTextGroup_styles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemTextGroup {
+  __typename: "ContentItemTextGroup";
+  id: string;
+  items: ContentItem_ContentItemTextGroup_items[];
+  styles: ContentItem_ContentItemTextGroup_styles[] | null;
+}
+
 export type ContentItem =
   | ContentItem_ContentItemMarkdown
   | ContentItem_ContentItemBox
@@ -341,7 +402,9 @@ export type ContentItem =
   | ContentItem_ContentItemForm
   | ContentItem_ContentItemText
   | ContentItem_ContentItemTextInput
+  | ContentItem_ContentItemLottie
   | ContentItem_ContentItemPad
   | ContentItem_ContentItemRadio
   | ContentItem_ContentItemHeaderBar
-  | ContentItem_ContentItemProgressBar;
+  | ContentItem_ContentItemProgressBar
+  | ContentItem_ContentItemTextGroup;
