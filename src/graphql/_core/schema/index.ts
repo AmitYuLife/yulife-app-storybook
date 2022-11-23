@@ -12,6 +12,7 @@ export * from "./CollectAward";
 export * from "./CompleteInAppYuniversityModuleChapter";
 export * from "./ConfirmPaymentCard";
 export * from "./ContentItem";
+export * from "./ContentItemAccordion";
 export * from "./ContentItemAgePercentCoverPicker";
 export * from "./ContentItemAgePercentCoverPickerAgeOption";
 export * from "./ContentItemAgePercentCoverPickerPercentOption";

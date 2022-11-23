@@ -9,6 +9,7 @@ import {
   ContentItemButtonSize,
   ContentItemImageSize,
   ContentItemFormTextInputType,
+  ContentItemRowIconTextBannerType,
   RNViewPointerEvents,
   ContentItemProgressBarType,
 } from "./globalTypes";
@@ -238,6 +239,109 @@ export interface ContentItem_ContentItemTextInput {
   styles: ContentItem_ContentItemTextInput_styles[] | null;
 }
 
+export interface ContentItem_ContentItemRowIconTextBanner_bannerIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItem_ContentItemRowIconTextBanner_styles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemRowIconTextBanner_bannerButton_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItem_ContentItemRowIconTextBanner_bannerButton_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItem_ContentItemRowIconTextBanner_bannerButton_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItem_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItem_ContentItemRowIconTextBanner_bannerButton_styles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemRowIconTextBanner_bannerButton {
+  id: string;
+  contentItemButtonUri: string | null;
+  label: string;
+  buttonType: ContentItemButtonType | null;
+  value: string | null;
+  disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
+  onPress: ContentItem_ContentItemRowIconTextBanner_bannerButton_onPress | null;
+  event: ContentItem_ContentItemRowIconTextBanner_bannerButton_event | null;
+  icon: ContentItem_ContentItemRowIconTextBanner_bannerButton_icon | null;
+  contentItemButtonRightIcon: ContentItem_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
+  styles: ContentItem_ContentItemRowIconTextBanner_bannerButton_styles[] | null;
+  buttonSize: ContentItemButtonSize | null;
+}
+
+export interface ContentItem_ContentItemRowIconTextBanner_containerActions_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItem_ContentItemRowIconTextBanner_containerActions_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItem_ContentItemRowIconTextBanner_containerActions {
+  id: string;
+  event: ContentItem_ContentItemRowIconTextBanner_containerActions_event | null;
+  onPress: ContentItem_ContentItemRowIconTextBanner_containerActions_onPress;
+}
+
+export interface ContentItem_ContentItemRowIconTextBanner {
+  __typename: "ContentItemRowIconTextBanner";
+  id: string;
+  /**
+   * determines client-side style template e.g. error for red
+   */
+  bannerType: ContentItemRowIconTextBannerType;
+  markdown: string;
+  bannerIcon: ContentItem_ContentItemRowIconTextBanner_bannerIcon;
+  styles: ContentItem_ContentItemRowIconTextBanner_styles[] | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  titleMarkdown: string | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  showCloseIcon: boolean | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  bannerButton: ContentItem_ContentItemRowIconTextBanner_bannerButton | null;
+  /**
+   * RN client version >= 3.45.0: icon field is required, so showIcon is used
+   * here for backward compatibility to conditionally hide the icon
+   */
+  showIcon: boolean | null;
+  /**
+   * RN client version >= 3.45.0
+   * This field is intended to make the entire info panel pressable.
+   */
+  containerActions: ContentItem_ContentItemRowIconTextBanner_containerActions | null;
+}
+
 export interface ContentItem_ContentItemLottie_styles {
   property: string;
   value: string;
@@ -394,6 +498,48 @@ export interface ContentItem_ContentItemTextGroup {
   styles: ContentItem_ContentItemTextGroup_styles[] | null;
 }
 
+export interface ContentItem_ContentItemAccordion_headerIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItem_ContentItemAccordion_infoIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItem_ContentItemAccordion_styles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemAccordion_items_info_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItem_ContentItemAccordion_items_info {
+  onPress: ContentItem_ContentItemAccordion_items_info_onPress | null;
+}
+
+export interface ContentItem_ContentItemAccordion_items {
+  leftText: string;
+  rightTextBody: string | null;
+  rightTextLabel: string | null;
+  info: ContentItem_ContentItemAccordion_items_info | null;
+}
+
+export interface ContentItem_ContentItemAccordion {
+  __typename: "ContentItemAccordion";
+  id: string;
+  heading: string | null;
+  headerIcon: ContentItem_ContentItemAccordion_headerIcon | null;
+  infoIcon: ContentItem_ContentItemAccordion_infoIcon | null;
+  styles: ContentItem_ContentItemAccordion_styles[] | null;
+  items: ContentItem_ContentItemAccordion_items[];
+  subheading: string | null;
+}
+
 export type ContentItem =
   | ContentItem_ContentItemMarkdown
   | ContentItem_ContentItemBox
@@ -402,9 +548,11 @@ export type ContentItem =
   | ContentItem_ContentItemForm
   | ContentItem_ContentItemText
   | ContentItem_ContentItemTextInput
+  | ContentItem_ContentItemRowIconTextBanner
   | ContentItem_ContentItemLottie
   | ContentItem_ContentItemPad
   | ContentItem_ContentItemRadio
   | ContentItem_ContentItemHeaderBar
   | ContentItem_ContentItemProgressBar
-  | ContentItem_ContentItemTextGroup;
+  | ContentItem_ContentItemTextGroup
+  | ContentItem_ContentItemAccordion;

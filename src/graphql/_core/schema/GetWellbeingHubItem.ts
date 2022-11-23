@@ -29,12 +29,14 @@ export interface GetWellbeingHubItem_wellbeingHubItem_icon {
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemTextInput {
   __typename:
     | "ContentItemTextInput"
+    | "ContentItemRowIconTextBanner"
     | "ContentItemLottie"
     | "ContentItemPad"
     | "ContentItemRadio"
     | "ContentItemHeaderBar"
     | "ContentItemProgressBar"
-    | "ContentItemTextGroup";
+    | "ContentItemTextGroup"
+    | "ContentItemAccordion";
 }
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText_styles {

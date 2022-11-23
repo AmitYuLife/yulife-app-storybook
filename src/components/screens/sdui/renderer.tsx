@@ -6,12 +6,14 @@ import {
   ContentItemImage,
   ContentItemText,
   ContentItemTextInput,
+  ContentItemRowIconTextBanner,
   ContentItemLottieSdui,
   ContentItemPad,
   ContentItemRadio,
   ContentItemHeaderBar,
   ContentItemProgressBar,
   ContentItemTextGroup,
+  ContentItemAccordion,
 } from "@components/sdui";
 import { ContentItem } from "@graphql/_core/schema";
 
@@ -21,12 +23,14 @@ export const componentMap = {
   ContentItemImage,
   ContentItemText,
   ContentItemTextInput,
+  ContentItemRowIconTextBanner,
   ContentItemLottie: ContentItemLottieSdui,
   ContentItemPad,
   ContentItemRadio,
   ContentItemHeaderBar,
   ContentItemProgressBar,
   ContentItemTextGroup,
+  ContentItemAccordion,
 } as Record<string, (props: any) => JSX.Element>;
 
 export const renderItemContent = (item: ContentItem): JSX.Element | null => {

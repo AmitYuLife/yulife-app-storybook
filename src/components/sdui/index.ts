@@ -33,3 +33,4 @@ export * from "./contentItemAgePercentCoverPicker/contentItemAgePercentCoverPick
 export * from "./contentItemCostPayoutBenefitCard/contentItemCostPayoutBenefitCard";
 export * from "./contentItemCollapsingHeaderAgePercentProductInfo/contentItemCollapsingHeaderAgePercentProductInfo";
 export * from "./contentItemTextGroup/contentItemTextGroup";
+export * from "./contentItemAccordion/contentItemAccordion";

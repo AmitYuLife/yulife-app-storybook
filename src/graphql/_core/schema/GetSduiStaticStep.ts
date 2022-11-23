@@ -9,6 +9,7 @@ import {
   ContentItemButtonSize,
   ContentItemImageSize,
   ContentItemFormTextInputType,
+  ContentItemRowIconTextBannerType,
   RNViewPointerEvents,
   ContentItemProgressBarType,
 } from "./globalTypes";
@@ -242,6 +243,109 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextInput {
   styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextInput_styles[] | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton {
+  id: string;
+  contentItemButtonUri: string | null;
+  label: string;
+  buttonType: ContentItemButtonType | null;
+  value: string | null;
+  disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
+  onPress: GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton_onPress | null;
+  event: GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton_event | null;
+  icon: GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton_icon | null;
+  contentItemButtonRightIcon: GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
+  styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton_styles[] | null;
+  buttonSize: ContentItemButtonSize | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_containerActions_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_containerActions_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_containerActions {
+  id: string;
+  event: GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_containerActions_event | null;
+  onPress: GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_containerActions_onPress;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner {
+  __typename: "ContentItemRowIconTextBanner";
+  id: string;
+  /**
+   * determines client-side style template e.g. error for red
+   */
+  bannerType: ContentItemRowIconTextBannerType;
+  markdown: string;
+  bannerIcon: GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerIcon;
+  styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_styles[] | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  titleMarkdown: string | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  showCloseIcon: boolean | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  bannerButton: GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton | null;
+  /**
+   * RN client version >= 3.45.0: icon field is required, so showIcon is used
+   * here for backward compatibility to conditionally hide the icon
+   */
+  showIcon: boolean | null;
+  /**
+   * RN client version >= 3.45.0
+   * This field is intended to make the entire info panel pressable.
+   */
+  containerActions: GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_containerActions | null;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemLottie_styles {
   property: string;
   value: string;
@@ -398,6 +502,48 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup {
   styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup_styles[] | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion_headerIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion_infoIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion_items_info_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion_items_info {
+  onPress: GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion_items_info_onPress | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion_items {
+  leftText: string;
+  rightTextBody: string | null;
+  rightTextLabel: string | null;
+  info: GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion_items_info | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion {
+  __typename: "ContentItemAccordion";
+  id: string;
+  heading: string | null;
+  headerIcon: GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion_headerIcon | null;
+  infoIcon: GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion_infoIcon | null;
+  styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion_styles[] | null;
+  items: GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion_items[];
+  subheading: string | null;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemMarkdown
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemBox
@@ -406,12 +552,14 @@ export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemForm
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemText
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextInput
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemLottie
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemPad
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemRadio
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemHeaderBar
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemProgressBar
-  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup;
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown_styles {
   property: string;
@@ -640,6 +788,109 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTe
   styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextInput_styles[] | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton {
+  id: string;
+  contentItemButtonUri: string | null;
+  label: string;
+  buttonType: ContentItemButtonType | null;
+  value: string | null;
+  disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
+  onPress: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton_onPress | null;
+  event: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton_event | null;
+  icon: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton_icon | null;
+  contentItemButtonRightIcon: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
+  styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton_styles[] | null;
+  buttonSize: ContentItemButtonSize | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_containerActions_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_containerActions_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_containerActions {
+  id: string;
+  event: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_containerActions_event | null;
+  onPress: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_containerActions_onPress;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner {
+  __typename: "ContentItemRowIconTextBanner";
+  id: string;
+  /**
+   * determines client-side style template e.g. error for red
+   */
+  bannerType: ContentItemRowIconTextBannerType;
+  markdown: string;
+  bannerIcon: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerIcon;
+  styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_styles[] | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  titleMarkdown: string | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  showCloseIcon: boolean | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  bannerButton: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton | null;
+  /**
+   * RN client version >= 3.45.0: icon field is required, so showIcon is used
+   * here for backward compatibility to conditionally hide the icon
+   */
+  showIcon: boolean | null;
+  /**
+   * RN client version >= 3.45.0
+   * This field is intended to make the entire info panel pressable.
+   */
+  containerActions: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_containerActions | null;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemLottie_styles {
   property: string;
   value: string;
@@ -798,6 +1049,48 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTe
   styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup_styles[] | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAccordion_headerIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAccordion_infoIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAccordion_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAccordion_items_info_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAccordion_items_info {
+  onPress: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAccordion_items_info_onPress | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAccordion_items {
+  leftText: string;
+  rightTextBody: string | null;
+  rightTextLabel: string | null;
+  info: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAccordion_items_info | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAccordion {
+  __typename: "ContentItemAccordion";
+  id: string;
+  heading: string | null;
+  headerIcon: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAccordion_headerIcon | null;
+  infoIcon: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAccordion_infoIcon | null;
+  styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAccordion_styles[] | null;
+  items: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAccordion_items[];
+  subheading: string | null;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBox
@@ -806,12 +1099,14 @@ export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemForm
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemText
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextInput
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemLottie
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemPad
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRadio
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHeaderBar
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProgressBar
-  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup;
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAccordion;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_styles {
   property: string;

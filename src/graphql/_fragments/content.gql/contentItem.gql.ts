@@ -12,6 +12,8 @@ import { GQL_FRAGMENT_CONTENT_ITEM_RADIO } from "./contentItemRadio.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_TEXT } from "./contentItemText.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_TEXT_INPUT } from "./contentItemTextInput.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_TEXT_GROUP } from "./contentItemTextGroup.gql";
+import { GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER } from "./contentItemRowIconTextBanner.gql";
+import { GQL_FRAGMENT_CONTENT_ITEM_ACCORDION } from "./contentItemAccordion.gql";
 
 export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN}
@@ -21,12 +23,14 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_FORM}
   ${GQL_FRAGMENT_CONTENT_ITEM_TEXT}
   ${GQL_FRAGMENT_CONTENT_ITEM_TEXT_INPUT}
+  ${GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER}
   ${GQL_FRAGMENT_CONTENT_ITEM_LOTTIE}
   ${GQL_FRAGMENT_CONTENT_ITEM_PAD}
   ${GQL_FRAGMENT_CONTENT_ITEM_RADIO}
   ${GQL_FRAGMENT_CONTENT_ITEM_HEADER_BAR}
   ${GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_BAR}
   ${GQL_FRAGMENT_CONTENT_ITEM_TEXT_GROUP}
+  ${GQL_FRAGMENT_CONTENT_ITEM_ACCORDION}
 
   fragment ContentItem on ContentItem {
     __typename
@@ -51,6 +55,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
     ... on ContentItemTextInput {
       ...ContentItemTextInput
     }
+    ... on ContentItemRowIconTextBanner {
+      ...ContentItemRowIconTextBanner
+    }
     ... on ContentItemLottie {
       ...ContentItemLottie
     }
@@ -68,6 +75,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
     }
     ... on ContentItemTextGroup {
       ...ContentItemTextGroup
+    }
+    ... on ContentItemAccordion {
+      ...ContentItemAccordion
     }
   }
 `;
