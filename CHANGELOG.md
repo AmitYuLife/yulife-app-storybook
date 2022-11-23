@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.58.0] - 2022-11-23
+
+### Features
+
+- Feature: Static SDUI renderer
+
+### Bugfixes
+
+- Bugfix: Add missing SduiProvider in SduiStatic
+- Bugfix: Claiming weekly quests
+- Bugfix: Rewards details buttons not working
+- Bugfix: Claiming weeklies
+- Bugfix: Active buff icon on todays earning screen
+
+### Tasks
+
+- Task XSE-1449: New components for SDUI
+- Task GS: Android SDK 31
+- Task: Add ContentItemTextGroup
+- Task XSE-1466/ Add enroll copy
+- Task GS-566: Module Certificate Save Image
+
+### Chores
+
+- Chore: SDUI content item Lottie
+- Chore: Prefill SDUI from dynamic data
+- Chore: Add text input sdui component
+
+### Extra
+
+- ENG-3004: fix challenges history query and loading
+- ENG-3015: Fix category chip filter style when scrolling
+- style: smooth background gradient behind button on event screen
+- Hotfix/steps not shown for sources
+- Detox/3 star challenge
+
 ## [3.57.0] - 2022-11-16
 
 ### Bugfixes
