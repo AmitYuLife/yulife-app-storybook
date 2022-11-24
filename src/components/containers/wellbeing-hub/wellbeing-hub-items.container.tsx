@@ -67,7 +67,7 @@ const WellbeingHubItemsContainer: FC<IProps> = ({ componentId }) => {
         onCategoryPress(tag.id);
       },
     }));
-  }, [categories, onCategoryPress, selectedCategory]);
+  }, [categories, onCategoryPress, enableWellbeingHubCategories, selectedCategory]);
 
   return (
     <View style={styles.wrapper}>
