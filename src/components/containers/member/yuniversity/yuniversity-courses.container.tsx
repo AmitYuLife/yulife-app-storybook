@@ -32,8 +32,8 @@ const YuniversityCoursesContainer = () => {
   const { title, headerImage, headerColour, courses, categoryImage } = data?.getInAppYuniversityCourses || {};
 
   const headerProps = {
-    title: "Yuniversity",
-    label: "Semper prorsum",
+    title: "",
+    label: "",
     source: { uri: headerImage?.uri },
     backgroundColor: headerColour,
     headerTextColor: "black",
