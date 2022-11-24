@@ -34,7 +34,11 @@ const WellBeingHub: FC<IProps> = ({ loading, categoryChips, userFirstName, cards
   return (
     <View style={styles.flex} testID={WELLBEING_HUB_SCREEN}>
       <GenericHeadingPad />
-      <ScrollView showsVerticalScrollIndicator={false} testID={WELLBEING_HUB_SCROLL_VIEW} stickyHeaderIndices={[1]}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        testID={WELLBEING_HUB_SCROLL_VIEW}
+        stickyHeaderIndices={enableWellbeingHubCategories ? [1] : undefined}
+      >
         <View style={styles.header}>
           <YugiHeader
             title={t("screens.wellbeing_hub.header_title", { name: userFirstName })}
