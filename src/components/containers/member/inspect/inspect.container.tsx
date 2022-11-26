@@ -1,5 +1,5 @@
-import { useQuery } from "@apollo/client";
-import React, { memo, useCallback, useMemo } from "react";
+import { useLazyQuery, useQuery } from "@apollo/client";
+import React, { memo, useCallback, useEffect, useMemo } from "react";
 import { Navigation } from "react-native-navigation";
 import { useSelector } from "react-redux";
 import InspectScreen from "@components/screens/member/inspect/inspect.screen";
@@ -29,9 +29,15 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
 
   useBackHandler(onClose);
 
-  const { data: duelsData } = useQuery<GetDuels>(GQL_QUERY_GET_DUELS, {
-    fetchPolicy: "cache-only",
+  const [getDuels, { loading: duelsLoading, data: duelsData }] = useLazyQuery<GetDuels>(GQL_QUERY_GET_DUELS, {
+    fetchPolicy: "network-only",
   });
+
+  useEffect(() => {
+    if (inspectOtherUser) {
+      getDuels();
+    }
+  }, [inspectOtherUser]);
 
   const duels = duelsData?.getDuels || [];
 
@@ -100,7 +106,7 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
     [current]
   );
 
-  if (loading || !data?.getStatistics?.current) {
+  if (duelsLoading || loading || !data?.getStatistics?.current) {
     return <LoadingScreen onClose={onClose} />;
   }
 
