@@ -54,6 +54,9 @@ export interface GetInAppYuniversityCourses_getInAppYuniversityCourses {
   headerImage: GetInAppYuniversityCourses_getInAppYuniversityCourses_headerImage;
   categoryImage: GetInAppYuniversityCourses_getInAppYuniversityCourses_categoryImage | null;
   headerColour: string;
+  headerTitle: string | null;
+  headerLabel: string | null;
+  headerTextColour: string;
   courses: (GetInAppYuniversityCourses_getInAppYuniversityCourses_courses | null)[] | null;
 }
 
