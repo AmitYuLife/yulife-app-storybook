@@ -60,11 +60,6 @@ const ActivityClaimable = (props: IProps) => {
             </View>
           ) : null}
           <View style={styles.titleWrapper}>
-            {isJoined ? (
-              <TextTemplate color={textColour.activity} type={"b2b"} numberOfLines={2}>
-                {`${currentPosition}/${maxLength}`}
-              </TextTemplate>
-            ) : null}
             <Pad width={Style.adjust(4)} />
             <TextTemplate color={textColour.activity} type={isJoined ? "b2" : "b2b"} numberOfLines={2}>
               {activitySubTotal}
