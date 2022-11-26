@@ -20,9 +20,12 @@ import {
 } from "./quests-screen.container.helpers";
 import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_QUEST_MAP } from "@graphql/challenges";
-import { GetQuestMap } from "@graphql/_core/schema";
+import { GetMobileGameWeeklies, GetQuestMap } from "@graphql/_core/schema";
 import { YuniversalQuestsScreen } from "./yuniversal/yuniversal-quest-screen";
 import { QuestsMapContext } from "./quests.context";
+import { GQL_QUERY_GET_GAME_WEEKLIES } from "@graphql/weeklies";
+import { useQueryOnScreenSeen } from "@hooks";
+import { ROUTES } from "@navigation/constants";
 
 function isAvailable(nextAvailableAt: string): boolean {
   const nextAvailable = nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
@@ -108,6 +111,11 @@ function QuestsScreenContainer(props: Props) {
     fetchPolicy: "network-only",
   });
 
+  const [, { loading: weekliesLoading, data: weekliesData }] = useQueryOnScreenSeen<GetMobileGameWeeklies>(
+    GQL_QUERY_GET_GAME_WEEKLIES,
+    ROUTES.quests
+  );
+
   const levelsList = data?.levels || [];
   const formattedData = yuniversalMap
     ? []
@@ -164,8 +172,8 @@ function QuestsScreenContainer(props: Props) {
   const context = {
     activeLevel: getActiveLevel(formattedData),
     formattedLevels: formattedData,
-    weeklies: data?.weeklies,
-    isLoading: loading,
+    weeklies: weekliesData?.getMobileGameWeeklies,
+    isLoading: loading || weekliesLoading,
     levelsList,
     currentLevel,
   };
