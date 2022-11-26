@@ -68,12 +68,16 @@ const YuniversityCoursesScreen: FC<IProps> = ({ headerProps, categoryImageUri, c
   const heading = useMemo(
     () => (
       <>
-        <TextTemplate textAlign="center" numberOfLines={1} type="l2" color={headerTextColor}>
-          {label}
-        </TextTemplate>
-        <TextTemplate textAlign="center" numberOfLines={1} type="b1b" color={headerTextColor}>
-          {title}
-        </TextTemplate>
+        {!label ? null : (
+          <TextTemplate textAlign="center" numberOfLines={1} type="l2" color={headerTextColor}>
+            {label}
+          </TextTemplate>
+        )}
+        {!title ? null : (
+          <TextTemplate textAlign="center" numberOfLines={1} type="b1b" color={headerTextColor}>
+            {title}
+          </TextTemplate>
+        )}
       </>
     ),
     [headerTextColor]

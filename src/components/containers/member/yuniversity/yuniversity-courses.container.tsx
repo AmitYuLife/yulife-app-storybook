@@ -29,14 +29,15 @@ const YuniversityCoursesContainer = () => {
     });
   }, []);
 
-  const { title, headerImage, headerColour, courses, categoryImage } = data?.getInAppYuniversityCourses || {};
+  const { title, headerImage, headerColour, headerTitle, headerLabel, headerTextColour, courses, categoryImage } =
+    data?.getInAppYuniversityCourses || {};
 
   const headerProps = {
-    title: "",
-    label: "",
+    title: headerTitle,
+    label: headerLabel,
     source: { uri: headerImage?.uri },
     backgroundColor: headerColour,
-    headerTextColor: "black",
+    headerTextColor: headerTextColour,
     onLeftIconPress,
   } as IHeaderProps;
 

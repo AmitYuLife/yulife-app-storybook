@@ -14,6 +14,9 @@ export const GQL_QUERY_GET_YUNIVERSITY_COURSES = gql`
         uri
       }
       headerColour
+      headerTitle
+      headerLabel
+      headerTextColour
       courses {
         id
         title
