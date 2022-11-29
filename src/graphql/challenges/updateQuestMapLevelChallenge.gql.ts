@@ -56,6 +56,7 @@ const updateQuestMapLevelChallenge = (levelSlotId: string, payload: ChallengePay
     mutation: GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE,
     variables: { levelSlotId, payload },
     errorPolicy: "ignore",
+    refetchQueries: ["GetQuestMapLevel"],
   });
 
 export default updateQuestMapLevelChallenge;
