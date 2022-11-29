@@ -1,13 +1,13 @@
 
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_22, CUSTOMER_23, CUSTOMER_24, CUSTOMER_19, CUSTOMER_16, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_38, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_44, CUSTOMER_47, CUSTOMER_50, CUSTOMER_MEDITOPIA_2, CUSTOMER_MEDITOPIA_3, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_60, CUSTOMER_61, CUSTOMER_63, CUSTOMER_64, CUSTOMER_66, CUSTOMER_65, CUSTOMER_67, CUSTOMER_68, CUSTOMER_71, CUSTOMER_69, CUSTOMER_70, CUSTOMER_72 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_22, CUSTOMER_23, CUSTOMER_24, CUSTOMER_19, CUSTOMER_16, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_38, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_44, CUSTOMER_47, CUSTOMER_50, CUSTOMER_MEDITOPIA_2, CUSTOMER_MEDITOPIA_3, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_60, CUSTOMER_61, CUSTOMER_63, CUSTOMER_64, CUSTOMER_66, CUSTOMER_65, CUSTOMER_67, CUSTOMER_68, CUSTOMER_71, CUSTOMER_69, CUSTOMER_70, CUSTOMER_72, CUSTOMER_73, CUSTOMER_75, CUSTOMER_76, CUSTOMER_77 } from '../postgres/customers';
 import {
     CHALLENGE_2, CHALLENGE_USER_6_A, CHALLENGE_USER_7_A, CHALLENGE_USER_7_B, CHALLENGE_USER_7_C, CHALLENGE_USER_7_D,
     CHALLENGE_USER_8_B, CHALLENGE_USER_8_A, CHALLENGE_USER_9_B, CHALLENGE_USER_9_A, CHALLENGE_USER_9_C, CHALLENGE_USER_9_D,
     CHALLENGE_USER_9_E, CHALLENGE_USER_9_F, CHALLENGE_USER_14_B, CHALLENGE_USER_14_A, CHALLENGE_USER_14_C, CHALLENGE_USER_14_D,
     CHALLENGE_USER_14_E, CHALLENGE_USER_14_F, CHALLENGE_USER_14_G, CHALLENGE_USER_14_H, CHALLENGE_USER_14_I, CHALLENGE_USER_15_B,
-    CHALLENGE_USER_15_A, CHALLENGE_USER_15_C, CHALLENGE_USER_18_A, CHALLENGE_USER_18_B, CHALLENGE_USER_17_A, CHALLENGE_USER_35_A, CHALLENGE_USER_35_B, CHALLENGE_USER_35_C, CHALLENGE_USER_35_D, CHALLENGE_USER_35_E, CHALLENGE_USER_42_A
+    CHALLENGE_USER_15_A, CHALLENGE_USER_15_C, CHALLENGE_USER_18_A, CHALLENGE_USER_18_B, CHALLENGE_USER_17_A, CHALLENGE_USER_35_A, CHALLENGE_USER_35_B, CHALLENGE_USER_35_C, CHALLENGE_USER_35_D, CHALLENGE_USER_35_E, CHALLENGE_USER_42_A, CHALLENGE_USER_77_A
 } from './challenge';
 
 import moment = require('moment');
@@ -1167,3 +1167,106 @@ export const COIN_LEDGER_35 = {
             currentLevel: 152
         }
     } as IDatabaseItem
+
+    export const COIN_LEDGER_73 = {
+        type: "mongo",
+        modelName: "coinledger",
+        data: {
+            _id: generateRandomMongoId(),
+            customerId: CUSTOMER_73.data.customerId,
+            userId: CUSTOMER_73.data.customerId,
+            transactions: [
+                {
+                    "_id": generateRandomMongoId(),
+                    "coins": 60,
+                    "source": "challenge",
+                    "sourceId": CHALLENGE_USER_17_A.data._id,
+                    "timestamp": CHALLENGE_USER_17_A.data.endDateTime,
+                    "multiplierId": null,
+                    "totalCoins": 260,
+                    "level": 1
+                },
+            ],
+            activeStreakId: "YU_STREAK_001",
+            currentBalance: 360,
+            currentLevel: 2,
+            nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
+        }
+    } as IDatabaseItem
+
+
+export const COIN_LEDGER_75 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: CUSTOMER_75.data.customerId,
+        userId: CUSTOMER_75.data.customerId,
+        transactions: [
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 60,
+                "source": "challenge",
+                "sourceId": CHALLENGE_USER_18_A.data._id,
+                "timestamp": CHALLENGE_USER_18_A.data.endDateTime,
+                "multiplierId": null,
+                "totalCoins": 320,
+                "level": 1
+            },
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 60,
+                "source": "challenge",
+                "sourceId": CHALLENGE_USER_18_B.data._id,
+                "timestamp": CHALLENGE_USER_18_B.data.endDateTime,
+                "multiplierId": null,
+                "totalCoins": 260,
+                "level": 2
+            },
+        ],
+        activeStreakId: "YU_STREAK_001",
+        currentBalance: 320,
+        currentLevel: 4,
+        nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
+    }
+} as IDatabaseItem
+
+export const COIN_LEDGER_76 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        "_id": generateRandomMongoId(),
+        "customerId": CUSTOMER_76.data.customerId,
+        "userId": CUSTOMER_76.data.customerId,
+        "transactions": [{ _id: generateRandomMongoId(), coins: 10, source: "challenge", sourceId: CHALLENGE_2.data._id, timestamp: CHALLENGE_2.data.endDateTime, totalCoins: 210, level: 1 }],
+        "currentBalance": 0,
+        "currentStreak": 0,
+        "currentLevel": 1,
+    }
+} as IDatabaseItem
+
+export const COIN_LEDGER_77 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: CUSTOMER_77.data.customerId,
+        userId: CUSTOMER_77.data.customerId,
+        transactions: [
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 60,
+                "source": "challenge",
+                "sourceId": CHALLENGE_USER_77_A.data._id,
+                "timestamp": CHALLENGE_USER_77_A.data.endDateTime,
+                "multiplierId": null,
+                "totalCoins": 260,
+                "level": 1
+            },
+        ],
+        activeStreakId: "YU_STREAK_001",
+        currentBalance: 360,
+        currentLevel: 2,
+        nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
+    }
+} as IDatabaseItem

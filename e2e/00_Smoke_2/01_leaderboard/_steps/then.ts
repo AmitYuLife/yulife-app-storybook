@@ -118,8 +118,8 @@ export const comparativeUserSeedStatsVisible = (opponentAvSteps: number, myAvSte
     await idVisible(COMPARISON_ACTIVITY("Average steps"), 1000)()
     await idVisible(COMPARISON_ACTIVITY_OPPONENT(opponentAvSteps))() 
     await idVisible(COMPARISON_ACTIVITY_MINE(myAvSteps))()  
-    await idVisible(WINNER(opponentAvSteps))() 
-    await idVisible(SECOND_POSITION(myAvSteps))() 
+    await idVisible(WINNER(myAvSteps))() 
+    await idVisible(SECOND_POSITION(opponentAvSteps))() 
 }
 
 
@@ -127,13 +127,13 @@ export const comparativeUserCyclingMindfulnessStats = (oppAvKm: number, myAvKm: 
     await idVisible(COMPARISON_ACTIVITY("Average cycling"), 1000)()
     await idVisible(COMPARISON_ACTIVITY_OPPONENT(oppAvKm), 1000)() 
     await idVisible(COMPARISON_ACTIVITY_MINE(myAvKm), 1000)()  
-    await idVisible(WINNER(oppAvKm))() 
-    await idVisible(SECOND_POSITION(myAvKm))() 
+    await idVisible(WINNER(myAvKm))() 
+    await idVisible(SECOND_POSITION(oppAvKm))() 
     await idVisible(COMPARISON_ACTIVITY("Average mindfulness"), 1000)()
     await idVisible(COMPARISON_ACTIVITY_OPPONENT(oppAvMins), 1000)() 
     await idVisible(COMPARISON_ACTIVITY_MINE(myAvMins), 1000)() 
-    await idVisible(WINNER(oppAvMins))() 
-    await idVisible(SECOND_POSITION(myAvMins))() 
+    await idVisible(WINNER(myAvMins))() 
+    await idVisible(SECOND_POSITION(oppAvKm))() 
     await textVisible(`${oppAvKm} km`)() 
     await textVisible(`${myAvKm} km`)() 
     await textVisible(`${oppAvMins} min`)() 
@@ -153,9 +153,9 @@ export const mySeedStatsVisible = async () => {
     await idVisible(COMPARISON_NAMES("You"), 1000)()
     await idVisible(USER_YUMOJI_AVATAR, 1000)()
     await idVisible(COMPARISON_ACTIVITY("Average steps"), 1000)()
-    await idVisible(AV_STATS(322), 1000)() 
+    await idVisible(AV_STATS(333), 1000)() 
     await idVisible(COMPARISON_ACTIVITY("Average cycling"), 1000)()
-    await idVisible(AV_STATS(0.1), 1000)()
+    await idVisible(AV_STATS(1), 1000)()
 }
 
 
@@ -204,16 +204,25 @@ export const challengeSomebodyButtonVisible = async () => {
 
 export const myMindfulnessDataVisible = async () => {
     await idVisible(COMPARISON_ACTIVITY("Average mindfulness"), 1000)()
-    await idVisible(AV_STATS(0), 1000)()
+    await idVisible(AV_STATS(3), 1000)()
 }
 
-export const stepsComparativeDrawResults = (opponentAvSteps: number, myAvSteps: number) => async () => {
-    await idVisible(COMPARISON_ACTIVITY("Average steps"), 1000)()
-    await idVisible(COMPARISON_ACTIVITY_OPPONENT(opponentAvSteps))() 
-    await idVisible(COMPARISON_ACTIVITY_MINE(myAvSteps))()  
-    await idVisibleAtIndex(DRAW(opponentAvSteps), 0)() 
-    await idVisibleAtIndex(DRAW(myAvSteps), 1)() 
+export const minsComparativeDrawResults = (opponentAvMinduflness: number, myAvMindfulness: number) => async () => {
+    await idVisible(COMPARISON_ACTIVITY("Average mindfulness"), 1000)()
+    await idVisible(COMPARISON_ACTIVITY_OPPONENT(opponentAvMinduflness))() 
+    await idVisible(COMPARISON_ACTIVITY_MINE(myAvMindfulness))()  
+    await idVisibleAtIndex(DRAW(opponentAvMinduflness), 0)() 
+    await idVisibleAtIndex(DRAW(myAvMindfulness), 1)() 
 }
+
+export const cyclingComparativeDrawResults = (opponentAvCycling: number, myAvCycling: number) => async () => {
+    await idVisible(COMPARISON_ACTIVITY("Average mindfulness"), 1000)()
+    await idVisible(COMPARISON_ACTIVITY_OPPONENT(opponentAvCycling))() 
+    await idVisible(COMPARISON_ACTIVITY_MINE(myAvCycling))()  
+    await idVisibleAtIndex(DRAW(opponentAvCycling), 0)() 
+    await idVisibleAtIndex(DRAW(myAvCycling), 1)() 
+}
+
 
 export const winStreakVisible = (winStreak: number) => async () => {
     await idVisible(INSPECT_ACTIVITY("Win streak"))()

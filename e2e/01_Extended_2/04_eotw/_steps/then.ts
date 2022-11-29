@@ -12,9 +12,6 @@ export const {
 } = navigation.common
 
 export const {
-} = screens.streaks
-
-export const {
     onChallengeComplete,
     onMeditationChallengeComplete
 } = screens.challenges
@@ -22,6 +19,11 @@ export const {
 export const {
     swipeFromText
 } = navigation.scrolling
+
+export const {
+
+    onCreateAvatarScreen,
+} = screens.yuscreen
 
 
 export const mountainChestMessageVisible = () => async () => {
@@ -126,7 +128,7 @@ export const celestialChestEarned = async () => {
 } 
 
 export const celestialChestAwardsVisible = (user: typeof USER_1) => async () => {
-    const yuCoinEarnt = user.data.earnRate * 200
+    const yuCoinEarnt = user.data.earnRate * 100
 
     await textVisible("You have earned")()
     await idVisible(CELESTIAL_CARD("Weekly\nQuest"))() 

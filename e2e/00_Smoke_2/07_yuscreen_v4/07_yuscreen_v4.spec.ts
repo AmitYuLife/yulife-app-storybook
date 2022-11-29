@@ -3,14 +3,14 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as then from "./_steps/then"
 import * as when from "./_steps/when"
-import {  CUSTOMER_43, AUTH_43, CUSTOMER_44, AUTH_44, CUSTOMER_45, AUTH_45, CUSTOMER_46, AUTH_46, CUSTOMER_48, AUTH_48, CUSTOMER_49, AUTH_49, CUSTOMER_51, AUTH_51, CUSTOMER_53, AUTH_53, CPE_48_WELLBEING } from "@data";
-import { AVATAR_ITEM, RIGHT_STATUS_ICON, BACKGROUND_COLOUR_PRODUCT, ONBOARDING_SCREEN, YUCOIN_POWER, TEXT_TEMPLATE } from "@ids"
+import {  CUSTOMER_43, AUTH_43, CUSTOMER_44, AUTH_44, CUSTOMER_45, AUTH_45, CUSTOMER_46, AUTH_46, CUSTOMER_48, AUTH_48, CUSTOMER_49, AUTH_49, CUSTOMER_51, AUTH_51, CUSTOMER_53, AUTH_53, CPE_48_WELLBEING, CUSTOMER_73, AUTH_73 } from "@data";
+import { AVATAR_ITEM, RIGHT_STATUS_ICON, BACKGROUND_COLOUR_PRODUCT, ONBOARDING_SCREEN, YUCOIN_POWER, TEXT_TEMPLATE, YUSCREEN_AVATAR, SURVEY_SCREEN, SURVEY_TEXT_BOX, CHECK_BOX_STATE } from "@ids"
 
 
 import * as helper from "./_steps/helpers"
 
 
-Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () => {
+Feature("I am able to use the yuscreen v4, create a yumoji and see my correct product slot details", async () => {
     Scenario("I can create my Yumoji on new Yuscreen V4 and see no product state/no pli product slot as I am permanently rejected", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_43, AUTH_43), async () => {
             helper.ONBOARDING_YUSCREEN("wellbeing only", "10")
@@ -91,4 +91,5 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
             helper.YUSCREEN_V4(CUSTOMER_53, "0EarnRateSlot", "1")
         })
     })
+
 })

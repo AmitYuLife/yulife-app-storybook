@@ -29,7 +29,8 @@ export const {
     onSurveySubmitScreen,
     onPackageScreen,
     packageScreenCorrect,
-    onYuscreenV4
+    onYuscreenV4,
+    onSkinToneScreen,
 } = screens.yuscreen
 
 export const {

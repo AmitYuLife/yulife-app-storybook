@@ -1,10 +1,10 @@
-import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_69, AUTH_69, CUSTOMER_70, AUTH_70, USER_70 } from "@data";
-import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, QUESTS_SCREEN_YUNIVERSAL, DAILY_STEPS_SCREEN, WELLDONE_BANNER, CELESTIAL_CHEST_SCREEN, SPACE_TRAVEL_SCREEN, YUSCREEN, TEXT_TEMPLATE, USER_LEVEL, LEVEL_STAR_COUNT } from "@ids";
+import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, QUESTS_SCREEN_YUNIVERSAL, DAILY_STEPS_SCREEN, WELLDONE_BANNER, CELESTIAL_CHEST_SCREEN, SPACE_TRAVEL_SCREEN, YUSCREEN, TEXT_TEMPLATE, USER_LEVEL, LEVEL_STAR_COUNT, V4_YUSCREEN, YUMOJI_AVATAR_YUSCREEN_V4 } from "@ids";
 
 Feature("End of the world/Yuniverse", async () => {
     Scenario("I complete level 200, enter EOTW with a yucoin surge of 2 and take 4 challenges at level 1", scenario.start, () => {
@@ -177,11 +177,15 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left)"))
         })
         When("I go to the yu tab", when.tapID(NAV_BAR("yu")), async () => {
-            Then("I should see my fullname", then.textVisible(`${CUSTOMER_70.data.fullName}`))
-            Then("I should see I am in the Yuniversal world", then.textVisible("Yuniversal"))
+            When("I tap Check out my power", when.tapText("Check out my power"), async () => {
+                Then("I should be on the create Yumoji screen", then.onCreateAvatarScreen)
+            })
         })
         When("I create my yumoji", when.createDefaultYumoji, async () => {
-            Then("I am back on the yuscreen", then.idVisible(YUSCREEN))
+            Then("I should be on the yuscreen v4", then.idVisible(V4_YUSCREEN))
+            Then("I should see my Yumoji", then.idVisible(YUMOJI_AVATAR_YUSCREEN_V4))
+            Then("I should see my fullname", then.textVisible(`${CUSTOMER_70.data.fullName}`))
+            Then("I should see I am in the Yuniversal world", then.textVisible("Yuniversal"))
         })
         When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
             When("I tap take a challenge", when.tapText("Take a challenge (4 left)"), async () => {
@@ -218,7 +222,7 @@ Feature("End of the world/Yuniverse", async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 When("I tap done", when.tapText("Done"), async () => {
                     Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
-                    Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(19006)))
+                    Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(18406)))
                 })
             })
         })
@@ -234,7 +238,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("brisk walk", 800), async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
-                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(19036)))
+                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(18436)))
             })
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
@@ -249,7 +253,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I complete a long walk challenge at level 201", when.selectAndCompleteWalkingChallenge("long walk", 2000), async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
-                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(19066)))
+                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(18466)))
             })
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
@@ -265,7 +269,7 @@ Feature("End of the world/Yuniverse", async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 Then("I should see the level 201 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
                 Then("I should see level 201 has 3 stars", then.idVisible(LEVEL_STAR_COUNT(3)))
-                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(19078)))
+                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(18478)))
             })
         })
         When("I tap level 201", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
