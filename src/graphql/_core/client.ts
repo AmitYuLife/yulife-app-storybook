@@ -98,9 +98,21 @@ const defaultHeaders = {
   apollo_client_name: `react_native_${Platform.OS}`,
 };
 
+// apollo_client name allows us to easily idenfiy the source of the request
+// device_id is present on front-end bugsnag reports in device.id, so we can match it up to back-end logs
+const requestIdPrefix = `${defaultHeaders.apollo_client_name}_${defaultHeaders.device_id}`;
+
+// use a request counter to ensure uniqueness for closely batched requests
+let requestCount = 0;
+
 const authMiddleware = setContext(async (_, { headers }) => {
   // get the authentication token from async storage if it exists
   const token = await getToken();
+
+  // We want to append the prefix with the current milliseconds to make the request ID unique
+  const requestId = `${requestIdPrefix}_${moment().milliseconds()}_${requestCount}`;
+
+  requestCount++;
 
   // return the headers to the context so httpLink can read them
   return {
@@ -112,6 +124,7 @@ const authMiddleware = setContext(async (_, { headers }) => {
       date: moment().format(DATE_FORMAT_WITH_TZ),
       yu_client_token: Config.YU_CLIENT_TOKEN,
       yu_locale: getLocale(),
+      [`x-request-id`]: requestId,
     },
   };
 });
