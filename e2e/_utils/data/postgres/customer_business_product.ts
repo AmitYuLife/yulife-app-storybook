@@ -1,7 +1,7 @@
 import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import { BUSINESS_PRODUCT_3, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GDental } from "./business_product"
-import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_53 } from "./customers"
-import { CPE_31, CPE_32_GCI, CPE_32_GIP, CPE_32_RGL, CPE_33_GCI, CPE_33_GIP, CPE_33_RGL, CPE_34_GCI, CPE_34_GIP, CPE_34_RGL, CPE_43_WELLBEING, CPE_48_GCI, CPE_48_GIP, CPE_48_RGL, CPE_48_WELLBEING, CPE_49_GCI, CPE_49_GIP, CPE_49_RGL, CPE_49_WELLBEING, CPE_51_GDent, CPE_53_GIP} from "./customer_product_entity"
+import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_53, CUSTOMER_74 } from "./customers"
+import { CPE_31, CPE_32_GCI, CPE_32_GIP, CPE_32_RGL, CPE_33_GCI, CPE_33_GIP, CPE_33_RGL, CPE_34_GCI, CPE_34_GIP, CPE_34_RGL, CPE_43_WELLBEING, CPE_48_GCI, CPE_48_GIP, CPE_48_RGL, CPE_48_WELLBEING, CPE_49_GCI, CPE_49_GIP, CPE_49_RGL, CPE_49_WELLBEING, CPE_51_GDent, CPE_53_GIP, CPE_74} from "./customer_product_entity"
 import moment = require('moment');
 
 const type = "postgres"
@@ -342,3 +342,20 @@ export const CGP_53_GIP = {
         }
     }
 } as IDatabaseItem
+
+export const CGP_74 = {
+    type,
+    modelName,
+    data:{
+        business_product_id: BUSINESS_PRODUCT_3.product.data.product_id,
+        customer_product_id: CPE_74.data.customer_product_id,
+        category_id: 1,
+        start_date: moment().subtract(3, "months").toDate(),
+        data:{
+            salary: 60000,
+            country: "UK",
+            date_of_birth: CUSTOMER_74.data.date_of_birth
+        }
+    }
+} as IDatabaseItem
+

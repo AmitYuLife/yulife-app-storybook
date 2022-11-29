@@ -47,10 +47,13 @@ export const triggerAppUpdateState = async (): Promise<void> => {
 }
 
 export const createDefaultYumoji = async () => {
-    await tapText("Create your Yumoji")()
     await tapID(MALE_BODY)()
     await tapText("Continue")()
     await tapText("Save")()
     await tapText("Save changes")()
     await tapText("Done")()
+}
+
+export const tapIllDoThisLater = async () => {
+    await tapText("I'll do this later")()
 }

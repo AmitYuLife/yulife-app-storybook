@@ -27,7 +27,7 @@ export const YumojiAndSlots: FC<Props> = memo(({ productSlots, yumojiPrompt }) =
   const { yumojiRemoteUrl } = useContext(YuScreenContext);
 
   return (
-    <View style={styles.wrapper} testID={YUMOJI_AVATAR_YUSCREEN_V4}>
+    <View style={styles.wrapper}>
       <YumojiAvatar uri={yumojiRemoteUrl} yumojiPrompt={yumojiPrompt} />
       <View style={styles.slotsWrapper}>
         <YuCoinPower />
@@ -45,7 +45,7 @@ const YumojiAvatar: FC<YumojiAvatarProps> = ({ uri, yumojiPrompt }) => {
   const YumojiWrapper = uri ? TouchableOpacityWithDelay : View;
 
   return (
-    <View style={styles.yumojiWrapper}>
+    <View style={styles.yumojiWrapper} testID={YUMOJI_AVATAR_YUSCREEN_V4}>
       <YumojiWrapper onPress={uri ? navigateToYumojiBuilder : null}>
         <Yumoji
           emptyHeight={AVATAR_HEIGHT}

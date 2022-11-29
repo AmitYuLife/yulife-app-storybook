@@ -1,5 +1,5 @@
 
-import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22, CUSTOMER_24, CUSTOMER_19, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_ALPHA, CUSTOMER_34, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_43, CUSTOMER_44, CUSTOMER_45, CUSTOMER_46, CUSTOMER_48, CUSTOMER_49, CUSTOMER_50, CUSTOMER_51, CUSTOMER_53, CUSTOMER_MEDITOPIA_1, CUSTOMER_MEDITOPIA_2, CUSTOMER_MEDITOPIA_3, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_PLI_6, CUSTOMER_PLI_7, CUSTOMER_PLI_9, CUSTOMER_PLI_10, CUSTOMER_DENTAL_1, CUSTOMER_47, CUSTOMER_52, CUSTOMER_60, CUSTOMER_61, CUSTOMER_63, CUSTOMER_64, CUSTOMER_66, CUSTOMER_65, CUSTOMER_67, CUSTOMER_68, CUSTOMER_69, CUSTOMER_70, CUSTOMER_71, CUSTOMER_72 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22, CUSTOMER_24, CUSTOMER_19, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_ALPHA, CUSTOMER_34, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_43, CUSTOMER_44, CUSTOMER_45, CUSTOMER_46, CUSTOMER_48, CUSTOMER_49, CUSTOMER_50, CUSTOMER_51, CUSTOMER_53, CUSTOMER_MEDITOPIA_1, CUSTOMER_MEDITOPIA_2, CUSTOMER_MEDITOPIA_3, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_PLI_6, CUSTOMER_PLI_7, CUSTOMER_PLI_9, CUSTOMER_PLI_10, CUSTOMER_DENTAL_1, CUSTOMER_47, CUSTOMER_52, CUSTOMER_60, CUSTOMER_61, CUSTOMER_63, CUSTOMER_64, CUSTOMER_66, CUSTOMER_65, CUSTOMER_67, CUSTOMER_68, CUSTOMER_69, CUSTOMER_70, CUSTOMER_71, CUSTOMER_72, CUSTOMER_73, CUSTOMER_74, CUSTOMER_75, CUSTOMER_76, CUSTOMER_77 } from '../postgres/customers';
 import { allTogglesTrue, allTogglesTrueFor_PLI, mediaContentToggle, allTogglesTrueFor_PLI_V4, DEFAULT_TOGGLES } from "./_templates";
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5 } from "../postgres/business";
@@ -470,7 +470,7 @@ export const CUSTOMER_31_TOGGLES = {
         userId: CUSTOMER_31.data.customerId,
         features: {
             ...DEFAULT_TOGGLES.data.features,
-            yuScreenV3: true
+            yuScreenV3: true,
         }
     }
 } as IDatabaseItem
@@ -485,7 +485,8 @@ export const CUSTOMER_32_TOGGLES = {
         features: {
             ...DEFAULT_TOGGLES.data.features,
             yuScreenV3: true,
-            hasBeneficiariesEnabled: true
+            hasBeneficiariesEnabled: true,
+            yuScreenV4: false,
         }
     }
 } as IDatabaseItem
@@ -499,7 +500,9 @@ export const CUSTOMER_33_TOGGLES = {
         features: {
             ...DEFAULT_TOGGLES.data.features,
             yuScreenV3: true,
-            hasBeneficiariesEnabled: true
+            hasBeneficiariesEnabled: true,
+            yuScreenV4: false,
+
         }
     }
 } as IDatabaseItem
@@ -517,7 +520,7 @@ export const CUSTOMER_34_TOGGLES = {
             showCommunityGoals: true,
             "showGoals": true,
             useCoreChallengesService: true,
-            useActiveChallengesService: true
+            useActiveChallengesService: true,
         }
     }
 } as IDatabaseItem
@@ -531,7 +534,8 @@ export const CUSTOMER_ALPHA_TOGGLES = {
         userId: CUSTOMER_ALPHA.data.customerId,
         features: {
             ...DEFAULT_TOGGLES.data.features,
-            yuScreenV3: true
+            yuScreenV3: true,
+            yuScreenV4: false,
         }
     }
 } as IDatabaseItem
@@ -1305,5 +1309,106 @@ export const CUSTOMER_72_TOGGLES = {
             passiveCyclingEnabled: true,
             showFiit: true,
         },
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_73_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_73.data.customerId,
+        features: {
+            ...allTogglesTrue.data.features,
+            "yuScreenV3": true,
+            yuScreenV4: false,
+        }
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_74_TOGGLES = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_74.data.customerId,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
+            yuScreenV3: true,
+            yuScreenV4: false,
+        }
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_75_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_75.data.customerId,
+        features: 
+        {
+            ...DEFAULT_TOGGLES.data.features,
+            hideSmartHealthScreen: false,
+            hideYuMatterScreen: true,
+            showDuels: true,
+            yuScreenV3: true,
+            yuScreenV4: false,
+        }  
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_76_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_76.data.customerId,
+        features: {
+            showStats: true,
+            "statsShowCoinGeneralTotalYearned": true,
+            "statsShowCoinRecommendationCard": true,
+            "statsShowCoinGeneralTotalRedeemedCard": true,
+            "statsShowCoinAchievementCard": true,
+            "statsShowChallengeGeneralCard": true,
+            "statsShowChallengeRecommendationCard": true,
+            "statsShowChallengeComparisonCard": true,
+            "statsShowStepsRecommendationCard": true,
+            "statsShowStepsGeneralCard": true,
+            "statsShowStepsBestScoreCard": true,
+            "statsShowStepsGraphCard": true,
+            "statsShowMindfulnessRecommendationCard": true,
+            "statsShowMindfulnessGeneralCard": true,
+            "statsShowMindfulnessBestScoreCard": true,
+            "statsShowMindfulnessGraphCard": true,
+            "statsShowCyclingRecommendationCard": true,
+            "statsShowCyclingGeneralCard": true,
+            "statsShowCyclingBestScoreCard": true,
+            "statsShowCyclingGraphCard": true,
+            "showSettings": true,
+            "showNotifications": true,
+            "showTodayEarningsScreen": true,
+            "showGoals": true,
+            "yuScreenV3": true,
+            "showPermissionSettings": true,
+            yuScreenV4: false,
+        }
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_77_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_77.data.customerId,
+        features: {
+        ...DEFAULT_TOGGLES.data.features,
+            hideSmartHealthScreen: false,
+            hideYuMatterScreen: true,
+            showDuels: true,
+            yuScreenV3: true,
+            yuScreenV4: false,
+        }
     }
 } as IDatabaseItem

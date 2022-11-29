@@ -222,10 +222,10 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("I should see the Activity section heading", then.activitySectionHeadingVisible)
         })
         When("I scroll to the Activity data section", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.3), async () => {
-            Then("I should see the yumoji avatars and the comparative activity stats between me and Michael", then.comparativeUserSeedStatsVisible(400, 322))
+            Then("I should see the yumoji avatars and the comparative activity stats between me and Michael", then.comparativeUserSeedStatsVisible(26, 333))
         })
         When("I scroll down", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.6), async () => {
-            Then("I should see the average cycling and mindfulness comparative data", then.comparativeUserCyclingMindfulnessStats(4, 0.1, 16, 0))
+            Then("I should see the average cycling and mindfulness comparative data", then.comparativeUserCyclingMindfulnessStats(0.1, 1, 0, 3))
         })
     })
 
@@ -262,10 +262,10 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("I should see the Activity section heading", then.activitySectionHeadingVisible)
         })
         When("I scroll to the Activity data section", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.3), async () => {
-            Then("I should see the yumoji avatars and the comparative walking activity stats between me and Michael", then.comparativeUserStatsVisible(400, 806))
+            Then("I should see the yumoji avatars and the comparative walking activity stats between me and Michael", then.comparativeUserStatsVisible(26, 833))
         })
         When("I scroll down", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.6), async () => {
-            Then("I should see the average cycling and mindfulness comparative data", then.comparativeUserCyclingMindfulnessStats(4, 0.4, 16, 1))
+            Then("I should see the average cycling and mindfulness comparative data", then.comparativeUserCyclingMindfulnessStats(0.1, 1.3, 0, 3))
         })
     })
 
@@ -374,7 +374,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I scroll down to the challenge button", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.2), async () => {
             When("I scroll to the Challenge statistics section", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.3), async () => {
                 When("I scroll to the Activity data section", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.3), async () => {
-                    Then("I should see the draw state step results", then.stepsComparativeDrawResults(400, 400))
+                    Then("I should see the draw state cycling results", then.cyclingComparativeDrawResults(0.1, 0.1))
+                    Then("I should see the draw state mindfulness results", then.minsComparativeDrawResults(0, 0))
                 })
             })
         })

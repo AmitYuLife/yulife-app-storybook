@@ -1,11 +1,15 @@
 import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_18, CUSTOMER_16, CUSTOMER_17, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_40, CUSTOMER_47, CUSTOMER_50, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_66, CUSTOMER_65, CUSTOMER_71, CUSTOMER_72 } from "../postgres/customers";
+import { CUSTOMER_18, CUSTOMER_16, CUSTOMER_17, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_40, CUSTOMER_47, CUSTOMER_50, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_66, CUSTOMER_65, CUSTOMER_71, CUSTOMER_72, CUSTOMER_73, CUSTOMER_75, CUSTOMER_77 } from "../postgres/customers";
 
 const LEADERBOARD_1_ID = generateRandomPostgresId()
 const LEADERBOARD_2_ID = generateRandomPostgresId() + "ABCDEF"
 const LEADERBOARD_3_ID = generateRandomPostgresId() + "GHIJKL"
 const LEADERBOARD_4_ID = generateRandomPostgresId() + "MNOPQR"
 const LEADERBOARD_5_ID = generateRandomPostgresId() + "STUVWX"
+const LEADERBOARD_6_ID = generateRandomPostgresId() + "YZABCD"
+const LEADERBOARD_7_ID = generateRandomPostgresId() + "EFGHIJ"
+
+
 
 
 
@@ -361,6 +365,50 @@ export const USER_72_LEADERBOARD = {
         userId: CUSTOMER_72.data.customerId,
         name: USER_54_LEADERBOARD.data.name,
         creatorName: CUSTOMER_54.data.firstName,
+        consent: true,
+        primaryBusinessLeaderboard: true,
+        hasAccepted: true,
+    }
+} as IDatabaseItem
+
+export const USER_73_LEADERBOARD = {
+    type: "mongo",
+    modelName: "user_leaderboards",
+    data: {
+        leaderboardId: LEADERBOARD_1_ID,
+        userId: CUSTOMER_73.data.customerId,
+        name: USER_18_LEADERBOARD.data.name,
+        creatorName: CUSTOMER_18.data.firstName,
+        consent: true,
+        primaryBusinessLeaderboard: true,
+        hasAccepted: true,
+    }
+} as IDatabaseItem
+
+export const USER_75_LEADERBOARD = {
+    type: "mongo",
+    modelName: "user_leaderboards",
+    data: {
+        leaderboardId: LEADERBOARD_6_ID,
+        userId: CUSTOMER_75.data.customerId,
+        name: "LB6",
+        creatorName: CUSTOMER_75.data.firstName,
+        consent: true,
+        primaryBusinessLeaderboard: true,
+        hasAccepted: true,
+        days: 30,
+        isCreatedByCurrentUser: true
+    }
+} as IDatabaseItem
+
+export const USER_77_LEADERBOARD = {
+    type: "mongo",
+    modelName: "user_leaderboards",
+    data: {
+        leaderboardId: LEADERBOARD_7_ID,
+        userId: CUSTOMER_77.data.customerId,
+        name: "LB7",
+        creatorName: CUSTOMER_77.data.firstName,
         consent: true,
         primaryBusinessLeaderboard: true,
         hasAccepted: true,

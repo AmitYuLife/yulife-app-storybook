@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { showYuCoinPowerExplainedOverlay } from "../../navigation/showYuCoinPowerExplainedOverlay";
 import FastImage from "react-native-fast-image";
+import { YUCOIN_POWER_V4_SCREEN } from "@ids";
 
 interface Props {
   pressable?: boolean;
@@ -30,7 +31,7 @@ const Yc = () => {
   const earnRate = useSelector(getUserEarnRate);
 
   return (
-    <View style={styles.ycWrapper}>
+    <View style={styles.ycWrapper} testID={YUCOIN_POWER_V4_SCREEN(earnRate)}>
       <Text bold={true} style={styles.ycPowerVal}>
         {earnRate}
       </Text>

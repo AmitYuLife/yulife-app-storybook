@@ -1,52 +1,45 @@
-import {navigation} from "@utils"
+import { AVATAR_ITEM, navigation, EARN_RATE, YUCOIN_TITLE } from "@utils"
 import { screens } from "@appScreens"
-import { AVATAR_ITEM, RIGHT_STATUS_ICON, BACKGROUND_COLOUR_PRODUCT, EARN_RATE, YUCOIN_TITLE } from "@ids"
+import { addCommasToNumber } from "_utils/appScreens/rewards"
+
 
 export const {
     idVisible,
-    idNotVisible,
     textVisible,
+    idNotVisible,
     textNotVisible,
-    expectIsVisibleViaID,
     expectIsVisibleViaText,
-    multipleTextVisible,
-    idVisibleAtIndex,
-    textVisibleAtIndex
+    textVisibleAtIndex,
+    multipleTextVisible
 } = navigation.common
 
 export const {
+    onYuscreenV3,
+    onProductDetails,
+    onCertificate,
     onEmptyYuscreen,
     onYuscreen,
     onCreateAvatarScreen,
-    onAvatarBuilder,
-    onAvatarCompletionScreen,
-    onYourYuCoin,
-    avatarBodyVisible,
-    avatarBodyVisibleWithUser,
-    leaderboardAvatarVisible,
-    personalProductsVisible,
-    onSurveyScreen,
-    onSurveySubmitScreen,
-    onPackageScreen,
-    packageScreenCorrect,
-    onYuscreenV4,
     onSkinToneScreen,
-    onFacialHairScreen
+    onAvatarCompletionScreen,
+    onFacialHairScreen,
+    onSurveySubmitScreen
 } = screens.yuscreen
 
 export const {
-    swipeToID,
-    swipeFromText
+    scrollUntilTextVisible,
 } = navigation.scrolling
+
+export const alphaProductsNotVisible = async()=>{
+    await expect(element(by.id(AVATAR_ITEM("compass", "active")))).toBeNotVisible()
+    await expect(element(by.id(AVATAR_ITEM("binoculars", "active")))).toBeNotVisible()
+    await expect(element(by.id(AVATAR_ITEM("map", "active")))).toBeNotVisible()
+}
 
 export const avatarItemVisible = (avatarItem: string, status: string) => async () => {
     await idVisible(AVATAR_ITEM(`https://yulife-develop.imgix.net/yuscreen_products_assets/default/${avatarItem}`, status))
 }
 
-export const {
-    onTodaysYucoin,
-    onDailySteps,
-} = screens.dailySteps
 
 export const yuCoinPowerInfo = (yuCoinPower: string, earnRate: number) => async () => {
 

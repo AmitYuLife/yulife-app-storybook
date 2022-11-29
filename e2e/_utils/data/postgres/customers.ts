@@ -1139,3 +1139,76 @@ export const CUSTOMER_72 = {
         fullName: "Jamie Lannister"
     }
 } as IDatabaseItem
+
+export const CUSTOMER_73 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Tywin",
+        lastName: "Lannister",
+        dateOfBirth: moment().subtract(33, "years").toDate(),
+        status: "onboarded",
+        fullName: "Tywin Lannister"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_74 = {
+    type,
+    modelName,
+    data:{
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "TV",
+        lastName: "Man",
+        dateOfBirth: moment().subtract(40, "years").toDate(),
+        status: "onboarded",
+        fullName: "TV Man"
+    } 
+} as IDatabaseItem
+
+export const CUSTOMER_75 = {
+    type,
+    modelName,
+    data:{
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Microwave",
+        lastName: "Woman",
+        dateOfBirth: moment().subtract(40, "years").toDate(),
+        status: "onboarded",
+        fullName: "Microwave Woman"
+    } 
+} as IDatabaseItem
+
+export const CUSTOMER_76 = {
+    type,
+    modelName,
+    data:{
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Table",
+        lastName: "Chairman",
+        dateOfBirth: moment().subtract(40, "years").toDate(),
+        status: "onboarded",
+        fullName: "Table Chairman"
+    } 
+} as IDatabaseItem
+
+export const CUSTOMER_77 = {
+    type,
+    modelName,
+    data:{
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Plant",
+        lastName: "Potter",
+        dateOfBirth: moment().subtract(40, "years").toDate(),
+        status: "onboarded",
+        fullName: "Plant Potter"
+    } 
+} as IDatabaseItem
+
+
+

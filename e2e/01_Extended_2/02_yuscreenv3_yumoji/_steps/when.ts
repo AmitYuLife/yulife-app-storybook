@@ -1,14 +1,15 @@
-import { navigation, CATEGORY_TYPE, YUMOJI_PART_ID, COLOUR, YUSCREEN, YUCOIN_POWER, AVATAR_BUILDER_LIST, YUSCREEN_AVATAR, HEAD_TYPE, AVATAR_ITEM, TEXT_TEMPLATE, MALE_BODY } from "@utils"
+import { navigation } from "@utils"
+import { BENEFICIARY_CONTINUE, INPUT_BENEFICIARY_DETAIL, AVATAR_ITEM, AVATAR_BUILDER_LIST, COLOUR, CATEGORY_TYPE, YUMOJI_PART_ID, MALE_BODY } from "@ids"
 
 
 export const {
     scrollFromText,
     scrollFromID,
-    swipeToID,
     swipeToText,
     scrollUntilTextVisible,
     scrollUntilIdVisible,
-    swipeFromText
+    scrollFromIDMultiple,
+    scrollToAndTapText
 } = navigation.scrolling
 
 export const {
@@ -17,17 +18,31 @@ export const {
     tapID,
     typeViaID,
     replaceTextViaID,
-    textVisible,
-    idVisible,
+    tapTextWithParentID,
+    tryTapID,
+    tryTapText,
     wait,
-    tapIDAtPoint,
-    tapIDAtIndex,
-    textNotVisible
+    clearFieldByID,
+    textVisible
 } = navigation.common
+
+export const addBeneficiary = (firstName: string, lastName: string, phone: string, relation: string) => async () => {
+    await typeViaID(INPUT_BENEFICIARY_DETAIL("First name"), firstName)()
+    await typeViaID(INPUT_BENEFICIARY_DETAIL("Last name"), lastName)()
+    await typeViaID(INPUT_BENEFICIARY_DETAIL("Phone number"), phone)()
+    await typeViaID(INPUT_BENEFICIARY_DETAIL("Relation"), relation)()
+    await tapID(BENEFICIARY_CONTINUE)()
+}
 
 export const tapAvatarItem = (avatarItem: string, status: string) => async () => {
     const item = element(by.id(AVATAR_ITEM(`https://yulife-develop.imgix.net/yuscreen_products_assets/default/${avatarItem}`, status)))
     await item.tap()
+}
+
+export const tapColour = (hexValue: string) => async () => {
+    await scrollUntilIdVisible(AVATAR_BUILDER_LIST, COLOUR(hexValue), "down")()
+    const colour = element(by.id(COLOUR(hexValue)))
+    await colour.tap()
 }
 
 export const tapTab = (tabName: string) => async () => {
@@ -39,12 +54,6 @@ export const tapItem = (partID: string) => async () => {
     await scrollUntilIdVisible(AVATAR_BUILDER_LIST, YUMOJI_PART_ID(partID), "down")()
     const item = element(by.id(YUMOJI_PART_ID(partID)))
     await item.tap()
-}
-
-export const tapColour = (hexValue: string) => async () => {
-    await scrollUntilIdVisible(AVATAR_BUILDER_LIST, COLOUR(hexValue), "down")()
-    const colour = element(by.id(COLOUR(hexValue)))
-    await colour.tap()
 }
 
 export const editYumoji = (skinTone: string, hairStyle: string, hairColour: string, facialHair: string, facialHairColour: string, eyeColour: string, accessories: string) => async () => {

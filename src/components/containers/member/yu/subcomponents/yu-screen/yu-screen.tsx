@@ -17,6 +17,7 @@ import { useOnboardingDismissalHandler } from "../../hooks/useOnboardingDismissa
 import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { Image } from "@atoms";
+import { ONBOARDING_SCREEN_V4, V4_YUSCREEN } from "@ids";
 
 interface Props {
   componentId: string;
@@ -42,7 +43,12 @@ export const YuScreen = memo(({ componentId }: Props) => {
 
   if (showOnboarding) {
     return (
-      <YuScreenLayout fullHeight={true} hasWhiteBackground={false} topBarType={TOP_BAR_TYPES.WHITE}>
+      <YuScreenLayout
+        fullHeight={true}
+        hasWhiteBackground={false}
+        topBarType={TOP_BAR_TYPES.WHITE}
+        testID={ONBOARDING_SCREEN_V4}
+      >
         <YuScreenSkeleton />
         <Onboarding onDismiss={dismissOnboarding} onboarding={onboarding} productSlots={productSlots} />
       </YuScreenLayout>
@@ -50,7 +56,7 @@ export const YuScreen = memo(({ componentId }: Props) => {
   }
 
   return (
-    <YuScreenLayout>
+    <YuScreenLayout testID={V4_YUSCREEN}>
       <NameAndLevel useWorldColor={true} hideWorldIcon={true} />
       <YumojiAndSlots productSlots={productSlots} yumojiPrompt={yumojiPrompt} />
       {productCarousel ? <Carousel heading={productCarousel.heading} items={productCarousel.items} /> : null}
