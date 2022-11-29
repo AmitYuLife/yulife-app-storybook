@@ -46,6 +46,7 @@ export const WeeklyQuestsModal = memo(({ onClose }: IFloatingModalContentProps) 
   ]);
   const { data, loading: weekliesLoading } = useQuery<GetMobileGameWeeklies>(GQL_QUERY_GET_GAME_WEEKLIES, {
     fetchPolicy: "no-cache",
+    notifyOnNetworkStatusChange: true,
   });
   const [claim, { loading: claimLoading }] = useMutation<ClaimWeeklies, ClaimWeekliesVars>(
     GQL_MUTATION_CLAIM_WEEKLY_GAME_REWARDS,
@@ -64,7 +65,7 @@ export const WeeklyQuestsModal = memo(({ onClose }: IFloatingModalContentProps) 
   const joinWeekly = useCallback(async () => {
     const goalId = data?.getMobileGameWeeklies?.activityProgress?.[selectedEvent]?.id;
     await join({ variables: { goalId } });
-    selectEvent(null);
+    selectEvent(-1);
   }, [data?.getMobileGameWeeklies?.activityProgress, join, selectedEvent]);
 
   const eventNotSelected = useMemo(() => selectedEvent === -1, [selectedEvent]);
