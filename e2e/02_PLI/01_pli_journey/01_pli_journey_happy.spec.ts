@@ -7,7 +7,7 @@ import * as helper from "./_steps/helpers"
 import { CUSTOMER_37, AUTH_37, CUSTOMER_PLI_2, AUTH_PLI_2, CUSTOMER_PLI_3, AUTH_PLI_3, CUSTOMER_PLI_4, AUTH_PLI_4, CUSTOMER_44, AUTH_44  } from "@data";
 import {  POPOVER } from "@ids";
 import * as helper_dental from "03_Dental/01_dental_journey/_steps/helpers";
-import * as helper_V4 from "01_Extended_1/06_YuScreenV4/_steps/helpers";
+import * as helper_V4 from "00_Smoke_2/07_yuscreen_v4/_steps/helpers";
 
 Feature("PLI HAPPY", async()=>{
     Scenario("As a completely healthy male user with Covea FIB enabled, I should be able to purchase PLI and Dental, Only allow previously used card for purchase of new product", scenario.start, async()=>{

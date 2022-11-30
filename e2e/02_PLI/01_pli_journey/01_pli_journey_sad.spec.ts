@@ -6,7 +6,7 @@ import * as then from "./_steps/then"
 import * as helper from "./_steps/helpers"
 import { CUSTOMER_37, AUTH_37, CUSTOMER_PLI_5, AUTH_PLI_5, CUSTOMER_PLI_6, AUTH_PLI_6, CUSTOMER_PLI_7, AUTH_PLI_7, CUSTOMER_PLI_9, AUTH_PLI_9, CUSTOMER_PLI_10, AUTH_PLI_10 } from "@data";
 import {  POPOVER } from "@ids";
-import * as helper_V4 from "01_Extended_1/06_YuScreenV4/_steps/helpers";
+import * as helper_V4 from "00_Smoke_2/07_yuscreen_v4/_steps/helpers";
 
 
 Feature("PLI SAD", async()=>{
