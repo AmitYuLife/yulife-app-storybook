@@ -110,7 +110,7 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
     return true;
   });
 
-  if (loading || permissionIsLoading) {
+  if (loading || permissionIsLoading || !data?.getTodayEarnings) {
     return <TodayEarningLoadingScreen handleClose={onLeftIconPress} />;
   }
 

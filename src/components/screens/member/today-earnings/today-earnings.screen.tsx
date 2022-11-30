@@ -9,6 +9,7 @@ import {
   GetTodayEarnings_getTodayEarnings_header as Header,
 } from "@graphql/_core/schema";
 import { Style } from "@styles";
+import { t } from "@locale";
 
 interface IProps {
   header: Header;
@@ -38,7 +39,7 @@ const TodayEarningsScreen = ({
           ))}
         </View>
       </ScrollView>
-      <GenericHeadingAbsolute heading="Today’s Earnings" onLeftIconPress={onLeftIconPress} />
+      <GenericHeadingAbsolute heading={t("screens.today_earning.heading.title")} onLeftIconPress={onLeftIconPress} />
     </View>
   );
 };

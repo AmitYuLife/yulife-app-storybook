@@ -33,6 +33,9 @@
   "create_challenge_error": "Sorry, there was a problem starting your challenge. \n Please try again!",
   "screens": {
     "today_earning": {
+      "heading": {
+        "title": "Today’s Earnings"
+      },
       "yucoin_header": {
         "coins": {
           "earned_today": "earned today",
