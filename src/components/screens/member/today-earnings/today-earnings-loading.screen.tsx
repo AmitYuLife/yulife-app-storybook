@@ -3,6 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { SkeletonLoading } from "@atoms";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Style } from "@styles";
+import { t } from "@locale";
 
 interface IProps {
   handleClose: () => void;
@@ -17,7 +18,7 @@ const TodayEarningLoadingScreen = ({ handleClose }: IProps) => (
       <SkeletonLoading style={styles.activity} />
       <SkeletonLoading style={styles.activity} />
     </View>
-    <GenericHeadingAbsolute logo="yulife" onLeftIconPress={handleClose} />
+    <GenericHeadingAbsolute heading={t("screens.today_earning.heading.title")} onLeftIconPress={handleClose} />
   </View>
 );
 
