@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.59.0] - 2022-11-30
+
+### Bugfixes
+
+- Bugfix ENG-3028: Activity history not showing
+- Bugfix: Joining weeklies
+- Bugfix: Schedule alarm permission
+- BugFix GS-582: Inspect and Duel invite
+- Bugfix: ENG-3028: Wellbeing hub scrolling
+
+### Tasks
+
+- Task: Get yuniversity courses header data from server
+- Task: GS-576: Weeklies changes
+- Task: Remove yuniversity header title
+
+### Chores
+
+- Chore: add request ID composed of client name and device id
+
+### Extra
+
+- Detox:fix dental users toggles and import incorrect
+- Detox/smoke 2 fixes
+
 ## [3.58.0] - 2022-11-23
 
 ### Features
