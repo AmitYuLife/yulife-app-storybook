@@ -51,7 +51,6 @@ export const GQL_FRAGMENT_USER = gql`
           coins
         }
       }
-      isMainSurge
     }
     passiveMeditation: passiveChallenge(id: MEDITATION) {
       exchange {
@@ -74,7 +73,6 @@ export const GQL_FRAGMENT_USER = gql`
           }
         }
       }
-      isMainSurge
     }
     passiveCycling: passiveChallenge(id: CYCLING) {
       levelSlot {
@@ -92,7 +90,6 @@ export const GQL_FRAGMENT_USER = gql`
           }
         }
       }
-      isMainSurge
     }
     activeChallenge {
       challenge {
@@ -153,11 +150,5 @@ export const GQL_FRAGMENT_USER = gql`
       hasAccepted
       inviteFrom
     }
-    # Contact Details
-    phone
-    addressFirstLine
-    addressSecondLine
-    addressCity
-    addressPostCode
   }
 `;
