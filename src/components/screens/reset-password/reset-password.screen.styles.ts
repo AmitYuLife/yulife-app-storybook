@@ -2,6 +2,10 @@ import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "../../../styles";
 
 export default StyleSheet.create({
+  wrapper: {
+    width: "100%",
+    height: Style.adjust(265),
+  },
   heading: {
     color: Colours.darkGray,
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,

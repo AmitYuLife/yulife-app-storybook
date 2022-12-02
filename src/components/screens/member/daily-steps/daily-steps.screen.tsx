@@ -2,7 +2,6 @@ import React, { memo, useCallback, useMemo } from "react";
 import { View, Platform, AccessibilityPropsAndroid } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { IThemeStore } from "@redux/theme/theme.reducer";
 import { DAILY_STEPS_SCREEN } from "@ids";
 import { IConnectedScreenProps } from "@app/typings";
 import { Pad, YuCoinBadge } from "@atoms";
@@ -23,8 +22,7 @@ import { YUCOIN_POWER_INFO, DAILYSTEP_SCREEN_COIN } from "@ids";
 import { t } from "@locale";
 import { useSelector } from "react-redux";
 import { getModalState } from "@redux/app/app.selectors";
-import { getCurrentWorld, getCurrentYuniverse } from "@utils";
-import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { IThemeScreens } from "@theme";
 
 interface IProps extends IConnectedScreenProps {
   showCounter?: boolean;
@@ -32,10 +30,11 @@ interface IProps extends IConnectedScreenProps {
   hasPermission: boolean;
   onCoinPress: () => void;
   onStreakPress?: () => void;
-  theme: IThemeStore["dailyStepsScreen"];
   userSurge: GetUserProfile_getUserProfile_surge;
   customIcon: GetDailyScreenCustomIcon_getDailyScreenCustomIcon;
   currentWorld: number;
+  currentYuniverse: number;
+  theme: IThemeScreens;
   hasEvents: boolean;
   hideInformationIcon: boolean;
 }
@@ -46,16 +45,15 @@ const DailyStepsScreen = ({
   hasPermission,
   onCoinPress,
   onLeftMenuPress,
-  theme: { centredScreen, hasWhiteGlow, topBarType },
   userSurge,
   customIcon,
   hasEvents,
   hideInformationIcon,
+  currentWorld,
+  currentYuniverse,
+  theme,
 }: Props) => {
   const currentModal = useSelector(getModalState);
-  const currentLevel = useSelector(getCurrentLevel);
-  const currentYuniverse = getCurrentYuniverse(currentLevel);
-  const currentWorld = getCurrentWorld(currentLevel);
 
   const { androidImportantForAccessibility, accessibilityElementsHidden } = useMemo(
     () =>
@@ -76,6 +74,11 @@ const DailyStepsScreen = ({
     await showFloatingModal({ children, lottie: userSurge?.lottie, modalId: MODALS.surgeOverlay });
   }, [userSurge]);
 
+  const getScreenProps = useMemo(
+    () => (!hasPermission ? theme.dailyStepsScreen.offline : theme.dailyStepsScreen.online),
+    [hasPermission, theme]
+  );
+
   return (
     <Animatable.View
       duration={750}
@@ -85,11 +88,7 @@ const DailyStepsScreen = ({
       importantForAccessibility={androidImportantForAccessibility}
       accessibilityElementsHidden={accessibilityElementsHidden}
     >
-      <CentredScreen
-        footerImage={!hasPermission ? centredScreen.offline.image : centredScreen.online.image}
-        style={!hasPermission ? centredScreen.offline.style : centredScreen.online.style}
-        testID={DAILY_STEPS_SCREEN}
-      >
+      <CentredScreen {...getScreenProps} testID={DAILY_STEPS_SCREEN}>
         <Pad height={getPadHeight(hasEvents)} />
         <TouchableOpacityWithDelay
           onPress={onCoinPress}
@@ -105,7 +104,7 @@ const DailyStepsScreen = ({
           <View style={styles.yucoinBadgeWrapper}>
             <View style={styles.yucoinBadge}>
               <YuCoinBadge
-                hasWhiteGlow={hasWhiteGlow}
+                hasWhiteGlow={theme.dailyStepsScreen.hasWhiteGlow}
                 isGrayScale={!hasPermission}
                 width={200}
                 height={200}
@@ -129,7 +128,7 @@ const DailyStepsScreen = ({
         <NavBar activeIndex={0} />
       </CentredScreen>
       <View style={styles.topbarWrapper}>
-        <TopBar type={topBarType} onPressLeftIcon={onLeftMenuPress} />
+        <TopBar type={theme.dailyStepsScreen.topBarType} onPressLeftIcon={onLeftMenuPress} />
       </View>
       <ReferralsPopover onLeftMenuPress={onLeftMenuPress} />
     </Animatable.View>

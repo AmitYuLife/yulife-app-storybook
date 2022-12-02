@@ -8,6 +8,7 @@ import { Style } from "@styles";
 import { isSamsung } from "@utils";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
 import { CentredScreen } from "@molecules";
+import { StyleSheet } from "react-native";
 
 interface IProps {
   connecting: boolean;
@@ -34,7 +35,7 @@ const FitKitConnectScreen: FC<IProps> = ({
 }) => (
   <>
     {!loading ? (
-      <CentredScreen footerImage="forest">
+      <CentredScreen backgroundImage={require("@assets/centred-screen/forestBackground.png")} style={styles.wrapper}>
         {isShortToMediumSamsung ? <Pad height={50} /> : <Pad height={120} />}
         {fitKitAvailable ? (
           <FitKitAvailable connecting={connecting} onConnectPress={onConnectPress} copy={copy} />
@@ -62,5 +63,12 @@ const getLinks = (onSkip: () => void, onPrivacy: () => void, dismissButtonLabel:
     },
   ];
 };
+
+const styles = StyleSheet.create({
+  wrapper: {
+    width: "100%",
+    height: Style.adjust(265),
+  },
+});
 
 export default FitKitConnectScreen;

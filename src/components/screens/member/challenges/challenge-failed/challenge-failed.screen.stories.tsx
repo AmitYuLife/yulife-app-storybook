@@ -7,4 +7,4 @@ const voidFunc: () => void = () => null;
 
 storiesOf("ChallengeFailedScreen", module)
   .addDecorator(withKnobs)
-  .add("default", () => <ChallengeFailedScreen currentWorld={0} loading={false} onPress={voidFunc} />);
+  .add("default", () => <ChallengeFailedScreen loading={false} onPress={voidFunc} />);

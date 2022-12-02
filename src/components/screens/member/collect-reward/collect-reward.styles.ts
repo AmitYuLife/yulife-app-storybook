@@ -2,7 +2,7 @@ import { StyleSheet, ViewStyle } from "react-native";
 import { Style } from "../../../../styles";
 
 export default StyleSheet.create({
-  centredScreen: {
+  wrapper: {
     justifyContent: "center",
   } as ViewStyle,
   dateWrapper: {

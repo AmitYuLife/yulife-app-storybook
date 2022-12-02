@@ -8,6 +8,7 @@ import { LoginForm, LoginFormProps } from "./subcomponents/login-form";
 import { getIsAppFreshlyInstalled } from "@redux/device/device.selectors";
 import { markAppAsInstalled } from "@redux/device/device.actions";
 import { ServerList } from "./subcomponents/server-list";
+import { Style } from "@styles";
 
 type LoginScreenProps = LoginFormProps;
 
@@ -17,7 +18,6 @@ const LoginScreen = memo((props: LoginScreenProps) => {
   const dispatch = useDispatch();
   const isAppFreshlyInstalled = useSelector(getIsAppFreshlyInstalled);
   const [activePage, setActivePage] = useState<Page>(isAppFreshlyInstalled ? "region" : "login");
-
   const setLoginAsActive = useCallback(() => {
     setActivePage("login");
     dispatch(markAppAsInstalled());
@@ -26,7 +26,11 @@ const LoginScreen = memo((props: LoginScreenProps) => {
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.flex}>
       <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
-        <CentredScreen footerImage="forest" BackgroundGradient={<UnauthorisedGradient />}>
+        <CentredScreen
+          backgroundImage={require("@assets/centred-screen/forestBackground.png")}
+          style={styles.wrapper}
+          BackgroundGradient={<UnauthorisedGradient />}
+        >
           {activePage === "region" ? <ServerList onPress={setLoginAsActive} /> : <LoginForm {...props} />}
         </CentredScreen>
       </Animatable.View>
@@ -37,6 +41,10 @@ const LoginScreen = memo((props: LoginScreenProps) => {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
+  wrapper: {
+    width: "100%",
+    height: Style.adjust(265),
+  },
   flex: {
     flex: 1,
   },

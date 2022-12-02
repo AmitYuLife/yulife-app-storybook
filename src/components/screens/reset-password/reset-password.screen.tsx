@@ -35,7 +35,11 @@ const ResetPasswordScreen: FunctionComponent<IProps> = ({
   ]);
 
   return (
-    <CentredScreen footerImage="forest" BackgroundGradient={<UnauthorisedGradient />}>
+    <CentredScreen
+      backgroundImage={require("@assets/centred-screen/forestBackground.png")}
+      style={styles.wrapper}
+      BackgroundGradient={<UnauthorisedGradient />}
+    >
       <Pad height={120} />
       <Heading style={styles.heading} label={translations["screens.reset_password.heading"]} />
       <Pad height={9} />

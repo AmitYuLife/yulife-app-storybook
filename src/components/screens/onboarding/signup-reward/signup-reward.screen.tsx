@@ -21,7 +21,7 @@ const SignUpRewardScreen: React.FC<IProps> = ({ isLoading, onCollectPress, yuCoi
   ]);
 
   return (
-    <CentredScreen footerImage="forest">
+    <CentredScreen backgroundImage={require("@assets/centred-screen/forestBackground.png")} style={styles.wrapper}>
       <Pad height={74} />
       <CoinConfetti coins={yuCoin} />
       <Heading style={styles.heading} bold={true} label={translations["screens.signup_reward.heading"]} />

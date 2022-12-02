@@ -1,12 +1,11 @@
 import * as React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, View } from "react-native";
 import { LevelLine, Stars, TextTemplate } from "@atoms";
 import { t } from "@locale";
 import { AnimatedPlusPoints, Button, CentredScreen } from "@molecules";
 import { formatCyclingMetersToKmWithOneDecimal } from "../challenge-progress/subcomponents/progress-bar.helpers";
-import Assets from "./assets";
-import { getStyle } from "./challenge-success.helpers";
-import styles, { LINE_COLOR, SCORE_COLOR } from "./challenge-success.screen.styles";
+import styles, { SCORE_COLOR } from "./challenge-success.screen.styles";
+import { getTheme } from "@theme";
 
 interface IProps {
   onPressCta: () => void;
@@ -17,26 +16,22 @@ interface IProps {
   reward: number;
   score: number;
   unit: "steps" | "minutes";
-  currentWorld: number;
 }
 
 export default function ChallengeSuccessScreen(props: IProps) {
-  const { level, yuniversalMap, onPressCta, rating, reward, score, unit, loading, currentWorld } = props;
-  const { backgroundImage, backgroundStyle, textStyle, lineColour = LINE_COLOR } = getStyle(
-    currentWorld,
-    yuniversalMap
-  );
+  const { level, yuniversalMap, onPressCta, rating, reward, score, unit, loading } = props;
+  const { challengeSuccessScreen } = getTheme(level, yuniversalMap);
 
   return (
-    <CentredScreen style={StyleSheet.flatten([styles.wrapper, backgroundStyle])} footerImage={backgroundImage}>
+    <CentredScreen {...challengeSuccessScreen}>
       <View style={styles.ratingWrapper}>
         <Stars isLeftHighlighted={rating > 0} isMidHighlighted={rating > 1} isRightHighlighted={rating > 2} />
         <View style={styles.levelWrapper}>
           <View style={styles.levelLineWrapper}>
-            <LevelLine colour={lineColour} />
+            <LevelLine colour={challengeSuccessScreen.lineColour} />
           </View>
           <View style={styles.level}>
-            <TextTemplate type="l1" color={textStyle?.color} textAlign="center">
+            <TextTemplate type="l1" color={challengeSuccessScreen.textStyle.color} textAlign="center">
               {yuniversalMap
                 ? t("screens.challenge_success.stage", { level })
                 : t("screens.challenge_success.level", { level })}
@@ -45,7 +40,7 @@ export default function ChallengeSuccessScreen(props: IProps) {
         </View>
       </View>
       <View style={styles.heading}>
-        <TextTemplate type="h1" color={textStyle?.color} textAlign="center">
+        <TextTemplate type="h1" color={challengeSuccessScreen.textStyle.color} textAlign="center">
           {t("screens.challenge_success.footer")}
         </TextTemplate>
       </View>
@@ -53,7 +48,7 @@ export default function ChallengeSuccessScreen(props: IProps) {
         <View style={styles.plusPointsWrapper}>
           <AnimatedPlusPoints type="challenge-success" coins={reward} />
         </View>
-        <Image source={Assets.challengeSuccess} />
+        <Image source={require("@assets/challenge-success/challenge-success.png")} />
         <View style={styles.score}>
           <TextTemplate type="h2" color={SCORE_COLOR} textAlign="center">
             {renderScore(score, unit)}
