@@ -5,7 +5,7 @@ import { Style } from "@styles";
 import { StyleSheet, View } from "react-native";
 import { PressableWithDelay } from "@molecules";
 import { useSelector } from "react-redux";
-import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { getTheme } from "@theme";
 
 interface IProps {
@@ -16,7 +16,8 @@ interface IProps {
 
 const Panel = ({ title, description, onClose }: IProps) => {
   const currentLevel = useSelector(getCurrentLevel);
-  const { dailyStepsScreen } = getTheme(currentLevel);
+  const { yuniversalMap } = useSelector(getYuniversalProgress);
+  const { dailyStepsScreen } = getTheme(currentLevel, yuniversalMap);
 
   const wrapper = useMemo(() => ({ ...styles.wrapper, backgroundColor: dailyStepsScreen.eventPanel.backgroundColor }), [
     dailyStepsScreen.eventPanel,
