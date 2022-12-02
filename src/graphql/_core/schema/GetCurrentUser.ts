@@ -56,7 +56,6 @@ export interface GetCurrentUser_getCurrentUser_passiveSteps_levelSlot {
 export interface GetCurrentUser_getCurrentUser_passiveSteps {
   exchange: GetCurrentUser_getCurrentUser_passiveSteps_exchange | null;
   levelSlot: GetCurrentUser_getCurrentUser_passiveSteps_levelSlot | null;
-  isMainSurge: boolean | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_passiveMeditation_exchange {
@@ -88,7 +87,6 @@ export interface GetCurrentUser_getCurrentUser_passiveMeditation_levelSlot {
 export interface GetCurrentUser_getCurrentUser_passiveMeditation {
   exchange: GetCurrentUser_getCurrentUser_passiveMeditation_exchange | null;
   levelSlot: GetCurrentUser_getCurrentUser_passiveMeditation_levelSlot | null;
-  isMainSurge: boolean | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_passiveCycling_levelSlot_milestones_target {
@@ -113,7 +111,6 @@ export interface GetCurrentUser_getCurrentUser_passiveCycling_levelSlot {
 
 export interface GetCurrentUser_getCurrentUser_passiveCycling {
   levelSlot: GetCurrentUser_getCurrentUser_passiveCycling_levelSlot | null;
-  isMainSurge: boolean | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge_incomingData {
@@ -213,11 +210,6 @@ export interface GetCurrentUser_getCurrentUser {
   activeStreak: GetCurrentUser_getCurrentUser_activeStreak | null;
   todayActivity: (GetCurrentUser_getCurrentUser_todayActivity | null)[] | null;
   leaderboards: (GetCurrentUser_getCurrentUser_leaderboards | null)[] | null;
-  phone: string | null;
-  addressFirstLine: string | null;
-  addressSecondLine: string | null;
-  addressCity: string | null;
-  addressPostCode: string | null;
 }
 
 export interface GetCurrentUser {

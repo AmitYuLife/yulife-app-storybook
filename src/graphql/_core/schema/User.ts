@@ -56,7 +56,6 @@ export interface User_passiveSteps_levelSlot {
 export interface User_passiveSteps {
   exchange: User_passiveSteps_exchange | null;
   levelSlot: User_passiveSteps_levelSlot | null;
-  isMainSurge: boolean | null;
 }
 
 export interface User_passiveMeditation_exchange {
@@ -88,7 +87,6 @@ export interface User_passiveMeditation_levelSlot {
 export interface User_passiveMeditation {
   exchange: User_passiveMeditation_exchange | null;
   levelSlot: User_passiveMeditation_levelSlot | null;
-  isMainSurge: boolean | null;
 }
 
 export interface User_passiveCycling_levelSlot_milestones_target {
@@ -113,7 +111,6 @@ export interface User_passiveCycling_levelSlot {
 
 export interface User_passiveCycling {
   levelSlot: User_passiveCycling_levelSlot | null;
-  isMainSurge: boolean | null;
 }
 
 export interface User_activeChallenge_challenge_incomingData {
@@ -213,9 +210,4 @@ export interface User {
   activeStreak: User_activeStreak | null;
   todayActivity: (User_todayActivity | null)[] | null;
   leaderboards: (User_leaderboards | null)[] | null;
-  phone: string | null;
-  addressFirstLine: string | null;
-  addressSecondLine: string | null;
-  addressCity: string | null;
-  addressPostCode: string | null;
 }

@@ -56,7 +56,6 @@ export interface LoginUser_loginUser_user_passiveSteps_levelSlot {
 export interface LoginUser_loginUser_user_passiveSteps {
   exchange: LoginUser_loginUser_user_passiveSteps_exchange | null;
   levelSlot: LoginUser_loginUser_user_passiveSteps_levelSlot | null;
-  isMainSurge: boolean | null;
 }
 
 export interface LoginUser_loginUser_user_passiveMeditation_exchange {
@@ -88,7 +87,6 @@ export interface LoginUser_loginUser_user_passiveMeditation_levelSlot {
 export interface LoginUser_loginUser_user_passiveMeditation {
   exchange: LoginUser_loginUser_user_passiveMeditation_exchange | null;
   levelSlot: LoginUser_loginUser_user_passiveMeditation_levelSlot | null;
-  isMainSurge: boolean | null;
 }
 
 export interface LoginUser_loginUser_user_passiveCycling_levelSlot_milestones_target {
@@ -113,7 +111,6 @@ export interface LoginUser_loginUser_user_passiveCycling_levelSlot {
 
 export interface LoginUser_loginUser_user_passiveCycling {
   levelSlot: LoginUser_loginUser_user_passiveCycling_levelSlot | null;
-  isMainSurge: boolean | null;
 }
 
 export interface LoginUser_loginUser_user_activeChallenge_challenge_incomingData {
@@ -213,11 +210,6 @@ export interface LoginUser_loginUser_user {
   activeStreak: LoginUser_loginUser_user_activeStreak | null;
   todayActivity: (LoginUser_loginUser_user_todayActivity | null)[] | null;
   leaderboards: (LoginUser_loginUser_user_leaderboards | null)[] | null;
-  phone: string | null;
-  addressFirstLine: string | null;
-  addressSecondLine: string | null;
-  addressCity: string | null;
-  addressPostCode: string | null;
 }
 
 export interface LoginUser_loginUser {
