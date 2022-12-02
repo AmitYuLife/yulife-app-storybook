@@ -1,13 +1,13 @@
 import React, { memo, Component } from "react";
 import { CHALLENGE_SCREEN } from "@ids";
 import { ChallengesList, IChallengesListProps } from "@molecules/index";
-import { getCurrentWorld } from "@utils";
-import { Image, StyleSheet, View, BackHandler } from "react-native";
+import { Image, View, BackHandler } from "react-native";
 import { IMilestoneProps } from "../challenge-details/milestones";
 import styles from "./challenges-list.screen.styles";
 import { TopBar, NavBar } from "@components/organisms";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
+import { getTheme } from "@theme";
 
 interface IProps extends IChallengesListProps {
   currentLevel?: number;
@@ -67,24 +67,29 @@ class ChallengesListScreen extends Component<IProps, IState> {
 
   public render() {
     const { challenges, currentLevel, yuniversalMap, onPressLeftIcon, name } = this.props;
-    const { backgroundWrapperStyle, backgroundImage, topBarType } = getWorldStyle(currentLevel, yuniversalMap) as any;
-
+    const { challengeListScreen } = getTheme(currentLevel, yuniversalMap);
     return (
       <View style={styles.wrapper} testID={CHALLENGE_SCREEN}>
         <View style={styles.topPad} />
-        <View style={backgroundWrapperStyle}>
+        <View style={challengeListScreen.style}>
           <Image
             onLayout={this.showChallengeTiles}
             resizeMode="cover"
             style={styles.background}
-            source={backgroundImage}
+            source={challengeListScreen.backgroundImage}
           />
         </View>
         <View style={styles.challengeSetWrapper}>
           {this.state.hideChallengeTiles ? null : <ChallengesList challenges={challenges} />}
         </View>
         <View style={styles.topBarWrapper}>
-          <TopBar type={topBarType} leftIcon="Back" menuLabel="map" name={name} onPressLeftIcon={onPressLeftIcon} />
+          <TopBar
+            type={challengeListScreen.topBarType}
+            leftIcon="Back"
+            menuLabel="map"
+            name={name}
+            onPressLeftIcon={onPressLeftIcon}
+          />
         </View>
         <NavBar activeIndex={1} additionalBottom={2} />
       </View>
@@ -100,57 +105,3 @@ class ChallengesListScreen extends Component<IProps, IState> {
 }
 
 export default memo(ChallengesListScreen);
-
-export function getWorldStyle(currentLevel: number, yuniversalMap?: number) {
-  if (yuniversalMap) {
-    return {
-      backgroundImage: require("@assets/yuniversal/yuniversal_1.png"),
-      backgroundWrapperStyle: StyleSheet.flatten([
-        StyleSheet.absoluteFillObject,
-        { backgroundColor: "rgb(61, 1, 57)" },
-      ]),
-      topBarType: "white",
-    };
-  }
-
-  const world = getCurrentWorld(currentLevel);
-  switch (world) {
-    case 3:
-      return {
-        backgroundImage: require("@assets/challenges/mountain.png"),
-        backgroundWrapperStyle: StyleSheet.flatten([
-          StyleSheet.absoluteFillObject,
-          { backgroundColor: "rgb(59,123,209)" },
-        ]),
-        topBarType: "mountain",
-      };
-    case 2:
-      return {
-        backgroundImage: require("@assets/challenges/desert.png"),
-        backgroundWrapperStyle: StyleSheet.flatten([
-          StyleSheet.absoluteFillObject,
-          { backgroundColor: "rgb(254,251,205)" },
-        ]),
-        topBarType: "desert",
-      };
-    case 1:
-      return {
-        backgroundImage: require("@assets/challenges/ocean.png"),
-        backgroundWrapperStyle: StyleSheet.flatten([
-          StyleSheet.absoluteFillObject,
-          { backgroundColor: "rgb(87,155,193)" },
-        ]),
-        topBarType: "white",
-      };
-    case 0:
-    default:
-      return {
-        backgroundImage: require("@assets/challenges/forest.png"),
-        backgroundWrapperStyle: StyleSheet.flatten([
-          StyleSheet.absoluteFillObject,
-          { backgroundColor: "rgb(154, 231, 216)" },
-        ]),
-        topBarType: "default",
-      };
-  }
-}

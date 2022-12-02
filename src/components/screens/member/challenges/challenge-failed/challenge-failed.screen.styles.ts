@@ -33,11 +33,6 @@ export const commonStyles = StyleSheet.create({
     bottom: Style.SCALE_UP_AND_DOWN(3),
     overflow: "visible",
   } as ViewStyle,
-  wrapper: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
-  } as ViewStyle,
   cta: {
     position: "absolute",
     bottom: Style.SCALE_UP_AND_DOWN(96),

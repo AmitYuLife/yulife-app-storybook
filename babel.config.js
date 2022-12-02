@@ -26,6 +26,7 @@ module.exports = (api) => {
           "@mockclient": "./e2e/_utils/socket/client",
           "@e2e": "./e2e",
           "@ids": "./e2e/_utils/navigation/ids",
+          "@theme": "./src/theme",
         },
       },
     ],

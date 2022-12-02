@@ -12,7 +12,11 @@ interface IProps {
 }
 
 const EmailSentScreen: FC<IProps> = ({ onCtaPress, onSecondaryCtaPress, email }) => (
-  <CentredScreen footerImage="forest" BackgroundGradient={<UnauthorisedGradient />}>
+  <CentredScreen
+    backgroundImage={require("@assets/centred-screen/forestBackground.png")}
+    style={styles.wrapper}
+    BackgroundGradient={<UnauthorisedGradient />}
+  >
     <Pad height={120} />
     <Heading style={styles.heading} label={t("screens.reset_password_submitted.heading")} />
     <Pad height={9} />

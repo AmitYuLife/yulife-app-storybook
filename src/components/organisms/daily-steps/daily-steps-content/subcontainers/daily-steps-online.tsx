@@ -10,7 +10,12 @@ import { getUserEventsWithAds, getUserFeatures } from "@redux/user/user.selector
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
-import { getChallengesStatus, getCurrentLevel, getHasNotification } from "@redux/levels/levels.selectors";
+import {
+  getChallengesStatus,
+  getCurrentLevel,
+  getHasNotification,
+  getYuniversalProgress,
+} from "@redux/levels/levels.selectors";
 import { handleNavigateToQuestsTab } from "@navigation/utils";
 import { getDailyCycling } from "@redux/daily-cycling/daily-cycling.selectors";
 import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
@@ -25,6 +30,7 @@ import Logger from "@services/logging/logger";
 import { Navigation } from "react-native-navigation";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { t } from "@locale";
+import { getTheme } from "@theme";
 
 type DailyStepsOnlineProps = {
   onReferralsButtonPress: () => void;
@@ -37,7 +43,7 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   const dailyEarnedCoins = useSelector(getDailyEarnedCoins);
   const { usePassiveMeditation } = useSelector(getUserFeatures);
   const { availableForToday, isAvailable } = useSelector(getChallengesStatus);
-  const { textStyle, showPanel } = useSelector(getDailyStepsTheme);
+  const { showPanel } = useSelector(getDailyStepsTheme);
   const mindfulTotal = displaySecondsAsMinutes(dailyMeditation);
   const hasNotification = useSelector(getHasNotification);
   const mindfulTotalToDisplay = `${mindfulTotal.minutes} min`;
@@ -45,6 +51,8 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   const currentLevel = useSelector(getCurrentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
   const events = useSelector(getUserEventsWithAds);
+  const { yuniversalMap } = useSelector(getYuniversalProgress);
+  const { dailyStepsScreen } = getTheme(currentLevel, yuniversalMap);
 
   const dispatch = useDispatch();
   const fitkit = useFitKit();
@@ -53,9 +61,9 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   const counterStyle = useMemo(
     () => ({
       ...textTemplateStyle.h1,
-      color: textStyle.color,
+      color: dailyStepsScreen.textStyle.color,
     }),
-    [textStyle?.color]
+    [dailyStepsScreen.textStyle.color]
   );
 
   const [showChallengeButton, showReferralsButton] = useMemo(() => {
@@ -135,7 +143,7 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
         <View style={styles.dailyStepsOnlineWrapper}>
           <TextTemplate
             type="h1"
-            color={textStyle.color}
+            color={dailyStepsScreen.textStyle.color}
             accessibilityLabel={t("screens.daily.daily_passive.coins.accessibility_label", { coins: dailyEarnedCoins })}
           >
             <Counter duration={1200} value={dailyEarnedCoins} textStyle={counterStyle} /> YuCoin today
@@ -143,7 +151,7 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
 
           <View style={styles.activityListWrapper}>
             <ActivityList
-              textColor={textStyle.color}
+              textColor={dailyStepsScreen.textStyle.color}
               steps={dailySteps}
               cycling={dailyCycling}
               mindfulness={usePassiveMeditation && dailyMeditation > 0 ? mindfulTotalToDisplay : null}

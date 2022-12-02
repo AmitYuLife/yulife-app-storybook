@@ -12,13 +12,5 @@ storiesOf("ChallengeSuccessScreen", module)
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>{g()}</View>
   ))
   .add("default", () => (
-    <ChallengeSuccessScreen
-      loading={false}
-      currentWorld={0}
-      onPressCta={voidFunc}
-      rating={5}
-      reward={100}
-      score={100}
-      unit="minutes"
-    />
+    <ChallengeSuccessScreen loading={false} onPressCta={voidFunc} rating={5} reward={100} score={100} unit="minutes" />
   ));

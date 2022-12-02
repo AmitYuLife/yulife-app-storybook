@@ -1,7 +1,11 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Colours, Style } from "../../../../styles";
+import { Colours, Style } from "@styles";
 
 export default StyleSheet.create({
+  wrapper: {
+    width: "100%",
+    height: Style.adjust(265),
+  },
   heading: {
     marginTop: Style.SCALE_UP_AND_DOWN(-10),
     letterSpacing: Style.adjust(1),

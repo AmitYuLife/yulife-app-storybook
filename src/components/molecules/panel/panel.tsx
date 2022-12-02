@@ -5,7 +5,8 @@ import { Style } from "@styles";
 import { StyleSheet, View } from "react-native";
 import { PressableWithDelay } from "@molecules";
 import { useSelector } from "react-redux";
-import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
+import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { getTheme } from "@theme";
 
 interface IProps {
   title: string;
@@ -14,12 +15,11 @@ interface IProps {
 }
 
 const Panel = ({ title, description, onClose }: IProps) => {
-  const {
-    centredScreen: { online },
-  } = useSelector(getDailyStepsTheme);
+  const currentLevel = useSelector(getCurrentLevel);
+  const { dailyStepsScreen } = getTheme(currentLevel);
 
-  const wrapper = useMemo(() => ({ ...styles.wrapper, backgroundColor: online?.eventPanel?.backgroundColor }), [
-    online?.eventPanel,
+  const wrapper = useMemo(() => ({ ...styles.wrapper, backgroundColor: dailyStepsScreen.eventPanel.backgroundColor }), [
+    dailyStepsScreen.eventPanel,
   ]);
 
   return (
@@ -29,14 +29,14 @@ const Panel = ({ title, description, onClose }: IProps) => {
       </View>
       <View style={styles.closeButton}>
         <PressableWithDelay onPress={onClose}>
-          <CloseSvg stroke={online?.eventPanel.fontColor} />
+          <CloseSvg stroke={dailyStepsScreen.eventPanel.fontColor} />
         </PressableWithDelay>
       </View>
-      <TextTemplate type="b1b" color={online?.eventPanel.fontColor}>
+      <TextTemplate type="b1b" color={dailyStepsScreen.eventPanel.fontColor}>
         {title}
       </TextTemplate>
       <View style={styles.description}>
-        <TextTemplate type="b2" color={online?.eventPanel.fontColor}>
+        <TextTemplate type="b2" color={dailyStepsScreen.eventPanel.fontColor}>
           {description}
         </TextTemplate>
       </View>

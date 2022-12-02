@@ -13,7 +13,7 @@ interface IProps {
 
 const CollectReward: React.FC<IProps> = ({ onPress, date, yucoin, ctaLabel }) => (
   <View style={StyleSheet.absoluteFill}>
-    <CentredScreen style={styles.centredScreen}>
+    <CentredScreen style={styles.wrapper}>
       <CoinConfetti isExpanded={true} coins={yucoin} animationType="collect-reward" />
       <Pad height={8} />
       <View style={styles.dateWrapper}>{!date ? null : <Heading size="small" bold={true} label={date} />}</View>

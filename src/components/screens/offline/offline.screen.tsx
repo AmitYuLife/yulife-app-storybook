@@ -1,12 +1,10 @@
 import { TextTemplate } from "@atoms/index";
 import { Button, CentredScreen } from "@molecules";
 import React, { memo } from "react";
-import { View, ViewStyle } from "react-native";
+import { View } from "react-native";
 import styles from "./offline.screen.styles";
-import { getCurrentWorld } from "@utils";
-import { Colours } from "@styles";
 import { useTranslation } from "@hooks";
-import { CenteredScreenImages } from "@redux/theme/theme.reducer";
+import { getTheme } from "@theme";
 
 interface IProps {
   level: number;
@@ -14,8 +12,7 @@ interface IProps {
 }
 
 const OfflineScreen = ({ level, onPress }: IProps) => {
-  const normalizedWorld = getCurrentWorld(level);
-  const { centerScreenStyle, textColour } = getWorldStyle(normalizedWorld);
+  const { offlineScreen } = getTheme(level);
   const translations = useTranslation([
     "screens.offline.heading",
     "screens.offline.subheading",
@@ -23,14 +20,14 @@ const OfflineScreen = ({ level, onPress }: IProps) => {
   ]);
 
   return (
-    <CentredScreen {...centerScreenStyle}>
+    <CentredScreen {...offlineScreen}>
       <View style={styles.wrapper}>
         <View style={styles.contentWrapper}>
           <View accessible={true}>
-            <TextTemplate type="h1" color={textColour} textAlign="center">
+            <TextTemplate type="h1" color={offlineScreen.textColour} textAlign="center">
               {translations["screens.offline.heading"]}
             </TextTemplate>
-            <TextTemplate type="b2" color={textColour} textAlign="center">
+            <TextTemplate type="b2" color={offlineScreen.textColour} textAlign="center">
               {translations["screens.offline.subheading"]}
             </TextTemplate>
           </View>
@@ -44,30 +41,3 @@ const OfflineScreen = ({ level, onPress }: IProps) => {
 };
 
 export default memo(OfflineScreen);
-
-function getWorldStyle(
-  currentWorld: number
-): { textColour: string; centerScreenStyle: { footerImage: CenteredScreenImages; style: ViewStyle } } {
-  switch (currentWorld) {
-    case 3:
-      return {
-        textColour: Colours.darkGray,
-        centerScreenStyle: { footerImage: "gray_mountain", style: { backgroundColor: "rgb(235,235,235)" } },
-      };
-    case 2:
-      return {
-        textColour: Colours.darkGray,
-        centerScreenStyle: { footerImage: "gray_desert", style: { backgroundColor: "rgb(235,235,235)" } },
-      };
-    case 1:
-      return {
-        textColour: Colours.neutral.white,
-        centerScreenStyle: { footerImage: "gray_ocean", style: { backgroundColor: "#747474" } },
-      };
-    default:
-      return {
-        textColour: Colours.darkGray,
-        centerScreenStyle: { footerImage: "gray_forest", style: { backgroundColor: "rgb(235, 235, 235)" } },
-      };
-  }
-}

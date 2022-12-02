@@ -1,6 +1,6 @@
 import moment from "moment";
 import { IMainTabsProps } from "@navigation/root";
-import { getUnitTarget, getCurrentWorld } from "@utils";
+import { getUnitTarget } from "@utils";
 import { Style } from "@styles/index";
 import React, { FC, useCallback, useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -60,8 +60,6 @@ const QuestsContainer: FC<IMainTabsProps> = (props) => {
 
   useTapBackTwiceToExit(props.componentId);
 
-  const currentWorld = useMemo(() => getCurrentWorld(level), [level]);
-
   const screenProps = useMemo(
     () => ({
       componentId,
@@ -99,7 +97,6 @@ const QuestsContainer: FC<IMainTabsProps> = (props) => {
           score={score}
           unit={unit as any}
           loading={false}
-          currentWorld={currentWorld}
         />
       );
     }
@@ -110,7 +107,6 @@ const QuestsContainer: FC<IMainTabsProps> = (props) => {
         yuniversalMap={yuniversalMap}
         onPress={handleResetChallenge}
         loading={false}
-        currentWorld={currentWorld}
       />
     );
   }

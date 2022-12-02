@@ -10,8 +10,9 @@ import { ROUTES } from "@navigation/constants";
 import styles from "./event-panel.styles";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserGoal } from "@redux/user/user.actions";
-import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
 import { EVENT_DESCRIPTION, NEW_EVENT_ICON } from "@ids";
+import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { getTheme } from "@theme";
 
 interface IProps {
   componentId?: string;
@@ -22,9 +23,8 @@ interface IProps {
 }
 
 const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => {
-  const {
-    centredScreen: { online },
-  } = useSelector(getDailyStepsTheme);
+  const currentLevel = useSelector(getCurrentLevel);
+  const { dailyStepsScreen } = getTheme(currentLevel);
   const dispatch = useDispatch();
   const PROGRESS_BAR_WIDTH = useMemo(() => width / 1.2 + 5, [width]);
   const buttonWrapperStyle = useMemo(
@@ -36,14 +36,17 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => 
 
   const containerStyles = useMemo(
     () => ({
-      wrapper: [styles.wrapper, { backgroundColor: online?.eventPanel?.borderColor }],
+      wrapper: [styles.wrapper, { backgroundColor: dailyStepsScreen.eventPanel.borderColor }],
       container: [
         styles.container,
-        { backgroundColor: online?.eventPanel?.backgroundColor, borderColor: online?.eventPanel?.borderColor },
+        {
+          backgroundColor: dailyStepsScreen.eventPanel.backgroundColor,
+          borderColor: dailyStepsScreen.eventPanel.borderColor,
+        },
       ],
       badgeContainer: [styles.badgeContainer, { backgroundColor: event?.badge?.backgroundColor || "#F86F63" }],
     }),
-    [online?.eventPanel, event?.badge?.backgroundColor]
+    [dailyStepsScreen.eventPanel, event?.badge?.backgroundColor]
   );
 
   const onNavigateToDetails = useCallback(async () => {
@@ -74,7 +77,7 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => 
       <View style={containerStyles.wrapper} onLayout={onLayout}>
         <View style={containerStyles.container}>
           <View style={styles.header}>
-            <TextTemplate type="b1b" color={online?.eventPanel?.fontColor}>
+            <TextTemplate type="b1b" color={dailyStepsScreen.eventPanel.fontColor}>
               {event.title}
             </TextTemplate>
             {event.joined ? (
@@ -92,11 +95,11 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => 
                   width={Style.adjust(16)}
                   height={Style.adjust(16)}
                   style={styles.challengeIcon}
-                  tintColor={online?.eventPanel?.fontColor}
+                  tintColor={dailyStepsScreen.eventPanel.fontColor}
                 />
                 <TextTemplate
                   type="l1"
-                  color={online?.eventPanel?.fontColor}
+                  color={dailyStepsScreen.eventPanel.fontColor}
                   testID={EVENT_DESCRIPTION(challenge.description)}
                 >
                   {challenge.description}
@@ -125,14 +128,14 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => 
                 width={Style.adjust(16)}
                 height={Style.adjust(16)}
                 style={styles.challengeIcon}
-                tintColor={online?.eventPanel?.fontColor}
+                tintColor={dailyStepsScreen.eventPanel.fontColor}
               />
-              <TextTemplate type="l1b" color={online?.eventPanel?.fontColor}>
+              <TextTemplate type="l1b" color={dailyStepsScreen.eventPanel.fontColor}>
                 {event?.tags?.tag}
               </TextTemplate>
             </View>
             {!event?.tags?.joined ? null : (
-              <TextTemplate type="l1b" color={online?.eventPanel?.fontColor}>
+              <TextTemplate type="l1b" color={dailyStepsScreen.eventPanel.fontColor}>
                 {event.tags.joined}
               </TextTemplate>
             )}
