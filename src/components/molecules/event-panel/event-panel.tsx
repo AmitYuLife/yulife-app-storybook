@@ -11,7 +11,7 @@ import styles from "./event-panel.styles";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserGoal } from "@redux/user/user.actions";
 import { EVENT_DESCRIPTION, NEW_EVENT_ICON } from "@ids";
-import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { getTheme } from "@theme";
 
 interface IProps {
@@ -24,7 +24,8 @@ interface IProps {
 
 const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => {
   const currentLevel = useSelector(getCurrentLevel);
-  const { dailyStepsScreen } = getTheme(currentLevel);
+  const { yuniversalMap } = useSelector(getYuniversalProgress);
+  const { dailyStepsScreen } = getTheme(currentLevel, yuniversalMap);
   const dispatch = useDispatch();
   const PROGRESS_BAR_WIDTH = useMemo(() => width / 1.2 + 5, [width]);
   const buttonWrapperStyle = useMemo(
