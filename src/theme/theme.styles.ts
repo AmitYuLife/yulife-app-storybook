@@ -371,10 +371,10 @@ export const planetStyles: ITheme = {
     [0]: {
       dailyStepsScreen: {
         offline: {
-          backgroundImage: require("@assets/daily-screen/planets/earth/gray-forest.png"), //@TODO ASSETS: replace with the red planet assets later
-          style: { backgroundColor: "rgb(235, 235, 235)" },
-          isFullScreen: true,
+          backgroundImage: require("@assets/daily-screen/planets/earth/gray-forest.png"),
+          style: { backgroundColor: "rgb(235, 235, 235)", ...commonStyles },
           isLottie: false,
+          isFullScreen: false,
         },
         online: {
           backgroundImage: require("@assets/daily-screen/planets/red/forest.png"),
