@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_YU_SCREEN_PRODUCT_DETAILS } from "@graphql/products/getYuScreenProductDetails";
 import { GetYuScreenProductDetails, GetYuScreenProductDetailsVariables } from "@graphql/_core/schema";
 import { ProductDetailsScreen } from "./product-details.screen";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 
 interface Props {

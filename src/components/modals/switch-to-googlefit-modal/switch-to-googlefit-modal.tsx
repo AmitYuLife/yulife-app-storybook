@@ -6,7 +6,7 @@ import { GoogleFitIcon } from "@atoms/icon/google-fit-icon";
 import { Colours, Style } from "@styles";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
 import { MODALS } from "@navigation/constants";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useBackHandler } from "@hooks";
 import { androidAlertCopy } from "@components/screens/onboarding/fitkit-connect/copy";
 import { openGoogleFit } from "@services/app-link";

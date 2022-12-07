@@ -3,7 +3,7 @@ import { Text } from "@atoms";
 import { StyleSheet, TextStyle, ViewStyle, View } from "react-native";
 import { LEADERBOARD_INFO } from "@ids";
 import { Style } from "@styles";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useBackHandler } from "@hooks";
 

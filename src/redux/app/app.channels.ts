@@ -1,6 +1,6 @@
+import { Navigation } from "@navigation/main";
 import NetInfo from "@react-native-community/netinfo";
 import { AppState, AppStateStatus, Linking, Platform } from "react-native";
-import { Navigation } from "react-native-navigation";
 import { eventChannel } from "redux-saga";
 
 export function appStateChannel() {

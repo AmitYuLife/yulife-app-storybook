@@ -1,6 +1,6 @@
 import moment from "moment";
 import React, { useCallback, useMemo } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useSelector } from "react-redux";
 import { useQuery } from "@apollo/client";
 import { BaseQueryOptions } from "@apollo/client";

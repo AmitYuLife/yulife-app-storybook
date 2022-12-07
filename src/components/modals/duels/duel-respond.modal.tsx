@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from "react";
-import { Navigation } from "react-native-navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { View, Alert, StyleSheet } from "react-native";
 import { getUserStart } from "@redux/user/user.actions";
@@ -19,6 +18,7 @@ import { GQL_QUERY_GET_DUELLER_DETAILS } from "@graphql/duels/getDuellerDetails"
 import { useBackHandler } from "@hooks";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { filterRefetchQueries } from "@graphql/_core/filterRefetchQueries";
+import { Navigation } from "@navigation/main";
 
 interface IProps {
   duelId: string;

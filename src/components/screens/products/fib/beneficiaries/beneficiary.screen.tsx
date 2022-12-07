@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect, useCallback } from "react";
 import { View, StyleSheet, ViewStyle, ScrollView, TextStyle, KeyboardAvoidingView, Platform } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { GenericHeadingPad, GenericHeadingAbsolute } from "@organisms";
 import { useBackHandler } from "@hooks";
 import { MODALS, ROUTES } from "@navigation/constants";

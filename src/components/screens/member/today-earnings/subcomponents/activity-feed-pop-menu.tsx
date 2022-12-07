@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { Hyperlink, PressableWithDelay, Toast } from "@molecules";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { Style } from "@styles";
 import { Block, CloseSvg, Image, TextTemplate } from "@atoms";
 import { StyleSheet, View } from "react-native";

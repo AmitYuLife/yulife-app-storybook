@@ -1,6 +1,6 @@
 import React, { memo, useState, useCallback, useEffect, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import moment from "moment";
 import { TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";

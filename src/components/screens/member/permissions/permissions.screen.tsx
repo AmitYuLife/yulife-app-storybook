@@ -19,7 +19,7 @@ import { TextTemplate } from "@atoms";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import Markdown from "@components/molecules/markdown/markdown";
 import { SecondaryButton } from "@components/molecules";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 

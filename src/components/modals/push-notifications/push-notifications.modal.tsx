@@ -1,7 +1,7 @@
 import * as React from "react";
 import { PureComponent } from "react";
 import { Linking } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { connect } from "react-redux";
 import { GetMobileCopy_getMobileCopy_screens_pushNotification } from "@graphql/_core/schema";
 import { requirePushEnabled } from "@redux/device/device.actions";

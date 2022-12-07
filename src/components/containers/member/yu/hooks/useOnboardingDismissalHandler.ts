@@ -1,5 +1,5 @@
 import { useCallback, useContext, useState } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useMutation } from "@apollo/client";
 import { GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP } from "@graphql/onboardingSteps/performMobileOnboardingStep.gql";
 import { MobileOnboardingStepPerformed } from "@graphql/_core/schema/globalTypes";

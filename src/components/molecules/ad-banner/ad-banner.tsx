@@ -4,7 +4,7 @@ import { Style } from "@styles";
 import { Image } from "@atoms";
 import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { handleLinkPress } from "@services/app-link";
 import { StyleProp } from "react-native";
 import { ImageStyle } from "react-native-fast-image";

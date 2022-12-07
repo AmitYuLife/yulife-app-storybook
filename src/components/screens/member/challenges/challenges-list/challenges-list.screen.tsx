@@ -5,7 +5,7 @@ import { Image, View, BackHandler } from "react-native";
 import { IMilestoneProps } from "../challenge-details/milestones";
 import styles from "./challenges-list.screen.styles";
 import { TopBar, NavBar } from "@components/organisms";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { getTheme } from "@theme";
 

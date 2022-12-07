@@ -1,6 +1,6 @@
 import React, { memo, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { showOverlayWithChild } from "@modals/blurred-overlay/showOverlayWithChild";
 import { ListPicker, TouchableOpacityWithDelay } from "@molecules";
 import { MODALS } from "@navigation/constants";

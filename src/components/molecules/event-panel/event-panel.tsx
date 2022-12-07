@@ -5,7 +5,7 @@ import { Colours, Style } from "@styles";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import { Button, PressableWithDelay } from "@molecules";
 import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import styles from "./event-panel.styles";
 import { useDispatch, useSelector } from "react-redux";

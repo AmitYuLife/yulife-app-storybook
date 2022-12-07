@@ -9,7 +9,7 @@ import { FitkitContext } from "@services/fitkit/fitkit.helpers";
 import { useAuthoriseFitkit } from "@hooks";
 import Storage from "@services/storage";
 import { bottomTabs, ROUTES } from "@navigation/constants";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { isSamsung } from "@utils";
 import { Platform } from "react-native";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";

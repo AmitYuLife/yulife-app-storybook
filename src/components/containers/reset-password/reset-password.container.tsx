@@ -1,6 +1,6 @@
 import { GQL_MUTATION_SEND_MAGIC_LINK, SendMagicLinkMutationTuple } from "@graphql/user";
 import React, { useState, useMemo, FC, useCallback } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { EmailSentScreen, ResetPasswordScreen } from "@screens";
 import { validateEmail } from "../login/login.helpers";
 import { useMutation } from "@apollo/client";

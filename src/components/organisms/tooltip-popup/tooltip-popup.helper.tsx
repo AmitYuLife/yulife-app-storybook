@@ -2,7 +2,7 @@ import React from "react";
 import { showOverlayWithChild } from "@components/modals/blurred-overlay/showOverlayWithChild";
 import { MODALS } from "@navigation/constants";
 import { View, ViewStyle } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import TooltipPopupWrapper, { BeakPosition } from "./tooltip-popup-wrapper";
 import InfoMessage from "@organisms/info-message/info-message";
 import { Sizes } from "@components/molecules/button/button.types";

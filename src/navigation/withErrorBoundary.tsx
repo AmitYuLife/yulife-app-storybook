@@ -1,6 +1,6 @@
 import React, { ComponentClass, useCallback } from "react";
 import getClient from "@services/bugsnag";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 
 const Bugsnag = getClient();

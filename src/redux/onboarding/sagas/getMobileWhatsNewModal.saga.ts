@@ -1,5 +1,5 @@
 import FastImage from "react-native-fast-image";
-import { Navigation, OptionsStatusBar } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { call, delay, select, spawn, take } from "redux-saga/effects";
 import { getMobileWhatsNewModalClient } from "@graphql/onboardingSteps/getMobileWhatsNewModal.gql";
 import { MODALS } from "@navigation/constants";
@@ -10,6 +10,7 @@ import { UPDATE_APP_STATE, UPDATE_CURRENT_MODAL } from "@redux/app/app.actions";
 import { showYuModal } from "@navigation/root";
 import { getToken } from "@services/storage";
 import { getUserNotification } from "@redux/user/user.selectors";
+import { OptionsStatusBar } from "react-native-navigation";
 
 export function* getMobileWhatsNewModalSaga(dataPayload: { payload: string; type: string }) {
   const { payload: appState, type } = dataPayload || {};

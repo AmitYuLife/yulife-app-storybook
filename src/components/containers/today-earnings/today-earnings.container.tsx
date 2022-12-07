@@ -5,7 +5,7 @@ import { GQL_QUERY_GET_TODAY_EARNINGS } from "@graphql/todayEarnings";
 import { GetTodayEarnings, UpsertDailyPassives, UpsertDailyPassivesVariables } from "@graphql/_core/schema";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import React, { useCallback, useEffect, useState } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { FitKitType, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { useDispatch, useSelector } from "react-redux";

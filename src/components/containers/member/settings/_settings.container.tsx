@@ -1,6 +1,6 @@
 import moment from "moment";
 import React, { useMemo } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useSelector, useDispatch } from "react-redux";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { updateConnectionStart } from "@redux/user/user.actions";

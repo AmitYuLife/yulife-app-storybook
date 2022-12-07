@@ -4,7 +4,7 @@ import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { call, select, all, put } from "redux-saga/effects";
 import { getServerPayload } from "../sdui.helpers";
 import { SduiActionWithServerPayload } from "../sdui.types";

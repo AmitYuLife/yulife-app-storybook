@@ -3,7 +3,7 @@ import * as React from "react";
 import { Alert } from "react-native";
 import DeviceInfo from "react-native-device-info";
 import Intercom from "@intercom/intercom-react-native";
-import { Navigation, LayoutComponent } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getPushNotificationsCopy } from "@redux/copy/copy.selectors";
@@ -16,6 +16,7 @@ import { IS_DEVELOP } from "@utils";
 import { showYuModal } from "@navigation/root";
 import Logger from "@services/logging/logger";
 import { t } from "@locale";
+import { LayoutComponent } from "react-native-navigation";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();

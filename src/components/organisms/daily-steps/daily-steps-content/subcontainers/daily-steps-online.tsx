@@ -27,7 +27,7 @@ import { JoinGoal, JoinGoalVariables, GetUserProfile_getUserProfile_events as Ev
 import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
 import { changePanelVisibility } from "@redux/theme/theme.action";
 import Logger from "@services/logging/logger";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { t } from "@locale";
 import { getTheme } from "@theme";

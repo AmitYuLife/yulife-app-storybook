@@ -1,7 +1,7 @@
 import React, { useRef, useCallback, ComponentProps, memo } from "react";
 import { StyleSheet, View, ViewStyle, ScrollView, Platform } from "react-native";
 import { Style } from "@styles";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import ViewShot from "react-native-view-shot";
 import { MODALS } from "@navigation/constants";
 import { SecondaryButton } from "@molecules";

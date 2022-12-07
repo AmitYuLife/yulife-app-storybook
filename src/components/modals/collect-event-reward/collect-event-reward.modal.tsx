@@ -18,7 +18,7 @@ import Logger from "@services/logging/logger";
 import { Style } from "@styles";
 import { delay } from "@utils/misc";
 import React, { useCallback, useMemo, useState } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useDispatch } from "react-redux";
 
 interface IProps {

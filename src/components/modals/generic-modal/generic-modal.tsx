@@ -1,7 +1,7 @@
 import React from "react";
 import { GenericScreen } from "@screens";
 import { IGenericModalProps } from "@screens/member/generic-screen/generic.screen";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { useBackHandler } from "@hooks";
 

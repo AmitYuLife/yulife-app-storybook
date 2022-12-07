@@ -1,6 +1,6 @@
 import React, { useCallback, memo, useRef, FC, useEffect, useMemo } from "react";
 import { View, StyleSheet, ViewStyle, FlatList } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { Colours, Style } from "@styles";
 import { TextTemplate } from "@atoms";
 import {

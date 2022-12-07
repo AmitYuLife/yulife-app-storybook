@@ -6,7 +6,7 @@ import { showYuModal } from "@navigation/root";
 import { showGenericModal } from "@navigation/utils";
 import { getModalState, getRouteState } from "@redux/app/app.selectors";
 import { Unpacked } from "@utils";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { all, call, select } from "redux-saga/effects";
 import { updateUserProfile, updateUserProfileEvents } from "../user.actions";
 import { IUserStore } from "../user.reducer";

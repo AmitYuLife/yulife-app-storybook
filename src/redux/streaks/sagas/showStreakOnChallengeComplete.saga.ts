@@ -1,6 +1,6 @@
 import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { call, select, take, delay } from "redux-saga/effects";
 import { getModalState } from "../../app/app.selectors";
 import { GET_USER_SUCCESS } from "../../user/user.actions";

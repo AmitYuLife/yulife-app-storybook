@@ -4,7 +4,7 @@ import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Image, TextTemplate } from "@atoms";
 import { ArrowIcon } from "@atoms/icon/arrow";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { GetWellbeingHubItems_wellbeingHubItems as WellbeingCard } from "@graphql/_core/schema";
 import { ImageStyle } from "react-native-fast-image";

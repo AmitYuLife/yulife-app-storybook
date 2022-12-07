@@ -4,7 +4,7 @@ import { processResult, queryFitKitByTypes, queryAggregatedBiking, querySteps } 
 import moment from "moment";
 import React, { useCallback, useState, useRef, FC } from "react";
 import { LargeList } from "react-native-largelist-v3";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { connect, useSelector } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getCopy } from "@redux/copy/copy.selectors";

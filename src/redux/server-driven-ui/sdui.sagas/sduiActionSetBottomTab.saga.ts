@@ -1,4 +1,4 @@
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { call } from "redux-saga/effects";
 import { TAB_ROUTES } from "@navigation/root";
 import { getServerPayload } from "../sdui.helpers";

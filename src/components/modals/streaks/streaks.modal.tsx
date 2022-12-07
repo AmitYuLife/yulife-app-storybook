@@ -8,7 +8,7 @@ import { getStreakAwardId } from "@redux/streaks/streaks.selectors";
 import { getUserStart } from "@redux/user/user.actions";
 import { StreaksScreen } from "@screens";
 import { useBackHandler } from "@hooks";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { IStreakCopy, streakCopy } from "./copy";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;

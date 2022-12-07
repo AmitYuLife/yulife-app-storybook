@@ -1,5 +1,5 @@
 import { getRouteState } from "@redux/app/app.selectors";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { call, select } from "redux-saga/effects";
 
 export function* sduiActionGenericNavigateBack() {

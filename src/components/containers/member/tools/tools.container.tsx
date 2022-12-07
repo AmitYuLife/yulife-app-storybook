@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import ToolsScreen from "@components/screens/member/tools/tools.screen";
 
 interface IOwnProps {

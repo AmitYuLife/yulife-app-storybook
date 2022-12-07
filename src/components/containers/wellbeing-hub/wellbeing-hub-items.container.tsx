@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useMemo, useState } from "react";
 import { PixelRatio, Platform, View, ViewStyle } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { Style } from "@styles";
 import { t } from "@locale";
 import WellBeingHub from "@components/screens/wellbeing-hub/wellbeing-hub";

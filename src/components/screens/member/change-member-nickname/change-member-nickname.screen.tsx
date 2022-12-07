@@ -3,7 +3,7 @@ import { View, Image, StyleSheet, ImageStyle, TextStyle, Keyboard, ViewStyle, Sc
 import { Style, Colours } from "@styles";
 import { Text } from "@atoms";
 import { Button, TextInput } from "@molecules";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { useKeyboardListeners } from "@hooks";
 import { NICKNAME_INPUT, CHANGE_MEMBER_NICK_BUTTON } from "@ids";

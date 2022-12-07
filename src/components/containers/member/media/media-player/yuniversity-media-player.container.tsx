@@ -1,7 +1,7 @@
 import { YuniversityMediaPlayerScreen } from "@components/screens";
 import { ROUTES } from "@navigation/constants";
 import React, { useCallback, memo } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { Media } from "@graphql/_core/schema";
 import { useMutation } from "@apollo/client";
 import {

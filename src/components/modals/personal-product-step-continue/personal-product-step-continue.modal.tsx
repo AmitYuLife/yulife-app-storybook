@@ -14,7 +14,7 @@ import {
   ResetPersonalProductStep,
   ResetPersonalProductStepVariables,
 } from "@graphql/_core/schema";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { GenericHeadingAbsolute, TOP_BAR_HEIGHT } from "@organisms";

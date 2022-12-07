@@ -1,5 +1,5 @@
 import { GetQuestMap_levels } from "@graphql/_core/schema";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES, bottomTabs, MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { t } from "@locale";

@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { useBackHandler } from "@hooks";
 import MobileUpdateModalScreen, {

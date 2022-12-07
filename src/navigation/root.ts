@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import { Layout, Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { clearToken } from "@services/storage";
 import { Style } from "../styles";
 import { bottomTabs, MODALS, ROUTES } from "./constants";
@@ -10,6 +10,7 @@ import { setScreenViewForBurgerMenu } from "@navigation/utils";
 import { store } from "@redux/_core/store";
 import { IReduxState } from "@redux/_core/reducers";
 import { updateCurrentRoute } from "@redux/app/app.actions";
+import { Layout } from "react-native-navigation";
 
 // eslint-disable-next-line
 const icon = require("@assets/icons/clock.png");

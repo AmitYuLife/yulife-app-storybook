@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { View, ScrollView } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { Loading, Text, TextTemplate, YuCoinBadge } from "@atoms";
 import { Button } from "@molecules";

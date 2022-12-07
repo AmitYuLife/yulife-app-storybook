@@ -3,7 +3,7 @@ import { ROUTES } from "@navigation/constants";
 import { Colours } from "@styles";
 import React, { useCallback } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 
 interface IProps {
   children: JSX.Element | JSX.Element[];

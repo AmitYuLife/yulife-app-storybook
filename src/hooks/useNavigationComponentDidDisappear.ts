@@ -3,8 +3,9 @@
  * [more info](https://wix.github.io/react-native-navigation/api/events/#componentdidappear)
  */
 
-import { ComponentDidDisappearEvent, Navigation } from "react-native-navigation";
+import { ComponentDidDisappearEvent } from "react-native-navigation";
 import { useLayoutEffect } from "react";
+import { Navigation } from "@navigation/main";
 
 export function useNavigationComponentDidDisappear(
   /**

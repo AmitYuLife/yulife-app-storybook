@@ -3,7 +3,7 @@ import { StyleSheet, ViewStyle, View } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { Style, Colours } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { Text } from "@atoms";
 import { DUELS_BUTTON } from "@ids";

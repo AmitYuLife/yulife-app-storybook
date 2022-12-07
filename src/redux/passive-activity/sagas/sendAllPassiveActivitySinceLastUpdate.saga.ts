@@ -9,7 +9,7 @@ import { Platform } from "react-native";
 import { getRouteState } from "@redux/app/app.selectors";
 import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
 import getPassiveSinceLastUpdateAndroid from "./getPassiveSinceLastUpdateAndroid.saga";
 import getPassiveSinceLastUpdateIos from "./getPassiveSinceLastUpdateIos.saga";

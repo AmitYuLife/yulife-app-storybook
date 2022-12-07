@@ -1,5 +1,5 @@
 import { ROUTES } from "@navigation/constants";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 
 export const navigateToYumojiBuilder = () =>
   Navigation.push(ROUTES.yuScreen, {

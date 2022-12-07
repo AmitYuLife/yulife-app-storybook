@@ -3,7 +3,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { getUserAvatar } from "@redux/user/user.selectors";
 import { Source } from "react-native-fast-image";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { call, put, select } from "redux-saga/effects";
 import { challengeResetSuccessAction } from "../levels.actions";
 import { getActiveLevel, getChallengesStatus, getCurrentLevel, IActiveLevel } from "../levels.selectors";

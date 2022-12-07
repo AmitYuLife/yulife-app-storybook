@@ -7,7 +7,7 @@ import { GetAllPurchases_getAllPurchases } from "@graphql/_core/schema";
 import { getPurchasesCopy } from "@redux/copy/copy.selectors";
 import { AviosRewardConfirmedScreen } from "@screens";
 import { handleLinkPress } from "@services/app-link";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import region from "@services/region";
 import { t } from "@locale";

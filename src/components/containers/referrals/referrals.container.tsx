@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/client";
 import { ReferralsScreen, ReferralsLoadingScreen } from "@components/screens";
 import { GQL_QUERY_GET_REFERRAL_INFORMATION } from "@graphql/referrals";
 import { GetReferralInformation } from "@graphql/_core/schema/GetReferralInformation";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 
 interface IProps {
   componentId: string;

@@ -6,7 +6,7 @@ import { DuelAvatar } from "../avatar/duel-avatar";
 import styles from "./generic-duels-intro.styles";
 import { DuelStepProps } from "../../duels.types";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 
 interface IGenericDuelsIntro extends Partial<DuelStepProps> {
   type: "invite" | "response";

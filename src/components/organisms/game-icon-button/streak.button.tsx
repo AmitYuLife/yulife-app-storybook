@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { useSelector } from "react-redux";
 import { getStreaks } from "@redux/streaks/streaks.selectors";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { labels, showYuModal } from "@navigation/root";
 import { MODALS } from "@navigation/constants";
 import { getUserFeatures } from "@redux/user/user.selectors";

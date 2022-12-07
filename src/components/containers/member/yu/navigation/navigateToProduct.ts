@@ -1,4 +1,4 @@
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { YuProductStatus } from "@graphql/_core/schema/globalTypes";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { normalisePersonalProductStep } from "@graphql/personalProduct";

@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import LeaderboardListScreen from "./leaderboard-list.screen";
 import { getActiveLeaderboardId, getUserFeatures } from "@redux/user/user.selectors";
 import { getAcceptedLeaderboards } from "@redux/user/user.selectors";

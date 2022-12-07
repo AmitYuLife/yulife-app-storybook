@@ -2,7 +2,7 @@ import { submitPersonalProductStep } from "@graphql/personalProduct";
 import { getRouteState } from "@redux/app/app.selectors";
 import { refreshUserProfile } from "@redux/user/user.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { call, select, put } from "redux-saga/effects";
 import { parseJSON } from "@utils";
 import { ProductStepAction } from "../sdui.types";

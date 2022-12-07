@@ -7,7 +7,6 @@ import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { Style } from "@styles/index";
 import React, { useState, useCallback, useMemo } from "react";
 import { AccessibilityInfo, Alert, Keyboard, Platform } from "react-native";
-import { Navigation } from "react-native-navigation";
 import { useDispatch } from "react-redux";
 import { LoginMethod, IntercomHashMethod } from "@graphql/_core/schema/globalTypes";
 import { setAuthenticated } from "@redux/app/app.actions";
@@ -16,6 +15,7 @@ import { setToken } from "@services/storage";
 import { LoginScreen } from "@screens";
 import { validateEmail, validatePassword } from "./login.helpers";
 import { t } from "@locale";
+import { Navigation } from "@navigation/main";
 
 const trimGraphQLError = (message: string) => message.replace(/^GraphQL error: /, "");
 

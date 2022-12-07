@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, ReactElement, cloneElement } from "react";
 import { Animated, StyleSheet, View, ViewStyle } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { BlurView } from "@react-native-community/blur";
 import { useBackHandler, usePressedInWithDelay } from "@hooks";
 import { MODALS } from "@navigation/constants";
