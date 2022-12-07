@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.60.0] - 2022-12-07
+
+### Bugfixes
+
+- Bugfix: Set isFullScreen to false on gray-forest on red planet
+- Bugfix: Event panel background colour on EOWT
+- BugFix ENG-3005: prevent today's earnings map undefined
+
+### Tasks
+
+- Task GS-137: Add actions & sagas for new queries
+- Task GS-471: Challenge Select Screen Background Recolour and theme refactor
+
 ## [3.59.0] - 2022-11-30
 
 ### Bugfixes
