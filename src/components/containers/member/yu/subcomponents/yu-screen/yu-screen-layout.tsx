@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { GenericHeadingPad, NavBar } from "@organisms";
 import { Colours, Style } from "@styles";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { setScreenViewForBurgerMenu } from "@navigation/utils";

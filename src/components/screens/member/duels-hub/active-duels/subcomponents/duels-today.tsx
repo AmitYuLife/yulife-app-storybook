@@ -10,7 +10,7 @@ import { useQuery } from "@apollo/client";
 import { GetDuelsToday } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_DUELS_TODAY } from "@graphql/duels/getDuelsToday.gql";
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { DuelSkeleton } from "../../subcomponents/duel-skeleton/duel-skeleton";
 import { EMPTY_DUELS_HUB, CHALLENGE_FRIEND_BUTTON } from "@ids";

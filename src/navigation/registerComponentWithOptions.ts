@@ -1,9 +1,9 @@
-import { Navigation } from "react-native-navigation";
 import withErrorBoundary from "./withErrorBoundary";
 import withLazyLoad from "./withLazyLoad";
 import withProvider from "./withProvider";
 import client from "@graphql/_core/client";
 import { ComponentClass } from "react";
+import { Navigation } from "./main";
 
 interface RequiredParams {
   name: string;

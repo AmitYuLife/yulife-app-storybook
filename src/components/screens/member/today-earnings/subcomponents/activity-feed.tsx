@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { StyleSheet, View, Platform, Alert, PermissionsAndroid, Linking, AccessibilityRole } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { Block, Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { handleNavigateToQuestsTab } from "@navigation/utils";

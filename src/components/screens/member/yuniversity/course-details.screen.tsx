@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { Colours, Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";

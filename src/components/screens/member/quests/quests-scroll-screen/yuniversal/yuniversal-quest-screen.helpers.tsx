@@ -12,7 +12,7 @@ import { Colours } from "@styles";
 import { ILevelBubbleProps } from "./level/level-bubble";
 import { showYuModal } from "@navigation/root";
 import { MODALS, ROUTES } from "@navigation/constants";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 
 type LevelButtonState =
   | "Completed"

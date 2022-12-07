@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { WellbeingHubDetailsScreen } from "@components/screens/wellbeing-hub/wellbeing-hub-details.screen";
 import { WellbeingHubDetailsLoading } from "@components/screens/wellbeing-hub/wellbeing-hub-details-loading.screen";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { GQL_QUERY_GET_WELLBEING_HUB_DETAILS } from "@graphql/wellbeingHub";
 import { GetWellbeingHubItem } from "@graphql/_core/schema";
 import { useQuery } from "@apollo/client";

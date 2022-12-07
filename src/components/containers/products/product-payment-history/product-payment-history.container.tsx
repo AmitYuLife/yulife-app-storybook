@@ -6,7 +6,7 @@ import { ActivityIndicator, ScrollView, View } from "react-native";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { PaymentHistoryItem } from "./sub-components/payment-history-item";
 import { ROUTES } from "@navigation/constants";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useQuery } from "@apollo/client";
 import { GQL_QUERY_PRODUCT_PAYMENT_HISTORY } from "@graphql/yuscreen/getPaymentHistory.gql";
 import { GetProductPaymentHistory, GetProductPaymentHistoryVariables } from "@graphql/_core/schema";

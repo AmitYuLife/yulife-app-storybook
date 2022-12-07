@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { Style, TOP_BAR } from "@styles";
 import { NavBar } from "@components/organisms";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { setScreenViewForBurgerMenu } from "@navigation/utils";

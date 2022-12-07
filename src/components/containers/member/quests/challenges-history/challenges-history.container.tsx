@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { GetQuestMapLevel } from "@graphql/_core/schema";
 import { IConnectedScreenProps } from "@app/typings";
 import { ChallengesHistoryScreen } from "@screens";

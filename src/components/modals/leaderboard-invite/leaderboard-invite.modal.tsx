@@ -1,7 +1,7 @@
 import { GQL_MUTATION_REPLY_TO_LEADERBOARD_INVITE, ReplyToLeaderboardInviteMutationTuple } from "@graphql/user";
 import { GenericScreen } from "@screens/index";
 import * as React from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getCopy } from "@redux/copy/copy.selectors";

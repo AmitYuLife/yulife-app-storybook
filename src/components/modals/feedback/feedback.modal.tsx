@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import {
   GQL_SUBMIT_FEEDBACK_FORM,

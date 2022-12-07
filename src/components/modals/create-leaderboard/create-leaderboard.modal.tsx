@@ -2,7 +2,7 @@ import { GQL_MUTATION_CREATE_LEADERBOARD, CreateLeaderboardMutationTuple } from 
 import { getUserStart } from "@redux/user/user.actions";
 import * as React from "react";
 import { Keyboard } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { connect } from "react-redux";
 import { CreateLeaderboardScreen } from "@screens";
 import { useMutation } from "@apollo/client";

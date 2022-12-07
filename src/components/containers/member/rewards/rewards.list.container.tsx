@@ -2,7 +2,7 @@ import { GQL_QUERY_GET_MOBILE_REWARDS_LIST } from "@graphql/rewards";
 import { bottomTabs } from "@navigation/constants";
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import FastImage from "react-native-fast-image";
 import {
   GetMobileRewardsList as Rewards,

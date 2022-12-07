@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { getUserStart } from "@redux/user/user.actions";

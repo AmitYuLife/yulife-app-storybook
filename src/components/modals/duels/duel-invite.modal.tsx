@@ -1,6 +1,6 @@
 import { GQL_MUTATION_INVITE_TO_DUEL, GQL_QUERY_GET_DUELS, InviteToDuelMutationTuple } from "@graphql/duels";
 import React, { useState } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserStart } from "@redux/user/user.actions";
 import { useMutation, useQuery } from "@apollo/client";

@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { GQL_QUERY_DEBUG_CODES, GQL_MUTATION_RESET_DATA, ResetDataMutationTuple } from "@graphql/debug";
 import React from "react";
 import { Alert } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
 import { sendTestPush } from "@redux/notifications/notifications.actions";
 import { getUserStart } from "@redux/user/user.actions";

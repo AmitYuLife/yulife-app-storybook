@@ -1,5 +1,5 @@
 import React, { useCallback, memo } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import YuniversityCoursesScreen, { IHeaderProps } from "@components/screens/member/yuniversity/yuniversity.screen";
 import { Loading } from "@atoms";

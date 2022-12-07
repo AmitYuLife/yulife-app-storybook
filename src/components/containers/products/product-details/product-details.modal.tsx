@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
 import { StyleSheet, View, ViewStyle, ScrollView, Platform } from "react-native";
 import { Style } from "@styles";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { GroupProductDisclaimer } from "@molecules";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";

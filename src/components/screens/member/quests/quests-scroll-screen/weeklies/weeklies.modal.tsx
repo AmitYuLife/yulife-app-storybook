@@ -9,7 +9,7 @@ import {
   ClaimMobileGameWeeklyRewardsVariables as ClaimWeekliesVars,
 } from "@graphql/_core/schema";
 import { Style, Colours } from "@styles";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { useMutation, useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_GAME_WEEKLIES, GQL_MUTATION_CLAIM_WEEKLY_GAME_REWARDS } from "@graphql/weeklies";

@@ -1,7 +1,7 @@
 import { MODALS, ROUTES } from "@navigation/constants";
 import React, { memo, useCallback } from "react";
 import { View, Keyboard } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { DUELS_SEARCH } from "@ids";
 import styles from "./duels-search.styles";
 import { GQL_QUERY_SEARCH_FOR_DUEL_OPPONENT } from "@graphql/duels/searchForDuelOpponents.gql";

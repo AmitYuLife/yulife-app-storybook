@@ -1,7 +1,7 @@
 import { getRouteState } from "@redux/app/app.selectors";
 import { useEffect } from "react";
 import { Platform } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useSelector } from "react-redux";
 
 export const useStatusBarStyle = (componentId: string, condition: boolean) => {

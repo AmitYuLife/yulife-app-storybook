@@ -3,7 +3,7 @@ import { PermissionScreen } from "@components/screens";
 import { checkPermissions, getPermissionsConfig, SettingsPermissions } from "@services/fitkit/permissions.helpers";
 import { AppStateStatus } from "react-native";
 import { useAppState } from "@hooks";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 
 interface IProps {

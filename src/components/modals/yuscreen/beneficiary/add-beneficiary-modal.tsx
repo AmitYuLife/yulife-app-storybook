@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import { Keyboard } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { useBackHandler } from "@hooks";
 import AddBeneficiaryModalScreen from "./add-beneficiary-modal.screen";

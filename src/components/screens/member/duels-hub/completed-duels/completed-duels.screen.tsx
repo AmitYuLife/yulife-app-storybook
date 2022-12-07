@@ -11,7 +11,7 @@ import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { Text } from "@atoms";
 import { Button } from "@molecules";
 import { DUEL_ENTRY_HEIGHT } from "../subcomponents/duel-entry/duel-entry";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { DuelSkeleton } from "../subcomponents/duel-skeleton/duel-skeleton";
 

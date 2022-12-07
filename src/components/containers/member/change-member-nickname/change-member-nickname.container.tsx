@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { Keyboard } from "react-native";
 import { useMutation } from "@apollo/client";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { GQL_MUTATION_UPDATE_NICKNAME } from "@graphql/user";
 import { ChangeMemberNickname } from "@components/screens";

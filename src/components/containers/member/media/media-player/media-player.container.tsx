@@ -1,7 +1,7 @@
 import { MediaPlayerScreen } from "@components/screens";
 import { ROUTES } from "@navigation/constants";
 import React, { useCallback, memo, useState } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import {
   CancelQuestMapLevelChallenge,
   CancelQuestMapLevelChallengeVariables,

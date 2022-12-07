@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { View } from "react-native-animatable";

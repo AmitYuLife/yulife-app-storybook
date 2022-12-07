@@ -9,7 +9,7 @@ import { baseStyles } from "./subcomponents/styles";
 import { ILeaderboardRankItemProps } from "./rank-item.types";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { RANK } from "@ids";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 
 const _ListRankItem = ({

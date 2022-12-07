@@ -1,7 +1,7 @@
 import YuniversityQuizScreen from "@components/screens/member/yuniversity/yuniversity-quiz.screen";
 import { ROUTES } from "@navigation/constants";
 import React, { memo, useCallback } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 
 interface IYuniversityQuizProps {
   moduleId: string;

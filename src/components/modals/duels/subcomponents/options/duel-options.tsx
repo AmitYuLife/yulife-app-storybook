@@ -11,7 +11,7 @@ import WagerDropdown from "./subcomponents/wager-dropdown/wager-dropdown";
 import { DUEL_OPTIONS_SCREEN } from "@ids";
 import { ListPicker } from "@components/molecules";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { t } from "@locale";
 
 interface IOptions {

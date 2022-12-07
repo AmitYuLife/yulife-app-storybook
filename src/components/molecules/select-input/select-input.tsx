@@ -1,6 +1,6 @@
 import React, { useState, useCallback, memo } from "react";
 import { ImageStyle, StyleSheet, View, ViewStyle } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { Image, TextTemplate } from "@atoms";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import { ListPicker, TouchableOpacityWithDelay, TextInputError } from "@molecules";

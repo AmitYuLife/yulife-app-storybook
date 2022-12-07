@@ -1,4 +1,4 @@
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "./constants";
 import { WebViewContainerProps } from "@components/containers/web-view/web-view.container";
 import Logger from "@services/logging/logger";

@@ -2,7 +2,7 @@ import React, { ComponentProps, memo, useContext, useCallback } from "react";
 import { View, StyleSheet, ViewStyle, Platform, SafeAreaView, PixelRatio } from "react-native";
 import { NavBar } from "@organisms";
 import { Colours, Style } from "@styles";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { useMutation } from "@apollo/client";
 import { Popover } from "@components/molecules";

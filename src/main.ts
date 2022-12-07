@@ -1,7 +1,8 @@
 import { Platform, YellowBox } from "react-native";
-import { Navigation, OptionsModalPresentationStyle } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import registerScreens from "./navigation/index";
 import { DETOX_ENABLED } from "@services/socket";
+import { OptionsModalPresentationStyle } from "react-native-navigation";
 
 if (DETOX_ENABLED) {
   YellowBox.ignoreWarnings([

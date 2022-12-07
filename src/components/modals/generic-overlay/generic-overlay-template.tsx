@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import GenericOverlay from "./generic-overlay";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Text } from "@atoms";
 import { Button, SecondaryButton } from "@molecules";

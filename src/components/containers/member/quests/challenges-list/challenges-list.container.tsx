@@ -1,6 +1,6 @@
 import React, { FC, useState, useCallback, memo, useMemo } from "react";
 import { GQL_QUERY_GET_QUEST_MAP_LEVEL } from "@graphql/challenges";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useDispatch } from "react-redux";
 import { GetQuestMapLevel, GetQuestMapLevel_getQuestMapLevel_slots } from "@graphql/_core/schema";
 import { challengeStartSuccessAction } from "@redux/levels/levels.actions";

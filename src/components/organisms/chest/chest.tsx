@@ -9,7 +9,7 @@ import { useAssets } from "./hooks/useAssets";
 import InfoMessage from "@organisms/info-message/info-message";
 import { showTooltipPopupRelativeToPoint } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import cardStyles, { CARD_WIDTH } from "../chest-card/chest-card.styles";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";

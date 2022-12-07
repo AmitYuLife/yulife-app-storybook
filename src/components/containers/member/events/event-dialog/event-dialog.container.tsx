@@ -12,7 +12,7 @@ import { showYuModal } from "@navigation/root";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { refreshUserProfileEvents, updateUserGoal } from "@redux/user/user.actions";
 import React, { FC, useCallback, useEffect } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useDispatch } from "react-redux";
 
 interface IProps {

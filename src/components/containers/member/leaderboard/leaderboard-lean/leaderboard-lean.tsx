@@ -7,7 +7,7 @@ import { getActiveLeaderboard, getCurrentUserId, getUserFeatures } from "@redux/
 import { connect, ConnectedProps } from "react-redux";
 import { useQuery } from "@apollo/client";
 import { GQL_QUERY_LEADERBOARD } from "@graphql/member";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { LeaderboardSkeleton } from "../active-leaderboard/leaderboard-layout/subcomponents/leaderboard-skeleton/leaderboard-skeleton";
 import { PAGE_SIZE } from "../active-leaderboard/active-leaderboard.container";

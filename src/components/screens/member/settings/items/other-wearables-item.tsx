@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from "react";
 import { showYuModal } from "@navigation/root";
 import { MODALS } from "@navigation/constants";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { t } from "@locale";
 import ItemTitle from "./item-title";
 import { Platform, View } from "react-native";

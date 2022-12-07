@@ -1,6 +1,6 @@
 import { useLazyQuery, useQuery } from "@apollo/client";
 import React, { memo, useCallback, useEffect, useMemo } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useSelector } from "react-redux";
 import InspectScreen from "@components/screens/member/inspect/inspect.screen";
 import { ROUTES } from "@navigation/constants";

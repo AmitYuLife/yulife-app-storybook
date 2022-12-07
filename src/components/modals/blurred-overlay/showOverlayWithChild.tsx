@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { ViewStyle } from "react-native";
 import Logger from "@services/logging/logger";

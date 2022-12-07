@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useRef, RefObject } from "react";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useSelector, useDispatch } from "react-redux";
 import { ActiveDuelsScreen, CompletedDuelsScreen, DuelsIntroScreen } from "@screens/index";
 import { IMainTabsProps } from "@navigation/root";

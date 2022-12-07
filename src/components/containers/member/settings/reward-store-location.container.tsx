@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import Logger from "@services/logging/logger";
 import {
   GetMobileRewardStoreLocations,

@@ -4,7 +4,7 @@ import { GetMobileWhatsNewModal } from "@graphql/_core/schema";
 import { useDispatch } from "react-redux";
 import { useMutation } from "@apollo/client";
 import { GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP } from "@graphql/onboardingSteps/performMobileOnboardingStep.gql";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { filterRefetchQueries } from "@graphql/_core/filterRefetchQueries";
 
 type ModalProps = GetMobileWhatsNewModal["getMobileWhatsNewModal"] & {

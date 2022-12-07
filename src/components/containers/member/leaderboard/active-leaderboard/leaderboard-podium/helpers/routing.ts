@@ -1,4 +1,4 @@
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 
 export const goToLeaderboardInfo = () => {

@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useCallback } from "react";
 import { Alert, Keyboard, Linking } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
 import { useMutation, useQuery } from "@apollo/client";
 import {
