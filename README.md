@@ -48,15 +48,6 @@ cd ios && pod install && cd ../
 
 If running `pod install` produces the error `SDK "iphoneos" cannot be located`, this means the XCode installation path is incorrect (it's probably installed under "Applications").
 
-If you have an M1 chip you might need to run these commands instead:
-
-```
-sudo gem uninstall cocoapods-core cocoapods-downloader cocoapods
-sudo arch -x86_64 gem install cocoapods
-sudo arch -x86_64 gem install ffi
-cd ios && arch -x86_64 pod install && cd ../
-```
-
 You can check this by running
 
 ```sh
