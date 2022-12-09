@@ -53,6 +53,7 @@ export const ServerList: FC<ServerListProps> = memo(({ onPress }) => {
 const REGION_TO_FLAG_MAPPING = {
   UK: Icon.FlagUK,
   US: Icon.FlagUS,
+  SA: Icon.FlagSA,
 };
 
 export const styles = StyleSheet.create({
