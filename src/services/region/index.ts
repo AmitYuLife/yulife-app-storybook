@@ -1,7 +1,7 @@
 import Config from "react-native-config";
 import AsyncStorage from "@react-native-community/async-storage";
 
-export type REGION = "UK" | "US";
+export type REGION = "UK" | "US" | "SA";
 
 type RegionConfig = {
   language: string;
@@ -40,11 +40,13 @@ class RegionService {
   public readonly API_URLS: Record<REGION, string> = {
     UK: Config.API_URL_UK || Config.API_URL,
     US: Config.API_URL_US,
+    SA: Config.API_URL_SA,
   };
 
   public readonly OPTIONS = [
     { key: "UK" as REGION, label: "United Kingdom" },
     { key: "US" as REGION, label: "United States" },
+    { key: "SA" as REGION, label: "South Africa" },
   ];
 
   public getPreferredRegion = () => this.SELECTED_REGION;
