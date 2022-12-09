@@ -61,45 +61,58 @@ const MediaListContainer = ({
     return false;
   });
 
-  const handleOtherMeditationApp = useCallback(async (appName: string, button?: IButton) => {
-    const activityFromGoogleFitAuthorised = await RNFitKit.isAuthorised({
-      read: [],
-      platform: "GoogleFit",
-    });
+  const createChallengeOnOtherAppSelected = useCallback(
+    async (appName: string, button?: IButton) => {
+      if (!appName) {
+        return;
+      }
 
-    if (!activityFromGoogleFitAuthorised && Platform.OS === "android") {
-      return await showYuModal({
-        component: {
-          id: MODALS.switchToGoogleFit,
-          name: MODALS.switchToGoogleFit,
-          passProps: {
-            onConnect: async () => {
-              await authoriseFitKitTypes(fitKitTypes);
+      const otherApp = {
+        title: t("screens.challenge_progress.how_meditate_with_other_apps_label"),
+        tutorialUrl,
+      };
+
+      setOtherAppLoading(appName);
+      try {
+        await createChallenge(false);
+        dispatch(updateChallengeAppButton(appName === "otherApp" ? otherApp : button));
+      } catch (err) {
+        Logger.error(err, { location: "media-list.container.handleOpenApp" });
+      } finally {
+        setOtherAppLoading("");
+      }
+    },
+    [dispatch]
+  );
+
+  const handleOtherMeditationApp = useCallback(
+    async (appName: string, button?: IButton) => {
+      const activityFromGoogleFitAuthorised = await RNFitKit.isAuthorised({
+        read: [],
+        platform: "GoogleFit",
+      });
+
+      if (!activityFromGoogleFitAuthorised && Platform.OS === "android") {
+        return await showYuModal({
+          component: {
+            id: MODALS.switchToGoogleFit,
+            name: MODALS.switchToGoogleFit,
+            passProps: {
+              onConnect: async () => {
+                await authoriseFitKitTypes(fitKitTypes);
+              },
+              onConnected: async () => {
+                await createChallengeOnOtherAppSelected(appName, button);
+              },
             },
           },
-        },
-      });
-    }
+        });
+      }
 
-    if (!appName) {
-      return;
-    }
-
-    const otherApp = {
-      title: t("screens.challenge_progress.how_meditate_with_other_apps_label"),
-      tutorialUrl,
-    };
-
-    setOtherAppLoading(appName);
-    try {
-      await createChallenge(false);
-      dispatch(updateChallengeAppButton(appName === "otherApp" ? otherApp : button));
-    } catch (err) {
-      Logger.error(err, { location: "media-list.container.handleOpenApp" });
-    } finally {
-      setOtherAppLoading("");
-    }
-  }, []);
+      await createChallengeOnOtherAppSelected(appName, button);
+    },
+    [createChallengeOnOtherAppSelected]
+  );
 
   const formattedVideos = useMemo(
     () =>
