@@ -51,7 +51,7 @@ const SwitchToGoogleFitModal = (props: SwitchToGoogleFitModalProps) => {
           // TODO: check why onConnect is returning undefined, call onConnected only if is authorised === true,
           // if false show a failed message?
           await onConnect();
-          onConnected();
+          onConnected && onConnected();
           onClose();
         },
       },
