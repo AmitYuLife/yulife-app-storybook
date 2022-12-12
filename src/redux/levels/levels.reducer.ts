@@ -6,10 +6,16 @@ import {
   LoginUser,
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
   UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge as QuestMapActiveChallenge,
+  GetUserCoinLedger_getUserCoinLedger,
 } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
+import {
+  GET_USER_COIN_LEDGER_SUCCESS,
+  GET_USER_SUCCESS,
+  LOGIN_USER_SUCCESS,
+  LOGOUT_SUCCESS,
+} from "../user/user.actions";
 import {
   CHALLENGE_CANCEL,
   CHALLENGE_END_FAIL,
@@ -87,6 +93,9 @@ const levelsReducer = (state: ILevelsStore = getInitialState(), action: SyncActi
     case CHALLENGE_START_SUCCESS:
       return challengeStartSuccess(state, action.payload);
 
+    case GET_USER_COIN_LEDGER_SUCCESS:
+      return getCoinLedgerSuccess(state, action.payload);
+
     case CHALLENGE_IS_ACTIVE:
       return { ...state, active: { ...state.active, challengeIsActive: true } };
 
@@ -160,6 +169,15 @@ const loginUserSuccess = (state: ILevelsStore, data: LoginUser): ILevelsStore =>
   yuniversalLevel: data?.loginUser?.user?.coinLedger?.yuniversalLevel || 0,
   nextLevelAvailableAt: data?.loginUser?.user?.coinLedger?.nextLevelAvailableAt || "",
   currentPlanet: getCurrentPlanetByLevel(data?.loginUser?.user?.coinLedger?.currentLevel),
+});
+
+const getCoinLedgerSuccess = (state: ILevelsStore, data: GetUserCoinLedger_getUserCoinLedger): ILevelsStore => ({
+  ...state,
+  level: data?.currentLevel || 1,
+  yuniversalMap: data?.yuniversalMap || 0,
+  yuniversalLevel: data?.yuniversalLevel || 0,
+  nextLevelAvailableAt: data?.nextLevelAvailableAt || "",
+  currentPlanet: getCurrentPlanetByLevel(data?.currentLevel || 1),
 });
 
 const isCancellingChallenge = (state: ILevelsStore): ILevelsStore => ({

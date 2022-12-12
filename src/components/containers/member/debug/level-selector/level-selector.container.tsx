@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
-import { getUserStart } from "@redux/user/user.actions";
+import { getUserCoinLedgerStart } from "@redux/user/user.actions";
 import LevelSelectorScreen from "@components/screens/member/debug/level-selector/level-selector.screen";
 import setUserQuestProgressWithClient from "@graphql/debug/setUserQuestProgress.gql";
 
@@ -17,7 +17,7 @@ const LevelSelector = () => {
     async (newCurrentLevel: number, newYuniversalMap?: number, newYuniversalLevel?: number) => {
       const success = await setUserQuestProgressWithClient(newCurrentLevel, newYuniversalMap, newYuniversalLevel);
       if (success) {
-        dispatch(getUserStart());
+        dispatch(getUserCoinLedgerStart());
       }
 
       Navigation.popToRoot(ROUTES.debug);

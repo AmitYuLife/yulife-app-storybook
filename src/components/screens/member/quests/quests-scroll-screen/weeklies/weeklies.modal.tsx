@@ -24,7 +24,7 @@ import { GQL_MUTATION_JOIN_WEEKLY_GOAL } from "@graphql/weeklies/joinWeeklyGoal.
 import { IFloatingModalContentProps } from "@components/modals/floating-modals/floating-modal";
 import colours from "@styles/colours";
 import { showFloatingModal } from "@components/modals/floating-modals/showFloatingModal";
-import { getUserStart } from "@redux/user/user.actions";
+import { getUserCoinLedgerStart } from "@redux/user/user.actions";
 import { RadioIcon } from "@atoms/icon/radio-icon";
 
 const handleCloseOverlay = () => Navigation.dismissOverlay(MODALS.blurredOverlay);
@@ -76,7 +76,7 @@ export const WeeklyQuestsModal = memo(({ onClose }: IFloatingModalContentProps) 
 
   const claimReward = useCallback(async () => {
     await claim({ variables: { rewardIds: [activeActivity?.id] } });
-    dispatch(getUserStart());
+    dispatch(getUserCoinLedgerStart());
 
     onClose();
     await showFloatingModal({

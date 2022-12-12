@@ -18,6 +18,8 @@ import {
   REMOVE_YUSCREEN_NOTIFICATIONS,
   REFRESH_USER_PROFILE_EVENTS,
   UPDATE_USER_PROFILE_EVENTS,
+  GET_USER_COIN_LEDGER_START,
+  GET_ALL_USER_DATA_START,
 } from "../user.actions";
 
 import fetchConnectionsSaga from "./fetchConnectionsSaga.sagas";
@@ -41,10 +43,14 @@ import updateYuScreenNotification from "./updateYuScreenNotification.saga";
 import synchroniseYuScreenSaga from "./synchroniseYuScreen.saga";
 import removeYuScreenNotification from "./removeYuScreenNotification.saga";
 import showEventFinishDialog from "./showEventFinishedDialog.saga";
+import getUserCoinLedgerSaga from "./getUserCoinLedger.saga";
+import getAllUserDataSaga from "./getAllUserData.saga";
 
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
+  takeLatest(GET_USER_COIN_LEDGER_START, getUserCoinLedgerSaga),
   takeLatest(GET_USER_START, getUserDataSaga),
+  takeLatest(GET_ALL_USER_DATA_START, getAllUserDataSaga),
   takeLatest(UPDATE_USER_PROFILE, sendDuelInvitationSaga),
   takeLatest(GET_USER_SUCCESS, showLeaderboardInviteOnGetUserSaga),
   takeLatest(SET_USER_NO_ACCESS, setUserNoAccessSaga),

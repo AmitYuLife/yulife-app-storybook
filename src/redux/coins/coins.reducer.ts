@@ -4,6 +4,7 @@ import { DATE_FORMAT } from "@utils";
 import {
   GetCurrentUser,
   GetCurrentUser_getCurrentUser_todayActivity,
+  GetUserCoinLedger_getUserCoinLedger,
   LoginUser,
   UpsertDailyPassives_upsertDailyPassives_challenges as Challenge,
 } from "@graphql/_core/schema";
@@ -13,7 +14,12 @@ import {
   UPDATE_DAILY_MEDITATION_SUCCESS,
 } from "../daily-meditation/daily-meditation.actions";
 import { UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE, START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
+import {
+  GET_USER_COIN_LEDGER_SUCCESS,
+  GET_USER_SUCCESS,
+  LOGIN_USER_SUCCESS,
+  LOGOUT_SUCCESS,
+} from "../user/user.actions";
 import { UPDATE_TOTAL_COINS } from "./coins.actions";
 import { UPDATE_DAILY_CYCLING_SUCCESS } from "@redux/daily-cycling/daily-cycling.actions";
 import { UPDATE_APP_STATE_ACTIVE } from "@redux/app/app.actions";
@@ -64,6 +70,8 @@ const coinsReducer = (state: ICoinsStore = getInitialState(), action: SyncAction
       return updateDailyCyclingSuccess(state, action.payload);
     case LOGIN_USER_SUCCESS:
       return loginUserSuccess(state, action.payload);
+    case GET_USER_COIN_LEDGER_SUCCESS:
+      return coinLedgerSuccess(state, action.payload);
     case GET_USER_SUCCESS:
       return getUserSuccess(state, action.payload);
     case UPDATE_TOTAL_COINS:
@@ -173,6 +181,11 @@ const loginUserSuccess = (state: ICoinsStore, { loginUser }: LoginUser): ICoinsS
   dailyChallengeEarned: sumCompletedChallenges(loginUser?.user?.todayActivity),
   total: loginUser?.user?.coinLedger?.currentBalance || state.total,
   lastUpdated: moment().format(DATE_FORMAT),
+});
+
+const coinLedgerSuccess = (state: ICoinsStore, coinLedger: GetUserCoinLedger_getUserCoinLedger): ICoinsStore => ({
+  ...state,
+  total: coinLedger?.currentBalance || state.total,
 });
 
 const getUserSuccess = (state: ICoinsStore, { getCurrentUser }: GetCurrentUser): ICoinsStore => ({
