@@ -1,15 +1,7 @@
 import React, { useRef, RefObject, useCallback, useState, useEffect, useMemo } from "react";
-import {
-  Animated,
-  FlatList as _FlatList,
-  View,
-  StyleSheet,
-  ViewStyle,
-  Platform,
-  LayoutChangeEvent,
-  AppStateStatus,
-} from "react-native";
-import { resToList, getItemLayout, renderItem } from "./helpers";
+import { Animated, View, StyleSheet, ViewStyle, Platform, LayoutChangeEvent, AppStateStatus } from "react-native";
+import { FlashList as _FlashList } from "@shopify/flash-list";
+import { resToList, renderItem } from "./helpers";
 import { GetLeaderboard } from "@graphql/_core/schema";
 import { LeaderboardPodium } from "../leaderboard-podium";
 import FloatingRankItem from "../../items/leaderboard-rank-item/floating-rank-item";
@@ -20,6 +12,7 @@ import { LEADERBOARD_ITEM_HEIGHT } from "../../items/leaderboard-rank-item/subco
 import { TOP_PADDING_HEIGHT } from "./helpers/constants";
 import { LEADERBOARD_SCROLL_LIST } from "@ids";
 import { useAppState, useNavigationComponentDidDisappear } from "@hooks";
+import { ILeaderboardListItem } from "./leaderboard-content.types";
 
 export interface LeaderboardContentContainerProps {
   leaderboardItems: GetLeaderboard["getLeaderboard"];
@@ -31,7 +24,7 @@ export interface LeaderboardContentContainerProps {
   openModal: () => void;
 }
 
-const FlatList = Animated.createAnimatedComponent(_FlatList);
+const FlashList = Animated.createAnimatedComponent(_FlashList);
 
 export const LeaderboardContentContainer = ({
   leaderboardItems,
@@ -44,7 +37,7 @@ export const LeaderboardContentContainer = ({
 }: LeaderboardContentContainerProps) => {
   const [scrollValue] = useState(new Animated.Value(0));
   const [flatListHeight, setFlatListHeight] = useState(0);
-  const flatListRef: RefObject<_FlatList> = useRef();
+  const flatListRef: RefObject<_FlashList<ILeaderboardListItem>> = useRef();
   const timer = useRef<ReturnType<typeof setTimeout>>(null);
   const refreshing = useMemo(() => Platform.select({ ios: false, android: isRefetching }), [isRefetching]);
   const myLeaderboardItem = leaderboardItems.find((item) => item.userId === currentUserId);
@@ -100,17 +93,16 @@ export const LeaderboardContentContainer = ({
 
   return (
     <View style={styles.flex}>
-      <FlatList
+      <FlashList
         testID={LEADERBOARD_SCROLL_LIST}
         onLayout={handleLayout}
         onRefresh={onRefetch}
         refreshing={refreshing}
         ref={flatListRef}
-        style={styles.flex}
         showsVerticalScrollIndicator={false}
+        estimatedItemSize={95}
         data={list.flatListData}
         renderItem={renderItem}
-        getItemLayout={getItemLayout}
         scrollEventThrottle={16}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], { useNativeDriver: true })}
       />

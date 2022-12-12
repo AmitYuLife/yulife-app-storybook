@@ -87,7 +87,7 @@ const QuestsScreen: FC<IProps> = ({ hideUnity, unity, levelId, repeatedUnity, on
 
   useEffect(() => {
     scrollToActiveLevel();
-  }, [isLoading, unity, activeLevel]);
+  }, [isLoading, scrollToActiveLevel, unity, activeLevel]);
 
   /**
    * If we attempt to wrap this up in useMemo the scrolly quests won't update,

@@ -19,17 +19,17 @@ const MapSlice = memo(
     const levels = slots.map((slot) => formattedLevels[slot.index]).filter(Boolean);
 
     return (
-      <View key={id} style={hasForestInterstitial ? styles.halfMapSliceWrapper : styles.wrapper}>
+      <View style={hasForestInterstitial ? styles.halfMapSliceWrapper : styles.wrapper}>
         <FastImage source={image} style={styles.image} />
         <View style={styles.levelButtonWrapper}>
           {levels.map((level, index) => (
-            <LevelBubble key={level.id} currentLevel={currentLevel} index={index} level={level} slots={slots} />
+            <LevelBubble key={index} currentLevel={currentLevel} index={index} level={level} slots={slots} />
           ))}
         </View>
       </View>
     );
   },
-  (prevProps, nextProps) => prevProps.id !== nextProps.id
+  (prevProps, nextProps) => prevProps.id === nextProps.id
 );
 
 export default MapSlice;
