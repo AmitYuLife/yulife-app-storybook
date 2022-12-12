@@ -1,78 +1,63 @@
 import * as React from "react";
-import { FlatList, ListRenderItem, View } from "react-native";
-import { isIphoneX } from "react-native-iphone-x-helper";
+import { View } from "react-native";
 import { IMapSlice, MAP_SLICE_HEIGHT } from "../assets";
-import { HALF_MAP_SLICE_HEIGHT } from "../assets/slices.settings";
+import { FlashList, FlashListProps, ListRenderItemInfo } from "@shopify/flash-list";
+
 import MapSlice from "./map-slice";
 import styles from "../quests-screen.styles";
+import { FC, memo, useCallback } from "react";
+import { Style } from "@styles";
 
 export interface IScrollQuestProps {
   data: IMapSlice[];
   initialScrollIndex: number;
-  onViewableItemsChanged?: any;
-  setFlatListRef: (ref: any) => void;
+  onViewableItemsChanged?: FlashListProps<IMapSlice>["onViewableItemsChanged"];
+  setFlatListRef: (ref: FlashList<IMapSlice>) => void;
   offsets: number[];
 }
 
-class ScrollyQuest extends React.Component<IScrollQuestProps> {
-  private viewabilityConfig = {
-    minimumViewTime: 400,
-    viewAreaCoveragePercentThreshold: 95,
-    waitForInteraction: true,
-  };
+const VIEWABILITY_CONFIG = {
+  minimumViewTime: 400,
+  viewAreaCoveragePercentThreshold: 95,
+  waitForInteraction: true,
+};
 
-  public shouldComponentUpdate(nextProps: IScrollQuestProps) {
-    return shouldScrollyQuestUpdate(this.props, nextProps);
-  }
+const ScrollyQuest: FC<IScrollQuestProps> = ({
+  data,
+  initialScrollIndex,
+  onViewableItemsChanged,
+  setFlatListRef,
+  offsets,
+}) => {
+  const keyExtractor = useCallback((level: IMapSlice) => level.id, []);
 
-  public render() {
-    const { data, initialScrollIndex, onViewableItemsChanged, setFlatListRef, offsets } = this.props;
+  const renderItem = useCallback(({ item }: ListRenderItemInfo<IMapSlice>) => {
+    return <MapSlice {...item} />;
+  }, []);
 
-    return (
-      <View style={styles.scrollViewWrapper}>
-        <FlatList
-          data={data}
-          inverted={true}
-          initialScrollIndex={initialScrollIndex}
-          keyExtractor={this.keyExtractor}
-          getItemLayout={this.getItemLayout}
-          showsVerticalScrollIndicator={false}
-          ref={setFlatListRef}
-          removeClippedSubviews={true}
-          renderItem={this.renderItem}
-          onViewableItemsChanged={onViewableItemsChanged}
-          viewabilityConfig={this.viewabilityConfig}
-          initialNumToRender={8}
-          decelerationRate={"fast"}
-          snapToOffsets={offsets}
-          directionalLockEnabled={true}
-        />
-      </View>
-    );
-  }
+  return (
+    <View style={styles.scrollViewWrapper}>
+      <FlashList
+        data={data}
+        drawDistance={Style.DEVICE_HEIGHT}
+        inverted={true}
+        initialScrollIndex={initialScrollIndex}
+        keyExtractor={keyExtractor}
+        showsVerticalScrollIndicator={false}
+        ref={setFlatListRef}
+        estimatedItemSize={MAP_SLICE_HEIGHT}
+        renderItem={renderItem}
+        onViewableItemsChanged={onViewableItemsChanged}
+        viewabilityConfig={VIEWABILITY_CONFIG}
+        decelerationRate={"fast"}
+        snapToOffsets={offsets}
+        directionalLockEnabled={true}
+      />
+    </View>
+  );
+};
 
-  private keyExtractor = (level: IMapSlice) => level.id;
-
-  private renderItem: ListRenderItem<IMapSlice> = ({ item }) => <MapSlice {...item} />;
-
-  private getItemLayout = (_: any, index: number) => {
-    if (index === 0 && isIphoneX()) {
-      return {
-        index,
-        length: HALF_MAP_SLICE_HEIGHT,
-        offset: 0,
-      };
-    }
-
-    return {
-      index,
-      length: MAP_SLICE_HEIGHT,
-      offset: MAP_SLICE_HEIGHT * index,
-    };
-  };
-}
-
-export default ScrollyQuest;
+export default memo(ScrollyQuest, (prevProps, nextProps) => shouldScrollyQuestUpdate(prevProps, nextProps));
 
 export function shouldScrollyQuestUpdate(currentProps: IScrollQuestProps, nextProps: IScrollQuestProps) {
   return (

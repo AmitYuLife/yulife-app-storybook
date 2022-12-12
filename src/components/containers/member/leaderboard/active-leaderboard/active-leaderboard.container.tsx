@@ -7,12 +7,12 @@ import { LeaderboardLayout } from "./leaderboard-layout/leaderboard-layout";
 import { getLeaderboardsCopy } from "@redux/copy/copy.selectors";
 import { updateLeaderboardConsent } from "@redux/user/user.actions";
 import ConsentGuard from "./consent-guard/consent-guard";
-import { NetworkStatus } from "@apollo/client";
 import { LeaderboardContentContainer } from "./leaderboard-content/leaderboard-content";
 import { LeaderboardSkeleton } from "./leaderboard-layout/subcomponents/leaderboard-skeleton/leaderboard-skeleton";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { IMainTabsProps, showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeen, useTapBackTwiceToExit } from "@hooks";
+import { NetworkStatus } from "@apollo/client";
 
 type OwnProps = IMainTabsProps;
 
@@ -29,7 +29,7 @@ const ActiveLeaderboardContainer = (props: Props) => {
 
   useTapBackTwiceToExit(props.componentId);
 
-  const [, { data, networkStatus, refetch }] = useQueryOnScreenSeen<GetLeaderboard, GetLeaderboardVariables>(
+  const [, { data, loading, networkStatus, refetch }] = useQueryOnScreenSeen<GetLeaderboard, GetLeaderboardVariables>(
     GQL_QUERY_LEADERBOARD,
     ROUTES.leaderboards,
     {
@@ -83,7 +83,7 @@ const ActiveLeaderboardContainer = (props: Props) => {
           currentUserId={userId}
           onRefetch={handleRefetch}
           isRefetching={networkStatus === NetworkStatus.refetch}
-          isLoading={networkStatus === 1} // ts throws (?) if written as networkStatus === NetworkStatus.loading
+          isLoading={loading}
           openModal={openModal}
         />
       </ConsentGuard>
