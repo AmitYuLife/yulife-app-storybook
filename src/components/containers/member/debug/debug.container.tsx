@@ -5,7 +5,7 @@ import { Alert } from "react-native";
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
 import { sendTestPush } from "@redux/notifications/notifications.actions";
-import { getUserStart } from "@redux/user/user.actions";
+import { getAllUserDataStart, getUserStart } from "@redux/user/user.actions";
 import { DebugScreen } from "@screens";
 import Logger from "@services/logging/logger";
 import { ROUTES } from "@navigation/constants";
@@ -98,6 +98,7 @@ const DebugContainer: React.FC<Props> = (props) => {
         await resetData({ variables: { code } });
         Alert.alert("Success");
         dispatch(getUserStart());
+        dispatch(getAllUserDataStart());
 
         if (personalProducts.includes(code)) {
           await refreshPersonalProducts();

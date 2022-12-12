@@ -2,10 +2,10 @@ import { AppStateStatus } from "react-native";
 import { call, select, take } from "redux-saga/effects";
 import { appStateChannel } from "../../app/app.channels";
 import { getActiveLevel } from "../../levels/levels.selectors";
-import getUserData from "./getUserData.saga";
+import getUserDataSaga from "./getUserData.saga";
 
 export default function* fetchUserOnAppStateChangeSaga() {
-  yield call(getUserData);
+  yield call(getUserDataSaga);
 
   const appState: ReturnType<typeof appStateChannel> = yield call(appStateChannel);
 
@@ -14,7 +14,7 @@ export default function* fetchUserOnAppStateChangeSaga() {
     const active: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
 
     if (state === "active" && !active.levelSlotId) {
-      yield call(getUserData);
+      yield call(getUserDataSaga);
     }
   }
 }

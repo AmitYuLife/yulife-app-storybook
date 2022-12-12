@@ -94,6 +94,7 @@ export * from "./GetActiveBuffsOverlay";
 export * from "./GetActivityHistory";
 export * from "./GetAdBanners";
 export * from "./GetAllPurchases";
+export * from "./GetAllUserData";
 export * from "./GetConnections";
 export * from "./GetCurrentUser";
 export * from "./GetCurrentUserLeaderboard";

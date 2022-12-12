@@ -1,7 +1,7 @@
 // tslint:disable-next-line
 import { StreakTypes } from "@organisms/game-icon-button/streak.button";
-import { GetCurrentUser, LoginUser } from "@graphql/_core/schema";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
+import { GetCurrentUser, GetUserCoinLedger_getUserCoinLedger, LoginUser } from "@graphql/_core/schema";
+import { GET_USER_COIN_LEDGER_SUCCESS, GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import { getCurrentPlanetByLevel, getCurrentWorld, Planets } from "@utils";
 import { SyncAction } from "../_core/types";
 import { TopBarTypes } from "@organisms/top-bar/top-bar.helpers";
@@ -60,6 +60,7 @@ export interface IThemeStore {
   questsOfflineScreen: {
     image: string;
   };
+  newBackgroundAssets?: boolean;
 }
 
 export const getInitialState = (newBackgroundAssets = false, currentPlanet = Planets.EARTH): IThemeStore => ({
@@ -88,6 +89,7 @@ const themeReducer = (state: IThemeStore = getInitialState(), action: SyncAction
   switch (action.type) {
     case GET_USER_SUCCESS:
     case LOGIN_USER_SUCCESS:
+    case GET_USER_COIN_LEDGER_SUCCESS:
       return getCurrentWorldTheme(state, action.payload, action.type);
     case CHANGE_PANEL_VISIBILITY:
       return changePanelVisibility(state, action.payload);
@@ -168,8 +170,8 @@ const planetsColors = {
 };
 
 const getCurrentWorldTheme = (
-  _: IThemeStore,
-  data: GetCurrentUser | LoginUser,
+  store: IThemeStore,
+  data: GetCurrentUser | LoginUser | GetUserCoinLedger_getUserCoinLedger,
   type: SyncAction["type"]
 ): IThemeStore => {
   let newBackgroundAssets = false;
@@ -183,12 +185,17 @@ const getCurrentWorldTheme = (
     yuniversalMap = getCurrentUser.coinLedger.yuniversalMap;
 
     newBackgroundAssets = !!getCurrentUser.userFeatures.find((f) => f.name === "newBackgroundAssets" && f.value);
-  } else {
+  } else if (type === LOGIN_USER_SUCCESS) {
     const { loginUser } = data as LoginUser;
 
     currentLevel = loginUser.user.coinLedger.currentLevel;
     yuniversalMap = loginUser.user.coinLedger.yuniversalMap;
     newBackgroundAssets = !!loginUser.user.userFeatures.find((f) => f.name === "newBackgroundAssets" && f.value);
+  } else {
+    const coinLedger = data as GetUserCoinLedger_getUserCoinLedger;
+    currentLevel = coinLedger?.currentLevel;
+    yuniversalMap = coinLedger?.yuniversalMap;
+    newBackgroundAssets = store?.newBackgroundAssets;
   }
 
   const currentWorld = getCurrentWorld(currentLevel);
@@ -219,6 +226,7 @@ const getCurrentWorldTheme = (
       questsOfflineScreen: {
         image: "yuniversal_1",
       },
+      newBackgroundAssets,
     };
   }
 
@@ -244,6 +252,7 @@ const getCurrentWorldTheme = (
         questsOfflineScreen: {
           image: "mountain",
         },
+        newBackgroundAssets,
       };
     case 2:
       return {
@@ -266,6 +275,7 @@ const getCurrentWorldTheme = (
         questsOfflineScreen: {
           image: "desert",
         },
+        newBackgroundAssets,
       };
     case 1:
       return {
@@ -288,6 +298,7 @@ const getCurrentWorldTheme = (
         questsOfflineScreen: {
           image: "ocean",
         },
+        newBackgroundAssets,
       };
     case 0:
     default:

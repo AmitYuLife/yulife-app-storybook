@@ -2,17 +2,16 @@ import { useMutation } from "@apollo/client";
 import { GQL_MUTATION_COLLECT_AWARD, CollectAwardMutationTuple } from "@graphql/member";
 import { getTimeRemaining } from "@utils";
 import React, { useMemo, useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getStreakAwardId } from "@redux/streaks/streaks.selectors";
-import { getUserStart } from "@redux/user/user.actions";
 import { StreaksScreen } from "@screens";
 import { useBackHandler } from "@hooks";
 import { Navigation } from "@navigation/main";
 import { IStreakCopy, streakCopy } from "./copy";
+import getUserCoinLedger from "@graphql/user/getUserCoinLedger.gql";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
-type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface IProps {
   componentId: string;
@@ -26,7 +25,7 @@ interface IProps {
   type: string;
 }
 
-type Props = IProps & ConnectedDispatch & ConnectedState;
+type Props = IProps & ConnectedState;
 
 const getStreakCompleted = ({
   streakAwardId,
@@ -127,8 +126,8 @@ const StreaksModal: React.FC<Props> = ({
   nextStreakAvailableAt,
   reward,
   type,
-  getUserStart: dispatchGetUserStart,
 }) => {
+  const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(getTimeRemaining(nextStreakAvailableAt, "medium"));
 
@@ -174,7 +173,7 @@ const StreaksModal: React.FC<Props> = ({
           });
 
           if (result && result.data && result.data.collectAward) {
-            dispatchGetUserStart();
+            dispatch(getUserCoinLedger());
           }
 
           onPressCtaPrimary();
@@ -222,8 +221,4 @@ const mapStateToProps = (state: IReduxState) => ({
   streakAwardId: getStreakAwardId(state),
 });
 
-const mapDispatchToProps = {
-  getUserStart,
-};
-
-export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(StreaksModal);
+export default connect<ConnectedState>(mapStateToProps)(StreaksModal);
