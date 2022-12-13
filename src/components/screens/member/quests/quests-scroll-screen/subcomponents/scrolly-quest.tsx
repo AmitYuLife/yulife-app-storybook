@@ -57,12 +57,10 @@ const ScrollyQuest: FC<IScrollQuestProps> = ({
   );
 };
 
-export default memo(ScrollyQuest, (prevProps, nextProps) => shouldScrollyQuestUpdate(prevProps, nextProps));
-
-export function shouldScrollyQuestUpdate(currentProps: IScrollQuestProps, nextProps: IScrollQuestProps) {
-  return (
-    currentProps.initialScrollIndex !== nextProps.initialScrollIndex ||
-    currentProps.data.length !== nextProps.data.length ||
-    currentProps.offsets.length !== nextProps.offsets.length
-  );
-}
+export default memo(
+  ScrollyQuest,
+  (prevProps, nextProps) =>
+    prevProps.initialScrollIndex === nextProps.initialScrollIndex &&
+    prevProps.data.length === nextProps.data.length &&
+    prevProps.offsets.length === nextProps.offsets.length
+);
