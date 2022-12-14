@@ -1,15 +1,13 @@
 import React, { memo } from "react";
-import { Image } from "@atoms/index";
 import { Button } from "@molecules";
 import { GetQuestMapLevel_getQuestMapLevel } from "@graphql/_core/schema";
-import { Image as RNImage, ScrollView, StyleSheet, View } from "react-native";
+import { Image as RNImage, ScrollView, View } from "react-native";
 import { IConnectedScreenProps } from "@app/typings";
 import ChallengesHistorySlot from "./challenges-history-slot";
-import { getBottomGradient } from "./challenges-history.helpers";
 import styles from "./challenges-history.screen.styles";
-import { TopBarTypes } from "@components/organisms/top-bar/top-bar.helpers";
 import { TopBar, NavBar } from "@components/organisms";
 import { getCurrentWorld } from "@utils";
+import { getTheme } from "@theme";
 
 interface IProps extends IConnectedScreenProps {
   level: GetQuestMapLevel_getQuestMapLevel;
@@ -21,14 +19,13 @@ interface IProps extends IConnectedScreenProps {
 
 function ChallengesHistory({ level, yuniversalMap, name, onPressActivityHistory, onLeftMenuPress }: IProps) {
   const normalizedWorld = getCurrentWorld(level?.level);
-  const { backgroundWrapperStyle, backgroundImage, topBarType } = getWorldStyle(normalizedWorld, yuniversalMap);
-  const bottomGradient = getBottomGradient(normalizedWorld, yuniversalMap);
+  const { challengeHistoryScreen } = getTheme(level?.level, yuniversalMap);
 
   return (
     <View style={styles.wrapper}>
       <View style={styles.topPad} />
-      <View style={backgroundWrapperStyle}>
-        <RNImage resizeMode="cover" style={styles.background} source={backgroundImage} />
+      <View style={challengeHistoryScreen.style}>
+        <RNImage resizeMode="cover" style={styles.background} source={challengeHistoryScreen.backgroundImage} />
       </View>
       <View style={styles.topBarWrapper}>
         <TopBar
@@ -36,7 +33,7 @@ function ChallengesHistory({ level, yuniversalMap, name, onPressActivityHistory,
           menuLabel="map"
           name={name}
           onPressLeftIcon={onLeftMenuPress}
-          type={topBarType as TopBarTypes}
+          type={challengeHistoryScreen.topBarType}
         />
       </View>
       <View style={styles.challengeSetWrapper}>
@@ -61,7 +58,6 @@ function ChallengesHistory({ level, yuniversalMap, name, onPressActivityHistory,
             ) : null
           )}
         </ScrollView>
-        {!bottomGradient ? null : <Image {...bottomGradient} />}
       </View>
       <View style={styles.buttonsWrapper}>
         <Button onPress={onPressActivityHistory} label="Full history" />
@@ -72,57 +68,3 @@ function ChallengesHistory({ level, yuniversalMap, name, onPressActivityHistory,
 }
 
 export default memo(ChallengesHistory);
-
-function getWorldStyle(currentWorld: number, yuniversalMap?: number) {
-  if (yuniversalMap) {
-    return {
-      backgroundImage: require("@assets/yuniversal/yuniversal_1.png"),
-      backgroundWrapperStyle: StyleSheet.flatten([StyleSheet.absoluteFillObject]),
-      topBarType: "white",
-    };
-  }
-
-  switch (currentWorld) {
-    case 3:
-      return {
-        backgroundImage: require("@assets/challenges/mountain.png"),
-        backgroundWrapperStyle: StyleSheet.flatten([
-          StyleSheet.absoluteFillObject,
-          { backgroundColor: "rgb(59,123,209)" },
-        ]),
-        historyLinkColor: "rgba(255, 255, 255, 1)",
-        topBarType: "mountain",
-      };
-    case 2:
-      return {
-        backgroundImage: require("@assets/challenges/desert.png"),
-        backgroundWrapperStyle: StyleSheet.flatten([
-          StyleSheet.absoluteFillObject,
-          { backgroundColor: "rgb(254,251,205)" },
-        ]),
-        historyLinkColor: "rgba(226, 1, 119, 1)",
-        topBarType: "desert",
-      };
-    case 1:
-      return {
-        backgroundImage: require("@assets/challenges/ocean.png"),
-        backgroundWrapperStyle: StyleSheet.flatten([
-          StyleSheet.absoluteFillObject,
-          { backgroundColor: "rgb(87,155,193)" },
-        ]),
-        historyLinkColor: "white",
-        topBarType: "white",
-      };
-    case 0:
-    default:
-      return {
-        backgroundImage: require("@assets/challenges/forest.png"),
-        backgroundWrapperStyle: StyleSheet.flatten([
-          StyleSheet.absoluteFillObject,
-          { backgroundColor: "rgb(255, 242, 142)" },
-        ]),
-        historyLinkColor: "rgba(226, 1, 119, 1)",
-        topBarType: "default",
-      };
-  }
-}

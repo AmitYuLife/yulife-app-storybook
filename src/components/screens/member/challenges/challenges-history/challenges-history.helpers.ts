@@ -1,5 +1,5 @@
 import { Style } from "@styles/index";
-import { ImageRequireSource, ImageStyle } from "react-native";
+import { ImageStyle } from "react-native";
 
 interface ISlotSet {
   style: ImageStyle;
@@ -217,49 +217,6 @@ const CYCLING: ISlotSet[] = [
     width: Style.SCALE_UP_AND_DOWN(55),
   },
 ];
-
-const BOTTOM_GRADIENT: (ISlotSet & { source: ImageRequireSource })[] = [
-  {
-    source: require("@assets/challenge-history/forest-bottom-gradient.png"),
-    style: {
-      position: "absolute",
-      bottom: 0,
-    },
-    width: Style.DEVICE_WIDTH,
-  },
-  {
-    source: require("@assets/challenge-history/ocean-bottom-gradient.png"),
-    style: {
-      position: "absolute",
-      bottom: 0,
-    },
-    width: Style.DEVICE_WIDTH,
-  },
-  {
-    source: require("@assets/challenge-history/desert-bottom-gradient.png"),
-    style: {
-      position: "absolute",
-      bottom: 0,
-    },
-    width: Style.DEVICE_WIDTH,
-  },
-  {
-    source: require("@assets/challenge-history/mountain-bottom-gradient.png"),
-    style: {
-      position: "absolute",
-      bottom: 0,
-    },
-    width: Style.DEVICE_WIDTH,
-  },
-];
-
-export function getBottomGradient(currentWorld: number, yuniversalMap?: number) {
-  if (yuniversalMap) {
-    return null;
-  }
-
-  return BOTTOM_GRADIENT[currentWorld];
-}
 
 export function getSlotImageProps(challengeType: string, currentWorld: number, yuniversalMap?: number) {
   const index = yuniversalMap ? 4 : currentWorld;
