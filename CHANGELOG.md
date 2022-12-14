@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.61.0] - 2022-12-14
+
+### Bugfixes
+
+- Bugfix: Revert fontWeight from TextTemplate component
+- BugFix ENG-3053: text cut off when font wight bold
+- Bugfix: Fix quest map not rerendering when data changes
+- Bugfix ENG-3021: Handle on connected google fit for meditation flow
+
+### Tasks
+
+- Task GS-556: Switch to FlashList for scrolling
+- Task GS-137: Replace coinLedger resolver with getUserCoinLedger
+- Task GS: Create navigation wrapper
+
+### Chores
+
+- Chore: Add SA region
+
+### Extra
+
+- Hotfix: Remove incorrect README instruction
+- Add ITSAppUsesNonExemptEncryption
+
 ## [3.60.0] - 2022-12-07
 
 ### Bugfixes
