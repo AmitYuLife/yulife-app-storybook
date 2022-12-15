@@ -12,7 +12,7 @@ import sagas from "./sagas";
 const persistConfig = {
   blacklist: ["app", "pedometer", "avatarCache", "notifications", "sdui", "fitkit"],
   key: "root",
-  version: 4,
+  version: 5,
   storage: AsyncStorage,
   migrate: createMigrate(migrations, { debug: false }),
 };

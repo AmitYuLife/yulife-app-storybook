@@ -52,8 +52,8 @@ export interface IThemeScreens {
     topBarType: TopBarTypes;
   };
   offlineScreen: IScreen & { textColour: string };
-  questsOfflineScreen?: {
-    image: string;
+  questsOfflineScreen: {
+    backgroundImage: ImageSourcePropType;
   };
 }
 

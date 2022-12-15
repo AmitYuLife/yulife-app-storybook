@@ -1,44 +1,41 @@
-import { Pad, Text } from "@atoms/index";
-import * as React from "react";
+import React, { memo } from "react";
+import { Pad, TextTemplate } from "@atoms";
 import { Image, Platform, SafeAreaView, View } from "react-native";
-import { getQuestsOfflineTheme } from "@redux/theme/theme.selectors";
-import { IConnectedScreenProps } from "../../../../../typings";
-import assets from "./assets";
 import styles from "./quests-offline.styles";
-import { IReduxState } from "@redux/_core/reducers";
-import { connect } from "react-redux";
-import { TopBar } from "@components/organisms";
-import { NavBar } from "@components/organisms";
+import { TopBar, NavBar } from "@components/organisms";
+import { useSelector } from "react-redux";
+import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
+import { getTheme } from "@theme";
+import { t } from "@locale";
 
-export type ConnectedState = ReturnType<typeof mapStateToProps>;
+interface IProps {
+  fitkitAvailable: boolean;
+  onLeftMenuPress: () => void;
+}
 
-type Props = IConnectedScreenProps &
-  ConnectedState & {
-    fitkitAvailable: boolean;
-  };
-
-type ImageType = "forest" | "ocean" | "desert" | "mountain";
-
-function QuestsScreenOffline({ fitkitAvailable, onLeftMenuPress, questsOfflineTheme: { image } }: Props) {
+function QuestsScreenOffline({ fitkitAvailable, onLeftMenuPress }: IProps) {
+  const currentLevel = useSelector(getCurrentLevel);
+  const { yuniversalMap } = useSelector(getYuniversalProgress);
+  const { questsOfflineScreen } = getTheme(currentLevel, yuniversalMap);
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.backgroundWrapper}>
-        <Image resizeMode="cover" style={styles.background} source={assets[image as ImageType]} />
+        <Image resizeMode="cover" style={styles.background} source={questsOfflineScreen.backgroundImage} />
       </View>
       <View style={styles.headingWrapper}>
         <View>
-          <Text style={styles.heading} bold={true}>
-            {!fitkitAvailable ? "device not supported" : "you’re offline"}
-          </Text>
+          <TextTemplate type="h1">
+            {!fitkitAvailable ? t("device_not_supported") : t("screens.offline.heading")}
+          </TextTemplate>
         </View>
-        <Text>
+        <TextTemplate type="b2" textAlign="center">
           {!fitkitAvailable
             ? Platform.select({
-                android: "your device requires Google Play Services in order to use this app.",
-                ios: "your device requires Apple Healthkit in order to use this app.",
+                android: t("unavailableAndroid"),
+                ios: t("unavailableIOS"),
               })
-            : "Check your internet connection."}
-        </Text>
+            : t("screens.offline.subheading")}
+        </TextTemplate>
         <Pad height={60} />
       </View>
       <TopBar onPressLeftIcon={onLeftMenuPress} />
@@ -47,8 +44,4 @@ function QuestsScreenOffline({ fitkitAvailable, onLeftMenuPress, questsOfflineTh
   );
 }
 
-const mapStateToProps = (state: IReduxState) => ({
-  questsOfflineTheme: getQuestsOfflineTheme(state),
-});
-
-export default connect(mapStateToProps)(QuestsScreenOffline);
+export default memo(QuestsScreenOffline);

@@ -18,6 +18,7 @@ import {
   UPDATE_DAILY_STEPS_SUCCESS_FROM_LOCAL,
   UPDATE_DAILY_STEPS_NO_NEW_DATA,
   START_STEPS_SYNCING,
+  CHANGE_PANEL_VISIBILITY,
 } from "./daily-steps.actions";
 import { SyncAction } from "@redux/_core/types";
 import { ExchangeRate, PassiveStepsMilestones } from "./daily-steps.selectors";
@@ -73,6 +74,7 @@ export interface IDailyStepsStore {
    * Steps data from these apps  will be filtered/ignored
    */
   blackListApps: string[];
+  showPanel: boolean;
 }
 
 export const getInitialState = (): IDailyStepsStore => ({
@@ -91,6 +93,7 @@ export const getInitialState = (): IDailyStepsStore => ({
   lastUpdated: moment().startOf("day").format(),
   maxStepsAnomalyWindowMs: MAX_ANOMALY_DETECTION_WINDOW_MS,
   blackListApps: [],
+  showPanel: false,
 });
 
 const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: SyncAction): IDailyStepsStore => {
@@ -137,6 +140,9 @@ const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: 
 
     case UPDATE_USER_PROFILE:
       return updateUserProfile(state, action.payload.gameSettings);
+
+    case CHANGE_PANEL_VISIBILITY:
+      return changePanelVisibility(state, action.payload);
 
     default:
       return state;
@@ -218,4 +224,9 @@ const loginUserSuccess = (state: IDailyStepsStore, res: LoginUser) => ({
   ...state,
   exchangeRate: res?.loginUser?.user?.passiveSteps?.exchange || getInitialState().exchangeRate,
   stepsPassiveMilestones: res?.loginUser?.user?.passiveSteps?.levelSlot?.milestones || [],
+});
+
+const changePanelVisibility = (state: IDailyStepsStore, payload: boolean): IDailyStepsStore => ({
+  ...state,
+  showPanel: payload,
 });
