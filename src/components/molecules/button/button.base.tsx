@@ -65,7 +65,10 @@ export function ButtonBase(props: IProps) {
     accessibilityLabel,
   } = props;
   const [translateYAnimation] = useState(new Animated.Value(0));
-  const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress, delay });
+  const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({
+    onPress: !isLoading ? onPress : undefined,
+    delay,
+  });
 
   useEffect(() => {
     if (disableAnimation) {

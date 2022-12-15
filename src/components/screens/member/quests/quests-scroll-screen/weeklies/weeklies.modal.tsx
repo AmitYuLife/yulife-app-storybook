@@ -23,15 +23,14 @@ import { JoinWeeklyGoal, JoinWeeklyGoalVariables } from "@graphql/_core/schema/J
 import { GQL_MUTATION_JOIN_WEEKLY_GOAL } from "@graphql/weeklies/joinWeeklyGoal.gql";
 import { IFloatingModalContentProps } from "@components/modals/floating-modals/floating-modal";
 import colours from "@styles/colours";
-import { showFloatingModal } from "@components/modals/floating-modals/showFloatingModal";
 import { getUserCoinLedgerStart } from "@redux/user/user.actions";
 import { RadioIcon } from "@atoms/icon/radio-icon";
 
 const handleCloseOverlay = () => Navigation.dismissOverlay(MODALS.blurredOverlay);
 
-const SUCCESS_ICON = require("@assets/icons/trophy.png");
+const CLAIMED_ICON = require("@assets/icons/trophy.png");
 
-export const WeeklyQuestsModal = memo(({ onClose }: IFloatingModalContentProps) => {
+export const WeeklyQuestsModal = memo(({ onClose, setIcon }: IFloatingModalContentProps) => {
   const [selectedEvent, selectEvent] = useState<number | null>(-1);
   const dispatch = useDispatch();
   const t = useTranslation([
@@ -44,7 +43,7 @@ export const WeeklyQuestsModal = memo(({ onClose }: IFloatingModalContentProps) 
     "screens.weekly_quests.accept_challenge",
     "screens.weekly_quests.lets_go",
   ]);
-  const { data, loading: weekliesLoading } = useQuery<GetMobileGameWeeklies>(GQL_QUERY_GET_GAME_WEEKLIES, {
+  const { data, loading: weekliesLoading, refetch } = useQuery<GetMobileGameWeeklies>(GQL_QUERY_GET_GAME_WEEKLIES, {
     fetchPolicy: "no-cache",
     notifyOnNetworkStatusChange: true,
   });
@@ -78,14 +77,9 @@ export const WeeklyQuestsModal = memo(({ onClose }: IFloatingModalContentProps) 
     await claim({ variables: { rewardIds: [activeActivity?.id] } });
     dispatch(getUserCoinLedgerStart());
 
-    onClose();
-    await showFloatingModal({
-      children: WeeklyQuestsModal,
-      modalId: MODALS.weeklyQuestsOverlay,
-      showCloseButton: false,
-      icon: SUCCESS_ICON,
-    });
-  }, [activeActivity, claim, dispatch, onClose]);
+    await refetch();
+    setIcon(CLAIMED_ICON);
+  }, [activeActivity, claim, dispatch, setIcon, refetch]);
 
   const { endDateTime, activityProgress, hasJoined } = data?.getMobileGameWeeklies || {};
 
@@ -100,7 +94,7 @@ export const WeeklyQuestsModal = memo(({ onClose }: IFloatingModalContentProps) 
     [activeActivity, hasJoined, t]
   );
 
-  if (weekliesLoading || !data?.getMobileGameWeeklies?.id) {
+  if (!data?.getMobileGameWeeklies?.id) {
     return <Loading />;
   }
 
@@ -152,7 +146,7 @@ export const WeeklyQuestsModal = memo(({ onClose }: IFloatingModalContentProps) 
           <Pad height={Style.adjust(30)} />
           <Button
             disabled={eventNotSelected}
-            isLoading={joinLoading}
+            isLoading={joinLoading || weekliesLoading}
             label={t["screens.weekly_quests.lets_go"]}
             onPress={joinWeekly}
           />
@@ -162,7 +156,7 @@ export const WeeklyQuestsModal = memo(({ onClose }: IFloatingModalContentProps) 
         <Button isLoading={joinLoading} label={"Close"} onPress={onClose} />
       ) : null}
       {activeActivity?.isClaimable && !activeActivity?.isClaimed ? (
-        <Button isLoading={claimLoading} label={"Claim"} onPress={claimReward} />
+        <Button isLoading={claimLoading || weekliesLoading} label={"Claim"} onPress={claimReward} />
       ) : null}
       <Pad height={Style.adjust(36)} />
     </View>
