@@ -37,3 +37,6 @@ export const getMaxStepsAnomalyWindowMs = createSelector(reducer, maxStepsAnomal
 
 const blackListApps = (state: State) => state.blackListApps;
 export const getStepsBlackListApps = createSelector(reducer, blackListApps);
+
+const dailyPanelSelector = (state: State) => state.showPanel;
+export const getDailyPanelSelector = createSelector(reducer, dailyPanelSelector);

@@ -22,7 +22,7 @@ import pedometerReducer, {
   IPedometerStore,
 } from "../pedometer/pedometer.reducer";
 import streaksReducer, { getInitialState as getInitialStreaksState, IStreaksStore } from "../streaks/streaks.reducer";
-import themeReducer, { getInitialState as getInitialThemeState, IThemeStore } from "../theme/theme.reducer";
+
 import userReducer, { getInitialState as getInitialUserState, IUserStore } from "../user/user.reducer";
 import sduiReducer, { getInitialState as getInitialSduiState, ISduiStore } from "../server-driven-ui/sdui.reducer";
 import dailyCyclingReducer, {
@@ -42,7 +42,6 @@ export interface IReduxState {
   onboarding: IOnboardingStore;
   pedometer: IPedometerStore;
   streaks: IStreaksStore;
-  theme: IThemeStore;
   user: IUserStore;
   copy: ICopyStore;
   dailyMeditation: IDailyMeditationStore;
@@ -61,7 +60,6 @@ export const initialState: IReduxState = {
   onboarding: getInitialOnboardingState(),
   pedometer: getInitialPedometerState(),
   streaks: getInitialStreaksState(),
-  theme: getInitialThemeState(),
   user: getInitialUserState(),
   copy: getInitialCopyState(),
   dailyMeditation: getInitialDailyMeditation(),
@@ -83,7 +81,6 @@ const combinedReducers = combineReducers({
   onboarding: onboardingReducer,
   pedometer: pedometerReducer,
   streaks: streaksReducer,
-  theme: themeReducer,
   user: userReducer,
   copy: copyReducer,
   dailyMeditation: dailyMeditationReducer,

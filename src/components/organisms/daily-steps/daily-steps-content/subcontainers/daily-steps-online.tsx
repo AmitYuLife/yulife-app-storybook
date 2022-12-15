@@ -7,7 +7,7 @@ import { displaySecondsAsMinutes, getCurrentWorld } from "@utils";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
 import { Style, NAV_BAR } from "@styles";
 import { getUserEventsWithAds, getUserFeatures } from "@redux/user/user.selectors";
-import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
+import { getDailyPanelSelector, getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 import {
@@ -18,19 +18,18 @@ import {
 } from "@redux/levels/levels.selectors";
 import { handleNavigateToQuestsTab } from "@navigation/utils";
 import { getDailyCycling } from "@redux/daily-cycling/daily-cycling.selectors";
-import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
 import { REFERRALS_BUTTON_HOMEPAGE } from "@ids";
 import { ROUTES } from "@navigation/constants";
 import { updateUserGoal } from "@redux/user/user.actions";
 import { useMutation } from "@apollo/client";
 import { JoinGoal, JoinGoalVariables, GetUserProfile_getUserProfile_events as Events } from "@graphql/_core/schema";
 import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
-import { changePanelVisibility } from "@redux/theme/theme.action";
 import Logger from "@services/logging/logger";
 import { Navigation } from "@navigation/main";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { t } from "@locale";
 import { getTheme } from "@theme";
+import { changePanelVisibility } from "@redux/daily-steps/daily-steps.actions";
 
 type DailyStepsOnlineProps = {
   onReferralsButtonPress: () => void;
@@ -43,7 +42,7 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   const dailyEarnedCoins = useSelector(getDailyEarnedCoins);
   const { usePassiveMeditation } = useSelector(getUserFeatures);
   const { availableForToday, isAvailable } = useSelector(getChallengesStatus);
-  const { showPanel } = useSelector(getDailyStepsTheme);
+  const showPanel = useSelector(getDailyPanelSelector);
   const mindfulTotal = displaySecondsAsMinutes(dailyMeditation);
   const hasNotification = useSelector(getHasNotification);
   const mindfulTotalToDisplay = `${mindfulTotal.minutes} min`;

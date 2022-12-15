@@ -12,6 +12,9 @@
     "password": "Please enter a password."
   },
   "meditation": "Meditation",
+  "device_not_supported": "device not supported",
+  "unavailableAndroid": "your device requires Google Play Services in order to use this app.",
+  "unavailableIOS": "your device requires Apple Healthkit in order to use this app.",
   "button": {
     "close": "Close",
     "dismiss": "Dismiss",

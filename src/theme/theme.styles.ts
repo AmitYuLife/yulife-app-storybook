@@ -84,6 +84,9 @@ export const yuniversalStyles: IThemeScreens = {
       height: Style.adjust(344),
     },
   },
+  questsOfflineScreen: {
+    backgroundImage: require("@assets/yuniversal/gray_yuniversal_1.png"),
+  },
 };
 
 export const planetStyles: ITheme = {
@@ -169,6 +172,9 @@ export const planetStyles: ITheme = {
           height: Style.adjust(344),
         },
       },
+      questsOfflineScreen: {
+        backgroundImage: require("@assets/quests-offline/forest.png"),
+      },
     },
     [1]: {
       dailyStepsScreen: {
@@ -245,6 +251,9 @@ export const planetStyles: ITheme = {
           ...commonStyles,
           backgroundColor: "#747474",
         },
+      },
+      questsOfflineScreen: {
+        backgroundImage: require("@assets/quests-offline/ocean.png"),
       },
     },
     [2]: {
@@ -326,6 +335,9 @@ export const planetStyles: ITheme = {
           backgroundColor: "rgb(235,235,235)",
         },
       },
+      questsOfflineScreen: {
+        backgroundImage: require("@assets/quests-offline/desert.png"),
+      },
     },
     [3]: {
       dailyStepsScreen: {
@@ -404,6 +416,9 @@ export const planetStyles: ITheme = {
           ...commonStyles,
           backgroundColor: "rgb(235,235,235)",
         },
+      },
+      questsOfflineScreen: {
+        backgroundImage: require("@assets/quests-offline/mountain.png"),
       },
     },
   },
@@ -484,6 +499,9 @@ export const planetStyles: ITheme = {
           height: Style.adjust(344),
         },
       },
+      questsOfflineScreen: {
+        backgroundImage: require("@assets/quests-offline/forest.png"),
+      },
     },
     [1]: {
       dailyStepsScreen: {
@@ -560,6 +578,9 @@ export const planetStyles: ITheme = {
           ...commonStyles,
           backgroundColor: "#747474",
         },
+      },
+      questsOfflineScreen: {
+        backgroundImage: require("@assets/quests-offline/ocean.png"),
       },
     },
     [2]: {
@@ -641,6 +662,9 @@ export const planetStyles: ITheme = {
           backgroundColor: "rgb(235,235,235)",
         },
       },
+      questsOfflineScreen: {
+        backgroundImage: require("@assets/quests-offline/desert.png"),
+      },
     },
     [3]: {
       dailyStepsScreen: {
@@ -719,6 +743,9 @@ export const planetStyles: ITheme = {
           ...commonStyles,
           backgroundColor: "rgb(235,235,235)",
         },
+      },
+      questsOfflineScreen: {
+        backgroundImage: require("@assets/quests-offline/mountain.png"),
       },
     },
   },
