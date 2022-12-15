@@ -1,12 +1,13 @@
 import * as React from "react";
 import { Animated, View } from "react-native";
-import { Text } from "@atoms";
+import { TextTemplate } from "@atoms";
 import { Button, SecondaryButton } from "@molecules";
 import { DuelAvatar } from "../avatar/duel-avatar";
 import styles from "./generic-duels-intro.styles";
 import { DuelStepProps } from "../../duels.types";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { Navigation } from "@navigation/main";
+import colours from "@styles/colours";
 
 interface IGenericDuelsIntro extends Partial<DuelStepProps> {
   type: "invite" | "response";
@@ -55,37 +56,36 @@ function GenericDuelsIntro({
       <TopBarAbsolute leftIcon="Close" onPressLeftIcon={onPressLeftIcon} rightIcon={null} />
       <Animated.View style={[styles.container, { opacity }]}>
         <View style={styles.titleSection}>
-          <Text style={type === "invite" ? styles.headingInvite : styles.headingResponse}>{heading}</Text>
+          <TextTemplate type={type === "invite" ? "h1" : "b1b"} textAlign="center" color={colours.darkestGray}>
+            {heading}
+          </TextTemplate>
         </View>
         <View style={styles.avatarSection}>
           <DuelAvatar uri={user?.avatar} />
           <DuelAvatar uri={opponent?.avatar} reverse={true} />
         </View>
         <View style={styles.versusSection}>
-          <View style={styles.flex120}>
-            <Text style={styles.youText} bold={true}>
+          <View>
+            <TextTemplate type="h3" color={colours.darkGray}>
               You
-            </Text>
+            </TextTemplate>
           </View>
           <View style={styles.flex50}>
-            <Text bold={true} style={styles.vsText}>
+            <TextTemplate type="h3" color={colours.primary.p600}>
               VS
-            </Text>
+            </TextTemplate>
           </View>
-          <View style={styles.flex120}>
-            {opponent && opponent.firstName && opponent.lastName ? (
+          <View>
+            {opponent && opponent.firstName ? (
               <>
-                <Text style={styles.opponentNameText} bold={true}>
-                  {opponent?.firstName}
-                </Text>
-                <Text style={styles.opponentNameText} bold={true}>
-                  {opponent?.lastName}
-                </Text>
+                <TextTemplate type="h3" color={colours.darkGray}>
+                  {opponent.firstName} {!opponent?.lastName ? null : opponent.lastName}
+                </TextTemplate>
               </>
             ) : (
-              <Text bold={true} style={styles.opponentFallback}>
+              <TextTemplate type="h3" color={colours.darkGray}>
                 ?
-              </Text>
+              </TextTemplate>
             )}
           </View>
         </View>
