@@ -1,4 +1,4 @@
-import React, { memo, isValidElement, ReactElement, useMemo } from "react";
+import React, { memo, isValidElement, ReactElement, useMemo, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, PressableWithDelay, SecondaryButton } from "@molecules";
 import { Style, Colours } from "@styles";
@@ -22,6 +22,7 @@ interface IProps {
 
 export interface IFloatingModalContentProps {
   onClose?: () => void;
+  setIcon?: (icon: Source) => void;
 }
 
 const FloatingModal = ({
@@ -37,6 +38,7 @@ const FloatingModal = ({
 }: IProps) => {
   const CloseButton = isCloseButtonSecondary ? SecondaryButton : Button;
   const translation = useTranslation(["button.close"]);
+  const [iconAsset, setIconAsset] = useState<Source>(icon);
 
   const content = useMemo(() => {
     if (isValidElement(children)) {
@@ -44,8 +46,8 @@ const FloatingModal = ({
     }
 
     const Content = children;
-    return <Content onClose={closeOverlay} />;
-  }, [children, closeOverlay]);
+    return <Content onClose={closeOverlay} setIcon={setIconAsset} />;
+  }, [children, closeOverlay, setIconAsset]);
 
   return (
     <View style={[styles.wrapper, { paddingTop, minHeight: height }]}>
@@ -54,9 +56,9 @@ const FloatingModal = ({
           <ContentItemLottie {...lottie} />
         </View>
       )}
-      {!icon ? null : (
+      {!iconAsset ? null : (
         <View style={styles.iconWrapper}>
-          <Image width={Style.adjust(140)} height={Style.adjust(140)} source={icon} />
+          <Image width={Style.adjust(140)} height={Style.adjust(140)} source={iconAsset} />
         </View>
       )}
       {content}
