@@ -23,6 +23,10 @@ const CUSTOM_CONFIG = {
       "react-native-encrypted-storage": path.join(__dirname, "/aliases/react-native-encrypted-storage"),
       "react-native-music-control": path.join(__dirname, "/aliases/react-native-music-control"),
       "react-native-video": path.join(__dirname, "/aliases/react-native-video"),
+      "react-native-video-controls": path.join(__dirname, "/aliases/react-native-video-controls"),
+      "react-native-config": path.join(__dirname, "/aliases/react-native-config"),
+      "@react-native-camera-roll/camera-roll": path.join(__dirname, "/aliases/react-native-camera-roll"),
+      "react-native-view-shot": path.join(__dirname, "/aliases/react-native-view-shot"),
     },
 
     extensions: [".web.js", ".js", ".ts", ".tsx"],
