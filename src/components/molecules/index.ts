@@ -26,7 +26,6 @@ export { default as TouchableWithDelay } from "./touchable-delay/touchable-delay
 export { default as TouchableOpacityWithDelay } from "./touchable-opacity-delay/touchable-opacity-delay";
 export { default as PressableWithDelay } from "./pressable-delay/pressable-delay";
 export { default as Popup } from "./pop-up/pop-up";
-export { default as Tooltip } from "./tooltip/tooltip";
 export { default as Switch } from "./switch/switch";
 export { POPUPTYPE } from "./pop-up/pop-up";
 export { default as TextField } from "./text-field/text-field";
