@@ -7,8 +7,8 @@ import { getAcceptedLeaderboards } from "@redux/user/user.selectors";
 import { updateActiveLeaderboardId, updateLeaderboardConsent } from "@redux/user/user.actions";
 import { MODALS } from "@navigation/constants";
 import { useBackHandler } from "@hooks";
-import { getLeaderboardsCopy } from "@redux/copy/copy.selectors";
 import { showYuModal } from "@navigation/root";
+import { t } from "@locale";
 
 interface OwnProps {
   componentId: string;
@@ -36,7 +36,6 @@ function LeaderboardListContainer(props: Props) {
   const features = useSelector(getUserFeatures);
   const activeLeaderboardId = useSelector(getActiveLeaderboardId);
   const leaderboards = useSelector(getAcceptedLeaderboards);
-  const leaderboardCopy = useSelector(getLeaderboardsCopy);
 
   const handleChangeActiveLeaderboardId = useCallback(
     (leaderboardId: string) => {
@@ -55,44 +54,39 @@ function LeaderboardListContainer(props: Props) {
     return true;
   });
 
-  const handleChangeLeaderboardConsent = React.useCallback(
-    (leaderboardId: string, consent: boolean) => {
-      const { turnBoardOff, turnBoardOn } = leaderboardCopy;
-      const passProps = consent
-        ? {
-            ctaLabel: turnBoardOff.ctaLabel,
-            ctaLabelSecondary: turnBoardOff.ctaLabelSecondary,
-            heading: turnBoardOff.heading,
-            onPress: dismissGenericModal,
-            onPressSecondary: () => {
-              dispatch(updateLeaderboardConsent({ consent: !consent, leaderboardId }));
-              dismissGenericModal();
-            },
-            subheading: turnBoardOff.subheading,
-          }
-        : {
-            ctaLabel: turnBoardOn.ctaLabel,
-            ctaLabelSecondary: turnBoardOn.ctaLabelSecondary,
-            heading: turnBoardOn.heading,
-            onPress: () => {
-              dispatch(updateLeaderboardConsent({ consent: !consent, leaderboardId }));
-              dismissGenericModal();
-            },
-            onPressSecondary: dismissGenericModal,
-            subheading: turnBoardOn.subheading,
-          };
+  const handleChangeLeaderboardConsent = React.useCallback((leaderboardId: string, consent: boolean) => {
+    const passProps = consent
+      ? {
+          ctaLabel: t("screens.leaderboard.turn_board_off.ctaLabel"),
+          ctaLabelSecondary: t("screens.leaderboard.turn_board_off.ctaLabelSecondary"),
+          heading: t("screens.leaderboard.turn_board_off.heading"),
+          onPress: dismissGenericModal,
+          onPressSecondary: () => {
+            dispatch(updateLeaderboardConsent({ consent: !consent, leaderboardId }));
+            dismissGenericModal();
+          },
+          subheading: t("screens.leaderboard.turn_board_off.subheading"),
+        }
+      : {
+          ctaLabel: t("screens.leaderboard.turn_board_on.ctaLabel"),
+          ctaLabelSecondary: t("screens.leaderboard.turn_board_on.ctaLabelSecondary"),
+          heading: t("screens.leaderboard.turn_board_on.heading"),
+          onPress: () => {
+            dispatch(updateLeaderboardConsent({ consent: !consent, leaderboardId }));
+            dismissGenericModal();
+          },
+          onPressSecondary: dismissGenericModal,
+          subheading: t("screens.leaderboard.turn_board_on.subheading"),
+        };
 
-      showYuModal({
-        component: {
-          id: MODALS.generic,
-          name: MODALS.generic,
-          passProps,
-        },
-      });
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [leaderboardCopy]
-  );
+    showYuModal({
+      component: {
+        id: MODALS.generic,
+        name: MODALS.generic,
+        passProps,
+      },
+    });
+  }, []);
 
   return (
     <LeaderboardListScreen

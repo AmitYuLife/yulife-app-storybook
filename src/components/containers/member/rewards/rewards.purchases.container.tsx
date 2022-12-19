@@ -1,13 +1,11 @@
 import moment from "moment";
 import React, { useCallback, useMemo } from "react";
 import { Navigation } from "@navigation/main";
-import { useSelector } from "react-redux";
 import { useQuery } from "@apollo/client";
 import { BaseQueryOptions } from "@apollo/client";
 import { GetAllPurchases } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_ALL_PURCHASES } from "@graphql/rewards";
 import { bottomTabs, ROUTES } from "@navigation/constants";
-import { getPurchasesCopy } from "@redux/copy/copy.selectors";
 import { PurchasedListScreen } from "@screens/index";
 import { IMainTabsProps } from "@navigation/root";
 import { addCommasToNumber } from "@utils";
@@ -19,8 +17,6 @@ const requestOptions: BaseQueryOptions = {
 };
 
 function RewardsPurchasesContainer(props: Props) {
-  const copy = useSelector(getPurchasesCopy);
-
   const { loading, data: purchases, refetch } = useQuery<GetAllPurchases>(GQL_QUERY_GET_ALL_PURCHASES, requestOptions);
 
   const handleBackPress = useCallback(() => {
@@ -66,13 +62,7 @@ function RewardsPurchasesContainer(props: Props) {
   );
 
   return (
-    <PurchasedListScreen
-      data={items}
-      onRefresh={handleRefresh}
-      onLeftMenuPress={handleBackPress}
-      loading={loading}
-      copy={copy}
-    />
+    <PurchasedListScreen data={items} onRefresh={handleRefresh} onLeftMenuPress={handleBackPress} loading={loading} />
   );
 }
 

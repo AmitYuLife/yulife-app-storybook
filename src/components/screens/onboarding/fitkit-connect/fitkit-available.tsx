@@ -1,8 +1,7 @@
+import React, { FC, useState, useCallback } from "react";
 import { isSamsung } from "@utils";
 import { Colours, Style } from "@styles";
-import React, { FC, useState, useCallback } from "react";
 import { Alert, StyleSheet } from "react-native";
-import { GetMobileCopy_getMobileCopy_screens_fitkitConnect } from "@graphql/_core/schema";
 import { Blurb, Heading, Pad } from "@atoms";
 import { Button } from "@molecules";
 import { androidAlertCopy, fitKitConnectCopy } from "./copy";
@@ -13,7 +12,6 @@ import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
 interface IProps {
   connecting: boolean;
   onConnectPress: (platform: FitKitHealthTrackingPlatform) => void;
-  copy: GetMobileCopy_getMobileCopy_screens_fitkitConnect;
 }
 
 const FitKitAvailable: FC<IProps> = ({ connecting, onConnectPress }) => {

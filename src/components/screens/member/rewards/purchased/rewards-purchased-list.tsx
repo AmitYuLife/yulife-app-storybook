@@ -3,14 +3,13 @@ import { Style, TOP_BAR } from "@styles/index";
 import * as React from "react";
 import { View, Platform, ViewStyle, StyleSheet } from "react-native";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
-import { GetMobileCopy_getMobileCopy_screens_purchases } from "@graphql/_core/schema";
 import RewardsPurchasedItem, { IRewardsPurchasedItemProps } from "./purchased-item/purchased-item";
 import PurchasesEmpty from "./purchases-empty/purchases-empty";
 import { isIphoneX } from "react-native-iphone-x-helper";
 
 interface IProps {
   data: RewardsPurchasedItemData[];
-  copy: GetMobileCopy_getMobileCopy_screens_purchases;
+
   onPressEmptyCta: () => void;
   onRefresh: () => void;
 }
@@ -47,9 +46,9 @@ export class RewardsPurchasedList extends React.PureComponent<IProps> {
   private renderFooter = () => <View style={styles.footer} />;
 
   private renderEmpty = () => {
-    const { onPressEmptyCta, copy } = this.props;
+    const { onPressEmptyCta } = this.props;
 
-    return <PurchasesEmpty onCtaPress={onPressEmptyCta} copy={copy.empty} />;
+    return <PurchasesEmpty onCtaPress={onPressEmptyCta} />;
   };
 
   private setLargeListRef = (ref: LargeList) => {

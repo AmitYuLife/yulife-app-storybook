@@ -2,9 +2,7 @@ import moment from "moment";
 import React, { useCallback, useEffect } from "react";
 import { Alert } from "react-native";
 import Intercom from "@intercom/intercom-react-native";
-import { useSelector } from "react-redux";
 import { GetAllPurchases_getAllPurchases } from "@graphql/_core/schema";
-import { getPurchasesCopy } from "@redux/copy/copy.selectors";
 import { AviosRewardConfirmedScreen } from "@screens";
 import { handleLinkPress } from "@services/app-link";
 import { Navigation } from "@navigation/main";
@@ -31,7 +29,6 @@ const AviosRewardConfirmedContainer = ({
     },
   },
 }: IProps) => {
-  const copy = useSelector(getPurchasesCopy);
   const purchaseDate = moment(new Date(createdAt).toISOString()).format(t("format.date_readable"));
 
   const showIntercom = useCallback(() => {
@@ -52,13 +49,16 @@ const AviosRewardConfirmedContainer = ({
 
   useEffect(() => {
     if (status === "pending") {
-      const { aviosConfirmed } = copy;
-      Alert.alert(aviosConfirmed.title, aviosConfirmed.message.replace("${amount}", amount.toString()), [
-        {
-          style: "cancel",
-          text: aviosConfirmed.cancelButtonText,
-        },
-      ]);
+      Alert.alert(
+        t("screens.rewards.purchases.avios_confirmed.title"),
+        t("screens.rewards.purchases.avios_confirmed.message", { amount }),
+        [
+          {
+            style: "cancel",
+            text: t("screens.rewards.purchases.avios_confirmed.cancel_button_text"),
+          },
+        ]
+      );
     }
   }, [status, amount]);
 

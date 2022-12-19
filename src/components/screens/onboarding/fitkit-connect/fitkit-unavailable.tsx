@@ -1,23 +1,19 @@
-import * as React from "react";
-import { SFC } from "react";
+import React, { memo } from "react";
 import { Platform } from "react-native";
-import { GetMobileCopy_getMobileCopy_screens_fitkitConnect } from "@graphql/_core/schema";
 import { Blurb, Heading, Pad } from "@atoms";
-interface IProps {
-  copy: GetMobileCopy_getMobileCopy_screens_fitkitConnect;
-}
+import { t } from "@locale";
 
-const FitKitUnavailable: SFC<IProps> = ({ copy }) => (
+const FitKitUnavailable = () => (
   <>
-    <Heading label={copy.unavailableHeading} />
+    <Heading label={t("screens.fitkit_connect.unavailable_heading")} />
     <Pad height={14} />
     <Blurb
       label={Platform.select({
-        android: copy.unavailableAndroid,
-        ios: copy.unavailableIOS,
+        android: t("screens.fitkit_connect.unavailable_android"),
+        ios: t("screens.fitkit_connect.unavailable_ios"),
       })}
     />
   </>
 );
 
-export default FitKitUnavailable;
+export default memo(FitKitUnavailable);

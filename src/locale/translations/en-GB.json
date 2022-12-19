@@ -13,8 +13,8 @@
   },
   "meditation": "Meditation",
   "device_not_supported": "device not supported",
-  "unavailableAndroid": "your device requires Google Play Services in order to use this app.",
-  "unavailableIOS": "your device requires Apple Healthkit in order to use this app.",
+  "apple_health": "Apple Health",
+  "google_fit": "Google Fit",
   "button": {
     "close": "Close",
     "dismiss": "Dismiss",
@@ -376,6 +376,81 @@
       "category_all": "All",
       "header_title": "Hi %{name}",
       "header_description": "Welcome to this quick-access hub to all your company’s wellbeing benefits"
+    },
+    "leaderboard": {
+      "turn_board_on": {
+        "heading": "Join the Leaderboard?",
+        "subheading": "By joining the leaderboard, you are consenting to share details about your activity with other members of this leaderboard.\n\nYou can opt out at any time by tapping the name of the leaderboard and adjusting your settings.",
+        "ctaLabel": "Yes",
+        "ctaLabelSecondary": "No thanks"
+      },
+      "turn_board_off": {
+        "ctaLabel": "Keep it on!",
+        "ctaLabelSecondary": "Turn it off",
+        "heading": "Turn it off?",
+        "subheading": "This means you won’t be able to access this leaderboard."
+      }
+    },
+    "fitkit_connect": {
+      "ios_heading": "Sync to Apple Health",
+      "android_heading": "Connect to Google Fit",
+      "samsung_heading": "Connect a health app",
+      "link_button_label": "Privacy notice",
+      "secondary_button_label": "Skip this step",
+      "unavailable_heading": "device not supported",
+      "unavailable_android": "your device requires Google Play Services in order to use this app.",
+      "unavailable_ios": "your device requires Apple Healthkit in order to use this app.",
+      "connect_button": "Let's connect",
+      "connect_health_app": "Connect to a health app so we can reward you for your daily activities",
+      "connect_message": "Connect to %{healthAppName} so we can reward you for your daily activities. You can adjust this in your device settings at any time.",
+      "android_alert": {
+        "title": "Ready to connect to Google Fit?",
+        "message": "Before you connect, make sure you have the Google Fit app downloaded on your device.",
+        "dismiss_label": "Go back",
+        "download_label": "Download Google Fit",
+        "confirm_label": "Yes - I'm ready"
+      }
+    },
+    "rewards": {
+      "purchases": {
+        "empty": {
+          "heading": "It’s empty!",
+          "subheading": "Buy a voucher and it will appear here",
+          "cta_label": "check rewards"
+        },
+        "voucher_not_available": {
+          "cta_label": "check other rewards",
+          "heading": "the voucher is not currently available",
+          "subheading": "Please come back later."
+        },
+        "offline": {
+          "cta_label": "got it",
+          "heading": "you're offline",
+          "subheading": "check your internet connection"
+        },
+        "not_enough_coins": {
+          "ctaLabel": "got it",
+          "heading": "not enough coin",
+          "subheading": "Earn more and come back later!"
+        },
+        "avios_confirmed": {
+          "title": "AVIOS Sent",
+          "message": "Your %{amount} AVIOS points will appear on your account within a few days. We will email you as soon as they are there.",
+          "cancel_button_text": "OK, got it"
+        },
+        "locked_reward": {
+          "cta_label": "back to rewards",
+          "heading": "update in progress",
+          "subheading": "We are updating your %{rewardName} rewards experience, check back soon!"
+        }
+      }
+    },
+    "activity_history_levels": {
+      "header_left": "date",
+      "header_level": "level",
+      "header_mid": "activity & progress",
+      "header_right": "yucoin",
+      "heading": "activity history"
     }
   },
   "permissions": {
@@ -485,6 +560,36 @@
         "subheader_1": "The duel starts tomorrow and lasts all day. Results announcing the winner will appear the next morning.",
         "subheader_2": "What are you duelling for?",
         "colleague": "a colleague"
+      }
+    },
+    "push_notifications": {
+      "to_settings": {
+        "cta_label": "go to settings",
+        "cta_label_secondary": "skip",
+        "heading": "notification",
+        "subheading": "To get notifications, you need to go to the system settings and turn it on."
+      },
+      "from_challenge": {
+        "cta_label": "of course",
+        "cta_label_secondary": "maybe later",
+        "heading": "don't miss out",
+        "subheading": "Do you want us to give you a shout when you finish a challenge?"
+      },
+      "turn_notification_on": {
+        "cta_label": "allow",
+        "cta_label_secondary": "skip",
+        "heading": "notification",
+        "subheading": "Turn the notification on so we can notify you when there’s a response to your message."
+      }
+    },
+    "leaderboards": {
+      "invite": {
+        "heading_before_name": "join",
+        "heading_after_name": "leaderboard",
+        "subheading_before_name": "by accepting the invite you will share your steps and yucoin with other members of",
+        "subheading_after_name": "leaderboard and be able to see their progress too.",
+        "cta_label": "accept invite",
+        "cta_label_secondary": "decline invite"
       }
     }
   },
@@ -607,6 +712,13 @@
     "image_saved": {
       "title": "Image saved",
       "description": "You'll find the image in the Photos app."
+    }
+  },
+  "alerts": {
+    "not_enough_coins": {
+      "title": "Not enough YuCoin",
+      "body": "Earn more and come back later!",
+      "btn_label": "Got it"
     }
   }
 }

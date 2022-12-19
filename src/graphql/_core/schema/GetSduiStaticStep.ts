@@ -18,6 +18,10 @@ import {
 // GraphQL query operation: GetSduiStaticStep
 // ====================================================
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTable {
+  __typename: "ContentItemTable" | "ContentItemSelectedPackageCard" | "ContentItemSectionHeading";
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMarkdown_styles {
   property: string;
   value: string;
@@ -545,6 +549,7 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion {
 }
 
 export type GetSduiStaticStep_getSduiStaticStep_body =
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemTable
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemMarkdown
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemBox
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemButton
@@ -560,6 +565,10 @@ export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemProgressBar
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion;
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTable {
+  __typename: "ContentItemTable" | "ContentItemSelectedPackageCard" | "ContentItemSectionHeading";
+}
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown_styles {
   property: string;
@@ -1092,6 +1101,7 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAc
 }
 
 export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTable
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBox
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemButton

@@ -39,7 +39,10 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemTe
     | "ContentItemHeaderBar"
     | "ContentItemProgressBar"
     | "ContentItemTextGroup"
-    | "ContentItemAccordion";
+    | "ContentItemAccordion"
+    | "ContentItemTable"
+    | "ContentItemSelectedPackageCard"
+    | "ContentItemSectionHeading";
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles {

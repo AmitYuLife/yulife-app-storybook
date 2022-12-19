@@ -5,12 +5,12 @@ import { Style, Colours } from "@styles/index";
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
-import { GetMobileCopy_getMobileCopy_screens_activityHistoryLevels } from "@graphql/_core/schema";
 import { Loading, TextTemplate } from "@atoms";
 import Item from "./activity-history-levels.item";
 import styles, { rowHeight, dividerHeight, bottomDividerHeight } from "./activity-history-levels.styles";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
+import { t } from "@locale";
 
 export interface IServerProps {
   items: IFormattedDatesByMonth[];
@@ -21,7 +21,6 @@ export interface IOwnProps {
   onPressClose: () => void;
   onRefresh: () => Promise<void>;
   onFetchMoreData?: () => void;
-  copy: GetMobileCopy_getMobileCopy_screens_activityHistoryLevels;
   largeListRef: React.MutableRefObject<LargeList>;
   cyclingMeasurement: DistanceMeasurementType;
 }
@@ -127,29 +126,29 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
 
   public render() {
     const { isAllDataLoaded } = this.state;
-    const { items, onPressClose, copy, largeListRef, onRefresh } = this.props;
+    const { items, onPressClose, largeListRef, onRefresh } = this.props;
     return (
       <View style={styles.wrapper} testID={ACTIVITY_HISTORY_SCREEN}>
         <GenericHeadingPad />
         <View style={styles.headersWrapper}>
           <View style={StyleSheet.flatten([styles.headerBase, styles.headerOneWrapper])}>
             <TextTemplate type="b2b" color={Colours.activityHistoryHeading} numberOfLines={1}>
-              {copy.headerLevel}
+              {t("screens.activity_history_levels.header_level")}
             </TextTemplate>
           </View>
           <View style={StyleSheet.flatten([styles.headerBase, styles.headerTwoWrapper])}>
             <TextTemplate type="b2" color={Colours.primary.p600} numberOfLines={1}>
-              {copy.headerLeft}
+              {t("screens.activity_history_levels.header_left")}
             </TextTemplate>
           </View>
           <View style={StyleSheet.flatten([styles.headerBase, styles.headerThreeWrapper])}>
             <TextTemplate type="b2" color={Colours.primary.p600} numberOfLines={1}>
-              {copy.headerMid}
+              {t("screens.activity_history_levels.header_mid")}
             </TextTemplate>
           </View>
           <View style={StyleSheet.flatten([styles.headerBase, styles.headerFourWrapper])}>
             <TextTemplate type="b2" color={Colours.primary.p600} numberOfLines={1}>
-              {copy.headerRight}
+              {t("screens.activity_history_levels.header_right")}
             </TextTemplate>
           </View>
         </View>
@@ -170,7 +169,10 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
             allLoaded={isAllDataLoaded}
           />
         </View>
-        <GenericHeadingAbsolute heading={copy.heading} onRightIconPress={onPressClose} />
+        <GenericHeadingAbsolute
+          heading={t("screens.activity_history_levels.heading")}
+          onRightIconPress={onPressClose}
+        />
       </View>
     );
   }

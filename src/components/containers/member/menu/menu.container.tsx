@@ -6,7 +6,6 @@ import Intercom from "@intercom/intercom-react-native";
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
-import { getPushNotificationsCopy } from "@redux/copy/copy.selectors";
 import { getPushNotifications } from "@redux/device/device.selectors";
 import { logOutStart, openMyAccount } from "@redux/user/user.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
@@ -23,7 +22,6 @@ const MenuContainer = () => {
   const currentRoute = useSelector(getRouteState);
   const features = useSelector(getUserFeatures);
   const permissions = useSelector(getPushNotifications);
-  const pushNotificationCopy = useSelector(getPushNotificationsCopy);
 
   const handleIntercom = React.useCallback(() => {
     const callback = () => Intercom.displayMessenger();
@@ -36,7 +34,6 @@ const MenuContainer = () => {
           passProps: {
             callback,
             permissions,
-            copy: pushNotificationCopy,
           },
         },
       });
@@ -44,7 +41,7 @@ const MenuContainer = () => {
       Logger.logMixpanelEvent("screen_view", { name: "chat" });
       callback();
     }
-  }, [permissions, pushNotificationCopy]);
+  }, [permissions]);
 
   const handlePressLogout = React.useCallback(() => {
     Alert.alert(

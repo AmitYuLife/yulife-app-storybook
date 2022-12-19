@@ -1,32 +1,26 @@
+import { t } from "@locale";
 import { isSamsung } from "@utils";
 import { Platform } from "react-native";
 
-export const alertCopy = {
-  title: "Do you have Google Fit downloaded?",
-  message:
-    "You must have the Google Fit app downloaded on your device prior to connecting in order for syncing to work.",
-  confirmLabel: "Yes - let’s go!",
-  cancelLabel: "Go back",
-};
-
 export const androidAlertCopy = {
-  title: "Ready to connect to Google Fit?",
-  message: "Before you connect, make sure you have the Google Fit app downloaded on your device.",
-  dismissLabel: "Go back",
-  downloadLabel: "Download Google Fit",
-  confirmLabel: "Yes - I’m ready",
+  title: t("screens.fitkit_connect.android_alert.title"),
+  message: t("screens.fitkit_connect.android_alert.message"),
+  dismissLabel: t("screens.fitkit_connect.android_alert.dismiss_label"),
+  downloadLabel: t("screens.fitkit_connect.android_alert.download_label"),
+  confirmLabel: t("screens.fitkit_connect.android_alert.confirm_label"),
 };
 
-const healthAppName = Platform.select({ ios: "Apple Health", android: "Google Fit" });
+const healthAppName = Platform.select({ ios: t("apple_health"), android: t("google_fit") });
 const heading = Platform.select({
-  ios: "Sync to Apple Health",
-  android: isSamsung() ? "Connect a health app" : "Connect to Google Fit",
+  ios: t("screens.fitkit_connect.ios_heading"),
+  android: isSamsung() ? t("screens.fitkit_connect.samsung_heading") : t("screens.fitkit_connect.android_heading"),
 });
 const connectMessage = isSamsung()
-  ? "Connect to a health app so we can reward you for your daily activities. You can adjust this in your settings any time."
-  : `Connect to ${healthAppName} so we can reward you for your daily activities. You can adjust this in your device settings at any time.`;
+  ? t("screens.fitkit_connect.connect_health_app")
+  : t("screens.fitkit_connect.connect_message", { healthAppName });
+
 export const fitKitConnectCopy = {
   heading,
   connectMessage,
-  connectButton: "Let's connect",
+  connectButton: t("screens.fitkit_connect.connect_button"),
 };

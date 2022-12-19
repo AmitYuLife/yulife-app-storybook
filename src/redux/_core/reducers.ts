@@ -6,7 +6,6 @@ import dailyMeditationReducer, {
 
 import appReducer, { IAppStore, getInitialState as getInitialAppState } from "../app/app.reducer";
 import coinsReducer, { ICoinsStore, getInitialState as getInitialCoinsState } from "../coins/coins.reducer";
-import copyReducer, { ICopyStore, getInitialState as getInitialCopyState } from "../copy/copy.reducer";
 import dailyStepsReducer, {
   IDailyStepsStore,
   getInitialState as getInitialDailyStepsState,
@@ -43,7 +42,6 @@ export interface IReduxState {
   pedometer: IPedometerStore;
   streaks: IStreaksStore;
   user: IUserStore;
-  copy: ICopyStore;
   dailyMeditation: IDailyMeditationStore;
   dailyCycling: IDailyCyclingStore;
   sdui: ISduiStore;
@@ -61,7 +59,6 @@ export const initialState: IReduxState = {
   pedometer: getInitialPedometerState(),
   streaks: getInitialStreaksState(),
   user: getInitialUserState(),
-  copy: getInitialCopyState(),
   dailyMeditation: getInitialDailyMeditation(),
   dailyCycling: getInitialDailyCycling(),
   sdui: getInitialSduiState(),
@@ -82,7 +79,6 @@ const combinedReducers = combineReducers({
   pedometer: pedometerReducer,
   streaks: streaksReducer,
   user: userReducer,
-  copy: copyReducer,
   dailyMeditation: dailyMeditationReducer,
   dailyCycling: dailyCyclingReducer,
   sdui: sduiReducer,

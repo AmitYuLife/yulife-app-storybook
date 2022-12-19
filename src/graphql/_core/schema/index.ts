@@ -114,7 +114,6 @@ export * from "./GetLeaderboard";
 export * from "./GetMagicLink";
 export * from "./GetMedia";
 export * from "./GetMobileAssetsWithVersion";
-export * from "./GetMobileCopy";
 export * from "./GetMobileGameWeeklies";
 export * from "./GetMobilePaymentCardSetup";
 export * from "./GetMobileRewardStoreLocations";

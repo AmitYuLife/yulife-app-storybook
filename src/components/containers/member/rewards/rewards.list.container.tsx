@@ -1,7 +1,6 @@
 import { GQL_QUERY_GET_MOBILE_REWARDS_LIST } from "@graphql/rewards";
 import { bottomTabs } from "@navigation/constants";
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
 import { Navigation } from "@navigation/main";
 import FastImage from "react-native-fast-image";
 import {
@@ -10,17 +9,16 @@ import {
   GetMobileRewardsList_data_list,
 } from "@graphql/_core/schema";
 import { MODALS, ROUTES } from "@navigation/constants";
-import { getPurchasesCopy } from "@redux/copy/copy.selectors";
 import Logger from "@services/logging/logger";
 import { RewardsListScreen } from "@screens/index";
 import { IMainTabsProps, showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeenOnce, useTapBackTwiceToExit } from "@hooks";
+import { t } from "@locale";
 
 const _RewardsListContainer = (props: IMainTabsProps) => {
   const { componentId, onLeftMenuPress } = props;
   const areAssetsPrefetched = useRef(false);
   const [tag, setTag] = useState("All");
-  const copy = useSelector(getPurchasesCopy);
 
   useTapBackTwiceToExit(componentId);
 
@@ -61,10 +59,10 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
             id: MODALS.rewards,
             name: MODALS.rewards,
             passProps: {
-              ctaLabel: copy.newLockedReward.ctaLabel,
-              heading: copy.newLockedReward.heading,
+              ctaLabel: t("screens.rewards.purchases.locked_reward.cta_label"),
+              heading: t("screens.rewards.purchases.locked_reward.heading"),
               onPress: () => Navigation.dismissModal(MODALS.rewards),
-              subheading: copy.newLockedReward.subheading.replace("${rewardName}", reward.name),
+              subheading: t("screens.rewards.purchases.locked_reward.subheading", { rewardName: reward.name }),
             },
           },
         });
@@ -80,7 +78,7 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
       });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [copy?.newLockedReward?.ctaLabel]
+    []
   );
 
   return (

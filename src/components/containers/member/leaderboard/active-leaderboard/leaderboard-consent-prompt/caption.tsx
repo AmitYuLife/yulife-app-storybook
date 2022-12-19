@@ -3,21 +3,17 @@ import { View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Button } from "@molecules";
 import { captionStyle, SUBHEADING_COLOR } from "./styles";
-import { GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn } from "@graphql/_core/schema";
+import { t } from "@locale";
 
 interface Props {
-  copy?: GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn;
   setConsent: () => void;
 }
 
-const defaultCopy = { heading: "Turn board on", subheading: "", ctaLabel: "allow" };
-
 export function Caption(props: Props) {
-  const { setConsent, copy = defaultCopy } = props;
-  const { heading, subheading = "", ctaLabel } = copy;
+  const { setConsent } = props;
 
   const paragraphs = useMemo(() => {
-    return subheading
+    return t("screens.leaderboard.turn_board_on.subheading")
       .split("\n")
       .filter((segment) => !!segment)
       .reduce((list, segment, position) => {
@@ -30,17 +26,22 @@ export function Caption(props: Props) {
         );
         if (position === 0) {
           list.push(
-            <Button key={"button_id"} wrapperStyle={captionStyle.button} label={ctaLabel} onPress={setConsent} />
+            <Button
+              key={"button_id"}
+              wrapperStyle={captionStyle.button}
+              label={t("screens.leaderboard.turn_board_on.ctaLabel")}
+              onPress={setConsent}
+            />
           );
         }
 
         return list;
       }, []);
-  }, [ctaLabel, setConsent, subheading]);
+  }, [setConsent]);
   return (
     <View style={captionStyle.wrapper}>
       <TextTemplate textAlign="center" type="h1" color={captionStyle.heading.color}>
-        {heading}
+        {t("screens.leaderboard.turn_board_on.heading")}
       </TextTemplate>
       {paragraphs}
     </View>
