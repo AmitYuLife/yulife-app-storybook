@@ -3,11 +3,11 @@ import { PureComponent } from "react";
 import { Linking } from "react-native";
 import { Navigation } from "@navigation/main";
 import { connect } from "react-redux";
-import { GetMobileCopy_getMobileCopy_screens_pushNotification } from "@graphql/_core/schema";
 import { requirePushEnabled } from "@redux/device/device.actions";
 import { IPushNotification } from "@redux/device/device.selectors";
 import { GenericScreen } from "@screens";
 import Logger from "@services/logging/logger";
+import { t } from "@locale";
 
 type ConnectedDispatch = typeof mapDispatchToProps;
 
@@ -16,7 +16,6 @@ interface IProps {
   componentId?: string;
   fromChallenge?: boolean;
   permissions: IPushNotification;
-  copy: GetMobileCopy_getMobileCopy_screens_pushNotification;
 }
 
 type Props = ConnectedDispatch & IProps;
@@ -59,36 +58,35 @@ class PushNotificationsModal extends PureComponent<Props> {
   };
 
   private getProps = (toSettings: boolean, fromChallenge?: boolean) => {
-    const { copy } = this.props;
     if (toSettings) {
       return {
-        ctaLabel: copy.toSettings.ctaLabel,
-        ctaLabelSecondary: copy.toSettings.ctaLabelSecondary,
-        heading: copy.toSettings.heading,
+        ctaLabel: t("modals.push_notifications.to_settings.cta_label"),
+        ctaLabelSecondary: t("modals.push_notifications.to_settings.cta_label_secondary"),
+        heading: t("modals.push_notifications.to_settings.heading"),
         onPress: this.openSettings,
         onPressSecondary: this.dismissModal,
-        subheading: copy.toSettings.subheading,
+        subheading: t("modals.push_notifications.to_settings.subheading"),
       };
     }
 
     if (fromChallenge) {
       return {
-        ctaLabel: copy.fromChallenge.ctaLabel,
-        ctaLabelSecondary: copy.fromChallenge.ctaLabelSecondary,
-        heading: copy.fromChallenge.heading,
+        ctaLabel: t("modals.push_notifications.from_challenge.cta_label"),
+        ctaLabelSecondary: t("modals.push_notifications.from_challenge.cta_label_secondary"),
+        heading: t("modals.push_notifications.from_challenge.heading"),
         onPress: this.handleAgree,
         onPressSecondary: this.dismissModal,
-        subheading: copy.fromChallenge.subheading,
+        subheading: t("modals.push_notifications.from_challenge.subheading"),
       };
     }
 
     return {
-      ctaLabel: copy.turnNotificationOn.ctaLabel,
-      ctaLabelSecondary: copy.turnNotificationOn.ctaLabelSecondary,
-      heading: copy.turnNotificationOn.heading,
+      ctaLabel: t("modals.push_notifications.turn_notification_on.cta_label"),
+      ctaLabelSecondary: t("modals.push_notifications.turn_notification_on.cta_label_secondary"),
+      heading: t("modals.push_notifications.turn_notification_on.heading"),
       onPress: this.handleAgree,
       onPressSecondary: this.dismissModal,
-      subheading: copy.turnNotificationOn.subheading,
+      subheading: t("modals.push_notifications.turn_notification_on.subheading"),
     };
   };
 }

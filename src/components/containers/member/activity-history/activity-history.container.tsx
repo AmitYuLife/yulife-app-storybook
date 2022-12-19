@@ -7,7 +7,6 @@ import { LargeList } from "react-native-largelist-v3";
 import { Navigation } from "@navigation/main";
 import { connect, useSelector } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
-import { getCopy } from "@redux/copy/copy.selectors";
 import { getUserStart } from "@redux/user/user.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import Logger from "@services/logging/logger";
@@ -34,7 +33,6 @@ type Props = IProps & ConnectedState & ConnectedDispatch;
 
 const ActivityHistoryContainer: FC<Props> = ({
   componentId,
-  copy,
   cyclingMeasurement,
   features = {},
   getUserStart: dispatchGetUserStart,
@@ -131,7 +129,6 @@ const ActivityHistoryContainer: FC<Props> = ({
       onPressClose={handleClose}
       onFetchMoreData={fetchMoreData}
       onRefresh={onRefresh}
-      copy={copy}
       largeListRef={largeList}
       cyclingMeasurement={cyclingMeasurement}
     />
@@ -140,7 +137,6 @@ const ActivityHistoryContainer: FC<Props> = ({
 
 const mapStateToProps = (state: IReduxState) => ({
   features: getUserFeatures(state),
-  copy: getCopy(state, "activityHistoryLevels"),
   cyclingMeasurement: getDailyCyclingMeasurement(state),
 });
 

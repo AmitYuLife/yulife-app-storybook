@@ -4,7 +4,6 @@ import { getCurrentUserId, getActiveLeaderboard } from "@redux/user/user.selecto
 import { GetLeaderboard, GetLeaderboardVariables } from "@graphql/_core/schema";
 import { GQL_QUERY_LEADERBOARD } from "@graphql/member";
 import { LeaderboardLayout } from "./leaderboard-layout/leaderboard-layout";
-import { getLeaderboardsCopy } from "@redux/copy/copy.selectors";
 import { updateLeaderboardConsent } from "@redux/user/user.actions";
 import ConsentGuard from "./consent-guard/consent-guard";
 import { LeaderboardContentContainer } from "./leaderboard-content/leaderboard-content";
@@ -25,7 +24,6 @@ const ActiveLeaderboardContainer = (props: Props) => {
 
   const activeLeaderboard = useSelector(getActiveLeaderboard);
   const userId = useSelector(getCurrentUserId);
-  const consentCopy = useSelector(getLeaderboardsCopy).turnBoardOn;
 
   useTapBackTwiceToExit(props.componentId);
 
@@ -71,7 +69,6 @@ const ActiveLeaderboardContainer = (props: Props) => {
   return (
     <LeaderboardLayout>
       <ConsentGuard
-        consentCopy={consentCopy}
         setConsent={setConsent}
         leaderboardName={activeLeaderboard?.name}
         hasConsent={activeLeaderboard?.consent}

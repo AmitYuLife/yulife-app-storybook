@@ -1,4 +1,3 @@
-import { GetMobileCopy_getMobileCopy_screens_popUp } from "@graphql/_core/schema";
 import * as React from "react";
 import { Image, StyleProp, StyleSheet, TouchableOpacity, View, ViewStyle } from "react-native";
 import { Text } from "../../atoms";
@@ -22,6 +21,7 @@ type PopUpType = POPUPTYPE.LEADERBOARD | POPUPTYPE.SURGE;
 
 export type CaretDirection = "left" | "right" | "top" | "bottom";
 
+///@TODO: PURGE THIS
 interface IProps {
   position: IPosition | StyleProp<ViewStyle>;
   caretDirection: CaretDirection;
@@ -29,7 +29,7 @@ interface IProps {
   type: PopUpType;
   isShowingButton?: boolean;
   onPress?: () => void;
-  copy: GetMobileCopy_getMobileCopy_screens_popUp;
+  copy: any;
 }
 
 class PopUp extends React.PureComponent<IProps, any> {

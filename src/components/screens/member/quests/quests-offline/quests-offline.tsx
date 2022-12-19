@@ -31,8 +31,8 @@ function QuestsScreenOffline({ fitkitAvailable, onLeftMenuPress }: IProps) {
         <TextTemplate type="b2" textAlign="center">
           {!fitkitAvailable
             ? Platform.select({
-                android: t("unavailableAndroid"),
-                ios: t("unavailableIOS"),
+                android: t("screens.fitkit_connect.unavailable_android"),
+                ios: t("screens.fitkit_connect.unavailable_ios"),
               })
             : t("screens.offline.subheading")}
         </TextTemplate>

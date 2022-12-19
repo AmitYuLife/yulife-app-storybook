@@ -6,6 +6,4 @@ function voidFunc(): void {
   return null;
 }
 
-storiesOf("PurchasesEmpty", module).add("default", () => (
-  <PurchasesEmpty copy={{ ctaLabel: "hi", heading: "title", subheading: "subheading" }} onCtaPress={voidFunc} />
-));
+storiesOf("PurchasesEmpty", module).add("default", () => <PurchasesEmpty onCtaPress={voidFunc} />);

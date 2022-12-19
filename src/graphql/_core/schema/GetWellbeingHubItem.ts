@@ -36,7 +36,10 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemTextInp
     | "ContentItemHeaderBar"
     | "ContentItemProgressBar"
     | "ContentItemTextGroup"
-    | "ContentItemAccordion";
+    | "ContentItemAccordion"
+    | "ContentItemTable"
+    | "ContentItemSelectedPackageCard"
+    | "ContentItemSectionHeading";
 }
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText_styles {

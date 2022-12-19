@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getFitKitConnectCopy } from "@redux/copy/copy.selectors";
+import { useDispatch } from "react-redux";
 import { fitKitConsentAuthorised } from "@redux/user/user.actions";
 import FitKitPermissions from "@services/fitkit/fitkit.permissions";
 import { FitKitConnectScreen } from "@components/screens";
@@ -31,7 +30,6 @@ const FitKitConnectContainer: React.FC<Props> = (props) => {
   const [isConnecting, setIsConnecting] = React.useState(false);
   const { authorise, authorised, loading, available } = useFitKit();
   const dispatch = useDispatch();
-  const copy = useSelector(getFitKitConnectCopy);
 
   const handleConnect = useCallback(
     async (platform: FitKitHealthTrackingPlatform) => {
@@ -59,7 +57,6 @@ const FitKitConnectContainer: React.FC<Props> = (props) => {
       onConnectPress={handleConnect}
       onPrivacyPolicyPress={handleLinkPress(region.getConfig("urls").privacyPolicy)}
       onSkipPress={onDismiss || navigateToNext}
-      copy={copy}
       dismissButtonLabel={dismissButtonLabel}
     />
   );

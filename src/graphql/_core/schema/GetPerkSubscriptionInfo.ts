@@ -25,7 +25,10 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
     | "ContentItemHeaderBar"
     | "ContentItemProgressBar"
     | "ContentItemTextGroup"
-    | "ContentItemAccordion";
+    | "ContentItemAccordion"
+    | "ContentItemTable"
+    | "ContentItemSelectedPackageCard"
+    | "ContentItemSectionHeading";
 }
 
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemText_styles {

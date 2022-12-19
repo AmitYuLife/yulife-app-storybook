@@ -2,11 +2,10 @@ import React from "react";
 import { TextTemplate } from "@atoms";
 import { Button, SecondaryButton } from "@molecules";
 import { SafeAreaView, StyleSheet, View } from "react-native";
-import { useSelector } from "react-redux";
 import { useBackHandler } from "@hooks";
-import { getChallengeExitCopy } from "@redux/copy/copy.selectors";
 import styles from "./challenge-exit.styles";
 import { Colours } from "@styles";
+import { t } from "@locale";
 
 interface IProps {
   onPressExit: () => void;
@@ -15,8 +14,6 @@ interface IProps {
 }
 
 const ChallengeExitScreen: React.FC<IProps> = ({ onPressExit, onClose, isCancelling }) => {
-  const copy = useSelector(getChallengeExitCopy);
-
   useBackHandler(() => {
     onClose();
     return true;
@@ -25,22 +22,26 @@ const ChallengeExitScreen: React.FC<IProps> = ({ onPressExit, onClose, isCancell
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.headingWrapper}>
         <TextTemplate type="h1" textAlign="center" color={Colours.textInput.focus}>
-          {copy.heading}
+          {t("modals.generic_modal.cancel_challenge.heading")}
         </TextTemplate>
       </View>
       <View style={styles.descriptionWrapper}>
         <TextTemplate type="b2" textAlign="center" color={Colours.textInput.focus}>
-          {copy.subheading}
+          {t("modals.generic_modal.cancel_challenge.subheading")}
         </TextTemplate>
       </View>
 
       <Button
         wrapperStyle={StyleSheet.flatten([styles.buttonStyle, styles.exitChallengeWrapper])}
-        label={copy.ctaLabelSecondary}
+        label={t("modals.generic_modal.cancel_challenge.cta_label")}
         onPress={onPressExit}
         isLoading={isCancelling}
       />
-      <SecondaryButton wrapperStyle={styles.buttonStyle} label={copy.ctaLabel} onPress={onClose} />
+      <SecondaryButton
+        wrapperStyle={styles.buttonStyle}
+        label={t("modals.generic_modal.cancel_challenge.cta_label_secondary")}
+        onPress={onClose}
+      />
     </SafeAreaView>
   );
 };

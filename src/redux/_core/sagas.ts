@@ -1,6 +1,5 @@
 import { all } from "redux-saga/effects";
 import appSagas from "../app/sagas";
-import copySagas from "../copy/sagas";
 import getDailyPassiveActivity from "../dailyPassiveActivity/sagas";
 import debugToolSaga from "../debug/sagas";
 import coinsSagas from "../coins/sagas";
@@ -25,7 +24,6 @@ import adBannersSagas from "../ad-banners/sagas";
 export default function* allSagas() {
   yield all([
     ...appSagas,
-    ...copySagas,
     ...assetsSagas,
     ...coinsSagas,
     ...nativeLoggingSagas,

@@ -18,6 +18,10 @@ import {
 // GraphQL fragment: ContentItem
 // ====================================================
 
+export interface ContentItem_ContentItemTable {
+  __typename: "ContentItemTable" | "ContentItemSelectedPackageCard" | "ContentItemSectionHeading";
+}
+
 export interface ContentItem_ContentItemMarkdown_styles {
   property: string;
   value: string;
@@ -541,6 +545,7 @@ export interface ContentItem_ContentItemAccordion {
 }
 
 export type ContentItem =
+  | ContentItem_ContentItemTable
   | ContentItem_ContentItemMarkdown
   | ContentItem_ContentItemBox
   | ContentItem_ContentItemButton

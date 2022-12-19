@@ -1,6 +1,5 @@
 import { LinkGroup } from "@components/molecules";
 import React, { FC } from "react";
-import { GetMobileCopy_getMobileCopy_screens_fitkitConnect } from "@graphql/_core/schema";
 import { Loading, Pad } from "@atoms";
 import FitKitAvailable from "./fitkit-available";
 import FitKitUnavailable from "./fitkit-unavailable";
@@ -9,6 +8,7 @@ import { isSamsung } from "@utils";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
 import { CentredScreen } from "@molecules";
 import { StyleSheet } from "react-native";
+import { t } from "@locale";
 
 interface IProps {
   connecting: boolean;
@@ -17,7 +17,6 @@ interface IProps {
   onConnectPress: (platform: FitKitHealthTrackingPlatform) => void;
   onPrivacyPolicyPress: () => void;
   onSkipPress: () => void;
-  copy: GetMobileCopy_getMobileCopy_screens_fitkitConnect;
   dismissButtonLabel?: string;
 }
 
@@ -30,7 +29,6 @@ const FitKitConnectScreen: FC<IProps> = ({
   onConnectPress,
   onPrivacyPolicyPress,
   onSkipPress,
-  copy,
   dismissButtonLabel,
 }) => (
   <>
@@ -38,9 +36,9 @@ const FitKitConnectScreen: FC<IProps> = ({
       <CentredScreen backgroundImage={require("@assets/centred-screen/forestBackground.png")} style={styles.wrapper}>
         {isShortToMediumSamsung ? <Pad height={50} /> : <Pad height={120} />}
         {fitKitAvailable ? (
-          <FitKitAvailable connecting={connecting} onConnectPress={onConnectPress} copy={copy} />
+          <FitKitAvailable connecting={connecting} onConnectPress={onConnectPress} />
         ) : (
-          <FitKitUnavailable copy={copy} />
+          <FitKitUnavailable />
         )}
         {isShortToMediumSamsung ? null : <Pad height={19} />}
         <LinkGroup data={getLinks(onSkipPress, onPrivacyPolicyPress, dismissButtonLabel)} />
@@ -54,11 +52,11 @@ const FitKitConnectScreen: FC<IProps> = ({
 const getLinks = (onSkip: () => void, onPrivacy: () => void, dismissButtonLabel: string) => {
   return [
     {
-      label: dismissButtonLabel || "Skip this step",
+      label: dismissButtonLabel || t("screens.fitkit_connect.secondary_button_label"),
       onPress: onSkip,
     },
     {
-      label: "Privacy notice",
+      label: t("screens.fitkit_connect.link_button_label"),
       onPress: onPrivacy,
     },
   ];
