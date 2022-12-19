@@ -30,7 +30,7 @@ export const GQL_QUERY_GET_API_CONFIG = gql`
 
 export function getApiConfigWithClient() {
   return client().query<GetPublicYuAPIConfig>({
-    fetchPolicy: "network-only",
+    fetchPolicy: "no-cache",
     query: GQL_QUERY_GET_API_CONFIG,
   });
 }
