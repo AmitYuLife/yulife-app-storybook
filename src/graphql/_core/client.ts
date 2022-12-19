@@ -108,7 +108,6 @@ const requestIdPrefix = `${defaultHeaders.apollo_client_name}_${defaultHeaders.d
 let requestCount = 0;
 
 const authMiddleware = setContext(async (_, { headers }) => {
-  console.log("req", _.operationName);
   // get the authentication token from async storage if it exists
   const token = await getToken();
 
