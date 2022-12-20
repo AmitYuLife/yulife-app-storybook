@@ -19,4 +19,3 @@ export function parseJSON<T = Record<string, any>>(payload: string, expectedKeys
     return { data: {} as T, isValid: false };
   }
 }
-

@@ -318,6 +318,21 @@ export interface ProductMetadata {
   avios?: AviosMetadata | null;
 }
 
+export interface SampleDebugData {
+  startTime: string;
+  endTime: string;
+  type: FitKitType;
+  userEntered?: boolean | null;
+  value?: number | null;
+  source?: SampleDebugDataSource | null;
+}
+
+export interface SampleDebugDataSource {
+  bundleIdentifier?: string | null;
+  name?: string | null;
+  version?: string | null;
+}
+
 export interface SubscribeToPerkField {
   key: string;
   value: string;

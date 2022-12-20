@@ -3,7 +3,12 @@ import { IUserStore } from "@redux/user/user.reducer";
 import RNFitKit, { FitKitTypes, PedometerResponse, SampleQueryResult } from "@services/fitkit/fitkit.service";
 import { useFitKit } from "./fitkit.hooks";
 import moment, { Moment } from "moment";
-import { ChallengesPayload, FitKitType, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
+import {
+  ChallengesPayload,
+  FitKitType,
+  PassiveChallengeType,
+  SampleDebugData,
+} from "@graphql/_core/schema/globalTypes";
 import Logger from "../logging/logger";
 import { createContext } from "react";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
@@ -116,7 +121,7 @@ export const queryFitKitByTypesDebug = async (
   fitKitTypes: FitKitType[],
   disableTypeFilter = false,
   additionalFitnessActivities: Map<FitKitType, string[]> = new Map<FitKitType, string[]>()
-): Promise<{ error: boolean }> => {
+): Promise<{ error: boolean; results: SampleDebugData[] }> => {
   const allResults: SampleQueryResult[] = [];
   let error = false;
 
@@ -162,7 +167,7 @@ export const queryFitKitByTypesDebug = async (
   }
 
   Logger.logMixpanelEvent(`debug_tool_query_results`, { results: allResults, fitKitTypes });
-  return { error };
+  return { error, results: allResults as SampleDebugData[] };
 };
 
 export const queryFitKitByTypes = async (

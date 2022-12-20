@@ -212,6 +212,7 @@ export * from "./SubmitFeedbackForm";
 export * from "./SubmitPersonalProductStep";
 export * from "./SubmitSduiJourney";
 export * from "./SubmitUnity";
+export * from "./SubmitUserDebugData";
 export * from "./SubscribeToPerk";
 export * from "./TodayActivity";
 export * from "./UpdateAvatar";
