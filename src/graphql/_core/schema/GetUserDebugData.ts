@@ -14,9 +14,11 @@ export interface GetUserDebugData_getUserDebugData_sampleQuery {
   endTime: string;
   fitKitTypes: FitKitType[];
   disableTypeFilter: boolean | null;
+  active: boolean | null;
 }
 
 export interface GetUserDebugData_getUserDebugData {
+  id: string | null;
   sampleQuery: GetUserDebugData_getUserDebugData_sampleQuery | null;
 }
 

@@ -5,11 +5,13 @@ import { GetUserDebugData } from "@graphql/_core/schema";
 export const GQL_GET_USER_DEBUG_DATA = gql`
   query GetUserDebugData {
     getUserDebugData {
+      id
       sampleQuery {
         startTime
         endTime
         fitKitTypes
         disableTypeFilter
+        active
       }
     }
   }
