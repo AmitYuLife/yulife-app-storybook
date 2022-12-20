@@ -40,11 +40,9 @@ const RewardStoreContainer = ({ componentId }: IProps) => {
     loading,
     componentId,
   ]);
-  const onLeftIconPress = useCallback(() => (loading ? null : Navigation.pop(componentId)), [loading, componentId]);
 
   return (
     <SettingLayout
-      onLeftIconPress={onLeftIconPress}
       onRightIconPress={onRightIconPress}
       headerText="Rewards region selection"
       screenTestId={REWARD_STORE_SETTINGS_SCREEN}

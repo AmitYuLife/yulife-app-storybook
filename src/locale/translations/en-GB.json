@@ -412,6 +412,10 @@
       }
     },
     "rewards": {
+      "list": {
+        "rewards": "Rewards",
+        "history": "History"
+      },
       "purchases": {
         "empty": {
           "heading": "It’s empty!",

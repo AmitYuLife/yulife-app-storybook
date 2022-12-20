@@ -7,11 +7,6 @@
 // GraphQL query operation: GetMobileRewardsList
 // ====================================================
 
-export interface GetMobileRewardsList_data_preloadAssets {
-  id: string;
-  uri: string | null;
-}
-
 export interface GetMobileRewardsList_data_list_imageUrl {
   id: string;
   uri: string | null;
@@ -37,8 +32,9 @@ export interface GetMobileRewardsList_data_list {
 export interface GetMobileRewardsList_data {
   __typename: "MobileRewardsList";
   id: string;
+  rewardStoreLocation: string;
+  hasUserSelectedStoreLocation: boolean;
   tags: string[];
-  preloadAssets: GetMobileRewardsList_data_preloadAssets[];
   list: GetMobileRewardsList_data_list[];
 }
 

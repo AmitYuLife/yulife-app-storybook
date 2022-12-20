@@ -10,7 +10,7 @@ type Option = { id: string; title: string; description: string; isSelected: bool
 
 type Props = {
   onRightIconPress: () => void;
-  onLeftIconPress: () => void;
+  onLeftIconPress?: () => void;
   options: Option[];
   screenTestId?: string;
   headerText: string;
