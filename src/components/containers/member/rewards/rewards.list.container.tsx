@@ -1,8 +1,7 @@
 import { GQL_QUERY_GET_MOBILE_REWARDS_LIST } from "@graphql/rewards";
 import { bottomTabs } from "@navigation/constants";
-import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import React, { memo, useCallback, useState } from "react";
 import { Navigation } from "@navigation/main";
-import FastImage from "react-native-fast-image";
 import {
   GetMobileRewardsList as Rewards,
   GetMobileRewardsListVariables as RewardsVariables,
@@ -17,7 +16,6 @@ import { t } from "@locale";
 
 const _RewardsListContainer = (props: IMainTabsProps) => {
   const { componentId, onLeftMenuPress } = props;
-  const areAssetsPrefetched = useRef(false);
   const [tag, setTag] = useState("All");
 
   useTapBackTwiceToExit(componentId);
@@ -28,6 +26,17 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
     { variables: { tag } }
   );
 
+  const handleStoreLocationPress = useCallback(
+    () =>
+      Navigation.push(componentId, {
+        component: {
+          id: ROUTES.rewardStoreLocation,
+          name: ROUTES.rewardStoreLocation,
+        },
+      }),
+    [componentId]
+  );
+
   const handlePurchasesPress = useCallback(async () => {
     await Navigation.push(componentId, {
       component: {
@@ -36,14 +45,6 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
       },
     });
   }, [componentId]);
-
-  useEffect(() => {
-    if (!areAssetsPrefetched?.current && rewards?.data?.preloadAssets?.length) {
-      FastImage.preload(rewards.data.preloadAssets);
-      areAssetsPrefetched.current = true;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rewards?.data?.id]);
 
   const handleRewardDetailsItemPress = useCallback(
     (reward: GetMobileRewardsList_data_list) => {
@@ -89,6 +90,7 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
       onRefresh={getRewards}
       onTagPress={setTag}
       onPurchasesPress={handlePurchasesPress}
+      onChangeStoreLocationPress={handleStoreLocationPress}
       selectedTag={tag}
       loading={!rewards?.data?.list?.length && loading}
     />

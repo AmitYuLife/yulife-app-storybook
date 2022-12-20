@@ -1,6 +1,6 @@
-import React, { memo, useMemo, useState, useCallback, ComponentProps } from "react";
+import React, { memo, useMemo, useState, useCallback } from "react";
 import { StyleSheet, View, ViewStyle, ActivityIndicator, StyleProp } from "react-native";
-import FastImage, { ImageStyle, OnLoadEvent, ResizeMode, Source } from "react-native-fast-image";
+import FastImage, { FastImageProps, ImageStyle, OnLoadEvent, ResizeMode, Source } from "react-native-fast-image";
 import { Colours } from "@styles";
 import { shallowEqual } from "react-redux";
 
@@ -21,9 +21,10 @@ interface Props {
    * are going to be instantly loaded
    */
   suppressLoadingUi?: boolean;
+  CustomLoader?: React.ReactNode;
   onLoad?: (event: OnLoadEvent) => void;
-  accessible?: ComponentProps<typeof FastImage>["accessible"];
-  accessibilityLabel?: ComponentProps<typeof FastImage>["accessibilityLabel"];
+  accessible?: FastImageProps["accessible"];
+  accessibilityLabel?: FastImageProps["accessibilityLabel"];
 }
 
 export const Image = memo(
@@ -43,6 +44,7 @@ export const Image = memo(
       onLoad,
       accessible,
       accessibilityLabel,
+      CustomLoader,
     } = props;
 
     const [isLoading, setIsLoading] = useState(true);
@@ -94,11 +96,12 @@ export const Image = memo(
           accessible={accessible}
           accessibilityLabel={accessibilityLabel}
         />
-        {isLoading && !suppressLoadingUi ? (
-          <View style={styles.loader}>
-            <ActivityIndicator size="large" color={getColor(theme)} />
-          </View>
-        ) : null}
+        <Loading
+          isLoading={isLoading}
+          suppressLoadingUi={suppressLoadingUi}
+          theme={theme}
+          CustomLoader={CustomLoader}
+        />
       </View>
     );
   },
@@ -117,5 +120,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   } as ViewStyle,
 });
+
+type LoadingProps = {
+  isLoading: boolean;
+  suppressLoadingUi: Props["suppressLoadingUi"];
+  theme: Props["theme"];
+  CustomLoader?: Props["CustomLoader"];
+};
+
+const Loading = ({ isLoading, suppressLoadingUi, theme, CustomLoader }: LoadingProps) => {
+  if (!suppressLoadingUi && isLoading) {
+    return (
+      <View style={styles.loader}>{CustomLoader || <ActivityIndicator size="large" color={getColor(theme)} />}</View>
+    );
+  }
+
+  return null;
+};
 
 const getColor = (theme: Props["theme"]) => (theme === "light" ? Colours.neutral.white : Colours.primary.p600);

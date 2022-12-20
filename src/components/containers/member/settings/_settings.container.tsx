@@ -13,7 +13,6 @@ import {
   GQL_MUTATION_UPDATE_USER_NOTIFICATIONS_SETTINGS,
 } from "@graphql/pushNotifications";
 import {
-  GetMobileRewardStoreLocations as RewardStoreData,
   GetUserNotificationsSettings as NotificationData,
   GetUserNotificationsSettings_getUserNotificationsSettings as Notification,
   UpdateUserNotificationsSettingsVariables as Variables,
@@ -23,7 +22,6 @@ import Logger from "@services/logging/logger";
 import { ScrollPickerModal } from "@components/modals";
 import { showYuModal } from "@navigation/root";
 import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
-import { GQL_QUERY_GET_MOBILE_REWARD_STORE_LOCATIONS } from "@graphql/rewards";
 import { t } from "@locale";
 
 interface IOwnProps {
@@ -57,13 +55,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
     GQL_QUERY_GET_USER_NOTIFICATIONS_SETTINGS,
     graphqlFetchPolicy
   );
-  const rewardStoreLocations = useQuery<RewardStoreData>(GQL_QUERY_GET_MOBILE_REWARD_STORE_LOCATIONS, {
-    ...graphqlFetchPolicy,
-    skip: !features.showRewardStoreSelection,
-  });
   const notifications = notificationSettings?.data?.getUserNotificationsSettings || [];
-  const rewardsLocations = rewardStoreLocations?.data?.data || [];
-  const rewardStore = rewardsLocations.find((r) => r.isSelected);
   const cyclingMeasurement = useSelector(getDailyCyclingMeasurement);
 
   // helper functions
@@ -171,28 +163,6 @@ function SettingsContainer({ componentId }: IOwnProps) {
     ],
   };
 
-  const rewardStoreSettings = {
-    name: "rewardStoreSettings",
-    title: "Rewards settings",
-    isVisible: rewardStore && features.showRewardStoreSelection,
-    items: [
-      {
-        title: "Rewards region selection",
-        description:
-          "This selection defines the collection of rewards available to you. This may change the currency of new vouchers.",
-        value: rewardStore?.id,
-        onPress: () => {
-          Navigation.push(ROUTES.settings, {
-            component: {
-              id: ROUTES.rewardStoreLocation,
-              name: ROUTES.rewardStoreLocation,
-            },
-          });
-        },
-      },
-    ],
-  };
-
   const connection = {
     title: "Fitness trackers",
     isVisible: features.showConnections,
@@ -255,10 +225,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
 
   return (
     <>
-      <SettingsScreen
-        onPressClose={handleClose}
-        sections={[notification, gameSettings, connection, rewardStoreSettings]}
-      />
+      <SettingsScreen onPressClose={handleClose} sections={[notification, gameSettings, connection]} />
       {!isTimeModalVisible ? null : (
         <ScrollPickerModal pickers={pickers} onConfirm={handleTimeModalConfirm} onCancel={handleTimeModalCancel} />
       )}

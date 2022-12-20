@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import { BoxOption } from "@molecules";
@@ -25,7 +25,14 @@ const _RewardsListItem = ({ onPress, imageUrl, name, description, pills, isLocke
   >
     <View style={styles.main}>
       <View style={styles.imageWrapper}>
-        {!imageUrl?.uri ? null : <Image height={IMAGE_HEIGHT} width={IMAGE_WIDTH} source={imageUrl} />}
+        {!imageUrl?.uri ? null : (
+          <Image
+            CustomLoader={CustomRewardListItemImageLoader}
+            height={IMAGE_HEIGHT}
+            width={IMAGE_WIDTH}
+            source={imageUrl}
+          />
+        )}
         {!isLocked ? null : <Lock testID={LOCKED_REWARD_ITEM(id)} />}
       </View>
       <View style={styles.detailWrapper}>
@@ -76,6 +83,13 @@ const styles = StyleSheet.create({
     borderRadius: Style.adjust(12),
     overflow: "hidden",
   },
+  imageLoader: {
+    width: BOX_HEIGHT,
+    height: BOX_HEIGHT,
+    backgroundColor: Colours.neutral.n200,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   // reward details
   detailWrapper: {
     flex: 1,
@@ -89,3 +103,9 @@ const styles = StyleSheet.create({
     top: Style.adjust(8),
   },
 });
+
+const CustomRewardListItemImageLoader = (
+  <View style={styles.imageLoader}>
+    <ActivityIndicator size="small" color={Colours.neutral.white} />
+  </View>
+);

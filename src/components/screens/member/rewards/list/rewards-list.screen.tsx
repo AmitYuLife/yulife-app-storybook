@@ -7,19 +7,32 @@ import { ChipList } from "@molecules";
 import { RewardsList } from "./rewards-list";
 import { RewardsListLayout } from "../subcomponents/rewards-layout";
 import { RewardsListLoading } from "../subcomponents/rewards-loading";
+import HistoryAndStoreLocation from "./subcomponents/history-and-store-location";
 import { REWARDS_LIST_SCREEN } from "@ids";
+
 export interface IRewardsListScreenProps extends IConnectedScreenProps {
   data: GetMobileRewardsList_data;
   onItemPress: (item: GetMobileRewardsList_data_list) => void;
   onRefresh: () => void;
   selectedTag: string;
   onTagPress: React.Dispatch<React.SetStateAction<string>>;
+  onChangeStoreLocationPress: () => void;
   onPurchasesPress: () => void;
   loading: boolean;
 }
 
 const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
-  const { data, selectedTag, onLeftMenuPress, onTagPress, onRefresh, onItemPress, onPurchasesPress, loading } = props;
+  const {
+    data,
+    selectedTag,
+    onLeftMenuPress,
+    onTagPress,
+    onRefresh,
+    onItemPress,
+    onPurchasesPress,
+    onChangeStoreLocationPress,
+    loading,
+  } = props;
 
   const chips = (data?.tags || []).map((tag) => ({
     value: tag,
@@ -30,6 +43,11 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
   return (
     <RewardsListLayout onLeftMenuPress={onLeftMenuPress}>
       {!chips.length ? null : <ChipList chips={chips} />}
+      <HistoryAndStoreLocation
+        selectedStore={data?.rewardStoreLocation}
+        onChangeStorePress={onChangeStoreLocationPress}
+        onHistoryPress={onPurchasesPress}
+      />
       <View style={styles.listWrapper} testID={REWARDS_LIST_SCREEN}>
         {loading ? (
           <RewardsListLoading />
@@ -39,6 +57,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
             onRefresh={onRefresh}
             data={data?.list || []}
             onItemPress={onItemPress}
+            loading={loading}
           />
         )}
       </View>
