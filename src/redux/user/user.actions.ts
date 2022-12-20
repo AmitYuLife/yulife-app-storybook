@@ -55,8 +55,7 @@ export const UPDATE_USER_CONSENT_SUCCESS = "UPDATE_USER_CONSENT_SUCCESS";
 export const UPDATE_CONNECTION_START = "UPDATE_CONNECTION_START";
 export const UPDATE_CONNECTION_FAILED = "UPDATE_CONNECTION_FAILED";
 export const UPDATE_CONNECTION_SUCCESS = "UPDATE_CONNECTION_SUCCESS";
-export const UPDATE_LEADERBOARD_POPUP_VISIBILITY = "UPDATE_LEADERBOARD_POPUP_VISIBILITY";
-export const UPDATE_SURGE_POPUP_VISIBILITY = "UPDATE_SURGE_POPUP_VISIBILITY";
+
 export const LOGOUT_START = "LOGOUT_START";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const OPEN_MY_ACCOUNT = "OPEN_MY_ACCOUNT";
@@ -221,16 +220,6 @@ export const logOutSuccess = () => ({
 
 export const openMyAccount = () => ({
   type: OPEN_MY_ACCOUNT,
-});
-
-export const updateLeaderboardPopupVisibility = (payload: boolean) => ({
-  type: UPDATE_LEADERBOARD_POPUP_VISIBILITY,
-  payload,
-});
-
-export const updateSurgePopupVisibility = (payload: boolean) => ({
-  type: UPDATE_SURGE_POPUP_VISIBILITY,
-  payload,
 });
 
 export const setShowSurgeIntro = (payload: IUserStore["surgeIntro"]) => ({

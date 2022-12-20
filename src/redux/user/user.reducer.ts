@@ -1,5 +1,4 @@
 import { REHYDRATE } from "redux-persist";
-import { POPUPTYPE } from "../../components/molecules";
 import {
   GetCurrentUser,
   GetCurrentUser_getCurrentUser_connections,
@@ -24,8 +23,6 @@ import {
   UPDATE_LEADERBOARD_CONSENT_FAILED,
   UPDATE_LEADERBOARD_CONSENT_START,
   UPDATE_LEADERBOARD_CONSENT_SUCCESS,
-  UPDATE_LEADERBOARD_POPUP_VISIBILITY,
-  // UPDATE_SURGE_POPUP_VISIBILITY,
   UPDATE_USER_CONSENT_SUCCESS,
   UPDATE_ACTIVE_LEADERBOARD_ID,
   LOGOUT_SUCCESS,
@@ -74,16 +71,6 @@ export interface IUserStore {
   leaderboards: ILeaderboard[];
   activeLeaderboardId: string;
   earnRate: number;
-  popupVisibility: {
-    /**
-     *  Every time we'll add a new feature popup we'll add a new key here and mark it as true,
-     *  then on the `REHYDRATE` action type we'll look if the persisted state has that key.
-     *  If it does, it means there was no app update. If it doesn't, voila!
-     *  The first time someone installs the app also will be handled, as the first state comes from `initialState`
-     *  :thugmatt:
-     */
-    leaderboard: boolean;
-  };
   surgeIntro: {
     visibility: boolean;
     activity: SurgeActivity;
@@ -139,9 +126,6 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   leaderboards: [],
   activeLeaderboardId: "",
   earnRate: 0,
-  popupVisibility: {
-    leaderboard: false,
-  },
   //check if we still need this
   surgeIntro: {
     visibility: false,
@@ -224,9 +208,6 @@ export const userReducer = (state: IUserStore = getInitialState(), action: SyncA
     case UPDATE_CONNECTION_SUCCESS:
       return updateConnectionsSuccess(state, action.payload);
 
-    case UPDATE_LEADERBOARD_POPUP_VISIBILITY:
-      return updatePopupVisibility(state, action.payload, POPUPTYPE.LEADERBOARD);
-
     case UPDATE_USER_PROFILE:
       return updateUserProfile(state, action.payload);
 
@@ -278,12 +259,6 @@ const updatePersistedState = (persistedState: IUserStore) => {
   if (!persistedState.lastName || !persistedState.firstName) {
     newState.firstName = "";
     newState.lastName = "";
-  }
-
-  if (!persistedState.popupVisibility) {
-    // leaderboards is the first popup
-    newState.popupVisibility = { leaderboard: true };
-    return newState;
   }
 
   if (!persistedState.surgeIntro) {
@@ -459,21 +434,6 @@ const updateConnectionsSuccess = (state: IUserStore, payload: { name: string; is
     return connection;
   }),
 });
-
-const updatePopupVisibility = (state: IUserStore, payload: boolean, type: POPUPTYPE): IUserStore => {
-  switch (type) {
-    case POPUPTYPE.LEADERBOARD:
-      return {
-        ...state,
-        popupVisibility: {
-          ...state.popupVisibility,
-          leaderboard: payload,
-        },
-      };
-    default:
-      return state;
-  }
-};
 
 const updateSurgeIntro = (state: IUserStore, surgeIntro: IUserStore["surgeIntro"]) => ({
   ...state,
