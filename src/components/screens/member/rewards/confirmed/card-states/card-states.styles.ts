@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
   imageWrapperFailed: {
     backgroundColor: "rgb(235,235,235)",
   } as ViewStyle,
+  imageWrapperRefunded: {
+    backgroundColor: "rgb(235,235,235)",
+  } as ViewStyle,
   overlayWrapper: {
     ...StyleSheet.absoluteFillObject,
     alignItems: "center",
