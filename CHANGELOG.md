@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.62.0] - 2022-12-21
+
+### Bugfixes
+
+- Revert "Merge branch 'bugfix/android-bold-text-cut-off' into 'develop'"
+- BugFix ENG-3024: Duel displays name when no surname
+- Bugfix: Weeklies, streaks, feedback not appearing on yucoin screen
+- Bugfix: Weeklies improvements & android claiming fix
+- BugFix ENG-3027: text cut off when font weight bold
+
+### Tasks
+
+- Task DEVOP-611: Automation on anticheat alerts
+- Task GS-589: Purge redux copies
+- Task GS-615: Purge unused assets/components part 1
+- Task GS-574: Purge theme from redux and duplicate assets
+- Task GS-588: Update assets for challenge history screen
+
+### Chores
+
+- Chore: rewards store location
+- Chore: Fix storybook build
+
+### Extra
+
+- (refs/pipelines/728963594) Hotfix: Font color on android devices being transparent on failed quest screen
+- ENG-3059 - HOTFIX: Add refunded option
+- Purge: Popup molecules
+- Hotfix: remove log
+- Hotfix: no-cache for the config
+
 ## [3.61.0] - 2022-12-14
 
 ### Bugfixes
