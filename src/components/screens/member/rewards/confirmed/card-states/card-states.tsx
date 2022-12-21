@@ -29,3 +29,9 @@ export const Failed = () => (
     <Overlay icon={assets.failedIcon} text="purchase failed" />
   </View>
 );
+
+export const Refunded = () => (
+  <View style={[styles.imageWrapper, styles.imageWrapperRefunded]}>
+    <Overlay icon={assets.refundedIcon} text="purchase refunded" />
+  </View>
+);

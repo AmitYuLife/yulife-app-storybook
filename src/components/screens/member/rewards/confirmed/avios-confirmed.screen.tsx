@@ -44,7 +44,7 @@ const RewardsConfirmedScreen = ({
         contentContainerStyle={styles.contentWrapper}
       >
         <Pad height={Style.isShortToMediumAndroid() ? 0 : 14} />
-        {status === "delivered" ? CardStates.Delivered : status === "failed" ? CardStates.Failed : CardStates.Pending}
+        {status === "delivered" ? CardStates.Delivered : status === "failed" ? CardStates.Failed : status === "refunded" ? CardStates.Refunded : CardStates.Pending}
 
         <View style={styles.rewardNameWrapper}>
           <Text style={styles.rewardName} bold={true}>
