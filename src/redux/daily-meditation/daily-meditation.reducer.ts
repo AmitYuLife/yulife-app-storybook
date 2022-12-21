@@ -148,7 +148,7 @@ const updateInAppMeditation = (state: IDailyMeditationStore, inAppDailyMeditatio
   if (lastUpdated !== today) {
     return {
       ...state,
-      inAppDailyMeditation,
+      inAppDailyMeditation: 0,
       inAppMeditationLastUpdated,
     };
   }
