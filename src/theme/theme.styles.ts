@@ -150,7 +150,7 @@ export const planetStyles: ITheme = {
           ...challengeSuccessAndFailedStyle,
           backgroundColor: "#FFFDD4",
         },
-        textStyle: { color: null },
+        textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
       },
       challengeHistoryScreen: {
@@ -231,7 +231,7 @@ export const planetStyles: ITheme = {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
         },
-        textStyle: { color: null },
+        textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
       },
       challengeHistoryScreen: {
@@ -314,7 +314,7 @@ export const planetStyles: ITheme = {
           height: Style.SCALE_UP_AND_DOWN(220),
           backgroundColor: "#fffbcd",
         },
-        textStyle: { color: null },
+        textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
       },
       challengeHistoryScreen: {
@@ -396,7 +396,7 @@ export const planetStyles: ITheme = {
           height: Style.SCALE_UP_AND_DOWN(220),
           backgroundColor: "rgb(255, 226, 230)",
         },
-        textStyle: { color: null },
+        textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
       },
       challengeHistoryScreen: {
@@ -477,7 +477,7 @@ export const planetStyles: ITheme = {
           ...challengeSuccessAndFailedStyle,
           backgroundColor: "#FFFDD4",
         },
-        textStyle: { color: null },
+        textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
       },
       challengeHistoryScreen: {
@@ -558,7 +558,7 @@ export const planetStyles: ITheme = {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
         },
-        textStyle: { color: null },
+        textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
       },
       challengeHistoryScreen: {
@@ -641,7 +641,7 @@ export const planetStyles: ITheme = {
           height: Style.SCALE_UP_AND_DOWN(220),
           backgroundColor: "#fffbcd",
         },
-        textStyle: { color: null },
+        textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
       },
       challengeHistoryScreen: {
@@ -723,7 +723,7 @@ export const planetStyles: ITheme = {
           height: Style.SCALE_UP_AND_DOWN(220),
           backgroundColor: "rgb(255, 226, 230)",
         },
-        textStyle: { color: null },
+        textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
       },
       challengeHistoryScreen: {
