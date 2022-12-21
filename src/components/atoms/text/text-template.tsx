@@ -38,7 +38,7 @@ export const TextTemplate = memo(
     children,
     testID,
     type,
-    color = Colours.neutral.n800,
+    color,
     textAlign = "left",
     decoration,
     numberOfLines,
@@ -47,7 +47,7 @@ export const TextTemplate = memo(
     accessible = true,
   }: IProps) => {
     const alignment = { textAlign };
-    const fontColor = { color };
+    const fontColor = { color: color || Colours.neutral.n800 };
     const decorationStyle = !decoration ? null : styles[decoration];
 
     return (
