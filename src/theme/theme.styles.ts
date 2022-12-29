@@ -528,8 +528,8 @@ export const planetStyles: ITheme = {
         hasWhiteGlow: false,
         isLight: true,
         streakType: "ocean",
-        topBarType: "white",
-        textStyle: { color: Colours.neutral.white },
+        topBarType: "default",
+        textStyle: { color: Colours.neutral.n800 },
       },
       challengeListScreen: {
         backgroundImage: require("@assets/challenge-list/planets/red/ocean.png"),
