@@ -16,7 +16,7 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
   onRefresh: () => void;
   selectedTag: string;
   onTagPress: React.Dispatch<React.SetStateAction<string>>;
-  onChangeStoreLocationPress: () => void;
+  onChangeStoreLocationPress?: () => void;
   onPurchasesPress: () => void;
   loading: boolean;
 }
@@ -43,11 +43,13 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
   return (
     <RewardsListLayout onLeftMenuPress={onLeftMenuPress}>
       {!chips.length ? null : <ChipList chips={chips} />}
-      <HistoryAndStoreLocation
-        selectedStore={data?.rewardStoreLocation}
-        onChangeStorePress={onChangeStoreLocationPress}
-        onHistoryPress={onPurchasesPress}
-      />
+      {loading ? null : (
+        <HistoryAndStoreLocation
+          selectedStore={data?.rewardStoreLocation}
+          onChangeStorePress={onChangeStoreLocationPress}
+          onHistoryPress={onPurchasesPress}
+        />
+      )}
       <View style={styles.listWrapper} testID={REWARDS_LIST_SCREEN}>
         {loading ? (
           <RewardsListLoading />

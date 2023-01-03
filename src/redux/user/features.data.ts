@@ -9,6 +9,7 @@ export const features = [
   "showSettings",
   "showCreateLeaderboard",
   "showAdvancedLeaderboards",
+  "showRewardStoreSelection",
   "disableUserEntries",
   "showConnections",
   "fitbit",

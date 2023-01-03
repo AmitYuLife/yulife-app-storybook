@@ -1,5 +1,5 @@
 import { GQL_QUERY_GET_MOBILE_REWARDS_LIST } from "@graphql/rewards";
-import { bottomTabs } from "@navigation/constants";
+import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import React, { memo, useCallback, useState } from "react";
 import { Navigation } from "@navigation/main";
 import {
@@ -7,16 +7,18 @@ import {
   GetMobileRewardsListVariables as RewardsVariables,
   GetMobileRewardsList_data_list,
 } from "@graphql/_core/schema";
-import { MODALS, ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { RewardsListScreen } from "@screens/index";
 import { IMainTabsProps, showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeenOnce, useTapBackTwiceToExit } from "@hooks";
 import { t } from "@locale";
+import { useSelector } from "react-redux";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 const _RewardsListContainer = (props: IMainTabsProps) => {
   const { componentId, onLeftMenuPress } = props;
   const [tag, setTag] = useState("All");
+  const features = useSelector(getUserFeatures);
 
   useTapBackTwiceToExit(componentId);
 
@@ -90,7 +92,7 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
       onRefresh={getRewards}
       onTagPress={setTag}
       onPurchasesPress={handlePurchasesPress}
-      onChangeStoreLocationPress={handleStoreLocationPress}
+      onChangeStoreLocationPress={!features?.showRewardStoreSelection ? null : handleStoreLocationPress}
       selectedTag={tag}
       loading={!rewards?.data?.list?.length && loading}
     />
