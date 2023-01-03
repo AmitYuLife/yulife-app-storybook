@@ -16,8 +16,10 @@ import {
 } from "@redux/fitkit/fitkit.actions";
 import { AndroidSystemPermissionsConfig, FitKitAndroidSystemPermission } from "./fitkit.permissions";
 import { requestAndroidSystemPermissions } from "./fitkit.system-permissions";
+import moment from "moment";
 
 const RNFITKIT_PERMISSIONS_SHOWN = "@RNFitKit:authorised";
+const IOS_ERROR_UNABLE_TO_INVALIDATE_INTERVAL = "Unable to invalidate interval: no data source available.";
 
 export function useFitKit() {
   const dispatch = useDispatch();
@@ -39,25 +41,38 @@ export function useFitKit() {
 
     try {
       if (Platform.OS === "ios") {
-        const start = new Date();
-        start.setDate(start.getDate() - 5);
-        start.setHours(0, 0, 0, 0);
+        const hoursToSubtract = [120, 96, 72, 48, 24, 12, 6];
+        let error;
 
-        const startTime = start.toISOString().slice(0, 19);
-        const endTime = new Date().toISOString().slice(0, 19);
+        for (const h of hoursToSubtract) {
+          try {
+            const startTime = moment().subtract(h, "hours").startOf("day").toISOString().slice(0, 19);
+            const endTime = moment().toISOString().slice(0, 19);
 
-        const res = await RNFitKit.aggregateQuery({
-          aggregateBy: {
-            bucketSize: { value: 1, type: FitKitTypes.TimeRange.DAYS },
-            type: FitKitTypes.AggregateType.Time,
-          },
-          disableUserEntries: false,
-          endTime,
-          startTime,
-          type: FitKitTypes.Types.StepCount,
-        });
+            const res = await RNFitKit.aggregateQuery({
+              aggregateBy: {
+                bucketSize: { value: 1, type: FitKitTypes.TimeRange.DAYS },
+                type: FitKitTypes.AggregateType.Time,
+              },
+              disableUserEntries: false,
+              endTime,
+              startTime,
+              type: FitKitTypes.Types.StepCount,
+            });
 
-        isAuthorised = res && res.length > 0;
+            isAuthorised = res && res.length > 0;
+            break;
+          } catch (e) {
+            error = e;
+            if (e.message !== IOS_ERROR_UNABLE_TO_INVALIDATE_INTERVAL) {
+              break;
+            }
+          }
+        }
+
+        if (!isAuthorised && error) {
+          throw error;
+        }
       } else {
         isAuthorised = await RNFitKit.isAuthorised();
       }
