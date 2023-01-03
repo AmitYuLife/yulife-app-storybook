@@ -8,7 +8,7 @@ import { useTranslation } from "@hooks";
 type Props = {
   selectedStore: string;
   onHistoryPress: () => void;
-  onChangeStorePress: () => void;
+  onChangeStorePress?: () => void;
 };
 
 const _HistoryAndStoreLocation = ({ selectedStore, onChangeStorePress, onHistoryPress }: Props) => {
@@ -25,12 +25,16 @@ const _HistoryAndStoreLocation = ({ selectedStore, onChangeStorePress, onHistory
             {t["screens.rewards.list.history"]}
           </TextTemplate>
         </PressableWithDelay>
-        <View style={styles.divider} />
-        <PressableWithDelay style={styles.changeStore} hitSlop={5} onPress={onChangeStorePress}>
-          <TextTemplate type="b2" color={Colours.primary.p600}>
-            {selectedStore}
-          </TextTemplate>
-        </PressableWithDelay>
+        {!onChangeStorePress ? null : (
+          <>
+            <View style={styles.divider} />
+            <PressableWithDelay style={styles.changeStore} hitSlop={5} onPress={onChangeStorePress}>
+              <TextTemplate type="b2" color={Colours.primary.p600}>
+                {selectedStore}
+              </TextTemplate>
+            </PressableWithDelay>
+          </>
+        )}
       </View>
     </View>
   );
