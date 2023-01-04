@@ -68,6 +68,7 @@ export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
           }
         }
         challenges {
+          id
           reward
           rating
         }
