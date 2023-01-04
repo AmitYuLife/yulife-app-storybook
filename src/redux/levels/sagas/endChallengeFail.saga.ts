@@ -1,0 +1,12 @@
+import { put, select, delay } from "redux-saga/effects";
+import { challengeEndAction } from "../levels.actions";
+import { getActiveLevel } from "../levels.selectors";
+
+export default function* endChallengeFail() {
+  yield delay(1000);
+  const active: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
+
+  if (!active.isCompleted && active.levelSlotId) {
+    yield put(challengeEndAction());
+  }
+}
