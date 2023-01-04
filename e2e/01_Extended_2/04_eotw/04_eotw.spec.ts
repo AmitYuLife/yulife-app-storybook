@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_69, AUTH_69, CUSTOMER_70, AUTH_70, USER_70 } from "@data";
+import { CUSTOMER_69, AUTH_69, CUSTOMER_70, AUTH_70, USER_70, CUSTOMER_78, AUTH_78, USER_78 } from "@data";
 import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, QUESTS_SCREEN_YUNIVERSAL, DAILY_STEPS_SCREEN, WELLDONE_BANNER, CELESTIAL_CHEST_SCREEN, SPACE_TRAVEL_SCREEN, YUSCREEN, TEXT_TEMPLATE, USER_LEVEL, LEVEL_STAR_COUNT, V4_YUSCREEN, YUMOJI_AVATAR_YUSCREEN_V4 } from "@ids";
 
 Feature("End of the world/Yuniverse", async () => {
@@ -196,7 +196,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should be on the celestial chest screen", then.celestialChestEarned)
         })
         When("I tap open the chest", when.tapText("Open the chest"), async () => {
-            Then("I can see the 3 celestial chest rewards", then.celestialChestAwardsVisible(USER_70))
+            Then("I can see the 3 celestial chest rewards, which each earn me my earn rate (6) * 100", then.celestialChestAwardsVisible(USER_70))
         })
         When("I tap claim rewards", when.tapText("Claim rewards"), async () => {
             Then("I am on the space travel screen", then.idVisible(SPACE_TRAVEL_SCREEN))
@@ -277,6 +277,34 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
             Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
+        })
+    })
+
+    Scenario("As a user, I want the celestial chest to be based on earn rate, so that I am rewarded on my policy amounts", scenario.start, () => {
+        Given("I login as a user on level 207 with a earn rate of 9", given.logInAndGoToTab("yucoin", CUSTOMER_78, AUTH_78), async () => {
+            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left)"))
+        })
+        When("I go to the yu tab", when.tapID(NAV_BAR("yu")), async () => {
+            When("I tap Check out my power", when.tapText("Check out my power"), async () => {
+                Then("I should be on the create Yumoji screen", then.onCreateAvatarScreen)
+            })
+        })
+        When("I create my yumoji", when.createDefaultYumoji, async () => {
+            Then("I should be on the yuscreen v4", then.idVisible(V4_YUSCREEN))
+            Then("I should see my Yumoji", then.idVisible(YUMOJI_AVATAR_YUSCREEN_V4))
+            Then("I should see my fullname", then.textVisible(`${CUSTOMER_78.data.fullName}`))
+            Then("I should see I am in the Yuniversal world", then.textVisible("Yuniversal"))
+        })
+        When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+            When("I tap take a challenge", when.tapText("Take a challenge (4 left)"), async () => {
+                Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(7)))
+            })
+        })
+        When("I tap level 7 button", when.tapYuniverseLevelForFirstTime(7, 187, 263), async () => {
+            Then("I should be on the celestial chest screen", then.celestialChestEarned)
+        })
+        When("I tap open the chest", when.tapText("Open the chest"), async () => {
+            Then("I can see the 3 celestial chest rewards, which earns me my earn rate (9) * 100", then.celestialChestAwardsVisible(USER_78))
         })
     })
 })
