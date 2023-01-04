@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.63.0] - 2023-01-04
+
+### Bugfixes
+
+- Bugfix ENG-2997: Challenge stays frozen on screen after loss of signal
+- Bugfix ENG-2940 ENG-2946: Apple Health no data source available
+- Bugfix: rewards store loading
+- Bugfix: Text colour on daily screen for ocean on red planet
+
+### Extra
+
+- Detox - Celestial Chest Earn Rate
+
 ## [3.62.0] - 2022-12-21
 
 ### Bugfixes
