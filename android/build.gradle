@@ -5,9 +5,9 @@ def REACT_NATIVE_VERSION = new File(['node', '--print',"JSON.parse(require('fs')
 
 buildscript {
     ext {
-        kotlin_version = "1.4.31"
-        RNNKotlinVersion = "1.4.31"
-        RNNKotlinCoroutinesCore = "1.4.3"
+        kotlin_version = "1.6.0"
+        RNNKotlinVersion = "1.6.0"
+        RNNKotlinCoroutinesCore = "1.6.0"
         buildToolsVersion = "29.0.3"
         minSdkVersion = 21
         ndkVersion = "20.1.5948944"

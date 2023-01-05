@@ -15,7 +15,7 @@ import { ProductStepContext } from "../product-step.context";
 type Props = GqlSelectPaymentBtn;
 
 export const ProductStepSelectPaymentButton = memo((props: Props) => {
-  const { button, companyName, companyCountryCode, themeStyle, applePayEnabled, googlePayEnabled } = props;
+  const { button, companyName, companyCountryCode, themeStyle } = props;
   const { initPaymentSheet, presentPaymentSheet } = useStripe();
   const { dynamicData, setDynamicData } = useContext(ProductStepContext);
   const [needsRefetch, setsNeedsRefetch] = useState(false);
@@ -60,12 +60,15 @@ export const ProductStepSelectPaymentButton = memo((props: Props) => {
         customerEphemeralKeySecret: data.setup.ephemeralSecret,
         setupIntentClientSecret: data.setup.clientSecret,
         merchantDisplayName: companyName,
-        merchantCountryCode: companyCountryCode,
-        applePay: applePayEnabled,
-        googlePay: googlePayEnabled,
+        applePay: {
+          merchantCountryCode: companyCountryCode,
+        },
+        googlePay: {
+          merchantCountryCode: companyCountryCode,
+          testEnv: true,
+        },
         style: themeStyle as PaymentSheet.SetupParams["style"],
         customFlow: false,
-        testEnv: true,
       });
 
       const present = await presentPaymentSheet();
