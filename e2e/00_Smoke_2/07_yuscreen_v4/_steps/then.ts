@@ -1,6 +1,7 @@
 import {navigation} from "@utils"
 import { screens } from "@appScreens"
 import { AVATAR_ITEM, RIGHT_STATUS_ICON, BACKGROUND_COLOUR_PRODUCT, ONBOARDING_SCREEN, YUCOIN_POWER, TEXT_TEMPLATE } from "@ids"
+import moment = require('moment');
 
 export const {
     idVisible,
@@ -73,7 +74,7 @@ export const productSlotsAreCorrect = (status:string)=> async()=>{
         await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(1)).toBeVisible() // more protection coming soon button
     }
     if (status === "groupDental"){
-        await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#EFFBF7")))).toBeVisible() // group dental slot
+        await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#F7F3FF")))).toBeVisible() // Dental cover slot
         await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE")))).toBeVisible() // more protection coming soon button
     }
 }
@@ -124,15 +125,29 @@ export const wellbeingProductInfo = (packageType: string) => async () => {
 
 export const groupDentalProductInfo = (packageType: string, yuCoinPower: string) => async () => {
 
-    const policyName = "Dental Cover"
-    const policyDescription = "Dental insurance with Bupa, provided by your employer for your protection collection."
+    const policyName = "Bupa Dental Plan"
+    const policyDescription = "You can claim cash back, access to Bupa clinics across the UK, and reach Bupa’s experts on their 24/7 Anytime HealthLine."
     const paidBy = "Employer Paid"
+    const policyInfoYugi = "This policy is paid for by your employer. Remember if you change jobs, you’ll lose this cover."
+    const keyInfo = "Key Info"
+    const coverlevel = "Cover Level"
+    const startDateText = "Start date"
+    const level = "Level 1 | Single"
+    const startDate = moment().subtract(1, "months").format("DD/MM/YYYY")
 
-    await idVisible(TEXT_TEMPLATE("Dental Cover"))();
+
+    await idVisible(TEXT_TEMPLATE(policyName))();
     await expect(element(by.text(paidBy))).toBeVisible();
     await expect(element(by.text(policyDescription))).toBeVisible()
     await expect(element(by.text(packageType))).toBeVisible()
-    await expect(element(by.id(YUCOIN_POWER(5)))).toBeVisible();
+    await expect(element(by.id(YUCOIN_POWER(yuCoinPower)))).toBeVisible();
+    await expect(element(by.text(policyInfoYugi))).toBeVisible()
+    await expect(element(by.text(keyInfo))).toBeVisible()
+    await swipeFromText(keyInfo, "up", "slow", 0.3)()
+    await expect(element(by.text(coverlevel))).toBeVisible()
+    await expect(element(by.text(startDateText))).toBeVisible()
+    await expect(element(by.text(startDate))).toBeVisible()
+    await expect(element(by.text(level))).toBeVisible()
 }
 
 export const yuCoinPowerInfo = (yuCoinPower: number) => async () => {

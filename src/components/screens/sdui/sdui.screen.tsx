@@ -10,6 +10,7 @@ import { buildInitialSduiStepDynamicDataState } from "@utils/sduiData";
 import React, { memo, useContext, useEffect, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Absolute, Body } from "./sections";
+import { SDUI_SCREEN_SCROLL_VIEW } from "@ids";
 
 interface Props {
   body?: ContentItem[];
@@ -33,7 +34,7 @@ export const SduiScreen = memo(({ body, absolute, containerStyles, stepData, ste
   }, [stepId]);
 
   return (
-    <View style={[styles.wrapper, wrapperStyles]}>
+    <View style={[styles.wrapper, wrapperStyles]} testID={SDUI_SCREEN_SCROLL_VIEW}>
       <Absolute items={background} />
       <Body items={body} />
       <Absolute items={foreground} />

@@ -315,7 +315,7 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
             await expect(element(by.text(groupDental))).toBeVisible()
             await expect(element(by.text(paidBy))).toBeVisible()
             await expect(element(by.text(noProductText))).toBeVisible()
-            await swipeFromText(browseMoreProtection,"up", "slow")()
+            await swipeFromText(createYumujiCTA,"up", "slow")()
             await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible()
             break;
         case "dentalAndPli":
@@ -340,7 +340,12 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
         default:
             break;
     }
-    await swipeFromText(browseMoreProtection, "down", "slow")()
+    if (device.name.includes("(iPhone 8)")) {
+        await swipeFromText(surveyLabel, "down", "fast")()
+        await swipeFromText(browseMoreProtection, "down", "fast")()
+    } else {
+        await swipeFromText(browseMoreProtection, "down", "slow")()
+    }
 }
 
 export const onProductDetails = (coverType: string, productName: string, earnRate: number) => async ()=>{

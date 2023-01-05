@@ -74,14 +74,18 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             helper.WELLBEING_PRODUCT_VIEW("Epic", 1, 31)
         })
     })
-// please keep as skip for now until xsell have implemented all group dental updates
-    ScenarioSkip("As a YuLifer with Group Dental product i should see correct Product Details", scenario.start, async () => {
+
+    Scenario("As a YuLifer with Group Dental product i should see correct Product Details and be able to order Ordo toothbrush", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_51, AUTH_51), async () => {
             helper.ONBOARDING_YUSCREEN("groupDental", "5")
-            helper.YUSCREEN_V4(CUSTOMER_51, "groupDental", "5")
-            helper.CREATE_DEFAULT_YUMOJI(300);
+            When("I tap check out my power", when.tapCheckOutMyPower, async () => {
+                When("I tap I'll do this later", when.tapIllDoThisLater, async () => {
+                    Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_51, "groupDental", "5"))
+                })
+            })
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("groupDental")
-            helper.GROUP_DENTAL_PRODUCT_VIEW("Common", "5")
+            helper.GROUP_DENTAL_PRODUCT_VIEW("Epic", "5")
+            helper.ORDO_JOURNEY_VIEW()
         })
     })
 
