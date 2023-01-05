@@ -7,6 +7,7 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { useDispatch } from "react-redux";
 import { ContentItemImageSize } from "@graphql/_core/schema/globalTypes";
 import { Style } from "@styles";
+import { CONTENT_ITEM_IMAGE } from "@ids";
 
 export const ContentItemImage = memo((props: Props) => {
   const wrapperStyles = mapServerStyles(props.wrapperStyles);
@@ -27,6 +28,7 @@ export const ContentItemImage = memo((props: Props) => {
         width={getWidth(imageStyles?.width as number, props.contentItemImageSize)}
         style={{ ...imageStyles, width: getWidth(imageStyles?.width as number, props.contentItemImageSize) }}
         source={{ uri: props.image.uri }}
+        testID={CONTENT_ITEM_IMAGE}
       />
     </Wrapper>
   );

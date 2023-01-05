@@ -318,7 +318,7 @@ export const CGP_51_GDental = {
         business_product_id: BUSINESS_PRODUCT_4_GDental.product.data.product_id,
         customer_product_id: CPE_51_GDent.data.customer_product_id,
         category_id: 1,
-        start_date: CUSTOMER_51.data.start_date,
+        start_date: moment().subtract(1, "months").toDate(),
         data: {
             date_of_birth: CUSTOMER_51.data.date_of_birth,
             salary: 100000,
