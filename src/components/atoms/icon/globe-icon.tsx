@@ -2,7 +2,7 @@ import { Style } from "@styles";
 import * as React from "react";
 import Svg, { Path } from "react-native-svg";
 
-export const GlobeSvg = React.memo(() => (
+export const GlobeIcon = React.memo(() => (
   <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24">
     <Path
       fillRule="evenodd"

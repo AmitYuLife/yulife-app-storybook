@@ -7,7 +7,7 @@ import { ChipList } from "@molecules";
 import { RewardsList } from "./rewards-list";
 import { RewardsListLayout } from "../subcomponents/rewards-layout";
 import { RewardsListLoading } from "../subcomponents/rewards-loading";
-import HistoryAndStoreLocation from "./subcomponents/history-and-store-location";
+import FirstTimeStoreSelection from "./subcomponents/first-time-store-selection";
 import { REWARDS_LIST_SCREEN } from "@ids";
 
 export interface IRewardsListScreenProps extends IConnectedScreenProps {
@@ -16,7 +16,7 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
   onRefresh: () => void;
   selectedTag: string;
   onTagPress: React.Dispatch<React.SetStateAction<string>>;
-  onChangeStoreLocationPress?: () => void;
+  onChangeStoreLocationPress: () => void;
   onPurchasesPress: () => void;
   loading: boolean;
 }
@@ -40,24 +40,31 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
     onPress: onTagPress,
   }));
 
+  // can't use negation as we need to ignore null and undefined
+  const shouldShowFirstTimeModal = data?.hasUserSelectedStoreLocation === false;
+
   return (
-    <RewardsListLayout onLeftMenuPress={onLeftMenuPress}>
-      {!chips.length ? null : <ChipList chips={chips} />}
-      {loading ? null : (
-        <HistoryAndStoreLocation
-          selectedStore={data?.rewardStoreLocation}
-          onChangeStorePress={onChangeStoreLocationPress}
-          onHistoryPress={onPurchasesPress}
+    <RewardsListLayout
+      onLeftMenuPress={onLeftMenuPress}
+      Overlay={
+        <FirstTimeStoreSelection
+          isActive={shouldShowFirstTimeModal}
+          currentStore={data?.rewardStoreLocation}
+          currentStoreLabel={data?.rewardStoreLocationLabel}
+          onChangeStoreLocationPress={onChangeStoreLocationPress}
         />
-      )}
+      }
+    >
+      {!chips.length ? null : <ChipList chips={chips} />}
       <View style={styles.listWrapper} testID={REWARDS_LIST_SCREEN}>
         {loading ? (
           <RewardsListLoading />
         ) : (
           <RewardsList
             onPurchasesPress={onPurchasesPress}
+            onChangeStoreLocationPress={onChangeStoreLocationPress}
             onRefresh={onRefresh}
-            data={data?.list || []}
+            data={data}
             onItemPress={onItemPress}
             loading={loading}
           />

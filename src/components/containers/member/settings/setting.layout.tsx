@@ -1,17 +1,14 @@
 import React, { memo } from "react";
 import { StyleSheet, View, ListRenderItemInfo } from "react-native";
-import { FlatList, Radio, TextTemplate } from "@atoms";
-import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { SettingsHeader, TouchableOpacityWithDelay } from "@components/molecules";
-import { TEXT_TEMPLATE, SETTINGS_NAME } from "@ids";
+import { FlatList } from "@atoms";
+import { SettingsHeader } from "@molecules";
+import { GenericHeadingAbsolute, GenericHeadingPad, RadioListItem, RadioListItemProps } from "@organisms";
 import { Style } from "@styles";
-
-type Option = { id: string; title: string; description: string; isSelected: boolean; onPress: () => void };
 
 type Props = {
   onRightIconPress: () => void;
   onLeftIconPress?: () => void;
-  options: Option[];
+  options: RadioListItemProps[];
   screenTestId?: string;
   headerText: string;
 };
@@ -58,18 +55,4 @@ const styles = StyleSheet.create({
 
 export default memo(SettingLayout);
 
-const renderItem = ({ item }: ListRenderItemInfo<Option>): React.ReactElement | null => (
-  <View key={item.title} style={styles.option}>
-    <View>
-      <TextTemplate type="b2b" testID={TEXT_TEMPLATE(item.title)}>
-        {item.title}
-      </TextTemplate>
-      <TextTemplate type="l2" testID={TEXT_TEMPLATE(item.description)}>
-        {item.description}
-      </TextTemplate>
-    </View>
-    <TouchableOpacityWithDelay testID={SETTINGS_NAME(item.id)} onPress={item.onPress} style={styles.radioWrapper}>
-      <Radio selected={item.isSelected} />
-    </TouchableOpacityWithDelay>
-  </View>
-);
+const renderItem = ({ item }: ListRenderItemInfo<RadioListItemProps>) => <RadioListItem {...item} />;

@@ -33,6 +33,7 @@ export interface GetMobileRewardsList_data {
   __typename: "MobileRewardsList";
   id: string;
   rewardStoreLocation: string;
+  rewardStoreLocationLabel: string;
   hasUserSelectedStoreLocation: boolean;
   tags: string[];
   list: GetMobileRewardsList_data_list[];

@@ -8,29 +8,31 @@ import { useTranslation } from "@hooks";
 type Props = {
   selectedStore: string;
   onHistoryPress: () => void;
-  onChangeStorePress?: () => void;
+  onChangeStorePress: () => void;
 };
 
 const _HistoryAndStoreLocation = ({ selectedStore, onChangeStorePress, onHistoryPress }: Props) => {
-  const t = useTranslation(["screens.rewards.list.rewards", "screens.rewards.list.history"]);
+  const t = useTranslation([
+    "screens.rewards.list.rewards",
+    "screens.rewards.list.history",
+    "screens.rewards.list.store",
+  ]);
 
   return (
     <View style={styles.wrapper}>
-      <View style={styles.linkGroupWrapper}>
-        <TextTemplate type="b2">{t["screens.rewards.list.rewards"]}</TextTemplate>
-      </View>
+      <View style={styles.linkGroupWrapper} />
       <View style={styles.linkGroup}>
         <PressableWithDelay style={styles.history} hitSlop={5} onPress={onHistoryPress}>
           <TextTemplate type="b2" color={Colours.primary.p600}>
             {t["screens.rewards.list.history"]}
           </TextTemplate>
         </PressableWithDelay>
-        {!onChangeStorePress ? null : (
+        {!selectedStore ? null : (
           <>
             <View style={styles.divider} />
             <PressableWithDelay style={styles.changeStore} hitSlop={5} onPress={onChangeStorePress}>
               <TextTemplate type="b2" color={Colours.primary.p600}>
-                {selectedStore}
+                {`${t["screens.rewards.list.store"]}: ${selectedStore}`}
               </TextTemplate>
             </PressableWithDelay>
           </>

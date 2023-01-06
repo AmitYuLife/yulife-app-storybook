@@ -5,10 +5,9 @@ import { showOverlayWithChild } from "@modals/blurred-overlay/showOverlayWithChi
 import { ListPicker, TouchableOpacityWithDelay } from "@molecules";
 import { MODALS } from "@navigation/constants";
 import { TextTemplate } from "@atoms";
-import { ArrowIcon } from "@atoms/icon/arrow";
+import icon from "@atoms/icon";
 import region from "@services/region";
 import { Colours, Style } from "@styles";
-import { GlobeSvg } from "./globe-svg";
 import { useDispatch } from "react-redux";
 import { setRegionConfig } from "@redux/app/app.actions";
 import { useTranslation } from "@hooks";
@@ -39,11 +38,11 @@ export const ServerDropdown = memo(() => {
       <TextTemplate type="l3">{translations["screens.login.server_location.short"]}</TextTemplate>
       <TouchableOpacityWithDelay onPress={handlePress} style={styles.touchable} accessibilityLabel={server}>
         <View style={styles.innerWrapper}>
-          <GlobeSvg />
+          <icon.GlobeIcon />
           <View style={styles.textWrapper}>
             <TextTemplate type="b2b">{server}</TextTemplate>
           </View>
-          <ArrowIcon direction="down" />
+          <icon.ArrowIcon direction="down" />
         </View>
       </TouchableOpacityWithDelay>
     </View>

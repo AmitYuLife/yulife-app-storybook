@@ -78,6 +78,7 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_details {
 }
 
 export interface GetQuestMapLevel_getQuestMapLevel_slots_challenges {
+  id: string;
   reward: string;
   rating: number;
 }
