@@ -24,7 +24,6 @@ export const ProductStepSelectedPackageCard = memo((props: Props) => {
     return [styles.wrapper, backgroundColor];
   }, [coverType]);
 
-  console.log("url2", providerLogo.url);
   return (
     <View style={wrapperStyle}>
       <View style={styles.inner}>
