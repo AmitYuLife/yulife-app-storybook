@@ -414,7 +414,19 @@
     "rewards": {
       "list": {
         "rewards": "Rewards",
-        "history": "History"
+        "history": "Purchased",
+        "store": "Store",
+        "welcome": {
+          "heading": "Welcome to rewards!",
+          "description": "Looking to make a purchase with YuCoin? Just choose your preferred store location and start shopping! Don't worry, you can always change your store location later.",
+          "store_location": "Store location",
+          "confirm": "Confirm selection"
+        }
+      },
+      "store_location": {
+        "rewards_store_location": "Rewards store location",
+        "confirm_selection": "Confirm selection",
+        "info_box": "Changing the store location will change the currency of vouchers. Already purchased vouchers are not affected."
       },
       "purchases": {
         "empty": {

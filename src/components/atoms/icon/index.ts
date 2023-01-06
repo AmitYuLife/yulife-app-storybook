@@ -48,8 +48,10 @@ import { FlagUK } from "./flag-uk";
 import { FlagUS } from "./flag-us";
 import { FlagSA } from "./flag-sa";
 import { Eye } from "./eye";
+import { GlobeIcon } from "./globe-icon";
 
 export default {
+  GlobeIcon,
   Clock,
   YugiCertificateHead,
   ArrowIcon,

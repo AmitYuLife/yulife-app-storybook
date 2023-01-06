@@ -178,10 +178,6 @@ const routesForRegistration = [
     component: require("../components/containers/member/settings/cycling-measurement.container").default,
   },
   {
-    name: ROUTES.rewardStoreLocation,
-    component: require("../components/containers/member/settings/reward-store-location.container").default,
-  },
-  {
     name: ROUTES.levelSelector,
     component: require("../components/containers/member/debug/level-selector/level-selector.container").default,
   },
@@ -213,6 +209,10 @@ const routesForRegistration = [
   {
     name: ROUTES.aviosConfirmed,
     component: require("../components/containers/member/rewards/confirmed/avios-confirmed.container").default,
+  },
+  {
+    name: ROUTES.rewardStoreLocation,
+    component: require("../components/containers/member/rewards/reward-store-location.container").default,
   },
   // products
   {

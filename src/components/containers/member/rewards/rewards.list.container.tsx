@@ -12,13 +12,10 @@ import { RewardsListScreen } from "@screens/index";
 import { IMainTabsProps, showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeenOnce, useTapBackTwiceToExit } from "@hooks";
 import { t } from "@locale";
-import { useSelector } from "react-redux";
-import { getUserFeatures } from "@redux/user/user.selectors";
 
 const _RewardsListContainer = (props: IMainTabsProps) => {
   const { componentId, onLeftMenuPress } = props;
   const [tag, setTag] = useState("All");
-  const features = useSelector(getUserFeatures);
 
   useTapBackTwiceToExit(componentId);
 
@@ -92,7 +89,7 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
       onRefresh={getRewards}
       onTagPress={setTag}
       onPurchasesPress={handlePurchasesPress}
-      onChangeStoreLocationPress={!features?.showRewardStoreSelection ? null : handleStoreLocationPress}
+      onChangeStoreLocationPress={handleStoreLocationPress}
       selectedTag={tag}
       loading={!rewards?.data?.list?.length && loading}
     />

@@ -9,6 +9,7 @@ export const GQL_QUERY_GET_MOBILE_REWARDS_LIST = gql`
       __typename
       id
       rewardStoreLocation
+      rewardStoreLocationLabel
       hasUserSelectedStoreLocation
       tags
       list {

@@ -13,16 +13,18 @@ interface Props {
   children: React.ReactNode;
   onLeftMenuPress: () => void;
   hasBackButton?: boolean;
+  Overlay?: React.ReactNode | null;
 }
 
 export function RewardsListLayout(props: Props) {
-  const { children, onLeftMenuPress, hasBackButton } = props;
+  const { children, onLeftMenuPress, hasBackButton, Overlay } = props;
 
   return (
     <View style={styles.wrapper} testID={REWARDS_SCREEN}>
       <View style={styles.topbarFiller} />
       <View style={styles.listWrapper}>{children}</View>
       <TopBarAbsolute leftIcon={hasBackButton ? "Back" : "Menu"} onPressLeftIcon={onLeftMenuPress} />
+      {Overlay}
       <NavBar activeIndex={4} />
     </View>
   );
