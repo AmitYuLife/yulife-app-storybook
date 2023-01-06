@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const GQL_FRAGMENT_USER_TODAY_ACTIVITY = gql`
-  fragment TodayActivity on ActivityHistoryChallenge {
+  fragment UserTodayActivity on ActivityHistoryChallenge {
     id
     earned
     milestones

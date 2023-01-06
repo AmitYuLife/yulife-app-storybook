@@ -8,11 +8,10 @@ import {
   GetUserProfile_getUserProfile_events as Events,
   GetUserLeaderboards_getUserLeaderboards,
   GetUserFeatures_getUserFeatures,
-  GetUserCoinLedger_getUserCoinLedger,
   GetUserConnections_getUserConnections,
   GetUserActiveChallenge_getUserActiveChallenge,
   GetUserActiveStreak_getUserActiveStreak,
-  GetUserTodayActivity_getUserTodayActivity,
+  GetUserCoinLedgerTodayActivity,
 } from "@graphql/_core/schema";
 import { MobileConsentInput } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "./user.reducer";
@@ -35,8 +34,8 @@ export const GET_USER_ACTIVE_CHALLENGE_START = "GET_USER_ACTIVE_CHALLENGE_START"
 export const GET_USER_ACTIVE_CHALLENGE_SUCCESS = "GET_USER_ACTIVE_CHALLENGE_SUCCESS";
 export const GET_USER_ACTIVE_STREAK_START = "GET_USER_ACTIVE_STREAK_START";
 export const GET_USER_ACTIVE_STREAK_SUCCESS = "GET_USER_ACTIVE_STREAK_SUCCESS";
-export const GET_USER_COIN_LEDGER_START = "GET_USER_COIN_LEDGER_START";
-export const GET_USER_COIN_LEDGER_SUCCESS = "GET_USER_COIN_LEDGER_SUCCESS";
+export const GET_USER_COIN_LEDGER_TODAY_ACTIVITY_START = "GET_USER_COIN_LEDGER_TODAY_ACTIVITY_START";
+export const GET_USER_COIN_LEDGER_TODAY_ACTIVITY_SUCCESS = "GET_USER_COIN_LEDGER_TODAY_ACTIVITY_SUCCESS";
 export const GET_USER_TODAY_ACTIVITY_START = "GET_USER_TODAY_ACTIVITY_START";
 export const GET_USER_TODAY_ACTIVITY_SUCCESS = "GET_USER_TODAY_ACTIVITY_SUCCESS";
 export const GET_USER_FEATURES_START = "GET_USER_FEATURES_START";
@@ -111,13 +110,13 @@ export const getUserFeaturesSuccess = (payload: GetUserFeatures_getUserFeatures[
   type: GET_USER_FEATURES_SUCCESS as typeof GET_USER_FEATURES_SUCCESS,
 });
 
-export const getUserCoinLedgerStart = () => ({
-  type: GET_USER_COIN_LEDGER_START,
+export const getUserCoinLedgerTodayActivityStart = () => ({
+  type: GET_USER_COIN_LEDGER_TODAY_ACTIVITY_START,
 });
 
-export const getUserCoinLedgerSuccess = (payload: GetUserCoinLedger_getUserCoinLedger) => ({
+export const getUserCoinLedgerTodayActivitySuccess = (payload: GetUserCoinLedgerTodayActivity) => ({
   payload,
-  type: GET_USER_COIN_LEDGER_SUCCESS as typeof GET_USER_COIN_LEDGER_SUCCESS,
+  type: GET_USER_COIN_LEDGER_TODAY_ACTIVITY_SUCCESS as typeof GET_USER_COIN_LEDGER_TODAY_ACTIVITY_SUCCESS,
 });
 
 export const getUserConnectionsStart = () => ({
@@ -145,15 +144,6 @@ export const getUserActiveStreakStart = () => ({
 export const getUserActiveStreakSuccess = (payload: GetUserActiveStreak_getUserActiveStreak) => ({
   payload,
   type: GET_USER_ACTIVE_STREAK_SUCCESS as typeof GET_USER_ACTIVE_STREAK_SUCCESS,
-});
-
-export const getUserTodayActivityStart = () => ({
-  type: GET_USER_TODAY_ACTIVITY_START,
-});
-
-export const getUserTodayActivitySuccess = (payload: GetUserTodayActivity_getUserTodayActivity[]) => ({
-  payload,
-  type: GET_USER_TODAY_ACTIVITY_SUCCESS as typeof GET_USER_TODAY_ACTIVITY_SUCCESS,
 });
 
 export const yuScreenSynchronised = () => ({

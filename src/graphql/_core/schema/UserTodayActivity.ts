@@ -4,10 +4,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: TodayActivity
+// GraphQL fragment: UserTodayActivity
 // ====================================================
 
-export interface TodayActivity {
+export interface UserTodayActivity {
   id: string | null;
   earned: number | null;
   milestones: number | null;

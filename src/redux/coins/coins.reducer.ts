@@ -4,9 +4,9 @@ import { DATE_FORMAT } from "@utils";
 import {
   GetCurrentUser,
   GetCurrentUser_getCurrentUser_todayActivity,
-  GetUserCoinLedger_getUserCoinLedger,
   LoginUser,
   UpsertDailyPassives_upsertDailyPassives_challenges as Challenge,
+  GetUserCoinLedgerTodayActivity,
 } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import {
@@ -15,7 +15,7 @@ import {
 } from "../daily-meditation/daily-meditation.actions";
 import { UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE, START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
 import {
-  GET_USER_COIN_LEDGER_SUCCESS,
+  GET_USER_COIN_LEDGER_TODAY_ACTIVITY_SUCCESS,
   GET_USER_SUCCESS,
   LOGIN_USER_SUCCESS,
   LOGOUT_SUCCESS,
@@ -70,8 +70,8 @@ const coinsReducer = (state: ICoinsStore = getInitialState(), action: SyncAction
       return updateDailyCyclingSuccess(state, action.payload);
     case LOGIN_USER_SUCCESS:
       return loginUserSuccess(state, action.payload);
-    case GET_USER_COIN_LEDGER_SUCCESS:
-      return coinLedgerSuccess(state, action.payload);
+    case GET_USER_COIN_LEDGER_TODAY_ACTIVITY_SUCCESS:
+      return coinLedgerTodayActivitySuccess(state, action.payload);
     case GET_USER_SUCCESS:
       return getUserSuccess(state, action.payload);
     case UPDATE_TOTAL_COINS:
@@ -176,16 +176,23 @@ const updateDailyCyclingSuccess = (state: ICoinsStore, challenge: Challenge): IC
   dailyCyclingEarned: challenge?.yuCoinAwarded || 0,
 });
 
-const loginUserSuccess = (state: ICoinsStore, { loginUser }: LoginUser): ICoinsStore => ({
-  ...state,
-  dailyChallengeEarned: sumCompletedChallenges(loginUser?.user?.todayActivity),
-  total: loginUser?.user?.coinLedger?.currentBalance || state.total,
-  lastUpdated: moment().format(DATE_FORMAT),
-});
+const loginUserSuccess = (state: ICoinsStore, { loginUser }: LoginUser): ICoinsStore => {
+  return {
+    ...state,
+    dailyChallengeEarned: sumCompletedChallenges(loginUser?.user?.todayActivity),
+    total: loginUser?.user?.coinLedger?.currentBalance || state.total,
+    lastUpdated: moment().format(DATE_FORMAT),
+  };
+};
 
-const coinLedgerSuccess = (state: ICoinsStore, coinLedger: GetUserCoinLedger_getUserCoinLedger): ICoinsStore => ({
+const coinLedgerTodayActivitySuccess = (
+  state: ICoinsStore,
+  coinLedgerTodayActivity: GetUserCoinLedgerTodayActivity
+): ICoinsStore => ({
   ...state,
-  total: coinLedger?.currentBalance || state.total,
+  total: coinLedgerTodayActivity?.coinLedger?.currentBalance || state.total,
+  dailyChallengeEarned: sumCompletedChallenges(coinLedgerTodayActivity?.todayActivity),
+  lastUpdated: moment().format(DATE_FORMAT),
 });
 
 const getUserSuccess = (state: ICoinsStore, { getCurrentUser }: GetCurrentUser): ICoinsStore => ({

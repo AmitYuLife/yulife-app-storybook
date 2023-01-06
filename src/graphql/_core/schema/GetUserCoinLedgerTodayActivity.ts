@@ -4,10 +4,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetAllUserData
+// GraphQL query operation: GetUserCoinLedgerTodayActivity
 // ====================================================
 
-export interface GetAllUserData_coinLedger {
+export interface GetUserCoinLedgerTodayActivity_coinLedger {
   currentBalance: number | null;
   currentLevel: number | null;
   yuniversalMap: number | null;
@@ -15,7 +15,7 @@ export interface GetAllUserData_coinLedger {
   nextLevelAvailableAt: string | null;
 }
 
-export interface GetAllUserData_todayActivity {
+export interface GetUserCoinLedgerTodayActivity_todayActivity {
   id: string | null;
   earned: number | null;
   milestones: number | null;
@@ -23,7 +23,7 @@ export interface GetAllUserData_todayActivity {
   score: string | null;
 }
 
-export interface GetAllUserData {
-  coinLedger: GetAllUserData_coinLedger | null;
-  todayActivity: (GetAllUserData_todayActivity | null)[] | null;
+export interface GetUserCoinLedgerTodayActivity {
+  coinLedger: GetUserCoinLedgerTodayActivity_coinLedger | null;
+  todayActivity: (GetUserCoinLedgerTodayActivity_todayActivity | null)[] | null;
 }

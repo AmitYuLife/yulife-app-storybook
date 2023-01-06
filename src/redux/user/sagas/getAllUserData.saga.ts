@@ -3,7 +3,7 @@ import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
 import getAllUserData from "@graphql/user/getAllUserData.gql";
-import { getUserCoinLedgerSuccess } from "../user.actions";
+import { getUserCoinLedgerTodayActivitySuccess } from "../user.actions";
 
 export default function* getAllUserDataSaga() {
   try {
@@ -13,7 +13,12 @@ export default function* getAllUserDataSaga() {
 
       if (data) {
         // TODO: add more data to store once further queries are moved from getCurrentUser
-        yield put(getUserCoinLedgerSuccess(data.getUserCoinLedger));
+        yield put(
+          getUserCoinLedgerTodayActivitySuccess({
+            todayActivity: data?.todayActivity,
+            coinLedger: data?.coinLedger,
+          })
+        );
       }
     }
   } catch (e) {

@@ -12,7 +12,7 @@ import { PendingPromptsForm } from "@graphql/_core/schema";
 import { AnswerInput } from "@graphql/_core/schema/globalTypes";
 import { FeedbackForm } from "@organisms";
 import { useDispatch } from "react-redux";
-import { getUserStart } from "@redux/user/user.actions";
+import { getUserCoinLedgerTodayActivityStart } from "@redux/user/user.actions";
 import Logger from "@services/logging/logger";
 
 const FeedbackModal = () => {
@@ -45,7 +45,7 @@ const FeedbackModal = () => {
             answers,
           },
         });
-        dispatch(getUserStart());
+        dispatch(getUserCoinLedgerTodayActivityStart());
       } catch (e) {
         Logger.error(e, { location: "feedback.modal", feedbackId: data?.pendingFeedbackForm?.id });
       } finally {
