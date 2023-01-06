@@ -1,9 +1,10 @@
 import { getCurrentPlanetByLevel, getCurrentWorld } from "@utils";
 import { planetStyles, yuniversalStyles } from "./theme.styles";
 
-export const getTheme = (currentLevel = 1, yuniversalMap?: number) => {
-  const currentWorld = getCurrentWorld(currentLevel);
-  const currentPlanet = getCurrentPlanetByLevel(currentLevel);
+export const getTheme = (currentLevel: number, yuniversalMap?: number) => {
+  const level = currentLevel || 1;
+  const currentWorld = getCurrentWorld(level);
+  const currentPlanet = getCurrentPlanetByLevel(level);
 
   if (yuniversalMap) {
     return yuniversalStyles;
