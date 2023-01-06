@@ -75,6 +75,7 @@ const getLetterSpacing = (spacing: number) => {
 export const styles = StyleSheet.create({
   default: {
     fontFamily: Style.FONT_FAMILY_PRIMARY,
+    fontWeight: Platform.select({ ios: null, android: "normal" }),
   },
   h1: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
