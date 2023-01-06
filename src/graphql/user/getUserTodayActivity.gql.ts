@@ -7,7 +7,7 @@ export const GQL_QUERY_GET_USER_TODAY_ACTIVITY = gql`
   ${GQL_FRAGMENT_USER_TODAY_ACTIVITY}
   query GetUserTodayActivity {
     getUserTodayActivity {
-      ...TodayActivity
+      ...UserTodayActivity
     }
   }
 `;
