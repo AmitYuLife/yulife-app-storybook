@@ -19,7 +19,7 @@ const RewardsPurchasedScreen = React.memo((props: Props) => {
       {loading && data?.length === 0 ? (
         <RewardsListLoading />
       ) : (
-        <RewardsPurchasedList onRefresh={onRefresh} onPressEmptyCta={onLeftMenuPress} data={data} />
+        <RewardsPurchasedList loading={loading} onRefresh={onRefresh} onPressEmptyCta={onLeftMenuPress} data={data} />
       )}
     </RewardsListLayout>
   );

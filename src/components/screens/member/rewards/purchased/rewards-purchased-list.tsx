@@ -1,15 +1,13 @@
-import { YulifeRefreshHeader } from "@molecules/index";
-import { Style, TOP_BAR } from "@styles/index";
+import { NAV_BAR, Style } from "@styles/index";
 import * as React from "react";
-import { View, Platform, ViewStyle, StyleSheet } from "react-native";
-import { IndexPath, LargeList } from "react-native-largelist-v3";
+import { View, ViewStyle, StyleSheet } from "react-native";
+import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import RewardsPurchasedItem, { IRewardsPurchasedItemProps } from "./purchased-item/purchased-item";
 import PurchasesEmpty from "./purchases-empty/purchases-empty";
-import { isIphoneX } from "react-native-iphone-x-helper";
 
 interface IProps {
   data: RewardsPurchasedItemData[];
-
+  loading: boolean;
   onPressEmptyCta: () => void;
   onRefresh: () => void;
 }
@@ -18,88 +16,39 @@ export type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
   id: string;
 };
 
-export class RewardsPurchasedList extends React.PureComponent<IProps> {
-  private largeList: LargeList;
+const _RewardsPurchasedList = (props: IProps) => {
+  const { data, onRefresh, loading, onPressEmptyCta } = props;
 
-  public render() {
-    const { data } = this.props;
+  return (
+    <View style={styles.listWrapper}>
+      <FlashList
+        data={data}
+        keyExtractor={keyExtractor}
+        showsVerticalScrollIndicator={false}
+        estimatedItemSize={ITEM_SIZE}
+        renderItem={renderItem}
+        refreshing={loading}
+        onRefresh={onRefresh}
+        ListEmptyComponent={<PurchasesEmpty onCtaPress={onPressEmptyCta} />}
+        ListFooterComponent={<View style={styles.footer} />}
+      />
+    </View>
+  );
+};
 
-    return (
-      <View style={styles.wrapper}>
-        <View style={styles.listWrapper}>
-          <LargeList
-            ref={this.setLargeListRef}
-            renderIndexPath={this.renderIndexPath}
-            heightForIndexPath={this.getHeight}
-            data={[{ items: data }]}
-            onRefresh={this.handleRefresh}
-            renderEmpty={this.renderEmpty}
-            refreshHeader={YulifeRefreshHeader}
-            renderFooter={this.renderFooter}
-            showsVerticalScrollIndicator={false}
-          />
-        </View>
-      </View>
-    );
-  }
+const ITEM_SIZE = Style.adjust(74);
 
-  private renderFooter = () => <View style={styles.footer} />;
+const keyExtractor = (item: RewardsPurchasedItemData) => item.id;
+const renderItem = ({ item }: ListRenderItemInfo<RewardsPurchasedItemData>) => <RewardsPurchasedItem {...item} />;
 
-  private renderEmpty = () => {
-    const { onPressEmptyCta } = this.props;
-
-    return <PurchasesEmpty onCtaPress={onPressEmptyCta} />;
-  };
-
-  private setLargeListRef = (ref: LargeList) => {
-    this.largeList = ref;
-  };
-
-  private handleRefresh = async () => {
-    await this.props.onRefresh();
-    if (this.largeList) {
-      this.largeList.endRefresh();
-    }
-  };
-
-  private renderIndexPath = ({ row }: IndexPath) => {
-    const { data } = this.props;
-    const item = data[row];
-
-    if (item) {
-      return <RewardsPurchasedItem {...item} />;
-    }
-
-    return null;
-  };
-
-  private getHeight = () => Style.adjust(74);
-}
+export const RewardsPurchasedList = React.memo(_RewardsPurchasedList);
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-  } as ViewStyle,
   listWrapper: {
     flex: 1,
     paddingHorizontal: Style.adjust(16),
   } as ViewStyle,
-  navBarWrapper: {
-    height: Style.adjust(isIphoneX() ? 24 : 16),
-    paddingBottom: Style.adjust(isIphoneX() ? 0 : 24),
-    alignItems: "center",
-  } as ViewStyle,
-  rewardTabsWrapper: {
-    alignItems: "center",
-    marginTop: TOP_BAR.HEIGHT * 2,
-  } as ViewStyle,
   footer: {
-    height: Style.adjust(72),
-  } as ViewStyle,
-  topbarWrapper: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
+    height: NAV_BAR.DEFAULT_FULL_HEIGHT,
   } as ViewStyle,
 });
