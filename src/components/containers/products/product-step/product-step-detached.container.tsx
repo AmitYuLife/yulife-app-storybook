@@ -180,6 +180,7 @@ const ProductStepDetachedContainer = (props: Props) => {
               onLeftIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
               onRightIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
               publishKeyHeight={null}
+              color={null}
             />
           </View>
         </View>

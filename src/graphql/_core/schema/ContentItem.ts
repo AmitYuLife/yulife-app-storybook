@@ -451,6 +451,10 @@ export interface ContentItem_ContentItemHeaderBar {
   onLeftIconPress: ContentItem_ContentItemHeaderBar_onLeftIconPress | null;
   onRightIconPress: ContentItem_ContentItemHeaderBar_onRightIconPress | null;
   publishKeyHeight: string | null;
+  /**
+   * Supported RN version 3.63.0
+   */
+  color: string | null;
 }
 
 export interface ContentItem_ContentItemProgressBar {

@@ -27,4 +27,8 @@ export interface ContentItemHeaderBar {
   onLeftIconPress: ContentItemHeaderBar_onLeftIconPress | null;
   onRightIconPress: ContentItemHeaderBar_onRightIconPress | null;
   publishKeyHeight: string | null;
+  /**
+   * Supported RN version 3.63.0
+   */
+  color: string | null;
 }
