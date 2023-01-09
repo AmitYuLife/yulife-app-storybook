@@ -104,8 +104,11 @@ const VideoPlayer = ({
   const onChangeAppState = useCallback(
     (appState: AppStateStatus) => {
       setAppCurrentState(appState);
+      MusicControl.updatePlayback({
+        elapsedTime: state.currentProgressInSeconds,
+      });
     },
-    [appCurrentState]
+    [appCurrentState, state.currentProgressInSeconds]
   );
 
   useBackHandler(() => {
