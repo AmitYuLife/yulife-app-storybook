@@ -9,7 +9,7 @@ import { SduiActionWithServerPayload } from "@redux/server-driven-ui/sdui.types"
 type Props = GqlHeader;
 
 export const ProductDetailsHeaderBar = memo(
-  ({ onLeftIconPress, onRightIconPress, leftIcon, contentItemHeaderBarRightIcon: rightIcon, logo, heading }: Props) => {
+  ({ onLeftIconPress, onRightIconPress, leftIcon, contentItemHeaderBarRightIcon, logo, heading }: Props) => {
     const dispatch = useDispatch();
     const disabled = useSelector(getSduiLoadingForKey("__disabled"));
 
@@ -59,7 +59,9 @@ export const ProductDetailsHeaderBar = memo(
         heading={heading}
         logo={logo as "yulife"}
         leftIcon={leftIcon as ComponentProps<typeof ContentItemHeaderBar>["leftIcon"]}
-        rightIcon={rightIcon as ComponentProps<typeof ContentItemHeaderBar>["rightIcon"]}
+        contentItemHeaderBarRightIcon={
+          contentItemHeaderBarRightIcon as ComponentProps<typeof ContentItemHeaderBar>["contentItemHeaderBarRightIcon"]
+        }
         onLeftIconPress={dynamicLeftIconOnPress && handleLeftIconPress}
         onRightIconPress={dynamicRightIconOnPress && handleRightIconPress}
       />

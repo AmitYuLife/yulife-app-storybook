@@ -7,8 +7,8 @@ export const GQL_QUERY_GET_SDUI_STATIC_STEP = gql`
   ${GQL_FRAGMENT_ABSOLUTE_CONTENT_ITEM}
   ${GQL_FRAGMENT_SDUI_STYLE}
 
-  query GetSduiStaticStep($stepId: String!) {
-    getSduiStaticStep(stepId: $stepId) {
+  query GetSduiStaticStep($stepId: String!, $journeyId: String, $dynamicId: String) {
+    getSduiStaticStep(stepId: $stepId, journeyId: $journeyId, dynamicId: $dynamicId) {
       stepId
       stepData
       body {

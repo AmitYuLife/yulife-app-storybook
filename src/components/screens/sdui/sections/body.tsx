@@ -28,7 +28,7 @@ export const Body = ({ items }: Props) => {
         bounces={false}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], { useNativeDriver: true })}
       >
-        {!items?.length ? null : <>{items.map(renderItemContent)}</>}
+        {!items?.length ? null : items.map(renderItemContent)}
       </Animated.ScrollView>
     </SafeAreaView>
   );

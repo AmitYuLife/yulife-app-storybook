@@ -1158,4 +1158,6 @@ export interface GetSduiStaticStep {
 
 export interface GetSduiStaticStepVariables {
   stepId: string;
+  journeyId?: string;
+  dynamicId?: string;
 }

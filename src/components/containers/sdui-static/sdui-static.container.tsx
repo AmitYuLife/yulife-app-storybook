@@ -8,14 +8,18 @@ import { SduiProvider } from "@components/sdui/_context/SduiProvider";
 
 interface SduiStaticProps {
   stepId: string;
+  journeyId?: string;
+  dynamicId?: string;
 }
 
-const SduiStatic = ({ stepId }: SduiStaticProps) => {
+const SduiStatic = ({ stepId, dynamicId, journeyId }: SduiStaticProps) => {
   const { data } = useQuery<GetSduiStaticStep, GetSduiStaticStepVariables>(GQL_QUERY_GET_SDUI_STATIC_STEP, {
+    fetchPolicy: "no-cache",
     variables: {
       stepId,
+      dynamicId,
+      journeyId,
     },
-    fetchPolicy: "no-cache",
   });
 
   return (
