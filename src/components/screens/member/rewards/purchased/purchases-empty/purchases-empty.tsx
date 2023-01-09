@@ -4,7 +4,7 @@ import { Image, View, ViewStyle, StyleSheet, ImageStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Button } from "@molecules";
 import { CHECK_REWARDS_BUTTON } from "@ids";
-import { Style } from "@styles";
+import { NAV_BAR, Style, TOP_BAR } from "@styles";
 import { t } from "@locale";
 
 interface IProps {
@@ -30,6 +30,8 @@ const PurchasesEmpty: FC<IProps> = ({ onCtaPress }) => (
 
 export default memo(PurchasesEmpty);
 
+const HEIGHT = Style.adjust(150);
+
 const styles = StyleSheet.create({
   contentWrapper: {
     alignItems: "center",
@@ -43,6 +45,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
     justifyContent: "center",
+    height: Style.DEVICE_HEIGHT - TOP_BAR.HEIGHT - NAV_BAR.DEFAULT_FULL_HEIGHT - HEIGHT,
   } as ViewStyle,
   ctaWrapper: {
     alignSelf: "center",
