@@ -2,7 +2,7 @@ import React from "react";
 import { Image, View } from "react-native";
 import { CloseSvg, EditSvg, Text } from "@atoms";
 import { Button, TouchableOpacityWithDelay } from "@molecules";
-import { TOP_BAR, Colours } from "@styles";
+import { TOP_BAR } from "@styles";
 import { IGenericHeadingProps, YuCoinCounter } from "@organisms";
 import PlusSvg from "@atoms/plus/plus-svg";
 import styles from "../generic-heading.styles";
@@ -100,7 +100,7 @@ const getIcon = (icon: IIcon, color: string) => {
     case "COINS":
       return (
         <View style={styles.rightIconCoinsWrapper}>
-          <YuCoinCounter colour={Colours.neutral.white} textStyle={styles.rightIconCoinsTextColour} />
+          <YuCoinCounter colour={color} textStyle={{ color }} />
         </View>
       );
 
