@@ -123,6 +123,7 @@ const absolute: Array<AbsoluteContentItem> = [
       },
       publishKeyHeight: DYNAMIC_HEIGHT_KEY_HEADER,
       heading: null,
+      color: null,
     },
   },
   {

@@ -530,6 +530,10 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_Cont
   onLeftIconPress: GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemHeaderBar_onLeftIconPress | null;
   onRightIconPress: GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemHeaderBar_onRightIconPress | null;
   publishKeyHeight: string | null;
+  /**
+   * Supported RN version 3.63.0
+   */
+  color: string | null;
 }
 
 export type GetYuScreenProductDetails_getYuScreenProductDetails_header =

@@ -18,6 +18,7 @@ type Props = Omit<
   onLeftIconPress: VoidFunctionOrSduiActionPayload;
   onRightIconPress: VoidFunctionOrSduiActionPayload;
   publishKeyHeight?: string;
+  color: string;
 };
 
 export const ContentItemHeaderBar = memo((props: Props) => {
@@ -29,10 +30,12 @@ export const ContentItemHeaderBar = memo((props: Props) => {
     onLeftIconPress,
     onRightIconPress,
     publishKeyHeight,
+    color = Colours.neutral.n800,
   } = props;
   const { handleSduiAction: handleLeftIconPress } = useSduiCallbackFunctionOrReduxAction(onLeftIconPress);
   const { handleSduiAction: handleRightIconPress } = useSduiCallbackFunctionOrReduxAction(onRightIconPress);
   const { isSduiLoading } = useSduiLoading();
+  const colorGuard = color || Colours.neutral.n800;
 
   const backHandler = useCallback(() => {
     if (onLeftIconPress) {
@@ -68,6 +71,7 @@ export const ContentItemHeaderBar = memo((props: Props) => {
         heading={heading}
         onLeftIconPress={!onLeftIconPress || isSduiLoading ? null : handleLeftIconPress}
         onRightIconPress={!onRightIconPress || isSduiLoading ? null : handleRightIconPress}
+        color={colorGuard}
       />
     </View>
   );

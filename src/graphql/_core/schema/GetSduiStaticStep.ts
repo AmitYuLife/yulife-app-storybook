@@ -455,6 +455,10 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemHeaderBar {
   onLeftIconPress: GetSduiStaticStep_getSduiStaticStep_body_ContentItemHeaderBar_onLeftIconPress | null;
   onRightIconPress: GetSduiStaticStep_getSduiStaticStep_body_ContentItemHeaderBar_onRightIconPress | null;
   publishKeyHeight: string | null;
+  /**
+   * Supported RN version 3.63.0
+   */
+  color: string | null;
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemProgressBar {
@@ -1007,6 +1011,10 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHe
   onLeftIconPress: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHeaderBar_onLeftIconPress | null;
   onRightIconPress: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHeaderBar_onRightIconPress | null;
   publishKeyHeight: string | null;
+  /**
+   * Supported RN version 3.63.0
+   */
+  color: string | null;
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProgressBar {
@@ -1158,6 +1166,6 @@ export interface GetSduiStaticStep {
 
 export interface GetSduiStaticStepVariables {
   stepId: string;
-  journeyId?: string;
-  dynamicId?: string;
+  journeyId?: string | null;
+  dynamicId?: string | null;
 }

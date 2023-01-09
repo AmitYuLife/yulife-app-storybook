@@ -2008,6 +2008,10 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
   onLeftIconPress: GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress | null;
   onRightIconPress: GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onRightIconPress | null;
   publishKeyHeight: string | null;
+  /**
+   * Supported RN version 3.63.0
+   */
+  color: string | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressBar {

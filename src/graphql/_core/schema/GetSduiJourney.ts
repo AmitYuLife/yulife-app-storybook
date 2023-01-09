@@ -455,6 +455,10 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemHeaderBar {
   onLeftIconPress: GetSduiJourney_getSduiJourney_body_ContentItemHeaderBar_onLeftIconPress | null;
   onRightIconPress: GetSduiJourney_getSduiJourney_body_ContentItemHeaderBar_onRightIconPress | null;
   publishKeyHeight: string | null;
+  /**
+   * Supported RN version 3.63.0
+   */
+  color: string | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_body_ContentItemProgressBar {
@@ -1007,6 +1011,10 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemHeaderBa
   onLeftIconPress: GetSduiJourney_getSduiJourney_absolute_item_ContentItemHeaderBar_onLeftIconPress | null;
   onRightIconPress: GetSduiJourney_getSduiJourney_absolute_item_ContentItemHeaderBar_onRightIconPress | null;
   publishKeyHeight: string | null;
+  /**
+   * Supported RN version 3.63.0
+   */
+  color: string | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProgressBar {

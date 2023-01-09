@@ -108,7 +108,13 @@ export enum FeedbackFormQuestionType {
 }
 
 export enum FitKitType {
+  BikingHand = "BikingHand",
   BikingHandWorkout = "BikingHandWorkout",
+  BikingMountain = "BikingMountain",
+  BikingRoad = "BikingRoad",
+  BikingSpinning = "BikingSpinning",
+  BikingStationary = "BikingStationary",
+  BikingUtility = "BikingUtility",
   BikingWorkout = "BikingWorkout",
   Cycling = "Cycling",
   Distance = "Distance",
