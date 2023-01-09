@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { ContentItemImage as Props } from "@graphql/_core/schema";
 import { Image } from "@atoms";
@@ -14,6 +14,14 @@ export const ContentItemImage = memo((props: Props) => {
   const imageStyles = mapServerStyles(props.styles);
   const dispatch = useDispatch();
 
+  const imageStyle = useMemo(
+    () => ({
+      ...imageStyles,
+      width: getWidth(imageStyles?.width as number, props.contentItemImageSize),
+    }),
+    [imageStyles, props.contentItemImageSize]
+  );
+
   const Wrapper = props.onPress ? TouchableOpacityWithDelay : View;
 
   const handlePress = () =>
@@ -25,8 +33,8 @@ export const ContentItemImage = memo((props: Props) => {
   return (
     <Wrapper onPress={handlePress} style={[styles.wrapper, wrapperStyles]}>
       <Image
-        width={getWidth(imageStyles?.width as number, props.contentItemImageSize)}
-        style={{ ...imageStyles, width: getWidth(imageStyles?.width as number, props.contentItemImageSize) }}
+        width={imageStyle.width}
+        style={imageStyle}
         source={{ uri: props.image.uri }}
         testID={CONTENT_ITEM_IMAGE}
       />

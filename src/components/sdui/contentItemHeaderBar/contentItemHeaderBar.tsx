@@ -1,5 +1,6 @@
 import React, { ComponentProps, memo, useCallback } from "react";
 import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
+import { ContentItemHeaderBar as GqlHeader } from "@graphql/_core/schema";
 import { GenericHeading } from "@organisms";
 import { Colours, TOP_BAR } from "@styles";
 import { useBackHandler } from "@hooks";
@@ -7,18 +8,28 @@ import { useSduiActionUpdateBus, useSduiCallbackFunctionOrReduxAction } from "..
 import { VoidFunctionOrSduiActionPayload } from "../_types/sdui.types";
 import { useSduiLoading } from "../_hooks/useSduiLoading";
 
-interface Props {
+type Props = Omit<
+  GqlHeader,
+  "onLeftIconPress" | "onRightIconPress" | "publishKeyHeight" | "contentItemHeaderBarRightIcon"
+> & {
   leftIcon: ComponentProps<typeof GenericHeading>["leftIcon"];
-  rightIcon: ComponentProps<typeof GenericHeading>["rightIcon"];
+  contentItemHeaderBarRightIcon?: ComponentProps<typeof GenericHeading>["rightIcon"];
   logo: ComponentProps<typeof GenericHeading>["logo"];
-  heading: ComponentProps<typeof GenericHeading>["heading"];
   onLeftIconPress: VoidFunctionOrSduiActionPayload;
   onRightIconPress: VoidFunctionOrSduiActionPayload;
   publishKeyHeight?: string;
-}
+};
 
 export const ContentItemHeaderBar = memo((props: Props) => {
-  const { leftIcon, logo, heading, onLeftIconPress, onRightIconPress, rightIcon, publishKeyHeight } = props;
+  const {
+    leftIcon,
+    contentItemHeaderBarRightIcon,
+    logo,
+    heading,
+    onLeftIconPress,
+    onRightIconPress,
+    publishKeyHeight,
+  } = props;
   const { handleSduiAction: handleLeftIconPress } = useSduiCallbackFunctionOrReduxAction(onLeftIconPress);
   const { handleSduiAction: handleRightIconPress } = useSduiCallbackFunctionOrReduxAction(onRightIconPress);
   const { isSduiLoading } = useSduiLoading();
@@ -52,7 +63,7 @@ export const ContentItemHeaderBar = memo((props: Props) => {
     <View onLayout={handleLayout} style={styles.wrapper}>
       <GenericHeading
         leftIcon={leftIcon}
-        rightIcon={rightIcon}
+        rightIcon={contentItemHeaderBarRightIcon}
         logo={logo}
         heading={heading}
         onLeftIconPress={!onLeftIconPress || isSduiLoading ? null : handleLeftIconPress}
