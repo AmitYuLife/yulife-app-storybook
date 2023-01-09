@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginHorizontal: Style.adjust(16),
     marginTop: Style.adjust(8),
     marginBottom: Style.adjust(16),
   },
