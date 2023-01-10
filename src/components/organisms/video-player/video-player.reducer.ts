@@ -68,6 +68,7 @@ export const setMusicControlInitialConfig = () => {
   MusicControl.enableControl("enableLanguageOption", false);
   MusicControl.enableControl("disableLanguageOption", false);
   MusicControl.enableControl("closeNotification", true, { when: "never" });
+  MusicControl.handleAudioInterruptions(true);
 };
 
 export const reducer = (state: IState, action: IAction): IState => {
