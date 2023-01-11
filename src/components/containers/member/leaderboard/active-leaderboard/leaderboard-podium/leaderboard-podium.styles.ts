@@ -7,6 +7,7 @@ export const LEADERBOARD_PODIUM_HEIGHT = Platform.select({ ios: Style.SCALE_UP_A
 const styles = StyleSheet.create({
   wrapper: {
     height: LEADERBOARD_PODIUM_HEIGHT,
+    marginBottom: Style.adjust(8),
   } as ViewStyle,
   avatarBase: {
     position: "absolute",

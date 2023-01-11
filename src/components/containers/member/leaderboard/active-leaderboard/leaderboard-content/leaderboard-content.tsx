@@ -91,10 +91,13 @@ export const LeaderboardContentContainer = ({
     onRefetch();
   }, MODALS.leaderboardLean);
 
+  const getItemType = useCallback((item: ILeaderboardListItem) => item.type, []);
+
   return (
     <View style={styles.flex}>
       <FlashList
         testID={LEADERBOARD_SCROLL_LIST}
+        getItemType={getItemType}
         onLayout={handleLayout}
         onRefresh={onRefetch}
         refreshing={refreshing}
