@@ -7,6 +7,45 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.64.0] - 2023-01-11
+
+### Features
+
+- Feature: ftue for rewards
+
+### Bugfixes
+
+- Bugfix GS-622: Leaderboard podium overlaps first item when scrolled fast
+- Bugfix: Fix SduiActionOpenUrl from useSduiCallbackFunctionOrReduxAction
+- BugFix ENG-2990: pause/play on incoming calls
+- Bugfix ENG-3063: Meditations done near midnight counting as minutes for the following day
+- Bugfix: Pass color prop to GenericHeader coins icon
+- Bugfix: empty purchases height
+- Bugfix ENG-3079: Set default level for getTheme
+- Bugfix ENG-2992: In-app meditation time left display
+- BugFix ENG-3027: bold text cut off on Android
+- Bugfix ENG-3081: Remove Apple and Google pay option from Stripe
+- Bugfix: challenges history cache
+
+### Tasks
+
+- Task GS-623: Update Sign In Bonus Copy
+- Task: Support ContentItemHeaderBar color
+- Task ISA-289: added dynamicId to static step and header right icon fix
+- Task GS-137: Refactor today activity and coin ledger to use new queries
+
+### Chores
+
+- Chore - Added data for user profiles and rewards
+- Chore: Support Xcode 14+ and change deployment target to iOS 13
+
+### Extra
+
+- Hotfix: removed the padding on rewards store location
+- Detox: added mongo models(user_profile, core_reward_locations)
+- Purge ISA-288: largeList from purchases
+- detox: added ordo journey to test when user having group dental
+
 ## [3.63.0] - 2023-01-04
 
 ### Bugfixes
