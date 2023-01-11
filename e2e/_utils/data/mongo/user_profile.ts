@@ -1,6 +1,7 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
+    CUSTOMER_1,
     CUSTOMER_2,
     CUSTOMER_3,
     CUSTOMER_4,
@@ -59,15 +60,31 @@ import {
 
 const MODEL_DEFAULTS: Pick<IDatabaseItem, "modelName" | "type"> = {
     type: "mongo",
-    modelName: "user_profile",
+    modelName: "userprofile",
 }
+
+const RECORD_DEFAULTS = {
+    rewardStoreLocation: "GB",
+    gameSettings: {
+        cyclingMeasurement: "km",
+    },
+}
+
+export const USER_PROFILE_1 = {
+    ...MODEL_DEFAULTS,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_1.data.customerId,
+        ...RECORD_DEFAULTS,
+    },
+} as IDatabaseItem;
 
 export const USER_PROFILE_2 = {
     ...MODEL_DEFAULTS,
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_2.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -76,7 +93,7 @@ export const USER_PROFILE_3 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_3.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -85,7 +102,7 @@ export const USER_PROFILE_4 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_4.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -94,7 +111,7 @@ export const USER_PROFILE_6 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_6.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -103,7 +120,7 @@ export const USER_PROFILE_7 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_7.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -112,7 +129,7 @@ export const USER_PROFILE_8 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_8.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -121,7 +138,7 @@ export const USER_PROFILE_9 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_9.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -130,7 +147,7 @@ export const USER_PROFILE_12 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_12.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -139,7 +156,7 @@ export const USER_PROFILE_13 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_13.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -148,7 +165,7 @@ export const USER_PROFILE_14 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_14.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -157,7 +174,7 @@ export const USER_PROFILE_15 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_15.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -166,7 +183,7 @@ export const USER_PROFILE_16 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_16.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -175,7 +192,7 @@ export const USER_PROFILE_17 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_17.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -184,7 +201,7 @@ export const USER_PROFILE_18 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_18.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -193,7 +210,7 @@ export const USER_PROFILE_19 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_19.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -202,7 +219,7 @@ export const USER_PROFILE_22 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_22.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -211,7 +228,7 @@ export const USER_PROFILE_23 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_23.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -220,7 +237,7 @@ export const USER_PROFILE_24 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_24.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -229,7 +246,7 @@ export const USER_PROFILE_35 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_35.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -238,7 +255,7 @@ export const USER_PROFILE_36 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_36.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -247,7 +264,7 @@ export const USER_PROFILE_37 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_37.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -256,7 +273,7 @@ export const USER_PROFILE_38 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_38.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -265,7 +282,7 @@ export const USER_PROFILE_39 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_39.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -274,7 +291,7 @@ export const USER_PROFILE_40 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_40.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -283,7 +300,7 @@ export const USER_PROFILE_41 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_41.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -292,16 +309,16 @@ export const USER_PROFILE_44 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_44.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
-export const COIN_LEDGE_MEDITOPIA_2 = {
+export const COIN_LEDGE_MEDITOPIA_2_ = {
     ...MODEL_DEFAULTS,
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_MEDITOPIA_2.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -310,7 +327,7 @@ export const USER_PROFILE_MEDITOPIA_3 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_MEDITOPIA_3.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -319,7 +336,7 @@ export const USER_PROFILE_42 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_42.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -328,7 +345,7 @@ export const USER_PROFILE_47 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_47.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -337,7 +354,7 @@ export const USER_PROFILE_50 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_50.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -346,7 +363,7 @@ export const USER_PROFILE_52 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_52.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -355,7 +372,7 @@ export const USER_PROFILE_54 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_54.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -364,7 +381,7 @@ export const USER_PROFILE_55 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_55.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -373,7 +390,7 @@ export const USER_PROFILE_56 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_56.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -382,7 +399,7 @@ export const USER_PROFILE_57 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_57.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -391,7 +408,7 @@ export const USER_PROFILE_58 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_58.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -400,7 +417,7 @@ export const USER_PROFILE_60 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_60.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -409,7 +426,7 @@ export const USER_PROFILE_61 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_61.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -418,7 +435,7 @@ export const USER_PROFILE_63 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_63.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -427,7 +444,7 @@ export const USER_PROFILE_64 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_64.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -436,7 +453,7 @@ export const USER_PROFILE_65 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_65.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -445,7 +462,7 @@ export const USER_PROFILE_66 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_66.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -454,7 +471,7 @@ export const USER_PROFILE_67 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_67.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -463,7 +480,7 @@ export const USER_PROFILE_68 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_68.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
         yuniversalLevel: 1,
     },
 } as IDatabaseItem;
@@ -473,7 +490,7 @@ export const USER_PROFILE_69 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_69.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -482,7 +499,7 @@ export const USER_PROFILE_70 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_70.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
         yuniversalLevel: 7,
     },
 } as IDatabaseItem;
@@ -492,7 +509,7 @@ export const USER_PROFILE_71 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_71.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -501,7 +518,7 @@ export const USER_PROFILE_72 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_72.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -510,7 +527,7 @@ export const USER_PROFILE_73 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_73.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -519,7 +536,7 @@ export const USER_PROFILE_75 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_75.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -528,7 +545,7 @@ export const USER_PROFILE_76 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_76.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -537,7 +554,7 @@ export const USER_PROFILE_77 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_77.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
 
@@ -546,6 +563,6 @@ export const USER_PROFILE_78 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_78.data.customerId,
-        rewardStoreLocation: "GB",
+        ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
