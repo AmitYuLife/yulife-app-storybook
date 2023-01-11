@@ -8,4 +8,6 @@ const voidFunc: () => void = () => null;
 storiesOf("Signup Reward Screen", module)
   .addDecorator(withKnobs)
   .addDecorator((g: () => React.ReactNode) => g())
-  .add("default", () => <SignUpRewardScreen isLoading={false} onCollectPress={voidFunc} yuCoin={100} />);
+  .add("default", () => (
+    <SignUpRewardScreen hasNewCopy={false} isLoading={false} onCollectPress={voidFunc} yuCoin={100} />
+  ));

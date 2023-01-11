@@ -59,4 +59,5 @@ export const features = [
   "newMediaPlayer",
   "loggingEnabled",
   "logYuniversity",
+  "newSignUpBonusCopy",
 ];
