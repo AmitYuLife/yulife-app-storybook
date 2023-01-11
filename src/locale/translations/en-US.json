@@ -229,6 +229,13 @@
       "cta_accessibility": "Get started with Yulife",
       "subheading_accessibility": "Use your yucoin for vouchers from Amazon, Asos, M&S, and many more!"
     },
+    "signup_reward_new": {
+      "heading": "Welcome to the\nYuniverse",
+      "subheading": "You’ve just earned %{amount} YuCoin. You can exchange this for vouchers from Amazon, Asos, M&S and many more, simply complete two challenges to reach your first £5",
+      "cta_label": "Next",
+      "cta_accessibility": "Get started with Yulife",
+      "subheading_accessibility": "You’ve just earned %{amount} yucoin. You can exchange this for vouchers from Amazon, Asos, M&S and many more, simply complete two challenges to reach your first 5 pounds"
+    },
     "settings": {
       "info": {
         "heading": "Your YuLife app will capture your steps and cycling distance from both your phone's health app and your ${connection} device. We'll award you YuCoin for whichever device records the highest!",
