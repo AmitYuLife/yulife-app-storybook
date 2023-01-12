@@ -6,8 +6,10 @@ import { GET_STARTED_BUTTON, MALE_BODY, BODY_TYPE, COLOUR, YUSCREEN_AVATAR, VIEW
 
 
 export const CREATE_AVATAR = (customer: any) => async () => {
-    When("I tap Check out my power", when.tapText("Check out my power"), async () => {
-        Then("I should be on the create Yumoji screen", then.onChooseAvatarBodyScreen)
+    When("I swipe down the screen", when.swipeFromText("Protection, powered up!", "up", "fast"), async () => {
+        When("I tap Check out my power", when.tapText("Check out my power"), async () => {
+            Then("I should be on the create Yumoji screen", then.onChooseAvatarBodyScreen)
+        })
     })
     When("I tap a body type", when.tapID(MALE_BODY), async () => {
         When("I tap continue", when.tapText("Continue"), async () => {

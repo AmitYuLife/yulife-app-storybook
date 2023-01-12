@@ -228,10 +228,12 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
             await expect(element(by.text(WellbeingProduct))).toBeVisible()
             await expect(element(by.text(paidBy))).toBeVisible()
             await expect(element(by.text(noProductText))).toBeVisible()
-            await swipeFromText(browseMoreProtection,"up", "slow")()
+            await swipeFromText(noProductText, "up", "slow")()
             await expect(element(by.id(CAROUSEL_CARD))).toBeVisible()
+            await swipeFromText(surveyText, "up", "slow")()
             await expect(element(by.text(surveyText))).toBeVisible()
             await expect(element(by.text(surveyLabel))).toBeVisible()
+            await swipeFromText(surveyText, "down", "slow")()
             break;
         case "dentalAndPliInactive":
             await textVisibleAtIndex(yuCoinPower, 0)()
@@ -246,25 +248,27 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
             await expect(element(by.text(extendLifeInsurance))).toBeVisible()
             await swipeFromText(extendLifeInsurance, "right", "fast")()
             break;
-        case "dentalActiveAndPliInactive":
+        case "dentalActiveAndPliInactive": 
             await textVisibleAtIndex(yuCoinPower, 0)()
             await textVisibleAtIndex(yuCoinPower, 1)()
             await expect(element(by.text(dentalInsurance))).toBeVisible()
             await expect(element(by.text(PLIYuCoinPower))).toBeVisible()
             await expect(element(by.text(addLifeInsurance))).toBeVisible()
             await expect(element(by.text(noProductText))).toBeVisible()
-            await swipeFromText(browseMoreProtection,"up", "slow")()
+            await swipeFromText(noProductText,"up", "slow")()
             await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible()
             await expect(element(by.text(dentalPriceFrom))).toBeNotVisible()
             await expect(element(by.text(extendLifeInsurance))).toBeVisible()
+            await swipeFromText(surveyText, "down", "slow")()
             break;
-        case "PliPermanentlyRejectedAndDentalInactive":
+        case "PliPermanentlyRejectedAndDentalInactive": 
             await expect(element(by.text(dentalYuCoinPower))).toBeVisible()
             await expect(element(by.text(addDental))).toBeVisible()
-            await swipeFromText(browseMoreProtection,"up", "slow")()
+            await swipeFromText(noProductText,"up", "slow")()
             await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible()
             await expect(element(by.text(dentalPriceFrom))).toBeVisible()
             await expect(element(by.text(extendLifeInsurance))).toBeNotVisible()
+            await swipeFromText(surveyText, "down", "slow")()
             break;
         case "6 Products Slots":
             await textVisibleAtIndex(yuCoinPower, 0)()
@@ -282,12 +286,14 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
             await textVisible("1")()
             await expect(element(by.text(dentalYuCoinPower))).toBeVisible()
             await expect(element(by.text(addDental))).toBeVisible()
+            await swipeFromText(criticalIllness, "up", "slow", 0.2)()
             await expect(element(by.text(PLIYuCoinPower))).toBeVisible()
             await textVisible(addLifeInsurance)()
-            await swipeFromText(browseMoreProtection,"up", "slow")()
+            await swipeFromText(WellbeingProduct, "up", "slow")()
             await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible()
             await expect(element(by.text(dentalPriceFrom))).toBeVisible()
             await expect(element(by.text(noProductText))).toBeNotVisible()
+            await swipeFromText(surveyText, "down", "slow")()
             break;
         case "5 Products Slots":
             await textVisibleAtIndex(yuCoinPower, 0)()
@@ -305,10 +311,13 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
             await textVisible("1")()
             await expect(element(by.text(dentalYuCoinPower))).toBeVisible()
             await expect(element(by.text(addDental))).toBeVisible()
+            await swipeFromText(WellbeingProduct,"up", "slow", 0.2)()
             await expect(element(by.text(noProductText))).toBeVisible()
-            await swipeFromText(browseMoreProtection,"up", "slow")()
+            await swipeFromText(WellbeingProduct, "up", "slow")()
+
             await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible()
             await expect(element(by.text(dentalPriceFrom))).toBeVisible()
+            await swipeFromText(surveyText, "down", "slow")()
             break;
         case "groupDental":
             await textVisibleAtIndex(yuCoinPower, 0)()
@@ -325,8 +334,12 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
             await expect(element(by.text(PLIYuCoinPower))).toBeVisible()
             await expect(element(by.text(addLifeInsurance))).toBeVisible()
             await expect(element(by.text(noProductText))).toBeVisible()
-            await swipeFromText(browseMoreProtection,"up", "slow")()
+            await swipeFromText(noProductText,"up", "slow")()
             await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible()
+            await swipeFromText(surveyText, "up", "slow")()
+            await expect(element(by.text(surveyText))).toBeVisible()
+            await expect(element(by.text(surveyLabel))).toBeVisible()
+            await swipeFromText(surveyText, "down", "slow")()
             break;
         case "0EarnRateSlot":
             await expect(element(by.text("0"))).toBeNotVisible() // should not be visible in slot because earn rate is 0 in product details
@@ -334,8 +347,9 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
             await expect(element(by.text(paidBy))).toBeVisible()
             await expect(element(by.text(noProductText))).toBeVisible()
             await expect(element(by.text(addDental))).toBeNotVisible() // should not because of Gdent  bought by their company XSE-1376
-            await swipeFromText(browseMoreProtection,"up", "slow")()
+            await swipeFromText(noProductText,"up", "slow")()
             await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible()
+            await swipeFromText(surveyText, "down", "slow")()
             break;
         default:
             break;

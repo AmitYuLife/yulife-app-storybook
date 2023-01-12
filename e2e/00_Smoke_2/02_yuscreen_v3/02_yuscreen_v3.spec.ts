@@ -78,7 +78,7 @@ Feature("I should be able to use the yuscreen v3", async()=>{
                 When("I tap the active compass", when.tapAvatarItem("compass_active", "active"), async () => {
                     Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Life Insurance")))
                 })
-                When("I scroll to the add beneficiary button", when.scrollUntilIdVisible(PRODUCT_DETAILS_SCROLL_VIEW, ADD_BENEFICIARY, "down"), async () => {
+                When("I scroll to the add beneficiary button", when.swipeFromText("Policy documents", "up", "fast"), async () => {
                     When("I tap Add a beneficiary", when.tapID(ADD_BENEFICIARY), async () => {
                         Then("I should see the add beneficiary modal", then.textVisible("Beneficiary Details"))
                     })
@@ -151,7 +151,7 @@ Feature("I should be able to use the yuscreen v3", async()=>{
             Given("I login as a user with yuscreen", given.loginToYuScreen(false, CUSTOMER_33, AUTH_33), async () => {
                 When("I tap the active compass", when.tapAvatarItem("compass_active", "active"), async () => {
                     Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Life Insurance")))
-                    When("I scroll to the add beneficiary button", when.scrollFromID(ADD_BENEFICIARY, "up", "slow"), async () => {
+                    When("I scroll to the add beneficiary button", when.swipeFromText("Policy documents", "up", "fast"), async () => {
                         Then("I should see Alfred Pennyworth as a 100% beneficiary", then.idVisible(BENEFICIARY_DETAILS(100, "Alfred", "Pennyworth", "Butler")))
                     })
                 })
