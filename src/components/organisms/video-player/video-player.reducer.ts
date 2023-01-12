@@ -13,6 +13,7 @@ export enum ActionTypes {
   SET_STARTING = "SET_STARTING",
   SET_IS_DONE_ON_BACKGROUND = "SET_IS_DONE_ON_BACKGROUND",
   SET_RETRIES = "SET_RETRIES",
+  SET_END_OF_SESSION_LOADING = "SET_END_OF_SESSION_LOADING",
 }
 
 export interface IState {
@@ -25,6 +26,7 @@ export interface IState {
   isStarting: boolean;
   isBuffering: boolean;
   isPaused: boolean;
+  isLoadingEndOfSession: boolean;
   isDoneOnBackground: boolean;
   showFocusScreen: boolean;
   startErrorMessage: string;
@@ -46,6 +48,7 @@ export const INITIAL_STATE: IState = {
   isBuffering: false,
   isPaused: true,
   isStarting: false,
+  isLoadingEndOfSession: false,
   isDoneOnBackground: false,
   showFocusScreen: false,
   startErrorMessage: null,
@@ -159,6 +162,13 @@ export const reducer = (state: IState, action: IAction): IState => {
         ...state,
         retries: state.retries - 1,
         isPaused: true,
+      };
+    }
+
+    case ActionTypes.SET_END_OF_SESSION_LOADING: {
+      return {
+        ...state,
+        isLoadingEndOfSession: true,
       };
     }
   }

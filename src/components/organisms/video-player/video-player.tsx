@@ -29,6 +29,8 @@ import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useAppState, useBackHandler, useGetLottieJson } from "@hooks";
 import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
+import { HourglassIcon } from "@atoms/icon/hourglass-icon";
+import { t } from "@locale";
 
 interface IProps {
   source: string;
@@ -124,6 +126,7 @@ const VideoPlayer = ({
   useEffect(() => {
     (async () => {
       if (state.isDoneOnBackground && !state.isPaused && appCurrentState === "active" && videoPlayerIsActive) {
+        dispatch({ type: ActionTypes.SET_END_OF_SESSION_LOADING });
         await onEnd();
       }
     })();
@@ -220,6 +223,7 @@ const VideoPlayer = ({
     }
 
     try {
+      dispatch({ type: ActionTypes.SET_END_OF_SESSION_LOADING });
       await onEnd();
     } catch (err) {
       Logger.error(err, { location: "video-player-handleOnEnd" });
@@ -322,11 +326,25 @@ const VideoPlayer = ({
 
         {!state.musicControlMounted ? null : (
           <>
-            {!showTimer ? null : (
+            {!showTimer || state.isLoadingEndOfSession ? null : (
               <View style={styles.currentProgressTime} testID={VIDEO_PLAYER_TIMER}>
                 <VideoPlayerTimer textType="time" time={state.currentProgressInMilliSeconds} colour={themeColour} />
               </View>
             )}
+            {!state.isLoadingEndOfSession ? null : (
+              <View style={styles.currentProgressTime}>
+                <HourglassIcon />
+                <View style={styles.endOfSessionLoading}>
+                  <TextTemplate type="b1" color={Colours.neutral.white} textAlign="center">
+                    {t("screens.video_player.session_complete")}
+                  </TextTemplate>
+                  <TextTemplate type="b1" color={Colours.neutral.white} textAlign="center">
+                    {t("screens.video_player.one_moment_please")}
+                  </TextTemplate>
+                </View>
+              </View>
+            )}
+
             <Animated.View style={[styles.progressBarContainer, { opacity }]} testID={VIDEO_PROGRESS_BAR}>
               <View style={styles.currentProgress}>
                 <VideoPlayerTimer textType="l2b" time={state.currentProgressInMilliSeconds} colour={themeColour} />
@@ -483,6 +501,9 @@ const styles = StyleSheet.create({
   lottie: {
     ...StyleSheet.absoluteFillObject,
     height: "100%",
+  },
+  endOfSessionLoading: {
+    marginTop: Style.adjust(16),
   },
 });
 
