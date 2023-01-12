@@ -18,9 +18,9 @@ export const GOAL_PARTICIPATION_1 = {
         goal: GOALS_2.data._id,
         parentType: "goals",
         team: GOAL_TEAM_1.data._id,
-        startDate: moment().subtract(1, "day").toDate(),
-        endDate: moment().add(24, "days").toDate(),
-        trackingEndDate: moment().add(25, "days").toDate(),
+        startDateTime: moment().subtract(1, "day").format("YYYY-MM-DDTHH:mm:ss"),
+        endDateTime: moment().add(24, "days").format("YYYY-MM-DDTHH:mm:ss"),
+        trackingEndDateTime: moment().add(25, "days").format("YYYY-MM-DDTHH:mm:ss"),
         progressSyncedAt: moment(),
       }
 } as IDatabaseItem
@@ -38,9 +38,9 @@ export const GOAL_PARTICIPATION_3 = {
       goal: GOALS_3.data._id,
       parentType: "goals",
       team: GOAL_TEAM_3.data._id,
-      startDate: moment().toDate(),
-      endDate: moment().add(7, "days").toDate(),
-      trackingEndDate: moment().add(8, "days").toDate(),
+      startDateTime: moment().format("YYYY-MM-DDTHH:mm:ss"),
+      endDateTime: moment().add(7, "days").format("YYYY-MM-DDTHH:mm:ss"),
+      trackingEndDateTime: moment().add(8, "days").format("YYYY-MM-DDTHH:mm:ss"),
       progressSyncedAt: moment(),
     }
 } as IDatabaseItem
@@ -58,9 +58,9 @@ export const GOAL_PARTICIPATION_4 = {
       goal: GOALS_4.data._id,
       parentType: "goals",
       team: GOAL_TEAM_4.data._id,
-      startDate: moment().toDate(),
-      endDate: moment().add(7, "days").toDate(),
-      trackingEndDate: moment().add(8, "days").toDate(),
+      startDateTime: moment().format("YYYY-MM-DDTHH:mm:ss"),
+      endDateTime: moment().add(7, "days").format("YYYY-MM-DDTHH:mm:ss"),
+      trackingEndDateTime: moment().add(8, "days").format("YYYY-MM-DDTHH:mm:ss"),
       progressSyncedAt: moment(),
     }
 } as IDatabaseItem

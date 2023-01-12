@@ -1,4 +1,4 @@
-import { navigation, CATEGORY_TYPE, YUMOJI_PART_ID, COLOUR, YUSCREEN, YUCOIN_POWER, AVATAR_BUILDER_LIST, YUSCREEN_AVATAR, HEAD_TYPE, AVATAR_ITEM, TEXT_TEMPLATE, MALE_BODY, CONTENT_ITEM_INPUT, SDUI_SCREEN_SCROLL_VIEW } from "@utils"
+import { navigation, CATEGORY_TYPE, YUMOJI_PART_ID, COLOUR, YUSCREEN, YUCOIN_POWER, AVATAR_BUILDER_LIST, YUSCREEN_AVATAR, HEAD_TYPE, AVATAR_ITEM, TEXT_TEMPLATE, MALE_BODY, CONTENT_ITEM_INPUT, SDUI_SCREEN_SCROLL_VIEW, BUTTON_CLOSE } from "@utils"
 
 
 export const {
@@ -99,8 +99,17 @@ export const tapIllDoThisLater = async () => {
     await tapText("I'll do this later")()
 }
 
-export const addContactDetails = async () => {
+export const closeScreen = async () => {
+    let buttonIndex = 0
 
+    if (device.name.includes("(iPhone 11 Pro)")) {
+        buttonIndex = 1
+    } 
+    
+    await tapIDAtIndex(BUTTON_CLOSE, buttonIndex)()
+}
+
+export const addContactDetails = async () => {
     await typeViaID(CONTENT_ITEM_INPUT("title"), "Mr\n")()
     await typeViaID(CONTENT_ITEM_INPUT("firstName"), "Eugene\n")()
     await typeViaID(CONTENT_ITEM_INPUT("lastName"), "Grosu\n")()

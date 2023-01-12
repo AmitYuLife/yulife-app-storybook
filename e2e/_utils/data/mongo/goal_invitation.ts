@@ -17,7 +17,7 @@ export const GOAL_INVITATION_1 = {
         goal: GOALS_1.data._id,
         teamName:"TeamYulife",
         userId: CUSTOMER_34.data.customerId,
-        endDate: moment().add(7, "day").toDate()
+        endDateTime: moment().add(7, "day").format("YYYY-MM-DDTHH:mm:ss")
     }
 } as IDatabaseItem
 
@@ -28,6 +28,6 @@ export const GOAL_INVITATION_2 = {
         goal: GOALS_1.data._id,
         teamName:"TeamYulife",
         userId: CUSTOMER_20.data.customerId,
-        endDate: moment().add(7, "day").toDate()
+        endDateTime: moment().add(7, "day").format("YYYY-MM-DDTHH:mm:ss")
     }
 } as IDatabaseItem

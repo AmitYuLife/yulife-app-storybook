@@ -130,9 +130,9 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             When("I tap on Toby Flenderson", when.tapID(DUEL_AVATAR("Toby Flenderson")), async () => {
                 Then("I should be on the matchup page", then.textVisible("The matchup:"))
                 Then("I should see You", then.textVisible("You"))
-                Then("I should see Toby Flenderson", then.textVisible("Flenderson"))
+                Then("I should see Toby Flenderson", then.textVisible("Toby Flenderson"))
             })
         })
     })
-
+    
 })

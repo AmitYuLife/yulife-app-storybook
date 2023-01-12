@@ -9,7 +9,8 @@ export const {
     scrollUntilTextVisible,
     scrollUntilIdVisible,
     scrollFromIDMultiple,
-    scrollToAndTapText
+    scrollToAndTapText,
+    swipeFromText
 } = navigation.scrolling
 
 export const {

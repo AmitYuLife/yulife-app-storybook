@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as helper from "./_steps/helpers"
-import { NAV_BAR, LEADERBOARD_INFO, BACK_BUTTON, PLUS_BUTTON, LEADERBOARD_EMAIL_INPUT, GROUP_NAME_INPUT, LEADERBOARD_SWITCH, LEADERBOARD_TITLE, MENU_ICON, INSPECT_SCREEN, RANK, CHALLENGE_FRIEND_BUTTON, DAILY_STEPS_SCREEN, LEADERBOARD_SCROLL_LIST, YUMOJI, USER_WORLD, USER_LEVEL, TEXT_TEMPLATE } from "@ids";
+import { NAV_BAR, LEADERBOARD_INFO, BACK_BUTTON, PLUS_BUTTON, LEADERBOARD_EMAIL_INPUT, GROUP_NAME_INPUT, LEADERBOARD_SWITCH, LEADERBOARD_TITLE, MENU_ICON, INSPECT_SCREEN, RANK, CHALLENGE_FRIEND_BUTTON, DAILY_STEPS_SCREEN, LEADERBOARD_SCROLL_LIST, YUMOJI, USER_WORLD, USER_LEVEL, TEXT_TEMPLATE, ONBOARDING_SCREEN_V4 } from "@ids";
 import { CUSTOMER_16, AUTH_16, USER_16_LEADERBOARD, CUSTOMER_17, AUTH_17, CUSTOMER_18, USER_18_LEADERBOARD, CUSTOMER_19, AUTH_19, CUSTOMER_20, CUSTOMER_21, USER_19_LEADERBOARD_B, CUSTOMER_47, AUTH_47, AUTH_21, USER_20_LEADERBOARD, AUTH_20, CUSTOMER_50, AUTH_50, COIN_LEDGER_47, COIN_LEDGER_18} from "@data";
 
 Feature("As a user I can see my achievements on the leaderboard", async () => {
@@ -198,6 +198,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can inspect other members and view their data and avatars from the leaderboard - seed data", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(CUSTOMER_47, AUTH_47), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(MENU_ICON, 1500))
+            Then("I should be on the onboarding yuscreen v4", then.idVisible(ONBOARDING_SCREEN_V4))
         })  
         helper.CREATE_AVATAR(CUSTOMER_47)();
         When("I wait", when.wait(60000), async () => {
@@ -235,6 +236,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 When("I have done two days ago 13:20 min Mindfulness", when.addMindfulnessHistoricalData(800, 2), async () => {
                     Given("I login as a user", given.loginAsUser(CUSTOMER_47, AUTH_47), async () => {
                         Then("I should see a menu icon in the top left", then.idVisible(MENU_ICON, 1500))
+                        Then("I should be on the onboarding yuscreen v4", then.idVisible(ONBOARDING_SCREEN_V4))
                     })
                 })
             })
@@ -272,6 +274,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can inspect myself and view my data and avatar from the leaderboard - seed data", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(CUSTOMER_47, AUTH_47), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(MENU_ICON, 1500))
+            Then("I should be on the onboarding yuscreen v4", then.idVisible(ONBOARDING_SCREEN_V4))
+
         })  
         helper.CREATE_AVATAR(CUSTOMER_47)();
         When("I wait", when.wait(60000), async () => {
@@ -347,7 +351,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
         When("I scroll down to the duels challenge button", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.2), async () => {
             When("I click on the duels button", when.clickDuelButton, async () => {
-                Then("I should be on the start duel screen", then.multipleTextVisible(["The matchup:", "Set the duel", "You", "Michael", "Scott"]))
+                Then("I should be on the start duel screen", then.multipleTextVisible(["The matchup:", "Set the duel", "You", "Michael Scott"]))
             })
         })
     })
@@ -355,6 +359,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can inspect other members and view their data and avatars from the leaderboard and I can see a draw state and win streak - seed data", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(CUSTOMER_50, AUTH_50), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(MENU_ICON, 1500))
+            Then("I should be on the onboarding yuscreen v4", then.idVisible(ONBOARDING_SCREEN_V4))
+
         })  
         helper.CREATE_AVATAR(CUSTOMER_50)();
         When("I wait", when.wait(60000), async () => {
@@ -373,11 +379,13 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
         When("I scroll down to the challenge button", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.2), async () => {
             When("I scroll to the Challenge statistics section", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.3), async () => {
-                When("I scroll to the Activity data section", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.3), async () => {
+                When("I scroll to the Activity data section", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.5), async () => {
                     Then("I should see the draw state cycling results", then.cyclingComparativeDrawResults(0.1, 0.1))
-                    Then("I should see the draw state mindfulness results", then.minsComparativeDrawResults(0, 0))
                 })
             })
+        })
+        When("I scroll down the Activity data section", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.4), async () => {
+            Then("I should see the draw state mindfulness results", then.minsComparativeDrawResults(0, 0))
         })
     })
 })

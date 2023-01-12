@@ -1,7 +1,7 @@
 import { When, Then } from "@yu-life/yulife-bdd-framework";
 import * as when from "./when"
 import * as then from "./then"
-import { YUMOJI_AVATAR_YUSCREEN_V4, VIEW_TOP_RIGHT_COIN_COUNTER, TEXT_TEMPLATE, BUTTON_CLOSE, RIGHT_STATUS_ICON, YUCOIN_POWER, CONTENT_ITEM_IMAGE} from "@ids";
+import { YUMOJI_AVATAR_YUSCREEN_V4, VIEW_TOP_RIGHT_COIN_COUNTER, TEXT_TEMPLATE, BUTTON_CLOSE, RIGHT_STATUS_ICON, YUCOIN_POWER, CONTENT_ITEM_IMAGE, V4_YUSCREEN} from "@ids";
 
 
 export const CREATE_DEFAULT_YUMOJI = async ( totalYucoinCount: number) => {
@@ -14,11 +14,10 @@ export const CREATE_DEFAULT_YUMOJI = async ( totalYucoinCount: number) => {
 
 export const CHECK_PRODUCT_BUTTON_LINK = async ( productButton: string, productOnboardingViewText:string) => {
     When(`I tap on ${productButton}`, when.tapText(productButton), async () => {
-        Then(`I should be on the first ${productOnboardingViewText} onboarding screen`, then.idVisible(TEXT_TEMPLATE(productOnboardingViewText)));
+            Then(`I should be on the first ${productOnboardingViewText} onboarding screen`, then.idVisible(TEXT_TEMPLATE(productOnboardingViewText)));
         When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 1), async () => {
-            When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
+            When("I close this screen", when.closeScreen, async () => {
                 Then(`I should not see ${productOnboardingViewText} onboarding screen`, then.textNotVisible(productOnboardingViewText))
-
             })
         })
     })
@@ -27,28 +26,34 @@ export const CHECK_PRODUCT_BUTTON_LINK = async ( productButton: string, productO
 export const CHECK_CAROUSEL_DENTAL_BUTTON_LINK = async () => {
     const browseMoreProtection = "Browse more protection"
     const dentalPriceFrom = "From £12.99 per month"
+    const moreProtection = "More protection coming soon"
     
-    When("I swipe down the Yu screen page", when.swipeFromText(browseMoreProtection,"up", "fast"), async () => {
+    When("I swipe down the Yu screen page", when.swipeFromText(moreProtection,"up", "fast"), async () => {
         When(`I tap on ${dentalPriceFrom}`, when.tapText(dentalPriceFrom), async () => {
-            Then(`I should be on the first Bupa Dental Plan for YuLife onboarding screen`, then.textVisible("Bupa Dental Plan for YuLife", 2000));
-            When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
-                Then(`I should see carousel ${browseMoreProtection} onboarding screen`, then.textVisible(browseMoreProtection))
+            When("I tap on 'Explore now'", when.tapText("Explore now", 6000), async () => {
+                Then(`I should be on the first Bupa Dental Plan for YuLife onboarding screen`, then.textVisible("Bupa Dental Plan for YuLife", 8000));
+            })
+            When("I close this screen", when.closeScreen, async () => {
+                Then(`I should be back on the yuscreen v4`, then.idVisible(V4_YUSCREEN))
             })
         })
     })
 }
 
 export const CHECK_CAROUSEL_BUTTON_LINK = async ( direction:string, productButton: string, productOnboardingViewText:string) => {
-    const browseMoreProtection = "Browse more protection"
     const dentalPriceFrom = "From £12.99 per month"
-    
+    const moreProtection = "More protection coming soon"
 
-    When("I swipe down the Yu screen page", when.swipeFromText(browseMoreProtection,"up", "fast"), async () => {
-        When(`I swipe right from ${dentalPriceFrom}`, when.swipeFromText(dentalPriceFrom, direction, "fast"), async () => {
-            When(`I tap on ${productButton}`, when.tapText(productButton), async () => {
-                Then(`I should be on the first ${productOnboardingViewText} onboarding screen`, then.textVisible(productOnboardingViewText, 2000));
-                When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
-                    Then(`I should see carousel ${browseMoreProtection} onboarding screen`, then.textVisible(browseMoreProtection))
+    When("I swipe up the Yu screen page", when.swipeFromText(dentalPriceFrom,"down", "slow"), async () => {
+        When("I swipe down the Yu screen page", when.swipeFromText(moreProtection,"up", "fast"), async () => {
+            When(`I swipe right from ${dentalPriceFrom}`, when.swipeFromText(dentalPriceFrom, direction, "fast"), async () => {
+                When(`I tap on ${productButton}`, when.tapText(productButton, 2000), async () => {
+                    When("I close this screen", when.closeScreen, async () => {
+                        Then(`I should be on the first ${productOnboardingViewText} onboarding screen`, then.textVisible(productOnboardingViewText, 4000));
+                    })
+                    When("I close this screen", when.closeScreen, async () => {
+                        Then(`I should be back on the yuscreen v4`, then.idVisible(V4_YUSCREEN))
+                    })
                 })
             })
         })
@@ -98,7 +103,7 @@ export const WELLBEING_PRODUCT_VIEW = async (packageType: string, wellbeingAcces
             Then("I should see correct YuCoin Power text", then.yuCoinPowerInfo(yuCoinPower))
             When("I click Got it", when.tapText("Got it!"), async () => {
                 Then("I should see Wellbeing Access", then.textVisibleAtIndex("Wellbeing Access", 1))
-            })
+            }) 
         })
     })
 }
@@ -123,7 +128,7 @@ export const CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED = async ( productButto
 
     When(`I tap on ${productButton}`, when.tapText(productButton), async () => {
         Then(`I should payment overdue screen`, then.paymentOverdueInfo)
-        When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
+        When("I close this screen", when.closeScreen, async () => {
             Then("I should be able to see Dental insurance", then.textVisible(productButton))
         })
     })
@@ -135,8 +140,11 @@ export const YUSCREEN_V4 = async (customer: any, packType: string, yuCoinPower: 
 
     When(`I tap ${buttonText}`, when.tapText(buttonText), async () => {
         Then(`I should see ${yuMojiBuilder}`, then.textVisible(yuMojiBuilder))
-        When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
+    })
+    When("I swipe down the screen", when.swipeFromText("Create your Yumoji to step into the Yuniverse", "up", "slow"), async () => {
+        When("I tap I'll do this later", when.tapText("I'll do this later"), async () => {
             Then(`I should be on YuScreen V4 and see ${packType}`, then.onYuscreenV4(customer, packType, yuCoinPower))
+
         })
     })
 }

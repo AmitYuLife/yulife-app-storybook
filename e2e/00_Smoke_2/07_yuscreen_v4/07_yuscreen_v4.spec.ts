@@ -37,9 +37,13 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
 
     Scenario("I can create my Yumoji on new Yuscreen V4, and see the exclamation point near the product i have (payment failed)", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_45, AUTH_45), async () => {
-            When("I tap check out my power", when.tapCheckOutMyPower, async () => {
-                When("I tap I'll do this later", when.tapIllDoThisLater, async () => {
-                    Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_45, "dentalActiveAndPliInactive", "6" ))
+            When("I swipe down the screen", when.swipeFromText("Protection, powered up!", "up", "fast"), async () => {
+                When("I tap check out my power", when.tapCheckOutMyPower, async () => {
+                    When("I swipe down the screen", when.swipeFromText("Continue", "up", "slow"), async () => {
+                        When("I tap I'll do this later", when.tapIllDoThisLater, async () => {
+                            Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_45, "dentalActiveAndPliInactive", "6" ))
+                        })
+                    })
                 })
             })
             helper.PAYMENT_FAILED()
@@ -52,9 +56,9 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
     Scenario("I can create my Yumoji on new Yuscreen V4, having permanently rejected product PLI, should see the correct slots and carousel", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_46, AUTH_46), async () => {
             Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_46, "PliPermanentlyRejectedAndDentalInactive", "5" ))
+        })   
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live")
             helper.CHECK_PRODUCT_BUTTON_LINK("Fill the gap with Dental", "Dental Insurance");
-        })
     })
 
     Scenario("As a YuLifer with 6 slots i should  NOT see More protection coming soon slot ", scenario.start, async () => {
