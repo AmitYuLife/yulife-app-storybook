@@ -62,11 +62,13 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   closeIconWrapper: {
     position: "absolute",
-    top: Style.adjust(40),
+    top: 0,
     right: 0,
     height: Style.adjust(16),
     width: Style.adjust(16),
-    padding: Style.adjust(16),
+    padding: Style.adjust(24),
+    justifyContent: "center",
+    alignItems: "center",
   } as ViewStyle,
   closeIcon: {
     position: "absolute",
