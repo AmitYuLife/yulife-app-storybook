@@ -15,16 +15,17 @@ export const DEVICES = {
     height: 896,
   },
   iPhone12Mini: {
-    // iPhone 11 Pro, iPhone X, iPhone Xs,
+    // iPhone 13 mini, iPhone 11 Pro, iPhone X, iPhone Xs,
     width: 375,
     height: 812,
   },
   iPhone12: {
-    // iPhone 12 Pro
+    // iPhone 12 Pro, iPhone 13, iPhone 13 Pro, iPhone 14
     width: 390,
     height: 844,
   },
   iPhone12ProMax: {
+    // iPhone13ProMax, iPhone14Plus,
     width: 428,
     height: 926,
   },
@@ -36,6 +37,14 @@ export const DEVICES = {
   Pixel2: {
     width: 411,
     height: 683,
+  },
+  iPhone14Pro: {
+    width: 393,
+    height: 852,
+  },
+  iPhone14ProMax: {
+    width: 430,
+    height: 932,
   },
 };
 
