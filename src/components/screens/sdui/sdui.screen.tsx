@@ -8,7 +8,7 @@ import {
 } from "@graphql/_core/schema";
 import { buildInitialSduiStepDynamicDataState } from "@utils/sduiData";
 import React, { memo, useContext, useEffect, useMemo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { Absolute, Body } from "./sections";
 import { SDUI_SCREEN_SCROLL_VIEW } from "@ids";
 
@@ -34,11 +34,13 @@ export const SduiScreen = memo(({ body, absolute, containerStyles, stepData, ste
   }, [stepId]);
 
   return (
-    <View style={[styles.wrapper, wrapperStyles]} testID={SDUI_SCREEN_SCROLL_VIEW}>
-      <Absolute items={background} />
-      <Body items={body} />
-      <Absolute items={foreground} />
-    </View>
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.wrapper}>
+      <View style={[styles.wrapper, wrapperStyles]} testID={SDUI_SCREEN_SCROLL_VIEW}>
+        <Absolute items={background} />
+        <Body items={body} />
+        <Absolute items={foreground} />
+      </View>
+    </KeyboardAvoidingView>
   );
 });
 
