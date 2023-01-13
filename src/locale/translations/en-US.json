@@ -474,6 +474,10 @@
       "header_mid": "activity & progress",
       "header_right": "yucoin",
       "heading": "activity history"
+    },
+    "video_player": {
+      "session_complete": "Session complete.",
+      "one_moment_please": "One moment please..."
     }
   },
   "permissions": {

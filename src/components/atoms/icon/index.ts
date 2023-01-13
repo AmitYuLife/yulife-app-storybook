@@ -49,6 +49,7 @@ import { FlagUS } from "./flag-us";
 import { FlagSA } from "./flag-sa";
 import { Eye } from "./eye";
 import { GlobeIcon } from "./globe-icon";
+import { HourglassIcon } from "./hourglass-icon";
 
 export default {
   GlobeIcon,
@@ -104,4 +105,5 @@ export default {
   FlagUS,
   FlagSA,
   Eye,
+  HourglassIcon,
 };
