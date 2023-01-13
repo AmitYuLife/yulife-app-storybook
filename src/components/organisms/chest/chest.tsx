@@ -13,7 +13,7 @@ import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { CELESTIAL_CARD } from "@ids";
+import { CELESTIAL_CARD, YUNITY_CARD } from "@ids";
 
 export type ChestType = "FOREST" | "OCEAN" | "DESERT" | "MOUNTAIN" | "CELESTIAL";
 
@@ -291,7 +291,11 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
         ? null
         : items.map((item, index) =>
             index > 2 ? null : (
-              <View key={`info_${item.description}`} style={infoCardWrappers[index]}>
+              <View
+                key={`info_${item.description}`}
+                style={infoCardWrappers[index]}
+                testID={YUNITY_CARD(item.description)}
+              >
                 <TouchableOpacity onPress={infoHandlers[index]}>
                   <View style={cardStyles.cardInner} />
                 </TouchableOpacity>

@@ -1,6 +1,7 @@
-import { navigation, expectIsVisibleViaText, CHALLENGE_HISTORY_YUCOIN_STARS, navigateViaText, wait, CHALLENGE_UNAVAILABLE, TEXT_TEMPLATE, CHALLENGE_SET, CHALLENGE_TILE, CHALLENGE_HISTORY_STARS, QUESTS_SCREEN_YUNIVERSAL } from "@utils"
+import { navigation, expectIsVisibleViaText, CHALLENGE_HISTORY_YUCOIN_STARS, navigateViaText, wait, CHALLENGE_UNAVAILABLE, TEXT_TEMPLATE, CHALLENGE_SET, CHALLENGE_TILE, CHALLENGE_HISTORY_STARS, QUESTS_SCREEN_YUNIVERSAL, CELESTIAL_CARD, idVisibleAtIndex, YUNITY_CARD } from "@utils"
 import { screens } from "@appScreens"
 import { swipeFromText } from "_utils/navigation/scrolling"
+import { USER_1 } from "@data"
 
 export const {
     idVisible,
@@ -219,4 +220,11 @@ export const challengesAndYuCoinsAwardedVisible = async () => {
     await textVisible("10 mins")()
     await textVisible("40 yucoin")()
     await challengeStarsCorrect(1, "meditation")()
+}
+
+export const yunityChestAwardsVisible = (user: typeof USER_1, surgeDuration: 1 | 7) => async () => {
+    const yuCoinEarned = user.data.earnRate * 3;
+    
+    await idVisibleAtIndex(YUNITY_CARD(`${surgeDuration} day\n2x surge`), 0)() 
+    await idVisibleAtIndex(YUNITY_CARD(`${yuCoinEarned}\nYuCoin`), 0)() 
 }
