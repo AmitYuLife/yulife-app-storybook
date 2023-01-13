@@ -56,6 +56,8 @@ import {
     CUSTOMER_76,
     CUSTOMER_77,
     CUSTOMER_78,
+    CUSTOMER_79,
+    CUSTOMER_80,
 } from "../postgres/customers";
 
 const MODEL_DEFAULTS: Pick<IDatabaseItem, "modelName" | "type"> = {
@@ -563,6 +565,24 @@ export const USER_PROFILE_78 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_78.data.customerId,
+        ...RECORD_DEFAULTS,
+    },
+} as IDatabaseItem;
+
+export const USER_PROFILE_79 = {
+    ...MODEL_DEFAULTS,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_79.data.customerId,
+        ...RECORD_DEFAULTS,
+    },
+} as IDatabaseItem;
+
+export const USER_PROFILE_80 = {
+    ...MODEL_DEFAULTS,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_80.data.customerId,
         ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;

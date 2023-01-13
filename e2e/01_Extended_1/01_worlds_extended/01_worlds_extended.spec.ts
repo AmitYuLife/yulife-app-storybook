@@ -1,10 +1,10 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_22, AUTH_22, CUSTOMER_23, AUTH_23, CUSTOMER_24, AUTH_24, CUSTOMER_39, AUTH_39, CUSTOMER_41, AUTH_41, CUSTOMER_60, AUTH_60, CUSTOMER_61, AUTH_61, CUSTOMER_63, AUTH_63, CUSTOMER_64, AUTH_64, CUSTOMER_67, AUTH_67, CUSTOMER_68, AUTH_68 } from "@data";
-import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, QUESTS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, YUCOIN, QUESTS_SCREEN_YUNIVERSAL, CHALLENGE_TILE, STEPS_COUNT, DAILY_STEPS_SCREEN, ACTIVITY_FEED, YUCOIN_POWER, CHALLENGE_SET, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, BUTTON_CLOSE_CHALLENGE, LEVEL_STAR_COUNT } from "@ids";
+import { CUSTOMER_60, AUTH_60, CUSTOMER_61, AUTH_61, CUSTOMER_63, AUTH_63, CUSTOMER_64, AUTH_64, CUSTOMER_67, AUTH_67, CUSTOMER_68, AUTH_68, CUSTOMER_79, AUTH_79, CUSTOMER_80, AUTH_80, USER_79, USER_80 } from "@data";
+import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, QUESTS_SCREEN_YUNIVERSAL, LEVEL_STAR_COUNT } from "@ids";
 
 Feature("As a user I can complete challenges across multiple worlds", async () => {
     Scenario("I can't transition from the first world (forest) to the second world (ocean) on the same day", scenario.start, () => {
@@ -284,6 +284,32 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
         })
     }) 
+
+    Scenario("As a user opening a Yunity Chest at level 250, I want the chest to contain a 1 day surge and YuCoin worth 3x the users earn rate", scenario.start, () => {
+        Given("I login as a user with level 250 unclaimed", given.logInAndGoToTab("quests", CUSTOMER_79, AUTH_79), async () => {
+            Then("I should see my coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
+            Then("I should see the level 250 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(250)))
+        })
+        When("I tap the level 250 button", when.tapID(LEVEL_CHALLENGE_BUTTON(250)), async () => {
+            Then("I should see that I've achived Yunity with the Forest", then.yunityCorrect("Forest"))
+        })
+        When("I tap to open the chest", when.tapText("Open the chest"), async () => {
+            Then("I should see I have the correct items in the Yunity Chest", then.yunityChestAwardsVisible(USER_79, 1))
+        })
+    })
+
+    Scenario("As a user opening a Yunity Chest at level 400, I want the chest to contain a 7 day surge and YuCoin worth 3x the users earn rate", scenario.start, () => {
+        Given("I login as a user with level 400 unclaimed", given.logInAndGoToTab("quests", CUSTOMER_80, AUTH_80), async () => {
+            Then("I should see my coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
+            Then("I should see the level 400 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(400)))
+        })
+        When("I tap the level 400 button", when.tapID(LEVEL_CHALLENGE_BUTTON(400)), async () => {
+            Then("I should see that I've achived Yunity with the Forest", then.yunityCorrect("Forest"))
+        })
+        When("I tap to open the chest", when.tapText("Open the chest"), async () => {
+            Then("I should see I have the correct items in the Yunity Chest", then.yunityChestAwardsVisible(USER_80, 7))
+        })
+    })
 })
 
 
