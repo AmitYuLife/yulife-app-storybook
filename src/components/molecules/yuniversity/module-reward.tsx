@@ -5,14 +5,15 @@ import { Style } from "@styles";
 
 interface IModuleReward {
   coin: number;
+  message: string;
 }
 
-const YuniversityModuleReward = ({ coin }: IModuleReward) => (
+const YuniversityModuleReward = ({ coin, message }: IModuleReward) => (
   <>
     {!coin ? null : (
       <View style={styles.quizRewardWrapper}>
         <TextTemplate textAlign="center" type={"b2"}>
-          Earn
+          {message}
         </TextTemplate>
         <View style={styles.quizRewardAmountWrapper}>
           <TextTemplate textAlign="center" type={"b2b"}>

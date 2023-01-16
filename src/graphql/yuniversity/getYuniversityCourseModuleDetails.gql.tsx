@@ -10,6 +10,13 @@ export const GQL_QUERY_GET_YUNIVERSITY_COURSE_MODULE_DETAILS = gql`
       }
       title
       tags
+      imageTags {
+        tag
+        image {
+          id
+          uri
+        }
+      }
       markdown
       chapters {
         id
@@ -72,6 +79,7 @@ export const GQL_QUERY_GET_YUNIVERSITY_COURSE_MODULE_DETAILS = gql`
           uri
         }
         yucoin
+        rewardDescription
         title
         description
         ctaLabel

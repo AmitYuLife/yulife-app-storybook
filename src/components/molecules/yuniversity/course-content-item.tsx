@@ -5,6 +5,7 @@ import { Image } from "@atoms/image/image";
 import { BoxOption } from "@molecules";
 import { Colours, Style } from "@styles";
 import { StyleSheet, View } from "react-native";
+import TagsWithImage, { Tag } from "./tags-with-image";
 
 interface IStatus {
   icon: { uri: string; id: string };
@@ -16,11 +17,12 @@ export interface ICourseItem {
   title: string;
   image: { uri: string; id: string };
   status?: IStatus;
+  imageTags?: Tag[];
 }
 
 type Props = ICourseItem & { onPress: () => void };
 
-export const CourseContentItem = ({ tags, title, onPress, image, status }: Props) => (
+export const CourseContentItem = ({ tags, title, onPress, image, status, imageTags = [] }: Props) => (
   <BoxOption
     onPress={onPress}
     isSelected={false}
@@ -40,14 +42,21 @@ export const CourseContentItem = ({ tags, title, onPress, image, status }: Props
             {tags}
           </TextTemplate>
         </View>
-        {!status ? null : (
-          <View style={styles.statusWrapper}>
-            <View style={styles.statusIconWrapper}>
-              <Image height={Style.adjust(14)} width={Style.adjust(14)} source={{ uri: status.icon.uri }} />
+        <View style={styles.tagsWrapper}>
+          {!status ? null : (
+            <View style={styles.statusWrapper}>
+              <View style={styles.statusIconWrapper}>
+                <Image height={Style.adjust(14)} width={Style.adjust(14)} source={{ uri: status.icon.uri }} />
+              </View>
+              <TextTemplate type={"l2"}>{status.text}</TextTemplate>
             </View>
-            <TextTemplate type={"l2"}>{status.text}</TextTemplate>
-          </View>
-        )}
+          )}
+          {!imageTags.length ? null : (
+            <View style={styles.statusWrapper}>
+              <TagsWithImage tags={imageTags} />
+            </View>
+          )}
+        </View>
       </View>
       <View style={styles.arrowWrapper}>
         <ArrowIcon color={Colours.primary.p600} />
@@ -63,6 +72,10 @@ const styles = StyleSheet.create({
   statusWrapper: {
     flexDirection: "row",
     marginBottom: Style.adjust(4),
+    marginRight: Style.adjust(16),
+  },
+  tagsWrapper: {
+    flexDirection: "row",
   },
   statusIconWrapper: {
     marginRight: Style.adjust(6),
