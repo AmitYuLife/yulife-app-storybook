@@ -12,6 +12,16 @@ export interface GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCours
   uri: string | null;
 }
 
+export interface GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_imageTags_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_imageTags {
+  tag: string;
+  image: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_imageTags_image | null;
+}
+
 export interface GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_chapters_image {
   id: string;
   uri: string | null;
@@ -95,6 +105,7 @@ export interface GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCours
   iconHeight: number;
   icon: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_moduleQuiz_icon;
   yucoin: number | null;
+  rewardDescription: string | null;
   title: string;
   description: string | null;
   ctaLabel: string | null;
@@ -139,6 +150,7 @@ export interface GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCours
   image: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_image;
   title: string;
   tags: string;
+  imageTags: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_imageTags[] | null;
   markdown: string;
   chapters: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_chapters[];
   moduleNotes: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_moduleNotes | null;

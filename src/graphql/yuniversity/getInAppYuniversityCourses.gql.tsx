@@ -26,6 +26,13 @@ export const GQL_QUERY_GET_YUNIVERSITY_COURSES = gql`
           slug
           tags
           title
+          imageTags {
+            tag
+            image {
+              id
+              uri
+            }
+          }
           image {
             id
             uri

@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
@@ -12,6 +12,7 @@ import {
   GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails as IGqlCourseModuleDetails,
   GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_chapters_videoMedia as IGqlMedia,
 } from "@graphql/_core/schema/GetInAppYuniversityCourseModuleDetails";
+import TagsWithImage from "@components/molecules/yuniversity/tags-with-image";
 
 export interface ICourseModuleDetailsProps {
   onClose: () => void;
@@ -30,6 +31,8 @@ const CourseDetailsScreen = ({
     tags,
     markdown,
     chapters,
+    completed,
+    imageTags,
     moduleQuiz,
     moduleNotes,
     moduleCertificate,
@@ -59,6 +62,7 @@ const CourseDetailsScreen = ({
     });
   }, [moduleCertificateDetails]);
 
+  const completedModuleQuizStyle = useMemo(() => (completed ? styles.moduleQuizCompletedStyle : {}), [completed]);
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
@@ -79,6 +83,11 @@ const CourseDetailsScreen = ({
                 {tags}
               </TextTemplate>
             </View>
+            {!imageTags.length ? null : (
+              <View style={styles.imageTagsWrapper}>
+                <TagsWithImage tags={imageTags} />
+              </View>
+            )}
             <Markdown text={markdown} />
           </View>
         </View>
@@ -95,8 +104,8 @@ const CourseDetailsScreen = ({
           />
         ))}
         <ModuleNotes {...moduleNotes} />
-        <Module {...moduleQuiz} onPress={startQuiz}>
-          <YuniversityModuleReward coin={moduleQuiz.yucoin} />
+        <Module {...moduleQuiz} onPress={startQuiz} wrapperStyle={completedModuleQuizStyle}>
+          <YuniversityModuleReward coin={moduleQuiz.yucoin} message={moduleQuiz.rewardDescription} />
         </Module>
         <Module {...moduleCertificate} onPress={openCertificate} />
       </ScrollView>
@@ -112,6 +121,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(24),
     height: Style.DEVICE_HEIGHT,
     backgroundColor: Colours.neutral.n50,
+  },
+  moduleQuizCompletedStyle: {
+    borderColor: Colours.status.su400,
+    borderWidth: Style.adjust(1),
+    backgroundColor: "#EFFBF7",
+  },
+  imageTagsWrapper: {
+    marginLeft: Style.adjust(16),
+    marginBottom: Style.adjust(16),
   },
   containerStyle: {
     paddingBottom: Style.adjust(Platform.select({ ios: 20, android: 50 })),

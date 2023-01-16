@@ -116,19 +116,22 @@ const YuniversityCoursesScreen: FC<IProps> = ({ headerProps, categoryImageUri, c
                   <TextTemplate type={"b1b"}>{courseTitle}</TextTemplate>
                   <Markdown text={description} />
                 </View>
-                {modules.map(({ tags, title: moduleTitle, id: moduleId, slug, image: moduleImage, status }) => {
-                  return (
-                    <ModuleContentItem
-                      tags={tags}
-                      title={moduleTitle}
-                      onModulePress={onModulePress}
-                      image={moduleImage}
-                      status={status}
-                      key={moduleId}
-                      slug={slug}
-                    />
-                  );
-                })}
+                {modules.map(
+                  ({ tags, imageTags, title: moduleTitle, id: moduleId, slug, image: moduleImage, status }) => {
+                    return (
+                      <ModuleContentItem
+                        tags={tags}
+                        title={moduleTitle}
+                        onModulePress={onModulePress}
+                        image={moduleImage}
+                        status={status}
+                        key={moduleId}
+                        slug={slug}
+                        imageTags={imageTags}
+                      />
+                    );
+                  }
+                )}
               </View>
             );
           })}

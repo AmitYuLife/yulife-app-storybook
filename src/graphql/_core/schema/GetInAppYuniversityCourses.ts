@@ -17,6 +17,16 @@ export interface GetInAppYuniversityCourses_getInAppYuniversityCourses_categoryI
   uri: string | null;
 }
 
+export interface GetInAppYuniversityCourses_getInAppYuniversityCourses_courses_modules_imageTags_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetInAppYuniversityCourses_getInAppYuniversityCourses_courses_modules_imageTags {
+  tag: string;
+  image: GetInAppYuniversityCourses_getInAppYuniversityCourses_courses_modules_imageTags_image | null;
+}
+
 export interface GetInAppYuniversityCourses_getInAppYuniversityCourses_courses_modules_image {
   id: string;
   uri: string | null;
@@ -37,6 +47,7 @@ export interface GetInAppYuniversityCourses_getInAppYuniversityCourses_courses_m
   slug: string;
   tags: string;
   title: string;
+  imageTags: GetInAppYuniversityCourses_getInAppYuniversityCourses_courses_modules_imageTags[];
   image: GetInAppYuniversityCourses_getInAppYuniversityCourses_courses_modules_image;
   status: GetInAppYuniversityCourses_getInAppYuniversityCourses_courses_modules_status | null;
 }

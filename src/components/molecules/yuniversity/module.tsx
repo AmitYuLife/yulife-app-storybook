@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { Colours, Style } from "@styles";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 
@@ -13,6 +13,7 @@ export interface IModule {
   ctaLabel: string;
   ctaEnabled: boolean;
   onPress: () => void;
+  wrapperStyle?: ViewStyle;
   children?: React.ReactNode;
 }
 
@@ -26,8 +27,9 @@ const Module = ({
   iconHeight,
   iconWidth,
   children,
+  wrapperStyle,
 }: IModule) => (
-  <View style={styles.box}>
+  <View style={[styles.box, wrapperStyle]}>
     <View style={styles.iconAndTextWrapper}>
       <View style={styles.iconWrapper}>
         <Image height={Style.adjust(iconHeight)} width={Style.adjust(iconWidth)} source={{ uri: icon.uri }} />
