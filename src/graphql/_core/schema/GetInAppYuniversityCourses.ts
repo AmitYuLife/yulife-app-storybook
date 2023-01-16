@@ -17,6 +17,11 @@ export interface GetInAppYuniversityCourses_getInAppYuniversityCourses_categoryI
   uri: string | null;
 }
 
+export interface GetInAppYuniversityCourses_getInAppYuniversityCourses_courses_logoImageKey {
+  id: string;
+  uri: string | null;
+}
+
 export interface GetInAppYuniversityCourses_getInAppYuniversityCourses_courses_modules_imageTags_image {
   id: string;
   uri: string | null;
@@ -56,6 +61,7 @@ export interface GetInAppYuniversityCourses_getInAppYuniversityCourses_courses {
   id: string;
   title: string;
   description: string;
+  logoImageKey: GetInAppYuniversityCourses_getInAppYuniversityCourses_courses_logoImageKey | null;
   modules: (GetInAppYuniversityCourses_getInAppYuniversityCourses_courses_modules | null)[] | null;
 }
 

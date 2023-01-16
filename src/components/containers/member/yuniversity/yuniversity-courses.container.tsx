@@ -52,7 +52,7 @@ const YuniversityCoursesContainer = () => {
   return (
     <YuniversityCoursesScreen
       category={title}
-      categoryImageUri={categoryImage.uri}
+      categoryImageUri={categoryImage?.uri}
       headerProps={headerProps}
       courses={courses}
       onModulePress={onModulePress}

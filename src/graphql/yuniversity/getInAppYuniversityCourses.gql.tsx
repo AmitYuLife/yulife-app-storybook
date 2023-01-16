@@ -21,6 +21,10 @@ export const GQL_QUERY_GET_YUNIVERSITY_COURSES = gql`
         id
         title
         description
+        logoImageKey {
+          id
+          uri
+        }
         modules {
           id
           slug
