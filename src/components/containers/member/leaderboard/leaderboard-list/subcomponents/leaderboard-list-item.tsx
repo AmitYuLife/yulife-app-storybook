@@ -1,44 +1,62 @@
-import React from "react";
-import { View, StyleSheet, ViewStyle, TextStyle, ScrollView } from "react-native";
-import { Text } from "@atoms";
+import React, { useCallback } from "react";
+import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { Text, TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
 import Switch from "@molecules/switch/switch";
 import { ILeaderboard } from "@redux/user/user.reducer";
 import { LEADERBOARD_STATUS, LEADERBOARD_SWITCH } from "@ids";
+import { t } from "@locale";
+import { FlashList } from "@shopify/flash-list";
 
 interface Props {
   leaderboards: ILeaderboard[];
   activeLeaderboardId: string;
   onPress: (id: string) => void;
+  onRefresh: () => void;
   onChangeLeaderboardConsent: (leaderboardId: string, consent: boolean) => void;
 }
 
-export const LeaderboardListItems = (props: Props) => {
-  const { leaderboards, activeLeaderboardId, onPress, onChangeLeaderboardConsent } = props;
+export const LeaderboardListItems = ({
+  leaderboards,
+  activeLeaderboardId,
+  onPress,
+  onChangeLeaderboardConsent,
+  onRefresh,
+}: Props) => {
+  const renderItem = useCallback(
+    ({ item }: { item: ILeaderboard }) => (
+      <LeaderboardListItem
+        key={item.leaderboardId}
+        isActive={item.leaderboardId === activeLeaderboardId}
+        consent={item.consent}
+        name={item.name}
+        onPress={() => onPress(item.leaderboardId)}
+        onSwitchPress={() => onChangeLeaderboardConsent(item.leaderboardId, item.consent)}
+      />
+    ),
+    [activeLeaderboardId, onChangeLeaderboardConsent, onPress]
+  );
 
   if (!leaderboards || !leaderboards.length) {
     return null;
   }
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
-      <View style={styles.topPad} />
-      <Text style={styles.description}>
-        By turning on a leaderboard, you are opting in to share your most recent 30 day step data with other members of
-        the leaderboard. This can be toggled off at any time.
-      </Text>
-      {leaderboards.map((item) => (
-        <LeaderboardListItem
-          key={item.leaderboardId}
-          isActive={item.leaderboardId === activeLeaderboardId}
-          consent={item.consent}
-          name={item.name}
-          onPress={() => onPress(item.leaderboardId)}
-          onSwitchPress={() => onChangeLeaderboardConsent(item.leaderboardId, item.consent)}
-        />
-      ))}
-    </ScrollView>
+    <FlashList
+      showsVerticalScrollIndicator={false}
+      estimatedItemSize={80}
+      contentContainerStyle={styles.wrapper}
+      onRefresh={onRefresh}
+      data={leaderboards}
+      renderItem={renderItem}
+      refreshing={false}
+      ListHeaderComponent={
+        <View style={styles.header}>
+          <TextTemplate type="b2">{t("screens.leaderboard.invites.subheading")} </TextTemplate>
+        </View>
+      }
+    />
   );
 };
 
@@ -46,17 +64,12 @@ const MARGIN = Style.adjust(24);
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginHorizontal: MARGIN,
+    paddingHorizontal: MARGIN,
   },
-  description: {
-    lineHeight: Style.adjust(24),
-    letterSpacing: 0.6,
+  header: {
     marginBottom: Style.adjust(24),
-    color: Colours.neutral.n800,
+    marginTop: Style.adjust(16),
   },
-  topPad: {
-    height: Style.adjust(16),
-  } as ViewStyle,
 });
 
 interface LeaderboardListItemProps {

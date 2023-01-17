@@ -8,6 +8,7 @@ import { ILeaderboard } from "@redux/user/user.reducer";
 interface IProps {
   leaderboards: ILeaderboard[];
   activeLeaderboardId: string;
+  onRefresh: () => void;
   onLeftIconPress?: () => void;
   onRightIconPress?: () => void;
   onChangeActiveLeaderboard: (id: string) => void;
@@ -19,6 +20,7 @@ function LeaderboardOptionsScreen(props: IProps) {
     onLeftIconPress,
     onRightIconPress,
     leaderboards,
+    onRefresh,
     onChangeActiveLeaderboard,
     onChangeLeaderboardConsent,
     activeLeaderboardId,
@@ -29,6 +31,7 @@ function LeaderboardOptionsScreen(props: IProps) {
       <View style={styles.pad} />
       <LeaderboardListItems
         leaderboards={leaderboards}
+        onRefresh={onRefresh}
         onPress={onChangeActiveLeaderboard}
         onChangeLeaderboardConsent={onChangeLeaderboardConsent}
         activeLeaderboardId={activeLeaderboardId}

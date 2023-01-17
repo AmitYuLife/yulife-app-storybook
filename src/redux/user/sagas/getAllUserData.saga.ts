@@ -3,7 +3,7 @@ import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
 import getAllUserData from "@graphql/user/getAllUserData.gql";
-import { getUserCoinLedgerTodayActivitySuccess } from "../user.actions";
+import { getUserCoinLedgerTodayActivitySuccess, getUserLeaderboardsSuccess } from "../user.actions";
 
 export default function* getAllUserDataSaga() {
   try {
@@ -19,6 +19,8 @@ export default function* getAllUserDataSaga() {
             coinLedger: data?.coinLedger,
           })
         );
+
+        yield put(getUserLeaderboardsSuccess(data?.leaderboards));
       }
     }
   } catch (e) {

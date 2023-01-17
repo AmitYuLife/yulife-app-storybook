@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { GQL_MUTATION_REPLY_TO_LEADERBOARD_INVITE, ReplyToLeaderboardInviteMutationTuple } from "@graphql/user";
 import { GenericScreen } from "@screens/index";
 import { Navigation } from "@navigation/main";
-import { getUserStart } from "@redux/user/user.actions";
+import { getUserLeaderboardsStart } from "@redux/user/user.actions";
 import { useMutation } from "@apollo/client";
 import { useDispatch } from "react-redux";
 import { t } from "@locale";
@@ -13,7 +13,7 @@ interface IProps {
   inviteFrom: string;
 }
 
-const LeaderboardInviteModal: React.FC<IProps> = ({ componentId, inviteFrom, leaderboardId }) => {
+const LeaderboardInviteModal = ({ componentId, inviteFrom, leaderboardId }: IProps) => {
   const [loadingLabel, setLoadingLabel] = React.useState<"primary" | "secondary">(null);
   const [replyToInvite]: ReplyToLeaderboardInviteMutationTuple = useMutation(GQL_MUTATION_REPLY_TO_LEADERBOARD_INVITE);
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ const LeaderboardInviteModal: React.FC<IProps> = ({ componentId, inviteFrom, lea
         variables: { leaderboardId, hasAccepted },
       });
       dismissModal();
-      dispatch(getUserStart());
+      dispatch(getUserLeaderboardsStart());
     } catch (e) {
       setLoadingLabel(null);
     }

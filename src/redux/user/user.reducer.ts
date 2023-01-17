@@ -9,6 +9,7 @@ import {
   GetUserProfile_getUserProfile_surge_lottie,
   GetUserProfile_getUserProfile_events as Events,
   GetUserSurge_getUserSurge as IUserSurge,
+  GetUserLeaderboards_getUserLeaderboards,
 } from "@graphql/_core/schema";
 import { MobileConsentInput } from "@graphql/_core/schema/globalTypes";
 import { SyncAction } from "../_core/types";
@@ -32,6 +33,7 @@ import {
   UPDATE_USER_SURGE,
   UPDATE_USER_GOAL,
   REMOVE_YUSCREEN_NOTIFICATIONS,
+  GET_USER_LEADERBOARDS_SUCCESS,
 } from "./user.actions";
 import { AUTHENTICATED } from "@redux/app/app.actions";
 import { reduceUserFeatures } from "./user.helpers";
@@ -189,6 +191,9 @@ export const userReducer = (state: IUserStore = getInitialState(), action: SyncA
     case LOGIN_USER_SUCCESS:
       return loginUserSuccess(state, action.payload);
 
+    case GET_USER_LEADERBOARDS_SUCCESS:
+      return getUserLeaderboardsSuccess(state, action.payload);
+
     case UPDATE_USER_CONSENT_SUCCESS:
       return updateUserConsentSuccess(state, action.payload);
 
@@ -339,6 +344,19 @@ const getUserSuccess = (
       ...mobileConsent,
     },
     features: userFeatures.reduce(reduceUserFeatures, {}),
+    leaderboards,
+    activeLeaderboardId,
+  };
+};
+
+const getUserLeaderboardsSuccess = (
+  state: IUserStore,
+  leaderboards: GetUserLeaderboards_getUserLeaderboards[]
+): IUserStore => {
+  const activeLeaderboardId = activeLeaderboardSafeguard(state.activeLeaderboardId, leaderboards);
+
+  return {
+    ...state,
     leaderboards,
     activeLeaderboardId,
   };

@@ -20,6 +20,8 @@ import {
   UPDATE_USER_PROFILE_EVENTS,
   GET_USER_COIN_LEDGER_TODAY_ACTIVITY_START,
   GET_ALL_USER_DATA_START,
+  GET_USER_LEADERBOARDS_START,
+  GET_USER_LEADERBOARDS_SUCCESS,
 } from "../user.actions";
 
 import fetchConnectionsSaga from "./fetchConnectionsSaga.sagas";
@@ -45,14 +47,17 @@ import removeYuScreenNotification from "./removeYuScreenNotification.saga";
 import showEventFinishDialog from "./showEventFinishedDialog.saga";
 import getUserCoinLedgerTodayActivitySaga from "./getUserCoinLedgerTodayActivity.saga";
 import getAllUserDataSaga from "./getAllUserData.saga";
+import getUserLeaderboardsSaga from "./getUserLeaderboards.saga";
 
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
   takeLatest(GET_USER_COIN_LEDGER_TODAY_ACTIVITY_START, getUserCoinLedgerTodayActivitySaga),
+  takeLatest(GET_USER_LEADERBOARDS_START, getUserLeaderboardsSaga),
   takeLatest(GET_USER_START, getUserDataSaga),
   takeLatest(GET_ALL_USER_DATA_START, getAllUserDataSaga),
   takeLatest(UPDATE_USER_PROFILE, sendDuelInvitationSaga),
   takeLatest(GET_USER_SUCCESS, showLeaderboardInviteOnGetUserSaga),
+  takeLatest(GET_USER_LEADERBOARDS_SUCCESS, showLeaderboardInviteOnGetUserSaga),
   takeLatest(SET_USER_NO_ACCESS, setUserNoAccessSaga),
   takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),
   takeLatest(LOGIN_USER_SUCCESS, showLeaderboardInviteOnLoginSaga),

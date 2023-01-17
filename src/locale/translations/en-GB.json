@@ -389,6 +389,9 @@
         "ctaLabelSecondary": "Turn it off",
         "heading": "Turn it off?",
         "subheading": "This means you won’t be able to access this leaderboard."
+      },
+      "invites": {
+        "subheading": "By turning on a leaderboard, you are opting in to share your most recent 30 day step data with other members of the leaderboard. This can be toggled off at any time."
       }
     },
     "fitkit_connect": {
