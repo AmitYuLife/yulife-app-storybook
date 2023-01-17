@@ -47,6 +47,9 @@ export default StyleSheet.create({
     justifyContent: "space-between",
   },
   courseWrapper: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: Style.adjust(16),
   },
 });

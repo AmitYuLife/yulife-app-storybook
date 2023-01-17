@@ -106,15 +106,24 @@ const YuniversityCoursesScreen: FC<IProps> = ({ headerProps, categoryImageUri, c
         <View style={style.contentWrapper}>
           <View style={style.categoryHeaderWrapper}>
             <TextTemplate type={"h3"}>{category}</TextTemplate>
-            <Image height={Style.adjust(46)} width={Style.adjust(72)} source={{ uri: categoryImageUri }} />
+            {!categoryImageUri ? null : (
+              <Image height={Style.adjust(46)} width={Style.adjust(72)} source={{ uri: categoryImageUri }} />
+            )}
           </View>
 
-          {courses.map(({ title: courseTitle, description, modules, id }) => {
+          {courses.map(({ title: courseTitle, logoImageKey, description, modules, id }) => {
             return (
               <View key={id}>
                 <View style={style.courseWrapper}>
-                  <TextTemplate type={"b1b"}>{courseTitle}</TextTemplate>
-                  <Markdown text={description} />
+                  <View>
+                    <TextTemplate type={"b1b"}>{courseTitle}</TextTemplate>
+                    <Markdown text={description} />
+                  </View>
+                  {!logoImageKey ? null : (
+                    <View style={style.categoryHeaderWrapper}>
+                      <Image height={Style.adjust(46)} width={Style.adjust(72)} source={{ uri: logoImageKey.uri }} />
+                    </View>
+                  )}
                 </View>
                 {modules.map(
                   ({ tags, imageTags, title: moduleTitle, id: moduleId, slug, image: moduleImage, status }) => {
