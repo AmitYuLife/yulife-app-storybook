@@ -4,7 +4,11 @@ import { Navigation } from "@navigation/main";
 import LeaderboardListScreen from "./leaderboard-list.screen";
 import { getActiveLeaderboardId, getUserFeatures } from "@redux/user/user.selectors";
 import { getAcceptedLeaderboards } from "@redux/user/user.selectors";
-import { updateActiveLeaderboardId, updateLeaderboardConsent } from "@redux/user/user.actions";
+import {
+  getUserLeaderboardsStart,
+  updateActiveLeaderboardId,
+  updateLeaderboardConsent,
+} from "@redux/user/user.actions";
 import { MODALS } from "@navigation/constants";
 import { useBackHandler } from "@hooks";
 import { showYuModal } from "@navigation/root";
@@ -48,6 +52,10 @@ function LeaderboardListContainer(props: Props) {
   const goBack = useCallback(() => {
     Navigation.popToRoot(componentId);
   }, [componentId]);
+
+  const onRefresh = useCallback(() => {
+    dispatch(getUserLeaderboardsStart());
+  }, [dispatch]);
 
   useBackHandler(() => {
     goBack();
@@ -94,6 +102,7 @@ function LeaderboardListContainer(props: Props) {
       activeLeaderboardId={activeLeaderboardId}
       onChangeActiveLeaderboard={handleChangeActiveLeaderboardId}
       onChangeLeaderboardConsent={handleChangeLeaderboardConsent}
+      onRefresh={onRefresh}
       onLeftIconPress={goBack}
       onRightIconPress={!features.showCreateLeaderboard ? null : handleCreateNewLeaderboard}
     />

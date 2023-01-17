@@ -23,7 +23,16 @@ export interface GetAllUserData_todayActivity {
   score: string | null;
 }
 
+export interface GetAllUserData_leaderboards {
+  leaderboardId: string | null;
+  name: string | null;
+  consent: boolean | null;
+  hasAccepted: boolean | null;
+  inviteFrom: string | null;
+}
+
 export interface GetAllUserData {
   coinLedger: GetAllUserData_coinLedger | null;
   todayActivity: (GetAllUserData_todayActivity | null)[] | null;
+  leaderboards: (GetAllUserData_leaderboards | null)[] | null;
 }
