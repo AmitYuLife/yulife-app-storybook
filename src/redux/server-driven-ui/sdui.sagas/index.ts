@@ -1,4 +1,4 @@
-import { ActionPattern, takeEvery, takeLeading } from "redux-saga/effects";
+import { takeEvery, takeLeading } from "redux-saga/effects";
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { sduiActionNavigateBackSaga } from "./sduiActionNavigateBack.saga";
 import { sduiActionNavigateSaga } from "./sduiActionNavigate.saga";
@@ -13,28 +13,21 @@ import { sduiActionOpenAlertDialogSaga } from "./sduiActionOpenAlertDialog.saga"
 import { sduiActionLogEventSaga } from "./sduiActionLogEvent.saga";
 import { sduiActionSendMutation } from "./sduiActionSendMutation.saga";
 import { sduiActionGenericNavigateBack } from "./sduiActionGenericNavigateBack.saga";
+import { sduiActionGenericNavigateBackToRoot } from "./sduiActionGenericNavigateBackToRoot.saga";
 
 export default [
-  takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE_BACK as ActionPattern, sduiActionNavigateBackSaga),
-  takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE as ActionPattern, sduiActionNavigateSaga),
-  takeLeading(SduiActionType.SDUI_ACTION_SET_BOTTOM_TAB as ActionPattern, sduiActionSetBottomTabSaga),
-  takeLeading(SduiActionType.SDUI_ACTION_OPEN_URL as ActionPattern, sduiActionOpenUrlSaga),
-  takeLeading(SduiActionType.SDUI_ACTION_OPEN_SUPPORT_CHAT as ActionPattern, sduiActionOpenSupportChatSaga),
-  takeLeading(
-    SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP as ActionPattern,
-    sduiActionProductUnderwritingStepPopSaga
-  ),
-  takeLeading(
-    SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_FINISH as ActionPattern,
-    sduiActionProductUnderwritingStepFinishSaga
-  ),
-  takeLeading(
-    SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH as ActionPattern,
-    sduiActionProductUnderwritingStepPushSaga
-  ),
-  takeLeading(SduiActionType.SDUI_ACTION_OPEN_MODAL as ActionPattern, sduiActionOpenModalSaga),
-  takeLeading(SduiActionType.SDUI_ACTION_OPEN_ALERT_DIALOG as ActionPattern, sduiActionOpenAlertDialogSaga),
-  takeLeading(SduiActionType.SDUI_ACTION_SEND_MUTATION as ActionPattern, sduiActionSendMutation),
-  takeLeading(SduiActionType.SDUI_ACTION_GENERIC_NAVIGATE_BACK as ActionPattern, sduiActionGenericNavigateBack),
-  takeEvery(SduiActionType.SDUI_ACTION_LOG_EVENT as ActionPattern, sduiActionLogEventSaga),
+  takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE_BACK, sduiActionNavigateBackSaga),
+  takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE, sduiActionNavigateSaga),
+  takeLeading(SduiActionType.SDUI_ACTION_SET_BOTTOM_TAB, sduiActionSetBottomTabSaga),
+  takeLeading(SduiActionType.SDUI_ACTION_OPEN_URL, sduiActionOpenUrlSaga),
+  takeLeading(SduiActionType.SDUI_ACTION_OPEN_SUPPORT_CHAT, sduiActionOpenSupportChatSaga),
+  takeLeading(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP, sduiActionProductUnderwritingStepPopSaga),
+  takeLeading(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_FINISH, sduiActionProductUnderwritingStepFinishSaga),
+  takeLeading(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH, sduiActionProductUnderwritingStepPushSaga),
+  takeLeading(SduiActionType.SDUI_ACTION_OPEN_MODAL, sduiActionOpenModalSaga),
+  takeLeading(SduiActionType.SDUI_ACTION_OPEN_ALERT_DIALOG, sduiActionOpenAlertDialogSaga),
+  takeLeading(SduiActionType.SDUI_ACTION_SEND_MUTATION, sduiActionSendMutation),
+  takeLeading(SduiActionType.SDUI_ACTION_GENERIC_NAVIGATE_BACK, sduiActionGenericNavigateBack),
+  takeLeading(SduiActionType.SDUI_ACTION_GENERIC_NAVIGATE_BACK_TO_ROOT, sduiActionGenericNavigateBackToRoot),
+  takeEvery(SduiActionType.SDUI_ACTION_LOG_EVENT, sduiActionLogEventSaga),
 ];
