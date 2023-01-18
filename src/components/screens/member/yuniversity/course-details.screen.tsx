@@ -15,6 +15,7 @@ import {
 import TagsWithImage from "@components/molecules/yuniversity/tags-with-image";
 
 export interface ICourseModuleDetailsProps {
+  onBackPress: () => void;
   onClose: () => void;
   moduleDetails: IGqlCourseModuleDetails;
   onChapterPress: (video: IGqlMedia, chapterId: string) => void;
@@ -22,6 +23,7 @@ export interface ICourseModuleDetailsProps {
 }
 
 const CourseDetailsScreen = ({
+  onBackPress,
   onClose,
   onChapterPress,
   startQuiz,
@@ -109,7 +111,7 @@ const CourseDetailsScreen = ({
         </Module>
         <Module {...moduleCertificate} onPress={openCertificate} />
       </ScrollView>
-      <GenericHeadingAbsolute logo="yulife" onRightIconPress={onClose} />
+      <GenericHeadingAbsolute logo="yulife" onRightIconPress={onClose} onLeftIconPress={onBackPress} />
     </View>
   );
 };

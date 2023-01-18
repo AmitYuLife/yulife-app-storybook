@@ -16,7 +16,8 @@ interface IProps {
 }
 
 const CourseDetailsContainer = ({ moduleId }: IProps) => {
-  const onClose = useCallback(() => Navigation.pop(ROUTES.courseDetails), []);
+  const onClose = useCallback(() => Navigation.popTo(ROUTES.wellbeingHubItems), []);
+  const onBackPress = useCallback(() => Navigation.pop(ROUTES.courseDetails), []);
 
   const { data, loading } = useQuery<GetModuleDetails, GetModuleDetailsVariables>(
     GQL_QUERY_GET_YUNIVERSITY_COURSE_MODULE_DETAILS,
@@ -63,6 +64,7 @@ const CourseDetailsContainer = ({ moduleId }: IProps) => {
 
   return (
     <CourseDetailsScreen
+      onBackPress={onBackPress}
       onClose={onClose}
       moduleDetails={data.getInAppYuniversityCourseModuleDetails}
       onChapterPress={onChapterPress}
