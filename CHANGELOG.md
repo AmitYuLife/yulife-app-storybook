@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.65.0] - 2023-01-18
+
+### Bugfixes
+
+- Bugfix: Yuniversity module back navigation
+- Bugfix XSE-1583: Apply KeyboardAvoidingView on SDUI screen
+
+### Tasks
+
+- Task GS-137: Refactor leaderboard to use new queries
+- Task GS-628: Add cpd course logo
+- Task GS-621: Yuniversity module details
+- Task GS-631: Create deeplink for wellbeing hub items
+- Task: Improve FullScreenSwiper close icon position
+- Task GS-526: Loading state after meditopia session
+
+### Chores
+
+- Chore - Adding Yuniversity testing seed data
+- Chore: sdui action navigateBackToRoot
+
+### Extra
+
+- Detox: change ports for local server testing
+- Detox - Yunity Chest rewards
+- Detox: Fixes - Smoke & Extended
+
 ## [3.64.0] - 2023-01-11
 
 ### Features
