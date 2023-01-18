@@ -30,6 +30,10 @@ export * from "./mongo/goal_events"
 export * from "./mongo/ad_banners"
 export * from "./mongo/goal_team"
 export * from "./mongo/goal_participation"
+export * from "./mongo/media"
+export * from "./mongo/yuniversity_course"
+export * from "./mongo/yuniversity_course_category"
+export * from "./mongo/yuniversity_course_module"
 
 
 
