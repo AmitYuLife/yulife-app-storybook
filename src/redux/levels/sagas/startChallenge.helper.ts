@@ -6,7 +6,7 @@ import {
   CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot,
   UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge as UpdateQuestMapActiveChallenge,
 } from "@graphql/_core/schema";
-import { queryFitKitByTypes, QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.helpers";
+import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
 import moment from "moment";
@@ -25,6 +25,7 @@ import {
 import { DETOX_ENABLED } from "@services/socket";
 import { Task } from "redux-saga";
 import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
+import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
 
 export function* startTracking(
   levelSlotId: string,
@@ -32,15 +33,15 @@ export function* startTracking(
   endDateTime: string,
   fitKitTypes: FitKitType[]
 ) {
-  const start = moment(startDateTime).format(DATE_FORMAT_WITH_TZ);
-  const end = moment(endDateTime);
+  const startTime = moment(startDateTime).format(DATE_FORMAT_WITH_TZ);
+  const endTime = moment(endDateTime);
   const videoPlayerIsActive: ReturnType<typeof getVideoPlayerIsActive> = yield select(getVideoPlayerIsActive);
 
   if (videoPlayerIsActive) {
     return;
   }
 
-  while (moment().isBefore(end)) {
+  while (moment().isBefore(endTime)) {
     const isCancelled: boolean = yield cancelled();
 
     if (isCancelled) {
@@ -49,13 +50,12 @@ export function* startTracking(
 
     try {
       const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
-      const queryResult: QueryFitKitByTypesResponse = yield call(
-        queryFitKitByTypes,
-        start,
-        end.format(DATE_FORMAT_WITH_TZ),
+      const queryResult: QueryFitKitByTypesResponse = yield call(queryFitKitSampleData, {
+        startTime,
+        endTime: endTime.format(DATE_FORMAT_WITH_TZ),
         fitKitTypes,
-        features
-      );
+        features,
+      });
 
       if (queryResult.results.length > 0) {
         const results = {

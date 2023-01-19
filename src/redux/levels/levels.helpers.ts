@@ -3,7 +3,7 @@ import RNFitKit from "@services/fitkit/fitkit.service";
 import Logger from "@services/logging/logger";
 import { DATE_FORMAT_WITH_TZ, getStartAndEndDateTimesWithTimezone } from "@utils";
 import moment from "moment";
-import { queryFitKitByTypes } from "@services/fitkit/fitkit.helpers";
+import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
 import { IActiveLevel } from "./levels.selectors";
 
 const MAX_AVAILABLE = 4;
@@ -17,7 +17,12 @@ export async function getEndResult(
     try {
       const { start, end } = getStartAndEndDateTimesWithTimezone(startDateTime, endDateTime);
 
-      const { results: queryResult } = await queryFitKitByTypes(start, end, fitKitTypes, features);
+      const { results: queryResult } = await queryFitKitSampleData({
+        startTime: start,
+        endTime: end,
+        fitKitTypes,
+        features,
+      });
 
       // the way the 3rd party apps like calm/headspace write to the history is not always consistent
       // if someone's got their timezone changed
@@ -34,7 +39,12 @@ export async function getEndResult(
 
       const startEarly = moment(startDateTime).subtract(1, "hours").format(DATE_FORMAT_WITH_TZ);
       const endLater = moment(endDateTime).add(1, "hours").format(DATE_FORMAT_WITH_TZ);
-      const { results: queryResultAllDay } = await queryFitKitByTypes(startEarly, endLater, fitKitTypes, features);
+      const { results: queryResultAllDay } = await queryFitKitSampleData({
+        startTime: startEarly,
+        endTime: endLater,
+        fitKitTypes,
+        features,
+      });
 
       if (queryResultAllDay.length > 0) {
         return {

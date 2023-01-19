@@ -36,7 +36,7 @@ export default {
         return aggregatedQueries.filter(result => (
             moment(result.startTime).isAfter(moment(options.startTime)) &&
             moment(result.endTime).isBefore(moment(options.endTime)) &&
-            options.type.toString() === result.type
+            options.types.map(type => type.toString()).includes(result.type)
         )
         );
     },

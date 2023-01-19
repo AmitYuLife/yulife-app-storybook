@@ -1,5 +1,57 @@
+import { ChallengesPayload, FitKitType } from "@graphql/_core/schema/globalTypes";
+import { SampleQueryResult } from "@yu-life/react-native-fitkit";
+import { IUserStore } from "@redux/user/user.reducer";
+import { Moment } from "moment";
+
+export type AggregatedQueryArgs = {
+  start: Moment;
+  end: Moment;
+  fitKitTypes: FitKitType[];
+  timeRange: TimeRange;
+  aggregationType: AggregationType;
+  blackListApps?: string[];
+  features: IUserStore["features"];
+};
+
+export type FitKitSampleType<T extends boolean> = {
+  startTime: string;
+  endTime: string;
+  fitKitTypes: FitKitType[];
+  features: IUserStore["features"];
+  rawData?: T;
+};
+
+export type GenericFitKitResponseType<T extends boolean> = T extends true
+  ? QueryFitKitByTypesRawResponse
+  : QueryFitKitByTypesResponse;
+
 export type FitKitState = {
   available: boolean;
   authorised: boolean;
   loading: boolean;
 };
+
+export interface QueryFitKitByTypesResponse {
+  results: ChallengesPayload[];
+  error: boolean | string;
+}
+export interface QueryFitKitByTypesRawResponse {
+  // TODO: create common type for sample and aggregated
+  results: SampleQueryResult[];
+  error: boolean | string;
+}
+
+export enum AggregationType {
+  ActivitySegment = "ActivitySegment",
+  ActivityType = "ActivityType",
+  Session = "Session",
+  Time = "Time",
+}
+
+export enum TimeRange {
+  DAYS = "days",
+  HOURS = "hours",
+  MINUTES = "minutes",
+  SECONDS = "seconds",
+  MILLISECONDS = "ms",
+}

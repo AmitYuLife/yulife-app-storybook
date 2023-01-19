@@ -5,7 +5,7 @@ import { FitkitUnavailable } from "./subcontainers/fitkit-unavailable";
 import { FitkitUnauthorised } from "./subcontainers/fitkit-unauthorised";
 import { DailyStepsOnline } from "./subcontainers/daily-steps-online";
 import { getDailyStepsIsFetching } from "@redux/daily-steps/daily-steps.selectors";
-import { FitkitContext } from "@services/fitkit/fitkit.helpers";
+import { FitkitContext } from "@services/fitkit/fitkit.context";
 import { useAuthoriseFitkit } from "@hooks";
 import Storage from "@services/storage";
 import { bottomTabs, ROUTES } from "@navigation/constants";

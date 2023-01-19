@@ -1,14 +1,16 @@
 import moment from "moment";
 import { call, select, spawn } from "redux-saga/effects";
-import { FitKitType } from "@graphql/_core/schema/globalTypes";
-import { queryFitKitByTypesDebug, getAdditionalCyclingFitnessActivities } from "@services/fitkit/fitkit.helpers";
+import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 import { UPDATE_APP_STATE } from "@redux/app/app.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { getToken } from "@services/storage";
 import { Unpacked } from "@utils";
 import getUserDebugData from "@graphql/debug/getUserDebugData.gql";
+import { QueryFitKitByTypesRawResponse } from "@services/fitkit/fitkit.types";
+import { Platform } from "react-native";
 import submitUserDebugData from "@graphql/debug/submitUserDebugData.gql";
+import { FitKitType, SampleDebugData } from "@graphql/_core/schema/globalTypes";
 
 export default function* debugTool(dataPayload: { payload: string; type: string }) {
   const { payload: appState, type } = dataPayload || {};
@@ -40,24 +42,34 @@ export default function* debugTool(dataPayload: { payload: string; type: string 
       return;
     }
 
-    const additionalCyclingFitnessActivities = new Map<FitKitType, string[]>([
-      [FitKitType.Cycling, getAdditionalCyclingFitnessActivities(userFeatures)],
-    ]);
-
-    const { results }: Unpacked<typeof queryFitKitByTypesDebug> = yield call(
-      queryFitKitByTypesDebug,
-      moment(startTime).format(),
-      moment(endTime).format(),
+    Logger.logMixpanelEvent(`debug_tool_query_args`, {
+      disableUserEntries: false,
+      endTime,
+      startTime,
       fitKitTypes,
-      disableTypeFilter || false,
-      additionalCyclingFitnessActivities
-    );
+      disableTypeFilter,
+    });
+
+    const { results, error }: QueryFitKitByTypesRawResponse = yield call(queryFitKitSampleData, {
+      startTime: moment(startTime).format(),
+      endTime: moment(endTime).format(),
+      fitKitTypes: disableTypeFilter && Platform.OS == "android" ? [] : fitKitTypes,
+      features: { disableUserEntries: false, loggingEnabled: true },
+      rawData: true,
+    });
+
+    Logger.logMixpanelEvent("debug_tool_query_results", {
+      results: results,
+      error: error,
+      fitKitTypes,
+      location: "debugTool.saga",
+    });
 
     /**
      * Only send to API StepCount data, other data types hasn't been tested
      */
     if (fitKitTypes.length === 1 && fitKitTypes[0] === FitKitType.StepCount && data.getUserDebugData.id) {
-      yield call(submitUserDebugData, data.getUserDebugData.id, results);
+      yield call(submitUserDebugData, data.getUserDebugData.id, results as SampleDebugData[]);
     }
   } catch (e) {
     yield spawn(() => {

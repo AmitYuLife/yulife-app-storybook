@@ -5,7 +5,7 @@ import React, { memo, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startDailySteps } from "@redux/daily-steps/daily-steps.actions";
 import { DailyStepsScreen } from "@screens";
-import { FitkitContext } from "@services/fitkit/fitkit.helpers";
+import { FitkitContext } from "@services/fitkit/fitkit.context";
 import { useNavigationComponentDidAppear, useTapBackTwiceToExit } from "@hooks";
 import { getUserNotification, getUserSurge, getUserEventsWithAds } from "@redux/user/user.selectors";
 import { useLazyQuery } from "@apollo/client";
