@@ -306,12 +306,9 @@ const checkIosHealthPermission = async (type: any): Promise<PermissionStatus> =>
     const startTime = start.toISOString().slice(0, 19);
     const endTime = new Date().toISOString().slice(0, 19);
 
-    const query =
-      type === FitKitTypes.Types.MindfulSession || type === FitKitTypes.Types.Pilates
-        ? RNFitKit.sampleQuery
-        : RNFitKit.aggregateQuery;
+    const useSampleQuery = type === FitKitTypes.Types.MindfulSession || type === FitKitTypes.Types.Pilates;
 
-    const res = await query({
+    const args = {
       aggregateBy: {
         bucketSize: { value: 1, type: FitKitTypes.TimeRange.DAYS },
         type: FitKitTypes.AggregateType.Time,
@@ -319,8 +316,11 @@ const checkIosHealthPermission = async (type: any): Promise<PermissionStatus> =>
       disableUserEntries: false,
       endTime,
       startTime,
-      type,
-    });
+    };
+
+    const res = useSampleQuery
+      ? await RNFitKit.sampleQuery({ ...args, type })
+      : await RNFitKit.aggregateQuery({ ...args, types: [type] });
 
     return res && res.length > 0 ? "authorised" : "not_determined";
   } catch (e) {

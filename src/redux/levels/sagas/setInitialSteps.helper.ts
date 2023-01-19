@@ -1,11 +1,13 @@
 import { spawn, delay, select, put } from "redux-saga/effects";
 import moment from "moment";
 import Logger from "@services/logging/logger";
-import { querySteps, QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.helpers";
+import { queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
 import { pedometerStepsChallengeStarted } from "../levels.actions";
 import { getLastResults } from "@redux/pedometer/pedometer.selectors";
 import { IUserStore } from "@redux/user/user.reducer";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
+import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
+import { getAggregationStepCountConfiguration } from "@services/fitkit/fitkit.config";
 
 export default function* setInitialSteps(startDateTime: string, features: IUserStore["features"]) {
   const lastPedometerResults: ReturnType<typeof getLastResults> = yield select(getLastResults);
@@ -46,12 +48,13 @@ export default function* setInitialSteps(startDateTime: string, features: IUserS
   let retryDelayMs = 2000;
   while (retryDelayMs < 16000) {
     try {
-      const data: QueryFitKitByTypesResponse = yield querySteps(
-        startOfDayMoment,
-        startOfChallengeMoment,
-        stepsBlackListApps,
-        features
-      );
+      const stepsConfiguration = getAggregationStepCountConfiguration(stepsBlackListApps);
+      const data: QueryFitKitByTypesResponse = yield queryFitKitAggregatedData({
+        start: startOfDayMoment,
+        end: startOfChallengeMoment,
+        features,
+        ...stepsConfiguration,
+      });
 
       if (!data.error) {
         const steps = data.results.reduce((acc, payload) => acc + payload.value, 0);

@@ -4,7 +4,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 import RNFitKit, { FitKitAuthOptions, FitKitHealthTrackingPlatform, FitKitTypes } from "./fitkit.service";
 import Logger from "@services/logging/logger";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
-import { mapGqlFitKitTypeToFitKitType } from "./fitkit.helpers";
+import { mapGqlFitKitTypeToFitKitType } from "./cast/fitkitTypes";
 import { isSamsung } from "@utils";
 import { useDispatch, useSelector } from "react-redux";
 import { fitkitSelector } from "@redux/fitkit/fitkit.selectors";
@@ -57,7 +57,7 @@ export function useFitKit() {
               disableUserEntries: false,
               endTime,
               startTime,
-              type: FitKitTypes.Types.StepCount,
+              types: [FitKitTypes.Types.StepCount],
             });
 
             isAuthorised = res && res.length > 0;

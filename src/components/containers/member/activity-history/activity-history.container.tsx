@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_ACTIVITY_HISTORY } from "@graphql/user";
-import { processResult, queryFitKitByTypes, queryAggregatedBiking, querySteps } from "@services/fitkit/fitkit.helpers";
+import { queryFitKitSampleData, queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
 import moment from "moment";
 import React, { useCallback, useState, useRef, FC } from "react";
 import { LargeList } from "react-native-largelist-v3";
@@ -21,6 +21,11 @@ import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.s
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
+import { processResult } from "@services/fitkit/helpers/sampleToAggregatedData";
+import {
+  getAggregationCyclingConfiguration,
+  getAggregationStepCountConfiguration,
+} from "@services/fitkit/fitkit.config";
 
 interface IProps {
   componentId: string;
@@ -71,15 +76,17 @@ const ActivityHistoryContainer: FC<Props> = ({
       const start = moment().subtract(30, "days").startOf("day");
       const end = moment().subtract(1, "days").endOf("day");
 
+      const cyclingConfig = getAggregationCyclingConfiguration(features);
+      const stepsConfig = getAggregationStepCountConfiguration(stepsBlackListApps);
       const [steps, meditation, cycling] = await Promise.all([
-        querySteps(start, end, stepsBlackListApps, features),
-        queryFitKitByTypes(
-          start.format(DATE_FORMAT_WITH_TZ),
-          end.format(DATE_FORMAT_WITH_TZ),
-          [FitKitType.MindfulSession],
-          features
-        ),
-        queryAggregatedBiking(start, end, features),
+        queryFitKitAggregatedData({ start, end, features, ...stepsConfig }),
+        queryFitKitSampleData({
+          startTime: start.format(DATE_FORMAT_WITH_TZ),
+          endTime: end.format(DATE_FORMAT_WITH_TZ),
+          fitKitTypes: [FitKitType.MindfulSession],
+          features,
+        }),
+        queryFitKitAggregatedData({ start, end, features, ...cyclingConfig }),
       ]);
 
       const meditationResults = processResult(meditation, "MindfulSession", start, end);

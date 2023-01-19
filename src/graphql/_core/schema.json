@@ -3450,6 +3450,30 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "withings",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "MilestoneTarget",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "strava",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "MilestoneTarget",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -6103,6 +6127,18 @@
           {
             "name": "SDUI_ACTION_GENERIC_NAVIGATE_BACK",
             "description": "Generic: Navigate back; RN client version >= 3.55.0",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SDUI_ACTION_GENERIC_NAVIGATE_BACK_TO_ROOT",
+            "description": "Generic: Navigate back; RN client version >= 3.65.0",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SDUI_ACTION_SHOW_OVERLAY_LIST_PICKER",
+            "description": "Generic: Opens the ListPicker component; RN client version >= 3.65.0; E.g: {\"title\":\"You're about to select something\",\"items\":[{\"label\":\"Option 1\",\"value\":1,\"onPress\":{\"type\":\"ActionType\",\"payload\":\"{}\"}}]}",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -20685,6 +20721,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "unit",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -20929,6 +20977,36 @@
           },
           {
             "name": "yuCoinNotYetSpent",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "dailyAverageSteps",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "trees",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "water",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "plasticRemoved",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "meals",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -44933,6 +45011,18 @@
           },
           {
             "name": "device",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "withings",
             "description": null,
             "args": [],
             "type": {

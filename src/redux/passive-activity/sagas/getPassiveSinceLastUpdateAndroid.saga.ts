@@ -1,19 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChallengesPayload, FitKitType } from "@graphql/_core/schema/globalTypes";
+import { ChallengesPayload } from "@graphql/_core/schema/globalTypes";
 import moment from "moment";
 import { call, select, CallEffect, all, AllEffect } from "redux-saga/effects";
-import {
-  processResult,
-  queryAggregatedDataByDay,
-  queryAggregatedBiking,
-  QueryFitKitByTypesResponse,
-} from "@services/fitkit/fitkit.helpers";
+import { queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
 import { IUserStore } from "@redux/user/user.reducer";
 import { PermissionsAndroid } from "react-native";
 import RNFitKit, { FitKitTypes } from "@yu-life/react-native-fitkit";
 import Logger from "@services/logging/logger";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import { getEndDates } from "./helper";
+import { processResult } from "@services/fitkit/helpers/sampleToAggregatedData";
+import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
+import {
+  getAggregationCyclingConfiguration,
+  getAggregationStepCountConfiguration,
+  getAndroidAggregationMindfulSessionConfiguration,
+} from "@services/fitkit/fitkit.config";
 
 export default function* getPassiveSinceLastUpdateAndroid(
   stepsLastUpdate: string,
@@ -79,7 +81,13 @@ const getCycling = async (
     return [];
   }
 
-  const cycling = await queryAggregatedBiking(moment(cyclingLastUpdate).startOf("day"), endDateCycling, userFeatures);
+  const cyclingConfig = getAggregationCyclingConfiguration(userFeatures);
+  const cycling = await queryFitKitAggregatedData({
+    start: moment(cyclingLastUpdate).startOf("day"),
+    end: endDateCycling,
+    features: userFeatures,
+    ...cyclingConfig,
+  });
 
   if (cycling.error) {
     return [];
@@ -98,13 +106,13 @@ const getMeditation = async (
     return [];
   }
 
-  const meditation = await queryAggregatedDataByDay(
-    moment(meditationLastUpdate).startOf("day"),
-    endDateMeditation,
-    [],
-    [FitKitType.MindfulSession],
-    userFeatures
-  );
+  const meditationConfiguration = getAndroidAggregationMindfulSessionConfiguration();
+  const meditation = await queryFitKitAggregatedData({
+    start: moment(meditationLastUpdate).startOf("day"),
+    end: endDateMeditation,
+    features: userFeatures,
+    ...meditationConfiguration,
+  });
 
   return processResult(meditation, "MindfulSession", moment(meditationLastUpdate), endDateMeditation);
 };
@@ -119,13 +127,13 @@ const getSteps = async (
     return [];
   }
 
-  const steps: QueryFitKitByTypesResponse = await queryAggregatedDataByDay(
-    moment(stepsLastUpdate).startOf("day"),
-    endDateSteps,
-    stepsBlackListApps,
-    [FitKitType.StepCount],
-    userFeatures
-  );
+  const stepsConfiguration = getAggregationStepCountConfiguration(stepsBlackListApps);
+  const steps: QueryFitKitByTypesResponse = await queryFitKitAggregatedData({
+    start: moment(stepsLastUpdate).startOf("day"),
+    end: endDateSteps,
+    features: userFeatures,
+    ...stepsConfiguration,
+  });
 
   return processResult(steps, "StepCount", moment(stepsLastUpdate), endDateSteps);
 };

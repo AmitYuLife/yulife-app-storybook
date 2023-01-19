@@ -2,9 +2,14 @@
 import { ChallengesPayload, FitKitType } from "@graphql/_core/schema/globalTypes";
 import moment from "moment";
 import { call } from "redux-saga/effects";
-import { processResult, queryFitKitByTypes, querySteps, queryAggregatedBiking } from "@services/fitkit/fitkit.helpers";
+import { queryFitKitSampleData, queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
 import { IUserStore } from "@redux/user/user.reducer";
 import { getEndDates } from "./helper";
+import { processResult } from "@services/fitkit/helpers/sampleToAggregatedData";
+import {
+  getAggregationCyclingConfiguration,
+  getAggregationStepCountConfiguration,
+} from "@services/fitkit/fitkit.config";
 
 export default function* getPassiveSinceLastUpdateIos(
   stepsLastUpdate: string,
@@ -41,7 +46,13 @@ const getSteps = async (
     return [];
   }
 
-  const steps = await querySteps(moment(stepsLastUpdate).startOf("day"), endDateSteps, [], userFeatures);
+  const stepsConfiguration = getAggregationStepCountConfiguration([]);
+  const steps = await queryFitKitAggregatedData({
+    start: moment(stepsLastUpdate).startOf("day"),
+    end: endDateSteps,
+    features: userFeatures,
+    ...stepsConfiguration,
+  });
 
   return processResult(steps, "StepCount", moment(stepsLastUpdate).startOf("day"), endDateSteps);
 };
@@ -55,12 +66,12 @@ const getMeditation = async (
     return [];
   }
 
-  const meditation = await queryFitKitByTypes(
-    moment(meditationLastUpdate).startOf("day").format(),
-    endDateMeditation.format(),
-    [FitKitType.MindfulSession],
-    userFeatures
-  );
+  const meditation = await queryFitKitSampleData({
+    startTime: moment(meditationLastUpdate).startOf("day").format(),
+    endTime: endDateMeditation.format(),
+    fitKitTypes: [FitKitType.MindfulSession],
+    features: userFeatures,
+  });
 
   return processResult(meditation, "MindfulSession", moment(meditationLastUpdate).startOf("day"), endDateMeditation);
 };
@@ -74,7 +85,13 @@ const getCycling = async (
     return [];
   }
 
-  const cycling = await queryAggregatedBiking(moment(cyclingLastUpdate).startOf("day"), endDateCycling, userFeatures);
+  const cyclingConfig = getAggregationCyclingConfiguration(userFeatures);
+  const cycling = await queryFitKitAggregatedData({
+    start: moment(cyclingLastUpdate).startOf("day"),
+    end: endDateCycling,
+    features: userFeatures,
+    ...cyclingConfig,
+  });
 
   return processResult(cycling, "Biking", moment(cyclingLastUpdate).startOf("day"), endDateCycling);
 };

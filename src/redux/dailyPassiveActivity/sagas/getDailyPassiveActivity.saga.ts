@@ -1,13 +1,7 @@
-import moment, { Moment } from "moment";
+import moment from "moment";
 import { all, call, select, spawn, delay, put } from "redux-saga/effects";
 import { ChallengesPayload, FitKitType, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
-import {
-  fitkitTypeToGqlType,
-  queryFitKitByTypes,
-  queryAggregatedBiking,
-  QueryFitKitByTypesResponse,
-  sampleDataToAggregatedData,
-} from "@services/fitkit/fitkit.helpers";
+import { queryFitKitSampleData, queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 import { UPDATE_APP_STATE } from "../../app/app.actions";
 import { getUserFeatures } from "../../user/user.selectors";
@@ -20,6 +14,9 @@ import { getToken } from "@services/storage";
 import { Unpacked } from "@utils";
 import RNFitKit, { FitKitTypes } from "@yu-life/react-native-fitkit";
 import { getInAppDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
+import { processResult } from "@services/fitkit/helpers/sampleToAggregatedData";
+import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
+import { getAggregationCyclingConfiguration } from "@services/fitkit/fitkit.config";
 
 export default function* getDailyPassiveActivity(dataPayload: { payload: string; type: string }) {
   const { payload: appState, type } = dataPayload || {};
@@ -69,7 +66,12 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
     const inAppDailyMeditation: ReturnType<typeof getInAppDailyMeditation> = yield select(getInAppDailyMeditation);
     const fitkitMeditation: QueryFitKitByTypesResponse = !meditationPermissionGranted
       ? null
-      : yield call(queryFitKitByTypes, startTime.format(), endTime.format(), [FitKitType.MindfulSession], userFeatures);
+      : yield call(queryFitKitSampleData, {
+          startTime: startTime.format(),
+          endTime: endTime.format(),
+          fitKitTypes: [FitKitType.MindfulSession],
+          features: userFeatures,
+        });
 
     let shouldQueryCycling = true;
     if (Platform.OS === "android") {
@@ -79,9 +81,15 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
 
     const meditation = getMeditation(inAppDailyMeditation, fitkitMeditation);
 
+    const cyclingConfig = getAggregationCyclingConfiguration(userFeatures);
     const cycling: QueryFitKitByTypesResponse = !shouldQueryCycling
       ? null
-      : yield call(queryAggregatedBiking, startTime, endTime, userFeatures);
+      : yield call(queryFitKitAggregatedData, {
+          start: startTime,
+          end: endTime,
+          features: userFeatures,
+          ...cyclingConfig,
+        });
 
     if (!meditation?.results && !cycling?.results) {
       return;
@@ -89,11 +97,11 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
 
     const cyclingResults: ChallengesPayload[] = !shouldQueryCycling
       ? []
-      : processResult(cycling, startTime, endTime, "Biking");
+      : processResult(cycling, "Biking", startTime, endTime);
 
     const meditationResults: ChallengesPayload[] = !meditationPermissionGranted
       ? []
-      : processResult(meditation, startTime, endTime, "MindfulSession");
+      : processResult(meditation, "MindfulSession", startTime, endTime);
 
     if (!cyclingResults.length && !meditationResults.length) {
       return;
@@ -145,18 +153,6 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
   }
 }
 
-const processResult = (response: QueryFitKitByTypesResponse, startTime: Moment, endTime: Moment, type: string) => {
-  if (response.error) {
-    return [];
-  }
-
-  if (response.results.length === 0) {
-    return getEmptyResults(startTime, endTime, type);
-  }
-
-  return sampleDataToAggregatedData(startTime.clone().format(), endTime.clone().format(), response.results);
-};
-
 const getMeditation = (
   inAppMeditation: number,
   fitkitMeditation: QueryFitKitByTypesResponse
@@ -187,15 +183,4 @@ const getMeditation = (
     error: false,
     results: [...fitkitMeditation.results, inAppMeditationResponse],
   };
-};
-
-const getEmptyResults = (startTime: Moment, endTime: Moment, type: string): ChallengesPayload[] => {
-  return [
-    {
-      startDateTime: startTime.clone().format(),
-      endDateTime: endTime.clone().format(),
-      value: 0,
-      type: fitkitTypeToGqlType(type),
-    },
-  ];
 };

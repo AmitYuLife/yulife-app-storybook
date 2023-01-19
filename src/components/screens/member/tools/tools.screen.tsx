@@ -7,11 +7,13 @@ import { TextTemplate } from "@atoms";
 import { Button, TertiaryButton } from "@molecules";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { Colours, Style } from "@styles";
-import { getAdditionalCyclingFitnessActivities, queryFitKitByTypesDebug } from "@services/fitkit/fitkit.helpers";
+import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
 import { CheckBox } from "@components/molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import { getAdditionalCyclingFitnessActivities } from "@services/fitkit/helpers/additionalCyclingActivities";
+import Logger from "@services/logging/logger";
 
 interface Props {
   onClose: () => void;
@@ -91,13 +93,30 @@ const ToolsScreen = ({ onClose }: Props) => {
     ]);
 
     try {
-      const response = await queryFitKitByTypesDebug(
-        startDate,
-        endDate,
-        typePickerItems[typeIndex].types,
-        allActivitiesSelect,
-        additionalCyclingFitnessActivities
-      );
+      const fitKitTypes = typePickerItems[typeIndex].types;
+      Logger.logMixpanelEvent(`debug_tool_query_args`, {
+        disableUserEntries: false,
+        endTime: endDate,
+        startTime: startDate,
+        fitKitTypes,
+        disableTypeFilter: allActivitiesSelect,
+        additionalFitnessActivities: additionalCyclingFitnessActivities,
+      });
+
+      const response = await queryFitKitSampleData({
+        startTime: startDate,
+        endTime: endDate,
+        fitKitTypes: allActivitiesSelect ? [] : fitKitTypes,
+        features: { disableUserEntries: false, loggingEnabled: true },
+        rawData: true,
+      });
+
+      Logger.logMixpanelEvent("debug_tool_query_results", {
+        results: response.results,
+        error: response.error,
+        fitKitTypes,
+        location: "tools.screen",
+      });
 
       if (response.error) {
         Alert.alert("Something went wrong");
@@ -109,7 +128,7 @@ const ToolsScreen = ({ onClose }: Props) => {
     }
 
     setLoading(false);
-  }, [setLoading, queryFitKitByTypesDebug, startDate, endDate, typeIndex, type, allActivitiesSelect]);
+  }, [setLoading, queryFitKitSampleData, startDate, endDate, typeIndex, type, allActivitiesSelect]);
 
   const pickers = useMemo(
     () => [
