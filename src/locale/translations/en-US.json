@@ -20,6 +20,9 @@
     "dismiss": "Dismiss",
     "claim": "Claim"
   },
+  "yu_coin": {
+    "amount": "%{amount} YuCoin"
+  },
   "activity_types": {
     "steps": {
       "singular": "step",
@@ -42,7 +45,6 @@
       "yucoin_header": {
         "coins": {
           "earned_today": "earned today",
-          "amount": "%{coins} YuCoin",
           "accessibility": {
             "accessibility_label": "%{coins} yu coin earned today"
           }

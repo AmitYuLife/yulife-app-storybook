@@ -10,6 +10,7 @@ interface IProps {
   loading: boolean;
   onPressEmptyCta: () => void;
   onRefresh: () => void;
+  onEndReached: () => void;
 }
 
 export type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
@@ -17,7 +18,7 @@ export type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
 };
 
 const _RewardsPurchasedList = (props: IProps) => {
-  const { data, onRefresh, loading, onPressEmptyCta } = props;
+  const { data, onRefresh, onEndReached, loading, onPressEmptyCta } = props;
 
   return (
     <View style={styles.listWrapper}>
@@ -29,6 +30,7 @@ const _RewardsPurchasedList = (props: IProps) => {
         renderItem={renderItem}
         refreshing={loading}
         onRefresh={onRefresh}
+        onEndReached={onEndReached}
         ListEmptyComponent={<PurchasesEmpty onCtaPress={onPressEmptyCta} />}
         ListFooterComponent={<View style={styles.footer} />}
       />

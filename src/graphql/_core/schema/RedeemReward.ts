@@ -46,6 +46,7 @@ export interface RedeemReward_redeemReward_reward {
 export interface RedeemReward_redeemReward {
   id: string | null;
   userId: string | null;
+  sduiStepId: string | null;
   rewardProviderId: string | null;
   amount: number | null;
   code: string | null;

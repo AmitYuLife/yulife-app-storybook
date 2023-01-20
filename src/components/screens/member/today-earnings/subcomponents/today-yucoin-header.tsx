@@ -41,7 +41,7 @@ const TodayYuCoinHeader = ({ yuCoinToday, yuCoinPower, currentWorld, currentYuni
             {t("screens.today_earning.yucoin_header.coins.earned_today")}
           </TextTemplate>
           <TextTemplate type="h1" color={Colours.orange}>
-            {t("screens.today_earning.yucoin_header.coins.amount", { coins: yuCoinToday })}
+            {t("yu_coin.amount", { amount: yuCoinToday })}
           </TextTemplate>
         </View>
         <View style={styles.yuCoinPower}>

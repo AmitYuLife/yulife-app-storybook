@@ -146,22 +146,37 @@ const RewardDetailsContainer: FC<IProps> = ({ rewardId }) => {
         const result = await redeemReward({ variables: { id, amount, metadata } });
 
         if ((result as { data: RedeemReward }).data.redeemReward) {
-          //TODO-REWARDS: https://yulife.atlassian.net/browse/GS-70
-          const confirmedRoute = rewardProviderId === "avios" ? ROUTES.aviosConfirmed : ROUTES.wegiftConfirmed;
+          const purchase = result.data.redeemReward;
 
           dispatch(refreshTotalCoins());
 
-          await Navigation.push(ROUTES.rewards, {
-            component: {
-              id: confirmedRoute,
-              name: confirmedRoute,
-              passProps: {
-                purchase: (result as { data: RedeemReward }).data.redeemReward,
-                shouldPopToRoot: true,
+          if (purchase?.sduiStepId) {
+            await Navigation.push(ROUTES.rewards, {
+              component: {
+                id: ROUTES.rewardPurchase,
+                name: ROUTES.rewardPurchase,
+                passProps: {
+                  stepId: purchase.sduiStepId,
+                  dynamicId: purchase.id,
+                },
+                options: { bottomTabs },
               },
-              options: { bottomTabs },
-            },
-          });
+            });
+          } else {
+            const confirmedRoute = rewardProviderId === "avios" ? ROUTES.aviosConfirmed : ROUTES.wegiftConfirmed;
+
+            await Navigation.push(ROUTES.rewards, {
+              component: {
+                id: confirmedRoute,
+                name: confirmedRoute,
+                passProps: {
+                  purchase,
+                  shouldPopToRoot: true,
+                },
+                options: { bottomTabs },
+              },
+            });
+          }
         }
       } catch (e) {
         const passProps = {
