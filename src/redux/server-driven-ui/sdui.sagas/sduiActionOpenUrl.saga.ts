@@ -1,17 +1,23 @@
 import { call } from "redux-saga/effects";
 import { handleLinkPress } from "@services/app-link";
+import Logger from "@services/logging/logger";
 import { SduiActionWithServerPayload } from "../sdui.types";
+import { getServerPayload } from "../sdui.helpers";
 
 export function* sduiActionOpenUrlSaga({ payload }: SduiActionWithServerPayload) {
   try {
-    if (typeof payload === "string") {
-      yield call(handleLinkPress(payload));
+    const link = getServerPayload(payload);
 
-      return;
+    if (link) {
+      yield call(handleLinkPress(link));
     }
-
-    yield call(handleLinkPress(payload.serverPayload));
   } catch (e) {
-    // shrug (log)
+    yield call(() =>
+      Logger.logMixpanelEvent("app_debug", {
+        sdui: true,
+        location: "sduiActionOpenUrlSaga",
+        error: e?.message,
+      })
+    );
   }
 }
