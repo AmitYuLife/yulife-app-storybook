@@ -9,6 +9,7 @@ export const GQL_QUERY_GET_ACTIVITY_HISTORY = gql`
         garmin
         fitbit
         strava
+        withings
         device
       }
       yucoin
@@ -30,6 +31,7 @@ export const GQL_QUERY_GET_ACTIVITY_HISTORY = gql`
         garmin
         fitbit
         strava
+        withings
         device
       }
       cyclingYucoin

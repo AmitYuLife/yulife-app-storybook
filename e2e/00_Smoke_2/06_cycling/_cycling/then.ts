@@ -45,8 +45,10 @@ export const canSeePreviousDaysCycling = () => async () => {
     await textVisible("- fitbit / 1.0 km cycled", 3000)()
     await textVisible("- garmin / 1.0 km cycled", 3000)()
     await textVisible("- strava / 1.0 km cycled", 3000)()
+    await textVisible("- withings / 1.0 km cycled", 3000)()
     await textVisible("- fitbit / 4.0 km cycled", 3000)()
     await textVisible("- strava / 5.0 km cycled", 3000)()
+    await textVisible("- withings / 5.0 km cycled", 3000)()
 }
 
 export const cyclingEventToBeCompletedVisible = (numberOfRides: number, progressWidth: number) => async () => {

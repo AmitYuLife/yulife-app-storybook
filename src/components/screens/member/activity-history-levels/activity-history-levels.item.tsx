@@ -61,7 +61,7 @@ export default function ActivityHistoryLevelsItem({
   ]);
 
   const generateCyclingText = useCallback(
-    (val) => {
+    (val: number) => {
       const cyclingData = cyclingMeasurement === DistanceMeasurementType.km ? val / KM_TO_METERS : val * METER_TO_MILES;
       return `${cyclingData.toFixed(1)} ${cyclingMeasurement} ${translations["activity_types.cycling.plural"]}`;
     },
@@ -69,7 +69,7 @@ export default function ActivityHistoryLevelsItem({
   );
 
   const generateStepsText = useCallback(
-    (val) => {
+    (val: number) => {
       return `${addCommasToNumber(val)} ${
         val === 1 ? translations["activity_types.steps.singular"] : translations["activity_types.steps.plural"]
       }`;
@@ -168,6 +168,9 @@ export default function ActivityHistoryLevelsItem({
             ))}
             {!mindfulSeconds ? null : <View style={styles.starsWrapper} />}
             {!cycling ? null : <View style={styles.starsWrapper} />}
+            {renderSourcesColumnSpacing(cyclingSources, () => (
+              <View style={styles.starsWrapper} />
+            ))}
             {challenges.map((challenge, key) => (
               <View style={styles.starsWrapper} key={key}>
                 {!challenge.score
@@ -223,7 +226,7 @@ function showSources(sources: Partial<Sources>) {
     return false;
   }
 
-  if (!sources.garmin && !sources.fitbit && !sources.strava) {
+  if (!sources.garmin && !sources.fitbit && !sources.strava && !sources.withings) {
     return false;
   }
 
@@ -263,6 +266,7 @@ function renderSourcesColumnSpacing(sources: Partial<Sources>, render: () => Rea
       {!sources.fitbit ? null : render()}
       {!sources.garmin ? null : render()}
       {!sources.strava ? null : render()}
+      {!sources.withings ? null : render()}
     </>
   );
 }
