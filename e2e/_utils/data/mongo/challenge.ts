@@ -1876,7 +1876,10 @@ export const CHALLENGE_65_A = {
             },
             fitbit: {
                 distance: 1000
-            }
+            },
+            withings: {
+                distance: 1000
+            },
           },
         passive: true,
         isNewType: true,
@@ -1960,7 +1963,10 @@ export const CHALLENGE_65_C = {
         sources: {
             strava: {
               distance: 5000
-            }
+            },
+            withings: {
+                distance: 5000
+              },
           },
         passive: true,
         isNewType: true,

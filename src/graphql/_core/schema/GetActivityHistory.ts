@@ -11,6 +11,7 @@ export interface GetActivityHistory_getActivityHistoryWithLevels_sources {
   garmin: number | null;
   fitbit: number | null;
   strava: number | null;
+  withings: number | null;
   device: number | null;
 }
 
@@ -26,6 +27,7 @@ export interface GetActivityHistory_getActivityHistoryWithLevels_cyclingSources 
   garmin: number | null;
   fitbit: number | null;
   strava: number | null;
+  withings: number | null;
   device: number | null;
 }
 
