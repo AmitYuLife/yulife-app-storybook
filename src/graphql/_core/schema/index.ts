@@ -116,6 +116,7 @@ export * from "./GetMedia";
 export * from "./GetMobileAssetsWithVersion";
 export * from "./GetMobileGameWeeklies";
 export * from "./GetMobilePaymentCardSetup";
+export * from "./GetMobilePurchasesList";
 export * from "./GetMobileRewardStoreLocations";
 export * from "./GetMobileRewardsList";
 export * from "./GetMobileWhatsNewModal";

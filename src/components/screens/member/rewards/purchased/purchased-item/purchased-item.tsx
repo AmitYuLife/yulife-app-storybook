@@ -11,6 +11,7 @@ export interface IRewardsPurchasedItemProps {
   reward: string;
   cost: string;
   status: string;
+  statusColour: string;
   onPress: () => void;
 }
 
@@ -20,7 +21,15 @@ export enum RewardStatus {
   delivered = "delivered",
 }
 
-const RewardsPurchasedItem: FC<IRewardsPurchasedItemProps> = ({ day, month, reward, cost, status, onPress }) => (
+const RewardsPurchasedItem: FC<IRewardsPurchasedItemProps> = ({
+  day,
+  month,
+  reward,
+  cost,
+  status,
+  statusColour,
+  onPress,
+}) => (
   <TouchableOpacityWithDelay onPress={onPress} style={styles.wrapper}>
     <View style={styles.dateWrapper}>
       <TextTemplate type="b1b">{day}</TextTemplate>
@@ -33,9 +42,11 @@ const RewardsPurchasedItem: FC<IRewardsPurchasedItemProps> = ({ day, month, rewa
       <TextTemplate type="l1">{cost}</TextTemplate>
     </View>
     <View style={styles.statusWrapper}>
-      <TextTemplate type="l2" color={status === RewardStatus.failed ? "rgb(255,102,102)" : "rgb(51,51,51)"}>
-        {([RewardStatus.failed, RewardStatus.pending] as string[]).indexOf(status) === -1 ? "" : status}
-      </TextTemplate>
+      {!status ? null : (
+        <TextTemplate type="l2" color={statusColour}>
+          {status}
+        </TextTemplate>
+      )}
     </View>
   </TouchableOpacityWithDelay>
 );

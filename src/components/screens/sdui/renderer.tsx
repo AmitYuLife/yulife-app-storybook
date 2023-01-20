@@ -14,6 +14,7 @@ import {
   ContentItemProgressBar,
   ContentItemTextGroup,
   ContentItemAccordion,
+  ContentItemBox,
 } from "@components/sdui";
 import { ContentItem } from "@graphql/_core/schema";
 
@@ -31,6 +32,7 @@ export const componentMap = {
   ContentItemProgressBar,
   ContentItemTextGroup,
   ContentItemAccordion,
+  ContentItemBox,
 } as Record<string, (props: any) => JSX.Element>;
 
 export const renderItemContent = (item: ContentItem): JSX.Element | null => {

@@ -77,6 +77,7 @@ export const ROUTES = {
   wegiftConfirmed: "yulife.rewards.WegiftConfirmed",
   aviosConfirmed: "yulife.rewards.AviosConfirmed",
   rewardDetails: "yulife.rewards.RewardDetails",
+  rewardPurchase: "yulife.rewards.Purchase",
 
   // referrals screens
   referralInformation: "yulife.referrals.referralInformation",

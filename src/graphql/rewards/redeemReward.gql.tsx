@@ -7,6 +7,7 @@ export const GQL_MUTATION_REDEEM_REWARD = gql`
     redeemReward(product: { id: $id, amount: $amount }, metadata: $metadata) {
       id
       userId
+      sduiStepId
       rewardProviderId
       amount
       code
