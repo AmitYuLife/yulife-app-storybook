@@ -130,6 +130,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   scrollView: {
     flex: 1,
+    overflow: "hidden",
   } as ViewStyle,
   starWrapper: {
     marginLeft: Style.adjust(5),

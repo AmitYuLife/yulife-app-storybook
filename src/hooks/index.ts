@@ -14,3 +14,4 @@ export * from "./useStatusBarStyle";
 export * from "./useGetLottieJson";
 export * from "./useSafeAreaViewOffset";
 export * from "./useSaveImage";
+export * from "./useLazyGqlLoading";
