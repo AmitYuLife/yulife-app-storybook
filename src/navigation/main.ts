@@ -1,5 +1,8 @@
-import { ComponentProvider } from "react-native";
+import Logger from "@services/logging/logger";
+import { ReactElement } from "react";
+import { ComponentProvider, ViewStyle } from "react-native";
 import { Layout, LayoutRoot, Navigation as NativeNavigation, Options } from "react-native-navigation";
+import { MODALS } from "./constants";
 
 export class Navigation {
   public static setRoot = async (layout: LayoutRoot) => {
@@ -69,4 +72,35 @@ export class Navigation {
   public static dismissAllOverlays = async () => {
     return NativeNavigation.dismissAllOverlays();
   };
+
+  public static showOverlayWithChild(
+    children: ReactElement,
+    withBlurBackground = true,
+    wrapperStyle?: ViewStyle,
+    modalId?: string
+  ) {
+    if (modalId) {
+      Logger.logEvent("screen_view", { name: modalId });
+    }
+
+    return NativeNavigation.showOverlay({
+      component: {
+        id: MODALS.blurredOverlay,
+        name: MODALS.blurredOverlay,
+        options: {
+          layout: {
+            componentBackgroundColor: "transparent",
+          },
+          overlay: {
+            interceptTouchOutside: true,
+          },
+        },
+        passProps: {
+          children,
+          withBlurBackground,
+          wrapperStyle,
+        },
+      },
+    });
+  }
 }

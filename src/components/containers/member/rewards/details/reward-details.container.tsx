@@ -24,7 +24,6 @@ import { RewardDetailsScreen, RewardDetailsLoadingScreen } from "@screens";
 import { useBackHandler } from "@hooks";
 import { AviosMetadata } from "@graphql/_core/schema/globalTypes";
 import { ListPicker, ISelectInputOption } from "@molecules";
-import { showOverlayWithChild } from "@modals/blurred-overlay/showOverlayWithChild";
 import { t } from "@locale";
 
 interface IProps {
@@ -235,7 +234,7 @@ const RewardDetailsContainer: FC<IProps> = ({ rewardId }) => {
         const title = `You have ${totalCoins} YuCoin`;
         const child = <ListPicker instruction={title} items={items} />;
 
-        await showOverlayWithChild(child);
+        await Navigation.showOverlayWithChild(child);
       } else {
         displayAlert({ confirmAlert, denomination, rewardProviderId, code, metadata, name });
       }

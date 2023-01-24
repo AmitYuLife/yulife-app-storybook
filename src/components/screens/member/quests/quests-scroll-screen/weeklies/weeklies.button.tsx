@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useContext } from "react";
 import { MODALS } from "@navigation/constants";
 import { WeeklyQuestsModal } from "./weeklies.modal";
-import { showFloatingModal } from "@components/modals/floating-modals/showFloatingModal";
+import { showFloatingModal } from "@modals";
 import { Weeklies } from "@organisms";
 import { QuestsMapContext } from "../quests.context";
 
