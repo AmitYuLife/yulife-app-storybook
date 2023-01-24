@@ -1,17 +1,15 @@
-import React, { FC, useCallback, useMemo, useState } from "react";
-import { PixelRatio, Platform, View, ViewStyle } from "react-native";
-import { Navigation } from "@navigation/main";
-import { Style } from "@styles";
-import { t } from "@locale";
+import { useQuery } from "@apollo/client";
+import { ChipProps } from "@components/molecules/chip-list/chip-list";
 import WellBeingHub from "@components/screens/wellbeing-hub/wellbeing-hub";
 import { GQL_QUERY_GET_CURRENT_USER } from "@graphql/user";
-import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_WELLBEING_HUB_ITEMS } from "@graphql/wellbeingHub";
-import { GetWellbeingHubCategories, GetWellbeingHubItems } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_WELLBEING_HUB_CATEGORIES } from "@graphql/wellbeingHub/wellbeingHubCategories.gql";
-import { ChipProps } from "@components/molecules/chip-list/chip-list";
-import { getUserFeatures } from "@redux/user/user.selectors";
-import { useSelector } from "react-redux";
+import { GetWellbeingHubCategories, GetWellbeingHubItems } from "@graphql/_core/schema";
+import { t } from "@locale";
+import { Navigation } from "@navigation/main";
+import { Style } from "@styles";
+import React, { FC, useCallback, useMemo, useState } from "react";
+import { PixelRatio, Platform, View, ViewStyle } from "react-native";
 
 interface IProps {
   componentId: string;
@@ -20,13 +18,11 @@ interface IProps {
 const WellbeingHubItemsContainer: FC<IProps> = ({ componentId }) => {
   const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const { enableWellbeingHubCategories } = useSelector(getUserFeatures);
 
   const { data: categories, loading: categoriesLoading } = useQuery<GetWellbeingHubCategories>(
     GQL_QUERY_GET_WELLBEING_HUB_CATEGORIES,
     {
       fetchPolicy: "cache-and-network",
-      skip: !enableWellbeingHubCategories,
     }
   );
 
@@ -53,10 +49,6 @@ const WellbeingHubItemsContainer: FC<IProps> = ({ componentId }) => {
   );
 
   const categoryChips: ChipProps[] = useMemo(() => {
-    if (!enableWellbeingHubCategories || (categories?.wellbeingHubCategories || []).length === 0) {
-      return [];
-    }
-
     return [
       { id: "all", name: t("screens.wellbeing_hub.category_all") },
       ...(categories?.wellbeingHubCategories || []),
@@ -67,7 +59,7 @@ const WellbeingHubItemsContainer: FC<IProps> = ({ componentId }) => {
         onCategoryPress(tag.id);
       },
     }));
-  }, [categories, onCategoryPress, enableWellbeingHubCategories, selectedCategory]);
+  }, [categories, onCategoryPress, selectedCategory]);
 
   return (
     <View style={styles.wrapper}>
