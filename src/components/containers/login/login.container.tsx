@@ -13,9 +13,10 @@ import { setAuthenticated } from "@redux/app/app.actions";
 import { loginUserSuccess } from "@redux/user/user.actions";
 import { setToken } from "@services/storage";
 import { LoginScreen } from "@screens";
-import { validateEmail, validatePassword } from "./login.helpers";
+import { validatePassword } from "./login.helpers";
 import { t } from "@locale";
 import { Navigation } from "@navigation/main";
+import { validateEmail } from "@utils/email";
 
 const trimGraphQLError = (message: string) => message.replace(/^GraphQL error: /, "");
 

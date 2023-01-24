@@ -12,4 +12,5 @@ export * from "./personalProductJourney";
 export * from "./personalProductProductDetails";
 export * from "./personalProductDetached";
 export * from "./personalProductPaymentHistory";
+export * from "./wellbeingHubSendDocuments";
 export * from "./wellbeingHubItems";

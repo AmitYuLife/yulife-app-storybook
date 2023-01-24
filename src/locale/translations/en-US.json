@@ -384,7 +384,15 @@
     "wellbeing_hub": {
       "category_all": "All",
       "header_title": "Hi %{name}",
-      "header_description": "Welcome to this quick-access hub to all your company’s wellbeing benefits"
+      "header_description": "Welcome to this quick-access hub to all your company’s wellbeing benefits",
+      "send_documents": {
+        "title": "Email document(s)",
+        "description": "Please enter the e-mail address you would like the document(s) sent to",
+        "input_placeholder": "Enter e-mail address",
+        "success": "E-mail sent",
+        "error": "Sorry! Something went wrong.",
+        "send_button": "Send e-mail"
+      }
     },
     "leaderboard": {
       "turn_board_on": {

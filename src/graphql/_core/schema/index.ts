@@ -206,6 +206,7 @@ export * from "./SduiStyle";
 export * from "./SduiStyleDynamic";
 export * from "./SearchForDuelOpponent";
 export * from "./SendMagicLink";
+export * from "./SendWellbeingHubItemDocuments";
 export * from "./SetShareOfBenefitForProduct";
 export * from "./SetUserQuestProgress";
 export * from "./SubmitAppStoreReviewAction";
