@@ -1,64 +1,37 @@
 import moment from "moment";
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import React, { useCallback, useMemo } from "react";
 import { t } from "@locale";
 import { Navigation } from "@navigation/main";
-import { useQuery } from "@apollo/client";
 import { GetMobilePurchasesList as Req, GetMobilePurchasesListVariables as ReqVars } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_MOBILE_PURCHASES_LIST } from "@graphql/rewards";
 import { ROUTES } from "@navigation/constants";
 import { PurchasedListScreen } from "@screens/index";
 import { IMainTabsProps } from "@navigation/root";
 import { addCommasToNumber } from "@utils";
+import { useLazyGqlLoading, LazyGqlLoadingArgs } from "@hooks";
 
 type Props = Pick<IMainTabsProps, "componentId">;
 
 const LIMIT = 20;
 
-function RewardsPurchasesContainer(props: Props) {
-  const [purchases, setPurchases] = useState<Req["data"]["list"]>([]);
-  const [page, setPage] = useState(0);
+const LAZY_LOADING_ARGS: LazyGqlLoadingArgs<Req["data"]["list"][0], Req, ReqVars> = {
+  gql: GQL_QUERY_GET_MOBILE_PURCHASES_LIST,
+  buildVariables: (page) => ({ offset: Math.floor(page * LIMIT), limit: LIMIT }),
+  buildFullData: (req, prevData) => [...prevData, ...(req.data.list || [])],
+  checkIfReachedEnd: (req) => req.data.list.length === 0,
+};
 
-  const hasReachedTheEnd = useRef(false);
+function RewardsPurchasesContainer(props: Props) {
+  const needle = useLazyGqlLoading<Req["data"]["list"][0], Req, ReqVars>(LAZY_LOADING_ARGS);
+  const { fullData, data, loading, handleEndReached, handleRefresh } = needle;
 
   const handleBackPress = useCallback(() => {
     Navigation.popToRoot(ROUTES.rewards);
   }, []);
 
-  const handleRefresh = useCallback(() => {
-    hasReachedTheEnd.current = false;
-    setPage((p) => {
-      if (p) {
-        setPurchases([]);
-        return 0;
-      }
-
-      return p;
-    });
-  }, []);
-
-  const handleEndReached = useCallback(() => {
-    if (!hasReachedTheEnd.current) {
-      setPage((s) => s + 1);
-    }
-  }, []);
-
-  const { loading, data } = useQuery<Req, ReqVars>(GQL_QUERY_GET_MOBILE_PURCHASES_LIST, {
-    fetchPolicy: "cache-and-network",
-    variables: { offset: Math.floor(page * LIMIT), limit: LIMIT },
-    onError: () => (hasReachedTheEnd.current = true),
-    onCompleted: (req) => {
-      const isDone = req.data.list.length === 0;
-      hasReachedTheEnd.current = isDone;
-
-      if (!isDone) {
-        setPurchases((s) => [...s, ...data.data.list]);
-      }
-    },
-  });
-
   const items = useMemo(
     () =>
-      purchases.map((purchase) => {
+      fullData.map((purchase) => {
         const { id, status, date, yuCoin, title, statusColour } = purchase;
         const [day, month] = moment(date).format("DD-MMM").split("-");
 
@@ -83,7 +56,7 @@ function RewardsPurchasesContainer(props: Props) {
             }),
         };
       }),
-    [purchases.length, data?.data?.sduiStepId]
+    [fullData.length, data?.data?.sduiStepId]
   );
 
   return (

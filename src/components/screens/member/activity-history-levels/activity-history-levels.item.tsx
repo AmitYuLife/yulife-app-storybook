@@ -5,10 +5,11 @@ import { View } from "react-native";
 import { displaySecondsAsMinutes, padNum, addCommasToNumber } from "@utils";
 import styles from "./activity-history-levels.styles";
 import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
-import { KM_TO_METERS, METER_TO_MILES } from "@redux/daily-cycling/daily-cycling.selectors";
+import { getDailyCyclingMeasurement, KM_TO_METERS, METER_TO_MILES } from "@redux/daily-cycling/daily-cycling.selectors";
 import { Colours } from "@styles";
 import { TEXT_TEMPLATE } from "@ids";
 import { useTranslation } from "@hooks";
+import { useSelector } from "react-redux";
 
 export interface IChallenge {
   earned: number;
@@ -32,7 +33,6 @@ export interface ItemProps {
   mindfulYucoin?: number;
   cycling?: number;
   cyclingYucoin?: number;
-  cyclingMeasurement: DistanceMeasurementType;
   testID?: string;
 }
 
@@ -49,9 +49,9 @@ export default function ActivityHistoryLevelsItem({
   mindfulYucoin,
   cycling,
   cyclingYucoin,
-  cyclingMeasurement,
   testID,
 }: ItemProps) {
+  const cyclingMeasurement = useSelector(getDailyCyclingMeasurement);
   const translations = useTranslation([
     "activity_types.steps.singular",
     "activity_types.steps.plural",
