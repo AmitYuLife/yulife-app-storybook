@@ -7,7 +7,6 @@ import { ListPicker, TouchableOpacityWithDelay, TextInputError } from "@molecule
 import { ISelectInput, ISelectInputOption } from "./select-input.types";
 import { MODALS } from "@navigation/constants";
 import { Colours, Style } from "@styles";
-import { showOverlayWithChild } from "@modals/blurred-overlay/showOverlayWithChild";
 
 const getBorderColour = (error: boolean, value: boolean) => {
   if (error) {
@@ -47,7 +46,7 @@ const SelectInput = ({
     }));
 
     const child = <ListPicker instruction={modalPlaceHolder} items={items} />;
-    await showOverlayWithChild(child);
+    await Navigation.showOverlayWithChild(child);
   }, [closeModal, onChange, options, modalPlaceHolder]);
 
   return (

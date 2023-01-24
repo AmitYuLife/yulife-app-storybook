@@ -1,5 +1,4 @@
 import React from "react";
-import { showOverlayWithChild } from "@components/modals/blurred-overlay/showOverlayWithChild";
 import { MODALS } from "@navigation/constants";
 import { View, ViewStyle } from "react-native";
 import { Navigation } from "@navigation/main";
@@ -42,7 +41,7 @@ export const showTooltipPopupRelativeToView = ({ viewRef, children, beakPosition
       </TooltipPopupWrapper>
     );
 
-    showOverlayWithChild(infoView, false);
+    Navigation.showOverlayWithChild(infoView, false);
   });
 };
 
@@ -58,7 +57,7 @@ export const showTooltipPopupRelativeToPoint = ({
     </TooltipPopupWrapper>
   );
 
-  showOverlayWithChild(infoView, false);
+  Navigation.showOverlayWithChild(infoView, false);
 };
 
 export const showInfoMessageTooltipPointRelative = ({

@@ -1,7 +1,6 @@
 import React, { memo, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Navigation } from "@navigation/main";
-import { showOverlayWithChild } from "@modals/blurred-overlay/showOverlayWithChild";
 import { ListPicker, TouchableOpacityWithDelay } from "@molecules";
 import { MODALS } from "@navigation/constants";
 import { TextTemplate } from "@atoms";
@@ -30,7 +29,7 @@ export const ServerDropdown = memo(() => {
 
     const child = <ListPicker instruction={translations["screens.login.server_location.long"]} items={items} />;
 
-    await showOverlayWithChild(child);
+    await Navigation.showOverlayWithChild(child);
   };
 
   return (

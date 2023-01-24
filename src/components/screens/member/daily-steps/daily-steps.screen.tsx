@@ -14,8 +14,7 @@ import {
   GetDailyScreenCustomIcon_getDailyScreenCustomIcon,
   GetUserProfile_getUserProfile_surge,
 } from "@graphql/_core/schema";
-import { SurgeModal } from "@components/modals";
-import { showFloatingModal } from "@components/modals/floating-modals/showFloatingModal";
+import { SurgeModal, showFloatingModal } from "@components/modals";
 import { MODALS } from "@navigation/constants";
 import { InformationIcon } from "@atoms/icon/information-icon";
 import { YUCOIN_POWER_INFO, DAILYSTEP_SCREEN_COIN } from "@ids";

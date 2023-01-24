@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useCallback } from "react";
 import { ViewStyle } from "react-native";
 import { useSelector } from "react-redux";
+import { Navigation } from "@navigation/main";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { GetActiveBuffsOverlay, GetActiveBuffsOverlayVariables } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_ACTIVE_BUFFS_OVERLAY } from "@graphql/buffs";
@@ -8,7 +9,6 @@ import { BuffArea } from "@graphql/_core/schema/globalTypes";
 import { Image } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
 import ActiveBuffsModal from "@components/modals/active-buffs/active-buffs.modal";
-import { showOverlayWithChild } from "@modals/blurred-overlay/showOverlayWithChild";
 import { Style } from "@styles";
 import { useLazyQuery } from "@apollo/client";
 import Logger from "@services/logging/logger";
@@ -51,7 +51,7 @@ const ActiveBuffsButton = ({ buffTypes, style, iconWidth = 40, iconHeight = 40 }
       location,
       active_boosts,
     });
-    showOverlayWithChild(<ActiveBuffsModal activeBuffs={data?.getActiveBuffsOverlay} />);
+    Navigation.showOverlayWithChild(<ActiveBuffsModal activeBuffs={data?.getActiveBuffsOverlay} />);
   }, [data, location]);
 
   if (!showBuffs || !data?.getActiveBuffsOverlay?.equipment?.length) {

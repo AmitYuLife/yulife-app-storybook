@@ -17,5 +17,6 @@ export { default as ActiveBuffsModal } from "./active-buffs/active-buffs.modal";
 export { default as SwitchToGoogleFitModal } from "./switch-to-googlefit-modal/switch-to-googlefit-modal";
 export { default as WhatsNewModal } from "./whats-new/whats-new";
 export { default as FloatingModal } from "./floating-modals/floating-modal";
+export * from "./floating-modals/showFloatingModal";
 export { default as SurgeModal } from "./surge-modal/surge-modal";
 export { default as YuniversityCertificateModal } from "./yuniversity-certificate/yuniversity-certificate";
