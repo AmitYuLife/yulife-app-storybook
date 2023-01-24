@@ -2,9 +2,9 @@ import { GQL_MUTATION_SEND_MAGIC_LINK, SendMagicLinkMutationTuple } from "@graph
 import React, { useState, useMemo, FC, useCallback } from "react";
 import { Navigation } from "@navigation/main";
 import { EmailSentScreen, ResetPasswordScreen } from "@screens";
-import { validateEmail } from "../login/login.helpers";
 import { useMutation } from "@apollo/client";
 import Logger from "@services/logging/logger";
+import { validateEmail } from "@utils/email";
 
 interface IProps {
   componentId: string;

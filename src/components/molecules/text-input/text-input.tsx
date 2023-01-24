@@ -28,6 +28,7 @@ export interface IProps {
   icon?: TextInputTypes;
   iconUri?: string;
   maxLength?: number;
+  onSubmitEditing?: () => void;
 }
 
 class TextInput extends React.PureComponent<IProps> {
@@ -54,7 +55,17 @@ class TextInput extends React.PureComponent<IProps> {
   }
 
   public render() {
-    const { value, onChange, hasError, errorMessage, type, placeholder = "", style, maxLength } = this.props;
+    const {
+      value,
+      onChange,
+      hasError,
+      errorMessage,
+      type,
+      placeholder = "",
+      style,
+      maxLength,
+      onSubmitEditing,
+    } = this.props;
     const { isFocused } = this.state;
     return (
       <View style={StyleSheet.flatten([styles.outerWrapper, style])}>
@@ -70,6 +81,7 @@ class TextInput extends React.PureComponent<IProps> {
           </View>
           <View style={styles.inputWrapper}>
             <Input
+              onSubmitEditing={onSubmitEditing}
               maxLength={maxLength}
               allowFontScaling={false}
               testID={this.props.testID}

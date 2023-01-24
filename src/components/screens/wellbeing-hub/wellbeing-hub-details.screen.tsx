@@ -94,6 +94,7 @@ const onButtonPress = async (itemContent: ItemContentButton, itemTitle: string, 
       label,
       type: uri?.split(":")?.[0],
     });
+
     await handleLinkPress(uri)();
   } catch (e) {
     Logger.logMixpanelEvent("wellbeing_item_button_pressed_error", { error: e.message });
