@@ -1,19 +1,17 @@
-import React, { FC } from "react";
-import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
-import { t } from "@locale";
-import { ChipList, YugiHeader } from "@molecules";
-import WellBeingServiceCard from "@components/screens/wellbeing-hub/sub-components/wellbeing-service-card";
-import WellBeingServiceCardSkeleton from "@components/screens/wellbeing-hub/sub-components/wellbeing-service-card-skeleton";
-import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { GetWellbeingHubItems_wellbeingHubItems as WellbeingCard } from "@graphql/_core/schema";
-import WellBeingServiceNoResults from "@components/screens/wellbeing-hub/sub-components/wellbeing-service-no-results";
-import { WELLBEING_HUB_SCREEN, WELLBEING_HUB_SCROLL_VIEW } from "@ids";
 import { TheOwlFenceIcon } from "@atoms/icon/the-owl-fence-icon";
 import { YugiWellBeingIcon } from "@atoms/icon/yugi-wellbeing-icon";
-import { useSelector } from "react-redux";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import { ChipProps } from "@components/molecules/chip-list/chip-list";
+import WellBeingServiceCard from "@components/screens/wellbeing-hub/sub-components/wellbeing-service-card";
+import WellBeingServiceCardSkeleton from "@components/screens/wellbeing-hub/sub-components/wellbeing-service-card-skeleton";
+import WellBeingServiceNoResults from "@components/screens/wellbeing-hub/sub-components/wellbeing-service-no-results";
+import { GetWellbeingHubItems_wellbeingHubItems as WellbeingCard } from "@graphql/_core/schema";
+import { WELLBEING_HUB_SCREEN, WELLBEING_HUB_SCROLL_VIEW } from "@ids";
+import { t } from "@locale";
+import { ChipList, YugiHeader } from "@molecules";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import { Colours, Style } from "@styles";
+import React, { FC } from "react";
+import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 
 interface IProps {
   loading: boolean;
@@ -25,8 +23,6 @@ interface IProps {
 }
 
 const WellBeingHub: FC<IProps> = ({ loading, categoryChips, userFirstName, cards, handleClose }) => {
-  const { enableWellbeingHubCategories } = useSelector(getUserFeatures);
-
   if (cards?.length === 0 && !loading) {
     return <WellBeingServiceNoResults handleClose={handleClose} />;
   }
@@ -34,11 +30,7 @@ const WellBeingHub: FC<IProps> = ({ loading, categoryChips, userFirstName, cards
   return (
     <View style={styles.flex} testID={WELLBEING_HUB_SCREEN}>
       <GenericHeadingPad />
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        testID={WELLBEING_HUB_SCROLL_VIEW}
-        stickyHeaderIndices={enableWellbeingHubCategories ? [1] : undefined}
-      >
+      <ScrollView showsVerticalScrollIndicator={false} testID={WELLBEING_HUB_SCROLL_VIEW} stickyHeaderIndices={[1]}>
         <View style={styles.header}>
           <YugiHeader
             title={t("screens.wellbeing_hub.header_title", { name: userFirstName })}
@@ -46,11 +38,9 @@ const WellBeingHub: FC<IProps> = ({ loading, categoryChips, userFirstName, cards
             icon={<YugiWellBeingIcon />}
           />
         </View>
-        {enableWellbeingHubCategories ? (
-          <View style={styles.categoryChipsContainer}>
-            <ChipList chips={categoryChips} style={styles.categoryChips} />
-          </View>
-        ) : null}
+        <View style={styles.categoryChipsContainer}>
+          <ChipList chips={categoryChips} style={styles.categoryChips} />
+        </View>
         <View style={styles.wrapper}>
           <View style={styles.cardWrapper}>
             {loading ? (
