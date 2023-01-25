@@ -17,6 +17,10 @@ const IOS_PADDING_TOP = media.select(
       condition: [media.DEVICES.iPhone12.height, media.DEVICES.iPhone12ProMax.height].includes(Style.DEVICE_HEIGHT),
       value: Style.getSafeAreaStart() + 16,
     },
+    {
+      condition: Style.hasDynamicIsland(),
+      value: Style.getSafeAreaStart() + 26,
+    },
   ],
   Style.getSafeAreaStart()
 );
@@ -27,7 +31,8 @@ export const PADDING_TOP = Platform.select({
 export const PADDING_BOTTOM = Platform.select({ ios: 0, android: 16 });
 export const LOGO_PADDING_TOP = Style.adjust(12);
 export const LEFT_PADDING_TOP = Style.adjust(3);
-export const TOP_BAR_WITH_PAD = HEIGHT + PADDING_TOP * (Style.hasNotch ? 1.5 : 2) + PADDING_BOTTOM;
+export const TOP_BAR_WITH_PAD =
+  HEIGHT + PADDING_TOP * (Style.hasNotch ? 1.5 : 2) + PADDING_BOTTOM - (Style.hasDynamicIsland() ? 10 : 0);
 
 export default {
   HEIGHT,
