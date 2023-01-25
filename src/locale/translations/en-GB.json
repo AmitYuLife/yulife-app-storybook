@@ -490,7 +490,7 @@
     },
     "video_player": {
       "session_complete": "Session complete.",
-      "one_moment_please": "One moment please..."
+      "one_moment_please": "One moment, please..."
     }
   },
   "permissions": {
