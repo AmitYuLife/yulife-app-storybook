@@ -61,7 +61,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   closeWrapper: {
     position: "absolute",
-    top: CLOSE_WRAPPER_TOP_MARGIN - 16,
+    top: CLOSE_WRAPPER_TOP_MARGIN - (Style.hasDynamicIsland() ? 0 : 16),
     right: 0,
     padding: 16,
   } as ViewStyle,

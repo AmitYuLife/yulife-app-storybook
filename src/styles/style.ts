@@ -82,6 +82,11 @@ const isLargeScreen = () => {
   return y > 810;
 };
 
+const hasDynamicIsland = () => {
+  const iPhonesWithDynamicIsland = ["iPhone15,2", "iPhone15,3"]; // iPhone 14 Pro, iPhone 14 Pro Max
+  return iPhonesWithDynamicIsland.includes(DeviceInfo.getDeviceId()) && Platform.OS === "ios";
+};
+
 const isHuaweiMate10 = () => Platform.OS === "android" && x === 360;
 
 const platformSelect = ({ ios, android, shorterAndroid, shortAndroid }: { [key: string]: number }) => {
@@ -203,6 +208,7 @@ const Style = {
   isHuaweiMate10,
   IOS_NOTCH_HEIGHT,
   isShorterThan,
+  hasDynamicIsland,
 };
 
 export default Style;
