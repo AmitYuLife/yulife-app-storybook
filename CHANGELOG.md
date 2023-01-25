@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.66.0] - 2023-01-25
+
+### Bugfixes
+
+- bugFix: Top Bar on challenge and leaderboard screens
+- Bugfix: Change end of meditopia challenge message
+- Bugfix: dynamic island top bar
+
+### Tasks
+
+- Task: Add activity energy burned challenge
+- Task ISA-290: move overlay to navigation/main
+- Task ISA-288: use FlashList for activity history
+- Task ISA-289: purchases SDUI
+- Task ISA-289: sdui actions logging errors
+- Task GS-554: Refactor fitkit client helper
+
+### Chores
+
+- Chore: Remove wellbeing categories toggle
+- Chore: add withings option to app
+
+### Extra
+
+- Feat ENG-3098: Email me the wellbeing hub documents
+
 ## [3.65.0] - 2023-01-18
 
 ### Bugfixes
