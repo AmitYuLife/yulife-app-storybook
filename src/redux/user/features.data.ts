@@ -60,4 +60,5 @@ export const features = [
   "loggingEnabled",
   "logYuniversity",
   "newSignUpBonusCopy",
+  "newSduiRewards",
 ];

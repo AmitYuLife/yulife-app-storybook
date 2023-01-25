@@ -8,6 +8,7 @@ export const GQL_QUERY_GET_MOBILE_REWARDS_LIST = gql`
     data: getMobileRewardsList(tag: $tag) {
       __typename
       id
+      sduiStepId
       rewardStoreLocation
       rewardStoreLocationLabel
       hasUserSelectedStoreLocation

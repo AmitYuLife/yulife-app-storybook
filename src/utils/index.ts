@@ -7,5 +7,6 @@ export * from "./string";
 export * from "./quests";
 export * from "./tests";
 export * from "./types";
+export * from "./object";
 export * from "./getIsJsonSchemaValid";
 export * from "./parseJson";

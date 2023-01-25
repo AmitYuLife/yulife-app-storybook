@@ -14,8 +14,10 @@ import { sduiActionLogEventSaga } from "./sduiActionLogEvent.saga";
 import { sduiActionSendMutation } from "./sduiActionSendMutation.saga";
 import { sduiActionGenericNavigateBack } from "./sduiActionGenericNavigateBack.saga";
 import { sduiActionGenericNavigateBackToRoot } from "./sduiActionGenericNavigateBackToRoot.saga";
+import { sduiActionShowOverlayListPicker } from "./sduiActionShowOverlayListPicker.saga";
 
 export default [
+  takeLeading(SduiActionType.SDUI_ACTION_SHOW_OVERLAY_LIST_PICKER, sduiActionShowOverlayListPicker),
   takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE_BACK, sduiActionNavigateBackSaga),
   takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE, sduiActionNavigateSaga),
   takeLeading(SduiActionType.SDUI_ACTION_SET_BOTTOM_TAB, sduiActionSetBottomTabSaga),

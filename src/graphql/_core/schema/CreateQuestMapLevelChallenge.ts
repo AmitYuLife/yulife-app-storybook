@@ -73,12 +73,12 @@ export interface CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_yuniv
 }
 
 export interface CreateQuestMapLevelChallenge_createQuestMapLevelChallenge {
+  hideExternalLinks: boolean | null;
   challenge: CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_challenge | null;
   levelSlot: CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot | null;
   nextLevelAvailableAt: string | null;
   chest: CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_chest | null;
   yuniversalChest: CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_yuniversalChest | null;
-  hideExternalLinks: boolean | null;
 }
 
 export interface CreateQuestMapLevelChallenge {
