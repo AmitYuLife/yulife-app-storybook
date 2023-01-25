@@ -76,6 +76,8 @@ export const mapGqlFitKitTypeToFitKitType = (gqlType: FitKitType) => {
       }
 
       return FitKitTypes.Types.Distance;
+    case FitKitType.ActiveEnergyBurned:
+      return FitKitTypes.Types.ActiveEnergyBurned;
     default:
       throw new Error("Invalid type!");
   }

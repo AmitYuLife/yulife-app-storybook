@@ -138,6 +138,7 @@ export interface LoginUser_loginUser_user_activeChallenge_levelSlot_milestones_t
   meditation: number | null;
   distance: number | null;
   duration: number | null;
+  calories: number | null;
 }
 
 export interface LoginUser_loginUser_user_activeChallenge_levelSlot_milestones {

@@ -14,6 +14,7 @@ export interface GetUserActiveChallenge_getUserActiveChallenge_challenge_incomin
   meditation: number | null;
   distance: number | null;
   duration: number | null;
+  calories: number | null;
 }
 
 export interface GetUserActiveChallenge_getUserActiveChallenge_challenge {
@@ -34,6 +35,7 @@ export interface GetUserActiveChallenge_getUserActiveChallenge_levelSlot_milesto
   meditation: number | null;
   distance: number | null;
   duration: number | null;
+  calories: number | null;
 }
 
 export interface GetUserActiveChallenge_getUserActiveChallenge_levelSlot_milestones {

@@ -68,6 +68,8 @@ export function getUnitTarget(
       return "distance";
     case "fiit":
       return "duration";
+    case "calories":
+      return "calories";
     default:
       return "steps";
   }

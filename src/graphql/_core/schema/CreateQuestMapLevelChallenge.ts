@@ -22,6 +22,7 @@ export interface CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_level
   meditation: number | null;
   distance: number | null;
   duration: number | null;
+  calories: number | null;
 }
 
 export interface CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot_milestones {
@@ -77,6 +78,7 @@ export interface CreateQuestMapLevelChallenge_createQuestMapLevelChallenge {
   nextLevelAvailableAt: string | null;
   chest: CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_chest | null;
   yuniversalChest: CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_yuniversalChest | null;
+  hideExternalLinks: boolean | null;
 }
 
 export interface CreateQuestMapLevelChallenge {
