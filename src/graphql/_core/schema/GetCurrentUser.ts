@@ -138,6 +138,7 @@ export interface GetCurrentUser_getCurrentUser_activeChallenge_levelSlot_milesto
   meditation: number | null;
   distance: number | null;
   duration: number | null;
+  calories: number | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_activeChallenge_levelSlot_milestones {

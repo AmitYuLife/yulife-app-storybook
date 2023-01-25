@@ -17,6 +17,7 @@ export const GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
           meditation
           distance
           duration
+          calories
         }
         milestoneLog {
           data {
@@ -24,6 +25,7 @@ export const GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
             meditation
             distance
             duration
+            calories
           }
         }
         yuCoinAwarded
@@ -43,6 +45,7 @@ export const GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
             meditation
             distance
             duration
+            calories
           }
         }
       }

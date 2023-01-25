@@ -62,7 +62,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
 
   const handleNavPress = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
 
-  const createChallenge = async (hideExternalLinks?: boolean) => {
+  const createChallenge = async () => {
     try {
       setSubmittingState(true);
       if (slot.fitKitTypes?.length && !DETOX_ENABLED) {
@@ -82,7 +82,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
           challengeStartSuccessAction({
             ...activeChallenge.data,
             levelSlotId: slot.id,
-            hideExternalLinks,
+            hideExternalLinks: activeChallenge.data.createQuestMapLevelChallenge.hideExternalLinks,
           })
         );
         handleNavPress();
@@ -114,7 +114,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
       });
     }
 
-    return createChallenge(slot.fitKitTypes.includes(FitKitType.StepCount));
+    return createChallenge();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slot?.id, createQuestMapLevelChallengeMutation, dispatch, handleNavPress, setError]);

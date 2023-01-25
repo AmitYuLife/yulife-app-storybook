@@ -123,6 +123,7 @@ export const GQL_FRAGMENT_USER = gql`
             meditation
             distance
             duration
+            calories
           }
         }
       }

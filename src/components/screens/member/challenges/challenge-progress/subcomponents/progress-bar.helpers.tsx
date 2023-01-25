@@ -12,6 +12,7 @@ export const renderProgressLabel = ({ amount, styleType, type }: Partial<IProps>
   const typeText = type === "steps" && amount === 1 ? "step" : type;
   switch (type) {
     case "steps":
+    case "calories":
       return (
         <Counter
           value={amount}

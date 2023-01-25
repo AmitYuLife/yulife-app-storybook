@@ -5,6 +5,7 @@ import { gql } from "@apollo/client";
 export const GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
   mutation CreateQuestMapLevelChallenge($levelSlotId: String!, $contentId: String) {
     createQuestMapLevelChallenge(levelSlotId: $levelSlotId, contentId: $contentId) {
+      hideExternalLinks
       challenge {
         level
         levelSlotId
@@ -26,6 +27,7 @@ export const GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
             meditation
             distance
             duration
+            calories
           }
         }
       }

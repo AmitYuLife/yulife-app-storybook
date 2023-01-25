@@ -14,6 +14,7 @@ export interface UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_chall
   meditation: number | null;
   distance: number | null;
   duration: number | null;
+  calories: number | null;
 }
 
 export interface UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge_milestoneLog_data {
@@ -21,6 +22,7 @@ export interface UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_chall
   meditation: number | null;
   distance: number | null;
   duration: number | null;
+  calories: number | null;
 }
 
 export interface UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge_milestoneLog {
@@ -43,6 +45,7 @@ export interface UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_level
   meditation: number | null;
   distance: number | null;
   duration: number | null;
+  calories: number | null;
 }
 
 export interface UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_levelSlot_milestones {

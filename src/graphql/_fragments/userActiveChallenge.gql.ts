@@ -17,6 +17,7 @@ export const GQL_FRAGMENT_USER_ACTIVE_CHALLENGE = gql`
         meditation
         distance
         duration
+        calories
       }
     }
     levelSlot {
@@ -33,6 +34,7 @@ export const GQL_FRAGMENT_USER_ACTIVE_CHALLENGE = gql`
           meditation
           distance
           duration
+          calories
         }
       }
     }
