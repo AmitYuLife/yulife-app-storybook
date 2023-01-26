@@ -81,6 +81,10 @@ const routesForRegistration = [
     component: require("../components/containers/member/rewards/rewards.list.container").default,
   },
   {
+    name: ROUTES.rewardDetailsSdui,
+    component: require("../components/containers/sdui-static/sdui-static.container").default,
+  },
+  {
     name: ROUTES.purchases,
     component: require("../components/containers/member/rewards/rewards.purchases.container").default,
   },

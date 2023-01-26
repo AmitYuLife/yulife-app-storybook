@@ -63,6 +63,9 @@ export interface RedeemReward_redeemReward {
 }
 
 export interface RedeemReward {
+  /**
+   * Start of Legacy
+   */
   redeemReward: RedeemReward_redeemReward | null;
 }
 

@@ -32,6 +32,7 @@ export interface GetMobileRewardsList_data_list {
 export interface GetMobileRewardsList_data {
   __typename: "MobileRewardsList";
   id: string;
+  sduiStepId: string;
   rewardStoreLocation: string;
   rewardStoreLocationLabel: string;
   hasUserSelectedStoreLocation: boolean;
