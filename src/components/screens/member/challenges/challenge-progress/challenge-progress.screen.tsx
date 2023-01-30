@@ -6,8 +6,7 @@ import Exit from "./subcomponents/exit";
 import ProgressBar from "./subcomponents/progress-bar";
 import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
 import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR } from "@ids";
-import { NavBar } from "@components/organisms";
-import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
+import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Image } from "@atoms";
 import { PressableWithDelay, SecondaryButton, TertiaryButton } from "@molecules";
 import { ExternalAppLinksOverlay } from "./subcomponents/external-app-links-overlay";
@@ -118,7 +117,7 @@ function ChallengeProgressScreen({
 
   return (
     <View style={StyleSheet.flatten([styles.wrapper, { backgroundColor: backgroundColour }])}>
-      <View style={styles.pad} />
+      <GenericHeadingPad />
       <Image
         width={Style.DEVICE_WIDTH}
         resizeMode="cover"

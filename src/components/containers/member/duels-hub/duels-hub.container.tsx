@@ -8,9 +8,7 @@ import { useBackHandler } from "@hooks";
 import { getDuelsGoalsIntro } from "@redux/onboarding/onboarding.selectors";
 import { setDuelsIntroShown } from "@redux/onboarding/onboarding.actions";
 import { DuelTabs } from "@components/screens/member/duels-hub/subcomponents";
-import { NavBar } from "@organisms";
-import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
-import { GenericHeadingPad } from "@organisms";
+import { NavBar, GenericHeadingPad, TopBarAbsolute } from "@organisms";
 
 interface IProps {
   componentId?: IMainTabsProps["componentId"];

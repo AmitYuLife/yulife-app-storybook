@@ -1,10 +1,9 @@
 import React, { memo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { GenericHeadingPad, NavBar } from "@organisms";
+import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Colours, Style } from "@styles";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
-import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { setScreenViewForBurgerMenu } from "@navigation/utils";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { YUSCREEN, YUSCREEN_V4 } from "@ids";

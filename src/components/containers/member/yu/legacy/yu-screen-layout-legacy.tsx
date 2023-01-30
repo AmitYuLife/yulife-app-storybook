@@ -1,6 +1,6 @@
 import React, { ComponentProps, memo, useContext, useCallback } from "react";
 import { View, StyleSheet, ViewStyle, Platform, SafeAreaView, PixelRatio } from "react-native";
-import { NavBar } from "@organisms";
+import { NavBar, TopBarAbsolute } from "@organisms";
 import { Colours, Style } from "@styles";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
@@ -9,7 +9,6 @@ import { Popover } from "@components/molecules";
 import { TextTemplate } from "@atoms";
 import { GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP } from "@graphql/onboardingSteps/performMobileOnboardingStep.gql";
 import media from "@styles/media";
-import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { YuScreenContext } from "../context/yu-screen.context";
 import { navigateToProduct } from "../navigation/navigateToProduct";
 import { YuProductStatus } from "@graphql/_core/schema/globalTypes";
