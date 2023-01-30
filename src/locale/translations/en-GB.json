@@ -202,6 +202,11 @@
         "challenge_somebody": "Challenge somebody"
       }
     },
+    "notifications": {
+      "title": "Notifications",
+      "empty": "You don't have any notifications",
+      "deleted_disclaimer": "All messages will be deleted after 7 days"
+    },
     "reset_password_submitted": {
       "heading": "Email sent",
       "subheading": "Check your inbox! If %{email} matches our records, a password recovery email is on way. If you do not receive an email, please contact support@yulife.com.",

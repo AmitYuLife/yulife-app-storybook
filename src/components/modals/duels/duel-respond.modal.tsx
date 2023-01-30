@@ -19,6 +19,7 @@ import { useBackHandler } from "@hooks";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { filterRefetchQueries } from "@graphql/_core/filterRefetchQueries";
 import { Navigation } from "@navigation/main";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 interface IProps {
   duelId: string;
@@ -97,6 +98,8 @@ const DuelRespondModal: React.FC<IProps> = ({
     [componentId, dispatch, duelId, respondToInvite, startDateTime, requestLocation, leaderboardPlacement]
   );
 
+  const dismissModal = useCallback(() => Navigation.dismissModal(componentId), [componentId]);
+
   const submitDuel = async () => {
     const description =
       yucoin === 0
@@ -143,7 +146,7 @@ const DuelRespondModal: React.FC<IProps> = ({
           <DuelResponseIntro {...componentProps} />
         )}
       </View>
-      <TopBarAbsolute leftIcon="Close" onPressLeftIcon={() => Navigation.dismissModal(componentId)} rightIcon="Coins" />
+      <TopBarAbsolute leftIcon={LeftIcon.CLOSE} onPressLeftIcon={dismissModal} rightIcon="Coins" />
     </View>
   );
 };

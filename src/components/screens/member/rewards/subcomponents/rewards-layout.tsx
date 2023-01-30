@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, ViewStyle, View, Platform } from "react-native";
 import { REWARDS_SCREEN } from "@ids";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 
 const WRAPPER_MARGIN_TOP = Platform.select({
@@ -21,7 +22,7 @@ export function RewardsListLayout(props: Props) {
     <View style={styles.wrapper} testID={REWARDS_SCREEN}>
       <GenericHeadingPad />
       <View style={styles.listWrapper}>{children}</View>
-      <TopBarAbsolute leftIcon={hasBackButton ? "Back" : "Menu"} onPressLeftIcon={onLeftMenuPress} />
+      <TopBarAbsolute leftIcon={hasBackButton ? LeftIcon.BACK : LeftIcon.MENU} onPressLeftIcon={onLeftMenuPress} />
       {Overlay}
       <NavBar activeIndex={4} />
     </View>

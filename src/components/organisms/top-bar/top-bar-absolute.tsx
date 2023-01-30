@@ -2,13 +2,13 @@ import React, { ComponentProps } from "react";
 import { View, StyleSheet, ViewStyle, Platform } from "react-native";
 import TopBar from "./top-bar";
 import { TOP_BAR } from "@styles";
-import { LeftIconTypes } from "./subcomponents/left";
 import { RightIconTypes } from "./subcomponents/right";
+import { LeftIcon } from "./subcomponents/left";
 
 interface Props {
   onPressLeftIcon?: ComponentProps<typeof TopBar>["onPressLeftIcon"];
   hasShadow?: boolean;
-  leftIcon?: LeftIconTypes;
+  leftIcon?: LeftIcon;
   rightIcon?: RightIconTypes;
   hasWhiteBackground?: boolean;
   type?: ComponentProps<typeof TopBar>["type"];

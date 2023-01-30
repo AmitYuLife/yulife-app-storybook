@@ -37,6 +37,7 @@ export const ROUTES = {
   yuProductSurvey: "yulife.member.YuProductSurvey",
   changeMemberNickname: "yulife.member.changeMemberNickname",
   inspect: "yulife.member.inspect",
+  notifications: "yulife.member.notifications",
 
   // settings
   cyclingMeasurement: "yulife.member.cyclingMeasurement",

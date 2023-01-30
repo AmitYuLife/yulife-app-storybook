@@ -5,6 +5,7 @@ import { RewardItemContent } from "@molecules";
 import styles from "./wegift-confirmed.screen.styles";
 import { WEGIFT_CONFIRMED, PURCHASE_IMAGE } from "@ids";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 export interface IServerProps {
   rewardName: string;
   redeemInstructions: string[];
@@ -106,7 +107,12 @@ class WegiftRewardsConfirmed extends React.PureComponent<Props, IState> {
           />
           <Pad height={50} />
         </ScrollView>
-        <TopBarAbsolute hasWhiteBackground={true} hasShadow={true} leftIcon="Back" onPressLeftIcon={onPressTopBar} />
+        <TopBarAbsolute
+          hasWhiteBackground={true}
+          hasShadow={true}
+          leftIcon={LeftIcon.BACK}
+          onPressLeftIcon={onPressTopBar}
+        />
       </View>
     );
   }

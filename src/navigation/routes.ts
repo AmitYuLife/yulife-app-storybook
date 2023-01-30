@@ -137,6 +137,11 @@ const routesForRegistration = [
       .default,
   },
 
+  {
+    name: ROUTES.notifications,
+    component: require("../components/containers/member/notifications/notifications.container").default,
+  },
+
   // tools
   {
     name: ROUTES.tools,

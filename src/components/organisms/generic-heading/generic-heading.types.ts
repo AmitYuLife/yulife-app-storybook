@@ -1,5 +1,6 @@
 import { ViewStyle } from "react-native";
 import { ReactNode } from "react";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 export interface IGenericHeadingProps {
   heading?: ReactNode;
@@ -7,7 +8,7 @@ export interface IGenericHeadingProps {
   onLeftIconPress?: () => void;
   style?: ViewStyle;
   onRightIconPress?: () => void;
-  leftIcon?: ILeftIcon;
+  leftIcon?: LeftIcon;
   rightIcon?: IRightIcon;
   RightIcon?: JSX.Element;
   isBeta?: boolean;
@@ -16,7 +17,5 @@ export interface IGenericHeadingProps {
 }
 
 type IRightIcon = "SETTINGS" | "CLOSE" | "EDIT" | "PLUS" | "Done" | "SAVE" | "COINS";
-
-type ILeftIcon = "BACK" | "CLOSE";
 
 export type GenericHeadingLogo = "yulife";

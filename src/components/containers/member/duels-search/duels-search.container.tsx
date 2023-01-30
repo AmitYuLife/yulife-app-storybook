@@ -25,6 +25,7 @@ import { useBackHandler, useDebouncedQuery } from "@hooks";
 import { SearchInput, SearchList } from "@molecules";
 import DuelsSearchItem from "./subcomponents/search-item";
 import { showYuModal } from "@navigation/root";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 export interface SearchedOpponent extends SearchForDuelOpponent_searchForDuelOpponent {
   onPress: () => Promise<void>;
@@ -139,7 +140,7 @@ function _DuelsSearchContainer() {
         searchItem={DuelsSearchItem}
         keyExtractor={keyExtractor}
       />
-      <TopBarAbsolute hasWhiteBackground={false} onPressLeftIcon={navigateBack} leftIcon="Back" />
+      <TopBarAbsolute hasWhiteBackground={false} onPressLeftIcon={navigateBack} leftIcon={LeftIcon.BACK} />
     </View>
   );
 }

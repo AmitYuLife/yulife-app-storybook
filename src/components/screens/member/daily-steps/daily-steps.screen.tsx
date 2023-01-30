@@ -22,12 +22,14 @@ import { t } from "@locale";
 import { useSelector } from "react-redux";
 import { getModalState } from "@redux/app/app.selectors";
 import { IThemeScreens } from "@theme";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 interface IProps extends IConnectedScreenProps {
   showCounter?: boolean;
   fitKitAvailable: boolean;
   hasPermission: boolean;
   onCoinPress: () => void;
+  onNotificationPress?: () => void;
   onStreakPress?: () => void;
   userSurge: GetUserProfile_getUserProfile_surge;
   customIcon: GetDailyScreenCustomIcon_getDailyScreenCustomIcon;
@@ -44,6 +46,7 @@ const DailyStepsScreen = ({
   hasPermission,
   onCoinPress,
   onLeftMenuPress,
+  onNotificationPress,
   userSurge,
   customIcon,
   hasEvents,
@@ -76,6 +79,24 @@ const DailyStepsScreen = ({
   const getScreenProps = useMemo(
     () => (!hasPermission ? theme.dailyStepsScreen.offline : theme.dailyStepsScreen.online),
     [hasPermission, theme]
+  );
+
+  const leftIcons = useMemo(
+    () => [
+      {
+        icon: LeftIcon.MENU,
+        onPress: onLeftMenuPress,
+      },
+      ...(onNotificationPress
+        ? [
+            {
+              icon: LeftIcon.NOTIFICATIONS,
+              onPress: onNotificationPress,
+            },
+          ]
+        : []),
+    ],
+    [onNotificationPress, onLeftMenuPress]
   );
 
   return (
@@ -127,7 +148,7 @@ const DailyStepsScreen = ({
         <NavBar activeIndex={0} />
       </CentredScreen>
       <View style={styles.topbarWrapper}>
-        <TopBar type={theme.dailyStepsScreen.topBarType} onPressLeftIcon={onLeftMenuPress} />
+        <TopBar type={theme.dailyStepsScreen.topBarType} leftIcons={leftIcons} />
       </View>
       <ReferralsPopover onLeftMenuPress={onLeftMenuPress} />
     </Animatable.View>

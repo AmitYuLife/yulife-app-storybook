@@ -8,6 +8,7 @@ import { DuelStepProps } from "../../duels.types";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { Navigation } from "@navigation/main";
 import colours from "@styles/colours";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 interface IGenericDuelsIntro extends Partial<DuelStepProps> {
   type: "invite" | "response";
@@ -53,7 +54,7 @@ function GenericDuelsIntro({
 
   return (
     <View style={styles.introWrapper}>
-      <TopBarAbsolute leftIcon="Close" onPressLeftIcon={onPressLeftIcon} rightIcon={null} />
+      <TopBarAbsolute leftIcon={LeftIcon.CLOSE} onPressLeftIcon={onPressLeftIcon} rightIcon={null} />
       <Animated.View style={[styles.container, { opacity }]}>
         <View style={styles.titleSection}>
           <TextTemplate type={type === "invite" ? "h1" : "b1b"} textAlign="center" color={colours.darkestGray}>

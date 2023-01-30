@@ -8,6 +8,7 @@ import { useBackHandler } from "@hooks";
 import { getDuelsGoalsIntro } from "@redux/onboarding/onboarding.selectors";
 import { setDuelsIntroShown } from "@redux/onboarding/onboarding.actions";
 import { DuelTabs } from "@components/screens/member/duels-hub/subcomponents";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { NavBar, GenericHeadingPad, TopBarAbsolute } from "@organisms";
 
 interface IProps {
@@ -82,7 +83,7 @@ function DuelsHubContainer({ componentId }: Props) {
         viewabilityConfig={viewabilityConfig}
       />
       <NavBar activeIndex={3} />
-      <TopBarAbsolute leftIcon="Back" onPressLeftIcon={handleClose} />
+      <TopBarAbsolute leftIcon={LeftIcon.BACK} onPressLeftIcon={handleClose} />
     </View>
   );
 }

@@ -9,9 +9,9 @@ import styles from "./reward-details.screen.styles";
 import { GetItemContent } from "./helpers/getItemContent";
 import { GenericHeadingPad, TopBarAbsolute } from "@organisms";
 import { handleContentHyperlink } from "@services/app-link";
-import { TopBarLeftIconTypes } from "@organisms/top-bar/top-bar.helpers";
 import { SCROLLABLE_LAYOUT } from "@ids";
 import { useKeyboardListeners } from "@hooks";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 export interface Props {
   rewardItem: GetRewardItemDetails_getRewardItemDetails;
@@ -56,7 +56,7 @@ const RewardDetailsScreen: FC<Props> = ({ rewardItem, onPressTopBar, isLoading, 
           </Wrapper>
         </View>
       </ScrollView>
-      <TopBarAbsolute hasShadow={false} leftIcon={TopBarLeftIconTypes.BACK} onPressLeftIcon={onPressTopBar} />
+      <TopBarAbsolute hasShadow={false} leftIcon={LeftIcon.BACK} onPressLeftIcon={onPressTopBar} />
     </View>
   );
 };

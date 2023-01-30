@@ -23,13 +23,7 @@ export interface ICourseItem {
 type Props = ICourseItem & { onPress: () => void };
 
 export const CourseContentItem = ({ tags, title, onPress, image, status, imageTags = [] }: Props) => (
-  <BoxOption
-    onPress={onPress}
-    isSelected={false}
-    selectedStyle={{}}
-    wrapperStyle={styles.wrapper}
-    innerHeight={Style.adjust(120)}
-  >
+  <BoxOption onPress={onPress} isSelected={false} wrapperStyle={styles.wrapper} innerHeight={Style.adjust(120)}>
     <View style={styles.main}>
       <View style={styles.imageWrapper}>
         <Image height={Style.adjust(104)} width={Style.adjust(120)} source={{ uri: image.uri }} />

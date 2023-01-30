@@ -23,7 +23,6 @@ const MediaList = ({ title, thumbnail, duration, reward, onPress }: IProps) => {
     <BoxOption
       onPress={onPress}
       isSelected={false}
-      selectedStyle={{}}
       wrapperStyle={styles.wrapper}
       innerHeight={BOX_HEIGHT}
       testID={MEDITATION_ITEM(title)}

@@ -9,7 +9,7 @@ interface Props {
   onPress: () => void;
   children: React.ReactElement;
   isSelected: boolean;
-  selectedStyle: ViewStyle | ViewStyle[];
+  selectedStyle?: ViewStyle | ViewStyle[];
   testID?: string;
   wrapperStyle?: ViewStyle;
   innerWrapperStyle?: ViewStyle;
@@ -35,7 +35,7 @@ const BoxOption = memo(
     children,
     onPress,
     isSelected,
-    selectedStyle,
+    selectedStyle = {},
     wrapperStyle,
     innerWrapperStyle,
     innerHeight,
