@@ -17,7 +17,6 @@ const _RewardsListItem = ({ onPress, imageUrl, name, description, pills, isLocke
   <BoxOption
     onPress={onPress}
     isSelected={false}
-    selectedStyle={{}}
     innerWrapperStyle={isLocked && styles.locked}
     wrapperStyle={styles.wrapper}
     innerHeight={BOX_HEIGHT}

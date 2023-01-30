@@ -16,7 +16,6 @@ const MediaListLoading = ({ limit }: IProps) => (
         key={i}
         onPress={() => null}
         isSelected={false}
-        selectedStyle={{}}
         wrapperStyle={stylesList.wrapper}
         innerHeight={BOX_HEIGHT}
         disabled={true}

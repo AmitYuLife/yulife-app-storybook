@@ -4,7 +4,8 @@ import { storiesOf } from "@storybook/react-native";
 import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 import moment from "moment";
 import TopBar from "./top-bar";
-import { TOP_BAR_TYPES, TopBarLeftIconTypes } from "./top-bar.helpers";
+import { TOP_BAR_TYPES } from "./top-bar.helpers";
+import { LeftIcon } from "./subcomponents/left";
 
 storiesOf("TopBar", module)
   .addDecorator(withKnobs)
@@ -16,7 +17,7 @@ storiesOf("TopBar", module)
       onPressLeftIcon={() => null}
       name={text("name", "name")}
       menuLabel={text("menuLabel", "")}
-      leftIcon={TopBarLeftIconTypes.BACK}
+      leftIcon={LeftIcon.BACK}
       middleLabel={text("middleLabel", "middleLabel")}
       type={TOP_BAR_TYPES.DEFAULT}
       shouldHighlightCoins={boolean("shouldHighlightCoins", false)}
@@ -28,7 +29,7 @@ storiesOf("TopBar", module)
       timer={moment().add(1, "minute").toString()}
       name={text("name", "")}
       menuLabel={text("menuLabel", "brisk walk")}
-      leftIcon={TopBarLeftIconTypes.BACK}
+      leftIcon={LeftIcon.BACK}
       middleLabel={text("middleLabel", "middleLabel")}
       type={TOP_BAR_TYPES.DEFAULT}
       shouldHighlightCoins={boolean("shouldHighlightCoins", false)}

@@ -8,6 +8,7 @@ import styles from "./challenges-history.screen.styles";
 import { TopBar, NavBar } from "@components/organisms";
 import { getCurrentWorld } from "@utils";
 import { getTheme } from "@theme";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 interface IProps extends IConnectedScreenProps {
   level: GetQuestMapLevel_getQuestMapLevel;
@@ -29,7 +30,7 @@ function ChallengesHistory({ level, yuniversalMap, name, onPressActivityHistory,
       </View>
       <View style={styles.topBarWrapper}>
         <TopBar
-          leftIcon="Back"
+          leftIcon={LeftIcon.BACK}
           menuLabel="map"
           name={name}
           onPressLeftIcon={onLeftMenuPress}

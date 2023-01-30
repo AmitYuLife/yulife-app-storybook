@@ -6,7 +6,18 @@ import { TopBarViewProps } from "./top-bar.helpers";
 import { TOP_BAR_HEIGHT } from "./top-bar.styles";
 
 const TopBarContainer = (props: TopBarViewProps) => {
-  const { onPressLeftIcon, timer, name, menuLabel, leftIcon, middleLabel, type, onLayout, rightIcon } = props;
+  const {
+    onPressLeftIcon,
+    timer,
+    leftIcons,
+    name,
+    menuLabel,
+    leftIcon,
+    middleLabel,
+    type,
+    onLayout,
+    rightIcon,
+  } = props;
   const showBadge = useSelector(getOnboardingReferralsBadge);
 
   return (
@@ -17,6 +28,7 @@ const TopBarContainer = (props: TopBarViewProps) => {
       menuLabel={menuLabel}
       leftIcon={leftIcon}
       leftIconHasBadge={showBadge}
+      leftIcons={leftIcons}
       middleLabel={middleLabel}
       type={type}
       onLayout={onLayout}

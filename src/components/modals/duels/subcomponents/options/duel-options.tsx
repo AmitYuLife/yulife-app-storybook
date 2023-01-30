@@ -13,6 +13,7 @@ import { ListPicker } from "@components/molecules";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { Navigation } from "@navigation/main";
 import { t } from "@locale";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 interface IOptions {
   id: string;
@@ -60,7 +61,7 @@ export default function DuelOptions({
       backgroundColor="dark"
       render={({ toggleOverlay }) => (
         <View style={styles.safeAreaView}>
-          <TopBarAbsolute leftIcon="Close" onPressLeftIcon={onPressLeftIcon} rightIcon="Coins" />
+          <TopBarAbsolute leftIcon={LeftIcon.CLOSE} onPressLeftIcon={onPressLeftIcon} rightIcon="Coins" />
           <View style={styles.wrapper} testID={DUEL_OPTIONS_SCREEN}>
             <View style={styles.description}>
               <TextTemplate type="b1" textAlign="left">

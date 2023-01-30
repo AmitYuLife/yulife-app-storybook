@@ -3,14 +3,21 @@ import { View } from "react-native";
 import { getStyle, TopBarViewProps, TopBarTypes } from "./top-bar.helpers";
 import styles from "./top-bar.styles";
 import Center from "./subcomponents/center";
-import Left, { LeftIconTypes } from "./subcomponents/left";
+import Left, { LeftIcon } from "./subcomponents/left";
 import Right from "./subcomponents/right";
 
 const TopBarView = ({
-  leftIcon = "Menu" as LeftIconTypes,
+  leftIcon = LeftIcon.MENU,
   leftIconHasBadge = false,
-  menuLabel,
   onPressLeftIcon,
+  leftIcons = [
+    {
+      icon: leftIcon,
+      onPress: onPressLeftIcon,
+      hasBadge: false,
+    },
+  ],
+  menuLabel,
   type = "default" as TopBarTypes,
   shouldHighlightCoins = false,
   name,
@@ -23,14 +30,8 @@ const TopBarView = ({
 
   return (
     <View pointerEvents="box-none" style={styles.wrapper} onLayout={onLayout}>
-      <Left
-        label={menuLabel}
-        onPress={onPressLeftIcon}
-        icon={leftIcon}
-        hasBadge={leftIconHasBadge}
-        colour={colour}
-        textStyle={textStyle}
-      />
+      <Left label={menuLabel} icons={leftIcons} hasBadge={leftIconHasBadge} colour={colour} textStyle={textStyle} />
+
       <Center name={name} timer={timer} logoColour={logoColour} colour={colour} textStyle={textStyle} />
       <Right icon={rightIcon} shouldHighlightCoins={shouldHighlightCoins} colour={colour} textStyle={textStyle} />
     </View>

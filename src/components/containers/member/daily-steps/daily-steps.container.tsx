@@ -4,10 +4,12 @@ import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import React, { memo, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startDailySteps } from "@redux/daily-steps/daily-steps.actions";
+import { Navigation } from "@navigation/main";
+
 import { DailyStepsScreen } from "@screens";
 import { FitkitContext } from "@services/fitkit/fitkit.context";
 import { useNavigationComponentDidAppear, useTapBackTwiceToExit } from "@hooks";
-import { getUserNotification, getUserSurge, getUserEventsWithAds } from "@redux/user/user.selectors";
+import { getUserNotification, getUserSurge, getUserEventsWithAds, getUserFeatures } from "@redux/user/user.selectors";
 import { useLazyQuery } from "@apollo/client";
 import { GetDailyScreenCustomIcon } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_DAILY_SCREEN_CUSTOM_ICON } from "@graphql/dailyScreenCustomIcon";
@@ -24,6 +26,7 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
   const fitkit = useFitKit();
   const userSurge = useSelector(getUserSurge);
   const userNotification = useSelector(getUserNotification);
+  const userFeatures = useSelector(getUserFeatures);
   const hasDailyScreenCustomIcon = userNotification?.hasDailyScreenCustomIcon;
   const isDailyScreenInformationIconHidden = useSelector(dailyScreenInformationIcon);
 
@@ -64,6 +67,15 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
     });
   }, [fitkit.authorised, isDailyScreenInformationIconHidden, componentId]);
 
+  const navigateToNotifications = useCallback(() => {
+    Navigation.push(componentId, {
+      component: {
+        id: ROUTES.notifications,
+        name: ROUTES.notifications,
+      },
+    });
+  }, [componentId]);
+
   useNavigationComponentDidAppear(() => {
     dispatch(startDailySteps());
   }, componentId);
@@ -79,6 +91,7 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
         theme={theme}
         userSurge={userSurge}
         onLeftMenuPress={onLeftMenuPress}
+        onNotificationPress={userFeatures.showNotificationCentre ? navigateToNotifications : undefined}
         fitKitAvailable={fitkit.available}
         hasPermission={fitkit.authorised}
         customIcon={data?.getDailyScreenCustomIcon}

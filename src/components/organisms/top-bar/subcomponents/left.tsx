@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { TouchableOpacity, View, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { BUTTON_TOP_LEFT_BAR, MENU_ICON_BADGE } from "@ids";
 import { Back, CloseSvg } from "@atoms";
@@ -6,52 +6,58 @@ import { Menu } from "../assets";
 import { Text } from "@atoms/index";
 import { Style, TOP_BAR, Colours } from "@styles/index";
 import { t } from "@locale";
+import NotificationSvg from "@atoms/notification/notification-svg";
 
-export type LeftIconTypes = "Menu" | "Back" | "Close";
-export const leftIconTypes = { MENU: "Menu", BACK: "Back" } as Record<"MENU" | "BACK", LeftIconTypes>;
-
+export enum LeftIcon {
+  MENU = "Menu",
+  BACK = "Back",
+  CLOSE = "Close",
+  NOTIFICATIONS = "Notifications",
+}
 interface Props {
-  icon: LeftIconTypes;
+  icons?: { icon: LeftIcon; onPress: () => void }[];
   hasBadge: boolean;
   colour: string;
   label: string;
-  onPress: () => void;
   textStyle: TextStyle;
 }
 
-const Left = ({ onPress, icon, hasBadge, colour, label, textStyle }: Props) => {
-  if (!onPress) {
-    return null;
-  }
+const Left = ({ icons = [], hasBadge, colour, label, textStyle }: Props) => {
+  const filteredIcons = useMemo(() => icons?.filter((icon) => icon.onPress), [icons]);
 
   return (
-    <TouchableOpacity
-      hitSlop={TOP_BAR.HIT_SLOP}
-      style={styles.wrapper}
-      onPress={onPress}
-      testID={BUTTON_TOP_LEFT_BAR}
-      accessibilityLabel={getAccessibilityLabel(icon)}
-      accessibilityRole={"button"}
-    >
-      <Icon icon={icon} colour={colour} hasBadge={hasBadge} />
-      <MenuLabel label={label} textStyle={textStyle} />
-    </TouchableOpacity>
+    <View style={styles.wrapper}>
+      {filteredIcons.map(({ icon, onPress }) => (
+        <TouchableOpacity
+          key={icon}
+          hitSlop={TOP_BAR.HIT_SLOP}
+          style={styles.icon}
+          onPress={onPress}
+          testID={BUTTON_TOP_LEFT_BAR}
+          accessibilityLabel={getAccessibilityLabel(icon)}
+          accessibilityRole={"button"}
+        >
+          <Icon icon={icon} colour={colour} hasBadge={hasBadge} />
+          <MenuLabel label={label} textStyle={textStyle} />
+        </TouchableOpacity>
+      ))}
+    </View>
   );
 };
 
 export default memo(Left);
 
-const getAccessibilityLabel = (iconType: LeftIconTypes) => {
-  if (iconType === "Menu") {
+const getAccessibilityLabel = (iconType: LeftIcon) => {
+  if (iconType === LeftIcon.MENU) {
     return t("top_bar.menu.icon.accessibility_label");
   }
 
   return iconType;
 };
 
-function Icon({ icon, colour = "#333333", hasBadge }: { icon: LeftIconTypes; colour: string; hasBadge: boolean }) {
+function Icon({ icon, colour = "#333333", hasBadge }: { icon: LeftIcon; colour: string; hasBadge: boolean }) {
   switch (icon) {
-    case "Menu":
+    case LeftIcon.MENU:
       return (
         <View
           style={StyleSheet.flatten([styles.iconHeight, styles.menuIconMargins])}
@@ -61,13 +67,19 @@ function Icon({ icon, colour = "#333333", hasBadge }: { icon: LeftIconTypes; col
           {hasBadge ? <View style={styles.badge} /> : null}
         </View>
       );
-    case "Back":
+    case LeftIcon.BACK:
       return (
         <View style={styles.iconHeight}>
           <Back color={colour} />
         </View>
       );
-    case "Close":
+    case LeftIcon.NOTIFICATIONS:
+      return (
+        <View style={[styles.iconHeight, styles.notificationIconMargins]}>
+          <NotificationSvg color={colour} />
+        </View>
+      );
+    case LeftIcon.CLOSE:
       return (
         <View style={StyleSheet.flatten([styles.iconHeight, styles.closeIconMargins])}>
           <CloseSvg />
@@ -92,15 +104,19 @@ function MenuLabel({ label, textStyle }: { label: string; textStyle: TextStyle }
 
 const styles = StyleSheet.create({
   wrapper: {
+    left: 0,
+    position: "absolute",
+    flexDirection: "row",
+    marginTop: Style.adjust(2),
+    height: Style.adjust(32),
+    top: TOP_BAR.LEFT_PADDING_TOP,
+  },
+  icon: {
     flexDirection: "row",
     alignItems: "center",
     paddingLeft: Style.adjust(16),
     paddingRight: Style.adjust(8),
-    top: TOP_BAR.LEFT_PADDING_TOP,
     height: Style.adjust(32),
-    left: 0,
-    position: "absolute",
-    marginTop: Style.adjust(2),
   } as ViewStyle,
   menuLabel: {
     fontSize: Style.adjust(20),
@@ -116,6 +132,9 @@ const styles = StyleSheet.create({
   closeIconMargins: {
     marginTop: Style.adjust(4),
   } as ViewStyle,
+  notificationIconMargins: {
+    marginTop: Style.adjust(6),
+  },
   iconHeight: {
     justifyContent: "center",
     alignItems: "center",

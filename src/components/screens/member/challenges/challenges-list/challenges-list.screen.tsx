@@ -8,6 +8,7 @@ import { TopBar, NavBar } from "@components/organisms";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { getTheme } from "@theme";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 interface IProps extends IChallengesListProps {
   currentLevel?: number;
@@ -85,7 +86,7 @@ class ChallengesListScreen extends Component<IProps, IState> {
         <View style={styles.topBarWrapper}>
           <TopBar
             type={challengeListScreen.topBarType}
-            leftIcon="Back"
+            leftIcon={LeftIcon.BACK}
             menuLabel="map"
             name={name}
             onPressLeftIcon={onPressLeftIcon}

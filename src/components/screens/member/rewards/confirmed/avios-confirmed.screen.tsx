@@ -5,8 +5,8 @@ import { Pad, Text } from "@atoms";
 import { RewardItemContent } from "@molecules";
 import styles from "./avios-confirmed.screen.styles";
 import CardStates from "./card-states";
-import { TopBarLeftIconTypes } from "@components/organisms/top-bar/top-bar.helpers";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 export type PurchaseStatus = "pending" | "failed" | "delivered";
 
@@ -44,7 +44,13 @@ const RewardsConfirmedScreen = ({
         contentContainerStyle={styles.contentWrapper}
       >
         <Pad height={Style.isShortToMediumAndroid() ? 0 : 14} />
-        {status === "delivered" ? CardStates.Delivered : status === "failed" ? CardStates.Failed : status === "refunded" ? CardStates.Refunded : CardStates.Pending}
+        {status === "delivered"
+          ? CardStates.Delivered
+          : status === "failed"
+          ? CardStates.Failed
+          : status === "refunded"
+          ? CardStates.Refunded
+          : CardStates.Pending}
 
         <View style={styles.rewardNameWrapper}>
           <Text style={styles.rewardName} bold={true}>
@@ -76,7 +82,7 @@ const RewardsConfirmedScreen = ({
       <TopBarAbsolute
         hasShadow={true}
         hasWhiteBackground={true}
-        leftIcon={TopBarLeftIconTypes.BACK}
+        leftIcon={LeftIcon.BACK}
         onPressLeftIcon={onPressTopBar}
       />
     </>

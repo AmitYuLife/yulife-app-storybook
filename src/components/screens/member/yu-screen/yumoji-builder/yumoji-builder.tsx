@@ -9,6 +9,7 @@ import { ScalableYumoji } from "@organisms/yumoji/scalableYumoji";
 import { GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts } from "@graphql/_core/schema";
 import { useBackHandler } from "@hooks";
 import { BODY_TYPE } from "@ids";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 interface IProps {
   state: IState;
@@ -83,7 +84,7 @@ const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvata
         />
       </View>
       <GenericHeadingAbsolute
-        leftIcon="BACK"
+        leftIcon={LeftIcon.BACK}
         onLeftIconPress={onBackPressed}
         onRightIconPress={updateAvatar}
         rightIcon="SAVE"

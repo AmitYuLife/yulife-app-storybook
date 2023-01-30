@@ -8,13 +8,14 @@ import { BUTTON_CLOSE_HEADER } from "@ids";
 import GenericHeaderRightIcon from "./subcomponents/generic-header-right-icon";
 import GenericHeaderLeftIcon from "./subcomponents/generic-header-left-icon";
 import { TextTemplate } from "@atoms";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 function GenericHeading(props: IGenericHeadingProps) {
   const {
     heading,
     onLeftIconPress,
     onRightIconPress,
-    leftIcon = "BACK",
+    leftIcon = LeftIcon.BACK,
     rightIcon = "CLOSE",
     isBeta,
     logo,
