@@ -8,10 +8,6 @@ const IOS_PADDING_TOP = media.select(
       condition: [media.DEVICES.iPhone12.height, media.DEVICES.iPhone12ProMax.height].includes(Style.DEVICE_HEIGHT),
       value: 20,
     },
-    {
-      condition: Style.hasDynamicIsland(),
-      value: 30,
-    },
   ],
   0
 );
@@ -22,10 +18,6 @@ const CHALLENGE_SET_TOP_OFFSET = media.select(
     {
       condition: [media.DEVICES.iPhone12.height, media.DEVICES.iPhone12ProMax.height].includes(Style.DEVICE_HEIGHT),
       value: 44,
-    },
-    {
-      condition: Style.hasDynamicIsland(),
-      value: 54,
     },
     { condition: Style.hasNotch, value: 12 },
   ],

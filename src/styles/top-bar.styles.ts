@@ -11,20 +11,6 @@ const HIT_SLOP = {
   top: HIT_SLOP_SIZE,
 };
 
-const IOS_TOP_BAR_WITH_PAD_ADJUST = media.select(
-  [
-    {
-      condition: [media.DEVICES.iPhone12.height, media.DEVICES.iPhone12ProMax.height].includes(Style.DEVICE_HEIGHT),
-      value: 20,
-    },
-    {
-      condition: Style.hasDynamicIsland(),
-      value: 30,
-    },
-  ],
-  0
-);
-
 const IOS_PADDING_TOP = media.select(
   [
     {
@@ -46,7 +32,7 @@ export const PADDING_BOTTOM = Platform.select({ ios: 0, android: 16 });
 export const LOGO_PADDING_TOP = Style.adjust(12);
 export const LEFT_PADDING_TOP = Style.adjust(3);
 export const TOP_BAR_WITH_PAD =
-  HEIGHT + PADDING_TOP * (Style.hasNotch ? 1.5 : 2) + PADDING_BOTTOM - IOS_TOP_BAR_WITH_PAD_ADJUST;
+  HEIGHT + PADDING_TOP * (Style.hasNotch ? 1.5 : 2) + PADDING_BOTTOM - (Style.hasDynamicIsland() ? 10 : 0);
 
 export default {
   HEIGHT,

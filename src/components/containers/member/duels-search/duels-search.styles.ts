@@ -1,21 +1,10 @@
 import { Colours, Style, TOP_BAR } from "@styles";
-import media from "@styles/media";
-import { StyleSheet, ViewStyle } from "react-native";
+import { Platform, StyleSheet, ViewStyle } from "react-native";
 
-const HEIGHT_ADJUSTMENT = media.select(
-  [
-    {
-      condition: [media.DEVICES.iPhone12.height, media.DEVICES.iPhone12ProMax.height].includes(Style.DEVICE_HEIGHT),
-      value: 20,
-    },
-    {
-      condition: Style.hasDynamicIsland(),
-      value: 30,
-    },
-    { condition: Style.isAndroid(), value: -20 },
-  ],
-  0
-);
+const HEIGHT_ADJUSTMENT = Platform.select({
+  ios: 0,
+  android: -20,
+});
 
 export default StyleSheet.create({
   searchContainer: {

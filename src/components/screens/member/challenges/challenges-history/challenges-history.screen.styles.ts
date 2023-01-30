@@ -1,6 +1,6 @@
 import { ImageStyle, Platform, StyleSheet, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { Style } from "@styles";
+import { Style } from "../../../../../styles";
 import media from "@styles/media";
 
 const IOS_PADDING_TOP = media.select(
@@ -9,7 +9,6 @@ const IOS_PADDING_TOP = media.select(
       condition: [media.DEVICES.iPhone12.height, media.DEVICES.iPhone12ProMax.height].includes(Style.DEVICE_HEIGHT),
       value: 20,
     },
-    { condition: Style.hasDynamicIsland(), value: 30 },
   ],
   0
 );
