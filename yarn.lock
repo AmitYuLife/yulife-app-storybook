@@ -13654,11 +13654,6 @@ react-native-iphone-x-helper@^1.2.1:
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.1.tgz#645e2ffbbb49e80844bb4cbbe34a126fda1e6772"
   integrity sha512-/VbpIEp8tSNNHIvstuA3Swx610whci1Zpc9mqNkqn14DkMbw+ORviln2u0XyHG1kPvvwTNGZY6QpeFwxYaSdbQ==
 
-react-native-largelist-v3@^3.0.15:
-  version "3.0.15"
-  resolved "https://registry.yarnpkg.com/react-native-largelist-v3/-/react-native-largelist-v3-3.0.15.tgz#943b27c3076cd79949f19c04361558ce572b1e18"
-  integrity sha512-x7ocNEAy+lJdPaHr1DChSv/TlW4kLmXQRX0tj/sRYzIOFJeAlxdhHMerPvASSu1MzVwDcdc8gZv6dt/H9JPSpA==
-
 react-native-linear-gradient@^2.5.6:
   version "2.5.6"
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.5.6.tgz#96215cbc5ec7a01247a20890888aa75b834d44a0"
@@ -13736,11 +13731,6 @@ react-native-safe-modules@^1.0.3:
   integrity sha512-DUxti4Z+AgJ/ZsO5U7p3uSCUBko8JT8GvFlCeOXk9bMd+4qjpoDvMYpfbixXKgL88M+HwmU/KI1YFN6gsQZyBA==
   dependencies:
     dedent "^0.6.0"
-
-react-native-spring-scrollview@^2.0.23:
-  version "2.0.23"
-  resolved "https://registry.yarnpkg.com/react-native-spring-scrollview/-/react-native-spring-scrollview-2.0.23.tgz#23febfc0d28c63b87dcb260ac3b6d1ad886de3ae"
-  integrity sha512-2PTj07oqsYG0p8BMd4NzG0kKEEKqvPlI0NlQqVckhIxg7UiH4zZGG+2tn6oRg4O65F+ZsU68HNzFYE9cyCGkOQ==
 
 react-native-svg@12.3.0:
   version "12.3.0"
