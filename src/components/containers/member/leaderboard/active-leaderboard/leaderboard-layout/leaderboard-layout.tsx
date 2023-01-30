@@ -1,10 +1,9 @@
 import React from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
-import { Style, TOP_BAR } from "@styles";
-import { NavBar } from "@components/organisms";
+import { Style } from "@styles";
+import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
-import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { setScreenViewForBurgerMenu } from "@navigation/utils";
 
 interface Props {
@@ -14,7 +13,7 @@ interface Props {
 export const LeaderboardLayout = ({ children }: Props) => {
   return (
     <View style={styles.wrapper}>
-      <View style={styles.topPad} />
+      <GenericHeadingPad />
       {children}
       <View style={styles.bottomPad} />
       <TopBarAbsolute hasShadow={true} hasWhiteBackground={true} onPressLeftIcon={openMenu} />
@@ -45,8 +44,5 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   bottomPad: {
     height: Style.adjust(80),
-  } as ViewStyle,
-  topPad: {
-    height: TOP_BAR.TOP_BAR_WITH_PAD,
   } as ViewStyle,
 });

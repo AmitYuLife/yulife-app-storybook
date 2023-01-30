@@ -1,6 +1,7 @@
 export * from "./generic-heading";
 export { default as NavBar } from "./nav-bar/nav-bar";
 export { default as TopBar } from "./top-bar/top-bar";
+export * from "./top-bar/top-bar-absolute";
 export { DailyStepsContent } from "./daily-steps/daily-steps-content/daily-steps-content";
 export { Streak } from "./game-icon-button/streak.button";
 export { Surge } from "./game-icon-button/surge.button";

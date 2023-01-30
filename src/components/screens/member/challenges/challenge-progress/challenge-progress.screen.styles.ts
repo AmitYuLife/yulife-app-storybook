@@ -1,5 +1,5 @@
 import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
-import { Style, TOP_BAR, NAV_BAR } from "@styles";
+import { Style, NAV_BAR } from "@styles";
 
 export default StyleSheet.create({
   backgroundImage: {
@@ -41,9 +41,6 @@ export default StyleSheet.create({
     position: "absolute",
     top: Style.adjust(68),
     right: Style.adjust(16),
-  } as ViewStyle,
-  pad: {
-    height: TOP_BAR.TOP_BAR_WITH_PAD,
   } as ViewStyle,
   faqUrl: {
     alignItems: "flex-end",

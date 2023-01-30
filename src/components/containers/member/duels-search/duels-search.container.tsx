@@ -3,9 +3,9 @@ import React, { memo, useCallback } from "react";
 import { View, Keyboard } from "react-native";
 import { Navigation } from "@navigation/main";
 import { DUELS_SEARCH } from "@ids";
+import { GenericHeadingPad, TopBarAbsolute } from "@organisms";
 import styles from "./duels-search.styles";
 import { GQL_QUERY_SEARCH_FOR_DUEL_OPPONENT } from "@graphql/duels/searchForDuelOpponents.gql";
-import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import {
   SearchForDuelOpponent,
   SearchForDuelOpponentVariables,
@@ -125,7 +125,7 @@ function _DuelsSearchContainer() {
 
   return (
     <View style={styles.wrapper} testID={DUELS_SEARCH}>
-      <View style={styles.topbarFiller} />
+      <GenericHeadingPad />
       <View style={styles.searchContainer}>
         <RecentOpponents inviteToDuel={onPress} />
         <SearchInput title="Search for a friend:" query={query} onChangeText={onChangeText} />

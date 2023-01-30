@@ -7,10 +7,9 @@ import {
 import { Wrapper } from "@atoms";
 import styles from "./reward-details.screen.styles";
 import { GetItemContent } from "./helpers/getItemContent";
-import { GenericHeadingPad } from "@organisms";
+import { GenericHeadingPad, TopBarAbsolute } from "@organisms";
 import { handleContentHyperlink } from "@services/app-link";
 import { TopBarLeftIconTypes } from "@organisms/top-bar/top-bar.helpers";
-import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { SCROLLABLE_LAYOUT } from "@ids";
 import { useKeyboardListeners } from "@hooks";
 
