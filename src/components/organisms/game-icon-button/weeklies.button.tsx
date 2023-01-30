@@ -3,6 +3,7 @@ import { WeekliesIcon } from "@atoms/icon/weeklies-icon";
 import { GameButton } from "./_base.button";
 import { useRemainingTime } from "./helpers/useRemainingTime";
 import { Colours } from "@styles";
+import { WEEKLY_GOAL_ICON } from "@ids";
 
 type Props = {
   onPress: () => void;
@@ -24,6 +25,7 @@ const _Weeklies = ({ endDateTime, onPress, claimableRewards }: Props) => {
       label={time.shortFormat}
       Icon={<WeekliesIcon hasBadge={hasBadge} />}
       accessibilityLabel={""}
+      testID={WEEKLY_GOAL_ICON(parseInt(time.shortFormat))}
     />
   );
 };

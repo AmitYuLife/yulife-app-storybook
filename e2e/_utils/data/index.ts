@@ -34,6 +34,7 @@ export * from "./mongo/media"
 export * from "./mongo/yuniversity_course"
 export * from "./mongo/yuniversity_course_category"
 export * from "./mongo/yuniversity_course_module"
+export * from "./mongo/goal_weeklies"
 
 
 

@@ -1,6 +1,7 @@
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 import { NAV_BAR } from '@ids';
 import { dismissNewLooksModalIfVisible } from "./login";
+import moment from "moment";
 
 export const restart = async (locale = "en-GB") => {
     await device.terminateApp();
@@ -351,4 +352,11 @@ export const minimiseAndReopenApp = async () => {
     await device.sendToHome();
     await device.launchApp({newInstance: false});
     await navigateViaText("Awesome");
+}
+
+export const daysRemainingOfWeek = () => {
+    const eventdate = moment().endOf("week");
+    const todaysdate = moment();
+    const diff = eventdate.diff(todaysdate, 'days');
+    return diff + 1
 }

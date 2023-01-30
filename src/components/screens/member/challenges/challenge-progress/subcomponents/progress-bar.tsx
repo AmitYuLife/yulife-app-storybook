@@ -37,7 +37,6 @@ export default function ProgressBar({ amount, goals, type, styleType }: IProps) 
 
         const previousGoal = i >= 1 ? goals[i - 1] : undefined;
         const width = i >= 1 ? 50 : undefined;
-
         return (
           <Progress
             key={i}

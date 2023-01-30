@@ -1,4 +1,4 @@
-import { navigation, navigateViaText, wait, CHALLENGE_SET, CHALLENGE_TILE, TEXT_TEMPLATE, SURGE_ICON, CELESTIAL_CARD, CELESTIAL_CHEST_SCREEN, CHALLENGE_HISTORY_STARS } from "@utils"
+import { navigation, navigateViaText, wait, CHALLENGE_SET, CHALLENGE_TILE, TEXT_TEMPLATE, SURGE_ICON, CELESTIAL_CARD, CELESTIAL_CHEST_SCREEN, CHALLENGE_HISTORY_STARS, WEEKLY_PROGRESS_BAR } from "@utils"
 import { screens } from "@appScreens"
 import { USER_1 } from "@data"
 
@@ -170,4 +170,39 @@ export const challengesAndYuCoinsAwardedVisible = async () => {
     await textVisible("10 mins")()
     await textVisible("12 yucoin")()
     await challengeStarsCorrect(1, "meditation")()
+}
+
+export const weeklyChallengeIsVisible = (amount: string) => async () => {
+    await textVisible(`${amount} coins`)()
+    await textVisible(amount)()
+}
+
+export const weeklyQuestsPopUpVisible = async () => {
+    await textVisible("Weekly quests", 1000)()
+    await textVisible("Pick your challenge.")()
+    await weeklyChallengeIsVisible("100")()
+    await textVisible("Let's go!")()
+}
+
+export const challengeSelectedModalVisible = (amount: string, challengeAmount: string) => async () => {
+    await textVisible("Reward", 500)()
+    await textVisible(amount)()
+    await textVisible(`0 / ${challengeAmount} challenges`)()
+    await textVisible("Close")()
+}
+
+export const challengeProgressShown = (progress: number, max: number, color: string) => async () => {
+    await idVisible(WEEKLY_PROGRESS_BAR(progress, max, color), 1000)()
+    await textVisible(`${progress} / ${max} challenges`)()
+}
+
+export const completedChallengeModalVisible = async () => {
+    await textVisible("Done! Claim your reward.", 1000)()
+    await textVisible("Claim")()
+}
+
+export const challengeIsClaimed = (progress: number, max: number) => async () => {
+    await textVisible("Good job! Be sure to return next week.", 750)()
+    await textVisible("Claimed")()
+    await idVisible(WEEKLY_PROGRESS_BAR(progress, max, "#40C057"))()
 }

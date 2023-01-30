@@ -411,3 +411,7 @@ export const LEVEL_STAR_COUNT = (starArrLength: number) => `LEVEL_STAR_COUNT_${s
 
 // ETOW
 export const CELESTIAL_CARD = (description: string) => `CELESTIAL_CARD_${description}`;
+
+// WEEKLIES
+export const WEEKLY_GOAL_ICON = (label: number) => `WEEKLY_GOAL_ICON_${label}`
+export const WEEKLY_PROGRESS_BAR = (progress: number, max: number, color: string) => `WEEKLY_PROGRESS_BAR_${progress}_${max}_${color}`

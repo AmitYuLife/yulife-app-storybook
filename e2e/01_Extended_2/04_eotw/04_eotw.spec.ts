@@ -1,10 +1,11 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_69, AUTH_69, CUSTOMER_70, AUTH_70, USER_70, CUSTOMER_78, AUTH_78, USER_78 } from "@data";
-import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, QUESTS_SCREEN_YUNIVERSAL, DAILY_STEPS_SCREEN, WELLDONE_BANNER, SPACE_TRAVEL_SCREEN, USER_LEVEL, LEVEL_STAR_COUNT, V4_YUSCREEN, YUMOJI_AVATAR_YUSCREEN_V4 } from "@ids";
+import { CUSTOMER_69, AUTH_69, CUSTOMER_70, AUTH_70, USER_70, CUSTOMER_78, AUTH_78, USER_78, CUSTOMER_81, AUTH_81 } from "@data";
+import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, QUESTS_SCREEN_YUNIVERSAL, DAILY_STEPS_SCREEN, WELLDONE_BANNER, SPACE_TRAVEL_SCREEN, USER_LEVEL, LEVEL_STAR_COUNT, V4_YUSCREEN, YUMOJI_AVATAR_YUSCREEN_V4, WEEKLY_GOAL_ICON } from "@ids";
+import { daysRemainingOfWeek } from "@navigation";
 
 Feature("End of the world/Yuniverse", async () => {
     Scenario("I complete level 200, enter EOTW with a yucoin surge of 2 and take 4 challenges at level 1", scenario.start, () => {
@@ -306,5 +307,62 @@ Feature("End of the world/Yuniverse", async () => {
         When("I tap open the chest", when.tapText("Open the chest"), async () => {
             Then("I can see the 3 celestial chest rewards, which earns me my earn rate (9) * 100", then.celestialChestAwardsVisible(USER_78))
         })
+    })
+
+    Scenario("As a level 201+ user, I have weekly quests so I have extra activity", scenario.start, async () => {
+        Given("I login as a user on level 201", given.logInAndGoToTab("yucoin", CUSTOMER_81, AUTH_81), async () => {
+            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left)"))
+        })
+        When("I go to the quests tab", when.tapID(NAV_BAR("quests")), async () => {
+            Then("I should see level 201 unlocked in the red planet", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
+            Then("I should see the Weekly Quests activty icon", then.idVisible(WEEKLY_GOAL_ICON(daysRemainingOfWeek())))
+        })
+        When("I tap the Weekly Goals icon", when.tapID(WEEKLY_GOAL_ICON(daysRemainingOfWeek())), async () => {
+            Then("I can see the Weekly quests pop-up", then.weeklyQuestsPopUpVisible)
+        })
+        When("I click the button text without a challenge selected", when.tapText("Let's go!"), async () => {
+            Then("Nothing happens, I cannot see the next modal", then.textNotVisible("Reward"))
+        })
+        When("I click the challenge", when.tapWeeklyChallenge("100"), async () => {
+            When("I tap the button", when.tapText("Let's go!"), async () => {
+                Then("I can see the modal", then.challengeSelectedModalVisible("100", "2"))
+            })
+        })
+        When("I click the close button", when.tapText("Close"), async () => {
+            Then('I can no longer see the modal', then.textNotVisible("Weekly quests"))
+        }) 
+        When("I tap level 201 button", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
+            When("I complete a short stroll challenge at level 201", when.selectAndCompleteWalkingChallenge("short stroll", 400), async () => {
+                When("I tap collect", when.tapText("Collect"), async () => {
+                    When("I tap done", when.tapText("Done"), async () => {
+                        Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
+                    })
+                })
+            })
+        })
+        When("I tap the Weekly Goals icon", when.tapID(WEEKLY_GOAL_ICON(daysRemainingOfWeek())), async () => {
+            Then("I can see the modal with the challenge progress", then.challengeProgressShown(1, 2, "#F43E8E"))
+        })
+        When("I click the close button", when.tapText("Close"), async () => {
+            Then('I can no longer see the modal', then.textNotVisible("Weekly quests"))
+        }) 
+        When("I tap level 201 button a second time", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
+            When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("brisk walk", 800), async () => {
+                When("I tap collect", when.tapText("Collect"), async () => {
+                    Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
+                })
+            })
+        })
+        When("I tap the Weekly Goals icon", when.tapID(WEEKLY_GOAL_ICON(daysRemainingOfWeek())), async () => {
+            Then("I can see the modal with the challenge progress", then.challengeProgressShown(2, 2, "#F43E8E"))
+            Then("I can see the challenge is completed", then.completedChallengeModalVisible)
+        })
+        When("I tap the claim button", when.tapText("Claim"), async () => {
+            Then("I can see the modal has changed to show a challenge has been claimed", then.challengeIsClaimed(2, 2))
+        })
+        When("I click the close button", when.tapText("Close"), async () => {
+            Then('I can no longer see the modal', then.textNotVisible("Weekly quests"))
+        }) 
+
     })
 })
