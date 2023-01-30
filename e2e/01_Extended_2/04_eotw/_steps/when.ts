@@ -57,3 +57,7 @@ export const createDefaultYumoji = async () => {
 export const tapIllDoThisLater = async () => {
     await tapText("I'll do this later")()
 }
+
+export const tapWeeklyChallenge = (amount: string) => async () => {
+    await tapText(`${amount} coins`)()
+}

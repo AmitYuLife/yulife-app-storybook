@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef, useMemo } from "react";
 import { StyleSheet, View, ViewStyle, Animated } from "react-native";
 import { Colours, Style } from "@styles";
 import Svg, { Rect } from "react-native-svg";
+import { WEEKLY_PROGRESS_BAR } from "@ids";
 
 interface IProgressBarProps {
   currentPosition: number;
@@ -86,7 +87,10 @@ export default function ProgressBar(props: IProgressBarProps) {
   const fillColour = isCompleted ? Colours.status.su400 : Colours.primary.p400;
 
   return (
-    <View style={[styles.wrapper, { width: data.wrapperWidth }, style]}>
+    <View
+      style={[styles.wrapper, { width: data.wrapperWidth }, style]}
+      testID={WEEKLY_PROGRESS_BAR(currentPosition, maxLength, fillColour)}
+    >
       <Svg width={data.svgWidth} height={14} viewBox={`0 0 ${data.svgWidth} 14`}>
         <Rect
           width={data.svgWidth - 1}

@@ -1251,3 +1251,17 @@ export const CUSTOMER_80 = {
         fullName: "Hannibal Poogman"
     }
 } as IDatabaseItem
+
+export const CUSTOMER_81 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Isaac",
+        lastName: "Franky",
+        dateOfBirth: moment().subtract(33, "years").toDate(),
+        status: "onboarded",
+        fullName: "Isaac Franky"
+    }
+} as IDatabaseItem

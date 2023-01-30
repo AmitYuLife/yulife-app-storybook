@@ -1,5 +1,6 @@
-import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
+import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import { GOALS_1, GOALS_2, GOALS_3, GOALS_4 } from "./goals";
+import { WEEKLY_GOAL_1 } from "./goal_weeklies";
 
 const type = "mongo"
 const modelName = "goal_events"
@@ -46,4 +47,18 @@ export const GOAL_EVENTS_4 = {
         targetValue: 4,
         parentType: "goals",
     }
+} as IDatabaseItem
+
+export const WEEKLY_GOAL_EVENT_1 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        goal: WEEKLY_GOAL_1.data._id,
+        parentType: "goal_weeklies",
+        type: "active_challenge",
+        targetValue: 2,
+        goalWeight: 1,
+    }
+    
 } as IDatabaseItem

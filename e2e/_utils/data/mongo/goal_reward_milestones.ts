@@ -1,5 +1,6 @@
-import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
+import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import { GOALS_1, GOALS_2, GOALS_3, GOALS_4 } from "./goals";
+import { WEEKLY_GOAL_1 } from "./goal_weeklies";
 
 const type = "mongo"
 const modelName = "goal_reward_milestones"
@@ -199,3 +200,23 @@ export const GOAL_REWARD_MILESTONE_11 = {
         earnRateBased: true, 
     }
 };
+
+export const WEEKLY_MILESTONE_1 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        goal: WEEKLY_GOAL_1.data._id,
+        parentType: "goal_weeklies",
+        earnRateBased: true,
+        animated: false,
+        rewardBackgroundImageKey: "cms/1674555849471_Screenshot 2022-10-04 at 14.49.16 (2).png",
+        rewardImageKey: "cms/1674555859611_Screenshot 2022-10-19 at 12.57.25.png",
+        targetValue: 0.9,
+        rewardType: "coin",
+        rewardValue: 100,
+        rewardTitle: "100",
+        rewardDescription: "100 coins",
+    }
+    
+  } as IDatabaseItem
