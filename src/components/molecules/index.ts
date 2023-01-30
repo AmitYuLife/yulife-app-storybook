@@ -18,8 +18,6 @@ export { default as Instruction } from "./instruction/instruction";
 export { default as LinkGroup } from "./link-group/link-group";
 export { default as ListPicker } from "./list-picker/list-picker";
 export { default as Picker } from "./picker/picker";
-export { default as YulifeRefreshHeader } from "./refresh-header/refresh-header";
-export { default as YulifeLoadingFooter } from "./loading-footer/loading-footer";
 export { default as RewardItemContent } from "./reward-item-content/reward-item-content";
 export { ScrollableLayout } from "./scrollable-layout/scrollable-layout";
 export { default as TouchableWithDelay } from "./touchable-delay/touchable-delay";
