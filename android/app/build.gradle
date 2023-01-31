@@ -242,7 +242,6 @@ dependencies {
     implementation project(':react-native-config')
     implementation project(':react-native-navigation')
     implementation project(':react-native-svg')
-    implementation project(':react-native-spring-scrollview')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation fileTree(dir: "libs", include: ["*.aar"])
     implementation "com.facebook.react:react-native:0.62.0"  // From node_modules
