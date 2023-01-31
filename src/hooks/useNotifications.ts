@@ -1,4 +1,5 @@
-import { Leanplum, LeanplumInbox, Message } from "@leanplum/react-native-sdk";
+import { Message } from "@leanplum/react-native-sdk";
+import Logger from "@services/logging/logger";
 import moment from "moment";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
@@ -7,7 +8,7 @@ export const useNotifications = () => {
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
 
   const getMessages = useCallback(async () => {
-    const inbox = await LeanplumInbox.inbox();
+    const inbox = await Logger.leanplum.getInbox();
     setIsInitialized(true);
     setNotifications(
       inbox.allMessages
@@ -19,7 +20,7 @@ export const useNotifications = () => {
   }, []);
 
   useEffect(() => {
-    LeanplumInbox.onForceContentUpdate(() => {
+    Logger.leanplum.onInboxUpdate(() => {
       getMessages();
     });
 
@@ -27,11 +28,11 @@ export const useNotifications = () => {
   }, [getMessages]);
 
   const onRefresh = useCallback(() => {
-    Leanplum.forceContentUpdate();
+    Logger.leanplum.refreshInbox();
   }, []);
 
   const onOpen = useCallback((messageId: string) => {
-    LeanplumInbox.read(messageId);
+    Logger.leanplum.readInbox(messageId);
   }, []);
 
   return useMemo(
@@ -41,6 +42,6 @@ export const useNotifications = () => {
       onOpen,
       isInitialized,
     }),
-    [onRefresh, onOpen, notifications]
+    [onRefresh, onOpen, isInitialized, notifications]
   );
 };

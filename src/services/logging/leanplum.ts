@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-community/async-storage";
-import { Leanplum } from "@leanplum/react-native-sdk";
+import { Inbox, Leanplum, LeanplumInbox } from "@leanplum/react-native-sdk";
+
 import region from "@services/region";
 
 export default class LeanplumClient {
@@ -64,5 +65,37 @@ export default class LeanplumClient {
     } catch (e) {
       // safe fail
     }
+  };
+
+  public getInbox = async (): Promise<Inbox> => {
+    if (!this.enabled) {
+      return { count: 0, unreadCount: 0, unreadMessages: [], messagesIds: [], allMessages: [] };
+    }
+
+    return LeanplumInbox.inbox();
+  };
+
+  public readInbox = async (messageId: string) => {
+    if (!this.enabled) {
+      return;
+    }
+
+    return LeanplumInbox.read(messageId);
+  };
+
+  public refreshInbox = async () => {
+    if (!this.enabled) {
+      return;
+    }
+
+    return Leanplum.forceContentUpdate();
+  };
+
+  public onInboxUpdate = (callback: () => void) => {
+    if (!this.enabled) {
+      return;
+    }
+
+    return LeanplumInbox.onForceContentUpdate(callback);
   };
 }
