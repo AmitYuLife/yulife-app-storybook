@@ -1,9 +1,7 @@
-import { getYuScreenProductSlots } from "@graphql/yuscreen";
 import { getYuScreen } from "@graphql/yuscreen/getYuScreen.gql";
 import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { getRouteState } from "@redux/app/app.selectors";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import { Navigation } from "@navigation/main";
 import { call, select, all, put } from "redux-saga/effects";
 import { getServerPayload } from "../sdui.helpers";
@@ -12,7 +10,6 @@ import { parseJSON } from "@utils";
 
 export function* sduiActionNavigateBackSaga({ payload }: SduiActionWithServerPayload) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
-  const userFeatures: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
   const onExit = () => Navigation.pop(currentRoute);
 
@@ -23,8 +20,7 @@ export function* sduiActionNavigateBackSaga({ payload }: SduiActionWithServerPay
 
   try {
     // update YuScreen slots incase any journey progression has changed
-    const updateYuScreen = userFeatures.yuScreenV4 ? getYuScreen : getYuScreenProductSlots;
-    yield call(updateYuScreen);
+    yield call(getYuScreen);
 
     // Dispatch additional actions supplied by the server
     if (dispatchActions.length) {
