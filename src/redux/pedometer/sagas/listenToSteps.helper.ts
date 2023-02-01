@@ -18,6 +18,7 @@ const ERROR_NOT_AUTHORISED = "Pedometer not authorised";
 const STEPS_PER_MILLISECONDS_LIMIT = 2;
 
 export default function* listenToSteps() {
+  let isRunning = true;
   yield put(updatePedometerStartAction());
 
   const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
@@ -29,7 +30,7 @@ export default function* listenToSteps() {
     getMaxStepsAnomalyWindowMs
   );
 
-  while (true) {
+  while (isRunning) {
     try {
       /**
        * For iOS, add initialisation phase to stop infinite fetching state if unauthorised
@@ -86,6 +87,7 @@ export default function* listenToSteps() {
 
       if (isCancelled) {
         channel.close();
+        isRunning = false;
       }
     }
   }
