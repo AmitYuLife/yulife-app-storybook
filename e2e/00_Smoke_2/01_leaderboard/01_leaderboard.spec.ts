@@ -1,11 +1,11 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
-import * as scenario from "./_steps/scenario"
-import * as given from "./_steps/given"
-import * as when from "./_steps/when"
-import * as then from "./_steps/then"
-import * as helper from "./_steps/helpers"
-import { NAV_BAR, LEADERBOARD_INFO, BACK_BUTTON, PLUS_BUTTON, LEADERBOARD_EMAIL_INPUT, GROUP_NAME_INPUT, LEADERBOARD_SWITCH, LEADERBOARD_TITLE, MENU_ICON, INSPECT_SCREEN, RANK, CHALLENGE_FRIEND_BUTTON, DAILY_STEPS_SCREEN, LEADERBOARD_SCROLL_LIST, YUMOJI, USER_WORLD, USER_LEVEL, TEXT_TEMPLATE, ONBOARDING_SCREEN_V4 } from "@ids";
-import { CUSTOMER_16, AUTH_16, USER_16_LEADERBOARD, CUSTOMER_17, AUTH_17, CUSTOMER_18, USER_18_LEADERBOARD, CUSTOMER_19, AUTH_19, CUSTOMER_20, CUSTOMER_21, USER_19_LEADERBOARD_B, CUSTOMER_47, AUTH_47, AUTH_21, USER_20_LEADERBOARD, AUTH_20, CUSTOMER_50, AUTH_50, COIN_LEDGER_47, COIN_LEDGER_18} from "@data";
+import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
+import * as scenario from "./_steps/scenario";
+import * as given from "./_steps/given";
+import * as when from "./_steps/when";
+import * as then from "./_steps/then";
+import * as helper from "./_steps/helpers";
+import { NAV_BAR, LEADERBOARD_INFO, BACK_BUTTON, LEADERBOARD_SWITCH, LEADERBOARD_TITLE, MENU_ICON, INSPECT_SCREEN, RANK, CHALLENGE_FRIEND_BUTTON, DAILY_STEPS_SCREEN, LEADERBOARD_SCROLL_LIST, YUMOJI, USER_WORLD, USER_LEVEL, TEXT_TEMPLATE, ONBOARDING_SCREEN_V4 } from "@ids";
+import { CUSTOMER_16, AUTH_16, CUSTOMER_17, AUTH_17, CUSTOMER_18, USER_18_LEADERBOARD, CUSTOMER_19, AUTH_19, CUSTOMER_20, CUSTOMER_21, USER_19_LEADERBOARD_B, CUSTOMER_47, AUTH_47, AUTH_21, CUSTOMER_50, AUTH_50, COIN_LEDGER_47, COIN_LEDGER_18 } from "@data";
 
 Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can consent to my company leaderboard", scenario.start, async () => {
@@ -22,60 +22,6 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                         })
                     })
                 })
-            })
-        })
-    })
-    
-    Scenario("I can create a custom leaderboard, invite a user, and turn it on and off", scenario.start, async () => {
-        Given("I login", given.loginAsUser(CUSTOMER_17, AUTH_17), async () => {
-            When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_16_LEADERBOARD.data.name)))
-            })
-            When("I tap the leaderboard drop down", when.tapID(LEADERBOARD_TITLE(USER_16_LEADERBOARD.data.name)), async () => {
-                Then("I should see create", then.idVisible(PLUS_BUTTON))
-            })
-            When("I tap create", when.tapID(PLUS_BUTTON), async () => {
-                Then("I should be on the create a leaderboard screen", then.textVisible("create a leaderboard"))
-                Then("I should see the leaderboard name and email inputs", then.multipleIDVisible([LEADERBOARD_EMAIL_INPUT, GROUP_NAME_INPUT]))
-            })
-            When("I enter a group name", when.replaceTextByID(GROUP_NAME_INPUT, "Group 1"), async () => {
-                Then("I should see the group name entered", then.textVisible("Group 1"))
-            })
-            When("I enter an email", when.replaceTextByID(LEADERBOARD_EMAIL_INPUT, CUSTOMER_16.data.email), async () => {
-                Then("I should see the email entered", then.textVisible(CUSTOMER_16.data.email))
-            })
-            When("I tap add", when.tapText("add"), async () => {
-                Then("I should see the email I just entered", then.textVisible(CUSTOMER_16.data.email))
-            })
-            When("I tap create", when.tapText("create"), async () => {
-                Then("I should be back on the leaderboards list page", then.idVisible(PLUS_BUTTON))
-                Then("I should see the group I just created", then.textVisible("Group 1"))
-                Then("The status of the group should be online", then.leaderboardStatus("Group 1", "active"))
-            })
-            When("I try to switch off the leaderboard", when.tapID(LEADERBOARD_SWITCH("Group 1")), async () => {
-                Then("I should be on the Turn it off screen", then.textVisible("Turn it off?"))
-            })
-            When("I tap Keep it on!", when.tapText("Keep it on!"), async () => {
-                Then("I should be back on the settings screen the group still visible", then.textVisible("Group 1"))
-                Then("The status of the group should be online", then.leaderboardStatus("Group 1", "active"))
-            })
-            When("I switch off the leaderboard", when.tapID(LEADERBOARD_SWITCH("Group 1")), async () => {
-                Then("I should be on the Turn it off screen", then.textVisible("Turn it off?"))
-            })
-            When("I tap Turn it off", when.tapText("Turn it off"), async () => {
-                Then("I should be on the leaderboard selection page with the leaderboard turned off", then.leaderboardStatus("Group 1", "inactive"))
-            })
-            When("I try to switch on the leaderboard", when.tapID(LEADERBOARD_SWITCH("Group 1")), async () => {
-                Then("I should be on the Join the Leaderboard screen", then.textVisible("Join the Leaderboard?"))
-            })
-            When("I tap 'no thanks'", when.tapText("No thanks"), async () => {
-                Then("I should be back on the leaderboard selection page and the leaderboard should be inactive", then.leaderboardStatus("Group 1", "inactive"))
-            })       
-            When("I switch on the leaderboard", when.tapID(LEADERBOARD_SWITCH("Group 1")), async () => {
-                Then("I should be on the Join the Leaderboard screen", then.textVisible("Join the Leaderboard?"))
-            })
-            When("I tap Yes", when.tapText("Yes"), async () => {
-                Then("I should be back on the leaderboard selection page and the leaderboard should be active", then.leaderboardStatus("Group 1", "active"))
             })
         })
     })
@@ -140,60 +86,6 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             })
         })
     })
-
-    Scenario("I can invite a user, and they can accept", scenario.start, async () => {
-        Given("I login", given.loginAsUser(CUSTOMER_20, AUTH_20), async () => {
-            When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_20_LEADERBOARD.data.name)))
-            })
-            When("I tap the leaderboard drop down", when.tapID(LEADERBOARD_TITLE(USER_20_LEADERBOARD.data.name)), async () => {
-                Then("I should see create", then.idVisible(PLUS_BUTTON))
-            })
-            When("I tap create", when.tapID(PLUS_BUTTON), async () => {
-                Then("I should be on the create a leaderboard screen", then.textVisible("create a leaderboard"))
-                Then("I should see the leaderboard name and email inputs", then.multipleIDVisible([LEADERBOARD_EMAIL_INPUT, GROUP_NAME_INPUT]))
-            })
-            When("I enter a group name", when.replaceTextByID(GROUP_NAME_INPUT, "Lb3"), async () => {
-                Then("I should see the group name entered", then.textVisible("Lb3"))
-            })
-            When("I enter an email", when.replaceTextByID(LEADERBOARD_EMAIL_INPUT, CUSTOMER_19.data.email), async () => {
-                Then("I should see the email entered", then.textVisible(CUSTOMER_19.data.email))
-            })
-            When("I tap add", when.tapText("add"), async () => {
-                Then("I should see the email I just entered", then.textVisible(CUSTOMER_19.data.email))
-            })
-            When("I tap create", when.tapText("create"), async () => {
-                Then("I should see the group I just created", then.textVisible("Lb3"))
-                Then("The status of the group should be online", then.leaderboardStatus("Lb3", "active"))
-            })
-            When("I restart the app", when.restartWithData, async () => {
-                When("I login as the invited user", when.loginOnly(CUSTOMER_19, AUTH_19, false), async () => {
-                    Then("I should see a leaderboard invite screen", then.textVisible("join Oscar's leaderboard", 2500))
-                })
-            })
-            When("I accept", when.tapText("accept invite"), async () => {
-                When("I skip fitkit", when.tapText("Skip this step"), async () => {
-                    Then("I should see the signup bonus screen", then.textVisible("Sign-up bounty\nunlocked!"))
-                })
-            })
-            When("I continue the login process", when.continueLogin, async () => {
-                Then("I should be on the yuscreen", then.idVisible(DAILY_STEPS_SCREEN))
-            })
-            When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE("Lb3")))
-                Then("I should be on the default leaderboard", then.leaderboardVisible([CUSTOMER_20]))
-            })
-            When("I tap the leaderboard title", when.tapID(LEADERBOARD_TITLE("Lb3")), async () => {
-                Then("I should see both Lb1 and the new leaderboard I just joined", then.multipleTextVisible([USER_18_LEADERBOARD.data.name, "Lb3"]))
-            })
-            When("I tap Lb1", when.tapText("LB1"), async () => {
-                Then("I should see the leaderboard name Lb1", then.idVisible(LEADERBOARD_TITLE("LB1")))
-                Then("I should not see any of the other leaderboards", then.textNotVisible(USER_19_LEADERBOARD_B.data.name))
-                Then("I should be on the Lb1 leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_47, CUSTOMER_50], ["12,800", "800", "10,000"]))
-            })
-        })
-    })
-
 
     Scenario("I can inspect other members and view their data and avatars from the leaderboard - seed data", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(CUSTOMER_47, AUTH_47), async () => {

@@ -158,10 +158,6 @@ export const LEADERBOARD_TITLE = (title:string) => `LEADERBOARD_TITLE_${title}`
 export const DUELS_BUTTON = "DUELS_BUTTON"
 export const GOALS_BUTTON = "GOALS_BUTTON"
 export const LEADERBOARD_SCROLL_LIST = "LEADERBOARD_SCROLL_LIST"
-
-// create a leaderboard
-export const GROUP_NAME_INPUT = "GROUP_NAME_INPUT"
-export const LEADERBOARD_EMAIL_INPUT = "LEADERBOARD_EMAIL_INPUT"
 export const LEADERBOARD_STATUS = (leaderboardName: string, leaderboardStatus: string) => `LEADERBOARD_STATUS_${leaderboardName}_${leaderboardStatus}`
 export const LEADERBOARD_SWITCH = (leaderboardName: string) => `LEADERBOARD_SWITCH_${leaderboardName}`
 

@@ -1,11 +1,9 @@
 export { default as AnimatedChest } from "./animated-chest/animated-chest";
 export { default as ChallengeUnavailableModal } from "./challenge-unavailable/challenge-unavailable.modal";
-export { default as CreateLeaderboardModal } from "./create-leaderboard/create-leaderboard.modal";
 export { default as CollectRewardModal } from "./collect-reward/collect-reward.modal";
 export { default as FeedbackModal } from "./feedback/feedback.modal";
 export { default as GenericModal } from "./generic-modal/generic-modal";
 export { default as GenericConnectionErrorModal } from "./generic-modal/generic-connection-error-modal";
-export { default as LeaderboardInviteModal } from "./leaderboard-invite/leaderboard-invite.modal";
 export { default as LevelUnavailableModal } from "./level-unavailable/level-unavailable.modal";
 export { default as PushNotificationsModal } from "./push-notifications/push-notifications.modal";
 export { default as StreaksModal } from "./streaks/streaks.modal";
