@@ -94,7 +94,9 @@ export const ROUTES = {
   eventDialog: "yulife.events.dialog",
 
   // media
-  mediaList: "yulife.media.list",
+  meditopiaMediaList: "yulife.meditopia.media.list",
+  fiitMediaCategoryList: "yulife.fiit.media.category.list",
+  fiitMediaList: "yulife.fiit.media.list",
   mediaPlayer: "yulife.media.player",
   yuniversityMediaPlayer: "yulife.media.yuniversityMediaPlayer",
 

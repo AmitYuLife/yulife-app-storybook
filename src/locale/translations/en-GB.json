@@ -15,6 +15,8 @@
   "device_not_supported": "device not supported",
   "apple_health": "Apple Health",
   "google_fit": "Google Fit",
+  "user_other_app": "Or use the app",
+  "setup_tutorial": "Set up tutorial",
   "button": {
     "close": "Close",
     "dismiss": "Dismiss",
@@ -330,7 +332,7 @@
     "media_list": {
       "different_app_cta_label": "Use a different app",
       "different_app_section_label": "Or use an app",
-      "video_duration_reward_label": "%{formattedDuration} min • Earn %{reward}"
+      "video_duration_reward_label": "%{formattedDuration} • Earn %{reward}"
     },
     "challenge_progress": {
       "how_meditate_with_other_apps_label": "How do I meditate with other apps"
@@ -495,7 +497,18 @@
     },
     "video_player": {
       "session_complete": "Session complete.",
-      "one_moment_please": "One moment, please..."
+      "one_moment_please": "One moment, please...",
+      "video_type": {
+        "mindfullness": "Meditation",
+        "workout": "Workout"
+      }
+    },
+    "fiit_media_list": {
+      "startChallengeButtonLabel": "Start class",
+      "description": "Free classes powered by"
+    },
+    "meditopia_media_list": {
+      "startChallengeButtonLabel": "Start session"
     }
   },
   "permissions": {

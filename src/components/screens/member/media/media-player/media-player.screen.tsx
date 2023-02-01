@@ -15,6 +15,9 @@ interface IProps {
   onEnd: () => void;
   onError: () => void;
   startErrorMessage?: string;
+  eventType: string;
+  orientation: "landscape" | "portrait";
+  startChallengeButtonLabel: string;
 }
 
 const MediaPlayerScreen = ({
@@ -25,6 +28,9 @@ const MediaPlayerScreen = ({
   onEnd,
   onError,
   startErrorMessage,
+  eventType,
+  orientation,
+  startChallengeButtonLabel,
 }: IProps) => {
   const onStartMedia = useCallback(async () => {
     await onStart(video.id);
@@ -50,7 +56,10 @@ const MediaPlayerScreen = ({
       onError={onError}
       startErrorMessage={startErrorMessage}
       lottie={video?.lottie}
-      eventType="mindfullness"
+      eventType={eventType}
+      orientation={orientation}
+      startChallengeButtonLabel={startChallengeButtonLabel}
+      videoSourceType={video.sourceType}
     />
   );
 };

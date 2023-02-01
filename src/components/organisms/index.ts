@@ -32,3 +32,5 @@ export { default as ChapterContentItem } from "./yuniversity/chapter-content-ite
 export { default as ModuleContentItem } from "./yuniversity/module-content-item";
 export { default as ModuleNotes } from "./yuniversity//module-notes";
 export { default as Certificate } from "./certificate/certificate";
+export { default as MediaListItems } from "./media-list-items/media-list-items";
+export { default as MediaListButtons } from "./media-list-buttons/media-list-buttons";

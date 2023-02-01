@@ -3,15 +3,15 @@ import { View, StyleSheet } from "react-native";
 import { SkeletonLoading } from "@atoms";
 import { BoxOption } from "@molecules";
 import { Style } from "@styles";
-import { BOX_HEIGHT, IMAGE_HEIGHT, IMAGE_WIDTH, styles as stylesList } from "./media-list.styles";
+import { BOX_HEIGHT, IMAGE_HEIGHT, IMAGE_WIDTH, styles as stylesList } from "./media-list-items.styles";
 
 interface IProps {
-  limit: number;
+  items: number;
 }
 
-const MediaListLoading = ({ limit }: IProps) => (
+const MediaListItemsLoading = ({ items }: IProps) => (
   <>
-    {Array.from({ length: limit }).map((_, i) => (
+    {Array.from({ length: items }).map((_, i) => (
       <BoxOption
         key={i}
         onPress={() => null}
@@ -51,4 +51,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(MediaListLoading);
+export default memo(MediaListItemsLoading);

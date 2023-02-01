@@ -12,7 +12,7 @@ export const GQL_QUERY_GET_VIDEOS_LIST = gql`
   }
 `;
 
-export default function getVideosListQuery(tags?: [string]) {
+export default function getVideosListQuery(tags?: string[]) {
   return client().query<GetMedia_getMedia, GetMediaVariables>({
     fetchPolicy: "network-only",
     query: GQL_QUERY_GET_VIDEOS_LIST,

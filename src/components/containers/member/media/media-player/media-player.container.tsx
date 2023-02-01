@@ -41,9 +41,21 @@ interface IProps {
   componentId: string;
   video: IVideo;
   levelSlotId: string;
+  onLeftIconPress: () => void;
+  eventType: "workout" | "mindfullness";
+  orientation: "landscape" | "portrait";
+  startChallengeButtonLabel: string;
 }
 
-const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
+const MediaPlayerContainer = ({
+  componentId,
+  video,
+  levelSlotId,
+  onLeftIconPress,
+  eventType,
+  orientation,
+  startChallengeButtonLabel,
+}: IProps) => {
   const [showModal, setShowModal] = useState(false);
   const [showError, setShowError] = useState(false);
   const challengeIsActive = useSelector(getChallengeIsActive);
@@ -74,6 +86,12 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
           videoDuration: video.duration,
         })
       );
+      Navigation.mergeOptions(ROUTES.mediaPlayer, {
+        statusBar: {
+          drawBehind: false,
+          visible: false,
+        },
+      });
     },
     [levelSlotId, createQuestMapLevelChallengeMutation, dispatch, upsertDailyPassives, video.duration]
   );
@@ -98,7 +116,10 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
 
     if (data?.updateQuestMapLevelChallenge) {
       dispatch(challengeEndSuccessAction({ ...data?.updateQuestMapLevelChallenge?.challenge }));
-      dispatch(updateInAppMeditation(video.duration));
+
+      if (eventType === "mindfullness") {
+        dispatch(updateInAppMeditation(video.duration));
+      }
 
       await Navigation.popTo(ROUTES.quests);
 
@@ -111,8 +132,9 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
     setShowModal(true);
   }, []);
 
-  const onLeftIconPress = useCallback(() => Navigation.popTo(ROUTES.mediaList), [componentId]);
-  const onRightIconPress = useCallback(() => setShowModal(true), [componentId]);
+  const onRightIconPress = useCallback(() => {
+    setShowModal(true);
+  }, [componentId]);
   const onPress = useCallback(async () => cancelChallenge(), [cancelChallenge]);
 
   const onPressSecondary = useCallback(async () => {
@@ -136,8 +158,17 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
         onLeftIconPress={onLeftIconPress}
         onRightIconPress={onRightIconPress}
         startErrorMessage={t("create_challenge_error")}
+        eventType={eventType}
+        orientation={orientation}
+        startChallengeButtonLabel={startChallengeButtonLabel}
       />
-      <Modal animationType="slide" visible={showModal} onRequestClose={() => setShowModal(false)}>
+
+      <Modal
+        statusBarTranslucent={true}
+        animationType="slide"
+        visible={showModal}
+        onRequestClose={() => setShowModal(false)}
+      >
         <GenericModal
           isPrimaryOnePressOnly={true}
           heading={
