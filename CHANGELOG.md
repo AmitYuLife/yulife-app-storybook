@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.67.0] - 2023-02-01
+
+### Bugfixes
+
+- Bugfix: Stop cancelled steps listener loop
+- Bugfix: top-bar adjust on iphone 13 and 14
+- Bugfix: Fix Android build by removing react-native-spring-scrollview from the android files and podfile
+- Revert "Merge branch 'bugfix/dynamic-island-top-bar' into 'develop'"
+- Revert "Merge branch 'bugfix/dynamic-island-top-bar-on-quest-screens' into 'develop'"
+
+### Tasks
+
+- Task: Fiit in app
+- Task GS-627: Notifications - Wrap Leanplum SDK calls
+- Task GS-627: Notification centre
+- Task ISA-290: rewards sdui under toggle
+
+### Extra
+
+- Purge: custom top bar/generic heading fillers
+- Purge: large list
+- Detox GS-473: Weekly quests tests
+
 ## [3.66.0] - 2023-01-25
 
 ### Bugfixes
