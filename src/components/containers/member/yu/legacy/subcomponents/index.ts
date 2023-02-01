@@ -1,4 +1,0 @@
-export * from "./yumoji-creation-prompt";
-export * from "./yu-coin-power/yu-coin-power";
-export * from "./heading";
-export * from "./avatar-and-equipment/avatar-and-equipment";
