@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   scrollView: {
     height: Style.DEVICE_HEIGHT - Style.SCALE_UP_AND_DOWN(134 + scrollViewHeightAdd),
-    marginTop: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 65 : 40),
     width: "100%",
   } as ViewStyle,
   contentContainer: { paddingBottom: Style.SCALE_UP_AND_DOWN(30) } as ViewStyle,

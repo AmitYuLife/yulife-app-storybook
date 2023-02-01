@@ -12,6 +12,7 @@ interface Props {
   rightIcon?: RightIconTypes;
   hasWhiteBackground?: boolean;
   type?: ComponentProps<typeof TopBar>["type"];
+  name?: ComponentProps<typeof TopBar>["name"];
   menuLabel?: ComponentProps<typeof TopBar>["menuLabel"];
   timer?: ComponentProps<typeof TopBar>["timer"];
 }

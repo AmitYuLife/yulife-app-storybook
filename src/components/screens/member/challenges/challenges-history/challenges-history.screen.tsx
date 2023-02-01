@@ -5,7 +5,7 @@ import { Image as RNImage, ScrollView, View } from "react-native";
 import { IConnectedScreenProps } from "@app/typings";
 import ChallengesHistorySlot from "./challenges-history-slot";
 import styles from "./challenges-history.screen.styles";
-import { TopBar, NavBar } from "@components/organisms";
+import { NavBar, TopBarAbsolute, GenericHeadingPad } from "@components/organisms";
 import { getCurrentWorld } from "@utils";
 import { getTheme } from "@theme";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
@@ -24,18 +24,9 @@ function ChallengesHistory({ level, yuniversalMap, name, onPressActivityHistory,
 
   return (
     <View style={styles.wrapper}>
-      <View style={styles.topPad} />
+      <GenericHeadingPad />
       <View style={challengeHistoryScreen.style}>
         <RNImage resizeMode="cover" style={styles.background} source={challengeHistoryScreen.backgroundImage} />
-      </View>
-      <View style={styles.topBarWrapper}>
-        <TopBar
-          leftIcon={LeftIcon.BACK}
-          menuLabel="map"
-          name={name}
-          onPressLeftIcon={onLeftMenuPress}
-          type={challengeHistoryScreen.topBarType}
-        />
       </View>
       <View style={styles.challengeSetWrapper}>
         <ScrollView
@@ -63,6 +54,13 @@ function ChallengesHistory({ level, yuniversalMap, name, onPressActivityHistory,
       <View style={styles.buttonsWrapper}>
         <Button onPress={onPressActivityHistory} label="Full history" />
       </View>
+      <TopBarAbsolute
+        leftIcon={LeftIcon.BACK}
+        menuLabel="map"
+        name={name}
+        onPressLeftIcon={onLeftMenuPress}
+        type={challengeHistoryScreen.topBarType}
+      />
       <NavBar activeIndex={1} />
     </View>
   );

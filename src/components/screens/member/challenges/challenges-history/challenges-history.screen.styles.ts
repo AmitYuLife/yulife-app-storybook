@@ -1,17 +1,6 @@
 import { ImageStyle, Platform, StyleSheet, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { Style } from "../../../../../styles";
-import media from "@styles/media";
-
-const IOS_PADDING_TOP = media.select(
-  [
-    {
-      condition: [media.DEVICES.iPhone12.height, media.DEVICES.iPhone12ProMax.height].includes(Style.DEVICE_HEIGHT),
-      value: 20,
-    },
-  ],
-  0
-);
+import { Style } from "@styles";
 
 export default StyleSheet.create({
   background: {
@@ -52,9 +41,6 @@ export default StyleSheet.create({
     position: "absolute",
     width: Style.DEVICE_WIDTH,
   } as ViewStyle,
-  topBarWrapper: {
-    paddingTop: IOS_PADDING_TOP,
-  } as ViewStyle,
   wrapper: {
     flex: 1,
   } as ViewStyle,
@@ -63,7 +49,4 @@ export default StyleSheet.create({
     height: Style.SCALE_UP_AND_DOWN(430),
   } as ViewStyle,
   contentContainer: { paddingBottom: Style.SCALE_UP_AND_DOWN(70) } as ViewStyle,
-  topPad: {
-    height: Platform.OS === "ios" ? Style.getSafeAreaStart() : 0,
-  } as ViewStyle,
 });

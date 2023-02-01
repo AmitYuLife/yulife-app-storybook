@@ -1,28 +1,6 @@
-import { ImageStyle, Platform, StyleSheet, ViewStyle } from "react-native";
+import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
 import { Style } from "@styles";
-import media from "@styles/media";
-
-const IOS_PADDING_TOP = media.select(
-  [
-    {
-      condition: [media.DEVICES.iPhone12.height, media.DEVICES.iPhone12ProMax.height].includes(Style.DEVICE_HEIGHT),
-      value: 20,
-    },
-  ],
-  0
-);
-
-const CHALLENGE_SET_TOP_OFFSET = media.select(
-  [
-    { condition: Platform.OS === "android", value: 0 },
-    {
-      condition: [media.DEVICES.iPhone12.height, media.DEVICES.iPhone12ProMax.height].includes(Style.DEVICE_HEIGHT),
-      value: 44,
-    },
-    { condition: Style.hasNotch, value: 12 },
-  ],
-  20
-);
+import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 
 export default StyleSheet.create({
   background: {
@@ -38,15 +16,9 @@ export default StyleSheet.create({
     position: "absolute",
     right: 0,
     bottom: 0,
-    top: CHALLENGE_SET_TOP_OFFSET,
-  } as ViewStyle,
-  topBarWrapper: {
-    paddingTop: IOS_PADDING_TOP,
+    top: TOP_BAR_WITH_PAD,
   } as ViewStyle,
   wrapper: {
     flex: 1,
-  } as ViewStyle,
-  topPad: {
-    height: Platform.OS === "ios" ? Style.getSafeAreaStart() : 0,
   } as ViewStyle,
 });

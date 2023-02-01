@@ -148,6 +148,10 @@ const getSafeAreaStart = () => {
     return StatusBar.currentHeight;
   }
 
+  if (DeviceInfo.hasDynamicIsland()) {
+    return 48;
+  }
+
   if (isIphoneXPlus()) {
     return 36;
   }
@@ -199,6 +203,7 @@ const Style = {
   defaultShrinkThreshold,
   isWideScreen,
   hasNotch: DeviceInfo.hasNotch(),
+  hasDynamicIsland: DeviceInfo.hasDynamicIsland(),
   isLargeScreen,
   isHuaweiMate10,
   IOS_NOTCH_HEIGHT,

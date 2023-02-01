@@ -1,6 +1,7 @@
 import { StyleSheet, ViewStyle, Platform } from "react-native";
 import { Style } from "@styles";
 import media from "@styles/media";
+import { PADDING_TOP } from "@styles/top-bar.styles";
 
 export const SCROLL_PADDING = media.select(
   [
@@ -18,22 +19,6 @@ export const SCROLL_PADDING = media.select(
     },
   ],
   Style.getSafeAreaStart() + Style.adjust(40)
-);
-
-export const CLOSE_WRAPPER_TOP_MARGIN = media.select(
-  [
-    {
-      condition:
-        Platform.OS === "ios" &&
-        [media.DEVICES.iPhone12.height, media.DEVICES.iPhone12ProMax.height].includes(Style.DEVICE_HEIGHT),
-      value: Style.getSafeAreaStart() + 32,
-    },
-    {
-      condition: Platform.OS === "android",
-      value: Style.adjust(16),
-    },
-  ],
-  Style.getSafeAreaStart() + 16
 );
 
 export default StyleSheet.create({
@@ -61,7 +46,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   closeWrapper: {
     position: "absolute",
-    top: CLOSE_WRAPPER_TOP_MARGIN - 16,
+    top: PADDING_TOP,
     right: 0,
     padding: 16,
   } as ViewStyle,
