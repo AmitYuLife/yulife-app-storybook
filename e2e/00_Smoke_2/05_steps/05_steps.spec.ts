@@ -1,10 +1,10 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { NAV_BAR, MENU_ICON, ACTIVITY_HISTORY_SCREEN, BUTTON_CLOSE_HEADER, LEADERBOARD_TITLE, STEPS_COUNT, DUELS_BUTTON, CYCLING_COUNT, MINDFUL_COUNT } from "@ids";
-import { CUSTOMER_40, AUTH_40, USER_40_LEADERBOARD, CUSTOMER_66, AUTH_66 } from "@data";
+import { CUSTOMER_40, AUTH_40, USER_40_LEADERBOARD, CUSTOMER_66, AUTH_66, CUSTOMER_82, AUTH_82 } from "@data";
 import { twoDaysAgoDate } from "./_steps/consts"
 
 
@@ -102,6 +102,24 @@ Feature("As a user my activity is monitored correctly", async () => {
             Then("I should be on activity history", then.idVisible(ACTIVITY_HISTORY_SCREEN, 2500))
             Then("I should see all mindful minutes from the past 32 days ago loaded in", then.activityHistoryScrollMinsDataCorrect)
         }) 
+    })
+
+    Scenario("I can see my activity history successfully updates after 5 days of inactivity", scenario.start, async () => {
+        Given("I add 5 days of steps data", given.addStepsHistoricalDataMulitple(4000, 5), async () => {
+            When("I login", when.loginToYuScreen(false, CUSTOMER_82, AUTH_82), async () => {
+                When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin"), 3000), async () => {
+                    Then("I should see my steps today are at 0", then.idVisible(STEPS_COUNT(0)))
+                })
+                When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 500), async () => {
+                    Then("I should see the menu items", then.menuItemsVisible)
+                })
+                When("I tap on activity history", when.tapMenuItem("Activity History"), async () => {
+                    Then("I should be on the activity history page", then.idVisible(ACTIVITY_HISTORY_SCREEN, 2500))
+                    Then("I should be able to see the steps from the last 5 days are being successfully displayed", then.canSeeHistoricalSteps(5, 4000))
+                    Then("I should be able to see the completed challenge from the sixth day, which is seeded data", then.textVisible("short stroll / 125 steps", 1000))
+                })
+            })
+        })
     })
 })
     

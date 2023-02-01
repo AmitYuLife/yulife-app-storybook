@@ -223,3 +223,17 @@ export const addMins32DaysHistoricalData = (value: number) => async () => {
     }
     await fitKitAddSampleQueries(record)
 }
+
+export const addStepsHistoricalDataMulitple = (value: number, days: number) => async () => {
+    const record = []
+    for (let i = 1; i < days + 1; i++) {
+        const data = {
+            startTime: moment().subtract(i,"day").startOf("day").add(10,"minutes").toDate().toString(),
+            endTime: moment().subtract(i,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
+            value,
+            type: "StepCount",
+        }
+        record.push(data)
+    }
+    await fitKitAddAggregatedQueries(record)
+}
