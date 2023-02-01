@@ -16,7 +16,8 @@ export const {
     loginAndCollectSignupBonus,
     continueLogin,
     continueLoginAfterSignupBonus,
-    loginOnly
+    loginOnly,
+    loginToYuScreen
 } = navigation.login
 
 export const {

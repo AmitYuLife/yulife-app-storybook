@@ -1,5 +1,6 @@
 import { navigation, LEADERBOARD_NAME, LEADERBOARD_STATUS, LEADERBOARD_SCROLL_LIST } from "@utils"
 import { screens } from "@appScreens"
+import { formatNumber } from "./helpers"
 
 export const {
     textVisible,
@@ -65,4 +66,10 @@ export const {
 
 export const canSeeYesterdaysSteps = () => async () => {
     await textVisible("75,001 steps", 3000)()
+}
+
+export const canSeeHistoricalSteps = (days: number, steps: number) => async () => {
+    for (let i = 0; i < days; i++) {
+        await textVisibleAtIndex(`${formatNumber(steps, 0)} steps`, i, 1000)()
+    }
 }

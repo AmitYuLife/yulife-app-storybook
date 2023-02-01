@@ -1,4 +1,5 @@
-import { navigation,  } from "@navigation"
+import { navigation } from "@navigation"
+export { addStepsHistoricalDataMulitple } from "@socket"
 
 export const {
     loginAsUser,

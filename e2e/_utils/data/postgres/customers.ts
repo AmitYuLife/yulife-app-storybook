@@ -1266,7 +1266,6 @@ export const CUSTOMER_81 = {
     }
 } as IDatabaseItem
 
-
 export const CUSTOMER_82= {
     type: "postgres",
     modelName: "customer",
@@ -1278,5 +1277,19 @@ export const CUSTOMER_82= {
         dateOfBirth: moment().subtract(38, "years").toDate(),
         status: "onboarded",
         fullName: "Jamie Foxx"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_83 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Sloogy",
+        lastName: "Dreamer",
+        dateOfBirth: moment().subtract(38, "years").toDate(),
+        status: "onboarded",
+        fullName: "Sloogy Dreamer"
     }
 } as IDatabaseItem
