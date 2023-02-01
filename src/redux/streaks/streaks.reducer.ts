@@ -1,6 +1,11 @@
-import { GetCurrentUser, LoginUser } from "@graphql/_core/schema";
+import { GetCurrentUser, GetUserActiveStreak_getUserActiveStreak, LoginUser } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
+import {
+  GET_USER_ACTIVE_STREAK_SUCCESS,
+  GET_USER_SUCCESS,
+  LOGIN_USER_SUCCESS,
+  LOGOUT_SUCCESS,
+} from "../user/user.actions";
 
 export interface IStreaksStore {
   id: string;
@@ -44,6 +49,9 @@ const streaksReducer = (state: IStreaksStore = getInitialState(), action: SyncAc
     case LOGIN_USER_SUCCESS:
       return loginUserSuccess(state, action.payload);
 
+    case GET_USER_ACTIVE_STREAK_SUCCESS:
+      return getActiveStreakSuccess(state, action.payload);
+
     case LOGOUT_SUCCESS:
       return getInitialState();
 
@@ -73,5 +81,17 @@ const loginUserSuccess = (state: IStreaksStore, data: LoginUser): IStreaksStore 
     isAvailable: !!activeStreak.id,
     isRedeemed: activeStreak.streak === activeStreak.maxStreak && !activeStreak.streakAwardId,
     ...activeStreak,
+  };
+};
+
+const getActiveStreakSuccess = (
+  state: IStreaksStore,
+  data: GetUserActiveStreak_getUserActiveStreak = DEFAULT_ACTIVE_STREAK
+): IStreaksStore => {
+  return {
+    ...state,
+    isAvailable: !!data.id,
+    isRedeemed: data.streak === data.maxStreak && !data.streakAwardId,
+    ...data,
   };
 };

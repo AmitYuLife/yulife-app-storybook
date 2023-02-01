@@ -21,6 +21,12 @@ export const GQL_QUERY_GET_ALL_USER_DATA = gql`
     leaderboards: getUserLeaderboards {
       ...Leaderboard
     }
+    activeStreak: getUserActiveStreak {
+      ...UserActiveStreak
+    }
+    activeChallenge: getUserActiveChallenge {
+      ...UserActiveChallenge
+    }
   }
 `;
 

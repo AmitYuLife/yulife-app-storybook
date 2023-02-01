@@ -1,6 +1,6 @@
 import { takeLatest } from "redux-saga/effects";
 import { AUTHENTICATED, SET_MAIN_ROOT, UPDATE_APP_STATE, UPDATE_CURRENT_ROUTE } from "../../app/app.actions";
-import { CHALLENGE_RESET_SUCCESS } from "../../levels/levels.actions";
+import { CHALLENGE_END_SUCCESS, CHALLENGE_RESET_SUCCESS } from "../../levels/levels.actions";
 import {
   FITKIT_CONSENT_AUTHORISED,
   GET_USER_START,
@@ -44,6 +44,7 @@ import showEventFinishDialog from "./showEventFinishedDialog.saga";
 import getUserCoinLedgerTodayActivitySaga from "./getUserCoinLedgerTodayActivity.saga";
 import getAllUserDataSaga from "./getAllUserData.saga";
 import getUserLeaderboardsSaga from "./getUserLeaderboards.saga";
+import getUserActiveStreakSaga from "./getUserActiveStreak.saga";
 
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
@@ -66,6 +67,7 @@ export default [
   takeLatest(SET_MAIN_ROOT, showSurgeIntroSaga),
   takeLatest([REFRESH_USER_PROFILE, UPDATE_APP_STATE], getUserProfileData),
   takeLatest(UPDATE_USER_PROFILE, synchroniseYuScreenSaga),
+  takeLatest([CHALLENGE_RESET_SUCCESS, CHALLENGE_END_SUCCESS], getUserActiveStreakSaga),
   takeLatest([UPDATE_CURRENT_ROUTE, YUSCREEN_SYNCHRONISED], updateYuScreenNotification),
   takeLatest(REMOVE_YUSCREEN_NOTIFICATIONS, removeYuScreenNotification),
   takeLatest([UPDATE_USER_PROFILE, UPDATE_USER_PROFILE_EVENTS], showEventFinishDialog),

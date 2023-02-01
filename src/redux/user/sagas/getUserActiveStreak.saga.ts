@@ -12,6 +12,6 @@ export default function* getUserActiveStreakSaga() {
       yield put(getUserActiveStreakSuccess(data.getUserActiveStreak));
     }
   } catch (e) {
-    Logger.error(e, { event: "getUserActiveChallenge" });
+    Logger.error(e, { event: "getUserActiveStreak" });
   }
 }
