@@ -7,10 +7,12 @@ import {
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
   UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge as QuestMapActiveChallenge,
   GetUserCoinLedgerTodayActivity,
+  GetUserActiveChallenge_getUserActiveChallenge,
 } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
 import {
+  GET_USER_ACTIVE_CHALLENGE_SUCCESS,
   GET_USER_COIN_LEDGER_TODAY_ACTIVITY_SUCCESS,
   GET_USER_SUCCESS,
   LOGIN_USER_SUCCESS,
@@ -96,6 +98,9 @@ const levelsReducer = (state: ILevelsStore = getInitialState(), action: SyncActi
     case GET_USER_COIN_LEDGER_TODAY_ACTIVITY_SUCCESS:
       return getCoinLedgerSuccess(state, action.payload);
 
+    case GET_USER_ACTIVE_CHALLENGE_SUCCESS:
+      return getActiveChallengeSuccess(state, action.payload);
+
     case CHALLENGE_IS_ACTIVE:
       return { ...state, active: { ...state.active, challengeIsActive: true } };
 
@@ -178,6 +183,27 @@ const getCoinLedgerSuccess = (state: ILevelsStore, data: GetUserCoinLedgerTodayA
   yuniversalLevel: data?.coinLedger?.yuniversalLevel || 0,
   nextLevelAvailableAt: data?.coinLedger?.nextLevelAvailableAt || "",
   currentPlanet: getCurrentPlanetByLevel(data?.coinLedger?.currentLevel || 1),
+});
+
+const getActiveChallengeSuccess = (
+  state: ILevelsStore,
+  data: GetUserActiveChallenge_getUserActiveChallenge
+): ILevelsStore => ({
+  ...state,
+  active: {
+    ...state.active,
+    isLoading: false,
+    shouldEndOnLastGoalAchieved: data?.levelSlot?.shouldEndOnLastGoalAchieved,
+    fitKitTypes: data?.levelSlot?.fitKitTypes || [],
+    endDateTime: data?.challenge?.endDateTime || "",
+    levelSlotId: data?.challenge?.levelSlotId || "",
+    milestones: data?.levelSlot?.milestones || [],
+    rating: data?.challenge?.rating || state.active.rating || 0,
+    startDateTime: data?.challenge?.startDateTime || "",
+    subtype: data?.levelSlot?.subtype || "",
+    unit: data?.levelSlot?.unit || state.active.unit || "",
+    challengeIsActive: false,
+  },
 });
 
 const isCancellingChallenge = (state: ILevelsStore): ILevelsStore => ({

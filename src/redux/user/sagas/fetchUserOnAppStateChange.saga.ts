@@ -3,6 +3,7 @@ import { call, select, take } from "redux-saga/effects";
 import { appStateChannel } from "../../app/app.channels";
 import { getActiveLevel } from "../../levels/levels.selectors";
 import getUserDataSaga from "./getUserData.saga";
+import getUserActiveStreakSaga from "./getUserActiveStreak.saga";
 
 export default function* fetchUserOnAppStateChangeSaga() {
   yield call(getUserDataSaga);
@@ -15,6 +16,7 @@ export default function* fetchUserOnAppStateChangeSaga() {
 
     if (state === "active" && !active.levelSlotId) {
       yield call(getUserDataSaga);
+      yield call(getUserActiveStreakSaga);
     }
   }
 }
