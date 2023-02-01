@@ -4,7 +4,6 @@ import { CHALLENGE_RESET_SUCCESS } from "../../levels/levels.actions";
 import {
   FITKIT_CONSENT_AUTHORISED,
   GET_USER_START,
-  GET_USER_SUCCESS,
   LOGIN_USER_SUCCESS,
   LOGOUT_START,
   OPEN_MY_ACCOUNT,
@@ -21,7 +20,6 @@ import {
   GET_USER_COIN_LEDGER_TODAY_ACTIVITY_START,
   GET_ALL_USER_DATA_START,
   GET_USER_LEADERBOARDS_START,
-  GET_USER_LEADERBOARDS_SUCCESS,
 } from "../user.actions";
 
 import fetchConnectionsSaga from "./fetchConnectionsSaga.sagas";
@@ -32,8 +30,6 @@ import loginUserSuccessSaga from "./loginUserSuccess.saga";
 import logOutSaga from "./logOut.saga";
 import openMyAccountSaga from "./openMyAccount.saga";
 import setUserNoAccessSaga from "./setUserNoAccess.saga";
-import showLeaderboardInviteOnGetUserSaga from "./showLeaderboardInviteOnGetUser.saga";
-import showLeaderboardInviteOnLoginSaga from "./showLeaderboardInviteOnLogin.saga";
 import showSurgeIntroSaga from "./showSurgeIntro.saga";
 import updateConnectionSaga from "./updateConnection.saga";
 import updateLeaderboardConsentSaga from "./updateLeaderboardConsent.saga";
@@ -56,11 +52,8 @@ export default [
   takeLatest(GET_USER_START, getUserDataSaga),
   takeLatest(GET_ALL_USER_DATA_START, getAllUserDataSaga),
   takeLatest(UPDATE_USER_PROFILE, sendDuelInvitationSaga),
-  takeLatest(GET_USER_SUCCESS, showLeaderboardInviteOnGetUserSaga),
-  takeLatest(GET_USER_LEADERBOARDS_SUCCESS, showLeaderboardInviteOnGetUserSaga),
   takeLatest(SET_USER_NO_ACCESS, setUserNoAccessSaga),
   takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),
-  takeLatest(LOGIN_USER_SUCCESS, showLeaderboardInviteOnLoginSaga),
   takeLatest(FITKIT_CONSENT_AUTHORISED, fitKitConsentAuthorisedSaga),
   takeLatest(CHALLENGE_RESET_SUCCESS, getUserDataSaga),
   takeLatest([CHALLENGE_RESET_SUCCESS, REFRESH_USER_PROFILE_EVENTS], getUserProfileEvents),

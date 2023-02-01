@@ -325,10 +325,6 @@ const routesForRegistration = [
     component: require("../components/modals/challenge-unavailable/challenge-unavailable.modal").default,
   },
   {
-    name: MODALS.createLeaderboard,
-    component: require("../components/modals/create-leaderboard/create-leaderboard.modal").default,
-  },
-  {
     name: MODALS.chest,
     component: require("../components/modals/animated-chest/animated-chest").default,
   },
@@ -367,10 +363,6 @@ const routesForRegistration = [
   {
     name: MODALS.genericOverlay,
     component: require("../components/modals/generic-overlay/generic-overlay-template").default,
-  },
-  {
-    name: MODALS.leaderboardInvite,
-    component: require("../components/modals/leaderboard-invite/leaderboard-invite.modal").default,
   },
   {
     name: MODALS.levelUnavailable,

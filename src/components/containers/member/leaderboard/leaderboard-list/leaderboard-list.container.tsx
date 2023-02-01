@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigation } from "@navigation/main";
 import LeaderboardListScreen from "./leaderboard-list.screen";
-import { getActiveLeaderboardId, getUserFeatures } from "@redux/user/user.selectors";
+import { getActiveLeaderboardId } from "@redux/user/user.selectors";
 import { getAcceptedLeaderboards } from "@redux/user/user.selectors";
 import {
   getUserLeaderboardsStart,
@@ -24,20 +24,10 @@ function dismissGenericModal() {
   Navigation.dismissModal(MODALS.generic);
 }
 
-function handleCreateNewLeaderboard() {
-  showYuModal({
-    component: {
-      id: MODALS.createLeaderboard,
-      name: MODALS.createLeaderboard,
-    },
-  });
-}
-
 function LeaderboardListContainer(props: Props) {
   const { componentId } = props;
   const dispatch = useDispatch();
 
-  const features = useSelector(getUserFeatures);
   const activeLeaderboardId = useSelector(getActiveLeaderboardId);
   const leaderboards = useSelector(getAcceptedLeaderboards);
 
@@ -104,7 +94,7 @@ function LeaderboardListContainer(props: Props) {
       onChangeLeaderboardConsent={handleChangeLeaderboardConsent}
       onRefresh={onRefresh}
       onLeftIconPress={goBack}
-      onRightIconPress={!features.showCreateLeaderboard ? null : handleCreateNewLeaderboard}
+      onRightIconPress={null}
     />
   );
 }

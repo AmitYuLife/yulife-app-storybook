@@ -7,8 +7,6 @@ export const features = [
   "showCounter",
   "showBuildNumber",
   "showSettings",
-  "showCreateLeaderboard",
-  "showAdvancedLeaderboards",
   "showRewardStoreSelection",
   "disableUserEntries",
   "showConnections",
