@@ -2,7 +2,11 @@ import React, { FC, useState, useCallback, memo, useMemo } from "react";
 import { GQL_QUERY_GET_QUEST_MAP_LEVEL } from "@graphql/challenges";
 import { Navigation } from "@navigation/main";
 import { useDispatch } from "react-redux";
-import { GetQuestMapLevel, GetQuestMapLevel_getQuestMapLevel_slots } from "@graphql/_core/schema";
+import {
+  GetQuestMapLevel,
+  GetQuestMapLevel_getQuestMapLevel_slots,
+  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent as InternalContentProps,
+} from "@graphql/_core/schema";
 import { challengeStartSuccessAction } from "@redux/levels/levels.actions";
 import { BlurProvider, IToggleBlur } from "@atoms";
 import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
@@ -97,27 +101,59 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
   };
 
   const handleSubmitChallenge = useCallback(async () => {
-    const internalContent = slot?.details?.internalContent?.[0];
+    const internalContent = slot?.details?.internalContent;
     if (internalContent) {
-      return Navigation.push(componentId, {
-        component: {
-          id: ROUTES.mediaList,
-          name: ROUTES.mediaList,
-          passProps: {
-            createChallenge,
-            levelSlotId: slot.id,
-            fitKitTypes: slot.fitKitTypes,
-            ...internalContent,
-            tutorialUrl: slot.details.tutorialUrl,
-          },
-        },
-      });
+      return handleInternalContentChallenge(internalContent);
     }
 
     return createChallenge();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slot?.id, createQuestMapLevelChallengeMutation, dispatch, handleNavPress, setError]);
+
+  const handleInternalContentChallenge = useCallback(
+    (internalContent: InternalContentProps[]) => {
+      if (internalContent.length === 0) {
+        return null;
+      }
+
+      switch (internalContent[0].contentType) {
+        case "meditopia": {
+          return Navigation.push(componentId, {
+            component: {
+              id: ROUTES.meditopiaMediaList,
+              name: ROUTES.meditopiaMediaList,
+              passProps: {
+                createChallenge,
+                levelSlotId: slot.id,
+                fitKitTypes: slot.fitKitTypes,
+                tutorialUrl: slot.details.tutorialUrl,
+                ...internalContent[0],
+              },
+            },
+          });
+        }
+
+        case "fiit": {
+          return Navigation.push(componentId, {
+            component: {
+              id: ROUTES.fiitMediaCategoryList,
+              name: ROUTES.fiitMediaCategoryList,
+              passProps: {
+                createChallenge,
+                levelSlotId: slot.id,
+                fitKitTypes: slot.fitKitTypes,
+                tutorialUrl: slot.details.tutorialUrl,
+                content: internalContent,
+                reward: slot.reward,
+              },
+            },
+          });
+        }
+      }
+    },
+    [slot?.id]
+  );
 
   const slots = data?.getQuestMapLevel?.slots || [];
 

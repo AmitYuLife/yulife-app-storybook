@@ -13,9 +13,10 @@ interface IProps {
   stars?: number;
   yuCoin: number;
   logo: string;
+  eventType: string;
 }
 
-const VideoPlayerDescription = ({ title, description, duration, stars, yuCoin, logo }: IProps) => {
+const VideoPlayerDescription = ({ title, description, duration, stars, yuCoin, logo, eventType }: IProps) => {
   const timeType = useMemo(() => (Math.floor(duration) < 60 ? "sec" : "min"), [duration]);
   const durationFormatted = useMemo(() => moment.utc(duration * 1000).format(timeType === "sec" ? "s" : "m"), [
     duration,
@@ -31,7 +32,7 @@ const VideoPlayerDescription = ({ title, description, duration, stars, yuCoin, l
           <Image source={{ uri: logo }} width={16} height={16} />
           <View style={styles.subTitle}>
             <TextTemplate type="l2b">
-              {t("meditation")} • {durationFormatted} {timeType}
+              {t(`screens.video_player.video_type.${eventType}`)} • {durationFormatted} {timeType}
             </TextTemplate>
           </View>
         </View>

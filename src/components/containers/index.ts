@@ -20,8 +20,7 @@ export { default as ChallengesListContainer } from "./member/quests/challenges-l
 export { default as ChallengesHistoryContainer } from "./member/quests/challenges-history/challenges-history.container";
 export { default as DailyStepsContainer } from "./member/daily-steps/daily-steps.container";
 export { default as CyclingMeasurementContainer } from "./member/settings/cycling-measurement.container";
-export { default as MediaListContainer } from "./member/media/media-list/media-list.container";
-export { default as MediaPlayerContainer } from "./member/media/media-player/media-player.container";
+
 // reward containers
 export { default as RewardDetailsContainer } from "./member/rewards/details/reward-details.container";
 export { default as WegiftRewardConfirmedContainer } from "./member/rewards/confirmed/wegift-confirmed.container";
@@ -32,3 +31,7 @@ export { default as ReferralsContainer } from "./referrals/referrals.container";
 
 // today-earnings container
 export { default as TodayEarningsContainer } from "./today-earnings/today-earnings.container";
+
+// media
+export { default as MeditopiaMediaListContainer } from "./member/media/meditopia-media-list/meditopia-media-list.container";
+export { default as MediaPlayerContainer } from "./member/media/media-player/media-player.container";

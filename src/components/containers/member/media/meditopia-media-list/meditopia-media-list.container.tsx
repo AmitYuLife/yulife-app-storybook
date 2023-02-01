@@ -2,7 +2,7 @@ import React, { useCallback, memo, useMemo, useState } from "react";
 import { Platform } from "react-native";
 import { useQuery } from "@apollo/client";
 import { Navigation } from "@navigation/main";
-import { MediaListScreen } from "@components/screens";
+import { MeditopiaMediaListScreen } from "@components/screens";
 import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_CONTENT } from "@graphql/challenges/getQuestMapChallengeContent.gql";
 import {
   GetQuestMapLevelChallengeContent,
@@ -28,7 +28,7 @@ interface IProps extends IInternalContent {
   tutorialUrl: string;
 }
 
-const MediaListContainer = ({
+const MeditopiaMediaListContainer = ({
   createChallenge,
   levelSlotId,
   fitKitTypes,
@@ -116,30 +116,32 @@ const MediaListContainer = ({
 
   const formattedVideos = useMemo(
     () =>
-      data?.getQuestMapLevelChallengeContent?.map(({ media, reward, stars, formattedDuration }) => ({
-        ...media,
-        reward,
-        stars,
-        formattedDuration,
-      })),
+      data?.getQuestMapLevelChallengeContent?.map(({ media, reward, stars, formattedDuration }) => {
+        return {
+          ...media,
+          reward,
+          stars,
+          formattedDuration,
+        };
+      }),
     [data?.getQuestMapLevelChallengeContent]
   );
 
   return (
-    <MediaListScreen
+    <MeditopiaMediaListScreen
       videos={formattedVideos}
       title={title}
+      logo={logo}
+      buttons={buttons}
       description={description}
       levelSlotId={levelSlotId}
       loading={loading || formattedVideos?.length === 0}
       onLeftIconPress={onLeftIconPress}
       onRightIconPress={onRightIconPress}
       handleOtherMeditationApp={handleOtherMeditationApp}
-      logo={logo}
-      buttons={buttons}
       otherAppLoading={otherAppLoading}
     />
   );
 };
 
-export default memo(MediaListContainer);
+export default memo(MeditopiaMediaListContainer);

@@ -173,8 +173,20 @@ const routesForRegistration = [
   // meditation
 
   {
-    name: ROUTES.mediaList,
-    component: require("../components/containers/member/media/media-list/media-list.container").default,
+    name: ROUTES.meditopiaMediaList,
+    component: require("../components/containers/member/media/meditopia-media-list/meditopia-media-list.container")
+      .default,
+  },
+  // fiit media category list
+  {
+    name: ROUTES.fiitMediaCategoryList,
+    component: require("../components/containers/member/media/fiit-media-category-list/fiit-media-category-list.container")
+      .default,
+  },
+  // fiit media list
+  {
+    name: ROUTES.fiitMediaList,
+    component: require("../components/containers/member/media/fiit-media-list/fiit-media-list.container").default,
   },
   {
     name: ROUTES.yuniversityMediaPlayer,
