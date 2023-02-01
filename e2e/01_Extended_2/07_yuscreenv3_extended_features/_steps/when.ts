@@ -1,6 +1,5 @@
-import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, PERSONAL_PRODUCT, YUSCREEN, navigateViaText, CHECK_BOX_STATE, SCROLLABLE_LAYOUT, INPUT_FIELD, CM_INPUT, KG_INPUT, DRINKS_INPUT, navigateViaID, SEX_BUTTON, AVATAR_ITEM} from "@utils"
+import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, PERSONAL_PRODUCT, YUSCREEN, navigateViaText, CHECK_BOX_STATE, SCROLLABLE_LAYOUT, INPUT_FIELD, CM_INPUT, KG_INPUT, DRINKS_INPUT, navigateViaID, SEX_BUTTON, AVATAR_ITEM, wait} from "@utils"
 import { swipeFromText } from "_utils/navigation/scrolling"
-
 
 
 export const {
@@ -148,4 +147,16 @@ export const fibNegativeJourney = async()=>{
     await navigateViaText("Yes")
     await navigateViaText("No")
     await navigateViaText("No")
+}
+
+export const waitBruv = async()=>{
+    await wait(300000)()
+}
+
+export const completeYuScreenIntro = async () => {
+    console.log(1)
+    await tapText('Check out my power')()
+    console.log(2)
+    await tapText("I'll do this later")()
+    console.log(3)
 }
