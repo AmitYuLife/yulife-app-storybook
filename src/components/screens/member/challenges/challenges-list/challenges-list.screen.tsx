@@ -4,7 +4,7 @@ import { ChallengesList, IChallengesListProps } from "@molecules/index";
 import { Image, View, BackHandler } from "react-native";
 import { IMilestoneProps } from "../challenge-details/milestones";
 import styles from "./challenges-list.screen.styles";
-import { TopBar, NavBar } from "@components/organisms";
+import { NavBar, GenericHeadingPad, TopBarAbsolute } from "@components/organisms";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { getTheme } from "@theme";
@@ -71,7 +71,7 @@ class ChallengesListScreen extends Component<IProps, IState> {
     const { challengeListScreen } = getTheme(currentLevel, yuniversalMap);
     return (
       <View style={styles.wrapper} testID={CHALLENGE_SCREEN}>
-        <View style={styles.topPad} />
+        <GenericHeadingPad />
         <View style={challengeListScreen.style}>
           <Image
             onLayout={this.showChallengeTiles}
@@ -83,15 +83,13 @@ class ChallengesListScreen extends Component<IProps, IState> {
         <View style={styles.challengeSetWrapper}>
           {this.state.hideChallengeTiles ? null : <ChallengesList challenges={challenges} />}
         </View>
-        <View style={styles.topBarWrapper}>
-          <TopBar
-            type={challengeListScreen.topBarType}
-            leftIcon={LeftIcon.BACK}
-            menuLabel="map"
-            name={name}
-            onPressLeftIcon={onPressLeftIcon}
-          />
-        </View>
+        <TopBarAbsolute
+          type={challengeListScreen.topBarType}
+          leftIcon={LeftIcon.BACK}
+          menuLabel="map"
+          name={name}
+          onPressLeftIcon={onPressLeftIcon}
+        />
         <NavBar activeIndex={1} additionalBottom={2} />
       </View>
     );

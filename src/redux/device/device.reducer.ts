@@ -12,8 +12,18 @@ export interface IDeviceStore {
   isAppFreshlyInstalled: boolean;
 }
 
+let deviceId = "";
+
+(async () => {
+  try {
+    deviceId = await DeviceInfo.getUniqueId();
+  } catch (e) {
+    //
+  }
+})();
+
 export const getInitialState = (): IDeviceStore => ({
-  deviceId: DeviceInfo.getUniqueId(),
+  deviceId,
   deviceToken: "",
   os: Platform.OS,
   isAppFreshlyInstalled: true,
