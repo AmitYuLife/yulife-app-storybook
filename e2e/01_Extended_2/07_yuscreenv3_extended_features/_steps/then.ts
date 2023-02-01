@@ -1,6 +1,5 @@
-import { navigation, YEAR_SCROLLER, MONTH_SCROLLER, booleanTextVisible, booleanIdVisible, HIGHLIGHTED_SCROLLER_VALUE, CUSTOM_COVER_SCREEN, PERCENTAGE_COVERED, wait, SCROLLER_VALUE, ARMOR_OPTION, UNDERWRITING_JOURNEY_SCREEN, UNDERWRITING_REVIEW_ANSWERS, UNDERWRITING_REVIEW_SCREEN, SALARY_COVERED, PACKAGE_YUCOIN_POWER, SELECTED_PACKAGE_TITLE, SUMMARY_SCROLL_VIEW, CONTACT_DETAILS_CARD, GP_CONFIRMATION, CHECK_BOX_STATE, PACKAGE_INFO } from "@utils"
+import { navigation, YEAR_SCROLLER, MONTH_SCROLLER, booleanTextVisible, booleanIdVisible, HIGHLIGHTED_SCROLLER_VALUE, CUSTOM_COVER_SCREEN, PERCENTAGE_COVERED, wait, SCROLLER_VALUE, ARMOR_OPTION, UNDERWRITING_JOURNEY_SCREEN, UNDERWRITING_REVIEW_ANSWERS, UNDERWRITING_REVIEW_SCREEN, SALARY_COVERED, PACKAGE_YUCOIN_POWER, SELECTED_PACKAGE_TITLE, SUMMARY_SCROLL_VIEW, CONTACT_DETAILS_CARD, GP_CONFIRMATION, CHECK_BOX_STATE } from "@utils"
 import { screens } from "@appScreens"
-import { fibDataDetox } from "../_data/detox_underwriting_copy"
 import moment from "moment"
 import { CUSTOMER_10, CUSTOMER_23, CUSTOMER_9 } from "@data"
 import { scrollFromID, scrollFromText, scrollUntilIdVisible, swipeFromText } from "_utils/navigation/scrolling"
@@ -15,7 +14,8 @@ export const {
     expectIsVisibleViaText,
     multipleTextVisible,
     multipleIDVisible,
-    tryCatchTextVisible
+    tryCatchTextVisible,
+    idVisibleAtIndex
 } = navigation.common
 
 export const {
@@ -61,14 +61,6 @@ export const styleOptionsVisible = async()=>{
     styles.forEach(async i => {
         await expect(element(by.id(ARMOR_OPTION(i)))).toBeVisible()
     });
-}
-
-export const onQuestionScreen = (fibID:string) => async()=>{
-    const underWritingData = fibDataDetox
-    
-    const screenCopy = underWritingData.filter(d => d.id==fibID)
-
-    await expect(element(by.text(screenCopy[0].question))).toBeVisible()
 }
 
 export const getBirthday = (birthdate:any) => async () => {
