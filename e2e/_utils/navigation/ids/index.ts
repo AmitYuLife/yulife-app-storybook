@@ -408,6 +408,14 @@ export const LEVEL_STAR_COUNT = (starArrLength: number) => `LEVEL_STAR_COUNT_${s
 // ETOW
 export const CELESTIAL_CARD = (description: string) => `CELESTIAL_CARD_${description}`;
 
+// CPD/YUNIVERSITY
+export const CPD_COURSES_SCREEN = "CPD_COURSES_SCREEN";
+export const CPD_COURSE_DETAIL_SCREEN = "CPD_COURSE_DETAIL_SCREEN";
+export const CPD_COURSE_SCROLL_VIEW = "CPD_COURSE_SCROLL_VIEW";
+export const CPD_FEEDBACK_BUTTON = (choice: string) => `CPD_FEEDBACK_BUTTON_${choice}`
+export const CPD_CERTIFICATE = "CPD_CERTIFICATE";
+export const CPD_SAVE_BUTTON = "CPD_SAVE_BUTTON";
+
 // WEEKLIES
 export const WEEKLY_GOAL_ICON = (label: number) => `WEEKLY_GOAL_ICON_${label}`
 export const WEEKLY_PROGRESS_BAR = (progress: number, max: number, color: string) => `WEEKLY_PROGRESS_BAR_${progress}_${max}_${color}`

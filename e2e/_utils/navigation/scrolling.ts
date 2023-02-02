@@ -151,3 +151,7 @@ export const activityHistoryScrollMinsDataCorrect = async () => {
         await scrollFromID(ACTIVITY_HISTORY_SCREEN, "up", "slow", scrollPercentage)()
     }
 }
+
+export const scrollUntilTextVisibleAtIndex = (scrollViewId: string, text: string, direction: "up" | "down", index: number, xscroll = 0.5, yscroll = 0.5) => async () => {
+    await waitFor(element(by.text(text)).atIndex(index)).toBeVisible().whileElement(by.id(scrollViewId)).scroll(100, direction, xscroll, yscroll)
+}

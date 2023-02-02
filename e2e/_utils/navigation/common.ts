@@ -1,5 +1,5 @@
 import { dataManager } from "@yu-life/yulife-bdd-framework";
-import { NAV_BAR } from '@ids';
+import { BUTTON_CLOSE, BUTTON_CLOSE_HEADER, NAV_BAR, SCREEN_CLOSE } from '@ids';
 import { dismissNewLooksModalIfVisible } from "./login";
 import moment from "moment";
 
@@ -359,4 +359,8 @@ export const daysRemainingOfWeek = () => {
     const todaysdate = moment();
     const diff = eventdate.diff(todaysdate, 'days');
     return diff + 1
+}
+
+export const closeScreen = (option: "button_only" | "yulife" | "activity history") => async () => {
+    await tapID(BUTTON_CLOSE_HEADER(option))()
 }

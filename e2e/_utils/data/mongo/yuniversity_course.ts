@@ -12,7 +12,6 @@ export const YUNIVERSITY_COURSE_1 = {
     "slug": "introduction-to-group-risk",
     "title": "Course 1",
     "tileImageKey": "yuniversity/default-tile-image.png",
-    "logoImageKey": "yuniversity/chartered-institute.png",
     "description": "Introduction to group risk:\nThe why and the what",
     "sortOrder": 1
   }
@@ -30,7 +29,6 @@ export const YUNIVERSITY_COURSE_2 = {
     "slug": "the-big-three",
     "title": "Course 2",
     "tileImageKey": "yuniversity/default-tile-image.png",
-    "logoImageKey": "yuniversity/chartered-institute.png",
     "description": "The Big Three - life, critical illness and income protection",
     "sortOrder": 2
   }
@@ -48,7 +46,6 @@ export const YUNIVERSITY_COURSE_3 = {
     "slug": "getting-started-with-group-risk",
     "title": "Course 3",
     "tileImageKey": "yuniversity/default-tile-image.png",
-    "logoImageKey": "yuniversity/chartered-institute.png",
     "description": "Getting started with group risk",
     "sortOrder": 3
   }

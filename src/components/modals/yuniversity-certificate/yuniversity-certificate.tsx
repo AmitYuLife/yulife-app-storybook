@@ -10,6 +10,7 @@ import { useBackHandler, useSaveImage } from "@hooks";
 import media from "@styles/media";
 import { Certificate } from "@organisms";
 import { t } from "@locale";
+import { CPD_CERTIFICATE, CPD_SAVE_BUTTON } from "@ids";
 
 type YuniversityCertificateModalProps = ComponentProps<typeof Certificate>;
 
@@ -28,11 +29,17 @@ const YuniversityCertificateModal = (props: YuniversityCertificateModalProps) =>
 
   return (
     <GenericOverlay onClose={dismissOverlay}>
-      <ScrollView style={styles.wrapper} contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        testID={CPD_CERTIFICATE}
+        style={styles.wrapper}
+        contentContainerStyle={styles.scroll}
+        showsVerticalScrollIndicator={false}
+      >
         <ViewShot ref={viewShotRef}>
           <Certificate {...props} />
         </ViewShot>
         <SecondaryButton
+          testID={CPD_SAVE_BUTTON}
           wrapperStyle={styles.buttonWrapper}
           label={t("save_image.save_button")}
           onPress={takeScreenshot}

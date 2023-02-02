@@ -13,6 +13,7 @@ import {
   GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_chapters_videoMedia as IGqlMedia,
 } from "@graphql/_core/schema/GetInAppYuniversityCourseModuleDetails";
 import TagsWithImage from "@components/molecules/yuniversity/tags-with-image";
+import { CPD_COURSE_DETAIL_SCREEN, CPD_COURSE_SCROLL_VIEW } from "@ids";
 
 export interface ICourseModuleDetailsProps {
   onBackPress: () => void;
@@ -66,9 +67,13 @@ const CourseDetailsScreen = ({
 
   const completedModuleQuizStyle = useMemo(() => (completed ? styles.moduleQuizCompletedStyle : {}), [completed]);
   return (
-    <View style={styles.wrapper}>
+    <View testID={CPD_COURSE_DETAIL_SCREEN} style={styles.wrapper}>
       <GenericHeadingPad />
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.containerStyle}>
+      <ScrollView
+        testID={CPD_COURSE_SCROLL_VIEW}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.containerStyle}
+      >
         <View style={styles.box}>
           <Image
             style={styles.courseImage}

@@ -6,6 +6,7 @@ import { Style } from "@styles";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { BoxOption, CheckBox } from "@molecules";
 import { useSduiOnChange } from "../_hooks/useSduiOnChange";
+import { CPD_FEEDBACK_BUTTON } from "@ids";
 
 interface Props extends GqlRadio {
   value: string;
@@ -38,7 +39,7 @@ export const ContentItemRadioBase = ({ onChange, choices, value, iconOptions, st
                 selectedStyle={mapServerStyles(selectedStyles)}
                 innerHeight={boxOptionHeight ?? Style.adjust(boxOptionHeight)}
               >
-                <View style={styles.innerWrapper}>
+                <View testID={CPD_FEEDBACK_BUTTON(currentValue)} style={styles.innerWrapper}>
                   <Image
                     height={Style.adjust(imageHeight || DEFAULT_ICON_IMAGE_SIZE)}
                     width={Style.adjust(imageWidth || DEFAULT_ICON_IMAGE_SIZE)}
