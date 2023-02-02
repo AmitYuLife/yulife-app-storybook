@@ -11,22 +11,14 @@ import { TextTemplate } from "@atoms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 function GenericHeading(props: IGenericHeadingProps) {
-  const {
-    heading,
-    onLeftIconPress,
-    onRightIconPress,
-    leftIcon = LeftIcon.BACK,
-    rightIcon = "CLOSE",
-    isBeta,
-    logo,
-    RightIcon,
-    color,
-  } = props;
+  const { heading, onLeftIconPress, onRightIconPress, leftIcon, rightIcon, isBeta, logo, RightIcon, color } = props;
 
   return (
     <View style={styles.wrapper}>
       <View style={styles.leftIconWrapper}>
-        {!onLeftIconPress ? null : <GenericHeaderLeftIcon icon={leftIcon} color={color} onPress={onLeftIconPress} />}
+        {!onLeftIconPress ? null : (
+          <GenericHeaderLeftIcon icon={leftIcon || LeftIcon.BACK} color={color} onPress={onLeftIconPress} />
+        )}
       </View>
       {!heading ? (
         <View style={styles.centerWrapper}>
@@ -57,7 +49,7 @@ function GenericHeading(props: IGenericHeadingProps) {
       <View style={styles.rightIconWrapper}>
         {!onRightIconPress ? null : (
           <GenericHeaderRightIcon
-            icon={rightIcon}
+            icon={rightIcon || "CLOSE"}
             Icon={RightIcon}
             color={color}
             onPress={onRightIconPress}

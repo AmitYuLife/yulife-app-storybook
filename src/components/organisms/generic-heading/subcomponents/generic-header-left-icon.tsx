@@ -29,10 +29,10 @@ const accessibilityLabels: Partial<Record<LeftIcon, string>> = {
 };
 
 const getIcon = (icon: LeftIcon, color?: string) => {
-  switch (icon) {
-    case LeftIcon.BACK:
+  switch (icon.toLowerCase()) {
+    case LeftIcon.BACK.toLowerCase():
       return <Back color={color} />;
-    case LeftIcon.CLOSE:
+    case LeftIcon.CLOSE.toLowerCase():
       return <CloseSvg stroke={color} />;
     default:
       return null;

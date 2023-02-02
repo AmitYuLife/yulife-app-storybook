@@ -7,7 +7,9 @@ interface Props {
   color?: string;
 }
 
-function Back({ color = Colours.neutral.n900 }: Props) {
+function Back({ color }: Props) {
+  const safeColor = color || Colours.neutral.n900;
+
   return (
     <Svg
       height={String(Style.adjust(22))}
@@ -16,7 +18,7 @@ function Back({ color = Colours.neutral.n900 }: Props) {
       fill="none"
       testID={BACK_BUTTON}
     >
-      <Path d="M11.25 0.5L0.75 11L11.25 21.5" stroke={color} strokeMiterlimit="10" strokeLinecap="round" />
+      <Path d="M11.25 0.5L0.75 11L11.25 21.5" stroke={safeColor} strokeMiterlimit="10" strokeLinecap="round" />
     </Svg>
   );
 }
