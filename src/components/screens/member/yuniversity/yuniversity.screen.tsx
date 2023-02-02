@@ -8,6 +8,7 @@ import { Animated, NativeScrollEvent, View } from "react-native";
 import { Source } from "react-native-fast-image";
 import style, { CONTENT_MARGIN_TOP, HEADER_HEIGHT, TITLE_HEIGHT } from "./styles";
 import { GetInAppYuniversityCourses_getInAppYuniversityCourses_courses as ICourse } from "@graphql/_core/schema/GetInAppYuniversityCourses";
+import { CPD_COURSES_SCREEN } from "@ids";
 
 export interface IHeaderProps {
   title: string;
@@ -23,6 +24,7 @@ interface IProps {
   categoryImageUri: string;
   courses: ICourse[];
   headerProps: IHeaderProps;
+  testID?: string;
   onModulePress: (moduleSlug: string) => void;
 }
 
@@ -84,7 +86,7 @@ const YuniversityCoursesScreen: FC<IProps> = ({ headerProps, categoryImageUri, c
   );
 
   return (
-    <View style={[style.wrapper, { backgroundColor }]}>
+    <View testID={CPD_COURSES_SCREEN} style={[style.wrapper, { backgroundColor }]}>
       <View style={statusBarCoverStyle} />
       <Animated.View style={headerImageContainerStyle}>
         <Image
