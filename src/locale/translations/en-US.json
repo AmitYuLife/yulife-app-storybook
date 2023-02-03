@@ -611,6 +611,13 @@
         "cta_label_secondary": "Back"
       }
     },
+    "generic_connection_error": {
+      "offline": {
+        "heading": "you're offline",
+        "subheading": "check your internet connection",
+        "cta_label": "back"
+      }
+    },
     "duels": {
       "intro": {
         "button_1": "Next",
