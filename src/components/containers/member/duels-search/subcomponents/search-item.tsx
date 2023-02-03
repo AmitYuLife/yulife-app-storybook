@@ -5,6 +5,7 @@ import { Text } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
 import styles from "./search-item.styles";
 import { SearchedOpponent } from "../duels-search.container";
+import { t } from "@locale";
 
 function DuelsSearchItem({ item, index }: ListRenderItemInfo<SearchedOpponent>) {
   return (
@@ -16,7 +17,7 @@ function DuelsSearchItem({ item, index }: ListRenderItemInfo<SearchedOpponent>) 
           </View>
           {!item?.fullName ? null : <Text style={styles.nameText}>{item.fullName}</Text>}
         </View>
-        <Text style={styles.duelText}>{"Duel >"}</Text>
+        <Text style={styles.duelText}>{t("modals.duels.search.item_duel")}</Text>
       </View>
     </TouchableOpacityWithDelay>
   );

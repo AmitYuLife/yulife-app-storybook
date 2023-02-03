@@ -26,6 +26,7 @@ import { SearchInput, SearchList } from "@molecules";
 import DuelsSearchItem from "./subcomponents/search-item";
 import { showYuModal } from "@navigation/root";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { t } from "@locale";
 
 export interface SearchedOpponent extends SearchForDuelOpponent_searchForDuelOpponent {
   onPress: () => Promise<void>;
@@ -129,13 +130,13 @@ function _DuelsSearchContainer() {
       <GenericHeadingPad />
       <View style={styles.searchContainer}>
         <RecentOpponents inviteToDuel={onPress} />
-        <SearchInput title="Search for a friend:" query={query} onChangeText={onChangeText} />
+        <SearchInput title={t("modals.duels.search.title")} query={query} onChangeText={onChangeText} />
       </View>
       <SearchList
         data={opponents}
         networkStatus={networkStatus}
         onRefresh={onRefresh}
-        emptyText={loading ? "" : "We could not find the friend you’re looking for."}
+        emptyText={loading ? "" : t("modals.duels.search.empty")}
         loading={loading}
         searchItem={DuelsSearchItem}
         keyExtractor={keyExtractor}

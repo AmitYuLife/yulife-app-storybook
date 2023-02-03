@@ -8,6 +8,7 @@ import { DuelImage } from "@components/screens/member/duels-hub/subcomponents";
 import styles from "./recent-opponents.styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { DUEL_AVATAR } from "@ids";
+import { t } from "@locale";
 
 interface Props {
   inviteToDuel: (opponentId: string, type: "recents") => Promise<void>;
@@ -38,7 +39,7 @@ function _RecentOpponents({ inviteToDuel }: Props) {
     <View style={styles.wrapper}>
       <View>
         <Text style={styles.heading} bold={true}>
-          Recent
+          {t("modals.duels.search.recent_opponents")}
         </Text>
         <View style={styles.flexRow}>
           {opponents.map((opponent, index) => {

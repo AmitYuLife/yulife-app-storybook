@@ -28,8 +28,13 @@ const Description: FC<IProps> = ({ duel, type, userId }) => {
   if (type === "today") {
     return (
       <View style={styles.wrapper}>
-        <Text style={styles.text}>{addCommasToNumber(opponent.score || 0)} {t("modals.duels.hub.steps")}</Text>
-        <Text style={[styles.text, styles.syncText]}> ({t("modals.duels.hub.synced")} {fromNow})</Text>
+        <Text style={styles.text}>
+          {addCommasToNumber(opponent.score || 0)} {t("modals.duels.hub.steps")}
+        </Text>
+        <Text style={[styles.text, styles.syncText]}>
+          {" "}
+          ({t("modals.duels.hub.synced")} {fromNow})
+        </Text>
       </View>
     );
   }
@@ -44,7 +49,8 @@ const Description: FC<IProps> = ({ duel, type, userId }) => {
             {t("modals.duels.hub.waiting_user_steps_sync")}
             {showLastKnownStepCount ? (
               <Text style={[styles.text, styles.syncText]}>
-                {`\n`}{t("modals.duels.hub.last_know_step")} {addCommasToNumber(opponent.score)} {t("modals.duels.hub.steps")}
+                {`\n`}
+                {t("modals.duels.hub.last_know_step")} {addCommasToNumber(opponent.score)} {t("modals.duels.hub.steps")}
               </Text>
             ) : null}
           </Text>
@@ -55,7 +61,8 @@ const Description: FC<IProps> = ({ duel, type, userId }) => {
     return (
       <View style={styles.wrapper}>
         <Text style={styles.text} testID={DUEL_DESCRIPTION(opponent.score, user.score)}>
-          {addCommasToNumber(opponent.score || 0)} vs. {addCommasToNumber(user.score || 0)} {t("modals.duels.hub.steps")}
+          {addCommasToNumber(opponent.score || 0)} vs. {addCommasToNumber(user.score || 0)}{" "}
+          {t("modals.duels.hub.steps")}
         </Text>
       </View>
     );
