@@ -619,6 +619,13 @@
       }
     },
     "duels": {
+      "dialog_helpers": {
+        "alternative_name": "your colleague",
+        "title_already_accepted": "It’s already on!",
+        "title_not_accepted": "Hang on a sec!",
+        "description_already_accepted": "Your duel with %{name} will take place %{duelStart}. You can challenge them to a rematch afterwards, or challenge another friend now.",
+        "description_not_accepted": "You’ve already invited %{name} to duel. Wait for them to respond, or challenge another friend now."
+      },
       "intro": {
         "button_1": "Next",
         "title_1": "Challenge a friend!",
