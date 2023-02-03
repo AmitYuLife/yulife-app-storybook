@@ -14,6 +14,7 @@ import { DUEL_ENTRY_HEIGHT } from "../subcomponents/duel-entry/duel-entry";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { DuelSkeleton } from "../subcomponents/duel-skeleton/duel-skeleton";
+import { t } from "@locale";
 
 interface ItemData extends GetDuelsCompleted_getDuelsCompleted_duels {
   userId: string;
@@ -103,7 +104,7 @@ const CompletedDuelsScreen = () => {
         renderItem={renderItem}
         renderSectionHeader={renderSectionHeader}
         ListFooterComponent={
-          <Button wrapperStyle={styles.buttonWrapperStyle} label="Challenge a friend" onPress={navigateToDuelsSearch} />
+          <Button wrapperStyle={styles.buttonWrapperStyle} label={t("modals.duels.hub.challenge_friend_button")} onPress={navigateToDuelsSearch} />
         }
       />
     </View>

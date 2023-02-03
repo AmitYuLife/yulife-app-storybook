@@ -14,6 +14,7 @@ import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { DuelSkeleton } from "../../subcomponents/duel-skeleton/duel-skeleton";
 import { EMPTY_DUELS_HUB, CHALLENGE_FRIEND_BUTTON } from "@ids";
+import { t } from "@locale";
 
 async function navigateToDuelsSearch() {
   await Navigation.push(ROUTES.duelsHub, {
@@ -36,7 +37,7 @@ const DuelsToday: FC = () => {
   if (loading) {
     return (
       <View>
-        <Text bold={true}>Today’s Duels</Text>
+        <Text bold={true}>{t("modals.duels.hub.today_title")}</Text>
         <View style={styles.skeletonWrapper}>
           <DuelSkeleton length={2} />
         </View>
@@ -47,24 +48,24 @@ const DuelsToday: FC = () => {
   if (isEmpty) {
     return (
       <View style={styles.sectionWrapper}>
-        <Text bold={true}>Today’s Duels</Text>
+        <Text bold={true}>{t("modals.duels.hub.today_title")}</Text>
         <View style={styles.emptyWrapper} testID={EMPTY_DUELS_HUB}>
-          <Text style={styles.emptyText}>You’re not duelling with anybody today.</Text>
+          <Text style={styles.emptyText}>{t("modals.duels.hub.today_empty")}</Text>
         </View>
-        <Button testID={CHALLENGE_FRIEND_BUTTON} label="Challenge a friend" onPress={navigateToDuelsSearch} />
+        <Button testID={CHALLENGE_FRIEND_BUTTON} label={t("modals.duels.hub.challenge_friend_button")} onPress={navigateToDuelsSearch} />
       </View>
     );
   }
 
   return (
     <View style={styles.sectionWrapper}>
-      <Text bold={true}>Today’s Duels</Text>
+      <Text bold={true}>{t("modals.duels.hub.today_empty")}</Text>
       <View style={styles.wrapper}>
         {duels.map((duel) => (
           <DuelEntry key={duel.id} userId={userId} type="today" dailySteps={dailySteps} duel={duel} />
         ))}
       </View>
-      <Button label="Challenge a friend" onPress={navigateToDuelsSearch} />
+      <Button label={t("modals.duels.hub.challenge_friend_button")} onPress={navigateToDuelsSearch} />
     </View>
   );
 };

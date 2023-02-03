@@ -12,6 +12,7 @@ import { DuelSkeleton } from "../../subcomponents/duel-skeleton/duel-skeleton";
 import { DUELS_HUB_INVITATION } from "@ids";
 import { useQueryOnScreenSeen } from "@hooks";
 import { showYuModal } from "@navigation/root";
+import { t } from "@locale";
 
 const DuelInvitations: FC = () => {
   const [, { data, loading }] = useQueryOnScreenSeen<GetDuelInvitations>(
@@ -40,7 +41,7 @@ const DuelInvitations: FC = () => {
 
   return (
     <View>
-      <Text bold={true}>Invitations</Text>
+      <Text bold={true}>{t("modals.duels.hub.invitations_title")}</Text>
       <View style={styles.wrapper}>
         {duels.map((duel, index) => {
           const opponent = duel.opponents?.find((user) => user.userId !== userId);
@@ -93,7 +94,7 @@ const DuelInvitationStatus: FC<{ duel: GetDuelInvitations["getDuelInvitations"][
   if (duel.inviteStatus === "invited") {
     return (
       <Text bold={true} style={[styles.text, styles.invitedText]}>
-        Invited
+        {t("modals.duels.hub.invitations_invited")}
       </Text>
     );
   }
@@ -101,7 +102,7 @@ const DuelInvitationStatus: FC<{ duel: GetDuelInvitations["getDuelInvitations"][
   if (duel.inviteStatus === "declined") {
     return (
       <Text bold={true} style={[styles.text, styles.declinedText]}>
-        Declined
+        {t("modals.duels.hub.invitations_declined")}
       </Text>
     );
   }
@@ -109,7 +110,7 @@ const DuelInvitationStatus: FC<{ duel: GetDuelInvitations["getDuelInvitations"][
   return (
     <TouchableOpacityWithDelay delay={200} onPress={showRespondModal}>
       <Text bold={true} style={[styles.text, styles.respondText]}>
-        Respond
+        {t("modals.duels.hub.invitations_respond")}
       </Text>
     </TouchableOpacityWithDelay>
   );

@@ -7,6 +7,7 @@ import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { DuelImage } from "../../subcomponents";
 import { addCommasToNumber } from "@utils";
 import { getUserAvatar } from "@redux/user/user.selectors";
+import { t } from "@locale";
 
 const UserSteps = () => {
   const dailySteps = useSelector(getDailySteps);
@@ -19,7 +20,7 @@ const UserSteps = () => {
         <DuelImage size="medium" uri={avatarSource} />
       </View>
       <TextTemplate type={"b2b"} color={Colours.yuscreen.white}>
-        {`${addCommasToNumber(dailySteps)} steps today`}
+        {`${addCommasToNumber(dailySteps)} ${t("modals.duels.hub.steps_today")}`}
       </TextTemplate>
     </View>
   );
