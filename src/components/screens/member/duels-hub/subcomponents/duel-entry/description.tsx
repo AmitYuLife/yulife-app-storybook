@@ -6,6 +6,7 @@ import { GetDuelsTomorrow_getDuelsTomorrow, GetDuelsToday_getDuelsToday } from "
 import moment from "moment";
 import { Colours, Style } from "@styles";
 import { DUEL_DESCRIPTION } from "@ids";
+import { t } from "@locale";
 
 interface IProps {
   duel: GetDuelsTomorrow_getDuelsTomorrow | GetDuelsToday_getDuelsToday;
@@ -27,8 +28,8 @@ const Description: FC<IProps> = ({ duel, type, userId }) => {
   if (type === "today") {
     return (
       <View style={styles.wrapper}>
-        <Text style={styles.text}>{addCommasToNumber(opponent.score || 0)} steps</Text>
-        <Text style={[styles.text, styles.syncText]}> (synced {fromNow})</Text>
+        <Text style={styles.text}>{addCommasToNumber(opponent.score || 0)} {t("modals.duels.hub.steps")}</Text>
+        <Text style={[styles.text, styles.syncText]}> ({t("modals.duels.hub.synced")} {fromNow})</Text>
       </View>
     );
   }
@@ -40,10 +41,10 @@ const Description: FC<IProps> = ({ duel, type, userId }) => {
       return (
         <View style={styles.wrapper}>
           <Text style={styles.text}>
-            Waiting for user’s steps to sync
+            {t("modals.duels.hub.waiting_user_steps_sync")}
             {showLastKnownStepCount ? (
               <Text style={[styles.text, styles.syncText]}>
-                {`\n`}Last known step count: {addCommasToNumber(opponent.score)} steps
+                {`\n`}{t("modals.duels.hub.last_know_step")} {addCommasToNumber(opponent.score)} {t("modals.duels.hub.steps")}
               </Text>
             ) : null}
           </Text>
@@ -54,7 +55,7 @@ const Description: FC<IProps> = ({ duel, type, userId }) => {
     return (
       <View style={styles.wrapper}>
         <Text style={styles.text} testID={DUEL_DESCRIPTION(opponent.score, user.score)}>
-          {addCommasToNumber(opponent.score || 0)} vs. {addCommasToNumber(user.score || 0)} steps
+          {addCommasToNumber(opponent.score || 0)} vs. {addCommasToNumber(user.score || 0)} {t("modals.duels.hub.steps")}
         </Text>
       </View>
     );

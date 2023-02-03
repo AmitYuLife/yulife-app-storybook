@@ -10,6 +10,7 @@ import { getCurrentUserId } from "@redux/user/user.selectors";
 import { DuelSkeleton } from "../../subcomponents/duel-skeleton/duel-skeleton";
 import { useQueryOnScreenSeen } from "@hooks";
 import { ROUTES } from "@navigation/constants";
+import { t } from "@locale";
 
 const DuelsTomorrow: FC = () => {
   const [, { data, loading }] = useQueryOnScreenSeen<GetDuelsTomorrow>(GQL_QUERY_GET_DUEL_TOMORROW, ROUTES.duelsHub, {
@@ -35,7 +36,7 @@ const DuelsTomorrow: FC = () => {
 
   return (
     <View style={styles.wrapper}>
-      <Text bold={true}>Tomorrow’s Duels</Text>
+      <Text bold={true}>{t("modals.duels.hub.tomorrow_title")}</Text>
       <View style={styles.entriesWrapper}>
         {duels.map((duel) => (
           <DuelEntry key={duel.id} duel={duel} userId={userId} type="tomorrow" />

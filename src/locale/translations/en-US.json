@@ -618,6 +618,26 @@
         "subheader_1": "The duel starts tomorrow and lasts all day. Results announcing the winner will appear the next morning.",
         "subheader_2": "What are you duelling for?",
         "colleague": "a colleague"
+      },
+      "hub": {
+        "active_tab": "Active",
+        "completed_tab": "Completed",
+        "tomorrow_title": "Tomorrow’s Duels",
+        "today_title": "Today’s Duels",
+        "today_empty": "You’re not duelling with anybody today.",
+        "challenge_friend_button": "Challenge a friend",
+        "you_won": "you won!",
+        "you_drew": "you drew",
+        "you_lost": "you lost",
+        "invitations_title": "Invitations",
+        "invitations_invited": "Invited",
+        "invitations_declined": "Declined",
+        "invitations_respond": "Respond",
+        "steps_today": "steps today",
+        "steps": "steps",
+        "waiting_user_steps_sync": "Waiting for user’s steps to sync",
+        "last_know_step": "Last known step count:",
+        "synced": "synced"
       }
     },
     "push_notifications": {
