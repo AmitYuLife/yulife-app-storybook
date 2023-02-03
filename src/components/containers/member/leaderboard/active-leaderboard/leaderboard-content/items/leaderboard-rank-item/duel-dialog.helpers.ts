@@ -5,6 +5,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { GetDuels_getDuels } from "@graphql/_core/schema";
 import { showYuModal } from "@navigation/root";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
+import { t } from "@locale";
 
 export interface ValidDuel {
   id: string;
@@ -116,13 +117,13 @@ export const onDuelPress = async (
 
 export const showExistingDuelAlert = (existingDuel: ValidDuel, requestLocation: DuelRequestLocation) => {
   const now = moment();
-  const name = existingDuel.name.firstName || "your colleague";
+  const name = existingDuel.name.firstName || t("modals.duels.dialog_helpers.alternative_name");
   const duelStart = existingDuel.startDateTime.calendar(now.startOf("day"), calendarOptions);
   const isAlreadyAccepted = existingDuel.status === "accepted";
-  const title = isAlreadyAccepted ? "It’s already on!" : "Hang on a sec!";
+  const title = isAlreadyAccepted ? t("modals.duels.dialog_helpers.title_already_accepted") : t("modals.duels.dialog_helpers.title_not_accepted");
   const description = isAlreadyAccepted
-    ? `Your duel with ${name} will take place ${duelStart}. You can challenge them to a rematch afterwards, or challenge another friend now.`
-    : `You’ve already invited ${name} to duel. Wait for them to respond, or challenge another friend now.`;
+    ? t("modals.duels.dialog_helpers.description_already_accepted", { name, duelStart })
+    : t("modals.duels.dialog_helpers.description_not_accepted", { name });
 
   const page = getPage(requestLocation);
   const mixpanelName = isAlreadyAccepted ? `${page}.DuelItsAlreadyOn` : `${page}.DuelHangOnASec`;
