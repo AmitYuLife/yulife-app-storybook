@@ -3,6 +3,7 @@ import { Image, View, ListRenderItemInfo, StyleSheet, TextStyle, ViewStyle, Imag
 import { Text } from "@atoms";
 import { OnboardingSwiper, OnboardingSwiperData } from "@organisms";
 import { Style, Colours } from "@styles";
+import { t } from "@locale";
 
 const images = [
   require("@assets/duels/onboarding/1.png"),
@@ -13,21 +14,21 @@ const images = [
 const data: OnboardingSwiperData[] = [
   {
     id: "duels_onboarding_1",
-    buttonLabel: "Next",
-    title: "Challenge a friend!",
-    subtitle: "Want to go head-to-head? Select a friend from the leaderboard, and challenge them to a duel!",
+    buttonLabel: t("modals.duels.intro.button_1"),
+    title: t("modals.duels.intro.title_1"),
+    subtitle: t("modals.duels.intro.subtitle_1"),
   },
   {
     id: "duels_onboarding_2",
-    buttonLabel: "Next",
-    title: "Set the wager",
-    subtitle: "Feeling confident? Duel for YuCoin or bragging rights!",
+    buttonLabel: t("modals.duels.intro.button_2"),
+    title: t("modals.duels.intro.title_2"),
+    subtitle: t("modals.duels.intro.subtitle_2"),
   },
   {
     id: "duels_onboarding_3",
-    buttonLabel: "Let's go",
-    title: "Out-step your opponent",
-    subtitle: "Your duel will begin the next day and you’ll have 24 hours to get in as many steps as you can!",
+    buttonLabel: t("modals.duels.intro.button_3"),
+    title: t("modals.duels.intro.title_3"),
+    subtitle: t("modals.duels.intro.subtitle_3"),
   },
 ];
 
