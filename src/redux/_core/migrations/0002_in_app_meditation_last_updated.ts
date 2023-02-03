@@ -5,6 +5,5 @@ export default (state: PersistedState & IReduxState): PersistedState & IReduxSta
   ...state,
   dailyMeditation: {
     ...state.dailyMeditation,
-    inAppMeditationLastUpdated: state.dailyMeditation.inAppMeditationLastUpdated || "",
   },
 });

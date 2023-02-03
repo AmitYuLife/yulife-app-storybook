@@ -34,6 +34,7 @@ export interface UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_chall
   levelSlotId: string | null;
   status: string | null;
   endDateTime: string | null;
+  createdAt: number | null;
   incomingData: UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge_incomingData | null;
   milestoneLog: (UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge_milestoneLog | null)[] | null;
   yuCoinAwarded: number | null;

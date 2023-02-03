@@ -7,6 +7,7 @@ import {
 } from "@graphql/_core/schema";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
 import {
+  IAppMeditationPayload,
   UPDATE_DAILY_MEDITATION_EMPTY_RESULT,
   UPDATE_DAILY_MEDITATION_SUCCESS,
   UPDATE_IN_APP_MEDITATION,
@@ -15,26 +16,34 @@ import { PassiveMeditationMilestones, ExchangeRateMeditation as ExchangeRate } f
 import { SyncAction } from "@redux/_core/types";
 import { UPDATE_APP_STATE_ACTIVE } from "@redux/app/app.actions";
 import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
+
+interface IAppDailyMeditationProps {
+  duration: number;
+  lastUpdated: string;
+  createdAt: number;
+}
 export interface IDailyMeditationStore {
   dailyMeditation: number;
-  inAppDailyMeditation: number;
+  inAppMeditation: IAppDailyMeditationProps;
   exchangeRate: ExchangeRate;
   meditationPassiveMilestones: PassiveMeditationMilestones;
-  inAppMeditationLastUpdated: string;
   lastUpdated: string;
 }
 
 export const getInitialState = (): IDailyMeditationStore => ({
   dailyMeditation: 0,
-  inAppDailyMeditation: 0,
   exchangeRate: {
     yucoin: 1,
     steps: null,
     meditation: 300,
     surge: 1,
   },
+  inAppMeditation: {
+    duration: 0,
+    lastUpdated: "",
+    createdAt: null,
+  },
   meditationPassiveMilestones: [],
-  inAppMeditationLastUpdated: "",
   lastUpdated: moment().startOf("day").format(),
 });
 
@@ -102,14 +111,17 @@ const updatePersistedState = (state: IDailyMeditationStore, persistedState: IDai
     return {
       ...persistedState,
       dailyMeditation: 0,
-      inAppDailyMeditation: 0,
+      inAppMeditation: {
+        ...state.inAppMeditation,
+        duration: 0,
+      },
     };
   }
 
   return { ...persistedState };
 };
 
-const updateStateOnAppUpdate = (state: IDailyMeditationStore) => {
+const updateStateOnAppUpdate = (state: IDailyMeditationStore): IDailyMeditationStore => {
   const lastUpdated = moment(state.lastUpdated).startOf("day").format();
   const today = moment().startOf("day").format();
 
@@ -117,7 +129,10 @@ const updateStateOnAppUpdate = (state: IDailyMeditationStore) => {
     return {
       ...state,
       dailyMeditation: 0,
-      inAppDailyMeditation: 0,
+      inAppMeditation: {
+        ...state.inAppMeditation,
+        duration: 0,
+      },
     };
   }
 
@@ -136,27 +151,24 @@ const loginUserSuccess = (state: IDailyMeditationStore, res: LoginUser) => ({
   meditationPassiveMilestones: res?.loginUser?.user?.passiveMeditation?.levelSlot?.milestones || [],
 });
 
-const updateInAppMeditation = (state: IDailyMeditationStore, inAppDailyMeditation: number) => {
-  if (moment().diff(state.inAppMeditationLastUpdated, "minutes") < 2) {
+const updateInAppMeditation = (state: IDailyMeditationStore, payload: IAppMeditationPayload): IDailyMeditationStore => {
+  if (moment().diff(state.inAppMeditation.lastUpdated, "minutes") < 2) {
     return state;
   }
 
-  const lastUpdated = moment(state.inAppMeditationLastUpdated).startOf("day").format();
-  const today = moment().startOf("day").format();
-  const inAppMeditationLastUpdated = moment().format();
+  const { duration, createdAt } = payload;
+  const lastUpdated = moment().format();
 
-  if (lastUpdated !== today) {
-    return {
-      ...state,
-      inAppDailyMeditation: 0,
-      inAppMeditationLastUpdated,
-    };
-  }
+  const lastUpdatedStartOfDay = moment(state.inAppMeditation.lastUpdated).startOf("day").format();
+  const today = moment().startOf("day").format();
 
   return {
     ...state,
-    inAppDailyMeditation: state.inAppDailyMeditation + inAppDailyMeditation,
-    inAppMeditationLastUpdated: inAppMeditationLastUpdated,
+    inAppMeditation: {
+      duration: lastUpdatedStartOfDay !== today ? duration : state.inAppMeditation.duration + duration,
+      lastUpdated,
+      createdAt,
+    },
   };
 };
 
