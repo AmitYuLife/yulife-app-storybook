@@ -114,11 +114,12 @@ const MediaPlayerContainer = ({
       variables: { levelSlotId, payload: { value: video.duration } },
     });
 
-    if (data?.updateQuestMapLevelChallenge) {
-      dispatch(challengeEndSuccessAction({ ...data?.updateQuestMapLevelChallenge?.challenge }));
+    const challenge = data?.updateQuestMapLevelChallenge?.challenge;
 
+    if (challenge) {
+      dispatch(challengeEndSuccessAction({ ...challenge }));
       if (eventType === "mindfullness") {
-        dispatch(updateInAppMeditation(video.duration));
+        dispatch(updateInAppMeditation({ duration: video.duration, createdAt: challenge.createdAt }));
       }
 
       await Navigation.popTo(ROUTES.quests);

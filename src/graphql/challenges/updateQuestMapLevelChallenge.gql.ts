@@ -12,6 +12,7 @@ export const GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
         levelSlotId
         status
         endDateTime
+        createdAt
         incomingData {
           steps
           meditation

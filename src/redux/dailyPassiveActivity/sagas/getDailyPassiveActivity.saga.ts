@@ -6,7 +6,7 @@ import Logger from "@services/logging/logger";
 import { UPDATE_APP_STATE } from "../../app/app.actions";
 import { getUserFeatures } from "../../user/user.selectors";
 import upsertDailyPassives from "@graphql/challenges/upsertDailyPassives.gql";
-import { updateDailyMeditation } from "@redux/daily-meditation/daily-meditation.actions";
+import { IAppMeditationPayload, updateDailyMeditation } from "@redux/daily-meditation/daily-meditation.actions";
 import { updateDailyCycling } from "@redux/daily-cycling/daily-cycling.actions";
 import { PermissionsAndroid, Platform } from "react-native";
 import { totalCoinsUpdated } from "@redux/coins/coins.actions";
@@ -154,28 +154,29 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
 }
 
 const getMeditation = (
-  inAppMeditation: number,
+  inAppMeditation: IAppMeditationPayload,
   fitkitMeditation: QueryFitKitByTypesResponse
 ): QueryFitKitByTypesResponse => {
   const inAppMeditationResponse = {
-    value: inAppMeditation,
+    value: inAppMeditation.duration,
     endDateTime: moment().format(),
-    startDateTime: moment().startOf("day").format(),
+    startDateTime: moment.unix(inAppMeditation.createdAt).format(),
     type: PassiveChallengeType.MEDITATION,
+    isInApp: true,
   };
 
-  if (!fitkitMeditation && !inAppMeditation) {
+  if (!fitkitMeditation && !inAppMeditation.duration) {
     return null;
   }
 
-  if (!fitkitMeditation && inAppMeditation) {
+  if (!fitkitMeditation && inAppMeditation.duration) {
     return {
       error: false,
       results: [inAppMeditationResponse],
     };
   }
 
-  if (fitkitMeditation && !inAppMeditation) {
+  if (fitkitMeditation && !inAppMeditation.duration) {
     return fitkitMeditation;
   }
 

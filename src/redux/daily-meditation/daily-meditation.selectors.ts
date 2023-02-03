@@ -14,7 +14,7 @@ const reducer = (state: IReduxState) => state.dailyMeditation;
 const dailyMeditationSelector = (state: State) => state.dailyMeditation;
 export const getDailyMeditation = createSelector(reducer, dailyMeditationSelector);
 
-const inAppDailyMeditationSelector = (state: State) => state.inAppDailyMeditation;
+const inAppDailyMeditationSelector = (state: State) => state.inAppMeditation;
 export const getInAppDailyMeditation = createSelector(reducer, inAppDailyMeditationSelector);
 
 const meditationExchangeRateSelector = (state: State) => state.exchangeRate;

@@ -20,27 +20,42 @@ export const processResult = (
   return sampleDataToAggregatedData(start.clone().format(), end.clone().format(), response.results);
 };
 
+interface ChallengesPayloadWithInApp extends ChallengesPayload {
+  isInApp?: boolean;
+}
+
 function sampleDataToAggregatedData(
   startTime: string,
   endTime: string,
-  results: ChallengesPayload[]
+  results: ChallengesPayloadWithInApp[]
 ): ChallengesPayload[] {
   const buckets = getDateBuckets(startTime, endTime);
 
   return buckets.map(({ end, start }) => {
     let value = 0;
+    let startDateTime = start.format();
+    let endDateTime = end.format();
+
     const bundleIdentifiers: Set<string> = new Set();
-    results.forEach((element: ChallengesPayload) => {
-      if (moment(element.startDateTime).isSameOrAfter(start) && moment(element.startDateTime).isSameOrBefore(end)) {
+    results.forEach((element: ChallengesPayloadWithInApp) => {
+      if (
+        (moment(element.startDateTime).isSameOrAfter(start) && moment(element.startDateTime).isSameOrBefore(end)) ||
+        element?.isInApp
+      ) {
         value = value + element.value;
         element.bundleIdentifiers?.map((bundle) => bundleIdentifiers.add(bundle));
+        if (element?.isInApp) {
+          startDateTime = element.startDateTime;
+          endDateTime = element.endDateTime;
+          delete element.isInApp;
+        }
       }
     });
 
     const type = results[0].type;
     return {
-      startDateTime: start.format(),
-      endDateTime: end.format(),
+      startDateTime,
+      endDateTime,
       value,
       type,
       bundleIdentifiers: Array.from(bundleIdentifiers),
