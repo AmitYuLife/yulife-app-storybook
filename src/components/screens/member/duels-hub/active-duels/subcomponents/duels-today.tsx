@@ -52,7 +52,11 @@ const DuelsToday: FC = () => {
         <View style={styles.emptyWrapper} testID={EMPTY_DUELS_HUB}>
           <Text style={styles.emptyText}>{t("modals.duels.hub.today_empty")}</Text>
         </View>
-        <Button testID={CHALLENGE_FRIEND_BUTTON} label={t("modals.duels.hub.challenge_friend_button")} onPress={navigateToDuelsSearch} />
+        <Button
+          testID={CHALLENGE_FRIEND_BUTTON}
+          label={t("modals.duels.hub.challenge_friend_button")}
+          onPress={navigateToDuelsSearch}
+        />
       </View>
     );
   }

@@ -104,7 +104,11 @@ const CompletedDuelsScreen = () => {
         renderItem={renderItem}
         renderSectionHeader={renderSectionHeader}
         ListFooterComponent={
-          <Button wrapperStyle={styles.buttonWrapperStyle} label={t("modals.duels.hub.challenge_friend_button")} onPress={navigateToDuelsSearch} />
+          <Button
+            wrapperStyle={styles.buttonWrapperStyle}
+            label={t("modals.duels.hub.challenge_friend_button")}
+            onPress={navigateToDuelsSearch}
+          />
         }
       />
     </View>

@@ -36,7 +36,13 @@ const DuelIcon: FC<Partial<IProps>> = ({ duel, type, userId }) => {
           </Text>
           <View style={styles.iconWrapper}>{duel.yucoin === 0 ? <Award /> : <YuCoin />}</View>
         </View>
-        <Text style={[styles.text, colorStyle]}>{hasWon ? t("modals.duels.hub.you_won") : hasDrawn ? t("modals.duels.hub.you_drew") : t("modals.duels.hub.you_lost")}</Text>
+        <Text style={[styles.text, colorStyle]}>
+          {hasWon
+            ? t("modals.duels.hub.you_won")
+            : hasDrawn
+            ? t("modals.duels.hub.you_drew")
+            : t("modals.duels.hub.you_lost")}
+        </Text>
       </View>
     );
   }

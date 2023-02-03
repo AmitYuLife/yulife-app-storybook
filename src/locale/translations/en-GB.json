@@ -637,6 +637,12 @@
         "subheader_2": "What are you duelling for?",
         "colleague": "a colleague"
       },
+      "search": {
+        "item_duel": "Duel >",
+        "recent_opponents": "Recent",
+        "title": "Search for a friend:",
+        "empty": "We could not find the friend you’re looking for."
+      },
       "hub": {
         "active_tab": "Active",
         "completed_tab": "Completed",
