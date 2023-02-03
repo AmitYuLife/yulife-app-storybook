@@ -1,5 +1,5 @@
 import React, { memo, isValidElement, ReactElement, useMemo, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { Button, PressableWithDelay, SecondaryButton } from "@molecules";
 import { Style, Colours } from "@styles";
 import { ContentItemLottie } from "@components/sdui";
@@ -50,31 +50,33 @@ const FloatingModal = ({
   }, [children, closeOverlay, setIconAsset]);
 
   return (
-    <View style={[styles.wrapper, { paddingTop, minHeight: height }]}>
-      {!lottie ? null : (
-        <View style={styles.iconWrapper}>
-          <ContentItemLottie {...lottie} />
-        </View>
-      )}
-      {!iconAsset ? null : (
-        <View style={styles.iconWrapper}>
-          <Image width={Style.adjust(140)} height={Style.adjust(140)} source={iconAsset} />
-        </View>
-      )}
-      {content}
-      {!showCloseButton ? null : (
-        <CloseButton
-          onPress={closeOverlay}
-          label={translation["button.close"]}
-          wrapperStyle={styles.buttonWrapperStyle}
-        />
-      )}
-      {!showCloseIcon ? null : (
-        <PressableWithDelay onPress={closeOverlay} style={styles.closeWrapper}>
-          <CloseSvg stroke={Colours.darkestGray} size={Style.adjust(24)} />
-        </PressableWithDelay>
-      )}
-    </View>
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
+      <View style={[styles.wrapper, { paddingTop, minHeight: height }]}>
+        {!lottie ? null : (
+          <View style={styles.iconWrapper}>
+            <ContentItemLottie {...lottie} />
+          </View>
+        )}
+        {!iconAsset ? null : (
+          <View style={styles.iconWrapper}>
+            <Image width={Style.adjust(140)} height={Style.adjust(140)} source={iconAsset} />
+          </View>
+        )}
+        {content}
+        {!showCloseButton ? null : (
+          <CloseButton
+            onPress={closeOverlay}
+            label={translation["button.close"]}
+            wrapperStyle={styles.buttonWrapperStyle}
+          />
+        )}
+        {!showCloseIcon ? null : (
+          <PressableWithDelay onPress={closeOverlay} style={styles.closeWrapper}>
+            <CloseSvg stroke={Colours.darkestGray} size={Style.adjust(24)} />
+          </PressableWithDelay>
+        )}
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { memo, useState, useCallback } from "react";
-import { Alert, Keyboard, StyleSheet, View } from "react-native";
+import { Alert, Keyboard, ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { Button, TextInput } from "@components/molecules";
@@ -60,36 +60,38 @@ const SendDocumentsModal = ({ itemId }: IProps) => {
   }, []);
 
   return (
-    <View style={styles.contentWrapper}>
-      <View style={styles.title} accessibilityLabel={t("screens.wellbeing_hub.send_documents.title")}>
-        <TextTemplate type={"h2"}>{t("screens.wellbeing_hub.send_documents.title")}</TextTemplate>
-      </View>
-      <TextTemplate
-        type="b2"
-        textAlign="left"
-        accessibilityLabel={t("screens.wellbeing_hub.send_documents.description")}
-      >
-        {t("screens.wellbeing_hub.send_documents.description")}
-      </TextTemplate>
-      <View style={styles.emailContainer}>
-        <TextInput
-          onSubmitEditing={handleSubmit}
-          style={styles.emailInput}
-          type={TextInput.Types.EMAIL}
-          placeholder={t("screens.wellbeing_hub.send_documents.input_placeholder")}
-          onChange={onEmailChange}
-          value={email}
-          errorMessage={emailError}
-          hasError={!!emailError}
+    <ScrollView style={styles.keyboardWrapper} keyboardShouldPersistTaps="handled">
+      <View style={styles.contentWrapper}>
+        <View style={styles.title} accessibilityLabel={t("screens.wellbeing_hub.send_documents.title")}>
+          <TextTemplate type={"h2"}>{t("screens.wellbeing_hub.send_documents.title")}</TextTemplate>
+        </View>
+        <TextTemplate
+          type="b2"
+          textAlign="left"
+          accessibilityLabel={t("screens.wellbeing_hub.send_documents.description")}
+        >
+          {t("screens.wellbeing_hub.send_documents.description")}
+        </TextTemplate>
+        <View style={styles.emailContainer}>
+          <TextInput
+            onSubmitEditing={handleSubmit}
+            style={styles.emailInput}
+            type={TextInput.Types.EMAIL}
+            placeholder={t("screens.wellbeing_hub.send_documents.input_placeholder")}
+            onChange={onEmailChange}
+            value={email}
+            errorMessage={emailError}
+            hasError={!!emailError}
+          />
+        </View>
+        <Button
+          isLoading={loading}
+          size="Fill"
+          onPress={handleSubmit}
+          label={t("screens.wellbeing_hub.send_documents.send_button")}
         />
       </View>
-      <Button
-        isLoading={loading}
-        size="Fill"
-        onPress={handleSubmit}
-        label={t("screens.wellbeing_hub.send_documents.send_button")}
-      />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -98,6 +100,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: Style.adjust(38),
   },
+  keyboardWrapper: {
+    flex: 1,
+  } as ViewStyle,
   title: {
     marginBottom: Style.adjust(25),
   },
