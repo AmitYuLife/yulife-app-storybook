@@ -69,7 +69,7 @@ const FiitMediaListContainer = ({ levelSlotId, contentMediaTags, title, logo, re
   return (
     <FiitMediaListScreen
       title={title}
-      description="Free classes powered by"
+      description={t("modals.challenges.fiit.powered_by")}
       items={formattedVideos}
       logo={logo}
       onLeftIconPress={onLeftIconPress}

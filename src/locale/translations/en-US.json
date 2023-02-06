@@ -603,6 +603,11 @@
     }
   },
   "modals": {
+    "challenges": {
+      "fiit": {
+        "powered_by": "Free classes powered by"
+      }
+    },
     "generic_modal": {
       "cancel_challenge": {
         "heading": "Call it quits?",
