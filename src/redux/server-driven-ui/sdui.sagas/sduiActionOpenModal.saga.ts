@@ -1,31 +1,39 @@
 import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { Navigation } from "@navigation/main";
+import { parseJSON } from "@utils";
+import Logger from "@services/logging/logger";
 import { call } from "redux-saga/effects";
 import { SduiActionWithServerPayload } from "../sdui.types";
+import { getServerPayload } from "../sdui.helpers";
 
 export function* sduiActionOpenModalSaga(action: SduiActionWithServerPayload) {
   try {
-    const serverPayload = JSON.parse(action.payload.serverPayload);
+    const { data, isValid } = parseJSON(getServerPayload(action.payload));
 
-    const { heading, subheading, ctaLabel, onPress, textAlign } = serverPayload.props;
+    if (!isValid || !Object.values(MODALS).includes(data.routeId)) {
+      throw new Error("Invalid action payload!");
+    }
 
     yield call(() =>
       showYuModal({
         component: {
-          id: MODALS.generic,
-          name: MODALS.generic,
+          id: data.routeId,
+          name: data.routeId,
           passProps: {
-            heading,
-            subheading,
-            ctaLabel,
-            textAlign,
-            onPress: onPress ? onPress : () => Navigation.dismissModal(MODALS.generic),
+            ...data.props,
+            onPress: data.props.onPress ? data.props.onPress : () => Navigation.dismissModal(data.routeId),
           },
         },
       })
     );
-  } catch (error) {
-    // log
+  } catch (e) {
+    yield call(() =>
+      Logger.logMixpanelEvent("app_debug", {
+        sdui: true,
+        location: "sduiActionOpenModalSaga",
+        error: e?.message,
+      })
+    );
   }
 }
