@@ -34,12 +34,14 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemTextInp
     | "ContentItemPad"
     | "ContentItemRadio"
     | "ContentItemHeaderBar"
+    | "ContentItemProcessingTimer"
     | "ContentItemProgressBar"
     | "ContentItemTextGroup"
     | "ContentItemAccordion"
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
-    | "ContentItemSectionHeading";
+    | "ContentItemSectionHeading"
+    | "ContentItemInfoCard";
 }
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText_styles {
