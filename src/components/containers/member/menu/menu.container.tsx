@@ -45,16 +45,16 @@ const MenuContainer = () => {
 
   const handlePressLogout = React.useCallback(() => {
     Alert.alert(
-      "Log out?",
-      "Your progress and YuCoin will be waiting for you when you log back in. Are you sure you want to log out from YuLife?",
+      t("screens.menu.logout.alert_title"),
+      t("screens.menu.logout.alert_description"),
       [
         {
           style: "cancel",
-          text: "Cancel",
+          text: t("screens.menu.logout.alert_cancel_button"),
         },
         {
           onPress: () => dispatch(logOutStart()),
-          text: "Log Out",
+          text: t("screens.menu.logout.alert_log_out_button"),
         },
       ]
     );
