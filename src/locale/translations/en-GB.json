@@ -288,7 +288,11 @@
         "label": "Chat"
       },
       "logout": {
-        "label": "Log out"
+        "label": "Log out",
+        "alert_title": "Log out?",
+        "alert_description": "Your progress and YuCoin will be waiting for you when you log back in. Are you sure you want to log out from YuLife?",
+        "alert_cancel_button": "Cancel",
+        "alert_log_out_button": "Log Out"
       }
     },
     "permissions": {
