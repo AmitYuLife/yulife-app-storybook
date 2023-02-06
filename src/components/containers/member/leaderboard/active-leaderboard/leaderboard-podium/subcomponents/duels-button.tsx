@@ -7,6 +7,7 @@ import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { Text } from "@atoms";
 import { DUELS_BUTTON } from "@ids";
+import { t } from "@locale";
 
 function navigateToDuelsHub() {
   Navigation.push(ROUTES.leaderboards, {
@@ -38,7 +39,7 @@ function _DuelsButton() {
     >
       <View style={styles.innerWrapper}>
         <Text style={styles.text} bold={true}>
-          Duels
+          {t("screens.leaderboard.podium.duels_button")}
         </Text>
         <View style={styles.iconWrapper}>
           <Svg width={ICON_WIDTH} height={ICON_HEIGHT} viewBox="0 0 18 15" fill="none">
