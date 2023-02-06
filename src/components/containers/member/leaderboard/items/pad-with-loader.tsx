@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { StyleSheet, ViewStyle, ActivityIndicator, Animated, TextStyle, ImageStyle } from "react-native";
 import { Text } from "@atoms";
 import { View } from "react-native-animatable";
+import { t } from "@locale";
 
 export interface IPadWithLoaderProps {
   height: number;
@@ -32,7 +33,7 @@ const _PadWithLoader = ({ height, isRefetching, scrollValue }: IPadWithLoaderPro
           style={[styles.image, { transform: [{ rotate }] }]}
         />
         <View style={styles.textWrapper}>
-          <Text style={styles.text}>keep pulling to refresh</Text>
+          <Text style={styles.text}>{t("screens.leaderboard.pad.title")}</Text>
         </View>
       </View>
     </View>
