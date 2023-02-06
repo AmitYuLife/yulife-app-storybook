@@ -11,6 +11,7 @@ import { DuelsButton } from "./duels-button";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { connect } from "react-redux";
+import { t } from "@locale";
 
 export interface LeaderboardPressableTitleProps {
   onPressLabel: () => void;
@@ -20,7 +21,7 @@ export interface LeaderboardPressableTitleProps {
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
-interface IProps extends LeaderboardPressableTitleProps, Partial<ConnectedState> {}
+interface IProps extends LeaderboardPressableTitleProps, Partial<ConnectedState> { }
 
 export function _LeaderboardPressableTitle({ onPressLabel, onPressInfo, name, showDuels }: Partial<IProps>) {
   return (
@@ -66,7 +67,7 @@ function Title({
       </TouchableOpacityWithDelay>
       <TouchableOpacityWithDelay onPress={onPressInfo} testID={LEADERBOARD_INFO_BUTTON}>
         <View style={titleStyles.flexRow}>
-          <Text style={titleStyles.caption}>30 day steps</Text>
+          <Text style={titleStyles.caption}>{t("screens.leaderboard.podium.steps")}</Text>
           <InfoButton onPressInfo={onPressInfo} />
         </View>
       </TouchableOpacityWithDelay>

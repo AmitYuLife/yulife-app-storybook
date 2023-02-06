@@ -6,13 +6,13 @@ import { Style } from "@styles";
 import { Navigation } from "@navigation/main";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useBackHandler } from "@hooks";
+import { t } from "@locale";
 
 interface IProps {
   componentId: string;
   onLeftIconPress?: () => void;
 }
 
-const copy = `The leaderboards are set to a 30 day rolling system. That means they show your step history for just the last 30 days.\n\nTo keep your steps up, aim to do more than you did 30 days ago!`;
 
 function LeaderboardInfoScreen({ componentId }: IProps) {
   const goBack = useCallback(() => {
@@ -27,8 +27,8 @@ function LeaderboardInfoScreen({ componentId }: IProps) {
   return (
     <View style={styles.wrapper} testID={LEADERBOARD_INFO}>
       <GenericHeadingPad />
-      <Text style={styles.text}>{copy}</Text>
-      <GenericHeadingAbsolute heading="About Leaderboards" onLeftIconPress={goBack} />
+      <Text style={styles.text}>{t("screens.leaderboard.podium.info_copy")}</Text>
+      <GenericHeadingAbsolute heading={t("screens.leaderboard.podium.info_heading")} onLeftIconPress={goBack} />
     </View>
   );
 }
