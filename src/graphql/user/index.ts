@@ -4,7 +4,6 @@ export * from "./getMagicLink.gql";
 export * from "./getSession.gql";
 export * from "./loginUser.gql";
 export * from "./refreshSession.gql";
-export * from "./replyToLeaderboardInvite.gql";
 export * from "./sendMagicLink.gql";
 export * from "./updateNickname.gql";
 export * from "./getUserProfile.gql";

@@ -18,8 +18,13 @@ import {
 // GraphQL fragment: ContentItem
 // ====================================================
 
-export interface ContentItem_ContentItemTable {
-  __typename: "ContentItemTable" | "ContentItemSelectedPackageCard" | "ContentItemSectionHeading";
+export interface ContentItem_ContentItemProcessingTimer {
+  __typename:
+    | "ContentItemProcessingTimer"
+    | "ContentItemTable"
+    | "ContentItemSelectedPackageCard"
+    | "ContentItemSectionHeading"
+    | "ContentItemInfoCard";
 }
 
 export interface ContentItem_ContentItemMarkdown_styles {
@@ -549,7 +554,7 @@ export interface ContentItem_ContentItemAccordion {
 }
 
 export type ContentItem =
-  | ContentItem_ContentItemTable
+  | ContentItem_ContentItemProcessingTimer
   | ContentItem_ContentItemMarkdown
   | ContentItem_ContentItemBox
   | ContentItem_ContentItemButton

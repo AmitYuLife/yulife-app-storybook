@@ -23,12 +23,14 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
     | "ContentItemPad"
     | "ContentItemRadio"
     | "ContentItemHeaderBar"
+    | "ContentItemProcessingTimer"
     | "ContentItemProgressBar"
     | "ContentItemTextGroup"
     | "ContentItemAccordion"
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
-    | "ContentItemSectionHeading";
+    | "ContentItemSectionHeading"
+    | "ContentItemInfoCard";
 }
 
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemText_styles {

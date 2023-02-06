@@ -37,12 +37,14 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemTe
     | "ContentItemPad"
     | "ContentItemRadio"
     | "ContentItemHeaderBar"
+    | "ContentItemProcessingTimer"
     | "ContentItemProgressBar"
     | "ContentItemTextGroup"
     | "ContentItemAccordion"
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
-    | "ContentItemSectionHeading";
+    | "ContentItemSectionHeading"
+    | "ContentItemInfoCard";
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles {
