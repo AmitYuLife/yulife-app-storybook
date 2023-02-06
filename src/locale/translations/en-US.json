@@ -40,6 +40,11 @@
   },
   "create_challenge_error": "Sorry, there was a problem starting your challenge. \n Please try again!",
   "screens": {
+    "quests": {
+      "level": {
+        "pending": "in"
+      }
+    },
     "today_earning": {
       "heading": {
         "title": "Today’s Earnings"

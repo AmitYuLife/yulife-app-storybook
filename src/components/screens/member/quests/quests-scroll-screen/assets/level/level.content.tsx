@@ -6,6 +6,7 @@ import LevelStar from "./level.star";
 import styles from "./level.styles";
 import { QuestsMapLevel } from "../../quests.context";
 import { LEVEL_STAR_COUNT } from "@ids";
+import { t } from "@locale";
 
 const getWorldColor = (level: number) => {
   const worldsByLevel = getCurrentWorld(level);
@@ -81,7 +82,7 @@ export default function getLevelButton(
       return (
         <View style={styles.column}>
           <Text style={style} bold={true}>
-            in
+            {t("screens.quests.level.pending")}
           </Text>
           <Text style={style} bold={true}>
             {nextAvailableFormatted}
