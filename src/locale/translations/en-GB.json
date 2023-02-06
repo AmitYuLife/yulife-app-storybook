@@ -408,6 +408,12 @@
         "info_copy": "The leaderboards are set to a 30 day rolling system. That means they show your step history for just the last 30 days.\n\nTo keep your steps up, aim to do more than you did 30 days ago!",
         "info_heading": "About Leaderboards"
       },
+      "list": {
+        "heading": "Leaderboards"
+      },
+      "pad": {
+        "title": "keep pulling to refresh"
+      },
       "turn_board_on": {
         "heading": "Join the Leaderboard?",
         "subheading": "By joining the leaderboard, you are consenting to share details about your activity with other members of this leaderboard.\n\nYou can opt out at any time by tapping the name of the leaderboard and adjusting your settings.",
