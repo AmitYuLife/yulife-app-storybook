@@ -16,8 +16,7 @@ export const YUG0000003_FIIT_12_MONTH = {
         "archived" : false,
         "modified_by_id" : null,
         "created_at" : null,
-        "modified_at" : null,
-        "access_code" : null
+        "modified_at" : null
     }
 } as IDatabaseItem
 
@@ -32,7 +31,6 @@ export const YUG0000001_FIIT_12_MONTH = {
         "archived" : false,
         "modified_by_id" : null,
         "created_at" : null,
-        "modified_at" : null,
-        "access_code" : null
+        "modified_at" : null
     }
 } as IDatabaseItem
