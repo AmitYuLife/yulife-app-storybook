@@ -38,12 +38,12 @@ Feature("As a user I can get past the login screen", async () => {
                     Then("I should see the sign up reward screen", then.rewardScreenVisible);
                     When("I press 'next'", when.tapNext, async () => {
                         Then("I should see 200 coins in the top right hand corner", then.givenCoinsTopRight(200));
-                        Then("I should see 0 YuCoin today", then.textVisible("0 YuCoin today"))
+                        Then("I should see 200 YuCoin today", then.textVisible("200 YuCoin today"))
                         Then("I should see the i icon near the Coin", then.idVisible(YUCOIN_POWER_INFO))
                         When("I tap the YuCoins", when.tapID(DAILYSTEP_SCREEN_COIN), async () => {
-                            Then("I should see 0 YuCoin today", then.textVisible("0 YuCoin"))
+                            Then("I should see 200 YuCoin today", then.textVisible("200 YuCoin"))
                             When("I close this screen", when.tapID(BACK_BUTTON), async () => {
-                                Then("I should see 0 YuCoin today", then.textVisible("0 YuCoin today"))
+                                Then("I should see 200 YuCoin today", then.textVisible("200 YuCoin today"))
                                 Then("I should Not see InfoIcon anymore", then.idNotVisible(YUCOIN_POWER_INFO));
                             })
                         })
@@ -133,17 +133,17 @@ Feature("As a user I can get past the login screen", async () => {
                             When("I update the screen to see today activity", given.triggerAppUpdateState, async () => {
                                 Then("I should see 11.3 km done today", then.idVisible(CYCLING_COUNT("11.3 km"), 2000));
                                 Then("I should see 13 min mindful done today", then.idVisible(MINDFUL_COUNT("13 min")));
-                                Then("I should see the amount of yucoin I earned today", then.textVisible("160 YuCoin today"))
+                                Then("I should see the amount of yucoin I earned today", then.textVisible("360 YuCoin today"))
                                 Then("I should see the i icon near the Coin", then.idVisible(YUCOIN_POWER_INFO))
                             })
                         })
                     })
                     When("I tap on YuCoin", when.tapID(DAILYSTEP_SCREEN_COIN), async () => {
-                        Then("I should see 160 YuCoin today", then.textVisible("160 YuCoin"))
+                        Then("I should see 360 YuCoin today", then.textVisible("360 YuCoin"))
                     })
                     When("I go back this screen", when.tapID(BACK_BUTTON), async () => {
                         Then("I should Not see InfoIcon anymore", then.idNotVisible(YUCOIN_POWER_INFO));
-                        When("I tap on YuCoin today text", when.tapText("160 YuCoin today"), async () => {
+                        When("I tap on YuCoin today text", when.tapText("360 YuCoin today"), async () => {
                             Then("I should see correct data 20 steps, 11.3 km, 13 min mindful", then.onTodaysYucoin(20, "11.3 / 9.6 km", 13))
                         })
                     })
