@@ -23,7 +23,6 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
     | "ContentItemPad"
     | "ContentItemRadio"
     | "ContentItemHeaderBar"
-    | "ContentItemProcessingTimer"
     | "ContentItemProgressBar"
     | "ContentItemTextGroup"
     | "ContentItemAccordion"

@@ -524,6 +524,13 @@
         "workout": "Workout"
       }
     },
+    "fiit_media_category_list": {
+      "promotion": {
+        "title": "Fiit: Workouts & Fitness Plans",
+        "description": "Enjoying Fiit? Yulifers get a free trial plus 25% off your first payment.",
+        "button_label": "More information"
+      }
+    },
     "fiit_media_list": {
       "startChallengeButtonLabel": "Start class",
       "description": "Free classes powered by"
@@ -612,11 +619,6 @@
     }
   },
   "modals": {
-    "challenges": {
-      "fiit": {
-        "powered_by": "Free classes powered by"
-      }
-    },
     "generic_modal": {
       "cancel_challenge": {
         "heading": "Call it quits?",

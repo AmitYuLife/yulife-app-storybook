@@ -5,7 +5,7 @@ import MusicControl, { Command } from "react-native-music-control";
 import { Animated, StyleSheet, View, AppStateStatus } from "react-native";
 import LottieView from "lottie-react-native";
 import Config from "react-native-config";
-import { CloseSvg, Image, TextTemplate } from "@atoms";
+import { CloseSvg, Image, Logo, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import {
   IState,
@@ -162,13 +162,13 @@ const VideoPlayer = ({
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (orientation === "landscape" && !state.isPaused && state.musicControlMounted) {
+      if (orientation === "landscape" && !state.isPaused && state.musicControlMounted && !state.showFocusScreen) {
         handleFocusScreen();
       }
-    }, 1000);
+    }, 2000);
 
     return () => clearTimeout(timer);
-  }, [state.musicControlMounted]);
+  }, [state.musicControlMounted, state.showFocusScreen]);
 
   const onProgress = useCallback(
     ({ currentTime }) => {
@@ -420,6 +420,11 @@ const VideoPlayer = ({
               </View>
             </Animated.View>
             <Animated.View style={progressTimeLandscape} testID={VIDEO_PLAY_PAUSE_BUTTON(state.isPaused)}>
+              {orientation !== "landscape" ? null : (
+                <View style={styles.logoLandscape}>
+                  <Logo type="inverted" width={24} height={24} />
+                </View>
+              )}
               <VidePlayerButton onPress={onButtonAction} isPaused={state.isPaused} />
             </Animated.View>
           </>
@@ -452,15 +457,13 @@ const VideoPlayer = ({
             backgroundColor="transparent"
             onLeftIconPress={!state.musicControlMounted ? onLeftIconPress : null}
             color={themeColour}
-            onRightIconPress={onRightIconPress}
             {...showYuLogo}
-            rightIcon={
+            onRightIconPress={
               state.showFocusScreen || (orientation === "landscape" && state.musicControlMounted)
                 ? null
-                : !state.musicControlMounted
-                ? "COINS"
-                : "CLOSE"
+                : onRightIconPress
             }
+            rightIcon={!state.musicControlMounted ? "COINS" : "CLOSE"}
           />
         </Animated.View>
       )}
@@ -603,6 +606,13 @@ const styles = StyleSheet.create({
     bottom: 40,
     width: 30,
     height: 30,
+  },
+  logoLandscape: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    alignItems: "center",
+    height: Style.DEVICE_WIDTH - 30,
   },
 });
 

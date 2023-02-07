@@ -18,9 +18,8 @@ import {
 // GraphQL fragment: AbsoluteContentItem
 // ====================================================
 
-export interface AbsoluteContentItem_item_ContentItemProcessingTimer {
+export interface AbsoluteContentItem_item_ContentItemTable {
   __typename:
-    | "ContentItemProcessingTimer"
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
@@ -554,7 +553,7 @@ export interface AbsoluteContentItem_item_ContentItemAccordion {
 }
 
 export type AbsoluteContentItem_item =
-  | AbsoluteContentItem_item_ContentItemProcessingTimer
+  | AbsoluteContentItem_item_ContentItemTable
   | AbsoluteContentItem_item_ContentItemMarkdown
   | AbsoluteContentItem_item_ContentItemBox
   | AbsoluteContentItem_item_ContentItemButton

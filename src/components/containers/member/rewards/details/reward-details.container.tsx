@@ -29,6 +29,7 @@ import { t } from "@locale";
 interface IProps {
   componentId: string;
   rewardId: string;
+  popTo?: string;
 }
 
 interface IDisplayAlert {
@@ -40,14 +41,14 @@ interface IDisplayAlert {
   name: string;
 }
 
-const RewardDetailsContainer: FC<IProps> = ({ rewardId }) => {
+const RewardDetailsContainer: FC<IProps> = ({ rewardId, popTo }) => {
   const dispatch = useDispatch();
   const totalCoins = useSelector(getTotalCoins);
   const offline = useSelector(getOfflineState);
 
   const handleBackPress = useCallback(() => {
     Keyboard.dismiss();
-    Navigation.popToRoot(ROUTES.rewards);
+    Navigation.popTo(popTo || ROUTES.rewards);
   }, []);
 
   const [redeemReward, { loading }]: RedeemRewardMutationTuple = useMutation(GQL_MUTATION_REDEEM_REWARD);

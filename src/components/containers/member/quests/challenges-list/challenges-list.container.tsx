@@ -102,7 +102,8 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
 
   const handleSubmitChallenge = useCallback(async () => {
     const internalContent = slot?.details?.internalContent;
-    if (internalContent) {
+
+    if (internalContent?.length) {
       return handleInternalContentChallenge(internalContent);
     }
 
@@ -113,10 +114,6 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
 
   const handleInternalContentChallenge = useCallback(
     (internalContent: InternalContentProps[]) => {
-      if (internalContent.length === 0) {
-        return null;
-      }
-
       switch (internalContent[0].contentType) {
         case "meditopia": {
           return Navigation.push(componentId, {
