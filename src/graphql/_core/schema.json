@@ -32963,94 +32963,6 @@
         "possibleTypes": null
       },
       {
-        "kind": "OBJECT",
-        "name": "ContentItemProcessingTimer",
-        "description": null,
-        "specifiedByUrl": null,
-        "fields": [
-          {
-            "name": "id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "secondsUntilTarget",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "backgroundUrl",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "heading",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "onClose",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "SduiAction",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
         "kind": "ENUM",
         "name": "ContentItemProgressBarType",
         "description": null,
@@ -38019,11 +37931,6 @@
           {
             "kind": "OBJECT",
             "name": "ContentItemHeaderBar",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ContentItemProcessingTimer",
             "ofType": null
           },
           {
@@ -45530,6 +45437,18 @@
             "deprecationReason": null
           },
           {
+            "name": "promotionRewardId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "buttons",
             "description": null,
             "args": [],
@@ -52537,6 +52456,94 @@
       },
       {
         "kind": "OBJECT",
+        "name": "ContentItemProcessingTimer",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "secondsUntilTarget",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "backgroundUrl",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "heading",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "onClose",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "SduiAction",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "ContentItemYuCoinPower",
         "description": null,
         "specifiedByUrl": null,
@@ -53155,11 +53162,6 @@
           },
           {
             "kind": "OBJECT",
-            "name": "ContentItemProcessingTimer",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
             "name": "ContentItemPersonalProductPreview",
             "ofType": null
           },
@@ -53246,6 +53248,11 @@
           {
             "kind": "OBJECT",
             "name": "ContentItemSelectedPackageCards",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContentItemProcessingTimer",
             "ofType": null
           },
           {
@@ -62909,11 +62916,6 @@
           {
             "kind": "OBJECT",
             "name": "ContentItemPerks",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ContentItemProcessingTimer",
             "ofType": null
           },
           {

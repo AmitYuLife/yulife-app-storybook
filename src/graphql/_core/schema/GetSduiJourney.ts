@@ -18,9 +18,8 @@ import {
 // GraphQL query operation: GetSduiJourney
 // ====================================================
 
-export interface GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer {
+export interface GetSduiJourney_getSduiJourney_body_ContentItemTable {
   __typename:
-    | "ContentItemProcessingTimer"
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
@@ -558,7 +557,7 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemAccordion {
 }
 
 export type GetSduiJourney_getSduiJourney_body =
-  | GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer
+  | GetSduiJourney_getSduiJourney_body_ContentItemTable
   | GetSduiJourney_getSduiJourney_body_ContentItemMarkdown
   | GetSduiJourney_getSduiJourney_body_ContentItemBox
   | GetSduiJourney_getSduiJourney_body_ContentItemButton
@@ -575,9 +574,8 @@ export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemTextGroup
   | GetSduiJourney_getSduiJourney_body_ContentItemAccordion;
 
-export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer {
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemTable {
   __typename:
-    | "ContentItemProcessingTimer"
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
@@ -1119,7 +1117,7 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordio
 }
 
 export type GetSduiJourney_getSduiJourney_absolute_item =
-  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemTable
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemBox
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemButton

@@ -12,6 +12,7 @@ import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { handleLinkPress } from "@services/app-link";
 import { IITem } from "@organisms/media-list-items/media-list-items";
+
 interface IProps {
   componentId: string;
   createChallenge: (hideExternalLinks?: boolean) => void;
@@ -95,6 +96,21 @@ const FiitMediaCategoryListContainer = ({
     });
   }, []);
 
+  // const moreInformationPress = useCallback(() => {
+  //   // this needs to change newSduiRewards when the old rewardsDetails is purged
+  //   Navigation.push(ROUTES.fiitMediaCategoryList, {
+  //     component: {
+  //       id: ROUTES.rewardDetails,
+  //       name: ROUTES.rewardDetails,
+  //       passProps: {
+  //         rewardId: headerContent?.promotionRewardId,
+  //         popTo: ROUTES.fiitMediaCategoryList,
+  //       },
+  //       options: { bottomTabs },
+  //     },
+  //   });
+  // }, []);
+
   const items: IITem[] = useMemo(
     () =>
       content
@@ -119,6 +135,7 @@ const FiitMediaCategoryListContainer = ({
       handleFiitApp={handleFiitApp}
       handleTutorialLink={!tutorialUrl ? null : handleLinkPress(tutorialUrl)}
       otherAppLoading={otherAppLoading}
+      moreInformationPress={null} //null for now, so we can hide the promotion banner for now
     />
   );
 };

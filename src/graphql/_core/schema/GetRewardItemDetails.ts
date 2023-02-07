@@ -37,7 +37,6 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemTe
     | "ContentItemPad"
     | "ContentItemRadio"
     | "ContentItemHeaderBar"
-    | "ContentItemProcessingTimer"
     | "ContentItemProgressBar"
     | "ContentItemTextGroup"
     | "ContentItemAccordion"

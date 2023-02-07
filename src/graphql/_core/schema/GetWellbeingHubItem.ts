@@ -34,7 +34,6 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemTextInp
     | "ContentItemPad"
     | "ContentItemRadio"
     | "ContentItemHeaderBar"
-    | "ContentItemProcessingTimer"
     | "ContentItemProgressBar"
     | "ContentItemTextGroup"
     | "ContentItemAccordion"
