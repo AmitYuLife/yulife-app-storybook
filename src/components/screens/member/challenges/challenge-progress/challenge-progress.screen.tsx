@@ -22,6 +22,7 @@ import { getActiveChallengeAppButton } from "@redux/levels/levels.selectors";
 import { handleLinkPress, openApp, openFiit } from "@services/app-link";
 import { Fiit } from "@atoms/icon/fiit-icon";
 import { QuestionMarkIcon } from "@atoms/icon/question-mark-icon";
+import { t } from "@locale";
 
 // transparent png 1x1
 const empty_uri = {
@@ -149,7 +150,7 @@ function ChallengeProgressScreen({
               {!appButton ? (
                 <TertiaryButton
                   size="Large"
-                  label="Open Fiit app"
+                  label={t("screens.challenges.progress.open_fit_app")}
                   onPress={handleOpenFiit}
                   height={Style.adjust(48)}
                   LeftIcon={<Fiit colour="black" width={41} height={30} />}
@@ -207,11 +208,11 @@ const getButtonCtaLabel = (challengeType: ChallengeType) => {
   switch (challengeType) {
     case "fiit":
       return {
-        secondaryButtonCtaLabel: "Open Fiit",
+        secondaryButtonCtaLabel: t("screens.challenges.progress.secondary_button_fiit_label"),
       };
     case "meditation":
       return {
-        secondaryButtonCtaLabel: "Open a meditation app",
+        secondaryButtonCtaLabel: t("screens.challenges.progress.secondary_button_meditation_label"),
       };
     default:
       return {};
