@@ -50,7 +50,7 @@ const MenuContainer = () => {
       [
         {
           style: "cancel",
-          text: t("screens.menu.logout.alert_cancel_button"),
+          text: t("labels.cta.cancel"),
         },
         {
           onPress: () => dispatch(logOutStart()),

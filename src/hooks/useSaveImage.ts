@@ -16,7 +16,7 @@ export function useSaveImage() {
     if (Platform.OS === "android" && result === "blocked") {
       Alert.alert(t("save_image.blocked.title"), t("save_image.blocked.description_android"), [
         {
-          text: t("save_image.blocked.cancel_label"),
+          text: t("labels.cta.cancel"),
           style: "cancel",
           onPress: () => setReady(true),
         },
@@ -54,7 +54,7 @@ export function useSaveImage() {
           case RESULTS.DENIED:
             Alert.alert(t("save_image.no_permission.title"), t("save_image.no_permission.description"), [
               {
-                text: t("save_image.no_permission.cancel_label"),
+                text: t("labels.cta.cancel"),
                 style: "cancel",
                 onPress: () => setReady(true),
               },

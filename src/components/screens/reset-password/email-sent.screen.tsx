@@ -24,7 +24,7 @@ const EmailSentScreen: FC<IProps> = ({ onCtaPress, onSecondaryCtaPress, email })
     <Pad height={45} />
     <Button label={t("screens.reset_password_submitted.cta_label")} onPress={onCtaPress} />
     <Pad height={10} />
-    <LinkButton label={t("screens.reset_password_submitted.cta_label_secondary")} onPress={onSecondaryCtaPress} />
+    <LinkButton label={t("labels.cta.back")} onPress={onSecondaryCtaPress} />
   </CentredScreen>
 );
 
