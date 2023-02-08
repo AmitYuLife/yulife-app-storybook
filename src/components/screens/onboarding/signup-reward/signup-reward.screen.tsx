@@ -17,11 +17,11 @@ const SignUpRewardScreen: React.FC<IProps> = ({ isLoading, hasNewCopy, onCollect
   const translations = useTranslation([
     "screens.signup_reward.heading",
     "screens.signup_reward.subheading",
-    "screens.signup_reward.cta_label",
+    "labels.cta.next",
     "screens.signup_reward.cta_accessibility",
     "screens.signup_reward.subheading_accessibility",
     "screens.signup_reward_new.heading",
-    "screens.signup_reward_new.cta_label",
+    "labels.cta.next",
     "screens.signup_reward_new.cta_accessibility",
   ]);
 
@@ -52,7 +52,7 @@ const SignUpRewardScreen: React.FC<IProps> = ({ isLoading, hasNewCopy, onCollect
       />
       <Pad height={40} />
       <Button
-        label={translations["screens.signup_reward.cta_label"]}
+        label={translations["labels.cta.next"]}
         accessibilityLabel={translations["screens.signup_reward.cta_accessibility"]}
         onPress={onCollectPress}
         isLoading={isLoading}

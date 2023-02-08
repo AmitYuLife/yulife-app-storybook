@@ -131,7 +131,7 @@ export default function CollectEventRewardModal({ event, rewards, completed = fa
         title: t("screens.event_completed.title", { event }),
         descriptionTitle: t("screens.event_completed.description_title"),
         description: t("screens.event_completed.description"),
-        cta: t("screens.event_completed.cta"),
+        cta: t("labels.cta.great"),
         status: eventState.COMPLETED,
       };
     }

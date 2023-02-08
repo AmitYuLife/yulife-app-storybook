@@ -37,7 +37,7 @@ const FloatingModal = ({
   isCloseButtonSecondary,
 }: IProps) => {
   const CloseButton = isCloseButtonSecondary ? SecondaryButton : Button;
-  const translation = useTranslation(["button.close"]);
+  const translation = useTranslation(["labels.cta.close"]);
   const [iconAsset, setIconAsset] = useState<Source>(icon);
 
   const content = useMemo(() => {
@@ -66,7 +66,7 @@ const FloatingModal = ({
         {!showCloseButton ? null : (
           <CloseButton
             onPress={closeOverlay}
-            label={translation["button.close"]}
+            label={translation["labels.cta.close"]}
             wrapperStyle={styles.buttonWrapperStyle}
           />
         )}

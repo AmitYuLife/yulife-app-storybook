@@ -57,7 +57,7 @@ export default function ChallengeSuccessScreen(props: IProps) {
       </View>
 
       <Button
-        label={t("screens.challenge_success.cta_label")}
+        label={t("labels.cta.collect")}
         isLoading={loading}
         onPress={onPressCta}
         size="Small"

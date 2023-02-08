@@ -12,10 +12,28 @@
     "password": "Please enter a password."
   },
   "labels": {
+    "power": "power",
+    "accessibility": {
+      "hide": "Hide",
+      "show": "Show"
+    },
     "cta": {
       "got_it": "Okay, got it",
       "back": "Back",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "close": "Close",
+      "dismiss": "Dismiss",
+      "claim": "Claim",
+      "collect": "Collect",
+      "done": "Done",
+      "next": "Next",
+      "ok": "Ok",
+      "great": "Great!",
+      "continue": "Continue",
+      "go_back": "Go back",
+      "lets_go": "Let's go",
+      "skip": "skip",
+      "allow": "allow"
     }
   },
   "meditation": "Meditation",
@@ -24,11 +42,6 @@
   "google_fit": "Google Fit",
   "user_other_app": "Or use the app",
   "setup_tutorial": "Set up tutorial",
-  "button": {
-    "close": "Close",
-    "dismiss": "Dismiss",
-    "claim": "Claim"
-  },
   "yu_coin": {
     "lower_case": "yucoin",
     "amount": "%{amount} YuCoin"
@@ -138,7 +151,6 @@
       "pick_challenge": "Pick your challenge.",
       "claimable_activity": "Done! Claim your reward.",
       "claimed_activity": "Good job! Be sure to return next week.",
-      "lets_go": "Let's go!",
       "in_progress": "In progress",
       "accept_challenge": "Accept challenge"
     },
@@ -160,7 +172,6 @@
     },
     "streak": {
       "heading_completed": "You smashed that Streak!",
-      "cta_label_done": "Done",
       "cta_label_collect": "Collect %{reward} %{type}",
       "cta_label_take_challenge": "Take a challenge",
       "subheading_collected": "Well done! The reward has been collected.",
@@ -264,14 +275,12 @@
     "signup_reward": {
       "heading": "Sign-up bounty\nunlocked!",
       "subheading": "Use your YuCoin for vouchers from Amazon, Athleta, Target and many more!",
-      "cta_label": "Next",
       "cta_accessibility": "Get started with Yulife",
       "subheading_accessibility": "Use your yucoin for vouchers from Amazon, Asos, M&S, and many more!"
     },
     "signup_reward_new": {
       "heading": "Welcome to the\nYuniverse",
       "subheading": "You’ve just earned %{amount} YuCoin. You can exchange this for vouchers from Amazon, Asos, M&S and many more, simply complete two challenges to reach your first £5",
-      "cta_label": "Next",
       "cta_accessibility": "Get started with Yulife",
       "subheading_accessibility": "You’ve just earned %{amount} yucoin. You can exchange this for vouchers from Amazon, Asos, M&S and many more, simply complete two challenges to reach your first 5 pounds"
     },
@@ -349,15 +358,13 @@
     "event_fail": {
       "title": "%{event} event has ended",
       "multiple_events_title": "A couple of your events have ended",
-      "description": "Hurry up to catch a spot for the next one and win big prizes.",
-      "cta": "OK"
+      "description": "Hurry up to catch a spot for the next one and win big prizes."
     },
     "event_completed": {
       "title": "%{event} event finished",
       "multiple_events_title": "A couple of your events have finished",
       "description_title": "Great job!",
-      "description": "You collected all milestone rewards. Good job! \n This event will be closed.",
-      "cta": "Great!"
+      "description": "You collected all milestone rewards. Good job! \n This event will be closed."
     },
     "collect_reward_modal": {
       "title": "%{event} event",
@@ -374,7 +381,6 @@
       "how_meditate_with_other_apps_label": "How do I meditate with other apps"
     },
     "challenge_success": {
-      "cta_label": "Collect",
       "footer": "Well done!",
       "level": "Level %{level}",
       "stage": "Stage %{level}"
@@ -396,7 +402,6 @@
     },
     "challenge_chest_modal": {
       "cta_label_is_next": "Let's do it",
-      "cta_label_is_completed": "Collect",
       "heading_is_next": "Take a challenge to unlock the chest",
       "heading_is_not_next_level": "Unlock at level %{level}",
       "heading_is_not_next_stage": "Unlock at %{name}",
@@ -404,7 +409,6 @@
     },
     "yumoji_builder": {
       "create": {
-        "button": "Continue",
         "title": "Create your Yumoji to step into the Yuniverse",
         "link": "I'll do this later"
       },
@@ -477,7 +481,6 @@
       "android_alert": {
         "title": "Ready to connect to Google Fit?",
         "message": "Before you connect, make sure you have the Google Fit app downloaded on your device.",
-        "dismiss_label": "Go back",
         "download_label": "Download Google Fit",
         "confirm_label": "Yes - I'm ready"
       }
@@ -672,13 +675,10 @@
         "description_not_accepted": "You’ve already invited %{name} to duel. Wait for them to respond, or challenge another friend now."
       },
       "intro": {
-        "button_1": "Next",
         "title_1": "Challenge a friend!",
         "subtitle_1": "Want to go head-to-head? Select a friend from the leaderboard, and challenge them to a duel!",
-        "button_2": "Next",
         "title_2": "Set the wager",
         "subtitle_2": "Feeling confident? Duel for YuCoin or bragging rights!",
-        "button_3": "Let's go",
         "title_3": "Out-step your opponent",
         "subtitle_3": "Your duel will begin the next day and you’ll have 24 hours to get in as many steps as you can!"
       },
@@ -719,7 +719,6 @@
     "push_notifications": {
       "to_settings": {
         "cta_label": "go to settings",
-        "cta_label_secondary": "skip",
         "heading": "notification",
         "subheading": "To get notifications, you need to go to the system settings and turn it on."
       },
@@ -730,8 +729,6 @@
         "subheading": "Do you want us to give you a shout when you finish a challenge?"
       },
       "turn_notification_on": {
-        "cta_label": "allow",
-        "cta_label_secondary": "skip",
         "heading": "notification",
         "subheading": "Turn the notification on so we can notify you when there’s a response to your message."
       }
@@ -750,16 +747,6 @@
   "molecules": {
     "coin_confetti": {
       "accessibility_label": "Plus %{coins} Yu Coin"
-    }
-  },
-  "atoms": {
-    "text_input_password": {
-      "hide": {
-        "accessibility_label": "Hide"
-      },
-      "show": {
-        "accessibility_label": "Show"
-      }
     }
   },
   "top_bar": {

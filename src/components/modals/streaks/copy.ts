@@ -16,7 +16,7 @@ export interface IStreakCopy {
 }
 
 export const streakCopy = (streakMax: string, reward: string, type: string): IStreakCopy => ({
-  ctaLabelDone: t("screens.streak.cta_label_done"),
+  ctaLabelDone: t("labels.cta.done"),
   ctaLabelCollect: t("screens.streak.cta_label_collect", { reward, type }),
   ctaLabelTakeChallenge: t("screens.streak.cta_label_take_challenge"),
   subheadingCollected: t("screens.streak.subheading_collected"),

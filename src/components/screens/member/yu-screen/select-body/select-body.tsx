@@ -23,7 +23,7 @@ const BODY_HEIGHT = Style.adjust(344);
 function SelectBody({ bodyType, hasYumoji, onContinue, onPressExitButton }: IProps) {
   const [selectedBody, selectBody] = useState<AvatarBodyType>(bodyType);
   const translations = useTranslation([
-    "screens.yumoji_builder.create.button",
+    "labels.cta.continue",
     "screens.yumoji_builder.create.title",
     "screens.yumoji_builder.create.link",
     "screens.yumoji_builder.edit.title",
@@ -84,11 +84,7 @@ function SelectBody({ bodyType, hasYumoji, onContinue, onPressExitButton }: IPro
           </View>
         </View>
         <View style={styles.buttonsWrapper}>
-          <Button
-            disabled={isNone}
-            onPress={onContinuePressed}
-            label={translations["screens.yumoji_builder.create.button"]}
-          />
+          <Button disabled={isNone} onPress={onContinuePressed} label={translations["labels.cta.continue"]} />
           {!hasYumoji ? (
             <LinkButton onPress={onPressExitButton} label={translations["screens.yumoji_builder.create.link"]} />
           ) : null}

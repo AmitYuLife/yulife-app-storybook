@@ -60,7 +60,7 @@ export function showChestModal(active: IActiveLevel) {
       id: MODALS.chest,
       name: MODALS.chest,
       passProps: {
-        ctaLabel: t("screens.challenge_chest_modal.cta_label_is_completed"),
+        ctaLabel: t("labels.cta.collect"),
         heading: t("screens.challenge_chest_modal.heading_is_completed", { yucoin: active.chest.value }),
         isLocked: false,
         onPressCta: () => {

@@ -8,6 +8,7 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { showYuCoinPowerExplainedOverlay } from "../../navigation/showYuCoinPowerExplainedOverlay";
 import FastImage from "react-native-fast-image";
 import { YUCOIN_POWER_V4_SCREEN } from "@ids";
+import { t } from "@locale";
 
 interface Props {
   pressable?: boolean;
@@ -39,7 +40,7 @@ const Yc = () => {
         <Text bold={true} style={styles.ycPowerDescription}>
           YuCoin
         </Text>
-        <Text style={styles.ycPowerDescription}>Power</Text>
+        <Text style={styles.ycPowerDescription}>{t("labels.power")}</Text>
       </View>
     </View>
   );
