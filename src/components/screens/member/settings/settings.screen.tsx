@@ -6,7 +6,6 @@ import { GetUserNotificationsSettings_getUserNotificationsSettings } from "@grap
 import ConnectionsItem from "./items/connections-item";
 import NotificationsItem from "./items/notifications-item";
 import GameSettingsItem from "./items/game-settings-item";
-import data from "./settings.data";
 import styles from "./settings.styles";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { TextTemplate } from "@atoms";
@@ -75,7 +74,7 @@ export default class SettingsScreen extends PureComponent<IProps> {
         >
           {sections.map(this.renderSection)}
         </ScrollView>
-        <GenericHeadingAbsolute heading={data.heading} onRightIconPress={onPressClose} />
+        <GenericHeadingAbsolute heading={t("screens.settings.heading")} onRightIconPress={onPressClose} />
       </View>
     );
   }

@@ -255,6 +255,10 @@
       "subheading_accessibility": "You’ve just earned %{amount} yucoin. You can exchange this for vouchers from Amazon, Asos, M&S and many more, simply complete two challenges to reach your first 5 pounds"
     },
     "settings": {
+      "heading": "Settings",
+      "push_notifications": {
+        "reminder_time": "Reminder time"
+      },
       "info": {
         "heading": "Your YuLife app will capture your steps and cycling distance from both your phone's health app and your ${connection} device. We'll award you YuCoin for whichever device records the highest!"
       },
@@ -262,7 +266,9 @@
         "heading": "Your YuLife app will capture your cycling distance from both your phone's health app and your ${connection} app. We'll award you YuCoin for whichever app records the highest!"
       },
       "fitness_trackers": {
-        "title": "Connect your fitness tracker to get rewarded for additional daily steps. Don’t forget to still keep your phone with you during challenges!"
+        "title": "Connect your fitness tracker to get rewarded for additional daily steps. Don’t forget to still keep your phone with you during challenges!",
+        "not_connected": "Not connected",
+        "last_sync": "Last synced at %{date}"
       }
     },
     "info_modal": {
