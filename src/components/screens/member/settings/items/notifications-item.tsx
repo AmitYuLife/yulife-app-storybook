@@ -7,6 +7,7 @@ import { INotificationsSectionItem } from "../settings.screen";
 import styles from "./item.styles";
 import { Colours } from "@styles";
 import { SETTINGS_NAME, SETTINGS_DESC, SETTINGS_SWITCH } from "@ids";
+import { t } from "@locale";
 
 const NotificationsItem: FC<INotificationsSectionItem> = ({
   isActive,
@@ -32,7 +33,7 @@ const NotificationsItem: FC<INotificationsSectionItem> = ({
     {!alertTimestamp ? null : (
       <>
         <View style={styles.reminderTime}>
-          <TextTemplate type="b2b">Reminder time</TextTemplate>
+          <TextTemplate type="b2b">{t("screens.settings.push_notifications.reminder_time")}</TextTemplate>
         </View>
         <TouchableOpacityWithDelay onPress={onTimePress} style={styles.timer} disabled={!isActive}>
           <TextTemplate type="b2" color={isActive ? Colours.primary.p600 : Colours.neutral.n800}>
