@@ -24,7 +24,7 @@ const GenericHeaderLeftIcon = ({ icon, color, onPress }: IProps) => (
 export default GenericHeaderLeftIcon;
 
 const accessibilityLabels: Partial<Record<LeftIcon, string>> = {
-  [LeftIcon.BACK]: t("generic_heading.left_icon.back.accessibility_label"),
+  [LeftIcon.BACK]: t("labels.cta.back"),
   [LeftIcon.CLOSE]: t("generic_heading.left_icon.close.accessibility_label"),
 };
 

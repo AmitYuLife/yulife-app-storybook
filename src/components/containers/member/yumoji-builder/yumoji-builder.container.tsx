@@ -37,7 +37,7 @@ const YumojiBuilderContainer = () => {
     "modals.generic_modal.yumoji_builder.heading",
     "modals.generic_modal.yumoji_builder.subheading",
     "modals.generic_modal.yumoji_builder.cta_label",
-    "modals.generic_modal.yumoji_builder.cta_label_secondary",
+    "labels.cta.back",
   ]);
 
   const hasYumoji = !!avatar?.avatarRemoteFiles?.pngFull;
@@ -77,7 +77,7 @@ const YumojiBuilderContainer = () => {
       translations["modals.generic_modal.yumoji_builder.subheading"],
       handleAvatarUpdate,
       translations["modals.generic_modal.yumoji_builder.cta_label"],
-      translations["modals.generic_modal.yumoji_builder.cta_label_secondary"]
+      translations["labels.cta.back"]
     );
   }, [handleAvatarUpdate, translations]);
 

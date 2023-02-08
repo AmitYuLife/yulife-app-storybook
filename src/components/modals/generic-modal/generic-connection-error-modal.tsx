@@ -11,7 +11,7 @@ const GenericConnectionErrorModal: SFC<{ onPress: IProps["onPress"] }> = ({ onPr
     onPress={onPress}
     heading={t("modals.generic_connection_error.offline.heading")}
     subheading={t("modals.generic_connection_error.offline.subheading")}
-    ctaLabel={t("modals.generic_connection_error.offline.cta_label")}
+    ctaLabel={t("labels.cta.back")}
   />
 );
 

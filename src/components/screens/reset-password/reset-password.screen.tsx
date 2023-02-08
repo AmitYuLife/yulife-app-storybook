@@ -4,7 +4,6 @@ import { Blurb, Heading, Pad, UnauthorisedGradient } from "@atoms";
 import { Button, LinkButton, TextInput, CentredScreen } from "@molecules";
 import styles from "./reset-password.screen.styles";
 import { INPUT_RESET_PASSWORD } from "@ids";
-import {} from "@molecules";
 import { useTranslation } from "@hooks";
 
 interface IProps {
@@ -30,7 +29,7 @@ const ResetPasswordScreen: FunctionComponent<IProps> = ({
     "screens.reset_password.heading",
     "screens.reset_password.subheading",
     "screens.reset_password.cta_label",
-    "screens.reset_password.cta_label_secondary",
+    "labels.cta.back",
     "screens.reset_password.submitting",
   ]);
 
@@ -61,7 +60,7 @@ const ResetPasswordScreen: FunctionComponent<IProps> = ({
         onPress={onSubmitPress}
       />
       <Pad height={10} />
-      <LinkButton label={translations["screens.reset_password.cta_label_secondary"]} onPress={onCancelPress} />
+      <LinkButton label={translations["labels.cta.back"]} onPress={onCancelPress} />
     </CentredScreen>
   );
 };
