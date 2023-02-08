@@ -64,7 +64,6 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent
   contentType: string;
   contentMediaTags: string[];
   title: string;
-  promotionRewardId: string | null;
   description: string;
   logo: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_logo;
   buttons: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons[];
