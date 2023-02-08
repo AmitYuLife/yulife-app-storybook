@@ -41,7 +41,6 @@ export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
             contentType
             contentMediaTags
             title
-            promotionRewardId
             description
             logo {
               id
