@@ -39,9 +39,9 @@ function SettingsContainer({ componentId }: IOwnProps) {
 
   const translations = useTranslation([
     "screens.settings.info.heading",
-    "screens.settings.info.cta_label",
+    "labels.cta.got_it",
     "screens.settings.tracker_info.heading",
-    "screens.settings.tracker_info.cta_label",
+    "labels.cta.got_it",
   ]);
 
   // local state
@@ -107,10 +107,10 @@ function SettingsContainer({ componentId }: IOwnProps) {
     (c: Connection) => () => {
       // TODO: we probably need to add a `type` so we know if it's a device or an app
       let heading = translations["screens.settings.info.heading"];
-      let ctaLabel = translations["screens.settings.info.cta_label"];
+      let ctaLabel = translations["labels.cta.got_it"];
       if (c.name.toLowerCase() === "strava") {
         heading = translations["screens.settings.tracker_info.heading"];
-        ctaLabel = translations["screens.settings.tracker_info.cta_label"];
+        ctaLabel = translations["labels.cta.got_it"];
       }
 
       showYuModal({

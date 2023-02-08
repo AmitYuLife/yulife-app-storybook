@@ -41,7 +41,7 @@ export default function ChallengeFailedScreen({ level, yuniversalMap, onPress, l
         isLoading={loading}
         wrapperStyle={styles.cta}
         onPress={onPress}
-        label={t("screens.challenge_failed.cta_label")}
+        label={t("labels.cta.got_it")}
         size="Medium"
       />
     </CentredScreen>

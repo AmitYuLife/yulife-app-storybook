@@ -25,7 +25,7 @@ const LevelLockedScreen: React.FC<LevelLockedScreenProps> = (props) => {
           {t(name ? "screens.level_locked.stage" : "screens.level_locked.level", { name, level })}
         </TextTemplate>
       </View>
-      <Button size="Medium" label={t("screens.level_locked.cta_label")} onPress={onPressCta} />
+      <Button size="Medium" label={t("labels.cta.got_it")} onPress={onPressCta} />
     </View>
   );
 };

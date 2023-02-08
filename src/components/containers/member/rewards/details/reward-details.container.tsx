@@ -65,7 +65,7 @@ const RewardDetailsContainer: FC<IProps> = ({ rewardId, popTo }) => {
   const notEnoughCoinsAlert = useCallback(() => {
     Alert.alert(t("alerts.not_enough_coins.title"), t("alerts.not_enough_coins.body"), [
       {
-        text: t("alerts.not_enough_coins.btn_label"),
+        text: t("labels.cta.got_it"),
       },
     ]);
   }, []);
@@ -187,7 +187,7 @@ const RewardDetailsContainer: FC<IProps> = ({ rewardId, popTo }) => {
         };
 
         if (offline) {
-          passProps.ctaLabel = t("screens.rewards.purchases.offline.cta_label");
+          passProps.ctaLabel = t("labels.cta.got_it");
           passProps.heading = t("screens.rewards.purchases.offline.heading");
           passProps.subheading = t("screens.rewards.purchases.offline.subheading");
         }

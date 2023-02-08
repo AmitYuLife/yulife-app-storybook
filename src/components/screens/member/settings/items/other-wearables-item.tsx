@@ -18,7 +18,7 @@ const OtherWearablesItem = () => {
           onPress: () => Navigation.dismissModal(MODALS.info),
           type: "otherWearables",
           heading: t("screens.info_modal.other_wearables.heading", { platform }),
-          ctaLabel: t("screens.info_modal.other_wearables.cta_label"),
+          ctaLabel: t("labels.cta.got_it"),
         },
       },
     });
