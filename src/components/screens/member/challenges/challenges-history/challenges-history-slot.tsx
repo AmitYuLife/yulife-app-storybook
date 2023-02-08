@@ -6,6 +6,7 @@ import styles from "./challenges-history-slot.styles";
 import { getSlotImageProps } from "./challenges-history.helpers";
 import { CHALLENGE_HISTORY_STARS, CHALLENGE_HISTORY_YUCOIN_STARS } from "@ids";
 import { Colours } from "@styles";
+import { t } from "@locale";
 
 interface IProps {
   availableAtLevel: number;
@@ -35,7 +36,7 @@ const ChallengesHistorySlot: React.FC<IProps> = ({
       {locked ? (
         <View style={styles.lockedWrapper}>
           <Text bold={true}>?</Text>
-          <Text bold={true}>unlock at level {availableAtLevel}</Text>
+          <Text bold={true}>{t("screens.level_locked.level", { availableAtLevel })}</Text>
         </View>
       ) : (
         <View style={currentWorld === 3 ? styles.challengeSetWrapperMountain : styles.challengeSetWrapper}>
@@ -51,7 +52,7 @@ const ChallengesHistorySlot: React.FC<IProps> = ({
                 <Text
                   testID={CHALLENGE_HISTORY_YUCOIN_STARS(element.reward, element.rating, type, index)}
                   style={StyleSheet.flatten([styles.rewardText, { color: textColour }])}
-                >{`${element.reward} yucoin`}</Text>
+                >{`${element.reward} ${t("yu_coin.lower_case")}`}</Text>
                 <View
                   style={StyleSheet.flatten([
                     styles.starsWrapper,

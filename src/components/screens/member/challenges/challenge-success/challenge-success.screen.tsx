@@ -68,11 +68,15 @@ export default function ChallengeSuccessScreen(props: IProps) {
 }
 
 function renderScore(score: number, unit: string) {
+  const unitTextPlural = unit === "minutes" ? t("time_units.minutes") : t("activity_types.steps.plural");
+  const unitTextSingular = unit === "minutes" ? t("time_units.minute") : t("activity_types.steps.singular");
+
+
   const mins = Math.floor(score / 60);
 
   switch (unit) {
     case "minutes":
-      return `${mins} ${mins === 1 ? "minute" : unit}`;
+      return `${mins} ${mins === 1 ? unitTextSingular : unitTextPlural}`;
     case "meters":
       return formatCyclingMetersToKmWithOneDecimal(score);
 

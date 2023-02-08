@@ -9,6 +9,7 @@ import { NavBar, TopBarAbsolute, GenericHeadingPad } from "@components/organisms
 import { getCurrentWorld } from "@utils";
 import { getTheme } from "@theme";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { t } from "@locale";
 
 interface IProps extends IConnectedScreenProps {
   level: GetQuestMapLevel_getQuestMapLevel;
@@ -52,11 +53,11 @@ function ChallengesHistory({ level, yuniversalMap, name, onPressActivityHistory,
         </ScrollView>
       </View>
       <View style={styles.buttonsWrapper}>
-        <Button onPress={onPressActivityHistory} label="Full history" />
+        <Button onPress={onPressActivityHistory} label={t("screens.challenges.history.full_button_label")} />
       </View>
       <TopBarAbsolute
         leftIcon={LeftIcon.BACK}
-        menuLabel="map"
+        menuLabel={t("screens.challenges.history.menu_label")}
         name={name}
         onPressLeftIcon={onLeftMenuPress}
         type={challengeHistoryScreen.topBarType}

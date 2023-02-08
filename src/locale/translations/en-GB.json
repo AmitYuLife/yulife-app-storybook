@@ -30,6 +30,7 @@
     "claim": "Claim"
   },
   "yu_coin": {
+    "lower_case": "yucoin",
     "amount": "%{amount} YuCoin"
   },
   "activity_types": {
@@ -47,6 +48,26 @@
   },
   "create_challenge_error": "Sorry, there was a problem starting your challenge. \n Please try again!",
   "screens": {
+    "challenges": {
+      "progress": {
+        "open_fit_app": "Open Fiit app",
+        "secondary_button_fiit_label": "Open Fiit",
+        "secondary_button_meditation_label": "Open a meditation app"
+      },
+      "animated_chest": {
+        "link_button_label": "later"
+      },
+      "details": {
+        "cta_label": "Take challenge",
+        "footer": "",
+        "loading": "Loading...",
+        "set_up_label": "Set up tutorial"
+      },
+      "history": {
+        "full_button_label": "Full history",
+        "menu_label": "map"
+      }
+    },
     "quests": {
       "level": {
         "pending": "in"

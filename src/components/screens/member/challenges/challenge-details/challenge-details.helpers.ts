@@ -1,3 +1,5 @@
+import { t } from "@locale";
+
 export function getCardBackgroundColor(currentWorld: number) {
   switch (currentWorld) {
     case 3:
@@ -12,8 +14,8 @@ export function getCardBackgroundColor(currentWorld: number) {
 }
 
 export const data = {
-  ctaLabel: "Take challenge",
-  footer: "",
-  loading: "Loading...",
-  setUpLabel: "Set up tutorial",
+  ctaLabel: t("screens.challenges.details.cta_label"),
+  footer: t("screens.challenges.details.footer"),
+  loading: t("screens.challenges.details.loading"),
+  setUpLabel: t("screens.challenges.details.set_up_label"),
 };
