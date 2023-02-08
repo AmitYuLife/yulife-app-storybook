@@ -7,6 +7,48 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.68.0] - 2023-02-08
+
+### Bugfixes
+
+- Bugfix: Update graphql schema for in app fiit
+- Bugfix: In app Fiit improvements
+- Bugfix: open modal sdui action
+- Bugfix: Meditopia passive minutes improvements
+- bugFix: avoid keyboard on floating modal (IOS)
+- Bugfix XSE-1662: Use case-insensitive comparison
+
+### Tasks
+
+- Task GS-137: Refactor streaks, active challenge
+
+### Chores
+
+- Chore: join back and cancel cta labels
+- Chore: purge settings screen copies
+- Chore: Join copy labels cta got it
+- Chore: Fix today earnings tests
+- Chore: purge user created leaderboard queries
+- Chore: purge quests screen copies
+- Chore: purge menu log out alert copies
+- Chore: purge fiit media list copies
+- Chore: purge leaderboard list copies
+- Chore: purge leaderboard podium copies
+- Chore: purge duels dialog helpers copies
+- Chore: purge duels search copies
+- Chore: purge generic connection error offline copies
+- Chore: purge duels intro copies
+- Chore: purge duels hub copies
+
+### Extra
+
+- Detox: Remove access_code from business_product_perk
+- Detox - CPD
+- Detox - 5 days inactivity
+- Purge ISA-349: create leaderboard and accept leaderboard invite modals
+- Purge: legacy yu
+- Detox: Pending Products for CPE start_date in future INS-1152
+
 ## [3.67.0] - 2023-02-01
 
 ### Bugfixes
