@@ -5,7 +5,7 @@ import { Platform } from "react-native";
 export const androidAlertCopy = {
   title: t("screens.fitkit_connect.android_alert.title"),
   message: t("screens.fitkit_connect.android_alert.message"),
-  dismissLabel: t("screens.fitkit_connect.android_alert.dismiss_label"),
+  dismissLabel: t("labels.cta.go_back"),
   downloadLabel: t("screens.fitkit_connect.android_alert.download_label"),
   confirmLabel: t("screens.fitkit_connect.android_alert.confirm_label"),
 };

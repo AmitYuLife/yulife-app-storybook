@@ -41,7 +41,7 @@ export const WeeklyQuestsModal = memo(({ onClose, setIcon }: IFloatingModalConte
     "screens.weekly_quests.pick_challenge",
     "screens.weekly_quests.quest_resets_in",
     "screens.weekly_quests.accept_challenge",
-    "screens.weekly_quests.lets_go",
+    "labels.cta.lets_go",
   ]);
   const { data, loading: weekliesLoading, refetch } = useQuery<GetMobileGameWeeklies>(GQL_QUERY_GET_GAME_WEEKLIES, {
     fetchPolicy: "no-cache",
@@ -147,7 +147,7 @@ export const WeeklyQuestsModal = memo(({ onClose, setIcon }: IFloatingModalConte
           <Button
             disabled={eventNotSelected}
             isLoading={joinLoading || weekliesLoading}
-            label={t["screens.weekly_quests.lets_go"]}
+            label={t["labels.cta.lets_go"]}
             onPress={joinWeekly}
           />
         </>

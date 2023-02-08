@@ -55,7 +55,7 @@ function* showFailedEvents(failedEvents: Partial<Events>[]) {
       () => {
         Navigation.dismissModal(MODALS.generic);
       },
-      t("screens.event_fail.cta"),
+      t("labels.cta.ok"),
       null,
       null
     )

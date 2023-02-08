@@ -14,19 +14,19 @@ const images = [
 const data: OnboardingSwiperData[] = [
   {
     id: "duels_onboarding_1",
-    buttonLabel: t("modals.duels.intro.button_1"),
+    buttonLabel: t("labels.cta.next"),
     title: t("modals.duels.intro.title_1"),
     subtitle: t("modals.duels.intro.subtitle_1"),
   },
   {
     id: "duels_onboarding_2",
-    buttonLabel: t("modals.duels.intro.button_2"),
+    buttonLabel: t("labels.cta.next"),
     title: t("modals.duels.intro.title_2"),
     subtitle: t("modals.duels.intro.subtitle_2"),
   },
   {
     id: "duels_onboarding_3",
-    buttonLabel: t("modals.duels.intro.button_3"),
+    buttonLabel: t("labels.cta.lets_go"),
     title: t("modals.duels.intro.title_3"),
     subtitle: t("modals.duels.intro.subtitle_3"),
   },

@@ -61,7 +61,7 @@ class PushNotificationsModal extends PureComponent<Props> {
     if (toSettings) {
       return {
         ctaLabel: t("modals.push_notifications.to_settings.cta_label"),
-        ctaLabelSecondary: t("modals.push_notifications.to_settings.cta_label_secondary"),
+        ctaLabelSecondary: t("labels.cta.skip"),
         heading: t("modals.push_notifications.to_settings.heading"),
         onPress: this.openSettings,
         onPressSecondary: this.dismissModal,
@@ -81,8 +81,8 @@ class PushNotificationsModal extends PureComponent<Props> {
     }
 
     return {
-      ctaLabel: t("modals.push_notifications.turn_notification_on.cta_label"),
-      ctaLabelSecondary: t("modals.push_notifications.turn_notification_on.cta_label_secondary"),
+      ctaLabel: t("labels.cta.allow"),
+      ctaLabelSecondary: t("labels.cta.skip"),
       heading: t("modals.push_notifications.turn_notification_on.heading"),
       onPress: this.handleAgree,
       onPressSecondary: this.dismissModal,
