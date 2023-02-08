@@ -13,11 +13,7 @@ interface IProps {
 
 const OfflineScreen = ({ level, onPress }: IProps) => {
   const { offlineScreen } = getTheme(level);
-  const translations = useTranslation([
-    "screens.offline.heading",
-    "screens.offline.subheading",
-    "screens.offline.cta_label",
-  ]);
+  const translations = useTranslation(["screens.offline.heading", "screens.offline.subheading", "labels.cta.got_it"]);
 
   return (
     <CentredScreen {...offlineScreen}>
@@ -32,7 +28,7 @@ const OfflineScreen = ({ level, onPress }: IProps) => {
             </TextTemplate>
           </View>
           <View style={styles.buttonWrapper}>
-            <Button onPress={onPress} size="Medium" label={translations["screens.offline.cta_label"]} />
+            <Button onPress={onPress} size="Medium" label={translations["labels.cta.got_it"]} />
           </View>
         </View>
       </View>

@@ -11,6 +11,11 @@
     "email": "Please enter a valid email address.",
     "password": "Please enter a password."
   },
+  "labels": {
+    "cta": {
+      "got_it": "Okay, got it"
+    }
+  },
   "meditation": "Meditation",
   "device_not_supported": "device not supported",
   "apple_health": "Apple Health",
@@ -233,8 +238,7 @@
     },
     "offline": {
       "heading": "You're offline",
-      "subheading": "Check your internet connection.",
-      "cta_label": "Got it"
+      "subheading": "Check your internet connection."
     },
     "signup_reward": {
       "heading": "Sign-up bounty\nunlocked!",
@@ -252,12 +256,10 @@
     },
     "settings": {
       "info": {
-        "heading": "Your YuLife app will capture your steps and cycling distance from both your phone's health app and your ${connection} device. We'll award you YuCoin for whichever device records the highest!",
-        "cta_label": "okay, got it"
+        "heading": "Your YuLife app will capture your steps and cycling distance from both your phone's health app and your ${connection} device. We'll award you YuCoin for whichever device records the highest!"
       },
       "tracker_info": {
-        "heading": "Your YuLife app will capture your cycling distance from both your phone's health app and your ${connection} app. We'll award you YuCoin for whichever app records the highest!",
-        "cta_label": "okay, got it"
+        "heading": "Your YuLife app will capture your cycling distance from both your phone's health app and your ${connection} app. We'll award you YuCoin for whichever app records the highest!"
       },
       "fitness_trackers": {
         "title": "Connect your fitness tracker to get rewarded for additional daily steps. Don’t forget to still keep your phone with you during challenges!"
@@ -266,7 +268,6 @@
     "info_modal": {
       "other_wearables": {
         "heading": "As long as your wearable connects up to %{platform} we will sync up at the end of each day to reward you for all your steps.",
-        "cta_label": "Got it",
         "item": "Other wearables"
       }
     },
@@ -353,26 +354,22 @@
       "stage": "Stage %{level}"
     },
     "challenge_failed": {
-      "cta_label": "Okay, got it",
       "heading": "You didn’t make it",
       "footer": "So close! Why not try again?",
       "level": "Level %{level}",
       "stage": "Stage %{level}"
     },
     "level_locked": {
-      "cta_label": "Got it",
       "level": "Unlock at level %{level}",
       "stage": "Unlock at %{name}"
     },
     "challenge_unavailable": {
-      "cta_label": "Got it",
       "level": "You have just completed a level",
       "stage": "You have just completed a stage",
       "next": "The next one will be available in %{timeRemaining}"
     },
     "challenge_chest_modal": {
       "cta_label_is_next": "Let's do it",
-      "cta_label_is_not_next": "Got it",
       "cta_label_is_completed": "Collect",
       "heading_is_next": "Take a challenge to unlock the chest",
       "heading_is_not_next_level": "Unlock at level %{level}",
@@ -488,19 +485,16 @@
           "subheading": "Please come back later."
         },
         "offline": {
-          "cta_label": "got it",
           "heading": "you're offline",
           "subheading": "check your internet connection"
         },
         "not_enough_coins": {
-          "ctaLabel": "got it",
           "heading": "not enough coin",
           "subheading": "Earn more and come back later!"
         },
         "avios_confirmed": {
           "title": "AVIOS Sent",
-          "message": "Your %{amount} AVIOS points will appear on your account within a few days. We will email you as soon as they are there.",
-          "cancel_button_text": "OK, got it"
+          "message": "Your %{amount} AVIOS points will appear on your account within a few days. We will email you as soon as they are there."
         },
         "locked_reward": {
           "cta_label": "back to rewards",
@@ -852,8 +846,7 @@
   "alerts": {
     "not_enough_coins": {
       "title": "Not enough YuCoin",
-      "body": "Earn more and come back later!",
-      "btn_label": "Got it"
+      "body": "Earn more and come back later!"
     }
   }
 }

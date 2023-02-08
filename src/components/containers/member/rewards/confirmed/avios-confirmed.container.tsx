@@ -55,7 +55,7 @@ const AviosRewardConfirmedContainer = ({
         [
           {
             style: "cancel",
-            text: t("screens.rewards.purchases.avios_confirmed.cancel_button_text"),
+            text: t("labels.cta.got_it"),
           },
         ]
       );

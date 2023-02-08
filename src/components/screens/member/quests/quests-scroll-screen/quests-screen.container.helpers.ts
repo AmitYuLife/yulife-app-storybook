@@ -34,13 +34,13 @@ const buildChestModalCopy = (isNext: boolean, level: number, name?: string) => {
 
   if (name) {
     return {
-      ctaLabel: t("screens.challenge_chest_modal.cta_label_is_not_next"),
+      ctaLabel: t("labels.cta.got_it"),
       heading: t("screens.challenge_chest_modal.heading_is_not_next_stage", { name }),
     };
   }
 
   return {
-    ctaLabel: t("screens.challenge_chest_modal.cta_label_is_not_next"),
+    ctaLabel: t("labels.cta.got_it"),
     heading: t("screens.challenge_chest_modal.heading_is_not_next_level", { level }),
   };
 };
