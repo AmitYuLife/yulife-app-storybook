@@ -7,6 +7,7 @@ import { PressableWithDelay } from "@molecules";
 import { Style, Colours } from "@styles";
 import styles from "./active-buffs.styles";
 import Equipment from "./equipment";
+import { t } from "@locale";
 
 interface IProps {
   activeBuffs: GetActiveBuffsOverlay_getActiveBuffsOverlay;
@@ -41,7 +42,7 @@ const ActiveBuffs = ({ activeBuffs, closeOverlay }: IProps) => {
           style={styles.gradient}
         >
           <TextTemplate type="b2b" color={Colours.neutral.white} textAlign="center">
-            Tap anywhere to close
+            {t("modals.active_buffs.tap_anywhere")}
           </TextTemplate>
         </LinearGradient>
       </PressableWithDelay>
