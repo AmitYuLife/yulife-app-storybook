@@ -8,11 +8,13 @@ import { validateEmail } from "@utils/email";
 
 interface IProps {
   componentId: string;
+  email?: string;
 }
 
-const ResetPasswordContainer: FC<IProps> = ({ componentId }) => {
+const ResetPasswordContainer: FC<IProps> = (props) => {
+  const { componentId } = props;
   const [{ wasEmailSent, email, emailError }, setState] = useState({
-    email: "",
+    email: props?.email || "",
     emailError: "",
     wasEmailSent: false,
   });

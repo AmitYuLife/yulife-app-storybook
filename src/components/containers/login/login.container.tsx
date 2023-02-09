@@ -137,10 +137,11 @@ const LoginContainer: React.FC<Props> = ({
       component: {
         id: ROUTES.resetPassword,
         name: ROUTES.resetPassword,
+        passProps: { email },
         options: { bottomTabs },
       },
     });
-  }, [componentId]);
+  }, [componentId, email]);
 
   const onEmailChange = useCallback((input: string) => {
     setEmailError(validateEmail(input));
