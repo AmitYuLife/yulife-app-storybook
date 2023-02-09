@@ -59,12 +59,7 @@ const FiitMediaCategoryListScreen = ({
         </View>
         {!moreInformationPress ? null : (
           <View style={styles.promotionWrapper}>
-            <Image
-              source={require("./images/background.jpg")}
-              width={Style.DEVICE_WIDTH}
-              height={249}
-              style={styles.promotionBackgroundImage}
-            />
+            <Image source={require("./images/background.jpg")} style={styles.promotionBackgroundImage} />
             <View style={styles.promotionLogoWrapper}>
               <View style={styles.promotionLogo}>
                 <FiitPromotionIcon />
@@ -118,7 +113,7 @@ const styles = StyleSheet.create({
   },
   promotionBackgroundImage: {
     width: Style.DEVICE_WIDTH,
-    height: "100%",
+    height: Style.adjust(249),
     position: "absolute",
   },
   promotionLogoWrapper: {

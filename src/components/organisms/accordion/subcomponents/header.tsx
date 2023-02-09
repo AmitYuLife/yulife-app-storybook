@@ -9,7 +9,7 @@ interface Props {
   onPress: () => void;
   header: string;
   subheading: string;
-  arrowRotateInterpolation: Animated.AnimatedInterpolation;
+  arrowRotateInterpolation: Animated.AnimatedInterpolation<string>;
   headerIcon: Source;
   onLayout: (event: LayoutChangeEvent) => void;
   collapsed: boolean;

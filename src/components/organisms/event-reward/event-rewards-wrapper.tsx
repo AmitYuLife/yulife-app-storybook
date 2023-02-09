@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, ListRenderItem, StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import EventReward, { IReward } from "./event-reward";
 
@@ -11,7 +11,7 @@ interface IEventRewardWrapperProps {
 
 const EventRewardWrapper = ({ isClaimEnabled = true, rewards, eventTitle }: IEventRewardWrapperProps) => {
   const { width: rewardWidth, marginHorizontal } = getRewardWidthAndMargin(rewards?.length);
-  const renderReward = useCallback(
+  const renderReward = useCallback<ListRenderItem<IReward>>(
     ({ item }) => (
       <EventReward eventTitle={eventTitle} claimButton={isClaimEnabled} reward={item} width={rewardWidth} />
     ),

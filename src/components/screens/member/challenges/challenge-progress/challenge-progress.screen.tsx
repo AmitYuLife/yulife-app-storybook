@@ -101,7 +101,7 @@ function ChallengeProgressScreen({
       return await handleLinkPress(appButton?.tutorialUrl)();
     }
 
-    const { iosUrl, androidUrl, appName, appStoreId, appStoreLocale, playStoreId } = appButton?.options;
+    const { iosUrl, androidUrl, appName, appStoreId, appStoreLocale, playStoreId } = appButton?.options || {};
     const url = Platform.select({
       ios: iosUrl,
       android: androidUrl,

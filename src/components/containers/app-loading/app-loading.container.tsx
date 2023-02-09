@@ -1,11 +1,11 @@
 import { persistor, store } from "@redux/_core/store";
 import { setMainRoot } from "@redux/app/app.actions";
-import { SplashScreen } from "@screens/index";
+import SplashScreen from "@screens/splash/splash.screen";
 import * as React from "react";
 import { LayoutChangeEvent, Linking, Platform, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { PersistGate } from "redux-persist/integration/react";
 import Logger from "@services/logging/logger";
-import { useSafeAreaViewOffset } from "../../../hooks/useSafeAreaViewOffset";
+import { useSafeAreaViewOffset } from "@hooks";
 
 interface IProps {
   componentId: string;

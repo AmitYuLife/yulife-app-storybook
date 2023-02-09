@@ -1,14 +1,14 @@
 // tslint:disable:max-line-length
 import { Style } from "@styles/index";
-import * as React from "react";
-import { SFC } from "react";
+import React from "react";
+
 import Svg, { Polygon } from "react-native-svg";
 
 interface IProps {
   isHighlighted: boolean;
 }
 
-const StarLeft: SFC<IProps> = ({ isHighlighted }) => (
+const StarLeft = ({ isHighlighted }: IProps) => (
   <Svg
     width={String(Style.SCALE_UP_AND_DOWN(87 * 0.5))}
     height={String(Style.SCALE_UP_AND_DOWN(84 * 0.5))}

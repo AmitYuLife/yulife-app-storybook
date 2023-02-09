@@ -1,0 +1,19 @@
+diff --git a/node_modules/@yu-life/react-native-fitkit/android/build.gradle b/node_modules/@yu-life/react-native-fitkit/android/build.gradle
+index 67e1828..d2e689b 100644
+--- a/node_modules/@yu-life/react-native-fitkit/android/build.gradle
++++ b/node_modules/@yu-life/react-native-fitkit/android/build.gradle
+@@ -44,10 +44,10 @@ dependencies {
+     def googlePlayServicesVersion = project.hasProperty('googlePlayServicesVersion') ? project.googlePlayServicesVersion : DEFAULT_GOOGLE_PLAY_SERVICES_VERSION
+     def reactNativeVersion = project.hasProperty('reactNativeVersion') ? project.reactNativeVersion : DEFAULT_REACT_NATIVE_VERSION
+ 
+-    compile "com.facebook.react:react-native:$reactNativeVersion"
+-    compile "com.google.android.gms:play-services-auth:19.0.0"
+-    compile "com.google.android.gms:play-services-fitness:20.0.0"
+-    compile "joda-time:joda-time:2.10.1"
++    implementation "com.facebook.react:react-native:$reactNativeVersion"
++    implementation "com.google.android.gms:play-services-auth:19.0.0"
++    implementation "com.google.android.gms:play-services-fitness:20.0.0"
++    implementation "joda-time:joda-time:2.10.1"
+     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+     compileOnly files('libs/samsung-health-data-1.5.0.aar')
+     implementation "com.google.code.gson:gson:2.7"

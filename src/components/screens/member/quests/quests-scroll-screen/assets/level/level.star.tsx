@@ -1,14 +1,14 @@
 /* tslint:disable */
-import * as React from "react";
+import React from "react";
 import Svg, { G, Path } from "react-native-svg";
 import { Style } from "@styles/index";
 
-interface Props {
+interface IProps {
   scale?: number;
   colour?: string;
 }
 
-const LevelStar: React.SFC<Props> = ({ scale = 1, colour }) => (
+const LevelStar = ({ scale = 1, colour }: IProps) => (
   <Svg
     width={String(Style.SCALE_UP_AND_DOWN(8) * scale)}
     height={String(Style.SCALE_UP_AND_DOWN(7) * scale)}

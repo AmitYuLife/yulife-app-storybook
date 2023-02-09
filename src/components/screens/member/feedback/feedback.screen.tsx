@@ -1,5 +1,4 @@
-import * as React from "react";
-import { SFC } from "react";
+import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Heading, Pad, Text } from "@atoms";
 import styles from "./feedback.styles";
@@ -15,7 +14,7 @@ interface IProps {
   rating: number;
 }
 
-const FeedbackScreen: SFC<IProps> = ({ isSubmitting, onCancel, onRatingSelect, onSubmit, rating }) => (
+const FeedbackScreen = ({ isSubmitting, onCancel, onRatingSelect, onSubmit, rating }: IProps) => (
   <View style={StyleSheet.absoluteFill}>
     <CentredScreen style={styles.centredScreen}>
       <Heading size="large" label="feedback" />

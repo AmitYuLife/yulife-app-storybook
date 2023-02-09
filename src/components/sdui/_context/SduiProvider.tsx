@@ -1,4 +1,4 @@
-import React, { createContext, Dispatch, FC, useRef } from "react";
+import React, { createContext, Dispatch, FC, PropsWithChildren, useRef } from "react";
 import { Animated } from "react-native";
 import { useSduiReducer } from "../_hooks";
 import { SduiContextAction, SduiReducerState } from "../_types/sdui.types";
@@ -17,7 +17,7 @@ interface SduiProviderProps {
   isLoading: boolean;
 }
 
-export const SduiProvider: FC<SduiProviderProps> = ({ isLoading, children }) => {
+export const SduiProvider: FC<PropsWithChildren<SduiProviderProps>> = ({ isLoading, children }) => {
   const { sduiState, sduiDispatch } = useSduiReducer();
   const { current: scrollValue } = useRef(new Animated.Value(0));
 

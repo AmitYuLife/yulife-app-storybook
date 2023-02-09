@@ -55,12 +55,12 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
       setScrollDone(false);
     };
 
-    Keyboard.addListener("keyboardDidShow", onKeyboardShow);
-    Keyboard.addListener("keyboardDidHide", onKeyboardHide);
+    const keyboardDidShow = Keyboard.addListener("keyboardDidShow", onKeyboardShow);
+    const keyboardDidHide = Keyboard.addListener("keyboardDidHide", onKeyboardHide);
 
     return () => {
-      Keyboard.removeListener("keyboardDidShow", onKeyboardShow);
-      Keyboard.removeListener("keyboardDidHide", onKeyboardHide);
+      keyboardDidShow.remove();
+      keyboardDidHide.remove();
     };
   }, [scrollDone, viewHeight]);
 

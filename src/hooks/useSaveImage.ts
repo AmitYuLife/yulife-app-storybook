@@ -10,7 +10,7 @@ const WRITE_PERMISSION =
 export function useSaveImage() {
   const [ready, setReady] = useState(true);
 
-  const requestPermissionAndSave = useCallback(async (uri) => {
+  const requestPermissionAndSave = useCallback(async (uri: string) => {
     const result = await request(WRITE_PERMISSION);
 
     if (Platform.OS === "android" && result === "blocked") {

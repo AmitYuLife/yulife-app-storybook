@@ -1,15 +1,18 @@
-import React, { FC, useCallback, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
-import { GenericHeadingPad, GenericHeadingAbsolute } from "@organisms";
-import { Colours, Style } from "@styles";
-import YumojiBuilderCategories from "./components/yumoji-builder-categories";
-import YumojiBuilderItemList from "./components/yumoji-builder-item-list";
-import { ActionTypes, IState, IDispatch } from "@components/containers/member/yumoji-builder/yumoji-builder.reducer";
-import { ScalableYumoji } from "@organisms/yumoji/scalableYumoji";
-import { GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts } from "@graphql/_core/schema";
+import { ActionTypes, IDispatch, IState } from "@components/containers/member/yumoji-builder/yumoji-builder.reducer";
+import {
+  GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts,
+  GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_parts as YumojiBuilderParts,
+} from "@graphql/_core/schema";
 import { useBackHandler } from "@hooks";
 import { BODY_TYPE } from "@ids";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import { ScalableYumoji } from "@organisms/yumoji/scalableYumoji";
+import { Colours, Style } from "@styles";
+import React, { ComponentProps, FC, useCallback, useMemo } from "react";
+import { StyleSheet, View } from "react-native";
+import YumojiBuilderCategories from "./components/yumoji-builder-categories";
+import YumojiBuilderItemList from "./components/yumoji-builder-item-list";
 
 interface IProps {
   state: IState;
@@ -39,15 +42,16 @@ const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvata
       zoom: category?.previewZoom || 1,
     };
   }, [state.categories, state.selectedCategoryId]);
-  const onPress = useCallback(
+  const onPress = useCallback<ComponentProps<typeof YumojiBuilderCategories>["onPress"]>(
     (id, matchType, children) =>
       dispatch({ type: ActionTypes.SET_SELECTED_CATEGORY, payload: { id, matchType, children } }),
     [dispatch]
   );
 
-  const updateUserAvatar = useCallback((payload) => dispatch({ type: ActionTypes.SET_MULTIPLE_PARTS, payload }), [
-    dispatch,
-  ]);
+  const updateUserAvatar = useCallback(
+    (payload: YumojiBuilderParts[]) => dispatch({ type: ActionTypes.SET_MULTIPLE_PARTS, payload }),
+    [dispatch]
+  );
 
   const items = useMemo(() => Object.values(state?.parts) as YumojiBuilderInitialParts[], [state?.parts]);
 

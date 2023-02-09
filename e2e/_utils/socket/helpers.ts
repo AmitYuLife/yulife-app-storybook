@@ -25,7 +25,7 @@ export const sendSteps = (amount = 20, waitTime?: number) => async (): Promise<v
     }
 };
 
-export const startWalkingSteps = (amount = 1000, increment = 10, interval = 5000) => async (): Promise<number> => {
+export const startWalkingSteps = (amount = 1000, increment = 10, interval = 5000) => async (): Promise<NodeJS.Timer> => {
     return setInterval(() => {
         sendSteps(amount)();
         amount = amount + increment;

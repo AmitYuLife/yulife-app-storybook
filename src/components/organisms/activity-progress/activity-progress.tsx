@@ -52,8 +52,6 @@ const Activity = (props: IProps) => {
         </TextTemplate>
         <RNImage
           source={isCompleted ? require("@assets/icons/check-green.png") : require("@assets/icons/yucoin.png")}
-          width={Style.adjust(16)}
-          height={Style.adjust(16)}
           style={styles.yuCoin}
         />
       </View>

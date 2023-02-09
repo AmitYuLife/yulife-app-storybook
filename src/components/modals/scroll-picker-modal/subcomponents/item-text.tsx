@@ -8,8 +8,8 @@ import { getActiveTextOpacityValue, getInactiveTextOpacityValue } from "../scrol
 
 interface Props {
   children: string | number;
-  translateY?: Animated.AnimatedInterpolation;
-  opacity: Animated.AnimatedInterpolation;
+  translateY?: Animated.AnimatedInterpolation<number>;
+  opacity: Animated.AnimatedInterpolation<number>;
   active?: boolean;
   testID?: string;
 }

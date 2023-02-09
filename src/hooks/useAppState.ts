@@ -3,10 +3,9 @@ import { AppState, AppStateStatus } from "react-native";
 
 export function useAppState(handler: (appState: AppStateStatus) => void) {
   React.useEffect(() => {
-    AppState.addEventListener("change", handler);
-
+    const appState = AppState.addEventListener("change", handler);
     return () => {
-      AppState.removeEventListener("change", handler);
+      appState.remove();
     };
   }, [handler]);
 }

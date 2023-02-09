@@ -45,7 +45,10 @@ const AllProductsScreen = ({ componentId }: Props) => {
   const {
     body,
     heading,
-  }: { body: GetYuScreenProductList_getYuScreenProductList_body[]; heading: string } = data?.getYuScreenProductList;
+  }: { body: GetYuScreenProductList_getYuScreenProductList_body[]; heading: string } = data?.getYuScreenProductList || {
+    body: [],
+    heading: null,
+  };
 
   return (
     <AllProductsLayout>

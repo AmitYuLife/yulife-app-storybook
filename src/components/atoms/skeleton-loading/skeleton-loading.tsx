@@ -30,7 +30,9 @@ const SkeletonLoading: FC<IProps> = ({ style }) => {
 
     animation.start();
 
-    return () => animation.stop;
+    return () => {
+      animation.stop();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

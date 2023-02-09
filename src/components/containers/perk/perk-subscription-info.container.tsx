@@ -23,7 +23,7 @@ const PerkSubscriptionInfoContainer = ({ componentId, perkId }: Props) => {
     fetchPolicy: "no-cache",
   });
 
-  const onSubmit = useCallback(async (formValues) => {
+  const onSubmit = useCallback(async (formValues: Record<string, string>) => {
     const perkFields = Object.keys(formValues).map((key) => ({
       key,
       value: formValues[key],

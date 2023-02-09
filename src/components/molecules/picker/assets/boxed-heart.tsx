@@ -1,5 +1,5 @@
 /* tslint:disable */
-import * as React from "react";
+import React from "react";
 import { ViewStyle } from "react-native";
 import Svg, { Path } from "react-native-svg";
 
@@ -8,7 +8,7 @@ interface IProps {
   style?: ViewStyle;
 }
 
-const BoxedHeart: React.SFC<IProps> = ({ scale = 1, style }) => (
+const BoxedHeart = ({ scale = 1, style }: IProps) => (
   <Svg style={style} height={String(55 * scale)} width={String(55 * scale)} viewBox="0 0 55 55">
     <Path
       fill="#333"

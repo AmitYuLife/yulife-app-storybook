@@ -4,7 +4,12 @@ import { Text } from "@atoms";
 import assets from "../assets";
 import styles from "./card-states.styles";
 
-const Overlay: React.SFC<{ icon: ImageRequireSource; text: string }> = ({ icon, text }) => (
+interface IProps {
+  icon: ImageRequireSource;
+  text: string;
+}
+
+const Overlay = ({ icon, text }: IProps) => (
   <View style={styles.overlayWrapper}>
     <Image style={styles.icon} source={icon} />
     <Text style={styles.text} bold={true}>

@@ -1,5 +1,4 @@
-import * as React from "react";
-import { SFC } from "react";
+import React from "react";
 import Svg, { Path, Polygon } from "react-native-svg";
 
 interface IProps {
@@ -7,7 +6,7 @@ interface IProps {
   scale?: number;
 }
 
-const Clock: SFC<IProps> = ({ color = "#333", scale = 0.5 }) => (
+const Clock = ({ color = "#333", scale = 0.5 }: IProps) => (
   <Svg height={String(50 * scale)} width={String(50 * scale)} viewBox="0 0 50 50">
     <Path
       fill={color}

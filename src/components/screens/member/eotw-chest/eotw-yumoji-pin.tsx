@@ -33,21 +33,23 @@ const EOTWYumojiIcon: FC<IProps> = memo(({ avatar, scale }) => {
       avatar: {
         position: "absolute",
         paddingTop: AVATAR_RADIUS,
-        width: AVATAR_RADIUS - 4,
+        width: AVATAR_RADIUS - 2,
         height: 2.3 * (AVATAR_RADIUS - 4),
         transform: scale ? [{ scale }] : undefined,
       } as Animated.WithAnimatedObject<ImageStyle>,
       pin: {
         transform: scale ? [{ scale }] : undefined,
+        width: YUMOJI_WIDTH,
+        height: YUMOJI_HEIGHT,
       } as Animated.WithAnimatedObject<ImageStyle>,
     }),
     [scale]
   );
   return (
     <View style={styles.containerStyle}>
-      <Animated.Image width={YUMOJI_WIDTH} height={YUMOJI_HEIGHT} source={YUMOJI_PIN} style={styles.pin} />
+      <Animated.Image source={YUMOJI_PIN} style={styles.pin} />
       <Animated.View style={styles.avatarContainer}>
-        <Animated.Image style={styles.avatar} resizeMode="center" width={AVATAR_RADIUS - 2} source={avatar} />
+        <Animated.Image style={styles.avatar} resizeMode="center" source={avatar} />
       </Animated.View>
     </View>
   );

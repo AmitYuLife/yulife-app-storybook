@@ -84,7 +84,7 @@ export const CroppedImage: FC<IProps> = memo(
             key={sourceKeyExtractor(sources.currentSource)}
             source={sources.currentSource}
             suppressLoadingUi={suppressLoadingUi}
-            resizeMode={"cover"}
+            resizeMode={"contain"}
           />
         ) : null}
         {sources.loadingSource ? (

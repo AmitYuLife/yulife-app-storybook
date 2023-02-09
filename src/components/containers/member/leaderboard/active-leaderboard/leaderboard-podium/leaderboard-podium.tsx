@@ -27,7 +27,7 @@ const _LeaderboardPodium = ({
   leaderboardName,
   scrollValue,
 }: ILeaderboardPodiumProps) => {
-  const [translateY, setTranslateY] = useState(0 as number | Animated.AnimatedInterpolation);
+  const [translateY, setTranslateY] = useState(0 as number | Animated.AnimatedInterpolation<number>);
 
   useEffect(() => {
     if (scrollValue && Platform.OS === "ios") {

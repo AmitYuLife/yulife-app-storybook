@@ -1,25 +1,25 @@
-{
-  "extends": [
+module.exports = {
+  extends: [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
+    "prettier",
     "plugin:react-hooks/recommended",
-    "@react-native-community"
+    "@react-native-community",
   ],
-  "plugins": ["react", "@typescript-eslint", "yulife-rn-client", "deprecation"],
-  "env": {
-    "browser": true
+  plugins: ["react", "@typescript-eslint", "yulife-rn-client", "deprecation"],
+  env: {
+    browser: true,
   },
-  "globals": {
-    "React": "readonly",
-    "NodeJS": "readonly",
-    "JSX": "readonly",
-    "global": "readonly"
+  globals: {
+    React: "readonly",
+    NodeJS: "readonly",
+    JSX: "readonly",
+    global: "readonly",
   },
-  "rules": {
+  rules: {
     "comma-dangle": "off",
-    "quotes": 0,
+    quotes: 0,
     "no-shadow": "off",
     "no-extra-boolean-cast": "warn",
     "react-native/no-inline-styles": "warn",
@@ -42,35 +42,35 @@
     "no-else-return": [
       "error",
       {
-        "allowElseIf": false
-      }
+        allowElseIf: false,
+      },
     ],
-    "semi": 2,
+    semi: 2,
     "padding-line-between-statements": [
       "error",
       {
-        "blankLine": "always",
-        "prev": "block-like",
-        "next": "*"
-      }
-    ]
+        blankLine: "always",
+        prev: "block-like",
+        next: "*",
+      },
+    ],
   },
-  "settings": {
-    "react": {
-      "pragma": "React",
-      "version": "detect"
-    }
+  settings: {
+    react: {
+      pragma: "React",
+      version: "detect",
+    },
   },
-  "overrides": [
+  overrides: [
     {
-      "files": ["*.stories.tsx"],
-      "rules": {
-        "react-native/no-inline-styles": "off"
-      }
-    }
+      files: ["*.stories.tsx"],
+      rules: {
+        "react-native/no-inline-styles": "off",
+      },
+    },
   ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  }
-}
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project: "./tsconfig.json",
+  },
+};

@@ -58,7 +58,7 @@ const ToolsScreen = ({ onClose }: Props) => {
   }, [setAllActivitiesSelect]);
 
   const onTypePickerIndexChange = useCallback(
-    (index) => {
+    (index: number) => {
       setTypeIndex(index);
     },
     [setTypeIndex]

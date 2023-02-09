@@ -53,7 +53,6 @@ const MenuScreen = ({ onDebugPress, onInvitePress, onPressClose, links, version,
       getReferralBackground();
     }
   }, [showReferralButton, currentLevel]);
-
   return (
     <>
       <View style={styles.wrapper} testID={MENU_SCREEN}>

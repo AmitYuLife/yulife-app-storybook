@@ -1,14 +1,14 @@
 /* tslint:disable */
-import React, { SFC } from "react";
+import React from "react";
 import Svg, { Path } from "react-native-svg";
-import { Colours } from "../../../../styles";
+import { Colours } from "@styles";
 
 interface Props {
   scale?: number;
   colour?: string;
 }
 
-const Card: SFC<Props> = ({ scale = 1, colour }) => (
+const Card = ({ scale = 1, colour }: Props) => (
   <Svg width={String(52 * scale)} height={String(41 * scale)} viewBox="0 0 55 41">
     <Path
       fill={colour || Colours.textInput.inactive}

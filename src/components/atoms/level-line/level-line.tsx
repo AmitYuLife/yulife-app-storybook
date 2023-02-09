@@ -1,13 +1,13 @@
-import * as React from "react";
+import React from "react";
 import Svg, { G, Path } from "react-native-svg";
 import { Style } from "@styles";
 
-interface Props {
+interface IProps {
   scale?: number;
   colour?: string;
 }
 
-const LevelLine: React.SFC<Props> = ({ scale = 1, colour }) => (
+const LevelLine = ({ scale = 1, colour }: IProps) => (
   <Svg
     width={String(Style.SCALE_UP_AND_DOWN(137) * scale)}
     height={String(Style.SCALE_UP_AND_DOWN(7) * scale)}

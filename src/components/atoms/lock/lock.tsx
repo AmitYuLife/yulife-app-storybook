@@ -1,14 +1,14 @@
 /* tslint:disable */
-import * as React from "react";
+import React from "react";
 import Svg, { G, Path } from "react-native-svg";
 import { Colours } from "@styles";
 
-interface Props {
+interface IProps {
   scale?: number;
   colour?: string;
 }
 
-const Lock: React.SFC<Props> = ({ scale = 1, colour }) => (
+const Lock = ({ scale = 1, colour }: IProps) => (
   <Svg width={String(21 * scale)} height={String(21 * scale)} viewBox="0 0 28 35.9167">
     <G>
       <Path
