@@ -12,7 +12,7 @@
     "password": "Please enter a password."
   },
   "labels": {
-    "power": "power",
+    "power": "Power",
     "accessibility": {
       "hide": "Hide",
       "show": "Show"
