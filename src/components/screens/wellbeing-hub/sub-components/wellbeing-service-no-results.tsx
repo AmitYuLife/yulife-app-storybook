@@ -5,6 +5,7 @@ import { TextTemplate } from "@atoms";
 import { Button } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { YugiProcessingIcon } from "@atoms/icon/yugi-processing-icon";
+import { t } from "@locale";
 
 interface IProps {
   handleClose: () => void;
@@ -16,13 +17,13 @@ const WellBeingServiceNoResults: FC<IProps> = ({ handleClose }) => (
     <View style={styles.container}>
       <YugiProcessingIcon />
       <View style={styles.title}>
-        <TextTemplate type="h1">Check back later!</TextTemplate>
+        <TextTemplate type="h1">{t("screens.wellbeing_hub.no_results.title")}</TextTemplate>
       </View>
       <TextTemplate type="b2" textAlign="center">
-        You currently don’t have any company wellbeing benefits. You may be able to find them here at a later date.
+        {t("screens.wellbeing_hub.no_results.description")}
       </TextTemplate>
     </View>
-    <Button onPress={handleClose} label="Back" />
+    <Button onPress={handleClose} label={t("labels.cta.back")} />
     <GenericHeadingAbsolute logo="yulife" onLeftIconPress={handleClose} />
   </View>
 );

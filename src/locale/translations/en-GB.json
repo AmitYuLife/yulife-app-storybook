@@ -437,6 +437,10 @@
         "success": "E-mail sent",
         "error": "Sorry! Something went wrong.",
         "send_button": "Send e-mail"
+      },
+      "no_results": {
+        "title": "Check back later!",
+        "description": "You currently don’t have any company wellbeing benefits. You may be able to find them here at a later date."
       }
     },
     "leaderboard": {
