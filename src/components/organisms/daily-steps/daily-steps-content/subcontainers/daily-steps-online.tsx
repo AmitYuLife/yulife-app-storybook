@@ -128,11 +128,11 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
       !fitkit.authorised
         ? null
         : Navigation.push(ROUTES.dailySteps, {
-            component: {
-              id: ROUTES.todayEarnings,
-              name: ROUTES.todayEarnings,
-            },
-          }),
+          component: {
+            id: ROUTES.todayEarnings,
+            name: ROUTES.todayEarnings,
+          },
+        }),
     []
   );
 
@@ -194,7 +194,7 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
         <View style={styles.buttonWrapper}>
           <Button
             size="Large"
-            label="Invite a colleague"
+            label={t("labels.cta.invite")}
             onPress={onReferralsButtonPress}
             testID={REFERRALS_BUTTON_HOMEPAGE}
           />

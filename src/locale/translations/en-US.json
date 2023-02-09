@@ -33,7 +33,9 @@
       "go_back": "Go back",
       "lets_go": "Let's go",
       "skip": "skip",
-      "allow": "allow"
+      "allow": "allow",
+      "save": "Save",
+      "invite": "Invite a colleague"
     }
   },
   "meditation": "Meditation",

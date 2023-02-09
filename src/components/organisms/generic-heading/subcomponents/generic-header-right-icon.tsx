@@ -37,7 +37,7 @@ const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon }: IProps) 
   }
 
   if (icon === "SAVE") {
-    return <Button label="Save" onPress={onPress} size="ExtraSmall" wrapperStyle={styles.buttonSave} testID={testID} />;
+    return <Button label={t("labels.cta.save")} onPress={onPress} size="ExtraSmall" wrapperStyle={styles.buttonSave} testID={testID} />;
   }
 
   return (
