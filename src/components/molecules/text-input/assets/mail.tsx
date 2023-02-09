@@ -1,14 +1,13 @@
-import * as React from "react";
-import { SFC } from "react";
+import React from "react";
 import Svg, { Path, Polyline } from "react-native-svg";
-import { Colours } from "../../../../styles";
+import { Colours } from "@styles";
 
 interface IProps {
   colour?: string;
   scale?: number;
 }
 
-const Mail: SFC<IProps> = ({ scale = 1, colour }) => (
+const Mail = ({ scale = 1, colour }: IProps) => (
   <Svg width={String(52 * scale)} height={String(38 * scale)} viewBox="0 0 52 38">
     <Path
       fill={colour || Colours.textInput.inactive}

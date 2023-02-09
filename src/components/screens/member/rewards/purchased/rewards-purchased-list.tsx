@@ -1,7 +1,7 @@
+import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { NAV_BAR, Style } from "@styles/index";
 import * as React from "react";
-import { View, ViewStyle, StyleSheet } from "react-native";
-import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import RewardsPurchasedItem, { IRewardsPurchasedItemProps } from "./purchased-item/purchased-item";
 import PurchasesEmpty from "./purchases-empty/purchases-empty";
 

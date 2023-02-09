@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, PropsWithChildren } from "react";
 import { Image as RNImage, ImageSourcePropType, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native";
 import LottieView from "lottie-react-native";
 import styles from "./centred-screen.styles";
@@ -41,7 +41,7 @@ function CentredScreen({
 
 export default memo(CentredScreen);
 
-const BackgroundWrapper: React.FC = ({ children }) => {
+const BackgroundWrapper: React.FC<PropsWithChildren> = ({ children }) => {
   if (Style.DEVICE_HEIGHT < 750) {
     const translateY = 750 - Style.DEVICE_HEIGHT;
 

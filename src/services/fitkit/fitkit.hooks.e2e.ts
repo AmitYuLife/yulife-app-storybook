@@ -10,7 +10,10 @@ export function useFitKit() {
   };
 
   useEffect(() => {
-    return mock.onFitkitAuthorised(authorise);
+    const cb = mock.onFitkitAuthorised(authorise);
+    return () => {
+      cb();
+    };
   }, []);
 
   const authoriseFitKitTypes = function () {

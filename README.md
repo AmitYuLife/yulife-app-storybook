@@ -121,11 +121,11 @@ The XCode project file can be opened either from within XCode or from Finder dir
 
 To build the app, select your preferred simulator target from the drop-down (this can include a physical device if one is connected) then press the Play button.
 
-#### Build profiles (iOS)
+##### Build profiles (iOS)
 
 Choose your build profile from the `Product -> Scheme` menu. By default, the `YuLife` profile is selected which connects to the develop API server. Alternate profiles available are `local`, which will connect to a local API instance, `uat` and `production`.
 
-#### App signing
+##### App signing
 
 The app needs to be signed before it can be installed on a physical device.
 
@@ -136,28 +136,36 @@ The app needs to be signed before it can be installed on a physical device.
 #### Troubleshooting
 
 ##### Clean up Pods
+
 ```
 rm -rf ios/Pods
 rm -rf ios/Podfile.lock
 ```
+
 ##### Install Pods
+
 ###### M1
+
 ```
 arch -x86_64 pod install --repo-update
 ```
 
 ###### Intel
+
 ```
 pod install --repo-update
 ```
 
 ##### Building
+
 If building from GUI doesn't work, you can try building from the CLI using the following command
+
 ```
 yarn react-native run-ios --simulator="iPhone 12 mini"
 ```
 
 Or more generally
+
 ```
 yarn react-native run-ios --simulator=<SIMULATOR>
 ```

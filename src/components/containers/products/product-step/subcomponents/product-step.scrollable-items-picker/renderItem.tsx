@@ -77,8 +77,8 @@ export const Wrapper = memo(({ children, scale }: Props) => (
 
 interface ItemTextProps {
   children: ReactChild;
-  translateY: Animated.AnimatedInterpolation;
-  opacity: Animated.AnimatedInterpolation;
+  translateY: Animated.AnimatedInterpolation<number>;
+  opacity: Animated.AnimatedInterpolation<number>;
   active?: boolean;
   style?: TextStyle;
   testID?: string;

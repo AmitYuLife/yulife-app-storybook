@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
-import Video from "react-native-video";
+import Video, { LoadError, OnLoadData, OnProgressData } from "react-native-video";
 import moment from "moment";
 import MusicControl, { Command } from "react-native-music-control";
 import { Animated, StyleSheet, View, AppStateStatus } from "react-native";
@@ -171,7 +171,7 @@ const VideoPlayer = ({
   }, [state.musicControlMounted, state.showFocusScreen]);
 
   const onProgress = useCallback(
-    ({ currentTime }) => {
+    ({ currentTime }: OnProgressData) => {
       const time = moment.duration(currentTime, "seconds").asMilliseconds();
       const inComingProgress = Math.floor(currentTime);
       const formatCurrentProgressInSeconds = Math.floor(state.currentProgressInSeconds);
@@ -183,7 +183,7 @@ const VideoPlayer = ({
     [state.currentProgressInSeconds]
   );
 
-  const onLoad = useCallback(({ duration }) => {
+  const onLoad = useCallback(({ duration }: OnLoadData) => {
     const time = moment.duration(duration, "seconds").asMilliseconds();
     dispatch({ type: ActionTypes.SET_DURATION, payload: time });
   }, []);
@@ -265,8 +265,8 @@ const VideoPlayer = ({
   }, [state.isPaused, state.showFocusScreen]);
 
   const handleOnError = useCallback(
-    async (err) => {
-      Logger.error(err, { location: "video-player-onError" });
+    async ({ error }: LoadError) => {
+      Logger.error({ name: error[""], message: error.errorString }, { location: "video-player-onError" });
       if (state.retries > 0 && state.musicControlMounted) {
         playerRef.current.seek(state.currentProgressInSeconds);
         dispatch({ type: ActionTypes.SET_RETRIES });
@@ -360,8 +360,9 @@ const VideoPlayer = ({
             <Image
               suppressLoadingUi={true}
               source={{ uri: videoLogo }}
-              resizeMode="cover"
+              resizeMode="contain"
               width={Style.adjust(151)}
+              height={Style.adjust(151)}
               testID={VIDEO_LOGO}
             />
           </Animated.View>

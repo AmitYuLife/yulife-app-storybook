@@ -44,7 +44,7 @@ class LoggerInstance {
   };
 
   public setUserId = (userId: string) => {
-    Intercom.registerIdentifiedUser({ userId });
+    Intercom.loginUserWithUserAttributes({ userId });
     Mixpanel.identify(userId);
     this.bugsnag.setUser(userId, "", "");
     this.leanplum.setUserId(userId);

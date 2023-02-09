@@ -3,21 +3,21 @@ package com.yulife;
 import com.intercom.reactnative.IntercomModule;
 import com.bugsnag.android.Bugsnag;
 import android.app.Application;
+import android.content.Context;
 import android.app.Notification;
-import android.os.Bundle;
-import android.os.Build;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import android.content.Context;
+import android.os.Bundle;
+import android.os.Build;
 import com.facebook.react.PackageList;
-import com.facebook.react.ReactInstanceManager;
-import com.leanplum.annotations.Parser;
 import com.reactnativenavigation.NavigationApplication;
-import com.reactnativenavigation.react.NavigationPackage;
+import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.facebook.react.ReactPackage;
+import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.soloader.SoLoader;
+import com.yulife.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -26,47 +26,55 @@ import com.leanplum.Leanplum;
 import com.leanplum.LeanplumActivityHelper;
 import com.leanplum.LeanplumPushNotificationCustomizer;
 import com.leanplum.LeanplumPushService;
+import com.leanplum.annotations.Parser;
+
 
 public class MainApplication extends NavigationApplication {
 
-  private final ReactNativeHost mReactNativeHost = new NavigationReactNativeHost(this) {
-    @Override
-    public boolean getUseDeveloperSupport() {
-      return BuildConfig.DEBUG;
-    }
+  private final ReactNativeHost mReactNativeHost =
+      new NavigationReactNativeHost(this) {
+        @Override
+        public boolean getUseDeveloperSupport() {
+          return BuildConfig.DEBUG;
+        }
 
-    @Override
-    protected List<ReactPackage> getPackages() {
-      @SuppressWarnings("UnnecessaryLocalVariable")
-      List<ReactPackage> packages = new PackageList(this).getPackages();
-      // Packages that cannot be autolinked yet can be added manually here, for
-      // example:
-      // packages.add(new MyReactNativePackage());
-      packages.add(new RNFitKitPackage());
-      return packages;
-    }
+        @Override
+        protected List<ReactPackage> getPackages() {
+          @SuppressWarnings("UnnecessaryLocalVariable")
+          List<ReactPackage> packages = new PackageList(this).getPackages();
+          // Packages that cannot be autolinked yet can be added manually here, for example:
+          // packages.add(new MyReactNativePackage());
+          packages.add(new RNFitKitPackage());
+          return packages;
+        }
 
-    @Override
-    protected String getJSMainModuleName() {
-      return "index";
-    }
-  };
+        @Override
+        protected String getJSMainModuleName() {
+          return "index";
+        }
+      };
+
+  private final ReactNativeHost mNewArchitectureNativeHost =
+      new MainApplicationReactNativeHost(this);
 
   @Override
   public ReactNativeHost getReactNativeHost() {
-    return mReactNativeHost;
+    if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
+      return mNewArchitectureNativeHost;
+    } else {
+      return mReactNativeHost;
+    }
   }
 
   @Override
   public void onCreate() {
     super.onCreate();
-    // Bugsnag
+
     Bugsnag.start(this);
 
     // Intercom
     IntercomModule.initialize(this, BuildConfig.INTERCOM_API_KEY_ANDROID, BuildConfig.INTERCOM_APP_ID);
 
-    // Leanplum
     Leanplum.setApplicationContext(this);
     Parser.parseVariables(this);
     // For session lifecyle tracking.
@@ -88,29 +96,32 @@ public class MainApplication extends NavigationApplication {
       }
     });
 
-    // Flipper
-    SoLoader.init(this, /* native exopackage */ false);
+
+    // If you opted-in for the New Architecture, we enable the TurboModule system
+    ReactFeatureFlags.useTurboModules = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
+    
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
 
   /**
-   * Loads Flipper in React Native templates. Call this in the onCreate method
-   * with something like initializeFlipper(this,
-   * getReactNativeHost().getReactInstanceManager());
+   * Loads Flipper in React Native templates. Call this in the onCreate method with something like
+   * initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
    *
    * @param context
    * @param reactInstanceManager
    */
-  private static void initializeFlipper(Context context, ReactInstanceManager reactInstanceManager) {
+  private static void initializeFlipper(
+      Context context, ReactInstanceManager reactInstanceManager) {
     if (BuildConfig.DEBUG) {
       try {
         /*
-         * We use reflection here to pick up the class that initializes Flipper, since
-         * Flipper library is not available in release mode
-         */
+         We use reflection here to pick up the class that initializes Flipper,
+        since Flipper library is not available in release mode
+        */
         Class<?> aClass = Class.forName("com.yulife.ReactNativeFlipper");
-        aClass.getMethod("initializeFlipper", Context.class, ReactInstanceManager.class).invoke(null, context,
-            reactInstanceManager);
+        aClass
+            .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
+            .invoke(null, context, reactInstanceManager);
       } catch (ClassNotFoundException e) {
         e.printStackTrace();
       } catch (NoSuchMethodException e) {

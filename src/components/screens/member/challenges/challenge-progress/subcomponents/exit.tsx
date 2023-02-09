@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Svg, { Circle, Path } from "react-native-svg";
 
 export interface IProps {
@@ -7,7 +7,7 @@ export interface IProps {
   onPress: () => void;
 }
 
-const Exit: React.SFC<IProps> = ({ primaryColour = "#ED9CA0", secondaryColour = "white", onPress }) => {
+const Exit = ({ primaryColour = "#ED9CA0", secondaryColour = "white", onPress }: IProps) => {
   const [opacity, setOpacity] = React.useState(1);
 
   const onPressIn = () => {

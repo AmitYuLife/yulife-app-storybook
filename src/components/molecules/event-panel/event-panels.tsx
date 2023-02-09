@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useState } from "react";
-import { FlatList, StyleSheet, View, ListRenderItemInfo, Platform } from "react-native";
+import { FlatList, StyleSheet, View, ListRenderItemInfo, Platform, LayoutChangeEvent } from "react-native";
 import { Style, NAV_BAR } from "@styles";
 import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 import EventPanel from "./event-panel";
@@ -26,7 +26,9 @@ const INITIAL_PADDING = Style.DEVICE_WIDTH * 0.1 + 5;
 const EventPanels = ({ events = [], componentId, onJoin }: IProps) => {
   const [adHeight, setAdHeight] = useState(143);
 
-  const onLayout = useCallback((e) => setAdHeight(e?.nativeEvent?.layout?.height || 148), [adHeight]);
+  const onLayout = useCallback((e: LayoutChangeEvent) => setAdHeight(e?.nativeEvent?.layout?.height || 148), [
+    adHeight,
+  ]);
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<IEvent & IAdBanner>) => {
       if (item.id.startsWith("ad-")) {

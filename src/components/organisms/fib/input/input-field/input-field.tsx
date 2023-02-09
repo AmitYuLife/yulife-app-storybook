@@ -98,7 +98,7 @@ const _InputField = (props: InputFieldProps) => {
           value={value}
           onChangeText={onChangeText}
           autoCapitalize="none"
-          autoCompleteType="off"
+          autoComplete="off"
           autoCorrect={false}
           maxLength={maxLength}
           keyboardType={keyboardType}

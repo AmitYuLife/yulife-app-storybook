@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import { Colours } from "@styles";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 
@@ -6,7 +6,7 @@ interface JourneyLayoutProps {
   isLoading: boolean;
 }
 
-export const JourneyLayout: FC<JourneyLayoutProps> = ({ isLoading, children }) => {
+export const JourneyLayout: FC<PropsWithChildren<JourneyLayoutProps>> = ({ isLoading, children }) => {
   if (isLoading) {
     return (
       <View style={styles.wrapper}>

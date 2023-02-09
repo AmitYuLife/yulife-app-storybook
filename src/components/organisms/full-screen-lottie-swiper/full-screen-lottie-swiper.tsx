@@ -100,7 +100,7 @@ export const FullScreenLottieSwiper = memo((props: Props) => {
     [setActiveIndex, items.length]
   );
 
-  const getItemLayout = useCallback((_, index) => {
+  const getItemLayout = useCallback((_: any, index: number) => {
     return { length: Style.DEVICE_WIDTH, offset: Style.DEVICE_WIDTH * index, index };
   }, []);
 

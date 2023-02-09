@@ -28,8 +28,8 @@ const CyclingMeasurementContainer = ({ componentId }: IProps) => {
   >(GQL_MUTATION_UPDATE_CYCLING_MEASUREMENT);
   const dispatch = useDispatch();
 
-  const onSelectedCyclingMeasurement = useCallback(async (measurement) => {
-    dispatch(updateDailyCyclingDistanceMeasurementType(measurement as DistanceMeasurementType));
+  const onSelectedCyclingMeasurement = useCallback(async (measurement: DistanceMeasurementType) => {
+    dispatch(updateDailyCyclingDistanceMeasurementType(measurement));
     await updateCyclingMeasurement({ variables: { measurement } });
     Logger.logMixpanelEvent("settings_toggle", { type: "cycling_measurement", subtype: measurement });
   }, []);
@@ -54,14 +54,14 @@ const CyclingMeasurementContainer = ({ componentId }: IProps) => {
 
 export default memo(CyclingMeasurementContainer);
 
-const OPTIONS = [
+const OPTIONS: Array<{ id: DistanceMeasurementType; title: string; description: string }> = [
   {
-    id: "mi",
+    id: DistanceMeasurementType.mi,
     title: "Imperial system",
     description: "Distance will be shown in miles ”mi”",
   },
   {
-    id: "km",
+    id: DistanceMeasurementType.km,
     title: "Metric system",
     description: "Distance will be shown in kilometers ”km”",
   },

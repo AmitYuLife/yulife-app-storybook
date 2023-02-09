@@ -135,7 +135,7 @@ export default function TextField(props: Props) {
           keyboardType={type === "Number" || type === "PhoneNumber" ? "number-pad" : "default"}
           underlineColorAndroid="transparent"
           autoCapitalize={type === "PostCode" || type === "PostCodeFinder" ? "characters" : "none"}
-          autoCompleteType="off"
+          autoComplete="off"
           autoCorrect={false}
           maxLength={maxLength}
           autoFocus={autoFocus}

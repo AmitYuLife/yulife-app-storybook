@@ -9,7 +9,7 @@ interface Props {
   absoluteContentViewRef: Ref<View>;
   items: ItemProp[];
   headerHeight: number;
-  translateYInterpolation: Animated.AnimatedInterpolation;
+  translateYInterpolation: Animated.AnimatedInterpolation<number>;
   infoIcon: Source;
 }
 

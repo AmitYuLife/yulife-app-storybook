@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key></key>
+	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -33,6 +35,13 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>http</string>
+		<string>https</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -46,19 +55,21 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Send photos to resolve app issues</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>We use your step and meditation data so we can verify you have completed challenges.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>Need the ability to write your step and meditation data so we can update completed challenges</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Need the ability to access your location movement for step tracking challenges</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string></string>
 	<key>NSMotionUsageDescription</key>
 	<string>We use your pedometer to track how many steps you've taken during the day.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Send photos to resolve app issues</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>In order to save this image YuLife will need to be able to add to your photos.</string>
-	<key>NSCameraUsageDescription</key>
+	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Send photos to resolve app issues</string>
 	<key>UIAppFonts</key>
 	<array>
@@ -83,17 +94,12 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<true/>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>http</string>
-		<string>https</string>
-	</array>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
 </dict>
 </plist>

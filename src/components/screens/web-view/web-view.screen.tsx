@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import WebView from "react-native-webview";
 import { View, StyleSheet, KeyboardAvoidingView, Linking, Platform } from "react-native";
 import Config from "react-native-config";
-import { ShouldStartLoadRequest } from "react-native-webview/lib/WebViewTypes";
+import { ShouldStartLoadRequest, WebViewRenderProcessGoneEvent } from "react-native-webview/lib/WebViewTypes";
 import { Style, TOP_BAR } from "@styles";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 
@@ -37,7 +37,7 @@ export function WebViewScreen(props: Props) {
     throw new Error("There was an error loading the webview");
   }
 
-  const onRenderProcessGone = useCallback((e) => {
+  const onRenderProcessGone = useCallback((e: WebViewRenderProcessGoneEvent) => {
     setErrorState(e.nativeEvent.didCrash);
   }, []);
 

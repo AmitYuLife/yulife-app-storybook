@@ -16,9 +16,11 @@ export const AllProductsLayout = ({ children }: Props) => {
   return (
     <SafeAreaView style={[styles.flex, styles.bgWhite]}>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.flex}>
-        <View style={styles.topPad} />
-        {children}
-        <View style={styles.bottomPad} />
+        <>
+          <View style={styles.topPad} />
+          {children}
+          <View style={styles.bottomPad} />
+        </>
       </ScrollView>
       <GenericHeadingAbsolute logo="yulife" onLeftIconPress={handleNavigateBack(currentRoute)} />
     </SafeAreaView>

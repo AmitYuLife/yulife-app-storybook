@@ -5,10 +5,9 @@ import { eventChannel } from "redux-saga";
 
 export function appStateChannel() {
   return eventChannel<AppStateStatus>((emitter) => {
-    AppState.addEventListener("change", emitter);
-
+    const appState = AppState.addEventListener("change", emitter);
     const unlisten = () => {
-      AppState.removeEventListener("change", emitter);
+      appState.remove();
     };
 
     return unlisten;
@@ -63,10 +62,10 @@ export function appComponentDidDisappearChannel() {
 
 export function iosLinkingChannel() {
   return eventChannel((emitter) => {
-    Linking.addEventListener("url", emitter);
+    const linking = Linking.addEventListener("url", emitter);
 
     const unlisten = () => {
-      Linking.removeEventListener("url", emitter);
+      linking.remove();
     };
 
     return unlisten;

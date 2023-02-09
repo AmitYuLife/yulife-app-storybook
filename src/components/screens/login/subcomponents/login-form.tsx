@@ -5,12 +5,12 @@ import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD } from "@ids";
 import { Pad, TextTemplate } from "@atoms";
 import { Button, LinkGroup, PressableWithDelay, TextInput, TextInputError } from "@molecules";
 import { ServerDropdown } from "./server-dropdown";
-import { useTranslation, useKeyboardListeners } from "@hooks";
 import { Style } from "@styles";
 import { getModalState } from "@redux/app/app.selectors";
 import { useSelector } from "react-redux";
 import { MODALS } from "@navigation/constants";
 import { TextInputPassword } from "@components/molecules/text-input/text-input-password";
+import { useKeyboardListeners, useTranslation } from "@hooks";
 
 export type LoginFormProps = {
   disabled: boolean;
@@ -63,7 +63,8 @@ export const LoginForm = (props: LoginFormProps) => {
     () =>
       currentModal === MODALS.blurredOverlay
         ? {
-            androidImportantForAccessibility: "no-hide-descendants" as AccessibilityPropsAndroid["importantForAccessibility"],
+            androidImportantForAccessibility:
+              "no-hide-descendants" as AccessibilityPropsAndroid["importantForAccessibility"],
             accessibilityElementsHidden: true,
           }
         : {

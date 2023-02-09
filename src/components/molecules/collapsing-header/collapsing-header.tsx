@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from "react";
+import React, { memo, PropsWithChildren, ReactNode, useMemo } from "react";
 import { Animated, StyleSheet, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 
@@ -6,11 +6,11 @@ interface Props {
   expandThreshold: number;
   expandOffset: number;
   scrollValue: Animated.Value;
-  children: React.ReactChild | React.ReactChildren;
+  children: ReactNode | undefined;
   style?: ViewStyle;
 }
 
-export const CollapsingHeader = memo((props: Props) => {
+export const CollapsingHeader = memo<React.FC<PropsWithChildren<Props>>>((props: Props) => {
   const { expandThreshold, expandOffset, scrollValue, children, style } = props;
 
   const translateY = useMemo(() => {

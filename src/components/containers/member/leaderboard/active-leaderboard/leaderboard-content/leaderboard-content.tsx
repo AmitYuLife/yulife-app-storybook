@@ -10,9 +10,9 @@ import { PAGE_SIZE } from "../active-leaderboard.container";
 import { MODALS } from "@navigation/constants";
 import { LEADERBOARD_ITEM_HEIGHT } from "../../items/leaderboard-rank-item/subcomponents";
 import { TOP_PADDING_HEIGHT } from "./helpers/constants";
-import { LEADERBOARD_SCROLL_LIST } from "@ids";
 import { useAppState, useNavigationComponentDidDisappear } from "@hooks";
 import { ILeaderboardListItem } from "./leaderboard-content.types";
+import { LEADERBOARD_SCROLL_LIST } from "@ids";
 
 export interface LeaderboardContentContainerProps {
   leaderboardItems: GetLeaderboard["getLeaderboard"];

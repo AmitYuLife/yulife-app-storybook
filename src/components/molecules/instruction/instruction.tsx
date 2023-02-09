@@ -1,5 +1,4 @@
-import * as React from "react";
-import { SFC } from "react";
+import React from "react";
 import { View } from "react-native";
 import { Text } from "@atoms";
 import styles from "./instruction.styles";
@@ -9,7 +8,7 @@ interface IProps {
   instruction: string;
 }
 
-const Instruction: SFC<IProps> = ({ bullet, instruction }) => (
+const Instruction = ({ bullet, instruction }: IProps) => (
   <View style={styles.wrapper}>
     <View style={styles.textWrapper}>
       <Text>{`${bullet}.`}</Text>

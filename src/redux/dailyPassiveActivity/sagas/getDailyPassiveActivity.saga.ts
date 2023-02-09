@@ -120,8 +120,10 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
         if (!mutationResult?.challenges?.length) {
           return;
         }
+        
+        const challenges = mutationResult?.challenges ?? [];
 
-        for (const challenge of mutationResult?.challenges) {
+        for (const challenge of challenges) {
           if (challenge?.incomingData.meditation > 0) {
             yield put(updateDailyMeditation(challenge));
           }

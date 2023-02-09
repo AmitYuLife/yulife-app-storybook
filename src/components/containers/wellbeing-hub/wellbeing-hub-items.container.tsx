@@ -42,7 +42,7 @@ const WellbeingHubItemsContainer: FC<IProps> = ({ componentId }) => {
   });
 
   const onCategoryPress = useCallback(
-    (id) => {
+    (id: string) => {
       setSelectedCategory(id);
     },
     [setSelectedCategory]

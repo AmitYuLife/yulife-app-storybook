@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { ViewStyle } from "react-native";
 import Svg, { Path, Rect } from "react-native-svg";
 
@@ -7,7 +7,7 @@ interface IProps {
   style?: ViewStyle;
 }
 
-const Coins: React.SFC<IProps> = ({ scale = 1, style }) => (
+const Coins = ({ scale = 1, style }: IProps) => (
   <Svg style={style} height={String(61 * scale)} width={String(73 * scale)} viewBox="0 0 73 61">
     <Path
       fill="#333"

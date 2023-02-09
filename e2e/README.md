@@ -15,7 +15,7 @@
 
 1. Install detox cli globally with `npm i -g detox-cli`
 2. Install applesimutils with `brew install wix/brew/applesimutils`
-3. To build the detox IPA, run `yarn detox build`. This might take a while
+3. To build the detox IPA, run `yarn detox:build`. This might take a while
 4. Start the RN server in e2e mode by running `yarn start:e2e` to run the react native packager in E2E mode
 5. Run all the tests by running `yarn detox:test:all`
 

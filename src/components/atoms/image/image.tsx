@@ -1,5 +1,5 @@
 import React, { memo, useMemo, useState, useCallback } from "react";
-import { StyleSheet, View, ViewStyle, ActivityIndicator, StyleProp } from "react-native";
+import { StyleSheet, View, ViewStyle, ActivityIndicator, StyleProp, ColorValue } from "react-native";
 import FastImage, { FastImageProps, ImageStyle, OnLoadEvent, ResizeMode, Source } from "react-native-fast-image";
 import { Colours } from "@styles";
 import { shallowEqual } from "react-redux";
@@ -14,7 +14,7 @@ interface Props {
   theme?: "light" | "dark";
   testID?: string;
   resizeMode?: ResizeMode;
-  tintColor?: string | number;
+  tintColor?: ColorValue;
   /**
    * suppresses loading ui
    * usually for prefetched assets that we know
@@ -38,7 +38,7 @@ export const Image = memo(
       theme = "light",
       source,
       testID,
-      resizeMode,
+      resizeMode = "contain",
       suppressLoadingUi,
       tintColor,
       onLoad,

@@ -34,7 +34,7 @@ export const ArrowIcon = memo(
           />
         </>
       ) : (
-        <Path d="M8 20l8-8-8-8" stroke={color} strokeMiterlimit={10} strokeLinecap="round" strokeLinejoin="round" />
+        <Path d="M8 20l8-8-8-8" stroke={color} fill={"none"} strokeMiterlimit={10} strokeLinecap="round" strokeLinejoin="round" />
       )}
     </Svg>
   )

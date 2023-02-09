@@ -141,12 +141,16 @@ const EOTWPlanet: FC<IPlanetProps> = memo(({ position: { bottom, left }, icon, s
         height: PLANET_CONTAINER_RADIUS,
       } as ViewStyle,
       planetStyle: {
+        width: PLANET_CONTAINER_RADIUS,
+        height: PLANET_CONTAINER_RADIUS,
         transform: [{ scale: animationValues.current.planetScale }],
       } as Animated.WithAnimatedObject<ImageStyle>,
       star: {
         position: "absolute",
         top: (PLANET_CONTAINER_RADIUS - STAR_RADIUS) / 2,
         left: (PLANET_CONTAINER_RADIUS - STAR_RADIUS) / 2,
+        width: STAR_RADIUS,
+        height: STAR_RADIUS,
         opacity: state === PLANET_STATE.PREVIOUS ? animationValues?.current?.starOpacity : 1,
       } as Animated.WithAnimatedObject<ImageStyle>,
       spinningAnimation: {
@@ -207,27 +211,26 @@ const EOTWPlanet: FC<IPlanetProps> = memo(({ position: { bottom, left }, icon, s
     <View style={styles.containerStyle}>
       {state !== PLANET_STATE.PENDING ? null : (
         <Animated.Image
-          width={PLANET_CONTAINER_RADIUS}
           source={PLANET_ASSETS.UnrevealedPlanet_3}
-          height={PLANET_CONTAINER_RADIUS}
+          style={{
+            width: PLANET_CONTAINER_RADIUS,
+            height: PLANET_CONTAINER_RADIUS,
+          }}
         />
       )}
       {state !== PLANET_STATE.NEXT ? null : (
         <Animated.Image
-          width={PLANET_CONTAINER_RADIUS}
           source={PLANET_ASSETS.UnrevealedPlanet_2}
-          height={PLANET_CONTAINER_RADIUS}
-          style={{ opacity: animationValues?.current?.unrevealedPlanetOpacity }}
+          style={{
+            opacity: animationValues?.current?.unrevealedPlanetOpacity,
+            width: PLANET_CONTAINER_RADIUS,
+            height: PLANET_CONTAINER_RADIUS,
+          }}
         />
       )}
 
       {state !== PLANET_STATE.PASSED && state !== PLANET_STATE.PREVIOUS && state !== PLANET_STATE.CURRENT ? null : (
-        <Animated.Image
-          width={PLANET_CONTAINER_RADIUS}
-          source={icon}
-          height={PLANET_CONTAINER_RADIUS}
-          style={styles.planetStyle}
-        />
+        <Animated.Image source={icon} style={styles.planetStyle} />
       )}
 
       {state !== PLANET_STATE.PREVIOUS && state !== PLANET_STATE.CURRENT ? null : (
@@ -237,7 +240,7 @@ const EOTWPlanet: FC<IPlanetProps> = memo(({ position: { bottom, left }, icon, s
       )}
 
       {state !== PLANET_STATE.PASSED && state !== PLANET_STATE.PREVIOUS ? null : (
-        <Animated.Image width={STAR_RADIUS} source={STAR_ASSET} height={STAR_RADIUS} style={styles.star} />
+        <Animated.Image source={STAR_ASSET} style={styles.star} />
       )}
       {state !== PLANET_STATE.CURRENT && state !== PLANET_STATE.NEXT ? null : (
         <AnimatedLottieView

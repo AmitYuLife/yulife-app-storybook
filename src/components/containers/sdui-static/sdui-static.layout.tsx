@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import { Colours } from "@styles";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 
@@ -6,7 +6,7 @@ interface SduiStaticProps {
   isLoading: boolean;
 }
 
-export const SduiStaticLayout: FC<SduiStaticProps> = ({ isLoading, children }) => {
+export const SduiStaticLayout: FC<PropsWithChildren<SduiStaticProps>> = ({ isLoading, children }) => {
   if (isLoading) {
     return (
       <View style={styles.wrapper}>
