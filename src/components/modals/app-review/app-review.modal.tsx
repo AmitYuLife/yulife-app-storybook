@@ -13,6 +13,7 @@ import { AppStoreReviewPromptAction } from "@graphql/_core/schema/globalTypes";
 import Intercom from "@intercom/intercom-react-native";
 import { openYulife } from "@services/app-link";
 import Logger from "@services/logging/logger";
+import { t } from "@locale";
 
 export interface ReviewModalProps {
   id: string;
@@ -86,8 +87,8 @@ const AppReviewModal: FC<ReviewModalProps> = (props: ReviewModalProps) => {
 
   const heading = isFirstStateShown ? title : rejectedTitle;
   const subheading = isFirstStateShown ? body : rejectedBody;
-  const buttonLabel = isFirstStateShown ? "Yeah!" : "Give feedback";
-  const secondButtonLabel = isFirstStateShown ? "Not really" : "No thanks";
+  const buttonLabel = isFirstStateShown ? t("labels.cta.yeah") : t("labels.cta.give_feedback");
+  const secondButtonLabel = isFirstStateShown ? t("labels.cta.not_really") : t("labels.cta.no_thanks");
 
   return (
     <AppReviewModalScreen

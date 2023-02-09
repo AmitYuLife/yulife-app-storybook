@@ -36,7 +36,12 @@
       "allow": "allow",
       "save": "Save",
       "invite": "Invite a colleague",
-      "not_now": "Not now"
+      "not_now": "Not now",
+      "yeah": "Yeah!",
+      "give_feedback": "Give feedback",
+      "not_really": "Not really",
+      "no_thanks": "No thanks",
+      "ask_later": "Ask me later"
     }
   },
   "meditation": "Meditation",
