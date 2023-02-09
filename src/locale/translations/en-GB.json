@@ -668,6 +668,9 @@
         "subheading": "check your internet connection"
       }
     },
+    "active_buffs": {
+      "tap_anywhere": "Tap anywhere to close"
+    },
     "duels": {
       "dialog_helpers": {
         "alternative_name": "your colleague",
