@@ -5,6 +5,7 @@ import { Heading, Pad, Text } from "@atoms";
 import styles from "./feedback.styles";
 import StarRating from "./star-rating";
 import { Button, CentredScreen, LinkButton } from "@molecules";
+import { t } from "@locale";
 
 interface IProps {
   isSubmitting: boolean;
@@ -29,7 +30,7 @@ const FeedbackScreen: SFC<IProps> = ({ isSubmitting, onCancel, onRatingSelect, o
         label={isSubmitting ? "submitting" : "send"}
         onPress={onSubmit}
       />
-      <LinkButton label="not now" onPress={onCancel} />
+      <LinkButton label={t("labels.cta.not_now")} onPress={onCancel} />
     </CentredScreen>
   </View>
 );
