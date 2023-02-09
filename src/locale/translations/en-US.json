@@ -35,7 +35,8 @@
       "skip": "skip",
       "allow": "allow",
       "save": "Save",
-      "invite": "Invite a colleague"
+      "invite": "Invite a colleague",
+      "not_now": "Not now"
     }
   },
   "meditation": "Meditation",
@@ -63,6 +64,9 @@
   },
   "create_challenge_error": "Sorry, there was a problem starting your challenge. \n Please try again!",
   "screens": {
+    "update_mobile": {
+      "cta_label": "Update my app"
+    },
     "challenges": {
       "progress": {
         "open_fit_app": "Open Fiit app",

@@ -5,6 +5,7 @@ import { Button, LinkButton } from "@molecules";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import { GenericHeadingAbsolute } from "@organisms";
+import { t } from "@locale";
 
 type ButtonProps = React.ComponentProps<typeof Button>;
 
@@ -28,8 +29,8 @@ export default function MobileUpdateModalScreen({
           {heading}
         </Text>
         <Text style={styles.subheading}>{subheading}</Text>
-        <Button wrapperStyle={styles.buttonWrapper} label="Update my app" onPress={onPress} />
-        <LinkButton wrapperStyle={styles.buttonWrapperSecondary} label="Not now" onPress={onPressSecondary} />
+        <Button wrapperStyle={styles.buttonWrapper} label={t("screens.update_mobile.cta_label")} onPress={onPress} />
+        <LinkButton wrapperStyle={styles.buttonWrapperSecondary} label={t("labels.cta.not_now")} onPress={onPressSecondary} />
       </View>
       <GenericHeadingAbsolute onRightIconPress={onPressSecondary} />
     </View>
