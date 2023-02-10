@@ -180,7 +180,7 @@ const isPassiveActivityUpToDate = (
 };
 
 function* showRewardModal(firstDay: string, lastDay: string, awardedYucoin: number) {
-  const date = firstDay !== lastDay ? `${firstDay} - ${lastDay}` : firstDay;
+  const heading = firstDay !== lastDay ? `${firstDay} - ${lastDay}` : firstDay;
 
   const videoPlayerIsActive: ReturnType<typeof getVideoPlayerIsActive> = yield select(getVideoPlayerIsActive);
 
@@ -191,7 +191,7 @@ function* showRewardModal(firstDay: string, lastDay: string, awardedYucoin: numb
           id: MODALS.collectReward,
           name: MODALS.collectReward,
           passProps: {
-            date,
+            heading,
             onPress: () => Navigation.dismissModal(MODALS.collectReward),
             yucoin: awardedYucoin,
           },

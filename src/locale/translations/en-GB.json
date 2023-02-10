@@ -20,6 +20,7 @@
     "cta": {
       "got_it": "Okay, got it",
       "back": "Back",
+      "exit": "Exit",
       "cancel": "Cancel",
       "close": "Close",
       "dismiss": "Dismiss",
@@ -425,6 +426,14 @@
       },
       "edit": {
         "title": "Pick a body type"
+      },
+      "award_modal": {
+        "heading": "Great work! \nYour Yumoji is ready for adventure."
+      },
+      "exit_modal": {
+        "heading": "Exit Yumoji builder?",
+        "subheading": "Are you sure you want to exit? You will lose any unsaved changes.",
+        "cta_label_secondary": "Keep Editing"
       }
     },
     "eotw_chest": {
