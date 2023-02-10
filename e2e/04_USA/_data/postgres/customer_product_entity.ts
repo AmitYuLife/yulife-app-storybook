@@ -1,0 +1,359 @@
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import { CUSTOMER_USA_1, CUSTOMER_USA_2, CUSTOMER_USA_3, CUSTOMER_USA_4 } from "./customers";
+import moment from "moment";
+
+const type = "postgres";
+const modelName = "customer_product_entity";
+
+export const CPE_Wellbeing_USA_1 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID0000001100",
+    customer_id: CUSTOMER_USA_1.data.customerId,
+    earn_rate: 10,
+    product_variant_id: "YuLife_Wellbeing_01_03",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_DENPPO_1 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001101",
+    customer_id: CUSTOMER_USA_1.data.customerId,
+    earn_rate: 0,
+    startDate: moment().format(),
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_DENPPO_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_DENHMO_1 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001102",
+    customer_id: CUSTOMER_USA_1.data.customerId,
+    earn_rate: 0,
+    startDate: moment().format(),
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_DENHMO_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_DENCHOI_1 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001103",
+    customer_id: CUSTOMER_USA_1.data.customerId,
+    earn_rate: 0,
+    startDate: moment().format(),
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_DENCHOI_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_VIS_1 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001104",
+    customer_id: CUSTOMER_USA_1.data.customerId,
+    earn_rate: 0,
+    startDate: moment().format(),
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_VIS_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_TLIF_1 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001105",
+    customer_id: CUSTOMER_USA_1.data.customerId,
+    earn_rate: 0,
+    startDate: moment().format(),
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_TLIF_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_ADD_2 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001106",
+    customer_id: CUSTOMER_USA_2.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_ADD_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_WLIF_2 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001107",
+    customer_id: CUSTOMER_USA_2.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_WLIF_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_ULIF_2 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001108",
+    customer_id: CUSTOMER_USA_2.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_ULIF_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_VADD_2 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001109",
+    customer_id: CUSTOMER_USA_2.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_VADD_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_STD_2 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001110",
+    customer_id: CUSTOMER_USA_2.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_STD_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_LTD_2 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001111",
+    customer_id: CUSTOMER_USA_2.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_LTD_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_VSTD_3 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001112",
+    customer_id: CUSTOMER_USA_3.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_VSTD_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_VLTD_3 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001113",
+    customer_id: CUSTOMER_USA_3.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_VLTD_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_ACC_3 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001114",
+    customer_id: CUSTOMER_USA_3.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_ACC_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_CRI_3 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001115",
+    customer_id: CUSTOMER_USA_3.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_CRI_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_SPDIS_3 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001116",
+    customer_id: CUSTOMER_USA_3.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_SPDIS_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_HI_3 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001117",
+    customer_id: CUSTOMER_USA_3.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_HI_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_ACCSICK_4 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001118",
+    customer_id: CUSTOMER_USA_4.data.customerId,
+    earn_rate: 9,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_ACCSICK_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_CAN_4 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001119",
+    customer_id: CUSTOMER_USA_4.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_CAN_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_VLIF_4 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001120",
+    customer_id: CUSTOMER_USA_4.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_VLIF_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;

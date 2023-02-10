@@ -120,7 +120,9 @@ export const showExistingDuelAlert = (existingDuel: ValidDuel, requestLocation: 
   const name = existingDuel.name.firstName || t("modals.duels.dialog_helpers.alternative_name");
   const duelStart = existingDuel.startDateTime.calendar(now.startOf("day"), calendarOptions);
   const isAlreadyAccepted = existingDuel.status === "accepted";
-  const title = isAlreadyAccepted ? t("modals.duels.dialog_helpers.title_already_accepted") : t("modals.duels.dialog_helpers.title_not_accepted");
+  const title = isAlreadyAccepted
+    ? t("modals.duels.dialog_helpers.title_already_accepted")
+    : t("modals.duels.dialog_helpers.title_not_accepted");
   const description = isAlreadyAccepted
     ? t("modals.duels.dialog_helpers.description_already_accepted", { name, duelStart })
     : t("modals.duels.dialog_helpers.description_not_accepted", { name });

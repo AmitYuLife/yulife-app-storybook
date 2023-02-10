@@ -44,20 +44,16 @@ const MenuContainer = () => {
   }, [permissions]);
 
   const handlePressLogout = React.useCallback(() => {
-    Alert.alert(
-      t("screens.menu.logout.alert_title"),
-      t("screens.menu.logout.alert_description"),
-      [
-        {
-          style: "cancel",
-          text: t("labels.cta.cancel"),
-        },
-        {
-          onPress: () => dispatch(logOutStart()),
-          text: t("screens.menu.logout.alert_log_out_button"),
-        },
-      ]
-    );
+    Alert.alert(t("screens.menu.logout.alert_title"), t("screens.menu.logout.alert_description"), [
+      {
+        style: "cancel",
+        text: t("labels.cta.cancel"),
+      },
+      {
+        onPress: () => dispatch(logOutStart()),
+        text: t("screens.menu.logout.alert_log_out_button"),
+      },
+    ]);
   }, [dispatch]);
 
   const handlePressLink = React.useCallback(

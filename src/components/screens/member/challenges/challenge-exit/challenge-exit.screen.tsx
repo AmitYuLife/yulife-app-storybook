@@ -37,11 +37,7 @@ const ChallengeExitScreen: React.FC<IProps> = ({ onPressExit, onClose, isCancell
         onPress={onPressExit}
         isLoading={isCancelling}
       />
-      <SecondaryButton
-        wrapperStyle={styles.buttonStyle}
-        label={t("labels.cta.cancel")}
-        onPress={onClose}
-      />
+      <SecondaryButton wrapperStyle={styles.buttonStyle} label={t("labels.cta.cancel")} onPress={onClose} />
     </SafeAreaView>
   );
 };

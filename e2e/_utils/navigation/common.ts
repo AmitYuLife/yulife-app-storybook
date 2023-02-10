@@ -1,11 +1,12 @@
 import { dataManager } from "@yu-life/yulife-bdd-framework";
+import { dataManagerUS } from "@dataManager";
 import { BUTTON_CLOSE, BUTTON_CLOSE_HEADER, NAV_BAR, SCREEN_CLOSE } from '@ids';
 import { dismissNewLooksModalIfVisible } from "./login";
 import moment from "moment";
 
-export const restart = async (locale = "en-GB") => {
+export const restart = async (locale = "en-GB", dm = dataManager) => {
     await device.terminateApp();
-    await dataManager.reseed();
+    await dm.reseed();
     await device.clearKeychain();
     await device.launchApp({ 
         delete: true,
@@ -117,6 +118,11 @@ export const textNotVisible = (text: string, waitTime = 0) => async () => {
 export const tapID = (id: string, waitTime = 0) => async () => {
     const target = element(by.id(id))
     await waitFor(target).toBeVisible().withTimeout(waitTime)
+    await target.tap()
+}
+
+export const tapIDNotBeingVisible = (id: string, waitTime = 0) => async () => {
+    const target = element(by.id(id))
     await target.tap()
 }
 

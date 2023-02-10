@@ -188,9 +188,7 @@ const MediaPlayerContainer = ({
               : t("modals.generic_modal.on_meditopia_error.cta_label")
           }
           ctaLabelSecondary={
-            !showError
-              ? t("labels.cta.cancel")
-              : t("modals.generic_modal.on_meditopia_error.cta_label_secondary")
+            !showError ? t("labels.cta.cancel") : t("modals.generic_modal.on_meditopia_error.cta_label_secondary")
           }
           onPress={onPress}
           onPressSecondary={onPressSecondary}

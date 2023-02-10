@@ -5,6 +5,7 @@ import Logger from "@services/logging/logger";
 import region from "@services/region";
 import { initStripe } from "@services/stripe";
 import { SyncAction } from "@redux/_core/types";
+import { DETOX_ENABLED } from "@services/socket";
 
 export default function* hydrateApiConfigSaga(payload: SyncAction) {
   try {
@@ -12,6 +13,10 @@ export default function* hydrateApiConfigSaga(payload: SyncAction) {
     const isFromInit = payload?.type === "INIT";
 
     if (isFromInit) {
+      if (DETOX_ENABLED) {
+        return;
+      }
+
       yield call(region.hydratePreferredRegion);
 
       const existingConfig = region.getConfig("mixpanelKey");

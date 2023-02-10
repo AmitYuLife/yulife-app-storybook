@@ -39,7 +39,9 @@ const ConnectionsItem: FC<IConnectionsSectionItem> = ({
       <ItemTitle name={toCapitalLetter(name)} onPressInfo={onPressInfo} />
       {isConnected ? (
         !lastUpdated ? null : (
-          <TextTemplate type="l2">{t("screens.settings.fitness_trackers.last_sync", { date: formatDate(lastUpdated) })}</TextTemplate>
+          <TextTemplate type="l2">
+            {t("screens.settings.fitness_trackers.last_sync", { date: formatDate(lastUpdated) })}
+          </TextTemplate>
         )
       ) : (
         <TextTemplate type="l2" color={Colours.neutral.n400}>
