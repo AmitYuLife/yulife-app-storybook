@@ -30,6 +30,7 @@ const _RewardsListItem = ({ onPress, imageUrl, name, description, pills, isLocke
             height={IMAGE_HEIGHT}
             width={IMAGE_WIDTH}
             source={imageUrl}
+            resizeMode="cover"
           />
         )}
         {!isLocked ? null : <Lock testID={LOCKED_REWARD_ITEM(id)} />}

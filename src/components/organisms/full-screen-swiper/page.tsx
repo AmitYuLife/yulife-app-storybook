@@ -83,7 +83,12 @@ const Background = (props: IPageItem) => {
   if (backgroundImage) {
     return (
       <View style={styles.image}>
-        <Image source={{ uri: backgroundImage.uri }} width={Style.DEVICE_WIDTH} height={Style.DEVICE_HEIGHT} />
+        <Image
+          resizeMode="cover"
+          source={{ uri: backgroundImage.uri }}
+          width={Style.DEVICE_WIDTH}
+          height={Style.DEVICE_HEIGHT}
+        />
       </View>
     );
   }
