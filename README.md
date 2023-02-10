@@ -43,7 +43,7 @@ yarn
 You'll also need to install iOS pods by running
 
 ```
-cd ios && pod install && cd ../
+cd ios && bundle exec pod install && cd ../
 ```
 
 If running `pod install` produces the error `SDK "iphoneos" cannot be located`, this means the XCode installation path is incorrect (it's probably installed under "Applications").
@@ -144,16 +144,27 @@ rm -rf ios/Podfile.lock
 
 ##### Install Pods
 
-###### M1
+###### Cocoapods
+Required version of ruby is handled through [rbenv](https://github.com/rbenv/rbenv) To ensure you are running correct ruby version defined in .ruby-version config, follow [installing ruby versions](https://github.com/rbenv/rbenv#installing-ruby-versions). Example if .ruby-version contains 2.7.5:
 
 ```
-arch -x86_64 pod install --repo-update
+brew install rbenv
+rbenv install 2.7.5
+rbenv global 2.7.5
+ruby -v
 ```
 
-###### Intel
+Configure your shell to load rbenv: [setting up shell](https://github.com/rbenv/rbenv#basic-git-checkout)
+
+Then run following command in project root: 
 
 ```
-pod install --repo-update
+bundle install
+``` 
+
+navigate to /ios install and install pods with:
+```
+bundle exec pod install --repo-update
 ```
 
 ##### Building
