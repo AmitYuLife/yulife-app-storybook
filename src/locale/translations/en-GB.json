@@ -240,12 +240,12 @@
         "accessibility_label": "%{multiplier} times surge %{time} remaining"
       },
       "challenge_button": {
-        "take_challenge": {
-          "accessibility_label": "Take a challenge (%{challenges} left today)"
-        },
-        "back_to_challenge": {
-          "accessibility_label": "Back to challenge"
-        }
+        "take_challenge": "Take a challenge (%{challenges} left today)",
+        "back_to_challenge": "Back to challenge"
+      },
+      "join_event": {
+        "title": "Ready to join?",
+        "description": "Join the event to participate"
       },
       "daily_passive": {
         "coins": {

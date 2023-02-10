@@ -77,29 +77,32 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   }, [isAvailable, availableForToday, features, events.length]);
 
   const challengeButtonLabel = useMemo(
-    () => (hasNotification ? "Back to challenge" : `Take a challenge (${availableForToday} left)`),
+    () => (hasNotification
+      ? t("screens.daily.challenge_button.back_to_challenge")
+      : t("screens.daily.challenge_button.take_challenge", { challenges: availableForToday })
+    ),
     [hasNotification, availableForToday]
   );
 
   const accessibilityLabel = useMemo(
     () =>
       hasNotification
-        ? t("screens.daily.challenge_button.back_to_challenge.accessibility_label")
-        : t("screens.daily.challenge_button.take_challenge.accessibility_label", { challenges: availableForToday }),
+        ? t("screens.daily.challenge_button.back_to_challenge")
+        : t("screens.daily.challenge_button.take_challenge", { challenges: availableForToday }),
     [hasNotification, availableForToday]
   );
 
   const joinGoal = useCallback(
     async (event: Events) => {
       return new Promise<void>((resolve, reject) =>
-        Alert.alert("Ready to join?", "Join the event to participate", [
+        Alert.alert(t("screens.daily.join_event.title"), t("screens.daily.join_event.description"), [
           {
-            text: "Cancel",
+            text: t("labels.cta.cancel"),
             style: "cancel",
             onPress: () => reject(),
           },
           {
-            text: "Confirm",
+            text: t("labels.cta.confirm"),
             onPress: async () => {
               try {
                 const response = await joinGoalMutation({ variables: { goalId: event.id } });
