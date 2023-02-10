@@ -61,7 +61,9 @@ const BackgroundWrapper: React.FC<PropsWithChildren> = ({ children }) => {
 
 const Background = memo(({ isFullScreen, isLottie, backgroundImage, style }: IScreen) => {
   if (isFullScreen && !isLottie) {
-    return <Image source={backgroundImage} width={Style.DEVICE_WIDTH} height={Style.DEVICE_HEIGHT} />;
+    return (
+      <Image resizeMode="cover" source={backgroundImage} width={Style.DEVICE_WIDTH} height={Style.DEVICE_HEIGHT} />
+    );
   }
 
   return (
