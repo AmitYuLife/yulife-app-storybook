@@ -29,7 +29,7 @@ interface SvgProps {
 
 function Circular({ checked, activeCheckboxFillColor, strokeColor, testID }: SvgProps) {
   return (
-    <Svg height={Style.adjust(24)} width={Style.adjust(24)} viewBox="0 0 24 24" testID={testID}>
+    <Svg height={Style.adjust(24)} width={Style.adjust(24)} fill="#fff" viewBox="0 0 24 24" testID={testID}>
       {checked ? (
         <>
           <Circle cx={12} cy={12} r={11.5} fill="#fff" stroke={activeCheckboxFillColor} />
