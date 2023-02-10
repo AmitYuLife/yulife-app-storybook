@@ -8,6 +8,7 @@ import { Style, Colours } from "@styles";
 import { Counter } from "@molecules";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 import { STEPS_COUNT, CYCLING_COUNT, MINDFUL_COUNT } from "@ids";
+import { t } from "@locale";
 
 interface IProps {
   steps: number;
@@ -47,7 +48,7 @@ const ActivityList = memo(
                 duration={1200}
                 value={steps}
                 textStyle={counterStyle}
-                textAfterValue={steps === 1 ? "step" : "steps"}
+                textAfterValue={steps === 1 ? t("activity_types.steps.singular") : t("activity_types.steps.plural")}
               />
             </TextTemplate>
           </View>
