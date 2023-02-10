@@ -77,10 +77,10 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   }, [isAvailable, availableForToday, features, events.length]);
 
   const challengeButtonLabel = useMemo(
-    () => (hasNotification
-      ? t("screens.daily.challenge_button.back_to_challenge")
-      : t("screens.daily.challenge_button.take_challenge", { challenges: availableForToday })
-    ),
+    () =>
+      hasNotification
+        ? t("screens.daily.challenge_button.back_to_challenge")
+        : t("screens.daily.challenge_button.take_challenge", { challenges: availableForToday }),
     [hasNotification, availableForToday]
   );
 
@@ -131,11 +131,11 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
       !fitkit.authorised
         ? null
         : Navigation.push(ROUTES.dailySteps, {
-          component: {
-            id: ROUTES.todayEarnings,
-            name: ROUTES.todayEarnings,
-          },
-        }),
+            component: {
+              id: ROUTES.todayEarnings,
+              name: ROUTES.todayEarnings,
+            },
+          }),
     []
   );
 

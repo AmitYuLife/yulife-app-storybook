@@ -13,7 +13,6 @@ interface IProps {
   onLeftIconPress?: () => void;
 }
 
-
 function LeaderboardInfoScreen({ componentId }: IProps) {
   const goBack = useCallback(() => {
     Navigation.pop(componentId);

@@ -5,6 +5,7 @@ import { handleNavigateBack } from "@navigation/utils";
 import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
 import { GenericHeadingAbsolute } from "@organisms";
+import { ALL_PRODUCTS_CONTAINER_VIEW } from "@ids";
 
 interface Props {
   children: Element | Element[];
@@ -15,7 +16,7 @@ export const AllProductsLayout = ({ children }: Props) => {
 
   return (
     <SafeAreaView style={[styles.flex, styles.bgWhite]}>
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.flex}>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.flex} testID={ALL_PRODUCTS_CONTAINER_VIEW}>
         <>
           <View style={styles.topPad} />
           {children}

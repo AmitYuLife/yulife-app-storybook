@@ -21,7 +21,7 @@ export interface LeaderboardPressableTitleProps {
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
-interface IProps extends LeaderboardPressableTitleProps, Partial<ConnectedState> { }
+interface IProps extends LeaderboardPressableTitleProps, Partial<ConnectedState> {}
 
 export function _LeaderboardPressableTitle({ onPressLabel, onPressInfo, name, showDuels }: Partial<IProps>) {
   return (

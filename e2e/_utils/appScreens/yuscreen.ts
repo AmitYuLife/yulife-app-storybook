@@ -6,6 +6,7 @@ import {
 import { scrollUntilTextVisible, swipeFromText, scrollFromID } from "_utils/navigation/scrolling"
 import { EARN_RATE_ROW, PACKAGE_INFO, SUMMARY_SCROLL_VIEW, TEXT_TEMPLATE, VALUE_DESCRIPTION, YUSCREEN_V3, YUSCREEN_V4, BACKGROUND_COLOUR_PRODUCT, CAROUSEL_CARD, ONBOARDING_SCREEN, V4_YUSCREEN } from "@ids"
 import moment from "moment"
+import { BPEEW_USA_1 } from "04_USA/_data"
 
 
 export const {
@@ -17,7 +18,9 @@ export const {
     expectIsVisibleViaText,
     multipleTextVisible,
     textVisibleAtIndex,
-    idVisibleAtIndex
+    idVisibleAtIndex,
+    tapID,
+    tapIDNotBeingVisible
 } = navigation.common
 
 export const onEmptyYuscreen = (customer) => async () => {
@@ -482,7 +485,6 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string)=> as
             await textVisibleAtIndex(paidBy, 2)()
             await textVisibleAtIndex(productYuCoin, 2)()
             await textVisible(availableProducts)()
-
             break;
         case "groupDental":
             await textVisibleAtIndex(yuCoinPower, 0)()
@@ -508,6 +510,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string)=> as
             await textVisible(protectionPowered)()
             await textVisible(earnRewardsCopy)()
             await textVisible(buttonText)()
+            break;
         default:
             break;
     }
