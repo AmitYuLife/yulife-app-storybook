@@ -11,6 +11,12 @@
     "email": "Please enter a valid email address.",
     "password": "Please enter a password."
   },
+  "placeholder": {
+    "first_name": "First name",
+    "last_name": "Last name",
+    "phone_number": "Phone number",
+    "relation": "Relation"
+  },
   "labels": {
     "power": "Power",
     "accessibility": {
@@ -41,7 +47,9 @@
       "give_feedback": "Give feedback",
       "not_really": "Not really",
       "no_thanks": "No thanks",
-      "ask_later": "Ask me later"
+      "ask_later": "Ask me later",
+      "no": "No",
+      "yes": "Yes"
     }
   },
   "meditation": "Meditation",
@@ -732,6 +740,16 @@
         "waiting_user_steps_sync": "Waiting for user’s steps to sync",
         "last_know_step": "Last known step count:",
         "synced": "synced"
+      }
+    },
+    "add_beneficiary": {
+      "title": "Beneficiary Details",
+      "delete_beneficiary_label": "Delete Beneficiary",
+      "confirmation": {
+        "title": "Are you sure you want to delete this beneficiary?"
+      },
+      "default_confirmation": {
+        "title": "Would you like these to be your default beneficiaries for other products going forwards?"
       }
     },
     "push_notifications": {

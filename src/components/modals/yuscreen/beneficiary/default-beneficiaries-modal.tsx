@@ -3,6 +3,7 @@ import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { useBackHandler } from "@hooks";
 import { ConfirmationScreen } from "./confirmation.screen";
+import { t } from "@locale";
 
 interface Props {
   onConfirmPress: () => void;
@@ -35,9 +36,9 @@ export default function AddBeneficiaryModal(props: Props) {
 
   return (
     <ConfirmationScreen
-      title="Would you like these to be your default beneficiaries for other products going forwards?"
-      firstLabel="Yes"
-      secondLabel="No"
+      title={t("modals.add_beneficiary.default_confirmation.title")}
+      firstLabel={t("labels.cta.yes")}
+      secondLabel={t("labels.cta.no")}
       onFirstButtonPress={onYesPress}
       onSecondButtonPress={onNoPress}
     />

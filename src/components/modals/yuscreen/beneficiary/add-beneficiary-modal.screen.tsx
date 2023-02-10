@@ -9,6 +9,7 @@ import { TextField } from "@components/molecules";
 import { ConfirmationScreen } from "./confirmation.screen";
 import { GetProductBeneficiaries_getProductBeneficiaries_beneficiaries as Beneficiary } from "@graphql/_core/schema";
 import { INPUT_BENEFICIARY_DETAIL, BENEFICIARY_CONTINUE } from "@ids";
+import { t } from "@locale";
 
 type ButtonProps = React.ComponentProps<typeof Button>;
 
@@ -69,21 +70,21 @@ export default function AddBeneficiaryModalScreen({
       onChange: (val: string) => {
         setBeneficiary({ ...beneficiary, firstName: val });
       },
-      placeholder: "First name",
+      placeholder: t("placeholder.first_name"),
       value: beneficiary.firstName,
     },
     {
       onChange: (val: string) => {
         setBeneficiary({ ...beneficiary, lastName: val });
       },
-      placeholder: "Last name",
+      placeholder: t("placeholder.last_name"),
       value: beneficiary.lastName,
     },
     {
       onChange: (val: string) => {
         setBeneficiary({ ...beneficiary, phoneNumber: val });
       },
-      placeholder: "Phone number",
+      placeholder: t("placeholder.phone_number"),
       value: beneficiary.phoneNumber,
       type: "PhoneNumber" as "PhoneNumber",
     },
@@ -91,7 +92,7 @@ export default function AddBeneficiaryModalScreen({
       onChange: (val: string) => {
         setBeneficiary({ ...beneficiary, relationship: val });
       },
-      placeholder: "Relation",
+      placeholder: t("placeholder.relation"),
       value: beneficiary.relationship,
     },
   ];
@@ -103,9 +104,9 @@ export default function AddBeneficiaryModalScreen({
   if (deleteBeneficiaryPressed) {
     return (
       <ConfirmationScreen
-        title="Are you sure you want to delete this beneficiary?"
-        firstLabel="Yes"
-        secondLabel="No"
+        title={t("modals.add_beneficiary.confirmation.title")}
+        firstLabel={t("labels.cta.yes")}
+        secondLabel={t("labels.cta.no")}
         onFirstButtonPress={onDeleteConfirmed}
         onSecondButtonPress={() => setDeleteBeneficiaryPressed(false)}
         firstButtonLoading={removeBeneficiaryLoading}
@@ -125,7 +126,7 @@ export default function AddBeneficiaryModalScreen({
         >
           <View style={styles.contentWrapper}>
             <Text style={styles.heading} bold={true}>
-              Beneficiary Details
+              {t("modals.add_beneficiary.title")}
             </Text>
             {inputs.map((item, index) => (
               <View onLayout={setLayout(index)} key={index}>
@@ -139,17 +140,17 @@ export default function AddBeneficiaryModalScreen({
               </View>
             ))}
 
-            {existingBeneficiary && (
+            {!existingBeneficiary ? null : (
               <LinkButton
                 wrapperStyle={styles.deleteButtonWrapper}
-                label="Delete Beneficiary"
+                label={t("modals.add_beneficiary.delete_beneficiary_label")}
                 onPress={() => setDeleteBeneficiaryPressed(true)}
               />
             )}
           </View>
           <View style={styles.continueButtonMainWrapper}>
             <Button
-              label="Continue"
+              label={t("labels.cta.continue")}
               onPress={onPressContinue}
               disabled={!allFieldsValid}
               wrapperStyle={styles.continueButtonWrapper}
