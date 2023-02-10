@@ -53,7 +53,9 @@
       "no_thanks": "No thanks",
       "ask_later": "Ask me later",
       "no": "No",
-      "yes": "Yes"
+      "yes": "Yes",
+      "open": "Open",
+      "use": "Use"
     }
   },
   "meditation": "Meditation",
@@ -595,6 +597,7 @@
       }
     },
     "fiit_media_list": {
+      "title": "%{title} classes",
       "startChallengeButtonLabel": "Start class",
       "description": "Free classes powered by"
     },

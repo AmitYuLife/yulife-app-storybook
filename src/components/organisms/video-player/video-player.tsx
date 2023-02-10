@@ -168,7 +168,7 @@ const VideoPlayer = ({
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, [state.musicControlMounted, state.showFocusScreen]);
+  }, [state.musicControlMounted, state.showFocusScreen, state.isPaused]);
 
   const onProgress = useCallback(
     ({ currentTime }: OnProgressData) => {
@@ -190,6 +190,7 @@ const VideoPlayer = ({
 
   const onButtonAction = useCallback(() => {
     if (state.showFocusScreen) {
+      handleFocusScreen();
       return;
     }
 
@@ -309,7 +310,7 @@ const VideoPlayer = ({
   );
 
   return (
-    <>
+    <View style={styles.wrapper}>
       <PressableWithDelay onPress={handleFocusScreen} style={styles.container} testID={VIDEO_PLAYER}>
         <Video
           ref={playerRef}
@@ -389,37 +390,30 @@ const VideoPlayer = ({
               </View>
             )}
 
-            <Animated.View
-              style={[
-                orientation === "landscape" ? styles.progressBarContainerLandscape : styles.progressBarContainer,
-                { opacity },
-              ]}
-              testID={VIDEO_PROGRESS_BAR}
-            >
-              <View style={styles.currentProgress}>
-                <VideoPlayerTimer textType="l2b" time={state.currentProgressInMilliSeconds} colour={themeColour} />
-              </View>
-              <View
-                style={[
-                  orientation === "landscape" ? styles.progressBarLandscape : styles.progressBar,
-                  { backgroundColor: themeColour },
-                ]}
-              >
-                <View
-                  style={[
-                    styles.currentProgressBar,
-                    {
-                      width:
-                        `${Math.round((state.currentProgressInMilliSeconds / state.durationInMilliSeconds) * 100)}%` ||
-                        0,
-                    },
-                  ]}
-                />
-              </View>
-              <View style={styles.duration}>
-                <VideoPlayerTimer textType="l2b" time={state.durationInMilliSeconds} colour={themeColour} />
-              </View>
-            </Animated.View>
+            {orientation === "landscape" ? null : (
+              <Animated.View style={[styles.progressBarContainer, { opacity }]} testID={VIDEO_PROGRESS_BAR}>
+                <View style={styles.currentProgress}>
+                  <VideoPlayerTimer textType="l2b" time={state.currentProgressInMilliSeconds} colour={themeColour} />
+                </View>
+                <View style={[styles.progressBar, { backgroundColor: themeColour }]}>
+                  <View
+                    style={[
+                      styles.currentProgressBar,
+                      {
+                        width:
+                          `${Math.round(
+                            (state.currentProgressInMilliSeconds / state.durationInMilliSeconds) * 100
+                          )}%` || 0,
+                      },
+                    ]}
+                  />
+                </View>
+                <View style={styles.duration}>
+                  <VideoPlayerTimer textType="l2b" time={state.durationInMilliSeconds} colour={themeColour} />
+                </View>
+              </Animated.View>
+            )}
+
             <Animated.View style={progressTimeLandscape} testID={VIDEO_PLAY_PAUSE_BUTTON(state.isPaused)}>
               {orientation !== "landscape" ? null : (
                 <View style={styles.logoLandscape}>
@@ -476,11 +470,15 @@ const VideoPlayer = ({
           </PressableWithDelay>
         </Animated.View>
       )}
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    backgroundColor: Colours.neutral.black,
+  },
   container: {
     flex: 1,
   },
@@ -498,27 +496,10 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
   },
-
-  progressBarContainerLandscape: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "absolute",
-    alignSelf: "center",
-    height: Style.DEVICE_HEIGHT,
-    width: Style.DEVICE_HEIGHT - 130,
-    right: 0,
-    transform: [{ rotate: "90deg" }],
-  },
   progressBar: {
     height: 6,
     borderRadius: 3,
     width: "74%",
-  },
-  progressBarLandscape: {
-    height: 6,
-    borderRadius: 3,
-    width: "80%",
   },
   currentProgressBar: {
     height: 6,
@@ -582,7 +563,7 @@ const styles = StyleSheet.create({
   },
 
   backgroundVideoLandscape: {
-    width: Style.DEVICE_HEIGHT,
+    width: Style.DEVICE_WIDTH * 1.8,
     height: Style.DEVICE_HEIGHT,
     transform: [{ rotate: "90deg" }],
     alignSelf: "center",
