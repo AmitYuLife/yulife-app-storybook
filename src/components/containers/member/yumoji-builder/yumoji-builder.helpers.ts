@@ -3,6 +3,7 @@ import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import Logger from "@services/logging/logger";
+import { t } from "@locale";
 
 export const showAwardModal = (onPress: () => void, yucoin: number) => {
   showYuModal({
@@ -10,9 +11,9 @@ export const showAwardModal = (onPress: () => void, yucoin: number) => {
       id: MODALS.collectReward,
       name: MODALS.collectReward,
       passProps: {
-        date: "Great work! \nYour Yumoji is ready for adventure.",
+        heading: t("screens.yumoji_builder.award_modal.heading"),
         onPress,
-        ctaLabel: "Done",
+        ctaLabel: t("labels.cta.done"),
         yucoin,
       },
     },
@@ -35,14 +36,14 @@ export const showExitModal = (isBackPressed: MutableRefObject<boolean>) => {
       id: MODALS.generic,
       name: MODALS.generic,
       passProps: {
-        heading: "Exit Yumoji builder?",
-        subheading: "Are you sure you want to exit? You will lose any unsaved changes.",
-        ctaLabel: "Exit",
+        heading: t("screens.yumoji_builder.exit_modal.heading"),
+        subheading: t("screens.yumoji_builder.exit_modal.subheading"),
+        ctaLabel: t("labels.cta.exit"),
         onPress: () => {
           Logger.logMixpanelEvent("avatar_save", { type: "discarded" });
           returnToYuScreen();
         },
-        ctaLabelSecondary: "Keep Editing",
+        ctaLabelSecondary: t("screens.yumoji_builder.exit_modal.cta_label_secondary"),
         onPressSecondary: setInitialState,
         onPressBack: setInitialState,
       },
