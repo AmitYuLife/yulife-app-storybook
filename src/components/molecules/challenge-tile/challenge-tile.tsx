@@ -6,6 +6,7 @@ import { CHALLENGE_TILE, CHALLENGE_REWARD } from "@ids";
 import { Style } from "@styles";
 import { Image, Text } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import { t } from "@locale";
 
 export interface IChallengeTileProps {
   heading?: string;
@@ -56,7 +57,7 @@ const LockedOverlay: FunctionComponent<Partial<Props>> = ({ availableAtLevel }) 
   <View style={styles.lockedOverlay}>
     <RNImage resizeMode="contain" style={styles.lockedImage} source={require("@assets/icons/lock.png")} />
     <Text style={styles.lockedLabel} bold={true}>
-      {`level ${availableAtLevel}`}
+      {t("screens.challenge_list.level_locked", { availableAtLevel })}
     </Text>
   </View>
 );
@@ -91,7 +92,7 @@ const Content: FC<Partial<Props>> = memo(({ heading, duration, reward }) => (
       </View>
       <View style={styles.contentRewardWrapper}>
         <Text style={styles.contentReward} testID={CHALLENGE_REWARD(reward)}>
-          {reward} YuCoin
+          {reward} {t("yu_coin.camel_case")}
         </Text>
       </View>
     </View>
