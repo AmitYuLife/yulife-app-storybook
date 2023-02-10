@@ -3,6 +3,7 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@atoms";
 import styles from "./list-picker.styles";
 import { TEXT_TEMPLATE } from "@ids";
+import { t } from "@locale";
 
 interface IItem {
   label: string;
@@ -34,7 +35,7 @@ const ListPicker: React.FC<IProps> = ({ items, instruction, onPressCancel, close
         </TouchableOpacity>
       ))}
       <TouchableOpacity onPress={onPressCancel ? onPressCancel : closeOverlay} style={styles.cancelWrapper}>
-        <Text style={styles.cancel}>Cancel</Text>
+        <Text style={styles.cancel}>{t("labels.cta.cancel")}</Text>
       </TouchableOpacity>
     </View>
   );

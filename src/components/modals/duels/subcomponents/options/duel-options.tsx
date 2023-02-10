@@ -40,7 +40,7 @@ export default function DuelOptions({
     () =>
       wagers.reduce((acc, { id, yucoin: wagerYuCoin }) => {
         if (userCoins >= wagerYuCoin) {
-          const label = wagerYuCoin === 0 ? `Bragging Rights!` : `${wagerYuCoin} YuCoin`;
+          const label = wagerYuCoin === 0 ? t("modals.duels.duel_options.bragging_rights_option") : `${wagerYuCoin} ${t("yu_coin.camel_case")}`;
 
           acc.push({
             id,
@@ -93,7 +93,7 @@ export default function DuelOptions({
               disabled={yucoin === null || isLoading}
               isLoading={isLoading}
               onPress={submitDuel}
-              label="Send duel request"
+              label={t("modals.duels.duel_options.button_label")}
             />
           </View>
           {loading ? (
@@ -112,7 +112,7 @@ export default function DuelOptions({
             toggleOverlay();
           },
         }));
-        return <ListPicker onPressCancel={toggleOverlay} instruction="What are you duelling for?" items={items} />;
+        return <ListPicker onPressCancel={toggleOverlay} instruction={t("modals.duels.duel_options.instruction")} items={items} />;
       }}
     />
   );

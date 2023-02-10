@@ -30,6 +30,9 @@
       "ok": "Ok",
       "great": "Great!",
       "continue": "Continue",
+      "confirm": "Confirm",
+      "accept": "Accept",
+      "decline": "Decline",
       "go_back": "Go back",
       "lets_go": "Let's go",
       "skip": "skip",
@@ -52,6 +55,7 @@
   "setup_tutorial": "Set up tutorial",
   "yu_coin": {
     "lower_case": "yucoin",
+    "camel_case": "YuCoin",
     "amount": "%{amount} YuCoin"
   },
   "activity_types": {
@@ -705,7 +709,10 @@
         "header_2": "to a duel. Whoever registers the most steps during the duel, wins!",
         "subheader_1": "The duel starts tomorrow and lasts all day. Results announcing the winner will appear the next morning.",
         "subheader_2": "What are you duelling for?",
-        "colleague": "a colleague"
+        "colleague": "a colleague",
+        "button_label": "Send duel request",
+        "bragging_rights_option": "Bragging Rights",
+        "instruction": "What are you duelling for?"
       },
       "search": {
         "item_duel": "Duel >",
@@ -732,6 +739,31 @@
         "waiting_user_steps_sync": "Waiting for user’s steps to sync",
         "last_know_step": "Last known step count:",
         "synced": "synced"
+      },
+      "duel_invite": {
+        "not_enought_yucoin": {
+          "heading": "Not enough YuCoin",
+          "subheading": "Do more challenges and come back later!"
+        },
+        "confirm_invitation": {
+          "heading": "Confirm invitation?",
+          "subheading": "If accepted, it will be listed in your upcoming duels and begin tomorrow"
+        }
+      },
+      "duel_respond": {
+        "heading": "Are you sure?",
+        "subheading": "Remember, if you accept this duel, you could lose %{yucoin} YuCoin. Are you happy to proceed?",
+        "subheading_no_yucoin": "This duel is just for bragging rights, so you won't win or lose any YuCoin. Are you happy to proceed?"
+      },
+      "duel_response_intro": {
+        "collegue": "A colleague",
+        "yucoin_heading": "has invited you to a 1-day duel for %{yucoin}!",
+        "heading": "has invited you to a 1-day duel!",
+        "bragging_rights": "bragging rights"
+      },
+      "duel_intro": {
+        "heading": "The matchup:",
+        "button": "Set the duel"
       }
     },
     "push_notifications": {
