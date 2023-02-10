@@ -44,11 +44,17 @@ function Circular({ checked, activeCheckboxFillColor, strokeColor, testID }: Svg
 
 function Cubic({ checked, activeCheckboxFillColor, strokeColor, testID }: SvgProps) {
   return (
-    <Svg height={Style.adjust(24)} width={Style.adjust(24)} viewBox="0 0 24 24" testID={testID}>
+    <Svg height={Style.adjust(24)} width={Style.adjust(24)} fill="#fff" viewBox="0 0 24 24" testID={testID}>
       {checked ? (
         <>
           <Rect width={24} height={24} rx={4} fill={activeCheckboxFillColor} />
-          <Path d="m18 8-8.337 8L6 12.4" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
+          <Path
+            d="m18 8-8.337 8L6 12.4"
+            stroke="white"
+            fill={activeCheckboxFillColor}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </>
       ) : (
         <Rect x={0.5} y={0.5} width={23} height={23} rx={3.5} stroke={strokeColor} />
