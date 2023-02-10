@@ -5,6 +5,7 @@ import { Style } from "@styles";
 import { GoogleFitIcon } from "@atoms/icon/google-fit-icon";
 import { SamsungHealthIcon } from "@atoms/icon/samsung-health-icon";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
+import { t } from "@locale";
 
 interface ConnectCheckListProps {
   setSelectedFitkitPlatform: (platform: FitKitHealthTrackingPlatform) => void;
@@ -23,29 +24,29 @@ const ConnectCheckList = (props: ConnectCheckListProps) => {
     () => ({
       samsung: [
         {
-          label: "Steps",
+          label: t("modals.switch_to_samsung_health.checklist_info_card.list.label_1"),
           checked: true,
         },
         {
-          label: "Meditation",
+          label: t("modals.switch_to_samsung_health.checklist_info_card.list.label_2"),
           checked: false,
         },
         {
-          label: "3rd party apps",
+          label: t("modals.switch_to_samsung_health.checklist_info_card.list.label_3"),
           checked: false,
         },
       ],
       googleFit: [
         {
-          label: "Steps",
+          label: t("modals.switch_to_google_fit.checklist_info_card.list.label_1"),
           checked: true,
         },
         {
-          label: "Meditation",
+          label: t("modals.switch_to_google_fit.checklist_info_card.list.label_2"),
           checked: true,
         },
         {
-          label: "3rd party apps",
+          label: t("modals.switch_to_google_fit.checklist_info_card.list.label_3"),
           checked: true,
         },
       ],
@@ -57,8 +58,8 @@ const ConnectCheckList = (props: ConnectCheckListProps) => {
       <View style={styles.samsungWrapper}>
         <ChecklistInfoCard
           icon={<SamsungHealthIcon />}
-          title="Samsung Health"
-          description="Does not support all activities for full experience & rewards"
+          title={t("modals.switch_to_samsung_health.checklist_info_card.title")}
+          description={t("modals.switch_to_samsung_health.checklist_info_card.description")}
           isSelected={selectedPackage === "SamsungHealth"}
           onPress={() => onSelect("SamsungHealth")}
           list={list.samsung}
@@ -66,8 +67,8 @@ const ConnectCheckList = (props: ConnectCheckListProps) => {
       </View>
       <ChecklistInfoCard
         icon={<GoogleFitIcon />}
-        title="Google Fit"
-        description="Supports all activities for the full experience & rewards"
+        title={t("modals.switch_to_google_fit.checklist_info_card.title")}
+        description={t("modals.switch_to_google_fit.checklist_info_card.description")}
         isSelected={selectedPackage === "GoogleFit"}
         onPress={() => onSelect("GoogleFit")}
         list={list.googleFit}
