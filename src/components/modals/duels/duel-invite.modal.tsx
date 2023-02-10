@@ -15,6 +15,7 @@ import { ROUTES } from "@navigation/constants";
 import { GQL_QUERY_GET_DUELLER_DETAILS } from "@graphql/duels/getDuellerDetails";
 import { GQL_QUERY_GET_DUEL_INVITATIONS } from "@graphql/duels/getDuelInvitations.gql";
 import { useBackHandler } from "@hooks";
+import { t } from "@locale";
 
 const STEPS = {
   INTRO: {
@@ -32,9 +33,11 @@ const STEPS = {
 };
 
 const showInviterNotEnoughYucoinAlert = (componentId: string) => {
-  Alert.alert("Not enough YuCoin", "Do more challenges and come back later!", [
-    { text: "Got it", onPress: () => Navigation.dismissModal(componentId) },
-  ]);
+  Alert.alert(
+    t("modals.duels.duel_invite.not_enought_yucoin.heading"),
+    t("modals.duels.duel_invite.not_enought_yucoin.subheading"),
+    [{ text: t("labels.cta.got_it"), onPress: () => Navigation.dismissModal(componentId) }]
+  );
 };
 
 interface IProps {
@@ -116,16 +119,20 @@ const DuelInviteModal: React.FC<IProps> = ({
       return;
     }
 
-    Alert.alert("Confirm invitation?", "If accepted, it will be listed in your upcoming duels and begin tomorrow", [
-      {
-        text: "Cancel",
-        style: "cancel",
-      },
-      {
-        text: "Confirm",
-        onPress: onSubmit,
-      },
-    ]);
+    Alert.alert(
+      t("modals.duels.duel_invite.confirm_invitation.heading"),
+      t("modals.duels.duel_invite.confirm_invitation.subheading"),
+      [
+        {
+          text: t("labels.cta.cancel"),
+          style: "cancel",
+        },
+        {
+          text: t("labels.cta.confirm"),
+          onPress: onSubmit,
+        },
+      ]
+    );
   };
 
   const componentProps: DuelStepProps = {

@@ -20,6 +20,7 @@ import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { filterRefetchQueries } from "@graphql/_core/filterRefetchQueries";
 import { Navigation } from "@navigation/main";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { t } from "@locale";
 
 interface IProps {
   duelId: string;
@@ -103,17 +104,17 @@ const DuelRespondModal: React.FC<IProps> = ({
   const submitDuel = async () => {
     const description =
       yucoin === 0
-        ? "This duel is just for bragging rights, so you won't win or lose any YuCoin. Are you happy to proceed?"
-        : `Remember, if you accept this duel, you could lose ${yucoin} YuCoin. Are you happy to proceed?`;
+        ? t("modals.duels.duel_respond.subheading_no_yucoin")
+        : t("modals.duels.duel_respond.subheading", { yucoin });
 
-    Alert.alert(`Are you sure?`, description, [
+    Alert.alert(t("modals.duels.duel_respond.heading"), description, [
       {
         style: "cancel",
-        text: "Cancel",
+        text: t("labels.cta.cancel"),
       },
       {
         onPress: handlePress(true),
-        text: "Confirm",
+        text: t("labels.cta.confirm"),
       },
     ]);
   };
