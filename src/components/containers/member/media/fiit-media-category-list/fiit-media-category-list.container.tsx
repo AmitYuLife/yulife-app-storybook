@@ -2,7 +2,10 @@ import React, { useCallback, memo, useMemo, useState } from "react";
 import { Platform } from "react-native";
 import { Navigation } from "@navigation/main";
 import { FiitMediaCategoryListScreen } from "@components/screens";
-import { GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent as IInternalContent } from "@graphql/_core/schema";
+import {
+  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent as IInternalContent,
+  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
+} from "@graphql/_core/schema";
 import { MODALS, ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { useBackHandler } from "@hooks";
@@ -12,6 +15,8 @@ import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { handleLinkPress } from "@services/app-link";
 import { IITem } from "@organisms/media-list-items/media-list-items";
+import { updateChallengeAppButton } from "@redux/levels/levels.actions";
+import { useDispatch } from "react-redux";
 
 interface IProps {
   componentId: string;
@@ -33,6 +38,7 @@ const FiitMediaCategoryListContainer = ({
 }: IProps) => {
   const [otherAppLoading, setOtherAppLoading] = useState("");
   const { authoriseFitKitTypes } = useFitKit();
+  const dispatch = useDispatch();
   const onLeftIconPress = useCallback(() => Navigation.popTo(ROUTES.questsChallengesList), []);
   const onRightIconPress = useCallback(() => Navigation.popTo(ROUTES.quests), []);
 
@@ -54,31 +60,35 @@ const FiitMediaCategoryListContainer = ({
     }
   }, []);
 
-  const handleFiitApp = useCallback(async () => {
-    const activityFromGoogleFitAuthorised = await RNFitKit.isAuthorised({
-      read: [],
-      platform: "GoogleFit",
-    });
+  const handleFiitApp = useCallback(
+    async (_: string, button?: IButton) => {
+      const activityFromGoogleFitAuthorised = await RNFitKit.isAuthorised({
+        read: [],
+        platform: "GoogleFit",
+      });
 
-    if (!activityFromGoogleFitAuthorised && Platform.OS === "android") {
-      return await showYuModal({
-        component: {
-          id: MODALS.switchToGoogleFit,
-          name: MODALS.switchToGoogleFit,
-          passProps: {
-            onConnect: async () => {
-              await authoriseFitKitTypes(fitKitTypes);
-            },
-            onConnected: async () => {
-              await createChallengeUsingFiitApp();
+      if (!activityFromGoogleFitAuthorised && Platform.OS === "android") {
+        return await showYuModal({
+          component: {
+            id: MODALS.switchToGoogleFit,
+            name: MODALS.switchToGoogleFit,
+            passProps: {
+              onConnect: async () => {
+                await authoriseFitKitTypes(fitKitTypes);
+              },
+              onConnected: async () => {
+                await createChallengeUsingFiitApp();
+              },
             },
           },
-        },
-      });
-    }
+        });
+      }
 
-    await createChallengeUsingFiitApp();
-  }, [createChallengeUsingFiitApp]);
+      dispatch(updateChallengeAppButton(button));
+      await createChallengeUsingFiitApp();
+    },
+    [createChallengeUsingFiitApp]
+  );
 
   const onItemPress = useCallback((item: IInternalContent) => {
     Navigation.push(ROUTES.fiitMediaCategoryList, {

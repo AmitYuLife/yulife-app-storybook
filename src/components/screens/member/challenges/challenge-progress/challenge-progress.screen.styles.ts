@@ -47,4 +47,7 @@ export default StyleSheet.create({
     marginRight: Style.adjust(35),
     bottom: Style.adjust(20),
   } as ViewStyle,
+  buttonLogo: {
+    marginBottom: 3,
+  } as ViewStyle,
 });

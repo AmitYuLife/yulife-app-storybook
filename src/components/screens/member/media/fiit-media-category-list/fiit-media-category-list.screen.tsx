@@ -16,7 +16,7 @@ interface IProps {
   items: Partial<IITem[]>;
   onLeftIconPress: () => void;
   onRightIconPress: () => void;
-  handleFiitApp: () => void;
+  handleFiitApp: (appName: string, button?: IButtons) => void;
   logo: Source;
   buttons: IButtons[];
   onItemPress: (item: Partial<IITem>) => void;

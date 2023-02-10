@@ -68,7 +68,7 @@ const FiitMediaListContainer = ({ levelSlotId, contentMediaTags, title, logo, re
 
   return (
     <FiitMediaListScreen
-      title={title}
+      title={t("screens.fiit_media_list.title", { title })}
       description={t("screens.fiit_media_list.description")}
       items={formattedVideos}
       logo={logo}
