@@ -356,7 +356,11 @@
       "title": "Activity permissions",
       "description": "Status and management of account and system level permissions.",
       "info_message": "Manage your permissions to get fully rewarded with YuCoin for your activities.",
-      "switch_to_google_fit": "Samsung Health does not currently sync all the data we need in order to reward you for your activities. To sync mindful minutes, cycling & 3rd party apps, please switch to Google Fit.",
+      "switch_to_google_fit": {
+        "title": "Google Fit",
+        "description": "Samsung Health does not currently sync all the data we need in order to reward you for your activities. To sync mindful minutes, cycling & 3rd party apps, please switch to Google Fit.",
+        "button_label": "Use Google Fit"
+      },
       "heading": "Permissions",
       "status_unknown": "**Status: Unknown**\nWe can not determine the status of the permission. Probably all is in working order.",
       "status_disconnected": "**Status: Disconnected**\nTo reconnect check your phone settings. Please [visit our FAQ](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) for additional help.",
@@ -693,6 +697,20 @@
         "heading": "you're offline",
         "subheading": "check your internet connection"
       }
+    },
+    "switch_to_google_fit": {
+      "heading": "Heads up!",
+      "subheading": "Samsung Health does not currently sync the data we need in order to reward you for your session. To sync mindful minutes & 3rd party apps, please switch to Google Fit.",
+      "checklist_info_card": {
+        "title": "Google Fit",
+        "description": "Supports all activities for the full experience & rewards",
+        "list": {
+          "label_1": "Steps",
+          "label_2": "Meditation",
+          "label_3": "3rd party apps"
+        }
+      },
+      "button_label": "Switch to Google Fit"
     },
     "active_buffs": {
       "tap_anywhere": "Tap anywhere to close"

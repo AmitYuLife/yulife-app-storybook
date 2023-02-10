@@ -14,17 +14,17 @@ const SwitchGoogleFitSection = ({ connectGoogleFit }: IProps) => {
   return (
     <>
       <View style={styles.settingsHeader}>
-        <SettingsHeader title={"Google Fit"} />
+        <SettingsHeader title={t("screens.permissions.switch_to_google_fit.title")} />
       </View>
       <View style={styles.googleFitIconWrapper}>
         <GoogleFitIcon height={80} width={80} />
       </View>
       <View style={styles.switchGoogleFitWrapper}>
-        <TextTemplate type="b2">{t("screens.permissions.switch_to_google_fit")}</TextTemplate>
+        <TextTemplate type="b2">{t("screens.permissions.switch_to_google_fit.description")}</TextTemplate>
       </View>
       <Button
         size="Fill"
-        label="Use Google Fit"
+        label={t("screens.permissions.switch_to_google_fit.button_label")}
         wrapperStyle={styles.googleFitActionButton}
         onPress={connectGoogleFit}
       />
