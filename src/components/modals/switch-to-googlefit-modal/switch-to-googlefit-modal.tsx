@@ -10,21 +10,7 @@ import { Navigation } from "@navigation/main";
 import { useBackHandler } from "@hooks";
 import { androidAlertCopy } from "@components/screens/onboarding/fitkit-connect/copy";
 import { openGoogleFit } from "@services/app-link";
-
-const list = [
-  {
-    label: "Steps",
-    checked: true,
-  },
-  {
-    label: "Meditation",
-    checked: true,
-  },
-  {
-    label: "3rd party apps",
-    checked: true,
-  },
-];
+import { t } from "@locale";
 
 interface SwitchToGoogleFitModalProps {
   onConnect: () => boolean;
@@ -69,26 +55,38 @@ const SwitchToGoogleFitModal = (props: SwitchToGoogleFitModalProps) => {
       <View style={styles.wrapper}>
         <Wrapper alignItems="center">
           <View style={styles.title}>
-            <TextTemplate type="h1">Heads up!</TextTemplate>
+            <TextTemplate type="h1">{t("modals.switch_to_google_fit.heading")}</TextTemplate>
           </View>
           <View style={styles.message}>
             <TextTemplate type="b2" textAlign="center">
-              Samsung Health does not currently sync the data we need in order to reward you for your session. To sync
-              mindful minutes & 3rd party apps, please switch to Google Fit.
+              {t("modals.switch_to_google_fit.subheading")}
             </TextTemplate>
           </View>
 
           <ChecklistInfoCard
             icon={<GoogleFitIcon />}
-            title="Google Fit"
-            description="Supports all activities for the full experience & rewards"
+            title={t("modals.switch_to_google_fit.checklist_info_card.title")}
+            description={t("modals.switch_to_google_fit.checklist_info_card.description")}
             isSelected={true}
             selectedStyle={styles.selectedStyle}
-            list={list}
+            list={[
+              {
+                label: t("modals.switch_to_google_fit.checklist_info_card.list.label_1"),
+                checked: true,
+              },
+              {
+                label: t("modals.switch_to_google_fit.checklist_info_card.list.label_2"),
+                checked: true,
+              },
+              {
+                label: t("modals.switch_to_google_fit.checklist_info_card.list.label_3"),
+                checked: true,
+              },
+            ]}
           />
 
           <Button
-            label="Switch to Google Fit"
+            label={t("modals.switch_to_google_fit.button_label")}
             onPress={onGoogleFitConnect}
             wrapperStyle={styles.connectButtonWrapper}
           />
