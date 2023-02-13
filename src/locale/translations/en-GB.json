@@ -232,6 +232,27 @@
       }
     },
     "daily": {
+      "fitkit": {
+        "unavailable": {
+          "heading": "device not supported",
+          "subheading_android": "your device requires Google Play Services in order to use this app.",
+          "subheading_ios": "your device requires Apple Healthkit in order to use this app."
+        },
+        "unauthorised": {
+          "ios": {
+            "post_prompt_message": "We haven’t received any data from Apple Health today. Please check back in a few minutes or tap below to troubleshoot.",
+            "post_prompt_button_label": "Get help connecting",
+            "first_time_message": "In order to reward you for your daily activity we will need to connect to Apple Health. Tap below to get started!",
+            "motion_unauthorised_message": "In order to get rewarded for your steps and mindfulness, please update your Motion and Fitness permissions.",
+            "motion_unauthorised_button_label": "Open permissions"
+          },
+          "android": {
+            "message": "In order to reward you for your daily activity we will need to connect to Google Fit. Tap below to get started!",
+            "is_samsung_message": "In order to reward you for your daily activity we will need to connect to a Health app. Tap below to get started!"
+          },
+          "button_label": "Yes, let's connect"
+        }
+      },
       "today_yu_coin": {
         "accessibility_label": "Today's yucoin"
       },

@@ -1,19 +1,6 @@
+import { t } from "@locale";
 import { isSamsung } from "@utils";
 import { Platform } from "react-native";
-
-const androidMessage = isSamsung()
-  ? "In order to reward you for your daily activity we will need to connect to a Health app. Tap below to get started!"
-  : "In order to reward you for your daily activity we will need to connect to Google Fit. Tap below to get started!";
-
-const iOSFirstTimeMessage =
-  "In order to reward you for your daily activity we will need to connect to Apple Health. Tap below to get started!";
-const iOSMotionUnauthorisedMessage =
-  "In order to get rewarded for your steps and mindfulness, please update your Motion and Fitness permissions.";
-const buttonLabel = "Yes, let's connect";
-const iOSMotionUnauthorisedButtonLabel = "Open permissions";
-const iOSPostPromptMessage =
-  "We haven’t received any data from Apple Health today. Please check back in a few minutes or tap below to troubleshoot.";
-const postPromptIOSButtonLabel = "Get help connecting";
 
 interface IGetFitKitNotAuthorizedCopy {
   hasRequestedPermission: boolean;
@@ -24,6 +11,20 @@ export const getFitKitNotAuthorizedCopy = ({
   hasRequestedPermission,
   isIosMotionAuthorised,
 }: IGetFitKitNotAuthorizedCopy) => {
+
+
+  const androidMessage = isSamsung()
+    ? t("screens.daily.fitkit.unauthorised.android.is_samsung_message")
+    : t("screens.daily.fitkit.unauthorised.android.message");
+
+  const iOSFirstTimeMessage = t("screens.daily.fitkit.unauthorised.ios.first_time_message");
+  const iOSMotionUnauthorisedMessage = t("screens.daily.fitkit.unauthorised.ios.motion_unauthorised_message");
+  const buttonLabel = t("screens.daily.fitkit.unauthorised.button_label");
+  const iOSMotionUnauthorisedButtonLabel = t("screens.daily.fitkit.unauthorised.ios.motion_unauthorised_button_label");
+  const iOSPostPromptMessage = t("screens.daily.fitkit.unauthorised.ios.post_prompt_message");
+  const postPromptIOSButtonLabel = t("screens.daily.fitkit.unauthorised.ios.post_prompt_button_label");
+
+
   if (Platform.OS === "ios" && !isIosMotionAuthorised) {
     return {
       buttonLabel: iOSMotionUnauthorisedButtonLabel,
