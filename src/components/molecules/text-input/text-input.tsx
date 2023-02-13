@@ -7,13 +7,14 @@ import {
   getColour,
   getIcon,
   getKeyboardType,
-  getPlaceholder,
   getStyle,
   getValue,
   getWrapperStyle,
+  IGetPlaceholder,
 } from "./text-input.helpers";
 import styles from "./text-input.styles";
 import { TextInputTypes, TEXT_INPUT_TYPES } from "./text-input.types";
+import { t } from "@locale";
 
 export interface IProps {
   value: string;
@@ -91,7 +92,7 @@ class TextInput extends React.PureComponent<IProps> {
               value={getValue({ value, type })}
               autoCapitalize="none"
               autoCorrect={false}
-              placeholder={placeholder || getPlaceholder({ type, placeholder })}
+              placeholder={placeholder || this.getPlaceholder({ type, placeholder })}
               style={getStyle({ type })}
               underlineColorAndroid="transparent"
               secureTextEntry={type === TEXT_INPUT_TYPES.PASSWORD}
@@ -109,6 +110,24 @@ class TextInput extends React.PureComponent<IProps> {
     return () => {
       this.setState({ isFocused });
     };
+  };
+
+  private getPlaceholder = ({ type, placeholder }: IGetPlaceholder) => {
+    switch (type) {
+      case "Card":
+        return t("placeholder.account_number");
+      case "Email":
+        return t("placeholder.email");
+      case "Password":
+        return t("placeholder.password");
+      case "Text":
+        return placeholder;
+      case "Board":
+        return t("placeholder.group_name");
+      case "PasswordReveal":
+      default:
+        return "";
+    }
   };
 }
 

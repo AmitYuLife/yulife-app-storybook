@@ -15,7 +15,11 @@
     "first_name": "First name",
     "last_name": "Last name",
     "phone_number": "Phone number",
-    "relation": "Relation"
+    "relation": "Relation",
+    "email": "Email",
+    "password": "Password",
+    "group_name": "Group name",
+    "account_number": "Account number"
   },
   "labels": {
     "power": "Power",

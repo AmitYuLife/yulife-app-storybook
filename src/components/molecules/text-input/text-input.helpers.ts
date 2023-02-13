@@ -74,28 +74,10 @@ export const getKeyboardType = (type: TextInputTypes) => {
   }
 };
 
-interface IGetPlaceholder {
+export interface IGetPlaceholder {
   type: TextInputTypes;
   placeholder: string;
 }
-
-export const getPlaceholder = ({ type, placeholder }: IGetPlaceholder) => {
-  switch (type) {
-    case "Card":
-      return "Account number";
-    case "Email":
-      return "Email";
-    case "Password":
-      return "Password";
-    case "Text":
-      return placeholder;
-    case "Board":
-      return "Group name";
-    case "PasswordReveal":
-    default:
-      return "";
-  }
-};
 
 interface IGetValue {
   value: string;
@@ -106,12 +88,12 @@ export const getValue = ({ value, type }: IGetValue) => {
   return type !== "Card" && type !== "number"
     ? value
     : /* tslint:disable-next-line */
-      value
-        .split(" ")
-        .join("")
-        .split("")
-        .map((char, index) => (index !== 0 && index % 4 === 0 ? ` ${char}` : char))
-        .join("");
+    value
+      .split(" ")
+      .join("")
+      .split("")
+      .map((char, index) => (index !== 0 && index % 4 === 0 ? ` ${char}` : char))
+      .join("");
 };
 
 interface IGetStyle {
