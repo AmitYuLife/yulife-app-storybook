@@ -4,19 +4,13 @@ import { LeaderboardConsentPrompt } from "../leaderboard-consent-prompt/leaderbo
 interface ConsentGuardProps {
   setConsent: () => void;
   currentUserId: string;
-  leaderboardName: string;
   hasConsent: boolean;
   children: ReactComponentElement<any>;
 }
 
-const ConsentGuard: FC<ConsentGuardProps> = ({
-  leaderboardName,
-  hasConsent,
-  setConsent,
-  children,
-}: ConsentGuardProps) => {
+const ConsentGuard: FC<ConsentGuardProps> = ({ hasConsent, setConsent, children }: ConsentGuardProps) => {
   if (!hasConsent) {
-    return <LeaderboardConsentPrompt setConsent={setConsent} leaderboardName={leaderboardName} />;
+    return <LeaderboardConsentPrompt setConsent={setConsent} />;
   }
 
   return children;

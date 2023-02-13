@@ -22,6 +22,8 @@ export const GQL_QUERY_GET_CURRENT_USER_LEADERBOARD = gql`
       leaderboards {
         leaderboardId
         name
+        metric
+        days
         consent
         hasAccepted
         inviteFrom

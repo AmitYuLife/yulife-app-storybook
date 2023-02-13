@@ -3,15 +3,13 @@ import { LeaderboardPressableTitle, LeaderboardPressableTitleProps } from "./pre
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { Style } from "@styles";
 
-type LeaderboardTitleProps = {
-  onPressInfo: () => void;
-} & LeaderboardPressableTitleProps;
+type LeaderboardTitleProps = Omit<LeaderboardPressableTitleProps, "activeLeaderboard">;
 
 export function LeaderboardTitle(props: LeaderboardTitleProps) {
-  const { onPressInfo, onPressLabel, name } = props;
+  const { onPressInfo, onPressLabel } = props;
   return (
     <View style={styles.wrapper}>
-      <LeaderboardPressableTitle name={name} onPressLabel={onPressLabel} onPressInfo={onPressInfo} />
+      <LeaderboardPressableTitle onPressLabel={onPressLabel} onPressInfo={onPressInfo} />
     </View>
   );
 }

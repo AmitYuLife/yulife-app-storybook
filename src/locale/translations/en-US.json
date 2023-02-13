@@ -517,10 +517,27 @@
       }
     },
     "leaderboard": {
+      "metrics": {
+        "coins": {
+          "singular": "coin",
+          "plural": "coins"
+        },
+        "steps": {
+          "singular": "step",
+          "plural": "steps"
+        },
+        "distance": {
+          "plural": "cycling"
+        },
+        "meditation": {
+          "singular": "mindful min",
+          "plural": "mindful mins"
+        }
+      },
       "podium": {
         "duels_button": "Duels",
-        "steps": "30 day steps",
-        "info_copy": "The leaderboards are set to a 30 day rolling system. That means they show your step history for just the last 30 days.\n\nTo keep your steps up, aim to do more than you did 30 days ago!",
+        "steps": "%{days} day %{metric}",
+        "info_copy": "The leaderboards are set to a %{days} day rolling system. That means they show your %{metric} history for just the last %{days} days.\n\nTo get higher up the leaderboard, aim to do more than you did %{days} days ago!",
         "info_heading": "About Leaderboards"
       },
       "list": {
@@ -542,7 +559,7 @@
         "subheading": "This means you won’t be able to access this leaderboard."
       },
       "invites": {
-        "subheading": "By turning on a leaderboard, you are opting in to share your most recent 30 day step data with other members of the leaderboard. This can be toggled off at any time."
+        "subheading": "By turning on a leaderboard, you are opting in to share your most recent %{days} day %{metric} data with other members of the leaderboard. This can be toggled off at any time."
       }
     },
     "fitkit_connect": {

@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -182,6 +182,8 @@ export interface User_todayActivity {
 export interface User_leaderboards {
   leaderboardId: string | null;
   name: string | null;
+  metric: string | null;
+  days: number | null;
   consent: boolean | null;
   hasAccepted: boolean | null;
   inviteFrom: string | null;

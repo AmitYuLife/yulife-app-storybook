@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -22,6 +22,7 @@ export interface GetLeaderboard_getLeaderboard {
   lastName: string | null;
   coins: number | null;
   steps: number | null;
+  value: number | null;
   userId: string | null;
   isTarget: boolean | null;
   position: number | null;

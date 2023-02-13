@@ -147,6 +147,8 @@ export const GQL_FRAGMENT_USER = gql`
     leaderboards {
       leaderboardId
       name
+      metric
+      days
       consent
       hasAccepted
       inviteFrom

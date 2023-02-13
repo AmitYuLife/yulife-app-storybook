@@ -16,7 +16,6 @@ import { LEADERBOARD_SCROLL_LIST } from "@ids";
 
 export interface LeaderboardContentContainerProps {
   leaderboardItems: GetLeaderboard["getLeaderboard"];
-  leaderboardName: string;
   currentUserId: string;
   isRefetching: boolean;
   isLoading: boolean;
@@ -28,7 +27,6 @@ const FlashList = Animated.createAnimatedComponent(_FlashList);
 
 export const LeaderboardContentContainer = ({
   leaderboardItems,
-  leaderboardName,
   currentUserId,
   onRefetch,
   openModal,
@@ -61,7 +59,6 @@ export const LeaderboardContentContainer = ({
   const list = resToList({
     leaderboardItems,
     currentUserId,
-    leaderboardName,
     isRefetching,
     scrollValue,
     isLoading,
@@ -109,7 +106,7 @@ export const LeaderboardContentContainer = ({
         scrollEventThrottle={16}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], { useNativeDriver: true })}
       />
-      <IOSPodium scrollValue={scrollValue} leaderboardItems={leaderboardItems} leaderboardName={leaderboardName} />
+      <IOSPodium scrollValue={scrollValue} leaderboardItems={leaderboardItems} />
       <FloatingRankItem
         onPress={handlePressFloater}
         item={myLeaderboardItem}
@@ -121,7 +118,6 @@ export const LeaderboardContentContainer = ({
 };
 
 function IOSPodium({
-  leaderboardName,
   leaderboardItems,
   scrollValue,
 }: Partial<LeaderboardContentContainerProps> & { scrollValue: Animated.Value }) {
@@ -131,11 +127,7 @@ function IOSPodium({
 
   return (
     <View pointerEvents="box-none" style={styles.absolute}>
-      <LeaderboardPodium
-        scrollValue={scrollValue}
-        leaderboardName={leaderboardName}
-        uriSet={getUriSet(leaderboardItems)}
-      />
+      <LeaderboardPodium scrollValue={scrollValue} uriSet={getUriSet(leaderboardItems)} />
     </View>
   );
 }

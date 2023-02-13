@@ -27,7 +27,7 @@ class Translator {
   };
 
   public readonly getLocale = () => this.dict.locale();
-
+  public readonly has = (key: string) => this.dict.has(key);
   public readonly translate = (key: string, config?: Polyglot.InterpolationOptions) => this.dict.t(key, config);
 }
 
