@@ -6,6 +6,7 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import Logger from "@services/logging/logger";
 import { ROUTES } from "@navigation/constants";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
+import { t } from "@locale";
 
 export interface OnboardingSwiperData {
   id: string;
@@ -86,7 +87,7 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
             <View />
           ) : (
             <TouchableOpacityWithDelay delay={300} onPress={this.scrollBack}>
-              <Text style={styles.backButton}>Back</Text>
+              <Text style={styles.backButton}>{t("labels.cta.back")}</Text>
             </TouchableOpacityWithDelay>
           )}
           {isLastPage ? (
