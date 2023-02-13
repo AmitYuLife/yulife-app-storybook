@@ -2,16 +2,17 @@ import React from "react";
 import { Platform, StyleSheet, TextStyle } from "react-native";
 import { Text } from "@atoms";
 import { Style } from "@styles";
+import { t } from "@locale";
 
 export const FitkitUnavailable = () => (
   <>
     <Text bold={true} style={styles.heading}>
-      {`device not supported`}
+      {t("screens.daily.fitkit.unavailable.heading")}
     </Text>
     <Text style={styles.content}>
       {Platform.select({
-        android: "your device requires Google Play Services in order to use this app.",
-        ios: "your device requires Apple Healthkit in order to use this app.",
+        android: t("screens.daily.fitkit.unavailable.subheading_android"),
+        ios: t("screens.daily.fitkit.unavailable.subheading_ios"),
       })}
     </Text>
   </>
