@@ -880,6 +880,11 @@
   "molecules": {
     "coin_confetti": {
       "accessibility_label": "Plus %{coins} yucoin"
+    },
+    "multi_factor_pricing": {
+      "cover_picker": {
+        "choose_custom": "Or, choose a custom percentage"
+      }
     }
   },
   "top_bar": {
