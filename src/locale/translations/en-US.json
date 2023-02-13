@@ -19,6 +19,7 @@
   },
   "labels": {
     "power": "Power",
+    "level": "Level %{level}",
     "accessibility": {
       "hide": "Hide",
       "show": "Show"
@@ -433,13 +434,11 @@
     },
     "challenge_success": {
       "footer": "Well done!",
-      "level": "Level %{level}",
       "stage": "Stage %{level}"
     },
     "challenge_failed": {
       "heading": "You didn’t make it",
       "footer": "So close! Why not try again?",
-      "level": "Level %{level}",
       "stage": "Stage %{level}"
     },
     "challenge_list": {

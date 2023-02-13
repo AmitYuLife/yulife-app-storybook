@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { getUserName } from "@redux/user/user.selectors";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { TEXT_TEMPLATE, USER_WORLD, USER_LEVEL } from "@ids";
+import { t } from "@locale";
 
 interface IProps {
   name?: string;
@@ -45,7 +46,7 @@ const NameAndLevel = ({ name, level, yuniversalMap, hideWorldIcon, useWorldColor
               color={useWorldColor ? getWorldColor(worldName) : undefined}
               testID={USER_LEVEL(currentLevel)}
             >
-              {` Level ${currentLevel}`}
+              {t('labels.level', { level: currentLevel })}
             </TextTemplate>
           )}
         </View>
