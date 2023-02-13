@@ -18,6 +18,7 @@
     "relation": "Relation"
   },
   "labels": {
+    "you": "You",
     "power": "Power",
     "level": "Level %{level}",
     "accessibility": {
