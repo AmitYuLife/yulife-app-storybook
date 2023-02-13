@@ -10,7 +10,7 @@ interface IVideo extends Media {
 interface IProps {
   video: IVideo;
   onLeftIconPress: () => void;
-  onRightIconPress: () => void;
+  onRightIconPress: (showModal: boolean) => void;
   onStart: (contendId: string) => void;
   onEnd: () => void;
   onError: () => void;

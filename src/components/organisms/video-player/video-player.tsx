@@ -45,7 +45,7 @@ interface IProps {
   onEnd: () => void;
   onError: () => void;
   onLeftIconPress: () => void;
-  onRightIconPress: () => void;
+  onRightIconPress: (showModal: boolean) => void;
   startErrorMessage?: string;
   theme: "light" | "dark";
   yuCoin?: number;
@@ -279,6 +279,10 @@ const VideoPlayer = ({
     [state.currentProgressInSeconds, state.musicControlMounted, state.retries]
   );
 
+  const handleOnRightIconPress = useCallback(() => {
+    onRightIconPress(state.musicControlMounted);
+  }, [state.musicControlMounted]);
+
   const videoUrl = useMemo(
     () =>
       DETOX_ENABLED
@@ -297,9 +301,10 @@ const VideoPlayer = ({
     [videoUrl, videoSourceType]
   );
 
-  const showYuLogo = useMemo(() => (orientation === "portrait" ? { logo: "yulife" as GenericHeadingLogo } : null), [
-    orientation,
-  ]);
+  const showYuLogo = useMemo(
+    () => (orientation === "portrait" ? { logo: "yulife" as GenericHeadingLogo } : null),
+    [orientation]
+  );
 
   const progressTimeLandscape = useMemo(
     () =>
@@ -456,16 +461,16 @@ const VideoPlayer = ({
             onRightIconPress={
               state.showFocusScreen || (orientation === "landscape" && state.musicControlMounted)
                 ? null
-                : onRightIconPress
+                : handleOnRightIconPress
             }
-            rightIcon={!state.musicControlMounted ? "COINS" : "CLOSE"}
+            rightIcon="CLOSE"
           />
         </Animated.View>
       )}
 
       {!state.musicControlMounted || orientation === "portrait" ? null : (
         <Animated.View style={[styles.closeButton, { opacity }]}>
-          <PressableWithDelay onPress={onRightIconPress}>
+          <PressableWithDelay onPress={handleOnRightIconPress}>
             <CloseSvg size={Style.adjust(24)} stroke={"white"} />
           </PressableWithDelay>
         </Animated.View>

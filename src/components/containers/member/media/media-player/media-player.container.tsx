@@ -133,9 +133,16 @@ const MediaPlayerContainer = ({
     setShowModal(true);
   }, []);
 
-  const onRightIconPress = useCallback(() => {
-    setShowModal(true);
-  }, [componentId]);
+  const onRightIconPress = useCallback(
+    (shouldShowModal: boolean) => {
+      if (shouldShowModal) {
+        return setShowModal(true);
+      }
+
+      Navigation.popTo(ROUTES.quests);
+    },
+    [componentId]
+  );
   const onPress = useCallback(async () => cancelChallenge(), [cancelChallenge]);
 
   const onPressSecondary = useCallback(async () => {
