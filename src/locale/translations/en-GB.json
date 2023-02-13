@@ -32,6 +32,7 @@
     "power": "Power",
     "level": "Level %{level}",
     "amount": "Amount",
+    "copied": "Copied!",
     "accessibility": {
       "hide": "Hide",
       "show": "Show"
@@ -73,7 +74,8 @@
       "no": "No",
       "yes": "Yes",
       "open": "Open",
-      "use": "Use"
+      "use": "Use",
+      "copy": "Copy"
     }
   },
   "period": {
