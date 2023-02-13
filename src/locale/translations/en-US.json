@@ -747,6 +747,17 @@
       },
       "button_label": "Switch to Google Fit"
     },
+    "switch_to_samsung_health": {
+      "checklist_info_card": {
+        "title": "Samsung Health",
+        "description": "Does not support all activities for full experience & rewards",
+        "list": {
+          "label_1": "Steps",
+          "label_2": "Meditation",
+          "label_3": "3rd party apps"
+        }
+      }
+    },
     "active_buffs": {
       "tap_anywhere": "Tap anywhere to close"
     },
