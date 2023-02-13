@@ -6,7 +6,10 @@ import { Style } from "@styles";
 import { Navigation } from "@navigation/main";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useBackHandler } from "@hooks";
-import { t } from "@locale";
+import { getMetricName, t } from "@locale";
+import { LeaderboardMetric } from "@graphql/member";
+import { useSelector } from "react-redux";
+import { getActiveLeaderboard } from "@redux/user/user.selectors";
 
 interface IProps {
   componentId: string;
@@ -14,6 +17,7 @@ interface IProps {
 }
 
 function LeaderboardInfoScreen({ componentId }: IProps) {
+  const activeLeaderboard = useSelector(getActiveLeaderboard);
   const goBack = useCallback(() => {
     Navigation.pop(componentId);
   }, [componentId]);
@@ -23,10 +27,14 @@ function LeaderboardInfoScreen({ componentId }: IProps) {
     return true;
   });
 
+  const metricName = getMetricName(activeLeaderboard.metric as LeaderboardMetric);
+
   return (
     <View style={styles.wrapper} testID={LEADERBOARD_INFO}>
       <GenericHeadingPad />
-      <Text style={styles.text}>{t("screens.leaderboard.podium.info_copy")}</Text>
+      <Text style={styles.text}>
+        {t("screens.leaderboard.podium.info_copy", { days: activeLeaderboard.days, metric: metricName })}
+      </Text>
       <GenericHeadingAbsolute heading={t("screens.leaderboard.podium.info_heading")} onLeftIconPress={goBack} />
     </View>
   );

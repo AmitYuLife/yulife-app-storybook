@@ -23,7 +23,6 @@ interface ResToListOutput {
 interface ResToListArgs {
   leaderboardItems: GetLeaderboard_getLeaderboard[];
   currentUserId: string;
-  leaderboardName: string;
   isRefetching: boolean;
   isLoading: boolean;
   scrollValue: Animated.Value;
@@ -32,7 +31,6 @@ interface ResToListArgs {
 export const resToList = ({
   leaderboardItems,
   currentUserId,
-  leaderboardName,
   isRefetching,
   scrollValue,
   isLoading,
@@ -58,7 +56,7 @@ export const resToList = ({
 
   const user = leaderboardItems[userIndex];
 
-  addTopPadding({ list, leaderboardName, leaderboardItems, isRefetching, scrollValue, isLoading });
+  addTopPadding({ list, leaderboardItems, isRefetching, scrollValue, isLoading });
   addFrontPageLabel(list, leaderboardItems.length);
   addRankItems(list, currentUserData, { leaderboardItems, currentUserId });
   addBottomPadding({ list, userInPage: user?.position < PAGE_SIZE });
@@ -79,18 +77,10 @@ interface AddTopPaddingArgs {
   isRefetching: boolean;
   list: ILeaderboardListItem[];
   isLoading: boolean;
-  leaderboardName: string;
   leaderboardItems: GetLeaderboard_getLeaderboard[];
 }
 
-function addTopPadding({
-  isLoading,
-  list,
-  leaderboardName,
-  leaderboardItems,
-  isRefetching,
-  scrollValue,
-}: AddTopPaddingArgs) {
+function addTopPadding({ isLoading, list, leaderboardItems, isRefetching, scrollValue }: AddTopPaddingArgs) {
   if (Platform.OS === "ios") {
     const padding = {
       key: "TOP_PAD",
@@ -111,7 +101,6 @@ function addTopPadding({
       key: "PODIUM",
       type: LEADERBOARD_LIST_ITEM.PODIUM,
       data: {
-        leaderboardName,
         uriSet: getUriSet(leaderboardItems),
       },
     } as ILeaderboardPodium;
@@ -149,7 +138,7 @@ function addRankItems(
       uri: leaderboardItem.avatarRemoteFiles?.pngMini,
       name: leaderboardItem.name,
       rank: leaderboardItem.position,
-      score: leaderboardItem.steps,
+      score: leaderboardItem.value,
       id: leaderboardItem.id,
       firstName: leaderboardItem.firstName,
       lastName: leaderboardItem.lastName,

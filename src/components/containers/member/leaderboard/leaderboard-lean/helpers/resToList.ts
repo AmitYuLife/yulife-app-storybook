@@ -57,7 +57,7 @@ function addRankItems(
       uri: leaderboardItem.avatarRemoteFiles?.pngMini,
       name: leaderboardItem.name,
       rank: leaderboardItem.position,
-      score: leaderboardItem.steps,
+      score: leaderboardItem.value,
       id: leaderboardItem.id,
       firstName: leaderboardItem.firstName,
       lastName: leaderboardItem.lastName,

@@ -13,20 +13,13 @@ export interface IAvatarRemoteFiles {
 }
 
 export interface ILeaderboardPodiumProps {
-  leaderboardName: string;
   uriSet?: string[];
   hideAvatars?: boolean;
   cropAmount?: number;
   scrollValue?: Animated.Value;
 }
 
-const _LeaderboardPodium = ({
-  cropAmount,
-  hideAvatars,
-  uriSet,
-  leaderboardName,
-  scrollValue,
-}: ILeaderboardPodiumProps) => {
+const _LeaderboardPodium = ({ cropAmount, hideAvatars, uriSet, scrollValue }: ILeaderboardPodiumProps) => {
   const [translateY, setTranslateY] = useState(0 as number | Animated.AnimatedInterpolation<number>);
 
   useEffect(() => {
@@ -47,7 +40,7 @@ const _LeaderboardPodium = ({
         <PodiumAsset cropAmount={cropAmount} />
         <Avatars hideAvatars={hideAvatars} uriSet={uriSet} />
       </View>
-      <LeaderboardTitle name={leaderboardName} onPressLabel={goToLeaderboardsList} onPressInfo={goToLeaderboardInfo} />
+      <LeaderboardTitle onPressLabel={goToLeaderboardsList} onPressInfo={goToLeaderboardInfo} />
     </Animated.View>
   );
 };

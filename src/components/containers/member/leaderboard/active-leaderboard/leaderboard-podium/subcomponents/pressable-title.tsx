@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { View, StyleSheet, ViewStyle, Platform, TextStyle, ImageStyle } from "react-native";
 import { Text } from "@atoms";
 import { LEADERBOARD_INFO_BUTTON, LEADERBOARD_TITLE, LEADERBOARD_TOP_SCREEN } from "@ids";
@@ -8,26 +8,31 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import Svg, { Path } from "react-native-svg";
 import { InfoButton } from "./info-button";
 import { DuelsButton } from "./duels-button";
-import { getUserFeatures } from "@redux/user/user.selectors";
-import { IReduxState } from "@redux/_core/reducers";
-import { connect } from "react-redux";
-import { t } from "@locale";
+import { getActiveLeaderboard, getUserFeatures } from "@redux/user/user.selectors";
+import { getMetricName, t } from "@locale";
+import { LeaderboardMetric } from "@graphql/member";
+import { useSelector } from "react-redux";
 
 export interface LeaderboardPressableTitleProps {
   onPressLabel: () => void;
   onPressInfo: () => void;
-  name: string;
 }
 
-type ConnectedState = ReturnType<typeof mapStateToProps>;
+export function _LeaderboardPressableTitle(props: LeaderboardPressableTitleProps) {
+  const { onPressLabel, onPressInfo } = props;
+  const showDuels = !!useSelector(getUserFeatures)?.showDuels;
+  const activeLeaderboard = useSelector(getActiveLeaderboard);
+  const metricName = getMetricName(activeLeaderboard.metric as LeaderboardMetric, "plural");
 
-interface IProps extends LeaderboardPressableTitleProps, Partial<ConnectedState> {}
-
-export function _LeaderboardPressableTitle({ onPressLabel, onPressInfo, name, showDuels }: Partial<IProps>) {
   return (
     <View pointerEvents="box-none" style={styles.wrapper}>
       <View style={styles.row}>
-        <Title title={name} onPressLabel={onPressLabel} onPressInfo={onPressInfo} />
+        <Title
+          name={activeLeaderboard?.name}
+          type={t("screens.leaderboard.podium.steps", { days: activeLeaderboard.days, metric: metricName })}
+          onPressLabel={onPressLabel}
+          onPressInfo={onPressInfo}
+        />
       </View>
       {!showDuels ? null : <DuelsButton />}
     </View>
@@ -44,21 +49,20 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-function Title({
-  title,
-  onPressLabel,
-  onPressInfo,
-}: {
-  title: string;
+type TitleProps = {
+  name: string;
+  type: string;
   onPressLabel: () => void;
   onPressInfo: () => void;
-}) {
+};
+
+function Title({ name, type, onPressLabel, onPressInfo }: TitleProps) {
   return (
     <View style={titleStyles.wrapper} testID={LEADERBOARD_TOP_SCREEN}>
       <TouchableOpacityWithDelay onPress={onPressLabel}>
         <View style={titleStyles.leaderboardName}>
-          <Text style={titleStyles.title} testID={LEADERBOARD_TITLE(title)}>
-            {truncate(title, 16)}
+          <Text style={titleStyles.title} testID={LEADERBOARD_TITLE(name)}>
+            {truncate(name, 16)}
             <View style={titleStyles.arrow}>
               <Arrow />
             </View>
@@ -67,7 +71,7 @@ function Title({
       </TouchableOpacityWithDelay>
       <TouchableOpacityWithDelay onPress={onPressInfo} testID={LEADERBOARD_INFO_BUTTON}>
         <View style={titleStyles.flexRow}>
-          <Text style={titleStyles.caption}>{t("screens.leaderboard.podium.steps")}</Text>
+          <Text style={titleStyles.caption}>{type}</Text>
           <InfoButton onPressInfo={onPressInfo} />
         </View>
       </TouchableOpacityWithDelay>
@@ -111,7 +115,7 @@ const titleStyles = StyleSheet.create({
 
 function Arrow() {
   return (
-    <Svg width="12" height="8" viewBox="0 0 12 8" style={arrowStyles.wrapper}>
+    <Svg width="12" height="8" fill="transparent" viewBox="0 0 12 8" style={arrowStyles.wrapper}>
       <Path
         d="M0.666687 1.33334L6.00002 6.66667L11.3334 1.33334"
         stroke="#6AA3DC"
@@ -134,8 +138,4 @@ const arrowStyles = StyleSheet.create({
   } as ImageStyle,
 });
 
-const mapStateToProps = (state: IReduxState) => ({
-  showDuels: !!getUserFeatures(state).showDuels,
-});
-
-export const LeaderboardPressableTitle = connect<ConnectedState>(mapStateToProps)(_LeaderboardPressableTitle);
+export const LeaderboardPressableTitle = memo(_LeaderboardPressableTitle);

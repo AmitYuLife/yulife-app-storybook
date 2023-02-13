@@ -6,8 +6,9 @@ import { Colours, Style } from "@styles";
 import Switch from "@molecules/switch/switch";
 import { ILeaderboard } from "@redux/user/user.reducer";
 import { LEADERBOARD_STATUS, LEADERBOARD_SWITCH } from "@ids";
-import { t } from "@locale";
+import { getMetricName, t } from "@locale";
 import { FlashList } from "@shopify/flash-list";
+import { LeaderboardMetric } from "@graphql/member";
 
 interface Props {
   leaderboards: ILeaderboard[];
@@ -42,6 +43,12 @@ export const LeaderboardListItems = ({
     return null;
   }
 
+  const activeLeaderboard = leaderboards.find((board) => board.leaderboardId === activeLeaderboardId) || {
+    metric: "steps",
+    days: 30,
+  };
+  const metricName = getMetricName(activeLeaderboard.metric as LeaderboardMetric);
+
   return (
     <FlashList
       showsVerticalScrollIndicator={false}
@@ -53,7 +60,9 @@ export const LeaderboardListItems = ({
       refreshing={false}
       ListHeaderComponent={
         <View style={styles.header}>
-          <TextTemplate type="b2">{t("screens.leaderboard.invites.subheading")} </TextTemplate>
+          <TextTemplate type="b2">
+            {t("screens.leaderboard.invites.subheading", { days: activeLeaderboard.days, metric: metricName })}
+          </TextTemplate>
         </View>
       }
     />

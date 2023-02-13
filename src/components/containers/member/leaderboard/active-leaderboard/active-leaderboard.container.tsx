@@ -33,7 +33,7 @@ const ActiveLeaderboardContainer = (props: Props) => {
     {
       variables: {
         leaderboardId: activeLeaderboard?.leaderboardId,
-        sortBy: "steps",
+        sortBy: activeLeaderboard?.metric || "steps",
         limit: PAGE_SIZE,
       },
       notifyOnNetworkStatusChange: true,
@@ -68,14 +68,8 @@ const ActiveLeaderboardContainer = (props: Props) => {
 
   return (
     <LeaderboardLayout>
-      <ConsentGuard
-        setConsent={setConsent}
-        leaderboardName={activeLeaderboard?.name}
-        hasConsent={activeLeaderboard?.consent}
-        currentUserId={userId}
-      >
+      <ConsentGuard setConsent={setConsent} hasConsent={activeLeaderboard?.consent} currentUserId={userId}>
         <LeaderboardContentContainer
-          leaderboardName={activeLeaderboard?.name}
           leaderboardItems={data?.getLeaderboard || []}
           currentUserId={userId}
           onRefetch={handleRefetch}
