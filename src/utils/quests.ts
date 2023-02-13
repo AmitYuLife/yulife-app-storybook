@@ -1,4 +1,5 @@
 import { CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot_milestones_target } from "@graphql/_core/schema";
+import { t } from "@locale";
 
 export function getCurrentWorld(currentLevel: number) {
   return Math.floor((currentLevel - 1) / 50) % 4;
@@ -40,7 +41,7 @@ const WORLD_IMAGES = [
 ];
 
 const YUNIVERSAL_IMAGE = require("@assets/yuscreen/worlds/yuniversal.png");
-const WORLD_NAME = ["Forest", "Ocean", "Desert", "Mountain"];
+
 
 export function getCurrentWorldImage(currentWorld: number, isYuniversal: boolean) {
   if (isYuniversal) {
@@ -51,11 +52,13 @@ export function getCurrentWorldImage(currentWorld: number, isYuniversal: boolean
 }
 
 export function getCurrentWorldText(currentWorld: number, isYuniversal: boolean) {
+  const WORLD_NAME = [t("labels.world_name.forest"), t("labels.world_name.ocean"), t("labels.world_name.desert"), t("labels.world_name.mountain")];
+
   if (isYuniversal) {
     return "Yuniversal";
   }
 
-  return WORLD_NAME[currentWorld] ?? "Forest";
+  return WORLD_NAME[currentWorld] ?? t("labels.world_name.forest");
 }
 
 export function getUnitTarget(
