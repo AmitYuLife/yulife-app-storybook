@@ -1,4 +1,5 @@
 import { Text, Pad } from "@atoms";
+import { t } from "@locale";
 import { Button, LinkButton, SecondaryButton, Instruction, Picker } from "@molecules";
 import * as React from "react";
 import { View } from "react-native";
@@ -44,7 +45,7 @@ const RewardItemContent = ({
         <View>
           <View style={styles.descriptionHeadingWrapper}>
             <Text style={styles.heading} bold={true}>
-              Description
+              {t("molecules.reward_item_content.titles.description")}
             </Text>
           </View>
           <View style={styles.descriptionWrapper}>
@@ -56,7 +57,7 @@ const RewardItemContent = ({
         <>
           <View style={styles.instructionsHeadingWrapper}>
             <Text style={styles.heading} bold={true}>
-              How to redeem
+              {t("molecules.reward_item_content.titles.how_to_redeem")}
             </Text>
           </View>
           <View style={styles.instructionsWrapper}>
@@ -69,7 +70,7 @@ const RewardItemContent = ({
       {!onPressPicker ? null : (
         <View style={styles.pickerWrapper}>
           <Picker
-            placeholder="amount"
+            placeholder={t("labels.amount")}
             label={`£${rewardValue.toFixed(2)}`}
             onPress={onPressPicker}
             icon={Picker.Icons.COINS}
@@ -95,11 +96,11 @@ const RewardItemContent = ({
         <LinkGroup
           data={[
             {
-              label: "T&Cs",
+              label: t("molecules.reward_item_content.link_group.label_1"),
               onPress: onPressTerms,
             },
             {
-              label: "Rewards policy",
+              label: t("molecules.reward_item_content.link_group.label_2"),
               onPress: onPressPolicy,
             },
           ]}
