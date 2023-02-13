@@ -1,7 +1,7 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import moment from "moment"
 import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_2, BUSINESS_ACCOUNT_5, BUSINESS_ACCOUNT_6 } from "../postgres/business"
-import {USER_1, USER_2, USER_3, USER_4, USER_5, USER_6, USER_7, USER_8, USER_9, USER_12, USER_13, USER_14, USER_15, USER_16, USER_17, USER_18, USER_19, USER_20, USER_21, USER_22, USER_23, USER_24, USER_25, USER_27, USER_29, USER_31, USER_32, USER_33, USER_34, USER_35, USER_36, USER_37, USER_38, USER_39, USER_42, USER_43, USER_44, USER_45, USER_46, USER_ALPHA, USER_PLI_2, USER_PLI_6, USER_PLI_7, USER_PLI_9, USER_PLI_10 } from "./users"
+import {USER_1, USER_2, USER_3, USER_4, USER_5, USER_6, USER_7, USER_8, USER_9, USER_12, USER_13, USER_14, USER_15, USER_16, USER_17, USER_18, USER_19, USER_20, USER_21, USER_22, USER_23, USER_24, USER_25, USER_27, USER_29, USER_31, USER_32, USER_33, USER_34, USER_35, USER_36, USER_37, USER_38, USER_39, USER_42, USER_43, USER_44, USER_45, USER_46, USER_ALPHA, USER_PLI_2, USER_PLI_6, USER_PLI_7, USER_PLI_9, USER_PLI_10, USER_51 } from "./users"
 
 const type = "mongo"
 const modelName = "user_onboardings"
@@ -775,3 +775,19 @@ export const USER_ONBOARDING_PLI_10  = {
         inviteDate: moment().subtract(61, "d").toISOString()
     }
 } as IDatabaseItem
+
+export const USER_ONBOARDING_51 = {
+    type,
+    modelName,
+    data: {
+      _id: generateRandomMongoId(),
+      userId: USER_51.data.userId,
+      businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+      businessName: "Bonus Onboarding Ltd.",
+      performedSteps: {
+        personalLifeIntro: true,
+        newYumojiBuilder: true,
+        firstAppOpen: true,
+      },
+    },
+  } as IDatabaseItem;

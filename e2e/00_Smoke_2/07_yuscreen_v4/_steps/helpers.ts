@@ -1,7 +1,7 @@
 import { When, Then } from "@yu-life/yulife-bdd-framework";
 import * as when from "./when"
 import * as then from "./then"
-import { YUMOJI_AVATAR_YUSCREEN_V4, VIEW_TOP_RIGHT_COIN_COUNTER, TEXT_TEMPLATE, BUTTON_CLOSE, RIGHT_STATUS_ICON, YUCOIN_POWER, CONTENT_ITEM_IMAGE, V4_YUSCREEN} from "@ids";
+import { YUMOJI_AVATAR_YUSCREEN_V4, VIEW_TOP_RIGHT_COIN_COUNTER, TEXT_TEMPLATE, BUTTON_CLOSE, RIGHT_STATUS_ICON, YUCOIN_POWER, CONTENT_ITEM_IMAGE, V4_YUSCREEN, CONTENT_MIDDLE_ITEM_IMAGE, CONTENT_ITEM_INPUT} from "@ids";
 
 
 export const CREATE_DEFAULT_YUMOJI = async ( totalYucoinCount: number) => {
@@ -156,58 +156,103 @@ export const ONBOARDING_YUSCREEN = async (packType: string, yuCoinPower: string)
 
 export const GROUP_DENTAL_PRODUCT_VIEW = async (packageType: string, yuCoinPower: string) => {
     When(`I tap Dental Cover`, when.tapText("Dental Cover"), async () => {
-        Then("I should see correct product details", then.groupDentalProductInfo(packageType, yuCoinPower))
-    })
-}
-
-export const REJECTION_SCREEN_INFO = async ( productButton: string, rejectionReason: string) => {
-
+      Then("I should see correct product details", then.groupDentalProductInfo(packageType, yuCoinPower));
+    });
+  };
+  
+  export const REJECTION_SCREEN_INFO = async (productButton: string, rejectionReason: string) => {
     When(`I tap on ${productButton}`, when.tapText(productButton), async () => {
-        Then(`I should see ${rejectionReason}`, then.ageRejectionTextInfo(rejectionReason))
-        When("I close this screen", when.tapText("Continue"), async () => {
-            Then(`I should be able to see ${productButton}`, then.textVisible(productButton))
-        })
-    })
-}
-
-export const ORDO_JOURNEY_VIEW = async () => {
-    const superSonic = "Your super Sonic smile awaits..."
-    const markdown = "Confirm a few details,\nand we’ll handle the rest!"
-    const legalPoint1 = "A few legal points:"
-    const legalPoint2 = "You only have one mouth, so you can only claim one toothbrush (even if your policy changes, renews, or you have a new policy in the future)."
-    const legalPoint3 = "We have partnered with ORDO to help you on your personal wellbeing journey. Resale of the gift is not allowed under any circumstances (who wants to use someone else’s toothbrush anyway?!)."
-    const legalPoint4 = "We can’t imagine a gift that would be any better for our YuLifers, so we don’t offer any exchanges or alternative gifts to the ORDO toothbrush."
-    const legalPoint5 = "If your policy is being processed for cancellation (for any reason), you will not be eligible to receive your free ORDO toothbrush."
-    const legalPoint6 = "YuLife will happily forward any complaints on your behalf to the ORDO experts for specialist complaints handling. YuLife is not responsible for the manufacturing, distribution, warranty or returns of ORDO toothbrushes beyond the point of claim – but we will do what we can to help if you need it!"
-    const claimButton = "Claim now"
-    const adressSendText = "Let us know where to send your toothbrush:"
-    const ordoShipped = "Your Ordo toothbrush is on the way!"
-    const processInfo = "Your order is being processed, delivery can take  around 5 working days."
-
-    When("I swipe down from Key Info", when.swipeFromText("Key Info","up", "fast"), async () => {
-        Then("I should see Ordo image", then.idVisible(CONTENT_ITEM_IMAGE))
-        When(`I tap on Ordo`, when.tapID(CONTENT_ITEM_IMAGE), async () => {
-            Then(`I should be able to see ${superSonic}`, then.textVisible(superSonic))
-            Then(`I should be able to see ${markdown}`, then.textVisible(markdown))
-            Then(`I should be able to see ${legalPoint1}`, then.textVisible(legalPoint1))
-            Then(`I should be able to see ${legalPoint2}`, then.textVisible(legalPoint2))
-            When(`I swipe down the from ${legalPoint1}`, when.swipeFromText(legalPoint1,"up", "fast"), async () => {
-                Then(`I should be able to see ${legalPoint3}`, then.textVisible(legalPoint3))
-                Then(`I should be able to see ${legalPoint4}`, then.textVisible(legalPoint4))
-                Then(`I should be able to see ${legalPoint5}`, then.textVisible(legalPoint5))
-                Then(`I should be able to see ${legalPoint6}`, then.textVisible(legalPoint6))
-                Then(`I should be able to see ${claimButton}`, then.textVisible(claimButton))
-                When("I press Claim now", when.tapText("Claim now"), async () => {
-                    Then(`I should be able to see ${adressSendText}`, then.textVisible(adressSendText))
-                    When("I add contact details", when.addContactDetails, async () => {
-                        Then(`I should be able to see ${ordoShipped}`, then.textVisible(ordoShipped, 4000))
-                        Then(`I should be able to see ${processInfo}`, then.textVisible(processInfo))
-                        When("I press Done", when.tapText("Done"), async () => {
-                            Then("I should not see Ordo image", then.idNotVisible(CONTENT_ITEM_IMAGE))
-                        })
-                    })
-                })
-            })
-        })
-    })
-}
+      Then(`I should see ${rejectionReason}`, then.ageRejectionTextInfo(rejectionReason));
+      When("I close this screen", when.tapText("Continue"), async () => {
+        Then(`I should be able to see ${productButton}`, then.textVisible(productButton));
+      });
+    });
+  };
+  
+  export const ORDO_JOURNEY_VIEW = async () => {
+    const superSonic = "Your super Sonic smile awaits...";
+    const markdown = "Confirm a few details,\nand we’ll handle the rest!";
+    const legalPoint1 = "A few legal points:";
+    const legalPoint2 =
+      "You only have one mouth, so you can only claim one toothbrush (even if your policy changes, renews, or you have a new policy in the future).";
+    const legalPoint3 =
+      "We have partnered with ORDO to help you on your personal wellbeing journey. Resale of the gift is not allowed under any circumstances (who wants to use someone else’s toothbrush anyway?!).";
+    const legalPoint4 =
+      "We can’t imagine a gift that would be any better for our YuLifers, so we don’t offer any exchanges or alternative gifts to the ORDO toothbrush.";
+    const legalPoint5 =
+      "If your policy is being processed for cancellation (for any reason), you will not be eligible to receive your free ORDO toothbrush.";
+    const legalPoint6 =
+      "YuLife will happily forward any complaints on your behalf to the ORDO experts for specialist complaints handling. YuLife is not responsible for the manufacturing, distribution, warranty or returns of ORDO toothbrushes beyond the point of claim – but we will do what we can to help if you need it!";
+    const claimButton = "Claim now";
+    const adressSendText = "Let us know where to send your toothbrush:";
+    const ordoToothBrushImage =
+      "https://yulife-develop.imgix.net/bupa/images/claim_ordo-2022-11-17.png?ixlib=js-3.2.1&w=981&h=714&s=02d52c51650ca1eb346423f3fb059bdd";
+  
+    When("I swipe down from Key Info", when.swipeFromText("Key Info", "up", "fast"), async () => {
+      Then("I should see Ordo image", then.idVisible(CONTENT_MIDDLE_ITEM_IMAGE(ordoToothBrushImage)));
+      When(`I tap on Ordo`, when.tapID(CONTENT_MIDDLE_ITEM_IMAGE(ordoToothBrushImage)), async () => {
+        Then(`I should be able to see ${superSonic}`, then.textVisible(superSonic));
+        Then(`I should be able to see ${markdown}`, then.textVisible(markdown));
+        Then(`I should be able to see ${legalPoint1}`, then.textVisible(legalPoint1));
+        Then(`I should be able to see ${legalPoint2}`, then.textVisible(legalPoint2));
+        When(`I swipe down the from ${legalPoint1}`, when.swipeFromText(legalPoint1, "up", "fast"), async () => {
+          Then(`I should be able to see ${legalPoint3}`, then.textVisible(legalPoint3));
+          Then(`I should be able to see ${legalPoint4}`, then.textVisible(legalPoint4));
+          Then(`I should be able to see ${legalPoint5}`, then.textVisible(legalPoint5));
+          Then(`I should be able to see ${legalPoint6}`, then.textVisible(legalPoint6));
+          Then(`I should be able to see ${claimButton}`, then.textVisible(claimButton));
+          When("I press Claim now", when.tapText("Claim now"), async () => {
+            Then(`I should be able to see ${adressSendText}`, then.textVisible(adressSendText));
+          });
+        });
+      });
+    });
+  };
+  
+  export const FIELD_VALIDATION = async () => {
+    const firstNameValidation = "Please enter a first name between 2 and 32 characters";
+    const lastNameValidation = "Please enter a last name between 2 and 32 characters";
+    const postCodeValidation = "Please enter a valid UK postcode";
+    const phoneNumberValidation = "Please enter a valid contact number";
+  
+    When("I add wrong  below minimum contact details data", when.addWronMinimumContactDetails, async () => {
+      Then(`I should see ${firstNameValidation}`, then.textVisible(firstNameValidation));
+      Then(`I should see ${lastNameValidation}`, then.textVisible(lastNameValidation));
+    });
+    When("I add minimum wrong post code and phone", when.addWrongMinimumPostCodeAndPhone, async () => {
+      Then(`I should be able to see ${postCodeValidation}`, then.textVisible(postCodeValidation));
+    });
+    When("I press on postcode field", when.tapID(CONTENT_ITEM_INPUT("postcode")), async () => {
+      Then(`I should see ${phoneNumberValidation}`, then.textVisible(phoneNumberValidation));
+    });
+    When("I add wrong after maximum contact details data", when.addWronMaximumContactDetails, async () => {
+      Then(`I should see ${firstNameValidation}`, then.textVisible(firstNameValidation));
+      Then(`I should see ${lastNameValidation}`, then.textVisible(lastNameValidation));
+    });
+    When("I add maximum wrong post code and phone", when.addWrongMaximumPostCodeAndPhone, async () => {
+      Then(`I should see ${postCodeValidation}`, then.textVisible(postCodeValidation));
+    });
+    When("I add valid contact details", when.addContactDetails, async () => {
+      Then(`I should not see ${firstNameValidation}`, then.textNotVisible(firstNameValidation));
+      Then(`I should not see ${lastNameValidation}`, then.textNotVisible(lastNameValidation));
+    });
+    When("I add valid postcode and phone", when.addValidPostCodeAndPhone, async () => {
+      Then(`I should not to see ${postCodeValidation}`, then.textNotVisible(postCodeValidation));
+    });
+  };
+  
+  export const CHECKOUT_PROCESS = async () => {
+    const ordoShipped = "Your Ordo toothbrush is on the way!";
+    const processInfo = "Your order is being processed, delivery can take  around 5 working days.";
+    const ordoToothBrushImage =
+      "https://yulife-develop.imgix.net/bupa/images/claim_ordo-2022-11-17.png?ixlib=js-3.2.1&w=981&h=714&s=02d52c51650ca1eb346423f3fb059bdd";
+  
+    When("I tap claim now", when.tapText("Claim now"), async () => {
+      Then(`I should be able to see ${ordoShipped}`, then.textVisible(ordoShipped, 4000));
+      Then(`I should be able to see ${processInfo}`, then.textVisible(processInfo));
+      When("I press Done", when.tapText("Done"), async () => {
+        Then("I should not see Ordo image", then.idNotVisible(CONTENT_MIDDLE_ITEM_IMAGE(ordoToothBrushImage)));
+      });
+    });
+  };
+  
