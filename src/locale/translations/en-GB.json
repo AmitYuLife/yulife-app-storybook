@@ -840,6 +840,9 @@
     }
   },
   "molecules": {
+    "package_type": {
+      "not_equipped": "Not equipped"
+    },
     "coin_confetti": {
       "accessibility_label": "Plus %{coins} yucoin"
     }
