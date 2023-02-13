@@ -34,7 +34,7 @@ export default function ChallengeSuccessScreen(props: IProps) {
             <TextTemplate type="l1" color={challengeSuccessScreen.textStyle.color} textAlign="center">
               {yuniversalMap
                 ? t("screens.challenge_success.stage", { level })
-                : t("screens.challenge_success.level", { level })}
+                : t('labels.level', { level })}
             </TextTemplate>
           </View>
         </View>

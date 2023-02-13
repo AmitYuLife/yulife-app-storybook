@@ -27,7 +27,7 @@ export default function ChallengeFailedScreen({ level, yuniversalMap, onPress, l
           <Text style={StyleSheet.flatten([styles.level, challengeFailedScreen.textStyle])}>
             {yuniversalMap
               ? t("screens.challenge_failed.stage", { level })
-              : t("screens.challenge_failed.level", { level })}
+              : t('labels.level', { level })}
           </Text>
         </View>
       </View>
