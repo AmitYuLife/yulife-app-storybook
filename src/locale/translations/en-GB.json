@@ -59,6 +59,9 @@
       "use": "Use"
     }
   },
+  "period": {
+    "month": "Month"
+  },
   "meditation": "Meditation",
   "device_not_supported": "device not supported",
   "apple_health": "Apple Health",

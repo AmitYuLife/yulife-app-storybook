@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
+import { t } from "@locale";
 
 interface IProps {
   price: number | string;
@@ -9,7 +10,7 @@ interface IProps {
 const PackageMonthPrice = ({ price }: IProps) => (
   <View style={styles.wrapper}>
     <TextTemplate type="h3">{`£${price}`}</TextTemplate>
-    <TextTemplate type="b2"> / month</TextTemplate>
+    <TextTemplate type="b2"> / {t("period.month")}</TextTemplate>
   </View>
 );
 
