@@ -4,6 +4,7 @@ import { Stars1, Stars2 } from "@atoms/icon/stars-icon";
 import { CountdownUnit } from "./countdown-unit";
 import { getCountdownFromSeconds } from "./getCountdownFromDate";
 import { Colours, Style } from "@styles";
+import { t } from "@locale";
 
 interface Props {
   secondsUntilTarget: number;
@@ -17,9 +18,9 @@ export const Countdown = memo(({ secondsUntilTarget }: Props) => {
       <View style={styles.shadow} />
       <View style={styles.countdownBox}>
         <View style={styles.countdownUnitsWrapper}>
-          <CountdownUnit heading={days} label="Days" />
-          <CountdownUnit heading={hours} label="Hours" />
-          <CountdownUnit heading={minutes} label="Mins" borderRightWidth={0} />
+          <CountdownUnit heading={days} label={t("labels.time.days")} />
+          <CountdownUnit heading={hours} label={t("labels.time.hours")} />
+          <CountdownUnit heading={minutes} label={t("labels.time.mins")} borderRightWidth={0} />
         </View>
       </View>
       <View style={styles.topLeftStars}>
