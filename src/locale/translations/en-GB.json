@@ -442,6 +442,9 @@
       "level": "Level %{level}",
       "stage": "Stage %{level}"
     },
+    "challenge_list": {
+      "level_locked": "Level %{availableAtLevel}"
+    },
     "level_locked": {
       "level": "Unlock at level %{level}",
       "stage": "Unlock at %{name}"
