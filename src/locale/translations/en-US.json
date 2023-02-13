@@ -22,6 +22,7 @@
     "account_number": "Account number"
   },
   "labels": {
+    "you": "You",
     "power": "Power",
     "level": "Level %{level}",
     "amount": "Amount",

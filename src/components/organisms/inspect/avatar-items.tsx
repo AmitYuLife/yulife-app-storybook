@@ -4,6 +4,7 @@ import { TextTemplate } from "@atoms";
 import { ActivityAvatar } from "@molecules";
 import { Colours, Style } from "@styles";
 import { COMPARISON_STATS_SECTION, LEFT_USER, RIGHT_USER, SINGLE_USER } from "@ids";
+import { t } from "@locale";
 interface IProps {
   avatarUri: string;
   opponentAvatarUri?: string;
@@ -29,7 +30,7 @@ const AvatarItems = ({ avatarUri, opponentAvatarUri, name, inspectOtherUser }: I
             </TextTemplate>
           </View>
           <ActivityAvatar
-            name="You"
+            name={t("labels.you")}
             avatarUri={opponentAvatarUri}
             opponent={false}
             inspectOtherUser={inspectOtherUser}
@@ -38,7 +39,7 @@ const AvatarItems = ({ avatarUri, opponentAvatarUri, name, inspectOtherUser }: I
         </View>
       ) : (
         <ActivityAvatar
-          name="You"
+          name={t("labels.you")}
           avatarUri={avatarUri}
           opponent={false}
           inspectOtherUser={inspectOtherUser}
