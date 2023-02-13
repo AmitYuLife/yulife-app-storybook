@@ -15,6 +15,7 @@ import { GOAL_TOOLTIP_INFO, CLAIM_BUTTON, ANIMATED_CIRCLE } from "@ids";
 import Svg, { Circle } from "react-native-svg";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useDispatch } from "react-redux";
+import { t } from "@locale";
 
 const lottieAnimationSource = require("./assets/event-reward-animation.json");
 
@@ -127,7 +128,7 @@ const EventReward = ({
           onPress={claimReward}
           size="ExtraSmall"
           shadowColor="transparent"
-          label="Claim"
+          label={t("labels.cta.claim")}
           testID={CLAIM_BUTTON}
         />
       );
@@ -157,14 +158,14 @@ const EventReward = ({
     const animationSequence = Animated.sequence([
       ...(statusChanged
         ? [
-            Animated.timing(progress, {
-              toValue: CIRCLE_CIRCUMFERENCE,
-              duration: FADE_OUT_DURATION,
-              easing: Easing.linear,
-              delay: animationDelay,
-              useNativeDriver: true,
-            }),
-          ]
+          Animated.timing(progress, {
+            toValue: CIRCLE_CIRCUMFERENCE,
+            duration: FADE_OUT_DURATION,
+            easing: Easing.linear,
+            delay: animationDelay,
+            useNativeDriver: true,
+          }),
+        ]
         : []),
       {
         start: (cb) => {
