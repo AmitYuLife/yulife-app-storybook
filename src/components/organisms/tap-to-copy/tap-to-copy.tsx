@@ -9,6 +9,7 @@ import Markdown from "@molecules/markdown/markdown";
 import { IMarkdownStyle } from "@molecules/markdown/markdown.styles";
 import Logger from "@services/logging/logger";
 import { MixpanelEvent } from "@services/logging/types";
+import { t } from "@locale";
 
 interface IProps {
   heading?: string;
@@ -79,14 +80,14 @@ const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown, markdownS
 
 const Copy = memo(() => (
   <TextTemplate type="l2b" color={Colours.primary.p600}>
-    Copy
+    {t("labels.cta.copy")}
   </TextTemplate>
 ));
 
 const Copied = memo(() => (
   <View style={styles.copyBox}>
     <TextTemplate type="l2b" color={Colours.neutral.white}>
-      Copied!
+      {t("labels.copied")}
     </TextTemplate>
   </View>
 ));

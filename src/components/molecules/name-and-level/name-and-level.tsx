@@ -46,7 +46,7 @@ const NameAndLevel = ({ name, level, yuniversalMap, hideWorldIcon, useWorldColor
               color={useWorldColor ? getWorldColor(worldName) : undefined}
               testID={USER_LEVEL(currentLevel)}
             >
-              {t('labels.level', { level: currentLevel })}
+              {` ${t('labels.level', { level: currentLevel })}`}
             </TextTemplate>
           )}
         </View>
