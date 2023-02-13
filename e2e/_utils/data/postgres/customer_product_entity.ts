@@ -450,7 +450,8 @@ export const CPE_51_GDent = {
         earn_rate: 5,
         product_variant_id: "Bupa_GDent_01_01",
         archived: false,
-        taken_up: true
+        taken_up: true,
+        start_date: moment().subtract(1, "months").format("YYYY-MM-DD"),
     }
 } as IDatabaseItem
 

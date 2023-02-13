@@ -1,4 +1,4 @@
-import { navigation, CATEGORY_TYPE, YUMOJI_PART_ID, COLOUR, YUSCREEN, YUCOIN_POWER, AVATAR_BUILDER_LIST, YUSCREEN_AVATAR, HEAD_TYPE, AVATAR_ITEM, TEXT_TEMPLATE, MALE_BODY, CONTENT_ITEM_INPUT, SDUI_SCREEN_SCROLL_VIEW, BUTTON_CLOSE } from "@utils"
+import { navigation, CATEGORY_TYPE, YUMOJI_PART_ID, COLOUR, YUSCREEN, YUCOIN_POWER, AVATAR_BUILDER_LIST, YUSCREEN_AVATAR, HEAD_TYPE, AVATAR_ITEM, TEXT_TEMPLATE, MALE_BODY, CONTENT_ITEM_INPUT, SDUI_SCREEN_SCROLL_VIEW, BUTTON_CLOSE, BUTTON_CLOSE_HEADER } from "@utils"
 
 
 export const {
@@ -8,7 +8,7 @@ export const {
     swipeToText,
     scrollUntilTextVisible,
     scrollUntilIdVisible,
-    swipeFromText
+    swipeFromText,
 } = navigation.scrolling
 
 export const {
@@ -22,7 +22,8 @@ export const {
     wait,
     tapIDAtPoint,
     tapIDAtIndex,
-    textNotVisible
+    textNotVisible,
+    clearFieldByID
 } = navigation.common
 
 export const tapAvatarItem = (avatarItem: string, status: string) => async () => {
@@ -110,13 +111,50 @@ export const closeScreen = async () => {
 }
 
 export const addContactDetails = async () => {
-    await typeViaID(CONTENT_ITEM_INPUT("title"), "Mr\n")()
-    await typeViaID(CONTENT_ITEM_INPUT("firstName"), "Eugene\n")()
-    await typeViaID(CONTENT_ITEM_INPUT("lastName"), "Grosu\n")()
-    await typeViaID(CONTENT_ITEM_INPUT("address1"), "Eugene's House\n")()
-    await typeViaID(CONTENT_ITEM_INPUT("town"), "London\n")()
-    await scrollFromID(SDUI_SCREEN_SCROLL_VIEW, "up", "slow")()
-    await typeViaID(CONTENT_ITEM_INPUT("postcode"), "HA9 7FN\n")()
-    await typeViaID(CONTENT_ITEM_INPUT("phone"), "07123456789\n")()
-    await tapText("Claim now", 2000)()
-}
+    await scrollFromID(SDUI_SCREEN_SCROLL_VIEW, "down", "slow")();
+    await clearFieldByID(CONTENT_ITEM_INPUT("firstName"))();
+    await typeViaID(CONTENT_ITEM_INPUT("firstName"), "Eugene\n")();
+  
+    await clearFieldByID(CONTENT_ITEM_INPUT("lastName"))();
+    await typeViaID(CONTENT_ITEM_INPUT("lastName"), "Grosu\n")();
+};
+
+export const addWronMinimumContactDetails = async () => {
+    await typeViaID(CONTENT_ITEM_INPUT("firstName"), "E\n")();
+    await typeViaID(CONTENT_ITEM_INPUT("lastName"), "G\n")();
+    await typeViaID(CONTENT_ITEM_INPUT("address1"), "Eugene's House\n")();
+    await typeViaID(CONTENT_ITEM_INPUT("town"), "L\n")();
+  };
+  
+  export const addWronMaximumContactDetails = async () => {
+    await scrollFromID(SDUI_SCREEN_SCROLL_VIEW, "down", "slow")();
+  
+    await typeViaID(CONTENT_ITEM_INPUT("firstName"), "IamVeryLongFirstNameTesting32char\n")();
+    await typeViaID(CONTENT_ITEM_INPUT("lastName"), "IamVeryLongLastNameTesting32chara\n")();
+    await typeViaID(CONTENT_ITEM_INPUT("address1"), "Eugene's House\n")();
+    await typeViaID(CONTENT_ITEM_INPUT("town"), "Lo\n")();
+  };
+  
+  export const addWrongMinimumPostCodeAndPhone = async () => {
+    await scrollFromID(SDUI_SCREEN_SCROLL_VIEW, "up", "slow")();
+    await typeViaID(CONTENT_ITEM_INPUT("postcode"), "HA\n")();
+    await typeViaID(CONTENT_ITEM_INPUT("phone"), "07\n")();
+    await tapText("Claim now", 2000)();
+  };
+  
+  export const addWrongMaximumPostCodeAndPhone = async () => {
+    await scrollFromID(SDUI_SCREEN_SCROLL_VIEW, "up", "slow")();
+    await typeViaID(CONTENT_ITEM_INPUT("postcode"), "HA82 UUUSSS\n")();
+    await typeViaID(CONTENT_ITEM_INPUT("phone"), "072211213213A\n")();
+    await tapText("Claim now", 2000)();
+  };
+
+  export const addValidPostCodeAndPhone = async () => {
+    await scrollFromID(SDUI_SCREEN_SCROLL_VIEW, "up", "slow")();
+  
+    await clearFieldByID(CONTENT_ITEM_INPUT("postcode"))();
+    await typeViaID(CONTENT_ITEM_INPUT("postcode"), "HA9 7FN\n")();
+  
+    await clearFieldByID(CONTENT_ITEM_INPUT("phone"))();
+    await typeViaID(CONTENT_ITEM_INPUT("phone"), "07123456789\n")();
+  };

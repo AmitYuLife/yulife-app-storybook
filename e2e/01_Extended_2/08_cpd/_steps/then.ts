@@ -1,4 +1,4 @@
-import { navigation, CONTENT_ITEM_IMAGE, CPD_COURSE_SCROLL_VIEW } from "@utils"
+import { navigation, CONTENT_ITEM_IMAGE, CPD_COURSE_SCROLL_VIEW, CONTENT_MIDDLE_ITEM_IMAGE } from "@utils"
 import { screens } from "@appScreens"
 import { BUSINESS_ACCOUNT_1, CUSTOMER_1, YUNIVERSITY_COURSE_1, YUNIVERSITY_COURSE_MODULE_1 } from "@data"
 import { QuizDetails } from "./types"
@@ -106,7 +106,7 @@ export const canSeeQuizQuestion = (quizQuestions: QuizDetails, questionNum: numb
 }
 
 export const quizComplete = (correctAnswers: number) => async () => {
-    await idVisible(CONTENT_ITEM_IMAGE)()
+    await idVisible(CONTENT_MIDDLE_ITEM_IMAGE("https://yulife-develop.imgix.net/yuniversity/yugi-question.svg?ixlib=js-3.2.1&w=927&h=990&s=1b217cf0dcc685eec788f648727bab82"))();
 
     if (correctAnswers > 3) {
         await textVisible("Congratulations!")()
