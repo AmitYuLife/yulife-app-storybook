@@ -32,11 +32,11 @@ export const Accordion = memo((props: Props) => {
   /**
    * manages force re-render to trigger measurements
    */
-  const [, setTick] = useState(INITIAL_TICK);
+  const [tick, setTick] = useState(INITIAL_TICK);
   const tickTimeout = useRef(null);
   useEffect(() => {
     tickTimeout.current = setTimeout(() => {
-      setTick((tick) => tick + 1);
+      setTick((currentTick) => currentTick + 1);
     }, 1000);
 
     return () => clearTimeout(tickTimeout.current);
@@ -83,14 +83,14 @@ export const Accordion = memo((props: Props) => {
   }, [collapsed]);
 
   useEffect(() => {
-    if (!absoluteContentViewRef.current) {
+    if (!absoluteContentViewRef.current || tick > INITIAL_TICK + 1) {
       return;
     }
 
     absoluteContentViewRef.current.measure((_x, _y, _width, height) => {
       setContentHeight(height);
     });
-  }, [items, headerHeight, absoluteContentViewRef.current]);
+  }, [tick, items, headerHeight, absoluteContentViewRef.current]);
 
   const onLayoutHeader = (event: LayoutChangeEvent) => {
     setHeaderHeight(event.nativeEvent.layout.height);
