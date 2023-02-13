@@ -842,6 +842,11 @@
   "molecules": {
     "coin_confetti": {
       "accessibility_label": "Plus %{coins} Yu Coin"
+    },
+    "multi_factor_pricing": {
+      "cover_picker": {
+        "choose_custom": "Or, choose a custom percentage"
+      }
     }
   },
   "top_bar": {

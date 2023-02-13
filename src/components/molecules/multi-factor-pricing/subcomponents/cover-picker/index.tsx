@@ -5,6 +5,7 @@ import { InfoPanel } from "@components/molecules";
 import { Colours, Style } from "@styles";
 import { PercentPicker } from "./percent-picker";
 import { Options } from "./options";
+import { t } from "@locale";
 
 interface Props {
   options: ComponentProps<typeof Options>["options"];
@@ -40,7 +41,7 @@ const CoverPicker = ({
           <Options activeValue={activeValue} options={options} onPickCover={onPickCover} />
           <TouchableOpacity style={styles.toggleCustomButton} onPress={handleToggleCustom}>
             <TextTemplate type="l1" decoration="underline">
-              Or, choose a custom percentage
+              {t("molecules.multi_factor_pricing.cover_picker.choose_custom")}
             </TextTemplate>
           </TouchableOpacity>
         </>
