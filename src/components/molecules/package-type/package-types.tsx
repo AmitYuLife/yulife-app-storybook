@@ -5,6 +5,7 @@ import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { PACKAGE_TYPES } from "@ids";
 import { TextTemplate } from "@atoms";
 import { toCapitalLetter } from "@utils";
+import { t } from "@locale";
 
 export interface Props {
   type: CoverType;
@@ -29,7 +30,7 @@ const PackageType = ({ type, minWidth = Style.adjust(55) }: Props) => {
   return (
     <View style={wrapperStyle} testID={PACKAGE_TYPES}>
       <TextTemplate color={Colours.neutral.white} type="l2b">
-        {isNotEquipped ? "Not equipped" : toCapitalLetter(type)}
+        {isNotEquipped ? t("molecules.package_type.not_equipped") : toCapitalLetter(type)}
       </TextTemplate>
     </View>
   );
