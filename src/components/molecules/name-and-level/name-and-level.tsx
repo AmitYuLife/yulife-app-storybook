@@ -37,13 +37,13 @@ const NameAndLevel = ({ name, level, yuniversalMap, hideWorldIcon, useWorldColor
       <View style={styles.worldDetails}>
         {hideWorldIcon ? null : <Image style={styles.image} source={worldIcon} />}
         <View style={styles.worldTextWrapper}>
-          <TextTemplate type={"l2b"} color={getWorldColor(worldName)} testID={USER_WORLD(worldName)}>
+          <TextTemplate type={"l2b"} color={getWorldColor(currentWorld, isYuniversal)} testID={USER_WORLD(worldName)}>
             {worldName}
           </TextTemplate>
           {isYuniversal ? null : (
             <TextTemplate
               type={"l2b"}
-              color={useWorldColor ? getWorldColor(worldName) : undefined}
+              color={useWorldColor ? getWorldColor(currentWorld, isYuniversal) : undefined}
               testID={USER_LEVEL(currentLevel)}
             >
               {t('labels.level', { level: currentLevel })}
@@ -92,17 +92,19 @@ const styles = StyleSheet.create({
 
 export default memo(NameAndLevel);
 
-function getWorldColor(world: string) {
-  switch (world) {
-    case "Yuniversal":
-      return Colours.world.yuniversal;
-    case "Forest":
+function getWorldColor(currentWorld: number, isYuniversal: boolean) {
+  if (isYuniversal) {
+    return Colours.world.yuniversal;
+  }
+
+  switch (currentWorld) {
+    case 0:
       return Colours.world.forest;
-    case "Ocean":
+    case 1:
       return Colours.world.ocean;
-    case "Desert":
+    case 2:
       return Colours.world.desert;
-    case "Mountain":
+    case 3:
       return Colours.world.mountain;
     default:
       return Colours.darkGray;
