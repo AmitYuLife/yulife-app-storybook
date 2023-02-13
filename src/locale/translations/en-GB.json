@@ -24,6 +24,11 @@
       "hide": "Hide",
       "show": "Show"
     },
+    "time": {
+      "days": "Days",
+      "hours": "Hours",
+      "mins": "Mins"
+    },
     "cta": {
       "got_it": "Okay, got it",
       "back": "Back",
