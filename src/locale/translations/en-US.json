@@ -20,6 +20,7 @@
   "labels": {
     "power": "Power",
     "level": "Level %{level}",
+    "amount": "Amount",
     "accessibility": {
       "hide": "Hide",
       "show": "Show"
@@ -887,6 +888,16 @@
   "molecules": {
     "package_type": {
       "not_equipped": "Not equipped"
+    },
+    "reward_item_content": {
+      "titles": {
+        "description": "Description",
+        "how_to_redeem": "How to redeem"
+      },
+      "link_group": {
+        "label_1": "T&Cs",
+        "label_2": "Rewards policy"
+      }
     },
     "coin_confetti": {
       "accessibility_label": "Plus %{coins} Yu Coin"
