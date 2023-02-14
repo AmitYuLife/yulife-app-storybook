@@ -2,6 +2,7 @@ import * as React from "react";
 import { StyleSheet } from "react-native";
 import { Text } from "@atoms";
 import styles from "./daily-steps.screen.styles";
+import { t } from "@locale";
 
 export interface IProps {
   isLight?: boolean;
@@ -10,14 +11,15 @@ export interface IProps {
 
 export default function DailyStepsOffline({ isLight = false, lastUpdate }: IProps) {
   const lightStyle = isLight ? styles.whiteText : {};
+  const lastUpdateUnkow = t("labels.unknown");
 
   return (
     <>
       <Text bold={true} style={StyleSheet.flatten([styles.headingOffline, lightStyle])}>
-        {`you’re offline`}
+        {t("screens.daily.offline.heading")}
       </Text>
       <Text style={StyleSheet.flatten([styles.lastUpdate, lightStyle])}>
-        {`Your steps will update when next online Last update: ${lastUpdate || "unknown"}`}
+        {t("screens.daily.offline.subheading", { lastUpdate: lastUpdate || lastUpdateUnkow })}
       </Text>
     </>
   );
