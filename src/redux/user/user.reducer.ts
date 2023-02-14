@@ -98,6 +98,9 @@ export interface IUserStore {
     meditation: string;
     steps: string;
   };
+  passiveHourlyActivityLastUpdate: {
+    steps: string;
+  };
   endPointsVersion: {
     getMobileCopy: string;
     getMobileAssets: string;
@@ -152,6 +155,9 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   passiveChallengesLastUpdate: {
     cycling: "",
     meditation: "",
+    steps: "",
+  },
+  passiveHourlyActivityLastUpdate: {
     steps: "",
   },
   endPointsVersion: {
@@ -299,6 +305,12 @@ const updatePersistedState = (persistedState: IUserStore) => {
     newState.passiveChallengesLastUpdate = {
       cycling: "",
       meditation: "",
+      steps: "",
+    };
+  }
+
+  if (!persistedState.passiveHourlyActivityLastUpdate) {
+    newState.passiveHourlyActivityLastUpdate = {
       steps: "",
     };
   }
@@ -469,6 +481,9 @@ const updateUserProfile = (state: IUserStore, payload: Partial<IUserStore>) => (
   },
   passiveChallengesLastUpdate: {
     ...payload.passiveChallengesLastUpdate,
+  },
+  passiveHourlyActivityLastUpdate: {
+    ...payload.passiveHourlyActivityLastUpdate,
   },
   endPointsVersion: {
     ...payload.endPointsVersion,

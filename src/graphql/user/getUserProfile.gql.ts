@@ -42,6 +42,9 @@ export const GQL_QUERY_GET_USER_PROFILE = gql`
         meditation
         steps
       }
+      passiveHourlyActivityLastUpdate {
+        steps
+      }
       endPointsVersion {
         getMobileCopy
         getMobileAssets

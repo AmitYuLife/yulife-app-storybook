@@ -88,12 +88,12 @@ export const getValue = ({ value, type }: IGetValue) => {
   return type !== "Card" && type !== "number"
     ? value
     : /* tslint:disable-next-line */
-    value
-      .split(" ")
-      .join("")
-      .split("")
-      .map((char, index) => (index !== 0 && index % 4 === 0 ? ` ${char}` : char))
-      .join("");
+      value
+        .split(" ")
+        .join("")
+        .split("")
+        .map((char, index) => (index !== 0 && index % 4 === 0 ? ` ${char}` : char))
+        .join("");
 };
 
 interface IGetStyle {

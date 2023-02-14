@@ -221,6 +221,7 @@ export * from "./UpdateMemberConsent";
 export * from "./UpdateMobileRewardStoreLocation";
 export * from "./UpdateNickname";
 export * from "./UpdateQuestMapLevelChallenge";
+export * from "./UpdateUserHourlyActivity";
 export * from "./UpdateUserNotificationsSettings";
 export * from "./UpsertDailyPassives";
 export * from "./UpsertOnboardingChallenge";

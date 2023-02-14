@@ -7,17 +7,18 @@ export const processResult = (
   response: QueryFitKitByTypesResponse,
   type: string,
   start: Moment,
-  end: Moment
+  end: Moment,
+  bucketSize: moment.unitOfTime.DurationConstructor = "day"
 ): ChallengesPayload[] => {
   if (response.error) {
     return [];
   }
 
   if (response?.results?.length === 0) {
-    return emptyAggregatedData(start.clone().format(), end.clone().format(), type);
+    return emptyAggregatedData(start.clone().format(), end.clone().format(), type, bucketSize);
   }
 
-  return sampleDataToAggregatedData(start.clone().format(), end.clone().format(), response.results);
+  return sampleDataToAggregatedData(start.clone().format(), end.clone().format(), response.results, bucketSize);
 };
 
 interface ChallengesPayloadWithInApp extends ChallengesPayload {
@@ -27,9 +28,10 @@ interface ChallengesPayloadWithInApp extends ChallengesPayload {
 function sampleDataToAggregatedData(
   startTime: string,
   endTime: string,
-  results: ChallengesPayloadWithInApp[]
+  results: ChallengesPayloadWithInApp[],
+  bucketSize: moment.unitOfTime.DurationConstructor
 ): ChallengesPayload[] {
-  const buckets = getDateBuckets(startTime, endTime);
+  const buckets = getBuckets(startTime, endTime, bucketSize);
 
   return buckets.map(({ end, start }) => {
     let value = 0;
@@ -63,8 +65,13 @@ function sampleDataToAggregatedData(
   });
 }
 
-function emptyAggregatedData(startTime: string, endTime: string, type: string): ChallengesPayload[] {
-  const buckets = getDateBuckets(startTime, endTime);
+function emptyAggregatedData(
+  startTime: string,
+  endTime: string,
+  type: string,
+  bucketSize: moment.unitOfTime.DurationConstructor
+): ChallengesPayload[] {
+  const buckets = getBuckets(startTime, endTime, bucketSize);
   return buckets.map(({ end, start }) => ({
     startDateTime: start.format(),
     endDateTime: end.format(),
@@ -73,13 +80,13 @@ function emptyAggregatedData(startTime: string, endTime: string, type: string): 
   }));
 }
 
-const getDateBuckets = (startTime: string, endTime: string) => {
+const getBuckets = (startTime: string, endTime: string, bucketSize: moment.unitOfTime.DurationConstructor = "day") => {
   const buckets: { end: Moment; start: Moment }[] = [];
   const rangeEnd = moment(endTime);
-  for (let start = moment(startTime); start.isBefore(rangeEnd); start.add(1, "day")) {
+  for (let start = moment(startTime); start.isBefore(rangeEnd); start.add(1, bucketSize)) {
     buckets.push({
       start: start.clone(),
-      end: start.clone().endOf("day"),
+      end: start.clone().endOf(bucketSize),
     });
   }
 

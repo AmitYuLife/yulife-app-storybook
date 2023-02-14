@@ -64,6 +64,10 @@ export interface GetUserProfile_getUserProfile_passiveChallengesLastUpdate {
   steps: string | null;
 }
 
+export interface GetUserProfile_getUserProfile_passiveHourlyActivityLastUpdate {
+  steps: string | null;
+}
+
 export interface GetUserProfile_getUserProfile_endPointsVersion {
   getMobileCopy: string | null;
   getMobileAssets: string;
@@ -148,6 +152,7 @@ export interface GetUserProfile_getUserProfile {
   earnRate: number;
   avatar: GetUserProfile_getUserProfile_avatar | null;
   passiveChallengesLastUpdate: GetUserProfile_getUserProfile_passiveChallengesLastUpdate;
+  passiveHourlyActivityLastUpdate: GetUserProfile_getUserProfile_passiveHourlyActivityLastUpdate;
   endPointsVersion: GetUserProfile_getUserProfile_endPointsVersion;
   notification: GetUserProfile_getUserProfile_notification;
   events: GetUserProfile_getUserProfile_events[];

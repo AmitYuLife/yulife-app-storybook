@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChallengesPayload, FitKitType } from "@graphql/_core/schema/globalTypes";
 import moment from "moment";
 import { call } from "redux-saga/effects";

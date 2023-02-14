@@ -7,6 +7,7 @@ import removeTheme from "./0005_remove_theme";
 import removeCopy from "./0006_remove_copy";
 import removePopupVisibility from "./0007_remove_popup_visibility";
 import addInAppMeditationNewFields from "./0008_add_in_app_meditation_new_fields";
+import userHourlyActivityLastUpdated from "./0009_user_hourly_activity_last_updated";
 
 export const migrations = {
   "0": initial,
@@ -18,4 +19,5 @@ export const migrations = {
   "6": removeCopy,
   "7": removePopupVisibility,
   "8": addInAppMeditationNewFields,
+  "9": userHourlyActivityLastUpdated,
 };

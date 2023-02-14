@@ -84,7 +84,12 @@ const LevelSelectorScreen = ({ currentLevel, yuniversalMap, yuniversalLevel, onL
           Current Level
         </TextTemplate>
         <TextInput placeholder="level" style={styles.input} type="number" value={levelInput} onChange={onChangeLevel} />
-        <Button size={"Medium"} onPress={saveCurrentLevel} label={t("labels.cta.save")} disabled={setCurrentLevelDisabled} />
+        <Button
+          size={"Medium"}
+          onPress={saveCurrentLevel}
+          label={t("labels.cta.save")}
+          disabled={setCurrentLevelDisabled}
+        />
         <View style={styles.padding} />
         <TextTemplate type="b1" textAlign="center">
           Yuniversal Map
@@ -106,7 +111,12 @@ const LevelSelectorScreen = ({ currentLevel, yuniversalMap, yuniversalLevel, onL
           value={yuniversalLevelInput}
           onChange={onChangeYuniversalLevel}
         />
-        <Button size={"Medium"} onPress={saveYuniversalLevel} label={t("labels.cta.save")} disabled={setYuniversalLevelDisabled} />
+        <Button
+          size={"Medium"}
+          onPress={saveYuniversalLevel}
+          label={t("labels.cta.save")}
+          disabled={setYuniversalLevelDisabled}
+        />
       </View>
       <GenericHeadingAbsolute logo="yulife" onLeftIconPress={onLeftIconPress} />
     </View>
