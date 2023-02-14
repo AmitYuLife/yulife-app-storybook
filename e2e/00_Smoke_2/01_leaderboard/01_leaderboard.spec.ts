@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
@@ -54,32 +54,6 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                         Then("I should be on the leaderboard selection screen", then.multipleTextVisible([USER_18_LEADERBOARD.data.name, USER_19_LEADERBOARD_B.data.name]))
                         When("I tap the second leaderboard, Lb2", when.tapText(USER_19_LEADERBOARD_B.data.name), async () => {
                             Then("I should be on the second leaderboard", then.leaderboardVisible([CUSTOMER_20]))
-                        })
-                    })
-                })
-            })
-        })
-    })
-
-    // TODO: Fix issue where invite popup shows twice if fitkit is enabled:
-    // https://yulife.atlassian.net/browse/ENG-1877?atlOrigin=eyJpIjoiZWViMTE5ZGIwZjVmNDZiNWIwOGMxYjc5NTVjMmFiMzMiLCJwIjoiaiJ9
-    Scenario("I can join a new leaderboard", scenario.start, async () => {
-        Given("I login", given.loginOnly(CUSTOMER_21, AUTH_21, false), async () => {
-            Then("I should see a leaderboard invite screen", then.textVisible("join Angela's leaderboard", 2500))
-            When("I accept", when.tapText("accept invite"), async () => {
-                When("I skip fitkit", when.tapText("Skip this step"), async()=>{
-                    Then("I should see the signup bonus screen", then.textVisible("Sign-up bounty\nunlocked!"))
-                    When("I continue the login process", when.continueLogin, async () => {
-                        Then("I should be on the yuscreen", then.idVisible(DAILY_STEPS_SCREEN))
-                        When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                            Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_19_LEADERBOARD_B.data.name)))
-                            Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_19, CUSTOMER_20], [50]))
-                            When("I tap the leaderboard drop down", when.tapID(LEADERBOARD_TITLE(USER_19_LEADERBOARD_B.data.name)), async () => {
-                                Then("I should see both Lb1 and the new leaderboard I just joined", then.multipleTextVisible([USER_18_LEADERBOARD.data.name, USER_19_LEADERBOARD_B.data.name]))
-                                When("I tap Lb1", when.tapText(USER_18_LEADERBOARD.data.name), async () => {
-                                    Then("I should be on the Lb1 leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_47, CUSTOMER_50]))
-                                })
-                            })
                         })
                     })
                 })

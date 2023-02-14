@@ -10,8 +10,12 @@ export const {
     multipleTextVisible
 } = navigation.common
 
+export const {
+    swipeFromText
+} = navigation.scrolling
+
 export const wellbeingServiceVisible = async () => {
-    const titles = ["Smart Health", "YuMatter", "Beam", "HiBob", "More Happi"]
+    const titles = ["Smart Health", "YuMatter", "Yuniversity", "Beam", "HiBob", "More Happi"]
 
     for (const i of titles) {
         await scrollUntilIdVisible(WELLBEING_HUB_SCROLL_VIEW, TEXT_TEMPLATE(i), "down")()

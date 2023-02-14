@@ -52,7 +52,7 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
                         When("I tap awesome", when.tapText("Awesome"), async () => {
                             When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin"), 3000), async () => {
                                 Then("I should see 2 km cycled", then.idVisible(CYCLING_COUNT("2.0 km")))
-                                Then("I should see I have earned 10 YuCoin from the cycle", then.textVisible("10 YuCoin today"))
+                                Then("I should see I have earned 10 YuCoin from the cycle", then.textVisible("210 YuCoin today"))
                             })
                         })
                     })
@@ -73,7 +73,7 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
         })
         When("I click the back button", when.tapID(BACK_BUTTON), async () => {
             Then("I should see the yucoin page event bar showing the number of profiles viewed and hit the correct milestone", then.yuCoinPageEventDataCorrect(2000, 0.2))
-            Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(10, USER_71.data.earnRate, GOAL_REWARD_MILESTONE_6.data.rewardValue))
+            Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(210, USER_71.data.earnRate, GOAL_REWARD_MILESTONE_6.data.rewardValue))
         })
         When("I have done 3 km today", when.addCyclingData(3000), async () => {
             When("I update the screen to see today's activity pulled through", given.triggerAppUpdateState, async () => {
@@ -81,7 +81,7 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
                     When("I tap awesome", when.tapText("Awesome"), async () => {
                         When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin"), 3000), async () => {
                             Then("I should see 5 km cycled", then.idVisible(CYCLING_COUNT("5.0 km")))
-                            Then("I should see I have earned 20 YuCoin from the cycle", then.textVisible("530 YuCoin today"))
+                            Then("I should see I have earned 20 YuCoin from the cycle", then.textVisible("730 YuCoin today"))
                         })
                     })
                 })
@@ -101,7 +101,7 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
         })
         When("I click the back button", when.tapID(BACK_BUTTON), async () => {
             Then("I should see the yucoin page event bar showing the number of profiles viewed and hit the correct milestone", then.yuCoinPageEventDataCorrect(5000, 0.5))
-            Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(530, USER_71.data.earnRate, GOAL_REWARD_MILESTONE_7.data.rewardValue))
+            Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(730, USER_71.data.earnRate, GOAL_REWARD_MILESTONE_7.data.rewardValue))
         })
         When("I have done 5 km today", when.addCyclingData(5000), async () => {
             When("I update the screen to see today's activity pulled through", given.triggerAppUpdateState, async () => {
@@ -109,7 +109,7 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
                     When("I tap awesome", when.tapText("Awesome"), async () => {
                         When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin"), 3000), async () => {
                             Then("I should see 10 km cycled", then.idVisible(CYCLING_COUNT("10.0 km")))
-                            Then("I should see I have earned 30 YuCoin from the cycle", then.textVisible("1,560 YuCoin today"))
+                            Then("I should see I have earned 30 YuCoin from the cycle", then.textVisible("1,760 YuCoin today"))
                         })
                     })
                 })
@@ -128,7 +128,7 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
             Then("I should see all 3 milestones complete", then.allChallengesCompleteVisible)
         })
         When("I click the back button", when.tapID(BACK_BUTTON), async () => {
-            Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(1560, USER_71.data.earnRate, GOAL_REWARD_MILESTONE_8.data.rewardValue))
+            Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(1760, USER_71.data.earnRate, GOAL_REWARD_MILESTONE_8.data.rewardValue))
             Then("I should see 10 km cycled", then.idVisible(CYCLING_COUNT("10.0 km")))
         })
     })

@@ -14,9 +14,9 @@ export const CREATE_DEFAULT_YUMOJI = async ( totalYucoinCount: number) => {
 
 export const CHECK_PRODUCT_BUTTON_LINK = async ( productButton: string, productOnboardingViewText:string) => {
     When(`I tap on ${productButton}`, when.tapText(productButton), async () => {
-            Then(`I should be on the first ${productOnboardingViewText} onboarding screen`, then.idVisible(TEXT_TEMPLATE(productOnboardingViewText)));
-        When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 1), async () => {
-            When("I close this screen", when.closeScreen, async () => {
+      Then(`I should be on the first ${productOnboardingViewText} onboarding screen`, then.idVisible(TEXT_TEMPLATE(productOnboardingViewText)));
+      When("I tap the close button", when.closeScreen, async () => {
+          When("I tap the close button", when.closeScreenAtHeader("yulife"), async () => {
                 Then(`I should not see ${productOnboardingViewText} onboarding screen`, then.textNotVisible(productOnboardingViewText))
             })
         })

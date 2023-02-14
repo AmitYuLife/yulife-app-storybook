@@ -11,9 +11,9 @@ export const {
 } = navigation.common
 
 export const {
-    scrollFromID
+    scrollFromID,
+    scrollUntilIdVisible
 } = navigation.scrolling
-
 
 export const navigateViaButton = (text: string) => async () => {
     await navigateViaText(text)

@@ -158,3 +158,7 @@ export const addWronMinimumContactDetails = async () => {
     await clearFieldByID(CONTENT_ITEM_INPUT("phone"))();
     await typeViaID(CONTENT_ITEM_INPUT("phone"), "07123456789\n")();
   };
+
+  export const closeScreenAtHeader = (option: "button_only" | "yulife" | "activity history") => async () => {
+    await tapID(BUTTON_CLOSE_HEADER(option))()
+}
