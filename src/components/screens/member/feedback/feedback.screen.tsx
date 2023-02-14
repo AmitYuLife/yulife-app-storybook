@@ -17,8 +17,8 @@ interface IProps {
 const FeedbackScreen = ({ isSubmitting, onCancel, onRatingSelect, onSubmit, rating }: IProps) => (
   <View style={StyleSheet.absoluteFill}>
     <CentredScreen style={styles.centredScreen}>
-      <Heading size="large" label="feedback" />
-      <Text>let us know what you think</Text>
+      <Heading size="large" label={t("screens.feedback.heading")} />
+      <Text>{t("screens.feedback.subheading")}</Text>
       <Pad height={42} />
       <StarRating onSelect={onRatingSelect} rating={rating} />
       <Pad height={22} />
