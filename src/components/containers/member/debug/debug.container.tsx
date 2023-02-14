@@ -31,7 +31,7 @@ const DebugContainer: React.FC<Props> = (props) => {
     "inspect-opponent",
     ...(data?.getDebugCodes || []),
     "send-test-push",
-    `toggle-leanplum(${Logger.leanplum.isDevMode ? "dev" : "prod"})`,
+    `toggle-leanplum(${Logger.leanplum?.isDevMode ? "dev" : "prod"})`,
   ];
 
   const handleClose = () => {
