@@ -452,7 +452,16 @@
       "video_duration_reward_label": "%{formattedDuration} • Earn %{reward}"
     },
     "challenge_progress": {
-      "how_meditate_with_other_apps_label": "How do I meditate with other apps"
+      "how_meditate_with_other_apps_label": "How do I meditate with other apps",
+      "external_app_links": {
+        "heading": "Choose an app to start",
+        "subheading": "You can use any app that syncs mindfulness minutes to %{syncApp}",
+        "different_app_cta_label": "I'm using a different app",
+        "fiit": {
+          "heading": "Get started with Fiit",
+          "subheading": "Complete any Fiit class to get rewarded"
+        }
+      }
     },
     "challenge_success": {
       "footer": "Well done!",
