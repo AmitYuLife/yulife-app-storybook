@@ -98,7 +98,7 @@ Feature("As a user I can take a challenge", async () => {
         When("I back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
             Then("I should see my updated coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(1030)))
             Then("I should see the number of steps I just completed", then.idVisible(STEPS_COUNT(3050)))
-            Then("I should see the number of coins I've earned today (270)", then.textVisible("270 YuCoin today"))
+            Then("I should see the number of coins I've earned today (470)", then.textVisible("470 YuCoin today"))
         })                                  
     })
 

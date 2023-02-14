@@ -223,7 +223,7 @@ export const challengesAndYuCoinsAwardedVisible = async () => {
 }
 
 export const yunityChestAwardsVisible = (user: typeof USER_1, surgeDuration: 1 | 7) => async () => {
-    const yuCoinEarned = user.data.earnRate * 3;
+    const yuCoinEarned = user.data.earnRate * 50;
     
     await idVisibleAtIndex(YUNITY_CARD(`${surgeDuration} day\n2x surge`), 0)() 
     await idVisibleAtIndex(YUNITY_CARD(`${yuCoinEarned}\nYuCoin`), 0)() 

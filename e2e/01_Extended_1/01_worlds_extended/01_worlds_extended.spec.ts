@@ -18,7 +18,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap this level 50 button", when.tapID(LEVEL_CHALLENGE_BUTTON(50)), async () => {
             Then("I should see a message that the next level will be available in 12 hours", then.nextLevelLocked)
         })
-        When("I tap got it", when.tapText("Got it"), async () => {
+        When("I tap got it", when.tapText("Okay, got it"), async () => {
             Then("I should see the level 50 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(50)))
         })
     }) 
@@ -43,7 +43,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap this level 52 button", when.tapID(LEVEL_CHALLENGE_BUTTON(52)), async () => {
             Then("I should see a message that the next level will be available in 12 hours", then.nextLevelLocked)
         })
-        When("I tap got it", when.tapText("Got it"), async () => {
+        When("I tap got it", when.tapText("Okay, got it"), async () => {
             Then("I should see the level 51 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(51)))
         })
         When("I complete a second walking challenge at level 51", when.completeSecondChallenge(51, "short stroll"), async () => {
@@ -67,7 +67,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                 Then("I should see a message that the next level will be available in 12 hours", then.nextLevelLocked)
             })
         })
-        When("I tap got it", when.tapText("Got it"), async () => {
+        When("I tap got it", when.tapText("Okay, got it"), async () => {
             Then("I should see the level 199 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(199)))
         })
     }) 
@@ -83,7 +83,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap this level 202 button", when.tapID(LEVEL_CHALLENGE_BUTTON(202)), async () => {
             Then("I should see a message that the next level will be available in 12 hours", then.nextLevelLocked)
         })
-        When("I tap got it", when.tapText("Got it"), async () => {
+        When("I tap got it", when.tapText("Okay, got it"), async () => {
             Then("I should see the level 201 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
         })
         When("I complete a second walking challenge at level 201", when.completeSecondChallenge(201, "short stroll"), async () => {
@@ -97,9 +97,9 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     Scenario("When I am at level 201 I can see all my challenges with their yucoin value and I can take max 4 in a day", scenario.start, () => {
         Given("I login as a user on level 201", given.logInAndGoToTab("yucoin", CUSTOMER_64, AUTH_64), async () => {
             Then("I should see my coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
-            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left)"))
+            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (4 left)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
             Then("I should see the level 201 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
         })
         When("I tap level 201 button", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
@@ -112,9 +112,9 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             })
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-            Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left)"))
+            Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (3 left)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (3 left today)"), async () => {
             Then("I should see the level 201 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
         })
         When("I tap level 201 button a second time", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
@@ -125,9 +125,9 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17820)))
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-            Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left)"))
+            Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (2 left)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (2 left today)"), async () => {
             Then("I should see the level 201 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
         })
         When("I tap level 201 button a third time", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
@@ -138,9 +138,9 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17920)))
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-            Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left)"))
+            Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (1 left)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
             Then("I should see the level 201 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
         })
         When("I tap level 201 button a fourth time", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
@@ -162,9 +162,9 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     Scenario("When I am at level 251 I can see all my challenges with their yucoin value and I can take max 4 in a day", scenario.start, () => {
         Given("I login as a user on level 251", given.logInAndGoToTab("yucoin", CUSTOMER_67, AUTH_67), async () => {
             Then("I should see my coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
-            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left)"))
+            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (4 left)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
             Then("I should see the level 251 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(251)))
         })
         When("I tap level 251 button", when.tapID(LEVEL_CHALLENGE_BUTTON(251)), async () => {
@@ -177,9 +177,9 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             })
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-            Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left)"))
+            Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (3 left)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (3 left today)"), async () => {
             Then("I should see the level 251 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(251)))
         })
         When("I tap level 251 button a second time", when.tapID(LEVEL_CHALLENGE_BUTTON(251)), async () => {
@@ -190,9 +190,9 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17820)))
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-            Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left)"))
+            Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (2 left)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (2 left today)"), async () => {
             Then("I should see the level 251 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(251)))
         })
         When("I tap level 251 button a third time", when.tapID(LEVEL_CHALLENGE_BUTTON(251)), async () => {
@@ -203,9 +203,9 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17920)))
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-            Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left)"))
+            Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (1 left)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
             Then("I should see the level 251 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(251)))
         })
         When("I tap level 251 button a fourth time", when.tapID(LEVEL_CHALLENGE_BUTTON(251)), async () => {
@@ -227,9 +227,9 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     Scenario("When I am in the yuniverse at stage 1 I can see all my challenges with their yucoin value and I can take max 4 in a day", scenario.start, () => {
         Given("I login as a user in the yuniverse at stage 1", given.logInAndGoToTab("yucoin", CUSTOMER_68, AUTH_68), async () => {
             Then("I should see my coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
-            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left)"))
+            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (4 left)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
             Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(1)))
         })
         When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(187, 537), async () => {
@@ -242,9 +242,9 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             })
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-            Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left)"))
+            Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (3 left)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (3 left today)"), async () => {
             Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(2)))
         })
         When("I tap level 1 button a second time", when.tapYuniverseLevelAfterFirstTime(187, 537), async () => {
@@ -255,9 +255,9 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17820)))
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-            Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left)"))
+            Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (2 left)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (2 left today)"), async () => {
             Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(2)))
         })
         When("I tap level 1 button a third time", when.tapYuniverseLevelAfterFirstTime(187, 537), async () => {
@@ -268,9 +268,9 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17920)))
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-            Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left)"))
+            Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (1 left)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
             Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(2)))
         })
         When("I tap level 1 button a fourth time", when.tapYuniverseLevelAfterFirstTime(187, 537), async () => {
@@ -285,7 +285,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         })
     }) 
 
-    Scenario("As a user opening a Yunity Chest at level 250, I want the chest to contain a 1 day surge and YuCoin worth 3x the users earn rate", scenario.start, () => {
+    Scenario("As a user opening a Yunity Chest at level 250, I want the chest to contain a 1 day surge and YuCoin worth 50x the users earn rate", scenario.start, () => {
         Given("I login as a user with level 250 unclaimed", given.logInAndGoToTab("quests", CUSTOMER_79, AUTH_79), async () => {
             Then("I should see my coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
             Then("I should see the level 250 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(250)))
@@ -298,7 +298,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         })
     })
 
-    Scenario("As a user opening a Yunity Chest at level 400, I want the chest to contain a 7 day surge and YuCoin worth 3x the users earn rate", scenario.start, () => {
+    Scenario("As a user opening a Yunity Chest at level 400, I want the chest to contain a 7 day surge and YuCoin worth 50x the users earn rate", scenario.start, () => {
         Given("I login as a user with level 400 unclaimed", given.logInAndGoToTab("quests", CUSTOMER_80, AUTH_80), async () => {
             Then("I should see my coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
             Then("I should see the level 400 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(400)))

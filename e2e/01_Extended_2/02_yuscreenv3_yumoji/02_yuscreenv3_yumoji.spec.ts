@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -11,8 +11,8 @@ import {
 } from "@ids";
 
 
-
-Feature("I am able to navigate from the yuscreen v3 to create and edit a Yumoji and use extended functionalities", async () => {
+// V3 has been purged so think this needs to go, but will double check
+FeatureSkip("I am able to navigate from the yuscreen v3 to create and edit a Yumoji and use extended functionalities", async () => {
     
     Scenario("I can create an Yumoji on the yuscreen for the male body", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_75, AUTH_75), async () => {

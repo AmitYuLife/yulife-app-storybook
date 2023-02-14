@@ -6,8 +6,8 @@ import * as then from "./_steps/then"
 import { AUTH_31, AUTH_32, AUTH_33, AUTH_34, AUTH_74, AUTH_ALPHA, BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_4, BUSINESS_EMPLOYEE_31, BUSINESS_EMPLOYEE_32, CGP_31, CGP_32_GCI, CGP_32_GIP, CGP_32_RGL, CGP_74, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_74, CUSTOMER_ALPHA } from "@data";
 import { AVATAR_ITEM, PRODUCT_TOOL_TIP, BUTTON_CLOSE_HEADER, TEXT_TEMPLATE, BACK_BUTTON, ADD_BENEFICIARY, INPUT_BENEFICIARY_DETAIL, BENEFICIARY_CONTINUE, BENEFICIARY_DETAILS, BENEFICIARY_SHARE_INPUT, BENEFICIARIES_PERCENTAGE_ERROR, BENEFICIARY_DONE, BENEFICIARY_DEFAULT_MODAL, PRODUCT_DETAILS_SCROLL_VIEW } from "@ids";
 
-
-Feature("I should be able to use the yuscreen v3", async()=>{
+// Skipping as v3 yuscreen has been purged. Will purge at a later date
+FeatureSkip("I should be able to use the yuscreen v3", async()=>{
     Scenario("As a user with the yuscreen v3 enabled, I should be able to use it correctly", scenario.start, async()=>{
         Given("I login as a user with yuscreen", given.loginToYuScreen(false, CUSTOMER_74, AUTH_74), async()=>{
                 Then("I should see the newly designed yuscreen", then.onYuscreenV3(CUSTOMER_74))

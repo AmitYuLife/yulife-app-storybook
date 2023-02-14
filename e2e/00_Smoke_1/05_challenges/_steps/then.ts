@@ -35,7 +35,7 @@ export const isOnInivteColleaguePage = async () => {
 export const onTodaysEarnings = (steps = 0, cycling: string, mindfulness = 0, yuCoinPowerEarnRate: string) => async () => {
     await expectIsVisibleViaID(TODAYS_EARNINGS)
     await textVisible("earned today")()
-    await textVisible("0 YuCoin")()
+    await textVisible("200 YuCoin")()
     await idVisible(YUCOIN_POWER("13"))()
     await expectIsVisibleViaText(`${steps} / 12000 steps`)
     await expectIsVisibleViaText(`${cycling}`)
@@ -180,7 +180,8 @@ export const challengeComplete = async () => {
 }
 
 export const yuCoinEarnedFromEvent = (yuCoinPower: number, rewardValue: number, milestone: number) => async () => {
-    const yuCoinTotal = (yuCoinPower * rewardValue * milestone).toLocaleString("en-US")
+    const yuCoinDownload = 200
+    const yuCoinTotal = (yuCoinPower * rewardValue * milestone + yuCoinDownload).toLocaleString("en-US")    
     await textVisible(`${yuCoinTotal} YuCoin today`)()
 }
 

@@ -362,5 +362,5 @@ export const isOnTodaysMeditationScreen2Challenges = (mins1: string, yuCoin1: st
 }
 
 export const tapAwarenessContentCard = (mins1: string, yuCoin1: string) => async () => {
-    await navigateViaText(`${mins1} min • Earn ${yuCoin1}`)
+    await navigateViaText(`${mins1} mins • Earn ${yuCoin1}`)
 }

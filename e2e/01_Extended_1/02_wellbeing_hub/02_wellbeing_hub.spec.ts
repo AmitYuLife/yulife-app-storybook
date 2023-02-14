@@ -1,10 +1,10 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_3, AUTH_3, CUSTOMER_31, AUTH_31, CUSTOMER_34, AUTH_34, CUSTOMER_37, AUTH_37 } from "@data";
-import { MENU_ICON, MENU_ITEM, WELLBEING_HUB_SCREEN, BACK_BUTTON, TEXT_TEMPLATE, MORE_INFO_BUTTON, PERK_SCREEN, INPUT_AVIOS_FORM_FIELD } from "@ids";
+import { MENU_ICON, MENU_ITEM, WELLBEING_HUB_SCREEN, BACK_BUTTON, TEXT_TEMPLATE, MORE_INFO_BUTTON, PERK_SCREEN, INPUT_AVIOS_FORM_FIELD, WELLBEING_HUB_SCROLL_VIEW } from "@ids";
 
 
 Feature("Wellbeing Hub should be restricted for certain users", async () => {
@@ -16,26 +16,32 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
                     Then("I should NOT see Fiit on the screen", then.textNotVisible("Fiit"))
                     Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
                     Then("I should see all Wellbeing Hub services", then.wellbeingServiceVisible)
-                    When("I tap the smart health tab", when.tapID(TEXT_TEMPLATE("Smart Health")), async () => {
-                        Then("I should be on the smart health tab", then.textVisible("What is Smart Health?"))
-                        When("I tap to go back to Wellbeing Hub", when.tapID(BACK_BUTTON), async () => {
-                            Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
-                            When("I tap the YuMatter tab", when.tapID(TEXT_TEMPLATE("YuMatter")), async () => {
-                                Then("I should be on the YuMatter screen", then.textVisible("How does it work?"))
-                                When("I tap to go back to Wellbeing Hub", when.tapID(BACK_BUTTON), async () => {
-                                    Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
-                                    When("I tap the Beam tab", when.tapID(TEXT_TEMPLATE("Beam")), async () => {
-                                        Then("I should be on the Beam screen", then.idVisible(MORE_INFO_BUTTON("Donate to Beam")))
-                                        When("I tap to go back to Wellbeing Hub", when.tapID(BACK_BUTTON), async () => {
-                                            Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
-                                            When("I tap the HiBob tab", when.tapID(TEXT_TEMPLATE("HiBob")), async () => {
-                                                Then("I should be on the HiBob screen", then.idVisible(MORE_INFO_BUTTON("Access HiBob")))
-                                                When("I tap to go back to Wellbeing Hub", when.tapID(BACK_BUTTON), async () => {
-                                                    Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
-                                                    When("I tap the More Happi tab", when.tapID(TEXT_TEMPLATE("More Happi")), async () => {
-                                                        Then("I should be on the More Happi screen", then.idVisible(MORE_INFO_BUTTON("Access More Happi")))
+                    When("I scroll back up to the top", then.swipeFromText("Beam", "down", "slow"), async () => {
+                        When("I tap the smart health tab", when.tapID(TEXT_TEMPLATE("Smart Health")), async () => {
+                            Then("I should be on the smart health tab", then.textVisible("What is Smart Health?"))
+                            When("I tap to go back to Wellbeing Hub", when.tapID(BACK_BUTTON), async () => {
+                                Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
+                                When("I tap the YuMatter tab", when.tapID(TEXT_TEMPLATE("YuMatter")), async () => {
+                                    Then("I should be on the YuMatter screen", then.textVisible("How does it work?"))
+                                    When("I tap to go back to Wellbeing Hub", when.tapID(BACK_BUTTON), async () => {
+                                        Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
+                                        When("I tap the Beam tab", when.tapID(TEXT_TEMPLATE("Beam")), async () => {
+                                            Then("I should be on the Beam screen", then.idVisible(MORE_INFO_BUTTON("Donate to Beam")))
+                                            When("I tap to go back to Wellbeing Hub", when.tapID(BACK_BUTTON), async () => {
+                                                Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
+                                                When("I scroll to the Hibob tab", when.scrollUntilIdVisible(WELLBEING_HUB_SCROLL_VIEW, TEXT_TEMPLATE("HiBob"), "down"), async () => {
+                                                    When("I tap the HiBob tab", when.tapID(TEXT_TEMPLATE("HiBob")), async () => {
+                                                        Then("I should be on the HiBob screen", then.idVisible(MORE_INFO_BUTTON("Access HiBob")))
                                                         When("I tap to go back to Wellbeing Hub", when.tapID(BACK_BUTTON), async () => {
                                                             Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
+                                                            When("I scroll to the More Happi tab", when.scrollUntilIdVisible(WELLBEING_HUB_SCROLL_VIEW, TEXT_TEMPLATE("More Happi"), "down"), async () => {
+                                                                When("I tap the More Happi tab", when.tapID(TEXT_TEMPLATE("More Happi")), async () => {
+                                                                    Then("I should be on the More Happi screen", then.idVisible(MORE_INFO_BUTTON("Access More Happi")))
+                                                                    When("I tap to go back to Wellbeing Hub", when.tapID(BACK_BUTTON), async () => {
+                                                                        Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
+                                                                    })
+                                                                })
+                                                            })
                                                         })
                                                     })
                                                 })
