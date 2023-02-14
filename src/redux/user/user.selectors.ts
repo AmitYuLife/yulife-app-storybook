@@ -50,6 +50,9 @@ export const getUserAvatar = createSelector(reducer, userAvatar);
 const userPassiveChallengesLastUpdate = (state: State) => state.passiveChallengesLastUpdate;
 export const getUserPassiveChallengesLastUpdate = createSelector(reducer, userPassiveChallengesLastUpdate);
 
+const userPassiveHourlyActivityLastUpdate = (state: State) => state.passiveHourlyActivityLastUpdate;
+export const getUserPassiveHourlyActivityLastUpdate = createSelector(reducer, userPassiveHourlyActivityLastUpdate);
+
 const userEndPointsVersion = (state: State) => state.endPointsVersion;
 export const getUserEndPointsVersion = createSelector(reducer, userEndPointsVersion);
 

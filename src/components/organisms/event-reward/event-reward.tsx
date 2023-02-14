@@ -158,14 +158,14 @@ const EventReward = ({
     const animationSequence = Animated.sequence([
       ...(statusChanged
         ? [
-          Animated.timing(progress, {
-            toValue: CIRCLE_CIRCUMFERENCE,
-            duration: FADE_OUT_DURATION,
-            easing: Easing.linear,
-            delay: animationDelay,
-            useNativeDriver: true,
-          }),
-        ]
+            Animated.timing(progress, {
+              toValue: CIRCLE_CIRCUMFERENCE,
+              duration: FADE_OUT_DURATION,
+              easing: Easing.linear,
+              delay: animationDelay,
+              useNativeDriver: true,
+            }),
+          ]
         : []),
       {
         start: (cb) => {

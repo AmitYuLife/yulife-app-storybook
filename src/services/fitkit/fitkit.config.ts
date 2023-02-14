@@ -20,6 +20,13 @@ export const getAggregationStepCountConfiguration = (blackListApps: string[]) =>
   blackListApps,
 });
 
+export const getAggregationStepCountHourlyConfiguration = (blackListApps: string[]) => ({
+  fitKitTypes: [FitKitType.StepCount],
+  timeRange: TimeRange.HOURS,
+  aggregationType: AggregationType.Time,
+  blackListApps,
+});
+
 export const getAndroidAggregationMindfulSessionConfiguration = () => ({
   fitKitTypes: [FitKitType.MindfulSession],
   timeRange: TimeRange.DAYS,

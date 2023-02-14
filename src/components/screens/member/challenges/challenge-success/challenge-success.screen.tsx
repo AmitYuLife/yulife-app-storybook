@@ -32,9 +32,7 @@ export default function ChallengeSuccessScreen(props: IProps) {
           </View>
           <View style={styles.level}>
             <TextTemplate type="l1" color={challengeSuccessScreen.textStyle.color} textAlign="center">
-              {yuniversalMap
-                ? t("screens.challenge_success.stage", { level })
-                : t('labels.level', { level })}
+              {yuniversalMap ? t("screens.challenge_success.stage", { level }) : t("labels.level", { level })}
             </TextTemplate>
           </View>
         </View>
@@ -70,7 +68,6 @@ export default function ChallengeSuccessScreen(props: IProps) {
 function renderScore(score: number, unit: string) {
   const unitTextPlural = unit === "minutes" ? t("time_units.minutes") : t("activity_types.steps.plural");
   const unitTextSingular = unit === "minutes" ? t("time_units.minute") : t("activity_types.steps.singular");
-
 
   const mins = Math.floor(score / 60);
 

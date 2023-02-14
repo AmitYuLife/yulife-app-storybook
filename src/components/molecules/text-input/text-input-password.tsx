@@ -15,10 +15,7 @@ export const TextInputPassword = memo(({ errorMessage, hasError, onChange, value
     showPassword,
   ]);
   const accessibilityLabel = useMemo(
-    () =>
-      showPassword
-        ? t("labels.accessibility.hide")
-        : t("labels.accessibility.show"),
+    () => (showPassword ? t("labels.accessibility.hide") : t("labels.accessibility.show")),
     [showPassword]
   );
 

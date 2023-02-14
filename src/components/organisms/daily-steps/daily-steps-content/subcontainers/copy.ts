@@ -11,8 +11,6 @@ export const getFitKitNotAuthorizedCopy = ({
   hasRequestedPermission,
   isIosMotionAuthorised,
 }: IGetFitKitNotAuthorizedCopy) => {
-
-
   const androidMessage = isSamsung()
     ? t("screens.daily.fitkit.unauthorised.android.is_samsung_message")
     : t("screens.daily.fitkit.unauthorised.android.message");
@@ -23,7 +21,6 @@ export const getFitKitNotAuthorizedCopy = ({
   const iOSMotionUnauthorisedButtonLabel = t("screens.daily.fitkit.unauthorised.ios.motion_unauthorised_button_label");
   const iOSPostPromptMessage = t("screens.daily.fitkit.unauthorised.ios.post_prompt_message");
   const postPromptIOSButtonLabel = t("screens.daily.fitkit.unauthorised.ios.post_prompt_button_label");
-
 
   if (Platform.OS === "ios" && !isIosMotionAuthorised) {
     return {

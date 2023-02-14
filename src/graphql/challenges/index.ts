@@ -7,3 +7,4 @@ export * from "./updateQuestMapLevelChallenge.gql";
 export * from "./upsertOnboardingChallenge.gql";
 export * from "./upsertDailyPassives.gql";
 export * from "./getUnityRewards.gql";
+export * from "./updateUserHourlyActivity.gql";

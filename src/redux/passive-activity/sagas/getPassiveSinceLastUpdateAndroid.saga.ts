@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChallengesPayload } from "@graphql/_core/schema/globalTypes";
 import moment from "moment";
 import { call, select, CallEffect, all, AllEffect } from "redux-saga/effects";

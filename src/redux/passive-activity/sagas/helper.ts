@@ -19,3 +19,14 @@ export const getEndDates = (stepsLastUpdate: string, meditationLastUpdate: strin
 
   return { endDateSteps, endDateMeditation, endDateCycling };
 };
+
+export const getHourlyEndDates = (stepsLastUpdate: string) => {
+  const endOfPreviousHour = moment().subtract(1, "hour").endOf("hour");
+
+  const endDateSteps = moment.min(
+    moment(stepsLastUpdate).add(PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT, "hours").endOf("hour"),
+    endOfPreviousHour
+  );
+
+  return { endDateSteps };
+};

@@ -123,25 +123,25 @@ const Links = ({ links }: { links: IProps["links"] }) => (
     {!links
       ? null
       : links.map(({ source, onPress, label, condition }, index) =>
-        !condition ? null : (
-          <View key={`menu-${index}`}>
-            <TouchableOpacityWithDelay
-              style={styles.itemWrapper}
-              onPress={onPress}
-              testID={MENU_ITEM(label)}
-              hitSlop={HIT_SLOP}
-              accessibilityLabel={label}
-            >
-              {!source ? null : (
-                <View style={styles.iconWrapper}>
-                  <RNImage source={source} />
-                </View>
-              )}
-              <TextTemplate type="l1">{label}</TextTemplate>
-            </TouchableOpacityWithDelay>
-          </View>
-        )
-      )}
+          !condition ? null : (
+            <View key={`menu-${index}`}>
+              <TouchableOpacityWithDelay
+                style={styles.itemWrapper}
+                onPress={onPress}
+                testID={MENU_ITEM(label)}
+                hitSlop={HIT_SLOP}
+                accessibilityLabel={label}
+              >
+                {!source ? null : (
+                  <View style={styles.iconWrapper}>
+                    <RNImage source={source} />
+                  </View>
+                )}
+                <TextTemplate type="l1">{label}</TextTemplate>
+              </TouchableOpacityWithDelay>
+            </View>
+          )
+        )}
   </>
 );
 
@@ -154,8 +154,9 @@ const DebugAndVersion = ({ onDebugPress, version }: Pick<IProps, "onDebugPress" 
       hitSlop={HIT_SLOP}
       importantForAccessibility="no"
     >
-      <TextTemplate color={Colours.neutral.n400} type="l3">{`Version ${version}${onDebugPress ? " | " : ""
-        }`}</TextTemplate>
+      <TextTemplate color={Colours.neutral.n400} type="l3">{`Version ${version}${
+        onDebugPress ? " | " : ""
+      }`}</TextTemplate>
       {!onDebugPress ? null : (
         <TextTemplate color={Colours.neutral.n400} type="l3" decoration="underline">
           Debug menu

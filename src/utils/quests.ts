@@ -42,7 +42,6 @@ const WORLD_IMAGES = [
 
 const YUNIVERSAL_IMAGE = require("@assets/yuscreen/worlds/yuniversal.png");
 
-
 export function getCurrentWorldImage(currentWorld: number, isYuniversal: boolean) {
   if (isYuniversal) {
     return YUNIVERSAL_IMAGE;
@@ -52,7 +51,12 @@ export function getCurrentWorldImage(currentWorld: number, isYuniversal: boolean
 }
 
 export function getCurrentWorldText(currentWorld: number, isYuniversal: boolean) {
-  const WORLD_NAME = [t("labels.world_name.forest"), t("labels.world_name.ocean"), t("labels.world_name.desert"), t("labels.world_name.mountain")];
+  const WORLD_NAME = [
+    t("labels.world_name.forest"),
+    t("labels.world_name.ocean"),
+    t("labels.world_name.desert"),
+    t("labels.world_name.mountain"),
+  ];
 
   if (isYuniversal) {
     return "Yuniversal";
