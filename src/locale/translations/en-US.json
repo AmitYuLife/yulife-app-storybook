@@ -201,7 +201,8 @@
       "claimable_activity": "Done! Claim your reward.",
       "claimed_activity": "Good job! Be sure to return next week.",
       "in_progress": "In progress",
-      "accept_challenge": "Accept challenge"
+      "accept_challenge": "Accept challenge",
+      "done": "Done"
     },
     "login": {
       "heading": "Welcome!",

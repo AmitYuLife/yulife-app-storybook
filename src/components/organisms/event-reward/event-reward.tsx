@@ -17,7 +17,7 @@ import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useDispatch } from "react-redux";
 import { t } from "@locale";
 
-const lottieAnimationSource = require("./assets/event-reward-animation.json");
+const lottieAnimationSource = require("@assets/lottie/shine.json");
 
 const CIRCLE_SIZE = Style.adjust(88);
 const HALF_SIZE = CIRCLE_SIZE / 2;
