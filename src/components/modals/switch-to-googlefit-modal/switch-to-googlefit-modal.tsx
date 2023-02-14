@@ -8,7 +8,7 @@ import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
 import { MODALS } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { useBackHandler } from "@hooks";
-import { androidAlertCopy } from "@components/screens/onboarding/fitkit-connect/copy";
+import { getFitKitConnectCopy } from "@components/screens/onboarding/fitkit-connect/copy";
 import { openGoogleFit } from "@services/app-link";
 import { t } from "@locale";
 
@@ -20,6 +20,7 @@ interface SwitchToGoogleFitModalProps {
 const SwitchToGoogleFitModal = (props: SwitchToGoogleFitModalProps) => {
   const { onConnect, onConnected } = props;
   const onClose = useCallback(() => Navigation.dismissModal(MODALS.switchToGoogleFit), []);
+  const { androidAlertCopy } = getFitKitConnectCopy();
 
   const onGoogleFitConnect = useCallback(async () => {
     const { title, message: alertMessage, dismissLabel, downloadLabel, confirmLabel } = androidAlertCopy;

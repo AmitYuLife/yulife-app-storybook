@@ -4,7 +4,7 @@ import { Colours, Style } from "@styles";
 import { Alert, StyleSheet } from "react-native";
 import { Blurb, Heading, Pad } from "@atoms";
 import { Button } from "@molecules";
-import { androidAlertCopy, fitKitConnectCopy } from "./copy";
+import { getFitKitConnectCopy } from "./copy";
 import { ConnectCheckList } from "@molecules";
 import { openGoogleFit } from "@services/app-link";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
@@ -15,6 +15,9 @@ interface IProps {
 }
 
 const FitKitAvailable: FC<IProps> = ({ connecting, onConnectPress }) => {
+
+  const { fitKitConnectCopy, androidAlertCopy } = getFitKitConnectCopy();
+
   const { heading, connectMessage, connectButton } = fitKitConnectCopy;
   // send the platform for iOS as well?
   const [selectedFitkitPlatform, setSelectedFitkitPlatform] = useState<FitKitHealthTrackingPlatform>("GoogleFit");
