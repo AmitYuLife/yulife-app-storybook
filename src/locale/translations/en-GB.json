@@ -28,6 +28,7 @@
       "desert": "Desert",
       "mountain": "Mountain"
     },
+    "unknown": "unknown",
     "you": "You",
     "power": "Power",
     "level": "Level %{level}",
@@ -255,6 +256,10 @@
       }
     },
     "daily": {
+      "offline": {
+        "heading": "you’re offline",
+        "subheading": "Your steps will update when next online Last update: %{lastUpdate}"
+      },
       "fitkit": {
         "unavailable": {
           "heading": "device not supported",
