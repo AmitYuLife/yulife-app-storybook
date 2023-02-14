@@ -17,7 +17,7 @@ import {
 import ActivityFeedPopMenu from "./activity-feed-pop-menu";
 import { ROUTES } from "@navigation/constants";
 import { openGoogleFit } from "@services/app-link";
-import { androidAlertCopy } from "@components/screens/onboarding/fitkit-connect/copy";
+import { getFitKitConnectCopy } from "@components/screens/onboarding/fitkit-connect/copy";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { buildFitKitPermissions, FitKitAndroidSystemPermission } from "@services/fitkit/fitkit.permissions";
 import { ACTIVITY_FEED, WELLDONE_BANNER } from "@ids";
@@ -93,6 +93,7 @@ const ActivityFeed = ({
   }, []);
 
   const onGoogleFitConnect = useCallback(async () => {
+    const { androidAlertCopy } = getFitKitConnectCopy();
     const { title: alertTitle, message: alertMessage, dismissLabel, downloadLabel, confirmLabel } = androidAlertCopy;
     const buttons = [
       {
