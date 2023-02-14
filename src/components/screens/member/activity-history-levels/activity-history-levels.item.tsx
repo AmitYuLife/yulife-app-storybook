@@ -10,6 +10,7 @@ import { Colours } from "@styles";
 import { TEXT_TEMPLATE } from "@ids";
 import { useTranslation } from "@hooks";
 import { useSelector } from "react-redux";
+import { t } from "@locale";
 
 export interface IChallenge {
   earned: number;
@@ -70,9 +71,8 @@ export default function ActivityHistoryLevelsItem({
 
   const generateStepsText = useCallback(
     (val: number) => {
-      return `${addCommasToNumber(val)} ${
-        val === 1 ? translations["activity_types.steps.singular"] : translations["activity_types.steps.plural"]
-      }`;
+      return `${addCommasToNumber(val)} ${val === 1 ? translations["activity_types.steps.singular"] : translations["activity_types.steps.plural"]
+        }`;
     },
     [translations]
   );
@@ -94,7 +94,7 @@ export default function ActivityHistoryLevelsItem({
             <View style={styles.levelTextWrapper}>
               <View style={styles.levelTextTopMargin}>
                 <TextTemplate type="l3b" textAlign="center" color={Colours.neutral.white} numberOfLines={1}>
-                  LEVEL
+                  {t("screens.activity_history_levels.header_level").toUpperCase()}
                 </TextTemplate>
               </View>
               <TextTemplate type="b1b" textAlign="center" color={Colours.neutral.white} numberOfLines={1}>
@@ -176,10 +176,10 @@ export default function ActivityHistoryLevelsItem({
                 {!challenge.score
                   ? null
                   : Array.from({ length: 3 }).map((_, index) => (
-                      <View key={index} style={styles.starWrapper}>
-                        <StarInline filled={index < challenge.milestones} />
-                      </View>
-                    ))}
+                    <View key={index} style={styles.starWrapper}>
+                      <StarInline filled={index < challenge.milestones} />
+                    </View>
+                  ))}
               </View>
             ))}
           </View>
