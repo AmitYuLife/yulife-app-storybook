@@ -25,7 +25,7 @@ export const WeeklyQuestsButton = memo(({ isVisible }: Props) => {
   const { weeklies } = useContext(QuestsMapContext);
 
   const claimableRewards = weeklies?.activityProgress?.filter?.((e) => e.isClaimable)?.length;
-  const isClaimed = !!weeklies?.activityProgress.find((e) => e.isClaimed);
+  const isClaimed = !!weeklies?.activityProgress.every((e) => e.isClaimed);
 
   const onPress = useCallback(() => handlePress(isClaimed), [isClaimed]);
 
@@ -33,5 +33,13 @@ export const WeeklyQuestsButton = memo(({ isVisible }: Props) => {
     return null;
   }
 
-  return <Weeklies onPress={onPress} claimableRewards={claimableRewards} endDateTime={weeklies.endDateTime} />;
+  return (
+    <Weeklies
+      onPress={onPress}
+      claimableRewards={claimableRewards}
+      endDateTime={weeklies.endDateTime}
+      hasJoined={weeklies.hasJoined}
+      isClaimed={isClaimed}
+    />
+  );
 });
