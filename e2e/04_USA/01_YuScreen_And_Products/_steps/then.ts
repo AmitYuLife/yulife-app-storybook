@@ -132,11 +132,11 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       await expect(element(by.text(text.Guardian_DENHMO.heading))).toBeVisible();
       await expect(element(by.text(text.Guardian_TLIF.slotAbreviation))).toBeVisible();
       await expect(element(by.text(text.Guardian_DENCHOI.slotAbreviation))).toBeVisible();
-      if (device.name.includes("(iPhone 11 Pro)")) {
+      if (device.name.includes("(iPhone 14 Pro)")) {
         await expect(element(by.text(text.MoreProtection))).toBeVisible();
       }
       await swipeFromText(text.WellbeingProduct, "up", "slow")();
-      if (device.name.includes("(iPhone 8)")) {
+      if (device.name.includes("(iPhone SE (3rd generation))")) {
         await expect(element(by.text(text.EnrolmentTitle))).toBeVisible();
         await swipeFromText(text.EnrolmentButton, "up", "slow")();
       }
@@ -154,11 +154,11 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       await textVisible(text.Guardian_ADD.slotAbreviation)();
       await textVisible(text.Guardian_STD.slotAbreviation)();
       await textVisible(text.Guardian_LTD.slotAbreviation)();
-      if (device.name.includes("(iPhone 11 Pro)")) {
+      if (device.name.includes("(iPhone 14 Pro)")) {
         await expect(element(by.text(text.MoreProtection))).toBeVisible();
       }
       await swipeFromText(text.Guardian_ADD.slotAbreviation, "up", "slow")();
-      if (device.name.includes("(iPhone 8)")) {
+      if (device.name.includes("(iPhone SE (3rd generation))")) {
         await expect(element(by.text(text.EnrolmentTitle))).toBeVisible();
         await swipeFromText(text.EnrolmentButton, "up", "slow")();
       }
@@ -176,11 +176,11 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       await textVisible(text.Guardian_ACC.heading)();
       await textVisible(text.Guardian_CRI.slotAbreviation)();
       await textVisible(text.Guardian_HI.slotAbreviation)();
-      if (device.name.includes("(iPhone 11 Pro)")) {
+      if (device.name.includes("(iPhone 14 Pro)")) {
         await expect(element(by.text(text.MoreProtection))).toBeVisible();
       }
       await swipeFromText(text.Guardian_ACC.heading, "up", "slow")();
-      if (device.name.includes("(iPhone 8)")) {
+      if (device.name.includes("(iPhone SE (3rd generation))")) {
         await expect(element(by.text(text.EnrolmentTitle))).toBeVisible();
         await swipeFromText(text.EnrolmentButton, "up", "slow")();
       }
@@ -196,13 +196,13 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       await textVisible(`${CPE_ACCSICK_4.data.earn_rate}`)();
       await textVisible(`${CPE_CAN_4.data.earn_rate}`)();
       await textVisible(text.Guardian_VLIF.slotAbreviation)();
-      if (device.name.includes("(iPhone 11 Pro)")) {
+      if (device.name.includes("(iPhone 14 Pro)")) {
         await expect(element(by.text(text.MoreProtection))).toBeNotVisible();
         await expect(element(by.text(text.EnrolmentButton))).toBeNotVisible();
         await expect(element(by.text(text.ClosedEnrolment))).toBeVisible();
       }
       await swipeFromText(text.Guardian_VLIF.slotAbreviation, "up", "slow")();
-      if (device.name.includes("(iPhone 8)")) {
+      if (device.name.includes("(iPhone SE (3rd generation))")) {
         await expect(element(by.text(text.EnrolmentTitle))).toBeNotVisible();
         await expect(element(by.text(text.EnrolmentButton))).toBeNotVisible();
         await expect(element(by.text(text.ClosedEnrolment))).toBeVisible();
