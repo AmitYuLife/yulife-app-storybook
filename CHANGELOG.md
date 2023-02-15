@@ -7,6 +7,87 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.69.0] - 2023-02-15
+
+### Bugfixes
+
+- BUGFIX: Event progress bar icon
+- Bugfix: log out from intercom/mixpanel and save against no active leaderboard
+- BugFix: change wrong prop calls
+- BugFix: prevent isDevMod from logger leanplum undefined
+- Bugfix: Show X instead of yucoins value on VideoPlayer component
+- Bugfix: Fix accordion organism content height
+- Bugfix: Improve landscape on Video component and small improvements for Fiit in app
+- Bugfix: Circle checkbox fill issue
+- Bugfix: Cubic checkbox fix colours
+- Bugfix: image resize mode
+- Bugfix: Separate android cpu builds
+- Bugfix XSE-1711: Update translation casing for YuScreen
+- Bugfix: Fix streak popup bug
+
+### Tasks
+
+- Task XSE-1691: Implement dropdown SDUI on Bupa
+- Task GS-137: Passive challenge refactor
+- Task GS-641: updateUserHourlyActivity
+- Task GS-629 GS-630: Weeklies state update
+
+### Chores
+
+- Chore: purge streaks copies
+- Chore: purge duels hub copies
+- Chore: purge yu products survey copies
+- Chore: purge rewards copies
+- Chore: purge other wearables copies
+- Chore: purge quests copies
+- Chore: purge inspect copies
+- Chore: purge feedback copies
+- Chore: move weeklies button cta label
+- Chore: push fitkit-connect copies into a function
+- Chore: purge daily steps screen copies
+- Chore: purge challenge progress external apps copies
+- Chore: purge Activity history copies
+- Chore: purge tap to copy copies
+- Chore: purge world name copies
+- Chore: purge player loading copies
+- Chore: purge onboarding swiper copy
+- Chore: purge avatar items copies
+- Chore: purge event reward claim button label copies
+- Chore: purge text input placeholder copies
+- Chore: purge reward item content copies
+- Chore: purge countdown copies
+- Chore: purge package types copies
+- Chore: purge level label copies
+- Chore: purge daily fitkit copies
+- Chore: purge package month price copies
+- Chore: purge cover-picker copies
+- Chore: purge connect check list copies
+- Chore: purge challenge tile copies
+- Chore: Update RN installation readme
+- Chore: purge daily steps online copies
+- Chore: fix git hooks
+- Chore: purge add beneficiar copies
+- Chore: purge switch to google fit copies
+- Chore: purge duel invite response and respond copies
+- Chore: purge yumoji-builder modal copies
+- Chore: purge review copies
+- Chore: pass email to reset password container
+- Chore: purge active buffs copies
+- Chore: purge wellbeing hub copies
+- Chore: purge update copies
+- Chore: purge label copies
+- Chore: add trnaslate labels
+- Chore: purge challenge screen copies
+
+### Extra
+
+- Detox: change to new iphone devices (14 Pro, SE 3rd gen)
+- Detox/fixes 13 2
+- ISA-363: Make changes required for leaderboards.
+- detox: add field validation for ordo journey
+- detox: some seed data for US scenario
+- React Native upgrade 0.70.6 fresh project
+
 ## [3.68.0] - 2023-02-08
 
 ### Bugfixes
