@@ -8,6 +8,7 @@ import { TapToCopy } from "@organisms";
 import { MORE_INFO_BUTTON } from "@ids";
 import { Style } from "@styles";
 import { IElement } from "@components/molecules/content-item-form/content-item-form";
+import { t } from "@locale";
 
 enum Programmes {
   aerLingus = "aerclub",
@@ -36,7 +37,7 @@ export const GetItemContent = (
         return {
           accountNumber: {
             value: accountNumberValue,
-            error: "Please enter a valid account number",
+            error: t("screens.rewards.details.error.valid_account_number"),
           },
         };
       }
@@ -47,14 +48,14 @@ export const GetItemContent = (
         return {
           accountNumber: {
             value: accountNumberValue,
-            error: "Please enter a valid account number",
+            error: t("screens.rewards.details.error.valid_account_number"),
           },
         };
       }
     }
 
     if (!programme && !initialValidation) {
-      return { accountNumber: { error: "You must select a loyalty programme", value: accountNumberValue } };
+      return { accountNumber: { error: t("screens.rewards.details.error.loyalty_programme"), value: accountNumberValue } };
     }
   }, []);
 

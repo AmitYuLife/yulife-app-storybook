@@ -6,6 +6,7 @@ import styles from "./wegift-confirmed.screen.styles";
 import { WEGIFT_CONFIRMED, PURCHASE_IMAGE } from "@ids";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { t } from "@locale";
 export interface IServerProps {
   rewardName: string;
   redeemInstructions: string[];
@@ -78,7 +79,7 @@ class WegiftRewardsConfirmed extends React.PureComponent<Props, IState> {
           <View style={styles.divider} />
           <View style={styles.dateRowWrapper}>
             <View style={styles.dateLabelWrapper}>
-              <Text style={styles.textSizeDefault}>Purchased date</Text>
+              <Text style={styles.textSizeDefault}>{t("screens.rewards.confirmed.purchased_date")}</Text>
             </View>
             <View style={styles.dateWrapper}>
               <Text style={styles.textSizeDefault}>{purchaseDate}</Text>
@@ -87,7 +88,7 @@ class WegiftRewardsConfirmed extends React.PureComponent<Props, IState> {
           {validDate ? (
             <View style={styles.dateRowWrapper}>
               <View style={styles.dateLabelWrapper}>
-                <Text style={styles.textSizeDefault}>Valid until</Text>
+                <Text style={styles.textSizeDefault}>{t("screens.rewards.confirmed.valid_until")}</Text>
               </View>
               <View style={styles.dateWrapper}>
                 <Text style={styles.textSizeDefault}>{validDate}</Text>
@@ -98,9 +99,9 @@ class WegiftRewardsConfirmed extends React.PureComponent<Props, IState> {
             description={description}
             instructions={redeemInstructions}
             onPressCtaPrimary={onPressCancel}
-            labelCtaPrimary="see other rewards"
+            labelCtaPrimary={t("screens.rewards.confirmed.label_cta.other_rewards")}
             onPressCtaSecondary={onPressConfirm}
-            labelCtaSecondary="get voucher"
+            labelCtaSecondary={t("screens.rewards.confirmed.label_cta.get_voucher")}
             onPressTerms={onPressTerms}
             onPressPolicy={onPressPolicy}
             isLoadingSecondary={isLoadingConfirmAction}

@@ -7,6 +7,7 @@ import styles from "./avios-confirmed.screen.styles";
 import CardStates from "./card-states";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { t } from "@locale";
 
 export type PurchaseStatus = "pending" | "failed" | "delivered";
 
@@ -47,10 +48,10 @@ const RewardsConfirmedScreen = ({
         {status === "delivered"
           ? CardStates.Delivered
           : status === "failed"
-          ? CardStates.Failed
-          : status === "refunded"
-          ? CardStates.Refunded
-          : CardStates.Pending}
+            ? CardStates.Failed
+            : status === "refunded"
+              ? CardStates.Refunded
+              : CardStates.Pending}
 
         <View style={styles.rewardNameWrapper}>
           <Text style={styles.rewardName} bold={true}>
@@ -62,7 +63,7 @@ const RewardsConfirmedScreen = ({
         <View style={styles.divider} />
         <View style={styles.dateRowWrapper}>
           <View style={styles.dateLabelWrapper}>
-            <Text style={styles.textSizeDefault}>Purchased date</Text>
+            <Text style={styles.textSizeDefault}>{t("screens.rewards.confirmed.purchased_date")}</Text>
           </View>
           <View style={styles.dateWrapper}>
             <Text style={styles.textSizeDefault}>{purchaseDate}</Text>
@@ -71,11 +72,11 @@ const RewardsConfirmedScreen = ({
         <Pad height={Style.isShortToMediumAndroid() ? 0 : 50} />
         <RewardItemContent
           onPressCtaPrimary={onPressCancel}
-          labelCtaPrimary="see other rewards"
+          labelCtaPrimary={t("screens.rewards.confirmed.label_cta.other_rewards")}
           onPressCtaSecondary={onPressConfirm}
-          labelCtaSecondary="need help? talk to us"
+          labelCtaSecondary={t("screens.rewards.confirmed.label_cta.need_help")}
           onPressCtaTertiary={onPressPolicy}
-          labelCtaTertiary="Rewards policy"
+          labelCtaTertiary={t("screens.rewards.confirmed.label_cta.rewards_policy")}
         />
         <Pad height={50} />
       </ScrollView>
