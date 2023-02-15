@@ -25,6 +25,7 @@ import { IFloatingModalContentProps } from "@components/modals/floating-modals/f
 import colours from "@styles/colours";
 import { getUserCoinLedgerTodayActivityStart } from "@redux/user/user.actions";
 import { RadioIcon } from "@atoms/icon/radio-icon";
+import { t as translate } from "@locale";
 
 const handleCloseOverlay = () => Navigation.dismissOverlay(MODALS.blurredOverlay);
 
@@ -153,10 +154,10 @@ export const WeeklyQuestsModal = memo(({ onClose, setIcon }: IFloatingModalConte
         </>
       )}
       {activeActivity && !activeActivity?.isClaimable ? (
-        <Button isLoading={joinLoading} label={"Close"} onPress={onClose} />
+        <Button isLoading={joinLoading} label={translate("labels.cta.close")} onPress={onClose} />
       ) : null}
       {activeActivity?.isClaimable && !activeActivity?.isClaimed ? (
-        <Button isLoading={claimLoading || weekliesLoading} label={"Claim"} onPress={claimReward} />
+        <Button isLoading={claimLoading || weekliesLoading} label={translate("labels.cta.claim")} onPress={claimReward} />
       ) : null}
       <Pad height={Style.adjust(36)} />
     </View>

@@ -319,7 +319,7 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
             <Button
               size="Large"
               onPress={onIntroPageButtonPress}
-              label={data?.getUnityRewards?.intro.cta || "Continue"}
+              label={data?.getUnityRewards?.intro.cta || t("labels.cta.continue")}
             />
           </Animated.View>
         </Animated.View>
