@@ -11,6 +11,7 @@ import { BeneficiaryItem } from "./beneficiary-item";
 import { GetProductBeneficiaries_getProductBeneficiaries_beneficiaries as Beneficiary } from "@graphql/_core/schema";
 import { BENEFICIARY_DETAILS, BENEFICIARIES_PERCENTAGE_ERROR, BENEFICIARY_DONE, ADD_BENEFICIARY } from "@ids";
 import { showYuModal } from "@navigation/root";
+import { t } from "@locale";
 
 interface Props {
   beneficiaries: Beneficiary[];
@@ -42,11 +43,11 @@ export const BeneficiaryScreen = memo((props: Props) => {
       return accumulator + currentValue?.shareOfBenefit;
     }, 0) !== MAX_SUM_ALLOCATED_PERCENTAGE;
 
-  const title = localBeneficiaries?.length ? "Edit Beneficiaries" : "Add Beneficiaries";
+  const title = localBeneficiaries?.length ? t("screens.products.beneficiary.edit.title") : t("screens.products.beneficiary.add.title");
   const message = localBeneficiaries?.length
-    ? "Set the allocated percentage for each beneficiary. The total must add up to 100%."
-    : "Looks like you haven’t set an beneficiaries yet. Tap below to get started.";
-  const bottomButtonLabel = localBeneficiaries?.length ? "Done" : "Skip for now";
+    ? t("screens.products.beneficiary.edit.message")
+    : t("screens.products.beneficiary.add.message");
+  const bottomButtonLabel = localBeneficiaries?.length ? t("labels.cta.done") : t("screens.products.beneficiary.labels.skip");
 
   const onBeneficiaryAllocatedAmountChanged = useCallback(
     (beneficiary: Beneficiary, allocatedAmount: number) => {
@@ -163,7 +164,7 @@ export const BeneficiaryScreen = memo((props: Props) => {
 
           <SecondaryButton
             wrapperStyle={styles.addBeneficiaryButtonWrapper}
-            label="Add Beneficiary"
+            label={t("screens.products.beneficiary.labels.add")}
             onPress={() => showAddBeneficiaryModal(productId, null)}
             testID={ADD_BENEFICIARY}
           />
@@ -191,7 +192,7 @@ export const BeneficiaryScreen = memo((props: Props) => {
 const Error = () => {
   return (
     <Text style={styles.error} testID={BENEFICIARIES_PERCENTAGE_ERROR}>
-      Oops! Please double-check your percentages. The sum should add up to 100%.
+      {t("screens.products.beneficiary.error")}
     </Text>
   );
 };

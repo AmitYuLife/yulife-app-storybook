@@ -112,6 +112,23 @@
   },
   "create_challenge_error": "Sorry, there was a problem starting your challenge. \n Please try again!",
   "screens": {
+    "products": {
+      "beneficiary": {
+        "add": {
+          "title": "Add Beneficiaries",
+          "message": "Looks like you haven’t set an beneficiaries yet. Tap below to get started."
+        },
+        "edit": {
+          "title": "Edit Beneficiaries",
+          "message": "Set the allocated percentage for each beneficiary. The total must add up to 100%."
+        },
+        "labels": {
+          "skip": "Skip for now",
+          "add": "Add Beneficiary"
+        },
+        "error": "Oops! Please double-check your percentages. The sum should add up to 100%."
+      }
+    },
     "yu": {
       "products_survey": {
         "text_area_placeholder": "Describe anything else you would like to see here..."
