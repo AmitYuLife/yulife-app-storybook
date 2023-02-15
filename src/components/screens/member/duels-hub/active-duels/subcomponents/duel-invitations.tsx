@@ -64,7 +64,7 @@ const DuelInvitations: FC = () => {
               </View>
               <View style={styles.yucoinCtaWrapper}>
                 <Text bold={true} style={[styles.text, styles.grayText, hasDeclined ? styles.declinedText : {}]}>
-                  {duel.yucoin} YuCoin
+                  {t("yu_coin.amount", { amount: duel.yucoin })}
                 </Text>
                 <DuelInvitationStatus duel={duel} />
               </View>
