@@ -75,9 +75,10 @@ export interface IProgressBarProps {
 }
 
 const ProgressBar = ({ width, current, max, milestones = [], type = "full", style }: IProgressBarProps) => {
-  const progressBarValues = useMemo(() => (type === "full" ? FULL_PROGRESS_BAR_VALUES : COMPACT_PROGRESS_BAR_VALUES), [
-    type,
-  ]);
+  const progressBarValues = useMemo(
+    () => (type === "full" ? FULL_PROGRESS_BAR_VALUES : COMPACT_PROGRESS_BAR_VALUES),
+    [type]
+  );
 
   const {
     defaultWidth,
@@ -98,11 +99,10 @@ const ProgressBar = ({ width, current, max, milestones = [], type = "full", styl
 
   const progress = useMemo(() => current / max, [current, max]);
   const viewBox = useMemo(() => `0 0 ${adjustedWidth} ${adjustedHeight}`, [adjustedWidth, adjustedHeight]);
-  const progressWidth = useMemo(() => Math.max(progress * fullWidth, rectBorderRadius * 2), [
-    progress,
-    fullWidth,
-    rectBorderRadius,
-  ]);
+  const progressWidth = useMemo(
+    () => Math.max(progress * fullWidth, rectBorderRadius * 2),
+    [progress, fullWidth, rectBorderRadius]
+  );
 
   const svgHeight = adjustedHeight + 8;
 
@@ -242,7 +242,6 @@ const RewardMilestone = memo(
           animation.stop();
         };
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const interpolation = {
@@ -272,7 +271,7 @@ const RewardMilestone = memo(
           fill={circleFillColor}
         />
         {rewardClaimed ? (
-          <G scale={tickScale} x={tickX} y={tickVerticalCenter}>
+          <G scale={tickScale} x={tickX} y={tickVerticalCenter} fill={"transparent"}>
             <Path d="M13 1L4.66253 9L1 5.4" stroke="white" />
           </G>
         ) : (
