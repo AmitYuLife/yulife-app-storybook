@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -18,12 +18,15 @@ import {
 // GraphQL fragment: ContentItem
 // ====================================================
 
-export interface ContentItem_ContentItemTable {
+export interface ContentItem_ContentItemProcessingTimer {
   __typename:
+    | "ContentItemProcessingTimer"
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
-    | "ContentItemInfoCard";
+    | "ContentItemInfoCard"
+    | "ContentItemLinearGradient"
+    | "ContentItemYuCoinPower";
 }
 
 export interface ContentItem_ContentItemMarkdown_styles {
@@ -245,6 +248,32 @@ export interface ContentItem_ContentItemTextInput {
    * Supported RN version 3.58.0
    */
   styles: ContentItem_ContentItemTextInput_styles[] | null;
+}
+
+export interface ContentItem_ContentItemDropdownInput_validation {
+  validationName: string;
+  validationValue: string;
+}
+
+export interface ContentItem_ContentItemDropdownInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemDropdownInput_dropdownOptions {
+  label: string | null;
+  value: string | null;
+}
+
+export interface ContentItem_ContentItemDropdownInput {
+  __typename: "ContentItemDropdownInput";
+  id: string;
+  heading: string | null;
+  answerKey: string;
+  validation: (ContentItem_ContentItemDropdownInput_validation | null)[] | null;
+  styles: ContentItem_ContentItemDropdownInput_styles[] | null;
+  dropdownOptions: (ContentItem_ContentItemDropdownInput_dropdownOptions | null)[];
+  selectInstruction: string | null;
 }
 
 export interface ContentItem_ContentItemRowIconTextBanner_bannerIcon {
@@ -553,7 +582,7 @@ export interface ContentItem_ContentItemAccordion {
 }
 
 export type ContentItem =
-  | ContentItem_ContentItemTable
+  | ContentItem_ContentItemProcessingTimer
   | ContentItem_ContentItemMarkdown
   | ContentItem_ContentItemBox
   | ContentItem_ContentItemButton
@@ -561,6 +590,7 @@ export type ContentItem =
   | ContentItem_ContentItemForm
   | ContentItem_ContentItemText
   | ContentItem_ContentItemTextInput
+  | ContentItem_ContentItemDropdownInput
   | ContentItem_ContentItemRowIconTextBanner
   | ContentItem_ContentItemLottie
   | ContentItem_ContentItemPad

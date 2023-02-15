@@ -35,3 +35,4 @@ export * from "./contentItemCostPayoutBenefitCard/contentItemCostPayoutBenefitCa
 export * from "./contentItemCollapsingHeaderAgePercentProductInfo/contentItemCollapsingHeaderAgePercentProductInfo";
 export * from "./contentItemTextGroup/contentItemTextGroup";
 export * from "./contentItemAccordion/contentItemAccordion";
+export * from "./contentItemDropdownInput/contentItemDropdownInput";

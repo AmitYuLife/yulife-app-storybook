@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -36,6 +36,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
     | "ContentItemMultiSelect"
     | "ContentItemPersonalProductReviewItem"
     | "ContentItemPackageCards"
+    | "ContentItemProcessingTimer"
     | "ContentItemPersonalProductPreview"
     | "ContentItemAgePercentCoverPicker"
     | "ContentItemScrollableItemsPicker"
@@ -50,7 +51,6 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
     | "ContentItemSearchPostcode"
     | "ContentItemForm"
     | "ContentItemFade"
-    | "ContentItemProcessingTimer"
     | "ContentItemYuCoinPower"
     | "ContentItemProgressSteps"
     | "ContentItemCostPayoutBenefitCard"
@@ -698,6 +698,34 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   containerActions: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_containerActions | null;
 }
 
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemDropdownInput_validation {
+  validationName: string;
+  validationValue: string;
+}
+
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemDropdownInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemDropdownInput_dropdownOptions {
+  label: string | null;
+  value: string | null;
+}
+
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemDropdownInput {
+  __typename: "ContentItemDropdownInput";
+  id: string;
+  heading: string | null;
+  answerKey: string;
+  validation:
+    | (GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemDropdownInput_validation | null)[]
+    | null;
+  styles: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemDropdownInput_styles[] | null;
+  dropdownOptions: (GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemDropdownInput_dropdownOptions | null)[];
+  selectInstruction: string | null;
+}
+
 export type GetPersonalProductStepDetached_getPersonalProductStepDetached_body =
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemLottie
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPersonalProductFaqs
@@ -711,7 +739,8 @@ export type GetPersonalProductStepDetached_getPersonalProductStepDetached_body =
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPad
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemMarkdown
-  | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner;
+  | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner
+  | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemDropdownInput;
 
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached {
   stepId: string;

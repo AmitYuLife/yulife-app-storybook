@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -18,12 +18,15 @@ import {
 // GraphQL query operation: GetSduiJourney
 // ====================================================
 
-export interface GetSduiJourney_getSduiJourney_body_ContentItemTable {
+export interface GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer {
   __typename:
+    | "ContentItemProcessingTimer"
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
-    | "ContentItemInfoCard";
+    | "ContentItemInfoCard"
+    | "ContentItemLinearGradient"
+    | "ContentItemYuCoinPower";
 }
 
 export interface GetSduiJourney_getSduiJourney_body_ContentItemMarkdown_styles {
@@ -249,6 +252,32 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemTextInput {
    * Supported RN version 3.58.0
    */
   styles: GetSduiJourney_getSduiJourney_body_ContentItemTextInput_styles[] | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemDropdownInput_validation {
+  validationName: string;
+  validationValue: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemDropdownInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemDropdownInput_dropdownOptions {
+  label: string | null;
+  value: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemDropdownInput {
+  __typename: "ContentItemDropdownInput";
+  id: string;
+  heading: string | null;
+  answerKey: string;
+  validation: (GetSduiJourney_getSduiJourney_body_ContentItemDropdownInput_validation | null)[] | null;
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemDropdownInput_styles[] | null;
+  dropdownOptions: (GetSduiJourney_getSduiJourney_body_ContentItemDropdownInput_dropdownOptions | null)[];
+  selectInstruction: string | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner_bannerIcon {
@@ -557,7 +586,7 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemAccordion {
 }
 
 export type GetSduiJourney_getSduiJourney_body =
-  | GetSduiJourney_getSduiJourney_body_ContentItemTable
+  | GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_body_ContentItemMarkdown
   | GetSduiJourney_getSduiJourney_body_ContentItemBox
   | GetSduiJourney_getSduiJourney_body_ContentItemButton
@@ -565,6 +594,7 @@ export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemForm
   | GetSduiJourney_getSduiJourney_body_ContentItemText
   | GetSduiJourney_getSduiJourney_body_ContentItemTextInput
+  | GetSduiJourney_getSduiJourney_body_ContentItemDropdownInput
   | GetSduiJourney_getSduiJourney_body_ContentItemRowIconTextBanner
   | GetSduiJourney_getSduiJourney_body_ContentItemLottie
   | GetSduiJourney_getSduiJourney_body_ContentItemPad
@@ -574,12 +604,15 @@ export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemTextGroup
   | GetSduiJourney_getSduiJourney_body_ContentItemAccordion;
 
-export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemTable {
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer {
   __typename:
+    | "ContentItemProcessingTimer"
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
-    | "ContentItemInfoCard";
+    | "ContentItemInfoCard"
+    | "ContentItemLinearGradient"
+    | "ContentItemYuCoinPower";
 }
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown_styles {
@@ -807,6 +840,32 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextInpu
    * Supported RN version 3.58.0
    */
   styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextInput_styles[] | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemDropdownInput_validation {
+  validationName: string;
+  validationValue: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemDropdownInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemDropdownInput_dropdownOptions {
+  label: string | null;
+  value: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemDropdownInput {
+  __typename: "ContentItemDropdownInput";
+  id: string;
+  heading: string | null;
+  answerKey: string;
+  validation: (GetSduiJourney_getSduiJourney_absolute_item_ContentItemDropdownInput_validation | null)[] | null;
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemDropdownInput_styles[] | null;
+  dropdownOptions: (GetSduiJourney_getSduiJourney_absolute_item_ContentItemDropdownInput_dropdownOptions | null)[];
+  selectInstruction: string | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner_bannerIcon {
@@ -1117,7 +1176,7 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordio
 }
 
 export type GetSduiJourney_getSduiJourney_absolute_item =
-  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemTable
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemBox
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemButton
@@ -1125,6 +1184,7 @@ export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemForm
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemText
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextInput
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemDropdownInput
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemRowIconTextBanner
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemLottie
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemPad

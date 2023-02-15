@@ -24,6 +24,7 @@ interface Props {
   onFocus?: () => void;
   testID?: string;
   baseUnderlineColor?: string;
+  editable?: boolean;
 }
 
 function stripPunctuation(text: string, type: Type) {
@@ -68,7 +69,9 @@ export default function TextField(props: Props) {
     onFocus,
     testID,
     baseUnderlineColor,
+    editable = true,
   } = props;
+
   const [isFocused, setFocused] = useState(autoFocus);
   const [placeholderScale] = useState(new Animated.Value(1));
   const [placeholderTranslateY] = useState(new Animated.Value(0));
@@ -102,6 +105,7 @@ export default function TextField(props: Props) {
     <>
       <View style={styles.wrapper}>
         <TextInput
+          editable={editable}
           testID={testID}
           style={StyleSheet.flatten([styles.inputBase, { paddingLeft: placeholderIndentSize }, inputTextStyle])}
           onBlur={() => {

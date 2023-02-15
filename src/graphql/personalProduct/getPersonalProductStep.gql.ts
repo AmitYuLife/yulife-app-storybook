@@ -44,6 +44,7 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_COLLAPSING_HEADER_AGE_PERCENT_PRODUCT_INFO,
   GQL_FRAGMENT_CONTENT_ITEM_PERSONAL_PRODUCT_SELECT_PAYMENT_BUTTON,
   GQL_FRAGMENT_CONTENT_ITEM_SELECTED_PACKAGE_ACCORDION,
+  GQL_FRAGMENT_CONTENT_ITEM_DROPDOWN_INPUT,
 } from "@graphql/_fragments/content.gql";
 import { GQL_FRAGMENT_SDUI_STYLE } from "@graphql/_fragments/shared.gql";
 
@@ -93,6 +94,7 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_SWIPER}
   ${GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_LOTTIE_SWIPER}
   ${GQL_FRAGMENT_CONTENT_ITEM_COLLAPSING_HEADER_AGE_PERCENT_PRODUCT_INFO}
+  ${GQL_FRAGMENT_CONTENT_ITEM_DROPDOWN_INPUT}
 
   query GetPersonalProductStep($productId: String!) {
     getPersonalProductStep(productId: $productId) {
@@ -205,6 +207,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         }
         ... on ContentItemCostPayoutBenefitCard {
           ...ContentItemCostPayoutBenefitCard
+        }
+        ... on ContentItemDropdownInput {
+          ...ContentItemDropdownInput
         }
       }
       footer {
