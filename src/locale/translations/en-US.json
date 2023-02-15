@@ -78,7 +78,8 @@
       "use": "Use",
       "copy": "Copy",
       "submit": "Submit",
-      "later": "Later"
+      "later": "Later",
+      "connect": "Connect"
     }
   },
   "period": {
@@ -88,6 +89,7 @@
   "device_not_supported": "device not supported",
   "apple_health": "Apple Health",
   "google_fit": "Google Fit",
+  "samsung_health": "Samsung Health",
   "user_other_app": "Or use the app",
   "setup_tutorial": "Set up tutorial",
   "yu_coin": {
