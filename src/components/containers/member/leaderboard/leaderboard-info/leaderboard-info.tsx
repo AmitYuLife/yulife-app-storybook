@@ -27,13 +27,13 @@ function LeaderboardInfoScreen({ componentId }: IProps) {
     return true;
   });
 
-  const metricName = getMetricName(activeLeaderboard.metric as LeaderboardMetric);
+  const metricName = getMetricName(activeLeaderboard?.metric as LeaderboardMetric) || "steps";
 
   return (
     <View style={styles.wrapper} testID={LEADERBOARD_INFO}>
       <GenericHeadingPad />
       <Text style={styles.text}>
-        {t("screens.leaderboard.podium.info_copy", { days: activeLeaderboard.days, metric: metricName })}
+        {t("screens.leaderboard.podium.info_copy", { days: activeLeaderboard?.days || 30, metric: metricName })}
       </Text>
       <GenericHeadingAbsolute heading={t("screens.leaderboard.podium.info_heading")} onLeftIconPress={goBack} />
     </View>

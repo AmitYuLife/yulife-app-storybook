@@ -22,14 +22,15 @@ export function _LeaderboardPressableTitle(props: LeaderboardPressableTitleProps
   const { onPressLabel, onPressInfo } = props;
   const showDuels = !!useSelector(getUserFeatures)?.showDuels;
   const activeLeaderboard = useSelector(getActiveLeaderboard);
-  const metricName = getMetricName(activeLeaderboard.metric as LeaderboardMetric, "plural");
+
+  const metricName = getMetricName((activeLeaderboard?.metric as LeaderboardMetric) || "steps", "plural");
 
   return (
     <View pointerEvents="box-none" style={styles.wrapper}>
       <View style={styles.row}>
         <Title
-          name={activeLeaderboard?.name}
-          type={t("screens.leaderboard.podium.steps", { days: activeLeaderboard.days, metric: metricName })}
+          name={activeLeaderboard?.name || ""}
+          type={t("screens.leaderboard.podium.steps", { days: activeLeaderboard?.days || 30, metric: metricName })}
           onPressLabel={onPressLabel}
           onPressInfo={onPressInfo}
         />

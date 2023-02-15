@@ -31,6 +31,14 @@ class LoggerInstance {
     }
   };
 
+  public logOut = async () => {
+    if (this.initialised) {
+      await Intercom.logout();
+      Mixpanel.clearSuperProperties();
+      Mixpanel.reset();
+    }
+  };
+
   private addDefaultEventProperties = (props: Record<string, any>): Record<string, any> => {
     return {
       ...props,

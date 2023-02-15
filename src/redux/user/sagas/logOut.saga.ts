@@ -8,6 +8,7 @@ import { logOutSuccess } from "../user.actions";
 
 export default function* logOutSaga() {
   yield call(Logger.logEvent, "log_out");
+  yield call(Logger.logOut);
   yield call(setUnauthenticatedRoot);
   yield call(clearToken);
   // When a new root stack gets set, it is pushed on top of the old root stack and then in less than 1000ms it gets removed.
