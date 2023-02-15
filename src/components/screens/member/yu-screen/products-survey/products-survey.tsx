@@ -20,8 +20,7 @@ import { CheckBox } from "@molecules";
 import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_YU_SCREEN_PRODUCT_SURVEY } from "@graphql/yuscreen";
 import { GetYuScreenProductSurvey } from "@graphql/_core/schema";
-
-const textAreaPlaceHolder = "Describe anything else you would like to see here...";
+import { t } from "@locale";
 
 interface IProps {
   onExitConfirmed: () => void;
@@ -36,6 +35,8 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
   const [viewHeight, setViewHeight] = useState(0);
 
   const { data, loading } = useQuery<GetYuScreenProductSurvey>(GQL_QUERY_GET_YU_SCREEN_PRODUCT_SURVEY);
+
+  const textAreaPlaceHolder = t("screens.yu.products_survey.text_area_placeholder");
 
   // Handle keyboard
   const scrollViewRef = useRef<ScrollView | null>(null);
@@ -182,7 +183,7 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
               <Button
                 onPress={onSubmitButton}
                 size="Large"
-                label="Submit"
+                label={t("labels.cta.submit")}
                 disabled={disableButton}
                 wrapperStyle={styles.submitButton}
               />

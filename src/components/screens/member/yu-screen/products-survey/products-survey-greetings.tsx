@@ -4,6 +4,7 @@ import React from "react";
 import { View, Image } from "react-native";
 import styles from "./products-survey.styles";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import { t } from "@locale";
 
 interface IProps {
   title: string;
@@ -23,7 +24,7 @@ function ProductsSurveyGreetings({ onExitConfirmed, postSubmissionMessage, title
           <Image source={require("@assets/yuscreen/animals.png")} />
         </View>
         <View style={styles.buttonWrapper}>
-          <Button onPress={onExitConfirmed} size="Large" label="Close" wrapperStyle={styles.submitButton} />
+          <Button onPress={onExitConfirmed} size="Large" label={t("labels.cta.close")} wrapperStyle={styles.submitButton} />
         </View>
       </View>
       <GenericHeadingAbsolute heading={title} onRightIconPress={onExitConfirmed} />
