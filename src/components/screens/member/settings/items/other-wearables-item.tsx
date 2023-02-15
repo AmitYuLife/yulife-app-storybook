@@ -9,7 +9,7 @@ import styles from "./item.styles";
 
 const OtherWearablesItem = () => {
   const onPress = useCallback(() => {
-    const platform = Platform.select({ ios: "Apple Health", android: "Google Fit" });
+    const platform = Platform.select({ ios: t("apple_health"), android: t("google_fit") });
     showYuModal({
       component: {
         id: MODALS.info,
