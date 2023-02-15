@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -32,6 +32,7 @@ export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetach
     | "ContentItemPersonalProductDocuments"
     | "ContentItemPackageCards"
     | "ContentItemSelectedPackageCard"
+    | "ContentItemProcessingTimer"
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
     | "ContentItemAgePercentCoverPicker"
@@ -50,14 +51,14 @@ export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetach
     | "ContentItemSelectedPackageAccordion"
     | "ContentItemFade"
     | "ContentItemSelectedPackageCards"
-    | "ContentItemProcessingTimer"
     | "ContentItemYuCoinPower"
     | "ContentItemProgressSteps"
     | "ContentItemCostPayoutBenefitCard"
     | "ContentItemCollapsingHeaderAgePercentProductInfo"
     | "ContentItemPerks"
     | "ContentItemAppDownloadPrompt"
-    | "ContentItemPerksComparison";
+    | "ContentItemPerksComparison"
+    | "ContentItemDropdownInput";
 }
 
 export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemPersonalProductFaqs_headingImage_image {

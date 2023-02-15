@@ -28,6 +28,7 @@ import {
   ProductStepSelectPaymentButton,
   ProductStepSelectedPackageAccordion,
   ProductStepAgePercentCoverPicker,
+  ProductItemDropdownInput,
 } from "../../subcomponents";
 import {
   ContentItemInfoCard,
@@ -170,6 +171,8 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ProductStepAgePercentCoverPicker key={item.id} {...item} />;
     case "ContentItemCostPayoutBenefitCard":
       return <ContentItemCostPayoutBenefitCard key={item.id} {...item} />;
+    case "ContentItemDropdownInput":
+      return <ProductItemDropdownInput key={item.id} {...item} />;
     default:
       return null;
   }

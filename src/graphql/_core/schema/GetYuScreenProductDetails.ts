@@ -31,10 +31,13 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   __typename:
     | "ContentItemCollapsingGenericHeader"
     | "ContentItemPerks"
+    | "ContentItemLinearGradient"
+    | "ContentItemProcessingTimer"
     | "ContentItemSelectedPackageCard"
     | "ContentItemAppDownloadPrompt"
     | "ContentItemFade"
-    | "ContentItemHeaderBar";
+    | "ContentItemHeaderBar"
+    | "ContentItemYuCoinPower";
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader_styles {
@@ -410,11 +413,14 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_Cont
     | "ContentItemKeyValueBox"
     | "ContentItemImage"
     | "ContentItemPerks"
+    | "ContentItemLinearGradient"
+    | "ContentItemProcessingTimer"
     | "ContentItemSelectedPackageCard"
     | "ContentItemAppDownloadPrompt"
     | "ContentItemHeaderBar"
     | "ContentItemInfoCard"
-    | "ContentItemMarkdown";
+    | "ContentItemMarkdown"
+    | "ContentItemYuCoinPower";
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_onPress {
@@ -504,11 +510,14 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_Cont
     | "ContentItemKeyValueBox"
     | "ContentItemImage"
     | "ContentItemPerks"
+    | "ContentItemLinearGradient"
+    | "ContentItemProcessingTimer"
     | "ContentItemSelectedPackageCard"
     | "ContentItemAppDownloadPrompt"
     | "ContentItemFade"
     | "ContentItemInfoCard"
-    | "ContentItemMarkdown";
+    | "ContentItemMarkdown"
+    | "ContentItemYuCoinPower";
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemHeaderBar_onLeftIconPress {
@@ -550,12 +559,15 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_it
     | "ContentItemKeyValueBox"
     | "ContentItemImage"
     | "ContentItemPerks"
+    | "ContentItemLinearGradient"
+    | "ContentItemProcessingTimer"
     | "ContentItemSelectedPackageCard"
     | "ContentItemAppDownloadPrompt"
     | "ContentItemFade"
     | "ContentItemHeaderBar"
     | "ContentItemInfoCard"
-    | "ContentItemMarkdown";
+    | "ContentItemMarkdown"
+    | "ContentItemYuCoinPower";
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemPad_styles {

@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -18,12 +18,15 @@ import {
 // GraphQL fragment: AbsoluteContentItem
 // ====================================================
 
-export interface AbsoluteContentItem_item_ContentItemTable {
+export interface AbsoluteContentItem_item_ContentItemProcessingTimer {
   __typename:
+    | "ContentItemProcessingTimer"
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
-    | "ContentItemInfoCard";
+    | "ContentItemInfoCard"
+    | "ContentItemLinearGradient"
+    | "ContentItemYuCoinPower";
 }
 
 export interface AbsoluteContentItem_item_ContentItemMarkdown_styles {
@@ -245,6 +248,32 @@ export interface AbsoluteContentItem_item_ContentItemTextInput {
    * Supported RN version 3.58.0
    */
   styles: AbsoluteContentItem_item_ContentItemTextInput_styles[] | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemDropdownInput_validation {
+  validationName: string;
+  validationValue: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemDropdownInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemDropdownInput_dropdownOptions {
+  label: string | null;
+  value: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemDropdownInput {
+  __typename: "ContentItemDropdownInput";
+  id: string;
+  heading: string | null;
+  answerKey: string;
+  validation: (AbsoluteContentItem_item_ContentItemDropdownInput_validation | null)[] | null;
+  styles: AbsoluteContentItem_item_ContentItemDropdownInput_styles[] | null;
+  dropdownOptions: (AbsoluteContentItem_item_ContentItemDropdownInput_dropdownOptions | null)[];
+  selectInstruction: string | null;
 }
 
 export interface AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerIcon {
@@ -553,7 +582,7 @@ export interface AbsoluteContentItem_item_ContentItemAccordion {
 }
 
 export type AbsoluteContentItem_item =
-  | AbsoluteContentItem_item_ContentItemTable
+  | AbsoluteContentItem_item_ContentItemProcessingTimer
   | AbsoluteContentItem_item_ContentItemMarkdown
   | AbsoluteContentItem_item_ContentItemBox
   | AbsoluteContentItem_item_ContentItemButton
@@ -561,6 +590,7 @@ export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemForm
   | AbsoluteContentItem_item_ContentItemText
   | AbsoluteContentItem_item_ContentItemTextInput
+  | AbsoluteContentItem_item_ContentItemDropdownInput
   | AbsoluteContentItem_item_ContentItemRowIconTextBanner
   | AbsoluteContentItem_item_ContentItemLottie
   | AbsoluteContentItem_item_ContentItemPad

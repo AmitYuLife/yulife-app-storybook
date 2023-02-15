@@ -29,6 +29,8 @@ export * from "./ContentItemCoverListItem";
 export * from "./ContentItemCoverPicker";
 export * from "./ContentItemCoverPickerCustomCover";
 export * from "./ContentItemDatePicker";
+export * from "./ContentItemDropdownInput";
+export * from "./ContentItemDropdownInputOptions";
 export * from "./ContentItemFade";
 export * from "./ContentItemForm";
 export * from "./ContentItemFormElements";

@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -37,13 +37,17 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemTe
     | "ContentItemPad"
     | "ContentItemRadio"
     | "ContentItemHeaderBar"
+    | "ContentItemProcessingTimer"
     | "ContentItemProgressBar"
     | "ContentItemTextGroup"
     | "ContentItemAccordion"
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
-    | "ContentItemInfoCard";
+    | "ContentItemInfoCard"
+    | "ContentItemDropdownInput"
+    | "ContentItemLinearGradient"
+    | "ContentItemYuCoinPower";
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles {

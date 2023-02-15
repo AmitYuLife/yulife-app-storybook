@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -18,12 +18,15 @@ import {
 // GraphQL query operation: GetSduiStaticStep
 // ====================================================
 
-export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTable {
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemProcessingTimer {
   __typename:
+    | "ContentItemProcessingTimer"
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
-    | "ContentItemInfoCard";
+    | "ContentItemInfoCard"
+    | "ContentItemLinearGradient"
+    | "ContentItemYuCoinPower";
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMarkdown_styles {
@@ -249,6 +252,32 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextInput {
    * Supported RN version 3.58.0
    */
   styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextInput_styles[] | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemDropdownInput_validation {
+  validationName: string;
+  validationValue: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemDropdownInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemDropdownInput_dropdownOptions {
+  label: string | null;
+  value: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemDropdownInput {
+  __typename: "ContentItemDropdownInput";
+  id: string;
+  heading: string | null;
+  answerKey: string;
+  validation: (GetSduiStaticStep_getSduiStaticStep_body_ContentItemDropdownInput_validation | null)[] | null;
+  styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemDropdownInput_styles[] | null;
+  dropdownOptions: (GetSduiStaticStep_getSduiStaticStep_body_ContentItemDropdownInput_dropdownOptions | null)[];
+  selectInstruction: string | null;
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerIcon {
@@ -557,7 +586,7 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion {
 }
 
 export type GetSduiStaticStep_getSduiStaticStep_body =
-  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemTable
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemProcessingTimer
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemMarkdown
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemBox
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemButton
@@ -565,6 +594,7 @@ export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemForm
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemText
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextInput
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemDropdownInput
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemLottie
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemPad
@@ -574,12 +604,15 @@ export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion;
 
-export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTable {
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProcessingTimer {
   __typename:
+    | "ContentItemProcessingTimer"
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
-    | "ContentItemInfoCard";
+    | "ContentItemInfoCard"
+    | "ContentItemLinearGradient"
+    | "ContentItemYuCoinPower";
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown_styles {
@@ -807,6 +840,32 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTe
    * Supported RN version 3.58.0
    */
   styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextInput_styles[] | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemDropdownInput_validation {
+  validationName: string;
+  validationValue: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemDropdownInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemDropdownInput_dropdownOptions {
+  label: string | null;
+  value: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemDropdownInput {
+  __typename: "ContentItemDropdownInput";
+  id: string;
+  heading: string | null;
+  answerKey: string;
+  validation: (GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemDropdownInput_validation | null)[] | null;
+  styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemDropdownInput_styles[] | null;
+  dropdownOptions: (GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemDropdownInput_dropdownOptions | null)[];
+  selectInstruction: string | null;
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerIcon {
@@ -1117,7 +1176,7 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAc
 }
 
 export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
-  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTable
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProcessingTimer
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBox
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemButton
@@ -1125,6 +1184,7 @@ export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemForm
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemText
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextInput
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemDropdownInput
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemLottie
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemPad
