@@ -4,8 +4,14 @@ import {
   GetCurrentUser,
   LoginUser,
   UpsertDailyPassives_upsertDailyPassives_challenges as Challenge,
+  GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate,
 } from "@graphql/_core/schema";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
+import {
+  GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS,
+  GET_USER_SUCCESS,
+  LOGIN_USER_SUCCESS,
+  LOGOUT_SUCCESS,
+} from "../user/user.actions";
 import {
   IAppMeditationPayload,
   UPDATE_DAILY_MEDITATION_EMPTY_RESULT,
@@ -22,6 +28,7 @@ interface IAppDailyMeditationProps {
   lastUpdated: string;
   createdAt: number;
 }
+
 export interface IDailyMeditationStore {
   dailyMeditation: number;
   inAppMeditation: IAppDailyMeditationProps;
@@ -70,6 +77,9 @@ const dailyMeditationReducer = (
 
     case GET_USER_SUCCESS:
       return getUserSuccess(state, action.payload);
+
+    case GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS:
+      return getPassiveChallengesEarnRateSuccess(state, action.payload);
 
     case LOGIN_USER_SUCCESS:
       return loginUserSuccess(state, action.payload);
@@ -143,6 +153,15 @@ const getUserSuccess = (state: IDailyMeditationStore, res: GetCurrentUser) => ({
   ...state,
   exchangeRate: res?.getCurrentUser?.passiveMeditation?.exchange || getInitialState().exchangeRate,
   meditationPassiveMilestones: res?.getCurrentUser?.passiveMeditation?.levelSlot?.milestones || [],
+});
+
+const getPassiveChallengesEarnRateSuccess = (
+  state: IDailyMeditationStore,
+  res: GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate
+) => ({
+  ...state,
+  exchangeRate: res?.MEDITATION.exchange || getInitialState().exchangeRate,
+  meditationPassiveMilestones: res?.MEDITATION?.levelSlot?.milestones || [],
 });
 
 const loginUserSuccess = (state: IDailyMeditationStore, res: LoginUser) => ({

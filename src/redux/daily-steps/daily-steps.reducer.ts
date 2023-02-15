@@ -4,6 +4,7 @@ import {
   GetCurrentUser,
   UpsertDailyPassives_upsertDailyPassives_challenges as Challenge,
   GetUserProfile_getUserProfile_gameSettings as GameSettings,
+  GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate,
 } from "@graphql/_core/schema";
 import { LoginUser } from "@graphql/_core/schema";
 import {
@@ -11,7 +12,13 @@ import {
   PEDOMETER_UPDATES_START,
   PEDOMETER_START,
 } from "../pedometer/pedometer.actions";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS, UPDATE_USER_PROFILE } from "../user/user.actions";
+import {
+  GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS,
+  GET_USER_SUCCESS,
+  LOGIN_USER_SUCCESS,
+  LOGOUT_SUCCESS,
+  UPDATE_USER_PROFILE,
+} from "../user/user.actions";
 import {
   UPDATE_DAILY_STEPS_FAILED,
   UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE,
@@ -129,6 +136,9 @@ const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: 
     case GET_USER_SUCCESS:
       return getUserSuccess(state, action.payload);
 
+    case GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS:
+      return getPassiveChallengesEarnRateSuccess(state, action.payload);
+
     case LOGIN_USER_SUCCESS:
       return loginUserSuccess(state, action.payload);
 
@@ -218,6 +228,15 @@ const getUserSuccess = (state: IDailyStepsStore, res: GetCurrentUser) => ({
   ...state,
   exchangeRate: res?.getCurrentUser?.passiveSteps?.exchange || getInitialState().exchangeRate,
   stepsPassiveMilestones: res?.getCurrentUser?.passiveSteps?.levelSlot?.milestones || [],
+});
+
+const getPassiveChallengesEarnRateSuccess = (
+  state: IDailyStepsStore,
+  res: GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate
+) => ({
+  ...state,
+  exchangeRate: res?.STEPS?.exchange || getInitialState().exchangeRate,
+  stepsPassiveMilestones: res?.STEPS?.levelSlot?.milestones || [],
 });
 
 const loginUserSuccess = (state: IDailyStepsStore, res: LoginUser) => ({

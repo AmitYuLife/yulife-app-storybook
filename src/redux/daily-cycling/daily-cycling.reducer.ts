@@ -4,8 +4,15 @@ import {
   GetCurrentUser,
   LoginUser,
   UpsertDailyPassives_upsertDailyPassives_challenges as Challenge,
+  GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate,
 } from "@graphql/_core/schema";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS, UPDATE_USER_PROFILE } from "../user/user.actions";
+import {
+  GET_USER_SUCCESS,
+  GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS,
+  LOGIN_USER_SUCCESS,
+  LOGOUT_SUCCESS,
+  UPDATE_USER_PROFILE,
+} from "../user/user.actions";
 import { SyncAction } from "@redux/_core/types";
 import {
   UPDATE_DAILY_CYCLING_SUCCESS,
@@ -57,6 +64,9 @@ const dailyCyclingReducer = (state: IDailyCyclingStore = getInitialState(), acti
 
     case GET_USER_SUCCESS:
       return getUserSuccess(state, action.payload);
+
+    case GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS:
+      return getPassiveChallengesEarnRateSuccess(state, action.payload);
 
     case LOGIN_USER_SUCCESS:
       return loginUserSuccess(state, action.payload);
@@ -117,6 +127,14 @@ const updateStateOnAppStateActive = (state: IDailyCyclingStore) => {
 const getUserSuccess = (state: IDailyCyclingStore, res: GetCurrentUser) => ({
   ...state,
   cyclingPassiveMilestones: res?.getCurrentUser?.passiveCycling?.levelSlot?.milestones || [],
+});
+
+const getPassiveChallengesEarnRateSuccess = (
+  state: IDailyCyclingStore,
+  res: GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate
+) => ({
+  ...state,
+  cyclingPassiveMilestones: res?.CYCLING?.levelSlot?.milestones || [],
 });
 
 const loginUserSuccess = (state: IDailyCyclingStore, res: LoginUser) => ({
