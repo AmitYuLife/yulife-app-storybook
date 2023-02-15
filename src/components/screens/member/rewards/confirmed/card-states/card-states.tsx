@@ -3,6 +3,7 @@ import { Image, ImageRequireSource, View } from "react-native";
 import { Text } from "@atoms";
 import assets from "../assets";
 import styles from "./card-states.styles";
+import { t } from "@locale";
 
 interface IProps {
   icon: ImageRequireSource;
@@ -26,17 +27,17 @@ export const Delivered = () => (
 export const Pending = () => (
   <View style={styles.imageWrapper}>
     <Image style={styles.image} source={assets.pending} />
-    <Overlay icon={assets.clock} text="purchase pending" />
+    <Overlay icon={assets.clock} text={t("screens.rewards.confirmed.card_states.pending")} />
   </View>
 );
 export const Failed = () => (
   <View style={[styles.imageWrapper, styles.imageWrapperFailed]}>
-    <Overlay icon={assets.failedIcon} text="purchase failed" />
+    <Overlay icon={assets.failedIcon} text={t("screens.rewards.confirmed.card_states.failed")} />
   </View>
 );
 
 export const Refunded = () => (
   <View style={[styles.imageWrapper, styles.imageWrapperRefunded]}>
-    <Overlay icon={assets.refundedIcon} text="purchase refunded" />
+    <Overlay icon={assets.refundedIcon} text={t("screens.rewards.card_states.refunded")} />
   </View>
 );

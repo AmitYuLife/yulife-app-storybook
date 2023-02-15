@@ -652,6 +652,27 @@
           "heading": "update in progress",
           "subheading": "We are updating your %{rewardName} rewards experience, check back soon!"
         }
+      },
+      "details": {
+        "error": {
+          "valid_account_number": "Please enter a valid account number",
+          "loyalty_programme": "You must select a loyalty programme"
+        }
+      },
+      "confirmed": {
+        "purchased_date": "Purchased date",
+        "valid_until": "Valid until",
+        "card_states": {
+          "pending": "purchase pending",
+          "failed": "purchase failed",
+          "refunded": "purchase refunded"
+        },
+        "label_cta": {
+          "other_rewards": "see other rewards",
+          "need_help": "need help? talk to us",
+          "rewards_policy": "Rewards policy",
+          "get_voucher": "get voucher"
+        }
       }
     },
     "activity_history_levels": {
