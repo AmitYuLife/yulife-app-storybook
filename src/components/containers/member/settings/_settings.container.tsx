@@ -6,7 +6,6 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { updateConnectionStart } from "@redux/user/user.actions";
 import { Connection, getUserConnections, getUserFeatures } from "@redux/user/user.selectors";
 import { SettingsScreen } from "@screens/index";
-import { useTranslation } from "@hooks";
 import { useQuery, useMutation, useApolloClient } from "@apollo/client";
 import {
   GQL_QUERY_GET_USER_NOTIFICATIONS_SETTINGS,
@@ -36,13 +35,6 @@ function SettingsContainer({ componentId }: IOwnProps) {
   // redux selectors
   const connections = useSelector(getUserConnections);
   const features = useSelector(getUserFeatures);
-
-  const translations = useTranslation([
-    "screens.settings.info.heading",
-    "labels.cta.got_it",
-    "screens.settings.tracker_info.heading",
-    "labels.cta.got_it",
-  ]);
 
   // local state
   const [isTimeModalVisible, setIsTimeModalVisible] = React.useState<boolean>(false);
@@ -105,12 +97,12 @@ function SettingsContainer({ componentId }: IOwnProps) {
 
   const handleConnectionInfoPress = React.useCallback(
     (c: Connection) => () => {
+      const connectionName = c.name.charAt(0).toUpperCase() + c.name.slice(1);
       // TODO: we probably need to add a `type` so we know if it's a device or an app
-      let heading = translations["screens.settings.info.heading"];
-      let ctaLabel = translations["labels.cta.got_it"];
+      let heading = t("screens.settings.info.heading", { connection: connectionName });
+      const ctaLabel = t("labels.cta.got_it");
       if (c.name.toLowerCase() === "strava") {
-        heading = translations["screens.settings.tracker_info.heading"];
-        ctaLabel = translations["labels.cta.got_it"];
+        heading = t("screens.settings.tracker_info.heading", { connection: connectionName });
       }
 
       showYuModal({
@@ -120,13 +112,13 @@ function SettingsContainer({ componentId }: IOwnProps) {
           passProps: {
             onPress: () => Navigation.dismissModal(MODALS.info),
             type: c.name,
-            heading: heading.replace("${connection}", c.name.charAt(0).toUpperCase() + c.name.slice(1)),
+            heading,
             ctaLabel,
           },
         },
       });
     },
-    [translations]
+    []
   );
 
   const gameSettings = {
@@ -206,22 +198,18 @@ function SettingsContainer({ componentId }: IOwnProps) {
     name: "notifications",
   } as any;
 
-  const pickers = useMemo(
-    () => {
-      const times = generateTimes();
-      const currentTime = times.findIndex((time) => time.value === modalDate);
-      return [
-        {
-          id: "settings-date-picker",
-          items: times,
-          onIndexChange: (index: number) => setModalDate(times[index].value),
-          defaultIndex: currentTime,
-        },
-      ];
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [modalDate]
-  );
+  const pickers = useMemo(() => {
+    const times = generateTimes();
+    const currentTime = times.findIndex((time) => time.value === modalDate);
+    return [
+      {
+        id: "settings-date-picker",
+        items: times,
+        onIndexChange: (index: number) => setModalDate(times[index].value),
+        defaultIndex: currentTime,
+      },
+    ];
+  }, [modalDate]);
 
   return (
     <>
