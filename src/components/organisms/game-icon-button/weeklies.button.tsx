@@ -18,7 +18,7 @@ const _Weeklies = ({ endDateTime, onPress, claimableRewards, hasJoined, isClaime
   const time = useRemainingTime(endDateTime);
   const hasBadge = (claimableRewards && claimableRewards > 0) || !hasJoined;
   const badge = hasBadge ? getBadge(hasJoined, claimableRewards) : undefined;
-  const label = isClaimed ? t("screens.weekly_quests.done") : time.shortFormat;
+  const label = isClaimed ? t("labels.cta.done") : time.shortFormat;
 
   return (
     <GameButton
