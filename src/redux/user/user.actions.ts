@@ -12,6 +12,7 @@ import {
   GetUserActiveChallenge_getUserActiveChallenge,
   GetUserActiveStreak_getUserActiveStreak,
   GetUserCoinLedgerTodayActivity,
+  GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate,
 } from "@graphql/_core/schema";
 import { MobileConsentInput } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "./user.reducer";
@@ -30,6 +31,8 @@ export const GET_USER_START = "GET_USER_START";
 export const GET_ALL_USER_DATA_START = "GET_ALL_USER_DATA_START";
 export const GET_ALL_USER_DATA_SUCCESS = "GET_ALL_USER_DATA_SUCCESS";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
+export const GET_PASSIVE_CHALLENGES_EARN_RATE_START = "GET_PASSIVE_CHALLENGES_EARN_RATE_START";
+export const GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS = "GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS";
 export const GET_USER_ACTIVE_CHALLENGE_START = "GET_USER_ACTIVE_CHALLENGE_START";
 export const GET_USER_ACTIVE_CHALLENGE_SUCCESS = "GET_USER_ACTIVE_CHALLENGE_SUCCESS";
 export const GET_USER_ACTIVE_STREAK_START = "GET_USER_ACTIVE_STREAK_START";
@@ -97,6 +100,17 @@ export const getUserLeaderboardsStart = () => ({
 export const getUserLeaderboardsSuccess = (payload: GetUserLeaderboards_getUserLeaderboards[]) => ({
   payload,
   type: GET_USER_LEADERBOARDS_SUCCESS as typeof GET_USER_LEADERBOARDS_SUCCESS,
+});
+
+export const getUserPassiveChallengesEarnRateStart = () => ({
+  type: GET_PASSIVE_CHALLENGES_EARN_RATE_START,
+});
+
+export const getUserPassiveChallengesEarnRateSuccess = (
+  payload: GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate
+) => ({
+  payload,
+  type: GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS as typeof GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS,
 });
 
 export const getUserFeaturesStart = () => ({

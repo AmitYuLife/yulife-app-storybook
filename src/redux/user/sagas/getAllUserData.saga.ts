@@ -4,10 +4,11 @@ import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
 import getAllUserData from "@graphql/user/getAllUserData.gql";
 import {
-  getUserActiveChallengeSuccess,
-  getUserActiveStreakSuccess,
   getUserCoinLedgerTodayActivitySuccess,
   getUserLeaderboardsSuccess,
+  getUserPassiveChallengesEarnRateSuccess,
+  getUserActiveChallengeSuccess,
+  getUserActiveStreakSuccess,
 } from "../user.actions";
 
 export default function* getAllUserDataSaga() {
@@ -27,6 +28,7 @@ export default function* getAllUserDataSaga() {
 
         yield put(getUserActiveStreakSuccess(data?.activeStreak));
         yield put(getUserLeaderboardsSuccess(data?.leaderboards));
+        yield put(getUserPassiveChallengesEarnRateSuccess(data?.passiveChallengesEarnRate));
         yield put(getUserActiveChallengeSuccess(data?.activeChallenge));
       }
     }
