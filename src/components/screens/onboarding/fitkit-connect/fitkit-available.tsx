@@ -8,6 +8,7 @@ import { getFitKitConnectCopy } from "./copy";
 import { ConnectCheckList } from "@molecules";
 import { openGoogleFit } from "@services/app-link";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
+import { t } from "@locale";
 
 interface IProps {
   connecting: boolean;
@@ -21,10 +22,10 @@ const FitKitAvailable: FC<IProps> = ({ connecting, onConnectPress }) => {
   const { heading, connectMessage, connectButton } = fitKitConnectCopy;
   // send the platform for iOS as well?
   const [selectedFitkitPlatform, setSelectedFitkitPlatform] = useState<FitKitHealthTrackingPlatform>("GoogleFit");
-  const [connectButtonLabel, setConnectButtonLabel] = useState(isSamsung() ? "Connect Google Fit" : connectButton);
+  const [connectButtonLabel, setConnectButtonLabel] = useState(isSamsung() ? `${t("labels.cta.connect")} ${t("google_fit")}` : connectButton);
 
   const _setSelectedFitkitPlatform = (platform: FitKitHealthTrackingPlatform) => {
-    setConnectButtonLabel(platform === "SamsungHealth" ? "Connect Samsung Health" : "Connect Google Fit");
+    setConnectButtonLabel(platform === "SamsungHealth" ? `${t("labels.cta.connect")} ${t("samsung_health")}` : `${t("labels.cta.connect")} ${t("google_fit")}`);
     setSelectedFitkitPlatform(platform);
   };
 
