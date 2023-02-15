@@ -7,6 +7,7 @@ import { StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { showInfoMessageTooltipViewRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { INSPECT_SECTION_HEADER, CHALLENGE_DUEL_BUTTON } from "@ids";
+import { t } from "@locale";
 
 export interface Section {
   title: string;
@@ -22,7 +23,7 @@ interface StatsProps {
 const StatsSection = ({ section, onPress, actionButtonLabel }: StatsProps) => {
   const showInfoPopup = useCallback(
     (viewRef: React.MutableRefObject<View>, infoText: string) =>
-      showInfoMessageTooltipViewRelative({ viewRef, infoText, buttonLabel: "Got it" }),
+      showInfoMessageTooltipViewRelative({ viewRef, infoText, buttonLabel: t("labels.cta.got_it") }),
     []
   );
 
