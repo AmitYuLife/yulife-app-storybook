@@ -77,7 +77,8 @@
       "open": "Open",
       "use": "Use",
       "copy": "Copy",
-      "submit": "Submit"
+      "submit": "Submit",
+      "later": "Later"
     }
   },
   "period": {
@@ -236,6 +237,9 @@
       }
     },
     "streak": {
+      "completion": {
+        "next_streak": "Begin your next Streak in"
+      },
       "heading_completed": "You smashed that Streak!",
       "cta_label_collect": "Collect %{reward} %{type}",
       "cta_label_take_challenge": "Take a challenge",

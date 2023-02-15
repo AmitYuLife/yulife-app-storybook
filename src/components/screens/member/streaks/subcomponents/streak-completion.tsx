@@ -3,6 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { RibbonGold } from "@molecules";
 import { Style } from "@styles";
+import { t } from "@locale";
 
 interface IProps {
   timeRemaining: string;
@@ -18,7 +19,7 @@ const StreakCompletion = ({ timeRemaining, isNotValidTime, label }: IProps) => {
       </View>
       {isNotValidTime ? null : (
         <>
-          <TextTemplate type="b2">Begin your next Streak in</TextTemplate>
+          <TextTemplate type="b2">{t("screens.streak.completion.next_streak")}</TextTemplate>
           <View style={styles.timeRemainingWrapper}>
             <TextTemplate type="h2">{timeRemaining}</TextTemplate>
           </View>
