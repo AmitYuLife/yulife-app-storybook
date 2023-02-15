@@ -369,10 +369,10 @@
         "reminder_time": "Reminder time"
       },
       "info": {
-        "heading": "Your YuLife app will capture your steps and cycling distance from both your phone's health app and your ${connection} device. We'll award you YuCoin for whichever device records the highest!"
+        "heading": "Your YuLife app will capture your steps and cycling distance from both your phone's health app and your %{connection} device. We'll award you YuCoin for whichever device records the highest!"
       },
       "tracker_info": {
-        "heading": "Your YuLife app will capture your cycling distance from both your phone's health app and your ${connection} app. We'll award you YuCoin for whichever app records the highest!"
+        "heading": "Your YuLife app will capture your cycling distance from both your phone's health app and your %{connection} app. We'll award you YuCoin for whichever app records the highest!"
       },
       "fitness_trackers": {
         "title": "Connect your fitness tracker to get rewarded for additional daily steps. Don’t forget to still keep your phone with you during challenges!",
