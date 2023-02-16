@@ -101,6 +101,12 @@ apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.grad
 
 project.ext.react = [
     enableHermes: true,  // clean and rebuild if changing
+    bundleInRelease: true,
+    bundleInUat: true,
+    bundleInProduction: true,
+    devDisabledInRelease: true,
+    devDisabledInUat: true,
+    devDisabledInProduction: true,
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
