@@ -63,7 +63,7 @@ const DuelsToday: FC = () => {
 
   return (
     <View style={styles.sectionWrapper}>
-      <Text bold={true}>{t("modals.duels.hub.today_empty")}</Text>
+      <Text bold={true}>{t("modals.duels.hub.today_title")}</Text>
       <View style={styles.wrapper}>
         {duels.map((duel) => (
           <DuelEntry key={duel.id} userId={userId} type="today" dailySteps={dailySteps} duel={duel} />
