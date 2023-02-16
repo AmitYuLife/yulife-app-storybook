@@ -107,6 +107,14 @@ project.ext.react = [
     devDisabledInRelease: true,
     devDisabledInUat: true,
     devDisabledInProduction: true,
+    // Fix hermesFlags: https://github.com/facebook/react-native/pull/32281
+    hermesFlagsForVariant: {
+        def v -> v.name.toLowerCase().contains('release') || v.name.toLowerCase().contains('uat') || v.name.toLowerCase().contains('production') ? ['-w'] : []
+    },
+    deleteDebugFilesForVariant: {
+        def v -> v.name.toLowerCase().contains('release') || v.name.toLowerCase().contains('uat') || v.name.toLowerCase().contains('production')
+    },
+    // End of Fix
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
