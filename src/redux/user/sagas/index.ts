@@ -20,6 +20,7 @@ import {
   GET_USER_COIN_LEDGER_TODAY_ACTIVITY_START,
   GET_ALL_USER_DATA_START,
   GET_USER_LEADERBOARDS_START,
+  GET_USER_ACTIVE_STREAK_START,
 } from "../user.actions";
 
 import fetchConnectionsSaga from "./fetchConnectionsSaga.sagas";
@@ -44,10 +45,12 @@ import showEventFinishDialog from "./showEventFinishedDialog.saga";
 import getUserCoinLedgerTodayActivitySaga from "./getUserCoinLedgerTodayActivity.saga";
 import getAllUserDataSaga from "./getAllUserData.saga";
 import getUserLeaderboardsSaga from "./getUserLeaderboards.saga";
+import getUserActiveStreakSaga from "./getUserActiveStreak.saga";
 
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
   takeLatest(GET_USER_COIN_LEDGER_TODAY_ACTIVITY_START, getUserCoinLedgerTodayActivitySaga),
+  takeLatest(GET_USER_ACTIVE_STREAK_START, getUserActiveStreakSaga),
   takeLatest(GET_USER_LEADERBOARDS_START, getUserLeaderboardsSaga),
   takeLatest(GET_USER_START, getUserDataSaga),
   takeLatest(GET_ALL_USER_DATA_START, getAllUserDataSaga),
