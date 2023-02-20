@@ -9,7 +9,7 @@ import { StreaksScreen } from "@screens";
 import { useBackHandler } from "@hooks";
 import { Navigation } from "@navigation/main";
 import { IStreakCopy, streakCopy } from "./copy";
-import { getUserCoinLedgerTodayActivityStart } from "@redux/user/user.actions";
+import { getUserActiveStreakStart, getUserCoinLedgerTodayActivityStart } from "@redux/user/user.actions";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -174,6 +174,7 @@ const StreaksModal: React.FC<Props> = ({
 
           if (result && result.data && result.data.collectAward) {
             dispatch(getUserCoinLedgerTodayActivityStart());
+            dispatch(getUserActiveStreakStart());
           }
 
           onPressCtaPrimary();
