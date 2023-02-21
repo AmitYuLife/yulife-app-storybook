@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -31,13 +31,10 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   __typename:
     | "ContentItemCollapsingGenericHeader"
     | "ContentItemPerks"
-    | "ContentItemLinearGradient"
-    | "ContentItemProcessingTimer"
     | "ContentItemSelectedPackageCard"
     | "ContentItemAppDownloadPrompt"
     | "ContentItemFade"
-    | "ContentItemHeaderBar"
-    | "ContentItemYuCoinPower";
+    | "ContentItemHeaderBar";
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader_styles {
@@ -95,6 +92,40 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   funding: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader_funding | null;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHoldingHeader_linearGradient_start {
+  x: number;
+  y: number;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHoldingHeader_linearGradient_end {
+  x: number;
+  y: number;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHoldingHeader_linearGradient {
+  colors: string[];
+  start: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHoldingHeader_linearGradient_start | null;
+  end: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHoldingHeader_linearGradient_end | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHoldingHeader_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHoldingHeader_timer {
+  secondsUntilTarget: number;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHoldingHeader {
+  __typename: "ContentItemProductDetailsHoldingHeader";
+  id: string;
+  linearGradient: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHoldingHeader_linearGradient | null;
+  image: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHoldingHeader_image | null;
+  title: string | null;
+  timer: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHoldingHeader_timer | null;
+}
+
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemText_styles {
   property: string;
   value: string;
@@ -137,6 +168,11 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   value: string;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
@@ -153,6 +189,10 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   icon: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton_icon | null;
   contentItemButtonRightIcon: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton_contentItemButtonRightIcon | null;
   styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -216,6 +256,11 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   value: string;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_bannerButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_bannerButton {
   id: string;
   contentItemButtonUri: string | null;
@@ -232,6 +277,12 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   contentItemButtonRightIcon: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
   styles:
     | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_bannerButton_styles[]
+    | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_bannerButton_containerStyles[]
     | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -390,9 +441,82 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
     | null;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemYuCoinPower_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemYuCoinPower_containerStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemYuCoinPower {
+  __typename: "ContentItemYuCoinPower";
+  id: string;
+  yuCoinPower: number;
+  styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemYuCoinPower_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemYuCoinPower_containerStyles[]
+    | null;
+  /**
+   * A separate definition to define width with respect to the device's horizontal edges
+   * A marginHorizontal at the styles level doesn't work because a hardcoded width should
+   * be defined at the Svg parent
+   */
+  marginHorizontal: number | null;
+  /**
+   * RN client version >=3.47.0
+   */
+  interactive: boolean | null;
+  inactive: boolean | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemLinearGradient_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemLinearGradient_start {
+  x: number;
+  y: number;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemLinearGradient_end {
+  x: number;
+  y: number;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemLinearGradient {
+  __typename: "ContentItemLinearGradient";
+  id: string;
+  colors: string[];
+  styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemLinearGradient_styles[] | null;
+  start: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemLinearGradient_start | null;
+  end: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemLinearGradient_end | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProcessingTimer_onClose {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProcessingTimer {
+  __typename: "ContentItemProcessingTimer";
+  id: string;
+  secondsUntilTarget: number;
+  backgroundUrl: string | null;
+  contentItemProcessingTimerHeading: string | null;
+  onClose: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProcessingTimer_onClose | null;
+}
+
 export type GetYuScreenProductDetails_getYuScreenProductDetails_body =
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemCollapsingGenericHeader
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader
+  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHoldingHeader
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemText
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemKeyValueBox
@@ -401,11 +525,15 @@ export type GetYuScreenProductDetails_getYuScreenProductDetails_body =
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemInfoCard
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemPad
-  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemMarkdown;
+  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemMarkdown
+  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemYuCoinPower
+  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemLinearGradient
+  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProcessingTimer;
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemProductDetailsHeader {
   __typename:
     | "ContentItemProductDetailsHeader"
+    | "ContentItemProductDetailsHoldingHeader"
     | "ContentItemCollapsingGenericHeader"
     | "ContentItemText"
     | "ContentItemBeneficiariesSection"
@@ -448,6 +576,11 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_Cont
   value: string;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
@@ -464,6 +597,12 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_Cont
   icon: GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_icon | null;
   contentItemButtonRightIcon: GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_contentItemButtonRightIcon | null;
   styles: GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_containerStyles[]
+    | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -501,6 +640,7 @@ export type GetYuScreenProductDetails_getYuScreenProductDetails_footer =
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemProductDetailsHeader {
   __typename:
     | "ContentItemProductDetailsHeader"
+    | "ContentItemProductDetailsHoldingHeader"
     | "ContentItemPad"
     | "ContentItemCollapsingGenericHeader"
     | "ContentItemText"
@@ -510,7 +650,6 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_Cont
     | "ContentItemKeyValueBox"
     | "ContentItemImage"
     | "ContentItemPerks"
-    | "ContentItemLinearGradient"
     | "ContentItemProcessingTimer"
     | "ContentItemSelectedPackageCard"
     | "ContentItemAppDownloadPrompt"
@@ -543,15 +682,45 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_Cont
    * Supported RN version 3.63.0
    */
   color: string | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  backgroundColor: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemLinearGradient_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemLinearGradient_start {
+  x: number;
+  y: number;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemLinearGradient_end {
+  x: number;
+  y: number;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemLinearGradient {
+  __typename: "ContentItemLinearGradient";
+  id: string;
+  colors: string[];
+  styles: GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemLinearGradient_styles[] | null;
+  start: GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemLinearGradient_start | null;
+  end: GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemLinearGradient_end | null;
 }
 
 export type GetYuScreenProductDetails_getYuScreenProductDetails_header =
   | GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemProductDetailsHeader
-  | GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemHeaderBar;
+  | GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemHeaderBar
+  | GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemLinearGradient;
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemProductDetailsHeader {
   __typename:
     | "ContentItemProductDetailsHeader"
+    | "ContentItemProductDetailsHoldingHeader"
     | "ContentItemText"
     | "ContentItemButton"
     | "ContentItemBeneficiariesSection"
@@ -559,7 +728,6 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_it
     | "ContentItemKeyValueBox"
     | "ContentItemImage"
     | "ContentItemPerks"
-    | "ContentItemLinearGradient"
     | "ContentItemProcessingTimer"
     | "ContentItemSelectedPackageCard"
     | "ContentItemAppDownloadPrompt"
@@ -624,10 +792,35 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_it
   onPressRightIcon: GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemCollapsingGenericHeader_onPressRightIcon | null;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemLinearGradient_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemLinearGradient_start {
+  x: number;
+  y: number;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemLinearGradient_end {
+  x: number;
+  y: number;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemLinearGradient {
+  __typename: "ContentItemLinearGradient";
+  id: string;
+  colors: string[];
+  styles: GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemLinearGradient_styles[] | null;
+  start: GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemLinearGradient_start | null;
+  end: GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemLinearGradient_end | null;
+}
+
 export type GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item =
   | GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemProductDetailsHeader
   | GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemPad
-  | GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemCollapsingGenericHeader;
+  | GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemCollapsingGenericHeader
+  | GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemLinearGradient;
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute {
   id: string;

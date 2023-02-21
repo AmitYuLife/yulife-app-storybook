@@ -781,7 +781,7 @@ SPEC CHECKSUMS:
   CleverTap-iOS-SDK: 75ac31e6989199d2f5414856de3e51356a62632a
   clevertap-react-native: f6040fbb8af58572443a0e6436b4ad749efac530
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
-  DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
+  DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: 48289402952f4f7a4e235de70a9a590aa0b79ef4
   FBReactNativeSpec: dd1186fd05255e3457baa2f4ca65e94c2cd1e3ac
   Flipper: 26fc4b7382499f1281eb8cb921e5c3ad6de91fe0
@@ -794,7 +794,7 @@ SPEC CHECKSUMS:
   Flipper-RSocket: d9d9ade67cbecf6ac10730304bf5607266dd2541
   FlipperKit: cbdee19bdd4e7f05472a66ce290f1b729ba3cb86
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
-  glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
+  glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
   hermes-engine: 2af7b7a59128f250adfd86f15aa1d5a2ecd39995
   HMSegmentedControl: 34c1f54d822d8308e7b24f5d901ec674dfa31352
   Intercom: db3a13c9f562b80894aa220516c21de993ce642a

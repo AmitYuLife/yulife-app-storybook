@@ -66,46 +66,48 @@ export const tapColour = (hexValue: string) => async () => {
   await colour.tap();
 };
 
-export const editYumoji = (
-  skinTone: string,
-  hairStyle: string,
-  hairColour: string,
-  facialHair: string,
-  facialHairColour: string,
-  eyeColour: string,
-  accessories: string
-) => async () => {
-  await textVisible("Edit your Yumoji")();
+export const editYumoji =
+  (
+    skinTone: string,
+    hairStyle: string,
+    hairColour: string,
+    facialHair: string,
+    facialHairColour: string,
+    eyeColour: string,
+    accessories: string
+  ) =>
+  async () => {
+    await textVisible("Edit your Yumoji")();
 
-  await textVisible("Pick a body type")();
-  await tapID(MALE_BODY)();
+    await textVisible("Pick a body type")();
+    await tapID(MALE_BODY)();
 
-  const continueButton = element(by.text("Continue"));
-  await continueButton.tap();
+    const continueButton = element(by.text("Continue"));
+    await continueButton.tap();
 
-  await tapColour(skinTone)();
-  await tapTab("hairStyle")();
-  await tapItem(hairStyle)();
-  await tapTab("hairColour")();
-  await tapColour(hairColour)();
-  await tapTab("facialHair")();
-  await tapItem(facialHair)();
-  await tapTab("facialHairColour")();
-  await tapColour(facialHairColour)();
-  await tapTab("eyeColour")();
-  await tapColour(eyeColour)();
-  await tapTab("glasses")();
-  await tapItem(accessories)();
+    await tapColour(skinTone)();
+    await tapTab("hairStyle")();
+    await tapItem(hairStyle)();
+    await tapTab("hairColour")();
+    await tapColour(hairColour)();
+    await tapTab("facialHair")();
+    await tapItem(facialHair)();
+    await tapTab("facialHairColour")();
+    await tapColour(facialHairColour)();
+    await tapTab("eyeColour")();
+    await tapColour(eyeColour)();
+    await tapTab("glasses")();
+    await tapItem(accessories)();
 
-  const saveButton = element(by.text("Save"));
-  await saveButton.tap();
+    const saveButton = element(by.text("Save"));
+    await saveButton.tap();
 
-  const yesButton = element(by.text("Save changes"));
-  await yesButton.tap();
+    const yesButton = element(by.text("Save changes"));
+    await yesButton.tap();
 
-  const doneButton = element(by.text("Done"));
-  await doneButton.tap();
-};
+    const doneButton = element(by.text("Done"));
+    await doneButton.tap();
+  };
 
 export const createDefaultYumoji = async () => {
   await tapText("Create Yumoji")();

@@ -12,10 +12,13 @@ import {
   ContentItemInfoCard,
   ContentItemPad,
   ContentItemMarkdown,
+  ContentItemYuCoinPower,
+  ContentItemLinearGradient,
 } from "@components/sdui";
 import { ProductDetailsButton } from "../subcomponents/product-details.button";
 import media from "@styles/media";
 import { Style } from "@styles";
+import { ProductDetailsHoldingHeader } from "../subcomponents/product-details.holding-header/product-details.holding-header";
 
 interface Props {
   body: BodyItems[];
@@ -35,7 +38,6 @@ const DEFAULT_EXTRA_TOP_PADDING = media.select(
   ],
   Style.adjust(24)
 );
-
 export const Body = (props: Props) => {
   const { headerHeight } = props;
   const headerPadStyle = useMemo(() => ({ height: headerHeight + DEFAULT_EXTRA_TOP_PADDING }), [headerHeight]);
@@ -67,6 +69,8 @@ const renderItemContent = (item: BodyItems): JSX.Element => {
   switch (item.__typename) {
     case "ContentItemProductDetailsHeader":
       return <ProductDetailsHeader key={item.id} {...item} />;
+    case "ContentItemProductDetailsHoldingHeader":
+      return <ProductDetailsHoldingHeader key={item.id} {...item} />;
     case "ContentItemText":
       return <ContentItemText key={item.id} {...item} />;
     case "ContentItemKeyValueBox":
@@ -85,6 +89,10 @@ const renderItemContent = (item: BodyItems): JSX.Element => {
       return <ContentItemPad key={item.id} {...item} />;
     case "ContentItemMarkdown":
       return <ContentItemMarkdown key={item.id} {...item} />;
+    case "ContentItemYuCoinPower":
+      return <ContentItemYuCoinPower key={item.id} {...item} />;
+    case "ContentItemLinearGradient":
+      return <ContentItemLinearGradient key={item.id} {...item} />;
     default:
       return null;
   }

@@ -85,6 +85,11 @@ export interface ContentItem_ContentItemButton_styles {
   value: string;
 }
 
+export interface ContentItem_ContentItemButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItem_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
@@ -101,6 +106,10 @@ export interface ContentItem_ContentItemButton {
   icon: ContentItem_ContentItemButton_icon | null;
   contentItemButtonRightIcon: ContentItem_ContentItemButton_contentItemButtonRightIcon | null;
   styles: ContentItem_ContentItemButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: ContentItem_ContentItemButton_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -311,6 +320,11 @@ export interface ContentItem_ContentItemRowIconTextBanner_bannerButton_styles {
   value: string;
 }
 
+export interface ContentItem_ContentItemRowIconTextBanner_bannerButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItem_ContentItemRowIconTextBanner_bannerButton {
   id: string;
   contentItemButtonUri: string | null;
@@ -326,6 +340,10 @@ export interface ContentItem_ContentItemRowIconTextBanner_bannerButton {
   icon: ContentItem_ContentItemRowIconTextBanner_bannerButton_icon | null;
   contentItemButtonRightIcon: ContentItem_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
   styles: ContentItem_ContentItemRowIconTextBanner_bannerButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: ContentItem_ContentItemRowIconTextBanner_bannerButton_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -488,6 +506,10 @@ export interface ContentItem_ContentItemHeaderBar {
    * Supported RN version 3.63.0
    */
   color: string | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  backgroundColor: string | null;
 }
 
 export interface ContentItem_ContentItemProgressBar {

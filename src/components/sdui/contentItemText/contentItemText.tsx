@@ -9,7 +9,7 @@ type TemplateProps = ComponentProps<typeof TextTemplate>;
 
 type Props = GqlText;
 
-export const ContentItemText = memo(({ text, textType, textAlign, styles, ...props }: Props) => {
+export const ContentItemText = memo(({ text, textType, textAlign, styles, colour, ...props }: Props) => {
   if (!text) {
     return null;
   }
@@ -18,6 +18,7 @@ export const ContentItemText = memo(({ text, textType, textAlign, styles, ...pro
     <View style={mapServerStyles(styles)}>
       <TextTemplate
         {...props}
+        color={colour}
         type={textType as TemplateProps["type"]}
         textAlign={textAlign as TemplateProps["textAlign"]}
         testID={TEXT_TEMPLATE(text)}

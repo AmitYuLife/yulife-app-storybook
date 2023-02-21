@@ -10,7 +10,7 @@ export const ContentItemProcessingTimer = memo((props: Props) => {
     <ProcessingTimer
       backgroundUrl={props.backgroundUrl}
       secondsUntilTarget={props.secondsUntilTarget}
-      onClose={() => dispatch(props.onClose)}
+      onClose={props.onClose ? () => dispatch(props.onClose) : null}
       heading={props.contentItemProcessingTimerHeading}
     />
   );

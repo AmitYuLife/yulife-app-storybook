@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -34,6 +34,11 @@ export interface ContentItemMultiButton_buttons_styles {
   value: string;
 }
 
+export interface ContentItemMultiButton_buttons_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemMultiButton_buttons {
   id: string;
   contentItemButtonUri: string | null;
@@ -49,6 +54,10 @@ export interface ContentItemMultiButton_buttons {
   icon: ContentItemMultiButton_buttons_icon | null;
   contentItemButtonRightIcon: ContentItemMultiButton_buttons_contentItemButtonRightIcon | null;
   styles: ContentItemMultiButton_buttons_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: ContentItemMultiButton_buttons_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 

@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -49,6 +49,11 @@ export interface ContentItemRowIconTextBanner_bannerButton_styles {
   value: string;
 }
 
+export interface ContentItemRowIconTextBanner_bannerButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemRowIconTextBanner_bannerButton {
   id: string;
   contentItemButtonUri: string | null;
@@ -64,6 +69,10 @@ export interface ContentItemRowIconTextBanner_bannerButton {
   icon: ContentItemRowIconTextBanner_bannerButton_icon | null;
   contentItemButtonRightIcon: ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
   styles: ContentItemRowIconTextBanner_bannerButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: ContentItemRowIconTextBanner_bannerButton_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 

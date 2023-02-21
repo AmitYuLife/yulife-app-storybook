@@ -8,30 +8,43 @@ import { BUTTON_CLOSE_CHALLENGE } from "@ids";
 
 interface Props {
   secondsUntilTarget: number;
-  onClose: () => void;
-  backgroundUrl: string;
-  heading: string;
+  onClose?: () => void;
+  backgroundUrl?: string;
+  heading?: string;
 }
 
-const ProcessingTimer = memo(({ secondsUntilTarget, backgroundUrl, heading, onClose }: Props) => (
-  <View style={styles.backgroundWrapper}>
-    <View style={styles.whiteBackground} />
-    <View style={styles.background}>
-      <Image source={{ uri: backgroundUrl }} width={Style.DEVICE_WIDTH} height={343} />
+const ProcessingTimer = memo(({ secondsUntilTarget, backgroundUrl, heading, onClose }: Props) => {
+  return (
+    <View style={backgroundUrl ? styles.backgroundWrapper : styles.backgroundWrapperWithoutUrl}>
+      {backgroundUrl ? (
+        <>
+          <View style={styles.whiteBackground} />
+          <View style={styles.background}>
+            <Image source={{ uri: backgroundUrl }} width={Style.DEVICE_WIDTH} height={Style.adjust(343)} />
+          </View>
+          <View style={styles.overlayWrapper} />
+        </>
+      ) : null}
+
+      {heading ? (
+        <View style={styles.padding}>
+          <TextTemplate color={Colours.neutral.white} textAlign="center" type="b1b">
+            {heading}
+          </TextTemplate>
+        </View>
+      ) : null}
+      <Countdown secondsUntilTarget={secondsUntilTarget} />
+      {onClose ? (
+        <>
+          <View style={styles.padView} />
+          <PressableWithDelay style={styles.closeWrapper} onPress={onClose} testID={BUTTON_CLOSE_CHALLENGE}>
+            <CloseSvg stroke={Colours.neutral.white} />
+          </PressableWithDelay>
+        </>
+      ) : null}
     </View>
-    <View style={styles.overlayWrapper} />
-    <View style={styles.padding}>
-      <TextTemplate color={Colours.neutral.white} textAlign="center" type="b1b">
-        {heading}
-      </TextTemplate>
-    </View>
-    <Countdown secondsUntilTarget={secondsUntilTarget} />
-    <View style={styles.padView} />
-    <PressableWithDelay style={styles.closeWrapper} onPress={onClose} testID={BUTTON_CLOSE_CHALLENGE}>
-      <CloseSvg stroke={Colours.neutral.white} />
-    </PressableWithDelay>
-  </View>
-));
+  );
+});
 
 export default ProcessingTimer;
 
@@ -41,6 +54,16 @@ const styles = StyleSheet.create({
     width: Style.DEVICE_WIDTH,
     justifyContent: "center",
     alignItems: "center",
+  } as ViewStyle,
+  backgroundWrapperWithoutUrl: {
+    height: Style.adjust(150),
+    width: Style.DEVICE_WIDTH,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: Style.adjust(45),
+  } as ViewStyle,
+  gradient: {
+    ...StyleSheet.absoluteFillObject,
   } as ViewStyle,
   whiteBackground: {
     position: "absolute",

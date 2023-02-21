@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -38,6 +38,11 @@ export interface ContentItemFullScreenSwiper_button_styles {
   value: string;
 }
 
+export interface ContentItemFullScreenSwiper_button_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemFullScreenSwiper_button {
   id: string;
   contentItemButtonUri: string | null;
@@ -53,6 +58,10 @@ export interface ContentItemFullScreenSwiper_button {
   icon: ContentItemFullScreenSwiper_button_icon | null;
   contentItemButtonRightIcon: ContentItemFullScreenSwiper_button_contentItemButtonRightIcon | null;
   styles: ContentItemFullScreenSwiper_button_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: ContentItemFullScreenSwiper_button_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 

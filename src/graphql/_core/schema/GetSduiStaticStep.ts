@@ -85,6 +85,11 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemButton_styl
   value: string;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
@@ -101,6 +106,10 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemButton {
   icon: GetSduiStaticStep_getSduiStaticStep_body_ContentItemButton_icon | null;
   contentItemButtonRightIcon: GetSduiStaticStep_getSduiStaticStep_body_ContentItemButton_contentItemButtonRightIcon | null;
   styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemButton_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -315,6 +324,11 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconText
   value: string;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton {
   id: string;
   contentItemButtonUri: string | null;
@@ -330,6 +344,12 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconText
   icon: GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton_icon | null;
   contentItemButtonRightIcon: GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
   styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetSduiStaticStep_getSduiStaticStep_body_ContentItemRowIconTextBanner_bannerButton_containerStyles[]
+    | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -492,6 +512,10 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemHeaderBar {
    * Supported RN version 3.63.0
    */
   color: string | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  backgroundColor: string | null;
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemProgressBar {
@@ -673,6 +697,11 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBu
   value: string;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
@@ -689,6 +718,10 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBu
   icon: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemButton_icon | null;
   contentItemButtonRightIcon: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemButton_contentItemButtonRightIcon | null;
   styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemButton_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -903,6 +936,11 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRo
   value: string;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton {
   id: string;
   contentItemButtonUri: string | null;
@@ -918,6 +956,12 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRo
   icon: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton_icon | null;
   contentItemButtonRightIcon: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
   styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRowIconTextBanner_bannerButton_containerStyles[]
+    | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -1082,6 +1126,10 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHe
    * Supported RN version 3.63.0
    */
   color: string | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  backgroundColor: string | null;
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProgressBar {

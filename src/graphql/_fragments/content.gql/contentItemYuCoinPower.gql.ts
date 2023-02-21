@@ -10,7 +10,11 @@ export const GQL_FRAGMENT_CONTENT_ITEM_YU_COIN_POWER = gql`
     styles {
       ...SduiStyle
     }
+    containerStyles {
+      ...SduiStyle
+    }
     marginHorizontal
     interactive
+    inactive
   }
 `;

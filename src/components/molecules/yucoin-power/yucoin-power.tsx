@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Style, Colours } from "@styles";
+import { Style } from "@styles";
 import Svg, { Rect, Circle, Path, Defs, LinearGradient, Stop, Text } from "react-native-svg";
 import { YUCOIN_POWER } from "@ids";
 
@@ -9,24 +9,55 @@ interface IProps {
   height?: number;
   testID?: string;
   hideInfoIcon?: boolean;
+  inactive?: boolean;
 }
+
+const GOLDS = {
+  a: "#FFFFFF",
+  b: "#FFF48C",
+  c: "#FFF48E",
+  d: "#FFEA7A",
+  e: "#FCE56A",
+  f: "#FFE24A",
+  g: "#FFED44",
+  h: "#FFEE47",
+  i: "#F8CB31",
+  j: "#EDB720",
+  k: "#DB8200",
+};
+
+const SILVERS = {
+  a: "#FFFFFF",
+  b: "#F0F0F5",
+  c: "#F5F5FF",
+  d: "#D8D8F0",
+  e: "#DBDBF2",
+  f: "#D8D8F0",
+  g: "#D7D7E0",
+  h: "#E1E1FA",
+  i: "#AAAABF",
+  j: "#AEAEC2",
+  k: "#AAAABF",
+};
 
 export const HEIGHT_WIDTH_MULTIPLIER = 50 / 281;
 
-const YuCoinPower = ({ coins, width = Style.adjust(281), height, hideInfoIcon }: IProps) => {
+const YuCoinPower = ({ coins, width = Style.adjust(281), height, hideInfoIcon, inactive = false }: IProps) => {
   const localHeight = height || Math.ceil(width * HEIGHT_WIDTH_MULTIPLIER);
+
+  const PALETTE = inactive ? SILVERS : GOLDS;
 
   return (
     <Svg width={width} height={localHeight} viewBox="0 0 281 50" fill="none" testID={YUCOIN_POWER(coins)}>
-      <Rect y={5} width={281} height={40} rx={8} fill="#EDB720" />
+      <Rect y={5} width={281} height={40} rx={8} fill={PALETTE.j} />
       <Rect y={4} width={281} height={39} rx={8} fill="url(#prefix__paint0_linear_908:45001)" />
       {hideInfoIcon ? null : (
         <>
-          <Circle cx={269} cy={16} r={7.5} fill="#DB8200" stroke="#FCE56A" />
+          <Circle cx={269} cy={16} r={7.5} fill={PALETTE.k} stroke={PALETTE.e} />
           <Path
             d="M270.134 13.58c0 .643-.511 1.158-1.134 1.158a1.146 1.146 0 01-1.133-1.158c0-.643.511-1.158 1.133-1.158.623 0 1.134.515 1.134 1.158z"
-            fill="#fff"
-            stroke="#F8CB31"
+            fill={PALETTE.a}
+            stroke={PALETTE.i}
             strokeWidth={0.4}
           />
           <Rect
@@ -35,8 +66,8 @@ const YuCoinPower = ({ coins, width = Style.adjust(281), height, hideInfoIcon }:
             width={2.267}
             height={5.032}
             rx={1.133}
-            fill="#fff"
-            stroke="#F8CB31"
+            fill={PALETTE.a}
+            stroke={PALETTE.i}
             strokeWidth={0.4}
           />
         </>
@@ -44,16 +75,16 @@ const YuCoinPower = ({ coins, width = Style.adjust(281), height, hideInfoIcon }:
       <Path d="M244 4H126v39h92.498L244 4z" fill="url(#prefix__paint1_linear_908:45001)" />
       <Path
         d="M67.947 18.536a.906.906 0 00-.784-.432.929.929 0 00-.928.928c0 .176.048.368.144.496l3.056 4.56V28.2a.929.929 0 001.856 0v-4.112l3.056-4.56a.861.861 0 00.144-.496.929.929 0 00-1.712-.496l-2.416 3.792-2.416-3.792zm8.309 3.072a.86.86 0 00-.864.864V26.2c0 1.568.592 3.008 3.168 3.008 2.56 0 3.152-1.44 3.152-3.008v-3.728a.86.86 0 00-.864-.864.86.86 0 00-.864.864V26.2c0 .736-.256 1.44-1.424 1.44-1.184 0-1.44-.704-1.44-1.44v-3.728a.86.86 0 00-.864-.864zm12.334 7.616c1.712 0 3.215-.704 3.983-1.728a.786.786 0 00.16-.48.86.86 0 00-.864-.864c-.224 0-.431.096-.688.352-.767.784-1.407 1.056-2.591 1.056-2.129 0-3.089-1.136-3.089-3.936 0-2.64.96-3.952 3.088-3.952 1.168 0 1.856.4 2.513 1.12.207.224.431.32.655.32.48 0 .864-.384.864-.848a.904.904 0 00-.175-.528c-.656-.96-1.92-1.728-3.856-1.728-3.184 0-5.008 1.824-5.008 5.616 0 3.92 1.824 5.6 5.008 5.6zm12.754-3.856c0-2.624-1.344-3.856-3.504-3.856s-3.504 1.232-3.504 3.856c0 2.608 1.344 3.84 3.504 3.84s3.504-1.232 3.504-3.84zm-1.744 0c0 1.568-.608 2.368-1.76 2.368-1.152 0-1.76-.8-1.76-2.368 0-1.584.608-2.384 1.76-2.384 1.152 0 1.76.8 1.76 2.384zm5.417-2.896a.86.86 0 00-.864-.864.86.86 0 00-.864.864v5.792c0 .48.384.864.864.864a.86.86 0 00.864-.864v-5.792zm-.864-1.728c.672 0 1.04-.384 1.04-1.008 0-.736-.368-1.056-1.04-1.056-.656 0-1.024.32-1.024 1.056 0 .624.368 1.008 1.024 1.008zm6.839.768c-1.072 0-1.744.496-2.048.96a.86.86 0 00-.864-.864.86.86 0 00-.864.864v5.824c0 .48.368.832.864.832s.864-.352.864-.832v-3.568c0-.944.4-1.648 1.6-1.648 1.04 0 1.408.624 1.408 1.536v3.68c0 .48.352.832.864.832.48 0 .864-.352.864-.832v-4c0-1.392-.512-2.784-2.688-2.784zm10.585-2.288h2.48c1.28 0 2.112.72 2.112 2.128 0 1.392-.816 2.144-2.112 2.144h-2.48v-4.272zm0 5.264h2.64c1.744 0 3.056-1.04 3.056-3.136 0-2.128-1.344-3.12-3.056-3.12h-3.184a.54.54 0 00-.544.544v9.808c0 .304.24.544.544.544a.54.54 0 00.544-.544v-4.096zm10.543-2.976c-2.064 0-3.36 1.216-3.36 3.84 0 2.624 1.296 3.856 3.36 3.856 2.08 0 3.36-1.232 3.36-3.856 0-2.624-1.28-3.84-3.36-3.84zm0 6.768c-1.472 0-2.32-.88-2.32-2.928 0-2.016.848-2.912 2.32-2.912s2.32.896 2.32 2.912c0 2.048-.848 2.928-2.32 2.928zm10.881.48a.514.514 0 00.496.368.5.5 0 00.48-.336l2.352-6.448a.628.628 0 00.048-.224.505.505 0 00-.512-.512.5.5 0 00-.48.336l-1.856 5.296-1.52-5.296a.485.485 0 00-.48-.336.485.485 0 00-.48.336l-1.52 5.296-1.856-5.296a.5.5 0 00-.48-.336.505.505 0 00-.512.512c0 .064.016.144.048.224l2.352 6.448a.5.5 0 00.48.336.514.514 0 00.496-.368l1.472-5.072 1.472 5.072zm4.568-3.408c0 2.688 1.328 3.856 3.456 3.856 1.424 0 2.256-.656 2.496-.896.096-.096.176-.192.176-.368a.464.464 0 00-.464-.464.447.447 0 00-.288.096c-.448.336-.992.688-1.92.688-1.504 0-2.416-1.024-2.416-2.608h4.672c.64 0 .64-.56.64-1.024 0-1.088-.496-3.12-3.056-3.12-2.08 0-3.296 1.376-3.296 3.84zm5.344-.592h-4.304c.096-1.424.864-2.32 2.256-2.32 1.648 0 2.048 1.168 2.048 2.32zm4.214-2.64a.505.505 0 00-.512-.512.505.505 0 00-.512.512v6.496c0 .288.224.512.512.512a.505.505 0 00.512-.512v-3.584c0-1.472.752-2.496 2.224-2.496a.498.498 0 00.496-.496.498.498 0 00-.496-.496c-1.104 0-1.904.544-2.224 1.28v-.704z"
-        fill="#DB8200"
+        fill={PALETTE.k}
       />
-      <Path d="M33 50c13.255 0 24-10.745 24-24S46.255 2 33 2 9 12.745 9 26s10.745 24 24 24z" fill="#EDB720" />
+      <Path d="M33 50c13.255 0 24-10.745 24-24S46.255 2 33 2 9 12.745 9 26s10.745 24 24 24z" fill={PALETTE.j} />
       <Path
         d="M33 48c13.255 0 24-10.745 24-24S46.255 0 33 0 9 10.745 9 24s10.745 24 24 24z"
         fill="url(#prefix__paint2_linear_908:45001)"
       />
       <Path
         d="M33 5.536c5.944 0 11.392 2.08 15.68 5.552C44.952 6.576 39.312 3.696 33 3.696c-6.312 0-11.952 2.88-15.68 7.4A24.825 24.825 0 0133 5.536z"
-        fill="#F8CB31"
+        fill={PALETTE.i}
       />
       <Path
         d="M33 42.464c5.944 0 11.392-2.08 15.68-5.552-3.728 4.52-9.368 7.4-15.68 7.4-6.312 0-11.952-2.88-15.68-7.4 4.288 3.464 9.736 5.552 15.68 5.552z"
@@ -69,8 +100,8 @@ const YuCoinPower = ({ coins, width = Style.adjust(281), height, hideInfoIcon }:
           y2={43}
           gradientUnits="userSpaceOnUse"
         >
-          <Stop stopColor="#FFF48C" />
-          <Stop offset={1} stopColor="#FFEE47" />
+          <Stop stopColor={PALETTE.b} />
+          <Stop offset={1} stopColor={PALETTE.h} />
         </LinearGradient>
         <LinearGradient
           id="prefix__paint1_linear_908:45001"
@@ -80,8 +111,8 @@ const YuCoinPower = ({ coins, width = Style.adjust(281), height, hideInfoIcon }:
           y2={40.984}
           gradientUnits="userSpaceOnUse"
         >
-          <Stop offset={0.006} stopColor="#FFE24A" />
-          <Stop offset={0.527} stopColor="#FFEA7A" stopOpacity={0} />
+          <Stop offset={0.006} stopColor={PALETTE.f} />
+          <Stop offset={0.527} stopColor={PALETTE.d} stopOpacity={0} />
         </LinearGradient>
         <LinearGradient
           id="prefix__paint2_linear_908:45001"
@@ -91,8 +122,8 @@ const YuCoinPower = ({ coins, width = Style.adjust(281), height, hideInfoIcon }:
           y2={48.714}
           gradientUnits="userSpaceOnUse"
         >
-          <Stop stopColor="#FFF48E" />
-          <Stop offset={1} stopColor="#FFED44" />
+          <Stop stopColor={PALETTE.c} />
+          <Stop offset={1} stopColor={PALETTE.g} />
         </LinearGradient>
 
         <LinearGradient
@@ -103,8 +134,8 @@ const YuCoinPower = ({ coins, width = Style.adjust(281), height, hideInfoIcon }:
           y2={531.152}
           gradientUnits="userSpaceOnUse"
         >
-          <Stop stopColor="#FFF48E" />
-          <Stop offset={1} stopColor="#fff" stopOpacity={0.4} />
+          <Stop stopColor={PALETTE.c} />
+          <Stop offset={1} stopColor={PALETTE.a} stopOpacity={0.4} />
         </LinearGradient>
       </Defs>
       <Text
@@ -114,9 +145,9 @@ const YuCoinPower = ({ coins, width = Style.adjust(281), height, hideInfoIcon }:
         fontFamily={Style.FONT_FAMILY_PRIMARY_BOLD}
         fontWeight="bold"
         textAnchor="middle"
-        fill={Colours.orange}
+        fill={PALETTE.k}
       >
-        {coins}
+        {inactive ? "X" : coins}
       </Text>
     </Svg>
   );

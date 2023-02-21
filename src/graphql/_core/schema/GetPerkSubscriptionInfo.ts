@@ -147,6 +147,11 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
   value: string;
 }
 
+export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
@@ -163,6 +168,10 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
   icon: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_icon | null;
   contentItemButtonRightIcon: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_contentItemButtonRightIcon | null;
   styles: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemButton_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 

@@ -7,7 +7,7 @@ import { Colours } from "@styles";
 import { useBackHandler } from "@hooks";
 import { ProductStepDetachedNavigationContext } from "../../product-step-detached-navigation.context";
 
-type Props = GqlHeaderBar;
+type Props = Omit<GqlHeaderBar, "backgroundColor"> & { backgroundColor?: string | null };
 
 export const ProductStepContentItemHeaderDetached = memo((props: Props) => {
   const {

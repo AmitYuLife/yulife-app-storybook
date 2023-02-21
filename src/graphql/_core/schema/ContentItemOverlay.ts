@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -34,6 +34,11 @@ export interface ContentItemOverlay_buttons_styles {
   value: string;
 }
 
+export interface ContentItemOverlay_buttons_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemOverlay_buttons {
   id: string;
   contentItemButtonUri: string | null;
@@ -49,6 +54,10 @@ export interface ContentItemOverlay_buttons {
   icon: ContentItemOverlay_buttons_icon | null;
   contentItemButtonRightIcon: ContentItemOverlay_buttons_contentItemButtonRightIcon | null;
   styles: ContentItemOverlay_buttons_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: ContentItemOverlay_buttons_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 

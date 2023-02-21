@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -41,6 +41,11 @@ export interface ContentItemFullScreenLottieSwiper_button_styles {
   value: string;
 }
 
+export interface ContentItemFullScreenLottieSwiper_button_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemFullScreenLottieSwiper_button {
   id: string;
   contentItemButtonUri: string | null;
@@ -56,6 +61,10 @@ export interface ContentItemFullScreenLottieSwiper_button {
   icon: ContentItemFullScreenLottieSwiper_button_icon | null;
   contentItemButtonRightIcon: ContentItemFullScreenLottieSwiper_button_contentItemButtonRightIcon | null;
   styles: ContentItemFullScreenLottieSwiper_button_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: ContentItemFullScreenLottieSwiper_button_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 

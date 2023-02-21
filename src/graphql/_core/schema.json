@@ -1703,6 +1703,50 @@
       },
       {
         "kind": "OBJECT",
+        "name": "LinearGradientOrientation",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": [
+          {
+            "name": "x",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "y",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "ActiveStreak",
         "description": null,
         "specifiedByUrl": null,
@@ -32348,7 +32392,7 @@
           },
           {
             "name": "backgroundColor",
-            "description": "Supported RN version 3.69.0",
+            "description": "Supported RN version 3.70.0",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -34623,6 +34667,26 @@
             "deprecationReason": null
           },
           {
+            "name": "containerStyles",
+            "description": "Supported RN version 3.70.0",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SduiStyle",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "buttonSize",
             "description": null,
             "args": [],
@@ -34942,50 +35006,6 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ContentItemLinearGradientOrientation",
-        "description": null,
-        "specifiedByUrl": null,
-        "fields": [
-          {
-            "name": "x",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "y",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
         "name": "ContentItemLinearGradient",
         "description": null,
         "specifiedByUrl": null,
@@ -35056,7 +35076,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ContentItemLinearGradientOrientation",
+              "name": "LinearGradientOrientation",
               "ofType": null
             },
             "isDeprecated": false,
@@ -35068,7 +35088,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ContentItemLinearGradientOrientation",
+              "name": "LinearGradientOrientation",
               "ofType": null
             },
             "isDeprecated": false,
@@ -38322,6 +38342,26 @@
           {
             "name": "styles",
             "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SduiStyle",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "containerStyles",
+            "description": "Supported RN version 3.70.0",
             "args": [],
             "type": {
               "kind": "LIST",
@@ -63163,6 +63203,170 @@
       },
       {
         "kind": "OBJECT",
+        "name": "ContentItemProductDetailsHoldingHeaderLinearGradient",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": [
+          {
+            "name": "colors",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "start",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "LinearGradientOrientation",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "end",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "LinearGradientOrientation",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ContentItemProductDetailsHoldingHeaderTimer",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": [
+          {
+            "name": "secondsUntilTarget",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ContentItemProductDetailsHoldingHeader",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "linearGradient",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ContentItemProductDetailsHoldingHeaderLinearGradient",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "image",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "RemoteImage",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "title",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "timer",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ContentItemProductDetailsHoldingHeaderTimer",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "ContentItemBeneficiariesSection",
         "description": null,
         "specifiedByUrl": null,
@@ -63238,6 +63442,11 @@
           {
             "kind": "OBJECT",
             "name": "ContentItemProductDetailsHeader",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContentItemProductDetailsHoldingHeader",
             "ofType": null
           },
           {

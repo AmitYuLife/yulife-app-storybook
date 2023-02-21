@@ -1,4 +1,5 @@
 import React, { memo, useCallback } from "react";
+import { View } from "react-native";
 import { useDispatch } from "react-redux";
 import { ContentItemButton as GqlButton, ContentItemButton_event } from "@graphql/_core/schema";
 import { ContentItemButtonType } from "@graphql/_core/schema/globalTypes";
@@ -39,6 +40,7 @@ export const ContentItemButton = memo((props: Props) => {
     textColor,
     disabledState,
     shouldValidateBus = true,
+    containerStyles,
   } = props;
   const { isValid } = useSduiValidField(disabledState, shouldValidateBus);
   const dispatch = useDispatch();
@@ -61,20 +63,22 @@ export const ContentItemButton = memo((props: Props) => {
   const isDisabled = isLoading || disabled || !isValid;
 
   return (
-    <Component
-      disabled={isDisabled}
-      iconUri={icon?.uri}
-      rightIconUri={rightIcon?.uri}
-      wrapperStyle={mapServerStyles(styles)}
-      label={label}
-      size={buttonSize}
-      onPress={handleSduiAction}
-      isLoading={isLoading}
-      testID={testID}
-      backgroundColor={backgroundColor}
-      borderColor={borderColor}
-      textColor={textColor}
-    />
+    <View style={mapServerStyles(containerStyles)}>
+      <Component
+        disabled={isDisabled}
+        iconUri={icon?.uri}
+        rightIconUri={rightIcon?.uri}
+        wrapperStyle={mapServerStyles(styles)}
+        label={label}
+        size={buttonSize}
+        onPress={handleSduiAction}
+        isLoading={isLoading}
+        testID={testID}
+        backgroundColor={backgroundColor}
+        borderColor={borderColor}
+        textColor={textColor}
+      />
+    </View>
   );
 });
 

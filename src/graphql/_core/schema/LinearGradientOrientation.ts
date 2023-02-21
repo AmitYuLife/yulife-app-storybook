@@ -4,10 +4,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: ContentItemDropdownInputOptions
+// GraphQL fragment: LinearGradientOrientation
 // ====================================================
 
-export interface ContentItemDropdownInputOptions {
-  label: string | null;
-  value: string | null;
+export interface LinearGradientOrientation {
+  x: number;
+  y: number;
 }

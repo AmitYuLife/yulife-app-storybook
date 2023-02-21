@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -95,6 +95,11 @@ export interface ContentItemAgePercentCoverPicker_customCover_button_styles {
   value: string;
 }
 
+export interface ContentItemAgePercentCoverPicker_customCover_button_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemAgePercentCoverPicker_customCover_button {
   id: string;
   contentItemButtonUri: string | null;
@@ -110,6 +115,10 @@ export interface ContentItemAgePercentCoverPicker_customCover_button {
   icon: ContentItemAgePercentCoverPicker_customCover_button_icon | null;
   contentItemButtonRightIcon: ContentItemAgePercentCoverPicker_customCover_button_contentItemButtonRightIcon | null;
   styles: ContentItemAgePercentCoverPicker_customCover_button_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: ContentItemAgePercentCoverPicker_customCover_button_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
