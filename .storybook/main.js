@@ -26,10 +26,8 @@ const CUSTOM_CONFIG = {
       "@react-native-camera-roll/camera-roll": path.join(__dirname, "/aliases/react-native-camera-roll"),
       "react-native-view-shot": path.join(__dirname, "/aliases/react-native-view-shot"),
     },
-
     extensions: [".web.js", ".js", ".ts", ".tsx"],
   },
-
   module: {
     rules: [
       {
@@ -46,7 +44,6 @@ const CUSTOM_CONFIG = {
     ],
   },
 };
-
 module.exports = {
   stories: ["../src/components/@(atoms|molecules)/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: ["storybook-addon-designs", "@storybook/addon-viewport"],
@@ -55,12 +52,20 @@ module.exports = {
       ...config,
       resolve: {
         ...config.resolve,
-        alias: { ...config.resolve.alias, ...CUSTOM_CONFIG.resolve.alias },
+        alias: {
+          ...config.resolve.alias,
+          ...CUSTOM_CONFIG.resolve.alias,
+        },
         extensions: CUSTOM_CONFIG.resolve.extensions,
       },
-      module: { ...config.module, rules: CUSTOM_CONFIG.module.rules },
+      module: {
+        ...config.module,
+        rules: CUSTOM_CONFIG.module.rules,
+      },
     };
-
     return newConfig;
+  },
+  core: {
+    builder: "webpack5",
   },
 };
