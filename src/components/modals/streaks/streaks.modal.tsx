@@ -10,6 +10,7 @@ import { useBackHandler } from "@hooks";
 import { Navigation } from "@navigation/main";
 import { IStreakCopy, streakCopy } from "./copy";
 import { getUserActiveStreakStart, getUserCoinLedgerTodayActivityStart } from "@redux/user/user.actions";
+import { DETOX_ENABLED } from "@services/socket";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -148,7 +149,7 @@ const StreaksModal: React.FC<Props> = ({
     if (streakMax === streakCompleted && !streakAwardId) {
       const callback = () => {
         setTimeRemaining(getTimeRemaining(nextStreakAvailableAt, "medium"));
-        timer = setTimeout(callback, 1000);
+        timer = setTimeout(callback, DETOX_ENABLED ? 2000 : 1000); // detox will hang for timers less than 1500ms
       };
 
       let timer = setTimeout(callback, 1000);
