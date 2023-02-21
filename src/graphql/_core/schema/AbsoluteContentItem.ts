@@ -85,6 +85,11 @@ export interface AbsoluteContentItem_item_ContentItemButton_styles {
   value: string;
 }
 
+export interface AbsoluteContentItem_item_ContentItemButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface AbsoluteContentItem_item_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
@@ -101,6 +106,10 @@ export interface AbsoluteContentItem_item_ContentItemButton {
   icon: AbsoluteContentItem_item_ContentItemButton_icon | null;
   contentItemButtonRightIcon: AbsoluteContentItem_item_ContentItemButton_contentItemButtonRightIcon | null;
   styles: AbsoluteContentItem_item_ContentItemButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: AbsoluteContentItem_item_ContentItemButton_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -311,6 +320,11 @@ export interface AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerBut
   value: string;
 }
 
+export interface AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton {
   id: string;
   contentItemButtonUri: string | null;
@@ -326,6 +340,10 @@ export interface AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerBut
   icon: AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton_icon | null;
   contentItemButtonRightIcon: AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
   styles: AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: AbsoluteContentItem_item_ContentItemRowIconTextBanner_bannerButton_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -488,6 +506,10 @@ export interface AbsoluteContentItem_item_ContentItemHeaderBar {
    * Supported RN version 3.63.0
    */
   color: string | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  backgroundColor: string | null;
 }
 
 export interface AbsoluteContentItem_item_ContentItemProgressBar {

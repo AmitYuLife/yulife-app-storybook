@@ -125,6 +125,11 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemBu
   value: string;
 }
 
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
@@ -141,6 +146,10 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemBu
   icon: GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_icon | null;
   contentItemButtonRightIcon: GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_contentItemButtonRightIcon | null;
   styles: GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 

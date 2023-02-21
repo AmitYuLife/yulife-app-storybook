@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -31,4 +31,8 @@ export interface ContentItemHeaderBar {
    * Supported RN version 3.63.0
    */
   color: string | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  backgroundColor: string | null;
 }

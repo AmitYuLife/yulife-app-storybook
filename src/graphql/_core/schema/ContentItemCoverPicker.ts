@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -62,6 +62,11 @@ export interface ContentItemCoverPicker_customCover_button_styles {
   value: string;
 }
 
+export interface ContentItemCoverPicker_customCover_button_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemCoverPicker_customCover_button {
   id: string;
   contentItemButtonUri: string | null;
@@ -77,6 +82,10 @@ export interface ContentItemCoverPicker_customCover_button {
   icon: ContentItemCoverPicker_customCover_button_icon | null;
   contentItemButtonRightIcon: ContentItemCoverPicker_customCover_button_contentItemButtonRightIcon | null;
   styles: ContentItemCoverPicker_customCover_button_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: ContentItemCoverPicker_customCover_button_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 

@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -12,10 +12,19 @@ export interface ContentItemYuCoinPower_styles {
   value: string;
 }
 
+export interface ContentItemYuCoinPower_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemYuCoinPower {
   id: string;
   yuCoinPower: number;
   styles: ContentItemYuCoinPower_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: ContentItemYuCoinPower_containerStyles[] | null;
   /**
    * A separate definition to define width with respect to the device's horizontal edges
    * A marginHorizontal at the styles level doesn't work because a hardcoded width should
@@ -26,4 +35,5 @@ export interface ContentItemYuCoinPower {
    * RN client version >=3.47.0
    */
   interactive: boolean | null;
+  inactive: boolean | null;
 }

@@ -17,125 +17,108 @@ export const swipeFromText = (text: string, direction: any, speed: any, percenta
   await target.swipe(direction, speed, percentage);
 };
 
-export const scrollFromIDMultiple = (
-  id: string,
-  direction: any,
-  speed: any,
-  scrollCount: number,
-  percentage?: any
-) => async () => {
-  let i = 0;
-  const target = element(by.id(id));
+export const scrollFromIDMultiple =
+  (id: string, direction: any, speed: any, scrollCount: number, percentage?: any) => async () => {
+    let i = 0;
+    const target = element(by.id(id));
 
-  while (i < scrollCount) {
-    await target.swipe(direction, speed, percentage);
-    i++;
-  }
-};
+    while (i < scrollCount) {
+      await target.swipe(direction, speed, percentage);
+      i++;
+    }
+  };
 
 // down is down
-export const scrollUntilTextVisible = (
-  scrollViewId: string,
-  text: string,
-  direction: "up" | "down",
-  xscroll = 0.5,
-  yscroll = 0.5
-) => async () => {
-  await waitFor(element(by.text(text)))
-    .toBeVisible()
-    .whileElement(by.id(scrollViewId))
-    .scroll(100, direction, xscroll, yscroll);
-};
+export const scrollUntilTextVisible =
+  (scrollViewId: string, text: string, direction: "up" | "down", xscroll = 0.5, yscroll = 0.5) =>
+  async () => {
+    await waitFor(element(by.text(text)))
+      .toBeVisible()
+      .whileElement(by.id(scrollViewId))
+      .scroll(100, direction, xscroll, yscroll);
+  };
 
-export const scrollUntilIdVisible = (
-  scrollViewId: string,
-  id: string,
-  direction: "up" | "down" | "left" | "right",
-  xscroll = 0.5,
-  yscroll = 0.5,
-  offset = 100
-) => async () => {
-  await waitFor(element(by.id(id)))
-    .toBeVisible()
-    .whileElement(by.id(scrollViewId))
-    .scroll(offset, direction, xscroll, yscroll);
-};
+export const scrollUntilIdVisible =
+  (
+    scrollViewId: string,
+    id: string,
+    direction: "up" | "down" | "left" | "right",
+    xscroll = 0.5,
+    yscroll = 0.5,
+    offset = 100
+  ) =>
+  async () => {
+    await waitFor(element(by.id(id)))
+      .toBeVisible()
+      .whileElement(by.id(scrollViewId))
+      .scroll(offset, direction, xscroll, yscroll);
+  };
 
-export const scrollToAndTapText = (
-  scrollViewid: string,
-  text: string,
-  direction: "up" | "down",
-  xscroll = 0.5,
-  yscroll = 0.5
-) => async () => {
-  await waitFor(element(by.text(text)))
-    .toBeVisible()
-    .whileElement(by.id(scrollViewid))
-    .scroll(100, direction, xscroll, yscroll);
-  await element(by.text(text)).tap();
-};
+export const scrollToAndTapText =
+  (scrollViewid: string, text: string, direction: "up" | "down", xscroll = 0.5, yscroll = 0.5) =>
+  async () => {
+    await waitFor(element(by.text(text)))
+      .toBeVisible()
+      .whileElement(by.id(scrollViewid))
+      .scroll(100, direction, xscroll, yscroll);
+    await element(by.text(text)).tap();
+  };
 
-export const swipeToText = (
-  scrollID: any,
-  targetText: string,
-  direction: "up" | "down" | "left" | "right",
-  maxAttempts = 10
-) => async () => {
-  let targetTextVisible = await booleanTextVisible(targetText);
-  let scroller = element(by.id(scrollID));
-
-  let currentAttempt = 0;
-  while (targetTextVisible === false && currentAttempt < maxAttempts) {
-    await scroller.swipe(direction, "slow");
-    targetTextVisible = await booleanTextVisible(targetText);
-
-    if (targetTextVisible === true) {
-      await expect(element(by.text(targetText))).toBeVisible();
-      targetTextVisible = await booleanTextVisible(targetText);
-      currentAttempt = maxAttempts;
-      return true;
-    }
-
-    if (targetTextVisible === false && currentAttempt === maxAttempts) {
-      throw new Error(`Could not find target text ${targetText} scrolling through ${scrollID}`);
-    }
-    currentAttempt += 1;
-  }
-};
-
-export const swipeToID = (
-  scrollID: any,
-  targetID: string,
-  direction: Detox.Direction,
-  maxAttempts = 10
-) => async () => {
-  try {
-    await expect(element(by.id(targetID))).toBeVisible();
-  } catch (e) {
-    let targetIDVisible = await booleanIdVisible(targetID);
+export const swipeToText =
+  (scrollID: any, targetText: string, direction: "up" | "down" | "left" | "right", maxAttempts = 10) =>
+  async () => {
+    let targetTextVisible = await booleanTextVisible(targetText);
     let scroller = element(by.id(scrollID));
 
     let currentAttempt = 0;
-    while (targetIDVisible === false && currentAttempt < maxAttempts) {
-      console.log("starting scroll.........");
+    while (targetTextVisible === false && currentAttempt < maxAttempts) {
       await scroller.swipe(direction, "slow");
-      console.log("just scrolled.........");
-      targetIDVisible = await booleanIdVisible(targetID);
+      targetTextVisible = await booleanTextVisible(targetText);
 
-      if (targetIDVisible === true) {
-        await expect(element(by.text(targetID))).toBeVisible();
-        targetIDVisible = await booleanIdVisible(targetID);
+      if (targetTextVisible === true) {
+        await expect(element(by.text(targetText))).toBeVisible();
+        targetTextVisible = await booleanTextVisible(targetText);
         currentAttempt = maxAttempts;
         return true;
       }
 
-      if (targetIDVisible === false && currentAttempt === maxAttempts) {
-        throw new Error(`Could not find target text ${targetID} scrolling through ${scrollID}`);
+      if (targetTextVisible === false && currentAttempt === maxAttempts) {
+        throw new Error(`Could not find target text ${targetText} scrolling through ${scrollID}`);
       }
       currentAttempt += 1;
     }
-  }
-};
+  };
+
+export const swipeToID =
+  (scrollID: any, targetID: string, direction: Detox.Direction, maxAttempts = 10) =>
+  async () => {
+    try {
+      await expect(element(by.id(targetID))).toBeVisible();
+    } catch (e) {
+      let targetIDVisible = await booleanIdVisible(targetID);
+      let scroller = element(by.id(scrollID));
+
+      let currentAttempt = 0;
+      while (targetIDVisible === false && currentAttempt < maxAttempts) {
+        console.log("starting scroll.........");
+        await scroller.swipe(direction, "slow");
+        console.log("just scrolled.........");
+        targetIDVisible = await booleanIdVisible(targetID);
+
+        if (targetIDVisible === true) {
+          await expect(element(by.text(targetID))).toBeVisible();
+          targetIDVisible = await booleanIdVisible(targetID);
+          currentAttempt = maxAttempts;
+          return true;
+        }
+
+        if (targetIDVisible === false && currentAttempt === maxAttempts) {
+          throw new Error(`Could not find target text ${targetID} scrolling through ${scrollID}`);
+        }
+        currentAttempt += 1;
+      }
+    }
+  };
 
 export const activityHistoryScrollStepDataCorrect = async () => {
   let scrollPercentage = 0;
@@ -190,16 +173,11 @@ export const activityHistoryScrollMinsDataCorrect = async () => {
   }
 };
 
-export const scrollUntilTextVisibleAtIndex = (
-  scrollViewId: string,
-  text: string,
-  direction: "up" | "down",
-  index: number,
-  xscroll = 0.5,
-  yscroll = 0.5
-) => async () => {
-  await waitFor(element(by.text(text)).atIndex(index))
-    .toBeVisible()
-    .whileElement(by.id(scrollViewId))
-    .scroll(100, direction, xscroll, yscroll);
-};
+export const scrollUntilTextVisibleAtIndex =
+  (scrollViewId: string, text: string, direction: "up" | "down", index: number, xscroll = 0.5, yscroll = 0.5) =>
+  async () => {
+    await waitFor(element(by.text(text)).atIndex(index))
+      .toBeVisible()
+      .whileElement(by.id(scrollViewId))
+      .scroll(100, direction, xscroll, yscroll);
+  };

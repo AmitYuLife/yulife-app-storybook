@@ -10,7 +10,7 @@ import { useSduiLoading } from "../_hooks/useSduiLoading";
 
 type Props = Omit<
   GqlHeader,
-  "onLeftIconPress" | "onRightIconPress" | "publishKeyHeight" | "contentItemHeaderBarRightIcon"
+  "onLeftIconPress" | "onRightIconPress" | "publishKeyHeight" | "contentItemHeaderBarRightIcon" | "backgroundColor"
 > & {
   leftIcon: ComponentProps<typeof GenericHeading>["leftIcon"];
   contentItemHeaderBarRightIcon?: ComponentProps<typeof GenericHeading>["rightIcon"];
@@ -19,6 +19,7 @@ type Props = Omit<
   onRightIconPress: VoidFunctionOrSduiActionPayload;
   publishKeyHeight?: string;
   color: string;
+  backgroundColor?: string | null;
 };
 
 export const ContentItemHeaderBar = memo((props: Props) => {
@@ -31,6 +32,7 @@ export const ContentItemHeaderBar = memo((props: Props) => {
     onRightIconPress,
     publishKeyHeight,
     color = Colours.neutral.n800,
+    backgroundColor,
   } = props;
   const { handleSduiAction: handleLeftIconPress } = useSduiCallbackFunctionOrReduxAction(onLeftIconPress);
   const { handleSduiAction: handleRightIconPress } = useSduiCallbackFunctionOrReduxAction(onRightIconPress);
@@ -63,7 +65,10 @@ export const ContentItemHeaderBar = memo((props: Props) => {
   };
 
   return (
-    <View onLayout={handleLayout} style={styles.wrapper}>
+    <View
+      onLayout={handleLayout}
+      style={[styles.wrapper, { backgroundColor: backgroundColor || Colours.neutral.white }]}
+    >
       <GenericHeading
         leftIcon={leftIcon}
         rightIcon={contentItemHeaderBarRightIcon}
@@ -83,6 +88,5 @@ const styles = StyleSheet.create({
     paddingTop: TOP_BAR.PADDING_TOP,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: Colours.neutral.white,
   } as ViewStyle,
 });

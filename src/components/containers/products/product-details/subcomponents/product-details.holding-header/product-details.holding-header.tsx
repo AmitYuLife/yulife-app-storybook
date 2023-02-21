@@ -1,0 +1,34 @@
+import React, { memo } from "react";
+import { View, StyleSheet, ViewStyle } from "react-native";
+import { ContentItemProductDetailsHoldingHeader } from "@graphql/_core/schema";
+import { Image } from "./image";
+import { Title } from "./title";
+import LinearGradient from "react-native-linear-gradient";
+import { ProcessingTimer } from "@components/molecules";
+
+export const ProductDetailsHoldingHeader = memo((props: ContentItemProductDetailsHoldingHeader) => {
+  const { image, linearGradient, title, timer } = props;
+
+  return (
+    <View>
+      {linearGradient ? (
+        <LinearGradient
+          colors={linearGradient.colors}
+          style={styles.gradient}
+          start={linearGradient.start}
+          end={linearGradient.end}
+        />
+      ) : null}
+      <Image image={image} />
+      <Title title={title} />
+      <ProcessingTimer secondsUntilTarget={timer.secondsUntilTarget} />
+    </View>
+  );
+});
+
+const styles = StyleSheet.create({
+  gradient: {
+    flex: 1,
+    ...StyleSheet.absoluteFillObject,
+  } as ViewStyle,
+});

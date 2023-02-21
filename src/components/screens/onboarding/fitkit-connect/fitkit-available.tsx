@@ -16,16 +16,21 @@ interface IProps {
 }
 
 const FitKitAvailable: FC<IProps> = ({ connecting, onConnectPress }) => {
-
   const { fitKitConnectCopy, androidAlertCopy } = getFitKitConnectCopy();
 
   const { heading, connectMessage, connectButton } = fitKitConnectCopy;
   // send the platform for iOS as well?
   const [selectedFitkitPlatform, setSelectedFitkitPlatform] = useState<FitKitHealthTrackingPlatform>("GoogleFit");
-  const [connectButtonLabel, setConnectButtonLabel] = useState(isSamsung() ? `${t("labels.cta.connect")} ${t("google_fit")}` : connectButton);
+  const [connectButtonLabel, setConnectButtonLabel] = useState(
+    isSamsung() ? `${t("labels.cta.connect")} ${t("google_fit")}` : connectButton
+  );
 
   const _setSelectedFitkitPlatform = (platform: FitKitHealthTrackingPlatform) => {
-    setConnectButtonLabel(platform === "SamsungHealth" ? `${t("labels.cta.connect")} ${t("samsung_health")}` : `${t("labels.cta.connect")} ${t("google_fit")}`);
+    setConnectButtonLabel(
+      platform === "SamsungHealth"
+        ? `${t("labels.cta.connect")} ${t("samsung_health")}`
+        : `${t("labels.cta.connect")} ${t("google_fit")}`
+    );
     setSelectedFitkitPlatform(platform);
   };
 

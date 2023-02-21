@@ -32,6 +32,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM_BUTTON = gql`
     styles {
       ...SduiStyle
     }
+    containerStyles {
+      ...SduiStyle
+    }
     buttonSize
   }
 `;

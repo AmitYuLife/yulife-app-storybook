@@ -124,6 +124,7 @@ const absolute: Array<AbsoluteContentItem> = [
       publishKeyHeight: DYNAMIC_HEIGHT_KEY_HEADER,
       heading: null,
       color: null,
+      backgroundColor: undefined,
     },
   },
   {
@@ -180,6 +181,7 @@ const absolute: Array<AbsoluteContentItem> = [
       icon: null,
       contentItemButtonRightIcon: null,
       styles: null,
+      containerStyles: null,
       buttonSize: null,
 
       id: "1",

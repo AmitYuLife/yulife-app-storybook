@@ -302,6 +302,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemB
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
@@ -318,6 +323,10 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemB
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_icon | null;
   contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -753,6 +762,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemC
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button {
   id: string;
   contentItemButtonUri: string | null;
@@ -768,6 +782,12 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemC
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_icon | null;
   contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_containerStyles[]
+    | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -1008,6 +1028,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button {
   id: string;
   contentItemButtonUri: string | null;
@@ -1023,6 +1048,12 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_icon | null;
   contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_containerStyles[]
+    | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -1132,6 +1163,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemR
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton {
   id: string;
   contentItemButtonUri: string | null;
@@ -1147,6 +1183,12 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemR
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_icon | null;
   contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_containerStyles[]
+    | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -1205,11 +1247,20 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemY
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYuCoinPower_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYuCoinPower {
   __typename: "ContentItemYuCoinPower";
   id: string;
   yuCoinPower: number;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemYuCoinPower_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemYuCoinPower_containerStyles[] | null;
   /**
    * A separate definition to define width with respect to the device's horizontal edges
    * A marginHorizontal at the styles level doesn't work because a hardcoded width should
@@ -1220,6 +1271,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemY
    * RN client version >=3.47.0
    */
   interactive: boolean | null;
+  inactive: boolean | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content_styles {
@@ -1325,6 +1377,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemM
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons {
   id: string;
   contentItemButtonUri: string | null;
@@ -1340,6 +1397,12 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemM
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_icon | null;
   contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_containerStyles[]
+    | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -1496,6 +1559,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemA
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button {
   id: string;
   contentItemButtonUri: string | null;
@@ -1512,6 +1580,12 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemA
   contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_contentItemButtonRightIcon | null;
   styles:
     | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_styles[]
+    | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_containerStyles[]
     | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -1785,6 +1859,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
@@ -1801,6 +1880,10 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_icon | null;
   contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -1829,6 +1912,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons {
   id: string;
   contentItemButtonUri: string | null;
@@ -1844,6 +1932,12 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_icon | null;
   contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_containerStyles[]
+    | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -1879,6 +1973,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons {
   id: string;
   contentItemButtonUri: string | null;
@@ -1894,6 +1993,12 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_icon | null;
   contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_containerStyles[]
+    | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -2041,6 +2146,10 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
    * Supported RN version 3.63.0
    */
   color: string | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  backgroundColor: string | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressBar {
@@ -2317,6 +2426,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button {
   id: string;
   contentItemButtonUri: string | null;
@@ -2333,6 +2447,12 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_contentItemButtonRightIcon | null;
   styles:
     | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_styles[]
+    | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_containerStyles[]
     | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -2416,6 +2536,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button {
   id: string;
   contentItemButtonUri: string | null;
@@ -2432,6 +2557,12 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   contentItemButtonRightIcon: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button_contentItemButtonRightIcon | null;
   styles:
     | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button_styles[]
+    | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button_containerStyles[]
     | null;
   buttonSize: ContentItemButtonSize | null;
 }

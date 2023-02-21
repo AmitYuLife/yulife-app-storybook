@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -34,6 +34,11 @@ export interface ContentItemScrollPicker_button_styles {
   value: string;
 }
 
+export interface ContentItemScrollPicker_button_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemScrollPicker_button {
   id: string;
   contentItemButtonUri: string | null;
@@ -49,6 +54,10 @@ export interface ContentItemScrollPicker_button {
   icon: ContentItemScrollPicker_button_icon | null;
   contentItemButtonRightIcon: ContentItemScrollPicker_button_contentItemButtonRightIcon | null;
   styles: ContentItemScrollPicker_button_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles: ContentItemScrollPicker_button_containerStyles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 

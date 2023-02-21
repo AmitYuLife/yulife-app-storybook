@@ -140,14 +140,10 @@ export const avatarBodyVisibleWithUser = (user) => async () => {
   await expect(element(by.id(AVATAR_BODY(partsList)))).toBeVisible();
 };
 
-export const leaderboardAvatarVisible = (
-  facialHair: string,
-  eyes: string,
-  hair: string,
-  glasses: string
-) => async () => {
-  await expect(element(by.id(AVATAR_BODY([facialHair, eyes, hair, glasses])))).toBeVisible();
-};
+export const leaderboardAvatarVisible =
+  (facialHair: string, eyes: string, hair: string, glasses: string) => async () => {
+    await expect(element(by.id(AVATAR_BODY([facialHair, eyes, hair, glasses])))).toBeVisible();
+  };
 
 export const personalProductsVisible = async () => {
   const products = ["Income Protection", "Family Income Benefit", "Critical Illness", "Travel Insurance"];
@@ -409,32 +405,27 @@ export const onProductDetails = (coverType: string, productName: string, earnRat
   await expect(element(by.text("Policy Details"))).toBeVisible();
 };
 
-export const onCertificate = (
-  productName: string,
-  customer: any,
-  customerGroupPol: any,
-  business: any,
-  businessEmployee: any
-) => async () => {
-  const customerName = `${customer.data.firstName} ${customer.data.lastName}`;
-  const companyName = business.data.business_account_name;
-  const policyNumber = customerGroupPol.data.business_product_id;
-  const dateJoined = moment(businessEmployee.data.start_date).format("DD/MM/YYYY");
+export const onCertificate =
+  (productName: string, customer: any, customerGroupPol: any, business: any, businessEmployee: any) => async () => {
+    const customerName = `${customer.data.firstName} ${customer.data.lastName}`;
+    const companyName = business.data.business_account_name;
+    const policyNumber = customerGroupPol.data.business_product_id;
+    const dateJoined = moment(businessEmployee.data.start_date).format("DD/MM/YYYY");
 
-  await expect(element(by.text(productName))).toBeVisible();
+    await expect(element(by.text(productName))).toBeVisible();
 
-  await expect(element(by.text("Client name"))).toBeVisible();
-  await expect(element(by.text(customerName))).toBeVisible();
+    await expect(element(by.text("Client name"))).toBeVisible();
+    await expect(element(by.text(customerName))).toBeVisible();
 
-  await expect(element(by.text("Company name"))).toBeVisible();
-  await expect(element(by.text(companyName))).toBeVisible();
+    await expect(element(by.text("Company name"))).toBeVisible();
+    await expect(element(by.text(companyName))).toBeVisible();
 
-  await expect(element(by.text("Policy number"))).toBeVisible();
-  await expect(element(by.text(policyNumber))).toBeVisible();
+    await expect(element(by.text("Policy number"))).toBeVisible();
+    await expect(element(by.text(policyNumber))).toBeVisible();
 
-  await expect(element(by.text("Cover start date"))).toBeVisible();
-  await expect(element(by.text(dateJoined))).toBeVisible();
-};
+    await expect(element(by.text("Cover start date"))).toBeVisible();
+    await expect(element(by.text(dateJoined))).toBeVisible();
+  };
 
 export const onChooseAvatarBodyScreen = async () => {
   const createTitle = element(by.text("Create your Yumoji to step into the Yuniverse"));

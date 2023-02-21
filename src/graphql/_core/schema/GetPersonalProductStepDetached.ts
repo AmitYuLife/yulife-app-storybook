@@ -254,6 +254,11 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   value: string;
 }
 
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button {
   id: string;
   contentItemButtonUri: string | null;
@@ -270,6 +275,12 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   contentItemButtonRightIcon: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button_contentItemButtonRightIcon | null;
   styles:
     | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button_styles[]
+    | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button_containerStyles[]
     | null;
   buttonSize: ContentItemButtonSize | null;
 }
@@ -526,6 +537,11 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   value: string;
 }
 
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton {
   __typename: "ContentItemButton";
   id: string;
@@ -542,6 +558,12 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   icon: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton_icon | null;
   contentItemButtonRightIcon: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton_contentItemButtonRightIcon | null;
   styles: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton_containerStyles[]
+    | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -626,6 +648,11 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   value: string;
 }
 
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerButton_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerButton {
   id: string;
   contentItemButtonUri: string | null;
@@ -642,6 +669,12 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   contentItemButtonRightIcon: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerButton_contentItemButtonRightIcon | null;
   styles:
     | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerButton_styles[]
+    | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerButton_containerStyles[]
     | null;
   buttonSize: ContentItemButtonSize | null;
 }
