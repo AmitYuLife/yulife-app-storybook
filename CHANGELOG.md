@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.70.0] - 2023-02-22
+
+### Features
+
+- Feature INS-1217: group inholding screen
+
+### Bugfixes
+
+- Bugfix: Fix notification center
+- Bugfix: Fix EOTW icons
+- Bugfix: Fix timers hanging in detox streaks
+- Bugfix: Upgrade Storybook
+- Bugfix: Refetch active streak on claim acctivity
+- Bugfix: rn upgrade hermes lib
+- Bugfix: Fix UAT builds
+
+### Chores
+
+- Chore: Increase YuScreen survey footer button size
+- Chore: purge onboarding fitkit copies
+- Chore: purge products beneficiary copies
+
+### Extra
+
+- Hotfix: today's duels copy
+
 ## [3.69.0] - 2023-02-15
 
 ### Bugfixes
