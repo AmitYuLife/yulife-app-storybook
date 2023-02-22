@@ -32,6 +32,7 @@ target 'YuLife' do
 
   pod 'react-native-cameraroll', :path => '../node_modules/@react-native-camera-roll/camera-roll'
   pod 'RNFitKit', :path => '../node_modules/@yu-life/react-native-fitkit/ios'
+  pod 'clevertap-react-native', :path => '../node_modules/clevertap-react-native'
   dynamic_frameworks = ['Leanplum-iOS-SDK', 'CleverTap-iOS-SDK', 'SDWebImage']
   pre_install do |installer|
     Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
