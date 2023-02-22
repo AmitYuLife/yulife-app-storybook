@@ -145,7 +145,7 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
       {!isActive ? null : (
         <>
           {pulse.map((props, index) => (
-            <AnimatedCircle stroke="white" key={index} {...props} />
+            <AnimatedCircle fill="none" stroke="white" key={index} {...props} />
           ))}
         </>
       )}
