@@ -1,6 +1,6 @@
-import { screens } from "@appScreens"
+import { screens,  } from "@appScreens"
 import { navigation } from "@utils"
-export { authoriseFitkit, sendSteps } from "@socket";
+export { authoriseFitkit, sendSteps, addStepsHistoricalData } from "@socket";
 import { sendSteps, sendMindfulnessData, sendReduxEvent} from "@socket"
 
 export const {
@@ -27,7 +27,8 @@ export const {
     scrollFromID,
     scrollUntilIdVisible,
     scrollUntilTextVisible,
-    scrollFromText
+    scrollFromText,
+    swipeFromText
 } = navigation.scrolling
 
 export const selectAndCompleteWalkingChallenge = (challengeType: string, steps: number) => async () => {
@@ -46,3 +47,7 @@ export const selectAndCompleteMeditationChallenge = (challengeType: string, mind
 export const triggerAppUpdateState = async (): Promise<void> => {
     await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: "active" });
 }
+
+export const {
+    tapMenuItem
+} = screens.menu

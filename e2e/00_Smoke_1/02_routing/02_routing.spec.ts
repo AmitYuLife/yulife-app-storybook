@@ -110,7 +110,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                 When("I tap chat", when.tapMenuItem("Chat"), async () => {
                     Then("I should see the notification request, as I have not allowed this permission", then.idVisible(GENERIC_SCREEN_HEADING("notification")))
                     When("I tap skip", when.tapID(GENERIC_SCREEN_CTA("skip")), async () => {
-                        Then("I should see intercom", then.textVisible("Start a conversation"))
+                        Then("I should see intercom", then.textVisible("Send us a message"))
                     })
                 })
             })
@@ -153,27 +153,30 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                         When("I tap the unlocked level 3 button", when.tapID(LEVEL_CHALLENGE_BUTTON(3)), async () => {
                             Then("I should be on the level 3 quest screen", then.idVisible(CHALLENGE_SET))
                             Then("I should see an unlocked challenge", then.idVisible(CHALLENGE_TILE("meditation")))
-                            Then("I should see locked challenges", then.multipleTextVisible(["level 4", "level 7"]))
-                            When("I tap a locked challenge", when.tapText("level 7"), async () => {
+                            Then("I should see locked challenges", then.multipleTextVisible(["Level 4", "Level 7"]))
+                            When("I tap a locked challenge", when.tapText("Level 7"), async () => {
                                 Then("nothing should happen", then.idVisible(CHALLENGE_SET))
                                 When("I tap the meditation challenge", when.tapID(CHALLENGE_TILE("meditation")), async () => {
                                     Then("I should see a screen with a take challenge option", then.textVisible("Take challenge"))
                                     When("I tap 'take challenge'", when.tapText("Take challenge"), async () => {
-                                        Then("I should see a screen asking me to turn on notifications", then.idVisible(GENERIC_SCREEN_HEADING("don't miss out"), 2000))
-                                        When("I dismiss this screen", when.tapID(GENERIC_SCREEN_CTA("maybe later")), async () => {
-                                            When("I tap 'I'm using a different app'", when.tapText("I'm using a different app"), async () => {
-                                                Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
-                                                When("I close this screen", when.tapID(BUTTON_CLOSE_CHALLENGE), async () => {
-                                                    Then("I should see an exit challenge screen", then.multipleTextVisible(["Call it quits?", "Cancel", "Exit challenge"]))
-                                                    When("I tap Cancel", when.tapText("Cancel"), async () => {
-                                                        Then("I should be back on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
-                                                        When("I close this screen again and exit the challenge", [when.tapID(BUTTON_CLOSE_CHALLENGE), when.tapText("Exit challenge")], async () => {
-                                                            Then("I should be back on the quests screen", then.idVisible(QUESTS_SCREEN(0)))
+                                        When("I click Use Meditopia app", when.tapText('Use Meditopia app'), async () => {
+                                            Then("I should see a screen asking me to turn on notifications", then.idVisible(GENERIC_SCREEN_HEADING("don't miss out"), 2000))
+                                            When("I dismiss this screen", when.tapID(GENERIC_SCREEN_CTA("maybe later")), async () => {
+                                                When("I tap 'I'm using a different app'", when.tapText("I'm using a different app"), async () => {
+                                                    Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
+                                                    When("I close this screen", when.tapID(BUTTON_CLOSE_CHALLENGE), async () => {
+                                                        Then("I should see an exit challenge screen", then.multipleTextVisible(["Call it quits?", "Cancel", "Exit challenge"]))
+                                                        When("I tap Cancel", when.tapText("Cancel"), async () => {
+                                                            Then("I should be back on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
+                                                            When("I close this screen again and exit the challenge", [when.tapID(BUTTON_CLOSE_CHALLENGE), when.tapText("Exit challenge")], async () => {
+                                                                Then("I should be back on the quests screen", then.idVisible(QUESTS_SCREEN(0)))
+                                                            })
                                                         })
                                                     })
                                                 })
                                             })
                                         })
+                                        
                                     })
                                 })
                             })

@@ -7,7 +7,7 @@ export const {
     tapDenomination,
     tapDenominationList,
     tapBuyButton,
-    tapPurchasedReward
+    tapPurchasedReward,
 } = screens.rewards
 
 export const {
