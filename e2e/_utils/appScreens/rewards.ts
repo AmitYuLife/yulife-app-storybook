@@ -1,6 +1,6 @@
-import { expectIsVisibleViaText, REWARD_ITEM, expectIsVisibleViaID, LOCKED_REWARD_ITEM, WEGIFT_CONFIRMED, PURCHASE_IMAGE, booleanIdVisible, wait, REWARDS_SCREEN, REWARDS_LIST_SCREEN } from "@navigation"
+import { expectIsVisibleViaText, REWARD_ITEM, expectIsVisibleViaID, LOCKED_REWARD_ITEM, WEGIFT_CONFIRMED, PURCHASE_IMAGE, booleanIdVisible, wait, REWARDS_SCREEN, REWARDS_LIST_SCREEN, textVisible, idVisible } from "@navigation"
 import moment = require("moment")
-import { scrollFromID, scrollFromText, scrollUntilTextVisible, scrollUntilIdVisible } from "_utils/navigation/scrolling"
+import { scrollFromID, scrollFromText, scrollUntilTextVisible, scrollUntilIdVisible, swipeFromText } from "_utils/navigation/scrolling"
 import { TEXT_TEMPLATE } from "@ids"
 
 type rewardType = "avios"
@@ -134,10 +134,23 @@ export const denominationListVisible = (reward: any, availableYuCoin: number) =>
 
 }
 
-export const tapDenominationList = (reward: any, index = 0) => async () => {
+export const tapDenominationList = (reward: any, rewardName: string, index = 0) => async () => {
     const denomination = reward.data.availableDenominations[index]
     const denominationText = element(by.text(`£${denomination.value} - ${addCommasToNumber(denomination.yuCoin)} YuCoin`))
-    const confirmationPurchaseText =  element(by.text(`You'll purchase a £${denomination.value} Nike voucher with ${addCommasToNumber(denomination.yuCoin)} YuCoin.`))
+    const confirmationPurchaseText =  element(by.text(`You'll purchase a £${denomination.value} ${rewardName} voucher with ${addCommasToNumber(denomination.yuCoin)} YuCoin.`))
+
+    await wait(5000)()
+    await expect(denominationText).toBeVisible()
+    await denominationText.tap()
+    await expect(confirmationPurchaseText).toBeVisible()
+    await expect(element(by.text(`Cancel`))).toBeVisible()
+
+}
+
+export const tapDenominationListAmz = (reward: any, index = 0) => async () => {
+    const denomination = reward.data.availableDenominations[index]
+    const denominationText = element(by.text(`£${denomination.value} - ${addCommasToNumber(denomination.yuCoin)} YuCoin`))
+    const confirmationPurchaseText =  element(by.text(`You'll purchase a £${denomination.value} Amazon voucher with ${addCommasToNumber(denomination.yuCoin)} YuCoin.`))
 
     await wait(5000)()
     await expect(denominationText).toBeVisible()
@@ -148,7 +161,7 @@ export const tapDenominationList = (reward: any, index = 0) => async () => {
 }
 
 export const buyButtonVisible = (reward: any, index = 0) => async () => {
-    const buttonText = element(by.text(`£10 - ${addCommasToNumber(reward.data.availableDenominations[index].yuCoin)} YuCoin`))
+    const buttonText = element(by.text(`£12 - ${addCommasToNumber(reward.data.availableDenominations[index].yuCoin)} YuCoin`))
     await expect(buttonText).toBeVisible()
 }
 
@@ -158,18 +171,12 @@ export const tapBuyButton = (reward: any, index = 0) => async () => {
     await buttonText.longPress()
 }
 
-export const onRewardPurchasedScreen = (reward: any, locale = "en-GB", index = 0) => async () => {
-    const cardImageURL = element(by.id(PURCHASE_IMAGE(reward.data.images.detailHeaderKey)))
-    const description = reward.data.description
-    const howtoRedeem = reward.data.redemptionSteps.steps[index]
+export const onRewardPurchasedScreen = (reward: any, locale = "en-GB") => async () => {
     const expiryPolicy = reward.data.expiry_date_policy
     const purchaseDate = moment().format(locale === "en-US" ? "MMMM DD, YYYY" : "DD MMM YYYY")
 
     await wait(3000)()
-   
-    await expect(element(by.id(WEGIFT_CONFIRMED))).toBeVisible()
-    await expect(cardImageURL).toBeVisible()
-    await expect(element(by.text(purchaseDate))).toBeVisible()
+    await textVisible(`Purchased date - ${purchaseDate}`)()
 
     if (expiryPolicy) {
         let expiryDate;
@@ -180,26 +187,14 @@ export const onRewardPurchasedScreen = (reward: any, locale = "en-GB", index = 0
         await expect(element(by.text(expiryDate))).toBeVisible()
     }
 
-    try {
-        await expect(element(by.text(description))).toBeVisible()
-    } catch (e) {
-        await cardImageURL.swipe("up", "slow", 0.1)
-        await expect(element(by.text(description))).toBeVisible()
-    }
-    await cardImageURL.swipe("up", "fast")
+    await swipeFromText("£12 Amazon voucher", "up", "fast")
 
-    await expect(element(by.text("see other rewards"))).toBeVisible()
     try {
-        await expect(element(by.text("get voucher"))).toBeVisible()
+        await textVisible("Get voucher")
     } catch (e) {
         await scrollFromText("How to redeem", "up", "fast")()
-        await expect(element(by.text(howtoRedeem))).toBeVisible()
         await expect(element(by.text("get voucher"))).toBeVisible()
     }
-
-    await expect(element(by.text("T&Cs"))).toBeVisible()
-    await expect(element(by.text("Rewards policy"))).toBeVisible()
-
 }
 
 

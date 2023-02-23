@@ -151,7 +151,7 @@ Feature("As a user I can use the streaks functionality", async () => {
         })
     })
 
-    Scenario("Failing a challenge should not affect my streak, and I can still complete a challenge", scenario.start, async () => {
+    Scenario("Failing a challenge should not affect my streak, and I can still complete a streak", scenario.start, async () => {
         Given("I login as a user with a streak", given.loginAsUser(CUSTOMER_7, AUTH_7), async () => {
             Then("I should see 4/5 on the yucoin tab", then.textVisible("4/5"))
             When("I go to the quests tab", when.tapID(NAV_BAR("quests")), async () => {
@@ -175,6 +175,14 @@ Feature("As a user I can use the streaks functionality", async () => {
                                                     Then("I should see the challenge complete screen", then.onChallengeComplete(300, 5))
                                                     When("I tap collect", when.tapText("Collect"), async () => {
                                                         Then("I should see my streak is completed", then.completedTodayStreakCopyVisible(5))
+                                                        When("I click Collect", when.tapText("Collect 2500 YuCoin"), async () => {
+                                                            When("I go back to the Yu screen", when.tapID(NAV_BAR("yucoin")), async () => {
+                                                                When("I click the streak icon", when.tapText("5/5"), async () => {
+                                                                    Then("I should see the completed screen", then.completedTodayStreakCopyVisible(5))
+                                                                    Then("I should see a notice of when the next streak is", then.textVisible("Begin your next Streak in"))
+                                                                })
+                                                            })
+                                                        })
                                                     })
                                                 })
                                             })

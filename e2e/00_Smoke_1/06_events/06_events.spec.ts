@@ -3,8 +3,9 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { QUESTS_SCREEN, LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, DAILY_STEPS_SCREEN, BACK_BUTTON, CYCLING_COUNT} from "@ids";
-import { CUSTOMER_72, AUTH_72, GOALS_4, GOAL_REWARD_MILESTONE_9, GOAL_REWARD_MILESTONE_10, GOAL_REWARD_MILESTONE_11 } from "@data";
+import { QUESTS_SCREEN, LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, DAILY_STEPS_SCREEN, BACK_BUTTON, CYCLING_COUNT, MENU_ICON, ACTIVITY_HISTORY_SCREEN, BUTTON_CLOSE_HEADER} from "@ids";
+import { CUSTOMER_72, AUTH_72, GOALS_4, GOAL_REWARD_MILESTONE_9, GOAL_REWARD_MILESTONE_10, GOAL_REWARD_MILESTONE_11, CUSTOMER_81, AUTH_81, GOALS_5 } from "@data";
+import { twoDaysAgoDate } from "./_steps/consts";
 
 Feature("As a user I can opt in and take an event", async () => {
     Scenario("I can take and complete a 3 star challenge event and hit all the event milestones", scenario.start, async () => {
@@ -17,7 +18,7 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should see my yucoin total in the top of the page", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(700)))
         })
         When("I click on the event challenge", when.tapChallenge("0 / 4 perfect challenges"), async () => {
-            Then("I should be on the event screen and see the correct earn rates for the challenges", then.on3starEventDetailsScreen)
+            Then("I should be on the event screen and see the correct earn rates for the challenges", then.eventScreenDetailsAreCorrect(GOALS_4))
             Then("I should see all milestones visible to take and their correct yucoin and stars", then.allMilestonesVisible)
         })
         When("I tap the back button", when.tapID(BACK_BUTTON), async () => {
@@ -146,26 +147,52 @@ Feature("As a user I can opt in and take an event", async () => {
 
         // Pressing claim button is causing a warning. Devs looking into it.
 
-        // When("I click Claim", when.tapText("Claim"), async () => {
-        //     When("I wait", when.wait(5000), async () => {
-        //         Then("I should see the third milestone complete", then.milestoneComplete(0))
-        //     })
-        // })
-        // When("I click Great! button", when.tapText("Great!"), async () => {
-        //     When("I tap level 152", when.tapID(LEVEL_CHALLENGE_BUTTON(152)), async () => {
-        //         Then("I can see all my challenges done and yucoin earned", then.allChallengesAndYuCoinsAwardedVisible)
-        //         Then("I should see all my total yucoin earned including 20 for daily mindfulness milestone yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(3340 + 60 + 20 + 200 * 10)))
-        //     })
-        // })
-        // When("I tap the back button", when.tapID(BACK_BUTTON), async () => {
-        //     When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin"), 3000), async () => {
-        //         Then("I should see the longest number of steps I have done today", then.textVisible("3,000 steps"))
-        //         Then("I should see meditation I have done today", then.textVisible("10 min"))
-        //         Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
-        //         Then("I should see all my total yucoin earned including 20 for daily mindfulness milestone yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(3340 + 60 + 20 + 200 * 10)))
-        //         Then("I should see I have earned 4,700 YuCoin today total from all milestones and challenges completed", then.yuCoinTodayEarned([2640, 60, 20], 200))
-        //     })
-        // })
+        When("I click Claim", when.tapText("Claim"), async () => {
+            When("I wait", when.wait(5000), async () => {
+                Then("I should see the third milestone complete", then.milestoneComplete(0))
+            })
+        })
+        When("I click Great! button", when.tapText("Great!"), async () => {
+            When("I tap level 152", when.tapID(LEVEL_CHALLENGE_BUTTON(152)), async () => {
+                Then("I can see all my challenges done and yucoin earned", then.allChallengesAndYuCoinsAwardedVisible)
+                Then("I should see all my total yucoin earned including 20 for daily mindfulness milestone yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(3340 + 60 + 20 + 200 * 10)))
+            })
+        })
+        When("I tap the back button", when.tapID(BACK_BUTTON), async () => {
+            When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin"), 3000), async () => {
+                Then("I should see the longest number of steps I have done today", then.textVisible("3,000 steps"))
+                Then("I should see meditation I have done today", then.textVisible("10 min"))
+                Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
+                Then("I should see all my total yucoin earned including 20 for daily mindfulness milestone yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(3340 + 60 + 20 + 200 * 10)))
+                Then("I should see I have earned 4,700 YuCoin today total from all milestones and challenges completed", then.yuCoinTodayEarned([2640, 60, 20], 200))
+            })
+        })
+    })
+
+    Scenario("Passive data is correctly logged for an event that has backfill enabled", scenario.start, async () => {
+        Given("I login and go to yucoin page", given.logInAndGoToTab("yucoin", CUSTOMER_81, AUTH_81), async () => {
+            Then("I should be on the yucoin screen", then.idVisible(DAILY_STEPS_SCREEN))
+            Then("I should see I have done 0 steps today", then.textVisible("0 steps"))
+        })      
+        When("I have done 75,001 steps yesterday", when.addStepsHistoricalData(4000), async () => {
+            When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 500), async () => {
+                When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
+                    Then("I should be on activity history", then.idVisible(ACTIVITY_HISTORY_SCREEN, 2500))
+                })
+            })
+        })
+        When("I pull down the activity history page to refresh", when.swipeFromText(twoDaysAgoDate, "down", "fast"), async () => {
+            Then("I should see the historical steps from yesterday loaded in meaning the refresh has worked", then.canSeeYesterdaysSteps)
+        })
+        When("I go back", when.tapID(BUTTON_CLOSE_HEADER("activity history")), async () => {
+            When("I join the challenge", when.tapText("Join"), async () => {
+                When("I click confirm", when.tapText("Confirm"), async () => {
+                    Then("I should be on the event screen", then.onEventDetailsScreen(GOALS_5))
+                    Then("I should see 4,000 steps have been completed", then.textVisible("4,000 / 10,000 steps"))
+                })
+            })
+        })
+
     })
 })
 

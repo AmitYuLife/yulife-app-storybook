@@ -1,8 +1,8 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import moment = require('moment');
-import { GOALS_2, GOALS_3, GOALS_4 } from "./goals";
-import { GOAL_TEAM_1, GOAL_TEAM_3, GOAL_TEAM_4 } from "./goal_team";
-import { CUSTOMER_52, CUSTOMER_71, CUSTOMER_72 } from "../postgres/customers";
+import { GOALS_2, GOALS_3, GOALS_4, GOALS_5 } from "./goals";
+import { GOAL_TEAM_1, GOAL_TEAM_3, GOAL_TEAM_4, GOAL_TEAM_5 } from "./goal_team";
+import { CUSTOMER_52, CUSTOMER_71, CUSTOMER_72, CUSTOMER_81 } from "../postgres/customers";
 
 
 export const GOAL_PARTICIPATION_1 = {

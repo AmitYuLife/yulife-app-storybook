@@ -106,16 +106,16 @@ export const threeStarEventToBeCompletedVisible = (numberOf3StarChallenges: numb
     await idVisible(NEW_EVENT_ICON)()
 }
 
-export const on3starEventDetailsScreen = async () => {
-    const eventTitle = GOALS_4.data.title
-    const eventDescriptionTitle = GOALS_4.data.descriptionTitle
-    const eventDescription = GOALS_4.data.description
+export const eventScreenDetailsAreCorrect = (goal: typeof GOALS_4) => async () => {
+    const eventTitle = goal.data.title
+    const eventDescriptionTitle = goal.data.descriptionTitle
+    const eventDescription = goal.data.description
 
     await multipleTextVisible([eventTitle, eventDescriptionTitle])()
     
     await swipeFromText(eventDescriptionTitle, "up", "fast")()
     await textVisible(eventDescription)()
-    for (const info of GOALS_4.data.info) {
+    for (const info of goal.data.info) {
         await textVisible(info.title)();
         await textVisible(info.description)();
     }
@@ -239,4 +239,16 @@ export const allChallengesAndYuCoinsAwardedVisible = async () => {
     await textVisible("10 mins")()
     await textVisibleAtIndex("60 yucoin", 2)()
     await challengeStarsCorrect(3, "meditation")()
+}
+
+export const canSeeYesterdaysSteps = () => async () => {
+    await textVisible("4,000 steps", 3000)()
+}
+
+export const onEventDetailsScreen = (goal: typeof GOALS_4) => async () => {
+    const eventTitle = goal.data.title
+    const eventDescriptionTitle = goal.data.descriptionTitle
+
+    await multipleTextVisible([eventTitle, eventDescriptionTitle])()
+
 }

@@ -1,8 +1,8 @@
-import { CUSTOMER_34, CUSTOMER_20} from '../postgres/customers';
+import { CUSTOMER_34, CUSTOMER_20, CUSTOMER_81} from '../postgres/customers';
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import moment = require('moment');
-import { GOALS_1 } from "./goals";
+import { GOALS_1, GOALS_5 } from "./goals";
 
 
 
@@ -29,5 +29,16 @@ export const GOAL_INVITATION_2 = {
         teamName:"TeamYulife",
         userId: CUSTOMER_20.data.customerId,
         endDateTime: moment().add(7, "day").format("YYYY-MM-DDTHH:mm:ss")
+    }
+} as IDatabaseItem
+
+export const GOAL_INVITATION_5 = {
+    type,
+    modelName,
+    data:{
+        goal: GOALS_5.data._id,
+        teamName:"TeamYulife",
+        userId: CUSTOMER_81.data.customerId,
+        endDateTime: moment().add(5, "day").format("YYYY-MM-DDTHH:mm:ss")
     }
 } as IDatabaseItem
