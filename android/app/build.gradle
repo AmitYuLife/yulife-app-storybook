@@ -338,7 +338,7 @@ dependencies {
     implementation project(':react-native-svg')
 
     // Leanplum
-    implementation 'com.leanplum:leanplum-core:7.0.1'
+    implementation project(':@leanplum_react-native-sdk')
     implementation 'com.leanplum:leanplum-fcm:5.8.1'
 
     // Firebase

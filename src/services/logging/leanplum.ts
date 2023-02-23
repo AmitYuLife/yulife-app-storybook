@@ -2,6 +2,8 @@ import AsyncStorage from "@react-native-community/async-storage";
 import { Inbox, Leanplum, LeanplumInbox } from "@leanplum/react-native-sdk";
 
 import region from "@services/region";
+import { Platform } from "react-native";
+import moment from "moment";
 
 export default class LeanplumClient {
   public isDevMode = false;
@@ -72,7 +74,21 @@ export default class LeanplumClient {
       return { count: 0, unreadCount: 0, unreadMessages: [], messagesIds: [], allMessages: [] };
     }
 
-    return LeanplumInbox.inbox();
+    const inbox = await LeanplumInbox.inbox();
+
+    if (Platform.OS === "ios") {
+      return inbox;
+    }
+
+    const { allMessages, ...inboxOpts } = inbox;
+    return {
+      ...inboxOpts,
+      allMessages: allMessages.map((item) => ({
+        ...item,
+        // deliveryTimestamp on Android will be eg: 'Wed Feb 22 14:53:58 GMT 2023'
+        deliveryTimestamp: moment.utc(item.deliveryTimestamp, "ddd MMM DD HH:mm:ss Z YYYY").toString(),
+      })),
+    };
   };
 
   public readInbox = async (messageId: string) => {
