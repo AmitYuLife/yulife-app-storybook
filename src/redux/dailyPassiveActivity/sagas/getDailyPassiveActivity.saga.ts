@@ -1,6 +1,6 @@
 import moment from "moment";
 import { all, call, select, spawn, delay, put } from "redux-saga/effects";
-import { ChallengesPayload, FitKitType, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
+import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import { queryFitKitSampleData, queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 import { UPDATE_APP_STATE } from "../../app/app.actions";
@@ -16,7 +16,7 @@ import RNFitKit, { FitKitTypes } from "@yu-life/react-native-fitkit";
 import { getInAppDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 import { processResult } from "@services/fitkit/helpers/sampleToAggregatedData";
 import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
-import { getAggregationCyclingConfiguration } from "@services/fitkit/fitkit.config";
+import { getAggregationCyclingConfiguration, getMindfulSessionFitKitTypes } from "@services/fitkit/fitkit.config";
 
 export default function* getDailyPassiveActivity(dataPayload: { payload: string; type: string }) {
   const { payload: appState, type } = dataPayload || {};
@@ -69,7 +69,7 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
       : yield call(queryFitKitSampleData, {
           startTime: startTime.format(),
           endTime: endTime.format(),
-          fitKitTypes: [FitKitType.MindfulSession],
+          fitKitTypes: getMindfulSessionFitKitTypes(),
           features: userFeatures,
         });
 
@@ -120,7 +120,7 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
         if (!mutationResult?.challenges?.length) {
           return;
         }
-        
+
         const challenges = mutationResult?.challenges ?? [];
 
         for (const challenge of challenges) {

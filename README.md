@@ -18,7 +18,7 @@ Follow the [React Native Installation Instructions](https://reactnative.dev/docs
 
 - watchman
 - react-native-cli
-- XCode (v9.4 or newer)
+- XCode (v14.2 or newer)
 - XCode Command Line Tools
 - Java Development Kit (JDK 8)
 - Android Studio
