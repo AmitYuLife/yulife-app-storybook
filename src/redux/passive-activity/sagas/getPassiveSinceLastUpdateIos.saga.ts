@@ -1,4 +1,4 @@
-import { ChallengesPayload, FitKitType } from "@graphql/_core/schema/globalTypes";
+import { ChallengesPayload } from "@graphql/_core/schema/globalTypes";
 import moment from "moment";
 import { call } from "redux-saga/effects";
 import { queryFitKitSampleData, queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
@@ -8,6 +8,7 @@ import { processResult } from "@services/fitkit/helpers/sampleToAggregatedData";
 import {
   getAggregationCyclingConfiguration,
   getAggregationStepCountConfiguration,
+  getMindfulSessionFitKitTypes,
 } from "@services/fitkit/fitkit.config";
 
 export default function* getPassiveSinceLastUpdateIos(
@@ -68,7 +69,7 @@ const getMeditation = async (
   const meditation = await queryFitKitSampleData({
     startTime: moment(meditationLastUpdate).startOf("day").format(),
     endTime: endDateMeditation.format(),
-    fitKitTypes: [FitKitType.MindfulSession],
+    fitKitTypes: getMindfulSessionFitKitTypes(),
     features: userFeatures,
   });
 

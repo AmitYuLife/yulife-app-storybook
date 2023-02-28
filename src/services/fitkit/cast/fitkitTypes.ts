@@ -8,6 +8,12 @@ export const mapGqlFitKitTypeToFitKitType = (gqlType: FitKitType) => {
       return FitKitTypes.Types.StepCount;
     case FitKitType.MindfulSession:
       return FitKitTypes.Types.MindfulSession;
+    case FitKitType.GuidedBreathing:
+      if (Platform.OS === "ios") {
+        throw new Error("Invalid type for iOS!");
+      }
+
+      return FitKitTypes.Types.GuidedBreathing;
     case FitKitType.Cycling:
       return FitKitTypes.Types.Biking;
     case FitKitType.BikingHand:
@@ -88,6 +94,7 @@ export const fitkitTypeToGqlType = (type: string): PassiveChallengeType => {
     case "StepCount":
       return PassiveChallengeType.STEPS;
     case "MindfulSession":
+    case "GuidedBreathing":
       return PassiveChallengeType.MEDITATION;
     case "BikingHand":
     case "BikingMountain":

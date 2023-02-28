@@ -13,7 +13,7 @@ import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
 import {
   getAggregationCyclingConfiguration,
   getAggregationStepCountConfiguration,
-  getAndroidAggregationMindfulSessionConfiguration,
+  getAggregationMindfulSessionConfiguration,
 } from "@services/fitkit/fitkit.config";
 
 export default function* getPassiveSinceLastUpdateAndroid(
@@ -105,7 +105,7 @@ const getMeditation = async (
     return [];
   }
 
-  const meditationConfiguration = getAndroidAggregationMindfulSessionConfiguration();
+  const meditationConfiguration = getAggregationMindfulSessionConfiguration();
   const meditation = await queryFitKitAggregatedData({
     start: moment(meditationLastUpdate).startOf("day"),
     end: endDateMeditation,

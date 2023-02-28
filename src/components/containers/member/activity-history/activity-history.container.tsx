@@ -15,13 +15,13 @@ import {
   GQL_MUTATION_UPSERT_DAILY_PASSIVES,
   UpsertDailyPassivesMutationTuple,
 } from "@graphql/challenges/upsertDailyPassives.gql";
-import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import { processResult } from "@services/fitkit/helpers/sampleToAggregatedData";
 import {
   getAggregationCyclingConfiguration,
   getAggregationStepCountConfiguration,
+  getMindfulSessionFitKitTypes,
 } from "@services/fitkit/fitkit.config";
 import { LazyGqlLoadingArgs, useLazyGqlLoading } from "@hooks";
 
@@ -77,7 +77,7 @@ const ActivityHistoryContainer: FC<Props> = ({ componentId }) => {
         queryFitKitSampleData({
           startTime: start.format(DATE_FORMAT_WITH_TZ),
           endTime: end.format(DATE_FORMAT_WITH_TZ),
-          fitKitTypes: [FitKitType.MindfulSession],
+          fitKitTypes: getMindfulSessionFitKitTypes(),
           features,
         }),
         queryFitKitAggregatedData({ start, end, features, ...cyclingConfig }),

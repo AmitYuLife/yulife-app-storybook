@@ -109,7 +109,11 @@ export const queryFitKitAggregatedData = async ({
   timeRange,
   aggregationType,
 }: AggregatedQueryArgs): Promise<QueryFitKitByTypesResponse> => {
-  const { disableUserEntries = true, loggingEnabled = false, runOnNewThread = false } = features || {
+  const {
+    disableUserEntries = true,
+    loggingEnabled = false,
+    runOnNewThread = false,
+  } = features || {
     disableUserEntries: true,
     loggingEnabled: false,
     cyclingAggregationMin: false,

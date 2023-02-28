@@ -1,5 +1,6 @@
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "@redux/user/user.reducer";
+import { Platform } from "react-native";
 import { AggregationType, TimeRange } from "./fitkit.types";
 import { getAdditionalCyclingFitnessActivities } from "./helpers/additionalCyclingActivities";
 
@@ -27,8 +28,14 @@ export const getAggregationStepCountHourlyConfiguration = (blackListApps: string
   blackListApps,
 });
 
-export const getAndroidAggregationMindfulSessionConfiguration = () => ({
-  fitKitTypes: [FitKitType.MindfulSession],
+export const getMindfulSessionFitKitTypes = () =>
+  Platform.select({
+    android: [FitKitType.MindfulSession, FitKitType.GuidedBreathing],
+    ios: [FitKitType.MindfulSession],
+  });
+
+export const getAggregationMindfulSessionConfiguration = () => ({
+  fitKitTypes: getMindfulSessionFitKitTypes(),
   timeRange: TimeRange.DAYS,
   aggregationType: AggregationType.Time,
 });
