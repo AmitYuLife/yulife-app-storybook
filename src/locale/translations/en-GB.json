@@ -29,6 +29,7 @@
       "mountain": "Mountain"
     },
     "unknown": "unknown",
+    "quest_map": "map",
     "you": "You",
     "power": "Power",
     "level": "Level %{level}",
