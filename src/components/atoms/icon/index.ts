@@ -50,7 +50,6 @@ import { FlagSA } from "./flag-sa";
 import { Eye } from "./eye";
 import { GlobeIcon } from "./globe-icon";
 import { HourglassIcon } from "./hourglass-icon";
-import { FiitPromotionIcon } from "./fiit-promotion-icon";
 
 export default {
   GlobeIcon,
@@ -107,5 +106,4 @@ export default {
   FlagSA,
   Eye,
   HourglassIcon,
-  FiitPromotionIcon,
 };

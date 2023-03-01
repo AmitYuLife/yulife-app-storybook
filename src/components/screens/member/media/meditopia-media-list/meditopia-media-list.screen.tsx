@@ -2,12 +2,15 @@ import React, { memo, useCallback, useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Navigation } from "@navigation/main";
 import { t } from "@locale";
-import { MediaListHeader, SecondaryButton } from "@molecules";
+import { MediaListHeader, PromotionPanel, SecondaryButton } from "@molecules";
 import { ROUTES } from "@navigation/constants";
 import { GenericHeadingAbsolute, GenericHeadingPad, MediaListButtons, MediaListItems } from "@organisms";
 import { IITem } from "@organisms/media-list-items/media-list-items";
 import { Colours, Style } from "@styles";
-import { GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButtons } from "@graphql/_core/schema";
+import {
+  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButtons,
+  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward as IPromotionReward,
+} from "@graphql/_core/schema";
 import { Source } from "react-native-fast-image";
 import { USE_OTHER_APP_BUTTON, TODAYS_MEDITATION_SCREEN } from "@ids";
 
@@ -23,6 +26,8 @@ interface IProps {
   levelSlotId: string;
   logo: Source;
   buttons: IButtons[];
+  moreInformationPress: () => void;
+  promotionReward: IPromotionReward;
 }
 
 const MeditopiaMediaListScreen = ({
@@ -37,6 +42,8 @@ const MeditopiaMediaListScreen = ({
   levelSlotId,
   logo,
   buttons,
+  promotionReward,
+  moreInformationPress,
 }: IProps) => {
   const handleOnPress = useCallback((video: IITem) => {
     Navigation.push(ROUTES.meditopiaMediaList, {
@@ -58,11 +65,12 @@ const MeditopiaMediaListScreen = ({
   const handleOtherAppPress = useCallback(() => handleOtherMeditationApp("otherApp"), [otherAppLoading]);
 
   const logoProps = useMemo(() => ({ uri: logo, width: 98, height: 20 }), [logo.uri]);
+  const flexProp = useMemo(() => (promotionReward ? null : { flex: 1 }), [promotionReward]);
   return (
-    <View style={styles.flex} testID={TODAYS_MEDITATION_SCREEN}>
+    <View style={flexProp} testID={TODAYS_MEDITATION_SCREEN}>
       <GenericHeadingPad />
-      <View style={styles.wrapper}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.wrapper}>
           <MediaListHeader title={title} description={description} logo={logoProps} />
           <MediaListItems items={videos} isLoading={loading} type="media" onPress={handleOnPress} />
           <View>
@@ -80,8 +88,16 @@ const MeditopiaMediaListScreen = ({
               testID={USE_OTHER_APP_BUTTON}
             />
           </View>
-        </ScrollView>
-      </View>
+        </View>
+        {!promotionReward ? null : (
+          <PromotionPanel
+            {...promotionReward}
+            logo={promotionReward.logo.uri}
+            backgroundImage={promotionReward.backgroundImage.uri}
+            onPress={moreInformationPress}
+          />
+        )}
+      </ScrollView>
       <GenericHeadingAbsolute
         backgroundColor="transparent"
         onLeftIconPress={onLeftIconPress}
@@ -94,9 +110,6 @@ const MeditopiaMediaListScreen = ({
 };
 
 const styles = StyleSheet.create({
-  flex: {
-    flex: 1,
-  },
   wrapper: {
     marginHorizontal: Style.adjust(16),
     flex: 1,

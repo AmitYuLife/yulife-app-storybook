@@ -6,7 +6,7 @@ import {
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent as IInternalContent,
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
 } from "@graphql/_core/schema";
-import { MODALS, ROUTES } from "@navigation/constants";
+import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { useBackHandler } from "@hooks";
 import RNFitKit from "@yu-life/react-native-fitkit";
@@ -106,20 +106,20 @@ const FiitMediaCategoryListContainer = ({
     });
   }, []);
 
-  // const moreInformationPress = useCallback(() => {
-  //   // this needs to change newSduiRewards when the old rewardsDetails is purged
-  //   Navigation.push(ROUTES.fiitMediaCategoryList, {
-  //     component: {
-  //       id: ROUTES.rewardDetails,
-  //       name: ROUTES.rewardDetails,
-  //       passProps: {
-  //         rewardId: headerContent?.promotionRewardId,
-  //         popTo: ROUTES.fiitMediaCategoryList,
-  //       },
-  //       options: { bottomTabs },
-  //     },
-  //   });
-  // }, []);
+  const moreInformationPress = useCallback(() => {
+    // this needs to change newSduiRewards when the old rewardsDetails is purged
+    Navigation.push(ROUTES.fiitMediaCategoryList, {
+      component: {
+        id: ROUTES.rewardDetails,
+        name: ROUTES.rewardDetails,
+        passProps: {
+          rewardId: headerContent?.promotionReward?.rewardId,
+          popTo: ROUTES.fiitMediaCategoryList,
+        },
+        options: { bottomTabs },
+      },
+    });
+  }, []);
 
   const items: IITem[] = useMemo(
     () =>
@@ -145,7 +145,8 @@ const FiitMediaCategoryListContainer = ({
       handleFiitApp={handleFiitApp}
       handleTutorialLink={!tutorialUrl ? null : handleLinkPress(tutorialUrl)}
       otherAppLoading={otherAppLoading}
-      moreInformationPress={null} //null for now, so we can hide the promotion banner for now
+      promotionReward={headerContent?.promotionReward}
+      moreInformationPress={moreInformationPress}
     />
   );
 };

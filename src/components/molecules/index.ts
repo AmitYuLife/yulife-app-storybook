@@ -71,3 +71,4 @@ export { default as CourseContentItem } from "./yuniversity/course-content-item"
 export { default as Module } from "./yuniversity/module";
 export { default as YuniversityModuleReward } from "./yuniversity/module-reward";
 export { default as MediaListHeader } from "./media-list-header/media-list-header";
+export { default as PromotionPanel } from "./promotion-panel/promotion-panel";

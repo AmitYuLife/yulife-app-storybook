@@ -41,6 +41,7 @@ export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
             contentType
             contentMediaTags
             title
+
             description
             logo {
               id
@@ -64,6 +65,21 @@ export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
                 playStoreId
                 faqUrl
               }
+            }
+            promotionReward {
+              title
+              description
+              logo {
+                id
+                uri
+              }
+              backgroundImage {
+                id
+                uri
+              }
+              discount
+              buttonLabel
+              rewardId
             }
           }
         }
