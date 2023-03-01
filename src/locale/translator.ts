@@ -6,7 +6,7 @@ const translations: Record<Language, () => any> = {
   // lazy requires (metro bundler does not support symlinks)
   "en-US": () => require("./translations/en-US.json"),
   "en-GB": () => require("./translations/en-GB.json"),
-  "pt-PT": () => require("./translations/pt-PT.json"),
+  // "pt-PT": () => require("./translations/pt-PT.json"), // TODO: turn it on when the backend's ready too
   en: () => require("./translations/en-GB.json"),
 };
 

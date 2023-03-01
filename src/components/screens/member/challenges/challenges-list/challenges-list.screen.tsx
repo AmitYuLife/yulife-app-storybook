@@ -1,5 +1,7 @@
 import React, { memo, Component } from "react";
 import { CHALLENGE_SCREEN } from "@ids";
+import { getTheme } from "@theme";
+import { t } from "@locale";
 import { ChallengesList, IChallengesListProps } from "@molecules/index";
 import { Image, View, BackHandler } from "react-native";
 import { IMilestoneProps } from "../challenge-details/milestones";
@@ -7,7 +9,6 @@ import styles from "./challenges-list.screen.styles";
 import { NavBar, GenericHeadingPad, TopBarAbsolute } from "@components/organisms";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
-import { getTheme } from "@theme";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 interface IProps extends IChallengesListProps {
@@ -86,7 +87,7 @@ class ChallengesListScreen extends Component<IProps, IState> {
         <TopBarAbsolute
           type={challengeListScreen.topBarType}
           leftIcon={LeftIcon.BACK}
-          menuLabel="map"
+          menuLabel={t("labels.quest_map")}
           name={name}
           onPressLeftIcon={onPressLeftIcon}
         />
