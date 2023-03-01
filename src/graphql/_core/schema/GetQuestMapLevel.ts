@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -60,6 +60,26 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent
   options: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons_options | null;
 }
 
+export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward_logo {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward_backgroundImage {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward {
+  title: string | null;
+  description: string | null;
+  logo: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward_logo | null;
+  backgroundImage: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward_backgroundImage | null;
+  discount: string | null;
+  buttonLabel: string | null;
+  rewardId: string | null;
+}
+
 export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent {
   contentType: string;
   contentMediaTags: string[];
@@ -67,6 +87,7 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent
   description: string;
   logo: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_logo;
   buttons: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons[];
+  promotionReward: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward | null;
 }
 
 export interface GetQuestMapLevel_getQuestMapLevel_slots_details {
