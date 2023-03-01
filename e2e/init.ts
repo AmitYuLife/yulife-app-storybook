@@ -1,35 +1,34 @@
-const detoxInstance = require('detox');
-const config = require('../package.json').detox;
-const adapter = require('detox/runners/mocha/adapter');
-const addContext = require('mochawesome/addContext');
+const detoxInstance = require("detox");
+const config = require("../package.json").detox;
+const adapter = require("detox/runners/mocha/adapter");
+const addContext = require("mochawesome/addContext");
 
 import * as path from "path";
 import { socketServer } from "./_utils/socket";
 import { getTestPath } from "./mocha.utils";
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 import * as dataUK from "@data";
-import * as dataUS from "./04_USA/_data"
+import * as dataUS from "./04_USA/_data";
 
 require("dotenv").config({
   path: path.resolve(__dirname, "..", ".env.e2e"),
 });
 
-const API_URL = process.env.API_URL as string || `http://localhost:5000/`;
+const API_URL = (process.env.API_URL as string) || `http://localhost:5000/`;
 
-let dataToInsert
+let dataToInsert;
 
 switch (API_URL) {
   case "http://localhost:5000/":
-    dataToInsert = dataUK
+    dataToInsert = dataUK;
     break;
   case "http://localhost:5001/":
-    dataToInsert = dataUS
+    dataToInsert = dataUS;
     break;
   default:
-    dataToInsert = dataUK
+    dataToInsert = dataUK;
     break;
 }
-
 
 before(async () => {
   await socketServer.startServer();
@@ -53,7 +52,6 @@ afterEach(async function () {
     addContext(this, after);
   } catch (e) {}
 });
-
 
 // comment out for detox debugging/dev
 after(async () => {

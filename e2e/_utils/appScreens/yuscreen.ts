@@ -284,7 +284,7 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
       await expect(element(by.text(noProductText))).toBeVisible();
       await swipeFromText(noProductText, "up", "slow")();
       await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible();
-      await expect(element(by.text(dentalPriceFrom))).toBeNotVisible();
+      await expect(element(by.text(dentalPriceFrom))).not.toBeVisible();
       await expect(element(by.text(extendLifeInsurance))).toBeVisible();
       await swipeFromText(surveyText, "down", "slow")();
       break;
@@ -294,7 +294,7 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
       await swipeFromText(noProductText, "up", "slow")();
       await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible();
       await expect(element(by.text(dentalPriceFrom))).toBeVisible();
-      await expect(element(by.text(extendLifeInsurance))).toBeNotVisible();
+      await expect(element(by.text(extendLifeInsurance))).not.toBeVisible();
       await swipeFromText(surveyText, "down", "slow")();
       break;
     case "6 Products Slots":
@@ -319,7 +319,7 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
       await swipeFromText(WellbeingProduct, "up", "slow")();
       await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible();
       await expect(element(by.text(dentalPriceFrom))).toBeVisible();
-      await expect(element(by.text(noProductText))).toBeNotVisible();
+      await expect(element(by.text(noProductText))).not.toBeVisible();
       await swipeFromText(surveyText, "down", "slow")();
       break;
     case "5 Products Slots":
@@ -369,14 +369,22 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
       await swipeFromText(surveyText, "down", "slow")();
       break;
     case "0EarnRateSlot":
-      await expect(element(by.text("0"))).toBeNotVisible(); // should not be visible in slot because earn rate is 0 in product details
+      await expect(element(by.text("0"))).not.toBeVisible(); // should not be visible in slot because earn rate is 0 in product details
       await expect(element(by.text(incomeProtection))).toBeVisible();
       await expect(element(by.text(paidBy))).toBeVisible();
       await expect(element(by.text(noProductText))).toBeVisible();
-      await expect(element(by.text(addDental))).toBeNotVisible(); // should not because of Gdent  bought by their company XSE-1376
+      await expect(element(by.text(addDental))).not.toBeVisible(); // should not because of Gdent  bought by their company XSE-1376
       await swipeFromText(noProductText, "up", "slow")();
       await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible();
       await swipeFromText(surveyText, "down", "slow")();
+      break;
+    case "genericRejection":
+      await textVisible(yuCoinPower)();
+      await expect(element(by.text(addDental))).toBeVisible();
+      await expect(element(by.text(dentalYuCoinPower))).toBeVisible();
+      await expect(element(by.text(noProductText))).toBeVisible();
+      await expect(element(by.text(addLifeInsurance))).not.toBeVisible();
+
       break;
     default:
       break;
