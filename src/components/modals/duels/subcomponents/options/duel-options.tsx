@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { Loading, BlurProvider, TextTemplate } from "@atoms";
 import { Button } from "@molecules";
 import styles from "./duel-options.styles";
-import { DuelStepProps, DEFAULT_DUEL_AMOUNT_LABEL } from "../../duels.types";
+import { DuelStepProps } from "../../duels.types";
 import { GQL_QUERY_GET_DUEL_TEMPLATES } from "@graphql/duels/getDuelTemplates.gql";
 import { useQuery } from "@apollo/client";
 import { GetDuelTemplates } from "@graphql/_core/schema";
@@ -30,7 +30,7 @@ export default function DuelOptions({
   submitDuel,
   isLoading,
 }: DuelStepProps) {
-  const [pickerAmountLabel, setPickerAmountLabel] = useState(DEFAULT_DUEL_AMOUNT_LABEL);
+  const [pickerAmountLabel, setPickerAmountLabel] = useState(null);
   const { data, loading } = useQuery<GetDuelTemplates>(GQL_QUERY_GET_DUEL_TEMPLATES, {
     fetchPolicy: "network-only",
   });
@@ -40,7 +40,10 @@ export default function DuelOptions({
     () =>
       wagers.reduce((acc, { id, yucoin: wagerYuCoin }) => {
         if (userCoins >= wagerYuCoin) {
-          const label = wagerYuCoin === 0 ? t("modals.duels.duel_options.bragging_rights_option") : `${wagerYuCoin} ${t("yu_coin.camel_case")}`;
+          const label =
+            wagerYuCoin === 0
+              ? t("modals.duels.duel_options.bragging_rights_option")
+              : `${wagerYuCoin} ${t("yu_coin.camel_case")}`;
 
           acc.push({
             id,
@@ -85,7 +88,11 @@ export default function DuelOptions({
               </TextTemplate>
             </View>
             <View>
-              <WagerDropdown yucoin={yucoin} pickerAmountLabel={pickerAmountLabel} onPress={toggleOverlay} />
+              <WagerDropdown
+                yucoin={yucoin}
+                pickerAmountLabel={pickerAmountLabel || t("modals.duels.duel_options.select_wager")}
+                onPress={toggleOverlay}
+              />
             </View>
           </View>
           <View style={styles.buttonWrapper}>
@@ -112,7 +119,13 @@ export default function DuelOptions({
             toggleOverlay();
           },
         }));
-        return <ListPicker onPressCancel={toggleOverlay} instruction={t("modals.duels.duel_options.instruction")} items={items} />;
+        return (
+          <ListPicker
+            onPressCancel={toggleOverlay}
+            instruction={t("modals.duels.duel_options.instruction")}
+            items={items}
+          />
+        );
       }}
     />
   );

@@ -897,7 +897,9 @@
         "colleague": "a colleague",
         "button_label": "Send duel request",
         "bragging_rights_option": "Bragging Rights",
-        "instruction": "What are you duelling for?"
+        "instruction": "What are you duelling for?",
+        "select_wager": "Select a wager",
+        "your_wager": "Your wager"
       },
       "search": {
         "item_duel": "Duel >",

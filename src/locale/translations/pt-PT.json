@@ -897,7 +897,9 @@
                 "colleague": "um colega",
                 "button_label": "Enviar pedido de duelo",
                 "bragging_rights_option": "Direitos de Bragging",
-                "instruction": "Para que é que estás a duelar?"
+                "instruction": "Para que é que estás a duelar?",
+                "select_wager": "Selecione uma aposta",
+                "your_wager": "Sua aposta"
             },
             "search": {
                 "item_duel": "Duelo >",
