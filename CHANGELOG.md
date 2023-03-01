@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.71.0] - 2023-03-01
+
+### Bugfixes
+
+- Bugfix: Challenge in progress screen background image on Android
+- Bugfix: Gradle applicationId
+- Bugfix: Add fiit icon button for non in app content
+- Bugfix: Deeplink on iOS
+
+### Tasks
+
+- Task: Add promotion banner for Fiit and Meditopia
+- Task: Daily survey
+
+### Chores
+
+- Chore: pt-PT translation
+
+### Extra
+
+- detox:adjust test to yuscreen V4 detnal
+- ISA-391 Add Guided Breathing
+- Fix: Gradle assembleProduction
+- GS-627: Fix notification center on Android
+- GS-377: Passive event tracking
+
 ## [3.70.0] - 2023-02-22
 
 ### Features
