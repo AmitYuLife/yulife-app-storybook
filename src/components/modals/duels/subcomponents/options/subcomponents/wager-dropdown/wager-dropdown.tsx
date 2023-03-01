@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { View } from "react-native";
 import { Text } from "@atoms";
+import { t } from "@locale";
 import styles from "./wager-dropdown.styles";
 import images from "./wager-dropdown.images";
 import DuelYucoin from "@screens/member/duels-hub/subcomponents/duel-entry/yucoin";
@@ -26,7 +27,9 @@ const WagerDropdown: FC<IProps> = ({ yucoin, pickerAmountLabel, onPress }) => {
             <Text bold={true} style={styles.yucoinLabel}>
               {pickerAmountLabel}
             </Text>
-            {yucoin !== null ? <Text style={styles.yucoinLabel}>Your wager</Text> : null}
+            {yucoin !== null ? (
+              <Text style={styles.yucoinLabel}>{t("modals.duels.duel_options.your_wager")}</Text>
+            ) : null}
           </View>
         </View>
         <FastImage style={styles.dropdownArrow} source={images.arrow} />

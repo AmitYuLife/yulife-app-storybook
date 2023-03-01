@@ -27,7 +27,7 @@ function LeaderboardInfoScreen({ componentId }: IProps) {
     return true;
   });
 
-  const metricName = getMetricName(activeLeaderboard?.metric as LeaderboardMetric) || "steps";
+  const metricName = getMetricName((activeLeaderboard?.metric as LeaderboardMetric) || "steps");
 
   return (
     <View style={styles.wrapper} testID={LEADERBOARD_INFO}>
