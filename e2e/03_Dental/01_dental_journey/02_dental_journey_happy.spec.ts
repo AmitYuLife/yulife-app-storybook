@@ -15,7 +15,7 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as helper from "./_steps/helpers";
 import { CUSTOMER_DENTAL_1, CUSTOMER_37, AUTH_37, AUTH_DENTAL_1 } from "@data";
-import * as helper_pli from "02_PLI/01_pli_journey/_steps/helpers";
+import * as helper_pli from "02_PLI_1/_steps/helpers";
 import * as helper_V4 from "00_Smoke_2/07_yuscreen_v4/_steps/helpers";
 
 Feature("DENTAL HAPPY", async () => {
