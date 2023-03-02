@@ -69,8 +69,7 @@ const ActivityFeed = ({
     "screens.today_earning.alert.never_ask_again.message",
     "screens.today_earning.alert.never_ask_again.cta_label",
     "screens.today_earning.activity_feed.daily_core_activities.accessibility.accessibility_label",
-    "screens.daily.challenge_button.back_to_challenge.accessibility_label",
-    "screens.daily.challenge_button.back_to_challenge.accessibility_label",
+    "screens.daily.challenge_button.back_to_challenge",
     "screens.today_earning.toast.use_google_fit.message",
     "screens.today_earning.toast.use_google_fit.message",
     "screens.today_earning.toast.use_google_fit.cta_label",
@@ -279,12 +278,12 @@ const ActivityFeed = ({
             size="Large"
             label={
               hasNotification
-                ? t["screens.daily.challenge_button.back_to_challenge.accessibility_label"]
+                ? t["screens.daily.challenge_button.back_to_challenge"]
                 : button?.label
             }
             accessibilityLabel={
               hasNotification
-                ? t["screens.daily.challenge_button.back_to_challenge.accessibility_label"]
+                ? t["screens.daily.challenge_button.back_to_challenge"]
                 : buttonAccessibility?.accessibilityLabel
             }
           />
