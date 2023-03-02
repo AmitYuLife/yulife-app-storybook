@@ -9,11 +9,11 @@ import {
   ScenarioSkip,
   FeatureSkip,
 } from "@yu-life/yulife-bdd-framework";
-import * as scenario from "./_steps/scenario";
-import * as given from "./_steps/given";
-import * as when from "./_steps/when";
-import * as then from "./_steps/then";
-import * as helper from "./_steps/helpers";
+import * as scenario from "../02_PLI_1/_steps/scenario";
+import * as given from "../02_PLI_1/_steps/given";
+import * as when from "../02_PLI_1/_steps/when";
+import * as then from "../02_PLI_1/_steps/then";
+import * as helper from "../02_PLI_1/_steps/helpers";
 import {
   CUSTOMER_37,
   AUTH_37,
