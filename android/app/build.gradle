@@ -361,7 +361,11 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
     // dependency for exoplayer
-    implementation "com.google.android.exoplayer:exoplayer:2.13.3"
+    implementation("com.google.android.exoplayer:exoplayer") {
+        version {
+            strictly '2.13.3'
+        }
+    }
 
     // for core support in exoplayer.
     implementation "com.google.android.exoplayer:exoplayer-core:2.13.3"
