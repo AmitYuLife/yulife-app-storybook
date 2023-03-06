@@ -178,10 +178,10 @@ export const weeklyChallengeIsVisible = (amount: string) => async () => {
 }
 
 export const weeklyQuestsPopUpVisible = async () => {
-    await textVisible("Weekly quests", 1000)()
+    await textVisible("Weekly quest", 1000)()
     await textVisible("Pick your challenge.")()
     await weeklyChallengeIsVisible("100")()
-    await textVisible("Let's go!")()
+    await textVisible("Let's go")()
 }
 
 export const challengeSelectedModalVisible = (amount: string, challengeAmount: string) => async () => {
