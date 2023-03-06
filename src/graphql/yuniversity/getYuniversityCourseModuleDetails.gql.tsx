@@ -39,6 +39,7 @@ export const GQL_QUERY_GET_YUNIVERSITY_COURSE_MODULE_DETAILS = gql`
           description
           shortDescription
           theme
+          duration
           media {
             id
             uri

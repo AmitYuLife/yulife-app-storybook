@@ -4,13 +4,23 @@ import { ICourseItem } from "@components/molecules/yuniversity/course-content-it
 
 type IModuleContentItem = ICourseItem & {
   slug: string;
-  onModulePress: (moduleSlug: string) => void;
+  courseSlug: string;
+  onModulePress: (courseSlug: string, moduleSlug: string) => void;
 };
 
-const ModuleContentItem = ({ slug, onModulePress, tags, imageTags, title, image, status }: IModuleContentItem) => {
+const ModuleContentItem = ({
+  slug,
+  courseSlug,
+  onModulePress,
+  tags,
+  imageTags,
+  title,
+  image,
+  status,
+}: IModuleContentItem) => {
   const onPress = useCallback(() => {
-    onModulePress(slug);
-  }, [slug]);
+    onModulePress(courseSlug, slug);
+  }, [courseSlug, slug]);
 
   return (
     <CourseContentItem

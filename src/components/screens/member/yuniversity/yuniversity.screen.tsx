@@ -25,12 +25,18 @@ interface IProps {
   courses: ICourse[];
   headerProps: IHeaderProps;
   testID?: string;
-  onModulePress: (moduleSlug: string) => void;
+  onModulePress: (courseSlug: string, moduleSlug: string) => void;
 }
 
 const YuniversityCoursesScreen: FC<IProps> = ({ headerProps, categoryImageUri, category, courses, onModulePress }) => {
-  const { source: headerImageSource, backgroundColor, headerTextColor, onLeftIconPress, label, title } =
-    headerProps || {};
+  const {
+    source: headerImageSource,
+    backgroundColor,
+    headerTextColor,
+    onLeftIconPress,
+    label,
+    title,
+  } = headerProps || {};
   const [showHeading, setHeadingVisibilty] = useState(true);
   const scrollY = useRef(new Animated.Value(0)).current;
   const statusBarCoverStyle = useMemo(() => ({ ...style.statusBarCover, backgroundColor }), [backgroundColor]);
@@ -113,9 +119,9 @@ const YuniversityCoursesScreen: FC<IProps> = ({ headerProps, categoryImageUri, c
             )}
           </View>
 
-          {courses.map(({ title: courseTitle, logoImageKey, description, modules, id }) => {
+          {courses.map(({ title: courseTitle, logoImageKey, description, modules, id: courseId }) => {
             return (
-              <View key={id}>
+              <View key={courseId}>
                 <View style={style.courseWrapper}>
                   <View>
                     <TextTemplate type={"b1b"}>{courseTitle}</TextTemplate>
@@ -138,6 +144,7 @@ const YuniversityCoursesScreen: FC<IProps> = ({ headerProps, categoryImageUri, c
                         status={status}
                         key={moduleId}
                         slug={slug}
+                        courseSlug={courseId}
                         imageTags={imageTags}
                       />
                     );

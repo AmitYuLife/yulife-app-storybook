@@ -47,7 +47,8 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemTe
     | "ContentItemInfoCard"
     | "ContentItemDropdownInput"
     | "ContentItemLinearGradient"
-    | "ContentItemYuCoinPower";
+    | "ContentItemYuCoinPower"
+    | "ContentItemComparisonTableSelectPackage";
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles {

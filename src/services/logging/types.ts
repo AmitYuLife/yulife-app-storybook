@@ -56,4 +56,9 @@ export type MixpanelEvent =
   | "video_player_is_playing"
   | "video_player_is_paused"
   | "video_player_focused"
-  | "video_player_is_buffering";
+  | "video_player_is_buffering"
+  | "video_started"
+  | "video_cancelled"
+  | "video_completed"
+  | "item_button_pressed"
+  | "item_viewed";

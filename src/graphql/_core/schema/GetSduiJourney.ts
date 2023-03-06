@@ -26,7 +26,8 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer {
     | "ContentItemSectionHeading"
     | "ContentItemInfoCard"
     | "ContentItemLinearGradient"
-    | "ContentItemYuCoinPower";
+    | "ContentItemYuCoinPower"
+    | "ContentItemComparisonTableSelectPackage";
 }
 
 export interface GetSduiJourney_getSduiJourney_body_ContentItemMarkdown_styles {
@@ -636,7 +637,8 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessi
     | "ContentItemSectionHeading"
     | "ContentItemInfoCard"
     | "ContentItemLinearGradient"
-    | "ContentItemYuCoinPower";
+    | "ContentItemYuCoinPower"
+    | "ContentItemComparisonTableSelectPackage";
 }
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown_styles {
