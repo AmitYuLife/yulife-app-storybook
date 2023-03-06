@@ -10,9 +10,9 @@ import { daysRemainingOfWeek } from "@navigation";
 Feature("End of the world/Yuniverse", async () => {
     Scenario("I complete level 200, enter EOTW with a yucoin surge of 2 and take 4 challenges at level 1", scenario.start, () => {
         Given("I login as a user on level 200 with a earn rate of 6", given.logInAndGoToTab("yucoin", CUSTOMER_69, AUTH_69), async () => {
-            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left)"))
+            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (4 left)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
             Then("I should see the level 200 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(200)))
         })
         When("I tap level 200 button", when.tapID(LEVEL_CHALLENGE_BUTTON(200)), async () => {
@@ -26,9 +26,9 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I tap explore the yuniverse", when.tapText("Explore the Yuniverse"), async () => {
             Then("I should be on the yucoin", then.idVisible(DAILY_STEPS_SCREEN))
-            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left)"))
+            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (4 left)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
             Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(1)))
         })
         When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(1, 187, 537), async () => {
@@ -175,7 +175,7 @@ Feature("End of the world/Yuniverse", async () => {
 
     Scenario("I complete level 7 in EOTW, I finish EOTW and enter the red planet with a yucoin surge of 2", scenario.start, () => {
         Given("I login as a user on level 207 with a earn rate of 6", given.logInAndGoToTab("yucoin", CUSTOMER_70, AUTH_70), async () => {
-            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left)"))
+            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
         When("I go to the yu tab", when.tapID(NAV_BAR("yu")), async () => {
             When("I tap Check out my power", when.tapText("Check out my power"), async () => {
@@ -189,7 +189,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should see I am in the Yuniversal world", then.textVisible("Yuniversal"))
         })
         When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-            When("I tap take a challenge", when.tapText("Take a challenge (4 left)"), async () => {
+            When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
                 Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(7)))
             })
         })
@@ -283,7 +283,7 @@ Feature("End of the world/Yuniverse", async () => {
 
     Scenario("As a user, I want the celestial chest to be based on earn rate, so that I am rewarded on my policy amounts", scenario.start, () => {
         Given("I login as a user on level 207 with a earn rate of 9", given.logInAndGoToTab("yucoin", CUSTOMER_78, AUTH_78), async () => {
-            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left)"))
+            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
         When("I go to the yu tab", when.tapID(NAV_BAR("yu")), async () => {
             When("I tap Check out my power", when.tapText("Check out my power"), async () => {
@@ -297,7 +297,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should see I am in the Yuniversal world", then.textVisible("Yuniversal"))
         })
         When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-            When("I tap take a challenge", when.tapText("Take a challenge (4 left)"), async () => {
+            When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
                 Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(7)))
             })
         })
@@ -311,25 +311,26 @@ Feature("End of the world/Yuniverse", async () => {
 
     Scenario("As a level 201+ user, I have weekly quests so I have extra activity", scenario.start, async () => {
         Given("I login as a user on level 201", given.logInAndGoToTab("yucoin", CUSTOMER_81, AUTH_81), async () => {
-            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left)"))
+            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
         When("I go to the quests tab", when.tapID(NAV_BAR("quests")), async () => {
             Then("I should see level 201 unlocked in the red planet", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
-            Then("I should see the Weekly Quests activty icon", then.idVisible(WEEKLY_GOAL_ICON(daysRemainingOfWeek())))
+            Then("I should see the Weekly Quests activty icon", then.idVisible(WEEKLY_GOAL_ICON(daysRemainingOfWeek(), true)))
         })
-        When("I tap the Weekly Goals icon", when.tapID(WEEKLY_GOAL_ICON(daysRemainingOfWeek())), async () => {
+        When("I tap the Weekly Goals icon", when.tapID(WEEKLY_GOAL_ICON(daysRemainingOfWeek(), true)), async () => {
             Then("I can see the Weekly quests pop-up", then.weeklyQuestsPopUpVisible)
         })
-        When("I click the button text without a challenge selected", when.tapText("Let's go!"), async () => {
+        When("I click the button text without a challenge selected", when.tapText("Let's go"), async () => {
             Then("Nothing happens, I cannot see the next modal", then.textNotVisible("Reward"))
         })
         When("I click the challenge", when.tapWeeklyChallenge("100"), async () => {
-            When("I tap the button", when.tapText("Let's go!"), async () => {
+            When("I tap the button", when.tapText("Let's go"), async () => {
                 Then("I can see the modal", then.challengeSelectedModalVisible("100", "2"))
             })
         })
         When("I click the close button", when.tapText("Close"), async () => {
             Then('I can no longer see the modal', then.textNotVisible("Weekly quests"))
+            Then("I should see the Weekly Quests activty icon with no badge", then.idVisible(WEEKLY_GOAL_ICON(daysRemainingOfWeek(), false)))
         }) 
         When("I tap level 201 button", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
             When("I complete a short stroll challenge at level 201", when.selectAndCompleteWalkingChallenge("short stroll", 400), async () => {
@@ -340,7 +341,7 @@ Feature("End of the world/Yuniverse", async () => {
                 })
             })
         })
-        When("I tap the Weekly Goals icon", when.tapID(WEEKLY_GOAL_ICON(daysRemainingOfWeek())), async () => {
+        When("I tap the Weekly Goals icon", when.tapID(WEEKLY_GOAL_ICON(daysRemainingOfWeek(), false)), async () => {
             Then("I can see the modal with the challenge progress", then.challengeProgressShown(1, 2, "#F43E8E"))
         })
         When("I click the close button", when.tapText("Close"), async () => {
@@ -350,10 +351,11 @@ Feature("End of the world/Yuniverse", async () => {
             When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("brisk walk", 800), async () => {
                 When("I tap collect", when.tapText("Collect"), async () => {
                     Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
+                    Then("I should see the Weekly Quests activty icon with the badge", then.idVisible(WEEKLY_GOAL_ICON(daysRemainingOfWeek(), true)))
                 })
             })
         })
-        When("I tap the Weekly Goals icon", when.tapID(WEEKLY_GOAL_ICON(daysRemainingOfWeek())), async () => {
+        When("I tap the Weekly Goals icon", when.tapID(WEEKLY_GOAL_ICON(daysRemainingOfWeek(), true)), async () => {
             Then("I can see the modal with the challenge progress", then.challengeProgressShown(2, 2, "#F43E8E"))
             Then("I can see the challenge is completed", then.completedChallengeModalVisible)
         })
@@ -362,6 +364,8 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I click the close button", when.tapText("Close"), async () => {
             Then('I can no longer see the modal', then.textNotVisible("Weekly quests"))
+            Then("I should see the Weekly Quests activty icon with the badge", then.idVisible(WEEKLY_GOAL_ICON(daysRemainingOfWeek(), false)))
+            Then("I can see the Icon has changed to the Done state", then.textVisible("Done"))
         }) 
 
     })

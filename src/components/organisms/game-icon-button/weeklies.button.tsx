@@ -29,7 +29,7 @@ const _Weeklies = ({ endDateTime, onPress, claimableRewards, hasJoined, isClaime
       label={label}
       Icon={<WeekliesIcon hasBadge={hasBadge} active={!isClaimed} animated={hasBadge} />}
       accessibilityLabel={""}
-      testID={WEEKLY_GOAL_ICON(parseInt(time.shortFormat))}
+      testID={WEEKLY_GOAL_ICON(parseInt(time.shortFormat), hasBadge)}
     />
   );
 };

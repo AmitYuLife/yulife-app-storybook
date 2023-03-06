@@ -1,4 +1,5 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import moment from "moment";
 
 export const WEEKLY_GOAL_1 = {
     type: "mongo",
@@ -9,6 +10,6 @@ export const WEEKLY_GOAL_1 = {
       tags: [],
       synchronousProgress: true,
       title: "Test weekly goal",
-      weekStartDate: "2023-01-23",
+      weekStartDate: moment().isoWeekday(1).format('YYYY-MM-DD'),
     }
   } as IDatabaseItem

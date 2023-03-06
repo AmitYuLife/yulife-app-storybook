@@ -420,5 +420,5 @@ export const CPD_CERTIFICATE = "CPD_CERTIFICATE";
 export const CPD_SAVE_BUTTON = "CPD_SAVE_BUTTON";
 
 // WEEKLIES
-export const WEEKLY_GOAL_ICON = (label: number) => `WEEKLY_GOAL_ICON_${label}`
+export const WEEKLY_GOAL_ICON = (label: number, badge: Boolean) => `WEEKLY_GOAL_ICON_${label}_${badge}`
 export const WEEKLY_PROGRESS_BAR = (progress: number, max: number, color: string) => `WEEKLY_PROGRESS_BAR_${progress}_${max}_${color}`

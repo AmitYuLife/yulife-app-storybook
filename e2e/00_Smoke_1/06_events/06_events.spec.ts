@@ -145,8 +145,6 @@ Feature("As a user I can opt in and take an event", async () => {
             })
         })
 
-        // Pressing claim button is causing a warning. Devs looking into it.
-
         When("I click Claim", when.tapText("Claim"), async () => {
             When("I wait", when.wait(5000), async () => {
                 Then("I should see the third milestone complete", then.milestoneComplete(0))
