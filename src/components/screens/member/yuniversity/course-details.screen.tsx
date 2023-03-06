@@ -14,12 +14,16 @@ import {
 } from "@graphql/_core/schema/GetInAppYuniversityCourseModuleDetails";
 import TagsWithImage from "@components/molecules/yuniversity/tags-with-image";
 import { CPD_COURSE_DETAIL_SCREEN, CPD_COURSE_SCROLL_VIEW } from "@ids";
+import { useDispatch, useSelector } from "react-redux";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { getCurrentLevel } from "@redux/levels/levels.selectors";
 
 export interface ICourseModuleDetailsProps {
   onBackPress: () => void;
   onClose: () => void;
   moduleDetails: IGqlCourseModuleDetails;
-  onChapterPress: (video: IGqlMedia, chapterId: string) => void;
+  courseId: string;
+  onChapterPress: (video: IGqlMedia, chapterId: string, chapterTitle: string) => void;
   startQuiz: () => void;
 }
 
@@ -28,7 +32,9 @@ const CourseDetailsScreen = ({
   onClose,
   onChapterPress,
   startQuiz,
+  courseId,
   moduleDetails: {
+    id: moduleId,
     image,
     title,
     tags,
@@ -42,8 +48,40 @@ const CourseDetailsScreen = ({
     moduleCertificateDetails,
   },
 }: ICourseModuleDetailsProps) => {
+  const dispatch = useDispatch();
+  const userLevel = useSelector(getCurrentLevel);
+
+  const onStartQuiz = useCallback(() => {
+    dispatch(
+      logMixpanelEventActionCreator("item_button_pressed", {
+        topic: "CPD",
+        detail_1: courseId,
+        detail_2: moduleId,
+        location: "module_details",
+        section: "module_quiz",
+        label: moduleQuiz.ctaLabel,
+        title: title,
+        levelId: userLevel,
+      })
+    );
+    startQuiz();
+  }, [courseId, moduleId, moduleQuiz, title, userLevel, startQuiz, dispatch]);
+
   const openCertificate = useCallback(() => {
     const { subtitle, description, values } = moduleCertificateDetails;
+    dispatch(
+      logMixpanelEventActionCreator("item_button_pressed", {
+        topic: "CPD",
+        detail_1: courseId,
+        detail_2: moduleId,
+        location: "module_details",
+        section: "certificate",
+        label: moduleCertificate.ctaLabel,
+        title: title,
+        levelId: userLevel,
+      })
+    );
+
     Navigation.push(ROUTES.courseDetails, {
       component: {
         id: MODALS.yuniversityCertificate,
@@ -63,7 +101,22 @@ const CourseDetailsScreen = ({
         },
       },
     });
-  }, [moduleCertificateDetails]);
+  }, [courseId, moduleId, moduleCertificateDetails, moduleCertificate, title, userLevel, dispatch]);
+
+  const trackModuleNotesPressed = useCallback(() => {
+    dispatch(
+      logMixpanelEventActionCreator("item_button_pressed", {
+        topic: "CPD",
+        detail_1: courseId,
+        detail_2: moduleId,
+        location: "module_details",
+        section: "module_notes",
+        label: moduleNotes.ctaLabel,
+        title: title,
+        levelId: userLevel,
+      })
+    );
+  }, [courseId, moduleId, moduleNotes, title, userLevel, dispatch]);
 
   const completedModuleQuizStyle = useMemo(() => (completed ? styles.moduleQuizCompletedStyle : {}), [completed]);
   return (
@@ -110,8 +163,8 @@ const CourseDetailsScreen = ({
             key={id}
           />
         ))}
-        <ModuleNotes {...moduleNotes} />
-        <Module {...moduleQuiz} onPress={startQuiz} wrapperStyle={completedModuleQuizStyle}>
+        <ModuleNotes {...moduleNotes} trackEvent={trackModuleNotesPressed} />
+        <Module {...moduleQuiz} onPress={onStartQuiz} wrapperStyle={completedModuleQuizStyle}>
           <YuniversityModuleReward coin={moduleQuiz.yucoin} message={moduleQuiz.rewardDescription} />
         </Module>
         <Module {...moduleCertificate} onPress={openCertificate} />

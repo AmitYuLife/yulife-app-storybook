@@ -26,7 +26,8 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemProcessingT
     | "ContentItemSectionHeading"
     | "ContentItemInfoCard"
     | "ContentItemLinearGradient"
-    | "ContentItemYuCoinPower";
+    | "ContentItemYuCoinPower"
+    | "ContentItemComparisonTableSelectPackage";
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMarkdown_styles {
@@ -636,7 +637,8 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemPr
     | "ContentItemSectionHeading"
     | "ContentItemInfoCard"
     | "ContentItemLinearGradient"
-    | "ContentItemYuCoinPower";
+    | "ContentItemYuCoinPower"
+    | "ContentItemComparisonTableSelectPackage";
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown_styles {

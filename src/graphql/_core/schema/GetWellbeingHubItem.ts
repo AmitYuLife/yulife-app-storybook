@@ -44,7 +44,8 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemTextInp
     | "ContentItemInfoCard"
     | "ContentItemDropdownInput"
     | "ContentItemLinearGradient"
-    | "ContentItemYuCoinPower";
+    | "ContentItemYuCoinPower"
+    | "ContentItemComparisonTableSelectPackage";
 }
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText_styles {

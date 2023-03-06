@@ -9,28 +9,49 @@ import {
   GQL_QUERY_GET_YUNIVERSITY_COURSES,
 } from "@graphql/yuniversity/getInAppYuniversityCourses.gql";
 import { GetInAppYuniversityCourses } from "@graphql/_core/schema/GetInAppYuniversityCourses";
+import { useDispatch, useSelector } from "react-redux";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { getCurrentLevel } from "@redux/levels/levels.selectors";
 
 const YuniversityCoursesContainer = () => {
+  const dispatch = useDispatch();
+  const userLevel = useSelector(getCurrentLevel);
+
   const onLeftIconPress = useCallback(() => Navigation.pop(ROUTES.wellbeingHubItems), []);
   const { data, loading } = useQuery<GetInAppYuniversityCourses>(GQL_QUERY_GET_YUNIVERSITY_COURSES, {
     variables: { category: COURSE_CATEGORY_CPD },
     fetchPolicy: "network-only",
   });
 
-  const onModulePress = useCallback((moduleSlug: string) => {
-    Navigation.push(ROUTES.yuniversityCourses, {
-      component: {
-        id: ROUTES.courseDetails,
-        name: ROUTES.courseDetails,
-        passProps: {
-          moduleId: moduleSlug,
-        },
-      },
-    });
-  }, []);
-
   const { title, headerImage, headerColour, headerTitle, headerLabel, headerTextColour, courses, categoryImage } =
     data?.getInAppYuniversityCourses || {};
+
+  const onModulePress = useCallback(
+    (courseSlug: string, moduleSlug: string) => {
+      dispatch(
+        logMixpanelEventActionCreator("item_viewed", {
+          topic: "CPD",
+          detail_1: courseSlug,
+          detail_2: moduleSlug,
+          title: title,
+          action: "module_press",
+          location: "yuniversity_courses",
+          levelId: userLevel,
+        })
+      );
+      Navigation.push(ROUTES.yuniversityCourses, {
+        component: {
+          id: ROUTES.courseDetails,
+          name: ROUTES.courseDetails,
+          passProps: {
+            moduleId: moduleSlug,
+            courseId: courseSlug,
+          },
+        },
+      });
+    },
+    [title, userLevel, dispatch]
+  );
 
   const headerProps = {
     title: headerTitle,

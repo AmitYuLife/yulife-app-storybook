@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -63,6 +63,7 @@ export interface GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCours
   description: string;
   shortDescription: string;
   theme: string;
+  duration: number | null;
   media: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_chapters_videoMedia_media;
   cover: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_chapters_videoMedia_cover;
   videoLogo: GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_chapters_videoMedia_videoLogo | null;

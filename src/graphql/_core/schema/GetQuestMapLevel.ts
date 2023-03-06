@@ -71,13 +71,13 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent
 }
 
 export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward {
-  title: string | null;
-  description: string | null;
-  logo: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward_logo | null;
-  backgroundImage: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward_backgroundImage | null;
-  discount: string | null;
-  buttonLabel: string | null;
-  rewardId: string | null;
+  title: string;
+  description: string;
+  logo: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward_logo;
+  backgroundImage: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward_backgroundImage;
+  discount: string;
+  buttonLabel: string;
+  rewardId: string;
 }
 
 export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent {

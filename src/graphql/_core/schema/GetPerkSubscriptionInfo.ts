@@ -33,7 +33,8 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
     | "ContentItemInfoCard"
     | "ContentItemDropdownInput"
     | "ContentItemLinearGradient"
-    | "ContentItemYuCoinPower";
+    | "ContentItemYuCoinPower"
+    | "ContentItemComparisonTableSelectPackage";
 }
 
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemText_styles {

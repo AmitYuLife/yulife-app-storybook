@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { Media } from "@graphql/_core/schema";
 import VideoPlayer from "react-native-video-controls";
-import { LoadError } from "react-native-video";
+import { LoadError, OnProgressData } from "react-native-video";
 import Config from "react-native-config";
 import { DETOX_ENABLED } from "@services/socket";
 
@@ -12,9 +12,18 @@ interface IProps {
   onPause: () => void;
   onPlay: () => void;
   onError: (error: LoadError) => void;
+  onProgress: (data: OnProgressData) => void;
 }
 
-const YuniversityMediaPlayerScreen = ({ video, onLeftIconPress, onEnd, onError, onPause, onPlay }: IProps) => {
+const YuniversityMediaPlayerScreen = ({
+  video,
+  onLeftIconPress,
+  onEnd,
+  onError,
+  onPause,
+  onPlay,
+  onProgress,
+}: IProps) => {
   const videoSource = useMemo(
     () => ({
       uri: DETOX_ENABLED
@@ -36,6 +45,7 @@ const YuniversityMediaPlayerScreen = ({ video, onLeftIconPress, onEnd, onError, 
       onError={onError}
       onPause={onPause}
       onPlay={onPlay}
+      onProgress={onProgress}
     />
   );
 };

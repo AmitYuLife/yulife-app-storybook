@@ -10,14 +10,20 @@ import {
   GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_chapters_videoMedia as IGqlMedia,
 } from "@graphql/_core/schema/GetInAppYuniversityCourseModuleDetails";
 import { GQL_QUERY_GET_YUNIVERSITY_COURSE_MODULE_DETAILS } from "@graphql/yuniversity/getYuniversityCourseModuleDetails.gql";
-
+import { useDispatch, useSelector } from "react-redux";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { getCurrentLevel } from "@redux/levels/levels.selectors";
 interface IProps {
   moduleId: string;
+  courseId: string;
 }
 
-const CourseDetailsContainer = ({ moduleId }: IProps) => {
+const CourseDetailsContainer = ({ moduleId, courseId }: IProps) => {
   const onClose = useCallback(() => Navigation.popTo(ROUTES.wellbeingHubItems), []);
   const onBackPress = useCallback(() => Navigation.pop(ROUTES.courseDetails), []);
+
+  const dispatch = useDispatch();
+  const userLevel = useSelector(getCurrentLevel);
 
   const { data, loading } = useQuery<GetModuleDetails, GetModuleDetailsVariables>(
     GQL_QUERY_GET_YUNIVERSITY_COURSE_MODULE_DETAILS,
@@ -27,6 +33,19 @@ const CourseDetailsContainer = ({ moduleId }: IProps) => {
 
   const onChapterPress = useCallback(
     (video: IGqlMedia, chapterId: string) => {
+      dispatch(
+        logMixpanelEventActionCreator("item_viewed", {
+          topic: "CPD",
+          detail_1: courseId,
+          detail_2: moduleId,
+          detail_3: chapterId,
+          title: data?.getInAppYuniversityCourseModuleDetails.title,
+          action: "chapter_press",
+          location: "module_details",
+          levelId: userLevel,
+        })
+      );
+
       Navigation.push(ROUTES.courseDetails, {
         component: {
           id: ROUTES.yuniversityMediaPlayer,
@@ -35,11 +54,17 @@ const CourseDetailsContainer = ({ moduleId }: IProps) => {
             video,
             moduleId,
             chapterId,
+            trackingData: {
+              levelId: userLevel,
+              courseId,
+              moduleId,
+              chapterId,
+            },
           },
         },
       });
     },
-    [moduleId]
+    [moduleId, courseId, userLevel, data?.getInAppYuniversityCourseModuleDetails.title, dispatch]
   );
 
   const startQuiz = useCallback(() => {
@@ -66,6 +91,7 @@ const CourseDetailsContainer = ({ moduleId }: IProps) => {
     <CourseDetailsScreen
       onBackPress={onBackPress}
       onClose={onClose}
+      courseId={courseId}
       moduleDetails={data.getInAppYuniversityCourseModuleDetails}
       onChapterPress={onChapterPress}
       startQuiz={startQuiz}

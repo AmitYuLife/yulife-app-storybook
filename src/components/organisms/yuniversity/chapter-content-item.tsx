@@ -6,13 +6,13 @@ import { GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleD
 type IChapterContentItem = ICourseItem & {
   slug: string;
   video: IGqlMedia;
-  onChapterPress: (video: IGqlMedia, chapterId: string) => void;
+  onChapterPress: (video: IGqlMedia, chapterId: string, chapterTitle: string) => void;
 };
 
 const ChapterContentItem = ({ slug, video, onChapterPress, tags, title, image, status }: IChapterContentItem) => {
   const onPress = useCallback(() => {
-    onChapterPress(video, slug);
-  }, [video, slug]);
+    onChapterPress(video, slug, title);
+  }, [video, slug, title]);
 
   return <CourseContentItem tags={tags} title={title} onPress={onPress} image={image} status={status} />;
 };

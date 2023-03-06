@@ -26,7 +26,8 @@ export interface ContentItem_ContentItemProcessingTimer {
     | "ContentItemSectionHeading"
     | "ContentItemInfoCard"
     | "ContentItemLinearGradient"
-    | "ContentItemYuCoinPower";
+    | "ContentItemYuCoinPower"
+    | "ContentItemComparisonTableSelectPackage";
 }
 
 export interface ContentItem_ContentItemMarkdown_styles {
