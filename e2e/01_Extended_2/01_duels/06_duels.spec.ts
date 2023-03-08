@@ -1,10 +1,10 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
-import * as scenario from "./_steps/scenario"
-import * as given from "./_steps/given"
-import * as when from "./_steps/when"
-import * as then from "./_steps/then"
-import { CUSTOMER_20, AUTH_20, CUSTOMER_19, AUTH_19, CUSTOMER_17, AUTH_17, CUSTOMER_16, CUSTOMER_26, AUTH_26, CUSTOMER_27, AUTH_27 } from "@data";
-import { DUELS_BUTTON, DUELS_HUB, DUELS_HUB_INVITATION, DUEL_OPTIONS_SCREEN, DUEL_RESPONSE, NAV_BAR, CHALLENGE_FRIEND_BUTTON, DUEL_ENTRY, DUEL_ICON, DUEL_DESCRIPTION, DUEL_AVATAR, STEPS_COUNT} from "@ids";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
+import * as scenario from "./_steps/scenario";
+import * as given from "./_steps/given";
+import * as when from "./_steps/when";
+import * as then from "./_steps/then";
+import { CUSTOMER_20, AUTH_20, CUSTOMER_19, AUTH_19, CUSTOMER_17, AUTH_17, CUSTOMER_27, AUTH_27, CUSTOMER_84, AUTH_84 } from "@data";
+import { DUELS_BUTTON, DUELS_HUB, DUELS_HUB_INVITATION, DUEL_OPTIONS_SCREEN, NAV_BAR, CHALLENGE_FRIEND_BUTTON, DUEL_ENTRY, DUEL_ICON, DUEL_DESCRIPTION, DUEL_AVATAR, STEPS_COUNT } from "@ids";
 
 
 Feature("As an enabled user I am able to use the duels feature", async()=>{
@@ -111,6 +111,23 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
                 Then("I should see my past duel with Oscar Martinez", then.idVisible(DUEL_ENTRY("Oscar", "Martinez", 10, "finished")))
                 Then("I should see I won this duel", then.idVisible(DUEL_ICON("Oscar", "Martinez", true)))
                 Then("I should see the steps for this duel", then.idVisible(DUEL_DESCRIPTION(400, 600)))
+            })
+        })
+    })
+    
+    Scenario("I am able to view my past duels with deleted users", scenario.start, async()=>{
+        Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", CUSTOMER_84, AUTH_84), async () => {
+            Then("I should see the duels icon", then.idVisible(DUELS_BUTTON))
+            When("I tap the duels button", when.tapID(DUELS_BUTTON), async () => {
+                Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]))
+            })
+            When("I tap complete the intro", when.completeOnboardingIntro, async () => {
+                Then("I should be on the duels hub", then.idVisible(DUELS_HUB))
+            })
+            When("I tap Completed", when.tapText("Completed"), async()=>{
+                Then("I should see my past duel with a deleted user", then.idVisible(DUEL_ENTRY("", "", 10, "finished")))
+                Then("I should see I lost this duel", then.idVisible(DUEL_ICON("", "", false)))
+                Then("I should see the steps for this duel", then.idVisible(DUEL_DESCRIPTION(500, 300)))
             })
         })
     })
