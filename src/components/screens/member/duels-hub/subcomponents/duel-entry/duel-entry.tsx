@@ -7,6 +7,7 @@ import { GetDuelsTomorrow_getDuelsTomorrow, GetDuelsToday_getDuelsToday } from "
 import Description from "./description";
 import DuelIcon from "./duel-icon";
 import { DUEL_ENTRY } from "@ids";
+import { formatOpponentName } from "@utils/duels";
 
 interface IProps {
   duel: GetDuelsTomorrow_getDuelsTomorrow | GetDuelsToday_getDuelsToday;
@@ -27,7 +28,7 @@ const DuelEntry: FC<IProps> = ({ duel, type, userId, dailySteps }) => {
           bold={true}
           testID={DUEL_ENTRY(opponent.name.firstName, opponent.name.lastName, duel.yucoin, duel.status)}
         >
-          {opponent?.name.firstName} {opponent?.name.lastName}
+          {formatOpponentName(opponent?.name)}
         </Text>
         <Description duel={duel} type={type} userId={userId} dailySteps={dailySteps} />
       </View>

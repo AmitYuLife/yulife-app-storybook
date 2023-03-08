@@ -9,6 +9,7 @@ import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { Navigation } from "@navigation/main";
 import colours from "@styles/colours";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { formatOpponentName } from "@utils/duels";
 
 interface IGenericDuelsIntro extends Partial<DuelStepProps> {
   type: "invite" | "response";
@@ -77,17 +78,9 @@ function GenericDuelsIntro({
             </TextTemplate>
           </View>
           <View>
-            {opponent && opponent.firstName ? (
-              <>
-                <TextTemplate type="h3" color={colours.darkGray}>
-                  {opponent.firstName} {!opponent?.lastName ? null : opponent.lastName}
-                </TextTemplate>
-              </>
-            ) : (
-              <TextTemplate type="h3" color={colours.darkGray}>
-                ?
-              </TextTemplate>
-            )}
+            <TextTemplate type="h3" color={colours.darkGray}>
+              {formatOpponentName(opponent)}
+            </TextTemplate>
           </View>
         </View>
         <View style={styles.buttonSection}>

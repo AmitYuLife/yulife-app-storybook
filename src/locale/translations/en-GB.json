@@ -22,6 +22,7 @@
     "account_number": "Account number"
   },
   "labels": {
+    "deleted_user_name": "Your colleague",
     "world_name": {
       "forest": "Forest",
       "ocean": "Ocean",

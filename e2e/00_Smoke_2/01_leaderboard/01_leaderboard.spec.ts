@@ -1,11 +1,11 @@
-import { Feature, Scenario, Given, When, Then, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Scenario, Given, When, Then, FeatureOnly, Feature } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as helper from "./_steps/helpers";
-import { NAV_BAR, LEADERBOARD_INFO, BACK_BUTTON, LEADERBOARD_SWITCH, LEADERBOARD_TITLE, MENU_ICON, INSPECT_SCREEN, RANK, CHALLENGE_FRIEND_BUTTON, DAILY_STEPS_SCREEN, LEADERBOARD_SCROLL_LIST, YUMOJI, USER_WORLD, USER_LEVEL, TEXT_TEMPLATE, ONBOARDING_SCREEN_V4 } from "@ids";
-import { CUSTOMER_16, AUTH_16, CUSTOMER_17, AUTH_17, CUSTOMER_18, USER_18_LEADERBOARD, CUSTOMER_19, AUTH_19, CUSTOMER_20, CUSTOMER_21, USER_19_LEADERBOARD_B, CUSTOMER_47, AUTH_47, AUTH_21, CUSTOMER_50, AUTH_50, COIN_LEDGER_47, COIN_LEDGER_18 } from "@data";
+import { NAV_BAR, LEADERBOARD_INFO, BACK_BUTTON, LEADERBOARD_SWITCH, LEADERBOARD_TITLE, MENU_ICON, INSPECT_SCREEN, RANK, CHALLENGE_FRIEND_BUTTON, LEADERBOARD_SCROLL_LIST, YUMOJI, USER_WORLD, USER_LEVEL, TEXT_TEMPLATE, ONBOARDING_SCREEN_V4 } from "@ids";
+import { CUSTOMER_16, AUTH_16, CUSTOMER_17, AUTH_17, CUSTOMER_18, CUSTOMER_19, AUTH_19, CUSTOMER_20, USER_19_LEADERBOARD_B, CUSTOMER_47, AUTH_47, CUSTOMER_50, AUTH_50, COIN_LEDGER_47, COIN_LEDGER_18, LEADERBOARD_1 } from "@data";
 
 Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can consent to my company leaderboard", scenario.start, async () => {
@@ -13,7 +13,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             When("I go to the leaderboard screen", when.tapID(NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard consent screen", then.onLeaderboardConsent)
                 When("I tap 'Yes'", when.tapText("Yes"), async () => {
-                    Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
+                    Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(LEADERBOARD_1.data.name)))
                     Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_50, CUSTOMER_47], ["10,000", "800"]))
                     When("I tap 30 days", when.tapText("30 day steps"), async () => {
                         Then("I should be on the about leaderboard page", then.idVisible(LEADERBOARD_INFO, 2000))
@@ -29,12 +29,12 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can change consent to a leaderboard I belong to", scenario.start, async () => {
         Given("I login", given.loginAsUser(CUSTOMER_17, AUTH_17), async () => {
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
+                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(LEADERBOARD_1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_47], ["10,000", "800"]))
-                When("I tap on the leaderboard name", when.tapID(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name), 2000), async () => {
-                    Then("I should see my active leaderboard", then.leaderboardStatus(USER_18_LEADERBOARD.data.name, "active"))
-                    When("I turn off this leaderboard", when.turnOffLeaderboard(LEADERBOARD_SWITCH(USER_18_LEADERBOARD.data.name)), async () => {
-                        Then("I should be back on the leaderboard selection page and this leaderboard should be off", then.leaderboardStatus(USER_18_LEADERBOARD.data.name, "inactive"))
+                When("I tap on the leaderboard name", when.tapID(LEADERBOARD_TITLE(LEADERBOARD_1.data.name), 2000), async () => {
+                    Then("I should see my active leaderboard", then.leaderboardStatus(LEADERBOARD_1.data.name, "active"))
+                    When("I turn off this leaderboard", when.turnOffLeaderboard(LEADERBOARD_SWITCH(LEADERBOARD_1.data.name)), async () => {
+                        Then("I should be back on the leaderboard selection page and this leaderboard should be off", then.leaderboardStatus(LEADERBOARD_1.data.name, "inactive"))
                         When("I close the leaderboard selection screen", when.tapID(BACK_BUTTON), async () => {
                             Then("I should be back on an empty leaderboard screen", then.onLeaderboardConsent)
                         })
@@ -47,11 +47,11 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can check other leaderboards", scenario.start, async () => {
         Given("I login", given.loginAsUser(CUSTOMER_19, AUTH_19), async () => {
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
+                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(LEADERBOARD_1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_47, CUSTOMER_50], ["10,000", "800"]))
-                When("I scroll to the top of the page", when.scrollUntilIdVisible(LEADERBOARD_SCROLL_LIST, LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name), "down"), async () => {
-                    When("I tap the leaderboard drop down", when.tapID(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name), 2000), async () => {
-                        Then("I should be on the leaderboard selection screen", then.multipleTextVisible([USER_18_LEADERBOARD.data.name, USER_19_LEADERBOARD_B.data.name]))
+                When("I scroll to the top of the page", when.scrollUntilIdVisible(LEADERBOARD_SCROLL_LIST, LEADERBOARD_TITLE(LEADERBOARD_1.data.name), "down"), async () => {
+                    When("I tap the leaderboard drop down", when.tapID(LEADERBOARD_TITLE(LEADERBOARD_1.data.name), 2000), async () => {
+                        Then("I should be on the leaderboard selection screen", then.multipleTextVisible([LEADERBOARD_1.data.name, USER_19_LEADERBOARD_B.data.name]))
                         When("I tap the second leaderboard, Lb2", when.tapText(USER_19_LEADERBOARD_B.data.name), async () => {
                             Then("I should be on the second leaderboard", then.leaderboardVisible([CUSTOMER_20]))
                         })
@@ -69,7 +69,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         helper.CREATE_AVATAR(CUSTOMER_47)();
         When("I wait", when.wait(60000), async () => {
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
+                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(LEADERBOARD_1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_47, CUSTOMER_50]))
             }) 
         })
@@ -110,7 +110,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         helper.CREATE_AVATAR(CUSTOMER_47)();
         When("I wait", when.wait(60000), async () => {
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
+                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(LEADERBOARD_1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_47, CUSTOMER_50]))
             }) 
         })
@@ -146,7 +146,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         helper.CREATE_AVATAR(CUSTOMER_47)();
         When("I wait", when.wait(60000), async () => {
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard"), 2000), async () => {
-                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
+                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(LEADERBOARD_1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible(([CUSTOMER_18, CUSTOMER_17, CUSTOMER_47, CUSTOMER_50])))
             }) 
         })
@@ -231,7 +231,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         helper.CREATE_AVATAR(CUSTOMER_50)();
         When("I wait", when.wait(60000), async () => {
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
+                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(LEADERBOARD_1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_50, CUSTOMER_47]))
             }) 
         })

@@ -13,6 +13,7 @@ import { DUELS_HUB_INVITATION } from "@ids";
 import { useQueryOnScreenSeen } from "@hooks";
 import { showYuModal } from "@navigation/root";
 import { t } from "@locale";
+import { formatOpponentName } from "@utils/duels";
 
 const DuelInvitations: FC = () => {
   const [, { data, loading }] = useQueryOnScreenSeen<GetDuelInvitations>(
@@ -59,7 +60,7 @@ const DuelInvitations: FC = () => {
                     duel.inviteStatus
                   )}
                 >
-                  {opponent.name.firstName} {opponent.name.lastName}
+                  {formatOpponentName(opponent?.name)}
                 </Text>
               </View>
               <View style={styles.yucoinCtaWrapper}>

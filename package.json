@@ -28,7 +28,7 @@
     "detox:report": "open e2e-report/mochawesome.html",
     "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet",
     "ios:record": "(rm simulator.mov || echo '') && xcrun simctl io booted recordVideo simulator.mov",
-    "start:android": "react-native run-android --variant=debug --appIdSuffix debug",
+    "start:android": "ENVFILE=.env.develop react-native run-android --variant=debug --appIdSuffix debug",
     "start:android:local": "ENVFILE=.env.local react-native run-android --variant=local --appIdSuffix debug",
     "start:android:uat": "ENVFILE=.env.uat react-native run-android --variant=uat --appIdSuffix debug",
     "start:android:production": "ENVFILE=.env.uat.production react-native run-android --variant=production --appIdSuffix debug",

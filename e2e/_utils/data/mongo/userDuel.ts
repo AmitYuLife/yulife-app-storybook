@@ -2,7 +2,7 @@ import moment = require("moment");
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 ;
-import { CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_47 } from "../postgres/customers";
+import { CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_47, CUSTOMER_84 } from "../postgres/customers";
 
 const type = "mongo"
 const modelName = "userduel"
@@ -361,6 +361,34 @@ export const user_duel_13 = {
                 status: "submitted",
                 startDateTime: moment().subtract(21, "days").toISOString(),
                 score: 600
+            }
+        ],
+        date: moment().subtract(21, "days").format("YYYY-MM-DD"),
+        type: "steps",
+        status: "finished",
+        duration: 86400,
+        yucoin: 10,
+        updatedAt: moment().toISOString()
+    }
+} as IDatabaseItem
+
+export const user_duel_14 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        opponents: [
+            {
+                userId: CUSTOMER_84.data.customerId,
+                status: "submitted",
+                startDateTime: moment().subtract(21, "days").toISOString(),
+                score: 300,
+            },
+            {
+                userId: "deleted-user-should-not-match",
+                status: "submitted",
+                startDateTime: moment().subtract(21, "days").toISOString(),
+                score: 500
             }
         ],
         date: moment().subtract(21, "days").format("YYYY-MM-DD"),
