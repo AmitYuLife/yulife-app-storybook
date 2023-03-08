@@ -20,6 +20,7 @@ import RNFitKit from "@yu-life/react-native-fitkit";
 import { showYuModal } from "@navigation/root";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 interface IProps extends IInternalContent {
   componentId: string;
   createChallenge: (hideExternalLinks?: boolean) => void;
@@ -110,6 +111,7 @@ const MeditopiaMediaListContainer = ({
         });
       }
 
+      dispatch(logMixpanelEventActionCreator("mindfulness_app_open", { type: appName }));
       await createChallengeOnOtherAppSelected(appName, button);
     },
     [createChallengeOnOtherAppSelected]

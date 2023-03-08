@@ -157,7 +157,6 @@ const VideoPlayer = ({
       state: state.isPaused || state.isBuffering ? MusicControl.STATE_PAUSED : MusicControl.STATE_PLAYING,
       elapsedTime: state.currentProgressInSeconds,
     });
-    reduxDispatch(logMixpanelEventActionCreator(state.isPaused ? "video_player_is_paused" : "video_player_is_playing"));
   }, [state.isPaused, state.isBuffering]);
 
   useEffect(() => {
@@ -200,7 +199,7 @@ const VideoPlayer = ({
       lottieRef?.current[state.isPaused ? "resume" : "pause"]();
     }
 
-    reduxDispatch(logMixpanelEventActionCreator("video_player_play_button_start_pressed"));
+    reduxDispatch(logMixpanelEventActionCreator(state.isPaused ? "video_player_is_paused" : "video_player_is_playing"));
   }, [state.isPaused, state.durationInSeconds, state.showFocusScreen]);
 
   const handleStartButton = useCallback(async () => {

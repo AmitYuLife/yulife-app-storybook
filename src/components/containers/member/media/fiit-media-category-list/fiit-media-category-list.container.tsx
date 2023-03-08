@@ -17,6 +17,7 @@ import { handleLinkPress } from "@services/app-link";
 import { IITem } from "@organisms/media-list-items/media-list-items";
 import { updateChallengeAppButton } from "@redux/levels/levels.actions";
 import { useDispatch } from "react-redux";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 interface IProps {
   componentId: string;
@@ -91,6 +92,13 @@ const FiitMediaCategoryListContainer = ({
   );
 
   const onItemPress = useCallback((item: IInternalContent) => {
+    dispatch(
+      logMixpanelEventActionCreator("challenge_collection_viewed", {
+        type: "move",
+        subtype: "fiit",
+        collection_name: item.title,
+      })
+    );
     Navigation.push(ROUTES.fiitMediaCategoryList, {
       component: {
         id: ROUTES.fiitMediaList,

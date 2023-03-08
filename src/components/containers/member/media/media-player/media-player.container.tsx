@@ -31,10 +31,18 @@ import { getChallengeIsActive } from "@redux/levels/levels.selectors";
 import Logger from "@services/logging/logger";
 import { GQL_MUTATION_UPSERT_DAILY_PASSIVES } from "@graphql/challenges/upsertDailyPassives.gql";
 import { updateInAppMeditation } from "@redux/daily-meditation/daily-meditation.actions";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 interface IVideo extends Media {
   reward: number;
   stars: number;
+}
+
+interface ITrackingInfo {
+  collection_name: string;
+  subcollection_name: string;
+  type: string;
+  subtype: string;
 }
 
 interface IProps {
@@ -45,6 +53,7 @@ interface IProps {
   eventType: "workout" | "mindfullness";
   orientation: "landscape" | "portrait";
   startChallengeButtonLabel: string;
+  trackingInfo: ITrackingInfo;
 }
 
 const MediaPlayerContainer = ({
@@ -55,6 +64,7 @@ const MediaPlayerContainer = ({
   eventType,
   orientation,
   startChallengeButtonLabel,
+  trackingInfo,
 }: IProps) => {
   const [showModal, setShowModal] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -129,6 +139,10 @@ const MediaPlayerContainer = ({
   }, [video.duration, levelSlotId]);
 
   const onError = useCallback(() => {
+    if (trackingInfo) {
+      dispatch(logMixpanelEventActionCreator("media_not_loaded", { ...trackingInfo }));
+    }
+
     setShowError(true);
     setShowModal(true);
   }, []);
