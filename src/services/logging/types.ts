@@ -61,4 +61,9 @@ export type MixpanelEvent =
   | "video_cancelled"
   | "video_completed"
   | "item_button_pressed"
-  | "item_viewed";
+  | "item_viewed"
+  | "challenge_collection_viewed"
+  | "challenge_subcollection_viewed"
+  | "media_not_loaded"
+  | "mindfulness_app_open"
+  | "challenge_selected";

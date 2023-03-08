@@ -26,6 +26,7 @@ import {
 } from "@graphql/challenges/createQuestMapLevelChallenge.gql";
 import { showYuModal } from "@navigation/root";
 import { t } from "@locale";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 interface IProps {
   componentId: string;
@@ -104,6 +105,12 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
     const internalContent = slot?.details?.internalContent;
 
     if (internalContent?.length) {
+      dispatch(
+        logMixpanelEventActionCreator("challenge_selected", {
+          subtype: internalContent[0].contentType,
+          levelSlotId: slot.id,
+        })
+      );
       return handleInternalContentChallenge(internalContent);
     }
 

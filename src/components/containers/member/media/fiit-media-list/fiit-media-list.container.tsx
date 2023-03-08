@@ -12,6 +12,9 @@ import { useBackHandler } from "@hooks";
 import { GQL_QUERY_GET_VIDEOS_LIST } from "@graphql/media/getMedia.gql";
 import moment from "moment";
 import { t } from "@locale";
+import { useDispatch } from "react-redux";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { IITem } from "@organisms/media-list-items/media-list-items";
 
 interface IProps extends IInternalContent {
   componentId: string;
@@ -27,6 +30,7 @@ const FiitMediaListContainer = ({ levelSlotId, contentMediaTags, title, logo, re
     },
   });
 
+  const dispatch = useDispatch();
   const onLeftIconPress = useCallback(() => Navigation.popTo(ROUTES.fiitMediaCategoryList), []);
   const onRightIconPress = useCallback(() => Navigation.popTo(ROUTES.quests), []);
 
@@ -49,7 +53,16 @@ const FiitMediaListContainer = ({ levelSlotId, contentMediaTags, title, logo, re
     [medias?.getMedia, reward]
   );
 
-  const handleOnItemPress = useCallback((video: any) => {
+  const handleOnItemPress = useCallback((video: IITem) => {
+    dispatch(
+      logMixpanelEventActionCreator("challenge_subcollection_viewed", {
+        type: "move",
+        subtype: "fiit",
+        collection_name: title,
+        subcollection_name: video.title,
+      })
+    );
+
     Navigation.push(ROUTES.fiitMediaList, {
       component: {
         id: ROUTES.mediaPlayer,
@@ -61,6 +74,12 @@ const FiitMediaListContainer = ({ levelSlotId, contentMediaTags, title, logo, re
           eventType: "workout",
           orientation: "landscape",
           startChallengeButtonLabel: t("screens.fiit_media_list.startChallengeButtonLabel"),
+          trackingInfo: {
+            collection_name: title,
+            subcollection_name: video.title,
+            type: "move",
+            subtype: "fiit",
+          },
         },
       },
     });
