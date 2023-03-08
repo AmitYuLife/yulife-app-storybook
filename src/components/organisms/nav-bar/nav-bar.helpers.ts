@@ -37,5 +37,5 @@ export interface NavBarProps {
 export type HighlightedLabel = "yucoin" | "quests" | "yu" | "leaderboard" | "rewards";
 
 export function getIconColour(isActive: boolean) {
-  return isActive ? Colours.darkHotPink : "#6E6E70";
+  return isActive ? Colours.darkHotPink : Colours.neutral.n700;
 }
