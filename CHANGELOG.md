@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.72.0] - 2023-03-08
+
+### Bugfixes
+
+- Bugfix: Fixed exoplayer version
+- bugFix: back to challenge translation key
+- Bugfix: turn pt-PT on once it's ready
+
+### Tasks
+
+- Task: Add extra tracking for fiit and meditopia
+- Task ISA-437 support deleted users in duels
+- Task GS-619: CPD tracking
+- Task: more duel translations
+
+### Chores
+
+- Chore: navbar separate text from svg
+
+### Extra
+
+- GS-630: Weekly quest states
+- Detox: Split PLI for bitrise timeout
+
 ## [3.71.0] - 2023-03-01
 
 ### Bugfixes
