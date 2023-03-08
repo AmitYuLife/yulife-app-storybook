@@ -1059,24 +1059,29 @@
     },
     "navbar": {
         "yucoin": {
-            "accessibility_label": "Yucoin aberto",
-            "accessibility_text_value": "1 em cada 5"
+            "label": "yucoin",
+            "accessibility_label": "Abrir ecrã yucoin",
+            "accessibility_text_value": "1 de 5"
         },
         "quest": {
-            "accessibility_label": "Busca aberta",
-            "accessibility_text_value": "2 em cada 5"
+            "label": "quests",
+            "accessibility_label": "Abrir ecrã quests",
+            "accessibility_text_value": "2 de 5"
         },
         "yu": {
+            "label": "yu",
             "accessibility_label": "Abrir ecrã yu",
-            "accessibility_text_value": "3 em cada 5"
+            "accessibility_text_value": "3 de 5"
         },
         "leaderboard": {
-            "accessibility_label": "Quadro de liderança aberto",
+            "label": "ranking",
+            "accessibility_label": "Abrir ecrã ranking",
             "accessibility_text_value": "4 de 5"
         },
         "rewards": {
-            "accessibility_label": "Prémios abertos",
-            "accessibility_text_value": "5 em cada 5"
+            "label": "prémios",
+            "accessibility_label": "Abrir ecrã prémios",
+            "accessibility_text_value": "5 de 5"
         }
     },
     "time_units": {
