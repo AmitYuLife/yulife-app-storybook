@@ -1,5 +1,5 @@
 import { screens,  } from "@appScreens"
-import { navigation } from "@utils"
+import { CHALLENGE_TILE, navigateViaID, navigation } from "@utils"
 export { authoriseFitkit, sendSteps, addStepsHistoricalData } from "@socket";
 import { sendSteps, sendMindfulnessData, sendReduxEvent} from "@socket"
 
@@ -36,8 +36,11 @@ export const selectAndCompleteWalkingChallenge = (challengeType: string, steps: 
     await sendSteps(steps, 45000)()
 }
 
-export const selectAndCompleteMeditationChallenge = (challengeType: string, mindfulnessdata: number) => async () => {
-    await startChallenge(challengeType)()
+export const selectAndCompleteMeditationChallenge = (mindfulnessdata: number) => async () => {
+    await navigateViaID(CHALLENGE_TILE("meditation"))
+    await navigateViaText("Take challenge")
+    await tapText("Use a different app")()
+    await tapText("maybe later")()
     await tapText("I'm using a different app")()
     await sendMindfulnessData(mindfulnessdata, 75000)()
     await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)

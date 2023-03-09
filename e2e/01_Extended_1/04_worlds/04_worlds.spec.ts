@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -12,7 +12,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         Given("I login as a user who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_7, AUTH_7), async () => {
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(640)))
             When("I send the mindfulness data", when.sendMindfulnessData(180), async () => {
-                When("I start a meditation challenge", when.startChallengeFromQuests(5, "meditation"), async () => {
+                When("I start a meditation challenge", when.startMeditationChallengeFromQuests(5), async () => {
                     Then("I should see the meditation modal", then.meditationAppModalVisible)
                     When("I tap I'm using a different app", when.tapText("I'm using a different app"), async () => {
                         Then("I should no longer see the modal", then.textNotVisible("Choose an app to start"))
@@ -57,7 +57,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                         When("I tap done", when.tapText("Done"), async () => {
                             Then("I should be on quests", then.idVisible(QUESTS_SCREEN(1)))
                             When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-                                Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(450, 20))
+                                Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(450, 220))
                                 Then("I should see my updated coin amount in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17720)))
                             })
                         })
@@ -71,7 +71,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         Given("I login as a user who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_3, AUTH_3), async () => {
             Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
             When("I send the mindfulness data", when.sendMindfulnessData(180), async () => {
-                When("I start a meditation challenge", when.startChallengeFromQuests(90, "meditation"), async () => {
+                When("I start a meditation challenge", when.startMeditationChallengeFromQuests(90), async () => {
                     Then("I should see the meditation modal", then.meditationAppModalVisible)
                     When("I tap I'm using a different app", when.tapText("I'm using a different app"), async () => {
                         Then("I should no longer see the modal", then.textNotVisible("Choose an app to start"))
@@ -106,7 +106,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                         When("I tap done", when.tapText("Done"), async () => {
                             Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
                             When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-                                Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(600, 10))
+                                Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(600, 210))
                                 Then("I should see my updated coin amount in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27710)))
                             })
                         })
@@ -121,7 +121,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27700)))
             Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
             When("I send the mindfulness data", when.sendMindfulnessData(300), async () => {
-                When("I start a meditation challenge", when.startChallengeFromQuests(115, "meditation"), async () => {
+                When("I start a meditation challenge", when.startMeditationChallengeFromQuests(115), async () => {
                     Then("I should see the meditation modal", then.meditationAppModalVisible)
                     When("I tap I'm using a different app", when.tapText("I'm using a different app"), async () => {
                         Then("I should no longer see the modal", then.textNotVisible("Choose an app to start"))
@@ -151,7 +151,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                         When("I tap done", when.tapText("Done"), async () => {
                             Then("I should be on quests", then.idVisible(QUESTS_SCREEN(3)))
                             When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-                                Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(550, 10))
+                                Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(550, 210))
                                 Then("I should see my updated coin amount in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50210)))
                             })
                         })
@@ -165,7 +165,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         Given("I login as a user who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_13, AUTH_13), async () => {
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50200)))
             When("I send the mindfulness data", when.sendMindfulnessData(300), async () => {
-                When("I start a meditation challenge", when.startChallengeFromQuests(175, "meditation"), async () => {
+                When("I start a meditation challenge", when.startMeditationChallengeFromQuests(175), async () => {
                     Then("I should see the meditation modal", then.meditationAppModalVisible)
                     When("I tap I'm using a different app", when.tapText("I'm using a different app"), async () => {
                         Then("I should no longer see the modal", then.textNotVisible("Choose an app to start"))

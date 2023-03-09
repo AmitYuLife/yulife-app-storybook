@@ -14,7 +14,8 @@ export const {
 
 export const {
     startChallenge,
-    startChallengeFromQuests
+    startChallengeFromQuests,
+    startMeditationChallengeFromQuests
 } = screens.challenges
 
 

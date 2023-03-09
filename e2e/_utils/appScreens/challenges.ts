@@ -66,6 +66,14 @@ export const startChallengeFromQuests = (levelButton: number, challengeName: str
     }
 }
 
+export const startMeditationChallengeFromQuests = (levelButton: number) => async () => {
+    await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelButton))
+    await navigateViaID(CHALLENGE_TILE("meditation"))
+    await navigateViaText("Take challenge")
+    await navigateViaText("Use a different app")
+    await navigateViaText("maybe later")
+}
+
 export const completeShortStroll = (steps: number, waitTime: number) => async () => {
     await navigateViaID(CHALLENGE_TILE("short stroll"))
     await navigateViaText("Take challenge")
@@ -90,7 +98,7 @@ export const openOtherAppButtonVisible = async () => {
 }
 
 export const meditopiaContentCardVisible = (mins: string, yuCoin: string) => async () => {
-        await textVisible(`${mins} min • Earn ${yuCoin}`)()
+        await textVisible(`${mins} mins • Earn ${yuCoin}`)()
 }
 
 export const isOnChallengeLoadScreen = async () => {

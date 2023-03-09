@@ -1,5 +1,5 @@
 import { screens } from "@appScreens"
-import { navigation, QUESTS_SCREEN_YUNIVERSAL, MALE_BODY } from "@utils"
+import { navigation, QUESTS_SCREEN_YUNIVERSAL, MALE_BODY, navigateViaID, CHALLENGE_TILE } from "@utils"
 export { authoriseFitkit, sendSteps } from "@socket";
 import { sendSteps, sendMindfulnessData, sendReduxEvent } from "@socket"
 
@@ -28,10 +28,13 @@ export const selectAndCompleteWalkingChallenge = (challengeType: string, steps: 
     await sendSteps(steps, 45000)()
 }
 
-export const selectAndCompleteMeditationChallenge = (challengeType: string, mindfulnessdata: number) => async () => {
-    await startChallenge(challengeType)()
+export const selectAndCompleteMeditationChallenge = (mindfulnessData: number) => async () => {
+    await navigateViaID(CHALLENGE_TILE("meditation"))
+    await navigateViaText("Take challenge")
+    await tapText("Use a different app")()
+    await tapText("maybe later")()
     await tapText("I'm using a different app")()
-    await sendMindfulnessData(mindfulnessdata, 80000)()
+    await sendMindfulnessData(mindfulnessData, 80000)()
 }
 
 export const tapYuniverseLevelForFirstTime = (questScreen: number, x: number, y: number) => async () => {
