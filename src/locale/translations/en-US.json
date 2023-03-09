@@ -85,6 +85,7 @@
     }
   },
   "period": {
+    "today": "today",
     "month": "Month"
   },
   "meditation": "Meditation",
