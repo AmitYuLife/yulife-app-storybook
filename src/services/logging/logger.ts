@@ -9,6 +9,7 @@ import { Event } from "@bugsnag/react-native";
 import region from "@services/region";
 
 class LoggerInstance {
+  private userId = "";
   private initialised = false;
   private appVersion: string;
   private appVersionMajorMinor: string;
@@ -37,6 +38,8 @@ class LoggerInstance {
       Mixpanel.clearSuperProperties();
       Mixpanel.reset();
     }
+
+    this.userId = "";
   };
 
   private addDefaultEventProperties = (props: Record<string, any>): Record<string, any> => {
@@ -51,7 +54,17 @@ class LoggerInstance {
     await Intercom.setUserHash(hash);
   };
 
-  public setUserId = (userId: string) => {
+  public setUserId = async (userId: string) => {
+    if (this.userId) {
+      // already logged in - ignore everything
+      if (this.userId === userId) {
+        return;
+      }
+
+      await this.logOut();
+    }
+
+    this.userId = userId;
     Intercom.loginUserWithUserAttributes({ userId });
     Mixpanel.identify(userId);
     this.bugsnag.setUser(userId, "", "");
