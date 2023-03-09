@@ -27,7 +27,7 @@ import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
 import Logger from "@services/logging/logger";
 import { Navigation } from "@navigation/main";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import { t } from "@locale";
+import { t, getLocale } from "@locale";
 import { getTheme } from "@theme";
 import { changePanelVisibility } from "@redux/daily-steps/daily-steps.actions";
 
@@ -126,6 +126,9 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
 
   const closePanel = useCallback(() => dispatch(changePanelVisibility(false)), []);
 
+  const locale = getLocale();
+  const yuCoinTodayText = useMemo(() => `${t("yu_coin.camel_case")} ${t("period.today")}`, [locale]);
+
   const navigateToTodayEarnings = useCallback(
     () =>
       !fitkit.authorised
@@ -148,7 +151,7 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
             color={dailyStepsScreen.textStyle.color}
             accessibilityLabel={t("screens.daily.daily_passive.coins.accessibility_label", { coins: dailyEarnedCoins })}
           >
-            <Counter duration={1200} value={dailyEarnedCoins} textStyle={counterStyle} /> YuCoin today
+            <Counter duration={1200} value={dailyEarnedCoins} textStyle={counterStyle} /> {yuCoinTodayText}
           </TextTemplate>
 
           <View style={styles.activityListWrapper}>
