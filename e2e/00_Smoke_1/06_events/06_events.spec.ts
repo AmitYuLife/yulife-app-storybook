@@ -134,8 +134,8 @@ Feature("As a user I can opt in and take an event", async () => {
 
         // 4th challenge
 
-        When("I complete a meditation challenge at level 152", when.selectAndCompleteMeditationChallenge("meditation", 600), async () => {
-             // we need triggerAppUpdateState to mimic a user leaving the app to meditate and then returning to the yulife app
+        When("I complete a meditation challenge at level 152", when.selectAndCompleteMeditationChallenge(600), async () => {
+            // we need triggerAppUpdateState to mimic a user leaving the app to meditate and then returning to the yulife app
             When("I trigger app update", when.triggerAppUpdateState, async () => {
                 When("I wait", when.wait(5000), async () => {
                     When("I tap awesome", when.tapText("Awesome"), async () => {

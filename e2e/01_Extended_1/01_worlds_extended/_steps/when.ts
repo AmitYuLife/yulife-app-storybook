@@ -1,5 +1,5 @@
 import { screens } from "@appScreens"
-import { navigation, navigateViaID, LEVEL_CHALLENGE_BUTTON, QUESTS_SCREEN_YUNIVERSAL, textVisible } from "@utils"
+import { navigation, navigateViaID, LEVEL_CHALLENGE_BUTTON, QUESTS_SCREEN_YUNIVERSAL, textVisible, CHALLENGE_TILE } from "@utils"
 export { authoriseFitkit, sendSteps } from "@socket";
 import { sendSteps, fitKitAddSampleQueries, sendMindfulnessData } from "@socket"
 import moment = require("moment");
@@ -110,8 +110,11 @@ export const tapYuniverseLevelAfterFirstTime = (x: number, y: number) => async (
     await element(by.id(QUESTS_SCREEN_YUNIVERSAL(2))).tapAtPoint({x:x, y:y});
 }
 
-export const selectAndCompleteMeditationChallenge = (challengeType: string, mindfulnessdata: number) => async () => {
-    await startChallenge(challengeType)()
+export const selectAndCompleteMeditationChallenge = (mindfulnessdata: number) => async () => {
+    await navigateViaID(CHALLENGE_TILE("meditation"))
+    await navigateViaText("Take challenge")
+    await tapText("Use a different app")()
+    await tapText("maybe later")()
     await tapText("I'm using a different app")()
     await sendMindfulnessData(mindfulnessdata, 75000)()
     await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)

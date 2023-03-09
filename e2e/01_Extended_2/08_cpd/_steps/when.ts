@@ -68,7 +68,13 @@ export const retakeQuiz = async () => {
 }
 
 export const scrollToChapter = (module: typeof YUNIVERSITY_COURSE_MODULE_1, chapter: number, direction: "up" | "down") => async () => {
-    const { durationMinutes } = module.data.chapters[chapter - 1]
+    const { durationMinutes, title } = module.data.chapters[chapter - 1]
+    const chapterInfo = `${durationMinutes} min \u2022 Video`
+    const chapterTitle = `Chapter ${chapter}: ${title}`
 
-    await scrollUntilTextVisibleAtIndex(CPD_COURSE_SCROLL_VIEW, `${durationMinutes} min \u2022 Video`, direction, chapter - 1)()
+    if (direction === "up") {
+        await scrollUntilTextVisibleAtIndex(CPD_COURSE_SCROLL_VIEW, chapterTitle, direction, chapter - 1)()
+    } else {
+        await scrollUntilTextVisibleAtIndex(CPD_COURSE_SCROLL_VIEW, chapterInfo, direction, chapter - 1)()
+    }
 }
