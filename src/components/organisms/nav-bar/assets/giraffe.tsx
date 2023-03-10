@@ -42,6 +42,10 @@ export default function Girrafe({ isActive, onPressIn, onPressOut, isHighlighted
             strokeLinecap="round"
             strokeMiterlimit={10}
           />
+          <Path
+            d="M25.75 10.55c0-.2.1-.3.3-.4l.2-.1a.3.3 0 01.4 0l.3.3v.4l.1.1c.1.1.1.2.2.3l.3.8.6-.6.3-.2h.1a.09.09 0 00.1-.1l.1-.2a.56.56 0 01.7-.2l.1.1.1.1a.76.76 0 01.2.4.52.52 0 01-.2.4l-.4.1a.09.09 0 00-.1.1V12c-.1.1-.1.2-.2.3l-.7.5a1.35 1.35 0 00-.5.9l-.1.4v.4a2.43 2.43 0 00-.6-.1l-.5-.1V14l.1-.4a1.23 1.23 0 00-.2-1l-.3-.8c-.1-.1-.1-.2-.1-.4v-.2l-.2-.2a.24.24 0 01-.2-.29.27.27 0 01.1-.16z"
+            fill={fill}
+          />
         </G>
       </Svg>
       <Text style={[styles.text, { color: fill }]}>{t("navbar.yucoin.label")}</Text>
