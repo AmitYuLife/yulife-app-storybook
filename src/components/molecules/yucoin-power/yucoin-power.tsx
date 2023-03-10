@@ -147,7 +147,7 @@ const YuCoinPower = ({ coins, width = Style.adjust(281), height, hideInfoIcon, i
         textAnchor="middle"
         fill={PALETTE.k}
       >
-        {inactive ? "X" : coins}
+        {coins}
       </Text>
     </Svg>
   );
