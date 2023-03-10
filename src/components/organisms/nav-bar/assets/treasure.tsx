@@ -57,6 +57,10 @@ export default function Treasure({ isActive, onPressIn, onPressOut, isHighlighte
             strokeMiterlimit={10}
           />
           <Path d="M22.75 12.65h9.5" fill="none" stroke={fill} strokeLinecap="round" strokeLinejoin="round" />
+          <Path
+            d="M20 8a.56.56 0 00-.7-.2c-.3.1-.3.4-.2.7z m-.1 1.9a.51.51 0 00.9-.5z m-2.4.9a.51.51 0 00-.61.36.52.52 0 00.21.54z m.9 1.5a.5.5 0 00.6-.8.09.09 0 01-.1-.1h-.2z m-2.1 2a.5.5 0 000 1z m1.5 1a.47.47 0 00.5-.44v-.06a.47.47 0 00-.44-.5h-.06z m1.4-6.8l.8 1.4.9-.5-.85-1.4z m-2.1 3.3l1.3.6.4-.9-1.3-.6z m-.8 3.5h1.5v-1h-1.5z"
+            fill={fill}
+          />
         </G>
       </Svg>
       <Text style={[styles.text, { color: fill }]}>{t("navbar.rewards.label")}</Text>
