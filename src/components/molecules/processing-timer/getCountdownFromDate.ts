@@ -23,18 +23,19 @@ export const getCountdownFromSeconds = (secondsDiff: number) => {
 };
 
 function getRawDiffInUnits(secondsDiff: number) {
-  const days = Math.floor(secondsDiff / (60 * 60 * 24));
-  const hours = Math.floor((secondsDiff % (60 * 60 * 24)) / (60 * 60));
+  const seconds = Math.max(Math.floor(secondsDiff % 60), 0);
   /**
    * +1 since we're omitting seconds
    */
-  const minutes = Math.floor((secondsDiff % (60 * 60)) / 60) + 1;
-  const seconds = Math.floor(secondsDiff % 60);
+  const minutes = Math.max(Math.floor((secondsDiff % (60 * 60)) / 60) + 1, 0);
+
+  const hours = Math.max(Math.floor((secondsDiff % (60 * 60 * 24)) / (60 * 60)) + (minutes === 60 ? 1 : 0), 0);
+  const days = Math.max(Math.floor(secondsDiff / (60 * 60 * 24)) + hours === 24 ? 1 : 0, 0);
 
   return {
-    days: days < 0 ? 0 : days,
-    hours: hours < 0 ? 0 : hours,
-    minutes: minutes < 0 ? 0 : minutes,
-    seconds: seconds < 0 ? 0 : seconds,
+    days,
+    hours: hours % 24,
+    minutes: minutes % 60,
+    seconds,
   };
 }
