@@ -3,50 +3,63 @@ import EncryptedStorage from "react-native-encrypted-storage";
 import Logger from "@services/logging/logger";
 import { AppState, Platform } from "react-native";
 
-const TOKEN_KEY = "@Store:token";
-
-export async function setToken(token: string): Promise<void> {
-  try {
-    await EncryptedStorage.setItem(TOKEN_KEY, token);
-  } catch (e) {
-    if (shouldLogError()) {
-      Logger.error(e, { event: "EncryptedStorage:setToken" });
+class TokenService {
+  private TOKEN_KEY = "@Store:token";
+  private tempToken: string | null = null;
+  // iOS cannot access the encrypted storage while the app is on background
+  // only log errors for ios on active state and android in any state
+  private shouldLogError = Platform.select({ android: true, ios: AppState.currentState === "active" });
+  public setToken = async (token: string) => {
+    try {
+      await EncryptedStorage.setItem(this.TOKEN_KEY, token);
+      this.tempToken = token;
+    } catch (e) {
+      if (this.shouldLogError) {
+        Logger.error(e, { event: "EncryptedStorage:setToken" });
+      }
     }
-  }
+  };
+
+  public getToken = async () => {
+    try {
+      if (this.tempToken) {
+        return this.tempToken;
+      }
+
+      const securedToken = await EncryptedStorage.getItem(this.TOKEN_KEY);
+
+      if (!securedToken?.length) {
+        const token = await AsyncStorage.getItem(this.TOKEN_KEY);
+        this.tempToken = token;
+        return token;
+      }
+
+      this.tempToken = securedToken;
+      return securedToken;
+    } catch (e) {
+      if (this.shouldLogError) {
+        Logger.error(e, { event: "EncryptedStorage:getToken" });
+      }
+
+      return null;
+    }
+  };
+
+  public clearToken = async () => {
+    try {
+      this.tempToken = null;
+      await AsyncStorage.removeItem(this.TOKEN_KEY);
+      await EncryptedStorage.removeItem(this.TOKEN_KEY);
+    } catch (e) {
+      if (this.shouldLogError) {
+        Logger.error(e, { event: "EncryptedStorage:clearToken" });
+      }
+
+      return;
+    }
+  };
 }
 
-export async function getToken(): Promise<string | null> {
-  try {
-    const securedToken = await EncryptedStorage.getItem(TOKEN_KEY);
-
-    if (!securedToken?.length) {
-      const token = await AsyncStorage.getItem(TOKEN_KEY);
-      return token;
-    }
-
-    return securedToken;
-  } catch (e) {
-    if (shouldLogError()) {
-      Logger.error(e, { event: "EncryptedStorage:getToken" });
-    }
-
-    return null;
-  }
-}
-
-export async function clearToken(): Promise<void> {
-  try {
-    await AsyncStorage.removeItem(TOKEN_KEY);
-    await EncryptedStorage.removeItem(TOKEN_KEY);
-  } catch (e) {
-    if (shouldLogError()) {
-      Logger.error(e, { event: "EncryptedStorage:clearToken" });
-    }
-
-    return;
-  }
-}
-
-// iOS cannot access the encrypted storage while the app is on background
-// only log errors for ios on active state and android in any state
-const shouldLogError = () => Platform.select({ android: true, ios: AppState.currentState === "active" });
+export const tokenService = new TokenService();
+const [getToken, setToken, clearToken] = [tokenService.getToken, tokenService.setToken, tokenService.clearToken];
+export { getToken, setToken, clearToken };
