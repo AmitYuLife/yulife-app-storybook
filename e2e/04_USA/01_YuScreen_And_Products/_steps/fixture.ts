@@ -282,6 +282,7 @@ export const Guardian_LTD:USProductData = {
 
 export const Guardian_VADD:USProductData = {
     id: "Guardian_VADD",
+    slotAbreviation: "Voluntary AD&D insurance",
     heading: "Voluntary Accidental Death & Dismemberment insurance",
     description: "Guardian AD&D insurance provides additional protection.",
     shortDescription: "Guardian's Voluntary AD&D insurance gives you an affordable way to personalize your coverage and meet your family's needs.",

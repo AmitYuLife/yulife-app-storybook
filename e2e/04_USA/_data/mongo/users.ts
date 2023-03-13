@@ -52,6 +52,10 @@ export const USER_USA_3 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_USA_1.data.customerId,
+        products: [{
+            earnRate: 0,
+        }],
+        earnRate: 0,
         nickname:"Third User USA"
     }
 } as IDatabaseItem
@@ -63,6 +67,10 @@ export const USER_USA_4 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_USA_1.data.customerId,
+        products: [{
+            earnRate: 0,
+        }],
+        earnRate: 0,
         nickname:"Fourth User USA"
     }
 } as IDatabaseItem
