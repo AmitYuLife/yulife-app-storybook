@@ -76,19 +76,19 @@ export const onboardingUsYuscreenV4 = (packType: string, yuCoinPower: string) =>
       await textVisible(text.Guardian_DENCHOI.slotAbreviation)();
       await textVisible(text.moreInsurance)();
       break;
-    case "WLIF/ULIF/VADD":
+    case "LTD/STD/VADD":
       await textVisible(yuCoinPower)();
       await textVisible(earnRate0)();
-      await textVisibleAtIndex(text.Guardian_WLIF.slotAbreviation, 0)();
-      await textVisibleAtIndex(text.Guardian_ULIF.slotAbreviation, 1)();
+      await textVisible(text.Guardian_LTD.slotAbreviation)();
+      await textVisible(text.Guardian_STD.slotAbreviation)();
       await textVisible(text.Guardian_ADD.slotAbreviation)();
       await textVisible(text.moreInsurance)();
       break;
-    case "VLTD/VSTD/ACC":
+    case "CRI/HI/ACC":
       await textVisible(yuCoinPower)();
       await textVisible(earnRate0)();
-      await textVisible(text.Guardian_VLTD.slotAbreviation)();
-      await textVisible(text.Guardian_VSTD.slotAbreviation)();
+      await textVisible(text.Guardian_CRI.slotAbreviation)();
+      await textVisible(text.Guardian_HI.slotAbreviation)();
       await textVisible(text.Guardian_ACC.heading)();
       await textVisible(text.moreInsurance)();
       break;
@@ -147,10 +147,8 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       break;
     case "WLIF/ULIF/ADD/STD/LTD":
       await textVisible(yuCoinPower)();
-      await textVisibleAtIndex(text.Guardian_WLIF.slotAbreviation, 0)();
-      await textVisibleAtIndex(text.Guardian_ULIF.slotAbreviation, 1)();
-      await textVisible(`${CPE_WLIF_2.data.earn_rate}`)();
-      await textVisible(`${CPE_ULIF_2.data.earn_rate}`)();
+      await textVisible(text.Guardian_VADD.slotAbreviation)();
+      await textVisible(text.Guardian_ULIF.slotAbreviation)();
       await textVisible(text.Guardian_ADD.slotAbreviation)();
       await textVisible(text.Guardian_STD.slotAbreviation)();
       await textVisible(text.Guardian_LTD.slotAbreviation)();
@@ -167,12 +165,10 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
         element(by.text(`${text.EnrolmentEndDate + moment(BPEEW_USA_2.data.enrolment_end_date).format("MM/DD/YYYY")}`))
       ).toBeVisible();
       break;
-    case "VLTD/VSTD/ACC/CRI/HI":
+    case "VLTD/SPDIS/ACC/CRI/HI":
       await textVisible(yuCoinPower)();
       await textVisible(text.Guardian_VLTD.slotAbreviation)();
-      await textVisible(text.Guardian_VSTD.slotAbreviation)();
-      await textVisible(`${CPE_VSTD_3.data.earn_rate}`)();
-      await textVisible(`${CPE_VLTD_3.data.earn_rate}`)();
+      await textVisible(text.Guardian_SPDIS.slotAbreviation)();
       await textVisible(text.Guardian_ACC.heading)();
       await textVisible(text.Guardian_CRI.slotAbreviation)();
       await textVisible(text.Guardian_HI.slotAbreviation)();
@@ -193,8 +189,6 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       await textVisible(yuCoinPower)();
       await textVisible(text.Guardian_CAN.heading)();
       await textVisible(text.Guardian_ACCSICK.slotAbreviation)();
-      await textVisible(`${CPE_ACCSICK_4.data.earn_rate}`)();
-      await textVisible(`${CPE_CAN_4.data.earn_rate}`)();
       await textVisible(text.Guardian_VLIF.slotAbreviation)();
       if (device.name.includes("(iPhone 14 Pro)")) {
         await expect(element(by.text(text.MoreProtection))).toBeNotVisible();

@@ -80,7 +80,7 @@ Feature("I am able to see Product Details in US YU Screen ", async () => {
       "I login as a user",
       given.logInAndGoToTab("yu", CUSTOMER_USA_2, AUTH_USA_2, true, "United States"),
       async () => {
-        helper.ONBOARDING_YUSCREEN("WLIF/ULIF/VADD", "1");
+        helper.ONBOARDING_YUSCREEN("LTD/STD/VADD", "1");
         helper.YUSCREEN_USA_V4(CUSTOMER_USA_2, "WLIF/ULIF/ADD/STD/LTD", "1");
         helper.MORE_PROTECTION();
         helper.PRODUCT_CHECK(Guardian_WLIF, 0);
@@ -104,8 +104,8 @@ Feature("I am able to see Product Details in US YU Screen ", async () => {
       "I login as a user",
       given.logInAndGoToTab("yu", CUSTOMER_USA_3, AUTH_USA_3, true, "United States"),
       async () => {
-        helper.ONBOARDING_YUSCREEN("VLTD/VSTD/ACC", "1");
-        helper.YUSCREEN_USA_V4(CUSTOMER_USA_3, "VLTD/VSTD/ACC/CRI/HI", "1");
+        helper.ONBOARDING_YUSCREEN("CRI/HI/ACC", "1");
+        helper.YUSCREEN_USA_V4(CUSTOMER_USA_3, "VLTD/SPDIS/ACC/CRI/HI", "1");
         helper.MORE_PROTECTION();
         helper.PRODUCT_CHECK(Guardian_VSTD, 0);
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VSTD);

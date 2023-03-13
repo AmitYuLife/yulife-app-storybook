@@ -313,7 +313,7 @@ export const CPE_ACCSICK_4 = {
   data: {
     customer_product_id: "US_YUCPID1000001118",
     customer_id: CUSTOMER_USA_4.data.customerId,
-    earn_rate: 9,
+    earn_rate: 0,
     start_date: "2022-12-09",
     end_date: "2199-12-31",
     underwriting_step: null,

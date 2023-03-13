@@ -351,7 +351,7 @@ export const tapIDAtIndex = (id: string, index = 0, waitTime = 0) => async () =>
 export const tapTextAtIndex = (text: string, index = 0, waitTime = 0) => async () => {
     const target = element(by.text(text)).atIndex(index)
     await waitFor(target).toBeVisible().withTimeout(waitTime)
-    await target.tap()
+    await target.tap({ x:0, y:0 })
 }
 
 export const minimiseAndReopenApp = async () => {
