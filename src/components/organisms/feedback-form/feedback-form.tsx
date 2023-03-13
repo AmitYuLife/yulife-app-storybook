@@ -30,7 +30,7 @@ const FeedbackModal = ({ form, submitForm, loading }: Props) => {
     submitForm(answers);
     Logger.logMixpanelEvent("modal_dismissed", {
       name: "feedback.modal",
-      survey_title: form.title,
+      survey_title: form?.title,
       reward_value: form.awardYucoin,
     });
   }, [answers, submitForm, form]);
@@ -48,7 +48,7 @@ const FeedbackModal = ({ form, submitForm, loading }: Props) => {
           minValue: question.range.min,
           maxValue: question.range.max,
         }}
-        heading={form.title}
+        heading={form?.title}
         image={question.image.uri}
         questionText={question.questionText}
         description={question.description}
@@ -65,7 +65,7 @@ const FeedbackModal = ({ form, submitForm, loading }: Props) => {
   if (question.type === FeedbackFormQuestionType.COMMENT) {
     return (
       <CommentQuestion
-        heading={form.title}
+        heading={form?.title}
         image={question.image.uri}
         questionText={question.questionText}
         description={question.description}
@@ -83,7 +83,7 @@ const FeedbackModal = ({ form, submitForm, loading }: Props) => {
   if (question.type === FeedbackFormQuestionType.MULTIPLE_CHOICE) {
     return (
       <MultipleChoice
-        heading={form.title}
+        heading={form?.title}
         image={question.image.uri}
         questionText={question.questionText}
         description={question.description}
