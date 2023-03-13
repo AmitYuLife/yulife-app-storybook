@@ -189,3 +189,8 @@ export const addValidPostCodeAndPhone = async () => {
 export const closeScreenAtHeader = (option: "button_only" | "yulife" | "activity history") => async () => {
   await tapID(BUTTON_CLOSE_HEADER(option))();
 };
+
+export const completeYuScreenIntro = async () => {
+  await tapText('Check out my power')()
+  await tapText("I'll do this later")()
+}
