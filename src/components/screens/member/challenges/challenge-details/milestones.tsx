@@ -14,7 +14,7 @@ export interface IMilestoneProps {
   milestones?: IMilestone[];
 }
 
-const Milestones: React.FC<IMilestoneProps> = ({ milestones }) => (
+const Milestones: React.FC<IMilestoneProps> = ({ milestones = [] }) => (
   <>
     {milestones.map(({ target, rewardAmount, rewardType }, index) => (
       <View key={index} style={styles.row}>
