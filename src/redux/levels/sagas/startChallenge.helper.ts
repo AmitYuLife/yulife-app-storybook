@@ -24,7 +24,7 @@ import {
 } from "../levels.actions";
 import { DETOX_ENABLED } from "@services/socket";
 import { Task } from "redux-saga";
-import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
+import { getVideoPlayerIsActive, getActiveLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
 
 export function* startTracking(
@@ -33,6 +33,8 @@ export function* startTracking(
   endDateTime: string,
   fitKitTypes: FitKitType[]
 ) {
+  const { level }: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
+  const { yuniversalMap }: ReturnType<typeof getYuniversalProgress> = yield select(getYuniversalProgress);
   const startTime = moment(startDateTime).format(DATE_FORMAT_WITH_TZ);
   const endTime = moment(endDateTime);
   const videoPlayerIsActive: ReturnType<typeof getVideoPlayerIsActive> = yield select(getVideoPlayerIsActive);
@@ -64,7 +66,7 @@ export function* startTracking(
           value: Math.floor(queryResult.results.reduce((accumulator, session) => accumulator + session.value, 0)),
         };
 
-        const { data } = yield call(UpdateQuestMapLevelChallenge, levelSlotId, results);
+        const { data } = yield call(UpdateQuestMapLevelChallenge, levelSlotId, results, level, yuniversalMap || null);
         const challengeData: UpdateQuestMapActiveChallenge = data?.updateQuestMapLevelChallenge;
 
         yield put(challengeUpdateSuccessAction(challengeData?.challenge));
