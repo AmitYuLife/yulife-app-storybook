@@ -7,12 +7,13 @@ import { Unpacked } from "@utils";
 import { call, put, select, spawn, delay } from "redux-saga/effects";
 import { challengeEndFailAction, challengeEndSuccessAction, challengeResetSuccessAction } from "../levels.actions";
 import { getEndResult } from "../levels.helpers";
-import { getActiveLevel } from "../levels.selectors";
+import { getActiveLevel, getYuniversalProgress } from "../levels.selectors";
 
 const RETRY_UPDATE_CHALLENGE_COUNT = 5;
 
 export default function* endChallengeSaga() {
   const active: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
+  const { yuniversalMap }: ReturnType<typeof getYuniversalProgress> = yield select(getYuniversalProgress);
 
   if (active) {
     const { milestones, milestonesLog, ...metaData } = active; // eslint-disable-line @typescript-eslint/no-unused-vars
@@ -32,7 +33,13 @@ export default function* endChallengeSaga() {
         let challengeStatus = "active";
         let updateActiveChallengeCount = 0;
         while (challengeStatus !== "completed" && updateActiveChallengeCount < RETRY_UPDATE_CHALLENGE_COUNT) {
-          const { data } = yield call(UpdateQuestMapLevelChallenge, active.levelSlotId, result);
+          const { data } = yield call(
+            UpdateQuestMapLevelChallenge,
+            active.levelSlotId,
+            result,
+            active.level,
+            yuniversalMap || null
+          );
           challengeData = data?.updateQuestMapLevelChallenge;
 
           challengeStatus = challengeData?.challenge?.status;
