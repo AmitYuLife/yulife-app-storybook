@@ -132,18 +132,15 @@ const MeditopiaMediaListContainer = ({
     });
   }, []);
 
-  const formattedVideos = useMemo(
-    () =>
-      data?.getQuestMapLevelChallengeContent?.map(({ media, reward, stars, formattedDuration }) => {
-        return {
-          ...media,
-          reward,
-          stars,
-          formattedDuration,
-        };
-      }),
-    [data?.getQuestMapLevelChallengeContent]
-  );
+  const formattedVideos = useMemo(() => {
+    const videos = data?.getQuestMapLevelChallengeContent || [];
+    return videos.map(({ media, reward, stars, formattedDuration }) => ({
+      ...media,
+      reward,
+      stars,
+      formattedDuration,
+    }));
+  }, [data?.getQuestMapLevelChallengeContent]);
 
   return (
     <MeditopiaMediaListScreen
@@ -153,7 +150,7 @@ const MeditopiaMediaListContainer = ({
       buttons={buttons}
       description={description}
       levelSlotId={levelSlotId}
-      loading={loading || formattedVideos?.length === 0}
+      loading={loading || formattedVideos.length === 0}
       onLeftIconPress={onLeftIconPress}
       onRightIconPress={onRightIconPress}
       handleOtherMeditationApp={handleOtherMeditationApp}
