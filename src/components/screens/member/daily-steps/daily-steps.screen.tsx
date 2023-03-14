@@ -7,7 +7,7 @@ import { IConnectedScreenProps } from "@app/typings";
 import { Pad, YuCoinBadge } from "@atoms";
 import { TouchableOpacityWithDelay, CentredScreen } from "@molecules";
 import { Surge, Streak, TopBar, NavBar, DailyStepsContent, CustomIcon } from "@organisms";
-import { Style } from "@styles";
+import { Style, TOP_BAR } from "@styles";
 import styles from "./daily-steps.screen.styles";
 import ReferralsPopover from "./referrals-popover";
 import {
@@ -61,7 +61,8 @@ const DailyStepsScreen = ({
     () =>
       currentModal === MODALS.blurredOverlay
         ? {
-            androidImportantForAccessibility: "no-hide-descendants" as AccessibilityPropsAndroid["importantForAccessibility"],
+            androidImportantForAccessibility:
+              "no-hide-descendants" as AccessibilityPropsAndroid["importantForAccessibility"],
             accessibilityElementsHidden: true,
           }
         : {
@@ -86,12 +87,18 @@ const DailyStepsScreen = ({
       {
         icon: LeftIcon.MENU,
         onPress: onLeftMenuPress,
+        style: { marginRight: Style.adjust(16) },
       },
       ...(onNotificationPress
         ? [
             {
               icon: LeftIcon.NOTIFICATIONS,
               onPress: onNotificationPress,
+              style: { paddingLeft: Style.adjust(8) },
+              hitSlop: {
+                ...TOP_BAR.HIT_SLOP,
+                left: 0,
+              },
             },
           ]
         : []),

@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from "react";
-import { TouchableOpacity, View, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { TouchableOpacity, View, StyleSheet, TextStyle, ViewStyle, Insets } from "react-native";
 import { BUTTON_TOP_LEFT_BAR, MENU_ICON_BADGE } from "@ids";
 import { Back, CloseSvg } from "@atoms";
 import { Menu } from "../assets";
@@ -14,8 +14,17 @@ export enum LeftIcon {
   CLOSE = "Close",
   NOTIFICATIONS = "Notifications",
 }
+
+export interface IIcon {
+  icon: LeftIcon;
+  onPress: () => void;
+  hitSlop?: Insets;
+  style?: ViewStyle;
+  hasBadge?: boolean;
+}
+
 interface Props {
-  icons?: { icon: LeftIcon; onPress: () => void }[];
+  icons?: IIcon[];
   hasBadge: boolean;
   colour: string;
   label: string;
@@ -27,11 +36,11 @@ const Left = ({ icons = [], hasBadge, colour, label, textStyle }: Props) => {
 
   return (
     <View style={styles.wrapper}>
-      {filteredIcons.map(({ icon, onPress }) => (
+      {filteredIcons.map(({ icon, onPress, hitSlop, style }) => (
         <TouchableOpacity
           key={icon}
-          hitSlop={TOP_BAR.HIT_SLOP}
-          style={styles.icon}
+          hitSlop={hitSlop || TOP_BAR.HIT_SLOP}
+          style={[styles.icon, style]}
           onPress={onPress}
           testID={BUTTON_TOP_LEFT_BAR}
           accessibilityLabel={getAccessibilityLabel(icon)}
