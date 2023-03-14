@@ -66,4 +66,6 @@ export type MixpanelEvent =
   | "challenge_subcollection_viewed"
   | "media_not_loaded"
   | "mindfulness_app_open"
-  | "challenge_selected";
+  | "challenge_selected"
+  | "leaderboard_switched"
+  | "leaderboard_toggle";
