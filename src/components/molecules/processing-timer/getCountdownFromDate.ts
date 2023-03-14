@@ -30,7 +30,7 @@ function getRawDiffInUnits(secondsDiff: number) {
   const minutes = Math.max(Math.floor((secondsDiff % (60 * 60)) / 60) + 1, 0);
 
   const hours = Math.max(Math.floor((secondsDiff % (60 * 60 * 24)) / (60 * 60)) + (minutes === 60 ? 1 : 0), 0);
-  const days = Math.max(Math.floor(secondsDiff / (60 * 60 * 24)) + hours === 24 ? 1 : 0, 0);
+  const days = Math.max(Math.floor(secondsDiff / (60 * 60 * 24)) + (hours === 24 ? 1 : 0), 0);
 
   return {
     days,
