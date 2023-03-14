@@ -4,6 +4,7 @@ import { screens } from "@appScreens"
 import { scrollUntilTextVisible, swipeFromText } from "_utils/navigation/scrolling"
 import moment from "moment"
 import { PAYMENT_PLAN_DENTAL_1 } from "@data"
+export { onYuscreenV4 } from "_utils/appScreens/yuscreen"
 
 
 export const {

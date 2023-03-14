@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_45, CUSTOMER_46, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_53, CUSTOMER_9, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_PLI_6, CUSTOMER_PLI_7, CUSTOMER_PLI_9, CUSTOMER_PLI_10, CUSTOMER_74, CUSTOMER_82 } from "./customers";
+import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_45, CUSTOMER_46, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_53, CUSTOMER_9, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_PLI_6, CUSTOMER_PLI_7, CUSTOMER_PLI_9, CUSTOMER_PLI_10, CUSTOMER_74, CUSTOMER_82, CUSTOMER_85 } from "./customers";
 import moment from "moment"
 
 
@@ -597,3 +597,31 @@ export const CPE_82_RGL = {
         start_date: moment().add(1, 'week')
     }
 } as IDatabaseItem
+
+
+export const CPE_85 = {
+    type,
+    modelName,
+    data: {
+        customer_product_id : "YUCPID00000001491",
+        "customer_id" : CUSTOMER_85.data.customerId,
+        "earn_rate" : 10,
+        "start_date" : "2023-03-10",
+        "end_date" : "2199-12-31",
+        "underwriting_step" : null,
+        "is_banned_from_product" : false,
+        "archived" : true,
+        "archived_at" : null,
+        "taken_up" : false,
+        "accounted_for_join_date" : null,
+        "accounted_for_leave_date" : null,
+        "is_joiner" : null,
+        "created_at" : "2023-03-10T13:54:06.914Z",
+        "created_by_id" : null,
+        "modified_at" : "2023-03-10T17:27:47.678Z",
+        "modified_by_id" : "1.114.0",
+        "product_variant_id" : "Bupa_Dent_01_03",
+        "world_id" : "forest"
+    }
+} as IDatabaseItem
+    

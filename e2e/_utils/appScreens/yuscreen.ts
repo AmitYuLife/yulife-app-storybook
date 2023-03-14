@@ -384,8 +384,15 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
       await expect(element(by.text(dentalYuCoinPower))).toBeVisible();
       await expect(element(by.text(noProductText))).toBeVisible();
       await expect(element(by.text(addLifeInsurance))).not.toBeVisible();
-
       break;
+    case "canceledDental":
+      await textVisible(yuCoinPower)();
+      await expect(element(by.text(addDental))).not.toBeVisible();
+      await expect(element(by.text(dentalInsurance))).not.toBeVisible();
+      await expect(element(by.text(dentalYuCoinPower))).not.toBeVisible();
+      await expect(element(by.text(noProductText))).toBeVisible();
+      await expect(element(by.text(addLifeInsurance))).toBeVisible();
+      await expect(element(by.text(PLIYuCoinPower))).toBeVisible();
     default:
       break;
   }

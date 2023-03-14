@@ -56,6 +56,7 @@ import {
   USER_51,
   USER_DENTAL_1,
   USER_DENTAL_2,
+  USER_85,
 } from "./users";
 
 const type = "mongo";
@@ -870,6 +871,26 @@ export const USER_ONBOARDING_CUSTOMER_DENTAL_2 = {
   data: {
     _id: generateRandomMongoId(),
     userId: USER_DENTAL_2.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      yuScreenChest: true,
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      personalProductLaunchDental: true,
+      personalProductLaunchPLI: true,
+      yuScreenGloves: true,
+      yuScreenOnboarding: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_CUSTOMER_DENTAL_85 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_85.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
