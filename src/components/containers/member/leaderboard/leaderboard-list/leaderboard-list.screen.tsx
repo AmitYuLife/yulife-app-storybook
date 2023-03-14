@@ -12,8 +12,8 @@ interface IProps {
   onRefresh: () => void;
   onLeftIconPress?: () => void;
   onRightIconPress?: () => void;
-  onChangeActiveLeaderboard: (id: string) => void;
-  onChangeLeaderboardConsent: (leaderboardId: string, consent: boolean) => void;
+  onChangeActiveLeaderboard: (id: string, name: string) => void;
+  onChangeLeaderboardConsent: (id: string, consent: boolean, name: string) => void;
 }
 
 function LeaderboardOptionsScreen(props: IProps) {

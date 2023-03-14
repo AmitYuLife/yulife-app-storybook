@@ -12,6 +12,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { IMainTabsProps, showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeen, useTapBackTwiceToExit } from "@hooks";
 import { NetworkStatus } from "@apollo/client";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 type OwnProps = IMainTabsProps;
 
@@ -46,6 +47,13 @@ const ActiveLeaderboardContainer = (props: Props) => {
   }, [refetch]);
 
   const setConsent = useCallback(() => {
+    dispatch(
+      logMixpanelEventActionCreator("leaderboard_toggle", {
+        name: activeLeaderboard?.name,
+        isActive: true,
+      })
+    );
+
     dispatch(updateLeaderboardConsent({ leaderboardId: activeLeaderboard?.leaderboardId, consent: true }));
   }, [activeLeaderboard, dispatch]);
 
