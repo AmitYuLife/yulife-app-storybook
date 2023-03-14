@@ -26,6 +26,7 @@ export const EnrolmentButton = "Lets go!"
 export const SurveyText = "We love hearing from you.\nHelp shape the future of YuLife!"
 export const SurveyLabel = "Share your thoughts"
 export const yuMojiBuilder = "Create your Yumoji to step into the Yuniverse"
+export const HowToEnroll = "How to enroll"
 
 
 //Footer copy texts

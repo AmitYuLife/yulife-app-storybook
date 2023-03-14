@@ -1,4 +1,4 @@
-import { CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_45, CUSTOMER_PLI_6 } from "./customers";
+import { CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_45, CUSTOMER_PLI_6, CUSTOMER_85 } from "./customers";
 import { generateRandomPostgresId } from "@yu-life/yulife-bdd-framework";
 
 const modelName = "payment_plan";
@@ -46,3 +46,19 @@ export const PAYMENT_PLAN_PLI_6 = {
         paymentCaptureDaysAfterInvoice: 0
     }
 };
+
+export const PAYMENT_PLAN_DENTAL_85 = {
+    type: "postgres",
+    modelName,
+    data: {
+        planId: generateRandomPostgresId(),
+        providerSubscriptionId:`sub_${CUSTOMER_85.data.customerId}`,
+        raiseInvoiceDayOfMonth: 1,
+        paymentCaptureDaysAfterInvoice: 0,
+        "created_at" : "2022-08-22T14:39:15.317Z",
+        "created_by_id" : null,
+        "modified_at" : "2023-02-01T06:06:15.053Z",
+        "modified_by_id" : "1.108.0"
+    }
+}
+    

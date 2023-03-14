@@ -1,6 +1,6 @@
 import moment from "moment";
-import { CUSTOMER_QUOTE_DENTAL_1, CUSTOMER_QUOTE_DENTAL_2, CUSTOMER_QUOTE_DENTAL_3, CUSTOMER_QUOTE_PLI_6 } from "./customer_quote";
-import { CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2,  CUSTOMER_45, CUSTOMER_PLI_6 } from "./customers";
+import { CUSTOMER_QUOTE_DENTAL_1, CUSTOMER_QUOTE_DENTAL_2, CUSTOMER_QUOTE_DENTAL_3, CUSTOMER_QUOTE_DENTAL_85, CUSTOMER_QUOTE_PLI_6 } from "./customer_quote";
+import { CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2,  CUSTOMER_45, CUSTOMER_PLI_6, CUSTOMER_85 } from "./customers";
 import { generateRandomPostgresId } from "@yu-life/yulife-bdd-framework";
 
 const modelName = "customer_policy";
@@ -117,3 +117,49 @@ export const CUSTOMER_POLICY_PLI_6 = {
         "external_policy_id" : null
     }
 };
+
+export const CUSTOMER_POLICY_DENTAL_85 = {
+    type: "postgres",
+    modelName,
+    data: {
+        policyId : generateRandomPostgresId(),
+        "quote_id" : CUSTOMER_QUOTE_DENTAL_85.data.quoteId,
+        "policy_owner" :`${ CUSTOMER_85.data.firstName} ${ CUSTOMER_85.data.lastName}`,
+        "policy_type" : "Dental",
+        "product_code" : null,
+        "start_date" : "2023-03-01T00:00:00.000Z",
+        "end_date" : null,
+        "final_payment" : null,
+        "treaty_indicator" : false,
+        "policy_status" : "Termination",
+        "new_business_indicator" : false,
+        "indexation" : "Level",
+        "indexation_percentage" : 0,
+        "indexation_frequency" : "Monthly",
+        "premium_frequency" : "Monthly",
+        "esc_benefit_type" : "N",
+        "esc_premium_type" : "N",
+        "annual_premium_increase_rate" : null,
+        "joint_life_indicator" : "Single",
+        "initial_sum_assured" : null,
+        "initial_sum_re_assured" : null,
+        "standard_reinsurace_premium" : null,
+        "sub_standard_reinsurance_premium" : null,
+        "company_fca" : 783352,
+        "gio_option" : false,
+        "gio_option_taken" : false,
+        "gio_reference" : null,
+        "region" : "UK",
+        "post_issue_sample" : false,
+        "archived" : true,
+        "archived_reason" : "policy_cancelled",
+        "archived_at" : "2023-03-10T17:27:47.000Z",
+        "record_modified_at" : "2023-03-10T14:00:21.000Z",
+        "created_at" : "2023-03-10T14:00:13.305Z",
+        "created_by_id" : null,
+        "modified_at" : "2023-03-10T17:27:47.678Z",
+        "modified_by_id" : "1.114.0",
+        "external_policy_id" : "00000000000000"
+    }
+}
+    

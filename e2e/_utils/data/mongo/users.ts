@@ -89,6 +89,7 @@ import {
   CUSTOMER_83,
   CUSTOMER_DENTAL_1,
   CUSTOMER_DENTAL_2,
+  CUSTOMER_85,
 } from "../postgres/customers";
 import moment from "moment";
 
@@ -1672,6 +1673,32 @@ export const USER_DENTAL_2 = {
     _id: generateRandomMongoId(),
     userId: CUSTOMER_DENTAL_2.data.customerId,
     nickname: "Sloogy Dreamer",
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 0,
+      },
+    ],
+    earnRate: 0,
+    activityLastReceived: {
+      cycling: moment().subtract(5, "days").toString(),
+      steps: moment().subtract(5, "days").toString(),
+      meditation: moment().subtract(5, "days").toString(),
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_85 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_85.data.customerId,
+    nickname: "Dental Cancelled",
     products: [
       {
         productId: generateRandomMongoId(),

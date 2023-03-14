@@ -1,4 +1,4 @@
-import { PAYMENT_PLAN_DENTAL_1, PAYMENT_PLAN_DENTAL_2, PAYMENT_PLAN_DENTAL_3, PAYMENT_PLAN_PLI_6 } from "./payment_plan";
+import { PAYMENT_PLAN_DENTAL_1, PAYMENT_PLAN_DENTAL_2, PAYMENT_PLAN_DENTAL_3, PAYMENT_PLAN_DENTAL_85, PAYMENT_PLAN_PLI_6 } from "./payment_plan";
 import moment from "moment";
 
 
@@ -48,5 +48,17 @@ export const PAYMENT_PLAN_INVOICE_6 = {
         created_at: moment().subtract(1, "m").format(),
         planId: PAYMENT_PLAN_PLI_6.data.planId,
         status: "failed",
+    }
+};
+
+export const PAYMENT_PLAN_INVOICE_85 = {
+    type: "postgres",
+    modelName,
+    data: {
+        amount: 1899,
+        chargeCapturedDate: `${moment().subtract(10, "d").format("YYYY-MM-DD")}`,
+        planId: PAYMENT_PLAN_DENTAL_85.data.planId,
+        created_at: moment().subtract(10, "d").format(),
+        status: "charged"
     }
 };

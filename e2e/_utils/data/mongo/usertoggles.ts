@@ -83,6 +83,7 @@ import {
   CUSTOMER_81,
   CUSTOMER_83,
   CUSTOMER_84,
+  CUSTOMER_85,
 } from "../postgres/customers";
 import {
   allTogglesTrue,
@@ -1586,6 +1587,24 @@ export const CUSTOMER_84_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showDuels: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_DENTAL_85_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_85.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      hideSmartHealthScreen: false,
+      hideYuMatterScreen: true,
+      showDuels: true,
+      hasBupaDentActive: true,
+      yuScreenV4: true,
+      hasCoveaFibActive: true,
     },
   },
 } as IDatabaseItem;
