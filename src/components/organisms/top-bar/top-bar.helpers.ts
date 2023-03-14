@@ -1,7 +1,7 @@
 import { padNum } from "@utils";
 import { Colours } from "@styles/index";
 import { ComponentProps } from "react";
-import { LeftIcon } from "./subcomponents/left";
+import { LeftIcon, IIcon } from "./subcomponents/left";
 import Right, { RightIconTypes } from "./subcomponents/right";
 import { LayoutChangeEvent } from "react-native";
 import { TopBarType } from "@graphql/_core/schema/globalTypes";
@@ -23,11 +23,7 @@ export type TopBarViewProps = {
   menuLabel?: string;
   leftIcon?: LeftIcon;
   leftIconHasBadge?: boolean;
-  leftIcons?: {
-    icon: LeftIcon;
-    onPress: () => void;
-    hasBadge?: boolean;
-  }[];
+  leftIcons?: IIcon[];
   middleLabel?: string;
   type?: TopBarTypes;
   rightIcon?: RightIconTypes;
