@@ -9,10 +9,8 @@ export const GQL_FRAGMENT_USER = gql`
     lastName
     dateOfBirth
     createdAt
-    onboardingDate
     redeemedOnboarding
     businessAccountId
-    membershipType
     challengesDoneToday
     connections {
       name

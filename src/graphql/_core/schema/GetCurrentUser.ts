@@ -197,10 +197,8 @@ export interface GetCurrentUser_getCurrentUser {
   lastName: string | null;
   dateOfBirth: string | null;
   createdAt: string | null;
-  onboardingDate: string | null;
   redeemedOnboarding: boolean | null;
   businessAccountId: string | null;
-  membershipType: string | null;
   challengesDoneToday: number | null;
   connections: (GetCurrentUser_getCurrentUser_connections | null)[] | null;
   userFeatures: (GetCurrentUser_getCurrentUser_userFeatures | null)[] | null;

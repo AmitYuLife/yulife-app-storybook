@@ -68,7 +68,6 @@ export interface IUserStore {
   archived: boolean;
   connections: Connection[];
   consent: MobileConsentInput;
-  membershipType: string;
   features: IFeature;
   leaderboards: ILeaderboard[];
   activeLeaderboardId: string;
@@ -124,7 +123,6 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   firstName: "",
   lastName: "",
   dateOfBirth: moment().subtract(30, "years").toISOString(), // Default to 30 years old
-  membershipType: "",
   consent: {},
   features: {},
   connections: [],
@@ -333,7 +331,6 @@ const getUserSuccess = (
       firstName,
       lastName,
       dateOfBirth,
-      membershipType,
       leaderboards = [],
       mobileConsent,
       userFeatures = [],
@@ -351,7 +348,6 @@ const getUserSuccess = (
     lastName,
     dateOfBirth,
     connections,
-    membershipType,
     consent: {
       ...mobileConsent,
     },

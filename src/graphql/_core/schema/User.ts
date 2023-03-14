@@ -197,10 +197,8 @@ export interface User {
   lastName: string | null;
   dateOfBirth: string | null;
   createdAt: string | null;
-  onboardingDate: string | null;
   redeemedOnboarding: boolean | null;
   businessAccountId: string | null;
-  membershipType: string | null;
   challengesDoneToday: number | null;
   connections: (User_connections | null)[] | null;
   userFeatures: (User_userFeatures | null)[] | null;
