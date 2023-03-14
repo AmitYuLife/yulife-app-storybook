@@ -34,7 +34,30 @@ type RegionStorage = {
 class RegionService {
   private readonly REGION_STORAGE_KEY = "@yulife:region";
   private SELECTED_REGION: REGION = "UK";
-  private REGION_CONFIG: RegionConfig;
+  //fallback in case the configs is not set on app init
+  //https://yulife.atlassian.net/browse/ENG-3109
+  //https://yulife.atlassian.net/browse/ENG-3110
+  private REGION_CONFIG: RegionConfig = {
+    language: "",
+    stripeKey: "",
+    mixpanelKey: "",
+    urls: {
+      members: "",
+      website: "",
+      privacyPolicy: "",
+      rewardsPolicy: "",
+    },
+    intercom: {
+      appId: "",
+      ios: "",
+      android: "",
+    },
+    leanplum: {
+      appId: "",
+      prodKey: "",
+      devKey: "",
+    },
+  };
   public ARE_MULTIPLE_REGIONS_ENABLED = Config.MULTI_REGION_ENABLED === "true";
 
   public readonly API_URLS: Record<REGION, string> = {
