@@ -9,5 +9,5 @@ export default function* loginUserSuccessSaga({ payload }: ReturnType<typeof log
 
   // this needs to be called before setLoggerIdentity which calls setUserProperties
   yield call(Logger.setIntercomUser, user.id, intercomHash);
-  yield call(setLoggerIdentity, user.id, user.membershipType);
+  yield call(setLoggerIdentity, user.id);
 }
