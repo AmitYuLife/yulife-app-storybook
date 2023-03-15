@@ -1,4 +1,5 @@
 import RNFitKit, { PedometerResponse, SampleQueryResult } from "@services/fitkit/fitkit.service";
+import getClient from "@services/bugsnag";
 import moment from "moment";
 import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import Logger from "../logging/logger";
@@ -46,6 +47,8 @@ export async function queryFitKitSampleData<T extends boolean = false>({
   if (!fitKitTypes?.length) {
     fitKitTypes.push(undefined);
   }
+
+  getClient().leaveBreadcrumb("FitKit Sample Queried", { startTime, endTime, fitKitTypes }, "log");
 
   for (const fitKitType of fitKitTypes) {
     try {
@@ -123,6 +126,8 @@ export const queryFitKitAggregatedData = async ({
   try {
     const startTime = start.format(DATE_FORMAT_WITH_TZ);
     const endTime = end.format(DATE_FORMAT_WITH_TZ);
+
+    getClient().leaveBreadcrumb("FitKit Aggregation Queried", { startTime, endTime, fitKitTypes }, "log");
 
     const args = {
       aggregateBy: {
