@@ -18,7 +18,7 @@ export default function* getUserDataSaga() {
         return;
       }
 
-      yield spawn(setLoggerIdentity, data.getCurrentUser.id);
+      yield spawn(setLoggerIdentity, data.getCurrentUser.id, data.getIntercomHash);
 
       const isArchived = data?.getCurrentUser?.archived ?? false;
 
