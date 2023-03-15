@@ -31,6 +31,8 @@ export default class LeanplumClient {
     } else {
       Leanplum.setAppIdForProductionMode(config.appId, config.prodKey);
     }
+
+    this.start();
   };
 
   private checkIfDevMode = async () => {
@@ -56,7 +58,6 @@ export default class LeanplumClient {
       return;
     }
 
-    this.start();
     Leanplum.setUserId(userId);
   };
 
@@ -86,7 +87,7 @@ export default class LeanplumClient {
       allMessages: allMessages.map((item) => ({
         ...item,
         // deliveryTimestamp on Android will be eg: 'Wed Feb 22 14:53:58 GMT 2023'
-        deliveryTimestamp: moment.utc(item.deliveryTimestamp, "ddd MMM DD HH:mm:ss Z YYYY").toString(),
+        deliveryTimestamp: moment.utc(item.deliveryTimestamp, "ddd MMM DD HH:mm:ss Z YYYY").toISOString(),
       })),
     };
   };

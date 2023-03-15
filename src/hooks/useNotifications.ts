@@ -13,23 +13,23 @@ export const useNotifications = () => {
     setNotifications(
       inbox.allMessages
         .filter((message) => moment(message.deliveryTimestamp).isAfter(moment().subtract(7, "day")))
-        .sort(function (a, b) {
-          return moment.utc(b.deliveryTimestamp).diff(moment.utc(a.deliveryTimestamp));
-        })
+        .sort((a, b) => moment.utc(b.deliveryTimestamp).unix() - moment.utc(a.deliveryTimestamp).unix())
     );
   }, []);
 
+  const onRefresh = useCallback(() => {
+    Logger.leanplum.refreshInbox();
+  }, []);
+
   useEffect(() => {
+    onRefresh();
+
     Logger.leanplum.onInboxUpdate(() => {
       getMessages();
     });
 
     getMessages();
-  }, [getMessages]);
-
-  const onRefresh = useCallback(() => {
-    Logger.leanplum.refreshInbox();
-  }, []);
+  }, [getMessages, onRefresh]);
 
   const onOpen = useCallback((messageId: string) => {
     Logger.leanplum.readInbox(messageId);
