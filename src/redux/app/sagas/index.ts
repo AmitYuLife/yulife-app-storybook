@@ -20,6 +20,7 @@ import checkConnectionSaga from "./checkConnection.saga";
 import showOfflineScreenSaga from "./showOfflineScreen.saga";
 import loggingNetworkState from "./loggingNetworkState.saga";
 import logDeviceStateSaga from "./logDeviceStateSaga.saga";
+import listenToMemoryWarning from "./listenToMemoryWarning.saga";
 // import logBreadcrumbsSaga from "./logBreadcrumbs.saga";
 
 export default [
@@ -27,6 +28,7 @@ export default [
   takeLatest("INIT", listenToComponentDidAppear),
   takeLatest("INIT", listenToComponentDidDisappear),
   takeLatest("INIT", listenToLinkingSaga),
+  takeLatest("INIT", listenToMemoryWarning),
   takeLatest("INIT", loggingNetworkState),
   takeLatest(["INIT", SET_REGION_CONFIG], hydrateApiConfig),
   takeLatest(SET_MAIN_ROOT, setMainRootSaga),
