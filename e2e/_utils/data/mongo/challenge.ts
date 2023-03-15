@@ -1,11 +1,19 @@
-import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_19, CUSTOMER_35, CUSTOMER_40, CUSTOMER_42, CUSTOMER_47, CUSTOMER_50, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_66, CUSTOMER_65, CUSTOMER_75, CUSTOMER_76, CUSTOMER_77, CUSTOMER_82, CUSTOMER_83, CUSTOMER_20 } from '../postgres/customers';
-import moment = require('moment');
+import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_19, CUSTOMER_35, CUSTOMER_40, CUSTOMER_42, CUSTOMER_47, CUSTOMER_50, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_65, CUSTOMER_75, CUSTOMER_76, CUSTOMER_77, CUSTOMER_83, CUSTOMER_20 } from '../postgres/customers';
 import { SHORT_STROLL_MILESTONE_1, LONG_WALK_MILESTONE_1, MEDITATION_MILESTONE_1 } from './map_milestone_templates';
 import { MEDITATION_1, LONG_WALK_1, SHORT_STROLL_1, CYCLING_1 } from './map_level_slot_templates';
-import { CHALLENGE_TEMPLATE } from "./_templates"
+import { CHALLENGE_TEMPLATE } from "./_templates";
+import moment = require('moment');
 
+function generateChallengeDates(startDate: moment.Moment, endDate?: moment.Moment) {
+    return {
+        startTime: startDate.toDate(),
+        date: startDate.format('YYYY-MM-DD'),
+        startDateTime: startDate.format(),
+        endDateTime: endDate ? endDate.toDate() : startDate.toDate(),
+    };
+}
 
 export const CHALLENGE_2 = {
     type: "mongo",
@@ -13,9 +21,7 @@ export const CHALLENGE_2 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_2.data.customerId,
-        startTime: moment().subtract(1, "day").toDate(),
-        startDateTime: moment().subtract(1, "day").toDate(),
-        endDateTime: moment().subtract(1, "day").toDate(),
+        ...generateChallengeDates(moment().subtract(1, "days")),
         "sources": {
             "device": {
                 "steps": 4461
@@ -69,9 +75,7 @@ export const CHALLENGE_USER_6_A = {
         "incomingData": {
             "steps": 125
         },
-        "startTime": moment().subtract(1, "day").toDate(),
-        "startDateTime": moment().subtract(1, "day").toDate(),
-        "endDateTime": moment().subtract(1, "day").toDate(),
+        ...generateChallengeDates(moment().subtract(1, "days")),
         "yuCoinAwarded": 60,
         "milestoneLog": [
             {
@@ -99,9 +103,7 @@ export const CHALLENGE_USER_7_A = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_7.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(4, "days").toDate(),
-        startDateTime: moment().subtract(4, "days").toDate(),
-        endDateTime: moment().subtract(4, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(4, "days")),
         level: 1,
     }
 } as IDatabaseItem;
@@ -113,9 +115,7 @@ export const CHALLENGE_USER_7_B = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_7.data.customerId,
-        startTime: moment().subtract(3, "days").toDate(),
-        startDateTime: moment().subtract(3, "days").toDate(),
-        endDateTime: moment().subtract(3, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(3, "days")),
         level: 2,
         milestoneLog: [
             {
@@ -141,9 +141,7 @@ export const CHALLENGE_USER_7_C = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_7.data.customerId,
-        startTime: moment().subtract(2, "days").toDate(),
-        startDateTime: moment().subtract(2, "days").toDate(),
-        endDateTime: moment().subtract(2, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(2, "days")),
         levelSlotTemplateId: MEDITATION_1.data.id,
         subtype: MEDITATION_1.data.subtype,
         incomingData: {
@@ -175,9 +173,7 @@ export const CHALLENGE_USER_7_D = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_7.data.customerId,
-        startTime: moment().subtract(1, "days").toDate(),
-        startDateTime: moment().subtract(1, "days").toDate(),
-        endDateTime: moment().subtract(1, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(1, "days")),
         incomingData: {
             steps: 2200
         },
@@ -207,9 +203,7 @@ export const CHALLENGE_USER_8_A = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_8.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(3, "days").toDate(),
-        startDateTime: moment().subtract(3, "days").toDate(),
-        endDateTime: moment().subtract(3, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(3, "days")),
         level: 1,
         milestoneLog: [
             {
@@ -236,9 +230,7 @@ export const CHALLENGE_USER_8_B = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_8.data.customerId,
-        startTime: moment().subtract(2, "days").toDate(),
-        startDateTime: moment().subtract(2, "days").toDate(),
-        endDateTime: moment().subtract(2, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(2, "days")),
         level: 2,
         milestoneLog: [
             {
@@ -265,9 +257,7 @@ export const CHALLENGE_USER_9_A = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_9.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(8, "days").toDate(),
-        startDateTime: moment().subtract(8, "days").toDate(),
-        endDateTime: moment().subtract(8, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(8, "days")),
         level: 1,
         milestoneLog: [
             {
@@ -294,9 +284,7 @@ export const CHALLENGE_USER_9_B = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_9.data.customerId,
-        startTime: moment().subtract(7, "days").toDate(),
-        startDateTime: moment().subtract(7, "days").toDate(),
-        endDateTime: moment().subtract(7, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(7, "days")),
         level: 2,
         milestoneLog: [
             {
@@ -322,9 +310,7 @@ export const CHALLENGE_USER_9_C = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_9.data.customerId,
-        startTime: moment().subtract(6, "days").toDate(),
-        startDateTime: moment().subtract(6, "days").toDate(),
-        endDateTime: moment().subtract(6, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(6, "days")),
         levelSlotTemplateId: MEDITATION_1.data.id,
         subtype: MEDITATION_1.data.subtype,
         incomingData: {
@@ -355,9 +341,7 @@ export const CHALLENGE_USER_9_D = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_9.data.customerId,
-        startTime: moment().subtract(5, "days").toDate(),
-        startDateTime: moment().subtract(5, "days").toDate(),
-        endDateTime: moment().subtract(5, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(5, "days")),
         incomingData: {
             steps: 2200
         },
@@ -386,9 +370,7 @@ export const CHALLENGE_USER_9_E = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_9.data.customerId,
-        startTime: moment().subtract(4, "days").toDate(),
-        startDateTime: moment().subtract(4, "days").toDate(),
-        endDateTime: moment().subtract(4, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(4, "days")),
         incomingData: {
             steps: 2200
         },
@@ -417,9 +399,7 @@ export const CHALLENGE_USER_9_F = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_9.data.customerId,
-        startTime: moment().subtract(3, "days").toDate(),
-        startDateTime: moment().subtract(3, "days").toDate(),
-        endDateTime: moment().subtract(3, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(3, "days")),
         incomingData: {
             steps: 2200
         },
@@ -448,9 +428,7 @@ export const CHALLENGE_USER_14_A = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_14.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(6, "days").toDate(),
-        startDateTime: moment().subtract(6, "days").toDate(),
-        endDateTime: moment().subtract(6, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(6, "days")),
         level: 1,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -477,9 +455,7 @@ export const CHALLENGE_USER_14_B = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_14.data.customerId,
-        startTime: moment().subtract(5, "days").toDate(),
-        startDateTime: moment().subtract(5, "days").toDate(),
-        endDateTime: moment().subtract(5, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(5, "days")),
         level: 2,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -507,9 +483,7 @@ export const CHALLENGE_USER_14_C = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_14.data.customerId,
-        startTime: "2020-06-08 10:06:22.686Z",
-        startDateTime: "2020-06-08 10:06:22.686Z",
-        endDateTime: "2020-06-08 10:06:22.686Z",
+        ...generateChallengeDates(moment("2020-06-08 10:06:22.686Z")),
         levelSlotTemplateId: "DAILY_PASSIVE_002",
         subtype: MEDITATION_1.data.subtype,
         incomingData: {
@@ -538,9 +512,7 @@ export const CHALLENGE_USER_14_D = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_14.data.customerId,
-        startTime: "2020-06-09 10:06:22.686Z",
-        startDateTime: "2020-06-09 10:06:22.686Z",
-        endDateTime: "2020-06-09 10:06:22.686Z",
+        ...generateChallengeDates(moment("2020-06-09 10:06:22.686Z")),
         incomingData: {
             meditation: 100
         },
@@ -568,9 +540,7 @@ export const CHALLENGE_USER_14_E = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_14.data.customerId,
-        startTime: moment().subtract(12, "days").toDate(),
-        startDateTime: moment().subtract(12, "days").toDate(),
-        endDateTime: moment().subtract(12, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(12, "days")),
         incomingData: {
             steps: 2200
         },
@@ -598,9 +568,7 @@ export const CHALLENGE_USER_14_F = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_14.data.customerId,
-        startTime: moment().subtract(7, "days").toDate(),
-        startDateTime: moment().subtract(7, "days").toDate(),
-        endDateTime: moment().subtract(7, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(7, "days")),
         incomingData: {
             steps: 2500
         },
@@ -628,9 +596,7 @@ export const CHALLENGE_USER_14_G = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_14.data.customerId,
-        startTime: moment().subtract(30, "minutes").toDate(),
-        startDateTime: moment().subtract(30, "minutes").toDate(),
-        endDateTime: moment().subtract(25, "minutes").toDate(),
+        ...generateChallengeDates(moment().subtract(30, "minutes"), moment().subtract(25, "minutes")),
         incomingData: {
             steps: 2500
         },
@@ -658,9 +624,7 @@ export const CHALLENGE_USER_14_H = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_14.data.customerId,
-        startTime: moment().subtract(8, "days").toDate(),
-        startDateTime: moment().subtract(8, "days").toDate(),
-        endDateTime: moment().subtract(8, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(8, "days")),
         incomingData: {
             steps: 2500
         },
@@ -688,9 +652,7 @@ export const CHALLENGE_USER_14_I = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_14.data.customerId,
-        startTime: "2020-05-02 10:06:22.686Z",
-        startDateTime: "2020-05-02 10:06:22.686Z",
-        endDateTime: "2020-05-02 10:06:22.686Z",
+        ...generateChallengeDates(moment("2020-05-02 10:06:22.686Z")),
         incomingData: {
             meditation: 10000
         },
@@ -718,9 +680,7 @@ export const CHALLENGE_USER_15_A = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_15.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(4, "days").toDate(),
-        startDateTime: moment().subtract(4, "days").toDate(),
-        endDateTime: moment().subtract(4, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(4, "days")),
         level: 1,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -749,9 +709,7 @@ export const CHALLENGE_USER_15_B = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_15.data.customerId,
-        startTime: moment().subtract(3, "days").toDate(),
-        startDateTime: moment().subtract(3, "days").toDate(),
-        endDateTime: moment().subtract(3, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(3, "days")),
         level: 2,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -779,9 +737,7 @@ export const CHALLENGE_USER_15_C = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_15.data.customerId,
-        startTime: moment().subtract(2, "days").toDate(),
-        startDateTime: moment().subtract(2, "days").toDate(),
-        endDateTime: moment().subtract(2, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(2, "days")),
         levelSlotTemplateId: "DAILY_PASSIVE_002",
         subtype: MEDITATION_1.data.subtype,
         incomingData: {
@@ -810,8 +766,8 @@ export const CHALLENGE_USER_15_D = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_15.data.customerId,
-        startTime: moment().subtract(1, "days").toDate(),
-        startDateTime: moment().subtract(1, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(1, "days")),
+        endDateTime: null,
         incomingData: {
             steps: 450
         },
@@ -840,9 +796,7 @@ export const CHALLENGE_USER_17_A = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_17.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(4, "days").toDate(),
-        startDateTime: moment().subtract(4, "days").toDate(),
-        endDateTime: moment().subtract(4, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(4, "days")),
         level: 1,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -875,9 +829,7 @@ export const CHALLENGE_USER_18_A = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_18.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(4, "days").toDate(),
-        startDateTime: moment().subtract(4, "days").toDate(),
-        endDateTime: moment().subtract(4, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(4, "days")),
         level: 1,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -909,9 +861,7 @@ export const CHALLENGE_USER_18_B = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_18.data.customerId,
-        startTime: moment().subtract(3, "days").toDate(),
-        startDateTime: moment().subtract(3, "days").toDate(),
-        endDateTime: moment().subtract(3, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(3, "days")),
         level: 2,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -944,9 +894,7 @@ export const CHALLENGE_USER_18_C = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_18.data.customerId,
-        startTime: moment().subtract(1, "days").toDate(),
-        startDateTime: moment().subtract(1, "days").toDate(),
-        endDateTime: moment().subtract(1, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(1, "days")),
         levelSlotTemplateId: "DAILY_PASSIVE_003",
         subtype: CYCLING_1.data.subtype,
         incomingData: {
@@ -975,9 +923,7 @@ export const CHALLENGE_USER_18_D = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_18.data.customerId,
-        startTime: moment().subtract(1, "days").toDate(),
-        startDateTime: moment().subtract(1, "days").toDate(),
-        endDateTime: moment().subtract(1, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(1, "days")),
         incomingData: {
             meditation: 1000
         },
@@ -1005,9 +951,7 @@ export const CHALLENGE_USER_19 = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_19.data.customerId,
-        startTime: moment().subtract(3, "days").toDate(),
-        startDateTime: moment().subtract(3, "days").toDate(),
-        endDateTime: moment().subtract(3, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(3, "days")),
         level: 2,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -1039,9 +983,7 @@ export const CHALLENGE_USER_20 = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_20.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(5, "days").toDate(),
-        startDateTime: moment().subtract(5, "days").toDate(),
-        endDateTime: moment().subtract(5, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(5, "days")),
         level: 1,
     }
 } as IDatabaseItem;
@@ -1053,9 +995,7 @@ export const CHALLENGE_USER_35_A = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_35.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(5, "days").toDate(),
-        startDateTime: moment().subtract(5, "days").toDate(),
-        endDateTime: moment().subtract(5, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(5, "days")),
         level: 1,
     }
 } as IDatabaseItem;
@@ -1067,9 +1007,7 @@ export const CHALLENGE_USER_35_B = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_35.data.customerId,
-        startTime: moment().subtract(4, "days").toDate(),
-        startDateTime: moment().subtract(4, "days").toDate(),
-        endDateTime: moment().subtract(4, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(4, "days")),
         level: 2,
         milestoneLog: [
             {
@@ -1095,9 +1033,7 @@ export const CHALLENGE_USER_35_C = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_35.data.customerId,
-        startTime: moment().subtract(3, "days").toDate(),
-        startDateTime: moment().subtract(3, "days").toDate(),
-        endDateTime: moment().subtract(3, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(3, "days")),
         levelSlotTemplateId: MEDITATION_1.data.id,
         subtype: MEDITATION_1.data.subtype,
         incomingData: {
@@ -1129,9 +1065,7 @@ export const CHALLENGE_USER_35_D = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_35.data.customerId,
-        startTime: moment().subtract(2, "days").toDate(),
-        startDateTime: moment().subtract(2, "days").toDate(),
-        endDateTime: moment().subtract(2, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(2, "days")),
         incomingData: {
             steps: 2200
         },
@@ -1160,9 +1094,7 @@ export const CHALLENGE_USER_35_E = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_35.data.customerId,
-        startTime: moment().subtract(1, "days").toDate(),
-        startDateTime: moment().subtract(1, "days").toDate(),
-        endDateTime: moment().subtract(1, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(1, "days")),
         incomingData: {
             steps: 2200
         },
@@ -1190,9 +1122,7 @@ export const CHALLENGE_USER_40_DAY1 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_40.data.customerId,
-        startTime: moment("00:01", "HH:mm").subtract(5, "days").toDate(),  
-        startDateTime: moment("00:01", "HH:mm").subtract(5, "days").toDate(), 
-        endDateTime: moment("23:59", "HH:mm").subtract(5, "days").toDate(), 
+        ...generateChallengeDates(moment("00:01", "HH:mm").subtract(5, "days"), moment("23:59", "HH:mm").subtract(5, "days")),
         "sources": {
             "device": {
                 "steps": 75000
@@ -1229,9 +1159,7 @@ export const CHALLENGE_USER_40_DAY2 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_40.data.customerId,
-        startTime: moment("00:01", "HH:mm").subtract(4, "days").toDate(),  
-        startDateTime: moment("00:01", "HH:mm").subtract(4, "days").toDate(), 
-        endDateTime: moment("23:59", "HH:mm").subtract(4, "days").toDate(), 
+        ...generateChallengeDates(moment("00:01", "HH:mm").subtract(4, "days"), moment("23:59", "HH:mm").subtract(4, "days")),
         "sources": {
             "device": {
                 "steps": 75000
@@ -1268,9 +1196,7 @@ export const CHALLENGE_USER_40_DAY3 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_40.data.customerId,
-        startTime: moment("00:01", "HH:mm").subtract(3, "days").toDate(),  
-        startDateTime: moment("00:01", "HH:mm").subtract(3, "days").toDate(), 
-        endDateTime: moment("23:59", "HH:mm").subtract(3, "days").toDate(), 
+        ...generateChallengeDates(moment("00:01", "HH:mm").subtract(3, "days"), moment("23:59", "HH:mm").subtract(3, "days")),
         "sources": {
             "device": {
                 "steps": 75000
@@ -1307,9 +1233,7 @@ export const CHALLENGE_USER_40_DAY4 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_40.data.customerId,
-        startTime: moment("00:01", "HH:mm").subtract(2, "days").toDate(),  
-        startDateTime: moment("00:01", "HH:mm").subtract(2, "days").toDate(), 
-        endDateTime: moment("23:59", "HH:mm").subtract(2, "days").toDate(), 
+        ...generateChallengeDates(moment("00:01", "HH:mm").subtract(2, "days"), moment("23:59", "HH:mm").subtract(2, "days")),
         "sources": {
             "device": {
                 "steps": 75000
@@ -1346,9 +1270,7 @@ export const CHALLENGE_USER_40_DAY5 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_40.data.customerId,
-        startTime: moment("00:01", "HH:mm").subtract(1, "days").toDate(),  
-        startDateTime: moment("00:01", "HH:mm").subtract(1, "days").toDate(), 
-        endDateTime: moment("23:59", "HH:mm").subtract(1, "days").toDate(), 
+        ...generateChallengeDates(moment("00:01", "HH:mm").subtract(1, "days"), moment("23:59", "HH:mm").subtract(1, "days")),
         "sources": {
             "device": {
                 "steps": 75000
@@ -1386,9 +1308,7 @@ export const CHALLENGE_USER_42_A = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_42.data.customerId,
-        startTime: moment().subtract(1, "days").toDate(),
-        startDateTime: moment().subtract(1, "days").toDate(),
-        endDateTime: moment().subtract(1, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(1, "days")),
         isNewType: true,
         yuCoinAwarded: 10,
         XPAwarded: 0,
@@ -1417,8 +1337,8 @@ export const CHALLENGE_USER_42_B = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_42.data.customerId,
-        startTime: moment().subtract(1, "days").toDate(),
-        startDateTime: moment().subtract(1, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(1, "days")),
+        endDateTime: null,
         incomingData: {
             steps: 450
         },
@@ -1445,9 +1365,7 @@ export const CHALLENGE_USER_47_A = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_47.data.customerId,
-        startTime: moment().subtract(1, "days").toDate(),
-        startDateTime: moment().subtract(1, "days").toDate(),
-        endDateTime: moment().subtract(1, "days").endOf("day").toDate(),
+        ...generateChallengeDates(moment().subtract(1, "days"), moment().subtract(1, "days").endOf("day")),
         level: 2,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -1478,9 +1396,7 @@ export const CHALLENGE_USER_47_B = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_47.data.customerId,
-        startTime: moment().subtract(1, "days").toDate(),
-        startDateTime: moment().subtract(1, "days").toDate(),
-        endDateTime: moment().subtract(1, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(1, "days")),
         incomingData: {
             meditation: 6000
         },
@@ -1508,9 +1424,7 @@ export const CHALLENGE_USER_47_C = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_47.data.customerId,
-        startTime: moment().subtract(1, "days").toDate(),
-        startDateTime: moment().subtract(1, "days").toDate(),
-        endDateTime: moment().subtract(1, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(1, "days")),
         levelSlotTemplateId: "DAILY_PASSIVE_003",
         subtype: CYCLING_1.data.subtype,
         incomingData: {
@@ -1539,9 +1453,7 @@ export const CHALLENGE_USER_50_A = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_50.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(4, "days").toDate(),
-        startDateTime: moment().subtract(4, "days").toDate(),
-        endDateTime: moment().subtract(4, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(4, "days")),
         level: 1,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -1573,9 +1485,7 @@ export const CHALLENGE_USER_50_B = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_50.data.customerId,
-        startTime: moment().subtract(3, "days").toDate(),
-        startDateTime: moment().subtract(3, "days").toDate(),
-        endDateTime: moment().subtract(3, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(3, "days")),
         level: 2,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -1608,9 +1518,7 @@ export const CHALLENGE_USER_50_C = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_50.data.customerId,
-        startTime: moment().subtract(1, "days").toDate(),
-        startDateTime: moment().subtract(1, "days").toDate(),
-        endDateTime: moment().subtract(1, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(1, "days")),
         levelSlotTemplateId: "DAILY_PASSIVE_003",
         subtype: CYCLING_1.data.subtype,
         incomingData: {
@@ -1639,9 +1547,7 @@ export const CHALLENGE_USER_50_D = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_50.data.customerId,
-        startTime: moment().subtract(1, "days").toDate(),
-        startDateTime: moment().subtract(1, "days").toDate(),
-        endDateTime: moment().subtract(1, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(1, "days")),
         incomingData: {
             meditation: 1000
         },
@@ -1669,9 +1575,7 @@ export const CHALLENGE_USER_52_A = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_52.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(4, "days").toDate(),
-        startDateTime: moment().subtract(4, "days").toDate(),
-        endDateTime: moment().subtract(4, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(4, "days")),
         level: 1,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -1703,9 +1607,7 @@ export const CHALLENGE_USER_54_A = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_54.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(4, "days").toDate(),
-        startDateTime: moment().subtract(4, "days").toDate(),
-        endDateTime: moment().subtract(4, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(4, "days")),
         level: 1,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -1737,9 +1639,7 @@ export const CHALLENGE_USER_55_A = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_55.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(4, "days").toDate(),
-        startDateTime: moment().subtract(4, "days").toDate(),
-        endDateTime: moment().subtract(4, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(4, "days")),
         level: 1,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -1771,9 +1671,7 @@ export const CHALLENGE_USER_56_A = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_56.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(4, "days").toDate(),
-        startDateTime: moment().subtract(4, "days").toDate(),
-        endDateTime: moment().subtract(4, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(4, "days")),
         level: 1,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -1805,9 +1703,7 @@ export const CHALLENGE_USER_57_A = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_57.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(4, "days").toDate(),
-        startDateTime: moment().subtract(4, "days").toDate(),
-        endDateTime: moment().subtract(4, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(4, "days")),
         level: 1,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -1839,9 +1735,7 @@ export const CHALLENGE_USER_58_A = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_58.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(4, "days").toDate(),
-        startDateTime: moment().subtract(4, "days").toDate(),
-        endDateTime: moment().subtract(4, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(4, "days")),
         level: 1,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -1873,10 +1767,7 @@ export const CHALLENGE_65_A = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_65.data.customerId,
-        date: moment().subtract(1, "days").format("YYYY-MM-DD").toString(),
-        startTime: moment().subtract(1, "days").startOf("day").toDate(),
-        startDateTime: moment().subtract(1, "days").startOf("day").add(1, "hour").toString(),
-        endDateTime: moment().subtract(1, "days").endOf("day").toString(),
+        ...generateChallengeDates(moment().subtract(1, "days").startOf("day").add(1, "hour"), moment().subtract(1, "days").endOf("day")),
         createdAt: moment().subtract(1, "days").startOf("day").toDate(),
         updatedAt: moment().subtract(1, "days").startOf("day").toDate(),
         levelSlotTemplateId: "DAILY_PASSIVE_003",
@@ -1924,10 +1815,7 @@ export const CHALLENGE_65_B = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_65.data.customerId,
-        date: moment().subtract(2, "days").format("YYYY-MM-DD").toString(),
-        startTime: moment().subtract(2, "days").toDate(),
-        startDateTime: moment().subtract(2, "days").toString(),
-        endDateTime: moment().subtract(2, "days").toString(),
+        ...generateChallengeDates(moment().subtract(2, "days")),
         createdAt: moment().subtract(2, "days").toDate(),
         updatedAt: moment().subtract(2, "days").toDate(),
         levelSlotTemplateId: "DAILY_PASSIVE_003",
@@ -1966,10 +1854,7 @@ export const CHALLENGE_65_C = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_65.data.customerId,
-        date: moment().subtract(3, "days").format("YYYY-MM-DD").toString(),
-        startTime: moment().subtract(3, "days").toDate(),
-        startDateTime: moment().subtract(3, "days").toString(),
-        endDateTime: moment().subtract(3, "days").toString(),
+        ...generateChallengeDates(moment().subtract(3, "days")),
         createdAt: moment().subtract(3, "days").toDate(),
         updatedAt: moment().subtract(3, "days").toDate(),
         levelSlotTemplateId: "DAILY_PASSIVE_003",
@@ -2033,9 +1918,7 @@ export const CHALLENGE_USER_75_A = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_75.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(4, "days").toDate(),
-        startDateTime: moment().subtract(4, "days").toDate(),
-        endDateTime: moment().subtract(4, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(4, "days")),
         level: 1,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -2067,9 +1950,7 @@ export const CHALLENGE_USER_75_B = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_75.data.customerId,
-        startTime: moment().subtract(3, "days").toDate(),
-        startDateTime: moment().subtract(3, "days").toDate(),
-        endDateTime: moment().subtract(3, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(3, "days")),
         level: 2,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -2102,9 +1983,7 @@ export const CHALLENGE_USER_75_C = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_75.data.customerId,
-        startTime: moment().subtract(1, "days").toDate(),
-        startDateTime: moment().subtract(1, "days").toDate(),
-        endDateTime: moment().subtract(1, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(1, "days")),
         levelSlotTemplateId: "DAILY_PASSIVE_003",
         subtype: CYCLING_1.data.subtype,
         incomingData: {
@@ -2133,9 +2012,7 @@ export const CHALLENGE_USER_75_D = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_75.data.customerId,
-        startTime: moment().subtract(1, "days").toDate(),
-        startDateTime: moment().subtract(1, "days").toDate(),
-        endDateTime: moment().subtract(1, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(1, "days")),
         incomingData: {
             meditation: 1000
         },
@@ -2162,9 +2039,7 @@ export const CHALLENGE_76 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_76.data.customerId,
-        startTime: moment().subtract(1, "day").toDate(),
-        startDateTime: moment().subtract(1, "day").toDate(),
-        endDateTime: moment().subtract(1, "day").toDate(),
+        ...generateChallengeDates(moment().subtract(1, "days")),
         "sources": {
             "device": {
                 "steps": 4461
@@ -2203,9 +2078,7 @@ export const CHALLENGE_USER_77_A = {
         ...CHALLENGE_TEMPLATE.data,
         userId: CUSTOMER_77.data.customerId,
         _id: generateRandomMongoId(),
-        startTime: moment().subtract(4, "days").toDate(),
-        startDateTime: moment().subtract(4, "days").toDate(),
-        endDateTime: moment().subtract(4, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(4, "days")),
         level: 1,
         status: "completed",
         levelSlotTemplateId: "DAILY_PASSIVE_001",
@@ -2237,9 +2110,7 @@ export const CHALLENGE_USER_83 = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_83.data.customerId,
-        startTime: moment().subtract(6, "days").toDate(),
-        startDateTime: moment().subtract(6, "days").toDate(),
-        endDateTime: moment().subtract(6, "days").toDate(),
+        ...generateChallengeDates(moment().subtract(6, "days")),
         level: 2,
         milestoneLog: [
             {
