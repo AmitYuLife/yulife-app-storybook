@@ -18,6 +18,7 @@ import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import { store } from "@redux/_core/store";
 import region from "@services/region";
+import getClient from "@services/bugsnag";
 import { updateOfflineState } from "@redux/app/app.actions";
 import createRetryLink from "./retryLink";
 import { getLocale } from "@locale";
@@ -107,9 +108,11 @@ const requestIdPrefix = `${defaultHeaders.apollo_client_name}_${defaultHeaders.d
 // use a request counter to ensure uniqueness for closely batched requests
 let requestCount = 0;
 
-const authMiddleware = setContext(async (_, { headers }) => {
+const authMiddleware = setContext(async (op, { headers }) => {
   // get the authentication token from async storage if it exists
   const token = await getToken();
+
+  getClient().leaveBreadcrumb("Apollo request", { name: op.operationName }, "request");
 
   // We want to append the prefix with the current milliseconds to make the request ID unique
   const requestId = `${requestIdPrefix}_${moment().milliseconds()}_${requestCount}`;
