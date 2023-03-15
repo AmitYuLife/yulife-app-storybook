@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.73.0] - 2023-03-15
+
+### Bugfixes
+
+- Revert "Merge branch 'bugfix/eng-3109-3110-config-fallback' into 'develop'"
+- Bugfix - Android Notification order & iOS broke fixes
+- Bugfix: dates for challenge seed data
+- Bugfix: Topbar left icons pressable area
+- Bugfix INS-1217: incorrect days
+- Bugfix ENG-3109/3110: Set fallback for initial values for config
+- Bugfix ENG-3106: .map undefined for milestones
+- Bugfix ENG-3181: TypeError in yulife.meditopia.media.list
+- Bugfix: getQuestMapLevel not being refetched
+- Bugfix ENG-3112: Null object on feedback form
+- Bugfix: Fix memory leaks
+- Bugfix: rewards svg missing svg parts
+- Bugfix: get yugi back in shape
+- Bugfix INS-1217: ui fixes
+- Bugfix ENG-3186: ignore logger set if already logged in
+
+### Tasks
+
+- Task: Fitkit predicate restrict with start and end time
+- Task GS-671: Leaderboard tracking
+- (origin/Task-XSE1718-CTA_journeys) Release: bump version to 3.73.0
+
+### Chores
+
+- Chore - Added Smoke 3 & Extended 3
+- Chore ISA-449 purge unneeded user_leaderboard props from detox
+- Chore: translate today yucoin
+
+### Extra
+
+- Hotfix: set intercom user
+- detox/dental_termintation
+- Purge: unused resolvers
+- detox: usa test fixes 10/03
+- Detox - Smoke 1 & Extended fixes 08/03
+
 ## [3.72.0] - 2023-03-08
 
 ### Bugfixes
