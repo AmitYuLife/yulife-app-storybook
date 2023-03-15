@@ -16,6 +16,7 @@ export default function* logOutSaga() {
   yield delay(1000);
   yield call(() => {
     // we can't await the following two because their libs rely on a weird promise lib and it gets stuck
+    client().stop();
     client()
       .clearStore()
       .catch((e) => {

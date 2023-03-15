@@ -50,7 +50,7 @@ class LoggerInstance {
     };
   };
 
-  public setUserId = async (userId: string) => {
+  public setUserId = async (userId: string, intercomHash: string) => {
     if (this.userId) {
       // already logged in - ignore everything
       if (this.userId === userId) {
@@ -61,12 +61,14 @@ class LoggerInstance {
     }
 
     this.userId = userId;
-    Mixpanel.identify(userId);
     this.bugsnag.setUser(userId, "", "");
+    Mixpanel.identify(userId);
+    await this.setIntercomUser(userId, intercomHash);
     this.leanplum.setUserId(userId);
   };
 
-  public setIntercomUser = async (userId: string, hash: string) => {
+  private setIntercomUser = async (userId: string, hash: string) => {
+    await Intercom.logout();
     await Intercom.setUserHash(hash);
     await Intercom.loginUserWithUserAttributes({ userId });
   };
