@@ -1,7 +1,7 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import moment from "moment"
 import { BUSINESS_ACCOUNT_USA_1 } from "../postgres/business"
-import { CUSTOMER_USA_1, CUSTOMER_USA_2, CUSTOMER_USA_3, CUSTOMER_USA_4 } from "../postgres/customers"
+import { USER_USA_1, USER_USA_2, USER_USA_3, USER_USA_4 } from "./users"
 
 const type = "mongo"
 const modelName = "user_onboardings"
@@ -12,9 +12,9 @@ export const USER_ONBOARDING_USA_1  = {
     modelName,
     data:{
         _id:generateRandomMongoId(),
-        userId: CUSTOMER_USA_1.data.customerId,
-        signupComplete: true,
-        firstAppOpen: true,
+        userId: USER_USA_1.data.userId,
+        signupComplete: false,
+        firstAppOpen: false,
         companyLeaderboardAccepted: true,
         companyLeaderboardCurrentConsent: false,
         additionalLeaderboards: false,
@@ -37,9 +37,9 @@ export const USER_ONBOARDING_USA_2  = {
     modelName,
     data:{
         _id:generateRandomMongoId(),
-        userId: CUSTOMER_USA_2.data.customerId,
-        signupComplete: true,
-        firstAppOpen: true,
+        userId: USER_USA_2.data.userId,
+        signupComplete: false,
+        firstAppOpen: false,
         companyLeaderboardAccepted: true,
         companyLeaderboardCurrentConsent: false,
         additionalLeaderboards: false,
@@ -62,9 +62,9 @@ export const USER_ONBOARDING_USA_3  = {
     modelName,
     data:{
         _id:generateRandomMongoId(),
-        userId: CUSTOMER_USA_3.data.customerId,
-        signupComplete: true,
-        firstAppOpen: true,
+        userId: USER_USA_3.data.userId,
+        signupComplete: false,
+        firstAppOpen: false,
         companyLeaderboardAccepted: true,
         companyLeaderboardCurrentConsent: false,
         additionalLeaderboards: false,
@@ -87,9 +87,9 @@ export const USER_ONBOARDING_USA_4  = {
     modelName,
     data:{
         _id:generateRandomMongoId(),
-        userId: CUSTOMER_USA_4.data.customerId,
-        signupComplete: true,
-        firstAppOpen: true,
+        userId: USER_USA_4.data.userId,
+        signupComplete: false,
+        firstAppOpen: false,
         companyLeaderboardAccepted: true,
         companyLeaderboardCurrentConsent: false,
         additionalLeaderboards: false,

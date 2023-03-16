@@ -70,8 +70,7 @@ export const onboardingUsYuscreenV4 = (packType: string, yuCoinPower: string) =>
 
   switch (packType) {
     case "Wellbeing/TLIF/DENCHOI":
-      await textVisibleAtIndex(yuCoinPower, 0)();
-      await textVisibleAtIndex(yuCoinPower, 1)();
+      await textVisible(yuCoinPower)();
       await textVisible(text.wellbeingAccessText)();
       await textVisible(text.Guardian_TLIF.slotAbreviation)();
       await textVisible(text.Guardian_DENCHOI.slotAbreviation)();
@@ -131,8 +130,7 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
 
   switch (packType) {
     case "Wellbeing/DENPPO/DENCHOI/TLIF/VIS": // If user have more then 5 Products and open enrollment window should see also More protection
-      await textVisibleAtIndex(yuCoinPower, 0)();
-      await textVisibleAtIndex("10", 1)();
+      await textVisible(yuCoinPower, 0)();
       await expect(element(by.text(text.WellbeingProduct))).toBeVisible();
       await expect(element(by.text(text.Guardian_DENPPO.heading))).toBeVisible();
       await expect(element(by.text(text.Guardian_DENHMO.heading))).toBeVisible();

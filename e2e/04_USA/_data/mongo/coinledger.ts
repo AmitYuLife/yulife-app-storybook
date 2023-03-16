@@ -11,7 +11,6 @@ export const COIN_LEDGER_USA_1 = {
     modelName: "coinledger",
     data: {
         _id: generateRandomMongoId(),
-        customerId: CUSTOMER_USA_1.data.customerId,
         userId: CUSTOMER_USA_1.data.customerId,
         transactions: [],
         currentBalance: 17500,
@@ -25,7 +24,6 @@ export const COIN_LEDGER_USA_2 = {
     modelName: "coinledger",
     data: {
         _id: generateRandomMongoId(),
-        customerId: CUSTOMER_USA_2.data.customerId,
         userId: CUSTOMER_USA_2.data.customerId,
         transactions: [],
         currentBalance: 17500,
@@ -39,7 +37,6 @@ export const COIN_LEDGER_USA_3 = {
     modelName: "coinledger",
     data: {
         _id: generateRandomMongoId(),
-        customerId: CUSTOMER_USA_3.data.customerId,
         userId: CUSTOMER_USA_3.data.customerId,
         transactions: [],
         currentBalance: 17500,
@@ -53,7 +50,6 @@ export const COIN_LEDGER_USA_4 = {
     modelName: "coinledger",
     data: {
         _id: generateRandomMongoId(),
-        customerId: CUSTOMER_USA_4.data.customerId,
         userId: CUSTOMER_USA_4.data.customerId,
         transactions: [],
         currentBalance: 500,
