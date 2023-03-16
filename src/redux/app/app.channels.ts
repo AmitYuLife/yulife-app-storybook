@@ -71,3 +71,15 @@ export function iosLinkingChannel() {
     return unlisten;
   });
 }
+
+export function memoryWarningChannel() {
+  return eventChannel((emitter) => {
+    const memoryState = AppState.addEventListener("memoryWarning", () => emitter(true));
+
+    const unlisten = () => {
+      memoryState.remove();
+    };
+
+    return unlisten;
+  });
+}
