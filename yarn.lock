@@ -12407,10 +12407,10 @@ react-native-music-control@^1.4.1:
   resolved "https://registry.yarnpkg.com/react-native-music-control/-/react-native-music-control-1.4.1.tgz#a1212c082f39783ff10befec1ef53cade585933e"
   integrity sha512-IBiP2Yhb9iUPutXFFfNWKnf+CG/up9oPlMqY6qq1MDlhJ6giMCGQ+qO/Qd5hoDE0ZfxyqShs3CZaSch+oV/2zg==
 
-react-native-navigation@^7.30.6:
-  version "7.30.6"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-7.30.6.tgz#fe69387329f8820f974419ba8a9a02339068196f"
-  integrity sha512-rnJ7VbMjnt8H1HkuaM65NkcFFca2QQRgsCQEF6yAe9J4Yb3I3XnywFd309D6yso4ZqRuK7EhuzP33/nReV1c/A==
+react-native-navigation@7.32.1:
+  version "7.32.1"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-7.32.1.tgz#29dd95dae6f4afb6dcbc756dae1849dbbdab2a54"
+  integrity sha512-qqpccWh6MqTG0hn/XeggKonSYg+h64kOsYBot/+g2EUC/Usp8TZsKi1B2gzsUrDQy8EmsF9iTBoZMIgjxFG/WQ==
   dependencies:
     hoist-non-react-statics "3.x.x"
     lodash "4.17.x"

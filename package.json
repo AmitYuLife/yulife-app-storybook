@@ -103,7 +103,7 @@
     "react-native-mixpanel": "^1.2.5",
     "react-native-modal-datetime-picker": "^14.0.1",
     "react-native-music-control": "^1.4.1",
-    "react-native-navigation": "^7.30.6",
+    "react-native-navigation": "7.32.1",
     "react-native-permissions": "^3.6.1",
     "react-native-push-notification": "^8.1.1",
     "react-native-svg": "^13.7.0",
