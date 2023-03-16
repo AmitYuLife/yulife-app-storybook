@@ -14,7 +14,7 @@ const STORAGE_KEY = "@YuStore:mobileAssets";
 export function* prefetchAssets() {
   const clientVersion: string = yield call(getAssetVersion);
   const endPoints: ReturnType<typeof getUserEndPointsVersion> = yield select(getUserEndPointsVersion);
-
+  yield call(FastImage.enableDiskCaching);
   if (clientVersion !== endPoints?.getMobileAssets) {
     try {
       const { data }: Unpacked<typeof getMobileAssets> = yield call(getMobileAssets);
