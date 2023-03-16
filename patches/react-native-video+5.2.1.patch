@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-video/ios/Video/RCTVideo.m b/node_modules/react-native-video/ios/Video/RCTVideo.m
+index a757c08..4226db9 100644
+--- a/node_modules/react-native-video/ios/Video/RCTVideo.m
++++ b/node_modules/react-native-video/ios/Video/RCTVideo.m
+@@ -907,7 +907,7 @@ - (void)setRestoreUserInterfaceForPIPStopCompletionHandler:(BOOL)restore
+ }
+ 
+ - (void)setupPipController {
+-  if (!_pipController && _playerLayer && [AVPictureInPictureController isPictureInPictureSupported]) {
++  if (!_pipController && _playerLayer && [AVPictureInPictureController isPictureInPictureSupported] && _pictureInPicture) {
+     // Create new controller passing reference to the AVPlayerLayer
+     _pipController = [[AVPictureInPictureController alloc] initWithPlayerLayer:_playerLayer];
+     _pipController.delegate = self;
