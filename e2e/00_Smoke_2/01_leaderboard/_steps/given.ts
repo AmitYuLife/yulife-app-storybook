@@ -5,5 +5,6 @@ export { addStepsHistoricalData, addCyclingHistoricalData, addMindfulnessHistori
 export const {
     loginAsUser,
     loginOnly,
+    logInAndGoToTab,
     loginAndCollectSignupBonus
 } = navigation.login
