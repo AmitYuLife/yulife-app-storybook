@@ -55,11 +55,11 @@ import {
 Feature("I am able to see Product Details in US YU Screen ", async () => {
   Scenario("I can see all product details Wellbeing/DENPPO/DENHMO/DENCHOI/TLIF/VIS", scenario.start, async () => {
     Given(
-      "I login as a user with earn rate 10 from WellbeingProduct",
+      "I login as a user with earn rate 0 from WellbeingProduct",
       given.logInAndGoToTab("yu", CUSTOMER_USA_1, AUTH_USA_1, true, "United States"),
       async () => {
-        helper.ONBOARDING_YUSCREEN("Wellbeing/TLIF/DENCHOI", "10");
-        helper.YUSCREEN_USA_V4(CUSTOMER_USA_1, "Wellbeing/DENPPO/DENCHOI/TLIF/VIS", "10");
+        helper.ONBOARDING_YUSCREEN("Wellbeing/TLIF/DENCHOI", "1");
+        helper.YUSCREEN_USA_V4(CUSTOMER_USA_1, "Wellbeing/DENPPO/DENCHOI/TLIF/VIS", "1");
         helper.MORE_PROTECTION();
         helper.PRODUCT_CHECK(Guardian_DENPPO, 0);
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_DENPPO);
