@@ -50,6 +50,7 @@ const WellBeingServiceCard: FC<IProps> = ({ card }) => {
         theme="light"
         style={styles.remoteWrapper}
         imageStyle={styles.remoteImageStyle}
+        resizeMode="cover"
       />
       <View style={styles.card}>
         <View style={styles.cardContainer}>
