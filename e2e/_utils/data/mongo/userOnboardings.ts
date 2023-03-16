@@ -57,6 +57,43 @@ import {
   USER_DENTAL_1,
   USER_DENTAL_2,
   USER_85,
+  USER_47,
+  USER_48,
+  USER_50,
+  USER_49,
+  USER_52,
+  USER_54,
+  USER_55,
+  USER_56,
+  USER_57,
+  USER_58,
+  USER_60,
+  USER_61,
+  USER_63,
+  USER_64,
+  USER_65,
+  USER_66,
+  USER_67,
+  USER_69,
+  USER_68,
+  USER_70,
+  USER_71,
+  USER_72,
+  USER_73,
+  USER_74,
+  USER_75,
+  USER_76,
+  USER_77,
+  USER_79,
+  USER_78,
+  USER_80,
+  USER_28,
+  USER_81,
+  USER_83,
+  USER_41,
+  USER_MEDITOPIA_1,
+  USER_MEDITOPIA_2,
+  USER_MEDITOPIA_3,
 } from "./users";
 
 const type = "mongo";
@@ -581,6 +618,21 @@ export const USER_ONBOARDING_39 = {
   },
 } as IDatabaseItem;
 
+export const USER_ONBOARDING_41 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_41.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+    },
+  },
+} as IDatabaseItem;
+
 export const USER_ONBOARDING_42 = {
   type,
   modelName,
@@ -901,6 +953,564 @@ export const USER_ONBOARDING_CUSTOMER_DENTAL_85 = {
       personalProductLaunchPLI: true,
       yuScreenGloves: true,
       yuScreenOnboarding: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_47 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_47.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_48 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_48.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_49 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_49.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_50 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_50.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_52 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_52.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_54 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_54.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_55 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_55.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_56 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_56.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_57 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_57.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_58 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_58.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_60 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_60.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_61 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_61.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_63 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_63.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_64 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_64.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_65 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_65.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_66 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_66.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_67 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_67.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_68 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_68.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_69 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_69.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_70 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_70.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_71 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_71.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_72 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_72.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_73 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_73.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_74 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_74.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_75 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_75.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_76 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_76.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_77 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_77.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_78 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_78.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_79 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_79.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_80 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_80.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_81 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_81.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_83 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_83.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_MEDITOPIA_1 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_MEDITOPIA_1.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_MEDITOPIA_2 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_MEDITOPIA_2.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_MEDITOPIA_3 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_MEDITOPIA_3.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
     },
   },
 } as IDatabaseItem;

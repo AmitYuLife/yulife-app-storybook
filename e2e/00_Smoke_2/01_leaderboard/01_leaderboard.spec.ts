@@ -62,7 +62,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     })
 
     Scenario("I can inspect other members and view their data and avatars from the leaderboard - seed data", scenario.start, async () => {
-        Given("I login as a user", given.loginAsUser(CUSTOMER_47, AUTH_47), async () => {
+        Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_47, AUTH_47), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(MENU_ICON, 1500))
             Then("I should be on the onboarding yuscreen v4", then.idVisible(ONBOARDING_SCREEN_V4))
         })  
@@ -100,7 +100,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I have done two days ago 15,000 steps", when.addStepsHistoricalData(15000, 2), async () => {
             When("I have done two days ago Biking 9 km", when.addCyclingHistoricalData(9000, 2), async () => {
                 When("I have done two days ago 13:20 min Mindfulness", when.addMindfulnessHistoricalData(800, 2), async () => {
-                    Given("I login as a user", given.loginAsUser(CUSTOMER_47, AUTH_47), async () => {
+                    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_47, AUTH_47), async () => {
                         Then("I should see a menu icon in the top left", then.idVisible(MENU_ICON, 1500))
                         Then("I should be on the onboarding yuscreen v4", then.idVisible(ONBOARDING_SCREEN_V4))
                     })
@@ -138,7 +138,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     })
 
     Scenario("I can inspect myself and view my data and avatar from the leaderboard - seed data", scenario.start, async () => {
-        Given("I login as a user", given.loginAsUser(CUSTOMER_47, AUTH_47), async () => {
+        Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_47, AUTH_47), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(MENU_ICON, 1500))
             Then("I should be on the onboarding yuscreen v4", then.idVisible(ONBOARDING_SCREEN_V4))
 
@@ -223,7 +223,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     })
 
     Scenario("I can inspect other members and view their data and avatars from the leaderboard and I can see a draw state and win streak - seed data", scenario.start, async () => {
-        Given("I login as a user", given.loginAsUser(CUSTOMER_50, AUTH_50), async () => {
+        Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_50, AUTH_50), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(MENU_ICON, 1500))
             Then("I should be on the onboarding yuscreen v4", then.idVisible(ONBOARDING_SCREEN_V4))
 
