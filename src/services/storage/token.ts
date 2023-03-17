@@ -8,13 +8,13 @@ class TokenService {
   private tempToken: string | null = null;
   // iOS cannot access the encrypted storage while the app is on background
   // only log errors for ios on active state and android in any state
-  private shouldLogError = Platform.select({ android: true, ios: AppState.currentState === "active" });
+  private shouldLogError = () => Platform.select({ android: true, ios: AppState.currentState === "active" });
   public setToken = async (token: string) => {
     try {
       await EncryptedStorage.setItem(this.TOKEN_KEY, token);
       this.tempToken = token;
     } catch (e) {
-      if (this.shouldLogError) {
+      if (this.shouldLogError()) {
         Logger.error(e, { event: "EncryptedStorage:setToken" });
       }
     }
@@ -37,7 +37,7 @@ class TokenService {
       this.tempToken = securedToken;
       return securedToken;
     } catch (e) {
-      if (this.shouldLogError) {
+      if (this.shouldLogError()) {
         Logger.error(e, { event: "EncryptedStorage:getToken" });
       }
 
@@ -51,7 +51,7 @@ class TokenService {
       await AsyncStorage.removeItem(this.TOKEN_KEY);
       await EncryptedStorage.removeItem(this.TOKEN_KEY);
     } catch (e) {
-      if (this.shouldLogError) {
+      if (this.shouldLogError()) {
         Logger.error(e, { event: "EncryptedStorage:clearToken" });
       }
 
@@ -61,5 +61,7 @@ class TokenService {
 }
 
 export const tokenService = new TokenService();
-const [getToken, setToken, clearToken] = [tokenService.getToken, tokenService.setToken, tokenService.clearToken];
-export { getToken, setToken, clearToken };
+
+export const getToken = tokenService.getToken;
+export const setToken = tokenService.setToken;
+export const clearToken = tokenService.clearToken;
