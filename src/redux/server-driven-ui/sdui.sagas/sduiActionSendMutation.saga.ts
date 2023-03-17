@@ -6,6 +6,7 @@ import client from "@graphql/_core/client";
 import { setLoadingState } from "../sdui.actions";
 import { SduiSagaAction } from "../sdui.types";
 import { submitSduiJourney } from "../../../graphql/journey";
+import { getServerPayload } from "../sdui.helpers";
 
 type MutationSduiAction = Partial<SduiAction> & { __typename?: "SduiAction" };
 type MutationRequest = (args: { variables: any; refetchQueries?: string[] }) => Promise<unknown>;
@@ -43,12 +44,11 @@ const buildMutation = (data: IParsedJson): MutationRequest => {
 };
 
 export function* sduiActionSendMutation(action: SduiSagaAction) {
-  const serverPayload = action.payload || "";
-  const contextPayload = action.contextPayload || {};
   const {
     isValid,
     data: { dispatchActions = [], ...data },
-  } = parseJSON<IParsedJson>(serverPayload);
+  } = parseJSON<IParsedJson>(getServerPayload(action.payload));
+  const contextPayload = action.contextPayload || {};
   const serverParsedPayload = isValid ? data : SERVER_PARSED_PAYLOAD_FALLBACK;
 
   try {

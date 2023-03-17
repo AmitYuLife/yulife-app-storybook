@@ -1,6 +1,5 @@
 import { CoverType, SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { SDUI_ACTION_SET_LOADING_STATE } from "./sdui.actions";
-
 export type DynamicDataType = string | boolean | number | string[] | CoverType;
 export type DynamicData = Record<string, DynamicDataType>;
 
@@ -11,6 +10,10 @@ export interface ProductStepDefaultFields {
   dynamicData: DynamicData;
   id?: string;
 }
+
+export type ServerPayload = {
+  serverPayload?: string;
+};
 
 export type LoadingState = {
   [key: string]: boolean;
@@ -24,12 +27,12 @@ export interface ISetIsLoading {
 
 export interface SduiActionWithServerPayload {
   type: SduiActionType;
-  payload?: { serverPayload?: string };
+  payload?: ServerPayload;
 }
 
 export interface ProductStepAction {
   type: SduiActionType;
-  payload: ProductStepDefaultFields & { serverPayload: string };
+  payload: ProductStepDefaultFields & ServerPayload;
 }
 
 export type SduiActionTypes = ISetIsLoading;
@@ -43,6 +46,6 @@ export type YuScreenNextRoute = {
 
 export interface SduiSagaAction {
   type: SduiActionType;
-  payload: string;
+  payload: string & ServerPayload;
   contextPayload: Record<string, any>;
 }
