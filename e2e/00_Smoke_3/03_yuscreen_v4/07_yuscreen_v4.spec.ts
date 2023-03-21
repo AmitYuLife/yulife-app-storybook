@@ -1,12 +1,9 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as then from "./_steps/then"
 import * as when from "./_steps/when"
-import {  CUSTOMER_43, AUTH_43, CUSTOMER_44, AUTH_44, CUSTOMER_45, AUTH_45, CUSTOMER_46, AUTH_46, CUSTOMER_48, AUTH_48, CUSTOMER_49, AUTH_49, CUSTOMER_51, AUTH_51, CUSTOMER_53, AUTH_53, CPE_48_WELLBEING, CUSTOMER_73, AUTH_73 } from "@data";
-import { AVATAR_ITEM, RIGHT_STATUS_ICON, BACKGROUND_COLOUR_PRODUCT, ONBOARDING_SCREEN, YUCOIN_POWER, TEXT_TEMPLATE, YUSCREEN_AVATAR, SURVEY_SCREEN, SURVEY_TEXT_BOX, CHECK_BOX_STATE } from "@ids"
-
-
+import {  CUSTOMER_43, AUTH_43, CUSTOMER_44, AUTH_44, CUSTOMER_45, AUTH_45, CUSTOMER_46, AUTH_46, CUSTOMER_48, AUTH_48, CUSTOMER_49, AUTH_49, CUSTOMER_51, AUTH_51, CUSTOMER_53, AUTH_53 } from "@data";
 import * as helper from "./_steps/helpers"
 
 
@@ -95,11 +92,10 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         })
     })
 
-    Scenario("As a YuLifer with Zero Earn Rate i should NOT see earnRate in productSlot", scenario.start, async () => {
-        Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_53, AUTH_53, true, "United States"), async () => {
+    Scenario("As a YuLifer with an earn rate of zero on a product, I should NOT see the earn rate in the product slot", scenario.start, async () => {
+        Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_53, AUTH_53, true), async () => {
             helper.ONBOARDING_YUSCREEN("0EarnRate", "1")
             helper.YUSCREEN_V4(CUSTOMER_53, "0EarnRateSlot", "1")
         })
     })
-
 })

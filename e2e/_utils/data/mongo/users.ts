@@ -90,6 +90,7 @@ import {
   CUSTOMER_DENTAL_1,
   CUSTOMER_DENTAL_2,
   CUSTOMER_85,
+  CUSTOMER_53,
 } from "../postgres/customers";
 import moment from "moment";
 
@@ -1099,6 +1100,26 @@ export const USER_52 = {
       },
     ],
     earnRate: 13,
+  },
+} as IDatabaseItem;
+
+export const USER_53 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 0,
+        nickname: "NoEarnRate",
+      },
+    ],
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_53.data.customerId,
+    earnRate: 1,
   },
 } as IDatabaseItem;
 

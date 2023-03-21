@@ -49,11 +49,9 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
             When("I have done 2 km today", when.addCyclingData(2000), async () => {
                 When("I update the screen to see today's activity pulled through", given.triggerAppUpdateState, async () => {
                     When("I wait", when.wait(10000), async () => {
-                        When("I tap awesome", when.tapText("Awesome"), async () => {
-                            When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin"), 3000), async () => {
-                                Then("I should see 2 km cycled", then.idVisible(CYCLING_COUNT("2.0 km")))
-                                Then("I should see I have earned 10 YuCoin from the cycle", then.textVisible("210 YuCoin today"))
-                            })
+                        When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin"), 3000), async () => {
+                            Then("I should see 2 km cycled", then.idVisible(CYCLING_COUNT("2.0 km")))
+                            Then("I should see I have earned 10 YuCoin from the cycle", then.textVisible("210 YuCoin today"))
                         })
                     })
                 })
@@ -78,11 +76,9 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
         When("I have done 3 km today", when.addCyclingData(3000), async () => {
             When("I update the screen to see today's activity pulled through", given.triggerAppUpdateState, async () => {
                 When("I wait", when.wait(10000), async () => {
-                    When("I tap awesome", when.tapText("Awesome"), async () => {
-                        When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin"), 3000), async () => {
-                            Then("I should see 5 km cycled", then.idVisible(CYCLING_COUNT("5.0 km")))
-                            Then("I should see I have earned 20 YuCoin from the cycle", then.textVisible("730 YuCoin today"))
-                        })
+                    When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin"), 3000), async () => {
+                        Then("I should see 5 km cycled", then.idVisible(CYCLING_COUNT("5.0 km")))
+                        Then("I should see I have earned 20 YuCoin from the cycle", then.textVisible("730 YuCoin today"))
                     })
                 })
             })
@@ -106,11 +102,9 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
         When("I have done 5 km today", when.addCyclingData(5000), async () => {
             When("I update the screen to see today's activity pulled through", given.triggerAppUpdateState, async () => {
                 When("I wait", when.wait(10000), async () => {
-                    When("I tap awesome", when.tapText("Awesome"), async () => {
-                        When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin"), 3000), async () => {
-                            Then("I should see 10 km cycled", then.idVisible(CYCLING_COUNT("10.0 km")))
-                            Then("I should see I have earned 30 YuCoin from the cycle", then.textVisible("1,760 YuCoin today"))
-                        })
+                    When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin"), 3000), async () => {
+                        Then("I should see 10 km cycled", then.idVisible(CYCLING_COUNT("10.0 km")))
+                        Then("I should see I have earned 30 YuCoin from the cycle", then.textVisible("1,760 YuCoin today"))
                     })
                 })
             })

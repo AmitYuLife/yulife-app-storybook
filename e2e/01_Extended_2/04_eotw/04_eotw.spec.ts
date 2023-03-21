@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -78,7 +78,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
             Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left today)"))
-            Then("I should see the correct number of steps done today", then.stepsDoneToday(1200)) 
+            Then("I should see the correct number of steps done today", then.stepsDoneToday(1200))
             Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(212, 60))
             Then("I can see the correct surge value and duration", then.iCanSeeSurgeIcon("2x", "7d"))
         })
@@ -110,7 +110,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
             Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left today)"))
-            Then("I should see the correct number of steps done today", then.stepsDoneToday(2000)) 
+            Then("I should see the correct number of steps done today", then.stepsDoneToday(2000))
             Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(272, 78))
             Then("I can see the correct surge value and duration", then.iCanSeeSurgeIcon("2x", "7d"))
         })
@@ -135,15 +135,8 @@ Feature("End of the world/Yuniverse", async () => {
         // fourth challenge - meditation
 
         When("I complete a meditation challenge at level 1", when.selectAndCompleteMeditationChallenge(180), async () => {
-            // we need triggerAppUpdateState to mimic a user leaving the app to meditate and then returning to the yulife app
-            When("I trigger app update", when.triggerAppUpdateState, async () => {
-                When("I wait", when.wait(5000), async () => {
-                    When("I tap awesome", when.tapText("Awesome"), async () => {
-                        When("I go to quests tab", when.tapID(NAV_BAR("quests")), async () => {
-                            Then("I should see the correct number of yucoin earned and steps completed in the task", then.meditationChallengeDataCorrect(1, 24, 3))
-                        })
-                    })
-                })
+            When("I go to quests tab", when.tapID(NAV_BAR("quests")), async () => {
+                Then("I should see the correct number of yucoin earned and steps completed in the task", then.meditationChallengeDataCorrect(1, 24, 3))
             })
         })
         When("I tap collect", when.tapText("Collect"), async () => {
@@ -152,13 +145,13 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
             Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
-            Then("I should see the correct number of steps done today", then.stepsDoneToday(2000)) 
-            Then("I should see the correct number of steps done today", then.textVisible("3 min")) 
-            Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(150, 24))
+            Then("I should see the correct number of steps done today", then.stepsDoneToday(2000))
+            Then("I should see the correct number of mindful minutes", then.textVisible("3 min"))
+            Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(350, 24))
             Then("I can see the correct surge value and duration", then.iCanSeeSurgeIcon("2x", "7d"))
         })
         When("I go to the today's earnings screen", when.tapText("2,000 steps"), async () => {
-            Then("I see the correct yucoin earned today so far", then.textVisible("174 YuCoin"))
+            Then("I see the correct yucoin earned today so far", then.textVisible("374 YuCoin"))
             Then("I can see my total steps", then.textVisible("2000 / 12000 steps"))
             Then("I can see my total mins", then.textVisible("3 / 30 mindful mins"))
         })
@@ -171,7 +164,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should not see any challenges left", then.textNotVisible("Take a challenge (1 left)"))
             Then("I should see the welldone banner as I have completed 4 challenges today", then.idVisible(WELLDONE_BANNER))
         })
-    }) 
+    })
 
     Scenario("I complete level 7 in EOTW, I finish EOTW and enter the red planet with a yucoin surge of 2", scenario.start, () => {
         Given("I login as a user on level 207 with a earn rate of 6", given.logInAndGoToTab("yucoin", CUSTOMER_70, AUTH_70), async () => {
@@ -367,6 +360,5 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should see the Weekly Quests activty icon with the badge", then.idVisible(WEEKLY_GOAL_ICON(daysRemainingOfWeek(), false)))
             Then("I can see the Icon has changed to the Done state", then.textVisible("Done"))
         }) 
-
     })
 })

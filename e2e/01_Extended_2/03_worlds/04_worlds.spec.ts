@@ -7,7 +7,6 @@ import { CUSTOMER_7, AUTH_7, CUSTOMER_3, AUTH_3, CUSTOMER_12, AUTH_12, CUSTOMER_
 import { QUESTS_SCREEN, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, LEVEL_CHALLENGE_BUTTON, CHALLENGE_TILE } from "@ids";
 
 Feature("As a user I can complete challenges across multiple worlds", async () => {
-
     Scenario("I can complete a meditation challenge in the first world", scenario.start, async () => {
         Given("I login as a user who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_7, AUTH_7), async () => {
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(640)))
