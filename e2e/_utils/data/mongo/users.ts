@@ -91,6 +91,10 @@ import {
   CUSTOMER_DENTAL_2,
   CUSTOMER_85,
   CUSTOMER_53,
+  CUSTOMER_PLI_2,
+  CUSTOMER_PLI_3,
+  CUSTOMER_PLI_4,
+  CUSTOMER_PLI_5,
 } from "../postgres/customers";
 import moment from "moment";
 
@@ -891,25 +895,6 @@ export const USER_MEDITOPIA_3 = {
 } as IDatabaseItem;
 
 export const USER_42 = {
-  type: "mongo",
-  modelName: "users",
-  data: {
-    _id: generateRandomMongoId(),
-    userId: CUSTOMER_42.data.customerId,
-    products: [
-      {
-        productId: generateRandomMongoId(),
-        productType: "Yulife",
-        option: "epic",
-        type: "employer",
-        earnRate: 10,
-      },
-    ],
-    earnRate: 10,
-  },
-} as IDatabaseItem;
-
-export const USER_PLI_2 = {
   type: "mongo",
   modelName: "users",
   data: {
@@ -1735,5 +1720,81 @@ export const USER_85 = {
       steps: moment().subtract(5, "days").toString(),
       meditation: moment().subtract(5, "days").toString(),
     },
+  },
+} as IDatabaseItem;
+
+export const USER_PLI_2 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_PLI_2.data.customerId,
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 1,
+      },
+    ],
+    earnRate: 1,
+  },
+} as IDatabaseItem;
+
+export const USER_PLI_3 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_PLI_3.data.customerId,
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 1,
+      },
+    ],
+    earnRate: 1,
+  },
+} as IDatabaseItem;
+
+export const USER_PLI_4 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_PLI_4.data.customerId,
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 1,
+      },
+    ],
+    earnRate: 1,
+  },
+} as IDatabaseItem;
+
+export const USER_PLI_5 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_PLI_5.data.customerId,
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 1,
+      },
+    ],
+    earnRate: 1,
   },
 } as IDatabaseItem;
