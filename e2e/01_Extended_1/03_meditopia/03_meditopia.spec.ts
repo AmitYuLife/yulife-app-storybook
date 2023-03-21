@@ -170,13 +170,10 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     });
     When("I start a Meditopia challenge", when.startMeditopiaChallenge, async () => {
       When("I close and reopen the app", when.minimiseAndReopenApp, async () => {
-        When("I go to the quests tab", when.tapID(NAV_BAR("quests")), async () => {
-          Then(
-            "I should be on the Well Done challenge complete screen",
-            then.onMeditopiaChallengeComplete(5, 1, "60")
-          );
-        });
-      });
+        When("I wait", when.wait(15000), async () => {
+          Then("I should be on the Well Done challenge complete screen", then.onMeditopiaChallengeComplete(5, 1, "60"));
+        })
+      })
     });
     When("I tap collect on the well done screen", when.tapText("Collect", 5000), async () => {
       Then("I should see the first day streak screen", then.textVisible("First day done!", 10000));

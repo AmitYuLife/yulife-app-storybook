@@ -1,10 +1,10 @@
-import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { NAV_BAR, MENU_ICON, ACTIVITY_HISTORY_SCREEN, BUTTON_CLOSE_HEADER, LEADERBOARD_TITLE, STEPS_COUNT, DUELS_BUTTON, CYCLING_COUNT, MINDFUL_COUNT } from "@ids";
-import { CUSTOMER_40, AUTH_40, USER_40_LEADERBOARD, CUSTOMER_66, AUTH_66, CUSTOMER_82, AUTH_82 } from "@data";
+import { CUSTOMER_40, AUTH_40, CUSTOMER_66, AUTH_66, CUSTOMER_82, AUTH_82, LEADERBOARD_2 } from "@data";
 import { twoDaysAgoDate } from "./_steps/consts"
 
 
@@ -20,7 +20,7 @@ Feature("As a user my activity is monitored correctly", async () => {
                 })
             })
             When("I go to the leaderboard screen", when.tapID(NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_40_LEADERBOARD.data.name)))
+                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(LEADERBOARD_2.data.name)))
                 Then("I should see the duel button on the leaderboard screen", then.idVisible(DUELS_BUTTON))
             })
             When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin"), 3000), async () => {
@@ -44,7 +44,7 @@ Feature("As a user my activity is monitored correctly", async () => {
                 Then("I should see the leaderboard consent screen as my leaderboard has been reset", then.onLeaderboardConsent)
             })
             When("I tap 'Yes'", when.tapText("Yes"), async () => {
-                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_40_LEADERBOARD.data.name)))
+                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(LEADERBOARD_2.data.name)))
                 Then("I should not see the duel button on the leaderboard screen", then.idNotVisible(DUELS_BUTTON))
             })
         })

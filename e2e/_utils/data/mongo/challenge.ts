@@ -767,7 +767,7 @@ export const CHALLENGE_USER_15_D = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_15.data.customerId,
         ...generateChallengeDates(moment().subtract(1, "days")),
-        endDateTime: null,
+        date: null,
         incomingData: {
             steps: 450
         },
@@ -1338,7 +1338,7 @@ export const CHALLENGE_USER_42_B = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_42.data.customerId,
         ...generateChallengeDates(moment().subtract(1, "days")),
-        endDateTime: null,
+        date: null,
         incomingData: {
             steps: 450
         },

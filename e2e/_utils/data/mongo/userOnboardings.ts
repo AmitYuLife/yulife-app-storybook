@@ -54,6 +54,7 @@ import {
   USER_PLI_9,
   USER_PLI_10,
   USER_51,
+  USER_53,
   USER_DENTAL_1,
   USER_DENTAL_2,
   USER_85,
@@ -94,6 +95,7 @@ import {
   USER_MEDITOPIA_1,
   USER_MEDITOPIA_2,
   USER_MEDITOPIA_3,
+  USER_40,
 } from "./users";
 
 const type = "mongo";
@@ -618,6 +620,17 @@ export const USER_ONBOARDING_39 = {
   },
 } as IDatabaseItem;
 
+export const USER_ONBOARDING_40 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_40.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+  },
+} as IDatabaseItem;
+
 export const USER_ONBOARDING_41 = {
   type,
   modelName,
@@ -1025,6 +1038,22 @@ export const USER_ONBOARDING_52 = {
   data: {
     _id: generateRandomMongoId(),
     userId: USER_52.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_53 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_53.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1514,3 +1543,4 @@ export const USER_ONBOARDING_MEDITOPIA_3 = {
     },
   },
 } as IDatabaseItem;
+

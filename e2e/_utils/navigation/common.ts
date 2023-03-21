@@ -357,7 +357,6 @@ export const tapTextAtIndex = (text: string, index = 0, waitTime = 0) => async (
 export const minimiseAndReopenApp = async () => {
     await device.sendToHome();
     await device.launchApp({newInstance: false});
-    await navigateViaText("Awesome");
 }
 
 export const daysRemainingOfWeek = () => {
