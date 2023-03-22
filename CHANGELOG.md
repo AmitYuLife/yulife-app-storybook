@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.74.0] - 2023-03-22
+
+### Bugfixes
+
+- Bugfix: Downgrade ios sdk
+- Bugfix: Wellbeing items image size
+
+### Tasks
+
+- Task/XSE-1718: CTA journey required functionality
+
+### Chores
+
+- Chore - Adding user_onboarding details
+
+### Extra
+
+- detox:add missing seed data for users in test
+- Detox - Fixes 20/3/23
+- Hotfix: noisy token logs
+- detox:fix usa seed data
+- Hotfix: rnn upgrade fixing android back handler OOO
+
 ## [3.73.0] - 2023-03-15
 
 ### Bugfixes
