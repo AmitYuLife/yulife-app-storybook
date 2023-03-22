@@ -34,7 +34,7 @@ function LeaderboardListContainer(props: Props) {
   const leaderboards = useSelector(getAcceptedLeaderboards);
 
   const handleChangeActiveLeaderboardId = useCallback(
-    (leaderboardId: string, leaderboardName: string) => {
+    (leaderboardId: string, leaderboardName: string, consent: boolean) => {
       const previousLeaderboard = (leaderboards as ILeaderboard[]).find(
         (item) => item.leaderboardId === activeLeaderboardId
       );
@@ -42,7 +42,9 @@ function LeaderboardListContainer(props: Props) {
         dispatch(
           logMixpanelEventActionCreator("leaderboard_switched", {
             previous_name: previousLeaderboard.name,
-            name: leaderboardName,
+            previous_consent: previousLeaderboard.consent,
+            current_name: leaderboardName,
+            current_consent: consent,
           })
         );
       }

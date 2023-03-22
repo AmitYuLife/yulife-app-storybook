@@ -12,7 +12,7 @@ interface IProps {
   onRefresh: () => void;
   onLeftIconPress?: () => void;
   onRightIconPress?: () => void;
-  onChangeActiveLeaderboard: (id: string, name: string) => void;
+  onChangeActiveLeaderboard: (id: string, name: string, consent: boolean) => void;
   onChangeLeaderboardConsent: (id: string, consent: boolean, name: string) => void;
 }
 
