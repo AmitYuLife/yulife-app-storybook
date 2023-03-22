@@ -1,0 +1,13 @@
+diff --git a/node_modules/@intercom/intercom-react-native/ios/IntercomModule.h b/node_modules/@intercom/intercom-react-native/ios/IntercomModule.h
+index d28cdd0..2b15d4b 100644
+--- a/node_modules/@intercom/intercom-react-native/ios/IntercomModule.h
++++ b/node_modules/@intercom/intercom-react-native/ios/IntercomModule.h
+@@ -2,7 +2,7 @@
+ 
+ @interface IntercomModule : NSObject <RCTBridgeModule>
+ + (void)initialize:(nonnull NSString *)apiKey withAppId:(nonnull NSString *)appId;
+-+ (void)setDeviceToken:(nonnull NSString *)deviceToken;
+++ (void)setDeviceToken:(nonnull NSData *)deviceToken;
+ + (BOOL)isIntercomPushNotification:(nonnull NSDictionary *)userInfo;
+ + (void)handleIntercomPushNotification:(nonnull NSDictionary *)userInfo;
+ - (NSError *)exceptionToError:(NSException *)exception :(NSString *)code :(NSString *)domain;
