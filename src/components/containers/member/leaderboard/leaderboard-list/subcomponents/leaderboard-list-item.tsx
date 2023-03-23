@@ -13,7 +13,7 @@ import { LeaderboardMetric } from "@graphql/member";
 interface Props {
   leaderboards: ILeaderboard[];
   activeLeaderboardId: string;
-  onPress: (id: string, name: string) => void;
+  onPress: (id: string, name: string, consent: boolean) => void;
   onRefresh: () => void;
   onChangeLeaderboardConsent: (id: string, consent: boolean, name: string) => void;
 }
@@ -32,7 +32,7 @@ export const LeaderboardListItems = ({
         isActive={item.leaderboardId === activeLeaderboardId}
         consent={item.consent}
         name={item.name}
-        onPress={() => onPress(item.leaderboardId, item.name)}
+        onPress={() => onPress(item.leaderboardId, item.name, item.consent)}
         onSwitchPress={() => onChangeLeaderboardConsent(item.leaderboardId, item.consent, item.name)}
       />
     ),
