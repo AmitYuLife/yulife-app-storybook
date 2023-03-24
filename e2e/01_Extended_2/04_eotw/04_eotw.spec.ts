@@ -135,13 +135,14 @@ Feature("End of the world/Yuniverse", async () => {
         // fourth challenge - meditation
 
         When("I complete a meditation challenge at level 1", when.selectAndCompleteMeditationChallenge(180), async () => {
-            When("I go to quests tab", when.tapID(NAV_BAR("quests")), async () => {
-                Then("I should see the correct number of yucoin earned and steps completed in the task", then.meditationChallengeDataCorrect(1, 24, 3))
-            })
+            Then("I should see the correct number of yucoin earned and steps completed in the task", then.meditationChallengeDataCorrect(1, 24, 3))
         })
+
         When("I tap collect", when.tapText("Collect"), async () => {
-            Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(2)))
-            Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17850 + 24)))
+            When("I go to quests tab", when.tapID(NAV_BAR("quests")), async () => {
+                Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(2)))
+                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17850 + 24)))
+            })
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
             Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
