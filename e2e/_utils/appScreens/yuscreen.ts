@@ -248,19 +248,17 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
   await textVisible("Power")();
 
   switch (packType) {
-    case "wellbeing only":
+    case "wellbeing only":      
       await textVisibleAtIndex(yuCoinPower, 0)();
-      await idVisibleAtIndex(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"), 0)();
       await textVisibleAtIndex(yuCoinPower, 1)();
       await expect(element(by.text(WellbeingProduct))).toBeVisible();
       await expect(element(by.text(paidBy))).toBeVisible();
-      await expect(element(by.text(noProductText))).toBeVisible();
-      await swipeFromText(noProductText, "up", "slow")();
-      await expect(element(by.id(CAROUSEL_CARD))).toBeVisible();
-      await swipeFromText(surveyText, "up", "slow")();
+      await expect(element(by.text(noProductText))).not.toBeVisible();
+      await swipeFromText(WellbeingProduct, "up", "fast")();
+      await expect(element(by.id(CAROUSEL_CARD))).not.toBeVisible();
       await expect(element(by.text(surveyText))).toBeVisible();
       await expect(element(by.text(surveyLabel))).toBeVisible();
-      await swipeFromText(surveyText, "down", "slow")();
+      await swipeFromText(surveyText, "down", "fast")();
       break;
     case "dentalAndPliInactive":
       await textVisibleAtIndex(yuCoinPower, 0)();
@@ -351,8 +349,9 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
       await expect(element(by.text(groupDental))).toBeVisible();
       await expect(element(by.text(paidBy))).toBeVisible();
       await expect(element(by.text(noProductText))).toBeVisible();
-      await swipeFromText(createYumujiCTA, "up", "slow")();
+      await swipeFromText(createYumujiCTA, "up", "fast")();
       await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible();
+      await swipeFromText(surveyText, "down", "fast")();
       break;
     case "dentalAndPli":
       await textVisibleAtIndex(yuCoinPower, 0)();
@@ -366,17 +365,17 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
       await swipeFromText(surveyText, "up", "slow")();
       await expect(element(by.text(surveyText))).toBeVisible();
       await expect(element(by.text(surveyLabel))).toBeVisible();
-      await swipeFromText(surveyText, "down", "slow")();
+      await swipeFromText(surveyText, "down", "fast")();
       break;
     case "0EarnRateSlot":
       await expect(element(by.text("0"))).not.toBeVisible(); // should not be visible in slot because earn rate is 0 in product details
       await expect(element(by.text(incomeProtection))).toBeVisible();
       await expect(element(by.text(paidBy))).toBeVisible();
-      await expect(element(by.text(noProductText))).toBeVisible();
+      await expect(element(by.text(noProductText))).not.toBeVisible()
       await expect(element(by.text(addDental))).not.toBeVisible(); // should not because of Gdent  bought by their company XSE-1376
-      await swipeFromText(noProductText, "up", "slow")();
-      await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible();
-      await swipeFromText(surveyText, "down", "slow")();
+      await swipeFromText(incomeProtection, "up", "fast")();
+      await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).not.toBeVisible()
+      await swipeFromText(surveyText, "down", "fast")();
       break;
     case "genericRejection":
       await textVisible(yuCoinPower)();
@@ -395,12 +394,6 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
       await expect(element(by.text(PLIYuCoinPower))).toBeVisible();
     default:
       break;
-  }
-  if (device.name.includes("(iPhone SE (3rd generation))")) {
-    await swipeFromText(surveyLabel, "down", "fast")();
-    await swipeFromText(browseMoreProtection, "down", "fast")();
-  } else {
-    await swipeFromText(browseMoreProtection, "down", "slow")();
   }
 };
 

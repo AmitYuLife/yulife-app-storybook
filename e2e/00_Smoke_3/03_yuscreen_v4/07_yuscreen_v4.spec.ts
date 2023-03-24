@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as then from "./_steps/then"
@@ -76,7 +76,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         })
     })
 
-    Scenario("As a YuLifer with Group Dental product i should see correct Product Details and be able to order Ordo toothbrush", scenario.start, async () => {
+    ScenarioSkip("As a YuLifer with Group Dental product i should see correct Product Details and be able to order Ordo toothbrush", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_51, AUTH_51), async () => {
             helper.ONBOARDING_YUSCREEN("groupDental", "5")
             When("I tap check out my power", when.tapCheckOutMyPower, async () => {

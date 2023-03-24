@@ -199,6 +199,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
   const wellbeingAccessText = "Wellbeing Access";
   const availableProducts = "More protection";
   const protectionPowered = "Protection, powered up!";
+  const allPoweredUp = "You are all powered up!"
   const earnRewardsCopy = "Earn rewards faster with increased YuCoin power";
   const buttonText = "Check out my power";
   const yuCoinText = "YuCoin";
@@ -219,8 +220,9 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await textVisibleAtIndex(yuCoinPower, 1)();
       await textVisible(wellbeingAccessText)();
       await textVisible(paidBy)();
-      await textVisible(noProductText)();
+      await textNotVisible(noProductText)();
       await textNotVisible(availableProducts)();
+      await textVisible(allPoweredUp)();
       break;
     case "dentalAndPli":
       await textVisible(yuCoinPower, 0)();
@@ -256,7 +258,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
     case "0EarnRate":
       await textVisible(incomeProtection)();
       await textVisible(powerText)();
-      await textVisible(noProductText)();
+      await textNotVisible(noProductText)();
       await textVisible(paidBy)();
       await textVisible(yuCoinPower)();
       break;
