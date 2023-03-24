@@ -7,6 +7,7 @@ import {
   BUSINESS_ACCOUNT_5,
   BUSINESS_ACCOUNT_6,
 } from "../postgres/business";
+import { USER_84_LEADERBOARD } from "./leaderboard";
 import {
   USER_1,
   USER_2,
@@ -1489,6 +1490,22 @@ export const USER_ONBOARDING_83 = {
   data: {
     _id: generateRandomMongoId(),
     userId: USER_83.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_84 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_84_LEADERBOARD.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
