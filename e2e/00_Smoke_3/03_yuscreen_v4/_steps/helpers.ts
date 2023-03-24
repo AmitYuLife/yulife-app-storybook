@@ -51,7 +51,7 @@ export const CHECK_CAROUSEL_DENTAL_BUTTON_LINK = async () => {
           then.textVisible("Bupa Dental Plan for YuLife", 8000)
         );
       });
-      When("I close this screen", when.closeScreen, async () => {
+      When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
         Then(`I should be back on the yuscreen v4`, then.idVisible(V4_YUSCREEN));
       });
     });
@@ -79,7 +79,7 @@ export const CHECK_CAROUSEL_BUTTON_LINK = async (
                 then.textVisible(productOnboardingViewText, 4000)
               );
             });
-            When("I close this screen", when.closeScreen, async () => {
+            When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
               Then(`I should be back on the yuscreen v4`, then.idVisible(V4_YUSCREEN));
             });
           });

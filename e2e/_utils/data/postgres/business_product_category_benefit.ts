@@ -1,0 +1,26 @@
+import { generateRandomPostgresId } from "@yu-life/yulife-bdd-framework";
+import {  BUSINESS_PRODUCT_4_GDental } from "./business_product"
+import { PVBS_1_GDental } from "./product_version_benefit_set";
+
+const type = "postgres"
+const modelName = "business_product_category_benefit"
+
+
+export const BPCB_1_GDental = {
+    type,
+    modelName,
+    data: {
+        "business_product_category_benefit_id" : generateRandomPostgresId(),
+        "business_product_id" : BUSINESS_PRODUCT_4_GDental.product.data.product_id,
+        "category_id" : "1",
+        "default_product_version_benefit_set_id" :  PVBS_1_GDental.data.product_version_benefit_set_id,
+        "business_contribution" : null,
+        "archived" : false,
+        "archive_reason" : null,
+        "archived_at" : null,
+        "created_at" : "2023-02-23T14:01:39.326Z",
+        "created_by_id" : null,
+        "modified_at" : "2023-02-27T11:04:07.180Z",
+        "modified_by_id" : null
+    }
+}
