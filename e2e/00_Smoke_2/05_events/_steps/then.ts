@@ -205,7 +205,7 @@ export const firstAndSecondChallengeClaimedVisible = async () => {
 export const yuCoinTodayEarned = (challengeTotals: number[], milestoneTotal = 0) => async () => {
     const sum = challengeTotals.reduce((acc, val) => acc + val, 0)
     const yuCoinToday = `${addCommasToNumber(sum + (milestoneTotal * 10))} YuCoin today`
-    textVisible(yuCoinToday)()
+    await textVisible(yuCoinToday)()
   }
 
 export const meditationChallengeDataCorrect = (stage: number, yucoinEarned: number, mins: number) =>  async () => {
