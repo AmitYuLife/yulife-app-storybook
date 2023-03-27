@@ -31,7 +31,10 @@ const RewardStoreContainer = ({ componentId }: IProps) => {
     "screens.rewards.store_location.info_box",
   ]);
   const { data, loading: queryLoading } = useQuery<GetMobileRewardStoreLocations>(
-    GQL_QUERY_GET_MOBILE_REWARD_STORE_LOCATIONS
+    GQL_QUERY_GET_MOBILE_REWARD_STORE_LOCATIONS,
+    {
+      fetchPolicy: "network-only",
+    }
   );
 
   const [updateRewardStoreLocation, { loading }] = useMutation<
@@ -51,10 +54,10 @@ const RewardStoreContainer = ({ componentId }: IProps) => {
     }
   }, [queryLoading]);
 
-  const onRightIconPress = useCallback(() => (loading ? null : Navigation.popToRoot(componentId)), [
-    loading,
-    componentId,
-  ]);
+  const onRightIconPress = useCallback(
+    () => (loading ? null : Navigation.popToRoot(componentId)),
+    [loading, componentId]
+  );
 
   const handleUpdateStoreLocation = useCallback(async () => {
     try {
