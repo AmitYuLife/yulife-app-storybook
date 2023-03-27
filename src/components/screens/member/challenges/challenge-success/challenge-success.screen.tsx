@@ -6,6 +6,7 @@ import { AnimatedPlusPoints, Button, CentredScreen } from "@molecules";
 import { formatCyclingMetersToKmWithOneDecimal } from "../challenge-progress/subcomponents/progress-bar.helpers";
 import styles, { SCORE_COLOR } from "./challenge-success.screen.styles";
 import { getTheme } from "@theme";
+import { CHALLENGE_SUCCESS_SCREEN } from "@ids";
 
 interface IProps {
   onPressCta: () => void;
@@ -23,7 +24,7 @@ export default function ChallengeSuccessScreen(props: IProps) {
   const { challengeSuccessScreen } = getTheme(level, yuniversalMap);
 
   return (
-    <CentredScreen {...challengeSuccessScreen}>
+    <CentredScreen testID={CHALLENGE_SUCCESS_SCREEN} {...challengeSuccessScreen}>
       <View style={styles.ratingWrapper}>
         <Stars isLeftHighlighted={rating > 0} isMidHighlighted={rating > 1} isRightHighlighted={rating > 2} />
         <View style={styles.levelWrapper}>

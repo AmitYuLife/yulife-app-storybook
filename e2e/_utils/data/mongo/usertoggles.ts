@@ -84,6 +84,7 @@ import {
   CUSTOMER_83,
   CUSTOMER_84,
   CUSTOMER_85,
+  CUSTOMER_FIIT,
 } from "../postgres/customers";
 import {
   allTogglesTrue,
@@ -1605,6 +1606,20 @@ export const CUSTOMER_DENTAL_85_TOGGLES = {
       hasBupaDentActive: true,
       yuScreenV4: true,
       hasCoveaFibActive: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_FIIT_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_FIIT.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      showFiit: true,
+      enableFiitInApp: true,
     },
   },
 } as IDatabaseItem;

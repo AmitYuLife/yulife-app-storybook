@@ -90,6 +90,7 @@ import {
   CUSTOMER_DENTAL_1,
   CUSTOMER_DENTAL_2,
   CUSTOMER_85,
+  CUSTOMER_FIIT,
   CUSTOMER_53,
   CUSTOMER_PLI_2,
   CUSTOMER_PLI_3,
@@ -1796,5 +1797,26 @@ export const USER_PLI_5 = {
       },
     ],
     earnRate: 1,
+  },
+} as IDatabaseItem;
+
+export const USER_FIIT = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_FIIT.data.customerId,
+    nickname: "Fiitman",
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 19,
+      },
+    ],
+    earnRate: 19,
   },
 } as IDatabaseItem;

@@ -21,7 +21,7 @@ import VideoPlayerTimer from "./video-player-timer";
 import { Button, PressableWithDelay, VidePlayerButton } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingLogo, GenericHeadingPad } from "@organisms";
 import { PlayIcon } from "@atoms/icon/play-icon";
-import { VIDEO_PLAYER_TIMER, VIDEO_PROGRESS_BAR, VIDEO_PLAY_PAUSE_BUTTON, VIDEO_PLAYER, VIDEO_LOGO } from "@ids";
+import { VIDEO_PLAYER_TIMER, VIDEO_PROGRESS_BAR, VIDEO_PLAY_PAUSE_BUTTON, VIDEO_PLAYER, VIDEO_LOGO, MEDIA_PORTRAIT_CLOSE } from "@ids";
 import { DETOX_ENABLED } from "@services/socket";
 import Logger from "@services/logging/logger";
 import { useDispatch, useSelector } from "react-redux";
@@ -469,7 +469,7 @@ const VideoPlayer = ({
 
       {!state.musicControlMounted || orientation === "portrait" ? null : (
         <Animated.View style={[styles.closeButton, { opacity }]}>
-          <PressableWithDelay onPress={handleOnRightIconPress}>
+          <PressableWithDelay testID={MEDIA_PORTRAIT_CLOSE} onPress={handleOnRightIconPress}>
             <CloseSvg size={Style.adjust(24)} stroke={"white"} />
           </PressableWithDelay>
         </Animated.View>

@@ -3,7 +3,7 @@ import { Image as RNImage, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 import { ArrowIcon } from "@atoms/icon/arrow";
-import { MEDITATION_ITEM } from "@ids";
+import {  MEDIA_LIST_ITEM_DESCRIPTION, MEDIA_LIST_ITEM_TITLE } from "@ids";
 import { BoxOption } from "@molecules";
 import { Colours } from "@styles";
 import { BOX_HEIGHT, IMAGE_HEIGHT, IMAGE_WIDTH, styles } from "./media-list-items.styles";
@@ -44,7 +44,7 @@ const MediaListItems = ({ items, onPress, type, isLoading }: IProps) => {
               selectedStyle={{}}
               wrapperStyle={styles.wrapper}
               innerHeight={BOX_HEIGHT}
-              testID={MEDITATION_ITEM(item.title)}
+              testID={MEDIA_LIST_ITEM_TITLE(item.title)}
             >
               <View style={styles.main}>
                 <View style={styles.imageWrapper}>
@@ -54,7 +54,7 @@ const MediaListItems = ({ items, onPress, type, isLoading }: IProps) => {
                 </View>
                 <View style={styles.detailWrapper}>
                   <TextTemplate type="b2b">{item.title}</TextTemplate>
-                  <View style={styles.details}>
+                  <View style={styles.details} testID={MEDIA_LIST_ITEM_DESCRIPTION(item.description)} >
                     {type === "category" ? (
                       <Markdown text={item.description} markdownStyles={markdownStyle} />
                     ) : (

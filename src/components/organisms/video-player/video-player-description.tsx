@@ -5,7 +5,7 @@ import { t } from "@locale";
 import { Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { StarIcon } from "@atoms/icon/star-icon";
-import { MEDITATION_STAR_REWARD, MEDITATION_YUCOIN_REWARD } from "@ids";
+import { MEDIA_SMALL_LOGO, MEDIA_STAR_REWARD, MEDIA_YUCOIN_REWARD, VIDEO_PLAYER_DESCRIPTION_SCREEN } from "@ids";
 interface IProps {
   title: string;
   description: string;
@@ -23,13 +23,13 @@ const VideoPlayerDescription = ({ title, description, duration, stars, yuCoin, l
   ]);
 
   return (
-    <View style={styles.wrapper}>
+    <View testID={VIDEO_PLAYER_DESCRIPTION_SCREEN} style={styles.wrapper}>
       <TextTemplate textAlign="center" type="h3">
         {title}
       </TextTemplate>
       {!(duration && logo) ? null : (
         <View style={styles.info}>
-          <Image source={{ uri: logo }} width={16} height={16} />
+          <Image testID={MEDIA_SMALL_LOGO(logo)} source={{ uri: logo }} width={16} height={16} />
           <View style={styles.subTitle}>
             <TextTemplate type="l2b">
               {t(`screens.video_player.video_type.${eventType}`)} • {durationFormatted} {timeType}
@@ -48,14 +48,14 @@ const VideoPlayerDescription = ({ title, description, duration, stars, yuCoin, l
               {durationFormatted} {timeType === "min" ? "mins" : "secs"}
             </TextTemplate>
           </View>
-          <View style={styles.stars} testID={MEDITATION_STAR_REWARD(stars)}>
+          <View style={styles.stars} testID={MEDIA_STAR_REWARD(stars)}>
             {Array.from({ length: stars }).map((_, index) => (
               <View key={index} style={styles.starIcon}>
                 <StarIcon />
               </View>
             ))}
           </View>
-          <View style={styles.yuCoin} testID={MEDITATION_YUCOIN_REWARD(yuCoin)}>
+          <View style={styles.yuCoin} testID={MEDIA_YUCOIN_REWARD(yuCoin)}>
             <TextTemplate type="b2">{yuCoin}</TextTemplate>
             <RNImage source={require("@assets/icons/yucoin.png")} resizeMode="contain" style={styles.coin} />
           </View>
