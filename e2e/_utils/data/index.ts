@@ -56,5 +56,5 @@ export * from "./postgres/business_product_category";
 export * from "./postgres/customer_business_product";
 export * from "./postgres/customer_beneficiaries";
 export * from "./postgres/customer_product_entity_beneficiary";
-export * from "./postgres/business_product_perk";
+export * from "./postgres/perk_eligibility";
 export * from "./postgres/payment_plan_invoice";
