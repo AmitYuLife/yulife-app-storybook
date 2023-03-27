@@ -13,16 +13,18 @@ export default function* hydrateApiConfigSaga(payload: SyncAction) {
     const isFromInit = payload?.type === "INIT";
 
     if (isFromInit) {
-      if (DETOX_ENABLED) {
-        return;
-      }
-
       yield call(region.hydratePreferredRegion);
 
       const existingConfig = region.getConfig("mixpanelKey");
 
       if (existingConfig?.length) {
         shouldFetchConfig = false;
+      }
+
+      // We're not running 3 servers for each region at the same time; so every time we select a region that's not spun up, we get a thrown error
+      // When reloading the app only, we need the previous part (hydration) to run as it was saved locally
+      if (DETOX_ENABLED) {
+        return;
       }
     }
 
