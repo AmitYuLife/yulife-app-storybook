@@ -202,13 +202,11 @@ export const firstAndSecondChallengeClaimedVisible = async () => {
     await textVisible("3 / 4 perfect challenges")()
 }
 
-export const yuCoinTodayEarned = (challengeTotals: number[], milestoneTotal?: number) => async () => {
-    let sum = 0;
-    for (let i = 0; i < challengeTotals.length; i += 1) {
-        sum += challengeTotals[i]
-        }
-        !milestoneTotal ? await textVisible(`${addCommasToNumber(sum)} YuCoin today`)() : await textVisible(`${addCommasToNumber(sum + (milestoneTotal * 10))} YuCoin today`)()
-}
+export const yuCoinTodayEarned = (challengeTotals: number[], milestoneTotal = 0) => async () => {
+    const sum = challengeTotals.reduce((acc, val) => acc + val, 0)
+    const yuCoinToday = `${addCommasToNumber(sum + (milestoneTotal * 10))} YuCoin today`
+    textVisible(yuCoinToday)()
+  }
 
 export const meditationChallengeDataCorrect = (stage: number, yucoinEarned: number, mins: number) =>  async () => {
     await textVisible(`Stage ${stage}`)()
