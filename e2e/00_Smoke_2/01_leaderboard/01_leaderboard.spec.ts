@@ -67,7 +67,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("I should be on the onboarding yuscreen v4", then.idVisible(ONBOARDING_SCREEN_V4))
         })  
         helper.CREATE_AVATAR(CUSTOMER_47)();
-        When("I wait", when.wait(60000), async () => {
+        When("I wait", when.wait(6000), async () => {
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(LEADERBOARD_1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_47, CUSTOMER_50]))
@@ -108,7 +108,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             })
         })
         helper.CREATE_AVATAR(CUSTOMER_47)();
-        When("I wait", when.wait(60000), async () => {
+        When("I wait", when.wait(6000), async () => {
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(LEADERBOARD_1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_47, CUSTOMER_50]))
@@ -144,7 +144,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
 
         })  
         helper.CREATE_AVATAR(CUSTOMER_47)();
-        When("I wait", when.wait(60000), async () => {
+        When("I wait", when.wait(6000), async () => {
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard"), 2000), async () => {
                 Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(LEADERBOARD_1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible(([CUSTOMER_18, CUSTOMER_17, CUSTOMER_47, CUSTOMER_50])))
@@ -229,7 +229,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
 
         })  
         helper.CREATE_AVATAR(CUSTOMER_50)();
-        When("I wait", when.wait(60000), async () => {
+        When("I wait", when.wait(6000), async () => {
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(LEADERBOARD_1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_50, CUSTOMER_47]))

@@ -895,6 +895,8 @@ export const CHALLENGE_USER_18_C = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_18.data.customerId,
         ...generateChallengeDates(moment().subtract(1, "days")),
+        status: "completed",
+        passive: true,
         levelSlotTemplateId: "DAILY_PASSIVE_003",
         subtype: CYCLING_1.data.subtype,
         incomingData: {
@@ -929,6 +931,8 @@ export const CHALLENGE_USER_18_D = {
         },
         levelSlotTemplateId: "DAILY_PASSIVE_002",
         level: 3,
+        status: "completed",
+        passive: true,
         milestoneLog: [
             {
                 completionData: [],
@@ -1402,6 +1406,8 @@ export const CHALLENGE_USER_47_B = {
         },
         levelSlotTemplateId: "DAILY_PASSIVE_002",
         level: 3,
+        status: "completed",
+        passive: true,
         milestoneLog: [
             {
                 completionData: [],
@@ -1431,6 +1437,8 @@ export const CHALLENGE_USER_47_C = {
             distance: 30000
         },
         level: 4,
+        status: "completed",
+        passive: true,
         milestoneLog: [
             {
                 completionData: [],
@@ -1525,6 +1533,8 @@ export const CHALLENGE_USER_50_C = {
             distance: 4010
         },
         level: 4,
+        status: "completed",
+        passive: true,
         milestoneLog: [
             {
                 completionData: [],
@@ -1553,6 +1563,8 @@ export const CHALLENGE_USER_50_D = {
         },
         levelSlotTemplateId: "DAILY_PASSIVE_002",
         level: 3,
+        status: "completed",
+        passive: true,
         milestoneLog: [
             {
                 completionData: [],
