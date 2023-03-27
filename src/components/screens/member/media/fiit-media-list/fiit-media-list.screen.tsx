@@ -5,6 +5,7 @@ import { GenericHeadingPad, MediaListItems, GenericHeadingAbsolute } from "@orga
 import { MediaListHeader } from "@molecules";
 import { Colours, Style } from "@styles";
 import { IITem } from "@organisms/media-list-items/media-list-items";
+import { FIIT_MEDIA_SCROLL_VIEW } from "@ids";
 
 interface IProps {
   title: string;
@@ -32,7 +33,7 @@ const FiitMediaListScreen = ({
     <View style={styles.flex}>
       <GenericHeadingPad />
       <View style={styles.wrapper}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} testID={FIIT_MEDIA_SCROLL_VIEW}>
           <MediaListHeader title={title} description={description} logo={logoProps} />
           <MediaListItems isLoading={loading} items={items} type="media" onPress={onItemPress} />
         </ScrollView>

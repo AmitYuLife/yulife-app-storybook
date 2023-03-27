@@ -3,7 +3,7 @@ import React, { memo, useMemo } from "react";
 import { Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { Source } from "react-native-fast-image";
-import { MEDITATION_PARTNER_LOGO, TODAYS_MEDITATION_DESCRIPTION, TODAYS_MEDITATION_HEADER } from "@ids";
+import { MEDIA_LIST_DESCRIPTION, MEDIA_LIST_HEADER, PARTNER_LOGO } from "@ids";
 
 interface IProps {
   title: string;
@@ -20,15 +20,15 @@ const MediaListHeader = ({ title, description, logo: { uri, ...logoProps } }: IP
   return (
     <View style={styles.wrapper}>
       {/* need to rename this testIDs later */}
-      <View style={styles.header} testID={TODAYS_MEDITATION_HEADER(title)}>
+      <View style={styles.header} testID={MEDIA_LIST_HEADER(title)}>
         <TextTemplate type="b1b">{title}</TextTemplate>
       </View>
       <View style={styles.description}>
-        <TextTemplate type="b2" textAlign="center" testID={TODAYS_MEDITATION_DESCRIPTION(description)}>
+        <TextTemplate type="b2" textAlign="center" testID={MEDIA_LIST_DESCRIPTION(description)}>
           {description}
         </TextTemplate>
         <View style={logoStyles}>
-          <Image source={uri} width={logoProps.width} height={logoProps.height} testID={MEDITATION_PARTNER_LOGO} />
+          <Image source={uri} width={logoProps.width} height={logoProps.height} testID={PARTNER_LOGO} />
         </View>
       </View>
     </View>

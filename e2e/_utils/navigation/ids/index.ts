@@ -50,6 +50,8 @@ export const CELESTIAL_CHEST_SCREEN = "CELESTIAL_CHEST_SCREEN";
 export const SPACE_TRAVEL_SCREEN = "SPACE_TRAVEL_SCREEN";
 export const ONBOARDING_SCREEN_V4 = "ONBOARDING_SCREEN_V4";
 export const V4_YUSCREEN = "V4_YUSCREEN";
+export const VIDEO_PLAYER_DESCRIPTION_SCREEN = "VIDEO_PLAYER_DESCRIPTION";
+export const MEDIA_PORTRAIT_CLOSE = "MEDIA_PORTRAIT_CLOSE"
 
 // buttons
 export const BUTTON_LOGIN = (disabled: boolean) => `BUTTON_LOGIN_${disabled})`;
@@ -120,9 +122,9 @@ export const SCROLL_NUMBER_PICKER = (id: number) => `SCROLL_PICKER_${id}`
 export const HORIZONTAL_SCROLLER = 'HORIZONTAL_SCROLLER'
 export const DAILYSTEP_SCREEN_COIN =  "DAILYSTEP_SCREEN_COIN";
 export const STATUS_ICON = (value:string) => `STATUS_ICON_${value}`
-export const MEDITATION_ITEM = (value:string) => `MEDITATION_ITEM_${value}`
-export const MEDITATION_STAR_REWARD = (star: number) => `MEDITATION_REWARD_${star}`
-export const MEDITATION_YUCOIN_REWARD = (yucoin: number) => `MEDITATION_REWARD_${yucoin}`
+export const MEDITATION_ITEM = (title: string) => MEDIA_LIST_ITEM_TITLE(title)
+export const MEDITATION_STAR_REWARD = (star: number) => MEDIA_STAR_REWARD(star)
+export const MEDITATION_YUCOIN_REWARD = (yucoin: number) => MEDIA_YUCOIN_REWARD(yucoin)
 export const CHALLENGE_HISTORY_YUCOIN_STARS = (yuCoin: string, stars: number, challengeType: string, index: number) => `CHALLENGE_HISTORY_YUCOIN+${yuCoin}_${stars}_${challengeType}_${index}`
 export const WELLDONE_BANNER = "WELLDONE_BANNER";
 export const YUNITY_CARD = (description: string) => `YUNITY_CARD_${description}`;
@@ -334,6 +336,19 @@ export const DENTAL_TOOLTIP_INFO = "DENTAL_TOOLTIP_INFO"
 export const POPOVER = "POPOVER"
 export const YULIFE_BUPA_LOGO = "YULIFE_BUPA_LOGO"
 
+// CHALLENGES
+export const TIME_REMAINING = (timeRemaing: string) => `TIME_REMAINING_${timeRemaing}`;
+export const LEVEL_STAR_COUNT = (starArrLength: number) => `LEVEL_STAR_COUNT_${starArrLength}`
+export const MEDIA_LIST_HEADER = (header: string) => `MEDIA_LIST_HEADER_${header}`
+export const MEDIA_LIST_DESCRIPTION = (description: string) => `MEDIA_LIST_DESCRIPTION_${description}`
+export const PARTNER_LOGO = "PARTNER_LOGO"
+export const MEDIA_LIST_ITEM_TITLE = (title: string) => `MEDIA_LIST_ITEM_TITLE_${title}`
+export const MEDIA_LIST_ITEM_DESCRIPTION = (description: string) => `MEDIA_LIST_ITEM_DESCRIPTION_${description}`
+export const MEDIA_STAR_REWARD = (star: number) => `MEDIA_REWARD_${star}`
+export const MEDIA_YUCOIN_REWARD = (yucoin: number) => `MEDIA_REWARD_${yucoin}`
+export const MEDIA_SMALL_LOGO = (logoUrl: string) => `MEDIA_SMALL_LOGO_${logoUrl}`
+export const CHALLENGE_SUCCESS_SCREEN = "CHALLENGE_SUCCESS_SCREEN"
+
 // MEDITOPIA
 export const MEDITOPIA_LOGO = "MEDITOPIA_LOGO";
 export const VIDEO_PLAYER_TIMER = "VIDEO_PLAYER_TIMER";
@@ -349,12 +364,13 @@ export const REWARD_AMOUNT = (amount: number) => `REWARD_AMOUNT_${amount}`
 export const CHALLENGE_TYPE = (challengeType: string) => `CHALLENGE_TYPE_${challengeType}`
 export const TARGET = (target: string) => `TARGET_${target}`;
 export const TODAYS_MEDITATION_SCREEN = "TODAYS_MEDITATION_SCREEN";
-export const TODAYS_MEDITATION_HEADER = (header: string) => `TODAYS_MEDITATION_HEADER_${header}`
-export const TODAYS_MEDITATION_DESCRIPTION = (description: string) =>  `TODAYS_MEDITATION_DESCRIPTION_${description}`
+export const TODAYS_MEDITATION_HEADER = (header: string) => MEDIA_LIST_HEADER(header)
+export const TODAYS_MEDITATION_DESCRIPTION = (description: string) =>  MEDIA_LIST_DESCRIPTION(description)
 export const VIDEO_PLAYER_SCREEN = "VIDEO_PLAYER_SCREEN";
 export const VIDEO_LOGO = "VIDEO_LOGO";
-export const MEDITATION_PARTNER_LOGO = "MEDITATION_PARTNER_LOGO";
+export const MEDITATION_PARTNER_LOGO = PARTNER_LOGO
 export const VIDEO_PLAYER = "VIDEO_PLAYER";
+
 // INSPECT SCREEN
 export const YUMOJI = "YUMOJI";
 export const INSPECT_DATA = (value: number, label: string) => `INSPECT_DATA${value}_${label}`;
@@ -404,10 +420,6 @@ export const ANIMATED_CIRCLE = (colour: string) => `ANIMATED_CIRCLE_${colour}`
 export const NUM_OF_STARS = (number: number) => `NUM_OF_STARS+${number}`
 export const CHALLENGE_STARS = (isLefttHighlighted: boolean, isMidHighlighted: boolean, isRightHighlighted: boolean) => `CHALLENGE_STARS_${isLefttHighlighted}_${isMidHighlighted}_${isRightHighlighted}`
 
-// CHALLENGES
-export const TIME_REMAINING = (timeRemaing: string) => `TIME_REMAINING_${timeRemaing}`;
-export const LEVEL_STAR_COUNT = (starArrLength: number) => `LEVEL_STAR_COUNT_${starArrLength}`
-
 // ETOW
 export const CELESTIAL_CARD = (description: string) => `CELESTIAL_CARD_${description}`;
 
@@ -422,3 +434,13 @@ export const CPD_SAVE_BUTTON = "CPD_SAVE_BUTTON";
 // WEEKLIES
 export const WEEKLY_GOAL_ICON = (label: number, badge: Boolean) => `WEEKLY_GOAL_ICON_${label}_${badge}`
 export const WEEKLY_PROGRESS_BAR = (progress: number, max: number, color: string) => `WEEKLY_PROGRESS_BAR_${progress}_${max}_${color}`
+
+// Fiit
+export const FIIT_CATEGORY_LIST_SCREEN = "FIIT_CATEGORY_LIST_SCREEN";
+export const FIIT_CATEGORY_LIST_HEADER = (header: string) => MEDIA_LIST_HEADER(header)
+export const FIIT_CATEGORY_LIST_DESCRIPTION = (description: string) =>  MEDIA_LIST_DESCRIPTION(description)
+export const FIIT_LOGO = PARTNER_LOGO
+export const FITT_MEDIA_ITEM_TITLE = (title: string) => MEDIA_LIST_ITEM_TITLE(title)
+export const FIIT_MEDIA_ITEM_DESCRIPTION = (desciption: string) => MEDIA_LIST_ITEM_DESCRIPTION(desciption)
+export const FIIT_MEDIA_SCROLL_VIEW = "FIIT_MEDIA_SCROLL_VIEW"
+export const FIIT_MEDIA_PLAYER_CLOSE = MEDIA_PORTRAIT_CLOSE

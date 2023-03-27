@@ -10,6 +10,7 @@ import { MediaListHeader, PromotionPanel, SecondaryButton } from "@molecules";
 import { Colours, Style } from "@styles";
 import { IITem } from "@organisms/media-list-items/media-list-items";
 import { t } from "@locale";
+import { FIIT_CATEGORY_LIST_SCREEN } from "@ids";
 
 interface IProps {
   title: string;
@@ -45,7 +46,7 @@ const FiitMediaCategoryListScreen = ({
   const logoProps = useMemo(() => ({ uri: logo, width: Style.adjust(39), height: Style.adjust(18), bottom: 3 }), []);
   const flexProp = useMemo(() => (promotionReward ? null : { flex: 1 }), [promotionReward]);
   return (
-    <View style={flexProp}>
+    <View style={flexProp} testID={FIIT_CATEGORY_LIST_SCREEN}>
       <GenericHeadingPad />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper}>

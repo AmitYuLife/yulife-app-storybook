@@ -1,6 +1,5 @@
 import { dataManager } from "@yu-life/yulife-bdd-framework";
-import { dataManagerUS } from "@dataManager";
-import { BUTTON_CLOSE, BUTTON_CLOSE_HEADER, NAV_BAR, SCREEN_CLOSE } from '@ids';
+import { BUTTON_CLOSE_HEADER, DAILYSTEP_SCREEN_COIN, NAV_BAR } from '@ids';
 import { dismissNewLooksModalIfVisible } from "./login";
 import moment from "moment";
 
@@ -8,12 +7,12 @@ export const restart = async (locale = "en-GB", dm = dataManager) => {
     await device.terminateApp();
     await dm.reseed();
     await device.clearKeychain();
-    await device.launchApp({ 
+    await device.launchApp({
         delete: true,
         languageAndLocale: {
             language: locale,
             locale: locale
-          }
+        }
     });
 }
 
@@ -64,7 +63,7 @@ export const navigateViaLabel = async (label: string) => {
     await element(by.label(label)).tap();
 }
 
-export const navigateViaText = async (text: string, timeout=0) => {
+export const navigateViaText = async (text: string, timeout = 0) => {
     await (waitFor(element(by.text(text)))).toBeVisible().withTimeout(timeout);
     await element(by.text(text)).tap();
 }
@@ -91,13 +90,13 @@ export const expectDoesNotExistViaText = async (id: string, waitTime = 0) => {
     return target;
 };
 
-export const tapText = (text: string, waitTime = 0, longPress?:boolean) => async () => {
+export const tapText = (text: string, waitTime = 0, longPress?: boolean) => async () => {
     const target = element(by.text(text))
     await waitFor(target).toBeVisible().withTimeout(waitTime)
 
-    if(longPress===true){
+    if (longPress === true) {
         await target.longPress()
-    }else{
+    } else {
         await target.tap()
     }
 }
@@ -127,13 +126,13 @@ export const tapIDNotBeingVisible = (id: string, waitTime = 0) => async () => {
 }
 
 // to be used for debugging only, EG when a double tap bug appears
-export const tryTapID =(id:string, waitTime=0) => async()=>{
+export const tryTapID = (id: string, waitTime = 0) => async () => {
     const target = element(by.id(id))
     await waitFor(target).toBeVisible().withTimeout(waitTime)
-    try{
+    try {
         await target.tap()
         await expect(target).toBeNotVisible()
-    }catch(e){
+    } catch (e) {
         await target.tap()
         await expect(target).toBeNotVisible()
     }
@@ -158,7 +157,7 @@ export const tapIDAtPoint = (id: string, x: number, y: number, waitTime = 0) => 
     await (target as any).tap({ x, y })
 }
 
-export const tapTextWithParentID = (parentID:string, childText:string, waitTime=0) => async()=>{
+export const tapTextWithParentID = (parentID: string, childText: string, waitTime = 0) => async () => {
     const target = element(by.id(parentID).withDescendant(by.text(childText)))
     await waitFor(target).toBeVisible().withTimeout(waitTime)
     await target.tap()
@@ -176,13 +175,13 @@ export const idNotVisible = (id: string, waitTime = 0) => async () => {
     await expect(target).toBeNotVisible()
 }
 
-export const idVisibleAtIndex =(id:string,index:number, waitTime=0) => async()=>{
+export const idVisibleAtIndex = (id: string, index: number, waitTime = 0) => async () => {
     const target = element(by.id(id)).atIndex(index)
     await waitFor(target).toBeVisible().withTimeout(waitTime)
     await expect(target).toBeVisible()
 }
 
-export const textVisibleAtIndex =(text:string,index:number, waitTime=0) => async()=>{
+export const textVisibleAtIndex = (text: string, index: number, waitTime = 0) => async () => {
     const target = element(by.text(text)).atIndex(index)
     await waitFor(target).toBeVisible().withTimeout(waitTime)
     await expect(target).toBeVisible()
@@ -252,12 +251,12 @@ export const replaceTextByID = (id: string, text: string) => async () => {
 }
 
 
-export const tryCatchTextVisible = (textArr, waitTime=0) => async()=>{
+export const tryCatchTextVisible = (textArr, waitTime = 0) => async () => {
     await wait(waitTime)()
 
-    try{
+    try {
         expect(element(by.text(textArr[0]))).toBeVisible()
-    }catch(e){
+    } catch (e) {
         expect(element(by.text(textArr[1]))).toBeVisible()
     }
 }
@@ -268,9 +267,9 @@ export const completeOnboardingIntro = async () => {
     await navigateViaText("Let's go")
 }
 
-export const completedTodayStreakCopyVisible = (dayNum:number) => async()=>{
-    switch(dayNum){
-        case 1: 
+export const completedTodayStreakCopyVisible = (dayNum: number) => async () => {
+    switch (dayNum) {
+        case 1:
             await expect(element(by.text("First day done!"))).toBeVisible()
             break
         case 2:
@@ -288,7 +287,7 @@ export const completedTodayStreakCopyVisible = (dayNum:number) => async()=>{
     }
 }
 
-export const headingStartStreakCopyVisible = (dayNum:number) => async()=>{
+export const headingStartStreakCopyVisible = (dayNum: number) => async () => {
     switch (dayNum) {
         case 1:
             await expect(element(by.text("Start your Streak"))).toBeVisible()
@@ -325,7 +324,7 @@ export const slowType = (element: any, string: string, waitTime = 1000) => async
 
 export const capitalizeFirstLetter = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+}
 
 export const restartWithoutDeleteTwoTimes = async () => {
     await device.terminateApp();
@@ -368,4 +367,12 @@ export const daysRemainingOfWeek = () => {
 
 export const closeScreen = (option: "button_only" | "yulife" | "activity history") => async () => {
     await tapID(BUTTON_CLOSE_HEADER(option))()
+}
+
+export const navigateTo = (menuItem: "yucoin" | "quests" | "yu" | "leaderboard" | "rewards") => async () => {
+    await tapID(NAV_BAR(menuItem))()
+}
+
+export const tapYuCoinIcon = async () => {
+    await tapID(DAILYSTEP_SCREEN_COIN)()
 }
