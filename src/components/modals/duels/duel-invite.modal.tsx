@@ -71,7 +71,7 @@ const DuelInviteModal: React.FC<IProps> = ({
   });
 
   const { data, loading } = useQuery(GQL_QUERY_GET_DUELLER_DETAILS, {
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "no-cache",
     variables: {
       opponentId,
     },
@@ -79,6 +79,7 @@ const DuelInviteModal: React.FC<IProps> = ({
 
   const user = data?.getDuellerDetails?.user;
   const opponent = data?.getDuellerDetails?.opponent;
+  const nextStepAlert = data?.getDuellerDetails?.nextStepAlert;
 
   const onSubmit = async () => {
     try {
@@ -141,7 +142,15 @@ const DuelInviteModal: React.FC<IProps> = ({
     opponent,
     loading,
     setYucoin,
-    goToNextStep: () => setStep(NEXT),
+    goToNextStep: () =>
+      nextStepAlert
+        ? Alert.alert(nextStepAlert.title, nextStepAlert.subtitle, [
+            {
+              text: t("labels.cta.got_it"),
+              onPress: () => Navigation.dismissModal(componentId),
+            },
+          ])
+        : setStep(NEXT),
     onDeclinePress: () => Navigation.dismissModal(componentId),
     isLoading,
     submitDuel,
