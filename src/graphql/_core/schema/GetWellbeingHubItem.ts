@@ -45,7 +45,14 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemTextInp
     | "ContentItemDropdownInput"
     | "ContentItemLinearGradient"
     | "ContentItemYuCoinPower"
-    | "ContentItemComparisonTableSelectPackage";
+    | "ContentItemComparisonTableSelectPackage"
+    | "ContentItemPerks"
+    | "ContentItemPill"
+    | "ContentItemDatePicker"
+    | "ContentItemSexPicker"
+    | "ContentItemDependants"
+    | "ContentItemSelectScheme"
+    | "ContentItemKeyValueBox";
 }
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText_styles {

@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -21,9 +21,15 @@ export interface GetDuellerDetails_getDuellerDetails_opponent {
   coins: number | null;
 }
 
+export interface GetDuellerDetails_getDuellerDetails_nextStepAlert {
+  title: string;
+  subtitle: string;
+}
+
 export interface GetDuellerDetails_getDuellerDetails {
   user: GetDuellerDetails_getDuellerDetails_user | null;
   opponent: GetDuellerDetails_getDuellerDetails_opponent | null;
+  nextStepAlert: GetDuellerDetails_getDuellerDetails_nextStepAlert | null;
 }
 
 export interface GetDuellerDetails {

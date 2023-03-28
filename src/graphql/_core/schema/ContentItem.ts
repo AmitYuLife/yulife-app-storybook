@@ -27,7 +27,14 @@ export interface ContentItem_ContentItemProcessingTimer {
     | "ContentItemInfoCard"
     | "ContentItemLinearGradient"
     | "ContentItemYuCoinPower"
-    | "ContentItemComparisonTableSelectPackage";
+    | "ContentItemComparisonTableSelectPackage"
+    | "ContentItemPerks"
+    | "ContentItemPill"
+    | "ContentItemDatePicker"
+    | "ContentItemSexPicker"
+    | "ContentItemDependants"
+    | "ContentItemSelectScheme"
+    | "ContentItemKeyValueBox";
 }
 
 export interface ContentItem_ContentItemMarkdown_styles {

@@ -48,7 +48,14 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemTe
     | "ContentItemDropdownInput"
     | "ContentItemLinearGradient"
     | "ContentItemYuCoinPower"
-    | "ContentItemComparisonTableSelectPackage";
+    | "ContentItemComparisonTableSelectPackage"
+    | "ContentItemPerks"
+    | "ContentItemPill"
+    | "ContentItemDatePicker"
+    | "ContentItemSexPicker"
+    | "ContentItemDependants"
+    | "ContentItemSelectScheme"
+    | "ContentItemKeyValueBox";
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles {

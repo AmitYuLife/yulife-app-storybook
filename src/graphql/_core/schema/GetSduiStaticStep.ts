@@ -27,7 +27,14 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemProcessingT
     | "ContentItemInfoCard"
     | "ContentItemLinearGradient"
     | "ContentItemYuCoinPower"
-    | "ContentItemComparisonTableSelectPackage";
+    | "ContentItemComparisonTableSelectPackage"
+    | "ContentItemPerks"
+    | "ContentItemPill"
+    | "ContentItemDatePicker"
+    | "ContentItemSexPicker"
+    | "ContentItemDependants"
+    | "ContentItemSelectScheme"
+    | "ContentItemKeyValueBox";
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMarkdown_styles {
@@ -638,7 +645,14 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemPr
     | "ContentItemInfoCard"
     | "ContentItemLinearGradient"
     | "ContentItemYuCoinPower"
-    | "ContentItemComparisonTableSelectPackage";
+    | "ContentItemComparisonTableSelectPackage"
+    | "ContentItemPerks"
+    | "ContentItemPill"
+    | "ContentItemDatePicker"
+    | "ContentItemSexPicker"
+    | "ContentItemDependants"
+    | "ContentItemSelectScheme"
+    | "ContentItemKeyValueBox";
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown_styles {

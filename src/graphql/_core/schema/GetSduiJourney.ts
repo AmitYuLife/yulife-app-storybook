@@ -27,7 +27,14 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer {
     | "ContentItemInfoCard"
     | "ContentItemLinearGradient"
     | "ContentItemYuCoinPower"
-    | "ContentItemComparisonTableSelectPackage";
+    | "ContentItemComparisonTableSelectPackage"
+    | "ContentItemPerks"
+    | "ContentItemPill"
+    | "ContentItemDatePicker"
+    | "ContentItemSexPicker"
+    | "ContentItemDependants"
+    | "ContentItemSelectScheme"
+    | "ContentItemKeyValueBox";
 }
 
 export interface GetSduiJourney_getSduiJourney_body_ContentItemMarkdown_styles {
@@ -638,7 +645,14 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessi
     | "ContentItemInfoCard"
     | "ContentItemLinearGradient"
     | "ContentItemYuCoinPower"
-    | "ContentItemComparisonTableSelectPackage";
+    | "ContentItemComparisonTableSelectPackage"
+    | "ContentItemPerks"
+    | "ContentItemPill"
+    | "ContentItemDatePicker"
+    | "ContentItemSexPicker"
+    | "ContentItemDependants"
+    | "ContentItemSelectScheme"
+    | "ContentItemKeyValueBox";
 }
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown_styles {

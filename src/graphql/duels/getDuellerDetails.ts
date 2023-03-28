@@ -15,6 +15,10 @@ export const GQL_QUERY_GET_DUELLER_DETAILS = gql`
         avatar
         coins
       }
+      nextStepAlert {
+        title
+        subtitle
+      }
     }
   }
 `;
