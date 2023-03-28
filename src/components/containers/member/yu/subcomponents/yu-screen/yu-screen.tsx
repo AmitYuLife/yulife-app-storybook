@@ -24,7 +24,9 @@ interface Props {
 }
 
 export const YuScreen = memo(({ componentId }: Props) => {
-  const [, { data }] = useQueryOnScreenSeenOnce<GetYuScreen>(GQL_QUERY_GET_YU_SCREEN, ROUTES.yuScreen);
+  const [, { data }] = useQueryOnScreenSeenOnce<GetYuScreen>(GQL_QUERY_GET_YU_SCREEN, ROUTES.yuScreen, {
+    fetchPolicy: "network-only",
+  });
   const { earnRate } = useContext(YuScreenContext);
   const onboarding = data?.getYuScreen?.onboarding;
   const [onboardingDismissed, dismissOnboarding] = useOnboardingDismissalHandler(onboarding?.id);
