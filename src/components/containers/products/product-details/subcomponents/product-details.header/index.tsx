@@ -25,6 +25,7 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
     productDetailsHeaderYuCoinPower: yuCoinPower,
     benefit,
     funding,
+    showSlotLabel,
   } = props;
 
   const [benefitHeight, setBenefitHeight] = useState(0);
@@ -51,6 +52,7 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
               backgroundUrl={itemSlot?.backgroundUrl}
               itemUrl={itemSlot?.iconUrl}
               size={SLOT_ICON_SIZE}
+              showLabel={showSlotLabel}
             />
           </View>
         </View>

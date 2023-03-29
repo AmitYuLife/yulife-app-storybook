@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -61,4 +61,5 @@ export interface ContentItemProductDetailsHeader {
   productIdentifier: ContentItemProductDetailsHeader_productIdentifier | null;
   benefit: ContentItemProductDetailsHeader_benefit | null;
   funding: ContentItemProductDetailsHeader_funding | null;
+  showSlotLabel: boolean;
 }
