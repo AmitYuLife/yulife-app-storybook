@@ -11,5 +11,8 @@ export const GQL_FRAGMENT_CONTENT_ITEM_KEY_VALUE_BOX = gql`
     styles {
       ...SduiStyle
     }
+    wrapperStyles {
+      ...SduiStyle
+    }
   }
 `;

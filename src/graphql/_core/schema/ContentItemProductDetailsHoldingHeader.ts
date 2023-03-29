@@ -37,5 +37,6 @@ export interface ContentItemProductDetailsHoldingHeader {
   linearGradient: ContentItemProductDetailsHoldingHeader_linearGradient | null;
   image: ContentItemProductDetailsHoldingHeader_image | null;
   title: string | null;
+  description: string | null;
   timer: ContentItemProductDetailsHoldingHeader_timer | null;
 }
