@@ -2,7 +2,7 @@ import React, { memo, useCallback, useMemo } from "react";
 import { View, Platform, AccessibilityPropsAndroid } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { DAILY_STEPS_SCREEN } from "@ids";
+import { DAILY_STEPS_SCREEN, NOTIF_CENTRE } from "@ids";
 import { IConnectedScreenProps } from "@app/typings";
 import { Pad, YuCoinBadge } from "@atoms";
 import { TouchableOpacityWithDelay, CentredScreen } from "@molecules";
@@ -94,6 +94,7 @@ const DailyStepsScreen = ({
             {
               icon: LeftIcon.NOTIFICATIONS,
               onPress: onNotificationPress,
+              testID: NOTIF_CENTRE,
               style: { paddingLeft: Style.adjust(8) },
               hitSlop: {
                 ...TOP_BAR.HIT_SLOP,

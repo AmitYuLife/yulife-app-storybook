@@ -21,6 +21,7 @@ export interface IIcon {
   hitSlop?: Insets;
   style?: ViewStyle;
   hasBadge?: boolean;
+  testID?: string;
 }
 
 interface Props {
@@ -36,13 +37,13 @@ const Left = ({ icons = [], hasBadge, colour, label, textStyle }: Props) => {
 
   return (
     <View style={styles.wrapper}>
-      {filteredIcons.map(({ icon, onPress, hitSlop, style }) => (
+      {filteredIcons.map(({ icon, testID, onPress, hitSlop, style }) => (
         <TouchableOpacity
           key={icon}
           hitSlop={hitSlop || TOP_BAR.HIT_SLOP}
           style={[styles.icon, style]}
           onPress={onPress}
-          testID={BUTTON_TOP_LEFT_BAR}
+          testID={testID || BUTTON_TOP_LEFT_BAR}
           accessibilityLabel={getAccessibilityLabel(icon)}
           accessibilityRole={"button"}
         >

@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo } from "react";
-import { Share, View, ScrollView, Platform } from "react-native";
+import { Share, View, ScrollView } from "react-native";
 import { useDispatch } from "react-redux";
 import { setOnboardingReferralsBadge } from "@redux/onboarding/onboarding.actions";
 import moment from "moment";
@@ -53,8 +53,7 @@ const ReferralsScreen = ({ info, handleClose, componentId }: IProps) => {
     Logger.logMixpanelEvent("referral_link_shared");
     try {
       await Share.share({
-        url: referralLink,
-        message: Platform.select({ ios: shareMessage, android: `${shareMessage.replace(/\.$/, "")}: ${referralLink}` }),
+        message: `${shareMessage.replace(/\.$/, "")}: ${referralLink}`,
       });
     } catch (e) {
       Logger.error(e, { file: componentId });
