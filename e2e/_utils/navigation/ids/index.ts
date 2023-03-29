@@ -444,3 +444,6 @@ export const FITT_MEDIA_ITEM_TITLE = (title: string) => MEDIA_LIST_ITEM_TITLE(ti
 export const FIIT_MEDIA_ITEM_DESCRIPTION = (desciption: string) => MEDIA_LIST_ITEM_DESCRIPTION(desciption)
 export const FIIT_MEDIA_SCROLL_VIEW = "FIIT_MEDIA_SCROLL_VIEW"
 export const FIIT_MEDIA_PLAYER_CLOSE = MEDIA_PORTRAIT_CLOSE
+
+// Notification Centre
+export const NOTIF_CENTRE = "NOTIFICATION_CENTRE"

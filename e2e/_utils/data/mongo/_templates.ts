@@ -275,6 +275,7 @@ export const DEFAULT_TOGGLES = {
       newGamePlus: true,
       unitySurge: true,
       rewardRedemptionDisabled: false,
+      showNotificationCentre: true,
     },
   },
 } as IDatabaseItem;
