@@ -38,7 +38,7 @@ export default function* endChallengeSaga() {
             active.levelSlotId,
             result,
             active.level,
-            yuniversalMap || null
+            yuniversalMap
           );
           challengeData = data?.updateQuestMapLevelChallenge;
 

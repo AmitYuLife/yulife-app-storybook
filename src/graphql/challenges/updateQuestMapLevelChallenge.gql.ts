@@ -59,14 +59,20 @@ export const GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
 const updateQuestMapLevelChallenge = (
   levelSlotId: string,
   payload: ChallengePayload,
-  level: number,
-  yuniversalMap: number
+  level?: number,
+  yuniversalMap?: number
 ) =>
   client().mutate<UpdateQuestMapLevelChallenge, UpdateQuestMapLevelChallengeVariables>({
     mutation: GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE,
     variables: { levelSlotId, payload },
     errorPolicy: "ignore",
-    refetchQueries: [{ query: GQL_QUERY_GET_QUEST_MAP_LEVEL, variables: { level, yuniversalMap } }],
+    ...(!level
+      ? {}
+      : {
+          refetchQueries: [
+            { query: GQL_QUERY_GET_QUEST_MAP_LEVEL, variables: { level, yuniversalMap: yuniversalMap || null } },
+          ],
+        }),
   });
 
 export default updateQuestMapLevelChallenge;
