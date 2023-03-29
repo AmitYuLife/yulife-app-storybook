@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.75.0] - 2023-03-29
+
+### Bugfixes
+
+- Bugfix: getQuestMapLevel being refetched with null level
+- Bugfix XSE-1808: Get YuScreen query no cache
+
+### Tasks
+
+- Task: Add journey deeplink
+- Task/XSE-1787: policy holding page changes
+- Task/XSE-1773: Adding showSlotLabel setting for product detail header
+- Task ISA-481: introducing the duel next step alert on invite
+- Task ENG-3206: Use context for Samsung Health store init
+- Task GS-671: Add more date for leaderboard switch event
+
+### Chores
+
+- Chore - Rename Business Product Perk seed data
+
+### Extra
+
+- GS-626: Notification centre + referral fix
+- Detox- Fiit in-app tests
+- Detox - Fix app crashing on reload
+- ISA-466: Reload store locations on component mount
+- Detox - Clean up fix
+- Detox - Smoke 2 Fixes
+- Detox - Fixes 24/03
+- detox/fixes_23-03
+- Detox - Ext 2 fixes
+- Detox - Small test fix
+
 ## [3.74.0] - 2023-03-22
 
 ### Bugfixes
