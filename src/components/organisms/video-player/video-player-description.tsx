@@ -18,9 +18,10 @@ interface IProps {
 
 const VideoPlayerDescription = ({ title, description, duration, stars, yuCoin, logo, eventType }: IProps) => {
   const timeType = useMemo(() => (Math.floor(duration) < 60 ? "sec" : "min"), [duration]);
-  const durationFormatted = useMemo(() => moment.utc(duration * 1000).format(timeType === "sec" ? "s" : "m"), [
-    duration,
-  ]);
+  const durationFormatted = useMemo(
+    () => moment.utc(duration * 1000).format(timeType === "sec" ? "s" : "m"),
+    [duration]
+  );
 
   return (
     <View testID={VIDEO_PLAYER_DESCRIPTION_SCREEN} style={styles.wrapper}>

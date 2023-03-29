@@ -3,11 +3,12 @@ import { View, StyleSheet, ViewStyle } from "react-native";
 import { ContentItemProductDetailsHoldingHeader } from "@graphql/_core/schema";
 import { Image } from "./image";
 import { Title } from "./title";
+import { Description } from "./description";
 import LinearGradient from "react-native-linear-gradient";
 import { ProcessingTimer } from "@components/molecules";
 
 export const ProductDetailsHoldingHeader = memo((props: ContentItemProductDetailsHoldingHeader) => {
-  const { image, linearGradient, title, timer } = props;
+  const { image, linearGradient, title, timer, description } = props;
 
   return (
     <View>
@@ -21,6 +22,7 @@ export const ProductDetailsHoldingHeader = memo((props: ContentItemProductDetail
       ) : null}
       <Image image={image} />
       <Title title={title} />
+      <Description description={description} />
       <ProcessingTimer secondsUntilTarget={timer.secondsUntilTarget} />
     </View>
   );

@@ -5,14 +5,16 @@ import { TextTemplate } from "@atoms";
 import { StyleSheet, View } from "react-native";
 
 export const ContentItemKeyValueBox = memo((props: GqlProps) => (
-  <View style={[styles.wrapper, mapServerStyles(props.styles)]}>
-    <TextTemplate type="b2b">{props.boxKey}</TextTemplate>
-    <TextTemplate type="b2">{props.boxValue}</TextTemplate>
+  <View style={mapServerStyles(props.wrapperStyles)}>
+    <View style={[styles.container, mapServerStyles(props.styles)]}>
+      <TextTemplate type="b2b">{props.boxKey}</TextTemplate>
+      <TextTemplate type="b2">{props.boxValue}</TextTemplate>
+    </View>
   </View>
 ));
 
 const styles = StyleSheet.create({
-  wrapper: {
+  container: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",

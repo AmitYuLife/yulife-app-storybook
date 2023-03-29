@@ -124,6 +124,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   linearGradient: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHoldingHeader_linearGradient | null;
   image: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHoldingHeader_image | null;
   title: string | null;
+  description: string | null;
   timer: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHoldingHeader_timer | null;
 }
 
@@ -202,12 +203,18 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   value: string;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemKeyValueBox_wrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemKeyValueBox {
   __typename: "ContentItemKeyValueBox";
   id: string;
   boxKey: string;
   boxValue: string;
   styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemKeyValueBox_styles[] | null;
+  wrapperStyles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemKeyValueBox_wrapperStyles[] | null;
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemBeneficiariesSection_styles {
