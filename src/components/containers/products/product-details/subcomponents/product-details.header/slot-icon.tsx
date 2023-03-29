@@ -10,13 +10,14 @@ interface Props {
   coverType: CoverType;
   backgroundUrl: string;
   itemUrl: string;
+  showLabel?: boolean;
 }
 
 const SIZE = Style.adjust(102);
 const SPACE_FOR_PACKAGE_TYPE = Style.adjust(16);
 
 export const SlotIcon = memo((props: Props) => {
-  const { size = SIZE, backgroundUrl, itemUrl } = props;
+  const { size = SIZE, backgroundUrl, itemUrl, showLabel = true } = props;
 
   if (!itemUrl) {
     return null;
@@ -49,11 +50,13 @@ export const SlotIcon = memo((props: Props) => {
         }}
         suppressLoadingUi={true}
       />
-      <View style={styles.coverTypeWrapper}>
-        <View>
-          <PackageType minWidth={Style.adjust(55)} type={props.coverType} />
+      {showLabel ? (
+        <View style={styles.coverTypeWrapper}>
+          <View>
+            <PackageType minWidth={Style.adjust(55)} type={props.coverType} />
+          </View>
         </View>
-      </View>
+      ) : null}
     </View>
   );
 });
