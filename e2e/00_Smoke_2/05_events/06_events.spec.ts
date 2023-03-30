@@ -155,7 +155,7 @@ Feature("As a user I can opt in and take an event", async () => {
                 Then("I should see meditation I have done today", then.textVisible("10 min"))
                 Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
                 Then("I should see all my total yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(5400)))
-                Then("I should see I have earned 4,920 YuCoin today total from all milestones and challenges completed", then.yuCoinTodayEarned([60, 60, 60, 20, 200], 450))
+                Then("I should see I have earned 4,920 YuCoin today total from all milestones and challenges completed", then.yuCoinTodayEarned([60, 60, 60, 20, 200, 20], 450))
             })
         })
     })

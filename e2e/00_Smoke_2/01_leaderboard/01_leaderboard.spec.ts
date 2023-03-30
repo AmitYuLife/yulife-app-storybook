@@ -1,4 +1,4 @@
-import { Scenario, Given, When, Then, Feature } from "@yu-life/yulife-bdd-framework";
+import { Scenario, Given, When, Then, Feature, FeatureOnly, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
