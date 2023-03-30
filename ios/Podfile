@@ -25,6 +25,8 @@ target 'YuLife' do
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
+
+  plugin 'cocoapods-bugsnag'
   
   pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
   permissions_path = '../node_modules/react-native-permissions/ios'
