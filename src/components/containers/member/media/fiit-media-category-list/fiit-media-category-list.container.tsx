@@ -116,6 +116,11 @@ const FiitMediaCategoryListContainer = ({
 
   const moreInformationPress = useCallback(() => {
     // this needs to change newSduiRewards when the old rewardsDetails is purged
+    dispatch(
+      logMixpanelEventActionCreator("button_pressed", {
+        location: "fiit_media_category_list",
+      })
+    );
     Navigation.push(ROUTES.fiitMediaCategoryList, {
       component: {
         id: ROUTES.rewardDetails,

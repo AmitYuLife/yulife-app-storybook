@@ -119,6 +119,11 @@ const MeditopiaMediaListContainer = ({
 
   const moreInformationPress = useCallback(() => {
     // this needs to change newSduiRewards when the old rewardsDetails is purged
+    dispatch(
+      logMixpanelEventActionCreator("button_pressed", {
+        location: "meditopia_media_list",
+      })
+    );
     Navigation.push(ROUTES.meditopiaMediaList, {
       component: {
         id: ROUTES.rewardDetails,
