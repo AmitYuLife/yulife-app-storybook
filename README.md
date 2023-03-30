@@ -156,13 +156,13 @@ ruby -v
 
 Configure your shell to load rbenv: [setting up shell](https://github.com/rbenv/rbenv#basic-git-checkout)
 
-Then run following command in project root: 
+Then run following command in $PROJECT_ROOT/ios: 
 
 ```
 bundle install
 ``` 
 
-navigate to /ios install and install pods with:
+install pods with:
 ```
 bundle exec pod install --repo-update
 ```
