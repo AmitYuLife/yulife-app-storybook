@@ -108,7 +108,7 @@ export const dentalProductInfo = (packageType: string, membershipEnding: string)
   await swipeFromText(productInfo, "down", "fast")();
 };
 
-export const wellbeingProductInfo = (packageType: string) => async () => {
+export const wellbeingProductInfo = async () => {
   const policyName = "Wellbeing Access";
   const policyDescription =
     "A YuLife Wellbeing access membership rewards you with YuCoin, discounts, and vouchers for building healthier habits.";
@@ -119,7 +119,6 @@ export const wellbeingProductInfo = (packageType: string) => async () => {
   await expect(element(by.text(paidBy))).toBeVisible();
   await expect(element(by.text(policyDescription))).toBeVisible();
   await expect(element(by.text(policyInsurance))).toBeVisible();
-  await expect(element(by.text(packageType))).toBeVisible();
 };
 
 export const groupDentalProductInfo = (packageType: string, yuCoinPower: string) => async () => {

@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip, FeatureOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as then from "./_steps/then"
@@ -14,7 +14,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             helper.YUSCREEN_V4(CUSTOMER_43, "wellbeing only", "10")
             helper.CREATE_DEFAULT_YUMOJI(300);
             helper.YUCOIN_POWER_CHECK(CUSTOMER_43, 10)
-            helper.WELLBEING_PRODUCT_VIEW("Epic", 10, 10)
+            helper.WELLBEING_PRODUCT_VIEW(10, 10)
         })
     })
 
@@ -63,7 +63,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             helper.ONBOARDING_YUSCREEN("3 Products Slots", "31")
             helper.YUSCREEN_V4(CUSTOMER_48, "6 Products Slots", "31", "More protection")
             helper.CREATE_DEFAULT_YUMOJI(300);
-            helper.WELLBEING_PRODUCT_VIEW("Epic", 1, 31)
+            helper.WELLBEING_PRODUCT_VIEW(1, 31)
         })
     })
 
@@ -72,7 +72,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             helper.ONBOARDING_YUSCREEN("3 Products Slots", "31")
             helper.YUSCREEN_V4(CUSTOMER_49, "5 Products Slots", "31", "More protection")
             helper.CREATE_DEFAULT_YUMOJI(300);
-            helper.WELLBEING_PRODUCT_VIEW("Epic", 1, 31)
+            helper.WELLBEING_PRODUCT_VIEW(1, 31)
         })
     })
 
