@@ -70,6 +70,26 @@ const routesForRegistration = [
   },
   {
     hasMenu: true,
+    name: ROUTES.sudokuStaging,
+    component: require("../components/screens/games/sudoku/sudoku-staging/sudoku-staging.container").default,
+  },
+  {
+    hasMenu: true,
+    name: ROUTES.sudokuGame,
+    component: require("../components/screens/games/sudoku/sudoku-game/sudoku.container").default,
+  },
+  {
+    hasMenu: true,
+    name: ROUTES.sudokuCompleted,
+    component: require("../components/screens/games/sudoku/sudoku-completed/sudoku-completed.container").default,
+  },
+  {
+    hasMenu: true,
+    name: ROUTES.sudokuLeaderboard,
+    component: require("../components/screens/games/sudoku/sudoku-leaderboard/sudoku-leaderboard.container").default,
+  },
+  {
+    hasMenu: true,
     renderAfterMs: 150,
     name: ROUTES.quests,
     component: require("../components/containers/member/quests/quests.container").default,
@@ -180,8 +200,9 @@ const routesForRegistration = [
   // fiit media category list
   {
     name: ROUTES.fiitMediaCategoryList,
-    component: require("../components/containers/member/media/fiit-media-category-list/fiit-media-category-list.container")
-      .default,
+    component:
+      require("../components/containers/member/media/fiit-media-category-list/fiit-media-category-list.container")
+        .default,
   },
   // fiit media list
   {
@@ -424,6 +445,18 @@ const routesForRegistration = [
   {
     name: MODALS.yuniversityCertificate,
     component: require("../components/modals/yuniversity-certificate/yuniversity-certificate").default,
+  },
+  {
+    name: MODALS.sudokuHelp,
+    component: require("../components/modals/sudoku-help/sudoku-help-modal").default,
+  },
+  {
+    name: MODALS.sudokuPause,
+    component: require("../components/modals/sudoku-pause/sudoku-pause-modal").default,
+  },
+  {
+    name: MODALS.sudokuLeaderboardConsent,
+    component: require("../components/modals/sudoku-leaderboard-consent/sudoku-leaderboard-consent-modal").default,
   },
 ];
 

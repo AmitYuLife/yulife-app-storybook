@@ -5,4 +5,5 @@ export type ChallengeType =
   | "cycling"
   | "short stroll"
   | "day walk"
-  | "fiit";
+  | "fiit"
+  | "sudoku";

@@ -1,4 +1,4 @@
-import React, { FC, memo } from "react";
+import React, { FC, memo, useMemo } from "react";
 import { FunctionComponent } from "react";
 import { Image as RNImage, StyleSheet, View } from "react-native";
 import styles from "./challenge-tile.styles";
@@ -17,6 +17,7 @@ export interface IChallengeTileProps {
   reward?: string;
   imageUri: string;
   pictureAlign?: "left" | "right";
+  isCompleted?: boolean;
 }
 
 type Props = IChallengeTileProps;
@@ -31,6 +32,7 @@ function ChallengeTile(props: Props) {
     reward = "",
     imageUri,
     pictureAlign,
+    isCompleted,
   } = props;
 
   if (!heading) {
@@ -40,11 +42,11 @@ function ChallengeTile(props: Props) {
   return (
     <TouchableOpacityWithDelay activeOpacity={isLocked ? 1 : 0.2} onPress={onPress} style={styles.wrapper}>
       <>
-        <AnimalImage imageUri={imageUri} isLocked={isLocked} pictureAlign={pictureAlign} />
+        <AnimalImage imageUri={imageUri} isLocked={isLocked} pictureAlign={pictureAlign} isCompleted={isCompleted} />
         {isLocked ? (
           <LockedOverlay availableAtLevel={availableAtLevel} />
         ) : (
-          <Content heading={heading} duration={duration} reward={reward} />
+          <Content heading={heading} duration={duration} reward={reward} isCompleted={isCompleted} />
         )}
       </>
     </TouchableOpacityWithDelay>
@@ -62,22 +64,42 @@ const LockedOverlay: FunctionComponent<Partial<Props>> = ({ availableAtLevel }) 
   </View>
 );
 
-const AnimalImage: FC<Partial<Props>> = memo(({ imageUri, isLocked, pictureAlign }) => {
+const AnimalImage: FC<Partial<Props>> = memo(({ imageUri, isCompleted, isLocked, pictureAlign }) => {
+  const style = useMemo(() => {
+    return [styles.remoteImage, pictureAlign === "left" ? { left: 0 } : { right: 0 }];
+  }, [pictureAlign]);
+
+  const lockedStyle = useMemo(() => {
+    return [...style, { opacity: 0.6 }];
+  }, [style]);
+
   return (
-    <View style={isLocked ? styles.imageWrapperLocked : styles.imageWrapper}>
-      <View style={StyleSheet.flatten([styles.imageBackground, isLocked ? styles.imageBackgroundLocked : null])} />
-      <Image
-        source={{ uri: imageUri }}
-        width={Style.adjust(165)}
-        height={Style.adjust(165)}
-        theme="light"
-        style={[styles.remoteImage, pictureAlign === "left" ? { left: 0 } : { right: 0 }]}
-      />
-    </View>
+    <>
+      <View style={isLocked ? styles.imageWrapperLocked : styles.imageWrapper}>
+        <View style={StyleSheet.flatten([styles.imageBackground, isLocked ? styles.imageBackgroundLocked : null])} />
+        <Image
+          source={{ uri: imageUri }}
+          width={Style.adjust(165)}
+          height={Style.adjust(165)}
+          theme="light"
+          style={style}
+        />
+        {isCompleted ? (
+          <Image
+            tintColor={"gray"}
+            source={{ uri: imageUri }}
+            width={Style.adjust(165)}
+            height={Style.adjust(165)}
+            theme="light"
+            style={lockedStyle}
+          />
+        ) : null}
+      </View>
+    </>
   );
 });
 
-const Content: FC<Partial<Props>> = memo(({ heading, duration, reward }) => (
+const Content: FC<Partial<Props>> = memo(({ heading, isCompleted, duration, reward }) => (
   <View style={styles.sectionBottomWrapper} testID={CHALLENGE_TILE(heading)}>
     <View style={styles.contentWrapper}>
       <View>
@@ -92,7 +114,7 @@ const Content: FC<Partial<Props>> = memo(({ heading, duration, reward }) => (
       </View>
       <View style={styles.contentRewardWrapper}>
         <Text style={styles.contentReward} testID={CHALLENGE_REWARD(reward)}>
-          {reward} {t("yu_coin.camel_case")}
+          {!isCompleted ? `${reward} ${t("yu_coin.camel_case")}` : t("screens.challenge_list.level_completed")}
         </Text>
       </View>
     </View>

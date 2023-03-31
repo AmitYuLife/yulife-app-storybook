@@ -1,9 +1,10 @@
 import { GetLeaderboard_getLeaderboard_avatarRemoteFiles } from "@graphql/_core/schema";
+import { ROUTES } from "@navigation/constants";
 
 export interface ILeaderboardRankItemProps {
   isCurrentUser: boolean;
   rank: number;
-  score: number;
+  score: number | string;
   name: string;
   uri: GetLeaderboard_getLeaderboard_avatarRemoteFiles["pngFull"];
 
@@ -12,4 +13,5 @@ export interface ILeaderboardRankItemProps {
   firstName: string;
   lastName: string;
   index: number;
+  componentId?: typeof ROUTES[keyof typeof ROUTES];
 }

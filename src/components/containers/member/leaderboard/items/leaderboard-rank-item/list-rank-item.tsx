@@ -20,9 +20,10 @@ const _ListRankItem = ({
   isCurrentUser = false,
   id = "",
   index,
+  componentId = ROUTES.leaderboards,
 }: ILeaderboardRankItemProps) => {
   const onPress = useCallback(() => {
-    Navigation.push(ROUTES.leaderboards, {
+    Navigation.push(componentId, {
       component: {
         id: ROUTES.inspect,
         name: ROUTES.inspect,
@@ -35,7 +36,7 @@ const _ListRankItem = ({
 
     // if you are opening inspect from lean leaderboard
     return Navigation.dismissAllModals();
-  }, [id, index]);
+  }, [id, componentId, index]);
 
   return (
     <>

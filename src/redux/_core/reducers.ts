@@ -21,6 +21,7 @@ import pedometerReducer, {
   IPedometerStore,
 } from "../pedometer/pedometer.reducer";
 import streaksReducer, { getInitialState as getInitialStreaksState, IStreaksStore } from "../streaks/streaks.reducer";
+import sudokuReducer, { getInitialState as getInitialSudokuState, ISudokuStore } from "../sudoku/sudoku.reducer";
 
 import userReducer, { getInitialState as getInitialUserState, IUserStore } from "../user/user.reducer";
 import sduiReducer, { getInitialState as getInitialSduiState, ISduiStore } from "../server-driven-ui/sdui.reducer";
@@ -47,6 +48,7 @@ export interface IReduxState {
   sdui: ISduiStore;
   fitkit: IFitkitStore;
   adBanners: IAdBannersStore;
+  sudoku: ISudokuStore;
 }
 
 export const initialState: IReduxState = {
@@ -64,6 +66,7 @@ export const initialState: IReduxState = {
   sdui: getInitialSduiState(),
   fitkit: getInitialFitkitState(),
   adBanners: getInitialAdbannersState(),
+  sudoku: getInitialSudokuState(),
 };
 
 // this alias is created for testing purposes
@@ -84,6 +87,7 @@ const combinedReducers = combineReducers({
   sdui: sduiReducer,
   fitkit: fitkitReducer,
   adBanners: adBannersReducer,
+  sudoku: sudokuReducer,
 });
 
 export default combinedReducers;

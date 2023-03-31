@@ -4,14 +4,15 @@ import { Style } from "@styles";
 
 interface Props {
   isWinner: boolean;
-  testID: string;
+  testID?: string;
+  size?: number;
   isDraw: boolean;
 }
 
-export const Rank = memo(({ isWinner, isDraw, testID }: Props) => {
+export const Rank = memo(({ isWinner, isDraw, size = 24, testID }: Props) => {
   if (isDraw) {
     return (
-      <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24" fill="none" testID={testID}>
+      <Svg width={Style.adjust(size)} height={Style.adjust(size)} viewBox="0 0 24 24" fill="none" testID={testID}>
         <Path
           d="M4 13.5V22.9086C4 23.6455 4.7699 24.1293 5.43383 23.8096L12 20.648L18.5662 23.8096C19.2301 24.1293 20 23.6455 20 22.9086V13.5L12 17.82L4 13.5Z"
           fill="#DEDEF0"
@@ -32,7 +33,7 @@ export const Rank = memo(({ isWinner, isDraw, testID }: Props) => {
   return (
     <>
       {isWinner ? (
-        <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24" fill="none" testID={testID}>
+        <Svg width={Style.adjust(size)} height={Style.adjust(size)} viewBox="0 0 24 24" fill="none" testID={testID}>
           <Path
             d="M4 13.5V22.9086C4 23.6455 4.7699 24.1293 5.43383 23.8096L12 20.648L18.5662 23.8096C19.2301 24.1293 20 23.6455 20 22.9086V13.5L12 17.82L4 13.5Z"
             fill="#F9D337"
@@ -48,7 +49,13 @@ export const Rank = memo(({ isWinner, isDraw, testID }: Props) => {
           />
         </Svg>
       ) : (
-        <Svg width={Style.adjust(25)} height={Style.adjust(24)} viewBox="1 0 25 24" fill="none" testID={testID}>
+        <Svg
+          width={Style.adjust(size + size / 24)}
+          height={Style.adjust(size)}
+          viewBox="1 0 25 24"
+          fill="none"
+          testID={testID}
+        >
           <Path
             d="M4.99646 13.5V22.9086C4.99646 23.6455 5.76636 24.1293 6.43029 23.8096L12.9965 20.648L19.5626 23.8096C20.2266 24.1293 20.9965 23.6455 20.9965 22.9086V13.5L12.9965 17.82L4.99646 13.5Z"
             fill="#DEDEF0"

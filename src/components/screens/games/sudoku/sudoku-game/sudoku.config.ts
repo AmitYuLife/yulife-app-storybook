@@ -1,0 +1,72 @@
+import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
+import { Colours, Style } from "@styles";
+import { WorldName } from "@utils";
+import { PixelRatio } from "react-native";
+
+// Board size
+export const SUDOKU_BOARD_SIZE = PixelRatio.roundToNearestPixel(Style.DEVICE_WIDTH * 0.95);
+
+// Amount of cells per row/column
+export const SUDOKU_DIMENSIONS = 9;
+
+// Cell size
+export const SUDOKU_CELL_SIZE = PixelRatio.roundToNearestPixel(SUDOKU_BOARD_SIZE / SUDOKU_DIMENSIONS);
+
+// Cell animation speed
+export const SUDOKU_CELL_TRANSITION_TIME = 250;
+
+// How long before you activate a cell does its same-value cells become active
+export const SUDOKU_SAME_VALUE_CELL_DELAY_TIME = 100;
+
+// Animation for number entering/exiting animation
+export const SODUKU_NUMBER_ANIMATION_TIME = 200;
+
+// Aniamtion for penalty duration
+export const SODUKU_PENALTY_ANIMATION_TIME = 1500;
+
+// Animation for number scale wave when row/column completed
+export const SUDOKU_NUMBER_WAVE_SCALE = 0.7;
+export const SUDOKU_NUMBER_WAVE_SCALE_DURATION_MULT = 50;
+export const SUDOKU_NUMBER_WAVE_SCALE_DURATION_REDUCE = -150;
+export const SUDOKU_NUMBER_WAVE_SCALE_DURATION = 300;
+
+// Date formatting
+export const SUDOKU_DATE_FORMAT = "DD MMM YYYY";
+export const SUDOKU_TIME_FORMAT = "m[m] s[s]";
+export const SUDOKU_TIME_FORMAT_LONG = "h[h] m[m] s[s]";
+
+export const SUDOKU_PAUSE_ANIMATION_DURATION = 500;
+
+// Game settings
+export const SODUKU_PENALTY_HINT = 30;
+export const SODUKU_HINT_COOLDOWN = 60;
+export const SUDOKU_MISTAKES_BEFORE_PENALTY = 3;
+export const SUDOKU_MISTAKE_PENALTY_TIME = 30;
+
+// Amount of cells per quadrant
+export const SUDOKU_QUADRANT_DIMENSIONS = 3;
+
+// Theme
+export const SUDOKU_PLANET_STYLES = {
+  [WorldName.forest]: {
+    topBarType: TOP_BAR_TYPES.DEFAULT,
+    color: Colours.neutral.n900,
+  },
+  [WorldName.ocean]: {
+    topBarType: TOP_BAR_TYPES.WHITE,
+    color: Colours.neutral.white,
+  },
+  [WorldName.desert]: {
+    topBarType: TOP_BAR_TYPES.DEFAULT,
+    color: Colours.neutral.n900,
+  },
+  [WorldName.mountain]: {
+    topBarType: TOP_BAR_TYPES.DEFAULT,
+    color: Colours.neutral.n900,
+  },
+};
+
+export const SUDOKU_YUNIVERSAL_STYLES = {
+  topBarType: TOP_BAR_TYPES.WHITE,
+  color: Colours.neutral.white,
+};

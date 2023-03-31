@@ -13,6 +13,8 @@ export { default as ScrollPickerModal } from "./scroll-picker-modal/scroll-picke
 export { default as BlurredOverlay } from "./blurred-overlay/blurred-overlay";
 export { default as ActiveBuffsModal } from "./active-buffs/active-buffs.modal";
 export { default as SwitchToGoogleFitModal } from "./switch-to-googlefit-modal/switch-to-googlefit-modal";
+export { default as SudokuHelpModal } from "./sudoku-help/sudoku-help-modal";
+export { default as SudokuPauseModal } from "./sudoku-pause/sudoku-pause-modal";
 export { default as WhatsNewModal } from "./whats-new/whats-new";
 export { default as FloatingModal } from "./floating-modals/floating-modal";
 export * from "./floating-modals/showFloatingModal";

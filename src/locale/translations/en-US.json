@@ -519,7 +519,8 @@
       "stage": "Stage %{level}"
     },
     "challenge_list": {
-      "level_locked": "Level %{availableAtLevel}"
+      "level_locked": "Level %{availableAtLevel}",
+      "level_completed": "Completed"
     },
     "level_locked": {
       "level": "Unlock at level %{level}",
@@ -1126,6 +1127,71 @@
     "not_enough_coins": {
       "title": "Not enough YuCoin",
       "body": "Earn more and come back later!"
+    }
+  },
+  "sudoku": {
+    "difficulty": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "title": "Yudoku",
+    "game": {
+      "undo": "Undo"
+    },
+    "progress": {
+      "resume": "Resume Sudoku"
+    },
+    "stats": {
+      "personalBest": "Personal best",
+      "todaysTime": "Today's time",
+      "hints": "Hints",
+      "mistakes": "Mistakes",
+      "paused": "Paused",
+      "notApplicable": "n/a",
+      "reward": "Reward"
+    },
+    "help": {
+      "title": "How to play Yudoku",
+      "outline": "To play Yudoku – fill in a 9x9 grid with numbers 1 to 9, such that each number appears only once in each row, each column, and each 3x3 block. The objective is to have a completed and correct grid by the end of the game.",
+      "1": "The basic rules of Yudoku:",
+      "2": "The Yudoku grid is made up of 9x9 cells.",
+      "3": "You are only allowed to use numbers 1 to 9.",
+      "4": "In each 3x3 block, only numbers 1 to 9 can be used.",
+      "5": "Each vertical column must also only contain numbers 1 to 9.",
+      "6": "Similarly, each horizontal row must also only contain numbers 1 to 9.",
+      "7": "No number in the 3x3 block, vertical column, or horizontal row can be repeated."
+    },
+    "completed": {
+      "title": "Great work!",
+      "sub1": "You finished your daily Yudoku.",
+      "sub2": "Come back tomorrow for a new round.",
+      "collect": "Collect"
+    },
+    "pause": {
+      "title": "Pause",
+      "time": "Time",
+      "difficulty": "Difficulty",
+      "mistakes": "Mistakes",
+      "resume": "Resume Game"
+    },
+    "staging": {
+      "howToPlay": "How to play?",
+      "continueGame": "Continue game",
+      "startGame": "Start game",
+      "todaysLeaderboard": "Today's Leaderboard",
+      "alreadyDone": "You can only do one Yudoku per day.\nCome back tomorrow!",
+      "dailyLeaderboard": "Daily Leaderboard",
+      "joinDailyLeaderboard": "Join the daily leaderboard"
+    },
+    "leaderboard_consent": {
+      "title": "Join the daily Yudoku leaderboard?",
+      "description": "By joining the leaderboard, you are consenting to share details about your activity with other members of this leaderboard. You can opt out at any time via the settings menu.",
+      "confirm": "Join the Leaderboard"
+    },
+    "leaderboard": {
+      "empty_description": "Complete a Yudoku and be the first on the leaderboard today!",
+      "start": "Start game"
     }
   }
 }
