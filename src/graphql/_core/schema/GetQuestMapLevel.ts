@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -113,8 +113,11 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots {
   historyImage: GetQuestMapLevel_getQuestMapLevel_slots_historyImage;
   availableAtLevel: number;
   isLocked: boolean;
+  isCompleted: boolean;
   reward: string | null;
   fitKitTypes: FitKitType[];
+  type: string | null;
+  subtype: string | null;
   details: GetQuestMapLevel_getQuestMapLevel_slots_details | null;
   challenges: (GetQuestMapLevel_getQuestMapLevel_slots_challenges | null)[] | null;
 }

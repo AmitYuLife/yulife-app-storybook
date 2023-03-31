@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -222,6 +222,12 @@ export enum SubmitSduiJourneyAction {
   RESET = "RESET",
 }
 
+export enum SudokuDifficulty {
+  EASY = "EASY",
+  HARD = "HARD",
+  MEDIUM = "MEDIUM",
+}
+
 export enum TopBarType {
   DEFAULT = "DEFAULT",
   DESERT = "DESERT",
@@ -346,6 +352,16 @@ export interface SampleDebugDataSource {
 export interface SubscribeToPerkField {
   key: string;
   value: string;
+}
+
+export interface SudokuSubmission {
+  date: string;
+  mistakes: number;
+  hints: number;
+  baseTime: number;
+  adjustedTime: number;
+  difficulty: SudokuDifficulty;
+  levelSlotId: string;
 }
 
 export interface UserAvatarPartUpdate {

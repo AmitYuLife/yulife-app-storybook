@@ -63,8 +63,9 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
           };
         }
 
-        const opponentValue = opponent.sections.activity.stats.find((opponentItem) => opponentItem.type === item.type)
-          .value;
+        const opponentValue = opponent.sections.activity.stats.find(
+          (opponentItem) => opponentItem.type === item.type
+        ).value;
         return {
           id: item.id,
           icon: item.icon.uri,

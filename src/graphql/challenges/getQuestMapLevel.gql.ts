@@ -22,8 +22,11 @@ export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
         }
         availableAtLevel
         isLocked
+        isCompleted
         reward
         fitKitTypes
+        type
+        subtype
         details {
           heading
           tutorialUrl

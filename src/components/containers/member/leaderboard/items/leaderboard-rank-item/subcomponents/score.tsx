@@ -5,7 +5,7 @@ import { Style } from "@styles";
 import { addCommasToNumber } from "@utils";
 
 interface Props {
-  score: number;
+  score: number | string;
   bold: boolean;
   style?: TextStyle;
 }
@@ -16,7 +16,7 @@ export function Score({ score, bold, style }: Props) {
   return (
     <View style={styles.wrapper}>
       <Text style={[styles.text, size, style]} bold={bold}>
-        {addCommasToNumber(score)}
+        {typeof score === "number" ? addCommasToNumber(score) : score}
       </Text>
     </View>
   );

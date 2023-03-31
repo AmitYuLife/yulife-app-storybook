@@ -178,6 +178,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
                   imageUri: levelSlot.image.uri,
                   availableAtLevel: levelSlot.availableAtLevel || 1,
                   isLocked: levelSlot.isLocked,
+                  isCompleted: levelSlot.isCompleted,
                 };
 
                 return {
@@ -189,6 +190,25 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
                     }
 
                     setSlot(levelSlot);
+
+                    if (levelSlot.type === "brainGame") {
+                      switch (levelSlot.subtype) {
+                        case "sudoku": {
+                          return Navigation.push(componentId, {
+                            component: {
+                              id: ROUTES.sudokuStaging,
+                              name: ROUTES.sudokuStaging,
+                              passProps: {
+                                slotId: levelSlot.id,
+                                details: levelSlot.details,
+                                reward: levelSlot.reward,
+                                createChallenge,
+                              },
+                            },
+                          });
+                        }
+                      }
+                    }
 
                     // Check for isAuthorised only for samsung, for other devices the default will be true so the switchToGoogleFit modal will not be shown
                     let activityFromGoogleFitAuthorised;

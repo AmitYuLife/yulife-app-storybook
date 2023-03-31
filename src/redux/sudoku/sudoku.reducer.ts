@@ -1,0 +1,60 @@
+import { SyncAction } from "../_core/types";
+import { SUDOKU_RESET, SUDOKU_STATE_CHANGED } from "./sudoku.actions";
+
+interface ISudokuPosition {
+  row: number;
+  column: number;
+}
+
+interface ISodukuHistory extends ISudokuPosition {
+  number: number;
+}
+
+type SudokuBoard = number[][];
+export interface ISudokuStore {
+  gameIdentifier: string;
+  hintsUsed: number;
+  mistakes: number;
+  board: SudokuBoard;
+  endTime: Date;
+  history: ISodukuHistory[];
+  startTime: Date;
+  penalties: number[];
+  lastHintTime: Date;
+  lastPauseTime: Date;
+  levelSlotId: string;
+}
+
+const DEFAULT_SUDOKU_STORE: ISudokuStore = {
+  gameIdentifier: "",
+  hintsUsed: 0,
+  endTime: null,
+  mistakes: 0,
+  board: null,
+  history: [],
+  startTime: null,
+  penalties: [],
+  lastHintTime: null,
+  lastPauseTime: null,
+  levelSlotId: "",
+};
+
+export const getInitialState = (): ISudokuStore => ({ ...DEFAULT_SUDOKU_STORE });
+
+const sudokuReducer = (state: ISudokuStore = getInitialState(), action: SyncAction): ISudokuStore => {
+  switch (action.type) {
+    case SUDOKU_STATE_CHANGED: {
+      return { ...state, ...action.payload };
+    }
+
+    case SUDOKU_RESET: {
+      return { ...getInitialState(), ...(action.payload ? action.payload : {}) };
+    }
+
+    default: {
+      return state || getInitialState();
+    }
+  }
+};
+
+export default sudokuReducer;

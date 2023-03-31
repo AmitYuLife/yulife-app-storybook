@@ -26,6 +26,7 @@ import { DETOX_ENABLED } from "@services/socket";
 import { Task } from "redux-saga";
 import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
+import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 
 export function* startTracking(
   levelSlotId: string,
@@ -132,6 +133,8 @@ export default function* startChallenge({
         }
 
         yield put(challengeResetSuccessAction());
+        yield put(sudokuReset({}));
+
         inProgress = false;
       } catch (e) {
         yield put(challengeResetFailAction());

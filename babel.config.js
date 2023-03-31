@@ -31,6 +31,7 @@ module.exports = api => {
       },
     ],
     '@babel/plugin-proposal-unicode-property-regex',
+    'react-native-reanimated/plugin',
   ];
 
   if (babelEnv === 'uat' || babelEnv === 'production') {

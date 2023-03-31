@@ -1,12 +1,12 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Style } from "@styles";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 
 interface IGenericOverlay {
   onClose: () => void;
-  children: React.ReactNode;
-  heading?: string;
+  children: ReactNode;
+  heading?: ReactNode;
 }
 
 const GenericOverlay = (props: IGenericOverlay) => {

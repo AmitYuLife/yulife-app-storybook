@@ -160,7 +160,7 @@ Then run following command in $PROJECT_ROOT/ios:
 
 ```
 bundle install
-``` 
+```
 
 install pods with:
 ```

@@ -21,6 +21,7 @@ import {
   GET_ALL_USER_DATA_START,
   GET_USER_LEADERBOARDS_START,
   GET_USER_ACTIVE_STREAK_START,
+  GET_USER_ACTIVE_CHALLENGE_START,
 } from "../user.actions";
 
 import fetchConnectionsSaga from "./fetchConnectionsSaga.sagas";
@@ -46,11 +47,13 @@ import getUserCoinLedgerTodayActivitySaga from "./getUserCoinLedgerTodayActivity
 import getAllUserDataSaga from "./getAllUserData.saga";
 import getUserLeaderboardsSaga from "./getUserLeaderboards.saga";
 import getUserActiveStreakSaga from "./getUserActiveStreak.saga";
+import getUserActiveChallengeSaga from "./getUserActiveChallenge.saga";
 
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
   takeLatest(GET_USER_COIN_LEDGER_TODAY_ACTIVITY_START, getUserCoinLedgerTodayActivitySaga),
   takeLatest(GET_USER_ACTIVE_STREAK_START, getUserActiveStreakSaga),
+  takeLatest(GET_USER_ACTIVE_CHALLENGE_START, getUserActiveChallengeSaga),
   takeLatest(GET_USER_LEADERBOARDS_START, getUserLeaderboardsSaga),
   takeLatest(GET_USER_START, getUserDataSaga),
   takeLatest(GET_ALL_USER_DATA_START, getAllUserDataSaga),

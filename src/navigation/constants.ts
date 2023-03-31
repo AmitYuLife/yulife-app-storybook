@@ -39,6 +39,12 @@ export const ROUTES = {
   inspect: "yulife.member.inspect",
   notifications: "yulife.member.notifications",
 
+  // brain games
+  sudokuStaging: "yulife.brainGames.sodukuStaging",
+  sudokuGame: "yulife.brainGames.sodukuGame",
+  sudokuCompleted: "yulife.brainGames.sodukuCompleted",
+  sudokuLeaderboard: "yulife.brainGames.sudokuLeaderboard",
+
   // settings
   cyclingMeasurement: "yulife.member.cyclingMeasurement",
   rewardStoreLocation: "yulife.member.rewardStoreLocation",
@@ -142,6 +148,9 @@ export const MODALS = {
   collectEventReward: "yulife.modal.collectEventReward",
   weeklyQuestsOverlay: "yulife.overlay.weeklyQuests",
   yuniversityCertificate: "yulife.modals.yuniversityCertificate",
+  sudokuHelp: "yulife.modals.sudokuHelp",
+  sudokuPause: "yulife.modals.sudokuPause",
+  sudokuLeaderboardConsent: "yulife.modals.sudokuLeaderboardConsent",
 };
 
 export const bottomTabs: OptionsBottomTabs = {

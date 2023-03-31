@@ -10,6 +10,7 @@ import { DebugScreen } from "@screens";
 import Logger from "@services/logging/logger";
 import { ROUTES } from "@navigation/constants";
 import { getYuScreen } from "@graphql/yuscreen/getYuScreen.gql";
+import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 
 interface Props {
   componentId: string;
@@ -106,6 +107,7 @@ const DebugContainer: React.FC<Props> = (props) => {
         Alert.alert("Success");
         dispatch(getUserStart());
         dispatch(getAllUserDataStart());
+        dispatch(sudokuReset());
 
         if (personalProducts.includes(code)) {
           await getYuScreen();

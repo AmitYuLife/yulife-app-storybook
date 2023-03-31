@@ -23,6 +23,7 @@ import {
 import QuestsScreenContainer from "@screens/member/quests/quests-scroll-screen/quests-screen.container";
 import { BlurProvider } from "@atoms/index";
 import { useTapBackTwiceToExit } from "@hooks";
+import SudokuProgressScreen from "@components/screens/games/sudoku/sudoku-progress/sudoku-progress.screen";
 
 const QuestsContainer: FC<IMainTabsProps> = (props) => {
   const dispatch = useDispatch();
@@ -106,17 +107,28 @@ const QuestsContainer: FC<IMainTabsProps> = (props) => {
     return (
       <BlurProvider
         render={({ showOverlay }) => (
-          <ChallengeProgressScreen
-            {...screenProps}
-            challengeType={subtype as any}
-            levelSlotId={levelSlotId}
-            onDismissPress={showOverlay}
-            endDateTime={endDateTime}
-            userProgress={score}
-            progressTargets={progressTargets}
-            unit={unit as any}
-            hideExternalLinks={hideExternalLinks}
-          />
+          <>
+            {subtype === "sudoku" ? (
+              <SudokuProgressScreen
+                {...screenProps}
+                levelSlotId={levelSlotId}
+                reward={coins}
+                onDismissPress={showOverlay}
+              />
+            ) : (
+              <ChallengeProgressScreen
+                {...screenProps}
+                challengeType={subtype as any}
+                levelSlotId={levelSlotId}
+                onDismissPress={showOverlay}
+                endDateTime={endDateTime}
+                userProgress={score}
+                progressTargets={progressTargets}
+                unit={unit as any}
+                hideExternalLinks={hideExternalLinks}
+              />
+            )}
+          </>
         )}
         renderOverlay={({ hideOverlay }) => (
           <ChallengeExitScreen
