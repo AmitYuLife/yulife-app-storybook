@@ -1,4 +1,4 @@
-import { ACTIVITY_HISTORY_SCREEN } from "@ids";
+import { ACTIVITY_HISTORY_SCREEN, ACTIVITY_HISTORY_SCREEN_SCROLL } from "@ids";
 import { Style, Colours } from "@styles/index";
 import React, { useMemo } from "react";
 import { StyleSheet, View } from "react-native";
@@ -70,6 +70,7 @@ const ActivityHistoryLevels = (props: IOwnProps) => {
           onRefresh={onRefresh}
           onEndReached={onFetchMoreData}
           stickyHeaderIndices={stickyHeaderIndices}
+          testID={ACTIVITY_HISTORY_SCREEN_SCROLL}
         />
       </View>
       <GenericHeadingAbsolute heading={t("screens.activity_history_levels.heading")} onRightIconPress={onPressClose} />

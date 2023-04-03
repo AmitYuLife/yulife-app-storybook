@@ -4,8 +4,8 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as helper from "./_steps/helpers"
-import { QUESTS_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, CHALLENGE_PROGRESS_BAR, GENERIC_SCREEN_CTA, BUTTON_CLOSE_CHALLENGE, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, STEPS_COUNT, LEFT_PRODUCT_STEP_MULTI_BUTTON, YOUR_YUCOIN_SCREEN, DAILY_STEPS_SCREEN, YUCOIN, YUCOIN_POWER, CHALLENGE_REWARD, BACK_BUTTON, LEADERBOARD_TITLE, INSPECT_SCREEN, LEADERBOARD_SCROLL_LIST, GREAT_BUTTON, YUCOIN_EXPLAINED_SCROLL_VIEW, DAILYSTEP_SCREEN_COIN } from "@ids";
-import { CUSTOMER_9, AUTH_9, CUSTOMER_35, AUTH_35, CUSTOMER_52, AUTH_52, COIN_LEDGER_12, USER_54_LEADERBOARD, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, GOAL_REWARD_MILESTONE_3, GOAL_REWARD_MILESTONE_4, GOAL_REWARD_MILESTONE_5, USER_52, LEADERBOARD_4 } from "@data";
+import { QUESTS_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, CHALLENGE_PROGRESS_BAR, GENERIC_SCREEN_CTA, BUTTON_CLOSE_CHALLENGE, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, STEPS_COUNT, LEFT_PRODUCT_STEP_MULTI_BUTTON, YOUR_YUCOIN_SCREEN, DAILY_STEPS_SCREEN, YUCOIN, YUCOIN_POWER, CHALLENGE_REWARD, BACK_BUTTON, LEADERBOARD_TITLE, INSPECT_SCREEN, LEADERBOARD_SCROLL_LIST, GREAT_BUTTON, YUCOIN_EXPLAINED_SCROLL_VIEW, DAILYSTEP_SCREEN_COIN, EVENT_DIALOG_SCREEN, EVENT_DIALOG_SCREEN_SCROLL } from "@ids";
+import { CUSTOMER_9, AUTH_9, CUSTOMER_35, AUTH_35, CUSTOMER_52, AUTH_52, COIN_LEDGER_12, USER_54_LEADERBOARD, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, GOAL_REWARD_MILESTONE_3, GOAL_REWARD_MILESTONE_4, GOAL_REWARD_MILESTONE_5, USER_52, LEADERBOARD_4, GOALS_2 } from "@data";
 
 Feature("As a user I can take a challenge", async () => {
     Scenario("I can take a challenge and cancel it", scenario.start, async () => {
@@ -159,7 +159,9 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should see the correct event for me to complete and the progress bar", then.eventToBeCompletedVisible(0, 0))
         })
         When("I click on the challenge profiles viewed", when.tapChallenge("0 / 5 profiles viewed"), async () => {
-            Then("I should be on the event screen and see the correct earn rates for the challenges", then.onEventDetailsScreen)
+            When("I scroll to text", when.scrollUntilTextVisible(EVENT_DIALOG_SCREEN_SCROLL, GOALS_2.data.description, "down"), async () => {
+                Then("I should be on the event screen and see the correct earn rates for the challenges", then.onEventDetailsScreen)
+            })
         })
         When("I click the back button", when.tapID(BACK_BUTTON), async () => {
             When("I go to the leaderboard tab", when.tapID(NAV_BAR("leaderboard")), async () => {

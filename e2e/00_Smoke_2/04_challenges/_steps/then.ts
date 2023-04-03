@@ -1,8 +1,7 @@
 import { multipleTextVisible, navigation } from "@utils"
 import { screens } from "@appScreens"
-import { EVENT_PROGRESS_BAR, REFERRALS_INVITE_BUTTON, TODAYS_EARNINGS, YUCOIN_POWER, NEW_EVENT_ICON, LEADERBOARD_NAME, RADIO_ICON_COLOUR, CLAIM_BUTTON, ANIMATED_CIRCLE, NUM_OF_STARS, CHALLENGE_REWARD } from "@ids"
-import { GOAL_EVENTS_1, GOALS_2 } from "@data"
-import { scrollFromID, scrollFromText } from "_utils/navigation/scrolling"
+import { EVENT_PROGRESS_BAR, REFERRALS_INVITE_BUTTON, TODAYS_EARNINGS, YUCOIN_POWER, NEW_EVENT_ICON, LEADERBOARD_NAME, RADIO_ICON_COLOUR, CLAIM_BUTTON, ANIMATED_CIRCLE, NUM_OF_STARS, CHALLENGE_REWARD, EVENT_DIALOG_SCREEN_SCROLL } from "@ids"
+import { GOALS_2 } from "@data"
 import { buttonVisible } from "_utils/appScreens/challenges"
 
 
@@ -24,7 +23,8 @@ export const {
 
 export const {
     scrollUntilTextVisible,
-    swipeFromText
+    swipeFromText,
+    swipeToText
 } = navigation.scrolling
 
 export const isOnInivteColleaguePage = async () => {
@@ -90,7 +90,8 @@ export const onEventDetailsScreen = async () => {
         await textVisible(info.title)();
         await textVisible(info.description)();
     }
-    await swipeFromText("Challenge yourself", "down", "fast")()
+    await scrollUntilTextVisible(EVENT_DIALOG_SCREEN_SCROLL, eventDescriptionTitle, "up")()
+    await swipeFromText(eventDescriptionTitle, "down", "fast")()
 
 }
 

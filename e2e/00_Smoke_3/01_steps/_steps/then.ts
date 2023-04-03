@@ -18,6 +18,7 @@ export const {
     scrollFromID,
     scrollFromText,
     scrollUntilIdVisible,
+    scrollUntilTextVisible,
     swipeFromText,
     activityHistoryScrollStepDataCorrect,
     activityHistoryScrollCyclingDataCorrect,

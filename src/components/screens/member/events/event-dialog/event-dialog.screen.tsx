@@ -2,7 +2,7 @@ import { ProgressBar, TextTemplate } from "@atoms";
 import { Image } from "@atoms/image/image";
 import { RemoteImage } from "@graphql/_core/schema";
 import { GetGoalDetails_getGoalDetails_banner as EventBanner } from "@graphql/_core/schema/GetGoalDetails";
-import { EVENT_DIALOG_SCREEN } from "@ids";
+import { EVENT_DIALOG_SCREEN, EVENT_DIALOG_SCREEN_SCROLL } from "@ids";
 import { Button, HeadingAndCopy, InfoPanel, PressableWithDelay } from "@molecules";
 import { GenericHeadingAbsolute, IInfoCardListCard, InfoCardList } from "@organisms";
 import { IReward } from "@organisms/event-reward/event-reward";
@@ -189,6 +189,7 @@ const EventDialogScreen: FC<IProps> = ({
         onScroll={onScroll}
         scrollEventThrottle={32}
         contentInsetAdjustmentBehavior="never"
+        testID={EVENT_DIALOG_SCREEN_SCROLL}
       >
         <View style={style.contentWrapper}>
           <View style={style.rewardsWrapper}>

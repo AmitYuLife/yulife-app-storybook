@@ -1,4 +1,4 @@
-import { ACTIVITY_HISTORY_SCREEN, TEXT_TEMPLATE } from "@ids";
+import { ACTIVITY_HISTORY_SCREEN, ACTIVITY_HISTORY_SCREEN_SCROLL, TEXT_TEMPLATE } from "@ids";
 import { booleanIdVisible, booleanTextVisible, navigateViaText, wait } from "./common";
 import { addCommasToNumber } from "_utils/appScreens/rewards";
 
@@ -144,11 +144,10 @@ export const activityHistoryScrollCyclingDataCorrect = async () => {
   if (device.name.includes("(iPhone 14 Pro)")) {
     scrollPercentage = 0.13;
   } else {
-    scrollPercentage = 0.16;
+    scrollPercentage = 0.19;
   }
   for (let i = 3100; i <= 6200; i += 100) {
-    await expect(element(by.id(TEXT_TEMPLATE(`${formatCyclingMetersToKmWithOneDecimal(i)} cycled`)))).toBeVisible();
-    await scrollFromID(ACTIVITY_HISTORY_SCREEN, "up", "slow", scrollPercentage)();
+    await scrollUntilIdVisible(ACTIVITY_HISTORY_SCREEN_SCROLL, TEXT_TEMPLATE(`${formatCyclingMetersToKmWithOneDecimal(i)} cycled`), "down")()
   }
 };
 
@@ -168,8 +167,7 @@ export const activityHistoryScrollMinsDataCorrect = async () => {
     scrollPercentage = 0.16;
   }
   for (let i = 301; i <= 332; i++) {
-    await expect(element(by.id(TEXT_TEMPLATE(`${formatMindfulMins(i)} mindful mins`)))).toBeVisible();
-    await scrollFromID(ACTIVITY_HISTORY_SCREEN, "up", "slow", scrollPercentage)();
+    await scrollUntilIdVisible(ACTIVITY_HISTORY_SCREEN_SCROLL, TEXT_TEMPLATE(`${formatMindfulMins(i)} mindful mins`), "down")();
   }
 };
 
