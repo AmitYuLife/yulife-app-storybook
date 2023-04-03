@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { NAV_BAR, MENU_ICON, ACTIVITY_HISTORY_SCREEN, BUTTON_CLOSE_HEADER, LEADERBOARD_TITLE, STEPS_COUNT, DUELS_BUTTON, CYCLING_COUNT, MINDFUL_COUNT } from "@ids";
+import { NAV_BAR, MENU_ICON, ACTIVITY_HISTORY_SCREEN, BUTTON_CLOSE_HEADER, LEADERBOARD_TITLE, STEPS_COUNT, DUELS_BUTTON, CYCLING_COUNT, MINDFUL_COUNT, ACTIVITY_HISTORY_SCREEN_SCROLL } from "@ids";
 import { CUSTOMER_40, AUTH_40, CUSTOMER_66, AUTH_66, LEADERBOARD_2, CUSTOMER_83, AUTH_83 } from "@data";
 import { twoDaysAgoDate } from "./_steps/consts"
 
@@ -116,7 +116,7 @@ Feature("As a user my activity is monitored correctly", async () => {
                 When("I tap on activity history", when.tapMenuItem("Activity History"), async () => {
                     Then("I should be on the activity history page", then.idVisible(ACTIVITY_HISTORY_SCREEN, 2500))
                     Then("I should be able to see the steps from the last 5 days are being successfully displayed", then.canSeeHistoricalSteps(5, 4000))
-                    Then("I should be able to see the completed challenge from the sixth day, which is seeded data", then.textVisible("short stroll / 125 steps", 1000))
+                    Then("I should be able to see the completed challenge from the sixth day, which is seeded data", then.scrollUntilTextVisible(ACTIVITY_HISTORY_SCREEN_SCROLL, "short stroll / 125 steps", "down"))
                 })
             })
         })

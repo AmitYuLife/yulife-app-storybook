@@ -4,7 +4,7 @@ import * as given from "./_steps/given";
 import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as helper from "./_steps/helpers";
-import { NAV_BAR, LEADERBOARD_INFO, BACK_BUTTON, LEADERBOARD_SWITCH, LEADERBOARD_TITLE, MENU_ICON, INSPECT_SCREEN, RANK, CHALLENGE_FRIEND_BUTTON, LEADERBOARD_SCROLL_LIST, YUMOJI, USER_WORLD, USER_LEVEL, TEXT_TEMPLATE, ONBOARDING_SCREEN_V4, INSPECT_SECTION_HEADER } from "@ids";
+import { NAV_BAR, LEADERBOARD_INFO, BACK_BUTTON, LEADERBOARD_SWITCH, LEADERBOARD_TITLE, MENU_ICON, INSPECT_SCREEN, RANK, CHALLENGE_FRIEND_BUTTON, LEADERBOARD_SCROLL_LIST, YUMOJI, USER_WORLD, USER_LEVEL, TEXT_TEMPLATE, ONBOARDING_SCREEN_V4, INSPECT_SECTION_HEADER, USER_INFO } from "@ids";
 import { CUSTOMER_16, AUTH_16, CUSTOMER_17, AUTH_17, CUSTOMER_18, CUSTOMER_19, AUTH_19, CUSTOMER_20, CUSTOMER_47, AUTH_47, CUSTOMER_50, AUTH_50, COIN_LEDGER_47, COIN_LEDGER_18, LEADERBOARD_1, LEADERBOARD_2 } from "@data";
 
 Feature("As a user I can see my achievements on the leaderboard", async () => {
@@ -49,15 +49,15 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(LEADERBOARD_1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_47, CUSTOMER_50], ["10,000", "800"]))
-                When("I scroll to the top of the page", when.scrollUntilIdVisible(LEADERBOARD_SCROLL_LIST, LEADERBOARD_TITLE(LEADERBOARD_1.data.name), "down"), async () => {
-                    When("I tap the leaderboard drop down", when.tapID(LEADERBOARD_TITLE(LEADERBOARD_1.data.name), 2000), async () => {
-                        Then("I should be on the leaderboard selection screen", then.multipleTextVisible([LEADERBOARD_1.data.name, LEADERBOARD_2.data.name]))
-                        When("I tap the second leaderboard, Lb2", when.tapText(LEADERBOARD_2.data.name), async () => {
-                            Then("I should be on the second leaderboard", then.leaderboardVisible([CUSTOMER_20]))
-                        })
-                    })
-                })
             })
+        })
+        When("I scroll to the top of the page", when.scrollUntilIdVisible(LEADERBOARD_SCROLL_LIST, LEADERBOARD_TITLE(LEADERBOARD_1.data.name), "down"), async () => {
+            When("I tap the leaderboard drop down", when.tapID(LEADERBOARD_TITLE(LEADERBOARD_1.data.name), 2000), async () => {
+                Then("I should be on the leaderboard selection screen", then.multipleTextVisible([LEADERBOARD_1.data.name, LEADERBOARD_2.data.name]))
+            })
+        })
+        When("I tap the second leaderboard, Lb2", when.tapText(LEADERBOARD_2.data.name), async () => {
+            Then("I should be on the second leaderboard", then.leaderboardVisible([CUSTOMER_20]))
         })
     })
 
@@ -84,11 +84,11 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I scroll down to the challenge button", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.2), async () => {
             Then("I should see the Challenge to duel button", then.challengeToDuelButtonVisible)
         })
-        When("I scroll to the Challenge statistics section", when.scrollUntilIdVisible(INSPECT_SCREEN, INSPECT_SECTION_HEADER("Challenge Statistics"), "up"), async () => {
+        When("I scroll to the Challenge statistics section", when.scrollUntilTextVisible(USER_INFO("Michael Scott 4"), "Activity", "down"), async () => {
             Then("I should see the Challenge stats", then.challengeDataVisible(0, 0))
             Then("I should see the Activity section heading", then.activitySectionHeadingVisible)
         })
-        When("I scroll to the Activity data section", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.3), async () => {
+        When("I scroll to the Activity data section", when.scrollFromID(USER_INFO("Michael Scott 4"), "up", "slow", 0.3), async () => {
             Then("I should see the yumoji avatars and the comparative activity stats between me and Michael", then.comparativeUserSeedStatsVisible(26, 333))
         })
         When("I scroll down", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.6), async () => {
@@ -125,11 +125,11 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I scroll down to the challenge button", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.2), async () => {
             Then("I should see the Challenge to duel button", then.challengeToDuelButtonVisible)
         })
-        When("I scroll to the Challenge statistics section", when.scrollUntilIdVisible(INSPECT_SCREEN, INSPECT_SECTION_HEADER("Challenge Statistics"), "up"), async () => {
+        When("I scroll to the Challenge statistics section", when.scrollUntilTextVisible(USER_INFO("Michael Scott 4"), "Activity", "down"), async () => {
             Then("I should see the Challenge stats", then.challengeDataVisible(0, 0))
             Then("I should see the Activity section heading", then.activitySectionHeadingVisible)
         })
-        When("I scroll to the Activity data section", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.3), async () => {
+        When("I scroll to the Activity data section", when.scrollFromID(USER_INFO("Michael Scott 4"), "up", "slow", 0.3), async () => {
             Then("I should see the yumoji avatars and the comparative walking activity stats between me and Michael", then.comparativeUserStatsVisible(26, 833))
         })
         When("I scroll down", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.6), async () => {

@@ -81,6 +81,7 @@ export const challengeDataVisible = (challengesDone: number, longestStreak: numb
     await idVisible(INSPECT_SECTION_HEADER("Challenge Statistics"))()
     await idVisible(INSPECT_ACTIVITY("Challenges done"))()
     await idVisible(INSPECT_ACTIVITY("Longest streak"))()
+    await idVisible(INSPECT_ACTIVITY("Yudokus done"))()
     await idVisibleAtIndex(INSPECT_DATA(challengesDone, ""), 1)()  
     await idVisible(INSPECT_DATA(longestStreak, "d"))()  
 }
