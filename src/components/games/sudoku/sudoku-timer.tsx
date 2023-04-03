@@ -6,6 +6,7 @@ import Animated, { FadeOutUp, runOnJS } from "react-native-reanimated";
 import { SODUKU_PENALTY_ANIMATION_TIME } from "@screens/games/sudoku/sudoku-game/sudoku.config";
 import PauseIcon from "@atoms/icon/pause-svg";
 import { TextTemplate } from "@atoms";
+import { DETOX_ENABLED } from "@services/socket";
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 
@@ -41,7 +42,7 @@ const SudokuTimer = ({ invert }: IProps) => {
       }
 
       updateTime();
-    }, 1000);
+    }, DETOX_ENABLED ? 3000 : 1000);
 
     return () => clearInterval(intervalId);
   }, [startTime, penalties, updateTime, getDurationText, lastPauseTime]);

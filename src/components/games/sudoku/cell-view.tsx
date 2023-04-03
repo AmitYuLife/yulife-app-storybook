@@ -10,6 +10,7 @@ import {
   SUDOKU_SAME_VALUE_CELL_DELAY_TIME,
 } from "@components/screens/games/sudoku/sudoku-game/sudoku.config";
 import { Colours } from "@styles";
+import { CELL_ROW_COLUMN } from "@ids";
 
 interface IProps {
   row: number;
@@ -146,7 +147,7 @@ const CellView = ({
   }, [circleBg, animatedStyle]);
 
   return (
-    <TouchableOpacity onPress={onPress} style={styles.wrapper} activeOpacity={ACTIVE_OPACITY}>
+    <TouchableOpacity onPress={onPress} style={styles.wrapper} activeOpacity={ACTIVE_OPACITY} testID={CELL_ROW_COLUMN(row, column)}>
       <AnimatedView style={cellStyles}>
         <AnimatedView style={expandingCircleStyle} />
         <CellNumber

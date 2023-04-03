@@ -6,6 +6,7 @@ import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { SODUKU_HINT_COOLDOWN } from "@screens/games/sudoku/sudoku-game/sudoku.config";
 import HintIcon from "@atoms/icon/hint-svg";
 import { TextTemplate } from "@atoms";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
   invert: boolean;
@@ -32,7 +33,7 @@ const SudokuHint = ({ invert }: IProps) => {
       }
 
       updateTime();
-    }, 1000);
+    }, DETOX_ENABLED ? 3000 : 1000);
 
     return () => clearInterval(intervalId);
   }, [startTime, penalties, timeAgo, lastHintTime, updateTime, getDurationText, lastPauseTime]);
