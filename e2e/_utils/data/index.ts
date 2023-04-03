@@ -35,6 +35,7 @@ export * from "./mongo/yuniversity_course"
 export * from "./mongo/yuniversity_course_category"
 export * from "./mongo/yuniversity_course_module"
 export * from "./mongo/goal_weeklies"
+export * from "./mongo/game_sudoku_board"
 
 
 

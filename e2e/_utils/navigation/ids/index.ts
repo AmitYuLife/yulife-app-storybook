@@ -449,3 +449,6 @@ export const FIIT_MEDIA_PLAYER_CLOSE = MEDIA_PORTRAIT_CLOSE
 
 // Notification Centre
 export const NOTIF_CENTRE = "NOTIFICATION_CENTRE"
+
+// Sudoku
+export const CELL_ROW_COLUMN = (row: number, column:number) => `${row}-${column}`
