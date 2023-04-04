@@ -6241,6 +6241,12 @@
             "description": "Generic: Opens the ListPicker component; RN client version >= 3.65.0; E.g: {\"title\":\"You're about to select something\",\"items\":[{\"label\":\"Option 1\",\"value\":1,\"onPress\":{\"type\":\"ActionType\",\"payload\":\"{}\"}}]}",
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "SDUI_ACTION_OPEN_MAGIC_LINK",
+            "description": "Generic: Prepares a magic link request for either members, underwriting or team portal; RN client version >= 3.75.0",
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "possibleTypes": null
@@ -6601,6 +6607,18 @@
                 "type": {
                   "kind": "ENUM",
                   "name": "MagicLinkSite",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "redirectUrl",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
                   "ofType": null
                 },
                 "defaultValue": null,

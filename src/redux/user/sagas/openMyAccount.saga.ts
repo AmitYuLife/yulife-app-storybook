@@ -5,7 +5,7 @@ import { handleOpenWebView } from "@navigation/utils";
 
 export default function* openMyAccountSaga() {
   try {
-    const { data } = yield call(() => getMagicLinkWithClient(true));
+    const { data } = yield call(() => getMagicLinkWithClient({ goToMyAccount: true }));
 
     if (!data?.getMagicLink) {
       // guard even w/ low chance of happening

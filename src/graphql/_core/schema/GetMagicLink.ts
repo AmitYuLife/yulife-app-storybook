@@ -1,7 +1,8 @@
 /* tslint:disable */
-/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
+
+import { MagicLinkSite } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetMagicLink
@@ -13,4 +14,6 @@ export interface GetMagicLink {
 
 export interface GetMagicLinkVariables {
   goToMyAccount?: boolean | null;
+  site?: MagicLinkSite | null;
+  redirectUrl?: string | null;
 }

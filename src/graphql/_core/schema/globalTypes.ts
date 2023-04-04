@@ -154,6 +154,11 @@ export enum LoginMethod {
   PASSWORD = "PASSWORD",
 }
 
+export enum MagicLinkSite {
+  members = "members",
+  underwriting = "underwriting",
+}
+
 export enum MobileOnboardingStepPerformed {
   employeeDashboardOnboarding = "employeeDashboardOnboarding",
   newYumojiBuilder = "newYumojiBuilder",
@@ -208,6 +213,7 @@ export enum SduiActionType {
   SDUI_ACTION_OPEN_MODAL = "SDUI_ACTION_OPEN_MODAL",
   SDUI_ACTION_OPEN_SUPPORT_CHAT = "SDUI_ACTION_OPEN_SUPPORT_CHAT",
   SDUI_ACTION_OPEN_URL = "SDUI_ACTION_OPEN_URL",
+  SDUI_ACTION_OPEN_MAGIC_LINK = "SDUI_ACTION_OPEN_MAGIC_LINK",
   SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_FINISH = "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_FINISH",
   SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP = "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP",
   SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH = "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH",
