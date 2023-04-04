@@ -15,6 +15,7 @@ import { sduiActionSendMutation } from "./sduiActionSendMutation.saga";
 import { sduiActionGenericNavigateBack } from "./sduiActionGenericNavigateBack.saga";
 import { sduiActionGenericNavigateBackToRoot } from "./sduiActionGenericNavigateBackToRoot.saga";
 import { sduiActionShowOverlayListPicker } from "./sduiActionShowOverlayListPicker.saga";
+import { sduiActionOpenMagicLink } from "./sduiActionOpenMagicLink.saga";
 
 export default [
   takeLeading(SduiActionType.SDUI_ACTION_SHOW_OVERLAY_LIST_PICKER, sduiActionShowOverlayListPicker),
@@ -31,5 +32,6 @@ export default [
   takeLeading(SduiActionType.SDUI_ACTION_SEND_MUTATION, sduiActionSendMutation),
   takeLeading(SduiActionType.SDUI_ACTION_GENERIC_NAVIGATE_BACK, sduiActionGenericNavigateBack),
   takeLeading(SduiActionType.SDUI_ACTION_GENERIC_NAVIGATE_BACK_TO_ROOT, sduiActionGenericNavigateBackToRoot),
+  takeLeading(SduiActionType.SDUI_ACTION_OPEN_MAGIC_LINK, sduiActionOpenMagicLink),
   takeEvery(SduiActionType.SDUI_ACTION_LOG_EVENT, sduiActionLogEventSaga),
 ];
