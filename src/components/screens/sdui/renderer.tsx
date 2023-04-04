@@ -16,6 +16,7 @@ import {
   ContentItemAccordion,
   ContentItemBox,
   ContentItemDropdownInput,
+  ContentItemMedia,
 } from "@components/sdui";
 import { ContentItem } from "@graphql/_core/schema";
 
@@ -35,6 +36,7 @@ export const componentMap = {
   ContentItemAccordion,
   ContentItemBox,
   ContentItemDropdownInput,
+  ContentItemMedia,
 } as Record<string, (props: any) => JSX.Element>;
 
 export const renderItemContent = (item: ContentItem): JSX.Element | null => {

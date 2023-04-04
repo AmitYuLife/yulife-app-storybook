@@ -37,3 +37,4 @@ export * from "./contentItemCollapsingHeaderAgePercentProductInfo/contentItemCol
 export * from "./contentItemTextGroup/contentItemTextGroup";
 export * from "./contentItemAccordion/contentItemAccordion";
 export * from "./contentItemDropdownInput/contentItemDropdownInput";
+export * from "./contentItemMedia/contentItemMedia";

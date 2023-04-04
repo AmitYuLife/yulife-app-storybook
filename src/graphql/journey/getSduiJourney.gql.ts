@@ -7,10 +7,11 @@ export const GQL_QUERY_GET_SDUI_JOURNEY = gql`
   ${GQL_FRAGMENT_ABSOLUTE_CONTENT_ITEM}
   ${GQL_FRAGMENT_SDUI_STYLE}
 
-  query GetSduiJourney($journeyId: String!) {
-    getSduiJourney(journeyId: $journeyId) {
+  query GetSduiJourney($journeyId: String!, $dynamicId: String) {
+    getSduiJourney(journeyId: $journeyId, dynamicId: $dynamicId) {
       stepId
       stepData
+      isSafeAreaView
       body {
         ...ContentItem
       }

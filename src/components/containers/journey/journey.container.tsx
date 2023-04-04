@@ -8,12 +8,14 @@ import { SduiProvider } from "@components/sdui/_context/SduiProvider";
 
 interface JourneyContainerProps {
   journeyId: string;
+  dynamicId?: string;
 }
 
-const JourneyContainer = ({ journeyId }: JourneyContainerProps) => {
+const JourneyContainer = ({ journeyId, dynamicId }: JourneyContainerProps) => {
   const { data } = useQuery<GetSduiJourney, GetSduiJourneyVariables>(GQL_QUERY_GET_SDUI_JOURNEY, {
     variables: {
       journeyId,
+      dynamicId,
     },
     fetchPolicy: "no-cache",
   });
