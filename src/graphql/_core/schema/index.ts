@@ -51,6 +51,7 @@ export * from "./ContentItemLinearGradient";
 export * from "./ContentItemList";
 export * from "./ContentItemLottie";
 export * from "./ContentItemMarkdown";
+export * from "./ContentItemMedia";
 export * from "./ContentItemMultiButton";
 export * from "./ContentItemMultiSelect";
 export * from "./ContentItemOverlay";

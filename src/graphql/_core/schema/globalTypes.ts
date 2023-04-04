@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -72,6 +72,11 @@ export enum ContentItemFormTextInputType {
 
 export enum ContentItemImageSize {
   fill = "fill",
+}
+
+export enum ContentItemMediaOrientation {
+  landscape = "landscape",
+  portrait = "portrait",
 }
 
 export enum ContentItemProgressBarType {
@@ -210,10 +215,10 @@ export enum SduiActionType {
   SDUI_ACTION_NAVIGATE = "SDUI_ACTION_NAVIGATE",
   SDUI_ACTION_NAVIGATE_BACK = "SDUI_ACTION_NAVIGATE_BACK",
   SDUI_ACTION_OPEN_ALERT_DIALOG = "SDUI_ACTION_OPEN_ALERT_DIALOG",
+  SDUI_ACTION_OPEN_MAGIC_LINK = "SDUI_ACTION_OPEN_MAGIC_LINK",
   SDUI_ACTION_OPEN_MODAL = "SDUI_ACTION_OPEN_MODAL",
   SDUI_ACTION_OPEN_SUPPORT_CHAT = "SDUI_ACTION_OPEN_SUPPORT_CHAT",
   SDUI_ACTION_OPEN_URL = "SDUI_ACTION_OPEN_URL",
-  SDUI_ACTION_OPEN_MAGIC_LINK = "SDUI_ACTION_OPEN_MAGIC_LINK",
   SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_FINISH = "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_FINISH",
   SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP = "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP",
   SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH = "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH",

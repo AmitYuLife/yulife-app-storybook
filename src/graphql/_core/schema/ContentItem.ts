@@ -12,6 +12,7 @@ import {
   ContentItemRowIconTextBannerType,
   RNViewPointerEvents,
   ContentItemProgressBarType,
+  ContentItemMediaOrientation,
 } from "./globalTypes";
 
 // ====================================================
@@ -611,6 +612,99 @@ export interface ContentItem_ContentItemAccordion {
   subheading: string | null;
 }
 
+export interface ContentItem_ContentItemMedia_source {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItem_ContentItemMedia_mediaLogo {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItem_ContentItemMedia_poster {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItem_ContentItemMedia_videoLogo {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItem_ContentItemMedia_thumbnail {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItem_ContentItemMedia_lottie_styles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemMedia_lottie_onAnimationEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItem_ContentItemMedia_lottie {
+  id: string;
+  uri: string;
+  autoPlay: boolean;
+  loop: boolean;
+  styles: ContentItem_ContentItemMedia_lottie_styles[] | null;
+  onAnimationEnd: ContentItem_ContentItemMedia_lottie_onAnimationEnd | null;
+  aspectRatio: number | null;
+}
+
+export interface ContentItem_ContentItemMedia_onLeftIconPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItem_ContentItemMedia_onRightIconPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItem_ContentItemMedia_onStart {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItem_ContentItemMedia_onEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItem_ContentItemMedia {
+  __typename: "ContentItemMedia";
+  id: string;
+  mediaTitle: string;
+  description: string;
+  shortDescription: string;
+  theme: string;
+  orientation: ContentItemMediaOrientation;
+  duration: number;
+  yuCoin: number | null;
+  stars: number | null;
+  sourceType: string;
+  eventType: string;
+  startErrorMessage: string;
+  startChallengeButtonLabel: string;
+  showTimer: boolean;
+  source: ContentItem_ContentItemMedia_source;
+  mediaLogo: ContentItem_ContentItemMedia_mediaLogo;
+  poster: ContentItem_ContentItemMedia_poster;
+  videoLogo: ContentItem_ContentItemMedia_videoLogo | null;
+  thumbnail: ContentItem_ContentItemMedia_thumbnail;
+  lottie: ContentItem_ContentItemMedia_lottie | null;
+  onLeftIconPress: ContentItem_ContentItemMedia_onLeftIconPress | null;
+  onRightIconPress: ContentItem_ContentItemMedia_onRightIconPress | null;
+  onStart: ContentItem_ContentItemMedia_onStart | null;
+  onEnd: ContentItem_ContentItemMedia_onEnd | null;
+}
+
 export type ContentItem =
   | ContentItem_ContentItemProcessingTimer
   | ContentItem_ContentItemMarkdown
@@ -628,4 +722,5 @@ export type ContentItem =
   | ContentItem_ContentItemHeaderBar
   | ContentItem_ContentItemProgressBar
   | ContentItem_ContentItemTextGroup
-  | ContentItem_ContentItemAccordion;
+  | ContentItem_ContentItemAccordion
+  | ContentItem_ContentItemMedia;

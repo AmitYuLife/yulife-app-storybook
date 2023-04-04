@@ -18,9 +18,10 @@ interface Props {
   containerStyles?: ContainerStyle[];
   stepData?: string;
   stepId?: string;
+  isSafeAreaView?: boolean;
 }
 
-export const SduiScreen = memo(({ body, absolute, containerStyles, stepData, stepId }: Props) => {
+export const SduiScreen = memo(({ body, absolute, containerStyles, stepData, stepId, isSafeAreaView }: Props) => {
   const sduiDispatch = useContext(SduiDispatchContext);
   const { background, foreground } = useSeparateZedAxis(absolute || []);
 
@@ -37,7 +38,7 @@ export const SduiScreen = memo(({ body, absolute, containerStyles, stepData, ste
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.wrapper}>
       <View style={[styles.wrapper, wrapperStyles]} testID={SDUI_SCREEN_SCROLL_VIEW}>
         <Absolute items={background} />
-        <Body items={body} />
+        <Body items={body} isSafeAreaView={isSafeAreaView} />
         <Absolute items={foreground} />
       </View>
     </KeyboardAvoidingView>

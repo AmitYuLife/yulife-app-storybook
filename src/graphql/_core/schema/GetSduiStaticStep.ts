@@ -12,6 +12,7 @@ import {
   ContentItemRowIconTextBannerType,
   RNViewPointerEvents,
   ContentItemProgressBarType,
+  ContentItemMediaOrientation,
 } from "./globalTypes";
 
 // ====================================================
@@ -617,6 +618,99 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion {
   subheading: string | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_source {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_mediaLogo {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_poster {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_videoLogo {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_thumbnail {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_lottie_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_lottie_onAnimationEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_lottie {
+  id: string;
+  uri: string;
+  autoPlay: boolean;
+  loop: boolean;
+  styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_lottie_styles[] | null;
+  onAnimationEnd: GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_lottie_onAnimationEnd | null;
+  aspectRatio: number | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_onLeftIconPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_onRightIconPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_onStart {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_onEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia {
+  __typename: "ContentItemMedia";
+  id: string;
+  mediaTitle: string;
+  description: string;
+  shortDescription: string;
+  theme: string;
+  orientation: ContentItemMediaOrientation;
+  duration: number;
+  yuCoin: number | null;
+  stars: number | null;
+  sourceType: string;
+  eventType: string;
+  startErrorMessage: string;
+  startChallengeButtonLabel: string;
+  showTimer: boolean;
+  source: GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_source;
+  mediaLogo: GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_mediaLogo;
+  poster: GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_poster;
+  videoLogo: GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_videoLogo | null;
+  thumbnail: GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_thumbnail;
+  lottie: GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_lottie | null;
+  onLeftIconPress: GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_onLeftIconPress | null;
+  onRightIconPress: GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_onRightIconPress | null;
+  onStart: GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_onStart | null;
+  onEnd: GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_onEnd | null;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemProcessingTimer
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemMarkdown
@@ -634,7 +728,8 @@ export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemHeaderBar
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemProgressBar
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup
-  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion;
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProcessingTimer {
   __typename:
@@ -1239,6 +1334,99 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAc
   subheading: string | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_source {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_mediaLogo {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_poster {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_videoLogo {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_thumbnail {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_lottie_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_lottie_onAnimationEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_lottie {
+  id: string;
+  uri: string;
+  autoPlay: boolean;
+  loop: boolean;
+  styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_lottie_styles[] | null;
+  onAnimationEnd: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_lottie_onAnimationEnd | null;
+  aspectRatio: number | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_onLeftIconPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_onRightIconPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_onStart {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_onEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia {
+  __typename: "ContentItemMedia";
+  id: string;
+  mediaTitle: string;
+  description: string;
+  shortDescription: string;
+  theme: string;
+  orientation: ContentItemMediaOrientation;
+  duration: number;
+  yuCoin: number | null;
+  stars: number | null;
+  sourceType: string;
+  eventType: string;
+  startErrorMessage: string;
+  startChallengeButtonLabel: string;
+  showTimer: boolean;
+  source: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_source;
+  mediaLogo: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_mediaLogo;
+  poster: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_poster;
+  videoLogo: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_videoLogo | null;
+  thumbnail: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_thumbnail;
+  lottie: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_lottie | null;
+  onLeftIconPress: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_onLeftIconPress | null;
+  onRightIconPress: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_onRightIconPress | null;
+  onStart: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_onStart | null;
+  onEnd: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_onEnd | null;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProcessingTimer
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown
@@ -1256,7 +1444,8 @@ export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHeaderBar
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProgressBar
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup
-  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAccordion;
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAccordion
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_styles {
   property: string;

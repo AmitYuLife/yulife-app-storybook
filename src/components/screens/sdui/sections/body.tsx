@@ -2,14 +2,15 @@ import { useSduiBodyScrollValue } from "@components/sdui/_hooks/useSduiBodyScrol
 import { ContentItem } from "@graphql/_core/schema";
 import { useSafeAreaViewOffset } from "@hooks";
 import React, { useEffect, useRef } from "react";
-import { Animated, SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import { Animated, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { renderItemContent } from "../renderer";
 
 interface Props {
   items: Array<ContentItem>;
+  isSafeAreaView: boolean;
 }
 
-export const Body = ({ items }: Props) => {
+export const Body = ({ items, isSafeAreaView }: Props) => {
   const { scrollValue } = useSduiBodyScrollValue();
   const scrollViewRef = useRef<ScrollView>(null);
   const { safeAreaViewOffset } = useSafeAreaViewOffset();
@@ -18,8 +19,10 @@ export const Body = ({ items }: Props) => {
     scrollViewRef.current?.scrollTo({ y: 0, animated: false });
   }, [items, scrollViewRef]);
 
+  const Wrapper = isSafeAreaView ? SafeAreaView : View;
+
   return (
-    <SafeAreaView style={[styles.flex, { marginTop: -safeAreaViewOffset.y }]}>
+    <Wrapper style={[styles.flex, { marginTop: -safeAreaViewOffset.y }]}>
       <Animated.ScrollView
         ref={scrollViewRef}
         showsVerticalScrollIndicator={false}
@@ -30,7 +33,7 @@ export const Body = ({ items }: Props) => {
       >
         {!items?.length ? null : items.map(renderItemContent)}
       </Animated.ScrollView>
-    </SafeAreaView>
+    </Wrapper>
   );
 };
 

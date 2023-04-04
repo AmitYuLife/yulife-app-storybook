@@ -41,7 +41,8 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
     | "ContentItemSexPicker"
     | "ContentItemDependants"
     | "ContentItemSelectScheme"
-    | "ContentItemKeyValueBox";
+    | "ContentItemKeyValueBox"
+    | "ContentItemMedia";
 }
 
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemText_styles {

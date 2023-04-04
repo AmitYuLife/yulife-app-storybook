@@ -12,6 +12,7 @@ import {
   ContentItemRowIconTextBannerType,
   RNViewPointerEvents,
   ContentItemProgressBarType,
+  ContentItemMediaOrientation,
 } from "./globalTypes";
 
 // ====================================================
@@ -617,6 +618,99 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemAccordion {
   subheading: string | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemMedia_source {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemMedia_mediaLogo {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemMedia_poster {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemMedia_videoLogo {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemMedia_thumbnail {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemMedia_lottie_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemMedia_lottie_onAnimationEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemMedia_lottie {
+  id: string;
+  uri: string;
+  autoPlay: boolean;
+  loop: boolean;
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemMedia_lottie_styles[] | null;
+  onAnimationEnd: GetSduiJourney_getSduiJourney_body_ContentItemMedia_lottie_onAnimationEnd | null;
+  aspectRatio: number | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemMedia_onLeftIconPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemMedia_onRightIconPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemMedia_onStart {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemMedia_onEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemMedia {
+  __typename: "ContentItemMedia";
+  id: string;
+  mediaTitle: string;
+  description: string;
+  shortDescription: string;
+  theme: string;
+  orientation: ContentItemMediaOrientation;
+  duration: number;
+  yuCoin: number | null;
+  stars: number | null;
+  sourceType: string;
+  eventType: string;
+  startErrorMessage: string;
+  startChallengeButtonLabel: string;
+  showTimer: boolean;
+  source: GetSduiJourney_getSduiJourney_body_ContentItemMedia_source;
+  mediaLogo: GetSduiJourney_getSduiJourney_body_ContentItemMedia_mediaLogo;
+  poster: GetSduiJourney_getSduiJourney_body_ContentItemMedia_poster;
+  videoLogo: GetSduiJourney_getSduiJourney_body_ContentItemMedia_videoLogo | null;
+  thumbnail: GetSduiJourney_getSduiJourney_body_ContentItemMedia_thumbnail;
+  lottie: GetSduiJourney_getSduiJourney_body_ContentItemMedia_lottie | null;
+  onLeftIconPress: GetSduiJourney_getSduiJourney_body_ContentItemMedia_onLeftIconPress | null;
+  onRightIconPress: GetSduiJourney_getSduiJourney_body_ContentItemMedia_onRightIconPress | null;
+  onStart: GetSduiJourney_getSduiJourney_body_ContentItemMedia_onStart | null;
+  onEnd: GetSduiJourney_getSduiJourney_body_ContentItemMedia_onEnd | null;
+}
+
 export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_body_ContentItemMarkdown
@@ -634,7 +728,8 @@ export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemHeaderBar
   | GetSduiJourney_getSduiJourney_body_ContentItemProgressBar
   | GetSduiJourney_getSduiJourney_body_ContentItemTextGroup
-  | GetSduiJourney_getSduiJourney_body_ContentItemAccordion;
+  | GetSduiJourney_getSduiJourney_body_ContentItemAccordion
+  | GetSduiJourney_getSduiJourney_body_ContentItemMedia;
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer {
   __typename:
@@ -1239,6 +1334,99 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordio
   subheading: string | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_source {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_mediaLogo {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_poster {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_videoLogo {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_thumbnail {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_lottie_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_lottie_onAnimationEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_lottie {
+  id: string;
+  uri: string;
+  autoPlay: boolean;
+  loop: boolean;
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_lottie_styles[] | null;
+  onAnimationEnd: GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_lottie_onAnimationEnd | null;
+  aspectRatio: number | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_onLeftIconPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_onRightIconPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_onStart {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_onEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia {
+  __typename: "ContentItemMedia";
+  id: string;
+  mediaTitle: string;
+  description: string;
+  shortDescription: string;
+  theme: string;
+  orientation: ContentItemMediaOrientation;
+  duration: number;
+  yuCoin: number | null;
+  stars: number | null;
+  sourceType: string;
+  eventType: string;
+  startErrorMessage: string;
+  startChallengeButtonLabel: string;
+  showTimer: boolean;
+  source: GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_source;
+  mediaLogo: GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_mediaLogo;
+  poster: GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_poster;
+  videoLogo: GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_videoLogo | null;
+  thumbnail: GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_thumbnail;
+  lottie: GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_lottie | null;
+  onLeftIconPress: GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_onLeftIconPress | null;
+  onRightIconPress: GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_onRightIconPress | null;
+  onStart: GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_onStart | null;
+  onEnd: GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_onEnd | null;
+}
+
 export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown
@@ -1256,7 +1444,8 @@ export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemHeaderBar
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemProgressBar
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup
-  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion;
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia;
 
 export interface GetSduiJourney_getSduiJourney_absolute_styles {
   property: string;
@@ -1284,6 +1473,7 @@ export interface GetSduiJourney_getSduiJourney_containerStyles {
 export interface GetSduiJourney_getSduiJourney {
   stepId: string;
   stepData: string | null;
+  isSafeAreaView: boolean | null;
   body: GetSduiJourney_getSduiJourney_body[] | null;
   absolute: GetSduiJourney_getSduiJourney_absolute[] | null;
   containerStyles: GetSduiJourney_getSduiJourney_containerStyles[] | null;
@@ -1295,4 +1485,5 @@ export interface GetSduiJourney {
 
 export interface GetSduiJourneyVariables {
   journeyId: string;
+  dynamicId?: string | null;
 }

@@ -29,6 +29,7 @@ const DebugContainer: React.FC<Props> = (props) => {
     "video-player",
     "inspect",
     "daily-survey",
+    "sleep-meditation",
     "features",
     "inspect-opponent",
     ...(data?.getDebugCodes || []),
@@ -78,6 +79,19 @@ const DebugContainer: React.FC<Props> = (props) => {
               name: ROUTES.journey,
               passProps: {
                 journeyId: "daily_survey",
+              },
+            },
+          });
+        }
+
+        if (code === "sleep-meditation") {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.journey,
+              name: ROUTES.journey,
+              passProps: {
+                journeyId: "media",
+                dynamicId: "fiit_cardio",
               },
             },
           });

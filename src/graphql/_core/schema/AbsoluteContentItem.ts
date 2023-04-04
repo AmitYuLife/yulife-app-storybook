@@ -12,6 +12,7 @@ import {
   ContentItemRowIconTextBannerType,
   RNViewPointerEvents,
   ContentItemProgressBarType,
+  ContentItemMediaOrientation,
 } from "./globalTypes";
 
 // ====================================================
@@ -611,6 +612,99 @@ export interface AbsoluteContentItem_item_ContentItemAccordion {
   subheading: string | null;
 }
 
+export interface AbsoluteContentItem_item_ContentItemMedia_source {
+  id: string;
+  uri: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemMedia_mediaLogo {
+  id: string;
+  uri: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemMedia_poster {
+  id: string;
+  uri: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemMedia_videoLogo {
+  id: string;
+  uri: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemMedia_thumbnail {
+  id: string;
+  uri: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemMedia_lottie_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemMedia_lottie_onAnimationEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemMedia_lottie {
+  id: string;
+  uri: string;
+  autoPlay: boolean;
+  loop: boolean;
+  styles: AbsoluteContentItem_item_ContentItemMedia_lottie_styles[] | null;
+  onAnimationEnd: AbsoluteContentItem_item_ContentItemMedia_lottie_onAnimationEnd | null;
+  aspectRatio: number | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemMedia_onLeftIconPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemMedia_onRightIconPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemMedia_onStart {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemMedia_onEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemMedia {
+  __typename: "ContentItemMedia";
+  id: string;
+  mediaTitle: string;
+  description: string;
+  shortDescription: string;
+  theme: string;
+  orientation: ContentItemMediaOrientation;
+  duration: number;
+  yuCoin: number | null;
+  stars: number | null;
+  sourceType: string;
+  eventType: string;
+  startErrorMessage: string;
+  startChallengeButtonLabel: string;
+  showTimer: boolean;
+  source: AbsoluteContentItem_item_ContentItemMedia_source;
+  mediaLogo: AbsoluteContentItem_item_ContentItemMedia_mediaLogo;
+  poster: AbsoluteContentItem_item_ContentItemMedia_poster;
+  videoLogo: AbsoluteContentItem_item_ContentItemMedia_videoLogo | null;
+  thumbnail: AbsoluteContentItem_item_ContentItemMedia_thumbnail;
+  lottie: AbsoluteContentItem_item_ContentItemMedia_lottie | null;
+  onLeftIconPress: AbsoluteContentItem_item_ContentItemMedia_onLeftIconPress | null;
+  onRightIconPress: AbsoluteContentItem_item_ContentItemMedia_onRightIconPress | null;
+  onStart: AbsoluteContentItem_item_ContentItemMedia_onStart | null;
+  onEnd: AbsoluteContentItem_item_ContentItemMedia_onEnd | null;
+}
+
 export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemProcessingTimer
   | AbsoluteContentItem_item_ContentItemMarkdown
@@ -628,7 +722,8 @@ export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemHeaderBar
   | AbsoluteContentItem_item_ContentItemProgressBar
   | AbsoluteContentItem_item_ContentItemTextGroup
-  | AbsoluteContentItem_item_ContentItemAccordion;
+  | AbsoluteContentItem_item_ContentItemAccordion
+  | AbsoluteContentItem_item_ContentItemMedia;
 
 export interface AbsoluteContentItem_styles {
   property: string;

@@ -15,6 +15,7 @@ import { GQL_FRAGMENT_CONTENT_ITEM_TEXT_GROUP } from "./contentItemTextGroup.gql
 import { GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER } from "./contentItemRowIconTextBanner.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_ACCORDION } from "./contentItemAccordion.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_DROPDOWN_INPUT } from "./contentItemDropdownInput";
+import { GQL_FRAGMENT_CONTENT_ITEM_MEDIA } from "./contentItemMedia.gql";
 
 export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN}
@@ -33,6 +34,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_TEXT_GROUP}
   ${GQL_FRAGMENT_CONTENT_ITEM_ACCORDION}
   ${GQL_FRAGMENT_CONTENT_ITEM_DROPDOWN_INPUT}
+  ${GQL_FRAGMENT_CONTENT_ITEM_MEDIA}
 
   fragment ContentItem on ContentItem {
     __typename
@@ -83,6 +85,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
     }
     ... on ContentItemAccordion {
       ...ContentItemAccordion
+    }
+    ... on ContentItemMedia {
+      ...ContentItemMedia
     }
   }
 `;

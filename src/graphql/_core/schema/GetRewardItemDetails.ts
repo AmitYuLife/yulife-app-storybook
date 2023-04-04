@@ -55,7 +55,8 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemTe
     | "ContentItemSexPicker"
     | "ContentItemDependants"
     | "ContentItemSelectScheme"
-    | "ContentItemKeyValueBox";
+    | "ContentItemKeyValueBox"
+    | "ContentItemMedia";
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles {
