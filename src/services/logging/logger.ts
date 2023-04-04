@@ -68,13 +68,15 @@ class LoggerInstance {
   };
 
   private setIntercomUser = async (userId: string, hash: string) => {
+    this.userId = null;
     await Intercom.logout();
     await Intercom.setUserHash(hash);
     await Intercom.registerIdentifiedUser({ userId });
+    this.userId = userId;
   };
 
   public logEvent = (event: string, metadata: Record<string, any> = {}) => {
-    if (!this.initialised) {
+    if (!this.initialised || !this.userId) {
       return;
     }
 
