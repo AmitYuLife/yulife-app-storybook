@@ -3,7 +3,7 @@ import moment from "moment";
 
 export const BOARD_1 = {
     type: "mongo",
-    modelName: "game_sudoku_board",
+    modelName: "sudokuboards",
     data: {
         "_id": generateRandomMongoId(),
         "date": moment().format('YYYY-MM-DD'),
