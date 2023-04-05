@@ -6,12 +6,23 @@ import getMagicLinkWithClient from "@graphql/user/getMagicLink.gql";
 import { parseJSON } from "@utils";
 import { handleOpenWebView } from "@navigation/utils";
 import { MagicLinkSite } from "@graphql/_core/schema/globalTypes";
+import { AnyAction, Dispatch } from "redux";
+import client from "@graphql/_core/client";
 
-type Payload = { redirectUrl: string; site: MagicLinkSite; title?: string };
+type Payload = {
+  redirectUrl: string;
+  site: MagicLinkSite;
+  title?: string;
+  dispatchActions?: Array<{ type: string }>;
+  refetchQueries?: Array<string>;
+};
 
 export function* sduiActionOpenMagicLink({ payload }: SduiActionWithServerPayload) {
   try {
-    const { data: payloadData, isValid } = parseJSON<Payload>(getServerPayload(payload), ["redirectUrl", "site"]);
+    const {
+      data: { dispatchActions = [], refetchQueries = [], ...payloadData },
+      isValid,
+    } = parseJSON<Payload>(getServerPayload(payload), ["redirectUrl", "site"]);
 
     if (!isValid) {
       throw new Error("Invalid action payload!");
@@ -25,7 +36,25 @@ export function* sduiActionOpenMagicLink({ payload }: SduiActionWithServerPayloa
       return;
     }
 
-    yield call(handleOpenWebView, { uri: data.getMagicLink, title });
+    const onClose = async (dispatch: Dispatch<AnyAction>) => {
+      try {
+        if (dispatchActions?.length > 0) {
+          dispatchActions.map((action) => dispatch(action));
+        }
+
+        if (refetchQueries?.length > 0) {
+          await client().refetchQueries({ include: refetchQueries });
+        }
+      } catch (e) {
+        Logger.error(e, {
+          location: "web-view-on-close",
+          actions: JSON.stringify(dispatchActions),
+          queries: JSON.stringify(refetchQueries),
+        });
+      }
+    };
+
+    yield call(handleOpenWebView, { uri: data.getMagicLink, title, onClose });
   } catch (e) {
     yield spawn(() => {
       Logger.error(e, { event: "sduiActionOpenMagicLink" });
