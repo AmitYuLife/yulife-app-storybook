@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.76.0] - 2023-04-05
+
+### Bugfixes
+
+- Bugfix: Intercom logging
+- Bugfix XSE-1839: Add new SDUI action type
+
+### Tasks
+
+- Task: Notification center copy changes
+- Task: Deeplink for Wellbeing item and Reward item
+- Task XSE-1848: Allow web view on close action
+- Task: Change subtype name for tracking
+- Task: Lock files for react native 0.70.8
+- Task: Dynamic quests part 1
+- Task GS-650: Sudoku
+- Task DEVOP-1053: Disable cocoapods bugsnag for debug
+- Task DEVOP-1053: Upload dSYM apple to bugsnag
+- Task: Add tracking for fiit/meditopia promotion banner
+
+### Chores
+
+- Chore: Upgrade react-native to 0.70.8
+
+### Extra
+
+- Fix pods lockfile
+- Hotfix: push notifications
+- Detox: change game_sudoku_board to sudokuboards
+- Detox: Smoke fixes - iPhone SE
+- Detox: Sudoku Setup
+- Detox: Fixes 30th March
+
 ## [3.75.0] - 2023-03-29
 
 ### Bugfixes
