@@ -107,7 +107,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
     if (internalContent?.length) {
       dispatch(
         logMixpanelEventActionCreator("challenge_selected", {
-          subtype: internalContent[0].contentType,
+          subtype: internalContent[0].contentType === "meditopia" ? "meditation" : internalContent[0].contentType,
           levelSlotId: slot.id,
         })
       );
