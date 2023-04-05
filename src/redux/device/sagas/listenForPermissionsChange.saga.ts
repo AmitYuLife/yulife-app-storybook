@@ -1,6 +1,8 @@
 import { getToken } from "@services/storage";
 import { Platform, AppStateStatus } from "react-native";
 import { PushNotificationPermissions } from "react-native-push-notification";
+import { PERMISSIONS, check, PermissionStatus } from "react-native-permissions";
+import { Style } from "@styles";
 import { call, put, race, select, take, delay } from "redux-saga/effects";
 import { Unpacked } from "@utils/types";
 import { appStateChannel } from "../../app/app.channels";
@@ -24,18 +26,18 @@ export default function* listenForPermissionsChangeSaga() {
 
 export function* checkPermissions() {
   const perms: ReturnType<typeof getPushNotifications> = yield select(getPushNotifications);
-  // android defaults to true
   let status: PushPermissions = PushPermissionsEnum.enabled;
 
   if (Platform.OS === "ios") {
     const channel: ReturnType<typeof createPushPermissionsChannel> = yield call(createPushPermissionsChannel);
     const permissions: PushNotificationPermissions = yield take(channel);
-    status = permissions.alert
-      ? PushPermissionsEnum.enabled
-      : perms.requested
-      ? PushPermissionsEnum.denied
-      : PushPermissionsEnum.notyet;
+    status = buildIosPermissionStatus(perms, permissions);
     channel.close();
+  }
+
+  if (Style.isAndroid13AndHigher()) {
+    const result: PermissionStatus = yield call(check, PERMISSIONS.ANDROID.POST_NOTIFICATIONS);
+    status = buildAndroidPermissionStatus(result);
   }
 
   yield put(setPushPermissions({ status }));
@@ -50,3 +52,32 @@ export function* checkPermissions() {
     yield put(updateUserConsent({ pushNotifications: status === PushPermissionsEnum.enabled }));
   }
 }
+
+const buildIosPermissionStatus = (
+  currentPermissions: ReturnType<typeof getPushNotifications>,
+  permissions: PushNotificationPermissions
+) => {
+  if (permissions.alert) {
+    return PushPermissionsEnum.enabled;
+  }
+
+  if (currentPermissions.requested) {
+    return PushPermissionsEnum.denied;
+  }
+
+  return PushPermissionsEnum.notyet;
+};
+
+const buildAndroidPermissionStatus = (status: PermissionStatus) => {
+  switch (status) {
+    case "granted":
+    case "limited":
+      return PushPermissionsEnum.enabled;
+    case "blocked":
+    case "unavailable":
+      return PushPermissionsEnum.denied;
+    case "denied": // denied is default android >=13 state
+    default:
+      return PushPermissionsEnum.notyet;
+  }
+};

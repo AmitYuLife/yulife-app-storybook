@@ -26,9 +26,9 @@ const isIphoneXPlus = () =>
 
 const isAnyIphoneX = () => isIphoneX() || isIphoneXPlus();
 
-const isAndroid = () => {
-  return Platform.OS === "android";
-};
+const isAndroid = () => Platform.OS === "android";
+
+const isAndroid13AndHigher = () => isAndroid() && Number(DeviceInfo.getSystemVersion()) >= 13;
 
 const isShortAndroid = () => {
   return Platform.OS === "android" && pixelRatio < 3 && y < 700;
@@ -179,6 +179,7 @@ const Style = {
   SCALE_Y_UP_AND_DOWN,
   TOTAL_WIDTH,
   isAndroid,
+  isAndroid13AndHigher,
   isAnyIphoneX,
   isIphone13,
   isIphoneX,

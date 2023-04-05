@@ -49,7 +49,7 @@ class PushNotificationsModal extends PureComponent<Props> {
 
   private openSettings = async () => {
     try {
-      await Linking.openURL("app-settings:");
+      await Linking.openSettings();
     } catch (e) {
       Logger.error(e, { url: "app-settings" });
     }
