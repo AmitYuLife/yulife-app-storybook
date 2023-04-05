@@ -11,11 +11,7 @@ export default function* registerPushSaga() {
     result = yield take(channel);
 
     if (result.token) {
-      yield put(
-        addDeviceToken({
-          deviceToken: result.token,
-        })
-      );
+      yield put(addDeviceToken({ deviceToken: result.token }));
     } else {
       // allow other modules to respond to a push
       yield put(pushNotificationReceived(result));

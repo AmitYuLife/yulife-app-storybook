@@ -340,7 +340,7 @@ dependencies {
 
     // Leanplum
     implementation project(':@leanplum_react-native-sdk')
-    implementation 'com.leanplum:leanplum-fcm:5.8.1'
+    implementation 'com.leanplum:leanplum-fcm:7.0.1'
 
     // Firebase
     implementation 'com.google.firebase:firebase-core:17.5.0'
