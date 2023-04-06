@@ -8,6 +8,10 @@ export const useNotifications = () => {
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
 
   const getMessages = useCallback(async () => {
+    if (!Logger?.leanplum?.getInbox) {
+      return;
+    }
+
     const inbox = await Logger.leanplum.getInbox();
     setIsInitialized(true);
     setNotifications(
@@ -18,13 +22,13 @@ export const useNotifications = () => {
   }, []);
 
   const onRefresh = useCallback(() => {
-    Logger.leanplum.refreshInbox();
+    Logger.leanplum?.refreshInbox?.();
   }, []);
 
   useEffect(() => {
     onRefresh();
 
-    Logger.leanplum.onInboxUpdate(() => {
+    Logger.leanplum?.onInboxUpdate?.(() => {
       getMessages();
     });
 
@@ -32,7 +36,7 @@ export const useNotifications = () => {
   }, [getMessages, onRefresh]);
 
   const onOpen = useCallback((messageId: string) => {
-    Logger.leanplum.readInbox(messageId);
+    Logger.leanplum?.readInbox?.(messageId);
   }, []);
 
   return useMemo(
