@@ -7,7 +7,7 @@ import {
   BUSINESS_ACCOUNT_5,
   BUSINESS_ACCOUNT_6,
 } from "../postgres/business";
-import { USER_84_LEADERBOARD } from "./leaderboard";
+
 import {
   USER_1,
   USER_2,
@@ -102,6 +102,7 @@ import {
   USER_PLI_3,
   USER_PLI_4,
 } from "./users";
+import { USER_84_LEADERBOARD } from "./user_leaderboards";
 
 const type = "mongo";
 const modelName = "user_onboardings";

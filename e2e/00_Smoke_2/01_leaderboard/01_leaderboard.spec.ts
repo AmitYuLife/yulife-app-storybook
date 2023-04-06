@@ -47,17 +47,17 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can check other leaderboards", scenario.start, async () => {
         Given("I login", given.loginAsUser(CUSTOMER_19, AUTH_19), async () => {
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(LEADERBOARD_1.data.name)))
-                Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_47, CUSTOMER_50], ["10,000", "800"]))
+                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(LEADERBOARD_2.data.name)))
+                Then("I should be on the second leaderboard", then.leaderboardVisible([CUSTOMER_20]))
             })
         })
-        When("I scroll to the top of the page", when.scrollUntilIdVisible(LEADERBOARD_SCROLL_LIST, LEADERBOARD_TITLE(LEADERBOARD_1.data.name), "down"), async () => {
-            When("I tap the leaderboard drop down", when.tapID(LEADERBOARD_TITLE(LEADERBOARD_1.data.name), 2000), async () => {
+        When("I scroll to the top of the page", when.scrollUntilIdVisible(LEADERBOARD_SCROLL_LIST, LEADERBOARD_TITLE(LEADERBOARD_2.data.name), "down"), async () => {
+            When("I tap the leaderboard drop down", when.tapID(LEADERBOARD_TITLE(LEADERBOARD_2.data.name), 2000), async () => {
                 Then("I should be on the leaderboard selection screen", then.multipleTextVisible([LEADERBOARD_1.data.name, LEADERBOARD_2.data.name]))
             })
         })
-        When("I tap the second leaderboard, Lb2", when.tapText(LEADERBOARD_2.data.name), async () => {
-            Then("I should be on the second leaderboard", then.leaderboardVisible([CUSTOMER_20]))
+        When("I tap the first leaderboard, Lb1", when.tapText(LEADERBOARD_1.data.name), async () => {
+            Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_47, CUSTOMER_50], ["10,000", "800"]))
         })
     })
 
