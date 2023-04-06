@@ -45,6 +45,7 @@ export const selectAndCompleteMeditationChallenge = (mindfulnessdata: number) =>
     await sendMindfulnessData(mindfulnessdata, 75000)()
     await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
     await navigateViaText("Collect")
+    await triggerAppUpdateState()
 }
 
 export const triggerAppUpdateState = async (): Promise<void> => {

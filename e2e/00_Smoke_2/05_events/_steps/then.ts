@@ -1,6 +1,6 @@
 import { multipleTextVisible, navigation } from "@utils"
 import { screens } from "@appScreens"
-import { EVENT_PROGRESS_BAR, REFERRALS_INVITE_BUTTON, NEW_EVENT_ICON, RADIO_ICON_COLOUR, CLAIM_BUTTON, ANIMATED_CIRCLE, NUM_OF_STARS, CHALLENGE_SET, CHALLENGE_TILE, CHALLENGE_STARS, CHALLENGE_HISTORY_STARS } from "@ids"
+import { EVENT_PROGRESS_BAR, REFERRALS_INVITE_BUTTON, NEW_EVENT_ICON, RADIO_ICON_COLOUR, CLAIM_BUTTON, ANIMATED_CIRCLE, NUM_OF_STARS, CHALLENGE_SET, CHALLENGE_TILE, CHALLENGE_STARS, CHALLENGE_HISTORY_STARS, EVENT_DIALOG_SCREEN_SCROLL } from "@ids"
 import { GOALS_4, GOAL_REWARD_MILESTONE_9, GOAL_REWARD_MILESTONE_10, GOAL_REWARD_MILESTONE_11 } from "@data"
 import { buttonVisible } from "_utils/appScreens/challenges"
 import { addCommasToNumber } from "_utils/appScreens/rewards"
@@ -112,9 +112,9 @@ export const eventScreenDetailsAreCorrect = (goal: typeof GOALS_4) => async () =
     const eventDescription = goal.data.description
 
     await multipleTextVisible([eventTitle, eventDescriptionTitle])()
-    
-    await swipeFromText(eventDescriptionTitle, "up", "fast")()
+    await scrollUntilTextVisible(EVENT_DIALOG_SCREEN_SCROLL, eventDescription, "down", 0.5, 0.25)();
     await textVisible(eventDescription)()
+    await swipeFromText(eventDescriptionTitle, "up", "fast")()
     for (const info of goal.data.info) {
         await textVisible(info.title)();
         await textVisible(info.description)();
