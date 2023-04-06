@@ -5,7 +5,7 @@ import { GQL_QUERY_GET_GOAL_DETAILS } from "@graphql/goals/getGoalDetails.gql";
 import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
 import { JoinGoal, JoinGoalVariables } from "@graphql/_core/schema";
 import { GetGoalDetails } from "@graphql/_core/schema/GetGoalDetails";
-import { GoalActionType, GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
+import { GoalActionType, GoalRewardStatus, SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { useBackHandler } from "@hooks";
 import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
@@ -98,7 +98,9 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
       });
     }
 
-    await Navigation.popToRoot(componentId);
+    if (button.onPress.sduiType === SduiActionType.SDUI_ACTION_SET_BOTTOM_TAB) {
+      await Navigation.popToRoot(componentId);
+    }
   }, [componentId, button, dispatch]);
 
   const headerProps = {
