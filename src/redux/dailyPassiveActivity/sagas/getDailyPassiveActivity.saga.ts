@@ -162,7 +162,7 @@ const getMeditation = (
   const inAppMeditationResponse = {
     value: inAppMeditation.duration,
     endDateTime: moment().format(),
-    startDateTime: moment.unix(inAppMeditation.createdAt).format(),
+    startDateTime: inAppMeditation.createdAt ? moment.unix(inAppMeditation.createdAt).format() : moment().format(),
     type: PassiveChallengeType.MEDITATION,
     isInApp: true,
   };
