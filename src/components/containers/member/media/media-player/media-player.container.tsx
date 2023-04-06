@@ -8,8 +8,6 @@ import {
   Media,
   UpdateQuestMapLevelChallenge,
   UpdateQuestMapLevelChallengeVariables,
-  UpsertDailyPassives,
-  UpsertDailyPassivesVariables,
 } from "@graphql/_core/schema";
 import {
   CreateQuestMapLevelChallengeMutationTuple,
@@ -29,7 +27,6 @@ import { Modal } from "react-native";
 import { GenericModal } from "@components/modals";
 import { getChallengeIsActive } from "@redux/levels/levels.selectors";
 import Logger from "@services/logging/logger";
-import { GQL_MUTATION_UPSERT_DAILY_PASSIVES } from "@graphql/challenges/upsertDailyPassives.gql";
 import { updateInAppMeditation } from "@redux/daily-meditation/daily-meditation.actions";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
@@ -81,9 +78,6 @@ const MediaPlayerContainer = ({
   const [cancelMapLevelChallenge] = useMutation<CancelQuestMapLevelChallenge, CancelQuestMapLevelChallengeVariables>(
     GQL_MUTATION_CANCEL_MAP_LEVEL_CHALLENGE
   );
-  const [upsertDailyPassives] = useMutation<UpsertDailyPassives, UpsertDailyPassivesVariables>(
-    GQL_MUTATION_UPSERT_DAILY_PASSIVES
-  );
 
   const createChallenge = useCallback(
     async (contentId: string) => {
@@ -103,7 +97,7 @@ const MediaPlayerContainer = ({
         },
       });
     },
-    [levelSlotId, createQuestMapLevelChallengeMutation, dispatch, upsertDailyPassives, video.duration]
+    [levelSlotId, createQuestMapLevelChallengeMutation, dispatch, video.duration]
   );
 
   const cancelChallenge = useCallback(async (shouldNavigate = true) => {
