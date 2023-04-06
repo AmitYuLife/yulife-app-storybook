@@ -152,7 +152,7 @@
     "@types/react-test-renderer": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
-    "@yu-life/yulife-bdd-framework": "0.0.24",
+    "@yu-life/yulife-bdd-framework": "0.0.27",
     "babel-loader": "^9.1.2",
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "babel-plugin-module-resolver": "^4.1.0",
