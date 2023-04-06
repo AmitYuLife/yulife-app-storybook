@@ -115,7 +115,7 @@ const YuniversityCoursesScreen: FC<IProps> = ({ headerProps, categoryImageUri, c
           <View style={style.categoryHeaderWrapper}>
             <TextTemplate type={"h3"}>{category}</TextTemplate>
             {!categoryImageUri ? null : (
-              <Image height={Style.adjust(46)} width={Style.adjust(72)} source={{ uri: categoryImageUri }} />
+              <Image height={Style.adjust(89)} width={Style.adjust(84)} source={{ uri: categoryImageUri }} />
             )}
           </View>
 
@@ -129,7 +129,7 @@ const YuniversityCoursesScreen: FC<IProps> = ({ headerProps, categoryImageUri, c
                   </View>
                   {!logoImageKey ? null : (
                     <View style={style.categoryHeaderWrapper}>
-                      <Image height={Style.adjust(46)} width={Style.adjust(72)} source={{ uri: logoImageKey.uri }} />
+                      <Image height={Style.adjust(89)} width={Style.adjust(84)} source={{ uri: logoImageKey.uri }} />
                     </View>
                   )}
                 </View>

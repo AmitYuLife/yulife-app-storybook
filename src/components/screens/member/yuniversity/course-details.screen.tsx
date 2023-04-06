@@ -130,8 +130,9 @@ const CourseDetailsScreen = ({
         <View style={styles.box}>
           <Image
             style={styles.courseImage}
-            height={Style.adjust(39)}
-            width={Style.adjust(61)}
+            height={Style.adjust(90)}
+            width={Style.DEVICE_WIDTH}
+            resizeMode="contain"
             source={{ uri: image.uri }}
           />
           <View style={styles.titleWrapper}>
