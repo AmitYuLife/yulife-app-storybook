@@ -1,30 +1,11 @@
-import { YuScreenPopover } from "@graphql/_core/schema";
-import { ProductStatus } from "@ids";
-import { createContext, Dispatch } from "react";
-
-type Side = "left" | "right";
-
-interface Product {
-  status: ProductStatus;
-  productId: string;
-}
-
-type YuScreenContextPopover = YuScreenPopover & {
-  index: number;
-  side: Side;
-  product: Product;
-};
+import { createContext } from "react";
 
 interface IYuScreenContext {
   yumojiRemoteUrl: string;
   earnRate: number;
-  popover: YuScreenContextPopover;
-  setPopover: Dispatch<YuScreenContextPopover>;
 }
 
 export const YuScreenContext = createContext<IYuScreenContext>({
   yumojiRemoteUrl: null,
   earnRate: 1,
-  popover: null,
-  setPopover: () => null,
 });
