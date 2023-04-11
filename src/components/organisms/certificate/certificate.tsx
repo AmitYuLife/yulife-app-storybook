@@ -33,18 +33,15 @@ const Certificate: FC<CertificateProps> = (props) => {
       <ProductColorTheme.Separator coverType={coverType} />
       <ContentKeyValues pairs={keyValuePairs} />
       {!imageUri ? null : (
-        <Image style={imageStyle} height={Style.adjust(84)} width={Style.adjust(132)} source={{ uri: imageUri }} />
+        <Image style={imageStyle} height={Style.adjust(135)} width={Style.adjust(127)} source={{ uri: imageUri }} />
       )}
     </CertificateLayout>
   );
 };
 
 const imageStyle: ImageStyle = {
-  width: Style.adjust(132),
-  height: Style.adjust(84),
   marginTop: Style.adjust(-40),
   marginBottom: Style.adjust(80),
-  marginLeft: Style.adjust(19),
 };
 
 export default memo(Certificate);
