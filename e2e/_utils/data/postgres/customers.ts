@@ -1329,3 +1329,16 @@ export const CUSTOMER_85 = {
         fullName: "Dental PolicyCancelled"
     }
 } as IDatabaseItem
+
+export const CUSTOMER_LEAVER = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: "business_leaver@yulife.com",
+    firstName: "Bus",
+    lastName: "Leaf",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded"
+  },
+} as IDatabaseItem;

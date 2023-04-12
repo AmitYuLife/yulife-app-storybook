@@ -58,3 +58,14 @@ export const BUSINESS_PRODUCT_4_GDental = generateProductRecords({
     reviewDate: "2030-02-02T00:00:00Z",
     startDate: "2020-02-02T00:00:00Z",
 });
+
+export const BUSINESS_PRODUCT_ENDED = generateProductRecords({
+    productCode: ProductCode.registeredGroupLife,
+    carrier: Carrier.AIG,
+    productId: "YUG1010101",
+    policyName: "Pawnee Council Policy ENDED",
+    businessAccountId: BUSINESS_ACCOUNT_3.data.business_account_id,
+    reviewDate: "2031-01-001T00:00:00Z",
+    startDate: "2021-01-05T00:00:00Z",
+    productEndDate: "2022-01-05T00:00:00Z"
+});

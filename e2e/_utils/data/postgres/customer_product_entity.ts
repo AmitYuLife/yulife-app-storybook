@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_45, CUSTOMER_46, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_53, CUSTOMER_9, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_PLI_6, CUSTOMER_PLI_7, CUSTOMER_PLI_9, CUSTOMER_PLI_10, CUSTOMER_74, CUSTOMER_82, CUSTOMER_85 } from "./customers";
+import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_45, CUSTOMER_46, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_53, CUSTOMER_9, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_PLI_6, CUSTOMER_PLI_7, CUSTOMER_PLI_9, CUSTOMER_PLI_10, CUSTOMER_74, CUSTOMER_82, CUSTOMER_85, CUSTOMER_LEAVER } from "./customers";
 import moment from "moment"
 
 
@@ -625,3 +625,19 @@ export const CPE_85 = {
     }
 } as IDatabaseItem
     
+export const CPE_BUSINESS_LEAVER = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID00000001492",
+        "customer_id": CUSTOMER_LEAVER.data.customerId,
+        "earn_rate": 10,
+        "start_date": "2022-01-01",
+        "end_date": "2022-12-31",
+        "underwriting_step": null,
+        "is_banned_from_product": false,
+        "taken_up": true,
+        "product_variant_id": "AIG_GLI_01_01",
+    }
+} as IDatabaseItem
+
