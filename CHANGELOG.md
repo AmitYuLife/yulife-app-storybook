@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.77.0] - 2023-04-12
+
+### Bugfixes
+
+- GS-640: Sudoku bugfixes
+- Bugfix: Goal events refetch fixes
+- Bugfix: Goal button action popToRoot only when setting bottom tab
+- Bugfix: Yarn lock file
+- Bugfix: In app meditation passive activity
+
+### Tasks
+
+- Task: Bright planet assets
+- Task GS-680: Add CII image for CPD
+
+### Chores
+
+- Chore: update bdd to 0.0.27
+
+### Extra
+
+- INS-1330: Detox/business leavers
+- Purge: unused yuscreen popover
+- Detox: Fixes 4th April
+- GS-3251: refreshInbox of undefined
+
 ## [3.76.0] - 2023-04-05
 
 ### Bugfixes
