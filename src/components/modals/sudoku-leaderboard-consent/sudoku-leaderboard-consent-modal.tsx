@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { TextTemplate, Wrapper } from "@atoms";
-import { Style } from "@styles";
+import { Style, TOP_BAR } from "@styles";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
 import { useBackHandler, useTranslation } from "@hooks";
 import LeaderboardConsentImage from "@components/games/sudoku/leaderboard/LeaderboardConsentImage";
@@ -52,20 +52,22 @@ const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
       <GenericOverlay onClose={onClose}>
         <ScrollView contentContainerStyle={styles.wrapper}>
           <Wrapper alignItems="center">
-            <View style={styles.contentWrapper}>
-              <LeaderboardConsentImage width={Style.DEVICE_WIDTH} />
-              <View style={styles.textWrapper}>
-                <View style={styles.titleWrapper}>
-                  <TextTemplate type={"h1"} textAlign="center">
-                    {t["sudoku.leaderboard_consent.title"]}
+            <View>
+              <View style={styles.contentWrapper}>
+                <LeaderboardConsentImage width={Style.DEVICE_WIDTH} />
+                <View style={styles.textWrapper}>
+                  <View style={styles.titleWrapper}>
+                    <TextTemplate type={"h1"} textAlign="center">
+                      {t["sudoku.leaderboard_consent.title"]}
+                    </TextTemplate>
+                  </View>
+                  <TextTemplate type={"b2"} textAlign="center">
+                    {t["sudoku.leaderboard_consent.description"]}
                   </TextTemplate>
                 </View>
-                <TextTemplate type={"b2"} textAlign="center">
-                  {t["sudoku.leaderboard_consent.description"]}
-                </TextTemplate>
               </View>
+              <Button onPress={onSubmit} isLoading={loading} label={t["sudoku.leaderboard_consent.confirm"]} />
             </View>
-            <Button onPress={onSubmit} isLoading={loading} label={t["sudoku.leaderboard_consent.confirm"]} />
           </Wrapper>
         </ScrollView>
       </GenericOverlay>
@@ -75,11 +77,14 @@ const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    alignItems: "center",
+    minHeight: Style.DEVICE_HEIGHT - TOP_BAR.TOP_BAR_WITH_PAD,
+    paddingBottom: Style.adjust(80),
+    justifyContent: "space-between",
   },
 
   contentWrapper: {
-    marginBottom: Style.adjust(20),
+    flex: 1,
+    marginBottom: Style.adjust(30),
   },
 
   textWrapper: {

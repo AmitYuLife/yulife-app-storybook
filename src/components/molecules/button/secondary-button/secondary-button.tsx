@@ -49,7 +49,7 @@ export const SecondaryButton = (props: Props) => {
   }
 
   return (
-    <View style={StyleSheet.flatten([buttonStyles.wrapper, wrapperStyle, buttonDimensions])}>
+    <View style={StyleSheet.flatten([buttonStyles.wrapper, buttonDimensions, wrapperStyle])}>
       <ButtonBase
         height={buttonDimensions?.height}
         disabled={disabled}

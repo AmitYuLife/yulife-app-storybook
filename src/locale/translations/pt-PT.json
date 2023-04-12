@@ -1127,5 +1127,81 @@
             "title": "Não basta YuCoin",
             "body": "Ganhe mais e volte mais tarde!"
         }
-    }
+    },
+    "sudoku": {
+        "difficulty": {
+          "easy": "Fácil",
+          "medium": "Média",
+          "hard": "Dura"
+        },
+        "title": "Yudoku",
+        "game": {
+          "undo": "Desfazer"
+        },
+        "cancel": {
+          "message": "Seu progresso atual será perdido e se você concluir um Yudoku hoje, ele não será classificado na tabela de classificação"
+        },
+        "hint_popup": {
+          "title": "Dicas",
+          "message": "Cada vez que você usar o botão de dica, perderá 30 segundos do seu tempo.",
+          "cta": "Use uma dica"
+        },
+        "stats": {
+          "personalBest": "Melhor pessoal",
+          "todaysTime": "Hora de hoje",
+          "hints": "Dicas",
+          "mistakes": "Erros",
+          "paused": "Pausada",
+          "notApplicable": "n/a",
+          "reward": "Recompensa",
+          "unranked": "Não classificado"
+        },
+        "progress": {
+          "resume": "Continuar o jogo",
+          "paused": "Yudoku pausado"
+        },
+        "help": {
+          "title": "Como jogar Yudoku",
+          "outline": "Para jogar Yudoku - preencha uma grade 9x9 com números de 1 a 9, de forma que cada número apareça apenas uma vez em cada linha, cada coluna e cada bloco 3x3. O objetivo é ter uma grade completa e correta até o final do jogo.",
+          "1": "As regras básicas do Yudoku:",
+          "2": "A grade Yudoku é composta de células 9x9.",
+          "3": "Você só pode usar números de 1 a 9.",
+          "4": "Em cada bloco 3x3, apenas os números de 1 a 9 podem ser usados.",
+          "5": "Cada coluna vertical também deve conter apenas números de 1 a 9.",
+          "6": "Da mesma forma, cada linha horizontal também deve conter apenas números de 1 a 9.",
+          "7": "Nenhum número no bloco 3x3, coluna vertical ou linha horizontal pode ser repetido."
+        },
+        "completed": {
+          "title": "Ótimo trabalho!",
+          "sub1": "Você terminou seu Yudoku diário.",
+          "sub2": "Volte amanhã para uma nova rodada.",
+          "collect": "Coletar"
+        },
+        "pause": {
+          "title": "Pausa",
+          "time": "Tempo",
+          "difficulty": "Dificuldade",
+          "mistakes": "Erros",
+          "resume": "Continuar o jogo"
+        },
+        "staging": {
+          "howToPlay": "Como jogar?",
+          "continueGame": "Continuar o jogo",
+          "startGame": "Começar o jogo",
+          "todaysLeaderboard": "Tabela de classificação de hoje",
+          "alreadyDone": "Você só pode fazer um Yudoku por dia.\nVolte amanhã!",
+          "dailyLeaderboard": "Classificação diária",
+          "joinDailyLeaderboard": "Junte-se à tabela de classificação diária",
+          "secondAttemptDisclaimer": "Como esta é sua segunda tentativa hoje, seu tempo não será classificado na tabela de classificação e não contará para seu recorde pessoal."
+        },
+        "leaderboard_consent": {
+          "title": "Junte-se à tabela de classificação diária do Yudoku?",
+          "description": "Ao ingressar na tabela de classificação, você concorda em compartilhar detalhes sobre sua atividade com outros membros desta tabela de classificação. Você pode cancelar a qualquer momento através do menu de configurações.",
+          "confirm": "Junte-se à tabela de classificação"
+        },
+        "leaderboard": {
+          "empty_description": "Complete um Yudoku e seja o primeiro na tabela de classificação hoje!",
+          "start": "Começar o jogo"
+        }
+      }
 }

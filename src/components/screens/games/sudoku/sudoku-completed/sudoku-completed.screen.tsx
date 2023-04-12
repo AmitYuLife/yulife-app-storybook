@@ -104,7 +104,7 @@ const SudokuCompletedScreen = ({ onCollect, reward, isLoading, results, stats }:
           </View>
         </View>
       </View>
-      <View>
+      <View style={styles.buttonContainer}>
         <Button onPress={onCollect} isLoading={isLoading} label={t["sudoku.completed.collect"]} />
       </View>
     </ScrollView>
@@ -117,10 +117,9 @@ const styles = StyleSheet.create({
     paddingBottom: Style.adjust(20),
   },
   scrollContent: {
-    flex: 1,
     justifyContent: "space-between",
     paddingBottom: Style.adjust(20),
-    minHeight: Style.DEVICE_HEIGHT,
+    flexGrow: 1,
   },
   header: {
     marginTop: Style.adjust(20),
@@ -143,6 +142,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: Style.adjust(10),
     backgroundColor: colours.products.fib.u100S4,
+  },
+  buttonContainer: {
+    marginTop: Style.adjust(10),
   },
   lottie: {
     width: Style.DEVICE_WIDTH,

@@ -13,6 +13,8 @@ import { SudokuDifficulty } from "@graphql/_core/schema/globalTypes";
 import SudokuLeaderboardScreen from "./sudoku-leaderboard.screen";
 import moment from "moment";
 import { DATE_FORMAT } from "@utils";
+import { SUDOKU_DATE_FORMAT } from "../sudoku-game/sudoku.config";
+import LoadingScreen from "@components/screens/member/loading/loading.screen";
 
 interface IProps {
   componentId: string;
@@ -21,8 +23,8 @@ interface IProps {
   onStart?: () => void;
 }
 
-const SudokuLeaderboardContainer = ({ componentId, onStart, results, date }: IProps) => {
-  const { data: leaderboard } = useQuery<GetSudokuLeaderboard, GetSudokuLeaderboardVariables>(
+const SudokuLeaderboardContainer = ({ componentId, date }: IProps) => {
+  const { data: leaderboard, loading: isLoading } = useQuery<GetSudokuLeaderboard, GetSudokuLeaderboardVariables>(
     GQL_QUERY_GET_SODUKU_LEADERBOARD,
     {
       variables: {
@@ -41,8 +43,12 @@ const SudokuLeaderboardContainer = ({ componentId, onStart, results, date }: IPr
     return true;
   });
 
+  if (isLoading) {
+    return <LoadingScreen onClose={onClose} />;
+  }
+
   if (!leaderboard?.getSudokuLeaderboard?.length) {
-    return <SudokuLeaderboardEmptyScreen onClose={onClose} onStart={!results ? onStart : undefined} />;
+    return <SudokuLeaderboardEmptyScreen onClose={onClose} date={moment().format(SUDOKU_DATE_FORMAT)} />;
   }
 
   return (

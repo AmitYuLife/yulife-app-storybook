@@ -1,6 +1,7 @@
 import { Button } from "@components/molecules";
 import {
   GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails,
+  GetQuestMapLevel_getQuestMapLevel_slots,
   GetSudokuBoard,
   GetSudokuLeaderboard_getSudokuLeaderboard,
 } from "@graphql/_core/schema";
@@ -24,6 +25,7 @@ import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import SudokuActionButton from "@components/games/sudoku/sudoku-action-button";
 import SudokuStagingHeader from "@components/games/sudoku/sudoku-staging-header";
 import { SUDOKU_DATE_FORMAT, SUDOKU_PLANET_STYLES, SUDOKU_YUNIVERSAL_STYLES } from "../sudoku-game/sudoku.config";
+import SudokuSecondAttemptDisclaimer from "@components/games/sudoku/SudokuSecondAttemptDisclaimer";
 
 interface IProps {
   reward: string;
@@ -31,9 +33,11 @@ interface IProps {
   hasLeaderboardConsent?: boolean;
   onClose: () => void;
   onLeaderboardPress: () => void;
+  showSecondAttemptDisclaimer?: boolean;
   levelDetails: GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails;
   onBack: () => void;
   onStart: () => void;
+  slot: GetQuestMapLevel_getQuestMapLevel_slots;
   leaderboard: GetSudokuLeaderboard_getSudokuLeaderboard[];
 }
 
@@ -44,6 +48,7 @@ const SudokuStagingScreen = ({
   data,
   onBack,
   levelDetails,
+  showSecondAttemptDisclaimer,
   reward,
   leaderboard,
 }: IProps) => {
@@ -84,6 +89,8 @@ const SudokuStagingScreen = ({
     });
   }, []);
 
+  const date = useMemo(() => moment(data?.getSudokuBoard?.date).format(SUDOKU_DATE_FORMAT), [data]);
+
   return (
     <ScrollView
       style={styles.scrollView}
@@ -97,14 +104,17 @@ const SudokuStagingScreen = ({
         <View>
           <SudokuStagingHeader
             leaderboardOptedIn={leaderboardOptedIn}
-            leaderboard={leaderboard}
             showLeaderboard={true}
+            leaderboard={leaderboard}
+            color={levelDetails?.progressBar?.progressTextColor}
             onOpenLeaderboard={onLeaderboardPress}
             backgroundColor={levelDetails?.backgroundColour}
             backgroundUrl={levelDetails?.assets?.backgroundImage?.uri}
-            date={moment(data?.getSudokuBoard?.date).format(SUDOKU_DATE_FORMAT)}
+            date={date}
           />
           <View style={styles.outerWrapper}>
+            {showSecondAttemptDisclaimer ? <SudokuSecondAttemptDisclaimer /> : null}
+
             <SudokuStats
               reward={reward}
               savedData={sudokuState}
@@ -131,12 +141,8 @@ const SudokuStagingScreen = ({
         </View>
 
         <View style={styles.buttons}>
-          {!sudokuState.board || data?.getSudokuBoard?.results ? null : (
-            <Button onPress={onStart} label={t["sudoku.staging.continueGame"]} />
-          )}
-
-          {sudokuState.board || data?.getSudokuBoard?.results ? null : (
-            <Button onPress={onStart} label={t["sudoku.staging.startGame"]} />
+          {data?.getSudokuBoard?.results ? null : (
+            <Button size="Fill" onPress={onStart} label={t["sudoku.staging.startGame"]} />
           )}
         </View>
       </View>
@@ -165,6 +171,8 @@ const styles = StyleSheet.create({
   },
   buttons: {
     justifyContent: "flex-end",
+    paddingHorizontal: Style.adjust(20),
+    marginTop: Style.adjust(10),
   },
   outerWrapper: {
     alignItems: "center",

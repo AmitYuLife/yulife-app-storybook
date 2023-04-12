@@ -16,9 +16,11 @@ export const GQL_QUERY_GET_SUDOKU_BOARDS = gql`
       results {
         mistakes
         hints
+        leaderboardId
         adjustedTime
         difficulty
       }
+      leaderboardEligible
     }
   }
 `;

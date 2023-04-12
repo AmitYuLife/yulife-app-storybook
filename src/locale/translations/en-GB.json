@@ -50,6 +50,7 @@
       "back": "Back",
       "exit": "Exit",
       "cancel": "Cancel",
+      "quit": "Quit",
       "close": "Close",
       "dismiss": "Dismiss",
       "claim": "Claim",
@@ -1139,6 +1140,14 @@
     "game": {
       "undo": "Undo"
     },
+    "cancel": {
+      "message": "Your current progress will be lost and if you complete a Yudoku today it will not be ranked on the leaderboard"
+    },
+    "hint_popup": {
+      "title": "Hints",
+      "message": "Each time you use the hint button you will lose 30 seconds of your time.",
+      "cta": "Use a hint"
+    },
     "stats": {
       "personalBest": "Personal best",
       "todaysTime": "Today's time",
@@ -1146,10 +1155,12 @@
       "mistakes": "Mistakes",
       "paused": "Paused",
       "notApplicable": "n/a",
-      "reward": "Reward"
+      "reward": "Reward",
+      "unranked": "Unranked"
     },
     "progress": {
-      "resume": "Resume Sudoku"
+      "resume": "Resume Game",
+      "paused": "Yudoku Paused"
     },
     "help": {
       "title": "How to play Yudoku",
@@ -1182,7 +1193,8 @@
       "todaysLeaderboard": "Today's Leaderboard",
       "alreadyDone": "You can only do one Yudoku per day.\nCome back tomorrow!",
       "dailyLeaderboard": "Daily Leaderboard",
-      "joinDailyLeaderboard": "Join the daily leaderboard"
+      "joinDailyLeaderboard": "Join the daily leaderboard",
+      "secondAttemptDisclaimer": "As this is your second attempt today your time will not be ranked on the leaderboard and will not count towards your personal best."
     },
     "leaderboard_consent": {
       "title": "Join the daily Yudoku leaderboard?",

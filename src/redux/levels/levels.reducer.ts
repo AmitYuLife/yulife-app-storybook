@@ -156,6 +156,12 @@ const getUserSuccess = (state: ILevelsStore, data: GetCurrentUser): ILevelsStore
     startDateTime: data?.getCurrentUser?.activeChallenge?.challenge?.startDateTime || "",
     subtype: data?.getCurrentUser?.activeChallenge?.levelSlot?.subtype || "",
     unit: data?.getCurrentUser?.activeChallenge?.levelSlot?.unit || state.active.unit || "",
+    coins:
+      data?.getCurrentUser?.activeChallenge?.levelSlot?.milestones?.reduce(
+        (acc, milestone) => acc + milestone.coins,
+        0
+      ) ?? 0,
+
     challengeIsActive: false,
   },
   challengesDoneToday: data?.getCurrentUser?.challengesDoneToday || 0,
@@ -201,6 +207,7 @@ const getActiveChallengeSuccess = (
     rating: data?.challenge?.rating || state.active.rating || 0,
     startDateTime: data?.challenge?.startDateTime || "",
     subtype: data?.levelSlot?.subtype || "",
+    coins: data?.levelSlot?.milestones?.reduce((acc, milestone) => acc + milestone.coins, 0) ?? 0,
     unit: data?.levelSlot?.unit || state.active.unit || "",
     challengeIsActive: false,
   },
@@ -231,6 +238,7 @@ const challengeStartSuccess = (
       value: chest?.value || null,
     },
     yuniversalChest,
+    coins: levelSlot.milestones?.reduce((acc, milestone) => acc + milestone.coins, 0) ?? 0,
     shouldEndOnLastGoalAchieved: levelSlot.shouldEndOnLastGoalAchieved,
     fitKitTypes: levelSlot.fitKitTypes,
     endDateTime: addSecondsToChallengeEndDateTime(challenge.endDateTime),

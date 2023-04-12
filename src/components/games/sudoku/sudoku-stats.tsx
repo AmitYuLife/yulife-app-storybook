@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colours.neutral.white,
     width: "100%",
     overflow: "hidden",
-    marginTop: Style.adjust(15),
+    marginTop: Style.adjust(10),
     borderWidth: 1,
     borderColor: Colours.metallic.m200,
   },

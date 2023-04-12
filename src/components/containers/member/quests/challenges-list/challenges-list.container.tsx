@@ -199,9 +199,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
                               id: ROUTES.sudokuStaging,
                               name: ROUTES.sudokuStaging,
                               passProps: {
-                                slotId: levelSlot.id,
-                                details: levelSlot.details,
-                                reward: levelSlot.reward,
+                                slot: levelSlot,
                                 createChallenge,
                               },
                             },

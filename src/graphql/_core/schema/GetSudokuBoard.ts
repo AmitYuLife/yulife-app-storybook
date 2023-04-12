@@ -23,6 +23,7 @@ export interface GetSudokuBoard_getSudokuBoard_stats {
 export interface GetSudokuBoard_getSudokuBoard_results {
   mistakes: number;
   hints: number;
+  leaderboardId: string | null;
   adjustedTime: number;
   difficulty: SudokuDifficulty;
 }
@@ -32,6 +33,7 @@ export interface GetSudokuBoard_getSudokuBoard {
   date: string;
   stats: GetSudokuBoard_getSudokuBoard_stats | null;
   results: GetSudokuBoard_getSudokuBoard_results | null;
+  leaderboardEligible: boolean;
 }
 
 export interface GetSudokuBoard {

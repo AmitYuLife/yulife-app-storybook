@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { MODALS } from "@navigation/constants";
 import { View, ViewStyle } from "react-native";
 import { Navigation } from "@navigation/main";
@@ -9,7 +9,8 @@ import { InfoMessageTooltipPointRelative } from "./info-tooltip-popup";
 
 interface PopoverProps {
   viewRef: React.MutableRefObject<View>;
-  children: React.ReactNode;
+  children: React.ReactNode | (({ onClose }: { onClose: () => void }) => ReactElement);
+  style?: ViewStyle;
   beakPosition?: BeakPosition;
 }
 
@@ -30,12 +31,18 @@ interface InfoMessageTooltipViewRelative {
   buttonSize?: Sizes;
 }
 
-export const showTooltipPopupRelativeToView = ({ viewRef, children, beakPosition = "autoVertical" }: PopoverProps) => {
+export const showTooltipPopupRelativeToView = ({
+  viewRef,
+  children,
+  style,
+  beakPosition = "autoVertical",
+}: PopoverProps) => {
   viewRef?.current?.measure((_fx, _fy, width, height, pageX, pageY) => {
     const infoView = (
       <TooltipPopupWrapper
         relativePosition={{ pageX, pageY, anchorViewHeight: height, anchorViewWidth: width }}
         beakPosition={beakPosition}
+        style={style}
       >
         {children}
       </TooltipPopupWrapper>

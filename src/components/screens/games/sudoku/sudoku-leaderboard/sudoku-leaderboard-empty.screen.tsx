@@ -2,25 +2,34 @@ import React, { memo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { TextTemplate, Wrapper } from "@atoms";
 import { Style } from "@styles";
-import LeaderboardConsentImage from "@components/games/sudoku/leaderboard/LeaderboardConsentImage";
 import { useTranslation } from "@hooks";
-import { Button } from "@components/molecules";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
+import LeaderboardEmptyImage from "@components/games/sudoku/leaderboard/LeaderboardEmptyImage";
 
 interface IProps {
-  onStart: () => void;
+  date: string;
   onClose: () => void;
 }
 
-const SudokuLeaderboardEmptyScreen = ({ onStart, onClose }: IProps) => {
+const IMAGE_WIDTH = Style.DEVICE_WIDTH / 2;
+
+const SudokuLeaderboardEmptyScreen = ({ date, onClose }: IProps) => {
   const t = useTranslation(["sudoku.leaderboard.empty_description", "sudoku.leaderboard.start"]);
 
   return (
-    <GenericOverlay onClose={onClose}>
+    <GenericOverlay
+      onClose={onClose}
+      heading={
+        <View style={styles.heading}>
+          <TextTemplate type="b2b">Daily Yudoku</TextTemplate>
+          <TextTemplate type="l1">{date}</TextTemplate>
+        </View>
+      }
+    >
       <ScrollView contentContainerStyle={styles.wrapper}>
         <Wrapper alignItems="center">
           <View style={styles.contentWrapper}>
-            <LeaderboardConsentImage width={Style.DEVICE_WIDTH} />
+            <LeaderboardEmptyImage size={IMAGE_WIDTH} />
             <View style={styles.textWrapper}>
               <View style={styles.titleWrapper}>
                 <TextTemplate type={"b2"} textAlign="center">
@@ -29,7 +38,6 @@ const SudokuLeaderboardEmptyScreen = ({ onStart, onClose }: IProps) => {
               </View>
             </View>
           </View>
-          {onStart ? <Button onPress={onStart} label={t["sudoku.leaderboard.start"]} /> : null}
         </Wrapper>
       </ScrollView>
     </GenericOverlay>
@@ -39,16 +47,23 @@ const SudokuLeaderboardEmptyScreen = ({ onStart, onClose }: IProps) => {
 const styles = StyleSheet.create({
   wrapper: {
     alignItems: "center",
+    justifyContent: "center",
+    minHeight: Style.DEVICE_HEIGHT / 1.5,
   },
   contentWrapper: {
+    alignItems: "center",
+    justifyContent: "center",
     marginBottom: Style.adjust(20),
+  },
+  heading: {
+    alignItems: "center",
+    justifyContent: "center",
   },
   textWrapper: {
     paddingHorizontal: 25,
   },
   titleWrapper: {
     marginTop: Style.adjust(30),
-    marginBottom: Style.adjust(20),
   },
 });
 

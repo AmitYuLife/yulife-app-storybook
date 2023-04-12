@@ -3,7 +3,7 @@ import { FunctionComponent } from "react";
 import { Image as RNImage, StyleSheet, View } from "react-native";
 import styles from "./challenge-tile.styles";
 import { CHALLENGE_TILE, CHALLENGE_REWARD } from "@ids";
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 import { Image, Text } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { t } from "@locale";
@@ -86,7 +86,7 @@ const AnimalImage: FC<Partial<Props>> = memo(({ imageUri, isCompleted, isLocked,
         />
         {isCompleted ? (
           <Image
-            tintColor={"gray"}
+            tintColor={Colours.neutral.n200}
             source={{ uri: imageUri }}
             width={Style.adjust(165)}
             height={Style.adjust(165)}

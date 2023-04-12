@@ -133,6 +133,7 @@ const QuestsContainer: FC<IMainTabsProps> = (props) => {
         renderOverlay={({ hideOverlay }) => (
           <ChallengeExitScreen
             onClose={hideOverlay}
+            challengeType={subtype}
             onPressExit={() => dispatch(challengeCancelAction())}
             isCancelling={isLoading}
           />
