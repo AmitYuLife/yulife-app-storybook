@@ -1,4 +1,5 @@
 import { Rank } from "@atoms/icon/rank";
+import { EmptyMaleBody } from "@components/molecules/yumoji/assets/empty-male-body-svg";
 import { Colours, Style } from "@styles";
 import { memo } from "react";
 import { StyleSheet, View } from "react-native";
@@ -9,22 +10,14 @@ interface IProps {
 }
 
 const SudokuLeaderboardAvatar = ({ uri }: IProps) => {
-  if (uri) {
-    return (
-      <View style={filledStyles.wrapper}>
-        <View style={filledStyles.avatarWrapper}>
-          <FastImage source={{ uri }} style={filledStyles.image} />
-        </View>
-        <View style={filledStyles.rankWrapper}>
-          <Rank isWinner={true} isDraw={false} size={25} />
-        </View>
-      </View>
-    );
-  }
-
   return (
-    <View style={emptyStyles.wrapper}>
-      <FastImage source={{ uri }} />
+    <View style={filledStyles.wrapper}>
+      <View style={filledStyles.avatarWrapper}>
+        {!uri ? <EmptyMaleBody /> : <FastImage source={{ uri }} style={filledStyles.image} />}
+      </View>
+      <View style={filledStyles.rankWrapper}>
+        <Rank isWinner={true} isDraw={false} size={25} />
+      </View>
     </View>
   );
 };
@@ -32,20 +25,6 @@ const SudokuLeaderboardAvatar = ({ uri }: IProps) => {
 export default memo(SudokuLeaderboardAvatar);
 
 const AVATAR_WIDTH = Style.adjust(70);
-const emptyStyles = StyleSheet.create({
-  wrapper: {
-    marginTop: Style.adjust(-6),
-    height: "100%",
-    width: AVATAR_WIDTH,
-    overflow: "hidden",
-    justifyContent: "flex-start",
-    alignItems: "center",
-  },
-  image: {
-    width: Style.adjust(45),
-    height: Style.adjust(105),
-  },
-});
 
 const filledStyles = StyleSheet.create({
   wrapper: {},

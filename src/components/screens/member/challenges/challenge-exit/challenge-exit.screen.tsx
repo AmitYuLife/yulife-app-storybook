@@ -10,14 +10,16 @@ import { t } from "@locale";
 interface IProps {
   onPressExit: () => void;
   onClose: () => void;
+  challengeType?: string;
   isCancelling: boolean;
 }
 
-const ChallengeExitScreen: React.FC<IProps> = ({ onPressExit, onClose, isCancelling }) => {
+const ChallengeExitScreen: React.FC<IProps> = ({ onPressExit, challengeType, onClose, isCancelling }) => {
   useBackHandler(() => {
     onClose();
     return true;
   });
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.headingWrapper}>
@@ -27,7 +29,9 @@ const ChallengeExitScreen: React.FC<IProps> = ({ onPressExit, onClose, isCancell
       </View>
       <View style={styles.descriptionWrapper}>
         <TextTemplate type="b2" textAlign="center" color={Colours.textInput.focus}>
-          {t("modals.generic_modal.cancel_challenge.subheading")}
+          {challengeType === "sudoku"
+            ? t("sudoku.cancel.message")
+            : t("modals.generic_modal.cancel_challenge.subheading")}
         </TextTemplate>
       </View>
 

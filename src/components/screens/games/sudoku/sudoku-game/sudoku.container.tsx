@@ -14,6 +14,7 @@ import { GQL_QUERY_GET_SUDOKU_BOARDS } from "@graphql/brainGames/sudoku/getSudok
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { GQL_MUTATION_TOGGLE_CHALLENGE_PAUSE } from "@graphql/challenges/toggleChallengePause.gql";
 import { getActiveLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
+import { DATE_FORMAT } from "@utils";
 
 export interface ISodukuBoard {
   puzzle: SudokuBoard;
@@ -32,7 +33,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   const activeLevel = useSelector(getActiveLevel);
 
   const sudokuState = useSelector(getSudokuState);
-  const date = useMemo(() => moment().format("YYYY-MM-DD"), []);
+  const date = useMemo(() => moment().format(DATE_FORMAT), []);
   const [sendPause] = useMutation(GQL_MUTATION_TOGGLE_CHALLENGE_PAUSE);
 
   const { data } = useQuery<GetSudokuBoard>(GQL_QUERY_GET_SUDOKU_BOARDS, {
@@ -55,7 +56,11 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
           component: {
             id: ROUTES.sudokuCompleted,
             name: ROUTES.sudokuCompleted,
-            passProps: { results: parmas, reward: activeLevel.coins, stats: data.getSudokuBoard.stats },
+            passProps: {
+              results: { ...parmas, leaderboardId: data.getSudokuBoard.stats?.leaderboardId },
+              reward: activeLevel.coins,
+              stats: data.getSudokuBoard.stats,
+            },
           },
         });
       }, 2500);

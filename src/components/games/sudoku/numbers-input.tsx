@@ -1,14 +1,15 @@
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import NumberInput from "./number-input";
+import { StyleSheet, View } from "react-native";
+import NumberInput, { SUDOKU_NUMBER_SIZE, SUDOKU_PASSED_NUMBER_CUTOFF } from "./number-input";
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import UndoIcon from "@atoms/icon/undo-svg";
-import { Colours, Style } from "@styles";
+import { Style } from "@styles";
 import { memo, useCallback } from "react";
 import { useTranslation } from "@hooks";
 import { TextTemplate } from "@atoms";
+import { BoxOption } from "@components/molecules";
 
 const NumbersInput = () => {
-  const { putNumber, undo, selectedCell } = useSudokuContext();
+  const { putNumber, undo, history, selectedCell } = useSudokuContext();
   const t = useTranslation(["sudoku.game.undo"]);
 
   const onNumberPress = useCallback(
@@ -32,14 +33,25 @@ const NumbersInput = () => {
           return <NumberInput value={value} key={index} onPress={() => onNumberPress(value)} />;
         })}
 
-        <TouchableOpacity activeOpacity={0.8} onPress={undo}>
-          <View style={styles.undoButtonWrapper}>
-            <UndoIcon size={Style.adjust(19)} />
-            <View style={styles.undoText}>
-              <TextTemplate type="l2b">{t["sudoku.game.undo"]}</TextTemplate>
-            </View>
-          </View>
-        </TouchableOpacity>
+        <BoxOption
+          isSelected={false}
+          selectedStyle={null}
+          debounce={false}
+          wrapperStyle={styles.undoButtonWrapper}
+          disabled={history.length <= 0}
+          innerHeight={Style.adjust(SUDOKU_NUMBER_SIZE - 5)}
+          onPress={undo}
+          innerWrapperStyle={styles.undoButtonInner}
+        >
+          <>
+            <UndoIcon size={Style.adjust(!SUDOKU_PASSED_NUMBER_CUTOFF ? 20 : 24)} />
+            {SUDOKU_PASSED_NUMBER_CUTOFF ? (
+              <View style={styles.undoText}>
+                <TextTemplate type="l2b">{t["sudoku.game.undo"]}</TextTemplate>
+              </View>
+            ) : null}
+          </>
+        </BoxOption>
       </View>
     </View>
   );
@@ -47,14 +59,12 @@ const NumbersInput = () => {
 
 const styles = StyleSheet.create({
   undoButtonWrapper: {
-    width: Style.adjust(65),
-    height: Style.adjust(59),
-    borderWidth: 1,
-    alignItems: "center",
-    borderColor: Colours.sudoku.timerColor,
-    backgroundColor: Colours.neutral.white,
+    width: SUDOKU_NUMBER_SIZE,
+    height: SUDOKU_NUMBER_SIZE,
+  },
+  undoButtonInner: {
     justifyContent: "center",
-    borderRadius: Style.adjust(16),
+    alignItems: "center",
   },
   undoText: {
     marginTop: Style.adjust(4),

@@ -5,7 +5,7 @@ import { eventChannel } from "redux-saga";
 import Logger from "@services/logging/logger";
 import { YULIFE_PN_CHANNEL_NAME, YULIFE_PN_CHANNEL_ID } from "@services/constants";
 
-export function createPushNotificationsChannel() {
+export async function createPushNotificationsChannel() {
   return eventChannel((emitter) => {
     PushNotification.configure({
       onNotification: (notification) => {

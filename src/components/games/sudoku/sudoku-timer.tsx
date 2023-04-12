@@ -36,13 +36,16 @@ const SudokuTimer = ({ invert }: IProps) => {
 
   useEffect(() => {
     updateTime();
-    const intervalId: ReturnType<typeof setInterval> = setInterval(() => {
-      if (lastPauseTime) {
-        return clearInterval(intervalId);
-      }
+    const intervalId: ReturnType<typeof setInterval> = setInterval(
+      () => {
+        if (lastPauseTime) {
+          return clearInterval(intervalId);
+        }
 
-      updateTime();
-    }, DETOX_ENABLED ? 3000 : 1000);
+        updateTime();
+      },
+      DETOX_ENABLED ? 3000 : 1000
+    );
 
     return () => clearInterval(intervalId);
   }, [startTime, penalties, updateTime, getDurationText, lastPauseTime]);

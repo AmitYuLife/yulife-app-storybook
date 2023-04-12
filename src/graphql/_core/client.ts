@@ -17,11 +17,11 @@ import AsyncStorage from "@react-native-community/async-storage";
 import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import { store } from "@redux/_core/store";
-import region from "@services/region";
 import getClient from "@services/bugsnag";
 import { updateOfflineState } from "@redux/app/app.actions";
 import createRetryLink from "./retryLink";
 import { getLocale } from "@locale";
+import region from "@services/region";
 
 const appJson = require("../../../package.json");
 

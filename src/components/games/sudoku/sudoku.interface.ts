@@ -36,5 +36,6 @@ export interface ISudokuLeaderboardItem {
   adjustedTime: number;
   userId: string;
   position: number;
+  leaderboardId?: string;
   avatarRemoteFiles: { svgFull: string | null; pngFull: string | null; pngMini: string | null } | null;
 }

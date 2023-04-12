@@ -307,6 +307,8 @@ export default {
     gridColor: "#A0A09B",
     gridThickColor: "#5C5757",
     wrongNumberColor: "#f00f00",
+    warning: "#FFF7E6",
+    cancelShadow: "#C9C9C9",
     initialNumberColor: "#000000",
     correctCellTextColor: "#457EBA",
     timerColor: "#D9D9D7",

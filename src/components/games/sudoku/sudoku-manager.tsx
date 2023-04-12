@@ -10,7 +10,6 @@ import {
   SUDOKU_MISTAKE_PENALTY_TIME,
 } from "@screens/games/sudoku/sudoku-game/sudoku.config";
 import { ISodukuBoard } from "@screens/games/sudoku/sudoku-game/sudoku.container";
-import { useDispatch } from "react-redux";
 import { ISudokuStore } from "@redux/sudoku/sudoku.reducer";
 import { SudokuDifficulty } from "@graphql/_core/schema/globalTypes";
 import {
@@ -59,8 +58,6 @@ const SudokuManager = ({
   onStateUpdate,
   onGameComplete,
 }: IProps) => {
-  const dispatch = useDispatch();
-
   const [sudokuState, sudokuDispatch] = useReducer(sudokuGameReducer, {
     endDate: undefined,
     selectedCell: undefined,
@@ -389,14 +386,15 @@ const SudokuManager = ({
         popHistory();
       } else {
         sudokuState.board[row][column] = number;
-        dispatch({ type: SUDOKU_SET_BOARD, payload: [...sudokuState.board] });
+        updateGameState("board", sudokuState.board);
+        sudokuDispatch({ type: SUDOKU_SET_BOARD, payload: [...sudokuState.board] });
         updateHistory([...sudokuState.history]);
         setSelectedCell({ row, column });
       }
     };
 
     popHistory();
-  }, [dispatch, getPosition, setSelectedCell, sudokuState.board, sudokuState.history, updateHistory]);
+  }, [getPosition, updateGameState, setSelectedCell, sudokuState.board, sudokuState.history, updateHistory]);
 
   const sodukuContextValue = useMemo<ISudokuContext>(() => {
     return {

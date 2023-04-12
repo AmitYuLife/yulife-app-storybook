@@ -1,8 +1,9 @@
-import React, { memo, useMemo, useState, useCallback } from "react";
-import { LayoutChangeEvent, StyleSheet, View } from "react-native";
+import React, { memo, useMemo, useState, useCallback, ReactNode, isValidElement, ReactElement } from "react";
+import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import { TooltipBeak } from "./tooltip-beak";
 import { getMessageViewPosition, getStaticPosition } from "./helper";
+import { Navigation } from "@navigation/main";
 
 export type BeakPosition =
   | "topRight"
@@ -32,14 +33,19 @@ interface PointPosition {
   y: number;
 }
 
+interface ITooltipChildrenProps {
+  onClose?: () => void;
+}
+
 interface IProps {
   relativePosition?: AnchorViewRelativePosition;
   pointPosition?: PointPosition;
   beakPosition: BeakPosition;
-  children: React.ReactNode;
+  style?: ViewStyle;
+  children: ReactNode | ((props: ITooltipChildrenProps) => ReactElement);
 }
 
-const TooltipPopupWrapper = ({ relativePosition, children, pointPosition, beakPosition }: IProps) => {
+const TooltipPopupWrapper = ({ relativePosition, children, style, pointPosition, beakPosition }: IProps) => {
   const { pageX, pageY, anchorViewHeight, anchorViewWidth } = relativePosition || {};
   const { x, y } = pointPosition || {};
   const [messageViewHeight, setMessageViewHeight] = useState(1);
@@ -58,7 +64,10 @@ const TooltipPopupWrapper = ({ relativePosition, children, pointPosition, beakPo
       )
     : getStaticPosition(beakPosition, x, y, messageViewWidth, messageViewHeight);
 
-  const messageViewStyle = useMemo(() => [styles.messageViewWrapper, { left, top, opacity }], [left, top, opacity]);
+  const messageViewStyle = useMemo(
+    () => [styles.messageViewWrapper, { left, top, opacity }, style ?? {}],
+    [left, top, opacity, style]
+  );
   const beakWrapper = useMemo(
     () => [styles.popoverBreak, { top: beakTop, left: beakLeft, transform: beakTransform, opacity }],
     [beakLeft, beakTop, beakTransform, opacity]
@@ -74,10 +83,29 @@ const TooltipPopupWrapper = ({ relativePosition, children, pointPosition, beakPo
     [setMessageViewHeight, setMessageViewWidth, setOpacity]
   );
 
+  const content = useMemo(() => {
+    if (isValidElement(children)) {
+      return children;
+    }
+
+    if (typeof children === "function") {
+      const Content = children;
+      return (
+        <Content
+          onClose={() => {
+            Navigation.dismissAllOverlays();
+          }}
+        />
+      );
+    }
+
+    return children;
+  }, [children]);
+
   return (
     <>
       <View style={messageViewStyle} onLayout={onLayout}>
-        {children}
+        {content}
       </View>
       <View style={beakWrapper}>
         <TooltipBeak />

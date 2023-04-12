@@ -147,7 +147,12 @@ const CellView = ({
   }, [circleBg, animatedStyle]);
 
   return (
-    <TouchableOpacity onPress={onPress} style={styles.wrapper} activeOpacity={ACTIVE_OPACITY} testID={CELL_ROW_COLUMN(row, column)}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={styles.wrapper}
+      activeOpacity={ACTIVE_OPACITY}
+      testID={CELL_ROW_COLUMN(row, column)}
+    >
       <AnimatedView style={cellStyles}>
         <AnimatedView style={expandingCircleStyle} />
         <CellNumber

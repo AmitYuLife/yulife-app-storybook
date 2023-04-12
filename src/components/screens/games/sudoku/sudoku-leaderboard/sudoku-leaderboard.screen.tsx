@@ -30,7 +30,7 @@ const SudokuLeaderboardScreen = ({ onBack, componentId, date, leaderboard }: IPr
         lastName=""
         rank={item.position}
         id={item.userId}
-        uri={item.avatarRemoteFiles.pngMini}
+        uri={item.avatarRemoteFiles?.pngMini}
         componentId={componentId}
         score={getDuration(item.adjustedTime)}
         {...item}

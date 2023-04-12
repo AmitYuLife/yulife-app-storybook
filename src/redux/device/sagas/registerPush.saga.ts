@@ -4,7 +4,9 @@ import { addDeviceToken, pushNotificationReceived } from "../device.actions";
 import { createPushNotificationsChannel } from "../device.channels";
 
 export default function* registerPushSaga() {
-  const channel: ReturnType<typeof createPushNotificationsChannel> = yield call(createPushNotificationsChannel);
+  const channel: Awaited<ReturnType<typeof createPushNotificationsChannel>> = yield call(
+    createPushNotificationsChannel
+  );
   let result: IPushNotification & { os: string; token: string };
 
   while (true) {

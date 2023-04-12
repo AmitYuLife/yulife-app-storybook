@@ -276,11 +276,7 @@ const ActivityFeed = ({
           <Button
             onPress={onTakeChallengePress}
             size="Large"
-            label={
-              hasNotification
-                ? t["screens.daily.challenge_button.back_to_challenge"]
-                : button?.label
-            }
+            label={hasNotification ? t["screens.daily.challenge_button.back_to_challenge"] : button?.label}
             accessibilityLabel={
               hasNotification
                 ? t["screens.daily.challenge_button.back_to_challenge"]

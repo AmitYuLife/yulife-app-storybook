@@ -3,7 +3,7 @@ import { BoxOption } from "@components/molecules";
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import { Colours, Style } from "@styles";
 import { memo, useCallback, useMemo } from "react";
-import { StyleSheet, ViewStyle } from "react-native";
+import { PixelRatio, StyleSheet, ViewStyle } from "react-native";
 
 interface IProps {
   value: number;
@@ -31,7 +31,7 @@ export const NumberInput = ({ value, onPress }: IProps) => {
       wrapperStyle={styles.wrapper}
       disabled={isComplete}
       showShadow={!isComplete}
-      innerHeight={Style.adjust(60)}
+      innerHeight={NUMBER_INNER_HEIGHT}
       onPress={onInput}
       innerWrapperStyle={innerStyle}
     >
@@ -42,14 +42,21 @@ export const NumberInput = ({ value, onPress }: IProps) => {
   );
 };
 
+const SUDOKU_NUMBER_SCALE_CUTOFF = 380;
+export const SUDOKU_PASSED_NUMBER_CUTOFF = Style.DEVICE_WIDTH > SUDOKU_NUMBER_SCALE_CUTOFF;
+export const SUDOKU_NUMBER_SIZE = Style.adjust(Style.DEVICE_WIDTH > SUDOKU_NUMBER_SCALE_CUTOFF ? 65 : 45);
+const NUMBER_INNER_HEIGHT = Style.adjust(SUDOKU_NUMBER_SIZE - 2 * PixelRatio.get());
+
 const styles = StyleSheet.create({
   wrapper: {
-    width: Style.adjust(65),
-    height: Style.adjust(65),
+    width: SUDOKU_NUMBER_SIZE,
+    height: SUDOKU_NUMBER_SIZE,
   },
   innerWrapper: {
     alignItems: "center",
     justifyContent: "center",
+    width: SUDOKU_NUMBER_SIZE,
+    height: SUDOKU_NUMBER_SIZE,
   },
   innerWrapperComplete: {
     borderColor: Colours.products.fib.common,

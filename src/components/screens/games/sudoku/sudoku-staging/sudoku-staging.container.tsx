@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import {
   GetQuestMapLevelChallengeDetails,
+  GetQuestMapLevel_getQuestMapLevel_slots,
   GetSudokuBoard,
   GetSudokuLeaderboard,
   GetSudokuLeaderboardVariables,
@@ -27,17 +28,23 @@ import { DATE_FORMAT } from "@utils";
 
 interface IProps {
   componentId: string;
-  slotId: string;
-  reward: string;
+  slot: GetQuestMapLevel_getQuestMapLevel_slots;
 }
 
-export const SudokuStagingContainer = ({ componentId, reward, slotId }: IProps) => {
-  const sudokuState = useSelector(getSudokuState);
+export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
+  const dispatch = useDispatch();
   const date = useMemo(() => new Date(), []);
+  const sudokuState = useSelector(getSudokuState);
+  const activeChallenge = useSelector(getActiveLevel);
+  const [createQuestMapLevelChallenge] = useMutation(GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE);
 
   const { data } = useQuery<GetSudokuBoard>(GQL_QUERY_GET_SUDOKU_BOARDS, {
     fetchPolicy: "no-cache",
   });
+
+  const showSecondAttemptDisclaimer = useMemo(() => {
+    return !data?.getSudokuBoard?.leaderboardEligible && !data?.getSudokuBoard?.results;
+  }, [data]);
 
   const leaderboard = useQuery<GetSudokuLeaderboard, GetSudokuLeaderboardVariables>(GQL_QUERY_GET_SODUKU_LEADERBOARD, {
     variables: {
@@ -51,22 +58,16 @@ export const SudokuStagingContainer = ({ componentId, reward, slotId }: IProps) 
   const { data: levelDetails, loading: isDetailsLoading } = useQuery<GetQuestMapLevelChallengeDetails>(
     GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS,
     {
-      variables: { levelSlotId: slotId },
+      variables: { levelSlotId: slot.id },
     }
   );
 
-  const [createQuestMapLevelChallenge] = useMutation(GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE);
-
-  const activeChallenge = useSelector(getActiveLevel);
-
-  const dispatch = useDispatch();
-
   useEffect(() => {
     const currentDate = moment(date).format(DATE_FORMAT);
-    if (sudokuState?.gameIdentifier !== currentDate || sudokuState?.levelSlotId !== slotId) {
-      dispatch(sudokuReset({ gameIdentifier: currentDate, levelSlotId: slotId }));
+    if (sudokuState?.gameIdentifier !== currentDate || sudokuState?.levelSlotId !== slot.id) {
+      dispatch(sudokuReset({ gameIdentifier: currentDate, levelSlotId: slot.id }));
     }
-  }, [sudokuState, slotId, dispatch, date]);
+  }, [sudokuState, slot, dispatch, date]);
 
   const board = first(data?.getSudokuBoard?.boards);
 
@@ -74,7 +75,7 @@ export const SudokuStagingContainer = ({ componentId, reward, slotId }: IProps) 
     if (!activeChallenge.levelSlotId) {
       await createQuestMapLevelChallenge({
         variables: {
-          levelSlotId: slotId,
+          levelSlotId: slot.id,
         },
       });
 
@@ -86,8 +87,8 @@ export const SudokuStagingContainer = ({ componentId, reward, slotId }: IProps) 
 
     const newState = {
       ...sudokuState,
-      levelSlotId: slotId,
-      reward,
+      levelSlotId: slot.id,
+      reward: slot.reward,
       startDateTime: new Date(),
       date: currentDate,
       board: sudokuState.board ? sudokuState.board : board?.puzzle,
@@ -99,17 +100,16 @@ export const SudokuStagingContainer = ({ componentId, reward, slotId }: IProps) 
       component: {
         id: ROUTES.sudokuGame,
         name: ROUTES.sudokuGame,
-        passProps: { board, stats: data?.getSudokuBoard?.stats, date: currentDate, levelSlotId: slotId },
+        passProps: { board, stats: data?.getSudokuBoard?.stats, date: currentDate, levelSlotId: slot.id },
       },
     });
   }, [
     board,
-    reward,
     date,
     dispatch,
     sudokuState,
     data?.getSudokuBoard.stats,
-    slotId,
+    slot,
     activeChallenge,
     createQuestMapLevelChallenge,
     componentId,
@@ -166,11 +166,13 @@ export const SudokuStagingContainer = ({ componentId, reward, slotId }: IProps) 
   return (
     <SudokuStagingScreen
       data={data}
-      reward={reward}
+      reward={slot.reward}
       onBack={onBack}
+      slot={slot}
       onClose={onClose}
       onStart={startGame}
       onLeaderboardPress={onLeaderboardPress}
+      showSecondAttemptDisclaimer={showSecondAttemptDisclaimer}
       leaderboard={leaderboard?.data?.getSudokuLeaderboard}
       levelDetails={levelDetails?.getQuestMapLevelChallengeDetails}
       hasLeaderboardConsent={!!data?.getSudokuBoard?.stats?.leaderboardId}
