@@ -15,36 +15,23 @@ import {
 import { getUserStart, refreshUserProfileEvents } from "@redux/user/user.actions";
 import { CollectEventRewardScreen } from "@screens";
 import Logger from "@services/logging/logger";
-import { Style } from "@styles";
 import { delay } from "@utils/misc";
 import React, { useCallback, useMemo, useState } from "react";
 import { Navigation } from "@navigation/main";
 import { useDispatch } from "react-redux";
+import { GQL_QUERY_GET_GOAL_DETAILS } from "@graphql/goals/getGoalDetails.gql";
 
 interface IProps {
+  goalIds?: string[];
   event: string;
   rewards: IReward[];
   completed?: boolean;
 }
 
-const iconHeight = Style.isShortToMedium() ? Style.DEVICE_WIDTH - 105 : 330;
-
-const lottie = {
-  __typename: "ContentItemLottie",
-  id: "event-reward-lottie",
-  uri:
-    "https://yulife-local.imgix.net/events/lottie/trophy-2022-02-28-T-14-22-00.json?ixlib=js-3.2.1&s=ebcbcc7051307804cabcf5d732c5613f",
-  autoPlay: true,
-  loop: false,
-  aspectRatio: 1,
-  styles: [{ property: "height", value: Style.adjust(iconHeight).toString() }],
-  onAnimationEnd: null as any,
-};
-
 const TRANSITION_DURATION = FADE_IN_DURATION + FADE_PAUSE_DURATION + FADE_OUT_DURATION + FADE_OUT_PAUSE;
 const TRANSITION_DELAY = 300;
 
-export default function CollectEventRewardModal({ event, rewards, completed = false }: IProps) {
+export default function CollectEventRewardModal({ goalIds, event, rewards, completed = false }: IProps) {
   const [localRewards, setLocalRewards] = useState(rewards);
   const [eventFinished, setEventFinished] = useState(
     completed && rewards.every(({ status }) => status !== GoalRewardStatus.completed)
@@ -61,7 +48,12 @@ export default function CollectEventRewardModal({ event, rewards, completed = fa
 
   const [claimGoalRewardsMutation] = useMutation<ClaimGoalRewards, ClaimGoalRewardsVariables>(
     GQL_MUTATION_CLAIM_GOAL_REWARDS,
-    { refetchQueries: ["GetGoalDetails"] }
+    goalIds && {
+      refetchQueries: goalIds.map((goalId) => ({
+        query: GQL_QUERY_GET_GOAL_DETAILS,
+        variables: { id: goalId },
+      })),
+    }
   );
 
   const { orderedRewards, unclaimedRewardIds } = useMemo(() => {
@@ -152,7 +144,6 @@ export default function CollectEventRewardModal({ event, rewards, completed = fa
       cta={cta}
       onCta={onCta}
       rewards={orderedRewards}
-      lottie={lottie}
       status={status}
     />
   );

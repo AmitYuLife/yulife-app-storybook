@@ -1,6 +1,5 @@
 import { Image, TextTemplate } from "@atoms";
-import { ContentItemLottie } from "@components/sdui";
-import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
+import LottieView from "lottie-react-native";
 import { Button, CentredScreen } from "@molecules";
 import { IReward } from "@organisms/event-reward/event-reward";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
@@ -21,13 +20,13 @@ interface ICollectEventRewardsProps {
   cta: string;
   onCta: () => void;
   rewards: IReward[];
-  lottie: GqlLottie;
   status?: eventState;
 }
 
 const assets = {
   yugiCelebration: require("@assets/goals/claim-rewards/celebrationYugi.png"),
   confetti: require("@assets/chest-components/chest-background.png"),
+  trophy: require("@assets/lottie/trophy.json"),
 };
 
 const CollectEventRewardScreen: FC<ICollectEventRewardsProps> = ({
@@ -37,7 +36,6 @@ const CollectEventRewardScreen: FC<ICollectEventRewardsProps> = ({
   cta,
   onCta,
   rewards,
-  lottie,
   status = eventState.IN_PROGRESS,
 }) => {
   const [screenState, setScreenState] = useState({ status, title, description, descriptionTitle });
@@ -118,7 +116,9 @@ const CollectEventRewardScreen: FC<ICollectEventRewardsProps> = ({
         {screenState.status === eventState.COMPLETED ? (
           <Image source={assets.yugiCelebration} width={280} />
         ) : (
-          <ContentItemLottie {...lottie} />
+          <Animated.View style={style.lottieAnimatedView}>
+            <LottieView style={style.lottie} source={assets.trophy} autoPlay={true} loop={false} />
+          </Animated.View>
         )}
       </View>
 
@@ -138,6 +138,8 @@ const CollectEventRewardScreen: FC<ICollectEventRewardsProps> = ({
     </CentredScreen>
   );
 };
+
+const iconHeight = Style.isShortToMedium() ? Style.DEVICE_WIDTH - 105 : 330;
 
 const style = StyleSheet.create({
   titleWrapper: {
@@ -160,6 +162,17 @@ const style = StyleSheet.create({
   buttonWrapper: {
     position: "absolute",
     bottom: Style.adjust(32),
+  },
+  lottieAnimatedView: {
+    flex: 1,
+    width: Style.DEVICE_WIDTH,
+    height: Style.adjust(iconHeight),
+    alignSelf: "center",
+  },
+  lottie: {
+    flex: 1,
+    width: Style.DEVICE_WIDTH,
+    alignSelf: "center",
   },
 });
 

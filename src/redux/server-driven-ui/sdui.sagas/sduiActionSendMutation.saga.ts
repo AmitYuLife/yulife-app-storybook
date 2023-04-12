@@ -7,6 +7,7 @@ import { setLoadingState } from "../sdui.actions";
 import { SduiSagaAction } from "../sdui.types";
 import { submitSduiJourney } from "../../../graphql/journey";
 import { getServerPayload } from "../sdui.helpers";
+import Logger from "@services/logging/logger";
 
 type MutationSduiAction = Partial<SduiAction> & { __typename?: "SduiAction" };
 type MutationRequest = (args: { variables: any; refetchQueries?: string[] }) => Promise<unknown>;
@@ -83,6 +84,13 @@ export function* sduiActionSendMutation(action: SduiSagaAction) {
       yield all(dispatchActions.map((dispatchAction: SduiAction) => put(dispatchAction)));
     }
   } catch (e) {
+    yield call(() =>
+      Logger.logMixpanelEvent("app_debug", {
+        sdui: true,
+        location: "sduiActionSendMutation",
+        error: e?.message,
+      })
+    );
   } finally {
     yield put(setLoadingState({ __disabled: false }));
   }
