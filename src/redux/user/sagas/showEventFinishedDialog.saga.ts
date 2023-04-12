@@ -19,8 +19,8 @@ function* showCompletedEvents(completedEvents: Partial<Events>[]) {
   }
 
   const response: Unpacked<typeof getGoalDetails>[] = yield all(
-    completedEvents.map(({ id, stageId }) => {
-      return call(getGoalDetails, { id, stageId });
+    completedEvents.map(({ id }) => {
+      return call(getGoalDetails, { id });
     })
   );
   // flatten getGoalDetails.rewards into single array
@@ -31,6 +31,7 @@ function* showCompletedEvents(completedEvents: Partial<Events>[]) {
       id: MODALS.collectEventReward,
       name: MODALS.collectEventReward,
       passProps: {
+        goalIds: completedEvents.map((event) => event.id),
         event: completedEvents.length === 1 && completedEvents[0].title,
         completed: true,
         rewards,

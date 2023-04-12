@@ -65,6 +65,7 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
               id: MODALS.collectEventReward,
               name: MODALS.collectEventReward,
               passProps: {
+                goalIds: [goalId],
                 event: title,
                 rewards: rewards.filter((reward) => reward.status === GoalRewardStatus.completed),
                 completed:

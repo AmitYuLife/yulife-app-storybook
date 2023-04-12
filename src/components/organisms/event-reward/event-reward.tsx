@@ -113,12 +113,13 @@ const EventReward = ({
         id: MODALS.collectEventReward,
         name: MODALS.collectEventReward,
         passProps: {
+          goalIds: [goalId],
           event: eventTitle,
           rewards: [reward],
         },
       },
     });
-  }, [claimButton, reward, status, title]);
+  }, [claimButton, reward, status, title, goalId]);
 
   const descriptionFooter = useMemo(() => {
     if (rewardCompleted && claimButton) {
