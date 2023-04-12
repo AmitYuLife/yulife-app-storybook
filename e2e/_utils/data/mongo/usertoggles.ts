@@ -85,6 +85,7 @@ import {
   CUSTOMER_84,
   CUSTOMER_85,
   CUSTOMER_FIIT,
+  CUSTOMER_LEAVER,
 } from "../postgres/customers";
 import {
   allTogglesTrue,
@@ -1620,6 +1621,19 @@ export const CUSTOMER_FIIT_TOGGLES = {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
       enableFiitInApp: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_LEAVER_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_LEAVER.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      showFiit: true,
     },
   },
 } as IDatabaseItem;

@@ -6,6 +6,7 @@ import {
   BUSINESS_ACCOUNT_2,
   BUSINESS_ACCOUNT_5,
   BUSINESS_ACCOUNT_6,
+  BUSINESS_ACCOUNT_3,
 } from "../postgres/business";
 
 import {
@@ -101,6 +102,7 @@ import {
   USER_PLI_5,
   USER_PLI_3,
   USER_PLI_4,
+  USER_LEAVER,
 } from "./users";
 import { USER_84_LEADERBOARD } from "./user_leaderboards";
 
@@ -1628,5 +1630,22 @@ export const USER_ONBOARDING_PLI_5 = {
     },
   },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_LEAVER = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_LEAVER.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_3.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
 
 
