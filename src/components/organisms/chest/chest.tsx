@@ -37,6 +37,7 @@ interface IProps {
   items: ChestItemType[];
   chestState: CHEST_STATE;
   setChestState: React.Dispatch<React.SetStateAction<CHEST_STATE>>;
+  currentPlanet: string;
 }
 
 export enum CHEST_STATE {
@@ -50,7 +51,7 @@ const CHEST_CARDS_FADE_IN_DURATION = 500;
 const CHEST_CARDS_ANIMATION_OFFSET = 200;
 const CHEST_CARD_OSCILLATION_DURATION = 2500;
 
-const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestState }) => {
+const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestState, currentPlanet }) => {
   const dispatch = useDispatch();
 
   const location = useMemo(() => {
@@ -69,7 +70,7 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
     }
   }, [chestType]);
 
-  const { chestShakingLottie, chestOpeningLottie } = useAssets(chestType);
+  const { chestShakingLottie, chestOpeningLottie } = useAssets(chestType, currentPlanet);
   const lottieChestRef: RefObject<LottieView> = useRef();
 
   const openingChestOpacity = useRef(new Animated.Value(0.1));

@@ -1,34 +1,105 @@
 import { useMemo } from "react";
 import { ChestType } from "../chest";
+import { Planets } from "@utils";
 
-const forestChestShaking = require("../lottie/Forest Chest shaking.json");
-const oceanChestShaking = require("../lottie/Ocean Chest shaking.json");
-const desertChestShaking = require("../lottie/Desert Chest shaking.json");
-const mountainChestShaking = require("../lottie/Mountain Chest shaking.json");
 const celestialChestShaking = require("../lottie/Celestial Chest Shaking.json");
-const forestChestOpening = require("../lottie/Forest_chest opening.json");
-const oceanChestOpening = require("../lottie/Ocean_chest opening.json");
-const desertChestOpening = require("../lottie/Desert_chest opening.json");
-const mountainChestOpening = require("../lottie/Mountain_chest opening 2 rays of light.json");
 const celestialChestOpening = require("../lottie/Celestial_chest opening.json");
 
-export const useAssets = (chestType: ChestType) => {
+interface IPlanetsChest {
+  [key: string]: {
+    forest: {
+      opening: string;
+      shaking: string;
+    };
+    ocean: {
+      opening: string;
+      shaking: string;
+    };
+    desert: {
+      opening: string;
+      shaking: string;
+    };
+    mountain: {
+      opening: string;
+      shaking: string;
+    };
+  };
+}
+
+const planetsChests: IPlanetsChest = {
+  [Planets.EARTH]: {
+    forest: {
+      opening: require("../lottie/earth/forest-chest-opening"),
+      shaking: require("../lottie/earth/forest-chest-shaking"),
+    },
+    ocean: {
+      opening: require("../lottie/earth/ocean-chest-opening.json"),
+      shaking: require("../lottie/earth/ocean-chest-shaking.json"),
+    },
+    desert: {
+      opening: require("../lottie/earth/desert-chest-opening.json"),
+      shaking: require("../lottie/earth/desert-chest-shaking.json"),
+    },
+    mountain: {
+      opening: require("../lottie/earth/mountain-chest-opening-2-rays-of-lights.json"),
+      shaking: require("../lottie/earth/mountain-chest-shaking.json"),
+    },
+  },
+  [Planets.RED]: {
+    forest: {
+      opening: require("../lottie/red/forest-chest-opening"),
+      shaking: require("../lottie/red/forest-chest-shaking"),
+    },
+    ocean: {
+      opening: require("../lottie/red/ocean-chest-opening.json"),
+      shaking: require("../lottie/red/ocean-chest-shaking.json"),
+    },
+    desert: {
+      opening: require("../lottie/red/desert-chest-opening.json"),
+      shaking: require("../lottie/red/desert-chest-shaking.json"),
+    },
+    mountain: {
+      opening: require("../lottie/red/mountain-chest-opening-2-rays-of-lights.json"),
+      shaking: require("../lottie/red/mountain-chest-shaking.json"),
+    },
+  },
+  [Planets.BRIGHT]: {
+    forest: {
+      opening: require("../lottie/bright/forest-chest-opening"),
+      shaking: require("../lottie/bright/forest-chest-shaking"),
+    },
+    ocean: {
+      opening: require("../lottie/bright/ocean-chest-opening.json"),
+      shaking: require("../lottie/bright/ocean-chest-shaking.json"),
+    },
+    desert: {
+      opening: require("../lottie/bright/desert-chest-opening.json"),
+      shaking: require("../lottie/bright/desert-chest-shaking.json"),
+    },
+    mountain: {
+      opening: require("../lottie/bright/mountain-chest-opening-2-rays-of-lights.json"),
+      shaking: require("../lottie/bright/mountain-chest-shaking.json"),
+    },
+  },
+};
+
+export const useAssets = (chestType: ChestType, currentPlanet: string) => {
   const [chestShakingLottie, chestOpeningLottie] = useMemo(() => {
     switch (chestType) {
       case "FOREST":
-        return [forestChestShaking, forestChestOpening];
+        return [planetsChests[currentPlanet].forest.shaking, planetsChests[currentPlanet].forest.opening];
       case "OCEAN":
-        return [oceanChestShaking, oceanChestOpening];
+        return [planetsChests[currentPlanet].ocean.shaking, planetsChests[currentPlanet].ocean.opening];
       case "DESERT":
-        return [desertChestShaking, desertChestOpening];
+        return [planetsChests[currentPlanet].desert.shaking, planetsChests[currentPlanet].desert.opening];
       case "MOUNTAIN":
-        return [mountainChestShaking, mountainChestOpening];
+        return [planetsChests[currentPlanet].mountain.shaking, planetsChests[currentPlanet].mountain.opening];
       case "CELESTIAL":
         return [celestialChestShaking, celestialChestOpening];
       default:
-        return [forestChestShaking, forestChestOpening];
+        return [planetsChests[currentPlanet].forest.shaking, planetsChests[currentPlanet].forest.opening];
     }
-  }, [chestType]);
+  }, [chestType, currentPlanet]);
 
   return {
     chestShakingLottie,

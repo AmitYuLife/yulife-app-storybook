@@ -8,3 +8,5 @@ export { default as CycleTwoOrnament } from "./cycleTwoOrnament";
 export { default as CycleThreeOrnament } from "./cycleThreeOrnament";
 export { default as CycleFourOrnament } from "./cycleFourOrnament";
 export { default as CycleFiveOrnament } from "./cycleFiveOrnament";
+export { default as CycleSixOrnament } from "./cycleSixOrnament";
+export { default as CycleSevenOrnament } from "./cycleSevenOrnament";

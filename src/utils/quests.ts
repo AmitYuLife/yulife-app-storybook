@@ -15,6 +15,7 @@ export enum WorldName {
 export enum Planets {
   EARTH = "earth",
   RED = "red",
+  BRIGHT = "bright",
 }
 
 export function getCurrentWorldName(currentLevel: number): WorldName {
@@ -158,9 +159,11 @@ export const getCurrentPlanetByLevel = (currentLevel: number) => {
     return Planets.EARTH;
   }
 
-  // until we define other planets it's better to
-  // serve same assets than nothing and break the app
-  if (currentLevel > 200) {
+  if (currentLevel < 401) {
     return Planets.RED;
+  }
+
+  if (currentLevel > 400) {
+    return Planets.BRIGHT;
   }
 };

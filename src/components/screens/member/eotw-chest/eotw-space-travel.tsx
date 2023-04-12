@@ -68,22 +68,22 @@ const EOTWSpaceTravel: FC<IProps> = memo(({ currentPlanet, width, height, avatar
         avatar,
       },
       {
-        key: "mars",
+        key: "red",
         position: {
           left: width - PLANET_RADIUS / 2,
           bottom: 0,
         },
-        icon: PLANET_ASSETS.Mars,
+        icon: PLANET_ASSETS.Red,
         state: getPlanetState(2),
         avatar,
       },
       {
-        key: "sun",
+        key: "bright",
         position: {
           left: width / 2,
           bottom: contentHeight / 4,
         },
-        icon: PLANET_ASSETS.Sun,
+        icon: PLANET_ASSETS.Bright,
         state: getPlanetState(3),
         avatar,
       },
