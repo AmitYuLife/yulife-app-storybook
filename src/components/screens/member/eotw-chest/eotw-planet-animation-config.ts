@@ -1,8 +1,8 @@
 import { Style } from "@styles";
+import { Planets } from "@utils";
 
 export const FLOATING_ANIMATION = require("./assets/Floating.json");
 export const EXPLOSION_ANIMATION = require("./assets/Explosion.json");
-
 export const STAR_ASSET = require("./assets/planets/Star.png");
 
 export const PLANET_RADIUS = Style.adjust(64);
@@ -29,3 +29,11 @@ export const SPACE_TRAVEL_ANIMATION_DURATION =
   PLANET_FADE_IN_DURATION +
   PIN_FADE_OUT_DURATION +
   PIN_FADE_IN_DURATION;
+
+interface IPlanetTravelAnimation {
+  [key: string]: string;
+}
+export const PLANET_TRAVEL_ANIMATION: IPlanetTravelAnimation = {
+  [Planets.RED]: require("./assets/travel-animations/red-planet-travel-animation.json"),
+  [Planets.BRIGHT]: require("./assets/travel-animations/bright-planet-travel-animation.json"),
+};

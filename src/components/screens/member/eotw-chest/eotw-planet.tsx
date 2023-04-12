@@ -39,7 +39,8 @@ export enum PLANET_STATE {
 
 export const PLANET_ASSETS = {
   Earth: require("./assets/planets/Earth.png"),
-  Mars: require("./assets/planets/Mars.png"),
+  Red: require("./assets/planets/Red.png"),
+  Bright: require("./assets/planets/Bright.png"),
   Mercury: require("./assets/planets/Mercury.png"),
   Saturn: require("./assets/planets/Saturn.png"),
   Sun: require("./assets/planets/Sun.png"),

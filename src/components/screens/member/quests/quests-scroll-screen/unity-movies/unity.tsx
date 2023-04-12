@@ -15,13 +15,14 @@ import { getAssets } from "./unity.data";
 import styles from "./unity.styles";
 import { t } from "@locale";
 import { useSelector } from "react-redux";
-import { getCurrentWorld, getCurrentYuniverse } from "@utils";
+import { getCurrentPlanetByLevel, getCurrentWorld, getCurrentYuniverse } from "@utils";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 
 // placeholder image
 const PLANETARY_BACKGROUND = require("./assets/yuniversal-images/planetary_background.png");
 
 const YUGI_ANIMATION = require("./assets/yuniversal-animations/yugi.json");
+
 enum UNITY_REWARD_PAGE {
   INTRO,
   CONGRATULATORY,
@@ -46,6 +47,7 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
   const currentLevel = useSelector(getCurrentLevel);
   const currentYuniverse = getCurrentYuniverse(currentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
+  const yuniverseAnimationLoop = currentLevel === 400 ? [353, 220, 349] : [450, 288, 388];
 
   const { data, loading } = useQuery<GetUnityRewards>(GQL_QUERY_GET_UNITY_REWARDS, {
     variables: { level },
@@ -114,7 +116,7 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
 
       if (foregroundAnim.current && backgroundAnim.current) {
         if (isYuniversal) {
-          loopForeground(15000, 450, 288, 388);
+          loopForeground(15000, yuniverseAnimationLoop[0], yuniverseAnimationLoop[1], yuniverseAnimationLoop[2]);
         } else {
           loopForeground(10000, 300, 178, 284);
         }
@@ -133,7 +135,6 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
       fadeInChestPage.stop();
       fadeOutChestPage.stop();
       fadeInAfterwordPage.stop();
-
       backgroundAnim.current?.reset();
       foregroundAnim.current?.reset();
       wavesAnim.current?.reset();
@@ -256,9 +257,10 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
   };
 
   const { color, waves, background, foreground } = useMemo(() => getAssets(level), [level]);
-  const fullScreenLottieStyle = useMemo(() => ({ ...styles.fullScreenLottie, opacity: displayWaves ? 1 : 0 }), [
-    displayWaves,
-  ]);
+  const fullScreenLottieStyle = useMemo(
+    () => ({ ...styles.fullScreenLottie, opacity: displayWaves ? 1 : 0 }),
+    [displayWaves]
+  );
 
   return (
     <View style={styles.wrapper} testID={YUNITY_REACHED(Math.floor(level / 50))}>
@@ -381,6 +383,7 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
             items={data.getUnityRewards.chest.items}
             chestState={chestState}
             setChestState={setChestState}
+            currentPlanet={getCurrentPlanetByLevel(currentLevel - 1)}
           />
           {chestState === CHEST_STATE.OPENING ? null : (
             <Animated.View style={[styles.buttonWrapper]}>

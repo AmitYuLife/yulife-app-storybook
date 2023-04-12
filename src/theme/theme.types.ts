@@ -64,4 +64,7 @@ export interface ITheme {
   [Planets.RED]: {
     [key: number]: IThemeScreens;
   };
+  [Planets.BRIGHT]: {
+    [key: number]: IThemeScreens;
+  };
 }

@@ -11,9 +11,9 @@ import { DETOX_ENABLED } from "@services/socket";
 import EOTWSpaceTravel from "./eotw-space-travel";
 import { Style } from "@styles";
 import { t } from "@locale";
-import { SPACE_TRAVEL_ANIMATION_DURATION } from "./eotw-planet-animation-config";
+import { PLANET_TRAVEL_ANIMATION, SPACE_TRAVEL_ANIMATION_DURATION } from "./eotw-planet-animation-config";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { getCurrentPlanet } from "@utils";
+import { getCurrentPlanet, getCurrentPlanetByLevel } from "@utils";
 import { CELESTIAL_CHEST_SCREEN, TEXT_TEMPLATE } from "@ids";
 
 interface IProps {
@@ -31,13 +31,13 @@ enum EOTW_CHEST_PAGE {
   TRAVEL_ANIMATION,
 }
 
-const TRAVEL_ANIMATION = require("./assets/Travel_animation.json");
 const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, levelId, onPressCta, avatar }) => {
   const [chestState, setChestState] = useState(CHEST_STATE.CLOSED);
   const [page, setPage] = useState(EOTW_CHEST_PAGE.CHEST);
   const [beginningButton, setBeginningButton] = useState(false);
   const dispatch = useDispatch();
   const currentPlanet = getCurrentPlanet(level);
+  const currentPlanetName = getCurrentPlanetByLevel(level);
 
   const travelRef = useRef<LottieView>(null);
 
@@ -123,6 +123,7 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, leve
             items={items}
             chestState={chestState}
             setChestState={setChestState}
+            currentPlanet={currentPlanetName}
           />
           {chestState === CHEST_STATE.OPENING ? null : (
             <View style={styles.buttonWrapper}>
@@ -156,7 +157,7 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, leve
           resizeMode="cover"
           style={StyleSheet.absoluteFill}
           ref={travelRef}
-          source={TRAVEL_ANIMATION}
+          source={PLANET_TRAVEL_ANIMATION[currentPlanetName]}
           autoPlay={false}
           onAnimationFinish={onPressCta}
           loop={false}

@@ -12,6 +12,8 @@ import {
   CycleThreeOrnament,
   CycleFourOrnament,
   CycleFiveOrnament,
+  CycleSixOrnament,
+  CycleSevenOrnament,
 } from "./";
 
 interface IProps {
@@ -41,7 +43,7 @@ const YuCoinBadge = (props: IProps) => {
           <CycleTwoOrnament isGrayScale={isGrayScale} />
         ) : currentYuniverse === 2 ? (
           <CycleThreeOrnament isGrayScale={isGrayScale} />
-        ) : currentYuniverse === 4 ? (
+        ) : currentYuniverse === 6 ? (
           <Crown isGrayScale={isGrayScale} />
         ) : null}
         <Body isGrayScale={isGrayScale} />
@@ -49,6 +51,10 @@ const YuCoinBadge = (props: IProps) => {
           <CycleFourOrnament isGrayScale={isGrayScale} />
         ) : currentYuniverse === 4 ? (
           <CycleFiveOrnament isGrayScale={isGrayScale} />
+        ) : currentYuniverse === 5 ? (
+          <CycleSixOrnament isGrayScale={isGrayScale} />
+        ) : currentYuniverse === 6 ? (
+          <CycleSevenOrnament isGrayScale={isGrayScale} />
         ) : null}
         <Clasps isGrayScale={isGrayScale} />
         <Gems isGrayScale={isGrayScale} gemsToShow={gems || currentWorld} />
