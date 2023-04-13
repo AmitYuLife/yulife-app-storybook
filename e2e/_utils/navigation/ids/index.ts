@@ -130,6 +130,7 @@ export const MEDITATION_YUCOIN_REWARD = (yucoin: number) => MEDIA_YUCOIN_REWARD(
 export const CHALLENGE_HISTORY_YUCOIN_STARS = (yuCoin: string, stars: number, challengeType: string, index: number) => `CHALLENGE_HISTORY_YUCOIN+${yuCoin}_${stars}_${challengeType}_${index}`
 export const WELLDONE_BANNER = "WELLDONE_BANNER";
 export const YUNITY_CARD = (description: string) => `YUNITY_CARD_${description}`;
+export const COUNTDOWN_UNIT = (unit:string, dateType:string) => `COUNTDOWN_UNIT${unit}_${dateType}`
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`

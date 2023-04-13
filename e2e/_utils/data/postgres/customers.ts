@@ -1330,6 +1330,20 @@ export const CUSTOMER_85 = {
     }
 } as IDatabaseItem
 
+export const CUSTOMER_FUTURE_PRODUCT = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Bobby",
+    lastName: "Smith",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+    fullName: "Bobby Smith"
+  }
+} as IDatabaseItem
+
 export const CUSTOMER_LEAVER = {
   type: "postgres",
   modelName: "customer",
