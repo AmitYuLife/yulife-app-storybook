@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
+import { COUNTDOWN_UNIT } from "@ids";
 
 interface Props {
   heading: string;
@@ -11,7 +12,7 @@ interface Props {
 
 export const CountdownUnit = memo(({ heading, label, borderRightWidth = 1 }: Props) => {
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, { borderRightWidth }])}>
+    <View style={StyleSheet.flatten([styles.wrapper, { borderRightWidth }])} testID={COUNTDOWN_UNIT(heading, label)}>
       <TextTemplate type="h1">{heading}</TextTemplate>
       <View style={styles.pullUp}>
         <TextTemplate type="l2">{label}</TextTemplate>

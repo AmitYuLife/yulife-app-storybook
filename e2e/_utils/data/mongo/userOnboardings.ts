@@ -102,6 +102,7 @@ import {
   USER_PLI_5,
   USER_PLI_3,
   USER_PLI_4,
+  USER_FUTURE_PRODUCT,
   USER_LEAVER,
 } from "./users";
 import { USER_84_LEADERBOARD } from "./user_leaderboards";
@@ -1647,5 +1648,22 @@ export const USER_ONBOARDING_LEAVER = {
   },
 } as IDatabaseItem;
 
+
+
+export const USER_ONBOARDING_FUTURE_PRODUCT = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_FUTURE_PRODUCT.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_3.data.business_account_id,
+    businessName: "Pawnee Council.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
 
 

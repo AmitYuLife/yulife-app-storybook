@@ -96,6 +96,7 @@ import {
   CUSTOMER_PLI_3,
   CUSTOMER_PLI_4,
   CUSTOMER_PLI_5,
+  CUSTOMER_FUTURE_PRODUCT,
   CUSTOMER_LEAVER,
 } from "../postgres/customers";
 import moment from "moment";
@@ -1822,12 +1823,31 @@ export const USER_FIIT = {
   },
 } as IDatabaseItem;
 
-export const USER_LEAVER = {
+export const USER_FUTURE_PRODUCT = {
   type: "mongo",
   modelName: "users",
   data: {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
+    userId: CUSTOMER_FUTURE_PRODUCT.data.customerId,
+    nickname: "Future-Man",
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 10,
+      },
+    ],
+    earnRate: 10,
+  },
+} as IDatabaseItem;
+
+export const USER_LEAVER = {
+  type: "mongo",
+  modelName: "users",
+  data: {
     userId: CUSTOMER_LEAVER.data.customerId,
     nickname: "leaf"
   },
