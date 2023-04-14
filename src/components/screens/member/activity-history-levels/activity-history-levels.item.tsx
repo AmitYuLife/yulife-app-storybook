@@ -71,8 +71,9 @@ export default function ActivityHistoryLevelsItem({
 
   const generateStepsText = useCallback(
     (val: number) => {
-      return `${addCommasToNumber(val)} ${val === 1 ? translations["activity_types.steps.singular"] : translations["activity_types.steps.plural"]
-        }`;
+      return `${addCommasToNumber(val)} ${
+        val === 1 ? translations["activity_types.steps.singular"] : translations["activity_types.steps.plural"]
+      }`;
     },
     [translations]
   );
@@ -176,10 +177,10 @@ export default function ActivityHistoryLevelsItem({
                 {!challenge.score
                   ? null
                   : Array.from({ length: 3 }).map((_, index) => (
-                    <View key={index} style={styles.starWrapper}>
-                      <StarInline filled={index < challenge.milestones} />
-                    </View>
-                  ))}
+                      <View key={index} style={styles.starWrapper}>
+                        <StarInline filled={index < challenge.milestones} />
+                      </View>
+                    ))}
               </View>
             ))}
           </View>

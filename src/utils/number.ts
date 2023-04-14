@@ -3,5 +3,5 @@ export function padNum(x: number, sliceIndex: number = -2) {
 }
 
 export function addCommasToNumber(x: number) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return (x || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
