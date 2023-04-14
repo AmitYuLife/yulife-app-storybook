@@ -8,13 +8,14 @@ interface Props {
   score: number | string;
   bold: boolean;
   style?: TextStyle;
+  testID?: string;
 }
 
-export function Score({ score, bold, style }: Props) {
+export function Score({ score, bold, style, testID }: Props) {
   const size = getSize(score.toString().length);
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={testID}>
       <Text style={[styles.text, size, style]} bold={bold}>
         {typeof score === "number" ? addCommasToNumber(score) : score}
       </Text>

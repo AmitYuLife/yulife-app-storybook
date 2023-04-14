@@ -14,6 +14,7 @@ export interface IGenericHeadingProps {
   isBeta?: boolean;
   logo?: GenericHeadingLogo;
   color?: string;
+  rightIconTestID?: string;
 }
 
 type IRightIcon = "SETTINGS" | "CLOSE" | "EDIT" | "PLUS" | "Done" | "SAVE" | "COINS";

@@ -54,6 +54,7 @@ export const ONBOARDING_SCREEN_V4 = "ONBOARDING_SCREEN_V4";
 export const V4_YUSCREEN = "V4_YUSCREEN";
 export const VIDEO_PLAYER_DESCRIPTION_SCREEN = "VIDEO_PLAYER_DESCRIPTION";
 export const MEDIA_PORTRAIT_CLOSE = "MEDIA_PORTRAIT_CLOSE"
+export const CHALLENGE_SET_SCROLL = "CHALLENGE_SET_SCROLL"
 
 // buttons
 export const BUTTON_LOGIN = (disabled: boolean) => `BUTTON_LOGIN_${disabled})`;
@@ -100,6 +101,8 @@ export const INFO_PANEL_CTA_WARNING_BUTTON = "INFO_PANEL_CTA_WARNING_BUTTON";
 export const INFO_PANEL_CTA_SUCCESS_BUTTON = "INFO_PANEL_CTA_SUCCESS_BUTTON";
 export const INFO_PANEL_CTA_NOTIFICATION_BUTTON = "INFO_PANEL_CTA_NOTIFICATION_BUTTON";
 export const INSPECT_BUTTON = "INSPECT_BUTTON";
+export const TAKE_A_CHALLENGE_LEFT_BUTTON = "TAKE_CHALLENGE_LEFT"
+export const BUTTON_CLOSE_RIGHT_ID = "BUTTON_CLOSE_RIGHT_ID"
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;
@@ -165,6 +168,7 @@ export const GOALS_BUTTON = "GOALS_BUTTON"
 export const LEADERBOARD_SCROLL_LIST = "LEADERBOARD_SCROLL_LIST"
 export const LEADERBOARD_STATUS = (leaderboardName: string, leaderboardStatus: string) => `LEADERBOARD_STATUS_${leaderboardName}_${leaderboardStatus}`
 export const LEADERBOARD_SWITCH = (leaderboardName: string) => `LEADERBOARD_SWITCH_${leaderboardName}`
+export const SCORE = (num: any) => `SCORE_${num}`
 
 // YUSCREEN
 export const YUSCREEN = "YUSCREEN"
@@ -397,7 +401,7 @@ export const ACTIVITY_NAMES = (opponentName: string, name: string) => `OPPONENT_
 export const WINNER = (value: number) => `WINNER_${value}`;
 export const SECOND_POSITION = (value: number) => `SECOND_POSITION_${value}`;
 export const INSPECT_AVATAR = (order: number) => `INSPECT_AVATAR_${order}`;
-export const RANK = (name: string) => `RANK_${name}`
+export const RANK = (rank: number, name: string) => `RANK_${rank + name}}`
 export const SINGLE_USER = "SINGLE_USER";
 export const LEFT_USER = "LEFT_USER";
 export const RIGHT_USER = "RIGHT_USER";
@@ -452,4 +456,17 @@ export const FIIT_MEDIA_PLAYER_CLOSE = MEDIA_PORTRAIT_CLOSE
 export const NOTIF_CENTRE = "NOTIFICATION_CENTRE"
 
 // Sudoku
-export const CELL_ROW_COLUMN = (row: number, column:number) => `${row}-${column}`
+export const CELL_ROW_COLUMN = (row: number, column:number, value: number) => `${row}-${column}-${value}`
+export const SUDOKU_HINT = "SUDOKU_HINT"
+export const SUDOKU_HINT_TIMER = (time: number) => `SUDOKU_HINT_TIMER_${time}`
+export const SUDOKU_NUMBER_INPUT = (value: number, isCompleted = false) => `SUDOKU_NUMBER_${value}_${isCompleted}`
+export const SUDOKU_PAUSE = "SUDOKU_PAUSE"
+export const SUDOKU_STAT = (label: string, num: any) => `SUDOKU_STAT_${label}_${num}`
+export const SUDOKU_LEADERBOARD = (rank: number, name: string, time: string) => `SUDOKU_LEADERBOARD_${rank}_${name}_${time}`
+export const SUDOKU_HOWTOPLAY_BUTTON = "HOW_TO_PLAY_SUDUKU"
+export const SUDOKU_JOINLEADERBOARD_BUTTON = "JOIN_LEADERBOARD_SUDUKU"
+export const SUDOKU_UNDO_BUTTON = "SUDOKU_UNDO"
+export const SUDOKU_STAGING_SCREEN_SCROLL = "SUDOKU_STAGING_SCREEN_SCROLL"
+export const SUDOKU_COMPLETED_SCREEN_SCROLL = "SUDOKU_COMPLETED_SCREEN_SCROLL"
+export const CANCEL_CANCEL_CHALLENGE = "CANCEL_CANCEL_CHALLENGE"
+export const SUDOKU_UNRANKED_LABEL = "SUDOKU_UNRANKED_LABEL"

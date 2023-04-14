@@ -9,6 +9,7 @@ import SudokuLeaderboardAvatar from "./sudoku-leaderboard-avatar";
 import { getDuration } from "./sudoku-utils";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { ISudokuLeaderboardItem } from "./sudoku.interface";
+import { SUDOKU_LEADERBOARD } from "@ids";
 
 interface IProps {
   leaderboard: ISudokuLeaderboardItem[];
@@ -45,7 +46,11 @@ const SudokuLeaderboardBox = ({ leaderboard, onPress }: IProps) => {
           <SudokuLeaderboardAvatar uri={topUser?.avatarRemoteFiles?.pngFull} />
           <View style={styles.contentWrapper}>
             {leaderboard.map((user, index) => (
-              <View key={user.position} style={styles.contentItem}>
+              <View
+                key={user.position}
+                style={styles.contentItem}
+                testID={SUDOKU_LEADERBOARD(user.position, user.name, getDuration(user.adjustedTime))}
+              >
                 <TextTemplate type={index === 0 ? "b2b" : "l1"}>
                   {user.position}. {user.name}
                 </TextTemplate>

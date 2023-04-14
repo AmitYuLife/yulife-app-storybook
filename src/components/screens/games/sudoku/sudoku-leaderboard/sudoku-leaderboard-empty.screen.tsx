@@ -5,6 +5,7 @@ import { Style } from "@styles";
 import { useTranslation } from "@hooks";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
 import LeaderboardEmptyImage from "@components/games/sudoku/leaderboard/LeaderboardEmptyImage";
+import { BUTTON_CLOSE_RIGHT_ID } from "@ids";
 
 interface IProps {
   date: string;
@@ -19,6 +20,7 @@ const SudokuLeaderboardEmptyScreen = ({ date, onClose }: IProps) => {
   return (
     <GenericOverlay
       onClose={onClose}
+      headingProps={{ rightIconTestID: BUTTON_CLOSE_RIGHT_ID }}
       heading={
         <View style={styles.heading}>
           <TextTemplate type="b2b">Daily Yudoku</TextTemplate>

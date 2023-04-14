@@ -10,9 +10,10 @@ interface IProps {
   icon: ReactNode;
   label: string;
   onPress: () => void;
+  testID?: string;
 }
 
-const SudokuActionButton = ({ onPress, icon, label }: IProps) => {
+const SudokuActionButton = ({ onPress, icon, label, testID }: IProps) => {
   return (
     <BoxOption
       onPress={onPress}
@@ -21,6 +22,7 @@ const SudokuActionButton = ({ onPress, icon, label }: IProps) => {
       innerHeight={60}
       wrapperStyle={styles.wrapper}
       innerWrapperStyle={styles.inner}
+      testID={testID}
     >
       <>
         <View style={styles.text}>

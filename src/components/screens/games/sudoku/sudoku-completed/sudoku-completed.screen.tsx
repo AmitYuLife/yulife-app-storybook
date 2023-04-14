@@ -12,6 +12,8 @@ import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { getCurrentWorld, getCurrentYuniverse } from "@utils";
 import colours from "@styles/colours";
 import Animated, { FadeInDown } from "react-native-reanimated";
+import { DETOX_ENABLED } from "@services/socket";
+import { SUDOKU_COMPLETED_SCREEN_SCROLL } from "@ids";
 
 interface IProps {
   onCollect: () => void;
@@ -42,11 +44,20 @@ const SudokuCompletedScreen = ({ onCollect, reward, isLoading, results, stats }:
   ]);
 
   const onAnimationFinish = useCallback(() => {
+    if (DETOX_ENABLED) {
+      return;
+    }
+
     lottie?.current?.play(120, 240);
   }, []);
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContent} bounces={false} contentInsetAdjustmentBehavior="never">
+    <ScrollView
+      contentContainerStyle={styles.scrollContent}
+      bounces={false}
+      contentInsetAdjustmentBehavior="never"
+      testID={SUDOKU_COMPLETED_SCREEN_SCROLL}
+    >
       <View style={styles.wrapper}>
         <View>
           <TextTemplate type="b1b" textAlign="center">

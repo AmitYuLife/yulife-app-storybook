@@ -20,7 +20,7 @@ import { openGoogleFit } from "@services/app-link";
 import { getFitKitConnectCopy } from "@components/screens/onboarding/fitkit-connect/copy";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { buildFitKitPermissions, FitKitAndroidSystemPermission } from "@services/fitkit/fitkit.permissions";
-import { ACTIVITY_FEED, WELLDONE_BANNER } from "@ids";
+import { ACTIVITY_FEED, TAKE_A_CHALLENGE_LEFT_BUTTON, WELLDONE_BANNER } from "@ids";
 import { useSelector } from "react-redux";
 import { getHasNotification } from "@redux/levels/levels.selectors";
 import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-permissions";
@@ -274,6 +274,7 @@ const ActivityFeed = ({
       {!button ? null : (
         <View style={styles.progressWrapper}>
           <Button
+            testID={TAKE_A_CHALLENGE_LEFT_BUTTON}
             onPress={onTakeChallengePress}
             size="Large"
             label={hasNotification ? t["screens.daily.challenge_button.back_to_challenge"] : button?.label}

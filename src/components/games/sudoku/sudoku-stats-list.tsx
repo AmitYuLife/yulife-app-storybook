@@ -10,6 +10,7 @@ import { Style } from "@styles";
 import SudokuHintStatIcon from "@atoms/icon/sudoku-hint-stat-svg";
 import { useTranslation } from "@hooks";
 import { getDuration } from "./sudoku-utils";
+import { SUDOKU_STAT, SUDOKU_UNRANKED_LABEL } from "@ids";
 import colours from "@styles/colours";
 import { ISudokuResults, ISudokuStats } from "./sudoku.interface";
 
@@ -36,7 +37,7 @@ const SudokuStatsList = ({ stats, onCompleteScreen, savedData, results, reward }
   const statItems = useMemo(() => {
     const pauseText = savedData?.startTime ? t["sudoku.stats.paused"] : t["sudoku.stats.notApplicable"];
     const personalBest = results?.adjustedTime < stats?.personalBest ? results.adjustedTime : stats?.personalBest;
-    const isUnranked = stats.leaderboardId && results?.adjustedTime && !results.leaderboardId;
+    const isUnranked = stats?.leaderboardId && results?.adjustedTime && !results.leaderboardId;
 
     return [
       {
@@ -50,7 +51,7 @@ const SudokuStatsList = ({ stats, onCompleteScreen, savedData, results, reward }
         Icon: SudokuTodaysTimeSvg,
         valueColor: isUnranked ? colours.sudoku.gridColor : undefined,
         textRight: isUnranked ? (
-          <View style={styles.unrankedBadge}>
+          <View style={styles.unrankedBadge} testID={SUDOKU_UNRANKED_LABEL}>
             <TextTemplate type="l1b" color={colours.status.er300}>
               {t["sudoku.stats.unranked"]}
             </TextTemplate>
@@ -100,7 +101,7 @@ const SudokuStatsList = ({ stats, onCompleteScreen, savedData, results, reward }
     <>
       {statItems.map(({ label, value, Icon, valueColor, textRight, iconRight }) => {
         return (
-          <View key={label} style={styles.statsItem}>
+          <View key={label} style={styles.statsItem} testID={SUDOKU_STAT(label, value)}>
             <View style={styles.statLabel}>
               <View style={styles.iconWrapper}>
                 <Icon />

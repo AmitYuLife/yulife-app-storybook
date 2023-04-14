@@ -7,6 +7,7 @@ import { memo, useCallback } from "react";
 import { useTranslation } from "@hooks";
 import { TextTemplate } from "@atoms";
 import { BoxOption } from "@components/molecules";
+import { SUDOKU_UNDO_BUTTON } from "@ids";
 
 const NumbersInput = () => {
   const { putNumber, undo, history, selectedCell } = useSudokuContext();
@@ -44,7 +45,7 @@ const NumbersInput = () => {
           innerWrapperStyle={styles.undoButtonInner}
         >
           <>
-            <UndoIcon size={Style.adjust(!SUDOKU_PASSED_NUMBER_CUTOFF ? 20 : 24)} />
+            <UndoIcon size={Style.adjust(!SUDOKU_PASSED_NUMBER_CUTOFF ? 20 : 24)} testID={SUDOKU_UNDO_BUTTON} />
             {SUDOKU_PASSED_NUMBER_CUTOFF ? (
               <View style={styles.undoText}>
                 <TextTemplate type="l2b">{t["sudoku.game.undo"]}</TextTemplate>

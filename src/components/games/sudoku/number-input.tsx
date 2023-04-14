@@ -1,6 +1,7 @@
 import { TextTemplate } from "@atoms";
 import { BoxOption } from "@components/molecules";
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
+import { SUDOKU_NUMBER_INPUT } from "@ids";
 import { Colours, Style } from "@styles";
 import { memo, useCallback, useMemo } from "react";
 import { PixelRatio, StyleSheet, ViewStyle } from "react-native";
@@ -35,7 +36,11 @@ export const NumberInput = ({ value, onPress }: IProps) => {
       onPress={onInput}
       innerWrapperStyle={innerStyle}
     >
-      <TextTemplate color={isComplete ? Colours.products.fib.common : undefined} type="h2">
+      <TextTemplate
+        color={isComplete ? Colours.products.fib.common : undefined}
+        type="h2"
+        testID={SUDOKU_NUMBER_INPUT(value, isComplete)}
+      >
         {value}
       </TextTemplate>
     </BoxOption>

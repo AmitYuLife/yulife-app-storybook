@@ -96,6 +96,7 @@ import {
   CUSTOMER_PLI_3,
   CUSTOMER_PLI_4,
   CUSTOMER_PLI_5,
+  CUSTOMER_86,
   CUSTOMER_FUTURE_PRODUCT,
   CUSTOMER_LEAVER,
 } from "../postgres/customers";
@@ -1823,6 +1824,27 @@ export const USER_FIIT = {
   },
 } as IDatabaseItem;
 
+export const USER_86 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_86.data.customerId,
+    nickname: "Brainy",
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 10,
+      },
+    ],
+    earnRate: 10,
+  },
+} as IDatabaseItem;
+
 export const USER_FUTURE_PRODUCT = {
   type: "mongo",
   modelName: "users",
@@ -1843,6 +1865,7 @@ export const USER_FUTURE_PRODUCT = {
     earnRate: 10,
   },
 } as IDatabaseItem;
+
 
 export const USER_LEAVER = {
   type: "mongo",
