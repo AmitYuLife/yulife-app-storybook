@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ComponentProps, ReactNode } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Style } from "@styles";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
@@ -7,16 +7,17 @@ interface IGenericOverlay {
   onClose: () => void;
   children: ReactNode;
   heading?: ReactNode;
+  headingProps?: ComponentProps<typeof GenericHeadingAbsolute>;
 }
 
 const GenericOverlay = (props: IGenericOverlay) => {
-  const { onClose, children, heading = "" } = props;
+  const { onClose, children, heading = "", headingProps } = props;
 
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
       <View style={styles.innerWrapper}>{children}</View>
-      <GenericHeadingAbsolute heading={heading} onRightIconPress={onClose} />
+      <GenericHeadingAbsolute heading={heading} onRightIconPress={onClose} {...headingProps} />
     </View>
   );
 };

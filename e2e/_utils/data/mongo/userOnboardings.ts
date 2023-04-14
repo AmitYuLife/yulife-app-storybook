@@ -102,6 +102,7 @@ import {
   USER_PLI_5,
   USER_PLI_3,
   USER_PLI_4,
+  USER_86,
   USER_FUTURE_PRODUCT,
   USER_LEAVER,
 } from "./users";
@@ -1631,6 +1632,23 @@ export const USER_ONBOARDING_PLI_5 = {
     },
   },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_86 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_86.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
 
 export const USER_ONBOARDING_LEAVER = {
   type,

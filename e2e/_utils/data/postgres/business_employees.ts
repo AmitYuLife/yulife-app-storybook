@@ -1,11 +1,6 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_2, BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5, BUSINESS_ACCOUNT_6, BUSINESS_ACCOUNT_7 } from './business';
-import {
-    CUSTOMER_1, CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_10, CUSTOMER_11, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_15, CUSTOMER_16,
-    CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_22, CUSTOMER_23, CUSTOMER_ALPHA, CUSTOMER_24, CUSTOMER_25, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, 
-    CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_38, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_43, CUSTOMER_PLI_2, CUSTOMER_47, 
-    CUSTOMER_MEDITOPIA_1, CUSTOMER_MEDITOPIA_2, CUSTOMER_MEDITOPIA_3, CUSTOMER_48, CUSTOMER_49, CUSTOMER_50, CUSTOMER_51, CUSTOMER_53, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_60, CUSTOMER_61, CUSTOMER_63, CUSTOMER_64, CUSTOMER_66, CUSTOMER_65, CUSTOMER_67, CUSTOMER_68, CUSTOMER_71, CUSTOMER_72, CUSTOMER_73, CUSTOMER_74, CUSTOMER_75, CUSTOMER_76, CUSTOMER_77, CUSTOMER_84, CUSTOMER_FIIT, CUSTOMER_LEAVER, CUSTOMER_FUTURE_PRODUCT
-} from './customers';
+import * as customer from './customers';
 import moment = require('moment');
 
 
@@ -17,7 +12,7 @@ export const BUSINESS_EMPLOYEE_1 = {
     modelName: "business_employee",
     data: {
         "business_account_id": BUSINESS_ACCOUNT_1.data.business_account_id,
-        "customer_id": CUSTOMER_1.data.customerId,
+        "customer_id": customer.CUSTOMER_1.data.customerId,
         "employment_start_date": "2019-12-30T00:00:00Z",
         "employment_leave_date": "2999-12-31T00:00:00Z",
     },
@@ -28,7 +23,7 @@ export const BUSINESS_EMPLOYEE_2 = {
     modelName: "business_employee",
     data: {
         "business_account_id": BUSINESS_ACCOUNT_1.data.business_account_id,
-        "customer_id": CUSTOMER_2.data.customerId,
+        "customer_id": customer.CUSTOMER_2.data.customerId,
         "employment_start_date": "2019-12-30T00:00:00Z",
         "employment_leave_date": "2999-12-31T00:00:00Z",
     },
@@ -39,7 +34,7 @@ export const BUSINESS_EMPLOYEE_3 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_3.data.customerId,
+        customer_id: customer.CUSTOMER_3.data.customerId,
         employment_start_date: moment().subtract(6, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -50,7 +45,7 @@ export const BUSINESS_EMPLOYEE_4 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_4.data.customerId,
+        customer_id: customer.CUSTOMER_4.data.customerId,
         employment_start_date: moment().subtract(4, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -61,7 +56,7 @@ export const BUSINESS_EMPLOYEE_5 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_5.data.customerId,
+        customer_id: customer.CUSTOMER_5.data.customerId,
         employment_start_date: moment().toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -72,7 +67,7 @@ export const BUSINESS_EMPLOYEE_6 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_6.data.customerId,
+        customer_id: customer.CUSTOMER_6.data.customerId,
         employment_start_date: moment().subtract(7, "days").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -83,7 +78,7 @@ export const BUSINESS_EMPLOYEE_7 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_7.data.customerId,
+        customer_id: customer.CUSTOMER_7.data.customerId,
         employment_start_date: moment().subtract(26, "days").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -95,7 +90,7 @@ export const BUSINESS_EMPLOYEE_8 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_8.data.customerId,
+        customer_id: customer.CUSTOMER_8.data.customerId,
         employment_start_date: moment().subtract(26, "days").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -106,7 +101,7 @@ export const BUSINESS_EMPLOYEE_9 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_9.data.customerId,
+        customer_id: customer.CUSTOMER_9.data.customerId,
         employment_start_date: moment().subtract(40, "days").toDate(),
         employment_leave_date: moment().add(5, "years").toDate()
     }
@@ -117,7 +112,7 @@ export const BUSINESS_EMPLOYEE_10 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_10.data.customerId,
+        customer_id: customer.CUSTOMER_10.data.customerId,
         employment_start_date: moment().subtract(55, "days").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -128,7 +123,7 @@ export const BUSINESS_EMPLOYEE_11 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_11.data.customerId,
+        customer_id: customer.CUSTOMER_11.data.customerId,
         employment_start_date: moment().subtract(300, "days").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -139,7 +134,7 @@ export const BUSINESS_EMPLOYEE_12 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_12.data.customerId,
+        customer_id: customer.CUSTOMER_12.data.customerId,
         employment_start_date: moment().subtract(6, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -150,7 +145,7 @@ export const BUSINESS_EMPLOYEE_13 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_13.data.customerId,
+        customer_id: customer.CUSTOMER_13.data.customerId,
         employment_start_date: moment().subtract(6, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -161,7 +156,7 @@ export const BUSINESS_EMPLOYEE_14 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_14.data.customerId,
+        customer_id: customer.CUSTOMER_14.data.customerId,
         employment_start_date: moment().subtract(6, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -172,7 +167,7 @@ export const BUSINESS_EMPLOYEE_15 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_15.data.customerId,
+        customer_id: customer.CUSTOMER_15.data.customerId,
         employment_start_date: moment().subtract(6, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -183,7 +178,7 @@ export const BUSINESS_EMPLOYEE_16 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_16.data.customerId,
+        customer_id: customer.CUSTOMER_16.data.customerId,
         employment_start_date: moment().subtract(6, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -194,7 +189,7 @@ export const BUSINESS_EMPLOYEE_17 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_17.data.customerId,
+        customer_id: customer.CUSTOMER_17.data.customerId,
         employment_start_date: moment().subtract(3, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -205,7 +200,7 @@ export const BUSINESS_EMPLOYEE_18 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_18.data.customerId,
+        customer_id: customer.CUSTOMER_18.data.customerId,
         employment_start_date: moment().subtract(13, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -216,7 +211,7 @@ export const BUSINESS_EMPLOYEE_19 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_19.data.customerId,
+        customer_id: customer.CUSTOMER_19.data.customerId,
         employment_start_date: moment().subtract(13, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -227,7 +222,7 @@ export const BUSINESS_EMPLOYEE_20 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_20.data.customerId,
+        customer_id: customer.CUSTOMER_20.data.customerId,
         employment_start_date: moment().subtract(13, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -238,7 +233,7 @@ export const BUSINESS_EMPLOYEE_21 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_21.data.customerId,
+        customer_id: customer.CUSTOMER_21.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -249,7 +244,7 @@ export const BUSINESS_EMPLOYEE_22 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_22.data.customerId,
+        customer_id: customer.CUSTOMER_22.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -260,7 +255,7 @@ export const BUSINESS_EMPLOYEE_23 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_23.data.customerId,
+        customer_id: customer.CUSTOMER_23.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -271,7 +266,7 @@ export const BUSINESS_EMPLOYEE_ALPHA = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_ALPHA.data.customerId,
+        customer_id: customer.CUSTOMER_ALPHA.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate(),
         // customer_membership: "Yulife Alpha",
@@ -283,7 +278,7 @@ export const BUSINESS_EMPLOYEE_24 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_24.data.customerId,
+        customer_id: customer.CUSTOMER_24.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -294,7 +289,7 @@ export const BUSINESS_EMPLOYEE_25 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_25.data.customerId,
+        customer_id: customer.CUSTOMER_25.data.customerId,
         employment_start_date: moment().subtract(10, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -305,7 +300,7 @@ export const BUSINESS_EMPLOYEE_26 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_26.data.customerId,
+        customer_id: customer.CUSTOMER_26.data.customerId,
         employment_start_date: moment().subtract(10, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -316,7 +311,7 @@ export const BUSINESS_EMPLOYEE_27 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_27.data.customerId,
+        customer_id: customer.CUSTOMER_27.data.customerId,
         employment_start_date: moment().subtract(10, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -327,7 +322,7 @@ export const BUSINESS_EMPLOYEE_28 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_28.data.customerId,
+        customer_id: customer.CUSTOMER_28.data.customerId,
         employment_start_date: moment().subtract(10, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -338,7 +333,7 @@ export const BUSINESS_EMPLOYEE_29 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_29.data.customerId,
+        customer_id: customer.CUSTOMER_29.data.customerId,
         employment_start_date: moment().subtract(10, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -349,7 +344,7 @@ export const BUSINESS_EMPLOYEE_30 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_30.data.customerId,
+        customer_id: customer.CUSTOMER_30.data.customerId,
         employment_start_date: moment().subtract(10, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -360,7 +355,7 @@ export const BUSINESS_EMPLOYEE_31 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_3.data.business_account_id,
-        customer_id: CUSTOMER_31.data.customerId,
+        customer_id: customer.CUSTOMER_31.data.customerId,
         employment_start_date: moment().subtract(3, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -371,7 +366,7 @@ export const BUSINESS_EMPLOYEE_32 = {
     modelName,
     data:{
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
-        customer_id: CUSTOMER_32.data.customerId,
+        customer_id: customer.CUSTOMER_32.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -382,7 +377,7 @@ export const BUSINESS_EMPLOYEE_33 = {
     modelName,
     data:{
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
-        customer_id: CUSTOMER_33.data.customerId,
+        customer_id: customer.CUSTOMER_33.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -393,7 +388,7 @@ export const BUSINESS_EMPLOYEE_34 = {
     modelName,
     data:{
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
-        customer_id: CUSTOMER_34.data.customerId,
+        customer_id: customer.CUSTOMER_34.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -404,7 +399,7 @@ export const BUSINESS_EMPLOYEE_35 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
-        customer_id: CUSTOMER_35.data.customerId,
+        customer_id: customer.CUSTOMER_35.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -415,7 +410,7 @@ export const BUSINESS_EMPLOYEE_36 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
-        customer_id: CUSTOMER_36.data.customerId,
+        customer_id: customer.CUSTOMER_36.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -426,7 +421,7 @@ export const BUSINESS_EMPLOYEE_37 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
-        customer_id: CUSTOMER_37.data.customerId,
+        customer_id: customer.CUSTOMER_37.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -437,7 +432,7 @@ export const BUSINESS_EMPLOYEE_38 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
-        customer_id: CUSTOMER_38.data.customerId,
+        customer_id: customer.CUSTOMER_38.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -448,7 +443,7 @@ export const BUSINESS_EMPLOYEE_39 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
-        customer_id: CUSTOMER_39.data.customerId,
+        customer_id: customer.CUSTOMER_39.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -459,7 +454,7 @@ export const BUSINESS_EMPLOYEE_40 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_40.data.customerId,
+        customer_id: customer.CUSTOMER_40.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -470,7 +465,7 @@ export const BUSINESS_EMPLOYEE_41 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_41.data.customerId,
+        customer_id: customer.CUSTOMER_41.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -481,7 +476,7 @@ export const BUSINESS_EMPLOYEE_MEDITOPIA_1 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_MEDITOPIA_1.data.customerId,
+        customer_id: customer.CUSTOMER_MEDITOPIA_1.data.customerId,
         employment_start_date: moment().subtract(26, "days").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -492,7 +487,7 @@ export const BUSINESS_EMPLOYEE_MEDITOPIA_2 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_MEDITOPIA_2.data.customerId,
+        customer_id: customer.CUSTOMER_MEDITOPIA_2.data.customerId,
         employment_start_date: moment().subtract(26, "days").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -503,7 +498,7 @@ export const BUSINESS_EMPLOYEE_MEDITOPIA_3 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_MEDITOPIA_3.data.customerId,
+        customer_id: customer.CUSTOMER_MEDITOPIA_3.data.customerId,
         employment_start_date: moment().subtract(26, "days").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -514,7 +509,7 @@ export const BUSINESS_EMPLOYEE_42 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_42.data.customerId,
+        customer_id: customer.CUSTOMER_42.data.customerId,
         employment_start_date: moment().subtract(26, "days").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -525,7 +520,7 @@ export const BUSINESS_EMPLOYEE_43 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_47.data.customerId,
+        customer_id: customer.CUSTOMER_47.data.customerId,
         employment_start_date: moment().subtract(12, "months").toDate(),
         employment_leave_date: moment().add(11, "years").toDate()
     }
@@ -536,7 +531,7 @@ export const BUSINESS_EMPLOYEE_PLI_2 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
-        customer_id: CUSTOMER_PLI_2.data.customerId,
+        customer_id: customer.CUSTOMER_PLI_2.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -547,7 +542,7 @@ export const  BUSINESS_EMPLOYEE_46 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_6.data.business_account_id,
-        customer_id: CUSTOMER_43.data.customerId,
+        customer_id: customer.CUSTOMER_43.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -558,7 +553,7 @@ export const  BUSINESS_EMPLOYEE_48 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_6.data.business_account_id,
-        customer_id: CUSTOMER_48.data.customerId,
+        customer_id: customer.CUSTOMER_48.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -569,7 +564,7 @@ export const  BUSINESS_EMPLOYEE_49 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_6.data.business_account_id,
-        customer_id: CUSTOMER_49.data.customerId,
+        customer_id: customer.CUSTOMER_49.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -580,7 +575,7 @@ export const BUSINESS_EMPLOYEE_50 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_50.data.customerId,
+        customer_id: customer.CUSTOMER_50.data.customerId,
         employment_start_date: moment().subtract(12, "months").toDate(),
         employment_leave_date: moment().add(11, "years").toDate()
     }
@@ -591,7 +586,7 @@ export const  BUSINESS_EMPLOYEE_51 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_6.data.business_account_id,
-        customer_id: CUSTOMER_51.data.customerId,
+        customer_id: customer.CUSTOMER_51.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -602,7 +597,7 @@ export const  BUSINESS_EMPLOYEE_53 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_6.data.business_account_id,
-        customer_id: CUSTOMER_53.data.customerId,
+        customer_id: customer.CUSTOMER_53.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -613,7 +608,7 @@ export const  BUSINESS_EMPLOYEE_52 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_7.data.business_account_id,
-        customer_id: CUSTOMER_52.data.customerId,
+        customer_id: customer.CUSTOMER_52.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -624,7 +619,7 @@ export const  BUSINESS_EMPLOYEE_54 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_7.data.business_account_id,
-        customer_id: CUSTOMER_54.data.customerId,
+        customer_id: customer.CUSTOMER_54.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -635,7 +630,7 @@ export const  BUSINESS_EMPLOYEE_55 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_7.data.business_account_id,
-        customer_id: CUSTOMER_55.data.customerId,
+        customer_id: customer.CUSTOMER_55.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -646,7 +641,7 @@ export const  BUSINESS_EMPLOYEE_56 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_7.data.business_account_id,
-        customer_id: CUSTOMER_56.data.customerId,
+        customer_id: customer.CUSTOMER_56.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -657,7 +652,7 @@ export const  BUSINESS_EMPLOYEE_57 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_7.data.business_account_id,
-        customer_id: CUSTOMER_57.data.customerId,
+        customer_id: customer.CUSTOMER_57.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -668,7 +663,7 @@ export const  BUSINESS_EMPLOYEE_58 = {
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_7.data.business_account_id,
-        customer_id: CUSTOMER_58.data.customerId,
+        customer_id: customer.CUSTOMER_58.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -679,7 +674,7 @@ export const BUSINESS_EMPLOYEE_60 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_60.data.customerId,
+        customer_id: customer.CUSTOMER_60.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -690,7 +685,7 @@ export const BUSINESS_EMPLOYEE_61 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_61.data.customerId,
+        customer_id: customer.CUSTOMER_61.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -701,7 +696,7 @@ export const BUSINESS_EMPLOYEE_63 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_63.data.customerId,
+        customer_id: customer.CUSTOMER_63.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -712,7 +707,7 @@ export const BUSINESS_EMPLOYEE_64 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_64.data.customerId,
+        customer_id: customer.CUSTOMER_64.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -723,7 +718,7 @@ export const BUSINESS_EMPLOYEE_65 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_65.data.customerId,
+        customer_id: customer.CUSTOMER_65.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -734,7 +729,7 @@ export const BUSINESS_EMPLOYEE_66 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_66.data.customerId,
+        customer_id: customer.CUSTOMER_66.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -745,7 +740,7 @@ export const BUSINESS_EMPLOYEE_67 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_67.data.customerId,
+        customer_id: customer.CUSTOMER_67.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -756,7 +751,7 @@ export const BUSINESS_EMPLOYEE_68 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_68.data.customerId,
+        customer_id: customer.CUSTOMER_68.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -767,7 +762,7 @@ export const BUSINESS_EMPLOYEE_71 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_71.data.customerId,
+        customer_id: customer.CUSTOMER_71.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -779,7 +774,7 @@ export const BUSINESS_EMPLOYEE_72 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: CUSTOMER_72.data.customerId,
+        customer_id: customer.CUSTOMER_72.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -790,7 +785,7 @@ export const BUSINESS_EMPLOYEE_73 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_73.data.customerId,
+        customer_id: customer.CUSTOMER_73.data.customerId,
         employment_start_date: moment().subtract(3, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -801,7 +796,7 @@ export const BUSINESS_EMPLOYEE_74 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_3.data.business_account_id,
-        customer_id: CUSTOMER_74.data.customerId,
+        customer_id: customer.CUSTOMER_74.data.customerId,
         employment_start_date: moment().subtract(3, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -812,7 +807,7 @@ export const BUSINESS_EMPLOYEE_75 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_75.data.customerId,
+        customer_id: customer.CUSTOMER_75.data.customerId,
         employment_start_date: moment().subtract(13, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -823,7 +818,7 @@ export const BUSINESS_EMPLOYEE_76 = {
     modelName: "business_employee",
     data: {
         "business_account_id": BUSINESS_ACCOUNT_1.data.business_account_id,
-        "customer_id": CUSTOMER_76.data.customerId,
+        "customer_id": customer.CUSTOMER_76.data.customerId,
         "employment_start_date": "2019-12-30T00:00:00Z",
         "employment_leave_date": "2999-12-31T00:00:00Z",
     },
@@ -834,7 +829,7 @@ export const BUSINESS_EMPLOYEE_77 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_77.data.customerId,
+        customer_id: customer.CUSTOMER_77.data.customerId,
         employment_start_date: moment().subtract(3, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -845,7 +840,7 @@ export const BUSINESS_EMPLOYEE_84 = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_84.data.customerId,
+        customer_id: customer.CUSTOMER_84.data.customerId,
         employment_start_date: moment().subtract(3, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -856,11 +851,22 @@ export const BUSINESS_EMPLOYEE_FIIT = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: CUSTOMER_FIIT.data.customerId,
+        customer_id: customer.CUSTOMER_FIIT.data.customerId,
         employment_start_date: moment().subtract(3, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem;
+    
+export const BUSINESS_EMPLOYEE_86 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
+        customer_id: customer.CUSTOMER_86.data.customerId,
+        employment_start_date: moment().subtract(8, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
     
     
 export const BUSINESS_EMPLOYEE_FUTURE_PRODUCT = {
@@ -868,7 +874,7 @@ export const BUSINESS_EMPLOYEE_FUTURE_PRODUCT = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_3.data.business_account_id,
-        customer_id: CUSTOMER_FUTURE_PRODUCT.data.customerId,
+        customer_id: customer.CUSTOMER_FUTURE_PRODUCT.data.customerId,
         employment_start_date: moment().subtract(3, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
@@ -880,7 +886,7 @@ export const BUSINESS_EMPLOYEE_LEAVER = {
     modelName: "business_employee",
     data: {
         business_account_id: BUSINESS_ACCOUNT_3.data.business_account_id,
-        customer_id: CUSTOMER_LEAVER.data.customerId,
+        customer_id: customer.CUSTOMER_LEAVER.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().subtract(10, "weeks").toDate()
     }

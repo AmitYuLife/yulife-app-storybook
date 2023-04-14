@@ -1,93 +1,4 @@
-import {
-  CUSTOMER_2,
-  CUSTOMER_5,
-  CUSTOMER_6,
-  CUSTOMER_7,
-  CUSTOMER_8,
-  CUSTOMER_9,
-  CUSTOMER_14,
-  CUSTOMER_3,
-  CUSTOMER_15,
-  CUSTOMER_16,
-  CUSTOMER_17,
-  CUSTOMER_20,
-  CUSTOMER_23,
-  CUSTOMER_10,
-  CUSTOMER_12,
-  CUSTOMER_13,
-  CUSTOMER_18,
-  CUSTOMER_22,
-  CUSTOMER_24,
-  CUSTOMER_19,
-  CUSTOMER_26,
-  CUSTOMER_27,
-  CUSTOMER_28,
-  CUSTOMER_29,
-  CUSTOMER_30,
-  CUSTOMER_31,
-  CUSTOMER_32,
-  CUSTOMER_33,
-  CUSTOMER_ALPHA,
-  CUSTOMER_34,
-  CUSTOMER_35,
-  CUSTOMER_36,
-  CUSTOMER_37,
-  CUSTOMER_39,
-  CUSTOMER_40,
-  CUSTOMER_41,
-  CUSTOMER_42,
-  CUSTOMER_43,
-  CUSTOMER_44,
-  CUSTOMER_45,
-  CUSTOMER_46,
-  CUSTOMER_48,
-  CUSTOMER_49,
-  CUSTOMER_50,
-  CUSTOMER_51,
-  CUSTOMER_53,
-  CUSTOMER_MEDITOPIA_1,
-  CUSTOMER_MEDITOPIA_2,
-  CUSTOMER_MEDITOPIA_3,
-  CUSTOMER_PLI_2,
-  CUSTOMER_PLI_3,
-  CUSTOMER_PLI_4,
-  CUSTOMER_PLI_5,
-  CUSTOMER_PLI_6,
-  CUSTOMER_PLI_7,
-  CUSTOMER_PLI_9,
-  CUSTOMER_PLI_10,
-  CUSTOMER_DENTAL_1,
-  CUSTOMER_DENTAL_2,
-  CUSTOMER_47,
-  CUSTOMER_52,
-  CUSTOMER_60,
-  CUSTOMER_61,
-  CUSTOMER_63,
-  CUSTOMER_64,
-  CUSTOMER_66,
-  CUSTOMER_65,
-  CUSTOMER_67,
-  CUSTOMER_68,
-  CUSTOMER_69,
-  CUSTOMER_70,
-  CUSTOMER_71,
-  CUSTOMER_72,
-  CUSTOMER_73,
-  CUSTOMER_74,
-  CUSTOMER_75,
-  CUSTOMER_76,
-  CUSTOMER_77,
-  CUSTOMER_78,
-  CUSTOMER_79,
-  CUSTOMER_80,
-  CUSTOMER_81,
-  CUSTOMER_83,
-  CUSTOMER_84,
-  CUSTOMER_85,
-  CUSTOMER_FIIT,
-  CUSTOMER_FUTURE_PRODUCT,
-  CUSTOMER_LEAVER,
-} from "../postgres/customers";
+import * as customer from "../postgres/customers";
 import {
   allTogglesTrue,
   allTogglesTrueFor_PLI,
@@ -106,7 +17,7 @@ export const CUSTOMER_2_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_2.data.customerId,
+    userId: customer.CUSTOMER_2.data.customerId,
     features: {
       showStats: true,
       statsShowCoinGeneralTotalYearned: true,
@@ -143,7 +54,7 @@ export const CUSTOMER_3_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_3.data.customerId,
+    userId: customer.CUSTOMER_3.data.customerId,
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
@@ -153,7 +64,7 @@ export const CUSTOMER_5_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_5.data.customerId,
+    userId: customer.CUSTOMER_5.data.customerId,
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
@@ -163,7 +74,7 @@ export const CUSTOMER_6_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_6.data.customerId,
+    userId: customer.CUSTOMER_6.data.customerId,
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
@@ -173,7 +84,7 @@ export const CUSTOMER_7_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_7.data.customerId,
+    userId: customer.CUSTOMER_7.data.customerId,
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
@@ -183,7 +94,7 @@ export const CUSTOMER_8_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_8.data.customerId,
+    userId: customer.CUSTOMER_8.data.customerId,
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
@@ -193,7 +104,7 @@ export const CUSTOMER_9_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_9.data.customerId,
+    userId: customer.CUSTOMER_9.data.customerId,
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
@@ -203,7 +114,7 @@ export const CUSTOMER_10_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_10.data.customerId,
+    userId: customer.CUSTOMER_10.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       hideSmartHealthScreen: true,
@@ -217,7 +128,7 @@ export const CUSTOMER_12_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_12.data.customerId,
+    userId: customer.CUSTOMER_12.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       hideSmartHealthScreen: true,
@@ -232,7 +143,7 @@ export const CUSTOMER_13_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_13.data.customerId,
+    userId: customer.CUSTOMER_13.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       hideSmartHealthScreen: true,
@@ -246,7 +157,7 @@ export const CUSTOMER_14_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_14.data.customerId,
+    userId: customer.CUSTOMER_14.data.customerId,
     features: {
       showNotifications: true,
       showStreaks: true,
@@ -289,7 +200,7 @@ export const CUSTOMER_15_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_15.data.customerId,
+    userId: customer.CUSTOMER_15.data.customerId,
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
@@ -299,7 +210,7 @@ export const CUSTOMER_16_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_16.data.customerId,
+    userId: customer.CUSTOMER_16.data.customerId,
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
@@ -309,7 +220,7 @@ export const CUSTOMER_17_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_17.data.customerId,
+    userId: customer.CUSTOMER_17.data.customerId,
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
@@ -319,7 +230,7 @@ export const CUSTOMER_18_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_18.data.customerId,
+    userId: customer.CUSTOMER_18.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       hideSmartHealthScreen: false,
@@ -334,7 +245,7 @@ export const CUSTOMER_19_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_19.data.customerId,
+    userId: customer.CUSTOMER_19.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showDuels: true,
@@ -347,7 +258,7 @@ export const CUSTOMER_20_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_20.data.customerId,
+    userId: customer.CUSTOMER_20.data.customerId,
     features: {
       showNotifications: true,
       showStreaks: true,
@@ -396,7 +307,7 @@ export const CUSTOMER_22_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_22.data.customerId,
+    userId: customer.CUSTOMER_22.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
     },
@@ -408,7 +319,7 @@ export const CUSTOMER_23_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_23.data.customerId,
+    userId: customer.CUSTOMER_23.data.customerId,
     features: {
       showNotifications: true,
       showStreaks: true,
@@ -453,7 +364,7 @@ export const CUSTOMER_24_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_24.data.customerId,
+    userId: customer.CUSTOMER_24.data.customerId,
     features: {
       showNotifications: true,
       showStreaks: true,
@@ -499,7 +410,7 @@ export const CUSTOMER_26_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_26.data.customerId,
+    userId: customer.CUSTOMER_26.data.customerId,
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
@@ -509,7 +420,7 @@ export const CUSTOMER_27_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_27.data.customerId,
+    userId: customer.CUSTOMER_27.data.customerId,
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
@@ -519,7 +430,7 @@ export const CUSTOMER_28_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_28.data.customerId,
+    userId: customer.CUSTOMER_28.data.customerId,
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
@@ -529,7 +440,7 @@ export const CUSTOMER_29_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_29.data.customerId,
+    userId: customer.CUSTOMER_29.data.customerId,
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
@@ -539,7 +450,7 @@ export const CUSTOMER_30_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_30.data.customerId,
+    userId: customer.CUSTOMER_30.data.customerId,
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
@@ -549,7 +460,7 @@ export const CUSTOMER_31_TOGGLES = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_31.data.customerId,
+    userId: customer.CUSTOMER_31.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       yuScreenV3: true,
@@ -562,7 +473,7 @@ export const CUSTOMER_32_TOGGLES = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_32.data.customerId,
+    userId: customer.CUSTOMER_32.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       yuScreenV3: true,
@@ -577,7 +488,7 @@ export const CUSTOMER_33_TOGGLES = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_33.data.customerId,
+    userId: customer.CUSTOMER_33.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       yuScreenV3: true,
@@ -592,7 +503,7 @@ export const CUSTOMER_34_TOGGLES = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_34.data.customerId,
+    userId: customer.CUSTOMER_34.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       yuScreenV3: true,
@@ -601,6 +512,7 @@ export const CUSTOMER_34_TOGGLES = {
       showGoals: true,
       useCoreChallengesService: true,
       useActiveChallengesService: true,
+      showBrainGameSudoku: true
     },
   },
 } as IDatabaseItem;
@@ -610,7 +522,7 @@ export const CUSTOMER_ALPHA_TOGGLES = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_ALPHA.data.customerId,
+    userId: customer.CUSTOMER_ALPHA.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       yuScreenV3: true,
@@ -624,7 +536,7 @@ export const CUSTOMER_35_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_35.data.customerId,
+    userId: customer.CUSTOMER_35.data.customerId,
     features: {
       showNotifications: true,
       showStreaks: true,
@@ -670,7 +582,7 @@ export const CUSTOMER_36_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_36.data.customerId,
+    userId: customer.CUSTOMER_36.data.customerId,
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
@@ -680,7 +592,7 @@ export const CUSTOMER_37_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_37.data.customerId,
+    userId: customer.CUSTOMER_37.data.customerId,
     features: {
       showNotifications: true,
       showStreaks: true,
@@ -743,7 +655,7 @@ export const CUSTOMER_39_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_39.data.customerId,
+    userId: customer.CUSTOMER_39.data.customerId,
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
@@ -753,7 +665,7 @@ export const CUSTOMER_40_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_40.data.customerId,
+    userId: customer.CUSTOMER_40.data.customerId,
     features: {
       showNotifications: true,
       showStreaks: true,
@@ -797,7 +709,7 @@ export const CUSTOMER_41_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_41.data.customerId,
+    userId: customer.CUSTOMER_41.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
     },
@@ -809,7 +721,7 @@ export const CUSTOMER_MEDITOPIA_1_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_MEDITOPIA_1.data.customerId,
+    userId: customer.CUSTOMER_MEDITOPIA_1.data.customerId,
     features: mediaContentToggle.data.features,
   },
 } as IDatabaseItem;
@@ -819,7 +731,7 @@ export const CUSTOMER_MEDITOPIA_2_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_MEDITOPIA_2.data.customerId,
+    userId: customer.CUSTOMER_MEDITOPIA_2.data.customerId,
     features: mediaContentToggle.data.features,
   },
 } as IDatabaseItem;
@@ -829,7 +741,7 @@ export const CUSTOMER_MEDITOPIA_3_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_MEDITOPIA_3.data.customerId,
+    userId: customer.CUSTOMER_MEDITOPIA_3.data.customerId,
     features: mediaContentToggle.data.features,
   },
 } as IDatabaseItem;
@@ -839,7 +751,7 @@ export const CUSTOMER_42_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_42.data.customerId,
+    userId: customer.CUSTOMER_42.data.customerId,
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
@@ -849,7 +761,7 @@ export const CUSTOMER_43_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_43.data.customerId,
+    userId: customer.CUSTOMER_43.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       yuScreenV4: true,
@@ -864,7 +776,7 @@ export const CUSTOMER_44_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_44.data.customerId,
+    userId: customer.CUSTOMER_44.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       yuScreenV4: true,
@@ -879,7 +791,7 @@ export const CUSTOMER_45_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_45.data.customerId,
+    userId: customer.CUSTOMER_45.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       yuScreenV4: true,
@@ -894,7 +806,7 @@ export const CUSTOMER_46_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_46.data.customerId,
+    userId: customer.CUSTOMER_46.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       yuScreenV4: true,
@@ -909,7 +821,7 @@ export const CUSTOMER_48_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_48.data.customerId,
+    userId: customer.CUSTOMER_48.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       yuScreenV4: true,
@@ -924,7 +836,7 @@ export const CUSTOMER_49_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_49.data.customerId,
+    userId: customer.CUSTOMER_49.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       yuScreenV4: true,
@@ -938,7 +850,7 @@ export const CUSTOMER_51_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_51.data.customerId,
+    userId: customer.CUSTOMER_51.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       yuScreenV4: true,
@@ -952,7 +864,7 @@ export const CUSTOMER_53_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_53.data.customerId,
+    userId: customer.CUSTOMER_53.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       yuScreenV4: true,
@@ -965,7 +877,7 @@ export const CUSTOMER_PLI_2_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_PLI_2.data.customerId,
+    userId: customer.CUSTOMER_PLI_2.data.customerId,
     features: allTogglesTrueFor_PLI.data.features,
   },
 } as IDatabaseItem;
@@ -975,7 +887,7 @@ export const CUSTOMER_PLI_3_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_PLI_3.data.customerId,
+    userId: customer.CUSTOMER_PLI_3.data.customerId,
     features: allTogglesTrueFor_PLI.data.features,
   },
 } as IDatabaseItem;
@@ -985,7 +897,7 @@ export const CUSTOMER_PLI_4_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_PLI_4.data.customerId,
+    userId: customer.CUSTOMER_PLI_4.data.customerId,
     features: allTogglesTrueFor_PLI.data.features,
   },
 } as IDatabaseItem;
@@ -995,7 +907,7 @@ export const CUSTOMER_PLI_5_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_PLI_5.data.customerId,
+    userId: customer.CUSTOMER_PLI_5.data.customerId,
     features: allTogglesTrueFor_PLI.data.features,
   },
 } as IDatabaseItem;
@@ -1005,7 +917,7 @@ export const CUSTOMER_PLI_6_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_PLI_6.data.customerId,
+    userId: customer.CUSTOMER_PLI_6.data.customerId,
     features: allTogglesTrueFor_PLI_V4.data.features,
   },
 } as IDatabaseItem;
@@ -1015,7 +927,7 @@ export const CUSTOMER_PLI_7_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_PLI_7.data.customerId,
+    userId: customer.CUSTOMER_PLI_7.data.customerId,
     features: allTogglesTrueFor_PLI_V4.data.features,
   },
 } as IDatabaseItem;
@@ -1025,7 +937,7 @@ export const CUSTOMER_PLI_9_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_PLI_9.data.customerId,
+    userId: customer.CUSTOMER_PLI_9.data.customerId,
     features: allTogglesTrueFor_PLI_V4.data.features,
   },
 } as IDatabaseItem;
@@ -1035,7 +947,7 @@ export const CUSTOMER_PLI_10_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_PLI_10.data.customerId,
+    userId: customer.CUSTOMER_PLI_10.data.customerId,
     features: allTogglesTrueFor_PLI_V4.data.features,
   },
 } as IDatabaseItem;
@@ -1045,7 +957,7 @@ export const CUSTOMER_47_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_47.data.customerId,
+    userId: customer.CUSTOMER_47.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showDuels: true,
@@ -1060,7 +972,7 @@ export const CUSTOMER_50_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_50.data.customerId,
+    userId: customer.CUSTOMER_50.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showDuels: true,
@@ -1075,7 +987,7 @@ export const CUSTOMER_52_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_52.data.customerId,
+    userId: customer.CUSTOMER_52.data.customerId,
     features: {
       showStats: true,
       statsShowCoinGeneralTotalYearned: true,
@@ -1107,12 +1019,25 @@ export const CUSTOMER_52_TOGGLES = {
   },
 } as IDatabaseItem;
 
+export const CUSTOMER_58_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_58.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      showBrainGameSudoku: true
+    },
+  },
+} as IDatabaseItem;
+
 export const CUSTOMER_60_TOGGLES = {
   type: "mongo",
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_60.data.customerId,
+    userId: customer.CUSTOMER_60.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
     },
@@ -1124,7 +1049,7 @@ export const CUSTOMER_61_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_61.data.customerId,
+    userId: customer.CUSTOMER_61.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
     },
@@ -1136,7 +1061,7 @@ export const CUSTOMER_63_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_63.data.customerId,
+    userId: customer.CUSTOMER_63.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
     },
@@ -1148,7 +1073,7 @@ export const CUSTOMER_64_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_64.data.customerId,
+    userId: customer.CUSTOMER_64.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
@@ -1161,7 +1086,7 @@ export const CUSTOMER_65_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_65.data.customerId,
+    userId: customer.CUSTOMER_65.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showTodayEarningsScreen: true,
@@ -1178,7 +1103,7 @@ export const CUSTOMER_66_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_66.data.customerId,
+    userId: customer.CUSTOMER_66.data.customerId,
     features: {
       showNotifications: true,
       showStreaks: true,
@@ -1223,7 +1148,7 @@ export const CUSTOMER_67_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_67.data.customerId,
+    userId: customer.CUSTOMER_67.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
@@ -1236,7 +1161,7 @@ export const CUSTOMER_68_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_68.data.customerId,
+    userId: customer.CUSTOMER_68.data.customerId,
     features: {
       showNotifications: true,
       showStreaks: true,
@@ -1281,7 +1206,7 @@ export const CUSTOMER_69_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_69.data.customerId,
+    userId: customer.CUSTOMER_69.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
@@ -1294,7 +1219,7 @@ export const CUSTOMER_70_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_70.data.customerId,
+    userId: customer.CUSTOMER_70.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
@@ -1307,7 +1232,7 @@ export const CUSTOMER_71_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_71.data.customerId,
+    userId: customer.CUSTOMER_71.data.customerId,
     features: {
       showStats: true,
       statsShowCoinGeneralTotalYearned: true,
@@ -1345,7 +1270,7 @@ export const CUSTOMER_72_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_72.data.customerId,
+    userId: customer.CUSTOMER_72.data.customerId,
     features: {
       showStats: true,
       statsShowCoinGeneralTotalYearned: true,
@@ -1384,7 +1309,7 @@ export const CUSTOMER_73_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_73.data.customerId,
+    userId: customer.CUSTOMER_73.data.customerId,
     features: {
       ...allTogglesTrue.data.features,
       yuScreenV3: true,
@@ -1398,7 +1323,7 @@ export const CUSTOMER_74_TOGGLES = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_74.data.customerId,
+    userId: customer.CUSTOMER_74.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       yuScreenV3: true,
@@ -1412,7 +1337,7 @@ export const CUSTOMER_75_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_75.data.customerId,
+    userId: customer.CUSTOMER_75.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       hideSmartHealthScreen: false,
@@ -1429,7 +1354,7 @@ export const CUSTOMER_76_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_76.data.customerId,
+    userId: customer.CUSTOMER_76.data.customerId,
     features: {
       showStats: true,
       statsShowCoinGeneralTotalYearned: true,
@@ -1467,7 +1392,7 @@ export const CUSTOMER_77_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_77.data.customerId,
+    userId: customer.CUSTOMER_77.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       hideSmartHealthScreen: false,
@@ -1484,7 +1409,7 @@ export const CUSTOMER_DENTAL_1_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_DENTAL_1.data.customerId,
+    userId: customer.CUSTOMER_DENTAL_1.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       hideSmartHealthScreen: false,
@@ -1502,7 +1427,7 @@ export const CUSTOMER_DENTAL_2_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_DENTAL_2.data.customerId,
+    userId: customer.CUSTOMER_DENTAL_2.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       hideSmartHealthScreen: false,
@@ -1519,7 +1444,7 @@ export const CUSTOMER_78_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_78.data.customerId,
+    userId: customer.CUSTOMER_78.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
@@ -1532,7 +1457,7 @@ export const CUSTOMER_79_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_79.data.customerId,
+    userId: customer.CUSTOMER_79.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
@@ -1545,7 +1470,7 @@ export const CUSTOMER_80_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_80.data.customerId,
+    userId: customer.CUSTOMER_80.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
@@ -1558,7 +1483,7 @@ export const CUSTOMER_81_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_81.data.customerId,
+    userId: customer.CUSTOMER_81.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
@@ -1573,7 +1498,7 @@ export const CUSTOMER_83_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_83.data.customerId,
+    userId: customer.CUSTOMER_83.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
@@ -1586,7 +1511,7 @@ export const CUSTOMER_84_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_84.data.customerId,
+    userId: customer.CUSTOMER_84.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showDuels: true,
@@ -1599,7 +1524,7 @@ export const CUSTOMER_DENTAL_85_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_85.data.customerId,
+    userId: customer.CUSTOMER_85.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       hideSmartHealthScreen: false,
@@ -1608,6 +1533,7 @@ export const CUSTOMER_DENTAL_85_TOGGLES = {
       hasBupaDentActive: true,
       yuScreenV4: true,
       hasCoveaFibActive: true,
+      showBrainGameSudoku: true
     },
   },
 } as IDatabaseItem;
@@ -1617,7 +1543,7 @@ export const CUSTOMER_FIIT_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_FIIT.data.customerId,
+    userId: customer.CUSTOMER_FIIT.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
@@ -1626,12 +1552,26 @@ export const CUSTOMER_FIIT_TOGGLES = {
   },
 } as IDatabaseItem;
 
+export const CUSTOMER_86_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_86.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      showBrainGameSudoku: true
+    },
+  },
+} as IDatabaseItem;
+
+
 export const CUSTOMER_LEAVER_TOGGLES = {
   type: "mongo",
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_LEAVER.data.customerId,
+    userId: customer.CUSTOMER_LEAVER.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
@@ -1644,7 +1584,7 @@ export const CUSTOMER_FUTURE_PRODUCT_TOGGLES = {
   modelName: "usertoggles",
   data: {
     _id: generateRandomMongoId(),
-    userId: CUSTOMER_FUTURE_PRODUCT.data.customerId,
+    userId: customer.CUSTOMER_FUTURE_PRODUCT.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,

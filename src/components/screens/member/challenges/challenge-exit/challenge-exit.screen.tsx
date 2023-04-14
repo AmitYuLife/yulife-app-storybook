@@ -6,6 +6,7 @@ import { useBackHandler } from "@hooks";
 import styles from "./challenge-exit.styles";
 import { Colours } from "@styles";
 import { t } from "@locale";
+import { CANCEL_CANCEL_CHALLENGE } from "@ids";
 
 interface IProps {
   onPressExit: () => void;
@@ -41,7 +42,12 @@ const ChallengeExitScreen: React.FC<IProps> = ({ onPressExit, challengeType, onC
         onPress={onPressExit}
         isLoading={isCancelling}
       />
-      <SecondaryButton wrapperStyle={styles.buttonStyle} label={t("labels.cta.cancel")} onPress={onClose} />
+      <SecondaryButton
+        wrapperStyle={styles.buttonStyle}
+        label={t("labels.cta.cancel")}
+        onPress={onClose}
+        testID={CANCEL_CANCEL_CHALLENGE}
+      />
     </SafeAreaView>
   );
 };

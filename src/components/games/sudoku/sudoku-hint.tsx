@@ -9,6 +9,7 @@ import { TextTemplate } from "@atoms";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { SudokuHintPopup } from "./SudokuHintPopup";
 import { DETOX_ENABLED } from "@services/socket";
+import { SUDOKU_HINT, SUDOKU_HINT_TIMER } from "@ids";
 
 interface IProps {
   invert: boolean;
@@ -38,7 +39,7 @@ const SudokuHint = ({ invert }: IProps) => {
 
         updateTime();
       },
-      DETOX_ENABLED ? 3000 : 1000
+      DETOX_ENABLED ? 10000 : 1000
     );
 
     return () => clearInterval(intervalId);
@@ -70,13 +71,13 @@ const SudokuHint = ({ invert }: IProps) => {
   return (
     <View style={styles.rightSectionWrapper}>
       {isHintCooldown ? (
-        <View style={style}>
+        <View style={style} testID={SUDOKU_HINT_TIMER(timeAgo)}>
           <TextTemplate type="b2b" color={color}>
             {timeAgo}s
           </TextTemplate>
         </View>
       ) : (
-        <TouchableOpacity onPress={openPopUp} style={style} activeOpacity={0.8} ref={containerRef}>
+        <TouchableOpacity onPress={openPopUp} style={style} activeOpacity={0.8} ref={containerRef} testID={SUDOKU_HINT}>
           <HintIcon color={color} />
         </TouchableOpacity>
       )}

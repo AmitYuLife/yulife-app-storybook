@@ -7,6 +7,7 @@ import { SODUKU_PENALTY_ANIMATION_TIME } from "@screens/games/sudoku/sudoku-game
 import PauseIcon from "@atoms/icon/pause-svg";
 import { TextTemplate } from "@atoms";
 import { DETOX_ENABLED } from "@services/socket";
+import { SUDOKU_PAUSE } from "@ids";
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 
@@ -44,7 +45,7 @@ const SudokuTimer = ({ invert }: IProps) => {
 
         updateTime();
       },
-      DETOX_ENABLED ? 3000 : 1000
+      DETOX_ENABLED ? 10000 : 1000
     );
 
     return () => clearInterval(intervalId);
@@ -52,7 +53,7 @@ const SudokuTimer = ({ invert }: IProps) => {
 
   return (
     <View>
-      <TouchableOpacity style={styles.wrapper} onPress={pause}>
+      <TouchableOpacity style={styles.wrapper} onPress={pause} testID={SUDOKU_PAUSE}>
         <PauseIcon color={invert ? Colours.neutral.white : undefined} />
         <View style={styles.text}>
           {activePenalties
@@ -60,10 +61,12 @@ const SudokuTimer = ({ invert }: IProps) => {
             .map((penalty, index) => {
               return (
                 <AnimatedView
-                  entering={FadeOutUp.duration(SODUKU_PENALTY_ANIMATION_TIME).withCallback(() => {
-                    "worklet";
-                    runOnJS(onEnd)(index);
-                  })}
+                  entering={FadeOutUp.duration(DETOX_ENABLED ? 5000 : SODUKU_PENALTY_ANIMATION_TIME).withCallback(
+                    () => {
+                      "worklet";
+                      runOnJS(onEnd)(index);
+                    }
+                  )}
                   style={styles.penaltyWrapper}
                   key={index}
                 >

@@ -237,3 +237,11 @@ export const addStepsHistoricalDataMulitple = (value: number, days: number) => a
     }
     await fitKitAddAggregatedQueries(record)
 }
+
+const SUDOKU_TIME_FORMAT_LONG = "h[h] m[m] s[s]";
+const SUDOKU_TIME_FORMAT = "m[m] s[s]";
+
+export const getDuration = (seconds: number) => {
+  const formatString = seconds > 60 * 60 ? SUDOKU_TIME_FORMAT_LONG : SUDOKU_TIME_FORMAT;
+  return moment.utc(seconds * 1000).format(formatString);
+};

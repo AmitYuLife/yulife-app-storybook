@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_1, CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_10, CUSTOMER_11, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_ARCHIVED, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_22, CUSTOMER_23, CUSTOMER_ALPHA, CUSTOMER_24, CUSTOMER_25, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_38, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_43, CUSTOMER_44, CUSTOMER_45, CUSTOMER_46, CUSTOMER_47, CUSTOMER_48, CUSTOMER_49, CUSTOMER_50, CUSTOMER_53, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_PLI_6, CUSTOMER_PLI_7, CUSTOMER_PLI_9, CUSTOMER_PLI_10, CUSTOMER_MEDITOPIA_1, CUSTOMER_MEDITOPIA_2, CUSTOMER_MEDITOPIA_3, CUSTOMER_51, CUSTOMER_60, CUSTOMER_61, CUSTOMER_63, CUSTOMER_64, CUSTOMER_66, CUSTOMER_65, CUSTOMER_67, CUSTOMER_68, CUSTOMER_71, CUSTOMER_69, CUSTOMER_70, CUSTOMER_72, CUSTOMER_73, CUSTOMER_74, CUSTOMER_75, CUSTOMER_76, CUSTOMER_77, CUSTOMER_78, CUSTOMER_79, CUSTOMER_80, CUSTOMER_81, CUSTOMER_82, CUSTOMER_83, CUSTOMER_84, CUSTOMER_85, CUSTOMER_FIIT, CUSTOMER_LEAVER, CUSTOMER_FUTURE_PRODUCT } from '../postgres/customers';
+import * as customer from '../postgres/customers';
 import moment = require('moment');
 import { AUTH_TEMPLATE } from "./_templates"
 
@@ -19,7 +19,7 @@ export const AUTH_1 = {
         scope: "user",
         strategy: "0",
         used: false,
-        userId: CUSTOMER_1.data.customerId,
+        userId: customer.CUSTOMER_1.data.customerId,
     },
 } as IDatabaseItem;
 
@@ -35,7 +35,7 @@ export const AUTH_2 = {
         scope: "user",
         strategy: "0",
         used: false,
-        userId: CUSTOMER_2.data.customerId,
+        userId: customer.CUSTOMER_2.data.customerId,
     },
 } as IDatabaseItem;
 
@@ -45,7 +45,7 @@ export const AUTH_3 = {
     data: {
         ...AUTH_2.data,
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_3.data.customerId
+        userId: customer.CUSTOMER_3.data.customerId
     }
 } as IDatabaseItem
 
@@ -55,7 +55,7 @@ export const AUTH_4 = {
     data: {
         ...AUTH_2.data,
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_4.data.customerId
+        userId: customer.CUSTOMER_4.data.customerId
     }
 } as IDatabaseItem
 
@@ -69,7 +69,7 @@ export const AUTH_5 = {
         scope: "user",
         strategy: "0",
         used: false,
-        userId: CUSTOMER_5.data.customerId
+        userId: customer.CUSTOMER_5.data.customerId
     }
 } as IDatabaseItem
 
@@ -83,7 +83,7 @@ export const AUTH_6 = {
         scope: "user",
         strategy: "0",
         used: false,
-        userId: CUSTOMER_6.data.customerId
+        userId: customer.CUSTOMER_6.data.customerId
     }
 } as IDatabaseItem
 
@@ -97,7 +97,7 @@ export const AUTH_7 = {
         scope: "user",
         strategy: "0",
         used: false,
-        userId: CUSTOMER_7.data.customerId
+        userId: customer.CUSTOMER_7.data.customerId
     }
 } as IDatabaseItem
 
@@ -112,7 +112,7 @@ export const AUTH_8 = {
         scope: "user",
         strategy: "0",
         used: false,
-        userId: CUSTOMER_8.data.customerId
+        userId: customer.CUSTOMER_8.data.customerId
     }
 } as IDatabaseItem
 
@@ -122,7 +122,7 @@ export const AUTH_9 = {
     data: {
         ...AUTH_TEMPLATE.data,
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_9.data.customerId
+        userId: customer.CUSTOMER_9.data.customerId
     }
 } as IDatabaseItem
 
@@ -133,7 +133,7 @@ export const AUTH_10 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_10.data.customerId,
+        userId: customer.CUSTOMER_10.data.customerId,
         tokenExpiration: "30s"
     }
 } as IDatabaseItem
@@ -145,7 +145,7 @@ export const AUTH_11 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.333",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_11.data.customerId,
+        userId: customer.CUSTOMER_11.data.customerId,
         tokenExpiration: "2 days"
     }
 } as IDatabaseItem
@@ -157,7 +157,7 @@ export const AUTH_12 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.444",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_12.data.customerId,
+        userId: customer.CUSTOMER_12.data.customerId,
     }
 } as IDatabaseItem
 
@@ -169,7 +169,7 @@ export const AUTH_13 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.555",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_13.data.customerId,
+        userId: customer.CUSTOMER_13.data.customerId,
     }
 } as IDatabaseItem
 
@@ -180,7 +180,7 @@ export const AUTH_14 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.666",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_14.data.customerId,
+        userId: customer.CUSTOMER_14.data.customerId,
     }
 } as IDatabaseItem
 
@@ -191,7 +191,7 @@ export const AUTH_ARCHIVED = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.777",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_ARCHIVED.data.customerId,
+        userId: customer.CUSTOMER_ARCHIVED.data.customerId,
     }
 } as IDatabaseItem
 
@@ -202,7 +202,7 @@ export const AUTH_15 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.888",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_15.data.customerId,
+        userId: customer.CUSTOMER_15.data.customerId,
     }
 } as IDatabaseItem
 
@@ -213,7 +213,7 @@ export const AUTH_16 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.999",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_16.data.customerId,
+        userId: customer.CUSTOMER_16.data.customerId,
     }
 } as IDatabaseItem
 
@@ -224,7 +224,7 @@ export const AUTH_17 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_17.data.customerId,
+        userId: customer.CUSTOMER_17.data.customerId,
     }
 } as IDatabaseItem
 
@@ -235,7 +235,7 @@ export const AUTH_18 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_18.data.customerId,
+        userId: customer.CUSTOMER_18.data.customerId,
     }
 } as IDatabaseItem
 
@@ -246,7 +246,7 @@ export const AUTH_19 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_19.data.customerId,
+        userId: customer.CUSTOMER_19.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -257,7 +257,7 @@ export const AUTH_20 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_20.data.customerId,
+        userId: customer.CUSTOMER_20.data.customerId,
     }
 } as IDatabaseItem
 
@@ -268,7 +268,7 @@ export const AUTH_21 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.333",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_21.data.customerId,
+        userId: customer.CUSTOMER_21.data.customerId,
     }
 } as IDatabaseItem
 
@@ -279,7 +279,7 @@ export const AUTH_22 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_22.data.customerId,
+        userId: customer.CUSTOMER_22.data.customerId,
     }
 } as IDatabaseItem
 
@@ -291,7 +291,7 @@ export const AUTH_23 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.555",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_23.data.customerId,
+        userId: customer.CUSTOMER_23.data.customerId,
     }
 } as IDatabaseItem
 
@@ -302,7 +302,7 @@ export const AUTH_ALPHA = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.666",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_ALPHA.data.customerId,
+        userId: customer.CUSTOMER_ALPHA.data.customerId,
     }
 } as IDatabaseItem
 
@@ -313,7 +313,7 @@ export const AUTH_24 ={
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.777",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_24.data.customerId,
+        userId: customer.CUSTOMER_24.data.customerId,
     }
 } as IDatabaseItem
 
@@ -324,7 +324,7 @@ export const AUTH_25 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.888",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_25.data.customerId,
+        userId: customer.CUSTOMER_25.data.customerId,
     }
 } as IDatabaseItem
 
@@ -335,7 +335,7 @@ export const AUTH_26 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.888",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_26.data.customerId,
+        userId: customer.CUSTOMER_26.data.customerId,
     }
 } as IDatabaseItem
 
@@ -347,7 +347,7 @@ export const AUTH_27 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.888",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_27.data.customerId,
+        userId: customer.CUSTOMER_27.data.customerId,
     }
 } as IDatabaseItem
 
@@ -358,7 +358,7 @@ export const AUTH_28 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.888",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_28.data.customerId,
+        userId: customer.CUSTOMER_28.data.customerId,
     }
 } as IDatabaseItem
 
@@ -369,7 +369,7 @@ export const AUTH_29 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.888",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_29.data.customerId,
+        userId: customer.CUSTOMER_29.data.customerId,
     }
 } as IDatabaseItem
 
@@ -380,7 +380,7 @@ export const AUTH_30 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.888",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_30.data.customerId,
+        userId: customer.CUSTOMER_30.data.customerId,
     }
 } as IDatabaseItem
 
@@ -391,7 +391,7 @@ export const AUTH_31 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.999",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_31.data.customerId,
+        userId: customer.CUSTOMER_31.data.customerId,
     }
 } as IDatabaseItem
 
@@ -402,7 +402,7 @@ export const AUTH_32 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.000",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_32.data.customerId,
+        userId: customer.CUSTOMER_32.data.customerId,
     }
 } as IDatabaseItem
 
@@ -413,7 +413,7 @@ export const AUTH_33 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.000",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_33.data.customerId,
+        userId: customer.CUSTOMER_33.data.customerId,
     }
 } as IDatabaseItem
 
@@ -424,7 +424,7 @@ export const AUTH_34 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.000",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_34.data.customerId,
+        userId: customer.CUSTOMER_34.data.customerId,
     }
 } as IDatabaseItem
 
@@ -435,7 +435,7 @@ export const AUTH_35 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_35.data.customerId,
+        userId: customer.CUSTOMER_35.data.customerId,
     }
 } as IDatabaseItem
 
@@ -446,7 +446,7 @@ export const AUTH_36 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_36.data.customerId,
+        userId: customer.CUSTOMER_36.data.customerId,
     }
 } as IDatabaseItem
 
@@ -457,7 +457,7 @@ export const AUTH_37 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_37.data.customerId,
+        userId: customer.CUSTOMER_37.data.customerId,
     }
 } as IDatabaseItem
 
@@ -468,7 +468,7 @@ export const AUTH_38 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_38.data.customerId,
+        userId: customer.CUSTOMER_38.data.customerId,
     }
 } as IDatabaseItem
 
@@ -479,7 +479,7 @@ export const AUTH_39 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_39.data.customerId,
+        userId: customer.CUSTOMER_39.data.customerId,
     }
 } as IDatabaseItem
 
@@ -490,7 +490,7 @@ export const AUTH_40 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_40.data.customerId,
+        userId: customer.CUSTOMER_40.data.customerId,
     }
 } as IDatabaseItem
 
@@ -501,7 +501,7 @@ export const AUTH_41 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_41.data.customerId,
+        userId: customer.CUSTOMER_41.data.customerId,
     }
 } as IDatabaseItem
 
@@ -512,7 +512,7 @@ export const AUTH_42 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_42.data.customerId,
+        userId: customer.CUSTOMER_42.data.customerId,
     }
 } as IDatabaseItem
 
@@ -523,7 +523,7 @@ export const AUTH_43 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_43.data.customerId,
+        userId: customer.CUSTOMER_43.data.customerId,
     }
 } as IDatabaseItem
 
@@ -534,7 +534,7 @@ export const AUTH_44 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_44.data.customerId,
+        userId: customer.CUSTOMER_44.data.customerId,
     }
 } as IDatabaseItem
 
@@ -545,7 +545,7 @@ export const AUTH_45 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_45.data.customerId,
+        userId: customer.CUSTOMER_45.data.customerId,
     }
 } as IDatabaseItem
 
@@ -556,7 +556,7 @@ export const AUTH_46 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_46.data.customerId,
+        userId: customer.CUSTOMER_46.data.customerId,
     }
 } as IDatabaseItem
 
@@ -567,7 +567,7 @@ export const AUTH_47 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_47.data.customerId,
+        userId: customer.CUSTOMER_47.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -578,7 +578,7 @@ export const AUTH_48 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_48.data.customerId,
+        userId: customer.CUSTOMER_48.data.customerId,
     }
 } as IDatabaseItem
 
@@ -589,7 +589,7 @@ export const AUTH_49 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_49.data.customerId,
+        userId: customer.CUSTOMER_49.data.customerId,
     }
 } as IDatabaseItem
 
@@ -600,7 +600,7 @@ export const AUTH_50 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_50.data.customerId,
+        userId: customer.CUSTOMER_50.data.customerId,
     }
 } as IDatabaseItem
 
@@ -611,7 +611,7 @@ export const AUTH_51 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_51.data.customerId,
+        userId: customer.CUSTOMER_51.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -622,7 +622,7 @@ export const AUTH_53 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_53.data.customerId,
+        userId: customer.CUSTOMER_53.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -633,7 +633,7 @@ export const AUTH_52 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_52.data.customerId,
+        userId: customer.CUSTOMER_52.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -644,7 +644,7 @@ export const AUTH_54 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_54.data.customerId,
+        userId: customer.CUSTOMER_54.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -655,7 +655,7 @@ export const AUTH_55 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_55.data.customerId,
+        userId: customer.CUSTOMER_55.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -666,7 +666,7 @@ export const AUTH_56 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_56.data.customerId,
+        userId: customer.CUSTOMER_56.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -677,7 +677,7 @@ export const AUTH_57 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_57.data.customerId,
+        userId: customer.CUSTOMER_57.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -688,7 +688,7 @@ export const AUTH_58 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_58.data.customerId,
+        userId: customer.CUSTOMER_58.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -702,7 +702,7 @@ export const AUTH_MEDITOPIA_1 = {
         scope: "user",
         strategy: "0",
         used: false,
-        userId: CUSTOMER_MEDITOPIA_1.data.customerId
+        userId: customer.CUSTOMER_MEDITOPIA_1.data.customerId
     }
 } as IDatabaseItem
 
@@ -716,7 +716,7 @@ export const AUTH_MEDITOPIA_2 = {
         scope: "user",
         strategy: "0",
         used: false,
-        userId: CUSTOMER_MEDITOPIA_2.data.customerId
+        userId: customer.CUSTOMER_MEDITOPIA_2.data.customerId
     }
 } as IDatabaseItem
 
@@ -730,7 +730,7 @@ export const AUTH_MEDITOPIA_3 = {
         scope: "user",
         strategy: "0",
         used: false,
-        userId: CUSTOMER_MEDITOPIA_3.data.customerId
+        userId: customer.CUSTOMER_MEDITOPIA_3.data.customerId
     }
 } as IDatabaseItem
 
@@ -741,7 +741,7 @@ export const AUTH_DENTAL_1 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.444",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_DENTAL_1.data.customerId,
+        userId: customer.CUSTOMER_DENTAL_1.data.customerId,
     }
 } as IDatabaseItem
 
@@ -752,7 +752,7 @@ export const AUTH_DENTAL_2 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.444",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_DENTAL_2.data.customerId,
+        userId: customer.CUSTOMER_DENTAL_2.data.customerId,
     }
 } as IDatabaseItem
 
@@ -763,7 +763,7 @@ export const AUTH_PLI_2 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_PLI_2.data.customerId,
+        userId: customer.CUSTOMER_PLI_2.data.customerId,
     }
 } as IDatabaseItem
 
@@ -774,7 +774,7 @@ export const AUTH_PLI_3 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_PLI_3.data.customerId,
+        userId: customer.CUSTOMER_PLI_3.data.customerId,
     }
 } as IDatabaseItem
 
@@ -785,7 +785,7 @@ export const AUTH_PLI_4 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_PLI_4.data.customerId,
+        userId: customer.CUSTOMER_PLI_4.data.customerId,
     }
 } as IDatabaseItem
 
@@ -796,7 +796,7 @@ export const AUTH_PLI_5 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.61.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_PLI_5.data.customerId,
+        userId: customer.CUSTOMER_PLI_5.data.customerId,
     }
 } as IDatabaseItem
 
@@ -807,7 +807,7 @@ export const AUTH_PLI_6 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_PLI_6.data.customerId,
+        userId: customer.CUSTOMER_PLI_6.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -818,7 +818,7 @@ export const AUTH_PLI_7 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_PLI_7.data.customerId,
+        userId: customer.CUSTOMER_PLI_7.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -829,7 +829,7 @@ export const AUTH_PLI_9 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_PLI_9.data.customerId,
+        userId: customer.CUSTOMER_PLI_9.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -840,7 +840,7 @@ export const AUTH_PLI_10 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_PLI_10.data.customerId,
+        userId: customer.CUSTOMER_PLI_10.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -851,7 +851,7 @@ export const AUTH_60 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_60.data.customerId,
+        userId: customer.CUSTOMER_60.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -862,7 +862,7 @@ export const AUTH_61 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_61.data.customerId,
+        userId: customer.CUSTOMER_61.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -873,7 +873,7 @@ export const AUTH_63 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_63.data.customerId,
+        userId: customer.CUSTOMER_63.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -884,7 +884,7 @@ export const AUTH_64 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_64.data.customerId,
+        userId: customer.CUSTOMER_64.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -895,7 +895,7 @@ export const AUTH_65 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_65.data.customerId,
+        userId: customer.CUSTOMER_65.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -906,7 +906,7 @@ export const AUTH_66 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_66.data.customerId,
+        userId: customer.CUSTOMER_66.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -917,7 +917,7 @@ export const AUTH_67 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_67.data.customerId,
+        userId: customer.CUSTOMER_67.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -928,7 +928,7 @@ export const AUTH_68 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_68.data.customerId,
+        userId: customer.CUSTOMER_68.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -939,7 +939,7 @@ export const AUTH_71 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_71.data.customerId,
+        userId: customer.CUSTOMER_71.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -950,7 +950,7 @@ export const AUTH_72 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_72.data.customerId,
+        userId: customer.CUSTOMER_72.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -964,7 +964,7 @@ export const AUTH_69 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_69.data.customerId,
+        userId: customer.CUSTOMER_69.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -975,7 +975,7 @@ export const AUTH_70 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_70.data.customerId,
+        userId: customer.CUSTOMER_70.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -986,7 +986,7 @@ export const AUTH_73 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_73.data.customerId,
+        userId: customer.CUSTOMER_73.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -997,7 +997,7 @@ export const AUTH_74 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_74.data.customerId,
+        userId: customer.CUSTOMER_74.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -1008,7 +1008,7 @@ export const AUTH_75 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_75.data.customerId,
+        userId: customer.CUSTOMER_75.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -1024,7 +1024,7 @@ export const AUTH_76 = {
         scope: "user",
         strategy: "0",
         used: false,
-        userId: CUSTOMER_76.data.customerId,
+        userId: customer.CUSTOMER_76.data.customerId,
     },
 } as IDatabaseItem;
 
@@ -1035,7 +1035,7 @@ export const AUTH_77 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.111",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_77.data.customerId,
+        userId: customer.CUSTOMER_77.data.customerId,
     }
 } as IDatabaseItem
 
@@ -1046,7 +1046,7 @@ export const AUTH_78 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_78.data.customerId,
+        userId: customer.CUSTOMER_78.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -1057,7 +1057,7 @@ export const AUTH_79 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_79.data.customerId,
+        userId: customer.CUSTOMER_79.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -1068,7 +1068,7 @@ export const AUTH_80 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_80.data.customerId,
+        userId: customer.CUSTOMER_80.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -1079,7 +1079,7 @@ export const AUTH_81 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_81.data.customerId,
+        userId: customer.CUSTOMER_81.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -1090,7 +1090,7 @@ export const AUTH_82 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_82.data.customerId,
+        userId: customer.CUSTOMER_82.data.customerId,
     }
 } as IDatabaseItem
 
@@ -1101,7 +1101,7 @@ export const AUTH_83 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_83.data.customerId,
+        userId: customer.CUSTOMER_83.data.customerId,
     }
 } as IDatabaseItem
 
@@ -1112,7 +1112,7 @@ export const AUTH_84 = {
       ...AUTH_TEMPLATE.data,
       lastIp: "35.176.60.44422",
       _id: generateRandomMongoId(),
-      userId: CUSTOMER_84.data.customerId,
+      userId: customer.CUSTOMER_84.data.customerId,
   }
 } as IDatabaseItem
 
@@ -1123,7 +1123,7 @@ export const AUTH_85 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_85.data.customerId,
+        userId: customer.CUSTOMER_85.data.customerId,
     }
   } as IDatabaseItem
 
@@ -1134,10 +1134,21 @@ export const AUTH_85 = {
       ...AUTH_TEMPLATE.data,
       lastIp: "35.176.60.44422",
       _id: generateRandomMongoId(),
-      userId: CUSTOMER_FIIT.data.customerId,
+      userId: customer.CUSTOMER_FIIT.data.customerId,
     },
   } as IDatabaseItem;
 
+export const AUTH_86 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_86.data.customerId,
+    }
+}  as IDatabaseItem
+      
 export const AUTH_FUTURE_PRODUCT = {
     type: "mongo",
     modelName: "auth",
@@ -1145,7 +1156,7 @@ export const AUTH_FUTURE_PRODUCT = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.41129",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_FUTURE_PRODUCT.data.customerId,
+        userId: customer.CUSTOMER_FUTURE_PRODUCT.data.customerId,
     }
 } as IDatabaseItem
 
@@ -1156,6 +1167,6 @@ export const AUTH_FUTURE_PRODUCT = {
             ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.43323",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_LEAVER.data.customerId,
+        userId: customer.CUSTOMER_LEAVER.data.customerId,
     },
 } as IDatabaseItem;

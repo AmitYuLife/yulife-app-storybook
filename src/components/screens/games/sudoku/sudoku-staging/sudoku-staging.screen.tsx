@@ -25,6 +25,7 @@ import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import SudokuActionButton from "@components/games/sudoku/sudoku-action-button";
 import SudokuStagingHeader from "@components/games/sudoku/sudoku-staging-header";
 import { SUDOKU_DATE_FORMAT, SUDOKU_PLANET_STYLES, SUDOKU_YUNIVERSAL_STYLES } from "../sudoku-game/sudoku.config";
+import { SUDOKU_HOWTOPLAY_BUTTON, SUDOKU_JOINLEADERBOARD_BUTTON, SUDOKU_STAGING_SCREEN_SCROLL } from "@ids";
 import SudokuSecondAttemptDisclaimer from "@components/games/sudoku/SudokuSecondAttemptDisclaimer";
 
 interface IProps {
@@ -99,6 +100,7 @@ const SudokuStagingScreen = ({
       showsVerticalScrollIndicator={false}
       overScrollMode="never"
       bounces={false}
+      testID={SUDOKU_STAGING_SCREEN_SCROLL}
     >
       <View style={styles.wrapper}>
         <View>
@@ -122,13 +124,19 @@ const SudokuStagingScreen = ({
               stats={data?.getSudokuBoard?.stats}
               date={data?.getSudokuBoard?.date}
             />
-            <SudokuActionButton label={t["sudoku.staging.howToPlay"]} onPress={onHelp} icon={<SudokuHowToPlayIcon />} />
+            <SudokuActionButton
+              label={t["sudoku.staging.howToPlay"]}
+              onPress={onHelp}
+              icon={<SudokuHowToPlayIcon />}
+              testID={SUDOKU_HOWTOPLAY_BUTTON}
+            />
             <SudokuActionButton
               label={
                 hasLeaderboardConsent ? t["sudoku.staging.dailyLeaderboard"] : t["sudoku.staging.joinDailyLeaderboard"]
               }
               onPress={onLeaderboardPress}
               icon={<SudokuPersonalBestIcon />}
+              testID={SUDOKU_JOINLEADERBOARD_BUTTON}
             />
           </View>
           {!data?.getSudokuBoard?.results?.adjustedTime ? null : (

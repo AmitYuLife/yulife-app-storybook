@@ -6,8 +6,8 @@ import * as then from "./_steps/then"
 import { AUTH_34,  CUSTOMER_34} from "@data"
 import { NOTIF_CENTRE, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids"
 
-Feature("Fiit in app", async () => {
-  Scenario("As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge ", scenario.start, () => {
+Feature("Notification centre", async () => {
+  Scenario("I can access the notification centre", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("yucoin", CUSTOMER_34, AUTH_34), async () => {
         Then("I should see 220 YuCoin in the top right hand corner", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
         Then("I can see the notification centre icon is visible", then.idVisible(NOTIF_CENTRE))

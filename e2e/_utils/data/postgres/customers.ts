@@ -1330,19 +1330,20 @@ export const CUSTOMER_85 = {
     }
 } as IDatabaseItem
 
-export const CUSTOMER_FUTURE_PRODUCT = {
+export const CUSTOMER_86 = {
   type: "postgres",
   modelName: "customer",
   data: {
     customerId: generateRandomMongoId(),
     email: generateRandomInbox(),
-    firstName: "Bobby",
-    lastName: "Smith",
-    dateOfBirth: moment().subtract(30, "years").toDate(),
+    firstName: "Mr",
+    lastName: "Brain",
+    dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Bobby Smith"
-  }
-} as IDatabaseItem
+    fullName: "Mr Brain",
+  },
+} as IDatabaseItem;
+
 
 export const CUSTOMER_LEAVER = {
   type: "postgres",
@@ -1356,3 +1357,18 @@ export const CUSTOMER_LEAVER = {
     status: "onboarded"
   },
 } as IDatabaseItem;
+
+
+export const CUSTOMER_FUTURE_PRODUCT = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Bobby",
+    lastName: "Smith",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+    fullName: "Bobby Smith"
+  }
+} as IDatabaseItem

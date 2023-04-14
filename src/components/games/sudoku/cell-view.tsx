@@ -151,7 +151,7 @@ const CellView = ({
       onPress={onPress}
       style={styles.wrapper}
       activeOpacity={ACTIVE_OPACITY}
-      testID={CELL_ROW_COLUMN(row, column)}
+      testID={CELL_ROW_COLUMN(row, column, value)}
     >
       <AnimatedView style={cellStyles}>
         <AnimatedView style={expandingCircleStyle} />
