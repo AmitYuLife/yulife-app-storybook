@@ -50,6 +50,7 @@ export default function* startChallengeIfActiveSaga() {
         levelSlotId,
         startDateTime,
         fitKitTypes,
+        videoPlayerIsActive,
       });
     }
   } catch (error) {

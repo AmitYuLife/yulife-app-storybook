@@ -15,6 +15,7 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
     },
     levelSlotId,
     videoDuration,
+    videoPlayerIsActive,
   } = payload;
 
   const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
@@ -38,6 +39,7 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
       startDateTime,
       fitKitTypes,
       shouldEndOnLastGoalAchieved,
+      videoPlayerIsActive,
     });
   }
 }
