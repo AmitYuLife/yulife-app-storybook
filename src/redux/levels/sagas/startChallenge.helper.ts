@@ -21,10 +21,10 @@ import {
   challengeResetSuccessAction,
   challengeUpdateSuccessAction,
   challengeIsActive,
+  ChallengeStartPayload,
 } from "../levels.actions";
 import { DETOX_ENABLED } from "@services/socket";
 import { Task } from "redux-saga";
-import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 
@@ -32,11 +32,11 @@ export function* startTracking(
   levelSlotId: string,
   startDateTime: string,
   endDateTime: string,
-  fitKitTypes: FitKitType[]
+  fitKitTypes: FitKitType[],
+  videoPlayerIsActive: boolean
 ) {
   const startTime = moment(startDateTime).format(DATE_FORMAT_WITH_TZ);
   const endTime = moment(endDateTime);
-  const videoPlayerIsActive: ReturnType<typeof getVideoPlayerIsActive> = yield select(getVideoPlayerIsActive);
 
   if (videoPlayerIsActive) {
     return;
@@ -101,7 +101,8 @@ type Args = Omit<CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_chall
   Pick<
     CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot,
     "shouldEndOnLastGoalAchieved" | "fitKitTypes"
-  >;
+  > &
+  Pick<ChallengeStartPayload, "videoPlayerIsActive">;
 
 export default function* startChallenge({
   shouldEndOnLastGoalAchieved,
@@ -109,9 +110,10 @@ export default function* startChallenge({
   startDateTime,
   endDateTime,
   fitKitTypes,
+  videoPlayerIsActive,
 }: Args) {
   const challengeTask: Task = shouldEndOnLastGoalAchieved
-    ? yield fork(startTracking, levelSlotId, startDateTime, endDateTime, fitKitTypes)
+    ? yield fork(startTracking, levelSlotId, startDateTime, endDateTime, fitKitTypes, videoPlayerIsActive)
     : yield fork(startTrackingTime, endDateTime);
 
   let inProgress = true;
