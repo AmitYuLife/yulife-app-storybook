@@ -53,6 +53,7 @@ export default function* setInitialSteps(startDateTime: string, features: IUserS
         start: startOfDayMoment,
         end: startOfChallengeMoment,
         features,
+        metaData: { file: "setInitialSteps.helper" },
         ...stepsConfiguration,
       });
 

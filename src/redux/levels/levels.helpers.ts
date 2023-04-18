@@ -15,6 +15,7 @@ export async function getEndResult(
 ) {
   if (!fitKitTypes.includes(FitKitType.StepCount)) {
     try {
+      const metaData = { file: "levels.helpers" };
       const { start, end } = getStartAndEndDateTimesWithTimezone(startDateTime, endDateTime);
 
       const { results: queryResult } = await queryFitKitSampleData({
@@ -22,6 +23,7 @@ export async function getEndResult(
         endTime: end,
         fitKitTypes,
         features,
+        metaData,
       });
 
       // the way the 3rd party apps like calm/headspace write to the history is not always consistent
@@ -44,6 +46,7 @@ export async function getEndResult(
         endTime: endLater,
         fitKitTypes,
         features,
+        metaData,
       });
 
       if (queryResultAllDay.length > 0) {

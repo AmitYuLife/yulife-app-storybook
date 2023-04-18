@@ -109,6 +109,7 @@ const ToolsScreen = ({ onClose }: Props) => {
         fitKitTypes: allActivitiesSelect ? [] : fitKitTypes,
         features: { disableUserEntries: false, loggingEnabled: true },
         rawData: true,
+        metaData: { file: "tools.screen" },
       });
 
       Logger.logMixpanelEvent("debug_tool_query_results", {
@@ -144,11 +145,10 @@ const ToolsScreen = ({ onClose }: Props) => {
 
   const pickerStartDateTime = useMemo(() => (startDate ? moment(startDate).toDate() : moment().toDate()), [startDate]);
   const pickerEndDateTime = useMemo(() => (endDate ? moment(endDate).toDate() : moment().toDate()), [endDate]);
-  const pickerDateTime = useMemo(() => (pickerDateState === "startDate" ? pickerStartDateTime : pickerEndDateTime), [
-    pickerDateState,
-    pickerStartDateTime,
-    pickerEndDateTime,
-  ]);
+  const pickerDateTime = useMemo(
+    () => (pickerDateState === "startDate" ? pickerStartDateTime : pickerEndDateTime),
+    [pickerDateState, pickerStartDateTime, pickerEndDateTime]
+  );
   return (
     <View style={styles.wrapper}>
       <ScrollView showsVerticalScrollIndicator={false}>

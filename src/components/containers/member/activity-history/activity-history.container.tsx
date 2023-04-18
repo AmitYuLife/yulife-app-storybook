@@ -70,17 +70,19 @@ const ActivityHistoryContainer: FC<Props> = ({ componentId }) => {
       const start = moment().subtract(30, "days").startOf("day");
       const end = moment().subtract(1, "days").endOf("day");
 
+      const metaData = { file: "activity-history.container" };
       const cyclingConfig = getAggregationCyclingConfiguration(features);
       const stepsConfig = getAggregationStepCountConfiguration(stepsBlackListApps);
       const [steps, meditation, cycling] = await Promise.all([
-        queryFitKitAggregatedData({ start, end, features, ...stepsConfig }),
+        queryFitKitAggregatedData({ start, end, features, metaData, ...stepsConfig }),
         queryFitKitSampleData({
           startTime: start.format(DATE_FORMAT_WITH_TZ),
           endTime: end.format(DATE_FORMAT_WITH_TZ),
           fitKitTypes: getMindfulSessionFitKitTypes(),
           features,
+          metaData,
         }),
-        queryFitKitAggregatedData({ start, end, features, ...cyclingConfig }),
+        queryFitKitAggregatedData({ start, end, features, metaData, ...cyclingConfig }),
       ]);
 
       const meditationResults = processResult(meditation, "MindfulSession", start, end);
