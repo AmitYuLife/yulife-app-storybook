@@ -56,6 +56,7 @@ export function* startTracking(
         endTime: endTime.format(DATE_FORMAT_WITH_TZ),
         fitKitTypes,
         features,
+        metaData: { file: "startChallenge.helper" },
       });
 
       if (queryResult.results.length > 0) {

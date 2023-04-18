@@ -71,6 +71,7 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
           endTime: endTime.format(),
           fitKitTypes: getMindfulSessionFitKitTypes(),
           features: userFeatures,
+          metaData: { file: "getDailyPassiveActivity.saga" },
         });
 
     let shouldQueryCycling = true;
@@ -88,6 +89,7 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
           start: startTime,
           end: endTime,
           features: userFeatures,
+          metaData: { file: "getDailyPassiveActivity.saga" },
           ...cyclingConfig,
         });
 

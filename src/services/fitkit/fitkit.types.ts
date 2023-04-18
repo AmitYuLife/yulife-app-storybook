@@ -11,6 +11,7 @@ export type AggregatedQueryArgs = {
   aggregationType: AggregationType;
   blackListApps?: string[];
   features: IUserStore["features"];
+  metaData?: Record<string, any>;
 };
 
 export type FitKitSampleType<T extends boolean> = {
@@ -19,6 +20,7 @@ export type FitKitSampleType<T extends boolean> = {
   fitKitTypes: FitKitType[];
   features: IUserStore["features"];
   rawData?: T;
+  metaData?: Record<string, any>;
 };
 
 export type GenericFitKitResponseType<T extends boolean> = T extends true

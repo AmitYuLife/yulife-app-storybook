@@ -36,6 +36,7 @@ export async function queryFitKitSampleData<T extends boolean = false>({
   fitKitTypes,
   features,
   rawData,
+  metaData = {},
 }: FitKitSampleType<T>): Promise<GenericFitKitResponseType<T>> {
   const allResults: SampleQueryResult[] = [];
   let error = false;
@@ -60,13 +61,23 @@ export async function queryFitKitSampleData<T extends boolean = false>({
       };
 
       if (loggingEnabled) {
-        Logger.logMixpanelEvent("app_debug", { ...args, type: `raw_${fitKitType}_query_args`, location: "fitkit" });
+        Logger.logMixpanelEvent("app_debug", {
+          ...metaData,
+          ...args,
+          type: `raw_${fitKitType}_query_args`,
+          location: "fitkit",
+        });
       }
 
       const results = await RNFitKit.sampleQuery(args);
 
       if (loggingEnabled && results && results.length > 0) {
-        Logger.logMixpanelEvent("app_debug", { results, type: `raw_${fitKitType}_query_results`, location: "fitkit" });
+        Logger.logMixpanelEvent("app_debug", {
+          ...metaData,
+          results,
+          type: `raw_${fitKitType}_query_results`,
+          location: "fitkit",
+        });
       }
 
       allResults.push(...results);
@@ -82,6 +93,7 @@ export async function queryFitKitSampleData<T extends boolean = false>({
       }
 
       Logger.logMixpanelEvent("app_debug", {
+        ...metaData,
         error: errorMessage,
         date_start: startTime,
         date_end: endTime,
@@ -111,6 +123,7 @@ export const queryFitKitAggregatedData = async ({
   features,
   timeRange,
   aggregationType,
+  metaData = {},
 }: AggregatedQueryArgs): Promise<QueryFitKitByTypesResponse> => {
   const {
     disableUserEntries = true,
@@ -144,6 +157,7 @@ export const queryFitKitAggregatedData = async ({
 
     if (loggingEnabled) {
       Logger.logMixpanelEvent("app_debug", {
+        ...metaData,
         ...args,
         type: `raw_aggregated_query_args`,
         fitKitTypes,
@@ -155,6 +169,7 @@ export const queryFitKitAggregatedData = async ({
 
     if (loggingEnabled && results && results.length > 0) {
       Logger.logMixpanelEvent("app_debug", {
+        ...metaData,
         results,
         type: `raw_aggregated_query_results`,
         fitKitTypes,
@@ -165,6 +180,7 @@ export const queryFitKitAggregatedData = async ({
     return { results: results.map(transformSampleResultToPayloadWithType as any), error: null };
   } catch (e) {
     Logger.logMixpanelEvent("app_debug", {
+      ...metaData,
       error: e.message,
       date_start: start.format(),
       date_end: end.format(),

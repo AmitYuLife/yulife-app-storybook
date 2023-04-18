@@ -56,6 +56,7 @@ export default function* debugTool(dataPayload: { payload: string; type: string 
       fitKitTypes: disableTypeFilter && Platform.OS == "android" ? [] : fitKitTypes,
       features: { disableUserEntries: false, loggingEnabled: true },
       rawData: true,
+      metaData: { file: "debugTool.saga" },
     });
 
     Logger.logMixpanelEvent("debug_tool_query_results", {

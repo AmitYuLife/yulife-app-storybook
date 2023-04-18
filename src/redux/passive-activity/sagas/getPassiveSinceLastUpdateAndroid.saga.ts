@@ -22,6 +22,7 @@ export default function* getPassiveSinceLastUpdateAndroid(
   cyclingLastUpdate: string,
   userFeatures: IUserStore["features"]
 ) {
+  const metaData = { file: "getPassiveSinceLastUpdateAndroid.saga" };
   const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
   const { endDateSteps, endDateMeditation, endDateCycling } = getEndDates(
     stepsLastUpdate,
@@ -41,30 +42,33 @@ export default function* getPassiveSinceLastUpdateAndroid(
       stepsLastUpdate,
       endDateSteps,
       stepsBlackListApps,
-      userFeatures
+      userFeatures,
+      metaData
     );
     const meditation: ChallengesPayload[] = yield call(
       getMeditation,
       queryMeditation,
       meditationLastUpdate,
       endDateMeditation,
-      userFeatures
+      userFeatures,
+      metaData
     );
     const cycling: ChallengesPayload[] = yield call(
       getCycling,
       queryCycling,
       cyclingLastUpdate,
       endDateCycling,
-      userFeatures
+      userFeatures,
+      metaData
     );
 
     return [...cycling, ...meditation, ...steps];
   }
 
   const [steps, meditation, cycling]: ChallengesPayload[][] = yield all([
-    call(getSteps, stepsLastUpdate, endDateSteps, stepsBlackListApps, userFeatures),
-    call(getMeditation, queryMeditation, meditationLastUpdate, endDateMeditation, userFeatures),
-    call(getCycling, queryCycling, cyclingLastUpdate, endDateCycling, userFeatures),
+    call(getSteps, stepsLastUpdate, endDateSteps, stepsBlackListApps, userFeatures, metaData),
+    call(getMeditation, queryMeditation, meditationLastUpdate, endDateMeditation, userFeatures, metaData),
+    call(getCycling, queryCycling, cyclingLastUpdate, endDateCycling, userFeatures, metaData),
   ]) as AllEffect<CallEffect<ChallengesPayload[]>>;
 
   return [...cycling, ...meditation, ...steps];
@@ -74,7 +78,8 @@ const getCycling = async (
   queryCycling: boolean,
   cyclingLastUpdate: string,
   endDateCycling: moment.Moment,
-  userFeatures: IUserStore["features"]
+  userFeatures: IUserStore["features"],
+  metaData: Record<string, any>
 ): Promise<ChallengesPayload[]> => {
   if (!queryCycling) {
     return [];
@@ -85,6 +90,7 @@ const getCycling = async (
     start: moment(cyclingLastUpdate).startOf("day"),
     end: endDateCycling,
     features: userFeatures,
+    metaData,
     ...cyclingConfig,
   });
 
@@ -99,7 +105,8 @@ const getMeditation = async (
   queryMeditation: boolean,
   meditationLastUpdate: string,
   endDateMeditation: moment.Moment,
-  userFeatures: IUserStore["features"]
+  userFeatures: IUserStore["features"],
+  metaData: Record<string, any>
 ): Promise<ChallengesPayload[]> => {
   if (!queryMeditation) {
     return [];
@@ -110,6 +117,7 @@ const getMeditation = async (
     start: moment(meditationLastUpdate).startOf("day"),
     end: endDateMeditation,
     features: userFeatures,
+    metaData,
     ...meditationConfiguration,
   });
 
@@ -120,7 +128,8 @@ const getSteps = async (
   stepsLastUpdate: string,
   endDateSteps: moment.Moment,
   stepsBlackListApps: string[],
-  userFeatures: IUserStore["features"]
+  userFeatures: IUserStore["features"],
+  metaData: Record<string, any>
 ): Promise<ChallengesPayload[]> => {
   if (!stepsLastUpdate) {
     return [];
@@ -131,6 +140,7 @@ const getSteps = async (
     start: moment(stepsLastUpdate).startOf("day"),
     end: endDateSteps,
     features: userFeatures,
+    metaData,
     ...stepsConfiguration,
   });
 

@@ -23,14 +23,22 @@ export default function* getPassiveSinceLastUpdateIos(
     cyclingLastUpdate
   );
 
-  const steps: ChallengesPayload[] = yield call(getSteps, stepsLastUpdate, endDateSteps, userFeatures);
+  const metaData = { file: "getPassiveSinceLastUpdateIos.saga" };
+  const steps: ChallengesPayload[] = yield call(getSteps, stepsLastUpdate, endDateSteps, userFeatures, metaData);
   const meditation: ChallengesPayload[] = yield call(
     getMeditation,
     meditationLastUpdate,
     endDateMeditation,
-    userFeatures
+    userFeatures,
+    metaData
   );
-  const cycling: ChallengesPayload[] = yield call(getCycling, cyclingLastUpdate, endDateCycling, userFeatures);
+  const cycling: ChallengesPayload[] = yield call(
+    getCycling,
+    cyclingLastUpdate,
+    endDateCycling,
+    userFeatures,
+    metaData
+  );
 
   const allResults: ChallengesPayload[] = [...cycling, ...meditation, ...steps];
 
@@ -40,7 +48,8 @@ export default function* getPassiveSinceLastUpdateIos(
 const getSteps = async (
   stepsLastUpdate: string,
   endDateSteps: moment.Moment,
-  userFeatures: IUserStore["features"]
+  userFeatures: IUserStore["features"],
+  metaData: Record<string, any>
 ): Promise<ChallengesPayload[]> => {
   if (!stepsLastUpdate) {
     return [];
@@ -51,6 +60,7 @@ const getSteps = async (
     start: moment(stepsLastUpdate).startOf("day"),
     end: endDateSteps,
     features: userFeatures,
+    metaData,
     ...stepsConfiguration,
   });
 
@@ -60,7 +70,8 @@ const getSteps = async (
 const getMeditation = async (
   meditationLastUpdate: string,
   endDateMeditation: moment.Moment,
-  userFeatures: IUserStore["features"]
+  userFeatures: IUserStore["features"],
+  metaData: Record<string, any>
 ): Promise<ChallengesPayload[]> => {
   if (!meditationLastUpdate) {
     return [];
@@ -71,6 +82,7 @@ const getMeditation = async (
     endTime: endDateMeditation.format(),
     fitKitTypes: getMindfulSessionFitKitTypes(),
     features: userFeatures,
+    metaData,
   });
 
   return processResult(meditation, "MindfulSession", moment(meditationLastUpdate).startOf("day"), endDateMeditation);
@@ -79,7 +91,8 @@ const getMeditation = async (
 const getCycling = async (
   cyclingLastUpdate: string,
   endDateCycling: moment.Moment,
-  userFeatures: IUserStore["features"]
+  userFeatures: IUserStore["features"],
+  metaData: Record<string, any>
 ): Promise<ChallengesPayload[]> => {
   if (!cyclingLastUpdate) {
     return [];
@@ -90,6 +103,7 @@ const getCycling = async (
     start: moment(cyclingLastUpdate).startOf("day"),
     end: endDateCycling,
     features: userFeatures,
+    metaData,
     ...cyclingConfig,
   });
 
