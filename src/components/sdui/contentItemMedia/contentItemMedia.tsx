@@ -6,10 +6,6 @@ import { Style } from "@styles";
 import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";
 import { GenericModal } from "@components/modals";
 import { t } from "@locale";
-import { Navigation } from "@navigation/main";
-import { ROUTES } from "@navigation/constants";
-import { useDispatch } from "react-redux";
-import { refreshUserProfileEvents } from "@redux/user/user.actions";
 
 export const ContentItemMedia = memo(
   ({
@@ -28,17 +24,10 @@ export const ContentItemMedia = memo(
   }: GqlMarkdown) => {
     const [showModal, setShowModal] = useState(false);
     const [showError, setShowError] = useState(false);
-    const dispatch = useDispatch();
     const { handleSduiAction: handleLeftIconPress } = useSduiCallbackFunctionOrReduxAction(onLeftIconPress);
     const { handleSduiAction: handleRightIconPress } = useSduiCallbackFunctionOrReduxAction(onRightIconPress);
     const { handleSduiAction: handleOnStart } = useSduiCallbackFunctionOrReduxAction(onStart);
     const { handleSduiAction: handleOnEnd } = useSduiCallbackFunctionOrReduxAction(onEnd);
-
-    const onEndAndPop = useCallback(() => {
-      handleOnEnd();
-      dispatch(refreshUserProfileEvents());
-      Navigation.pop(ROUTES.journey);
-    }, [dispatch, handleOnEnd]);
 
     const rightIconPress = useCallback((shouldShowModal: boolean) => {
       if (shouldShowModal) {
@@ -78,7 +67,7 @@ export const ContentItemMedia = memo(
           onLeftIconPress={handleLeftIconPress}
           onRightIconPress={rightIconPress}
           onStart={handleOnStart}
-          onEnd={onEndAndPop}
+          onEnd={handleOnEnd}
           onError={onError}
           orientation={orientation}
         />
