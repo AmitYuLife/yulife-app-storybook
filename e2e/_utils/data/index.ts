@@ -39,6 +39,7 @@ export * from "./mongo/game_sudoku_board"
 export * from "./mongo/game_sudoku_answer"
 export * from "./mongo/game_sudoku_stats"
 export * from "./mongo/user_leaderboards"
+export * from "./mongo/user_coin_transactions"
 
 
 
