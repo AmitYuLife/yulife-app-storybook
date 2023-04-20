@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.78.0] - 2023-04-20
+
+### Bugfixes
+
+- Bugfix: sleep meditation event refetch
+- Bugfix: Update navbar colour for red planet ocean
+- Bugfix: TypeError Cannot read property toString of null addCommasToNumber
+- Bugfix: Reanimated crash
+
+### Tasks
+
+- Task: Fitkit queries metadata
+- Task: Get video player is active flag from payload
+
+### Extra
+
+- Detox GS-650: Yudoku testing
+- Detox: update bdd to 0.0.29
+- INS-1217: Detox/future product
+
 ## [3.77.0] - 2023-04-12
 
 ### Bugfixes
