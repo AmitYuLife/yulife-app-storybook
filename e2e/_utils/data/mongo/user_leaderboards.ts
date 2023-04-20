@@ -4,6 +4,8 @@ import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_40, CUSTOMER_47, CUSTOMER_50, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_65, CUSTOMER_71, CUSTOMER_72, CUSTOMER_73, CUSTOMER_75, CUSTOMER_77, CUSTOMER_84, CUSTOMER_LEAVER } from "../postgres/customers";
 import { LEADERBOARD_1, LEADERBOARD_2, LEADERBOARD_3, LEADERBOARD_4, LEADERBOARD_5, LEADERBOARD_6, LEADERBOARD_7 } from "./leaderboard";
 
+const global_leaver_leaderboard = "global-leavers-leaderboard"
+
 export const USER_18_LEADERBOARD = {
     type: "mongo",
     modelName: "user_leaderboards",
@@ -288,7 +290,7 @@ export const USER_LEAVER_LEADERBOARD = {
     type: "mongo",
     modelName: "user_leaderboards",
     data: {
-        leaderboardId: LEADERBOARD_1.data.leaderboardId,
+        leaderboardId: global_leaver_leaderboard,
         userId: CUSTOMER_LEAVER.data.customerId,
         consent: true,
     },

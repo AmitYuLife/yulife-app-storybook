@@ -1,10 +1,11 @@
-import { Given, When, Then, Feature, Scenario, ScenarioOnly } from "@yu-life/yulife-bdd-framework"
+import { Given, When, Then, Feature, Scenario, ScenarioOnly, FeatureOnly } from "@yu-life/yulife-bdd-framework"
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { AUTH_LEAVER, CUSTOMER_LEAVER } from "@data"
-import { ONBOARDING_SCREEN_V4 } from "@ids"
+import { LEADERBOARD_NAME, NAV_BAR, ONBOARDING_SCREEN_V4 } from "@ids"
+import { LEADERBOARD_TITLE } from "@ids"
 
 Feature("As a business leaver I should still have app access", async () => {
     Scenario("As a business leaver with no persional products, I should still have app access", scenario.start, () => {
@@ -19,7 +20,10 @@ Feature("As a business leaver I should still have app access", async () => {
                     Then("I should see the Keepsake product", then.textVisible('Keepsake'))
                 })
             })
-            // TODO: Make sure leaderboard does not show for this user (bug fix)
+            When("I go to the leaderboard", when.tapID(NAV_BAR('leaderboard')), async()=>{
+                Then("I should see the users name", then.idVisible(LEADERBOARD_NAME('Bus Leaf')))
+                Then("I should see this is the public leaderboard", then.idVisible(LEADERBOARD_TITLE('Public')))
+            })
         })
     })
 })
