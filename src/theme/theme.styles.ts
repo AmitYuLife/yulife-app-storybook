@@ -537,7 +537,7 @@ export const planetStyles: ITheme = {
           ...StyleSheet.absoluteFillObject,
           backgroundColor: "#35DBFF",
         },
-        topBarType: "white",
+        topBarType: "default",
       },
       challengeSuccessScreen: {
         isFullScreen: true,
