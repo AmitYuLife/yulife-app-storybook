@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -10,6 +10,7 @@
 export interface GetSession_getSession {
   id: string | null;
   expires: number | null;
+  tokenRefreshRequired: boolean | null;
 }
 
 export interface GetSession_mobileUpgradeRequired {

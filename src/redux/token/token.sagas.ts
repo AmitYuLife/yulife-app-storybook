@@ -1,11 +1,11 @@
 import { IntercomHashMethod } from "@graphql/_core/schema/globalTypes";
 import refreshSession, { RefreshSessionExecutionResult } from "@graphql/user/refreshSession.gql";
-import { REFRESH_USER_TOKEN } from "@redux/user/user.actions";
+import { REFRESH_USER_TOKEN, refreshUserProfile } from "@redux/user/user.actions";
 import { TOKEN_EXPIRATION } from "@services/constants";
 import Logger from "@services/logging/logger";
 import { setToken } from "@services/storage";
 import { Platform } from "react-native";
-import { call, takeLatest } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 
 export function* updateTokenIfExpired() {
   try {
@@ -25,6 +25,9 @@ export function* updateTokenIfExpired() {
 
     if (result.data.refreshSession.token) {
       yield call(setToken, result.data.refreshSession.token);
+
+      // also trigger a user session refresh
+      yield put(refreshUserProfile());
     }
   } catch (e) {
     // Added that to catch Unhandled Promise Rejection when Network request failed.
