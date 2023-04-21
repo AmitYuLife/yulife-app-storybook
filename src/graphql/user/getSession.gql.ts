@@ -7,6 +7,7 @@ export const GQL_QUERY_GET_SESSION = gql`
     getSession {
       id
       expires
+      tokenRefreshRequired
     }
     mobileUpgradeRequired {
       title
