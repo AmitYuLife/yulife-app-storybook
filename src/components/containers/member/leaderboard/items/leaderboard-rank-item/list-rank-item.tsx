@@ -48,7 +48,7 @@ const _ListRankItem = ({
       >
         <Animated.View style={baseStyles.wrapper}>
           {isCurrentUser && <View style={baseStyles.currentUser} />}
-          <View style={baseStyles.borderWrapper} testID={RANK(rank, name)}>
+          <View style={baseStyles.borderWrapper} testID={RANK(name, rank)}>
             <Rank rank={rank} />
             <Image uri={uri} testID={LIST_YUMOJI(index)} />
             <Name name={name} bold={isCurrentUser} />

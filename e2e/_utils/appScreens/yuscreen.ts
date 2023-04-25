@@ -252,7 +252,6 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
       await textVisibleAtIndex(yuCoinPower, 0)();
       await textVisibleAtIndex(yuCoinPower, 1)();
       await expect(element(by.text(WellbeingProduct))).toBeVisible();
-      await expect(element(by.text(paidBy))).toBeVisible();
       await expect(element(by.text(noProductText))).not.toBeVisible();
       await swipeFromText(WellbeingProduct, "up", "fast")();
       await expect(element(by.id(CAROUSEL_CARD))).not.toBeVisible();
@@ -298,16 +297,13 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
     case "6 Products Slots":
       await textVisibleAtIndex(yuCoinPower, 0)();
       await textVisibleAtIndex(lifeInsurance, 0)();
-      await textVisibleAtIndex(paidBy, 0)();
       await textVisibleAtIndex("10", 0)();
       await expect(element(by.text(criticalIllness))).toBeVisible();
-      await textVisibleAtIndex(paidBy, 1)();
+      await textNotVisible(paidBy)();
       await textVisibleAtIndex("10", 1)();
       await expect(element(by.text(incomeProtection))).toBeVisible();
-      await textVisibleAtIndex(paidBy, 2)();
       await textVisibleAtIndex("10", 2)();
       await expect(element(by.text(WellbeingProduct))).toBeVisible();
-      await textVisibleAtIndex(paidBy, 3)();
       await textVisible("1")();
       await expect(element(by.text(dentalYuCoinPower))).toBeVisible();
       await expect(element(by.text(addDental))).toBeVisible();
@@ -323,16 +319,13 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
     case "5 Products Slots":
       await textVisibleAtIndex(yuCoinPower, 0)();
       await textVisibleAtIndex(lifeInsurance, 0)();
-      await textVisibleAtIndex(paidBy, 0)();
+      await textNotVisible(paidBy)();
       await textVisibleAtIndex("10", 0)();
       await expect(element(by.text(criticalIllness))).toBeVisible();
-      await textVisibleAtIndex(paidBy, 1)();
       await textVisibleAtIndex("10", 1)();
       await expect(element(by.text(incomeProtection))).toBeVisible();
-      await textVisibleAtIndex(paidBy, 2)();
       await textVisibleAtIndex("10", 2)();
       await expect(element(by.text(WellbeingProduct))).toBeVisible();
-      await textVisibleAtIndex(paidBy, 3)();
       await textVisible("1")();
       await expect(element(by.text(dentalYuCoinPower))).toBeVisible();
       await expect(element(by.text(addDental))).toBeVisible();
@@ -370,7 +363,7 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
     case "0EarnRateSlot":
       await expect(element(by.text("0"))).not.toBeVisible(); // should not be visible in slot because earn rate is 0 in product details
       await expect(element(by.text(incomeProtection))).toBeVisible();
-      await expect(element(by.text(paidBy))).toBeVisible();
+      await textNotVisible(paidBy)();
       await expect(element(by.text(noProductText))).not.toBeVisible()
       await expect(element(by.text(addDental))).not.toBeVisible(); // should not because of Gdent  bought by their company XSE-1376
       await swipeFromText(incomeProtection, "up", "fast")();

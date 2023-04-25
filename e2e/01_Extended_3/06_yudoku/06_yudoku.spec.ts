@@ -99,7 +99,7 @@ Feature("Yudoku", async () => {
         Then("I should see yuCoin has increased", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(760)))
     })
     When("I tap level 152 button", when.tapID(LEVEL_CHALLENGE_BUTTON(152)), async () => {
-        Then("I should see the Sodoku challenge is comleted", then.canSeeCompleted)
+        Then("I should see the Sodoku challenge is completed", then.canSeeCompleted)
         Then("I should see the start game button is unavailable", then.cannotSeeStartGame)
     })
     When("I tap the soduku challenge", when.tapSudoku, async () => {

@@ -401,7 +401,7 @@ export const ACTIVITY_NAMES = (opponentName: string, name: string) => `OPPONENT_
 export const WINNER = (value: number) => `WINNER_${value}`;
 export const SECOND_POSITION = (value: number) => `SECOND_POSITION_${value}`;
 export const INSPECT_AVATAR = (order: number) => `INSPECT_AVATAR_${order}`;
-export const RANK = (rank: number, name: string) => `RANK_${rank + name}}`
+export const RANK = (name: string, rank?: number) => `RANK_${rank}${name}}`
 export const SINGLE_USER = "SINGLE_USER";
 export const LEFT_USER = "LEFT_USER";
 export const RIGHT_USER = "RIGHT_USER";

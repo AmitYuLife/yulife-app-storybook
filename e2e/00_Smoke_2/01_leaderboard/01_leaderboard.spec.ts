@@ -150,7 +150,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 Then("I should see the leaderboard", then.leaderboardVisible(([CUSTOMER_18, CUSTOMER_17, CUSTOMER_47, CUSTOMER_50])))
             }) 
         })
-        When("I click on my own name", when.tapID(RANK(CUSTOMER_47.data.fullName)), async () => {
+        When("I click on my own name", when.tapID(RANK(CUSTOMER_47.data.fullName, 2)), async () => {
             Then("I should be on the Inspect screen", then.isOnInspectScreen)
             Then("My name is visible", then.idVisible(TEXT_TEMPLATE(CUSTOMER_47.data.fullName))) 
             Then("My world is visible", then.idVisible(USER_WORLD("Forest")))
@@ -178,7 +178,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("I should see a menu icon in the top left", then.idVisible(MENU_ICON, 1500))
         })  
         When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard"), 2000), async () => {
-            When("I click on my own name", when.tapID(RANK(CUSTOMER_47.data.fullName)), async () => {
+            When("I click on my own name", when.tapID(RANK(CUSTOMER_47.data.fullName, 2)), async () => {
                 Then("I should be on the Inspect screen", then.isOnInspectScreen)
             })
         })

@@ -236,6 +236,7 @@ export const CUSTOMER_18_TOGGLES = {
       hideSmartHealthScreen: false,
       hideYuMatterScreen: true,
       showDuels: true,
+      showBrainGameSudoku: true
     },
   },
 } as IDatabaseItem;
@@ -963,6 +964,7 @@ export const CUSTOMER_47_TOGGLES = {
       showDuels: true,
       showInspect: true,
       passiveCyclingEnabled: true,
+      showBrainGameSudoku: true
     },
   },
 } as IDatabaseItem;

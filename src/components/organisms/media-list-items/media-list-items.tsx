@@ -38,7 +38,7 @@ const MediaListItems = ({ items, onPress, type, isLoading }: IProps) => {
         <>
           {items.map((item) => (
             <BoxOption
-              key={item.title}
+              key={`${item.title}-${item.formattedDuration}`}
               onPress={() => onPress(item)}
               isSelected={false}
               selectedStyle={{}}
