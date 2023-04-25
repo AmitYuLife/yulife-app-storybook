@@ -18,6 +18,7 @@ import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { Image } from "@atoms";
 import { ONBOARDING_SCREEN_V4, V4_YUSCREEN } from "@ids";
+import { BoxOptionCard } from "../box-option-card/box-option-card";
 
 interface Props {
   componentId: string;
@@ -41,7 +42,8 @@ export const YuScreen = memo(({ componentId }: Props) => {
     );
   }
 
-  const { productCarousel, productSlots, surveyFooter, yumojiPrompt, carrierLogo, enrollCopy } = data.getYuScreen;
+  const { productCarousel, productSlots, surveyFooter, yumojiPrompt, carrierLogo, enrollCopy, boxOptionCards } =
+    data.getYuScreen;
 
   if (showOnboarding) {
     return (
@@ -61,6 +63,13 @@ export const YuScreen = memo(({ componentId }: Props) => {
     <YuScreenLayout testID={V4_YUSCREEN}>
       <NameAndLevel useWorldColor={true} hideWorldIcon={true} />
       <YumojiAndSlots productSlots={productSlots} yumojiPrompt={yumojiPrompt} />
+      {!boxOptionCards?.length ? null : (
+        <View style={styles.boxOptionCardWrapper}>
+          {boxOptionCards.map((boxOptionCard, boxOptionCardIndex) => (
+            <BoxOptionCard key={boxOptionCardIndex} {...boxOptionCard} />
+          ))}
+        </View>
+      )}
       {productCarousel ? <Carousel heading={productCarousel.heading} items={productCarousel.items} /> : null}
       {!enrollCopy ? null : <Copy title={enrollCopy.title} description={enrollCopy.description} />}
       {carrierLogo ? (
@@ -86,5 +95,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: Style.adjust(32),
+  },
+  boxOptionCardWrapper: {
+    paddingHorizontal: Style.adjust(16),
   },
 });

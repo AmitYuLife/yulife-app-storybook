@@ -256,6 +256,7 @@ export * from "./YuCoinPowerExplainedActivity";
 export * from "./YuCoinPowerExplainedActivityGroup";
 export * from "./YuCoinPowerExplainedButton";
 export * from "./YuCoinPowerExplainedYuCoin";
+export * from "./YuScreenBoxOptionCard";
 export * from "./YuScreenCarousel";
 export * from "./YuScreenCarouselItem";
 export * from "./YuScreenEnrollCopy";
