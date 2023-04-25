@@ -16,11 +16,9 @@ export const BUSINESS_BACKGROUND_USA_1 = {
         "jurisdiction": null,
         "company_status": null,
         "compliance_link_status": null,
-        "approval_director": null,
         "created_at": "2020-09-07T21:27:31.293Z",
         "created_by_id": "0.74.0",
         "modified_at": "2020-09-07T21:27:51.322Z",
         "modified_by_id": "0.74.0"
     }
 }
-    
