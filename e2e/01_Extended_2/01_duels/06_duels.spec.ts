@@ -98,20 +98,20 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
     Scenario("I am able to view my won and lost duels", scenario.start, async()=>{
         Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", CUSTOMER_19, AUTH_19), async () => {
             Then("I should see the duels icon", then.idVisible(DUELS_BUTTON))
-            When("I tap the duels button", when.tapID(DUELS_BUTTON), async () => {
-                Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]))
-            })
-            When("I tap complete the intro", when.completeOnboardingIntro, async () => {
-                Then("I should be on the duels hub", then.idVisible(DUELS_HUB))
-            })
-            When("I tap Completed", when.tapText("Completed"), async()=>{
-                Then("I should see my past duel with Stanely Hudson", then.idVisible(DUEL_ENTRY("Stanley", "Hudson", 10, "finished")))
-                Then("I should see I lost this duel", then.idVisible(DUEL_ICON("Stanley", "Hudson", false)))
-                Then("I should see the steps for this duel", then.idVisible(DUEL_DESCRIPTION(500, 300)))
-                Then("I should see my past duel with Oscar Martinez", then.idVisible(DUEL_ENTRY("Oscar", "Martinez", 10, "finished")))
-                Then("I should see I won this duel", then.idVisible(DUEL_ICON("Oscar", "Martinez", true)))
-                Then("I should see the steps for this duel", then.idVisible(DUEL_DESCRIPTION(400, 600)))
-            })
+        })
+        When("I tap the duels button", when.tapID(DUELS_BUTTON), async () => {
+            Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]))
+        })
+        When("I tap complete the intro", when.completeOnboardingIntro, async () => {
+            Then("I should be on the duels hub", then.idVisible(DUELS_HUB))
+        })
+        When("I tap Completed", when.tapText("Completed"), async()=>{
+            Then("I should see my past duel with Stanely Hudson", then.idVisible(DUEL_ENTRY("Stanley", "Hudson", 10, "finished")))
+            Then("I should see I lost this duel", then.idVisible(DUEL_ICON("Stanley", "Hudson", false)))
+            Then("I should see the steps for this duel", then.idVisible(DUEL_DESCRIPTION(500, 300)))
+            Then("I should see my past duel with Oscar Martinez", then.idVisible(DUEL_ENTRY("Oscar", "Martinez", 10, "finished")))
+            Then("I should see I won this duel", then.idVisible(DUEL_ICON("Oscar", "Martinez", true)))
+            Then("I should see the steps for this duel", then.idVisible(DUEL_DESCRIPTION(400, 600)))
         })
     })
     

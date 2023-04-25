@@ -336,7 +336,7 @@ PODS:
     - glog
   - react-native-blur (4.3.0):
     - React-Core
-  - react-native-cameraroll (5.2.1):
+  - react-native-cameraroll (5.3.1):
     - React-Core
   - react-native-config (1.4.11):
     - react-native-config/App (= 1.4.11)
@@ -835,7 +835,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 5e5497c844f2381e8648ec3a7d0ad25b3f27f23e
   React-logger: b277ad8f4473f2506fb30b762b6348534a3de10e
   react-native-blur: 50c9feabacbc5f49b61337ebc32192c6be7ec3c3
-  react-native-cameraroll: f94bf9f46c998963ecd2bb6e9a3f9cca59b6d9f1
+  react-native-cameraroll: f3050460fe1708378698c16686bfaa5f34099be2
   react-native-config: bcafda5b4c51491ee1b0e1d0c4e3905bc7b56c1b
   react-native-encrypted-storage: db300a3f2f0aba1e818417c1c0a6be549038deb7
   react-native-in-app-review: a073f67c5f3392af6ea7fb383217cdb1aa2aa726

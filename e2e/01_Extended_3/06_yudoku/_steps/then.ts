@@ -101,7 +101,7 @@ export const canSeeLeaderboard = (user: typeof CUSTOMER_86, answer: typeof SUDOK
   } else {
     await idVisible(LEADERBOARD_NAME(user.data.fullName), 2000)()
     await idVisible(SCORE(time))()
-    await idVisible(RANK(rank, user.data.fullName))()
+    await idVisible(RANK(user.data.fullName, rank))()
   }
 }
 

@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -144,12 +144,14 @@ Feature("End of the world/Yuniverse", async () => {
                 Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17850 + 24)))
             })
         })
-        When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-            Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
-            Then("I should see the correct number of steps done today", then.stepsDoneToday(2000))
-            Then("I should see the correct number of mindful minutes", then.textVisible("3 min"))
-            Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(350, 24))
-            Then("I can see the correct surge value and duration", then.iCanSeeSurgeIcon("2x", "7d"))
+        When("I trigger app update", when.triggerAppUpdateState, async () => {
+            When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+                Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
+                Then("I should see the correct number of steps done today", then.stepsDoneToday(2000))
+                Then("I should see the correct number of mindful minutes", then.textVisible("3 min"))
+                Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(350, 24))
+                Then("I can see the correct surge value and duration", then.iCanSeeSurgeIcon("2x", "7d"))
+            })
         })
         When("I go to the today's earnings screen", when.tapText("2,000 steps"), async () => {
             Then("I see the correct yucoin earned today so far", then.textVisible("374 YuCoin"))

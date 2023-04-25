@@ -218,7 +218,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await textVisible(powerText)();
       await textVisibleAtIndex(yuCoinPower, 1)();
       await textVisible(wellbeingAccessText)();
-      await textVisible(paidBy)();
+      await textNotVisible(paidBy)();
       await textNotVisible(noProductText)();
       await textNotVisible(availableProducts)();
       await textVisible(allPoweredUp)();
@@ -235,13 +235,11 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await textVisible(yuCoinText)();
       await textVisible(powerText)();
       await textVisible(lifeInsurance)();
-      await textVisibleAtIndex(paidBy, 0)();
+      await textNotVisible(paidBy)();
       await textVisibleAtIndex(productYuCoin, 0)();
       await textVisible(criticalIllness)();
-      await textVisibleAtIndex(paidBy, 1)();
       await textVisibleAtIndex(productYuCoin, 1)();
       await textVisible(incomeProtection)();
-      await textVisibleAtIndex(paidBy, 2)();
       await textVisibleAtIndex(productYuCoin, 2)();
       await textVisible(availableProducts)();
       break;
@@ -251,14 +249,14 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await textVisible(powerText)();
       await textVisibleAtIndex(dentalYuCoin, 1)();
       await textVisible(groupDental)();
-      await textVisible(paidBy)();
+      await textNotVisible(paidBy)();
       await textVisible(availableProducts)();
       break;
     case "0EarnRate":
       await textVisible(incomeProtection)();
       await textVisible(powerText)();
       await textNotVisible(noProductText)();
-      await textVisible(paidBy)();
+      await textNotVisible(paidBy)();
       await textVisible(yuCoinPower)();
       break;
     case "LifeInsurance":

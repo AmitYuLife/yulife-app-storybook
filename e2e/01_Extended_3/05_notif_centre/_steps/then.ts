@@ -14,5 +14,5 @@ export const amOnNotificationModal = async () => {
 }
 
 export const notifCentreEmptyStateVisible = async () => {
-  await textVisible("You don't have any notifications")()
+  await textVisible("Wow, it's quiet in here! Keep checking back and you'll see some exciting updates soon.")()
 }
