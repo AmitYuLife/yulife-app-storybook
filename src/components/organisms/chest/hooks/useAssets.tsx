@@ -29,8 +29,8 @@ interface IPlanetsChest {
 const planetsChests: IPlanetsChest = {
   [Planets.EARTH]: {
     forest: {
-      opening: require("../lottie/earth/forest-chest-opening"),
-      shaking: require("../lottie/earth/forest-chest-shaking"),
+      opening: require("../lottie/earth/forest-chest-opening.json"),
+      shaking: require("../lottie/earth/forest-chest-shaking.json"),
     },
     ocean: {
       opening: require("../lottie/earth/ocean-chest-opening.json"),
@@ -47,8 +47,8 @@ const planetsChests: IPlanetsChest = {
   },
   [Planets.RED]: {
     forest: {
-      opening: require("../lottie/red/forest-chest-opening"),
-      shaking: require("../lottie/red/forest-chest-shaking"),
+      opening: require("../lottie/red/forest-chest-opening.json"),
+      shaking: require("../lottie/red/forest-chest-shaking.json"),
     },
     ocean: {
       opening: require("../lottie/red/ocean-chest-opening.json"),
@@ -65,8 +65,8 @@ const planetsChests: IPlanetsChest = {
   },
   [Planets.BRIGHT]: {
     forest: {
-      opening: require("../lottie/bright/forest-chest-opening"),
-      shaking: require("../lottie/bright/forest-chest-shaking"),
+      opening: require("../lottie/bright/forest-chest-opening.json"),
+      shaking: require("../lottie/bright/forest-chest-shaking.json"),
     },
     ocean: {
       opening: require("../lottie/bright/ocean-chest-opening.json"),
