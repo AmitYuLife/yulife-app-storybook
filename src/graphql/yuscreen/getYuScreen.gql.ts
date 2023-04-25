@@ -107,6 +107,22 @@ const GQL_FRAGMENT_YU_SCREEN_ENROLLCOPY = gql`
   }
 `;
 
+const GQL_FRAGMENT_YU_SCREEN_BOX_OPTION_CARDS = gql`
+  ${GQL_FRAGMENT_REMOTE_IMAGE}
+  ${GQL_FRAGMENT_SDUI_ACTION}
+
+  fragment YuScreenBoxOptionCard on YuScreenBoxOptionCard {
+    title
+    description
+    image {
+      ...RemoteImage
+    }
+    onPress {
+      ...SduiAction
+    }
+  }
+`;
+
 export const GQL_QUERY_GET_YU_SCREEN = gql`
   ${GQL_FRAGMENT_YU_SCREEN_ONBOARDING}
   ${GQL_FRAGMENT_YU_SCREEN_PRODUCT_SLOT_ITEM}
@@ -115,9 +131,13 @@ export const GQL_QUERY_GET_YU_SCREEN = gql`
   ${GQL_FRAGMENT_YU_SCREEN_YUMOJI_PROMPT}
   ${GQL_FRAGMENT_VARIABLE_REMOTE_IMAGE}
   ${GQL_FRAGMENT_YU_SCREEN_ENROLLCOPY}
+  ${GQL_FRAGMENT_YU_SCREEN_BOX_OPTION_CARDS}
 
   query GetYuScreen {
     getYuScreen {
+      boxOptionCards {
+        ...YuScreenBoxOptionCard
+      }
       onboarding {
         ...YuScreenOnboarding
       }
