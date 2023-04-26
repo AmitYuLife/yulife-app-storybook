@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { View, StyleSheet, ViewStyle, Platform, TextStyle, ImageStyle } from "react-native";
 import { Text } from "@atoms";
-import { LEADERBOARD_INFO_BUTTON, LEADERBOARD_TITLE, LEADERBOARD_TOP_SCREEN } from "@ids";
+import { LEADERBOARD_DROPDOWN, LEADERBOARD_INFO_BUTTON, LEADERBOARD_TITLE, LEADERBOARD_TOP_SCREEN } from "@ids";
 import { truncate } from "@utils";
 import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
@@ -61,7 +61,7 @@ function Title({ name, type, onPressLabel, onPressInfo }: TitleProps) {
   return (
     <View style={titleStyles.wrapper} testID={LEADERBOARD_TOP_SCREEN}>
       <TouchableOpacityWithDelay onPress={onPressLabel}>
-        <View style={titleStyles.leaderboardName}>
+        <View style={titleStyles.leaderboardName} testID={LEADERBOARD_DROPDOWN}>
           <Text style={titleStyles.title} testID={LEADERBOARD_TITLE(name)}>
             {truncate(name, 16)}
             <View style={titleStyles.arrow}>

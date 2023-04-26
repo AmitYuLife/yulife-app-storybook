@@ -111,18 +111,6 @@ Feature("Yudoku", async () => {
         Then("I can see the leaderboard entries", then.canSeeLeaderboard(CUSTOMER_68, SUDOKU_ANSWER_2, 4))
         Then("I can see the leaderboard entries", then.canSeeLeaderboard(CUSTOMER_67, SUDOKU_ANSWER_3, 3))
     })
-    When("I press back", when.tapID(BACK_BUTTON), async () => {
-        When("I scroll up if needed", when.scrollUntilIdVisible(SUDOKU_STAGING_SCREEN_SCROLL, BACK_BUTTON, "up"), async () => {
-            When("I press back", when.tapID(BACK_BUTTON), async () => {
-                When("I go to the yuCoin tab", when.navigateTo("yucoin"), async () => {
-                    When("I click on the YuCoin Icon to see the breakdown of my earnings", when.tapYuCoinIcon, async () => {
-                        Then("I can see the Sudoku challenge is completed", then.canSeeEarntSudoku("0"))
-                    })
-                })
-            })
-        })
-    })
-    
   })
 
   Scenario("I can see Sudoku leaderboard empty states", scenario.start, () => {
@@ -226,6 +214,21 @@ Feature("Yudoku", async () => {
             })
         })
     })
+
+    //     When("I scroll up if needed", when.scrollUntilIdVisible(SUDOKU_STAGING_SCREEN_SCROLL, BACK_BUTTON, "up"), async () => {
+    //         When("I press back", when.tapID(BACK_BUTTON), async () => {
+    //             When("I go to the yuCoin tab", when.navigateTo("yucoin"), async () => {
+    //                 When("I click on the YuCoin Icon to see the breakdown of my earnings", when.tapYuCoinIcon, async () => {
+    //                     Then("I can see the Sudoku challenge is completed", then.canSeeEarntSudoku("0"))
+    //                 })
+    //             })
+    //         })
+    //     })
+    
+    // ^^^^^^^^^^^^Code 
+    // add scenario: Put time for today's challenge in the db, then check the yucoin earning page sudoku time is correct
+
+    
     
   })
 })
