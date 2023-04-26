@@ -114,7 +114,7 @@ export const cannotSeeStartGame = async () => {
 }
 
 export const canSeeEarntSudoku = (time: string) => async () => {
-  await scrollUntilIdVisible(TODAYS_EARNINGS, TAKE_A_CHALLENGE_LEFT_BUTTON, "down")()
+  await scrollUntilTextVisible(TODAYS_EARNINGS, `Sudoku (${time} mins)`, "down")()
   await textVisible(`Sudoku (${time} mins)`)()
 }
 

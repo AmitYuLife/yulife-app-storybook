@@ -147,7 +147,7 @@ Feature("As a user I can opt in and take an event", async () => {
         When("I click Great! button", when.tapText("Great!"), async () => {
             When("I tap level 152", when.tapID(LEVEL_CHALLENGE_BUTTON(152)), async () => {
                 Then("I can see all my challenges done and yucoin earned", then.allChallengesAndYuCoinsAwardedVisible)
-                Then("I should see all my total yucoin earned", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(5400)))
+                Then("I should see all my total yucoin earned", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(5420)))
             })
         })
         When("I tap the back button", when.tapID(BACK_BUTTON), async () => {
