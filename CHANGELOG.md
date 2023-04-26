@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.79.0] - 2023-04-26
+
+### Bugfixes
+
+- Bugfix: Sudoku bugfixes (client)
+- Bugfix: Add missing file extension on lottie files
+- Bugfix: Remove approval_director from ba US
+- Bugfix: Pin sonar cloud image tag
+- Bugfix: Add missing Android 13 permissions
+
+### Tasks
+
+- Task: Add Sudoku leaderboard button to challenge history
+- Task XSE-1851: YuScreen buttons
+- Task ISA-565 add support for tokenRefreshRequired
+
+### Extra
+
+- Detox: Fixes 24th April
+- INS-1548: Detox/global leaderboard fix
+- ISA-584 repoint detox data at coin transactions model
+
 ## [3.78.0] - 2023-04-20
 
 ### Bugfixes
