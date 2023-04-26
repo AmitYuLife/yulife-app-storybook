@@ -7,6 +7,8 @@ import { useBackHandler } from "@hooks";
 import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_QUEST_MAP_LEVEL } from "@graphql/challenges";
 import { ChallengesLoading } from "@components/molecules";
+import { useSelector } from "react-redux";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 interface IProps extends IConnectedScreenProps {
   componentId?: string;
@@ -18,6 +20,7 @@ interface IProps extends IConnectedScreenProps {
 }
 
 function ChallengesHistoryContainer({ level, yuniversalMap, levelName, onPressActivityHistory, componentId }: IProps) {
+  const userFeatures = useSelector(getUserFeatures);
   const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
 
   useBackHandler(() => {
@@ -42,6 +45,8 @@ function ChallengesHistoryContainer({ level, yuniversalMap, levelName, onPressAc
       onPressActivityHistory={onPressActivityHistory}
       onPressCta={handleClose}
       onLeftMenuPress={handleClose}
+      componentId={componentId}
+      showSudokuLeaderboard={userFeatures?.showBrainGameSudoku}
     />
   );
 }

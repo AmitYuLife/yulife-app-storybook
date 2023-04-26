@@ -167,7 +167,8 @@
       },
       "history": {
         "full_button_label": "Full history",
-        "menu_label": "map"
+        "menu_label": "map",
+        "sudoku_leaderboard": "Yudoku Leaderboard"
       }
     },
     "quests": {

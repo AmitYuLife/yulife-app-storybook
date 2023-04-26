@@ -166,7 +166,8 @@
             },
             "history": {
                 "full_button_label": "História completa",
-                "menu_label": "mapa"
+                "menu_label": "mapa",
+                "sudoku_leaderboard": "Classificação Yudoku"
             }
         },
         "quests": {

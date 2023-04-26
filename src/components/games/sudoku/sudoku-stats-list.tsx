@@ -16,7 +16,7 @@ import { ISudokuResults, ISudokuStats } from "./sudoku.interface";
 
 interface IProps {
   stats?: ISudokuStats;
-  results?: ISudokuResults & { leaderboardId?: string };
+  results?: ISudokuResults & { leaderboardId?: string; leaderboardEligible?: boolean };
   onCompleteScreen?: boolean;
   savedData?: ISudokuStore;
   reward: string | number;
@@ -36,7 +36,10 @@ const SudokuStatsList = ({ stats, onCompleteScreen, savedData, results, reward }
 
   const statItems = useMemo(() => {
     const pauseText = savedData?.startTime ? t["sudoku.stats.paused"] : t["sudoku.stats.notApplicable"];
-    const personalBest = results?.adjustedTime < stats?.personalBest ? results.adjustedTime : stats?.personalBest;
+    const personalBest =
+      results?.adjustedTime < stats?.personalBest && results?.leaderboardEligible
+        ? results.adjustedTime
+        : stats?.personalBest;
     const isUnranked = stats?.leaderboardId && results?.adjustedTime && !results.leaderboardId;
 
     return [

@@ -10,6 +10,7 @@ import { getCurrentWorld } from "@utils";
 import { getTheme } from "@theme";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { t } from "@locale";
+import { SudokuHistoryButton } from "@components/games/sudoku/sudoku-history-button";
 
 interface IProps extends IConnectedScreenProps {
   level: GetQuestMapLevel_getQuestMapLevel;
@@ -17,9 +18,19 @@ interface IProps extends IConnectedScreenProps {
   name: string;
   onPressActivityHistory: () => void;
   onPressCta: () => void;
+  componentId?: string;
+  showSudokuLeaderboard?: boolean;
 }
 
-function ChallengesHistory({ level, yuniversalMap, name, onPressActivityHistory, onLeftMenuPress }: IProps) {
+function ChallengesHistory({
+  level,
+  yuniversalMap,
+  componentId,
+  name,
+  onPressActivityHistory,
+  showSudokuLeaderboard,
+  onLeftMenuPress,
+}: IProps) {
   const normalizedWorld = getCurrentWorld(level?.level);
   const { challengeHistoryScreen } = getTheme(level?.level, yuniversalMap);
 
@@ -53,6 +64,7 @@ function ChallengesHistory({ level, yuniversalMap, name, onPressActivityHistory,
         </ScrollView>
       </View>
       <View style={styles.buttonsWrapper}>
+        {showSudokuLeaderboard ? <SudokuHistoryButton level={level.level} componentId={componentId} /> : null}
         <Button onPress={onPressActivityHistory} label={t("screens.challenges.history.full_button_label")} />
       </View>
       <TopBarAbsolute
