@@ -58,7 +58,11 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
             id: ROUTES.sudokuCompleted,
             name: ROUTES.sudokuCompleted,
             passProps: {
-              results: { ...parmas, leaderboardId: data.getSudokuBoard.stats?.leaderboardId },
+              results: {
+                ...parmas,
+                leaderboardId: data.getSudokuBoard.stats?.leaderboardId,
+                leaderboardEligible: data?.getSudokuBoard?.leaderboardEligible,
+              },
               reward: activeLevel.coins,
               stats: data.getSudokuBoard.stats,
             },
