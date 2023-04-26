@@ -75,45 +75,46 @@ function SudokuProgressScreen({ levelSlotId, onDismissPress, onLeftMenuPress }: 
   }, [levelDetails?.getQuestMapLevelChallengeDetails?.assets?.backgroundImage?.uri]);
 
   return (
-    <View style={wrapperStyles}>
-      <Image source={imageUri} width={Style.DEVICE_WIDTH * 2} style={styles.backgroundImage} resizeMode="contain" />
+    <>
+      <View style={wrapperStyles}>
+        <Image source={imageUri} width={Style.DEVICE_WIDTH * 2} style={styles.backgroundImage} resizeMode="contain" />
 
-      <View style={styles.contentContainer}>
-        <View>
-          <GenericHeadingPad />
+        <View style={styles.contentContainer}>
+          <View>
+            <GenericHeadingPad />
 
-          <View style={styles.headerContainer}>
-            <TextTemplate
-              type="h1"
-              color={levelDetails?.getQuestMapLevelChallengeDetails?.progressBar?.progressTextColor}
-            >
-              {t["sudoku.progress.paused"]}
-            </TextTemplate>
-            <SudokuDate date={moment(sudokuData?.getSudokuBoard?.date).format(SUDOKU_DATE_FORMAT)} />
+            <View style={styles.headerContainer}>
+              <TextTemplate
+                type="h1"
+                color={levelDetails?.getQuestMapLevelChallengeDetails?.progressBar?.progressTextColor}
+              >
+                {t["sudoku.progress.paused"]}
+              </TextTemplate>
+              <SudokuDate date={moment(sudokuData?.getSudokuBoard?.date).format(SUDOKU_DATE_FORMAT)} />
+            </View>
+          </View>
+          <View style={styles.buttonsContainer}>
+            <Button
+              backgroundColor={Colours.neutral.white}
+              textColor={Colours.products.fib.n800}
+              shadowColor={Colours.sudoku.cancelShadow}
+              onPress={onDismissPress}
+              wrapperStyle={styles.leftButton}
+              label={t["labels.cta.cancel"]}
+              size="Medium"
+            />
+            <Button
+              onPress={onResumePress}
+              label={t["sudoku.progress.resume"]}
+              size="Medium"
+              wrapperStyle={styles.rightButton}
+            />
           </View>
         </View>
-        <View style={styles.buttonsContainer}>
-          <Button
-            backgroundColor={Colours.neutral.white}
-            textColor={Colours.products.fib.n800}
-            shadowColor={Colours.sudoku.cancelShadow}
-            onPress={onDismissPress}
-            wrapperStyle={styles.leftButton}
-            label={t["labels.cta.cancel"]}
-            size="Medium"
-          />
-          <Button
-            onPress={onResumePress}
-            label={t["sudoku.progress.resume"]}
-            size="Medium"
-            wrapperStyle={styles.rightButton}
-          />
-        </View>
       </View>
-
       <TopBarAbsolute type={currentStyle.topBarType} onPressLeftIcon={onLeftMenuPress} />
       <NavBar activeIndex={1} additionalBottom={2} />
-    </View>
+    </>
   );
 }
 
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: "row",
     // Allow for the bottom bar
-    paddingBottom: Style.adjust(110),
+    paddingBottom: Style.adjust(120),
   },
   leftButton: {
     marginRight: Style.adjust(10),
@@ -141,7 +142,6 @@ const styles = StyleSheet.create({
     top: 0,
     position: "absolute",
   },
-
   contentContainer: {
     flex: 1,
     paddingHorizontal: Style.adjust(20),

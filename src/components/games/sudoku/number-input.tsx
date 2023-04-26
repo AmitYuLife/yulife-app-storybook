@@ -32,7 +32,7 @@ export const NumberInput = ({ value, onPress }: IProps) => {
       wrapperStyle={styles.wrapper}
       disabled={isComplete}
       showShadow={!isComplete}
-      innerHeight={NUMBER_INNER_HEIGHT}
+      innerHeight={SUDOKU_NUMBER_INNER_HEIGHT}
       onPress={onInput}
       innerWrapperStyle={innerStyle}
     >
@@ -49,8 +49,9 @@ export const NumberInput = ({ value, onPress }: IProps) => {
 
 const SUDOKU_NUMBER_SCALE_CUTOFF = 380;
 export const SUDOKU_PASSED_NUMBER_CUTOFF = Style.DEVICE_WIDTH > SUDOKU_NUMBER_SCALE_CUTOFF;
+export const SUDOKU_NUMBER_SIZE_UNADJUSTED = Style.DEVICE_WIDTH > SUDOKU_NUMBER_SCALE_CUTOFF ? 65 : 45;
 export const SUDOKU_NUMBER_SIZE = Style.adjust(Style.DEVICE_WIDTH > SUDOKU_NUMBER_SCALE_CUTOFF ? 65 : 45);
-const NUMBER_INNER_HEIGHT = Style.adjust(SUDOKU_NUMBER_SIZE - 2 * PixelRatio.get());
+export const SUDOKU_NUMBER_INNER_HEIGHT = Style.adjust(SUDOKU_NUMBER_SIZE_UNADJUSTED - 2 * PixelRatio.get());
 
 const styles = StyleSheet.create({
   wrapper: {

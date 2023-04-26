@@ -127,16 +127,25 @@ const CellView = ({
 
   const cellStyles = useMemo(() => {
     const style: ViewStyle[] = [styles.cell];
+    style.push(animatedBackgroundStyle);
 
+    // Thick column lines
     if (column % SUDOKU_QUADRANT_DIMENSIONS === SUDOKU_QUADRANT_DIMENSIONS - 1 && column !== SUDOKU_DIMENSIONS - 1) {
       style.push(styles.cellRightMain);
     }
 
+    // Thick row lines
     if (row % SUDOKU_QUADRANT_DIMENSIONS === SUDOKU_QUADRANT_DIMENSIONS - 1 && row !== SUDOKU_DIMENSIONS - 1) {
       style.push(styles.cellBottomMain);
     }
 
-    style.push(animatedBackgroundStyle);
+    if (row === SUDOKU_DIMENSIONS - 1) {
+      style.push(styles.cellLastRow);
+    }
+
+    if (column === SUDOKU_DIMENSIONS - 1) {
+      style.push(styles.cellLastColumn);
+    }
 
     return style;
   }, [row, animatedBackgroundStyle, column]);
@@ -175,13 +184,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   cell: {
-    borderWidth: 0.5,
     overflow: "hidden",
     alignItems: "center",
     justifyContent: "center",
     width: SUDOKU_BOARD_SIZE / SUDOKU_DIMENSIONS,
     height: SUDOKU_BOARD_SIZE / SUDOKU_DIMENSIONS,
-    borderColor: Colours.sudoku.gridColor,
+    borderRightWidth: 1,
+    borderBottomWidth: 1,
+    borderBottomColor: Colours.sudoku.gridColor,
+    borderRightColor: Colours.sudoku.gridColor,
   },
   expandingCircle: {
     width: "100%",
@@ -197,6 +208,12 @@ const styles = StyleSheet.create({
   cellBottomMain: {
     borderBottomWidth: 2,
     borderBottomColor: Colours.sudoku.gridThickColor,
+  },
+  cellLastRow: {
+    borderBottomWidth: 0,
+  },
+  cellLastColumn: {
+    borderRightWidth: 0,
   },
 });
 

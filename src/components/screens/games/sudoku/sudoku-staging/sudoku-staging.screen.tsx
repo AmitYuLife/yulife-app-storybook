@@ -5,9 +5,8 @@ import {
   GetSudokuBoard,
   GetSudokuLeaderboard_getSudokuLeaderboard,
 } from "@graphql/_core/schema";
-import { memo, useCallback, useMemo } from "react";
+import { memo, useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { MODALS } from "@navigation/constants";
 import { TopBarAbsolute } from "@organisms";
 import { useSelector } from "react-redux";
 import SudokuPersonalBestIcon from "@atoms/icon/sudoku-personal-best-svg";
@@ -17,7 +16,6 @@ import { Colours, Style } from "@styles";
 import moment from "moment";
 import SudokuHowToPlayIcon from "@atoms/icon/sudoku-how-to-play-svg";
 import { getSudokuState } from "@redux/sudoku/sudoku.selectors";
-import { showYuModal } from "@navigation/root";
 import { useTranslation } from "@hooks";
 import { getCurrentWorldName } from "@utils";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
@@ -38,6 +36,7 @@ interface IProps {
   levelDetails: GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails;
   onBack: () => void;
   onStart: () => void;
+  onHelp: () => void;
   slot: GetQuestMapLevel_getQuestMapLevel_slots;
   leaderboard: GetSudokuLeaderboard_getSudokuLeaderboard[];
 }
@@ -47,6 +46,7 @@ const SudokuStagingScreen = ({
   hasLeaderboardConsent,
   onLeaderboardPress,
   data,
+  onHelp,
   onBack,
   levelDetails,
   showSecondAttemptDisclaimer,
@@ -80,15 +80,6 @@ const SudokuStagingScreen = ({
     const worldName = getCurrentWorldName(currentLevel);
     return SUDOKU_PLANET_STYLES[worldName];
   }, [currentLevel, yuniversalMap]);
-
-  const onHelp = useCallback(() => {
-    showYuModal({
-      component: {
-        id: MODALS.sudokuHelp,
-        name: MODALS.sudokuHelp,
-      },
-    });
-  }, []);
 
   const date = useMemo(() => moment(data?.getSudokuBoard?.date).format(SUDOKU_DATE_FORMAT), [data]);
 
@@ -167,7 +158,7 @@ const SudokuStagingScreen = ({
 const styles = StyleSheet.create({
   scrollContent: {
     paddingBottom: Style.adjust(20),
-    minHeight: Style.DEVICE_HEIGHT,
+    minHeight: Style.DEVICE_HEIGHT - Style.adjust(40),
   },
   scrollView: {
     flex: 1,

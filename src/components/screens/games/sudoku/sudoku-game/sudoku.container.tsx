@@ -15,6 +15,7 @@ import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { GQL_MUTATION_TOGGLE_CHALLENGE_PAUSE } from "@graphql/challenges/toggleChallengePause.gql";
 import { getActiveLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { DATE_FORMAT } from "@utils";
+import { useBackHandler } from "@hooks";
 
 export interface ISodukuBoard {
   puzzle: SudokuBoard;
@@ -92,6 +93,13 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
 
     Navigation.popToRoot(ROUTES.quests);
   }, [onPause, date, dispatch]);
+
+  const onBackPress = useCallback(() => {
+    onBack();
+    return true;
+  }, [onBack]);
+
+  useBackHandler(onBackPress);
 
   if (!board) {
     return <LoadingScreen onClose={() => Navigation.pop(componentId)} />;
