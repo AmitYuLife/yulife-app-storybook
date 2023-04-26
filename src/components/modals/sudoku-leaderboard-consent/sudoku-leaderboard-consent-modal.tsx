@@ -39,7 +39,6 @@ const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
       variables: {
         consent: true,
       },
-      refetchQueries: ["GetSudokuBoard"],
       onCompleted: () => {
         onClose();
         onConsented();
