@@ -1,7 +1,7 @@
 import { expectIsVisibleViaText, REWARD_ITEM, expectIsVisibleViaID, LOCKED_REWARD_ITEM, WEGIFT_CONFIRMED, PURCHASE_IMAGE, booleanIdVisible, wait, REWARDS_SCREEN, REWARDS_LIST_SCREEN, textVisible, idVisible } from "@navigation"
 import moment = require("moment")
 import { scrollFromID, scrollFromText, scrollUntilTextVisible, scrollUntilIdVisible, swipeFromText } from "_utils/navigation/scrolling"
-import { TEXT_TEMPLATE } from "@ids"
+import { REWARDS_LIST_SCREEN_SCROLL, TEXT_TEMPLATE } from "@ids"
 
 type rewardType = "avios"
 
@@ -10,21 +10,11 @@ export function addCommasToNumber(x: number) {
 }
 
 export const rewardVisible = (reward: any) => async () => {
-
     const minValue = reward.data.availableDenominations[0].value
     const minYucoin = addCommasToNumber(reward.data.availableDenominations[0].yuCoin)
     const rewardItem = REWARD_ITEM(reward.data._id)
 
-    let rewardItemVisible = await booleanIdVisible(rewardItem)
-    const maxAttempts = 15
-    let currentAttempt = 0
-
-    while (rewardItemVisible === false && currentAttempt < maxAttempts) {
-        await scrollFromID(REWARDS_SCREEN, "up", "slow")()
-        rewardItemVisible = await booleanIdVisible(rewardItem)
-        currentAttempt += 1
-    }
-
+    await scrollUntilIdVisible(REWARDS_LIST_SCREEN_SCROLL, rewardItem, "down")()
     await expectIsVisibleViaText(`Get vouchers from\n£${minValue} for ${minYucoin} YuCoin`, 1500)
     await expectIsVisibleViaID(rewardItem, 1500)
 }
@@ -55,7 +45,7 @@ export const specialRewardVisible = (reward: any, type: rewardType) => async () 
 export const tapRewardInList = (reward: any) => async () => {
         const rewardItem = element(by.id(REWARD_ITEM(reward.data._id)))
 
-        await scrollUntilIdVisible(REWARDS_LIST_SCREEN,REWARD_ITEM(reward.data._id),"down")
+        await scrollUntilIdVisible(REWARDS_LIST_SCREEN_SCROLL, REWARD_ITEM(reward.data._id), "down")()
         await rewardItem.tap()
 }
 

@@ -5,6 +5,7 @@ import { Style } from "@styles";
 import { GetMobileRewardsList_data, GetMobileRewardsList_data_list } from "@graphql/_core/schema";
 import { RewardsListItem } from "./rewards-list.item";
 import HistoryAndStoreLocation from "./subcomponents/history-and-store-location";
+import { REWARDS_LIST_SCREEN_SCROLL } from "@ids";
 
 export interface IRewardsListProps {
   data: GetMobileRewardsList_data;
@@ -42,6 +43,7 @@ const _RewardsList = (props: IRewardsListProps) => {
         renderItem={renderItem}
         refreshing={loading}
         onRefresh={onRefresh}
+        testID={REWARDS_LIST_SCREEN_SCROLL}
       />
     </View>
   );

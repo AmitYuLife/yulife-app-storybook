@@ -39,6 +39,12 @@ export const selectAndCompleteWalkingChallenge = (challengeType: string, steps: 
 export const selectAndCompleteMeditationChallenge = (mindfulnessdata: number) => async () => {
     await navigateViaID(CHALLENGE_TILE("meditation"))
     await navigateViaText("Take challenge")
+
+    await waitFor(element(by.text("Use a different app")))
+    .toBeVisible()
+    .whileElement(by.text("Or use an app"))
+    .swipe("up", "slow");
+
     await tapText("Use a different app")()
     await tapText("maybe later")()
     await tapText("I'm using a different app")()
