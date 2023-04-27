@@ -1,9 +1,9 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { FitKitType } from "./globalTypes";
+import { FitKitType, SduiActionType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetQuestMapLevel
@@ -70,6 +70,11 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent
   uri: string | null;
 }
 
+export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward_sduiAction {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward {
   title: string;
   description: string;
@@ -78,6 +83,7 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent
   discount: string;
   buttonLabel: string;
   rewardId: string;
+  sduiAction: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward_sduiAction;
 }
 
 export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent {

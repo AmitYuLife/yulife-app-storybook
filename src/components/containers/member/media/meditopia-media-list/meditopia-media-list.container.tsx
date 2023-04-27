@@ -10,7 +10,7 @@ import {
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent as IInternalContent,
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
 } from "@graphql/_core/schema";
-import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
+import { MODALS, ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { useDispatch } from "react-redux";
 import { updateChallengeAppButton } from "@redux/levels/levels.actions";
@@ -124,17 +124,10 @@ const MeditopiaMediaListContainer = ({
         location: "meditopia_media_list",
       })
     );
-    Navigation.push(ROUTES.meditopiaMediaList, {
-      component: {
-        id: ROUTES.rewardDetails,
-        name: ROUTES.rewardDetails,
-        passProps: {
-          rewardId: promotionReward?.rewardId,
-          popTo: ROUTES.meditopiaMediaList,
-        },
-        options: { bottomTabs },
-      },
-    });
+
+    if (promotionReward?.sduiAction) {
+      dispatch(promotionReward.sduiAction);
+    }
   }, []);
 
   const formattedVideos = useMemo(() => {
