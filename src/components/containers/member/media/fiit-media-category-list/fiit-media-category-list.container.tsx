@@ -6,7 +6,7 @@ import {
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent as IInternalContent,
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
 } from "@graphql/_core/schema";
-import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
+import { MODALS, ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { useBackHandler } from "@hooks";
 import RNFitKit from "@yu-life/react-native-fitkit";
@@ -121,17 +121,10 @@ const FiitMediaCategoryListContainer = ({
         location: "fiit_media_category_list",
       })
     );
-    Navigation.push(ROUTES.fiitMediaCategoryList, {
-      component: {
-        id: ROUTES.rewardDetails,
-        name: ROUTES.rewardDetails,
-        passProps: {
-          rewardId: headerContent?.promotionReward?.rewardId,
-          popTo: ROUTES.fiitMediaCategoryList,
-        },
-        options: { bottomTabs },
-      },
-    });
+
+    if (headerContent?.promotionReward?.sduiAction) {
+      dispatch(headerContent?.promotionReward.sduiAction);
+    }
   }, []);
 
   const items: IITem[] = useMemo(
