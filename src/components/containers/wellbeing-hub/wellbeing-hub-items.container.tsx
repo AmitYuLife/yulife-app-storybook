@@ -8,20 +8,27 @@ import { GetWellbeingHubCategories, GetWellbeingHubItems } from "@graphql/_core/
 import { t } from "@locale";
 import { Navigation } from "@navigation/main";
 import { Style } from "@styles";
-import React, { FC, useCallback, useMemo, useState } from "react";
+import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { PixelRatio, Platform, View, ViewStyle } from "react-native";
 
 interface IProps {
   componentId: string;
+
+  /** pass in a category name to pre select */
+  preselectCategory?: string;
 }
 
-const WellbeingHubItemsContainer: FC<IProps> = ({ componentId }) => {
+const WellbeingHubItemsContainer: FC<IProps> = ({ componentId, preselectCategory }) => {
   const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [categoryToPreselect, setCategoryToPreselect] = useState(preselectCategory || null);
 
   const { data: categories, loading: categoriesLoading } = useQuery<GetWellbeingHubCategories>(
     GQL_QUERY_GET_WELLBEING_HUB_CATEGORIES,
     {
+      variables: {
+        os: Platform.OS,
+      },
       fetchPolicy: "cache-and-network",
     }
   );
@@ -40,6 +47,19 @@ const WellbeingHubItemsContainer: FC<IProps> = ({ componentId }) => {
     },
     fetchPolicy: "cache-and-network",
   });
+
+  useEffect(() => {
+    if (categories?.wellbeingHubCategories && categoryToPreselect) {
+      // we have to resolve the category name to an id
+      const category = categories?.wellbeingHubCategories.find((c) => c.name === categoryToPreselect);
+
+      if (category) {
+        setSelectedCategory(category.id);
+      }
+
+      setCategoryToPreselect(null);
+    }
+  }, [categoryToPreselect, categories]);
 
   const onCategoryPress = useCallback(
     (id: string) => {
