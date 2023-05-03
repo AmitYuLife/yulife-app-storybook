@@ -31,6 +31,7 @@ interface IProps {
   accessibilityLabel?: string;
   accessibilityRole?: AccessibilityRole;
   accessible?: boolean;
+  lineHeight?: TextStyle["lineHeight"];
 }
 
 export const TextTemplate = memo(
@@ -45,14 +46,16 @@ export const TextTemplate = memo(
     accessibilityLabel,
     accessibilityRole,
     accessible = true,
+    lineHeight: customLineHeight,
   }: IProps) => {
     const alignment = { textAlign };
     const fontColor = { color: color || Colours.neutral.n800 };
     const decorationStyle = !decoration ? null : styles[decoration];
+    const lineHeight = { lineHeight: customLineHeight };
 
     return (
       <Text
-        style={StyleSheet.flatten([styles.default, styles[type], alignment, fontColor, decorationStyle])}
+        style={StyleSheet.flatten([styles.default, styles[type], alignment, fontColor, decorationStyle, lineHeight])}
         allowFontScaling={false}
         testID={testID}
         numberOfLines={numberOfLines}

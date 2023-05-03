@@ -58,6 +58,7 @@ const GQL_FRAGMENT_YU_SCREEN_PRODUCT_SLOT_ITEM = gql`
       ...SduiAction
     }
     showOnOnboarding
+    depressed
   }
 `;
 
