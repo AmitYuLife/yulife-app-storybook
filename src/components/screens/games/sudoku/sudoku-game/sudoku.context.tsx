@@ -29,6 +29,7 @@ export interface ISudokuContext {
   penaltyTime?: number;
   answers?: SudokuBoard;
   history: ISodukuHistory[];
+  guesses: number[];
   initialBoard?: SudokuBoard;
   initialPenalties: number[];
   getDurationText: () => string;
@@ -37,12 +38,13 @@ export interface ISudokuContext {
   isColumnComplete: (column: number) => boolean;
   getHint: ({ row, column }: ISudokuPosition) => void;
   setSelectedCell?: ({ row, column }: { row: number; column: number }) => void;
-  putNumber?: ({ row, column, number }: { number: number } & ISudokuPosition) => void;
+  putNumber?: ({ row, column, number, antiCheat }: { number: number; antiCheat?: boolean } & ISudokuPosition) => void;
   isWrongNumber?: ({ row, column, number }: { number: number } & ISudokuPosition) => boolean;
 }
 export const SodukuContext = createContext<ISudokuContext>({
   history: [],
   penalties: [],
+  guesses: [],
   undo: () => {
     // ignore
   },

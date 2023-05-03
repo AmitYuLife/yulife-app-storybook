@@ -10,6 +10,7 @@ export interface ISudokuGameContainerProps {
   invertHeader?: boolean;
   onPause: () => void;
   onResume: () => void;
+  detectCheats?: boolean;
   onGameComplete: (params: ISudokuResults) => void;
   onStateUpdate?: (args: ISudokuStateChangedArgs) => void;
 }
@@ -23,6 +24,7 @@ export const SudokuGameContainer = ({
   gameIdentifier,
   onStateUpdate,
   invertHeader,
+  detectCheats,
 }: ISudokuGameContainerProps) => {
   return (
     <SudokuManager
@@ -30,6 +32,7 @@ export const SudokuGameContainer = ({
       onGameComplete={onGameComplete}
       gameIdentifier={gameIdentifier}
       onPause={onPause}
+      detectCheats={detectCheats}
       onResume={onResume}
       savedState={savedState}
       onStateUpdate={onStateUpdate}

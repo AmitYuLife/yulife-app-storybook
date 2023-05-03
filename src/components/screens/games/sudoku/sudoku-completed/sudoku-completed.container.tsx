@@ -1,22 +1,14 @@
-import { useMutation } from "@apollo/client";
-import {
-  GetSudokuBoard_getSudokuBoard_results,
-  GetSudokuBoard_getSudokuBoard_stats,
-  SubmitSudokuSolution,
-  SubmitSudokuSolutionVariables,
-} from "@graphql/_core/schema";
+import { GetSudokuBoard_getSudokuBoard_results, GetSudokuBoard_getSudokuBoard_stats } from "@graphql/_core/schema";
 import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
-import { GQL_MUTATION_SUBMIT_SUDOKU_SOLUTION } from "@graphql/brainGames/sudoku/submitSudokuResults.gql";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { challengeResetSuccessAction } from "@redux/levels/levels.actions";
-import { SudokuDifficulty } from "@graphql/_core/schema/globalTypes";
-import { getSudokuState } from "@redux/sudoku/sudoku.selectors";
-import { memo, useCallback, useEffect } from "react";
+import { memo, useCallback } from "react";
 import SudokuCompletedScreen from "./sudoku-completed.screen";
 import { showYuModal } from "@navigation/root";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import { useBackHandler } from "@hooks";
+import { displayStreaksCompletedAction } from "@redux/streaks/streaks.actions";
 
 interface IProps {
   results: GetSudokuBoard_getSudokuBoard_results;
@@ -26,35 +18,16 @@ interface IProps {
 
 export const SudokuCompletedContainer = ({ reward, results, stats }: IProps) => {
   const dispatch = useDispatch();
-  const state = useSelector(getSudokuState);
-  const [submitSudokuSolution, { loading }] = useMutation<SubmitSudokuSolution, SubmitSudokuSolutionVariables>(
-    GQL_MUTATION_SUBMIT_SUDOKU_SOLUTION
-  );
 
   useBackHandler(() => {
     return true;
   });
 
-  useEffect(() => {
-    submitSudokuSolution({
-      variables: {
-        results: {
-          date: state.gameIdentifier,
-          mistakes: results.mistakes,
-          hints: results.hints,
-          baseTime: results.adjustedTime,
-          adjustedTime: results.adjustedTime,
-          levelSlotId: state.levelSlotId,
-          difficulty: SudokuDifficulty.EASY,
-        },
-      },
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const onCollect = useCallback(() => {
     dispatch(challengeResetSuccessAction());
     dispatch(sudokuReset());
+    dispatch(displayStreaksCompletedAction());
+
     Navigation.popTo(ROUTES.quests);
 
     if (!stats?.leaderboardId) {
@@ -72,9 +45,7 @@ export const SudokuCompletedContainer = ({ reward, results, stats }: IProps) => 
     }
   }, [dispatch, stats]);
 
-  return (
-    <SudokuCompletedScreen reward={reward} isLoading={loading} onCollect={onCollect} results={results} stats={stats} />
-  );
+  return <SudokuCompletedScreen reward={reward} onCollect={onCollect} results={results} stats={stats} />;
 };
 
 export default memo(SudokuCompletedContainer);

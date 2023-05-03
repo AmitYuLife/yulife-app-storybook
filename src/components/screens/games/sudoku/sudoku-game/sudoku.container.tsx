@@ -4,7 +4,12 @@ import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { useSelector, useDispatch } from "react-redux";
 import { getSudokuState } from "@redux/sudoku/sudoku.selectors";
-import { GetSudokuBoard, GetSudokuBoard_getSudokuBoard_results } from "@graphql/_core/schema";
+import {
+  GetSudokuBoard,
+  GetSudokuBoard_getSudokuBoard_results,
+  SubmitSudokuSolution,
+  SubmitSudokuSolutionVariables,
+} from "@graphql/_core/schema";
 import { sudokuStateChanged } from "@redux/sudoku/sudoku.actions";
 import { memo, useCallback, useMemo } from "react";
 import { first } from "lodash";
@@ -15,7 +20,12 @@ import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { GQL_MUTATION_TOGGLE_CHALLENGE_PAUSE } from "@graphql/challenges/toggleChallengePause.gql";
 import { getActiveLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { DATE_FORMAT } from "@utils";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { SudokuDifficulty } from "@graphql/_core/schema/globalTypes";
+import { GQL_MUTATION_SUBMIT_SUDOKU_SOLUTION } from "@graphql/brainGames/sudoku/submitSudokuResults.gql";
+import { ISudokuResults } from "@components/games/sudoku/sudoku.interface";
 import { useBackHandler } from "@hooks";
+import { delay } from "@utils/misc";
 
 export interface ISodukuBoard {
   puzzle: SudokuBoard;
@@ -28,14 +38,18 @@ interface IProps {
   componentId: string;
 }
 
+const SUDOKU_ANIMATION_TIMEOUT = 2000;
 export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   const dispatch = useDispatch();
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const activeLevel = useSelector(getActiveLevel);
-
+  const features = useSelector(getUserFeatures);
   const sudokuState = useSelector(getSudokuState);
-  const date = useMemo(() => moment().format(DATE_FORMAT), []);
   const [sendPause] = useMutation(GQL_MUTATION_TOGGLE_CHALLENGE_PAUSE);
+  const date = useMemo(() => moment().format(DATE_FORMAT), []);
+  const [submitSudokuSolution] = useMutation<SubmitSudokuSolution, SubmitSudokuSolutionVariables>(
+    GQL_MUTATION_SUBMIT_SUDOKU_SOLUTION
+  );
 
   const { data } = useQuery<GetSudokuBoard>(GQL_QUERY_GET_SUDOKU_BOARDS, {
     fetchPolicy: "no-cache",
@@ -50,27 +64,53 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
 
   const board = first(data?.getSudokuBoard?.boards);
 
-  const onGameComplete = useCallback(
-    (parmas: GetSudokuBoard_getSudokuBoard_results) => {
-      setTimeout(() => {
-        Navigation.push(componentId, {
-          component: {
-            id: ROUTES.sudokuCompleted,
-            name: ROUTES.sudokuCompleted,
-            passProps: {
-              results: {
-                ...parmas,
-                leaderboardId: data.getSudokuBoard.stats?.leaderboardId,
-                leaderboardEligible: data?.getSudokuBoard?.leaderboardEligible,
-              },
-              reward: activeLevel.coins,
-              stats: data.getSudokuBoard.stats,
+  const navigateToCompleted = useCallback(
+    (parmas: GetSudokuBoard_getSudokuBoard_results, result: SubmitSudokuSolution) => {
+      Navigation.push(componentId, {
+        component: {
+          id: ROUTES.sudokuCompleted,
+          name: ROUTES.sudokuCompleted,
+          passProps: {
+            results: {
+              ...parmas,
+              adjustedTime: result?.submitSudokuSolution.incomingData.duration,
+              leaderboardId: data.getSudokuBoard.stats?.leaderboardId,
+              leaderboardEligible: data?.getSudokuBoard?.leaderboardEligible,
             },
+            reward: activeLevel.coins,
+            stats: data.getSudokuBoard.stats,
           },
-        });
-      }, 2500);
+        },
+      });
     },
-    [componentId, activeLevel, data]
+    [activeLevel?.coins, componentId, data?.getSudokuBoard?.leaderboardEligible, data?.getSudokuBoard.stats]
+  );
+
+  const onGameComplete = useCallback(
+    (parmas: ISudokuResults) => {
+      (async () => {
+        const [result] = await Promise.all([
+          submitSudokuSolution({
+            variables: {
+              results: {
+                date: sudokuState.gameIdentifier,
+                mistakes: parmas.mistakes,
+                hints: parmas.hints,
+                baseTime: parmas.adjustedTime,
+                guesses: parmas.guesses,
+                adjustedTime: parmas.adjustedTime,
+                levelSlotId: sudokuState.levelSlotId,
+                difficulty: SudokuDifficulty.EASY,
+              },
+            },
+          }),
+          delay(SUDOKU_ANIMATION_TIMEOUT),
+        ]);
+
+        navigateToCompleted({ ...parmas, leaderboardId: undefined }, result?.data);
+      })();
+    },
+    [submitSudokuSolution, sudokuState.gameIdentifier, sudokuState.levelSlotId, navigateToCompleted]
   );
 
   const onPause = useCallback(() => {
@@ -115,6 +155,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
       board={board}
       onGameComplete={onGameComplete}
       gameIdentifier={moment(date).format("YYYY-MM-DD")}
+      detectCheats={features.enableSudokuCheatDetection}
       onStateUpdate={onStateUpdate}
       onPause={onPause}
       onResume={onResume}
