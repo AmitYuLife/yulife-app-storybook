@@ -30,7 +30,16 @@ export const ContentItemRadioBase = ({ onChange, choices, value, iconOptions, st
           ({
             label,
             value: currentValue,
-            renderAsIcon: { icon, textColor, wrapperStyles, selectedStyles, boxOptionHeight, imageHeight, imageWidth },
+            renderAsIcon: {
+              icon,
+              textColor,
+              innerWrapperStyles,
+              wrapperStyles,
+              selectedStyles,
+              boxOptionHeight,
+              imageHeight,
+              imageWidth,
+            },
           }) => (
             <View key={currentValue} style={[styles.boxWrapper, mapServerStyles(wrapperStyles)]}>
               <BoxOption
@@ -39,7 +48,10 @@ export const ContentItemRadioBase = ({ onChange, choices, value, iconOptions, st
                 selectedStyle={mapServerStyles(selectedStyles)}
                 innerHeight={boxOptionHeight ?? Style.adjust(boxOptionHeight)}
               >
-                <View testID={CPD_FEEDBACK_BUTTON(currentValue)} style={styles.innerWrapper}>
+                <View
+                  testID={CPD_FEEDBACK_BUTTON(currentValue)}
+                  style={[styles.innerWrapper, mapServerStyles(innerWrapperStyles)]}
+                >
                   <Image
                     height={Style.adjust(imageHeight || DEFAULT_ICON_IMAGE_SIZE)}
                     width={Style.adjust(imageWidth || DEFAULT_ICON_IMAGE_SIZE)}

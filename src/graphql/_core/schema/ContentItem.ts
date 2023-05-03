@@ -25,7 +25,6 @@ export interface ContentItem_ContentItemProcessingTimer {
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
-    | "ContentItemInfoCard"
     | "ContentItemLinearGradient"
     | "ContentItemYuCoinPower"
     | "ContentItemComparisonTableSelectPackage"
@@ -467,11 +466,17 @@ export interface ContentItem_ContentItemRadio_choices_renderAsIcon_wrapperStyles
   value: string;
 }
 
+export interface ContentItem_ContentItemRadio_choices_renderAsIcon_innerWrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItem_ContentItemRadio_choices_renderAsIcon {
   icon: ContentItem_ContentItemRadio_choices_renderAsIcon_icon | null;
   textColor: string;
   selectedStyles: ContentItem_ContentItemRadio_choices_renderAsIcon_selectedStyles[];
   wrapperStyles: ContentItem_ContentItemRadio_choices_renderAsIcon_wrapperStyles[] | null;
+  innerWrapperStyles: ContentItem_ContentItemRadio_choices_renderAsIcon_innerWrapperStyles[] | null;
   boxOptionHeight: number | null;
   imageWidth: number | null;
   imageHeight: number | null;
@@ -705,6 +710,30 @@ export interface ContentItem_ContentItemMedia {
   onEnd: ContentItem_ContentItemMedia_onEnd | null;
 }
 
+export interface ContentItem_ContentItemInfoCard_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItem_ContentItemInfoCard_styles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemInfoCard_hyperlink {
+  title: string;
+  url: string;
+}
+
+export interface ContentItem_ContentItemInfoCard {
+  __typename: "ContentItemInfoCard";
+  id: string;
+  image: ContentItem_ContentItemInfoCard_image | null;
+  markdown: string;
+  styles: ContentItem_ContentItemInfoCard_styles[] | null;
+  hyperlink: ContentItem_ContentItemInfoCard_hyperlink | null;
+}
+
 export type ContentItem =
   | ContentItem_ContentItemProcessingTimer
   | ContentItem_ContentItemMarkdown
@@ -723,4 +752,5 @@ export type ContentItem =
   | ContentItem_ContentItemProgressBar
   | ContentItem_ContentItemTextGroup
   | ContentItem_ContentItemAccordion
-  | ContentItem_ContentItemMedia;
+  | ContentItem_ContentItemMedia
+  | ContentItem_ContentItemInfoCard;

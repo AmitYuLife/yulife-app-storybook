@@ -25,7 +25,6 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemProcessingT
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
-    | "ContentItemInfoCard"
     | "ContentItemLinearGradient"
     | "ContentItemYuCoinPower"
     | "ContentItemComparisonTableSelectPackage"
@@ -473,11 +472,19 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRadio_choic
   value: string;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRadio_choices_renderAsIcon_innerWrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemRadio_choices_renderAsIcon {
   icon: GetSduiStaticStep_getSduiStaticStep_body_ContentItemRadio_choices_renderAsIcon_icon | null;
   textColor: string;
   selectedStyles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemRadio_choices_renderAsIcon_selectedStyles[];
   wrapperStyles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemRadio_choices_renderAsIcon_wrapperStyles[] | null;
+  innerWrapperStyles:
+    | GetSduiStaticStep_getSduiStaticStep_body_ContentItemRadio_choices_renderAsIcon_innerWrapperStyles[]
+    | null;
   boxOptionHeight: number | null;
   imageWidth: number | null;
   imageHeight: number | null;
@@ -711,6 +718,30 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia {
   onEnd: GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_onEnd | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemInfoCard_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemInfoCard_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemInfoCard_hyperlink {
+  title: string;
+  url: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemInfoCard {
+  __typename: "ContentItemInfoCard";
+  id: string;
+  image: GetSduiStaticStep_getSduiStaticStep_body_ContentItemInfoCard_image | null;
+  markdown: string;
+  styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemInfoCard_styles[] | null;
+  hyperlink: GetSduiStaticStep_getSduiStaticStep_body_ContentItemInfoCard_hyperlink | null;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemProcessingTimer
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemMarkdown
@@ -729,7 +760,8 @@ export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemProgressBar
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextGroup
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion
-  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia;
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemInfoCard;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProcessingTimer {
   __typename:
@@ -737,7 +769,6 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemPr
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
-    | "ContentItemInfoCard"
     | "ContentItemLinearGradient"
     | "ContentItemYuCoinPower"
     | "ContentItemComparisonTableSelectPackage"
@@ -1187,12 +1218,20 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRa
   value: string;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRadio_choices_renderAsIcon_innerWrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRadio_choices_renderAsIcon {
   icon: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRadio_choices_renderAsIcon_icon | null;
   textColor: string;
   selectedStyles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRadio_choices_renderAsIcon_selectedStyles[];
   wrapperStyles:
     | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRadio_choices_renderAsIcon_wrapperStyles[]
+    | null;
+  innerWrapperStyles:
+    | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemRadio_choices_renderAsIcon_innerWrapperStyles[]
     | null;
   boxOptionHeight: number | null;
   imageWidth: number | null;
@@ -1427,6 +1466,30 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMe
   onEnd: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_onEnd | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemInfoCard_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemInfoCard_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemInfoCard_hyperlink {
+  title: string;
+  url: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemInfoCard {
+  __typename: "ContentItemInfoCard";
+  id: string;
+  image: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemInfoCard_image | null;
+  markdown: string;
+  styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemInfoCard_styles[] | null;
+  hyperlink: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemInfoCard_hyperlink | null;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProcessingTimer
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown
@@ -1445,7 +1508,8 @@ export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProgressBar
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextGroup
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAccordion
-  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia;
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemInfoCard;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_styles {
   property: string;

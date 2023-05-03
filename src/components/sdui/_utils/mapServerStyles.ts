@@ -37,7 +37,7 @@ export const mapDynamicServerStyles = (
   return style;
 };
 
-const IS_FLOAT_NUMBER = /^[0-9]*\.?[0-9]*$/;
+const IS_FLOAT_NUMBER = /^-?[0-9]*\.?[0-9]*$/;
 
 const castValue = (value: SduiStyle["value"]) => {
   if (IS_FLOAT_NUMBER.test(value)) {

@@ -25,7 +25,6 @@ export interface AbsoluteContentItem_item_ContentItemProcessingTimer {
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
-    | "ContentItemInfoCard"
     | "ContentItemLinearGradient"
     | "ContentItemYuCoinPower"
     | "ContentItemComparisonTableSelectPackage"
@@ -467,11 +466,17 @@ export interface AbsoluteContentItem_item_ContentItemRadio_choices_renderAsIcon_
   value: string;
 }
 
+export interface AbsoluteContentItem_item_ContentItemRadio_choices_renderAsIcon_innerWrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface AbsoluteContentItem_item_ContentItemRadio_choices_renderAsIcon {
   icon: AbsoluteContentItem_item_ContentItemRadio_choices_renderAsIcon_icon | null;
   textColor: string;
   selectedStyles: AbsoluteContentItem_item_ContentItemRadio_choices_renderAsIcon_selectedStyles[];
   wrapperStyles: AbsoluteContentItem_item_ContentItemRadio_choices_renderAsIcon_wrapperStyles[] | null;
+  innerWrapperStyles: AbsoluteContentItem_item_ContentItemRadio_choices_renderAsIcon_innerWrapperStyles[] | null;
   boxOptionHeight: number | null;
   imageWidth: number | null;
   imageHeight: number | null;
@@ -705,6 +710,30 @@ export interface AbsoluteContentItem_item_ContentItemMedia {
   onEnd: AbsoluteContentItem_item_ContentItemMedia_onEnd | null;
 }
 
+export interface AbsoluteContentItem_item_ContentItemInfoCard_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemInfoCard_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemInfoCard_hyperlink {
+  title: string;
+  url: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemInfoCard {
+  __typename: "ContentItemInfoCard";
+  id: string;
+  image: AbsoluteContentItem_item_ContentItemInfoCard_image | null;
+  markdown: string;
+  styles: AbsoluteContentItem_item_ContentItemInfoCard_styles[] | null;
+  hyperlink: AbsoluteContentItem_item_ContentItemInfoCard_hyperlink | null;
+}
+
 export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemProcessingTimer
   | AbsoluteContentItem_item_ContentItemMarkdown
@@ -723,7 +752,8 @@ export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemProgressBar
   | AbsoluteContentItem_item_ContentItemTextGroup
   | AbsoluteContentItem_item_ContentItemAccordion
-  | AbsoluteContentItem_item_ContentItemMedia;
+  | AbsoluteContentItem_item_ContentItemMedia
+  | AbsoluteContentItem_item_ContentItemInfoCard;
 
 export interface AbsoluteContentItem_styles {
   property: string;
