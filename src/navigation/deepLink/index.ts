@@ -31,9 +31,11 @@ class DeepLink {
       return this.actions.get(rootUrl);
     }
 
-    const startsWith = [...this.actions].find(([key, _]) => rootUrl.startsWith(key))[0];
+    const keyStartingWithRootUrl = [...this.actions.keys()].find((key) => rootUrl.startsWith(key));
 
-    return this.actions.get(startsWith);
+    if (keyStartingWithRootUrl) {
+      return this.actions.get(keyStartingWithRootUrl);
+    }
   };
 
   private mapWithAuth({ name, action, unauthorisedOnly }: DeepLinkHandler): [string, DeepLinkHandler["action"]] {
