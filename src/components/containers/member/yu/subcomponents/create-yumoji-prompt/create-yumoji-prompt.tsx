@@ -4,7 +4,7 @@ import { Colours, Style } from "@styles";
 import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilder";
 import { Button } from "@molecules";
 import { TextTemplate } from "@atoms";
-import { yumojiWrapperWidth } from "../yumoji-and-slots/styles";
+import { yumojiWrapperWidth } from "../yumoji-and-slots/yumoji-and-slots.styles";
 import { GetYuScreen_getYuScreen_yumojiPrompt as Props } from "@graphql/_core/schema";
 import FastImage from "react-native-fast-image";
 

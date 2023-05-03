@@ -42,8 +42,16 @@ export const YuScreen = memo(({ componentId }: Props) => {
     );
   }
 
-  const { productCarousel, productSlots, surveyFooter, yumojiPrompt, carrierLogo, enrollCopy, boxOptionCards } =
-    data.getYuScreen;
+  const {
+    productCarousel,
+    productSlots,
+    surveyFooter,
+    yumojiPrompt,
+    carrierLogo,
+    enrollCopy,
+    boxOptionCards,
+    spanningProductSlot,
+  } = data.getYuScreen;
 
   if (showOnboarding) {
     return (
@@ -62,7 +70,11 @@ export const YuScreen = memo(({ componentId }: Props) => {
   return (
     <YuScreenLayout testID={V4_YUSCREEN}>
       <NameAndLevel useWorldColor={true} hideWorldIcon={true} />
-      <YumojiAndSlots productSlots={productSlots} yumojiPrompt={yumojiPrompt} />
+      <YumojiAndSlots
+        spanningProductSlot={spanningProductSlot}
+        productSlots={productSlots}
+        yumojiPrompt={yumojiPrompt}
+      />
       {!boxOptionCards?.length ? null : (
         <View style={styles.boxOptionCardWrapper}>
           {boxOptionCards.map((boxOptionCard, boxOptionCardIndex) => (

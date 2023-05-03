@@ -1,29 +1,27 @@
 import React, { useContext, FC, memo } from "react";
 import { View } from "react-native";
-import { TouchableOpacityWithDelay, Yumoji } from "@components/molecules";
 import { YuScreenContext } from "../../context/yu-screen.context";
-import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilder";
 import { YuCoinPower } from "../yu-coin-power/yu-coin-power";
 import { ItemSlot } from "../item-slot/item-slot";
 import {
   GetYuScreen_getYuScreen_productSlots as ProductSlots,
+  VariableRemoteImage,
   GetYuScreen_getYuScreen_yumojiPrompt as YumojiPrompt,
 } from "@graphql/_core/schema";
-import { AVATAR_HEIGHT, AVATAR_WIDTH, styles } from "./styles";
-import { CreateYumojiPrompt } from "../create-yumoji-prompt/create-yumoji-prompt";
-import { YUMOJI_AVATAR_YUSCREEN_V4 } from "@ids";
+import { styles } from "./yumoji-and-slots.styles";
+import { YumojiAvatar } from "./yumoji-avatar";
+import { SpanningProductSlot } from "./spanning-product-slot";
 
 interface Props {
   productSlots: Array<ProductSlots>;
   yumojiPrompt: YumojiPrompt;
+  spanningProductSlot: {
+    heading?: string;
+    images: VariableRemoteImage[];
+  };
 }
 
-interface YumojiAvatarProps {
-  uri?: string;
-  yumojiPrompt: YumojiPrompt;
-}
-
-export const YumojiAndSlots: FC<Props> = memo(({ productSlots, yumojiPrompt }) => {
+export const YumojiAndSlots: FC<Props> = memo(({ productSlots, yumojiPrompt, spanningProductSlot }) => {
   const { yumojiRemoteUrl } = useContext(YuScreenContext);
 
   return (
@@ -34,30 +32,8 @@ export const YumojiAndSlots: FC<Props> = memo(({ productSlots, yumojiPrompt }) =
         {productSlots.map((props) => (
           <ItemSlot key={props.id} {...props} />
         ))}
+        <SpanningProductSlot spanningProductSlot={spanningProductSlot} />
       </View>
     </View>
   );
 });
-
-const YumojiAvatar: FC<YumojiAvatarProps> = ({ uri, yumojiPrompt }) => {
-  const { buttonText, heading, text } = yumojiPrompt;
-
-  const YumojiWrapper = uri ? TouchableOpacityWithDelay : View;
-
-  return (
-    <View style={styles.yumojiWrapper} testID={YUMOJI_AVATAR_YUSCREEN_V4}>
-      <YumojiWrapper onPress={uri ? navigateToYumojiBuilder : null}>
-        <Yumoji
-          emptyHeight={AVATAR_HEIGHT}
-          emptyWidth={AVATAR_WIDTH}
-          width={AVATAR_WIDTH}
-          height={AVATAR_HEIGHT}
-          testID="YUMOJI_EQUIPMENT"
-          theme={"dark"}
-          uri={uri}
-        />
-      </YumojiWrapper>
-      {!uri ? <CreateYumojiPrompt buttonText={buttonText} heading={heading} text={text} /> : null}
-    </View>
-  );
-};
