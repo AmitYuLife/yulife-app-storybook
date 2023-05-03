@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { View } from "react-native";
-import { styles } from "./styles";
+import { defaultStyles as styles } from "./styles";
 import { SkeletonLoading } from "@atoms";
 
 export const ItemSlotSkeleton = memo(() => (

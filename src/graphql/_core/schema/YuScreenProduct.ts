@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -63,4 +63,5 @@ export interface YuScreenProduct {
   onPress: YuScreenProduct_onPress | null;
   event: YuScreenProduct_event | null;
   showOnOnboarding: boolean | null;
+  depressed: boolean | null;
 }

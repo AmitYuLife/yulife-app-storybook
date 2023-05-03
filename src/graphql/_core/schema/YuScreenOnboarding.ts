@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -73,6 +73,7 @@ export interface YuScreenOnboarding_placeholder {
   onPress: YuScreenOnboarding_placeholder_onPress | null;
   event: YuScreenOnboarding_placeholder_event | null;
   showOnOnboarding: boolean | null;
+  depressed: boolean | null;
 }
 
 export interface YuScreenOnboarding {

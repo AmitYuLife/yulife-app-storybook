@@ -1,8 +1,13 @@
 import React, { FC, memo } from "react";
 import { StyleSheet, View } from "react-native";
-import { rightIconImageDimensions, slotStatusImageDimensions, slotYuCoinPowerImageDimensions, styles } from "./styles";
+import {
+  slotStatusImageDimensions,
+  getStyles,
+  getRightIconImageDimensions,
+  getSlotYuCoinPowerImageDimensions,
+} from "./styles";
 import { Image, TextTemplate } from "@atoms";
-import { Colours } from "@styles";
+import { Colours, Style } from "@styles";
 import {
   GetYuScreen_getYuScreen_productSlots as ProductSlots,
   YuScreenProductButtonAction,
@@ -35,11 +40,16 @@ export const ItemSlot: FC<ItemSlotProps> = memo(
     titleColour,
     topShadowColour,
     socketType = "yuscreen",
+    depressed = false,
   }) => {
     const currentRoute = useSelector(getRouteState);
     const handlePress = useYuScreenOnPressHandler({ event, onPress, currentRoute });
 
     const ItemSlotWrapper = onPress ? TouchableOpacityWithDelay : View;
+
+    const styles = getStyles(depressed);
+    const slotYuCoinPowerImageDimensions = getSlotYuCoinPowerImageDimensions(depressed);
+    const rightIconImageDimensions = getRightIconImageDimensions(depressed);
 
     return (
       <View style={styles.container}>
@@ -85,11 +95,11 @@ export const ItemSlot: FC<ItemSlotProps> = memo(
           >
             {leftBackgroundImage ? <View style={styles.spacer} /> : null}
             <View style={styles.titleWrapper}>
-              <TextTemplate color={titleColour} type="l2b">
+              <TextTemplate color={titleColour} type="l2b" lineHeight={Style.adjust(14)}>
                 {title}
               </TextTemplate>
               {text ? (
-                <TextTemplate color={titleColour} type="l3">
+                <TextTemplate color={titleColour} type="l3" lineHeight={Style.adjust(14)}>
                   {text}
                 </TextTemplate>
               ) : null}

@@ -95,6 +95,7 @@ export interface GetYuScreen_getYuScreen_onboarding_placeholder {
   onPress: GetYuScreen_getYuScreen_onboarding_placeholder_onPress | null;
   event: GetYuScreen_getYuScreen_onboarding_placeholder_event | null;
   showOnOnboarding: boolean | null;
+  depressed: boolean | null;
 }
 
 export interface GetYuScreen_getYuScreen_onboarding {
@@ -160,6 +161,7 @@ export interface GetYuScreen_getYuScreen_productSlots {
   onPress: GetYuScreen_getYuScreen_productSlots_onPress | null;
   event: GetYuScreen_getYuScreen_productSlots_event | null;
   showOnOnboarding: boolean | null;
+  depressed: boolean | null;
 }
 
 export interface GetYuScreen_getYuScreen_spanningProductSlot_images_image {
