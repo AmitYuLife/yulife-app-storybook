@@ -162,6 +162,21 @@ export interface GetYuScreen_getYuScreen_productSlots {
   showOnOnboarding: boolean | null;
 }
 
+export interface GetYuScreen_getYuScreen_spanningProductSlot_images_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_spanningProductSlot_images {
+  image: GetYuScreen_getYuScreen_spanningProductSlot_images_image;
+  width: number;
+}
+
+export interface GetYuScreen_getYuScreen_spanningProductSlot {
+  heading: string | null;
+  images: GetYuScreen_getYuScreen_spanningProductSlot_images[] | null;
+}
+
 export interface GetYuScreen_getYuScreen_productCarousel_items_button_onPress_productAction {
   productId: string;
   nextRouteId: string | null;
@@ -285,6 +300,7 @@ export interface GetYuScreen_getYuScreen {
   boxOptionCards: (GetYuScreen_getYuScreen_boxOptionCards | null)[] | null;
   onboarding: GetYuScreen_getYuScreen_onboarding | null;
   productSlots: (GetYuScreen_getYuScreen_productSlots | null)[];
+  spanningProductSlot: GetYuScreen_getYuScreen_spanningProductSlot | null;
   productCarousel: GetYuScreen_getYuScreen_productCarousel | null;
   surveyFooter: GetYuScreen_getYuScreen_surveyFooter | null;
   yumojiPrompt: GetYuScreen_getYuScreen_yumojiPrompt;

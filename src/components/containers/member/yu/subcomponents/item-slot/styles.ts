@@ -1,5 +1,6 @@
 import { Colours, Style } from "@styles";
 import { StyleSheet } from "react-native";
+import { ITEM_SLOT_WIDTH } from "../constants";
 
 const slotContainerBase = {
   borderRadius: Style.adjust(8),
@@ -25,12 +26,12 @@ export const rightIconImageDimensions = {
 export const styles = StyleSheet.create({
   container: {
     alignItems: "flex-end",
-    marginRight: Style.adjust(5),
+    paddingRight: Style.adjust(5),
     marginTop: Style.adjust(12),
   },
   slotWrapper: {
     height: Style.adjust(54),
-    width: Style.adjust(170),
+    width: ITEM_SLOT_WIDTH,
   },
   slotInnerWrapperTop: {
     ...slotContainerBase,

@@ -269,6 +269,7 @@ export * from "./YuScreenProductPaymentHistoryInfoPanel";
 export * from "./YuScreenProductPaymentHistoryItem";
 export * from "./YuScreenProductSlot";
 export * from "./YuScreenProductSlotItem";
+export * from "./YuScreenSpanningProductSlot";
 export * from "./YuScreenSurveyFooter";
 export * from "./YuScreenYumojiPrompt";
 export * from "./YumojiRemoteFiles";

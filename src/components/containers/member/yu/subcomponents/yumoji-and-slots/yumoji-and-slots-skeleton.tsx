@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { View } from "react-native";
 import { ItemSlotSkeleton } from "../item-slot/item-slot-skeleton";
 import { YuCoinPowerSkeleton } from "../yu-coin-power/yu-coin-power-skeleton";
-import { AVATAR_HEIGHT, AVATAR_WIDTH, styles } from "./styles";
+import { AVATAR_HEIGHT, AVATAR_WIDTH, styles } from "./yumoji-and-slots.styles";
 import { EmptyMaleBody } from "@components/molecules/yumoji/assets/empty-male-body-svg";
 import { Colours } from "@styles";
 

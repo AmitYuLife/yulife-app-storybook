@@ -123,6 +123,17 @@ const GQL_FRAGMENT_YU_SCREEN_BOX_OPTION_CARDS = gql`
   }
 `;
 
+const GQL_FRAGMENT_YU_SCREEN_SPANNING_PRODUCT_SLOT = gql`
+  ${GQL_FRAGMENT_VARIABLE_REMOTE_IMAGE}
+
+  fragment YuScreenSpanningProductSlot on YuScreenSpanningProductSlot {
+    heading
+    images {
+      ...VariableRemoteImage
+    }
+  }
+`;
+
 export const GQL_QUERY_GET_YU_SCREEN = gql`
   ${GQL_FRAGMENT_YU_SCREEN_ONBOARDING}
   ${GQL_FRAGMENT_YU_SCREEN_PRODUCT_SLOT_ITEM}
@@ -132,6 +143,7 @@ export const GQL_QUERY_GET_YU_SCREEN = gql`
   ${GQL_FRAGMENT_VARIABLE_REMOTE_IMAGE}
   ${GQL_FRAGMENT_YU_SCREEN_ENROLLCOPY}
   ${GQL_FRAGMENT_YU_SCREEN_BOX_OPTION_CARDS}
+  ${GQL_FRAGMENT_YU_SCREEN_SPANNING_PRODUCT_SLOT}
 
   query GetYuScreen {
     getYuScreen {
@@ -143,6 +155,9 @@ export const GQL_QUERY_GET_YU_SCREEN = gql`
       }
       productSlots {
         ...YuScreenProduct
+      }
+      spanningProductSlot {
+        ...YuScreenSpanningProductSlot
       }
       productCarousel {
         ...YuScreenCarousel
