@@ -16,6 +16,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM_RADIO_ICON = gql`
     wrapperStyles {
       ...SduiStyle
     }
+    innerWrapperStyles {
+      ...SduiStyle
+    }
     boxOptionHeight
     imageWidth
     imageHeight

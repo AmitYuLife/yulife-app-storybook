@@ -212,12 +212,20 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemR
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon_innerWrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon {
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon_icon | null;
   textColor: string;
   selectedStyles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon_selectedStyles[];
   wrapperStyles:
     | GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon_wrapperStyles[]
+    | null;
+  innerWrapperStyles:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon_innerWrapperStyles[]
     | null;
   boxOptionHeight: number | null;
   imageWidth: number | null;
@@ -2716,7 +2724,8 @@ export interface GetPersonalProductStep_getPersonalProductStep {
    */
   header: (GetPersonalProductStep_getPersonalProductStep_header | null)[] | null;
   /**
-   * Content that just sits on the screen. Anywhere you want. Be careful with this powerful tool. Not supported by detached steps.
+   * Content that just sits on the screen. Anywhere you want. Be careful with this
+   * powerful tool. Not supported by detached steps.
    */
   absolute: (GetPersonalProductStep_getPersonalProductStep_absolute | null)[] | null;
 }

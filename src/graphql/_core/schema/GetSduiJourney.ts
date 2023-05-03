@@ -25,7 +25,6 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer {
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
-    | "ContentItemInfoCard"
     | "ContentItemLinearGradient"
     | "ContentItemYuCoinPower"
     | "ContentItemComparisonTableSelectPackage"
@@ -473,11 +472,19 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemRadio_choices_ren
   value: string;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemRadio_choices_renderAsIcon_innerWrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetSduiJourney_getSduiJourney_body_ContentItemRadio_choices_renderAsIcon {
   icon: GetSduiJourney_getSduiJourney_body_ContentItemRadio_choices_renderAsIcon_icon | null;
   textColor: string;
   selectedStyles: GetSduiJourney_getSduiJourney_body_ContentItemRadio_choices_renderAsIcon_selectedStyles[];
   wrapperStyles: GetSduiJourney_getSduiJourney_body_ContentItemRadio_choices_renderAsIcon_wrapperStyles[] | null;
+  innerWrapperStyles:
+    | GetSduiJourney_getSduiJourney_body_ContentItemRadio_choices_renderAsIcon_innerWrapperStyles[]
+    | null;
   boxOptionHeight: number | null;
   imageWidth: number | null;
   imageHeight: number | null;
@@ -711,6 +718,30 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemMedia {
   onEnd: GetSduiJourney_getSduiJourney_body_ContentItemMedia_onEnd | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemInfoCard_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemInfoCard_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemInfoCard_hyperlink {
+  title: string;
+  url: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemInfoCard {
+  __typename: "ContentItemInfoCard";
+  id: string;
+  image: GetSduiJourney_getSduiJourney_body_ContentItemInfoCard_image | null;
+  markdown: string;
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemInfoCard_styles[] | null;
+  hyperlink: GetSduiJourney_getSduiJourney_body_ContentItemInfoCard_hyperlink | null;
+}
+
 export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_body_ContentItemMarkdown
@@ -729,7 +760,8 @@ export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemProgressBar
   | GetSduiJourney_getSduiJourney_body_ContentItemTextGroup
   | GetSduiJourney_getSduiJourney_body_ContentItemAccordion
-  | GetSduiJourney_getSduiJourney_body_ContentItemMedia;
+  | GetSduiJourney_getSduiJourney_body_ContentItemMedia
+  | GetSduiJourney_getSduiJourney_body_ContentItemInfoCard;
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer {
   __typename:
@@ -737,7 +769,6 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessi
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
-    | "ContentItemInfoCard"
     | "ContentItemLinearGradient"
     | "ContentItemYuCoinPower"
     | "ContentItemComparisonTableSelectPackage"
@@ -1187,12 +1218,20 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemRadio_ch
   value: string;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemRadio_choices_renderAsIcon_innerWrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemRadio_choices_renderAsIcon {
   icon: GetSduiJourney_getSduiJourney_absolute_item_ContentItemRadio_choices_renderAsIcon_icon | null;
   textColor: string;
   selectedStyles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemRadio_choices_renderAsIcon_selectedStyles[];
   wrapperStyles:
     | GetSduiJourney_getSduiJourney_absolute_item_ContentItemRadio_choices_renderAsIcon_wrapperStyles[]
+    | null;
+  innerWrapperStyles:
+    | GetSduiJourney_getSduiJourney_absolute_item_ContentItemRadio_choices_renderAsIcon_innerWrapperStyles[]
     | null;
   boxOptionHeight: number | null;
   imageWidth: number | null;
@@ -1427,6 +1466,30 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia {
   onEnd: GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_onEnd | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard_hyperlink {
+  title: string;
+  url: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard {
+  __typename: "ContentItemInfoCard";
+  id: string;
+  image: GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard_image | null;
+  markdown: string;
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard_styles[] | null;
+  hyperlink: GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard_hyperlink | null;
+}
+
 export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown
@@ -1445,7 +1508,8 @@ export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemProgressBar
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion
-  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia;
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard;
 
 export interface GetSduiJourney_getSduiJourney_absolute_styles {
   property: string;
