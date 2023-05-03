@@ -23,6 +23,7 @@ export interface ISudokuResults {
   mistakes: number;
   hints: number;
   adjustedTime: number;
+  guesses?: number[];
   difficulty: SudokuDifficulty;
 }
 

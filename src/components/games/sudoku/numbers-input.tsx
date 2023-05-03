@@ -1,9 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import NumberInput, {
-  SUDOKU_NUMBER_INNER_HEIGHT,
-  SUDOKU_NUMBER_SIZE,
-  SUDOKU_PASSED_NUMBER_CUTOFF,
-} from "./number-input";
+import NumberInput, { SUDOKU_NUMBER_SIZE, SUDOKU_PASSED_NUMBER_CUTOFF } from "./number-input";
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import UndoIcon from "@atoms/icon/undo-svg";
 import { Style } from "@styles";
@@ -23,7 +19,7 @@ const NumbersInput = () => {
         return;
       }
 
-      putNumber({ number: value, row: selectedCell?.row, column: selectedCell?.column });
+      putNumber({ number: value, row: selectedCell?.row, column: selectedCell?.column, antiCheat: true });
     },
     [selectedCell, putNumber]
   );
@@ -41,14 +37,13 @@ const NumbersInput = () => {
           const value = index + 1 + 5;
           return <NumberInput value={value} key={index} onPress={() => onNumberPress(value)} />;
         })}
-
         <BoxOption
           isSelected={false}
           selectedStyle={null}
           debounce={false}
           wrapperStyle={styles.undoButtonWrapper}
           disabled={history.length <= 0}
-          innerHeight={SUDOKU_NUMBER_INNER_HEIGHT}
+          innerHeight={Style.adjust(SUDOKU_NUMBER_SIZE - 5)}
           onPress={undo}
           innerWrapperStyle={styles.undoButtonInner}
         >

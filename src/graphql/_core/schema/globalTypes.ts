@@ -209,6 +209,7 @@ export enum RewardsChestType {
 
 export enum SduiActionType {
   OPEN_MY_ACCOUNT = "OPEN_MY_ACCOUNT",
+  REFRESH_TOTAL_COINS = "REFRESH_TOTAL_COINS",
   SDUI_ACTION_GENERIC_NAVIGATE_BACK = "SDUI_ACTION_GENERIC_NAVIGATE_BACK",
   SDUI_ACTION_GENERIC_NAVIGATE_BACK_TO_ROOT = "SDUI_ACTION_GENERIC_NAVIGATE_BACK_TO_ROOT",
   SDUI_ACTION_LOG_EVENT = "SDUI_ACTION_LOG_EVENT",
@@ -373,6 +374,7 @@ export interface SudokuSubmission {
   adjustedTime: number;
   difficulty: SudokuDifficulty;
   levelSlotId: string;
+  guesses?: number[] | null;
 }
 
 export interface UserAvatarPartUpdate {

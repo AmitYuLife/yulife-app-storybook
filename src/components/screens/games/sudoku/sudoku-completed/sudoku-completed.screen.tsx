@@ -17,10 +17,9 @@ import { SUDOKU_COMPLETED_SCREEN_SCROLL } from "@ids";
 
 interface IProps {
   onCollect: () => void;
-  results: GetSudokuBoard_getSudokuBoard_results;
+  results: GetSudokuBoard_getSudokuBoard_results & { leaderboardId?: string };
   stats: GetSudokuBoard_getSudokuBoard_stats;
   reward?: number;
-  isLoading?: boolean;
 }
 
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -28,7 +27,7 @@ const AnimatedView = Animated.createAnimatedComponent(View);
 const SPIRAL_ANIMATION = require("./assets/spiral.json");
 const SHINE_ANIMATION = require("./assets/shine.json");
 
-const SudokuCompletedScreen = ({ onCollect, reward, isLoading, results, stats }: IProps) => {
+const SudokuCompletedScreen = ({ onCollect, reward, results, stats }: IProps) => {
   const currentLevel = useSelector(getCurrentLevel);
   const currentYuniverse = getCurrentYuniverse(currentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
@@ -116,7 +115,7 @@ const SudokuCompletedScreen = ({ onCollect, reward, isLoading, results, stats }:
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <Button onPress={onCollect} isLoading={isLoading} label={t["sudoku.completed.collect"]} />
+        <Button onPress={onCollect} label={t["sudoku.completed.collect"]} />
       </View>
     </ScrollView>
   );

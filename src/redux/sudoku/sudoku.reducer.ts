@@ -15,6 +15,7 @@ export interface ISudokuStore {
   gameIdentifier: string;
   hintsUsed: number;
   mistakes: number;
+  guesses?: number[];
   board: SudokuBoard;
   endTime: Date;
   history: ISodukuHistory[];
@@ -22,6 +23,7 @@ export interface ISudokuStore {
   penalties: number[];
   lastHintTime: Date;
   lastPauseTime: Date;
+  touchedCells: Record<string, boolean>;
   levelSlotId: string;
 }
 
@@ -31,6 +33,7 @@ const DEFAULT_SUDOKU_STORE: ISudokuStore = {
   endTime: null,
   mistakes: 0,
   board: null,
+  touchedCells: {},
   history: [],
   startTime: null,
   penalties: [],

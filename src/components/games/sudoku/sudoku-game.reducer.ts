@@ -6,9 +6,11 @@ interface ISudokuState {
   lastPauseTime: Date;
   lastHintTime: Date;
   hintsUsed: number;
+  touched: Record<string, boolean>;
   mistakes: number;
   penalties: number[];
   selectedCell: { row: number; column: number };
+  guesses: number[];
 }
 
 interface SudokuAction {
@@ -26,6 +28,8 @@ export const SUDOKU_GET_HINT = "SUDOKU_GET_HINT";
 export const SUDOKU_SET_END_TIME = "SUDOKU_SET_END_TIME";
 export const SUDOKU_SET_SELECTED_CELL = "SUDOKU_SET_SELECTED_CELL";
 export const SUDOKU_SET_BOARD = "SUDOKU_SET_BOARD";
+export const SUDOKU_TOUCH = "SUDOKU_TOUCH";
+export const SUDOKU_ADD_GUESS = "SUDOKU_ADD_GUESS";
 
 export const sudokuGameReducer = (state: ISudokuState, action: SudokuAction): ISudokuState => {
   switch (action.type) {
@@ -92,6 +96,20 @@ export const sudokuGameReducer = (state: ISudokuState, action: SudokuAction): IS
       return {
         ...state,
         penalties: [...state.penalties, action.payload],
+      };
+    }
+
+    case SUDOKU_ADD_GUESS: {
+      return {
+        ...state,
+        guesses: [...state.guesses, action.payload],
+      };
+    }
+
+    case SUDOKU_TOUCH: {
+      return {
+        ...state,
+        touched: { ...state.touched, [action.payload]: true },
       };
     }
 
