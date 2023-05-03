@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.80.0] - 2023-05-03
+
+### Features
+
+- Feature XSE-1841: Add spanning product slot item
+
+### Bugfixes
+
+- Bugfix: Sudoku YuCrew feedback
+- Bugfix ENG-3111: deeplink fix
+- Bugfix ENG-3268: Intercom gallery Android 13
+- Bugfix: Context.startForegroundService() did not then call Service.startForeground() on Android
+
+### Tasks
+
+- Task/XSE-1811: adding depressed version of slot button for yuscreen
+- Task GS-692: Mood Check Survey
+- Task: Sudoku second attempt copy change
+
+### Chores
+
+- Chore: Enable proguard in release builds
+- Detox Chore: Fix seeds
+- Chore: Update BDD to 34
+
+### Extra
+
+- Detox: Extended 1 + Smoke SE fixes
+- ISA-620 point fiit and meditopia rewards links via SDUI rewards
+- Detox: Fixes 26th april
+- ISA-610 wellbeing hub category deeplink
+
 ## [3.79.0] - 2023-04-26
 
 ### Bugfixes
