@@ -1,10 +1,11 @@
+import { generateRandomTransformedUuid } from "@yu-life/yulife-bdd-framework"
 import { BUSINESS_ACCOUNT_USA_1 } from "./business"
 
 export const BUSINESS_BACKGROUND_USA_1 = {
     type: "postgres",
     modelName: "business_background",
     data: {
-        "business_account_id": BUSINESS_ACCOUNT_USA_1.data.business_account_id,
+        "business_background_id": generateRandomTransformedUuid(),
         "companies_house_name": "YU LIFE US LTD",
         "companies_house_size": "10-49",
         "industry_type": "Apple Orchards",

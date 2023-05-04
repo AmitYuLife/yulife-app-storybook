@@ -47,7 +47,6 @@ export const selectAndCompleteMeditationChallenge = (mindfulnessdata: number) =>
 
     await tapText("Use a different app")()
     await tapText("maybe later")()
-    await tapText("I'm using a different app")()
     await sendMindfulnessData(mindfulnessdata, 75000)()
     await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
     await navigateViaText("Collect")

@@ -276,6 +276,7 @@ export const DEFAULT_TOGGLES = {
       unitySurge: true,
       rewardRedemptionDisabled: false,
       showNotificationCentre: true,
+      newMediaPlayer: true
     },
   },
 } as IDatabaseItem;

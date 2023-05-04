@@ -1199,6 +1199,7 @@ export const CUSTOMER_68_TOGGLES = {
       showDuels: true,
       showCommunityGoals: true,
       showFiit: true,
+      newMediaPlayer: true
     },
   },
 } as IDatabaseItem;
@@ -1302,6 +1303,7 @@ export const CUSTOMER_72_TOGGLES = {
       showPermissionSettings: true,
       passiveCyclingEnabled: true,
       showFiit: true,
+      newMediaPlayer: true
     },
   },
 } as IDatabaseItem;

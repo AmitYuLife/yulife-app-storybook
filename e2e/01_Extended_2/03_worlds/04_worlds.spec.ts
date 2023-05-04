@@ -119,22 +119,20 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         Given("I login as a user who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_12, AUTH_12), async () => {
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27700)))
             Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
-            When("I send the mindfulness data", when.sendMindfulnessData(300), async () => {
-                When("I start a meditation challenge", when.startMeditationChallengeFromQuests(115), async () => {
-                    Then("I should see the meditation modal", then.meditationAppModalVisible)
-                    When("I tap I'm using a different app", when.tapText("I'm using a different app"), async () => {
-                        Then("I should no longer see the modal", then.textNotVisible("Choose an app to start"))
-                        When("I wait to complete this challenge", when.wait(66000), async () => {
-                            Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(5, 115))
-                            When("I tap collect", when.tapText("Collect"), async () => {
-                                When("I tap done", when.tapText("Done"), async () => {
-                                    Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
-                                    Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27730)))
-                                })
-                            })
-                        })
-                    })
-                })
+        })
+        When("I send the mindfulness data", when.sendMindfulnessData(300), async () => {
+            When("I start a meditation challenge", when.startMeditationChallengeFromQuests(115), async () => {
+                Then("I should see the meditation modal", then.meditationAppModalVisible)
+                Then("I should no longer see the modal", then.textNotVisible("Choose an app to start"))
+            })
+        })
+        When("I wait to complete this challenge", when.wait(66000), async () => {
+            Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(5, 115))
+        })
+        When("I tap collect", when.tapText("Collect"), async () => {
+            When("I tap done", when.tapText("Done"), async () => {
+                Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
+                Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27730)))
             })
         })
     })
@@ -163,22 +161,21 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     Scenario("I can complete a meditation challenge in the fourth world", scenario.start, async () => {
         Given("I login as a user who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_13, AUTH_13), async () => {
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50200)))
-            When("I send the mindfulness data", when.sendMindfulnessData(300), async () => {
-                When("I start a meditation challenge", when.startMeditationChallengeFromQuests(175), async () => {
-                    Then("I should see the meditation modal", then.meditationAppModalVisible)
-                    When("I tap I'm using a different app", when.tapText("I'm using a different app"), async () => {
-                        Then("I should no longer see the modal", then.textNotVisible("Choose an app to start"))
-                        When("I wait to complete this challenge", when.wait(63000), async () => {
-                            Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(5, 175))
-                            When("I tap collect", when.tapText("Collect"), async () => {
-                                When("I tap Done", when.tapText("Done"), async () => {
-                                    Then("I should be on quests", then.idVisible(QUESTS_SCREEN(3)))
-                                    Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50230)))
-                                })
-                            })
-                        })
-                    })
-                })
+        })
+        When("I send the mindfulness data", when.sendMindfulnessData(300), async () => {
+            When("I start a meditation challenge", when.startMeditationChallengeFromQuests(175), async () => {
+                Then("I should see the meditation modal", then.meditationAppModalVisible)
+                Then("I should no longer see the modal", then.textNotVisible("Choose an app to start"))
+                    
+            })
+        })
+        When("I wait to complete this challenge", when.wait(63000), async () => {
+            Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(5, 175))
+        })
+        When("I tap collect", when.tapText("Collect"), async () => {
+            When("I tap Done", when.tapText("Done"), async () => {
+                Then("I should be on quests", then.idVisible(QUESTS_SCREEN(3)))
+                Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50230)))
             })
         })
     })
