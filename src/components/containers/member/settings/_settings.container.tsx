@@ -127,6 +127,18 @@ function SettingsContainer({ componentId }: IOwnProps) {
     isVisible: true,
     items: [
       {
+        title: t("screens.leaderboard_settings.title"),
+        description: t("screens.leaderboard_settings.description"),
+        onPress: () => {
+          Navigation.push(ROUTES.settings, {
+            component: {
+              id: ROUTES.leaderboardSettings,
+              name: ROUTES.leaderboardSettings,
+            },
+          });
+        },
+      },
+      {
         title: t("screens.permissions.title"),
         description: t("screens.permissions.description"),
         value: "",

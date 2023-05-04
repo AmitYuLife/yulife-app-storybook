@@ -454,6 +454,14 @@
         "alert_log_out_button": "Log Out"
       }
     },
+    "leaderboard_settings": {
+      "title": "Leaderboards",
+      "description": "Status and management of your access to app related leaderboards.",
+      "screen_description": "Status and management of your access to app related leaderboards. Please be aware – Opting out of a leaderboard might restrict your access to some features. ",
+      "consented": "Other members of this leaderboard can see your name and activity.",
+      "not_consented": "Allow other members of this leaderboard to see your name and activity.",
+      "item_title": "%{name} Leaderboard"
+    },
     "permissions": {
       "title": "Activity permissions",
       "description": "Status and management of account and system level permissions.",

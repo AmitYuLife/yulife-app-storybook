@@ -170,7 +170,7 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
   }, [data, dispatch, openLeaderboard]);
 
   const onHelp = useCallback(() => {
-    dispatch(logMixpanelEventActionCreator("button_pressed", { button_id: "sudoku_leaderboard" }));
+    dispatch(logMixpanelEventActionCreator("button_pressed", { button_id: "sudoku_help" }));
 
     showYuModal({
       component: {

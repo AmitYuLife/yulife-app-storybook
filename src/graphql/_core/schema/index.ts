@@ -152,6 +152,7 @@ export * from "./GetSession";
 export * from "./GetStatistics";
 export * from "./GetSudokuBoard";
 export * from "./GetSudokuLeaderboard";
+export * from "./GetSudokuStats";
 export * from "./GetTodayEarnings";
 export * from "./GetTotalCoins";
 export * from "./GetUnityRewards";
