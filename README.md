@@ -562,3 +562,22 @@ If you want to test remote push notifications (different to local ones), for exa
 ```
 
 - Run the following command in any terminal, replacing the identifier (or using the word `booted` for the current running simulator) and link to your JSON payload - `xcrun simctl push 6D3D6FFD-50A2-4853-8D21-BE8991490BB6 com.yulife.develop pushNotificationTestPayload.json`
+
+## Modifying bitrise.yml
+
+To make changes on the pipelines we will use locally the bitrise tool to modify the bitrise.yml file (Workflow editor). In order to achieve this, we need to install some dependencies:
+
+(offline Workflow Editor)[https://devcenter.bitrise.io/en/bitrise-cli/installing-and-upgrading-the-offline-workflow-editor.html]
+
+- Install Bitrise CLI: `brew update && brew install bitrise`
+- Make sure you have Go installed on your local computer. Run `go version` and you should get something like: `go version go1.19.3 darwin/arm64` 
+  If you haven't got Go please go to https://go.dev/ and install it. (So far bitrise doesn't specified a Go version, so latest should be good)
+- Run `bitrise setup` to install offline Workflow Editor as part of the Bitrise Plugins.
+
+Once all dependencies are installed, you can run
+
+ `yarn develop:workflow`
+
+It will start the offline Workflow Editor, changes will be saved on the bitrise.yml file, do not forget to commit and push your changes <3
+
+Pipelines and stages cannot be edited on the Workflow Editor. If you want a UI tool to create/modify pipelines and/or stages, you can use this tool built by one of the Bitrise engineers (not officially maintained) (Pipeline UI)[https://damienbitrise.github.io/Pipeline-UI/]
