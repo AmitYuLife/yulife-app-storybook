@@ -109,8 +109,8 @@ export const BUTTON_CLOSE_RIGHT_ID = "BUTTON_CLOSE_RIGHT_ID"
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;
 export const VIEW_TOP_RIGHT_COIN_COUNTER = (coins: number) => `VIEW_TOP_RIGHT_COIN_COUNTER_${coins}`;
 export const INPUT_RESET_PASSWORD = "INPUT_RESET_PASSWORD"
-export const REWARD_ITEM = (code: string) => `REWARD_ITEM_${code}`
-export const LOCKED_REWARD_ITEM = (code: string) => `LOCKED_REWARD_ITEM_${code}`
+export const REWARD_ITEM = (rewardId: string) => `REWARD_ITEM_${rewardId}`
+export const LOCKED_REWARD_ITEM = (rewardId: string) => `LOCKED_REWARD_ITEM_${rewardId}`
 export const CHALLENGE_HISTORY_STARS = (starCount: number, challengeType: string) => `CHALLENGE_HISTORY_STARS+${starCount}_${challengeType}`
 export const EARN_RATE_ROW = (label:string, standardValue:number) => `EARN_RATE_ROW_${label}_${standardValue}`
 export const INPUT_FIELD = "INPUT_FIELD"

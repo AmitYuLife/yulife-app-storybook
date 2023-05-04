@@ -1,10 +1,10 @@
-import { Feature, ScenarioSkip, Given, When, Then, ScenarioOnly, FeatureOnly, Scenario, FeatureSkip } from "@yu-life/yulife-bdd-framework";
-import * as scenario from "./_steps/scenario"
-import * as given from "./_steps/given"
-import * as when from "./_steps/when"
-import * as then from "./_steps/then"
-import { REWARDS_SCREEN, REWARDS_LIST_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, BACK_BUTTON, REWARDS_LIST_SCREEN_SCROLL} from "@ids";
-import { CORE_REWARDS_JOHN_LEWIS, CORE_REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_3, AUTH_3, CORE_REWARDS_NIKE, CUSTOMER_4, AUTH_4, CUSTOMER_2, AUTH_2, CORE_REWARDS_AMAZON } from "@data";
+import { Given, When, Then, Scenario, Feature } from "@yu-life/yulife-bdd-framework";
+import * as scenario from "./_steps/scenario";
+import * as given from "./_steps/given";
+import * as when from "./_steps/when";
+import * as then from "./_steps/then";
+import { REWARDS_SCREEN, REWARDS_LIST_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, BACK_BUTTON, REWARDS_LIST_SCREEN_SCROLL } from "@ids";
+import { CORE_REWARDS_JOHN_LEWIS, CORE_REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_3, AUTH_3, CORE_REWARDS_NIKE, CUSTOMER_4, AUTH_4, CUSTOMER_2, AUTH_2, CORE_REWARDS_AMAZON, CORE_REWARDS_BROKEN } from "@data";
 
 
 
@@ -20,9 +20,12 @@ Feature("Rewards should act correctly", async () => {
                     When("I tap the button", when.tapText("Buy voucher with YuCoin",0,true), async () => {
                         Then("I should see the denominations modal", then.denominationListVisible(CORE_REWARDS_JOHN_LEWIS, 200))
                         When("I tap to buy a denomination", when.tapDenomination(CORE_REWARDS_JOHN_LEWIS, 0), async () => {
-                            Then("I should see the not enough YuCoin modal", then.multipleTextVisible(["Not enough YuCoin", "Earn more and come back later!"]))
-                            When("I click Got it", when.tapText("Okay, got it"), async () => {
-                                Then("I should be back on the John Lewis reward page", then.textVisible("Have a question?"))
+                            Then("I should see the confirm modal", then.textVisible("Confirm purchase"))
+                            When("I tap 'Confirm'", when.tapText("Confirm", 2500, true), async () => {
+                                Then("I should see the not enough YuCoin modal", then.textVisible("You do not have enough YuCoin to purchase this reward"))
+                                When("I click Got it", when.tapText("Got it"), async () => {
+                                    Then("I should be back on the John Lewis reward page", then.textVisible("Have a question?"))
+                                })
                             })
                         })
                     })
@@ -129,17 +132,17 @@ Feature("Rewards should act correctly", async () => {
     Scenario("I cannot buy a reward if there are issues with a provider", scenario.start, async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", CUSTOMER_4, AUTH_4), async () => {
             Then("I should be on the rewards tab", then.idVisible(REWARDS_SCREEN))
-            Then("I should see the John Lewis Reward", then.rewardVisible(CORE_REWARDS_JOHN_LEWIS))
-            When("I tap this reward", when.tapRewardInList(CORE_REWARDS_JOHN_LEWIS), async () => {
-                Then("I should be on the reward page", then.textVisible("To redeem John Lewis:"))        //onRewardScreen(CORE_REWARDS_JOHN_LEWIS))
-                When("I scroll to the bottom of the page", when.swipeFromText("To redeem John Lewis:", "up", "fast"), async () => {
+            Then("I should see the Broken Item Reward", then.rewardVisible(CORE_REWARDS_BROKEN))
+            When("I tap this reward", when.tapRewardInList(CORE_REWARDS_BROKEN), async () => {
+                Then("I should be on the reward page", then.textVisible("To redeem Broken Item:"))
+                When("I scroll to the bottom of the page", when.swipeFromText("To redeem Broken Item:", "up", "fast"), async () => {
                     Then("I should see the buy button", then.textVisible("Buy voucher with YuCoin"))
                     When("I tap the buy button", when.tapText("Buy voucher with YuCoin"), async () => {
-                        Then("I should see the denominations modal", then.denominationListVisible(CORE_REWARDS_JOHN_LEWIS, 15200))
-                        When("I tap to buy a denomination", when.tapDenomination(CORE_REWARDS_JOHN_LEWIS, 0), async () => {
+                        Then("I should see the denominations modal", then.denominationListVisible(CORE_REWARDS_BROKEN, 15200))
+                        When("I tap to buy a denomination", when.tapDenomination(CORE_REWARDS_BROKEN, 0), async () => {
                             Then("I should see the confirm modal", then.textVisible("Confirm purchase"))
                             When("I tap 'Confirm'", when.tapText("Confirm", 2500, true), async () => {
-                                Then("I should see that the voucher is unavailable", then.onRewardNotAvailableScreen)
+                                Then("I should see that the reward is unavailable", then.textVisible("Reward could not be found"))
                             })
                         })
                     })

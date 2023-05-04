@@ -1,7 +1,7 @@
-import { expectIsVisibleViaText, REWARD_ITEM, expectIsVisibleViaID, LOCKED_REWARD_ITEM, WEGIFT_CONFIRMED, PURCHASE_IMAGE, booleanIdVisible, wait, REWARDS_SCREEN, REWARDS_LIST_SCREEN, textVisible, idVisible } from "@navigation"
-import moment = require("moment")
-import { scrollFromID, scrollFromText, scrollUntilTextVisible, scrollUntilIdVisible, swipeFromText } from "_utils/navigation/scrolling"
+import { expectIsVisibleViaText, REWARD_ITEM, expectIsVisibleViaID, LOCKED_REWARD_ITEM, WEGIFT_CONFIRMED, PURCHASE_IMAGE, wait, textVisible } from "@navigation"
+import { scrollFromText, scrollUntilIdVisible, swipeFromText } from "_utils/navigation/scrolling"
 import { REWARDS_LIST_SCREEN_SCROLL, TEXT_TEMPLATE } from "@ids"
+import moment = require("moment")
 
 type rewardType = "avios"
 
@@ -115,7 +115,7 @@ export const tapDenomination = (reward: any, index: number) => async () => {
 export const denominationListVisible = (reward: any, availableYuCoin: number) => async () => {
     const denominationArr = reward.data.availableDenominations
     
-    await expect(element(by.text(`You have ${availableYuCoin} YuCoin`))).toBeVisible()
+    await expect(element(by.text(`You have ${addCommasToNumber(availableYuCoin)} YuCoin.`))).toBeVisible()
     await expect(element(by.text(`Cancel`))).toBeVisible()
 
     for (const i of denominationArr) {
@@ -210,12 +210,6 @@ export const tapPurchasedReward = (reward: any, denominationIndex = 0) => async 
 
     const title = element(by.text(`£${value} ${rewardName} voucher`)).atIndex(denominationIndex)
     await title.tap()
-}
-
-export const onRewardNotAvailableScreen = async () => {
-    await expect(element(by.text("the voucher is not currently available"))).toBeVisible()
-    await expect(element(by.text("Please come back later."))).toBeVisible()
-    await expect(element(by.text("check other rewards"))).toBeVisible()
 }
 
 

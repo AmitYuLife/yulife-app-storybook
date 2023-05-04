@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
-;
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+;
 
 export const CORE_REWARDS_JOHN_LEWIS = {
     type: "mongo",
@@ -23,7 +23,7 @@ export const CORE_REWARDS_JOHN_LEWIS = {
         },
         "loyaltyProgramme": [],
         "sortOrder": 14,
-        "rewardProviderId": "false_id_for_detox",
+        "rewardProviderId": "wegift",
         "redemptionUrl": "stocked",
         "code": "JLS-GB",
         "currencyCode": "GBP",
@@ -51,6 +51,64 @@ export const CORE_REWARDS_JOHN_LEWIS = {
             {
                 "_id": generateRandomMongoId(),
                 "yuCoin": 16520,
+                "value": 20,
+                "stock": 7
+            }
+        ],
+        "__v": 0,
+    }
+} as IDatabaseItem
+
+
+export const CORE_REWARDS_BROKEN = {
+    type: "mongo",
+    modelName: "core_rewards", 
+    data: {
+        "_id": generateRandomMongoId(),
+        "redemptionSteps": {
+            "steps": [
+                "Your e-voucher can only be redeemed online at johnlewis.com The Broken Item website hosts a range of high quality fashion, furnishings, flowers and household goods, all delivered direct to your door. All you need to do is 'shop' the website and once you've proceeded to checkout, select 'Add Gift Voucher or e-voucher'. You will then be asked to enter two codes for the e-voucher you wish to spend:",
+                "The 10 digit serial number off the e-voucher and the 7 character online security code.",
+                "Your e-voucher is worth £ After entering in the e-voucher code, your order will be automatically updated with credit to the value of the e-voucher.",
+                "If there's any balance to pay, you can use a debit or credit card in the usual way. If you do not spend the full value of the e-voucher, the remaining credit will be stored in your johnlewis.com online account and can be used towards your next purchase on johnlewis.com.",
+                "If you find that your e-voucher is not accepted at checkout, check the serial number and online security code you have entered and try again. If you continue to experience any further difficulties, email Broken Item Customer Service team https://www.johnlewis.com/contact-us/ or call on 03456 049 049 between 7am and midnight, 7 days a week."
+            ],
+            "info": "To redeem Broken Item:"
+        },
+        "images": {
+            "listItemImageKey": "reward/background/JLS-GB.jpg",
+            "detailHeaderKey": "reward/header/JLS-GB.jpg",
+        },
+        "loyaltyProgramme": [],
+        "sortOrder": 14,
+        "rewardProviderId": "broken",
+        "redemptionUrl": "stocked",
+        "code": "BROKEN-GB",
+        "currencyCode": "GBP",
+        "description": "Broken Item is a British institution, with a legacy spanning over 150 years and stores all over the country. Redeem your voucher for one of the many products on johnlewis.com, where you can find everything from face creams to sofas!",
+        "name": "Broken Item",
+        "maximum_value": 250,
+        "minimum_value": 5,
+        "restrictions": {
+            "locations": ["GB"]
+        },
+        "termsAndConditionsUrl": "https://gift-sandbox.wegift.io/public/terms/JLS-GB.pdf",
+        "availableDenominations": [
+            {
+                "_id": generateRandomMongoId(),
+                "yuCoin": 4140,
+                "value": 5,
+                "stock": 7
+            },
+            {
+                "_id": generateRandomMongoId(),
+                "yuCoin": 8270,
+                "value": 10,
+                "stock": 7
+            },
+            {
+                "_id": generateRandomMongoId(),
+                "yuCoin": 16530,
                 "value": 20,
                 "stock": 7
             }

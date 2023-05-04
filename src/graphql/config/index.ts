@@ -24,6 +24,10 @@ export const GQL_QUERY_GET_API_CONFIG = gql`
         prodKey
         devKey
       }
+      sduiStaticDeeplinks {
+        name
+        stepId
+      }
     }
   }
 `;

@@ -249,18 +249,6 @@ const routesForRegistration = [
 
   // rewards screens
   {
-    name: ROUTES.rewardDetails,
-    component: require("../components/containers/member/rewards/details/reward-details.container").default,
-  },
-  {
-    name: ROUTES.wegiftConfirmed,
-    component: require("../components/containers/member/rewards/confirmed/wegift-confirmed.container").default,
-  },
-  {
-    name: ROUTES.aviosConfirmed,
-    component: require("../components/containers/member/rewards/confirmed/avios-confirmed.container").default,
-  },
-  {
     name: ROUTES.rewardStoreLocation,
     component: require("../components/containers/member/rewards/reward-store-location.container").default,
   },

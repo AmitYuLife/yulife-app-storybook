@@ -2,6 +2,8 @@ import qs from "qs";
 import region from "@services/region";
 import * as actions from "./actions";
 import { DeepLinkHandler } from "./types";
+import { pushToScreen } from "@navigation/root";
+import { ROUTES } from "@navigation/constants";
 
 class DeepLink {
   private readonly actions = new Map(Object.values(actions).map(this.mapWithAuth));
@@ -25,6 +27,27 @@ class DeepLink {
       action({ hasToken, currentRoute, customParams, rootUrl });
     }
   };
+
+  public setDynamicDeeplinks = (deeplinks: { name: string; stepId: string }[]) => {
+    for (const deeplink of deeplinks) {
+      this.actions.set(deeplink.name, this.buildDynamicAction(deeplink.stepId));
+    }
+  };
+
+  private readonly buildDynamicAction =
+    (stepId: string): DeepLinkHandler["action"] =>
+    ({ currentRoute, customParams }) => {
+      pushToScreen(currentRoute, {
+        component: {
+          id: ROUTES.sduiStatic,
+          name: ROUTES.sduiStatic,
+          passProps: {
+            dynamicId: customParams.id,
+            stepId,
+          },
+        },
+      });
+    };
 
   private readonly getAction = (rootUrl: string) => {
     if (this.actions.has(rootUrl)) {

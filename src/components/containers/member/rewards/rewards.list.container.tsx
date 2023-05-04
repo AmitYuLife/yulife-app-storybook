@@ -12,14 +12,10 @@ import { RewardsListScreen } from "@screens/index";
 import { IMainTabsProps, showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeenOnce, useTapBackTwiceToExit } from "@hooks";
 import { t } from "@locale";
-import { useSelector } from "react-redux";
-import { getUserFeatures } from "@redux/user/user.selectors";
 
 const _RewardsListContainer = (props: IMainTabsProps) => {
   const { componentId, onLeftMenuPress } = props;
   const [tag, setTag] = useState("All");
-
-  const newSduiRewards = useSelector(getUserFeatures)?.newSduiRewards;
 
   useTapBackTwiceToExit(componentId);
 
@@ -72,16 +68,14 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
         });
       }
 
-      const routeId = newSduiRewards ? ROUTES.rewardDetailsSdui : ROUTES.rewardDetails;
-      const passProps = newSduiRewards
-        ? { stepId: rewards?.data?.sduiStepId, dynamicId: reward.id }
-        : { rewardId: reward.id };
-
       return Navigation.push(componentId, {
         component: {
-          id: routeId,
-          name: routeId,
-          passProps,
+          id: ROUTES.rewardDetailsSdui,
+          name: ROUTES.rewardDetailsSdui,
+          passProps: {
+            stepId: rewards?.data?.sduiStepId,
+            dynamicId: reward.id,
+          },
           options: { bottomTabs },
         },
       });

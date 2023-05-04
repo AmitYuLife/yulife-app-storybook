@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -26,6 +26,11 @@ export interface GetPublicYuAPIConfig_config_leanplum {
   devKey: string | null;
 }
 
+export interface GetPublicYuAPIConfig_config_sduiStaticDeeplinks {
+  name: string;
+  stepId: string;
+}
+
 export interface GetPublicYuAPIConfig_config {
   language: string;
   stripeKey: string;
@@ -33,6 +38,7 @@ export interface GetPublicYuAPIConfig_config {
   urls: GetPublicYuAPIConfig_config_urls;
   intercom: GetPublicYuAPIConfig_config_intercom;
   leanplum: GetPublicYuAPIConfig_config_leanplum;
+  sduiStaticDeeplinks: GetPublicYuAPIConfig_config_sduiStaticDeeplinks[];
 }
 
 export interface GetPublicYuAPIConfig {

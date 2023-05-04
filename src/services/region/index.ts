@@ -1,5 +1,8 @@
 import Config from "react-native-config";
 import AsyncStorage from "@react-native-community/async-storage";
+import moment from "moment";
+
+const MAX_CONFIG_AGE_IN_MINUTES = 60 * 24; // 24 hours
 
 export type REGION = "UK" | "US" | "SA";
 
@@ -23,18 +26,23 @@ type RegionConfig = {
     prodKey: string;
     devKey: string;
   };
+  sduiStaticDeeplinks: {
+    name: string;
+    stepId: string;
+  }[];
 };
 
 type RegionStorage = {
   region: REGION;
   config: RegionConfig;
-  createdAt?: string;
+  createdAt?: Date;
 };
 
 class RegionService {
   private readonly REGION_STORAGE_KEY = "@yulife:region";
   private SELECTED_REGION: REGION = "UK";
   private REGION_CONFIG: RegionConfig;
+  private REGION_CONFIG_LAST_UPDATED: Date;
   public ARE_MULTIPLE_REGIONS_ENABLED = Config.MULTI_REGION_ENABLED === "true";
 
   public readonly API_URLS: Record<REGION, string> = {
@@ -53,6 +61,24 @@ class RegionService {
   public getPreferredRegionUri = () => this.API_URLS[this.SELECTED_REGION];
   public getConfig = <Key extends keyof RegionConfig>(key: Key): RegionConfig[Key] => this.REGION_CONFIG?.[key];
 
+  public configIsOutdated = () => {
+    if (!this.REGION_CONFIG_LAST_UPDATED) {
+      return true;
+    }
+
+    const lastUpdated = moment(this.REGION_CONFIG_LAST_UPDATED);
+
+    if (!lastUpdated.isValid()) {
+      return true;
+    }
+
+    if (moment().diff(lastUpdated, "minutes") > MAX_CONFIG_AGE_IN_MINUTES) {
+      return true;
+    }
+
+    return false;
+  };
+
   public hydratePreferredRegion = async () => {
     try {
       const data = await AsyncStorage.getItem(this.REGION_STORAGE_KEY);
@@ -61,11 +87,12 @@ class RegionService {
         const json: RegionStorage = JSON.parse(data);
 
         if (json?.region && json?.config) {
-          const { region, config } = json;
+          const { region, config, createdAt } = json;
 
           if (Object.keys(this.API_URLS).includes(region)) {
             this.SELECTED_REGION = region;
             this.REGION_CONFIG = config;
+            this.REGION_CONFIG_LAST_UPDATED = createdAt;
           }
         }
       }
@@ -81,8 +108,13 @@ class RegionService {
 
   public setConfig = async (config: RegionConfig) => {
     if (config?.mixpanelKey) {
-      await AsyncStorage.setItem(this.REGION_STORAGE_KEY, JSON.stringify({ region: this.SELECTED_REGION, config }));
+      const now = new Date();
+      await AsyncStorage.setItem(
+        this.REGION_STORAGE_KEY,
+        JSON.stringify({ region: this.SELECTED_REGION, config, createdAt: now })
+      );
       this.REGION_CONFIG = config;
+      this.REGION_CONFIG_LAST_UPDATED = now;
     }
   };
 }
