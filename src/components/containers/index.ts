@@ -21,11 +21,6 @@ export { default as ChallengesHistoryContainer } from "./member/quests/challenge
 export { default as DailyStepsContainer } from "./member/daily-steps/daily-steps.container";
 export { default as CyclingMeasurementContainer } from "./member/settings/cycling-measurement.container";
 
-// reward containers
-export { default as RewardDetailsContainer } from "./member/rewards/details/reward-details.container";
-export { default as WegiftRewardConfirmedContainer } from "./member/rewards/confirmed/wegift-confirmed.container";
-export { default as AviosRewardConfirmedContainer } from "./member/rewards/confirmed/avios-confirmed.container";
-
 // referrals containers
 export { default as ReferralsContainer } from "./referrals/referrals.container";
 

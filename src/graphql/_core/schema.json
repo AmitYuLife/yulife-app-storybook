@@ -6568,18 +6568,6 @@
             "deprecationReason": null
           },
           {
-            "name": "getRandomNumber",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "RandomNumber",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "getSession",
             "description": null,
             "args": [],
@@ -19237,42 +19225,6 @@
             "type": {
               "kind": "OBJECT",
               "name": "AvatarRemoteFiles",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "RandomNumber",
-        "description": null,
-        "specifiedByUrl": null,
-        "fields": [
-          {
-            "name": "value",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "nextValue",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "RandomNumber",
               "ofType": null
             },
             "isDeprecated": false,
@@ -71668,6 +71620,50 @@
       },
       {
         "kind": "OBJECT",
+        "name": "APIConfigSDUIStaticDeepLink",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stepId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "APIConfig",
         "description": null,
         "specifiedByUrl": null,
@@ -71763,6 +71759,30 @@
                 "kind": "OBJECT",
                 "name": "APIConfigLeanplum",
                 "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sduiStaticDeeplinks",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "APIConfigSDUIStaticDeepLink",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,

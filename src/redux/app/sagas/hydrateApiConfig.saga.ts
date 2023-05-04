@@ -6,6 +6,7 @@ import region from "@services/region";
 import { initStripe } from "@services/stripe";
 import { SyncAction } from "@redux/_core/types";
 import { DETOX_ENABLED } from "@services/socket";
+import deepLink from "@navigation/deepLink";
 
 export default function* hydrateApiConfigSaga(payload: SyncAction) {
   try {
@@ -17,7 +18,7 @@ export default function* hydrateApiConfigSaga(payload: SyncAction) {
 
       const existingConfig = region.getConfig("mixpanelKey");
 
-      if (existingConfig?.length) {
+      if (existingConfig?.length && !region.configIsOutdated()) {
         shouldFetchConfig = false;
       }
 
@@ -34,6 +35,11 @@ export default function* hydrateApiConfigSaga(payload: SyncAction) {
       if (response?.data?.config?.mixpanelKey) {
         yield call(region.setConfig, response.data.config);
       }
+    }
+
+    const sduiStaticDeeplinks = region.getConfig("sduiStaticDeeplinks");
+    if (sduiStaticDeeplinks) {
+      yield call(deepLink.setDynamicDeeplinks, sduiStaticDeeplinks);
     }
 
     yield call(initStripe);

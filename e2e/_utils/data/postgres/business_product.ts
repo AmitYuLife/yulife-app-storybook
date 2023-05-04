@@ -1,5 +1,5 @@
 
-import { Carrier, ProductCode, generateProductRecords } from "@yu-life/yulife-bdd-framework"
+import { Carrier, ProductCode, generateProductRecords } from "@yu-life/yulife-bdd-framework";
 import { BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_6 } from "./business";
 import moment from "moment";
 
