@@ -49,6 +49,7 @@ export const ROUTES = {
   cyclingMeasurement: "yulife.member.cyclingMeasurement",
   rewardStoreLocation: "yulife.member.rewardStoreLocation",
   permissions: "yulife.member.permissions",
+  leaderboardSettings: "yulife.member.leaderboardSettings",
 
   // yuniversity
   yuniversityQuiz: "yulife.member.yuniversityQuiz",

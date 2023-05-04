@@ -14,7 +14,7 @@ interface IProps {
 }
 
 const GameSettingsItem = ({ title, description, value, onPress }: IProps) => (
-  <View style={styles.wrapper}>
+  <TouchableOpacityWithDelay onPress={onPress} style={styles.wrapper}>
     <View style={styles.container}>
       <TextTemplate type="b2b" testID={TEXT_TEMPLATE(title)}>
         {title}
@@ -23,15 +23,15 @@ const GameSettingsItem = ({ title, description, value, onPress }: IProps) => (
         {description}
       </TextTemplate>
     </View>
-    <TouchableOpacityWithDelay onPress={onPress} style={styles.measurement}>
+    <View style={styles.measurement}>
       <View style={{ marginRight: Style.adjust(10) }}>
         <TextTemplate type="b2" color={Colours.primary.p600} testID={TEXT_TEMPLATE(value)}>
           {value}
         </TextTemplate>
       </View>
       <ArrowIcon color={Colours.primary.p600} />
-    </TouchableOpacityWithDelay>
-  </View>
+    </View>
+  </TouchableOpacityWithDelay>
 );
 
 export default memo(GameSettingsItem);

@@ -453,6 +453,14 @@
                 "alert_log_out_button": "Sair"
             }
         },
+        "leaderboard_settings": {
+            "title": "Classificações",
+            "description": "Status e gerenciamento do seu acesso às classificações relacionadas ao aplicativo.",
+            "screen_description": "Status e gerenciamento do seu acesso às classificações relacionadas ao aplicativo. Por favor, esteja ciente – Optar por sair de uma classificação pode restringir seu acesso a alguns recursos.",
+            "consented": "Outros membros desta classificação podem ver sua atividade e alguns detalhes pessoais.",
+            "not_consented": "Permita que outros membros desta classificação vejam sua atividade e alguns detalhes pessoais.",
+            "item_title": "Classificação %{name}"
+        },        
         "permissions": {
             "title": "Permissões de actividade",
             "description": "Estado e gestão das permissões ao nível da conta e do sistema.",

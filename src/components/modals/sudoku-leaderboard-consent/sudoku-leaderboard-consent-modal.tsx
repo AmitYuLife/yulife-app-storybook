@@ -11,6 +11,8 @@ import { Button } from "@components/molecules";
 import { UpdateSudokuLeaderboardConsent, UpdateSudokuLeaderboardConsentVariables } from "@graphql/_core/schema";
 import { useMutation } from "@apollo/client";
 import { GQL_MUTATION_UPDATE_SUDOKU_LEADERBOARD_CONSENT } from "@graphql/brainGames/sudoku/updateSudokuLeaderboardConsent.gql";
+import { useDispatch } from "react-redux";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 interface IProps {
   onConsented: () => void;
@@ -18,6 +20,7 @@ interface IProps {
 
 const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
   const onClose = useCallback(() => Navigation.dismissModal(MODALS.sudokuLeaderboardConsent), []);
+  const dispatch = useDispatch();
   const [updateSudokuLeaderboardConsent, { loading }] = useMutation<
     UpdateSudokuLeaderboardConsent,
     UpdateSudokuLeaderboardConsentVariables
@@ -35,6 +38,13 @@ const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
   });
 
   const onSubmit = useCallback(() => {
+    dispatch(
+      logMixpanelEventActionCreator("leaderboard_toggle", {
+        name: "sudoku",
+        isActive: true,
+      })
+    );
+
     updateSudokuLeaderboardConsent({
       variables: {
         consent: true,
@@ -44,7 +54,7 @@ const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
         onConsented();
       },
     });
-  }, [updateSudokuLeaderboardConsent, onConsented, onClose]);
+  }, [dispatch, updateSudokuLeaderboardConsent, onClose, onConsented]);
 
   return (
     <>
