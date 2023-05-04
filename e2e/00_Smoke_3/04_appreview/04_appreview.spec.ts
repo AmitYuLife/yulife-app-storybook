@@ -28,7 +28,7 @@ Feature("App store review should behave correctly", async()=>{
                 Then("I should see text We’re sorry to hear that", then.idVisible(APPREVIEW_TEXT("We’re sorry to hear that")))
                 Then("I should see text We’d love a chance to do better. Would you mind leaving us a few tips?", then.textVisible("We’d love a chance to do better. Would you mind leaving us a few tips?"))
                 When("I tap the button Give feedback", when.tapText("Give feedback",1,true), async () => {
-                    Then("I should see intercom", then.textVisible("Start a conversation"))
+                    Then("I should see intercom", then.textVisible("Send us a message"))
                     When("I close and reopen the app", when.reloadOnly, async()=>{  
                         Then("I should not see a screen asking me Enjoying YuLife?", then.idNotVisible(APPREVIEW_TEXT("Enjoying YuLife?")))
                     })

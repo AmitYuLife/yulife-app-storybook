@@ -4,7 +4,7 @@ import * as given from "./_steps/given";
 import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as helper from "./_steps/helpers";
-import { NAV_BAR, LEADERBOARD_INFO, BACK_BUTTON, LEADERBOARD_SWITCH, LEADERBOARD_TITLE, MENU_ICON, INSPECT_SCREEN, RANK, CHALLENGE_FRIEND_BUTTON, LEADERBOARD_SCROLL_LIST, YUMOJI, USER_WORLD, USER_LEVEL, TEXT_TEMPLATE, ONBOARDING_SCREEN_V4, INSPECT_SECTION_HEADER, USER_INFO, LEADERBOARD_DROPDOWN } from "@ids";
+import { NAV_BAR, LEADERBOARD_INFO, BACK_BUTTON, LEADERBOARD_SWITCH, LEADERBOARD_TITLE, MENU_ICON, INSPECT_SCREEN, RANK, CHALLENGE_FRIEND_BUTTON, LEADERBOARD_SCROLL_LIST, YUMOJI, USER_WORLD, USER_LEVEL, TEXT_TEMPLATE, ONBOARDING_SCREEN_V4, INSPECT_SECTION_HEADER, USER_INFO, LEADERBOARD_DROPDOWN, INSPECT_ACTIVITY } from "@ids";
 import { CUSTOMER_16, AUTH_16, CUSTOMER_17, AUTH_17, CUSTOMER_18, CUSTOMER_19, AUTH_19, CUSTOMER_20, CUSTOMER_47, AUTH_47, CUSTOMER_50, AUTH_50, COIN_LEDGER_47, COIN_LEDGER_18, LEADERBOARD_1, LEADERBOARD_2 } from "@data";
 
 Feature("As a user I can see my achievements on the leaderboard", async () => {
@@ -165,7 +165,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I scroll down to the challenge button", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.2), async () => {
             Then("I should see the Challenge somebody to duel button", then.challengeSomebodyButtonVisible)
         })
-        When("I scroll to the Challenge statistics section", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.3), async () => {
+        When("I scroll to the Challenge statistics section", when.scrollUntilIdVisible(INSPECT_SCREEN, INSPECT_ACTIVITY("Longest streak"), "up"), async () => {
             Then("I should see the Challenge stats", then.myChallengeDataVisible(0))
             Then("I should see the Activity section heading", then.activitySectionHeadingVisible)
         })

@@ -98,7 +98,7 @@ Feature("As a user my activity is monitored correctly", async () => {
         When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 500), async () => {
             Then("I should see the menu items", then.menuItemsVisible)
         })
-        When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
+        When("I tap activity history", when.tapText("Activity History"), async () => {
             Then("I should be on activity history", then.idVisible(ACTIVITY_HISTORY_SCREEN, 2500))
             Then("I should see all mindful minutes from the past 32 days ago loaded in", then.activityHistoryScrollMinsDataCorrect)
         }) 

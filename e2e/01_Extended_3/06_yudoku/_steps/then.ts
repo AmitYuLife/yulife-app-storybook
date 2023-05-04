@@ -146,5 +146,5 @@ export const amOnCancelPage = async () => {
 }
 
 export const canSeeAttemptDisclaimer = async () => {
-  await textVisible("As this is your second attempt today your time will not be ranked on the leaderboard and will not count towards your personal best.")()
+  await textVisible("As this is not your first attempt today your time will not be ranked on the leaderboard and will not count towards your personal best.")()
 }

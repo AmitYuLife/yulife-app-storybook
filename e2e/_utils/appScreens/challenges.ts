@@ -20,6 +20,7 @@ export const onChallengeComplete = (stepCount: number, level = 1) => async () =>
 }
 
 export const onMeditationChallengeComplete = (minutes: number, level: number) => async () => {
+  wait(3000)()
   const challengeLevel = `Level ${level}`
 
   let timeSpent = `${minutes} minute`
@@ -335,6 +336,7 @@ export const onScreenButtonsNotVisible = async () => {
 }
 
 export const isOnTodaysMeditationScreen = (mins1: string, yuCoin1: string) => async () => {
+  await wait(2000)()
   await idVisible(TODAYS_MEDITATION_SCREEN)()
   await idVisible(TODAYS_MEDITATION_HEADER("Today’s Meditations"))()
   await idVisible(TODAYS_MEDITATION_DESCRIPTION("Free sessions powered by"))()
