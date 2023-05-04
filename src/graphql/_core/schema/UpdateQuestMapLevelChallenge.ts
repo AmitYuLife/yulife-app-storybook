@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -76,5 +76,6 @@ export interface UpdateQuestMapLevelChallenge {
 
 export interface UpdateQuestMapLevelChallengeVariables {
   levelSlotId: string;
+  contentId?: string | null;
   payload?: ChallengePayload | null;
 }
