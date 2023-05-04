@@ -6,8 +6,8 @@ import { UpdateQuestMapLevelChallenge, UpdateQuestMapLevelChallengeVariables } f
 import { GQL_QUERY_GET_QUEST_MAP_LEVEL } from "./getQuestMapLevel.gql";
 
 export const GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
-  mutation UpdateQuestMapLevelChallenge($levelSlotId: String!, $payload: ChallengePayload) {
-    updateQuestMapLevelChallenge(levelSlotId: $levelSlotId, payload: $payload) {
+  mutation UpdateQuestMapLevelChallenge($levelSlotId: String!, $contentId: String, $payload: ChallengePayload) {
+    updateQuestMapLevelChallenge(levelSlotId: $levelSlotId, contentId: $contentId, payload: $payload) {
       challenge {
         level
         levelSlotId

@@ -100,22 +100,26 @@ const MediaPlayerContainer = ({
     [levelSlotId, createQuestMapLevelChallengeMutation, dispatch, video.duration]
   );
 
-  const cancelChallenge = useCallback(async (shouldNavigate = true) => {
-    await cancelMapLevelChallenge({
-      variables: {
-        levelSlotId,
-      },
-    });
-    dispatch(challengeCancelAction());
-    if (shouldNavigate) {
-      setShowModal(false);
-      await Navigation.pop(ROUTES.mediaPlayer);
-    }
-  }, []);
+  const cancelChallenge = useCallback(
+    async (shouldNavigate = true) => {
+      await cancelMapLevelChallenge({
+        variables: {
+          levelSlotId,
+          contentId: video.id,
+        },
+      });
+      dispatch(challengeCancelAction());
+      if (shouldNavigate) {
+        setShowModal(false);
+        await Navigation.pop(ROUTES.mediaPlayer);
+      }
+    },
+    [video.id, levelSlotId]
+  );
 
   const endChallenge = useCallback(async () => {
     const { data } = await updateQuestMapLevelChallenge({
-      variables: { levelSlotId, payload: { value: video.duration } },
+      variables: { levelSlotId, contentId: video.id, payload: { value: video.duration } },
     });
 
     const challenge = data?.updateQuestMapLevelChallenge?.challenge;
@@ -130,7 +134,7 @@ const MediaPlayerContainer = ({
 
       Logger.logMixpanelEvent("meditopia_challenge_end", { levelSlotId, duration: video.duration });
     }
-  }, [video.duration, levelSlotId]);
+  }, [video.duration, levelSlotId, video.id]);
 
   const onError = useCallback(() => {
     if (trackingInfo) {
