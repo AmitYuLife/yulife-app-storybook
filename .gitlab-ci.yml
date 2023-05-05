@@ -1,6 +1,7 @@
 include:
-    - local: "gitlab/*.yml"
+  - local: "gitlab/*.yml"
 
 stages:
+  - build
   - test
   - release
