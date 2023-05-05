@@ -1,15 +1,16 @@
-test:
+build:e2e:
   extends: .base
   image: node:16.19.0-alpine
-  stage: test
+  stage: build
   interruptible: true
   script:
     - export GITLAB_TOKEN="${CI_JOB_TOKEN}"
     - yarn install --frozen-lockfile --cache-folder .yarn/
-    - yarn test
+    - yarn e2e:build
     # Rebuild cache if needed
     - !reference [.build_cache, script]
   only:
-    - merge_requests
-    - develop
-    - /^release\/.*$/
+    refs:
+      - merge_requests
+    changes:
+      - e2e/**/*

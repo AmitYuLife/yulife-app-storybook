@@ -11,6 +11,7 @@
         "noImplicitAny": false,
         "esModuleInterop": true,
         "moduleResolution": "node",
+        "skipLibCheck": true,
         "typeRoots": [
             "node_modules/@types",
             "../node_modules/@types"
@@ -47,5 +48,13 @@
                 "./dataManager"
             ]
         }
-    }
+    },
+    "include": [
+        "./**/*.ts",
+        "./**/*.tsx"
+    ],
+    "exclude": [
+        "node_modules",
+        "../node_modules"
+    ]
 }
