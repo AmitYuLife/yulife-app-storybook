@@ -250,3 +250,8 @@ export const onEventDetailsScreen = (goal: typeof GOALS_4) => async () => {
     await multipleTextVisible([eventTitle, eventDescriptionTitle])()
 
 }
+
+export const personalDataVisible = (name: string,  world: string) => async () => {
+    await textVisibleAtIndex((name), 0)()
+    await textVisible(world)()
+}
