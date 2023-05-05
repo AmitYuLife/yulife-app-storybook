@@ -38,7 +38,7 @@ const SudokuHelpModal = () => {
             <TextTemplate type="b2">{t["sudoku.help.outline"]}</TextTemplate>
           </View>
 
-          <Image source={require("./sudoku-help.png")} />
+          <Image style={styles.helpImage} resizeMode="contain" source={require("./sudoku-help.png")} />
           <View style={styles.help}>
             <TextTemplate type="b2b">{t["sudoku.help.1"]}</TextTemplate>
             <TextTemplate type="b2">• {t["sudoku.help.2"]}</TextTemplate>
@@ -73,6 +73,11 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(160),
     alignItems: "flex-start",
     justifyContent: "flex-start",
+  },
+  helpImage: {
+    width: Style.adjust(Style.DEVICE_WIDTH * 0.8),
+    height: Style.adjust(Style.DEVICE_WIDTH * 0.8),
+    marginVertical: Style.adjust(20),
   },
 });
 
