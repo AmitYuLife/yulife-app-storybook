@@ -189,7 +189,7 @@ const depressedStyles = StyleSheet.create({
     backgroundColor: Colours.neutral.n50,
   },
   slotSocketOnboarding: {
-    backgroundColor: "#5D4275",
+    backgroundColor: Colours.neutral.n50,
   },
   slotSocketInner: {
     borderRadius: Style.adjust(8),
@@ -203,7 +203,7 @@ const depressedStyles = StyleSheet.create({
     backgroundColor: Colours.neutral.n50,
   },
   slotSocketInnerOnboarding: {
-    backgroundColor: "#875EAD",
+    backgroundColor: Colours.neutral.n50,
   },
   slotYucoinPowerWrapper: {
     ...depressedSlotYuCoinPowerImageDimensions,
