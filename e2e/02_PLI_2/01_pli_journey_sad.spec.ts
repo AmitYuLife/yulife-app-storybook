@@ -36,7 +36,7 @@ Feature("PLI SAD", async () => {
     Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false, CUSTOMER_37, AUTH_37), async () => {
       helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "10");
       helper_V4.YUSCREEN_V4(CUSTOMER_37, "dentalAndPli", "10");
-      helper.GET_PRODUCT("Add Life insurance", "Personal Life Insurance");
+      helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
       helper.ONBOARDING();
       helper.INTRO_START();
       helper.INTRO_INFO();
@@ -72,7 +72,7 @@ Feature("PLI SAD", async () => {
     Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false, CUSTOMER_37, AUTH_37), async () => {
       helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "10");
       helper_V4.YUSCREEN_V4(CUSTOMER_37, "dentalAndPli", "10");
-      helper.GET_PRODUCT("Add Life insurance", "Personal Life Insurance");
+      helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
       helper.ONBOARDING();
       helper.INTRO_START();
       helper.INTRO_INFO();
@@ -110,7 +110,7 @@ Feature("PLI SAD", async () => {
     Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false, CUSTOMER_37, AUTH_37), async () => {
       helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "10");
       helper_V4.YUSCREEN_V4(CUSTOMER_37, "dentalAndPli", "10");
-      helper.GET_PRODUCT("Add Life insurance", "Personal Life Insurance");
+      helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
       helper.ONBOARDING();
       helper.INTRO_START();
       helper.INTRO_INFO();
@@ -148,7 +148,7 @@ Feature("PLI SAD", async () => {
     Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false, CUSTOMER_37, AUTH_37), async () => {
       helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "10");
       helper_V4.YUSCREEN_V4(CUSTOMER_37, "dentalAndPli", "10");
-      helper.GET_PRODUCT("Add Life insurance", "Personal Life Insurance");
+      helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
       helper.ONBOARDING();
       helper.INTRO_START();
       helper.INTRO_INFO();
@@ -199,8 +199,8 @@ Feature("PLI SAD", async () => {
         "I login as a user with Covea FIB enabled",
         given.loginToYuScreen(false, CUSTOMER_PLI_7, AUTH_PLI_7),
         async () => {
-          helper_V4.REJECTION_SCREEN_INFO("Add Life insurance", "pliAgeRejected");
-          helper_V4.CHECK_PRODUCT_BUTTON_LINK("Fill the gap with Dental", "Dental Insurance");
+          helper_V4.REJECTION_SCREEN_INFO("Life Insurance", "pliAgeRejected");
+          helper_V4.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
         }
       );
     }
@@ -214,8 +214,8 @@ Feature("PLI SAD", async () => {
         "I login as a user with Covea FIB enabled",
         given.loginToYuScreen(false, CUSTOMER_PLI_9, AUTH_PLI_9),
         async () => {
-          helper_V4.REJECTION_SCREEN_INFO("Fill the gap with Dental", "dentalAgeRejected");
-          helper_V4.CHECK_PRODUCT_BUTTON_LINK("Add Life insurance", "Personal Life Insurance");
+          helper_V4.REJECTION_SCREEN_INFO("Dental", "dentalAgeRejected");
+          helper_V4.CHECK_PRODUCT_BUTTON_LINK("Life Isurance", "Personal Life Insurance");
         }
       );
     }
@@ -229,8 +229,8 @@ Feature("PLI SAD", async () => {
         "I login as a user with Covea FIB enabled",
         given.loginToYuScreen(false, CUSTOMER_PLI_10, AUTH_PLI_10),
         async () => {
-          helper_V4.REJECTION_SCREEN_INFO("Add Life insurance", "pliCovidRejected");
-          helper_V4.CHECK_PRODUCT_BUTTON_LINK("Fill the gap with Dental", "Dental Insurance");
+          helper_V4.REJECTION_SCREEN_INFO("Life Insurance", "pliCovidRejected");
+          helper_V4.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
         }
       );
     }

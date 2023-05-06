@@ -458,7 +458,7 @@ PODS:
     - SDWebImageWebPCoder (~> 0.8.4)
   - RNFitKit (1.0.0):
     - React
-  - RNFlashList (1.4.0):
+  - RNFlashList (1.4.3):
     - React-Core
   - RNLocalize (2.2.4):
     - React-Core
@@ -866,7 +866,7 @@ SPEC CHECKSUMS:
   RNDeviceInfo: 4701f0bf2a06b34654745053db0ce4cb0c53ada7
   RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
   RNFitKit: 616d0226b7c2df643037e955434d347057eed612
-  RNFlashList: 399bf6a0db68f594ad2c86aaff3ea39564f39f8a
+  RNFlashList: ade81b4e928ebd585dd492014d40fb8d0e848aab
   RNLocalize: 0df7970cfc60389f00eb62fd7c097dc75af3fb4f
   RNPermissions: dcdb7b99796bbeda6975a6e79ad519c41b251b1c
   RNReanimated: 6668b0587bebd4b15dd849b99e5a9c70fc12ed95

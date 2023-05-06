@@ -20,8 +20,8 @@ export const {
 
 
 export const tapSudoku = async () => {
-  await scrollUntilTextVisible(CHALLENGE_SET_SCROLL, "yudoku", "down")()
-  await tapText("yudoku")()
+  await scrollUntilTextVisible(CHALLENGE_SET_SCROLL, "Daily Yudoku", "down")()
+  await tapText("Daily Yudoku")()
 }
 
 export const tapHowToPlay = async () => {

@@ -94,3 +94,21 @@ export const FIIT_MILESTONE_1 = {
     ],
   },
 } as IDatabaseItem;
+
+export const SUDOKU_MILESTONE = {
+  type: "mongo",
+  modelName: "map_milestone_templates",
+  updateKey: "id",
+  data: {
+    id: "YU_MILESTONE_SUDOKU0003",
+    milestones: [
+      {
+        id: "YU_MILESTONE_SUDOKU0003",
+        coins: 6,
+        target: {
+          duration: 1,
+        },
+      },
+    ],
+  }
+}

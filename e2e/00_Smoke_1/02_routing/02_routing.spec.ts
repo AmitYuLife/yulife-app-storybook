@@ -55,7 +55,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             Then("I should see Activity permissions", then.idVisible(TEXT_TEMPLATE("Activity permissions")))
             Then("I should see 'Status and management of account and system level permissions.'", then.idVisible(TEXT_TEMPLATE("Status and management of account and system level permissions.")))
         })
-        When("I tap permissions settings", when.tapIDAtIndex(ARROW_BUTTON, 0), async () => {
+        When("I tap permissions settings", when.tapIDAtIndex(ARROW_BUTTON, 1), async () => {
             Then("I should be on permission page", then.onPermissionsPage("not_determined"))
         })
         When("I go back", when.tapID(BACK_BUTTON), async () => {
@@ -210,7 +210,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             When("I scroll down", when.scrollFromID(SETTINGS_SCREEN, "up", "fast"), async () => {
                 Then("I should see the right settings details", then.permissionsActivityRightVisible)
             })
-            When("I tap permissions settings", when.tapIDAtIndex(ARROW_BUTTON, 0), async () => {
+            When("I tap permissions settings", when.tapIDAtIndex(ARROW_BUTTON, 1), async () => {
                 Then("I should be on permission page", then.onPermissionsPage("not_determined"))
             })
         })
@@ -237,7 +237,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         When("I scroll down", when.scrollFromID(SETTINGS_SCREEN, "up", "fast"), async () => {
             Then("I should see the right settings details", then.permissionsActivityRightVisible)
         })
-        When("I tap permissions settings", when.tapIDAtIndex(ARROW_BUTTON, 0), async () => {
+        When("I tap permissions settings", when.tapIDAtIndex(ARROW_BUTTON, 1), async () => {
             Then("I should correct detail and icons when authorised", then.onPermissionsPage("authorised"))
         })        
     })
