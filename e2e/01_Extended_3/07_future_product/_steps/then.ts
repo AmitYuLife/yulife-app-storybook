@@ -46,6 +46,6 @@ export const onFutureProductScreen = (customer_product_entity:any) => async()=>{
   }
   catch{
     minutes = diffDuration.minutes() + 1;
-    await idVisible(COUNTDOWN_UNIT(minutes.toString(), 'Mins'))()
+    await idVisible(COUNTDOWN_UNIT(`0${minutes.toString()}`, 'Mins'))()
   }
 }

@@ -1,4 +1,6 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import { CUSTOMER_84 } from "../postgres/customers";
+import { CHALLENGE_USER_84 } from "./challenge";
 import { USER_64, USER_67, USER_68, USER_7, USER_70, USER_72, USER_86 } from "./users";
 
 export const CHALLENGE_HISTORY_7 = {
@@ -52,6 +54,29 @@ export const CHALLENGE_HISTORY_72 = {
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_72.data.userId,
+    }
+} as IDatabaseItem
+
+export const CHALLENGE_HISTORY_84 = {
+    type:"mongo",
+    modelName:"challengehistory",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": CUSTOMER_84.data.customerId,
+        challengesForEveryLevel: {
+            152: {
+                maxRating: 3,
+                challengesForEveryLevelSlot: {
+                    SUDOKU_001: [
+                        {
+                            challengeId: CHALLENGE_USER_84.data._id,
+                            rating: 3,
+                            yuCoinAwarded: 60
+                        }
+                    ]
+                }
+            }
+        }
     }
 } as IDatabaseItem
 

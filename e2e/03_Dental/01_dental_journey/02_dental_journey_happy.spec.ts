@@ -23,14 +23,14 @@ Feature("DENTAL HAPPY", async () => {
       Given("I login as a user with Bupa Dental enabled", given.loginToYuScreen(false, CUSTOMER_37, AUTH_37), async () => {
           helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "10");
           helper_V4.YUSCREEN_V4(CUSTOMER_37, "dentalAndPli", "10");
-          helper_pli.GET_PRODUCT("Fill the gap with Dental", "Dental Insurance");
+          helper_pli.GET_PRODUCT("Dental", "Dental Insurance");
           helper.ONBOARDING();
           helper.INFORMATION();
           helper.PLANS();
           helper.PACKAGE_DETAILS("Epic");
           helper.ADD_EDIT_PAYMENT_DETAILS();
           helper.CHECKOUT();
-          helper_pli.GET_PRODUCT("Add Life insurance", "Personal Life Insurance");
+          helper_pli.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
           helper_pli.ONBOARDING();
           helper_pli.FAST_INTRO_START();
           helper_pli.UNDERWRITING_NAME();

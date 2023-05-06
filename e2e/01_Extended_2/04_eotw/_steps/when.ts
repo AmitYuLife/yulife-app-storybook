@@ -33,7 +33,13 @@ export const selectAndCompleteMeditationChallenge = (mindfulnessData: number) =>
     await navigateViaText("Take challenge")
     await tapText("Use a different app")()
     await tapText("maybe later")()
-    await tapText("I'm using a different app")()
+    await sendMindfulnessData(mindfulnessData, 80000)()
+}
+
+export const selectAndCompleteMeditationChallengeWithoutMedia = (mindfulnessData: number) => async () => {
+    await navigateViaID(CHALLENGE_TILE("meditation"))
+    await navigateViaText("Take challenge")
+    await tapText("maybe later")()
     await sendMindfulnessData(mindfulnessData, 80000)()
 }
 

@@ -1519,6 +1519,7 @@ export const CUSTOMER_84_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showDuels: true,
+      showBrainGameSudoku: true
     },
   },
 } as IDatabaseItem;

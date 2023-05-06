@@ -1,4 +1,4 @@
-import { generateRandomMongoId, generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import { generateRandomTransformedUuid, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { BUSINESS_BACKGROUND_USA_1 } from "./business_background";
 
 const type = "postgres"
@@ -9,7 +9,7 @@ export const BUSINESS_ACCOUNT_USA_1 = {
     modelName: "business",
     data: {
         business_background_id: BUSINESS_BACKGROUND_USA_1.data.business_background_id,
-        business_account_id: generateRandomMongoId(),
+        business_account_id: generateRandomTransformedUuid(),
         business_account_name: 'YU LIFE USA LTD',
         coupon: null,
         status: null,

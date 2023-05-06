@@ -25,8 +25,8 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             helper.CREATE_DEFAULT_YUMOJI(300);
             helper.YUCOIN_POWER_CHECK(CUSTOMER_44, 1)
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live")
-            helper.CHECK_PRODUCT_BUTTON_LINK("Fill the gap with Dental", "Dental Insurance");
-            helper.CHECK_PRODUCT_BUTTON_LINK("Add Life insurance", "Personal Life Insurance");
+            helper.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
+            helper.CHECK_PRODUCT_BUTTON_LINK("Life Insurance", "Personal Life Insurance");
             helper.CHECK_CAROUSEL_DENTAL_BUTTON_LINK();
             helper.CHECK_CAROUSEL_BUTTON_LINK("left", "Extend your life insurance", "Life Insurance");
         })
@@ -44,7 +44,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
                 })
             })
             helper.PAYMENT_FAILED()
-            helper.CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED("Add Life insurance")
+            helper.CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED("Life Insurance")
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("dental only")
             helper.DENTAL_PRODUCT_VIEW("Epic", "0321")
         })
@@ -55,7 +55,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_46, "PliPermanentlyRejectedAndDentalInactive", "5" ))
         })   
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live")
-            helper.CHECK_PRODUCT_BUTTON_LINK("Fill the gap with Dental", "Dental Insurance");
+            helper.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
     })
 
     Scenario("As a YuLifer with 6 slots i should  NOT see More protection coming soon slot ", scenario.start, async () => {

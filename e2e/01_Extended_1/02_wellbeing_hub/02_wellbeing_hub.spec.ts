@@ -5,6 +5,7 @@ import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_3, AUTH_3, CUSTOMER_31, AUTH_31, CUSTOMER_34, AUTH_34, CUSTOMER_37, AUTH_37 } from "@data";
 import { MENU_ICON, MENU_ITEM, WELLBEING_HUB_SCREEN, BACK_BUTTON, TEXT_TEMPLATE, MORE_INFO_BUTTON, PERK_SCREEN, INPUT_AVIOS_FORM_FIELD, WELLBEING_HUB_SCROLL_VIEW } from "@ids";
+import { nextClaimDate } from "./_steps/constants";
 
 
 Feature("Wellbeing Hub should be restricted for certain users", async () => {
@@ -110,7 +111,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
         When("I tap Close", when.navigateViaButton("Close"), async () => {
             When("I tap Activate your Fiit account", when.navigateViaButton("Activate account"), async () => {
                 Then("I should see Membership already active", then.textVisible("Membership already active"))
-                Then("I should see You have already claimed this perk.", then.textVisible("You have already claimed this perk. You will need to wait until 03 Apr 2024 to claim again."))
+                Then("I should see You have already claimed this perk.", then.textVisible(`You have already claimed this perk. You will need to wait until ${nextClaimDate} to claim again.`))
             })
         })
     })

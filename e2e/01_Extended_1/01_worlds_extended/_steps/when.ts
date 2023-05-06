@@ -110,11 +110,20 @@ export const tapYuniverseLevelAfterFirstTime = (x: number, y: number) => async (
     await element(by.id(QUESTS_SCREEN_YUNIVERSAL(2))).tapAtPoint({x:x, y:y});
 }
 
-export const selectAndCompleteMeditationChallenge = (mindfulnessdata: number) => async () => { 
+export const selectAndCompleteMeditationChallengeWithoutMedia = (mindfulnessdata: number) => async () => { 
+    await navigateViaID(CHALLENGE_TILE("meditation"))
+    await navigateViaText("Take challenge")
+    await tapText("maybe later")()
+    await sendMindfulnessData(mindfulnessdata, 75000)()
+    await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
+    await navigateViaText("Collect")
+}
+
+export const selectAndCompleteMeditationChallengeWithMedia = (mindfulnessdata: number) => async () => { 
     await navigateViaID(CHALLENGE_TILE("meditation"))
     await navigateViaText("Take challenge")
     await tapText("Use a different app")()
-    // Note: line ^^^ added for fixes - leaving this here to see whether ihave to come delete it in new fixes as I feel like I have changed these functions so many times and I am going insane
+    // 4th may fix - 'maybe later' after 'use a different app'
     await tapText("maybe later")()
     await sendMindfulnessData(mindfulnessdata, 75000)()
     await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)

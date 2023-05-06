@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { AUTH_58,  AUTH_86, CUSTOMER_58, CUSTOMER_67, CUSTOMER_68, CUSTOMER_71, CUSTOMER_86, SUDOKU_ANSWER_1, SUDOKU_ANSWER_2, SUDOKU_ANSWER_3} from "@data"
+import { AUTH_58,  AUTH_84,  AUTH_86, CUSTOMER_58, CUSTOMER_67, CUSTOMER_68, CUSTOMER_71, CUSTOMER_84, CUSTOMER_86, SUDOKU_ANSWER_1, SUDOKU_ANSWER_2, SUDOKU_ANSWER_3} from "@data"
 import { BACK_BUTTON, BUTTON_CLOSE_HEADER, BUTTON_CLOSE_RIGHT_ID, CANCEL_CANCEL_CHALLENGE, CELL_ROW_COLUMN, LEVEL_CHALLENGE_BUTTON, SUDOKU_HINT_TIMER, SUDOKU_NUMBER_INPUT, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, SUDOKU_UNRANKED_LABEL, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids"
 import { SUDOKU_STAT_0 } from "_utils/data/mongo/game_sudoku_stats"
 
@@ -214,21 +214,14 @@ Feature("Yudoku", async () => {
             })
         })
     })
-
-    //     When("I scroll up if needed", when.scrollUntilIdVisible(SUDOKU_STAGING_SCREEN_SCROLL, BACK_BUTTON, "up"), async () => {
-    //         When("I press back", when.tapID(BACK_BUTTON), async () => {
-    //             When("I go to the yuCoin tab", when.navigateTo("yucoin"), async () => {
-    //                 When("I click on the YuCoin Icon to see the breakdown of my earnings", when.tapYuCoinIcon, async () => {
-    //                     Then("I can see the Sudoku challenge is completed", then.canSeeEarntSudoku("0"))
-    //                 })
-    //             })
-    //         })
-    //     })
-    
-    // ^^^^^^^^^^^^Code 
-    // add scenario: Put time for today's challenge in the db, then check the yucoin earning page sudoku time is correct
-
-    
-    
   })
+
+    Scenario("I can see my yudoku daily time in the earnings screen", scenario.start, async () => {
+        Given("I login", given.logInAndGoToTab("yucoin", CUSTOMER_84, AUTH_84), async () => {
+            Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
+        })
+        When("I click on the YuCoin Icon to see the breakdown of my earnings", when.tapYuCoinIcon, async () => {
+            Then("I can see the Sudoku challenge is completed", then.canSeeEarntSudoku("6m 40s"))
+        })
+    })
 })

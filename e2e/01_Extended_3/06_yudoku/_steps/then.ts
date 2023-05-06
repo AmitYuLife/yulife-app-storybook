@@ -20,8 +20,8 @@ export const {
 } = navigation.common;
 
 export const canSeeSudokuTile = async () => {
-  await scrollUntilTextVisible(CHALLENGE_SET_SCROLL, "yudoku", "down")()
-  await textVisible("yudoku")()
+  await scrollUntilTextVisible(CHALLENGE_SET_SCROLL, "Daily Yudoku", "down")()
+  await textVisible("Daily Yudoku")()
 }
 
 export const amOnSudokuPage = async () => {
@@ -114,8 +114,8 @@ export const cannotSeeStartGame = async () => {
 }
 
 export const canSeeEarntSudoku = (time: string) => async () => {
-  await scrollUntilTextVisible(TODAYS_EARNINGS, `Sudoku (${time} mins)`, "down")()
-  await textVisible(`Sudoku (${time} mins)`)()
+  await scrollUntilTextVisible(TODAYS_EARNINGS, `Yudoku (${time})`, "down")()
+  await textVisible(`Yudoku (${time})`)()
 }
 
 export const cannotSeeLeaderboard = async () => {
