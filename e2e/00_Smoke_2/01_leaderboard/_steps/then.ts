@@ -86,7 +86,8 @@ export const challengeDataVisible = (challengesDone: number, longestStreak: numb
     await idVisible(INSPECT_DATA(longestStreak, "d"))()  
 }
 
-export const activitySectionHeadingVisible = async () => {
+export const activitySectionHeadingVisible = (userId: string) => async () => {
+    await scrollUntilIdVisible(USER_INFO(userId), INSPECT_ACTIVITY_PERIOD, "down")()
     await idVisible(INSPECT_ACTIVITY_HEADER)()
     await idVisible(INSPECT_ACTIVITY_PERIOD)()
     await textVisible("Activity")()

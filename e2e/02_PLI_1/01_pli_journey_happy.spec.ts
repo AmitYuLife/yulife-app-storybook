@@ -41,7 +41,7 @@ Feature("PLI HAPPY", async () => {
         async () => {
           helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "10");
           helper_V4.YUSCREEN_V4(CUSTOMER_37, "dentalAndPli", "10");
-          helper.GET_PRODUCT("Add Life insurance", "Personal Life Insurance");
+          helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
           helper.ONBOARDING();
           helper.INTRO_START();
           helper.INTRO_INFO();
@@ -90,7 +90,7 @@ Feature("PLI HAPPY", async () => {
         helper_V4.YUSCREEN_V4(CUSTOMER_44, "dentalAndPli", "1");
         helper_V4.CREATE_DEFAULT_YUMOJI(300);
         helper_V4.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live");
-        helper.GET_PRODUCT("Add Life insurance", "Personal Life Insurance");
+        helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
         helper.ONBOARDING();
         helper.INTRO_START(CUSTOMER_44);
         helper.INTRO_INFO();
@@ -162,7 +162,7 @@ Feature("PLI HAPPY", async () => {
         async () => {
           helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "10");
           helper_V4.YUSCREEN_V4(CUSTOMER_37, "dentalAndPli", "10");
-          helper.GET_PRODUCT("Add Life insurance", "Personal Life Insurance");
+          helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
           helper.ONBOARDING();
           helper.INTRO_START();
           helper.INTRO_INFO();
@@ -210,7 +210,7 @@ Feature("PLI HAPPY", async () => {
         async () => {
           helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "1");
           helper_V4.YUSCREEN_V4(CUSTOMER_PLI_2, "dentalAndPli", "1");
-          helper.GET_PRODUCT("Add Life insurance", "Personal Life Insurance");
+          helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
           helper.ONBOARDING();
         }
       );
@@ -227,7 +227,7 @@ Feature("PLI HAPPY", async () => {
         async () => {
           helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "1");
           helper_V4.YUSCREEN_V4(CUSTOMER_PLI_3, "dentalAndPli", "1");
-          helper.GET_PRODUCT("Add Life insurance", "Personal Life Insurance");
+          helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
           helper.ONBOARDING();
         }
       );
@@ -244,7 +244,7 @@ Feature("PLI HAPPY", async () => {
         async () => {
           helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "1");
           helper_V4.YUSCREEN_V4(CUSTOMER_PLI_4, "dentalAndPli", "1");
-          helper.GET_PRODUCT("Add Life insurance", "Personal Life Insurance");
+          helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
           helper.ONBOARDING();
         }
       );
