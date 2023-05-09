@@ -128,13 +128,7 @@ export const tapIllDoThisLater = async () => {
 };
 
 export const closeScreen = async () => {
-  let buttonIndex = 0;
-
-  if (device.name.includes("(iPhone 14 Pro)")) {
-    buttonIndex = 1;
-  }
-
-  await tapIDAtIndex(BUTTON_CLOSE, buttonIndex)();
+  await tapIDAtIndex(BUTTON_CLOSE, 1)();
 };
 
 export const addContactDetails = async () => {
@@ -156,8 +150,8 @@ export const addWronMinimumContactDetails = async () => {
 export const addWronMaximumContactDetails = async () => {
   await scrollFromID(SDUI_SCREEN_SCROLL_VIEW, "down", "slow")();
 
-  await typeViaID(CONTENT_ITEM_INPUT("firstName"), "IamVeryLongFirstNameTesting32char\n")();
-  await typeViaID(CONTENT_ITEM_INPUT("lastName"), "IamVeryLongLastNameTesting32chara\n")();
+  await typeViaID(CONTENT_ITEM_INPUT("firstName"), "IamVeryLongFirstNameTesting35characters\n")();
+  await typeViaID(CONTENT_ITEM_INPUT("lastName"), "IamVeryLongLastNameTesting35characters\n")();
   await typeViaID(CONTENT_ITEM_INPUT("address1"), "Eugene's House\n")();
   await typeViaID(CONTENT_ITEM_INPUT("town"), "Lo\n")();
 };

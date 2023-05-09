@@ -185,7 +185,7 @@ Feature("PLI SAD", async () => {
         async () => {
           helper_V4.ONBOARDING_YUSCREEN("LifeInsurance", "10");
           helper_V4.YUSCREEN_V4(CUSTOMER_PLI_6, "PliPermanentlyRejectedAndDentalInactive", "10");
-          helper_V4.CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED("Fill the gap with Dental"); //slot text should be the same after navigate through it
+          helper_V4.CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED("Dental"); //slot text should be the same after navigate through it
         }
       );
     }
@@ -215,7 +215,7 @@ Feature("PLI SAD", async () => {
         given.loginToYuScreen(false, CUSTOMER_PLI_9, AUTH_PLI_9),
         async () => {
           helper_V4.REJECTION_SCREEN_INFO("Dental", "dentalAgeRejected");
-          helper_V4.CHECK_PRODUCT_BUTTON_LINK("Life Isurance", "Personal Life Insurance");
+          helper_V4.CHECK_PRODUCT_BUTTON_LINK("Life Insurance", "Personal Life Insurance");
         }
       );
     }

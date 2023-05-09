@@ -6,7 +6,7 @@ import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { setScreenViewForBurgerMenu } from "@navigation/utils";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
-import { YUSCREEN, YUSCREEN_V4 } from "@ids";
+import { YUSCREEN, YUSCREEN_SCROLL_VIEW, YUSCREEN_V4 } from "@ids";
 
 interface Props {
   children: React.ReactNode;
@@ -31,7 +31,7 @@ export const YuScreenLayout = memo(
           children
         ) : (
           <View style={styles.innerWrapper} testID={YUSCREEN}>
-            <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
+            <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView} testID={YUSCREEN_SCROLL_VIEW}>
               {children}
             </ScrollView>
           </View>

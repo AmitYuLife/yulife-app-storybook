@@ -12,12 +12,15 @@ import {
   V4_YUSCREEN,
   CONTENT_MIDDLE_ITEM_IMAGE,
   CONTENT_ITEM_INPUT,
+  YUSCREEN_SCROLL_VIEW,
 } from "@ids";
 
 export const CREATE_DEFAULT_YUMOJI = async (totalYucoinCount: number) => {
   When("I create the default yumoji", when.createDefaultYumoji, async () => {
-    Then("I should see my Yumoji", then.idVisible(YUMOJI_AVATAR_YUSCREEN_V4));
-    Then(`I should have ${totalYucoinCount} YuCoins`, then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(totalYucoinCount)));
+    When("I scroll up if needed", when.scrollUntilIdVisible(YUSCREEN_SCROLL_VIEW, YUMOJI_AVATAR_YUSCREEN_V4, "up", 0.8, 0.8), async () => {
+      Then("I should see my Yumoji", then.idVisible(YUMOJI_AVATAR_YUSCREEN_V4));
+      Then(`I should have ${totalYucoinCount} YuCoins`, then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(totalYucoinCount)));
+    })
   });
 };
 
@@ -27,14 +30,16 @@ export const CHECK_PRODUCT_BUTTON_LINK = async (productButton: string, productOn
       `I should be on the first ${productOnboardingViewText} onboarding screen`,
       then.idVisible(TEXT_TEMPLATE(productOnboardingViewText))
     );
-    When("I tap the close button", when.closeScreen, async () => {
-      When("I tap the close button", when.closeScreenAtHeader("yulife"), async () => {
-        Then(
-          `I should not see ${productOnboardingViewText} onboarding screen`,
-          then.textNotVisible(productOnboardingViewText)
-        );
+    When("I wait", when.wait(2000), async () => {
+      When("I tap the close button", when.closeScreen, async () => {
+        When("I tap the close button", when.closeScreenAtHeader("yulife"), async () => {
+          Then(
+            `I should not see ${productOnboardingViewText} onboarding screen`,
+            then.textNotVisible(productOnboardingViewText)
+          );
+        });
       });
-    });
+    })
   });
 };
 
@@ -95,7 +100,9 @@ export const PAYMENT_FAILED = async () => {
 
 export const CORRECT_PRODUCT_SLOT_BACKGROUND = async (status: string) => {
   When("I wait", when.wait(1000), async () => {
-    Then("I should see correct products Slot background colours", then.productSlotsAreCorrect(status));
+    When("I scroll up if needed", when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, "YuCoin", "up", 0.8, 0.8), async () => {
+      Then("I should see correct products Slot background colours", then.productSlotsAreCorrect(status));
+    })
   });
 };
 
@@ -143,23 +150,27 @@ export const YUCOIN_POWER_CHECK = async (customer: any, yuCoinPower: number) => 
   const firstName = customer.data.firstName;
   const lastName = customer.data.lastName;
 
-  When(`I tap YuCoin`, when.tapText("YuCoin"), async () => {
-    When("I wait", when.wait(4000), async () => {
-      Then("I should see correct YuCoin Power text", then.yuCoinPowerInfo(yuCoinPower));
+  When("I swipe to YuCoin power", when.swipeFromText("More protection coming soon", "down", "slow"), async () => {
+    When(`I tap YuCoin`, when.tapText("YuCoin"), async () => {
+      When("I wait", when.wait(4000), async () => {
+        Then("I should see correct YuCoin Power text", then.yuCoinPowerInfo(yuCoinPower));
+      });
     });
-    When("I click Got it", when.tapText("Got it!"), async () => {
-      Then("I should see again my name", then.textVisible(`${firstName} ${lastName}`));
-    });
+  })
+  When("I click Got it", when.tapText("Got it!"), async () => {
+    Then("I should see again my name", then.textVisible(`${firstName} ${lastName}`));
   });
 };
 
 export const CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED = async (productButton: string) => {
-  When(`I tap on ${productButton}`, when.tapText(productButton), async () => {
-    Then(`I should payment overdue screen`, then.paymentOverdueInfo);
-    When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
-      Then("I should be able to see Dental insurance", then.textVisible(productButton));
+  When("I swipe up ", when.swipeFromText("More protection coming soon", "down", "fast"), async () => {
+    When(`I tap on ${productButton}`, when.tapText(productButton), async () => {
+      Then(`I should payment overdue screen`, then.paymentOverdueInfo);
+      When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
+        Then("I should be able to see Dental insurance", then.textVisible(productButton));
+      });
     });
-  });
+  })
 };
 
 export const YUSCREEN_V4 = async (
@@ -244,8 +255,8 @@ export const ORDO_JOURNEY_VIEW = async () => {
 };
 
 export const FIELD_VALIDATION = async () => {
-  const firstNameValidation = "Please enter a first name between 2 and 32 characters";
-  const lastNameValidation = "Please enter a last name between 2 and 32 characters";
+  const firstNameValidation = "Please enter a first name between 2 and 35 characters";
+  const lastNameValidation = "Please enter a last name between 2 and 35 characters";
   const postCodeValidation = "Please enter a valid UK postcode";
   const phoneNumberValidation = "Please enter a valid contact number";
 

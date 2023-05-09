@@ -90,7 +90,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
         When("I scroll to the Challenge statistics section", when.scrollUntilTextVisible(USER_INFO("Michael Scott 4"), "Activity", "down"), async () => {
             Then("I should see the Challenge stats", then.challengeDataVisible(0, 0))
-            Then("I should see the Activity section heading", then.activitySectionHeadingVisible)
+            Then("I should see the Activity section heading", then.activitySectionHeadingVisible("Michael Scott 4"))
         })
         When("I scroll to the Activity data section", when.scrollFromID(USER_INFO("Michael Scott 4"), "up", "slow", 0.3), async () => {
             Then("I should see the yumoji avatars and the comparative activity stats between me and Michael", then.comparativeUserSeedStatsVisible(26, 333))
@@ -131,7 +131,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
         When("I scroll to the Challenge statistics section", when.scrollUntilTextVisible(USER_INFO("Michael Scott 4"), "Activity", "down"), async () => {
             Then("I should see the Challenge stats", then.challengeDataVisible(0, 0))
-            Then("I should see the Activity section heading", then.activitySectionHeadingVisible)
+            Then("I should see the Activity section heading", then.activitySectionHeadingVisible("Michael Scott 4"))
         })
         When("I scroll to the Activity data section", when.scrollFromID(USER_INFO("Michael Scott 4"), "up", "slow", 0.3), async () => {
             Then("I should see the yumoji avatars and the comparative walking activity stats between me and Michael", then.comparativeUserStatsVisible(26, 833))
@@ -165,9 +165,9 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I scroll down to the challenge button", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.2), async () => {
             Then("I should see the Challenge somebody to duel button", then.challengeSomebodyButtonVisible)
         })
-        When("I scroll to the Challenge statistics section", when.scrollUntilIdVisible(INSPECT_SCREEN, INSPECT_ACTIVITY("Longest streak"), "up"), async () => {
+        When("I scroll to the Challenge statistics section", when.scrollUntilIdVisible(USER_INFO("Gill Stock 1"), INSPECT_ACTIVITY("Longest streak"), "down"), async () => {
             Then("I should see the Challenge stats", then.myChallengeDataVisible(0))
-            Then("I should see the Activity section heading", then.activitySectionHeadingVisible)
+            Then("I should see the Activity section heading", then.activitySectionHeadingVisible("Gill Stock 1"))
         })
         When("I scroll to the Activity data section", when.scrollFromID(INSPECT_SCREEN, "up", "slow", 0.4), async () => {
             Then("I should see my yumoji avatar and my activity stats", then.mySeedStatsVisible)

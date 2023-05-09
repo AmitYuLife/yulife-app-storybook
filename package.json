@@ -27,7 +27,7 @@
     "detox:test:base:sa": "API_URL=http://localhost:5002/  yarn detox:test:base",
     "detox:test:base:uk": "API_URL=http://localhost:5000/  yarn detox:test:base",
     "detox:test:base:us": "API_URL=http://localhost:5001/  yarn detox:test:base",
-    "detox:test:base": "TS_NODE_PROJECT=./e2e/tsconfig.json yarn detox test --cleanup -c ios.sim.debug --loglevel trace e2e/init.ts",
+    "detox:test:base": "TS_NODE_PROJECT=./e2e/tsconfig.json yarn detox test --cleanup -c ios.sim.debug --loglevel verbose e2e/init.ts",
     "detox:usa": "yarn detox:test:base:us e2e/04_USA/**/*.spec.ts",
     "develop:workflow": "bitrise :workflow-editor",
     "download:schema:local": "npx apollo client:download-schema --endpoint=http://localhost:5000/graphql ./src/graphql/_core/schema.json",
