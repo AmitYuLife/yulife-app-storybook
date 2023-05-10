@@ -12,7 +12,10 @@ interface Props {
 
 export const CountdownUnit = memo(({ heading, label, borderRightWidth = 1 }: Props) => {
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, { borderRightWidth }])} testID={COUNTDOWN_UNIT(heading, label)}>
+    <View
+      style={StyleSheet.flatten([styles.wrapper, { borderRightWidth }])}
+      testID={COUNTDOWN_UNIT(parseInt(heading), label)}
+    >
       <TextTemplate type="h1">{heading}</TextTemplate>
       <View style={styles.pullUp}>
         <TextTemplate type="l2">{label}</TextTemplate>

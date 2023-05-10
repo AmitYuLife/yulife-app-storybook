@@ -184,8 +184,8 @@ export const challengesAvailableVisible = async () => {
     await idVisible(CHALLENGE_TILE("long walk"))()
     await idVisible(CHALLENGE_TILE("meditation"))()
     await swipeFromText("meditation", "up", "fast")()
-    await idVisible(CHALLENGE_TILE("fiit class"))()
-    await swipeFromText("fiit class", "down", "fast")()
+    await idVisible(CHALLENGE_TILE("fiit"))()
+    await swipeFromText("fiit", "down", "fast")()
 }
 
 export const challengeStarsCorrect = (starCount: number, challengeType: string, ) => async () => {
@@ -199,8 +199,8 @@ export const yuniverseChallengesVisible = async () => {
     await idVisible(CHALLENGE_TILE("short stroll"))()
     await idVisible(CHALLENGE_TILE("meditation"))()
     await swipeFromText("meditation", "up", "fast")()
-    await idVisible(CHALLENGE_TILE("fiit class"))()
-    await swipeFromText("fiit class", "down", "fast")()
+    await idVisible(CHALLENGE_TILE("fiit"))()
+    await swipeFromText("fiit", "down", "fast")()
 }
 
 export const challengesAndYuCoinsAwardedVisible = async () => {

@@ -27,25 +27,19 @@ export const onFutureProductScreen = (customer_product_entity:any) => async()=>{
 
   const diffDuration = moment.duration(targetDate.diff(currentDate));
   
-  const days = Math.floor(diffDuration.asDays()).toString()
+  const days = Math.floor(diffDuration.asDays())
   await idVisible(COUNTDOWN_UNIT(days, 'Days'))()
 
   var hours = diffDuration.hours()
-
-  try{
-    await idVisible(COUNTDOWN_UNIT(hours.toString(), 'Hours'))()
-  }
-  catch {
-    hours = diffDuration.hours() + 1;
-    await idVisible(COUNTDOWN_UNIT(hours.toString(), 'Hours'))()
-  }
+  await idVisible(COUNTDOWN_UNIT(hours, 'Hours'))()
 
   var minutes = diffDuration.minutes();
-  try{
-    await idVisible(COUNTDOWN_UNIT(minutes.toString(), 'Mins'))()
+
+  try {
+    await idVisible(COUNTDOWN_UNIT(minutes, 'Mins'))()
+  } catch {
+    await idVisible(COUNTDOWN_UNIT(minutes + 1, 'Mins'))()
   }
-  catch{
-    minutes = diffDuration.minutes() + 1;
-    await idVisible(COUNTDOWN_UNIT(`0${minutes.toString()}`, 'Mins'))()
-  }
+  
+
 }

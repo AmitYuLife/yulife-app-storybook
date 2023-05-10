@@ -7,7 +7,7 @@ export const fiitInfo: fiitCopy = {
   description: "Free classes powered by",
   logo: FIIT_LOGO,
   smallLogo: MEDIA_SMALL_LOGO("https://yulife-develop.imgix.net/logos/fiit-logo-icon-with-bg.png?ixlib=js-3.2.1&fit=clip&fm=png&s=cea31b62c641ed467b2966ba838e7a69"),
-  challengeName: "fiit class",
+  challengeName: "fiit",
   duration: "10 mins",
 }
 
