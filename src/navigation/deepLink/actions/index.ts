@@ -16,3 +16,4 @@ export * from "./wellbeingHubSendDocuments";
 export * from "./wellbeingHubItems";
 export * from "./journey";
 export * from "./wellbeingHubItemDetails";
+export * from "./logout";
