@@ -14,12 +14,15 @@ export const ContentItemImage = memo((props: Props) => {
   const imageStyles = mapServerStyles(props.styles);
   const dispatch = useDispatch();
 
-  const imageStyle = useMemo(
+  const { imageStyle, source } = useMemo(
     () => ({
-      ...imageStyles,
-      width: getWidth(imageStyles?.width as number, props.contentItemImageSize),
+      source: { uri: props.image.uri || props.image.id },
+      imageStyle: {
+        ...imageStyles,
+        width: getWidth(imageStyles?.width as number, props.contentItemImageSize),
+      },
     }),
-    [imageStyles, props.contentItemImageSize]
+    [imageStyles, props.contentItemImageSize, props.image]
   );
 
   const Wrapper = props.onPress ? TouchableOpacityWithDelay : View;
@@ -35,8 +38,8 @@ export const ContentItemImage = memo((props: Props) => {
       <Image
         width={imageStyle.width}
         style={imageStyle}
-        source={{ uri: props.image.uri }}
-        testID={CONTENT_MIDDLE_ITEM_IMAGE(props.image.uri)}
+        source={source}
+        testID={CONTENT_MIDDLE_ITEM_IMAGE(source.uri)}
       />
     </Wrapper>
   );

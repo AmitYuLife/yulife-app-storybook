@@ -1,3 +1,4 @@
+export * from "./box-option-card/box-option-card";
 export * from "./button";
 export * from "./coin-confetti";
 export * from "./plus-points";

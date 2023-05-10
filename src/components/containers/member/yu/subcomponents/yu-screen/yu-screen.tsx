@@ -18,7 +18,7 @@ import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { Image } from "@atoms";
 import { ONBOARDING_SCREEN_V4, V4_YUSCREEN } from "@ids";
-import { BoxOptionCard } from "../box-option-card/box-option-card";
+import { BoxOptionCard } from "@components/molecules";
 
 interface Props {
   componentId: string;
@@ -110,5 +110,6 @@ const styles = StyleSheet.create({
   },
   boxOptionCardWrapper: {
     paddingHorizontal: Style.adjust(16),
+    marginTop: Style.adjust(16),
   },
 });

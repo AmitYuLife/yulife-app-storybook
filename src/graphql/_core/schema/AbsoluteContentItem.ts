@@ -25,7 +25,6 @@ export interface AbsoluteContentItem_item_ContentItemProcessingTimer {
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
-    | "ContentItemLinearGradient"
     | "ContentItemYuCoinPower"
     | "ContentItemComparisonTableSelectPackage"
     | "ContentItemPerks"
@@ -710,6 +709,43 @@ export interface AbsoluteContentItem_item_ContentItemMedia {
   onEnd: AbsoluteContentItem_item_ContentItemMedia_onEnd | null;
 }
 
+export interface AbsoluteContentItem_item_ContentItemLinearGradient_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemLinearGradient_start {
+  x: number;
+  y: number;
+}
+
+export interface AbsoluteContentItem_item_ContentItemLinearGradient_end {
+  x: number;
+  y: number;
+}
+
+export interface AbsoluteContentItem_item_ContentItemLinearGradient {
+  __typename: "ContentItemLinearGradient";
+  id: string;
+  colors: string[];
+  styles: AbsoluteContentItem_item_ContentItemLinearGradient_styles[] | null;
+  start: AbsoluteContentItem_item_ContentItemLinearGradient_start | null;
+  end: AbsoluteContentItem_item_ContentItemLinearGradient_end | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemWrapper_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemWrapper {
+  __typename: "ContentItemWrapper";
+  id: string;
+  styles: AbsoluteContentItem_item_ContentItemWrapper_styles[] | null;
+  children: string;
+  pointerEvents: RNViewPointerEvents | null;
+}
+
 export interface AbsoluteContentItem_item_ContentItemInfoCard_image {
   id: string;
   uri: string | null;
@@ -734,6 +770,32 @@ export interface AbsoluteContentItem_item_ContentItemInfoCard {
   hyperlink: AbsoluteContentItem_item_ContentItemInfoCard_hyperlink | null;
 }
 
+export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemBoxOptionCard {
+  __typename: "ContentItemBoxOptionCard";
+  id: string;
+  contentItemBoxOptionCardTitle: string | null;
+  contentItemBoxOptionCardDescription: string | null;
+  contentItemBoxOptionCardDescriptionTextType: string | null;
+  image: AbsoluteContentItem_item_ContentItemBoxOptionCard_image | null;
+  onPress: AbsoluteContentItem_item_ContentItemBoxOptionCard_onPress | null;
+  styles: AbsoluteContentItem_item_ContentItemBoxOptionCard_styles[] | null;
+}
+
 export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemProcessingTimer
   | AbsoluteContentItem_item_ContentItemMarkdown
@@ -753,7 +815,10 @@ export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemTextGroup
   | AbsoluteContentItem_item_ContentItemAccordion
   | AbsoluteContentItem_item_ContentItemMedia
-  | AbsoluteContentItem_item_ContentItemInfoCard;
+  | AbsoluteContentItem_item_ContentItemLinearGradient
+  | AbsoluteContentItem_item_ContentItemWrapper
+  | AbsoluteContentItem_item_ContentItemInfoCard
+  | AbsoluteContentItem_item_ContentItemBoxOptionCard;
 
 export interface AbsoluteContentItem_styles {
   property: string;
