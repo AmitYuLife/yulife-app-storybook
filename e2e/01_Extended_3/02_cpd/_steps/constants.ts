@@ -32,53 +32,55 @@ export const module1Quiz: QuizDetails = [{
   options: ["5.6%", "10.2%", "14.8%", "17.4%"]
 },
 {
-  question: "Intermediaries play a smaller role in advising on group risk compared to some other lines of business. ",
+  question: "Intermediaries play a smaller role in advising on group risk compared to some other lines of business.",
   options: ["True", "False"]
 },
 ]
 
 export const module2Quiz: QuizDetails = [
+    {
+        question: "In a 2021 poll, what percentage of UK organisations were seeing a rising demand for mental health support from their staff?",
+        options: ["60%", "70%", "80%", "90%"],
+    },
   {
-      question: "Which group risk insurance product is described below?",
+      question: "According to a 2019 survey, what percentage of businesses have experienced an employee being diagnosed or living with a serious illness such as cancer, heart disease or stroke?",
       options: [
-          "Group income protection",
-          "Group critical illness insurance",
-          "Group life insurance",
-          "Private medical insurance",
+          "10%",
+          "26%",
+          "38%",
+          "44%"
       ],
   },
   {
-      question: "Which of the following is not another name for group income protection?",
+      question: "Some group risk policies can be treated as a business expense.",
       options: [
-          "Group medical insurance",
-          "Group permanent health insurance",
-          "Group income replacement",
-          "Long-term disability cover",
+          "True",
+          "False"
       ],
   },
   {
-      question: "How much did employee engagement with value added services on group risk products increase between 2019 and 2020?",
-      options: ["22.4%", "38.5%", "51.8%", "86.5%"],
-  },
-  {
-      question: "What is the industry term used for the employees covered by a group risk scheme?",
-      options: ["Participants", "Members", "Beneficiaries", "Employees"],
-  },
-  {
-      question: "What is the correct definition for the term ‘automatic acceptance limit’?",
+      question: "Which of the following is an advantage of group risk cover for the employee?",
       options: [
-          "The amount of information that an employee would need to provide to their employer in order to receive automatic group risk insurance cover",
-          "The predetermined age at which the insurer will no longer offer the cover to an employee",
-          "The amount of cover that all employees can get, without any need for medical evidence or underwriting",
+          "Employees generally need to answer fewer medical questions when compared to individual insurance products", 
+          "Policy enrolment may be automatic", 
+          "Policies sometimes offer value added services alongside the insurance cover", 
+          "All of the above"
+        ],
+  },
+  {
+      question: "By what percentage did the number of employees insured by a group risk policy increase between 2016 and 2020?",
+      options: [
+          "5.6%",
+          "10.2%",
+          "14.8%",
+          "17.4%"
       ],
   },
   {
-      question: "Which of the following does not fall under the responsibility of the insurer when setting up a group risk scheme?",
+      question:  "Intermediaries play a smaller role in advising on group risk compared to some other lines of business.",
       options: [
-          "Assessing the risk",
-          "Conducting a market review",
-          "Providing ongoing administration for the cover",
-          "Handling any claims promptly and fairly",
+          "True",
+          "False"
       ],
   },
 ]
