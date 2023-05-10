@@ -142,7 +142,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50200)))
             When("I start a walking challenge", when.startChallengeFromQuests(175, "short stroll"), async () => {
                 Then("I should be on the short stroll challenge", then.textVisible("0 steps"))
-                When("I walk over 500 steps", when.sendSteps(550, 33000), async () => {
+                When("I walk over 500 steps", when.sendSteps(550, 35000), async () => {
                     Then("I should be on the challenge complete screen", then.onChallengeComplete(550, 175))
                     When("I tap collect", when.tapText("Collect"), async () => {
                         When("I tap done", when.tapText("Done"), async () => {
@@ -169,7 +169,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                     
             })
         })
-        When("I wait to complete this challenge", when.wait(63000), async () => {
+        When("I wait to complete this challenge", when.wait(65000), async () => {
             Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(5, 175))
         })
         When("I tap collect", when.tapText("Collect"), async () => {

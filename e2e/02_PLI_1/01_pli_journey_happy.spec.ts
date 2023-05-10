@@ -73,7 +73,7 @@ Feature("PLI HAPPY", async () => {
           helper.COVER_STYLE_SELECTION("rare", "62%", "£20.94", "£1,291.67");
           helper.CHECKOUT(true, "Rare");
           helper.REVIEW_YUSCREEN();
-          helper.GET_PRODUCT("Fill the gap with Dental", "Dental Insurance");
+          helper.GET_PRODUCT("Dental", "Dental Insurance");
           helper_dental.ONBOARDING();
           helper_dental.CHOOSE_PLAN_AND_CHECKOUT();
         }

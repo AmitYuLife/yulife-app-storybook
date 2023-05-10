@@ -73,8 +73,8 @@ export const yuniverseChallengesVisible = async () => {
     await idVisible(CHALLENGE_TILE("short stroll"))()
     await idVisible(CHALLENGE_TILE("meditation"))()
     await swipeFromText("meditation", "up", "fast")()
-    await idVisible(CHALLENGE_TILE("fiit class"))()
-    await swipeFromText("fiit class", "down", "fast")()
+    await idVisible(CHALLENGE_TILE("fiit"))()
+    await swipeFromText("fiit", "down", "fast")()
 }
 
 export const yuniverseChallengesYuCoinValuesCorrect = (earnRate: number) => async () => {
@@ -85,7 +85,7 @@ export const yuniverseChallengesYuCoinValuesCorrect = (earnRate: number) => asyn
     await textVisibleAtIndex(`${2 * yuniverseSurge * earnRate} - ${6 * earnRate * yuniverseSurge} YuCoin`, 1)()
     await swipeFromText("meditation", "up", "fast")()
     await textVisible(`${6 * earnRate * yuniverseSurge} YuCoin`)()
-    await swipeFromText("fiit class", "down", "fast")()
+    await swipeFromText("fiit", "down", "fast")()
 }
 
 export const yucoinTodayEarnedWithSurge = (yucoinStart: number, yucoinEarned: number) => async () => {
@@ -143,8 +143,8 @@ export const challengesAvailableVisible = async () => {
     await idVisible(CHALLENGE_TILE("long walk"))()
     await idVisible(CHALLENGE_TILE("meditation"))()
     await swipeFromText("meditation", "up", "fast")()
-    await idVisible(CHALLENGE_TILE("fiit class"))()
-    await swipeFromText("fiit class", "down", "fast")()
+    await idVisible(CHALLENGE_TILE("fiit"))()
+    await swipeFromText("fiit", "down", "fast")()
 }
 
 export const challengeStarsCorrect = (starCount: number, challengeType: string, ) => async () => {
