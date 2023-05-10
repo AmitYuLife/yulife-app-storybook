@@ -25,7 +25,6 @@ export interface ContentItem_ContentItemProcessingTimer {
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
-    | "ContentItemLinearGradient"
     | "ContentItemYuCoinPower"
     | "ContentItemComparisonTableSelectPackage"
     | "ContentItemPerks"
@@ -710,6 +709,43 @@ export interface ContentItem_ContentItemMedia {
   onEnd: ContentItem_ContentItemMedia_onEnd | null;
 }
 
+export interface ContentItem_ContentItemLinearGradient_styles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemLinearGradient_start {
+  x: number;
+  y: number;
+}
+
+export interface ContentItem_ContentItemLinearGradient_end {
+  x: number;
+  y: number;
+}
+
+export interface ContentItem_ContentItemLinearGradient {
+  __typename: "ContentItemLinearGradient";
+  id: string;
+  colors: string[];
+  styles: ContentItem_ContentItemLinearGradient_styles[] | null;
+  start: ContentItem_ContentItemLinearGradient_start | null;
+  end: ContentItem_ContentItemLinearGradient_end | null;
+}
+
+export interface ContentItem_ContentItemWrapper_styles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemWrapper {
+  __typename: "ContentItemWrapper";
+  id: string;
+  styles: ContentItem_ContentItemWrapper_styles[] | null;
+  children: string;
+  pointerEvents: RNViewPointerEvents | null;
+}
+
 export interface ContentItem_ContentItemInfoCard_image {
   id: string;
   uri: string | null;
@@ -734,6 +770,32 @@ export interface ContentItem_ContentItemInfoCard {
   hyperlink: ContentItem_ContentItemInfoCard_hyperlink | null;
 }
 
+export interface ContentItem_ContentItemBoxOptionCard_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItem_ContentItemBoxOptionCard_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItem_ContentItemBoxOptionCard_styles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemBoxOptionCard {
+  __typename: "ContentItemBoxOptionCard";
+  id: string;
+  contentItemBoxOptionCardTitle: string | null;
+  contentItemBoxOptionCardDescription: string | null;
+  contentItemBoxOptionCardDescriptionTextType: string | null;
+  image: ContentItem_ContentItemBoxOptionCard_image | null;
+  onPress: ContentItem_ContentItemBoxOptionCard_onPress | null;
+  styles: ContentItem_ContentItemBoxOptionCard_styles[] | null;
+}
+
 export type ContentItem =
   | ContentItem_ContentItemProcessingTimer
   | ContentItem_ContentItemMarkdown
@@ -753,4 +815,7 @@ export type ContentItem =
   | ContentItem_ContentItemTextGroup
   | ContentItem_ContentItemAccordion
   | ContentItem_ContentItemMedia
-  | ContentItem_ContentItemInfoCard;
+  | ContentItem_ContentItemLinearGradient
+  | ContentItem_ContentItemWrapper
+  | ContentItem_ContentItemInfoCard
+  | ContentItem_ContentItemBoxOptionCard;

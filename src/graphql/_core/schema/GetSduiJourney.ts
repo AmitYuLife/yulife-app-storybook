@@ -25,7 +25,6 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer {
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
-    | "ContentItemLinearGradient"
     | "ContentItemYuCoinPower"
     | "ContentItemComparisonTableSelectPackage"
     | "ContentItemPerks"
@@ -718,6 +717,43 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemMedia {
   onEnd: GetSduiJourney_getSduiJourney_body_ContentItemMedia_onEnd | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemLinearGradient_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemLinearGradient_start {
+  x: number;
+  y: number;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemLinearGradient_end {
+  x: number;
+  y: number;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemLinearGradient {
+  __typename: "ContentItemLinearGradient";
+  id: string;
+  colors: string[];
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemLinearGradient_styles[] | null;
+  start: GetSduiJourney_getSduiJourney_body_ContentItemLinearGradient_start | null;
+  end: GetSduiJourney_getSduiJourney_body_ContentItemLinearGradient_end | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemWrapper_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemWrapper {
+  __typename: "ContentItemWrapper";
+  id: string;
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemWrapper_styles[] | null;
+  children: string;
+  pointerEvents: RNViewPointerEvents | null;
+}
+
 export interface GetSduiJourney_getSduiJourney_body_ContentItemInfoCard_image {
   id: string;
   uri: string | null;
@@ -742,6 +778,32 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemInfoCard {
   hyperlink: GetSduiJourney_getSduiJourney_body_ContentItemInfoCard_hyperlink | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard {
+  __typename: "ContentItemBoxOptionCard";
+  id: string;
+  contentItemBoxOptionCardTitle: string | null;
+  contentItemBoxOptionCardDescription: string | null;
+  contentItemBoxOptionCardDescriptionTextType: string | null;
+  image: GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_image | null;
+  onPress: GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_onPress | null;
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_styles[] | null;
+}
+
 export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_body_ContentItemMarkdown
@@ -761,7 +823,10 @@ export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemTextGroup
   | GetSduiJourney_getSduiJourney_body_ContentItemAccordion
   | GetSduiJourney_getSduiJourney_body_ContentItemMedia
-  | GetSduiJourney_getSduiJourney_body_ContentItemInfoCard;
+  | GetSduiJourney_getSduiJourney_body_ContentItemLinearGradient
+  | GetSduiJourney_getSduiJourney_body_ContentItemWrapper
+  | GetSduiJourney_getSduiJourney_body_ContentItemInfoCard
+  | GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard;
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer {
   __typename:
@@ -769,7 +834,6 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessi
     | "ContentItemTable"
     | "ContentItemSelectedPackageCard"
     | "ContentItemSectionHeading"
-    | "ContentItemLinearGradient"
     | "ContentItemYuCoinPower"
     | "ContentItemComparisonTableSelectPackage"
     | "ContentItemPerks"
@@ -1466,6 +1530,43 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia {
   onEnd: GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia_onEnd | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemLinearGradient_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemLinearGradient_start {
+  x: number;
+  y: number;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemLinearGradient_end {
+  x: number;
+  y: number;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemLinearGradient {
+  __typename: "ContentItemLinearGradient";
+  id: string;
+  colors: string[];
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemLinearGradient_styles[] | null;
+  start: GetSduiJourney_getSduiJourney_absolute_item_ContentItemLinearGradient_start | null;
+  end: GetSduiJourney_getSduiJourney_absolute_item_ContentItemLinearGradient_end | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper {
+  __typename: "ContentItemWrapper";
+  id: string;
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper_styles[] | null;
+  children: string;
+  pointerEvents: RNViewPointerEvents | null;
+}
+
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard_image {
   id: string;
   uri: string | null;
@@ -1490,6 +1591,32 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard
   hyperlink: GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard_hyperlink | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard {
+  __typename: "ContentItemBoxOptionCard";
+  id: string;
+  contentItemBoxOptionCardTitle: string | null;
+  contentItemBoxOptionCardDescription: string | null;
+  contentItemBoxOptionCardDescriptionTextType: string | null;
+  image: GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_image | null;
+  onPress: GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_onPress | null;
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_styles[] | null;
+}
+
 export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown
@@ -1509,7 +1636,10 @@ export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextGroup
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemAccordion
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemMedia
-  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard;
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemLinearGradient
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard;
 
 export interface GetSduiJourney_getSduiJourney_absolute_styles {
   property: string;

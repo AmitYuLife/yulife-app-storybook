@@ -17,7 +17,10 @@ import {
   ContentItemBox,
   ContentItemDropdownInput,
   ContentItemMedia,
+  ContentItemLinearGradient,
+  ContentItemWrapper,
   ContentItemInfoCard,
+  ContentItemBoxOptionCard,
 } from "@components/sdui";
 import { ContentItem } from "@graphql/_core/schema";
 
@@ -38,7 +41,10 @@ export const componentMap = {
   ContentItemBox,
   ContentItemDropdownInput,
   ContentItemMedia,
+  ContentItemLinearGradient,
+  ContentItemWrapper,
   ContentItemInfoCard,
+  ContentItemBoxOptionCard,
 } as Record<string, (props: any) => JSX.Element>;
 
 export const renderItemContent = (item: ContentItem): JSX.Element | null => {

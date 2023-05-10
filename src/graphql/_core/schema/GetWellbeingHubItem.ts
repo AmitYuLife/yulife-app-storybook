@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -53,7 +53,9 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemTextInp
     | "ContentItemDependants"
     | "ContentItemSelectScheme"
     | "ContentItemKeyValueBox"
-    | "ContentItemMedia";
+    | "ContentItemMedia"
+    | "ContentItemWrapper"
+    | "ContentItemBoxOptionCard";
 }
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText_styles {
