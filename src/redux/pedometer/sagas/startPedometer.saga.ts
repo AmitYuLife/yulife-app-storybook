@@ -26,7 +26,11 @@ export default function* startPedometerSaga() {
     const token: Unpacked<typeof getToken> = yield call(getToken);
     const isArchived: ReturnType<typeof getIsUserArchived> = yield select(getIsUserArchived);
 
-    if (token && !isArchived && shouldStartPedometerUpdates) {
+    if (isArchived) {
+      break;
+    }
+
+    if (token && shouldStartPedometerUpdates) {
       yield put(startPedometerUpdates());
       const stepsTask: Task = yield fork(listenToSteps);
       const { restarted } = yield race({
