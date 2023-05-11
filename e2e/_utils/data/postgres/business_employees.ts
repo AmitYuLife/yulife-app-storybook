@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_2, BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5, BUSINESS_ACCOUNT_6, BUSINESS_ACCOUNT_7 } from './business';
+import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_2, BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5, BUSINESS_ACCOUNT_6, BUSINESS_ACCOUNT_7, BUSINESS_ACCOUNT_GHI_8 } from './business';
 import * as customer from './customers';
 import moment = require('moment');
 
@@ -875,8 +875,8 @@ export const BUSINESS_EMPLOYEE_FUTURE_PRODUCT = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_3.data.business_account_id,
         customer_id: customer.CUSTOMER_FUTURE_PRODUCT.data.customerId,
-        employment_start_date: moment().subtract(3, "months").toDate(),
-        employment_leave_date: moment().add(10, "years").toDate()
+        employment_start_date: moment().subtract(1, "year").toDate(),
+        employment_leave_date: moment().subtract(10, "weeks").toDate()
     }
 } as IDatabaseItem;
 
@@ -891,3 +891,25 @@ export const BUSINESS_EMPLOYEE_LEAVER = {
         employment_leave_date: moment().subtract(10, "weeks").toDate()
     }
 } as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_GHI = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_GHI_8.data.business_account_id,
+        customer_id: customer.CUSTOMER_GHI.data.customerId,
+        employment_start_date: moment().subtract(1, "year").toDate(),
+        employment_leave_date: moment().add(10, "weeks").toDate()
+    },
+};
+
+export const BUSINESS_EMPLOYEE_GHI_STARTED = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_GHI_8.data.business_account_id,
+        customer_id: customer.CUSTOMER_GHI.data.customerId,
+        employment_start_date: moment().subtract(1, "d").toDate(),
+        employment_leave_date: moment().add(10, "weeks").toDate()
+    },
+};

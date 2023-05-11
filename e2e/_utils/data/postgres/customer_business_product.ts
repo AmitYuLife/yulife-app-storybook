@@ -1,7 +1,7 @@
 import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { BUSINESS_PRODUCT_3, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_ENDED, BUSINESS_PRODUCT_FUTURE } from "./business_product"
+import { BUSINESS_PRODUCT_3, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_ENDED, BUSINESS_PRODUCT_FUTURE, BUSINESS_PRODUCT_8_GHI } from "./business_product"
 import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_53, CUSTOMER_74, CUSTOMER_LEAVER, CUSTOMER_FUTURE_PRODUCT } from "./customers"
-import { CPE_31, CPE_32_GCI, CPE_32_GIP, CPE_32_RGL, CPE_33_GCI, CPE_33_GIP, CPE_33_RGL, CPE_34_GCI, CPE_34_GIP, CPE_34_RGL, CPE_43_WELLBEING, CPE_48_GCI, CPE_48_GIP, CPE_48_RGL, CPE_48_WELLBEING, CPE_49_GCI, CPE_49_GIP, CPE_49_RGL, CPE_49_WELLBEING, CPE_51_GDent, CPE_53_GIP, CPE_74, CPE_BUSINESS_LEAVER, CPE_FUTURE_PRODUCT} from "./customer_product_entity"
+import { CPE_31, CPE_32_GCI, CPE_32_GIP, CPE_32_RGL, CPE_33_GCI, CPE_33_GIP, CPE_33_RGL, CPE_34_GCI, CPE_34_GIP, CPE_34_RGL, CPE_43_WELLBEING, CPE_48_GCI, CPE_48_GIP, CPE_48_RGL, CPE_48_WELLBEING, CPE_49_GCI, CPE_49_GIP, CPE_49_RGL, CPE_49_WELLBEING, CPE_51_GDent, CPE_53_GIP, CPE_74, CPE_BUSINESS_LEAVER, CPE_FUTURE_PRODUCT, CPE_GHI_FUTURE, CPE_GHI_STARTED} from "./customer_product_entity"
 import moment = require('moment');
 
 const type = "postgres"
@@ -391,4 +391,30 @@ export const CGP_LEAVER = {
             date_of_birth: CUSTOMER_LEAVER.data.date_of_birth,
         }
     }
+} as IDatabaseItem
+
+export const CBP_GHI_FUTURE = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_8_GHI.product.data.product_id,
+        customer_product_id: CPE_GHI_FUTURE.data.customer_product_id,
+        "category_id" : "1",
+        "start_date" : "2023-04-26",
+        "archived" : false,
+        "data" : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\"}"
+    }       
+} as IDatabaseItem
+
+export const CBP_GHI_STARTED = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_8_GHI.product.data.product_id,
+        customer_product_id: CPE_GHI_STARTED.data.customer_product_id,
+        "category_id" : "1",
+        "start_date" : "2023-04-26",
+        "archived" : false,
+        "data" : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\"}"
+    }       
 } as IDatabaseItem

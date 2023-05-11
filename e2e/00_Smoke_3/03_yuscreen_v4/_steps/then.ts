@@ -7,8 +7,10 @@ import {
   ONBOARDING_SCREEN,
   YUCOIN_POWER,
   TEXT_TEMPLATE,
+  CONTENT_MIDDLE_ITEM_IMAGE,
 } from "@ids";
 import moment = require("moment");
+import { BUSINESS_PRODUCT_8_GHI } from "@data";
 
 export const {
   idVisible,
@@ -40,6 +42,24 @@ export const {
   onYuscreenV4,
   onSkinToneScreen,
 } = screens.yuscreen;
+
+const coverFor = "What I’m covered for";
+const howToClaim = "How to make a claim";
+const billingInfo = "Billing info";
+const paymenHistory = "View payment history";
+const updatePayment = "Update payment details";
+const faq = "FAQs";
+const membershipGuide = "Membership Guide";
+const productInfo = "Product Information (IPID)";
+const paidBy = "Employer Paid";
+const keyInfo = "Key Info";
+const coverlevel = "Cover Level";
+const startDateText = "Start date";
+const schemeNumber = "Scheme number"
+const IncludedInPol = "Included on your policy"
+const dependentDescription = "These people share your policy, and are known as 'dependants' in your Membership Guide. They have their own benefit limits up to the same amounts you are covered for."
+const Bupa_markdown_1 = "This information is based on data we received from your company. Individual circumstances may vary. Please contact us if you have any questions."
+const Bupa_markdown_2 = "Policies paid for by your employer may have implications on your tax status and take-home pay."
 
 export const { swipeToID, swipeFromText } = navigation.scrolling;
 
@@ -83,14 +103,7 @@ export const dentalProductInfo = (packageType: string, membershipEnding: string)
   const policyDetails = "Policy details";
   const name = "Bupa Dental Plan for YuLife";
   const membershipNumber = `000000${membershipEnding}`;
-  const coverFor = "What I'm covered for";
-  const bupaClaim = "How to make a claim";
-  const billingInfo = "Billing info";
-  const paymenHistory = "View payment history";
-  const updatePayment = "Update payment details";
-  const faq = "FAQs";
-  const membershipGuide = "Membership Guide";
-  const productInfo = "Product Information (IPID)";
+  
 
   await expect(element(by.text(policyDetails))).toBeVisible();
   await expect(element(by.text(packageType))).toBeVisible();
@@ -98,7 +111,7 @@ export const dentalProductInfo = (packageType: string, membershipEnding: string)
   await expect(element(by.text(membershipNumber))).toBeVisible();
   await swipeFromText(membershipNumber, "up", "fast")();
   await expect(element(by.text(coverFor))).toBeVisible();
-  await expect(element(by.text(bupaClaim))).toBeVisible();
+  await expect(element(by.text(howToClaim))).toBeVisible();
   await expect(element(by.text(billingInfo))).toBeVisible();
   await expect(element(by.text(paymenHistory))).toBeVisible();
   await expect(element(by.text(updatePayment))).toBeVisible();
@@ -211,6 +224,9 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
   const groupDental = "Dental Cover";
   const productYuCoin = "10";
   const dentalYuCoin = "5";
+  const HealthInsurance = "Health Insurance"
+  const StartsSoon = "Starts soon"
+  const employerScheme = "Employer scheme"
 
   switch (packType) {
     case "wellbeing only":
@@ -268,6 +284,26 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await textVisible(lifeInsurance)();
       await textVisible(availableProducts)();
       break;
+    case "GHI_FUTURE":
+      await textVisibleAtIndex(yuCoinPower, 0)();
+      await textVisibleAtIndex(yuCoinPower, 1)();
+      await textVisible(yuCoinText)();
+      await textVisible(powerText)();
+      await textVisible(HealthInsurance)();
+      await textVisible(StartsSoon)(); // if product date in future user see this
+      await textNotVisible(employerScheme)();
+      await textVisible(allPoweredUp)();
+      break;
+    case "GHI_STARTED":
+      await textVisibleAtIndex(yuCoinPower, 0)();
+      await textVisibleAtIndex(yuCoinPower, 1)();
+      await textVisible(yuCoinText)();
+      await textVisible(powerText)();
+      await textVisible(HealthInsurance)();
+      await textNotVisible(StartsSoon)();
+      await textVisible(allPoweredUp)();
+      await textVisible(employerScheme)() // if product date started user see this
+      break;
     default:
       break;
   }
@@ -316,3 +352,37 @@ export const ageRejectionTextInfo = (rejectionReason: string) => async () => {
 export function addCommasToNumber(x: number) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+export const GHIProductInfo = ( productStartDate: any, dependentName:any, yuCoinPower: string) => async () => {
+  const policyName = "Health Insurance";
+  const policyDescription =
+    "Your workplace health insurance from Bupa to support your mental, physical and financial wellbeing";
+  const policyInfoYugi =
+    "This policy is paid for by your employer. Remember if you change jobs, you’ll lose this cover.";
+  const startDate = moment(productStartDate.data.start_date).format("DD/MM/YYYY");
+  const schemeNumberProduct = BUSINESS_PRODUCT_8_GHI.product.data.product_id
+  const dependent = `${dependentName.data.first_name} ${dependentName.data.last_name}`
+  const GHIRewardImg = "https://yulife-develop.imgix.net/bupa/images/rewards_on_the_way_2023-03-23.png?ixlib=js-3.2.1&w=981&h=714&s=4809f351b905b43bb783ab2519e188f7"
+
+  await idVisible(TEXT_TEMPLATE(policyName))();
+  await expect(element(by.text(paidBy))).toBeVisible();
+  await expect(element(by.text(policyDescription))).toBeVisible();
+  await expect(element(by.id(YUCOIN_POWER(yuCoinPower)))).toBeVisible();
+  await expect(element(by.text(policyInfoYugi))).toBeVisible();
+  await expect(element(by.text(keyInfo))).toBeVisible();
+  await swipeFromText(keyInfo, "up", "slow", 0.3)();
+  await expect(element(by.text(schemeNumber))).toBeVisible();
+  await expect(element(by.text(schemeNumberProduct))).toBeVisible();
+  await expect(element(by.text(coverlevel))).toBeVisible();
+  await expect(element(by.text(startDateText))).toBeVisible();
+  await expect(element(by.text(startDate))).toBeVisible(); 
+  await expect(element(by.text(coverFor))).toBeVisible();
+  await expect(element(by.text(howToClaim))).toBeVisible();
+  await expect(element(by.text(faq))).toBeVisible();
+  await swipeFromText(IncludedInPol, "up", "fast")();
+  await expect(element(by.text(dependent))).toBeVisible();
+  await expect(element(by.text(dependentDescription))).toBeVisible();
+  await expect(element(by.text(Bupa_markdown_1))).toBeVisible();
+  await expect(element(by.text(Bupa_markdown_2))).toBeVisible();
+  await expect(element(by.id(CONTENT_MIDDLE_ITEM_IMAGE(GHIRewardImg)))).toBeVisible();
+};
