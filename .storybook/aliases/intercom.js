@@ -2,5 +2,6 @@
 export default {
   setUserHash: () => {},
   registerIdentifiedUser: () => {},
+  loginUserWithUserAttributes: () => {},
   logEvent: () => {},
 };
