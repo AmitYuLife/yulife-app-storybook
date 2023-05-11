@@ -9,10 +9,14 @@ import { IActiveLevel } from "./levels.selectors";
 const MAX_AVAILABLE = 4;
 
 export async function getEndResult(
-  { startDateTime, endDateTime, score, fitKitTypes }: IActiveLevel,
+  { startDateTime, endDateTime, score, subtype, fitKitTypes }: IActiveLevel,
   blackListApps: string[],
   features: Record<string, boolean> = {}
 ) {
+  if (subtype === "sudoku") {
+    return { startDateTime, endDateTime, value: 0 };
+  }
+
   if (!fitKitTypes.includes(FitKitType.StepCount)) {
     try {
       const metaData = { file: "levels.helpers" };
