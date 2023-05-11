@@ -26,6 +26,7 @@ import { GQL_MUTATION_SUBMIT_SUDOKU_SOLUTION } from "@graphql/brainGames/sudoku/
 import { ISudokuResults } from "@components/games/sudoku/sudoku.interface";
 import { useBackHandler } from "@hooks";
 import { delay } from "@utils/misc";
+import { challengeEndSuccessAction } from "@redux/levels/levels.actions";
 
 export interface ISodukuBoard {
   puzzle: SudokuBoard;
@@ -107,10 +108,17 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
           delay(SUDOKU_ANIMATION_TIMEOUT),
         ]);
 
+        dispatch(
+          challengeEndSuccessAction({
+            ...result.data.submitSudokuSolution,
+            createdAt: 1,
+          })
+        );
+
         navigateToCompleted({ ...parmas, leaderboardId: undefined }, result?.data);
       })();
     },
-    [submitSudokuSolution, sudokuState.gameIdentifier, sudokuState.levelSlotId, navigateToCompleted]
+    [submitSudokuSolution, sudokuState.gameIdentifier, sudokuState.levelSlotId, dispatch, navigateToCompleted]
   );
 
   const onPause = useCallback(() => {

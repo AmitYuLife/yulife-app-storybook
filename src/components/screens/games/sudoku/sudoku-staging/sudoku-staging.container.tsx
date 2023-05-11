@@ -20,13 +20,14 @@ import { showYuModal } from "@navigation/root";
 import { GQL_QUERY_GET_SODUKU_LEADERBOARD } from "@graphql/brainGames/sudoku/getSudokuLeaderboards.gql";
 import { SudokuDifficulty } from "@graphql/_core/schema/globalTypes";
 import { GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE } from "@graphql/challenges";
-import { getUserActiveChallengeStart, getUserStart } from "@redux/user/user.actions";
+import { getUserStart } from "@redux/user/user.actions";
 import { getActiveLevel } from "@redux/levels/levels.selectors";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/getQuestMapChallengeDetails.gql";
 import { DATE_FORMAT } from "@utils";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useQueryOnScreenSeen } from "@hooks";
+import { challengeStartSuccessAction } from "@redux/levels/levels.actions";
 
 interface IProps {
   componentId: string;
@@ -79,13 +80,19 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
 
   const startGame = useCallback(async () => {
     if (!activeChallenge.levelSlotId) {
-      await createQuestMapLevelChallenge({
+      const challenge = await createQuestMapLevelChallenge({
         variables: {
           levelSlotId: slot.id,
         },
       });
 
-      dispatch(getUserActiveChallengeStart());
+      dispatch(
+        challengeStartSuccessAction({
+          createQuestMapLevelChallenge: challenge.data?.createQuestMapLevelChallenge,
+          levelSlotId: slot.id,
+        })
+      );
+
       dispatch(getUserStart());
     }
 
