@@ -99,6 +99,8 @@ import {
   CUSTOMER_86,
   CUSTOMER_FUTURE_PRODUCT,
   CUSTOMER_LEAVER,
+  CUSTOMER_GHI,
+  CUSTOMER_GHI_STARTED,
 } from "../postgres/customers";
 import moment from "moment";
 
@@ -1875,3 +1877,45 @@ export const USER_LEAVER = {
     nickname: "leaf"
   },
 } as IDatabaseItem;
+
+export const USER_GHI = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_GHI.data.customerId,
+    nickname: "GHIman",
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 10,
+      },
+    ],
+    earnRate: 10,
+  }
+}
+
+export const USER_GHI_STARTED = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_GHI_STARTED.data.customerId,
+    nickname: "GHImanStarted",
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 10,
+      },
+    ],
+    earnRate: 10,
+  }
+}

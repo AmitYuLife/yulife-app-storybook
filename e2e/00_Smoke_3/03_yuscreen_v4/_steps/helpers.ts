@@ -300,3 +300,9 @@ export const CHECKOUT_PROCESS = async () => {
     });
   });
 };
+
+export const GROUP_HEALTH_PRODUCT_VIEW = async (startDate: any, dependentName:any, yuCoinPower: string) => {
+  When(`I tap Health Insurance`, when.tapText("Health Insurance"), async () => {
+    Then("I should see correct product details", then.GHIProductInfo(startDate, dependentName, yuCoinPower));
+  });
+};

@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { BUSINESS_PRODUCT_3, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_ENDED, BUSINESS_PRODUCT_FUTURE} from "./business_product"
+import { BUSINESS_PRODUCT_3, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_ENDED, BUSINESS_PRODUCT_FUTURE, BUSINESS_PRODUCT_8_GHI} from "./business_product"
 import { CPE_31 } from "./customer_product_entity"
 
 
@@ -140,3 +140,19 @@ export const BPC_FUTURE = {
         category_name: "All employees"
     }
 } as IDatabaseItem
+
+
+export const BPC_1_GHI_1 = {
+    type,
+    modelName,
+    data: {
+        product_id: BUSINESS_PRODUCT_8_GHI.product.data.product_id,
+        category_id: 1,
+        earn_rate: 2,
+        category_description: "All employees",
+        is_closed : false,
+        category_name : "cat1",
+        enrolment_method : "external",
+        election_option : "opt-out",
+    }
+}

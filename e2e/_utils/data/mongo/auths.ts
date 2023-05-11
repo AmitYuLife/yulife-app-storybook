@@ -1170,3 +1170,25 @@ export const AUTH_FUTURE_PRODUCT = {
         userId: customer.CUSTOMER_LEAVER.data.customerId,
     },
 } as IDatabaseItem;
+
+export const AUTH_GHI = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+    lastIp: "35.176.60.43323",
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_GHI.data.customerId,
+},
+} as IDatabaseItem;
+
+export const AUTH_GHI_STARTED = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+    lastIp: "35.176.60.43323",
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_GHI_STARTED.data.customerId,
+},
+} as IDatabaseItem;

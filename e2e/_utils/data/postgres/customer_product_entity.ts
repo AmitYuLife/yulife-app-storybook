@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_45, CUSTOMER_46, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_53, CUSTOMER_9, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_PLI_6, CUSTOMER_PLI_7, CUSTOMER_PLI_9, CUSTOMER_PLI_10, CUSTOMER_74, CUSTOMER_82, CUSTOMER_85, CUSTOMER_LEAVER, CUSTOMER_FUTURE_PRODUCT} from "./customers";
+import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_45, CUSTOMER_46, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_53, CUSTOMER_9, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_PLI_6, CUSTOMER_PLI_7, CUSTOMER_PLI_9, CUSTOMER_PLI_10, CUSTOMER_74, CUSTOMER_82, CUSTOMER_85, CUSTOMER_LEAVER, CUSTOMER_FUTURE_PRODUCT, CUSTOMER_GHI, CUSTOMER_GHI_STARTED} from "./customers";
 import moment from "moment"
 
 
@@ -655,4 +655,38 @@ export const CPE_BUSINESS_LEAVER = {
         "product_variant_id": "AIG_GLI_01_01",
     }
 } as IDatabaseItem
+
+
+export const CPE_GHI_FUTURE = {
+    type: "postgres",
+    modelName: "customer_product_entity",
+    data: {
+        "customer_product_id" : "YUCPID0000011375",
+        "customer_id" : CUSTOMER_GHI.data.customerId,
+        "earn_rate" : 10,
+        "start_date" :  "2024-05-05",
+        "end_date" : "2199-12-31",
+        "is_banned_from_product" : false,
+        "archived" : false,
+        "taken_up" : true,
+        "product_variant_id" : "Bupa_GHealth_01_01",
+    }
+} as IDatabaseItem
+
+export const CPE_GHI_STARTED = {
+    type: "postgres",
+    modelName: "customer_product_entity",
+    data: {
+        "customer_product_id" : "YUCPID0000011376",
+        "customer_id" : CUSTOMER_GHI_STARTED.data.customerId,
+        "earn_rate" : 10,
+        "start_date" :  "2023-05-05",
+        "end_date" : "2199-12-31",
+        "is_banned_from_product" : false,
+        "archived" : false,
+        "taken_up" : true,
+        "product_variant_id" : "Bupa_GHealth_01_01",
+    }
+} as IDatabaseItem
+
 

@@ -1372,3 +1372,32 @@ export const CUSTOMER_FUTURE_PRODUCT = {
     fullName: "Bobby Smith"
   }
 } as IDatabaseItem
+
+
+export const CUSTOMER_GHI = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Teddy",
+    lastName: "Group",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+    fullName: "Teddy Group"
+  },
+} as IDatabaseItem
+
+export const CUSTOMER_GHI_STARTED = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Paul",
+    lastName: "Starter",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+    fullName: "Paul Starter"
+  },
+} as IDatabaseItem

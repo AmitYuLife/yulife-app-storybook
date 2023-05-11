@@ -1,3 +1,4 @@
+export * from "./postgres/business_background";
 export * from "./postgres/business";
 export * from "./postgres/customers";
 export * from "./postgres/business_employees";
@@ -11,6 +12,7 @@ export * from "./postgres/customer_payment_method";
 export * from "./postgres/customer_quote_screening";
 export * from "./postgres/business_product"; 
 export * from "./postgres/customer_product_entity";
+export * from "./postgres/customer_product_entity_dependant";
 export * from "./postgres/customer_product_progression";
 export * from "./postgres/business_product_category";
 export * from "./postgres/business_product_category_benefit";
@@ -19,6 +21,7 @@ export * from "./postgres/customer_beneficiaries";
 export * from "./postgres/customer_product_entity_beneficiary";
 export * from "./postgres/perk_eligibility";
 export * from "./postgres/payment_plan_invoice";
+export * from "./postgres/business_product_enrolment_window";
 
 export * from "./mongo/app_store_review_prompts"
 export * from "./mongo/auths";

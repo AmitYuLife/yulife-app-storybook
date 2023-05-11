@@ -7,6 +7,7 @@ import {
   BUSINESS_ACCOUNT_5,
   BUSINESS_ACCOUNT_6,
   BUSINESS_ACCOUNT_3,
+  BUSINESS_ACCOUNT_GHI_8,
 } from "../postgres/business";
 
 import {
@@ -105,6 +106,8 @@ import {
   USER_86,
   USER_FUTURE_PRODUCT,
   USER_LEAVER,
+  USER_GHI,
+  USER_GHI_STARTED,
 } from "./users";
 import { USER_84_LEADERBOARD } from "./user_leaderboards";
 
@@ -1676,6 +1679,38 @@ export const USER_ONBOARDING_FUTURE_PRODUCT = {
     userId: USER_FUTURE_PRODUCT.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_3.data.business_account_id,
     businessName: "Pawnee Council.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_GHI = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_GHI.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_GHI_8.data.business_account_id,
+    businessName: "GHI Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_GHI_STARTED = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_GHI_STARTED.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_GHI_8.data.business_account_id,
+    businessName: "GHI Onboarding Ltd.",
     performedSteps: {
       personalLifeIntro: true,
       newYumojiBuilder: true,

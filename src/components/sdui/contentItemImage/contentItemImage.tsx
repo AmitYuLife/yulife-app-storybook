@@ -32,7 +32,6 @@ export const ContentItemImage = memo((props: Props) => {
       type: props.onPress.type,
       payload: { serverPayload: props.onPress.payload },
     });
-
   return (
     <Wrapper onPress={handlePress} style={[styles.wrapper, wrapperStyles]}>
       <Image
@@ -44,7 +43,6 @@ export const ContentItemImage = memo((props: Props) => {
     </Wrapper>
   );
 });
-
 const styles = StyleSheet.create({
   wrapper: { flex: 1 },
 });

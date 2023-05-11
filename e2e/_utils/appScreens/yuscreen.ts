@@ -236,6 +236,8 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
   const groupDental = "Dental Cover";
   const paidBy = "Employer paid";
   const employerScheme = "Employer scheme";
+  const HealthInsurance = "Health Insurance"
+  const StartSoon = "Starts soon"
 
   await expect(element(by.text(`${firstName} ${lastName}`))).toBeVisible();
   await expect(element(by.id(V4_YUSCREEN))).toBeVisible();
@@ -380,6 +382,28 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
       await expect(element(by.text(noProductText))).toBeVisible();
       await expect(element(by.text(lifeInsurance))).toBeVisible();
       await expect(element(by.text(PLIYuCoinPower))).toBeVisible();
+      break;
+    case "GHI_FUTURE":
+      await textVisibleAtIndex(yuCoinPower, 1)();
+      await expect(element(by.text(dentalInsurance))).not.toBeVisible();
+      await expect(element(by.text(dentalInsurance))).not.toBeVisible();
+      await expect(element(by.text(dentalYuCoinPower))).not.toBeVisible();
+      await expect(element(by.text(noProductText))).not.toBeVisible();
+      await expect(element(by.text(lifeInsurance))).not.toBeVisible();
+      await expect(element(by.text(HealthInsurance))).toBeVisible();
+      await expect(element(by.text(StartSoon))).toBeVisible();
+      break;
+    case "GHI_STARTED":
+      await textVisibleAtIndex(yuCoinPower, 1)();
+      await expect(element(by.text(dentalInsurance))).not.toBeVisible();
+      await expect(element(by.text(dentalInsurance))).not.toBeVisible();
+      await expect(element(by.text(dentalYuCoinPower))).not.toBeVisible();
+      await expect(element(by.text(noProductText))).not.toBeVisible();
+      await expect(element(by.text(lifeInsurance))).not.toBeVisible();
+      await expect(element(by.text(HealthInsurance))).toBeVisible();
+      await expect(element(by.text(employerScheme))).toBeVisible();
+      await expect(element(by.text(StartSoon))).not.toBeVisible();
+      break;
     default:
       break;
   }
