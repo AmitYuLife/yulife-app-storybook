@@ -2,7 +2,7 @@ import { GetSudokuBoard_getSudokuBoard_results, GetSudokuBoard_getSudokuBoard_st
 import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { useDispatch } from "react-redux";
-import { challengeResetSuccessAction } from "@redux/levels/levels.actions";
+import { challengeResetAction } from "@redux/levels/levels.actions";
 import { memo, useCallback } from "react";
 import SudokuCompletedScreen from "./sudoku-completed.screen";
 import { showYuModal } from "@navigation/root";
@@ -24,7 +24,7 @@ export const SudokuCompletedContainer = ({ reward, results, stats }: IProps) => 
   });
 
   const onCollect = useCallback(() => {
-    dispatch(challengeResetSuccessAction());
+    dispatch(challengeResetAction());
     dispatch(sudokuReset());
     dispatch(displayStreaksCompletedAction());
 
