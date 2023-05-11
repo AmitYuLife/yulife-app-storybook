@@ -10,7 +10,6 @@ import Unity from "./unity-movies/unity";
 import { NavBar, TopBar } from "@organisms";
 import QuestsLoadingOverlay from "./subcomponents/quests.loading";
 import { WeeklyQuestsButton } from "./weeklies/weeklies.button";
-import { useNavigationComponentDidAppear } from "@hooks";
 import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { getTopBarType, getWorldData } from "./quests-screen.helpers";
@@ -27,8 +26,8 @@ interface IProps extends IConnectedScreenProps {
 
 type CurrentWorld = 0 | 1 | 2 | 3;
 
-const QuestsScreen: FC<IProps> = ({ hideUnity, unity, levelId, repeatedUnity, onLeftMenuPress, componentId }) => {
-  const { isLoading, currentLevel, activeLevel } = useContext(QuestsMapContext);
+const QuestsScreen: FC<IProps> = ({ hideUnity, unity, levelId, repeatedUnity, onLeftMenuPress }) => {
+  const { currentLevel, activeLevel } = useContext(QuestsMapContext);
   const features = useSelector(getUserFeatures);
   const [isOnCurrentEpisode, setIsOnCurrentEpisode] = useState(false);
   const [topBarType, setTopBarType] = useState(getTopBarType(currentLevel));
@@ -61,6 +60,7 @@ const QuestsScreen: FC<IProps> = ({ hideUnity, unity, levelId, repeatedUnity, on
           setTopBarType(result.episodeSettings.topBarType);
           const currentEpisode = getCurrentEpisode(normalizedLevel);
           flatList.current.scrollToOffset({
+            animated: true,
             offset:
               offsets[activeLevel % 50 === 0 ? "withUnity" : "withoutUnity"][currentWorld as CurrentWorld][
                 currentEpisode
@@ -69,17 +69,11 @@ const QuestsScreen: FC<IProps> = ({ hideUnity, unity, levelId, repeatedUnity, on
         }
       }, 600);
     }
-  }, [activeLevel]);
+  }, [activeLevel, currentLevel]);
 
   const setFlatListRef = useCallback((ref: any) => {
     flatList.current = ref;
   }, []);
-
-  useNavigationComponentDidAppear(() => {
-    if (!isLoading) {
-      scrollToActiveLevel();
-    }
-  }, componentId);
 
   useEffect(() => {
     return () => clearTimeout(timer.current);
@@ -87,7 +81,7 @@ const QuestsScreen: FC<IProps> = ({ hideUnity, unity, levelId, repeatedUnity, on
 
   useEffect(() => {
     scrollToActiveLevel();
-  }, [isLoading, scrollToActiveLevel, unity, activeLevel]);
+  }, [scrollToActiveLevel, unity, activeLevel]);
 
   /**
    * If we attempt to wrap this up in useMemo the scrolly quests won't update,

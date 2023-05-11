@@ -119,7 +119,7 @@ const EventReward = ({
         },
       },
     });
-  }, [claimButton, reward, status, title, goalId]);
+  }, [claimButton, rewardCompleted, goalId, eventTitle, reward]);
 
   const descriptionFooter = useMemo(() => {
     if (rewardCompleted && claimButton) {
