@@ -71,7 +71,7 @@ class LoggerInstance {
     this.userId = null;
     await Intercom.logout();
     await Intercom.setUserHash(hash);
-    await Intercom.registerIdentifiedUser({ userId });
+    await Intercom.loginUserWithUserAttributes({ userId });
     this.userId = userId;
   };
 
