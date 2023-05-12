@@ -9,10 +9,18 @@ import { SudokuDifficulty } from "./globalTypes";
 // GraphQL query operation: GetSudokuBoard
 // ====================================================
 
+export interface GetSudokuBoard_getSudokuBoard_boards_config {
+  PENALTY_HINT: number;
+  MISTAKES_BEFORE_PENALTY: number;
+  MISTAKE_PENALTY_TIME: number;
+  HINT_COOLDOWN: number;
+}
+
 export interface GetSudokuBoard_getSudokuBoard_boards {
   difficulty: SudokuDifficulty;
   solution: (number[] | null)[];
   puzzle: (number[] | null)[];
+  config: GetSudokuBoard_getSudokuBoard_boards_config;
 }
 
 export interface GetSudokuBoard_getSudokuBoard_stats {

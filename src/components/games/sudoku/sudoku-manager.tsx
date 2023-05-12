@@ -1,13 +1,11 @@
 import { ReactNode, memo, useReducer, useCallback, useEffect, useMemo, useRef } from "react";
 import { SudokuBoardType } from "./sudoku.enum";
-import { ISodukuHistory, ISudokuPosition, ISudokuResults } from "./sudoku.interface";
+import { ISodukuHistory, ISudokuConfig, ISudokuPosition, ISudokuResults } from "./sudoku.interface";
 import { ISudokuContext, SodukuContext } from "@screens/games/sudoku/sudoku-game/sudoku.context";
 import moment from "moment";
 import {
-  SODUKU_PENALTY_HINT,
+  SUDOKU_DEFAULT_CONFIG,
   SUDOKU_DIMENSIONS,
-  SUDOKU_MISTAKES_BEFORE_PENALTY,
-  SUDOKU_MISTAKE_PENALTY_TIME,
   SUDOKU_QUADRANT_DIMENSIONS,
 } from "@screens/games/sudoku/sudoku-game/sudoku.config";
 import { ISodukuBoard } from "@screens/games/sudoku/sudoku-game/sudoku.container";
@@ -51,6 +49,7 @@ interface IProps {
   detectCheats?: boolean;
   onGameComplete: (data: ISudokuResults) => void;
   onStateUpdate?: (args: ISudokuStateChangedArgs) => void;
+  config?: ISudokuConfig;
 }
 
 export type SudokuBoard = number[][];
@@ -61,6 +60,7 @@ const SudokuManager = ({
   detectCheats,
   savedState,
   children,
+  config = SUDOKU_DEFAULT_CONFIG,
   onStateUpdate,
   onGameComplete,
 }: IProps) => {
@@ -352,14 +352,18 @@ const SudokuManager = ({
         if (columnValues[i] === 0) {
           const pos = { column: position.column, row: i };
           if (possibleForNumberToBeInCell(pos, value)) {
-            possibleInRow.push(pos);
+            if (!sudokuState.touched[getPositionHash(pos)]) {
+              possibleInRow.push(pos);
+            }
           }
         }
 
         if (rowValues[i] === 0) {
           const pos = { column: i, row: position.row };
           if (possibleForNumberToBeInCell(pos, value)) {
-            possibleInColumn.push(pos);
+            if (!sudokuState.touched[getPositionHash(pos)]) {
+              possibleInColumn.push(pos);
+            }
           }
         }
       }
@@ -370,8 +374,11 @@ const SudokuManager = ({
         for (let column = quadrantColStart; column < quadrantColStart + SUDOKU_QUADRANT_DIMENSIONS; column++) {
           const val = getPosition({ row, column: column, boardType: SudokuBoardType.CURRENT });
           if (val === 0) {
-            if (possibleForNumberToBeInCell({ row, column }, value)) {
-              possibleInQuadrant.push({ row, column });
+            const pos = { row, column };
+            if (possibleForNumberToBeInCell(pos, value)) {
+              if (!sudokuState.touched[getPositionHash(pos)]) {
+                possibleInQuadrant.push(pos);
+              }
             }
           }
         }
@@ -424,8 +431,8 @@ const SudokuManager = ({
         updateGameState("mistakes", newMistakes);
         sudokuDispatch({ type: SUDOKU_SET_MISTAKES, payload: newMistakes });
 
-        if (newMistakes > SUDOKU_MISTAKES_BEFORE_PENALTY) {
-          addPenalty(SUDOKU_MISTAKE_PENALTY_TIME);
+        if (newMistakes > config.MISTAKES_BEFORE_PENALTY) {
+          addPenalty(config.MISTAKE_PENALTY_TIME);
         }
 
         updateHistory([...sudokuState.history, { row, column, number: sudokuState.board[row][column] }]);
@@ -443,6 +450,7 @@ const SudokuManager = ({
       doesExistInitially,
       getPosition,
       isWrongNumber,
+      config,
       updateGameState,
       sudokuState.board,
       sudokuState.mistakes,
@@ -471,7 +479,7 @@ const SudokuManager = ({
         return;
       }
 
-      addPenalty(SODUKU_PENALTY_HINT);
+      addPenalty(config.PENALTY_HINT);
       sudokuDispatch({ type: SUDOKU_GET_HINT, payload: {} });
       updateGameState("hintsUsed", (sudokuState.hintsUsed || 0) + 1);
       updateGameState("lastHintTime", new Date());
@@ -545,6 +553,7 @@ const SudokuManager = ({
 
   const sodukuContextValue = useMemo<ISudokuContext>(() => {
     return {
+      config,
       undo,
       board: sudokuState.board,
       pause,
@@ -572,6 +581,7 @@ const SudokuManager = ({
       initialBoard: initialBoard.puzzle,
     };
   }, [
+    config,
     undo,
     sudokuState.board,
     sudokuState.history,

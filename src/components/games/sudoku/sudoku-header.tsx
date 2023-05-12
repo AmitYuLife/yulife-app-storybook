@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { getSudokuState } from "@redux/sudoku/sudoku.selectors";
 import SudokuTimer from "@components/games/sudoku/sudoku-timer";
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
-import { SUDOKU_MISTAKES_BEFORE_PENALTY } from "@components/screens/games/sudoku/sudoku-game/sudoku.config";
 import SudokuHint from "@components/games/sudoku/sudoku-hint";
 import { useTranslation } from "@hooks";
 import { memo, useMemo } from "react";
@@ -15,7 +14,7 @@ interface IProps {
 }
 
 const SudokuHeader = ({ invert }: IProps) => {
-  const { mistakes } = useSudokuContext();
+  const { mistakes, config } = useSudokuContext();
   const state = useSelector(getSudokuState);
   const t = useTranslation(["sudoku.pause.mistakes"]);
   const color = useMemo(() => (invert ? Colours.neutral.white : undefined), [invert]);
@@ -30,7 +29,7 @@ const SudokuHeader = ({ invert }: IProps) => {
           {state.gameIdentifier}
         </TextTemplate>
         <TextTemplate type="b2b" color={color}>
-          {t["sudoku.pause.mistakes"]}: {mistakes}/{SUDOKU_MISTAKES_BEFORE_PENALTY}
+          {t["sudoku.pause.mistakes"]}: {mistakes}/{config.MISTAKES_BEFORE_PENALTY}
         </TextTemplate>
       </View>
       <SudokuHint invert={invert} />

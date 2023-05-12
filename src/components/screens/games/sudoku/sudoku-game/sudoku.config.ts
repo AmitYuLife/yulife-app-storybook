@@ -1,3 +1,4 @@
+import { ISudokuConfig } from "@components/games/sudoku/sudoku.interface";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { Colours, Style } from "@styles";
 import { WorldName } from "@utils";
@@ -37,11 +38,12 @@ export const SUDOKU_TIME_FORMAT_LONG = "h[h] m[m] s[s]";
 
 export const SUDOKU_PAUSE_ANIMATION_DURATION = 500;
 
-// Game settings
-export const SODUKU_PENALTY_HINT = 30;
-export const SODUKU_HINT_COOLDOWN = 60;
-export const SUDOKU_MISTAKES_BEFORE_PENALTY = 3;
-export const SUDOKU_MISTAKE_PENALTY_TIME = 30;
+export const SUDOKU_DEFAULT_CONFIG: ISudokuConfig = {
+  PENALTY_HINT: 30,
+  MISTAKES_BEFORE_PENALTY: 3,
+  MISTAKE_PENALTY_TIME: 30,
+  HINT_COOLDOWN: 60,
+};
 
 // Amount of cells per quadrant
 export const SUDOKU_QUADRANT_DIMENSIONS = 3;

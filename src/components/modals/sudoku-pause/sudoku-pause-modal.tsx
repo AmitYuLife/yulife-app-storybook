@@ -3,13 +3,12 @@ import { Button } from "@components/molecules";
 import { StyleSheet, View } from "react-native";
 import { memo, useCallback, useMemo } from "react";
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
-import { SUDOKU_MISTAKES_BEFORE_PENALTY } from "@components/screens/games/sudoku/sudoku-game/sudoku.config";
 import { useTranslation } from "@hooks";
 import { Colours, Style } from "@styles";
 import { TextTemplate } from "@atoms";
 
 const SudokuPauseModal = ({ onClose }: { onClose: () => void }) => {
-  const { unpause, getDurationText, mistakes } = useSudokuContext();
+  const { unpause, getDurationText, config, mistakes } = useSudokuContext();
   const pauseTime = getDurationText();
 
   const t = useTranslation([
@@ -23,7 +22,7 @@ const SudokuPauseModal = ({ onClose }: { onClose: () => void }) => {
 
   const stats = useMemo(
     () => [
-      { label: t["sudoku.pause.mistakes"], value: `${mistakes ?? 0} / ${SUDOKU_MISTAKES_BEFORE_PENALTY}` },
+      { label: t["sudoku.pause.mistakes"], value: `${mistakes ?? 0} / ${config.MISTAKES_BEFORE_PENALTY}` },
       { label: t["sudoku.pause.time"], value: pauseTime ?? "00:00" },
       { label: t["sudoku.pause.difficulty"], value: t["sudoku.difficulty.easy"] },
     ],

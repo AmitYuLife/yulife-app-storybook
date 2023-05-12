@@ -161,6 +161,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
     <SudokuScreen
       onBack={onBack}
       board={board}
+      config={board.config}
       onGameComplete={onGameComplete}
       gameIdentifier={moment(date).format("YYYY-MM-DD")}
       detectCheats={features.enableSudokuCheatDetection}
