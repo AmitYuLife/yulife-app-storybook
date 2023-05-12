@@ -1,7 +1,8 @@
 import { createContext, useContext } from "react";
 import { SudokuBoardType } from "../../../../games/sudoku/sudoku.enum";
-import { ISodukuHistory, ISudokuPosition } from "@components/games/sudoku/sudoku.interface";
+import { ISodukuHistory, ISudokuConfig, ISudokuPosition } from "@components/games/sudoku/sudoku.interface";
 import { SudokuBoard } from "@components/games/sudoku/sudoku-manager";
+import { SUDOKU_DEFAULT_CONFIG } from "./sudoku.config";
 
 export interface ISudokuContext {
   selectedCell?: {
@@ -27,6 +28,7 @@ export interface ISudokuContext {
   unpause: () => void;
   lastPauseTime?: Date;
   penaltyTime?: number;
+  config: ISudokuConfig;
   answers?: SudokuBoard;
   history: ISodukuHistory[];
   guesses: number[];
@@ -43,6 +45,7 @@ export interface ISudokuContext {
 }
 export const SodukuContext = createContext<ISudokuContext>({
   history: [],
+  config: SUDOKU_DEFAULT_CONFIG,
   penalties: [],
   guesses: [],
   undo: () => {

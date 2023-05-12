@@ -3,7 +3,6 @@ import { Colours, Style } from "@styles";
 import { useSudokuContext } from "@screens/games/sudoku/sudoku-game/sudoku.context";
 import moment from "moment";
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { SODUKU_HINT_COOLDOWN } from "@screens/games/sudoku/sudoku-game/sudoku.config";
 import HintIcon from "@atoms/icon/hint-svg";
 import { TextTemplate } from "@atoms";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
@@ -18,15 +17,15 @@ interface IProps {
 const SudokuHint = ({ invert }: IProps) => {
   const [timeAgo, setTimeAgo] = useState<number>(0);
   const containerRef = useRef<TouchableOpacity>(null);
-  const { lastHintTime, selectedCell, getHint } = useSudokuContext();
+  const { lastHintTime, selectedCell, config, getHint } = useSudokuContext();
   const { startTime, penalties, getDurationText, lastPauseTime } = useSudokuContext();
 
   const updateTime = useCallback(() => {
-    const differenceSeconds = SODUKU_HINT_COOLDOWN - moment().diff(moment(lastHintTime), "seconds");
+    const differenceSeconds = config.HINT_COOLDOWN - moment().diff(moment(lastHintTime), "seconds");
     setTimeAgo(lastHintTime ? differenceSeconds : 0);
 
     return differenceSeconds;
-  }, [lastHintTime]);
+  }, [config.HINT_COOLDOWN, lastHintTime]);
 
   useEffect(() => {
     updateTime();

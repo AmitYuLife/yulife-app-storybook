@@ -7,6 +7,12 @@ export const GQL_QUERY_GET_SUDOKU_BOARDS = gql`
         difficulty
         solution
         puzzle
+        config {
+          PENALTY_HINT
+          MISTAKES_BEFORE_PENALTY
+          MISTAKE_PENALTY_TIME
+          HINT_COOLDOWN
+        }
       }
       date
       stats {
@@ -20,6 +26,7 @@ export const GQL_QUERY_GET_SUDOKU_BOARDS = gql`
         adjustedTime
         difficulty
       }
+
       leaderboardEligible
     }
   }

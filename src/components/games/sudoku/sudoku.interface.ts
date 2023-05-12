@@ -13,6 +13,13 @@ export enum SudokuDifficulty {
   MEDIUM = "MEDIUM",
 }
 
+export interface ISudokuConfig {
+  PENALTY_HINT: number;
+  MISTAKES_BEFORE_PENALTY: number;
+  MISTAKE_PENALTY_TIME: number;
+  HINT_COOLDOWN: number;
+}
+
 export interface ISudokuBoard {
   difficulty: SudokuDifficulty;
   solution: (number[] | null)[];
