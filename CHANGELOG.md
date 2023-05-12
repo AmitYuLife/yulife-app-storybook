@@ -7,6 +7,52 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.81.0] - 2023-05-12
+
+### Features
+
+- Feature XSE-1841: PCP List
+
+### Bugfixes
+
+- Bugfix: Challenge list title/image overlapping
+- Bugfix: Intercom crashing on Android if email is null
+- Bugfix: Align country text on server-dropdown component
+- Bugfix: Sudoku midnight auto success
+- Bugfix: Sudoku chests
+- Bugfix: Don't scroll quest on state change
+- Bugfix: Update red planet desert success background image
+- Bugfix: Scope READ_EXTERNAL_STORAGE
+- Bugfix: Archived account fix
+- Bugfix: Fix sudoku help image width
+
+### Tasks
+
+- Task ENG-3316: logout deeplink
+- Task: Update fitkit version to 1.0.30
+- Task DEVOP-967: Add bitrise.yml to the repo
+- Task ISA-620 remove legacy rewards
+- Task: Sudoku Leaderboard settings
+- Task: Add extra tracking for fiit meditopia
+
+### Chores
+
+- Chore: Upgrade intercom package
+- Chore: Xcode 14.3 build
+- Chore: Fix onboarding depressed slots
+- Chore: Build e2e on merge requests
+
+### Extra
+
+- detox:add GHI product to test in app
+- Detox: CPD Tests fix
+- Detox: Fixes 9th may - Extended and US
+- Detox: Fixes 9th May - Smoke, PLI
+- Detox: Fixes 4th May + Yudoku earning screen time
+- Detox: Fixed build
+- detox: fix the product version benefit table and remove scenarioskip
+- Detox: Fixes 3rd May
+
 ## [3.80.0] - 2023-05-03
 
 ### Features
