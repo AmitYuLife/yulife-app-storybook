@@ -92,12 +92,7 @@ const styles = StyleSheet.create({
     maxHeight: FULL_HEIGHT,
     justifyContent: "flex-end",
     marginTop: Style.adjust(26),
-    width: Style.adjust(165, {
-      shrinkThreshold: Style.DEVICE_WIDTH < 361,
-      shrinkMultiplier: Platform.select({ ios: 0.15, android: Style.DEVICE_WIDTH < 360 ? 0.15 : 0.05 }),
-      growThreshold: Platform.select({ ios: Style.DEVICE_WIDTH > 413 }),
-      growMultiplier: 0.1,
-    }),
+    width: Style.adjust(165),
     borderRadius: RADIUS,
   } as ViewStyle,
   remoteImage: {
