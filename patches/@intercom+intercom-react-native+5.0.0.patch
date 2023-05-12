@@ -1,0 +1,15 @@
+diff --git a/node_modules/@intercom/intercom-react-native/android/src/main/java/com/intercom/reactnative/IntercomModule.java b/node_modules/@intercom/intercom-react-native/android/src/main/java/com/intercom/reactnative/IntercomModule.java
+index 8a08c1a..58bedff 100644
+--- a/node_modules/@intercom/intercom-react-native/android/src/main/java/com/intercom/reactnative/IntercomModule.java
++++ b/node_modules/@intercom/intercom-react-native/android/src/main/java/com/intercom/reactnative/IntercomModule.java
+@@ -136,8 +136,8 @@ public class IntercomModule extends ReactContextBaseJavaModule {
+     Boolean hasEmail = params.hasKey("email") && IntercomHelpers.getValueAsStringForKey(params, "email").length() > 0;
+     Boolean hasUserId = params.hasKey("userId") && IntercomHelpers.getValueAsStringForKey(params, "userId").length() > 0;
+     Registration registration = null;
+-    String email = IntercomHelpers.getValueAsStringForKey(params, "email");
+-    String userId = IntercomHelpers.getValueAsStringForKey(params, "userId");
++    String email = hasEmail ? IntercomHelpers.getValueAsStringForKey(params, "email") : null;
++    String userId = hasUserId ? IntercomHelpers.getValueAsStringForKey(params, "userId") : null;
+     if (hasEmail && hasUserId) {
+       registration = new Registration().withEmail(email).withUserId(userId);
+     } else if (hasEmail) {
