@@ -51,7 +51,7 @@ export const TextTemplate = memo(
     const alignment = { textAlign };
     const fontColor = { color: color || Colours.neutral.n800 };
     const decorationStyle = !decoration ? null : styles[decoration];
-    const lineHeight = { lineHeight: customLineHeight };
+    const lineHeight = customLineHeight ? { lineHeight: customLineHeight } : {};
 
     return (
       <Text

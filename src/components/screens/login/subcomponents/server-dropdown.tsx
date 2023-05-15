@@ -1,5 +1,5 @@
 import React, { memo, useState } from "react";
-import { StyleSheet, View, Platform } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Navigation } from "@navigation/main";
 import { ListPicker, TouchableOpacityWithDelay } from "@molecules";
 import { MODALS } from "@navigation/constants";
@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
   },
   textWrapper: {
     paddingHorizontal: Style.adjust(8),
-    paddingTop: Platform.select({ ios: Style.adjust(2), android: 0 }),
     alignSelf: "center",
   },
 });
