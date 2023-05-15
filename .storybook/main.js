@@ -25,6 +25,7 @@ const CUSTOM_CONFIG = {
       "react-native-config": path.join(__dirname, "/aliases/react-native-config"),
       "@react-native-camera-roll/camera-roll": path.join(__dirname, "/aliases/react-native-camera-roll"),
       "react-native-view-shot": path.join(__dirname, "/aliases/react-native-view-shot"),
+      "react-native-reanimated": path.join(__dirname, "/aliases/react-native-reanimated"),
     },
     extensions: [".web.js", ".js", ".ts", ".tsx"],
   },
