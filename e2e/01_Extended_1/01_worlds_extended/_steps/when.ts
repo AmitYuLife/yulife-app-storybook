@@ -19,7 +19,8 @@ export const {
 } = screens.challenges
 
 export const {
-    scrollFromID
+    scrollFromID,
+    swipeFromText
 } = navigation.scrolling
 
 
@@ -122,8 +123,8 @@ export const selectAndCompleteMeditationChallengeWithoutMedia = (mindfulnessdata
 export const selectAndCompleteMeditationChallengeWithMedia = (mindfulnessdata: number) => async () => { 
     await navigateViaID(CHALLENGE_TILE("meditation"))
     await navigateViaText("Take challenge")
+    await swipeFromText("Or use an app", "up", "slow")()
     await tapText("Use a different app")()
-    // 4th may fix - 'maybe later' after 'use a different app'
     await tapText("maybe later")()
     await sendMindfulnessData(mindfulnessdata, 75000)()
     await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)

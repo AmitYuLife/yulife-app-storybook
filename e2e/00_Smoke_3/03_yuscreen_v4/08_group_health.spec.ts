@@ -1,8 +1,9 @@
 import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip, FeatureOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
-import { CUSTOMER_GHI, AUTH_GHI, CUSTOMER_GHI_STARTED, AUTH_GHI_STARTED, CPED_1_GHI_STARTED, CPED_1_GHI_FUTURE, CPE_GHI_FUTURE, CPE_GHI_STARTED } from "@data";
+import { CUSTOMER_GHI, AUTH_GHI, CUSTOMER_GHI_STARTED, AUTH_GHI_STARTED, CPE_GHI_FUTURE, CPE_GHI_STARTED } from "@data";
 import * as helper from "./_steps/helpers"
+import { CPED_1_GHI_FUTURE, CPED_1_GHI_STARTED } from "_utils/data/postgres/customer_product_entity_dependant";
 
 
 

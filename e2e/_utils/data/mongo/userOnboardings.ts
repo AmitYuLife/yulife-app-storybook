@@ -106,6 +106,9 @@ import {
   USER_86,
   USER_FUTURE_PRODUCT,
   USER_LEAVER,
+  USER_89,
+  USER_90,
+  USER_91,
   USER_GHI,
   USER_GHI_STARTED,
 } from "./users";
@@ -1711,6 +1714,54 @@ export const USER_ONBOARDING_GHI_STARTED = {
     userId: USER_GHI_STARTED.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_GHI_8.data.business_account_id,
     businessName: "GHI Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_89 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_89.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_3.data.business_account_id,
+    businessName: "Pawnee Council.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_90 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_90.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_91 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_91.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
       personalLifeIntro: true,
       newYumojiBuilder: true,

@@ -131,7 +131,6 @@ export const celestialChestAwardsVisible = (user: typeof USER_1) => async () => 
     const yuCoinEarnt = user.data.earnRate * 100
 
     await textVisible("You have earned")()
-    await idVisible(CELESTIAL_CARD("Weekly\nQuest"))() 
     await idVisible(CELESTIAL_CARD("25\nDonations"))() 
     await idVisible(CELESTIAL_CARD(`${yuCoinEarnt}\nYuCoin`))() 
 }

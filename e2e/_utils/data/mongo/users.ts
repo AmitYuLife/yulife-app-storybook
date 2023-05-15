@@ -99,6 +99,9 @@ import {
   CUSTOMER_86,
   CUSTOMER_FUTURE_PRODUCT,
   CUSTOMER_LEAVER,
+  CUSTOMER_89,
+  CUSTOMER_90,
+  CUSTOMER_91,
   CUSTOMER_GHI,
   CUSTOMER_GHI_STARTED,
 } from "../postgres/customers";
@@ -1919,3 +1922,38 @@ export const USER_GHI_STARTED = {
     earnRate: 10,
   }
 }
+
+export const USER_89 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_89.data.customerId,
+    nickname: "Mr Bright",
+  },
+} as IDatabaseItem;
+
+export const USER_90 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_90.data.customerId,
+    nickname: "Boi",
+    earnRate: 6,
+  },
+} as IDatabaseItem;
+
+export const USER_91 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_91.data.customerId,
+    nickname: "Spod",
+    earnRate: 20,
+  },
+} as IDatabaseItem;

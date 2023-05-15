@@ -1401,3 +1401,45 @@ export const CUSTOMER_GHI_STARTED = {
     fullName: "Paul Starter"
   },
 } as IDatabaseItem
+
+export const CUSTOMER_89 = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Mister",
+    lastName: "Bright",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+    fullName: "Mister Bright"
+  }
+} as IDatabaseItem
+
+export const CUSTOMER_90 = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Bright",
+    lastName: "Boi",
+    dateOfBirth: moment().subtract(33, "years").toDate(),
+    status: "onboarded",
+    fullName: "Bright Boi",
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_91 = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Spoder",
+    lastName: "Man",
+    dateOfBirth: moment().subtract(33, "years").toDate(),
+    status: "onboarded",
+    fullName: "Spoder Man",
+  },
+} as IDatabaseItem;
