@@ -43,8 +43,13 @@ export const selectAndCompleteMeditationChallengeWithoutMedia = (mindfulnessData
     await sendMindfulnessData(mindfulnessData, 80000)()
 }
 
-export const tapYuniverseLevelForFirstTime = (questScreen: number, x: number, y: number) => async () => {
-    await element(by.id(QUESTS_SCREEN_YUNIVERSAL(questScreen))).tapAtPoint({x:x, y:y});
+export const tapYuniverseLevelForFirstTime = (questScreen: number, xCoordinate: number, yCoordinate: number, yCordinateIphoneSe?: number) => async () => {
+    // the Y coordinate is different on separate screen sizes, so where necessary, give both Y-coordinate arguments
+    if (device.name.includes("(iPhone SE (3rd generation))") && yCordinateIphoneSe) {
+        await element(by.id(QUESTS_SCREEN_YUNIVERSAL(questScreen))).tap({x: xCoordinate, y: yCordinateIphoneSe});
+    } else {
+        await element(by.id(QUESTS_SCREEN_YUNIVERSAL(questScreen))).tap({x: xCoordinate, y: yCoordinate});
+    }
 }
 
 export const tapYuniverseLevelAfterFirstTime = (x: number, y: number) => async () => {

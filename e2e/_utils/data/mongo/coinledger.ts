@@ -834,3 +834,44 @@ export const COIN_LEDGER_86 = {
         currentLevel: 152
     }
 } as IDatabaseItem
+
+export const COIN_LEDGER_89 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_89.data.customerId,
+        userId: customer.CUSTOMER_89.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 400
+    }
+} as IDatabaseItem
+
+export const COIN_LEDGER_90 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_90.data.customerId,
+        userId: customer.CUSTOMER_90.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        yuniversalMap: 2,
+        yuniversalLevel: 7,
+        currentLevel: 401,
+    }
+} as IDatabaseItem
+
+export const COIN_LEDGER_91 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_91.data.customerId,
+        userId: customer.CUSTOMER_91.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 401
+    }
+} as IDatabaseItem

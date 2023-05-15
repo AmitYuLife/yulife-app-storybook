@@ -1192,3 +1192,37 @@ export const AUTH_GHI_STARTED = {
     userId: customer.CUSTOMER_GHI_STARTED.data.customerId,
 },
 } as IDatabaseItem;
+
+export const AUTH_89 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_89.data.customerId,
+    }
+}  as IDatabaseItem
+
+
+export const AUTH_90 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.44422",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_90.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_91 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_91.data.customerId,
+    }
+}  as IDatabaseItem

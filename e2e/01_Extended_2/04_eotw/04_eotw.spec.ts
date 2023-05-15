@@ -1,9 +1,9 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_69, AUTH_69, CUSTOMER_70, AUTH_70, USER_70, CUSTOMER_78, AUTH_78, USER_78, CUSTOMER_81, AUTH_81 } from "@data";
+import { CUSTOMER_69, AUTH_69, CUSTOMER_70, AUTH_70, USER_70, CUSTOMER_78, AUTH_78, USER_78, CUSTOMER_81, AUTH_81, CUSTOMER_89, AUTH_89, CUSTOMER_90, AUTH_90, USER_90 } from "@data";
 import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, QUESTS_SCREEN_YUNIVERSAL, DAILY_STEPS_SCREEN, WELLDONE_BANNER, SPACE_TRAVEL_SCREEN, USER_LEVEL, LEVEL_STAR_COUNT, V4_YUSCREEN, YUMOJI_AVATAR_YUSCREEN_V4, WEEKLY_GOAL_ICON } from "@ids";
 import { daysRemainingOfWeek } from "@navigation";
 
@@ -363,5 +363,70 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should see the Weekly Quests activty icon with the badge", then.idVisible(WEEKLY_GOAL_ICON(daysRemainingOfWeek(), false)))
             Then("I can see the Icon has changed to the Done state", then.textVisible("Done"))
         }) 
+    })
+
+    Scenario("I complete level 400, enter EOTW with a yucoin surge of 2 and take 4 challenges at level 1", scenario.start, () => {
+        Given("I login as a user on level 400 with a earn rate of 10", given.logInAndGoToTab("yucoin", CUSTOMER_89, AUTH_89), async () => {
+            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
+        })
+        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
+            Then("I should see the level 200 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(400)))
+        })
+        When("I tap level 400 button", when.tapID(LEVEL_CHALLENGE_BUTTON(400)), async () => {
+            Then("I should see that I have achieved Yunity Mountain", then.yunityCorrect("Mountain"))
+            Then("I should see the correct rewards in the chest for moving into EOTW/yuniverse", then.mountainTwoRewardsVisible)
+        })
+        When("I wait", when.wait(5000), async () => {
+            When("I tap claim rewards", when.tapText("Claim rewards"), async () => {
+                Then("I should be on the yucoin", then.idVisible(DAILY_STEPS_SCREEN))
+                Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
+            })
+        })
+        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
+            Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(1)))
+        })
+        When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(1, 187, 537, 430), async () => {
+            Then("I should be on the quest screen and see 5 challenges unlocked", then.yuniverseChallengesVisible)
+            Then("I should see the 2x surge yucoin value for the 5 unlocked challenges", then.yuniverseChallengesYuCoinValuesCorrect(10))
+        })
+    })
+
+    Scenario("I complete level 7 in EOTW, I finish EOTW and enter the bright planet with a yucoin surge of 2", scenario.start, () => {
+        Given("I login as a user on level 407 with a earn rate of 6", given.logInAndGoToTab("yucoin", CUSTOMER_90, AUTH_90), async () => {
+            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
+        })
+        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
+            Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(7)))
+        })
+        When("I tap level 7 button", when.tapYuniverseLevelForFirstTime(7, 187, 263, 180), async () => {
+            Then("I should be on the celestial chest screen", then.celestialChestEarned)
+        })
+        When("I tap open the chest", when.tapText("Open the chest"), async () => {
+            Then("I can see the 3 celestial chest rewards, which each earn me my earn rate (6) * 100", then.celestialChestAwardsVisible(USER_90))
+        })
+        When("I tap claim rewards", when.tapText("Claim rewards"), async () => {
+            Then("I am on the space travel screen", then.idVisible(SPACE_TRAVEL_SCREEN))
+        })
+        When("I tap travel", when.tapText("Travel"), async () => {
+            When("I wait", when.wait(7000), async () => {
+                When("I tap a new beginning", when.tapText("A new beginning"), async () => {
+                    Then("I should be on the yucoin screen", then.idVisible(DAILY_STEPS_SCREEN))
+                })
+            })
+        })
+        When("I go to the yu tab", when.tapID(NAV_BAR("yu")), async () => {
+            When("I tap check this out", when.tapText("Check out my power"), async () => {
+                When("I tap do this later", when.tapText("I'll do this later"), async () => {
+                    Then("I should see I am now in the Forest world", then.textVisible("Forest"))
+                    Then("I should see I am now on level 401", then.idVisible(USER_LEVEL(401)))
+                })
+            })
+        })
+        When("I go to the quests tab", when.tapID(NAV_BAR("quests")), async () => {
+            Then("I should see level 401 unlocked in the red planet", then.idVisible(LEVEL_CHALLENGE_BUTTON(401)))
+        })
+        When("I tap level 401 button", when.tapID(LEVEL_CHALLENGE_BUTTON(401)), async () => {
+            Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
+        })
     })
 })

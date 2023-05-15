@@ -1609,3 +1609,42 @@ export const CUSTOMER_GHI_PRODUCT_TOGGLES = {
     },
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_89_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_89.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      showFiit: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_90_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_90.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      showFiit: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_91_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_91.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      showFiit: true,
+    },
+  },
+} as IDatabaseItem;
