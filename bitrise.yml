@@ -2310,8 +2310,8 @@ workflows:
             npm install -g forever modclean
             modclean -r # to mimic build containers
             NODE_ENV=detox DEBUG=yu:* forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
-            sleep 30
-            curl http://localhost:5000
+            echo 'Waiting for API to bootstrap...'
+            npx wait-on http://localhost:5000
 
             cd $CWD
   ios-run-api-local-node14:
@@ -2506,8 +2506,8 @@ workflows:
             npm install -g forever modclean
             modclean -r # to mimic build containers
             NODE_ENV=detox DEBUG=yu:* server__slowDownConfig__delay=2500 server__slowDownConfig__timeout=false forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
-            sleep 30
-            curl http://localhost:5000
+            echo 'Waiting for API (slow mode) to bootstrap...'
+            npx wait-on http://localhost:5000
 
             cd $CWD
   ios-run-api-local-usa:
@@ -2606,8 +2606,8 @@ workflows:
             npm install -g forever modclean
             modclean -r # to mimic build containers
             NODE_ENV=detox DEBUG=yu:* server__locale=en-US server__port=5001 forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
-            sleep 30
-            curl http://localhost:5001
+            echo 'Waiting for API (USA) to bootstrap...'
+            npx wait-on http://localhost:5001
 
             cd $CWD
   ios-set-uat-env-vars:
