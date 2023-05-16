@@ -10,7 +10,7 @@ import styles from "./assets.styles";
 
 export default function Treasure({ isActive, onPressIn, onPressOut, isHighlighted }: IIconProps) {
   const fill = getIconColour(isActive || isHighlighted);
-  const size = String(Style.SCALE_UP_AND_DOWN(54));
+  const size = Style.adjust(54);
 
   return (
     <View>
