@@ -10,7 +10,7 @@ const slotContainerBase = {
 
 const altSlotContainerBase = {
   borderRadius: Style.adjust(8),
-  height: Style.adjust(47),
+  height: Style.adjust(51),
   width: Style.adjust(170),
 };
 
@@ -20,7 +20,7 @@ const defaultSlotYuCoinPowerImageDimensions = {
 };
 
 const depressedSlotYuCoinPowerImageDimensions = {
-  height: Style.adjust(52),
+  height: Style.adjust(52.75),
   width: Style.adjust(45),
 };
 
@@ -155,13 +155,12 @@ const depressedStyles = StyleSheet.create({
   slotInnerWrapperTop: {
     ...altSlotContainerBase,
     position: "absolute",
-    top: Style.adjust(1.5),
+    top: Style.adjust(2),
     zIndex: 2,
   },
   slotInnerWrapperBottom: {
     ...altSlotContainerBase,
     position: "absolute",
-    bottom: Style.adjust(-2),
   },
   slotInnerWrapper: {
     ...altSlotContainerBase,
@@ -170,34 +169,32 @@ const depressedStyles = StyleSheet.create({
     justifyContent: "space-between",
     overflow: "hidden",
     position: "absolute",
-    top: Style.adjust(5),
+    top: Style.adjust(4),
     zIndex: 3,
     paddingLeft: Style.adjust(4),
     paddingTop: Style.adjust(4),
   },
   slotSocket: {
-    height: Style.adjust(56),
-    width: Style.adjust(172),
+    height: Style.adjust(57),
+    width: Style.adjust(173),
     borderRadius: Style.adjust(8),
     position: "absolute",
-    left: Style.adjust(-1),
+    left: Style.adjust(-1.5),
     top: Style.adjust(0),
-    borderWidth: Style.adjust(1),
-    borderColor: Colours.neutral.n100,
   },
   slotSocketYuScreen: {
-    backgroundColor: Colours.neutral.n50,
+    backgroundColor: Colours.neutral.n100,
   },
   slotSocketOnboarding: {
-    backgroundColor: Colours.neutral.n50,
+    backgroundColor: Colours.neutral.n100,
   },
   slotSocketInner: {
     borderRadius: Style.adjust(8),
     height: Style.adjust(51),
     width: Style.adjust(168),
     position: "absolute",
-    top: Style.adjust(1),
-    left: Style.adjust(1),
+    top: Style.adjust(2),
+    left: Style.adjust(2),
   },
   slotSocketInnerYuScreen: {
     backgroundColor: Colours.neutral.n50,
@@ -211,7 +208,7 @@ const depressedStyles = StyleSheet.create({
     justifyContent: "center",
     position: "absolute",
     zIndex: 4,
-    top: Style.adjust(1),
+    top: Style.adjust(0.5),
     left: Style.adjust(1),
     paddingRight: Style.adjust(3),
   },
