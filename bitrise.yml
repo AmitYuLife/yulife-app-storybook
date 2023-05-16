@@ -2307,8 +2307,7 @@ workflows:
 
             yarn detox:changeRegionDatabase:UK
 
-            npm install -g forever modclean
-            modclean -r # to mimic build containers
+            npm install -g forever
             NODE_ENV=detox DEBUG=yu:* forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
             echo 'Waiting for API to bootstrap...'
             npx wait-on http://localhost:5000
@@ -2503,8 +2502,7 @@ workflows:
             yarn detox:setup
 
 
-            npm install -g forever modclean
-            modclean -r # to mimic build containers
+            npm install -g forever
             NODE_ENV=detox DEBUG=yu:* server__slowDownConfig__delay=2500 server__slowDownConfig__timeout=false forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
             echo 'Waiting for API (slow mode) to bootstrap...'
             npx wait-on http://localhost:5000
@@ -2603,8 +2601,7 @@ workflows:
 
             yarn detox:changeRegionDatabase:US
 
-            npm install -g forever modclean
-            modclean -r # to mimic build containers
+            npm install -g forever
             NODE_ENV=detox DEBUG=yu:* server__locale=en-US server__port=5001 forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
             echo 'Waiting for API (USA) to bootstrap...'
             npx wait-on http://localhost:5001
