@@ -177,23 +177,23 @@ const planetWordSlices = {
     },
     w2s0: {
       image: require("@assets/quest-slices/planets/earth/w2s0.png"),
-      topBarType: TOP_BAR_TYPES.DEFAULT,
+      topBarType: TOP_BAR_TYPES.WHITE,
     },
     w2s1: {
       image: require("@assets/quest-slices/planets/earth/w2s1.png"),
-      topBarType: TOP_BAR_TYPES.DEFAULT,
+      topBarType: TOP_BAR_TYPES.WHITE,
     },
     w2s2: {
       image: require("@assets/quest-slices/planets/earth/w2s2.png"),
-      topBarType: TOP_BAR_TYPES.DEFAULT,
+      topBarType: TOP_BAR_TYPES.WHITE,
     },
     w2s3: {
       image: require("@assets/quest-slices/planets/earth/w2s3.png"),
-      topBarType: TOP_BAR_TYPES.DEFAULT,
+      topBarType: TOP_BAR_TYPES.WHITE,
     },
     w2s4: {
       image: require("@assets/quest-slices/planets/earth/w2s4.png"),
-      topBarType: TOP_BAR_TYPES.DEFAULT,
+      topBarType: TOP_BAR_TYPES.WHITE,
     },
     w2s5: {
       image: require("@assets/quest-slices/planets/earth/w2s5.png"),
@@ -277,7 +277,7 @@ const planetWordSlices = {
     },
     w2s25: {
       image: require("@assets/quest-slices/planets/earth/w2s25.png"),
-      topBarType: TOP_BAR_TYPES.DEFAULT,
+      topBarType: TOP_BAR_TYPES.WHITE,
     },
     w2s26: {
       image: require("@assets/quest-slices/planets/earth/w2s26.png"),
@@ -289,7 +289,7 @@ const planetWordSlices = {
     },
     w2s28: {
       image: require("@assets/quest-slices/planets/earth/w2s28.png"),
-      topBarType: TOP_BAR_TYPES.DEFAULT,
+      topBarType: TOP_BAR_TYPES.WHITE,
     },
     w3s0: {
       image: require("@assets/quest-slices/planets/earth/w3s0.png"),
@@ -409,23 +409,23 @@ const planetWordSlices = {
     },
     w4s0: {
       image: require("@assets/quest-slices/planets/earth/w4s0.png"),
-      topBarType: TOP_BAR_TYPES.DEFAULT,
+      topBarType: TOP_BAR_TYPES.WHITE,
     },
     w4s1: {
       image: require("@assets/quest-slices/planets/earth/w4s1.png"),
-      topBarType: TOP_BAR_TYPES.DEFAULT,
+      topBarType: TOP_BAR_TYPES.WHITE,
     },
     w4s2: {
       image: require("@assets/quest-slices/planets/earth/w4s2.png"),
-      topBarType: TOP_BAR_TYPES.DEFAULT,
+      topBarType: TOP_BAR_TYPES.WHITE,
     },
     w4s3: {
       image: require("@assets/quest-slices/planets/earth/w4s3.png"),
-      topBarType: TOP_BAR_TYPES.DEFAULT,
+      topBarType: TOP_BAR_TYPES.WHITE,
     },
     w4s4: {
       image: require("@assets/quest-slices/planets/earth/w4s4.png"),
-      topBarType: TOP_BAR_TYPES.DEFAULT,
+      topBarType: TOP_BAR_TYPES.WHITE,
     },
     w4s5: {
       image: require("@assets/quest-slices/planets/earth/w4s5.png"),
@@ -517,19 +517,19 @@ const planetWordSlices = {
     },
     w4s27: {
       image: require("@assets/quest-slices/planets/earth/w4s27.png"),
-      topBarType: TOP_BAR_TYPES.DEFAULT,
+      topBarType: TOP_BAR_TYPES.WHITE,
     },
     w4s28: {
       image: require("@assets/quest-slices/planets/earth/w4s28.png"),
-      topBarType: TOP_BAR_TYPES.WHITE,
+      topBarType: TOP_BAR_TYPES.DEFAULT,
     },
     w4s29: {
       image: require("@assets/quest-slices/planets/earth/w4s29.png"),
-      topBarType: TOP_BAR_TYPES.WHITE,
+      topBarType: TOP_BAR_TYPES.DEFAULT,
     },
     w4s30: {
       image: require("@assets/quest-slices/planets/earth/w4s30.png"),
-      topBarType: TOP_BAR_TYPES.WHITE,
+      topBarType: TOP_BAR_TYPES.DEFAULT,
     },
   },
   [Planets.RED]: {
@@ -1559,7 +1559,7 @@ export const interstitialsSlices = (currentPlanet: Planets): { [x: string]: IMap
       id: "MAP_SLICE_W04_INTERSTITIALS_02",
       image: planetsInterstitials[currentPlanet].w4s1,
       slots: [],
-      topBarType: TOP_BAR_TYPES.WHITE,
+      topBarType: TOP_BAR_TYPES.DEFAULT,
     },
   ],
   // just didn't know what to name it yet
