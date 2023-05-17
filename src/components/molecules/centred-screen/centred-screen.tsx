@@ -67,7 +67,7 @@ const Background = memo(({ isFullScreen, isLottie, backgroundImage, style }: ISc
   }
 
   return (
-    <BackgroundWrapper>
+    <>
       {isLottie ? (
         <LottieView
           loop={true}
@@ -80,8 +80,10 @@ const Background = memo(({ isFullScreen, isLottie, backgroundImage, style }: ISc
           }}
         />
       ) : (
-        <RNImage resizeMode="cover" style={style as ImageStyle} source={backgroundImage} />
+        <BackgroundWrapper>
+          <RNImage resizeMode="cover" style={style as ImageStyle} source={backgroundImage} />
+        </BackgroundWrapper>
       )}
-    </BackgroundWrapper>
+    </>
   );
 });
