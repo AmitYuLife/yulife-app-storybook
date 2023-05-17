@@ -1155,6 +1155,12 @@
           "message": "Cada vez que você usar o botão de dica, perderá 30 segundos do seu tempo.",
           "cta": "Use uma dica"
         },
+        "error": {
+            "title": "Não foi possível enviar resultados",
+            "message": "Ocorreu um erro ao enviar os seus resultados do Yudoku",
+            "tryAgain": "Tente novamente",
+            "cancel": "Cancelar" 
+        }, 
         "stats": {
           "personalBest": "Melhor pessoal",
           "todaysTime": "Hora de hoje",

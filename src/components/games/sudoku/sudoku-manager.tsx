@@ -522,9 +522,16 @@ const SudokuManager = ({
     }
   }, [getTimeDifferenceSincePause, onResume, sudokuState.lastHintTime, sudokuState.startTime, updateGameState]);
 
-  const setSelectedCell = useCallback((position: ISudokuPosition) => {
-    sudokuDispatch({ type: SUDOKU_SET_SELECTED_CELL, payload: position });
-  }, []);
+  const setSelectedCell = useCallback(
+    (position: ISudokuPosition) => {
+      if (sudokuState?.endDate) {
+        return;
+      }
+
+      sudokuDispatch({ type: SUDOKU_SET_SELECTED_CELL, payload: position });
+    },
+    [sudokuState?.endDate]
+  );
 
   const undo = useCallback(() => {
     const popHistory = () => {
