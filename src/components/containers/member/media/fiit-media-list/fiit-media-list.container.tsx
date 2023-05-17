@@ -39,19 +39,18 @@ const FiitMediaListContainer = ({ levelSlotId, contentMediaTags, title, logo, re
     return false;
   });
 
-  const formattedVideos = useMemo(
-    () =>
-      medias?.getMedia?.map((item) => {
-        const formattedDuration = moment.utc(item.duration * 1000).format("m");
-        return {
-          ...item,
-          reward,
-          stars: 3,
-          formattedDuration: `${formattedDuration} mins`,
-        };
-      }),
-    [medias?.getMedia, reward]
-  );
+  const formattedVideos = useMemo(() => {
+    const videos = medias?.getMedia || [];
+    return videos.map((item) => {
+      const formattedDuration = moment.utc(item.duration * 1000).format("m");
+      return {
+        ...item,
+        reward,
+        stars: 3,
+        formattedDuration: `${formattedDuration} mins`,
+      };
+    });
+  }, [medias?.getMedia, reward]);
 
   const handleOnItemPress = useCallback((video: IITem) => {
     dispatch(
@@ -93,7 +92,7 @@ const FiitMediaListContainer = ({ levelSlotId, contentMediaTags, title, logo, re
       logo={logo}
       onLeftIconPress={onLeftIconPress}
       onRightIconPress={onRightIconPress}
-      loading={loading || formattedVideos?.length === 0}
+      loading={loading || formattedVideos.length === 0}
       onItemPress={handleOnItemPress}
     />
   );
