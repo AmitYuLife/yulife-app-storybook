@@ -17,7 +17,7 @@ interface IProps {
 
 const SudokuTimer = ({ invert }: IProps) => {
   const [timeAgo, setTimeAgo] = useState<string>("00:00");
-  const { startTime, pause, initialPenalties, penalties, getDurationText, lastPauseTime } = useSudokuContext();
+  const { startTime, pause, endTime, initialPenalties, penalties, getDurationText, lastPauseTime } = useSudokuContext();
   const [shownPenalties, setShownPenalties] = useState<number[]>(initialPenalties || []);
   const [activePenalties, setActivePenalties] = useState<number[]>(initialPenalties?.map(() => 0) || []);
 
@@ -53,7 +53,12 @@ const SudokuTimer = ({ invert }: IProps) => {
 
   return (
     <View>
-      <TouchableOpacity style={styles.wrapper} onPress={pause} testID={SUDOKU_PAUSE}>
+      <TouchableOpacity
+        style={styles.wrapper}
+        onPress={endTime ? undefined : pause}
+        testID={SUDOKU_PAUSE}
+        activeOpacity={0.8}
+      >
         <PauseIcon color={invert ? Colours.neutral.white : undefined} />
         <View style={styles.text}>
           {activePenalties

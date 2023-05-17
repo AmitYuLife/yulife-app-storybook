@@ -17,7 +17,7 @@ interface IProps {
 const SudokuHint = ({ invert }: IProps) => {
   const [timeAgo, setTimeAgo] = useState<number>(0);
   const containerRef = useRef<TouchableOpacity>(null);
-  const { lastHintTime, selectedCell, config, getHint } = useSudokuContext();
+  const { lastHintTime, selectedCell, endTime, config, getHint } = useSudokuContext();
   const { startTime, penalties, getDurationText, lastPauseTime } = useSudokuContext();
 
   const updateTime = useCallback(() => {
@@ -51,6 +51,10 @@ const SudokuHint = ({ invert }: IProps) => {
   }, [selectedCell, getHint]);
 
   const openPopUp = useCallback(() => {
+    if (!selectedCell || endTime) {
+      return;
+    }
+
     const popup = ({ onClose }: { onClose: () => void }) => <SudokuHintPopup onClose={onClose} onGetHint={onGetHint} />;
 
     showTooltipPopupRelativeToView({
@@ -61,7 +65,7 @@ const SudokuHint = ({ invert }: IProps) => {
       },
       children: popup,
     });
-  }, [onGetHint]);
+  }, [endTime, onGetHint, selectedCell]);
 
   const isHintCooldown = timeAgo > 0;
   const style = useMemo(() => [styles.hintWrapper, ...(isHintCooldown ? [styles.hintCooldown] : [])], [isHintCooldown]);

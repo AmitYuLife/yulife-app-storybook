@@ -18,15 +18,16 @@ import moment from "moment";
 import { GQL_QUERY_GET_SUDOKU_BOARDS } from "@graphql/brainGames/sudoku/getSudokuBoards.gql";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { GQL_MUTATION_TOGGLE_CHALLENGE_PAUSE } from "@graphql/challenges/toggleChallengePause.gql";
-import { getActiveLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
+import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { DATE_FORMAT } from "@utils";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { SudokuDifficulty } from "@graphql/_core/schema/globalTypes";
 import { GQL_MUTATION_SUBMIT_SUDOKU_SOLUTION } from "@graphql/brainGames/sudoku/submitSudokuResults.gql";
 import { ISudokuResults } from "@components/games/sudoku/sudoku.interface";
-import { useBackHandler } from "@hooks";
+import { useBackHandler, useTranslation } from "@hooks";
 import { delay } from "@utils/misc";
 import { challengeEndSuccessAction } from "@redux/levels/levels.actions";
+import { Alert } from "react-native";
 
 export interface ISodukuBoard {
   puzzle: SudokuBoard;
@@ -43,7 +44,6 @@ const SUDOKU_ANIMATION_TIMEOUT = 2000;
 export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   const dispatch = useDispatch();
   const { yuniversalMap } = useSelector(getYuniversalProgress);
-  const activeLevel = useSelector(getActiveLevel);
   const features = useSelector(getUserFeatures);
   const sudokuState = useSelector(getSudokuState);
   const [sendPause] = useMutation(GQL_MUTATION_TOGGLE_CHALLENGE_PAUSE);
@@ -55,6 +55,13 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   const { data } = useQuery<GetSudokuBoard>(GQL_QUERY_GET_SUDOKU_BOARDS, {
     fetchPolicy: "no-cache",
   });
+
+  const t = useTranslation([
+    "sudoku.error.title",
+    "sudoku.error.message",
+    "sudoku.error.tryAgain",
+    "sudoku.error.cancel",
+  ]);
 
   const onStateUpdate = useCallback(
     ({ key, value }: ISudokuStateChangedArgs) => {
@@ -78,47 +85,13 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
               leaderboardId: data.getSudokuBoard.stats?.leaderboardId,
               leaderboardEligible: data?.getSudokuBoard?.leaderboardEligible,
             },
-            reward: activeLevel.coins,
+            reward: result?.submitSudokuSolution?.yuCoinAwarded,
             stats: data.getSudokuBoard.stats,
           },
         },
       });
     },
-    [activeLevel?.coins, componentId, data?.getSudokuBoard?.leaderboardEligible, data?.getSudokuBoard.stats]
-  );
-
-  const onGameComplete = useCallback(
-    (parmas: ISudokuResults) => {
-      (async () => {
-        const [result] = await Promise.all([
-          submitSudokuSolution({
-            variables: {
-              results: {
-                date: sudokuState.gameIdentifier,
-                mistakes: parmas.mistakes,
-                hints: parmas.hints,
-                baseTime: parmas.adjustedTime,
-                guesses: parmas.guesses,
-                adjustedTime: parmas.adjustedTime,
-                levelSlotId: sudokuState.levelSlotId,
-                difficulty: SudokuDifficulty.EASY,
-              },
-            },
-          }),
-          delay(SUDOKU_ANIMATION_TIMEOUT),
-        ]);
-
-        dispatch(
-          challengeEndSuccessAction({
-            ...result.data.submitSudokuSolution,
-            createdAt: 1,
-          })
-        );
-
-        navigateToCompleted({ ...parmas, leaderboardId: undefined }, result?.data);
-      })();
-    },
-    [submitSudokuSolution, sudokuState.gameIdentifier, sudokuState.levelSlotId, dispatch, navigateToCompleted]
+    [componentId, data?.getSudokuBoard?.leaderboardEligible, data?.getSudokuBoard?.stats]
   );
 
   const onPause = useCallback(() => {
@@ -138,6 +111,87 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
       },
     });
   }, [levelSlotId, sendPause]);
+
+  const showSubmissionError = useCallback(
+    (tryAgain: () => void, cancel: () => void) => {
+      Alert.alert(
+        t["sudoku.error.title"],
+        t["sudoku.error.message"],
+        [
+          {
+            text: t["sudoku.error.cancel"],
+            onPress: cancel,
+          },
+          {
+            text: t["sudoku.error.tryAgain"],
+            onPress: tryAgain,
+          },
+        ],
+        {
+          cancelable: false,
+        }
+      );
+    },
+    [t]
+  );
+
+  const submitSolution = useCallback(
+    (params: ISudokuResults) => {
+      return new Promise<SubmitSudokuSolution>((res) => {
+        (async () => {
+          const results = await submitSudokuSolution({
+            variables: {
+              results: {
+                date: sudokuState.gameIdentifier,
+                mistakes: params.mistakes,
+                hints: params.hints,
+                baseTime: params.adjustedTime,
+                guesses: params.guesses,
+                adjustedTime: params.adjustedTime,
+                levelSlotId: sudokuState.levelSlotId,
+                difficulty: SudokuDifficulty.EASY,
+              },
+            },
+            onError: () => {
+              showSubmissionError(
+                () => res(submitSolution(params)),
+                () => res(null)
+              );
+            },
+          });
+
+          if (results?.data) {
+            res(results?.data);
+          }
+        })();
+      });
+    },
+    [showSubmissionError, submitSudokuSolution, sudokuState.gameIdentifier, sudokuState.levelSlotId]
+  );
+
+  const onGameComplete = useCallback(
+    (params: ISudokuResults) => {
+      (async () => {
+        const [result] = await Promise.all([submitSolution(params), delay(SUDOKU_ANIMATION_TIMEOUT)]);
+
+        if (result) {
+          dispatch(
+            challengeEndSuccessAction({
+              ...result.submitSudokuSolution,
+              createdAt: 1,
+            })
+          );
+
+          navigateToCompleted({ ...params, leaderboardId: undefined }, result);
+          return;
+        }
+
+        onPause();
+        Navigation.popTo(ROUTES.quests);
+      })();
+    },
+    [submitSolution, onPause, dispatch, navigateToCompleted]
+  );
 
   const onBack = useCallback(() => {
     onPause();
