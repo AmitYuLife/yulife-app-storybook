@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.82.0] - 2023-05-17
+
+### Bugfixes
+
+- Bugfix ENG-3329: Daily screen background white space when display size is set to large on android
+- Bugfix: Sudoku offline fix & more
+- Bugfix: Navbar text when display zoom is zoomed
+- Bugfix: adjust depressed product slots styling
+- Bugfix: Remove modclean
+- Bugfix: Improve topBar colour on quest-map
+- Bugfix: Storybook build
+- Bugfix: TextTemplate lineHeight
+
+### Tasks
+
+- Task: Sudoku game server config & cheat improvements
+
+### Chores
+
+- Chore: Add wait-on for API on detox tests
+
+### Extra
+
+- Detox: Bright planet testing MVP + Business_employees fix
+
 ## [3.81.0] - 2023-05-12
 
 ### Features
