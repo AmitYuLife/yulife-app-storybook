@@ -32,7 +32,7 @@ const TRANSITION_DURATION = FADE_IN_DURATION + FADE_PAUSE_DURATION + FADE_OUT_DU
 const TRANSITION_DELAY = 300;
 
 export default function CollectEventRewardModal({ goalIds, event, rewards, completed = false }: IProps) {
-  const [localRewards, setLocalRewards] = useState(rewards);
+  const [localRewards, setLocalRewards] = useState(rewards || []);
   const [eventFinished, setEventFinished] = useState(
     completed && rewards.every(({ status }) => status !== GoalRewardStatus.completed)
   );
