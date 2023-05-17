@@ -26,18 +26,20 @@ function* showCompletedEvents(completedEvents: Partial<Events>[]) {
   // flatten getGoalDetails.rewards into single array
   const rewards = [].concat(...response.map(({ data }) => data.getGoalDetails.rewards));
 
-  showYuModal({
-    component: {
-      id: MODALS.collectEventReward,
-      name: MODALS.collectEventReward,
-      passProps: {
-        goalIds: completedEvents.map((event) => event.id),
-        event: completedEvents.length === 1 && completedEvents[0].title,
-        completed: true,
-        rewards,
+  if (rewards.length) {
+    showYuModal({
+      component: {
+        id: MODALS.collectEventReward,
+        name: MODALS.collectEventReward,
+        passProps: {
+          goalIds: completedEvents.map((event) => event.id),
+          event: completedEvents.length === 1 && completedEvents[0].title,
+          completed: true,
+          rewards,
+        },
       },
-    },
-  });
+    });
+  }
 }
 
 function* showFailedEvents(failedEvents: Partial<Events>[]) {
