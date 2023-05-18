@@ -1174,8 +1174,7 @@
     "error": {
       "title": "Couldn't submit results",
       "message": "An error occurred while submitting your Yudoku results",
-      "tryAgain": "Try again",
-      "cancel": "Cancel"
+      "continue": "Continue"
     },
     "help": {
       "title": "How to play Yudoku",
