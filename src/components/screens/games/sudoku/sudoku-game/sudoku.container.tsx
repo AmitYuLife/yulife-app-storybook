@@ -28,6 +28,7 @@ import { useBackHandler, useTranslation } from "@hooks";
 import { delay } from "@utils/misc";
 import { challengeEndSuccessAction } from "@redux/levels/levels.actions";
 import { Alert } from "react-native";
+import { getUserActiveChallengeStart } from "@redux/user/user.actions";
 
 export interface ISodukuBoard {
   puzzle: SudokuBoard;
@@ -56,12 +57,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
     fetchPolicy: "no-cache",
   });
 
-  const t = useTranslation([
-    "sudoku.error.title",
-    "sudoku.error.message",
-    "sudoku.error.tryAgain",
-    "sudoku.error.cancel",
-  ]);
+  const t = useTranslation(["sudoku.error.title", "sudoku.error.message", "sudoku.error.continue"]);
 
   const onStateUpdate = useCallback(
     ({ key, value }: ISudokuStateChangedArgs) => {
@@ -113,18 +109,14 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   }, [levelSlotId, sendPause]);
 
   const showSubmissionError = useCallback(
-    (tryAgain: () => void, cancel: () => void) => {
+    (onContinue: () => void) => {
       Alert.alert(
         t["sudoku.error.title"],
         t["sudoku.error.message"],
         [
           {
-            text: t["sudoku.error.cancel"],
-            onPress: cancel,
-          },
-          {
-            text: t["sudoku.error.tryAgain"],
-            onPress: tryAgain,
+            text: t["sudoku.error.continue"],
+            onPress: onContinue,
           },
         ],
         {
@@ -137,7 +129,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
 
   const submitSolution = useCallback(
     (params: ISudokuResults) => {
-      return new Promise<SubmitSudokuSolution>((res) => {
+      return new Promise<SubmitSudokuSolution>((res, rej) => {
         (async () => {
           const results = await submitSudokuSolution({
             variables: {
@@ -153,10 +145,9 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
               },
             },
             onError: () => {
-              showSubmissionError(
-                () => res(submitSolution(params)),
-                () => res(null)
-              );
+              onPause();
+              dispatch(getUserActiveChallengeStart());
+              showSubmissionError(rej);
             },
           });
 
@@ -172,7 +163,12 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   const onGameComplete = useCallback(
     (params: ISudokuResults) => {
       (async () => {
-        const [result] = await Promise.all([submitSolution(params), delay(SUDOKU_ANIMATION_TIMEOUT)]);
+        const [result] = await Promise.all([
+          submitSolution(params).catch(() => {
+            Navigation.popTo(ROUTES.quests);
+          }),
+          delay(SUDOKU_ANIMATION_TIMEOUT),
+        ]);
 
         if (result) {
           dispatch(
@@ -183,11 +179,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
           );
 
           navigateToCompleted({ ...params, leaderboardId: undefined }, result);
-          return;
         }
-
-        onPause();
-        Navigation.popTo(ROUTES.quests);
       })();
     },
     [submitSolution, onPause, dispatch, navigateToCompleted]

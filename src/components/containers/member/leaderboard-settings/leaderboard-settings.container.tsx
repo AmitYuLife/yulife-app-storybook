@@ -35,7 +35,9 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
   const { showBrainGameSudoku } = useSelector(getUserFeatures);
   const standardLeaderboards = useSelector(getAcceptedLeaderboards);
   const [settingsPermissions, setSettingsPermissions] = useState<SettingsPermissions>();
-  const { refetch: refetchSudoku, data: sudokuStats } = useQuery(GQL_QUERY_GET_SUDOKU_STATS);
+  const { refetch: refetchSudoku, data: sudokuStats } = useQuery(GQL_QUERY_GET_SUDOKU_STATS, {
+    fetchPolicy: "network-only",
+  });
 
   const [updateSudokuLeaderboardConsent] = useMutation<
     UpdateSudokuLeaderboardConsent,

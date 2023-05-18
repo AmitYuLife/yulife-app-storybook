@@ -112,14 +112,14 @@ const SudokuManager = ({
       boardType: SudokuBoardType;
     } & ISudokuPosition): number => {
       if (boardType === SudokuBoardType.ANSWER) {
-        return initialBoard.solution[row][column];
+        return initialBoard?.solution?.[row]?.[column];
       }
 
       if (boardType === SudokuBoardType.INITIAL) {
-        return initialBoard.puzzle[row][column];
+        return initialBoard?.puzzle?.[row]?.[column];
       }
 
-      return sudokuState.board[row][column];
+      return sudokuState.board?.[row]?.[column];
     },
     [sudokuState.board, initialBoard]
   );

@@ -1164,8 +1164,7 @@
     "error": {
       "title": "Couldn't submit results",
       "message": "An error occurred while submitting your Yudoku results",
-      "tryAgain": "Try again",
-      "cancel": "Cancel"
+      "continue": "Continue"
     },
     "stats": {
       "personalBest": "Personal best",
