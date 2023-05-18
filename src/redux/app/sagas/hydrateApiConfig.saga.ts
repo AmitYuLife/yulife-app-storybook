@@ -8,10 +8,12 @@ import { SyncAction } from "@redux/_core/types";
 import { DETOX_ENABLED } from "@services/socket";
 import deepLink from "@navigation/deepLink";
 
+const initialPayloadTypes = ["INIT", "SET_MAIN_ROOT"];
+
 export default function* hydrateApiConfigSaga(payload: SyncAction) {
   try {
     let shouldFetchConfig = true;
-    const isFromInit = payload?.type === "INIT";
+    const isFromInit = initialPayloadTypes.includes(payload?.type);
 
     if (isFromInit) {
       yield call(region.hydratePreferredRegion);
