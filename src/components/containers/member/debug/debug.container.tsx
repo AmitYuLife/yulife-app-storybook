@@ -11,6 +11,7 @@ import Logger from "@services/logging/logger";
 import { ROUTES } from "@navigation/constants";
 import { getYuScreen } from "@graphql/yuscreen/getYuScreen.gql";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
+import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 
 interface Props {
   componentId: string;
@@ -85,15 +86,16 @@ const DebugContainer: React.FC<Props> = (props) => {
         }
 
         if (code === "sleep-meditation") {
-          return Navigation.push(props.componentId, {
-            component: {
-              id: ROUTES.journey,
-              name: ROUTES.journey,
-              passProps: {
-                journeyId: "media",
-                dynamicId: "fiit_cardio",
+          return dispatch({
+            type: SduiActionType.SDUI_ACTION_NAVIGATE,
+            payload: JSON.stringify({
+              routeId: "sleep_meditation",
+              isSduiStatic: true,
+              props: {
+                stepId: "sleep_meditation",
+                dynamicId: "sleep_meditation_test",
               },
-            },
+            }),
           });
         }
 
