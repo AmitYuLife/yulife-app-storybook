@@ -110,7 +110,6 @@ export const ContentItemMedia = memo(
 const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
-    position: "absolute",
     height: Style.DEVICE_HEIGHT,
   },
 });
