@@ -148,3 +148,7 @@ export const amOnCancelPage = async () => {
 export const canSeeAttemptDisclaimer = async () => {
   await textVisible("As this is not your first attempt today your time will not be ranked on the leaderboard and will not count towards your personal best.")()
 }
+
+export const canSeeYudokuLeaderboardButton = async () => {
+  await textVisible("Yudoku Leaderboard")()
+}

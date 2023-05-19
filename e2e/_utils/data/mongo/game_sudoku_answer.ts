@@ -68,7 +68,6 @@ export const SUDOKU_ANSWER_84 = {
       baseTime: 400,
       adjustedTime: 400,
       difficulty: "easy",
-      // leaderboardId: BUSINESS_EMPLOYEE_67.data.business_account_id,
       leaderboardEligible: true
     }
 }

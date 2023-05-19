@@ -1,6 +1,7 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import moment = require('moment');
+import { CORE_REWARDS_NIKE } from "./core_rewards";
 
 export const MAP_LEVEL_CHALLENGE_DETAIL_1 = {
     type: "mongo",
@@ -80,7 +81,17 @@ export const MAP_LEVEL_CHALLENGE_DETAIL_1 = {
                             "playStoreId": "com.getsomeheadspace.android"
                         }
                     }
-                ]
+                ],
+                "promotionReward": {
+                    "_id": {
+                        "id": generateRandomMongoId(),
+                    },
+                    "title": "Meditopia Premium",
+                    "description": "Enjoying Meditopia?",
+                    "buttonLabel": "Show me how",
+                    "discount": "70% off",
+                    "rewardId": CORE_REWARDS_NIKE.data._id
+                }
             }
         ]
     }

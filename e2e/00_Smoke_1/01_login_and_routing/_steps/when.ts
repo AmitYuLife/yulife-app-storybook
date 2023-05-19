@@ -75,7 +75,7 @@ export const pressOnActivityHistory = async (): Promise<void> => {
 };
 
 export const pressOnLeaderboards = async (): Promise<void> => {
-    const target = element(by.id(MENU_ITEM("leaderboard")));
+    const target = element(by.id(MENU_ITEM("leaderboards")));
     await waitFor(target).toExist().withTimeout(5000);
     await target.tap();
 };

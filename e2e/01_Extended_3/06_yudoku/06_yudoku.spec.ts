@@ -3,8 +3,8 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { AUTH_58,  AUTH_84,  AUTH_86, CUSTOMER_58, CUSTOMER_67, CUSTOMER_68, CUSTOMER_71, CUSTOMER_84, CUSTOMER_86, SUDOKU_ANSWER_1, SUDOKU_ANSWER_2, SUDOKU_ANSWER_3} from "@data"
-import { BACK_BUTTON, BUTTON_CLOSE_HEADER, BUTTON_CLOSE_RIGHT_ID, CANCEL_CANCEL_CHALLENGE, CELL_ROW_COLUMN, LEVEL_CHALLENGE_BUTTON, SUDOKU_HINT_TIMER, SUDOKU_NUMBER_INPUT, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, SUDOKU_UNRANKED_LABEL, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids"
+import { AUTH_58,  AUTH_76,  AUTH_84,  AUTH_86, CUSTOMER_58, CUSTOMER_67, CUSTOMER_68, CUSTOMER_71, CUSTOMER_76, CUSTOMER_84, CUSTOMER_86, SUDOKU_ANSWER_1, SUDOKU_ANSWER_2, SUDOKU_ANSWER_3} from "@data"
+import { BACK_BUTTON, BUTTON_CLOSE_HEADER, BUTTON_CLOSE_RIGHT_ID, CANCEL_CANCEL_CHALLENGE, CELL_ROW_COLUMN, LEVEL_CHALLENGE_BUTTON, MENU_ICON, SETTINGS_SCREEN, SETTINGS_SWITCH, SUDOKU_HINT_TIMER, SUDOKU_NUMBER_INPUT, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, SUDOKU_UNRANKED_LABEL, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids"
 import { SUDOKU_STAT_0 } from "_utils/data/mongo/game_sudoku_stats"
 
 Feature("Yudoku", async () => {
@@ -51,7 +51,9 @@ Feature("Yudoku", async () => {
         Then("I can see the leaderboard entries on the home screen", then.canSeeLeaderboard(CUSTOMER_67, SUDOKU_ANSWER_3, 2, true))
     })
     When("I tap start game", when.tapStartGame, async () => {
-        Then("I am on the Sudoku challenge screen", then.amOnSudokuChallenge)
+        When("I tap maybe later", when.tapText("maybe later"), async () => {
+            Then("I am on the Sudoku challenge screen", then.amOnSudokuChallenge)
+        })
     })
     When("I tap the first empty cell", when.tapID(CELL_ROW_COLUMN(8, 6, 0)), async () => {
         When("I tap the hint button", when.tapSudokuHint, async () => {
@@ -150,7 +152,9 @@ Feature("Yudoku", async () => {
         Then("I am on the sudoku page", then.amOnSudokuPage)
     })
     When("I tap start game", when.tapStartGame, async () => {
-        Then("I am on the Sudoku challenge screen", then.amOnSudokuChallenge)
+        When("I tap maybe later", when.tapText("maybe later"), async () => {
+            Then("I am on the Sudoku challenge screen", then.amOnSudokuChallenge)
+        })
     })
     When("I tap the first empty cell", when.tapID(CELL_ROW_COLUMN(8, 6, 0)), async () => {
         When("I tap the incorrect number", when.tapID(SUDOKU_NUMBER_INPUT(8)), async () => {
@@ -182,7 +186,9 @@ Feature("Yudoku", async () => {
         Then("I am on the sudoku page", then.amOnSudokuPage)
     })
     When("I tap start game", when.tapStartGame, async () => {
-        Then("I am on the Sudoku challenge screen", then.amOnSudokuChallenge)
+        When("I tap maybe later", when.tapText("maybe later"), async () => {
+            Then("I am on the Sudoku challenge screen", then.amOnSudokuChallenge)
+        })
     })
     When("I press back", when.tapID(BACK_BUTTON), async () => {
         When("I press cancel", when.tapText("Cancel"), async () => {
@@ -216,6 +222,85 @@ Feature("Yudoku", async () => {
     })
   })
 
+  Scenario("I can go to and leave the Yudoku leaderboard", scenario.start, () => {
+    Given("I login", given.logInAndGoToTab("yucoin", CUSTOMER_76, AUTH_76), async () => {
+        Then("I should see 200 YuCoin in the top right hand corner", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
+    })
+    When("I tap take take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
+        When("I tap level 1 button", when.tapID(LEVEL_CHALLENGE_BUTTON(1)), async () => {
+            Then("I should see the Sodoku tile is available", then.canSeeSudokuTile)
+        })
+    })
+    When("I tap the soduku challenge", when.tapSudoku, async () => {
+        Then("I am on the sudoku page", then.amOnSudokuPage)
+    })
+    When("I go to the join leaderboard", when.tapJoinTheLeaderboard, async () => {
+        Then("I can see the join leaderboard screen", then.amOnLeaderboardIntroModal)
+    })
+    When("I tap the join button", when.tapJoinLeaderboardButton, async () => {
+        When("I press back", when.tapID(BACK_BUTTON), async () => {
+            Then("I can see the home screen has leaderboard related content", then.canSeeHomeAfterLeaderboardJoin)
+        })
+    })
+    When("I tap the back button", when.tapID(BACK_BUTTON), async () => {
+        When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 500), async () => {
+            When("I tap settings", when.tapMenuItem("Settings"), async () => {
+                Then("I should be on the settings tab", then.idVisible(SETTINGS_SCREEN, 2500))
+            })
+        })
+    })
+    When('I tap leaderboards', when.tapText("Leaderboards"), async () => {
+        Then("I can see the option for Yudoku leaderboards", then.idVisible(SETTINGS_SWITCH("Yudoku", true)))
+    })
+    When("I tap the toggle", when.tapID(SETTINGS_SWITCH("Yudoku", true)), async () => {
+        When("I tap turn it off", when.tapText("Turn it off"), async () => {
+            Then("I can see the option for Yudoku leaderboards is off ", then.idVisible(SETTINGS_SWITCH("Yudoku", false)))
+        })
+    })
+    When("I go back", when.tapID(BUTTON_CLOSE_HEADER("Leaderboards")), async () => {
+        When("I tap level 1 button", when.tapID(LEVEL_CHALLENGE_BUTTON(1)), async () => {
+            When("I tap the soduku challenge", when.tapSudoku, async () => {
+                Then("I can see the join leaderboard button is visible", then.textVisible("Join the daily leaderboard"))
+            })
+        })
+    })
+    When("I go to the join leaderboard", when.tapJoinTheLeaderboard, async () => {
+        When("I tap the join button", when.tapJoinLeaderboardButton, async () => {
+            When("I press back", when.tapID(BACK_BUTTON), async () => {
+                Then("I can see the home screen has leaderboard related content", then.canSeeHomeAfterLeaderboardJoin)
+            })
+        })
+    })
+    When("I tap the back button", when.tapID(BACK_BUTTON), async () => {
+        When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 500), async () => {
+            When("I tap settings", when.tapMenuItem("Settings"), async () => {
+                Then("I should be on the settings tab", then.idVisible(SETTINGS_SCREEN, 2500))
+            })
+        })
+    })
+    When('I tap leaderboards', when.tapText("Leaderboards"), async () => {
+        Then("I can see the option for Yudoku leaderboards", then.idVisible(SETTINGS_SWITCH("Yudoku", true)))
+    })
+    When("I go back", when.tapID(BUTTON_CLOSE_HEADER("Leaderboards")), async () => {
+        When("I tap level 1 button", when.tapID(LEVEL_CHALLENGE_BUTTON(1)), async () => {
+            When("I tap the soduku challenge", when.tapSudoku, async () => {
+                When("I complete the Yudoku", when.completeYudoku, async () => {
+                    When("I tap done", when.tapText("Done"), async () => {
+                        When("I tap level 1 button", when.tapID(LEVEL_CHALLENGE_BUTTON(1)), async () => {
+                            Then("I can see the Yudoku leaderboard button", then.canSeeYudokuLeaderboardButton)
+                        })
+                    })
+                })
+            })
+        })
+    })    
+    When("I tap yudoku leaderboard", when.tapText("Yudoku Leaderboard"), async () => {
+        Then("I can see the leaderboard entries", then.canSeeLeaderboard(CUSTOMER_71, SUDOKU_ANSWER_1, 2))
+        Then("I can see the leaderboard entries", then.canSeeLeaderboard(CUSTOMER_67, SUDOKU_ANSWER_3, 3))
+        Then("I can see the leaderboard entries", then.canSeeLeaderboard(CUSTOMER_68, SUDOKU_ANSWER_2, 4))
+    })
+  })
+
     Scenario("I can see my yudoku daily time in the earnings screen", scenario.start, async () => {
         Given("I login", given.logInAndGoToTab("yucoin", CUSTOMER_84, AUTH_84), async () => {
             Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
@@ -224,4 +309,6 @@ Feature("Yudoku", async () => {
             Then("I can see the Sudoku challenge is completed", then.canSeeEarntSudoku("6m 40s"))
         })
     })
+
+
 })
