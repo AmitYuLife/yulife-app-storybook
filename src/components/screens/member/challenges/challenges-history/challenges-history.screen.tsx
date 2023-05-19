@@ -52,7 +52,7 @@ function ChallengesHistory({
                 key={slot.id}
                 availableAtLevel={slot.availableAtLevel}
                 duration={slot.duration}
-                type={slot.heading}
+                type={slot.subtype}
                 image={slot.historyImage.uri}
                 locked={slot.isLocked}
                 challenges={slot.challenges}
