@@ -33,10 +33,12 @@ import {
 } from "./levels.actions";
 import { CHALLENGE_START_INITIAL_STEPS, ChallengeStartPayload } from "./levels.actions";
 import { IActiveLevel } from "./levels.selectors";
+import { getChallengesAmountAvailable } from "./levels.helpers";
 
 export interface ILevelsStore {
   active: IActiveLevel;
   challengesDoneToday: number;
+  dailyChallengeAmountAvailable: number;
   level: number;
   yuniversalMap: number;
   yuniversalLevel: number;
@@ -74,6 +76,7 @@ export const getInitialState = (): ILevelsStore => ({
     appButton: null,
   },
   challengesDoneToday: 0,
+  dailyChallengeAmountAvailable: 1,
   level: 1,
   yuniversalMap: 0,
   yuniversalLevel: 0,
@@ -165,6 +168,9 @@ const getUserSuccess = (state: ILevelsStore, data: GetCurrentUser): ILevelsStore
     challengeIsActive: false,
   },
   challengesDoneToday: data?.getCurrentUser?.challengesDoneToday || 0,
+  dailyChallengeAmountAvailable:
+    data?.getCurrentUser?.dailyChallengeAmountAvailable ||
+    getChallengesAmountAvailable(data?.getCurrentUser?.coinLedger?.currentLevel || 1),
   level: data?.getCurrentUser?.coinLedger?.currentLevel || 1,
   yuniversalMap: data?.getCurrentUser?.coinLedger?.yuniversalMap || 0,
   yuniversalLevel: data?.getCurrentUser?.coinLedger?.yuniversalLevel || 0,
@@ -175,6 +181,9 @@ const getUserSuccess = (state: ILevelsStore, data: GetCurrentUser): ILevelsStore
 const loginUserSuccess = (state: ILevelsStore, data: LoginUser): ILevelsStore => ({
   ...state,
   challengesDoneToday: data?.loginUser?.user?.challengesDoneToday || 0,
+  dailyChallengeAmountAvailable:
+    data?.loginUser?.user?.dailyChallengeAmountAvailable ||
+    getChallengesAmountAvailable(data?.loginUser?.user?.coinLedger?.currentLevel || 1),
   level: data?.loginUser?.user?.coinLedger?.currentLevel || 1,
   yuniversalMap: data?.loginUser?.user?.coinLedger?.yuniversalMap || 0,
   yuniversalLevel: data?.loginUser?.user?.coinLedger?.yuniversalLevel || 0,

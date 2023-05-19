@@ -905,6 +905,18 @@
             "deprecationReason": null
           },
           {
+            "name": "dailyChallengeAmountAvailable",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "activityToday",
             "description": null,
             "args": [],

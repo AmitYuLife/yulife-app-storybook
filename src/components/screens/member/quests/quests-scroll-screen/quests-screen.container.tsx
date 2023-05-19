@@ -33,6 +33,10 @@ function isAvailable(nextAvailableAt: string): boolean {
   return nextAvailable >= 0;
 }
 
+/**
+ * When a user completes a challenge, but has multiple available challenges per day, we still increment their level
+ * on the backend, but allow them to do the previous level as many times as they are allowed to
+ */
 function getLevelStatus(
   challengesStatus: ReturnType<typeof getChallengesStatus>,
   currentLevel: number,
@@ -40,13 +44,12 @@ function getLevelStatus(
   nextAvailableAt: string
 ) {
   const { hasDone: hasDoneChallenge, isAvailable: isChallengeAvailable } = challengesStatus;
-  const isInSecondWorld = currentLevel > 51;
 
   const hasTimer = !isAvailable(nextAvailableAt);
 
   if (currentLevel === level) {
     return {
-      isActive: isInSecondWorld && hasDoneChallenge ? !isChallengeAvailable || !hasTimer : true,
+      isActive: hasDoneChallenge ? hasTimer && !isChallengeAvailable : true,
       isDone: false,
       isNext: true,
       isPrevious: false,
@@ -54,12 +57,12 @@ function getLevelStatus(
     };
   }
 
-  // previous level = currentLevel - 1
-  // previous level for unity = currentLevel - 2
-  if (
-    (level % 50 !== 0 && currentLevel - 1 === level) ||
-    (isInSecondWorld && currentLevel % 50 === 1 && currentLevel - 2 === level)
-  ) {
+  const isUnityLevel = level % 50 === 0;
+  const isPreviousLevel = currentLevel - 1 === level;
+  const isPreviousLevelForUnity = currentLevel - 2 === level;
+  const isFirstLevelOfTheWorld = currentLevel % 50 === 1;
+
+  if ((!isUnityLevel && isPreviousLevel) || (isFirstLevelOfTheWorld && isPreviousLevelForUnity)) {
     const previousAvailable = hasDoneChallenge && hasTimer && isChallengeAvailable;
     return {
       isActive: previousAvailable,
