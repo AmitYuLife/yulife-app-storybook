@@ -250,4 +250,39 @@ Feature("PLI HAPPY", async () => {
       );
     }
   );
+  Scenario("I can buy PLI with locale set to US and should see price in £ but not in $", scenario.startUS, async () => {
+    Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_37, AUTH_37 ), async () => {
+          helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "10");
+          helper_V4.YUSCREEN_V4(CUSTOMER_37, "dentalAndPli", "10");
+          helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
+          helper.ONBOARDING();
+          helper.INTRO_START();
+          helper.INTRO_INFO();
+          helper.INTRO_HONESTY();
+          helper.UNDERWRITING_NAME();
+          helper.UNDERWRITING_DOB(30);
+          helper.UNDERWRITING_SALARY("25000");
+          helper.UNDERWRITING_CITIZEN("Yes");
+          helper.UNDERWRITING_EMPLOYMENT("No");
+          helper.UNDERWRITING_HEIGHT("160 cm");
+          helper.UNDERWRITING_WEIGHT("60 kg");
+          helper.UNDERWRITING_CIGARETTES("Never");
+          helper.UNDERWRITING_CIGARS("Never");
+          helper.UNDERWRITING_SMOKING_ALTERNATIVES("Never");
+          helper.UNDERWRITING_ALCOHOL("2 drinks");
+          helper.UNDERWRITING_CANNABIS("Never");
+          helper.UNDERWRITING_RECREATIONAL_DRUGS("Never");
+          helper.UNDERWRITING_COUNSELLING("No");
+          helper.UNDERWRITING_SEX("Male");
+          helper.UNDERWRITING_DIAGNOSED_WITH("No");
+          helper.UNDERWRITING_MANY_CONSULTATIONS("No");
+          helper.UNDERWRITING_AWAITING_TESTS("No");
+          helper.UNDERWRITING_SYMPTOMS("No");
+          helper.UNDERWRITING_COVID_HOSPITAL("No");
+          helper.UNDERWRITING_COVID_EXPOSURE("No");
+          helper.UNDERWRITING_OTHER_POLICIES("No");
+          helper.REVIEW_SCREEN();
+          helper.LOCALE_US_CURRENCY_REVIEW_SCREEN()
+      })
+    })
 });
