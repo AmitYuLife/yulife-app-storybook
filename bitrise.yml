@@ -1005,7 +1005,7 @@ workflows:
             applesimutils -v
 
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
-            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel fatal --debug-synchronization 200
+            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel warn --debug-synchronization 200
 
 
     - script@1:
@@ -1085,7 +1085,7 @@ workflows:
             applesimutils -v
 
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
-            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel info --debug-synchronization 200
+            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel warn --debug-synchronization 200
 
 
     - script@1:
@@ -1363,7 +1363,7 @@ workflows:
             applesimutils -v
 
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
-            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel error --debug-synchronization 200
+            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel warn --debug-synchronization 200
 
 
     - script@1:
@@ -2212,274 +2212,39 @@ workflows:
     before_run:
     - ios-primary
   ios-run-api-local:
+    before_run:
+    - run-postgres
+    - run-mongodb
     steps:
     - nvm@1:
         inputs:
         - node_version: 14.18.1
-    - script@1:
-        title: Install & run Postgres
+    - restore-cache@1:
         inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-            id -un
-
-            brew services list
-            brew uninstall --force postgresql || echo "postgres not installed"
-            rm -rf /usr/local/var/postgres || echo "postgres dir doesn't exist"
-            brew install postgresql -v || true
-            #brew doctor
-            #brew services list
-            ls /usr/local/var/postgres || initdb -D /usr/local/var/postgres || echo "Already inited"
-            #PGPORT=5432 PGHOST=localhost brew services start postgresql
-            PGPORT=5432 PGHOST=localhost pg_ctl -D /usr/local/var/postgres -l logfile start
-            #brew services list
-            #cat /Users/vagrant/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-            #cat /usr/local/var/log/postgres.log
-            psql -d postgres -c "\du"
-            psql -d postgres -U vagrant -h localhost -c "CREATE DATABASE yulife;"
-            psql -d postgres -U vagrant -h localhost -c "CREATE USER yulife WITH PASSWORD 'yulife';"
-            psql -d postgres -U vagrant -h localhost -c "ALTER USER yulife WITH SUPERUSER;"
-
-
-
-            # Change node version to 10
-            node -v
-
-            brew uninstall --ignore-dependencies node@12 icu4c || true
-
-            node -v | echo "Node not there"
-            brew unlink node || true
-            brew unlink node@12 || true
-            brew install node@14 || true
-            brew unlink node || true
-            brew link --overwrite --force node@14
-
-            node -v
-    - script@1:
-        title: Install & run MongoDB
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            mkdir ~/data
-            brew tap --repair
-            brew update
-            brew tap mongodb/brew
-            brew install mongodb-community@5.0
-            brew tap homebrew/services
-            echo "  port: 27018" >> /usr/local/etc/mongod.conf
-            brew services start mongodb-community@5.0
-            #brew services list
-            cat /usr/local/etc/mongod.conf
-            node -v
+        - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
     - script@1:
         title: Pull & run API
         inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-
-            CWD=$(pwd)
-
-            mkdir ~/temp-repos
-            cd ~/temp-repos
-
-            git clone git@gitlab.com:yu-life/yulife-api-server.git
-            cd yulife-api-server
-            git checkout $BITRISE_GIT_BRANCH || git checkout develop
-            git pull
-
-
-            node -v
-            yarn install --frozen-lockfile
-            echo "Install completed"
-            ./scripts/setupPostgresForBitrise.sh
-            yarn build
-
-            yarn detox:changeRegionDatabase:UK
-
-            npm install -g forever
-            NODE_ENV=detox DEBUG=yu:* forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
-            echo 'Waiting for API to bootstrap...'
-            npx wait-on http://localhost:5000
-
-            cd $CWD
-  ios-run-api-local-node14:
-    steps:
-    - script@1:
-        title: Install & run Postgres
+        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n\nCWD=$(pwd)\n\nmkdir -p ~/temp-repos\ncd ~/temp-repos\n\ngit clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git api-clone\nmv api-clone/{*,.[^.]*} yulife-api-server\nrm -rf api-clone\ncd yulife-api-server\n\ngit checkout $BITRISE_GIT_BRANCH || git checkout develop\ngit pull\n\nyarn install --frozen-lockfile \necho \\\"Install completed\\\"\n./scripts/setupPostgresForBitrise.sh\nyarn build\n\nyarn detox:changeRegionDatabase:UK\n\nnpm install -g forever\nNODE_ENV=detox DEBUG=yu:* forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js\necho 'Waiting for API to bootstrap...'\nnpx wait-on http://localhost:5000\n\ncd $CWD"
+    - save-cache@1:
         inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-            id -un
-
-            brew services list
-            brew uninstall --force postgresql || echo "postgres not installed"
-            rm -rf /usr/local/var/postgres || echo "postgres dir doesn't exist"
-            brew install postgresql -v || true
-            brew services list
-            ls /usr/local/var/postgres || initdb -D /usr/local/var/postgres || echo "Already inited"
-            #PGPORT=5432 PGHOST=localhost brew services start postgresql
-            PGPORT=5432 PGHOST=localhost pg_ctl -D /usr/local/var/postgres -l logfile start
-            #brew services list
-            #cat /Users/vagrant/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-            #cat /usr/local/var/log/postgres.log
-            psql -d postgres -c "\du"
-            psql -d postgres -U vagrant -h localhost -c "CREATE DATABASE yulife;"
-            psql -d postgres -U vagrant -h localhost -c "CREATE USER yulife WITH PASSWORD 'yulife';"
-            psql -d postgres -U vagrant -h localhost -c "ALTER USER yulife WITH SUPERUSER;"
-
-
-
-            # Change node version to 14
-            node -v
-
-            brew uninstall --ignore-dependencies node@12 icu4c
-
-            node -v | echo "Node not there"
-            brew unlink node || true
-            brew unlink node@12 || true
-            brew install node@14 || true
-            brew unlink node || true
-            brew link --overwrite --force node@14
-
-            node -v
-    - script@1:
-        title: Install & run MongoDB
-        inputs:
-        - content: |
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            mkdir ~/data
-            brew update
-            brew tap mongodb/brew
-            brew install mongodb-community@5.0
-            brew tap homebrew/services
-            echo "  port: 27018" >> /usr/local/etc/mongod.conf
-            brew services start mongodb-community@5.0
-            brew services list
-            cat /usr/local/etc/mongod.conf
-    - script@1:
-        title: Pull & run API
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-
-            CWD=$(pwd)
-
-            mkdir ~/temp-repos
-            cd ~/temp-repos
-
-            git clone git@gitlab.com:yu-life/yulife-api-server.git
-            cd yulife-api-server
-            git checkout $BITRISE_GIT_BRANCH || git checkout develop
-            git pull
-
-
-            yarn
-            ./scripts/setupPostgresForBitrise.sh
-            yarn build
-
-            yarn detox:setup
-
-
-            npm install -g forever modclean
-            modclean -r # to mimic build containers
-            NODE_ENV=detox DEBUG=yu:* forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
-            sleep 30
-            curl http://localhost:5000
-
-            cd $CWD
+        - paths: ~/temp-repos/yulife-api-server/node_modules
+        - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
   ios-run-api-local-slow:
+    before_run:
+    - run-postgres
+    - run-mongodb
     steps:
     - nvm@1:
         inputs:
         - node_version: 14.18.1
-    - script@1:
-        title: Install & run Postgres
+    - restore-cache@1:
         inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-            id -un
-
-            brew services list
-            brew uninstall --force postgresql || echo "postgres not installed"
-            rm -rf /usr/local/var/postgres || echo "postgres dir doesn't exist"
-            brew install postgresql -v || true
-            #brew doctor
-            #brew services list
-            ls /usr/local/var/postgres || initdb -D /usr/local/var/postgres || echo "Already inited"
-            #PGPORT=5432 PGHOST=localhost brew services start postgresql
-            PGPORT=5432 PGHOST=localhost pg_ctl -D /usr/local/var/postgres -l logfile start
-            #brew services list
-            #cat /Users/vagrant/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-            #cat /usr/local/var/log/postgres.log
-            psql -d postgres -c "\du"
-            psql -d postgres -U vagrant -h localhost -c "CREATE DATABASE yulife;"
-            psql -d postgres -U vagrant -h localhost -c "CREATE USER yulife WITH PASSWORD 'yulife';"
-            psql -d postgres -U vagrant -h localhost -c "ALTER USER yulife WITH SUPERUSER;"
-
-
-
-            # Change node version to 10
-            node -v
-
-            brew uninstall --ignore-dependencies node@12 icu4c || true
-
-            node -v | echo "Node not there"
-            brew unlink node || true
-            brew unlink node@12 || true
-            brew install node@14 || true
-            brew unlink node || true
-            brew link --overwrite --force node@14
-
-            node -v
-    - script@1:
-        title: Install & run MongoDB
-        inputs:
-        - content: |
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            mkdir ~/data
-            brew update
-            brew tap mongodb/brew
-            brew install mongodb-community@5.0
-            brew tap homebrew/services
-            echo "  port: 27018" >> /usr/local/etc/mongod.conf
-            brew services start mongodb-community@5.0
-            #brew services list
-            cat /usr/local/etc/mongod.conf
+        - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
     - script@1:
         title: Pull & run API
         inputs:
-        - content: |-
+        - content: |
             #!/usr/bin/env bash
             # fail if any commands fails
             set -e
@@ -2489,11 +2254,12 @@ workflows:
             mkdir ~/temp-repos
             cd ~/temp-repos
 
-            git clone git@gitlab.com:yu-life/yulife-api-server.git
+            git clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git api-clone
+            mv api-clone/{*,.[^.]*} yulife-api-server
+            rm -rf api-clone
             cd yulife-api-server
             git checkout $BITRISE_GIT_BRANCH || git checkout develop
             git pull
-
 
             yarn install --frozen-lockfile
             ./scripts/setupPostgresForBitrise.sh
@@ -2508,74 +2274,21 @@ workflows:
             npx wait-on http://localhost:5000
 
             cd $CWD
+    - save-cache@1:
+        inputs:
+        - paths: ~/temp-repos/yulife-api-server/node_modules
+        - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
   ios-run-api-local-usa:
+    before_run:
+    - run-postgres
+    - run-mongodb
     steps:
     - nvm@1:
         inputs:
         - node_version: 14.18.1
-    - script@1:
-        title: Install & run Postgres
+    - restore-cache@1:
         inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-            id -un
-
-            brew services list
-            brew uninstall --force postgresql || echo "postgres not installed"
-            rm -rf /usr/local/var/postgres || echo "postgres dir doesn't exist"
-            brew install postgresql -v || true
-            #brew doctor
-            #brew services list
-            ls /usr/local/var/postgres || initdb -D /usr/local/var/postgres || echo "Already inited"
-            #PGPORT=5432 PGHOST=localhost brew services start postgresql
-            PGPORT=5432 PGHOST=localhost pg_ctl -D /usr/local/var/postgres -l logfile start
-            #brew services list
-            #cat /Users/vagrant/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-            #cat /usr/local/var/log/postgres.log
-            psql -d postgres -c "\du"
-            psql -d postgres -U vagrant -h localhost -c "CREATE DATABASE yulife;"
-            psql -d postgres -U vagrant -h localhost -c "CREATE USER yulife WITH PASSWORD 'yulife';"
-            psql -d postgres -U vagrant -h localhost -c "ALTER USER yulife WITH SUPERUSER;"
-
-
-
-            # Change node version to 10
-            node -v
-
-            brew uninstall --ignore-dependencies node@12 icu4c || true
-
-            node -v | echo "Node not there"
-            brew unlink node || true
-            brew unlink node@12 || true
-            brew install node@14 || true
-            brew unlink node || true
-            brew link --overwrite --force node@14
-
-            node -v
-    - script@1:
-        title: Install & run MongoDB
-        inputs:
-        - content: |
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            mkdir ~/data
-            brew tap --repair
-            brew update
-            brew tap mongodb/brew
-            brew install mongodb-community@5.0
-            brew tap homebrew/services
-            echo "  port: 27018" >> /usr/local/etc/mongod.conf
-            brew services start mongodb-community@5.0
-            #brew services list
-            cat /usr/local/etc/mongod.conf
+        - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
     - script@1:
         title: Pull & run API
         inputs:
@@ -2589,7 +2302,10 @@ workflows:
             mkdir ~/temp-repos
             cd ~/temp-repos
 
-            git clone git@gitlab.com:yu-life/yulife-api-server.git
+            git clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git api-clone
+            mv api-clone/{*,.[^.]*} yulife-api-server
+            rm -rf api-clone
+
             cd yulife-api-server
             git checkout $BITRISE_GIT_BRANCH || git checkout develop
             git pull
@@ -2607,6 +2323,10 @@ workflows:
             npx wait-on http://localhost:5001
 
             cd $CWD
+    - save-cache@1:
+        inputs:
+        - paths: ~/temp-repos/yulife-api-server/node_modules
+        - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
   ios-set-uat-env-vars:
     steps:
     - script@1.1.5:
@@ -2710,3 +2430,51 @@ workflows:
               --bundle ios-release.bundle \
               --source-map ios-release.bundle.map \
               --overwrite
+  run-mongodb:
+    steps:
+    - script@1:
+        title: Install & Run MongoDB (mongodb-community@5.0)
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            mkdir ~/data
+            brew tap --repair
+            brew update
+            brew tap mongodb/brew
+            brew install mongodb-community@5.0
+            brew tap homebrew/services
+
+            echo "  port: 27018" >> /usr/local/etc/mongod.conf
+
+            brew services start mongodb-community@5.0
+
+            echo 'mongo config...'
+            cat /usr/local/etc/mongod.conf
+  run-postgres:
+    steps:
+    - script@1:
+        title: Install & Run Postgres (postgresql@14)
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+            id -un
+
+            brew update
+            brew install postgresql@14 -v || true
+
+            ls /usr/local/var/postgres || initdb -D /usr/local/var/postgres || echo "Already inited"
+            PGPORT=5432 PGHOST=localhost pg_ctl -D /usr/local/var/postgres -l logfile start
+
+            psql -d postgres -c "\du"
+            psql -d postgres -U vagrant -h localhost -c "CREATE DATABASE yulife;"
+            psql -d postgres -U vagrant -h localhost -c "CREATE USER yulife WITH PASSWORD 'yulife';"
+            psql -d postgres -U vagrant -h localhost -c "ALTER USER yulife WITH SUPERUSER;"
