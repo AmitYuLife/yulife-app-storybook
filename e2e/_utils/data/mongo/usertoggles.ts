@@ -1387,6 +1387,7 @@ export const CUSTOMER_76_TOGGLES = {
       yuScreenV3: true,
       showPermissionSettings: true,
       yuScreenV4: false,
+      showBrainGameSudoku: true
     },
   },
 } as IDatabaseItem;
@@ -1645,6 +1646,19 @@ export const CUSTOMER_91_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
+      showBrainGameSudoku: true
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_62TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_92.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
     },
   },
 } as IDatabaseItem;

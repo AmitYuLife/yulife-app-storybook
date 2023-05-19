@@ -1,5 +1,6 @@
 import { TextTemplate } from "@atoms";
 import { Switch, TouchableOpacityWithDelay } from "@components/molecules";
+import { SETTINGS_SWITCH } from "@ids";
 import { t } from "@locale";
 import { Style } from "@styles";
 import { memo, useCallback } from "react";
@@ -26,7 +27,7 @@ const LeaderboardToggle = ({ onChangeConsent, leaderboardId, name, consent }: IP
   }, [consent, leaderboardId, name, onChangeConsent]);
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={SETTINGS_SWITCH(name, !!consent)}>
       <TouchableOpacityWithDelay style={styles.nameWrapper} onPress={onToggle}>
         <TextTemplate type="b2">{t("screens.leaderboard_settings.item_title", { name })}</TextTemplate>
         <TextTemplate type="l1">

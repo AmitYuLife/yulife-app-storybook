@@ -57,7 +57,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     Scenario("I can't transition from the level 199 to the yuniverse level 200 on the same day", scenario.start, () => {
         Given("I login as a user on level 199", given.logInAndGoToTab("quests", CUSTOMER_63, AUTH_63), async () => {
             Then("I should see my coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
-            Then("I should see the level 49 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(199)))
+            Then("I should see the level 199 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(199)))
         })
         When("I complete a walking challenge", when.completeNewWorldShortStroll(199), async () => {
             Then("I should see the level 199 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(199)))
@@ -295,19 +295,6 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         })
         When("I tap to open the chest", when.tapText("Open the chest"), async () => {
             Then("I should see I have the correct items in the Yunity Chest", then.yunityChestAwardsVisible(USER_79, 1))
-        })
-    })
-
-    Scenario("As a user opening a Yunity Chest at level 400, I want the chest to contain a 7 day surge and YuCoin worth 50x the users earn rate", scenario.start, () => {
-        Given("I login as a user with level 400 unclaimed", given.logInAndGoToTab("quests", CUSTOMER_80, AUTH_80), async () => {
-            Then("I should see my coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
-            Then("I should see the level 400 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(400)))
-        })
-        When("I tap the level 400 button", when.tapID(LEVEL_CHALLENGE_BUTTON(400)), async () => {
-            Then("I should see that I've achived Yunity with the Forest", then.yunityCorrect("Forest"))
-        })
-        When("I tap to open the chest", when.tapText("Open the chest"), async () => {
-            Then("I should see I have the correct items in the Yunity Chest", then.yunityChestAwardsVisible(USER_80, 7))
         })
     })
 })

@@ -167,7 +167,6 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
 
   const onRightIconPress = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
   const onLeftIconPress = useCallback(() => Navigation.pop(ROUTES.settings), []);
-
   return (
     <LeaderboardSettingsScreen
       loading={loading}

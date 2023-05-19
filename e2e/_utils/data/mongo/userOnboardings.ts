@@ -111,6 +111,7 @@ import {
   USER_91,
   USER_GHI,
   USER_GHI_STARTED,
+  USER_92,
 } from "./users";
 import { USER_84_LEADERBOARD } from "./user_leaderboards";
 
@@ -1770,4 +1771,18 @@ export const USER_ONBOARDING_91 = {
   },
 } as IDatabaseItem;
 
-
+export const USER_ONBOARDING_92 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_92.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;

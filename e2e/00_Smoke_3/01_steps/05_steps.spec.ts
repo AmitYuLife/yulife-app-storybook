@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { NAV_BAR, MENU_ICON, ACTIVITY_HISTORY_SCREEN, BUTTON_CLOSE_HEADER, LEADERBOARD_TITLE, STEPS_COUNT, DUELS_BUTTON, CYCLING_COUNT, MINDFUL_COUNT, ACTIVITY_HISTORY_SCREEN_SCROLL } from "@ids";
+import { NAV_BAR, MENU_ICON, ACTIVITY_HISTORY_SCREEN, BUTTON_CLOSE_HEADER, LEADERBOARD_TITLE, STEPS_COUNT, DUELS_BUTTON, CYCLING_COUNT, MINDFUL_COUNT, ACTIVITY_HISTORY_SCREEN_SCROLL, MENU_ITEM } from "@ids";
 import { CUSTOMER_40, AUTH_40, CUSTOMER_66, AUTH_66, LEADERBOARD_2, CUSTOMER_83, AUTH_83 } from "@data";
 import { twoDaysAgoDate } from "./_steps/consts"
 
@@ -98,7 +98,7 @@ Feature("As a user my activity is monitored correctly", async () => {
         When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 500), async () => {
             Then("I should see the menu items", then.menuItemsVisible)
         })
-        When("I tap activity history", when.tapText("Activity History"), async () => {
+        When("I tap activity history", when.tapID(MENU_ITEM("Activity History")), async () => {
             Then("I should be on activity history", then.idVisible(ACTIVITY_HISTORY_SCREEN, 2500))
             Then("I should see all mindful minutes from the past 32 days ago loaded in", then.activityHistoryScrollMinsDataCorrect)
         }) 

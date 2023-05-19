@@ -43,7 +43,7 @@ export const {
   onSkinToneScreen,
 } = screens.yuscreen;
 
-const coverFor = "What I’m covered for";
+const coverFor = "What I'm covered for";
 const howToClaim = "How to make a claim";
 const billingInfo = "Billing info";
 const paymenHistory = "View payment history";
