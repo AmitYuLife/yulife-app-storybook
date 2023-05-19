@@ -12,6 +12,7 @@ export const GQL_FRAGMENT_USER = gql`
     redeemedOnboarding
     businessAccountId
     challengesDoneToday
+    dailyChallengeAmountAvailable
     connections {
       name
       isConnected

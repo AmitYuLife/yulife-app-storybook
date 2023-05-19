@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -200,6 +200,7 @@ export interface GetCurrentUser_getCurrentUser {
   redeemedOnboarding: boolean | null;
   businessAccountId: string | null;
   challengesDoneToday: number | null;
+  dailyChallengeAmountAvailable: number | null;
   connections: (GetCurrentUser_getCurrentUser_connections | null)[] | null;
   userFeatures: (GetCurrentUser_getCurrentUser_userFeatures | null)[] | null;
   mobileConsent: GetCurrentUser_getCurrentUser_mobileConsent | null;

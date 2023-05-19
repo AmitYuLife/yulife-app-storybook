@@ -6,8 +6,6 @@ import moment from "moment";
 import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
 import { IActiveLevel } from "./levels.selectors";
 
-const MAX_AVAILABLE = 4;
-
 export async function getEndResult(
   { startDateTime, endDateTime, score, subtype, fitKitTypes }: IActiveLevel,
   blackListApps: string[],
@@ -138,6 +136,10 @@ export function getAvailableChallengesForToday(
   return challengesLeft;
 }
 
+/** @deprecated should be returned from the backend */
+const MAX_AVAILABLE = 4;
+
+/** @deprecated should be returned from the backend */
 export function getChallengesAmountAvailable(level: number) {
   const available = Math.floor((level - 1) / 50) + 1;
   return available > MAX_AVAILABLE ? MAX_AVAILABLE : available;

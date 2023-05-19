@@ -66,9 +66,6 @@ export interface ITodayChallengesStatus {
 type State = IReduxState["levels"];
 const reducer = (state: IReduxState) => state.levels;
 
-const getChallengesDoneSelector = (state: State) => state.challengesDoneToday;
-export const getChallengesDone = createSelector(reducer, getChallengesDoneSelector);
-
 const getCurrentLevelSelector = (state: State) => state.level;
 export const getCurrentLevel = createSelector(reducer, getCurrentLevelSelector);
 
@@ -103,8 +100,11 @@ const getActiveChallengeAppButtonSelector = (state: State) => state.active.appBu
 export const getActiveChallengeAppButton = createSelector(reducer, getActiveChallengeAppButtonSelector);
 
 const challengesStatusSelector = (state: State) => {
-  const available = getChallengesAmountAvailable(state.level);
   const done = state.challengesDoneToday;
+  const available =
+    typeof state.dailyChallengeAmountAvailable === "number"
+      ? state.dailyChallengeAmountAvailable
+      : getChallengesAmountAvailable(state.level);
   const availableForToday = getAvailableChallengesForToday(state.level, done, available, state.nextLevelAvailableAt);
 
   return {

@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -200,6 +200,7 @@ export interface User {
   redeemedOnboarding: boolean | null;
   businessAccountId: string | null;
   challengesDoneToday: number | null;
+  dailyChallengeAmountAvailable: number | null;
   connections: (User_connections | null)[] | null;
   userFeatures: (User_userFeatures | null)[] | null;
   mobileConsent: User_mobileConsent | null;
