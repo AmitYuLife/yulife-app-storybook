@@ -95,7 +95,7 @@ class LoggerInstance {
   };
 
   public setUserProperties = (props: Record<string, any>, customAttrs = false) => {
-    if (!this.initialised) {
+    if (!this.initialised || !this.userId) {
       return;
     }
 
