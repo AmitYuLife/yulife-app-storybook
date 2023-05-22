@@ -1784,7 +1784,7 @@ workflows:
         - content: node -v
     - nvm@1:
         inputs:
-        - node_version: 14.17.3
+        - node_version: 18.16.0
         - nvm_version: 0.38.0
     - script@1.2:
         title: BITRISE SUPPORT - DEBUG
@@ -2231,7 +2231,7 @@ workflows:
         - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
     - nvm@1:
         inputs:
-        - node_version: 14.18.1
+        - node_version: 18.16.0
     - script@1:
         title: Pull & run API
         inputs:
@@ -2300,7 +2300,7 @@ workflows:
         - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
     - nvm@1:
         inputs:
-        - node_version: 14.18.1
+        - node_version: 18.16.0
     - script@1:
         title: Pull & run API
         inputs:
