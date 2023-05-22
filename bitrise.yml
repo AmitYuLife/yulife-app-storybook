@@ -498,7 +498,9 @@ workflows:
         inputs:
         - npm_version: ""
         - command: ci
-    - install-react-native@0.9.1: {}
+    - install-react-native@0.10:
+        inputs:
+        - version: 9.3.2
     - npm@1.1.1:
         title: Build
         inputs:
@@ -537,7 +539,7 @@ workflows:
         - content: node -v
     - nvm@1:
         inputs:
-        - node_version: ""
+        - node_version: 16.19.0
         - nvm_version: 0.38.0
     - script@1:
         title: Magic
@@ -566,8 +568,10 @@ workflows:
             # debug log
             set -x
 
-            yarn --pure-lockfile
-    - install-react-native@0.9: {}
+            yarn install --frozen-lockfile
+    - install-react-native@0.10:
+        inputs:
+        - version: 9.3.2
     - script@1:
         title: yarn build
         inputs:
@@ -1703,7 +1707,9 @@ workflows:
         - generate_profiles: "yes"
         - team_id: 739BJV2T6V
     - certificate-and-profile-installer@1.10.2: {}
-    - install-react-native@0.9.1: {}
+    - install-react-native@0.10:
+        inputs:
+        - version: 9.3.2
     - script@1.1.5:
         title: Clear npm cache
         is_always_run: true
@@ -1803,7 +1809,9 @@ workflows:
         - info_plist_file: ios/YuLife/info.plist
     - certificate-and-profile-installer@1.10:
         is_always_run: true
-    - install-react-native@0.10: {}
+    - install-react-native@0.10:
+        inputs:
+        - version: 9.3.2
     - script@1.2:
         title: yarn
         inputs:
@@ -1814,7 +1822,7 @@ workflows:
             # debug log
             set -x
 
-            yarn --pure-lockfile
+            yarn install --frozen-lockfile
     - script@1.2:
         title: yarn build
         inputs:
@@ -1894,7 +1902,9 @@ workflows:
         - info_plist_file: ios/YuLife/info.plist
     - certificate-and-profile-installer@1.10:
         is_always_run: true
-    - install-react-native@0.10: {}
+    - install-react-native@0.10:
+        inputs:
+        - version: 9.3.2
     - script@1.2:
         title: yarn
         is_always_run: true
@@ -1906,7 +1916,7 @@ workflows:
             # debug log
             set -x
 
-            yarn --pure-lockfile
+            yarn install --frozen-lockfile
     - cocoapods-install@2: {}
     - script@1.2:
         title: yarn build
