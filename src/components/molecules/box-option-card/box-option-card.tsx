@@ -6,6 +6,7 @@ import { default as BoxOption } from "../box-option/box-option";
 import { RemoteImage, SduiAction } from "@graphql/_core/schema";
 import { Style, Colours } from "@styles";
 import { ComponentProps, useRef, useState } from "react";
+import { Title } from "./box-option-card.title";
 
 interface Props {
   title: string;
@@ -55,7 +56,7 @@ export const BoxOptionCard = ({
           <View style={styles.contentInnerWrapper}>
             {!title ? null : (
               <View style={styles.titleWrapper}>
-                <TextTemplate type="b2b">{title}</TextTemplate>
+                <Title>{title}</Title>
               </View>
             )}
             {!description ? null : <TextTemplate type={descriptionTextType}>{description}</TextTemplate>}
