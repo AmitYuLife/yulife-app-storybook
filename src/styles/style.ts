@@ -165,6 +165,11 @@ const getSafeAreaStart = () => {
 
 const IOS_NOTCH_HEIGHT = 48;
 
+const getLetterSpacing = (spacing: number) => {
+  const calculatedSpacing = isIphone8() ? Number((spacing - 0.3).toFixed(1)) : spacing;
+  return Platform.select({ ios: calculatedSpacing, android: 0, web: 0 });
+};
+
 const Style = {
   BASE_HEIGHT,
   DEVICE_HEIGHT: y,
@@ -209,6 +214,7 @@ const Style = {
   isHuaweiMate10,
   IOS_NOTCH_HEIGHT,
   isShorterThan,
+  getLetterSpacing,
 };
 
 export default Style;
