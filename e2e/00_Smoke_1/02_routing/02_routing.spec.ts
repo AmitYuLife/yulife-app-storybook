@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { QUESTS_SCREEN, NAV_BAR, REWARDS_SCREEN, MENU_ICON, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE, CHECK_REWARDS_BUTTON, LEADERBOARD_TOP_SCREEN, ARROW_BUTTON, SETTINGS_SWITCH, SETTINGS_NAME, TEXT_TEMPLATE, SETTINGS_DESC, BACK_BUTTON, BUTTON_CLOSE_HEADER } from "@ids";
+import { QUESTS_SCREEN, NAV_BAR, REWARDS_SCREEN, MENU_ICON, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE, CHECK_REWARDS_BUTTON, LEADERBOARD_TOP_SCREEN, ARROW_BUTTON, SETTINGS_SWITCH, SETTINGS_NAME, TEXT_TEMPLATE, SETTINGS_DESC, BACK_BUTTON, BUTTON_CLOSE_HEADER, SETTINGS_SCREEN_SCROLL } from "@ids";
 import { CORE_REWARDS_JOHN_LEWIS, CORE_REWARDS_AVIOS, CORE_REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_2, AUTH_2, CUSTOMER_8, AUTH_8, CUSTOMER_35, AUTH_35 } from "@data";
 
 Feature("As a user I can navigate through member routes correctly", async () => {
@@ -207,7 +207,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                     Then("I should be on the settings tab", then.idVisible(SETTINGS_SCREEN, 2500))
                 })
             })
-            When("I scroll down", when.scrollFromID(SETTINGS_SCREEN, "up", "fast"), async () => {
+            When("I scroll down", when.scrollUntilTextVisible(SETTINGS_SCREEN_SCROLL, "Fitness trackers", "down"), async () => {
                 Then("I should see the right settings details", then.permissionsActivityRightVisible)
             })
             When("I tap permissions settings", when.tapIDAtIndex(ARROW_BUTTON, 1), async () => {
@@ -234,7 +234,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         When("I tap settings", when.tapMenuItem("Settings"), async () => {
             Then("I should be on the settings tab", then.idVisible(SETTINGS_SCREEN, 2500))
         })
-        When("I scroll down", when.scrollFromID(SETTINGS_SCREEN, "up", "fast"), async () => {
+        When("I scroll down", when.scrollUntilTextVisible(SETTINGS_SCREEN_SCROLL, "Fitness trackers", "down"), async () => {
             Then("I should see the right settings details", then.permissionsActivityRightVisible)
         })
         When("I tap permissions settings", when.tapIDAtIndex(ARROW_BUTTON, 1), async () => {

@@ -1,4 +1,4 @@
-import { SETTINGS_SCREEN } from "@ids";
+import { SETTINGS_SCREEN, SETTINGS_SCREEN_SCROLL } from "@ids";
 import * as React from "react";
 import { PureComponent } from "react";
 import { ScrollView, View } from "react-native";
@@ -71,6 +71,7 @@ export default class SettingsScreen extends PureComponent<IProps> {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContentContainer}
           style={styles.scrollView}
+          testID={SETTINGS_SCREEN_SCROLL}
         >
           {sections.map(this.renderSection)}
         </ScrollView>

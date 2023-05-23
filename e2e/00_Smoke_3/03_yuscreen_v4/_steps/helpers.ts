@@ -158,7 +158,10 @@ export const YUCOIN_POWER_CHECK = async (customer: any, yuCoinPower: number) => 
     });
   })
   When("I click Got it", when.tapText("Got it!"), async () => {
-    Then("I should see again my name", then.textVisible(`${firstName} ${lastName}`));
+    When("I scroll if needed", when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, `${firstName} ${lastName}`, "up"), async () => {
+      Then("I should see again my name", then.textVisible(`${firstName} ${lastName}`));
+    })
+    
   });
 };
 
@@ -266,8 +269,6 @@ export const FIELD_VALIDATION = async () => {
   });
   When("I add minimum wrong post code and phone", when.addWrongMinimumPostCodeAndPhone, async () => {
     Then(`I should be able to see ${postCodeValidation}`, then.textVisible(postCodeValidation));
-  });
-  When("I press on postcode field", when.tapID(CONTENT_ITEM_INPUT("postcode")), async () => {
     Then(`I should see ${phoneNumberValidation}`, then.textVisible(phoneNumberValidation));
   });
   When("I add wrong after maximum contact details data", when.addWronMaximumContactDetails, async () => {
@@ -288,7 +289,7 @@ export const FIELD_VALIDATION = async () => {
 
 export const CHECKOUT_PROCESS = async () => {
   const ordoShipped = "Your Ordo toothbrush is on the way!";
-  const processInfo = "Your order is being processed, delivery can take  around 5 working days.";
+  const processInfo = "Your order is being processed, delivery can take around 5 working days.";
   const ordoToothBrushImage =
     "https://yulife-develop.imgix.net/bupa/images/claim_ordo-2022-11-17.png?ixlib=js-3.2.1&w=981&h=714&s=02d52c51650ca1eb346423f3fb059bdd";
 

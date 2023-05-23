@@ -157,6 +157,7 @@ export const mySeedStatsVisible = async () => {
     await idVisible(COMPARISON_ACTIVITY("Average steps"), 1000)()
     await idVisible(AV_STATS(333), 1000)() 
     await idVisible(COMPARISON_ACTIVITY("Average cycling"), 1000)()
+    await scrollUntilIdVisible(USER_INFO("Gill Stock 1"), AV_STATS(1), "down")()
     await idVisible(AV_STATS(1), 1000)()
 }
 
