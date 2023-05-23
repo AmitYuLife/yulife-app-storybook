@@ -2,7 +2,7 @@ import {
   navigateViaText, navigateViaID, CHALLENGE_TILE, idVisible, CHALLENGE_PROGRESS_BAR, wait, LEVEL_CHALLENGE_BUTTON, expectIsVisibleViaID, textVisible, CALM_BUTTON, HEADSPACE_BUTTON, MEDITATION_STAR_REWARD, MEDITATION_YUCOIN_REWARD,
   MEDITOPIA_CHALLENGE_LOAD_SCREEN, USE_OTHER_APP_BUTTON, MEDITOPIA_BUTTON, VIEW_TOP_RIGHT_COIN_COUNTER, VIDEO_PLAYER_TIMER, VIDEO_PROGRESS_BAR, VIDEO_PLAY_PAUSE_BUTTON, textNotVisible, MEDITOPIA_TIMER_MINUTES, MEDITOPIA_TIMER_SECS, idNotVisible, GENERIC_SCREEN_CTA,
   GENERIC_SCREEN_HEADING, SCREEN_CLOSE, CHOOSE_MEDITOPIA_SCREEN, LOADING_BAR, idVisibleAtIndex, CHALLENGE_DETAILS_SCREEN, TAKE_CHALLENGE_BUTTON, SET_UP_BUTTON, REWARD_AMOUNT, CHALLENGE_TYPE, TARGET, TODAYS_MEDITATION_SCREEN, TODAYS_MEDITATION_HEADER, TODAYS_MEDITATION_DESCRIPTION,
-  VIDEO_PLAYER, VIDEO_LOGO, MEDITATION_PARTNER_LOGO
+  VIDEO_PLAYER, VIDEO_LOGO, MEDITATION_PARTNER_LOGO, dismissNotificationScreenIfVisible
 } from "@navigation"
 import { sendSteps } from "@socket";
 
@@ -74,7 +74,7 @@ export const startMeditationChallengeFromQuests = (levelButton: number) => async
   await navigateViaID(CHALLENGE_TILE("meditation"))
   await navigateViaText("Take challenge")
   await navigateViaText("Use a different app")
-  await navigateViaText("maybe later")
+  await dismissNotificationScreenIfVisible()
 }
 
 export const completeShortStroll = (steps: number, waitTime: number) => async () => {

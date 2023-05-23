@@ -2156,6 +2156,7 @@ export const CHALLENGE_USER_84 = {
         startTime: moment().toDate(),
         startDateTime: moment().toDate(),
         endDateTime: moment().toDate(),
+        date: moment().format('YYYY-MM-DD'),
         milestoneLog: [
             {
                 completionData: [],
