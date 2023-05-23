@@ -8,8 +8,8 @@ export interface ISudokuGameContainerProps {
   savedState?: ISudokuStore;
   gameIdentifier?: string;
   invertHeader?: boolean;
-  onPause: () => void;
-  onResume: () => void;
+  onPause?: () => void;
+  onResume?: () => void;
   config?: ISudokuConfig;
   detectCheats?: boolean;
   onGameComplete: (params: ISudokuResults) => void;

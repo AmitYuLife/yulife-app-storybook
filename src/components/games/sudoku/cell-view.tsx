@@ -52,7 +52,7 @@ const CellView = ({
   isQuadrantActive,
 }: IProps) => {
   const circleAnimationScale = useSharedValue(0);
-  const backgroundAnimation = useSharedValue("transparent");
+  const backgroundAnimation = useSharedValue("white");
   const [circleBg, setCircleBg] = useState<string>("transparent");
 
   useEffect(() => {

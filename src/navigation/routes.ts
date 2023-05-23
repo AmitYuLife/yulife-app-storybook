@@ -75,6 +75,11 @@ const routesForRegistration = [
   },
   {
     hasMenu: true,
+    name: ROUTES.sudokuPractice,
+    component: require("../components/screens/games/sudoku/sudoku-practice/sudoku-practice.container").default,
+  },
+  {
+    hasMenu: true,
     name: ROUTES.sudokuGame,
     component: require("../components/screens/games/sudoku/sudoku-game/sudoku.container").default,
   },

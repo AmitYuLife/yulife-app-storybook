@@ -129,17 +129,22 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
   ]);
 
   const onBack = useCallback(() => {
-    if (sudokuState.gameIdentifier) {
-      Navigation.popToRoot(ROUTES.quests);
-      return;
-    }
-
     Navigation.pop(componentId);
-  }, [componentId, sudokuState?.gameIdentifier]);
+  }, [componentId]);
 
   const onClose = useCallback(() => {
     Navigation.popToRoot(ROUTES.quests);
   }, []);
+
+  const onStartPractice = useCallback(() => {
+    Navigation.push(componentId, {
+      component: {
+        id: ROUTES.sudokuPractice,
+        name: ROUTES.sudokuPractice,
+        passProps: {},
+      },
+    });
+  }, [componentId]);
 
   const openLeaderboard = useCallback(() => {
     Navigation.push(componentId, {
@@ -188,7 +193,7 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
   }, [dispatch]);
 
   if (!board || isDetailsLoading) {
-    return <LoadingScreen onClose={() => Navigation.pop(componentId)} />;
+    return <LoadingScreen onBack={() => Navigation.pop(componentId)} />;
   }
 
   return (
@@ -203,6 +208,7 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
       onLeaderboardPress={onLeaderboardPress}
       showSecondAttemptDisclaimer={showSecondAttemptDisclaimer}
       leaderboard={leaderboard?.getSudokuLeaderboard}
+      onStartPractice={onStartPractice}
       levelDetails={levelDetails?.getQuestMapLevelChallengeDetails}
       hasLeaderboardConsent={!!data?.getSudokuBoard?.stats?.leaderboardId}
     />

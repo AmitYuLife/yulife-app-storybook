@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Image, View } from "react-native";
 import { CloseSvg, EditSvg, Text } from "@atoms";
 import { Button, TouchableOpacityWithDelay } from "@molecules";
@@ -61,8 +61,6 @@ const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon }: IProps) 
   );
 };
 
-export default GenericHeaderRightIcon;
-
 const accessibilityLabels = {
   SETTINGS: t("generic_heading.right_icon.settings.accessibility_label"),
   CLOSE: t("generic_heading.right_icon.close.accessibility_label"),
@@ -116,3 +114,5 @@ const getIcon = (icon: IIcon, color: string) => {
       return null;
   }
 };
+
+export default memo(GenericHeaderRightIcon);

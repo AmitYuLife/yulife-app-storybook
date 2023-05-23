@@ -2,14 +2,11 @@ import { ScrollView, StyleSheet, View } from "react-native";
 import React, { memo, useCallback, useRef } from "react";
 import { TextTemplate, YuCoinBadge } from "@atoms";
 import { useTranslation } from "@hooks";
-import { useSelector } from "react-redux";
 import SudokuStatsList from "@components/games/sudoku/sudoku-stats-list";
 import { GetSudokuBoard_getSudokuBoard_results, GetSudokuBoard_getSudokuBoard_stats } from "@graphql/_core/schema";
 import { Button } from "@components/molecules";
 import { Style } from "@styles";
 import LottieView from "lottie-react-native";
-import { getCurrentLevel } from "@redux/levels/levels.selectors";
-import { getCurrentWorld, getCurrentYuniverse } from "@utils";
 import colours from "@styles/colours";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import { DETOX_ENABLED } from "@services/socket";
@@ -17,6 +14,7 @@ import { SUDOKU_COMPLETED_SCREEN_SCROLL } from "@ids";
 
 interface IProps {
   onCollect: () => void;
+  isPractice?: boolean;
   results: GetSudokuBoard_getSudokuBoard_results & { leaderboardId?: string };
   stats: GetSudokuBoard_getSudokuBoard_stats;
   reward?: number;
@@ -27,11 +25,7 @@ const AnimatedView = Animated.createAnimatedComponent(View);
 const SPIRAL_ANIMATION = require("./assets/spiral.json");
 const SHINE_ANIMATION = require("./assets/shine.json");
 
-const SudokuCompletedScreen = ({ onCollect, reward, results, stats }: IProps) => {
-  const currentLevel = useSelector(getCurrentLevel);
-  const currentYuniverse = getCurrentYuniverse(currentLevel);
-  const currentWorld = getCurrentWorld(currentLevel);
-
+const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }: IProps) => {
   const lottie = useRef<LottieView>();
   const t = useTranslation([
     "sudoku.title",
@@ -39,6 +33,8 @@ const SudokuCompletedScreen = ({ onCollect, reward, results, stats }: IProps) =>
     "sudoku.completed.sub1",
     "sudoku.completed.sub2",
     "sudoku.completed.collect",
+    "sudoku.completed.practice",
+    "sudoku.completed.continue",
     "yu_coin.camel_case",
   ]);
 
@@ -74,48 +70,61 @@ const SudokuCompletedScreen = ({ onCollect, reward, results, stats }: IProps) =>
               onAnimationFinish={onAnimationFinish}
             />
             <View style={styles.rewards}>
-              <AnimatedView style={styles.yucoinContainer} entering={FadeInDown.delay(750).duration(500)}>
-                <View style={styles.yucoinWrapper}>
-                  <YuCoinBadge
-                    hasWhiteGlow={false}
-                    width={Style.adjust(70)}
-                    height={Style.adjust(70)}
-                    currentWorld={currentWorld}
-                    currentYuniverse={currentYuniverse}
+              {isPractice ? null : (
+                <AnimatedView style={styles.yucoinContainer} entering={FadeInDown.delay(750).duration(500)}>
+                  <View style={styles.yucoinWrapper}>
+                    <YuCoinBadge
+                      hasWhiteGlow={false}
+                      width={Style.adjust(75)}
+                      height={Style.adjust(75)}
+                      currentWorld={0}
+                      currentYuniverse={0}
+                    />
+                    <TextTemplate type="l1b" textAlign="center">
+                      {reward}
+                    </TextTemplate>
+                    <TextTemplate type="l1b" textAlign="center">
+                      {t["yu_coin.camel_case"]}
+                    </TextTemplate>
+                  </View>
+                  <LottieView
+                    resizeMode="contain"
+                    style={styles.shine}
+                    source={SHINE_ANIMATION}
+                    loop={false}
+                    autoPlay={true}
                   />
-                  <TextTemplate type="l1b" textAlign="center">
-                    {reward}
-                  </TextTemplate>
-                  <TextTemplate type="l1b" textAlign="center">
-                    {t["yu_coin.camel_case"]}
-                  </TextTemplate>
-                </View>
-                <LottieView
-                  resizeMode="contain"
-                  style={styles.shine}
-                  source={SHINE_ANIMATION}
-                  loop={false}
-                  autoPlay={true}
-                />
-              </AnimatedView>
+                </AnimatedView>
+              )}
             </View>
           </View>
 
-          <View style={styles.header}>
-            <TextTemplate type="h2" textAlign="center">
-              {t["sudoku.completed.title"]}
+          <View style={styles.headerWrapper}>
+            <View style={styles.header}>
+              <TextTemplate type="h2" textAlign="center">
+                {t["sudoku.completed.title"]}
+              </TextTemplate>
+            </View>
+            <TextTemplate type="b2" textAlign="center">
+              {isPractice ? t["sudoku.completed.practice"] : t["sudoku.completed.sub2"]}
             </TextTemplate>
           </View>
-          <TextTemplate type="b2" textAlign="center">
-            {t["sudoku.completed.sub2"]}
-          </TextTemplate>
           <View style={styles.statsWrapper}>
-            <SudokuStatsList results={results} stats={stats} reward={reward} onCompleteScreen={true} />
+            <SudokuStatsList
+              results={results}
+              stats={stats}
+              reward={reward}
+              onCompleteScreen={true}
+              isPractice={isPractice}
+            />
           </View>
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <Button onPress={onCollect} label={t["sudoku.completed.collect"]} />
+        <Button
+          onPress={onCollect}
+          label={isPractice ? t["sudoku.completed.continue"] : t["sudoku.completed.collect"]}
+        />
       </View>
     </ScrollView>
   );
@@ -152,6 +161,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: Style.adjust(10),
     backgroundColor: colours.products.fib.u100S4,
+  },
+  headerWrapper: {
+    paddingHorizontal: Style.adjust(60),
   },
   buttonContainer: {
     marginTop: Style.adjust(10),

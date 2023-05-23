@@ -33,7 +33,9 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemProcessingT
     | "ContentItemSexPicker"
     | "ContentItemDependants"
     | "ContentItemSelectScheme"
-    | "ContentItemKeyValueBox";
+    | "ContentItemKeyValueBox"
+    | "ContentItemStages"
+    | "ContentItemMarkdownBlock";
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMarkdown_styles {
@@ -842,7 +844,9 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemPr
     | "ContentItemSexPicker"
     | "ContentItemDependants"
     | "ContentItemSelectScheme"
-    | "ContentItemKeyValueBox";
+    | "ContentItemKeyValueBox"
+    | "ContentItemStages"
+    | "ContentItemMarkdownBlock";
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown_styles {

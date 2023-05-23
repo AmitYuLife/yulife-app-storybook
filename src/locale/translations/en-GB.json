@@ -1191,7 +1191,9 @@
       "title": "Great work!",
       "sub1": "You finished your daily Yudoku.",
       "sub2": "Come back tomorrow for a new round.",
-      "collect": "Collect"
+      "collect": "Collect",
+      "practice": "Now try the daily Yudoku challenge to earn YuCoin!",
+      "continue": "Continue"
     },
     "pause": {
       "title": "Pause",
@@ -1208,7 +1210,8 @@
       "alreadyDone": "You can only do one Yudoku per day.\nCome back tomorrow!",
       "dailyLeaderboard": "Daily Leaderboard",
       "joinDailyLeaderboard": "Join the daily leaderboard",
-      "secondAttemptDisclaimer": "As this is not your first attempt today your time will not be ranked on the leaderboard and will not count towards your personal best."
+      "secondAttemptDisclaimer": "As this is not your first attempt today your time will not be ranked on the leaderboard and will not count towards your personal best.",
+      "practiceGame": "Practice game"
     },
     "leaderboard_consent": {
       "title": "Join the daily Yudoku leaderboard?",
