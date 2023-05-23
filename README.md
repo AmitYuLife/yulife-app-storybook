@@ -20,7 +20,7 @@ Follow the [React Native Installation Instructions](https://reactnative.dev/docs
 - react-native-cli
 - XCode (v14.2 or newer)
 - XCode Command Line Tools
-- Java Development Kit (JDK 8)
+- Java Development Kit (JDK 11)
 - Android Studio
 - Android SDK
 
@@ -145,6 +145,7 @@ rm -rf ios/Podfile.lock
 ##### Install Pods
 
 ###### Cocoapods
+
 Required version of ruby is handled through [rbenv](https://github.com/rbenv/rbenv) To ensure you are running correct ruby version defined in .ruby-version config, follow [installing ruby versions](https://github.com/rbenv/rbenv#installing-ruby-versions). Example if .ruby-version contains 2.7.5:
 
 ```
@@ -156,13 +157,14 @@ ruby -v
 
 Configure your shell to load rbenv: [setting up shell](https://github.com/rbenv/rbenv#basic-git-checkout)
 
-Then run following command in $PROJECT_ROOT/ios: 
+Then run following command in \$PROJECT_ROOT/ios:
 
 ```
 bundle install
 ```
 
 install pods with:
+
 ```
 bundle exec pod install --repo-update
 ```
@@ -183,7 +185,7 @@ yarn react-native run-ios --simulator=<SIMULATOR>
 
 ### Android
 
-### Building from command line (Android)
+#### Building from command line (Android)
 
 Ensure that the Java SDK (JDK) home path is set as an environment variable called `JAVA_HOME` for the shell used to start the Android build process. You can find the path out by running:
 
@@ -207,7 +209,22 @@ yarn start:android:{profile}
 When you are testing against a local instance of the API, the Android emulator will attempt to connect via localhost. This actually refers to a service on the emulator itself so will not work. You will need to change
 the `uri` used for `createHttpLink` in `src/components/graphql/_core/client.ts` to either be your local IP address or `10.0.2.2`, which refers to your machine. Don't forget to include the port.
 
-**Using a physical device (Android)**
+##### Error: Not Enough Space
+
+If you encounter an error relating to "not enough space", you may need to increase the size of the emulator's virtual disk. To do this, open Android Studio, then:
+
+- Open the "Device Manager".
+- Select your chosen emulator and click the pencil icon to edit it.
+- Click the "Show Advanced Settings" button.
+- Increase the "Internal Storage" and "SD Card" values to `4098MB`.
+
+This error occurs because the default internal storage value of 2GB is not enough for modern Android versions.
+
+##### Slow/Sluggish Performance
+
+If you notice the Android emulator is running slowly, you can try increasing the amount of RAM it has access to. By default, Android Studio has a maximum heap size of 1280MB. Try increasing this to `2048MB` or more, by following the instructions [here](https://developer.android.com/studio/intro/studio-config#adjusting_heap_size).
+
+#### Using a physical device (Android)
 
 To run the app locally on a physical device, you need:
 
@@ -570,13 +587,13 @@ To make changes on the pipelines we will use locally the bitrise tool to modify 
 (offline Workflow Editor)[https://devcenter.bitrise.io/en/bitrise-cli/installing-and-upgrading-the-offline-workflow-editor.html]
 
 - Install Bitrise CLI: `brew update && brew install bitrise`
-- Make sure you have Go installed on your local computer. Run `go version` and you should get something like: `go version go1.19.3 darwin/arm64` 
+- Make sure you have Go installed on your local computer. Run `go version` and you should get something like: `go version go1.19.3 darwin/arm64`
   If you haven't got Go please go to https://go.dev/ and install it. (So far bitrise doesn't specified a Go version, so latest should be good)
 - Run `bitrise setup` to install offline Workflow Editor as part of the Bitrise Plugins.
 
 Once all dependencies are installed, you can run
 
- `yarn develop:workflow`
+`yarn develop:workflow`
 
 It will start the offline Workflow Editor, changes will be saved on the bitrise.yml file, do not forget to commit and push your changes <3
 
