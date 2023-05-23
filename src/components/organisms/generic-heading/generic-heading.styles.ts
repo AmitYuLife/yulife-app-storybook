@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
   logoBetaWrapper: { position: "absolute", left: 24 } as ViewStyle,
   headingBetaWrapper: { position: "absolute", right: -38 } as ViewStyle,
   rightIconWrapper: { width: "24%", alignSelf: "center" } as ViewStyle,
-  rightIconTouchable: { alignSelf: "flex-end" },
+  rightIconTouchable: { alignSelf: "flex-end", height: Style.adjust(32) },
+  leftIconTouchable: { height: Style.adjust(32) },
   rightIconCoinsWrapper: {
     bottom: Platform.select({ ios: Style.adjust(8), android: Style.adjust(2) }),
     right: Style.adjust(3),

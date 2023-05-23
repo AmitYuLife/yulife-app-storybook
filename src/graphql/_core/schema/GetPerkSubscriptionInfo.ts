@@ -44,7 +44,9 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
     | "ContentItemKeyValueBox"
     | "ContentItemMedia"
     | "ContentItemWrapper"
-    | "ContentItemBoxOptionCard";
+    | "ContentItemBoxOptionCard"
+    | "ContentItemStages"
+    | "ContentItemMarkdownBlock";
 }
 
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemText_styles {

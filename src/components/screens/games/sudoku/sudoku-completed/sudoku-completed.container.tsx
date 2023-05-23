@@ -13,10 +13,11 @@ import { displayStreaksCompletedAction } from "@redux/streaks/streaks.actions";
 interface IProps {
   results: GetSudokuBoard_getSudokuBoard_results;
   stats: GetSudokuBoard_getSudokuBoard_stats;
+  isPractice?: boolean;
   reward: number;
 }
 
-export const SudokuCompletedContainer = ({ reward, results, stats }: IProps) => {
+export const SudokuCompletedContainer = ({ reward, isPractice, results, stats }: IProps) => {
   const dispatch = useDispatch();
 
   useBackHandler(() => {
@@ -28,9 +29,9 @@ export const SudokuCompletedContainer = ({ reward, results, stats }: IProps) => 
     dispatch(sudokuReset());
     dispatch(displayStreaksCompletedAction());
 
-    Navigation.popTo(ROUTES.quests);
+    Navigation.popTo(isPractice ? ROUTES.sudokuStaging : ROUTES.quests);
 
-    if (!stats?.leaderboardId) {
+    if (!isPractice && !stats?.leaderboardId) {
       showYuModal({
         component: {
           id: MODALS.sudokuLeaderboardConsent,
@@ -43,9 +44,17 @@ export const SudokuCompletedContainer = ({ reward, results, stats }: IProps) => 
         },
       });
     }
-  }, [dispatch, stats]);
+  }, [dispatch, isPractice, stats]);
 
-  return <SudokuCompletedScreen reward={reward} onCollect={onCollect} results={results} stats={stats} />;
+  return (
+    <SudokuCompletedScreen
+      isPractice={isPractice}
+      reward={reward}
+      onCollect={onCollect}
+      results={results}
+      stats={stats}
+    />
+  );
 };
 
 export default memo(SudokuCompletedContainer);

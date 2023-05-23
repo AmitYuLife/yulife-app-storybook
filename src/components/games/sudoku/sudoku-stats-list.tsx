@@ -19,10 +19,11 @@ interface IProps {
   results?: ISudokuResults & { leaderboardId?: string; leaderboardEligible?: boolean };
   onCompleteScreen?: boolean;
   savedData?: ISudokuStore;
+  isPractice?: boolean;
   reward: string | number;
 }
 
-const SudokuStatsList = ({ stats, onCompleteScreen, savedData, results, reward }: IProps) => {
+const SudokuStatsList = ({ stats, onCompleteScreen, savedData, results, reward, isPractice }: IProps) => {
   const t = useTranslation([
     "sudoku.stats.personalBest",
     "sudoku.stats.todaysTime",
@@ -45,6 +46,7 @@ const SudokuStatsList = ({ stats, onCompleteScreen, savedData, results, reward }
     return [
       {
         label: t["sudoku.stats.personalBest"],
+        showIfPractice: false,
         value: personalBest ? getDuration(personalBest) : t["sudoku.stats.notApplicable"],
         Icon: SudokuPersonalBestIcon,
       },
@@ -77,6 +79,7 @@ const SudokuStatsList = ({ stats, onCompleteScreen, savedData, results, reward }
         label: t["sudoku.stats.reward"],
         value: reward,
         showIfCompleted: false,
+        showIfPractice: false,
         Icon: SudokuRewardIcon,
         iconRight: (
           <YuCoinBadge
@@ -88,9 +91,12 @@ const SudokuStatsList = ({ stats, onCompleteScreen, savedData, results, reward }
           />
         ),
       },
-    ].filter(({ value, showIfStarted, showIfCompleted }) => {
+    ].filter(({ value, showIfPractice, showIfStarted, showIfCompleted }) => {
       const hasValue = !!value;
       const showIfStartedCondition = showIfStarted && !!savedData?.startTime;
+      if (isPractice && showIfPractice === false) {
+        return false;
+      }
 
       if (showIfCompleted === false && results && !onCompleteScreen) {
         return false;
@@ -98,7 +104,7 @@ const SudokuStatsList = ({ stats, onCompleteScreen, savedData, results, reward }
 
       return hasValue || showIfStartedCondition || results;
     });
-  }, [stats, savedData, results, onCompleteScreen, t, reward]);
+  }, [stats, savedData, results, isPractice, onCompleteScreen, t, reward]);
 
   return (
     <>

@@ -55,7 +55,9 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemTextInp
     | "ContentItemKeyValueBox"
     | "ContentItemMedia"
     | "ContentItemWrapper"
-    | "ContentItemBoxOptionCard";
+    | "ContentItemBoxOptionCard"
+    | "ContentItemStages"
+    | "ContentItemMarkdownBlock";
 }
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText_styles {

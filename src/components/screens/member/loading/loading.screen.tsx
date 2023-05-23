@@ -5,13 +5,14 @@ import { Style } from "@styles";
 import { GenericHeadingAbsolute } from "@organisms";
 
 interface IProps {
-  onClose: () => void;
+  onClose?: () => void;
+  onBack?: () => void;
 }
 
-const LoadingScreen = ({ onClose }: IProps) => (
+const LoadingScreen = ({ onClose, onBack }: IProps) => (
   <View style={styles.wrapper}>
     <Loading />
-    <GenericHeadingAbsolute logo="yulife" onRightIconPress={onClose} />
+    <GenericHeadingAbsolute logo="yulife" onLeftIconPress={onBack} onRightIconPress={onClose} />
   </View>
 );
 

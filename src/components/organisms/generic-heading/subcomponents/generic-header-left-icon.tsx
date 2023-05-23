@@ -1,9 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import { Back, CloseSvg } from "@atoms";
 import { TOP_BAR } from "@styles";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { t } from "@locale";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import styles from "../generic-heading.styles";
 
 interface IProps {
   icon: LeftIcon;
@@ -14,14 +15,13 @@ interface IProps {
 const GenericHeaderLeftIcon = ({ icon, color, onPress }: IProps) => (
   <TouchableOpacityWithDelay
     hitSlop={TOP_BAR.HIT_SLOP}
+    style={styles.leftIconTouchable}
     onPress={onPress}
     accessibilityLabel={accessibilityLabels[icon] ?? ""}
   >
     {getIcon(icon, color)}
   </TouchableOpacityWithDelay>
 );
-
-export default GenericHeaderLeftIcon;
 
 const accessibilityLabels: Partial<Record<LeftIcon, string>> = {
   [LeftIcon.BACK]: t("labels.cta.back"),
@@ -38,3 +38,5 @@ const getIcon = (icon: LeftIcon, color?: string) => {
       return null;
   }
 };
+
+export default memo(GenericHeaderLeftIcon);

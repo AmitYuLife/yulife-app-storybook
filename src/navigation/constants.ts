@@ -41,6 +41,7 @@ export const ROUTES = {
 
   // brain games
   sudokuStaging: "yulife.brainGames.sodukuStaging",
+  sudokuPractice: "yulife.brainGames.sodukuPractice",
   sudokuGame: "yulife.brainGames.sodukuGame",
   sudokuCompleted: "yulife.brainGames.sodukuCompleted",
   sudokuLeaderboard: "yulife.brainGames.sudokuLeaderboard",

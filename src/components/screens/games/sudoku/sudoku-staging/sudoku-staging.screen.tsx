@@ -25,33 +25,36 @@ import SudokuStagingHeader from "@components/games/sudoku/sudoku-staging-header"
 import { SUDOKU_DATE_FORMAT, SUDOKU_PLANET_STYLES, SUDOKU_YUNIVERSAL_STYLES } from "../sudoku-game/sudoku.config";
 import { SUDOKU_HOWTOPLAY_BUTTON, SUDOKU_JOINLEADERBOARD_BUTTON, SUDOKU_STAGING_SCREEN_SCROLL } from "@ids";
 import SudokuSecondAttemptDisclaimer from "@components/games/sudoku/SudokuSecondAttemptDisclaimer";
+import SudokuPracticeIcon from "@atoms/icon/sudoku-practice-icon";
 
 interface IProps {
   reward: string;
-  data: GetSudokuBoard;
-  hasLeaderboardConsent?: boolean;
-  onClose: () => void;
-  onLeaderboardPress: () => void;
-  showSecondAttemptDisclaimer?: boolean;
-  levelDetails: GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails;
   onBack: () => void;
-  onStart: () => void;
   onHelp: () => void;
+  onClose: () => void;
+  onStart: () => void;
+  data: GetSudokuBoard;
+  onStartPractice: () => void;
+  onLeaderboardPress: () => void;
+  hasLeaderboardConsent?: boolean;
+  showSecondAttemptDisclaimer?: boolean;
   slot: GetQuestMapLevel_getQuestMapLevel_slots;
   leaderboard: GetSudokuLeaderboard_getSudokuLeaderboard[];
+  levelDetails: GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails;
 }
 
 const SudokuStagingScreen = ({
-  onStart,
-  hasLeaderboardConsent,
-  onLeaderboardPress,
   data,
   onHelp,
   onBack,
-  levelDetails,
-  showSecondAttemptDisclaimer,
   reward,
+  onStart,
   leaderboard,
+  levelDetails,
+  onStartPractice,
+  onLeaderboardPress,
+  hasLeaderboardConsent,
+  showSecondAttemptDisclaimer,
 }: IProps) => {
   const t = useTranslation([
     "sudoku.title",
@@ -65,6 +68,7 @@ const SudokuStagingScreen = ({
     "sudoku.staging.alreadyDone",
     "sudoku.staging.dailyLeaderboard",
     "sudoku.staging.joinDailyLeaderboard",
+    "sudoku.staging.practiceGame",
   ]);
 
   const leaderboardOptedIn = !!data?.getSudokuBoard?.stats?.leaderboardId;
@@ -129,6 +133,14 @@ const SudokuStagingScreen = ({
               icon={<SudokuPersonalBestIcon />}
               testID={SUDOKU_JOINLEADERBOARD_BUTTON}
             />
+            {data?.getSudokuBoard?.results ? null : (
+              <SudokuActionButton
+                label={t["sudoku.staging.practiceGame"]}
+                onPress={onStartPractice}
+                icon={<SudokuPracticeIcon />}
+                testID={SUDOKU_JOINLEADERBOARD_BUTTON}
+              />
+            )}
           </View>
           {!data?.getSudokuBoard?.results?.adjustedTime ? null : (
             <View style={styles.completedContainer}>

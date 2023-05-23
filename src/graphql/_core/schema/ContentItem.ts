@@ -33,7 +33,9 @@ export interface ContentItem_ContentItemProcessingTimer {
     | "ContentItemSexPicker"
     | "ContentItemDependants"
     | "ContentItemSelectScheme"
-    | "ContentItemKeyValueBox";
+    | "ContentItemKeyValueBox"
+    | "ContentItemStages"
+    | "ContentItemMarkdownBlock";
 }
 
 export interface ContentItem_ContentItemMarkdown_styles {

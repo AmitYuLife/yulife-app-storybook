@@ -58,7 +58,9 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemTe
     | "ContentItemKeyValueBox"
     | "ContentItemMedia"
     | "ContentItemWrapper"
-    | "ContentItemBoxOptionCard";
+    | "ContentItemBoxOptionCard"
+    | "ContentItemStages"
+    | "ContentItemMarkdownBlock";
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles {

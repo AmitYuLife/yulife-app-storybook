@@ -33,7 +33,9 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer {
     | "ContentItemSexPicker"
     | "ContentItemDependants"
     | "ContentItemSelectScheme"
-    | "ContentItemKeyValueBox";
+    | "ContentItemKeyValueBox"
+    | "ContentItemStages"
+    | "ContentItemMarkdownBlock";
 }
 
 export interface GetSduiJourney_getSduiJourney_body_ContentItemMarkdown_styles {
@@ -842,7 +844,9 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessi
     | "ContentItemSexPicker"
     | "ContentItemDependants"
     | "ContentItemSelectScheme"
-    | "ContentItemKeyValueBox";
+    | "ContentItemKeyValueBox"
+    | "ContentItemStages"
+    | "ContentItemMarkdownBlock";
 }
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown_styles {

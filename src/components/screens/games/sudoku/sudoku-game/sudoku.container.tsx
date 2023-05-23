@@ -182,7 +182,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
         }
       })();
     },
-    [submitSolution, onPause, dispatch, navigateToCompleted]
+    [submitSolution, dispatch, navigateToCompleted]
   );
 
   const onBack = useCallback(() => {
@@ -200,7 +200,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   useBackHandler(onBackPress);
 
   if (!board) {
-    return <LoadingScreen onClose={() => Navigation.pop(componentId)} />;
+    return <LoadingScreen onBack={() => Navigation.pop(componentId)} />;
   }
 
   return (

@@ -13,7 +13,10 @@ import { addSecondsToChallengeEndDateTime } from "@utils";
 type Action = ReturnType<typeof challengeStartSuccessAction>;
 
 export default function* scheduleChallengeNotificationSaga({ payload }: Action) {
-  if (!payload?.createQuestMapLevelChallenge?.challenge) {
+  if (
+    !payload?.createQuestMapLevelChallenge?.challenge ||
+    payload.createQuestMapLevelChallenge?.levelSlot?.subtype === "sudoku"
+  ) {
     return;
   }
 
