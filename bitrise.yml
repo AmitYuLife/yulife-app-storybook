@@ -1009,7 +1009,7 @@ workflows:
             applesimutils -v
 
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
-            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200
+            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs failing
 
 
     - script@1:
@@ -1089,7 +1089,7 @@ workflows:
             applesimutils -v
 
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
-            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200
+            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs failing
 
 
     - script@1:
@@ -1367,7 +1367,7 @@ workflows:
             applesimutils -v
 
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
-            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200
+            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs failing
 
 
     - script@1:
@@ -2235,7 +2235,7 @@ workflows:
     - script@1:
         title: Pull & run API
         inputs:
-        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n\nCWD=$(pwd)\n\nmkdir -p ~/temp-repos\ncd ~/temp-repos\n\ngit clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git api-clone\nmv api-clone/{*,.[^.]*} yulife-api-server\nrm -rf api-clone\ncd yulife-api-server\n\ngit checkout $BITRISE_GIT_BRANCH || git checkout develop\ngit pull\n\nsource $HOME/.nvm/nvm.sh\nnvm use\nyarn install --frozen-lockfile \necho \\\"Install completed\\\"\n./scripts/setupPostgresForBitrise.sh\nyarn build\n\nyarn detox:changeRegionDatabase:UK\n\nnpm install -g forever\nNODE_ENV=detox DEBUG=yu:* forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js\necho 'Waiting for API to bootstrap...'\nnpx wait-on http://localhost:5000\n\ncd $CWD"
+        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n\nCWD=$(pwd)\n\nmkdir -p ~/temp-repos\ncd ~/temp-repos\n\ngit clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git api-clone\nmkdir -p yulife-api-server\nmv api-clone/{*,.[^.]*} yulife-api-server\nrm -rf api-clone\ncd yulife-api-server\n\ngit checkout $BITRISE_GIT_BRANCH || git checkout develop\ngit pull\n\nsource $HOME/.nvm/nvm.sh\nnvm use\nyarn install --frozen-lockfile \necho \\\"Install completed\\\"\n./scripts/setupPostgresForBitrise.sh\nyarn build\n\nyarn detox:changeRegionDatabase:UK\n\nnpm install -g forever\nNODE_ENV=detox DEBUG=yu:* forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js\necho 'Waiting for API to bootstrap...'\nnpx wait-on http://localhost:5000\n\ncd $CWD"
     - save-cache@1:
         inputs:
         - paths: ~/temp-repos/yulife-api-server/node_modules
@@ -2261,10 +2261,11 @@ workflows:
 
             CWD=$(pwd)
 
-            mkdir ~/temp-repos
+            mkdir -p ~/temp-repos
             cd ~/temp-repos
 
             git clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git api-clone
+            mkdir -p yulife-api-server
             mv api-clone/{*,.[^.]*} yulife-api-server
             rm -rf api-clone
             cd yulife-api-server
@@ -2311,10 +2312,11 @@ workflows:
 
             CWD=$(pwd)
 
-            mkdir ~/temp-repos
+            mkdir -p ~/temp-repos
             cd ~/temp-repos
 
             git clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git api-clone
+            mkdir -p yulife-api-server
             mv api-clone/{*,.[^.]*} yulife-api-server
             rm -rf api-clone
 
