@@ -376,3 +376,12 @@ export const navigateTo = (menuItem: "yucoin" | "quests" | "yu" | "leaderboard" 
 export const tapYuCoinIcon = async () => {
     await tapID(DAILYSTEP_SCREEN_COIN)()
 }
+
+export const dismissNotificationScreenIfVisible = async () => {
+    try {
+        await expect(element(by.text("don't miss out"))).toBeVisible()
+        await tapText("maybe later")()
+    } catch (e) {
+
+    }
+}

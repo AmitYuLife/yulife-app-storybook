@@ -2,7 +2,6 @@ import { navigation } from "@utils";
 import { screens } from "@appScreens";
 import {
   AVATAR_ITEM,
-  RIGHT_STATUS_ICON,
   BACKGROUND_COLOUR_PRODUCT,
   ONBOARDING_SCREEN,
   YUCOIN_POWER,
@@ -43,6 +42,7 @@ export const {
   onSkinToneScreen,
 } = screens.yuscreen;
 
+const coverForWApos = "What I’m covered for";
 const coverFor = "What I'm covered for";
 const howToClaim = "How to make a claim";
 const billingInfo = "Billing info";
@@ -370,18 +370,20 @@ export const GHIProductInfo = ( productStartDate: any, dependentName:any, yuCoin
   await expect(element(by.id(YUCOIN_POWER(yuCoinPower)))).toBeVisible();
   await expect(element(by.text(policyInfoYugi))).toBeVisible();
   await expect(element(by.text(keyInfo))).toBeVisible();
-  await swipeFromText(keyInfo, "up", "slow", 0.3)();
+  await swipeFromText(keyInfo, "up", "slow", 0.5)();
   await expect(element(by.text(schemeNumber))).toBeVisible();
   await expect(element(by.text(schemeNumberProduct))).toBeVisible();
   await expect(element(by.text(coverlevel))).toBeVisible();
   await expect(element(by.text(startDateText))).toBeVisible();
   await expect(element(by.text(startDate))).toBeVisible(); 
-  await expect(element(by.text(coverFor))).toBeVisible();
+  await expect(element(by.text(coverForWApos))).toBeVisible();
   await expect(element(by.text(howToClaim))).toBeVisible();
   await expect(element(by.text(faq))).toBeVisible();
-  await swipeFromText(IncludedInPol, "up", "fast")();
+  await swipeFromText(IncludedInPol, "up", "slow", 0.2)();
   await expect(element(by.text(dependent))).toBeVisible();
+  await swipeFromText(dependent, "up", "slow", 0.1)();
   await expect(element(by.text(dependentDescription))).toBeVisible();
+  await swipeFromText(dependentDescription, "up", "fast")();
   await expect(element(by.text(Bupa_markdown_1))).toBeVisible();
   await expect(element(by.text(Bupa_markdown_2))).toBeVisible();
   await expect(element(by.id(CONTENT_MIDDLE_ITEM_IMAGE(GHIRewardImg)))).toBeVisible();

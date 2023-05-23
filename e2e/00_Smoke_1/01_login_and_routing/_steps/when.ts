@@ -19,8 +19,12 @@ export const {
     typeViaID,
     wait,
     reloadOnly,
-    tapID
+    tapID,
 } = navigation.common
+
+export const {
+    swipeFromText
+} = navigation.scrolling
 
 export const {
     loginOnly,
