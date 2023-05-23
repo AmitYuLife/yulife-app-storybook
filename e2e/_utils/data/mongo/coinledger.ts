@@ -809,6 +809,19 @@ export const COIN_LEDGER_83 = {
     }
 } as IDatabaseItem
 
+export const COIN_LEDGER_84 = {
+    type:"mongo",
+    modelName:"coinledger",
+    data:{
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_84.data.customerId,
+        userId: customer.CUSTOMER_84.data.customerId,
+        currentBalance: 500,
+        currentStreak: 1,
+        currentLevel: 152
+    }
+} as IDatabaseItem
+
 export const COIN_LEDGER_FIIT = {
   type: "mongo",
   modelName: "coinledger",

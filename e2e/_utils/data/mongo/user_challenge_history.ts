@@ -74,6 +74,7 @@ export const CHALLENGE_HISTORY_84 = {
                             yuCoinAwarded: 60
                         }
                     ]
+                    
                 }
             }
         }

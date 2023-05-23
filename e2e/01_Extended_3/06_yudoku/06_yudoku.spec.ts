@@ -303,7 +303,7 @@ Feature("Yudoku", async () => {
 
     Scenario("I can see my yudoku daily time in the earnings screen", scenario.start, async () => {
         Given("I login", given.logInAndGoToTab("yucoin", CUSTOMER_84, AUTH_84), async () => {
-            Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
+            Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(700)))
         })
         When("I click on the YuCoin Icon to see the breakdown of my earnings", when.tapYuCoinIcon, async () => {
             Then("I can see the Sudoku challenge is completed", then.canSeeEarntSudoku("6m 40s"))
