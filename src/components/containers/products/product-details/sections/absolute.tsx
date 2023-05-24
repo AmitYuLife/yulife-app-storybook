@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { GetYuScreenProductDetails_getYuScreenProductDetails_absolute as AbsoluteItems } from "@graphql/_core/schema";
-import { ContentItemCollapsingGenericHeader, ContentItemLinearGradient, ContentItemPad } from "@components/sdui";
+import { ContentItemCollapsingGenericHeader, ContentItemLinearGradient, ContentItemPad, ContentItemButton } from "@components/sdui";
 import { IProductDetailsContext, UiContext } from "../product-details.context";
 
 interface Props {
@@ -27,6 +27,8 @@ const renderAbsoluteItemContent = ({ item }: AbsoluteItems, uiContext: IProductD
       return <ContentItemCollapsingGenericHeader key={item.id} {...item} scrollValue={uiContext.scrollValue} />;
     case "ContentItemLinearGradient":
       return <ContentItemLinearGradient key={item.id} {...item} />;
+    case "ContentItemButton":
+      return <ContentItemButton key={item.id} {...item} />;
     default:
       return null;
   }

@@ -730,7 +730,6 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_it
     | "ContentItemProductDetailsHeader"
     | "ContentItemProductDetailsHoldingHeader"
     | "ContentItemText"
-    | "ContentItemButton"
     | "ContentItemBeneficiariesSection"
     | "ContentItemRowIconTextBanner"
     | "ContentItemKeyValueBox"
@@ -824,11 +823,67 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_it
   end: GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemLinearGradient_end | null;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemButton_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemButton_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemButton_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemButton_contentItemButtonRightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemButton_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemButton_containerStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemButton {
+  __typename: "ContentItemButton";
+  id: string;
+  contentItemButtonUri: string | null;
+  label: string;
+  buttonType: ContentItemButtonType | null;
+  value: string | null;
+  disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
+  onPress: GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemButton_onPress | null;
+  event: GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemButton_event | null;
+  icon: GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemButton_icon | null;
+  contentItemButtonRightIcon: GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemButton_contentItemButtonRightIcon | null;
+  styles: GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemButton_styles[] | null;
+  /**
+   * Supported RN version 3.70.0
+   */
+  containerStyles:
+    | GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemButton_containerStyles[]
+    | null;
+  buttonSize: ContentItemButtonSize | null;
+}
+
 export type GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item =
   | GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemProductDetailsHeader
   | GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemPad
   | GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemCollapsingGenericHeader
-  | GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemLinearGradient;
+  | GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemLinearGradient
+  | GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemButton;
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute {
   id: string;
