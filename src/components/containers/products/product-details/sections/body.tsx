@@ -19,6 +19,7 @@ import { ProductDetailsButton } from "../subcomponents/product-details.button";
 import media from "@styles/media";
 import { Style } from "@styles";
 import { ProductDetailsHoldingHeader } from "../subcomponents/product-details.holding-header/product-details.holding-header";
+import { PRODUCT_DETAILS_SCROLL_VIEW } from "@ids";
 
 interface Props {
   body: BodyItems[];
@@ -45,6 +46,7 @@ export const Body = (props: Props) => {
 
   return (
     <Animated.ScrollView
+      testID={PRODUCT_DETAILS_SCROLL_VIEW}
       scrollEventThrottle={16}
       onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: uiContext.scrollValue } } }], {
         useNativeDriver: true,

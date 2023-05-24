@@ -4,6 +4,7 @@ import { Image } from "@atoms";
 import { PackageType } from "@molecules";
 import { Style } from "@styles";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { TOP_RIGHT_ITEM_IMAGE } from "@ids";
 
 interface Props {
   size?: number;
@@ -29,7 +30,7 @@ export const SlotIcon = memo((props: Props) => {
   };
 
   return (
-    <View style={[styles.wrapper, dimensions]}>
+    <View style={[styles.wrapper, dimensions]} testID={TOP_RIGHT_ITEM_IMAGE(itemUrl)}>
       <Image
         source={{ uri: backgroundUrl }}
         width={size}

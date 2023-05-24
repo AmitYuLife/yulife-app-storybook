@@ -13,7 +13,7 @@ import {
   YuScreenProductButtonAction,
 } from "@graphql/_core/schema";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { BACKGROUND_COLOUR_PRODUCT, RIGHT_STATUS_ICON } from "@ids";
+import { BACKGROUND_COLOUR_PRODUCT, LEFT_SIDE_TEXT_SLOT_POWER, RIGHT_STATUS_ICON } from "@ids";
 import { OnboardingHandler } from "../../hooks/useOnboardingDismissalHandler";
 import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
 import { useSelector } from "react-redux";
@@ -55,7 +55,7 @@ export const ItemSlot: FC<ItemSlotProps> = memo(
       <View style={styles.container}>
         <ItemSlotWrapper onPress={handlePress} style={styles.slotWrapper}>
           {leftBackgroundImage ? (
-            <View style={styles.slotYucoinPowerWrapper}>
+            <View style={styles.slotYucoinPowerWrapper} testID={LEFT_SIDE_TEXT_SLOT_POWER(leftText)}>
               <Image
                 {...slotYuCoinPowerImageDimensions}
                 style={styles.slotYucoinPowerImage}
