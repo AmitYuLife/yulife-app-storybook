@@ -167,7 +167,12 @@
       "history": {
         "full_button_label": "História completa",
         "menu_label": "mapa",
-        "sudoku_leaderboard": "Classificação Yudoku"
+        "completed_challenges": "Desafios concluídos",
+        "sudoku_leaderboard": "Classificação de Sudoku",
+        "summary": "Resumo do nível %{level}",
+        "summary_named": "Resumo do %{levelName}",
+        "unlock_banner_title": "Desbloquear Desafio Extra",
+        "unlock_banner_description": "Após atingir os níveis 50, 100 e 150, você pode enfrentar mais um desafio por dia e desbloquear um total de quatro desafios diários."
       }
     },
     "quests": {

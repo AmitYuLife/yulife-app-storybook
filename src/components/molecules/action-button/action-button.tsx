@@ -13,7 +13,7 @@ interface IProps {
   testID?: string;
 }
 
-const SudokuActionButton = ({ onPress, icon, label, testID }: IProps) => {
+const ActionButton = ({ onPress, icon, label, testID }: IProps) => {
   return (
     <BoxOption
       onPress={onPress}
@@ -26,7 +26,7 @@ const SudokuActionButton = ({ onPress, icon, label, testID }: IProps) => {
     >
       <>
         <View style={styles.text}>
-          <View style={styles.icon}>{icon}</View>
+          {icon ? <View style={styles.icon}>{icon}</View> : null}
           <TextTemplate type="b2b">{label}</TextTemplate>
         </View>
         <ArrowIcon color={colours.primary.p600} />
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(SudokuActionButton);
+export default memo(ActionButton);
