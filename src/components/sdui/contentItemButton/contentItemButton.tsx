@@ -10,6 +10,7 @@ import { defaultSduiActionProps } from "@components/containers/products/product-
 import { useSduiValidField } from "../_hooks/useSduiValidField";
 import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";
 import { useSduiLoading } from "../_hooks/useSduiLoading";
+import { CONTENT_ITEM_BUTTON_IMAGE } from "@ids";
 
 type Props = Omit<GqlButton, "onPress"> & {
   disabled?: boolean;
@@ -63,7 +64,7 @@ export const ContentItemButton = memo((props: Props) => {
   const isDisabled = isLoading || disabled || !isValid;
 
   return (
-    <View style={mapServerStyles(containerStyles)}>
+    <View style={mapServerStyles(containerStyles)} testID={CONTENT_ITEM_BUTTON_IMAGE(icon.id)}>
       <Component
         disabled={isDisabled}
         iconUri={icon?.uri}

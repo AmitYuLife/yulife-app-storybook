@@ -1421,6 +1421,93 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-sa-70:
+    before_run:
+    - ios-git-checkout
+    - ios-run-api-local-sa
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: sa
+      opts:
+        is_expand: false
+    steps:
+    - cache-pull@2:
+        title: Bitrise.io Cache:Pull - iOS build + node_modules
+    - nvm@1:
+        inputs:
+        - node_version: 16.19.0
+    - script@1:
+        title: Run Detox Tests
+        inputs:
+        - content: |+
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+            brew tap wix/brew
+            brew install wix/brew/applesimutils || true
+            npm i -g detox-cli
+            detox clean-framework-cache && detox build-framework-cache
+            applesimutils -v
+
+            node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
+            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200
+
+
+    - script@1:
+        title: Collect logs
+        is_always_run: true
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            forever stop -o build/app/index.js
+            node ./scripts/get-test-results.js | envman add --key E2E_RESULTS
+            cp ~/temp-repos/yulife-api-server/api-stdout.txt ./e2e-report
+            cp ~/temp-repos/yulife-api-server/api-stderr.txt ./e2e-report
+    - deploy-to-bitrise-io@2.1:
+        inputs:
+        - deploy_path: $BITRISE_SOURCE_DIR/e2e-report
+        - is_compress: "true"
+        - zip_name: test-results
+        - debug_mode: "true"
+        - notify_user_groups: none
+    - script@1:
+        title: Publish gallery and report to s3 site
+        is_always_run: true
+        inputs:
+        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug log\nset -x\n\n# just for testing\n# mkdir ios.test\n# mkdir ios.test/test\n# curl http://placehold.it/100x100 --output ios.test/test/test-pic.png\n\n\ncd \"$BITRISE_SOURCE_DIR/e2e-report\"\nls\n\n\n# make a copy in screenshots for report upload\nFOLDER_NAME=$(ls -t | grep 'ios.')\ncp -R \"$FOLDER_NAME\" screenshots \n\n# flatten the directory using ios.sim.debug folder\nnpm install --global @hutsoninc/flatten-dir-cli\nflatten \"$FOLDER_NAME\"\nfind \"$FOLDER_NAME\" -type f -name 'testDone*.png' -delete || true\n\n# make the gallery site\nbrew install exiftool graphicsmagick\nnpm i -g thumbsup \nthumbsup --input \"$FOLDER_NAME\" --output ./gallery --title \"$IPHONE_DEVICE: generated from $DETOX_TEST_TYPE test on $(date)\" --thumb-size 250 --theme flow | tee thumbsup.txt\n\n# sync the gallery\nbrew install awscli\ncd gallery\naws s3 sync . \"s3://yulife-develop-detox-static-origin/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE\"\n\n# remove bulk from the report upload, keep screenshots only\ncd ..\nrm -rf gallery\nrm -rf \"$FOLDER_NAME\"\n\n\n# Sync the mochawesome report\naws s3 sync . \"s3://yulife-develop-detox-static-origin/reports/$BITRISE_BUILD_NUMBER\"\n\nenvman add --key MOCHAWESOME_REPORT --value \"https://develop.detox.yulife.engineering/reports/$BITRISE_BUILD_NUMBER/mochawesome.html\"\n"
+    - slack@3:
+        inputs:
+        - api_token: ""
+        - channel: alerts-e2e-results
+        - text: ""
+        - from_username: Detox
+        - pretext: '*All tests passed!* :party:'
+        - fields: |-
+            Branch|${BITRISE_GIT_BRANCH}
+            Results|$E2E_RESULTS
+            Device|$IPHONE_DEVICE
+            Test Type|$DETOX_TEST_TYPE
+        - buttons: |+
+            View Results|${MOCHAWESOME_REPORT}
+            View Job|${BITRISE_BUILD_URL}
+            Download Results|${BITRISE_BUILD_URL}#?tab=artifacts
+
+        - from_username_on_error: Detox
+        - pretext_on_error: '*Detox tests failed!* :cry:'
+        - is_debug_mode: "yes"
+        - webhook_url: $SLACK_WEBHOOK_URL
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
   ios-detox-run-iphone-se-smoke-1-70:
     after_run:
     - ios-detox-run-base-70
@@ -2334,6 +2421,56 @@ workflows:
 
             npm install -g forever
             NODE_ENV=detox DEBUG=yu:* server__locale=en-US server__port=5001 forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
+            echo 'Waiting for API (USA) to bootstrap...'
+            npx wait-on http://localhost:5001
+
+            cd $CWD
+    - save-cache@1:
+        inputs:
+        - paths: ~/temp-repos/yulife-api-server/node_modules
+        - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
+  ios-run-api-local-sa:
+    before_run:
+    - run-postgres
+    - run-mongodb
+    steps:
+    - restore-cache@1:
+        inputs:
+        - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
+    - nvm@1:
+        inputs:
+        - node_version: 14.18.1
+    - script@1:
+        title: Pull & run API
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+
+            CWD=$(pwd)
+
+            mkdir ~/temp-repos
+            cd ~/temp-repos
+
+            git clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git api-clone
+            mv api-clone/{*,.[^.]*} yulife-api-server
+            rm -rf api-clone
+
+            cd yulife-api-server
+            git checkout $BITRISE_GIT_BRANCH || git checkout develop
+            git pull
+
+            source $HOME/.nvm/nvm.sh
+            nvm use
+            yarn install --frozen-lockfile
+            ./scripts/setupPostgresForBitrise.sh
+            yarn build
+
+            yarn detox:changeRegionDatabase:SA
+
+            npm install -g forever
+            NODE_ENV=detox DEBUG=yu:* server__locale=en-ZA server__port=5002 forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
             echo 'Waiting for API (USA) to bootstrap...'
             npx wait-on http://localhost:5001
 

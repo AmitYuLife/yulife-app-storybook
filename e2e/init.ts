@@ -9,6 +9,7 @@ import { getTestPath } from "./mocha.utils";
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 import * as dataUK from "@data";
 import * as dataUS from "./04_USA/_data";
+import * as dataSA from "./05_SA/_data";
 
 require("dotenv").config({
   path: path.resolve(__dirname, "..", ".env.e2e"),
@@ -24,6 +25,9 @@ switch (API_URL) {
     break;
   case "http://localhost:5001/":
     dataToInsert = dataUS;
+    break;
+  case "http://localhost:5002/":
+    dataToInsert = dataSA;
     break;
   default:
     dataToInsert = dataUK;

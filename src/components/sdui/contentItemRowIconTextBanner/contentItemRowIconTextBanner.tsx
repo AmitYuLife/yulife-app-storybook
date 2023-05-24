@@ -8,6 +8,7 @@ import { ProductStepContext } from "@components/containers/products/product-step
 import { getSduiLoadingForKey } from "@redux/server-driven-ui/sdui.selectors";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { defaultSduiActionProps } from "@components/containers/products/product-step/utils/sduiEventActionCreator";
+import { YUGI_INFO_BANNER_IMAGE } from "@ids";
 
 export const ContentItemRowIconTextBanner = memo(
   ({
@@ -100,7 +101,7 @@ export const ContentItemRowIconTextBanner = memo(
     }
 
     return (
-      <View style={mapServerStyles(styles)}>
+      <View style={mapServerStyles(styles)} testID={YUGI_INFO_BANNER_IMAGE(bannerIcon.id)}>
         <InfoPanel
           markdown={markdown}
           type={bannerType}
