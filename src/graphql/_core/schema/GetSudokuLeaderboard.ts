@@ -30,6 +30,6 @@ export interface GetSudokuLeaderboard {
 
 export interface GetSudokuLeaderboardVariables {
   date: string;
-  difficulty: SudokuDifficulty;
+  difficulty?: SudokuDifficulty | null;
   limit: number;
 }

@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -104,10 +104,16 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_details {
   internalContent: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent[] | null;
 }
 
+export interface GetQuestMapLevel_getQuestMapLevel_slots_challenges_iconUrl {
+  uri: string | null;
+}
+
 export interface GetQuestMapLevel_getQuestMapLevel_slots_challenges {
   id: string;
   reward: string;
   rating: number;
+  label: string;
+  iconUrl: GetQuestMapLevel_getQuestMapLevel_slots_challenges_iconUrl;
 }
 
 export interface GetQuestMapLevel_getQuestMapLevel_slots {
@@ -133,6 +139,7 @@ export interface GetQuestMapLevel_getQuestMapLevel {
   __typename: "QuestMapLevel";
   level: number;
   levelChest: string | null;
+  date: string | null;
   slots: (GetQuestMapLevel_getQuestMapLevel_slots | null)[];
 }
 

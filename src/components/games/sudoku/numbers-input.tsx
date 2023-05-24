@@ -1,5 +1,9 @@
 import { StyleSheet, View } from "react-native";
-import NumberInput, { SUDOKU_NUMBER_SIZE, SUDOKU_PASSED_NUMBER_CUTOFF } from "./number-input";
+import NumberInput, {
+  SUDOKU_NUMBER_INNER_HEIGHT,
+  SUDOKU_NUMBER_SIZE,
+  SUDOKU_PASSED_NUMBER_CUTOFF,
+} from "./number-input";
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import UndoIcon from "@atoms/icon/undo-svg";
 import { Style } from "@styles";
@@ -43,7 +47,7 @@ const NumbersInput = () => {
           debounce={false}
           wrapperStyle={styles.undoButtonWrapper}
           disabled={history.length <= 0}
-          innerHeight={Style.adjust(SUDOKU_NUMBER_SIZE - 5)}
+          innerHeight={SUDOKU_NUMBER_INNER_HEIGHT}
           onPress={undo}
           innerWrapperStyle={styles.undoButtonInner}
         >

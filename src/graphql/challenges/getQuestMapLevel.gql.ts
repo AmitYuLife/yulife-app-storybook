@@ -7,6 +7,7 @@ export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
       __typename
       level
       levelChest
+      date
       slots {
         __typename
         id
@@ -94,6 +95,10 @@ export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
           id
           reward
           rating
+          label
+          iconUrl {
+            uri(options: { width: 48, height: 48 })
+          }
         }
       }
     }

@@ -20,7 +20,7 @@ import { useTranslation } from "@hooks";
 import { getCurrentWorldName } from "@utils";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
-import SudokuActionButton from "@components/games/sudoku/sudoku-action-button";
+import SudokuActionButton from "@components/molecules/action-button/action-button";
 import SudokuStagingHeader from "@components/games/sudoku/sudoku-staging-header";
 import { SUDOKU_DATE_FORMAT, SUDOKU_PLANET_STYLES, SUDOKU_YUNIVERSAL_STYLES } from "../sudoku-game/sudoku.config";
 import { SUDOKU_HOWTOPLAY_BUTTON, SUDOKU_JOINLEADERBOARD_BUTTON, SUDOKU_STAGING_SCREEN_SCROLL } from "@ids";

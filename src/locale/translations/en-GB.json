@@ -166,9 +166,14 @@
         "set_up_label": "Set up tutorial"
       },
       "history": {
-        "full_button_label": "Full history",
+        "full_button_label": "Full activity history",
         "menu_label": "map",
-        "sudoku_leaderboard": "Yudoku Leaderboard"
+        "completed_challenges": "Completed challenges",
+        "sudoku_leaderboard": "Yudoku Leaderboard",
+        "summary": "Level %{level} Summary",
+        "summary_named": "%{levelName} Summary",
+        "unlock_banner_title": "Unlock Extra Challenge",
+        "unlock_banner_description": "After reaching levels 50, 100, and 150, you can take on one more challenge per day and unlock a total of four daily challenges."
       }
     },
     "quests": {

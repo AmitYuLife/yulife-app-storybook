@@ -122,6 +122,11 @@ const routesForRegistration = [
     component: require("../components/containers/member/activity-history/activity-history.container").default,
   },
   {
+    name: ROUTES.challengesHistoryNew,
+    component: require("../components/containers/member/quests/challenges-history-new/challenges-history-new.container")
+      .default,
+  },
+  {
     name: ROUTES.duelsHub,
     component: require("../components/containers/member/duels-hub/duels-hub.container").default,
   },

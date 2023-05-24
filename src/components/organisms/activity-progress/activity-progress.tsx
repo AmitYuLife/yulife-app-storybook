@@ -35,7 +35,13 @@ const Activity = (props: IProps) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.wrapper}>
-        <Image width={Style.adjust(16)} height={Style.adjust(16)} style={styles.icon} source={{ uri: iconUrl }} />
+        <Image
+          width={Style.adjust(16)}
+          height={Style.adjust(16)}
+          style={styles.icon}
+          suppressLoadingUi={true}
+          source={{ uri: iconUrl }}
+        />
         {!isDisabled ? null : <View style={styles.isDisabledIcon} />}
         <TextTemplate color={textColour.activity} type="l1">
           {activitySubTotal}
@@ -47,9 +53,11 @@ const Activity = (props: IProps) => {
             <StarIcon />
           </View>
         ))}
-        <TextTemplate color={textColour.total} type="l1b">
-          {yuCoinSubTotal}
-        </TextTemplate>
+        <View style={styles.subtotal}>
+          <TextTemplate color={textColour.total} type="l1b" textAlign="right">
+            {yuCoinSubTotal}
+          </TextTemplate>
+        </View>
         <RNImage
           source={isCompleted ? require("@assets/icons/check-green.png") : require("@assets/icons/yucoin.png")}
           style={styles.yuCoin}
@@ -87,6 +95,9 @@ const styles = StyleSheet.create({
     height: Style.adjust(16),
     backgroundColor: "rgba(250,250,254,0.5)",
     position: "absolute",
+  },
+  subtotal: {
+    minWidth: Style.adjust(20),
   },
   yuCoinSubTotal: {
     flex: 1,
