@@ -146,6 +146,9 @@ export const GQL_QUERY_GET_YU_SCREEN_PRODUCT_DETAILS = gql`
           ... on ContentItemLinearGradient {
             ...ContentItemLinearGradient
           }
+          ... on ContentItemButton {
+            ...ContentItemButton
+          }
         }
       }
     }
