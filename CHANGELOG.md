@@ -7,6 +7,45 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.83.0] - 2023-05-24
+
+### Bugfixes
+
+- Bugfix: SA api guard against missing/existing folders
+- Bugfix: US pipeline fix
+- Bugfix: Intercom initialisation guard
+- Bugfix: Install correctly RN cli version
+- Bugfix: Challenge history image
+- Bugfix ENG-3109 / ENG-3110: Refetch initial config if is not been set yet
+- Bugfix: Sudoku error handling
+- Bugfix ENG-3223: Safeguard on collect event reward modal if rewards is undefined/null
+- Bugfix ENG-3326: Safeguard if fiit media list is null
+- Bugfix: Improvements on topbar on ocean/mountain planet earth
+
+### Tasks
+
+- Task: New challenge history
+- Task/XSE-1929: Adding generic intro page for pcp
+- Task GS-717: Sudoku practice
+- Task: Update README with Android Setup Gotchas
+- Task: Implement text for BoxOptionCard title
+- Task DEVOP-1156: Bitrise pipeline changes
+- Task ISA-653: use dailyChallengeAmountAvailable from gql
+- Task GS-712: Sleep meditation fixes
+
+### Chores
+
+- Chore: Run detox with api node 18
+- Chore: Set detox log level with env var & force use nvm
+
+### Extra
+
+- detox:setup detox for SA testing
+- Detox: Extended fixes 23rd may
+- Detox: Smoke fixes 22nd May
+- detox: add test currency check for locale US
+- Detox: Condition for level 400 eotw + yudoku leaderboard toggle
+
 ## [3.82.0] - 2023-05-17
 
 ### Bugfixes
