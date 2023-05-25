@@ -85,9 +85,10 @@ const ActivityHistoryContainer: FC<Props> = ({ componentId }) => {
         queryFitKitAggregatedData({ start, end, features, metaData, ...cyclingConfig }),
       ]);
 
+      const stepsResults = processResult(steps, "StepCount", start, end);
       const meditationResults = processResult(meditation, "MindfulSession", start, end);
       const cyclingResults = processResult(cycling, "Biking", start, end);
-      const payload = [...steps.results, ...meditationResults, ...cyclingResults];
+      const payload = [...stepsResults, ...meditationResults, ...cyclingResults];
 
       if (payload.length) {
         try {

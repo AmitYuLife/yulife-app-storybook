@@ -71,7 +71,7 @@ export async function queryFitKitSampleData<T extends boolean = false>({
 
       const results = await RNFitKit.sampleQuery(args);
 
-      if (loggingEnabled && results && results.length > 0) {
+      if (loggingEnabled && results) {
         Logger.logMixpanelEvent("app_debug", {
           ...metaData,
           results,
@@ -129,9 +129,11 @@ export const queryFitKitAggregatedData = async ({
     disableUserEntries = true,
     loggingEnabled = false,
     runOnNewThread = false,
+    enableServerQueries = false,
   } = features || {
     disableUserEntries: true,
     loggingEnabled: false,
+    enableServerQueries: false,
     cyclingAggregationMin: false,
     runOnNewThread: false,
   };
@@ -151,6 +153,7 @@ export const queryFitKitAggregatedData = async ({
       endTime,
       startTime,
       blackListApps,
+      enableServerQueries,
       types: fitKitTypes.map(mapGqlFitKitTypeToFitKitType),
       runOnNewThread,
     };
@@ -167,7 +170,7 @@ export const queryFitKitAggregatedData = async ({
 
     const results = await RNFitKit.aggregateQuery(args);
 
-    if (loggingEnabled && results && results.length > 0) {
+    if (loggingEnabled && results) {
       Logger.logMixpanelEvent("app_debug", {
         ...metaData,
         results,
