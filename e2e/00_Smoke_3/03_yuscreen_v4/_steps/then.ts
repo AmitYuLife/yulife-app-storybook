@@ -7,9 +7,11 @@ import {
   YUCOIN_POWER,
   TEXT_TEMPLATE,
   CONTENT_MIDDLE_ITEM_IMAGE,
+  PRODUCT_DETAILS_SCROLL_VIEW,
 } from "@ids";
 import moment = require("moment");
 import { BUSINESS_PRODUCT_8_GHI } from "@data";
+import { scrollUntilTextVisible } from "./when";
 
 export const {
   idVisible,
@@ -370,18 +372,19 @@ export const GHIProductInfo = ( productStartDate: any, dependentName:any, yuCoin
   await expect(element(by.id(YUCOIN_POWER(yuCoinPower)))).toBeVisible();
   await expect(element(by.text(policyInfoYugi))).toBeVisible();
   await expect(element(by.text(keyInfo))).toBeVisible();
-  await swipeFromText(keyInfo, "up", "slow", 0.5)();
+  await scrollUntilTextVisible(PRODUCT_DETAILS_SCROLL_VIEW, coverlevel, "down")()
   await expect(element(by.text(schemeNumber))).toBeVisible();
   await expect(element(by.text(schemeNumberProduct))).toBeVisible();
   await expect(element(by.text(coverlevel))).toBeVisible();
+  await scrollUntilTextVisible(PRODUCT_DETAILS_SCROLL_VIEW, startDateText, "down")()
   await expect(element(by.text(startDateText))).toBeVisible();
   await expect(element(by.text(startDate))).toBeVisible(); 
+  await scrollUntilTextVisible(PRODUCT_DETAILS_SCROLL_VIEW, faq, "down")()
   await expect(element(by.text(coverForWApos))).toBeVisible();
   await expect(element(by.text(howToClaim))).toBeVisible();
   await expect(element(by.text(faq))).toBeVisible();
-  await swipeFromText(IncludedInPol, "up", "slow", 0.2)();
+  await scrollUntilTextVisible(PRODUCT_DETAILS_SCROLL_VIEW, dependentDescription, "down")()
   await expect(element(by.text(dependent))).toBeVisible();
-  await swipeFromText(dependent, "up", "slow", 0.1)();
   await expect(element(by.text(dependentDescription))).toBeVisible();
   await swipeFromText(dependentDescription, "up", "fast")();
   await expect(element(by.text(Bupa_markdown_1))).toBeVisible();

@@ -23,7 +23,12 @@ import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import SudokuActionButton from "@components/molecules/action-button/action-button";
 import SudokuStagingHeader from "@components/games/sudoku/sudoku-staging-header";
 import { SUDOKU_DATE_FORMAT, SUDOKU_PLANET_STYLES, SUDOKU_YUNIVERSAL_STYLES } from "../sudoku-game/sudoku.config";
-import { SUDOKU_HOWTOPLAY_BUTTON, SUDOKU_JOINLEADERBOARD_BUTTON, SUDOKU_STAGING_SCREEN_SCROLL } from "@ids";
+import {
+  SUDOKU_HOWTOPLAY_BUTTON,
+  SUDOKU_JOINLEADERBOARD_BUTTON,
+  SUDOKU_PRACTICE_BUTTON,
+  SUDOKU_STAGING_SCREEN_SCROLL,
+} from "@ids";
 import SudokuSecondAttemptDisclaimer from "@components/games/sudoku/SudokuSecondAttemptDisclaimer";
 import SudokuPracticeIcon from "@atoms/icon/sudoku-practice-icon";
 
@@ -138,7 +143,7 @@ const SudokuStagingScreen = ({
                 label={t["sudoku.staging.practiceGame"]}
                 onPress={onStartPractice}
                 icon={<SudokuPracticeIcon />}
-                testID={SUDOKU_JOINLEADERBOARD_BUTTON}
+                testID={SUDOKU_PRACTICE_BUTTON}
               />
             )}
           </View>

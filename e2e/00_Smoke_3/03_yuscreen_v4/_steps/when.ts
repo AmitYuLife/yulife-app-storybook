@@ -160,6 +160,7 @@ export const addWrongMinimumPostCodeAndPhone = async () => {
   await scrollFromID(SDUI_SCREEN_SCROLL_VIEW, "up", "slow")();
   await typeViaID(CONTENT_ITEM_INPUT("postcode"), "HA\n")();
   await typeViaID(CONTENT_ITEM_INPUT("phone"), "07\n")();
+  await typeViaID(CONTENT_ITEM_INPUT("phone"), "\n")();
   await tapText("Claim now", 2000)();
 };
 
