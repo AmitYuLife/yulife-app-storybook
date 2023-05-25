@@ -151,7 +151,7 @@ function QuestsScreenContainer(props: Props) {
                 goToChallengesList(componentId, itemLevel.level);
                 break;
               case "ShowLevelCompleteModal":
-                showLevelCompleteModal(componentId, itemLevel.level, 0, undefined, features);
+                showLevelCompleteModal(componentId, itemLevel.level, undefined, undefined, features);
                 break;
               case "DispatchSubmitUnityAction":
                 setUnity(itemLevel.level);
