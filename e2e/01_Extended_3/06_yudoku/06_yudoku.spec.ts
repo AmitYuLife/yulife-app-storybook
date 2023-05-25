@@ -1,4 +1,4 @@
-import { Given, When, Then, Feature, Scenario, FeatureOnly, ScenarioOnly } from "@yu-life/yulife-bdd-framework"
+import { Given, When, Then, Feature, Scenario, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework"
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -25,13 +25,11 @@ Feature("Yudoku", async () => {
         Then("I can see the 60 reward", then.idVisible(SUDOKU_STAT("Reward", 60)))
     })
     When("I tap the back button", when.tapID(BACK_BUTTON), async () => {
-        Then("I should see the level 152", then.idVisible(LEVEL_CHALLENGE_BUTTON(152)))
+        Then("I should see the Sodoku tile is available", then.canSeeSudokuTile)
     })
-    When("I tap level 152 button", when.tapID(LEVEL_CHALLENGE_BUTTON(152)), async () => {
-        When("I tap the soduku challenge", when.tapSudoku, async () => {
-            When("I go to the how to play screen", when.tapHowToPlay, async () => {
-                Then("I can see the how to play screen", then.amOnSudokuHowToPlay)
-            })
+    When("I tap the soduku challenge", when.tapSudoku, async () => {
+        When("I go to the how to play screen", when.tapHowToPlay, async () => {
+            Then("I can see the how to play screen", then.amOnSudokuHowToPlay)
         })
     })
     When("I dismiss the modal", when.tapID(BUTTON_CLOSE_HEADER("button_only")), async () => {
@@ -51,7 +49,7 @@ Feature("Yudoku", async () => {
         Then("I can see the leaderboard entries on the home screen", then.canSeeLeaderboard(CUSTOMER_67, SUDOKU_ANSWER_3, 2, true))
     })
     When("I tap start game", when.tapStartGame, async () => {
-        When("I tap maybe later", when.tapText("maybe later"), async () => {
+        When("I tap maybe later", when.dismissNotificationScreenIfVisible, async () => {
             Then("I am on the Sudoku challenge screen", then.amOnSudokuChallenge)
         })
     })
@@ -152,7 +150,7 @@ Feature("Yudoku", async () => {
         Then("I am on the sudoku page", then.amOnSudokuPage)
     })
     When("I tap start game", when.tapStartGame, async () => {
-        When("I tap maybe later", when.tapText("maybe later"), async () => {
+        When("I tap maybe later", when.dismissNotificationScreenIfVisible, async () => {
             Then("I am on the Sudoku challenge screen", then.amOnSudokuChallenge)
         })
     })
@@ -186,7 +184,7 @@ Feature("Yudoku", async () => {
         Then("I am on the sudoku page", then.amOnSudokuPage)
     })
     When("I tap start game", when.tapStartGame, async () => {
-        When("I tap maybe later", when.tapText("maybe later"), async () => {
+        When("I tap maybe later", when.dismissNotificationScreenIfVisible, async () => {
             Then("I am on the Sudoku challenge screen", then.amOnSudokuChallenge)
         })
     })
@@ -243,9 +241,11 @@ Feature("Yudoku", async () => {
         })
     })
     When("I tap the back button", when.tapID(BACK_BUTTON), async () => {
-        When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 500), async () => {
-            When("I tap settings", when.tapMenuItem("Settings"), async () => {
-                Then("I should be on the settings tab", then.idVisible(SETTINGS_SCREEN, 2500))
+        When("I tap back again", when.tapID(BACK_BUTTON), async () => {
+            When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 500), async () => {
+                When("I tap settings", when.tapMenuItem("Settings"), async () => {
+                    Then("I should be on the settings tab", then.idVisible(SETTINGS_SCREEN, 2500))
+                })
             })
         })
     })
@@ -272,11 +272,14 @@ Feature("Yudoku", async () => {
         })
     })
     When("I tap the back button", when.tapID(BACK_BUTTON), async () => {
-        When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 500), async () => {
-            When("I tap settings", when.tapMenuItem("Settings"), async () => {
-                Then("I should be on the settings tab", then.idVisible(SETTINGS_SCREEN, 2500))
+        When("I tap back", when.tapID(BACK_BUTTON), async () => {
+            When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 500), async () => {
+                When("I tap settings", when.tapMenuItem("Settings"), async () => {
+                    Then("I should be on the settings tab", then.idVisible(SETTINGS_SCREEN, 2500))
+                })
             })
         })
+        
     })
     When('I tap leaderboards', when.tapText("Leaderboards"), async () => {
         Then("I can see the option for Yudoku leaderboards", then.idVisible(SETTINGS_SWITCH("Yudoku", true)))

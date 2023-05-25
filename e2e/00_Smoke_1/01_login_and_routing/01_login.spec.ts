@@ -158,10 +158,10 @@ Feature("As a user I can get past the login screen", async () => {
                     When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 1500), async () => {
                         When("I tap settings", when.tapMenuItem("Settings"), async () => {
                             Then("I should be on the settings tab", then.idVisible(SETTINGS_SCREEN, 2500))
-                            Then("I should see Measurment cycling title", then.idVisible(TEXT_TEMPLATE("Measurement (Cycling)")))
                         })
                     })
                     When("I scroll to the description if neeced", when.swipeFromText("Leaderboards", "up", "slow", 0.2), async () => {
+                        Then("I should see Measurment cycling title", then.idVisible(TEXT_TEMPLATE("Measurement (Cycling)")))
                         Then("I should see Measurment cycling description", then.idVisible(TEXT_TEMPLATE("Change between the imperial (miles) and metric (kilometers) system.")))
                         Then("I should see Measurment method used", then.idVisible(TEXT_TEMPLATE("km")))
                     })

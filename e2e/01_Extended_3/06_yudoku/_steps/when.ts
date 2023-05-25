@@ -11,6 +11,7 @@ export const {
   navigateTo,
   tapYuCoinIcon,
   navigateViaID,
+  dismissNotificationScreenIfVisible
 } = navigation.common;
 
 export const {
@@ -85,7 +86,7 @@ export const tapExitChallenge = async () => {
 
 export const completeYudoku = async () => {
   await tapStartGame()
-  await tapText("maybe later")()
+  await dismissNotificationScreenIfVisible()
   await tapID(CELL_ROW_COLUMN(8, 6, 0))()
   await tapID(SUDOKU_NUMBER_INPUT(4))()
   await tapID(CELL_ROW_COLUMN(8, 7, 0))()
