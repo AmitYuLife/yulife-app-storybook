@@ -5,7 +5,7 @@ import RNFitKit, { FitKitAuthOptions, FitKitHealthTrackingPlatform, FitKitTypes 
 import Logger from "@services/logging/logger";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { mapGqlFitKitTypeToFitKitType } from "./cast/fitkitTypes";
-import { isSamsung } from "@utils";
+import { DATE_FORMAT_WITH_TZ, isSamsung } from "@utils";
 import { useDispatch, useSelector } from "react-redux";
 import { fitkitSelector } from "@redux/fitkit/fitkit.selectors";
 import {
@@ -46,8 +46,8 @@ export function useFitKit() {
 
         for (const h of hoursToSubtract) {
           try {
-            const startTime = moment().subtract(h, "hours").startOf("day").toISOString().slice(0, 19);
-            const endTime = moment().toISOString().slice(0, 19);
+            const startTime = moment().subtract(h, "hours").startOf("day").format(DATE_FORMAT_WITH_TZ);
+            const endTime = moment().format(DATE_FORMAT_WITH_TZ);
 
             const res = await RNFitKit.aggregateQuery({
               aggregateBy: {
