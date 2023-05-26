@@ -19,9 +19,9 @@ export const REWARD_LEDGER_1 = {
         "restrictions": {
             "locations": ["GB"]
         },
-        "reward": CORE_REWARDS_NIKE.data._id,
-        "createdAt": moment().subtract(10, "minutes").toISOString(),
-        "updatedAt": moment().subtract(5, "minutes").toISOString(),
-        "__v": 0
+        reward: CORE_REWARDS_NIKE.data._id,
+        createdAt: moment().subtract(10, "minutes").toISOString(),
+        claimedAt: moment().subtract(10, "minutes").toISOString(),
+        updatedAt: moment().subtract(5, "minutes").toISOString(),
     }
 } as IDatabaseItem

@@ -5,7 +5,7 @@ import { beneficiaries, coverAmounts, keyInfo, SAProductData, usefulLinks, produ
 //Onboarding SA YU screen 
 export const moreInsurance = "More insurance available"
 export const protectionPowered = "Protection, powered up!"
-export const earnRewardsCopy = "Earn rewards faster with increased YuCoin power"
+export const earnRewardsCopy = "Earn rewards faster with increased YuCoin Power"
 export const buttonText = "Check out my power"
 export const yuCoinText = "YuCoin"
 export const powerText = "Power"

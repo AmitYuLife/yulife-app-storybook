@@ -1,4 +1,4 @@
-import { expectIsVisibleViaText, REWARD_ITEM, expectIsVisibleViaID, LOCKED_REWARD_ITEM, WEGIFT_CONFIRMED, PURCHASE_IMAGE, wait, textVisible } from "@navigation"
+import { expectIsVisibleViaText, REWARD_ITEM, expectIsVisibleViaID, LOCKED_REWARD_ITEM, WEGIFT_CONFIRMED, PURCHASE_IMAGE, wait, textVisible, textVisibleAtIndex } from "@navigation"
 import { scrollFromText, scrollUntilIdVisible, swipeFromText } from "_utils/navigation/scrolling"
 import { REWARDS_LIST_SCREEN_SCROLL, TEXT_TEMPLATE } from "@ids"
 import moment = require("moment")
@@ -198,10 +198,10 @@ export const purchasedRewardVisible = (reward: any, denominationIndex = 0) => as
     const todayDay = moment().format("DD")
     const currentMonth = moment().format("MMM")
 
-    await expect(element(by.text(title)).atIndex(denominationIndex)).toBeVisible()
-    await expect(element(by.text(subTitle)).atIndex(denominationIndex)).toBeVisible()
-    await expect(element(by.text(todayDay)).atIndex(denominationIndex)).toBeVisible()
-    await expect(element(by.text(currentMonth)).atIndex(denominationIndex)).toBeVisible()
+    await textVisibleAtIndex(title, denominationIndex)()
+    await textVisibleAtIndex(subTitle, denominationIndex)()
+    await textVisibleAtIndex(todayDay, denominationIndex)()
+    await textVisibleAtIndex(currentMonth, denominationIndex)()
 }
 
 export const tapPurchasedReward = (reward: any, denominationIndex = 0) => async () => {
