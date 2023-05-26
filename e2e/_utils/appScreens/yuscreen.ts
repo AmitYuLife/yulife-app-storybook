@@ -485,7 +485,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
   const wellbeingAccessText = "Wellbeing Access";
   const availableProducts = "More protection";
   const protectionPowered = "Protection, powered up!";
-  const earnRewardsCopy = "Earn rewards faster with increased YuCoin power";
+  const earnRewardsCopy = "Earn rewards faster with increased YuCoin Power";
   const buttonText = "Check out my power";
   const yuCoinText = "YuCoin";
   const powerText = "Power";
