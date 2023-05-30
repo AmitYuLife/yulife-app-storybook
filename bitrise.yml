@@ -32,9 +32,11 @@ app:
   - DISPLAY_NAME: YuLife
     opts:
       is_expand: false
+  - NODE_OPTIONS: --max-old-space-size=4096
 meta:
   bitrise.io:
     machine_type: performance
+    machine_type_id: g2-m1.4core
     stack: osx-xcode-13.0.x
 trigger_map:
 - push_branch: develop
@@ -926,7 +928,7 @@ workflows:
     - ios-git-checkout
     - ios-run-api-local
     steps:
-    - cache-pull@2:
+    - cache-pull@2.7:
         title: Bitrise.io Cache:Pull - iOS build + node_modules
     - nvm@1:
         inputs:
@@ -938,15 +940,22 @@ workflows:
             #!/usr/bin/env bash
             # fail if any commands fails
             set -e
-            # debug log
-            set -x
+
+            # Install dependencies
             brew tap wix/brew
             brew install wix/brew/applesimutils || true
-            npm i -g detox-cli
-            detox clean-framework-cache && detox build-framework-cache
-            applesimutils -v
+            . $HOME/.nvm/nvm.sh
+            nvm use
+            npm i -g yarn || true
+            yarn install --frozen-lockfile
 
+            # Clean and re-build detox cache
+            yarn detox clean-framework-cache && yarn detox build-framework-cache
+
+            # Set detox test device
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
+
+            # Run tests
             yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs failing
 
 
@@ -965,7 +974,7 @@ workflows:
             node ./scripts/get-test-results.js | envman add --key E2E_RESULTS
             cp ~/temp-repos/yulife-api-server/api-stdout.txt ./e2e-report
             cp ~/temp-repos/yulife-api-server/api-stderr.txt ./e2e-report
-    - deploy-to-bitrise-io@2.1:
+    - deploy-to-bitrise-io@2.2:
         inputs:
         - deploy_path: $BITRISE_SOURCE_DIR/e2e-report
         - is_compress: "true"
@@ -1022,7 +1031,7 @@ workflows:
     - ios-git-checkout
     - ios-run-api-local-slow
     steps:
-    - cache-pull@2:
+    - cache-pull@2.7:
         title: Bitrise.io Cache:Pull - iOS build + node_modules
     - nvm@1:
         inputs:
@@ -1030,22 +1039,26 @@ workflows:
     - script@1:
         title: Run Detox Tests
         inputs:
-        - content: |+
-            #!/usr/bin/env bash
+        - content: |
+            #! /usr/bin/env bash
             # fail if any commands fails
-            set -e
-            # debug log
-            set -x
+            set -e -x
+
+            # Install dependencies
             brew tap wix/brew
             brew install wix/brew/applesimutils || true
-            npm i -g detox-cli
-            detox clean-framework-cache && detox build-framework-cache
-            applesimutils -v
+            . $HOME/.nvm/nvm.sh
+            nvm use
+            npm i -g yarn || true
+            yarn install --frozen-lockfile
 
+            # Clean and re-build detox cache
+            yarn detox clean-framework-cache && yarn detox build-framework-cache
+
+            # Set detox test device
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
+
             yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs failing
-
-
     - script@1:
         title: Collect logs
         is_always_run: true
@@ -1061,7 +1074,7 @@ workflows:
             node ./scripts/get-test-results.js | envman add --key E2E_RESULTS
             cp ~/temp-repos/yulife-api-server/api-stdout.txt ./e2e-report
             cp ~/temp-repos/yulife-api-server/api-stderr.txt ./e2e-report
-    - deploy-to-bitrise-io@1:
+    - deploy-to-bitrise-io@2.2:
         inputs:
         - deploy_path: $BITRISE_SOURCE_DIR/e2e-report
         - is_compress: "true"
@@ -1255,7 +1268,7 @@ workflows:
       opts:
         is_expand: false
     steps:
-    - cache-pull@2:
+    - cache-pull@2.7:
         title: Bitrise.io Cache:Pull - iOS build + node_modules
     - nvm@1:
         inputs:
@@ -1264,20 +1277,25 @@ workflows:
         title: Run Detox Tests
         inputs:
         - content: |+
-            #!/usr/bin/env bash
+            #! /usr/bin/env bash
             # fail if any commands fails
-            set -e
-            # debug log
-            set -x
+            set -e -x
+
+            # Install dependencies
             brew tap wix/brew
             brew install wix/brew/applesimutils || true
-            npm i -g detox-cli
-            detox clean-framework-cache && detox build-framework-cache
-            applesimutils -v
+            . $HOME/.nvm/nvm.sh
+            nvm use
+            npm i -g yarn || true
+            yarn install --frozen-lockfile
 
+            # Clean and re-build detox cache
+            yarn detox clean-framework-cache && yarn detox build-framework-cache
+
+            # Set detox test device
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
-            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200
 
+            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs failing
 
     - script@1:
         title: Collect logs
@@ -1294,7 +1312,7 @@ workflows:
             node ./scripts/get-test-results.js | envman add --key E2E_RESULTS
             cp ~/temp-repos/yulife-api-server/api-stdout.txt ./e2e-report
             cp ~/temp-repos/yulife-api-server/api-stderr.txt ./e2e-report
-    - deploy-to-bitrise-io@2.1:
+    - deploy-to-bitrise-io@2.2:
         inputs:
         - deploy_path: $BITRISE_SOURCE_DIR/e2e-report
         - is_compress: "true"
@@ -1419,7 +1437,7 @@ workflows:
       opts:
         is_expand: false
     steps:
-    - cache-pull@2:
+    - cache-pull@2.7:
         title: Bitrise.io Cache:Pull - iOS build + node_modules
     - nvm@1:
         inputs:
@@ -1427,22 +1445,26 @@ workflows:
     - script@1:
         title: Run Detox Tests
         inputs:
-        - content: |+
-            #!/usr/bin/env bash
+        - content: |
+            #! /usr/bin/env bash
             # fail if any commands fails
-            set -e
-            # debug log
-            set -x
+            set -e -x
+
+            # Install dependencies
             brew tap wix/brew
             brew install wix/brew/applesimutils || true
-            npm i -g detox-cli
-            detox clean-framework-cache && detox build-framework-cache
-            applesimutils -v
+            . $HOME/.nvm/nvm.sh
+            nvm use
+            npm i -g yarn || true
+            yarn install --frozen-lockfile
 
+            # Clean and re-build detox cache
+            yarn detox clean-framework-cache && yarn detox build-framework-cache
+
+            # Set detox test device
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
+
             yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs failing
-
-
     - script@1:
         title: Collect logs
         is_always_run: true
@@ -1458,7 +1480,7 @@ workflows:
             node ./scripts/get-test-results.js | envman add --key E2E_RESULTS
             cp ~/temp-repos/yulife-api-server/api-stdout.txt ./e2e-report
             cp ~/temp-repos/yulife-api-server/api-stderr.txt ./e2e-report
-    - deploy-to-bitrise-io@2.1:
+    - deploy-to-bitrise-io@2.2:
         inputs:
         - deploy_path: $BITRISE_SOURCE_DIR/e2e-report
         - is_compress: "true"
@@ -1692,7 +1714,7 @@ workflows:
     steps:
     - activate-ssh-key@4.1:
         run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-    - git-clone@6.2:
+    - git-clone@8.0:
         inputs:
         - reset_repository: "Yes"
   ios-primary:
@@ -2075,22 +2097,22 @@ workflows:
     steps:
     - restore-cache@1:
         inputs:
-        - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
+        - key: yarn-cache-silicon-{{ checksum "package-lock.json" "**/*.patch" }}
     - nvm@1:
         inputs:
         - node_version: 18.16.0
-    - script@1:
-        title: Pull & run API
+    - script@1.2:
+        title: Pull & run API (UK)
         inputs:
-        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n\nCWD=$(pwd)\n\nmkdir
+        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e -x\n\nCWD=$(pwd)\n\nmkdir
             -p ~/temp-repos\ncd ~/temp-repos\n\ngit clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git
             api-clone\nmkdir -p yulife-api-server\nmv api-clone/{*,.[^.]*} yulife-api-server\nrm
             -rf api-clone\ncd yulife-api-server\n\ngit checkout $BITRISE_GIT_BRANCH
-            || git checkout develop\ngit pull\n\nsource $HOME/.nvm/nvm.sh\nnvm use\nyarn
-            install --frozen-lockfile \necho \\\"Install completed\\\"\n./scripts/setupPostgresForBitrise.sh\nyarn
+            || git checkout develop\ngit pull\n\n. $HOME/.nvm/nvm.sh\nnvm use\nyarn
+            install --frozen-lockfile \necho 'Install completed'\n./scripts/setupPostgresForBitrise.sh\nyarn
             build\n\nyarn detox:changeRegionDatabase:UK\n\nnpm install -g forever\nNODE_ENV=detox
             DEBUG=yu:* forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js\necho
-            'Waiting for API to bootstrap...'\nnpx wait-on http://localhost:5000\n\ncd
+            'Waiting for API (UK) to bootstrap...'\nnpx wait-on http://localhost:5000\n\ncd
             $CWD"
     - save-cache@1:
         inputs:
@@ -2139,14 +2161,14 @@ workflows:
 
             npm install -g forever
             NODE_ENV=detox DEBUG=yu:* server__locale=en-ZA server__port=5002 forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
-            echo 'Waiting for API (USA) to bootstrap...'
+            echo 'Waiting for API (SA) to bootstrap...'
             npx wait-on http://localhost:5001
 
             cd $CWD
     - save-cache@1:
         inputs:
         - paths: ~/temp-repos/yulife-api-server/node_modules
-        - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
+        - key: yarn-cache-silicon-{{ checksum "package-lock.json" "**/*.patch" }}
   ios-run-api-local-slow:
     before_run:
     - run-postgres
@@ -2179,7 +2201,7 @@ workflows:
             git checkout $BITRISE_GIT_BRANCH || git checkout develop
             git pull
 
-            source $HOME/.nvm/nvm.sh
+            . $HOME/.nvm/nvm.sh
             nvm use
             yarn install --frozen-lockfile
             ./scripts/setupPostgresForBitrise.sh
@@ -2212,39 +2234,16 @@ workflows:
     - script@1:
         title: Pull & run API
         inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-
-            CWD=$(pwd)
-
-            mkdir -p ~/temp-repos
-            cd ~/temp-repos
-
-            git clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git api-clone
-            mkdir -p yulife-api-server
-            mv api-clone/{*,.[^.]*} yulife-api-server
-            rm -rf api-clone
-
-            cd yulife-api-server
-            git checkout $BITRISE_GIT_BRANCH || git checkout develop
-            git pull
-
-            source $HOME/.nvm/nvm.sh
-            nvm use
-            yarn install --frozen-lockfile
-            ./scripts/setupPostgresForBitrise.sh
-            yarn build
-
-            yarn detox:changeRegionDatabase:US
-
-            npm install -g forever
-            NODE_ENV=detox DEBUG=yu:* server__locale=en-US server__port=5001 forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
-            echo 'Waiting for API (USA) to bootstrap...'
-            npx wait-on http://localhost:5001
-
-            cd $CWD
+        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n\nCWD=$(pwd)\n\nmkdir
+            -p ~/temp-repos\ncd ~/temp-repos\n\ngit clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git
+            api-clone\nmkdir -p yulife-api-server\nmv api-clone/{*,.[^.]*} yulife-api-server\nrm
+            -rf api-clone\n\ncd yulife-api-server\ngit checkout $BITRISE_GIT_BRANCH
+            || git checkout develop\ngit pull\n\n. $HOME/.nvm/nvm.sh \nnvm use\nyarn
+            install --frozen-lockfile\n./scripts/setupPostgresForBitrise.sh\nyarn
+            build\n\nyarn detox:changeRegionDatabase:US\n\nnpm install -g forever\nNODE_ENV=detox
+            DEBUG=yu:* server__locale=en-US server__port=5001 forever start -o ./api-stdout.txt
+            -e ./api-stderr.txt build/app/index.js\necho 'Waiting for API (USA) to
+            bootstrap...'\nnpx wait-on http://localhost:5001\n\ncd $CWD"
     - save-cache@1:
         inputs:
         - paths: ~/temp-repos/yulife-api-server/node_modules
@@ -2293,7 +2292,7 @@ workflows:
               --overwrite
   run-mongodb:
     steps:
-    - script@1:
+    - script@1.2:
         title: Install & Run MongoDB (mongodb-community@5.0)
         inputs:
         - content: |-
@@ -2303,23 +2302,26 @@ workflows:
             # debug log
             set -x
 
-            mkdir ~/data
-            brew tap --repair
             brew update
             brew tap mongodb/brew
             brew install mongodb-community@5.0
             brew tap homebrew/services
 
-            echo "  port: 27018" >> /usr/local/etc/mongod.conf
+            # Add mongodb to PATH
+            echo 'export PATH="/opt/homebrew/opt/mongodb-community@5.0/bin:$PATH"' >> ~/.zshrc
 
-            brew services start mongodb-community@5.0
+            # Set detox port for MongoDb
+            echo "  port: 27018" >> /opt/homebrew/etc/mongod.conf
 
-            echo 'mongo config...'
-            cat /usr/local/etc/mongod.conf
+            # Start MongoDb
+            brew services start mongodb/brew/mongodb-community@5.0
+
+            echo 'MongoDb config...'
+            cat /opt/homebrew/etc/mongod.conf
   run-postgres:
     steps:
     - script@1:
-        title: Install & Run Postgres (postgresql@14)
+        title: Install & Run Postgres (postgresql@15)
         inputs:
         - content: |
             #!/usr/bin/env bash
@@ -2327,13 +2329,18 @@ workflows:
             set -e
             # debug log
             set -x
-            id -un
 
             brew update
-            brew install postgresql@14 -v || true
+            brew install postgresql@15 -v || true
 
-            ls /usr/local/var/postgres || initdb -D /usr/local/var/postgres || echo "Already inited"
-            PGPORT=5432 PGHOST=localhost pg_ctl -D /usr/local/var/postgres -l logfile start
+            # Add postgres to PATH and create symlinks
+            echo 'export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"' >> ~/.zshrc
+            ln -s /opt/homebrew/opt/postgresql@15/bin/psql /usr/local/bin/psql
+            ln -s /opt/homebrew/opt/postgresql@15/bin/pg_ctl /usr/local/bin/pg_ctl
+            ln -s /opt/homebrew/opt/postgresql@15/bin/createdb /usr/local/bin/createdb
+
+            # Init postgres
+            PGPORT=5432 PGHOST=localhost pg_ctl -D /opt/homebrew/var/postgresql@15 -l logfile start
 
             psql -d postgres -c "\du"
             psql -d postgres -U vagrant -h localhost -c "CREATE DATABASE yulife;"
