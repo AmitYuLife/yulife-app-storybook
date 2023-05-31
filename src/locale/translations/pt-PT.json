@@ -168,11 +168,14 @@
         "full_button_label": "História completa",
         "menu_label": "mapa",
         "completed_challenges": "Desafios concluídos",
-        "sudoku_leaderboard": "Classificação de Sudoku",
+        "sudoku_leaderboard": "Classificação de Sudoku (%{date})",
+        "sudoku_leaderboard_today": "Hoje",
         "summary": "Resumo do nível %{level}",
         "summary_named": "Resumo do %{levelName}",
         "unlock_banner_title": "Desbloquear Desafio Extra",
-        "unlock_banner_description": "Após atingir os níveis 50, 100 e 150, você pode enfrentar mais um desafio por dia e desbloquear um total de quatro desafios diários."
+        "unlock_banner_description_start": "Após alcançar os níveis 50, 100 e 150, você pode assumir",
+        "unlock_banner_description_bold": " mais um desafio por dia ",
+        "unlock_banner_description_end": "e desbloquear um total de quatro desafios diários."
       }
     },
     "quests": {
@@ -1196,7 +1199,8 @@
       "sub2": "Volte amanhã para uma nova rodada.",
       "collect": "Coletar",
       "practice": "Agora experimente o desafio diário Yudoku para ganhar YuCoin!",
-      "continue": "Continuar"
+      "continue": "Continuar",
+      "practice_title": "Prática de Yudoku"
     },
     "pause": {
       "title": "Pausa",

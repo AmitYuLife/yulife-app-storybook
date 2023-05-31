@@ -35,6 +35,7 @@ const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }
     "sudoku.completed.collect",
     "sudoku.completed.practice",
     "sudoku.completed.continue",
+    "sudoku.completed.practice_title",
     "yu_coin.camel_case",
   ]);
 
@@ -56,7 +57,7 @@ const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }
       <View style={styles.wrapper}>
         <View>
           <TextTemplate type="b1b" textAlign="center">
-            {t["sudoku.title"]}
+            {isPractice ? t["sudoku.completed.practice_title"] : t["sudoku.title"]}
           </TextTemplate>
 
           <View style={styles.rewardWrapper}>

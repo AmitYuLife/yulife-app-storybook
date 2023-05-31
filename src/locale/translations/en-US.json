@@ -169,11 +169,14 @@
         "full_button_label": "Full activity history",
         "menu_label": "map",
         "completed_challenges": "Completed challenges",
-        "sudoku_leaderboard": "Yudoku Leaderboard",
+        "sudoku_leaderboard": "Yudoku Leaderboard (%{date})",
+        "sudoku_leaderboard_today": "Today",
         "summary": "Level %{level} Summary",
         "summary_named": "%{levelName} Summary",
         "unlock_banner_title": "Unlock Extra Challenge",
-        "unlock_banner_description": "After reaching levels 50, 100, and 150, you can take on one more challenge per day and unlock a total of four daily challenges."
+        "unlock_banner_description_start": "After reaching levels 50, 100, and 150, you can take on",
+        "unlock_banner_description_bold": " one more challenge per day ",
+        "unlock_banner_description_end": "and unlock a total of four daily challenges."
       }
     },
     "quests": {
@@ -1198,7 +1201,8 @@
       "sub2": "Come back tomorrow for a new round.",
       "collect": "Collect",
       "practice": "Now try the daily Yudoku challenge to earn YuCoin!",
-      "continue": "Continue"
+      "continue": "Continue",
+      "practice_title": "Yudoku Practice"
     },
     "pause": {
       "title": "Pause",

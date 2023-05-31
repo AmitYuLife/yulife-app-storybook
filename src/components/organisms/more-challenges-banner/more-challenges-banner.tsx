@@ -8,7 +8,9 @@ import { useTranslation } from "@hooks";
 const MoreChallengesBanner = () => {
   const t = useTranslation([
     "screens.challenges.history.unlock_banner_title",
-    "screens.challenges.history.unlock_banner_description",
+    "screens.challenges.history.unlock_banner_description_start",
+    "screens.challenges.history.unlock_banner_description_bold",
+    "screens.challenges.history.unlock_banner_description_end",
   ]);
 
   return (
@@ -24,7 +26,11 @@ const MoreChallengesBanner = () => {
           </TextTemplate>
         </View>
         <TextTemplate type="b2" color={Colours.neutral.n900}>
-          {t["screens.challenges.history.unlock_banner_description"]}
+          {t["screens.challenges.history.unlock_banner_description_start"]}
+          <TextTemplate type="b2b" color={Colours.neutral.n900}>
+            {t["screens.challenges.history.unlock_banner_description_bold"]}
+          </TextTemplate>
+          {t["screens.challenges.history.unlock_banner_description_end"]}
         </TextTemplate>
       </View>
     </View>
@@ -41,7 +47,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     borderRadius: Style.adjust(14),
   },
-
   titleWrapper: {
     marginBottom: Style.adjust(8),
   },

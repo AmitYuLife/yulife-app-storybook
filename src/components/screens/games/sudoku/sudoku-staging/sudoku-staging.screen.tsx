@@ -7,7 +7,7 @@ import {
 } from "@graphql/_core/schema";
 import { memo, useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { TopBarAbsolute } from "@organisms";
+import { GenericHeadingAbsolute } from "@organisms";
 import { useSelector } from "react-redux";
 import SudokuPersonalBestIcon from "@atoms/icon/sudoku-personal-best-svg";
 import SudokuStats from "@components/games/sudoku/sudoku-stats";
@@ -17,12 +17,9 @@ import moment from "moment";
 import SudokuHowToPlayIcon from "@atoms/icon/sudoku-how-to-play-svg";
 import { getSudokuState } from "@redux/sudoku/sudoku.selectors";
 import { useTranslation } from "@hooks";
-import { getCurrentWorldName } from "@utils";
-import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
-import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import SudokuActionButton from "@components/molecules/action-button/action-button";
 import SudokuStagingHeader from "@components/games/sudoku/sudoku-staging-header";
-import { SUDOKU_DATE_FORMAT, SUDOKU_PLANET_STYLES, SUDOKU_YUNIVERSAL_STYLES } from "../sudoku-game/sudoku.config";
+import { SUDOKU_DATE_FORMAT } from "../sudoku-game/sudoku.config";
 import {
   SUDOKU_HOWTOPLAY_BUTTON,
   SUDOKU_JOINLEADERBOARD_BUTTON,
@@ -77,19 +74,7 @@ const SudokuStagingScreen = ({
   ]);
 
   const leaderboardOptedIn = !!data?.getSudokuBoard?.stats?.leaderboardId;
-  const currentLevel = useSelector(getCurrentLevel);
-  const { yuniversalMap } = useSelector(getYuniversalProgress);
   const sudokuState = useSelector(getSudokuState);
-
-  const currentStyle = useMemo(() => {
-    if (yuniversalMap) {
-      return SUDOKU_YUNIVERSAL_STYLES;
-    }
-
-    const worldName = getCurrentWorldName(currentLevel);
-    return SUDOKU_PLANET_STYLES[worldName];
-  }, [currentLevel, yuniversalMap]);
-
   const date = useMemo(() => moment(data?.getSudokuBoard?.date).format(SUDOKU_DATE_FORMAT), [data]);
 
   return (
@@ -162,11 +147,12 @@ const SudokuStagingScreen = ({
           )}
         </View>
       </View>
-      <TopBarAbsolute
-        leftIcon={LeftIcon.BACK}
-        onPressLeftIcon={onBack}
-        type={currentStyle.topBarType}
-        rightIcon={null}
+
+      <GenericHeadingAbsolute
+        logo="yulife"
+        onLeftIconPress={onBack}
+        backgroundColor="transparent"
+        color={levelDetails?.progressBar?.progressTextColor}
       />
     </ScrollView>
   );
