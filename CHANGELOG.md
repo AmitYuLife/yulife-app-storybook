@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.84.0] - 2023-05-31
+
+### Bugfixes
+
+- Bugfix: Sudoku bugs
+- Bugfix: Downgrade reanimated to fix layout animations on Android
+- Bugfix: Don't query steps with ISO string when verifying permissions
+- Bugfix: Update lockfile with correct versions
+- Bugfix: Cycling distance fixes, iOS performance
+
+### Tasks
+
+- Task DEVOP-1128: Use silicon machines for builds
+
+### Chores
+
+- Chore: Purge ios-62 pipelines
+
+### Extra
+
+- Hotfix: use date prop for sudoku leaderboard
+- Detox: Fixes 26th May
+- Detox: Fixes 24th May
+
 ## [3.83.0] - 2023-05-24
 
 ### Bugfixes
