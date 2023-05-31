@@ -735,6 +735,7 @@
     },
     "video_player": {
       "session_complete": "Sessão completa.",
+      "error_message": "Algo deu errado. \nPor favor, tente novamente",
       "one_moment_please": "Um momento, por favor...",
       "video_type": {
         "mindfullness": "Meditação",

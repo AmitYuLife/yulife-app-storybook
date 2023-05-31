@@ -168,7 +168,13 @@ const VideoPlayer = ({
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (orientation === "landscape" && !state.isPaused && state.musicControlMounted && !state.showFocusScreen) {
+      if (
+        orientation === "landscape" &&
+        !state.isPaused &&
+        state.musicControlMounted &&
+        !state.showFocusScreen &&
+        !DETOX_ENABLED
+      ) {
         handleFocusScreen();
       }
     }, 2000);
@@ -255,6 +261,7 @@ const VideoPlayer = ({
       dispatch({ type: ActionTypes.SET_END_OF_SESSION_LOADING });
       await onEnd();
     } catch (err) {
+      dispatch({ type: ActionTypes.SET_ON_END_ERROR });
       Logger.error(err, { location: "video-player-handleOnEnd" });
     }
   }, [onEnd, appCurrentState]);
@@ -392,11 +399,21 @@ const VideoPlayer = ({
                 <HourglassIcon />
                 <View style={styles.endOfSessionLoading}>
                   <TextTemplate type="b1" color={Colours.neutral.white} textAlign="center">
-                    {t("screens.video_player.session_complete")}
+                    {t(`screens.video_player.${state.showTryAgainError ? "error_message" : "session_complete"}`)}
                   </TextTemplate>
-                  <TextTemplate type="b1" color={Colours.neutral.white} textAlign="center">
-                    {t("screens.video_player.one_moment_please")}
-                  </TextTemplate>
+                  {state.showTryAgainError ? (
+                    <View style={styles.errorButton}>
+                      <Button
+                        label={t("modals.generic_modal.on_meditopia_error.cta_label")}
+                        size="Small"
+                        onPress={handleOnEnd}
+                      />
+                    </View>
+                  ) : (
+                    <TextTemplate type="b1" color={Colours.neutral.white} textAlign="center">
+                      {t("screens.video_player.one_moment_please")}
+                    </TextTemplate>
+                  )}
                 </View>
               </View>
             )}
@@ -431,7 +448,7 @@ const VideoPlayer = ({
                   <Logo type="inverted" width={24} height={24} />
                 </View>
               )}
-              <VidePlayerButton onPress={onButtonAction} isPaused={state.isPaused} />
+              {state.showTryAgainError ? null : <VidePlayerButton onPress={onButtonAction} isPaused={state.isPaused} />}
             </Animated.View>
           </>
         )}
@@ -606,6 +623,9 @@ const styles = StyleSheet.create({
     right: 0,
     alignItems: "center",
     height: Style.DEVICE_WIDTH - 30,
+  },
+  errorButton: {
+    marginTop: Style.adjust(15),
   },
 });
 
