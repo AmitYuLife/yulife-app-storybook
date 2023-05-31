@@ -16,9 +16,8 @@ import { getUserCoinLedgerTodayActivityStart } from "@redux/user/user.actions";
 import Logger from "@services/logging/logger";
 
 const FeedbackModal = () => {
-  const [submitFeedbackForm, { loading: submitting }] = useMutation<SubmitFeedbackFormMutationTuple>(
-    GQL_SUBMIT_FEEDBACK_FORM
-  );
+  const [submitFeedbackForm, { loading: submitting }] =
+    useMutation<SubmitFeedbackFormMutationTuple>(GQL_SUBMIT_FEEDBACK_FORM);
   const { data, loading: queryLoading } = useQuery<PendingPromptsForm>(GQL_PENDING_PROMPTS_FORM, {
     fetchPolicy: "cache-only",
     variables: {
@@ -27,11 +26,13 @@ const FeedbackModal = () => {
   });
 
   useEffect(() => {
-    Logger.logMixpanelEvent("modal_viewed", {
-      name: "feedback.modal",
-      survey_title: data.pendingFeedbackForm.title,
-      reward_value: data.pendingFeedbackForm.awardYucoin,
-    });
+    if (data?.pendingFeedbackForm) {
+      Logger.logMixpanelEvent("modal_viewed", {
+        name: "feedback.modal",
+        survey_title: data.pendingFeedbackForm.title,
+        reward_value: data.pendingFeedbackForm.awardYucoin,
+      });
+    }
   }, [data?.pendingFeedbackForm]);
 
   const dispatch = useDispatch();
