@@ -56,7 +56,7 @@ const ActivityHistoryContainer: FC<Props> = ({ componentId }) => {
   const features = useSelector(getUserFeatures);
 
   const handleClose = useCallback(() => {
-    Navigation.popToRoot(componentId);
+    Navigation.pop(componentId);
   }, [componentId]);
 
   const { fullData, error, loading, handleRefresh, handleEndReached } = useLazyGqlLoading(LAZY_LOADING_ARGS);
