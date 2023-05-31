@@ -1,7 +1,7 @@
 import getGoalDetails from "@graphql/goals/getGoalDetails.gql";
 import { GetUserProfile_getUserProfile_events as Events } from "@graphql/_core/schema";
 import { t } from "@locale";
-import { MODALS } from "@navigation/constants";
+import { MODALS, ROUTES } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { showGenericModal } from "@navigation/utils";
 import { getModalState, getRouteState } from "@redux/app/app.selectors";
@@ -14,7 +14,7 @@ import { IUserStore } from "../user.reducer";
 function* showCompletedEvents(completedEvents: Partial<Events>[]) {
   const activeRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
 
-  if (activeRoute === MODALS.collectEventReward) {
+  if (activeRoute === MODALS.collectEventReward || activeRoute === ROUTES.mediaPlayer) {
     return;
   }
 
