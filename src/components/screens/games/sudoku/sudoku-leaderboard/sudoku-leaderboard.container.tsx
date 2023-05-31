@@ -18,17 +18,19 @@ import LoadingScreen from "@components/screens/member/loading/loading.screen";
 
 interface IProps {
   componentId: string;
-  date: string;
+  date?: string;
   results: GetSudokuBoard_getSudokuBoard_results;
   onStart?: () => void;
 }
 
 const SudokuLeaderboardContainer = ({ componentId, date }: IProps) => {
+  const leaderboardDate = date || moment().format(DATE_FORMAT);
+
   const { data: leaderboard, loading: isLoading } = useQuery<GetSudokuLeaderboard, GetSudokuLeaderboardVariables>(
     GQL_QUERY_GET_SODUKU_LEADERBOARD,
     {
       variables: {
-        date: moment().format(DATE_FORMAT),
+        date: leaderboardDate,
         difficulty: SudokuDifficulty.EASY,
         limit: 100,
       },
@@ -48,13 +50,13 @@ const SudokuLeaderboardContainer = ({ componentId, date }: IProps) => {
   }
 
   if (!leaderboard?.getSudokuLeaderboard?.length) {
-    return <SudokuLeaderboardEmptyScreen onClose={onClose} date={moment().format(SUDOKU_DATE_FORMAT)} />;
+    return <SudokuLeaderboardEmptyScreen onClose={onClose} date={moment(leaderboardDate).format(SUDOKU_DATE_FORMAT)} />;
   }
 
   return (
     <SudokuLeaderboardScreen
       onBack={onClose}
-      date={date}
+      date={leaderboardDate}
       componentId={componentId}
       leaderboard={leaderboard?.getSudokuLeaderboard}
     />
