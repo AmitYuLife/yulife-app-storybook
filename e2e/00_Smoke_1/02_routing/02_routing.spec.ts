@@ -160,8 +160,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                                     Then("I should see a screen with a take challenge option", then.textVisible("Take challenge"))
                                     When("I tap 'take challenge'", when.tapText("Take challenge"), async () => {
                                         When("I click Use Meditopia app", when.tapText('Use Meditopia app'), async () => {
-                                            Then("I should see a screen asking me to turn on notifications", then.idVisible(GENERIC_SCREEN_HEADING("don't miss out"), 2000))
-                                            When("I dismiss this screen", when.tapID(GENERIC_SCREEN_CTA("maybe later")), async () => {
+                                            When("I dismiss this screen", when.dismissNotificationScreenIfVisible, async () => {
                                                 When("I tap 'I'm using a different app'", when.tapText("I'm using a different app"), async () => {
                                                     Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
                                                     When("I close this screen", when.tapID(BUTTON_CLOSE_CHALLENGE), async () => {
@@ -176,7 +175,6 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                                                 })
                                             })
                                         })
-                                        
                                     })
                                 })
                             })

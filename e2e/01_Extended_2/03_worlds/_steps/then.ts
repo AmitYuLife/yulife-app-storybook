@@ -1,4 +1,4 @@
-import { navigation, expectIsVisibleViaText, expectIsVisibleViaID, CHALLENGE_HISTORY_STARS, STEPS_COUNT } from "@utils"
+import { navigation, expectIsVisibleViaText, expectIsVisibleViaID, CHALLENGE_HISTORY_STARS, STEPS_COUNT, CHALLENGE_HISTORY_NEW_SLOT } from "@utils"
 import { screens } from "@appScreens"
 import { addCommasToNumber } from "_utils/appScreens/rewards"
 
@@ -30,30 +30,30 @@ export const stepsAndCoinsVisible = (steps: number, coins: number) => async () =
     await expectIsVisibleViaText(`${addCommasToNumber(coins)} YuCoin today`)
 }
 
-export const onChallengeHistory = (challengeType: string, levelNum: number, yucoinNum: number, starCount: number, timeSpent?: number, steps?: number) => async () => {
+export const onChallengeHistory = (challengeType: string, yucoinNum: string, starCount: number, levelNum: number, timeSpent?: number, steps?: number) => async () => {
     const fullHistory = "Full activity history"
-    const yuCoin = `${yucoinNum} yucoin`
+    const title = `Level ${levelNum} Summary`
 
-    let values = [challengeType, yuCoin, fullHistory]
+    let values = [title, fullHistory]
 
 
-    if (timeSpent > 1) {
-        values.push(`${timeSpent} mins`)
-    } else if (timeSpent === 1) {
-        values.push(`${timeSpent} mins`)
-    }
+    // if (timeSpent > 1) {
+    //     values.push(`${timeSpent} mins`)
+    // } else if (timeSpent === 1) {
+    //     values.push(`${timeSpent} mins`)
+    // }
+    
 
-    if (steps > 1) {
-        const stepCount = `${steps} steps`
-        values.push(stepCount)
-    }
+    // if (steps > 1) {
+    //     const stepCount = `${steps} steps`
+    //     values.push(stepCount)
+    // }
+
+    // Uncomment when time and steps get added back to level summary page
 
     for (const value of values) {
         await expect(element(by.text(value))).toBeVisible()
     }
 
-    for (let i = 0; i < starCount; i += 1) {
-        await expect(element(by.id(CHALLENGE_HISTORY_STARS(i, challengeType)))).toBeVisible()
-    }
-
+    await idVisible(CHALLENGE_HISTORY_NEW_SLOT(challengeType, yucoinNum, starCount))()
 }

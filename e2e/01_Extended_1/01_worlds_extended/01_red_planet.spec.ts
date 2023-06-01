@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_60, AUTH_60, CUSTOMER_61, AUTH_61, CUSTOMER_63, AUTH_63, CUSTOMER_64, AUTH_64, CUSTOMER_67, AUTH_67, CUSTOMER_68, AUTH_68, CUSTOMER_79, AUTH_79, CUSTOMER_80, AUTH_80, USER_79, USER_80 } from "@data";
-import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, QUESTS_SCREEN_YUNIVERSAL, LEVEL_STAR_COUNT } from "@ids";
+import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, QUESTS_SCREEN_YUNIVERSAL, LEVEL_STAR_COUNT, BACK_BUTTON } from "@ids";
 
 Feature("As a user I can complete challenges across multiple worlds", async () => {
     Scenario("I can't transition from the first world (forest) to the second world (ocean) on the same day", scenario.start, () => {
@@ -156,8 +156,10 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap level 201", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
             Then("I should see all the challenges I completed along with the yucoin awarded", then.challengesAndYuCoinsAwardedVisible)
         })
-        When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-            Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
+        When("I tap back", when.tapID(BACK_BUTTON), async () => {
+            When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+                Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
+            })
         })
     }) 
 
@@ -221,8 +223,10 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap level 251", when.tapID(LEVEL_CHALLENGE_BUTTON(251)), async () => {
             Then("I should see all the challenges I completed along with the yucoin awarded", then.challengesAndYuCoinsAwardedVisible)
         })
-        When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-            Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
+        When("I tap back", when.tapID(BACK_BUTTON), async () => {
+            When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+                Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
+            })
         })
     }) 
 

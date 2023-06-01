@@ -76,6 +76,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     });
   });
 
+  // TEST THIS ONE
   Scenario("I can successfully take, pause, start and finish a Meditopia challenge in app", scenario.start, async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_MEDITOPIA_1, AUTH_MEDITOPIA_1), async () => {
       Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)));

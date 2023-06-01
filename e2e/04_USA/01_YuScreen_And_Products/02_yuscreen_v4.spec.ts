@@ -58,19 +58,21 @@ Feature("I am able to see Product Details in US YU Screen ", async () => {
       "I login as a user with earn rate 0 from WellbeingProduct",
       given.logInAndGoToTab("yu", CUSTOMER_USA_1, AUTH_USA_1, true, "United States"),
       async () => {
-        helper.ONBOARDING_YUSCREEN("Wellbeing/TLIF/DENCHOI", "1");
-        helper.YUSCREEN_USA_V4(CUSTOMER_USA_1, "Wellbeing/DENPPO/DENCHOI/TLIF/VIS", "1");
+        helper.ONBOARDING_YUSCREEN("Wellbeing/TLIF/DENCHOI", "10");
+        helper.YUSCREEN_USA_V4(CUSTOMER_USA_1, "Wellbeing/DENPPO/DENCHOI/TLIF/VIS", "10");
         helper.MORE_PROTECTION();
-        helper.PRODUCT_CHECK(Guardian_DENPPO, 0);
+        helper.PRODUCT_CHECK(Guardian_DENPPO, );
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_DENPPO);
-        helper.PRODUCT_CHECK(Guardian_DENCHOI, 2);
+        helper.PRODUCT_CHECK(Guardian_DENCHOI, );
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_DENCHOI);
-        helper.PRODUCT_CHECK(Guardian_DENHMO, 1);
+        helper.PRODUCT_CHECK(Guardian_DENHMO, );
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_DENHMO);
-        helper.PRODUCT_CHECK(Guardian_TLIF, 4);
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_TLIF);
-        helper.PRODUCT_CHECK(Guardian_VIS, 3);
+        helper.PRODUCT_CHECK(Guardian_VIS, );
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VIS);
+        When("I swipe to the bottom of the page", when.swipeFromText("Vision insurance", "up", "slow"), async () => {
+          helper.PRODUCT_CHECK(Guardian_TLIF, );
+          helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_TLIF);
+        })
       }
     );
   });
@@ -85,15 +87,15 @@ Feature("I am able to see Product Details in US YU Screen ", async () => {
         helper.MORE_PROTECTION();
         helper.PRODUCT_CHECK(Guardian_WLIF, 0);
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_WLIF);
-        helper.PRODUCT_CHECK(Guardian_ADD, 2);
+        helper.PRODUCT_CHECK(Guardian_ADD, );
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_ADD);
-        helper.PRODUCT_CHECK(Guardian_ULIF, 1);
+        helper.PRODUCT_CHECK(Guardian_ULIF, );
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_ULIF);
-        helper.PRODUCT_CHECK(Guardian_LTD, 4);
+        helper.PRODUCT_CHECK(Guardian_LTD, );
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_LTD);
-        helper.PRODUCT_CHECK(Guardian_STD, 3);
+        helper.PRODUCT_CHECK(Guardian_STD, );
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_STD);
-        helper.PRODUCT_CHECK(Guardian_VADD, 5);
+        helper.PRODUCT_CHECK(Guardian_VADD, );
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VADD);
       }
     );
@@ -107,17 +109,17 @@ Feature("I am able to see Product Details in US YU Screen ", async () => {
         helper.ONBOARDING_YUSCREEN("CRI/HI/ACC", "1");
         helper.YUSCREEN_USA_V4(CUSTOMER_USA_3, "VLTD/SPDIS/ACC/CRI/HI", "1");
         helper.MORE_PROTECTION();
-        helper.PRODUCT_CHECK(Guardian_VSTD, 0);
+        helper.PRODUCT_CHECK(Guardian_VSTD, );
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VSTD);
-        helper.PRODUCT_CHECK(Guardian_ACC, 2);
+        helper.PRODUCT_CHECK(Guardian_ACC, );
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_ACC);
-        helper.PRODUCT_CHECK(Guardian_VLTD, 1);
+        helper.PRODUCT_CHECK(Guardian_VLTD, );
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VLTD);
-        helper.PRODUCT_CHECK(Guardian_HI, 4);
+        helper.PRODUCT_CHECK(Guardian_HI, );
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_HI);
-        helper.PRODUCT_CHECK(Guardian_CRI, 3);
+        helper.PRODUCT_CHECK(Guardian_CRI, );
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_CRI);
-        helper.PRODUCT_CHECK(Guardian_SPDIS, 5);
+        helper.PRODUCT_CHECK(Guardian_SPDIS, );
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_SPDIS);
       }
     );

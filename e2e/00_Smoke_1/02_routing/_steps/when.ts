@@ -7,7 +7,8 @@ export const {
     tapText,
     tapIDAtPoint,
     wait,
-    tapIDAtIndex
+    tapIDAtIndex,
+    dismissNotificationScreenIfVisible
 } = navigation.common
 
 export const {

@@ -30,7 +30,7 @@ export const USER_USA_1 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_USA_1.data.customerId,
-        nickname:"First User USA"
+        nickname:"First User USA",
     }
 } as IDatabaseItem
 

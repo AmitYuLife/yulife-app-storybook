@@ -4,7 +4,7 @@ import { SudokuHistoryButtonContainer } from "@components/games/sudoku/sudoku-hi
 import { ActionButton } from "@components/molecules";
 import { GetQuestMapLevel_getQuestMapLevel } from "@graphql/_core/schema";
 import { useTranslation } from "@hooks";
-import { SUDOKU_HOWTOPLAY_BUTTON } from "@ids";
+import { CHALLENGE_HISTORY_NEW_SLOT, SUDOKU_HOWTOPLAY_BUTTON } from "@ids";
 import { ActivityProgress, GenericHeadingAbsolute, GenericHeadingPad, MoreChallengesBanner } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { Style } from "@styles";
@@ -50,7 +50,11 @@ const ChallengesHistoryScreenNew = ({
           <View style={styles.progressWrapper}>
             {level.slots.map((slot) =>
               slot.challenges.map((challenge) => (
-                <View style={styles.activityWrapper} key={challenge.id}>
+                <View
+                  style={styles.activityWrapper}
+                  key={challenge.id}
+                  testID={CHALLENGE_HISTORY_NEW_SLOT(challenge.label, challenge.reward, challenge.rating)}
+                >
                   <ActivityProgress
                     key={challenge.id}
                     yuCoinSubTotal={challenge.reward}

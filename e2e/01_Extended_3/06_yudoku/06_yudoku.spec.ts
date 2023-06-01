@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { AUTH_58,  AUTH_76,  AUTH_84,  AUTH_86, CUSTOMER_58, CUSTOMER_67, CUSTOMER_68, CUSTOMER_71, CUSTOMER_76, CUSTOMER_84, CUSTOMER_86, SUDOKU_ANSWER_1, SUDOKU_ANSWER_2, SUDOKU_ANSWER_3} from "@data"
-import { BACK_BUTTON, BUTTON_CLOSE_HEADER, BUTTON_CLOSE_RIGHT_ID, CANCEL_CANCEL_CHALLENGE, CELL_ROW_COLUMN, LEVEL_CHALLENGE_BUTTON, MENU_ICON, SETTINGS_SCREEN, SETTINGS_SWITCH, SUDOKU_HINT_TIMER, SUDOKU_NUMBER_INPUT, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, SUDOKU_UNRANKED_LABEL, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids"
+import { BACK_BUTTON, BUTTON_CLOSE_HEADER, BUTTON_CLOSE_RIGHT_ID, CANCEL_CANCEL_CHALLENGE, CELL_ROW_COLUMN, CHALLENGE_HISTORY_NEW_SLOT, LEVEL_CHALLENGE_BUTTON, LEVEL_SUMMARY_YUDOKU_LEADERBOARD, MENU_ICON, SETTINGS_SCREEN, SETTINGS_SWITCH, SUDOKU_HINT_TIMER, SUDOKU_NUMBER_INPUT, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, SUDOKU_UNRANKED_LABEL, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids"
 import { SUDOKU_STAT_0 } from "_utils/data/mongo/game_sudoku_stats"
 
 Feature("Yudoku", async () => {
@@ -283,6 +283,25 @@ Feature("Yudoku", async () => {
     })
     When('I tap leaderboards', when.tapText("Leaderboards"), async () => {
         Then("I can see the option for Yudoku leaderboards is on", then.idVisible(SETTINGS_SWITCH("Yudoku", true)))
+    })
+    When("I go back", when.tapID(BUTTON_CLOSE_HEADER("Leaderboards")), async () => {
+        When("I tap level 1 button", when.tapID(LEVEL_CHALLENGE_BUTTON(1)), async () => {
+            When("I tap the soduku challenge", when.tapSudoku, async () => {
+                When("I complete the Yudoku", when.completeYudoku, async () => {
+                    When("I tap done", when.tapText("Done"), async () => {
+                        When("I tap level 1 button", when.tapID(LEVEL_CHALLENGE_BUTTON(1)), async () => {
+                            Then("I can see the slot for a completed yudoku", then.idVisible(CHALLENGE_HISTORY_NEW_SLOT("Daily Yudoku", "120", 3)))
+                            Then("I can see the level summary page yudoku leaderboard button", then.canSeeYudokuLeaderboardButton("Today"))
+                        })
+                    })
+                })
+            })
+        })
+    })    
+    When("I tap yudoku leaderboard", when.tapID(LEVEL_SUMMARY_YUDOKU_LEADERBOARD("Today")), async () => {
+        Then("I can see the leaderboard entries", then.canSeeLeaderboard(CUSTOMER_71, SUDOKU_ANSWER_1, 2))
+        Then("I can see the leaderboard entries", then.canSeeLeaderboard(CUSTOMER_67, SUDOKU_ANSWER_3, 3))
+        Then("I can see the leaderboard entries", then.canSeeLeaderboard(CUSTOMER_68, SUDOKU_ANSWER_2, 4))
     })
   })
 
