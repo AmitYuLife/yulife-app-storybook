@@ -22,7 +22,7 @@ import {
   BUSINESS_ACCOUNT_USA_1,
   CPE_ACCSICK_4,
   CPE_CAN_4,
-  CPE_ULIF_2,
+  // CPE_ULIF_2,
   CPE_VLTD_3,
   CPE_VSTD_3,
   CPE_WLIF_2,
@@ -64,7 +64,6 @@ export const { swipeToID, swipeFromText } = navigation.scrolling;
 
 export const onboardingUsYuscreenV4 = (packType: string, yuCoinPower: string) => async () => {
   const earnRate0 = "1"; // If product having 0 earn rate will get 1
-
   await textVisible(text.yuCoinText)();
   await textVisible(text.powerText)();
 

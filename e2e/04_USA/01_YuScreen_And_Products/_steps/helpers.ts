@@ -2,7 +2,7 @@ import { When, Then } from "@yu-life/yulife-bdd-framework";
 import * as when from "./when"
 import * as then from "./then"
 import * as text  from "./fixture";
-import { YUMOJI_AVATAR_YUSCREEN_V4, VIEW_TOP_RIGHT_COIN_COUNTER, TEXT_TEMPLATE, BUTTON_CLOSE, RIGHT_STATUS_ICON, YUCOIN_POWER, CONTENT_ITEM_IMAGE, V4_YUSCREEN, ALL_PRODUCTS_CONTAINER_VIEW, BACK_BUTTON} from "@ids";
+import { YUMOJI_AVATAR_YUSCREEN_V4, VIEW_TOP_RIGHT_COIN_COUNTER, TEXT_TEMPLATE, BUTTON_CLOSE, RIGHT_STATUS_ICON, YUCOIN_POWER, CONTENT_ITEM_IMAGE, V4_YUSCREEN, ALL_PRODUCTS_CONTAINER_VIEW, BACK_BUTTON, CAROUSEL_CARD_BUTTON} from "@ids";
 import { USProductData } from "./types";
 
 
@@ -22,7 +22,6 @@ export const YUSCREEN_USA_V4 = async (customer: any, packType: string, yuCoinPow
 }
 
 export const ONBOARDING_YUSCREEN = async (packType: string, yuCoinPower: string) => {
-    
     Then(`I should see the onboarding Yuscreen and see ${packType}`, then.onboardingUsYuscreenV4(packType, yuCoinPower))
 }
 
@@ -34,9 +33,9 @@ export const MORE_PROTECTION = async () => {
     })
 }
 
-export const PRODUCT_CHECK = async (productCard: USProductData, orderCard: number) => {
-    When(`I scroll to the product card with Find out more text at index ${orderCard}`, when.scrollUntilTextVisibleAtIndex(ALL_PRODUCTS_CONTAINER_VIEW, "Find out more" , "down", orderCard), async () => {
-        When(`I tap Find out more at index ${orderCard}`, when.tapTextAtIndex("Find out more", orderCard ), async () => {
+export const PRODUCT_CHECK = async (productCard: USProductData, index = 0) => {
+    When(`I scroll to the product card with Find out more text for ${productCard.heading}`, when.scrollUntilIdVisibleAtIndex(ALL_PRODUCTS_CONTAINER_VIEW, CAROUSEL_CARD_BUTTON(productCard.titleMarkdown), "down", index, 0.9, 0.8), async () => {
+        When(`I tap Find out more`, when.tapID(CAROUSEL_CARD_BUTTON(productCard.titleMarkdown)), async () => {
             Then(`I should see product card with description ${productCard.heading}`, then.onMoreProtectionProductsCard(productCard))
         })
     })

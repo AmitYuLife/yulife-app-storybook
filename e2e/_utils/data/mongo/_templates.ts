@@ -58,6 +58,7 @@ export const allTogglesTrue = {
       showDuels: true,
       showCommunityGoals: true,
       rewardRedemptionDisabled: false,
+      newChallengeHistory: true
     },
   },
 } as IDatabaseItem;
@@ -276,7 +277,8 @@ export const DEFAULT_TOGGLES = {
       unitySurge: true,
       rewardRedemptionDisabled: false,
       showNotificationCentre: true,
-      newMediaPlayer: true
+      newMediaPlayer: true,
+      newChallengeHistory: true
     },
   },
 } as IDatabaseItem;

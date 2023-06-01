@@ -31,7 +31,7 @@ Feature("As a user I can get past the login screen", async () => {
               When("I update the screen to see today activity", given.triggerAppUpdateState, async () => {
                 Then("I should see 11.3 km done today", then.idVisible(CYCLING_COUNT("7.0 mi"), 2000));
                 Then("I should see 13 min mindful done today", then.idVisible(MINDFUL_COUNT("13 min")));
-                Then("I should see the amount of yucoin I earned today", then.textVisible("280 YuCoin today"));
+                Then("I should see the amount of yucoin I earned today", then.textVisible("208 YuCoin today"));
                 Then("I should see the i icon near the Coin", then.idVisible(YUCOIN_POWER_INFO));
               });
             });

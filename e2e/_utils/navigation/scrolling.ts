@@ -184,3 +184,20 @@ export const scrollUntilTextVisibleAtIndex =
     const target = element(by.text(text)).atIndex(index);
     await target.swipe(direction, speed);
   };
+
+
+  export const scrollUntilIdVisibleAtIndex = (
+    scrollViewId: string,
+    id: string,
+    direction: "up" | "down" | "left" | "right",
+    index: number,
+    xscroll = 0.5,
+    yscroll = 0.5,
+    offset = 100
+  ) =>
+  async () => {
+    await waitFor(element(by.id(id)).atIndex(index))
+      .toBeVisible()
+      .whileElement(by.id(scrollViewId))
+      .scroll(offset, direction, xscroll, yscroll);
+  };

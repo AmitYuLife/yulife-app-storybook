@@ -7,7 +7,8 @@ export const {
     tapID,
     reloadAppToTab,
     navigateViaText,
-    wait
+    wait,
+    dismissNotificationScreenIfVisible
 } = navigation.common
 
 export const {

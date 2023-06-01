@@ -1,7 +1,7 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { CUSTOMER_84 } from "../postgres/customers";
 import { CHALLENGE_USER_84 } from "./challenge";
-import { USER_64, USER_67, USER_68, USER_7, USER_70, USER_72, USER_86, USER_91 } from "./users";
+import { USER_64, USER_67, USER_68, USER_7, USER_70, USER_72, USER_76, USER_86, USER_91 } from "./users";
 
 export const CHALLENGE_HISTORY_7 = {
     type:"mongo",
@@ -56,6 +56,16 @@ export const CHALLENGE_HISTORY_72 = {
         "userId": USER_72.data.userId,
     }
 } as IDatabaseItem
+
+export const CHALLENGE_HISTORY_76 = {
+    type:"mongo",
+    modelName:"challengehistory",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": USER_76.data.userId,
+    }
+} as IDatabaseItem
+
 
 export const CHALLENGE_HISTORY_84 = {
     type:"mongo",

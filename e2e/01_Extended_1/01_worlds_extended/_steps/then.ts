@@ -1,4 +1,4 @@
-import { navigation, expectIsVisibleViaText, CHALLENGE_HISTORY_YUCOIN_STARS, navigateViaText, wait, CHALLENGE_UNAVAILABLE, TEXT_TEMPLATE, CHALLENGE_SET, CHALLENGE_TILE, CHALLENGE_HISTORY_STARS, QUESTS_SCREEN_YUNIVERSAL, CELESTIAL_CARD, idVisibleAtIndex, YUNITY_CARD } from "@utils"
+import { navigation, expectIsVisibleViaText, CHALLENGE_HISTORY_YUCOIN_STARS, navigateViaText, wait, CHALLENGE_UNAVAILABLE, TEXT_TEMPLATE, CHALLENGE_SET, CHALLENGE_TILE, CHALLENGE_HISTORY_STARS, CHALLENGE_HISTORY_NEW_SLOT, idVisibleAtIndex, YUNITY_CARD } from "@utils"
 import { screens } from "@appScreens"
 import { swipeFromText } from "_utils/navigation/scrolling"
 import { USER_1 } from "@data"
@@ -204,22 +204,10 @@ export const yuniverseChallengesVisible = async () => {
 }
 
 export const challengesAndYuCoinsAwardedVisible = async () => {
-    await textVisible("short stroll")()
-    await textVisibleAtIndex("0 min", 0)()
-    await textVisible("20 yucoin")()
-    await challengeStarsCorrect(3, "short stroll")()
-    await textVisible("brisk walk")()
-    await textVisibleAtIndex("0 min", 1)()
-    await textVisible("100 yucoin")()
-    await challengeStarsCorrect(3, "brisk walk")()
-    await textVisible("long walk")()
-    await textVisibleAtIndex("0 min", 2)()
-    await textVisible("80 yucoin")()
-    await challengeStarsCorrect(2, "long walk")()
-    await textVisible("meditation")()
-    await textVisible("10 mins")()
-    await textVisible("40 yucoin")()
-    await challengeStarsCorrect(1, "meditation")()
+    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("short stroll", "20", 3))()
+    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("brisk walk", "100", 3))()
+    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("long walk", "80", 2))()
+    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("meditation", "40", 1))()
 }
 
 export const yunityChestAwardsVisible = (user: typeof USER_1, surgeDuration: 1 | 7) => async () => {

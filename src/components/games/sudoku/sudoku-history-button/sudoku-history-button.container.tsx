@@ -7,6 +7,7 @@ import { ROUTES } from "@navigation/constants";
 import SudokuHistoryButton from "./sudoku-history-button";
 import { t } from "@locale";
 import moment from "moment";
+import { LEVEL_SUMMARY_YUDOKU_LEADERBOARD } from "@ids";
 
 interface IProps {
   componentId: string;
@@ -50,5 +51,11 @@ export const SudokuHistoryButtonContainer = ({ date, componentId }: IProps) => {
     return null;
   }
 
-  return <SudokuHistoryButton onPress={onPressSudokuLeaderboard} date={dateString} />;
+  return (
+    <SudokuHistoryButton
+      onPress={onPressSudokuLeaderboard}
+      date={dateString}
+      testID={LEVEL_SUMMARY_YUDOKU_LEADERBOARD(dateString)}
+    />
+  );
 };

@@ -45,6 +45,7 @@ export const CUSTOMER_2_TOGGLES = {
       showGoals: true,
       yuScreenV3: true,
       showPermissionSettings: true,
+      newChallengeHistory: true
     },
   },
 } as IDatabaseItem;
@@ -574,6 +575,7 @@ export const CUSTOMER_35_TOGGLES = {
       showCommunityGoals: true,
       showReferrals: true,
       yuScreenV3: true,
+      newChallengeHistory: true
     },
   },
 } as IDatabaseItem;
@@ -701,6 +703,7 @@ export const CUSTOMER_40_TOGGLES = {
       showStats: true,
       showDuels: true,
       showCommunityGoals: true,
+      newChallengeHistory: true
     },
   },
 } as IDatabaseItem;
@@ -723,7 +726,7 @@ export const CUSTOMER_MEDITOPIA_1_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_MEDITOPIA_1.data.customerId,
-    features: mediaContentToggle.data.features,
+    features: mediaContentToggle.data.features, newChallengeHistory: true
   },
 } as IDatabaseItem;
 
@@ -733,7 +736,7 @@ export const CUSTOMER_MEDITOPIA_2_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_MEDITOPIA_2.data.customerId,
-    features: mediaContentToggle.data.features,
+    features: mediaContentToggle.data.features, newChallengeHistory: true
   },
 } as IDatabaseItem;
 
@@ -889,7 +892,7 @@ export const CUSTOMER_PLI_3_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_PLI_3.data.customerId,
-    features: allTogglesTrueFor_PLI.data.features,
+    features: allTogglesTrueFor_PLI.data.features, newChallengeHistory: true
   },
 } as IDatabaseItem;
 
@@ -899,7 +902,7 @@ export const CUSTOMER_PLI_4_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_PLI_4.data.customerId,
-    features: allTogglesTrueFor_PLI.data.features,
+    features: allTogglesTrueFor_PLI.data.features, newChallengeHistory: true
   },
 } as IDatabaseItem;
 
@@ -909,7 +912,7 @@ export const CUSTOMER_PLI_5_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_PLI_5.data.customerId,
-    features: allTogglesTrueFor_PLI.data.features,
+    features: allTogglesTrueFor_PLI.data.features, newChallengeHistory: true
   },
 } as IDatabaseItem;
 
@@ -919,7 +922,7 @@ export const CUSTOMER_PLI_6_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_PLI_6.data.customerId,
-    features: allTogglesTrueFor_PLI_V4.data.features,
+    features: allTogglesTrueFor_PLI_V4.data.features, newChallengeHistory: true
   },
 } as IDatabaseItem;
 
@@ -929,7 +932,7 @@ export const CUSTOMER_PLI_7_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_PLI_7.data.customerId,
-    features: allTogglesTrueFor_PLI_V4.data.features,
+    features: allTogglesTrueFor_PLI_V4.data.features, newChallengeHistory: true
   },
 } as IDatabaseItem;
 
@@ -939,7 +942,7 @@ export const CUSTOMER_PLI_9_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_PLI_9.data.customerId,
-    features: allTogglesTrueFor_PLI_V4.data.features,
+    features: allTogglesTrueFor_PLI_V4.data.features, newChallengeHistory: true
   },
 } as IDatabaseItem;
 
@@ -949,7 +952,7 @@ export const CUSTOMER_PLI_10_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_PLI_10.data.customerId,
-    features: allTogglesTrueFor_PLI_V4.data.features,
+    features: allTogglesTrueFor_PLI_V4.data.features, newChallengeHistory: true
   },
 } as IDatabaseItem;
 
@@ -1017,6 +1020,7 @@ export const CUSTOMER_52_TOGGLES = {
       showGoals: true,
       yuScreenV3: true,
       showPermissionSettings: true,
+      newChallengeHistory: true
     },
   },
 } as IDatabaseItem;
@@ -1141,6 +1145,7 @@ export const CUSTOMER_66_TOGGLES = {
       showDuels: true,
       showCommunityGoals: true,
       showFiit: true,
+      newChallengeHistory: true
     },
   },
 } as IDatabaseItem;
@@ -1199,7 +1204,8 @@ export const CUSTOMER_68_TOGGLES = {
       showDuels: true,
       showCommunityGoals: true,
       showFiit: true,
-      newMediaPlayer: true
+      newMediaPlayer: true,
+      newChallengeHistory: true
     },
   },
 } as IDatabaseItem;

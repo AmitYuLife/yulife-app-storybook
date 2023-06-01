@@ -136,6 +136,7 @@ export const CHALLENGE_HISTORY_YUCOIN_STARS = (yuCoin: string, stars: number, ch
 export const WELLDONE_BANNER = "WELLDONE_BANNER";
 export const YUNITY_CARD = (description: string) => `YUNITY_CARD_${description}`;
 export const COUNTDOWN_UNIT = (unit: number, dateType: string) => unit < 10 && (dateType === 'Mins' || 'Hours') ? `COUNTDOWN_UNIT0${unit}_${dateType}` : `COUNTDOWN_UNIT${unit}_${dateType}`
+export const CHALLENGE_HISTORY_NEW_SLOT = (type: string, yucoin: string, rating: number) => `CHALLENGE_HISTORY_NEW_SLOT_${type}_${yucoin}_${rating}`
 
 
 // modals
@@ -197,6 +198,7 @@ export const RIGHT_STATUS_ICON = `RIGHT_STATUS_ICON`
 export const ONBOARDING_SCREEN = "ONBOARDING_SCREEN"
 export const YUCOIN_POWER_V4_SCREEN = (earnRate: number) => `YUCOIN_POWER_V4_SCREEN_${earnRate}`;
 export const LEFT_SIDE_TEXT_SLOT_POWER = (earnRate: string) =>  ` LEFT_SIDE_TEXT_SLOT_POWER_${earnRate}}`
+export const CAROUSEL_CARD_BUTTON = (cardTitle: string) => `CAROUSEL_CARD_BUTTON_${cardTitle}`
 
 // PRODUCT DETAILS
 export const PRODUCT_DETAILS_SCROLL_VIEW = "PRODUCT_DETAILS_SCROLL_VIEW"
@@ -479,3 +481,4 @@ export const SUDOKU_COMPLETED_SCREEN_SCROLL = "SUDOKU_COMPLETED_SCREEN_SCROLL"
 export const CANCEL_CANCEL_CHALLENGE = "CANCEL_CANCEL_CHALLENGE"
 export const SUDOKU_UNRANKED_LABEL = "SUDOKU_UNRANKED_LABEL"
 export const SUDOKU_PRACTICE_BUTTON = "JOIN_PRACTICE_SUDUKU"
+export const LEVEL_SUMMARY_YUDOKU_LEADERBOARD = (date: string) => `LEVEL_SUMMARY_YUDOKU_LEADERBOARD_${date}`

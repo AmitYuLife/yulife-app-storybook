@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_69, AUTH_69, CUSTOMER_70, AUTH_70, USER_70, CUSTOMER_78, AUTH_78, USER_78, CUSTOMER_81, AUTH_81, CUSTOMER_89, AUTH_89, CUSTOMER_90, AUTH_90, USER_90 } from "@data";
-import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, QUESTS_SCREEN_YUNIVERSAL, DAILY_STEPS_SCREEN, WELLDONE_BANNER, SPACE_TRAVEL_SCREEN, USER_LEVEL, LEVEL_STAR_COUNT, V4_YUSCREEN, YUMOJI_AVATAR_YUSCREEN_V4, WEEKLY_GOAL_ICON } from "@ids";
+import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, QUESTS_SCREEN_YUNIVERSAL, DAILY_STEPS_SCREEN, WELLDONE_BANNER, SPACE_TRAVEL_SCREEN, USER_LEVEL, LEVEL_STAR_COUNT, V4_YUSCREEN, YUMOJI_AVATAR_YUSCREEN_V4, WEEKLY_GOAL_ICON, BACK_BUTTON } from "@ids";
 import { daysRemainingOfWeek } from "@navigation";
 
 Feature("End of the world/Yuniverse", async () => {
@@ -272,8 +272,10 @@ Feature("End of the world/Yuniverse", async () => {
         When("I tap level 201", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
             Then("I should see all the challenges I completed along with the yucoin awarded", then.challengesAndYuCoinsAwardedVisible)
         })
-        When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-            Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
+        When('I tap back', when.tapID(BACK_BUTTON), async () => {
+            When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+                Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
+            })
         })
     })
 

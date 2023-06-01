@@ -1,4 +1,4 @@
-import { navigation, navigateViaText, wait, CHALLENGE_SET, CHALLENGE_TILE, TEXT_TEMPLATE, SURGE_ICON, CELESTIAL_CARD, CELESTIAL_CHEST_SCREEN, CHALLENGE_HISTORY_STARS, WEEKLY_PROGRESS_BAR } from "@utils"
+import { navigation, navigateViaText, wait, CHALLENGE_SET, CHALLENGE_TILE, TEXT_TEMPLATE, SURGE_ICON, CELESTIAL_CARD, CELESTIAL_CHEST_SCREEN, CHALLENGE_HISTORY_STARS, WEEKLY_PROGRESS_BAR, CHALLENGE_HISTORY_NEW_SLOT } from "@utils"
 import { screens } from "@appScreens"
 import { USER_1 } from "@data"
 
@@ -153,22 +153,10 @@ export const challengeStarsCorrect = (starCount: number, challengeType: string, 
 }
 
 export const challengesAndYuCoinsAwardedVisible = async () => {
-    await textVisible("short stroll")()
-    await textVisibleAtIndex("0 min", 0)()
-    await textVisible("6 yucoin")()
-    await challengeStarsCorrect(3, "short stroll")()
-    await textVisible("brisk walk")()
-    await textVisibleAtIndex("0 min", 1)()
-    await textVisible("30 yucoin")()
-    await challengeStarsCorrect(3, "brisk walk")()
-    await textVisible("long walk")()
-    await textVisibleAtIndex("0 min", 2)()
-    await textVisible("24 yucoin")()
-    await challengeStarsCorrect(2, "long walk")()
-    await textVisible("meditation")()
-    await textVisible("10 mins")()
-    await textVisible("12 yucoin")()
-    await challengeStarsCorrect(1, "meditation")()
+    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("short stroll", "6", 3))()
+    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("brisk walk", "30", 3))()
+    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("long walk", "24", 2))()
+    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("meditation", "12", 1))()
 }
 
 export const weeklyChallengeIsVisible = (amount: string) => async () => {

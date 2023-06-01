@@ -1,6 +1,6 @@
 import { idNotVisible, navigation, textNotVisible } from "@navigation";
 import { todaysDate } from "./constants";
-import { CHALLENGE_SET_SCROLL, LEADERBOARD_NAME, RANK, SCORE, SUDOKU_HOWTOPLAY_BUTTON, SUDOKU_JOINLEADERBOARD_BUTTON, SUDOKU_LEADERBOARD, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, TAKE_A_CHALLENGE_LEFT_BUTTON, TODAYS_EARNINGS} from "@ids"
+import { CHALLENGE_SET_SCROLL, LEADERBOARD_NAME, LEVEL_SUMMARY_YUDOKU_LEADERBOARD, RANK, SCORE, SUDOKU_HOWTOPLAY_BUTTON, SUDOKU_JOINLEADERBOARD_BUTTON, SUDOKU_LEADERBOARD, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, TAKE_A_CHALLENGE_LEFT_BUTTON, TODAYS_EARNINGS} from "@ids"
 import { CUSTOMER_1, CUSTOMER_86, SUDOKU_ANSWER_1 } from "@data";
 import { getDuration } from "@socket";
 import { SUDOKU_STAT_0, SUDOKU_STAT_1 } from "_utils/data/mongo/game_sudoku_stats";
@@ -149,6 +149,6 @@ export const canSeeAttemptDisclaimer = async () => {
   await textVisible("As this is not your first attempt today your time will not be ranked on the leaderboard and will not count towards your personal best.")()
 }
 
-export const canSeeYudokuLeaderboardButton = async () => {
-  await textVisible("Yudoku Leaderboard")()
+export const canSeeYudokuLeaderboardButton = (dateString: string) => async () => {
+  await idVisible(LEVEL_SUMMARY_YUDOKU_LEADERBOARD(dateString))
 }

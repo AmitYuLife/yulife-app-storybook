@@ -4,7 +4,7 @@ import { YuScreenCarousel_items as CarouselItem } from "@graphql/_core/schema";
 import React, { memo, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { BUTTON_HEIGHT, BUTTON_HORIZONTAL_MARGIN, CARD_WIDTH_FULL, CARD_WIDTH_NARROW, styles } from "./styles";
-import { CAROUSEL_CARD } from "@ids";
+import { CAROUSEL_CARD, CAROUSEL_CARD_BUTTON } from "@ids";
 import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
 import { Colours, Style } from "@styles";
 import { mapServerStyles } from "@components/sdui";
@@ -53,6 +53,7 @@ export const CarouselCard = memo(
         }),
       [titleMarkdownStyles, descriptionMarkdownStyles]
     );
+
     return (
       <View
         testID={CAROUSEL_CARD}
@@ -85,7 +86,13 @@ export const CarouselCard = memo(
                   { width: defaultStyles.width - BUTTON_HORIZONTAL_MARGIN * 2 },
                 ])}
               >
-                <Button height={BUTTON_HEIGHT} size="Narrow" label={button.label} onPress={handlePress} />
+                <Button
+                  height={BUTTON_HEIGHT}
+                  size="Narrow"
+                  label={button.label}
+                  onPress={handlePress}
+                  testID={CAROUSEL_CARD_BUTTON(titleMarkdown)}
+                />
               </View>
             </View>
           )}
