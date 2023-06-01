@@ -118,21 +118,25 @@ const MediaPlayerContainer = ({
   );
 
   const endChallenge = useCallback(async () => {
-    const { data } = await updateQuestMapLevelChallenge({
-      variables: { levelSlotId, contentId: video.id, payload: { value: video.duration } },
-    });
+    try {
+      const { data } = await updateQuestMapLevelChallenge({
+        variables: { levelSlotId, contentId: video.id, payload: { value: video.duration } },
+      });
 
-    const challenge = data?.updateQuestMapLevelChallenge?.challenge;
+      const challenge = data?.updateQuestMapLevelChallenge?.challenge;
 
-    if (challenge) {
-      dispatch(challengeEndSuccessAction({ ...challenge }));
-      if (eventType === "mindfullness") {
-        dispatch(updateInAppMeditation({ duration: video.duration, createdAt: challenge.createdAt }));
+      if (challenge) {
+        dispatch(challengeEndSuccessAction({ ...challenge }));
+        if (eventType === "mindfullness") {
+          dispatch(updateInAppMeditation({ duration: video.duration, createdAt: challenge.createdAt }));
+        }
+
+        await Navigation.popTo(ROUTES.quests);
+
+        Logger.logMixpanelEvent("meditopia_challenge_end", { levelSlotId, duration: video.duration });
       }
-
-      await Navigation.popTo(ROUTES.quests);
-
-      Logger.logMixpanelEvent("meditopia_challenge_end", { levelSlotId, duration: video.duration });
+    } catch (err) {
+      throw Error(err);
     }
   }, [video.duration, levelSlotId, video.id]);
 
