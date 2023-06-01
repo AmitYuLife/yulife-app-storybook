@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -293,9 +293,44 @@ export interface GetYuScreen_getYuScreen_carrierLogo {
   width: number;
 }
 
+export interface GetYuScreen_getYuScreen_enrollCopy_styles {
+  property: string;
+  value: string;
+}
+
 export interface GetYuScreen_getYuScreen_enrollCopy {
   title: string;
   description: string;
+  styles: GetYuScreen_getYuScreen_enrollCopy_styles[] | null;
+}
+
+export interface GetYuScreen_getYuScreen_enrolTimer_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreen_getYuScreen_enrolTimer_button_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_enrolTimer_button_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_enrolTimer_button {
+  label: string;
+  onPress: GetYuScreen_getYuScreen_enrolTimer_button_onPress;
+  event: GetYuScreen_getYuScreen_enrolTimer_button_event | null;
+}
+
+export interface GetYuScreen_getYuScreen_enrolTimer {
+  heading: string | null;
+  secondsUntilTarget: number;
+  styles: GetYuScreen_getYuScreen_enrolTimer_styles[] | null;
+  button: GetYuScreen_getYuScreen_enrolTimer_button | null;
+  backgroundGradientList: string[] | null;
 }
 
 export interface GetYuScreen_getYuScreen {
@@ -308,6 +343,7 @@ export interface GetYuScreen_getYuScreen {
   yumojiPrompt: GetYuScreen_getYuScreen_yumojiPrompt;
   carrierLogo: GetYuScreen_getYuScreen_carrierLogo | null;
   enrollCopy: GetYuScreen_getYuScreen_enrollCopy | null;
+  enrolTimer: GetYuScreen_getYuScreen_enrolTimer | null;
 }
 
 export interface GetYuScreen {

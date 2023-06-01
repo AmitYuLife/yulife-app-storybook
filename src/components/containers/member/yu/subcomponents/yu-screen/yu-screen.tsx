@@ -3,6 +3,7 @@ import { NameAndLevel } from "@components/molecules";
 import { YumojiAndSlots } from "../yumoji-and-slots/yumoji-and-slots";
 import { Carousel } from "../carousel/carousel";
 import { Survey } from "../survey/survey";
+import { EnrolmentTimer } from "../enrolmentTimer/enrolmentTimer";
 import { GetYuScreen } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YU_SCREEN } from "@graphql/yuscreen/getYuScreen.gql";
 import { Onboarding } from "../onboarding/onboarding";
@@ -51,6 +52,7 @@ export const YuScreen = memo(({ componentId }: Props) => {
     enrollCopy,
     boxOptionCards,
     spanningProductSlot,
+    enrolTimer,
   } = data.getYuScreen;
 
   if (showOnboarding) {
@@ -75,6 +77,7 @@ export const YuScreen = memo(({ componentId }: Props) => {
         productSlots={productSlots}
         yumojiPrompt={yumojiPrompt}
       />
+      {!enrolTimer ? null : <EnrolmentTimer {...enrolTimer} />}
       {!boxOptionCards?.length ? null : (
         <View style={styles.boxOptionCardWrapper}>
           {boxOptionCards.map((boxOptionCard, boxOptionCardIndex) => (
@@ -83,7 +86,7 @@ export const YuScreen = memo(({ componentId }: Props) => {
         </View>
       )}
       {productCarousel ? <Carousel heading={productCarousel.heading} items={productCarousel.items} /> : null}
-      {!enrollCopy ? null : <Copy title={enrollCopy.title} description={enrollCopy.description} />}
+      {!enrollCopy ? null : <Copy {...enrollCopy} />}
       {carrierLogo ? (
         <View style={styles.carrierLogoWrapper}>
           <Image source={carrierLogo.image} width={carrierLogo.width} />

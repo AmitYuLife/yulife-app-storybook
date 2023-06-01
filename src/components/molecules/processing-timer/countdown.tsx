@@ -93,7 +93,7 @@ const useCountdownHandler = (secondsUntilTarget: number) => {
 
     const { raw } = countdown;
 
-    if (raw.days < 0 || raw.hours < 0 || raw.minutes < 0 || raw.seconds < 0) {
+    if (raw.days < 0 || raw.hours < 0 || raw.minutes < 0 || raw.seconds <= 0) {
       /**
        * Save in case we want to do something in the future
        * when the countdown ends

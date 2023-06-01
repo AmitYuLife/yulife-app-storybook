@@ -2724,7 +2724,8 @@ export interface GetPersonalProductStep_getPersonalProductStep {
    */
   header: (GetPersonalProductStep_getPersonalProductStep_header | null)[] | null;
   /**
-   * Content that just sits on the screen. Anywhere you want. Be careful with this powerful tool. Not supported by detached steps.
+   * Content that just sits on the screen. Anywhere you want. Be careful with this
+   * powerful tool. Not supported by detached steps.
    */
   absolute: (GetPersonalProductStep_getPersonalProductStep_absolute | null)[] | null;
 }

@@ -105,6 +105,29 @@ const GQL_FRAGMENT_YU_SCREEN_ENROLLCOPY = gql`
   fragment YuScreenEnrollCopy on YuScreenEnrollCopy {
     title
     description
+    styles {
+      ...SduiStyle
+    }
+  }
+`;
+
+const GQL_FRAGMENT_YU_SCREEN_ENROLL_TIMER = gql`
+  fragment YuScreenEnrolTimer on YuScreenEnrolTimer {
+    heading
+    secondsUntilTarget
+    styles {
+      ...SduiStyle
+    }
+    button {
+      label
+      onPress {
+        ...SduiAction
+      }
+      event {
+        ...SduiAction
+      }
+    }
+    backgroundGradientList
   }
 `;
 
@@ -145,6 +168,7 @@ export const GQL_QUERY_GET_YU_SCREEN = gql`
   ${GQL_FRAGMENT_YU_SCREEN_ENROLLCOPY}
   ${GQL_FRAGMENT_YU_SCREEN_BOX_OPTION_CARDS}
   ${GQL_FRAGMENT_YU_SCREEN_SPANNING_PRODUCT_SLOT}
+  ${GQL_FRAGMENT_YU_SCREEN_ENROLL_TIMER}
 
   query GetYuScreen {
     getYuScreen {
@@ -174,6 +198,9 @@ export const GQL_QUERY_GET_YU_SCREEN = gql`
       }
       enrollCopy {
         ...YuScreenEnrollCopy
+      }
+      enrolTimer {
+        ...YuScreenEnrolTimer
       }
     }
   }
