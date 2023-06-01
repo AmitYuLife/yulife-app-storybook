@@ -40,7 +40,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap a past level", when.tapID(LEVEL_CHALLENGE_BUTTON(5)), async () => {
             Then("I should see the challenge I just completed with the correct stars", then.onChallengeHistory("meditation", 5, 60, 3))
         })
-        When("I tap full history", when.tapText("Full history"), async () => {
+        When("I tap full history", when.tapText("Full activity history"), async () => {
             Then("I should be on the activity history", then.textVisible("activity history"))
         })
     })

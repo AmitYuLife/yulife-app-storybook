@@ -1387,7 +1387,8 @@ export const CUSTOMER_76_TOGGLES = {
       yuScreenV3: true,
       showPermissionSettings: true,
       yuScreenV4: false,
-      showBrainGameSudoku: true
+      showBrainGameSudoku: true,
+      newChallengeHistory: true
     },
   },
 } as IDatabaseItem;

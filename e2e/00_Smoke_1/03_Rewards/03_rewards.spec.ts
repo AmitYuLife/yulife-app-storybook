@@ -22,7 +22,7 @@ Feature("Rewards should act correctly", async () => {
                         When("I tap to buy a denomination", when.tapDenomination(CORE_REWARDS_JOHN_LEWIS, 0), async () => {
                             Then("I should see the confirm modal", then.textVisible("Confirm purchase"))
                             When("I tap 'Confirm'", when.tapText("Confirm", 2500, true), async () => {
-                                Then("I should see the not enough YuCoin modal", then.textVisible("You do not have enough yucoin to purchase this reward"))
+                                Then("I should see the not enough YuCoin modal", then.textVisible("You do not have enough YuCoin to purchase this reward"))
                                 When("I click Got it", when.tapText("Got it"), async () => {
                                     Then("I should be back on the John Lewis reward page", then.textVisible("Have a question?"))
                                 })
