@@ -263,6 +263,7 @@ export * from "./YuCoinPowerExplainedYuCoin";
 export * from "./YuScreenBoxOptionCard";
 export * from "./YuScreenCarousel";
 export * from "./YuScreenCarouselItem";
+export * from "./YuScreenEnrolTimer";
 export * from "./YuScreenEnrollCopy";
 export * from "./YuScreenItemSlot";
 export * from "./YuScreenOnboarding";

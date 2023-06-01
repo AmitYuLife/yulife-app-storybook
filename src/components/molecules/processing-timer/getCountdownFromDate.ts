@@ -1,6 +1,36 @@
-export const getCountdownFromSeconds = (secondsDiff: number) => {
-  if (!secondsDiff) {
-    return {};
+type CountdownFromSeconds = {
+  raw: {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+  };
+  formatted: {
+    days: string;
+    hours: string;
+    minutes: string;
+    seconds: string;
+  };
+};
+
+const DEFAULT_COUNTDOWN: CountdownFromSeconds = {
+  raw: {
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  },
+  formatted: {
+    days: "00",
+    hours: "00",
+    minutes: "00",
+    seconds: "00",
+  },
+};
+
+export const getCountdownFromSeconds = (secondsDiff: number): CountdownFromSeconds => {
+  if (secondsDiff <= 0) {
+    return DEFAULT_COUNTDOWN;
   }
 
   const diff = getRawDiffInUnits(secondsDiff);
