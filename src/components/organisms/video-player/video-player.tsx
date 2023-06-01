@@ -168,7 +168,13 @@ const VideoPlayer = ({
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (orientation === "landscape" && !state.isPaused && state.musicControlMounted && !state.showFocusScreen) {
+      if (
+        orientation === "landscape" &&
+        !state.isPaused &&
+        state.musicControlMounted &&
+        !state.showFocusScreen &&
+        !DETOX_ENABLED
+      ) {
         handleFocusScreen();
       }
     }, 2000);

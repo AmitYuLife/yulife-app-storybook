@@ -53,7 +53,7 @@ export const completeQuiz = (quizQuestions: QuizDetails, quizAnswers: number[]) 
     }
 
     await textVisible("Self assessment")()
-    await swipeFromText("Learning objectives", "up", "slow")()
+    await swipeFromText("Self assessment", "up", "slow")()
     await tapID(CPD_FEEDBACK_BUTTON("Happy"))()
     await tapText("Finish")()
 }
