@@ -2104,16 +2104,41 @@ workflows:
     - script@1.2:
         title: Pull & run API (UK)
         inputs:
-        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e -x\n\nCWD=$(pwd)\n\nmkdir
-            -p ~/temp-repos\ncd ~/temp-repos\n\ngit clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git
-            api-clone\nmkdir -p yulife-api-server\nmv api-clone/{*,.[^.]*} yulife-api-server\nrm
-            -rf api-clone\ncd yulife-api-server\n\ngit checkout $BITRISE_GIT_BRANCH
-            || git checkout develop\ngit pull\n\n. $HOME/.nvm/nvm.sh\nnvm use\nyarn
-            install --frozen-lockfile \necho 'Install completed'\n./scripts/setupPostgresForBitrise.sh\nyarn
-            build\n\nyarn detox:changeRegionDatabase:UK\n\nnpm install -g forever\nNODE_ENV=detox
-            DEBUG=yu:* forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js\necho
-            'Waiting for API (UK) to bootstrap...'\nnpx wait-on http://localhost:5000\n\ncd
-            $CWD"
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+
+            CWD=$(pwd)
+
+            # Source nvm where no .nvmrc file exists
+            . $HOME/.nvm/nvm.sh
+
+            mkdir -p ~/temp-repos
+            cd ~/temp-repos
+
+            git clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git api-clone
+            mkdir -p yulife-api-server
+            mv api-clone/{*,.[^.]*} yulife-api-server
+            rm -rf api-clone
+
+            cd yulife-api-server
+            git checkout $BITRISE_GIT_BRANCH || git checkout develop
+            git pull
+
+            nvm use
+            yarn install --frozen-lockfile
+            ./scripts/setupPostgresForBitrise.sh
+            yarn build
+
+            yarn detox:changeRegionDatabase:UK
+
+            npm install -g forever
+            NODE_ENV=detox DEBUG=yu:* forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
+            echo 'Waiting for API (UK) to bootstrap...'
+            npx wait-on http://localhost:5000
+
+            cd $CWD
     - save-cache@1:
         inputs:
         - paths: ~/temp-repos/yulife-api-server/node_modules
@@ -2139,6 +2164,10 @@ workflows:
 
             CWD=$(pwd)
 
+            # Source nvm where no .nvmrc file exists
+            . $HOME/.nvm/nvm.sh
+
+
             mkdir -p ~/temp-repos
             cd ~/temp-repos
 
@@ -2151,7 +2180,6 @@ workflows:
             git checkout $BITRISE_GIT_BRANCH || git checkout develop
             git pull
 
-            source $HOME/.nvm/nvm.sh
             nvm use
             yarn install --frozen-lockfile
             ./scripts/setupPostgresForBitrise.sh
@@ -2190,6 +2218,9 @@ workflows:
 
             CWD=$(pwd)
 
+            # Source nvm where no .nvmrc file exists
+            . $HOME/.nvm/nvm.sh
+
             mkdir -p ~/temp-repos
             cd ~/temp-repos
 
@@ -2201,7 +2232,6 @@ workflows:
             git checkout $BITRISE_GIT_BRANCH || git checkout develop
             git pull
 
-            . $HOME/.nvm/nvm.sh
             nvm use
             yarn install --frozen-lockfile
             ./scripts/setupPostgresForBitrise.sh
@@ -2234,16 +2264,41 @@ workflows:
     - script@1:
         title: Pull & run API
         inputs:
-        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n\nCWD=$(pwd)\n\nmkdir
-            -p ~/temp-repos\ncd ~/temp-repos\n\ngit clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git
-            api-clone\nmkdir -p yulife-api-server\nmv api-clone/{*,.[^.]*} yulife-api-server\nrm
-            -rf api-clone\n\ncd yulife-api-server\ngit checkout $BITRISE_GIT_BRANCH
-            || git checkout develop\ngit pull\n\n. $HOME/.nvm/nvm.sh \nnvm use\nyarn
-            install --frozen-lockfile\n./scripts/setupPostgresForBitrise.sh\nyarn
-            build\n\nyarn detox:changeRegionDatabase:US\n\nnpm install -g forever\nNODE_ENV=detox
-            DEBUG=yu:* server__locale=en-US server__port=5001 forever start -o ./api-stdout.txt
-            -e ./api-stderr.txt build/app/index.js\necho 'Waiting for API (USA) to
-            bootstrap...'\nnpx wait-on http://localhost:5001\n\ncd $CWD"
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+
+            CWD=$(pwd)
+
+            # Source nvm where no .nvmrc file exists
+            . $HOME/.nvm/nvm.sh
+
+            mkdir -p ~/temp-repos
+            cd ~/temp-repos
+
+            git clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git api-clone
+            mkdir -p yulife-api-server
+            mv api-clone/{*,.[^.]*} yulife-api-server
+            rm -rf api-clone
+
+            cd yulife-api-server
+            git checkout $BITRISE_GIT_BRANCH || git checkout develop
+            git pull
+
+            nvm use
+            yarn install --frozen-lockfile
+            ./scripts/setupPostgresForBitrise.sh
+            yarn build
+
+            yarn detox:changeRegionDatabase:US
+
+            npm install -g forever
+            NODE_ENV=detox DEBUG=yu:* server__locale=en-US server__port=5001 forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
+            echo 'Waiting for API (USA) to bootstrap...'
+            npx wait-on http://localhost:5001
+
+            cd $CWD
     - save-cache@1:
         inputs:
         - paths: ~/temp-repos/yulife-api-server/node_modules
