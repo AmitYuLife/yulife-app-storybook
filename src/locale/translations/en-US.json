@@ -184,6 +184,9 @@
         "pending": "in"
       }
     },
+    "referrals": {
+      "or": "OR"
+    },
     "today_earning": {
       "heading": {
         "title": "Today’s Earnings"

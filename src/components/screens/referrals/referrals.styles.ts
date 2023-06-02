@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Style } from "@styles";
+import { Style, TOP_BAR } from "@styles";
 
 export const styles = StyleSheet.create({
   wrapper: {
@@ -34,8 +34,12 @@ export const styles = StyleSheet.create({
   },
   referralsWrapper: {
     marginTop: Style.adjust(16),
-    marginLeft: Style.adjust(5),
+    height: Style.DEVICE_HEIGHT - TOP_BAR.TOP_BAR_WITH_PAD - TOP_BAR.PADDING_TOP,
   },
+  listItem: {
+    marginHorizontal: Style.adjust(24),
+  },
+  footer: { height: Style.adjust(80) },
 });
 
 export const markdownStyles = StyleSheet.create({

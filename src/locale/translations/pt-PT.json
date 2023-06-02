@@ -183,6 +183,9 @@
         "pending": "em"
       }
     },
+    "referrals": {
+      "or": "OU"
+    },
     "today_earning": {
       "heading": {
         "title": "Ganhos de hoje"
