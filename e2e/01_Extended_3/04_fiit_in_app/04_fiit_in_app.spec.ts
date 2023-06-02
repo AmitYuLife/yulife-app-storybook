@@ -47,9 +47,11 @@ Feature("Fiit in app", async () => {
         })
       })
     })
-    When("I unpause the video", when.pauseVideo(false), async () => {
-      When("I wait for the video to finish", when.wait(20000), async () => {
-        Then("I can see the challenge reward screen", then.canSeeFiitChallengeRewardScreen(USER_FIIT, MEDIA_5, 5))
+    When("I wait", when.wait(3000), async () => {
+      When("I unpause the video", when.pauseVideo(false), async () => {
+        When("I wait for the video to finish", when.wait(20000), async () => {
+          Then("I can see the challenge reward screen", then.canSeeFiitChallengeRewardScreen(USER_FIIT, MEDIA_5, 5))
+        })
       })
     })
     When("I tap 'Collect'", when.tapText("Collect"), async () => {
