@@ -111,6 +111,18 @@ const SCALE_Y_UP_AND_DOWN = (value: number) => scaledYPixel * value;
 const defaultShrinkThreshold = y < 600;
 const defaultGrowThreshold = y > 900;
 
+const getShrinkThreshold = () => {
+  if (y < 785 && x === 360 && Platform.OS === "android") {
+    return { shrinkThreshold: true, shrinkMultiplier: 0.1 };
+  }
+
+  if (y < 600) {
+    return { shrinkThreshold: true, shrinkMultiplier: Platform.select({ ios: 0.15, android: 0.2 }) };
+  }
+
+  return { shrinkThreshold: false, shrinkMultiplier: Platform.select({ ios: 0.15, android: 0.2 }) };
+};
+
 interface IAdjustOptions {
   shrinkMultiplier?: number;
   growMultiplier?: number;
@@ -119,12 +131,9 @@ interface IAdjustOptions {
 }
 
 const adjust = (val: number, options: IAdjustOptions = {}) => {
-  const {
-    shrinkMultiplier = Platform.select({ ios: 0.15, android: 0.2 }),
-    growMultiplier = Platform.select({ ios: 0.15, android: 0.2 }),
-    shrinkThreshold = defaultShrinkThreshold,
-    growThreshold = defaultGrowThreshold,
-  } = options;
+  const { shrinkThreshold, shrinkMultiplier } = getShrinkThreshold();
+  const { growMultiplier = Platform.select({ ios: 0.15, android: 0.2 }), growThreshold = defaultGrowThreshold } =
+    options;
 
   if (Platform.OS === "web") {
     return val;
@@ -134,8 +143,8 @@ const adjust = (val: number, options: IAdjustOptions = {}) => {
     return val + val * growMultiplier;
   }
 
-  if (shrinkThreshold) {
-    return val - val * shrinkMultiplier;
+  if (options?.shrinkThreshold || shrinkThreshold) {
+    return val - val * (options?.shrinkMultiplier || shrinkMultiplier);
   }
 
   return val;
