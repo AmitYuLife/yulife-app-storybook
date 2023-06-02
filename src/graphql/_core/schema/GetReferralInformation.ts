@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -39,4 +39,9 @@ export interface GetReferralInformation_referralInformation {
 
 export interface GetReferralInformation {
   referralInformation: GetReferralInformation_referralInformation;
+}
+
+export interface GetReferralInformationVariables {
+  limit?: number | null;
+  offset?: number | null;
 }
