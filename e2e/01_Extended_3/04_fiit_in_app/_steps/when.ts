@@ -41,11 +41,7 @@ export const playFiitVideo = async () => {
 }
 
 export const pauseVideo = (pause: boolean) => async () => {
-  const tapTimes = pause === true ? 1 : 2
-
-  for (let i = 0; i < tapTimes; i++) {
-    await navigateViaID(VIDEO_PLAY_PAUSE_BUTTON(!pause))
-  }
+  await navigateViaID(VIDEO_PLAY_PAUSE_BUTTON(!pause))
 }
 
 export const minimiseAndReopenApp = async () => {
