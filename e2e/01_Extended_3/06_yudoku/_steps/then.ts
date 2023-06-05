@@ -152,3 +152,10 @@ export const canSeeAttemptDisclaimer = async () => {
 export const canSeeYudokuLeaderboardButton = (dateString: string) => async () => {
   await idVisible(LEVEL_SUMMARY_YUDOKU_LEADERBOARD(dateString))
 }
+
+export const amOnCompletedPracticeScreen = (hintsNum: number, mistakesNum: number) => async () => {
+  await textVisible("Great work!", 5000)()
+  await textVisible("Now try the daily Yudoku challenge to earn YuCoin!")()
+  await idVisible(SUDOKU_STAT("Hints", hintsNum))()
+  await idVisible(SUDOKU_STAT("Mistakes", mistakesNum))()
+}

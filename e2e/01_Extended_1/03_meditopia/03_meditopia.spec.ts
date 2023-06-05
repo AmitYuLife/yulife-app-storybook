@@ -76,32 +76,6 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     });
   });
 
-  // TEST THIS ONE
-  Scenario("I can successfully take, pause, start and finish a Meditopia challenge in app", scenario.start, async () => {
-    Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_MEDITOPIA_1, AUTH_MEDITOPIA_1), async () => {
-      Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)));
-    });
-    When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "meditation"), async () => {
-      Then("I am on the Challenge Details screen", then.onChallengeDetailsScreen("60 x"));
-    });
-    When("I tap Take Challenge", when.tapTakeChallenge, async () => {
-      Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "60"));
-    });
-    When("I tap the Awareness content card", when.tapAwarenessContentCard("5", "60"), async () => {
-      When("I wait 3 seconds", when.wait3Seconds, async () => {
-        Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 1, 60, 200));
-      });
-    });
-    When("I tap start session", when.tapStartSession, async () => {
-      When("I start and pause the challenge half way through", when.pauseMeditopiaChallenge, async () => {
-        Then("I should see the paused time on the screen", then.pauseChallengeTimeVisible);
-      });
-    });
-    When("I continue to play the Meditopia challenge to finish", when.playAndFinishMeditopiaChallenge, async () => {
-      Then("I should be on the challenge completion well done screen", then.onMeditopiaChallengeComplete(5, 1, "60"));
-    });
-  });
-
   Scenario("I can successfully take and quit a Meditopia challenge in app", scenario.start, async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_MEDITOPIA_1, AUTH_MEDITOPIA_1), async () => {
       Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)));
@@ -129,6 +103,31 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     });
     When("I exit the challenge via the quit challenge confirmation sceen", when.exitMeditopiaChallenge, async () => {
       Then("I should be on choose Meditopia content screen", then.isOnTodaysMeditationScreen("5", "60"));
+    });
+  });
+
+  Scenario("I can successfully take, pause, start and finish a Meditopia challenge in app", scenario.start, async () => {
+    Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_MEDITOPIA_1, AUTH_MEDITOPIA_1), async () => {
+      Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+    });
+    When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "meditation"), async () => {
+      Then("I am on the Challenge Details screen", then.onChallengeDetailsScreen("60 x"));
+    });
+    When("I tap Take Challenge", when.tapTakeChallenge, async () => {
+      Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "60"));
+    });
+    When("I tap the Awareness content card", when.tapAwarenessContentCard("5", "60"), async () => {
+      When("I wait 3 seconds", when.wait3Seconds, async () => {
+        Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 1, 60, 200));
+      });
+    });
+    When("I tap start session", when.tapStartSession, async () => {
+      When("I start and pause the challenge half way through", when.pauseMeditopiaChallenge, async () => {
+        Then("I should see the paused time on the screen", then.pauseChallengeTimeVisible);
+      });
+    });
+    When("I continue to play the Meditopia challenge to finish", when.playAndFinishMeditopiaChallenge, async () => {
+      Then("I should be on the challenge completion well done screen", then.onMeditopiaChallengeComplete(5, 1, "60"));
     });
   });
 
