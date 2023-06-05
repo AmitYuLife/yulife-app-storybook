@@ -96,3 +96,11 @@ export const completeYudoku = async () => {
   await wait(3000)()
   await tapCollect()
 }
+
+export const completeYudokuPractice = (answersArr) => async () => {
+  for (let i = 0; i < answersArr.length; i++) {
+    const {row, column, value, answer} = answersArr[i]
+    await tapID(CELL_ROW_COLUMN(row, column, value))()
+    await tapID(SUDOKU_NUMBER_INPUT(answer))()
+  }
+}

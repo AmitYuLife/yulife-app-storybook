@@ -4,8 +4,9 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { AUTH_58,  AUTH_76,  AUTH_84,  AUTH_86, CUSTOMER_58, CUSTOMER_67, CUSTOMER_68, CUSTOMER_71, CUSTOMER_76, CUSTOMER_84, CUSTOMER_86, SUDOKU_ANSWER_1, SUDOKU_ANSWER_2, SUDOKU_ANSWER_3} from "@data"
-import { BACK_BUTTON, BUTTON_CLOSE_HEADER, BUTTON_CLOSE_RIGHT_ID, CANCEL_CANCEL_CHALLENGE, CELL_ROW_COLUMN, CHALLENGE_HISTORY_NEW_SLOT, LEVEL_CHALLENGE_BUTTON, LEVEL_SUMMARY_YUDOKU_LEADERBOARD, MENU_ICON, SETTINGS_SCREEN, SETTINGS_SWITCH, SUDOKU_HINT_TIMER, SUDOKU_NUMBER_INPUT, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, SUDOKU_UNRANKED_LABEL, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids"
+import { BACK_BUTTON, BUTTON_CLOSE_HEADER, BUTTON_CLOSE_RIGHT_ID, CANCEL_CANCEL_CHALLENGE, CELL_ROW_COLUMN, CHALLENGE_HISTORY_NEW_SLOT, LEVEL_CHALLENGE_BUTTON, LEVEL_SUMMARY_YUDOKU_LEADERBOARD, MENU_ICON, SETTINGS_SCREEN, SETTINGS_SWITCH, SUDOKU_HINT_TIMER, SUDOKU_NUMBER_INPUT, SUDOKU_PRACTICE_BUTTON, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, SUDOKU_UNRANKED_LABEL, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids"
 import { SUDOKU_STAT_0 } from "_utils/data/mongo/game_sudoku_stats"
+import { PracticeYudokuAnswers } from "./_steps/constants"
 
 Feature("Yudoku", async () => {
   Scenario("I can play, pause, and complete Sudoku and join/view the leaderboard", scenario.start, () => {
@@ -314,5 +315,40 @@ Feature("Yudoku", async () => {
         })
     })
 
-
+    Scenario("I can take the Yudoku practice game as many times as I want", scenario.start, () => {
+        Given("I login", given.logInAndGoToTab("yucoin", CUSTOMER_76, AUTH_76), async () => {
+            Then("I should see 200 YuCoin in the top right hand corner", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
+        })
+        When("I tap take take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
+            When("I tap level 1 button", when.tapID(LEVEL_CHALLENGE_BUTTON(1)), async () => {
+                Then("I should see the Sodoku tile is available", then.canSeeSudokuTile)
+            })
+        })
+        When("I tap the soduku challenge", when.tapSudoku, async () => {
+            Then("I am on the sudoku page", then.amOnSudokuPage)
+            Then("I can see the practice button", then.idVisible(SUDOKU_PRACTICE_BUTTON))
+        })
+        When("I tap practice game", when.tapID(SUDOKU_PRACTICE_BUTTON), async () => {
+            Then("I am on the Sudoku challenge screen", then.amOnSudokuChallenge)
+        })
+        When("I tap a cell", when.tapID(CELL_ROW_COLUMN(0, 3, 0)), async () => {
+            When("I tap the incorrect answer", when.tapID(SUDOKU_NUMBER_INPUT(7)), async () => {
+                When("I tap the hint button", when.tapSudokuHint, async () => {
+                    When("I tap Use a hint", when.tapUseAHint, async () => {
+                        Then("I can see 30s have been added", then.plus30sIsVisible)
+                    })
+                })
+            })
+        })
+        When("I complete the Yudoku practice game", when.completeYudokuPractice(PracticeYudokuAnswers), async () => {
+            Then("I am on the completed practice yudoku screen", then.amOnCompletedPracticeScreen(1, 1))
+        })
+        When("I click continue", when.tapText("Continue"), async () => {
+            Then("I am on the sudoku page", then.amOnSudokuPage)
+        })
+        When("I tap practice game because it is still available", when.tapID(SUDOKU_PRACTICE_BUTTON), async () => {
+            Then("I am on the Sudoku challenge screen", then.amOnSudokuChallenge)
+            Then("i can see the board has cleared", then.idVisible(CELL_ROW_COLUMN(0, 3, 0)))
+        })
+      })
 })

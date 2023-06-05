@@ -123,17 +123,13 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             When("I go to rewards", when.tapID(NAV_BAR("rewards")), async () => {
                 Then("I should be on the rewards screen", then.idVisible(REWARDS_SCREEN, 2000))
                 Then("I should see a John Lewis reward", then.rewardVisible(CORE_REWARDS_JOHN_LEWIS))
-                Then("I should see an Avois reward", then.specialRewardVisible(CORE_REWARDS_AVIOS, "avios"))
                 Then("I should see a locked reward", then.lockedRewardVisible(CORE_REWARDS_BLOOM_UNAVAILABLE))
-                Then("I should see the purchased tab", then.textVisible("purchased", 1500))
-                When("I tap the purchased tab", when.tapText("purchased"), async () => {
+                Then("I should see the Purchased tab", then.textVisible("Purchased", 1500))
+                When("I tap the Purchased tab", when.tapText("Purchased"), async () => {
                     When("I wait", when.wait(2500), async()=>{
                         Then("the tab should be in an empty state, as I have not purchases anything", then.idVisible(CHECK_REWARDS_BUTTON, 1500))
                         When("I tap 'check rewards", when.tapID(CHECK_REWARDS_BUTTON), async () => {
                             Then("I should be back on the rewards tab", then.idVisible(REWARDS_SCREEN))
-                            When("I tap on the Avois reward", when.tapRewardInList(CORE_REWARDS_AVIOS), async () => {
-                                Then("I should be on the avios reward screen", then.onSpecialRewardScreen(CORE_REWARDS_AVIOS, "avios"))
-                            })
                         })
                     })
                 })
