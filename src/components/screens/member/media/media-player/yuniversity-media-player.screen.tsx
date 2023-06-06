@@ -5,6 +5,8 @@ import { LoadError, OnProgressData } from "react-native-video";
 import Config from "react-native-config";
 import { DETOX_ENABLED } from "@services/socket";
 
+const CONTROL_TIMEOUT = 5000;
+
 interface IProps {
   video: Media;
   onLeftIconPress: () => void;
@@ -46,6 +48,7 @@ const YuniversityMediaPlayerScreen = ({
       onPause={onPause}
       onPlay={onPlay}
       onProgress={onProgress}
+      controlTimeout={CONTROL_TIMEOUT}
     />
   );
 };
