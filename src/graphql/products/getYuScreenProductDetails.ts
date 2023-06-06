@@ -21,6 +21,7 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_INFO_CARD,
   GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN,
   GQL_FRAGMENT_CONTENT_ITEM_YU_COIN_POWER,
+  GQL_FRAGMENT_CONTENT_ITEM_WRAPPER,
 } from "@graphql/_fragments/content.gql";
 import {
   GQL_FRAGMENT_REMOTE_IMAGE,
@@ -55,6 +56,7 @@ export const GQL_QUERY_GET_YU_SCREEN_PRODUCT_DETAILS = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_HEADER_BAR}
   ${GQL_FRAGMENT_CONTENT_ITEM_INFO_CARD}
   ${GQL_FRAGMENT_CONTENT_ITEM_YU_COIN_POWER}
+  ${GQL_FRAGMENT_CONTENT_ITEM_WRAPPER}
 
   query GetYuScreenProductDetails($customerProductId: String!) {
     getYuScreenProductDetails(customerProductId: $customerProductId) {
@@ -107,6 +109,9 @@ export const GQL_QUERY_GET_YU_SCREEN_PRODUCT_DETAILS = gql`
         }
         ... on ContentItemProcessingTimer {
           ...ContentItemProcessingTimer
+        }
+        ... on ContentItemWrapper {
+          ...ContentItemWrapper
         }
       }
       footer {
