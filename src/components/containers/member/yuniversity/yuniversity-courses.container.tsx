@@ -13,11 +13,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 
-const YuniversityCoursesContainer = () => {
+interface IProps {
+  popTo?: string;
+}
+
+const YuniversityCoursesContainer = ({ popTo }: IProps) => {
   const dispatch = useDispatch();
   const userLevel = useSelector(getCurrentLevel);
 
-  const onLeftIconPress = useCallback(() => Navigation.pop(ROUTES.wellbeingHubItems), []);
+  const onLeftIconPress = useCallback(() => Navigation.popToRoot(popTo || ROUTES.wellbeingHubItems), [popTo]);
   const { data, loading } = useQuery<GetInAppYuniversityCourses>(GQL_QUERY_GET_YUNIVERSITY_COURSES, {
     variables: { category: COURSE_CATEGORY_CPD },
     fetchPolicy: "network-only",
