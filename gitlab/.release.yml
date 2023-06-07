@@ -30,3 +30,36 @@ release-develop-to-uat:
   only:
     refs:
       - develop
+
+release-production:
+  extends: .base
+  stage: release
+  when: manual
+  cache: []
+  script:
+    - BRANCH_VERSION_MAJOR=$(node -p -e "require('./package.json').version.split('.')[0]")
+    - BRANCH_VERSION_MINOR=$(node -p -e "require('./package.json').version.split('.')[1]")
+    - BRANCH_VERSION=${BRANCH_VERSION_MAJOR}.${BRANCH_VERSION_MINOR}
+    # Switch from Gitlab SSH to Service User Basic Auth
+    - git remote rm origin && git remote add origin https://oauth2:${RELEASE_GITLAB_TOKEN}@gitlab.com/$CI_PROJECT_PATH.git
+    - git config --global user.email $GITLAB_USER_EMAIL
+    - git config --global user.name $GITLAB_USER_NAME
+    - git fetch --tags -q
+    - git checkout release/${BRANCH_VERSION}
+    - |
+      LATEST_TAG=$(git tag -l "release/$BRANCH_VERSION*" | sort -V | tail -n 1)
+
+      if [ -z "$LATEST_TAG" ]; then
+          # If there's no existing tag with the branch version, we create a new one with .0 suffix
+          NEW_TAG="release/$BRANCH_VERSION.0"
+      else
+          # If there's already a tag, increment the patch version
+          PATCH_VERSION=$((`echo $LATEST_TAG | cut -d . -f 3` + 1))
+          NEW_TAG="release/$BRANCH_VERSION.$PATCH_VERSION"
+      fi
+      git tag $NEW_TAG
+      git push origin $NEW_TAG
+      echo "New release tag: ${NEW_TAG}"
+  only:
+    refs:
+      - /^release\/.*$/
