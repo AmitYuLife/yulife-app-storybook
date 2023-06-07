@@ -105,6 +105,7 @@ import {
   CUSTOMER_GHI,
   CUSTOMER_GHI_STARTED,
   CUSTOMER_92,
+  CUSTOMER_93,
 } from "../postgres/customers";
 import moment from "moment";
 
@@ -1967,5 +1968,16 @@ export const USER_92 = {
     _id: generateRandomMongoId(),
     userId: CUSTOMER_92.data.customerId,
     nickname: "El",
+  },
+} as IDatabaseItem;
+
+export const USER_93 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: CUSTOMER_93.data.customerId,
+    nickname: "David",
   },
 } as IDatabaseItem;

@@ -3,8 +3,9 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as then from "./_steps/then"
 import * as when from "./_steps/when"
-import {  CUSTOMER_43, AUTH_43, CUSTOMER_44, AUTH_44, CUSTOMER_45, AUTH_45, CUSTOMER_46, AUTH_46, CUSTOMER_48, AUTH_48, CUSTOMER_49, AUTH_49, CUSTOMER_51, AUTH_51, CUSTOMER_53, AUTH_53 } from "@data";
+import {  CUSTOMER_43, AUTH_43, CUSTOMER_44, AUTH_44, CUSTOMER_45, AUTH_45, CUSTOMER_46, AUTH_46, CUSTOMER_48, AUTH_48, CUSTOMER_49, AUTH_49, CUSTOMER_51, AUTH_51, CUSTOMER_53, AUTH_53, CUSTOMER_93, AUTH_93 } from "@data";
 import * as helper from "./_steps/helpers"
+import { GdentAvailableSoon, GdentAvailableSoonProduct, level1Benefit } from "./_steps/fixture";
 
 
 Feature("I am able to use the yuscreen v4, create a yumoji and see my correct product slot details", async () => {
@@ -96,6 +97,19 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_53, AUTH_53, true), async () => {
             helper.ONBOARDING_YUSCREEN("0EarnRate", "1")
             helper.YUSCREEN_V4(CUSTOMER_53, "0EarnRateSlot", "1")
+        })
+    })
+
+    Scenario("As a YuLifer with Group Dental product i should see correct policy holding countdown and benefit", scenario.start, async () => {
+        Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_93, AUTH_93), async () => {
+            helper.ONBOARD_YU_SCREEN(GdentAvailableSoon)
+            When("I tap check out my power", when.tapCheckOutMyPower, async () => {
+                When("I tap I'll do this later", when.tapIllDoThisLater, async () => {
+               helper.ON_YU_SCREEN(CUSTOMER_93, GdentAvailableSoon)
+               helper.PRODUCT_VIEW(GdentAvailableSoonProduct)
+               helper.COVERED_FOR_INFO(level1Benefit)
+                })
+            })
         })
     })
 })

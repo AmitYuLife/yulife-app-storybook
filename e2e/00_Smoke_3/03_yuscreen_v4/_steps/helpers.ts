@@ -11,9 +11,14 @@ import {
   CONTENT_ITEM_IMAGE,
   V4_YUSCREEN,
   CONTENT_MIDDLE_ITEM_IMAGE,
-  CONTENT_ITEM_INPUT,
   YUSCREEN_SCROLL_VIEW,
+  LEFT_SIDE_TEXT_SLOT_POWER,
+  PRODUCT_DETAILS_SCROLL_VIEW,
+  CONTENT_ITEM_BUTTON_IMAGE,
 } from "@ids";
+import { OnboardingYuScreenInfo, ProductStartsSoon } from "./types";
+import * as fixture from "./fixture";
+import moment from "moment";
 
 export const CREATE_DEFAULT_YUMOJI = async (totalYucoinCount: number) => {
   When("I create the default yumoji", when.createDefaultYumoji, async () => {
@@ -307,3 +312,107 @@ export const GROUP_HEALTH_PRODUCT_VIEW = async (startDate: any, dependentName:an
     Then("I should see correct product details", then.GHIProductInfo(startDate, dependentName, yuCoinPower));
   });
 };
+
+export const ONBOARD_YU_SCREEN = async (seed:OnboardingYuScreenInfo) => {
+  Then(`I should be able to see ${seed.mainYuCoinPower}`, then.textVisible(seed.mainYuCoinPower));
+  Then(`I should see earn rate of first slot ${seed.firstSlotYucoinPower} text`, then.idVisible(LEFT_SIDE_TEXT_SLOT_POWER(`${seed.firstSlotYucoinPower}`)))
+  Then(`I should be able to see ${seed.firstSlotProductTitle}`, then.textVisible(seed.firstSlotProductTitle));
+  Then(`I should be able to see ${seed.firstSlotProductSubtitle}`, then.textVisible(seed.firstSlotProductTitle));
+  Then(`I should be able to see ${seed.lastSlotProductTitle}`, then.textVisible(seed.lastSlotProductTitle));
+  Then(`I should be able to see ${fixture.yuCoinText}`, then.textVisible(fixture.yuCoinText));
+  Then(`I should be able to see ${fixture.powerText}`, then.textVisible(fixture.powerText));
+  Then(`I should be able to see ${fixture.protectionPowered}`, then.textVisible(fixture.protectionPowered));
+  Then(`I should be able to see ${fixture.earnRewardsCopy}`,then.textVisible(fixture.earnRewardsCopy))
+  When(`I swipe from text ${fixture.protectionPowered}`, when.swipeFromText(fixture.protectionPowered, "up", "slow"), async () => {
+    Then(`I should be able to see ${fixture.buttonText}`, then.textVisible(fixture.buttonText));
+  })
+};
+
+export const ON_YU_SCREEN = async (customer: any, seed:OnboardingYuScreenInfo) => {
+  const firstName = customer.data.firstName;
+  const lastName = customer.data.lastName;
+
+  Then(`I should be able to see correct name ${firstName} ${lastName}`, then.textVisible((`${firstName} ${lastName}`), 2000));
+  Then(`I should be able to see ${seed.mainYuCoinPower}`, then.textVisible(seed.mainYuCoinPower));
+  Then(`I should see earn rate of first slot ${seed.firstSlotYucoinPower} text`, then.idVisible(LEFT_SIDE_TEXT_SLOT_POWER(`${seed.firstSlotYucoinPower}`)))
+  Then(`I should be able to see ${seed.firstSlotProductTitle}`, then.textVisible(seed.firstSlotProductTitle));
+  Then(`I should be able to see ${seed.firstSlotProductSubtitle}`, then.textVisible(seed.firstSlotProductTitle));
+  Then(`I should be able to see ${fixture.yuCoinText}`, then.textVisible(fixture.yuCoinText));
+  Then(`I should be able to see ${fixture.powerText}`, then.textVisible(fixture.powerText));
+  When(`I swipe from text ${seed.firstSlotProductTitle}`, when.swipeFromText(seed.firstSlotProductTitle, "up", "fast"), async () => {
+    Then(`I should be able to see ${fixture.surveyText}`, then.textVisible(fixture.surveyText));
+  })
+  When(`I swipe from text ${seed.firstSlotProductTitle}`, when.swipeFromText(fixture.surveyText, "down", "fast"), async () => {
+    Then(`I should be able to see correct name ${firstName} ${lastName}`, then.textVisible((`${firstName} ${lastName}`)));
+  })
+};
+
+export const PRODUCT_VIEW = async (seed: ProductStartsSoon) => {
+  When(`I tap ${seed.productName}`, when.tapText(seed.productName), async () => {
+    Then(`I should be able to see ${fixture.applicationProcessed}`, then.textVisible(fixture.applicationProcessed));
+    Then(`I should be able to see go live on ${seed.goLiveDate}`, then.textVisible(`If approved, your policy goes live on\n${moment(seed.goLiveDate).format(fixture.dotSeperatedDateFormat)}*`,));
+    Then("I should see right Days Hours Minutes left ", then.policyGoesLiveIn(seed.goLiveDate))
+    Then(`I should be able to see ${seed.yugiInfoText}`, then.textVisible(seed.yugiInfoText));
+    When(`I sroll the view until text ${seed.coverDetailsText} is vissible`, when.scrollUntilTextVisible(PRODUCT_DETAILS_SCROLL_VIEW, seed.coverDetailsText, "down"), async () => {
+      Then(`I should be able to see ${seed.additionalProductInfo}`, then.textVisible(seed.additionalProductInfo));
+    })
+    When(`I sroll the view until button ${seed.button} is vissible`, when.scrollUntilTextVisible(PRODUCT_DETAILS_SCROLL_VIEW, seed.button, "down"), async () => {
+      Then(`I should be able to see ${seed.planName}`, then.textVisible(seed.planName));
+      Then(`I should be able to see £ ${seed.pricePerMonth} per month`, then.textVisible(`£${seed.pricePerMonth} per month`));
+      Then(`I should be able to see id ${seed.yuCoinPower}`, then.idVisibleAtIndex(YUCOIN_POWER(seed.yuCoinPower),0));
+      Then(`I should be able to see ${seed.coveredForText}`, then.textVisible(seed.coveredForText));
+      Then(`I should be able to see image ${seed.coveredForImgSlot}`, then.idVisible(CONTENT_ITEM_BUTTON_IMAGE(seed.coveredForImgSlot)));
+      Then(`I should be able to see ${seed.membershipText}`, then.textVisible(seed.membershipText));
+      Then(`I should be able to see image ${seed.membershipGuideImgSlot}`, then.idVisible(CONTENT_ITEM_BUTTON_IMAGE(seed.membershipGuideImgSlot)));
+      Then(`I should be able to see ${seed.faqText}`, then.textVisible(seed.faqText));
+      Then(`I should be able to see image ${seed.faqImageSlot}`, then.idVisible(CONTENT_ITEM_BUTTON_IMAGE(seed.faqImageSlot)));
+    })
+  });
+};
+
+export const COVERED_FOR_INFO = async (seed: fixture.AccordionData) => {
+  When(`I tap ${fixture.coveredForText}`, when.tapText(fixture.coveredForText), async () => {
+    Then(`I should be able to see Worldwide preventative dental treatment`, then.textVisible("Worldwide preventative dental treatment"));
+    Then(`I should be able to see ${seed[0].leftText}`, then.textVisible(seed[0].leftText));
+    Then(`I should be able to see ${seed[0].rightTextBody}`, then.textVisible(seed[0].rightTextBody));
+    Then(`I should be able to see ${seed[0].rightTextLabel}`, then.textVisible(seed[0].rightTextLabel));
+    Then(`I should be able to see ${seed[1].leftText}`, then.textVisible(seed[1].leftText));
+    Then(`I should be able to see ${seed[1].rightTextBody}`, then.textVisible(seed[1].rightTextBody));
+    Then(`I should be able to see ${seed[1].rightTextLabel}`, then.textVisible(seed[1].rightTextLabel));
+    Then(`I should be able to see ${seed[2].leftText}`, then.textVisible(seed[2].leftText));
+    Then(`I should be able to see ${seed[2].rightTextBody}`, then.textVisible(seed[2].rightTextBody));
+    Then(`I should be able to see ${seed[3].leftText}`, then.textVisible(seed[3].leftText));
+    Then(`I should be able to see ${seed[3].rightTextBody}`, then.textVisible(seed[3].rightTextBody));
+  })
+  When(`I sroll from ${seed[3].leftText}`, when.swipeFromText(seed[3].leftText, "up", "slow", 0.3), async () => {
+    Then(`I should be able to see Worldwide restorative dental treatment`, then.textVisible("Worldwide restorative dental treatment"));
+    Then(`I should be able to see ${seed[4].leftText}`, then.textVisible(seed[4].leftText));
+    Then(`I should be able to see ${seed[4].rightTextBody}`, then.textVisible(seed[4].rightTextBody));
+    Then(`I should be able to see ${seed[5].leftText}`, then.textVisible(seed[5].leftText));
+    Then(`I should be able to see ${seed[5].rightTextBody}`, then.textVisible(seed[5].rightTextBody));
+    Then(`I should be able to see ${seed[6].leftText}`, then.textVisible(seed[6].leftText));
+    Then(`I should be able to see ${seed[6].rightTextBody}`, then.textVisible(seed[6].rightTextBody));
+    Then(`I should be able to see ${seed[6].rightTextLabel}`, then.textVisible(seed[6].rightTextLabel));
+  })
+  When(`I sroll from ${seed[6].leftText}`, when.swipeFromText(seed[6].leftText, "up", "slow", 0.3), async () => {
+    Then(`I should be able to see ${seed[7].leftText}`, then.textVisible(seed[7].leftText));
+    Then(`I should be able to see ${seed[7].rightTextBody}`, then.textVisible(seed[7].rightTextBody));
+    Then(`I should be able to see ${seed[8].leftText}`, then.textVisible(seed[8].leftText));
+    Then(`I should be able to see ${seed[8].rightTextBody}`, then.textVisibleAtIndex((seed[8].rightTextBody),0));
+    Then(`I should be able to see ${seed[8].rightTextLabel}`, then.textVisible(seed[8].rightTextLabel));
+    Then(`I should be able to see ${seed[9].leftText}`, then.textVisible(seed[9].leftText));
+    Then(`I should be able to see ${seed[9].rightTextBody}`, then.textVisible(seed[9].rightTextBody));
+    Then(`I should be able to see ${seed[10].leftText}`, then.textVisible(seed[10].leftText));
+    Then(`I should be able to see ${seed[10].rightTextBody}`, then.textVisible(seed[10].rightTextBody));
+    Then(`I should be able to see ${seed[11].leftText}`, then.textVisible(seed[11].leftText));
+    Then(`I should be able to see ${seed[11].rightTextBody}`, then.textVisibleAtIndex((seed[11].rightTextBody),1));
+    Then(`I should be able to see ${seed[11].rightTextLabel}`, then.textVisible(seed[11].rightTextLabel));
+    When(`I sroll from ${seed[11].leftText}`, when.swipeFromText(seed[11].leftText, "up", "slow", 0.3), async () => {
+      Then(`I should be able to see *Excludes worldwide cover`, then.textVisible("*Excludes worldwide cover"));
+      Then(`I should be able to see Take a closer look at your Membership Guide for full details about your cover.`, then.textVisible("Take a closer look at your Membership Guide for full details about your cover."));
+    })
+  })
+  When("I tap to close the screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
+    Then(`I should be able to see ${fixture.coveredForText}`, then.textVisible(fixture.coveredForText));
+  })
+}

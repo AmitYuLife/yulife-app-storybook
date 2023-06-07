@@ -11,6 +11,7 @@ export * from "./postgres/customer_payment";
 export * from "./postgres/customer_payment_method";
 export * from "./postgres/customer_quote_screening";
 export * from "./postgres/business_product"; 
+export * from "./postgres/business_quote_benefit_cost";
 export * from "./postgres/customer_product_entity";
 export * from "./postgres/customer_product_entity_dependant";
 export * from "./postgres/customer_product_progression";
@@ -22,6 +23,7 @@ export * from "./postgres/customer_product_entity_beneficiary";
 export * from "./postgres/perk_eligibility";
 export * from "./postgres/payment_plan_invoice";
 export * from "./postgres/business_product_enrolment_window";
+export * from "./postgres/journey_progression";
 
 export * from "./mongo/app_store_review_prompts"
 export * from "./mongo/auths";

@@ -1457,3 +1457,17 @@ export const CUSTOMER_92 = {
     fullName: "El Manuel",
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_93 = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "David",
+    lastName: "Yishai",
+    dateOfBirth: moment().subtract(33, "years").toDate(),
+    status: "onboarded",
+    fullName: "David Yishai",
+  },
+} as IDatabaseItem;
