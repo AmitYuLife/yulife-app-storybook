@@ -1,97 +1,129 @@
-import React, { memo, useRef, useCallback, useMemo, useEffect, useState } from "react";
-import { Animated, Easing, StyleSheet, Vibration, View } from "react-native";
-import { Image, TextTemplate } from "@atoms";
-import { Button, LabelWithImages, PressableWithDelay } from "@molecules";
-import { Colours, Style } from "@styles";
-import { RadioIcon } from "@atoms/icon/radio-icon";
+import { t } from "@locale";
+import { useDispatch } from "react-redux";
 import LottieView from "lottie-react-native";
-import { ILabelImage } from "@components/molecules/label-with-images/label-with-images";
+import Svg, { Circle } from "react-native-svg";
+import { Animated, StyleSheet, Vibration, View } from "react-native";
+import React, { memo, useRef, useMemo, useEffect, useCallback, useState } from "react";
+import { useAnimatedStyle, useSharedValue, withTiming, withSequence } from "react-native-reanimated";
+
+import { Colours, Style } from "@styles";
+import { Image, TextTemplate } from "@atoms";
+import Logger from "@services/logging/logger";
+import { RadioIcon } from "@atoms/icon/radio-icon";
 import { RemoteImage } from "@graphql/_core/schema";
 import { GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
-import { MODALS } from "@navigation/constants";
-import { showYuModal } from "@navigation/root";
-import { showInfoMessageTooltipViewRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { GOAL_TOOLTIP_INFO, CLAIM_BUTTON, ANIMATED_CIRCLE } from "@ids";
-import Svg, { Circle } from "react-native-svg";
+import { Button, LabelWithImages, PressableWithDelay } from "@molecules";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { useDispatch } from "react-redux";
-import { t } from "@locale";
+import { refreshUserProfileEvents, getUserStart } from "@redux/user/user.actions";
+import { ILabelImage } from "@components/molecules/label-with-images/label-with-images";
+import { showInfoMessageTooltipViewRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
 
-const lottieAnimationSource = require("@assets/lottie/shine.json");
+const shineAnimationSource = require("@assets/lottie/shine.json");
+const explosionAnimationSource = require("@assets/lottie/explosion.json");
 
 const CIRCLE_SIZE = Style.adjust(88);
-const HALF_SIZE = CIRCLE_SIZE / 2;
 const STROKE_WIDTH = Style.adjust(4);
+const CIRCLE_HALF_SIZE = CIRCLE_SIZE / 2;
 const REWARD_PADDING = Style.adjust(4);
 
 const REWARD_SIZE = CIRCLE_SIZE - 2 * STROKE_WIDTH - 2 * REWARD_PADDING;
-
 const CIRCLE_RADIUS = (CIRCLE_SIZE - STROKE_WIDTH) / 2;
-
 const CIRCLE_CIRCUMFERENCE = CIRCLE_RADIUS * 2 * Math.PI;
 
-export const FADE_OUT_DURATION = 500;
-export const FADE_PAUSE_DURATION = 200;
-export const FADE_IN_DURATION = 800;
-export const FADE_OUT_PAUSE = 200;
-
 const INFO_VIEW_HEIGHT_WIDTH = Style.adjust(22);
-interface IEventReward {
-  marginHorizontal?: number;
-  height?: number;
-  width?: number;
-  reward: IReward;
-  eventTitle: string;
-  claimButton?: boolean;
-}
 
 export interface IReward {
   id: string;
-  goalId: string;
   title: string;
-  description: string;
-  itemBackground: RemoteImage;
+  goalId: string;
   item: RemoteImage;
-  status: GoalRewardStatus;
-  animated?: boolean;
-  animationDelay?: number;
-  stars?: ILabelImage[];
   infoText?: string;
+  animated?: boolean;
+  description: string;
+  stars?: ILabelImage[];
+  animationDelay?: number;
+  status: GoalRewardStatus;
   infoBadgeUri?: RemoteImage;
+  itemBackground: RemoteImage;
 }
 
+interface IEventRewardProps {
+  width?: number;
+  height?: number;
+  reward: IReward;
+  eventTitle: string;
+  marginHorizontal?: number;
+  isClaimRewardEnabled?: boolean;
+  onClaimReward?: (reward: IReward) => Promise<void>;
+}
+
+const SCALE_ANIMATION_DURATION = 100;
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 const EventReward = ({
   reward,
-  height = Style.adjust(170),
+  onClaimReward,
+  isClaimRewardEnabled,
   width = Style.adjust(136),
+  height = Style.adjust(170),
   marginHorizontal = Style.adjust(4),
-  claimButton,
-  eventTitle,
-}: IEventReward) => {
+}: IEventRewardProps) => {
   const {
     id,
-    goalId,
     title,
-    description,
     stars,
-    item: { uri: itemUri },
-    itemBackground: { uri: itemBackgroundUri },
+    goalId,
     status,
     animated,
-    animationDelay,
     infoText,
+    description,
     infoBadgeUri,
+    item: { uri: itemUri },
+    itemBackground: { uri: itemBackgroundUri },
   } = reward;
-  const questionMarkRef = useRef<View>();
-  const [rewardClaimed, setRewardClaimed] = useState(status === GoalRewardStatus.claimed);
-  const rewardCompleted = status === GoalRewardStatus.completed;
-  const [statusColor, setStatusColor] = useState(getStatusColor(status));
-  const progress = useRef(new Animated.Value(CIRCLE_CIRCUMFERENCE)).current;
-  const dispatch = useDispatch();
 
-  const openPopUp = useCallback(() => {
+  const dispatch = useDispatch();
+  const questionMarkRef = useRef<View>();
+  const scaleAnimationRef = useSharedValue<number>(0);
+  const explosionAnimationRef = useRef<LottieView>(null);
+  const [initialStatus] = useState<GoalRewardStatus>(status);
+  const [delayedStatus, setDelayedStatus] = useState<GoalRewardStatus>(status);
+
+  const isRewardDelayedStatusPending = delayedStatus === GoalRewardStatus.pending;
+  const isRewardDelayedStatusClaimed = delayedStatus === GoalRewardStatus.claimed;
+  const isRewardDelayedStatusCompleted = delayedStatus === GoalRewardStatus.completed;
+
+  /**
+   * We put the status prop into state with a delay,
+   * to allow animations to be delayed/staggered when being
+   * claimed from the modal (when the event ends)
+   */
+  useEffect(() => {
+    const timeoutId = setTimeout(() => setDelayedStatus(status), reward.animationDelay);
+
+    return () => clearTimeout(timeoutId);
+  }, [status, reward.animationDelay]);
+
+  /**
+   * We only want the animations to play when the status
+   * is different from the initial status
+   */
+  useEffect(() => {
+    if (initialStatus === delayedStatus) {
+      return;
+    }
+
+    if (isRewardDelayedStatusClaimed) {
+      explosionAnimationRef.current?.play();
+      scaleAnimationRef.value = withSequence(
+        withTiming(1, { duration: SCALE_ANIMATION_DURATION }),
+        withTiming(0, { duration: SCALE_ANIMATION_DURATION })
+      );
+    }
+  }, [isRewardDelayedStatusClaimed, scaleAnimationRef, delayedStatus, initialStatus]);
+
+  const openPopUp = useCallback((): void => {
     dispatch(
       logMixpanelEventActionCreator("reward_info_viewed", {
         name: title,
@@ -100,157 +132,166 @@ const EventReward = ({
         info_text: infoText,
       })
     );
-    showInfoMessageTooltipViewRelative({ viewRef: questionMarkRef, infoText, buttonLabel: "Got it" });
-  }, [questionMarkRef, infoText]);
+    showInfoMessageTooltipViewRelative({
+      viewRef: questionMarkRef,
+      infoText,
+      buttonLabel: "Got it",
+    });
+  }, [dispatch, goalId, id, infoText, title]);
 
-  const claimReward = useCallback(() => {
-    if (!claimButton || !rewardCompleted) {
+  const claimReward = useCallback(async (): Promise<void> => {
+    if (!isClaimRewardEnabled || !isRewardDelayedStatusCompleted) {
       return;
     }
 
-    showYuModal({
-      component: {
-        id: MODALS.collectEventReward,
-        name: MODALS.collectEventReward,
-        passProps: {
-          goalIds: [goalId],
-          event: eventTitle,
-          rewards: [reward],
-        },
-      },
-    });
-  }, [claimButton, rewardCompleted, goalId, eventTitle, reward]);
+    try {
+      await onClaimReward(reward);
+      dispatch(refreshUserProfileEvents());
+      dispatch(getUserStart());
 
-  const descriptionFooter = useMemo(() => {
-    if (rewardCompleted && claimButton) {
-      return (
-        <Button
-          wrapperStyle={styles.descriptionWrapper}
-          onPress={claimReward}
-          size="ExtraSmall"
-          shadowColor="transparent"
-          label={t("labels.cta.claim")}
-          testID={CLAIM_BUTTON}
-        />
-      );
+      Vibration.vibrate();
+    } catch (e) {
+      Logger.error(e, { event: "claim-goal" });
     }
+  }, [isClaimRewardEnabled, isRewardDelayedStatusCompleted, onClaimReward, reward, dispatch]);
 
-    if (description) {
-      return (
-        <View style={styles.descriptionWrapper}>
-          <TextTemplate type="l1">{description}</TextTemplate>
-        </View>
-      );
-    }
-
-    return null;
-  }, [claimButton, claimReward, description, rewardCompleted]);
-
-  const animation = useMemo(() => {
-    if (!animated && !rewardCompleted) {
+  const shineAnimation = useMemo((): JSX.Element => {
+    if (!animated && !isRewardDelayedStatusCompleted) {
       return null;
     }
 
-    return <LottieView style={styles.absolute} source={lottieAnimationSource} autoPlay={true} loop={true} />;
-  }, [animated, rewardCompleted]);
+    return <LottieView style={styles.image} source={shineAnimationSource} autoPlay={true} loop={true} />;
+  }, [animated, isRewardDelayedStatusCompleted]);
 
-  useEffect(() => {
-    const statusChanged = statusColor !== getStatusColor(status);
-    const animationSequence = Animated.sequence([
-      ...(statusChanged
-        ? [
-            Animated.timing(progress, {
-              toValue: CIRCLE_CIRCUMFERENCE,
-              duration: FADE_OUT_DURATION,
-              easing: Easing.linear,
-              delay: animationDelay,
-              useNativeDriver: true,
-            }),
-          ]
-        : []),
-      {
-        start: (cb) => {
-          statusChanged && Vibration.vibrate();
-          setStatusColor(getStatusColor(status));
-          setRewardClaimed(status === GoalRewardStatus.claimed);
-          cb({ finished: true });
-        },
-        stop: () => null,
-        reset: () => null,
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scaleAnimationRef.value }],
+  }));
+
+  const wrapperStyle = useMemo(() => {
+    return {
+      ...styles.wrapper,
+      ...{
+        height,
+        width,
+        marginHorizontal,
+        borderColor: delayedStatus === GoalRewardStatus.claimed ? Colours.event.claimedColor : Colours.neutral.n100,
+        backgroundColor:
+          delayedStatus === GoalRewardStatus.claimed ? Colours.event.claimedBackgroundColor : Colours.neutral.white,
       },
-      Animated.timing(progress, {
-        toValue: 0,
-        duration: FADE_IN_DURATION,
-        delay: FADE_PAUSE_DURATION,
-        easing: Easing.cubic,
-        useNativeDriver: true,
-      }),
-      Animated.delay(FADE_OUT_PAUSE),
-    ]);
-    animationSequence.start();
-    return () => {
-      animationSequence.stop();
     };
-  }, [progress, status]);
+  }, [height, width, marginHorizontal, delayedStatus]);
 
-  const wrapperStyle = useMemo(() => [styles.wrapper, { height, width, marginHorizontal }], []);
+  const imageWrapperStyle = useMemo(() => {
+    return {
+      ...styles.image,
+      ...animatedStyle,
+    };
+  }, [animatedStyle]);
+
+  const statusColor = useMemo((): string => {
+    switch (delayedStatus) {
+      case GoalRewardStatus.claimed:
+        return Colours.event.claimedColor;
+      case GoalRewardStatus.completed:
+        return Colours.primary.p400;
+      case GoalRewardStatus.pending:
+      default:
+        return Colours.neutral.n100;
+    }
+  }, [delayedStatus]);
 
   return (
     <PressableWithDelay onPress={claimReward}>
       <View style={wrapperStyle}>
         <View style={styles.circleWrapper} testID={ANIMATED_CIRCLE(statusColor)}>
+          <View style={styles.explosionEffectWrapper}>
+            <LottieView
+              loop={false}
+              ref={explosionAnimationRef}
+              source={explosionAnimationSource}
+              style={styles.explosionAnimation}
+            />
+          </View>
           <Svg width={CIRCLE_SIZE} height={CIRCLE_SIZE} viewBox={`0 0 ${CIRCLE_SIZE} ${CIRCLE_SIZE}`} fill="none">
             <Circle
-              cx={HALF_SIZE}
-              cy={HALF_SIZE}
+              cx={CIRCLE_HALF_SIZE}
+              cy={CIRCLE_HALF_SIZE}
               r={CIRCLE_RADIUS}
-              stroke={Colours.neutral.n100}
-              strokeWidth={STROKE_WIDTH}
               strokeLinecap={"round"}
+              strokeWidth={STROKE_WIDTH}
+              stroke={Colours.neutral.n100}
             />
             <AnimatedCircle
-              cx={HALF_SIZE}
-              cy={HALF_SIZE}
               r={CIRCLE_RADIUS}
-              strokeDasharray={[CIRCLE_CIRCUMFERENCE, CIRCLE_CIRCUMFERENCE]}
-              strokeDashoffset={progress}
               stroke={statusColor}
-              transform={`rotate(90, ${HALF_SIZE}, ${HALF_SIZE})`}
-              strokeWidth={STROKE_WIDTH}
+              cx={CIRCLE_HALF_SIZE}
+              cy={CIRCLE_HALF_SIZE}
               strokeLinecap={"round"}
+              strokeWidth={STROKE_WIDTH}
+              transform={`rotate(90, ${CIRCLE_HALF_SIZE}, ${CIRCLE_HALF_SIZE})`}
+              strokeDasharray={[CIRCLE_CIRCUMFERENCE, CIRCLE_CIRCUMFERENCE]}
             />
           </Svg>
           <View style={styles.backgroundImageWrapper}>
-            <Image
-              source={{ uri: itemBackgroundUri }}
-              width={Style.adjust(72)}
-              height={Style.adjust(72)}
-              style={styles.absolute}
-              suppressLoadingUi={true}
-            />
-            {animation}
-            <Image
-              suppressLoadingUi={true}
-              source={{ uri: itemUri }}
-              width={Style.adjust(72)}
-              height={Style.adjust(72)}
-              style={styles.absolute}
-            />
+            <Animated.View style={imageWrapperStyle}>
+              <Image
+                style={styles.image}
+                width={Style.adjust(72)}
+                suppressLoadingUi={true}
+                height={Style.adjust(72)}
+                source={{ uri: itemBackgroundUri }}
+              />
+              {shineAnimation}
+              <Image
+                style={styles.image}
+                suppressLoadingUi={true}
+                width={Style.adjust(72)}
+                source={{ uri: itemUri }}
+                height={Style.adjust(72)}
+              />
+            </Animated.View>
           </View>
           <View style={styles.labelWrapper}>
-            {!rewardClaimed ? null : (
+            {!isRewardDelayedStatusClaimed ? null : (
               <View style={styles.radioIconWrapper}>
                 <RadioIcon checked={true} />
               </View>
             )}
-            {rewardClaimed || !stars ? null : <LabelWithImages labelImages={stars} backgroundColor={statusColor} />}
+            {isRewardDelayedStatusClaimed || !stars ? null : (
+              <LabelWithImages labelImages={stars} backgroundColor={statusColor} />
+            )}
           </View>
         </View>
         <View style={styles.titleWrapper}>
-          <TextTemplate type={"l1b"}>{title}</TextTemplate>
+          <TextTemplate type="l1b" color={isRewardDelayedStatusClaimed ? Colours.event.claimedColor : undefined}>
+            {title}
+          </TextTemplate>
         </View>
 
-        {descriptionFooter}
+        {isRewardDelayedStatusPending && description ? (
+          <View style={styles.descriptionWrapper}>
+            <TextTemplate type="l1">{description}</TextTemplate>
+          </View>
+        ) : null}
+
+        {isRewardDelayedStatusCompleted && isClaimRewardEnabled ? (
+          <Button
+            size="ExtraSmall"
+            onPress={claimReward}
+            testID={CLAIM_BUTTON}
+            shadowColor="transparent"
+            label={t("labels.cta.claim")}
+            wrapperStyle={styles.descriptionWrapper}
+          />
+        ) : null}
+
+        {isRewardDelayedStatusClaimed ? (
+          <View style={styles.descriptionWrapper}>
+            <TextTemplate type="l1b" color={Colours.event.claimedColor}>
+              {t("screens.event.reward_claimed")}
+            </TextTemplate>
+          </View>
+        ) : null}
 
         {!infoBadgeUri ? null : (
           <View style={styles.infoWrapper}>
@@ -271,20 +312,12 @@ const EventReward = ({
   );
 };
 
-const getStatusColor = (status: GoalRewardStatus) => {
-  switch (status) {
-    case GoalRewardStatus.claimed:
-      return "#40C057";
-    case GoalRewardStatus.completed:
-      return Colours.primary.p400;
-    case GoalRewardStatus.pending:
-    default:
-      return Colours.neutral.n100;
-  }
-};
-
 const styles = StyleSheet.create({
-  absolute: {
+  image: {
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     position: "absolute",
   },
   infoWrapper: {
@@ -292,13 +325,22 @@ const styles = StyleSheet.create({
     top: Style.adjust(9),
     right: Style.adjust(9),
   },
+  explosionEffectWrapper: {
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   wrapper: {
     borderWidth: 1,
-    borderColor: Colours.neutral.n100,
-    backgroundColor: Colours.neutral.white,
-    borderRadius: Style.adjust(8),
     alignItems: "center",
     paddingTop: Style.adjust(16),
+    borderRadius: Style.adjust(8),
+    borderColor: Colours.neutral.n100,
+    backgroundColor: Colours.neutral.white,
   },
   labelWrapper: {
     position: "absolute",
@@ -313,23 +355,29 @@ const styles = StyleSheet.create({
   circleWrapper: {
     width: CIRCLE_SIZE,
     height: CIRCLE_SIZE,
+    overflow: "visible",
     alignItems: "center",
+    position: "relative",
     justifyContent: "center",
+  },
+  explosionAnimation: {
+    width: Style.adjust(150),
+    height: Style.adjust(150),
   },
   backgroundImageWrapper: {
     width: REWARD_SIZE,
     height: REWARD_SIZE,
-    borderRadius: REWARD_SIZE / 2,
     position: "absolute",
+    borderRadius: REWARD_SIZE / 2,
     top: REWARD_PADDING + STROKE_WIDTH,
   },
   radioIconWrapper: {
-    paddingHorizontal: Style.adjust(2),
-    height: Style.adjust(20),
-    borderRadius: Style.adjust(10),
-    backgroundColor: Colours.neutral.white,
     alignItems: "center",
+    height: Style.adjust(20),
     justifyContent: "center",
+    borderRadius: Style.adjust(10),
+    paddingHorizontal: Style.adjust(2),
+    backgroundColor: Colours.neutral.white,
   },
 });
 

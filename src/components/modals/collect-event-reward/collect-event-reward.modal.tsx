@@ -5,13 +5,7 @@ import { ClaimGoalRewards, ClaimGoalRewardsVariables } from "@graphql/_core/sche
 import { GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
 import { t } from "@locale";
 import { MODALS } from "@navigation/constants";
-import {
-  FADE_IN_DURATION,
-  FADE_OUT_DURATION,
-  FADE_OUT_PAUSE,
-  FADE_PAUSE_DURATION,
-  IReward,
-} from "@organisms/event-reward/event-reward";
+import { IReward } from "@organisms/event-reward/event-reward";
 import { getUserStart, refreshUserProfileEvents } from "@redux/user/user.actions";
 import { CollectEventRewardScreen } from "@screens";
 import Logger from "@services/logging/logger";
@@ -28,8 +22,8 @@ interface IProps {
   completed?: boolean;
 }
 
-const TRANSITION_DURATION = FADE_IN_DURATION + FADE_PAUSE_DURATION + FADE_OUT_DURATION + FADE_OUT_PAUSE;
-const TRANSITION_DELAY = 300;
+const TRANSITION_DELAY = 500;
+const AFTER_ALL_REWARDS_REDEEMED_DELAY = 200;
 
 export default function CollectEventRewardModal({ goalIds, event, rewards, completed = false }: IProps) {
   const [localRewards, setLocalRewards] = useState(rewards || []);
@@ -104,7 +98,7 @@ export default function CollectEventRewardModal({ goalIds, event, rewards, compl
           });
         });
 
-        await delay(unclaimedRewardIds.length * TRANSITION_DELAY + TRANSITION_DURATION + 200);
+        await delay(unclaimedRewardIds.length * TRANSITION_DELAY + AFTER_ALL_REWARDS_REDEEMED_DELAY);
       }
     } catch (e) {
       Logger.error(e, { event: "claim-goal" });

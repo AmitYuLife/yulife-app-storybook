@@ -1,19 +1,20 @@
-import { ProgressBar, TextTemplate } from "@atoms";
-import { Image } from "@atoms/image/image";
-import { RemoteImage } from "@graphql/_core/schema";
-import { GetGoalDetails_getGoalDetails_banner as EventBanner } from "@graphql/_core/schema/GetGoalDetails";
-import { EVENT_DIALOG_SCREEN, EVENT_DIALOG_SCREEN_SCROLL } from "@ids";
-import { Button, HeadingAndCopy, InfoPanel, PressableWithDelay } from "@molecules";
-import { GenericHeadingAbsolute, IInfoCardListCard, InfoCardList } from "@organisms";
-import { IReward } from "@organisms/event-reward/event-reward";
-import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
-import { showInfoMessageTooltipPointRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
-import { Style } from "@styles";
-import { addCommasToNumber } from "@utils";
-import React, { FC, useCallback, useMemo, useRef, useState } from "react";
-import { Animated, NativeScrollEvent, Platform, View } from "react-native";
 import { Source } from "react-native-fast-image";
 import LinearGradient from "react-native-linear-gradient";
+import React, { useCallback, useMemo, useRef, useState } from "react";
+import { Animated, NativeScrollEvent, Platform, View } from "react-native";
+
+import { Style } from "@styles";
+import { Image } from "@atoms/image/image";
+import { addCommasToNumber } from "@utils";
+import { ProgressBar, TextTemplate } from "@atoms";
+import { IReward } from "@organisms/event-reward/event-reward";
+import { EVENT_DIALOG_SCREEN, EVENT_DIALOG_SCREEN_SCROLL } from "@ids";
+import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
+import { Button, HeadingAndCopy, InfoPanel, PressableWithDelay } from "@molecules";
+import { GenericHeadingAbsolute, IInfoCardListCard, InfoCardList } from "@organisms";
+import { RemoteImage, GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
+import { showInfoMessageTooltipPointRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
+import { GetGoalDetails_getGoalDetails_banner as EventBanner } from "@graphql/_core/schema/GetGoalDetails";
 import style, {
   CONTENT_MARGIN_TOP,
   FAQ_ICON_DIMENSION,
@@ -47,21 +48,23 @@ interface IFaqProps {
   icon: RemoteImage;
 }
 
-interface IProps {
-  headerProps: IHeaderProps;
+interface IEventDialogScreenProps {
+  event: IEvent;
+  faq?: IFaqProps;
   rewards: IReward[];
-  progressUnit: string;
-  currentProgress: number;
+  about: IAboutProps;
   maxProgress: number;
+  progressUnit: string;
   progressIcon: Source;
   milestones: number[];
-  about: IAboutProps;
-  faq?: IFaqProps;
-  onFaqViewed?: () => void;
-  infoCards: IInfoCardListCard[];
   banner?: EventBanner;
   button?: EventButton;
+  currentProgress: number;
+  onFaqViewed?: () => void;
+  headerProps: IHeaderProps;
   onButtonPress?: () => void;
+  infoCards: IInfoCardListCard[];
+  onClaimReward?: (reward: IReward) => Promise<void>;
 }
 
 interface EventButton {
@@ -70,26 +73,27 @@ interface EventButton {
   backgroundColor?: string;
 }
 
-const EventDialogScreen: FC<IProps> = ({
-  headerProps,
-  rewards,
-  progressUnit,
-  currentProgress,
-  maxProgress,
-  progressIcon,
-  milestones,
-  about,
+const EventDialogScreen = ({
   faq,
-  onFaqViewed,
-  infoCards,
+  about,
   banner,
   button,
+  rewards,
+  infoCards,
+  milestones,
+  headerProps,
+  maxProgress,
+  onFaqViewed,
+  progressUnit,
+  progressIcon,
   onButtonPress,
-}) => {
+  onClaimReward,
+  currentProgress,
+}: IEventDialogScreenProps) => {
   const { title, labels, source: headerImageSource, backgroundColor, headerTextColor, onLeftIconPress } = headerProps;
-  const [showHeading, setHeadingVisibilty] = useState(true);
-  const scrollY = useRef(new Animated.Value(0)).current;
   const questionMarkRef = useRef<View>();
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const [showHeading, setHeadingVisibilty] = useState(true);
   const statusBarCoverStyle = useMemo(() => ({ ...style.statusBarCover, backgroundColor }), [backgroundColor]);
 
   const onScroll = useCallback(
@@ -193,7 +197,12 @@ const EventDialogScreen: FC<IProps> = ({
       >
         <View style={style.contentWrapper}>
           <View style={style.rewardsWrapper}>
-            <EventRewardsWrapper eventTitle={title} rewards={rewards} />
+            <EventRewardsWrapper
+              rewards={rewards}
+              eventTitle={title}
+              isClaimRewardEnabled={true}
+              onClaimReward={onClaimReward}
+            />
           </View>
           <View style={style.progressText}>
             <Image
@@ -208,13 +217,13 @@ const EventDialogScreen: FC<IProps> = ({
             </TextTemplate>
           </View>
           <ProgressBar
-            current={currentProgress}
             max={maxProgress}
+            current={currentProgress}
+            width={PROGRESS_BAR_WIDTH}
             milestones={milestones.map((value, index) => ({
               value,
               rewardClaimed: rewards[index]?.status === "claimed",
             }))}
-            width={PROGRESS_BAR_WIDTH}
           />
           {!about ? null : (
             <HeadingAndCopy title={about.title} wrapperStyle={style.about} titleType="b1b" markdown={about.markdown} />
@@ -260,8 +269,8 @@ const EventDialogScreen: FC<IProps> = ({
       {!button ? null : (
         <LinearGradient style={style.ctaWrapper} colors={SMOOTH_GRADIENT_COLORS}>
           <Button
-            label={button.label}
             size="Fill"
+            label={button.label}
             onPress={onButtonPress}
             shadowColor={button.shadowColor || undefined}
             backgroundColor={button.backgroundColor || undefined}

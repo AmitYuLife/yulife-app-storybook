@@ -14,7 +14,7 @@ import { EVENT_DESCRIPTION, NEW_EVENT_ICON } from "@ids";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { getTheme } from "@theme";
 
-interface IProps {
+interface IEventPanelProps {
   componentId?: string;
   event: IEvent;
   width: number;
@@ -22,7 +22,7 @@ interface IProps {
   onLayout?: (event: LayoutChangeEvent) => void;
 }
 
-const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => {
+const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IEventPanelProps) => {
   const currentLevel = useSelector(getCurrentLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const { dailyStepsScreen } = getTheme(currentLevel, yuniversalMap);
@@ -56,10 +56,9 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IProps) => 
         id: ROUTES.eventDialog,
         name: ROUTES.eventDialog,
         passProps: {
-          componentId: componentId,
+          event,
+          componentId,
           onLeftIconPress: () => Navigation.pop(componentId),
-          goalId: event.id,
-          stageId: event.stageId,
         },
       },
     });

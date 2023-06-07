@@ -1,10 +1,12 @@
 import React, { memo, useCallback, useState } from "react";
-import { FlatList, StyleSheet, View, ListRenderItemInfo, Platform, LayoutChangeEvent } from "react-native";
+import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
+import { StyleSheet, View, Platform, LayoutChangeEvent } from "react-native";
+
 import { Style, NAV_BAR } from "@styles";
-import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 import EventPanel from "./event-panel";
 import { AdBanner } from "@molecules";
 import { FLAT_LIST_EVENTS } from "@ids";
+import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 
 interface IAdBanner {
   imageUrl: string;
@@ -13,61 +15,64 @@ interface IAdBanner {
 
 type IEvents = IEvent & IAdBanner;
 
-interface IProps {
+interface IEventPanelsProps {
   componentId?: string;
   events: Partial<IEvents>[];
   currentWorld: number;
   onJoin: (event: IEvent) => Promise<void>;
 }
 
+const ESTIMATED_ITEM_SIZE = 207;
 const CARD_WIDTH = Style.DEVICE_WIDTH * 0.8;
 const INITIAL_PADDING = Style.DEVICE_WIDTH * 0.1 + 5;
 
-const EventPanels = ({ events = [], componentId, onJoin }: IProps) => {
+const EventPanels = ({ events = [], componentId, onJoin }: IEventPanelsProps) => {
   const [adHeight, setAdHeight] = useState(143);
 
-  const onLayout = useCallback((e: LayoutChangeEvent) => setAdHeight(e?.nativeEvent?.layout?.height || 148), [
-    adHeight,
-  ]);
+  const onLayout = useCallback(
+    (e: LayoutChangeEvent) => setAdHeight(e?.nativeEvent?.layout?.height || 148),
+    [adHeight]
+  );
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<IEvent & IAdBanner>) => {
       if (item.id.startsWith("ad-")) {
         return (
           <View style={styles.adBanners}>
             <AdBanner
-              width={CARD_WIDTH - Style.adjust(15)}
-              height={adHeight - Style.adjust(2)}
               imageUrl={item.imageUrl}
               navigateTo={item.navigateTo}
               style={styles.adBannerImage}
+              height={adHeight - Style.adjust(2)}
+              width={CARD_WIDTH - Style.adjust(15)}
             />
           </View>
         );
       }
 
       return (
-        <EventPanel onLayout={onLayout} onJoin={onJoin} width={CARD_WIDTH} event={item} componentId={componentId} />
+        <EventPanel event={item} onJoin={onJoin} width={CARD_WIDTH} onLayout={onLayout} componentId={componentId} />
       );
     },
     [onJoin, componentId, adHeight, onLayout]
   );
 
-  const keyExtractor = useCallback((event: IEvent) => event.id, []);
+  const keyExtractor = useCallback((event: Partial<IEvent>) => event.id, []);
 
   return (
     <View style={styles.flatListWrapper}>
-      <FlatList
+      <FlashList
         data={events}
         horizontal={true}
         pagingEnabled={false}
         decelerationRate={0.9}
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.flatListContentContainerStyle}
-        snapToInterval={CARD_WIDTH}
-        keyExtractor={keyExtractor}
         renderItem={renderItem}
         testID={FLAT_LIST_EVENTS}
+        snapToInterval={CARD_WIDTH}
+        keyExtractor={keyExtractor}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        estimatedItemSize={ESTIMATED_ITEM_SIZE}
+        contentContainerStyle={styles.flatListContentContainerStyle}
       />
     </View>
   );
