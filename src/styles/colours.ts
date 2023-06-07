@@ -303,6 +303,10 @@ export default {
     in100: "#E6EDF9",
     in300: "#5A89D8",
   },
+  event: {
+    claimedColor: "#40C057",
+    claimedBackgroundColor: "#f1fcf7",
+  },
   sudoku: {
     gridColor: "#A0A09B",
     gridThickColor: "#5C5757",

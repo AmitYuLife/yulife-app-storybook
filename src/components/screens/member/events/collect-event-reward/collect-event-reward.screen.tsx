@@ -131,7 +131,7 @@ const CollectEventRewardScreen: FC<ICollectEventRewardsProps> = ({
         {screenState.description}
       </TextTemplate>
       <View style={style.rewardSeparator} />
-      <EventRewardsWrapper isClaimEnabled={false} eventTitle={screenState.title} rewards={rewards} />
+      <EventRewardsWrapper isClaimRewardEnabled={false} eventTitle={screenState.title} rewards={rewards} />
       <View style={style.buttonWrapper}>
         <Button size="Large" onPress={onCta} label={cta} testID={GREAT_BUTTON} />
       </View>

@@ -496,6 +496,10 @@
         "samsung_header": "Samsung Health Permissions"
       }
     },
+    "event": {
+      "reward_claimed": "Claimed",
+      "claim_all_rewards_button": "Claim all / Close the event"
+    },
     "event_fail": {
       "title": "%{event} event has ended",
       "multiple_events_title": "A couple of your events have ended",

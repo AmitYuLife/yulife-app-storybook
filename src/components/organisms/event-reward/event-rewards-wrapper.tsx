@@ -1,19 +1,35 @@
+import { StyleSheet, View } from "react-native";
 import React, { memo, useCallback } from "react";
-import { FlatList, ListRenderItem, StyleSheet, View } from "react-native";
+
 import { Style } from "@styles";
 import EventReward, { IReward } from "./event-reward";
+import { FlashList, ListRenderItem } from "@shopify/flash-list";
 
 interface IEventRewardWrapperProps {
   rewards: IReward[];
   eventTitle: string;
-  isClaimEnabled?: boolean;
+  isClaimRewardEnabled?: boolean;
+  onClaimReward?: (reward: IReward) => Promise<void>;
 }
 
-const EventRewardWrapper = ({ isClaimEnabled = true, rewards, eventTitle }: IEventRewardWrapperProps) => {
+const ESTIMATED_ITEM_SIZE = 141;
+
+const EventRewardWrapper = ({
+  rewards,
+  eventTitle,
+  onClaimReward,
+  isClaimRewardEnabled = true,
+}: IEventRewardWrapperProps) => {
   const { width: rewardWidth, marginHorizontal } = getRewardWidthAndMargin(rewards?.length);
   const renderReward = useCallback<ListRenderItem<IReward>>(
     ({ item }) => (
-      <EventReward eventTitle={eventTitle} claimButton={isClaimEnabled} reward={item} width={rewardWidth} />
+      <EventReward
+        reward={item}
+        width={rewardWidth}
+        eventTitle={eventTitle}
+        onClaimReward={onClaimReward}
+        isClaimRewardEnabled={isClaimRewardEnabled}
+      />
     ),
     [rewardWidth]
   );
@@ -21,26 +37,27 @@ const EventRewardWrapper = ({ isClaimEnabled = true, rewards, eventTitle }: IEve
   return (
     <View style={styles.wrapper}>
       {rewards?.length > 2 ? (
-        <FlatList
+        <FlashList
           data={rewards}
           horizontal={true}
           pagingEnabled={false}
           decelerationRate={0.9}
+          renderItem={renderReward}
+          keyExtractor={keyExtractor}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
-          keyExtractor={keyExtractor}
-          renderItem={renderReward}
-          contentContainerStyle={styles.contentContainer}
+          estimatedItemSize={ESTIMATED_ITEM_SIZE}
+          contentContainerStyle={styles.eventRewardsContainer}
         />
       ) : (
         rewards?.map((reward) => (
           <EventReward
             key={reward.id}
-            claimButton={isClaimEnabled}
-            width={rewardWidth}
-            marginHorizontal={marginHorizontal}
-            eventTitle={eventTitle}
             reward={reward}
+            width={rewardWidth}
+            eventTitle={eventTitle}
+            marginHorizontal={marginHorizontal}
+            isClaimRewardEnabled={isClaimRewardEnabled}
           />
         ))
       )}
@@ -69,7 +86,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: Style.adjust(16),
   },
-  contentContainer: {
+  eventRewardsContainer: {
     paddingHorizontal: Style.adjust(16),
   },
 });
