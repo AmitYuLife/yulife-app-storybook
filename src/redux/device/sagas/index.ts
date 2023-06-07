@@ -9,7 +9,6 @@ import registerIntercomAndMixpanelSaga from "./registerIntercomAndMixpanel.saga"
 import registerPushSaga from "./registerPush.saga";
 import requestPushSaga from "./requestPush.saga";
 import showPushNotificationModalSaga from "./showPushNotificationModal.saga";
-import unregisterIntercomSaga from "./unregisterIntercom.saga";
 import unregisterPushNotificationsSaga from "./unregisterPushNotifications.saga";
 
 export default [
@@ -18,6 +17,5 @@ export default [
   takeLatest(ADD_DEVICE_TOKEN, registerIntercomAndMixpanelSaga),
   takeLatest(CHALLENGE_START_SUCCESS, showPushNotificationModalSaga),
   takeLatest(LOGOUT_SUCCESS, unregisterPushNotificationsSaga),
-  takeLatest(LOGOUT_SUCCESS, unregisterIntercomSaga),
   takeEvery(REQUIRE_PUSH_ENABLED, requestPushSaga),
 ];

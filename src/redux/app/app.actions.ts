@@ -36,8 +36,9 @@ export const updateOfflineState = (isOffline: boolean): SyncAction<boolean> => (
   type: UPDATE_OFFLINE_STATE,
 });
 
-export const setAuthenticated = () => ({
+export const setAuthenticated = (isLogin?: boolean) => ({
   type: AUTHENTICATED,
+  payload: isLogin,
 });
 
 export const setUnauthenticated = () => ({

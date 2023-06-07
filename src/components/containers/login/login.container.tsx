@@ -61,7 +61,7 @@ const LoginContainer: React.FC<Props> = ({
           return;
         }
 
-        setAuthenticatedRoot(() => dispatch(setAuthenticated())); // TODO: use setNextRoot when the right intro's ready
+        setAuthenticatedRoot(() => dispatch(setAuthenticated(true))); // TODO: use setNextRoot when the right intro's ready
       };
 
       Keyboard.dismiss();
