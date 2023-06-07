@@ -101,7 +101,7 @@ export function* startTrackingTime(endDateTime: string) {
 type Args = Omit<CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_challenge, "level" | "status"> &
   Pick<
     CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot,
-    "shouldEndOnLastGoalAchieved" | "fitKitTypes"
+    "shouldEndOnLastGoalAchieved" | "fitKitTypes" | "subtype"
   > &
   Pick<ChallengeStartPayload, "videoPlayerIsActive">;
 
@@ -109,13 +109,22 @@ export default function* startChallenge({
   shouldEndOnLastGoalAchieved,
   levelSlotId,
   startDateTime,
+  subtype,
   endDateTime,
   fitKitTypes,
   videoPlayerIsActive,
 }: Args) {
-  const challengeTask: Task = shouldEndOnLastGoalAchieved
-    ? yield fork(startTracking, levelSlotId, startDateTime, endDateTime, fitKitTypes, videoPlayerIsActive)
-    : yield fork(startTrackingTime, endDateTime);
+  let challengeTask: Task;
+
+  if (subtype !== "sudoku") {
+    // We don't want to track time when playing sudoku as we want the user to be able to start & then finish after midnight.
+    // The challenge will be auto cancelled by quests.conptainer if they go back to the map after the day has ended,
+    // but if they are still playing the game, we will allow them to finish.
+
+    challengeTask = shouldEndOnLastGoalAchieved
+      ? yield fork(startTracking, levelSlotId, startDateTime, endDateTime, fitKitTypes, videoPlayerIsActive)
+      : yield fork(startTrackingTime, endDateTime);
+  }
 
   let inProgress = true;
 

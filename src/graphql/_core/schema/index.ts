@@ -228,6 +228,7 @@ export * from "./SubmitSudokuSolution";
 export * from "./SubmitUnity";
 export * from "./SubmitUserDebugData";
 export * from "./SubscribeToPerk";
+export * from "./SudokuLeaderboard";
 export * from "./ToggleChallengePause";
 export * from "./UpdateAvatar";
 export * from "./UpdateCyclingMeasurement";

@@ -21,10 +21,12 @@ import showOfflineScreenSaga from "./showOfflineScreen.saga";
 import loggingNetworkState from "./loggingNetworkState.saga";
 import logDeviceStateSaga from "./logDeviceStateSaga.saga";
 import listenToMemoryWarning from "./listenToMemoryWarning.saga";
+import cancelExpiredChalllengeSaga from "./cancelExpiredChallengesSaga";
 // import logBreadcrumbsSaga from "./logBreadcrumbs.saga";
 
 export default [
   takeLatest(AUTHENTICATED, listenToAppStateSaga),
+  takeLatest(AUTHENTICATED, cancelExpiredChalllengeSaga),
   takeLatest("INIT", listenToComponentDidAppear),
   takeLatest("INIT", listenToComponentDidDisappear),
   takeLatest("INIT", listenToLinkingSaga),
