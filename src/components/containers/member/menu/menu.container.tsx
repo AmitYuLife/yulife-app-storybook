@@ -90,6 +90,9 @@ const MenuContainer = () => {
         case LINKS.REFERRALS_INFO:
           handlePush(currentRoute, ROUTES.referralInformation, {}, { sourceId: ROUTES.menu });
           return null;
+        case LINKS.YUNIVERSITY:
+          handlePush(currentRoute, ROUTES.yuniversityCourses, {}, { popTo: ROUTES.dailySteps });
+          return null;
         default:
           return null;
       }
@@ -116,6 +119,12 @@ const MenuContainer = () => {
         label: t("screens.menu.wellbeing_hub.label"),
         onPress: handlePressLink(LINKS.WELLBEING_HUB),
         source: assets[LINKS.WELLBEING_HUB],
+      },
+      {
+        condition: features.showYuniversityMenuLink,
+        label: t("screens.menu.yuniversity.label"),
+        onPress: handlePressLink(LINKS.YUNIVERSITY),
+        source: assets[LINKS.YUNIVERSITY],
       },
       {
         condition: true,

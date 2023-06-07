@@ -12,7 +12,8 @@ export type LinkTypes =
   | "settings"
   | "tools"
   | "stats"
-  | "referralsInfo";
+  | "referralsInfo"
+  | "yuniversity";
 
 export enum LINKS {
   DEBUG = "debug",
@@ -25,6 +26,7 @@ export enum LINKS {
   SETTINGS = "settings",
   TOOLS = "tools",
   REFERRALS_INFO = "referralsInfo",
+  YUNIVERSITY = "yuniversity",
 }
 
 export default {
@@ -35,4 +37,5 @@ export default {
   [LINKS.SETTINGS]: require("@assets/menu/settings.png"),
   [LINKS.LEADERBOARD]: require("@assets/menu/leaderboard.png"),
   [LINKS.WELLBEING_HUB]: require("@assets/menu/memberServices.png"),
+  [LINKS.YUNIVERSITY]: require("@assets/menu/yuniversity.png"),
 } as { [key: string]: ImageRequireSource };
