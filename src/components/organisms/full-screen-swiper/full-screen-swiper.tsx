@@ -39,60 +39,68 @@ export const FullScreenSwiper = memo((props: Props) => {
   const dispatch = useDispatch();
   const { items, title, button, close, ctaMinVisibleIndex, dismissMinVisibleIndex, autoPlaySpeedMs, theme } = props;
   const animationRef = useRef(null as ReturnType<typeof Animated.timing>);
-  const { activeIndex, setActiveIndex, userInteractionToggler, setUserInteractionToggler, listRef } = useScrollHandler(
-    items
-  );
+  const { activeIndex, setActiveIndex, userInteractionToggler, setUserInteractionToggler, listRef } =
+    useScrollHandler(items);
 
-  const params = useMemo(() => {
-    const width = (Style.DEVICE_WIDTH - Style.adjust(24)) / items.length;
-    const interpolatedValue = new Animated.Value(-width);
+  const {
+    calculatedWidth: width,
+    calculatedInterpolatedValue: interpolatedValue,
+    calculatedSnapToOffsets: snapToOffsets,
+  } = useMemo(() => {
+    if (!items) {
+      return { calculatedWidth: 0, calculatedInterpolatedValue: new Animated.Value(0), calculatedSnapToOffsets: [] };
+    }
 
-    return { width, interpolatedValue };
-  }, [items.length]);
-  const { width, interpolatedValue } = params;
+    const calculatedWidth = (Style.DEVICE_WIDTH - Style.adjust(24)) / items.length;
+    const calculatedInterpolatedValue = new Animated.Value(-calculatedWidth);
+    const calculatedSnapToOffsets = Array.from({ length: items.length }).map((_, i) => i * Style.DEVICE_WIDTH);
 
-  const snapToOffsets = useMemo(() => Array.from({ length: items.length }).map((_, i) => i * Style.DEVICE_WIDTH), [
-    items.length,
-  ]);
+    return { calculatedWidth, calculatedInterpolatedValue, calculatedSnapToOffsets };
+  }, [items]);
 
   const handleChangeActiveIndex = useCallback(
-    (increment: number, autoMove: boolean = false) => () => {
-      const min = 0;
-      const max = items.length - 1;
-
-      setActiveIndex((i) => {
-        const incremented = i + increment;
-
-        if (incremented - 1 < max) {
-          setUserInteractionToggler((val) => !val);
+    (increment: number, autoMove: boolean = false) =>
+      () => {
+        if (!items) {
+          return null;
         }
 
-        if (incremented < min) {
-          return i;
-        }
+        const min = 0;
+        const max = items.length - 1;
 
-        if (incremented > max) {
-          return i;
-        }
+        setActiveIndex((i) => {
+          const incremented = i + increment;
 
-        if (i !== incremented) {
-          dispatch(
-            sduiEventActionCreator("modal_movement", {
-              new_modal_name: items[incremented].heading,
-              previous_modal_name: items[i].heading,
-              interaction: !autoMove,
-              elapsed: autoMove,
-              direction: increment > 0 ? "Forwards" : "Backwards",
-              new_modal_index: incremented,
-              previous_modal_index: i,
-            })
-          );
-        }
+          if (incremented - 1 < max) {
+            setUserInteractionToggler((val) => !val);
+          }
 
-        return incremented;
-      });
-    },
-    [setActiveIndex, items.length]
+          if (incremented < min) {
+            return i;
+          }
+
+          if (incremented > max) {
+            return i;
+          }
+
+          if (i !== incremented) {
+            dispatch(
+              sduiEventActionCreator("modal_movement", {
+                new_modal_name: items[incremented].heading,
+                previous_modal_name: items[i].heading,
+                interaction: !autoMove,
+                elapsed: autoMove,
+                direction: increment > 0 ? "Forwards" : "Backwards",
+                new_modal_index: incremented,
+                previous_modal_index: i,
+              })
+            );
+          }
+
+          return incremented;
+        });
+      },
+    [setActiveIndex, items]
   );
 
   const getItemLayout = useCallback((_: any, index: number) => {
@@ -103,6 +111,10 @@ export const FullScreenSwiper = memo((props: Props) => {
     ({ item, index }) => <Page {...item} isActive={index === activeIndex} />,
     [activeIndex]
   );
+
+  if (!items || !theme) {
+    return null;
+  }
 
   return (
     <View style={[styles.screen, { backgroundColor: theme.primaryColor }]}>
