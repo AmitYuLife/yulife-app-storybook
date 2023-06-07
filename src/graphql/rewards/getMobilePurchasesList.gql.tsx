@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GQL_QUERY_GET_MOBILE_PURCHASES_LIST = gql`
-  query GetMobilePurchasesList($limit: Int, $offset: Int) {
-    data: getMobilePurchasesList(limit: $limit, offset: $offset) {
+  query GetMobilePurchasesList($filter: RewardListFilter, $limit: Int, $offset: Int) {
+    data: getMobilePurchasesList(filter: $filter, limit: $limit, offset: $offset) {
       __typename
       id
       sduiStepId

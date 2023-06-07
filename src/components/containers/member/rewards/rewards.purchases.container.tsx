@@ -10,19 +10,21 @@ import { IMainTabsProps } from "@navigation/root";
 import { addCommasToNumber } from "@utils";
 import { useLazyGqlLoading, LazyGqlLoadingArgs } from "@hooks";
 
-type Props = Pick<IMainTabsProps, "componentId">;
+type Props = Pick<IMainTabsProps, "componentId"> & { filter: Record<string, string> };
 
 const LIMIT = 20;
 
-const LAZY_LOADING_ARGS: LazyGqlLoadingArgs<Req["data"]["list"][0], Req, ReqVars> = {
-  gql: GQL_QUERY_GET_MOBILE_PURCHASES_LIST,
-  buildVariables: (page) => ({ offset: Math.floor(page * LIMIT), limit: LIMIT }),
-  buildFullData: (req, prevData) => [...prevData, ...(req.data.list || [])],
-  checkIfReachedEnd: (req) => req.data.list.length === 0,
-};
+function createLazyLoadingArgs(filter = {}): LazyGqlLoadingArgs<Req["data"]["list"][0], Req, ReqVars> {
+  return {
+    gql: GQL_QUERY_GET_MOBILE_PURCHASES_LIST,
+    buildVariables: (page) => ({ filter, offset: Math.floor(page * LIMIT), limit: LIMIT }),
+    buildFullData: (req, prevData) => [...prevData, ...(req.data.list || [])],
+    checkIfReachedEnd: (req) => req.data.list.length === 0,
+  };
+}
 
 function RewardsPurchasesContainer(props: Props) {
-  const needle = useLazyGqlLoading<Req["data"]["list"][0], Req, ReqVars>(LAZY_LOADING_ARGS);
+  const needle = useLazyGqlLoading<Req["data"]["list"][0], Req, ReqVars>(createLazyLoadingArgs(props.filter));
   const { fullData, data, loading, handleEndReached, handleRefresh } = needle;
 
   const handleBackPress = useCallback(() => {
