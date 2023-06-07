@@ -26,7 +26,6 @@ export const GQL_QUERY_GET_SUDOKU_BOARDS = gql`
         adjustedTime
         difficulty
       }
-
       leaderboardEligible
     }
   }

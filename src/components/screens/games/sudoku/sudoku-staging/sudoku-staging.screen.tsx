@@ -101,7 +101,6 @@ const SudokuStagingScreen = ({
           />
           <View style={styles.outerWrapper}>
             {showSecondAttemptDisclaimer ? <SudokuSecondAttemptDisclaimer /> : null}
-
             <SudokuStats
               reward={reward}
               savedData={sudokuState}
@@ -165,9 +164,9 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
+    backgroundColor: Colours.neutral.n50,
   },
   wrapper: {
-    backgroundColor: Colours.neutral.n50,
     justifyContent: "space-between",
     flex: 1,
   },

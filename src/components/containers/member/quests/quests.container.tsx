@@ -2,7 +2,7 @@ import moment from "moment";
 import { IMainTabsProps } from "@navigation/root";
 import { getUnitTarget } from "@utils";
 import { Style } from "@styles/index";
-import React, { FC, useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { challengeCancelAction, challengeEndAction, challengeResetAction } from "@redux/levels/levels.actions";
 import {
@@ -25,7 +25,7 @@ import { BlurProvider } from "@atoms/index";
 import { useTapBackTwiceToExit } from "@hooks";
 import SudokuProgressScreen from "@components/screens/games/sudoku/sudoku-progress/sudoku-progress.screen";
 
-const QuestsContainer: FC<IMainTabsProps> = (props) => {
+const QuestsContainer = (props: IMainTabsProps) => {
   const dispatch = useDispatch();
   const activeLevel = useSelector(getActiveLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);

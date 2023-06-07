@@ -37,6 +37,7 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
       endDateTime,
       levelSlotId,
       startDateTime,
+      subtype,
       fitKitTypes,
       shouldEndOnLastGoalAchieved,
       videoPlayerIsActive,
