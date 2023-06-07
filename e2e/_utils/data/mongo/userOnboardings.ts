@@ -8,6 +8,7 @@ import {
   BUSINESS_ACCOUNT_6,
   BUSINESS_ACCOUNT_3,
   BUSINESS_ACCOUNT_GHI_8,
+  BUSINESS_ACCOUNT_GDent_9,
 } from "../postgres/business";
 
 import {
@@ -112,6 +113,7 @@ import {
   USER_GHI,
   USER_GHI_STARTED,
   USER_92,
+  USER_93,
 } from "./users";
 import { USER_84_LEADERBOARD } from "./user_leaderboards";
 
@@ -1778,6 +1780,22 @@ export const USER_ONBOARDING_92 = {
     _id: generateRandomMongoId(),
     userId: USER_92.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_93 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_93.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_GDent_9.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
       personalLifeIntro: true,

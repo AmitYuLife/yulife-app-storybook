@@ -8,10 +8,12 @@ import {
   TEXT_TEMPLATE,
   CONTENT_MIDDLE_ITEM_IMAGE,
   PRODUCT_DETAILS_SCROLL_VIEW,
+  COUNTDOWN_UNIT,
 } from "@ids";
 import moment = require("moment");
 import { BUSINESS_PRODUCT_8_GHI } from "@data";
 import { scrollUntilTextVisible } from "./when";
+import * as fixture from "./fixture";
 
 export const {
   idVisible,
@@ -210,111 +212,93 @@ export const paymentOverdueInfo = async () => {
 };
 
 export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => async () => {
-  const noProductText = "More protection coming soon";
-  const wellbeingAccessText = "Wellbeing Access";
-  const availableProducts = "More protection";
-  const protectionPowered = "Protection, powered up!";
-  const allPoweredUp = "You are all powered up!"
-  const earnRewardsCopy = "Earn rewards faster with increased YuCoin Power";
-  const buttonText = "Check out my power";
-  const yuCoinText = "YuCoin";
-  const powerText = "Power";
-  const paidBy = "Employer paid";
-  const lifeInsurance = "Life Insurance";
-  const criticalIllness = "Critical Illness";
-  const incomeProtection = "Income Protection";
-  const groupDental = "Dental Cover";
-  const productYuCoin = "10";
-  const dentalYuCoin = "5";
-  const HealthInsurance = "Health Insurance"
-  const StartsSoon = "Starts soon"
-  const employerScheme = "Employer scheme"
+
 
   switch (packType) {
     case "wellbeing only":
       await textVisibleAtIndex(yuCoinPower, 0)();
-      await textVisible(yuCoinText)();
-      await textVisible(powerText)();
+      await textVisible(fixture.yuCoinText)();
+      await textVisible(fixture.powerText)();
       await textVisibleAtIndex(yuCoinPower, 1)();
-      await textVisible(wellbeingAccessText)();
+      await textVisible(fixture.wellbeingAccessText)();
       await textNotVisible(paidBy)();
-      await textNotVisible(noProductText)();
-      await textNotVisible(availableProducts)();
-      await textVisible(allPoweredUp)();
+      await textNotVisible(fixture.noProductText)();
+      await textNotVisible(fixture.availableProducts)();
+      await textVisible(fixture.allPoweredUp)();
       break;
     case "dentalAndPli":
       await textVisible(yuCoinPower, 0)();
-      await textVisible(yuCoinText)();
-      await textVisible(powerText)();
-      await textVisible(availableProducts)();
-      await textNotVisible(noProductText)();
+      await textVisible(fixture.yuCoinText)();
+      await textVisible(fixture.powerText)();
+      await textVisible(fixture.availableProducts)();
+      await textNotVisible(fixture.noProductText)();
       break;
     case "3 Products Slots":
       await textVisible(yuCoinPower)(); // 31
-      await textVisible(yuCoinText)();
-      await textVisible(powerText)();
-      await textVisible(lifeInsurance)();
+      await textVisible(fixture.yuCoinText)();
+      await textVisible(fixture.powerText)();
+      await textVisible(fixture.lifeInsurance)();
       await textNotVisible(paidBy)();
-      await textVisibleAtIndex(productYuCoin, 0)();
-      await textVisible(criticalIllness)();
-      await textVisibleAtIndex(productYuCoin, 1)();
-      await textVisible(incomeProtection)();
-      await textVisibleAtIndex(productYuCoin, 2)();
-      await textVisible(availableProducts)();
+      await textVisibleAtIndex(fixture.productYuCoin, 0)();
+      await textVisible(fixture.criticalIllness)();
+      await textVisibleAtIndex(fixture.productYuCoin, 1)();
+      await textVisible(fixture.incomeProtection)();
+      await textVisibleAtIndex(fixture.productYuCoin, 2)();
+      await textVisible(fixture.availableProducts)();
       break;
     case "groupDental":
       await textVisibleAtIndex(yuCoinPower, 0)();
-      await textVisible(yuCoinText)();
-      await textVisible(powerText)();
-      await textVisibleAtIndex(dentalYuCoin, 1)();
-      await textVisible(groupDental)();
+      await textVisible(fixture.yuCoinText)();
+      await textVisible(fixture.powerText)();
+      await textVisibleAtIndex(fixture.dentalYuCoin, 1)();
+      await textVisible(fixture.groupDental)();
       await textNotVisible(paidBy)();
-      await textVisible(availableProducts)();
+      await textVisible(fixture.availableProducts)();
       break;
     case "0EarnRate":
-      await textVisible(incomeProtection)();
-      await textVisible(powerText)();
-      await textNotVisible(noProductText)();
+      await textVisible(fixture.incomeProtection)();
+      await textVisible(fixture.powerText)();
+      await textNotVisible(fixture.noProductText)();
       await textNotVisible(paidBy)();
       await textVisible(yuCoinPower)();
       break;
     case "LifeInsurance":
       await textVisibleAtIndex(yuCoinPower, 0)();
       await textVisibleAtIndex(yuCoinPower, 1)();
-      await textVisible(yuCoinText)();
-      await textVisible(powerText)();
-      await textVisible(lifeInsurance)();
-      await textVisible(availableProducts)();
+      await textVisible(fixture.yuCoinText)();
+      await textVisible(fixture.powerText)();
+      await textVisible(fixture.lifeInsurance)();
+      await textVisible(fixture.availableProducts)();
       break;
     case "GHI_FUTURE":
       await textVisibleAtIndex(yuCoinPower, 0)();
       await textVisibleAtIndex(yuCoinPower, 1)();
-      await textVisible(yuCoinText)();
-      await textVisible(powerText)();
-      await textVisible(HealthInsurance)();
-      await textVisible(StartsSoon)(); // if product date in future user see this
-      await textNotVisible(employerScheme)();
-      await textVisible(allPoweredUp)();
+      await textVisible(fixture.yuCoinText)();
+      await textVisible(fixture.powerText)();
+      await textVisible(fixture.HealthInsurance)();
+      await textVisible(fixture.StartsSoon)(); // if product date in future user see this
+      await textNotVisible(fixture.employerScheme)();
+      await textVisible(fixture.allPoweredUp)();
       break;
     case "GHI_STARTED":
       await textVisibleAtIndex(yuCoinPower, 0)();
       await textVisibleAtIndex(yuCoinPower, 1)();
-      await textVisible(yuCoinText)();
-      await textVisible(powerText)();
-      await textVisible(HealthInsurance)();
-      await textNotVisible(StartsSoon)();
-      await textVisible(allPoweredUp)();
-      await textVisible(employerScheme)() // if product date started user see this
+      await textVisible(fixture.yuCoinText)();
+      await textVisible(fixture.powerText)();
+      await textVisible(fixture.HealthInsurance)();
+      await textNotVisible(fixture.StartsSoon)();
+      await textVisible(fixture.allPoweredUp)();
+      await textVisible(fixture.employerScheme)() // if product date started user see this
       break;
     default:
       break;
   }
 
   await expect(element(by.id(ONBOARDING_SCREEN))).toBeVisible();
-  await expect(element(by.text(protectionPowered))).toBeVisible();
-  await expect(element(by.text(earnRewardsCopy))).toBeVisible();
-  await swipeFromText(protectionPowered, "up", "slow")();
-  await expect(element(by.text(buttonText))).toBeVisible();
+  await expect(element(by.text(fixture.protectionPowered))).toBeVisible();
+  await expect(element(by.text(fixture.earnRewardsCopy))).toBeVisible();
+  await swipeFromText(fixture.protectionPowered, "up", "slow")();
+  await expect(element(by.text(fixture.buttonText))).toBeVisible();
 };
 
 export const onLifeInsuranceOverview = async () => {
@@ -391,3 +375,21 @@ export const GHIProductInfo = ( productStartDate: any, dependentName:any, yuCoin
   await expect(element(by.text(Bupa_markdown_2))).toBeVisible();
   await expect(element(by.id(CONTENT_MIDDLE_ITEM_IMAGE(GHIRewardImg)))).toBeVisible();
 };
+
+
+export const policyGoesLiveIn = (seed:any) => async () => {
+
+  const targetDate = moment(seed);
+  const currentDate = moment();
+
+  const diffDuration = moment.duration(targetDate.diff(currentDate));
+  
+  const days = Math.floor(diffDuration.asDays())
+  await idVisible(COUNTDOWN_UNIT(days, 'Days'))()
+
+  var hours = diffDuration.hours()
+  await idVisible(COUNTDOWN_UNIT(hours, 'Hours'))()
+
+  var minutes = diffDuration.minutes();
+  await idVisible(COUNTDOWN_UNIT(minutes+1, 'Mins'))()
+}
