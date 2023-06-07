@@ -7,6 +7,43 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.85.0] - 2023-06-07
+
+### Bugfixes
+
+- Bugfix GS: Logout logger only at the end and remove intercom duplicate logout
+- Bugfix ENG-3293: Sudoku midnight bug
+- Bugfix: Challenge list boxes overlapping in some android devices
+- Bugfix ENG-3323: Dont show event completion modal while media player is active
+- Bugfix ENG-3273: Null title on feedback modal
+- Bugfix ENG-3307: App freezing at the end of meditation
+- Bugfix: Load NVM in directory without .nvmrc file
+
+### Tasks
+
+- Task: Add Yuniversity menu link
+- Task DEVOP-1168: Release to production CI job
+- Task: Upgrade reanimated to 3.2.0
+- Task: Update reward claim animation and remove modals
+- Task: Control timeout for yuniversity video
+- Task DEVOP-591: Implement referrals pagination
+- Task/XSE-1922 - US PCP counting down timer
+
+### Chores
+
+- Chore: Upgrade intercom client
+- Chore/adding wrapper item to detail page
+
+### Extra
+
+- ENG-3250: Protect runtime from falsy variables
+- Detox/policy holding app
+- ISA-739: add filter
+- Detox: Fixes 5th June + Yudoku practice game
+- Detox: Fiit test fix
+- Detox: Levels summary screen + US fixes
+- Detox: Fixes 31st May
+
 ## [3.84.0] - 2023-05-31
 
 ### Bugfixes
