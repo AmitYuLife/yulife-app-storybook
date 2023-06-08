@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Colours, Style } from "@styles";
 import { useSudokuContext } from "@screens/games/sudoku/sudoku-game/sudoku.context";
 import { memo, useCallback, useEffect, useState } from "react";
-import Animated, { FadeOutUp, runOnJS } from "react-native-reanimated";
+import Animated, { FadeOutUp } from "react-native-reanimated";
 import { SODUKU_PENALTY_ANIMATION_TIME } from "@screens/games/sudoku/sudoku-game/sudoku.config";
 import PauseIcon from "@atoms/icon/pause-svg";
 import { TextTemplate } from "@atoms";
@@ -15,25 +15,43 @@ interface IProps {
   invert: boolean;
 }
 
+const PENALTY_TIME = DETOX_ENABLED ? 5000 : SODUKU_PENALTY_ANIMATION_TIME;
+
+interface IPenaltyView {
+  value: number;
+  index: number;
+  started: number;
+}
+
 const SudokuTimer = ({ invert }: IProps) => {
   const [timeAgo, setTimeAgo] = useState<string>("00:00");
-  const { startTime, pause, endTime, initialPenalties, penalties, getDurationText, lastPauseTime } = useSudokuContext();
-  const [shownPenalties, setShownPenalties] = useState<number[]>(initialPenalties || []);
-  const [activePenalties, setActivePenalties] = useState<number[]>(initialPenalties?.map(() => 0) || []);
+  const { startTime, pause, endTime, penalties, getDurationText, lastPauseTime } = useSudokuContext();
+  const [shownPenalties, setShownPenalties] = useState<number>(penalties?.length ?? 0);
+  const [activePenalties, setActivePenalties] = useState<IPenaltyView[]>([]);
 
   useEffect(() => {
-    const newPenalties = penalties.slice(shownPenalties.length);
-    setShownPenalties((pen) => [...pen, ...newPenalties]);
-    setActivePenalties((pen) => [...pen, ...newPenalties]);
-  }, [penalties, shownPenalties?.length]);
+    const newPenalties = penalties.slice(shownPenalties);
 
-  const onEnd = (index: number) => {
-    setActivePenalties((pen) => pen.map((penalty, i) => (i === index ? 0 : penalty)));
-  };
+    const newPenaltyObjects = newPenalties.map((penalty, index) => ({
+      value: penalty,
+      started: Date.now(),
+      index: penalties.length + index,
+    }));
+
+    setActivePenalties((penaltiesActive) => [...penaltiesActive, ...newPenaltyObjects]);
+    setShownPenalties((count) => count + newPenalties.length);
+  }, [penalties, shownPenalties]);
 
   const updateTime = useCallback(() => {
     setTimeAgo(getDurationText());
   }, [setTimeAgo, getDurationText]);
+
+  const clearCompletedPenalties = useCallback(() => {
+    // This should be called by a worklet in useCallback with runOnJs
+    // But there is issues with it crashing animations on certain Android devices
+    const expiryDate = Date.now() - PENALTY_TIME;
+    setActivePenalties((penaltiesActive) => penaltiesActive.filter((penalty) => penalty.started >= expiryDate));
+  }, []);
 
   useEffect(() => {
     updateTime();
@@ -43,13 +61,14 @@ const SudokuTimer = ({ invert }: IProps) => {
           return clearInterval(intervalId);
         }
 
+        clearCompletedPenalties();
         updateTime();
       },
       DETOX_ENABLED ? 10000 : 1000
     );
 
     return () => clearInterval(intervalId);
-  }, [startTime, penalties, updateTime, getDurationText, lastPauseTime]);
+  }, [startTime, penalties, updateTime, getDurationText, lastPauseTime, clearCompletedPenalties]);
 
   return (
     <View>
@@ -62,21 +81,16 @@ const SudokuTimer = ({ invert }: IProps) => {
         <PauseIcon color={invert ? Colours.neutral.white : undefined} />
         <View style={styles.text}>
           {activePenalties
-            .filter((penalty) => penalty !== 0)
-            .map((penalty, index) => {
+            .filter((penalty) => penalty.value !== 0)
+            .map((penalty) => {
               return (
                 <AnimatedView
-                  entering={FadeOutUp.duration(DETOX_ENABLED ? 5000 : SODUKU_PENALTY_ANIMATION_TIME).withCallback(
-                    () => {
-                      "worklet";
-                      runOnJS(onEnd)(index);
-                    }
-                  )}
+                  entering={FadeOutUp.duration(DETOX_ENABLED ? 5000 : SODUKU_PENALTY_ANIMATION_TIME)}
                   style={styles.penaltyWrapper}
-                  key={index}
+                  key={penalty.index}
                 >
                   <Text allowFontScaling={false} style={styles.penalty}>
-                    +{penalty}s
+                    +{penalty.value}s
                   </Text>
                 </AnimatedView>
               );
