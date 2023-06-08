@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -344,6 +344,10 @@ export interface MobileConsentInput {
 
 export interface ProductMetadata {
   avios?: AviosMetadata | null;
+}
+
+export interface RewardListFilter {
+  reward?: string | null;
 }
 
 export interface SampleDebugData {

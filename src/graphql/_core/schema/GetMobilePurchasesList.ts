@@ -1,7 +1,9 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
+
+import { RewardListFilter } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetMobilePurchasesList
@@ -29,6 +31,7 @@ export interface GetMobilePurchasesList {
 }
 
 export interface GetMobilePurchasesListVariables {
+  filter?: RewardListFilter | null;
   limit?: number | null;
   offset?: number | null;
 }

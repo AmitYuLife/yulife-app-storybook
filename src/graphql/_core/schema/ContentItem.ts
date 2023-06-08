@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -746,6 +746,10 @@ export interface ContentItem_ContentItemWrapper {
   styles: ContentItem_ContentItemWrapper_styles[] | null;
   children: string;
   pointerEvents: RNViewPointerEvents | null;
+  /**
+   * Supported RN version 3.85.0
+   */
+  absolute: string | null;
 }
 
 export interface ContentItem_ContentItemInfoCard_image {
