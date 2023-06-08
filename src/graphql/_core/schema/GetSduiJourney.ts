@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -754,6 +754,10 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemWrapper {
   styles: GetSduiJourney_getSduiJourney_body_ContentItemWrapper_styles[] | null;
   children: string;
   pointerEvents: RNViewPointerEvents | null;
+  /**
+   * Supported RN version 3.85.0
+   */
+  absolute: string | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_body_ContentItemInfoCard_image {
@@ -1569,6 +1573,10 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper 
   styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper_styles[] | null;
   children: string;
   pointerEvents: RNViewPointerEvents | null;
+  /**
+   * Supported RN version 3.85.0
+   */
+  absolute: string | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard_image {

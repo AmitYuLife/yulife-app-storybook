@@ -11,5 +11,6 @@ export const GQL_FRAGMENT_CONTENT_ITEM_WRAPPER = gql`
     }
     children
     pointerEvents
+    absolute
   }
 `;

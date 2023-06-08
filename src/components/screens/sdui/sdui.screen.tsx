@@ -9,7 +9,7 @@ import {
 import { buildInitialSduiStepDynamicDataState } from "@utils/sduiData";
 import React, { memo, useContext, useEffect, useMemo } from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "react-native";
-import { Absolute, Body } from "./sections";
+import { Absolute, Body } from "../../sdui/_renderer/sections";
 import { SDUI_SCREEN_SCROLL_VIEW } from "@ids";
 
 interface Props {

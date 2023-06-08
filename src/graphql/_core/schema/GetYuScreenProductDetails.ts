@@ -532,6 +532,10 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemWrapper_styles[] | null;
   children: string;
   pointerEvents: RNViewPointerEvents | null;
+  /**
+   * Supported RN version 3.85.0
+   */
+  absolute: string | null;
 }
 
 export type GetYuScreenProductDetails_getYuScreenProductDetails_body =

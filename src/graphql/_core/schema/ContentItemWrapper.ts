@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -19,4 +19,8 @@ export interface ContentItemWrapper {
   styles: ContentItemWrapper_styles[] | null;
   children: string;
   pointerEvents: RNViewPointerEvents | null;
+  /**
+   * Supported RN version 3.85.0
+   */
+  absolute: string | null;
 }
