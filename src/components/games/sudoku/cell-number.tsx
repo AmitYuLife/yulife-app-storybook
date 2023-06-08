@@ -12,13 +12,13 @@ import React, { memo, useEffect, useMemo } from "react";
 import { PixelRatio, StyleSheet, Text, View } from "react-native";
 import Animated, {
   BounceIn,
-  BounceOut,
   withSequence,
   withDelay,
   withTiming,
   useAnimatedStyle,
   Easing,
   useSharedValue,
+  BounceOut,
 } from "react-native-reanimated";
 
 interface IProps {
