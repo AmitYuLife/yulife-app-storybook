@@ -27,6 +27,23 @@ export const SMOOTH_GRADIENT_COLORS = [
 
 export default StyleSheet.create({
   wrapper: { flexGrow: 1 },
+  eventEndedBadgeWrapper: {
+    display: "flex",
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+    width: Style.DEVICE_WIDTH,
+    transform: [{ translateY: -Style.adjust(12) }],
+  },
+  eventEndedBadge: {
+    borderRadius: Style.adjust(4),
+    paddingVertical: Style.adjust(4),
+    paddingHorizontal: Style.adjust(20),
+    backgroundColor: Colours.primary.p600,
+  },
+  eventEndedBadgeSpacer: {
+    height: Style.adjust(10),
+  },
   statusBarCover: {
     width: Style.DEVICE_WIDTH,
     height: STATUS_BAR_COVER_HEIGHT,

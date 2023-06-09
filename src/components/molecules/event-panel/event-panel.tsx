@@ -1,32 +1,34 @@
-import React, { memo, useCallback, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { LayoutChangeEvent, View } from "react-native";
-import { Image, ProgressBar, TextTemplate } from "@atoms";
+import React, { memo, useCallback, useMemo } from "react";
+
+import { getTheme } from "@theme";
 import { Colours, Style } from "@styles";
+import styles from "./event-panel.styles";
 import { ArrowIcon } from "@atoms/icon/arrow";
-import { Button, PressableWithDelay } from "@molecules";
-import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
-import styles from "./event-panel.styles";
-import { useDispatch, useSelector } from "react-redux";
-import { updateUserGoal } from "@redux/user/user.actions";
+import { Button, PressableWithDelay } from "@molecules";
 import { EVENT_DESCRIPTION, NEW_EVENT_ICON } from "@ids";
+import { Image, ProgressBar, TextTemplate } from "@atoms";
+import { updateUserGoal } from "@redux/user/user.actions";
+import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
-import { getTheme } from "@theme";
 
 interface IEventPanelProps {
-  componentId?: string;
   event: IEvent;
   width: number;
+  componentId?: string;
+  isDisabled?: boolean;
   onJoin: (event: IEvent) => Promise<void>;
   onLayout?: (event: LayoutChangeEvent) => void;
 }
 
-const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IEventPanelProps) => {
+const EventPanel = ({ isDisabled, event, componentId, width, onJoin, onLayout }: IEventPanelProps) => {
+  const dispatch = useDispatch();
   const currentLevel = useSelector(getCurrentLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const { dailyStepsScreen } = getTheme(currentLevel, yuniversalMap);
-  const dispatch = useDispatch();
   const PROGRESS_BAR_WIDTH = useMemo(() => width / 1.2 + 5, [width]);
   const buttonWrapperStyle = useMemo(
     () => ({
@@ -81,7 +83,7 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IEventPanel
               {event.title}
             </TextTemplate>
             {event.joined ? (
-              <ArrowIcon color={Colours.neutral.white} withBackground={true} />
+              <ArrowIcon color={Colours.neutral.white} intent={isDisabled ? "secondary" : "primary"} />
             ) : (
               <Button onPress={onJoinPress} size="ExtraSmall" shadowColor="transparent" label="Join" />
             )}
@@ -91,10 +93,10 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IEventPanel
               <View key={challenge.description} style={styles.challengeContainer}>
                 <Image
                   suppressLoadingUi={true}
-                  source={{ uri: challenge.icon.uri }}
                   width={Style.adjust(16)}
                   height={Style.adjust(16)}
                   style={styles.challengeIcon}
+                  source={{ uri: challenge.icon.uri }}
                   tintColor={dailyStepsScreen.eventPanel.fontColor}
                 />
                 <TextTemplate
@@ -109,10 +111,11 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IEventPanel
           </View>
           <View style={styles.progressBar}>
             <ProgressBar
-              current={event.progressBar.current}
-              max={event.progressBar.max}
-              width={PROGRESS_BAR_WIDTH}
               type="compact"
+              isDisabled={isDisabled}
+              width={PROGRESS_BAR_WIDTH}
+              max={event.progressBar.max}
+              current={event.progressBar.current}
               milestones={event.milestones?.map((m) => ({
                 value: m.targetValue,
                 shouldAttractAttention: m.isClaimable,
@@ -124,10 +127,10 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IEventPanel
             <View style={styles.statistics}>
               <Image
                 suppressLoadingUi={true}
-                source={{ uri: event.tags.icon.uri }}
                 width={Style.adjust(16)}
                 height={Style.adjust(16)}
                 style={styles.challengeIcon}
+                source={{ uri: event.tags.icon.uri }}
                 tintColor={dailyStepsScreen.eventPanel.fontColor}
               />
               <TextTemplate type="l1b" color={dailyStepsScreen.eventPanel.fontColor}>
@@ -145,9 +148,9 @@ const EventPanel = ({ event, componentId, width, onJoin, onLayout }: IEventPanel
               {!event?.badge?.icon?.uri ? null : (
                 <Image
                   suppressLoadingUi={true}
-                  width={styles.badgeIcon.width}
                   style={styles.badgeIcon}
                   source={event.badge.icon}
+                  width={styles.badgeIcon.width}
                 />
               )}
               <TextTemplate color={Colours.neutral.white} type={"l1b"} testID={NEW_EVENT_ICON}>

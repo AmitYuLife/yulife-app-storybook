@@ -501,6 +501,7 @@
     },
     "event": {
       "reward_claimed": "Claimed",
+      "event_ended": "Event ended",
       "claim_all_rewards_button": "Claim all / Close the event"
     },
     "event_fail": {
