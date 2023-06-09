@@ -500,6 +500,7 @@
     },
     "event": {
       "reward_claimed": "Reivindicado",
+      "event_ended": "Evento terminado",
       "claim_all_rewards_button": "Reivindicar tudo / Fechar o evento"
     },
     "event_fail": {

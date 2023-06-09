@@ -1,61 +1,62 @@
-import React, { Fragment, memo, useMemo } from "react";
-import { Colours } from "@styles";
+import { useEffect, useRef, Fragment, memo, useMemo } from "react";
 import Svg, { Path, Rect, Circle, G } from "react-native-svg";
 import { ViewStyle, StyleSheet, Animated, Easing } from "react-native";
-import { DETOX_ENABLED } from "@services/socket";
+
+import { Colours } from "@styles";
 import { EVENT_PROGRESS_BAR } from "@ids";
+import { DETOX_ENABLED } from "@services/socket";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 type ProgressBarValues = {
-  defaultWidth: number;
-  adjustedHeight: number;
-  rectYOffset: number;
-  rectHeight: number;
-  rectBorderRadius: number;
-  circleHorizontalOffset: number;
-  circleVerticalCenter: number;
-  circleRadius: number;
   starScale: number;
-  starHorizontalOffset: number;
-  starVerticalCenter: number;
   tickScale: number;
-  tickHorizontalOffset: number;
+  rectHeight: number;
+  rectYOffset: number;
+  defaultWidth: number;
+  circleRadius: number;
+  adjustedHeight: number;
+  rectBorderRadius: number;
+  starVerticalCenter: number;
   tickVerticalCenter: number;
+  circleVerticalCenter: number;
+  starHorizontalOffset: number;
+  tickHorizontalOffset: number;
+  circleHorizontalOffset: number;
 };
 
 const FULL_PROGRESS_BAR_VALUES: ProgressBarValues = {
-  defaultWidth: 327,
-  adjustedHeight: 26,
+  starScale: 1,
+  tickScale: 1,
   rectYOffset: 6,
   rectHeight: 14,
-  rectBorderRadius: 8,
-  circleHorizontalOffset: -11,
-  circleVerticalCenter: 13,
   circleRadius: 12,
-  starScale: 1,
-  starHorizontalOffset: -17,
+  defaultWidth: 327,
+  adjustedHeight: 26,
+  rectBorderRadius: 8,
   starVerticalCenter: 6,
-  tickScale: 1,
-  tickHorizontalOffset: -18.5,
   tickVerticalCenter: 7.5,
+  circleVerticalCenter: 13,
+  starHorizontalOffset: -17,
+  circleHorizontalOffset: -11,
+  tickHorizontalOffset: -18.5,
 };
 
 const COMPACT_PROGRESS_BAR_VALUES: ProgressBarValues = {
+  rectHeight: 8,
+  rectYOffset: 7,
+  starScale: 0.85,
+  tickScale: 0.85,
+  circleRadius: 10,
   defaultWidth: 232,
   adjustedHeight: 22,
-  rectYOffset: 7,
-  rectHeight: 8,
   rectBorderRadius: 4,
-  circleHorizontalOffset: -9,
-  circleVerticalCenter: 11,
-  circleRadius: 10,
-  starScale: 0.85,
-  starHorizontalOffset: -14,
   starVerticalCenter: 5,
-  tickScale: 0.85,
-  tickHorizontalOffset: -15,
   tickVerticalCenter: 6.5,
+  circleVerticalCenter: 11,
+  starHorizontalOffset: -14,
+  tickHorizontalOffset: -15,
+  circleHorizontalOffset: -9,
 };
 
 interface ProgressBarMilestone {
@@ -65,32 +66,34 @@ interface ProgressBarMilestone {
 }
 
 export interface IProgressBarProps {
+  max: number;
   width?: number;
   current: number;
-  max: number;
-  milestones?: ProgressBarMilestone[];
-  type?: "full" | "compact";
-  style?: ViewStyle;
   testID?: string;
+  style?: ViewStyle;
+  isDisabled?: boolean;
+  type?: "full" | "compact";
+  milestones?: ProgressBarMilestone[];
 }
 
-const ProgressBar = ({ width, current, max, milestones = [], type = "full", style }: IProgressBarProps) => {
+const ProgressBar = ({ isDisabled, width, current, max, milestones = [], type = "full", style }: IProgressBarProps) => {
   const progressBarValues = useMemo(
     () => (type === "full" ? FULL_PROGRESS_BAR_VALUES : COMPACT_PROGRESS_BAR_VALUES),
     [type]
   );
 
   const {
-    defaultWidth,
-    adjustedHeight,
-    rectYOffset,
     rectHeight,
-    rectBorderRadius,
-    circleHorizontalOffset,
-    circleVerticalCenter,
+    rectYOffset,
+    defaultWidth,
     circleRadius,
+    adjustedHeight,
+    rectBorderRadius,
+    circleVerticalCenter,
+    circleHorizontalOffset,
   } = progressBarValues;
 
+  const color = isDisabled ? Colours.neutral.n200 : Colours.primary.p400;
   const fullWidth = useMemo(() => width || defaultWidth, [width, defaultWidth]);
 
   // these extra pixels are so that rounded edges are not cut off outside the viewBox
@@ -116,13 +119,13 @@ const ProgressBar = ({ width, current, max, milestones = [], type = "full", styl
     >
       {/* progress bar border */}
       <Rect
-        stroke={Colours.neutral.n200}
-        fill={Colours.neutral.white}
         x={1}
         y={rectYOffset}
         width={fullWidth}
         height={rectHeight}
         rx={rectBorderRadius}
+        fill={Colours.neutral.white}
+        stroke={Colours.neutral.n200}
       />
       {/* milestone circle borders */}
       {milestones.map(({ value }) => {
@@ -130,33 +133,33 @@ const ProgressBar = ({ width, current, max, milestones = [], type = "full", styl
         const circleCenter = ratio * fullWidth + circleHorizontalOffset;
         return (
           <Circle
-            key={`progress-milestone-border-${value}`}
+            strokeWidth={1}
+            r={circleRadius}
             cx={circleCenter}
             cy={circleVerticalCenter}
-            r={circleRadius}
-            strokeWidth={1}
             stroke={Colours.neutral.n200}
+            key={`progress-milestone-border-${value}`}
           />
         );
       })}
       {/* progress bar white fill */}
       <Rect
-        fill={Colours.neutral.white}
         x={1}
         y={rectYOffset}
-        width={fullWidth - 1}
         height={rectHeight}
+        width={fullWidth - 1}
         rx={rectBorderRadius}
+        fill={Colours.neutral.white}
       />
       {/* progress bar pink progress */}
       {progress <= 0 ? null : (
         <Rect
-          stroke={Colours.primary.p400}
-          fill={Colours.primary.p400}
           x={1}
+          fill={color}
+          stroke={color}
           y={rectYOffset}
-          width={progressWidth}
           height={rectHeight}
+          width={progressWidth}
           rx={rectBorderRadius}
         />
       )}
@@ -168,12 +171,13 @@ const ProgressBar = ({ width, current, max, milestones = [], type = "full", styl
         return (
           <RewardMilestone
             key={value}
-            shouldAttractAttention={shouldAttractAttention}
-            milestoneMet={milestoneMet}
-            rewardClaimed={rewardClaimed}
             ratio={ratio}
             fullWidth={fullWidth}
+            isDisabled={isDisabled}
+            milestoneMet={milestoneMet}
+            rewardClaimed={rewardClaimed}
             progressBarValues={progressBarValues}
+            shouldAttractAttention={shouldAttractAttention}
           />
         );
       })}
@@ -183,45 +187,52 @@ const ProgressBar = ({ width, current, max, milestones = [], type = "full", styl
 
 export default memo(ProgressBar);
 
-type RewardMilestoneProps = {
-  shouldAttractAttention: boolean;
-  milestoneMet: boolean;
-  rewardClaimed?: boolean;
+interface IRewardMilestoneProps {
   ratio: number;
   fullWidth: number;
+  isDisabled?: boolean;
+  milestoneMet: boolean;
+  rewardClaimed?: boolean;
+  shouldAttractAttention: boolean;
   progressBarValues: ProgressBarValues;
-};
+}
 
 const RewardMilestone = memo(
   ({
-    shouldAttractAttention,
-    milestoneMet,
-    rewardClaimed,
     ratio,
     fullWidth,
+    isDisabled,
+    milestoneMet,
+    rewardClaimed,
     progressBarValues,
-  }: RewardMilestoneProps) => {
+    shouldAttractAttention,
+  }: IRewardMilestoneProps) => {
     const {
-      circleHorizontalOffset,
-      circleVerticalCenter,
-      circleRadius,
       starScale,
-      starHorizontalOffset,
-      starVerticalCenter,
       tickScale,
-      tickHorizontalOffset,
+      circleRadius,
+      starVerticalCenter,
       tickVerticalCenter,
+      circleVerticalCenter,
+      starHorizontalOffset,
+      tickHorizontalOffset,
+      circleHorizontalOffset,
     } = progressBarValues;
 
-    const anim = React.useRef(new Animated.Value(0));
+    const activeStarColor = milestoneMet ? Colours.forest.fp103 : Colours.neutral.n400;
+
+    const checkColor = isDisabled ? Colours.neutral.n700 : Colours.neutral.white;
+    const barColor = isDisabled ? Colours.neutral.n200 : Colours.primary.p400;
+    const starColor = isDisabled ? Colours.neutral.n700 : activeStarColor;
+
+    const anim = useRef(new Animated.Value(0));
+    const circleBorderColor = milestoneMet ? barColor : null;
     const circleCenter = ratio * fullWidth + circleHorizontalOffset;
-    const circleBorderColor = milestoneMet ? Colours.primary.p400 : null;
-    const circleFillColor = milestoneMet ? Colours.primary.p400 : Colours.neutral.white;
-    const starColor = milestoneMet ? Colours.forest.fp103 : Colours.neutral.n400;
+    const circleFillColor = milestoneMet ? barColor : Colours.neutral.white;
     const starX = ratio * fullWidth + starHorizontalOffset;
     const tickX = ratio * fullWidth + tickHorizontalOffset;
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (!DETOX_ENABLED) {
         const animation = Animated.loop(
           Animated.sequence(
@@ -253,26 +264,26 @@ const RewardMilestone = memo(
       <Fragment key={`progress-milestone-fill-${ratio}`}>
         {!shouldAttractAttention ? null : (
           <AnimatedCircle
-            cx={circleCenter}
-            cy={circleVerticalCenter}
-            r={anim.current.interpolate(interpolation)}
-            strokeWidth={1}
-            stroke={circleBorderColor}
-            fill={circleFillColor}
             opacity={0.5}
+            strokeWidth={1}
+            cx={circleCenter}
+            fill={circleFillColor}
+            cy={circleVerticalCenter}
+            stroke={circleBorderColor}
+            r={anim.current.interpolate(interpolation)}
           />
         )}
         <Circle
-          cx={circleCenter}
-          cy={circleVerticalCenter}
-          r={circleRadius}
           strokeWidth={1}
-          stroke={circleBorderColor}
+          r={circleRadius}
+          cx={circleCenter}
           fill={circleFillColor}
+          cy={circleVerticalCenter}
+          stroke={circleBorderColor}
         />
         {rewardClaimed ? (
           <G scale={tickScale} x={tickX} y={tickVerticalCenter} fill={"transparent"}>
-            <Path d="M13 1L4.66253 9L1 5.4" stroke="white" />
+            <Path d="M13 1L4.66253 9L1 5.4" stroke={checkColor} />
           </G>
         ) : (
           <G scale={starScale} x={starX} y={starVerticalCenter}>

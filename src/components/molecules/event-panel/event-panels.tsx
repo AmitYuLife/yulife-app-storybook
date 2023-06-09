@@ -1,11 +1,11 @@
 import React, { memo, useCallback, useState } from "react";
-import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { StyleSheet, View, Platform, LayoutChangeEvent } from "react-native";
-
 import { Style, NAV_BAR } from "@styles";
 import EventPanel from "./event-panel";
 import { AdBanner } from "@molecules";
 import { FLAT_LIST_EVENTS } from "@ids";
+import { UserProfileEventStatus } from "@graphql/_core/schema/globalTypes";
+import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 
 interface IAdBanner {
@@ -33,6 +33,7 @@ const EventPanels = ({ events = [], componentId, onJoin }: IEventPanelsProps) =>
     (e: LayoutChangeEvent) => setAdHeight(e?.nativeEvent?.layout?.height || 148),
     [adHeight]
   );
+
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<IEvent & IAdBanner>) => {
       if (item.id.startsWith("ad-")) {
@@ -50,7 +51,14 @@ const EventPanels = ({ events = [], componentId, onJoin }: IEventPanelsProps) =>
       }
 
       return (
-        <EventPanel event={item} onJoin={onJoin} width={CARD_WIDTH} onLayout={onLayout} componentId={componentId} />
+        <EventPanel
+          event={item}
+          onJoin={onJoin}
+          width={CARD_WIDTH}
+          onLayout={onLayout}
+          componentId={componentId}
+          isDisabled={item.status !== UserProfileEventStatus.active}
+        />
       );
     },
     [onJoin, componentId, adHeight, onLayout]

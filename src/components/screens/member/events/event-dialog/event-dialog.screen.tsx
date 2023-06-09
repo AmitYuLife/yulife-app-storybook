@@ -1,14 +1,15 @@
 import { Source } from "react-native-fast-image";
 import LinearGradient from "react-native-linear-gradient";
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import React, { Fragment, useCallback, useMemo, useRef, useState } from "react";
 import { Animated, NativeScrollEvent, Platform, View } from "react-native";
 
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 import { Image } from "@atoms/image/image";
 import { addCommasToNumber } from "@utils";
 import { ProgressBar, TextTemplate } from "@atoms";
 import { IReward } from "@organisms/event-reward/event-reward";
 import { EVENT_DIALOG_SCREEN, EVENT_DIALOG_SCREEN_SCROLL } from "@ids";
+import { UserProfileEventStatus } from "@graphql/_core/schema/globalTypes";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
 import { Button, HeadingAndCopy, InfoPanel, PressableWithDelay } from "@molecules";
 import { GenericHeadingAbsolute, IInfoCardListCard, InfoCardList } from "@organisms";
@@ -16,12 +17,13 @@ import { RemoteImage, GetUserProfile_getUserProfile_events as IEvent } from "@gr
 import { showInfoMessageTooltipPointRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { GetGoalDetails_getGoalDetails_banner as EventBanner } from "@graphql/_core/schema/GetGoalDetails";
 import style, {
+  HEADER_HEIGHT,
   CONTENT_MARGIN_TOP,
   FAQ_ICON_DIMENSION,
   FAQ_VERTICAL_PADDING,
-  HEADER_HEIGHT,
   SMOOTH_GRADIENT_COLORS,
 } from "./event-dialog.styles";
+import { t } from "@locale";
 
 const PROGRESS_BAR_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 const TITLE_HEIGHT = Platform.select({
@@ -76,6 +78,7 @@ interface EventButton {
 const EventDialogScreen = ({
   faq,
   about,
+  event,
   banner,
   button,
   rewards,
@@ -149,6 +152,8 @@ const EventDialogScreen = ({
     }),
   };
 
+  const isEventActive = useMemo(() => event.status === UserProfileEventStatus.active, [event.status]);
+
   const heading = useMemo(
     () => (
       <>
@@ -196,6 +201,18 @@ const EventDialogScreen = ({
         testID={EVENT_DIALOG_SCREEN_SCROLL}
       >
         <View style={style.contentWrapper}>
+          {!isEventActive ? (
+            <Fragment>
+              <View style={style.eventEndedBadgeWrapper}>
+                <View style={style.eventEndedBadge}>
+                  <TextTemplate type="l1b" textAlign="center" color={Colours.neutral.white}>
+                    {t("screens.event.event_ended")}
+                  </TextTemplate>
+                </View>
+              </View>
+              <View style={style.eventEndedBadgeSpacer} />
+            </Fragment>
+          ) : null}
           <View style={style.rewardsWrapper}>
             <EventRewardsWrapper
               rewards={rewards}
@@ -220,6 +237,7 @@ const EventDialogScreen = ({
             max={maxProgress}
             current={currentProgress}
             width={PROGRESS_BAR_WIDTH}
+            isDisabled={!isEventActive}
             milestones={milestones.map((value, index) => ({
               value,
               rewardClaimed: rewards[index]?.status === "claimed",

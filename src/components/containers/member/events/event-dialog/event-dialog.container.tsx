@@ -79,7 +79,7 @@ const EventDialogContainer = ({ componentId, event, onLeftIconPress }: IEventDia
     );
   }, [faq?.text, event, title, dispatch]);
 
-  const onActionButtonPress = useCallback(async () => {
+  const onButtonPress = useCallback(async () => {
     if (button?.onPress) {
       if (button.onPress.goalType) {
         const { goalType } = button.onPress;
@@ -148,7 +148,7 @@ const EventDialogContainer = ({ componentId, event, onLeftIconPress }: IEventDia
       headerProps={headerProps}
       onFaqViewed={onFaqViewed}
       onClaimReward={onClaimReward}
-      onButtonPress={onActionButtonPress}
+      onButtonPress={onButtonPress}
       {...data.getGoalDetails}
     />
   );
