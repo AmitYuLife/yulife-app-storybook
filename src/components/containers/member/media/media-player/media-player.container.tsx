@@ -81,23 +81,25 @@ const MediaPlayerContainer = ({
 
   const createChallenge = useCallback(
     async (contentId: string) => {
-      const { data } = await createQuestMapLevelChallengeMutation({ variables: { levelSlotId, contentId } });
-      dispatch(
-        challengeStartSuccessAction({
-          createQuestMapLevelChallenge: data?.createQuestMapLevelChallenge,
-          levelSlotId,
-          videoPlayerIsActive: true,
-          videoDuration: video.duration,
-        })
-      );
-      Navigation.mergeOptions(ROUTES.mediaPlayer, {
-        statusBar: {
-          drawBehind: false,
-          visible: false,
-        },
-      });
+      if (video?.duration) {
+        const { data } = await createQuestMapLevelChallengeMutation({ variables: { levelSlotId, contentId } });
+        dispatch(
+          challengeStartSuccessAction({
+            createQuestMapLevelChallenge: data?.createQuestMapLevelChallenge,
+            levelSlotId,
+            videoPlayerIsActive: true,
+            videoDuration: video.duration,
+          })
+        );
+        Navigation.mergeOptions(ROUTES.mediaPlayer, {
+          statusBar: {
+            drawBehind: false,
+            visible: false,
+          },
+        });
+      }
     },
-    [levelSlotId, createQuestMapLevelChallengeMutation, dispatch, video.duration]
+    [levelSlotId, createQuestMapLevelChallengeMutation, dispatch, video?.duration]
   );
 
   const cancelChallenge = useCallback(
