@@ -1,4 +1,3 @@
-import { Style } from "@styles";
 import React, { FC, memo } from "react";
 import { StyleSheet, View } from "react-native";
 import Markdown from "@components/molecules/markdown/markdown";
@@ -15,11 +14,7 @@ export const Copy: FC<Props> = memo(({ title, description, styles: serverStyles 
   return (
     <View style={mapServerStyles(serverStyles)}>
       <View style={styles.wrapper}>
-        {!title ? null : (
-          <View style={styles.titleWrapper}>
-            <Markdown text={title} />
-          </View>
-        )}
+        {!title ? null : <Markdown text={title} />}
         {!description ? null : <Markdown text={description} />}
       </View>
     </View>
@@ -29,8 +24,5 @@ export const Copy: FC<Props> = memo(({ title, description, styles: serverStyles 
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
   },
-  titleWrapper: { marginBottom: Style.adjust(8) },
 });

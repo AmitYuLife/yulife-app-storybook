@@ -62,9 +62,11 @@ export const BoxOptionCard = ({
             {!description ? null : <TextTemplate type={descriptionTextType}>{description}</TextTemplate>}
           </View>
         </View>
-        <View style={styles.arrowWrapper}>
-          <ArrowIcon color={Colours.primary.p600} />
-        </View>
+        {!onPress ? null : (
+          <View style={styles.arrowWrapper}>
+            <ArrowIcon color={Colours.primary.p600} />
+          </View>
+        )}
       </View>
     </BoxOption>
   );
