@@ -78,6 +78,7 @@ export const YuScreen = memo(({ componentId }: Props) => {
         yumojiPrompt={yumojiPrompt}
       />
       {!enrolTimer ? null : <EnrolmentTimer {...enrolTimer} />}
+      {!enrollCopy ? null : <Copy {...enrollCopy} />}
       {!boxOptionCards?.length ? null : (
         <View style={styles.boxOptionCardWrapper}>
           {boxOptionCards.map((boxOptionCard, boxOptionCardIndex) => (
@@ -86,7 +87,6 @@ export const YuScreen = memo(({ componentId }: Props) => {
         </View>
       )}
       {productCarousel ? <Carousel heading={productCarousel.heading} items={productCarousel.items} /> : null}
-      {!enrollCopy ? null : <Copy {...enrollCopy} />}
       {carrierLogo ? (
         <View style={styles.carrierLogoWrapper}>
           <Image source={carrierLogo.image} width={carrierLogo.width} />

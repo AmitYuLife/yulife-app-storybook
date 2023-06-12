@@ -57,7 +57,7 @@ const BoxOption = memo(
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
         onPress={debounce ? handlePress : onPress}
-        disabled={disabled}
+        disabled={disabled || !onPress}
       >
         <View style={StyleSheet.flatten([styles.wrapper, { height: totalHeight }, wrapperStyle])}>
           {!showShadow ? null : <View style={styles.shadowWrapper} />}
