@@ -4,9 +4,10 @@ import { appStateChannel } from "../../app/app.channels";
 import { getActiveLevel } from "../../levels/levels.selectors";
 import getUserDataSaga from "./getUserData.saga";
 import getUserActiveStreakSaga from "./getUserActiveStreak.saga";
+import { setAuthenticated } from "../../app/app.actions";
 
-export default function* fetchUserOnAppStateChangeSaga(isLogin?: boolean) {
-  if (!isLogin) {
+export default function* fetchUserOnAppStateChangeSaga({ payload }: ReturnType<typeof setAuthenticated>) {
+  if (!payload) {
     yield call(getUserDataSaga);
   }
 
