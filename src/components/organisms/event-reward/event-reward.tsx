@@ -2,9 +2,9 @@ import { t } from "@locale";
 import { useDispatch } from "react-redux";
 import LottieView from "lottie-react-native";
 import Svg, { Circle } from "react-native-svg";
-import { Animated, StyleSheet, Vibration, View } from "react-native";
+import { StyleSheet, Vibration, View } from "react-native";
 import React, { memo, useRef, useMemo, useEffect, useCallback, useState } from "react";
-import { useAnimatedStyle, useSharedValue, withTiming, withSequence } from "react-native-reanimated";
+import Animated, { useAnimatedStyle, useSharedValue, withTiming, withSequence } from "react-native-reanimated";
 
 import { Colours, Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
@@ -30,6 +30,9 @@ const REWARD_PADDING = Style.adjust(4);
 const REWARD_SIZE = CIRCLE_SIZE - 2 * STROKE_WIDTH - 2 * REWARD_PADDING;
 const CIRCLE_RADIUS = (CIRCLE_SIZE - STROKE_WIDTH) / 2;
 const CIRCLE_CIRCUMFERENCE = CIRCLE_RADIUS * 2 * Math.PI;
+
+const IMAGE_SIZE = 72;
+const IMAGE_TRANSFORM_SCALE = Style.adjust(IMAGE_SIZE / 2);
 
 const INFO_VIEW_HEIGHT_WIDTH = Style.adjust(22);
 
@@ -85,7 +88,7 @@ const EventReward = ({
 
   const dispatch = useDispatch();
   const questionMarkRef = useRef<View>();
-  const scaleAnimationRef = useSharedValue<number>(0);
+  const scaleAnimationRef = useSharedValue<number>(1);
   const explosionAnimationRef = useRef<LottieView>(null);
   const [initialStatus] = useState<GoalRewardStatus>(status);
   const [delayedStatus, setDelayedStatus] = useState<GoalRewardStatus>(status);
@@ -118,7 +121,8 @@ const EventReward = ({
       explosionAnimationRef.current?.play();
       scaleAnimationRef.value = withSequence(
         withTiming(1, { duration: SCALE_ANIMATION_DURATION }),
-        withTiming(0, { duration: SCALE_ANIMATION_DURATION })
+        withTiming(1.1, { duration: SCALE_ANIMATION_DURATION }),
+        withTiming(1, { duration: SCALE_ANIMATION_DURATION })
       );
     }
   }, [isRewardDelayedStatusClaimed, scaleAnimationRef, delayedStatus, initialStatus]);
@@ -164,7 +168,10 @@ const EventReward = ({
   }, [animated, isRewardDelayedStatusCompleted]);
 
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: scaleAnimationRef.value }],
+    transform: [
+      { translateY: IMAGE_TRANSFORM_SCALE - scaleAnimationRef.value * IMAGE_TRANSFORM_SCALE },
+      { scale: scaleAnimationRef.value },
+    ],
   }));
 
   const wrapperStyle = useMemo(() => {
@@ -236,18 +243,18 @@ const EventReward = ({
             <Animated.View style={imageWrapperStyle}>
               <Image
                 style={styles.image}
-                width={Style.adjust(72)}
+                width={Style.adjust(IMAGE_SIZE)}
                 suppressLoadingUi={true}
-                height={Style.adjust(72)}
+                height={Style.adjust(IMAGE_SIZE)}
                 source={{ uri: itemBackgroundUri }}
               />
               {shineAnimation}
               <Image
                 style={styles.image}
                 suppressLoadingUi={true}
-                width={Style.adjust(72)}
+                width={Style.adjust(IMAGE_SIZE)}
                 source={{ uri: itemUri }}
-                height={Style.adjust(72)}
+                height={Style.adjust(IMAGE_SIZE)}
               />
             </Animated.View>
           </View>
