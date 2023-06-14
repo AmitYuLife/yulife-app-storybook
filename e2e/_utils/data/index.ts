@@ -68,4 +68,7 @@ export * from "./mongo/game_sudoku_stats"
 export * from "./mongo/user_leaderboards"
 export * from "./mongo/user_coin_transactions"
 export * from "./mongo/user_challenge_history"
-
+export * from "./mongo/social_groups"
+export * from "./mongo/social_group_leaderboards"
+export * from "./mongo/user_social_leaderboard_enrolments"
+export * from "./mongo/user_social_leaderboard_scores"

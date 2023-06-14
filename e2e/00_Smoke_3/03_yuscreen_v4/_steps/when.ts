@@ -141,6 +141,8 @@ export const addContactDetails = async () => {
 };
 
 export const addWronMinimumContactDetails = async () => {
+  await clearFieldByID(CONTENT_ITEM_INPUT("firstName"))()
+  await clearFieldByID(CONTENT_ITEM_INPUT("lastName"))()
   await typeViaID(CONTENT_ITEM_INPUT("firstName"), "E\n")();
   await typeViaID(CONTENT_ITEM_INPUT("lastName"), "G\n")();
   await typeViaID(CONTENT_ITEM_INPUT("address1"), "Eugene's House\n")();

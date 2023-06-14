@@ -16,6 +16,5 @@ export const BPEW_11 = {
         enrolment_start_date : moment().subtract(7, 'd').format("YYYY-MM-DD"),
         enrolment_end_date : moment().add(7, 'd').format("YYYY-MM-DD"),
         enrolment_type : "main",
-        selection_change_allowed : false,
     },
 }; 

@@ -34,7 +34,6 @@ export const YuScreen = memo(({ componentId }: Props) => {
   const [onboardingDismissed, dismissOnboarding] = useOnboardingDismissalHandler(onboarding?.id);
   const showOnboarding = !!onboarding && !onboardingDismissed;
   useStatusBarStyle(componentId, showOnboarding);
-
   if (!data?.getYuScreen || earnRate === null) {
     return (
       <YuScreenLayout>

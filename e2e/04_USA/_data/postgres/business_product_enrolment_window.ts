@@ -16,7 +16,6 @@ export const BPEEW_USA_1 = {
         "enrolment_start_date" : moment().subtract(1, "month").format("YYYY-MM-DD"),
         "enrolment_end_date" :  moment().add(1, "month").format("YYYY-MM-DD"),
         "enrolment_type" : "main",
-        "selection_change_allowed" : false,
     }
 }
 
@@ -29,7 +28,6 @@ export const BPEEW_USA_2 = {
         "enrolment_start_date" : moment().subtract(1, "month").format("YYYY-MM-DD"),
         "enrolment_end_date" :  moment().add(1, "month").format("YYYY-MM-DD"),
         "enrolment_type" : "main",
-        "selection_change_allowed" : false,
     }
 }
 
@@ -42,6 +40,5 @@ export const BPEEW_USA_3 = {
         "enrolment_start_date" : moment().subtract(1, "month").format("YYYY-MM-DD"),
         "enrolment_end_date" :  moment().add(1, "month").format("YYYY-MM-DD"),
         "enrolment_type" : "main",
-        "selection_change_allowed" : false,
     }
 }

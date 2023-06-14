@@ -525,6 +525,17 @@ export const BUSINESS_EMPLOYEE_43 = {
         employment_leave_date: moment().add(11, "years").toDate()
     }
 } as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_44 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
+        customer_id: customer.CUSTOMER_44.data.customerId,
+        employment_start_date: moment().subtract(12, "months").toDate(),
+        employment_leave_date: moment().add(11, "years").toDate()
+    }
+} as IDatabaseItem
         
 export const BUSINESS_EMPLOYEE_PLI_2 = {
     type,
@@ -757,6 +768,17 @@ export const BUSINESS_EMPLOYEE_68 = {
     }
 } as IDatabaseItem
 
+export const BUSINESS_EMPLOYEE_70 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
+        customer_id: customer.CUSTOMER_70.data.customerId,
+        employment_start_date: moment().subtract(8, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
 export const BUSINESS_EMPLOYEE_71 = {
     type: "postgres",
     modelName: "business_employee",
@@ -835,6 +857,17 @@ export const BUSINESS_EMPLOYEE_77 = {
     }
 } as IDatabaseItem;
 
+export const BUSINESS_EMPLOYEE_78 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
+        customer_id: customer.CUSTOMER_78.data.customerId,
+        employment_start_date: moment().subtract(3, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem;
+
 export const BUSINESS_EMPLOYEE_84 = {
     type: "postgres",
     modelName: "business_employee",
@@ -856,6 +889,17 @@ export const BUSINESS_EMPLOYEE_FIIT = {
         employment_leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_85 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
+        customer_id: customer.CUSTOMER_85.data.customerId,
+        employment_start_date: moment().subtract(8, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
     
 export const BUSINESS_EMPLOYEE_86 = {
     type: "postgres",
@@ -867,7 +911,17 @@ export const BUSINESS_EMPLOYEE_86 = {
         employment_leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
-    
+
+export const BUSINESS_EMPLOYEE_90 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
+        customer_id: customer.CUSTOMER_90.data.customerId,
+        employment_start_date: moment().subtract(3, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem;
     
 export const BUSINESS_EMPLOYEE_FUTURE_PRODUCT = {
     type: "postgres",
@@ -885,7 +939,7 @@ export const BUSINESS_EMPLOYEE_LEAVER = {
     type: "postgres",
     modelName: "business_employee",
     data: {
-        business_account_id: BUSINESS_ACCOUNT_3.data.business_account_id,
+        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
         customer_id: customer.CUSTOMER_LEAVER.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().subtract(10, "weeks").toDate()
@@ -946,3 +1000,103 @@ export const BUSINESS_EMPLOYEE_93 = {
         employment_leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_DENTAL = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
+        customer_id: customer.CUSTOMER_DENTAL_1.data.customerId,
+        employment_start_date: moment().subtract(8, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_DENTAL_2 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
+        customer_id: customer.CUSTOMER_DENTAL_2.data.customerId,
+        employment_start_date: moment().subtract(8, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_PLI_3 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
+        customer_id: customer.CUSTOMER_PLI_3.data.customerId,
+        employment_start_date: moment().subtract(8, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_PLI_4 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
+        customer_id: customer.CUSTOMER_PLI_4.data.customerId,
+        employment_start_date: moment().subtract(8, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_PLI_5 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
+        customer_id: customer.CUSTOMER_PLI_5.data.customerId,
+        employment_start_date: moment().subtract(8, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_PLI_6 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
+        customer_id: customer.CUSTOMER_PLI_6.data.customerId,
+        employment_start_date: moment().subtract(8, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_PLI_7 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
+        customer_id: customer.CUSTOMER_PLI_7.data.customerId,
+        employment_start_date: moment().subtract(8, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_PLI_9 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
+        customer_id: customer.CUSTOMER_PLI_9.data.customerId,
+        employment_start_date: moment().subtract(8, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_PLI_10 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
+        customer_id: customer.CUSTOMER_PLI_10.data.customerId,
+        employment_start_date: moment().subtract(8, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+

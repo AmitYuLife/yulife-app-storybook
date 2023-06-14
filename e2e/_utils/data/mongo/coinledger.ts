@@ -901,3 +901,16 @@ export const COIN_LEDGER_92 = {
         currentLevel: 399
     }
 } as IDatabaseItem
+
+export const COIN_LEDGER_LEAVER = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_LEAVER.data.customerId,
+        userId: customer.CUSTOMER_LEAVER.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 399
+    }
+} as IDatabaseItem
