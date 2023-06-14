@@ -5,7 +5,7 @@ import { BUSINESS_EMPLOYEE_55, BUSINESS_EMPLOYEE_67, BUSINESS_EMPLOYEE_68, BUSIN
 import { CUSTOMER_84 } from "../postgres/customers";
 import { USER_55, USER_67, USER_68, USER_71 } from "./users";
 
-export const SUDOKU_ANSWER_1 = {
+export const SUDOKU_ANSWER_71 = {
     type: "mongo",
     modelName: "sudokuanswers",
     data: {
@@ -22,7 +22,7 @@ export const SUDOKU_ANSWER_1 = {
       }
 }
 
-export const SUDOKU_ANSWER_2 = {
+export const SUDOKU_ANSWER_68 = {
     type: "mongo",
     modelName: "sudokuanswers",
     data: {
@@ -39,7 +39,7 @@ export const SUDOKU_ANSWER_2 = {
       }
 }
 
-export const SUDOKU_ANSWER_3 = {
+export const SUDOKU_ANSWER_67 = {
     type: "mongo",
     modelName: "sudokuanswers",
     data: {

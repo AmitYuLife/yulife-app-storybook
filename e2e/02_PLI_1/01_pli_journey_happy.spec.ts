@@ -88,7 +88,7 @@ Feature("PLI HAPPY", async () => {
       Given("I login as a user with Covea FIB enabled", given.logInAndGoToTab("yu", CUSTOMER_44, AUTH_44), async () => {
         helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "1");
         helper_V4.YUSCREEN_V4(CUSTOMER_44, "dentalAndPli", "1");
-        helper_V4.CREATE_DEFAULT_YUMOJI(300);
+        helper_V4.CREATE_DEFAULT_YUMOJI(520);
         helper_V4.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live");
         helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
         helper.ONBOARDING();

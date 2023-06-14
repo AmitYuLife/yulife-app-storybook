@@ -23,7 +23,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_44, AUTH_44), async () => {
             helper.ONBOARDING_YUSCREEN("dentalAndPli", "1")
             helper.YUSCREEN_V4(CUSTOMER_44, "dentalAndPli", "1")
-            helper.CREATE_DEFAULT_YUMOJI(300);
+            helper.CREATE_DEFAULT_YUMOJI(520);
             helper.YUCOIN_POWER_CHECK(CUSTOMER_44, 1)
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live")
             helper.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");

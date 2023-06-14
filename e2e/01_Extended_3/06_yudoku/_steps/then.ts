@@ -1,7 +1,7 @@
 import { idNotVisible, navigation, textNotVisible } from "@navigation";
 import { todaysDate } from "./constants";
 import { CHALLENGE_SET_SCROLL, LEADERBOARD_NAME, LEVEL_SUMMARY_YUDOKU_LEADERBOARD, RANK, SCORE, SUDOKU_HOWTOPLAY_BUTTON, SUDOKU_JOINLEADERBOARD_BUTTON, SUDOKU_LEADERBOARD, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, TAKE_A_CHALLENGE_LEFT_BUTTON, TODAYS_EARNINGS} from "@ids"
-import { CUSTOMER_1, CUSTOMER_86, SUDOKU_ANSWER_1 } from "@data";
+import { CUSTOMER_1, CUSTOMER_86, SUDOKU_ANSWER_71 } from "@data";
 import { getDuration } from "@socket";
 import { SUDOKU_STAT_0, SUDOKU_STAT_1 } from "_utils/data/mongo/game_sudoku_stats";
 
@@ -40,11 +40,11 @@ export const amOnLeaderboardIntroModal = async () => {
 }
 
 export const canSeeStartPrompt = async () => {
-  await textVisible("Complete a Yudoku and be the first on the leaderboard today!")
+  await textVisible("Complete a Yudoku and be the first on the leaderboard today!")()
 }
 
 export const canSeeEmptyLeaderboard = async () => {
-  await textVisible("Complete a Yudoku and be the first on the leaderboard today!")
+  await textVisible("Complete a Yudoku and be the first on the leaderboard today!")()
 }
 
 export const amOnSudokuChallenge = async () => {
@@ -93,7 +93,7 @@ export const onSudokuSummaryScreen = (hintsNum: number, mistakesNum: number, cus
   await textVisible("You can only do one Yudoku per day.\nCome back tomorrow!")()
 }
 
-export const canSeeLeaderboard = (user: typeof CUSTOMER_86, answer: typeof SUDOKU_ANSWER_1, rank: number, isOnHomeScreen = false) => async () => {
+export const canSeeLeaderboard = (user: typeof CUSTOMER_86, answer: typeof SUDOKU_ANSWER_71, rank: number, isOnHomeScreen = false) => async () => {
   const time = getDuration(answer.data.adjustedTime)
 
   if (isOnHomeScreen) {
