@@ -50,6 +50,7 @@ const YuniversityCoursesContainer = ({ popTo }: IProps) => {
           passProps: {
             moduleId: moduleSlug,
             courseId: courseSlug,
+            popTo,
           },
         },
       });

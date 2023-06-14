@@ -16,10 +16,11 @@ import { getCurrentLevel } from "@redux/levels/levels.selectors";
 interface IProps {
   moduleId: string;
   courseId: string;
+  popTo?: string;
 }
 
-const CourseDetailsContainer = ({ moduleId, courseId }: IProps) => {
-  const onClose = useCallback(() => Navigation.popTo(ROUTES.wellbeingHubItems), []);
+const CourseDetailsContainer = ({ moduleId, courseId, popTo }: IProps) => {
+  const onClose = useCallback(() => Navigation.popTo(popTo || ROUTES.wellbeingHubItems), []);
   const onBackPress = useCallback(() => Navigation.pop(ROUTES.courseDetails), []);
 
   const dispatch = useDispatch();
