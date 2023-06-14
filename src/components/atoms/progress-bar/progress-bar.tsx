@@ -100,7 +100,7 @@ const ProgressBar = ({ isDisabled, width, current, max, milestones = [], type = 
   const adjustedWidth = useMemo(() => fullWidth + 10, [fullWidth]);
   const svgStyle = useMemo(() => ({ top: -1, left: -1 }), []);
 
-  const progress = useMemo(() => current / max, [current, max]);
+  const progress = useMemo(() => (current > max ? max : current) / max, [current, max]);
   const viewBox = useMemo(() => `0 0 ${adjustedWidth} ${adjustedHeight}`, [adjustedWidth, adjustedHeight]);
   const progressWidth = useMemo(
     () => Math.max(progress * fullWidth, rectBorderRadius * 2),
