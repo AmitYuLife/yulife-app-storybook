@@ -740,6 +740,11 @@ export interface ContentItem_ContentItemWrapper_styles {
   value: string;
 }
 
+export interface ContentItem_ContentItemWrapper_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface ContentItem_ContentItemWrapper {
   __typename: "ContentItemWrapper";
   id: string;
@@ -750,6 +755,10 @@ export interface ContentItem_ContentItemWrapper {
    * Supported RN version 3.85.0
    */
   absolute: string | null;
+  /**
+   * Supported RN version 3.86.0
+   */
+  onPress: ContentItem_ContentItemWrapper_onPress | null;
 }
 
 export interface ContentItem_ContentItemInfoCard_image {

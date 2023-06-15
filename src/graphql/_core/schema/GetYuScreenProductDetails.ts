@@ -526,6 +526,11 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   value: string;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemWrapper_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemWrapper {
   __typename: "ContentItemWrapper";
   id: string;
@@ -536,6 +541,10 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
    * Supported RN version 3.85.0
    */
   absolute: string | null;
+  /**
+   * Supported RN version 3.86.0
+   */
+  onPress: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemWrapper_onPress | null;
 }
 
 export type GetYuScreenProductDetails_getYuScreenProductDetails_body =
