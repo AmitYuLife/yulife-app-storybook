@@ -849,13 +849,17 @@ workflows:
             # debug log
             set -x
 
-            npm install -g detox-cli
+            # Install ruby version
+            cd ios
+            rbenv install
+            rbenv global $(cat .ruby-version)
+
+            # Install node version
             brew uninstall --force yarn
+            . $HOME/.nvm/nvm.sh
+            cd ..
             npm i -g yarn
-            yarn
-            # bundle install
-            # cd ios && bundle exec pod install && cd ..
-            # yarn detox:build -c ios.sim.release
+            yarn install --frozen-lockfile
     - cocoapods-install@2:
         inputs:
         - verbose: "true"
@@ -1826,10 +1830,6 @@ workflows:
     before_run:
     - ios-git-checkout
     steps:
-    - script@1:
-        title: Check node version
-        inputs:
-        - content: node -v
     - nvm@1:
         inputs:
         - node_version: 16.19.0
@@ -1872,12 +1872,18 @@ workflows:
             set -x
 
             yarn install --frozen-lockfile
-    - cocoapods-install@2: {}
-    - script@1.2:
-        title: yarn build
+    - script@1:
+        title: Install Ruby Version (rbenv)
         inputs:
-        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug
-            log\nset -x\n#bundle install \n#cd ios && bundle exec pod install"
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -ex
+
+            cd ios
+            rbenv install
+            rbenv global $(cat .ruby-version)
+    - cocoapods-install@2.3: {}
     - script@1.2:
         title: Set version code
         is_always_run: true
@@ -1902,15 +1908,7 @@ workflows:
             # debug log
             set -x
 
-            # write your script here
-            echo "FIRST"
-
             cat ios/YuLife/Info.plist
-
-            # or run a script from your repository, like:
-            # bash ./path/to/script.sh
-            # not just bash, e.g.:
-            # ruby ./path/to/script.rb
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
