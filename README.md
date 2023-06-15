@@ -335,6 +335,12 @@ const persistConfig = {
 };
 ```
 
+## Translations
+
+Translations can be found in `src/locale/translations` if you are using VScode you can install
+
+[i18n Ally](https://marketplace.visualstudio.com/items?itemName=lokalise.i18n-ally) which will help show what the translations are without having to flip back to the translation files.
+
 ## Debugging
 
 You can use the react native debugger.
