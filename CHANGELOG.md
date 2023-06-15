@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.86.0] - 2023-06-15
+
+### Features
+
+- Feature XSE-1932: US YuScreen
+
+### Bugfixes
+
+- Bugfix: Yuniversity certificate saving
+- Bugfix: Yuniversity Courses details popTo
+- Bugfix: fix event reanimated crash
+- Bugfix: Trigger getUserDataSaga on fetchUserOnAppStateChangeSaga if is not a login action
+- Bugfix ENG-3396: Duration of undefined on createChallenge
+- Bugfix: Sudoku reanimated animation freeze
+
+### Tasks
+
+- Task/XSE-1985: GHI reward progression UI
+- Task DEVOP-1120: Install Ruby EOL version on bitrise
+- Task: Guard ProgressBar atom's progress to not exceed 100% progress
+- Task: Implement disabled state for events
+
+### Chores
+
+- Chore: Extending contentItemWrapper params with absolute configuration
+
+### Extra
+
+- (refs/pipelines/901302689) Detox: add SA run to overnight run
+- Detox: Fixes 15th June
+- ISA-751: Enable i18n ally plugin for project
+- Detox: added user game state collections
+- Detox: Fixes 13th June
+
 ## [3.85.0] - 2023-06-07
 
 ### Bugfixes
