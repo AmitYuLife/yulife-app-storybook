@@ -147,7 +147,7 @@ Feature("PLI HAPPY", async () => {
         helper.COVER_SELECT_PERCENTAGE("50%");
         helper.COVER_STYLE_SELECTION("rare", "50%", "£12.59", "£1,041.67");
         helper.CHECKOUT(true, "Rare");
-        helper.REVIEW_V4_YUSCREEN(1300, "10");
+        helper.REVIEW_V4_YUSCREEN(1520, "10");
       });
     }
   );
