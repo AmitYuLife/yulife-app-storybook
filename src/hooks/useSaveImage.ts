@@ -44,7 +44,14 @@ export function useSaveImage() {
       try {
         setReady(false);
 
-        const result = await check(WRITE_PERMISSION);
+        let result = await check(WRITE_PERMISSION);
+
+        // In Android 11 (API 30) WRITE_EXTERNAL_STORAGE does not provide any additional functionality
+        // and its permission request will always be blocked when checked
+        // https://stackoverflow.com/questions/73620790/android-13-how-to-request-write-external-storage
+        if (Platform.OS === "android" && Platform.Version >= 30) {
+          result = RESULTS.GRANTED;
+        }
 
         switch (result) {
           case RESULTS.UNAVAILABLE:
