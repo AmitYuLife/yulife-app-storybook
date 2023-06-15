@@ -219,7 +219,7 @@ Feature("End of the world/Yuniverse", async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 When("I tap done", when.tapText("Done"), async () => {
                     Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
-                    Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(18406)))
+                    Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(18626)))
                 })
             })
         })
@@ -235,7 +235,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("brisk walk", 800), async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
-                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(18436)))
+                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(18656)))
             })
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
@@ -250,7 +250,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I complete a long walk challenge at level 201", when.selectAndCompleteWalkingChallenge("long walk", 2000), async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
-                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(18466)))
+                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(18686)))
             })
         })
         When("I go to yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
@@ -266,7 +266,7 @@ Feature("End of the world/Yuniverse", async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 Then("I should see the level 201 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
                 Then("I should see level 201 has 3 stars", then.idVisible(LEVEL_STAR_COUNT(3)))
-                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(18478)))
+                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(18698)))
             })
         })
         When("I tap level 201", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {

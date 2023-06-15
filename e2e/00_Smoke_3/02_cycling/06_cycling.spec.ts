@@ -61,8 +61,8 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
             Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(2000, 0.2))
             Then("I should see Claim available for the first milestone", then.claimVisible(1))
         })
-        When("I click Claim", when.tapText("Claim"), async () => {
-            Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("50", 1, "2km cycled"))
+        When("I click Claim rewards CTA", when.tapText("Claim rewards"), async () => {
+            Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("50", 1))
         })
         When("I click Claim", when.tapText("Claim"), async () => {
             When("I wait", when.wait(5000), async () => {
@@ -87,8 +87,8 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
             Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(5000, 0.5))
             Then("I should see Claim available for the first milestone", then.claimVisible(2))
         })
-        When("I click Claim", when.tapText("Claim"), async () => {
-            Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("100", 2, "5km cycled"))
+        When("I click Claim", when.tapText("Claim rewards"), async () => {
+            Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("100", 2))
         })
         When("I click Claim", when.tapText("Claim"), async () => {
             When("I wait", when.wait(5000), async () => {
@@ -110,7 +110,7 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
             })
         })
         When("I click on the event challenge 10,000 rides", when.tapChallenge("5,000 / 10,000 rides"), async () => {
-            Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("150", 3, "10km cycled"))
+            Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("150", 3))
         })
         When("I click Claim", when.tapText("Claim"), async () => {
             When("I wait", when.wait(5000), async () => {

@@ -95,7 +95,7 @@ export const claimVisible = (numOfStars: number) => async () => {
     await idVisible(NUM_OF_STARS(numOfStars))()
 }
 
-export const onCompletedEventMilestonePage = (yuCoin: string, numOfStars: number, challengeType: string) => async () => {
+export const onCompletedEventMilestonePage = (yuCoin: string, numOfStars: number) => async () => {
     const eventTitle = `${GOALS_3.data.title} event`
 
     await textVisible(eventTitle)()
@@ -104,7 +104,6 @@ export const onCompletedEventMilestonePage = (yuCoin: string, numOfStars: number
     await textVisible(`${yuCoin} YuCoin`)() 
     await idVisible(ANIMATED_CIRCLE("#F43E8E"))()
     await idVisible(NUM_OF_STARS(numOfStars))()
-    await textVisible(challengeType)()
     await buttonVisible("Claim")()
 }
 
@@ -129,7 +128,7 @@ export const allChallengesCompleteVisible = async () => {
     await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), 0)()
     await idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), 1)() 
     await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), 1)()
-    await swipeFromText("5km cycled", "left", "fast")()
+    await swipeFromText("100 YuCoin", "left", "fast")()
     await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), 2)()
     await idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), 2)() 
 }
