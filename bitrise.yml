@@ -924,6 +924,11 @@ workflows:
         inputs:
         - workflows: ios-detox-run-iphone-14-pro-usa-70
         - access_token: $BITRISE_API_TOKEN
+    - build-router-start@0:
+        title: 'Run detox tests: iPhone 14 Pro SA'
+        inputs:
+        - workflows: ios-detox-run-iphone-14-pro-sa-70
+        - access_token: $BITRISE_API_TOKEN
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
