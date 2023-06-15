@@ -748,6 +748,11 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemWrapper_styles {
   value: string;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemWrapper_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetSduiJourney_getSduiJourney_body_ContentItemWrapper {
   __typename: "ContentItemWrapper";
   id: string;
@@ -758,6 +763,10 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemWrapper {
    * Supported RN version 3.85.0
    */
   absolute: string | null;
+  /**
+   * Supported RN version 3.86.0
+   */
+  onPress: GetSduiJourney_getSduiJourney_body_ContentItemWrapper_onPress | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_body_ContentItemInfoCard_image {
@@ -1567,6 +1576,11 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper_
   value: string;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper {
   __typename: "ContentItemWrapper";
   id: string;
@@ -1577,6 +1591,10 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper 
    * Supported RN version 3.85.0
    */
   absolute: string | null;
+  /**
+   * Supported RN version 3.86.0
+   */
+  onPress: GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper_onPress | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard_image {
