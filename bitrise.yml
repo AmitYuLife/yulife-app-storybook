@@ -41,22 +41,18 @@ meta:
 trigger_map:
 - push_branch: develop
   pipeline: pipeline-develop
-- push_branch: task/devop-967
-  pipeline: pipeline-develop
 - push_branch: release/*
   pipeline: pipeline-release-uat
-- push_branch: master
-  workflow: android-UAT
 - push_branch: release/**
   workflow: ios-detox-build-70
 - push_branch: upgrade/*
-  workflow: ios-develop-70
+  workflow: ios-develop
 - tag: test-branch*
   pipeline: pipeline-test-branch
 - tag: release*
   pipeline: pipeline-release-prod
 - tag: android-release*
-  workflow: android-production-62
+  workflow: android-production
 pipelines:
   pipeline-develop:
     stages:
@@ -73,136 +69,24 @@ pipelines:
 stages:
   stage-develop:
     workflows:
-    - ios-develop-70: {}
-    - android-develop-62: {}
+    - ios-develop: {}
+    - android-develop: {}
   stage-release-prod:
     workflows:
-    - android-production-62: {}
-    - ios-production-70: {}
+    - android-production: {}
+    - ios-production: {}
   stage-release-uat:
     workflows:
-    - ios-UAT-70: {}
-    - android-UAT-62: {}
+    - ios-UAT: {}
+    - android-UAT: {}
   stage-test-branch:
     workflows:
-    - android-develop-62: {}
-    - ios-develop-70: {}
+    - android-develop: {}
+    - ios-develop: {}
 workflows:
   android-UAT:
     before_run:
     - android-primary
-    envs:
-    - RELEASE_ENVIRONMENT: uat
-    - ENVFILE: .env.uat
-    - BUNDLE_OUTPUT_FOLDER: uat
-      opts:
-        is_expand: false
-    steps:
-    - install-missing-android-tools: {}
-    - gradle-runner:
-        inputs:
-        - gradle_file: $GRADLE_BUILD_FILE_PATH
-        - gradle_task: assembleUat -PsplitApks
-        - gradlew_path: $GRADLEW_PATH
-    - sign-apk@1.2.0:
-        inputs:
-        - apk_path: $BITRISE_APK_PATH_LIST
-    - script@1.1.5:
-        title: Remove unsigned apks
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            find $BITRISE_DEPLOY_DIR -name '*-unsigned.apk' -type f -size -100M -delete
-    - deploy-to-bitrise-io:
-        inputs:
-        - notify_email_list: test@yulife.com
-        - public_install_page_url_map_format: '{{range $index, $element := .}}{{printf
-            "%s|%s\n" $element.File $element.URL}}{{end}}'
-        - notify_user_groups: admins, testers
-    - slack@3.1.2:
-        title: Build message
-        is_always_run: false
-        inputs:
-        - channel: '#alerts-engineering'
-        - from_username: UAT Build Succeeded
-        - from_username_on_error: UAT Build Failed
-        - emoji: ':android-icon:'
-        - emoji_on_error: ':android-icon:'
-        - icon_url: ""
-        - pretext: Ready for regression test!
-        - footer: yulife
-        - footer_icon: https://join.yulife.com/static/favicon.png
-        - fields: |
-            Branch|${BITRISE_GIT_BRANCH}
-            Workflow|${BITRISE_TRIGGERED_WORKFLOW_ID}
-        - channel_on_error: '#engineering-alerts'
-        - icon_url_on_error: ""
-        - pretext_on_error: ""
-        - buttons: |-
-            View Build|${BITRISE_BUILD_URL}
-            ${BITRISE_PUBLIC_INSTALL_PAGE_URL_MAP}
-        - webhook_url: $SLACK_WEBHOOK_URL
-    - script@1.1.4:
-        title: Install CodePush CLI
-        inputs:
-        - content: |-
-            #!/bin/bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            # write your script here
-            echo "Installing yarn"
-
-            # or run a script from your repository, like:
-            # bash ./path/to/script.sh
-            # not just bash, e.g.:
-            # ruby ./path/to/script.rb
-
-            # install Yarn
-            npm install -g code-push-cli
-    - script@1.1.4:
-        title: CodePush Auth
-        inputs:
-        - content: |-
-            #!/bin/bash
-
-            code-push login --accessKey $CODEPUSH_ACCESS_KEY
-    - script@1.1.4:
-        title: CodePush Deploy
-        inputs:
-        - content: |-
-            #!/bin/bash
-            echo $GIT_CLONE_COMMIT_HASH
-            code-push release-react YuLife-android android  --noDuplicateReleaseError --description "$GIT_CLONE_COMMIT_MESSAGE_SUBJECT"
-    - slack@2.6.2:
-        title: CodePush Message
-        is_always_run: false
-        inputs:
-        - message_on_error: 'Click here to find out why the build failed: $BITRISE_BUILD_URL'
-        - message: |-
-            New Android version available! (UAT)
-
-            Install it from here:
-            $BITRISE_PUBLIC_INSTALL_PAGE_URL
-        - channel: '#alerts-engineering'
-        - from_username: UAT CodePush Deploy Succeeded
-        - from_username_on_error: UAT CodePush Deploy Build Failed
-        - emoji: ':android-icon:'
-        - emoji_on_error: ':android-icon:'
-        - webhook_url: https://hooks.slack.com/services/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
-    meta:
-      bitrise.io:
-        stack: osx-vs4mac-stable
-  android-UAT-62:
-    before_run:
-    - android-primary-62
     after_run:
     - android-upload-bugsnag-mappings
     envs:
@@ -227,7 +111,7 @@ workflows:
         inputs:
         - use_apk_signer: "true"
         - apk_path: $BITRISE_APK_PATH_LIST
-    - script@1.1:
+    - script@1.2:
         title: Remove unsigned apks
         inputs:
         - content: |-
@@ -273,115 +157,6 @@ workflows:
   android-develop:
     before_run:
     - android-primary
-    envs:
-    - RELEASE_ENVIRONMENT: develop
-    - ENVFILE: .env.develop
-    - BUNDLE_OUTPUT_FOLDER: release
-      opts:
-        is_expand: false
-    steps:
-    - install-missing-android-tools: {}
-    - gradle-runner:
-        inputs:
-        - gradle_file: $GRADLE_BUILD_FILE_PATH
-        - gradle_task: assembleRelease -PsplitApks
-        - gradlew_path: $GRADLEW_PATH
-    - sign-apk@1.2.0:
-        inputs:
-        - apk_path: $BITRISE_APK_PATH_LIST
-    - script@1.1.5:
-        title: Remove unsigned apks
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            echo $BITRISE_DEPLOY_DIR
-            ls $BITRISE_DEPLOY_DIR
-            find $BITRISE_DEPLOY_DIR -name '*-unsigned.apk' -type f -size -100M -delete
-    - deploy-to-bitrise-io:
-        inputs:
-        - notify_email_list: test@yulife.com
-        - public_install_page_url_map_format: '{{range $index, $element := .}}{{printf
-            "%s|%s\n" $element.File $element.URL}}{{end}}'
-        - notify_user_groups: admins, testers
-    - slack@3.1:
-        title: Build message
-        inputs:
-        - channel: '#alerts-engineering'
-        - emoji: ':android-icon:'
-        - from_username: Build Succeeded
-        - pretext: ""
-        - footer: yulife
-        - footer_icon: https://join.yulife.com/static/favicon.png
-        - fields: |
-            Branch|${BITRISE_GIT_BRANCH}
-            Workflow|${BITRISE_TRIGGERED_WORKFLOW_ID}
-        - channel_on_error: '#engineering-alerts'
-        - emoji_on_error: ':android-icon:'
-        - icon_url_on_error: ""
-        - from_username_on_error: Build Failed
-        - pretext_on_error: ""
-        - buttons: ${BITRISE_PUBLIC_INSTALL_PAGE_URL_MAP}
-        - webhook_url: $SLACK_WEBHOOK_URL
-    - script@1.1.4:
-        title: Install CodePush CLI
-        inputs:
-        - content: |-
-            #!/bin/bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            # write your script here
-            echo "Installing yarn"
-
-            # or run a script from your repository, like:
-            # bash ./path/to/script.sh
-            # not just bash, e.g.:
-            # ruby ./path/to/script.rb
-
-            # install Yarn
-            npm install -g code-push-cli
-    - script@1.1.4:
-        title: CodePush Auth
-        inputs:
-        - content: |-
-            #!/bin/bash
-
-            code-push login --accessKey $CODEPUSH_ACCESS_KEY
-    - script@1.1.4:
-        title: CodePush Deploy
-        inputs:
-        - content: |-
-            #!/bin/bash
-            echo $GIT_CLONE_COMMIT_HASH
-            code-push release-react YuLife-android android -d $CODEPUSH_DEPLOYMENT_NAME --noDuplicateReleaseError --description "commit number $BITRISE_GIT_COMMIT" --targetBinaryVersion $CODEPUSH_TARGET_BINARY
-    - slack@2.6.2:
-        title: CodePush Message
-        is_always_run: false
-        inputs:
-        - message_on_error: 'Click here to find out why the build failed: $BITRISE_BUILD_URL'
-        - message: |-
-            Test the changes on the latest build. Click here to download the build: $BITRISE_BUILD_URL
-
-            Install it from here: $BITRISE_PUBLIC_INSTALL_PAGE_URL
-        - channel: '#alerts-engineering'
-        - from_username: CodePush Deploy Succeeded
-        - from_username_on_error: CodePush Deploy Build Failed
-        - emoji: ':android-icon:'
-        - emoji_on_error: ':android-icon:'
-        - webhook_url: https://hooks.slack.com/services/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
-    meta:
-      bitrise.io:
-        stack: osx-vs4mac-stable
-  android-develop-62:
-    before_run:
-    - android-primary-62
     after_run:
     - android-upload-bugsnag-mappings
     envs:
@@ -401,7 +176,7 @@ workflows:
         inputs:
         - use_apk_signer: "true"
         - apk_path: $BITRISE_APK_PATH_LIST
-    - script@1.1:
+    - script@1.2:
         title: Remove unsigned apks
         inputs:
         - content: |-
@@ -447,93 +222,9 @@ workflows:
     meta:
       bitrise.io:
         machine_type: performance
-  android-develop-split:
-    before_run:
-    - android-primary
-    envs:
-    - RELEASE_ENVIRONMENT: develop
-    - ENVFILE: .env.develop
-    steps:
-    - install-missing-android-tools: {}
-    - gradle-runner:
-        inputs:
-        - gradle_file: $GRADLE_BUILD_FILE_PATH
-        - gradle_task: assembleRelease -PsplitApks
-        - gradlew_path: $GRADLEW_PATH
-    - sign-apk@1.2.0:
-        inputs:
-        - apk_path: $BITRISE_APK_PATH_LIST
-    - deploy-to-bitrise-io:
-        inputs:
-        - notify_email_list: test@yulife.com
-        - notify_user_groups: admins, testers
-    - slack@3.1.2:
-        title: Build message
-        inputs:
-        - channel: '#alerts-engineering'
-        - emoji: ':android-icon:'
-        - icon_url: ""
-        - from_username: Build Succeeded
-        - pretext: ""
-        - footer: yulife
-        - footer_icon: https://join.yulife.com/static/favicon.png
-        - fields: |
-            Branch|${BITRISE_GIT_BRANCH}
-            Workflow|${BITRISE_TRIGGERED_WORKFLOW_ID}
-        - channel_on_error: '#engineering-alerts'
-        - emoji_on_error: ':android-icon:'
-        - icon_url_on_error: ""
-        - from_username_on_error: Build Failed
-        - pretext_on_error: ""
-        - buttons: |-
-            View App|${BITRISE_APP_URL}
-            View Build|${BITRISE_BUILD_URL}
-            Install Page|${BITRISE_PUBLIC_INSTALL_PAGE_URL}
-        - webhook_url: $SLACK_WEBHOOK_URL
   android-primary:
     steps:
-    - activate-ssh-key@4:
-        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-    - git-clone:
-        inputs:
-        - reset_repository: "Yes"
-    - npm@1.1:
-        title: npm install
-        inputs:
-        - npm_version: ""
-        - command: ci
-    - install-react-native@0.10:
-        inputs:
-        - version: 9.3.2
-    - npm@1.1.1:
-        title: Build
-        inputs:
-        - npm_version: ""
-        - command: run build
-    - npm@1.1.1:
-        title: Unit Tests
-        inputs:
-        - npm_version: ""
-        - command: run test:unit -- -u --forceExit
-    - codecov@1.1.4:
-        is_always_run: true
-        inputs:
-        - CODECOV_TOKEN: $CODECOV_TOKEN
-    - script@1.1.5:
-        title: Set version code
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            # write your script here
-            node ./scripts/replace-package-versionCodes.js $BITRISE_BUILD_NUMBER
-  android-primary-62:
-    steps:
-    - activate-ssh-key@3.1.1:
+    - activate-ssh-key@4.1:
         run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
     - git-clone:
         inputs:
@@ -587,11 +278,12 @@ workflows:
             set -x
 
             yarn tsc
-    - codecov@1.1:
+    - codecov@3.2:
         is_always_run: true
         inputs:
+        - OS: macos
         - CODECOV_TOKEN: $CODECOV_TOKEN
-    - script@1.1:
+    - script@1.2:
         title: Set version code
         inputs:
         - content: |-
@@ -606,44 +298,6 @@ workflows:
   android-production:
     before_run:
     - android-primary
-    envs:
-    - RELEASE_ENVIRONMENT: production
-    - BUNDLE_ID: com.yulife.app
-      opts:
-        is_expand: false
-    - ENVFILE: .env.production
-      opts:
-        is_expand: false
-    - BUNDLE_OUTPUT_FOLDER: production
-      opts:
-        is_expand: false
-    steps:
-    - install-missing-android-tools: {}
-    - gradle-runner:
-        title: assembleProduction
-        inputs:
-        - gradle_file: $GRADLE_BUILD_FILE_PATH
-        - gradlew_path: $GRADLEW_PATH
-        - gradle_task: assembleProduction -PsplitApks
-    - sign-apk@1.2.0:
-        inputs:
-        - apk_path: $BITRISE_APK_PATH_LIST
-    - deploy-to-bitrise-io: {}
-    - google-play-deploy@3.0.2:
-        inputs:
-        - package_name: $BUNDLE_ID
-        - track: pre-internal
-        - apk_path: $BITRISE_SIGNED_APK_PATH
-        - service_account_json_key_path: $BITRISEIO_SERVICE_ACCOUNT_KEY_URL
-    - git-clone:
-        inputs:
-        - reset_repository: "Yes"
-    meta:
-      bitrise.io:
-        stack: osx-vs4mac-stable
-  android-production-62:
-    before_run:
-    - android-primary-62
     after_run:
     - android-upload-bugsnag-mappings
     envs:
@@ -717,56 +371,6 @@ workflows:
   ios-UAT:
     before_run:
     - ios-primary
-    envs:
-    - BITRISE_SCHEME: uat
-    - ENVFILE: .env.uat
-      opts:
-        is_expand: false
-    - BITRISE_PROJECT_PATH: ios/YuLife.xcodeproj
-      opts:
-        is_expand: false
-    - DISPLAY_NAME: YuLife (uat)
-      opts:
-        is_expand: false
-    steps:
-    - npm@1.1.1:
-        title: Set bitrise build number
-        inputs:
-        - command: run set-bitrise-build-number
-    - xcode-archive@2.7.1:
-        inputs:
-        - team_id: 739BJV2T6V
-        - force_team_id: 739BJV2T6V
-        - export_all_dsyms: "no"
-        - export_method: ad-hoc
-        - configuration: Release
-        - custom_export_options_plist_content: ""
-        - is_clean_build: "yes"
-    - deploy-to-bitrise-io@1.3.9:
-        inputs:
-        - notify_user_groups: admins, testers
-    - slack@3.1.3:
-        title: Build message
-        inputs:
-        - from_username: UAT Build Succeeded
-        - webhook_url: $SLACK_WEBHOOK_URL
-        - channel: '#alerts-engineering'
-        - from_username_on_error: UAT Build Failed
-        - emoji: ':apple-icon:'
-        - icon_url: ""
-        - pretext: Ready for regression test!
-        - footer: yulife
-        - footer_icon: https://join.yulife.com/static/favicon.png
-        - fields: |-
-            Branch|${BITRISE_GIT_BRANCH}
-            Workflow|${BITRISE_TRIGGERED_WORKFLOW_ID}
-        - icon_url_on_error: ""
-        - pretext_on_error: ""
-        - channel_on_error: '#engineering-alerts'
-        - emoji_on_error: ':apple-icon:'
-  ios-UAT-70:
-    before_run:
-    - ios-primary-70
     after_run:
     - ios-upload-bugsnag-mappings
     envs:
@@ -860,9 +464,12 @@ workflows:
             cd ..
             npm i -g yarn
             yarn install --frozen-lockfile
+            
+    - restore-cocoapods-cache@1: {}
     - cocoapods-install@2:
         inputs:
         - verbose: "true"
+    - save-cocoapods-cache@1: {}
     - script@1:
         title: Build Detox
         inputs:
@@ -924,13 +531,18 @@ workflows:
         inputs:
         - workflows: ios-detox-run-iphone-14-pro-usa-70
         - access_token: $BITRISE_API_TOKEN
+    - build-router-start@0:
+        title: 'Run detox tests: iPhone 14 Pro SA'
+        inputs:
+        - workflows: ios-detox-run-iphone-14-pro-sa-70
+        - access_token: $BITRISE_API_TOKEN
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
   ios-detox-run-base-70:
     before_run:
     - ios-git-checkout
-    - ios-run-api-local
+    - run-yulife-api-server
     steps:
     - cache-pull@2.7:
         title: Bitrise.io Cache:Pull - iOS build + node_modules
@@ -989,23 +601,45 @@ workflows:
         title: Publish gallery and report to s3 site
         is_always_run: true
         inputs:
-        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug
-            log\nset -x\n\n# just for testing\n# mkdir ios.test\n# mkdir ios.test/test\n#
-            curl http://placehold.it/100x100 --output ios.test/test/test-pic.png\n\n\ncd
-            \"$BITRISE_SOURCE_DIR/e2e-report\"\nls\n\n\n# make a copy in screenshots
-            for report upload\nFOLDER_NAME=$(ls -t | grep 'ios.')\ncp -R \"$FOLDER_NAME\"
-            screenshots \n\n# flatten the directory using ios.sim.debug folder\nnpm
-            install --global @hutsoninc/flatten-dir-cli\nflatten \"$FOLDER_NAME\"\nfind
-            \"$FOLDER_NAME\" -type f -name 'testDone*.png' -delete || true\n\n# make
-            the gallery site\nbrew install exiftool graphicsmagick\nnpm i -g thumbsup
-            \nthumbsup --input \"$FOLDER_NAME\" --output ./gallery --title \"$IPHONE_DEVICE:
-            generated from $DETOX_TEST_TYPE test on $(date)\" --thumb-size 250 --theme
-            flow | tee thumbsup.txt\n\n# sync the gallery\nbrew install awscli\ncd
-            gallery\naws s3 sync . \"s3://yulife-develop-detox-static-origin/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE\"\n\n#
-            remove bulk from the report upload, keep screenshots only\ncd ..\nrm -rf
-            gallery\nrm -rf \"$FOLDER_NAME\"\n\n\n# Sync the mochawesome report\naws
-            s3 sync . \"s3://yulife-develop-detox-static-origin/reports/$BITRISE_BUILD_NUMBER\"\n\nenvman
-            add --key MOCHAWESOME_REPORT --value \"https://develop.detox.yulife.engineering/reports/$BITRISE_BUILD_NUMBER/mochawesome.html\"\n"
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            cd "$BITRISE_SOURCE_DIR/e2e-report"
+            ls
+
+            # make a copy in screenshots for report upload
+            FOLDER_NAME=$(ls -t | grep 'ios.')
+            cp -R "$FOLDER_NAME" screenshots
+
+            # flatten the directory using ios.sim.debug folder
+            npm install --global @hutsoninc/flatten-dir-cli
+            flatten "$FOLDER_NAME"
+            find "$FOLDER_NAME" -type f -name 'testDone*.png' -delete || true
+
+            # make the gallery site
+            brew install exiftool graphicsmagick
+            npm i -g thumbsup
+            thumbsup --input "$FOLDER_NAME" --output ./gallery --title "$IPHONE_DEVICE: generated from $DETOX_TEST_TYPE test on $(date)" --thumb-size 250 --theme flow | tee thumbsup.txt
+
+            # sync the gallery
+            brew install awscli
+            cd gallery
+            aws s3 sync . "s3://yulife-develop-detox-static-origin/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE"
+
+            # remove bulk from the report upload, keep screenshots only
+            cd ..
+            rm -rf gallery
+            rm -rf "$FOLDER_NAME"
+
+
+            # Sync the mochawesome report
+            aws s3 sync . "s3://yulife-develop-detox-static-origin/reports/$BITRISE_BUILD_NUMBER"
+
+            envman add --key MOCHAWESOME_REPORT --value "https://develop.detox.yulife.engineering/reports/$BITRISE_BUILD_NUMBER/mochawesome.html"
     - slack@3:
         inputs:
         - api_token: ""
@@ -1033,7 +667,14 @@ workflows:
   ios-detox-run-base-slow:
     before_run:
     - ios-git-checkout
-    - ios-run-api-local-slow
+    - run-yulife-api-server
+    envs:
+    - API_ENV_OVERWRITE: NODE_ENV=detox DEBUG=yu:* server__slowDownConfig__delay=2500
+        server__slowDownConfig__timeout=false
+    - API_REGION: UK
+    - API_PORT: "5000"
+      opts:
+        is_expand: false
     steps:
     - cache-pull@2.7:
         title: Bitrise.io Cache:Pull - iOS build + node_modules
@@ -1089,23 +730,45 @@ workflows:
         title: Publish gallery and report to s3 site
         is_always_run: true
         inputs:
-        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug
-            log\nset -x\n\n# just for testing\n# mkdir ios.test\n# mkdir ios.test/test\n#
-            curl http://placehold.it/100x100 --output ios.test/test/test-pic.png\n\n\ncd
-            \"$BITRISE_SOURCE_DIR/e2e-report\"\nls\n\n\n# make a copy in screenshots
-            for report upload\nFOLDER_NAME=$(ls -t | grep 'ios.')\ncp -R \"$FOLDER_NAME\"
-            screenshots \n\n# flatten the directory using ios.sim.debug folder\nnpm
-            install --global @hutsoninc/flatten-dir-cli\nflatten \"$FOLDER_NAME\"\nfind
-            \"$FOLDER_NAME\" -type f -name 'testDone*.png' -delete || true\n\n# make
-            the gallery site\nbrew install exiftool graphicsmagick\nnpm i -g thumbsup
-            \nthumbsup --input \"$FOLDER_NAME\" --output ./gallery --title \"$IPHONE_DEVICE:
-            generated from $DETOX_TEST_TYPE test on $(date)\" --thumb-size 250 --theme
-            flow | tee thumbsup.txt\n\n# sync the gallery\nbrew install awscli\ncd
-            gallery\naws s3 sync . \"s3://yulife-develop-detox-static-origin/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE\"\n\n#
-            remove bulk from the report upload, keep screenshots only\ncd ..\nrm -rf
-            gallery\nrm -rf \"$FOLDER_NAME\"\n\n\n# Sync the mochawesome report\naws
-            s3 sync . \"s3://yulife-develop-detox-static-origin/reports/$BITRISE_BUILD_NUMBER\"\n\nenvman
-            add --key MOCHAWESOME_REPORT --value \"https://develop.detox.yulife.engineering/reports/$BITRISE_BUILD_NUMBER/mochawesome.html\"\n"
+        - content: |
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            cd "$BITRISE_SOURCE_DIR/e2e-report"
+            ls
+
+            # make a copy in screenshots for report upload
+            FOLDER_NAME=$(ls -t | grep 'ios.')
+            cp -R "$FOLDER_NAME" screenshots
+
+            # flatten the directory using ios.sim.debug folder
+            npm install --global @hutsoninc/flatten-dir-cli
+            flatten "$FOLDER_NAME"
+            find "$FOLDER_NAME" -type f -name 'testDone*.png' -delete || true
+
+            # make the gallery site
+            brew install exiftool graphicsmagick
+            npm i -g thumbsup
+            thumbsup --input "$FOLDER_NAME" --output ./gallery --title "$IPHONE_DEVICE: generated from $DETOX_TEST_TYPE test on $(date)" --thumb-size 250 --theme flow | tee thumbsup.txt
+
+            # sync the gallery
+            brew install awscli
+            cd gallery
+            aws s3 sync . "s3://yulife-develop-detox-static-origin/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE"
+
+            # remove bulk from the report upload, keep screenshots only
+            cd ..
+            rm -rf gallery
+            rm -rf "$FOLDER_NAME"
+
+
+            # Sync the mochawesome report
+            aws s3 sync . "s3://yulife-develop-detox-static-origin/reports/$BITRISE_BUILD_NUMBER"
+
+            envman add --key MOCHAWESOME_REPORT --value "https://develop.detox.yulife.engineering/reports/$BITRISE_BUILD_NUMBER/mochawesome.html"
     - slack@3:
         inputs:
         - api_token: ""
@@ -1263,7 +926,7 @@ workflows:
   ios-detox-run-iphone-14-pro-sa-70:
     before_run:
     - ios-git-checkout
-    - ios-run-api-local-sa
+    - run-yulife-api-server
     envs:
     - IPHONE_DEVICE: iPhone 14 Pro
       opts:
@@ -1271,6 +934,9 @@ workflows:
     - DETOX_TEST_TYPE: sa
       opts:
         is_expand: false
+    - API_REGION: SA
+    - API_ENV_OVERWRITE: NODE_ENV=detox DEBUG=yu:* server__locale=en-ZA server__port=5002
+    - API_PORT: "5002"
     steps:
     - cache-pull@2.7:
         title: Bitrise.io Cache:Pull - iOS build + node_modules
@@ -1327,23 +993,45 @@ workflows:
         title: Publish gallery and report to s3 site
         is_always_run: true
         inputs:
-        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug
-            log\nset -x\n\n# just for testing\n# mkdir ios.test\n# mkdir ios.test/test\n#
-            curl http://placehold.it/100x100 --output ios.test/test/test-pic.png\n\n\ncd
-            \"$BITRISE_SOURCE_DIR/e2e-report\"\nls\n\n\n# make a copy in screenshots
-            for report upload\nFOLDER_NAME=$(ls -t | grep 'ios.')\ncp -R \"$FOLDER_NAME\"
-            screenshots \n\n# flatten the directory using ios.sim.debug folder\nnpm
-            install --global @hutsoninc/flatten-dir-cli\nflatten \"$FOLDER_NAME\"\nfind
-            \"$FOLDER_NAME\" -type f -name 'testDone*.png' -delete || true\n\n# make
-            the gallery site\nbrew install exiftool graphicsmagick\nnpm i -g thumbsup
-            \nthumbsup --input \"$FOLDER_NAME\" --output ./gallery --title \"$IPHONE_DEVICE:
-            generated from $DETOX_TEST_TYPE test on $(date)\" --thumb-size 250 --theme
-            flow | tee thumbsup.txt\n\n# sync the gallery\nbrew install awscli\ncd
-            gallery\naws s3 sync . \"s3://yulife-develop-detox-static-origin/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE\"\n\n#
-            remove bulk from the report upload, keep screenshots only\ncd ..\nrm -rf
-            gallery\nrm -rf \"$FOLDER_NAME\"\n\n\n# Sync the mochawesome report\naws
-            s3 sync . \"s3://yulife-develop-detox-static-origin/reports/$BITRISE_BUILD_NUMBER\"\n\nenvman
-            add --key MOCHAWESOME_REPORT --value \"https://develop.detox.yulife.engineering/reports/$BITRISE_BUILD_NUMBER/mochawesome.html\"\n"
+        - content: |
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            cd "$BITRISE_SOURCE_DIR/e2e-report"
+            ls
+
+            # make a copy in screenshots for report upload
+            FOLDER_NAME=$(ls -t | grep 'ios.')
+            cp -R "$FOLDER_NAME" screenshots
+
+            # flatten the directory using ios.sim.debug folder
+            npm install --global @hutsoninc/flatten-dir-cli
+            flatten "$FOLDER_NAME"
+            find "$FOLDER_NAME" -type f -name 'testDone*.png' -delete || true
+
+            # make the gallery site
+            brew install exiftool graphicsmagick
+            npm i -g thumbsup
+            thumbsup --input "$FOLDER_NAME" --output ./gallery --title "$IPHONE_DEVICE: generated from $DETOX_TEST_TYPE test on $(date)" --thumb-size 250 --theme flow | tee thumbsup.txt
+
+            # sync the gallery
+            brew install awscli
+            cd gallery
+            aws s3 sync . "s3://yulife-develop-detox-static-origin/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE"
+
+            # remove bulk from the report upload, keep screenshots only
+            cd ..
+            rm -rf gallery
+            rm -rf "$FOLDER_NAME"
+
+
+            # Sync the mochawesome report
+            aws s3 sync . "s3://yulife-develop-detox-static-origin/reports/$BITRISE_BUILD_NUMBER"
+
+            envman add --key MOCHAWESOME_REPORT --value "https://develop.detox.yulife.engineering/reports/$BITRISE_BUILD_NUMBER/mochawesome.html"
     - slack@3:
         inputs:
         - api_token: ""
@@ -1432,7 +1120,7 @@ workflows:
   ios-detox-run-iphone-14-pro-usa-70:
     before_run:
     - ios-git-checkout
-    - ios-run-api-local-usa
+    - run-yulife-api-server
     envs:
     - IPHONE_DEVICE: iPhone 14 Pro
       opts:
@@ -1440,6 +1128,9 @@ workflows:
     - DETOX_TEST_TYPE: usa
       opts:
         is_expand: false
+    - API_REGION: US
+    - API_ENV_OVERWRITE: NODE_ENV=detox DEBUG=yu:* server__locale=en-US server__port=5001
+    - API_PORT: "5001"
     steps:
     - cache-pull@2.7:
         title: Bitrise.io Cache:Pull - iOS build + node_modules
@@ -1495,23 +1186,45 @@ workflows:
         title: Publish gallery and report to s3 site
         is_always_run: true
         inputs:
-        - content: "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug
-            log\nset -x\n\n# just for testing\n# mkdir ios.test\n# mkdir ios.test/test\n#
-            curl http://placehold.it/100x100 --output ios.test/test/test-pic.png\n\n\ncd
-            \"$BITRISE_SOURCE_DIR/e2e-report\"\nls\n\n\n# make a copy in screenshots
-            for report upload\nFOLDER_NAME=$(ls -t | grep 'ios.')\ncp -R \"$FOLDER_NAME\"
-            screenshots \n\n# flatten the directory using ios.sim.debug folder\nnpm
-            install --global @hutsoninc/flatten-dir-cli\nflatten \"$FOLDER_NAME\"\nfind
-            \"$FOLDER_NAME\" -type f -name 'testDone*.png' -delete || true\n\n# make
-            the gallery site\nbrew install exiftool graphicsmagick\nnpm i -g thumbsup
-            \nthumbsup --input \"$FOLDER_NAME\" --output ./gallery --title \"$IPHONE_DEVICE:
-            generated from $DETOX_TEST_TYPE test on $(date)\" --thumb-size 250 --theme
-            flow | tee thumbsup.txt\n\n# sync the gallery\nbrew install awscli\ncd
-            gallery\naws s3 sync . \"s3://yulife-develop-detox-static-origin/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE\"\n\n#
-            remove bulk from the report upload, keep screenshots only\ncd ..\nrm -rf
-            gallery\nrm -rf \"$FOLDER_NAME\"\n\n\n# Sync the mochawesome report\naws
-            s3 sync . \"s3://yulife-develop-detox-static-origin/reports/$BITRISE_BUILD_NUMBER\"\n\nenvman
-            add --key MOCHAWESOME_REPORT --value \"https://develop.detox.yulife.engineering/reports/$BITRISE_BUILD_NUMBER/mochawesome.html\"\n"
+        - content: |
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            cd "$BITRISE_SOURCE_DIR/e2e-report"
+            ls
+
+            # make a copy in screenshots for report upload
+            FOLDER_NAME=$(ls -t | grep 'ios.')
+            cp -R "$FOLDER_NAME" screenshots
+
+            # flatten the directory using ios.sim.debug folder
+            npm install --global @hutsoninc/flatten-dir-cli
+            flatten "$FOLDER_NAME"
+            find "$FOLDER_NAME" -type f -name 'testDone*.png' -delete || true
+
+            # make the gallery site
+            brew install exiftool graphicsmagick
+            npm i -g thumbsup
+            thumbsup --input "$FOLDER_NAME" --output ./gallery --title "$IPHONE_DEVICE: generated from $DETOX_TEST_TYPE test on $(date)" --thumb-size 250 --theme flow | tee thumbsup.txt
+
+            # sync the gallery
+            brew install awscli
+            cd gallery
+            aws s3 sync . "s3://yulife-develop-detox-static-origin/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE"
+
+            # remove bulk from the report upload, keep screenshots only
+            cd ..
+            rm -rf gallery
+            rm -rf "$FOLDER_NAME"
+
+
+            # Sync the mochawesome report
+            aws s3 sync . "s3://yulife-develop-detox-static-origin/reports/$BITRISE_BUILD_NUMBER"
+
+            envman add --key MOCHAWESOME_REPORT --value "https://develop.detox.yulife.engineering/reports/$BITRISE_BUILD_NUMBER/mochawesome.html"
     - slack@3:
         inputs:
         - api_token: ""
@@ -1598,61 +1311,9 @@ workflows:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
   ios-develop:
+    description: Develop builds for iOS platform
     before_run:
     - ios-primary
-    envs:
-    - BITRISE_SCHEME: YuLife
-    - ENVFILE: .env.develop
-    - BITRISE_PROJECT_PATH: ios/YuLife.xcodeproj
-      opts:
-        is_expand: false
-    - DISPLAY_NAME: YuLife (develop)
-      opts:
-        is_expand: false
-    steps:
-    - npm@1.0.2:
-        title: Set bitrise build number
-        inputs:
-        - command: run set-bitrise-build-number
-    - xcode-archive@2.7.1:
-        inputs:
-        - team_id: 739BJV2T6V
-        - force_team_id: 739BJV2T6V
-        - export_all_dsyms: "no"
-        - export_method: ad-hoc
-        - configuration: Release
-        - custom_export_options_plist_content: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE
-            plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist
-            version=\"1.0\">\n<dict>\n\t<key>compileBitcode</key>\n\t<false/>\n\t<key>method</key>\n\t<string>ad-hoc</string>\n\t<key>provisioningProfiles</key>\n\t<dict>\n\t\t<key>com.yulife.main</key>\n\t\t<string>Bitrise
-            ios ad-hoc - (com.yulife.main)</string>\n\t</dict>\n\t<key>signingCertificate</key>\n\t<string>iPhone
-            Distribution</string>\n\t<key>signingStyle</key>\n\t<string>manual</string>\n\t<key>stripSwiftSymbols</key>\n\t<true/>\n\t<key>teamID</key>\n\t<string>739BJV2T6V</string>\n\t<key>thinning</key>\n\t<string>&lt;none&gt;</string>\n</dict>\n</plist>"
-        - is_clean_build: "yes"
-    - deploy-to-bitrise-io@1.3.6:
-        inputs:
-        - notify_email_list: test@yulife.com
-        - notify_user_groups: admins, testers
-    - slack@3.1.2:
-        title: Build message
-        inputs:
-        - channel: '#alerts-engineering'
-        - text: ""
-        - emoji: ':apple-icon:'
-        - from_username: Build Succeeded
-        - pretext: ""
-        - channel_on_error: '#engineering-alerts'
-        - emoji_on_error: ':apple-icon:'
-        - icon_url_on_error: ""
-        - from_username_on_error: Build Failed
-        - pretext_on_error: ""
-        - fields: |
-            Branch|${BITRISE_GIT_BRANCH}
-            Workflow|${BITRISE_TRIGGERED_WORKFLOW_ID}
-        - footer_icon: ""
-        - footer: ""
-        - webhook_url: $SLACK_WEBHOOK_URL
-  ios-develop-70:
-    before_run:
-    - ios-primary-70
     after_run:
     - ios-upload-bugsnag-mappings
     envs:
@@ -1729,111 +1390,6 @@ workflows:
         inputs:
         - node_version: 16.19.0
         - nvm_version: 0.38.0
-    - script@1.1.5:
-        title: BITRISE SUPPORT - DEBUG
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            set -ex
-
-            cd ./ios
-            xcodebuild -showBuildSettings | grep -i 'bundle'
-    - set-ios-product-bundle-identifier@1.1.3:
-        title: Set PRODUCT_BUNDLE_IDENTIFIER
-        inputs:
-        - new_bundle_identifier: $BUNDLE_ID
-        - project_path: ios/yulife.xcodeproj
-    - set-ios-info-plist-unified@1:
-        title: Set BUNDLE_DISPLAY_NAME
-        inputs:
-        - bundle_version_short: ""
-        - bundle_name: ""
-        - bundle_display_name: $DISPLAY_NAME
-        - info_plist_file: ios/YuLife/info.plist
-    - ios-auto-provision:
-        inputs:
-        - distributon_type: ad-hoc
-        - verbose_log: "yes"
-        - distribution_type: ad-hoc
-        - configuration: Release
-        - generate_profiles: "yes"
-        - team_id: 739BJV2T6V
-    - certificate-and-profile-installer@1.10.2: {}
-    - install-react-native@0.10:
-        inputs:
-        - version: 9.3.2
-    - script@1.1.5:
-        title: Clear npm cache
-        is_always_run: true
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            npm cache clean --force
-            npm config set ignore-scripts true
-    - npm@1.1.1:
-        title: npm install
-        inputs:
-        - command: ci
-    - npm@1.1.1:
-        title: Build
-        inputs:
-        - command: run build
-    - npm@1.1.1:
-        title: Unit Tests
-        inputs:
-        - command: run test:unit -- -u --forceExit
-    - script@1.1.5:
-        title: Set version code
-        is_always_run: true
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            # write your script here
-            node ./scripts/replace-package-versionCodes.js $BITRISE_BUILD_NUMBER
-            ./scripts/set-ios-version.sh
-    - script@1.1.6:
-        title: Log info.plist
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            # write your script here
-            echo "FIRST"
-
-            cat ios/YuLife/Info.plist
-
-            # or run a script from your repository, like:
-            # bash ./path/to/script.sh
-            # not just bash, e.g.:
-            # ruby ./path/to/script.rb
-    - codecov@1.1.4:
-        inputs:
-        - CODECOV_TOKEN: $CODECOV_TOKEN
-    - react-native-bundle@1.0.3:
-        inputs:
-        - dev: "false"
-  ios-primary-70:
-    before_run:
-    - ios-git-checkout
-    steps:
-    - nvm@1:
-        inputs:
-        - node_version: 16.19.0
-        - nvm_version: 0.38.0
     - script@1.2:
         title: BITRISE SUPPORT - DEBUG
         inputs:
@@ -1883,7 +1439,9 @@ workflows:
             cd ios
             rbenv install
             rbenv global $(cat .ruby-version)
+    - restore-cocoapods-cache@1: {}
     - cocoapods-install@2.3: {}
+    - save-cocoapods-cache@1: {}
     - script@1.2:
         title: Set version code
         is_always_run: true
@@ -1915,89 +1473,6 @@ workflows:
   ios-production:
     before_run:
     - ios-primary
-    envs:
-    - BITRISE_SCHEME: production
-    - BUNDLE_ID: com.yulife.main
-    - DEV: "false"
-    - ENVFILE: .env.production
-      opts:
-        is_expand: false
-    - BITRISE_PROJECT_PATH: ios/YuLife.xcodeproj
-    - DISPLAY_NAME: YuLife
-      opts:
-        is_expand: false
-    steps:
-    - script@1.1.6:
-        title: Log info.plist
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            # write your script here
-            echo "SECOND"
-            cat ios/YuLife/Info.plist
-
-            # or run a script from your repository, like:
-            # bash ./path/to/script.sh
-            # not just bash, e.g.:
-            # ruby ./path/to/script.rb
-    - certificate-and-profile-installer@1.9.2: {}
-    - xcode-archive@2.7.1:
-        inputs:
-        - team_id: 739BJV2T6V
-        - force_team_id: 739BJV2T6V
-        - export_all_dsyms: "no"
-        - export_method: app-store
-        - configuration: Release
-        - custom_export_options_plist_content: ""
-        - is_clean_build: "yes"
-    - script@1.1.6:
-        title: Log info.plist
-        is_always_run: true
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            # write your script here
-            echo "THIRD"
-            cat ios/YuLife/Info.plist
-
-            # or run a script from your repository, like:
-            # bash ./path/to/script.sh
-            # not just bash, e.g.:
-            # ruby ./path/to/script.rb
-    - deploy-to-itunesconnect-application-loader@0.10.1:
-        inputs:
-        - password: $ITUNES_CONNECT_PASSWORD
-        - app_password: $ITUNES_PASSWORD_APP_SPECIFIC
-        - itunescon_user: $ITUNES_CONNECT_EMAIL
-    - deploy-to-bitrise-io@1.3.6: {}
-    - slack@2.6.2:
-        title: Build message
-        inputs:
-        - from_username: App Store Submission Successed
-        - webhook_url: https://hooks.slack.com/services/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
-        - channel: '#alerts-engineering'
-        - from_username_on_error: App Store Submission Successed
-        - message: |-
-            $BITRISE_GIT_BRANCH - $BITRISE_GIT_MESSAGE
-            $BITRISE_BUILD_URL
-        - message_on_error: |-
-            $BITRISE_GIT_BRANCH - $BITRISE_GIT_MESSAGE
-            $BITRISE_BUILD_URL
-        - emoji: ':apple-icon:'
-        - emoji_on_error: ':apple-icon:'
-  ios-production-70:
-    before_run:
-    - ios-primary-70
     after_run:
     - ios-upload-bugsnag-mappings
     envs:
@@ -2085,222 +1560,7 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
-  ios-pull-request:
-    before_run:
-    - ios-primary
-  ios-run-api-local:
-    before_run:
-    - run-postgres
-    - run-mongodb
-    steps:
-    - restore-cache@1:
-        inputs:
-        - key: yarn-cache-silicon-{{ checksum "package-lock.json" "**/*.patch" }}
-    - nvm@1:
-        inputs:
-        - node_version: 18.16.0
-    - script@1.2:
-        title: Pull & run API (UK)
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-
-            CWD=$(pwd)
-
-            # Source nvm where no .nvmrc file exists
-            . $HOME/.nvm/nvm.sh
-
-            mkdir -p ~/temp-repos
-            cd ~/temp-repos
-
-            git clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git api-clone
-            mkdir -p yulife-api-server
-            mv api-clone/{*,.[^.]*} yulife-api-server
-            rm -rf api-clone
-
-            cd yulife-api-server
-            git checkout $BITRISE_GIT_BRANCH || git checkout develop
-            git pull
-
-            nvm use
-            yarn install --frozen-lockfile
-            ./scripts/setupPostgresForBitrise.sh
-            yarn build
-
-            yarn detox:changeRegionDatabase:UK
-
-            npm install -g forever
-            NODE_ENV=detox DEBUG=yu:* forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
-            echo 'Waiting for API (UK) to bootstrap...'
-            npx wait-on http://localhost:5000
-
-            cd $CWD
-    - save-cache@1:
-        inputs:
-        - paths: ~/temp-repos/yulife-api-server/node_modules
-        - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
-  ios-run-api-local-sa:
-    before_run:
-    - run-postgres
-    - run-mongodb
-    steps:
-    - restore-cache@1:
-        inputs:
-        - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
-    - nvm@1:
-        inputs:
-        - node_version: 18.16.0
-    - script@1:
-        title: Pull & run API
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-
-            CWD=$(pwd)
-
-            # Source nvm where no .nvmrc file exists
-            . $HOME/.nvm/nvm.sh
-
-
-            mkdir -p ~/temp-repos
-            cd ~/temp-repos
-
-            git clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git api-clone
-            mkdir -p yulife-api-server
-            mv api-clone/{*,.[^.]*} yulife-api-server
-            rm -rf api-clone
-
-            cd yulife-api-server
-            git checkout $BITRISE_GIT_BRANCH || git checkout develop
-            git pull
-
-            nvm use
-            yarn install --frozen-lockfile
-            ./scripts/setupPostgresForBitrise.sh
-            yarn build
-
-            yarn detox:changeRegionDatabase:SA
-
-            npm install -g forever
-            NODE_ENV=detox DEBUG=yu:* server__locale=en-ZA server__port=5002 forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
-            echo 'Waiting for API (SA) to bootstrap...'
-            npx wait-on http://localhost:5001
-
-            cd $CWD
-    - save-cache@1:
-        inputs:
-        - paths: ~/temp-repos/yulife-api-server/node_modules
-        - key: yarn-cache-silicon-{{ checksum "package-lock.json" "**/*.patch" }}
-  ios-run-api-local-slow:
-    before_run:
-    - run-postgres
-    - run-mongodb
-    steps:
-    - restore-cache@1:
-        inputs:
-        - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
-    - nvm@1:
-        inputs:
-        - node_version: 18.16.0
-    - script@1:
-        title: Pull & run API
-        inputs:
-        - content: |
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-
-            CWD=$(pwd)
-
-            # Source nvm where no .nvmrc file exists
-            . $HOME/.nvm/nvm.sh
-
-            mkdir -p ~/temp-repos
-            cd ~/temp-repos
-
-            git clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git api-clone
-            mkdir -p yulife-api-server
-            mv api-clone/{*,.[^.]*} yulife-api-server
-            rm -rf api-clone
-            cd yulife-api-server
-            git checkout $BITRISE_GIT_BRANCH || git checkout develop
-            git pull
-
-            nvm use
-            yarn install --frozen-lockfile
-            ./scripts/setupPostgresForBitrise.sh
-            yarn build
-
-            yarn detox:setup
-
-
-            npm install -g forever
-            NODE_ENV=detox DEBUG=yu:* server__slowDownConfig__delay=2500 server__slowDownConfig__timeout=false forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
-            echo 'Waiting for API (slow mode) to bootstrap...'
-            npx wait-on http://localhost:5000
-
-            cd $CWD
-    - save-cache@1:
-        inputs:
-        - paths: ~/temp-repos/yulife-api-server/node_modules
-        - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
-  ios-run-api-local-usa:
-    before_run:
-    - run-postgres
-    - run-mongodb
-    steps:
-    - restore-cache@1:
-        inputs:
-        - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
-    - nvm@1:
-        inputs:
-        - node_version: 18.16.0
-    - script@1:
-        title: Pull & run API
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-
-            CWD=$(pwd)
-
-            # Source nvm where no .nvmrc file exists
-            . $HOME/.nvm/nvm.sh
-
-            mkdir -p ~/temp-repos
-            cd ~/temp-repos
-
-            git clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git api-clone
-            mkdir -p yulife-api-server
-            mv api-clone/{*,.[^.]*} yulife-api-server
-            rm -rf api-clone
-
-            cd yulife-api-server
-            git checkout $BITRISE_GIT_BRANCH || git checkout develop
-            git pull
-
-            nvm use
-            yarn install --frozen-lockfile
-            ./scripts/setupPostgresForBitrise.sh
-            yarn build
-
-            yarn detox:changeRegionDatabase:US
-
-            npm install -g forever
-            NODE_ENV=detox DEBUG=yu:* server__locale=en-US server__port=5001 forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
-            echo 'Waiting for API (USA) to bootstrap...'
-            npx wait-on http://localhost:5001
-
-            cd $CWD
-    - save-cache@1:
-        inputs:
-        - paths: ~/temp-repos/yulife-api-server/node_modules
-        - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
+  ios-pull-request: {}
   ios-set-uat-env-vars:
     steps:
     - script@1.1.5:
@@ -2399,3 +1659,57 @@ workflows:
             psql -d postgres -U vagrant -h localhost -c "CREATE DATABASE yulife;"
             psql -d postgres -U vagrant -h localhost -c "CREATE USER yulife WITH PASSWORD 'yulife';"
             psql -d postgres -U vagrant -h localhost -c "ALTER USER yulife WITH SUPERUSER;"
+  run-yulife-api-server:
+    before_run:
+    - run-postgres
+    - run-mongodb
+    steps:
+    - restore-cache@1:
+        inputs:
+        - key: yarn-cache-silicon-{{ checksum "package-lock.json" "**/*.patch" }}
+    - nvm@1:
+        inputs:
+        - node_version: 18.16.0
+    - script@1.2:
+        title: Pull & Run yulife-api-server (API)
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+
+            CWD=$(pwd)
+
+            # Enable NVM command
+            source $HOME/.profile
+
+            mkdir -p ~/temp-repos
+            cd ~/temp-repos
+
+            git clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git api-clone
+            mkdir -p yulife-api-server
+            mv api-clone/{*,.[^.]*} yulife-api-server
+            rm -rf api-clone
+
+            cd yulife-api-server
+            git checkout $BITRISE_GIT_BRANCH || git checkout develop
+            git pull
+
+            nvm use
+            yarn install --frozen-lockfile
+            ./scripts/setupPostgresForBitrise.sh
+            yarn build
+
+            yarn detox:changeRegionDatabase:$API_REGION
+
+            npm install -g forever
+            env $API_ENV_OVERWRITE forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
+
+            echo "Waiting for API ($API_REGION) to bootstrap..."
+            npx wait-on http://localhost:${API_PORT:=5000}
+
+            cd $CWD
+    - save-cache@1:
+        inputs:
+        - paths: ~/temp-repos/yulife-api-server/node_modules
+        - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
