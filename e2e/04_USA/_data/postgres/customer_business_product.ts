@@ -1,7 +1,7 @@
 import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { CPE_DENPPO_1, CPE_Wellbeing_USA_1, CPE_DENHMO_1, CPE_DENCHOI_1, CPE_VIS_1, CPE_TLIF_1, CPE_ADD_2, CPE_WLIF_2, CPE_VLIF_4, CPE_VADD_2, CPE_STD_2, CPE_LTD_2, CPE_VSTD_3, CPE_VLTD_3, CPE_ACC_3, CPE_CRI_3, CPE_SPDIS_3, CPE_HI_3, CPE_ACCSICK_4, CPE_CAN_4, CPE_ULIF_2  } from "./customer_product_entity"
+import { CPE_DENPPO_1, CPE_Wellbeing_USA_1, CPE_DENHMO_1, CPE_DENCHOI_1, CPE_VIS_1, CPE_TLIF_1, CPE_ADD_2, CPE_WLIF_2, CPE_VLIF_4, CPE_VADD_2, CPE_STD_2, CPE_LTD_2, CPE_VSTD_3, CPE_VLTD_3, CPE_ACC_3, CPE_CRI_3, CPE_SPDIS_3, CPE_HI_3, CPE_ACCSICK_4, CPE_CAN_4, CPE_ULIF_2, CPE_GAP_5, CPE_VIS_5, CPE_GAP_6  } from "./customer_product_entity"
 import moment = require('moment');
-import { BUSINESS_PRODUCT_USA_1_DENPPO, BUSINESS_PRODUCT_USA_1_WB, BUSINESS_PRODUCT_USA_1_DENHMO, BUSINESS_PRODUCT_USA_1_DENCHOI, BUSINESS_PRODUCT_USA_1_VIS, BUSINESS_PRODUCT_USA_1_TLIF, BUSINESS_PRODUCT_USA_2_ADD, BUSINESS_PRODUCT_USA_2_WLIF, BUSINESS_PRODUCT_USA_4_VLIF, BUSINESS_PRODUCT_USA_2_ULIF, BUSINESS_PRODUCT_USA_2_VADD, BUSINESS_PRODUCT_USA_2_STD, BUSINESS_PRODUCT_USA_2_LTD, BUSINESS_PRODUCT_USA_3_VSTD, BUSINESS_PRODUCT_USA_3_VLTD, BUSINESS_PRODUCT_USA_3_ACC, BUSINESS_PRODUCT_USA_3_CRI, BUSINESS_PRODUCT_USA_3_SPDIS, BUSINESS_PRODUCT_USA_3_HI, BUSINESS_PRODUCT_USA_4_ACCSICK, BUSINESS_PRODUCT_USA_4_CAN } from "./business_product";
+import { BUSINESS_PRODUCT_USA_1_DENPPO, BUSINESS_PRODUCT_USA_1_WB, BUSINESS_PRODUCT_USA_1_DENHMO, BUSINESS_PRODUCT_USA_1_DENCHOI, BUSINESS_PRODUCT_USA_1_VIS, BUSINESS_PRODUCT_USA_1_TLIF, BUSINESS_PRODUCT_USA_2_ADD, BUSINESS_PRODUCT_USA_2_WLIF, BUSINESS_PRODUCT_USA_4_VLIF, BUSINESS_PRODUCT_USA_2_ULIF, BUSINESS_PRODUCT_USA_2_VADD, BUSINESS_PRODUCT_USA_2_STD, BUSINESS_PRODUCT_USA_2_LTD, BUSINESS_PRODUCT_USA_3_VSTD, BUSINESS_PRODUCT_USA_3_VLTD, BUSINESS_PRODUCT_USA_3_ACC, BUSINESS_PRODUCT_USA_3_CRI, BUSINESS_PRODUCT_USA_3_SPDIS, BUSINESS_PRODUCT_USA_3_HI, BUSINESS_PRODUCT_USA_4_ACCSICK, BUSINESS_PRODUCT_USA_4_CAN, BUSINESS_PRODUCT_USA_5_GAP, BUSINESS_PRODUCT_USA_5_VIS, BUSINESS_PRODUCT_USA_6_GAP } from "./business_product";
 
 const type = "postgres"
 const modelName = "customer_business_product"
@@ -280,5 +280,44 @@ export const CBP_USA_4_VLIF = {
         start_date: CPE_VLIF_4.data.start_date,
         archived : false,
         data : "{\"dateOfBirth\":\"1990-12-09\",\"firstName\":\"Usa\",\"lastName\":\"USA\",\"sexAtBirth\":\"M\"}"
+    }
+}
+
+export const CBP_USA_5_GAP = {
+    type,
+    modelName,
+    data:{
+        business_product_id: BUSINESS_PRODUCT_USA_5_GAP.product.data.product_id,
+        customer_product_id: CPE_GAP_5.data.customer_product_id,
+        category_id : "1",
+        start_date: CPE_GAP_5.data.start_date,
+        archived : false,
+        data : "{\"dateOfBirth\":\"1990-12-09\",\"firstName\":\"Usa\",\"lastName\":\"Five\",\"sexAtBirth\":\"M\"}"
+    }
+}
+
+export const CBP_USA_5_VIS = {
+    type,
+    modelName,
+    data:{
+        business_product_id: BUSINESS_PRODUCT_USA_5_VIS.product.data.product_id,
+        customer_product_id: CPE_VIS_5.data.customer_product_id,
+        category_id : "1",
+        start_date: CPE_VIS_5.data.start_date,
+        archived : false,
+        data : "{\"dateOfBirth\":\"1990-12-09\",\"firstName\":\"Usa\",\"lastName\":\"USA\",\"sexAtBirth\":\"M\"}"
+    }
+}
+
+export const CBP_USA_6_GAP = {
+    type,
+    modelName,
+    data:{
+        business_product_id: BUSINESS_PRODUCT_USA_6_GAP.product.data.product_id,
+        customer_product_id: CPE_GAP_6.data.customer_product_id,
+        category_id : "1",
+        start_date: CPE_GAP_6.data.start_date,
+        archived : false,
+        data : "{\"dateOfBirth\":\"1990-12-09\",\"firstName\":\"Usa\",\"lastName\":\"Five\",\"sexAtBirth\":\"M\"}"
     }
 }

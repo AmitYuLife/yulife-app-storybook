@@ -1,7 +1,7 @@
 
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_USA_1, CUSTOMER_USA_2, CUSTOMER_USA_3, CUSTOMER_USA_4 } from '../postgres/customers';
+import { CUSTOMER_USA_1, CUSTOMER_USA_2, CUSTOMER_USA_3, CUSTOMER_USA_4, CUSTOMER_USA_5, CUSTOMER_USA_6 } from '../postgres/customers';
 
 export const USER_GAME_STATE_USA_1 = {
     type: "mongo",
@@ -45,6 +45,30 @@ export const USER_GAME_STATE_USA_4 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_USA_4.data.customerId,
+        currentBalance: 500,
+        currentStreak: 0,
+        currentLevel: 4,
+    }
+} as IDatabaseItem
+
+export const USER_GAME_STATE_USA_5 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_USA_5.data.customerId,
+        currentBalance: 500,
+        currentStreak: 0,
+        currentLevel: 4,
+    }
+} as IDatabaseItem
+
+export const USER_GAME_STATE_USA_6 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_USA_6.data.customerId,
         currentBalance: 500,
         currentStreak: 0,
         currentLevel: 4,
