@@ -208,6 +208,7 @@ export const CONTENT_MIDDLE_ITEM_IMAGE = (url: any) => `CONTENT_MIDDLE_ITEM_IMAG
 export const TOP_RIGHT_ITEM_IMAGE = (url: any) => `TOP_RIGHT_ITEM_IMAGE_${url}`
 export const YUGI_INFO_BANNER_IMAGE = (url: any) => `YUGI_INFO_BANNER_IMAGE_${url}`
 export const CONTENT_ITEM_BUTTON_IMAGE = (url: any) => `CONTENT_ITEM_BUTTON_IMAGE_${url}`
+export const SPONSOR_LOGO_IMAGE = (url: any) => `SPONSOR_LOGO_IMAGE_${url}`
 
 // CERTIFICATE
 export const CERTIFICATE_SCROLL_VIEW = "CERTIFICATE_SCROLL_VIEW"

@@ -1,5 +1,5 @@
 import { generateProductRecords, Carrier, ProductCode, ProductType } from "@yu-life/yulife-bdd-framework";
-import { BUSINESS_ACCOUNT_USA_1 } from "./business";
+import { BUSINESS_ACCOUNT_USA_1, BUSINESS_ACCOUNT_USA_2 } from "./business";
 import moment from "moment";
 
 
@@ -171,3 +171,31 @@ export const BUSINESS_PRODUCT_USA_4_CAN = generateProductRecords({
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
   });
+
+export const BUSINESS_PRODUCT_USA_5_GAP = generateProductRecords({
+  productCode: ProductCode.GAP,
+  carrier: Carrier.Transamerica,
+  productId: "SEED_5_GAP",
+  businessAccountId: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
+  startDate: "2021-07-03T00:00:00.000Z",
+});
+
+export const BUSINESS_PRODUCT_USA_5_VIS = generateProductRecords({
+  productCode: ProductCode.VIS,
+  carrier: Carrier.Transamerica,
+  productId: "SEED_5_VIS",
+  businessAccountId: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
+  startDate: "2023-07-03T00:00:00.000Z",
+});
+
+export const BUSINESS_PRODUCT_USA_6_GAP = generateProductRecords({
+  productCode: ProductCode.GAP,
+  carrier: Carrier.Transamerica,
+  productId: "SEED_6_GAP",
+  businessAccountId: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
+  startDate: "2021-07-03T00:00:00.000Z",
+  product: {
+    contribution_type: "full",
+ }
+});
+  

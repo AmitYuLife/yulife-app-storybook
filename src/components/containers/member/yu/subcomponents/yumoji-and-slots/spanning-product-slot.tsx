@@ -1,5 +1,6 @@
 import { Image, TextTemplate } from "@atoms";
 import { VariableRemoteImage } from "@graphql/_core/schema";
+import { SPONSOR_LOGO_IMAGE } from "@ids";
 import { View } from "react-native";
 import { styles } from "./yumoji-and-slots.styles";
 
@@ -24,7 +25,11 @@ export const SpanningProductSlot = ({ spanningProductSlot }: Props) => {
           </TextTemplate>
         )}
         {spanningProductSlot.images.map((item) => (
-          <View key={item.image.id} style={styles.spanningProductSlotImageWrapper}>
+          <View
+            key={item.image.id}
+            style={styles.spanningProductSlotImageWrapper}
+            testID={SPONSOR_LOGO_IMAGE(item.image.uri)}
+          >
             <Image source={{ uri: item.image.uri }} width={item.width} />
           </View>
         ))}

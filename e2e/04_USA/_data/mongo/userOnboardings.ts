@@ -1,7 +1,7 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import moment from "moment"
-import { BUSINESS_ACCOUNT_USA_1 } from "../postgres/business"
-import { USER_USA_1, USER_USA_2, USER_USA_3, USER_USA_4 } from "./users"
+import { BUSINESS_ACCOUNT_USA_1, BUSINESS_ACCOUNT_USA_2 } from "../postgres/business"
+import { USER_USA_1, USER_USA_2, USER_USA_3, USER_USA_4, USER_USA_5, USER_USA_6 } from "./users"
 
 const type = "mongo"
 const modelName = "user_onboardings"
@@ -95,6 +95,56 @@ export const USER_ONBOARDING_USA_4  = {
         additionalLeaderboards: false,
         archived: false,
         businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
+        businessName: "Justice League USA",
+        performedSteps: {
+            newYumojiBuilder: true,
+            yuScreenOnboarding: false,
+            passiveCycling: true,
+        },
+        createdAt: moment().subtract(61, "d").toISOString(),
+        updatedAt: moment().toISOString(),
+        inviteDate: moment().subtract(61, "d").toISOString()
+    }
+} as IDatabaseItem
+
+export const USER_ONBOARDING_USA_5  = {
+    type,
+    modelName,
+    data:{
+        _id:generateRandomMongoId(),
+        userId: USER_USA_5.data.userId,
+        signupComplete: false,
+        firstAppOpen: false,
+        companyLeaderboardAccepted: true,
+        companyLeaderboardCurrentConsent: false,
+        additionalLeaderboards: false,
+        archived: false,
+        businessAccountId: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
+        businessName: "Justice League USA",
+        performedSteps: {
+            newYumojiBuilder: true,
+            yuScreenOnboarding: false,
+            passiveCycling: true,
+        },
+        createdAt: moment().subtract(61, "d").toISOString(),
+        updatedAt: moment().toISOString(),
+        inviteDate: moment().subtract(61, "d").toISOString()
+    }
+} as IDatabaseItem
+
+export const USER_ONBOARDING_USA_6  = {
+    type,
+    modelName,
+    data:{
+        _id:generateRandomMongoId(),
+        userId: USER_USA_6.data.userId,
+        signupComplete: false,
+        firstAppOpen: false,
+        companyLeaderboardAccepted: true,
+        companyLeaderboardCurrentConsent: false,
+        additionalLeaderboards: false,
+        archived: false,
+        businessAccountId: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
         businessName: "Justice League USA",
         performedSteps: {
             newYumojiBuilder: true,

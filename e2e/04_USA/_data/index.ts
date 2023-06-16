@@ -14,3 +14,5 @@ export * from "./postgres/customer_product_entity";
 export * from "./postgres/business_product_category";
 export * from "./postgres/business_product_enrolment_window";
 export * from "./postgres/customer_business_product";
+export * from "./postgres/sponsored_logo";
+export * from "./postgres/sponsored_logo_business";

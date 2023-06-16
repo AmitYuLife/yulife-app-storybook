@@ -1,4 +1,4 @@
-import {  BUSINESS_PRODUCT_USA_1_WB, BUSINESS_PRODUCT_USA_1_DENPPO, BUSINESS_PRODUCT_USA_1_DENHMO, BUSINESS_PRODUCT_USA_1_DENCHOI, BUSINESS_PRODUCT_USA_1_VIS, BUSINESS_PRODUCT_USA_1_TLIF, BUSINESS_PRODUCT_USA_2_ADD, BUSINESS_PRODUCT_USA_2_WLIF, BUSINESS_PRODUCT_USA_4_VLIF, BUSINESS_PRODUCT_USA_2_ULIF, BUSINESS_PRODUCT_USA_2_VADD, BUSINESS_PRODUCT_USA_2_STD, BUSINESS_PRODUCT_USA_2_LTD, BUSINESS_PRODUCT_USA_3_VSTD, BUSINESS_PRODUCT_USA_3_VLTD, BUSINESS_PRODUCT_USA_3_ACC, BUSINESS_PRODUCT_USA_3_CRI, BUSINESS_PRODUCT_USA_3_SPDIS, BUSINESS_PRODUCT_USA_4_ACCSICK, BUSINESS_PRODUCT_USA_4_CAN, BUSINESS_PRODUCT_USA_3_HI } from "./business_product"
+import {  BUSINESS_PRODUCT_USA_1_WB, BUSINESS_PRODUCT_USA_1_DENPPO, BUSINESS_PRODUCT_USA_1_DENHMO, BUSINESS_PRODUCT_USA_1_DENCHOI, BUSINESS_PRODUCT_USA_1_VIS, BUSINESS_PRODUCT_USA_1_TLIF, BUSINESS_PRODUCT_USA_2_ADD, BUSINESS_PRODUCT_USA_2_WLIF, BUSINESS_PRODUCT_USA_4_VLIF, BUSINESS_PRODUCT_USA_2_ULIF, BUSINESS_PRODUCT_USA_2_VADD, BUSINESS_PRODUCT_USA_2_STD, BUSINESS_PRODUCT_USA_2_LTD, BUSINESS_PRODUCT_USA_3_VSTD, BUSINESS_PRODUCT_USA_3_VLTD, BUSINESS_PRODUCT_USA_3_ACC, BUSINESS_PRODUCT_USA_3_CRI, BUSINESS_PRODUCT_USA_3_SPDIS, BUSINESS_PRODUCT_USA_4_ACCSICK, BUSINESS_PRODUCT_USA_4_CAN, BUSINESS_PRODUCT_USA_3_HI, BUSINESS_PRODUCT_USA_5_GAP, BUSINESS_PRODUCT_USA_5_VIS, BUSINESS_PRODUCT_USA_6_GAP } from "./business_product"
 
 const type = "postgres"
 const modelName = "business_product_category"
@@ -253,5 +253,45 @@ export const BPC_USA_4_VLIF = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+    },
+};
+
+export const BPC_USA_5_GAP = {
+    type,
+    modelName,
+    data:{
+        product_id: BUSINESS_PRODUCT_USA_5_GAP.product.data.product_id,
+        category_id: "1",
+        earn_rate: 0,
+        category_name: "App access only",
+        category_description: "All employees will have access to the YuLife app",
+        "enrolment_method" : "external",
+        "election_option" : "opt-in",
+    },
+};
+
+export const BPC_USA_5_VIS = {
+    type,
+    modelName,
+    data:{
+        product_id: BUSINESS_PRODUCT_USA_5_VIS.product.data.product_id,
+        category_id: "1",
+        earn_rate: 17,
+        category_name: "App access only",
+        category_description: "All employees will have access to the YuLife app",
+    },
+};
+
+export const BPC_USA_6_GAP = {
+    type,
+    modelName,
+    data:{
+        product_id: BUSINESS_PRODUCT_USA_6_GAP.product.data.product_id,
+        category_id: "1",
+        earn_rate: 0,
+        category_name: "App access only",
+        category_description: "All employees will have access to the YuLife app",
+        "enrolment_method" : "external",
+        "election_option" : "opt-in",
     },
 };

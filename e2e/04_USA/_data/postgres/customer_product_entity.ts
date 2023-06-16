@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_USA_1, CUSTOMER_USA_2, CUSTOMER_USA_3, CUSTOMER_USA_4 } from "./customers";
+import { CUSTOMER_USA_1, CUSTOMER_USA_2, CUSTOMER_USA_3, CUSTOMER_USA_4, CUSTOMER_USA_5, CUSTOMER_USA_6 } from "./customers";
 import moment from "moment";
 
 const type = "postgres";
@@ -353,6 +353,57 @@ export const CPE_VLIF_4 = {
     underwriting_step: null,
     is_banned_from_product: false,
     product_variant_id: "Guardian_VLIF_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_GAP_5 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001121",
+    customer_id: CUSTOMER_USA_5.data.customerId,
+    earn_rate: 0,
+    start_date: "2023-07-14",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Transamerica_GAP_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_VIS_5 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001122",
+    customer_id: CUSTOMER_USA_5.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Transamerica_VIS_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_GAP_6 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001123",
+    customer_id: CUSTOMER_USA_6.data.customerId,
+    earn_rate: 0,
+    start_date: "2023-07-14",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Transamerica_GAP_01_01",
     archived: false,
     taken_up: true,
   },

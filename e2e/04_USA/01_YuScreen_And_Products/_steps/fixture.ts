@@ -27,6 +27,8 @@ export const SurveyText = "We love hearing from you.\nHelp shape the future of Y
 export const SurveyLabel = "Share your thoughts"
 export const yuMojiBuilder = "Create your Yumoji to step into the Yuniverse"
 export const HowToEnroll = "How to enroll"
+export const Gap = "GAP insurance"
+export const SponsoredBy = "Sponsored by"
 
 
 //Footer copy texts
@@ -51,6 +53,9 @@ export const Email_ImageUrl = "https://yulife-develop.imgix.net/content/icons/em
 export const Heart_ImageUrl = "https://yulife-develop.imgix.net/content/icons/heart.svg?ixlib=js-3.2.1&w=192&h=192&s=f7a373c6df8cbbf00ad9ffe90a83b848"
 export const Guardian_ImageUrl = "https://yulife-develop.imgix.net/logos/guardian-inline-logo-2022-09-13-2.svg?ixlib=js-3.2.1&w=207&h=42&s=e7aa2c7bb6d5d763a015b6596a863983"
 export const Video_ImageUrl = "https://yulife-develop.imgix.net/illustrations/find-out-more-2022-12-13-1.png?ixlib=js-3.2.1&w=1125&h=624&s=55e7f0965ee537b1fccf9846f556de8a"
+export const Guardian_Sponsor = "https://yulife-develop.imgix.net/sponsored-logos/guardian-1.svg?ixlib=js-3.2.1&w=285&s=c8c67c84fea37e61f318ba8e6f61deae"
+export const Transamerica_Sponsor = "https://yulife-develop.imgix.net/sponsored-logos/transamerica-2.svg?ixlib=js-3.2.1&w=270&s=279b4702ae6fbeefe6175a81ffbde2b6"
+export const Yulife_Sponsor = "https://yulife-develop.imgix.net/sponsored-logos/yulife-1.svg?ixlib=js-3.2.1&w=153&s=db02cee6a0d16063f910ad2d3b0cb3be"
 
 const year = moment().format("YYYY")
 

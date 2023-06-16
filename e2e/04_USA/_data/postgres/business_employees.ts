@@ -1,6 +1,6 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { BUSINESS_ACCOUNT_USA_1,} from './business';
-import { CUSTOMER_USA_1, CUSTOMER_USA_2, CUSTOMER_USA_3, CUSTOMER_USA_4 } from './customers';
+import { BUSINESS_ACCOUNT_USA_1, BUSINESS_ACCOUNT_USA_2,} from './business';
+import { CUSTOMER_USA_1, CUSTOMER_USA_2, CUSTOMER_USA_3, CUSTOMER_USA_4, CUSTOMER_USA_5, CUSTOMER_USA_6 } from './customers';
 import moment = require('moment');
 
 
@@ -46,6 +46,28 @@ export const BUSINESS_EMPLOYEE_USA_4 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
         customer_id: CUSTOMER_USA_4.data.customerId,
+        employment_start_date: moment().subtract(3, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    },
+} as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_USA_5 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
+        customer_id: CUSTOMER_USA_5.data.customerId,
+        employment_start_date: moment().subtract(3, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    },
+} as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_USA_6 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
+        customer_id: CUSTOMER_USA_6.data.customerId,
         employment_start_date: moment().subtract(3, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     },
