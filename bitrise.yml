@@ -464,7 +464,6 @@ workflows:
             cd ..
             npm i -g yarn
             yarn install --frozen-lockfile
-            
     - restore-cocoapods-cache@1: {}
     - cocoapods-install@2:
         inputs:
@@ -543,6 +542,10 @@ workflows:
     before_run:
     - ios-git-checkout
     - run-yulife-api-server
+    envs:
+    - API_ENV_OVERWRITE: NODE_ENV=detox DEBUG=yu:*
+    - API_REGION: UK
+    - API_PORT: "5000"
     steps:
     - cache-pull@2.7:
         title: Bitrise.io Cache:Pull - iOS build + node_modules
@@ -1700,7 +1703,7 @@ workflows:
             ./scripts/setupPostgresForBitrise.sh
             yarn build
 
-            yarn detox:changeRegionDatabase:$API_REGION
+            yarn detox:changeRegionDatabase:${API_REGION:=UK}
 
             npm install -g forever
             env $API_ENV_OVERWRITE forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
