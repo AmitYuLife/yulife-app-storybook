@@ -14,6 +14,7 @@ import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.s
 import Logger from "@services/logging/logger";
 import SettingLayout from "./setting.layout";
 import { GAME_SETTINGS_SCREEN } from "@ids";
+import { t } from "@locale";
 
 interface IProps {
   componentId: string;
@@ -41,10 +42,12 @@ const CyclingMeasurementContainer = ({ componentId }: IProps) => {
     <SettingLayout
       onLeftIconPress={onLeftIconPress}
       onRightIconPress={onRightIconPress}
-      headerText="Measurement (Cycling)"
+      headerText={t("screens.measurement_cycling_settings.title")}
       screenTestId={GAME_SETTINGS_SCREEN}
       options={OPTIONS.map((o) => ({
-        ...o,
+        id: o.id,
+        title: t(o.title),
+        description: t(o.description),
         isSelected: o.id === cyclingMeasurement,
         onPress: () => onSelectedCyclingMeasurement(o.id),
       }))}
@@ -57,12 +60,12 @@ export default memo(CyclingMeasurementContainer);
 const OPTIONS: Array<{ id: DistanceMeasurementType; title: string; description: string }> = [
   {
     id: DistanceMeasurementType.mi,
-    title: "Imperial system",
-    description: "Distance will be shown in miles ”mi”",
+    title: "screens.measurement_cycling_settings.imperial.title",
+    description: "screens.measurement_cycling_settings.imperial.description",
   },
   {
     id: DistanceMeasurementType.km,
-    title: "Metric system",
-    description: "Distance will be shown in kilometers ”km”",
+    title: "screens.measurement_cycling_settings.metric.title",
+    description: "screens.measurement_cycling_settings.metric.description",
   },
 ];
