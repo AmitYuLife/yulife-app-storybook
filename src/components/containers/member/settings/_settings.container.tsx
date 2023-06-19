@@ -123,7 +123,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
 
   const gameSettings = {
     name: "gameSettings",
-    title: "Game settings",
+    title: t("screens.settings.game_settings"),
     isVisible: true,
     items: [
       {
@@ -152,8 +152,8 @@ function SettingsContainer({ componentId }: IOwnProps) {
         },
       },
       {
-        title: "Measurement (Cycling)",
-        description: "Change between the imperial (miles) and metric (kilometers) system.",
+        title: t("screens.measurement_cycling_settings.title"),
+        description: t("screens.measurement_cycling_settings.description"),
         value: cyclingMeasurement,
         onPress: () => {
           Navigation.push(ROUTES.settings, {
@@ -168,7 +168,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
   };
 
   const connection = {
-    title: "Fitness trackers",
+    title: t("screens.settings.fitness_trackers.label"),
     isVisible: features.showConnections,
     items: connections.map((c) => ({
       ...c,
@@ -206,7 +206,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
         setNotification(n);
       },
     })),
-    title: "Push notifications",
+    title: t("screens.settings.push_notifications.label"),
     name: "notifications",
   } as any;
 

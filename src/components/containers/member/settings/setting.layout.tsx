@@ -4,6 +4,7 @@ import { FlatList } from "@atoms";
 import { SettingsHeader } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad, RadioListItem, RadioListItemProps } from "@organisms";
 import { Style } from "@styles";
+import { t } from "@locale";
 
 type Props = {
   onRightIconPress: () => void;
@@ -22,7 +23,7 @@ const SettingLayout = ({ onRightIconPress, onLeftIconPress, options, headerText,
       </View>
       <FlatList style={styles.container} horizontal={false} data={options} renderItem={renderItem} />
       <GenericHeadingAbsolute
-        heading="Settings"
+        heading={t("screens.settings.heading")}
         onLeftIconPress={onLeftIconPress}
         onRightIconPress={onRightIconPress}
       />

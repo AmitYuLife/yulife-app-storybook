@@ -414,7 +414,9 @@
     },
     "settings": {
       "heading": "Definições",
+      "game_settings": "Definições do jogo",
       "push_notifications": {
+        "label": "Notificações push",
         "reminder_time": "Tempo de lembrete"
       },
       "info": {
@@ -424,6 +426,7 @@
         "heading": "A sua aplicação YuLife irá captar a distância de ciclismo tanto da aplicação de saúde do seu telefone como da sua aplicação %{connection}. Conceder-lhe-emos o YuCoin para a aplicação que registar a mais alta!"
       },
       "fitness_trackers": {
+        "label": "Rastreadores de fitness",
         "title": "Ligue o seu localizador de fitness para ser recompensado por passos diários adicionais. Não se esqueça de manter o seu telefone consigo durante os desafios!",
         "not_connected": "Não ligado",
         "last_sync": "Última sincronização em %{date}"
@@ -474,6 +477,18 @@
       "consented": "Outros membros desta classificação podem ver sua atividade e alguns detalhes pessoais.",
       "not_consented": "Permita que outros membros desta classificação vejam sua atividade e alguns detalhes pessoais.",
       "item_title": "Classificação %{name}"
+    },
+    "measurement_cycling_settings": {
+      "title": "Medição (ciclismo)",
+      "description": "Alterar entre o sistema imperial (milhas) e o sistema métrico (quilómetros).",
+      "metric": {
+        "title": "Sistema métrico",
+        "description": "A distância será indicada em quilómetros ”km”"
+      },
+      "imperial": {
+        "title": "Sistema imperial",
+        "description": "A distância será apresentada em milhas ”mi”"
+      }
     },
     "permissions": {
       "title": "Permissões de actividade",

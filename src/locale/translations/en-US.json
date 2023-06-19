@@ -415,7 +415,9 @@
     },
     "settings": {
       "heading": "Settings",
+      "game_settings": "Game settings",
       "push_notifications": {
+        "label": "Push notifications",
         "reminder_time": "Reminder time"
       },
       "info": {
@@ -425,6 +427,7 @@
         "heading": "Your YuLife app will capture your cycling distance from both your phone's health app and your %{connection} app. We'll award you YuCoin for whichever app records the highest!"
       },
       "fitness_trackers": {
+        "label": "Fitness trackers",
         "title": "Connect your fitness tracker to get rewarded for additional daily steps. Don’t forget to still keep your phone with you during challenges!",
         "not_connected": "Not connected",
         "last_sync": "Last synced at %{date}"
@@ -475,6 +478,18 @@
       "consented": "Other members of this leaderboard can see your name and activity.",
       "not_consented": "Allow other members of this leaderboard to see your name and activity.",
       "item_title": "%{name} Leaderboard"
+    },
+    "measurement_cycling_settings": {
+      "title": "Measurement (Cycling)",
+      "description": "Change between the imperial (miles) and metric (kilometers) system.",
+      "metric": {
+        "title": "Metric system",
+        "description": "Distance will be shown in kilometers ”km”"
+      },
+      "imperial": {
+        "title": "Imperial system",
+        "description": "Distance will be shown in miles ”mi”"
+      }
     },
     "permissions": {
       "title": "Activity permissions",
