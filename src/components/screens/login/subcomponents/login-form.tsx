@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo, useRef } from "react";
 import { View, Keyboard, StyleSheet, AccessibilityPropsAndroid } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD } from "@ids";
@@ -74,6 +74,14 @@ export const LoginForm = (props: LoginFormProps) => {
     [currentModal]
   );
 
+  const passwordRef = useRef<TextInput>(null);
+
+  const onSubmitEmail = useCallback(() => {
+    if (passwordRef.current) {
+      passwordRef.current.focus();
+    }
+  }, []);
+
   return (
     <Animatable.View
       duration={1000}
@@ -107,16 +115,23 @@ export const LoginForm = (props: LoginFormProps) => {
         errorMessage={emailError}
         hasError={!!emailError}
         onChange={onEmailChange}
+        returnKeyType={"next"}
         type={TextInput.Types.EMAIL}
         value={email}
+        blurOnSubmit={false}
+        autoComplete="email"
+        onSubmitEditing={onSubmitEmail}
       />
       <Pad height={12} />
       <TextInputPassword
         testID={INPUT_LOGIN_PASSWORD(TextInput.Types.PASSWORD)}
         errorMessage={passwordError}
         hasError={!!passwordError}
+        returnKeyType="done"
+        ref={passwordRef}
         onChange={onPasswordChange}
         value={password}
+        onSubmitEditing={!isLoggingIn && !disabled ? onLogInPress : undefined}
       />
       {!loginError ? null : (
         <View style={styles.centerWrapper}>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Image } from "@atoms";
 import { Style } from "@styles";
-import { StyleSheet, TextInput as Input, View, ViewStyle } from "react-native";
+import { StyleSheet, TextInput as Input, View, ViewStyle, TextInputProps } from "react-native";
 import TextInputError from "./text-input-error";
 import {
   getColour,
@@ -15,6 +15,7 @@ import {
 import styles from "./text-input.styles";
 import { TextInputTypes, TEXT_INPUT_TYPES } from "./text-input.types";
 import { t } from "@locale";
+import { createRef } from "react";
 
 export interface IProps {
   value: string;
@@ -27,7 +28,10 @@ export interface IProps {
   style?: ViewStyle;
   testID?: string;
   icon?: TextInputTypes;
+  blurOnSubmit?: boolean;
   iconUri?: string;
+  autoComplete?: TextInputProps["autoComplete"];
+  returnKeyType?: TextInputProps["returnKeyType"];
   maxLength?: number;
   onSubmitEditing?: () => void;
 }
@@ -35,9 +39,15 @@ export interface IProps {
 class TextInput extends React.PureComponent<IProps> {
   public static Types = TEXT_INPUT_TYPES;
   public cardInput: Input;
+  public inputRef = createRef<Input>();
   public state = {
     isFocused: false,
   };
+
+  public focus() {
+    this.inputRef?.current?.focus();
+    this.handleFocus(true);
+  }
 
   public renderIcon() {
     const { icon, iconUri, value, hasError, type } = this.props;
@@ -85,8 +95,11 @@ class TextInput extends React.PureComponent<IProps> {
               onSubmitEditing={onSubmitEditing}
               maxLength={maxLength}
               allowFontScaling={false}
+              blurOnSubmit={this.props.blurOnSubmit}
               testID={this.props.testID}
+              autoComplete={this.props.autoComplete}
               onFocus={this.handleFocus(true)}
+              ref={this.inputRef}
               onBlur={this.handleFocus(false)}
               onChangeText={onChange}
               value={getValue({ value, type })}
@@ -98,6 +111,7 @@ class TextInput extends React.PureComponent<IProps> {
               secureTextEntry={type === TEXT_INPUT_TYPES.PASSWORD}
               keyboardType={getKeyboardType(type)}
               placeholderTextColor="rgb(204,204,204)"
+              returnKeyType={this.props.returnKeyType}
             />
           </View>
         </View>
