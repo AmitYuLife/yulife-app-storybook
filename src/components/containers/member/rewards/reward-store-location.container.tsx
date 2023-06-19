@@ -1,8 +1,9 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { ListRenderItemInfo, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Navigation } from "@navigation/main";
 import Logger from "@services/logging/logger";
+import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import {
   GetMobileRewardStoreLocations,
   UpdateMobileRewardStoreLocation,
@@ -15,7 +16,6 @@ import {
 import { REWARD_STORE_SETTINGS_SCREEN } from "@ids";
 import { GenericHeadingAbsolute, GenericHeadingPad, RadioListItem, RadioListItemProps } from "@organisms";
 import { Button, InfoPanel } from "@molecules";
-import { FlatList } from "@atoms";
 import { Style } from "@styles";
 import { useTranslation } from "@hooks";
 
@@ -74,11 +74,7 @@ const RewardStoreContainer = ({ componentId }: IProps) => {
       <View style={styles.info}>
         <InfoPanel markdown={t["screens.rewards.store_location.info_box"]} type="warning" showIcon={true} />
       </View>
-      <FlatList
-        horizontal={false}
-        style={styles.list}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
+      <FlashList
         data={(data?.data || []).map((o) => ({
           id: o.id,
           title: o.label,
@@ -86,6 +82,10 @@ const RewardStoreContainer = ({ componentId }: IProps) => {
           isSelected: storeSelection === o.id,
           onPress: () => setStoreSelection(o.id),
         }))}
+        keyExtractor={keyExtractor}
+        showsVerticalScrollIndicator={false}
+        estimatedItemSize={itemSize}
+        renderItem={renderItem}
       />
       <View style={styles.buttonWrapper}>
         <Button
@@ -104,10 +104,15 @@ const RewardStoreContainer = ({ componentId }: IProps) => {
 
 export default memo(RewardStoreContainer);
 
+const itemSize = Style.adjust(48);
+
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  list: {
+  listItemWrapper: {
+    paddingTop: Style.adjust(8),
     paddingHorizontal: Style.adjust(24),
+    height: itemSize,
+    alignItems: "center",
   },
   info: {
     padding: Style.adjust(24),
@@ -119,5 +124,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const renderItem = ({ item }: ListRenderItemInfo<RadioListItemProps>) => <RadioListItem {...item} />;
+const renderItem = ({ item }: ListRenderItemInfo<RadioListItemProps>) => (
+  <View style={styles.listItemWrapper}>
+    <RadioListItem {...item} />
+  </View>
+);
 const keyExtractor = (item: RadioListItemProps) => item.id;
