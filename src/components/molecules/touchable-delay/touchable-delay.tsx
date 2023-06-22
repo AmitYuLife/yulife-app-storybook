@@ -5,12 +5,13 @@ import { usePressedInWithDelay } from "@hooks";
 export type IProps = Omit<TouchableWithoutFeedbackProps, "onPress"> &
   ViewProps & {
     onPress: () => void;
+    debounce?: boolean;
     children?: React.ReactChild | React.ReactChild[];
     delay?: number;
   };
 
-export default function TouchableWithDelay({ onPress, delay, ...otherProps }: IProps) {
+export default function TouchableWithDelay({ onPress, delay, debounce = true, ...otherProps }: IProps) {
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
 
-  return <TouchableWithoutFeedback {...otherProps} onPress={handlePress} />;
+  return <TouchableWithoutFeedback {...otherProps} onPress={debounce ? handlePress : onPress} />;
 }

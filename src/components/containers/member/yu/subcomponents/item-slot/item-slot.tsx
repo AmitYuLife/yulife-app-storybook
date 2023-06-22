@@ -108,11 +108,7 @@ export const ItemSlot: FC<ItemSlotProps> = memo(
         </ItemSlotWrapper>
         {rightStatusIcon ? (
           <View style={styles.slotStatusWrapper}>
-            <Image
-              {...slotStatusImageDimensions}
-              source={rightStatusIcon}
-              testID={RIGHT_STATUS_ICON}
-            />
+            <Image {...slotStatusImageDimensions} source={rightStatusIcon} testID={RIGHT_STATUS_ICON} />
           </View>
         ) : null}
       </View>

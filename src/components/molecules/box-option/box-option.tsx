@@ -54,6 +54,7 @@ const BoxOption = memo(
     return (
       <TouchableWithDelay
         testID={testID}
+        debounce={debounce}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
         onPress={debounce ? handlePress : onPress}
