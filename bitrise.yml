@@ -1666,6 +1666,8 @@ workflows:
     before_run:
     - run-postgres
     - run-mongodb
+    envs:
+    - NODE_ENV: detox
     steps:
     - restore-cache@1:
         inputs:
@@ -1706,7 +1708,7 @@ workflows:
             yarn detox:changeRegionDatabase:${API_REGION:=UK}
 
             npm install -g forever
-            env $API_ENV_OVERWRITE forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
+            env ${API_ENV_OVERWRITE:=NODE_ENV=detox} forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
 
             echo "Waiting for API ($API_REGION) to bootstrap..."
             npx wait-on http://localhost:${API_PORT:=5000}
