@@ -68,11 +68,6 @@ export const ItemSlot: FC<ItemSlotProps> = memo(
               ) : null}
             </View>
           ) : null}
-          {rightStatusIcon ? (
-            <View style={styles.slotStatusWrapper}>
-              <Image {...slotStatusImageDimensions} source={rightStatusIcon} testID={RIGHT_STATUS_ICON} />
-            </View>
-          ) : null}
           <View style={StyleSheet.flatten([styles.slotInnerWrapperTop, { backgroundColor: topShadowColour }])} />
           <View style={StyleSheet.flatten([styles.slotInnerWrapperBottom, { backgroundColor: bottomShadowColour }])} />
           <View
@@ -111,6 +106,15 @@ export const ItemSlot: FC<ItemSlotProps> = memo(
             ) : null}
           </View>
         </ItemSlotWrapper>
+        {rightStatusIcon ? (
+          <View style={styles.slotStatusWrapper}>
+            <Image
+              {...slotStatusImageDimensions}
+              source={rightStatusIcon}
+              testID={RIGHT_STATUS_ICON}
+            />
+          </View>
+        ) : null}
       </View>
     );
   }
