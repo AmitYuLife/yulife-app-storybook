@@ -4118,10 +4118,10 @@
   resolved "https://registry.yarnpkg.com/@yarnpkg/lockfile/-/lockfile-1.1.0.tgz#e77a97fbd345b76d83245edcd17d393b1b41fb31"
   integrity sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==
 
-"@yu-life/react-native-fitkit@1.0.31":
-  version "1.0.31"
-  resolved "https://gitlab.com/api/v4/projects/7775989/packages/npm/@yu-life/react-native-fitkit/-/@yu-life/react-native-fitkit-1.0.31.tgz#7431bb72e51918dc93c4e1076f3fd5fca40bf1ae"
-  integrity sha1-dDG7cuUZGNyTxOEHbz/V/KQL8a4=
+"@yu-life/react-native-fitkit@1.0.32":
+  version "1.0.32"
+  resolved "https://gitlab.com/api/v4/projects/7775989/packages/npm/@yu-life/react-native-fitkit/-/@yu-life/react-native-fitkit-1.0.32.tgz#e146aa5ccd89ae0c2ee827aafe4023c78a0ed4c3"
+  integrity sha1-4UaqXM2Jrgwu6Ceq/kAjx4oO1MM=
 
 "@yu-life/yulife-bdd-framework@0.0.40":
   version "0.0.40"
