@@ -133,8 +133,8 @@ export const defaultStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     position: "absolute",
-    right: Style.adjust(-9),
-    top: Style.adjust(-9),
+    right: Style.adjust(-5),
+    top: Style.adjust(-5),
   },
   spacer: {
     height: Style.adjust(54),
