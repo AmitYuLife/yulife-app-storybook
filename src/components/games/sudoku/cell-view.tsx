@@ -111,8 +111,12 @@ const CellView = ({
     [isActive, isGameCompleted]
   );
 
-  const animatedBackgroundStyle = useAnimatedStyle(
-    () => ({
+  const animatedBackgroundStyle = useAnimatedStyle(() => {
+    if (!isGameCompleted) {
+      return { backgroundColor: backgroundAnimation.value };
+    }
+
+    return {
       backgroundColor: withDelay(
         isGameCompleted ? (row + 1 + column + 1) * BACKGROUND_COMPLETE_DELAY : 0,
         withTiming(backgroundAnimation.value, {
@@ -120,10 +124,8 @@ const CellView = ({
           easing: EASING_FUNCTION,
         })
       ),
-    }),
-
-    [isGameCompleted]
-  );
+    };
+  }, [isGameCompleted]);
 
   const cellStyles = useMemo(() => {
     const style: ViewStyle[] = [styles.cell];

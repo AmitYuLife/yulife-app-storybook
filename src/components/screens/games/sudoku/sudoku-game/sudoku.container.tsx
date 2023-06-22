@@ -157,7 +157,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
         })();
       });
     },
-    [showSubmissionError, submitSudokuSolution, sudokuState.gameIdentifier, sudokuState.levelSlotId]
+    [dispatch, onPause, showSubmissionError, submitSudokuSolution, sudokuState.gameIdentifier, sudokuState.levelSlotId]
   );
 
   const onGameComplete = useCallback(
