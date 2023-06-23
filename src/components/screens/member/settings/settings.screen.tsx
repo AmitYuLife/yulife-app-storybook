@@ -31,6 +31,7 @@ export interface INotificationsSectionItem extends GetUserNotificationsSettings_
 }
 
 export interface IGameSettingsItem {
+  isVisible: boolean;
   title: string;
   description: string;
   value: DistanceMeasurementType | string;
@@ -116,9 +117,7 @@ export default class SettingsScreen extends PureComponent<IProps> {
     <View key={index} style={styles.wrapper}>
       <SettingsHeader title={section.title} />
       <View style={styles.notificationsItemsWrapper}>
-        {section.items.map((item) => (
-          <GameSettingsItem key={item.title} {...item} />
-        ))}
+        {section.items.map((item) => (!item.isVisible ? null : <GameSettingsItem key={item.title} {...item} />))}
       </View>
     </View>
   );

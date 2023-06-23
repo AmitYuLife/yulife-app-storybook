@@ -21,7 +21,7 @@ import Logger from "@services/logging/logger";
 import { ScrollPickerModal } from "@components/modals";
 import { showYuModal } from "@navigation/root";
 import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
-import { t } from "@locale";
+import { t, getLocale } from "@locale";
 
 interface IOwnProps {
   componentId: string;
@@ -127,6 +127,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
     isVisible: true,
     items: [
       {
+        isVisible: true,
         title: t("screens.leaderboard_settings.title"),
         description: t("screens.leaderboard_settings.description"),
         onPress: () => {
@@ -139,6 +140,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
         },
       },
       {
+        isVisible: true,
         title: t("screens.permissions.title"),
         description: t("screens.permissions.description"),
         value: "",
@@ -152,6 +154,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
         },
       },
       {
+        isVisible: true,
         title: t("screens.measurement_cycling_settings.title"),
         description: t("screens.measurement_cycling_settings.description"),
         value: cyclingMeasurement,
@@ -160,6 +163,20 @@ function SettingsContainer({ componentId }: IOwnProps) {
             component: {
               id: ROUTES.cyclingMeasurement,
               name: ROUTES.cyclingMeasurement,
+            },
+          });
+        },
+      },
+      {
+        isVisible: features.showLangSelector,
+        title: t("screens.language_selector_settings.title"),
+        description: t("screens.language_selector_settings.description"),
+        value: getLocale(),
+        onPress: () => {
+          Navigation.push(ROUTES.settings, {
+            component: {
+              id: ROUTES.languageSelector,
+              name: ROUTES.languageSelector,
             },
           });
         },
