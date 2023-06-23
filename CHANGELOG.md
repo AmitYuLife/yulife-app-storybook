@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.87.0] - 2023-06-23
+
+### Bugfixes
+
+- Bugfix: Sudoku reanimated crash
+- Bugfix: Fix icon appearing behind slot
+- Bugfix: Use asdf to install ruby on bitrise
+- Bugfix: Ensure detox NODE_ENV for api on bitrise
+- Bugfix: use flashList on reward store location
+- Bugfix: Set default detox API server to UK
+
+### Tasks
+
+- Task ISA-820: introducing the language selector
+- Task: Login improvements
+- Task: translate the settings screen
+- Task DEVOP-1183: Bitrise pipeline improvements
+
+### Chores
+
+- Chore: Upgrade fitkit
+
+### Extra
+
+- Detox/sponsored logo test
+
 ## [3.86.0] - 2023-06-15
 
 ### Features
