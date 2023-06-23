@@ -478,6 +478,10 @@
       "not_consented": "Permita que outros membros desta classificação vejam sua atividade e alguns detalhes pessoais.",
       "item_title": "Classificação %{name}"
     },
+    "language_selector_settings": {
+      "title": "Língua",
+      "description": "Seleccione a sua língua"
+    },
     "measurement_cycling_settings": {
       "title": "Medição (ciclismo)",
       "description": "Alterar entre o sistema imperial (milhas) e o sistema métrico (quilómetros).",

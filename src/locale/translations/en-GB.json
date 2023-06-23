@@ -479,6 +479,10 @@
       "not_consented": "Allow other members of this leaderboard to see your name and activity.",
       "item_title": "%{name} Leaderboard"
     },
+    "language_selector_settings": {
+      "title": "Language",
+      "description": "Select your language"
+    },
     "measurement_cycling_settings": {
       "title": "Measurement (Cycling)",
       "description": "Change between the imperial (miles) and metric (kilometers) system.",
