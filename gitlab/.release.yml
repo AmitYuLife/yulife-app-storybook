@@ -1,5 +1,5 @@
 release-develop-to-uat:
-  extends: .base
+  extends: .base-node-18
   stage: release
   when: manual
   cache: []
@@ -32,7 +32,7 @@ release-develop-to-uat:
       - develop
 
 release-production:
-  extends: .base
+  extends: .base-node-18
   stage: release
   when: manual
   cache: []

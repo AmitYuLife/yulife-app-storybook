@@ -1,5 +1,8 @@
 include:
   - local: "gitlab/*.yml"
+  - project: "yu-life/infrastructure/yulife-devops-shared-config"
+    ref: main
+    file: "shared-gitlab-config.yml"
 
 stages:
   - build
