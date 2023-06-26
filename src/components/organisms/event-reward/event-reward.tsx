@@ -93,9 +93,9 @@ const EventReward = ({
   const [initialStatus] = useState<GoalRewardStatus>(status);
   const [delayedStatus, setDelayedStatus] = useState<GoalRewardStatus>(status);
 
-  const isRewardDelayedStatusPending = delayedStatus === GoalRewardStatus.pending;
   const isRewardDelayedStatusClaimed = delayedStatus === GoalRewardStatus.claimed;
   const isRewardDelayedStatusCompleted = delayedStatus === GoalRewardStatus.completed;
+  const isRewardClaimable = isRewardDelayedStatusCompleted && isClaimRewardEnabled;
 
   /**
    * We put the status prop into state with a delay,
@@ -275,13 +275,7 @@ const EventReward = ({
           </TextTemplate>
         </View>
 
-        {isRewardDelayedStatusPending && description ? (
-          <View style={styles.descriptionWrapper}>
-            <TextTemplate type="l1">{description}</TextTemplate>
-          </View>
-        ) : null}
-
-        {isRewardDelayedStatusCompleted && isClaimRewardEnabled ? (
+        {isRewardClaimable ? (
           <Button
             size="ExtraSmall"
             onPress={claimReward}
@@ -290,15 +284,17 @@ const EventReward = ({
             label={t("labels.cta.claim")}
             wrapperStyle={styles.descriptionWrapper}
           />
-        ) : null}
-
-        {isRewardDelayedStatusClaimed ? (
+        ) : (
           <View style={styles.descriptionWrapper}>
-            <TextTemplate type="l1b" color={Colours.event.claimedColor}>
-              {t("screens.event.reward_claimed")}
-            </TextTemplate>
+            {isRewardDelayedStatusClaimed ? (
+              <TextTemplate type="l1b" color={Colours.event.claimedColor}>
+                {t("screens.event.reward_claimed")}
+              </TextTemplate>
+            ) : (
+              <TextTemplate type="l1">{description}</TextTemplate>
+            )}
           </View>
-        ) : null}
+        )}
 
         {!infoBadgeUri ? null : (
           <View style={styles.infoWrapper}>
