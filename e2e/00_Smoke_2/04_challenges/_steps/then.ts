@@ -24,7 +24,8 @@ export const {
 export const {
     scrollUntilTextVisible,
     swipeFromText,
-    swipeToText
+    swipeToText,
+    swipeFromTextAtIndex
 } = navigation.scrolling
 
 export const isOnInivteColleaguePage = async () => {
@@ -173,7 +174,7 @@ export const challengeComplete = async () => {
     await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), 0)()
     await idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), 1)() 
     await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), 1)()
-    await swipeFromText("1 Profile viewed", "left", "fast")()
+    await swipeFromTextAtIndex("650 YuCoin", "left", "fast", 0)()
     await idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), 2)() 
     await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), 2)()
     await textVisible("5 / 5 profiles viewed")()

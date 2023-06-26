@@ -49,7 +49,7 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(1, 0.25))
             Then("I should see Claim available for the first milestone", then.claimVisible(1))
         })
-        When("I click Claim", when.tapText("Claim"), async () => {
+        When("I click Claim rewards", when.tapText("Claim rewards"), async () => {
             Then("I should be on the event milestone page", then.onCompletedEventMilestonePage(GOALS_4.data.title, "100", 1, GOAL_REWARD_MILESTONE_9.data.rewardDescription))
         })
         When("I click Claim", when.tapText("Claim"), async () => {
@@ -114,7 +114,7 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(3, 0.75))
             Then("I should see Claim available for the first milestone", then.claimVisible(2))
         })
-        When("I click Claim", when.tapText("Claim"), async () => {
+        When("I click Claim rewards", when.tapText("Claim rewards"), async () => {
             Then("I should be on the event milestone page", then.onCompletedEventMilestonePage(GOALS_4.data.title, GOAL_REWARD_MILESTONE_10.data.rewardValue.toString(), 2, GOAL_REWARD_MILESTONE_10.data.rewardDescription))
         })
         When("I click Claim", when.tapText("Claim"), async () => {
@@ -137,7 +137,7 @@ Feature("As a user I can opt in and take an event", async () => {
         // 4th challenge
 
         When("I complete a meditation challenge at level 152", when.selectAndCompleteMeditationChallenge(600), async () => {
-            Then("I am on the event completed page", then.onCompletedAllEventMilestonesPage(GOALS_4.data.title, GOAL_REWARD_MILESTONE_11.data.rewardDescription, GOAL_REWARD_MILESTONE_9.data.rewardDescription, GOAL_REWARD_MILESTONE_10.data.rewardDescription, GOAL_REWARD_MILESTONE_11.data.rewardTitle, GOAL_REWARD_MILESTONE_9.data.rewardTitle, GOAL_REWARD_MILESTONE_10.data.rewardTitle))
+            Then("I am on the event completed page", then.onCompletedAllEventMilestonesPage(GOALS_4.data.title, GOAL_REWARD_MILESTONE_11.data.rewardDescription, GOAL_REWARD_MILESTONE_11.data.rewardTitle, GOAL_REWARD_MILESTONE_9.data.rewardTitle, GOAL_REWARD_MILESTONE_10.data.rewardTitle))
         })
         When("I click Claim", when.tapText("Claim"), async () => {
             When("I wait", when.wait(5000), async () => {
