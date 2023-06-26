@@ -1,5 +1,5 @@
 deploy:dev:storybook:
-  extends: .base
+  extends: .base-node-14
   stage: release
   # Do not cancel this job if newer commit made
   interruptible: false
