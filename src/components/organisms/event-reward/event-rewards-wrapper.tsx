@@ -56,6 +56,7 @@ const EventRewardWrapper = ({
             reward={reward}
             width={rewardWidth}
             eventTitle={eventTitle}
+            onClaimReward={onClaimReward}
             marginHorizontal={marginHorizontal}
             isClaimRewardEnabled={isClaimRewardEnabled}
           />

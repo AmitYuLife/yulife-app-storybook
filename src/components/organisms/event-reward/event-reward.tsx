@@ -58,7 +58,7 @@ interface IEventRewardProps {
   eventTitle: string;
   marginHorizontal?: number;
   isClaimRewardEnabled?: boolean;
-  onClaimReward?: (reward: IReward) => Promise<void>;
+  onClaimReward: (reward: IReward) => Promise<void>;
 }
 
 const SCALE_ANIMATION_DURATION = 100;
