@@ -28,7 +28,7 @@ import {
 } from "@data";
 import { POPOVER } from "@ids";
 import * as helper_dental from "03_Dental/01_dental_journey/_steps/helpers";
-import * as helper_V4 from "00_Smoke_3/03_yuscreen_v4/_steps/helpers";
+import * as helper_V4 from "00_Smoke_4/01_yuscreen_v4/_steps/helpers";
 
 Feature("PLI HAPPY", async () => {
   Scenario(

@@ -73,7 +73,7 @@ export const milestoneComplete = (index: number) => async () => {
     await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), index)()
 }
 
-export const onCompletedAllEventMilestonesPage = (event: string, challengeType1: string, challengeType2: string, challengeType3: string, yuCoin1: string, yuCoin2: string, yuCoin3: string) => async () => {
+export const onCompletedAllEventMilestonesPage = (event: string, challengeType1: string, yuCoin1: string, yuCoin2: string, yuCoin3: string) => async () => {
     const eventTitle = `${event} event`
 
     await textVisible(eventTitle)()
@@ -83,16 +83,14 @@ export const onCompletedAllEventMilestonesPage = (event: string, challengeType1:
     await textVisible(yuCoin1)() 
     await idVisible(ANIMATED_CIRCLE("#F43E8E"))()
     await idVisible(NUM_OF_STARS(3))()
-    await textVisible(challengeType2)()
     await textVisible(yuCoin2)() 
     await idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), 0)() 
     await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), 0)()
-    await swipeFromText(challengeType2, "left", "fast")()
+    await swipeFromText(yuCoin2, "left", "fast")()
     await textVisible(yuCoin3)() 
     await idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), 1)() 
     await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), 1)()
-    await textVisible(challengeType3)()
-    await swipeFromText(challengeType2, "right", "fast")()
+    await swipeFromText(yuCoin2, "right", "fast")()
     await buttonVisible("Claim")()
 }
 
@@ -168,7 +166,6 @@ export const stepsChallengeDataCorrect = (level: number, yucoinEarned: number, s
 
 export const firstChallengeClaimedVisible = async () => {
     await textVisible(GOAL_REWARD_MILESTONE_9.data.rewardTitle)()
-    await textVisible(GOAL_REWARD_MILESTONE_9.data.rewardDescription)()
     await idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), 0)() 
     await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), 0)()
     await textVisible(GOAL_REWARD_MILESTONE_10.data.rewardTitle)()
@@ -186,11 +183,9 @@ export const firstChallengeClaimedVisible = async () => {
 
 export const firstAndSecondChallengeClaimedVisible = async () => {
     await textVisible(GOAL_REWARD_MILESTONE_9.data.rewardTitle)()
-    await textVisible(GOAL_REWARD_MILESTONE_9.data.rewardDescription)()
     await idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), 0)() 
     await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), 0)()
     await textVisible(GOAL_REWARD_MILESTONE_10.data.rewardTitle)()
-    await textVisible(GOAL_REWARD_MILESTONE_10.data.rewardDescription)()
     await idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), 1)() 
     await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), 1)()
     await swipeFromText(GOAL_REWARD_MILESTONE_10.data.rewardTitle, "left", "fast")()

@@ -174,7 +174,7 @@ Feature("As a user I can take a challenge", async () => {
                 Then("I should see Claim available for the first milestone", then.claimVisible(1))
             })
         })
-        When("I click Claim", when.tapText("Claim"), async () => {
+        When("I click Claim rewards", when.tapText("Claim rewards"), async () => {
             Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("Ends on the 10th", "650", 1, "1 Profile viewed"))
         })
         When("I click Claim", when.tapText("Claim"), async () => {
@@ -197,7 +197,7 @@ Feature("As a user I can take a challenge", async () => {
                 Then("I should see Claim available for the second milestone", then.claimVisible(2))
             })
         })
-        When("I click Claim", when.tapText("Claim"), async () => {
+        When("I click Claim rewards", when.tapText("Claim rewards"), async () => {
             Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("Ends on the 10th", "650", 2, "3 Profiles viewed"))
         })
         When("I click Claim", when.tapText("Claim"), async () => {

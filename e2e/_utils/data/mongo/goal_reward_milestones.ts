@@ -45,8 +45,8 @@ export const GOAL_REWARD_MILESTONE_3 = {
     data:{
         goal: GOALS_2.data._id,
         animated: true,
-        rewardBackgroundImageKey: "cms/1651149900294_CoinBack.png",
-        rewardImageKey: "cms/1650355411333_CoinTop.png",
+        rewardBackgroundImageKey: "cms/1685444616547_1651161198561_Ellipse%20331.png",
+        rewardImageKey: "cms/1685444629732_1651078011174_CoinTop.png",
         targetValue: 0.2,
         rewardType: "coin",
         rewardValue: 50,
