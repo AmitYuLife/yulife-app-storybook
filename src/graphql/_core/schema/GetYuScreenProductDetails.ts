@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -542,9 +542,13 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
    */
   absolute: string | null;
   /**
-   * Supported RN version 3.86.0
+   * Supported RN version 3.87.0
    */
   onPress: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemWrapper_onPress | null;
+  /**
+   * Supported RN version 3.87.0
+   */
+  scrollViewProps: string | null;
 }
 
 export type GetYuScreenProductDetails_getYuScreenProductDetails_body =

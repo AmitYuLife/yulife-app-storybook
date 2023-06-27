@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -29,7 +29,11 @@ export interface ContentItemWrapper {
    */
   absolute: string | null;
   /**
-   * Supported RN version 3.86.0
+   * Supported RN version 3.87.0
    */
   onPress: ContentItemWrapper_onPress | null;
+  /**
+   * Supported RN version 3.87.0
+   */
+  scrollViewProps: string | null;
 }

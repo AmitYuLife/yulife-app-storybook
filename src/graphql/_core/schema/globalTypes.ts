@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -127,12 +127,14 @@ export enum FitKitType {
   Flexibility = "Flexibility",
   GuidedBreathing = "GuidedBreathing",
   HIIT = "HIIT",
+  HeartRate = "HeartRate",
   MindfulSession = "MindfulSession",
   Pilates = "Pilates",
   Sleep = "Sleep",
   StepCount = "StepCount",
   Strength = "Strength",
   Swimming = "Swimming",
+  Workout = "Workout",
   Yoga = "Yoga",
 }
 
