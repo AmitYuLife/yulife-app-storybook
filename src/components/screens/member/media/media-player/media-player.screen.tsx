@@ -11,7 +11,7 @@ interface IProps {
   video: IVideo;
   onLeftIconPress: () => void;
   onRightIconPress: (showModal: boolean) => void;
-  onStart: (contendId: string) => void;
+  onStart: (contendId: string, hasActiveChallenge?: boolean) => void;
   onEnd: () => void;
   onError: () => void;
   startErrorMessage?: string;
@@ -32,8 +32,8 @@ const MediaPlayerScreen = ({
   orientation,
   startChallengeButtonLabel,
 }: IProps) => {
-  const onStartMedia = useCallback(async () => {
-    await onStart(video.id);
+  const onStartMedia = useCallback(async (hasActiveChallenge?: boolean) => {
+    await onStart(video.id, hasActiveChallenge);
   }, []);
 
   return (
