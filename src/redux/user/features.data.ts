@@ -59,4 +59,5 @@ export const features = [
   "logYuniversity",
   "newSignUpBonusCopy",
   "showYuniversityMenuLink",
+  "retryChallengeResultQuery",
 ];
