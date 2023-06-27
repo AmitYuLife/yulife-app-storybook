@@ -21,6 +21,8 @@ interface Props {
   borderColor?: string;
   backgroundColor?: string;
   textColor?: string;
+  accessibilityLabel?: string;
+  accessible?: boolean;
 }
 
 export const SecondaryButton = (props: Props) => {
@@ -39,6 +41,8 @@ export const SecondaryButton = (props: Props) => {
     backgroundColor,
     textColor,
     wrapperStyle,
+    accessibilityLabel,
+    accessible,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -64,6 +68,8 @@ export const SecondaryButton = (props: Props) => {
         backgroundColor={backgroundColor || "transparent"}
         borderRadius={50}
         delay={delay}
+        accessibilityLabel={accessibilityLabel}
+        accessible={accessible}
       />
     </View>
   );

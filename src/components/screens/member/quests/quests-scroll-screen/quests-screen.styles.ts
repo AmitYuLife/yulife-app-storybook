@@ -37,4 +37,14 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  accessibilityMapWrapper: {
+    ...StyleSheet.absoluteFillObject,
+    flex: 1,
+    justifyContent: "center",
+  },
+  image: {
+    width: Style.DEVICE_WIDTH,
+    height: Style.DEVICE_HEIGHT,
+    position: "absolute",
+  },
 });
