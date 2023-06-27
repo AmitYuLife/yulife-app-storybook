@@ -222,7 +222,7 @@ Feature("As a user I can take a challenge", async () => {
         helper.INSPECT_USER(CUSTOMER_56.data.fullName, "Forest", CUSTOMER_52)();
         When("I go to the yucoin today tab", when.tapID(NAV_BAR("yucoin")), async () => {
             When("I click on the challenge profiles viewed", when.tapChallenge("3 / 5 profiles viewed"), async () => {
-                Then("I should be on the completed events milestone page", then.onCompletedEventPage("Ends on the 10th", "5 Profiles viewed", "1 Profile viewed", "3 Profiles viewed", "650"))
+                Then("I should be on the completed events milestone page", then.onCompletedEventPage("Ends on the 10th", "5 Profiles viewed", "650"))
             })
         })
         When("I click Claim", when.tapText("Claim"), async () => {
