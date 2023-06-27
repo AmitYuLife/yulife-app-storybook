@@ -16,5 +16,6 @@ export const GQL_FRAGMENT_CONTENT_ITEM_WRAPPER = gql`
     onPress {
       ...SduiAction
     }
+    scrollViewProps
   }
 `;

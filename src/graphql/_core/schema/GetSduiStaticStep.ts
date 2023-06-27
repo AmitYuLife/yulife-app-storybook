@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -764,9 +764,13 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemWrapper {
    */
   absolute: string | null;
   /**
-   * Supported RN version 3.86.0
+   * Supported RN version 3.87.0
    */
   onPress: GetSduiStaticStep_getSduiStaticStep_body_ContentItemWrapper_onPress | null;
+  /**
+   * Supported RN version 3.87.0
+   */
+  scrollViewProps: string | null;
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemInfoCard_image {
@@ -1592,9 +1596,13 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemWr
    */
   absolute: string | null;
   /**
-   * Supported RN version 3.86.0
+   * Supported RN version 3.87.0
    */
   onPress: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemWrapper_onPress | null;
+  /**
+   * Supported RN version 3.87.0
+   */
+  scrollViewProps: string | null;
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemInfoCard_image {
