@@ -21,7 +21,7 @@ const YuniversityCoursesContainer = ({ popTo }: IProps) => {
   const dispatch = useDispatch();
   const userLevel = useSelector(getCurrentLevel);
 
-  const onLeftIconPress = useCallback(() => Navigation.popToRoot(popTo || ROUTES.wellbeingHubItems), [popTo]);
+  const onLeftIconPress = useCallback(() => Navigation.popTo(popTo || ROUTES.wellbeingHubItems), [popTo]);
   const { data, loading } = useQuery<GetInAppYuniversityCourses>(GQL_QUERY_GET_YUNIVERSITY_COURSES, {
     variables: { category: COURSE_CATEGORY_CPD },
     fetchPolicy: "network-only",
