@@ -1,5 +1,5 @@
 import { screens } from "@appScreens"
-import { navigation, expectIsVisibleViaText } from "@utils"
+import { navigation } from "@utils"
 export { authoriseFitkit, sendSteps } from "@socket";
 
 export const {

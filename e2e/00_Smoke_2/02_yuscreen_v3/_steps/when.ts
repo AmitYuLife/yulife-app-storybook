@@ -1,5 +1,5 @@
 import { navigation } from "@utils"
-import { BENEFICIARY_CONTINUE, INPUT_BENEFICIARY_DETAIL, AVATAR_ITEM } from "@ids"
+import * as ids from "@ids"
 
 
 export const {
@@ -27,14 +27,14 @@ export const {
 } = navigation.common
 
 export const addBeneficiary = (firstName: string, lastName: string, phone: string, relation: string) => async () => {
-    await typeViaID(INPUT_BENEFICIARY_DETAIL("First name"), firstName)()
-    await typeViaID(INPUT_BENEFICIARY_DETAIL("Last name"), lastName)()
-    await typeViaID(INPUT_BENEFICIARY_DETAIL("Phone number"), phone)()
-    await typeViaID(INPUT_BENEFICIARY_DETAIL("Relation"), relation)()
-    await tapID(BENEFICIARY_CONTINUE)()
+    await typeViaID(ids.INPUT_BENEFICIARY_DETAIL("First name"), firstName)()
+    await typeViaID(ids.INPUT_BENEFICIARY_DETAIL("Last name"), lastName)()
+    await typeViaID(ids.INPUT_BENEFICIARY_DETAIL("Phone number"), phone)()
+    await typeViaID(ids.INPUT_BENEFICIARY_DETAIL("Relation"), relation)()
+    await tapID(ids.BENEFICIARY_CONTINUE)()
 }
 
 export const tapAvatarItem = (avatarItem: string, status: string) => async () => {
-    const item = element(by.id(AVATAR_ITEM(`https://yulife-develop.imgix.net/yuscreen_products_assets/default/${avatarItem}`, status)))
+    const item = element(by.id(ids.AVATAR_ITEM(`https://yulife-develop.imgix.net/yuscreen_products_assets/default/${avatarItem}`, status)))
     await item.tap()
 }

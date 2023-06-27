@@ -1,6 +1,6 @@
 import {navigation} from "@utils"
 import { screens } from "@appScreens"
-import { readInbox, readEmailContent } from "@yu-life/yulife-bdd-framework"
+import { readInbox } from "@yu-life/yulife-bdd-framework"
 
 export const {
     idVisible,
