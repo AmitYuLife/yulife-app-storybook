@@ -5,6 +5,11 @@ import { DATE_FORMAT_WITH_TZ, getStartAndEndDateTimesWithTimezone } from "@utils
 import moment from "moment";
 import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
 import { IActiveLevel } from "./levels.selectors";
+import { delay } from "@utils/misc";
+import { FitKitSampleType, GenericFitKitResponseType } from "@services/fitkit/fitkit.types";
+
+const PROTECTED_DATA_INACCESSIBLE_ERROR = "Protected health data is inaccessible";
+const RETRIES = 5;
 
 export async function getEndResult(
   { startDateTime, endDateTime, score, subtype, fitKitTypes }: IActiveLevel,
@@ -20,13 +25,17 @@ export async function getEndResult(
       const metaData = { file: "levels.helpers" };
       const { start, end } = getStartAndEndDateTimesWithTimezone(startDateTime, endDateTime);
 
-      const { results: queryResult } = await queryFitKitSampleData({
+      const fitkitSampleTypes = {
         startTime: start,
         endTime: end,
         fitKitTypes,
         features,
         metaData,
-      });
+      };
+
+      const { results: queryResult } = features.retryChallengeResultQuery
+        ? await queryFitKitSampleDataWithRetries(fitkitSampleTypes)
+        : await queryFitKitSampleData(fitkitSampleTypes);
 
       // the way the 3rd party apps like calm/headspace write to the history is not always consistent
       // if someone's got their timezone changed
@@ -134,6 +143,29 @@ export function getAvailableChallengesForToday(
   }
 
   return challengesLeft;
+}
+
+async function queryFitKitSampleDataWithRetries(
+  fitkitTypes: FitKitSampleType<false>,
+  retries: number = 0,
+  queryError: boolean | string = false
+): Promise<GenericFitKitResponseType<false>> {
+  // too many retries
+  if (retries > RETRIES) {
+    return { results: [], error: queryError };
+  }
+
+  const response = await queryFitKitSampleData(fitkitTypes);
+  const { errorUserInfo, error } = response;
+
+  // there was some error try again
+  if (errorUserInfo && errorUserInfo.NSLocalizedDescription === PROTECTED_DATA_INACCESSIBLE_ERROR) {
+    await delay(3000);
+    return await queryFitKitSampleDataWithRetries(fitkitTypes, retries + 1, error);
+  }
+
+  // return the data
+  return response;
 }
 
 /** @deprecated should be returned from the backend */

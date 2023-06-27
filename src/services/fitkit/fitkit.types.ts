@@ -36,11 +36,13 @@ export type FitKitState = {
 export interface QueryFitKitByTypesResponse {
   results: ChallengesPayload[];
   error: boolean | string;
+  errorUserInfo?: Record<string, any>;
 }
 export interface QueryFitKitByTypesRawResponse {
   // TODO: create common type for sample and aggregated
   results: SampleQueryResult[];
   error: boolean | string;
+  errorUserInfo?: Record<string, any>;
 }
 
 export enum AggregationType {

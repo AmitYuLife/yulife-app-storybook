@@ -40,6 +40,7 @@ export async function queryFitKitSampleData<T extends boolean = false>({
 }: FitKitSampleType<T>): Promise<GenericFitKitResponseType<T>> {
   const allResults: SampleQueryResult[] = [];
   let error = false;
+  let errorUserInfo: Record<string, any>;
   const { disableUserEntries = true, loggingEnabled = false } = features || {
     disableUserEntries: true,
     loggingEnabled: false,
@@ -83,6 +84,7 @@ export async function queryFitKitSampleData<T extends boolean = false>({
       allResults.push(...results);
     } catch (e) {
       error = true;
+      errorUserInfo = e.userInfo;
 
       const errorMessage: string = e.message || "";
       if (!errorMessage.startsWith("An error occurred retrieving samples of type")) {
@@ -106,12 +108,16 @@ export async function queryFitKitSampleData<T extends boolean = false>({
 
   try {
     if (rawData) {
-      return { results: allResults, error } as GenericFitKitResponseType<T>;
+      return { results: allResults, error, errorUserInfo } as GenericFitKitResponseType<T>;
     }
 
-    return { results: allResults.map(transformSampleResultToPayloadWithType), error } as GenericFitKitResponseType<T>;
+    return {
+      results: allResults.map(transformSampleResultToPayloadWithType),
+      error,
+      errorUserInfo,
+    } as GenericFitKitResponseType<T>;
   } catch (e) {
-    return { results: [], error } as GenericFitKitResponseType<T>;
+    return { results: [], error, errorUserInfo } as GenericFitKitResponseType<T>;
   }
 }
 
