@@ -1,8 +1,7 @@
 import { When, Then } from "@yu-life/yulife-bdd-framework";
-import * as when from "./when"
-import * as then from "./then"
-import { CUSTOMER_47 } from "@data";
-import { GET_STARTED_BUTTON, MALE_BODY, BODY_TYPE, COLOUR, YUSCREEN_AVATAR, VIEW_TOP_RIGHT_COIN_COUNTER,YUMOJI_AVATAR_YUSCREEN_V4 } from "@ids";
+import * as when from "../_steps/when"
+import * as then from "../_steps/then"
+import * as ids from "@ids";
 
 
 export const CREATE_AVATAR = (customer: any) => async () => {
@@ -11,11 +10,11 @@ export const CREATE_AVATAR = (customer: any) => async () => {
             Then("I should be on the create Yumoji screen", then.onChooseAvatarBodyScreen)
         })
     })
-    When("I tap a body type", when.tapID(MALE_BODY), async () => {
+    When("I tap a body type", when.tapID(ids.MALE_BODY), async () => {
         When("I tap continue", when.tapText("Continue"), async () => {
             Then("I should be on the Yumoji builder", then.onSkinToneScreen("Skin Tone"))
-            Then("The male body should be selected", then.idVisible(BODY_TYPE("male")))
-            Then("I should see a skin tone", then.idVisible(COLOUR("#FFC89F")))
+            Then("The male body should be selected", then.idVisible(ids.BODY_TYPE("male")))
+            Then("I should see a skin tone", then.idVisible(ids.COLOUR("#FFC89F")))
         })
     })
     When("I tap this skin tone", when.tapColour("#FFC89F"), async () => {
@@ -58,7 +57,7 @@ export const CREATE_AVATAR = (customer: any) => async () => {
     })
     When("I tap 'Done' ", when.tapText("Done"), async () => {
         Then("I should be on the yuscreen", then.onYuscreen(customer))
-        Then("I should see my Yumoji", then.idVisible(YUMOJI_AVATAR_YUSCREEN_V4))
-        Then("I should be awarded 100 yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(800)))
+        Then("I should see my Yumoji", then.idVisible(ids.YUMOJI_AVATAR_YUSCREEN_V4))
+        Then("I should be awarded 100 yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(800)))
     })
 }

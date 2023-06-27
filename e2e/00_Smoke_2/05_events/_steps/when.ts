@@ -1,7 +1,8 @@
 import { screens,  } from "@appScreens"
-import { CHALLENGE_TILE, navigateViaID, navigation } from "@utils"
+import { navigateViaID, navigation } from "@utils"
 export { authoriseFitkit, sendSteps, addStepsHistoricalData } from "@socket";
 import { sendSteps, sendMindfulnessData, sendReduxEvent} from "@socket"
+import * as ids from "@ids"
 
 export const {
     tapText,
@@ -37,7 +38,7 @@ export const selectAndCompleteWalkingChallenge = (challengeType: string, steps: 
 }
 
 export const selectAndCompleteMeditationChallenge = (mindfulnessdata: number) => async () => {
-    await navigateViaID(CHALLENGE_TILE("meditation"))
+    await navigateViaID(ids.CHALLENGE_TILE("meditation"))
     await navigateViaText("Take challenge")
 
     await waitFor(element(by.text("Use a different app")))
