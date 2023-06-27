@@ -34,10 +34,11 @@ import Logger from "@services/logging/logger";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useAppState, useBackHandler, useGetLottieJson } from "@hooks";
-import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
+import { getActiveLevel, getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import { HourglassIcon } from "@atoms/icon/hourglass-icon";
 import { t } from "@locale";
+import { getUserActiveChallengeStart } from "@redux/user/user.actions";
 
 interface IProps {
   source: string;
@@ -48,7 +49,7 @@ interface IProps {
   thumbnail: string;
   logo?: string;
   videoLogo?: string;
-  onStart: () => void;
+  onStart: (hasActiveChallange?: boolean) => void;
   onEnd: () => void;
   onError: () => void;
   onLeftIconPress: () => void;
@@ -103,6 +104,7 @@ const VideoPlayer = ({
   const themeColour = useMemo(() => (theme === "light" ? Colours.neutral.white : Colours.neutral.n800), [theme]);
   const reduxDispatch = useDispatch();
   const videoPlayerIsActive = useSelector(getVideoPlayerIsActive);
+  const activeLevel = useSelector(getActiveLevel);
   const { uri: lottieUri, loading: lottieUriLoading } = useGetLottieJson(lottie?.uri);
 
   const fadeIn = Animated.timing(opacity, {
@@ -218,7 +220,7 @@ const VideoPlayer = ({
   const handleStartButton = useCallback(async () => {
     dispatch({ type: ActionTypes.SET_STARTING, payload: true });
     try {
-      await onStart();
+      await onStart(!!activeLevel.endDateTime);
       MusicControl.setNowPlaying({
         title,
         artwork: thumbnail,
@@ -239,6 +241,7 @@ const VideoPlayer = ({
 
       reduxDispatch(logMixpanelEventActionCreator("video_player_button_start_pressed", { type: eventType }));
     } catch (err) {
+      reduxDispatch(getUserActiveChallengeStart());
       Logger.error(err, {
         location: "video-player-handleStartButton",
       });
@@ -249,7 +252,7 @@ const VideoPlayer = ({
     } finally {
       dispatch({ type: ActionTypes.SET_STARTING, payload: false });
     }
-  }, [onStart, state.durationInSeconds]);
+  }, [onStart, state.durationInSeconds, activeLevel.endDateTime]);
 
   const handleOnEnd = useCallback(async () => {
     if (appCurrentState !== "active") {

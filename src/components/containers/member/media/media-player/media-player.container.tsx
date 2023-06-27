@@ -80,7 +80,11 @@ const MediaPlayerContainer = ({
   );
 
   const createChallenge = useCallback(
-    async (contentId: string) => {
+    async (contentId: string, hasActiveChallenge?: boolean) => {
+      if (hasActiveChallenge || challengeIsActive) {
+        await cancelChallenge(false);
+      }
+
       if (video?.duration) {
         const { data } = await createQuestMapLevelChallengeMutation({ variables: { levelSlotId, contentId } });
         dispatch(
