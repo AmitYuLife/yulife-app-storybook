@@ -88,6 +88,7 @@
     "today": "hoje",
     "month": "Mês"
   },
+  "button": "Botão",
   "meditation": "Meditação",
   "device_not_supported": "dispositivo não suportado",
   "apple_health": "Saúde da Maçã",
@@ -179,6 +180,15 @@
       }
     },
     "quests": {
+      "accessibility": {
+        "buttons_label": {
+          "nextAvailableAt": "Level %{level}, desbloqueia em %{nextAvailableTimer}",
+          "isNext": "Level %{level}",
+          "isDone": "Level %{level}, concluído",
+          "locked_chest": "Level %{level}, bau locked",
+          "locked": "Level %{level}, trancado"
+        }
+      },
       "level": {
         "pending": "em"
       }

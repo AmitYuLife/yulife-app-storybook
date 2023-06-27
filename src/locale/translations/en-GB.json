@@ -89,6 +89,7 @@
     "today": "today",
     "month": "Month"
   },
+  "button": "Button",
   "meditation": "Meditation",
   "device_not_supported": "device not supported",
   "apple_health": "Apple Health",
@@ -180,6 +181,15 @@
       }
     },
     "quests": {
+      "accessibility": {
+        "buttons_label": {
+          "nextAvailableAt": "Level %{level}, unlocks in %{nextAvailableTimer}",
+          "isNext": "Level %{level}",
+          "isDone": "Level %{level}, completed",
+          "locked_chest": "Level %{level}, chest locked",
+          "locked": "Level %{level}, locked"
+        }
+      },
       "level": {
         "pending": "in"
       }

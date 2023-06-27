@@ -30,6 +30,8 @@ interface IProps {
   hideShadow?: boolean;
   showBadge?: boolean;
   accessibilityLabel?: string;
+  accessible?: boolean;
+  focusable?: boolean;
 }
 
 interface IState {
@@ -63,6 +65,8 @@ export function ButtonBase(props: IProps) {
     leftIcon,
     rightIcon,
     accessibilityLabel,
+    accessible,
+    focusable,
   } = props;
   const [translateYAnimation] = useState(new Animated.Value(0));
   const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({
@@ -114,6 +118,8 @@ export function ButtonBase(props: IProps) {
         translateYAnimation={translateYAnimation}
         showBadge={showBadge}
         accessibilityLabel={accessibilityLabel}
+        focusable={focusable}
+        accessible={accessible}
       >
         <View>{children}</View>
       </Main>
@@ -154,6 +160,7 @@ function Main({
   showBadge,
   children,
   accessibilityLabel,
+  accessible,
 }: IProps & IState & ComponentProps<typeof TouchableWithoutFeedback>) {
   const adjustedColor = getOptionallyDisabledColor({ color, disabled });
   const adjustedBorderColor = getOptionallyDisabledColor({ color: borderColor, disabled });
@@ -169,6 +176,7 @@ function Main({
       accessibilityLabel={accessibilityLabel || title}
       accessibilityRole={"button"}
       accessibilityState={{ disabled, busy: isLoading }}
+      accessible={accessible}
     >
       <View style={styles.mainWrapper}>
         <Animated.View
