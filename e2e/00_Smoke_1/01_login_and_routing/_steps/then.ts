@@ -1,22 +1,4 @@
-import {
-    ACTIVITY_HISTORY_SCREEN,
-    BUTTON_LOGIN,
-    CHALLENGE_SCREEN,
-    DAILY_STEPS_SCREEN,
-    INPUT_LOGIN_EMAIL,
-    INPUT_LOGIN_PASSWORD,
-    LEADERBOARD_SCREEN,
-    MENU_ITEM,
-    MENU_SCREEN,
-    QUESTS_SCREEN,
-    REWARDS_SCREEN,
-    SETTINGS_SCREEN,
-    TAB_BUTTON,
-    VIEW_CONFETTI_COIN,
-    VIEW_TOP_RIGHT_COIN_COUNTER,
-    WELCOME_MODAL,
-    INPUT_RESET_PASSWORD
-} from "@ids";
+import * as ids from "@ids";
 import { expectDoesNotExistViaText, expectIsVisibleViaID, expectIsVisibleViaText, textVisibleAtIndex } from "@navigation";
 import { navigation } from "@navigation"
 import { screens } from "@appScreens"
@@ -37,18 +19,18 @@ export const {
 } = screens.dailySteps
 
 export const emailUnchanged = async (): Promise<void> => {
-    const target = element(by.id(INPUT_LOGIN_EMAIL));
+    const target = element(by.id(ids.INPUT_LOGIN_EMAIL));
     await expect(target).toBeVisible();
     await expect(target).toHaveText("someone@yulife.com");
 };
 
 export const passwordHidden = async (): Promise<void> => {
-    const target = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
+    const target = element(by.id(ids.INPUT_LOGIN_PASSWORD("Password")));
     await expect(target).toBeVisible()
 };
 
 export const loginButtonIsActive = async (): Promise<void> => {
-    await idVisible(BUTTON_LOGIN(false))()
+    await idVisible(ids.BUTTON_LOGIN(false))()
 };
 
 export const combinationErrorMessagePresent = async (): Promise<void> => {
@@ -92,7 +74,7 @@ export const given200coins = async (): Promise<void> => {
     await waitFor(target).toExist();
     await expect(target).toBeVisible();
 
-    const target2 = element(by.id(VIEW_CONFETTI_COIN(200)));
+    const target2 = element(by.id(ids.VIEW_CONFETTI_COIN(200)));
     await waitFor(target2).toExist();
     await expect(target2).toBeVisible();
 
@@ -102,7 +84,7 @@ export const given200coins = async (): Promise<void> => {
 };
 
 export const givenCoinsTopRight = (coins: number) => async (): Promise<void> => {
-    await expectIsVisibleViaID(VIEW_TOP_RIGHT_COIN_COUNTER(coins));
+    await expectIsVisibleViaID(ids.VIEW_TOP_RIGHT_COIN_COUNTER(coins));
 };
 
 export const stepsMeasured = (steps: number) => async (): Promise<void> => {
@@ -110,47 +92,47 @@ export const stepsMeasured = (steps: number) => async (): Promise<void> => {
 };
 
 export const dailyStepsScreenVisible = async (): Promise<void> => {
-    await expectIsVisibleViaID(DAILY_STEPS_SCREEN);
+    await expectIsVisibleViaID(ids.DAILY_STEPS_SCREEN);
 };
 
 export const tabIsActive = (label: string) => async (): Promise<void> => {
-    const target = await expectIsVisibleViaID(TAB_BUTTON(label));
+    const target = await expectIsVisibleViaID(ids.TAB_BUTTON(label));
     await expect(target).toHaveLabel("active");
 };
 
 export const tabIsInActive = (label: string) => async (): Promise<void> => {
-    const target = await expectIsVisibleViaID(TAB_BUTTON(label));
+    const target = await expectIsVisibleViaID(ids.TAB_BUTTON(label));
     await expect(target).toHaveLabel("inactive");
 };
 
 export const worldIsVisible = (level: number) => async (): Promise<void> => {
-    await expectIsVisibleViaID(QUESTS_SCREEN(level));
+    await expectIsVisibleViaID(ids.QUESTS_SCREEN(level));
 };
 
 export const rewardsScreenVisible = async (): Promise<void> => {
-    await expectIsVisibleViaID(REWARDS_SCREEN);
+    await expectIsVisibleViaID(ids.REWARDS_SCREEN);
 };
 
 export const activityHistoryScreenVisible = async (): Promise<void> => {
-    await expectIsVisibleViaID(ACTIVITY_HISTORY_SCREEN);
+    await expectIsVisibleViaID(ids.ACTIVITY_HISTORY_SCREEN);
 };
 
 export const leaderboardsScreenVisible = async (): Promise<void> => {
-    await expectIsVisibleViaID(LEADERBOARD_SCREEN);
+    await expectIsVisibleViaID(ids.LEADERBOARD_SCREEN);
 };
 
 export const settingsScreenVisible = async (): Promise<void> => {
-    await expectIsVisibleViaID(SETTINGS_SCREEN);
+    await expectIsVisibleViaID(ids.SETTINGS_SCREEN);
 };
 
 export const menuIsVisible = async (): Promise<void> => {
-    await expectIsVisibleViaID(MENU_SCREEN);
-    await expectIsVisibleViaID(MENU_ITEM("activity history"));
-    await expectIsVisibleViaID(MENU_ITEM("leaderboard"));
+    await expectIsVisibleViaID(ids.MENU_SCREEN);
+    await expectIsVisibleViaID(ids.MENU_ITEM("activity history"));
+    await expectIsVisibleViaID(ids.MENU_ITEM("leaderboard"));
 };
 
 export const challengeScreenIsVisible = async (): Promise<void> => {
-    await expectIsVisibleViaID(CHALLENGE_SCREEN);
+    await expectIsVisibleViaID(ids.CHALLENGE_SCREEN);
 };
 
 export const unlockAtLevelVisible = (level: number) => async (): Promise<void> => {
@@ -166,13 +148,13 @@ export const challengeIsUnavailable = (challenge: string) => async (): Promise<v
 };
 
 export const welcomeModalVisible = async () => {
-    await expectIsVisibleViaID(WELCOME_MODAL("Welcome to the yuniverse"))
+    await expectIsVisibleViaID(ids.WELCOME_MODAL("Welcome to the yuniverse"))
     await expectIsVisibleViaText("let’s begin")
 
 }
 
 export const onPasswordHelp = async () => {
-    await expect(element(by.id(INPUT_RESET_PASSWORD))).toBeVisible()
+    await expect(element(by.id(ids.INPUT_RESET_PASSWORD))).toBeVisible()
     await expect(element(by.text("Need help?"))).toBeVisible()
 }
 

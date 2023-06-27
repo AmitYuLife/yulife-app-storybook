@@ -1,6 +1,6 @@
 import { screens } from "@appScreens"
 import { navigation, STATS_TITLE, STATS_SCREEN, HEALTH_SCREEN, STATUS_ICON } from "@utils"
-import { permissionSettings } from "../fixtures"
+import { permissionSettings } from "../_resources/fixtures"
 
 export const {
     onDailySteps,
