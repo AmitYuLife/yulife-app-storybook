@@ -146,7 +146,7 @@ export const milestoneComplete = (index: number) => async () => {
     await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), index)()
 }
 
-export const onCompletedEventPage = (event: string, challengeType1: string, challengeType2: string, challengeType3: string, yuCoin: string) => async () => {
+export const onCompletedEventPage = (event: string, challengeType1: string, yuCoin: string) => async () => {
     const eventTitle = `${event} event`
 
     await textVisible(eventTitle)()
@@ -156,16 +156,14 @@ export const onCompletedEventPage = (event: string, challengeType1: string, chal
     await textVisibleAtIndex(`${yuCoin} YuCoin`, 0)() 
     await idVisible(ANIMATED_CIRCLE("#F43E8E"))()
     await idVisible(NUM_OF_STARS(3))()
-    await textVisible(challengeType2)()
     await textVisibleAtIndex(`${yuCoin} YuCoin`, 1)() 
     await idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), 0)() 
     await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), 0)()
-    await swipeFromText(challengeType2, "left", "fast")()
+    await swipeFromTextAtIndex(`${yuCoin} YuCoin`, "left", "fast", 1)()
     await textVisibleAtIndex(`${yuCoin} YuCoin`, 2)() 
     await idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), 1)() 
     await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), 1)()
-    await textVisible(challengeType3)()
-    await swipeFromText(challengeType2, "right", "fast")()
+    await swipeFromTextAtIndex(`${yuCoin} YuCoin`, "right", "fast", 1)()
     await buttonVisible("Claim")()
 }
 
