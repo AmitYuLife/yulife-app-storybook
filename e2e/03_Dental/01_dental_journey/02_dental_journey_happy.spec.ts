@@ -16,7 +16,7 @@ import * as then from "./_steps/then";
 import * as helper from "./_steps/helpers";
 import { CUSTOMER_DENTAL_1, CUSTOMER_37, AUTH_37, AUTH_DENTAL_1 } from "@data";
 import * as helper_pli from "02_PLI_1/_steps/helpers";
-import * as helper_V4 from "00_Smoke_4/01_yuscreen_v4/_steps/helpers";
+import * as helper_V4 from "00_Smoke_4/01_yuscreen_v4/_resources/helpers";
 
 Feature("DENTAL HAPPY", async () => {
   Scenario("I can buy Dental and PLI ,only allow previously used card for purchase of new product", scenario.start, async () => {

@@ -1,6 +1,6 @@
 import { When, Then } from "@yu-life/yulife-bdd-framework";
-import * as when from "./when";
-import * as then from "./then";
+import * as when from "../_steps/when";
+import * as then from "../_steps/then";
 import {
   YUMOJI_AVATAR_YUSCREEN_V4,
   VIEW_TOP_RIGHT_COIN_COUNTER,

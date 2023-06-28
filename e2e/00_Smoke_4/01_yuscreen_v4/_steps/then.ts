@@ -1,19 +1,10 @@
 import { navigation } from "@utils";
 import { screens } from "@appScreens";
-import {
-  AVATAR_ITEM,
-  BACKGROUND_COLOUR_PRODUCT,
-  ONBOARDING_SCREEN,
-  YUCOIN_POWER,
-  TEXT_TEMPLATE,
-  CONTENT_MIDDLE_ITEM_IMAGE,
-  PRODUCT_DETAILS_SCROLL_VIEW,
-  COUNTDOWN_UNIT,
-} from "@ids";
+import * as ids from "@ids";
 import moment = require("moment");
-import { BUSINESS_PRODUCT_8_GHI } from "@data";
+import * as data from "@data";
 import { scrollUntilTextVisible } from "./when";
-import * as fixture from "./fixture";
+import * as fixture from "../_resources/fixture";
 
 export const {
   idVisible,
@@ -69,7 +60,7 @@ export const { swipeToID, swipeFromText } = navigation.scrolling;
 
 export const avatarItemVisible = (avatarItem: string, status: string) => async () => {
   await idVisible(
-    AVATAR_ITEM(`https://yulife-develop.imgix.net/yuscreen_products_assets/default/${avatarItem}`, status)
+    ids.AVATAR_ITEM(`https://yulife-develop.imgix.net/yuscreen_products_assets/default/${avatarItem}`, status)
   );
 };
 
@@ -89,17 +80,17 @@ export const pickWhereLeftModal = async () => {
 
 export const productSlotsAreCorrect = (status: string) => async () => {
   if (status === "0 product live") {
-    await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(0)).toBeVisible();
-    await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(1)).toBeVisible();
+    await expect(element(by.id(ids.BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(0)).toBeVisible();
+    await expect(element(by.id(ids.BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(1)).toBeVisible();
   }
   if (status === "dental only") {
-    await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#F7F3FF")))).toBeVisible(); // dental insurance button
-    await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(0)).toBeVisible(); // life insurance button
-    await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(1)).toBeVisible(); // more protection coming soon button
+    await expect(element(by.id(ids.BACKGROUND_COLOUR_PRODUCT("#F7F3FF")))).toBeVisible(); // dental insurance button
+    await expect(element(by.id(ids.BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(0)).toBeVisible(); // life insurance button
+    await expect(element(by.id(ids.BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(1)).toBeVisible(); // more protection coming soon button
   }
   if (status === "groupDental") {
-    await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(0)).toBeVisible(); // life insurance button
-    await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(1)).toBeVisible(); // more protection coming soon button
+    await expect(element(by.id(ids.BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(0)).toBeVisible(); // life insurance button
+    await expect(element(by.id(ids.BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(1)).toBeVisible(); // more protection coming soon button
   }
 };
 
@@ -151,11 +142,11 @@ export const groupDentalProductInfo = (packageType: string, yuCoinPower: string)
   const level = "Level 4";
   const startDate = moment().subtract(1, "months").format("DD/MM/YYYY");
 
-  await idVisible(TEXT_TEMPLATE(policyName))();
+  await idVisible(ids.TEXT_TEMPLATE(policyName))();
   await expect(element(by.text(paidBy))).toBeVisible();
   await expect(element(by.text(policyDescription))).toBeVisible();
   await expect(element(by.text(packageType))).toBeVisible();
-  await expect(element(by.id(YUCOIN_POWER(yuCoinPower)))).toBeVisible();
+  await expect(element(by.id(ids.YUCOIN_POWER(yuCoinPower)))).toBeVisible();
   await expect(element(by.text(policyInfoYugi))).toBeVisible();
   await expect(element(by.text(keyInfo))).toBeVisible();
   await swipeFromText(keyInfo, "up", "slow", 0.3)();
@@ -294,7 +285,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       break;
   }
 
-  await expect(element(by.id(ONBOARDING_SCREEN))).toBeVisible();
+  await expect(element(by.id(ids.ONBOARDING_SCREEN))).toBeVisible();
   await expect(element(by.text(fixture.protectionPowered))).toBeVisible();
   await expect(element(by.text(fixture.earnRewardsCopy))).toBeVisible();
   await swipeFromText(fixture.protectionPowered, "up", "slow")();
@@ -346,34 +337,34 @@ export const GHIProductInfo = ( productStartDate: any, dependentName:any, yuCoin
   const policyInfoYugi =
     "This policy is paid for by your employer. Remember if you change jobs, you’ll lose this cover.";
   const startDate = moment(productStartDate.data.start_date).format("DD/MM/YYYY");
-  const schemeNumberProduct = BUSINESS_PRODUCT_8_GHI.product.data.product_id
+  const schemeNumberProduct = data.BUSINESS_PRODUCT_8_GHI.product.data.product_id
   const dependent = `${dependentName.data.first_name} ${dependentName.data.last_name}`
   const GHIRewardImg = "https://yulife-develop.imgix.net/bupa/images/rewards_on_the_way_2023-03-23.png?ixlib=js-3.2.1&w=981&h=714&s=4809f351b905b43bb783ab2519e188f7"
 
-  await idVisible(TEXT_TEMPLATE(policyName))();
+  await idVisible(ids.TEXT_TEMPLATE(policyName))();
   await expect(element(by.text(paidBy))).toBeVisible();
   await expect(element(by.text(policyDescription))).toBeVisible();
-  await expect(element(by.id(YUCOIN_POWER(yuCoinPower)))).toBeVisible();
+  await expect(element(by.id(ids.YUCOIN_POWER(yuCoinPower)))).toBeVisible();
   await expect(element(by.text(policyInfoYugi))).toBeVisible();
   await expect(element(by.text(keyInfo))).toBeVisible();
-  await scrollUntilTextVisible(PRODUCT_DETAILS_SCROLL_VIEW, coverlevel, "down")()
+  await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, coverlevel, "down")()
   await expect(element(by.text(schemeNumber))).toBeVisible();
   await expect(element(by.text(schemeNumberProduct))).toBeVisible();
   await expect(element(by.text(coverlevel))).toBeVisible();
-  await scrollUntilTextVisible(PRODUCT_DETAILS_SCROLL_VIEW, startDateText, "down")()
+  await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, startDateText, "down")()
   await expect(element(by.text(startDateText))).toBeVisible();
   await expect(element(by.text(startDate))).toBeVisible(); 
-  await scrollUntilTextVisible(PRODUCT_DETAILS_SCROLL_VIEW, faq, "down")()
+  await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, faq, "down")()
   await expect(element(by.text(coverForWApos))).toBeVisible();
   await expect(element(by.text(howToClaim))).toBeVisible();
   await expect(element(by.text(faq))).toBeVisible();
-  await scrollUntilTextVisible(PRODUCT_DETAILS_SCROLL_VIEW, dependentDescription, "down")()
+  await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, dependentDescription, "down")()
   await expect(element(by.text(dependent))).toBeVisible();
   await expect(element(by.text(dependentDescription))).toBeVisible();
   await swipeFromText(dependentDescription, "up", "fast")();
   await expect(element(by.text(Bupa_markdown_1))).toBeVisible();
   await expect(element(by.text(Bupa_markdown_2))).toBeVisible();
-  await expect(element(by.id(CONTENT_MIDDLE_ITEM_IMAGE(GHIRewardImg)))).toBeVisible();
+  await expect(element(by.id(ids.CONTENT_MIDDLE_ITEM_IMAGE(GHIRewardImg)))).toBeVisible();
 };
 
 
@@ -385,11 +376,11 @@ export const policyGoesLiveIn = (seed:any) => async () => {
   const diffDuration = moment.duration(targetDate.diff(currentDate));
   
   const days = Math.floor(diffDuration.asDays())
-  await idVisible(COUNTDOWN_UNIT(days, 'Days'))()
+  await idVisible(ids.COUNTDOWN_UNIT(days, 'Days'))()
 
   var hours = diffDuration.hours()
-  await idVisible(COUNTDOWN_UNIT(hours, 'Hours'))()
+  await idVisible(ids.COUNTDOWN_UNIT(hours, 'Hours'))()
 
   var minutes = diffDuration.minutes();
-  await idVisible(COUNTDOWN_UNIT(minutes+1, 'Mins'))()
+  await idVisible(ids.COUNTDOWN_UNIT(minutes+1, 'Mins'))()
 }
