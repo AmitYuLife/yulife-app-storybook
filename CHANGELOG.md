@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.88.0] - 2023-06-28
+
+### Bugfixes
+
+- Bugfix ENG-3252: Retry challenge end result query if data inaccessible
+- Bugfix ENG-3417: Unable to start in-app meditation challenge
+- Bugfix: Use popTo intead of popToRoot on yuniversity courses screen
+- Bugfix: resolve issue where the reward description was missing on the redeem all screen
+- Bugfix: Assume AWS role to deploy storybook
+
+### Tasks
+
+- Task: remove conditional when there is less than two milestones
+- Task: Different quest map if voiceOver(accessibility) is enabled
+- Task XSE-1976: Rewards carousel
+- Task DEVOP-1210: Configure OpenID Gitlab runner
+
+### Extra
+
+- Detox: Smoke 3 cleanup + cleaned smoke 1 + 2 data obj
+- Detox: Smoke 4 cleanup
+- Detox: Smoke 1 cleanup
+- Detox: Smoke 2 cleanup
+- Detox: Fixes 27th June
+- Detox: 26th June
+- Hotfix: fix issue where rewards cannot be redeemed if they have less than 2 milestones
+
 ## [3.87.0] - 2023-06-23
 
 ### Bugfixes
