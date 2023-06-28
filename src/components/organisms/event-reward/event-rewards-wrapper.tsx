@@ -20,62 +20,51 @@ const EventRewardWrapper = ({
   onClaimReward,
   isClaimRewardEnabled = true,
 }: IEventRewardWrapperProps) => {
-  const { width: rewardWidth, marginHorizontal } = getRewardWidthAndMargin(rewards?.length);
+  const { width, marginHorizontal, paddingHorizontal } = getRewardStyles(rewards?.length);
+
   const renderReward = useCallback<ListRenderItem<IReward>>(
     ({ item }) => (
       <EventReward
         reward={item}
-        width={rewardWidth}
+        width={width}
         eventTitle={eventTitle}
         onClaimReward={onClaimReward}
+        marginHorizontal={marginHorizontal}
         isClaimRewardEnabled={isClaimRewardEnabled}
       />
     ),
-    [rewardWidth]
+    [width, eventTitle, onClaimReward, isClaimRewardEnabled, marginHorizontal]
   );
 
   return (
     <View style={styles.wrapper}>
-      {rewards?.length > 2 ? (
-        <FlashList
-          data={rewards}
-          horizontal={true}
-          pagingEnabled={false}
-          decelerationRate={0.9}
-          renderItem={renderReward}
-          keyExtractor={keyExtractor}
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-          estimatedItemSize={ESTIMATED_ITEM_SIZE}
-          contentContainerStyle={styles.eventRewardsContainer}
-        />
-      ) : (
-        rewards?.map((reward) => (
-          <EventReward
-            key={reward.id}
-            reward={reward}
-            width={rewardWidth}
-            eventTitle={eventTitle}
-            onClaimReward={onClaimReward}
-            marginHorizontal={marginHorizontal}
-            isClaimRewardEnabled={isClaimRewardEnabled}
-          />
-        ))
-      )}
+      <FlashList
+        data={rewards}
+        horizontal={true}
+        pagingEnabled={false}
+        decelerationRate={0.9}
+        renderItem={renderReward}
+        keyExtractor={keyExtractor}
+        scrollEnabled={rewards?.length > 2}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        estimatedItemSize={ESTIMATED_ITEM_SIZE}
+        contentContainerStyle={{ paddingHorizontal }}
+      />
     </View>
   );
 };
 
 const keyExtractor = (reward: IReward) => reward.id;
 
-const getRewardWidthAndMargin = (rewardsSize: number) => {
+const getRewardStyles = (rewardsSize: number) => {
   switch (rewardsSize) {
     case 1:
-      return { width: Style.DEVICE_WIDTH - 48, marginHorizontal: Style.adjust(8) };
+      return { width: Style.DEVICE_WIDTH - 48, marginHorizontal: Style.adjust(8), paddingHorizontal: 0 };
     case 2:
-      return { width: (Style.DEVICE_WIDTH - 56) / 2, marginHorizontal: Style.adjust(8) };
+      return { width: (Style.DEVICE_WIDTH - 56) / 2, marginHorizontal: Style.adjust(8), paddingHorizontal: 0 };
     default:
-      return { width: Style.adjust(136), marginHorizontal: Style.adjust(4) };
+      return { width: Style.adjust(136), marginHorizontal: Style.adjust(4), paddingHorizontal: Style.adjust(16) };
   }
 };
 
@@ -86,9 +75,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: Style.adjust(16),
-  },
-  eventRewardsContainer: {
-    paddingHorizontal: Style.adjust(16),
   },
 });
 
