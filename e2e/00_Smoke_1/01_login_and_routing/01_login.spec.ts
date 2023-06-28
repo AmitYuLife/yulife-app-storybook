@@ -4,7 +4,7 @@ import * as then from "./_steps/then";
 import * as when from "./_steps/when";
 import * as scenario from "./_steps/scenario";
 import * as ids from "@ids";
-import { CUSTOMER_2,CUSTOMER_4, AUTH_2, AUTH_4, CUSTOMER_ARCHIVED, AUTH_ARCHIVED, CUSTOMER_38, AUTH_38 } from "@data";
+import * as data from "@data";
 
 Feature("As a user I can get past the login screen", async () => {
 
@@ -100,11 +100,11 @@ Feature("As a user I can get past the login screen", async () => {
             Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
             Given("I enter an incorrect password five times", given.enterPasswordIncorrectly(5), () => {
                 Then("I should see an error message saying my account is locked", then.textVisible("Account is locked. Try again later."))
-                When("I enter the correct password and login", when.loginOnly(CUSTOMER_4, AUTH_4), async () => {
+                When("I enter the correct password and login", when.loginOnly(data.CUSTOMER_4, data.AUTH_4), async () => {
                     Then("I should still be on the login screen", then.idVisible(ids.INPUT_LOGIN_EMAIL))
                     Then("I should still see an error message saying my account is locked", then.textVisible("Account is locked. Try again later."))
                     When("I reload the app", when.reloadOnly, async () => {
-                        When("I enter enter the correct details", when.loginOnly(CUSTOMER_4, AUTH_4), async () => {
+                        When("I enter enter the correct details", when.loginOnly(data.CUSTOMER_4, data.AUTH_4), async () => {
                             Then("I should still see the account locked message", then.textVisible("Account is locked. Try again later."))
                         })
                     })
@@ -114,7 +114,7 @@ Feature("As a user I can get past the login screen", async () => {
     })
 
     Scenario("As an archived user, I should not be able to login", scenario.start, async () => {
-        Given("I login as an archived user", given.loginOnly(CUSTOMER_ARCHIVED, AUTH_ARCHIVED), async () => {
+        Given("I login as an archived user", given.loginOnly(data.CUSTOMER_ARCHIVED, data.AUTH_ARCHIVED), async () => {
             Then("I should see 'Sorry'!", then.textVisible("Sorry!"))
             Then("I should see copy saying I can't use the app", then.textVisible("You are not able to use this app at the moment."))
         })
@@ -122,7 +122,7 @@ Feature("As a user I can get past the login screen", async () => {
 
     Scenario("I can login with correct login details and see the correct data for every passive/active activity that a user has engaged with", scenario.start, async () => {
         Given("I have authorised fitkit and done 10 steps today", given.authoriseFitkit(), async () => {
-            Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", CUSTOMER_2, AUTH_2), async () => {
+            Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_2, data.AUTH_2), async () => {
                 When("I have already seen the onboarding screens", given.seenOnboardingScreens, async () => {
                     When("I have done 20 steps", given.sendSteps(20), async () => {
                         Then("I should see 20 steps", then.idVisible(ids.STEPS_COUNT(20), 2000));
@@ -194,7 +194,7 @@ Feature("As a user I can get past the login screen", async () => {
     });
 
     Scenario("As a user belonging to a company with bonus onboarding, I should be able to see the bonus YuCoin in app", scenario.start, async () => {
-        Given("I have entered a valid email address and valid password", given.logInAndGoToTab("yucoin", CUSTOMER_38, AUTH_38), async () => {
+        Given("I have entered a valid email address and valid password", given.logInAndGoToTab("yucoin", data.CUSTOMER_38, data.AUTH_38), async () => {
             Then("I should be on the daily steps screen", then.dailyStepsScreenVisible)
             Then("I should see I have 420 YuCoin", then.givenCoinsTopRight(420))
         });

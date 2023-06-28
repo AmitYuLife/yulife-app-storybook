@@ -1,5 +1,5 @@
 import { navigation } from "@navigation"
-import { AVATAR_BUILDER_LIST, YUMOJI_PART_ID, CATEGORY_TYPE, COLOUR } from "@ids"
+import * as ids from "@ids"
 export { addStepsHistoricalData, addCyclingHistoricalData, addMindfulnessHistoricalData} from "@socket";
 
 
@@ -45,19 +45,19 @@ export const wait3secs = async () => {
 }
 
 export const tapTab = (tabName: string) => async () => {
-    const tab = element(by.id(CATEGORY_TYPE(tabName)))
+    const tab = element(by.id(ids.CATEGORY_TYPE(tabName)))
     await tab.tap()
 }
 
 export const tapItem = (partID: string) => async () => {
-    await scrollUntilIdVisible(AVATAR_BUILDER_LIST, YUMOJI_PART_ID(partID), "down")()
-    const item = element(by.id(YUMOJI_PART_ID(partID)))
+    await scrollUntilIdVisible(ids.AVATAR_BUILDER_LIST, ids.YUMOJI_PART_ID(partID), "down")()
+    const item = element(by.id(ids.YUMOJI_PART_ID(partID)))
     await item.tap()
 }
 
 export const tapColour = (hexValue: string) => async () => {
-    await scrollUntilIdVisible(AVATAR_BUILDER_LIST, COLOUR(hexValue), "down")()
-    const colour = element(by.id(COLOUR(hexValue)))
+    await scrollUntilIdVisible(ids.AVATAR_BUILDER_LIST, ids.COLOUR(hexValue), "down")()
+    const colour = element(by.id(ids.COLOUR(hexValue)))
     await colour.tap()
 }
 

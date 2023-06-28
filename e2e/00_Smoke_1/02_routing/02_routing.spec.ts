@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as ids from "@ids";
-import { CORE_REWARDS_JOHN_LEWIS, CORE_REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_2, AUTH_2, CUSTOMER_8, AUTH_8, CUSTOMER_35, AUTH_35 } from "@data";
+import * as data from "@data";
 
 Feature("As a user I can navigate through member routes correctly", async () => {
 
@@ -27,7 +27,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         When("I have done yesterday 309 steps", given.addStepsHistoricalData(309), async () => {
             When("I have done yesterday Biking 11.3 km", given.addCyclingHistoricalData(11345), async () => {
                 When("I have done yesterday 13:20 min Mindfulness", given.addMindfulnessHistoricalData(800), async () => {
-                    Given("I login as a user", given.loginAsUser(CUSTOMER_2, AUTH_2), async () => {
+                    Given("I login as a user", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2), async () => {
                         Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
                     })
                 })
@@ -103,7 +103,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     })
 
     Scenario("I can talk to yulife via intercom", scenario.start, async () => {
-        Given("I login as a user", given.loginAsUser(CUSTOMER_2, AUTH_2), async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
             When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
                 Then("I should see the menu items", then.menuItemsVisible)
@@ -119,11 +119,11 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     })
     // Still needs fixing. Feature works but test stalls and fails
     Scenario("I can view all the reward screens", scenario.start, async () => {
-        Given("I login as a user", given.loginAsUser(CUSTOMER_8, AUTH_8), async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_8, data.AUTH_8), async () => {
             When("I go to rewards", when.tapID(ids.NAV_BAR("rewards")), async () => {
                 Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 2000))
-                Then("I should see a John Lewis reward", then.rewardVisible(CORE_REWARDS_JOHN_LEWIS))
-                Then("I should see a locked reward", then.lockedRewardVisible(CORE_REWARDS_BLOOM_UNAVAILABLE))
+                Then("I should see a John Lewis reward", then.rewardVisible(data.CORE_REWARDS_JOHN_LEWIS))
+                Then("I should see a locked reward", then.lockedRewardVisible(data.CORE_REWARDS_BLOOM_UNAVAILABLE))
                 Then("I should see the Purchased tab", then.textVisible("Purchased", 1500))
                 When("I tap the Purchased tab", when.tapText("Purchased"), async () => {
                     When("I wait", when.wait(2500), async()=>{
@@ -139,7 +139,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
 
 
     Scenario("I can view quest screens", scenario.start, async () => {
-        Given("I login", given.loginAsUser(CUSTOMER_8, AUTH_8), async () => {
+        Given("I login", given.loginAsUser(data.CUSTOMER_8, data.AUTH_8), async () => {
             When("I go to quests", when.tapID(ids.NAV_BAR("quests")), async () => {
                 Then("I should be on quests", then.idVisible(ids.QUESTS_SCREEN(0)))
                 When("I tap the locked level 4 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(4)), async () => {
@@ -182,7 +182,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     })
     
     Scenario("I should see my yumoji and streak coins in activity history", scenario.start, async () => {
-        Given("I login as a user", given.loginAsUser(CUSTOMER_35, AUTH_35), async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_35, data.AUTH_35), async () => {
             When("I tap the menu icon", when.tapID(ids.MENU_ICON, 1500), async()=>{
                 Then("I should see the menu items", then.menuItemsVisible)
             })
@@ -195,7 +195,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     })
 
     Scenario("I can see Status Permissions not_determined if have not done any activity", scenario.start, async () => {
-        Given("I login as a user", given.loginAsUser(CUSTOMER_2, AUTH_2, true), async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2, true), async () => {
             When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
                 When("I tap settings", when.tapMenuItem("Settings"), async () => {
                     Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500))
@@ -215,7 +215,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             When("I have done yesterday Biking 11.3 km", given.addCyclingHistoricalData(11345), async () => {
                 When("I have done yesterday 13:20 min Mindfulness", given.addMindfulnessHistoricalData(800), async () => {
                     When("I have done yesterday 2 Pilates", given.addPilatesHistoricalData(2), async () => {
-                        Given("I login as a user", given.loginAsUser(CUSTOMER_2, AUTH_2), async () => {
+                        Given("I login as a user", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2), async () => {
                             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
                             When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
                                 Then("I should see the menu items", then.menuItemsVisible)

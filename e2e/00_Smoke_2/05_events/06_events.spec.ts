@@ -4,12 +4,12 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as ids from "@ids";
-import { CUSTOMER_72, AUTH_72, GOALS_4, GOAL_REWARD_MILESTONE_9, GOAL_REWARD_MILESTONE_10, GOAL_REWARD_MILESTONE_11, CUSTOMER_81, AUTH_81, GOALS_5 } from "@data";
+import * as data from "@data";
 import { twoDaysAgoDate } from "./_resources/consts";
 
 Feature("As a user I can opt in and take an event", async () => {
     Scenario("I can take and complete a 3 star challenge event and hit all the event milestones", scenario.start, async () => {
-        Given("I login and go to yucoin page", given.logInAndGoToTab("yucoin", CUSTOMER_72, AUTH_72), async () => {
+        Given("I login and go to yucoin page", given.logInAndGoToTab("yucoin", data.CUSTOMER_72, data.AUTH_72), async () => {
             Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
             Then("I should not see any cycling stats on the screen as I have cycled 0km so far today", then.idNotVisible(ids.CYCLING_COUNT("km")))
             Then("I should see the correct 3 star event for me to complete and the progress bar", then.threeStarEventToBeCompletedVisible(0, 0))
@@ -18,8 +18,8 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should see my yucoin total in the top of the page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)))
         })
         When("I click on the event challenge", when.tapChallenge("0 / 4 perfect challenges"), async () => {
-            When("I scroll", when.scrollUntilTextVisible(ids.EVENT_DIALOG_SCREEN_SCROLL, GOALS_4.data.descriptionTitle, "down"), async () => {
-                Then("I should be on the event screen and see the correct earn rates for the challenges", then.eventScreenDetailsAreCorrect(GOALS_4))
+            When("I scroll", when.scrollUntilTextVisible(ids.EVENT_DIALOG_SCREEN_SCROLL, data.GOALS_4.data.descriptionTitle, "down"), async () => {
+                Then("I should be on the event screen and see the correct earn rates for the challenges", then.eventScreenDetailsAreCorrect(data.GOALS_4))
                 Then("I should see all milestones visible to take and their correct yucoin and stars", then.allMilestonesVisible)
             })
         })
@@ -45,12 +45,12 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should see I have earned 10 YuCoin today from the walk", then.yuCoinTodayEarned([210]))
             Then("I should see the yucoin page event bar showing the number of 3 star challenges completed and hit the correct milestone", then.yuCoinPageEventDataCorrect(1, 0.25))
         })
-        When("I tap on the event challenge", when.tapChallenge(GOALS_4.data.title), async () => {
+        When("I tap on the event challenge", when.tapChallenge(data.GOALS_4.data.title), async () => {
             Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(1, 0.25))
             Then("I should see Claim available for the first milestone", then.claimVisible(1))
         })
         When("I click Claim rewards", when.tapText("Claim rewards"), async () => {
-            Then("I should be on the event milestone page", then.onCompletedEventMilestonePage(GOALS_4.data.title, "100", 1, GOAL_REWARD_MILESTONE_9.data.rewardDescription))
+            Then("I should be on the event milestone page", then.onCompletedEventMilestonePage(data.GOALS_4.data.title, "100", 1, data.GOAL_REWARD_MILESTONE_9.data.rewardDescription))
         })
         When("I click Claim", when.tapText("Claim"), async () => {
             When("I wait", when.wait(5000), async () => {
@@ -82,7 +82,7 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should see I have earned 60 YuCoin today from the walk", then.yuCoinTodayEarned([1210, 60]))
             Then("I should see the yucoin page event bar showing the number of 3 star challenges completed and the correct milestone I am on", then.yuCoinPageEventDataCorrect(2, 0.5))
         })
-        When("I tap on the event challenge", when.tapChallenge(GOALS_4.data.title), async () => {
+        When("I tap on the event challenge", when.tapChallenge(data.GOALS_4.data.title), async () => {
             Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(2, 0.5))
             Then("I should see not see claim available for the second milestone", then.textNotVisible("Claim"))
         })
@@ -110,12 +110,12 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should see the yucoin page event bar showing the number of 3 star challenges completed and hit the correct milestone", then.yuCoinPageEventDataCorrect(3, 0.75))
             Then("I should see I have earned 60 and 10 YuCoin today from the walk", then.yuCoinTodayEarned([200, 1070, 10, 60]))
         })
-        When("I tap on the event challenge", when.tapChallenge(GOALS_4.data.title), async () => {
+        When("I tap on the event challenge", when.tapChallenge(data.GOALS_4.data.title), async () => {
             Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(3, 0.75))
             Then("I should see Claim available for the first milestone", then.claimVisible(2))
         })
         When("I click Claim rewards", when.tapText("Claim rewards"), async () => {
-            Then("I should be on the event milestone page", then.onCompletedEventMilestonePage(GOALS_4.data.title, GOAL_REWARD_MILESTONE_10.data.rewardValue.toString(), 2, GOAL_REWARD_MILESTONE_10.data.rewardDescription))
+            Then("I should be on the event milestone page", then.onCompletedEventMilestonePage(data.GOALS_4.data.title, data.GOAL_REWARD_MILESTONE_10.data.rewardValue.toString(), 2, data.GOAL_REWARD_MILESTONE_10.data.rewardDescription))
         })
         When("I click Claim", when.tapText("Claim"), async () => {
             When("I wait", when.wait(5000), async () => {
@@ -137,7 +137,7 @@ Feature("As a user I can opt in and take an event", async () => {
         // 4th challenge
 
         When("I complete a meditation challenge at level 152", when.selectAndCompleteMeditationChallenge(600), async () => {
-            Then("I am on the event completed page", then.onCompletedAllEventMilestonesPage(GOALS_4.data.title, GOAL_REWARD_MILESTONE_11.data.rewardDescription, GOAL_REWARD_MILESTONE_11.data.rewardTitle, GOAL_REWARD_MILESTONE_9.data.rewardTitle, GOAL_REWARD_MILESTONE_10.data.rewardTitle))
+            Then("I am on the event completed page", then.onCompletedAllEventMilestonesPage(data.GOALS_4.data.title, data.GOAL_REWARD_MILESTONE_11.data.rewardDescription, data.GOAL_REWARD_MILESTONE_11.data.rewardTitle, data.GOAL_REWARD_MILESTONE_9.data.rewardTitle, data.GOAL_REWARD_MILESTONE_10.data.rewardTitle))
         })
         When("I click Claim", when.tapText("Claim"), async () => {
             When("I wait", when.wait(5000), async () => {
@@ -162,7 +162,7 @@ Feature("As a user I can opt in and take an event", async () => {
     })
 
     Scenario("Passive data is correctly logged for an event that has backfill enabled", scenario.start, async () => {
-        Given("I login and go to yucoin page", given.logInAndGoToTab("yucoin", CUSTOMER_81, AUTH_81), async () => {
+        Given("I login and go to yucoin page", given.logInAndGoToTab("yucoin", data.CUSTOMER_81, data.AUTH_81), async () => {
             Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
             Then("I should see I have done 0 steps today", then.textVisible("0 steps"))
         })
@@ -179,7 +179,7 @@ Feature("As a user I can opt in and take an event", async () => {
         When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER("activity history")), async () => {
             When("I join the challenge", when.tapText("Join"), async () => {
                 When("I click confirm", when.tapText("Confirm"), async () => {
-                    Then("I should be on the event screen", then.onEventDetailsScreen(GOALS_5))
+                    Then("I should be on the event screen", then.onEventDetailsScreen(data.GOALS_5))
                     Then("I should see 4,000 steps have been completed", then.textVisible("4,000 / 10,000 steps"))
                 })
             })
