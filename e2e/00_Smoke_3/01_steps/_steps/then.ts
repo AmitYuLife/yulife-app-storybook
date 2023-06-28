@@ -1,6 +1,7 @@
-import { navigation, LEADERBOARD_NAME, LEADERBOARD_STATUS, LEADERBOARD_SCROLL_LIST } from "@utils"
+import { navigation } from "@utils"
 import { screens } from "@appScreens"
-import { formatNumber } from "./helpers"
+import { formatNumber } from "../_resources/helpers"
+import * as ids from "@ids"
 
 export const {
     textVisible,
@@ -47,8 +48,8 @@ export const leaderboardVisible = (customers: any[], steps?: number[], scrollToT
 
     for(const customer of customers){
         const name = customer.data.firstName + " " + customer.data.lastName
-        await scrollUntilIdVisible(LEADERBOARD_SCROLL_LIST, LEADERBOARD_NAME(name), "down")()
-        await expect(element(by.id(LEADERBOARD_NAME(name)))).toBeVisible()
+        await scrollUntilIdVisible(ids.LEADERBOARD_SCROLL_LIST, ids.LEADERBOARD_NAME(name), "down")()
+        await expect(element(by.id(ids.LEADERBOARD_NAME(name)))).toBeVisible()
         const stepCount = steps?.[i]
         if(stepCount){
             await expect(element(by.text(stepCount.toString()))).toBeVisible()
@@ -58,7 +59,7 @@ export const leaderboardVisible = (customers: any[], steps?: number[], scrollToT
 }
 
 export const leaderboardStatus = (leaderboardName: string, status: "active" | "inactive") => async () => {
-    await expect(element(by.id(LEADERBOARD_STATUS(leaderboardName, status)))).toBeVisible()
+    await expect(element(by.id(ids.LEADERBOARD_STATUS(leaderboardName, status)))).toBeVisible()
 }
 
 export const {

@@ -1,7 +1,7 @@
 import { multipleTextVisible, navigation } from "@utils"
 import { screens } from "@appScreens"
 import * as ids from "@ids"
-import { GOALS_4, GOAL_REWARD_MILESTONE_9, GOAL_REWARD_MILESTONE_10, GOAL_REWARD_MILESTONE_11 } from "@data"
+import * as data from "@data"
 import { buttonVisible } from "_utils/appScreens/challenges"
 import { addCommasToNumber } from "_utils/appScreens/rewards"
 
@@ -35,7 +35,7 @@ export const isOnInivteColleaguePage = async () => {
 
 export const eventCompletedVisible = (numberOfChallenges: number, progressWidth: number) => async () => {
     const description = `${numberOfChallenges} / 4 perfect challenges`
-    const eventTimeframe = GOALS_4.data.title
+    const eventTimeframe = data.GOALS_4.data.title
 
     await textVisible(eventTimeframe)()
     await textVisible(description)()
@@ -96,7 +96,7 @@ export const onCompletedAllEventMilestonesPage = (event: string, challengeType1:
 
 export const threeStarEventToBeCompletedVisible = (numberOf3StarChallenges: number, progressWidth: number) => async () => {
     const description = `${numberOf3StarChallenges} / 4 perfect challenges`
-    const eventTimeframe = GOALS_4.data.title
+    const eventTimeframe = data.GOALS_4.data.title
 
     await textVisible(description)()
     await idVisible(ids.EVENT_PROGRESS_BAR(progressWidth))()
@@ -104,7 +104,7 @@ export const threeStarEventToBeCompletedVisible = (numberOf3StarChallenges: numb
     await idVisible(ids.NEW_EVENT_ICON)()
 }
 
-export const eventScreenDetailsAreCorrect = (goal: typeof GOALS_4) => async () => {
+export const eventScreenDetailsAreCorrect = (goal: typeof data.GOALS_4) => async () => {
     const eventTitle = goal.data.title
     const eventDescriptionTitle = goal.data.descriptionTitle
     const eventDescription = goal.data.description
@@ -121,17 +121,17 @@ export const eventScreenDetailsAreCorrect = (goal: typeof GOALS_4) => async () =
 }
 
 export const allMilestonesVisible = async () => {
-    await textVisible(GOAL_REWARD_MILESTONE_9.data.rewardTitle)()
-    await textVisible(GOAL_REWARD_MILESTONE_9.data.rewardDescription)()
+    await textVisible(data.GOAL_REWARD_MILESTONE_9.data.rewardTitle)()
+    await textVisible(data.GOAL_REWARD_MILESTONE_9.data.rewardDescription)()
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#E7E7EB"), 0)()
     await idVisible(ids.NUM_OF_STARS(1))()
-    await textVisible(GOAL_REWARD_MILESTONE_10.data.rewardTitle)()
-    await textVisible(GOAL_REWARD_MILESTONE_10.data.rewardDescription)()
+    await textVisible(data.GOAL_REWARD_MILESTONE_10.data.rewardTitle)()
+    await textVisible(data.GOAL_REWARD_MILESTONE_10.data.rewardDescription)()
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#E7E7EB"), 1)()
     await idVisible(ids.NUM_OF_STARS(2))()
-    await swipeFromText(GOAL_REWARD_MILESTONE_10.data.rewardTitle, "left", "fast")()
-    await textVisible(GOAL_REWARD_MILESTONE_11.data.rewardTitle)()
-    await textVisible(GOAL_REWARD_MILESTONE_11.data.rewardDescription)()
+    await swipeFromText(data.GOAL_REWARD_MILESTONE_10.data.rewardTitle, "left", "fast")()
+    await textVisible(data.GOAL_REWARD_MILESTONE_11.data.rewardTitle)()
+    await textVisible(data.GOAL_REWARD_MILESTONE_11.data.rewardDescription)()
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#E7E7EB"), 2)()
     await idVisible(ids.NUM_OF_STARS(3))()
 }
@@ -165,16 +165,16 @@ export const stepsChallengeDataCorrect = (level: number, yucoinEarned: number, s
 }
 
 export const firstChallengeClaimedVisible = async () => {
-    await textVisible(GOAL_REWARD_MILESTONE_9.data.rewardTitle)()
+    await textVisible(data.GOAL_REWARD_MILESTONE_9.data.rewardTitle)()
     await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 0)() 
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 0)()
-    await textVisible(GOAL_REWARD_MILESTONE_10.data.rewardTitle)()
-    await textVisible(GOAL_REWARD_MILESTONE_10.data.rewardDescription)()
+    await textVisible(data.GOAL_REWARD_MILESTONE_10.data.rewardTitle)()
+    await textVisible(data.GOAL_REWARD_MILESTONE_10.data.rewardDescription)()
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#E7E7EB"), 0)()
     await idVisible(ids.NUM_OF_STARS(2))()
-    await swipeFromText(GOAL_REWARD_MILESTONE_10.data.rewardTitle, "left", "fast")()
-    await textVisible(GOAL_REWARD_MILESTONE_11.data.rewardTitle)()
-    await textVisible(GOAL_REWARD_MILESTONE_11.data.rewardDescription)()
+    await swipeFromText(data.GOAL_REWARD_MILESTONE_10.data.rewardTitle, "left", "fast")()
+    await textVisible(data.GOAL_REWARD_MILESTONE_11.data.rewardTitle)()
+    await textVisible(data.GOAL_REWARD_MILESTONE_11.data.rewardDescription)()
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#E7E7EB"), 1)()
     await idVisible(ids.NUM_OF_STARS(3))()
     await idVisible(ids.EVENT_PROGRESS_BAR(0.25))()
@@ -182,15 +182,15 @@ export const firstChallengeClaimedVisible = async () => {
 }
 
 export const firstAndSecondChallengeClaimedVisible = async () => {
-    await textVisible(GOAL_REWARD_MILESTONE_9.data.rewardTitle)()
+    await textVisible(data.GOAL_REWARD_MILESTONE_9.data.rewardTitle)()
     await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 0)() 
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 0)()
-    await textVisible(GOAL_REWARD_MILESTONE_10.data.rewardTitle)()
+    await textVisible(data.GOAL_REWARD_MILESTONE_10.data.rewardTitle)()
     await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 1)() 
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 1)()
-    await swipeFromText(GOAL_REWARD_MILESTONE_10.data.rewardTitle, "left", "fast")()
-    await textVisible(GOAL_REWARD_MILESTONE_11.data.rewardTitle)()
-    await textVisible(GOAL_REWARD_MILESTONE_11.data.rewardDescription)()
+    await swipeFromText(data.GOAL_REWARD_MILESTONE_10.data.rewardTitle, "left", "fast")()
+    await textVisible(data.GOAL_REWARD_MILESTONE_11.data.rewardTitle)()
+    await textVisible(data.GOAL_REWARD_MILESTONE_11.data.rewardDescription)()
     await idVisible(ids.ANIMATED_CIRCLE("#E7E7EB"))()
     await idVisible(ids.NUM_OF_STARS(3))()
     await idVisible(ids.EVENT_PROGRESS_BAR(0.75))()
@@ -238,7 +238,7 @@ export const canSeeYesterdaysSteps = () => async () => {
     await textVisible("4,000 steps", 3000)()
 }
 
-export const onEventDetailsScreen = (goal: typeof GOALS_4) => async () => {
+export const onEventDetailsScreen = (goal: typeof data.GOALS_4) => async () => {
     const eventTitle = goal.data.title
     const eventDescriptionTitle = goal.data.descriptionTitle
 

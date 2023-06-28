@@ -1,9 +1,9 @@
-import { CYCLING_COUNT, navigation, textVisibleAtIndex, EVENT_PROGRESS_BAR, NEW_EVENT_ICON, CLAIM_BUTTON, NUM_OF_STARS, ANIMATED_CIRCLE, RADIO_ICON_COLOUR} from "@utils"
+import { navigation } from "@utils"
 import { screens } from "@appScreens"
-import { GOALS_3 } from "@data"
 import { buttonVisible } from "_utils/appScreens/challenges"
 import { addCommasToNumber } from "_utils/appScreens/rewards"
-import { swipeToText } from "_utils/navigation/scrolling"
+import * as ids from "@ids"
+import * as data from "@data"
 
 
 export const {
@@ -31,7 +31,7 @@ export const {
 
 export const canSeeTodaysCycling = () => async () => {
     await textVisible("7.5 km", 3000)()
-    await idVisible(CYCLING_COUNT("7.5 km"))()
+    await idVisible(ids.CYCLING_COUNT("7.5 km"))()
 }
 
 export const {
@@ -53,18 +53,18 @@ export const canSeePreviousDaysCycling = () => async () => {
 
 export const cyclingEventToBeCompletedVisible = (numberOfRides: number, progressWidth: number) => async () => {
     const description = `${numberOfRides} / 10,000 rides`
-    const eventTimeframe = GOALS_3.data.title
+    const eventTimeframe = data.GOALS_3.data.title
 
     await textVisible(description)()
-    await idVisible(EVENT_PROGRESS_BAR(progressWidth))()
+    await idVisible(ids.EVENT_PROGRESS_BAR(progressWidth))()
     await textVisible(eventTimeframe)()
-    await idVisible(NEW_EVENT_ICON)()
+    await idVisible(ids.NEW_EVENT_ICON)()
 }
 
 export const onCyclingEventDetailsScreen = async () => {
-    const eventTitle = GOALS_3.data.title
-    const eventDescriptionTitle = GOALS_3.data.descriptionTitle
-    const eventDescription = GOALS_3.data.description
+    const eventTitle = data.GOALS_3.data.title
+    const eventDescriptionTitle = data.GOALS_3.data.descriptionTitle
+    const eventDescription = data.GOALS_3.data.description
 
     await textVisible(eventTitle)()
     await textVisible(eventDescriptionTitle)()
@@ -73,7 +73,7 @@ export const onCyclingEventDetailsScreen = async () => {
 
     await swipeFromText(eventDescription, "up", "fast")()
 
-    for (const info of GOALS_3.data.info) {
+    for (const info of data.GOALS_3.data.info) {
         await textVisible(info.title)();
         await textVisible(info.description)();
     }
@@ -81,41 +81,41 @@ export const onCyclingEventDetailsScreen = async () => {
 
 export const eventCompletedVisible = (numberOfKm: number, progressWidth: number) => async () => {
     const description = `${addCommasToNumber(numberOfKm)} / 10,000 rides`
-    const eventTimeframe = GOALS_3.data.title
+    const eventTimeframe = data.GOALS_3.data.title
 
     await textVisible(eventTimeframe)()
     await textVisible(description)()
-    await idVisible(EVENT_PROGRESS_BAR(progressWidth))()
+    await idVisible(ids.EVENT_PROGRESS_BAR(progressWidth))()
 }
 
 export const claimVisible = (numOfStars: number) => async () => {
     await textVisible("Claim")()
-    await idVisible(CLAIM_BUTTON)()
-    await idVisible(ANIMATED_CIRCLE("#F43E8E"))()
-    await idVisible(NUM_OF_STARS(numOfStars))()
+    await idVisible(ids.CLAIM_BUTTON)()
+    await idVisible(ids.ANIMATED_CIRCLE("#F43E8E"))()
+    await idVisible(ids.NUM_OF_STARS(numOfStars))()
 }
 
 export const onCompletedEventMilestonePage = (yuCoin: string, numOfStars: number) => async () => {
-    const eventTitle = `${GOALS_3.data.title} event`
+    const eventTitle = `${data.GOALS_3.data.title} event`
 
     await textVisible(eventTitle)()
     await textVisible("Great job!")()
     await textVisible("You have reached the event milestone!\nCongratulations. Claim your rewards")()
     await textVisible(`${yuCoin} YuCoin`)() 
-    await idVisible(ANIMATED_CIRCLE("#F43E8E"))()
-    await idVisible(NUM_OF_STARS(numOfStars))()
+    await idVisible(ids.ANIMATED_CIRCLE("#F43E8E"))()
+    await idVisible(ids.NUM_OF_STARS(numOfStars))()
     await buttonVisible("Claim")()
 }
 
 export const milestoneComplete = (index: number) => async () => {
-    await idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), index)() 
-    await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), index)()
+    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), index)() 
+    await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), index)()
 }
 
 export const yuCoinPageEventDataCorrect = (numberOfKm: number, progressWidth: number) => async () => {
     const description = `${addCommasToNumber(numberOfKm)} / 10,000 rides`
     await textVisible(description)();
-    await idVisible(EVENT_PROGRESS_BAR(progressWidth))()
+    await idVisible(ids.EVENT_PROGRESS_BAR(progressWidth))()
 }
 
 export const yuCoinEarnedFromEvent = (yuCoinStartValue: number, yuCoinPower: number, rewardValue: number) => async () => {
@@ -124,11 +124,11 @@ export const yuCoinEarnedFromEvent = (yuCoinStartValue: number, yuCoinPower: num
 }
 
 export const allChallengesCompleteVisible = async () => {
-    await idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), 0)() 
-    await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), 0)()
-    await idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), 1)() 
-    await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), 1)()
+    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 0)() 
+    await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 0)()
+    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 1)() 
+    await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 1)()
     await swipeFromText("100 YuCoin", "left", "fast")()
-    await idVisibleAtIndex(ANIMATED_CIRCLE("#40C057"), 2)()
-    await idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), 2)() 
+    await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 2)()
+    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 2)() 
 }

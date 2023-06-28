@@ -3,27 +3,27 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { AUTH_31, AUTH_32, AUTH_33, AUTH_34, AUTH_74, AUTH_ALPHA, BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_4, BUSINESS_EMPLOYEE_31, BUSINESS_EMPLOYEE_32, CGP_31, CGP_32_GCI, CGP_32_GIP, CGP_32_RGL, CGP_74, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_74, CUSTOMER_ALPHA } from "@data";
+import * as data from "@data";
 import * as ids from "@ids";
 
 // Skipping as v3 yuscreen has been purged. Will purge at a later date
 FeatureSkip("I should be able to use the yuscreen v3", async()=>{
     Scenario("As a user with the yuscreen v3 enabled, I should be able to use it correctly", scenario.start, async()=>{
-        Given("I login as a user with yuscreen", given.loginToYuScreen(false, CUSTOMER_74, AUTH_74), async()=>{
-                Then("I should see the newly designed yuscreen", then.onYuscreenV3(CUSTOMER_74))
+        Given("I login as a user with yuscreen", given.loginToYuScreen(false, data.CUSTOMER_74, data.AUTH_74), async()=>{
+                Then("I should see the newly designed yuscreen", then.onYuscreenV3(data.CUSTOMER_74))
                 Then("I shoul see the item provided by my employer", then.avatarItemVisible("compass_active", "active"))
             })
             When("I tap the active compass", when.tapAvatarItem("compass_active", "active"), async()=>{
                 Then("I should be on the product screen", then.idVisible(ids.TEXT_TEMPLATE("Life Insurance")))
             })
             When("I tap Policy Details", when.tapText("Policy details"), async()=>{
-                Then("I should be on the certificate screen", then.onCertificate("Instant Group Life", CUSTOMER_74, CGP_74, BUSINESS_ACCOUNT_3, CGP_74 ))
+                Then("I should be on the certificate screen", then.onCertificate("Instant Group Life", data.CUSTOMER_74, data.CGP_74, data.BUSINESS_ACCOUNT_3, data.CGP_74 ))
             })
         })
 
         Scenario("As a user with 3 products, I should see these all in yuscreen", scenario.start, async()=>{
-            Given("I login as a user with yuscreen", given.loginToYuScreen(false, CUSTOMER_32, AUTH_32), async () => {
-                Then("I should see the newly designed yuscreen", then.onYuscreenV3(CUSTOMER_32))
+            Given("I login as a user with yuscreen", given.loginToYuScreen(false, data.CUSTOMER_32, data.AUTH_32), async () => {
+                Then("I should see the newly designed yuscreen", then.onYuscreenV3(data.CUSTOMER_32))
                 Then("I should see the unlocked compass", then.avatarItemVisible("compass_active", "active"))
                 Then("I should see the unlocked map", then.avatarItemVisible("map_active", "active"))
                 Then("I should see the unlocked binoculars", then.avatarItemVisible("binoculars_active", "active"))
@@ -32,7 +32,7 @@ FeatureSkip("I should be able to use the yuscreen v3", async()=>{
                 Then("I should be on the product screen", then.idVisible(ids.TEXT_TEMPLATE("Life Insurance")))
                 })
             When("I tap Policy details", when.tapText("Policy details"), async () => {
-                Then("I should be on the certificate screen", then.onCertificate("Registered Group Life", CUSTOMER_32, CGP_32_RGL, BUSINESS_ACCOUNT_4, CGP_32_RGL))
+                Then("I should be on the certificate screen", then.onCertificate("Registered Group Life", data.CUSTOMER_32, data.CGP_32_RGL, data.BUSINESS_ACCOUNT_4, data.CGP_32_RGL))
                 })
             When("I close this screen", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async()=>{
                 Then("I should be on the product details screen", then.idVisible(ids.TEXT_TEMPLATE("Policy documents")))
@@ -44,7 +44,7 @@ FeatureSkip("I should be able to use the yuscreen v3", async()=>{
                 Then("I should be on the product screen", then.idVisible(ids.TEXT_TEMPLATE("Income Protection")))
                 }) 
             When("I tap Policy Details", when.tapText("Policy details"), async () => {
-                Then("I should be on the certificate screen", then.onCertificate("Group Income Protection", CUSTOMER_32, CGP_32_GIP, BUSINESS_ACCOUNT_4, CGP_32_GIP))
+                Then("I should be on the certificate screen", then.onCertificate("Group Income Protection", data.CUSTOMER_32, data.CGP_32_GIP, data.BUSINESS_ACCOUNT_4, data.CGP_32_GIP))
             })
             When("I close this screen", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
                 Then("I should be on the product details screen", then.idVisible(ids.TEXT_TEMPLATE("Policy documents")))
@@ -56,7 +56,7 @@ FeatureSkip("I should be able to use the yuscreen v3", async()=>{
                 Then("I should be on the product screen", then.idVisible(ids.TEXT_TEMPLATE("Critical Illness")))
             })
             When("I tap Policy Details", when.tapText("Policy details"), async () => {
-                Then("I should be on the certificate screen", then.onCertificate("Group Critical Illness", CUSTOMER_32, CGP_32_GCI, BUSINESS_ACCOUNT_4, CGP_32_GCI))
+                Then("I should be on the certificate screen", then.onCertificate("Group Critical Illness", data.CUSTOMER_32, data.CGP_32_GCI, data.BUSINESS_ACCOUNT_4, data.CGP_32_GCI))
             })
             When("I close this screen", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
                 Then("I should be on the product details screen", then.idVisible(ids.TEXT_TEMPLATE("Policy documents")))
@@ -67,14 +67,14 @@ FeatureSkip("I should be able to use the yuscreen v3", async()=>{
         })
 
         Scenario("As an alpha user with enabled, I should not see any products", scenario.start, async()=>{
-            Given("I login to the yuscreen", given.loginToYuScreen(false, CUSTOMER_ALPHA, AUTH_ALPHA), async()=>{
-                Then("I should be on yuscreen", then.onYuscreenV3(CUSTOMER_ALPHA))
+            Given("I login to the yuscreen", given.loginToYuScreen(false, data.CUSTOMER_ALPHA, data.AUTH_ALPHA), async()=>{
+                Then("I should be on yuscreen", then.onYuscreenV3(data.CUSTOMER_ALPHA))
                 Then("I should not see any products", then.alphaProductsNotVisible)
             })
         })
 
         Scenario("As a user with the compass unlocked, I can add beneficiaries", scenario.start, async()=>{
-            Given("I login as a user with yuscreen", given.loginToYuScreen(false, CUSTOMER_32, AUTH_32), async () => {
+            Given("I login as a user with yuscreen", given.loginToYuScreen(false, data.CUSTOMER_32, data.AUTH_32), async () => {
                 When("I tap the active compass", when.tapAvatarItem("compass_active", "active"), async () => {
                     Then("I should be on the product screen", then.idVisible(ids.TEXT_TEMPLATE("Life Insurance")))
                 })
@@ -148,7 +148,7 @@ FeatureSkip("I should be able to use the yuscreen v3", async()=>{
         })
 
         Scenario("As a user with beneficiaries added, I can view them", scenario.start, async()=>{
-            Given("I login as a user with yuscreen", given.loginToYuScreen(false, CUSTOMER_33, AUTH_33), async () => {
+            Given("I login as a user with yuscreen", given.loginToYuScreen(false, data.CUSTOMER_33, data.AUTH_33), async () => {
                 When("I tap the active compass", when.tapAvatarItem("compass_active", "active"), async () => {
                     Then("I should be on the product screen", then.idVisible(ids.TEXT_TEMPLATE("Life Insurance")))
                     When("I scroll to the add beneficiary button", when.swipeFromText("Policy documents", "up", "fast"), async () => {
@@ -159,7 +159,7 @@ FeatureSkip("I should be able to use the yuscreen v3", async()=>{
         })
 
         Scenario("As a user with beneficiaries toggled off, I should not see any", scenario.start, async()=>{
-            Given("I login as a user with yuscreen", given.loginToYuScreen(false, CUSTOMER_74, AUTH_74), async () => {
+            Given("I login as a user with yuscreen", given.loginToYuScreen(false, data.CUSTOMER_74, data.AUTH_74), async () => {
                 When("I tap the active compass", when.tapAvatarItem("compass_active", "active"), async () => {
                     Then("I should be on the product screen", then.idVisible(ids.TEXT_TEMPLATE("Life Insurance")))
                     Then("I should not see Beneficiaries section", then.textNotVisible("Beneficiaries"))

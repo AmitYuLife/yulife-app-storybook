@@ -1,6 +1,7 @@
 import { screens } from "@appScreens"
-import { navigation, STATS_TITLE, STATS_SCREEN, HEALTH_SCREEN, STATUS_ICON } from "@utils"
+import { navigation } from "@utils"
 import { permissionSettings } from "../_resources/fixtures"
+import * as ids from "@ids"
 
 export const {
     onDailySteps,
@@ -39,7 +40,7 @@ export const {
 
 export const statsCorrect = async () => {
     await expect(element(by.text("statistics"))).toBeVisible()
-    const titles = [STATS_TITLE("your YuCoin"), STATS_TITLE("challenges"), STATS_TITLE("steps"), STATS_TITLE("mindfulness"), STATS_TITLE("cycling")]
+    const titles = [ids.STATS_TITLE("your YuCoin"), ids.STATS_TITLE("challenges"), ids.STATS_TITLE("steps"), ids.STATS_TITLE("mindfulness"), ids.STATS_TITLE("cycling")]
     const subtitles = ["total earned", "total redeemed", "total challenges completed", "challenge history", "average daily steps", "most steps in a day", "steps this week", "average mindful minutes per day", "mindful minutes on your best week", "mindful minutes this week", "average cycling distance per day", "cycling distance on your best week", "cycling distance this week", "see activity history"]
 
     const maxAttempts = 35
@@ -49,22 +50,22 @@ export const statsCorrect = async () => {
         let isTitleVisible = await booleanIdVisible(i)
         while (isTitleVisible === false && currentAttempt < maxAttempts) {
             
-            await scrollFromID(STATS_SCREEN, "up", "slow", 0.2)()
+            await scrollFromID(ids.STATS_SCREEN, "up", "slow", 0.2)()
             isTitleVisible = await booleanIdVisible(i)
             currentAttempt += 1
         }
         await expect(element(by.id(i))).toBeVisible()
     }
 
-    await scrollFromID(STATS_SCREEN, "down", "fast")()
-    await scrollFromID(STATS_SCREEN, "down", "fast")()
+    await scrollFromID(ids.STATS_SCREEN, "down", "fast")()
+    await scrollFromID(ids.STATS_SCREEN, "down", "fast")()
 
     for (const i of subtitles) {
         let currentAttempt = 0
         let isSubTitleVisible = await booleanTextVisible(i)
         while (isSubTitleVisible === false && currentAttempt < maxAttempts) {
 
-            await scrollFromID(STATS_SCREEN, "up", "slow", 0.2)()
+            await scrollFromID(ids.STATS_SCREEN, "up", "slow", 0.2)()
             isSubTitleVisible = await booleanTextVisible(i);
 
             currentAttempt += 1
@@ -92,21 +93,21 @@ export const onPermissionsPage = (status: string) => async () => {
     await expect(element(by.text(permissionSettings.ios.mindfulnessRead.description))).toBeVisible()
     await expect(element(by.text(permissionSettings.ios.cyclingRead.title))).toBeVisible()
     await expect(element(by.text(permissionSettings.ios.cyclingRead.description))).toBeVisible()
-    await scrollFromID(HEALTH_SCREEN, "up", "fast")()
+    await scrollFromID(ids.HEALTH_SCREEN, "up", "fast")()
     await expect(element(by.text(permissionSettings.ios.workoutsRead.title))).toBeVisible()
     await expect(element(by.text(permissionSettings.ios.workoutsRead.description))).toBeVisible()
-    await idVisibleAtIndex(STATUS_ICON("authorised"), 0)
-    await idVisibleAtIndex(STATUS_ICON(status), 0)
-    await idVisibleAtIndex(STATUS_ICON(status), 1)
-    await idVisibleAtIndex(STATUS_ICON(status), 2)
-    await idVisibleAtIndex(STATUS_ICON(status), 3)
+    await idVisibleAtIndex(ids.STATUS_ICON("authorised"), 0)
+    await idVisibleAtIndex(ids.STATUS_ICON(status), 0)
+    await idVisibleAtIndex(ids.STATUS_ICON(status), 1)
+    await idVisibleAtIndex(ids.STATUS_ICON(status), 2)
+    await idVisibleAtIndex(ids.STATUS_ICON(status), 3)
 
     if (status === "not_determined") {
-        await scrollFromID(HEALTH_SCREEN, "up", "fast")()
+        await scrollFromID(ids.HEALTH_SCREEN, "up", "fast")()
         await expect(element(by.text("Apple Health"))).toBeVisible()
     }
     else if (status === "authorised") {
-        await idVisibleAtIndex(STATUS_ICON(status), 4)
+        await idVisibleAtIndex(ids.STATUS_ICON(status), 4)
         await expect(element(by.text(permissionSettings.ios.statusUnknown.unknownStatusText))).toBeNotVisible()
     }
 }
