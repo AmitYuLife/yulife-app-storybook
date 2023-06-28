@@ -7,6 +7,7 @@ export const YUNIVERSITY_COURSE_MODULE_1 = {
   data: {
     "_id": generateRandomMongoId(),
     "durationMinutes": 30,
+    "cpdMinutes": 30,
     "chapters": [
       {
         "type": "video",
@@ -63,6 +64,7 @@ export const YUNIVERSITY_COURSE_MODULE_2 = {
   data: {
     "_id": generateRandomMongoId(),
     "durationMinutes": 30,
+    "cpdMinutes": 30,
     "chapters": [
       {
         "type": "video",
@@ -120,6 +122,7 @@ export const YUNIVERSITY_COURSE_MODULE_3 = {
   data: {
     "_id": generateRandomMongoId(),
     "durationMinutes": 30,
+    "cpdMinutes": 30,
     "chapters": [
       {
         "type": "video",
