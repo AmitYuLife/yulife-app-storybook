@@ -1,21 +1,7 @@
 import {
   navigation,
-  CATEGORY_TYPE,
-  YUMOJI_PART_ID,
-  COLOUR,
-  YUSCREEN,
-  YUCOIN_POWER,
-  AVATAR_BUILDER_LIST,
-  YUSCREEN_AVATAR,
-  HEAD_TYPE,
-  AVATAR_ITEM,
-  TEXT_TEMPLATE,
-  MALE_BODY,
-  CONTENT_ITEM_INPUT,
-  SDUI_SCREEN_SCROLL_VIEW,
-  BUTTON_CLOSE,
-  BUTTON_CLOSE_HEADER,
 } from "@utils";
+import * as ids from "@ids"
 
 export const {
   scrollFromText,
@@ -44,25 +30,25 @@ export const {
 
 export const tapAvatarItem = (avatarItem: string, status: string) => async () => {
   const item = element(
-    by.id(AVATAR_ITEM(`https://yulife-develop.imgix.net/yuscreen_products_assets/default/${avatarItem}`, status))
+    by.id(ids.AVATAR_ITEM(`https://yulife-develop.imgix.net/yuscreen_products_assets/default/${avatarItem}`, status))
   );
   await item.tap();
 };
 
 export const tapTab = (tabName: string) => async () => {
-  const tab = element(by.id(CATEGORY_TYPE(tabName)));
+  const tab = element(by.id(ids.CATEGORY_TYPE(tabName)));
   await tab.tap();
 };
 
 export const tapItem = (partID: string) => async () => {
-  await scrollUntilIdVisible(AVATAR_BUILDER_LIST, YUMOJI_PART_ID(partID), "down")();
-  const item = element(by.id(YUMOJI_PART_ID(partID)));
+  await scrollUntilIdVisible(ids.AVATAR_BUILDER_LIST, ids.YUMOJI_PART_ID(partID), "down")();
+  const item = element(by.id(ids.YUMOJI_PART_ID(partID)));
   await item.tap();
 };
 
 export const tapColour = (hexValue: string) => async () => {
-  await scrollUntilIdVisible(AVATAR_BUILDER_LIST, COLOUR(hexValue), "down")();
-  const colour = element(by.id(COLOUR(hexValue)));
+  await scrollUntilIdVisible(ids.AVATAR_BUILDER_LIST, ids.COLOUR(hexValue), "down")();
+  const colour = element(by.id(ids.COLOUR(hexValue)));
   await colour.tap();
 };
 
@@ -80,7 +66,7 @@ export const editYumoji =
     await textVisible("Edit your Yumoji")();
 
     await textVisible("Pick a body type")();
-    await tapID(MALE_BODY)();
+    await tapID(ids.MALE_BODY)();
 
     const continueButton = element(by.text("Continue"));
     await continueButton.tap();
@@ -111,7 +97,7 @@ export const editYumoji =
 
 export const createDefaultYumoji = async () => {
   await tapText("Create Yumoji")();
-  await tapID(MALE_BODY)();
+  await tapID(ids.MALE_BODY)();
   await tapText("Continue")();
   await tapText("Save")();
   await tapText("Save changes")();
@@ -128,61 +114,61 @@ export const tapIllDoThisLater = async () => {
 };
 
 export const closeScreen = async () => {
-  await tapIDAtIndex(BUTTON_CLOSE, 1)();
+  await tapIDAtIndex(ids.BUTTON_CLOSE, 1)();
 };
 
 export const addContactDetails = async () => {
-  await scrollFromID(SDUI_SCREEN_SCROLL_VIEW, "down", "slow")();
-  await clearFieldByID(CONTENT_ITEM_INPUT("firstName"))();
-  await typeViaID(CONTENT_ITEM_INPUT("firstName"), "Eugene\n")();
+  await scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "down", "slow")();
+  await clearFieldByID(ids.CONTENT_ITEM_INPUT("firstName"))();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("firstName"), "Eugene\n")();
 
-  await clearFieldByID(CONTENT_ITEM_INPUT("lastName"))();
-  await typeViaID(CONTENT_ITEM_INPUT("lastName"), "Grosu\n")();
+  await clearFieldByID(ids.CONTENT_ITEM_INPUT("lastName"))();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("lastName"), "Grosu\n")();
 };
 
 export const addWronMinimumContactDetails = async () => {
-  await clearFieldByID(CONTENT_ITEM_INPUT("firstName"))()
-  await clearFieldByID(CONTENT_ITEM_INPUT("lastName"))()
-  await typeViaID(CONTENT_ITEM_INPUT("firstName"), "E\n")();
-  await typeViaID(CONTENT_ITEM_INPUT("lastName"), "G\n")();
-  await typeViaID(CONTENT_ITEM_INPUT("address1"), "Eugene's House\n")();
-  await typeViaID(CONTENT_ITEM_INPUT("town"), "L\n")();
+  await clearFieldByID(ids.CONTENT_ITEM_INPUT("firstName"))()
+  await clearFieldByID(ids.CONTENT_ITEM_INPUT("lastName"))()
+  await typeViaID(ids.CONTENT_ITEM_INPUT("firstName"), "E\n")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("lastName"), "G\n")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("address1"), "Eugene's House\n")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("town"), "L\n")();
 };
 
 export const addWronMaximumContactDetails = async () => {
-  await scrollFromID(SDUI_SCREEN_SCROLL_VIEW, "down", "slow")();
+  await scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "down", "slow")();
 
-  await typeViaID(CONTENT_ITEM_INPUT("firstName"), "IamVeryLongFirstNameTesting35characters\n")();
-  await typeViaID(CONTENT_ITEM_INPUT("lastName"), "IamVeryLongLastNameTesting35characters\n")();
-  await typeViaID(CONTENT_ITEM_INPUT("address1"), "Eugene's House\n")();
-  await typeViaID(CONTENT_ITEM_INPUT("town"), "Lo\n")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("firstName"), "IamVeryLongFirstNameTesting35characters\n")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("lastName"), "IamVeryLongLastNameTesting35characters\n")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("address1"), "Eugene's House\n")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("town"), "Lo\n")();
 };
 
 export const addWrongMinimumPostCodeAndPhone = async () => {
-  await scrollFromID(SDUI_SCREEN_SCROLL_VIEW, "up", "slow")();
-  await typeViaID(CONTENT_ITEM_INPUT("postcode"), "HA\n")();
-  await typeViaID(CONTENT_ITEM_INPUT("phone"), "07\n")();
-  await typeViaID(CONTENT_ITEM_INPUT("phone"), "\n")();
+  await scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "up", "slow")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("postcode"), "HA\n")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("phone"), "07\n")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("phone"), "\n")();
 };
 
 export const addWrongMaximumPostCodeAndPhone = async () => {
-  await scrollFromID(SDUI_SCREEN_SCROLL_VIEW, "up", "slow")();
-  await typeViaID(CONTENT_ITEM_INPUT("postcode"), "HA82 UUUSSS\n")();
-  await typeViaID(CONTENT_ITEM_INPUT("phone"), "072211213213A\n")();
+  await scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "up", "slow")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("postcode"), "HA82 UUUSSS\n")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("phone"), "072211213213A\n")();
 };
 
 export const addValidPostCodeAndPhone = async () => {
-  await scrollFromID(SDUI_SCREEN_SCROLL_VIEW, "up", "slow")();
+  await scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "up", "slow")();
 
-  await clearFieldByID(CONTENT_ITEM_INPUT("postcode"))();
-  await typeViaID(CONTENT_ITEM_INPUT("postcode"), "HA9 7FN\n")();
+  await clearFieldByID(ids.CONTENT_ITEM_INPUT("postcode"))();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("postcode"), "HA9 7FN\n")();
 
-  await clearFieldByID(CONTENT_ITEM_INPUT("phone"))();
-  await typeViaID(CONTENT_ITEM_INPUT("phone"), "07123456789\n")();
+  await clearFieldByID(ids.CONTENT_ITEM_INPUT("phone"))();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("phone"), "07123456789\n")();
 };
 
 export const closeScreenAtHeader = (option: "button_only" | "yulife" | "activity history") => async () => {
-  await tapID(BUTTON_CLOSE_HEADER(option))();
+  await tapID(ids.BUTTON_CLOSE_HEADER(option))();
 };
 
 export const completeYuScreenIntro = async () => {

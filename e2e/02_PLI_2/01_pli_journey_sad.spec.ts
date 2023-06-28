@@ -29,7 +29,7 @@ import {
   AUTH_PLI_10,
 } from "@data";
 import { POPOVER } from "@ids";
-import * as helper_V4 from "00_Smoke_4/01_yuscreen_v4/_steps/helpers";
+import * as helper_V4 from "00_Smoke_4/01_yuscreen_v4/_resources/helpers";
 
 Feature("PLI SAD", async () => {
   Scenario("As a user with High BMI, I cannot get PLI", scenario.start, async () => {
