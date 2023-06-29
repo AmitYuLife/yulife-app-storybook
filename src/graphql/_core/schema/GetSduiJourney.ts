@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -823,6 +823,30 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard {
   styles: GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_styles[] | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemSwitch_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemSwitch_wrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemSwitch_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemSwitch {
+  __typename: "ContentItemSwitch";
+  id: string;
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemSwitch_styles[] | null;
+  wrapperStyles: GetSduiJourney_getSduiJourney_body_ContentItemSwitch_wrapperStyles[] | null;
+  onPress: GetSduiJourney_getSduiJourney_body_ContentItemSwitch_onPress | null;
+  defaultValue: boolean;
+}
+
 export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_body_ContentItemMarkdown
@@ -845,7 +869,8 @@ export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemLinearGradient
   | GetSduiJourney_getSduiJourney_body_ContentItemWrapper
   | GetSduiJourney_getSduiJourney_body_ContentItemInfoCard
-  | GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard;
+  | GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard
+  | GetSduiJourney_getSduiJourney_body_ContentItemSwitch;
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer {
   __typename:
@@ -1655,6 +1680,30 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptio
   styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_styles[] | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemSwitch_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemSwitch_wrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemSwitch_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemSwitch {
+  __typename: "ContentItemSwitch";
+  id: string;
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemSwitch_styles[] | null;
+  wrapperStyles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemSwitch_wrapperStyles[] | null;
+  onPress: GetSduiJourney_getSduiJourney_absolute_item_ContentItemSwitch_onPress | null;
+  defaultValue: boolean;
+}
+
 export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown
@@ -1677,7 +1726,8 @@ export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemLinearGradient
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard
-  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard;
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemSwitch;
 
 export interface GetSduiJourney_getSduiJourney_absolute_styles {
   property: string;

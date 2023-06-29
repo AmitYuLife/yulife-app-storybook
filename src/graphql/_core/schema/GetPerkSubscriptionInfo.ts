@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -46,7 +46,8 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
     | "ContentItemWrapper"
     | "ContentItemBoxOptionCard"
     | "ContentItemStages"
-    | "ContentItemMarkdownBlock";
+    | "ContentItemMarkdownBlock"
+    | "ContentItemSwitch";
 }
 
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemText_styles {

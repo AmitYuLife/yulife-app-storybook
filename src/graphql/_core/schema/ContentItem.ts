@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -815,6 +815,30 @@ export interface ContentItem_ContentItemBoxOptionCard {
   styles: ContentItem_ContentItemBoxOptionCard_styles[] | null;
 }
 
+export interface ContentItem_ContentItemSwitch_styles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemSwitch_wrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemSwitch_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItem_ContentItemSwitch {
+  __typename: "ContentItemSwitch";
+  id: string;
+  styles: ContentItem_ContentItemSwitch_styles[] | null;
+  wrapperStyles: ContentItem_ContentItemSwitch_wrapperStyles[] | null;
+  onPress: ContentItem_ContentItemSwitch_onPress | null;
+  defaultValue: boolean;
+}
+
 export type ContentItem =
   | ContentItem_ContentItemProcessingTimer
   | ContentItem_ContentItemMarkdown
@@ -837,4 +861,5 @@ export type ContentItem =
   | ContentItem_ContentItemLinearGradient
   | ContentItem_ContentItemWrapper
   | ContentItem_ContentItemInfoCard
-  | ContentItem_ContentItemBoxOptionCard;
+  | ContentItem_ContentItemBoxOptionCard
+  | ContentItem_ContentItemSwitch;

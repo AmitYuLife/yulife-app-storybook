@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -815,6 +815,30 @@ export interface AbsoluteContentItem_item_ContentItemBoxOptionCard {
   styles: AbsoluteContentItem_item_ContentItemBoxOptionCard_styles[] | null;
 }
 
+export interface AbsoluteContentItem_item_ContentItemSwitch_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemSwitch_wrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemSwitch_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemSwitch {
+  __typename: "ContentItemSwitch";
+  id: string;
+  styles: AbsoluteContentItem_item_ContentItemSwitch_styles[] | null;
+  wrapperStyles: AbsoluteContentItem_item_ContentItemSwitch_wrapperStyles[] | null;
+  onPress: AbsoluteContentItem_item_ContentItemSwitch_onPress | null;
+  defaultValue: boolean;
+}
+
 export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemProcessingTimer
   | AbsoluteContentItem_item_ContentItemMarkdown
@@ -837,7 +861,8 @@ export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemLinearGradient
   | AbsoluteContentItem_item_ContentItemWrapper
   | AbsoluteContentItem_item_ContentItemInfoCard
-  | AbsoluteContentItem_item_ContentItemBoxOptionCard;
+  | AbsoluteContentItem_item_ContentItemBoxOptionCard
+  | AbsoluteContentItem_item_ContentItemSwitch;
 
 export interface AbsoluteContentItem_styles {
   property: string;

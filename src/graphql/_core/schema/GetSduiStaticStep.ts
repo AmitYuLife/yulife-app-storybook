@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -823,6 +823,30 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCa
   styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_styles[] | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemSwitch_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemSwitch_wrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemSwitch_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemSwitch {
+  __typename: "ContentItemSwitch";
+  id: string;
+  styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemSwitch_styles[] | null;
+  wrapperStyles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemSwitch_wrapperStyles[] | null;
+  onPress: GetSduiStaticStep_getSduiStaticStep_body_ContentItemSwitch_onPress | null;
+  defaultValue: boolean;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemProcessingTimer
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemMarkdown
@@ -845,7 +869,8 @@ export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemLinearGradient
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemWrapper
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemInfoCard
-  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard;
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemSwitch;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProcessingTimer {
   __typename:
@@ -1655,6 +1680,30 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBo
   styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_styles[] | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSwitch_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSwitch_wrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSwitch_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSwitch {
+  __typename: "ContentItemSwitch";
+  id: string;
+  styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSwitch_styles[] | null;
+  wrapperStyles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSwitch_wrapperStyles[] | null;
+  onPress: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSwitch_onPress | null;
+  defaultValue: boolean;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProcessingTimer
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown
@@ -1677,7 +1726,8 @@ export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemLinearGradient
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemWrapper
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemInfoCard
-  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard;
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSwitch;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_styles {
   property: string;

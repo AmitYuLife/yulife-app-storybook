@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, View, Animated } from "react-native";
+import React, { useMemo } from "react";
+import { StyleSheet, View, Animated, ViewStyle } from "react-native";
 import { Style, Colours } from "@styles";
 import { noop } from "@utils";
 import TouchableOpacityWithDelay from "../touchable-opacity-delay/touchable-opacity-delay";
@@ -14,10 +14,12 @@ interface Props {
   value: boolean;
   onPress: () => void;
   disabled?: boolean;
+  wrapperStyles?: ViewStyle;
+  styles?: ViewStyle;
 }
 
 function _Switch(props: Props) {
-  const { value, onPress, disabled = false, testID } = props;
+  const { value, onPress, disabled = false, testID, wrapperStyles, styles: componentStyles } = props;
   const translateX = React.useRef(new Animated.Value(0)).current;
 
   React.useEffect(() => {
@@ -34,11 +36,17 @@ function _Switch(props: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
+  const wrapperStyle = useMemo(() => [styles.wrapper, wrapperStyles], [wrapperStyles]);
+  const componentStyle = useMemo(
+    () => [styles.innerWrapper, disabled ? styles.disabled : value ? styles.on : styles.off, componentStyles],
+    [componentStyles, disabled, value]
+  );
+
   return (
-    <View style={styles.wrapper}>
+    <View style={wrapperStyle}>
       <TouchableOpacityWithDelay
         testID={testID}
-        style={[styles.innerWrapper, disabled ? styles.disabled : value ? styles.on : styles.off]}
+        style={componentStyle}
         activeOpacity={0.8}
         onPress={disabled ? noop : onPress}
       >

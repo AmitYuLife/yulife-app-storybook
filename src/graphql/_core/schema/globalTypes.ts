@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -140,8 +140,8 @@ export enum FitKitType {
 
 export enum GoalActionType {
   CLAIM_REWARD = "CLAIM_REWARD",
-  JOIN_GOAL = "JOIN_GOAL",
   CLOSE_EVENT = "CLOSE_EVENT",
+  JOIN_GOAL = "JOIN_GOAL",
 }
 
 export enum GoalRewardStatus {
