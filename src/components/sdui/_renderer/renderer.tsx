@@ -21,6 +21,7 @@ import {
   ContentItemWrapper,
   ContentItemInfoCard,
   ContentItemBoxOptionCard,
+  ContentItemSwitch,
 } from "@components/sdui";
 import { ContentItem } from "@graphql/_core/schema";
 
@@ -45,6 +46,7 @@ export const componentMap = {
   ContentItemWrapper,
   ContentItemInfoCard,
   ContentItemBoxOptionCard,
+  ContentItemSwitch,
 } as Record<string, (props: any) => JSX.Element>;
 
 export const renderItemContent = (item: ContentItem): JSX.Element | null => {

@@ -40,3 +40,4 @@ export * from "./contentItemAccordion/contentItemAccordion";
 export * from "./contentItemDropdownInput/contentItemDropdownInput";
 export * from "./contentItemMedia/contentItemMedia";
 export * from "./contentItemWrapper/contentItemWrapper";
+export * from "./contentItemSwitch/contentItemSwitch";

@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -63,9 +63,6 @@ export interface RedeemReward_redeemReward {
 }
 
 export interface RedeemReward {
-  /**
-   * Start of Legacy
-   */
   redeemReward: RedeemReward_redeemReward | null;
 }
 

@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -60,7 +60,8 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemTe
     | "ContentItemWrapper"
     | "ContentItemBoxOptionCard"
     | "ContentItemStages"
-    | "ContentItemMarkdownBlock";
+    | "ContentItemMarkdownBlock"
+    | "ContentItemSwitch";
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles {
