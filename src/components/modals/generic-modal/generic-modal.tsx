@@ -5,21 +5,19 @@ import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { useBackHandler } from "@hooks";
 
-export default function GenericModal(props: IGenericModalProps) {
-  const {
-    heading,
-    subheading,
-    ctaLabel,
-    onPress,
-    onPressSecondary,
-    ctaLabelSecondary,
-    isPrimaryLoading,
-    isPrimaryOnePressOnly,
-    isSecondaryLoading,
-    onPressBack,
-    textAlign,
-  } = props;
-
+export default function GenericModal({
+  heading,
+  subheading,
+  ctaLabel,
+  onPress,
+  onPressSecondary,
+  ctaLabelSecondary,
+  isPrimaryLoading,
+  isPrimaryOnePressOnly,
+  isSecondaryLoading,
+  onPressBack,
+  textAlign,
+}: IGenericModalProps) {
   const backHandler = () => {
     if (onPressBack) {
       onPressBack();

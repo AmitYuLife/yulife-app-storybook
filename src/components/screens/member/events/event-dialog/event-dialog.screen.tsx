@@ -1,8 +1,9 @@
 import { Source } from "react-native-fast-image";
 import LinearGradient from "react-native-linear-gradient";
-import React, { Fragment, useCallback, useMemo, useRef, useState } from "react";
 import { Animated, NativeScrollEvent, Platform, View } from "react-native";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 
+import { t } from "@locale";
 import { Colours, Style } from "@styles";
 import { Image } from "@atoms/image/image";
 import { addCommasToNumber } from "@utils";
@@ -23,7 +24,6 @@ import style, {
   FAQ_VERTICAL_PADDING,
   SMOOTH_GRADIENT_COLORS,
 } from "./event-dialog.styles";
-import { t } from "@locale";
 
 const PROGRESS_BAR_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 const TITLE_HEIGHT = Platform.select({
@@ -67,6 +67,7 @@ interface IEventDialogScreenProps {
   onButtonPress?: () => void;
   infoCards: IInfoCardListCard[];
   onClaimReward?: (reward: IReward) => Promise<void>;
+  onCompleteEvent: (participationId: string) => Promise<void>;
 }
 
 interface EventButton {
@@ -96,7 +97,7 @@ const EventDialogScreen = ({
   const { title, labels, source: headerImageSource, backgroundColor, headerTextColor, onLeftIconPress } = headerProps;
   const questionMarkRef = useRef<View>();
   const scrollY = useRef(new Animated.Value(0)).current;
-  const [showHeading, setHeadingVisibilty] = useState(true);
+  const [showHeading, setHeadingVisibilty] = useState<boolean>(true);
   const statusBarCoverStyle = useMemo(() => ({ ...style.statusBarCover, backgroundColor }), [backgroundColor]);
 
   const onScroll = useCallback(
@@ -131,7 +132,7 @@ const EventDialogScreen = ({
     };
   }, [scrollY]);
 
-  const openPopUp = useCallback(() => {
+  const openPopUp = useCallback((): void => {
     onFaqViewed?.();
     questionMarkRef?.current?.measure((_fx, _fy, _width, _height, pageX, pageY) => {
       showInfoMessageTooltipPointRelative({
@@ -141,7 +142,7 @@ const EventDialogScreen = ({
         infoText: faq?.text,
       });
     });
-  }, [faq?.text]);
+  }, [faq?.text, onFaqViewed]);
 
   const faqWraperStyle = {
     ...style.faqImageWrapper,
@@ -152,10 +153,10 @@ const EventDialogScreen = ({
     }),
   };
 
-  const isEventActive = useMemo(() => event.status === UserProfileEventStatus.active, [event.status]);
+  const isEventActive = useMemo((): boolean => event.status === UserProfileEventStatus.active, [event.status]);
 
   const heading = useMemo(
-    () => (
+    (): JSX.Element => (
       <>
         <TextTemplate textAlign="center" numberOfLines={1} type="b1b" color={headerTextColor}>
           {title}
@@ -171,131 +172,146 @@ const EventDialogScreen = ({
   );
 
   const progressText = useMemo(
-    () =>
+    (): string =>
       `${currentProgress && addCommasToNumber(currentProgress)} / ${
         maxProgress && addCommasToNumber(maxProgress)
       } ${progressUnit}`,
     [currentProgress, maxProgress, progressUnit]
   );
 
-  return (
-    <View style={[style.wrapper, { backgroundColor }]} testID={EVENT_DIALOG_SCREEN}>
-      <View style={statusBarCoverStyle} />
+  const screenStyle = useMemo(
+    () => ({
+      ...style.wrapper,
+      backgroundColor,
+    }),
+    [backgroundColor]
+  );
 
-      <Animated.View style={headerImageContainerStyle}>
-        <Image
-          suppressLoadingUi={true}
-          style={style.headerImageWrapper}
-          resizeMode="cover"
-          source={headerImageSource}
-          width={Style.DEVICE_WIDTH}
-          height={HEADER_HEIGHT}
-        />
-      </Animated.View>
-      <Animated.ScrollView
-        showsVerticalScrollIndicator={false}
-        style={style.scrollView}
-        onScroll={onScroll}
-        scrollEventThrottle={32}
-        contentInsetAdjustmentBehavior="never"
-        testID={EVENT_DIALOG_SCREEN_SCROLL}
-      >
-        <View style={style.contentWrapper}>
-          {!isEventActive ? (
-            <Fragment>
-              <View style={style.eventEndedBadgeWrapper}>
-                <View style={style.eventEndedBadge}>
-                  <TextTemplate type="l1b" textAlign="center" color={Colours.neutral.white}>
-                    {t("screens.event.event_ended")}
-                  </TextTemplate>
-                </View>
-              </View>
-              <View style={style.eventEndedBadgeSpacer} />
-            </Fragment>
-          ) : null}
-          <View style={style.rewardsWrapper}>
-            <EventRewardsWrapper
-              rewards={rewards}
-              eventTitle={title}
-              isClaimRewardEnabled={true}
-              onClaimReward={onClaimReward}
-            />
-          </View>
-          <View style={style.progressText}>
-            <Image
-              suppressLoadingUi={true}
-              source={progressIcon}
-              width={Style.adjust(16)}
-              height={Style.adjust(16)}
-              style={style.progressTextIcon}
-            />
-            <TextTemplate numberOfLines={1} type="l1">
-              {progressText}
-            </TextTemplate>
-          </View>
-          <ProgressBar
-            max={maxProgress}
-            current={currentProgress}
-            width={PROGRESS_BAR_WIDTH}
-            isDisabled={!isEventActive}
-            milestones={milestones.map((value, index) => ({
-              value,
-              rewardClaimed: rewards[index]?.status === "claimed",
-            }))}
+  return (
+    <>
+      <View style={screenStyle} testID={EVENT_DIALOG_SCREEN}>
+        <View style={statusBarCoverStyle} />
+
+        <Animated.View style={headerImageContainerStyle}>
+          <Image
+            suppressLoadingUi={true}
+            style={style.headerImageWrapper}
+            resizeMode="cover"
+            source={headerImageSource}
+            width={Style.DEVICE_WIDTH}
+            height={HEADER_HEIGHT}
           />
-          {!about ? null : (
-            <HeadingAndCopy title={about.title} wrapperStyle={style.about} titleType="b1b" markdown={about.markdown} />
-          )}
-          {!infoCards ? null : <InfoCardList cards={infoCards} />}
-          {!banner ? null : (
-            <View>
-              <InfoPanel
-                markdown={banner.markdown}
-                remoteImage={banner.icon}
-                showIcon={true}
-                type={banner.type}
-                wrapperStyle={style.bannerWrapper}
+        </Animated.View>
+        <Animated.ScrollView
+          showsVerticalScrollIndicator={false}
+          style={style.scrollView}
+          onScroll={onScroll}
+          scrollEventThrottle={32}
+          contentInsetAdjustmentBehavior="never"
+          testID={EVENT_DIALOG_SCREEN_SCROLL}
+        >
+          <View style={style.contentWrapper}>
+            {isEventActive ? null : (
+              <>
+                <View style={style.eventEndedBadgeWrapper}>
+                  <View style={style.eventEndedBadge}>
+                    <TextTemplate type="l1b" textAlign="center" color={Colours.neutral.white}>
+                      {t("screens.event.event_ended")}
+                    </TextTemplate>
+                  </View>
+                </View>
+                <View style={style.eventEndedBadgeSpacer} />
+              </>
+            )}
+            <View style={style.rewardsWrapper}>
+              <EventRewardsWrapper
+                rewards={rewards}
+                eventTitle={title}
+                isClaimRewardEnabled={true}
+                onClaimReward={onClaimReward}
               />
             </View>
-          )}
-          {!button ? null : <View style={style.ctaPadding} />}
-        </View>
-      </Animated.ScrollView>
-      {!showHeading ? null : (
-        <GenericHeadingAbsolute
-          heading={heading}
-          color={headerTextColor}
-          onLeftIconPress={onLeftIconPress}
-          backgroundColor="transparent"
-        />
-      )}
-      {!faq ? null : (
-        <Animated.View style={faqWraperStyle}>
-          <View style={style.faqImageContainer} collapsable={false} ref={questionMarkRef}>
-            <PressableWithDelay onPress={openPopUp}>
+            <View style={style.progressText}>
               <Image
                 suppressLoadingUi={true}
-                resizeMode="contain"
-                source={faq.icon}
-                width={FAQ_ICON_DIMENSION}
-                height={FAQ_ICON_DIMENSION}
+                source={progressIcon}
+                width={Style.adjust(16)}
+                height={Style.adjust(16)}
+                style={style.progressTextIcon}
               />
-            </PressableWithDelay>
+              <TextTemplate numberOfLines={1} type="l1">
+                {progressText}
+              </TextTemplate>
+            </View>
+            <ProgressBar
+              max={maxProgress}
+              current={currentProgress}
+              width={PROGRESS_BAR_WIDTH}
+              isDisabled={!isEventActive}
+              milestones={milestones.map((value, index) => ({
+                value,
+                rewardClaimed: rewards[index]?.status === "claimed",
+              }))}
+            />
+            {!about ? null : (
+              <HeadingAndCopy
+                title={about.title}
+                wrapperStyle={style.about}
+                titleType="b1b"
+                markdown={about.markdown}
+              />
+            )}
+            {!infoCards ? null : <InfoCardList cards={infoCards} />}
+            {!banner ? null : (
+              <View>
+                <InfoPanel
+                  markdown={banner.markdown}
+                  remoteImage={banner.icon}
+                  showIcon={true}
+                  type={banner.type}
+                  wrapperStyle={style.bannerWrapper}
+                />
+              </View>
+            )}
+            {!button ? null : <View style={style.ctaPadding} />}
           </View>
-        </Animated.View>
-      )}
-      {!button ? null : (
-        <LinearGradient style={style.ctaWrapper} colors={SMOOTH_GRADIENT_COLORS}>
-          <Button
-            size="Fill"
-            label={button.label}
-            onPress={onButtonPress}
-            shadowColor={button.shadowColor || undefined}
-            backgroundColor={button.backgroundColor || undefined}
+        </Animated.ScrollView>
+        {!showHeading ? null : (
+          <GenericHeadingAbsolute
+            heading={heading}
+            color={headerTextColor}
+            onLeftIconPress={onLeftIconPress}
+            backgroundColor="transparent"
           />
-        </LinearGradient>
-      )}
-    </View>
+        )}
+        {!faq ? null : (
+          <Animated.View style={faqWraperStyle}>
+            <View style={style.faqImageContainer} collapsable={false} ref={questionMarkRef}>
+              <PressableWithDelay onPress={openPopUp}>
+                <Image
+                  suppressLoadingUi={true}
+                  resizeMode="contain"
+                  source={faq.icon}
+                  width={FAQ_ICON_DIMENSION}
+                  height={FAQ_ICON_DIMENSION}
+                />
+              </PressableWithDelay>
+            </View>
+          </Animated.View>
+        )}
+        {!button ? null : (
+          <LinearGradient style={style.ctaWrapper} colors={SMOOTH_GRADIENT_COLORS}>
+            <Button
+              size="Fill"
+              label={button.label}
+              onPress={onButtonPress}
+              shadowColor={button.shadowColor || undefined}
+              backgroundColor={button.backgroundColor || undefined}
+            />
+          </LinearGradient>
+        )}
+      </View>
+    </>
   );
 };
 

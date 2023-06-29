@@ -4,6 +4,7 @@ export const GQL_FRAGMENT_GOAL = gql`
   fragment UserProfileEvents on UserProfileEvents {
     id
     stageId
+    participationId
     title
     description
     startDate

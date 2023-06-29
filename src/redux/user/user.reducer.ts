@@ -34,6 +34,7 @@ import {
   UPDATE_USER_GOAL,
   REMOVE_YUSCREEN_NOTIFICATIONS,
   GET_USER_LEADERBOARDS_SUCCESS,
+  REMOVE_USER_PROFILE_EVENT,
 } from "./user.actions";
 import { AUTHENTICATED } from "@redux/app/app.actions";
 import { reduceUserFeatures } from "./user.helpers";
@@ -222,6 +223,9 @@ export const userReducer = (state: IUserStore = getInitialState(), action: SyncA
 
     case UPDATE_USER_PROFILE_EVENTS:
       return updateUserProfileEvents(state, action.payload);
+
+    case REMOVE_USER_PROFILE_EVENT:
+      return removeUserProfileEvent(state, action.payload);
 
     case UPDATE_USER_GOAL:
       return updateUserGoal(state, action.payload);
@@ -493,6 +497,11 @@ const updateUserProfile = (state: IUserStore, payload: Partial<IUserStore>) => (
 const updateUserProfileEvents = (state: IUserStore, events: IUserStore["events"]) => ({
   ...state,
   events,
+});
+
+const removeUserProfileEvent = (state: IUserStore, id: string) => ({
+  ...state,
+  events: state.events.filter((event) => event.id !== id),
 });
 
 const updateUserGoal = (state: IUserStore, payload: Events): IUserStore => ({

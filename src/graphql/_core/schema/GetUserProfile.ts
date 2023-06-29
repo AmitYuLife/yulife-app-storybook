@@ -132,7 +132,11 @@ export interface GetUserProfile_getUserProfile_events_milestones {
 
 export interface GetUserProfile_getUserProfile_events {
   id: string;
+  /**
+   * deprecated
+   */
   stageId: string;
+  participationId: string;
   title: string;
   description: string | null;
   startDate: string | null;

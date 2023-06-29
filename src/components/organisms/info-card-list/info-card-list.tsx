@@ -30,7 +30,6 @@ const _InfoCardList = ({ cards }: IProps) => {
           title={title}
           description={description}
           wrapperStyle={{ ...style.taskWrapper, ...mapServerStyles(styles) }}
-          titleStyle={style.taskTitle}
         />
       ))}
     </>

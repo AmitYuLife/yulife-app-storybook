@@ -9,6 +9,7 @@ export * from "./ChallengeTemplate";
 export * from "./ClaimGoalRewards";
 export * from "./ClaimMobileGameWeeklyRewards";
 export * from "./CollectAward";
+export * from "./CompleteGoal";
 export * from "./CompleteInAppYuniversityModuleChapter";
 export * from "./ConfirmPaymentCard";
 export * from "./ContentItem";

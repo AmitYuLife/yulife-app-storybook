@@ -531,7 +531,14 @@
     "event": {
       "reward_claimed": "Claimed",
       "event_ended": "Event ended",
-      "claim_all_rewards_button": "Claim all / Close the event"
+      "claim_all_rewards_button": "Claim all",
+      "close_event_button": "Close the event"
+    },
+    "event_close_modal": {
+      "title": "Close the event",
+      "description": "If you don’t want to see the event panel anymore you can hide it for the rest of the event duration. This will not affect any of your achievements or earned rewards.",
+      "confirm_button": "Hide from view",
+      "cancel_button": "Keep it for now"
     },
     "event_fail": {
       "title": "%{event} event has ended",
