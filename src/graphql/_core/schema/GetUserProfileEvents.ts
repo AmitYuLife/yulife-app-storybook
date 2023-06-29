@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -58,6 +58,9 @@ export interface GetUserProfileEvents_getUserProfileEvents_milestones {
 
 export interface GetUserProfileEvents_getUserProfileEvents {
   id: string;
+  /**
+   * deprecated
+   */
   stageId: string;
   title: string;
   description: string | null;

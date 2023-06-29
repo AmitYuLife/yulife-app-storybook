@@ -25,6 +25,8 @@ export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
         isLocked
         isCompleted
         reward
+        hasSurge
+        hasBonus
         fitKitTypes
         type
         subtype

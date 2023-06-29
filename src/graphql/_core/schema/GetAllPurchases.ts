@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -65,8 +65,5 @@ export interface GetAllPurchases_getAllPurchases {
 }
 
 export interface GetAllPurchases {
-  /**
-   * Start of Legacy
-   */
   getAllPurchases: (GetAllPurchases_getAllPurchases | null)[] | null;
 }
