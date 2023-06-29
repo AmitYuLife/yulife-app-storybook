@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -127,6 +127,8 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots {
   isLocked: boolean;
   isCompleted: boolean;
   reward: string | null;
+  hasSurge: boolean;
+  hasBonus: boolean;
   fitKitTypes: FitKitType[];
   type: string | null;
   subtype: string | null;
