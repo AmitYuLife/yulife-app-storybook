@@ -388,6 +388,9 @@ To access the app version
 yarn start:storybook
 ```
 
+> **Note**
+> If the app displays a error message when trying to run it with "yarn start" after using storybook, make sure to revert the changes made to `index.js` before running the app again.
+
 ## Folder Structure for YuLife
 
 The YuLife project follows the [atomic design](http://atomicdesign.bradfrost.com/chapter-2/) pattern for component composition.

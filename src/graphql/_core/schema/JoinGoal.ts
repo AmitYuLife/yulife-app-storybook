@@ -58,7 +58,11 @@ export interface JoinGoal_joinGoal_milestones {
 
 export interface JoinGoal_joinGoal {
   id: string;
+  /**
+   * deprecated
+   */
   stageId: string;
+  participationId: string;
   title: string;
   description: string | null;
   startDate: string | null;

@@ -141,6 +141,7 @@ export enum FitKitType {
 export enum GoalActionType {
   CLAIM_REWARD = "CLAIM_REWARD",
   JOIN_GOAL = "JOIN_GOAL",
+  CLOSE_EVENT = "CLOSE_EVENT",
 }
 
 export enum GoalRewardStatus {

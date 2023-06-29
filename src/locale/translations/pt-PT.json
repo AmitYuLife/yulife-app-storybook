@@ -530,7 +530,14 @@
     "event": {
       "reward_claimed": "Reivindicado",
       "event_ended": "Evento terminado",
-      "claim_all_rewards_button": "Reivindicar tudo / Fechar o evento"
+      "claim_all_rewards_button": "Reivindicar tudo",
+      "close_event_button": "Fechar o evento"
+    },
+    "event_close_modal": {
+      "title": "Fechar o evento",
+      "description": "Se você não quiser mais ver o painel do evento, pode ocultá-lo pelo resto da duração do evento. Isso não afetará nenhuma de suas conquistas ou recompensas ganhas.",
+      "confirm_button": "Ocultar da vista",
+      "cancel_button": "Guarde por enquanto"
     },
     "event_fail": {
       "title": "O evento terminou",

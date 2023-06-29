@@ -64,7 +64,8 @@ const styles = StyleSheet.create({
     marginRight: 16,
   } as ViewStyle,
   title: {
-    marginBottom: 8,
+    marginBottom: 0,
+    marginTop: Style.adjust(8),
   } as ViewStyle,
   hyperlinkWrapper: {
     marginTop: Style.adjust(28),
