@@ -6,7 +6,7 @@ export const translate = translator.translate;
 export const t = translator.translate;
 export const getLocale = translator.getLocale;
 export const setLocale = translator.setLocale;
-export const getAvailableLocales = translator.getAvailableLocales;
+export const getAvailableLocaleOptions = translator.getAvailableLocaleOptions;
 
 // utility / helper functions
 export const getMetricName = (metric: LeaderboardMetric, form: "singular" | "plural" = "singular") => {

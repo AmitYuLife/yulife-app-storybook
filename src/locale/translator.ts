@@ -2,7 +2,13 @@ import * as RNLocalize from "react-native-localize";
 import Polyglot from "node-polyglot";
 import { Language } from "./types";
 
-type Translation = { load: () => unknown; name: string; flag?: string; overwrite?: Language };
+type Translation = {
+  name: string;
+  flag?: string;
+  overwrite?: Language;
+  isEnabled: boolean;
+  load: () => unknown;
+};
 
 // lazy requires (metro bundler does not support symlinks)
 
@@ -10,22 +16,26 @@ const translations: Record<Language, Translation> = {
   "en-US": {
     name: "English (US)",
     flag: "🇺🇸",
+    isEnabled: true,
     load: () => require("./translations/en-US.json"),
   },
   "en-GB": {
     name: "English (UK)",
     flag: "🇬🇧",
     overwrite: "en",
+    isEnabled: true,
     load: () => require("./translations/en-GB.json"),
   },
-  // TODO: turn it on when the backend's ready too
-  // "pt-PT": {
-  //   name: "Português (Portugal)",
-  //   flag: "🇵🇹",
-  //   load: () => require("./translations/pt-PT.json"),
-  // },
+  "pt-PT": {
+    name: "Português (Portugal)",
+    flag: "🇵🇹",
+    // TODO: turn it on when the backend's ready too
+    isEnabled: false,
+    load: () => require("./translations/pt-PT.json"),
+  },
   en: {
     name: "English",
+    isEnabled: true,
     load: () => require("./translations/en-GB.json"),
   },
 };
@@ -38,8 +48,12 @@ class Translator {
     this.init();
   }
 
+  private readonly getAvailableLocales = (showAllOptions = false) =>
+    Object.keys(translations).filter((k: Language) => showAllOptions || translations[k].isEnabled);
+
+  // TODO: need to store the selected options and use it for initialisation
   private readonly init = () => {
-    const { languageTag } = RNLocalize.findBestAvailableLanguage(Object.keys(translations)) || this.FALLBACK;
+    const { languageTag } = RNLocalize.findBestAvailableLanguage(this.getAvailableLocales()) || this.FALLBACK;
     this.setLocale(languageTag as Language);
   };
 
@@ -52,10 +66,10 @@ class Translator {
   public readonly getLocale = () => this.dict.locale();
   public readonly has = (key: string) => this.dict.has(key);
   public readonly translate = (key: string, config?: Polyglot.InterpolationOptions) => this.dict.t(key, config);
-  public readonly getAvailableLocales = () =>
-    Object.keys(translations)
-      .map((lang) => {
-        const id = lang as Language;
+
+  public readonly getAvailableLocaleOptions = (showAllOptions: boolean) =>
+    this.getAvailableLocales(showAllOptions)
+      .map((id: Language) => {
         const translation = translations[id];
 
         return {
