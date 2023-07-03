@@ -21,7 +21,7 @@ import Logger from "@services/logging/logger";
 import { ScrollPickerModal } from "@components/modals";
 import { showYuModal } from "@navigation/root";
 import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
-import { t, getLocale } from "@locale";
+import { t, getCurrentLocale } from "@locale";
 
 interface IOwnProps {
   componentId: string;
@@ -171,7 +171,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
         isVisible: features.showLangSelector,
         title: t("screens.language_selector_settings.title"),
         description: t("screens.language_selector_settings.description"),
-        value: getLocale(),
+        value: getCurrentLocale(),
         onPress: () => {
           Navigation.push(ROUTES.settings, {
             component: {

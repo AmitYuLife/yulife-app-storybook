@@ -5,6 +5,10 @@ import { Language } from "./types";
 
 type Translation = {
   name: string;
+  /**
+   * https://docs.intercom.com/configure-intercom-for-your-product-or-site/customize-the-intercom-messenger/localize-intercom-to-work-with-multiple-languages
+   */
+  intercomLanguage: string;
   flag?: string;
   overwrite?: Language;
   isEnabled: boolean;
@@ -16,12 +20,14 @@ type Translation = {
 const translations: Record<Language, Translation> = {
   "en-US": {
     name: "English (US)",
+    intercomLanguage: "en",
     flag: "🇺🇸",
     isEnabled: true,
     load: () => require("./translations/en-US.json"),
   },
   "en-GB": {
     name: "English (UK)",
+    intercomLanguage: "en",
     flag: "🇬🇧",
     overwrite: "en",
     isEnabled: true,
@@ -29,6 +35,7 @@ const translations: Record<Language, Translation> = {
   },
   "pt-PT": {
     name: "Português (Portugal)",
+    intercomLanguage: "pt",
     flag: "🇵🇹",
     // TODO: turn it on when the backend's ready too
     isEnabled: false,
@@ -36,6 +43,7 @@ const translations: Record<Language, Translation> = {
   },
   en: {
     name: "English",
+    intercomLanguage: "en",
     isEnabled: true,
     load: () => require("./translations/en-GB.json"),
   },
@@ -91,7 +99,8 @@ class Translator {
     return false;
   };
 
-  public readonly getLocale = () => this.dict.locale();
+  public readonly getCurrentLocale = () => this.dict.locale();
+  public readonly getCurrentLocaleOptions = () => translations[this.dict.locale() as Language];
   public readonly has = (key: string) => this.dict.has(key);
   public readonly translate = (key: string, config?: Polyglot.InterpolationOptions) => this.dict.t(key, config);
 
@@ -105,6 +114,7 @@ class Translator {
           name: translation.name,
           flag: translation.flag,
           overwrite: translation.overwrite,
+          intercomLanguage: translation.intercomLanguage,
         };
       })
       .filter((item) => item.flag);

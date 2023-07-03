@@ -20,7 +20,7 @@ import { store } from "@redux/_core/store";
 import getClient from "@services/bugsnag";
 import { updateOfflineState } from "@redux/app/app.actions";
 import createRetryLink from "./retryLink";
-import { getLocale } from "@locale";
+import { getCurrentLocale } from "@locale";
 import region from "@services/region";
 
 const appJson = require("../../../package.json");
@@ -128,7 +128,7 @@ const authMiddleware = setContext(async (op, { headers }) => {
       authorization: token ? `Bearer ${token}` : "",
       date: moment().format(DATE_FORMAT_WITH_TZ),
       yu_client_token: Config.YU_CLIENT_TOKEN,
-      yu_locale: getLocale(),
+      yu_locale: getCurrentLocale(),
       [`x-request-id`]: requestId,
     },
   };

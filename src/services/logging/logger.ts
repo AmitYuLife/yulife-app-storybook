@@ -94,6 +94,14 @@ class LoggerInstance {
     Mixpanel.trackWithProperties(event, this.addDefaultEventProperties(metadata));
   };
 
+  public setUserLanguagePreferenceOnIntercom = (languageOverride: string) => {
+    if (!this.initialised || !this.userId) {
+      return;
+    }
+
+    Intercom.updateUser({ languageOverride });
+  };
+
   public setUserProperties = (props: Record<string, any>, customAttrs = false) => {
     if (!this.initialised || !this.userId) {
       return;
