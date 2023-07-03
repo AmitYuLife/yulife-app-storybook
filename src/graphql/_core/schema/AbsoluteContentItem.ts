@@ -839,6 +839,27 @@ export interface AbsoluteContentItem_item_ContentItemSwitch {
   defaultValue: boolean;
 }
 
+export interface AbsoluteContentItem_item_ContentItemShowHideBalance_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemShowHideBalance_wrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemShowHideBalance {
+  __typename: "ContentItemShowHideBalance";
+  id: string;
+  value: string;
+  currency: string;
+  description: string | null;
+  descriptionValue: string | null;
+  styles: AbsoluteContentItem_item_ContentItemShowHideBalance_styles[] | null;
+  wrapperStyles: AbsoluteContentItem_item_ContentItemShowHideBalance_wrapperStyles[] | null;
+}
+
 export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemProcessingTimer
   | AbsoluteContentItem_item_ContentItemMarkdown
@@ -862,7 +883,8 @@ export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemWrapper
   | AbsoluteContentItem_item_ContentItemInfoCard
   | AbsoluteContentItem_item_ContentItemBoxOptionCard
-  | AbsoluteContentItem_item_ContentItemSwitch;
+  | AbsoluteContentItem_item_ContentItemSwitch
+  | AbsoluteContentItem_item_ContentItemShowHideBalance;
 
 export interface AbsoluteContentItem_styles {
   property: string;

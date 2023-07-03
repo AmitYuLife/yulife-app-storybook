@@ -136,7 +136,7 @@ export interface GetUserProfile_getUserProfile_events {
    * deprecated
    */
   stageId: string;
-  participationId: string;
+  participationId: string | null;
   title: string;
   description: string | null;
   startDate: string | null;

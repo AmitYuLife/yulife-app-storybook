@@ -192,6 +192,7 @@ export enum PassiveChallengeType {
   CYCLING = "CYCLING",
   MEDITATION = "MEDITATION",
   ONBOARDING = "ONBOARDING",
+  PENSION = "PENSION",
   STEPS = "STEPS",
 }
 

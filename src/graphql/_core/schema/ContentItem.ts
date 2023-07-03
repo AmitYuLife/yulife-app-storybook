@@ -839,6 +839,27 @@ export interface ContentItem_ContentItemSwitch {
   defaultValue: boolean;
 }
 
+export interface ContentItem_ContentItemShowHideBalance_styles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemShowHideBalance_wrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemShowHideBalance {
+  __typename: "ContentItemShowHideBalance";
+  id: string;
+  value: string;
+  currency: string;
+  description: string | null;
+  descriptionValue: string | null;
+  styles: ContentItem_ContentItemShowHideBalance_styles[] | null;
+  wrapperStyles: ContentItem_ContentItemShowHideBalance_wrapperStyles[] | null;
+}
+
 export type ContentItem =
   | ContentItem_ContentItemProcessingTimer
   | ContentItem_ContentItemMarkdown
@@ -862,4 +883,5 @@ export type ContentItem =
   | ContentItem_ContentItemWrapper
   | ContentItem_ContentItemInfoCard
   | ContentItem_ContentItemBoxOptionCard
-  | ContentItem_ContentItemSwitch;
+  | ContentItem_ContentItemSwitch
+  | ContentItem_ContentItemShowHideBalance;

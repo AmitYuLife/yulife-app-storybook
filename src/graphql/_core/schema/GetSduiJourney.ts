@@ -847,6 +847,27 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemSwitch {
   defaultValue: boolean;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemShowHideBalance_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemShowHideBalance_wrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemShowHideBalance {
+  __typename: "ContentItemShowHideBalance";
+  id: string;
+  value: string;
+  currency: string;
+  description: string | null;
+  descriptionValue: string | null;
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemShowHideBalance_styles[] | null;
+  wrapperStyles: GetSduiJourney_getSduiJourney_body_ContentItemShowHideBalance_wrapperStyles[] | null;
+}
+
 export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_body_ContentItemMarkdown
@@ -870,7 +891,8 @@ export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemWrapper
   | GetSduiJourney_getSduiJourney_body_ContentItemInfoCard
   | GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard
-  | GetSduiJourney_getSduiJourney_body_ContentItemSwitch;
+  | GetSduiJourney_getSduiJourney_body_ContentItemSwitch
+  | GetSduiJourney_getSduiJourney_body_ContentItemShowHideBalance;
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer {
   __typename:
@@ -1704,6 +1726,27 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemSwitch {
   defaultValue: boolean;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemShowHideBalance_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemShowHideBalance_wrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemShowHideBalance {
+  __typename: "ContentItemShowHideBalance";
+  id: string;
+  value: string;
+  currency: string;
+  description: string | null;
+  descriptionValue: string | null;
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemShowHideBalance_styles[] | null;
+  wrapperStyles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemShowHideBalance_wrapperStyles[] | null;
+}
+
 export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown
@@ -1727,7 +1770,8 @@ export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard
-  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemSwitch;
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemSwitch
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemShowHideBalance;
 
 export interface GetSduiJourney_getSduiJourney_absolute_styles {
   property: string;

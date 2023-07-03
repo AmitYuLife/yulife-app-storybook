@@ -1,6 +1,6 @@
 import { TextTemplate } from "@atoms";
 import React, { memo, useCallback, useMemo, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import { EyeOpenIcon } from "@atoms/icon/eye-open-icon";
 import { EyeClosedIcon } from "@atoms/icon/eye-closed-icon";
@@ -8,8 +8,11 @@ import { PressableWithDelay } from "@molecules";
 
 interface IProps {
   value: string | number;
-  description?: string;
   currency: string;
+  description?: string;
+  descriptionValue?: string;
+  styles?: ViewStyle;
+  wrapperStyles?: ViewStyle;
 }
 
 interface IFormattedValues {
@@ -19,7 +22,14 @@ interface IFormattedValues {
   };
 }
 
-const ShowAndHideBalance = ({ value, currency, description }: IProps) => {
+const ShowAndHideBalance = ({
+  value,
+  currency,
+  description,
+  descriptionValue,
+  styles: itemStyles,
+  wrapperStyles,
+}: IProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const visiblePropName = useMemo(() => (isVisible ? "show" : "hide"), [isVisible]);
 
@@ -27,7 +37,7 @@ const ShowAndHideBalance = ({ value, currency, description }: IProps) => {
     () => ({
       show: {
         value,
-        description: description ? description.replace("%{value}", `${currency}${value}`) : null,
+        description: description ? description.replace("%{value}", `${currency}${descriptionValue}`) : null,
       },
       hide: {
         value: "*******",
@@ -38,10 +48,11 @@ const ShowAndHideBalance = ({ value, currency, description }: IProps) => {
   );
 
   const onPress = useCallback(() => setIsVisible((visible) => !visible), []);
+  const itemWrapperStyles = useMemo(() => [styles.wrapper, itemStyles], [itemStyles]);
 
   return (
-    <View>
-      <View style={styles.wrapper}>
+    <View style={wrapperStyles}>
+      <View style={itemWrapperStyles}>
         <TextTemplate type="b2b">
           {currency}
           {formattedValues[visiblePropName].value}

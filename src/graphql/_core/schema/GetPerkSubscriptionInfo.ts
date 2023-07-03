@@ -47,7 +47,8 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
     | "ContentItemBoxOptionCard"
     | "ContentItemStages"
     | "ContentItemMarkdownBlock"
-    | "ContentItemSwitch";
+    | "ContentItemSwitch"
+    | "ContentItemShowHideBalance";
 }
 
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemText_styles {
