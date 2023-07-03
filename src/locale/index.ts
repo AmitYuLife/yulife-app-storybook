@@ -4,6 +4,7 @@ import translator from "./translator";
 // aliases for translate function
 export const translate = translator.translate;
 export const t = translator.translate;
+export const init = translator.init;
 export const getLocale = translator.getLocale;
 export const setLocale = translator.setLocale;
 export const getAvailableLocaleOptions = translator.getAvailableLocaleOptions;
