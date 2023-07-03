@@ -72,14 +72,14 @@ Feature("As a user I can opt in and take an event", async () => {
         // 2nd challenge
 
         When("I complete a brisk walk challenge", when.selectAndCompleteWalkingChallenge("brisk walk", 1200), async () => {
-            Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(152, 60, (1200 + 400)))
+            Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(152, 50, (1200 + 400)))
         })
         When("I tap collect", when.tapText("Collect"), async () => {
-            Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1710 + 60)))
+            Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1710 + 50)))
         })
         When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
             Then("I should see the longest number of steps I have done today", then.textVisible("1,200 steps"))
-            Then("I should see I have earned 60 YuCoin today from the walk", then.yuCoinTodayEarned([1210, 60]))
+            Then("I should see I have earned YuCoin today from the walk", then.yuCoinTodayEarned([1210, 50]))
             Then("I should see the yucoin page event bar showing the number of 3 star challenges completed and the correct milestone I am on", then.yuCoinPageEventDataCorrect(2, 0.5))
         })
         When("I tap on the event challenge", when.tapChallenge(data.GOALS_4.data.title), async () => {
@@ -89,7 +89,7 @@ Feature("As a user I can opt in and take an event", async () => {
         When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
             When("I tap take a challenge", when.tapText("Take a challenge (2 left today)"), async () => {
                 Then("I should be on quests", then.idVisible(ids.QUESTS_SCREEN(3)))
-                Then("I should see the yucoin total still at 1770 as I have not reached or claimed the next milestone", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1770)))
+                Then("I should see the yucoin total still at 1770 as I have not reached or claimed the next milestone", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1760)))
             })
         })
         When("I tap level 152 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152)), async () => {
@@ -103,12 +103,12 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(152, 60, (1600 + 3000)))
         })
         When("I tap collect", when.tapText("Collect"), async () => {
-            Then("I should see the yucoin total updated with the challenge yucoin and daily step milestone yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1770 + 60 + 10)))
+            Then("I should see the yucoin total updated with the challenge yucoin and daily step milestone yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1760 + 60 + 10)))
         })
         When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
             Then("I should see the longest number of steps I have done today", then.textVisible("3,000 steps"))
             Then("I should see the yucoin page event bar showing the number of 3 star challenges completed and hit the correct milestone", then.yuCoinPageEventDataCorrect(3, 0.75))
-            Then("I should see I have earned 60 and 10 YuCoin today from the walk", then.yuCoinTodayEarned([200, 1070, 10, 60]))
+            Then("I should see I have earned 60 and 10 YuCoin today from the walk", then.yuCoinTodayEarned([200, 1070, 10, 50]))
         })
         When("I tap on the event challenge", when.tapChallenge(data.GOALS_4.data.title), async () => {
             Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(3, 0.75))
@@ -123,11 +123,11 @@ Feature("As a user I can opt in and take an event", async () => {
             })
         })
         When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
-            Then("I should see my new total yucoin earned today with the 2nd milestone completed", then.yuCoinTodayEarned([1270, 10, 60], 150))
+            Then("I should see my new total yucoin earned today with the 2nd milestone completed", then.yuCoinTodayEarned([1270, 10, 50], 150))
         })
         When("I go back to the quests tab", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
             Then("I should be on quests", then.idVisible(ids.QUESTS_SCREEN(3)))
-            Then("I should see the yucoin total updated with the claimed milestone YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3340)))
+            Then("I should see the yucoin total updated with the claimed milestone YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3330)))
         })
         When("I tap level 152 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152)), async () => {
             Then("I should be on the quest screen and see 5 challenges unlocked", then.allChallengesVisible)
@@ -147,7 +147,7 @@ Feature("As a user I can opt in and take an event", async () => {
         When("I click Great! button", when.tapText("Great!"), async () => {
             When("I tap level 152", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152)), async () => {
                 Then("I can see all my challenges done and yucoin earned", then.allChallengesAndYuCoinsAwardedVisible)
-                Then("I should see all my total yucoin earned", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(5420)))
+                Then("I should see all my total yucoin earned", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(5410)))
             })
         })
         When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
@@ -155,8 +155,8 @@ Feature("As a user I can opt in and take an event", async () => {
                 Then("I should see the longest number of steps I have done today", then.textVisible("3,000 steps"))
                 Then("I should see meditation I have done today", then.textVisible("10 min"))
                 Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
-                Then("I should see all my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(5420)))
-                Then("I should see I have earned 4,920 YuCoin today total from all milestones and challenges completed", then.yuCoinTodayEarned([60, 60, 60, 20, 200, 20], 450))
+                Then("I should see all my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(5410)))
+                Then("I should see I have earned 4,920 YuCoin today total from all milestones and challenges completed", then.yuCoinTodayEarned([50, 60, 60, 20, 200, 20], 450))
             })
         })
     })

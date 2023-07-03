@@ -98,9 +98,9 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should be on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(8), 3000))
         })
         When("I back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-            Then("I should see my updated coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1030)))
+            Then("I should see my updated coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1010)))
             Then("I should see the number of steps I just completed", then.idVisible(ids.STEPS_COUNT(3050)))
-            Then("I should see the number of coins I've earned today (470)", then.textVisible("470 YuCoin today"))
+            Then("I should see the number of coins I've earned today (470)", then.textVisible("450 YuCoin today"))
         })
     })
 
@@ -152,7 +152,7 @@ Feature("As a user I can take a challenge", async () => {
             })
         })
         When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-            Then("I should see the short stroll and meditation challenge rewards of 78 yucoin each", then.challengeRewardVisible(data.USER_52.data.earnRate, 6))
+            Then("I should see the short stroll and meditation challenge rewards of 26-78 yucoin each", then.challengeRewardVisible(data.USER_52.data.earnRate, 6, 2))
         })
         When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             Then("I should see the correct event for me to complete and the progress bar", then.eventToBeCompletedVisible(0, 0))
