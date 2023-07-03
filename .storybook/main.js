@@ -46,7 +46,8 @@ const CUSTOM_CONFIG = {
   },
 };
 module.exports = {
-  stories: ["../src/components/@(atoms|molecules)/**/*.stories.@(js|jsx|ts|tsx)"],
+  // stories: ["../src/components/@(atoms)/**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: ["../src/components/atoms/heading/heading.stories.tsx"], //this is temp until we migrate all our atoms stories to the new format
   addons: ["storybook-addon-designs", "@storybook/addon-viewport"],
   webpackFinal: (config) => {
     const newConfig = {
@@ -66,7 +67,8 @@ module.exports = {
     };
     return newConfig;
   },
-  core: {
-    builder: "webpack5",
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {},
   },
 };
