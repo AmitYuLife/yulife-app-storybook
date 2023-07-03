@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.89.0] - 2023-07-03
+
+### Tasks
+
+- Task GS-743: Create ShowAndHideBalance component
+- Task ISA-846: save selected language in AsyncStorage
+- Task ISA-843: toggle to show all languages
+- Task: Content item switch for sdui
+- Task GS-734: Add new cooldown state to events
+
+### Chores
+
+- Chore: Upgrade storybook to v7
+- Chore GS-739: Add hasSurge and hasBonus into getQuestMapLevel slots
+
+### Extra
+
+- Detox: Fixes 28th June
+
 ## [3.88.0] - 2023-06-28
 
 ### Bugfixes
