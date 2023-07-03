@@ -27,9 +27,9 @@ const LanguageSelectorContainer = ({ componentId }: Props) => {
         title: `${o.flag} ${o.name}`,
         description: "",
         isSelected: o.id === locale || o.overwrite === locale,
-        onPress: () => {
-          setLocale(o.id);
+        onPress: async () => {
           setLocalLocale(o.id);
+          await setLocale(o.id, true);
         },
       }))}
     />

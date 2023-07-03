@@ -1,4 +1,5 @@
 import * as RNLocalize from "react-native-localize";
+import AsyncStorage from "@react-native-community/async-storage";
 import Polyglot from "node-polyglot";
 import { Language } from "./types";
 
@@ -41,26 +42,53 @@ const translations: Record<Language, Translation> = {
 };
 
 class Translator {
-  private readonly FALLBACK = { languageTag: "en", isRTL: false };
+  private readonly STORAGE_KEY = "@yulife:locale";
+  private readonly FALLBACK = { languageTag: "en" as const, isRTL: false };
   private dict: Polyglot;
 
   constructor() {
-    this.init();
+    // translator needs to be initiated at start
+    this.setLocale(this.FALLBACK.languageTag);
   }
 
   private readonly getAvailableLocales = (showAllOptions = false) =>
     Object.keys(translations).filter((k: Language) => showAllOptions || translations[k].isEnabled);
 
-  // TODO: need to store the selected options and use it for initialisation
-  private readonly init = () => {
-    const { languageTag } = RNLocalize.findBestAvailableLanguage(this.getAvailableLocales()) || this.FALLBACK;
-    this.setLocale(languageTag as Language);
+  public readonly init = async () => {
+    // check if there was a selected language before
+    const selectedLang = await AsyncStorage.getItem(this.STORAGE_KEY);
+
+    if (selectedLang) {
+      const isAvailable = await this.setLocale(selectedLang as Language);
+
+      // check if the language is still supported
+      if (isAvailable) {
+        return;
+      }
+    }
+
+    // check the best available language
+    const availableLanguage = RNLocalize.findBestAvailableLanguage(this.getAvailableLocales());
+
+    if (availableLanguage?.languageTag) {
+      await this.setLocale(availableLanguage.languageTag as Language, true);
+    }
+
+    // defaults to the constructor
   };
 
-  public setLocale = (locale: Language) => {
+  public setLocale = async (locale: Language, shouldSaveTheSelection = false) => {
     if (translations[locale]) {
       this.dict = new Polyglot({ locale, phrases: translations[locale].load() });
+
+      if (shouldSaveTheSelection) {
+        await AsyncStorage.setItem(this.STORAGE_KEY, locale);
+      }
+
+      return true;
     }
+
+    return false;
   };
 
   public readonly getLocale = () => this.dict.locale();
