@@ -50,6 +50,8 @@ import { FlagSA } from "./flag-sa";
 import { Eye } from "./eye";
 import { GlobeIcon } from "./globe-icon";
 import { HourglassIcon } from "./hourglass-icon";
+import { EyeOpenIcon } from "./eye-open-icon";
+import { EyeClosedIcon } from "./eye-closed-icon";
 
 export default {
   GlobeIcon,
@@ -106,4 +108,6 @@ export default {
   FlagSA,
   Eye,
   HourglassIcon,
+  EyeOpenIcon,
+  EyeClosedIcon,
 };
