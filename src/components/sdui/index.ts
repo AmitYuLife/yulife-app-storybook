@@ -41,3 +41,4 @@ export * from "./contentItemDropdownInput/contentItemDropdownInput";
 export * from "./contentItemMedia/contentItemMedia";
 export * from "./contentItemWrapper/contentItemWrapper";
 export * from "./contentItemSwitch/contentItemSwitch";
+export * from "./contentItemShowHideBalance/contentItemShowHideBalance";

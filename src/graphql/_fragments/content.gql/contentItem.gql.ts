@@ -21,6 +21,7 @@ import { GQL_FRAGMENT_CONTENT_ITEM_WRAPPER } from "./contentItemWrapper.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_INFO_CARD } from "./contentItemInfoCard.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_BOX_OPTION_CARD } from "./contentItemBoxOptionCard.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_SWITCH } from "./contentItemSwitch.gql";
+import { GQL_FRAGMENT_CONTENT_ITEM_SHOW_HIDE_BALANCE } from "./contentItemShowHideBalance.gql";
 
 export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN}
@@ -45,6 +46,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_INFO_CARD}
   ${GQL_FRAGMENT_CONTENT_ITEM_BOX_OPTION_CARD}
   ${GQL_FRAGMENT_CONTENT_ITEM_SWITCH}
+  ${GQL_FRAGMENT_CONTENT_ITEM_SHOW_HIDE_BALANCE}
 
   fragment ContentItem on ContentItem {
     __typename
@@ -113,6 +115,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
     }
     ... on ContentItemSwitch {
       ...ContentItemSwitch
+    }
+    ... on ContentItemShowHideBalance {
+      ...ContentItemShowHideBalance
     }
   }
 `;

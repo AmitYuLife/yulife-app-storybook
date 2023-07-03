@@ -62,7 +62,7 @@ export interface UserProfileEvents {
    * deprecated
    */
   stageId: string;
-  participationId: string;
+  participationId: string | null;
   title: string;
   description: string | null;
   startDate: string | null;

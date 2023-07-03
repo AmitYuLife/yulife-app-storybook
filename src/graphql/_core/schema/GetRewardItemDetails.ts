@@ -61,7 +61,8 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemTe
     | "ContentItemBoxOptionCard"
     | "ContentItemStages"
     | "ContentItemMarkdownBlock"
-    | "ContentItemSwitch";
+    | "ContentItemSwitch"
+    | "ContentItemShowHideBalance";
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles {

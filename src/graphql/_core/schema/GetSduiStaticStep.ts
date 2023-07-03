@@ -847,6 +847,27 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemSwitch {
   defaultValue: boolean;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemShowHideBalance_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemShowHideBalance_wrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemShowHideBalance {
+  __typename: "ContentItemShowHideBalance";
+  id: string;
+  value: string;
+  currency: string;
+  description: string | null;
+  descriptionValue: string | null;
+  styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemShowHideBalance_styles[] | null;
+  wrapperStyles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemShowHideBalance_wrapperStyles[] | null;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemProcessingTimer
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemMarkdown
@@ -870,7 +891,8 @@ export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemWrapper
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemInfoCard
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard
-  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemSwitch;
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemSwitch
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemShowHideBalance;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProcessingTimer {
   __typename:
@@ -1704,6 +1726,27 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSw
   defaultValue: boolean;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemShowHideBalance_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemShowHideBalance_wrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemShowHideBalance {
+  __typename: "ContentItemShowHideBalance";
+  id: string;
+  value: string;
+  currency: string;
+  description: string | null;
+  descriptionValue: string | null;
+  styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemShowHideBalance_styles[] | null;
+  wrapperStyles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemShowHideBalance_wrapperStyles[] | null;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProcessingTimer
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown
@@ -1727,7 +1770,8 @@ export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemWrapper
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemInfoCard
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard
-  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSwitch;
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSwitch
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemShowHideBalance;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_styles {
   property: string;
