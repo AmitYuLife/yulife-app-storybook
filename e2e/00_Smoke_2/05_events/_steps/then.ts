@@ -149,7 +149,7 @@ export const allChallengesVisible = async () => {
 
 export const challengesYuCoinValuesCorrect = (earnRate: number) => async () => {
     await textVisible("10 YuCoin")()
-    await textVisible("10 - 60 YuCoin")()
+    await textVisible("10 - 50 YuCoin")()
     await textVisibleAtIndex("20 - 60 YuCoin", 0)()
     await textVisibleAtIndex("20 - 60 YuCoin", 1)()
     await swipeFromText("meditation", "up", "fast")()
@@ -222,7 +222,7 @@ export const allChallengesAndYuCoinsAwardedVisible = async () => {
     await challengeStarsCorrect(3, "short stroll")()
     await textVisible("brisk walk")()
     await textVisibleAtIndex("0 min", 1)()
-    await textVisibleAtIndex("60 yucoin", 0)()
+    await textVisibleAtIndex("50 yucoin", 0)()
     await challengeStarsCorrect(3, "brisk walk")()
     await textVisible("long walk")()
     await textVisibleAtIndex("0 min", 2)()

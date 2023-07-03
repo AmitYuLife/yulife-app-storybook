@@ -116,7 +116,7 @@ export const selectMeditopiaChallengeFromQuests = (levelButton: number, challeng
 export const onChallengeDetailsScreen = (yuCoin: string) => async () => {
   await idVisible(CHALLENGE_DETAILS_SCREEN)()
   await idVisible(CHALLENGE_TYPE("meditation"))()
-  await idVisible(TARGET("1 min"))()
+  await idVisible(TARGET("3 mins"))()
   await idVisible(REWARD_AMOUNT(60))()
   await textVisible(yuCoin)()
   await idVisible(TAKE_CHALLENGE_BUTTON("Take challenge"))()

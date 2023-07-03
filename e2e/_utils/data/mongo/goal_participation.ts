@@ -42,6 +42,7 @@ export const GOAL_PARTICIPATION_3 = {
       endDateTime: moment().add(7, "days").format("YYYY-MM-DDTHH:mm:ss"),
       trackingEndDateTime: moment().add(8, "days").format("YYYY-MM-DDTHH:mm:ss"),
       progressSyncedAt: moment(),
+      participationId: null
     }
 } as IDatabaseItem
 
@@ -62,5 +63,6 @@ export const GOAL_PARTICIPATION_4 = {
       endDateTime: moment().add(7, "days").format("YYYY-MM-DDTHH:mm:ss"),
       trackingEndDateTime: moment().add(8, "days").format("YYYY-MM-DDTHH:mm:ss"),
       progressSyncedAt: moment(),
+      participationId: null
     }
 } as IDatabaseItem

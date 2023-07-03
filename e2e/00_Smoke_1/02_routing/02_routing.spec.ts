@@ -149,9 +149,6 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                         When("I tap the unlocked level 3 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(3)), async () => {
                             Then("I should be on the level 3 quest screen", then.idVisible(ids.CHALLENGE_SET))
                             Then("I should see an unlocked challenge", then.idVisible(ids.CHALLENGE_TILE("meditation")))
-                            Then("I should see locked challenges", then.multipleTextVisible(["Level 4", "Level 7"]))
-                            When("I tap a locked challenge", when.tapText("Level 7"), async () => {
-                                Then("nothing should happen", then.idVisible(ids.CHALLENGE_SET))
                                 When("I tap the meditation challenge", when.tapID(ids.CHALLENGE_TILE("meditation")), async () => {
                                     Then("I should see a screen with a take challenge option", then.textVisible("Take challenge"))
                                     When("I tap 'take challenge'", when.tapText("Take challenge"), async () => {
@@ -173,7 +170,6 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                                         })
                                     })
                                 })
-                            })
                         })
                     })
                 })

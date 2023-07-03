@@ -185,8 +185,9 @@ export const yuCoinEarnedFromEvent = (yuCoinPower: number, rewardValue: number, 
     await textVisible(`${yuCoinTotal} YuCoin today`)()
 }
 
-export const challengeRewardVisible = (yuCoinPower: number, rewardValue: number) => async () => {
+export const challengeRewardVisible = (yuCoinPower: number, rewardValue: number, minRewardValue: number) => async () => {
     const yuCoinTotal = (yuCoinPower * rewardValue).toString()
-    await idVisibleAtIndex(ids.CHALLENGE_REWARD(yuCoinTotal), 0)()
-    await idVisibleAtIndex(ids.CHALLENGE_REWARD(yuCoinTotal), 1)()
+    const minReward = (minRewardValue * yuCoinPower).toString()
+    await idVisibleAtIndex(ids.CHALLENGE_REWARD(`${minReward} - ${yuCoinTotal}`), 0)()
+    await idVisibleAtIndex(ids.CHALLENGE_REWARD(`${minReward} - ${yuCoinTotal}`), 1)()
 }
