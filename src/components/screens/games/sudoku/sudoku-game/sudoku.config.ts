@@ -33,9 +33,6 @@ export const SUDOKU_NUMBER_WAVE_SCALE_DURATION = 300;
 
 // Date formatting
 export const SUDOKU_DATE_FORMAT = "DD MMM YYYY";
-export const SUDOKU_TIME_FORMAT = "m[m] s[s]";
-export const SUDOKU_TIME_FORMAT_LONG = "h[h] m[m] s[s]";
-
 export const SUDOKU_PAUSE_ANIMATION_DURATION = 500;
 
 export const SUDOKU_DEFAULT_CONFIG: ISudokuConfig = {
