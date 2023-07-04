@@ -114,6 +114,7 @@ import {
   USER_GHI_STARTED,
   USER_92,
   USER_93,
+  USER_94,
 } from "./users";
 import { USER_84_LEADERBOARD } from "./user_leaderboards";
 
@@ -1801,6 +1802,21 @@ export const USER_ONBOARDING_93 = {
       personalLifeIntro: true,
       newYumojiBuilder: true,
       firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_94 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: USER_94.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
+    businessName: "Justice League",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
     },
   },
 } as IDatabaseItem;

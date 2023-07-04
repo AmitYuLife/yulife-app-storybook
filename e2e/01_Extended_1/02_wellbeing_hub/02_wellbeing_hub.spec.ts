@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_3, AUTH_3, CUSTOMER_31, AUTH_31, CUSTOMER_34, AUTH_34, CUSTOMER_37, AUTH_37 } from "@data";
+import { CUSTOMER_3, AUTH_3, CUSTOMER_31, AUTH_31, CUSTOMER_34, AUTH_34, CUSTOMER_37, AUTH_37, WELLBEING_HUB_ITEM_3, CUSTOMER_94, AUTH_94, WELLBEING_HUB_ITEM_4, WELLBEING_HUB_ITEM_1 } from "@data";
 import { MENU_ICON, MENU_ITEM, WELLBEING_HUB_SCREEN, BACK_BUTTON, TEXT_TEMPLATE, MORE_INFO_BUTTON, PERK_SCREEN, INPUT_AVIOS_FORM_FIELD, WELLBEING_HUB_SCROLL_VIEW } from "@ids";
 import { nextClaimDate } from "./_steps/constants";
 
@@ -61,10 +61,10 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
     Scenario("I can view the Fiit screen as a yulife user and should get Membership already active and Membership claimed when Active account ", scenario.start, async () => {
         Given("I login as a grouplife user", given.loginAsUser(CUSTOMER_34, AUTH_34), async () => {
             When("I go to settings", when.tapID(MENU_ICON), async () => {
-                Then("I should see Fiit", then.idVisible(MENU_ITEM("Wellbeing Hub")))
+                Then("I should see Wellbeing hub", then.idVisible(MENU_ITEM("Wellbeing Hub")))
             })
         })
-        When("I tap Fiit", when.tapID(MENU_ITEM("Wellbeing Hub")), async () => {
+        When("I tap wellbeng hub", when.tapID(MENU_ITEM("Wellbeing Hub")), async () => {
             Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
             Then("I should see Fiit on the screen", then.textVisible("Fiit"))
         })
@@ -138,5 +138,32 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
                 })
             })
         })
+    })
+
+    Scenario("I should not be able to see entries with a country code that the User is not a part of", scenario.start, async () => {
+        Given("I login as a grouplife user", given.loginAsUser(CUSTOMER_34, AUTH_34), async () => {
+            When("I go to settings", when.tapID(MENU_ICON), async () => {
+                Then("I should see Wellbeing Hub", then.idVisible(MENU_ITEM("Wellbeing Hub")))
+            })
+        })
+        When("I tap wellbeng hub", when.tapID(MENU_ITEM("Wellbeing Hub")), async () => {
+            Then("I should see Fiit on the screen", then.textVisible(WELLBEING_HUB_ITEM_1.data.title))
+            Then("I should see Fiit assigned to UK on the screen", then.textVisible(WELLBEING_HUB_ITEM_4.data.title))
+            Then("I should not be able to see the item that is assigned to the US", then.textNotVisible(WELLBEING_HUB_ITEM_3.data.title))
+        })
+
+    })
+
+    Scenario("If a customers country is not set, they cannot see country specific entries", scenario.start, async () => {
+        Given("I login as a grouplife user", given.loginAsUser(CUSTOMER_94, AUTH_94), async () => {
+            When("I go to settings", when.tapID(MENU_ICON), async () => {
+                Then("I should see Wellbeing Hub", then.idVisible(MENU_ITEM("Wellbeing Hub")))
+            })
+        })
+        When("I tap wellbeng hub", when.tapID(MENU_ITEM("Wellbeing Hub")), async () => {
+            Then("I should see Fiit that is assigned to the UK on the screen", then.textNotVisible(WELLBEING_HUB_ITEM_4.data.title))
+            Then("I should not be able to see the item that is assigned to the US", then.textNotVisible(WELLBEING_HUB_ITEM_3.data.title))
+        })
+
     })
 })

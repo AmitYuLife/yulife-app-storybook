@@ -1471,3 +1471,16 @@ export const CUSTOMER_93 = {
     fullName: "David Yishai",
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_94 = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: "robinaite@jl.com",
+    firstName: "Timothy",
+    lastName: "Drakeman",
+    dateOfBirth: moment().subtract(40, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem;
