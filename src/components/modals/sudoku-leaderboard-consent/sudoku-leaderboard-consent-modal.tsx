@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 interface IProps {
-  onConsented: () => void;
+  onConsented?: () => void;
 }
 
 const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
@@ -51,7 +51,9 @@ const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
       },
       onCompleted: () => {
         onClose();
-        onConsented();
+        if (onConsented) {
+          onConsented();
+        }
       },
     });
   }, [dispatch, updateSudokuLeaderboardConsent, onClose, onConsented]);
