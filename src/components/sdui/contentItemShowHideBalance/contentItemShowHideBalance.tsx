@@ -8,12 +8,12 @@ type Props = GqlShowHideBalance & {
 };
 
 export const ContentItemShowHideBalance = memo(
-  ({ value, currency, description, descriptionValue, styles, wrapperStyles }: Props) => (
+  ({ balance, currency, balanceDescription, balanceDescriptionValue, styles, wrapperStyles }: Props) => (
     <ShowAndHideBalance
-      value={value}
+      value={balance}
       currency={currency}
-      description={description}
-      descriptionValue={descriptionValue}
+      description={balanceDescription}
+      descriptionValue={balanceDescriptionValue}
       styles={mapServerStyles(styles)}
       wrapperStyles={mapServerStyles(wrapperStyles)}
     />

@@ -860,10 +860,10 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemShowHideBal
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemShowHideBalance {
   __typename: "ContentItemShowHideBalance";
   id: string;
-  value: string;
+  balance: string;
   currency: string;
-  description: string | null;
-  descriptionValue: string | null;
+  balanceDescription: string | null;
+  balanceDescriptionValue: string | null;
   styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemShowHideBalance_styles[] | null;
   wrapperStyles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemShowHideBalance_wrapperStyles[] | null;
 }
@@ -1739,10 +1739,10 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSh
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemShowHideBalance {
   __typename: "ContentItemShowHideBalance";
   id: string;
-  value: string;
+  balance: string;
   currency: string;
-  description: string | null;
-  descriptionValue: string | null;
+  balanceDescription: string | null;
+  balanceDescriptionValue: string | null;
   styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemShowHideBalance_styles[] | null;
   wrapperStyles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemShowHideBalance_wrapperStyles[] | null;
 }

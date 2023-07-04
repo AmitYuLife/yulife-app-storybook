@@ -860,10 +860,10 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemShowHideBalance_w
 export interface GetSduiJourney_getSduiJourney_body_ContentItemShowHideBalance {
   __typename: "ContentItemShowHideBalance";
   id: string;
-  value: string;
+  balance: string;
   currency: string;
-  description: string | null;
-  descriptionValue: string | null;
+  balanceDescription: string | null;
+  balanceDescriptionValue: string | null;
   styles: GetSduiJourney_getSduiJourney_body_ContentItemShowHideBalance_styles[] | null;
   wrapperStyles: GetSduiJourney_getSduiJourney_body_ContentItemShowHideBalance_wrapperStyles[] | null;
 }
@@ -1739,10 +1739,10 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemShowHide
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemShowHideBalance {
   __typename: "ContentItemShowHideBalance";
   id: string;
-  value: string;
+  balance: string;
   currency: string;
-  description: string | null;
-  descriptionValue: string | null;
+  balanceDescription: string | null;
+  balanceDescriptionValue: string | null;
   styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemShowHideBalance_styles[] | null;
   wrapperStyles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemShowHideBalance_wrapperStyles[] | null;
 }
