@@ -36,11 +36,6 @@ export const SudokuCompletedContainer = ({ reward, isPractice, results, stats }:
         component: {
           id: MODALS.sudokuLeaderboardConsent,
           name: MODALS.sudokuLeaderboardConsent,
-          passProps: {
-            onConsented: () => {
-              Navigation.popTo(ROUTES.quests);
-            },
-          },
         },
       });
     }
