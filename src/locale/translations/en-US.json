@@ -5,7 +5,9 @@
     "date_readable": "MMMM DD, YYYY",
     "date_time_readable_short": "MMMM D, h:mm A",
     "date_time_readable": "MMMM D, YYYY h:mm A",
-    "time_short": "h:mm A"
+    "time_short": "h:mm A",
+    "duration": "m[m] s[s]",
+    "duration_long": "h[h] m[m] s[s]"
   },
   "validator": {
     "email": "Please enter a valid email address.",
