@@ -7,7 +7,7 @@ import * as data from "@data";
 import * as ids from "@ids";
 
 
-FeatureOnly("As a user I can use the streaks functionality", async () => {
+Feature("As a user I can use the streaks functionality", async () => {
     Scenario("I can start a new streak and complete a challenge", scenario.start, async () => {
         Given("I login", given.logInWithStreakScreen(data.CUSTOMER_5, data.AUTH_5), async () => {
             When("I tap the streak button", when.tapText("0/5"), async () => {
@@ -18,7 +18,7 @@ FeatureOnly("As a user I can use the streaks functionality", async () => {
                         Then("I should be on the level one quest screen", then.idVisible(ids.CHALLENGE_SET))
                         Then("I should see an unlocked short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("short stroll")))
                         When("I tap the unlocked short stroll challenge", when.tapID(ids.CHALLENGE_TILE("short stroll")), async () => {
-                            Then("I should see a screen with a take challenge option", then.textVisible("short stroll / 0 min"))
+                            Then("I should see a screen with a take challenge option", then.textVisible("short stroll / 0 mins"))
                             Then("I should see the number of steps I need to complete the challenge", then.textVisible("300 steps"))
                             When("I tap 'take challenge'", when.tapText("Take challenge"), async () => {
                                 When("I wait", when.wait(5000), async () => {
