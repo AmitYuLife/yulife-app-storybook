@@ -7,10 +7,10 @@ export const GQL_FRAGMENT_CONTENT_ITEM_SHOW_HIDE_BALANCE = gql`
 
   fragment ContentItemShowHideBalance on ContentItemShowHideBalance {
     id
-    value
+    balance
     currency
-    description
-    descriptionValue
+    balanceDescription
+    balanceDescriptionValue
     styles {
       ...SduiStyle
     }

@@ -19,10 +19,10 @@ export interface ContentItemShowHideBalance_wrapperStyles {
 
 export interface ContentItemShowHideBalance {
   id: string;
-  value: string;
+  balance: string;
   currency: string;
-  description: string | null;
-  descriptionValue: string | null;
+  balanceDescription: string | null;
+  balanceDescriptionValue: string | null;
   styles: ContentItemShowHideBalance_styles[] | null;
   wrapperStyles: ContentItemShowHideBalance_wrapperStyles[] | null;
 }

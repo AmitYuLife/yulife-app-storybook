@@ -852,10 +852,10 @@ export interface AbsoluteContentItem_item_ContentItemShowHideBalance_wrapperStyl
 export interface AbsoluteContentItem_item_ContentItemShowHideBalance {
   __typename: "ContentItemShowHideBalance";
   id: string;
-  value: string;
+  balance: string;
   currency: string;
-  description: string | null;
-  descriptionValue: string | null;
+  balanceDescription: string | null;
+  balanceDescriptionValue: string | null;
   styles: AbsoluteContentItem_item_ContentItemShowHideBalance_styles[] | null;
   wrapperStyles: AbsoluteContentItem_item_ContentItemShowHideBalance_wrapperStyles[] | null;
 }
