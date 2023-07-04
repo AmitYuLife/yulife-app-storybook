@@ -3,8 +3,9 @@ import { useSelector } from "react-redux";
 import { Navigation } from "@navigation/main";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { GAME_SETTINGS_LANGUAGE_SELECTOR_SCREEN } from "@ids";
-import { t, getAvailableLocaleOptions, getLocale, setLocale } from "@locale";
+import { t, getAvailableLocaleOptions, getCurrentLocale, setLocale } from "@locale";
 import SettingLayout from "./setting.layout";
+import Logger from "@services/logging/logger";
 
 type Props = {
   componentId: string;
@@ -12,7 +13,7 @@ type Props = {
 
 const LanguageSelectorContainer = ({ componentId }: Props) => {
   const features = useSelector(getUserFeatures);
-  const [locale, setLocalLocale] = useState(getLocale());
+  const [locale, setLocalLocale] = useState(getCurrentLocale());
   const onRightIconPress = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
   const onLeftIconPress = useCallback(() => Navigation.pop(componentId), [componentId]);
 
@@ -30,6 +31,7 @@ const LanguageSelectorContainer = ({ componentId }: Props) => {
         onPress: async () => {
           setLocalLocale(o.id);
           await setLocale(o.id, true);
+          Logger.setUserLanguagePreferenceOnIntercom(o.intercomLanguage);
         },
       }))}
     />

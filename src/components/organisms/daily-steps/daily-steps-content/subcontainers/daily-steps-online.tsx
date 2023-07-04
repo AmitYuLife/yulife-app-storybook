@@ -27,7 +27,7 @@ import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
 import Logger from "@services/logging/logger";
 import { Navigation } from "@navigation/main";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import { t, getLocale } from "@locale";
+import { t, getCurrentLocale } from "@locale";
 import { getTheme } from "@theme";
 import { changePanelVisibility } from "@redux/daily-steps/daily-steps.actions";
 
@@ -126,7 +126,7 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
 
   const closePanel = useCallback(() => dispatch(changePanelVisibility(false)), []);
 
-  const locale = getLocale();
+  const locale = getCurrentLocale();
   const yuCoinTodayText = useMemo(() => `${t("yu_coin.camel_case")} ${t("period.today")}`, [locale]);
 
   const navigateToTodayEarnings = useCallback(

@@ -5,7 +5,8 @@ import translator from "./translator";
 export const translate = translator.translate;
 export const t = translator.translate;
 export const init = translator.init;
-export const getLocale = translator.getLocale;
+export const getCurrentLocale = translator.getCurrentLocale;
+export const getCurrentLocaleOptions = translator.getCurrentLocaleOptions;
 export const setLocale = translator.setLocale;
 export const getAvailableLocaleOptions = translator.getAvailableLocaleOptions;
 
