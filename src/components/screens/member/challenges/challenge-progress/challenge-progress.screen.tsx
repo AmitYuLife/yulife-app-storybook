@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { Platform, StyleSheet, View } from "react-native";
 import { IConnectedScreenProps } from "../../../../../typings";
 import styles from "./challenge-progress.screen.styles";
@@ -23,6 +23,9 @@ import { handleLinkPress, openApp, openFiit } from "@services/app-link";
 import { QuestionMarkIcon } from "@atoms/icon/question-mark-icon";
 import { t } from "@locale";
 import { Fiit } from "@atoms/icon/fiit-icon";
+import { truncate } from "@utils";
+
+const MAX_CHAR_LEN = 12;
 
 // transparent png 1x1
 const empty_uri = {
@@ -64,6 +67,7 @@ function ChallengeProgressScreen({
   );
 
   const {
+    heading,
     topBarType = TopBarType.DEFAULT,
     backgroundColour = "rgb(255,255,255)",
     progressBar = {
@@ -113,6 +117,11 @@ function ChallengeProgressScreen({
   const openFaqUrl = useCallback(
     async () => await handleLinkPress(appButton?.options?.faqUrl || appButton?.tutorialUrl)(),
     [appButton?.options?.faqUrl, appButton?.tutorialUrl]
+  );
+
+  const menuLabel = useMemo(
+    () => truncate((heading || challengeType || "").toLowerCase(), MAX_CHAR_LEN),
+    [heading, challengeType]
   );
 
   return (
@@ -187,7 +196,7 @@ function ChallengeProgressScreen({
       )}
       <TopBarAbsolute
         type={fromGql(topBarType)}
-        menuLabel={challengeType}
+        menuLabel={menuLabel}
         onPressLeftIcon={onLeftMenuPress}
         timer={endDateTime}
       />

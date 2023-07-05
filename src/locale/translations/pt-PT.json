@@ -112,8 +112,8 @@
       "plural": "pedalado"
     },
     "meditation": {
-      "singular": "min min atento",
-      "plural": "min mins atentos"
+      "singular": "min atento",
+      "plural": "mins atentos"
     }
   },
   "create_challenge_error": "Desculpe, houve um problema no início do seu desafio.\n Por favor, tente novamente!",
