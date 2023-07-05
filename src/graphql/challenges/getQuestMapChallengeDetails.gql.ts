@@ -6,6 +6,7 @@ export const GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS = gql`
   query GetQuestMapLevelChallengeDetails($levelSlotId: String!) {
     getQuestMapLevelChallengeDetails(levelSlotId: $levelSlotId) {
       id
+      heading
       backgroundColour
       progressBar {
         name

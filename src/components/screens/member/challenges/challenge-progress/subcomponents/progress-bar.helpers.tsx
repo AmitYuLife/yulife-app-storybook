@@ -4,12 +4,15 @@ import { StyleSheet, Text } from "react-native";
 import { displaySecondsAsMinutes, padNum } from "@utils";
 import { IProps } from "./progress-bar";
 import styles from "./progress-bar.styles";
+import { t } from "@locale";
 
 export const renderProgressLabel = ({ amount, styleType, type }: Partial<IProps>) => {
   const textColorStyle = { color: styleType.progressTextColor };
   const { minutes, seconds } = displaySecondsAsMinutes(amount);
 
-  const typeText = type === "steps" && amount === 1 ? "step" : type;
+  const typeText =
+    type === "steps" && amount === 1 ? t("activity_types.steps.singular") : t("activity_types.steps.plural");
+
   switch (type) {
     case "steps":
     case "calories":

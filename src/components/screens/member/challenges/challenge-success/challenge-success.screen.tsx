@@ -16,7 +16,7 @@ interface IProps {
   loading: boolean;
   reward: number;
   score: number;
-  unit: "steps" | "minutes";
+  unit: "steps" | "minutes" | "meters";
 }
 
 export default function ChallengeSuccessScreen(props: IProps) {
@@ -66,7 +66,7 @@ export default function ChallengeSuccessScreen(props: IProps) {
   );
 }
 
-function renderScore(score: number, unit: string) {
+function renderScore(score: number, unit: IProps["unit"]) {
   const unitTextPlural = unit === "minutes" ? t("time_units.minutes") : t("activity_types.steps.plural");
   const unitTextSingular = unit === "minutes" ? t("time_units.minute") : t("activity_types.steps.singular");
 
@@ -77,8 +77,9 @@ function renderScore(score: number, unit: string) {
       return `${mins} ${mins === 1 ? unitTextSingular : unitTextPlural}`;
     case "meters":
       return formatCyclingMetersToKmWithOneDecimal(score);
-
+    case "steps":
+      return `${score} ${unitTextPlural}`;
     default:
-      return `${score} ${unit}`;
+      return `${score}`;
   }
 }

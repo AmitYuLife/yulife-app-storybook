@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -55,6 +55,7 @@ export interface GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetai
 
 export interface GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails {
   id: string;
+  heading: string;
   backgroundColour: string;
   progressBar: GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails_progressBar;
   assets: GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails_assets;
