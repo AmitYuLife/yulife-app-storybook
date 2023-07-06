@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.90.0] - 2023-07-06
+
+### Bugfixes
+
+- Bugfix: Nothing to pop Sudoku
+- Bugfix: Rename balance content item fields
+
+### Tasks
+
+- Task: Yudoku performance & sudoku animations disable functionality
+- Task: adding ja-JP
+- Task ISA-865: use heading from challengeDetails
+- Task: Sudoku time localisation
+- Task ISA-852: intercom localisation
+- Task: Pension show & hide balance sdui
+
+### Extra
+
+- detox:autoassign keepsake on end of enrol window of Gdent if user opted out
+- Detox: Fixes 6th july
+- Detox: Fixed CPE data
+- Detox: Wellbeing hub country specific entries
+- Detox: Fixes 4th jul
+- Detox: Fixes 3rd July
+
 ## [3.89.0] - 2023-07-03
 
 ### Tasks
