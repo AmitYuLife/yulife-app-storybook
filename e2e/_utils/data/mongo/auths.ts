@@ -1250,12 +1250,167 @@ export const AUTH_93 = {
 }  as IDatabaseItem
 
 export const AUTH_94 = {
-    type,
-    modelName,
+    type: "mongo",
+    modelName: "auth",
     data: {
         ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.61.000",
+        lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_94.data.customerId,
     }
-} as IDatabaseItem
+}  as IDatabaseItem
+
+export const AUTH_95 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_95.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_96 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_96.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_97 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_97.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_98 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_98.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_99 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_99.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_100 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_100.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_101 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_101.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_102 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_102.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_103 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_103.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_104 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_104.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_105 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_105.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_106 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_106.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_107 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_107.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_108 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_108.data.customerId,
+    }
+}  as IDatabaseItem
+

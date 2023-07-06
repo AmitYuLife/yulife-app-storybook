@@ -1,5 +1,5 @@
 import { generateRandomTransformedUuid } from "@yu-life/yulife-bdd-framework"
-import { CUSTOMER_93 } from "./customers"
+import { CUSTOMER_104, CUSTOMER_93, CUSTOMER_98 } from "./customers"
 
 const type = "postgres"
 const modelName = "journey_progression"
@@ -101,4 +101,75 @@ export const JP_93_7 = {
         "archived" : false,
     }
 }
+
+export const JP_98_1 = {
+    type,
+    modelName,
+    data: {
+        "journey_progression_id" : generateRandomTransformedUuid(),
+        "customer_id" : CUSTOMER_104.data.customerId,
+        "journey_id" : "group_dental_enrolment",
+        "journey_session_id" : "67f085a3-8d1e-40bf-b402-a022873b380e",
+        "step_id" : "group_dental_enrolment_intro",
+        "step_data" : "{\"enrolmentWindowId\":\"08f5c3ab-322e-4adf-8b79-1a40a02aec95\",\"customerProductId\":\"YUCPID0000011382\",\"employerBenefitName\":\"Level 1 | Single\",\"employerBenefitCostPence\":917,\"businessQuoteId\":\"GOYT9B8HK3\",\"electionOption\":\"opt-out\"}",
+        "archived" : false,
+    }
+}
+
+export const JP_98_2 = {
+    type,
+    modelName,
+    data: {
+        "journey_progression_id" : generateRandomTransformedUuid(),
+        "customer_id" : CUSTOMER_104.data.customerId,
+        "journey_id" : "group_dental_enrolment",
+        "journey_session_id" : "67f085a3-8d1e-40bf-b402-a022873b380e",
+        "step_id" : "group_dental_enrolment_select_package",
+        "step_data" : "{\"selectedLevel\":\"Level 1\"}",
+        "archived" : false,
+    }
+}
+export const JP_98_3 = {
+    type,
+    modelName,
+    data: {
+        "journey_progression_id" : generateRandomTransformedUuid(),
+        "customer_id" : CUSTOMER_104.data.customerId,
+        "journey_id" : "group_dental_enrolment",
+        "journey_session_id" : "67f085a3-8d1e-40bf-b402-a022873b380e",
+        "step_id" : "group_dental_enrolment_confirm_opt_out",
+        "step_data" : "{\"optedOut\":true}",
+        "archived" : false,
+    }
+}
+
+export const JP_98_4 = {
+    type,
+    modelName,
+    data: {
+        "journey_progression_id" : generateRandomTransformedUuid(),
+        "customer_id" : CUSTOMER_104.data.customerId,
+        "journey_id" : "group_dental_enrolment",
+        "journey_session_id" : "67f085a3-8d1e-40bf-b402-a022873b380e",
+        "step_id" : "group_dental_enrolment_loading_summary",
+        "step_data" : "{\"enrolmentChoiceConfirmed\":true}",
+        "archived" : false,
+    }
+}
+
+export const JP_98_5 = {
+    type,
+    modelName,
+    data: {
+        "journey_progression_id" : generateRandomTransformedUuid(),
+        "customer_id" : CUSTOMER_104.data.customerId,
+        "journey_id" : "group_dental_enrolment",
+        "journey_session_id" : "67f085a3-8d1e-40bf-b402-a022873b380e",
+        "step_id" : "group_dental_enrolment_choice_holding",
+        "step_data" : "{}",
+        "archived" : false,
+    }
+}
+
+    
     

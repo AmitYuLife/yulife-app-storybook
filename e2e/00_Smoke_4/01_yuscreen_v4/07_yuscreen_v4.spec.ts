@@ -103,13 +103,9 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
     Scenario("As a YuLifer with Group Dental product i should see correct policy holding countdown and benefit", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_93, data.AUTH_93), async () => {
             helper.ONBOARD_YU_SCREEN(GdentAvailableSoon)
-            When("I tap check out my power", when.tapCheckOutMyPower, async () => {
-                When("I tap I'll do this later", when.tapIllDoThisLater, async () => {
-               helper.ON_YU_SCREEN(data.CUSTOMER_93, GdentAvailableSoon)
-               helper.PRODUCT_VIEW(GdentAvailableSoonProduct)
-               helper.COVERED_FOR_INFO(level1Benefit)
-                })
-            })
+            helper.ON_YU_SCREEN(data.CUSTOMER_93, GdentAvailableSoon)
+            helper.PRODUCT_VIEW(GdentAvailableSoonProduct)
+            helper.COVERED_FOR_INFO(level1Benefit)
         })
     })
 })

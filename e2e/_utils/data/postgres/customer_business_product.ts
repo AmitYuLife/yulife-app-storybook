@@ -1,7 +1,7 @@
 import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { BUSINESS_PRODUCT_3, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_ENDED, BUSINESS_PRODUCT_FUTURE, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent } from "./business_product"
-import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_53, CUSTOMER_74, CUSTOMER_LEAVER, CUSTOMER_FUTURE_PRODUCT, CUSTOMER_94 } from "./customers"
-import { CPE_31, CPE_32_GCI, CPE_32_GIP, CPE_32_RGL, CPE_33_GCI, CPE_33_GIP, CPE_33_RGL, CPE_34_GCI, CPE_34_GIP, CPE_34_RGL, CPE_43_WELLBEING, CPE_48_GCI, CPE_48_GIP, CPE_48_RGL, CPE_48_WELLBEING, CPE_49_GCI, CPE_49_GIP, CPE_49_RGL, CPE_49_WELLBEING, CPE_51_GDent, CPE_53_GIP, CPE_74, CPE_93_GDent, CPE_94_GIP, CPE_BUSINESS_LEAVER, CPE_FUTURE_PRODUCT, CPE_GHI_FUTURE, CPE_GHI_STARTED} from "./customer_product_entity"
+import { BUSINESS_PRODUCT_3, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_ENDED, BUSINESS_PRODUCT_FUTURE, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_10_GDent } from "./business_product"
+import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_53, CUSTOMER_74, CUSTOMER_LEAVER, CUSTOMER_FUTURE_PRODUCT, CUSTOMER_94, CUSTOMER_96 } from "./customers"
+import * as cpe from "./customer_product_entity"
 import moment = require('moment');
 
 const type = "postgres"
@@ -12,7 +12,7 @@ export const CGP_31 = {
     modelName,
     data:{
         business_product_id: BUSINESS_PRODUCT_3.product.data.product_id,
-        customer_product_id: CPE_31.data.customer_product_id,
+        customer_product_id: cpe.CPE_31.data.customer_product_id,
         category_id: 1,
         start_date: moment().subtract(3, "months").toDate(),
         data:{
@@ -28,7 +28,7 @@ export const CGP_32_RGL = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_RGL.product.data.product_id,
-        customer_product_id: CPE_32_RGL.data.customer_product_id,
+        customer_product_id: cpe.CPE_32_RGL.data.customer_product_id,
         category_id: 1,
         start_date: moment().subtract(1, "year").toDate(),
         data: {
@@ -44,7 +44,7 @@ export const CGP_32_GIP = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
-        customer_product_id: CPE_32_GIP.data.customer_product_id,
+        customer_product_id: cpe.CPE_32_GIP.data.customer_product_id,
         category_id: 1,
         start_date: moment().subtract(1, "year").toDate(),
         data:{
@@ -60,7 +60,7 @@ export const CGP_32_GCI = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GCI.product.data.product_id,
-        customer_product_id: CPE_32_GCI.data.customer_product_id,
+        customer_product_id: cpe.CPE_32_GCI.data.customer_product_id,
         category_id: 1,
         start_date: moment().subtract(1, "year").toDate(),
         data:{
@@ -76,7 +76,7 @@ export const CGP_33_RGL = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_RGL.product.data.product_id,
-        customer_product_id: CPE_33_RGL.data.customer_product_id,
+        customer_product_id: cpe.CPE_33_RGL.data.customer_product_id,
         category_id: 1,
         start_date: CUSTOMER_33.data.start_date,
         data : {
@@ -92,7 +92,7 @@ export const CGP_33_GIP = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
-        customer_product_id: CPE_33_GIP.data.customer_product_id,
+        customer_product_id: cpe.CPE_33_GIP.data.customer_product_id,
         category_id: 1,
         start_date: CUSTOMER_33.data.start_date,
         data : {
@@ -108,7 +108,7 @@ export const CGP_33_GCI = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GCI.product.data.product_id,
-        customer_product_id: CPE_33_GCI.data.customer_product_id,
+        customer_product_id: cpe.CPE_33_GCI.data.customer_product_id,
         category_id: 1,
         start_date: CUSTOMER_33.data.start_date,
         data : {
@@ -124,7 +124,7 @@ export const CGP_34_RGL = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_RGL.product.data.product_id,
-        customer_product_id: CPE_34_RGL.data.customer_product_id,
+        customer_product_id: cpe.CPE_34_RGL.data.customer_product_id,
         category_id: 1,
         start_date: moment().toDate(),
         data : {
@@ -140,7 +140,7 @@ export const CGP_34_GIP = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
-        customer_product_id: CPE_34_GIP.data.customer_product_id,
+        customer_product_id: cpe.CPE_34_GIP.data.customer_product_id,
         category_id: 1,
         start_date: moment().toDate(),
         data : {
@@ -156,7 +156,7 @@ export const CGP_34_GCI = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GCI.product.data.product_id,
-        customer_product_id: CPE_34_GCI.data.customer_product_id,
+        customer_product_id: cpe.CPE_34_GCI.data.customer_product_id,
         category_id: 1,
         start_date: moment().toDate(),
         data : {
@@ -172,7 +172,7 @@ export const CGP_43_WELLBEING = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_1_WB.product.data.product_id,
-        customer_product_id: CPE_43_WELLBEING.data.customer_product_id,
+        customer_product_id: cpe.CPE_43_WELLBEING.data.customer_product_id,
         category_id: 1,
         start_date: CUSTOMER_43.data.start_date,
         data: {
@@ -188,7 +188,7 @@ export const CGP_48_RGL = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_RGL.product.data.product_id,
-        customer_product_id: CPE_48_RGL.data.customer_product_id,
+        customer_product_id: cpe.CPE_48_RGL.data.customer_product_id,
         category_id: 1,
         start_date: CUSTOMER_48.data.start_date,
         data: {
@@ -204,7 +204,7 @@ export const CGP_48_GIP = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
-        customer_product_id: CPE_48_GIP.data.customer_product_id,
+        customer_product_id: cpe.CPE_48_GIP.data.customer_product_id,
         category_id: 1,
         start_date: CUSTOMER_48.data.start_date,
         data: {
@@ -220,7 +220,7 @@ export const CGP_48_GCI = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GCI.product.data.product_id,
-        customer_product_id: CPE_48_GCI.data.customer_product_id,
+        customer_product_id: cpe.CPE_48_GCI.data.customer_product_id,
         category_id: 1,
         start_date: CUSTOMER_48.data.start_date,
         data: {
@@ -236,7 +236,7 @@ export const CGP_48_WELLBEING = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_1_WB.product.data.product_id,
-        customer_product_id: CPE_48_WELLBEING.data.customer_product_id,
+        customer_product_id: cpe.CPE_48_WELLBEING.data.customer_product_id,
         category_id: 1,
         start_date: CUSTOMER_48.data.start_date,
         data: {
@@ -252,7 +252,7 @@ export const CGP_49_RGL = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_RGL.product.data.product_id,
-        customer_product_id: CPE_49_RGL.data.customer_product_id,
+        customer_product_id: cpe.CPE_49_RGL.data.customer_product_id,
         category_id: 1,
         start_date: CUSTOMER_49.data.start_date,
         data: {
@@ -268,7 +268,7 @@ export const CGP_49_GIP = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
-        customer_product_id: CPE_49_GIP.data.customer_product_id,
+        customer_product_id: cpe.CPE_49_GIP.data.customer_product_id,
         category_id: 1,
         start_date: CUSTOMER_49.data.start_date,
         data: {
@@ -284,7 +284,7 @@ export const CGP_49_GCI = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GCI.product.data.product_id,
-        customer_product_id: CPE_49_GCI.data.customer_product_id,
+        customer_product_id: cpe.CPE_49_GCI.data.customer_product_id,
         category_id: 1,
         start_date: CUSTOMER_49.data.start_date,
         data: {
@@ -300,7 +300,7 @@ export const CGP_49_WELLBEING = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_1_WB.product.data.product_id,
-        customer_product_id: CPE_49_WELLBEING.data.customer_product_id,
+        customer_product_id: cpe.CPE_49_WELLBEING.data.customer_product_id,
         category_id: 1,
         start_date: CUSTOMER_49.data.start_date,
         data: {
@@ -316,7 +316,7 @@ export const CGP_51_GDental = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GDental.product.data.product_id,
-        customer_product_id: CPE_51_GDent.data.customer_product_id,
+        customer_product_id: cpe.CPE_51_GDent.data.customer_product_id,
         category_id: 1,
         start_date: moment().subtract(1, "months").format("YYYY-MM-DD"),
         data: {
@@ -332,7 +332,7 @@ export const CGP_53_GIP = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
-        customer_product_id: CPE_53_GIP.data.customer_product_id,
+        customer_product_id: cpe.CPE_53_GIP.data.customer_product_id,
         category_id: 1,
         start_date: CUSTOMER_53.data.start_date,
         data: {
@@ -348,7 +348,7 @@ export const CGP_74 = {
     modelName,
     data:{
         business_product_id: BUSINESS_PRODUCT_3.product.data.product_id,
-        customer_product_id: CPE_74.data.customer_product_id,
+        customer_product_id: cpe.CPE_74.data.customer_product_id,
         category_id: 1,
         start_date: moment().subtract(3, "months").toDate(),
         data:{
@@ -365,7 +365,7 @@ export const CGP_FUTURE_PRODUCT = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_FUTURE.product.data.product_id,
-        customer_product_id: CPE_FUTURE_PRODUCT.data.customer_product_id,
+        customer_product_id: cpe.CPE_FUTURE_PRODUCT.data.customer_product_id,
         category_id: 1,
         start_date: moment().add(2, "weeks").toDate(),
         data: {
@@ -382,7 +382,7 @@ export const CGP_LEAVER = {
     business_product_id: BUSINESS_PRODUCT_ENDED.product.data.product_id,
     data: {
         business_product_id: BUSINESS_PRODUCT_ENDED.product.data.product_id,
-        customer_product_id: CPE_BUSINESS_LEAVER.data.customer_product_id,
+        customer_product_id: cpe.CPE_BUSINESS_LEAVER.data.customer_product_id,
         category_id: 1,
         start_date: moment().subtract(3, "months").toDate(),
         data: {
@@ -398,7 +398,7 @@ export const CBP_GHI_FUTURE = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_8_GHI.product.data.product_id,
-        customer_product_id: CPE_GHI_FUTURE.data.customer_product_id,
+        customer_product_id: cpe.CPE_GHI_FUTURE.data.customer_product_id,
         "category_id" : "1",
         "start_date" : "2023-04-26",
         "archived" : false,
@@ -411,7 +411,7 @@ export const CBP_GHI_STARTED = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_8_GHI.product.data.product_id,
-        customer_product_id: CPE_GHI_STARTED.data.customer_product_id,
+        customer_product_id: cpe.CPE_GHI_STARTED.data.customer_product_id,
         "category_id" : "1",
         "start_date" : "2023-04-26",
         "archived" : false,
@@ -424,7 +424,7 @@ export const CBP_GDENT_93 = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_9_GDent.product.data.product_id,
-        customer_product_id: CPE_93_GDent.data.customer_product_id,
+        customer_product_id: cpe.CPE_93_GDent.data.customer_product_id,
         category_id: 1,
         start_date: moment().add(1, "year").format("YYYY-MM-DD"),
         data : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Bir\",\"lastName\":\"Amber\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\",\"enrolmentStarted\":true,\"enrolmentChoiceConfirmed\":true}"
@@ -436,12 +436,196 @@ export const CGP_94_RGL = {
     modelName,
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
-        customer_product_id: CPE_94_GIP.data.customer_product_id,
+        customer_product_id: cpe.CPE_94_GIP.data.customer_product_id,
         category_id: 1,
         start_date: moment().toDate(),
         data : {
             date_of_birth: CUSTOMER_94.data.date_of_birth,
             salary: 100000,
         }
+    }
+} as IDatabaseItem
+
+export const CBP_GDENT_95 = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_11_GDent.product.data.product_id,
+        customer_product_id: cpe.CPE_95_GDent.data.customer_product_id,
+        category_id: 1,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+        archived : false,
+        data : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\"}"
+    }
+} as IDatabaseItem
+
+export const CGP_96_GDental = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_4_GDental.product.data.product_id,
+        customer_product_id: cpe.CPE_96_GDent.data.customer_product_id,
+        category_id: 1,
+        start_date: moment().subtract(1, "months").format("YYYY-MM-DD"),
+        data: {
+            date_of_birth: CUSTOMER_96.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
+    }
+} as IDatabaseItem
+
+export const CBP_GDENT_97 = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_12_GDent.product.data.product_id,
+        customer_product_id: cpe.CPE_97_GDent.data.customer_product_id,
+        category_id: 1,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+        archived : false,
+        data : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\"}"
+    }
+} as IDatabaseItem
+
+export const CBP_GDENT_98 = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_12_GDent.product.data.product_id,
+        customer_product_id: cpe.CPE_98_GDent.data.customer_product_id,
+        category_id: 1,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+        archived : false,
+        data : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\",\"enrolmentStarted\":true,\"enrolmentChoiceConfirmed\":true}"
+    }
+} as IDatabaseItem
+
+export const CBP_GDENT_99 = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_10_GDent.product.data.product_id,
+        customer_product_id: cpe.CPE_99_GDent.data.customer_product_id,
+        category_id: 1,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+        archived : false,
+        data : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\",\"enrolmentClosed\":true}"
+    }
+} as IDatabaseItem
+
+export const CBP_GDENT_100 = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_10_GDent.product.data.product_id,
+        customer_product_id: cpe.CPE_100_GDent.data.customer_product_id,
+        category_id: 1,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+        archived : false,
+        data : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\",\"enrolmentStarted\":true,\"enrolmentChoiceConfirmed\":true,\"enrolmentClosed\":true}"
+    }
+} as IDatabaseItem
+
+export const CBP_GDENT_101 = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_11_GDent.product.data.product_id,
+        customer_product_id: cpe.CPE_101_GDent.data.customer_product_id,
+        category_id: 2,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+        archived : false,
+        data : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\"}"
+    }
+} as IDatabaseItem
+
+export const CBP_GDENT_102 = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_12_GDent.product.data.product_id,
+        customer_product_id: cpe.CPE_102_GDent.data.customer_product_id,
+        category_id: 2,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+        archived : false,
+        data : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\"}"
+    }
+} as IDatabaseItem
+
+export const CBP_GDENT_103 = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_12_GDent.product.data.product_id,
+        customer_product_id: cpe.CPE_103_GDent.data.customer_product_id,
+        category_id: 2,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+        archived : false,
+        data : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\",\"enrolmentStarted\":true,\"enrolmentChoiceConfirmed\":true}"
+    }
+} as IDatabaseItem
+
+export const CBP_GDENT_104 = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_10_GDent.product.data.product_id,
+        customer_product_id: cpe.CPE_104_GDent.data.customer_product_id,
+        category_id: 2,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+        archived : false,
+        data : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\",\"enrolmentClosed\":true}"
+    }
+} as IDatabaseItem
+
+export const CBP_GDENT_105 = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_10_GDent.product.data.product_id,
+        customer_product_id: cpe.CPE_105_GDent.data.customer_product_id,
+        category_id: 2,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+        archived : false,
+        data : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\",\"enrolmentStarted\":true,\"enrolmentChoiceConfirmed\":true,\"enrolmentClosed\":true}"
+    }
+} as IDatabaseItem
+
+export const CBP_GDENT_106 = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_4_GDental.product.data.product_id,
+        customer_product_id: cpe.CPE_106_GDent.data.customer_product_id,
+        category_id: 2,
+        start_date: moment().subtract(1, "m").format("YYYY-MM-DD"),
+        archived : false,
+        data : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\"}"
+    }
+} as IDatabaseItem
+
+export const CBP_GDENT_107 = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_9_GDent.product.data.product_id,
+        customer_product_id: cpe.CPE_107_GDent.data.customer_product_id,
+        category_id: 2,
+        start_date: moment().add(1, "year").format("YYYY-MM-DD"),
+        data : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Bir\",\"lastName\":\"Amber\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\",\"enrolmentStarted\":true,\"enrolmentChoiceConfirmed\":true}"
+    }
+} as IDatabaseItem
+
+export const CBP_GDENT_108 = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_10_GDent.product.data.product_id,
+        customer_product_id:  cpe.CPE_108_GDent.data.customer_product_id,
+        category_id: 1,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+        archived : false,
+        data : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\"}"
     }
 } as IDatabaseItem

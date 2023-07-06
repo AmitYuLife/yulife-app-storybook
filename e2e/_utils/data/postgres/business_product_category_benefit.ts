@@ -1,5 +1,5 @@
 import { generateRandomPostgresId } from "@yu-life/yulife-bdd-framework";
-import {  BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent } from "./business_product"
+import {  BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent } from "./business_product"
 
 const type = "postgres"
 const modelName = "business_product_category_benefit"
@@ -58,4 +58,102 @@ export const BPCB_9_GDental = {
         "business_contribution" : null,
         "archived" : false,
     }
-}  
+}
+
+export const BPCB_10_GDental = {
+    type,
+    modelName,
+    data: {
+        "business_product_category_benefit_id" : generateRandomPostgresId(),
+        "business_product_id" :  BUSINESS_PRODUCT_10_GDent.product.data.product_id,
+        "category_id" : "1",
+        "allowed_product_version_benefit_set_ids":["Level 1 | Couple", "Level 1 | Single Parent Family", "Level 1 | Family","Level 2 | Single", "Level 2 | Couple", "Level 2 | Single Parent Family", "Level 2 | Family", "Level 3 | Single", "Level 3 | Couple", "Level 3 | Single Parent Family", "Level 3 | Family", "Level 4 | Single", "Level 4 | Couple", "Level 4 | Single Parent Family", "Level 4 | Family", "Level 5 | Single", "Level 5 | Couple", "Level 5 | Single Parent Family", "Level 5 | Family"],
+        "default_product_version_benefit_set_id" :"Level 1 | Single",
+        "business_contribution" : null,
+        "archived" : false,
+    }
+}
+
+export const BPCB_11_GDental = {
+    type,
+    modelName,
+    data: {
+        "business_product_category_benefit_id" : generateRandomPostgresId(),
+        "business_product_id" :  BUSINESS_PRODUCT_11_GDent.product.data.product_id,
+        "category_id" : "1",
+        "allowed_product_version_benefit_set_ids":["Level 1 | Couple", "Level 1 | Single Parent Family", "Level 1 | Family","Level 2 | Single", "Level 2 | Couple", "Level 2 | Single Parent Family", "Level 2 | Family", "Level 3 | Single", "Level 3 | Couple", "Level 3 | Single Parent Family", "Level 3 | Family", "Level 4 | Single", "Level 4 | Couple", "Level 4 | Single Parent Family", "Level 4 | Family", "Level 5 | Single", "Level 5 | Couple", "Level 5 | Single Parent Family", "Level 5 | Family"],
+        "default_product_version_benefit_set_id" :"Level 1 | Single",
+        "business_contribution" : null,
+        "archived" : false,
+    }
+}
+
+export const BPCB_12_GDental = {
+    type,
+    modelName,
+    data: {
+        "business_product_category_benefit_id" : generateRandomPostgresId(),
+        "business_product_id" :  BUSINESS_PRODUCT_12_GDent.product.data.product_id,
+        "category_id" : "1",
+        "allowed_product_version_benefit_set_ids":["Level 1 | Couple", "Level 1 | Single Parent Family", "Level 1 | Family","Level 2 | Single", "Level 2 | Couple", "Level 2 | Single Parent Family", "Level 2 | Family", "Level 3 | Single", "Level 3 | Couple", "Level 3 | Single Parent Family", "Level 3 | Family", "Level 4 | Single", "Level 4 | Couple", "Level 4 | Single Parent Family", "Level 4 | Family", "Level 5 | Single", "Level 5 | Couple", "Level 5 | Single Parent Family", "Level 5 | Family"],
+        "default_product_version_benefit_set_id" :"Level 1 | Single",
+        "business_contribution" : null,
+        "archived" : false,
+    }
+}
+
+export const BPCB_10_GDental_Opt_out = {
+    type,
+    modelName,
+    data: {
+        "business_product_category_benefit_id" : generateRandomPostgresId(),
+        "business_product_id" :  BUSINESS_PRODUCT_10_GDent.product.data.product_id,
+        "category_id" : "2",
+        "allowed_product_version_benefit_set_ids":["Level 1 | Couple", "Level 1 | Single Parent Family", "Level 1 | Family","Level 2 | Single", "Level 2 | Couple", "Level 2 | Single Parent Family", "Level 2 | Family", "Level 3 | Single", "Level 3 | Couple", "Level 3 | Single Parent Family", "Level 3 | Family", "Level 4 | Single", "Level 4 | Couple", "Level 4 | Single Parent Family", "Level 4 | Family", "Level 5 | Single", "Level 5 | Couple", "Level 5 | Single Parent Family", "Level 5 | Family"],
+        "default_product_version_benefit_set_id" :"Level 1 | Single",
+        "business_contribution" : null,
+        "archived" : false,
+    }
+}
+
+export const BPCB_11_GDental_Opt_out = {
+    type,
+    modelName,
+    data: {
+        "business_product_category_benefit_id" : generateRandomPostgresId(),
+        "business_product_id" :  BUSINESS_PRODUCT_11_GDent.product.data.product_id,
+        "category_id" : "2",
+        "allowed_product_version_benefit_set_ids":["Level 1 | Couple", "Level 1 | Single Parent Family", "Level 1 | Family","Level 2 | Single", "Level 2 | Couple", "Level 2 | Single Parent Family", "Level 2 | Family", "Level 3 | Single", "Level 3 | Couple", "Level 3 | Single Parent Family", "Level 3 | Family", "Level 4 | Single", "Level 4 | Couple", "Level 4 | Single Parent Family", "Level 4 | Family", "Level 5 | Single", "Level 5 | Couple", "Level 5 | Single Parent Family", "Level 5 | Family"],
+        "default_product_version_benefit_set_id" :"Level 1 | Single",
+        "business_contribution" : null,
+        "archived" : false,
+    }
+}
+
+export const BPCB_12_GDental_Opt_out = {
+    type,
+    modelName,
+    data: {
+        "business_product_category_benefit_id" : generateRandomPostgresId(),
+        "business_product_id" :  BUSINESS_PRODUCT_12_GDent.product.data.product_id,
+        "category_id" : "2",
+        "allowed_product_version_benefit_set_ids":["Level 1 | Couple", "Level 1 | Single Parent Family", "Level 1 | Family","Level 2 | Single", "Level 2 | Couple", "Level 2 | Single Parent Family", "Level 2 | Family", "Level 3 | Single", "Level 3 | Couple", "Level 3 | Single Parent Family", "Level 3 | Family", "Level 4 | Single", "Level 4 | Couple", "Level 4 | Single Parent Family", "Level 4 | Family", "Level 5 | Single", "Level 5 | Couple", "Level 5 | Single Parent Family", "Level 5 | Family"],
+        "default_product_version_benefit_set_id" :"Level 1 | Single",
+        "business_contribution" : null,
+        "archived" : false,
+    }
+}
+
+export const BPCB_4_GDental_Opt_out = {
+    type,
+    modelName,
+    data: {
+        "business_product_category_benefit_id" : generateRandomPostgresId(),
+        "business_product_id" :  BUSINESS_PRODUCT_4_GDental.product.data.product_id,
+        "category_id" : "2",
+        "allowed_product_version_benefit_set_ids":["Level 1 | Couple", "Level 1 | Single Parent Family", "Level 1 | Family","Level 2 | Single", "Level 2 | Couple", "Level 2 | Single Parent Family", "Level 2 | Family", "Level 3 | Single", "Level 3 | Couple", "Level 3 | Single Parent Family", "Level 3 | Family", "Level 4 | Single", "Level 4 | Couple", "Level 4 | Single Parent Family", "Level 4 | Family", "Level 5 | Single", "Level 5 | Couple", "Level 5 | Single Parent Family", "Level 5 | Family"],
+        "default_product_version_benefit_set_id" :"Level 1 | Single",
+        "business_contribution" : null,
+        "archived" : false,
+    }
+} 

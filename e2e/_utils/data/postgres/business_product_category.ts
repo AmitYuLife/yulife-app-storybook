@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { BUSINESS_PRODUCT_3, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_ENDED, BUSINESS_PRODUCT_FUTURE, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent} from "./business_product"
+import { BUSINESS_PRODUCT_3, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_ENDED, BUSINESS_PRODUCT_FUTURE, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent, BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent} from "./business_product"
 import { CPE_31 } from "./customer_product_entity"
 
 
@@ -172,3 +172,122 @@ export const BPC_9_GDental = {
     }
 }
 
+export const BPC_10_GDental = {
+    type,
+    modelName,
+    data: {
+        product_id: BUSINESS_PRODUCT_10_GDent.product.data.product_id,
+        category_id: 1,
+        category_description: "cat1",
+        earn_rate: 0,
+        enrolment_method : "internal",
+        election_option : "opt-in",
+        category_name: "All employees",
+        "is_closed" : false,
+    }
+}
+
+export const BPC_11_GDental = {
+    type,
+    modelName,
+    data: {
+        product_id: BUSINESS_PRODUCT_11_GDent.product.data.product_id,
+        category_id: 1,
+        category_description: "cat1",
+        earn_rate: 0,
+        enrolment_method : "internal",
+        election_option : "opt-in",
+        category_name: "All employees",
+        "is_closed" : false,
+    }
+}
+
+export const BPC_12_GDental = {
+    type,
+    modelName,
+    data: {
+        product_id: BUSINESS_PRODUCT_12_GDent.product.data.product_id,
+        category_id: 1,
+        category_description: "cat1",
+        earn_rate: 0,
+        enrolment_method : "internal",
+        election_option : "opt-in",
+        category_name: "All employees",
+        "is_closed" : false,
+    }
+}
+
+export const BPC_10_GDental_Opt_out = {
+    type,
+    modelName,
+    data: {
+        product_id: BUSINESS_PRODUCT_10_GDent.product.data.product_id,
+        category_id: 2,
+        category_description: "cat2",
+        earn_rate: 0,
+        enrolment_method : "internal",
+        election_option : "opt-out",
+        category_name: "All employees",
+        "is_closed" : false,
+    }
+}
+
+export const BPC_11_GDental_Opt_out = {
+    type,
+    modelName,
+    data: {
+        product_id: BUSINESS_PRODUCT_11_GDent.product.data.product_id,
+        category_id: 2,
+        category_description: "cat2",
+        earn_rate: 0,
+        enrolment_method : "internal",
+        election_option : "opt-out",
+        category_name: "All employees",
+        "is_closed" : false,
+    }
+}
+
+export const BPC_12_GDental_Opt_out = {
+    type,
+    modelName,
+    data: {
+        product_id: BUSINESS_PRODUCT_12_GDent.product.data.product_id,
+        category_id: 2,
+        category_description: "cat2",
+        earn_rate: 0,
+        enrolment_method : "internal",
+        election_option : "opt-out",
+        category_name: "All employees",
+        "is_closed" : false,
+    }
+}
+
+export const BPC_4_GDental_Opt_out = {
+    type,
+    modelName,
+    data: {
+        product_id: BUSINESS_PRODUCT_4_GDental.product.data.product_id,
+        category_id: 2,
+        category_description: "cat2",
+        earn_rate: 0,
+        enrolment_method : "internal",
+        election_option : "opt-out",
+        category_name: "All employees",
+        "is_closed" : false,
+    }
+}
+
+export const BPC_9_GDental_Opt_out = {
+    type,
+    modelName,
+    data: {
+        product_id: BUSINESS_PRODUCT_9_GDent.product.data.product_id,
+        category_id: 2,
+        category_description: "cat2",
+        earn_rate: 0,
+        enrolment_method : "internal",
+        election_option : "opt-in",
+        category_name: "All employees",
+        "is_closed" : false,
+    }
+}
