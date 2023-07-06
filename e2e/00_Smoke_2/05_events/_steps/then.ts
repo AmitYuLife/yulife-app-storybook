@@ -217,15 +217,15 @@ export const challengeStarsCorrect = (starCount: number, challengeType: string, 
 
 export const allChallengesAndYuCoinsAwardedVisible = async () => {
     await textVisible("short stroll")()
-    await textVisibleAtIndex("0 min", 0)()
+    await textVisibleAtIndex("0 mins", 0)()
     await textVisible("10 yucoin")()
     await challengeStarsCorrect(3, "short stroll")()
     await textVisible("brisk walk")()
-    await textVisibleAtIndex("0 min", 1)()
+    await textVisibleAtIndex("0 mins", 1)()
     await textVisibleAtIndex("50 yucoin", 0)()
     await challengeStarsCorrect(3, "brisk walk")()
     await textVisible("long walk")()
-    await textVisibleAtIndex("0 min", 2)()
+    await textVisibleAtIndex("0 mins", 2)()
     await textVisibleAtIndex("60 yucoin", 1)()
     await challengeStarsCorrect(3, "long walk")()
     await textVisible("meditation")()
