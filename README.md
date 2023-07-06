@@ -376,17 +376,19 @@ Bitrise will automatically build the candidate and submit it to the appstores fo
 
 This project provides a StoryBook server. To access it, run the following `start` commands
 
-To access the web version
+To access run:
 
 ```sh
 yarn start:storybook:web
 ```
 
-To access the app version
+To create a new story, you can run the snippet:
 
 ```sh
-yarn start:storybook
+yustory
 ```
+
+It will generate a default template for you.
 
 > **Note**
 > If the app displays a error message when trying to run it with "yarn start" after using storybook, make sure to revert the changes made to `index.js` before running the app again.

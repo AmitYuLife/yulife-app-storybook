@@ -39,7 +39,7 @@ const CUSTOM_CONFIG = {
         },
       },
       {
-        test: /\.(png|jpe?g|woff|woff2|eot|ttf|svg)$/,
+        test: /\.(png|jpe?g|woff|woff2|eot|otf|ttf|svg)$/,
         loader: "file-loader",
       },
     ],
@@ -48,7 +48,13 @@ const CUSTOM_CONFIG = {
 module.exports = {
   // stories: ["../src/components/@(atoms)/**/*.stories.@(js|jsx|ts|tsx)"],
   stories: ["../src/components/atoms/heading/heading.stories.tsx"], //this is temp until we migrate all our atoms stories to the new format
-  addons: ["storybook-addon-designs", "@storybook/addon-viewport"],
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
+    "storybook-addon-designs",
+  ],
+  staticDirs: [{ from: "../assets", to: "/assets" }],
   webpackFinal: (config) => {
     const newConfig = {
       ...config,
