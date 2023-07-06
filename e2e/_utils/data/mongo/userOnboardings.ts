@@ -10,112 +10,7 @@ import {
   BUSINESS_ACCOUNT_GHI_8,
   BUSINESS_ACCOUNT_GDent_9,
 } from "../postgres/business";
-
-import {
-  USER_1,
-  USER_2,
-  USER_3,
-  USER_4,
-  USER_5,
-  USER_6,
-  USER_7,
-  USER_8,
-  USER_9,
-  USER_12,
-  USER_13,
-  USER_14,
-  USER_15,
-  USER_16,
-  USER_17,
-  USER_18,
-  USER_19,
-  USER_20,
-  USER_21,
-  USER_22,
-  USER_23,
-  USER_24,
-  USER_25,
-  USER_27,
-  USER_29,
-  USER_31,
-  USER_32,
-  USER_33,
-  USER_34,
-  USER_35,
-  USER_36,
-  USER_37,
-  USER_38,
-  USER_39,
-  USER_42,
-  USER_43,
-  USER_44,
-  USER_45,
-  USER_46,
-  USER_ALPHA,
-  USER_PLI_2,
-  USER_PLI_6,
-  USER_PLI_7,
-  USER_PLI_9,
-  USER_PLI_10,
-  USER_51,
-  USER_53,
-  USER_DENTAL_1,
-  USER_DENTAL_2,
-  USER_85,
-  USER_FIIT,
-  USER_47,
-  USER_48,
-  USER_50,
-  USER_49,
-  USER_52,
-  USER_54,
-  USER_55,
-  USER_56,
-  USER_57,
-  USER_58,
-  USER_60,
-  USER_61,
-  USER_63,
-  USER_64,
-  USER_65,
-  USER_66,
-  USER_67,
-  USER_69,
-  USER_68,
-  USER_70,
-  USER_71,
-  USER_72,
-  USER_73,
-  USER_74,
-  USER_75,
-  USER_76,
-  USER_77,
-  USER_79,
-  USER_78,
-  USER_80,
-  USER_28,
-  USER_81,
-  USER_83,
-  USER_41,
-  USER_MEDITOPIA_1,
-  USER_MEDITOPIA_2,
-  USER_MEDITOPIA_3,
-  USER_40,
-  USER_PLI_5,
-  USER_PLI_3,
-  USER_PLI_4,
-  USER_86,
-  USER_FUTURE_PRODUCT,
-  USER_LEAVER,
-  USER_89,
-  USER_90,
-  USER_91,
-  USER_GHI,
-  USER_GHI_STARTED,
-  USER_92,
-  USER_93,
-  USER_94,
-} from "./users";
+import * as user from './users';
 import { USER_84_LEADERBOARD } from "./user_leaderboards";
 
 const type = "mongo";
@@ -126,7 +21,7 @@ export const USER_ONBOARDING_1 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_1.data.userId,
+    userId: user.USER_1.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -141,7 +36,7 @@ export const USER_ONBOARDING_3 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_3.data.userId,
+    userId: user.USER_3.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -156,7 +51,7 @@ export const USER_ONBOARDING_4 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_4.data.userId,
+    userId: user.USER_4.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -171,7 +66,7 @@ export const USER_ONBOARDING_5 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_5.data.userId,
+    userId: user.USER_5.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -186,7 +81,7 @@ export const USER_ONBOARDING_6 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_6.data.userId,
+    userId: user.USER_6.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -201,7 +96,7 @@ export const USER_ONBOARDING_7 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_7.data.userId,
+    userId: user.USER_7.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -216,7 +111,7 @@ export const USER_ONBOARDING_8 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_8.data.userId,
+    userId: user.USER_8.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -231,7 +126,7 @@ export const USER_ONBOARDING_9 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_9.data.userId,
+    userId: user.USER_9.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -246,7 +141,7 @@ export const USER_ONBOARDING_12 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_12.data.userId,
+    userId: user.USER_12.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -261,7 +156,7 @@ export const USER_ONBOARDING_13 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_13.data.userId,
+    userId: user.USER_13.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -276,7 +171,7 @@ export const USER_ONBOARDING_14 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_14.data.userId,
+    userId: user.USER_14.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -291,7 +186,7 @@ export const USER_ONBOARDING_15 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_15.data.userId,
+    userId: user.USER_15.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -306,7 +201,7 @@ export const USER_ONBOARDING_16 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_16.data.userId,
+    userId: user.USER_16.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -321,7 +216,7 @@ export const USER_ONBOARDING_17 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_17.data.userId,
+    userId: user.USER_17.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -336,7 +231,7 @@ export const USER_ONBOARDING_18 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_18.data.userId,
+    userId: user.USER_18.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -351,7 +246,7 @@ export const USER_ONBOARDING_19 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_19.data.userId,
+    userId: user.USER_19.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -366,7 +261,7 @@ export const USER_ONBOARDING_20 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_20.data.userId,
+    userId: user.USER_20.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -381,7 +276,7 @@ export const USER_ONBOARDING_21 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_21.data.userId,
+    userId: user.USER_21.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -396,7 +291,7 @@ export const USER_ONBOARDING_22 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_22.data.userId,
+    userId: user.USER_22.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -411,7 +306,7 @@ export const USER_ONBOARDING_23 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_23.data.userId,
+    userId: user.USER_23.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -426,7 +321,7 @@ export const USER_ONBOARDING_24 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_24.data.userId,
+    userId: user.USER_24.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -441,7 +336,7 @@ export const USER_ONBOARDING_25 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_25.data.userId,
+    userId: user.USER_25.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -455,7 +350,7 @@ export const USER_ONBOARDING_27 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_27.data.userId,
+    userId: user.USER_27.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -470,7 +365,7 @@ export const USER_ONBOARDING_29 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_29.data.userId,
+    userId: user.USER_29.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -485,7 +380,7 @@ export const USER_ONBOARDING_31 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_31.data.userId,
+    userId: user.USER_31.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -500,7 +395,7 @@ export const USER_ONBOARDING_32 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_32.data.userId,
+    userId: user.USER_32.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -515,7 +410,7 @@ export const USER_ONBOARDING_33 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_33.data.userId,
+    userId: user.USER_33.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -530,7 +425,7 @@ export const USER_ONBOARDING_34 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_34.data.userId,
+    userId: user.USER_34.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -545,7 +440,7 @@ export const USER_ONBOARDING_35 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_35.data.userId,
+    userId: user.USER_35.data.userId,
     signupComplete: false,
     firstAppOpen: false,
     companyLeaderboardAccepted: true,
@@ -565,7 +460,7 @@ export const USER_ONBOARDING_36 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_36.data.userId,
+    userId: user.USER_36.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -580,7 +475,7 @@ export const USER_ONBOARDING_37 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_37.data.userId,
+    userId: user.USER_37.data.userId,
     signupComplete: false,
     firstAppOpen: false,
     companyLeaderboardAccepted: true,
@@ -605,7 +500,7 @@ export const USER_ONBOARDING_38 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_38.data.userId,
+    userId: user.USER_38.data.userId,
     signupComplete: false,
     firstAppOpen: false,
     companyLeaderboardAccepted: true,
@@ -630,7 +525,7 @@ export const USER_ONBOARDING_39 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_39.data.userId,
+    userId: user.USER_39.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -645,7 +540,7 @@ export const USER_ONBOARDING_40 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_40.data.userId,
+    userId: user.USER_40.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
   },
@@ -656,7 +551,7 @@ export const USER_ONBOARDING_41 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_41.data.userId,
+    userId: user.USER_41.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -671,7 +566,7 @@ export const USER_ONBOARDING_42 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_42.data.userId,
+    userId: user.USER_42.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -686,7 +581,7 @@ export const USER_ONBOARDING_43 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_43.data.userId,
+    userId: user.USER_43.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -701,7 +596,7 @@ export const USER_ONBOARDING_44 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_44.data.userId,
+    userId: user.USER_44.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -716,7 +611,7 @@ export const USER_ONBOARDING_45 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_45.data.userId,
+    userId: user.USER_45.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -731,7 +626,7 @@ export const USER_ONBOARDING_46 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_46.data.userId,
+    userId: user.USER_46.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -747,7 +642,7 @@ export const USER_ONBOARDING_2 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_2.data.userId,
+    userId: user.USER_2.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -761,7 +656,7 @@ export const USER_ONBOARDING_ALPHA = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_ALPHA.data.userId,
+    userId: user.USER_ALPHA.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
@@ -776,7 +671,7 @@ export const USER_ONBOARDING_PLI_2 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_PLI_2.data.userId,
+    userId: user.USER_PLI_2.data.userId,
     signupComplete: false,
     firstAppOpen: false,
     companyLeaderboardAccepted: true,
@@ -804,7 +699,7 @@ export const USER_ONBOARDING_PLI_6 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_PLI_6.data.userId,
+    userId: user.USER_PLI_6.data.userId,
     signupComplete: false,
     firstAppOpen: false,
     companyLeaderboardAccepted: true,
@@ -832,7 +727,7 @@ export const USER_ONBOARDING_PLI_7 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_PLI_7.data.userId,
+    userId: user.USER_PLI_7.data.userId,
     signupComplete: false,
     firstAppOpen: false,
     companyLeaderboardAccepted: true,
@@ -861,7 +756,7 @@ export const USER_ONBOARDING_PLI_9 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_PLI_9.data.userId,
+    userId: user.USER_PLI_9.data.userId,
     signupComplete: false,
     firstAppOpen: false,
     companyLeaderboardAccepted: true,
@@ -890,7 +785,7 @@ export const USER_ONBOARDING_PLI_10 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_PLI_10.data.userId,
+    userId: user.USER_PLI_10.data.userId,
     signupComplete: false,
     firstAppOpen: false,
     companyLeaderboardAccepted: true,
@@ -919,7 +814,7 @@ export const USER_ONBOARDING_51 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_51.data.userId,
+    userId: user.USER_51.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -935,7 +830,7 @@ export const USER_ONBOARDING_CUSTOMER_DENTAL_1 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_DENTAL_1.data.userId,
+    userId: user.USER_DENTAL_1.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -955,7 +850,7 @@ export const USER_ONBOARDING_CUSTOMER_DENTAL_2 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_DENTAL_2.data.userId,
+    userId: user.USER_DENTAL_2.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -975,7 +870,7 @@ export const USER_ONBOARDING_FIIT = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_FIIT.data.userId,
+    userId: user.USER_FIIT.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Dunder Mifflin",
     performedSteps: {
@@ -990,7 +885,7 @@ export const USER_ONBOARDING_CUSTOMER_DENTAL_85 = {
   type,
   modelName,
   data: {
-    userId: USER_85.data.userId,
+    userId: user.USER_85.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1010,7 +905,7 @@ export const USER_ONBOARDING_47 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_47.data.userId,
+    userId: user.USER_47.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1025,7 +920,7 @@ export const USER_ONBOARDING_48 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_48.data.userId,
+    userId: user.USER_48.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1041,7 +936,7 @@ export const USER_ONBOARDING_49 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_49.data.userId,
+    userId: user.USER_49.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1057,7 +952,7 @@ export const USER_ONBOARDING_50 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_50.data.userId,
+    userId: user.USER_50.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1072,7 +967,7 @@ export const USER_ONBOARDING_52 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_52.data.userId,
+    userId: user.USER_52.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1088,7 +983,7 @@ export const USER_ONBOARDING_53 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_53.data.userId,
+    userId: user.USER_53.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1104,7 +999,7 @@ export const USER_ONBOARDING_54 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_54.data.userId,
+    userId: user.USER_54.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1120,7 +1015,7 @@ export const USER_ONBOARDING_55 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_55.data.userId,
+    userId: user.USER_55.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1136,7 +1031,7 @@ export const USER_ONBOARDING_56 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_56.data.userId,
+    userId: user.USER_56.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1152,7 +1047,7 @@ export const USER_ONBOARDING_57 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_57.data.userId,
+    userId: user.USER_57.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1168,7 +1063,7 @@ export const USER_ONBOARDING_58 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_58.data.userId,
+    userId: user.USER_58.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1184,7 +1079,7 @@ export const USER_ONBOARDING_60 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_60.data.userId,
+    userId: user.USER_60.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1200,7 +1095,7 @@ export const USER_ONBOARDING_61 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_61.data.userId,
+    userId: user.USER_61.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1216,7 +1111,7 @@ export const USER_ONBOARDING_63 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_63.data.userId,
+    userId: user.USER_63.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1232,7 +1127,7 @@ export const USER_ONBOARDING_64 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_64.data.userId,
+    userId: user.USER_64.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1248,7 +1143,7 @@ export const USER_ONBOARDING_65 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_65.data.userId,
+    userId: user.USER_65.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1264,7 +1159,7 @@ export const USER_ONBOARDING_66 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_66.data.userId,
+    userId: user.USER_66.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1280,7 +1175,7 @@ export const USER_ONBOARDING_67 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_67.data.userId,
+    userId: user.USER_67.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1296,7 +1191,7 @@ export const USER_ONBOARDING_68 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_68.data.userId,
+    userId: user.USER_68.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1312,7 +1207,7 @@ export const USER_ONBOARDING_69 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_69.data.userId,
+    userId: user.USER_69.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1328,7 +1223,7 @@ export const USER_ONBOARDING_70 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_70.data.userId,
+    userId: user.USER_70.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1344,7 +1239,7 @@ export const USER_ONBOARDING_71 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_71.data.userId,
+    userId: user.USER_71.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1360,7 +1255,7 @@ export const USER_ONBOARDING_72 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_72.data.userId,
+    userId: user.USER_72.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1376,7 +1271,7 @@ export const USER_ONBOARDING_73 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_73.data.userId,
+    userId: user.USER_73.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1392,7 +1287,7 @@ export const USER_ONBOARDING_74 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_74.data.userId,
+    userId: user.USER_74.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1408,7 +1303,7 @@ export const USER_ONBOARDING_75 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_75.data.userId,
+    userId: user.USER_75.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1424,7 +1319,7 @@ export const USER_ONBOARDING_76 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_76.data.userId,
+    userId: user.USER_76.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1440,7 +1335,7 @@ export const USER_ONBOARDING_77 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_77.data.userId,
+    userId: user.USER_77.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1456,7 +1351,7 @@ export const USER_ONBOARDING_78 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_78.data.userId,
+    userId: user.USER_78.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1472,7 +1367,7 @@ export const USER_ONBOARDING_79 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_79.data.userId,
+    userId: user.USER_79.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1488,7 +1383,7 @@ export const USER_ONBOARDING_80 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_80.data.userId,
+    userId: user.USER_80.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1504,7 +1399,7 @@ export const USER_ONBOARDING_81 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_81.data.userId,
+    userId: user.USER_81.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1520,7 +1415,7 @@ export const USER_ONBOARDING_83 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_83.data.userId,
+    userId: user.USER_83.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1552,7 +1447,7 @@ export const USER_ONBOARDING_MEDITOPIA_1 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_MEDITOPIA_1.data.userId,
+    userId: user.USER_MEDITOPIA_1.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1568,7 +1463,7 @@ export const USER_ONBOARDING_MEDITOPIA_2 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_MEDITOPIA_2.data.userId,
+    userId: user.USER_MEDITOPIA_2.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1584,7 +1479,7 @@ export const USER_ONBOARDING_MEDITOPIA_3 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_MEDITOPIA_3.data.userId,
+    userId: user.USER_MEDITOPIA_3.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1600,7 +1495,7 @@ export const USER_ONBOARDING_PLI_3 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_PLI_3.data.userId,
+    userId: user.USER_PLI_3.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1616,7 +1511,7 @@ export const USER_ONBOARDING_PLI_4 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_PLI_4.data.userId,
+    userId: user.USER_PLI_4.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1632,7 +1527,7 @@ export const USER_ONBOARDING_PLI_5 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_PLI_5.data.userId,
+    userId: user.USER_PLI_5.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1648,7 +1543,7 @@ export const USER_ONBOARDING_86 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_86.data.userId,
+    userId: user.USER_86.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1665,7 +1560,7 @@ export const USER_ONBOARDING_LEAVER = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_LEAVER.data.userId,
+    userId: user.USER_LEAVER.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_3.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1683,7 +1578,7 @@ export const USER_ONBOARDING_FUTURE_PRODUCT = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_FUTURE_PRODUCT.data.userId,
+    userId: user.USER_FUTURE_PRODUCT.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_3.data.business_account_id,
     businessName: "Pawnee Council.",
     performedSteps: {
@@ -1699,7 +1594,7 @@ export const USER_ONBOARDING_GHI = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_GHI.data.userId,
+    userId: user.USER_GHI.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_GHI_8.data.business_account_id,
     businessName: "GHI Onboarding Ltd.",
     performedSteps: {
@@ -1715,7 +1610,7 @@ export const USER_ONBOARDING_GHI_STARTED = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_GHI_STARTED.data.userId,
+    userId: user.USER_GHI_STARTED.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_GHI_8.data.business_account_id,
     businessName: "GHI Onboarding Ltd.",
     performedSteps: {
@@ -1731,7 +1626,7 @@ export const USER_ONBOARDING_89 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_89.data.userId,
+    userId: user.USER_89.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_3.data.business_account_id,
     businessName: "Pawnee Council.",
     performedSteps: {
@@ -1747,7 +1642,7 @@ export const USER_ONBOARDING_90 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_90.data.userId,
+    userId: user.USER_90.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1763,7 +1658,7 @@ export const USER_ONBOARDING_91 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_91.data.userId,
+    userId: user.USER_91.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1779,7 +1674,7 @@ export const USER_ONBOARDING_92 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_92.data.userId,
+    userId: user.USER_92.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1795,7 +1690,7 @@ export const USER_ONBOARDING_93 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_93.data.userId,
+    userId: user.USER_93.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_GDent_9.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {
@@ -1811,12 +1706,236 @@ export const USER_ONBOARDING_94 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_94.data.userId,
+    userId: user.USER_94.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
     businessName: "Justice League",
     performedSteps: {
       personalLifeIntro: true,
       newYumojiBuilder: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_95 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_95.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_GDent_9.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_96 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_96.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_GDent_9.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_97 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_97.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_GDent_9.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_98 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_98.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_GDent_9.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_99 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_99.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_GDent_9.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_100 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_100.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_GDent_9.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_101 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_101.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_GDent_9.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_102 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_102.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_GDent_9.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_103 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_103.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_GDent_9.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_104 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_104.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_GDent_9.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_105 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_105.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_GDent_9.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_106 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_106.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_GDent_9.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_107 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_107.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_GDent_9.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_108 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_108.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_GDent_9.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
     },
   },
 } as IDatabaseItem;

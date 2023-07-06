@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_45, CUSTOMER_46, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_53, CUSTOMER_9, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_PLI_6, CUSTOMER_PLI_7, CUSTOMER_PLI_9, CUSTOMER_PLI_10, CUSTOMER_74, CUSTOMER_82, CUSTOMER_85, CUSTOMER_LEAVER, CUSTOMER_FUTURE_PRODUCT, CUSTOMER_GHI, CUSTOMER_GHI_STARTED, CUSTOMER_93, CUSTOMER_94} from "./customers";
+import * as customer from "./customers";
 import moment from "moment"
 
 
@@ -12,7 +12,7 @@ export const CPE_1 = {
     modelName,
     data: {
         "customer_product_id": "YUCPID0000000032",
-        "customer_id": CUSTOMER_9.data.customerId,
+        customer_id: customer.CUSTOMER_9.data.customerId,
         "earn_rate": 20,
         "product_variant_id": "Covea_FIB_01_03",
         "start_date": null,
@@ -30,7 +30,7 @@ export const CPE_31 = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000031",
-        customer_id: CUSTOMER_31.data.customerId,
+        customer_id: customer.CUSTOMER_31.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GLI_01_01",
         archived: false,
@@ -43,7 +43,7 @@ export const CPE_32_RGL = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000132",
-        customer_id: CUSTOMER_32.data.customerId,
+        customer_id: customer.CUSTOMER_32.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_ReGL_01_03",
         archived: false,
@@ -56,7 +56,7 @@ export const CPE_32_GIP = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000232",
-        customer_id: CUSTOMER_32.data.customerId,
+        customer_id: customer.CUSTOMER_32.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GIP_01_03",
         archived: false,
@@ -69,7 +69,7 @@ export const CPE_32_GCI = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000332",
-        customer_id: CUSTOMER_32.data.customerId,
+        customer_id: customer.CUSTOMER_32.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GCI_01_03",
         archived: false,
@@ -82,7 +82,7 @@ export const CPE_33_RGL = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000133",
-        customer_id: CUSTOMER_33.data.customerId,
+        customer_id: customer.CUSTOMER_33.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_ReGL_01_03",
         archived: false,
@@ -95,7 +95,7 @@ export const CPE_33_GIP = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000233",
-        customer_id: CUSTOMER_33.data.customerId,
+        customer_id: customer.CUSTOMER_33.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GIP_01_03",
         archived: false,
@@ -108,7 +108,7 @@ export const CPE_33_GCI = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000333",
-        customer_id: CUSTOMER_33.data.customerId,
+        customer_id: customer.CUSTOMER_33.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GCI_01_03",
         archived: false,
@@ -121,7 +121,7 @@ export const CPE_34_RGL = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000134",
-        customer_id: CUSTOMER_34.data.customerId,
+        customer_id: customer.CUSTOMER_34.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_ReGL_01_03",
         archived: false,
@@ -134,7 +134,7 @@ export const CPE_34_GIP = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000234",
-        customer_id: CUSTOMER_34.data.customerId,
+        customer_id: customer.CUSTOMER_34.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GIP_01_03",
         archived: false,
@@ -147,7 +147,7 @@ export const CPE_34_GCI = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000343",
-        customer_id: CUSTOMER_34.data.customerId,
+        customer_id: customer.CUSTOMER_34.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GCI_01_03",
         archived: false,
@@ -159,7 +159,7 @@ export const CPE_DENTAL_1 = {
     type: "postgres",
     modelName: "customer_product_entity",
     data: {
-        customerId: CUSTOMER_DENTAL_1.data.customerId,
+        customer_id: customer.CUSTOMER_DENTAL_1.data.customerId,
         customerProductId: "YUCPID0000000135",
         earn_rate: 10,
         productVariantId: "Bupa_Dent_01_03",
@@ -174,7 +174,7 @@ export const CPE_DENTAL_2 = {
     type: "postgres",
     modelName: "customer_product_entity",
     data: {
-        customerId: CUSTOMER_DENTAL_2.data.customerId,
+        customer_id: customer.CUSTOMER_DENTAL_2.data.customerId,
         customerProductId: "YUCPID0000000136",
         earn_rate: 2,
         productVariantId: "Bupa_Dent_01_01",
@@ -189,7 +189,7 @@ export const CPE_DENTAL_3 = {
     type: "postgres",
     modelName: "customer_product_entity",
     data: {
-        customerId: CUSTOMER_45.data.customerId,
+        customer_id: customer.CUSTOMER_45.data.customerId,
         customerProductId: "YUCPID0000000141",
         earn_rate: 6,
         productVariantId: "Bupa_Dent_01_03",
@@ -205,7 +205,7 @@ export const CPE_PLI_2 = {
     type: "postgres",
     modelName: "customer_product_entity",
     data: {
-        customerId: CUSTOMER_PLI_2.data.customerId,
+        customer_id: customer.CUSTOMER_PLI_2.data.customerId,
         customerProductId: "YUCPID0000000137",
         earn_rate: 0,
         start_date: "2022-07-28",
@@ -226,7 +226,7 @@ export const CPE_PLI_3 = {
     type: "postgres",
     modelName: "customer_product_entity",
     data: {
-        customerId: CUSTOMER_PLI_3.data.customerId,
+        customer_id: customer.CUSTOMER_PLI_3.data.customerId,
         customerProductId: "YUCPID0000000138",
         earn_rate: 6,
         start_date: "2022-07-28",
@@ -247,7 +247,7 @@ export const CPE_PLI_4 = {
     type: "postgres",
     modelName: "customer_product_entity",
     data: {
-        customerId: CUSTOMER_PLI_4.data.customerId,
+        customer_id: customer.CUSTOMER_PLI_4.data.customerId,
         customerProductId: "YUCPID0000000139",
         earn_rate: 10,
         start_date: "2022-07-28",
@@ -268,7 +268,7 @@ export const CPE_PLI_5 = {
     type: "postgres",
     modelName: "customer_product_entity",
     data: {
-        customerId: CUSTOMER_PLI_5.data.customerId,
+        customer_id: customer.CUSTOMER_PLI_5.data.customerId,
         customerProductId: "YUCPID0000000140",
         earn_rate: 10,
         start_date: "2022-07-28",
@@ -289,7 +289,7 @@ export const CPE_PLI_6 = {
     type: "postgres",
     modelName: "customer_product_entity",
     data: {
-        customerId: CUSTOMER_46.data.customerId,
+        customer_id: customer.CUSTOMER_46.data.customerId,
         customerProductId: "YUCPID0000000142",
         earn_rate: 10,
         start_date: "2022-07-28",
@@ -311,7 +311,7 @@ export const CPE_43_WELLBEING = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000143",
-        customer_id: CUSTOMER_43.data.customerId,
+        customer_id: customer.CUSTOMER_43.data.customerId,
         earn_rate: 10,
         product_variant_id: "YuLife_Wellbeing_01_03",
         archived: false,
@@ -324,7 +324,7 @@ export const CPE_48_RGL = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000144",
-        customer_id: CUSTOMER_48.data.customerId,
+        customer_id: customer.CUSTOMER_48.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_ReGL_01_03",
         archived: false,
@@ -337,7 +337,7 @@ export const CPE_48_GIP = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000145",
-        customer_id: CUSTOMER_48.data.customerId,
+        customer_id: customer.CUSTOMER_48.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GIP_01_03",
         archived: false,
@@ -350,7 +350,7 @@ export const CPE_48_GCI = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000146",
-        customer_id: CUSTOMER_48.data.customerId,
+        customer_id: customer.CUSTOMER_48.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GCI_01_03",
         archived: false,
@@ -363,7 +363,7 @@ export const CPE_48_WELLBEING = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000148",
-        customer_id: CUSTOMER_48.data.customerId,
+        customer_id: customer.CUSTOMER_48.data.customerId,
         earn_rate: 1,
         product_variant_id: "YuLife_Wellbeing_01_03",
         archived: false,
@@ -376,7 +376,7 @@ export const CPE_49_RGL = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000149",
-        customer_id: CUSTOMER_49.data.customerId,
+        customer_id: customer.CUSTOMER_49.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_ReGL_01_03",
         archived: false,
@@ -389,7 +389,7 @@ export const CPE_49_GIP = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000150",
-        customer_id: CUSTOMER_49.data.customerId,
+        customer_id: customer.CUSTOMER_49.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GIP_01_03",
         archived: false,
@@ -402,7 +402,7 @@ export const CPE_49_GCI = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000151",
-        customer_id: CUSTOMER_49.data.customerId,
+        customer_id: customer.CUSTOMER_49.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GCI_01_03",
         archived: false,
@@ -415,7 +415,7 @@ export const CPE_49_WELLBEING = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000152",
-        customer_id: CUSTOMER_49.data.customerId,
+        customer_id: customer.CUSTOMER_49.data.customerId,
         earn_rate: 1,
         product_variant_id: "YuLife_Wellbeing_01_03",
         archived: false,
@@ -428,7 +428,7 @@ export const CPE_51_GDent = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000153",
-        customer_id: CUSTOMER_51.data.customerId,
+        customer_id: customer.CUSTOMER_51.data.customerId,
         earn_rate: 5,
         product_variant_id: "Bupa_GDent_01_01",
         archived: false,
@@ -442,7 +442,7 @@ export const CPE_53_GIP = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000155",
-        customer_id: CUSTOMER_53.data.customerId,
+        customer_id: customer.CUSTOMER_53.data.customerId,
         earn_rate: 0,
         product_variant_id: "AIG_GIP_01_03",
         archived: false,
@@ -455,7 +455,7 @@ export const CPE_PLI_7 = {
     type: "postgres",
     modelName: "customer_product_entity",
     data: {
-        customerId: CUSTOMER_PLI_6.data.customerId,
+        customer_id: customer.CUSTOMER_PLI_6.data.customerId,
         customerProductId: "YUCPID0000000156",
         earn_rate: 10,
         start_date: "2022-07-28",
@@ -476,7 +476,7 @@ export const CPE_PLI_8 = {
     type: "postgres",
     modelName: "customer_product_entity",
     data: {
-        "customerId": CUSTOMER_PLI_7.data.customerId,
+        customer_id: customer.CUSTOMER_PLI_7.data.customerId,
         "customerProductId": "YUCPID0000000157",
         "earn_rate" : 0,
         "start_date" : "2022-10-04",
@@ -499,7 +499,7 @@ export const CPE_PLI_9 = {
     type: "postgres",
     modelName: "customer_product_entity",
     data: {
-        "customerId": CUSTOMER_PLI_9.data.customerId,
+        customer_id: customer.CUSTOMER_PLI_9.data.customerId,
         "customerProductId": "YUCPID0000000158",
         "earn_rate" : 0,
         "start_date" : "2022-10-04",
@@ -522,7 +522,7 @@ export const CPE_PLI_10 = {
     type: "postgres",
     modelName: "customer_product_entity",
     data: {
-        "customerId": CUSTOMER_PLI_10.data.customerId,
+        customer_id: customer.CUSTOMER_PLI_10.data.customerId,
         "customerProductId": "YUCPID0000000159",
         "earn_rate" : 0,
         "start_date" : "2022-10-04",
@@ -546,7 +546,7 @@ export const CPE_74 = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000074",
-        customer_id: CUSTOMER_74.data.customerId,
+        customer_id: customer.CUSTOMER_74.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GLI_01_01",
         archived: false,
@@ -559,7 +559,7 @@ export const CPE_82_RGL = {
     modelName,
     data: {
         customer_product_id: "YUCPID00000001490",
-        customer_id: CUSTOMER_82.data.customerId,
+        customer_id: customer.CUSTOMER_82.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_ReGL_01_03",
         archived: false,
@@ -574,7 +574,7 @@ export const CPE_85 = {
     modelName,
     data: {
         customer_product_id : "YUCPID00000001491",
-        "customer_id" : CUSTOMER_85.data.customerId,
+        customer_id: customer.CUSTOMER_85.data.customerId,
         "earn_rate" : 10,
         "start_date" : "2023-03-10",
         "end_date" : "2199-12-31",
@@ -597,7 +597,7 @@ export const CPE_FUTURE_PRODUCT = {
     modelName,
     data: {
         customer_product_id: "YUCPID00000001495",
-        "customer_id": CUSTOMER_FUTURE_PRODUCT.data.customerId,
+        customer_id: customer.CUSTOMER_FUTURE_PRODUCT.data.customerId,
         "earn_rate": 10,
         "start_date": moment().add(2, 'weeks'),
         "underwriting_step": null,
@@ -612,7 +612,7 @@ export const CPE_BUSINESS_LEAVER = {
     modelName,
     data: {
         customer_product_id: "YUCPID00000001492",
-        "customer_id": CUSTOMER_LEAVER.data.customerId,
+        customer_id: customer.CUSTOMER_LEAVER.data.customerId,
         "earn_rate": 10,
         "start_date": "2022-01-01",
         "end_date": "2022-12-31",
@@ -629,7 +629,7 @@ export const CPE_GHI_FUTURE = {
     modelName: "customer_product_entity",
     data: {
         "customer_product_id" : "YUCPID0000011375",
-        "customer_id" : CUSTOMER_GHI.data.customerId,
+        customer_id: customer.CUSTOMER_GHI.data.customerId,
         "earn_rate" : 10,
         "start_date" :  "2024-05-05",
         "end_date" : "2199-12-31",
@@ -645,7 +645,7 @@ export const CPE_GHI_STARTED = {
     modelName: "customer_product_entity",
     data: {
         "customer_product_id" : "YUCPID0000011376",
-        "customer_id" : CUSTOMER_GHI_STARTED.data.customerId,
+        customer_id: customer.CUSTOMER_GHI_STARTED.data.customerId,
         "earn_rate" : 10,
         "start_date" :  "2023-05-05",
         "end_date" : "2199-12-31",
@@ -661,7 +661,7 @@ export const CPE_93_GDent = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000011377",
-        customer_id: CUSTOMER_93.data.customerId,
+        customer_id: customer.CUSTOMER_93.data.customerId,
         earn_rate: 5,
         product_variant_id: "Bupa_GDent_01_01",
         archived: false,
@@ -676,7 +676,7 @@ export const CPE_94_GIP = {
     modelName,
     data: {
         customer_product_id: "YUCPID0000000294",
-        customer_id: CUSTOMER_94.data.customerId,
+        customer_id: customer.CUSTOMER_94.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GIP_01_03",
         archived: false,
@@ -684,6 +684,207 @@ export const CPE_94_GIP = {
     }
 } as IDatabaseItem
 
+
+export const CPE_95_GDent = {
+    type: "postgres",
+    modelName: "customer_product_entity",
+    data: {
+        customer_id: customer.CUSTOMER_95.data.customerId,
+        customer_product_id: "YUCPID0000011379",
+        "earn_rate" : 5,
+        "start_date" : moment().add(1, "y").format("YYYY-MM-DD"),
+        "end_date" : "2199-12-31",
+        "is_banned_from_product" : false,
+        "archived" : false,
+        "taken_up" : true,
+        "product_variant_id" : "Bupa_GDent_01_01",
+    }
+}
+
+export const CPE_96_GDent = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011380",
+        customer_id: customer.CUSTOMER_96.data.customerId,
+        earn_rate: 6,
+        product_variant_id: "Bupa_GDent_01_01",
+        archived: false,
+        taken_up: true,
+        start_date: moment().subtract(1, "months").format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem
+
+export const CPE_97_GDent = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011381",
+        customer_id: customer.CUSTOMER_97.data.customerId,
+        earn_rate: 6,
+        product_variant_id: "Bupa_GDent_01_01",
+        archived: false,
+        taken_up: true,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem
+
+export const CPE_98_GDent = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011382",
+        customer_id: customer.CUSTOMER_98.data.customerId,
+        earn_rate: 6,
+        product_variant_id: "Bupa_GDent_01_01",
+        archived: false,
+        taken_up: true,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem
+
+export const CPE_99_GDent = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011383",
+        customer_id: customer.CUSTOMER_99.data.customerId,
+        earn_rate: 6,
+        product_variant_id: "Bupa_GDent_01_01",
+        archived: false,
+        taken_up: false,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem
+
+export const CPE_100_GDent = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011384",
+        customer_id: customer.CUSTOMER_100.data.customerId,
+        earn_rate: 6,
+        product_variant_id: "Bupa_GDent_01_01",
+        archived: false,
+        taken_up: true,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem
+
+export const CPE_101_GDent = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011385",
+        customer_id: customer.CUSTOMER_101.data.customerId,
+        earn_rate: 5,
+        product_variant_id: "Bupa_GDent_01_01",
+        archived: false,
+        taken_up: true,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem
+
+export const CPE_102_GDent = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011386",
+        customer_id: customer.CUSTOMER_102.data.customerId,
+        earn_rate: 6,
+        product_variant_id: "Bupa_GDent_01_01",
+        archived: false,
+        taken_up: true,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem
+
+export const CPE_103_GDent = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011387",
+        customer_id: customer.CUSTOMER_103.data.customerId,
+        earn_rate: 6,
+        product_variant_id: "Bupa_GDent_01_01",
+        archived: false,
+        taken_up: true,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem
+
+export const CPE_104_GDent = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011388",
+        customer_id: customer.CUSTOMER_104.data.customerId,
+        earn_rate: 6,
+        product_variant_id: "Bupa_GDent_01_01",
+        archived: false,
+        taken_up: false,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem
+
+export const CPE_105_GDent = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011389",
+        customer_id: customer.CUSTOMER_105.data.customerId,
+        earn_rate: 6,
+        product_variant_id: "Bupa_GDent_01_01",
+        archived: false,
+        taken_up: true,
+        start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem
+
+export const CPE_106_GDent = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011390",
+        customer_id: customer.CUSTOMER_106.data.customerId,
+        earn_rate: 6,
+        product_variant_id: "Bupa_GDent_01_01",
+        archived: false,
+        taken_up: true,
+        start_date: moment().subtract(1, "months").format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem
+
+export const CPE_107_GDent = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011391",
+        customer_id: customer.CUSTOMER_107.data.customerId,
+        earn_rate: 5,
+        product_variant_id: "Bupa_GDent_01_01",
+        archived: false,
+        taken_up: true,
+        start_date: moment().add(1, "year").format("YYYY-MM-DD"),
+        is_banned_from_product : false,
+    }
+} as IDatabaseItem
+
+export const CPE_108_GDent = {
+    type: "postgres",
+    modelName: "customer_product_entity",
+    data: {
+        customerId: customer.CUSTOMER_108.data.customerId,
+        customer_product_id: "YUCPID0000011392",
+        "earn_rate" : 5,
+        "start_date" : moment().add(1, "y").format("YYYY-MM-DD"),
+        "end_date" : "2199-12-31",
+        "is_banned_from_product" : false,
+        "archived" : false,
+        "taken_up" : true,
+        "product_variant_id" : "Bupa_GDent_01_01",
+    }
+}
     
 
 

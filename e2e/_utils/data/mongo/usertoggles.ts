@@ -1702,3 +1702,171 @@ export const CUSTOMER_94_TOGGLES = {
     },
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_95_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_95.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_96_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_96.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_97_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_97.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_98_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_98.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_99_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_99.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_100_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_100.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_101_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_101.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_102_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_102.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_103_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_103.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_104_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_104.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_105_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_105.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_106_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_106.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_107_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_107.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_108_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_108.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;

@@ -19,9 +19,16 @@ import {
   DENTAL_TOOLTIP_INFO,
   YUCOIN_POWER_TEXT,
   YULIFE_BUPA_LOGO,
+  ONBOARDING_SCREEN,
+  V4_YUSCREEN,
+  CAROUSEL_CARD,
+  BUTTON_CLOSE_HEADER,
+  TOP_RIGHT_ITEM_IMAGE,
 } from "@ids";
 import moment from "moment";
 import { calculateStartDate } from "./dates";
+import * as text  from "00_Smoke_4/01_yuscreen_v4/_resources/fixture";
+import { UKProductData } from "../_resources/types";
 
 const addOneMonth = moment().add(1, "M");
 const startOfnextMonth = moment(addOneMonth).startOf("month").format("DD/MM/YYYY");
@@ -434,3 +441,85 @@ export const CANCELED_DENTAL_POLICY = async () => {
     Then("I should see correct product details", then.dentalProductInfo("Common", "0321"));
   });
 };
+
+export const ONBOARDING_YUSCREEN = async (packType: string, yuCoinPower: string) => {
+    
+  const earnRate0 = "1"; // If product having 0 earn rate will get 1
+
+  Then(`I should see ${text.yuCoinText} text`, then.textVisible(text.yuCoinText))
+  Then(`I should see ${text.powerText} text`, then.textVisible(text.powerText))
+
+switch (packType) {
+  case "DentalCover":
+      Then(`I should see ${text.groupDental}`, then.textVisible(text.groupDental))
+      Then(`I should see ${text.StartsSoon}`, then.textVisible(text.StartsSoon))
+      Then(`I should Not see Keepsake text`, then.textNotVisible("Keepsake"))
+      break;
+  case "KeepSake":
+      Then(`I should see ${earnRate0} earn rate`, then.textVisibleAtIndex(earnRate0, 1))
+      Then(`I should see 1 earn rate`, then.textVisibleAtIndex("1", 0))
+      Then(`I should see Keepsake text`, then.textVisible("Keepsake"))
+    break;
+  default:
+    break;
+  }
+  Then(`I should see ${ONBOARDING_SCREEN} id`, then.idVisible(ONBOARDING_SCREEN))
+  Then(`I should see ${text.protectionPowered} text`, then.textVisible(text.protectionPowered))
+  Then(`I should see ${text.earnRewardsCopy} text`, then.textVisible(text.earnRewardsCopy))
+  When(`When i swipe from ${text.protectionPowered}`, when.swipeFromText(text.protectionPowered, "up", "slow"), async () => {
+      Then(`I should see ${text.buttonText} text`, then.textVisible(text.buttonText))
+  })
+}
+
+
+export const YUSCREEN = async (customer: any, packType: string, yuCoinPower: string, buttonText = "Check out my power") => {
+
+  const firstName = customer.data.firstName;
+  const lastName = customer.data.lastName;
+
+  When(`I tap ${buttonText}`, when.tapText(buttonText), async () => {
+      Then(`I should see ${text.yuMojiBuilder}`, then.textVisible(text.yuMojiBuilder))
+  })
+  When("I swipe down the screen", when.swipeFromText(text.yuMojiBuilder, "up", "slow"), async () => {
+      When("I tap I'll do this later", when.tapText("I'll do this later"), async () => {
+          Then(`I should see ${firstName} ${lastName} text`, then.textVisible(`${firstName} ${lastName}`))
+          Then(`I should see ${V4_YUSCREEN} id`, then.idVisible(V4_YUSCREEN))
+          Then(`I should see ${text.createYumujiHeading} text`, then.textVisible(`${text.createYumujiHeading}`))
+          Then(`I should see ${text.createYumujiText} text`, then.textVisible(`${text.createYumujiText}`))
+          Then(`I should see ${text.createYumujiCTA} text`, then.textVisible(`${text.createYumujiCTA}`))
+          Then(`I should see ${text.yuCoinText} text`, then.textVisible(`${text.yuCoinText}`))
+          Then(`I should see ${text.powerText} text`, then.textVisible(`${text.powerText}`))
+
+          switch (packType) {
+              case "Keepsake":
+                  Then(`I should see ${yuCoinPower} yucoin power`, then.textVisibleAtIndex(yuCoinPower, 1))
+                  Then(`I should see Keepsake slot`, then.textVisible("Keepsake"))
+                  Then(`I should see ${text.lifeInsurance} slot`, then.textVisible(text.lifeInsurance))
+                  Then(`I should see ${text.lifeInsurance} yucoin power`, then.textVisible("+20"))
+                  Then(`I should see ${text.noProductText} slot`, then.textVisible(text.noProductText))
+                  break;
+              case "GDent":
+                  Then(`I should see ${yuCoinPower} yucoin power`, then.textVisible(yuCoinPower))
+                  Then(`I should NOT see Keepsake slot`, then.textNotVisible("Keepsake"))
+                  Then(`I should NOT see ${text.lifeInsurance} slot`, then.textNotVisible(text.lifeInsurance))
+                  Then(`I should NOT see ${text.noProductText} slot`, then.textNotVisible(text.noProductText))
+                break;
+              default:
+                  break;
+          }
+      })
+  })
+}
+
+export const PRODUCT_CHECK = async (productCard: UKProductData) => {
+  When(`I tap ${productCard.productName} slot text`, when.tapText(productCard.productName), async () => {
+      Then(`I should see top right close x image`, then.idVisible(BUTTON_CLOSE_HEADER("button_only")))
+      Then(`I should see ${productCard.productName} header text`, then.textVisibleAtIndex(productCard.productName, 1))
+      Then(`I should see correct image`, then.idVisible(TOP_RIGHT_ITEM_IMAGE(productCard.rightImage)))
+      Then(`I should see ${productCard.yuCoinPower} text`, then.idVisible(YUCOIN_POWER(productCard.yuCoinPower)))
+      Then(`I should see ${productCard.productDescription} text`, then.textVisible(productCard.productDescription))
+      When(`I tap close x `, when.tapID(BUTTON_CLOSE_HEADER("button_only")), async () => {
+        Then(`I should NOT see ${productCard.productDescription} text`, then.textNotVisible(productCard.productDescription))
+      })
+  })
+}

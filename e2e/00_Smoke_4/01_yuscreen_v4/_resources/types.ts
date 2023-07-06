@@ -5,6 +5,8 @@ export interface OnboardingYuScreenInfo {
     firstSlotYucoinPower: string,
     firstSlotProductTitle: string,
     firstSlotProductSubtitle: string,
+    firstSlotLeftBackgroundImgSrc?: string,
+    firstSlotRightImgSrc?: string,
     secondSlotYucoinPower?: string,
     secondSlotProductTitle?: string,
     secondSlotProductSubtitle?: string

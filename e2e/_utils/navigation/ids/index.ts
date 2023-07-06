@@ -198,7 +198,11 @@ export const BACKGROUND_COLOUR_PRODUCT = (hexColour: any) => `BACKGROUND_COLOUR_
 export const RIGHT_STATUS_ICON = `RIGHT_STATUS_ICON`
 export const ONBOARDING_SCREEN = "ONBOARDING_SCREEN"
 export const YUCOIN_POWER_V4_SCREEN = (earnRate: number) => `YUCOIN_POWER_V4_SCREEN_${earnRate}`;
-export const LEFT_SIDE_TEXT_SLOT_POWER = (earnRate: string) =>  ` LEFT_SIDE_TEXT_SLOT_POWER_${earnRate}}`
+export const LEFT_SIDE_TEXT_SLOT_POWER = (earnRate: string) =>  `LEFT_SIDE_TEXT_SLOT_POWER_${earnRate}}`
+export const LEFT_SIDE_BACKGROUD_IMAGE_SLOT = (imgSrc: string) =>  `LEFT_SIDE_BACKGROUD_IMAGE_SLOT_${imgSrc}}`
+export const RIGHT_SIDE_IMAGE_SLOT = (imgSrc: string) =>  `RIGHT_SIDE_IMAGE_SLOT_${imgSrc}}`
+
+
 export const CAROUSEL_CARD_BUTTON = (cardTitle: string) => `CAROUSEL_CARD_BUTTON_${cardTitle}`
 
 // PRODUCT DETAILS

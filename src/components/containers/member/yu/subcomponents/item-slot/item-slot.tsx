@@ -13,7 +13,13 @@ import {
   YuScreenProductButtonAction,
 } from "@graphql/_core/schema";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { BACKGROUND_COLOUR_PRODUCT, LEFT_SIDE_TEXT_SLOT_POWER, RIGHT_STATUS_ICON } from "@ids";
+import {
+  BACKGROUND_COLOUR_PRODUCT,
+  LEFT_SIDE_BACKGROUD_IMAGE_SLOT,
+  LEFT_SIDE_TEXT_SLOT_POWER,
+  RIGHT_SIDE_IMAGE_SLOT,
+  RIGHT_STATUS_ICON,
+} from "@ids";
 import { OnboardingHandler } from "../../hooks/useOnboardingDismissalHandler";
 import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
 import { useSelector } from "react-redux";
@@ -60,6 +66,7 @@ export const ItemSlot: FC<ItemSlotProps> = memo(
                 {...slotYuCoinPowerImageDimensions}
                 style={styles.slotYucoinPowerImage}
                 source={leftBackgroundImage}
+                testID={LEFT_SIDE_BACKGROUD_IMAGE_SLOT(leftBackgroundImage.id)}
               />
               {leftText ? (
                 <TextTemplate color={leftTextColour || Colours.neutral.white} type="b1b">
@@ -101,7 +108,7 @@ export const ItemSlot: FC<ItemSlotProps> = memo(
             </View>
             {rightIcon ? (
               <View style={styles.rightIconImageWrapper}>
-                <Image {...rightIconImageDimensions} source={rightIcon} />
+                <Image {...rightIconImageDimensions} source={rightIcon} testID={RIGHT_SIDE_IMAGE_SLOT(rightIcon.id)} />
               </View>
             ) : null}
           </View>

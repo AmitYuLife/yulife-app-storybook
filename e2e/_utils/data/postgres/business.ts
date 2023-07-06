@@ -170,4 +170,3 @@ export const BUSINESS_ACCOUNT_GDent_9 = {
         archived: false,
     }
 } as IDatabaseItem
-
