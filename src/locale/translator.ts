@@ -41,6 +41,14 @@ const translations: Record<Language, Translation> = {
     isEnabled: false,
     load: () => require("./translations/pt-PT.json"),
   },
+  "ja-JP": {
+    name: "日本語 (JA)",
+    intercomLanguage: "ja",
+    flag: "🇯🇵",
+    // TODO: turn it on when the backend's ready too
+    isEnabled: false,
+    load: () => require("./translations/ja-JP.json"),
+  },
   en: {
     name: "English",
     intercomLanguage: "en",
