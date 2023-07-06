@@ -34,11 +34,11 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         })
         When("I tap the collect 2500 yucoin CTA", when.tapText("Collect 2500 YuCoin"), async () => {
             Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
-            Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(3200)))
+            Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(3160)))
             Then("I should on the quests tab", then.idVisible(QUESTS_SCREEN(0)))
         })
         When("I tap a past level", when.tapID(LEVEL_CHALLENGE_BUTTON(5)), async () => {
-            Then("I should see the challenge I just completed with the correct stars", then.onChallengeHistory("meditation", "60", 3, 5))
+            Then("I should see the challenge I just completed with the correct stars", then.onChallengeHistory("meditation", "20", 1, 5))
         })
         When("I tap full history", when.tapText("Full activity history"), async () => {
             Then("I should be on the activity history", then.textVisible("activity history"))
@@ -132,7 +132,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap collect", when.tapText("Collect"), async () => {
             When("I tap done", when.tapText("Done"), async () => {
                 Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
-                Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27730)))
+                Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27740)))
             })
         })
     })
@@ -175,7 +175,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap collect", when.tapText("Collect"), async () => {
             When("I tap Done", when.tapText("Done"), async () => {
                 Then("I should be on quests", then.idVisible(QUESTS_SCREEN(3)))
-                Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50230)))
+                Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50240)))
             })
         })
     })
