@@ -24,6 +24,7 @@ interface IProps {
   isSameAsActive: boolean;
   isGameCompleted: boolean;
   isAdjacentActive: boolean;
+  enableAnimations: boolean;
   isQuadrantActive: boolean;
   isColumnComplete: boolean;
 }
@@ -47,6 +48,7 @@ const CellView = ({
   isRowComplete,
   isSameAsActive,
   isGameCompleted,
+  enableAnimations,
   isAdjacentActive,
   isColumnComplete,
   isQuadrantActive,
@@ -93,23 +95,21 @@ const CellView = ({
     }
   }, [isGameCompleted, backgroundAnimation, circleAnimationScale]);
 
-  const animatedStyle = useAnimatedStyle(
-    () => ({
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
       transform: [
         {
           scale: withDelay(
-            isActive ? 0 : SUDOKU_SAME_VALUE_CELL_DELAY_TIME,
+            isActive || !enableAnimations ? 0 : SUDOKU_SAME_VALUE_CELL_DELAY_TIME,
             withTiming(circleAnimationScale.value, {
-              duration: SUDOKU_CELL_TRANSITION_TIME,
-
+              duration: enableAnimations ? SUDOKU_CELL_TRANSITION_TIME : 0,
               easing: EASING_FUNCTION,
             })
           ),
         },
       ],
-    }),
-    [isActive, isGameCompleted]
-  );
+    };
+  }, [isActive, enableAnimations, isGameCompleted]);
 
   const animatedBackgroundStyle = useAnimatedStyle(() => {
     if (!isGameCompleted) {
@@ -152,10 +152,10 @@ const CellView = ({
     return style;
   }, [row, animatedBackgroundStyle, column]);
 
-  const expandingCircleStyle = useMemo(() => {
-    const style = [styles.expandingCircle, animatedStyle, { backgroundColor: circleBg }];
-    return style;
-  }, [circleBg, animatedStyle]);
+  const expandingCircleStyle = useMemo(
+    () => [styles.expandingCircle, animatedStyle, { backgroundColor: circleBg }],
+    [animatedStyle, circleBg]
+  );
 
   return (
     <TouchableOpacity
@@ -175,6 +175,7 @@ const CellView = ({
           isRowCompleted={isRowComplete}
           isColumnCompleted={isColumnComplete}
           isGameCompleted={isGameCompleted}
+          enableAnimations={enableAnimations}
         />
       </AnimatedView>
     </TouchableOpacity>

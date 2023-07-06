@@ -1,3 +1,5 @@
+import { CellStatus } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
+
 interface ISudokuState {
   board: number[][];
   history: { row: number; column: number; number: number }[];
@@ -10,6 +12,7 @@ interface ISudokuState {
   mistakes: number;
   penalties: number[];
   selectedCell: { row: number; column: number };
+  cellStatuses: CellStatus[][];
   guesses: number[];
 }
 
@@ -21,7 +24,7 @@ interface SudokuAction {
 export const SUDOKU_END_GAME = "SUDOKU_END_GAME";
 export const SUDOKU_SET_HISTORY = "SUDOKU_SET_HISTORY";
 export const SUDOKU_ADD_PENALTY = "SUDOKU_ADD_PENALTY";
-export const SUDOKU_SET_MISTAKES = "SUDOKU_SET_MISTAKES";
+export const SUDOKU_ADD_MISTAKE = "SUDOKU_ADD_MISTAKE";
 export const SUDOKU_PAUSE = "SUDOKU_PAUSE";
 export const SUDOKU_RESUME = "SUDOKU_RESUME";
 export const SUDOKU_GET_HINT = "SUDOKU_GET_HINT";
@@ -30,6 +33,7 @@ export const SUDOKU_SET_SELECTED_CELL = "SUDOKU_SET_SELECTED_CELL";
 export const SUDOKU_SET_BOARD = "SUDOKU_SET_BOARD";
 export const SUDOKU_TOUCH = "SUDOKU_TOUCH";
 export const SUDOKU_ADD_GUESS = "SUDOKU_ADD_GUESS";
+export const SUDOKU_SET_STATUSES = "SUDOKU_SET_STATUSES";
 
 export const sudokuGameReducer = (state: ISudokuState, action: SudokuAction): ISudokuState => {
   switch (action.type) {
@@ -48,10 +52,10 @@ export const sudokuGameReducer = (state: ISudokuState, action: SudokuAction): IS
       };
     }
 
-    case SUDOKU_SET_MISTAKES: {
+    case SUDOKU_ADD_MISTAKE: {
       return {
         ...state,
-        mistakes: action.payload,
+        mistakes: action.payload.mistakes,
       };
     }
 
@@ -110,6 +114,13 @@ export const sudokuGameReducer = (state: ISudokuState, action: SudokuAction): IS
       return {
         ...state,
         touched: { ...state.touched, [action.payload]: true },
+      };
+    }
+
+    case SUDOKU_SET_STATUSES: {
+      return {
+        ...state,
+        cellStatuses: action.payload,
       };
     }
 

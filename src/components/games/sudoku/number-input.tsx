@@ -1,6 +1,5 @@
 import { TextTemplate } from "@atoms";
 import { BoxOption } from "@components/molecules";
-import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import { SUDOKU_NUMBER_INPUT } from "@ids";
 import { Colours, Style } from "@styles";
 import { memo, useCallback, useMemo } from "react";
@@ -9,12 +8,10 @@ import { PixelRatio, StyleSheet, ViewStyle } from "react-native";
 interface IProps {
   value: number;
   onPress?: (value: number) => void;
+  isComplete?: boolean;
 }
 
-export const NumberInput = ({ value, onPress }: IProps) => {
-  const { isNumberComplete } = useSudokuContext();
-  const isComplete = isNumberComplete(value);
-
+export const NumberInput = ({ value, isComplete, onPress }: IProps) => {
   const onInput = useCallback(() => {
     onPress(value);
   }, [onPress, value]);
