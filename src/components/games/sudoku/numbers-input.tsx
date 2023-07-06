@@ -7,14 +7,14 @@ import NumberInput, {
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import UndoIcon from "@atoms/icon/undo-svg";
 import { Style } from "@styles";
-import { memo, useCallback } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { useTranslation } from "@hooks";
 import { TextTemplate } from "@atoms";
 import { BoxOption } from "@components/molecules";
 import { SUDOKU_UNDO_BUTTON } from "@ids";
 
 const NumbersInput = () => {
-  const { putNumber, undo, history, selectedCell } = useSudokuContext();
+  const { putNumber, undo, history, selectedCell, isNumberComplete } = useSudokuContext();
   const t = useTranslation(["sudoku.game.undo"]);
 
   const onNumberPress = useCallback(
@@ -28,18 +28,26 @@ const NumbersInput = () => {
     [selectedCell, putNumber]
   );
 
+  const completedNumbers = useMemo(() => {
+    return Array.from({ length: 9 }).map((_, index) => isNumberComplete(index + 1));
+  }, [isNumberComplete]);
+
   return (
     <View style={styles.grid}>
       <View style={styles.row}>
         {Array.from({ length: 5 }).map((_, index) => {
           const value = index + 1;
-          return <NumberInput value={value} key={index} onPress={onNumberPress} />;
+          return (
+            <NumberInput value={value} key={index} onPress={onNumberPress} isComplete={completedNumbers[value - 1]} />
+          );
         })}
       </View>
       <View style={styles.row}>
         {Array.from({ length: 4 }).map((_, index) => {
           const value = index + 1 + 5;
-          return <NumberInput value={value} key={index} onPress={() => onNumberPress(value)} />;
+          return (
+            <NumberInput value={value} key={index} onPress={onNumberPress} isComplete={completedNumbers[value - 1]} />
+          );
         })}
         <BoxOption
           isSelected={false}

@@ -5,6 +5,7 @@ import LottieView from "lottie-react-native";
 import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { useSelector } from "react-redux";
 import { ISudokuGameContainerProps, SudokuGameContainer } from "@components/games/sudoku/sudoku-game-container";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 const BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversal_quest_map_1.json");
 
@@ -15,6 +16,7 @@ interface IProps extends ISudokuGameContainerProps {
 
 export const SudokuScreen = ({ onBack, ...props }: IProps) => {
   const { yuniversalMap } = useSelector(getYuniversalProgress);
+  const features = useSelector(getUserFeatures);
 
   return (
     <>
@@ -37,7 +39,7 @@ export const SudokuScreen = ({ onBack, ...props }: IProps) => {
             backgroundColor="transparent"
             onLeftIconPress={onBack}
           />
-          <SudokuGameContainer {...props} />
+          <SudokuGameContainer {...props} enableAnimations={!features.disableYudokuAnimations} />
         </View>
       </View>
     </>

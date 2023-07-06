@@ -26,6 +26,7 @@ interface IProps {
   value: number;
   column: number;
   isWrong?: boolean;
+  enableAnimations?: boolean;
   isInitial?: boolean;
   isRowCompleted?: boolean;
   isGameCompleted?: boolean;
@@ -40,6 +41,7 @@ const CellNumber = ({
   column,
   isInitial,
   isRowCompleted,
+  enableAnimations,
   isColumnCompleted,
   isGameCompleted,
   isWrong,
@@ -69,19 +71,22 @@ const CellNumber = ({
     () => ({
       transform: [
         {
-          scale: withDelay(
-            (row + 1 + column + 1) * SUDOKU_NUMBER_WAVE_SCALE_DURATION_MULT - SUDOKU_NUMBER_WAVE_SCALE_DURATION_REDUCE,
-            withSequence(
-              withTiming(scaleDownAnimation.value, {
-                duration: SUDOKU_NUMBER_WAVE_SCALE_DURATION,
-                easing: Easing.linear,
-              }),
-              withTiming(1, {
-                duration: SUDOKU_NUMBER_WAVE_SCALE_DURATION,
-                easing: Easing.linear,
-              })
-            )
-          ),
+          scale: enableAnimations
+            ? withDelay(
+                (row + 1 + column + 1) * SUDOKU_NUMBER_WAVE_SCALE_DURATION_MULT -
+                  SUDOKU_NUMBER_WAVE_SCALE_DURATION_REDUCE,
+                withSequence(
+                  withTiming(scaleDownAnimation.value, {
+                    duration: SUDOKU_NUMBER_WAVE_SCALE_DURATION,
+                    easing: Easing.linear,
+                  }),
+                  withTiming(1, {
+                    duration: SUDOKU_NUMBER_WAVE_SCALE_DURATION,
+                    easing: Easing.linear,
+                  })
+                )
+              )
+            : 1,
         },
       ],
     }),
@@ -94,8 +99,8 @@ const CellNumber = ({
     <View style={styles.wrapper}>
       {value && !lastPauseTime ? (
         <AnimatedText
-          entering={BounceIn.duration(SODUKU_NUMBER_ANIMATION_TIME)}
-          exiting={BounceOut.duration(SODUKU_NUMBER_ANIMATION_TIME)}
+          entering={enableAnimations ? BounceIn.duration(SODUKU_NUMBER_ANIMATION_TIME) : null}
+          exiting={enableAnimations ? BounceOut.duration(SODUKU_NUMBER_ANIMATION_TIME) : null}
           style={style}
           allowFontScaling={false}
         >

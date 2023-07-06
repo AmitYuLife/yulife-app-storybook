@@ -4,6 +4,11 @@ import { ISodukuHistory, ISudokuConfig, ISudokuPosition } from "@components/game
 import { SudokuBoard } from "@components/games/sudoku/sudoku-manager";
 import { SUDOKU_DEFAULT_CONFIG } from "./sudoku.config";
 
+export interface CellStatus {
+  isInitial: boolean;
+  isWrong: boolean;
+}
+
 export interface ISudokuContext {
   selectedCell?: {
     row: number;
@@ -25,15 +30,17 @@ export interface ISudokuContext {
   board?: SudokuBoard;
   penalties: number[];
   lastHintTime?: Date;
+  cellStatuses: CellStatus[][];
   unpause: () => void;
   lastPauseTime?: Date;
   penaltyTime?: number;
   config: ISudokuConfig;
+  guesses: number[];
   answers?: SudokuBoard;
   history: ISodukuHistory[];
-  guesses: number[];
   initialBoard?: SudokuBoard;
   initialPenalties: number[];
+  enableAnimations?: boolean;
   getDurationText: () => string;
   isRowComplete: (row: number) => boolean;
   isNumberComplete: (number: number) => boolean;
@@ -48,6 +55,7 @@ export const SodukuContext = createContext<ISudokuContext>({
   config: SUDOKU_DEFAULT_CONFIG,
   penalties: [],
   guesses: [],
+  cellStatuses: [],
   undo: () => {
     // ignore
   },

@@ -1,7 +1,7 @@
 import { ReactNode, memo, useReducer, useCallback, useEffect, useMemo, useRef } from "react";
 import { SudokuBoardType } from "./sudoku.enum";
 import { ISodukuHistory, ISudokuConfig, ISudokuPosition, ISudokuResults } from "./sudoku.interface";
-import { ISudokuContext, SodukuContext } from "@screens/games/sudoku/sudoku-game/sudoku.context";
+import { CellStatus, ISudokuContext, SodukuContext } from "@screens/games/sudoku/sudoku-game/sudoku.context";
 import moment from "moment";
 import {
   SUDOKU_DEFAULT_CONFIG,
@@ -13,6 +13,7 @@ import { ISudokuStore } from "@redux/sudoku/sudoku.reducer";
 import { SudokuDifficulty } from "@graphql/_core/schema/globalTypes";
 import {
   SUDOKU_ADD_GUESS,
+  SUDOKU_ADD_MISTAKE,
   SUDOKU_ADD_PENALTY,
   SUDOKU_END_GAME,
   SUDOKU_GET_HINT,
@@ -20,8 +21,8 @@ import {
   SUDOKU_RESUME,
   SUDOKU_SET_BOARD,
   SUDOKU_SET_HISTORY,
-  SUDOKU_SET_MISTAKES,
   SUDOKU_SET_SELECTED_CELL,
+  SUDOKU_SET_STATUSES,
   SUDOKU_TOUCH,
   sudokuGameReducer,
 } from "@components/games/sudoku/sudoku-game.reducer";
@@ -36,7 +37,7 @@ export interface ICompletedGame {
 
 export interface ISudokuStateChangedArgs {
   key: keyof ISudokuStore;
-  value: string | number | SudokuBoard | ISodukuHistory[] | number[] | Date;
+  value: string | number | SudokuBoard | ISodukuHistory[] | number[] | Record<string, boolean> | string[] | Date;
 }
 
 interface IProps {
@@ -46,6 +47,7 @@ interface IProps {
   initialBoard: ISodukuBoard;
   savedState?: ISudokuStore;
   gameIdentifier: string;
+  enableAnimations?: boolean;
   detectCheats?: boolean;
   onGameComplete: (data: ISudokuResults) => void;
   onStateUpdate?: (args: ISudokuStateChangedArgs) => void;
@@ -61,6 +63,7 @@ const SudokuManager = ({
   savedState,
   children,
   config = SUDOKU_DEFAULT_CONFIG,
+  enableAnimations = true,
   onStateUpdate,
   onGameComplete,
 }: IProps) => {
@@ -73,6 +76,7 @@ const SudokuManager = ({
     hintsUsed: savedState?.hintsUsed ?? 0,
     penalties: savedState?.penalties ?? [],
     startTime: savedState?.startTime ?? new Date(),
+    cellStatuses: [],
     lastHintTime: savedState?.lastHintTime ?? null,
     guesses: [],
     lastPauseTime: savedState?.lastPauseTime ?? null,
@@ -80,7 +84,10 @@ const SudokuManager = ({
   });
 
   const updateGameState = useCallback(
-    (key: keyof ISudokuStore, value: string | number | SudokuBoard | ISodukuHistory[] | number[] | Date) => {
+    (
+      key: keyof ISudokuStore,
+      value: string | number | SudokuBoard | ISodukuHistory[] | number[] | string[] | Record<string, boolean> | Date
+    ) => {
       if (onStateUpdate) {
         onStateUpdate({ key, value });
       }
@@ -90,7 +97,25 @@ const SudokuManager = ({
 
   const { current: initialPenalties } = useRef(savedState?.penalties);
 
+  const getInitialCellStatuses = useCallback(() => {
+    return Array.from({ length: SUDOKU_DIMENSIONS }).map((_, rowIndex) =>
+      Array.from({ length: SUDOKU_DIMENSIONS }).map((__, columnIndex): CellStatus => {
+        const isInitial = (initialBoard.puzzle[rowIndex][columnIndex] ?? 0) !== 0;
+        return {
+          isInitial,
+          isWrong:
+            !isInitial && savedState?.board
+              ? savedState.board[rowIndex][columnIndex] !== initialBoard.solution[rowIndex][columnIndex]
+              : false,
+        };
+      })
+    );
+  }, [initialBoard.puzzle, initialBoard.solution, savedState?.board]);
+
   useEffect(() => {
+    const cellStatuses = getInitialCellStatuses();
+    sudokuDispatch({ type: SUDOKU_SET_STATUSES, payload: cellStatuses });
+
     if (!savedState?.startTime) {
       updateGameState("startTime", sudokuState.startTime);
     }
@@ -126,7 +151,7 @@ const SudokuManager = ({
 
   const isWrongNumber = useCallback(
     ({ row, column, number }: ISudokuPosition & { number: number }): boolean => {
-      const isInitial = getPosition({ row, column, boardType: SudokuBoardType.INITIAL }) !== 0;
+      const isInitial = sudokuState.cellStatuses[row][column].isInitial;
       if (isInitial) {
         return false;
       }
@@ -138,7 +163,7 @@ const SudokuManager = ({
 
       return correctAnswer !== number;
     },
-    [getPosition]
+    [getPosition, sudokuState.cellStatuses]
   );
 
   const doesExistInitially = useCallback(
@@ -428,21 +453,31 @@ const SudokuManager = ({
       const isWrong = isWrongNumber({ row, column, number });
       if (isWrong) {
         const newMistakes = sudokuState.mistakes + 1;
+
         updateGameState("mistakes", newMistakes);
-        sudokuDispatch({ type: SUDOKU_SET_MISTAKES, payload: newMistakes });
+        sudokuDispatch({
+          type: SUDOKU_ADD_MISTAKE,
+          payload: { mistakes: newMistakes },
+        });
 
         if (newMistakes > config.MISTAKES_BEFORE_PENALTY) {
           addPenalty(config.MISTAKE_PENALTY_TIME);
         }
 
         updateHistory([...sudokuState.history, { row, column, number: sudokuState.board[row][column] }]);
-      } else if (antiCheat) {
+      }
+
+      if (!isWrong && antiCheat) {
         testCheaters({ row, column }, number);
       }
 
       sudokuState.board[row][column] = number;
       sudokuDispatch({ type: SUDOKU_SET_BOARD, payload: [...sudokuState.board] });
       sudokuDispatch({ type: SUDOKU_TOUCH, payload: getPositionHash({ row, column }) });
+
+      sudokuState.cellStatuses[row][column].isWrong = isWrong;
+      sudokuDispatch({ type: SUDOKU_SET_STATUSES, payload: sudokuState.cellStatuses });
+
       updateGameState("board", sudokuState.board);
       checkFinished();
     },
@@ -450,15 +485,17 @@ const SudokuManager = ({
       doesExistInitially,
       getPosition,
       isWrongNumber,
-      config,
-      updateGameState,
       sudokuState.board,
+      sudokuState.cellStatuses,
       sudokuState.mistakes,
-      testCheaters,
       sudokuState.history,
+      updateGameState,
       checkFinished,
+      config.MISTAKES_BEFORE_PENALTY,
+      config.MISTAKE_PENALTY_TIME,
       updateHistory,
       addPenalty,
+      testCheaters,
     ]
   );
 
@@ -485,7 +522,15 @@ const SudokuManager = ({
       updateGameState("lastHintTime", new Date());
       putNumber({ row, column, number: answer });
     },
-    [doesExistInitially, getPosition, addPenalty, sudokuState.hintsUsed, updateGameState, putNumber]
+    [
+      doesExistInitially,
+      getPosition,
+      addPenalty,
+      config.PENALTY_HINT,
+      updateGameState,
+      sudokuState.hintsUsed,
+      putNumber,
+    ]
   );
 
   const pause = useCallback(async () => {
@@ -530,6 +575,7 @@ const SudokuManager = ({
 
       sudokuDispatch({ type: SUDOKU_SET_SELECTED_CELL, payload: position });
     },
+
     [sudokuState?.endDate]
   );
 
@@ -551,18 +597,18 @@ const SudokuManager = ({
         updateGameState("board", sudokuState.board);
         sudokuDispatch({ type: SUDOKU_SET_BOARD, payload: [...sudokuState.board] });
         updateHistory([...sudokuState.history]);
-        setSelectedCell({ row, column });
       }
     };
 
     popHistory();
-  }, [getPosition, updateGameState, setSelectedCell, sudokuState.board, sudokuState.history, updateHistory]);
+  }, [getPosition, updateGameState, sudokuState.board, sudokuState.history, updateHistory]);
 
   const sodukuContextValue = useMemo<ISudokuContext>(() => {
     return {
       config,
       undo,
       board: sudokuState.board,
+      enableAnimations,
       pause,
       getHint,
       history: sudokuState.history,
@@ -572,6 +618,7 @@ const SudokuManager = ({
       guesses: sudokuState.guesses,
       selectedCell: sudokuState.selectedCell,
       putNumber,
+      cellStatuses: sudokuState.cellStatuses,
       penalties: sudokuState.penalties,
       hintsUsed: sudokuState.hintsUsed,
       addPenalty,
@@ -596,10 +643,12 @@ const SudokuManager = ({
     sudokuState.mistakes,
     sudokuState.guesses,
     sudokuState.selectedCell,
+    sudokuState.cellStatuses,
     sudokuState.penalties,
     sudokuState.hintsUsed,
     sudokuState.lastHintTime,
     sudokuState.lastPauseTime,
+    enableAnimations,
     pause,
     getHint,
     unpause,

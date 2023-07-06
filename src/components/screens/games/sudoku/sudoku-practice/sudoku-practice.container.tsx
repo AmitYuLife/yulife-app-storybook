@@ -12,6 +12,7 @@ import SudokuPracticeScreen from "./sudoku-practice.screen";
 import { GQL_QUERY_GET_SUDOKU_PRACTICE } from "@graphql/brainGames/sudoku/getSudokuPractice.gql";
 import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { delay } from "@utils/misc";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 export interface ISodukuBoard {
   puzzle: SudokuBoard;
@@ -25,8 +26,9 @@ interface IProps {
 
 const SUDOKU_ANIMATION_TIMEOUT = 2000;
 export const SudokuPracticeContainer = ({ componentId }: IProps) => {
+  const features = useSelector(getUserFeatures);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
-  const { data: data } = useQuery<GetSudokuPractice>(GQL_QUERY_GET_SUDOKU_PRACTICE, { fetchPolicy: "network-only" });
+  const { data } = useQuery<GetSudokuPractice>(GQL_QUERY_GET_SUDOKU_PRACTICE, { fetchPolicy: "network-only" });
   const board = data?.getSudokuPractice;
 
   const onGameComplete = useCallback(
@@ -71,6 +73,7 @@ export const SudokuPracticeContainer = ({ componentId }: IProps) => {
       config={board.config}
       onGameComplete={onGameComplete}
       gameIdentifier={"practice"}
+      enableAnimations={features.disableYudokuAnimations}
       detectCheats={false}
       savedState={undefined}
       invertHeader={!!yuniversalMap}

@@ -1,3 +1,4 @@
+import { CellStatus } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import { SyncAction } from "../_core/types";
 import { SUDOKU_RESET, SUDOKU_STATE_CHANGED } from "./sudoku.actions";
 
@@ -19,6 +20,7 @@ export interface ISudokuStore {
   board: SudokuBoard;
   endTime: Date;
   history: ISodukuHistory[];
+  cellStatuses: CellStatus[][];
   startTime: Date;
   penalties: number[];
   lastHintTime: Date;
@@ -30,6 +32,7 @@ export interface ISudokuStore {
 const DEFAULT_SUDOKU_STORE: ISudokuStore = {
   gameIdentifier: "",
   hintsUsed: 0,
+  cellStatuses: [],
   endTime: null,
   mistakes: 0,
   board: null,
