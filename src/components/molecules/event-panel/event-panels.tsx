@@ -1,11 +1,10 @@
 import React, { memo, useCallback, useState } from "react";
-import { StyleSheet, View, Platform, LayoutChangeEvent } from "react-native";
+import { StyleSheet, View, Platform, LayoutChangeEvent, FlatList, ListRenderItemInfo } from "react-native";
 import { Style, NAV_BAR } from "@styles";
 import EventPanel from "./event-panel";
 import { AdBanner } from "@molecules";
 import { FLAT_LIST_EVENTS } from "@ids";
 import { UserProfileEventStatus } from "@graphql/_core/schema/globalTypes";
-import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 
 interface IAdBanner {
@@ -22,7 +21,6 @@ interface IEventPanelsProps {
   onJoin: (event: IEvent) => Promise<void>;
 }
 
-const ESTIMATED_ITEM_SIZE = 207;
 const CARD_WIDTH = Style.DEVICE_WIDTH * 0.8;
 const INITIAL_PADDING = Style.DEVICE_WIDTH * 0.1 + 5;
 
@@ -68,7 +66,7 @@ const EventPanels = ({ events = [], componentId, onJoin }: IEventPanelsProps) =>
 
   return (
     <View style={styles.flatListWrapper}>
-      <FlashList
+      <FlatList
         data={events}
         horizontal={true}
         pagingEnabled={false}
@@ -79,7 +77,6 @@ const EventPanels = ({ events = [], componentId, onJoin }: IEventPanelsProps) =>
         keyExtractor={keyExtractor}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        estimatedItemSize={ESTIMATED_ITEM_SIZE}
         contentContainerStyle={styles.flatListContentContainerStyle}
       />
     </View>
