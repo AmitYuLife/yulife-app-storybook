@@ -6,6 +6,7 @@ import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
 import { getUserSuccess, setUserNoAccessAction } from "../user.actions";
 import setLoggerIdentity from "./setLoggerIdentity.helper";
+import { updateDailyPension } from "@redux/daily-pension/daily-pension.actions";
 
 export default function* getUserDataSaga() {
   try {
@@ -26,6 +27,9 @@ export default function* getUserDataSaga() {
         yield put(setUserNoAccessAction());
       } else {
         yield put(getUserSuccess(data));
+        if (data?.getDailyPensionContribution) {
+          yield put(updateDailyPension(data.getDailyPensionContribution));
+        }
       }
     }
   } catch (e) {

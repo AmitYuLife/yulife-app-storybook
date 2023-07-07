@@ -9,6 +9,12 @@ export const GQL_QUERY_GET_CURRENT_USER = gql`
   ${GQL_FRAGMENT_USER}
 
   query GetCurrentUser($intercomHashMethod: IntercomHashMethod!) {
+    getDailyPensionContribution {
+      id
+      active
+      yuCoinAwarded
+      contribution
+    }
     getIntercomHash(method: $intercomHashMethod)
     getCurrentUser {
       ...User

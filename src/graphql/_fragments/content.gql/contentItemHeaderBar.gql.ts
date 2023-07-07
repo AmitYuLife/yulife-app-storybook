@@ -5,6 +5,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_HEADER_BAR = gql`
   ${GQL_FRAGMENT_SDUI_ACTION}
 
   fragment ContentItemHeaderBar on ContentItemHeaderBar {
+    id
     logo
     heading
     leftIcon

@@ -10,7 +10,12 @@ import { useSduiLoading } from "../_hooks/useSduiLoading";
 
 type Props = Omit<
   GqlHeader,
-  "onLeftIconPress" | "onRightIconPress" | "publishKeyHeight" | "contentItemHeaderBarRightIcon" | "backgroundColor"
+  | "id"
+  | "onLeftIconPress"
+  | "onRightIconPress"
+  | "publishKeyHeight"
+  | "contentItemHeaderBarRightIcon"
+  | "backgroundColor"
 > & {
   leftIcon: ComponentProps<typeof GenericHeading>["leftIcon"];
   contentItemHeaderBarRightIcon?: ComponentProps<typeof GenericHeading>["rightIcon"];

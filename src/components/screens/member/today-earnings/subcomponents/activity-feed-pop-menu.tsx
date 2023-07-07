@@ -11,6 +11,7 @@ import {
 } from "@graphql/_core/schema";
 import { ROUTES } from "@navigation/constants";
 import { useTranslation } from "@hooks";
+import { useDispatch } from "react-redux";
 
 interface IProps {
   header: string;
@@ -20,6 +21,7 @@ interface IProps {
 }
 
 const ActivityFeedPopMenu = ({ header, body, toast, accessibility }: IProps) => {
+  const dispatch = useDispatch();
   const onClose = useCallback(() => Navigation.dismissAllOverlays(), []);
   const t = useTranslation([
     "screens.today_earning.activity_feed.daily_core_activities.question_mark.toast.title",
@@ -28,13 +30,23 @@ const ActivityFeedPopMenu = ({ header, body, toast, accessibility }: IProps) => 
 
   const onSettingPress = useCallback(() => {
     onClose();
+    if (toast.button?.onPress) {
+      const payload = {
+        type: toast.button.onPress.type,
+        payload: toast.button.onPress.payload,
+      };
+
+      dispatch(payload);
+      return;
+    }
+
     Navigation.push(ROUTES.todayEarnings, {
       component: {
         id: ROUTES.settings,
         name: ROUTES.settings,
       },
     });
-  }, [onClose]);
+  }, [onClose, toast.button]);
 
   return (
     <PressableWithDelay onPress={onClose} style={styles.wrapper} importantForAccessibility="no" accessible={false}>
@@ -80,7 +92,10 @@ const ActivityFeedPopMenu = ({ header, body, toast, accessibility }: IProps) => 
               accessibilityLabel={
                 t["screens.today_earning.activity_feed.daily_core_activities.question_mark.toast.title"]
               }
-              title={t["screens.today_earning.activity_feed.daily_core_activities.question_mark.toast.title"]}
+              title={
+                toast.button?.label ||
+                t["screens.today_earning.activity_feed.daily_core_activities.question_mark.toast.title"]
+              }
               type="l3b"
               onPress={onSettingPress}
             />

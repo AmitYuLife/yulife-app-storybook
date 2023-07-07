@@ -9,6 +9,13 @@ import { IntercomHashMethod, FitKitType } from "./globalTypes";
 // GraphQL query operation: GetCurrentUser
 // ====================================================
 
+export interface GetCurrentUser_getDailyPensionContribution {
+  id: string;
+  active: boolean;
+  yuCoinAwarded: number | null;
+  contribution: string | null;
+}
+
 export interface GetCurrentUser_getCurrentUser_connections {
   name: string | null;
   isConnected: boolean | null;
@@ -215,6 +222,7 @@ export interface GetCurrentUser_getCurrentUser {
 }
 
 export interface GetCurrentUser {
+  getDailyPensionContribution: GetCurrentUser_getDailyPensionContribution;
   getIntercomHash: string | null;
   getCurrentUser: GetCurrentUser_getCurrentUser | null;
 }

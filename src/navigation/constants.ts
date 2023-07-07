@@ -107,6 +107,9 @@ export const ROUTES = {
   mediaPlayer: "yulife.media.player",
   yuniversityMediaPlayer: "yulife.media.yuniversityMediaPlayer",
 
+  // sdui static not registered
+  pensionDetails: "yulife.sdui.static.smartPensionDetails",
+
   //debug
   levelSelector: "yulife.debug.levelSelector",
   userFeatures: "yulife.debug.userFeatures",

@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -518,6 +518,7 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemHeaderBar_onRight
 
 export interface GetSduiJourney_getSduiJourney_body_ContentItemHeaderBar {
   __typename: "ContentItemHeaderBar";
+  id: string;
   logo: string | null;
   heading: string | null;
   leftIcon: string | null;
@@ -1397,6 +1398,7 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemHeaderBa
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemHeaderBar {
   __typename: "ContentItemHeaderBar";
+  id: string;
   logo: string | null;
   heading: string | null;
   leftIcon: string | null;

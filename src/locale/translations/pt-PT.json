@@ -114,6 +114,9 @@
     "meditation": {
       "singular": "min atento",
       "plural": "mins atentos"
+    },
+    "pension": {
+      "plural": "Savings"
     }
   },
   "create_challenge_error": "Desculpe, houve um problema no início do seu desafio.\n Por favor, tente novamente!",
@@ -375,6 +378,9 @@
         },
         "cycling": {
           "accessibility_label": ", %{cycling} ciclada"
+        },
+        "pension": {
+          "accessibility_label": ", %{contribution} pension contribution"
         }
       },
       "panel": {
