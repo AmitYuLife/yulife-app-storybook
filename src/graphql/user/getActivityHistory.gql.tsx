@@ -26,6 +26,7 @@ export const GQL_QUERY_GET_ACTIVITY_HISTORY = gql`
       }
       mindfulSeconds
       mindfulYucoin
+      pensionYucoin
       cycling
       cyclingSources {
         garmin

@@ -712,6 +712,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_Cont
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemHeaderBar {
   __typename: "ContentItemHeaderBar";
+  id: string;
   logo: string | null;
   heading: string | null;
   leftIcon: string | null;

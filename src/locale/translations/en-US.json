@@ -115,6 +115,9 @@
     "meditation": {
       "singular": "mindful min",
       "plural": "mindful mins"
+    },
+    "pension": {
+      "plural": "Savings"
     }
   },
   "create_challenge_error": "Sorry, there was a problem starting your challenge. \n Please try again!",
@@ -376,6 +379,9 @@
         },
         "cycling": {
           "accessibility_label": ", %{cycling} cycled"
+        },
+        "pension": {
+          "accessibility_label": ", %{contribution} pension contribution"
         }
       },
       "panel": {

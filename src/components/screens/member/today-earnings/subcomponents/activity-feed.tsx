@@ -21,7 +21,7 @@ import { getFitKitConnectCopy } from "@components/screens/onboarding/fitkit-conn
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { buildFitKitPermissions, FitKitAndroidSystemPermission } from "@services/fitkit/fitkit.permissions";
 import { ACTIVITY_FEED, TAKE_A_CHALLENGE_LEFT_BUTTON, WELLDONE_BANNER } from "@ids";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getHasNotification } from "@redux/levels/levels.selectors";
 import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-permissions";
 import { isSamsung } from "@utils/device";
@@ -61,6 +61,7 @@ const ActivityFeed = ({
   const [googleFitIsAuthorised, setGoogleFitIsAuthorised] = useState(isGoogleFitAuthorised);
   const [locationPermissionsGranted, setLocationPermissions] = useState(null);
   const [googleFitCyclingPermissionGranted, setGoogleFitCyclingPermission] = useState(null);
+  const dispatch = useDispatch();
   const questionMarkRef = useRef<View>();
   const { authorise, authoriseFitKitTypes } = useFitKit();
   const hasNotification = useSelector(getHasNotification);
@@ -182,9 +183,18 @@ const ActivityFeed = ({
   }, [googleFitIsAuthorised, id, locationPermissionsGranted, googleFitCyclingPermissionGranted]);
 
   const onTakeChallengePress = useCallback(() => {
+    const { onPress } = button;
+    if (onPress?.payload) {
+      dispatch({
+        type: onPress.type,
+        payload: onPress.payload,
+      });
+      return;
+    }
+
     handleNavigateToQuestsTab();
     Navigation.pop(ROUTES.todayEarnings);
-  }, []);
+  }, [dispatch, button]);
 
   const isDisabled = useCallback(
     (activity: IActivityProgress) => {

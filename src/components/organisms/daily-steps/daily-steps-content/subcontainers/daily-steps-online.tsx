@@ -30,6 +30,7 @@ import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { t, getCurrentLocale } from "@locale";
 import { getTheme } from "@theme";
 import { changePanelVisibility } from "@redux/daily-steps/daily-steps.actions";
+import { getDailyPensionContribution } from "@redux/daily-pension/daily-pension.selectors";
 
 type DailyStepsOnlineProps = {
   onReferralsButtonPress: () => void;
@@ -39,6 +40,7 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   const dailyCycling = useSelector(getDailyCycling);
   const dailyMeditation = useSelector(getDailyMeditation);
   const dailySteps = useSelector(getDailySteps);
+  const dailyPension = useSelector(getDailyPensionContribution);
   const dailyEarnedCoins = useSelector(getDailyEarnedCoins);
   const { usePassiveMeditation } = useSelector(getUserFeatures);
   const { availableForToday, isAvailable } = useSelector(getChallengesStatus);
@@ -160,6 +162,8 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
               steps={dailySteps}
               cycling={dailyCycling}
               mindfulness={usePassiveMeditation && dailyMeditation > 0 ? mindfulTotalToDisplay : null}
+              isPensionActive={dailyPension.active}
+              pension={dailyPension.contribution}
               stepsAccessibilityLabel={t("screens.daily.daily_passive.steps.accessibility_label", {
                 steps: dailySteps,
               })}
@@ -168,6 +172,9 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
               })}
               cyclingAccessibilityLabel={t("screens.daily.daily_passive.cycling.accessibility_label", {
                 cycling: dailyCycling,
+              })}
+              pensionAccessibilityLabel={t("screens.daily.daily_passive.pension.accessibility_label", {
+                contribution: dailyPension.contribution,
               })}
             />
           </View>

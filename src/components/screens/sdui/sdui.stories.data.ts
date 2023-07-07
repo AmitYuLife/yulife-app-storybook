@@ -109,6 +109,7 @@ const absolute: Array<AbsoluteContentItem> = [
     dynamicStyles: null,
     item: {
       __typename: "ContentItemHeaderBar",
+      id: "header-bar",
       logo: "yulife",
       leftIcon: "BACK",
       contentItemHeaderBarRightIcon: "CLOSE",

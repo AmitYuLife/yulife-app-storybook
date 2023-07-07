@@ -32,6 +32,10 @@ import dailyCyclingReducer, {
 import fitkitReducer, { getInitialState as getInitialFitkitState } from "../fitkit/fitkit.reducer";
 import { IFitkitStore } from "@redux/fitkit/fitkit.reducer";
 import adBannersReducer, { getInitialAdbannersState, IAdBannersStore } from "../ad-banners/ad-banners.reducer";
+import dailyPensionReducer, {
+  IDailyPensionStore,
+  getInitialState as getInitialDailyPension,
+} from "@redux/daily-pension/daily-pension.reducer";
 
 export interface IReduxState {
   app: IAppStore;
@@ -45,6 +49,7 @@ export interface IReduxState {
   user: IUserStore;
   dailyMeditation: IDailyMeditationStore;
   dailyCycling: IDailyCyclingStore;
+  dailyPension: IDailyPensionStore;
   sdui: ISduiStore;
   fitkit: IFitkitStore;
   adBanners: IAdBannersStore;
@@ -63,6 +68,7 @@ export const initialState: IReduxState = {
   user: getInitialUserState(),
   dailyMeditation: getInitialDailyMeditation(),
   dailyCycling: getInitialDailyCycling(),
+  dailyPension: getInitialDailyPension(),
   sdui: getInitialSduiState(),
   fitkit: getInitialFitkitState(),
   adBanners: getInitialAdbannersState(),
@@ -84,6 +90,7 @@ const combinedReducers = combineReducers({
   user: userReducer,
   dailyMeditation: dailyMeditationReducer,
   dailyCycling: dailyCyclingReducer,
+  dailyPension: dailyPensionReducer,
   sdui: sduiReducer,
   fitkit: fitkitReducer,
   adBanners: adBannersReducer,

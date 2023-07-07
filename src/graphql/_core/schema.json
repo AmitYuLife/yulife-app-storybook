@@ -43278,7 +43278,7 @@
       {
         "kind": "OBJECT",
         "name": "ContentItemShowHideBalance",
-        "description": "RN client version >= 3.89.0",
+        "description": "RN client version >= 3.90.0",
         "specifiedByUrl": null,
         "fields": [
           {
@@ -54437,6 +54437,22 @@
             "deprecationReason": null
           },
           {
+            "name": "heading",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "backgroundColour",
             "description": null,
             "args": [],
@@ -55110,6 +55126,18 @@
           },
           {
             "name": "mindfulYucoin",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pensionYucoin",
             "description": null,
             "args": [],
             "type": {

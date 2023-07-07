@@ -20,6 +20,7 @@ import detoxSagas from "../detox/detox.sagas";
 import assetsSagas from "@redux/assets/assets.saga";
 import serverDrivenUISagas from "../server-driven-ui/sdui.sagas";
 import adBannersSagas from "../ad-banners/sagas";
+import getDailyPensionSagas from "../daily-pension/sagas";
 
 export default function* allSagas() {
   yield all([
@@ -28,6 +29,7 @@ export default function* allSagas() {
     ...coinsSagas,
     ...nativeLoggingSagas,
     ...dailyStepsSagas,
+    ...getDailyPensionSagas,
     ...getDailyPassiveActivity,
     ...debugToolSaga,
     ...deviceSagas,

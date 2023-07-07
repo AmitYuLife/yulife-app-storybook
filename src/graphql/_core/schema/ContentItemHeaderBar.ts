@@ -20,6 +20,7 @@ export interface ContentItemHeaderBar_onRightIconPress {
 }
 
 export interface ContentItemHeaderBar {
+  id: string;
   logo: string | null;
   heading: string | null;
   leftIcon: string | null;

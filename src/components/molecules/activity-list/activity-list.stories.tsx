@@ -13,6 +13,9 @@ storiesOf("ActivityList", module).add("all", () => {
         stepsAccessibilityLabel={""}
         cyclingAccessibilityLabel={""}
         mindfulnessAccessibilityLabel={""}
+        pensionAccessibilityLabel={""}
+        pension={"£13.5"}
+        isPensionActive={true}
       />
     </ScrollView>
   );

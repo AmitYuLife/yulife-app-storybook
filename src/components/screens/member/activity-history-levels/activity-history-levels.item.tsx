@@ -32,6 +32,7 @@ export interface ItemProps {
   yucoin: number;
   mindfulSeconds?: number;
   mindfulYucoin?: number;
+  pensionYucoin?: number;
   cycling?: number;
   cyclingYucoin?: number;
   testID?: string;
@@ -48,6 +49,7 @@ export default function ActivityHistoryLevelsItem({
   yucoin,
   mindfulSeconds,
   mindfulYucoin,
+  pensionYucoin,
   cycling,
   cyclingYucoin,
   testID,
@@ -59,6 +61,7 @@ export default function ActivityHistoryLevelsItem({
     "activity_types.cycling.plural",
     "activity_types.meditation.singular",
     "activity_types.meditation.plural",
+    "activity_types.pension.plural",
   ]);
 
   const generateCyclingText = useCallback(
@@ -81,6 +84,7 @@ export default function ActivityHistoryLevelsItem({
   const typeText = generateStepsText(steps);
   const cyclingText = generateCyclingText(cycling);
   const mindfulTotal = displaySecondsAsMinutes(mindfulSeconds);
+  const pensionText = translations["activity_types.pension.plural"];
   const mindfulTotalToDisplay =
     mindfulTotal.minutes === 1
       ? `${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} ${translations["activity_types.meditation.singular"]}`
@@ -146,6 +150,14 @@ export default function ActivityHistoryLevelsItem({
 
             {renderSourcesText(cyclingSources, (val) => generateCyclingText(val))}
 
+            {!pensionYucoin ? null : (
+              <View style={styles.activityLabelWrapper}>
+                <TextTemplate type="b2" numberOfLines={1}>
+                  {pensionText}
+                </TextTemplate>
+              </View>
+            )}
+
             {!challenges.length ? (
               <View style={styles.activityLabelWrapper}>
                 <TextTemplate type="b2" numberOfLines={1}>
@@ -172,6 +184,7 @@ export default function ActivityHistoryLevelsItem({
             {renderSourcesColumnSpacing(cyclingSources, () => (
               <View style={styles.starsWrapper} />
             ))}
+            {!pensionYucoin ? null : <View style={styles.starsWrapper} />}
             {challenges.map((challenge, key) => (
               <View style={styles.starsWrapper} key={key}>
                 {!challenge.score
@@ -189,6 +202,7 @@ export default function ActivityHistoryLevelsItem({
             {renderSourcesColumnSpacing(sources, () => renderCoinEarnedValue("-"))}
             {!mindfulSeconds ? null : renderCoinEarnedValue(mindfulYucoin || "0")}
             {!cycling ? null : renderCoinEarnedValue(cyclingYucoin || "0")}
+            {!pensionYucoin ? null : renderCoinEarnedValue(pensionYucoin || "0")}
             {renderSourcesColumnSpacing(cyclingSources, () => renderCoinEarnedValue("-"))}
             {challenges.length ? null : renderCoinEarnedValue(0)}
             {challenges.map(({ earned }, index) => renderCoinEarnedValue(earned, { key: index }))}

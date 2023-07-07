@@ -9,14 +9,18 @@ import { Counter } from "@molecules";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 import { STEPS_COUNT, CYCLING_COUNT, MINDFUL_COUNT } from "@ids";
 import { t } from "@locale";
+import { PiggyCoinIcon } from "@atoms/icon/piggy-coin-icon";
 
 interface IProps {
   steps: number;
   cycling: string;
   mindfulness: string;
+  isPensionActive: boolean;
+  pension: string;
   stepsAccessibilityLabel: string;
   cyclingAccessibilityLabel: string;
   mindfulnessAccessibilityLabel: string;
+  pensionAccessibilityLabel: string;
   textColor?: string;
 }
 
@@ -25,9 +29,12 @@ const ActivityList = memo(
     steps,
     cycling,
     mindfulness,
+    isPensionActive,
+    pension,
     stepsAccessibilityLabel,
     cyclingAccessibilityLabel,
     mindfulnessAccessibilityLabel,
+    pensionAccessibilityLabel,
     textColor = Colours.neutral.n900,
   }: IProps) => {
     const counterStyle = useMemo(
@@ -59,6 +66,16 @@ const ActivityList = memo(
             <View style={styles.textWrapper}>
               <TextTemplate type="b2" color={textColor} testID={CYCLING_COUNT(cycling)}>
                 {cycling}
+              </TextTemplate>
+            </View>
+          </View>
+        )}
+        {!(isPensionActive && pension) ? null : (
+          <View style={styles.container} accessibilityLabel={pensionAccessibilityLabel}>
+            <PiggyCoinIcon color={textColor} />
+            <View style={styles.textWrapper}>
+              <TextTemplate type="b2" color={textColor}>
+                {pension}
               </TextTemplate>
             </View>
           </View>

@@ -52,6 +52,7 @@ import { GlobeIcon } from "./globe-icon";
 import { HourglassIcon } from "./hourglass-icon";
 import { EyeOpenIcon } from "./eye-open-icon";
 import { EyeClosedIcon } from "./eye-closed-icon";
+import { PiggyCoinIcon } from "./piggy-coin-icon";
 
 export default {
   GlobeIcon,
@@ -110,4 +111,5 @@ export default {
   HourglassIcon,
   EyeOpenIcon,
   EyeClosedIcon,
+  PiggyCoinIcon,
 };

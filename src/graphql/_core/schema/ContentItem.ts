@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -510,6 +510,7 @@ export interface ContentItem_ContentItemHeaderBar_onRightIconPress {
 
 export interface ContentItem_ContentItemHeaderBar {
   __typename: "ContentItemHeaderBar";
+  id: string;
   logo: string | null;
   heading: string | null;
   leftIcon: string | null;

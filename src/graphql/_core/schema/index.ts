@@ -107,6 +107,7 @@ export * from "./GetAllUserData";
 export * from "./GetConnections";
 export * from "./GetCurrentUser";
 export * from "./GetCurrentUserLeaderboard";
+export * from "./GetDailyPensionContribution";
 export * from "./GetDailyScreenCustomIcon";
 export * from "./GetDebugCodes";
 export * from "./GetDuelInvitations";

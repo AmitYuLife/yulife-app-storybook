@@ -25,6 +25,7 @@ export interface GetTodayEarnings_getTodayEarnings_activityFeed_wellDoneBanner {
 
 export interface GetTodayEarnings_getTodayEarnings_activityFeed_button_onPress {
   type: SduiActionType;
+  payload: string | null;
 }
 
 export interface GetTodayEarnings_getTodayEarnings_activityFeed_button {
@@ -66,11 +67,22 @@ export interface GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModa
   uri: string | null;
 }
 
+export interface GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_toast_button_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_toast_button {
+  label: string;
+  onPress: GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_toast_button_onPress | null;
+}
+
 export interface GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_toast {
   backgroundColor: string;
   borderColor: string;
   description: string | null;
   iconUrl: GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_toast_iconUrl;
+  button: GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_toast_button | null;
 }
 
 export interface GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_accessibility {

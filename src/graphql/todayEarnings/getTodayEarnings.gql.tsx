@@ -22,6 +22,7 @@ export const GQL_QUERY_GET_TODAY_EARNINGS = gql`
           label
           onPress {
             type
+            payload
           }
           type
         }
@@ -54,6 +55,13 @@ export const GQL_QUERY_GET_TODAY_EARNINGS = gql`
             description
             iconUrl {
               uri(options: { width: 114, height: 128 })
+            }
+            button {
+              label
+              onPress {
+                type
+                payload
+              }
             }
           }
           accessibility {
