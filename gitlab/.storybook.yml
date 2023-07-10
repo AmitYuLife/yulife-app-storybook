@@ -3,6 +3,7 @@ deploy:dev:storybook:
     - .assume-openid-role
     - .base-node-14
   stage: release
+  image: node:16.19.0-alpine
   # Do not cancel this job if newer commit made
   interruptible: false
   needs:
