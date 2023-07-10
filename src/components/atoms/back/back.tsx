@@ -3,6 +3,8 @@ import Svg, { Path } from "react-native-svg";
 import { BACK_BUTTON } from "@ids";
 import { Style, Colours } from "@styles";
 
+// TODO: Move to the icons folder
+
 interface Props {
   color?: string;
 }

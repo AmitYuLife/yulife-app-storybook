@@ -2,6 +2,7 @@ import React from "react";
 import Svg, { Path, SvgProps } from "react-native-svg";
 import { Colours, Style } from "@styles";
 
+// TODO: Move to the icons folder
 export function DoctorIcon(props: SvgProps = {}) {
   const color = props.color || Colours.neutral.n800;
   return (

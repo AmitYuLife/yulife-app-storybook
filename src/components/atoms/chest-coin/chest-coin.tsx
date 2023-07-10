@@ -2,6 +2,7 @@ import * as React from "react";
 import { Colours } from "@styles";
 import Svg, { Path, G, Defs, Stop, LinearGradient } from "react-native-svg";
 
+// TODO: Move to the icons folder
 interface IProps {
   isGrayScale?: boolean;
 }

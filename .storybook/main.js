@@ -41,13 +41,16 @@ const CUSTOM_CONFIG = {
       {
         test: /\.(png|jpe?g|woff|woff2|eot|otf|ttf|svg)$/,
         loader: "file-loader",
+        options: {
+          name: "[name].[ext]",
+          esModule: false,
+        },
       },
     ],
   },
 };
 module.exports = {
-  // stories: ["../src/components/@(atoms)/**/*.stories.@(js|jsx|ts|tsx)"],
-  stories: ["../src/components/atoms/heading/heading.stories.tsx"], //this is temp until we migrate all our atoms stories to the new format
+  stories: ["../src/components/atoms/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",

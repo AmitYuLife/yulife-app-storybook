@@ -7,7 +7,7 @@ interface IProps {
   width?: number;
 }
 
-const Pad: React.FC<IProps> = ({ height, width }) => {
+export const Pad = ({ height, width }: IProps) => {
   const style = React.useMemo(() => StyleSheet.flatten([getHeight(height), getWidth(width)]), [height, width]);
   return <View style={style} />;
 };
