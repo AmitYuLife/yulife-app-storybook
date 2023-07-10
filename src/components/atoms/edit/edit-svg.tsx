@@ -3,6 +3,8 @@ import Svg, { SvgProps, Path } from "react-native-svg";
 import { EDIT_BUTTON } from "@ids";
 import { Style } from "@styles";
 
+// TODO: Move to the icons folder
+
 const EditSVG = (props: SvgProps) => {
   return (
     <Svg

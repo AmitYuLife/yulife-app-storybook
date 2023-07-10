@@ -7,7 +7,7 @@ interface IProps {
   style?: ImageStyle;
 }
 
-const StarInline = ({ filled, style }: IProps) => (
+export const StarInline = ({ filled, style }: IProps) => (
   <Image style={style} source={filled ? assets.filled : assets.empty} />
 );
 

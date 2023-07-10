@@ -1,5 +1,5 @@
+import React from "react";
 import { Colours, Style } from "@styles/index";
-import * as React from "react";
 import { StyleProp, ViewStyle } from "react-native";
 import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
 
@@ -14,7 +14,7 @@ interface IProps {
   height?: number;
 }
 
-const Logo: React.FC<IProps> = ({
+export const Logo = ({
   type,
   scale = 1,
   colour = Colours.darkHotPink,
@@ -22,7 +22,7 @@ const Logo: React.FC<IProps> = ({
   style = {},
   width,
   height,
-}) => {
+}: IProps) => {
   switch (type) {
     case "full":
       return (

@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import Svg, { Path } from "react-native-svg";
 import { Style, Colours } from "@styles";
 
+// TODO: Move to the icons folder
 interface Props {
   color?: string;
   size?: number;

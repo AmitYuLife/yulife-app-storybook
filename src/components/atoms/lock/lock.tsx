@@ -3,6 +3,7 @@ import React from "react";
 import Svg, { G, Path } from "react-native-svg";
 import { Colours } from "@styles";
 
+// TODO: Move to the icons folder
 interface IProps {
   scale?: number;
   colour?: string;

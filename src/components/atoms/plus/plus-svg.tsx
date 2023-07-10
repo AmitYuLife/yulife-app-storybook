@@ -5,6 +5,7 @@ import { Style, Colours } from "@styles";
 
 const SIZE = Style.adjust(24);
 
+// TODO: Move to the icons folder
 const _PlusSVG = () => {
   return (
     <Svg width={SIZE} height={SIZE} viewBox="0 0 24 24" fill="none" testID={PLUS_BUTTON}>

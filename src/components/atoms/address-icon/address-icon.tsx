@@ -2,6 +2,8 @@ import * as React from "react";
 import Svg, { SvgProps, Path, Circle } from "react-native-svg";
 import { Style } from "@styles";
 
+// TODO: Move to the icons folder
+
 function AddressIcon(props: SvgProps = {}) {
   const color = props.color || "#6E6E70";
   return (
