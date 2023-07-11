@@ -134,6 +134,22 @@ The app needs to be signed before it can be installed on a physical device.
 - Under the _General_ tab of `YuLife` build target, tick the `Automatically manage signing` option and select `Yu Life Limited` as your team.
 
 #### Troubleshooting
+##### `start:bundler` is failing
+Sample error message:
+
+```
+warn Package react-native-navigation contains invalid configuration: "dependency.assets" is not allowed...
+```
+
+Solution:
+```
+rm -rf node_modules ios/Pods
+nvm use 18
+yarn
+npx pod-install
+nvm use 14
+yarn start
+```
 
 ##### Clean up Pods
 
