@@ -10,7 +10,7 @@ interface IProps {
   isRightHighlighted?: boolean;
 }
 
-const Stars = ({ isLeftHighlighted, isMidHighlighted, isRightHighlighted }: IProps) => {
+export const Stars = ({ isLeftHighlighted, isMidHighlighted, isRightHighlighted }: IProps) => {
   return (
     <View style={styles.wrapper} testID={CHALLENGE_STARS(isLeftHighlighted, isMidHighlighted, isRightHighlighted)}>
       <StarLeft isHighlighted={isLeftHighlighted} />

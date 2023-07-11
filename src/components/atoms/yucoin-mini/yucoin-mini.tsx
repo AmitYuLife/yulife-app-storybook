@@ -3,6 +3,7 @@ import Svg, { LinearGradient, Path, Defs, Stop } from "react-native-svg";
 import { ViewStyle } from "react-native";
 import { Style } from "@styles";
 
+// TODO: Move to the icons folder
 interface Props {
   size?: number;
   style?: ViewStyle;
