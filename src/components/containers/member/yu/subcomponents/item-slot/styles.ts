@@ -82,6 +82,7 @@ export const defaultStyles = StyleSheet.create({
     top: Style.adjust(1),
     zIndex: 2,
     paddingLeft: Style.adjust(4),
+    paddingRight: Style.adjust(4),
   },
   slotSocket: {
     borderRadius: Style.adjust(8),
@@ -173,6 +174,7 @@ const depressedStyles = StyleSheet.create({
     zIndex: 3,
     paddingLeft: Style.adjust(4),
     paddingTop: Style.adjust(4),
+    paddingRight: Style.adjust(4),
   },
   slotSocket: {
     height: Style.adjust(57),
