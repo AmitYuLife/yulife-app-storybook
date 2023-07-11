@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import Svg, { Path } from "react-native-svg";
 import { Style } from "@styles";
 
+// TODO: Move to the icons folder
 const TooltipIcon = () => (
   <Svg width={Style.adjust(16)} height={Style.adjust(16)} viewBox="0 0 16 16">
     <Path

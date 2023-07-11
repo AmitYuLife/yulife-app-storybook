@@ -7,7 +7,9 @@ interface IProps {
   alignItems?: ViewStyle["alignItems"];
 }
 
-const Wrapper = ({ children, alignItems }: IProps) => <View style={[styles.wrapper, { alignItems }]}>{children}</View>;
+export const Wrapper = ({ children, alignItems }: IProps) => (
+  <View style={[styles.wrapper, { alignItems }]}>{children}</View>
+);
 
 const styles = StyleSheet.create({
   wrapper: {
