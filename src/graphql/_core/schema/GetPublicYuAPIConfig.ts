@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -29,6 +29,7 @@ export interface GetPublicYuAPIConfig_config_leanplum {
 export interface GetPublicYuAPIConfig_config_sduiStaticDeeplinks {
   name: string;
   stepId: string;
+  dynamicRouteId: string | null;
 }
 
 export interface GetPublicYuAPIConfig_config {

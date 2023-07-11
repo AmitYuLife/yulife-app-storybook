@@ -7,17 +7,21 @@ import { SduiActionWithServerPayload } from "../sdui.types";
 import { getYuScreen } from "@graphql/yuscreen/getYuScreen.gql";
 import { ROUTES } from "@navigation/constants";
 
+const refreshYuScreenRoutes = [
+  ROUTES.yuScreen,
+  ROUTES.todayEarnings,
+  ROUTES.pensionDetails,
+  ROUTES.pensionConnectionSuccess,
+  ROUTES.pensionConnectionFailed,
+];
+
 export function* sduiActionGenericNavigateBackToRoot({ payload }: SduiActionWithServerPayload) {
   const { isValid, data } = parseJSON<{ routeId: string }>(getServerPayload(payload), ["routeId"]);
 
   if (isValid && data.routeId) {
     try {
       // TODO: add dispatch to refetch yuscreen
-      if (
-        data.routeId === ROUTES.yuScreen ||
-        data.routeId === ROUTES.todayEarnings ||
-        data.routeId === ROUTES.pensionDetails
-      ) {
+      if (refreshYuScreenRoutes.includes(data.routeId)) {
         yield call(getYuScreen);
       }
 

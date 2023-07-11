@@ -109,6 +109,8 @@ export const ROUTES = {
 
   // sdui static not registered
   pensionDetails: "yulife.sdui.static.smartPensionDetails",
+  pensionConnectionSuccess: "yulife.sdui.static.pensionConnectionSuccess",
+  pensionConnectionFailed: "yulife.sdui.static.pensionConnectionFailed",
 
   //debug
   levelSelector: "yulife.debug.levelSelector",
