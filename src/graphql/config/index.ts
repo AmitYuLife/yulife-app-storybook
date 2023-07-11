@@ -27,6 +27,7 @@ export const GQL_QUERY_GET_API_CONFIG = gql`
       sduiStaticDeeplinks {
         name
         stepId
+        dynamicRouteId
       }
     }
   }

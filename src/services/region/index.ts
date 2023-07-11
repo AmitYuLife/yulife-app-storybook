@@ -29,6 +29,7 @@ type RegionConfig = {
   sduiStaticDeeplinks: {
     name: string;
     stepId: string;
+    dynamicRouteId?: string;
   }[];
 };
 
