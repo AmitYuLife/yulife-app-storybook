@@ -392,21 +392,36 @@ const loginUserSuccess = (
   state: IUserStore,
   {
     loginUser: {
-      user: { firstName, lastName, dateOfBirth, leaderboards = [], mobileConsent, userFeatures = [], connections = [] },
+      user: {
+        id,
+        firstName,
+        lastName,
+        dateOfBirth,
+        leaderboards = [],
+        mobileConsent,
+        userFeatures = [],
+        connections = [],
+      },
     },
   }: LoginUser
-): IUserStore => ({
-  ...state,
-  firstName,
-  lastName,
-  dateOfBirth,
-  connections,
-  consent: {
-    ...mobileConsent,
-  },
-  features: userFeatures.reduce(reduceUserFeatures, {}),
-  leaderboards,
-});
+): IUserStore => {
+  const activeLeaderboardId = activeLeaderboardSafeguard(state.activeLeaderboardId, leaderboards);
+
+  return {
+    ...state,
+    id,
+    firstName,
+    lastName,
+    dateOfBirth,
+    connections,
+    consent: {
+      ...mobileConsent,
+    },
+    features: userFeatures.reduce(reduceUserFeatures, {}),
+    leaderboards,
+    activeLeaderboardId,
+  };
+};
 
 const updateUserConsentSuccess = (state: IUserStore, { upsertMobileConsent }: UpdateMemberConsent): IUserStore => ({
   ...state,
