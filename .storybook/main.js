@@ -42,7 +42,7 @@ const CUSTOM_CONFIG = {
         test: /\.(png|jpe?g|woff|woff2|eot|otf|ttf|svg)$/,
         loader: "file-loader",
         options: {
-          name: "[name].[ext]",
+          name: "[name].[hash:8].[ext]",
           esModule: false,
         },
       },
@@ -50,7 +50,7 @@ const CUSTOM_CONFIG = {
   },
 };
 module.exports = {
-  stories: ["../src/components/atoms/**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: ["../src/components/@(atoms|molecules)/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
