@@ -7,6 +7,7 @@ import {
   SduiActionType,
   MobileOnboardingStepPerformed,
   YuProductStatus,
+  YuScreenSlotBorderStyle,
   YuScreenCarouselItemVariant,
 } from "./globalTypes";
 
@@ -36,9 +37,27 @@ export interface GetYuScreen_getYuScreen_onboarding_button_event {
   payload: string | null;
 }
 
+export interface GetYuScreen_getYuScreen_onboarding_button_onPress_productAction {
+  productId: string;
+  nextRouteId: string | null;
+  nextModalId: string | null;
+  shouldBeNormalised: boolean | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_button_onPress_sduiAction {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_button_onPress {
+  productAction: GetYuScreen_getYuScreen_onboarding_button_onPress_productAction | null;
+  sduiAction: GetYuScreen_getYuScreen_onboarding_button_onPress_sduiAction | null;
+}
+
 export interface GetYuScreen_getYuScreen_onboarding_button {
   event: GetYuScreen_getYuScreen_onboarding_button_event | null;
   label: string;
+  onPress: GetYuScreen_getYuScreen_onboarding_button_onPress | null;
 }
 
 export interface GetYuScreen_getYuScreen_onboarding_placeholder_leftBackgroundImage {
@@ -89,11 +108,79 @@ export interface GetYuScreen_getYuScreen_onboarding_placeholder {
   backgroundColour: string;
   topShadowColour: string;
   bottomShadowColour: string;
+  borderStyle: YuScreenSlotBorderStyle | null;
+  borderWidth: number | null;
+  borderColor: string | null;
   leftBackgroundImage: GetYuScreen_getYuScreen_onboarding_placeholder_leftBackgroundImage | null;
   rightIcon: GetYuScreen_getYuScreen_onboarding_placeholder_rightIcon | null;
   rightStatusIcon: GetYuScreen_getYuScreen_onboarding_placeholder_rightStatusIcon | null;
   onPress: GetYuScreen_getYuScreen_onboarding_placeholder_onPress | null;
   event: GetYuScreen_getYuScreen_onboarding_placeholder_event | null;
+  showOnOnboarding: boolean | null;
+  depressed: boolean | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_overlayImage {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_productSlots_leftBackgroundImage {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_productSlots_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_productSlots_rightStatusIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_productSlots_onPress_productAction {
+  productId: string;
+  nextRouteId: string | null;
+  nextModalId: string | null;
+  shouldBeNormalised: boolean | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_productSlots_onPress_sduiAction {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_productSlots_onPress {
+  productAction: GetYuScreen_getYuScreen_onboarding_productSlots_onPress_productAction | null;
+  sduiAction: GetYuScreen_getYuScreen_onboarding_productSlots_onPress_sduiAction | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_productSlots_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_productSlots {
+  id: string;
+  leftText: string | null;
+  leftTextColour: string | null;
+  status: YuProductStatus | null;
+  title: string;
+  titleColour: string;
+  text: string | null;
+  backgroundColour: string;
+  topShadowColour: string;
+  bottomShadowColour: string;
+  borderStyle: YuScreenSlotBorderStyle | null;
+  borderWidth: number | null;
+  borderColor: string | null;
+  leftBackgroundImage: GetYuScreen_getYuScreen_onboarding_productSlots_leftBackgroundImage | null;
+  rightIcon: GetYuScreen_getYuScreen_onboarding_productSlots_rightIcon | null;
+  rightStatusIcon: GetYuScreen_getYuScreen_onboarding_productSlots_rightStatusIcon | null;
+  onPress: GetYuScreen_getYuScreen_onboarding_productSlots_onPress | null;
+  event: GetYuScreen_getYuScreen_onboarding_productSlots_event | null;
   showOnOnboarding: boolean | null;
   depressed: boolean | null;
 }
@@ -105,6 +192,9 @@ export interface GetYuScreen_getYuScreen_onboarding {
   button: GetYuScreen_getYuScreen_onboarding_button;
   placeholder: GetYuScreen_getYuScreen_onboarding_placeholder;
   dismissByPlaceholder: boolean;
+  isYuCoinPowerDisplayed: boolean | null;
+  overlayImage: GetYuScreen_getYuScreen_onboarding_overlayImage | null;
+  productSlots: GetYuScreen_getYuScreen_onboarding_productSlots[] | null;
 }
 
 export interface GetYuScreen_getYuScreen_productSlots_leftBackgroundImage {
@@ -155,6 +245,9 @@ export interface GetYuScreen_getYuScreen_productSlots {
   backgroundColour: string;
   topShadowColour: string;
   bottomShadowColour: string;
+  borderStyle: YuScreenSlotBorderStyle | null;
+  borderWidth: number | null;
+  borderColor: string | null;
   leftBackgroundImage: GetYuScreen_getYuScreen_productSlots_leftBackgroundImage | null;
   rightIcon: GetYuScreen_getYuScreen_productSlots_rightIcon | null;
   rightStatusIcon: GetYuScreen_getYuScreen_productSlots_rightStatusIcon | null;

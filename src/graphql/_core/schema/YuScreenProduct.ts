@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { YuProductStatus, SduiActionType } from "./globalTypes";
+import { YuProductStatus, YuScreenSlotBorderStyle, SduiActionType } from "./globalTypes";
 
 // ====================================================
 // GraphQL fragment: YuScreenProduct
@@ -57,6 +57,9 @@ export interface YuScreenProduct {
   backgroundColour: string;
   topShadowColour: string;
   bottomShadowColour: string;
+  borderStyle: YuScreenSlotBorderStyle | null;
+  borderWidth: number | null;
+  borderColor: string | null;
   leftBackgroundImage: YuScreenProduct_leftBackgroundImage | null;
   rightIcon: YuScreenProduct_rightIcon | null;
   rightStatusIcon: YuScreenProduct_rightStatusIcon | null;

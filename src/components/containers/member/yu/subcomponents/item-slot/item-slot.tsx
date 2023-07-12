@@ -1,4 +1,4 @@
-import React, { FC, memo } from "react";
+import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import {
   slotStatusImageDimensions,
@@ -13,6 +13,7 @@ import {
   YuScreenProductButtonAction,
 } from "@graphql/_core/schema";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import { OnboardingHandler } from "../../hooks/useOnboardingButtonHandler";
 import {
   BACKGROUND_COLOUR_PRODUCT,
   LEFT_SIDE_BACKGROUD_IMAGE_SLOT,
@@ -20,20 +21,22 @@ import {
   RIGHT_SIDE_IMAGE_SLOT,
   RIGHT_STATUS_ICON,
 } from "@ids";
-import { OnboardingHandler } from "../../hooks/useOnboardingDismissalHandler";
 import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
 import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
 
-export interface ItemSlotProps extends Omit<ProductSlots, "onPress"> {
+export interface IItemSlotProps extends Omit<ProductSlots, "onPress"> {
   onPress?: YuScreenProductButtonAction | OnboardingHandler;
   socketType?: "yuscreen" | "onboarding";
 }
 
-export const ItemSlot: FC<ItemSlotProps> = memo(
+export const ItemSlot = memo(
   ({
     backgroundColour,
     bottomShadowColour,
+    borderStyle,
+    borderWidth,
+    borderColor,
     event,
     leftText,
     leftTextColour,
@@ -47,7 +50,7 @@ export const ItemSlot: FC<ItemSlotProps> = memo(
     topShadowColour,
     socketType = "yuscreen",
     depressed = false,
-  }) => {
+  }: IItemSlotProps) => {
     const currentRoute = useSelector(getRouteState);
     const handlePress = useYuScreenOnPressHandler({ event, onPress, currentRoute });
 
@@ -87,6 +90,11 @@ export const ItemSlot: FC<ItemSlotProps> = memo(
               style={StyleSheet.flatten([
                 styles.slotSocketInner,
                 socketType === "yuscreen" ? styles.slotSocketInnerYuScreen : styles.slotSocketInnerOnboarding,
+                {
+                  borderStyle,
+                  borderWidth,
+                  borderColor,
+                },
               ])}
             />
           </View>

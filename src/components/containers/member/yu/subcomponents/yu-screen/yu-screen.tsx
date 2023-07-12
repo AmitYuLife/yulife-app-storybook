@@ -14,7 +14,7 @@ import { Copy } from "../copy/copy";
 import { useQueryOnScreenSeenOnce, useStatusBarStyle } from "@hooks";
 import { ROUTES } from "@navigation/constants";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
-import { useOnboardingDismissalHandler } from "../../hooks/useOnboardingDismissalHandler";
+import { useOnboardingButtonHandler as useOnboardingButtonHandler } from "../../hooks/useOnboardingButtonHandler";
 import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { Image } from "@atoms";
@@ -29,11 +29,14 @@ export const YuScreen = memo(({ componentId }: Props) => {
   const [, { data }] = useQueryOnScreenSeenOnce<GetYuScreen>(GQL_QUERY_GET_YU_SCREEN, ROUTES.yuScreen, {
     fetchPolicy: "network-only",
   });
-  const { earnRate } = useContext(YuScreenContext);
   const onboarding = data?.getYuScreen?.onboarding;
-  const [onboardingDismissed, dismissOnboarding] = useOnboardingDismissalHandler(onboarding?.id);
-  const showOnboarding = !!onboarding && !onboardingDismissed;
-  useStatusBarStyle(componentId, showOnboarding);
+
+  const { earnRate } = useContext(YuScreenContext);
+  const { shouldShowOnboarding, onPressOnboardingButton, closeOnboarding } = useOnboardingButtonHandler(onboarding);
+
+  const isOnboardingShown = !!onboarding && shouldShowOnboarding;
+  useStatusBarStyle(componentId, isOnboardingShown);
+
   if (!data?.getYuScreen || earnRate === null) {
     return (
       <YuScreenLayout>
@@ -54,7 +57,7 @@ export const YuScreen = memo(({ componentId }: Props) => {
     enrolTimer,
   } = data.getYuScreen;
 
-  if (showOnboarding) {
+  if (isOnboardingShown) {
     return (
       <YuScreenLayout
         fullHeight={true}
@@ -63,7 +66,7 @@ export const YuScreen = memo(({ componentId }: Props) => {
         testID={ONBOARDING_SCREEN_V4}
       >
         <YuScreenSkeleton />
-        <Onboarding onDismiss={dismissOnboarding} onboarding={onboarding} productSlots={productSlots} />
+        <Onboarding onboarding={onboarding} onPress={onPressOnboardingButton} onClose={closeOnboarding} />
       </YuScreenLayout>
     );
   }
