@@ -19,7 +19,6 @@ import { getSudokuState } from "@redux/sudoku/sudoku.selectors";
 import { useTranslation } from "@hooks";
 import SudokuActionButton from "@components/molecules/action-button/action-button";
 import SudokuStagingHeader from "@components/games/sudoku/sudoku-staging-header";
-import { SUDOKU_DATE_FORMAT } from "../sudoku-game/sudoku.config";
 import {
   SUDOKU_HOWTOPLAY_BUTTON,
   SUDOKU_JOINLEADERBOARD_BUTTON,
@@ -71,11 +70,15 @@ const SudokuStagingScreen = ({
     "sudoku.staging.dailyLeaderboard",
     "sudoku.staging.joinDailyLeaderboard",
     "sudoku.staging.practiceGame",
+    "format.date_readable",
   ]);
 
   const leaderboardOptedIn = !!data?.getSudokuBoard?.stats?.leaderboardId;
   const sudokuState = useSelector(getSudokuState);
-  const date = useMemo(() => moment(data?.getSudokuBoard?.date).format(SUDOKU_DATE_FORMAT), [data]);
+  const date = useMemo(
+    () => moment(data?.getSudokuBoard?.date).format(t["format.date_readable"]),
+    [data?.getSudokuBoard?.date, t]
+  );
 
   return (
     <ScrollView

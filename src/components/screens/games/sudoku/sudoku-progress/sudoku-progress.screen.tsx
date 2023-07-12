@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
-import { SUDOKU_DATE_FORMAT, SUDOKU_PLANET_STYLES, SUDOKU_YUNIVERSAL_STYLES } from "../sudoku-game/sudoku.config";
+import { SUDOKU_PLANET_STYLES, SUDOKU_YUNIVERSAL_STYLES } from "../sudoku-game/sudoku.config";
 import { getCurrentWorldName } from "@utils";
 import { GQL_QUERY_GET_SUDOKU_BOARDS } from "@graphql/brainGames/sudoku/getSudokuBoards.gql";
 import { Colours, Style } from "@styles";
@@ -31,6 +31,7 @@ function SudokuProgressScreen({ levelSlotId, onDismissPress, onLeftMenuPress }: 
     "labels.cta.cancel",
     "sudoku.progress.resume",
     "sudoku.progress.paused",
+    "format.date_readable",
   ]);
 
   const { data: sudokuData } = useQuery<GetSudokuBoard>(GQL_QUERY_GET_SUDOKU_BOARDS, {
@@ -90,7 +91,7 @@ function SudokuProgressScreen({ levelSlotId, onDismissPress, onLeftMenuPress }: 
               >
                 {t["sudoku.progress.paused"]}
               </TextTemplate>
-              <SudokuDate date={moment(sudokuData?.getSudokuBoard?.date).format(SUDOKU_DATE_FORMAT)} />
+              <SudokuDate date={moment(sudokuData?.getSudokuBoard?.date).format(t["format.date_readable"])} />
             </View>
           </View>
           <View style={styles.buttonsContainer}>

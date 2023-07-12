@@ -8,6 +8,7 @@ import PauseIcon from "@atoms/icon/pause-svg";
 import { TextTemplate } from "@atoms";
 import { DETOX_ENABLED } from "@services/socket";
 import { SUDOKU_PAUSE } from "@ids";
+import { useTranslation } from "@hooks";
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 
@@ -28,6 +29,7 @@ const SudokuTimer = ({ invert }: IProps) => {
   const { startTime, pause, endTime, penalties, getDurationText, lastPauseTime } = useSudokuContext();
   const [shownPenalties, setShownPenalties] = useState<number>(penalties?.length ?? 0);
   const [activePenalties, setActivePenalties] = useState<IPenaltyView[]>([]);
+  const t = useTranslation(["time_units.short_seconds"]);
 
   useEffect(() => {
     const newPenalties = penalties.slice(shownPenalties);
@@ -90,7 +92,8 @@ const SudokuTimer = ({ invert }: IProps) => {
                   key={penalty.index}
                 >
                   <Text allowFontScaling={false} style={styles.penalty}>
-                    +{penalty.value}s
+                    +{penalty.value}
+                    {t["time_units.short_seconds"]}
                   </Text>
                 </AnimatedView>
               );

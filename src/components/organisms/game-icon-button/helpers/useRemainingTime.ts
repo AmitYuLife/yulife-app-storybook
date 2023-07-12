@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import useInterval from "@use-it/interval";
 import { DETOX_ENABLED } from "@services/socket";
 import { minifiedFromNow } from "@utils";
+import { t } from "@locale";
 
 const REFRESH_RATE_ONE_MINUTE = 1000 * 60;
 const REFRESH_RATE_ONE_SECOND = 1000;
@@ -22,7 +23,7 @@ export const useRemainingTime = (endDateTime: string) => {
 
     setRefreshRate(secondsRemaining <= 120 ? REFRESH_RATE_ONE_SECOND : REFRESH_RATE_ONE_MINUTE);
     if (secondsRemaining < 60) {
-      setTime(`${secondsRemaining}s`);
+      setTime(`${secondsRemaining}${t("time_units.short_seconds")}`);
       setTimeLongFormat(`${secondsRemaining} seconds`);
     } else {
       const { shortFormat, longFormat } = minifiedFromNow(moment(endDateTime));

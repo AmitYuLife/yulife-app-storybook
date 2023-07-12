@@ -1162,13 +1162,21 @@
   },
   "time_units": {
     "days": "days",
+    "short_days": "d",
     "day": "day",
+    "short_day": "d",
     "hours": "hours",
+    "short_hours": "h",
     "hour": "hour",
+    "short_hour": "h",
     "minutes": "minutes",
+    "short_minutes": "m",
     "minute": "minute",
+    "short_minute": "m",
     "seconds": "seconds",
-    "second": "second"
+    "short_seconds": "s",
+    "second": "second",
+    "short_second": "s"
   },
   "save_image": {
     "save_button": "Save as image",
@@ -1285,7 +1293,8 @@
     },
     "leaderboard": {
       "empty_description": "Complete a Yudoku and be the first on the leaderboard today!",
-      "start": "Start game"
+      "start": "Start game",
+      "title": "Daily Yudoku"
     }
   }
 }
