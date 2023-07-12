@@ -18,11 +18,21 @@ const GQL_FRAGMENT_YU_SCREEN_ONBOARDING = gql`
         ...SduiAction
       }
       label
+      onPress {
+        ...YuScreenProductButtonAction
+      }
     }
     placeholder {
       ...YuScreenProduct
     }
     dismissByPlaceholder
+    isYuCoinPowerDisplayed
+    overlayImage {
+      ...RemoteImage
+    }
+    productSlots {
+      ...YuScreenProduct
+    }
   }
 `;
 
@@ -42,6 +52,9 @@ const GQL_FRAGMENT_YU_SCREEN_PRODUCT_SLOT_ITEM = gql`
     backgroundColour
     topShadowColour
     bottomShadowColour
+    borderStyle
+    borderWidth
+    borderColor
     leftBackgroundImage {
       ...RemoteImage
     }

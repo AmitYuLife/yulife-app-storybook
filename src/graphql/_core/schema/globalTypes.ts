@@ -181,6 +181,7 @@ export enum MobileOnboardingStepPerformed {
   yuScreenGlovesLive = "yuScreenGlovesLive",
   yuScreenGlovesPurchased = "yuScreenGlovesPurchased",
   yuScreenOnboarding = "yuScreenOnboarding",
+  yuScreenOnboardingPension = "yuScreenOnboardingPension",
 }
 
 export enum OS {
@@ -278,6 +279,12 @@ export enum YuProductStatus {
 export enum YuScreenCarouselItemVariant {
   full = "full",
   narrow = "narrow",
+}
+
+export enum YuScreenSlotBorderStyle {
+  dashed = "dashed",
+  dotted = "dotted",
+  solid = "solid",
 }
 
 export enum YuWorld {

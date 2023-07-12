@@ -1,0 +1,81 @@
+import { useCallback, useContext, useState } from "react";
+import { Navigation } from "@navigation/main";
+import { useMutation } from "@apollo/client";
+import { GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP } from "@graphql/onboardingSteps/performMobileOnboardingStep.gql";
+import { ROUTES } from "@navigation/constants";
+import Logger from "@services/logging/logger";
+import { YuScreenContext } from "../context/yu-screen.context";
+import { GetYuScreen_getYuScreen_onboarding } from "@graphql/_core/schema";
+import { useDispatch } from "react-redux";
+
+export type OnboardingHandler = () => Promise<void>;
+
+export const useOnboardingButtonHandler = (
+  onboarding: GetYuScreen_getYuScreen_onboarding
+): {
+  shouldShowOnboarding: boolean;
+  closeOnboarding: () => Promise<void>;
+  onPressOnboardingButton: OnboardingHandler;
+} => {
+  const dispatch = useDispatch();
+  const { yumojiRemoteUrl } = useContext(YuScreenContext);
+  const [shouldShowOnboarding, setShouldShowOnboarding] = useState<boolean>(true);
+  const [performOnboarding] = useMutation(GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP);
+
+  const markOnboardingAsViewed = useCallback(async () => {
+    try {
+      // Mark the onboarding step as completed.
+      await performOnboarding({ variables: { step: onboarding?.id } });
+    } catch (e) {
+      Logger.error(e, { where: "use-onboarding-dismissal-handler-perform-onboarding" });
+    }
+  }, [performOnboarding, onboarding?.id]);
+
+  const showYumojiScreenIfNotCreated = useCallback(async () => {
+    if (yumojiRemoteUrl) {
+      return;
+    }
+
+    await Navigation.push(ROUTES.yuScreen, {
+      component: {
+        id: ROUTES.yumojiBuilder,
+        name: ROUTES.yumojiBuilder,
+      },
+    });
+  }, [yumojiRemoteUrl]);
+
+  const closeOnboarding = useCallback(async () => {
+    await markOnboardingAsViewed();
+    await showYumojiScreenIfNotCreated();
+    setShouldShowOnboarding(false);
+  }, [markOnboardingAsViewed, showYumojiScreenIfNotCreated]);
+
+  const onPressOnboardingButton = useCallback(async () => {
+    // If no onboarding screen is defined then we don't want to show it.
+    if (!onboarding?.id) {
+      return;
+    }
+
+    await markOnboardingAsViewed();
+
+    // Navigates the user to the next screen if there is an action defined.
+    if (onboarding.button?.onPress?.sduiAction) {
+      dispatch({
+        type: onboarding.button?.onPress?.sduiAction?.type,
+        payload: { serverPayload: onboarding.button?.onPress?.sduiAction?.payload },
+      });
+
+      return;
+    }
+
+    await showYumojiScreenIfNotCreated();
+
+    setShouldShowOnboarding(false);
+  }, [dispatch, onboarding, markOnboardingAsViewed, showYumojiScreenIfNotCreated]);
+
+  return {
+    shouldShowOnboarding,
+    onPressOnboardingButton,
+    closeOnboarding,
+  };
+};

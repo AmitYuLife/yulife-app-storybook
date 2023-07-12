@@ -95,9 +95,7 @@ export const defaultStyles = StyleSheet.create({
   slotSocketYuScreen: {
     backgroundColor: Colours.neutral.n100,
   },
-  slotSocketOnboarding: {
-    backgroundColor: "#5D4275",
-  },
+  slotSocketOnboarding: {},
   slotSocketInner: {
     borderRadius: Style.adjust(8),
     height: Style.adjust(51),
@@ -110,7 +108,7 @@ export const defaultStyles = StyleSheet.create({
     backgroundColor: Colours.neutral.n50,
   },
   slotSocketInnerOnboarding: {
-    backgroundColor: "#875EAD",
+    borderRadius: Style.adjust(8),
   },
   slotYucoinPowerWrapper: {
     ...defaultSlotYuCoinPowerImageDimensions,
