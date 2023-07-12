@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GQL_QUERY_GET_SUDOKU_BOARDS = gql`
-  query GetSudokuBoard {
-    getSudokuBoard {
+  query GetSudokuBoard($date: String) {
+    getSudokuBoard(date: $date) {
       boards {
         difficulty
         solution
