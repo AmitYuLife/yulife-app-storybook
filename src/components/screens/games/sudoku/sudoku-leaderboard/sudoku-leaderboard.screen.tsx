@@ -9,7 +9,7 @@ import moment from "moment";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { getDuration } from "@components/games/sudoku/sudoku-utils";
 
-import { SUDOKU_DATE_FORMAT } from "../sudoku-game/sudoku.config";
+import { useTranslation } from "@hooks";
 
 interface IProps {
   onBack?: () => void;
@@ -19,7 +19,8 @@ interface IProps {
 }
 
 const SudokuLeaderboardScreen = ({ onBack, componentId, date, leaderboard }: IProps) => {
-  const formattedDate = useMemo(() => moment(date).format(SUDOKU_DATE_FORMAT), [date]);
+  const t = useTranslation(["sudoku.leaderboard.title", "format.date_readable"]);
+  const formattedDate = useMemo(() => moment(date).format(t["format.date_readable"]), [date, t]);
 
   const renderItem = ({ item, index }: { item: GetSudokuLeaderboard_getSudokuLeaderboard; index: number }) => {
     return (
@@ -48,7 +49,7 @@ const SudokuLeaderboardScreen = ({ onBack, componentId, date, leaderboard }: IPr
         onLeftIconPress={onBack}
         heading={
           <View style={styles.heading}>
-            <TextTemplate type="b2b">Daily Yudoku</TextTemplate>
+            <TextTemplate type="b2b">{t["sudoku.leaderboard.title"]}</TextTemplate>
             <TextTemplate type="l1">{formattedDate}</TextTemplate>
           </View>
         }

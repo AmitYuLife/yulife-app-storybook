@@ -28,7 +28,7 @@ export function getTime(nextAvailable: number, format?: TimeType) {
   const secondsOrSecond = seconds > 1 ? t("time_units.seconds") : t("time_units.second");
 
   if (hours < 1 && minutes < 1 && seconds < 1) {
-    return { time: "0s", accessibility: `0 ${t("time_units.seconds")}` };
+    return { time: `0${t("time_units.short_seconds")}`, accessibility: `0 ${t("time_units.seconds")}` };
   }
 
   const paddedHours = padNum(hours);
@@ -44,11 +44,14 @@ export function getTime(nextAvailable: number, format?: TimeType) {
   if (days < 1 && hours < 1) {
     const accessibility = `${paddedMinutes} ${minutesOrMinute} and ${paddedSeconds} ${secondsOrSecond}`;
     if (isShort) {
-      return { time: `${minutes}m`, accessibility };
+      return { time: `${minutes}${t("time_units.short_minutes")}`, accessibility };
     }
 
     if (isMedium) {
-      return { time: `${paddedMinutes}m ${paddedSeconds}s`, accessibility };
+      return {
+        time: `${paddedMinutes}${t("time_units.short_minutes")} ${paddedSeconds}${t("time_units.short_seconds")}`,
+        accessibility,
+      };
     }
 
     return { time: `${paddedMinutes}:${paddedSeconds}`, accessibility };
@@ -57,11 +60,19 @@ export function getTime(nextAvailable: number, format?: TimeType) {
   if (days < 1) {
     const accessibility = `${paddedHours} ${hoursOrHour} ${paddedMinutes} ${minutesOrMinute} and ${paddedSeconds} ${secondsOrSecond}`;
     if (isShort) {
-      return { time: `${paddedHours}h ${paddedMinutes}m`, accessibility };
+      return {
+        time: `${paddedHours}${t("time_units.short_hours")} ${paddedMinutes}${t("time_units.short_minutes")}`,
+        accessibility,
+      };
     }
 
     if (isMedium) {
-      return { time: `${paddedHours}h ${paddedMinutes}m ${paddedSeconds}s`, accessibility };
+      return {
+        time: `${paddedHours}${t("time_units.short_hours")} ${paddedMinutes}${t(
+          "time_units.short_minutes"
+        )} ${paddedSeconds}${t("time_units.short_seconds")}`,
+        accessibility,
+      };
     }
 
     return { time: `${paddedHours}:${paddedMinutes}:${paddedSeconds}`, accessibility };
@@ -69,11 +80,21 @@ export function getTime(nextAvailable: number, format?: TimeType) {
 
   const accessibility = `${days} ${daysOrDay} ${paddedHours} ${hoursOrHour} ${paddedMinutes} ${minutesOrMinute} and ${paddedSeconds} ${secondsOrSecond}`;
   if (isShort) {
-    return { time: `${days}d ${paddedHours}h ${paddedMinutes}m`, accessibility };
+    return {
+      time: `${days}${t("time_units.short_days")} ${paddedHours}${t("time_units.short_hours")} ${paddedMinutes}${t(
+        "time_units.short_minutes"
+      )}`,
+      accessibility,
+    };
   }
 
   if (isMedium) {
-    return { time: `${days}d ${paddedHours}h ${paddedMinutes}m ${paddedSeconds}s`, accessibility };
+    return {
+      time: `${days}${t("time_units.short_days")} ${paddedHours}${t("time_units.short_hours")} ${paddedMinutes}${t(
+        "time_units.short_minutes"
+      )} ${paddedSeconds}${t("time_units.short_seconds")}`,
+      accessibility,
+    };
   }
 
   return { time: `${days} ${daysOrDay} and ${paddedHours}:${paddedMinutes}:${paddedSeconds}`, accessibility };
@@ -118,28 +139,28 @@ export function getStartAndEndDateTimesWithTimezone(startDateTime: string, endDa
 export const minifiedFromNow = (time: moment.Moment): { shortFormat: string; longFormat: string } => {
   const days = time.diff(moment(), "days");
   const shortFormat = days
-    ? `${days}d`
+    ? `${days}${t("time_units.short_days")}`
     : time
         .fromNow()
-        .replace(/an hour/i, "1h")
-        .replace(/ hours/i, "h")
-        .replace(/a minute/i, "1m")
-        .replace(/ minutes/i, "m")
-        .replace(/ a few seconds/, "<1m")
+        .replace(/an hour/i, `1${t("time_units.short_hours")}}`)
+        .replace(/ hours/i, t("time_units.short_hours"))
+        .replace(/a minute/i, `1${t("time_units.short_minutes")}`)
+        .replace(/ minutes/i, t("time_units.short_minutes"))
+        .replace(/ a few seconds/, `<1${t("time_units.short_minutes")}`)
         .replace(/in/i, "")
-        .replace(/a day/i, "1d");
+        .replace(/a day/i, `1${t("time_units.short_day")}`);
 
   const longFormat = days
     ? `${days} days`
     : time
         .fromNow()
-        .replace(/an hour/i, "1 hour")
-        .replace(/ hours/i, "hours")
-        .replace(/a minute/i, "1 minute")
-        .replace(/ minutes/i, "minutes")
-        .replace(/ a few seconds/, "less then a minute")
+        .replace(/an hour/i, `1 ${t("time_units.hour")}`)
+        .replace(/ hours/i, t("time_units.hours"))
+        .replace(/a minute/i, `1 ${t("time_units.minute")}`)
+        .replace(/ minutes/i, t("time_units.minutes"))
+        .replace(/ a few seconds/, t("time_units.less_than_minute"))
         .replace(/in/i, "")
-        .replace(/a day/i, "1 day");
+        .replace(/a day/i, `1 ${t("time_units.day")}`);
 
   return { shortFormat, longFormat };
 };

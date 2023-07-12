@@ -1,5 +1,5 @@
-import React, { memo, useCallback } from "react";
-import { useBackHandler } from "@hooks";
+import React, { memo, useCallback, useMemo } from "react";
+import { useBackHandler, useTranslation } from "@hooks";
 import { Navigation } from "@navigation/main";
 import SudokuLeaderboardEmptyScreen from "./sudoku-leaderboard-empty.screen";
 import { useQuery } from "@apollo/client";
@@ -13,7 +13,6 @@ import { SudokuDifficulty } from "@graphql/_core/schema/globalTypes";
 import SudokuLeaderboardScreen from "./sudoku-leaderboard.screen";
 import moment from "moment";
 import { DATE_FORMAT } from "@utils";
-import { SUDOKU_DATE_FORMAT } from "../sudoku-game/sudoku.config";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 
 interface IProps {
@@ -25,6 +24,10 @@ interface IProps {
 
 const SudokuLeaderboardContainer = ({ componentId, date }: IProps) => {
   const leaderboardDate = date || moment().format(DATE_FORMAT);
+  const t = useTranslation(["format.date_readable"]);
+  const formattedDate = useMemo(() => {
+    return moment(leaderboardDate).format(t["format.date_readable"]);
+  }, [leaderboardDate, t]);
 
   const { data: leaderboard, loading: isLoading } = useQuery<GetSudokuLeaderboard, GetSudokuLeaderboardVariables>(
     GQL_QUERY_GET_SODUKU_LEADERBOARD,
@@ -50,7 +53,7 @@ const SudokuLeaderboardContainer = ({ componentId, date }: IProps) => {
   }
 
   if (!leaderboard?.getSudokuLeaderboard?.length) {
-    return <SudokuLeaderboardEmptyScreen onClose={onClose} date={moment(leaderboardDate).format(SUDOKU_DATE_FORMAT)} />;
+    return <SudokuLeaderboardEmptyScreen onClose={onClose} date={formattedDate} />;
   }
 
   return (

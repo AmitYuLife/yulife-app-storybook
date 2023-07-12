@@ -9,6 +9,7 @@ import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip
 import { SudokuHintPopup } from "./SudokuHintPopup";
 import { DETOX_ENABLED } from "@services/socket";
 import { SUDOKU_HINT, SUDOKU_HINT_TIMER } from "@ids";
+import { useTranslation } from "@hooks";
 
 interface IProps {
   invert: boolean;
@@ -19,6 +20,7 @@ const SudokuHint = ({ invert }: IProps) => {
   const containerRef = useRef<TouchableOpacity>(null);
   const { lastHintTime, selectedCell, endTime, config, getHint } = useSudokuContext();
   const { startTime, penalties, getDurationText, lastPauseTime } = useSudokuContext();
+  const t = useTranslation(["time_units.short_seconds"]);
 
   const updateTime = useCallback(() => {
     const differenceSeconds = config.HINT_COOLDOWN - moment().diff(moment(lastHintTime), "seconds");
@@ -76,7 +78,8 @@ const SudokuHint = ({ invert }: IProps) => {
       {isHintCooldown ? (
         <View style={style} testID={SUDOKU_HINT_TIMER(timeAgo)}>
           <TextTemplate type="b2b" color={color}>
-            {timeAgo}s
+            {timeAgo}
+            {t["time_units.short_seconds"]}
           </TextTemplate>
         </View>
       ) : (

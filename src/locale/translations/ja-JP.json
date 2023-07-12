@@ -2,12 +2,12 @@
   "format": {
     "date_short": "YYYY-MM-DD",
     "date_readable_short": "DD MMM",
-    "date_readable": "年 月 日",
+    "date_readable": "DD MMM YYYY",
     "date_time_readable_short": "HH:mm Do MMM",
     "date_time_readable": "HH:mm Do MMM YYYY",
     "time_short": "HH:mm",
-    "duration": "m[m] s[s］",
-    "duration_long": "h[エイチ] m[エム] s[エス］"
+    "duration": "m[分] s[秒]",
+    "duration_long": "h[時] m[分] s[秒]"
   },
   "validator": {
     "email": "有効なEメールアドレスを入力してください。",
@@ -1156,13 +1156,22 @@
   },
   "time_units": {
     "days": "日",
+    "short_days": "日",
     "day": "日",
+    "short_day": "日",
     "hours": "時間",
-    "hour": "時",
-    "minutes": "議事録",
+    "short_hours": "時間",
+    "hour": "時間",
+    "short_hour": "時間",
+    "minutes": "分",
+    "short_minutes": "分",
     "minute": "微細",
-    "seconds": "おかわり",
-    "second": "セカンド"
+    "short_minute": "分",
+    "seconds": "秒",
+    "short_seconds": "秒",
+    "second": "秒",
+    "short_second": "秒",
+    "less_than_minute": "1分未満"
   },
   "save_image": {
     "save_button": "画像として保存",
@@ -1279,7 +1288,8 @@
     },
     "leaderboard": {
       "empty_description": "Yudokuを完成させて、ランキングで1位になろう！",
-      "start": "試合開始"
+      "start": "試合開始",
+      "title": "デイリーユードク"
     }
   }
 }
