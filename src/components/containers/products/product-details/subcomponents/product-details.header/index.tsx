@@ -58,21 +58,23 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
         </View>
       </View>
       <Benefit
-        style={{ paddingTop: YU_COIN_POWER_HEIGHT + Style.adjust(16) }}
+        style={{ paddingTop: (yuCoinPower ? YU_COIN_POWER_HEIGHT : 0) + Style.adjust(16) }}
         onLayout={handleBenefitLayout}
         benefit={benefit}
       />
-      <View style={[styles.yuCoinPowerWrapper, { bottom: benefitHeight - YU_COIN_POWER_HEIGHT + 1 }]}>
-        <View
-          style={[
-            styles.yuCoinTopHalfBackground,
-            { height: YU_COIN_POWER_HEIGHT / 2, backgroundColor: mapCoverTypeToColorTheme(coverType).primary },
-          ]}
-        />
-        <PressableWithDelay onPress={showYuCoinPowerExplainedOverlay}>
-          <YuCoinPower width={Style.DEVICE_WIDTH} coins={yuCoinPower} />
-        </PressableWithDelay>
-      </View>
+      {!yuCoinPower ? null : (
+        <View style={[styles.yuCoinPowerWrapper, { bottom: benefitHeight - YU_COIN_POWER_HEIGHT + 1 }]}>
+          <View
+            style={[
+              styles.yuCoinTopHalfBackground,
+              { height: YU_COIN_POWER_HEIGHT / 2, backgroundColor: mapCoverTypeToColorTheme(coverType).primary },
+            ]}
+          />
+          <PressableWithDelay onPress={showYuCoinPowerExplainedOverlay}>
+            <YuCoinPower width={Style.DEVICE_WIDTH} coins={yuCoinPower} />
+          </PressableWithDelay>
+        </View>
+      )}
     </View>
   );
 });
