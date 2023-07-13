@@ -75,7 +75,7 @@ const MenuContainer = () => {
           handlePush(currentRoute, ROUTES.debug);
           return null;
         case LINKS.LEADERBOARD:
-          handlePush(currentRoute, ROUTES.leaderboards);
+          handlePush(currentRoute, ROUTES.leaderboardsLegacy);
           return null;
         case LINKS.LOGOUT:
           handlePressLogout();

@@ -99,7 +99,7 @@ const DuelInviteModal: React.FC<IProps> = ({
       if (isDuelsHubInNavigationStack) {
         await Navigation.popTo(ROUTES.duelsHub);
       } else {
-        await Navigation.push(ROUTES.leaderboards, {
+        await Navigation.push(ROUTES.leaderboardsLegacy, {
           component: {
             id: ROUTES.duelsHub,
             name: ROUTES.duelsHub,
