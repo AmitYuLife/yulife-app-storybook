@@ -1,6 +1,6 @@
 import { TextTemplate } from "@atoms";
-import { ArrowIcon } from "@atoms/icon/arrow";
 import { BoxOption } from "@components/molecules";
+import { ArrowButton } from "@components/molecules/arrow-button";
 import { Message } from "@leanplum/react-native-sdk";
 import { Colours, Style } from "@styles";
 import moment from "moment";
@@ -39,7 +39,7 @@ const NotificationItem = ({ onOpen, item }: IProps) => {
             {date} {item?.data?.category ? `• ${item?.data.category}` : ""}
           </TextTemplate>
         </View>
-        <ArrowIcon color={Colours.primary.p600} />
+        <ArrowButton color={Colours.primary.p600} />
       </>
     </BoxOption>
   );

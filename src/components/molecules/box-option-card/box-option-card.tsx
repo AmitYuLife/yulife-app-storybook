@@ -1,12 +1,12 @@
 import { StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { Image, TextTemplate } from "@atoms";
-import { ArrowIcon } from "@atoms/icon/arrow";
 import { default as BoxOption } from "../box-option/box-option";
 import { RemoteImage, SduiAction } from "@graphql/_core/schema";
 import { Style, Colours } from "@styles";
 import { ComponentProps, useRef, useState } from "react";
 import { Title } from "./box-option-card.title";
+import { ArrowButton } from "../arrow-button";
 
 interface Props {
   title: string;
@@ -64,7 +64,7 @@ export const BoxOptionCard = ({
         </View>
         {!onPress ? null : (
           <View style={styles.arrowWrapper}>
-            <ArrowIcon color={Colours.primary.p600} />
+            <ArrowButton color={Colours.primary.p600} />
           </View>
         )}
       </View>

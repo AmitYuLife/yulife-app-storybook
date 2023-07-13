@@ -1,10 +1,10 @@
 import React, { memo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
-import { ArrowIcon } from "@atoms/icon/arrow";
 import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { TEXT_TEMPLATE } from "@ids";
+import { ArrowButton } from "@components/molecules/arrow-button";
 
 interface IProps {
   title: string;
@@ -29,7 +29,7 @@ const GameSettingsItem = ({ title, description, value, onPress }: IProps) => (
           {value}
         </TextTemplate>
       </View>
-      <ArrowIcon color={Colours.primary.p600} />
+      <ArrowButton color={Colours.primary.p600} />
     </View>
   </TouchableOpacityWithDelay>
 );

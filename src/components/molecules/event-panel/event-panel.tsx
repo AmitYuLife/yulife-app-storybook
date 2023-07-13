@@ -5,7 +5,6 @@ import React, { memo, useCallback, useMemo } from "react";
 import { getTheme } from "@theme";
 import { Colours, Style } from "@styles";
 import styles from "./event-panel.styles";
-import { ArrowIcon } from "@atoms/icon/arrow";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { Button, PressableWithDelay } from "@molecules";
@@ -14,6 +13,7 @@ import { Image, ProgressBar, TextTemplate } from "@atoms";
 import { updateUserGoal } from "@redux/user/user.actions";
 import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
+import { ArrowButton } from "../arrow-button";
 
 interface IEventPanelProps {
   event: IEvent;
@@ -83,7 +83,7 @@ const EventPanel = ({ isDisabled, event, componentId, width, onJoin, onLayout }:
               {event.title}
             </TextTemplate>
             {event.joined ? (
-              <ArrowIcon color={Colours.neutral.white} intent={isDisabled ? "secondary" : "primary"} />
+              <ArrowButton color={Colours.neutral.white} intent={isDisabled ? "secondary" : "primary"} />
             ) : (
               <Button onPress={onJoinPress} size="ExtraSmall" shadowColor="transparent" label="Join" />
             )}

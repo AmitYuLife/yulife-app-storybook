@@ -7,7 +7,7 @@ import { ARROW_BUTTON } from "@ids";
 type ArrowDirection = "right" | "down" | "left";
 type ArrowIntent = "primary" | "secondary" | "transparent";
 
-interface IProps {
+export interface IArrowIconProps {
   width?: number;
   height?: number;
   color?: string;
@@ -22,13 +22,12 @@ export const ArrowIcon = memo(
     color = Colours.primary.p600,
     intent = "transparent",
     direction = "right",
-  }: IProps) => {
+  }: IArrowIconProps) => {
     const arrow = useMemo((): JSX.Element => {
       switch (intent) {
         case "primary":
           return (
             <>
-              <Path d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12Z" fill="#E30D76" />
               <Path
                 fill={color}
                 fillRule="evenodd"
@@ -41,12 +40,6 @@ export const ArrowIcon = memo(
         case "secondary":
           return (
             <>
-              <Path
-                strokeWidth={1}
-                stroke="#E30D76"
-                fill="transparent"
-                d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12Z"
-              />
               <Path
                 fill="#E30D76"
                 fillRule="evenodd"

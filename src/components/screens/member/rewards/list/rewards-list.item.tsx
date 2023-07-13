@@ -1,13 +1,13 @@
 import React, { memo } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
-import { ArrowIcon } from "@atoms/icon/arrow";
 import { BoxOption } from "@molecules";
 import { REWARD_ITEM, LOCKED_REWARD_ITEM } from "@ids";
 import { Colours, Style } from "@styles";
 import { GetMobileRewardsList_data_list } from "@graphql/_core/schema";
 import Lock from "./subcomponents/lock";
 import RewardPill from "./subcomponents/pill";
+import { ArrowButton } from "@components/molecules/arrow-button";
 
 type RewardsListItem = GetMobileRewardsList_data_list & {
   onPress: () => void;
@@ -42,7 +42,7 @@ const _RewardsListItem = ({ onPress, imageUrl, name, description, pills, isLocke
         </TextTemplate>
       </View>
       <View>
-        <ArrowIcon color={isLocked ? Colours.neutral.n800 : Colours.primary.p600} />
+        <ArrowButton color={isLocked ? Colours.neutral.n800 : Colours.primary.p600} />
       </View>
       <View style={styles.pillsWrapper}>
         {pills.map((p) => (

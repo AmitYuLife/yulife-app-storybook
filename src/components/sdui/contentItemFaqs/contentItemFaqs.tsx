@@ -9,7 +9,7 @@ import {
   GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemPersonalProductFaqs_faqs as GqlDocument,
 } from "@graphql/_core/schema";
 import { ProductStepDetachedNavigationContext } from "@components/containers/products/product-step/product-step-detached-navigation.context";
-import { ArrowIcon } from "@atoms/icon/arrow";
+import { ArrowButton } from "@components/molecules/arrow-button";
 
 type Props = GqlDocuments;
 
@@ -76,7 +76,7 @@ export const ContentItemFaqs = memo((props: Props) => {
                   <TextTemplate type="b2b">{item.accessButtonText}</TextTemplate>
                 </View>
                 <View style={styles.right}>
-                  <ArrowIcon color={Colours.primary.p600} />
+                  <ArrowButton color={Colours.primary.p600} />
                 </View>
               </PressableWithDelay>
             ))}
