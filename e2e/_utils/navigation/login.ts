@@ -4,6 +4,7 @@ import { completeOnboardingIntro, navigateViaID, navigateViaText } from "./commo
 import { authoriseFitkit } from "@socket";
 import { CUSTOMER_1, AUTH_1 } from "@data";
 import { tapText, wait } from "@navigation";
+import { getLocalisedString as t } from "@i18n";
 
 
 export const loginAsUser = (
@@ -14,7 +15,7 @@ export const loginAsUser = (
 ) => async () => {
     console.log("CUSTOMER ID: ", customer.data.customerId)
     await authoriseFitkit(fitkitAuth)()
-    await selectRegionIfVissible(region)();
+    await selectRegionIfVisible(region)();
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     await loginField.tap();
@@ -45,9 +46,9 @@ export const loginAsPLIUser = (
     await navigateViaText("Next") // sign-up reward screen
     await dismissPLIModalIfVisible()
     await dismissNewLooksModalIfVisible()
-    await tapText("Next")()
-    await tapText("Next")()
-    await tapText("Let's go")()
+    await tapText(t("Next"))()
+    await tapText(t("Next"))()
+    await tapText(t("Let's go"))()
 }
 
 
@@ -65,7 +66,7 @@ export const restartAndLoginToTab = (tab?: "yucoin" | "quests" | "leaderboard" |
 
 export const dismissPLIModalIfVisible = async () => {
     try {
-        await expect(element(by.text("Personal Insurance"))).toBeVisible()
+        await expect(element(by.text(t("Personal Insurance")))).toBeVisible()
         await navigateViaID(BUTTON_CLOSE)
     } catch (e) {
 
@@ -74,9 +75,9 @@ export const dismissPLIModalIfVisible = async () => {
 
 export const dismissNewLooksModalIfVisible = async () => {
     try {
-        await expect(element(by.text("New looks!"))).toBeVisible()
-        await expect(element(by.text("It’s time for a Yumoji makeover. You can now customise your appearance based on your level in the Yuniverse, and even mix and match! Unlock new items every 50 levels, and upgrade your Yumoji."))).toBeVisible()
-        await navigateViaText("Awesome")
+        await expect(element(by.text(t("New looks!")))).toBeVisible()
+        await expect(element(by.text(t("It’s time for a Yumoji makeover. You can now customise your appearance based on your level in the Yuniverse, and even mix and match! Unlock new items every 50 levels, and upgrade your Yumoji.")))).toBeVisible()
+        await navigateViaText(t("Awesome"))
     } catch (e) {
 
     }
@@ -84,9 +85,9 @@ export const dismissNewLooksModalIfVisible = async () => {
 
 export const dismissStreakIfVisible = async () => {
     try {
-        await expect(element(by.text("Start your Streak"))).toBeVisible()
-        await expect(element(by.text("Later"))).toBeVisible()
-        await navigateViaText("Later")
+        await expect(element(by.text(t("Start your Streak")))).toBeVisible()
+        await expect(element(by.text(t("Later")))).toBeVisible()
+        await navigateViaText(t("Later"))
     } catch (e) {
 
     }
@@ -96,7 +97,7 @@ export const loginOnly = (customer: any, auth: any, fitkitAuth?: boolean, region
     if (fitkitAuth) {
         await authoriseFitkit(fitkitAuth)()
     }
-    await selectRegionIfVissible(region)();
+    await selectRegionIfVisible(region)();
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     await loginField.tap();
@@ -106,16 +107,16 @@ export const loginOnly = (customer: any, auth: any, fitkitAuth?: boolean, region
     await navigateViaID(BUTTON_LOGIN(false))
     await dismissNewLooksModalIfVisible()
 }
-export const loginAndCollectSignupBonus = (customer: any, auth: any, fitkitAuth?: boolean)=> async()=>{
+export const loginAndCollectSignupBonus = (customer: any, auth: any, fitkitAuth?: boolean) => async () => {
     await loginOnly(customer, auth, fitkitAuth)()
-    await navigateViaText("Next")
+    await navigateViaText(t("Next"))
 }
 export const continueLogin = async () => {
-    await navigateViaText("Next")
+    await navigateViaText(t("Next"))
     await dismissStreakIfVisible()
 }
 
-export const continueLoginAfterSignupBonus = async()=>{
+export const continueLoginAfterSignupBonus = async () => {
     await dismissStreakIfVisible()
 }
 
@@ -126,11 +127,11 @@ export const loginToYuScreen = (skipIntro = true, customer = CUSTOMER_1, auth = 
     }
 }
 
-export const selectRegionIfVissible = (region: string) => async () => {
+export const selectRegionIfVisible = (region: string) => async () => {
     try {
-        await expect(element(by.text("Select your company location"))).toBeVisible();
+        await expect(element(by.text(t("Select your company location")))).toBeVisible();
         await tapText(region)()
-    } catch (e) {
+    } catch (err) {
 
     }
 }

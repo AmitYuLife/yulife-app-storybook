@@ -5,6 +5,7 @@ import {
   VIDEO_PLAYER, VIDEO_LOGO, MEDITATION_PARTNER_LOGO, dismissNotificationScreenIfVisible
 } from "@navigation"
 import { sendSteps } from "@socket";
+import { getLocalisedString as t } from "@i18n";
 
 export const onChallengeComplete = (stepCount: number, level = 1) => async () => {
   const steps = `${stepCount} steps`
@@ -45,9 +46,9 @@ export const meditationAppModalVisible = () => async () => {
 
 export const startChallenge = (challengeTile: string,) => async () => {
   await navigateViaID(CHALLENGE_TILE(challengeTile))
-  await navigateViaText("Take challenge")
+  await navigateViaText(t("Take challenge"))
   try {
-    await navigateViaText("maybe later")
+    await navigateViaText(t("maybe later"))
   } catch (e) {
     await idVisible(CHALLENGE_PROGRESS_BAR)()
   }

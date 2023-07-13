@@ -5,6 +5,7 @@ import * as when from "./_steps/when";
 import * as scenario from "./_steps/scenario";
 import * as ids from "@ids";
 import * as data from "@data";
+import { getLocalisedString as t } from "@i18n";
 
 Feature("As a user I can get past the login screen", async () => {
 
@@ -37,19 +38,19 @@ Feature("As a user I can get past the login screen", async () => {
                     Then("I should see the sign up reward screen", then.rewardScreenVisible);
                     When("I press 'next'", when.tapNext, async () => {
                         Then("I should see 200 coins in the top right hand corner", then.givenCoinsTopRight(200));
-                        Then("I should see 200 YuCoin today", then.textVisible("200 YuCoin today"))
+                        Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")} ${t("today")}`))
                         Then("I should see the i icon near the Coin", then.idVisible(ids.YUCOIN_POWER_INFO))
                         When("I tap the YuCoins", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
-                            Then("I should see 200 YuCoin today", then.textVisible("200 YuCoin"))
+                            Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")}`))
                             When("I close this screen", when.tapID(ids.BACK_BUTTON), async () => {
-                                Then("I should see 200 YuCoin today", then.textVisible("200 YuCoin today"))
+                                Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")}`))
                                 Then("I should Not see InfoIcon anymore", then.idNotVisible(ids.YUCOIN_POWER_INFO));
                             })
                         })
                     })
                 })
             })
-        }); 
+        });
     });
 
     Scenario("I can login with correct login details and see the correct steps sent", scenario.start, async () => {
@@ -74,18 +75,18 @@ Feature("As a user I can get past the login screen", async () => {
     });
 
     Scenario("I can view all unauthenticated screens", scenario.start, async () => {
-        Given("I select region United Kingdom", given.selectRegionIfVissible("United Kingdom"), async () => {
+        Given("I select region United Kingdom", given.selectRegionIfVisible("United Kingdom"), async () => {
             Given("I am on the login screen", given.onLoginScreen, async () => {
-                When("I press forgot password", when.tapText("Need help logging in?"), async () => {
+                When("I press forgot password", when.tapText(t("Need help logging in?")), async () => {
                     Then("I should be on the forgot password screen", then.onPasswordHelp)
                 })
                 When("I enter an email", when.typeViaID(ids.INPUT_RESET_PASSWORD, "test@email.com"), async () => {
-                    When("I tap 'email me...' ", when.tapText("Email me a magic link"), async () => {
-                        Then("I should be on the email sent screen", then.textVisible("Email sent"))
-                        When("I press back", when.tapText("Back"), async () => {
+                    When("I tap 'email me...' ", when.tapText(t("Email me a magic link")), async () => {
+                        Then("I should be on the email sent screen", then.textVisible(t("Email sent")))
+                        When("I press back", when.tapText(t("Back")), async () => {
                             Then("I should be on the forgot password screen", then.onPasswordHelp)
                         })
-                        When("I press back", when.tapText("Back"), async () => {
+                        When("I press back", when.tapText(t("Back")), async () => {
                             Then("I should be on the login screen", given.onLoginScreen)
                         })
                     })
@@ -96,16 +97,16 @@ Feature("As a user I can get past the login screen", async () => {
 
     Scenario("My account can be locked when I enter a password incorrectly 5 times", scenario.start, async () => {
         Given("I enter an incorrect password one time", given.enterPasswordIncorrectly(1), async () => {
-            Then("I should not see the account locked text", then.textNotVisible("Account is locked. Try again later."))
+            Then("I should not see the account locked text", then.textNotVisible(t("Account is locked. Try again later.")))
             Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
             Given("I enter an incorrect password five times", given.enterPasswordIncorrectly(5), () => {
-                Then("I should see an error message saying my account is locked", then.textVisible("Account is locked. Try again later."))
+                Then("I should see an error message saying my account is locked", then.textVisible(t("Account is locked. Try again later.")))
                 When("I enter the correct password and login", when.loginOnly(data.CUSTOMER_4, data.AUTH_4), async () => {
                     Then("I should still be on the login screen", then.idVisible(ids.INPUT_LOGIN_EMAIL))
-                    Then("I should still see an error message saying my account is locked", then.textVisible("Account is locked. Try again later."))
+                    Then("I should still see an error message saying my account is locked", then.textVisible(t("Account is locked. Try again later.")))
                     When("I reload the app", when.reloadOnly, async () => {
                         When("I enter enter the correct details", when.loginOnly(data.CUSTOMER_4, data.AUTH_4), async () => {
-                            Then("I should still see the account locked message", then.textVisible("Account is locked. Try again later."))
+                            Then("I should still see the account locked message", then.textVisible(t("Account is locked. Try again later.")))
                         })
                     })
                 })
@@ -115,11 +116,12 @@ Feature("As a user I can get past the login screen", async () => {
 
     Scenario("As an archived user, I should not be able to login", scenario.start, async () => {
         Given("I login as an archived user", given.loginOnly(data.CUSTOMER_ARCHIVED, data.AUTH_ARCHIVED), async () => {
-            Then("I should see 'Sorry'!", then.textVisible("Sorry!"))
-            Then("I should see copy saying I can't use the app", then.textVisible("You are not able to use this app at the moment."))
+            Then("I should see 'Sorry'!", then.textVisible(t("Sorry!")))
+            Then("I should see copy saying I can't use the app", then.textVisible(t("You are not able to use this app at the moment.")))
         })
     })
 
+    // TODO: Finish localising this scenario `Then` steps will fail without SKIP_ASSERTIONS for locale other than en-GB
     Scenario("I can login with correct login details and see the correct data for every passive/active activity that a user has engaged with", scenario.start, async () => {
         Given("I have authorised fitkit and done 10 steps today", given.authoriseFitkit(), async () => {
             Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_2, data.AUTH_2), async () => {
@@ -132,7 +134,7 @@ Feature("As a user I can get past the login screen", async () => {
                             When("I update the screen to see today activity", given.triggerAppUpdateState, async () => {
                                 Then("I should see 11.3 km done today", then.idVisible(ids.CYCLING_COUNT("11.3 km"), 2000));
                                 Then("I should see 13 min mindful done today", then.idVisible(ids.MINDFUL_COUNT("13 min")));
-                                Then("I should see the amount of yucoin I earned today", then.textVisible("360 YuCoin today"))
+                                Then("I should see the amount of yucoin I earned today", then.textVisible("360 YuCoin today", 2000))
                                 Then("I should see the i icon near the Coin", then.idVisible(ids.YUCOIN_POWER_INFO))
                             })
                         })
@@ -142,7 +144,7 @@ Feature("As a user I can get past the login screen", async () => {
                     })
                     When("I go back this screen", when.tapID(ids.BACK_BUTTON), async () => {
                         Then("I should Not see InfoIcon anymore", then.idNotVisible(ids.YUCOIN_POWER_INFO));
-                        When("I tap on YuCoin today text", when.tapText("360 YuCoin today"), async () => {
+                        When("I tap on YuCoin today text", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
                             Then("I should see correct data 20 steps, 11.3 km, 13 min mindful", then.onTodaysYucoin(20, "11.3 / 9.6 km", 13))
                         })
                     })
@@ -154,12 +156,12 @@ Feature("As a user I can get past the login screen", async () => {
                             Then("I should see the daily steps screen", then.onDailySteps())
                         })
                     })
-                    When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
-                        When("I tap settings", when.tapMenuItem("Settings"), async () => {
+                    When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 5000), async () => {
+                        When("I tap settings", when.tapMenuItem(t("Settings")), async () => {
                             Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500))
                         })
                     })
-                    When("I scroll to the description if neeced", when.swipeFromText("Leaderboards", "up", "slow", 0.2), async () => {
+                    When("I scroll to the description if neeced", when.swipeFromText(t("Leaderboards"), "up", "slow", 0.2), async () => {
                         Then("I should see Measurment cycling title", then.idVisible(ids.TEXT_TEMPLATE("Measurement (Cycling)")))
                         Then("I should see Measurment cycling description", then.idVisible(ids.TEXT_TEMPLATE("Change between the imperial (miles) and metric (kilometers) system.")))
                         Then("I should see Measurment method used", then.idVisible(ids.TEXT_TEMPLATE("km")))

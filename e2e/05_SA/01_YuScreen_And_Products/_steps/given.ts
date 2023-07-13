@@ -5,8 +5,8 @@ import * as when from "./when";
 import { sendReduxEvent } from "@socket";
 import { navigateViaText, navigation, tapText } from "@navigation"
 import { AUTH_1, CUSTOMER_1, CUSTOMER_4 } from "@data";
-import { selectRegionIfVissible } from "_utils/navigation/login";
-export { selectRegionIfVissible } from "_utils/navigation/login";
+import { selectRegionIfVisible } from "_utils/navigation/login";
+export { selectRegionIfVisible } from "_utils/navigation/login";
 
 export const {
     loginOnly,

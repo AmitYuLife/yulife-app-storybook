@@ -2,6 +2,7 @@ import { dataManager } from "@yu-life/yulife-bdd-framework";
 import { BUTTON_CLOSE_HEADER, DAILYSTEP_SCREEN_COIN, NAV_BAR } from '@ids';
 import { dismissNewLooksModalIfVisible } from "./login";
 import moment from "moment";
+import { getLocalisedString as t } from "@i18n";
 
 export const restart = async (locale = "en-GB", dm = dataManager) => {
     await device.terminateApp();
@@ -38,7 +39,7 @@ export const start = async () => {
 
 export const startWithoutLaunch = (locale = "en-GB") => async () => {
     await dataManager.reseed();
-    await restart(locale);
+    await restart(process.env.TARGET_LOCALE || locale);
 }
 
 export const reloadAppToTab = (tab: "yucoin" | "quests" | "leaderboard" | "rewards") => async () => {
@@ -350,12 +351,12 @@ export const tapIDAtIndex = (id: string, index = 0, waitTime = 0) => async () =>
 export const tapTextAtIndex = (text: string, index = 0, waitTime = 0) => async () => {
     const target = element(by.text(text)).atIndex(index)
     await waitFor(target).toBeVisible().withTimeout(waitTime)
-    await target.tap({ x:0, y:0 })
+    await target.tap({ x: 0, y: 0 })
 }
 
 export const minimiseAndReopenApp = async () => {
     await device.sendToHome();
-    await device.launchApp({newInstance: false});
+    await device.launchApp({ newInstance: false });
 }
 
 export const daysRemainingOfWeek = () => {
@@ -379,8 +380,8 @@ export const tapYuCoinIcon = async () => {
 
 export const dismissNotificationScreenIfVisible = async () => {
     try {
-        await expect(element(by.text("don't miss out"))).toBeVisible()
-        await tapText("maybe later")()
+        await expect(element(by.text(t("don't miss out")))).toBeVisible()
+        await tapText(t("maybe later"))()
     } catch (e) {
 
     }

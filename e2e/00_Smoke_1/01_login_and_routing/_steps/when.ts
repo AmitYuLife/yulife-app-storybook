@@ -2,6 +2,7 @@ import * as ids from "@ids";
 export { sendSteps, authoriseFitkit } from "@socket";
 import { navigation } from "@navigation"
 import { screens } from "@appScreens"
+import { getLocalisedString as t } from "@i18n";
 
 export const {
     tapText,
@@ -30,13 +31,13 @@ export const tapOnLogin = async (): Promise<void> => {
 };
 
 export const pressSkipOnHealth = async (): Promise<void> => {
-    const target = element(by.text("Skip this step"));
+    const target = element(by.text(t("Skip this step")));
     await waitFor(target).toExist().withTimeout(5000);
     await target.tap();
 };
 
 export const collectOnboardingYucoin = async (): Promise<void> => {
-    const next = element(by.text("Next"));
+    const next = element(by.text(t("Next")));
     await waitFor(next).toExist().withTimeout(5000);
     await next.tap();
 };
@@ -98,13 +99,13 @@ export const clickBackToMap = async (): Promise<void> => {
 };
 
 export const clickOnGotIt = async (): Promise<void> => {
-    const target = element(by.text("Got it"));
+    const target = element(by.text(t("Got it")));
     await waitFor(target).toExist().withTimeout(5000);
     await target.tap();
 };
 
 export const clickOnBack = async (): Promise<void> => {
-    const target = element(by.text("back"));
+    const target = element(by.text(t("back")));
     await waitFor(target).toExist().withTimeout(5000);
     await target.tap();
 };
