@@ -10,6 +10,7 @@ import { dataManager } from "@yu-life/yulife-bdd-framework";
 import * as dataUK from "@data";
 import * as dataUS from "./04_USA/_data";
 import * as dataSA from "./05_SA/_data";
+import { initialiseTranslationMapping } from "@i18n";
 
 require("dotenv").config({
   path: path.resolve(__dirname, "..", ".env.e2e"),
@@ -38,6 +39,7 @@ before(async () => {
   await socketServer.startServer();
   console.log("Adding data...", Object.values(dataToInsert).length);
   dataManager.addData(dataToInsert as any);
+  await initialiseTranslationMapping();
   await dataManager.connect(API_URL, true);
   await dataManager.resetData();
   await dataManager.reseed();

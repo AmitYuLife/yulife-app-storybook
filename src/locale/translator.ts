@@ -2,6 +2,7 @@ import * as RNLocalize from "react-native-localize";
 import AsyncStorage from "@react-native-community/async-storage";
 import Polyglot from "node-polyglot";
 import { Language } from "./types";
+import { DETOX_ENABLED } from "../services/socket";
 
 type Translation = {
   name: string;
@@ -84,7 +85,7 @@ class Translator {
     }
 
     // check the best available language
-    const availableLanguage = RNLocalize.findBestAvailableLanguage(this.getAvailableLocales());
+    const availableLanguage = RNLocalize.findBestAvailableLanguage(this.getAvailableLocales(DETOX_ENABLED));
 
     if (availableLanguage?.languageTag) {
       await this.setLocale(availableLanguage.languageTag as Language, true);

@@ -5,8 +5,8 @@ import * as when from "./when";
 import { sendReduxEvent } from "@socket";
 import { navigateViaText, navigation, tapText } from "@navigation"
 import { AUTH_1, CUSTOMER_1, CUSTOMER_4 } from "@data";
-import { selectRegionIfVissible } from "_utils/navigation/login";
-export { selectRegionIfVissible } from "_utils/navigation/login";
+import { selectRegionIfVisible } from "_utils/navigation/login";
+import { getLocalisedString as t } from "@i18n";
 
 export const {
     loginOnly,
@@ -16,7 +16,7 @@ export const {
 export const enterInvalidCredentials = async (region = "United Kingdom"): Promise<void> => {
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
-    await selectRegionIfVissible(region)();
+    await selectRegionIfVisible(region)();
     await loginField.tap();
     await loginField.replaceText("someone@yulife.com");
     await passwordField.tap();
@@ -26,7 +26,7 @@ export const enterInvalidCredentials = async (region = "United Kingdom"): Promis
 export const enterValidCredentials = (user = CUSTOMER_1, auth = AUTH_1, region = "United Kingdom") => async (): Promise<void> => {
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
-    await selectRegionIfVissible(region)();
+    await selectRegionIfVisible(region)();
     await loginField.tap();
     await loginField.replaceText(user.data.email);
     await passwordField.tap();
@@ -53,10 +53,10 @@ export const loginToDailySteps = async (): Promise<void> => {
 }
 
 export const onLoginScreen = async () => {
-    const welcomeLabel = element(by.text("Welcome!"));
+    const welcomeLabel = element(by.text(t("Welcome!")));
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
-    const needHelp = "Need help logging in?"
+    const needHelp = t("Need help logging in?")
 
     await expect(element(by.text(needHelp))).toBeVisible()
     await expect(welcomeLabel).toBeVisible()
@@ -69,7 +69,7 @@ export const enterPasswordIncorrectly = (attempts: number, region = "United King
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     const loginButton = element(by.id(BUTTON_LOGIN(false)));
 
-    await selectRegionIfVissible(region)();
+    await selectRegionIfVisible(region)();
     await loginField.tap();
     await loginField.replaceText(CUSTOMER_4.data.email);
     await passwordField.tap();
@@ -84,3 +84,5 @@ export const enterPasswordIncorrectly = (attempts: number, region = "United King
 export const triggerAppUpdateState = async (): Promise<void> => {
     await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: "active" });
 }
+
+export { selectRegionIfVisible } from "_utils/navigation/login";

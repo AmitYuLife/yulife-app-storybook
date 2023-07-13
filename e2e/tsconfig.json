@@ -46,7 +46,10 @@
             ],
             "@dataManager": [
                 "./dataManager"
-            ]
+            ],
+            "@i18n": [
+                "./_utils/i18n/index"
+            ],
         }
     },
     "include": [
