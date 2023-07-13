@@ -46,8 +46,8 @@ export const loginAsPLIUser = (
     await navigateViaText("Next") // sign-up reward screen
     await dismissPLIModalIfVisible()
     await dismissNewLooksModalIfVisible()
-    await tapText(t("Next"))()
-    await tapText(t("Next"))()
+    await tapText("Next")()
+    await tapText("Next")()
     await tapText(t("Let's go"))()
 }
 
