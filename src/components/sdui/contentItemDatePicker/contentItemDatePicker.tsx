@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { View } from "react-native";
@@ -8,11 +8,16 @@ import { TextTemplate } from "@atoms";
 import { TertiaryButton } from "@molecules";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { DATE_INPUT, DATE_PICKER } from "@ids";
+import { useSduiOnChange } from "@components/sdui/_hooks/useSduiOnChange";
 interface IProps extends GqlDatePicker {
   onChange?: (value: string) => void;
 }
 
 type Props = IProps;
+
+const DISPLAY_DATE_FORMAT = "DD / MM / YYYY";
+
+const formatDate = (date: string, dateFormat: string) => moment(date, dateFormat).format(DISPLAY_DATE_FORMAT);
 
 export const ContentItemDatePicker = memo((props: Props) => {
   const {
@@ -30,17 +35,16 @@ export const ContentItemDatePicker = memo((props: Props) => {
     initialDate,
     styles,
   } = props;
-  const displayDateFormat = "DD / MM / YYYY";
 
   const [showPicker, setShowPicker] = useState(false);
-  const [date, setDate] = useState(initialDate ? moment(initialDate, dateFormat).format(displayDateFormat) : null);
+  const [date, setDate] = useState(initialDate ? formatDate(initialDate, dateFormat) : null);
 
   const handleChange = useCallback(
     (newDate: Date) => {
       setShowPicker(false);
 
       if (newDate) {
-        const dateStringShow = moment(newDate).format(displayDateFormat);
+        const dateStringShow = moment(newDate).format(DISPLAY_DATE_FORMAT);
         const dateStringPass = moment(newDate).format(dateFormat);
 
         setDate(dateStringShow);
@@ -58,6 +62,17 @@ export const ContentItemDatePicker = memo((props: Props) => {
     setShowPicker(false);
   }, []);
 
+  useEffect(() => {
+    if (!initialDate) {
+      return;
+    }
+
+    const formattedInitialDate = formatDate(initialDate, dateFormat);
+    if (formattedInitialDate !== date) {
+      setDate(formattedInitialDate);
+    }
+  }, [date, initialDate]);
+
   return (
     <View style={mapServerStyles(styles)}>
       {!label ? null : (
@@ -72,13 +87,13 @@ export const ContentItemDatePicker = memo((props: Props) => {
         iconUri={buttonLeftIcon.uri}
         rightIconUri={buttonRightIcon.uri}
         onPress={handlePress}
-        label={date || displayDateFormat}
+        label={date || DISPLAY_DATE_FORMAT}
         tertiarySubLabel={subLabel}
         wrapperStyle={mapServerStyles(buttonStyles)}
         testID={DATE_INPUT}
       />
       <DateTimePicker
-        date={date ? moment(date, displayDateFormat).toDate() : moment().toDate()}
+        date={date ? moment(date, DISPLAY_DATE_FORMAT).toDate() : moment().toDate()}
         mode="date"
         display="spinner"
         isVisible={showPicker}
@@ -92,4 +107,11 @@ export const ContentItemDatePicker = memo((props: Props) => {
       />
     </View>
   );
+});
+
+export const ContentItemDatePickerSdui = memo((props: Props) => {
+  const { answerKey } = props;
+  const { value, onChange } = useSduiOnChange<string>(answerKey);
+
+  return <ContentItemDatePicker {...props} initialDate={value} onChange={onChange} />;
 });
