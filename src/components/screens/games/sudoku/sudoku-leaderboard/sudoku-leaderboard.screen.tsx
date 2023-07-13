@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { GetSudokuLeaderboard_getSudokuLeaderboard } from "@graphql/_core/schema";
 import { FlashList } from "@shopify/flash-list";
-import { ListRankItem } from "@components/containers/member/leaderboard/items";
+import { ListRankItem } from "@components/containers/member/leaderboard/_legacy/items";
 import { TextTemplate } from "@atoms";
 import moment from "moment";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";

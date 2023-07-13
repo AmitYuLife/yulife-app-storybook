@@ -26,9 +26,12 @@ export const ROUTES = {
   challengesHistoryNew: "yulife.member.ActivityHistoryNew",
   duelsHub: "yulife.member.DuelsHub",
   duelsSearch: "yulife.member.DuelsSearch",
-  leaderboards: "yulife.member.Leaderboards",
-  leaderboardInfo: "yulife.member.LeaderboardInfo",
-  leaderboardsList: "yulife.member.LeaderboardsList",
+
+  // leaderboard legacy
+  leaderboardsLegacy: "yulife.member.Leaderboards.legacy",
+  leaderboardInfoLegacy: "yulife.member.LeaderboardInfo.legacy",
+  leaderboardsListLegacy: "yulife.member.LeaderboardsList.legacy",
+  // end
   chooseLeaderboard: "yulife.member.chooseLeaderboard",
   debug: "yulife.member.Debug",
   yuScreen: "yulife.member.Yuscreen",

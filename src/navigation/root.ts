@@ -12,7 +12,6 @@ import { IReduxState } from "@redux/_core/reducers";
 import { updateCurrentRoute } from "@redux/app/app.actions";
 import { Layout } from "react-native-navigation";
 
-// eslint-disable-next-line
 const icon = require("@assets/icons/clock.png");
 
 const bottomTab = {
@@ -90,10 +89,10 @@ export const labels = [
     },
   },
   {
-    id: ROUTES.leaderboards,
+    id: ROUTES.leaderboardsLegacy,
     name: "leaderboard",
     onPress: () => {
-      Navigation.mergeOptions(ROUTES.leaderboards, {
+      Navigation.mergeOptions(ROUTES.leaderboardsLegacy, {
         bottomTabs: {
           currentTabIndex: 3,
         },
@@ -177,8 +176,8 @@ export async function setAuthenticatedRoot(dispatchAuthenticatedEvent?: () => vo
                   children: [
                     {
                       component: {
-                        id: ROUTES.leaderboards,
-                        name: ROUTES.leaderboards,
+                        id: ROUTES.leaderboardsLegacy,
+                        name: ROUTES.leaderboardsLegacy,
                         options: { bottomTabs },
                       },
                     },
@@ -369,7 +368,7 @@ export async function setDuelsScreen(currentRoute: string) {
   }
 
   await labels[3].onPress();
-  await pushToScreen(ROUTES.leaderboards, {
+  await pushToScreen(ROUTES.leaderboardsLegacy, {
     component: {
       id: ROUTES.duelsHub,
       name: ROUTES.duelsHub,

@@ -20,7 +20,7 @@ import { useSelector } from "react-redux";
 import {
   showExistingDuelAlert,
   validDuels,
-} from "../leaderboard/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog.helpers";
+} from "../leaderboard/_legacy/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog.helpers";
 import { useBackHandler, useDebouncedQuery } from "@hooks";
 import { SearchInput, SearchList } from "@molecules";
 import DuelsSearchItem from "./subcomponents/search-item";

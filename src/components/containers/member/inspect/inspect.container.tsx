@@ -9,7 +9,7 @@ import { GQL_QUERY_GET_STATISTICS } from "@graphql/statistics/getStatistics.gql"
 import { GetStatistics, GetDuels } from "@graphql/_core/schema";
 import { useBackHandler } from "@hooks";
 import { GQL_QUERY_GET_DUELS } from "@graphql/duels";
-import { onDuelPress } from "../leaderboard/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog.helpers";
+import { onDuelPress } from "../leaderboard/_legacy/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog.helpers";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 
 interface IProps {

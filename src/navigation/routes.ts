@@ -150,22 +150,27 @@ const routesForRegistration = [
     name: ROUTES.yuniversityCourses,
     component: require("../components/containers/member/yuniversity/yuniversity-courses.container").default,
   },
+
+  // Leaderboard legacy
   {
     hasMenu: true,
     renderAfterMs: 450,
-    name: ROUTES.leaderboards,
-    component: require("../components/containers/member/leaderboard/active-leaderboard/active-leaderboard.container")
-      .default,
+    name: ROUTES.leaderboardsLegacy,
+    component:
+      require("../components/containers/member/leaderboard/_legacy/active-leaderboard/active-leaderboard.container")
+        .default,
   },
   {
-    name: ROUTES.leaderboardInfo,
-    component: require("../components/containers/member/leaderboard/leaderboard-info/leaderboard-info").default,
+    name: ROUTES.leaderboardInfoLegacy,
+    component: require("../components/containers/member/leaderboard/_legacy/leaderboard-info/leaderboard-info").default,
   },
   {
-    name: ROUTES.leaderboardsList,
-    component: require("../components/containers/member/leaderboard/leaderboard-list/leaderboard-list.container")
-      .default,
+    name: ROUTES.leaderboardsListLegacy,
+    component:
+      require("../components/containers/member/leaderboard/_legacy/leaderboard-list/leaderboard-list.container")
+        .default,
   },
+  // end
 
   {
     name: ROUTES.notifications,
@@ -345,7 +350,7 @@ const routesForRegistration = [
   },
   {
     name: MODALS.leaderboardLean,
-    component: require("../components/containers/member/leaderboard/leaderboard-lean/leaderboard-lean").default,
+    component: require("../components/containers/member/leaderboard/_legacy/leaderboard-lean/leaderboard-lean").default,
   },
   {
     name: MODALS.challengeUnavailable,

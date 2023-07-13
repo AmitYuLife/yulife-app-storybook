@@ -10,7 +10,7 @@ import { DUELS_BUTTON } from "@ids";
 import { t } from "@locale";
 
 function navigateToDuelsHub() {
-  Navigation.push(ROUTES.leaderboards, {
+  Navigation.push(ROUTES.leaderboardsLegacy, {
     component: {
       id: ROUTES.duelsHub,
       name: ROUTES.duelsHub,
