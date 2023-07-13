@@ -1174,7 +1174,8 @@
     "seconds": "segundos",
     "short_seconds": "s",
     "second": "segundo",
-    "short_second": "s"
+    "short_second": "s",
+    "less_than_minute": "menos de 1 minuto"
   },
   "save_image": {
     "save_button": "Salvar como imagem",
