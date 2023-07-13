@@ -33,6 +33,8 @@ app:
     opts:
       is_expand: false
   - NODE_OPTIONS: --max-old-space-size=4096
+  - SKIP_ASSERTIONS: ""
+  - TARGET_LOCALE: en-GB
 meta:
   bitrise.io:
     machine_type: performance
@@ -572,7 +574,7 @@ workflows:
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
 
             # Run tests
-            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs failing
+            yarn SKIP_ASSERTIONS=$SKIP_ASSERTIONS TARGET_LOCALE=$TARGET_LOCALE detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs failing
 
 
     - script@1:
@@ -885,6 +887,93 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-extended-1-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: extended:1
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: jp-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-extended-2-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: extended:2
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: jp-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-extended-3-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: extended:3
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: jp-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-extended-4-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: extended:4
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: jp-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-extended-all-70-JP:
+    before_run:
+    - ios-detox-build-70
+    steps:
+    - build-router-start@0:
+        title: 'Run extended tests 1/4: iPhone 14 Pro Japanese'
+        inputs:
+        - workflows: ios-detox-run-iphone-14-pro-extended-1-70-JP
+        - access_token: $BITRISE_API_TOKEN
+    - build-router-start@0:
+        title: 'Run extended tests 2/4: iPhone 14 Pro Japanese'
+        inputs:
+        - workflows: ios-detox-run-iphone-14-pro-extended-2-70-JP
+        - access_token: $BITRISE_API_TOKEN
+    - build-router-start@0:
+        title: 'Run extended tests 3/4: iPhone 14 Pro Japanese'
+        inputs:
+        - workflows: ios-detox-run-iphone-14-pro-extended-3-70-JP
+        - access_token: $BITRISE_API_TOKEN
+    - build-router-start@0:
+        title: 'Run extended tests 4/4: iPhone 14 Pro Japanese'
+        inputs:
+        - workflows: ios-detox-run-iphone-14-pro-extended-4-70-JP
+        - access_token: $BITRISE_API_TOKEN
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
   ios-detox-run-iphone-14-pro-pli-1-70:
     after_run:
     - ios-detox-run-base-70
@@ -1149,6 +1238,93 @@ workflows:
         title: 'Run extended tests 4/4: iPhone 14 Pro'
         inputs:
         - workflows: ios-detox-run-iphone-14-pro-smoke-4-70
+        - access_token: $BITRISE_API_TOKEN
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-smoke-1-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: smoke:1
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: jp-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-smoke-2-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: smoke:2
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: jp-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-smoke-3-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: smoke:3
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: jp-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-smoke-4-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: smoke:4
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: jp-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-smoke-all-70-JP:
+    before_run:
+    - ios-detox-build-70
+    steps:
+    - build-router-start@0:
+        title: 'Run extended tests 1/4: iPhone 14 Pro Japanese'
+        inputs:
+        - workflows: ios-detox-run-iphone-14-pro-smoke-1-70-JP
+        - access_token: $BITRISE_API_TOKEN
+    - build-router-start@0:
+        title: 'Run extended tests 2/4: iPhone 14 Pro Japanese'
+        inputs:
+        - workflows: ios-detox-run-iphone-14-pro-smoke-2-70-JP
+        - access_token: $BITRISE_API_TOKEN
+    - build-router-start@0:
+        title: 'Run extended tests 3/4: iPhone 14 Pro Japanese'
+        inputs:
+        - workflows: ios-detox-run-iphone-14-pro-smoke-3-70-JP
+        - access_token: $BITRISE_API_TOKEN
+    - build-router-start@0:
+        title: 'Run extended tests 4/4: iPhone 14 Pro Japanese'
+        inputs:
+        - workflows: ios-detox-run-iphone-14-pro-smoke-4-70-JP
         - access_token: $BITRISE_API_TOKEN
     meta:
       bitrise.io:
