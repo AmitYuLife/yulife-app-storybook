@@ -24,6 +24,7 @@ interface Props {
 
 export const ContentItemDropdownInputBase = memo((props: Props) => {
   const { heading, value, errorMessage, options, selectInstruction, onChange } = props;
+  const selectedOption = options.find((option) => option.value === value);
 
   const onPress = useCallback(async () => {
     const child = <ListPicker instruction={selectInstruction} items={options} />;
@@ -47,7 +48,7 @@ export const ContentItemDropdownInputBase = memo((props: Props) => {
         <View style={styles.listPickerWrapper}>
           <View style={styles.textWrapper}>
             <TextField
-              value={value}
+              value={selectedOption?.label || value}
               placeholder={heading}
               onChange={handleChanged}
               editable={false}
