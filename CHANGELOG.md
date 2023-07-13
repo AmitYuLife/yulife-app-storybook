@@ -7,6 +7,43 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.91.0] - 2023-07-13
+
+### Features
+
+- Task: add title formatting and search feature to the debug screen
+
+### Bugfixes
+
+- Bugfix: Fix leaderboard when logging out and in
+- Bugfix: Sudoku unpause after midnight
+- Bugfix: Use node 16 for storybook deployments
+
+### Tasks
+
+- Task: Product details header zero yucoin
+- Task: Japanese duration translations
+- Task GS-741: Add pension screen to onboarding
+- Task: Pension deeplink
+- Task: revert event flashlist to flatlist to fox detox tests
+- Task: Pension
+
+### Chores
+
+- Chore: ja-jp updates with glossary
+- Chore: Purge left over from old storybook and enable molecules stories for the new one
+- Chore: Add atoms stories part 2
+- Chore/ Fixing line break in Android
+- Chore: Add start:bundler error troubleshooting readme section
+- Chore: Add atoms stories part 1
+- Chore: Storybook improvements
+
+### Extra
+
+- (HEAD -> develop, origin/develop) Hotfix: leaderboard label
+- Purge: Old storybooks stories
+- (origin/ISA-837-30-d-steps-update-refactor-leaderboard-consent-endpoint) Hotfix: better ja-JP translations
+
 ## [3.90.0] - 2023-07-06
 
 ### Bugfixes
