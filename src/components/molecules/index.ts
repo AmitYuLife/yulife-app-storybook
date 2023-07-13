@@ -27,7 +27,7 @@ export { default as PressableWithDelay } from "./pressable-delay/pressable-delay
 export { default as Switch } from "./switch/switch";
 export { default as TextField } from "./text-field/text-field";
 export * from "./beta-text/beta-text";
-export { AvatarEmpty } from "./avatar/avatar-empty";
+export { AvatarEmpty } from "./avatar-empty/avatar-empty";
 export { default as ProgressBar } from "./progress-bar/progress-bar";
 export { ValueDescription } from "./text-template/value-description-text";
 export { default as HeadingAndCopy } from "./heading-and-copy/heading-and-copy";
@@ -74,3 +74,4 @@ export { default as YuniversityModuleReward } from "./yuniversity/module-reward"
 export { default as MediaListHeader } from "./media-list-header/media-list-header";
 export { default as PromotionPanel } from "./promotion-panel/promotion-panel";
 export { default as ActionButton } from "./action-button/action-button";
+export { default as Avatar } from "./avatar/avatar";
