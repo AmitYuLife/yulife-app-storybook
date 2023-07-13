@@ -41,6 +41,7 @@ export interface ISudokuContext {
   initialBoard?: SudokuBoard;
   initialPenalties: number[];
   enableAnimations?: boolean;
+  selectedNumber?: number;
   getDurationText: () => string;
   isRowComplete: (row: number) => boolean;
   isNumberComplete: (number: number) => boolean;

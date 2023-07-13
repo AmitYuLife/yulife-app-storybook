@@ -22,10 +22,11 @@ const Grid = () => {
     endTime,
     isColumnComplete,
     board,
+    selectedNumber,
     getPosition,
   } = useSudokuContext();
 
-  const activeNumber = selectedCell ? getPosition(selectedCell) : null;
+  const activeNumber = selectedCell ? getPosition(selectedCell) : selectedNumber;
 
   const rowCompleteStatus = useMemo(() => {
     const rowStatus = [];
