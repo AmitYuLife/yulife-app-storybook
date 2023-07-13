@@ -10,6 +10,7 @@ interface ISudokuState {
   hintsUsed: number;
   touched: Record<string, boolean>;
   mistakes: number;
+  selectedNumber?: number;
   penalties: number[];
   selectedCell: { row: number; column: number };
   cellStatuses: CellStatus[][];
@@ -34,6 +35,7 @@ export const SUDOKU_SET_BOARD = "SUDOKU_SET_BOARD";
 export const SUDOKU_TOUCH = "SUDOKU_TOUCH";
 export const SUDOKU_ADD_GUESS = "SUDOKU_ADD_GUESS";
 export const SUDOKU_SET_STATUSES = "SUDOKU_SET_STATUSES";
+export const SUDOKU_SELECT_NUMBER = "SUDOKU_SELECT_NUMBER";
 
 export const sudokuGameReducer = (state: ISudokuState, action: SudokuAction): ISudokuState => {
   switch (action.type) {
@@ -85,6 +87,7 @@ export const sudokuGameReducer = (state: ISudokuState, action: SudokuAction): IS
     case SUDOKU_SET_SELECTED_CELL: {
       return {
         ...state,
+        selectedNumber: undefined,
         selectedCell: action.payload,
       };
     }
@@ -121,6 +124,13 @@ export const sudokuGameReducer = (state: ISudokuState, action: SudokuAction): IS
       return {
         ...state,
         cellStatuses: action.payload,
+      };
+    }
+
+    case SUDOKU_SELECT_NUMBER: {
+      return {
+        ...state,
+        selectedNumber: action.payload,
       };
     }
 

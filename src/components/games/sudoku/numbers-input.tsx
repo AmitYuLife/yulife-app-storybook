@@ -14,15 +14,11 @@ import { BoxOption } from "@components/molecules";
 import { SUDOKU_UNDO_BUTTON } from "@ids";
 
 const NumbersInput = () => {
-  const { putNumber, undo, history, selectedCell, isNumberComplete } = useSudokuContext();
+  const { putNumber, undo, selectedCell, isNumberComplete } = useSudokuContext();
   const t = useTranslation(["sudoku.game.undo"]);
 
   const onNumberPress = useCallback(
     (value: number) => {
-      if (!selectedCell) {
-        return;
-      }
-
       putNumber({ number: value, row: selectedCell?.row, column: selectedCell?.column, antiCheat: true });
     },
     [selectedCell, putNumber]
@@ -54,7 +50,6 @@ const NumbersInput = () => {
           selectedStyle={null}
           debounce={false}
           wrapperStyle={styles.undoButtonWrapper}
-          disabled={history.length <= 0}
           innerHeight={SUDOKU_NUMBER_INNER_HEIGHT}
           onPress={undo}
           innerWrapperStyle={styles.undoButtonInner}
