@@ -3,12 +3,12 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Image, TextTemplate } from "@atoms";
-import { ArrowIcon } from "@atoms/icon/arrow";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { GetWellbeingHubItems_wellbeingHubItems as WellbeingCard } from "@graphql/_core/schema";
 import { ImageStyle } from "react-native-fast-image";
 import { TEXT_TEMPLATE } from "@ids";
+import { ArrowButton } from "@components/molecules/arrow-button";
 
 const ROUTES_SET = new Set(Object.values(ROUTES));
 interface IProps {
@@ -73,7 +73,7 @@ const WellBeingServiceCard: FC<IProps> = ({ card }) => {
           </View>
         </View>
         <View style={styles.arrowRight}>
-          <ArrowIcon color={Colours.primary.p600} />
+          <ArrowButton color={Colours.primary.p600} />
         </View>
       </View>
     </TouchableOpacityWithDelay>

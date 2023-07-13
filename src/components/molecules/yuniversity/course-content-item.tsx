@@ -1,11 +1,11 @@
 import React, { memo } from "react";
 import { TextTemplate } from "@atoms";
-import { ArrowIcon } from "@atoms/icon/arrow";
 import { Image } from "@atoms/image/image";
 import { BoxOption } from "@molecules";
 import { Colours, Style } from "@styles";
 import { StyleSheet, View } from "react-native";
 import TagsWithImage, { Tag } from "./tags-with-image";
+import { ArrowButton } from "../arrow-button";
 
 interface IStatus {
   icon: { uri: string; id: string };
@@ -53,7 +53,7 @@ export const CourseContentItem = ({ tags, title, onPress, image, status, imageTa
         </View>
       </View>
       <View style={styles.arrowWrapper}>
-        <ArrowIcon color={Colours.primary.p600} />
+        <ArrowButton color={Colours.primary.p600} />
       </View>
     </View>
   </BoxOption>

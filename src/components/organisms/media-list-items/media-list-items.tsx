@@ -2,7 +2,6 @@ import React, { memo } from "react";
 import { Image as RNImage, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
-import { ArrowIcon } from "@atoms/icon/arrow";
 import { MEDIA_LIST_ITEM_DESCRIPTION, MEDIA_LIST_ITEM_TITLE } from "@ids";
 import { BoxOption } from "@molecules";
 import { Colours } from "@styles";
@@ -10,6 +9,7 @@ import { BOX_HEIGHT, IMAGE_HEIGHT, IMAGE_WIDTH, styles } from "./media-list-item
 import MediaListItemsLoading from "./media-list-items-loading";
 import { t } from "@locale";
 import Markdown from "@molecules/markdown/markdown";
+import { ArrowButton } from "@components/molecules/arrow-button";
 
 export interface IITem {
   title: string;
@@ -71,7 +71,7 @@ const MediaListItems = ({ items, onPress, type, isLoading }: IProps) => {
                   </View>
                 </View>
                 <View style={styles.arrow}>
-                  <ArrowIcon color={Colours.primary.p600} />
+                  <ArrowButton color={Colours.primary.p600} />
                 </View>
               </View>
             </BoxOption>

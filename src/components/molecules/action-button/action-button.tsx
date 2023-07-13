@@ -1,10 +1,10 @@
 import { TextTemplate } from "@atoms";
-import { ArrowIcon } from "@atoms/icon/arrow";
 import { BoxOption } from "@components/molecules";
 import { Style } from "@styles";
 import colours from "@styles/colours";
 import React, { ReactNode, memo } from "react";
 import { StyleSheet, View } from "react-native";
+import { ArrowButton } from "../arrow-button";
 
 interface IProps {
   icon: ReactNode;
@@ -29,7 +29,7 @@ const ActionButton = ({ onPress, icon, label, testID }: IProps) => {
           {icon ? <View style={styles.icon}>{icon}</View> : null}
           <TextTemplate type="b2b">{label}</TextTemplate>
         </View>
-        <ArrowIcon color={colours.primary.p600} />
+        <ArrowButton color={colours.primary.p600} />
       </>
     </BoxOption>
   );
