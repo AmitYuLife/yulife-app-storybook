@@ -91,7 +91,7 @@ const MenuContainer = () => {
           handlePush(currentRoute, ROUTES.referralInformation, {}, { sourceId: ROUTES.menu });
           return null;
         case LINKS.YUNIVERSITY:
-          handlePush(currentRoute, ROUTES.yuniversityCourses, {}, { popTo: ROUTES.dailySteps });
+          handlePush(currentRoute, ROUTES.yuniversityCourses, {}, { popTo: currentRoute });
           return null;
         default:
           return null;
