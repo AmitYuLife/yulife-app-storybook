@@ -53,6 +53,7 @@
       "exit": "Saída",
       "cancel": "Cancelar",
       "close": "Fechar",
+      "quit": "Desistir",
       "dismiss": "Indeferimento",
       "claim": "Reivindicação",
       "collect": "Recolher",
@@ -591,7 +592,8 @@
       "stage": "Estágio %{level}"
     },
     "challenge_list": {
-      "level_locked": "Nível %{availableAtLevel}"
+      "level_locked": "Nível %{availableAtLevel}",
+      "level_completed": "Concluída"
     },
     "level_locked": {
       "level": "Desbloqueio ao nível %{level}",
