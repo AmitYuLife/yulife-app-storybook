@@ -36,3 +36,4 @@ export { default as MediaListItems } from "./media-list-items/media-list-items";
 export { default as MediaListButtons } from "./media-list-buttons/media-list-buttons";
 export { default as MoreChallengesBanner } from "./more-challenges-banner/more-challenges-banner";
 export { default as ShowAndHideBalance } from "./show-and-hide-balance/show-and-hide-balance";
+export { default as ListItem } from "./list-item/list-item";
