@@ -574,8 +574,11 @@ workflows:
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
 
             # Run tests
-            yarn SKIP_ASSERTIONS=$SKIP_ASSERTIONS TARGET_LOCALE=$TARGET_LOCALE detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs failing
+            command="yarn TARGET_LOCALE=$TARGET_LOCALE detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel \"${DETOX_LOG_LEVEL:=warn}\" --debug-synchronization 200 --record-logs failing"
 
+            [[ -n $SKIP_ASSERTIONS ]] && command="SKIP_ASSERTIONS=$SKIP_ASSERTIONS $command"
+
+            eval $command
 
     - script@1:
         title: Collect logs
