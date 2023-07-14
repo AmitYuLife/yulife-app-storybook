@@ -499,7 +499,8 @@
     },
     "language_selector_settings": {
       "title": "Language",
-      "description": "Select your language"
+      "description": "Select your language",
+      "setting_language_loading_message": "Initialising %{value} as your main language ..."
     },
     "measurement_cycling_settings": {
       "title": "Measurement (Cycling)",

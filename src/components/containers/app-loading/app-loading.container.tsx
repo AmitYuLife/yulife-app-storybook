@@ -6,14 +6,17 @@ import { LayoutChangeEvent, Linking, Platform, SafeAreaView, StyleSheet, Text, V
 import { PersistGate } from "redux-persist/integration/react";
 import Logger from "@services/logging/logger";
 import { useSafeAreaViewOffset } from "@hooks";
+import { TextTemplate } from "@atoms";
+import { Style } from "@styles";
 
 interface IProps {
   componentId: string;
+  loadingText?: string;
 }
 
 (Text as any).defaultProps = { ...((Text as any).defaultProps || {}), allowFontScaling: false };
 
-export const AppLoadingContainer: React.FC<IProps> = () => {
+export const AppLoadingContainer: React.FC<IProps> = ({ loadingText }) => {
   const [url, setUrl] = React.useState("");
   const [renderPersistor, setRenderPersistor] = React.useState(false);
   const [animationEnded, setAnimationEnded] = React.useState(false);
@@ -64,6 +67,13 @@ export const AppLoadingContainer: React.FC<IProps> = () => {
           )}
         </View>
       </View>
+      {!loadingText ? null : (
+        <View style={styles.textWrapper}>
+          <TextTemplate type="l2" numberOfLines={2}>
+            {loadingText}
+          </TextTemplate>
+        </View>
+      )}
     </SafeAreaView>
   );
 };
@@ -77,5 +87,12 @@ const styles = StyleSheet.create({
   wrapper: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "white",
+  },
+  textWrapper: {
+    position: "absolute",
+    bottom: Style.adjust(50),
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

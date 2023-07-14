@@ -498,7 +498,8 @@
     },
     "language_selector_settings": {
       "title": "Língua",
-      "description": "Seleccione a sua língua"
+      "description": "Seleccione a sua língua",
+      "setting_language_loading_message": "Inicializar %{value} como língua principal ..."
     },
     "measurement_cycling_settings": {
       "title": "Medição (ciclismo)",
