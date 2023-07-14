@@ -20,7 +20,7 @@ interface IProps {
 }
 
 const CourseDetailsContainer = ({ moduleId, courseId, popTo }: IProps) => {
-  const onClose = useCallback(() => Navigation.popTo(popTo || ROUTES.wellbeingHubItems), []);
+  const onClose = useCallback(() => Navigation.popTo(popTo || ROUTES.wellbeingHubItems), [popTo]);
   const onBackPress = useCallback(() => Navigation.pop(ROUTES.courseDetails), []);
 
   const dispatch = useDispatch();
