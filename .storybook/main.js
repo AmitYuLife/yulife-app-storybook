@@ -50,7 +50,7 @@ const CUSTOM_CONFIG = {
   },
 };
 module.exports = {
-  stories: ["../src/components/@(atoms|molecules)/**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: ["../src/components/@(atoms|molecules|organisms)/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
