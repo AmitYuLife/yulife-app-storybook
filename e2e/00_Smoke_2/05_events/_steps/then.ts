@@ -6,6 +6,10 @@ import { buttonVisible } from "_utils/appScreens/challenges"
 import { addCommasToNumber } from "_utils/appScreens/rewards"
 
 export const {
+    menuItemsVisible,
+} = screens.menu
+
+export const {
     idVisible,
     textVisible,
     expectIsVisibleViaID,
@@ -61,7 +65,7 @@ export const onCompletedEventMilestonePage = (event: string, yuCoin: string, num
     await textVisible(eventTitle)()
     await textVisible("Great job!")()
     await textVisible("You have reached the event milestone!\nCongratulations. Claim your rewards")()
-    await textVisible(`${yuCoin} YuCoin`)() 
+    await textVisible(`${yuCoin} YuCoin`)()
     await idVisible(ids.ANIMATED_CIRCLE("#F43E8E"))()
     await idVisible(ids.NUM_OF_STARS(numOfStars))()
     await textVisible(challengeType)()
@@ -69,7 +73,7 @@ export const onCompletedEventMilestonePage = (event: string, yuCoin: string, num
 }
 
 export const milestoneComplete = (index: number) => async () => {
-    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), index)() 
+    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), index)()
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), index)()
 }
 
@@ -80,15 +84,15 @@ export const onCompletedAllEventMilestonesPage = (event: string, challengeType1:
     await textVisible("Great job!")()
     await textVisible("You have reached the event milestone!\nCongratulations. Claim your rewards")()
     await textVisible(challengeType1)()
-    await textVisible(yuCoin1)() 
+    await textVisible(yuCoin1)()
     await idVisible(ids.ANIMATED_CIRCLE("#F43E8E"))()
     await idVisible(ids.NUM_OF_STARS(3))()
-    await textVisible(yuCoin2)() 
-    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 0)() 
+    await textVisible(yuCoin2)()
+    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 0)()
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 0)()
     await swipeFromText(yuCoin2, "left", "fast")()
-    await textVisible(yuCoin3)() 
-    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 1)() 
+    await textVisible(yuCoin3)()
+    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 1)()
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 1)()
     await swipeFromText(yuCoin2, "right", "fast")()
     await buttonVisible("Claim")()
@@ -157,7 +161,7 @@ export const challengesYuCoinValuesCorrect = (earnRate: number) => async () => {
     await swipeFromText("fiit", "down", "fast")()
 }
 
-export const stepsChallengeDataCorrect = (level: number, yucoinEarned: number, steps: number) =>  async () => {
+export const stepsChallengeDataCorrect = (level: number, yucoinEarned: number, steps: number) => async () => {
     await textVisible(`Level ${level}`)()
     await textVisible(`${yucoinEarned}`)()
     await textVisible(`${steps} steps`)()
@@ -166,7 +170,7 @@ export const stepsChallengeDataCorrect = (level: number, yucoinEarned: number, s
 
 export const firstChallengeClaimedVisible = async () => {
     await textVisible(data.GOAL_REWARD_MILESTONE_9.data.rewardTitle)()
-    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 0)() 
+    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 0)()
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 0)()
     await textVisible(data.GOAL_REWARD_MILESTONE_10.data.rewardTitle)()
     await textVisible(data.GOAL_REWARD_MILESTONE_10.data.rewardDescription)()
@@ -183,10 +187,10 @@ export const firstChallengeClaimedVisible = async () => {
 
 export const firstAndSecondChallengeClaimedVisible = async () => {
     await textVisible(data.GOAL_REWARD_MILESTONE_9.data.rewardTitle)()
-    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 0)() 
+    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 0)()
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 0)()
     await textVisible(data.GOAL_REWARD_MILESTONE_10.data.rewardTitle)()
-    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 1)() 
+    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 1)()
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 1)()
     await swipeFromText(data.GOAL_REWARD_MILESTONE_10.data.rewardTitle, "left", "fast")()
     await textVisible(data.GOAL_REWARD_MILESTONE_11.data.rewardTitle)()
@@ -201,15 +205,15 @@ export const yuCoinTodayEarned = (challengeTotals: number[], milestoneTotal = 0)
     const sum = challengeTotals.reduce((acc, val) => acc + val, 0)
     const yuCoinToday = `${addCommasToNumber(sum + (milestoneTotal * 10))} YuCoin today`
     await textVisible(yuCoinToday)()
-  }
+}
 
-export const meditationChallengeDataCorrect = (stage: number, yucoinEarned: number, mins: number) =>  async () => {
+export const meditationChallengeDataCorrect = (stage: number, yucoinEarned: number, mins: number) => async () => {
     await textVisible(`Stage ${stage}`)()
     await textVisible(`${yucoinEarned}`)()
     await textVisible(`${mins} minutes`)()
 }
 
-export const challengeStarsCorrect = (starCount: number, challengeType: string, ) => async () => {
+export const challengeStarsCorrect = (starCount: number, challengeType: string,) => async () => {
     for (let i = 0; i < starCount; i += 1) {
         await expect(element(by.id(ids.CHALLENGE_HISTORY_STARS(i, challengeType)))).toBeVisible()
     }
@@ -246,7 +250,7 @@ export const onEventDetailsScreen = (goal: typeof data.GOALS_4) => async () => {
 
 }
 
-export const personalDataVisible = (name: string,  world: string) => async () => {
+export const personalDataVisible = (name: string, world: string) => async () => {
     await textVisibleAtIndex((name), 0)()
     await textVisible(world)()
 }

@@ -1,7 +1,7 @@
 import { navigation } from "@navigation"
 import * as ids from "@ids"
-export { addStepsHistoricalData, addCyclingHistoricalData, addMindfulnessHistoricalData} from "@socket";
-
+export { addStepsHistoricalData, addCyclingHistoricalData, addMindfulnessHistoricalData } from "@socket";
+import { getLocalisedString as t } from "@i18n";
 
 export const {
     tapID,
@@ -30,13 +30,13 @@ export const {
 
 export const turnOffLeaderboard = (leaderboardID: string) => async () => {
     const leaderboard = element(by.id(leaderboardID))
-    const offButton = element(by.text("Turn it off"))
+    const offButton = element(by.text(t("Turn it off")))
 
     await leaderboard.tap()
     await offButton.tap()
 }
 
-export const clickUser= (user: string) => async () => {
+export const clickUser = (user: string) => async () => {
     await tapText(user)()
 }
 
@@ -62,7 +62,7 @@ export const tapColour = (hexValue: string) => async () => {
 }
 
 export const clickChallengeSomebodyButton = async () => {
-    await navigateViaText("Challenge somebody", 1000)
+    await navigateViaText(t("Challenge somebody"), 1000)
 }
 
 export const clickNext = async () => {
@@ -70,9 +70,9 @@ export const clickNext = async () => {
 }
 
 export const clickLetsGo = async () => {
-    await navigateViaText("Let's go")
+    await navigateViaText(t("Let's go"))
 }
 
 export const clickDuelButton = async () => {
-    await navigateViaText("Challenge to duel", 1000)
+    await navigateViaText(t("Challenge to duel"), 1000)
 }
