@@ -9,6 +9,7 @@ import removePopupVisibility from "./0007_remove_popup_visibility";
 import addInAppMeditationNewFields from "./0008_add_in_app_meditation_new_fields";
 import userHourlyActivityLastUpdated from "./0009_user_hourly_activity_last_updated";
 import dailyPension from "./0010_daily_pension";
+import addLocale from "./0011_add_locale";
 
 export const migrations = {
   "0": initial,
@@ -22,4 +23,5 @@ export const migrations = {
   "8": addInAppMeditationNewFields,
   "9": userHourlyActivityLastUpdated,
   "10": dailyPension,
+  "11": addLocale,
 };

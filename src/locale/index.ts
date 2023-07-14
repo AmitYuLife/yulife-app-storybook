@@ -1,10 +1,13 @@
 import { LeaderboardMetric } from "@graphql/member";
 import translator from "./translator";
 
+export * from "./types";
+
 // aliases for translate function
 export const translate = translator.translate;
 export const t = translator.translate;
-export const init = translator.init;
+export const findBestAvailableLanguage = translator.findBestAvailableLanguage;
+export const getIntercomLanguage = translator.getIntercomLanguage;
 export const getCurrentLocale = translator.getCurrentLocale;
 export const getCurrentLocaleOptions = translator.getCurrentLocaleOptions;
 export const setLocale = translator.setLocale;

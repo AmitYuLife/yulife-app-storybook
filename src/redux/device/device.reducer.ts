@@ -1,13 +1,24 @@
 import { Platform } from "react-native";
 import DeviceInfo from "react-native-device-info";
-import { ADD_DEVICE_TOKEN, REQUIRE_PUSH_ENABLED, SET_PUSH_PERMISSIONS, MARK_APP_AS_INSTALLED } from "./device.actions";
+import { findBestAvailableLanguage, Language } from "@locale";
 import { IPushNotification } from "./device.selectors";
 import { SyncAction } from "@redux/_core/types";
+import {
+  ADD_DEVICE_TOKEN,
+  REQUIRE_PUSH_ENABLED,
+  SET_PUSH_PERMISSIONS,
+  MARK_APP_AS_INSTALLED,
+  SET_DEVICE_LOCALE,
+} from "./device.actions";
 
 export interface IDeviceStore {
   deviceId: string;
   deviceToken: string;
   os: string;
+  /** @description - the selected user locale on their phone's settings */
+  currentDeviceLocale: Language;
+  /** @description - the selected user locale in the YuLife app */
+  locale: Language;
   pushNotifications: IPushNotification;
   isAppFreshlyInstalled: boolean;
 }
@@ -22,19 +33,28 @@ let deviceId = "";
   }
 })();
 
-export const getInitialState = (): IDeviceStore => ({
-  deviceId,
-  deviceToken: "",
-  os: Platform.OS,
-  isAppFreshlyInstalled: true,
-  pushNotifications: {
-    requested: false,
-    status: "notyet",
-  },
-});
+export const getInitialState = (): IDeviceStore => {
+  const locale = findBestAvailableLanguage();
+
+  return {
+    deviceId,
+    deviceToken: "",
+    os: Platform.OS,
+    isAppFreshlyInstalled: true,
+    currentDeviceLocale: locale,
+    locale,
+    pushNotifications: {
+      requested: false,
+      status: "notyet",
+    },
+  };
+};
 
 const deviceReducer = (state: IDeviceStore = getInitialState(), action: SyncAction): IDeviceStore => {
   switch (action.type) {
+    case SET_DEVICE_LOCALE:
+      return setDeviceLocale(state, action.payload);
+
     case ADD_DEVICE_TOKEN:
       return addDeviceToken(state, action.payload);
 
@@ -53,6 +73,12 @@ const deviceReducer = (state: IDeviceStore = getInitialState(), action: SyncActi
 };
 
 export default deviceReducer;
+
+const setDeviceLocale = (state: IDeviceStore, payload: { currentDeviceLocale?: Language; locale: Language }) => ({
+  ...state,
+  locale: payload.locale,
+  currentDeviceLocale: payload.currentDeviceLocale || state.currentDeviceLocale,
+});
 
 const markAppAsInstalled = (state: IDeviceStore) => ({ ...state, isAppFreshlyInstalled: false });
 

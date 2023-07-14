@@ -1,7 +1,9 @@
+import { Language } from "@locale";
 import { PushNotification } from "react-native-push-notification";
 import { IDeviceStore } from "./device.reducer";
 import { IPushNotification } from "./device.selectors";
 
+export const SET_DEVICE_LOCALE = "SET_DEVICE_LOCALE";
 export const ADD_DEVICE_TOKEN = "ADD_DEVICE_TOKEN";
 export const PUSH_NOTIFICATION_RECEIVED = "PUSH_NOTIFICATION_RECEIVED";
 export const REQUIRE_PUSH_ENABLED = "REQUIRE_PUSH_ENABLED";
@@ -34,4 +36,9 @@ export const cancelLocalPush = () => ({
 export const setPushPermissions = (payload: Partial<IPushNotification>) => ({
   payload,
   type: SET_PUSH_PERMISSIONS,
+});
+
+export const setDeviceLocale = (payload: { currentDeviceLocale?: Language; locale: Language }) => ({
+  payload,
+  type: SET_DEVICE_LOCALE,
 });

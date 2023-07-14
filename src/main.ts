@@ -1,7 +1,6 @@
 import { Platform, LogBox } from "react-native";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
-import { init as initLanguage } from "@locale";
 import registerScreens from "./navigation/index";
 import { DETOX_ENABLED } from "@services/socket";
 import { OptionsModalPresentationStyle } from "react-native-navigation";
@@ -25,8 +24,6 @@ Navigation.registerComponent(
 
 Navigation.events().registerAppLaunchedListener(async () => {
   await Navigation.setAppLoading();
-
-  await initLanguage();
 
   // register all the screens
   registerScreens();

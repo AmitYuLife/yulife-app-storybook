@@ -20,6 +20,9 @@ const reducer = (state: IReduxState) => state.device;
 const deviceTokenSelector = (state: State) => state.deviceToken;
 export const getDeviceToken = createSelector(reducer, deviceTokenSelector);
 
+const deviceLocaleSelector = (state: State) => state.locale;
+export const getDeviceLocale = createSelector(reducer, deviceLocaleSelector);
+
 const deviceIdSelector = (state: State) => state.deviceId;
 export const getDeviceId = createSelector(reducer, deviceIdSelector);
 
