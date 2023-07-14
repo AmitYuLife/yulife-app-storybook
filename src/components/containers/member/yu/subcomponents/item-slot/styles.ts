@@ -82,7 +82,6 @@ export const defaultStyles = StyleSheet.create({
     top: Style.adjust(1),
     zIndex: 2,
     paddingLeft: Style.adjust(4),
-    paddingRight: Style.adjust(4),
   },
   slotSocket: {
     borderRadius: Style.adjust(8),
@@ -125,7 +124,8 @@ export const defaultStyles = StyleSheet.create({
   },
   titleWrapper: {
     flex: 1,
-    paddingLeft: Style.adjust(3),
+    paddingLeft: Style.adjust(2),
+    paddingRight: Style.adjust(1),
   },
   slotStatusWrapper: {
     ...slotStatusImageDimensions,
@@ -172,7 +172,6 @@ const depressedStyles = StyleSheet.create({
     zIndex: 3,
     paddingLeft: Style.adjust(4),
     paddingTop: Style.adjust(4),
-    paddingRight: Style.adjust(4),
   },
   slotSocket: {
     height: Style.adjust(57),
@@ -220,7 +219,8 @@ const depressedStyles = StyleSheet.create({
   },
   titleWrapper: {
     flex: 1,
-    paddingLeft: Style.adjust(3),
+    paddingLeft: Style.adjust(2),
+    paddingRight: Style.adjust(1),
   },
   slotStatusWrapper: {
     ...slotStatusImageDimensions,
