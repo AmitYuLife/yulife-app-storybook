@@ -88,7 +88,7 @@
     }
   },
   "period": {
-    "today": "今日",
+    "today": "today",
     "month": "月"
   },
   "button": "ボタン",
@@ -499,7 +499,8 @@
     },
     "language_selector_settings": {
       "title": "言語",
-      "description": "言語を選択"
+      "description": "言語を選択",
+      "setting_language_loading_message": "%{value} をメイン言語として初期化する"
     },
     "measurement_cycling_settings": {
       "title": "計測（サイクリング）",
@@ -1135,7 +1136,7 @@
   },
   "navbar": {
     "yucoin": {
-      "label": "yucoin",
+      "label": "ホーム",
       "accessibility_label": "開く yucoin",
       "accessibility_text_value": "5点満点中1点"
     },

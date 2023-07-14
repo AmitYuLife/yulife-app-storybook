@@ -1,5 +1,6 @@
 import { Platform, LogBox } from "react-native";
 import { Navigation } from "@navigation/main";
+import { ROUTES } from "@navigation/constants";
 import { init as initLanguage } from "@locale";
 import registerScreens from "./navigation/index";
 import { DETOX_ENABLED } from "@services/socket";
@@ -17,22 +18,13 @@ if (DETOX_ENABLED) {
   ]);
 }
 
-const LOADING_ROUTE = "yulife.Loading";
-
 Navigation.registerComponent(
-  LOADING_ROUTE,
+  ROUTES.appLoading,
   () => require("./components/containers/app-loading/app-loading.container").default
 );
 
 Navigation.events().registerAppLaunchedListener(async () => {
-  await Navigation.setRoot({
-    root: {
-      component: {
-        id: LOADING_ROUTE,
-        name: LOADING_ROUTE,
-      },
-    },
-  });
+  await Navigation.setAppLoading();
 
   await initLanguage();
 

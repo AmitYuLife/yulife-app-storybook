@@ -32,6 +32,9 @@ const LanguageSelectorContainer = ({ componentId }: Props) => {
           setLocalLocale(o.id);
           await setLocale(o.id, true);
           Logger.setUserLanguagePreferenceOnIntercom(o.intercomLanguage);
+          await Navigation.setAppLoading(
+            t("screens.language_selector_settings.setting_language_loading_message", { value: o.name })
+          );
         },
       }))}
     />

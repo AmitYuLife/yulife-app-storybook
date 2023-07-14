@@ -1,6 +1,7 @@
 import { OptionsBottomTabs } from "react-native-navigation";
 
 export const ROUTES = {
+  appLoading: "yulife.Loading",
   // root screens
   noAccess: "yulife.NoAccess",
   login: "yulife.Login",

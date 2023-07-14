@@ -2,9 +2,23 @@ import Logger from "@services/logging/logger";
 import { ReactElement } from "react";
 import { ComponentProvider, ViewStyle } from "react-native";
 import { Layout, LayoutRoot, Navigation as NativeNavigation, Options } from "react-native-navigation";
-import { MODALS } from "./constants";
+import { MODALS, ROUTES } from "./constants";
 
 export class Navigation {
+  public static setAppLoading = async (loadingText?: string) => {
+    await Navigation.setRoot({
+      root: {
+        component: {
+          id: ROUTES.appLoading,
+          name: ROUTES.appLoading,
+          passProps: {
+            loadingText,
+          },
+        },
+      },
+    });
+  };
+
   public static setRoot = async (layout: LayoutRoot) => {
     return NativeNavigation.setRoot(layout);
   };
