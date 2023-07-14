@@ -21,7 +21,6 @@ import SudokuDate from "@components/games/sudoku/sudoku-date";
 
 interface IProps extends IConnectedScreenProps {
   levelSlotId: string;
-  reward?: number;
   onDismissPress: () => void;
 }
 
