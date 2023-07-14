@@ -6,16 +6,17 @@ import * as then from "./_steps/then";
 import * as helper from "./_resources/helpers";
 import * as ids from "@ids";
 import * as data from "@data";
+import { getLocalisedString as t } from "@i18n";
 
 Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can consent to my company leaderboard", scenario.start, async () => {
         Given("I login", given.loginAsUser(data.CUSTOMER_16, data.AUTH_16), async () => {
             When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard consent screen", then.onLeaderboardConsent)
-                When("I tap 'Yes'", when.tapText("Yes"), async () => {
+                When("I tap 'Yes'", when.tapText(t("Yes")), async () => {
                     Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.LEADERBOARD_1.data.name)))
                     Then("I should see the leaderboard", then.leaderboardVisible([data.CUSTOMER_18, data.CUSTOMER_50, data.CUSTOMER_47], ["10,000", "800"]))
-                    When("I tap 30 days", when.tapText("30 day steps"), async () => {
+                    When("I tap 30 days", when.tapText(t("30 day steps")), async () => {
                         Then("I should be on the about leaderboard page", then.idVisible(ids.LEADERBOARD_INFO, 2000))
                         When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
                             Then("I should be back on the leaderboard", then.leaderboardVisible([data.CUSTOMER_18, data.CUSTOMER_50, data.CUSTOMER_47]))
@@ -39,7 +40,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                             Then("I should be back on an empty leaderboard screen", then.onLeaderboardConsent)
                         })
                     })
-                })          
+                })
             })
         })
     })
@@ -69,17 +70,17 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_47, data.AUTH_47), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
             Then("I should be on the onboarding yuscreen v4", then.idVisible(ids.ONBOARDING_SCREEN_V4))
-        })  
+        })
         helper.CREATE_AVATAR(data.CUSTOMER_47)();
         When("I wait", when.wait(6000), async () => {
             When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.LEADERBOARD_1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([data.CUSTOMER_18, data.CUSTOMER_17, data.CUSTOMER_47, data.CUSTOMER_50]))
-            }) 
+            })
         })
         When("I click on user Michael's name", when.clickUser(data.CUSTOMER_18.data.fullName), async () => {
             Then("I should be on the Inspect screen", then.isOnInspectScreen)
-            Then("Michael's name is visible", then.idVisible(ids.TEXT_TEMPLATE(data.CUSTOMER_18.data.fullName))) 
+            Then("Michael's name is visible", then.idVisible(ids.TEXT_TEMPLATE(data.CUSTOMER_18.data.fullName)))
             Then("Michael's world is visible", then.idVisible(ids.USER_WORLD("Forest")))
             Then("Michael's level is visible", then.idVisible(ids.USER_LEVEL(data.COIN_LEDGER_18.data.currentLevel)))
             Then("Michael's empty yumoji is visible", then.idVisible(ids.YUMOJI))
@@ -88,7 +89,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I scroll down to the challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.2), async () => {
             Then("I should see the Challenge to duel button", then.challengeToDuelButtonVisible)
         })
-        When("I scroll to the Challenge statistics section", when.scrollUntilTextVisible(ids.USER_INFO("Michael Scott 4"), "Activity", "down"), async () => {
+        When("I scroll to the Challenge statistics section", when.scrollUntilTextVisible(ids.USER_INFO("Michael Scott 4"), t("Activity"), "down"), async () => {
             Then("I should see the Challenge stats", then.challengeDataVisible(0, 0))
             Then("I should see the Activity section heading", then.activitySectionHeadingVisible("Michael Scott 4"))
         })
@@ -116,11 +117,11 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.LEADERBOARD_1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([data.CUSTOMER_18, data.CUSTOMER_17, data.CUSTOMER_47, data.CUSTOMER_50]))
-            }) 
+            })
         })
         When("I click on user Michael's name", when.clickUser(data.CUSTOMER_18.data.fullName), async () => {
             Then("I should be on the Inspect screen", then.isOnInspectScreen)
-            Then("Michael's name is visible", then.idVisible(ids.TEXT_TEMPLATE(data.CUSTOMER_18.data.fullName))) 
+            Then("Michael's name is visible", then.idVisible(ids.TEXT_TEMPLATE(data.CUSTOMER_18.data.fullName)))
             Then("Michael's world is visible", then.idVisible(ids.USER_WORLD("Forest")))
             Then("Michael's level is visible", then.idVisible(ids.USER_LEVEL(data.COIN_LEDGER_18.data.currentLevel)))
             Then("Michael's empty yumoji is visible", then.idVisible(ids.YUMOJI))
@@ -129,7 +130,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I scroll down to the challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.2), async () => {
             Then("I should see the Challenge to duel button", then.challengeToDuelButtonVisible)
         })
-        When("I scroll to the Challenge statistics section", when.scrollUntilTextVisible(ids.USER_INFO("Michael Scott 4"), "Activity", "down"), async () => {
+        When("I scroll to the Challenge statistics section", when.scrollUntilTextVisible(ids.USER_INFO("Michael Scott 4"), t("Activity"), "down"), async () => {
             Then("I should see the Challenge stats", then.challengeDataVisible(0, 0))
             Then("I should see the Activity section heading", then.activitySectionHeadingVisible("Michael Scott 4"))
         })
@@ -146,17 +147,17 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
             Then("I should be on the onboarding yuscreen v4", then.idVisible(ids.ONBOARDING_SCREEN_V4))
 
-        })  
+        })
         helper.CREATE_AVATAR(data.CUSTOMER_47)();
         When("I wait", when.wait(6000), async () => {
             When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
                 Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.LEADERBOARD_1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible(([data.CUSTOMER_18, data.CUSTOMER_17, data.CUSTOMER_47, data.CUSTOMER_50])))
-            }) 
+            })
         })
         When("I click on my own name", when.tapID(ids.RANK(data.CUSTOMER_47.data.fullName, 2)), async () => {
             Then("I should be on the Inspect screen", then.isOnInspectScreen)
-            Then("My name is visible", then.idVisible(ids.TEXT_TEMPLATE(data.CUSTOMER_47.data.fullName))) 
+            Then("My name is visible", then.idVisible(ids.TEXT_TEMPLATE(data.CUSTOMER_47.data.fullName)))
             Then("My world is visible", then.idVisible(ids.USER_WORLD("Forest")))
             Then("My level is visible", then.idVisible(ids.USER_LEVEL(data.COIN_LEDGER_47.data.currentLevel)))
             Then("My yumoji is", then.idVisible(ids.YUMOJI))
@@ -165,7 +166,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I scroll down to the challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.2), async () => {
             Then("I should see the Challenge somebody to duel button", then.challengeSomebodyButtonVisible)
         })
-        When("I scroll to the Challenge statistics section", when.scrollUntilIdVisible(ids.USER_INFO("Gill Stock 1"), ids.INSPECT_ACTIVITY("Longest streak"), "down"), async () => {
+        When("I scroll to the Challenge statistics section", when.scrollUntilIdVisible(ids.USER_INFO("Gill Stock 1"), ids.INSPECT_ACTIVITY(t("Longest streak")), "down"), async () => {
             Then("I should see the Challenge stats", then.myChallengeDataVisible(0))
             Then("I should see the Activity section heading", then.activitySectionHeadingVisible("Gill Stock 1"))
         })
@@ -180,7 +181,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can inspect myself and challenge a different user to a duel for the first time via inspect", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_47, data.AUTH_47), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
-        })  
+        })
         When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
             When("I click on my own name", when.tapID(ids.RANK(data.CUSTOMER_47.data.fullName, 2)), async () => {
                 Then("I should be on the Inspect screen", then.isOnInspectScreen)
@@ -201,11 +202,11 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("I should see Challenge a friend button", then.challengeFriendButtonVisible)
             Then("I should be on the empty duels hub", then.onEmptyDuelsHub)
         })
-        When("I tap challenge a colleague", when.tapID(ids.CHALLENGE_FRIEND_BUTTON), async()=>{
+        When("I tap challenge a colleague", when.tapID(ids.CHALLENGE_FRIEND_BUTTON), async () => {
             Then("I should be on the Search for a friend screen", then.textVisible("Search for a friend:"))
             Then("I should see Angela Martin", then.textVisible("Angela Martin"))
         })
-        When("I tap a Angela Martin", when.tapText("Angela Martin"), async()=>{
+        When("I tap a Angela Martin", when.tapText("Angela Martin"), async () => {
             Then("I should be on the start duel screen", then.multipleTextVisible(["The matchup:", "Set the duel"]))
         })
     })
@@ -213,7 +214,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can inspect a player and challenge the user to a duel for the first time via inspect", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_47, data.AUTH_47), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
-        })  
+        })
         When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
             When("I click on user Michael's name", when.clickUser("Michael Scott"), async () => {
                 Then("I should be on the Inspect screen", then.isOnInspectScreen)
@@ -231,17 +232,17 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
             Then("I should be on the onboarding yuscreen v4", then.idVisible(ids.ONBOARDING_SCREEN_V4))
 
-        })  
+        })
         helper.CREATE_AVATAR(data.CUSTOMER_50)();
         When("I wait", when.wait(6000), async () => {
             When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.LEADERBOARD_1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([data.CUSTOMER_18, data.CUSTOMER_50, data.CUSTOMER_47]))
-            }) 
+            })
         })
         When("I click on user Michael's name", when.clickUser(data.CUSTOMER_18.data.fullName), async () => {
             Then("I should be on the Inspect screen", then.isOnInspectScreen)
-            Then("Michael's name is visible", then.idVisible(ids.TEXT_TEMPLATE(data.CUSTOMER_18.data.fullName))) 
+            Then("Michael's name is visible", then.idVisible(ids.TEXT_TEMPLATE(data.CUSTOMER_18.data.fullName)))
             Then("Michael's world is visible", then.idVisible(ids.USER_WORLD("Forest")))
             Then("Michael's level is visible", then.idVisible(ids.USER_LEVEL(data.COIN_LEDGER_18.data.currentLevel)))
             Then("Michael's empty yumoji is visible", then.idVisible(ids.YUMOJI))
