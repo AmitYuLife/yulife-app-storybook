@@ -7,6 +7,8 @@ import Logger from "@services/logging/logger";
 import { YuScreenContext } from "../context/yu-screen.context";
 import { GetYuScreen_getYuScreen_onboarding } from "@graphql/_core/schema";
 import { useDispatch } from "react-redux";
+import { useNavigationComponentDidAppear } from "@hooks";
+import { MobileOnboardingStepPerformed } from "@graphql/_core/schema/globalTypes";
 
 export type OnboardingHandler = () => Promise<void>;
 
@@ -21,6 +23,15 @@ export const useOnboardingButtonHandler = (
   const { yumojiRemoteUrl } = useContext(YuScreenContext);
   const [shouldShowOnboarding, setShouldShowOnboarding] = useState<boolean>(true);
   const [performOnboarding] = useMutation(GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP);
+
+  /**
+   * Hide the onboarding screen when the user navigates to the pension screen.
+   */
+  useNavigationComponentDidAppear(() => {
+    if (onboarding?.id === MobileOnboardingStepPerformed.yuScreenOnboardingPension) {
+      setShouldShowOnboarding(false);
+    }
+  }, ROUTES.pensionConnection);
 
   const markOnboardingAsViewed = useCallback(async () => {
     try {
