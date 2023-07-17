@@ -2,8 +2,11 @@ import { When, Then } from "@yu-life/yulife-bdd-framework";
 import * as when from "./when"
 import * as then from "./then"
 import * as text  from "./fixture";
-import { YUMOJI_AVATAR_YUSCREEN_V4, VIEW_TOP_RIGHT_COIN_COUNTER, TEXT_TEMPLATE, BUTTON_CLOSE, RIGHT_STATUS_ICON, YUCOIN_POWER, CONTENT_ITEM_IMAGE, V4_YUSCREEN, ALL_PRODUCTS_CONTAINER_VIEW, BACK_BUTTON, CAROUSEL_CARD_BUTTON, ONBOARDING_SCREEN, CAROUSEL_CARD, SPONSOR_LOGO_IMAGE} from "@ids";
-import { USProductData } from "./types";
+import { V4_YUSCREEN, ALL_PRODUCTS_CONTAINER_VIEW, BACK_BUTTON, CAROUSEL_CARD_BUTTON, ONBOARDING_SCREEN, CAROUSEL_CARD, SPONSOR_LOGO_IMAGE, BOX_OPTION_TITLE, BOX_OPTION_DESCRIPTION, RIGHT_SIDE_IMAGE_BOX_OPTION, YUSCREEN_SCROLL_VIEW, LEFT_SIDE_BACKGROUD_IMAGE_SLOT, RIGHT_SIDE_IMAGE_SLOT, LEFT_SIDE_TEXT_SLOT_POWER, WELLBEING_HUB_SCREEN, TEXT_TEMPLATE} from "@ids";
+import { BoxOption, USProductData, YuScreenInfo } from "./types";
+import { BUSINESS_ACCOUNT_USA_2, } from "04_USA/_data";
+import moment from "moment";
+import { BPEW_GDent_10 } from "@data";
 
 
 
@@ -68,28 +71,19 @@ export const LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION = async (productCard:
     })
 }
 
-export const ONBOARDING_YUSCREEN_USA = async (packType: string, yuCoinPower: string) => {
+export const ONBOARDING_YUSCREEN_USA = async (seed:YuScreenInfo) => {
     
-    const earnRate0 = "1"; // If product having 0 earn rate will get 1
-
     Then(`I should see ${text.yuCoinText} text`, then.textVisible(text.yuCoinText))
     Then(`I should see ${text.powerText} text`, then.textVisible(text.powerText))
+    Then(`I should see ${seed.mainYuCoinPower} text`, then.textVisible(seed.mainYuCoinPower))
+    Then(`I should see ${seed.SlotProductTitle} text`, then.textVisible(seed.SlotProductTitle))
+    seed.SlotLeftBackgroundImgSrc && Then(`I should be able to see ${seed.SlotLeftBackgroundImgSrc} background image on left`, then.idVisibleAtIndex(LEFT_SIDE_BACKGROUD_IMAGE_SLOT(seed.SlotLeftBackgroundImgSrc), 0));
+    seed.SlotYuCoinPowerText && Then(`I should be able to see ${seed.SlotYuCoinPowerText} text power on left of slot`, then.idVisibleAtIndex(LEFT_SIDE_TEXT_SLOT_POWER(seed.SlotYuCoinPowerText), 0));
+    //if seed data have info for second slot will run below
+    seed.SecondSlotProductTitle && Then(`I should see ${seed.SecondSlotProductTitle} text`, then.textVisible(seed.SecondSlotProductTitle))
+    seed.SecondSlotLeftBackgroundImgSrc && Then(`I should be able to see ${seed.SecondSlotLeftBackgroundImgSrc} background image on left`, then.idVisibleAtIndex(LEFT_SIDE_BACKGROUD_IMAGE_SLOT(seed.SecondSlotLeftBackgroundImgSrc), 1));
+    seed.SecondSlotLeftBackgroundImgSrc && Then(`I should be able to see ${seed.SlotYuCoinPowerText} text power on left of slot 2`, then.idVisibleAtIndex(LEFT_SIDE_TEXT_SLOT_POWER(seed.SlotYuCoinPowerText), 1));
 
-  switch (packType) {
-    case "GAP/VIS": //will show only first 3 that user have
-        Then(`I should see ${earnRate0} text`, then.textVisible(earnRate0))
-        Then(`I should see ${yuCoinPower} text`, then.textVisible(yuCoinPower))
-        Then(`I should see ${text.Gap} text`, then.textVisible(text.Gap))
-        Then(`I should see ${text.Guardian_VIS.heading} text`, then.textVisible(text.Guardian_VIS.heading))
-        break;
-    case "GAP": //will show only first 3 that user have
-        Then(`I should see ${earnRate0} text`, then.textVisible(earnRate0))
-        Then(`I should see ${yuCoinPower} text`, then.textVisible(yuCoinPower))
-        Then(`I should see ${text.Gap} text`, then.textVisible(text.Gap))
-        break;
-    default:
-      break;
-    }
     Then(`I should see ${ONBOARDING_SCREEN} id`, then.idVisible(ONBOARDING_SCREEN))
     Then(`I should see ${text.protectionPowered} text`, then.textVisible(text.protectionPowered))
     Then(`I should see ${text.earnRewardsCopy} text`, then.textVisible(text.earnRewardsCopy))
@@ -97,55 +91,120 @@ export const ONBOARDING_YUSCREEN_USA = async (packType: string, yuCoinPower: str
         Then(`I should see ${text.buttonText} text`, then.textVisible(text.buttonText))
     })
 }
-
-export const YUSCREEN_USA = async (customer: any, packType: string, yuCoinPower: string, buttonText = "Check out my power") => {
+export const SKIP_YUMOJI_CREATION = async (customer: any) => {
 
     const firstName = customer.data.firstName;
     const lastName = customer.data.lastName;
 
-    When(`I tap ${buttonText}`, when.tapText(buttonText), async () => {
+    When(`I tap Check out my power`, when.tapText("Check out my power"), async () => {
         Then(`I should see ${text.yuMojiBuilder}`, then.textVisible(text.yuMojiBuilder))
     })
     When("I swipe down the screen", when.swipeFromText(text.yuMojiBuilder, "up", "slow"), async () => {
         When("I tap I'll do this later", when.tapText("I'll do this later"), async () => {
             Then(`I should see ${firstName} ${lastName} text`, then.textVisible(`${firstName} ${lastName}`))
-            Then(`I should see ${V4_YUSCREEN} id`, then.idVisible(V4_YUSCREEN))
-            Then(`I should see ${text.createYumujiHeading} text`, then.textVisible(`${text.createYumujiHeading}`))
-            Then(`I should see ${text.createYumujiText} text`, then.textVisible(`${text.createYumujiText}`))
-            Then(`I should see ${text.createYumujiCTA} text`, then.textVisible(`${text.createYumujiCTA}`))
-            Then(`I should see ${text.yuCoinText} text`, then.textVisible(`${text.yuCoinText}`))
-            Then(`I should see ${text.powerText} text`, then.textVisible(`${text.powerText}`))
 
-            switch (packType) {
-                case "GAP/VIS":
-                    Then(`I should see ${yuCoinPower} text`, then.textVisible(yuCoinPower))
-                    Then(`I should see ${text.Gap} text`, then.textVisible(text.Gap))
-                    Then(`I should see ${text.Guardian_VIS.heading} text`, then.textVisible(text.Guardian_VIS.heading))
-                    Then(`I should see ${text.SponsoredBy} text`, then.textVisible(text.SponsoredBy))
-                    Then(`I should see ${SPONSOR_LOGO_IMAGE(text.Guardian_Sponsor)} sponsor image`, then.idVisible(SPONSOR_LOGO_IMAGE(text.Guardian_Sponsor)))
-                    Then(`I should see ${SPONSOR_LOGO_IMAGE(text.Yulife_Sponsor)} sponsor image`, then.idVisible(SPONSOR_LOGO_IMAGE(text.Yulife_Sponsor)))
-                    Then(`I should see ${SPONSOR_LOGO_IMAGE(text.Transamerica_Sponsor)} sponsor image`, then.idVisible(SPONSOR_LOGO_IMAGE(text.Transamerica_Sponsor)))
-                    break;
-                case "GAP":
-                    Then(`I should see ${yuCoinPower} text`, then.textVisible(yuCoinPower))
-                    Then(`I should see ${text.Gap} text`, then.textVisible(text.Gap))
-                    Then(`I should NOT see ${text.SponsoredBy} text`, then.textNotVisible(text.SponsoredBy))
-                    Then(`I should NOT see ${SPONSOR_LOGO_IMAGE(text.Guardian_Sponsor)} sponsor image`, then.idNotVisible(SPONSOR_LOGO_IMAGE(text.Guardian_Sponsor)))
-                    Then(`I should NOT see ${SPONSOR_LOGO_IMAGE(text.Yulife_Sponsor)} sponsor image`, then.idNotVisible(SPONSOR_LOGO_IMAGE(text.Yulife_Sponsor)))
-                    Then(`I should NOT see ${SPONSOR_LOGO_IMAGE(text.Transamerica_Sponsor)} sponsor image`, then.idNotVisible(SPONSOR_LOGO_IMAGE(text.Transamerica_Sponsor)))
-                    break;
-                default:
-                    break;
-                }
+        })
+    })
+}
+export const SLOT_VISSIBLE = async (seed:YuScreenInfo) => {
+    When("I wait 1 seconds", when.wait(1000), async () => {
+        Then(`I should see ${seed.mainYuCoinPower} yu coin power text`, then.textVisible(seed.mainYuCoinPower))
+        Then(`I should see ${seed.SlotProductTitle} text`, then.textVisible(seed.SlotProductTitle))
+        seed.SlotLeftBackgroundImgSrc && Then(`I should be able to see ${seed.SlotLeftBackgroundImgSrc} background image on left`, then.idVisibleAtIndex(LEFT_SIDE_BACKGROUD_IMAGE_SLOT(seed.SlotLeftBackgroundImgSrc), 0));
+        seed.SlotYuCoinPowerText && Then(`I should be able to see ${seed.SlotYuCoinPowerText} text power on left of slot`, then.idVisibleAtIndex(LEFT_SIDE_TEXT_SLOT_POWER(seed.SlotYuCoinPowerText), 0));
+        
+        seed.SecondSlotProductTitle && Then(`I should see ${seed.SecondSlotProductTitle} text`, then.textVisible(seed.SecondSlotProductTitle))
+        seed.SecondSlotLeftBackgroundImgSrc && Then(`I should be able to see ${seed.SecondSlotLeftBackgroundImgSrc} background image on left`, then.idVisibleAtIndex(LEFT_SIDE_BACKGROUD_IMAGE_SLOT(seed.SecondSlotLeftBackgroundImgSrc), 1));
+        seed.SecondSlotLeftBackgroundImgSrc && Then(`I should be able to see ${seed.SlotYuCoinPowerText} text power on left of slot 2`, then.idVisibleAtIndex(LEFT_SIDE_TEXT_SLOT_POWER(seed.SlotYuCoinPowerText), 1));
 
-            When(`I swipe from text ${text.createYumujiCTA, "up", "fast"}`, when.swipeFromText(text.createYumujiCTA, "up", "fast"), async () => {
-                Then(`I should see ${text.SurveyLabel} text`, then.textVisible(`${text.SurveyLabel}`))
-                Then(`I should see ${text.SurveyText} text`, then.textVisible(`${text.SurveyText}`))
-                Then(`I should NOT see ${CAROUSEL_CARD} id`, then.idNotVisible(CAROUSEL_CARD))
-            })
-            When(`I swipe from text ${text.SurveyText} down`, when.swipeFromText(text.SurveyText, "down", "fast"), async () => {
-                Then(`I should see ${firstName} ${lastName} text`, then.textVisible(`${firstName} ${lastName}`))
-            })
+    })
+}
+export const YUSCREEN_USA = async (customer: any) => {
+    
+    const firstName = customer.data.firstName;
+    const lastName = customer.data.lastName;
+
+    When("I wait 1 seconds", when.wait(1000), async () => {
+        Then(`I should see ${firstName} ${lastName} text`, then.textVisible(`${firstName} ${lastName}`))
+        Then(`I should see ${V4_YUSCREEN} id`, then.idVisible(V4_YUSCREEN))
+        Then(`I should see ${text.createYumujiHeading} text`, then.textVisible(`${text.createYumujiHeading}`))
+        Then(`I should see ${text.createYumujiText} text`, then.textVisible(`${text.createYumujiText}`))
+        Then(`I should see ${text.createYumujiCTA} text`, then.textVisible(`${text.createYumujiCTA}`))
+        Then(`I should see ${text.yuCoinText} text`, then.textVisible(`${text.yuCoinText}`))
+        Then(`I should see ${text.powerText} text`, then.textVisible(`${text.powerText}`))
+    
+        When(`I swipe down the page`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.SurveyLabel, "down"), async () => {
+            Then(`I should see ${text.SurveyLabel} text`, then.textVisible(`${text.SurveyLabel}`))
+            Then(`I should see ${text.SurveyText} text`, then.textVisible(`${text.SurveyText}`))
+            Then(`I should NOT see ${CAROUSEL_CARD} id`, then.idNotVisible(CAROUSEL_CARD))
+        })
+        When(`I swipe up the page`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, `${firstName} ${lastName}`, "up"), async () => {
+            Then(`I should see ${firstName} ${lastName} text`, then.textVisible(`${firstName} ${lastName}`))
+        })
+    })
+}
+
+export const BOX_OPTION_VISIBLE = async (seed: BoxOption) => {
+    When(`I swipe from text ${text.createYumujiCTA, "up", "fast"}`, when.swipeFromText(text.createYumujiCTA, "up", "fast"), async () => {
+        Then(`I should see ${seed.imageUrl} text`, then.idVisible(RIGHT_SIDE_IMAGE_BOX_OPTION(seed.imageUrl)))
+        Then(`I should see ${seed.title} text`, then.idVisible(BOX_OPTION_TITLE(seed.title)))
+        Then(`I should see ${seed.description} text`, then.idVisible(BOX_OPTION_DESCRIPTION(seed.description)))
+    })
+    When(`I scroll up the page`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.powerText, "up"), async () => {
+        Then(`I should see ${text.powerText} text`, then.textVisible(`${text.powerText}`))
+    })
+}
+
+export const BOX_OPTION_NOT_VISIBLE = async (seed: BoxOption) => {
+    When(`I swipe from text ${text.createYumujiCTA, "up", "fast"}`, when.swipeFromText(text.createYumujiCTA, "up", "fast"), async () => {
+        Then(`I should NOT see ${seed.imageUrl} text`, then.idNotVisible(RIGHT_SIDE_IMAGE_BOX_OPTION(seed.imageUrl)))
+        Then(`I should NOT see ${seed.title} text`, then.idNotVisible(BOX_OPTION_TITLE(seed.title)))
+        Then(`I should NOT see ${seed.description} text`, then.idNotVisible(BOX_OPTION_DESCRIPTION(seed.description)))
+    })
+    When(`I scroll up the page`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.powerText, "up"), async () => {
+        Then(`I should see ${text.powerText} text`, then.textVisible(`${text.powerText}`))
+    })
+}
+
+export const SPONSORED_LOGO_VISSIBLE = async () => {
+    When("I wait 1 seconds", when.wait(1000), async () => {
+        Then(`I should see ${text.SponsoredBy} text`, then.textVisible(text.SponsoredBy))
+        Then(`I should see ${SPONSOR_LOGO_IMAGE(text.Guardian_Sponsor)} sponsor image`, then.idVisible(SPONSOR_LOGO_IMAGE(text.Guardian_Sponsor)))
+        Then(`I should see ${SPONSOR_LOGO_IMAGE(text.Yulife_Sponsor)} sponsor image`, then.idVisible(SPONSOR_LOGO_IMAGE(text.Yulife_Sponsor)))
+        Then(`I should see ${SPONSOR_LOGO_IMAGE(text.Transamerica_Sponsor)} sponsor image`, then.idVisible(SPONSOR_LOGO_IMAGE(text.Transamerica_Sponsor)))
+    })
+}
+
+export const SPONSORED_LOGO_NOT_VISSIBLE = async () => {
+    When("I wait 1 seconds", when.wait(1000), async () => {
+        Then(`I should NOT see ${text.SponsoredBy} text`, then.textNotVisible(text.SponsoredBy))
+        Then(`I should NOT see ${SPONSOR_LOGO_IMAGE(text.Guardian_Sponsor)} sponsor image`, then.idNotVisible(SPONSOR_LOGO_IMAGE(text.Guardian_Sponsor)))
+        Then(`I should NOT see ${SPONSOR_LOGO_IMAGE(text.Yulife_Sponsor)} sponsor image`, then.idNotVisible(SPONSOR_LOGO_IMAGE(text.Yulife_Sponsor)))
+        Then(`I should NOT see ${SPONSOR_LOGO_IMAGE(text.Transamerica_Sponsor)} sponsor image`, then.idNotVisible(SPONSOR_LOGO_IMAGE(text.Transamerica_Sponsor)))
+    })
+}
+
+export const ENROLMENT_ENDS_IN = async (date:typeof BPEW_GDent_10) => {
+    When(`I swipe down the page until i see ${BUSINESS_ACCOUNT_USA_2.data.external_admin_url_description}`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, BUSINESS_ACCOUNT_USA_2.data.external_admin_url_description, "down"), async () => {
+        Then(`I should see Your enrollment will end on ${moment(date.data.enrolment_end_date).format("MM/DD/YYYY")}`, then.textVisible(`Your enrollment will end on ${moment(date.data.enrolment_end_date).format("MM/DD/YYYY")}`))
+        Then(`I should see right countdown with  Days Hours Minutes left ${date.data.enrolment_end_date} `, then.enrolmentEndsIn(date.data.enrolment_end_date))
+    })
+}
+
+export const CHECK_WELLBEING_HUB = async (customer: any, seed: BoxOption) => {
+    const firstName = customer.data.firstName;
+
+    When(`I scroll down to ${seed.description}`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, seed.description, "down"), async () => {
+        When(`I tap ${seed.description}`, when.tapText(seed.description), async () => {
+            Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
+            Then(`I should see Hi ${firstName} text`, then.textVisible(`Hi ${firstName}`))
+            Then(`I should see Hi ${text.wellbeingHubDescription} text`, then.textVisible(text.wellbeingHubDescription))
+            Then(`I should see All text`, then.textVisible("All"))
+            Then("I should see Smart Health ", then.idVisible(TEXT_TEMPLATE("Smart Health")))
+            Then(`I should see "Immediate access to a GP by phone or video"`, then.textVisible("Immediate access to a GP by phone or video"))
+        })
+        When("I tap to go back to Yu Screen", when.tapID(BACK_BUTTON), async () => {
+            Then("I should not see Smart Health ", then.idNotVisible(TEXT_TEMPLATE("Smart Health")))
         })
     })
 }

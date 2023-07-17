@@ -202,6 +202,12 @@ export const YUCOIN_POWER_V4_SCREEN = (earnRate: number) => `YUCOIN_POWER_V4_SCR
 export const LEFT_SIDE_TEXT_SLOT_POWER = (earnRate: string) =>  `LEFT_SIDE_TEXT_SLOT_POWER_${earnRate}}`
 export const LEFT_SIDE_BACKGROUD_IMAGE_SLOT = (imgSrc: string) =>  `LEFT_SIDE_BACKGROUD_IMAGE_SLOT_${imgSrc}}`
 export const RIGHT_SIDE_IMAGE_SLOT = (imgSrc: string) =>  `RIGHT_SIDE_IMAGE_SLOT_${imgSrc}}`
+export const RIGHT_SIDE_IMAGE_BOX_OPTION = (imgSrc: string) =>  `RIGHT_SIDE_IMAGE_BOX_OPTION_${imgSrc}}`
+export const BOX_OPTION_TITLE = (title: string) =>  `BOX_OPTION_TITLE_${title}`
+export const BOX_OPTION_DESCRIPTION = (description: string) =>  `BOX_OPTION_DESCRIPTION_${description}`
+
+
+
 
 
 export const CAROUSEL_CARD_BUTTON = (cardTitle: string) => `CAROUSEL_CARD_BUTTON_${cardTitle}`

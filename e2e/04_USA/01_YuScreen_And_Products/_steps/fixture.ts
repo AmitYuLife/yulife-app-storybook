@@ -1,5 +1,6 @@
+import { CPE_GAP_10 } from "04_USA/_data"
 import moment from "moment"
-import { USProductData } from "./types"
+import { BoxOption, USProductData, YuScreenInfo } from "./types"
 
 //Onboarding US YU screen 
 export const moreInsurance = "More insurance available"
@@ -56,6 +57,14 @@ export const Video_ImageUrl = "https://yulife-develop.imgix.net/illustrations/fi
 export const Guardian_Sponsor = "https://yulife-develop.imgix.net/sponsored-logos/guardian-1.svg?ixlib=js-3.2.1&w=285&s=c8c67c84fea37e61f318ba8e6f61deae"
 export const Transamerica_Sponsor = "https://yulife-develop.imgix.net/sponsored-logos/transamerica-2.svg?ixlib=js-3.2.1&w=270&s=279b4702ae6fbeefe6175a81ffbde2b6"
 export const Yulife_Sponsor = "https://yulife-develop.imgix.net/sponsored-logos/yulife-1.svg?ixlib=js-3.2.1&w=153&s=db02cee6a0d16063f910ad2d3b0cb3be"
+
+//Slot Left Image
+export const canEnrolPlusImage = "https://yulife-develop.imgix.net/yuscreen/slots/background/bg-pink-without-shadow-28-04-23.svg?ixlib=js-3.2.1&w=135&h=156&s=0e808ed69faa1199ca9f97c7c36c79ef"
+
+//Wellbeing Hub
+
+export const wellbeingHubDescription = "Welcome to this quick-access hub to all your company’s wellbeing benefits"
+
 
 const year = moment().format("YYYY")
 
@@ -535,3 +544,53 @@ export const Guardian_VLIF:USProductData = {
     middleImage: "https://yulife-develop.imgix.net/yuscreen/product-details-guardian-hero-2022-09-21-1/Guardian_VLIF.png?ixlib=js-3.2.1&w=981&h=492&s=4a017aa145a015b1bcbb3ee5afeb4758",
     titleMarkdown: "**Voluntary Term Life insurance**"
 }
+
+export const MyWellbeingHubBox:BoxOption = {
+    imageUrl: "https://yulife-develop.imgix.net/yuscreen/box-option-card/wellbeing-hub.png?ixlib=js-3.2.1&w=360&h=312&s=10e0f8e3fa178066a180ca7828345458",
+    title: "My Wellbeing Hub",
+    description: "Access your exclusive wellness benefits here"
+}
+
+export const ExploreInsureanceBox:BoxOption = {
+    imageUrl: "https://yulife-develop.imgix.net/yuscreen/box-option-card/policy-details.svg?ixlib=js-3.2.1&w=360&h=312&s=3d7cbb8ed2198852ab149a7e2fdbf9de",
+    title: "Explore Insurance",
+    description: "Find out more about your employer provided coverage"
+}
+
+export const GapVisInsuranceInEnrolment: YuScreenInfo = {
+    mainYuCoinPower: "1",
+    SlotProductTitle: Gap,
+    SlotYuCoinPowerText: "+",
+    SlotLeftBackgroundImgSrc: canEnrolPlusImage,
+    SecondSlotProductTitle: Guardian_VIS.heading,
+    SecondSlotLeftBackgroundImgSrc: canEnrolPlusImage
+};
+
+export const VisInsuranceInEnrolment: YuScreenInfo = {
+    mainYuCoinPower: "1",
+    SlotProductTitle: Guardian_VIS.heading,
+    SlotLeftBackgroundImgSrc: canEnrolPlusImage,
+};
+
+export const NoProduct: YuScreenInfo = {
+    mainYuCoinPower: "1",
+    SlotProductTitle: moreInsurance,
+};
+
+export const GapInsurance: YuScreenInfo = {
+    mainYuCoinPower: "1",
+    SlotProductTitle: Gap,
+};
+
+export const VisInsurance: YuScreenInfo = {
+    mainYuCoinPower: "1",
+    SlotProductTitle: Guardian_VIS.heading,
+};
+
+export const GapInEnrolVisOutEnrol: YuScreenInfo = {
+    mainYuCoinPower: "1",
+    SlotProductTitle: Gap,
+    SlotYuCoinPowerText: "+",
+    SlotLeftBackgroundImgSrc: canEnrolPlusImage,
+    SecondSlotProductTitle: Guardian_VIS.heading,
+};

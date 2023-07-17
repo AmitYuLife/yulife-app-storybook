@@ -1,6 +1,7 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_USA_1, CUSTOMER_USA_2, CUSTOMER_USA_3, CUSTOMER_USA_4, CUSTOMER_USA_5, CUSTOMER_USA_6 } from '../postgres/customers';
+import * as customer from '../postgres/customers';
+
 import moment from "moment";
 
 const type = "mongo"
@@ -29,7 +30,7 @@ export const USER_USA_1 = {
     data: {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_USA_1.data.customerId,
+        userId: customer.CUSTOMER_USA_1.data.customerId,
         nickname:"First User USA",
     }
 } as IDatabaseItem
@@ -40,7 +41,7 @@ export const USER_USA_2 = {
     data: {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_USA_2.data.customerId,
+        userId: customer.CUSTOMER_USA_2.data.customerId,
         nickname:"Second User USA"
     }
 } as IDatabaseItem
@@ -51,7 +52,7 @@ export const USER_USA_3 = {
     data: {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_USA_3.data.customerId,
+        userId: customer.CUSTOMER_USA_3.data.customerId,
         products: [{
             earnRate: 1,
         }],
@@ -66,7 +67,7 @@ export const USER_USA_4 = {
     data: {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_USA_4.data.customerId,
+        userId: customer.CUSTOMER_USA_4.data.customerId,
         products: [{
             earnRate: 1,
         }],
@@ -81,7 +82,7 @@ export const USER_USA_5 = {
     data: {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_USA_5.data.customerId,
+        userId: customer.CUSTOMER_USA_5.data.customerId,
         products: [{
             earnRate: 1,
         }],
@@ -96,11 +97,71 @@ export const USER_USA_6 = {
     data: {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_USA_6.data.customerId,
+        userId: customer.CUSTOMER_USA_6.data.customerId,
         products: [{
             earnRate: 1,
         }],
         earnRate: 1,
         nickname:"Sixth User USA"
+    }
+} as IDatabaseItem
+
+export const USER_USA_7 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_7.data.customerId,
+        products: [{
+            earnRate: 1,
+        }],
+        earnRate: 1,
+        nickname:"Seventh User USA"
+    }
+} as IDatabaseItem
+
+export const USER_USA_8 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_8.data.customerId,
+        products: [{
+            earnRate: 1,
+        }],
+        earnRate: 1,
+        nickname:"Eighth User USA"
+    }
+} as IDatabaseItem
+
+export const USER_USA_9 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_9.data.customerId,
+        products: [{
+            earnRate: 1,
+        }],
+        earnRate: 1,
+        nickname:"Nine User USA"
+    }
+} as IDatabaseItem
+
+export const USER_USA_10 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_10.data.customerId,
+        products: [{
+            earnRate: 1,
+        }],
+        earnRate: 1,
+        nickname:"User USA"
     }
 } as IDatabaseItem

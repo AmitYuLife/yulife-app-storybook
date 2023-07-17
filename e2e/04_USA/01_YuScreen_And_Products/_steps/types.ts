@@ -23,5 +23,19 @@ export interface USProductData {
     legalStuff_5?: string,
     middleImage?: string,
     titleMarkdown: string;
-    
+}
+
+export interface BoxOption {
+    imageUrl: string,
+    title: string,
+    description: string
+}
+
+export interface YuScreenInfo {
+    mainYuCoinPower: string
+    SlotProductTitle: string,
+    SlotYuCoinPowerText?: string,
+    SlotLeftBackgroundImgSrc?: string,
+    SecondSlotProductTitle?: string,
+    SecondSlotLeftBackgroundImgSrc?: string,
 }

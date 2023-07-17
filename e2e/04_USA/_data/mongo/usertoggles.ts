@@ -1,5 +1,4 @@
-
-import {CUSTOMER_USA_1, CUSTOMER_USA_2, CUSTOMER_USA_3, CUSTOMER_USA_4, CUSTOMER_USA_5, CUSTOMER_USA_6 } from '../postgres/customers';
+import * as customer from '../postgres/customers';
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
 const type = "mongo"
@@ -13,7 +12,7 @@ export const CUSTOMER_USA_1_TOGGLES = {
     modelName: "usertoggles",
     data: {
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_USA_1.data.customerId,
+        userId: customer.CUSTOMER_USA_1.data.customerId,
         features: {
         }
     }
@@ -24,7 +23,7 @@ export const CUSTOMER_USA_2_TOGGLES = {
     modelName: "usertoggles",
     data: {
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_USA_2.data.customerId,
+        userId: customer.CUSTOMER_USA_2.data.customerId,
         features: {
         }
     }
@@ -35,7 +34,7 @@ export const CUSTOMER_USA_3_TOGGLES = {
     modelName: "usertoggles",
     data: {
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_USA_3.data.customerId,
+        userId: customer.CUSTOMER_USA_3.data.customerId,
         features: {
         }
     }
@@ -46,7 +45,7 @@ export const CUSTOMER_USA_4_TOGGLES = {
     modelName: "usertoggles",
     data: {
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_USA_4.data.customerId,
+        userId: customer.CUSTOMER_USA_4.data.customerId,
         features: {
         }
     }
@@ -57,7 +56,7 @@ export const CUSTOMER_USA_5_TOGGLES = {
     modelName: "usertoggles",
     data: {
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_USA_5.data.customerId,
+        userId: customer.CUSTOMER_USA_5.data.customerId,
         features: {
         }
     }
@@ -68,7 +67,51 @@ export const CUSTOMER_USA_6_TOGGLES = {
     modelName: "usertoggles",
     data: {
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_USA_6.data.customerId,
+        userId: customer.CUSTOMER_USA_6.data.customerId,
+        features: {
+        }
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_USA_7_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_7.data.customerId,
+        features: {
+        }
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_USA_8_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_8.data.customerId,
+        features: {
+        }
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_USA_9_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_9.data.customerId,
+        features: {
+        }
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_USA_10_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_10.data.customerId,
         features: {
         }
     }
