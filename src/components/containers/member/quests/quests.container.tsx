@@ -35,19 +35,8 @@ const QuestsContainer = (props: IMainTabsProps) => {
 
   const { componentId, onLeftMenuPress } = props;
 
-  const {
-    coins,
-    endDateTime,
-    level,
-    milestones,
-    rating,
-    score,
-    status,
-    subtype,
-    unit,
-    isLoading,
-    levelSlotId,
-  } = activeLevel;
+  const { coins, endDateTime, level, milestones, rating, score, status, subtype, unit, isLoading, levelSlotId } =
+    activeLevel;
 
   useEffect(() => {
     if (!challengeIsActive && levelSlotId && !status) {

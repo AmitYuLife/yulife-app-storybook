@@ -6,7 +6,7 @@ import * as then from "./_steps/then"
 import * as ids from "@ids";
 import * as data from "@data";
 import { twoDaysAgoDate } from "./_resources/consts"
-
+import { getLocalisedString as t } from "@i18n";
 
 Feature("As a user my activity is monitored correctly", async () => {
     Scenario("Leaderboard is reset and duels are unavailable if I walk >= 75k steps average over 5 consecutive days within the last 5 days", scenario.start, async () => {
@@ -31,19 +31,19 @@ Feature("As a user my activity is monitored correctly", async () => {
             When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
                 Then("I should see the menu items", then.menuItemsVisible)
             })
-            When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
+            When("I tap activity history", when.tapMenuItem(t("Activity History")), async () => {
                 Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
             })
             When("I pull down the activity history page to refresh", when.swipeFromText(twoDaysAgoDate, "down", "fast"), async () => {
                 Then("I should see the historical steps from yesterday loaded in meaning the refresh has worked", then.canSeeYesterdaysSteps)
             })
-            When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER("activity history")), async () => {
+            When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER(t("activity history"))), async () => {
                 Then("I should be the yucoin tab", then.onDailySteps)
             })
             When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard consent screen as my leaderboard has been reset", then.onLeaderboardConsent)
             })
-            When("I tap 'Yes'", when.tapText("Yes"), async () => {
+            When("I tap 'Yes'", when.tapText(t("Yes")), async () => {
                 Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.LEADERBOARD_2.data.name)))
                 Then("I should not see the duel button on the leaderboard screen", then.idNotVisible(ids.DUELS_BUTTON))
             })
@@ -56,12 +56,12 @@ Feature("As a user my activity is monitored correctly", async () => {
                 When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
                     Then("I should see my steps today as 0", then.idVisible(ids.STEPS_COUNT(0)))
                 })
-            })        
+            })
         })
         When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
             Then("I should see the menu items", then.menuItemsVisible)
         })
-        When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
+        When("I tap activity history", when.tapMenuItem(t("Activity History")), async () => {
             Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
             Then("I should see all steps from the past 32 days ago loaded in", then.activityHistoryScrollStepDataCorrect)
         })
@@ -81,7 +81,7 @@ Feature("As a user my activity is monitored correctly", async () => {
         When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
             Then("I should see the menu items", then.menuItemsVisible)
         })
-        When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
+        When("I tap activity history", when.tapMenuItem(t("Activity History")), async () => {
             Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
             Then("I should see all km cycled from the past 32 days ago loaded in", then.activityHistoryScrollCyclingDataCorrect)
         })
@@ -98,10 +98,10 @@ Feature("As a user my activity is monitored correctly", async () => {
         When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
             Then("I should see the menu items", then.menuItemsVisible)
         })
-        When("I tap activity history", when.tapID(ids.MENU_ITEM("Activity History")), async () => {
+        When("I tap activity history", when.tapID(ids.MENU_ITEM(t("Activity History"))), async () => {
             Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
             Then("I should see all mindful minutes from the past 32 days ago loaded in", then.activityHistoryScrollMinsDataCorrect)
-        }) 
+        })
     })
 
     Scenario("I can see my activity history successfully updates after 5 days of inactivity", scenario.start, async () => {
@@ -113,7 +113,7 @@ Feature("As a user my activity is monitored correctly", async () => {
                 When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
                     Then("I should see the menu items", then.menuItemsVisible)
                 })
-                When("I tap on activity history", when.tapMenuItem("Activity History"), async () => {
+                When("I tap on activity history", when.tapMenuItem(t("Activity History")), async () => {
                     Then("I should be on the activity history page", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
                     Then("I should be able to see the steps from the last 5 days are being successfully displayed", then.canSeeHistoricalSteps(5, 4000))
                     Then("I should be able to see the completed challenge from the sixth day, which is seeded data", then.scrollUntilTextVisible(ids.ACTIVITY_HISTORY_SCREEN_SCROLL, "short stroll / 125 steps", "down"))
@@ -122,5 +122,5 @@ Feature("As a user my activity is monitored correctly", async () => {
         })
     })
 })
-    
+
 
