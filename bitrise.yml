@@ -608,7 +608,7 @@ workflows:
         title: Publish gallery and report to s3 site
         is_always_run: true
         inputs:
-        - content: |-
+        - content: |
             #!/usr/bin/env bash
             # fail if any commands fails
             set -e
@@ -636,12 +636,15 @@ workflows:
             brew install awscli
             cd gallery
 
-            # upload to S3
+            # set path for s3
             if [ "$TARGET_LOCALE" = "en-GB" ]; then
-                aws s3 sync . "s3://yulife-develop-detox-static-origin/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE"
+                S3_PATH="$DETOX_TEST_TYPE/$IPHONE_DEVICE"
             else
-                aws s3 sync . "s3://yulife-develop-detox-static-origin/screenshots/$TARGET_LOCALE/$DETOX_TEST_TYPE/$IPHONE_DEVICE"
+                S3_PATH="$TARGET_LOCALE/$DETOX_TEST_TYPE/$IPHONE_DEVICE"
             fi
+
+            # upload to s3
+            aws s3 sync . "s3://yulife-develop-detox-static-origin/screenshots/$S3_PATH"
 
             # remove bulk from the report upload, keep screenshots only
             cd ..
@@ -653,6 +656,7 @@ workflows:
             aws s3 sync . "s3://yulife-develop-detox-static-origin/reports/$BITRISE_BUILD_NUMBER"
 
             envman add --key MOCHAWESOME_REPORT --value "https://develop.detox.yulife.engineering/reports/$BITRISE_BUILD_NUMBER/mochawesome.html"
+            envman add --key SCREENSHOTS_REPORT --value $(echo "https://develop.detox.yulife.engineering/screenshots/$S3_PATH/index.html" | sed -e 's/ /%20/g')
     - slack@3:
         inputs:
         - api_token: ""
@@ -665,11 +669,12 @@ workflows:
             Results|$E2E_RESULTS
             Device|$IPHONE_DEVICE
             Test Type|$DETOX_TEST_TYPE
-        - buttons: |+
+            Locale|$TARGET_LOCALE
+        - buttons: |-
             View Results|${MOCHAWESOME_REPORT}
             View Job|${BITRISE_BUILD_URL}
             Download Results|${BITRISE_BUILD_URL}#?tab=artifacts
-
+            Screenshots|${SCREENSHOTS_REPORT}
         - from_username_on_error: Detox
         - pretext_on_error: '*Detox tests failed!* :cry:'
         - is_debug_mode: "yes"
