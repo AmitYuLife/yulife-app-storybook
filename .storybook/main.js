@@ -13,6 +13,10 @@ const CUSTOM_CONFIG = {
       "react-native-linear-gradient": "react-native-web-linear-gradient",
       "react-native-mixpanel": path.join(__dirname, "/aliases/mixpanel"),
       "@bugsnag/react-native": path.join(__dirname, "/aliases/bugsnag"),
+      "@bugsnag/plugin-react-native-navigation": path.join(
+        __dirname,
+        "/aliases/bugsnag-plugin-react-native-navigation"
+      ),
       "react-native-navigation": path.join(__dirname, "/aliases/react-native-navigation"),
       "react-native-animatable": path.join(__dirname, "/aliases/react-native-animatable"),
       "react-native-push-notification": path.join(__dirname, "/aliases/react-native-push-notification"),
@@ -26,6 +30,7 @@ const CUSTOM_CONFIG = {
       "@react-native-camera-roll/camera-roll": path.join(__dirname, "/aliases/react-native-camera-roll"),
       "react-native-view-shot": path.join(__dirname, "/aliases/react-native-view-shot"),
       "react-native-reanimated": path.join(__dirname, "/aliases/react-native-reanimated"),
+      "react-native-permissions": path.join(__dirname, "/aliases/react-native-permissions"),
     },
     extensions: [".web.js", ".js", ".ts", ".tsx"],
   },
@@ -50,7 +55,7 @@ const CUSTOM_CONFIG = {
   },
 };
 module.exports = {
-  stories: ["../src/components/@(atoms|molecules|organisms)/**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: ["../src/components/@(atoms|molecules|organisms|screens)/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",

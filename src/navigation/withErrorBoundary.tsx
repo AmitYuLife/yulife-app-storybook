@@ -2,9 +2,11 @@ import React, { ComponentClass, useCallback } from "react";
 import getClient from "@services/bugsnag";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
+import { Platform, View } from "react-native";
 
 const Bugsnag = getClient();
-const ErrorBoundary = Bugsnag.getPlugin("react")!.createErrorBoundary(React);
+const ErrorBoundary =
+  Platform.OS === "web" ? React.createElement(View, {}) : Bugsnag.getPlugin("react")!.createErrorBoundary(React);
 
 const withErrorBoundary = (WrappedComponent: ComponentClass) => (props: any) => {
   /**

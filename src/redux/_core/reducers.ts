@@ -28,14 +28,13 @@ import sduiReducer, { getInitialState as getInitialSduiState, ISduiStore } from 
 import dailyCyclingReducer, {
   IDailyCyclingStore,
   getInitialState as getInitialDailyCycling,
-} from "@redux/daily-cycling/daily-cycling.reducer";
-import fitkitReducer, { getInitialState as getInitialFitkitState } from "../fitkit/fitkit.reducer";
-import { IFitkitStore } from "@redux/fitkit/fitkit.reducer";
+} from "../daily-cycling/daily-cycling.reducer";
+import fitkitReducer, { getInitialState as getInitialFitkitState, IFitkitStore } from "../fitkit/fitkit.reducer";
 import adBannersReducer, { getInitialAdbannersState, IAdBannersStore } from "../ad-banners/ad-banners.reducer";
 import dailyPensionReducer, {
   IDailyPensionStore,
   getInitialState as getInitialDailyPension,
-} from "@redux/daily-pension/daily-pension.reducer";
+} from "../daily-pension/daily-pension.reducer";
 
 export interface IReduxState {
   app: IAppStore;

@@ -7,6 +7,7 @@ import LeanplumClient from "./leanplum";
 import { MixpanelEvent, MixpanelEventMetadata } from "@services/logging/types";
 import { Event } from "@bugsnag/react-native";
 import region from "@services/region";
+import { Platform } from "react-native";
 
 class LoggerInstance {
   private userId = "";
@@ -123,15 +124,17 @@ class LoggerInstance {
       console.error(error, tags);
     }
 
-    this.bugsnag.notify(error, function (event: Event) {
-      // TODO: Omit tags we don't want to see in bugsnag
-      if (Object.keys(tags).length) {
-        for (const tag of Object.keys(tags)) {
-          event.addMetadata("tags", tag, tags[tag]);
+    if (Platform.OS !== "web") {
+      this.bugsnag.notify(error, function (event: Event) {
+        // TODO: Omit tags we don't want to see in bugsnag
+        if (Object.keys(tags).length) {
+          for (const tag of Object.keys(tags)) {
+            event.addMetadata("tags", tag, tags[tag]);
+          }
         }
-      }
-      // If this function returns false, the event won't be emitted
-    });
+        // If this function returns false, the event won't be emitted
+      });
+    }
   };
 }
 
