@@ -574,10 +574,12 @@ workflows:
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
 
             # Run tests
-            command="yarn TARGET_LOCALE=$TARGET_LOCALE detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel \"${DETOX_LOG_LEVEL:=warn}\" --debug-synchronization 200 --record-logs failing"
+            command="TARGET_LOCALE=$TARGET_LOCALE yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel \"${DETOX_LOG_LEVEL:=warn}\" --debug-synchronization 200 --record-logs failing"
 
+            # If SKIP_ASSERTIONS flag is set, prefix the command with its value
             [[ -n $SKIP_ASSERTIONS ]] && command="SKIP_ASSERTIONS=$SKIP_ASSERTIONS $command"
 
+            # Evaluate command / Run
             eval $command
 
     - script@1:
@@ -824,6 +826,21 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-extended-1-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: extended:1
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: jp-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
   ios-detox-run-iphone-14-pro-extended-2-70:
     after_run:
     - ios-detox-run-base-70
@@ -834,6 +851,21 @@ workflows:
     - DETOX_TEST_TYPE: extended:2
       opts:
         is_expand: false
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-extended-2-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: extended:2
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: jp-JP
+    - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
@@ -850,6 +882,21 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-extended-3-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: extended:3
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: jp-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
   ios-detox-run-iphone-14-pro-extended-4-70:
     after_run:
     - ios-detox-run-base-70
@@ -860,6 +907,21 @@ workflows:
     - DETOX_TEST_TYPE: extended:4
       opts:
         is_expand: false
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-extended-4-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: extended:4
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: jp-JP
+    - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
@@ -887,66 +949,6 @@ workflows:
         inputs:
         - workflows: ios-detox-run-iphone-14-pro-extended-4-70
         - access_token: $BITRISE_API_TOKEN
-    meta:
-      bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
-  ios-detox-run-iphone-14-pro-extended-1-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 14 Pro
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: extended:1
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: jp-JP
-    - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
-  ios-detox-run-iphone-14-pro-extended-2-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 14 Pro
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: extended:2
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: jp-JP
-    - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
-  ios-detox-run-iphone-14-pro-extended-3-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 14 Pro
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: extended:3
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: jp-JP
-    - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
-  ios-detox-run-iphone-14-pro-extended-4-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 14 Pro
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: extended:4
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: jp-JP
-    - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
@@ -1179,6 +1181,21 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-smoke-1-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: smoke:1
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: jp-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
   ios-detox-run-iphone-14-pro-smoke-2-70:
     after_run:
     - ios-detox-run-base-70
@@ -1189,6 +1206,21 @@ workflows:
     - DETOX_TEST_TYPE: smoke:2
       opts:
         is_expand: false
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-smoke-2-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: smoke:2
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: jp-JP
+    - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
@@ -1205,6 +1237,21 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-smoke-3-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: smoke:3
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: jp-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
   ios-detox-run-iphone-14-pro-smoke-4-70:
     after_run:
     - ios-detox-run-base-70
@@ -1215,6 +1262,21 @@ workflows:
     - DETOX_TEST_TYPE: smoke:4
       opts:
         is_expand: false
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-smoke-4-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: smoke:4
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: jp-JP
+    - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
@@ -1242,66 +1304,6 @@ workflows:
         inputs:
         - workflows: ios-detox-run-iphone-14-pro-smoke-4-70
         - access_token: $BITRISE_API_TOKEN
-    meta:
-      bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
-  ios-detox-run-iphone-14-pro-smoke-1-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 14 Pro
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: smoke:1
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: jp-JP
-    - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
-  ios-detox-run-iphone-14-pro-smoke-2-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 14 Pro
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: smoke:2
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: jp-JP
-    - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
-  ios-detox-run-iphone-14-pro-smoke-3-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 14 Pro
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: smoke:3
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: jp-JP
-    - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
-  ios-detox-run-iphone-14-pro-smoke-4-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 14 Pro
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: smoke:4
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: jp-JP
-    - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
