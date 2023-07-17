@@ -113,6 +113,7 @@ export const ROUTES = {
 
   // sdui static not registered
   pensionDetails: "yulife.sdui.static.smartPensionDetails",
+  pensionConnection: "yulife.sdui.static.pensionConnection",
   pensionConnectionSuccess: "yulife.sdui.static.pensionConnectionSuccess",
   pensionConnectionFailed: "yulife.sdui.static.pensionConnectionFailed",
 
