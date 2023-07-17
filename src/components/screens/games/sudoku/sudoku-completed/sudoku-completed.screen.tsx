@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 import React, { memo, useCallback, useRef } from "react";
-import { TextTemplate, YuCoinBadge } from "@atoms";
+import { Image, TextTemplate } from "@atoms";
 import { useTranslation } from "@hooks";
 import SudokuStatsList from "@components/games/sudoku/sudoku-stats-list";
 import { GetSudokuBoard_getSudokuBoard_results, GetSudokuBoard_getSudokuBoard_stats } from "@graphql/_core/schema";
@@ -74,12 +74,12 @@ const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }
               {isPractice ? null : (
                 <AnimatedView style={styles.yucoinContainer} entering={FadeInDown.delay(750).duration(500)}>
                   <View style={styles.yucoinWrapper}>
-                    <YuCoinBadge
-                      hasWhiteGlow={false}
-                      width={Style.adjust(75)}
-                      height={Style.adjust(75)}
-                      currentWorld={0}
-                      currentYuniverse={0}
+                    <Image
+                      width={Style.adjust(55)}
+                      height={Style.adjust(55)}
+                      suppressLoadingUi={true}
+                      source={require("@assets/icons/yucoin-shadow.png")}
+                      style={styles.yucoin}
                     />
                     <TextTemplate type="l1b" textAlign="center">
                       {reward}
@@ -186,6 +186,9 @@ const styles = StyleSheet.create({
     height: Style.adjust(250),
     alignItems: "center",
     justifyContent: "center",
+  },
+  yucoin: {
+    marginBottom: Style.adjust(12),
   },
 });
 
