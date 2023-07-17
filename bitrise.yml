@@ -635,7 +635,13 @@ workflows:
             # sync the gallery
             brew install awscli
             cd gallery
-            aws s3 sync . "s3://yulife-develop-detox-static-origin/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE"
+
+            # upload to S3
+            if [ "$TARGET_LOCALE" = "en-GB" ]; then
+                aws s3 sync . "s3://yulife-develop-detox-static-origin/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE"
+            else
+                aws s3 sync . "s3://yulife-develop-detox-static-origin/screenshots/$TARGET_LOCALE/$DETOX_TEST_TYPE/$IPHONE_DEVICE"
+            fi
 
             # remove bulk from the report upload, keep screenshots only
             cd ..
@@ -836,7 +842,7 @@ workflows:
     - DETOX_TEST_TYPE: extended:1
       opts:
         is_expand: false
-    - TARGET_LOCALE: jp-JP
+    - TARGET_LOCALE: ja-JP
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
@@ -864,7 +870,7 @@ workflows:
     - DETOX_TEST_TYPE: extended:2
       opts:
         is_expand: false
-    - TARGET_LOCALE: jp-JP
+    - TARGET_LOCALE: ja-JP
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
@@ -892,7 +898,7 @@ workflows:
     - DETOX_TEST_TYPE: extended:3
       opts:
         is_expand: false
-    - TARGET_LOCALE: jp-JP
+    - TARGET_LOCALE: ja-JP
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
@@ -920,7 +926,7 @@ workflows:
     - DETOX_TEST_TYPE: extended:4
       opts:
         is_expand: false
-    - TARGET_LOCALE: jp-JP
+    - TARGET_LOCALE: ja-JP
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
@@ -1191,7 +1197,7 @@ workflows:
     - DETOX_TEST_TYPE: smoke:1
       opts:
         is_expand: false
-    - TARGET_LOCALE: jp-JP
+    - TARGET_LOCALE: ja-JP
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
@@ -1219,7 +1225,7 @@ workflows:
     - DETOX_TEST_TYPE: smoke:2
       opts:
         is_expand: false
-    - TARGET_LOCALE: jp-JP
+    - TARGET_LOCALE: ja-JP
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
@@ -1247,7 +1253,7 @@ workflows:
     - DETOX_TEST_TYPE: smoke:3
       opts:
         is_expand: false
-    - TARGET_LOCALE: jp-JP
+    - TARGET_LOCALE: ja-JP
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
@@ -1275,7 +1281,7 @@ workflows:
     - DETOX_TEST_TYPE: smoke:4
       opts:
         is_expand: false
-    - TARGET_LOCALE: jp-JP
+    - TARGET_LOCALE: ja-JP
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
