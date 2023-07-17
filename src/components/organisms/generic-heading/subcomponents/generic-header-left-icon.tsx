@@ -17,15 +17,15 @@ const GenericHeaderLeftIcon = ({ icon, color, onPress }: IProps) => (
     hitSlop={TOP_BAR.HIT_SLOP}
     style={styles.leftIconTouchable}
     onPress={onPress}
-    accessibilityLabel={accessibilityLabels[icon] ?? ""}
+    accessibilityLabel={accessibilityLabelKeys[icon] ? t(accessibilityLabelKeys[icon]) : ""}
   >
     {getIcon(icon, color)}
   </TouchableOpacityWithDelay>
 );
 
-const accessibilityLabels: Partial<Record<LeftIcon, string>> = {
-  [LeftIcon.BACK]: t("labels.cta.back"),
-  [LeftIcon.CLOSE]: t("generic_heading.left_icon.close.accessibility_label"),
+const accessibilityLabelKeys: Partial<Record<LeftIcon, string>> = {
+  [LeftIcon.BACK]: "labels.cta.back",
+  [LeftIcon.CLOSE]: "generic_heading.left_icon.close.accessibility_label",
 };
 
 const getIcon = (icon: LeftIcon, color?: string) => {

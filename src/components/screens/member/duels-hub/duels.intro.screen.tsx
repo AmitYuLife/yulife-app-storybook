@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Image, View, ListRenderItemInfo, StyleSheet, TextStyle, ViewStyle, ImageStyle } from "react-native";
 import { Text } from "@atoms";
 import { OnboardingSwiper, OnboardingSwiperData } from "@organisms";
@@ -11,7 +11,7 @@ const images = [
   require("@assets/duels/onboarding/3.png"),
 ];
 
-const data: OnboardingSwiperData[] = [
+const buildOnboardingData = (): OnboardingSwiperData[] => [
   {
     id: "duels_onboarding_1",
     buttonLabel: t("labels.cta.next"),
@@ -37,6 +37,7 @@ interface Props {
 }
 
 function _DuelsIntroScreen(props: Props) {
+  const data = useMemo(() => buildOnboardingData(), []);
   return <OnboardingSwiper data={data} renderItem={renderItem} onClose={props.setOnboardingShown} type="duels" />;
 }
 

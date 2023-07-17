@@ -15,7 +15,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { UpdateSudokuLeaderboardConsent, UpdateSudokuLeaderboardConsentVariables } from "@graphql/_core/schema";
 import { GQL_MUTATION_UPDATE_SUDOKU_LEADERBOARD_CONSENT } from "@graphql/brainGames/sudoku/updateSudokuLeaderboardConsent.gql";
 
-const SUDOKU_LEADERBOARD: ILeaderboard = {
+const SUDOKU_LEADERBOARD = (): ILeaderboard => ({
   days: 0,
   name: t("sudoku.title"),
   metric: "",
@@ -23,7 +23,7 @@ const SUDOKU_LEADERBOARD: ILeaderboard = {
   inviteFrom: "",
   hasAccepted: false,
   leaderboardId: "sudoku",
-};
+});
 
 interface IProps {
   componentId: string;
@@ -47,7 +47,9 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
   const leaderboards = useMemo(() => {
     return [
       ...standardLeaderboards,
-      ...(showBrainGameSudoku ? [{ ...SUDOKU_LEADERBOARD, consent: sudokuStats?.getSudokuStats?.leaderboardId }] : []),
+      ...(showBrainGameSudoku
+        ? [{ ...SUDOKU_LEADERBOARD(), consent: sudokuStats?.getSudokuStats?.leaderboardId }]
+        : []),
     ];
   }, [showBrainGameSudoku, standardLeaderboards, sudokuStats?.getSudokuStats?.leaderboardId]);
 
