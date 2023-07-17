@@ -83,3 +83,55 @@ export const CUSTOMER_USA_6 = {
         status: "onboarded",
     }
 } as IDatabaseItem;
+
+export const CUSTOMER_USA_7 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Customer",
+        lastName: "Seven",
+        dateOfBirth: moment().subtract(30, "years").toDate(),
+        status: "onboarded",
+    }
+} as IDatabaseItem;
+
+export const CUSTOMER_USA_8 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Customer",
+        lastName: "Eight",
+        dateOfBirth: moment().subtract(30, "years").toDate(),
+        status: "onboarded",
+    }
+} as IDatabaseItem;
+
+export const CUSTOMER_USA_9 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Customer",
+        lastName: "Nine",
+        dateOfBirth: moment().subtract(30, "years").toDate(),
+        status: "onboarded",
+    }
+} as IDatabaseItem;
+
+export const CUSTOMER_USA_10 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Customer",
+        lastName: "Ten",
+        dateOfBirth: moment().subtract(30, "years").toDate(),
+        status: "onboarded",
+    }
+} as IDatabaseItem;

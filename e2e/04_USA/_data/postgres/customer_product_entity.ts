@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_USA_1, CUSTOMER_USA_2, CUSTOMER_USA_3, CUSTOMER_USA_4, CUSTOMER_USA_5, CUSTOMER_USA_6 } from "./customers";
+import * as customer from './customers';
 import moment from "moment";
 
 const type = "postgres";
@@ -10,7 +10,7 @@ export const CPE_Wellbeing_USA_1 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID0000001100",
-    customer_id: CUSTOMER_USA_1.data.customerId,
+    customer_id: customer.CUSTOMER_USA_1.data.customerId,
     earn_rate: 10,
     product_variant_id: "YuLife_Wellbeing_01_03",
     archived: false,
@@ -23,7 +23,7 @@ export const CPE_DENPPO_1 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001101",
-    customer_id: CUSTOMER_USA_1.data.customerId,
+    customer_id: customer.CUSTOMER_USA_1.data.customerId,
     earn_rate: 0,
     startDate: moment().format(),
     end_date: "2199-12-31",
@@ -40,7 +40,7 @@ export const CPE_DENHMO_1 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001102",
-    customer_id: CUSTOMER_USA_1.data.customerId,
+    customer_id: customer.CUSTOMER_USA_1.data.customerId,
     earn_rate: 0,
     startDate: moment().format(),
     end_date: "2199-12-31",
@@ -57,7 +57,7 @@ export const CPE_DENCHOI_1 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001103",
-    customer_id: CUSTOMER_USA_1.data.customerId,
+    customer_id: customer.CUSTOMER_USA_1.data.customerId,
     earn_rate: 0,
     startDate: moment().format(),
     end_date: "2199-12-31",
@@ -74,7 +74,7 @@ export const CPE_VIS_1 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001104",
-    customer_id: CUSTOMER_USA_1.data.customerId,
+    customer_id: customer.CUSTOMER_USA_1.data.customerId,
     earn_rate: 0,
     startDate: moment().format(),
     end_date: "2199-12-31",
@@ -91,7 +91,7 @@ export const CPE_TLIF_1 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001105",
-    customer_id: CUSTOMER_USA_1.data.customerId,
+    customer_id: customer.CUSTOMER_USA_1.data.customerId,
     earn_rate: 0,
     startDate: moment().format(),
     end_date: "2199-12-31",
@@ -108,7 +108,7 @@ export const CPE_ADD_2 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001106",
-    customer_id: CUSTOMER_USA_2.data.customerId,
+    customer_id: customer.CUSTOMER_USA_2.data.customerId,
     earn_rate: 0,
     start_date: "2022-12-09",
     end_date: "2199-12-31",
@@ -125,7 +125,7 @@ export const CPE_WLIF_2 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001107",
-    customer_id: CUSTOMER_USA_2.data.customerId,
+    customer_id: customer.CUSTOMER_USA_2.data.customerId,
     earn_rate: 0,
     start_date: "2022-12-09",
     end_date: "2199-12-31",
@@ -142,7 +142,7 @@ export const CPE_ULIF_2 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001108",
-    customer_id: CUSTOMER_USA_2.data.customerId,
+    customer_id: customer.CUSTOMER_USA_2.data.customerId,
     earn_rate: 0,
     start_date: "2022-12-09",
     end_date: "2199-12-31",
@@ -159,7 +159,7 @@ export const CPE_VADD_2 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001109",
-    customer_id: CUSTOMER_USA_2.data.customerId,
+    customer_id: customer.CUSTOMER_USA_2.data.customerId,
     earn_rate: 0,
     start_date: "2022-12-09",
     end_date: "2199-12-31",
@@ -176,7 +176,7 @@ export const CPE_STD_2 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001110",
-    customer_id: CUSTOMER_USA_2.data.customerId,
+    customer_id: customer.CUSTOMER_USA_2.data.customerId,
     earn_rate: 0,
     start_date: "2022-12-09",
     end_date: "2199-12-31",
@@ -193,7 +193,7 @@ export const CPE_LTD_2 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001111",
-    customer_id: CUSTOMER_USA_2.data.customerId,
+    customer_id: customer.CUSTOMER_USA_2.data.customerId,
     earn_rate: 0,
     start_date: "2022-12-09",
     end_date: "2199-12-31",
@@ -210,7 +210,7 @@ export const CPE_VSTD_3 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001112",
-    customer_id: CUSTOMER_USA_3.data.customerId,
+    customer_id: customer.CUSTOMER_USA_3.data.customerId,
     earn_rate: 0,
     start_date: "2022-12-09",
     end_date: "2199-12-31",
@@ -227,7 +227,7 @@ export const CPE_VLTD_3 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001113",
-    customer_id: CUSTOMER_USA_3.data.customerId,
+    customer_id: customer.CUSTOMER_USA_3.data.customerId,
     earn_rate: 0,
     start_date: "2022-12-09",
     end_date: "2199-12-31",
@@ -244,7 +244,7 @@ export const CPE_ACC_3 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001114",
-    customer_id: CUSTOMER_USA_3.data.customerId,
+    customer_id: customer.CUSTOMER_USA_3.data.customerId,
     earn_rate: 0,
     start_date: "2022-12-09",
     end_date: "2199-12-31",
@@ -261,7 +261,7 @@ export const CPE_CRI_3 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001115",
-    customer_id: CUSTOMER_USA_3.data.customerId,
+    customer_id: customer.CUSTOMER_USA_3.data.customerId,
     earn_rate: 0,
     start_date: "2022-12-09",
     end_date: "2199-12-31",
@@ -278,7 +278,7 @@ export const CPE_SPDIS_3 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001116",
-    customer_id: CUSTOMER_USA_3.data.customerId,
+    customer_id: customer.CUSTOMER_USA_3.data.customerId,
     earn_rate: 0,
     start_date: "2022-12-09",
     end_date: "2199-12-31",
@@ -295,7 +295,7 @@ export const CPE_HI_3 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001117",
-    customer_id: CUSTOMER_USA_3.data.customerId,
+    customer_id: customer.CUSTOMER_USA_3.data.customerId,
     earn_rate: 0,
     start_date: "2022-12-09",
     end_date: "2199-12-31",
@@ -312,7 +312,7 @@ export const CPE_ACCSICK_4 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001118",
-    customer_id: CUSTOMER_USA_4.data.customerId,
+    customer_id: customer.CUSTOMER_USA_4.data.customerId,
     earn_rate: 0,
     start_date: "2022-12-09",
     end_date: "2199-12-31",
@@ -329,7 +329,7 @@ export const CPE_CAN_4 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001119",
-    customer_id: CUSTOMER_USA_4.data.customerId,
+    customer_id: customer.CUSTOMER_USA_4.data.customerId,
     earn_rate: 0,
     start_date: "2022-12-09",
     end_date: "2199-12-31",
@@ -346,7 +346,7 @@ export const CPE_VLIF_4 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001120",
-    customer_id: CUSTOMER_USA_4.data.customerId,
+    customer_id: customer.CUSTOMER_USA_4.data.customerId,
     earn_rate: 0,
     start_date: "2022-12-09",
     end_date: "2199-12-31",
@@ -363,7 +363,7 @@ export const CPE_GAP_5 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001121",
-    customer_id: CUSTOMER_USA_5.data.customerId,
+    customer_id: customer.CUSTOMER_USA_5.data.customerId,
     earn_rate: 0,
     start_date: "2023-07-14",
     end_date: "2199-12-31",
@@ -380,7 +380,7 @@ export const CPE_VIS_5 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001122",
-    customer_id: CUSTOMER_USA_5.data.customerId,
+    customer_id: customer.CUSTOMER_USA_5.data.customerId,
     earn_rate: 0,
     start_date: "2022-12-09",
     end_date: "2199-12-31",
@@ -397,7 +397,7 @@ export const CPE_GAP_6 = {
   modelName,
   data: {
     customer_product_id: "US_YUCPID1000001123",
-    customer_id: CUSTOMER_USA_6.data.customerId,
+    customer_id: customer.CUSTOMER_USA_6.data.customerId,
     earn_rate: 0,
     start_date: "2023-07-14",
     end_date: "2199-12-31",
@@ -406,5 +406,73 @@ export const CPE_GAP_6 = {
     product_variant_id: "Transamerica_GAP_01_01",
     archived: false,
     taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_VIS_7 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001124",
+    customer_id: customer.CUSTOMER_USA_7.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Transamerica_VIS_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_GAP_8 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001125",
+    customer_id: customer.CUSTOMER_USA_8.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Transamerica_GAP_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_GAP_10 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001126",
+    customer_id: customer.CUSTOMER_USA_10.data.customerId,
+    earn_rate: 0,
+    start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Transamerica_GAP_01_01",
+    archived: false,
+    taken_up: false,
+  },
+} as IDatabaseItem;
+
+export const CPE_VIS_10 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001127",
+    customer_id: customer.CUSTOMER_USA_10.data.customerId,
+    earn_rate: 0,
+    start_date: moment().add(1, "y").format("YYYY-MM-DD"),
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Transamerica_VIS_01_01",
+    archived: false,
+    taken_up: false,
   },
 } as IDatabaseItem;

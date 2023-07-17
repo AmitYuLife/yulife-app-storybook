@@ -40,6 +40,7 @@ export const {
   idVisibleAtIndex,
   textVisibleAtIndex,
   tapIDNotBeingVisible,
+  enrolmentEndsIn
 } = navigation.common;
 
 export const {
@@ -232,7 +233,7 @@ export const onMoreProtectionProductsCard = (copyText: USProductData) => async (
   await idVisible(CONTENT_SMALL_IMAGE_CARD_URL(copyText.image_2))();
   await textVisible(copyText.markdownSubTitle_2)();
   await idVisible(CONTENT_SMALL_IMAGE_CARD_URL(copyText.image_3))();
-  await textVisible(copyText.markdownSubTitle_3)();
+  await textVisible(copyText.markdownSubTitle_3)()
 
   await swipeFromText(copyText.markdownTitle_3, "up", "slow")();
 

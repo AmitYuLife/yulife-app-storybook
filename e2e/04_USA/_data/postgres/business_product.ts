@@ -2,7 +2,7 @@ import { generateProductRecords, Carrier, ProductCode, ProductType } from "@yu-l
 import { BUSINESS_ACCOUNT_USA_1, BUSINESS_ACCOUNT_USA_2 } from "./business";
 import moment from "moment";
 
-
+const format = "YYYY-MM-DDTHH:mm:ssZ";
 
 export const BUSINESS_PRODUCT_USA_1_WB = generateProductRecords({
     productCode: ProductCode.wellbeingAccess,
@@ -186,6 +186,9 @@ export const BUSINESS_PRODUCT_USA_5_VIS = generateProductRecords({
   productId: "SEED_5_VIS",
   businessAccountId: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
   startDate: "2023-07-03T00:00:00.000Z",
+  product: {
+    contribution_type: "none",
+ }
 });
 
 export const BUSINESS_PRODUCT_USA_6_GAP = generateProductRecords({
@@ -198,4 +201,44 @@ export const BUSINESS_PRODUCT_USA_6_GAP = generateProductRecords({
     contribution_type: "full",
  }
 });
-  
+
+export const BUSINESS_PRODUCT_USA_7_VIS = generateProductRecords({
+  productCode: ProductCode.VIS,
+  carrier: Carrier.Transamerica,
+  productId: "SEED_7_VIS",
+  businessAccountId: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
+  startDate: "2023-07-03T00:00:00.000Z",
+  product: {
+    contribution_type: "partial",
+ }
+});
+
+export const BUSINESS_PRODUCT_USA_8_GAP = generateProductRecords({
+  productCode: ProductCode.VIS,
+  carrier: Carrier.Transamerica,
+  productId: "SEED_8_GAP",
+  businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
+  startDate: "2023-07-03T00:00:00.000Z",
+  product: {
+    contribution_type: "partial",
+ }
+});
+
+export const BUSINESS_PRODUCT_USA_10_GAP = generateProductRecords({
+  productCode: ProductCode.VIS,
+  carrier: Carrier.Transamerica,
+  productId: "SEED_10_GAP",
+  businessAccountId: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
+  startDate: "2024-07-03T00:00:00.000Z",
+  product: {
+    contribution_type: "partial",
+ }
+});
+
+export const BUSINESS_PRODUCT_USA_10_VIS = generateProductRecords({
+  productCode: ProductCode.VIS,
+  carrier: Carrier.Transamerica,
+  productId: "SEED_10_VIS",
+  businessAccountId: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
+  startDate: moment().add(1, "y").format(format),
+});

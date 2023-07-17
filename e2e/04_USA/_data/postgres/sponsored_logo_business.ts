@@ -1,5 +1,5 @@
 import { generateRandomTransformedUuid, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { BUSINESS_ACCOUNT_USA_2 } from "./business";
+import { BUSINESS_ACCOUNT_USA_1, BUSINESS_ACCOUNT_USA_2 } from "./business";
 import { SL_Guardian_USA, SL_TransAmerica_USA, SL_Yulife_USA } from "./sponsored_logo";
 
 const type = "postgres";

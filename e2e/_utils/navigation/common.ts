@@ -1,5 +1,5 @@
 import { dataManager } from "@yu-life/yulife-bdd-framework";
-import { BUTTON_CLOSE_HEADER, DAILYSTEP_SCREEN_COIN, NAV_BAR } from '@ids';
+import { BUTTON_CLOSE_HEADER, COUNTDOWN_UNIT, DAILYSTEP_SCREEN_COIN, NAV_BAR } from '@ids';
 import { dismissNewLooksModalIfVisible } from "./login";
 import moment from "moment";
 import { getLocalisedString as t } from "@i18n";
@@ -386,3 +386,20 @@ export const dismissNotificationScreenIfVisible = async () => {
 
     }
 }
+
+export const enrolmentEndsIn = (seed:string) => async () => {
+
+    const targetDate = moment(seed).endOf("day");;
+    const currentDate = moment();
+  
+    const diffDuration = moment.duration(targetDate.diff(currentDate));
+    
+    const days = Math.floor(diffDuration.asDays())
+    await idVisible(COUNTDOWN_UNIT(days, 'Days'))()
+  
+    var hours = diffDuration.hours()
+    await idVisible(COUNTDOWN_UNIT(hours, 'Hours'))()
+  
+    var minutes = diffDuration.minutes();
+    await idVisible(COUNTDOWN_UNIT(minutes+1, 'Mins'))()
+  }

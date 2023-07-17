@@ -6,6 +6,7 @@ import { RemoteImage, SduiAction } from "@graphql/_core/schema";
 import { Style, Colours } from "@styles";
 import { ComponentProps, useRef, useState } from "react";
 import { Title } from "./box-option-card.title";
+import { BOX_OPTION_DESCRIPTION, BOX_OPTION_TITLE, RIGHT_SIDE_IMAGE_BOX_OPTION } from "@ids";
 import { ArrowButton } from "../arrow-button";
 
 interface Props {
@@ -49,13 +50,18 @@ export const BoxOptionCard = ({
       <View style={styles.innerWrapper}>
         {!image?.uri ? null : (
           <View style={styles.imageWrapper}>
-            <Image height={Style.adjust(104)} width={Style.adjust(120)} source={{ uri: image.uri }} />
+            <Image
+              height={Style.adjust(104)}
+              width={Style.adjust(120)}
+              source={{ uri: image.uri }}
+              testID={RIGHT_SIDE_IMAGE_BOX_OPTION(image.uri)}
+            />
           </View>
         )}
         <View onLayout={handleLayout} ref={contentWrapperRef} style={styles.contentWrapper}>
-          <View style={styles.contentInnerWrapper}>
+          <View style={styles.contentInnerWrapper} testID={BOX_OPTION_DESCRIPTION(description)}>
             {!title ? null : (
-              <View style={styles.titleWrapper}>
+              <View style={styles.titleWrapper} testID={BOX_OPTION_TITLE(title)}>
                 <Title>{title}</Title>
               </View>
             )}
