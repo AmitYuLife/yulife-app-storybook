@@ -12,7 +12,7 @@ export const CPE_Wellbeing_USA_1 = {
     customer_product_id: "US_YUCPID0000001100",
     customer_id: customer.CUSTOMER_USA_1.data.customerId,
     earn_rate: 10,
-    product_variant_id: "YuLife_Wellbeing_01_03",
+    product_variant_id: "YuLife_Wellbeing_01_01",
     archived: false,
     taken_up: true,
   },
