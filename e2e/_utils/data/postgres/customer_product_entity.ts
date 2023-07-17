@@ -14,7 +14,7 @@ export const CPE_1 = {
         "customer_product_id": "YUCPID0000000032",
         customer_id: customer.CUSTOMER_9.data.customerId,
         "earn_rate": 20,
-        "product_variant_id": "Covea_FIB_01_03",
+        product_variant_id: "Covea_FIB_01_01",
         "start_date": null,
         "end_date": null,
         "underwriting_step": null,
@@ -45,7 +45,7 @@ export const CPE_32_RGL = {
         customer_product_id: "YUCPID0000000132",
         customer_id: customer.CUSTOMER_32.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_ReGL_01_03",
+        product_variant_id: "AIG_ReGL_01_01",
         archived: false,
         taken_up: true
     }
@@ -58,7 +58,7 @@ export const CPE_32_GIP = {
         customer_product_id: "YUCPID0000000232",
         customer_id: customer.CUSTOMER_32.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_GIP_01_03",
+        product_variant_id: "AIG_GIP_01_01",
         archived: false,
         taken_up: true
     }
@@ -71,7 +71,7 @@ export const CPE_32_GCI = {
         customer_product_id: "YUCPID0000000332",
         customer_id: customer.CUSTOMER_32.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_GCI_01_03",
+        product_variant_id: "AIG_GCI_01_01",
         archived: false,
         taken_up: true
     }
@@ -84,7 +84,7 @@ export const CPE_33_RGL = {
         customer_product_id: "YUCPID0000000133",
         customer_id: customer.CUSTOMER_33.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_ReGL_01_03",
+        product_variant_id: "AIG_ReGL_01_01",
         archived: false,
         taken_up: true
     }
@@ -97,7 +97,7 @@ export const CPE_33_GIP = {
         customer_product_id: "YUCPID0000000233",
         customer_id: customer.CUSTOMER_33.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_GIP_01_03",
+        product_variant_id: "AIG_GIP_01_01",
         archived: false,
         taken_up: true
     }
@@ -110,7 +110,7 @@ export const CPE_33_GCI = {
         customer_product_id: "YUCPID0000000333",
         customer_id: customer.CUSTOMER_33.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_GCI_01_03",
+        product_variant_id: "AIG_GCI_01_01",
         archived: false,
         taken_up: true
     }
@@ -123,7 +123,7 @@ export const CPE_34_RGL = {
         customer_product_id: "YUCPID0000000134",
         customer_id: customer.CUSTOMER_34.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_ReGL_01_03",
+        product_variant_id: "AIG_ReGL_01_01",
         archived: false,
         taken_up: true,
     }
@@ -136,7 +136,7 @@ export const CPE_34_GIP = {
         customer_product_id: "YUCPID0000000234",
         customer_id: customer.CUSTOMER_34.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_GIP_01_03",
+        product_variant_id: "AIG_GIP_01_01",
         archived: false,
         taken_up: true
     }
@@ -149,7 +149,7 @@ export const CPE_34_GCI = {
         customer_product_id: "YUCPID0000000343",
         customer_id: customer.CUSTOMER_34.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_GCI_01_03",
+        product_variant_id: "AIG_GCI_01_01",
         archived: false,
         taken_up: true
     }
@@ -313,7 +313,7 @@ export const CPE_43_WELLBEING = {
         customer_product_id: "YUCPID0000000143",
         customer_id: customer.CUSTOMER_43.data.customerId,
         earn_rate: 10,
-        product_variant_id: "YuLife_Wellbeing_01_03",
+        product_variant_id: "YuLife_Wellbeing_01_01",
         archived: false,
         taken_up: true
     }
@@ -326,7 +326,7 @@ export const CPE_48_RGL = {
         customer_product_id: "YUCPID0000000144",
         customer_id: customer.CUSTOMER_48.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_ReGL_01_03",
+        product_variant_id: "AIG_ReGL_01_01",
         archived: false,
         taken_up: true
     }
@@ -339,7 +339,7 @@ export const CPE_48_GIP = {
         customer_product_id: "YUCPID0000000145",
         customer_id: customer.CUSTOMER_48.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_GIP_01_03",
+        product_variant_id: "AIG_GIP_01_01",
         archived: false,
         taken_up: true
     }
@@ -352,7 +352,7 @@ export const CPE_48_GCI = {
         customer_product_id: "YUCPID0000000146",
         customer_id: customer.CUSTOMER_48.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_GCI_01_03",
+        product_variant_id: "AIG_GCI_01_01",
         archived: false,
         taken_up: true
     }
@@ -365,7 +365,7 @@ export const CPE_48_WELLBEING = {
         customer_product_id: "YUCPID0000000148",
         customer_id: customer.CUSTOMER_48.data.customerId,
         earn_rate: 1,
-        product_variant_id: "YuLife_Wellbeing_01_03",
+        product_variant_id: "YuLife_Wellbeing_01_01",
         archived: false,
         taken_up: true
     }
@@ -378,7 +378,7 @@ export const CPE_49_RGL = {
         customer_product_id: "YUCPID0000000149",
         customer_id: customer.CUSTOMER_49.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_ReGL_01_03",
+        product_variant_id: "AIG_ReGL_01_01",
         archived: false,
         taken_up: true
     }
@@ -391,7 +391,7 @@ export const CPE_49_GIP = {
         customer_product_id: "YUCPID0000000150",
         customer_id: customer.CUSTOMER_49.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_GIP_01_03",
+        product_variant_id: "AIG_GIP_01_01",
         archived: false,
         taken_up: true
     }
@@ -404,7 +404,7 @@ export const CPE_49_GCI = {
         customer_product_id: "YUCPID0000000151",
         customer_id: customer.CUSTOMER_49.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_GCI_01_03",
+        product_variant_id: "AIG_GCI_01_01",
         archived: false,
         taken_up: true
     }
@@ -417,7 +417,7 @@ export const CPE_49_WELLBEING = {
         customer_product_id: "YUCPID0000000152",
         customer_id: customer.CUSTOMER_49.data.customerId,
         earn_rate: 1,
-        product_variant_id: "YuLife_Wellbeing_01_03",
+        product_variant_id: "YuLife_Wellbeing_01_01",
         archived: false,
         taken_up: true
     }
@@ -444,7 +444,7 @@ export const CPE_53_GIP = {
         customer_product_id: "YUCPID0000000155",
         customer_id: customer.CUSTOMER_53.data.customerId,
         earn_rate: 0,
-        product_variant_id: "AIG_GIP_01_03",
+        product_variant_id: "AIG_GIP_01_01",
         archived: false,
         taken_up: true
     }
@@ -490,7 +490,7 @@ export const CPE_PLI_8 = {
         "created_by_id" : null,
         "modified_at" : "2022-10-04T10:37:23.768Z",
         "modified_by_id" : "1.92.0",
-        "product_variant_id" : "Covea_FIB_02_01",
+        product_variant_id : "Covea_FIB_02_01",
         "world_id" : "ocean"
     }
 } as IDatabaseItem
@@ -513,7 +513,7 @@ export const CPE_PLI_9 = {
         "created_by_id" : null,
         "modified_at" : "2022-10-04T10:37:23.768Z",
         "modified_by_id" : "1.92.0",
-        "product_variant_id" : "Bupa_Dent_01_01",
+        product_variant_id : "Bupa_Dent_01_01",
         "world_id" : "ocean"
     }
 } as IDatabaseItem
@@ -536,7 +536,7 @@ export const CPE_PLI_10 = {
         "created_by_id" : null,
         "modified_at" : "2022-10-04T10:37:23.768Z",
         "modified_by_id" : "1.92.0",
-        "product_variant_id" : "Covea_FIB_02_01",
+        product_variant_id : "Covea_FIB_02_01",
         "world_id" : "forest"
     }
 } as IDatabaseItem
@@ -561,7 +561,7 @@ export const CPE_82_RGL = {
         customer_product_id: "YUCPID00000001490",
         customer_id: customer.CUSTOMER_82.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_ReGL_01_03",
+        product_variant_id: "AIG_ReGL_01_01",
         archived: false,
         taken_up: true,
         start_date: moment().add(1, 'week')
@@ -587,7 +587,7 @@ export const CPE_85 = {
         "created_by_id" : null,
         "modified_at" : "2023-03-10T17:27:47.678Z",
         "modified_by_id" : "1.114.0",
-        "product_variant_id" : "Bupa_Dent_01_03",
+        product_variant_id : "Bupa_Dent_01_03",
         "world_id" : "forest"
     }
 } as IDatabaseItem
@@ -603,7 +603,7 @@ export const CPE_FUTURE_PRODUCT = {
         "underwriting_step": null,
         "is_banned_from_product": false,
         "taken_up": true,
-        "product_variant_id": "AIG_GLI_01_01",
+        product_variant_id: "AIG_GLI_01_01",
     }
 } as IDatabaseItem
 
@@ -619,7 +619,7 @@ export const CPE_BUSINESS_LEAVER = {
         "underwriting_step": null,
         "is_banned_from_product": false,
         "taken_up": true,
-        "product_variant_id": "AIG_GLI_01_01",
+        product_variant_id: "AIG_GLI_01_01",
     }
 } as IDatabaseItem
 
@@ -636,7 +636,7 @@ export const CPE_GHI_FUTURE = {
         "is_banned_from_product" : false,
         "archived" : false,
         "taken_up" : true,
-        "product_variant_id" : "Bupa_GHealth_01_01",
+        product_variant_id : "Bupa_GHealth_01_01",
     }
 } as IDatabaseItem
 
@@ -652,7 +652,7 @@ export const CPE_GHI_STARTED = {
         "is_banned_from_product" : false,
         "archived" : false,
         "taken_up" : true,
-        "product_variant_id" : "Bupa_GHealth_01_01",
+        product_variant_id : "Bupa_GHealth_01_01",
     }
 } as IDatabaseItem
 
@@ -678,7 +678,7 @@ export const CPE_94_GIP = {
         customer_product_id: "YUCPID0000000294",
         customer_id: customer.CUSTOMER_94.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_GIP_01_03",
+        product_variant_id: "AIG_GIP_01_01",
         archived: false,
         taken_up: true
     }
@@ -697,7 +697,7 @@ export const CPE_95_GDent = {
         "is_banned_from_product" : false,
         "archived" : false,
         "taken_up" : true,
-        "product_variant_id" : "Bupa_GDent_01_01",
+        product_variant_id : "Bupa_GDent_01_01",
     }
 }
 
@@ -882,7 +882,7 @@ export const CPE_108_GDent = {
         "is_banned_from_product" : false,
         "archived" : false,
         "taken_up" : true,
-        "product_variant_id" : "Bupa_GDent_01_01",
+        product_variant_id : "Bupa_GDent_01_01",
     }
 }
     
