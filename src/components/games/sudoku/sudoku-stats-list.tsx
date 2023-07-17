@@ -3,9 +3,9 @@ import SudokuPersonalBestIcon from "@atoms/icon/sudoku-personal-best-svg";
 import SudokuTodaysTimeSvg from "@atoms/icon/sudoku-todays-time-svg";
 import SudokuMistakesIcon from "@atoms/icon/sudoku-mistakes-icon";
 import SudokuRewardIcon from "@atoms/icon/sudoku-reward-icon";
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import { ISudokuStore } from "@redux/sudoku/sudoku.reducer";
-import { TextTemplate, YuCoinBadge } from "@atoms";
+import { Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import SudokuHintStatIcon from "@atoms/icon/sudoku-hint-stat-svg";
 import { useTranslation } from "@hooks";
@@ -82,12 +82,12 @@ const SudokuStatsList = ({ stats, onCompleteScreen, savedData, results, reward, 
         showIfPractice: false,
         Icon: SudokuRewardIcon,
         iconRight: (
-          <YuCoinBadge
-            hasWhiteGlow={false}
-            width={Style.adjust(24)}
-            height={Style.adjust(24)}
-            currentWorld={1}
-            currentYuniverse={0}
+          <Image
+            width={Style.adjust(20)}
+            height={Style.adjust(20)}
+            suppressLoadingUi={true}
+            source={require("@assets/icons/yucoin.png")}
+            style={styles.yucoin}
           />
         ),
       },
@@ -171,6 +171,9 @@ const styles = StyleSheet.create({
     padding: Style.adjust(3),
     paddingHorizontal: Style.adjust(7),
     marginLeft: Style.adjust(6),
+  },
+  yucoin: {
+    marginLeft: Style.adjust(5),
   },
 });
 export default SudokuStatsList;
