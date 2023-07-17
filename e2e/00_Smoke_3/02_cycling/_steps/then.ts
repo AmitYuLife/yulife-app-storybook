@@ -4,7 +4,7 @@ import { buttonVisible } from "_utils/appScreens/challenges"
 import { addCommasToNumber } from "_utils/appScreens/rewards"
 import * as ids from "@ids"
 import * as data from "@data"
-
+import { getLocalisedString as t } from "@i18n"
 
 export const {
     textVisible,
@@ -80,7 +80,7 @@ export const onCyclingEventDetailsScreen = async () => {
 }
 
 export const eventCompletedVisible = (numberOfKm: number, progressWidth: number) => async () => {
-    const description = `${addCommasToNumber(numberOfKm)} / 10,000 rides`
+    const description = t("%{currentValue} / %{targetValue} %{progressUnit}", { currentValue: addCommasToNumber(numberOfKm), targetValue: addCommasToNumber(numberOfKm), progressUnit: "rides" })
     const eventTimeframe = data.GOALS_3.data.title
 
     await textVisible(eventTimeframe)()
@@ -101,14 +101,14 @@ export const onCompletedEventMilestonePage = (yuCoin: string, numOfStars: number
     await textVisible(eventTitle)()
     await textVisible("Great job!")()
     await textVisible("You have reached the event milestone!\nCongratulations. Claim your rewards")()
-    await textVisible(`${yuCoin} YuCoin`)() 
+    await textVisible(`${yuCoin} YuCoin`)()
     await idVisible(ids.ANIMATED_CIRCLE("#F43E8E"))()
     await idVisible(ids.NUM_OF_STARS(numOfStars))()
     await buttonVisible("Claim")()
 }
 
 export const milestoneComplete = (index: number) => async () => {
-    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), index)() 
+    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), index)()
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), index)()
 }
 
@@ -124,11 +124,11 @@ export const yuCoinEarnedFromEvent = (yuCoinStartValue: number, yuCoinPower: num
 }
 
 export const allChallengesCompleteVisible = async () => {
-    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 0)() 
+    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 0)()
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 0)()
-    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 1)() 
+    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 1)()
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 1)()
     await swipeFromText("100 YuCoin", "left", "fast")()
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 2)()
-    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 2)() 
+    await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 2)()
 }
