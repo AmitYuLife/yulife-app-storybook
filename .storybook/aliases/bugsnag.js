@@ -1,21 +1,54 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 export class Client {
-  notify(error, beforeSendCallback, blocking, postSendCallback) {}
+  notify(error, onError, postReportCallback) {}
 
-  setUser(id, name, email) {}
+  _notify(event, onError, postReportCallback) {}
 
-  clearUser() {}
+  start(jsOpts) {}
+  isStarted() {}
 
+  // breadcrumbs
+  leaveBreadcrumb(message, metadata, type) {}
+
+  // metadata
+  addMetadata(section, values) {}
+  addMetadata(section, key, value) {}
+  getMetadata(section, key) {}
+  clearMetadata(section, key) {}
+
+  // feature flags
+  addFeatureFlag(name, variant) {}
+  addFeatureFlags(featureFlags) {}
+  clearFeatureFlag(name) {}
+  clearFeatureFlags() {}
+
+  // context
+  getContext() {}
+  setContext(c) {}
+
+  // user
+  getUser() {}
+  setUser(id, email, name) {}
+
+  // sessions
   startSession() {}
-
-  stopSession() {}
-
+  pauseSession() {}
   resumeSession() {}
 
-  enableConsoleBreadcrumbs() {}
+  // callbacks
+  addOnError(fn) {}
+  removeOnError(fn) {}
 
-  disableConsoleBreadCrumbs() {}
+  addOnSession(fn) {}
+  removeOnSession(fn) {}
 
-  leaveBreadcrumb(name, metadata) {}
+  addOnBreadcrumb(fn) {}
+  removeOnBreadcrumb(fn) {}
+
+  // plugins
+  getPlugin(name) {}
+
+  // implemented on the browser notifier only
+  resetEventCount() {}
 }
 export const Configuration = () => {};

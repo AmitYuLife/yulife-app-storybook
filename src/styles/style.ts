@@ -2,8 +2,8 @@ import { Dimensions, PixelRatio, Platform, StatusBar } from "react-native";
 import DeviceInfo from "react-native-device-info";
 
 const pixelRatio = PixelRatio.get();
-const x = Dimensions.get("window").width;
-const y = Dimensions.get("window").height;
+const x = Platform.OS === "web" ? 414 : Dimensions.get("window").width;
+const y = Platform.OS === "web" ? 800 : Dimensions.get("window").height;
 
 const isIPad = () => {
   if (Platform.OS === "ios") {

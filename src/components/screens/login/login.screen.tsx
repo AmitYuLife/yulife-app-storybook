@@ -14,7 +14,7 @@ type LoginScreenProps = LoginFormProps;
 
 type Page = "region" | "login";
 
-const LoginScreen = memo((props: LoginScreenProps) => {
+export const LoginScreen = memo((props: LoginScreenProps) => {
   const dispatch = useDispatch();
   const isAppFreshlyInstalled = useSelector(getIsAppFreshlyInstalled);
   const [activePage, setActivePage] = useState<Page>(isAppFreshlyInstalled ? "region" : "login");

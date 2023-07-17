@@ -17,7 +17,7 @@ type Translation = {
 
 // lazy requires (metro bundler does not support symlinks)
 
-const translations: Record<Language, Translation> = {
+export const translations: Record<Language, Translation> = {
   "en-US": {
     name: "English (US)",
     intercomLanguage: "en",

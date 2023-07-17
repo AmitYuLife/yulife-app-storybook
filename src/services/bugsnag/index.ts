@@ -1,5 +1,6 @@
 import Config from "react-native-config";
 import Bugsnag, { Event } from "@bugsnag/react-native";
+import { Platform } from "react-native";
 import BugsnagPluginReactNativeNavigation from "@bugsnag/plugin-react-native-navigation";
 import { Navigation } from "react-native-navigation";
 
@@ -7,6 +8,10 @@ export type BugsnagClient = typeof Bugsnag;
 let client: BugsnagClient;
 
 export default function getClient(): BugsnagClient {
+  if (Platform.OS === "web") {
+    return;
+  }
+
   if (!client) {
     Bugsnag.start({
       plugins: [new BugsnagPluginReactNativeNavigation(Navigation)],
