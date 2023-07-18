@@ -10,6 +10,7 @@ import PressableWithDelay from "../pressable-delay/pressable-delay";
 import { Button } from "../button";
 import { BUTTON_SIZES } from "../button/button.types";
 import { CtaErrorSVG, CtaInformationSVG, CtaSuccessSVG, CtaWarningSVG } from "./svgs";
+import { INFO_PANEL_IMAGE, PCP_LIST_DESCRIPTION } from "@ids";
 
 export type BannerType = "success" | "info" | "warning" | "error" | "neutral";
 
@@ -65,10 +66,15 @@ const InfoPanel = ({
         <View style={styles.contentWrapper}>
           {showIcon ? (
             <View style={styles.imageWrapper}>
-              <Image height={Style.adjust(48)} width={Style.adjust(48)} source={remoteImage || icon} />
+              <Image
+                height={Style.adjust(48)}
+                width={Style.adjust(48)}
+                testID={INFO_PANEL_IMAGE(remoteImage.uri)}
+                source={remoteImage || icon}
+              />
             </View>
           ) : null}
-          <View style={StyleSheet.flatten([styles.markdownWrapper])}>
+          <View style={StyleSheet.flatten([styles.markdownWrapper])} testID={PCP_LIST_DESCRIPTION}>
             {titleMarkdown ? <Markdown markdownStyles={titleMarkdownStyles} text={titleMarkdown} /> : null}
             <Markdown markdownStyles={textMarkdownStyles} text={markdown} />
           </View>

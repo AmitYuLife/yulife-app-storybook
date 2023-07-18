@@ -31,6 +31,11 @@ export interface BoxOption {
     description: string
 }
 
+export interface InfoPanel {
+    imageUrl: string,
+    description: string
+}
+
 export interface YuScreenInfo {
     mainYuCoinPower: string
     SlotProductTitle: string,
