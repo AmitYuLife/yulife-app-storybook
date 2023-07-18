@@ -12,7 +12,7 @@ import {
   import * as fixture from "./_steps/fixture";
   
   Feature("I am able to see sponsored by text/logos and box option types", async () => {
-  Scenario("I can see sponsored by text and logos in yuscreen if contribution_type none",scenario.start, async () => {
+  Scenario("I can see sponsored by text and logos in yuscreen if contribution_type none and can view the explore my insurance page",scenario.start, async () => {
       Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_5, AUTH_USA_5, true, "United States"),async () => {
         helper.ONBOARDING_YUSCREEN_USA(fixture.GapInEnrolVisOutEnrol);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_5)
@@ -21,6 +21,7 @@ import {
         helper.SPONSORED_LOGO_VISSIBLE()
         helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
         helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
+        helper.CHECK_EXPLORE_INSURANCE(fixture.ExploreInsureanceBox, fixture.VisionInsuranceBox)
       });
     });
   Scenario("I should NOT see sponsored by text and logos if contribution_type is full ",scenario.start,async () => {

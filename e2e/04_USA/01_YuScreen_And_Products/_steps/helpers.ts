@@ -2,7 +2,7 @@ import { When, Then } from "@yu-life/yulife-bdd-framework";
 import * as when from "./when"
 import * as then from "./then"
 import * as text  from "./fixture";
-import { V4_YUSCREEN, ALL_PRODUCTS_CONTAINER_VIEW, BACK_BUTTON, CAROUSEL_CARD_BUTTON, ONBOARDING_SCREEN, CAROUSEL_CARD, SPONSOR_LOGO_IMAGE, BOX_OPTION_TITLE, BOX_OPTION_DESCRIPTION, RIGHT_SIDE_IMAGE_BOX_OPTION, YUSCREEN_SCROLL_VIEW, LEFT_SIDE_BACKGROUD_IMAGE_SLOT, RIGHT_SIDE_IMAGE_SLOT, LEFT_SIDE_TEXT_SLOT_POWER, WELLBEING_HUB_SCREEN, TEXT_TEMPLATE} from "@ids";
+import { V4_YUSCREEN, ALL_PRODUCTS_CONTAINER_VIEW, BACK_BUTTON, CAROUSEL_CARD_BUTTON, ONBOARDING_SCREEN, CAROUSEL_CARD, SPONSOR_LOGO_IMAGE, BOX_OPTION_TITLE, BOX_OPTION_DESCRIPTION, RIGHT_SIDE_IMAGE_BOX_OPTION, YUSCREEN_SCROLL_VIEW, LEFT_SIDE_BACKGROUD_IMAGE_SLOT, RIGHT_SIDE_IMAGE_SLOT, LEFT_SIDE_TEXT_SLOT_POWER, WELLBEING_HUB_SCREEN, TEXT_TEMPLATE, INFO_PANEL_IMAGE, PCP_LIST_DESCRIPTION, CONTENT_MIDDLE_ITEM_IMAGE} from "@ids";
 import { BoxOption, USProductData, YuScreenInfo } from "./types";
 import { BUSINESS_ACCOUNT_USA_2, } from "04_USA/_data";
 import moment from "moment";
@@ -205,6 +205,26 @@ export const CHECK_WELLBEING_HUB = async (customer: any, seed: BoxOption) => {
         })
         When("I tap to go back to Yu Screen", when.tapID(BACK_BUTTON), async () => {
             Then("I should not see Smart Health ", then.idNotVisible(TEXT_TEMPLATE("Smart Health")))
+        })
+    })
+}
+
+export const CHECK_EXPLORE_INSURANCE = async (seed: BoxOption, prod: BoxOption, infoPanel = text.PCPListInfoPanel) => {
+
+    When(`I scroll down to ${seed.description}`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, seed.description, "down"), async () => {
+        When(`I tap ${seed.description}`, when.tapText(seed.description), async () => {
+            Then("I can see the Guardian logo at the top", then.idVisible(CONTENT_MIDDLE_ITEM_IMAGE(text.Guardian_Top_Banner)))
+            Then("I can see the YuLife logo at the top", then.idVisible(CONTENT_MIDDLE_ITEM_IMAGE(text.YuLife_Top_Banner)))
+            Then("I can see the TransAmerica logo at the top", then.idVisible(CONTENT_MIDDLE_ITEM_IMAGE(text.Transamerica_Top_Banner)))
+            Then("I should see the page heading", then.idVisible(TEXT_TEMPLATE("Available to you")))
+            Then("I should see the info panel image", then.idVisible(INFO_PANEL_IMAGE(infoPanel.imageUrl)))
+            Then(`I should see the info panel description text`, then.idVisible(PCP_LIST_DESCRIPTION))
+            Then(`I should see ${prod.imageUrl} text`, then.idVisible(RIGHT_SIDE_IMAGE_BOX_OPTION(prod.imageUrl)))
+            Then(`I should see ${prod.title} text`, then.idVisible(BOX_OPTION_TITLE(prod.title)))
+            Then(`I should see ${prod.description} text`, then.idVisible(BOX_OPTION_DESCRIPTION(prod.description)))
+        })
+        When("I tap to go back to Yu Screen", when.tapID(BACK_BUTTON), async () => {
+            Then("I should not see Vision Insurance ", then.idNotVisible(TEXT_TEMPLATE("Vision Insurance")))
         })
     })
 }

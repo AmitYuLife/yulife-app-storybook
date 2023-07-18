@@ -1,6 +1,6 @@
 import { CPE_GAP_10 } from "04_USA/_data"
 import moment from "moment"
-import { BoxOption, USProductData, YuScreenInfo } from "./types"
+import { BoxOption, InfoPanel, USProductData, YuScreenInfo } from "./types"
 
 //Onboarding US YU screen 
 export const moreInsurance = "More insurance available"
@@ -65,6 +65,11 @@ export const canEnrolPlusImage = "https://yulife-develop.imgix.net/yuscreen/slot
 
 export const wellbeingHubDescription = "Welcome to this quick-access hub to all your company’s wellbeing benefits"
 
+// Top Banner Images
+
+export const Transamerica_Top_Banner = "https://yulife-develop.imgix.net/sponsored-logos/transamerica-2.svg?ixlib=js-3.2.1&fm=png&w=270&s=e71f98424e43a7785f4b8186f30ec7e5"
+export const YuLife_Top_Banner = "https://yulife-develop.imgix.net/sponsored-logos/yulife-1.svg?ixlib=js-3.2.1&fm=png&w=153&s=7f9208df27fbc0192162265460290fb3"
+export const Guardian_Top_Banner = "https://yulife-develop.imgix.net/sponsored-logos/guardian-1.svg?ixlib=js-3.2.1&fm=png&w=285&s=c827af842b30d6f337411b045fcdabd9"
 
 const year = moment().format("YYYY")
 
@@ -555,6 +560,17 @@ export const ExploreInsureanceBox:BoxOption = {
     imageUrl: "https://yulife-develop.imgix.net/yuscreen/box-option-card/policy-details.svg?ixlib=js-3.2.1&w=360&h=312&s=3d7cbb8ed2198852ab149a7e2fdbf9de",
     title: "Explore Insurance",
     description: "Find out more about your employer provided coverage"
+}
+
+export const VisionInsuranceBox:BoxOption = {
+    imageUrl: "https://yulife-develop.imgix.net/core-products/transamerica-vision.svg?ixlib=js-3.2.1&w=360&h=312&s=505a99904a597da95d84f134f9381d01",
+    title: "Vision Insurance",
+    description: "Transamerica’s SightAdvantage vision plan will keep you looking sharp."
+}
+
+export const PCPListInfoPanel: InfoPanel = {
+    imageUrl: "https://yulife-develop.imgix.net/yugi/info-banner/info-2022-07-18.svg?ixlib=js-3.2.1&w=144&height=144&s=71154cfde1b87ec9d46e4d6c432b4b46",
+    description: "This list shows group insurance made available to you by your employer. Please refer to your policy documents for eligibility and benefit details"
 }
 
 export const GapVisInsuranceInEnrolment: YuScreenInfo = {

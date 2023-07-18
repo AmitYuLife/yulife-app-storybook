@@ -205,6 +205,9 @@ export const RIGHT_SIDE_IMAGE_SLOT = (imgSrc: string) =>  `RIGHT_SIDE_IMAGE_SLOT
 export const RIGHT_SIDE_IMAGE_BOX_OPTION = (imgSrc: string) =>  `RIGHT_SIDE_IMAGE_BOX_OPTION_${imgSrc}}`
 export const BOX_OPTION_TITLE = (title: string) =>  `BOX_OPTION_TITLE_${title}`
 export const BOX_OPTION_DESCRIPTION = (description: string) =>  `BOX_OPTION_DESCRIPTION_${description}`
+export const INFO_PANEL_IMAGE = (imgSrc: string) => `INFO_PANEL_IMAGE_${imgSrc}`
+export const INFO_PANEL_DESCRIPTION = (description: string) => `INFO_PANEL_DESCRIPTION_${description}`
+export const PCP_LIST_DESCRIPTION = `PCP_LIST_DESCRIPTION`
 
 
 
