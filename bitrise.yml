@@ -646,6 +646,9 @@ workflows:
             # upload to s3
             aws s3 sync . "s3://yulife-develop-detox-static-origin/screenshots/$S3_PATH"
 
+            # invalidate CF distribution
+            aws cloudfront create-invalidation --distribution-id E2JTZ3UYAEIHYW --paths "/*"
+
             # remove bulk from the report upload, keep screenshots only
             cd ..
             rm -rf gallery
