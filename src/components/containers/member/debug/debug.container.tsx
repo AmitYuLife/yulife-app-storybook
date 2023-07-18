@@ -29,6 +29,7 @@ enum DebugCodes {
   sleepMeditation = "sleep-meditation",
   inspectOpponent = "inspect-opponent",
   sendTestPushNotification = "send-test-push-notification",
+  playGround = "play-ground",
 }
 
 const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
@@ -119,6 +120,13 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                       passProps: {
                         showOpponent: true,
                       },
+                    },
+                  });
+                case DebugCodes.playGround:
+                  return Navigation.push(componentId, {
+                    component: {
+                      id: ROUTES.debugPlayground,
+                      name: ROUTES.debugPlayground,
                     },
                   });
               }
