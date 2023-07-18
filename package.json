@@ -71,7 +71,7 @@
     "@apollo/client": "^3.7.3",
     "@bugsnag/plugin-react-native-navigation": "^7.18.0",
     "@bugsnag/react-native": "^7.18.2",
-    "@intercom/intercom-react-native": "^5.1.1",
+    "@intercom/intercom-react-native": "5.1.2",
     "@leanplum/react-native-sdk": "^2.0.0",
     "@react-native-camera-roll/camera-roll": "^5.3.1",
     "@react-native-community/async-storage": "^1.12.1",
