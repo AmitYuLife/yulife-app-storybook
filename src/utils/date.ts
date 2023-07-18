@@ -142,7 +142,7 @@ export const minifiedFromNow = (time: moment.Moment): { shortFormat: string; lon
     ? `${days}${t("time_units.short_days")}`
     : time
         .fromNow()
-        .replace(/an hour/i, `1${t("time_units.short_hours")}}`)
+        .replace(/an hour/i, `1${t("time_units.short_hours")}`)
         .replace(/ hours/i, t("time_units.short_hours"))
         .replace(/a minute/i, `1${t("time_units.short_minutes")}`)
         .replace(/ minutes/i, t("time_units.short_minutes"))
