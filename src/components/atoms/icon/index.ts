@@ -47,6 +47,7 @@ import { Rank } from "./rank";
 import { FlagUK } from "./flag-uk";
 import { FlagUS } from "./flag-us";
 import { FlagSA } from "./flag-sa";
+import { FlagJP } from "./flag-jp";
 import { Eye } from "./eye";
 import { GlobeIcon } from "./globe-icon";
 import { HourglassIcon } from "./hourglass-icon";
@@ -110,6 +111,7 @@ export default {
   FlagUK,
   FlagUS,
   FlagSA,
+  FlagJP,
   Eye,
   HourglassIcon,
   EyeOpenIcon,

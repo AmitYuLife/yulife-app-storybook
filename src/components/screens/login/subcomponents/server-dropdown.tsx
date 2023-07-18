@@ -16,7 +16,7 @@ export const ServerDropdown = memo(() => {
   const translations = useTranslation(["screens.login.server_location.short", "screens.login.server_location.long"]);
   const [server, setServer] = useState(region.getPreferredRegion());
   const handlePress = async () => {
-    const items = region.OPTIONS.map((option) => ({
+    const items = region.getAvailableRegions().map((option) => ({
       ...option,
       onPress: async () => {
         const newValue = option.key;
