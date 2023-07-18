@@ -48,7 +48,7 @@ const ActivityList = memo(
     return (
       <View style={styles.wrapper}>
         <View style={styles.container} accessibilityLabel={stepsAccessibilityLabel}>
-          <StepsIcon color={textColor} />
+          <StepsIcon width={16} height={16} colour={textColor} />
           <View style={styles.textWrapper}>
             <TextTemplate type="b2" color={textColor} testID={STEPS_COUNT(steps)}>
               <Counter
@@ -62,7 +62,7 @@ const ActivityList = memo(
         </View>
         {!cycling ? null : (
           <View style={styles.container} accessibilityLabel={cyclingAccessibilityLabel}>
-            <CyclingIcon color={textColor} />
+            <CyclingIcon width={16} height={16} colour={textColor} />
             <View style={styles.textWrapper}>
               <TextTemplate type="b2" color={textColor} testID={CYCLING_COUNT(cycling)}>
                 {cycling}
