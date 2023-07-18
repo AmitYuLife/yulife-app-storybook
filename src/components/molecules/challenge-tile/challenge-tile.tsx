@@ -1,12 +1,12 @@
-import React, { FC, memo, useMemo } from "react";
+import React, { ComponentProps, FC, memo, useMemo } from "react";
 import { FunctionComponent } from "react";
 import { Image as RNImage, StyleSheet, View } from "react-native";
 import styles from "./challenge-tile.styles";
 import { CHALLENGE_TILE, CHALLENGE_REWARD } from "@ids";
 import { Colours, Style } from "@styles";
-import { Image, Text } from "@atoms";
+import { Image, TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { t } from "@locale";
+import { getCurrentLocale, t } from "@locale";
 
 export interface IChallengeTileProps {
   heading?: string;
@@ -58,9 +58,7 @@ export default memo(ChallengeTile);
 const LockedOverlay: FunctionComponent<Partial<Props>> = ({ availableAtLevel }) => (
   <View style={styles.lockedOverlay}>
     <RNImage resizeMode="contain" style={styles.lockedImage} source={require("@assets/icons/lock.png")} />
-    <Text style={styles.lockedLabel} bold={true}>
-      {t("screens.challenge_list.level_locked", { availableAtLevel })}
-    </Text>
+    <TextTemplate type="b2b">{t("screens.challenge_list.level_locked", { availableAtLevel })}</TextTemplate>
   </View>
 );
 
@@ -99,27 +97,45 @@ const AnimalImage: FC<Partial<Props>> = memo(({ imageUri, isCompleted, isLocked,
   );
 });
 
-const Content: FC<Partial<Props>> = memo(({ heading, isCompleted, duration, reward }) => (
-  <View style={styles.sectionBottomWrapper} testID={CHALLENGE_TILE(heading)}>
-    <View style={styles.contentWrapper}>
-      <View>
-        <Text bold={true} style={styles.contentTitle}>
-          {heading}
-        </Text>
+const LINE_HEIGHT = Style.adjust(18);
+
+type TextTemplateType = ComponentProps<typeof TextTemplate>["type"];
+
+const getFontType = (): { heading: TextTemplateType; yuCoin: TextTemplateType } => {
+  const currentLocale = getCurrentLocale();
+
+  if (currentLocale === "ja-JP") {
+    return { heading: "l3b", yuCoin: "l2" };
+  }
+
+  return { heading: "b2b", yuCoin: "l2" };
+};
+
+const Content: FC<Partial<Props>> = memo(({ heading, isCompleted, duration, reward }) => {
+  const fonts = useMemo(getFontType, []);
+
+  return (
+    <View style={styles.sectionBottomWrapper} testID={CHALLENGE_TILE(heading)}>
+      <View style={styles.contentWrapper}>
+        <View>
+          <TextTemplate type={fonts.heading} lineHeight={LINE_HEIGHT}>
+            {heading}
+          </TextTemplate>
+        </View>
+        <View>
+          <TextTemplate type={fonts.heading} lineHeight={LINE_HEIGHT}>
+            {duration}
+          </TextTemplate>
+        </View>
+        <View style={styles.contentRewardWrapper}>
+          <TextTemplate type={fonts.yuCoin} testID={CHALLENGE_REWARD(reward)}>
+            {!isCompleted ? `${reward} ${t("yu_coin.camel_case")}` : t("screens.challenge_list.level_completed")}
+          </TextTemplate>
+        </View>
       </View>
-      <View>
-        <Text bold={true} style={styles.contentTitle}>
-          {duration}
-        </Text>
-      </View>
-      <View style={styles.contentRewardWrapper}>
-        <Text style={styles.contentReward} testID={CHALLENGE_REWARD(reward)}>
-          {!isCompleted ? `${reward} ${t("yu_coin.camel_case")}` : t("screens.challenge_list.level_completed")}
-        </Text>
+      <View style={styles.imageWrapperNext}>
+        <RNImage source={require("@assets/icons/next.png")} resizeMode="contain" style={styles.imageNext} />
       </View>
     </View>
-    <View style={styles.imageWrapperNext}>
-      <RNImage source={require("@assets/icons/next.png")} resizeMode="contain" style={styles.imageNext} />
-    </View>
-  </View>
-));
+  );
+});
