@@ -2,6 +2,7 @@ export * from "./yucoin";
 export * from "./yu";
 export * from "./leaderboard";
 export * from "./rewards";
+export * from "./rewardDetails";
 export * from "./quests";
 export * from "./perkProvision";
 export * from "./referralInformation";
