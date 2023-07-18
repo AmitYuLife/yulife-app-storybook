@@ -195,6 +195,10 @@ const routesForRegistration = [
     component: require("../components/containers/member/debug/debug.container").default,
   },
   {
+    name: ROUTES.debugPlayground,
+    component: require("../components/containers/member/debug/play-ground").default,
+  },
+  {
     name: ROUTES.changeMemberNickname,
     component: require("../components/containers/member/change-member-nickname/change-member-nickname.container")
       .default,
