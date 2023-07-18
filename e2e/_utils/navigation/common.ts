@@ -271,19 +271,19 @@ export const completeOnboardingIntro = async () => {
 export const completedTodayStreakCopyVisible = (dayNum: number) => async () => {
     switch (dayNum) {
         case 1:
-            await expect(element(by.text("First day done!"))).toBeVisible()
+            await expect(element(by.text(t("First day done!")))).toBeVisible()
             break
         case 2:
-            await expect(element(by.text("Two days down!"))).toBeVisible()
+            await expect(element(by.text(t("Two days down!")))).toBeVisible()
             break
         case 3:
-            await expect(element(by.text("You’re over the hump!"))).toBeVisible()
+            await expect(element(by.text(t("You’re over the hump!")))).toBeVisible()
             break
         case 4:
-            await expect(element(by.text("Home stretch!"))).toBeVisible()
+            await expect(element(by.text(t("Home stretch!")))).toBeVisible()
             break
         case 5:
-            await expect(element(by.text("You smashed that Streak!"))).toBeVisible()
+            await expect(element(by.text(t("You smashed that Streak!")))).toBeVisible()
             break
     }
 }
@@ -291,19 +291,19 @@ export const completedTodayStreakCopyVisible = (dayNum: number) => async () => {
 export const headingStartStreakCopyVisible = (dayNum: number) => async () => {
     switch (dayNum) {
         case 1:
-            await expect(element(by.text("Start your Streak"))).toBeVisible()
+            await expect(element(by.text(t("Start your Streak")))).toBeVisible()
             break
         case 2:
-            await expect(element(by.text("Off to a good start"))).toBeVisible()
+            await expect(element(by.text(t("Off to a good start")))).toBeVisible()
             break
         case 3:
-            await expect(element(by.text("Keep it going"))).toBeVisible()
+            await expect(element(by.text(t("Keep it going")))).toBeVisible()
             break
         case 4:
-            await expect(element(by.text("Keep it up"))).toBeVisible()
+            await expect(element(by.text(t("Keep it up")))).toBeVisible()
             break
         case 5:
-            await expect(element(by.text("Close out your Streak"))).toBeVisible()
+            await expect(element(by.text(t("Close out your Streak")))).toBeVisible()
             break
     }
 }
