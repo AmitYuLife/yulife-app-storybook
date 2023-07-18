@@ -55,6 +55,7 @@ import { EyeClosedIcon } from "./eye-closed-icon";
 import { PiggyCoinIcon } from "./piggy-coin-icon";
 import { RankGoldIcon } from "./rank-gold-icon";
 import { LeaderboardRankIcon } from "./leaderboard-rank-icon";
+import { YudokuIcon } from "./yudoku-icon";
 
 export default {
   GlobeIcon,
@@ -116,4 +117,5 @@ export default {
   PiggyCoinIcon,
   RankGoldIcon,
   LeaderboardRankIcon,
+  YudokuIcon,
 };
