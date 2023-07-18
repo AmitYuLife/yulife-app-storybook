@@ -50,16 +50,16 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I am on the Challenge details screen", then.on3ChallengesDetailsScreen);
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {
-      Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen2Challenges("5", "20", "14", "30"));
+      Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen2Challenges("5", "40", "14", "60"));
     });
-    When("I tap the 14 mins Awareness content card", when.tapAwarenessContentCard("14", "30"), async () => {
+    When("I tap the 14 mins Awareness content card", when.tapAwarenessContentCard("14", "60"), async () => {
       When("I wait 3 seconds", when.wait3Seconds, async () => {
         Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 3, 30, 550));
       });
     });
     When("I tap start session", when.tapStartSession, async () => {
       When("I complete the 14 min Meditopia session (plays a 15 sec test video)", when.completeMeditopiaContentSession, async () => {
-        Then("I should be on the challenge completion well done screen", then.onMeditopiaChallengeComplete(14, 10, "30"));
+        Then("I should be on the challenge completion well done screen", then.onMeditopiaChallengeComplete(14, 10, "60"));
       });
     });
     When("I tap collect on the well done screen", when.tapText("Collect", 5000), async () => {
@@ -69,10 +69,10 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I should be on the quest screen", then.idVisible(LEVEL_CHALLENGE_BUTTON(11), 3000));
     });
     When("I back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-      Then("I should see my updated coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(600)));
+      Then("I should see my updated coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(630)));
       Then("I should see the number of steps I just completed", then.idVisible(STEPS_COUNT(0)));
       Then("I should see the number of mindfulness mins I just completed", then.idVisible(MINDFUL_COUNT("14 min")));
-      Then("I should see the number of coins I've earned today (250)", then.textVisible("250 YuCoin today"));
+      Then("I should see the number of coins I've earned today (250)", then.textVisible("280 YuCoin today"));
     });
   });
 
@@ -84,11 +84,11 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I am on the Challenge details screen", then.onChallengeDetailsScreen("60 x"));
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {
-      Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "60"));
+      Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
     });
-    When("I tap the Awareness content card", when.tapAwarenessContentCard("5", "60"), async () => {
+    When("I tap the Awareness content card", when.tapAwarenessContentCard("5", "40"), async () => {
       When("I wait 3 seconds", when.wait3Seconds, async () => {
-        Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 1, 60, 200));
+        Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 1, 40, 200));
       });
     });
     When("I tap start session", when.tapStartSession, async () => {
@@ -102,7 +102,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       });
     });
     When("I exit the challenge via the quit challenge confirmation sceen", when.exitMeditopiaChallenge, async () => {
-      Then("I should be on choose Meditopia content screen", then.isOnTodaysMeditationScreen("5", "60"));
+      Then("I should be on choose Meditopia content screen", then.isOnTodaysMeditationScreen("5", "40"));
     });
   });
 
@@ -114,11 +114,11 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I am on the Challenge Details screen", then.onChallengeDetailsScreen("60 x"));
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {
-      Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "60"));
+      Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
     });
-    When("I tap the Awareness content card", when.tapAwarenessContentCard("5", "60"), async () => {
+    When("I tap the Awareness content card", when.tapAwarenessContentCard("5", "40"), async () => {
       When("I wait 3 seconds", when.wait3Seconds, async () => {
-        Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 1, 60, 200));
+        Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 1, 40, 200));
       });
     });
     When("I tap start session", when.tapStartSession, async () => {
@@ -127,7 +127,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       });
     });
     When("I continue to play the Meditopia challenge to finish", when.playAndFinishMeditopiaChallenge, async () => {
-      Then("I should be on the challenge completion well done screen", then.onMeditopiaChallengeComplete(5, 1, "60"));
+      Then("I should be on the challenge completion well done screen", then.onMeditopiaChallengeComplete(5, 1, "40"));
     });
   });
 
@@ -139,11 +139,11 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I am on the Challenge details screen", then.onChallengeDetailsScreen("60 x"));
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {
-      Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "60"));
+      Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
     });
-    When("I tap the Awareness content card", when.tapAwarenessContentCard("5", "60"), async () => {
+    When("I tap the Awareness content card", when.tapAwarenessContentCard("5", "40"), async () => {
       When("I wait 3 seconds", when.wait3Seconds, async () => {
-        Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 1, 60, 200));
+        Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 1, 40, 200));
       });
     });
     When("I start a Meditopia challenge", when.startMeditopiaChallenge, async () => {
@@ -161,17 +161,17 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I am on the Challenge details screen", then.onChallengeDetailsScreen("60 x"));
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {
-      Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "60"));
+      Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
     });
-    When("I tap the Awareness content card", when.tapAwarenessContentCard("5", "60"), async () => {
+    When("I tap the Awareness content card", when.tapAwarenessContentCard("5", "40"), async () => {
       When("I wait 3 seconds", when.wait3Seconds, async () => {
-        Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 1, 60, 200));
+        Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 1, 40, 200));
       });
     });
     When("I start a Meditopia challenge", when.startMeditopiaChallenge, async () => {
       When("I close and reopen the app", when.minimiseAndReopenApp, async () => {
         When("I wait", when.wait(15000), async () => {
-          Then("I should be on the Well Done challenge complete screen", then.onMeditopiaChallengeComplete(5, 1, "60"));
+          Then("I should be on the Well Done challenge complete screen", then.onMeditopiaChallengeComplete(5, 1, "40"));
         })
       })
     });
@@ -182,9 +182,9 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I should be on the quest screen", then.idVisible(LEVEL_CHALLENGE_BUTTON(2), 3000));
     });
     When("I back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-      Then("I should see my updated coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(270)));
+      Then("I should see my updated coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(250)));
       Then("I should see the number of steps I just completed", then.idVisible(STEPS_COUNT(0)));
-      Then("I should see the number of coins I've earned today (270) - 10 from passive and 60 from challenge", then.textVisible("270 YuCoin today"));
+      Then("I should see the number of coins I've earned today (270) - 10 from passive and 60 from challenge", then.textVisible("250 YuCoin today"));
     });
   });
 });

@@ -129,16 +129,14 @@ export const onChallengeDetailsScreen = (yuCoin: string) => async () => {
 export const on3ChallengesDetailsScreen = async () => {
   await idVisible(CHALLENGE_DETAILS_SCREEN)()
   await idVisible(CHALLENGE_TYPE("meditation"))()
-  await idVisible(TARGET("1 min"))()
   await idVisible(TARGET("3 mins"))()
-  await idVisible(TARGET("6 mins"))()
-  await idVisible(REWARD_AMOUNT(10))()
+  await idVisible(TARGET("5 mins"))()
+  await idVisible(TARGET("10 mins"))()
   await idVisible(REWARD_AMOUNT(20))()
-  await idVisible(REWARD_AMOUNT(30))()
+  await idVisible(REWARD_AMOUNT(40))()
+  await idVisible(REWARD_AMOUNT(60))()
   await idVisible(TAKE_CHALLENGE_BUTTON("Take challenge"))()
   await idVisible(SET_UP_BUTTON("Set up tutorial"))()
-  await buttonVisible("Take challenge")()
-  await buttonVisible("Set up tutorial")()
 }
 
 export const tapTakeChallenge = async () => {
