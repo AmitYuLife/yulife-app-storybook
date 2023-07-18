@@ -27,7 +27,7 @@ export const ServerList: FC<ServerListProps> = memo(({ onPress }) => {
         <TextTemplate type="b2">{translations["screens.login.server_location.description"]}</TextTemplate>
       </View>
 
-      {region.OPTIONS.map((o) => {
+      {region.getAvailableRegions().map((o) => {
         const Flag = REGION_TO_FLAG_MAPPING[o.key];
         return (
           <View style={styles.button} key={o.key}>
@@ -54,6 +54,7 @@ const REGION_TO_FLAG_MAPPING = {
   UK: Icon.FlagUK,
   US: Icon.FlagUS,
   SA: Icon.FlagSA,
+  JP: Icon.FlagJP,
 };
 
 export const styles = StyleSheet.create({

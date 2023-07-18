@@ -4,7 +4,7 @@ import moment from "moment";
 
 const MAX_CONFIG_AGE_IN_MINUTES = 60 * 24; // 24 hours
 
-export type REGION = "UK" | "US" | "SA";
+export type REGION = "UK" | "US" | "SA" | "JP";
 
 type RegionConfig = {
   language: string;
@@ -50,14 +50,17 @@ class RegionService {
     UK: Config.API_URL_UK || Config.API_URL,
     US: Config.API_URL_US,
     SA: Config.API_URL_SA,
+    JP: Config.API_URL_JP,
   };
 
   public readonly OPTIONS = [
-    { key: "UK" as REGION, label: "United Kingdom" },
-    { key: "US" as REGION, label: "United States" },
-    { key: "SA" as REGION, label: "South Africa" },
+    { key: "UK" as REGION, isEnabled: true, label: "United Kingdom" },
+    { key: "US" as REGION, isEnabled: true, label: "United States" },
+    { key: "SA" as REGION, isEnabled: true, label: "South Africa" },
+    { key: "JP" as REGION, isEnabled: false, label: "日本 (Japan)" },
   ];
 
+  public getAvailableRegions = () => this.OPTIONS.filter((o) => this.ARE_MULTIPLE_REGIONS_ENABLED || o.isEnabled);
   public getPreferredRegion = () => this.SELECTED_REGION;
   public getPreferredRegionUri = () => this.API_URLS[this.SELECTED_REGION];
   public getConfig = <Key extends keyof RegionConfig>(key: Key): RegionConfig[Key] => this.REGION_CONFIG?.[key];
