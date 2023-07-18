@@ -36,6 +36,15 @@ export const Leaderboard: Story = {
   },
 };
 
+export const LeaderboardActive: Story = {
+  args: {
+    type: "leaderboard",
+    rank: 1,
+    score: "3,682,780",
+    active: true,
+  },
+};
+
 export const Search: Story = {
   args: {
     type: "search",
