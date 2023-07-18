@@ -14,7 +14,7 @@ import { validateEmail } from "@utils/email";
 
 export const sendDocumentsModalConfig = {
   modalId: MODALS.blurredOverlay,
-  showCloseButton: false,
+  showButton: false,
   paddingTop: Style.adjust(42),
   height: Style.adjust(360),
 };

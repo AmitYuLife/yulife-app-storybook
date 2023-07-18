@@ -38,7 +38,7 @@ export const SudokuGame = ({ invertHeader }: IProps) => {
             entering={SlideInDown.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
             exiting={SlideOutDown.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
           >
-            <FloatingModal showCloseButton={false}>
+            <FloatingModal showButton={false}>
               <SudokuPauseModal onClose={unpause} />
             </FloatingModal>
           </AnimatedView>

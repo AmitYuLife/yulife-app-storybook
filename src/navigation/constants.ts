@@ -162,6 +162,7 @@ export const MODALS = {
   sudokuHelp: "yulife.modals.sudokuHelp",
   sudokuPause: "yulife.modals.sudokuPause",
   sudokuLeaderboardConsent: "yulife.modals.sudokuLeaderboardConsent",
+  leaderboardCommunityOverlay: "yulife.overlay.leaderboardCommunity",
 };
 
 export const bottomTabs: OptionsBottomTabs = {

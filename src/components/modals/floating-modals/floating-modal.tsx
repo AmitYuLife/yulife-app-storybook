@@ -1,4 +1,4 @@
-import React, { memo, isValidElement, ReactElement, useMemo, useState } from "react";
+import React, { memo, isValidElement, ReactElement, useMemo, useState, useCallback } from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { Button, PressableWithDelay, SecondaryButton } from "@molecules";
 import { Style, Colours } from "@styles";
@@ -6,7 +6,7 @@ import { ContentItemLottie } from "@components/sdui";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import { useTranslation } from "@hooks";
 import { Source } from "react-native-fast-image";
-import { CloseSvg, Image } from "@atoms";
+import { CloseSvg, Image, TextTemplate } from "@atoms";
 
 interface IProps {
   closeOverlay?: () => void;
@@ -15,9 +15,12 @@ interface IProps {
   paddingTop?: number;
   lottie?: GqlLottie;
   showCloseIcon?: boolean;
-  showCloseButton?: boolean;
+  showButton?: boolean;
+  buttonLabel?: string;
+  buttonOnPress?: () => void;
   icon?: Source;
   isCloseButtonSecondary?: boolean;
+  title?: string;
 }
 
 export interface IFloatingModalContentProps {
@@ -31,10 +34,13 @@ const FloatingModal = ({
   lottie,
   icon,
   showCloseIcon = true,
-  showCloseButton = true,
+  showButton = true,
+  buttonLabel,
+  buttonOnPress,
   height = Style.adjust(420),
   paddingTop = Style.adjust(124),
   isCloseButtonSecondary,
+  title,
 }: IProps) => {
   const CloseButton = isCloseButtonSecondary ? SecondaryButton : Button;
   const translation = useTranslation(["labels.cta.close"]);
@@ -49,9 +55,21 @@ const FloatingModal = ({
     return <Content onClose={closeOverlay} setIcon={setIconAsset} />;
   }, [children, closeOverlay, setIconAsset]);
 
+  const onButtonPress = useCallback(() => {
+    if (buttonOnPress) {
+      buttonOnPress();
+    }
+
+    closeOverlay();
+  }, [buttonOnPress, closeOverlay]);
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
       <View style={[styles.wrapper, { paddingTop, minHeight: height }]}>
+        {!title ? null : (
+          <View style={styles.title}>
+            <TextTemplate type="h3">{title}</TextTemplate>
+          </View>
+        )}
         {!lottie ? null : (
           <View style={styles.iconWrapper}>
             <ContentItemLottie {...lottie} />
@@ -63,10 +81,11 @@ const FloatingModal = ({
           </View>
         )}
         {content}
-        {!showCloseButton ? null : (
+
+        {!showButton ? null : (
           <CloseButton
-            onPress={closeOverlay}
-            label={translation["labels.cta.close"]}
+            onPress={onButtonPress}
+            label={buttonLabel || translation["labels.cta.close"]}
             wrapperStyle={styles.buttonWrapperStyle}
           />
         )}
@@ -85,6 +104,13 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderTopLeftRadius: Style.adjust(20),
     borderTopRightRadius: Style.adjust(20),
+  },
+  title: {
+    alignItems: "center",
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: Style.adjust(16),
   },
   closeWrapper: {
     position: "absolute",

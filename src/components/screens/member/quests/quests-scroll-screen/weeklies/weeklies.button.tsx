@@ -16,7 +16,7 @@ const handlePress = async (isClaimed?: boolean) => {
   await showFloatingModal({
     children: WeeklyQuestsModal,
     modalId: MODALS.weeklyQuestsOverlay,
-    showCloseButton: false,
+    showButton: false,
     icon: isClaimed ? CLAIMED_ICON : ICON,
   });
 };

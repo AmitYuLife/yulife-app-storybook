@@ -99,6 +99,7 @@
   "samsung_health": "サムスンヘルス",
   "user_other_app": "またはアプリを使う",
   "setup_tutorial": "設定チュートリアル",
+  "communities": "コミュニティ",
   "yu_coin": {
     "lower_case": "yucoin",
     "camel_case": "YuCoin",
@@ -1067,6 +1068,11 @@
         "cta_label": "招待を受ける",
         "cta_label_secondary": "招待を断る"
       }
+    }
+  },
+  "overlays": {
+    "leaderboard_community": {
+      "button_label": "リーダーボードを見る"
     }
   },
   "molecules": {
