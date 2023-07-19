@@ -1,19 +1,28 @@
 import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Colours, Style } from "../../../../../../styles";
+import { Colours, Style } from "@styles";
 
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     alignSelf: "stretch",
     flexDirection: "row",
-    marginHorizontal: Style.SCALE_UP_AND_DOWN(15),
+    marginHorizontal: Style.adjust(16),
   } as ViewStyle,
+  titleWrapper: {
+    left: 0,
+    position: "absolute",
+    right: 0,
+    top: 0,
+  },
+  title: {
+    paddingTop: Style.adjust(29),
+  },
   counterPosition: {
     alignItems: "baseline",
     flex: 1,
     flexDirection: "row",
     position: "absolute",
-    top: Style.SCALE_UP_AND_DOWN(15),
+    top: Style.adjust(60),
     marginTop: Style.adjust(8),
   },
   stepsText: {
