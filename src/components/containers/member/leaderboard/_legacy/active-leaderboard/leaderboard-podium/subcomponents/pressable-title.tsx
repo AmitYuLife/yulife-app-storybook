@@ -1,12 +1,11 @@
 import React, { memo } from "react";
 import { View, StyleSheet, ViewStyle, Platform, TextStyle, ImageStyle } from "react-native";
 import { Text } from "@atoms";
-import { LEADERBOARD_DROPDOWN, LEADERBOARD_INFO_BUTTON, LEADERBOARD_TITLE, LEADERBOARD_TOP_SCREEN } from "@ids";
+import { LEADERBOARD_DROPDOWN, LEADERBOARD_TITLE, LEADERBOARD_TOP_SCREEN } from "@ids";
 import { truncate } from "@utils";
 import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import Svg, { Path } from "react-native-svg";
-import { InfoButton } from "./info-button";
 import { DuelsButton } from "./duels-button";
 import { getActiveLeaderboard, getUserFeatures } from "@redux/user/user.selectors";
 import { getMetricName, t } from "@locale";
@@ -15,14 +14,12 @@ import { useSelector } from "react-redux";
 
 export interface LeaderboardPressableTitleProps {
   onPressLabel: () => void;
-  onPressInfo: () => void;
 }
 
 export function _LeaderboardPressableTitle(props: LeaderboardPressableTitleProps) {
-  const { onPressLabel, onPressInfo } = props;
+  const { onPressLabel } = props;
   const showDuels = !!useSelector(getUserFeatures)?.showDuels;
   const activeLeaderboard = useSelector(getActiveLeaderboard);
-
   const metricName = getMetricName((activeLeaderboard?.metric as LeaderboardMetric) || "steps", "plural");
 
   return (
@@ -32,7 +29,6 @@ export function _LeaderboardPressableTitle(props: LeaderboardPressableTitleProps
           name={activeLeaderboard?.name || ""}
           type={t("screens.leaderboard.podium.steps", { days: activeLeaderboard?.days || 30, metric: metricName })}
           onPressLabel={onPressLabel}
-          onPressInfo={onPressInfo}
         />
       </View>
       {!showDuels ? null : <DuelsButton />}
@@ -54,10 +50,9 @@ type TitleProps = {
   name: string;
   type: string;
   onPressLabel: () => void;
-  onPressInfo: () => void;
 };
 
-function Title({ name, type, onPressLabel, onPressInfo }: TitleProps) {
+function Title({ name, onPressLabel }: TitleProps) {
   return (
     <View style={titleStyles.wrapper} testID={LEADERBOARD_TOP_SCREEN}>
       <TouchableOpacityWithDelay onPress={onPressLabel}>
@@ -68,12 +63,6 @@ function Title({ name, type, onPressLabel, onPressInfo }: TitleProps) {
               <Arrow />
             </View>
           </Text>
-        </View>
-      </TouchableOpacityWithDelay>
-      <TouchableOpacityWithDelay onPress={onPressInfo} testID={LEADERBOARD_INFO_BUTTON}>
-        <View style={titleStyles.flexRow}>
-          <Text style={titleStyles.caption}>{type}</Text>
-          <InfoButton onPressInfo={onPressInfo} />
         </View>
       </TouchableOpacityWithDelay>
     </View>
