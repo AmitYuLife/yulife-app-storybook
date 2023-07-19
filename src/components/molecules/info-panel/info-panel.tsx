@@ -69,7 +69,7 @@ const InfoPanel = ({
               <Image
                 height={Style.adjust(48)}
                 width={Style.adjust(48)}
-                testID={INFO_PANEL_IMAGE(remoteImage.uri)}
+                testID={INFO_PANEL_IMAGE(remoteImage?.uri)}
                 source={remoteImage || icon}
               />
             </View>
