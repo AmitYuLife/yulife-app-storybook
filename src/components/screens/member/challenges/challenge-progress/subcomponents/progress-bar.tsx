@@ -4,6 +4,7 @@ import { renderProgressLabel } from "./progress-bar.helpers";
 import styles from "./progress-bar.styles";
 import Progress from "./progress";
 import { GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails_progressBar as IStyle } from "@graphql/_core/schema";
+import { TextTemplate } from "@atoms";
 
 const GOAL_LIMIT = 3;
 
@@ -25,9 +26,10 @@ export interface IProps {
   goals: number[];
   type: "steps" | "minutes" | "distance" | string;
   styleType: IStyle;
+  title: string;
 }
 
-export default function ProgressBar({ amount, goals, type, styleType }: IProps) {
+export default function ProgressBar({ title, amount, goals, type, styleType }: IProps) {
   return (
     <View style={styles.container}>
       {goals.map((goal, i) => {
@@ -49,6 +51,13 @@ export default function ProgressBar({ amount, goals, type, styleType }: IProps) 
           />
         );
       })}
+      <View style={styles.titleWrapper}>
+        <View style={styles.title}>
+          <TextTemplate type="l1b" color={styleType.goalTextColor}>
+            {title}
+          </TextTemplate>
+        </View>
+      </View>
       <View style={styles.counterPosition}>{renderProgressLabel({ amount, type, styleType })}</View>
     </View>
   );
