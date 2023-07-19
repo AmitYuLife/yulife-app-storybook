@@ -165,3 +165,18 @@ export const USER_USA_10 = {
         nickname:"User USA"
     }
 } as IDatabaseItem
+
+export const USER_USA_11 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_11.data.customerId,
+        products: [{
+            earnRate: 1,
+        }],
+        earnRate: 1,
+        nickname:"Eleven USA"
+    }
+} as IDatabaseItem

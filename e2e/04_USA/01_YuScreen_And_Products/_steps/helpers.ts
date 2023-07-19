@@ -213,10 +213,7 @@ export const CHECK_EXPLORE_INSURANCE = async (seed: BoxOption, prod: BoxOption, 
 
     When(`I scroll down to ${seed.description}`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, seed.description, "down"), async () => {
         When(`I tap ${seed.description}`, when.tapText(seed.description), async () => {
-            Then("I can see the Guardian logo at the top", then.idVisible(CONTENT_MIDDLE_ITEM_IMAGE(text.Guardian_Top_Banner)))
-            Then("I can see the YuLife logo at the top", then.idVisible(CONTENT_MIDDLE_ITEM_IMAGE(text.YuLife_Top_Banner)))
-            Then("I can see the TransAmerica logo at the top", then.idVisible(CONTENT_MIDDLE_ITEM_IMAGE(text.Transamerica_Top_Banner)))
-            Then("I should see the page heading", then.idVisible(TEXT_TEMPLATE("Available to you")))
+            Then("I'm on the pcp page", then.onPCPPage)
             Then("I should see the info panel image", then.idVisible(INFO_PANEL_IMAGE(infoPanel.imageUrl)))
             Then(`I should see the info panel description text`, then.idVisible(PCP_LIST_DESCRIPTION))
             Then(`I should see ${prod.imageUrl} text`, then.idVisible(RIGHT_SIDE_IMAGE_BOX_OPTION(prod.imageUrl)))

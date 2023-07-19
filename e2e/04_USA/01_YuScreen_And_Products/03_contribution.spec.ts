@@ -3,13 +3,18 @@ import {
     Scenario,
     Given,
     ScenarioOnly,
+    When,
+    Then,
   } from "@yu-life/yulife-bdd-framework";
+  import * as then from "./_steps/then";
+  import * as when from "./_steps/when";
   import * as scenario from "./_steps/scenario";
   import * as given from "./_steps/given";
-  import { AUTH_USA_10, AUTH_USA_5, AUTH_USA_6, AUTH_USA_7, AUTH_USA_8, AUTH_USA_9 } from "../_data/mongo/auths";
-  import { BPEEW_USA_10_VIS, CUSTOMER_USA_10, CUSTOMER_USA_5, CUSTOMER_USA_6, CUSTOMER_USA_7, CUSTOMER_USA_8, CUSTOMER_USA_9 } from "../_data";
+  import { AUTH_USA_10, AUTH_USA_11, AUTH_USA_5, AUTH_USA_6, AUTH_USA_7, AUTH_USA_8, AUTH_USA_9 } from "../_data/mongo/auths";
+  import { BPEEW_USA_10_VIS, CUSTOMER_USA_10, CUSTOMER_USA_11, CUSTOMER_USA_5, CUSTOMER_USA_6, CUSTOMER_USA_7, CUSTOMER_USA_8, CUSTOMER_USA_9 } from "../_data";
   import * as helper from "./_steps/helpers";
   import * as fixture from "./_steps/fixture";
+  import * as id from "@ids";
   
   Feature("I am able to see sponsored by text/logos and box option types", async () => {
   Scenario("I can see sponsored by text and logos in yuscreen if contribution_type none and can view the explore my insurance page",scenario.start, async () => {
@@ -81,4 +86,27 @@ import {
         helper.CHECK_WELLBEING_HUB(CUSTOMER_USA_10, fixture.MyWellbeingHubBox)
     });
   });
+
+  Scenario("If user is assigned to two products, one full contribution and one not, they can only see the not option in the PCP list",scenario.start, async () => {
+    Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_11, AUTH_USA_11, true, "United States"),async () => {
+        helper.ONBOARDING_YUSCREEN_USA(fixture.AccCanInsuranceInEnrolment);
+        helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_11)
+        helper.SLOT_VISSIBLE(fixture.AccCanInsuranceInEnrolment)
+        helper.YUSCREEN_USA(CUSTOMER_USA_11);
+        helper.SPONSORED_LOGO_VISSIBLE()
+        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
+        helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
+        // checks that cancer options appear in the explore insurance page
+        helper.CHECK_EXPLORE_INSURANCE(fixture.ExploreInsureanceBox, fixture.CancerInsuranceBox)
+        // checks that accident cover is not on the explore insurance page
+        When(`I scroll down to ${fixture.ExploreInsureanceBox.description}`, when.scrollUntilTextVisible(id.YUSCREEN_SCROLL_VIEW, fixture.ExploreInsureanceBox.description, "down"), async () => {
+          When(`I tap ${fixture.ExploreInsureanceBox.description}`, when.tapText(fixture.ExploreInsureanceBox.description), async () => {
+              Then(`I should NOT see ${fixture.AccidentInsuranceBox.imageUrl} text`, then.idNotVisible(id.RIGHT_SIDE_IMAGE_BOX_OPTION(fixture.AccidentInsuranceBox.imageUrl)))
+              Then(`I should NOT see ${fixture.AccidentInsuranceBox.title} text`, then.idNotVisible(id.BOX_OPTION_TITLE(fixture.AccidentInsuranceBox.title)))
+              Then(`I should NOT see ${fixture.AccidentInsuranceBox.description} text`, then.idNotVisible(id.BOX_OPTION_DESCRIPTION(fixture.AccidentInsuranceBox.description)))
+          })
+        })
+    });
+  });
+  
 })

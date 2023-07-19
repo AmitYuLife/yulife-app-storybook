@@ -373,3 +373,29 @@ export const CBP_USA_10_VIS = {
         data : "{\"dateOfBirth\":\"1990-12-09\",\"firstName\":\"Usa\",\"lastName\":\"USA\",\"sexAtBirth\":\"M\"}"
     }
 }
+
+export const CBP_USA_11_ACC = {
+    type,
+    modelName,
+    data:{
+        business_product_id: bp.BUSINESS_PRODUCT_USA_11_ACC.product.data.product_id,
+        customer_product_id: cpe.CPE_ACC_11.data.customer_product_id,
+        category_id : "1",
+        start_date: cpe.CPE_ACC_11.data.start_date,
+        archived : false,
+        data : "{\"dateOfBirth\":\"1990-12-09\",\"firstName\":\"Usa\",\"lastName\":\"USA\",\"sexAtBirth\":\"M\"}"
+    }
+}
+
+export const CBP_USA_11_CAN = {
+    type,
+    modelName,
+    data:{
+        business_product_id: bp.BUSINESS_PRODUCT_USA_11_CAN.product.data.product_id,
+        customer_product_id: cpe.CPE_CAN_11.data.customer_product_id,
+        category_id : "1",
+        start_date: cpe.CPE_CAN_11.data.start_date,
+        archived : false,
+        data : "{\"dateOfBirth\":\"1990-12-09\",\"firstName\":\"Usa\",\"lastName\":\"USA\",\"sexAtBirth\":\"M\"}"
+    }
+}

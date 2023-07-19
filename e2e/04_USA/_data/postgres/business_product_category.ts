@@ -343,3 +343,27 @@ export const BPC_USA_10_VIS = {
         category_description: "All employees will have access to the YuLife app",
     },
 };
+
+export const BPC_USA_11_ACC = {
+    type,
+    modelName,
+    data:{
+        product_id: bp.BUSINESS_PRODUCT_USA_11_ACC.product.data.product_id,
+        category_id: "1",
+        earn_rate: 17,
+        category_name: "App access only",
+        category_description: "All employees will have access to the YuLife app",
+    },
+};
+
+export const BPC_USA_11_CAN = {
+    type,
+    modelName,
+    data:{
+        product_id: bp.BUSINESS_PRODUCT_USA_11_CAN.product.data.product_id,
+        category_id: "1",
+        earn_rate: 17,
+        category_name: "App access only",
+        category_description: "All employees will have access to the YuLife app",
+    },
+};

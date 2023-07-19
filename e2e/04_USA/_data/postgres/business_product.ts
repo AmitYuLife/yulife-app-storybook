@@ -242,3 +242,25 @@ export const BUSINESS_PRODUCT_USA_10_VIS = generateProductRecords({
   businessAccountId: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
   startDate: moment().add(1, "y").format(format),
 });
+
+export const BUSINESS_PRODUCT_USA_11_ACC = generateProductRecords({
+  productCode: ProductCode.ACC,
+  carrier: Carrier.Guardian,
+  productId: "SEED_11_ACC",
+  businessAccountId: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
+  startDate: "2021-06-03T00:00:00.000Z",
+  product: {
+    contribution_type: "full",
+ }
+});
+
+export const BUSINESS_PRODUCT_USA_11_CAN = generateProductRecords({
+  productCode: ProductCode.CAN,
+  carrier: Carrier.Guardian,
+  productId: "SEED_11_CAN",
+  businessAccountId: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
+  startDate: "2021-06-03T00:00:00.000Z",
+  product: {
+    contribution_type: "partial",
+ }
+});

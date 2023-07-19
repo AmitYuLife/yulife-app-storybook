@@ -610,3 +610,21 @@ export const GapInEnrolVisOutEnrol: YuScreenInfo = {
     SlotLeftBackgroundImgSrc: canEnrolPlusImage,
     SecondSlotProductTitle: Guardian_VIS.heading,
 };
+
+export const AccCanInsuranceInEnrolment: YuScreenInfo = {
+    mainYuCoinPower: "1",
+    SlotProductTitle: Guardian_CAN.heading,
+    SecondSlotProductTitle: Guardian_ACC.heading,
+};
+
+export const AccidentInsuranceBox:BoxOption = {
+    imageUrl: "https://yulife-develop.imgix.net/core-products/guardian-accident.svg?ixlib=js-3.2.1&w=360&h=312&s=eb1043542f518fc7229573060b87bcc3",
+    title: "Accident Insurance",
+    description: "Guardian accident insurance pays you cash in the event of an accident."
+}
+
+export const CancerInsuranceBox:BoxOption = {
+    imageUrl: "https://yulife-develop.imgix.net/core-products/guardian-cancer.svg?ixlib=js-3.2.1&w=360&h=312&s=c76b28b3c615b2da32e0d25fca9114f5",
+    title: "Cancer Insurance",
+    description: "Guardian provides cash benefits for cancer diagnosis, procedures, and treatment."
+}

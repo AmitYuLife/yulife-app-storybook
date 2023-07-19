@@ -385,3 +385,10 @@ export const onLegalStuffPage = (copyText: USProductData) => async () => {
       break;
   }
 };
+
+export const onPCPPage = async () =>{
+  await idVisible(CONTENT_MIDDLE_ITEM_IMAGE(text.Guardian_Top_Banner))()
+  await idVisible(CONTENT_MIDDLE_ITEM_IMAGE(text.YuLife_Top_Banner))()
+  await idVisible(CONTENT_MIDDLE_ITEM_IMAGE(text.Transamerica_Top_Banner))()
+  await idVisible(TEXT_TEMPLATE("Available to you"))()
+}
