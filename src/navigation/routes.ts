@@ -473,6 +473,10 @@ const routesForRegistration = [
     name: MODALS.sudokuLeaderboardConsent,
     component: require("../components/modals/sudoku-leaderboard-consent/sudoku-leaderboard-consent-modal").default,
   },
+  {
+    name: MODALS.leaderboardCommunityOverlay,
+    component: require("../components/modals/leaderboard-community-overlay/leaderboard-community-overlay").default,
+  },
 ];
 
 export default routesForRegistration;

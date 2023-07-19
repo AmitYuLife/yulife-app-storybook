@@ -99,6 +99,7 @@
   "samsung_health": "Samsung Health",
   "user_other_app": "Or use the app",
   "setup_tutorial": "Set up tutorial",
+  "communities": "Communities",
   "yu_coin": {
     "lower_case": "yucoin",
     "camel_case": "YuCoin",
@@ -1067,6 +1068,11 @@
         "cta_label": "accept invite",
         "cta_label_secondary": "decline invite"
       }
+    }
+  },
+  "overlays": {
+    "leaderboard_community": {
+      "button_label": "View Leaderboard"
     }
   },
   "molecules": {
