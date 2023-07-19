@@ -1,44 +1,32 @@
-import { StyleSheet, Platform } from "react-native";
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
 import { Style } from "../../../styles";
-import colours from "@styles/colours";
 
-const FULL_HEIGHT = Style.adjust(205);
-const BOTOM_HEIGHT = Style.adjust(84);
+const FULL_HEIGHT = Style.adjust(199);
+const BOTOM_HEIGHT = Style.adjust(79);
 const RADIUS = Style.adjust(20);
 
 const styles = StyleSheet.create({
+  contentReward: {
+    color: "rgb(51,51,51)",
+    fontSize: Style.adjust(12),
+  } as TextStyle,
   contentRewardWrapper: {
-    marginTop: Style.adjust(5),
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  contentBottom: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: Style.adjust(2),
-  },
-  yucoin: {
-    marginLeft: Style.adjust(3),
-  },
-  duration: {
-    padding: Style.adjust(5),
-    position: "absolute",
-    right: Style.adjust(8),
-    top: Style.adjust(8),
-    backgroundColor: colours.primary.p107,
-    borderRadius: Style.adjust(8),
-  },
+    marginTop: 2,
+  } as ViewStyle,
+  contentTitle: {
+    color: "rgb(51,51,51)",
+    fontSize: Style.adjust(17),
+  } as TextStyle,
   contentWrapper: {
     flex: 1,
-    paddingHorizontal: Style.adjust(15),
+    paddingLeft: Style.adjust(15),
     paddingTop: Style.adjust(
       Platform.select({
         ios: 11,
         android: 4,
       })
     ),
-  },
+  } as ViewStyle,
   imageBackground: {
     backgroundColor: "rgba(255,255,255,0.5)",
     overflow: "hidden",
@@ -49,34 +37,37 @@ const styles = StyleSheet.create({
     right: 0,
     borderTopLeftRadius: RADIUS,
     borderTopRightRadius: RADIUS,
-  },
+  } as ViewStyle,
   imageBackgroundLocked: {
     backgroundColor: "transparent",
     height: FULL_HEIGHT,
-  },
+  } as ViewStyle,
   imageNext: {
-    height: Style.adjust(24),
-    width: Style.adjust(24),
-  },
-  completedContainer: {
-    backgroundColor: colours.status.su100,
-    borderRadius: 100,
-    paddingHorizontal: Style.adjust(8),
-    padding: Style.adjust(4),
-  },
+    height: Style.adjust(25),
+    width: Style.adjust(25),
+  } as ImageStyle,
   imageWrapper: {
     height: Style.adjust(165),
-  },
+  } as ViewStyle,
   imageWrapperLocked: {
     alignItems: "center",
     height: FULL_HEIGHT,
     justifyContent: "center",
     borderRadius: RADIUS,
     overflow: "hidden",
-  },
+  } as ViewStyle,
+  imageWrapperNext: {
+    alignItems: "center",
+    height: "100%",
+    justifyContent: "center",
+    width: Style.adjust(55),
+  } as ViewStyle,
   lockedImage: {
     marginBottom: Style.adjust(9),
-  },
+  } as ImageStyle,
+  lockedLabel: {
+    fontSize: Style.adjust(17),
+  } as TextStyle,
   lockedOverlay: {
     alignItems: "center",
     backgroundColor: "rgba(255,255,255,0.7)",
@@ -88,24 +79,22 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 0,
     top: 0,
-  },
+  } as ViewStyle,
   sectionBottomWrapper: {
-    backgroundColor: "rgba(255,255,255,1)",
+    backgroundColor: "rgba(255,255,255,0.9)",
     flexDirection: "row",
     height: BOTOM_HEIGHT,
     borderBottomLeftRadius: RADIUS,
     borderBottomRightRadius: RADIUS,
-    borderBottomWidth: 5,
-    borderColor: colours.neutral.n250,
     overflow: "hidden",
-  },
+  } as ViewStyle,
   wrapper: {
     maxHeight: FULL_HEIGHT,
     justifyContent: "flex-end",
-    marginTop: Style.adjust(13),
-    width: Style.adjust(172),
-    overflow: "hidden",
-  },
+    marginTop: Style.adjust(26),
+    width: Style.adjust(165),
+    borderRadius: RADIUS,
+  } as ViewStyle,
   remoteImage: {
     position: "absolute",
     bottom: 0,

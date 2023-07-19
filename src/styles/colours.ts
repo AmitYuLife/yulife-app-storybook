@@ -185,6 +185,7 @@ export default {
   primary: {
     p105: "#FCEF80",
     p106: "#FBF5BA",
+    p107: "#FFFED6",
     p50: "#FCE5EF",
     p100: "#F9BDD9",
     p200: "#F791BF",
@@ -202,6 +203,7 @@ export default {
     s40S1: "#99F8D7",
     s50S1: "#80F6CD",
     s100S1: "#00ED9D",
+    s200S1: "#06A322",
 
     /** Rare Blue */
     s10S2: "#E3F7FC",
@@ -225,12 +227,14 @@ export default {
     n50: "#FAFAFE",
     n100: "#E7E7EB",
     n200: "#D3D3D6",
+    n250: "#D9D9D7",
     n300: "#BFBFC2",
     n400: "#ABABAD",
     n500: "#979799",
     n600: "#838385",
     n700: "#6E6E70",
     n800: "#5A5A5C",
+    n850: "#5C5757",
     n900: "#464647",
     g1: "#C4C4C4",
     g2: "#5C5C5C",
