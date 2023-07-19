@@ -13,6 +13,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 28,
   },
+  questionMark: {
+    position: "absolute",
+    right: 24,
+    bottom: Platform.select({ ios: 10, android: Style.adjust(0) }),
+  },
 });
 
 const EMPTY_CENTER_POSITION_X = Style.DEVICE_WIDTH / 2 - Yumoji.EMPTY_BODY_AVATAR_WIDTH / 2 + 2;

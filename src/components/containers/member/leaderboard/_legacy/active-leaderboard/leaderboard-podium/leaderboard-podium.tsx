@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { View, Animated, Platform } from "react-native";
-import { Yumoji } from "@molecules";
+import { PressableWithDelay, Yumoji } from "@molecules";
 import { GetLeaderboard_getLeaderboard_avatarRemoteFiles } from "@graphql/_core/schema";
 import { YUMOJI_PODIUM } from "@ids";
 import styles, { dynamicStyles, LEADERBOARD_PODIUM_HEIGHT } from "./leaderboard-podium.styles";
 import { PodiumAsset } from "./assets/podium";
 import { LeaderboardTitle } from "./subcomponents/leaderboard-title";
 import { goToLeaderboardsList, goToLeaderboardInfo } from "./helpers/routing";
+import { QuestionOutlineIcon } from "@atoms/icon/question-outline-icon";
 
 export interface IAvatarRemoteFiles {
   uriSet: Array<GetLeaderboard_getLeaderboard_avatarRemoteFiles["pngFull"]>;
@@ -40,7 +41,10 @@ const _LeaderboardPodium = ({ cropAmount, hideAvatars, uriSet, scrollValue }: IL
         <PodiumAsset cropAmount={cropAmount} />
         <Avatars hideAvatars={hideAvatars} uriSet={uriSet} />
       </View>
-      <LeaderboardTitle onPressLabel={goToLeaderboardsList} onPressInfo={goToLeaderboardInfo} />
+      <PressableWithDelay onPress={goToLeaderboardInfo} style={styles.questionMark}>
+        <QuestionOutlineIcon colour="#345E8C" />
+      </PressableWithDelay>
+      <LeaderboardTitle onPressLabel={goToLeaderboardsList} />
     </Animated.View>
   );
 };

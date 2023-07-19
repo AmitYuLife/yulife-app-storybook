@@ -76,3 +76,4 @@ export { default as MediaListHeader } from "./media-list-header/media-list-heade
 export { default as PromotionPanel } from "./promotion-panel/promotion-panel";
 export { default as ActionButton } from "./action-button/action-button";
 export { default as Avatar } from "./avatar/avatar";
+export { default as LeaderBoardNavigation } from "./leaderboard-navigation/leaderboard-navigation";

@@ -57,6 +57,9 @@ import { PiggyCoinIcon } from "./piggy-coin-icon";
 import { RankGoldIcon } from "./rank-gold-icon";
 import { LeaderboardRankIcon } from "./leaderboard-rank-icon";
 import { YudokuIcon } from "./yudoku-icon";
+import { DuelsIcon } from "./duels-icon";
+import { DropdownSolidIcon } from "./dropdown-solid-icon";
+import { QuestionOutlineIcon } from "./question-outline-icon";
 
 export default {
   GlobeIcon,
@@ -120,4 +123,7 @@ export default {
   RankGoldIcon,
   LeaderboardRankIcon,
   YudokuIcon,
+  DuelsIcon,
+  DropdownSolidIcon,
+  QuestionOutlineIcon,
 };
