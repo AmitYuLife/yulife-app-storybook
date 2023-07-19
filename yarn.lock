@@ -2540,10 +2540,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@intercom/intercom-react-native@^5.1.1":
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/@intercom/intercom-react-native/-/intercom-react-native-5.1.1.tgz#ca84636ae01556b549ef9025c5b053f34f9badbd"
-  integrity sha512-dnvPm7WVrU6Wx3UCmJfbOkaMFYg9iMZx/eY4ChB9EgckXAYB+otZ0FyDtWVkU+lN39PqwlFayU7PQ1VD97dJ2Q==
+"@intercom/intercom-react-native@5.1.2":
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@intercom/intercom-react-native/-/intercom-react-native-5.1.2.tgz#285d4eb2969307e4b0ef68a9c61b1e8719272eeb"
+  integrity sha512-DQ7pZGr092Qpcik9FY5/MNM+F4jKEn3BCA/jNZFs7WOjYzERY1ULdyJT6WoKWhQV2PS1/CITSrr1lUvVkX22XA==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
