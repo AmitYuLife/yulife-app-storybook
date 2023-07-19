@@ -256,3 +256,28 @@ export const USER_ONBOARDING_USA_10  = {
         inviteDate: moment().subtract(61, "d").toISOString()
     }
 } as IDatabaseItem
+
+export const USER_ONBOARDING_USA_11  = {
+    type,
+    modelName,
+    data:{
+        _id:generateRandomMongoId(),
+        userId: user.USER_USA_11.data.userId,
+        signupComplete: false,
+        firstAppOpen: false,
+        companyLeaderboardAccepted: true,
+        companyLeaderboardCurrentConsent: false,
+        additionalLeaderboards: false,
+        archived: false,
+        businessAccountId: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
+        businessName: "Justice League USA",
+        performedSteps: {
+            newYumojiBuilder: true,
+            yuScreenOnboarding: false,
+            passiveCycling: true,
+        },
+        createdAt: moment().subtract(61, "d").toISOString(),
+        updatedAt: moment().toISOString(),
+        inviteDate: moment().subtract(61, "d").toISOString()
+    }
+} as IDatabaseItem

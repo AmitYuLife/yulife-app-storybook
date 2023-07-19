@@ -476,3 +476,37 @@ export const CPE_VIS_10 = {
     taken_up: false,
   },
 } as IDatabaseItem;
+
+export const CPE_ACC_11 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001128",
+    customer_id: customer.CUSTOMER_USA_11.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_ACC_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
+
+export const CPE_CAN_11 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001129",
+    customer_id: customer.CUSTOMER_USA_11.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_CAN_01_01",
+    archived: false,
+    taken_up: true,
+  },
+} as IDatabaseItem;
