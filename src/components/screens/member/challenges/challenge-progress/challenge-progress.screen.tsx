@@ -4,7 +4,7 @@ import { IConnectedScreenProps } from "../../../../../typings";
 import styles from "./challenge-progress.screen.styles";
 import Exit from "./subcomponents/exit";
 import ProgressBar from "./subcomponents/progress-bar";
-import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
+import { ChallengeType } from "@components/molecules/challenge-tile/challenge-tile.types";
 import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR } from "@ids";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Image } from "@atoms";
