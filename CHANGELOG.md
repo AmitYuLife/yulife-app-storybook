@@ -7,6 +7,73 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.92.0] - 2023-07-19
+
+### Bugfixes
+
+- Bugfix: Store selection location crashing
+- Bugfix: Time formatting
+- Bugfix: Change Sudoku coin graphic
+- Bugfix: Set TARGET_LOCALE correctly on bitrise
+- Bugfix ENG-3272: Challenge yucoin missing on success screen
+- Bugfix: handle skip assertions more carefully
+- Bugfix GS-757: Yuniversity navigation for all tabs
+- Bugfix: Add missing translation for less_than_minute
+
+### Tasks
+
+- Task: Create leaderboard navigation
+- Task: New challenge tiles
+- Task ISA-966: challenge progress title update
+- Task GS-763: Create leaderboard communities overlay
+- Task: Add active state and make ListItem component pressable
+- Task: Deeplink to reward details
+- Task ISA-960: added JP config to the app
+- Task ISA-955: challenge tile for JP
+- Task GS-751: Create Tabs component
+- Task ENG-3457: Localisation for streaks
+- Task ENG-3456: Partial localisation for Smoke-3 tests
+- Task: hide pension onboarding modal after starting pension flow
+- Task ISA-946: localised screenshots
+- Task ISA-943: Add script to generate translation list
+- Task ENG-3446: Partial localisation for Smoke-2 tests
+- Task: Add translation verify pre-commit hook
+- Task GS-752: Create list item component for leaderboard
+- Task ENG-3446: Partially localise Smoke-1
+- Task ENG-3445: Create detox localisation testing utility
+- Task GS-758: Move old leaderboards to legacy folder
+- Task GS-750: New avatar component for leaderboard
+- Task: Improve arrow button border styles
+- Task: Sudoku - undo to deselect current cell, click numbers to select cells
+- Task XSE-1996: Allow datePicker for journeys
+
+### Chores
+
+- Chore: ja-JP with updated glossary
+- Chore: upgrade intercom
+- Chore: Add playground into the debugger menu
+- Chore: purge old storybook
+- Chore: Invalidate detox CF distribution
+- Chore: Set screenshot button on detox reports
+- Chore: VScode snippet for creating icon component
+- Chore: use t() only in functions
+- Chore: Add screens stories, support for locale, redux and apollo for storybook
+- Chore: move locale to redux and check for device language changes on rehydrate
+- Chore/Fix products slots padding
+- Chore: loading text after changing language
+
+### Extra
+
+- Detox: Small streaks scen fix
+- detox/xse-1852-add-explore-insurance
+- Detox: yudoku test fix
+- Hotfix: different api pattern
+- Detox: Meditopia test fixes
+- Detox: CPE data fix
+- Detox/contribution us detox
+- Detox: add japanese pipelines for smoke and extended
+- Show label for dropdown input
+
 ## [3.91.0] - 2023-07-13
 
 ### Features
