@@ -28,11 +28,11 @@
     "world_name": {
       "forest": "フォレスト",
       "ocean": "オーシャン",
-      "desert": "砂漠",
-      "mountain": "山"
+      "desert": "サバンナ",
+      "mountain": "マウンテン"
     },
     "unknown": "不明",
-    "quest_map": "地図",
+    "quest_map": "map",
     "you": "あなた",
     "power": "パワー",
     "level": "レベル%{level}",
@@ -174,14 +174,14 @@
       },
       "history": {
         "full_button_label": "全活動履歴",
-        "menu_label": "地図",
+        "menu_label": "map",
         "completed_challenges": "完了した課題",
         "sudoku_leaderboard": "Yudoku ランキング (%{date})",
         "sudoku_leaderboard_today": "Today",
         "summary": "レベル%{level} まとめ",
         "summary_named": "%{levelName} 概要",
         "unlock_banner_title": "追加チャレンジのアンロック",
-        "unlock_banner_description_start": "レベル50、100、150に達すると、次のレベルに挑戦できるようになる。",
+        "unlock_banner_description_start": "レベル50、100、150に達すると、次のようなことができるようになる。",
         "unlock_banner_description_bold": "1日1回のチャレンジ ",
         "unlock_banner_description_end": "そして、合計4つのデイリーチャレンジをアンロックする。"
       }
@@ -189,11 +189,11 @@
     "quests": {
       "accessibility": {
         "buttons_label": {
-          "nextAvailableAt": "レベル%{level}, アンロック%{nextAvailableTimer}",
+          "nextAvailableAt": "レベル%{level} 、アンロックは以下の通り。%{nextAvailableTimer}",
           "isNext": "レベル%{level}",
           "isDone": "レベル%{level}, 終了",
           "locked_chest": "レベル%{level}, チェスト・ロック",
-          "locked": "レベル%{level}, ロック"
+          "locked": "レベル%{level}, ロックされている"
         }
       },
       "level": {
@@ -283,7 +283,7 @@
       },
       "accessibility": {
         "hide_keyboard": "キーボードを隠す",
-        "alert_error_title": "ログインに失敗しました",
+        "alert_error_title": "ログイン失敗",
         "alert_error_default_message": "何かが間違っている"
       }
     },
@@ -403,13 +403,13 @@
     },
     "reset_password_submitted": {
       "heading": "Eメールアドレス送信",
-      "subheading": "受信箱をチェックしてください！%{email} が当社の記録と一致する場合、パスワード回復メールが送信されます。Eメールが届かない場合は、support@yulife.com。",
+      "subheading": "受信箱をチェックしてください！%{email} が当社の記録と一致する場合、パスワード回復Eメールアドレスが送信されます。Eメールアドレスが届かない場合は、support@yulife.com。",
       "cta_label": "ログインに戻る"
     },
     "reset_password": {
       "heading": "お困りですか？",
-      "subheading": "いいえ、問題ありません！Eメールアドレスを入力すると、パスワード不要のマジックリンクが送信されます！",
-      "cta_label": "Eメールアドレスにマジックリンクを送る",
+      "subheading": "いいえ、問題ありません！マイアカウントのEメールアドレスを入力すると、パスワードは必要ありません！",
+      "cta_label": "魔法のリンクをEメールアドレスに送る",
       "submitting": "提出 ..."
     },
     "no_access": {
@@ -427,8 +427,8 @@
       "subheading_accessibility": "yucoinをAmazon、Asos、M&amp;Sなどのクーポン券にご利用ください！"
     },
     "signup_reward_new": {
-      "heading": "ようこそ\nユニバース",
-      "subheading": "%{amount} YuCoinを獲得しました。このYuCoinはAmazon、Asos、M&amp;Sなどのクーポン券と交換できます。",
+      "heading": "ようこそ\nYuniversal",
+      "subheading": "%{amount} YuCoinを獲得しました。Amazon、Asos、M&amp;Sなどのクーポン券と交換することができます。",
       "cta_accessibility": "YuLifeを始めよう",
       "subheading_accessibility": "%{amount} yucoinを獲得しました。Amazon、Asos、M&amp;Sなどのクーポン券と交換することができます。"
     },
@@ -440,7 +440,7 @@
         "reminder_time": "リマインダー・タイム"
       },
       "info": {
-        "heading": "YuLifeアプリがあなたの歩数とサイクリング距離をあなたの携帯電話のヘルスアプリと%{connection} デバイスの両方から取得します。どちらのデバイスで記録した歩数が多いかによってyucoinを差し上げます！"
+        "heading": "YuLifeアプリがあなたの歩数とサイクリング距離を携帯電話のヘルスアプリと%{connection} デバイスの両方から取得します。どちらのデバイスで記録した歩数が多いかによってyucoinを差し上げます！"
       },
       "tracker_info": {
         "heading": "YuLifeアプリは、あなたの携帯電話の健康アプリと%{connection} アプリの両方からサイクリング距離を記録します。YuCoinは、どちらのアプリで記録された距離でも付与されます！"
@@ -469,10 +469,10 @@
         "label": "マイアカウント"
       },
       "wellbeing_hub": {
-        "label": "well-beingポータル"
+        "label": "well-beingセンター"
       },
       "yuniversity": {
-        "label": "ユニバーシティ"
+        "label": "Yuniversity"
       },
       "settings": {
         "label": "設定"
@@ -493,8 +493,8 @@
     "leaderboard_settings": {
       "title": "ランキングボード",
       "description": "アプリ関連ランキングへのアクセス状況と管理。",
-      "screen_description": "アプリ関連ランキングへのアクセス状況と管理。ランキングをオプトアウトすると、一部の機能へのアクセスが制限される場合があります。 ",
-      "consented": "このランキングボードの他のメンバーは、あなたの名前とアクティビティを見ることができます。",
+      "screen_description": "アプリ関連のランキングへのアクセス状況と管理。ランキングをオプトアウトすると、一部の機能へのアクセスが制限される場合があります。 ",
+      "consented": "このランキングの他のメンバーは、あなたの名前とアクティビティを見ることができます。",
       "not_consented": "このランキングの他のメンバーに、あなたの名前とアクティビティが表示されるようにします。",
       "item_title": "%{name} ランキング"
     },
@@ -508,7 +508,7 @@
       "description": "インペリアル方式（マイル）とメートル法（キロメートル）の切り替え。",
       "metric": {
         "title": "メートル法",
-        "description": "距離はキロメートル \"km \"で表示されます。"
+        "description": "距離はkmで表示されます。"
       },
       "imperial": {
         "title": "帝国制",
@@ -573,14 +573,14 @@
       "video_duration_reward_label": "%{formattedDuration} - 稼ぐ%{reward}"
     },
     "challenge_progress": {
-      "how_meditate_with_other_apps_label": "他のアプリで瞑想するには？",
+      "how_meditate_with_other_apps_label": "他のアプリでマインドフルネスをするには？",
       "external_app_links": {
         "heading": "開始するアプリを選ぶ",
         "subheading": "マインドフルネスの議事録を同期するアプリなら何でも使える。%{syncApp}",
         "different_app_cta_label": "別のアプリを使っている",
         "fiit": {
           "heading": "Fiitを始める",
-          "subheading": "Fiitワークアウトを完了するとリワードを獲得できます。"
+          "subheading": "Fiitワークアウトを完了するとリワードがもらえます。"
         }
       }
     },
@@ -598,41 +598,41 @@
       "level_completed": "完成"
     },
     "level_locked": {
-      "level": "レベルでアンロック%{level}",
+      "level": "レベルでロック解除%{level}",
       "stage": "ロック解除%{name}"
     },
     "challenge_unavailable": {
       "level": "あなたはちょうどレベルを完了したところです。",
-      "stage": "あなたは今、あるステージを終えた",
+      "stage": "あなたは今、ステージを終えたところだ。",
       "next": "次回作の発売は次の通り。%{timeRemaining}"
     },
     "challenge_chest_modal": {
       "cta_label_is_next": "やってみよう",
       "heading_is_next": "挑戦してチェストを開ける",
-      "heading_is_not_next_level": "レベルでアンロック%{level}",
+      "heading_is_not_next_level": "レベルでロック解除%{level}",
       "heading_is_not_next_stage": "ロック解除%{name}",
       "heading_is_completed": "%{yucoin} YuCoinを取得します。"
     },
     "yumoji_builder": {
       "create": {
-        "title": "ゆもじを作ってユニバースに足を踏み入れよう",
+        "title": "Yumojiを作ってYuniverseに足を踏み入れよう",
         "link": "これは後でやる"
       },
       "edit": {
         "title": "ボディタイプを選ぶ"
       },
       "award_modal": {
-        "heading": "よくやった \nあなたの湯文字は冒険の準備ができている。"
+        "heading": "よくやった \nあなたのYumojiは冒険の準備ができている。"
       },
       "exit_modal": {
-        "heading": "出口の湯文字ビルダー？",
+        "heading": "Yumojiビルダーを辞める？",
         "subheading": "本当に終了しますか？保存されていない変更は失われます。",
         "cta_label_secondary": "編集を続ける"
       }
     },
     "eotw_chest": {
       "title": "あなたが得たもの",
-      "space_travel_text": "あなたは今までいた場所にいて、自分の世界の上に浮かんでいる。",
+      "space_travel_text": "あなたは今までいた場所にいて、自分のワールドの上に浮かんでいる。",
       "travel_button": "旅行",
       "beginning_button": "新たな始まり",
       "claim_button": "リワードを請求する",
@@ -641,14 +641,14 @@
     "wellbeing_hub": {
       "category_all": "すべて",
       "header_title": "こんにちは%{name}",
-      "header_description": "Well-beingのポータルサイトへようこそ。",
+      "header_description": "Well-beingセンターへようこそ!",
       "send_documents": {
         "title": "Eメールアドレス",
         "description": "ドキュメントの送信先メールアドレスを入力してください：",
         "input_placeholder": "Eメールアドレスを入力",
         "success": "Eメール送信",
         "error": "申し訳ない！何かが間違っていました。",
-        "send_button": "電子メールを送る"
+        "send_button": "電子メールを送信する"
       },
       "no_results": {
         "title": "後で戻る！",
@@ -676,8 +676,8 @@
       "podium": {
         "duels_button": "デュエル",
         "steps": "%{days} 日%{metric}",
-        "info_copy": "ランキングボードは、%{days} 日間ローリングシステムに設定されています。つまり、直近の%{days} 日間だけの%{metric} 履歴が表示されます。\n\nランキングの上位を目指すには、%{days} 日前よりも多くの成績を残すことを目標にしてください！",
-        "info_heading": "ランキングボードについて"
+        "info_copy": "ランキングは%{days} 日間ローリングシステムに設定されています。つまり、直近の%{days} 日間だけの%{metric} 履歴が表示されます。\n\nランキングの上位を目指すには、%{days} 日前よりも多くの成績を残すことを目標にしてください！",
+        "info_heading": "ランキングについて"
       },
       "list": {
         "heading": "ランキングボード"
@@ -687,7 +687,7 @@
       },
       "turn_board_on": {
         "heading": "ランキングに参加しますか？",
-        "subheading": "ランキングボードに参加することで、このランキングの他のメンバーとあなたの活動に関する詳細を共有することに同意したことになります。\n\nランキングの名前をタップし、設定を調整することで、いつでもオプトアウトできます。",
+        "subheading": "ランキングボードに参加することで、このリーダーボードの他のメンバーとあなたの活動に関する詳細を共有することに同意したことになります。\n\nランキングボードの名前をタップし、設定を調整することで、いつでもオプトアウトできます。",
         "ctaLabel": "はい",
         "ctaLabelSecondary": "いいえ、結構です"
       },
@@ -698,7 +698,7 @@
         "subheading": "つまり、このランキングボードにはアクセスできない。"
       },
       "invites": {
-        "subheading": "ランキングをオンにすることで、最新の%{days} 日間%{metric} のデータをランキングの他のメンバーと共有することに同意したことになります。これはいつでもオフに切り替えることができます。"
+        "subheading": "ランキングをオンにすることで、直近の%{days} 日間%{metric} のデータをリーダーボードの他のメンバーと共有することに同意したことになります。これはいつでもオフに切り替えることができます。"
       }
     },
     "fitkit_connect": {
@@ -879,7 +879,7 @@
     "ios": {
       "motion_and_fitness": {
         "title": "モーション＆フィットネス",
-        "description": "YuLifeアプリが日々の活動に対してリワードを与えるために必要です。"
+        "description": "YuLifeアプリが日々の活動に対してリワードを提供するために必要です。"
       },
       "steps_read": {
         "title": "歩",
@@ -957,20 +957,20 @@
         "alternative_name": "同僚",
         "title_already_accepted": "もう始まっている！",
         "title_not_accepted": "ちょっと待ってくれ！",
-        "description_already_accepted": "%{name} との決闘は%{duelStart} で行われる。その後、再戦を挑むこともできますし、別のフレンドに挑戦することもできます。",
+        "description_already_accepted": "%{name} とのデュエルは%{duelStart} で行われます。その後、再戦を挑むこともできますし、別のフレンドに挑戦することもできます。",
         "description_not_accepted": "あなたはすでにデュエルに%{name} 。相手の返事を待つか、今すぐ別の友人に挑戦してください。"
       },
       "intro": {
         "title_1": "友人に挑戦する！",
         "subtitle_1": "対決したい？ランキングボードから友達を選んでデュエルを挑もう！",
         "title_2": "賭け金の設定",
-        "subtitle_2": "自信がありますか？YuCoinか自慢のためにデュエルしよう！",
+        "subtitle_2": "自信がありますか？YuCoinや自慢のためにデュエルしましょう！",
         "title_3": "相手を出し抜く",
-        "subtitle_3": "デュエルは翌日から始まり、24時間以内にできるだけ多くの歩を進めなければならない！"
+        "subtitle_3": "デュエルは翌日に開始され、24時間以内にできるだけ多くの歩を進めなければならない！"
       },
       "duel_options": {
         "header_1": "あなたは挑戦している",
-        "header_2": "で決闘。決闘の間、最も多くの歩数を記録した者が勝利する！",
+        "header_2": "でデュエル。決闘中に最も多くの歩数を記録した方が勝ちとなる！",
         "subheader_1": "デュエルは明日から終日行われる。勝敗の結果は翌朝に発表される。",
         "subheader_2": "何のためにデュエルをするんだ？",
         "colleague": "同僚",
@@ -1013,17 +1013,17 @@
         },
         "confirm_invitation": {
           "heading": "招待状を確認する？",
-          "subheading": "採用されれば、今後のデュエルに掲載され、明日から開始される。"
+          "subheading": "採用された場合、今後のデュエルに掲載され、明日から開始される。"
         }
       },
       "duel_respond": {
         "heading": "本当か？",
         "subheading": "この決闘に応じると、%{yucoin} YuCoinを失う可能性があることを忘れないでください。続行してもよろしいですか？",
-        "subheading_no_yucoin": "この決闘は自慢するためのもので、YuCoinの勝ち負けはありません。続行してもよろしいですか？"
+        "subheading_no_yucoin": "このデュエルは単なる自慢のためであり、YuCoinの勝ち負けはありません。続行してもよろしいですか？"
       },
       "duel_response_intro": {
         "collegue": "同僚",
-        "yucoin_heading": "は、%{yucoin} のための1日の決闘にあなたを招待している！",
+        "yucoin_heading": "%{yucoin} の1日決闘にあなたを招待しました！",
         "heading": "があなたを1日のデュエルに招待した！",
         "bragging_rights": "じまんけん"
       },
@@ -1072,7 +1072,7 @@
   },
   "overlays": {
     "leaderboard_community": {
-      "button_label": "リーダーボードを見る"
+      "button_label": "ランキングを見る"
     }
   },
   "molecules": {
@@ -1142,7 +1142,7 @@
   },
   "navbar": {
     "yucoin": {
-      "label": "ホーム",
+      "label": "yucoin",
       "accessibility_label": "開く yucoin",
       "accessibility_text_value": "5点満点中1点"
     },
@@ -1290,19 +1290,19 @@
       "todaysLeaderboard": "今日のランキング",
       "alreadyDone": "Yudokuは1日1回しかできません。\nまた明日！",
       "dailyLeaderboard": "デイリーランキング",
-      "joinDailyLeaderboard": "デイリー・ランキングに参加する",
+      "joinDailyLeaderboard": "デイリーランキングに参加する",
       "secondAttemptDisclaimer": "今日が初挑戦ではないため、タイムはランキングボードに載らず、自己ベストにもカウントされない。",
       "practiceGame": "練習試合"
     },
     "leaderboard_consent": {
       "title": "毎日のYudokuランキングに参加しませんか？",
-      "description": "ランキングボードに参加することで、あなたのアクティビティに関する詳細をこのランキングの他のメンバーと共有することに同意したことになります。設定メニューからいつでも解除することができます。",
+      "description": "ランキングボードに参加することで、あなたのアクティビティに関する詳細をこのリーダーボードの他のメンバーと共有することに同意したことになります。設定メニューからいつでも解除することができます。",
       "confirm": "ランキングに参加する"
     },
     "leaderboard": {
       "empty_description": "Yudokuを完成させて、ランキングボードで1位になろう！",
       "start": "試合開始",
-      "title": "デイリーYudoku"
+      "title": "毎日のYudoku"
     }
   }
 }
