@@ -1,5 +1,6 @@
 import { ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
+import socket, { DETOX_ENABLED } from "@services/socket";
 import { call, put, select, take } from "redux-saga/effects";
 import { updateCurrentRoute, updateCurrentModal } from "../app.actions";
 import { appComponentDidAppearChannel } from "../app.channels";
@@ -25,6 +26,10 @@ export default function* listenToComponentDidAppear() {
       yield put(updateCurrentModal(componentId));
     } else if (componentId !== ROUTES.menu) {
       yield put(updateCurrentRoute(componentId));
+    }
+
+    if (DETOX_ENABLED) {
+      socket.emitTranslationKeysCleared();
     }
   }
 }
