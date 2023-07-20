@@ -236,7 +236,6 @@ export const CUSTOMER_17 = {
     lastName: "Howard",
     dateOfBirth: moment().subtract(27, "years").toDate(),
     status: "onboarded",
-    fullName: "Ryan Howard",
   },
 } as IDatabaseItem;
 
@@ -250,7 +249,6 @@ export const CUSTOMER_18 = {
     lastName: "Scott",
     dateOfBirth: moment().subtract(42, "years").toDate(),
     status: "onboarded",
-    fullName: "Michael Scott",
   },
 } as IDatabaseItem;
 
@@ -264,7 +262,6 @@ export const CUSTOMER_19 = {
     lastName: "Martin",
     dateOfBirth: moment().subtract(42, "years").toDate(),
     status: "onboarded",
-    fullName: "Angela Martin",
   },
 } as IDatabaseItem;
 
@@ -760,7 +757,6 @@ export const CUSTOMER_47 = {
     lastName: "Stock",
     dateOfBirth: moment().subtract(40, "years").toDate(),
     status: "onboarded",
-    fullName: "Gill Stock",
   },
 } as IDatabaseItem;
 
@@ -800,7 +796,6 @@ export const CUSTOMER_50 = {
     lastName: "Stock",
     dateOfBirth: moment().subtract(45, "years").toDate(),
     status: "onboarded",
-    fullName: "Lynton Stock",
   },
 } as IDatabaseItem;
 
@@ -840,7 +835,6 @@ export const CUSTOMER_52 = {
     lastName: "Karia",
     dateOfBirth: moment().subtract(32, "years").toDate(),
     status: "onboarded",
-    fullName: "Niamh Karia",
   },
 } as IDatabaseItem;
 
@@ -854,7 +848,6 @@ export const CUSTOMER_54 = {
     lastName: "Stock",
     dateOfBirth: moment().subtract(31, "years").toDate(),
     status: "onboarded",
-    fullName: "Sasha Stock",
   },
 } as IDatabaseItem;
 
@@ -868,7 +861,6 @@ export const CUSTOMER_55 = {
     lastName: "Posner",
     dateOfBirth: moment().subtract(30, "years").toDate(),
     status: "onboarded",
-    fullName: "Simone Posner",
   },
 } as IDatabaseItem;
 
@@ -882,7 +874,6 @@ export const CUSTOMER_56 = {
     lastName: "Thake",
     dateOfBirth: moment().subtract(31, "years").toDate(),
     status: "onboarded",
-    fullName: "Milton Thake",
   },
 } as IDatabaseItem;
 
@@ -896,7 +887,6 @@ export const CUSTOMER_57 = {
     lastName: "Michael",
     dateOfBirth: moment().subtract(34, "years").toDate(),
     status: "onboarded",
-    fullName: "Stephen Michael",
   },
 } as IDatabaseItem;
 
@@ -910,7 +900,6 @@ export const CUSTOMER_58 = {
     lastName: "Hilton",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Paris Hilton",
   },
 } as IDatabaseItem;
 
@@ -976,7 +965,6 @@ export const CUSTOMER_60 = {
     lastName: "Varga",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Ivan Varga",
   },
 } as IDatabaseItem;
 
@@ -990,7 +978,6 @@ export const CUSTOMER_61 = {
     lastName: "Breban",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Alex Breban",
   },
 } as IDatabaseItem;
 
@@ -1004,7 +991,6 @@ export const CUSTOMER_63 = {
     lastName: "Simms",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Sam Simms",
   },
 } as IDatabaseItem;
 
@@ -1018,7 +1004,6 @@ export const CUSTOMER_64 = {
     lastName: "Blair",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Tony Blair",
   },
 } as IDatabaseItem;
 
@@ -1032,7 +1017,6 @@ export const CUSTOMER_65 = {
     lastName: "Brown",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Gordon Brown",
   },
 } as IDatabaseItem;
 
@@ -1046,7 +1030,6 @@ export const CUSTOMER_66 = {
     lastName: "May",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Theresa May",
   },
 } as IDatabaseItem;
 
@@ -1060,7 +1043,6 @@ export const CUSTOMER_67 = {
     lastName: "Sunak",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Rishi Sunak",
   },
 } as IDatabaseItem;
 
@@ -1074,7 +1056,6 @@ export const CUSTOMER_68 = {
     lastName: "Schajer",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Alex Schajer",
   },
 } as IDatabaseItem;
 
@@ -1088,7 +1069,6 @@ export const CUSTOMER_69 = {
     lastName: "Snow",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "John Snow",
   },
 } as IDatabaseItem;
 
@@ -1102,7 +1082,6 @@ export const CUSTOMER_70 = {
     lastName: "Boratheon",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Robert Boratheon",
   },
 } as IDatabaseItem;
 
@@ -1116,7 +1095,6 @@ export const CUSTOMER_71 = {
     lastName: "Lannister",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Cersei Lannister",
   },
 } as IDatabaseItem;
 
@@ -1130,7 +1108,6 @@ export const CUSTOMER_72 = {
     lastName: "Lannister",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Jamie Lannister",
   },
 } as IDatabaseItem;
 
@@ -1144,7 +1121,6 @@ export const CUSTOMER_73 = {
     lastName: "Lannister",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Tywin Lannister",
   },
 } as IDatabaseItem;
 
@@ -1158,7 +1134,6 @@ export const CUSTOMER_74 = {
     lastName: "Man",
     dateOfBirth: moment().subtract(40, "years").toDate(),
     status: "onboarded",
-    fullName: "TV Man",
   },
 } as IDatabaseItem;
 
@@ -1172,7 +1147,6 @@ export const CUSTOMER_75 = {
     lastName: "Woman",
     dateOfBirth: moment().subtract(40, "years").toDate(),
     status: "onboarded",
-    fullName: "Microwave Woman",
   },
 } as IDatabaseItem;
 
@@ -1186,7 +1160,6 @@ export const CUSTOMER_76 = {
     lastName: "Chairman",
     dateOfBirth: moment().subtract(40, "years").toDate(),
     status: "onboarded",
-    fullName: "Table Chairman",
   },
 } as IDatabaseItem;
 
@@ -1200,7 +1173,6 @@ export const CUSTOMER_77 = {
     lastName: "Potter",
     dateOfBirth: moment().subtract(40, "years").toDate(),
     status: "onboarded",
-    fullName: "Plant Potter",
   },
 } as IDatabaseItem;
 
@@ -1214,7 +1186,6 @@ export const CUSTOMER_78 = {
     lastName: "Poogman",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Timothy Poogman",
   },
 } as IDatabaseItem;
 
@@ -1228,7 +1199,6 @@ export const CUSTOMER_79 = {
     lastName: "Poogman",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Charlotte Poogman",
   },
 } as IDatabaseItem;
 
@@ -1242,7 +1212,6 @@ export const CUSTOMER_80 = {
     lastName: "Poogman",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Hannibal Poogman",
   },
 } as IDatabaseItem;
 
@@ -1256,7 +1225,6 @@ export const CUSTOMER_81 = {
     lastName: "Franky",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Isaac Franky",
   },
 } as IDatabaseItem;
 
@@ -1270,7 +1238,6 @@ export const CUSTOMER_82 = {
     lastName: "Foxx",
     dateOfBirth: moment().subtract(38, "years").toDate(),
     status: "onboarded",
-    fullName: "Jamie Foxx",
   },
 } as IDatabaseItem;
 
@@ -1284,7 +1251,6 @@ export const CUSTOMER_83 = {
     lastName: "Dreamer",
     dateOfBirth: moment().subtract(38, "years").toDate(),
     status: "onboarded",
-    fullName: "Sloogy Dreamer",
   },
 } as IDatabaseItem;
 
@@ -1292,13 +1258,12 @@ export const CUSTOMER_84 = {
   type: "postgres",
   modelName: "customer",
   data: {
-      customerId: generateRandomMongoId(),
-      email: generateRandomInbox(),
-      firstName: "Got",
-      lastName: "Deleted_Duellers",
-      dateOfBirth: moment().subtract(38, "years").toDate(),
-      status: "onboarded",
-      fullName: "Got Deleted_Duellers"
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Got",
+    lastName: "Deleted_Duellers",
+    dateOfBirth: moment().subtract(38, "years").toDate(),
+    status: "onboarded",
   }
 } as IDatabaseItem
 
@@ -1312,22 +1277,20 @@ export const CUSTOMER_FIIT = {
     lastName: "Fiitman",
     dateOfBirth: moment().subtract(38, "years").toDate(),
     status: "onboarded",
-    fullName: "Timothy Fiitman",
   },
 } as IDatabaseItem;
 
 export const CUSTOMER_85 = {
-    type: "postgres",
-    modelName: "customer",
-    data: {
-        customerId: generateRandomMongoId(),
-        email: generateRandomInbox(),
-        firstName: "Dental",
-        lastName: "PolicyCancelled",
-        dateOfBirth: moment().subtract(38, "years").toDate(),
-        status: "onboarded",
-        fullName: "Dental PolicyCancelled"
-    }
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Dental",
+    lastName: "PolicyCancelled",
+    dateOfBirth: moment().subtract(38, "years").toDate(),
+    status: "onboarded",
+  }
 } as IDatabaseItem
 
 export const CUSTOMER_86 = {
@@ -1340,7 +1303,6 @@ export const CUSTOMER_86 = {
     lastName: "Brain",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Mr Brain",
   },
 } as IDatabaseItem;
 
@@ -1369,7 +1331,6 @@ export const CUSTOMER_FUTURE_PRODUCT = {
     lastName: "Smith",
     dateOfBirth: moment().subtract(30, "years").toDate(),
     status: "onboarded",
-    fullName: "Bobby Smith"
   }
 } as IDatabaseItem
 
@@ -1384,7 +1345,6 @@ export const CUSTOMER_GHI = {
     lastName: "Group",
     dateOfBirth: moment().subtract(30, "years").toDate(),
     status: "onboarded",
-    fullName: "Teddy Group"
   },
 } as IDatabaseItem
 
@@ -1398,7 +1358,6 @@ export const CUSTOMER_GHI_STARTED = {
     lastName: "Starter",
     dateOfBirth: moment().subtract(30, "years").toDate(),
     status: "onboarded",
-    fullName: "Paul Starter"
   },
 } as IDatabaseItem
 
@@ -1412,7 +1371,6 @@ export const CUSTOMER_89 = {
     lastName: "Bright",
     dateOfBirth: moment().subtract(30, "years").toDate(),
     status: "onboarded",
-    fullName: "Mister Bright"
   }
 } as IDatabaseItem
 
@@ -1426,7 +1384,6 @@ export const CUSTOMER_90 = {
     lastName: "Boi",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Bright Boi",
   },
 } as IDatabaseItem;
 
@@ -1440,7 +1397,6 @@ export const CUSTOMER_91 = {
     lastName: "Man",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Spoder Man",
   },
 } as IDatabaseItem;
 
@@ -1454,7 +1410,6 @@ export const CUSTOMER_92 = {
     lastName: "Manuel",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "El Manuel",
   },
 } as IDatabaseItem;
 
@@ -1468,7 +1423,6 @@ export const CUSTOMER_93 = {
     lastName: "Yishai",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "David Yishai",
   },
 } as IDatabaseItem;
 
@@ -1495,7 +1449,6 @@ export const CUSTOMER_95 = {
     lastName: "Enrol",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Future Enrol",
   },
 } as IDatabaseItem;
 
@@ -1509,7 +1462,6 @@ export const CUSTOMER_96 = {
     lastName: "InForce",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Gdent Inforce",
   },
 } as IDatabaseItem;
 
@@ -1523,7 +1475,6 @@ export const CUSTOMER_97 = {
     lastName: "Canenrol",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Gdent Canenrol",
   },
 } as IDatabaseItem;
 
@@ -1537,7 +1488,6 @@ export const CUSTOMER_98 = {
     lastName: "Inholding",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Gdent Inholding",
   },
 } as IDatabaseItem;
 
@@ -1551,7 +1501,6 @@ export const CUSTOMER_99 = {
     lastName: "Enrolclosed",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Nochoicemade Enrolclosed",
   },
 } as IDatabaseItem;
 
@@ -1565,7 +1514,6 @@ export const CUSTOMER_100 = {
     lastName: "Enrolclosed",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Choicemade Enrolclosed",
   },
 } as IDatabaseItem;
 
@@ -1579,7 +1527,6 @@ export const CUSTOMER_101 = {
     lastName: "Optout",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Enrolnotopen Optout",
   },
 } as IDatabaseItem;
 
@@ -1593,7 +1540,6 @@ export const CUSTOMER_102 = {
     lastName: "Optout",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Enrolopen Optout",
   },
 } as IDatabaseItem;
 
@@ -1607,7 +1553,6 @@ export const CUSTOMER_103 = {
     lastName: "Choicedmade",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Enrolopen Choicedmade",
   },
 } as IDatabaseItem;
 
@@ -1621,7 +1566,6 @@ export const CUSTOMER_104 = {
     lastName: "Optedout",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Enrolclosed Optedout",
   },
 } as IDatabaseItem;
 
@@ -1635,7 +1579,6 @@ export const CUSTOMER_105 = {
     lastName: "Nochoice",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Enrolclosed Nochoice",
   },
 } as IDatabaseItem;
 
@@ -1649,7 +1592,6 @@ export const CUSTOMER_106 = {
     lastName: "Inforce",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Product Inforce",
   },
 } as IDatabaseItem;
 
@@ -1663,7 +1605,6 @@ export const CUSTOMER_107 = {
     lastName: "Availablesoon",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Product Availablesoon",
   },
 } as IDatabaseItem;
 
@@ -1677,6 +1618,5 @@ export const CUSTOMER_108 = {
     lastName: "Dark",
     dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
-    fullName: "Luke Dark",
   },
 } as IDatabaseItem;
