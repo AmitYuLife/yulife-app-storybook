@@ -3,17 +3,18 @@ import * as when from "../_steps/when"
 import * as then from "../_steps/then"
 import { CUSTOMER_52 } from "@data";
 import * as ids from "@ids";
+import { getFullName } from "_utils/users";
 
 
-export const INSPECT_USER = (fullName: string, world: string, customer: typeof CUSTOMER_52) => async () => {
-    When("I click on user's name", when.tapText(fullName), async () => {
+export const INSPECT_USER = (customerPersonalData: typeof CUSTOMER_52, world: string, customer: typeof CUSTOMER_52) => async () => {
+    When("I click on user's name", when.tapText(getFullName(customerPersonalData)), async () => {
         Then("I should be on the Inspect screen", then.idVisible(ids.INSPECT_SCREEN))
-        Then("I should see's name, level and world", then.personalDataVisible(fullName, world))
+        Then("I should see's name, level and world", then.personalDataVisible(getFullName(customerPersonalData), world))
     })
     When("I scroll down to the challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 1), async () => {
         Then("I should see the Average mindfulness section", then.textVisible("Average mindfulness"))
     })
     When("I close inspect view", when.tapID(ids.SCREEN_CLOSE), async () => {
-        Then("I should be back on the leaderboard LB4", then.textVisibleAtIndex(customer.data.fullName, 0))
+        Then("I should be back on the leaderboard LB4", then.textVisibleAtIndex(getFullName(customer), 0))
     })
 }

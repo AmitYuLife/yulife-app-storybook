@@ -6,6 +6,7 @@ import * as then from "./_steps/then"
 import { CUSTOMER_69, AUTH_69, CUSTOMER_70, AUTH_70, USER_70, CUSTOMER_78, AUTH_78, USER_78, CUSTOMER_81, AUTH_81, CUSTOMER_89, AUTH_89, CUSTOMER_90, AUTH_90, USER_90 } from "@data";
 import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, QUESTS_SCREEN_YUNIVERSAL, DAILY_STEPS_SCREEN, WELLDONE_BANNER, SPACE_TRAVEL_SCREEN, USER_LEVEL, LEVEL_STAR_COUNT, V4_YUSCREEN, YUMOJI_AVATAR_YUSCREEN_V4, WEEKLY_GOAL_ICON, BACK_BUTTON } from "@ids";
 import { daysRemainingOfWeek } from "@navigation";
+import { getFullName } from "_utils/users";
 
 Feature("End of the world/Yuniverse", async () => {
     Scenario("I complete level 200, enter EOTW with a yucoin surge of 2 and take 4 challenges at level 1", scenario.start, () => {
@@ -181,7 +182,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I create my yumoji", when.createDefaultYumoji, async () => {
             Then("I should be on the yuscreen v4", then.idVisible(V4_YUSCREEN))
             Then("I should see my Yumoji", then.idVisible(YUMOJI_AVATAR_YUSCREEN_V4))
-            Then("I should see my fullname", then.textVisible(`${CUSTOMER_70.data.fullName}`))
+            Then("I should see my fullname", then.textVisible(getFullName(CUSTOMER_70)))
             Then("I should see I am in the Yuniversal world", then.textVisible("Yuniversal"))
         })
         When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
@@ -291,7 +292,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I create my yumoji", when.createDefaultYumoji, async () => {
             Then("I should be on the yuscreen v4", then.idVisible(V4_YUSCREEN))
             Then("I should see my Yumoji", then.idVisible(YUMOJI_AVATAR_YUSCREEN_V4))
-            Then("I should see my fullname", then.textVisible(`${CUSTOMER_78.data.fullName}`))
+            Then("I should see my fullname", then.textVisible(getFullName(CUSTOMER_78)))
             Then("I should see I am in the Yuniversal world", then.textVisible("Yuniversal"))
         })
         When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
