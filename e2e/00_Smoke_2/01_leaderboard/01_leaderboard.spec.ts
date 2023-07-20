@@ -9,7 +9,7 @@ import * as data from "@data";
 import { getLocalisedString as t } from "@i18n";
 import { getFullName } from "_utils/users";
 
-FeatureOnly("As a user I can see my achievements on the leaderboard", async () => {
+Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can consent to my company leaderboard", scenario.start, async () => {
         Given("I login", given.loginAsUser(data.CUSTOMER_16, data.AUTH_16), async () => {
             When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
@@ -67,7 +67,7 @@ FeatureOnly("As a user I can see my achievements on the leaderboard", async () =
         })
     })
 
-    ScenarioOnly("I can inspect other members and view their data and avatars from the leaderboard - seed data", scenario.start, async () => {
+    Scenario("I can inspect other members and view their data and avatars from the leaderboard - seed data", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_47, data.AUTH_47), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
             Then("I should be on the onboarding yuscreen v4", then.idVisible(ids.ONBOARDING_SCREEN_V4))
