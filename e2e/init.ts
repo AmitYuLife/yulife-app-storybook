@@ -52,6 +52,12 @@ beforeEach(async function () {
 
 afterEach(async function () {
   await adapter.afterEach(this);
+  
+  try {
+    const keys = socketServer.getAndClearUsedTranslationKeys();
+    addContext(this, { title: "Translation keys", value: keys })
+  } catch {}
+
   try {
     const [before, after] = getTestPath(this.currentTest, this.currentTest.state);
     addContext(this, before);

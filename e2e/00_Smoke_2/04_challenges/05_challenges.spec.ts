@@ -9,7 +9,7 @@ import * as data from "@data";
 import { getLocalisedString as t } from "@i18n";
 import { getFullName } from "_utils/users";
 
-FeatureOnly("As a user I can take a challenge", async () => {
+Feature("As a user I can take a challenge", async () => {
     Scenario("I can take a challenge and cancel it", scenario.start, async () => {
         Given("I login and go to the quests tab", given.logInAndGoToTab("quests"), async () => {
             Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))

@@ -1,7 +1,7 @@
 import * as RNLocalize from "react-native-localize";
 import Polyglot from "node-polyglot";
 import { Language } from "./types";
-import { DETOX_ENABLED } from "../services/socket";
+import socket, { DETOX_ENABLED } from "@services/socket";
 
 type Translation = {
   name: string;
@@ -80,10 +80,16 @@ class Translator {
   };
 
   public readonly getCurrentLocale = () => this.dict.locale() as Language;
-  public readonly getCurrentLocaleOptions = () => translations[this.dict.locale() as Language];
+  public readonly getCurrentLocaleOptions = () => translations[this.getCurrentLocale()];
   public readonly getIntercomLanguage = (locale: Language) => translations[locale]?.intercomLanguage;
   public readonly has = (key: string) => this.dict.has(key);
-  public readonly translate = (key: string, config?: Polyglot.InterpolationOptions) => this.dict.t(key, config);
+  public readonly translate = (key: string, config?: Polyglot.InterpolationOptions) => {
+    if (DETOX_ENABLED) {
+      socket.emitTranslationKeyUsed(key);
+    }
+
+    return this.dict.t(key, config);
+  };
 
   public readonly getAvailableLocaleOptions = (showAllOptions: boolean) =>
     this.getAvailableLocales(showAllOptions)

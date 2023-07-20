@@ -19,6 +19,14 @@ export default class SocketClient {
     this.socket.emit("CONNECTED");
   }
 
+  public emitTranslationKeysCleared() {
+    this.socket.emit("TRANSLATION_KEYS_CLEARED");
+  }
+
+  public emitTranslationKeyUsed(key: string) {
+    this.socket.emit("TRANSLATION_KEY_USED", key);
+  }
+
   public onFitkitAuthorised(cb: Callback<FitkitAuthorised>) {
     this.socket.on(EVENT.FITKIT_AUTHORISED, cb);
     return () => this.socket.off(EVENT.FITKIT_AUTHORISED, cb);
