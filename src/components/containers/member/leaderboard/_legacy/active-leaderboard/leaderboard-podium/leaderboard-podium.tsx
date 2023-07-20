@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { View, Animated, Platform } from "react-native";
 import { PressableWithDelay, Yumoji } from "@molecules";
 import { GetLeaderboard_getLeaderboard_avatarRemoteFiles } from "@graphql/_core/schema";
@@ -35,13 +35,22 @@ const _LeaderboardPodium = ({ cropAmount, hideAvatars, uriSet, scrollValue }: IL
     }
   }, [scrollValue]);
 
+  const bottomStyle = useMemo(
+    () =>
+      Platform.select({
+        ios: hideAvatars ? 70 : 10,
+        android: hideAvatars ? 50 : 0,
+      }),
+    [hideAvatars]
+  );
+
   return (
     <Animated.View pointerEvents="box-none" style={[styles.wrapper, { transform: [{ translateY }] }]}>
       <View pointerEvents="none">
         <PodiumAsset cropAmount={cropAmount} />
         <Avatars hideAvatars={hideAvatars} uriSet={uriSet} />
       </View>
-      <PressableWithDelay onPress={goToLeaderboardInfo} style={styles.questionMark}>
+      <PressableWithDelay onPress={goToLeaderboardInfo} style={[styles.questionMark, { bottom: bottomStyle }]}>
         <QuestionOutlineIcon colour="#345E8C" />
       </PressableWithDelay>
       <LeaderboardTitle onPressLabel={goToLeaderboardsList} />
