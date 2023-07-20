@@ -7,7 +7,7 @@
 // GraphQL query operation: GetUserTodayActivity
 // ====================================================
 
-export interface GetUserTodayActivity_getUserTodayActivity {
+export interface GetUserTodayActivity_todayActivity {
   id: string | null;
   earned: number | null;
   milestones: number | null;
@@ -16,5 +16,5 @@ export interface GetUserTodayActivity_getUserTodayActivity {
 }
 
 export interface GetUserTodayActivity {
-  getUserTodayActivity: (GetUserTodayActivity_getUserTodayActivity | null)[] | null;
+  todayActivity: (GetUserTodayActivity_todayActivity | null)[] | null;
 }

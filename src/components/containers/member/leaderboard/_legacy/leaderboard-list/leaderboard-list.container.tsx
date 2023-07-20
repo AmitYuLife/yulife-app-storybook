@@ -2,10 +2,10 @@ import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigation } from "@navigation/main";
 import LeaderboardListScreen from "./leaderboard-list.screen";
-import { getActiveLeaderboardId } from "@redux/user/user.selectors";
-import { getAcceptedLeaderboards } from "@redux/user/user.selectors";
+import { getActiveLeaderboardId, getAcceptedLeaderboards } from "@redux/user/user.selectors";
 import {
-  getUserLeaderboardsStart,
+  AppDataType,
+  getUserDataStart,
   updateActiveLeaderboardId,
   updateLeaderboardConsent,
 } from "@redux/user/user.actions";
@@ -60,7 +60,7 @@ function LeaderboardListContainer(props: Props) {
   }, [componentId]);
 
   const onRefresh = useCallback(() => {
-    dispatch(getUserLeaderboardsStart());
+    dispatch(getUserDataStart([AppDataType.leaderboards]));
   }, [dispatch]);
 
   useBackHandler(() => {

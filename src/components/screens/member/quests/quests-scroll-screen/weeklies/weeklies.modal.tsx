@@ -23,7 +23,7 @@ import { JoinWeeklyGoal, JoinWeeklyGoalVariables } from "@graphql/_core/schema/J
 import { GQL_MUTATION_JOIN_WEEKLY_GOAL } from "@graphql/weeklies/joinWeeklyGoal.gql";
 import { IFloatingModalContentProps } from "@components/modals/floating-modals/floating-modal";
 import colours from "@styles/colours";
-import { getUserCoinLedgerTodayActivityStart } from "@redux/user/user.actions";
+import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
 import { RadioIcon } from "@atoms/icon/radio-icon";
 import { t as translate } from "@locale";
 
@@ -44,7 +44,11 @@ export const WeeklyQuestsModal = memo(({ onClose, setIcon }: IFloatingModalConte
     "screens.weekly_quests.accept_challenge",
     "labels.cta.lets_go",
   ]);
-  const { data, loading: weekliesLoading, refetch } = useQuery<GetMobileGameWeeklies>(GQL_QUERY_GET_GAME_WEEKLIES, {
+  const {
+    data,
+    loading: weekliesLoading,
+    refetch,
+  } = useQuery<GetMobileGameWeeklies>(GQL_QUERY_GET_GAME_WEEKLIES, {
     fetchPolicy: "no-cache",
     notifyOnNetworkStatusChange: true,
   });
@@ -70,13 +74,14 @@ export const WeeklyQuestsModal = memo(({ onClose, setIcon }: IFloatingModalConte
 
   const eventNotSelected = useMemo(() => selectedEvent === -1, [selectedEvent]);
 
-  const activeActivity = useMemo(() => data?.getMobileGameWeeklies?.activityProgress?.find((e) => e.isJoined), [
-    data?.getMobileGameWeeklies?.activityProgress,
-  ]);
+  const activeActivity = useMemo(
+    () => data?.getMobileGameWeeklies?.activityProgress?.find((e) => e.isJoined),
+    [data?.getMobileGameWeeklies?.activityProgress]
+  );
 
   const claimReward = useCallback(async () => {
     await claim({ variables: { rewardIds: [activeActivity?.id] } });
-    dispatch(getUserCoinLedgerTodayActivityStart());
+    dispatch(getUserDataStart([AppDataType.coinLedger, AppDataType.todayActivity]));
 
     await refetch();
     setIcon(CLAIMED_ICON);
@@ -157,7 +162,11 @@ export const WeeklyQuestsModal = memo(({ onClose, setIcon }: IFloatingModalConte
         <Button isLoading={joinLoading} label={translate("labels.cta.close")} onPress={onClose} />
       ) : null}
       {activeActivity?.isClaimable && !activeActivity?.isClaimed ? (
-        <Button isLoading={claimLoading || weekliesLoading} label={translate("labels.cta.claim")} onPress={claimReward} />
+        <Button
+          isLoading={claimLoading || weekliesLoading}
+          label={translate("labels.cta.claim")}
+          onPress={claimReward}
+        />
       ) : null}
       <Pad height={Style.adjust(36)} />
     </View>

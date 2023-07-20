@@ -6,14 +6,14 @@ import {
   LoginUser,
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
   UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge as QuestMapActiveChallenge,
-  GetUserCoinLedgerTodayActivity,
   GetUserActiveChallenge_getUserActiveChallenge,
+  GetUserCoinLedger_coinLedger,
 } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
 import {
   GET_USER_ACTIVE_CHALLENGE_SUCCESS,
-  GET_USER_COIN_LEDGER_TODAY_ACTIVITY_SUCCESS,
+  GET_USER_COIN_LEDGER_SUCCESS,
   GET_USER_SUCCESS,
   LOGIN_USER_SUCCESS,
   LOGOUT_SUCCESS,
@@ -98,7 +98,7 @@ const levelsReducer = (state: ILevelsStore = getInitialState(), action: SyncActi
     case CHALLENGE_START_SUCCESS:
       return challengeStartSuccess(state, action.payload);
 
-    case GET_USER_COIN_LEDGER_TODAY_ACTIVITY_SUCCESS:
+    case GET_USER_COIN_LEDGER_SUCCESS:
       return getCoinLedgerSuccess(state, action.payload);
 
     case GET_USER_ACTIVE_CHALLENGE_SUCCESS:
@@ -185,13 +185,13 @@ const loginUserSuccess = (state: ILevelsStore, data: LoginUser): ILevelsStore =>
   currentPlanet: getCurrentPlanetByLevel(data?.loginUser?.user?.coinLedger?.currentLevel),
 });
 
-const getCoinLedgerSuccess = (state: ILevelsStore, data: GetUserCoinLedgerTodayActivity): ILevelsStore => ({
+const getCoinLedgerSuccess = (state: ILevelsStore, data: GetUserCoinLedger_coinLedger): ILevelsStore => ({
   ...state,
-  level: data?.coinLedger?.currentLevel || 1,
-  yuniversalMap: data?.coinLedger?.yuniversalMap || 0,
-  yuniversalLevel: data?.coinLedger?.yuniversalLevel || 0,
-  nextLevelAvailableAt: data?.coinLedger?.nextLevelAvailableAt || "",
-  currentPlanet: getCurrentPlanetByLevel(data?.coinLedger?.currentLevel || 1),
+  level: data?.currentLevel || 1,
+  yuniversalMap: data?.yuniversalMap || 0,
+  yuniversalLevel: data?.yuniversalLevel || 0,
+  nextLevelAvailableAt: data?.nextLevelAvailableAt || "",
+  currentPlanet: getCurrentPlanetByLevel(data?.currentLevel || 1),
 });
 
 const getActiveChallengeSuccess = (

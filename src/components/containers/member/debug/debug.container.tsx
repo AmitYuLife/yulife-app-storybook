@@ -6,7 +6,7 @@ import { Alert } from "react-native";
 import { Navigation } from "@navigation/main";
 import { useDispatch } from "react-redux";
 import { sendTestPush } from "@redux/notifications/notifications.actions";
-import { getAllUserDataStart, getUserStart } from "@redux/user/user.actions";
+import { getUserDataStart, getUserStart } from "@redux/user/user.actions";
 import { DebugScreen } from "@screens";
 import Logger from "@services/logging/logger";
 import { ROUTES } from "@navigation/constants";
@@ -134,7 +134,7 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
               await resetData({ variables: { code } });
               Alert.alert("Success");
               dispatch(getUserStart());
-              dispatch(getAllUserDataStart());
+              dispatch(getUserDataStart());
               dispatch(sudokuReset());
 
               if (personalProductDebugCodes.includes(code)) {

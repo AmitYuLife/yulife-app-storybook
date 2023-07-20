@@ -47,3 +47,7 @@ export interface GetSudokuBoard_getSudokuBoard {
 export interface GetSudokuBoard {
   getSudokuBoard: GetSudokuBoard_getSudokuBoard | null;
 }
+
+export interface GetSudokuBoardVariables {
+  date?: string | null;
+}

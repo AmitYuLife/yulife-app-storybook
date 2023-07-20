@@ -38,7 +38,7 @@ import { getActiveLevel, getVideoPlayerIsActive } from "@redux/levels/levels.sel
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import { HourglassIcon } from "@atoms/icon/hourglass-icon";
 import { t } from "@locale";
-import { getUserActiveChallengeStart } from "@redux/user/user.actions";
+import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
 
 interface IProps {
   source: string;
@@ -241,7 +241,7 @@ const VideoPlayer = ({
 
       reduxDispatch(logMixpanelEventActionCreator("video_player_button_start_pressed", { type: eventType }));
     } catch (err) {
-      reduxDispatch(getUserActiveChallengeStart());
+      reduxDispatch(getUserDataStart([AppDataType.activeChallenge]));
       Logger.error(err, {
         location: "video-player-handleStartButton",
       });

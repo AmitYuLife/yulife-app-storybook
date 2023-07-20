@@ -11,8 +11,9 @@ import {
   GetUserConnections_getUserConnections,
   GetUserActiveChallenge_getUserActiveChallenge,
   GetUserActiveStreak_getUserActiveStreak,
-  GetUserCoinLedgerTodayActivity,
   GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate,
+  GetUserCoinLedger_coinLedger,
+  GetUserTodayActivity_todayActivity,
 } from "@graphql/_core/schema";
 import { MobileConsentInput } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "./user.reducer";
@@ -33,17 +34,12 @@ export const GET_ALL_USER_DATA_SUCCESS = "GET_ALL_USER_DATA_SUCCESS";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const GET_PASSIVE_CHALLENGES_EARN_RATE_START = "GET_PASSIVE_CHALLENGES_EARN_RATE_START";
 export const GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS = "GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS";
-export const GET_USER_ACTIVE_CHALLENGE_START = "GET_USER_ACTIVE_CHALLENGE_START";
 export const GET_USER_ACTIVE_CHALLENGE_SUCCESS = "GET_USER_ACTIVE_CHALLENGE_SUCCESS";
-export const GET_USER_ACTIVE_STREAK_START = "GET_USER_ACTIVE_STREAK_START";
 export const GET_USER_ACTIVE_STREAK_SUCCESS = "GET_USER_ACTIVE_STREAK_SUCCESS";
-export const GET_USER_COIN_LEDGER_TODAY_ACTIVITY_START = "GET_USER_COIN_LEDGER_TODAY_ACTIVITY_START";
-export const GET_USER_COIN_LEDGER_TODAY_ACTIVITY_SUCCESS = "GET_USER_COIN_LEDGER_TODAY_ACTIVITY_SUCCESS";
-export const GET_USER_FEATURES_START = "GET_USER_FEATURES_START";
+export const GET_USER_COIN_LEDGER_SUCCESS = "GET_USER_COIN_LEDGER_SUCCESS";
+export const GET_USER_TODAY_ACTIVITY_SUCCESS = "GET_USER_TODAY_ACTIVITY_SUCCESS";
 export const GET_USER_FEATURES_SUCCESS = "GET_USER_FEATURES_SUCCESS";
-export const GET_USER_LEADERBOARDS_START = "GET_USER_LEADERBOARDS_START";
 export const GET_USER_LEADERBOARDS_SUCCESS = "GET_USER_LEADERBOARDS_SUCCESS";
-export const GET_USER_CONNECTIONS_START = "GET_USER_CONNECTIONS_START";
 export const GET_USER_CONNECTIONS_SUCCESS = "GET_USER_CONNECTIONS_SUCCESS";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 export const UPDATE_ACTIVE_LEADERBOARD_ID = "UPDATE_ACTIVE_LEADERBOARD_ID";
@@ -86,25 +82,28 @@ export const setUserNoAccessAction = () => ({
   type: SET_USER_NO_ACCESS,
 });
 
-export const getAllUserDataStart = () => ({
+export enum AppDataType {
+  coinLedger = "coinLedger",
+  todayActivity = "todayActivity",
+  leaderboards = "leaderboards",
+  passiveChallengesEarnRate = "passiveChallengesEarnRate",
+  activeStreak = "activeStreak",
+  activeChallenge = "activeChallenge",
+  dailyPension = "dailyPension",
+}
+
+export const getUserDataStart = (payload: AppDataType[] = Object.values(AppDataType)) => ({
   type: GET_ALL_USER_DATA_START,
+  payload,
 });
 
 export const getUserStart = () => ({
   type: GET_USER_START,
 });
 
-export const getUserLeaderboardsStart = () => ({
-  type: GET_USER_LEADERBOARDS_START,
-});
-
 export const getUserLeaderboardsSuccess = (payload: GetUserLeaderboards_getUserLeaderboards[]) => ({
   payload,
   type: GET_USER_LEADERBOARDS_SUCCESS as typeof GET_USER_LEADERBOARDS_SUCCESS,
-});
-
-export const getUserPassiveChallengesEarnRateStart = () => ({
-  type: GET_PASSIVE_CHALLENGES_EARN_RATE_START,
 });
 
 export const getUserPassiveChallengesEarnRateSuccess = (
@@ -114,26 +113,19 @@ export const getUserPassiveChallengesEarnRateSuccess = (
   type: GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS as typeof GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS,
 });
 
-export const getUserFeaturesStart = () => ({
-  type: GET_USER_FEATURES_START,
-});
-
 export const getUserFeaturesSuccess = (payload: GetUserFeatures_getUserFeatures[]) => ({
   payload,
   type: GET_USER_FEATURES_SUCCESS as typeof GET_USER_FEATURES_SUCCESS,
 });
 
-export const getUserCoinLedgerTodayActivityStart = () => ({
-  type: GET_USER_COIN_LEDGER_TODAY_ACTIVITY_START,
-});
-
-export const getUserCoinLedgerTodayActivitySuccess = (payload: GetUserCoinLedgerTodayActivity) => ({
+export const getUserCoinLedgerSuccess = (payload: GetUserCoinLedger_coinLedger) => ({
   payload,
-  type: GET_USER_COIN_LEDGER_TODAY_ACTIVITY_SUCCESS as typeof GET_USER_COIN_LEDGER_TODAY_ACTIVITY_SUCCESS,
+  type: GET_USER_COIN_LEDGER_SUCCESS as typeof GET_USER_COIN_LEDGER_SUCCESS,
 });
 
-export const getUserConnectionsStart = () => ({
-  type: GET_USER_CONNECTIONS_START,
+export const getUserTodayActivitySuccess = (payload: GetUserTodayActivity_todayActivity) => ({
+  payload,
+  type: GET_USER_TODAY_ACTIVITY_SUCCESS as typeof GET_USER_TODAY_ACTIVITY_SUCCESS,
 });
 
 export const getUserConnectionsSuccess = (payload: GetUserConnections_getUserConnections[]) => ({
@@ -141,17 +133,9 @@ export const getUserConnectionsSuccess = (payload: GetUserConnections_getUserCon
   type: GET_USER_CONNECTIONS_SUCCESS as typeof GET_USER_CONNECTIONS_SUCCESS,
 });
 
-export const getUserActiveChallengeStart = () => ({
-  type: GET_USER_ACTIVE_CHALLENGE_START,
-});
-
 export const getUserActiveChallengeSuccess = (payload: GetUserActiveChallenge_getUserActiveChallenge) => ({
   payload,
   type: GET_USER_ACTIVE_CHALLENGE_SUCCESS as typeof GET_USER_ACTIVE_CHALLENGE_SUCCESS,
-});
-
-export const getUserActiveStreakStart = () => ({
-  type: GET_USER_ACTIVE_STREAK_START,
 });
 
 export const getUserActiveStreakSuccess = (payload: GetUserActiveStreak_getUserActiveStreak) => ({
