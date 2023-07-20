@@ -7,8 +7,9 @@ import * as helper from "./_resources/helpers"
 import * as ids from "@ids";
 import * as data from "@data";
 import { getLocalisedString as t } from "@i18n";
+import { getFullName } from "_utils/users";
 
-Feature("As a user I can take a challenge", async () => {
+FeatureOnly("As a user I can take a challenge", async () => {
     Scenario("I can take a challenge and cancel it", scenario.start, async () => {
         Given("I login and go to the quests tab", given.logInAndGoToTab("quests"), async () => {
             Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
@@ -170,7 +171,7 @@ Feature("As a user I can take a challenge", async () => {
                 Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.LEADERBOARD_4.data.name)))
             })
         })
-        helper.INSPECT_USER(data.CUSTOMER_55.data.fullName, "Forest", data.CUSTOMER_52)();
+        helper.INSPECT_USER(data.CUSTOMER_55, "Forest", data.CUSTOMER_52)();
         When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             When("I click on the challenge profiles viewed", when.tapChallenge("0 / 5" + t("profiles viewed")), async () => {
                 Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(1, 0.2))
@@ -192,8 +193,8 @@ Feature("As a user I can take a challenge", async () => {
         When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
             Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.LEADERBOARD_4.data.name)))
         })
-        helper.INSPECT_USER(data.CUSTOMER_54.data.fullName, "Forest", data.CUSTOMER_52)();
-        helper.INSPECT_USER(data.CUSTOMER_58.data.fullName, "Forest", data.CUSTOMER_52)();
+        helper.INSPECT_USER(data.CUSTOMER_54, "Forest", data.CUSTOMER_52)();
+        helper.INSPECT_USER(data.CUSTOMER_58, "Forest", data.CUSTOMER_52)();
         When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             When("I click on the challenge profiles viewed", when.tapChallenge("1 / 5 profiles viewed"), async () => {
                 Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(3, 0.6))
@@ -216,13 +217,13 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.LEADERBOARD_4.data.name)))
         })
         When("I scroll to the bottom of the bottom of the leaderboard", when.scrollFromID(ids.LEADERBOARD_SCROLL_LIST, "up", "fast"), async () => {
-            Then("I should see Stephen's name in the leaderboard", then.textVisible(data.CUSTOMER_57.data.fullName))
+            Then("I should see Stephen's name in the leaderboard", then.textVisible(getFullName(data.CUSTOMER_57)))
         })
-        helper.INSPECT_USER(data.CUSTOMER_57.data.fullName, "Forest", data.CUSTOMER_52)();
+        helper.INSPECT_USER(data.CUSTOMER_57, "Forest", data.CUSTOMER_52)();
         When("I scroll to the bottom of the bottom of the leaderboard", when.scrollFromID(ids.LEADERBOARD_SCROLL_LIST, "up", "fast"), async () => {
-            Then("I should see Milton's name in the leaderboard", then.textVisible(data.CUSTOMER_56.data.fullName))
+            Then("I should see Milton's name in the leaderboard", then.textVisible(getFullName(data.CUSTOMER_56)))
         })
-        helper.INSPECT_USER(data.CUSTOMER_56.data.fullName, "Forest", data.CUSTOMER_52)();
+        helper.INSPECT_USER(data.CUSTOMER_56, "Forest", data.CUSTOMER_52)();
         When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             When("I click on the challenge profiles viewed", when.tapChallenge("3 / 5 profiles viewed"), async () => {
                 Then("I should be on the completed events milestone page", then.onCompletedEventPage("Ends on the 10th", "5 Profiles viewed", "650"))

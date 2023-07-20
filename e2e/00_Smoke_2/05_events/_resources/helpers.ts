@@ -3,6 +3,7 @@ import * as when from "../_steps/when"
 import * as then from "../_steps/then"
 import { CUSTOMER_52 } from "@data";
 import * as ids from "@ids";
+import { getFullName } from "_utils/users";
 
 
 export const INSPECT_USER = (fullName: string, world: string, customer: typeof CUSTOMER_52) => async () => {
@@ -14,6 +15,6 @@ export const INSPECT_USER = (fullName: string, world: string, customer: typeof C
         Then("I should see the Average mindfulness section", then.textVisible("Average mindfulness"))
     })
     When("I close inspect view", when.tapID(ids.SCREEN_CLOSE), async () => {
-        Then("I should be back on the leaderboard LB4", then.textVisibleAtIndex(customer.data.fullName, 0))
+        Then("I should be back on the leaderboard LB4", then.textVisibleAtIndex(getFullName(customer), 0))
     })
 }

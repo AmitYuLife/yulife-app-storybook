@@ -2,6 +2,7 @@ import { navigation } from "@navigation"
 import * as ids from "@ids"
 export { addStepsHistoricalData, addCyclingHistoricalData, addMindfulnessHistoricalData } from "@socket";
 import { getLocalisedString as t } from "@i18n";
+import { CUSTOMER_1 } from "@data";
 
 export const {
     tapID,
@@ -36,8 +37,8 @@ export const turnOffLeaderboard = (leaderboardID: string) => async () => {
     await offButton.tap()
 }
 
-export const clickUser = (user: string) => async () => {
-    await tapText(user)()
+export const clickUser = (user: typeof CUSTOMER_1) => async () => {
+    await tapText(`${user.data.firstName} ${user.data.lastName}`)()
 }
 
 export const wait3secs = async () => {

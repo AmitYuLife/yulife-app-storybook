@@ -4,6 +4,7 @@ import { CHALLENGE_SET_SCROLL, LEADERBOARD_NAME, LEVEL_SUMMARY_YUDOKU_LEADERBOAR
 import { CUSTOMER_1, CUSTOMER_86, SUDOKU_ANSWER_71 } from "@data";
 import { getDuration } from "@socket";
 import { SUDOKU_STAT_0, SUDOKU_STAT_1 } from "_utils/data/mongo/game_sudoku_stats";
+import { getFullName } from "_utils/users";
 
 
 export const {
@@ -97,16 +98,16 @@ export const canSeeLeaderboard = (user: typeof CUSTOMER_86, answer: typeof SUDOK
   const time = getDuration(answer.data.adjustedTime)
 
   if (isOnHomeScreen) {
-    await idVisible(SUDOKU_LEADERBOARD(rank, user.data.fullName, time))()
+    await idVisible(SUDOKU_LEADERBOARD(rank, getFullName(user), time))()
   } else {
-    await idVisible(LEADERBOARD_NAME(user.data.fullName), 2000)()
+    await idVisible(LEADERBOARD_NAME(getFullName(user)), 2000)()
     await idVisible(SCORE(time))()
-    await idVisible(RANK(user.data.fullName, rank))()
+    await idVisible(RANK(getFullName(user), rank))()
   }
 }
 
 export const canSeeManuallyEnteredLeaderboard = (user: typeof CUSTOMER_86, rank: number) => async () => {
-  await textVisible(`${rank}. ${user.data.fullName}`)()
+  await textVisible(`${rank}. ${getFullName(user)}`)()
 }
 
 export const cannotSeeStartGame = async () => {

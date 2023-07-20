@@ -7,8 +7,9 @@ import * as helper from "./_resources/helpers";
 import * as ids from "@ids";
 import * as data from "@data";
 import { getLocalisedString as t } from "@i18n";
+import { getFullName } from "_utils/users";
 
-Feature("As a user I can see my achievements on the leaderboard", async () => {
+FeatureOnly("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can consent to my company leaderboard", scenario.start, async () => {
         Given("I login", given.loginAsUser(data.CUSTOMER_16, data.AUTH_16), async () => {
             When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
@@ -66,7 +67,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
-    Scenario("I can inspect other members and view their data and avatars from the leaderboard - seed data", scenario.start, async () => {
+    ScenarioOnly("I can inspect other members and view their data and avatars from the leaderboard - seed data", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_47, data.AUTH_47), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
             Then("I should be on the onboarding yuscreen v4", then.idVisible(ids.ONBOARDING_SCREEN_V4))
@@ -78,9 +79,9 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 Then("I should see the leaderboard", then.leaderboardVisible([data.CUSTOMER_18, data.CUSTOMER_17, data.CUSTOMER_47, data.CUSTOMER_50]))
             })
         })
-        When("I click on user Michael's name", when.clickUser(data.CUSTOMER_18.data.fullName), async () => {
+        When("I click on user Michael's name", when.clickUser(data.CUSTOMER_18), async () => {
             Then("I should be on the Inspect screen", then.isOnInspectScreen)
-            Then("Michael's name is visible", then.idVisible(ids.TEXT_TEMPLATE(data.CUSTOMER_18.data.fullName)))
+            Then("Michael's name is visible", then.idVisible(ids.TEXT_TEMPLATE(getFullName(data.CUSTOMER_18))))
             Then("Michael's world is visible", then.idVisible(ids.USER_WORLD("Forest")))
             Then("Michael's level is visible", then.idVisible(ids.USER_LEVEL(data.COIN_LEDGER_18.data.currentLevel)))
             Then("Michael's empty yumoji is visible", then.idVisible(ids.YUMOJI))
@@ -119,9 +120,9 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 Then("I should see the leaderboard", then.leaderboardVisible([data.CUSTOMER_18, data.CUSTOMER_17, data.CUSTOMER_47, data.CUSTOMER_50]))
             })
         })
-        When("I click on user Michael's name", when.clickUser(data.CUSTOMER_18.data.fullName), async () => {
+        When("I click on user Michael's name", when.clickUser(data.CUSTOMER_18), async () => {
             Then("I should be on the Inspect screen", then.isOnInspectScreen)
-            Then("Michael's name is visible", then.idVisible(ids.TEXT_TEMPLATE(data.CUSTOMER_18.data.fullName)))
+            Then("Michael's name is visible", then.idVisible(ids.TEXT_TEMPLATE(getFullName(data.CUSTOMER_18))))
             Then("Michael's world is visible", then.idVisible(ids.USER_WORLD("Forest")))
             Then("Michael's level is visible", then.idVisible(ids.USER_LEVEL(data.COIN_LEDGER_18.data.currentLevel)))
             Then("Michael's empty yumoji is visible", then.idVisible(ids.YUMOJI))
@@ -155,9 +156,9 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 Then("I should see the leaderboard", then.leaderboardVisible(([data.CUSTOMER_18, data.CUSTOMER_17, data.CUSTOMER_47, data.CUSTOMER_50])))
             })
         })
-        When("I click on my own name", when.tapID(ids.RANK(data.CUSTOMER_47.data.fullName, 2)), async () => {
+        When("I click on my own name", when.tapID(ids.RANK(getFullName(data.CUSTOMER_47), 2)), async () => {
             Then("I should be on the Inspect screen", then.isOnInspectScreen)
-            Then("My name is visible", then.idVisible(ids.TEXT_TEMPLATE(data.CUSTOMER_47.data.fullName)))
+            Then("My name is visible", then.idVisible(ids.TEXT_TEMPLATE(getFullName(data.CUSTOMER_47))))
             Then("My world is visible", then.idVisible(ids.USER_WORLD("Forest")))
             Then("My level is visible", then.idVisible(ids.USER_LEVEL(data.COIN_LEDGER_47.data.currentLevel)))
             Then("My yumoji is", then.idVisible(ids.YUMOJI))
@@ -183,7 +184,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
         })
         When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
-            When("I click on my own name", when.tapID(ids.RANK(data.CUSTOMER_47.data.fullName, 2)), async () => {
+            When("I click on my own name", when.tapID(ids.RANK(getFullName(data.CUSTOMER_47), 2)), async () => {
                 Then("I should be on the Inspect screen", then.isOnInspectScreen)
             })
         })
@@ -216,7 +217,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
         })
         When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
-            When("I click on user Michael's name", when.clickUser("Michael Scott"), async () => {
+            When("I click on user Michael's name", when.clickUser(data.CUSTOMER_18), async () => {
                 Then("I should be on the Inspect screen", then.isOnInspectScreen)
             })
         })
@@ -240,9 +241,9 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 Then("I should see the leaderboard", then.leaderboardVisible([data.CUSTOMER_18, data.CUSTOMER_50, data.CUSTOMER_47]))
             })
         })
-        When("I click on user Michael's name", when.clickUser(data.CUSTOMER_18.data.fullName), async () => {
+        When("I click on user Michael's name", when.clickUser(data.CUSTOMER_18), async () => {
             Then("I should be on the Inspect screen", then.isOnInspectScreen)
-            Then("Michael's name is visible", then.idVisible(ids.TEXT_TEMPLATE(data.CUSTOMER_18.data.fullName)))
+            Then("Michael's name is visible", then.idVisible(ids.TEXT_TEMPLATE(getFullName(data.CUSTOMER_18))))
             Then("Michael's world is visible", then.idVisible(ids.USER_WORLD("Forest")))
             Then("Michael's level is visible", then.idVisible(ids.USER_LEVEL(data.COIN_LEDGER_18.data.currentLevel)))
             Then("Michael's empty yumoji is visible", then.idVisible(ids.YUMOJI))

@@ -28,6 +28,7 @@ import {
 } from "@ids";
 import moment from "moment";
 import { BPEEW_USA_1 } from "04_USA/_data";
+import { getFullName } from "_utils/users";
 
 export const {
   idVisible,
@@ -59,7 +60,7 @@ export const onEmptyYuscreen = (customer) => async () => {
 };
 
 export const onYuscreen = (customer: any) => async () => {
-  const fullName = customer.data.fullName;
+  const fullName = getFullName(customer);
   const yuscreen = element(by.id(YUSCREEN));
 
   await expect(yuscreen).toBeVisible();
