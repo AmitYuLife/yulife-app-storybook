@@ -2,37 +2,43 @@ import { call, put } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
-import getAllUserData from "@graphql/user/getAllUserData.gql";
+import getAllUserData, { GetAllUserDataResponse } from "@graphql/user/getAllUserData.gql";
 import {
-  getUserCoinLedgerTodayActivitySuccess,
   getUserLeaderboardsSuccess,
   getUserPassiveChallengesEarnRateSuccess,
   getUserActiveChallengeSuccess,
   getUserActiveStreakSuccess,
+  AppDataType,
+  getUserTodayActivitySuccess,
+  getUserCoinLedgerSuccess,
 } from "../user.actions";
+import { Action } from "redux";
+import { updateDailyPensionSuccess } from "@redux/daily-pension/daily-pension.actions";
 
-export default function* getAllUserDataSaga() {
+const SUCCESS_ACTIONS: Record<AppDataType, (data: GetAllUserDataResponse[AppDataType]) => Action> = {
+  [AppDataType.activeChallenge]: getUserActiveChallengeSuccess,
+  [AppDataType.activeStreak]: getUserActiveStreakSuccess,
+  [AppDataType.coinLedger]: getUserCoinLedgerSuccess,
+  [AppDataType.todayActivity]: getUserTodayActivitySuccess,
+  [AppDataType.leaderboards]: getUserLeaderboardsSuccess,
+  [AppDataType.passiveChallengesEarnRate]: getUserPassiveChallengesEarnRateSuccess,
+  [AppDataType.dailyPension]: updateDailyPensionSuccess,
+};
+
+export default function* getAllUserDataSaga({ payload }: { payload: AppDataType[] } & Action<AppDataType>) {
   try {
     const token: Unpacked<typeof getToken> = yield call(getToken);
     if (token) {
-      const { data }: Unpacked<typeof getAllUserData> = yield call(getAllUserData);
-
+      const { data }: Unpacked<typeof getAllUserData> = yield call(getAllUserData, payload);
       if (data) {
-        // TODO: add more data to store once further queries are moved from getCurrentUser
-        yield put(
-          getUserCoinLedgerTodayActivitySuccess({
-            todayActivity: data?.todayActivity,
-            coinLedger: data?.coinLedger,
-          })
-        );
-
-        yield put(getUserActiveStreakSuccess(data?.activeStreak));
-        yield put(getUserLeaderboardsSuccess(data?.leaderboards));
-        yield put(getUserPassiveChallengesEarnRateSuccess(data?.passiveChallengesEarnRate));
-        yield put(getUserActiveChallengeSuccess(data?.activeChallenge));
+        for (const type of payload) {
+          if (SUCCESS_ACTIONS[type]) {
+            yield put(SUCCESS_ACTIONS[type](data[type]));
+          }
+        }
       }
     }
   } catch (e) {
-    Logger.error(e, { event: "getAllUserDataSaga" });
+    Logger.error(e, { event: "getAllUserDataSaga", payload: payload.join(",") });
   }
 }

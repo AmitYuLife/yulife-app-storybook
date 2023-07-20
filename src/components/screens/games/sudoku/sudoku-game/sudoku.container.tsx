@@ -26,7 +26,7 @@ import { useBackHandler, useTranslation } from "@hooks";
 import { delay } from "@utils/misc";
 import { challengeEndSuccessAction } from "@redux/levels/levels.actions";
 import { Alert } from "react-native";
-import { getUserActiveChallengeStart } from "@redux/user/user.actions";
+import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
 
 export interface ISodukuBoard {
   puzzle: SudokuBoard;
@@ -146,7 +146,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
             },
             onError: () => {
               onPause();
-              dispatch(getUserActiveChallengeStart());
+              dispatch(getUserDataStart([AppDataType.activeChallenge]));
               showSubmissionError(rej);
             },
           });

@@ -20,7 +20,6 @@ import { showYuModal } from "@navigation/root";
 import { GQL_QUERY_GET_SODUKU_LEADERBOARD } from "@graphql/brainGames/sudoku/getSudokuLeaderboards.gql";
 import { SudokuDifficulty } from "@graphql/_core/schema/globalTypes";
 import { GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE } from "@graphql/challenges";
-import { getUserStart } from "@redux/user/user.actions";
 import { getActiveLevel } from "@redux/levels/levels.selectors";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/getQuestMapChallengeDetails.gql";
@@ -92,8 +91,6 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
           levelSlotId: slot.id,
         })
       );
-
-      dispatch(getUserStart());
     }
 
     const currentDate = moment(date).format(DATE_FORMAT);

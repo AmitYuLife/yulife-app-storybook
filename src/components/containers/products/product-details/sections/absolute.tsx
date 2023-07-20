@@ -1,6 +1,11 @@
 import React, { useContext } from "react";
 import { GetYuScreenProductDetails_getYuScreenProductDetails_absolute as AbsoluteItems } from "@graphql/_core/schema";
-import { ContentItemCollapsingGenericHeader, ContentItemLinearGradient, ContentItemPad, ContentItemButton } from "@components/sdui";
+import {
+  ContentItemCollapsingGenericHeader,
+  ContentItemLinearGradient,
+  ContentItemPad,
+  ContentItemButton,
+} from "@components/sdui";
 import { IProductDetailsContext, UiContext } from "../product-details.context";
 
 interface Props {

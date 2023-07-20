@@ -3,7 +3,7 @@ import { REHYDRATE } from "redux-persist";
 import { LOGOUT_SUCCESS } from "../user/user.actions";
 import { SyncAction } from "@redux/_core/types";
 import { UPDATE_APP_STATE_ACTIVE } from "@redux/app/app.actions";
-import { UPDATE_DAILY_PENSION } from "./daily-pension.actions";
+import { UPDATE_DAILY_PENSION_SUCCESS } from "./daily-pension.actions";
 import { GetCurrentUser_getDailyPensionContribution as DailyPension } from "@graphql/_core/schema";
 import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
 
@@ -33,7 +33,7 @@ const dailyPensionReducer = (state: IDailyPensionStore = getInitialState(), acti
     case UPDATE_APP_STATE_ACTIVE:
       return updateStateOnAppStateActive(state);
 
-    case UPDATE_DAILY_PENSION:
+    case UPDATE_DAILY_PENSION_SUCCESS:
       return updateDailyPension(state, action.payload);
 
     case PEDOMETER_RESTART_ON_NEW_DAY:

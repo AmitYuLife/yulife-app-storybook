@@ -3,7 +3,7 @@ import Logger from "@services/logging/logger";
 import { getToken } from "@services/storage";
 import { Unpacked } from "@utils";
 import { call, put, spawn } from "redux-saga/effects";
-import { updateDailyPension } from "../daily-pension.actions";
+import { updateDailyPensionSuccess } from "../daily-pension.actions";
 
 export default function* getDailyPension() {
   try {
@@ -12,7 +12,7 @@ export default function* getDailyPension() {
       const { data }: Unpacked<typeof getDailyPensionContribution> = yield call(getDailyPensionContribution);
 
       if (data?.getDailyPensionContribution) {
-        yield put(updateDailyPension(data.getDailyPensionContribution));
+        yield put(updateDailyPensionSuccess(data.getDailyPensionContribution));
       }
     }
   } catch (e) {

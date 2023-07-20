@@ -80,7 +80,9 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
 
       await getChallengeDetails(slot.id);
 
-      const activeChallenge = await createQuestMapLevelChallengeMutation({ variables: { levelSlotId: slot.id } });
+      const activeChallenge = await createQuestMapLevelChallengeMutation({
+        variables: { levelSlotId: slot.id },
+      });
 
       if (activeChallenge?.data?.createQuestMapLevelChallenge) {
         dispatch(

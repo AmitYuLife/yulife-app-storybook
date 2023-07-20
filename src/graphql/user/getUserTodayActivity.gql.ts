@@ -1,12 +1,12 @@
 import { gql } from "@apollo/client";
-import { GQL_FRAGMENT_USER_TODAY_ACTIVITY } from "@graphql/_fragments/userTodayActivity.gql";
 import client from "../_core/client";
 import { GetUserTodayActivity } from "../_core/schema";
+import { GQL_FRAGMENT_USER_TODAY_ACTIVITY } from "@graphql/_fragments/userTodayActivity.gql";
 
 export const GQL_QUERY_GET_USER_TODAY_ACTIVITY = gql`
   ${GQL_FRAGMENT_USER_TODAY_ACTIVITY}
   query GetUserTodayActivity {
-    getUserTodayActivity {
+    todayActivity: getUserTodayActivity {
       ...UserTodayActivity
     }
   }

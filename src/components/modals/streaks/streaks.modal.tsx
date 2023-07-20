@@ -9,7 +9,7 @@ import { StreaksScreen } from "@screens";
 import { useBackHandler } from "@hooks";
 import { Navigation } from "@navigation/main";
 import { IStreakCopy, streakCopy } from "./copy";
-import { getUserActiveStreakStart, getUserCoinLedgerTodayActivityStart } from "@redux/user/user.actions";
+import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
 import { DETOX_ENABLED } from "@services/socket";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -173,9 +173,8 @@ const StreaksModal: React.FC<Props> = ({
             },
           });
 
-          if (result && result.data && result.data.collectAward) {
-            dispatch(getUserCoinLedgerTodayActivityStart());
-            dispatch(getUserActiveStreakStart());
+          if (result?.data?.collectAward) {
+            dispatch(getUserDataStart([AppDataType.coinLedger, AppDataType.todayActivity, AppDataType.activeStreak]));
           }
 
           onPressCtaPrimary();
@@ -191,7 +190,7 @@ const StreaksModal: React.FC<Props> = ({
     const remainingStreak = (streakMax - streakCompleted).toString();
     const streakType = type === "yucoin" ? "YuCoin" : type;
     return streakCopy(remainingStreak, reward, streakType);
-  }, [streakMax, streakCompleted, type]);
+  }, [streakMax, streakCompleted, type, reward]);
 
   return (
     <StreaksScreen
