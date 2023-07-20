@@ -3,9 +3,10 @@ import { StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { DropdownSolidIcon } from "@atoms/icon/dropdown-solid-icon";
 import { Style } from "@styles";
-import { PressableWithDelay } from "@molecules";
+import { TouchableOpacityWithDelay } from "@molecules";
 import { DuelsIcon } from "@atoms/icon/duels-icon";
 import { t } from "@locale";
+import { DUELS_BUTTON, LEADERBOARD_DROPDOWN, LEADERBOARD_TITLE, LEADERBOARD_TOP_SCREEN } from "@ids";
 
 const colour = "#345E8C";
 
@@ -23,31 +24,33 @@ interface IProps {
 }
 
 const LeaderboardNavigation = ({ onLeftPress, onRightPress, activeLeaderboard, showDuels, metricName }: IProps) => (
-  <View style={styles.wrapper}>
-    <PressableWithDelay style={styles.info} onPress={onLeftPress}>
-      <View style={styles.wrapper}>
-        <TextTemplate type="l1b" color={colour}>
-          {activeLeaderboard.name}
-        </TextTemplate>
-        <View style={styles.dropdown}>
-          <DropdownSolidIcon colour={colour} width={8} height={8} />
+  <View style={styles.wrapper} testID={LEADERBOARD_TOP_SCREEN}>
+    {!activeLeaderboard?.name ? null : (
+      <TouchableOpacityWithDelay style={styles.info} onPress={onLeftPress}>
+        <View style={styles.wrapper}>
+          <TextTemplate type="l1b" color={colour} testID={LEADERBOARD_TITLE(activeLeaderboard.name)}>
+            {activeLeaderboard.name}
+          </TextTemplate>
+          <View style={styles.dropdown} testID={LEADERBOARD_DROPDOWN}>
+            <DropdownSolidIcon colour={colour} width={8} height={8} />
+          </View>
         </View>
-      </View>
-      <View>
-        <TextTemplate type="l1" color={colour}>
-          {t("screens.leaderboard.podium.steps", { days: activeLeaderboard?.days || 30, metric: metricName })}
-        </TextTemplate>
-      </View>
-    </PressableWithDelay>
+        <View>
+          <TextTemplate type="l1" color={colour}>
+            {t("screens.leaderboard.podium.steps", { days: activeLeaderboard?.days || 30, metric: metricName })}
+          </TextTemplate>
+        </View>
+      </TouchableOpacityWithDelay>
+    )}
     {!showDuels ? null : (
-      <PressableWithDelay style={styles.duels} onPress={onRightPress}>
+      <TouchableOpacityWithDelay style={styles.duels} onPress={onRightPress} testID={DUELS_BUTTON}>
         <View style={styles.duelsIcon}>
           <DuelsIcon colour={colour} />
         </View>
         <TextTemplate type="l1b" color={colour}>
           {t("screens.leaderboard.podium.duels_button")}
         </TextTemplate>
-      </PressableWithDelay>
+      </TouchableOpacityWithDelay>
     )}
   </View>
 );

@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
   questionMark: {
     position: "absolute",
     right: 24,
-    bottom: Platform.select({ ios: 10, android: Style.adjust(0) }),
   },
 });
 
