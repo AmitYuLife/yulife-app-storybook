@@ -120,55 +120,55 @@ function generateMapping(englishJson, targetJson) {
     return mapping;
 }
 
-let translationMapping: Record<string, string>;
+let translationMapping: Record<string, string> = {}
 
 export async function initialiseTranslationMapping() {
     console.log(`Initialising translation mapping for locale "${TARGET_LOCALE}"...`);
 
-    const pathsToIgnore = [
-        "api.default.email.common.employee_footer_with_unsubscribe.us",
-        "api.default.events.cta",
-        "api.default.today_earning.pension.header",
-        "api.default.static_steps.gdent.other_dental_benefits.items.item_5.levels.level_2",
-        "api.default.static_steps.gdent.other_dental_benefits.items.item_5.levels.level_3",
-        "api.default.static_steps.gdent.other_dental_benefits.items.item_5.levels.level_5",
-        "api.default.static_steps.guardian.legal_text",
-        "api.default.email.rewards.voucher.success.opening_line",
-        "api.default.email.rewards.voucher.success.footer.sign_off",
-        "api.default.email.rewards.partner_voucher_code.heading",
-        "api.default.email.rewards.partner_voucher_code.sign_off",
-        "api.default.email.rewards.charity.purchase.thoughts_message",
-        "api.default.email.rewards.voucher.purchased.opening_line",
-        "api.default.email.rewards.voucher.purchased.footer.sign_off",
-        "api.default.email.rewards.sms_delivery_confirmation.heading",
-        "api.default.email.rewards.sms_delivery_confirmation.sign_off",
-        "api.default.email.rewards.voucher.error.opening_line",
-        "api.default.email.rewards.charity.purchase.opening_line"
-    ]
-    await getApiTranslations();
-
-    const isLocaleStructured = checkStructure(gbLocale, targetLocale);
-
-    if (isLocaleStructured.length) {
-        console.log("Locale structure is not consistent", isLocaleStructured);
+    if (TARGET_LOCALE !== "en-GB") {
+        const pathsToIgnore = [
+            "api.default.email.common.employee_footer_with_unsubscribe.us",
+            "api.default.events.cta",
+            "api.default.today_earning.pension.header",
+            "api.default.static_steps.gdent.other_dental_benefits.items.item_5.levels.level_2",
+            "api.default.static_steps.gdent.other_dental_benefits.items.item_5.levels.level_3",
+            "api.default.static_steps.gdent.other_dental_benefits.items.item_5.levels.level_5",
+            "api.default.static_steps.guardian.legal_text",
+            "api.default.email.rewards.voucher.success.opening_line",
+            "api.default.email.rewards.voucher.success.footer.sign_off",
+            "api.default.email.rewards.partner_voucher_code.heading",
+            "api.default.email.rewards.partner_voucher_code.sign_off",
+            "api.default.email.rewards.charity.purchase.thoughts_message",
+            "api.default.email.rewards.voucher.purchased.opening_line",
+            "api.default.email.rewards.voucher.purchased.footer.sign_off",
+            "api.default.email.rewards.sms_delivery_confirmation.heading",
+            "api.default.email.rewards.sms_delivery_confirmation.sign_off",
+            "api.default.email.rewards.voucher.error.opening_line",
+            "api.default.email.rewards.charity.purchase.opening_line"
+        ]
+        await getApiTranslations();
+    
+        const isLocaleStructured = checkStructure(gbLocale, targetLocale);
+    
+        if (isLocaleStructured.length) {
+            console.log("Locale structure is not consistent", isLocaleStructured);
+        }
+    
+        const isLocaleConsistent = checkConsistency(gbLocale, targetLocale, pathsToIgnore);
+    
+        if (isLocaleConsistent.length) {
+            console.log("Locale translations are not consistent", isLocaleConsistent);
+        }
+    
+        translationMapping = generateMapping(gbLocale, targetLocale);
+    } else {
+        translationMapping = {}
     }
-
-    const isLocaleConsistent = checkConsistency(gbLocale, targetLocale, pathsToIgnore);
-
-    if (isLocaleConsistent.length) {
-        console.log("Locale translations are not consistent", isLocaleConsistent);
-    }
-
-    translationMapping = generateMapping(gbLocale, targetLocale);
 }
 
 export function getLocalisedString(key, templateArgs = {}) {
-    if (!translationMapping) {
-        throw new Error("Translation mapping not initialised");
-    }
-
     if (!translationMapping[key]) {
-        return "NO_TRANSLATION_FOUND";
+        return key
     }
 
     let translatedString = translationMapping[key];
