@@ -100,7 +100,11 @@ export const ItemSlot = memo(
           </View>
 
           <View
-            style={StyleSheet.flatten([styles.slotInnerWrapper, { backgroundColor: backgroundColour }])}
+            style={StyleSheet.flatten([
+              styles.slotInnerWrapper,
+              { backgroundColor: backgroundColour },
+              !leftBackgroundImage ? { paddingLeft: Style.adjust(16) } : null,
+            ])}
             testID={BACKGROUND_COLOUR_PRODUCT(backgroundColour)}
           >
             {leftBackgroundImage ? <View style={styles.spacer} /> : null}
