@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { View, Animated, Platform } from "react-native";
 import { PressableWithDelay, Yumoji } from "@molecules";
 import { GetLeaderboard_getLeaderboard_avatarRemoteFiles } from "@graphql/_core/schema";
-import { YUMOJI_PODIUM } from "@ids";
+import { LEADERBOARD_INFO_BUTTON, YUMOJI_PODIUM } from "@ids";
 import styles, { dynamicStyles, LEADERBOARD_PODIUM_HEIGHT } from "./leaderboard-podium.styles";
 import { PodiumAsset } from "./assets/podium";
 import { LeaderboardTitle } from "./subcomponents/leaderboard-title";
@@ -50,7 +50,11 @@ const _LeaderboardPodium = ({ cropAmount, hideAvatars, uriSet, scrollValue }: IL
         <PodiumAsset cropAmount={cropAmount} />
         <Avatars hideAvatars={hideAvatars} uriSet={uriSet} />
       </View>
-      <PressableWithDelay onPress={goToLeaderboardInfo} style={[styles.questionMark, { bottom: bottomStyle }]}>
+      <PressableWithDelay
+        onPress={goToLeaderboardInfo}
+        style={[styles.questionMark, { bottom: bottomStyle }]}
+        testID={LEADERBOARD_INFO_BUTTON}
+      >
         <QuestionOutlineIcon colour="#345E8C" />
       </PressableWithDelay>
       <LeaderboardTitle onPressLabel={goToLeaderboardsList} />

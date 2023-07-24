@@ -79,8 +79,8 @@ export const onCyclingEventDetailsScreen = async () => {
     }
 }
 
-export const eventCompletedVisible = (numberOfKm: number, progressWidth: number) => async () => {
-    const description = t("%{currentValue} / %{targetValue} %{progressUnit}", { currentValue: addCommasToNumber(numberOfKm), targetValue: addCommasToNumber(numberOfKm), progressUnit: "rides" })
+export const eventCompletedVisible = (numberOfKm: number, total: number, progressWidth: number) => async () => {
+    const description = t("%{currentValue} / %{targetValue} %{progressUnit}", { currentValue: addCommasToNumber(numberOfKm), targetValue: addCommasToNumber(total), progressUnit: "rides" })
     const eventTimeframe = data.GOALS_3.data.title
 
     await textVisible(eventTimeframe)()

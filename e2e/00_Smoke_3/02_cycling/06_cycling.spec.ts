@@ -60,7 +60,7 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
             })
         })
         When("I click on the event challenge 10,000 rides", when.tapChallenge(t("%{currentValue} / %{targetValue} %{progressUnit}", { currentValue: 0, targetValue: "10,000", progressUnit: "rides" })), async () => {
-            Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(2000, 0.2))
+            Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(2000, 10000, 0.2))
             Then("I should see Claim available for the first milestone", then.claimVisible(1))
         })
         When("I click Claim rewards CTA", when.tapText(t("Claim rewards")), async () => {
@@ -86,7 +86,7 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
             })
         })
         When("I click on the event challenge 10,000 rides", when.tapChallenge(t("%{currentValue} / %{targetValue} %{progressUnit}", { currentValue: "2,000", targetValue: "10,000", progressUnit: "rides" })), async () => {
-            Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(5000, 0.5))
+            Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(5000, 10000, 0.5))
             Then("I should see Claim available for the first milestone", then.claimVisible(2))
         })
         When("I click Claim", when.tapText(t("Claim rewards")), async () => {
@@ -120,7 +120,7 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
             })
         })
         When("I click Great! button", when.tapText(t("Great!")), async () => {
-            Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(10000, 1))
+            Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(10000, 10000, 1))
             Then("I should see all 3 milestones complete", then.allChallengesCompleteVisible)
         })
         When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
