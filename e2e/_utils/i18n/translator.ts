@@ -167,11 +167,7 @@ export async function initialiseTranslationMapping() {
 }
 
 export function getLocalisedString(key, templateArgs = {}) {
-    if (!translationMapping[key]) {
-        return key
-    }
-
-    let translatedString = translationMapping[key];
+    let translatedString = translationMapping[key] ?? key
 
     Object.keys(templateArgs).forEach(arg => {
         const placeholder = "%{" + arg + "}";
