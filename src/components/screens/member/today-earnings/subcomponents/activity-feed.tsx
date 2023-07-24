@@ -146,6 +146,10 @@ const ActivityFeed = ({
   }, []);
 
   const openPopUp = useCallback(() => {
+    if (questionMarkModal?.event) {
+      dispatch(questionMarkModal.event);
+    }
+
     showTooltipPopupRelativeToView({
       viewRef: questionMarkRef,
       beakPosition: "autoHorizontal",
@@ -183,12 +187,14 @@ const ActivityFeed = ({
   }, [googleFitIsAuthorised, id, locationPermissionsGranted, googleFitCyclingPermissionGranted]);
 
   const onTakeChallengePress = useCallback(() => {
-    const { onPress } = button;
+    const { onPress, event } = button;
+
+    if (event) {
+      dispatch(event);
+    }
+
     if (onPress?.payload) {
-      dispatch({
-        type: onPress.type,
-        payload: onPress.payload,
-      });
+      dispatch(onPress);
       return;
     }
 

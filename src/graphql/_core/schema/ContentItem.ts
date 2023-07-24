@@ -29,7 +29,6 @@ export interface ContentItem_ContentItemProcessingTimer {
     | "ContentItemComparisonTableSelectPackage"
     | "ContentItemPerks"
     | "ContentItemPill"
-    | "ContentItemDatePicker"
     | "ContentItemSexPicker"
     | "ContentItemDependants"
     | "ContentItemSelectScheme"
@@ -861,6 +860,55 @@ export interface ContentItem_ContentItemShowHideBalance {
   wrapperStyles: ContentItem_ContentItemShowHideBalance_wrapperStyles[] | null;
 }
 
+export interface ContentItem_ContentItemDatePicker_labelWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemDatePicker_pickerStyles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemDatePicker_buttonStyles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemDatePicker_buttonLeftIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItem_ContentItemDatePicker_buttonRightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItem_ContentItemDatePicker_styles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemDatePicker {
+  __typename: "ContentItemDatePicker";
+  id: string;
+  initialDate: string | null;
+  maxDate: string;
+  minDate: string;
+  dateFormat: string;
+  label: string;
+  labelWrapperStyles: ContentItem_ContentItemDatePicker_labelWrapperStyles[] | null;
+  subLabel: string | null;
+  pickerStyles: ContentItem_ContentItemDatePicker_pickerStyles[] | null;
+  buttonStyles: ContentItem_ContentItemDatePicker_buttonStyles[] | null;
+  buttonLeftIcon: ContentItem_ContentItemDatePicker_buttonLeftIcon | null;
+  buttonRightIcon: ContentItem_ContentItemDatePicker_buttonRightIcon | null;
+  size: ContentItemButtonSize;
+  answerKey: string;
+  styles: ContentItem_ContentItemDatePicker_styles[] | null;
+}
+
 export type ContentItem =
   | ContentItem_ContentItemProcessingTimer
   | ContentItem_ContentItemMarkdown
@@ -885,4 +933,5 @@ export type ContentItem =
   | ContentItem_ContentItemInfoCard
   | ContentItem_ContentItemBoxOptionCard
   | ContentItem_ContentItemSwitch
-  | ContentItem_ContentItemShowHideBalance;
+  | ContentItem_ContentItemShowHideBalance
+  | ContentItem_ContentItemDatePicker;

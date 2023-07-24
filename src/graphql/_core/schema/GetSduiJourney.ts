@@ -29,7 +29,6 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer {
     | "ContentItemComparisonTableSelectPackage"
     | "ContentItemPerks"
     | "ContentItemPill"
-    | "ContentItemDatePicker"
     | "ContentItemSexPicker"
     | "ContentItemDependants"
     | "ContentItemSelectScheme"
@@ -869,6 +868,55 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemShowHideBalance {
   wrapperStyles: GetSduiJourney_getSduiJourney_body_ContentItemShowHideBalance_wrapperStyles[] | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemDatePicker_labelWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemDatePicker_pickerStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemDatePicker_buttonStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemDatePicker_buttonLeftIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemDatePicker_buttonRightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemDatePicker_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemDatePicker {
+  __typename: "ContentItemDatePicker";
+  id: string;
+  initialDate: string | null;
+  maxDate: string;
+  minDate: string;
+  dateFormat: string;
+  label: string;
+  labelWrapperStyles: GetSduiJourney_getSduiJourney_body_ContentItemDatePicker_labelWrapperStyles[] | null;
+  subLabel: string | null;
+  pickerStyles: GetSduiJourney_getSduiJourney_body_ContentItemDatePicker_pickerStyles[] | null;
+  buttonStyles: GetSduiJourney_getSduiJourney_body_ContentItemDatePicker_buttonStyles[] | null;
+  buttonLeftIcon: GetSduiJourney_getSduiJourney_body_ContentItemDatePicker_buttonLeftIcon | null;
+  buttonRightIcon: GetSduiJourney_getSduiJourney_body_ContentItemDatePicker_buttonRightIcon | null;
+  size: ContentItemButtonSize;
+  answerKey: string;
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemDatePicker_styles[] | null;
+}
+
 export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_body_ContentItemMarkdown
@@ -893,7 +941,8 @@ export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemInfoCard
   | GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard
   | GetSduiJourney_getSduiJourney_body_ContentItemSwitch
-  | GetSduiJourney_getSduiJourney_body_ContentItemShowHideBalance;
+  | GetSduiJourney_getSduiJourney_body_ContentItemShowHideBalance
+  | GetSduiJourney_getSduiJourney_body_ContentItemDatePicker;
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer {
   __typename:
@@ -905,7 +954,6 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessi
     | "ContentItemComparisonTableSelectPackage"
     | "ContentItemPerks"
     | "ContentItemPill"
-    | "ContentItemDatePicker"
     | "ContentItemSexPicker"
     | "ContentItemDependants"
     | "ContentItemSelectScheme"
@@ -1749,6 +1797,55 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemShowHide
   wrapperStyles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemShowHideBalance_wrapperStyles[] | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker_labelWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker_pickerStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker_buttonStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker_buttonLeftIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker_buttonRightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker {
+  __typename: "ContentItemDatePicker";
+  id: string;
+  initialDate: string | null;
+  maxDate: string;
+  minDate: string;
+  dateFormat: string;
+  label: string;
+  labelWrapperStyles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker_labelWrapperStyles[] | null;
+  subLabel: string | null;
+  pickerStyles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker_pickerStyles[] | null;
+  buttonStyles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker_buttonStyles[] | null;
+  buttonLeftIcon: GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker_buttonLeftIcon | null;
+  buttonRightIcon: GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker_buttonRightIcon | null;
+  size: ContentItemButtonSize;
+  answerKey: string;
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker_styles[] | null;
+}
+
 export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown
@@ -1773,7 +1870,8 @@ export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemSwitch
-  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemShowHideBalance;
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemShowHideBalance
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker;
 
 export interface GetSduiJourney_getSduiJourney_absolute_styles {
   property: string;

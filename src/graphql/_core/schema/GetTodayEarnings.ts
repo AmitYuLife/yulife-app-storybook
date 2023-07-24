@@ -28,9 +28,15 @@ export interface GetTodayEarnings_getTodayEarnings_activityFeed_button_onPress {
   payload: string | null;
 }
 
+export interface GetTodayEarnings_getTodayEarnings_activityFeed_button_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetTodayEarnings_getTodayEarnings_activityFeed_button {
   label: string;
   onPress: GetTodayEarnings_getTodayEarnings_activityFeed_button_onPress | null;
+  event: GetTodayEarnings_getTodayEarnings_activityFeed_button_event | null;
   type: ContentItemButtonType | null;
 }
 
@@ -90,12 +96,18 @@ export interface GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModa
   accessibilityRole: string | null;
 }
 
+export interface GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal {
   header: string;
   iconUrl: GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_iconUrl;
   body: GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_body[];
   toast: GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_toast;
   accessibility: GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_accessibility;
+  event: GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_event | null;
 }
 
 export interface GetTodayEarnings_getTodayEarnings_activityFeed_activityProgress_accessibility {
