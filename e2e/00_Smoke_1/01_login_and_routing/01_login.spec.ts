@@ -43,7 +43,7 @@ Feature("As a user I can get past the login screen", async () => {
                         When("I tap the YuCoins", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
                             Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")}`))
                             When("I close this screen", when.tapID(ids.BACK_BUTTON), async () => {
-                                Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")}`))
+                                Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")} today`))
                                 Then("I should Not see InfoIcon anymore", then.idNotVisible(ids.YUCOIN_POWER_INFO));
                             })
                         })

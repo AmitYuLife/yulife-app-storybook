@@ -161,7 +161,7 @@ export const onPasswordHelp = async () => {
 export const dailyCoreActivities = (steps = 0, mindfulness = 0, stepsCoin = 0, mindfulCoin = 0) => async () => {
     await expectIsVisibleViaText(t("%{currentValue} / %{maxValue} steps", { currentValue: steps, maxValue: 12000 }))
     await expectIsVisibleViaText(t(`%{currentValue} / %{maxValue} mindful mins`, { currentValue: mindfulness, maxValue: 30 }))
-    await textVisibleAtIndex(`${stepsCoin}/120`, 0)
-    await textVisibleAtIndex(`${mindfulCoin}/120`, 1)
+    await textVisibleAtIndex(`${stepsCoin}/120`, 0)()
+    await textVisibleAtIndex(`${mindfulCoin}/120`, 1)()
 }
 

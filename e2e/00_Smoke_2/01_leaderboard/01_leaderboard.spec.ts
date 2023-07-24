@@ -17,8 +17,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 When("I tap 'Yes'", when.tapText(t("Yes")), async () => {
                     Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.LEADERBOARD_1.data.name)))
                     Then("I should see the leaderboard", then.leaderboardVisible([data.CUSTOMER_18, data.CUSTOMER_50, data.CUSTOMER_47], ["10,000", "800"]))
-                    When("I tap 30 days", when.tapText(t("30 day steps")), async () => {
-                        Then("I should be on the about leaderboard page", then.idVisible(ids.LEADERBOARD_INFO, 2000))
+                    When("I tap 30 days", when.tapID(ids.LEADERBOARD_INFO_BUTTON), async () => {
+                        Then("I should be on the about leaderboard page", then.idVisible(ids.LEADERBOARD_INFO))
                         When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
                             Then("I should be back on the leaderboard", then.leaderboardVisible([data.CUSTOMER_18, data.CUSTOMER_50, data.CUSTOMER_47]))
                         })
