@@ -7,6 +7,7 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import { DuelsIcon } from "@atoms/icon/duels-icon";
 import { t } from "@locale";
 import { DUELS_BUTTON, LEADERBOARD_DROPDOWN, LEADERBOARD_TITLE, LEADERBOARD_TOP_SCREEN } from "@ids";
+import { truncate } from "@utils";
 
 const colour = "#345E8C";
 
@@ -29,7 +30,7 @@ const LeaderboardNavigation = ({ onLeftPress, onRightPress, activeLeaderboard, s
       <TouchableOpacityWithDelay style={styles.info} onPress={onLeftPress}>
         <View style={styles.wrapper}>
           <TextTemplate type="l1b" color={colour} testID={LEADERBOARD_TITLE(activeLeaderboard.name)}>
-            {activeLeaderboard.name}
+            {truncate(activeLeaderboard?.name || "", 16)}
           </TextTemplate>
           <View style={styles.dropdown} testID={LEADERBOARD_DROPDOWN}>
             <DropdownSolidIcon colour={colour} width={8} height={8} />
