@@ -29,7 +29,6 @@ export interface AbsoluteContentItem_item_ContentItemProcessingTimer {
     | "ContentItemComparisonTableSelectPackage"
     | "ContentItemPerks"
     | "ContentItemPill"
-    | "ContentItemDatePicker"
     | "ContentItemSexPicker"
     | "ContentItemDependants"
     | "ContentItemSelectScheme"
@@ -861,6 +860,55 @@ export interface AbsoluteContentItem_item_ContentItemShowHideBalance {
   wrapperStyles: AbsoluteContentItem_item_ContentItemShowHideBalance_wrapperStyles[] | null;
 }
 
+export interface AbsoluteContentItem_item_ContentItemDatePicker_labelWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemDatePicker_pickerStyles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemDatePicker_buttonStyles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemDatePicker_buttonLeftIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemDatePicker_buttonRightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemDatePicker_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemDatePicker {
+  __typename: "ContentItemDatePicker";
+  id: string;
+  initialDate: string | null;
+  maxDate: string;
+  minDate: string;
+  dateFormat: string;
+  label: string;
+  labelWrapperStyles: AbsoluteContentItem_item_ContentItemDatePicker_labelWrapperStyles[] | null;
+  subLabel: string | null;
+  pickerStyles: AbsoluteContentItem_item_ContentItemDatePicker_pickerStyles[] | null;
+  buttonStyles: AbsoluteContentItem_item_ContentItemDatePicker_buttonStyles[] | null;
+  buttonLeftIcon: AbsoluteContentItem_item_ContentItemDatePicker_buttonLeftIcon | null;
+  buttonRightIcon: AbsoluteContentItem_item_ContentItemDatePicker_buttonRightIcon | null;
+  size: ContentItemButtonSize;
+  answerKey: string;
+  styles: AbsoluteContentItem_item_ContentItemDatePicker_styles[] | null;
+}
+
 export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemProcessingTimer
   | AbsoluteContentItem_item_ContentItemMarkdown
@@ -885,7 +933,8 @@ export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemInfoCard
   | AbsoluteContentItem_item_ContentItemBoxOptionCard
   | AbsoluteContentItem_item_ContentItemSwitch
-  | AbsoluteContentItem_item_ContentItemShowHideBalance;
+  | AbsoluteContentItem_item_ContentItemShowHideBalance
+  | AbsoluteContentItem_item_ContentItemDatePicker;
 
 export interface AbsoluteContentItem_styles {
   property: string;

@@ -3,10 +3,11 @@ import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { getRouteState } from "@redux/app/app.selectors";
 import { Navigation } from "@navigation/main";
-import { call, select, all, put } from "redux-saga/effects";
+import { call, select, all, put, spawn } from "redux-saga/effects";
 import { getServerPayload } from "../sdui.helpers";
 import { SduiActionWithServerPayload } from "../sdui.types";
 import { parseJSON } from "@utils";
+import Logger from "@services/logging/logger";
 
 export function* sduiActionNavigateBackSaga({ payload }: SduiActionWithServerPayload) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
@@ -27,7 +28,9 @@ export function* sduiActionNavigateBackSaga({ payload }: SduiActionWithServerPay
       yield all(dispatchActions.map((dispatchAction: { type: string }) => put(dispatchAction)));
     }
   } catch (e) {
-    // log
+    yield spawn(() => {
+      Logger.error(e, { event: "dispatchActions", file: "sduiActionNavigateBackSaga" });
+    });
   }
 
   if (isValid) {

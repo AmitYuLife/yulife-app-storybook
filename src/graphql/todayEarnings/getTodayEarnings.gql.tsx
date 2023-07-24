@@ -24,6 +24,10 @@ export const GQL_QUERY_GET_TODAY_EARNINGS = gql`
             type
             payload
           }
+          event {
+            type
+            payload
+          }
           type
         }
         buttonAccessibility {
@@ -67,6 +71,10 @@ export const GQL_QUERY_GET_TODAY_EARNINGS = gql`
           accessibility {
             accessibilityLabel
             accessibilityRole
+          }
+          event {
+            type
+            payload
           }
         }
         activityProgress {

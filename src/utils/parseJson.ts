@@ -9,7 +9,7 @@ export function parseJSON<T = Record<string, any>>(payload: string, expectedKeys
 
     const isValid = !expectedKeys.length
       ? true
-      : expectedKeys.every((key) => data[key] && typeof data[key] === "string");
+      : expectedKeys.every((key) => data[key] && (typeof data[key] === "string" || typeof data[key] === "object"));
 
     return {
       isValid,

@@ -1,16 +1,31 @@
 import { pushToScreen } from "@navigation/root";
 import { getRouteState } from "@redux/app/app.selectors";
-import { call, select } from "redux-saga/effects";
+import { all, call, put, select, spawn } from "redux-saga/effects";
 import { getServerPayload } from "../sdui.helpers";
 import { ProductStepAction } from "../sdui.types";
 import { parseJSON } from "@utils";
 import { dynamicallyRegisteredRoutes, preRegisteredRoutes } from "@navigation/routes";
 import { registerComponentWithOptions } from "@navigation/registerComponentWithOptions";
+import Logger from "@services/logging/logger";
 
 export function* sduiActionNavigateSaga({ payload }: ProductStepAction) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
   const isPayloadObject = typeof payload === "object" && !!payload;
-  const { isValid, data } = parseJSON(getServerPayload(payload), ["routeId"]);
+  const {
+    isValid,
+    data: { dispatchActions = [], ...data },
+  } = parseJSON(getServerPayload(payload), ["routeId"]);
+
+  try {
+    // Dispatch additional actions supplied by the server
+    if (dispatchActions.length) {
+      yield all(dispatchActions.map((dispatchAction: { type: string }) => put(dispatchAction)));
+    }
+  } catch (e) {
+    yield spawn(() => {
+      Logger.error(e, { event: "dispatchActions", file: "sduiActionNavigateSaga" });
+    });
+  }
 
   if (isValid) {
     const { routeId, props, isSduiStatic } = data;
