@@ -5,6 +5,7 @@ import { Colours, Style } from "@styles";
 import { EyeOpenIcon } from "@atoms/icon/eye-open-icon";
 import { EyeClosedIcon } from "@atoms/icon/eye-closed-icon";
 import { PressableWithDelay } from "@molecules";
+import { SHOW_HIDE_BALANCE } from "@ids";
 
 interface IProps {
   value: string | number;
@@ -58,7 +59,9 @@ const ShowAndHideBalance = ({
           {formattedValues[visiblePropName].value}
         </TextTemplate>
         <View style={styles.icon}>
-          <PressableWithDelay onPress={onPress}>{isVisible ? <EyeOpenIcon /> : <EyeClosedIcon />}</PressableWithDelay>
+          <PressableWithDelay onPress={onPress} testID={SHOW_HIDE_BALANCE}>
+            {isVisible ? <EyeOpenIcon /> : <EyeClosedIcon />}
+          </PressableWithDelay>
         </View>
       </View>
       {!description ? null : (

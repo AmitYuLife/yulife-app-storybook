@@ -914,3 +914,94 @@ export const COIN_LEDGER_LEAVER = {
         currentLevel: 399
     }
 } as IDatabaseItem
+
+export const COIN_LEDGER_109 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_109.data.customerId,
+        userId: customer.CUSTOMER_109.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 399
+    }
+} as IDatabaseItem
+
+export const COIN_LEDGER_110 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_110.data.customerId,
+        userId: customer.CUSTOMER_110.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 399
+    }
+} as IDatabaseItem
+
+export const COIN_LEDGER_111 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_111.data.customerId,
+        userId: customer.CUSTOMER_111.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 399
+    }
+} as IDatabaseItem
+
+export const COIN_LEDGER_112 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_112.data.customerId,
+        userId: customer.CUSTOMER_112.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 399
+    }
+} as IDatabaseItem
+
+export const COIN_LEDGER_113 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_113.data.customerId,
+        userId: customer.CUSTOMER_113.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 399
+    }
+} as IDatabaseItem
+
+export const COIN_LEDGER_114 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_114.data.customerId,
+        userId: customer.CUSTOMER_114.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 399
+    }
+} as IDatabaseItem
+
+export const COIN_LEDGER_115 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_115.data.customerId,
+        userId: customer.CUSTOMER_115.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 399
+    }
+} as IDatabaseItem

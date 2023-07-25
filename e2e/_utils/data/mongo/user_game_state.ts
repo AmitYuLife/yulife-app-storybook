@@ -927,3 +927,95 @@ export const USER_GAME_STATE_94 = {
         currentLevel: 399
     }
 } as IDatabaseItem
+
+export const USER_GAME_STATE_109 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_109.data.customerId,
+        userId: customer.CUSTOMER_109.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 399
+    }
+} as IDatabaseItem
+
+export const USER_GAME_STATE_110 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_110.data.customerId,
+        userId: customer.CUSTOMER_110.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 399
+    }
+} as IDatabaseItem
+
+export const USER_GAME_STATE_111 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_111.data.customerId,
+        userId: customer.CUSTOMER_111.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 399
+    }
+} as IDatabaseItem
+
+export const USER_GAME_STATE_112 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_112.data.customerId,
+        userId: customer.CUSTOMER_112.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 399
+    }
+} as IDatabaseItem
+
+export const USER_GAME_STATE_113 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_113.data.customerId,
+        userId: customer.CUSTOMER_113.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 399
+    }
+} as IDatabaseItem
+
+export const USER_GAME_STATE_114 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_114.data.customerId,
+        userId: customer.CUSTOMER_114.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 399
+    }
+} as IDatabaseItem
+
+export const USER_GAME_STATE_115 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_115.data.customerId,
+        userId: customer.CUSTOMER_115.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 399
+    }
+} as IDatabaseItem
+

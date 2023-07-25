@@ -58,6 +58,7 @@ export const VIDEO_PLAYER_DESCRIPTION_SCREEN = "VIDEO_PLAYER_DESCRIPTION";
 export const MEDIA_PORTRAIT_CLOSE = "MEDIA_PORTRAIT_CLOSE"
 export const CHALLENGE_SET_SCROLL = "CHALLENGE_SET_SCROLL"
 export const REWARDS_LIST_SCREEN_SCROLL = "REWARDS_LIST_SCREEN_SCROLL"
+export const SDUI_BODY_SCROLL = "SDUI_BODY_SCROLL"
 
 // buttons
 export const BUTTON_LOGIN = (disabled: boolean) => `BUTTON_LOGIN_${disabled})`;
@@ -107,6 +108,9 @@ export const INFO_PANEL_CTA_NOTIFICATION_BUTTON = "INFO_PANEL_CTA_NOTIFICATION_B
 export const INSPECT_BUTTON = "INSPECT_BUTTON";
 export const TAKE_A_CHALLENGE_LEFT_BUTTON = "TAKE_CHALLENGE_LEFT"
 export const BUTTON_CLOSE_RIGHT_ID = "BUTTON_CLOSE_RIGHT_ID"
+export const SHOW_HIDE_BALANCE = "SHOW_HIDE_BALANCE"
+export const SDUI_SWITCH = (value: boolean) => `SDUI_SWITCH_${value}`
+export const QUESTION_MARK_MODAL = "QUESTION_MARK_MODAL"
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;
@@ -149,7 +153,7 @@ export const STATS_TITLE = (title: string) => `STATS_TITLES_${title}`
 export const CHALLENGE_TILE = (text: string) => `CHALLENGE_TILE_${text}`
 export const CHALLENGE_REWARD = (reward: string|number) => `CHALLENGE_REWARD_${reward}`
 export const VALUE_DESCRIPTION = (value:any, description:string) => `VALUE_DESCRIPTION_${value}_${description}`
-export const TEXT_TEMPLATE = (copy:string) => `TEXT_TEMPLATE_${copy}`
+export const TEXT_TEMPLATE = (copy:string, textType?: string) => `TEXT_TEMPLATE_${copy}${textType}`
 export const MARKDOWN_TEXT = (copy:string) => `MARKDOWN_TEXT_${copy}`
 export const APPREVIEW_TEXT = (text:string) => `APPREVIEW_TEXT_${text}`
 export const STEPS_COUNT = (steps: number) => `STEPS_COUNT_${steps}`
@@ -202,6 +206,11 @@ export const YUCOIN_POWER_V4_SCREEN = (earnRate: number) => `YUCOIN_POWER_V4_SCR
 export const LEFT_SIDE_TEXT_SLOT_POWER = (earnRate: string) =>  `LEFT_SIDE_TEXT_SLOT_POWER_${earnRate}}`
 export const LEFT_SIDE_BACKGROUD_IMAGE_SLOT = (imgSrc: string) =>  `LEFT_SIDE_BACKGROUD_IMAGE_SLOT_${imgSrc}}`
 export const RIGHT_SIDE_IMAGE_SLOT = (imgSrc: string) =>  `RIGHT_SIDE_IMAGE_SLOT_${imgSrc}}`
+export const SLOT_TITLE = (title: string) => {
+    const removedSpaces = title.replace(/\s+/g, " ")
+    return `PRODUCT_SLOT_${removedSpaces}`
+}
+export const ONBOARDING_SCREEN_MARKDOWN = (text: string) => `ONBOARDING_SCREEN_MARKDOWN_${text}`
 export const RIGHT_SIDE_IMAGE_BOX_OPTION = (imgSrc: string) =>  `RIGHT_SIDE_IMAGE_BOX_OPTION_${imgSrc}}`
 export const BOX_OPTION_TITLE = (title: string) =>  `BOX_OPTION_TITLE_${title}`
 export const BOX_OPTION_DESCRIPTION = (description: string) =>  `BOX_OPTION_DESCRIPTION_${description}`

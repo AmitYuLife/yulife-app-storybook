@@ -13,7 +13,7 @@ import { ItemSlot } from "../item-slot/item-slot";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 import FastImage from "react-native-fast-image";
 import { View as AnimatedView } from "react-native-animatable";
-import { BUTTON_CLOSE_ONBOARDING, ONBOARDING_SCREEN } from "@ids";
+import { BUTTON_CLOSE_ONBOARDING, ONBOARDING_SCREEN, ONBOARDING_SCREEN_MARKDOWN } from "@ids";
 import { OnboardingHandler } from "../../hooks/useOnboardingButtonHandler";
 import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
 import { useSelector } from "react-redux";
@@ -68,7 +68,7 @@ export const Onboarding = ({ onboarding, onPress, onClose }: IOnboardingProps) =
               {heading}
             </TextTemplate>
           </View>
-          <View style={styles.text}>
+          <View style={styles.text} testID={ONBOARDING_SCREEN_MARKDOWN(text)}>
             <Markdown
               text={text}
               markdownStyles={{

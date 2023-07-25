@@ -6,6 +6,7 @@ import * as when from "./_steps/when"
 import * as data from "@data";
 import * as helper from "./_resources/helpers"
 import { GdentAvailableSoon, GdentAvailableSoonProduct, level1Benefit } from "./_resources/fixture";
+import * as ids from "@ids";
 
 
 Feature("I am able to use the yuscreen v4, create a yumoji and see my correct product slot details", async () => {
@@ -106,6 +107,102 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             helper.ON_YU_SCREEN(data.CUSTOMER_93, GdentAvailableSoon)
             helper.PRODUCT_VIEW(GdentAvailableSoonProduct)
             helper.COVERED_FOR_INFO(level1Benefit)
+        })
+    })
+
+    Scenario("When I log in as a new user and go to the 2nd session, I see the pension onboarding screen", scenario.start, () => {
+        Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_110, data.AUTH_110), async () => {
+            Then("I can see the default onboarding screen", then.textVisible('Check out my power'))
+        })
+        When("I tap the button", when.tapText("Check out my power"), async () => {
+            When("I tap I'll do this later", when.tapIllDoThisLater, async () => {
+                Then("I can see the YuScreen with the pension slot", then.onYuscreenMini("Pension Contributions", data.CUSTOMER_110))
+            })
+        })
+        When("I close and reopen the app", when.reloadOnly, async()=>{  
+            When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
+                helper.ONBOARDING_YUSCREEN("pension", "10")
+            })
+        })
+    })
+
+    Scenario("When I log in as a new user, and click the slot, and go to the 2nd session, I do not see the pension onboarding screen", scenario.start, () => {
+        Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_110, data.AUTH_110), async () => {
+            Then("I can see the default onboarding screen", then.textVisible('Check out my power'))
+        })
+        When("I tap the button", when.tapText("Check out my power"), async () => {
+            When("I tap I'll do this later", when.tapIllDoThisLater, async () => {
+                Then("I can see the YuScreen with the pension slot", then.onYuscreenMini("Pension Contributions", data.CUSTOMER_110))
+            })
+        })
+        When("I tap the slot", when.tapID(ids.SLOT_TITLE("Pension Contributions")), async () => {
+            Then("I am on the Pension intro page", then.amOnPensionProductPage(false))
+        })
+        When("I close and reopen the app", when.reloadOnly, async()=>{  
+            When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
+                Then("I should not see the onboarding screen", then.onYuscreenMini("Pension Contributions", data.CUSTOMER_110))
+            })
+        })
+    })
+
+    Scenario("I can see the onboarding pension screen when I have it enabled", scenario.start, () => {
+        Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_109, data.AUTH_109), async () => {
+            helper.ONBOARDING_YUSCREEN("pension", "10")
+            When("I click the slot", when.tapID(ids.SLOT_TITLE("Pension Contributions")), async () => {
+                Then("I am on the Pension intro page", then.amOnPensionProductPage(false))
+            })
+            When("I dismiss the product page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
+                Then("I can see the YuScreen with the pension slot", then.onYuscreenMini("Pension Contributions", data.CUSTOMER_109))
+            })
+            When("I tap the slot", when.tapID(ids.SLOT_TITLE("Pension Contributions")), async () => {
+                Then("I am on the Pension intro page", then.amOnPensionProductPage(false))
+            })
+            When("I dismiss the product page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
+                Then("I can see the YuScreen with the pension slot", then.onYuscreenMini("Pension Contributions", data.CUSTOMER_109))
+            })
+            When("I scroll until I can see the full carousel pension item", when.swipeFromText(`${data.CUSTOMER_109.data.firstName} ${data.CUSTOMER_109.data.lastName}`, "up", "fast"), async () => {
+                Then("I can see the caoursel item for pension", then.idVisible(ids.CAROUSEL_CARD_BUTTON("**Connect your Pension**")))
+            })
+            When("I tap the caoursel item button", when.tapID(ids.CAROUSEL_CARD_BUTTON("**Connect your Pension**")), async () => {
+                Then("I am on the Pension intro page", then.amOnPensionProductPage(false))
+            })
+            When("I dismiss the product page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
+                When("I go to the home page", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+                    When("I go to the earning page", when.tapYuCoinIcon, async () => {
+                        When('I scroll to the smart pension modal', when.scrollUntilTextVisible(ids.TODAYS_EARNINGS, "Connect my Smart Pension", "down"), async () => {
+                            Then("I can see the pension modal", then.canSeeEarningsPensionTab(false))
+                        })
+                    })
+                })
+            })
+            When("I tap the info tooltip", when.tapIDAtIndex(ids.QUESTION_MARK_MODAL, 1), async () => {
+                Then("I can see the pop up modal", then.canSeePensionPopUpModal)
+            })
+            When("I close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
+                Then("I cannot see the pop up modal", then.cannotSeePensionPopUpModal)
+            })
+            When("I click connect my smart pension", when.tapText("Connect my Smart Pension"), async () => {
+                Then("I am on the Pension intro page", then.amOnPensionProductPage(false))
+            })
+        })
+    })
+
+    Scenario("I cannot see the connection bonus if a user is in between connections", scenario.start, () => {
+        Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_115, data.AUTH_115), async () => {
+            helper.ONBOARDING_YUSCREEN("pension", "10")
+            When("I click the slot", when.tapID(ids.SLOT_TITLE("Pension Contributions")), async () => {
+                Then("I am on the Pension intro page", then.amOnPensionProductPage(true))
+            })
+            When("I dismiss the product page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
+                Then("I can see the YuScreen with the pension slot", then.onYuscreenMini("Pension Contributions", data.CUSTOMER_115))
+            })
+            When("I go to the home page", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+                When("I go to the earning page", when.tapYuCoinIcon, async () => {
+                    When('I scroll to the smart pension modal', when.scrollUntilTextVisible(ids.TODAYS_EARNINGS, "Connect my Smart Pension", "down"), async () => {
+                        Then("I can see the pension modal without the connection bonus", then.canSeeEarningsPensionTab(true))
+                    })
+                })
+            })
         })
     })
 })

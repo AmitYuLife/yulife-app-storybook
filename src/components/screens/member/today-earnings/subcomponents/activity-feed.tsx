@@ -20,7 +20,7 @@ import { openGoogleFit } from "@services/app-link";
 import { getFitKitConnectCopy } from "@components/screens/onboarding/fitkit-connect/copy";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { buildFitKitPermissions, FitKitAndroidSystemPermission } from "@services/fitkit/fitkit.permissions";
-import { ACTIVITY_FEED, TAKE_A_CHALLENGE_LEFT_BUTTON, WELLDONE_BANNER } from "@ids";
+import { ACTIVITY_FEED, QUESTION_MARK_MODAL, TAKE_A_CHALLENGE_LEFT_BUTTON, WELLDONE_BANNER } from "@ids";
 import { useSelector, useDispatch } from "react-redux";
 import { getHasNotification } from "@redux/levels/levels.selectors";
 import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-permissions";
@@ -257,6 +257,7 @@ const ActivityFeed = ({
                 t["screens.today_earning.activity_feed.daily_core_activities.accessibility.accessibility_label"]
               }
               accessibilityRole={"button"}
+              testID={QUESTION_MARK_MODAL}
             >
               <View style={styles.questionMarkIcon} ref={questionMarkRef} collapsable={false}>
                 <Image

@@ -21,7 +21,7 @@ export const ContentItemText = memo(({ text, textType, textAlign, styles, colour
         color={colour}
         type={textType as TemplateProps["type"]}
         textAlign={textAlign as TemplateProps["textAlign"]}
-        testID={TEXT_TEMPLATE(text)}
+        testID={TEXT_TEMPLATE(text, textType)}
       >
         {text}
       </TextTemplate>
