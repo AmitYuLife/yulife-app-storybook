@@ -3,6 +3,7 @@ import { ContentItemSwitch as GqlSwitch } from "@graphql/_core/schema";
 import { Switch } from "@molecules";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";
+import { SDUI_SWITCH } from "@ids";
 
 type Props = GqlSwitch & {
   testID?: string;
@@ -26,6 +27,7 @@ export const ContentItemSwitch = memo((props: Props) => {
       value={value}
       onPress={onValueChange}
       disabled={false}
+      testID={SDUI_SWITCH(value)}
     />
   );
 });

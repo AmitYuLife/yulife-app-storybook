@@ -20,6 +20,7 @@ import {
   LEFT_SIDE_TEXT_SLOT_POWER,
   RIGHT_SIDE_IMAGE_SLOT,
   RIGHT_STATUS_ICON,
+  SLOT_TITLE,
 } from "@ids";
 import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
 import { useSelector } from "react-redux";
@@ -109,7 +110,7 @@ export const ItemSlot = memo(
           >
             {leftBackgroundImage ? <View style={styles.spacer} /> : null}
             <View style={styles.titleWrapper}>
-              <TextTemplate color={titleColour} type="l2b" lineHeight={Style.adjust(14)}>
+              <TextTemplate color={titleColour} type="l2b" lineHeight={Style.adjust(14)} testID={SLOT_TITLE(title)}>
                 {title}
               </TextTemplate>
               {text ? (

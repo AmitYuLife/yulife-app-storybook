@@ -281,6 +281,12 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await textVisible(fixture.allPoweredUp)();
       await textVisible(fixture.employerScheme)() // if product date started user see this
       break;
+    case "pension":
+      await idVisible(ids.SLOT_TITLE("Pension Contributions"))()
+      await textVisible("Great news!")()
+      await idVisible(ids.ONBOARDING_SCREEN_MARKDOWN("Earn up to **15 YuCoin** a day for your existing pension contributions."))
+      await textVisible("Tell me more")()
+      return
     default:
       break;
   }
@@ -383,4 +389,37 @@ export const policyGoesLiveIn = (seed:any) => async () => {
 
   var minutes = diffDuration.minutes();
   await idVisible(ids.COUNTDOWN_UNIT(minutes+1, 'Mins'))()
+}
+
+export const amOnPensionProductPage = (hasConnectedBefore: boolean) => async () => {
+  await textVisible("Earn as you save")()
+  await textVisible("Connect my Smart Pension")()
+  if (!hasConnectedBefore) {
+    await textVisible('Get instant 250 Bonus YuCoin')()
+  }
+}
+
+export const onYuscreenMini = (slotTitle: string, customer: typeof data.CUSTOMER_109) => async () => {
+  await idVisible(ids.SLOT_TITLE(slotTitle))()
+  await textVisible(`${customer.data.firstName} ${customer.data.lastName}`)()
+}
+
+export const canSeeEarningsPensionTab = (hasConnectedBefore: boolean) => async () => {
+  await textVisible("Savings")()
+  await textVisible("Connect to your Smart Pension account and earn up to 15 YuCoin per day for your existing pension contributions")()
+  
+  if (!hasConnectedBefore) {
+    await textVisible("Connection bonus")()
+    await textVisible("250")()
+  }
+}
+
+export const canSeePensionPopUpModal = async () => {
+  await textVisible("We want to help you take care of your savings by rewarding you YuCoin based on your pension contribution!")()
+  await textVisible("Find all information about connecting your pension here:")()
+}
+
+export const cannotSeePensionPopUpModal = async () => {
+  await textNotVisible("We want to help you take care of your savings by rewarding you YuCoin based on your pension contribution!")()
+  await textNotVisible("Find all information about connecting your pension here:")()
 }

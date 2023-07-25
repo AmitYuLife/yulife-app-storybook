@@ -1,6 +1,7 @@
 import { useSduiBodyScrollValue } from "@components/sdui/_hooks/useSduiBodyScrollValue";
 import { ContentItem } from "@graphql/_core/schema";
 import { useSafeAreaViewOffset } from "@hooks";
+import { SDUI_BODY_SCROLL } from "@ids";
 import React, { useEffect, useRef } from "react";
 import { Animated, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { renderItemContent } from "../renderer";
@@ -30,6 +31,7 @@ export const Body = ({ items, isSafeAreaView }: Props) => {
         scrollEventThrottle={16}
         bounces={false}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], { useNativeDriver: true })}
+        testID={SDUI_BODY_SCROLL}
       >
         {!items?.length ? null : items.map(renderItemContent)}
       </Animated.ScrollView>

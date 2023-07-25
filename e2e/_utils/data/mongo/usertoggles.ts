@@ -1658,7 +1658,7 @@ export const CUSTOMER_91_TOGGLES = {
   },
 } as IDatabaseItem;
 
-export const CUSTOMER_62TOGGLES = {
+export const CUSTOMER_92_TOGGLES = {
   type: "mongo",
   modelName: "usertoggles",
   data: {
@@ -1867,6 +1867,97 @@ export const CUSTOMER_108_TOGGLES = {
     userId: customer.CUSTOMER_108.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_109_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_109.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      hasSmartPensionActive: true
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_110_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_110.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      hasSmartPensionActive: true
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_111_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_111.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      hasSmartPensionActive: true
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_112_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_112.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      hasSmartPensionActive: true
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_113_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_113.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      hasSmartPensionActive: true
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_114_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_114.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      hasSmartPensionActive: true
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_115_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_115.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      hasSmartPensionActive: true
     },
   },
 } as IDatabaseItem;

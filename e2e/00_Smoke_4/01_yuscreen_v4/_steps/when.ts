@@ -26,6 +26,8 @@ export const {
   tapIDAtIndex,
   textNotVisible,
   clearFieldByID,
+  tapYuCoinIcon,
+  reloadOnly
 } = navigation.common;
 
 export const tapAvatarItem = (avatarItem: string, status: string) => async () => {

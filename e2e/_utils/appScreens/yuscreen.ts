@@ -25,6 +25,7 @@ import {
   CAROUSEL_CARD,
   ONBOARDING_SCREEN,
   V4_YUSCREEN,
+  SLOT_TITLE,
 } from "@ids";
 import moment from "moment";
 import { BPEEW_USA_1 } from "04_USA/_data";
@@ -404,6 +405,11 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
       await expect(element(by.text(HealthInsurance))).toBeVisible();
       await expect(element(by.text(employerScheme))).toBeVisible();
       await expect(element(by.text(StartSoon))).not.toBeVisible();
+      break;
+    case "pension": 
+      await textVisibleAtIndex(yuCoinPower, 0)();
+      await idVisible(SLOT_TITLE("Pension Contributions"))()
+      
       break;
     default:
       break;

@@ -1620,3 +1620,94 @@ export const CUSTOMER_108 = {
     status: "onboarded",
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_109 = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Pension",
+    lastName: "Onboardorino",
+    dateOfBirth: moment().subtract(33, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+
+export const CUSTOMER_110 = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Pension",
+    lastName: "Onboardorino",
+    dateOfBirth: moment().subtract(33, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+
+export const CUSTOMER_111 = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Activo",
+    lastName: "Pensionio",
+    dateOfBirth: moment().subtract(33, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+
+export const CUSTOMER_112 = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Pending",
+    lastName: "DeNoContribution",
+    dateOfBirth: moment().subtract(33, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+
+export const CUSTOMER_113 = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Pending",
+    lastName: "DeContribution",
+    dateOfBirth: moment().subtract(33, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+
+export const CUSTOMER_114 = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Paused",
+    lastName: "DeContribution",
+    dateOfBirth: moment().subtract(33, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+
+export const CUSTOMER_115 = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Pension",
+    lastName: "InBetweeno",
+    dateOfBirth: moment().subtract(33, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
