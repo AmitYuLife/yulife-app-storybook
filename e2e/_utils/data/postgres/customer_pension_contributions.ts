@@ -4,7 +4,7 @@ import { PENSION_CONNECTION_USER_111, PENSION_CONNECTION_USER_113, PENSION_CONNE
 
 export const PENSION_CONTRIBUTION_USER_111 = {
     type: "postgres",
-    modelName: "customer_pension_contributions",
+    modelName: "customer_pension_contribution",
     data: {
         contribution_id: generateRandomPostgresId(),
         pension_connection_id: PENSION_CONNECTION_USER_111.data.connectionId,
@@ -23,7 +23,7 @@ export const PENSION_CONTRIBUTION_USER_111 = {
 
 export const PENSION_CONTRIBUTION_USER_113 = {
     type: "postgres",
-    modelName: "customer_pension_contributions",
+    modelName: "customer_pension_contribution",
     data: {
         contribution_id: generateRandomPostgresId(),
         pension_connection_id: PENSION_CONNECTION_USER_113.data.connectionId,
@@ -42,7 +42,7 @@ export const PENSION_CONTRIBUTION_USER_113 = {
 
 export const PENSION_CONTRIBUTION_USER_114 = {
     type: "postgres",
-    modelName: "customer_pension_contributions",
+    modelName: "customer_pension_contribution",
     data: {
         contribution_id: generateRandomPostgresId(),
         pension_connection_id: PENSION_CONNECTION_USER_114.data.connectionId,
