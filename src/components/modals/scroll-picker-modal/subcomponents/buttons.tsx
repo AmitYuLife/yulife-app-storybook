@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Button, LinkButton } from "@molecules";
 import { Style } from "@styles";
+import { t } from "@locale";
 
 interface Props {
   onConfirm: () => void;
@@ -10,7 +11,12 @@ interface Props {
   confirmLabel?: string;
 }
 
-export const Buttons = ({ onConfirm, onCancel, cancelLabel = "Cancel", confirmLabel = "Select" }: Props) => (
+export const Buttons = ({
+  onConfirm,
+  onCancel,
+  cancelLabel = t("labels.cta.cancel"),
+  confirmLabel = t("labels.cta.select"),
+}: Props) => (
   <View style={styles.wrapper}>
     <Button label={confirmLabel} onPress={onConfirm} />
     <LinkButton label={cancelLabel} onPress={onCancel} />
