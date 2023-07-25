@@ -4,7 +4,7 @@ import { CUSTOMER_111, CUSTOMER_112, CUSTOMER_113, CUSTOMER_114, CUSTOMER_115 } 
 
 export const PENSION_CONNECTION_USER_111 = {
     type: "postgres",
-    modelName: "customer_pension_connections",
+    modelName: "customer_pension_connection",
     data: {
         connectionId: generateRandomPostgresId(),
         customerId: CUSTOMER_111.data.customerId,
@@ -24,7 +24,7 @@ export const PENSION_CONNECTION_USER_111 = {
 
 export const PENSION_CONNECTION_USER_112 = {
     type: "postgres",
-    modelName: "customer_pension_connections",
+    modelName: "customer_pension_connection",
     data: {
         connectionId: generateRandomPostgresId(),
         customerId: CUSTOMER_112.data.customerId,
@@ -44,7 +44,7 @@ export const PENSION_CONNECTION_USER_112 = {
 
 export const PENSION_CONNECTION_USER_113 = {
     type: "postgres",
-    modelName: "customer_pension_connections",
+    modelName: "customer_pension_connection",
     data: {
         connectionId: generateRandomPostgresId(),
         customerId: CUSTOMER_113.data.customerId,
@@ -64,7 +64,7 @@ export const PENSION_CONNECTION_USER_113 = {
 
 export const PENSION_CONNECTION_USER_114 = {
     type: "postgres",
-    modelName: "customer_pension_connections",
+    modelName: "customer_pension_connection",
     data: {
         connectionId: generateRandomPostgresId(),
         customerId: CUSTOMER_114.data.customerId,
@@ -84,7 +84,7 @@ export const PENSION_CONNECTION_USER_114 = {
 
 export const PENSION_CONNECTION_USER_115 = {
     type: "postgres",
-    modelName: "customer_pension_connections",
+    modelName: "customer_pension_connection",
     data: {
         connectionId: generateRandomPostgresId(),
         customerId: CUSTOMER_115.data.customerId,
