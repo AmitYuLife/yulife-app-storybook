@@ -173,7 +173,7 @@ Feature("As a user I can take a challenge", async () => {
         })
         helper.INSPECT_USER(data.CUSTOMER_55, "Forest", data.CUSTOMER_52)();
         When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-            When("I click on the challenge profiles viewed", when.tapChallenge("0 / 5" + t("profiles viewed")), async () => {
+            When("I click on the challenge profiles viewed", when.tapChallenge("0 / 5 " + t("profiles viewed")), async () => {
                 Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(1, 0.2))
                 Then("I should see Claim available for the first milestone", then.claimVisible(1))
             })
@@ -196,7 +196,7 @@ Feature("As a user I can take a challenge", async () => {
         helper.INSPECT_USER(data.CUSTOMER_54, "Forest", data.CUSTOMER_52)();
         helper.INSPECT_USER(data.CUSTOMER_58, "Forest", data.CUSTOMER_52)();
         When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-            When("I click on the challenge profiles viewed", when.tapChallenge("1 / 5 profiles viewed"), async () => {
+            When("I click on the challenge profiles viewed", when.tapChallenge("1 / 5 " + t("profiles viewed")), async () => {
                 Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(3, 0.6))
                 Then("I should see Claim available for the second milestone", then.claimVisible(2))
             })
@@ -225,7 +225,7 @@ Feature("As a user I can take a challenge", async () => {
         })
         helper.INSPECT_USER(data.CUSTOMER_56, "Forest", data.CUSTOMER_52)();
         When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-            When("I click on the challenge profiles viewed", when.tapChallenge("3 / 5 profiles viewed"), async () => {
+            When("I click on the challenge profiles viewed", when.tapChallenge("3 / 5 " + t("profiles viewed")), async () => {
                 Then("I should be on the completed events milestone page", then.onCompletedEventPage("Ends on the 10th", "5 Profiles viewed", "650"))
             })
         })

@@ -452,6 +452,9 @@ export const USER_ONBOARDING_35 = {
     createdAt: moment().subtract(7, "d").toISOString(),
     updatedAt: moment().toISOString(),
     inviteDate: moment().subtract(7, "d").toISOString(),
+    performedSteps: {
+      newYumojiBuilder: true
+    }
   },
 } as IDatabaseItem;
 
@@ -543,6 +546,9 @@ export const USER_ONBOARDING_40 = {
     userId: user.USER_40.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      newYumojiBuilder: true,
+    }
   },
 } as IDatabaseItem;
 
