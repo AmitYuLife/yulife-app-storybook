@@ -12,6 +12,11 @@ import {
   CONTENT_ITEM_IMAGE,
   CONTENT_SMALL_IMAGE_CARD_URL,
   CONTENT_MIDDLE_ITEM_IMAGE,
+  PCP_LIST_DESCRIPTION,
+  INFO_PANEL_IMAGE,
+  RIGHT_SIDE_IMAGE_BOX_OPTION,
+  BOX_OPTION_TITLE,
+  BOX_OPTION_DESCRIPTION,
 } from "@ids";
 import moment = require("moment");
 import * as text from "./fixture";
@@ -27,7 +32,7 @@ import {
   CPE_VSTD_3,
   CPE_WLIF_2,
 } from "04_USA/_data";
-import { USProductData } from "./types";
+import { BoxOption, USProductData } from "./types";
 
 export const {
   idVisible,
@@ -392,3 +397,27 @@ export const onPCPPage = async () =>{
   await idVisible(CONTENT_MIDDLE_ITEM_IMAGE(text.Transamerica_Top_Banner))()
   await idVisible(TEXT_TEMPLATE("Available to you"))()
 }
+
+export const infoPanelVisible = (visible: boolean) => async () => {
+  if(visible){
+    await idVisible(PCP_LIST_DESCRIPTION)()
+    await idVisible(INFO_PANEL_IMAGE(text.PCPListInfoPanel.imageUrl))()
+  } else {
+    await idNotVisible(PCP_LIST_DESCRIPTION)()
+    await idNotVisible(INFO_PANEL_IMAGE(text.PCPListInfoPanel.imageUrl))()  
+  }
+}
+
+export const pcpProductVisible = (prod: BoxOption, visible: boolean) => async () => {
+  if(visible){
+    await idVisible(RIGHT_SIDE_IMAGE_BOX_OPTION(prod.imageUrl))()
+    await idVisible(BOX_OPTION_TITLE(prod.title))()
+    await idVisible(BOX_OPTION_DESCRIPTION(prod.description))()
+  } else {
+    await idNotVisible(RIGHT_SIDE_IMAGE_BOX_OPTION(prod.imageUrl))()
+    await idNotVisible(BOX_OPTION_TITLE(prod.title))()
+    await idNotVisible(BOX_OPTION_DESCRIPTION(prod.description))()
+  }
+}
+
+

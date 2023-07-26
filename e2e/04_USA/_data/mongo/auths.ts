@@ -128,3 +128,36 @@ export const AUTH_USA_11 = {
         userId: customer.CUSTOMER_USA_11.data.customerId,
     }
 }  as IDatabaseItem
+
+export const AUTH_USA_12 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "37.34.118.97",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_12.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_USA_13 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "37.34.118.97",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_13.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_USA_14 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "37.34.118.97",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_14.data.customerId,
+    }
+}  as IDatabaseItem

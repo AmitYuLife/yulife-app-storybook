@@ -2,7 +2,7 @@ import { When, Then } from "@yu-life/yulife-bdd-framework";
 import * as when from "./when"
 import * as then from "./then"
 import * as text  from "./fixture";
-import { V4_YUSCREEN, ALL_PRODUCTS_CONTAINER_VIEW, BACK_BUTTON, CAROUSEL_CARD_BUTTON, ONBOARDING_SCREEN, CAROUSEL_CARD, SPONSOR_LOGO_IMAGE, BOX_OPTION_TITLE, BOX_OPTION_DESCRIPTION, RIGHT_SIDE_IMAGE_BOX_OPTION, YUSCREEN_SCROLL_VIEW, LEFT_SIDE_BACKGROUD_IMAGE_SLOT, RIGHT_SIDE_IMAGE_SLOT, LEFT_SIDE_TEXT_SLOT_POWER, WELLBEING_HUB_SCREEN, TEXT_TEMPLATE, INFO_PANEL_IMAGE, PCP_LIST_DESCRIPTION, CONTENT_MIDDLE_ITEM_IMAGE} from "@ids";
+import { V4_YUSCREEN, ALL_PRODUCTS_CONTAINER_VIEW, BACK_BUTTON, CAROUSEL_CARD_BUTTON, ONBOARDING_SCREEN, CAROUSEL_CARD, SPONSOR_LOGO_IMAGE, BOX_OPTION_TITLE, BOX_OPTION_DESCRIPTION, RIGHT_SIDE_IMAGE_BOX_OPTION, YUSCREEN_SCROLL_VIEW, LEFT_SIDE_BACKGROUD_IMAGE_SLOT, RIGHT_SIDE_IMAGE_SLOT, LEFT_SIDE_TEXT_SLOT_POWER, WELLBEING_HUB_SCREEN, TEXT_TEMPLATE, INFO_PANEL_IMAGE, PCP_LIST_DESCRIPTION, CONTENT_MIDDLE_ITEM_IMAGE, COUNTDOWN_COMPONENT, ARROW_BUTTON} from "@ids";
 import { BoxOption, USProductData, YuScreenInfo } from "./types";
 import { BUSINESS_ACCOUNT_USA_2, } from "04_USA/_data";
 import moment from "moment";
@@ -59,14 +59,16 @@ export const LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION = async (productCard:
 
     When(`I tap on slot ${text.Legal_Stuff}`, when.tapText(text.Legal_Stuff), async () => {
         Then(`I should see correct legal stuff of ${productCard.heading}`, then.onLegalStuffPage(productCard))
-        When(`I go back from legal stuff page`, when.tapID(BACK_BUTTON), async () => {
-            When(`I go back from product page details`, when.tapID(BACK_BUTTON), async () => {
-                if(screen === "All Products Carousel") {
-                    Then(`I should see correct short description of ${productCard.slotAbreviation} in carousel list`, then.onDescriptionProductCard(productCard))
-                } else  {
-                    Then(`I should see again ${text.createYumujiCTA}`, then.textVisible(text.createYumujiCTA))
-                }
-            })
+    })
+    When(`I go back from legal stuff page`, when.tapID(BACK_BUTTON), async () => {
+        When(`I go back from product page details`, when.tapID(BACK_BUTTON), async () => {
+            if(screen === "All Products Carousel") {
+                Then(`I should see correct short description of ${productCard.slotAbreviation} in carousel list`, then.onDescriptionProductCard(productCard))
+            } else if(screen === "pcp"){
+                Then("I'm on the pcp page", then.onPCPPage)
+            } else  {
+                Then(`I should see again ${text.createYumujiCTA}`, then.textVisible(text.createYumujiCTA))
+            }
         })
     })
 }
@@ -76,7 +78,7 @@ export const ONBOARDING_YUSCREEN_USA = async (seed:YuScreenInfo) => {
     Then(`I should see ${text.yuCoinText} text`, then.textVisible(text.yuCoinText))
     Then(`I should see ${text.powerText} text`, then.textVisible(text.powerText))
     Then(`I should see ${seed.mainYuCoinPower} text`, then.textVisible(seed.mainYuCoinPower))
-    Then(`I should see ${seed.SlotProductTitle} text`, then.textVisible(seed.SlotProductTitle))
+    seed.SlotProductTitle && Then(`I should see ${seed.SlotProductTitle} text`, then.textVisible(seed.SlotProductTitle))
     seed.SlotLeftBackgroundImgSrc && Then(`I should be able to see ${seed.SlotLeftBackgroundImgSrc} background image on left`, then.idVisibleAtIndex(LEFT_SIDE_BACKGROUD_IMAGE_SLOT(seed.SlotLeftBackgroundImgSrc), 0));
     seed.SlotYuCoinPowerText && Then(`I should be able to see ${seed.SlotYuCoinPowerText} text power on left of slot`, then.idVisibleAtIndex(LEFT_SIDE_TEXT_SLOT_POWER(seed.SlotYuCoinPowerText), 0));
     //if seed data have info for second slot will run below
@@ -166,7 +168,7 @@ export const BOX_OPTION_NOT_VISIBLE = async (seed: BoxOption) => {
     })
 }
 
-export const SPONSORED_LOGO_VISSIBLE = async () => {
+export const SPONSORED_LOGO_VISIBLE = async () => {
     When("I wait 1 seconds", when.wait(1000), async () => {
         Then(`I should see ${text.SponsoredBy} text`, then.textVisible(text.SponsoredBy))
         Then(`I should see ${SPONSOR_LOGO_IMAGE(text.Guardian_Sponsor)} sponsor image`, then.idVisible(SPONSOR_LOGO_IMAGE(text.Guardian_Sponsor)))
@@ -175,7 +177,7 @@ export const SPONSORED_LOGO_VISSIBLE = async () => {
     })
 }
 
-export const SPONSORED_LOGO_NOT_VISSIBLE = async () => {
+export const SPONSORED_LOGO_NOT_VISIBLE = async () => {
     When("I wait 1 seconds", when.wait(1000), async () => {
         Then(`I should NOT see ${text.SponsoredBy} text`, then.textNotVisible(text.SponsoredBy))
         Then(`I should NOT see ${SPONSOR_LOGO_IMAGE(text.Guardian_Sponsor)} sponsor image`, then.idNotVisible(SPONSOR_LOGO_IMAGE(text.Guardian_Sponsor)))
@@ -184,10 +186,17 @@ export const SPONSORED_LOGO_NOT_VISSIBLE = async () => {
     })
 }
 
-export const ENROLMENT_ENDS_IN = async (date:typeof BPEW_GDent_10) => {
-    When(`I swipe down the page until i see ${BUSINESS_ACCOUNT_USA_2.data.external_admin_url_description}`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, BUSINESS_ACCOUNT_USA_2.data.external_admin_url_description, "down"), async () => {
-        Then(`I should see Your enrollment will end on ${moment(date.data.enrolment_end_date).format("MM/DD/YYYY")}`, then.textVisible(`Your enrollment will end on ${moment(date.data.enrolment_end_date).format("MM/DD/YYYY")}`))
-        Then(`I should see right countdown with  Days Hours Minutes left ${date.data.enrolment_end_date} `, then.enrolmentEndsIn(date.data.enrolment_end_date))
+export const ENROLMENT_VISIBLE = async (date:typeof BPEW_GDent_10, state = "pre" || "active") => {
+    const targetDate = date.data.enrolment_end_date
+    const countdownDate = state === "pre" ? moment(targetDate).subtract(1, "day").format("YYYY-MM-DD") : targetDate
+    const countdownMessage = state === "pre" ? text.preEnrollmentMessage : text.enrollmentMessage
+    const buttonMessage = state === "pre" ? text.preEnrollmentButtonMessage : text.activeEnrollmentButtonMessage
+    When(`I swipe down the page until i see the enrollment section`, when.scrollUntilIdVisible(YUSCREEN_SCROLL_VIEW, COUNTDOWN_COMPONENT, "down"), async () => {
+        Then(`I should see the correct enrollment message`, then.textVisible(`${countdownMessage} ${moment(targetDate).format("MM/DD/YYYY")}`))
+        Then(`I should see right countdown with Days Hours Minutes left`, then.enrolmentEndsIn(moment(countdownDate).format("MM/DD/YYYY")))
+    })
+    When(`I swipe down the page`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.SurveyLabel, "down"), async () => {
+        Then(`I should see the correct button message`, then.textVisible(buttonMessage))
     })
 }
 
@@ -209,19 +218,33 @@ export const CHECK_WELLBEING_HUB = async (customer: any, seed: BoxOption) => {
     })
 }
 
-export const CHECK_EXPLORE_INSURANCE = async (seed: BoxOption, prod: BoxOption, infoPanel = text.PCPListInfoPanel) => {
+export const CHECK_EXPLORE_INSURANCE = async (prod: BoxOption, seed = text.ExploreInsureanceBox) => {
 
     When(`I scroll down to ${seed.description}`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, seed.description, "down"), async () => {
         When(`I tap ${seed.description}`, when.tapText(seed.description), async () => {
             Then("I'm on the pcp page", then.onPCPPage)
-            Then("I should see the info panel image", then.idVisible(INFO_PANEL_IMAGE(infoPanel.imageUrl)))
-            Then(`I should see the info panel description text`, then.idVisible(PCP_LIST_DESCRIPTION))
+            Then("I can see the info panel", then.infoPanelVisible(true))
             Then(`I should see ${prod.imageUrl} text`, then.idVisible(RIGHT_SIDE_IMAGE_BOX_OPTION(prod.imageUrl)))
             Then(`I should see ${prod.title} text`, then.idVisible(BOX_OPTION_TITLE(prod.title)))
             Then(`I should see ${prod.description} text`, then.idVisible(BOX_OPTION_DESCRIPTION(prod.description)))
+            Then("I can NOT see the arrow button to go deeper into the product info", then.idNotVisible(ARROW_BUTTON))
         })
-        When("I tap to go back to Yu Screen", when.tapID(BACK_BUTTON), async () => {
-            Then("I should not see Vision Insurance ", then.idNotVisible(TEXT_TEMPLATE("Vision Insurance")))
-        })
+        
     })
 }
+
+export const CHECK_ENROLLMENT_OPTIONS_PRE_ACTIVE = async (prod: BoxOption) => {
+    When(`I tap the button`, when.tapText(text.preEnrollmentButtonMessage), async () => {
+        Then("I'm on the pcp page", then.onPCPPage)
+        Then("I cannot see the info panel", then.infoPanelVisible(false))
+        Then("I can see the option for the cancer insurance", then.pcpProductVisible(prod, true))
+        Then("I see the arrow button to go deeper into the product info", then.idVisible(ARROW_BUTTON))
+    })
+}
+
+export const CHECK_PCP_PRODUCT = async (prod: BoxOption, productCard: USProductData) => {
+    When(`I tap the product`, when.tapID(BOX_OPTION_TITLE(prod.title)), async () => {
+        Then("I'm on the product page for that product", then.onMoreProtectionProductsCard(productCard))
+    })
+}
+

@@ -136,11 +136,11 @@ Feature("I am able to see Product Details in US YU Screen ", async () => {
           helper.ONBOARDING_YUSCREEN("ACCSICK/CAN/VLIF", "1");
           helper.YUSCREEN_USA_V4(CUSTOMER_USA_4, "ACCSICK/CAN/VLIF", "1");
           helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_CAN);
-          helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_CAN, "Yu Sreen");
+          helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_CAN, "Yu Screen");
           helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_ACCSICK);
-          helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_ACCSICK, "Yu Sreen");
+          helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_ACCSICK, "Yu Screen");
           helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_VLIF);
-          helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VLIF, "Yu Sreen");
+          helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VLIF, "Yu Screen");
         }
       );
     }

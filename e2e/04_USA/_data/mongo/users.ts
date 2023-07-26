@@ -180,3 +180,48 @@ export const USER_USA_11 = {
         nickname:"Eleven USA"
     }
 } as IDatabaseItem
+
+export const USER_USA_12 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_12.data.customerId,
+        products: [{
+            earnRate: 1,
+        }],
+        earnRate: 1,
+        nickname:"Tweleve USA"
+    }
+} as IDatabaseItem
+
+export const USER_USA_13 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_13.data.customerId,
+        products: [{
+            earnRate: 1,
+        }],
+        earnRate: 1,
+        nickname:"Thirteen USA"
+    }
+} as IDatabaseItem
+
+export const USER_USA_14 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_14.data.customerId,
+        products: [{
+            earnRate: 1,
+        }],
+        earnRate: 1,
+        nickname:"Fourteen USA"
+    }
+} as IDatabaseItem

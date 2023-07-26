@@ -30,6 +30,10 @@ export const yuMojiBuilder = "Create your Yumoji to step into the Yuniverse"
 export const HowToEnroll = "How to enroll"
 export const Gap = "GAP insurance"
 export const SponsoredBy = "Sponsored by"
+export const preEnrollmentMessage = "Your enrollment will start on"
+export const enrollmentMessage = "Your enrollment will end on"
+export const preEnrollmentButtonMessage = "See all available products"
+export const activeEnrollmentButtonMessage = "Select my benefits now!"
 
 
 //Footer copy texts
@@ -52,7 +56,7 @@ export const Calendar_ImageUrl = "https://yulife-develop.imgix.net/content/icons
 export const Doc_ImageUrl = "https://yulife-develop.imgix.net/content/icons/doc.svg?ixlib=js-3.2.1&w=192&h=192&s=778d19bc59418e7d6bd8868ab3fc698f"
 export const Email_ImageUrl = "https://yulife-develop.imgix.net/content/icons/email.svg?ixlib=js-3.2.1&w=192&h=192&s=e0f9b5801e3cd35ea9467147e00947d1"
 export const Heart_ImageUrl = "https://yulife-develop.imgix.net/content/icons/heart.svg?ixlib=js-3.2.1&w=192&h=192&s=f7a373c6df8cbbf00ad9ffe90a83b848"
-export const Guardian_ImageUrl = "https://yulife-develop.imgix.net/logos/guardian-inline-logo-2022-09-13-2.svg?ixlib=js-3.2.1&w=207&h=42&s=e7aa2c7bb6d5d763a015b6596a863983"
+export const Guardian_ImageUrl = "https://yulife-develop.imgix.net/logos/guardian-inline-logo-2022-09-13-2.svg?ixlib=js-3.2.1&w=315&h=60&s=ed09ea178518cddd3cac51f354acdfe4"
 export const Video_ImageUrl = "https://yulife-develop.imgix.net/illustrations/find-out-more-2022-12-13-1.png?ixlib=js-3.2.1&w=1125&h=624&s=55e7f0965ee537b1fccf9846f556de8a"
 export const Guardian_Sponsor = "https://yulife-develop.imgix.net/sponsored-logos/guardian-1.svg?ixlib=js-3.2.1&w=285&s=c8c67c84fea37e61f318ba8e6f61deae"
 export const Transamerica_Sponsor = "https://yulife-develop.imgix.net/sponsored-logos/transamerica-2.svg?ixlib=js-3.2.1&w=270&s=279b4702ae6fbeefe6175a81ffbde2b6"
@@ -603,6 +607,22 @@ export const VisInsurance: YuScreenInfo = {
     SlotProductTitle: Guardian_VIS.heading,
 };
 
+export const CanInsurance: YuScreenInfo = {
+    mainYuCoinPower: "1",
+    SlotProductTitle: Guardian_CAN.heading,
+    SlotLeftBackgroundImgSrc: canEnrolPlusImage,
+};
+
+export const CriInsurance: YuScreenInfo = {
+    mainYuCoinPower: "1",
+    SlotProductTitle: Guardian_CRI.slotAbreviation,
+    SlotLeftBackgroundImgSrc: canEnrolPlusImage,
+};
+
+export const VstdInsurance: YuScreenInfo = {
+    mainYuCoinPower: "1",
+};
+
 export const GapInEnrolVisOutEnrol: YuScreenInfo = {
     mainYuCoinPower: "1",
     SlotProductTitle: Gap,
@@ -627,4 +647,10 @@ export const CancerInsuranceBox:BoxOption = {
     imageUrl: "https://yulife-develop.imgix.net/core-products/guardian-cancer.svg?ixlib=js-3.2.1&w=360&h=312&s=c76b28b3c615b2da32e0d25fca9114f5",
     title: "Cancer Insurance",
     description: "Guardian provides cash benefits for cancer diagnosis, procedures, and treatment."
+}
+
+export const ShortTermDisibilityInsurance:BoxOption = {
+    imageUrl: "https://yulife-develop.imgix.net/core-products/guardian-disability.svg?ixlib=js-3.2.1&w=360&h=312&s=fa9ccfd77f32031387888668fac872c5",
+    title: "Short Term Disability Insurance",
+    description: "Guardian’s income protection plan for when you are unable to work."
 }

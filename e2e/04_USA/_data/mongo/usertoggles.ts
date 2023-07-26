@@ -127,3 +127,36 @@ export const CUSTOMER_USA_11_TOGGLES = {
         }
     }
 } as IDatabaseItem
+
+export const CUSTOMER_USA_12_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_12.data.customerId,
+        features: {
+        }
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_USA_13_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_13.data.customerId,
+        features: {
+        }
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_USA_14_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_14.data.customerId,
+        features: {
+        }
+    }
+} as IDatabaseItem

@@ -399,3 +399,42 @@ export const CBP_USA_11_CAN = {
         data : "{\"dateOfBirth\":\"1990-12-09\",\"firstName\":\"Usa\",\"lastName\":\"USA\",\"sexAtBirth\":\"M\"}"
     }
 }
+
+export const CBP_USA_12_CAN = {
+    type,
+    modelName,
+    data:{
+        business_product_id: bp.BUSINESS_PRODUCT_USA_12_CAN.product.data.product_id,
+        customer_product_id: cpe.CPE_CAN_12.data.customer_product_id,
+        category_id : "1",
+        start_date: cpe.CPE_CAN_12.data.start_date,
+        archived : false,
+        data : "{\"dateOfBirth\":\"1990-12-09\",\"firstName\":\"Usa\",\"lastName\":\"USA\",\"sexAtBirth\":\"M\"}"
+    }
+}
+
+export const CBP_USA_13_CRI = {
+    type,
+    modelName,
+    data:{
+        business_product_id: bp.BUSINESS_PRODUCT_USA_13_CRI.product.data.product_id,
+        customer_product_id: cpe.CPE_CRI_13.data.customer_product_id,
+        category_id : "1",
+        start_date: cpe.CPE_CRI_13.data.start_date,
+        archived : false,
+        data : "{\"dateOfBirth\":\"1990-12-09\",\"firstName\":\"Usa\",\"lastName\":\"USA\",\"sexAtBirth\":\"M\"}"
+    }
+}
+
+export const CBP_USA_14_VSTD = {
+    type,
+    modelName,
+    data:{
+        business_product_id: bp.BUSINESS_PRODUCT_USA_14_VSTD.product.data.product_id,
+        customer_product_id: cpe.CPE_VSTD_14.data.customer_product_id,
+        category_id : "1",
+        start_date: cpe.CPE_VSTD_14.data.start_date,
+        archived : false,
+        data : "{\"dateOfBirth\":\"1990-12-09\",\"firstName\":\"Usa\",\"lastName\":\"USA\",\"sexAtBirth\":\"M\"}"
+    }
+}
