@@ -20,7 +20,7 @@ Feature("Smart Pension", async () => {
     When('I swipe to the bottom', when.swipeFromText(`${data.CUSTOMER_111.data.firstName} ${data.CUSTOMER_111.data.lastName}`, "up", "fast"), async () => {
       Then("I cannot see the caoursel item", then.idNotVisible(ids.CAROUSEL_CARD_BUTTON("**Connect your Pension**")))
     })
-    When('I swipe up', when.swipeFromText("Share your thoughts", "down", "fast"), async () => {
+    When('I swipe up', when.swipeFromText("Browse more protection", "down", "fast"), async () => {
       When("I tap the pension slot", when.tapID(ids.SLOT_TITLE("Pension Contributions")), async () => {
         Then("I can see an active pension contribution page", then.canSeePensionContributionPage("active", PensionInfoUser111, "5"))
       })
