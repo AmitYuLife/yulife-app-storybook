@@ -141,6 +141,7 @@ export const MEDITATION_YUCOIN_REWARD = (yucoin: number) => MEDIA_YUCOIN_REWARD(
 export const CHALLENGE_HISTORY_YUCOIN_STARS = (yuCoin: string, stars: number, challengeType: string, index: number) => `CHALLENGE_HISTORY_YUCOIN+${yuCoin}_${stars}_${challengeType}_${index}`
 export const WELLDONE_BANNER = "WELLDONE_BANNER";
 export const YUNITY_CARD = (description: string) => `YUNITY_CARD_${description}`;
+export const COUNTDOWN_COMPONENT = "COUNTDOWN_COMPONENT"
 export const COUNTDOWN_UNIT = (unit: number, dateType: string) => unit < 10 && (dateType === 'Mins' || 'Hours') ? `COUNTDOWN_UNIT0${unit}_${dateType}` : `COUNTDOWN_UNIT${unit}_${dateType}`
 export const CHALLENGE_HISTORY_NEW_SLOT = (type: string, yucoin: string, rating: number) => `CHALLENGE_HISTORY_NEW_SLOT_${type}_${yucoin}_${rating}`
 

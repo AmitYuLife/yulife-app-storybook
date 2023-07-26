@@ -38,7 +38,7 @@ export interface InfoPanel {
 
 export interface YuScreenInfo {
     mainYuCoinPower: string
-    SlotProductTitle: string,
+    SlotProductTitle?: string,
     SlotYuCoinPowerText?: string,
     SlotLeftBackgroundImgSrc?: string,
     SecondSlotProductTitle?: string,

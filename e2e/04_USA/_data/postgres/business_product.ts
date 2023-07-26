@@ -264,3 +264,33 @@ export const BUSINESS_PRODUCT_USA_11_CAN = generateProductRecords({
     contribution_type: "partial",
  }
 });
+
+export const BUSINESS_PRODUCT_USA_12_CAN = generateProductRecords({
+  productCode: ProductCode.CAN,
+  carrier: Carrier.Guardian,
+  productId: "SEED_12_CAN",
+  businessAccountId: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
+  startDate: "2021-06-03T00:00:00.000Z",
+  product: {
+    contribution_type: "partial",
+ }
+});
+
+export const BUSINESS_PRODUCT_USA_13_CRI = generateProductRecords({
+  productCode: ProductCode.CRI,
+  carrier: Carrier.Guardian,
+  productId: "SEED_13_CRI",
+  businessAccountId: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
+  startDate: "2021-06-03T00:00:00.000Z",
+});
+
+export const BUSINESS_PRODUCT_USA_14_VSTD = generateProductRecords({
+  productCode: ProductCode.VSTD,
+  carrier: Carrier.Guardian,
+  productId: "SEED_14_VSTD",
+  businessAccountId: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
+  startDate: "2021-06-03T00:00:00.000Z",
+  product: {
+    contribution_type: "none",
+ }
+});

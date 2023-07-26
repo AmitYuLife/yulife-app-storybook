@@ -5,6 +5,7 @@ import { CountdownUnit } from "./countdown-unit";
 import { getCountdownFromSeconds } from "./getCountdownFromDate";
 import { Colours, Style } from "@styles";
 import { t } from "@locale";
+import { COUNTDOWN_COMPONENT } from "@ids";
 
 interface Props {
   secondsUntilTarget: number;
@@ -17,7 +18,7 @@ export const Countdown = memo(({ secondsUntilTarget }: Props) => {
     <View style={styles.countdownWrapper}>
       <View style={styles.shadow} />
       <View style={styles.countdownBox}>
-        <View style={styles.countdownUnitsWrapper}>
+        <View testID={COUNTDOWN_COMPONENT} style={styles.countdownUnitsWrapper}>
           <CountdownUnit heading={days} label={t("labels.time.days")} />
           <CountdownUnit heading={hours} label={t("labels.time.hours")} />
           <CountdownUnit heading={minutes} label={t("labels.time.mins")} borderRightWidth={0} />

@@ -23,10 +23,10 @@ import {
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_5)
         helper.SLOT_VISSIBLE(fixture.GapInEnrolVisOutEnrol)
         helper.YUSCREEN_USA(CUSTOMER_USA_5);
-        helper.SPONSORED_LOGO_VISSIBLE()
+        helper.SPONSORED_LOGO_VISIBLE()
         helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
         helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
-        helper.CHECK_EXPLORE_INSURANCE(fixture.ExploreInsureanceBox, fixture.VisionInsuranceBox)
+        helper.CHECK_EXPLORE_INSURANCE(fixture.VisionInsuranceBox)
       });
     });
   Scenario("I should NOT see sponsored by text and logos if contribution_type is full ",scenario.start,async () => {
@@ -35,7 +35,7 @@ import {
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_6)
         helper.SLOT_VISSIBLE(fixture.GapInsurance)
         helper.YUSCREEN_USA(CUSTOMER_USA_6);
-        helper.SPONSORED_LOGO_NOT_VISSIBLE()
+        helper.SPONSORED_LOGO_NOT_VISIBLE()
         helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
         helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
       });
@@ -46,7 +46,7 @@ import {
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_7)
         helper.SLOT_VISSIBLE(fixture.VisInsurance)
         helper.YUSCREEN_USA(CUSTOMER_USA_7);
-        helper.SPONSORED_LOGO_VISSIBLE()
+        helper.SPONSORED_LOGO_VISIBLE()
         helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
         helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
     });
@@ -57,7 +57,7 @@ import {
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_8)
         helper.SLOT_VISSIBLE(fixture.GapInsurance)
         helper.YUSCREEN_USA(CUSTOMER_USA_8);
-        helper.SPONSORED_LOGO_NOT_VISSIBLE()
+        helper.SPONSORED_LOGO_NOT_VISIBLE()
         helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
         helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
     });
@@ -67,7 +67,7 @@ import {
         helper.ONBOARDING_YUSCREEN_USA(fixture.NoProduct);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_9)
         helper.YUSCREEN_USA(CUSTOMER_USA_9);
-        helper.SPONSORED_LOGO_NOT_VISSIBLE()
+        helper.SPONSORED_LOGO_NOT_VISIBLE()
         helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
         helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
     });
@@ -79,10 +79,10 @@ import {
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_10)
         helper.SLOT_VISSIBLE(fixture.GapVisInsuranceInEnrolment)
         helper.YUSCREEN_USA(CUSTOMER_USA_10);
-        helper.SPONSORED_LOGO_NOT_VISSIBLE()
+        helper.SPONSORED_LOGO_NOT_VISIBLE()
         helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
         helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
-        helper.ENROLMENT_ENDS_IN(BPEEW_USA_10_VIS)
+        helper.ENROLMENT_VISIBLE(BPEEW_USA_10_VIS, "active")
         helper.CHECK_WELLBEING_HUB(CUSTOMER_USA_10, fixture.MyWellbeingHubBox)
     });
   });
@@ -93,11 +93,14 @@ import {
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_11)
         helper.SLOT_VISSIBLE(fixture.AccCanInsuranceInEnrolment)
         helper.YUSCREEN_USA(CUSTOMER_USA_11);
-        helper.SPONSORED_LOGO_VISSIBLE()
+        helper.SPONSORED_LOGO_VISIBLE()
         helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
         helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
         // checks that cancer options appear in the explore insurance page
-        helper.CHECK_EXPLORE_INSURANCE(fixture.ExploreInsureanceBox, fixture.CancerInsuranceBox)
+        helper.CHECK_EXPLORE_INSURANCE(fixture.CancerInsuranceBox)
+        When("I tap to go back to Yu Screen", when.tapID(id.BACK_BUTTON), async () => {
+          Then("I should not see Vision Insurance ", then.idNotVisible(id.TEXT_TEMPLATE("Vision Insurance")))
+      })
         // checks that accident cover is not on the explore insurance page
         When(`I scroll down to ${fixture.ExploreInsureanceBox.description}`, when.scrollUntilTextVisible(id.YUSCREEN_SCROLL_VIEW, fixture.ExploreInsureanceBox.description, "down"), async () => {
           When(`I tap ${fixture.ExploreInsureanceBox.description}`, when.tapText(fixture.ExploreInsureanceBox.description), async () => {
