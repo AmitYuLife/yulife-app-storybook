@@ -26,7 +26,8 @@ import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/g
 import { DATE_FORMAT } from "@utils";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useQueryOnScreenSeen } from "@hooks";
-import { challengeStartSuccessAction } from "@redux/levels/levels.actions";
+import { challengeCancelAction, challengeStartSuccessAction } from "@redux/levels/levels.actions";
+import cancelQuestMapLevelChallenge from "@graphql/challenges/cancelQuestMapLevelChallenge.gql";
 
 interface IProps {
   componentId: string;
@@ -37,6 +38,7 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
   const dispatch = useDispatch();
   const date = useMemo(() => new Date(), []);
   const sudokuState = useSelector(getSudokuState);
+
   const activeChallenge = useSelector(getActiveLevel);
   const [createQuestMapLevelChallenge] = useMutation(GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE);
 
@@ -78,20 +80,23 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
   const board = first(data?.getSudokuBoard?.boards);
 
   const startGame = useCallback(async () => {
-    if (!activeChallenge.levelSlotId) {
-      const challenge = await createQuestMapLevelChallenge({
-        variables: {
-          levelSlotId: slot.id,
-        },
-      });
-
-      dispatch(
-        challengeStartSuccessAction({
-          createQuestMapLevelChallenge: challenge.data?.createQuestMapLevelChallenge,
-          levelSlotId: slot.id,
-        })
-      );
+    if (activeChallenge.levelSlotId) {
+      await cancelQuestMapLevelChallenge(activeChallenge.levelSlotId);
+      dispatch(challengeCancelAction());
     }
+
+    const challenge = await createQuestMapLevelChallenge({
+      variables: {
+        levelSlotId: slot.id,
+      },
+    });
+
+    dispatch(
+      challengeStartSuccessAction({
+        createQuestMapLevelChallenge: challenge.data?.createQuestMapLevelChallenge,
+        levelSlotId: slot.id,
+      })
+    );
 
     const currentDate = moment(date).format(DATE_FORMAT);
 
