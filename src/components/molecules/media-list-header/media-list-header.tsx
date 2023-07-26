@@ -8,28 +8,31 @@ import { MEDIA_LIST_DESCRIPTION, MEDIA_LIST_HEADER, PARTNER_LOGO } from "@ids";
 interface IProps {
   title: string;
   description: string;
-  logo: {
+  logo?: {
     uri: Source;
     width: number;
     height: number;
   };
 }
 
-const MediaListHeader = ({ title, description, logo: { uri, ...logoProps } }: IProps) => {
+const MediaListHeader = ({ title, description, logo }: IProps) => {
+  const { uri, ...logoProps } = logo ?? undefined;
   const logoStyles = useMemo(() => ({ ...styles.logo, ...logoProps }), [logoProps]);
+
   return (
     <View style={styles.wrapper}>
-      {/* need to rename this testIDs later */}
       <View style={styles.header} testID={MEDIA_LIST_HEADER(title)}>
         <TextTemplate type="b1b">{title}</TextTemplate>
       </View>
       <View style={styles.description}>
-        <TextTemplate type="b2" textAlign="center" testID={MEDIA_LIST_DESCRIPTION(description)}>
+        <TextTemplate type="l1" textAlign="center" testID={MEDIA_LIST_DESCRIPTION(description)}>
           {description}
         </TextTemplate>
-        <View style={logoStyles}>
-          <Image source={uri} width={logoProps.width} height={logoProps.height} testID={PARTNER_LOGO} />
-        </View>
+        {uri?.uri ? (
+          <View style={logoStyles}>
+            <Image source={uri} width={logoProps.width} height={logoProps.height} testID={PARTNER_LOGO} />
+          </View>
+        ) : null}
       </View>
     </View>
   );
@@ -51,7 +54,7 @@ const styles = StyleSheet.create({
     paddingLeft: Style.adjust(8),
   },
   description: {
-    paddingHorizontal: Style.adjust(70),
+    paddingHorizontal: Style.adjust(20),
     marginBottom: Style.adjust(24),
     flexDirection: "row",
     alignItems: "center",

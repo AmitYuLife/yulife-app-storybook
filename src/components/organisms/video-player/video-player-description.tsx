@@ -13,10 +13,11 @@ interface IProps {
   stars?: number;
   yuCoin: number;
   logo: string;
+  tag?: string;
   eventType: string;
 }
 
-const VideoPlayerDescription = ({ title, description, duration, stars, yuCoin, logo, eventType }: IProps) => {
+const VideoPlayerDescription = ({ title, tag, description, duration, stars, yuCoin, logo, eventType }: IProps) => {
   const timeType = useMemo(() => (Math.floor(duration) < 60 ? "sec" : "min"), [duration]);
   const durationFormatted = useMemo(
     () => moment.utc(duration * 1000).format(timeType === "sec" ? "s" : "m"),
@@ -42,6 +43,13 @@ const VideoPlayerDescription = ({ title, description, duration, stars, yuCoin, l
       <TextTemplate type="b2" textAlign="center">
         {description}
       </TextTemplate>
+      {tag ? (
+        <View style={styles.tagWrapper}>
+          <TextTemplate type="l1" color={Colours.primary.p600} textAlign="center">
+            {tag}
+          </TextTemplate>
+        </View>
+      ) : null}
       {!stars || !yuCoin ? null : (
         <View style={styles.details}>
           <View style={styles.minutes}>
@@ -111,5 +119,8 @@ const styles = StyleSheet.create({
     width: Style.adjust(16),
     height: Style.adjust(16),
     marginLeft: Style.adjust(4),
+  },
+  tagWrapper: {
+    marginTop: Style.adjust(10),
   },
 });

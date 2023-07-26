@@ -40,6 +40,7 @@ const MediaPlayerScreen = ({
     <VideoPlayer
       source={video.media.uri}
       poster={video.cover.uri}
+      tag={video.tag}
       title={video.title}
       thumbnail={video.thumbnail.uri}
       logo={video.logo.uri}

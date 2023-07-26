@@ -60,6 +60,7 @@ export interface GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeConte
   description: string;
   shortDescription: string;
   duration: number | null;
+  tag: string | null;
   theme: string;
   media: GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_media;
   cover: GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_cover;

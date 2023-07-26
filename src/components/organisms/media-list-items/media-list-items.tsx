@@ -2,9 +2,9 @@ import React, { memo } from "react";
 import { Image as RNImage, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
-import { MEDIA_LIST_ITEM_DESCRIPTION, MEDIA_LIST_ITEM_TITLE } from "@ids";
+import { MEDIA_LIST_ITEM_DESCRIPTION, MEDIA_LIST_ITEM_TITLE, PARTNER_LOGO } from "@ids";
 import { BoxOption } from "@molecules";
-import { Colours } from "@styles";
+import { Colours, Style } from "@styles";
 import { BOX_HEIGHT, IMAGE_HEIGHT, IMAGE_WIDTH, styles } from "./media-list-items.styles";
 import MediaListItemsLoading from "./media-list-items-loading";
 import { t } from "@locale";
@@ -14,12 +14,16 @@ import { ArrowButton } from "@components/molecules/arrow-button";
 export interface IITem {
   title: string;
   description: string;
+  providerImage?: {
+    uri: string;
+  };
   thumbnail: {
     uri: string;
     id: string;
   };
   formattedDuration?: string;
   reward?: number;
+  tag?: string;
 }
 
 interface IProps {
@@ -36,46 +40,77 @@ const MediaListItems = ({ items, onPress, type, isLoading }: IProps) => {
         <MediaListItemsLoading items={3} />
       ) : (
         <>
-          {items.map((item) => (
-            <BoxOption
-              key={`${item.title}-${item.formattedDuration}`}
-              onPress={() => onPress(item)}
-              isSelected={false}
-              selectedStyle={{}}
-              wrapperStyle={styles.wrapper}
-              innerHeight={BOX_HEIGHT}
-              testID={MEDIA_LIST_ITEM_TITLE(item.title)}
-            >
-              <View style={styles.main}>
-                <View style={styles.imageWrapper}>
-                  {!item.thumbnail ? null : (
-                    <Image height={IMAGE_HEIGHT} width={IMAGE_WIDTH} source={{ uri: item.thumbnail.uri }} />
-                  )}
-                </View>
-                <View style={styles.detailWrapper}>
-                  <TextTemplate type="b2b">{item.title}</TextTemplate>
-                  <View style={styles.details} testID={MEDIA_LIST_ITEM_DESCRIPTION(item.description)}>
-                    {type === "category" ? (
-                      <Markdown text={item.description} markdownStyles={markdownStyle} />
-                    ) : (
-                      <TextTemplate type="l2b">
-                        {t("screens.media_list.video_duration_reward_label", {
-                          formattedDuration: item.formattedDuration,
-                          reward: item.reward,
-                        })}
-                      </TextTemplate>
-                    )}
-                    {type === "category" ? null : (
-                      <RNImage source={require("@assets/icons/yucoin.png")} resizeMode="contain" style={styles.coin} />
+          {items.map((item) => {
+            return (
+              <BoxOption
+                key={`${item.title}-${item.formattedDuration}`}
+                onPress={() => onPress(item)}
+                isSelected={false}
+                selectedStyle={{}}
+                wrapperStyle={styles.wrapper}
+                innerHeight={BOX_HEIGHT}
+                testID={MEDIA_LIST_ITEM_TITLE(item.title)}
+              >
+                <View style={styles.main}>
+                  <View style={styles.imageWrapper}>
+                    {!item.thumbnail ? null : (
+                      <Image height={IMAGE_HEIGHT} width={IMAGE_WIDTH} source={{ uri: item.thumbnail.uri }} />
                     )}
                   </View>
+                  <View style={styles.detailWrapper}>
+                    <View style={styles.titleWrapper}>
+                      <TextTemplate type="b2b">{item.title}</TextTemplate>
+
+                      {item.providerImage?.uri ? (
+                        <View>
+                          <Image
+                            resizeMode="contain"
+                            width={Style.adjust(65)}
+                            testID={PARTNER_LOGO}
+                            suppressLoadingUi={true}
+                            source={{ uri: item.providerImage.uri }}
+                          />
+                        </View>
+                      ) : null}
+                    </View>
+                    <View style={styles.descriptionWrapper}>
+                      <View style={styles.detailsWrapper}>
+                        <View style={styles.details} testID={MEDIA_LIST_ITEM_DESCRIPTION(item.description)}>
+                          {type === "category" ? (
+                            <Markdown text={item.description} markdownStyles={markdownStyle} />
+                          ) : (
+                            <TextTemplate type="l2b">
+                              {t("screens.media_list.video_duration_reward_label", {
+                                formattedDuration: item.formattedDuration,
+                                reward: item.reward,
+                              })}
+                            </TextTemplate>
+                          )}
+                          {type === "category" ? null : (
+                            <RNImage
+                              source={require("@assets/icons/yucoin.png")}
+                              resizeMode="contain"
+                              style={styles.coin}
+                            />
+                          )}
+                        </View>
+                        {item.tag ? (
+                          <View style={styles.tagWrapper}>
+                            <TextTemplate type="l2b" color={Colours.primary.p600}>
+                              {item.tag}
+                            </TextTemplate>
+                          </View>
+                        ) : null}
+                      </View>
+                      <View style={styles.arrow}>
+                        <ArrowButton color={Colours.primary.p600} />
+                      </View>
+                    </View>
+                  </View>
                 </View>
-                <View style={styles.arrow}>
-                  <ArrowButton color={Colours.primary.p600} />
-                </View>
-              </View>
-            </BoxOption>
-          ))}
+              </BoxOption>
+            );
+          })}
         </>
       )}
     </>

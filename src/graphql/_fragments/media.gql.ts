@@ -11,6 +11,7 @@ export const GQL_FRAGMENT_MEDIA = gql`
     description
     shortDescription
     duration
+    tag
     theme
     media {
       id

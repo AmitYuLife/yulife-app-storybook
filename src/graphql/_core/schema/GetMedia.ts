@@ -60,6 +60,7 @@ export interface GetMedia_getMedia {
   description: string;
   shortDescription: string;
   duration: number | null;
+  tag: string | null;
   theme: string;
   media: GetMedia_getMedia_media;
   cover: GetMedia_getMedia_cover;

@@ -46,6 +46,7 @@ interface IProps {
   title: string;
   description: string;
   shortDescription: string;
+  tag?: string;
   thumbnail: string;
   logo?: string;
   videoLogo?: string;
@@ -76,6 +77,7 @@ const VideoPlayer = ({
   poster,
   title,
   description,
+  tag,
   thumbnail,
   logo,
   videoLogo,
@@ -371,6 +373,7 @@ const VideoPlayer = ({
               duration={state.durationInSeconds}
               yuCoin={yuCoin}
               stars={stars}
+              tag={tag}
               logo={logo}
               eventType={eventType}
             />
