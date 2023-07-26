@@ -30,6 +30,7 @@ export enum AvatarPartType {
   gloves = "gloves",
   hair = "hair",
   head = "head",
+  headwear = "headwear",
   pants = "pants",
 }
 

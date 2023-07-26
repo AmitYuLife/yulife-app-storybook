@@ -5,7 +5,7 @@ import {
   GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts,
   GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_parts as YumojiBuilderItemParts,
 } from "@graphql/_core/schema";
-import { AvatarBodyType } from "@graphql/_core/schema/globalTypes";
+import { AvatarBodyType, AvatarPartType } from "@graphql/_core/schema/globalTypes";
 
 export enum ActionTypes {
   INITIAL_STATE = "INITIAL_STATE",
@@ -23,6 +23,7 @@ export type IDispatch = ({ type, payload }: IAction) => void;
 export interface IState {
   parts: IParts;
   partId: string;
+  hidesPartTypes: AvatarPartType[];
   categories: {
     items: YumojiBuilderCategoryList[];
     loading: boolean;
@@ -73,6 +74,7 @@ const transformItems = (items: ItemListItems[], yumojiParts: IParts, matchType: 
 export const INITIAL_STATE: IState = {
   parts: {},
   partId: "",
+  hidesPartTypes: [],
   categories: {
     items: [],
     loading: true,
@@ -103,13 +105,13 @@ export const reducer = (state: IState, action: IAction) => {
     }
 
     case ActionTypes.SET_MULTIPLE_PARTS: {
+      const isSinglePart = action.payload.length === 1;
+      const partId = isSinglePart ? action.payload[0].partId : "";
+
       const parts = {
         ...state.parts,
         ...transformParts(action.payload),
       };
-
-      const isSinglePart = action.payload.length === 1;
-      const partId = isSinglePart ? action.payload[0].partId : "";
 
       return {
         ...state,

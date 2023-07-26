@@ -8,6 +8,7 @@ export const GQL_QUERY_GET_YUMOJI_BUILDER_INITIAL_PARTS = gql`
       partId
       partType
       order
+      hidesPartTypes
       remoteUrl {
         uri(options: { width: 530, height: 1106 })
         id

@@ -166,6 +166,14 @@ export const GQL_FRAGMENT_AVATAR = gql`
         ...YuAvatarColor
       }
     }
+    headwear {
+      part {
+        ...YuAvatarPart
+      }
+      color {
+        ...YuAvatarColor
+      }
+    }
     glasses {
       part {
         ...YuAvatarPart

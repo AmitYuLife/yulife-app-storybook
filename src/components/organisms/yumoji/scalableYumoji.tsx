@@ -6,6 +6,7 @@ import { shallowEqual } from "react-redux";
 interface IYumojiPart {
   order?: number;
   partType: string;
+  hidesPartTypes: string[];
   remoteUrl: {
     uri: string;
     width?: number;
@@ -48,26 +49,31 @@ function _ScalableYumoji(props: IProps) {
     }
   }, []);
 
-  const parts = useMemo(
-    () =>
-      items
-        .filter((item) => item.remoteUrl?.uri)
-        .sort((i1, i2) => (i1?.order || 0) - (i2?.order || 0))
-        .map(({ remoteUrl: { uri }, partType }) => (
-          <View key={`${bodyType}_${partType}`} style={[StyleSheet.absoluteFillObject, styles]}>
-            <CroppedImage
-              transform={preview}
-              key={`${bodyType}_${partType}`}
-              containerWidth={styles.width}
-              containerHeight={styles.height}
-              source={{ uri, downScale: false }}
-              suppressLoadingUi={true}
-              onInitialLoad={onImageLoaded}
-            />
-          </View>
-        )),
-    [items, bodyType, styles, preview, onImageLoaded]
-  );
+  const getWrapperStyles = useCallback((partType: string, hiddenPartTypes: string[]) => {
+    return { opacity: hiddenPartTypes.includes(partType) ? 0 : 1 };
+  }, []);
+
+  const parts = useMemo(() => {
+    const filteredItems = items.filter((item) => item.remoteUrl?.uri);
+    const hiddenPartTypes = Array.from(new Set(filteredItems.flatMap((part) => part?.hidesPartTypes || [])));
+    const sortedItems = [...filteredItems].sort((item1, item2) => (item1?.order || 0) - (item2?.order || 0));
+
+    return sortedItems.map(({ remoteUrl: { uri }, partType }) => (
+      <View key={`${bodyType}_${partType}`} style={[StyleSheet.absoluteFillObject, styles]}>
+        <View style={getWrapperStyles(partType, hiddenPartTypes)}>
+          <CroppedImage
+            transform={preview}
+            key={`${bodyType}_${partType}`}
+            containerWidth={styles.width}
+            containerHeight={styles.height}
+            source={{ uri, downScale: false }}
+            suppressLoadingUi={true}
+            onInitialLoad={onImageLoaded}
+          />
+        </View>
+      </View>
+    ));
+  }, [items, bodyType, styles, preview, onImageLoaded, getWrapperStyles]);
 
   return (
     <View style={styles} testID={props.testID}>

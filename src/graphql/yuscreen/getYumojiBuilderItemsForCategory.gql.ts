@@ -20,6 +20,7 @@ export const GQL_QUERY_GET_YUMOJI_BUILDER_ITEMS_FOR_CATEGORY = gql`
           partType
           order
           colorSchemeId
+          hidesPartTypes
           categoryId
           remoteUrl {
             id

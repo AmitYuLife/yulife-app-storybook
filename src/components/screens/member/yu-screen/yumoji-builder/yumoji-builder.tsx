@@ -1,8 +1,5 @@
 import { ActionTypes, IDispatch, IState } from "@components/containers/member/yumoji-builder/yumoji-builder.reducer";
-import {
-  GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts,
-  GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_parts as YumojiBuilderParts,
-} from "@graphql/_core/schema";
+import { GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_parts as YumojiBuilderParts } from "@graphql/_core/schema";
 import { useBackHandler } from "@hooks";
 import { BODY_TYPE } from "@ids";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
@@ -53,7 +50,7 @@ const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvata
     [dispatch]
   );
 
-  const items = useMemo(() => Object.values(state?.parts) as YumojiBuilderInitialParts[], [state?.parts]);
+  const items = useMemo(() => Object.values(state?.parts), [state?.parts]);
 
   useBackHandler(() => {
     onBackPressed();
