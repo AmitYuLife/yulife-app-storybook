@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.93.0] - 2023-07-26
+
+### Bugfixes
+
+- Bugfix: Sudoku starting without challenge
+- Bugfix: scroll picker translations
+- Bugfix: Truncate leadeboard name
+- Bugfix: remove customer full_name values
+- Bugfix: Hide leaderboard name if is empty, testIDs and small improvements
+
+### Tasks
+
+- Task: Workout challenge
+- Task GS-765: add headwear support to yumoji
+- Task GS-725: Pension tracking
+
+### Chores
+
+- Chore/adjusting padding left
+
+### Extra
+
+- Detox: Fix 26th july
+- detox/xse-1932-yuscreen-experience-for-us
+- Detox: fixed pension collection names
+- Detox: Pension testing
+- Detox: Fixes 25th july
+- Detox: Fixes 24th Jul
+- Detox: Translation fix - allow english args
+- Detox: Fixed translation function within specs
+- Detox: store used translation keys in ctx
+- Detox: removed only
+- Detox: customer fullname scenario fixes
+- GS-137: Get current user refactor - Query generation
+- Detox/xse 2039 fix explore insurance logic
+
 ## [3.92.0] - 2023-07-19
 
 ### Bugfixes
