@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AvatarBodyType } from "./globalTypes";
+import { AvatarBodyType, AvatarPartType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetYumojiBuilderInitialParts
@@ -20,6 +20,7 @@ export interface GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts {
   partId: string | null;
   partType: string;
   order: number;
+  hidesPartTypes: AvatarPartType[] | null;
   remoteUrl: GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts_remoteUrl;
 }
 

@@ -49,6 +49,7 @@ export interface Avatar_listAvatarParts {
   bodyType: AvatarBodyType | null;
   partType: AvatarPartType | null;
   previewViewBox: string | null;
+  hidesPartTypes: (AvatarPartType | null)[] | null;
   height: string | null;
   width: string | null;
   colors: Avatar_listAvatarParts_colors | null;

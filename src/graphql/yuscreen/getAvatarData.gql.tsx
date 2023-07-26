@@ -7,6 +7,7 @@ export const GQL_QUERY_AVATAR = gql`
       bodyType
       partType
       previewViewBox
+      hidesPartTypes
       height
       width
       colors {

@@ -349,6 +349,44 @@ export interface YuAvatar_boots {
   color: YuAvatar_boots_color | null;
 }
 
+export interface YuAvatar_headwear_part_elements_attributes {
+  name: string;
+  value: string;
+}
+
+export interface YuAvatar_headwear_part_elements {
+  name: string;
+  attributes: (YuAvatar_headwear_part_elements_attributes | null)[] | null;
+}
+
+export interface YuAvatar_headwear_part {
+  partId: string;
+  elements: (YuAvatar_headwear_part_elements | null)[] | null;
+}
+
+export interface YuAvatar_headwear_color_colorScheme {
+  main: string;
+  shadow: string | null;
+  light: string | null;
+  base: string | null;
+  eyebrows: string | null;
+  leftEar: string | null;
+  rightEar: string | null;
+  lips: string | null;
+  tongue: string | null;
+  nose: string | null;
+}
+
+export interface YuAvatar_headwear_color {
+  colorSchemeId: string;
+  colorScheme: YuAvatar_headwear_color_colorScheme | null;
+}
+
+export interface YuAvatar_headwear {
+  part: YuAvatar_headwear_part | null;
+  color: YuAvatar_headwear_color | null;
+}
+
 export interface YuAvatar_glasses_part_elements_attributes {
   name: string;
   value: string;
@@ -398,5 +436,6 @@ export interface YuAvatar {
   chest: YuAvatar_chest | null;
   gloves: YuAvatar_gloves | null;
   boots: YuAvatar_boots | null;
+  headwear: YuAvatar_headwear | null;
   glasses: YuAvatar_glasses | null;
 }

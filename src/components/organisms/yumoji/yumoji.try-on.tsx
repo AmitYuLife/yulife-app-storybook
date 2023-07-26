@@ -7,15 +7,15 @@ import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { Colours, Style } from "@styles";
 import { Loading, TextTemplate } from "@atoms";
 import { Popover as PopoverMolecule, TouchableOpacityWithDelay } from "@molecules";
-import { AvatarPartType, CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
+import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
 import {
   GetYumojiRemoteParts,
   GetYumojiRemoteFittingRoom,
-  GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_yuWorlds_yumojiParts as Part,
   PerformMobileOnboardingStep,
   PerformMobileOnboardingStepVariables,
   GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_yuWorlds,
   GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_popover,
+  GetYumojiRemoteParts_avatar,
 } from "@graphql/_core/schema";
 import { Yumoji } from "./yumoji";
 import { GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP } from "@graphql/onboardingSteps/performMobileOnboardingStep.gql";
@@ -36,8 +36,8 @@ const HIT_SLOP = {
 };
 
 function _TryOnYumojiPart({ customerProductId, coverType = CoverType.common, onChange }: Props) {
-  const [selectedWorld, setSelectedWorld] = useState(null);
-  const [avatar, setAvatar] = useState({} as GetYumojiRemoteParts["avatar"]);
+  const [selectedWorld, setSelectedWorld] = useState<YuWorld>(null);
+  const [avatar, setAvatar] = useState<GetYumojiRemoteParts["avatar"]>(null);
 
   const { yumoji, fittingRoom } = useYumojiFittingRoom({ customerProductId, coverType });
   const { yuWorlds = [], popover, selectedYuWorld } = fittingRoom;
@@ -58,10 +58,11 @@ function _TryOnYumojiPart({ customerProductId, coverType = CoverType.common, onC
       return;
     }
 
-    const newPartialAvatar = yuWorld.yumojiParts.reduce((acc, part) => {
-      acc[part.partType] = part;
-      return acc;
-    }, {} as Record<AvatarPartType, Part>);
+    const newPartialAvatar: Partial<GetYumojiRemoteParts_avatar> = Object.fromEntries(
+      yuWorld.yumojiParts.map((part) => {
+        return [part.partType, part];
+      })
+    );
 
     setAvatar({ ...yumoji, ...newPartialAvatar });
   }, [selectedWorld, yumoji, yuWorlds, coverType]);
@@ -94,7 +95,7 @@ function _TryOnYumojiPart({ customerProductId, coverType = CoverType.common, onC
   return (
     <>
       <View style={styles.container}>
-        <Yumoji height={AVATAR_HEIGHT} width={AVATAR_WIDTH} {...avatar} />
+        <Yumoji height={AVATAR_HEIGHT} width={AVATAR_WIDTH} avatar={avatar} />
         <Popover
           popover={popover}
           updateOnboardingStep={updateOnboardingStep}

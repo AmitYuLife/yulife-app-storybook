@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { AvatarPartType } from "./globalTypes";
+
 // ====================================================
 // GraphQL fragment: YumojiRemotePart
 // ====================================================
@@ -14,5 +16,6 @@ export interface YumojiRemotePart_remoteUrl {
 
 export interface YumojiRemotePart {
   id: string;
+  hidesPartTypes: AvatarPartType[];
   remoteUrl: YumojiRemotePart_remoteUrl;
 }

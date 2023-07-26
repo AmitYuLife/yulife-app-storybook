@@ -201,7 +201,7 @@ export const YumojiSwipeTryOn = memo(
         case FLAT_LIST_ITEM.YUMOJI:
           return (
             <View style={{ width: YUMOJI_CARD_WIDTH, ...styles.flatListItem }}>
-              <Yumoji height={AVATAR_HEIGHT} width={AVATAR_WIDTH} {...item} />
+              <Yumoji height={AVATAR_HEIGHT} width={AVATAR_WIDTH} avatar={item} />
               {selectedYumojiIndex === index - 2 ? null : (
                 <View style={StyleSheet.flatten([styles.flatlistItemOverlay, flatListItemOverlayStyles])} />
               )}

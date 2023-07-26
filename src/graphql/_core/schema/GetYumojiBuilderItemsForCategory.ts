@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AvatarBodyType, YumojiPartStatus } from "./globalTypes";
+import { AvatarBodyType, AvatarPartType, YumojiPartStatus } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetYumojiBuilderItemsForCategory
@@ -19,6 +19,7 @@ export interface GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCatego
   partType: string;
   order: number;
   colorSchemeId: string | null;
+  hidesPartTypes: AvatarPartType[] | null;
   categoryId: string | null;
   remoteUrl: GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_parts_remoteUrl | null;
 }

@@ -57,7 +57,7 @@ export const YumojiItem = memo(
             ))}
         </View>
       );
-    }, []);
+    }, [item, partsLoading, onImageLoaded]);
 
     const image = useMemo(() => {
       if (item?.representativeColor) {
@@ -78,7 +78,7 @@ export const YumojiItem = memo(
           containerWidth={previewSize}
         />
       );
-    }, []);
+    }, [item]);
 
     const label = useMemo(() => {
       if (!item.label) {
