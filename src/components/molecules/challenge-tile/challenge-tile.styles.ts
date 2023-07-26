@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     maxHeight: FULL_HEIGHT,
     justifyContent: "flex-end",
     marginTop: Style.adjust(13),
-    width: Style.adjust(172),
+    width: Style.DEVICE_WIDTH / 2 - Style.adjust(25),
     overflow: "hidden",
   },
   remoteImage: {

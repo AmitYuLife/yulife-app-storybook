@@ -36,6 +36,11 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent
   uri: string | null;
 }
 
+export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_providerImage {
+  id: string;
+  uri: string | null;
+}
+
 export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons_logo {
   id: string;
   uri: string | null;
@@ -90,8 +95,10 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent
   contentType: string;
   contentMediaTags: string[];
   title: string;
+  tag: string | null;
   description: string;
   logo: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_logo;
+  providerImage: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_providerImage | null;
   buttons: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons[];
   promotionReward: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward | null;
 }

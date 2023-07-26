@@ -47,9 +47,13 @@ export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
             contentType
             contentMediaTags
             title
-
+            tag
             description
             logo {
+              id
+              uri
+            }
+            providerImage {
               id
               uri
             }

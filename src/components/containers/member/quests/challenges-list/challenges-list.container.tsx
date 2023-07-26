@@ -140,7 +140,8 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
           });
         }
 
-        case "fiit": {
+        case "fiit":
+        case "workout-content": {
           return Navigation.push(componentId, {
             component: {
               id: ROUTES.fiitMediaCategoryList,

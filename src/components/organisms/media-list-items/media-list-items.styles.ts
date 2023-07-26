@@ -24,17 +24,33 @@ export const styles = StyleSheet.create({
     justifyContent: "flex-start",
     marginLeft: Style.adjust(16),
   },
+  titleWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
   details: {
-    marginTop: Style.adjust(8),
     flexDirection: "row",
     alignItems: "center",
   },
   arrow: {
+    marginTop: Style.adjust(-15),
     alignSelf: "center",
   },
   coin: {
     width: Style.adjust(16),
     height: Style.adjust(16),
     marginLeft: Style.adjust(4),
+  },
+  detailsWrapper: {
+    flex: 1,
+  },
+  descriptionWrapper: {
+    flexDirection: "row",
+    flex: 1,
+    paddingRight: Style.adjust(5),
+  },
+  tagWrapper: {
+    marginTop: Style.adjust(5),
   },
 });
