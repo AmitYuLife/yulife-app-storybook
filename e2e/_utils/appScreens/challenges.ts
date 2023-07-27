@@ -140,7 +140,7 @@ export const on3ChallengesDetailsScreen = async () => {
 }
 
 export const tapTakeChallenge = async () => {
-  await navigateViaText("Take challenge")
+  await navigateViaText(t("Take challenge"))
 }
 
 export const onMeditationContentIntroScreen =
@@ -307,11 +307,11 @@ export const isOnQuitChallengeScreen = async () => {
 }
 
 export const closeQuitChallengeScreen = async () => {
-  await navigateViaID(GENERIC_SCREEN_CTA("Cancel"))
+  await navigateViaID(GENERIC_SCREEN_CTA(t("Cancel")))
 }
 
 export const exitMeditopiaChallenge = async () => {
-  await navigateViaID(GENERIC_SCREEN_CTA("Exit challenge"))
+  await navigateViaID(GENERIC_SCREEN_CTA(t("Exit challenge")))
 }
 
 export const onChooseMeditopiaContentScreen = async () => {
@@ -373,7 +373,7 @@ export const isOnTodaysMeditationScreen2Challenges = (mins1: string, yuCoin1: st
 }
 
 export const tapAwarenessContentCard = (mins1: string, yuCoin1: string) => async () => {
-  await navigateViaText(`${mins1} mins • Earn ${yuCoin1}`)
+  await navigateViaText(`${mins1} 'mins') • 'Earn' ${yuCoin1}`)
 }
 
 export const exitChallenge = async () => {

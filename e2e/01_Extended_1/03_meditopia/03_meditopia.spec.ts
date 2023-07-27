@@ -5,6 +5,7 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, STEPS_COUNT, MINDFUL_COUNT } from "@ids";
 import { CUSTOMER_MEDITOPIA_1, AUTH_MEDITOPIA_1, CUSTOMER_MEDITOPIA_2, AUTH_MEDITOPIA_2 } from "@data";
+import { getLocalisedString as t } from "@i18n"
 
 Feature("As a user I can take a Meditopia challenge", async () => {
   Scenario("I can successfully take and complete a 5 minute Meditopia challenge in app", scenario.start, async () => {
