@@ -3,6 +3,8 @@ import { navigation, navigateViaID, LEVEL_CHALLENGE_BUTTON, QUESTS_SCREEN_YUNIVE
 export { authoriseFitkit, sendSteps } from "@socket";
 import { sendSteps, fitKitAddSampleQueries, sendMindfulnessData } from "@socket"
 import moment = require("moment");
+import { getLocalisedString as t } from "@i18n"
+
 export const {
     tapText,
     tapID,
@@ -27,16 +29,16 @@ export const {
 
 export const completeNewWorldShortStroll = (levelNumber: number) => async () => {
     await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelNumber))
-    await textVisible("Take a challenge to unlock the chest")()
-    await textVisible("later")()
-    await navigateViaText("Let's do it")
+    await textVisible(t("Take a challenge to unlock the chest"))()
+    await textVisible(t("later"))()
+    await navigateViaText(t("Let's do it"))
     await startChallenge("short stroll")()
     await sendSteps(400, 35000)()
-    await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
-    await navigateViaText("Collect")
+    await waitFor(element(by.text(t("Collect")))).toBeVisible().withTimeout(5000)
+    await navigateViaText(t("Collect"))
     await wait(3000)()
-    await navigateViaText("Done")
-    await navigateViaText("Collect")
+    await navigateViaText(t("Done"))
+    await navigateViaText(t("Collect"))
     await wait(1000)()
 }
 
@@ -92,15 +94,15 @@ export const completeSecondChallenge = (levelNumber: number, challengeType: stri
     await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelNumber))
     await startChallenge(challengeType)()
     await sendSteps(400, 35000)()
-    await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
-    await navigateViaText("Collect")
+    await waitFor(element(by.text(t("Collect")))).toBeVisible().withTimeout(5000)
+    await navigateViaText(t("Collect"))
 }
 
 export const selectAndCompleteWalkingChallenge = (challengeType: string, steps: number) => async () => {
     await startChallenge(challengeType)()
     await sendSteps(steps, 35000)()
-    await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
-    await navigateViaText("Collect")
+    await waitFor(element(by.text(t("Collect")))).toBeVisible().withTimeout(5000)
+    await navigateViaText(t("Collect"))
 }
 
 export const tapYuniverseLevelForFirstTime = (x: number, y: number) => async () => {
@@ -113,20 +115,20 @@ export const tapYuniverseLevelAfterFirstTime = (x: number, y: number) => async (
 
 export const selectAndCompleteMeditationChallengeWithoutMedia = (mindfulnessdata: number) => async () => { 
     await navigateViaID(CHALLENGE_TILE("meditation"))
-    await navigateViaText("Take challenge")
-    await tapText("maybe later")()
+    await navigateViaText(t("Take challenge"))
+    await tapText(t("maybe later"))()
     await sendMindfulnessData(mindfulnessdata, 75000)()
-    await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
-    await navigateViaText("Collect")
+    await waitFor(element(by.text(t("Collect")))).toBeVisible().withTimeout(5000)
+    await navigateViaText(t("Collect"))
 }
 
 export const selectAndCompleteMeditationChallengeWithMedia = (mindfulnessdata: number) => async () => { 
     await navigateViaID(CHALLENGE_TILE("meditation"))
-    await navigateViaText("Take challenge")
-    await swipeFromText("Or use an app", "up", "slow")()
-    await tapText("Use a different app")()
-    await tapText("maybe later")()
+    await navigateViaText(t("Take challenge"))
+    await swipeFromText(t("Or use an app"), "up", "slow")()
+    await tapText(t("Use a different app"))()
+    await tapText(t("maybe later"))()
     await sendMindfulnessData(mindfulnessdata, 75000)()
-    await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
-    await navigateViaText("Collect")
+    await waitFor(element(by.text(t("Collect")))).toBeVisible().withTimeout(5000)
+    await navigateViaText(t("Collect"))
 }

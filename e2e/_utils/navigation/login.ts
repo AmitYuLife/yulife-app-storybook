@@ -48,7 +48,7 @@ export const loginAsPLIUser = (
     await dismissNewLooksModalIfVisible()
     await tapText("Next")()
     await tapText("Next")()
-    await tapText(t("Let's go"))()
+    await tapText("Let's go")()
 }
 
 

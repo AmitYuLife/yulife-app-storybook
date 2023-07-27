@@ -1,4 +1,5 @@
-import { navigation } from "@utils"
+import { MENU_ICON, MENU_ITEM, navigation } from "@utils"
+import { getLocalisedString as t } from "@i18n"
 
 export const {
     tapText,
@@ -17,4 +18,9 @@ export const {
 
 export const navigateViaButton = (text: string) => async () => {
     await navigateViaText(text)
+}
+
+export const goToWellbeingHub = async () => {
+    await tapID(MENU_ICON)()
+    await tapID(MENU_ITEM(t("Wellbeing Hub")))()
 }
