@@ -5310,10 +5310,10 @@
   resolved "https://gitlab.com/api/v4/projects/7775989/packages/npm/@yu-life/react-native-fitkit/-/@yu-life/react-native-fitkit-1.0.32.tgz#e146aa5ccd89ae0c2ee827aafe4023c78a0ed4c3"
   integrity sha1-4UaqXM2Jrgwu6Ceq/kAjx4oO1MM=
 
-"@yu-life/yulife-bdd-framework@0.0.42":
-  version "0.0.42"
-  resolved "https://gitlab.com/api/v4/projects/23052792/packages/npm/@yu-life/yulife-bdd-framework/-/@yu-life/yulife-bdd-framework-0.0.42.tgz#c7abe13b423101e026c1b0d4415c8f9c4225bd03"
-  integrity sha1-x6vhO0IxAeAmwbDUQVyPnEIlvQM=
+"@yu-life/yulife-bdd-framework@0.0.51":
+  version "0.0.51"
+  resolved "https://gitlab.com/api/v4/projects/23052792/packages/npm/@yu-life/yulife-bdd-framework/-/@yu-life/yulife-bdd-framework-0.0.51.tgz#b32de96690bb29ed2933e95c4d380033331eb2d3"
+  integrity sha1-sy3pZpC7Ke0pM+lcTTgAMzMestM=
   dependencies:
     axios "^0.21.0"
     bcryptjs "^2.4.3"
