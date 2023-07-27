@@ -21,6 +21,7 @@ export const BUSINESS_ACCOUNT_USA_1 = {
         stripe_account_id: null,
         email_template: null,
         archived: false,
+        external_admin_url: "test",
         external_admin_url_description : "Here it goes the external admin url description text"
     }
 } as IDatabaseItem
@@ -42,7 +43,7 @@ export const BUSINESS_ACCOUNT_USA_2 = {
         stripe_account_id: null,
         email_template: null,
         archived: false,
-        external_admin_url: "google.com",
+        external_admin_url: "test",
         external_admin_url_description : "Here it goes the external admin url description text"
     }
 } as IDatabaseItem 

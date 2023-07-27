@@ -29,10 +29,12 @@ Feature("As a user I can get past the login screen", async () => {
           When("I have done 11.3 km cycling", given.addCyclingData(11345), async () => {
             When("I have done 13 min Mindfulness", given.sendMindfulnessData(800), async () => {
               When("I update the screen to see today activity", given.triggerAppUpdateState, async () => {
-                Then("I should see 11.3 km done today", then.idVisible(CYCLING_COUNT("7.0 mi"), 2000));
-                Then("I should see 13 min mindful done today", then.idVisible(MINDFUL_COUNT("13 min")));
-                Then("I should see the amount of yucoin I earned today", then.textVisible("208 YuCoin today"));
-                Then("I should see the i icon near the Coin", then.idVisible(YUCOIN_POWER_INFO));
+                When("I wait two seconds", when.wait(2000), async () => {
+                  Then("I should see 11.3 km done today", then.idVisible(CYCLING_COUNT("7.0 mi"), 2000));
+                  Then("I should see 13 min mindful done today", then.idVisible(MINDFUL_COUNT("13 min")));
+                  Then("I should see the amount of yucoin I earned today", then.textVisible("208 YuCoin today"));
+                  Then("I should see the i icon near the Coin", then.idVisible(YUCOIN_POWER_INFO));
+                })
               });
             });
           });

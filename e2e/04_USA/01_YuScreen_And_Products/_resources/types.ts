@@ -22,7 +22,9 @@ export interface USProductData {
     legalStuff_4?: string,
     legalStuff_5?: string,
     middleImage?: string,
-    titleMarkdown: string;
+    titleMarkdown: string,
+    boxTitle?: string,
+    boxDescription?: string,
 }
 
 export interface BoxOption {

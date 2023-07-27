@@ -17,20 +17,21 @@ import {
   RIGHT_SIDE_IMAGE_BOX_OPTION,
   BOX_OPTION_TITLE,
   BOX_OPTION_DESCRIPTION,
+  YUSCREEN_SCROLL_VIEW,
+  COUNTDOWN_COMPONENT,
 } from "@ids";
 import moment = require("moment");
 import * as text from "../_resources/fixture";
 import {
-  BPEEW_USA_1,
-  BPEEW_USA_2,
-  BPEEW_USA_3,
+  BPEEW_USA_1_DENPPO,
+  BPEEW_USA_2_ADD,
+  BPEEW_USA_3_ACC,
   BUSINESS_ACCOUNT_USA_1,
   CPE_ACCSICK_4,
   CPE_CAN_4,
   // CPE_ULIF_2,
   CPE_VLTD_3,
   CPE_VSTD_3,
-  CPE_WLIF_2,
 } from "04_USA/_data";
 import { BoxOption, USProductData } from "../_resources/types";
 
@@ -66,7 +67,7 @@ export const {
   onSkinToneScreen,
 } = screens.yuscreen;
 
-export const { swipeToID, swipeFromText } = navigation.scrolling;
+export const { swipeToID, swipeFromText, scrollUntilIdVisible, scrollUntilTextVisible } = navigation.scrolling;
 
 export const onboardingUsYuscreenV4 = (packType: string, yuCoinPower: string) => async () => {
   const earnRate0 = "1"; // If product having 0 earn rate will get 1
@@ -89,11 +90,11 @@ export const onboardingUsYuscreenV4 = (packType: string, yuCoinPower: string) =>
       await textVisible(text.Guardian_ADD.slotAbreviation)();
       await textVisible(text.moreInsurance)();
       break;
-    case "CRI/HI/ACC":
+    case "CRI/SPDIS/ACC":
       await textVisible(yuCoinPower)();
       await textVisible(earnRate0)();
       await textVisible(text.Guardian_CRI.slotAbreviation)();
-      await textVisible(text.Guardian_HI.slotAbreviation)();
+      await textVisible(text.Guardian_SPDIS.slotAbreviation)();      
       await textVisible(text.Guardian_ACC.heading)();
       await textVisible(text.moreInsurance)();
       break;
@@ -144,57 +145,54 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       if (device.name.includes("(iPhone 14 Pro)")) {
         await expect(element(by.text(text.MoreProtection))).toBeVisible();
       }
-      await swipeFromText(text.WellbeingProduct, "up", "fast")();
+      await scrollUntilIdVisible(YUSCREEN_SCROLL_VIEW, COUNTDOWN_COMPONENT, "down")();
       if (device.name.includes("(iPhone SE (3rd generation))")) {
-        await expect(element(by.text(text.EnrolmentTitle))).toBeVisible();
-        await swipeFromText(text.EnrolmentButton, "up", "fast")();
+        await swipeFromText(text.activeEnrollmentButtonMessage, "up", "fast")();
       }
-      await expect(element(by.text(text.EnrolmentTitle))).toBeVisible();
       await expect(
-        element(by.text(`${text.EnrolmentEndDate + moment(BPEEW_USA_1.data.enrolment_end_date).format("MM/DD/YYYY")}`))
+        element(by.text(`${text.enrollmentMessage} ${moment(BPEEW_USA_1_DENPPO.data.enrolment_end_date).format("MM/DD/YYYY")}`))
       ).toBeVisible();
+      await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.SurveyText, "down")();
       await howToEnrollTexts();
       break;
-    case "WLIF/ULIF/ADD/STD/LTD":
+    case "ADD/STD/LTD/VADD/HI":
       await textVisible(yuCoinPower)();
       await textVisible(text.Guardian_VADD.slotAbreviation)();
-      await textVisible(text.Guardian_ULIF.slotAbreviation)();
       await textVisible(text.Guardian_ADD.slotAbreviation)();
       await textVisible(text.Guardian_STD.slotAbreviation)();
       await textVisible(text.Guardian_LTD.slotAbreviation)();
+      await textVisible(text.Guardian_HI.slotAbreviation)();
       if (device.name.includes("(iPhone 14 Pro)")) {
-        await expect(element(by.text(text.MoreProtection))).toBeVisible();
+        await expect(element(by.text(text.MoreProtection))).toBeNotVisible();
       }
-      await swipeFromText(text.Guardian_ADD.slotAbreviation, "up", "fast")();
+      await scrollUntilIdVisible(YUSCREEN_SCROLL_VIEW, COUNTDOWN_COMPONENT, "down")();
       if (device.name.includes("(iPhone SE (3rd generation))")) {
-        await expect(element(by.text(text.EnrolmentTitle))).toBeVisible();
-        await swipeFromText(text.EnrolmentButton, "up", "fast")();
+        await swipeFromText(text.activeEnrollmentButtonMessage, "up", "fast")();
       }
-      await expect(element(by.text(text.EnrolmentTitle))).toBeVisible();
       await expect(
-        element(by.text(`${text.EnrolmentEndDate + moment(BPEEW_USA_2.data.enrolment_end_date).format("MM/DD/YYYY")}`))
+        element(by.text(`${text.enrollmentMessage} ${moment(BPEEW_USA_2_ADD.data.enrolment_end_date).format("MM/DD/YYYY")}`))
       ).toBeVisible();
+      await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.SurveyText, "down")();
       await howToEnrollTexts();
       break;
-    case "VLTD/SPDIS/ACC/CRI/HI":
+    case "VLTD/SPDIS/ACC/CRI/VSTD":
       await textVisible(yuCoinPower)();
       await textVisible(text.Guardian_VLTD.slotAbreviation)();
       await textVisible(text.Guardian_SPDIS.slotAbreviation)();
       await textVisible(text.Guardian_ACC.heading)();
       await textVisible(text.Guardian_CRI.slotAbreviation)();
-      await textVisible(text.Guardian_HI.slotAbreviation)();
+      await textVisible(text.Guardian_VSTD.slotAbreviation)();
       if (device.name.includes("(iPhone 14 Pro)")) {
-        await expect(element(by.text(text.MoreProtection))).toBeVisible();
+        await expect(element(by.text(text.MoreProtection))).toBeNotVisible();
       }
-      await swipeFromText(text.Guardian_ACC.heading, "up", "fast")();
+      await scrollUntilIdVisible(YUSCREEN_SCROLL_VIEW, COUNTDOWN_COMPONENT, "down")();
       if (device.name.includes("(iPhone SE (3rd generation))")) {
-        await expect(element(by.text(text.EnrolmentTitle))).toBeVisible();
-        await swipeFromText(text.EnrolmentButton, "up", "fast")();
+        await swipeFromText(text.activeEnrollmentButtonMessage, "up", "fast")();
       }
-      await expect(element(by.text(text.EnrolmentTitle))).toBeVisible();
       await expect(
-        element(by.text(`${text.EnrolmentEndDate + moment(BPEEW_USA_3.data.enrolment_end_date).format("MM/DD/YYYY")}`))
+        element(by.text(`${text.enrollmentMessage} ${moment(BPEEW_USA_3_ACC.data.enrolment_end_date).format("MM/DD/YYYY")}`))
       ).toBeVisible();
+      await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.SurveyText, "down")();
       await howToEnrollTexts();
       break;
     case "ACCSICK/CAN/VLIF":
@@ -204,15 +202,15 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       await textVisible(text.Guardian_VLIF.slotAbreviation)();
       if (device.name.includes("(iPhone 14 Pro)")) {
         await expect(element(by.text(text.MoreProtection))).toBeNotVisible();
-        await expect(element(by.text(text.EnrolmentButton))).toBeNotVisible();
-        await expect(element(by.text(text.ClosedEnrolment))).toBeVisible();
+        await expect(element(by.text(text.activeEnrollmentButtonMessage))).toBeNotVisible();
       }
       await swipeFromText(text.Guardian_VLIF.slotAbreviation, "up", "fast")();
       if (device.name.includes("(iPhone SE (3rd generation))")) {
-        await expect(element(by.text(text.EnrolmentTitle))).toBeNotVisible();
-        await expect(element(by.text(text.EnrolmentButton))).toBeNotVisible();
+        await expect(element(by.text(text.activeEnrollmentButtonMessage))).toBeNotVisible();
         await expect(element(by.text(text.ClosedEnrolment))).toBeVisible();
       }
+      await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.SurveyText, "down")();
+      await exploreInsuranceBoxVisible()
 
       break;
     default:
@@ -356,9 +354,11 @@ export const onDescriptionProductCard = (copyText: USProductData) => async () =>
   } else if (copyText.id === "Guardian_ADD") {
     await textVisible(copyText.slotAbreviation)();
     await textVisible(copyText.shortDescription)();
+  } else if (copyText.id === "Guardian_DENCHOI") {
+    await idVisible(BOX_OPTION_TITLE(copyText.boxTitle))();
   } else {
-    await textVisible(copyText.heading)();
-    await textVisible(copyText.shortDescription)();
+    await textVisible(copyText.boxTitle)();
+    await textVisible(copyText.boxDescription)();
   }
 };
 
@@ -395,7 +395,7 @@ export const onPCPPage = async () =>{
   await idVisible(CONTENT_MIDDLE_ITEM_IMAGE(text.Guardian_Top_Banner))()
   await idVisible(CONTENT_MIDDLE_ITEM_IMAGE(text.YuLife_Top_Banner))()
   await idVisible(CONTENT_MIDDLE_ITEM_IMAGE(text.Transamerica_Top_Banner))()
-  await idVisible(TEXT_TEMPLATE("Available to you"))()
+  await textVisible("Available to you")()
 }
 
 export const infoPanelVisible = (visible: boolean) => async () => {
@@ -418,6 +418,12 @@ export const pcpProductVisible = (prod: BoxOption, visible: boolean) => async ()
     await idNotVisible(BOX_OPTION_TITLE(prod.title))()
     await idNotVisible(BOX_OPTION_DESCRIPTION(prod.description))()
   }
+}
+
+export const exploreInsuranceBoxVisible = async () => {
+  await idVisible(RIGHT_SIDE_IMAGE_BOX_OPTION(text.ExploreInsureanceBox.imageUrl))()
+  await idVisible(BOX_OPTION_TITLE(text.ExploreInsureanceBox.title))()
+  await idVisible(BOX_OPTION_DESCRIPTION(text.ExploreInsureanceBox.description))()
 }
 
 

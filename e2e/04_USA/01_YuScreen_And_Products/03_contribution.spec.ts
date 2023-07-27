@@ -29,13 +29,13 @@ import {
         helper.CHECK_EXPLORE_INSURANCE(fixture.VisionInsuranceBox)
       });
     });
-  Scenario("I should NOT see sponsored by text and logos if contribution_type is full ",scenario.start,async () => {
+  Scenario("I should see sponsored by text and logos if contribution_type is full ",scenario.start,async () => {
       Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_6, AUTH_USA_6, true, "United States"),async () => {
         helper.ONBOARDING_YUSCREEN_USA(fixture.GapInsurance);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_6)
         helper.SLOT_VISSIBLE(fixture.GapInsurance)
         helper.YUSCREEN_USA(CUSTOMER_USA_6);
-        helper.SPONSORED_LOGO_NOT_VISIBLE()
+        helper.SPONSORED_LOGO_VISIBLE()
         helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
         helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
       });
@@ -67,7 +67,7 @@ import {
         helper.ONBOARDING_YUSCREEN_USA(fixture.NoProduct);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_9)
         helper.YUSCREEN_USA(CUSTOMER_USA_9);
-        helper.SPONSORED_LOGO_NOT_VISIBLE()
+        helper.SPONSORED_LOGO_VISIBLE()
         helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
         helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
     });

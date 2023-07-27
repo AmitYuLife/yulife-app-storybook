@@ -101,32 +101,6 @@ export const CBP_USA_2_ADD = {
     }
 }
 
-export const CBP_USA_2_WLIF = {
-    type,
-    modelName,
-    data:{
-        business_product_id: bp.BUSINESS_PRODUCT_USA_2_WLIF.product.data.product_id,
-        customer_product_id: cpe.CPE_WLIF_2.data.customer_product_id,
-        category_id : "1",
-        start_date: cpe.CPE_WLIF_2.data.start_date,
-        archived : false,
-        data : "{\"dateOfBirth\":\"1990-12-09\",\"firstName\":\"Usa\",\"lastName\":\"USA\",\"sexAtBirth\":\"M\"}"
-    }
-}
-
-export const CBP_USA_2_ULIF = {
-    type,
-    modelName,
-    data:{
-        business_product_id: bp.BUSINESS_PRODUCT_USA_2_ULIF.product.data.product_id,
-        customer_product_id: cpe.CPE_ULIF_2.data.customer_product_id,
-        category_id : "1",
-        start_date: cpe.CPE_ULIF_2.data.start_date,
-        archived : false,
-        data : "{\"dateOfBirth\":\"1990-12-09\",\"firstName\":\"Usa\",\"lastName\":\"USA\",\"sexAtBirth\":\"M\"}"
-    }
-}
-
 export const CBP_USA_2_VADD = {
     type,
     modelName,
@@ -161,6 +135,19 @@ export const CBP_USA_2_LTD = {
         customer_product_id: cpe.CPE_LTD_2.data.customer_product_id,
         category_id : "1",
         start_date: cpe.CPE_LTD_2.data.start_date,
+        archived : false,
+        data : "{\"dateOfBirth\":\"1990-12-09\",\"firstName\":\"Usa\",\"lastName\":\"USA\",\"sexAtBirth\":\"M\"}"
+    }
+}
+
+export const CBP_USA_2_HI = {
+    type,
+    modelName,
+    data:{
+        business_product_id: bp.BUSINESS_PRODUCT_USA_2_HI.product.data.product_id,
+        customer_product_id: cpe.CPE_HI_2.data.customer_product_id,
+        category_id : "1",
+        start_date: cpe.CPE_HI_2.data.start_date,
         archived : false,
         data : "{\"dateOfBirth\":\"1990-12-09\",\"firstName\":\"Usa\",\"lastName\":\"USA\",\"sexAtBirth\":\"M\"}"
     }
@@ -226,19 +213,6 @@ export const CBP_USA_3_SPDIS = {
         customer_product_id: cpe.CPE_SPDIS_3.data.customer_product_id,
         category_id : "1",
         start_date: cpe.CPE_SPDIS_3.data.start_date,
-        archived : false,
-        data : "{\"dateOfBirth\":\"1990-12-09\",\"firstName\":\"Usa\",\"lastName\":\"USA\",\"sexAtBirth\":\"M\"}"
-    }
-}
-
-export const CBP_USA_3_HI = {
-    type,
-    modelName,
-    data:{
-        business_product_id: bp.BUSINESS_PRODUCT_USA_3_HI.product.data.product_id,
-        customer_product_id: cpe.CPE_HI_3.data.customer_product_id,
-        category_id : "1",
-        start_date: cpe.CPE_HI_3.data.start_date,
         archived : false,
         data : "{\"dateOfBirth\":\"1990-12-09\",\"firstName\":\"Usa\",\"lastName\":\"USA\",\"sexAtBirth\":\"M\"}"
     }
