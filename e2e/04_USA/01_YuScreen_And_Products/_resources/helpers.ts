@@ -32,7 +32,7 @@ export const ONBOARDING_YUSCREEN = async (packType: string, yuCoinPower: string)
 export const MORE_PROTECTION = async () => {
     
     When("I tap More protection", when.tapText("More protection"), async () => {
-        Then(`I should see Find out more`, then.textVisibleAtIndex("Find out more", 0))
+        Then(`I should see Available to you`, then.textVisibleAtIndex("Available to you", 0))
     })
 }
 
@@ -44,9 +44,17 @@ export const PRODUCT_CHECK = async (productCard: USProductData, index = 0) => {
     })
 }
 
+export const MORE_PRODUCTS_PRODUCT_CHECK = async (productCard: USProductData) => {
+    When(`I tap the product card for ${productCard.heading}`, when.tapID(BOX_OPTION_TITLE(productCard.boxTitle)), async () => {
+        Then(`I should see product card with description ${productCard.heading}`, then.onMoreProtectionProductsCard(productCard))
+    })
+}
+
 export const SLOT_YU_SCREEN_PRODUCT_CHECK = async (productCard: USProductData) => {
-    When(`I tap on slot ${productCard.slotAbreviation}`, when.tapText(productCard.slotAbreviation), async () => {
-        Then(`I should see product card with description ${productCard.slotAbreviation}`, then.onMoreProtectionProductsCard(productCard))
+    When("I wait", when.wait(2000), async () => {
+        When(`I tap on slot ${productCard.slotAbreviation}`, when.tapText(productCard.slotAbreviation), async () => {
+            Then(`I should see product card with description ${productCard.slotAbreviation}`, then.onMoreProtectionProductsCard(productCard))
+        })
     })
 }
 
@@ -63,7 +71,7 @@ export const LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION = async (productCard:
     When(`I go back from legal stuff page`, when.tapID(BACK_BUTTON), async () => {
         When(`I go back from product page details`, when.tapID(BACK_BUTTON), async () => {
             if(screen === "All Products Carousel") {
-                Then(`I should see correct short description of ${productCard.slotAbreviation} in carousel list`, then.onDescriptionProductCard(productCard))
+                Then(`I should see correct short description of ${productCard.slotAbreviation} in the list`, then.onDescriptionProductCard(productCard))
             } else if(screen === "pcp"){
                 Then("I'm on the pcp page", then.onPCPPage)
             } else  {
@@ -222,12 +230,14 @@ export const CHECK_EXPLORE_INSURANCE = async (prod: BoxOption, seed = text.Explo
 
     When(`I scroll down to ${seed.description}`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, seed.description, "down"), async () => {
         When(`I tap ${seed.description}`, when.tapText(seed.description), async () => {
-            Then("I'm on the pcp page", then.onPCPPage)
-            Then("I can see the info panel", then.infoPanelVisible(true))
-            Then(`I should see ${prod.imageUrl} text`, then.idVisible(RIGHT_SIDE_IMAGE_BOX_OPTION(prod.imageUrl)))
-            Then(`I should see ${prod.title} text`, then.idVisible(BOX_OPTION_TITLE(prod.title)))
-            Then(`I should see ${prod.description} text`, then.idVisible(BOX_OPTION_DESCRIPTION(prod.description)))
-            Then("I can NOT see the arrow button to go deeper into the product info", then.idNotVisible(ARROW_BUTTON))
+            When("I wait", when.wait(2000), async () => {
+                Then("I'm on the pcp page", then.onPCPPage)
+                Then("I can see the info panel", then.infoPanelVisible(true))
+                Then(`I should see ${prod.imageUrl} text`, then.idVisible(RIGHT_SIDE_IMAGE_BOX_OPTION(prod.imageUrl)))
+                Then(`I should see ${prod.title} text`, then.idVisible(BOX_OPTION_TITLE(prod.title)))
+                Then(`I should see ${prod.description} text`, then.idVisible(BOX_OPTION_DESCRIPTION(prod.description)))
+                Then("I can NOT see the arrow button to go deeper into the product info", then.idNotVisible(ARROW_BUTTON))
+            })
         })
         
     })

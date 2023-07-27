@@ -23,7 +23,6 @@ export const MoreProtection = "More protection"
 export const ClosedEnrolment = "Inforce coverage information coming soon!"
 export const EnrolmentTitle = "Make your benefit choices today!"
 export const EnrolmentEndDate = `You have until\n`
-export const EnrolmentButton = "Lets go!"
 export const SurveyText = "We love hearing from you.\nHelp shape the future of YuLife!"
 export const SurveyLabel = "Share your thoughts"
 export const yuMojiBuilder = "Create your Yumoji to step into the Yuniverse"
@@ -34,6 +33,7 @@ export const preEnrollmentMessage = "Your enrollment will start on"
 export const enrollmentMessage = "Your enrollment will end on"
 export const preEnrollmentButtonMessage = "See all available products"
 export const activeEnrollmentButtonMessage = "Select my benefits now!"
+export const availableToYou = "Available to you"
 
 
 //Footer copy texts
@@ -81,6 +81,7 @@ const year = moment().format("YYYY")
 export const Guardian_DENPPO:USProductData = {
     id: "Guardian_DENPPO",
     heading: "Dental insurance",
+    slotAbreviation: "Dental insurance",
     description: "With Guardian's Dental insurance you'll have the care needed to help keep you and your family smiling.",
     shortDescription: "With Guardian's Dental insurance you'll have the care needed to help keep you and your family smiling.",
     image_1: Tooth_ImageUrl,
@@ -99,12 +100,15 @@ export const Guardian_DENPPO:USProductData = {
     legalStuff_2: "YuLife is neither a subsidiary nor affiliate of The Guardian Life Insurance Company of America (Guardian).  YuLife is an independent, third-party service provider. Guardian is neither responsible nor liable for services, advice or recommendations made by YuLife.",
     legalStuff_3: `Guardian® is a registered trademark of The Guardian Life Insurance Company of America and is used with express permission. \n©Copyright ${year} The Guardian Life Insurance Company of America.`,
     middleImage: "https://yulife-develop.imgix.net/yuscreen/product-details-guardian-hero-2022-09-21-1/Guardian_DENPPO.png?ixlib=js-3.2.1&w=981&h=492&s=7e2621f97ddcb9f121003b4b78723066",
-    titleMarkdown: "**Dental insurance**"
+    titleMarkdown: "**Dental insurance**",
+    boxTitle: "Dental Insurance",
+    boxDescription: "Guardian’s dental protection to keep you and your family smiling."
 }
 
 export const Guardian_DENHMO:USProductData = {
     id: "Guardian_DENHMO",
     heading: "Managed Care plan",
+    slotAbreviation: "Managed Care plan",
     description: "With Guardian's Managed Dental plan you'll have the care needed to keep you and your family smiling.",
     shortDescription: "With Guardian’s Managed Dental plan you’ll have the care needed to keep you and your family smiling.",
     image_1: Tooth_ImageUrl,
@@ -124,7 +128,9 @@ export const Guardian_DENHMO:USProductData = {
     legalStuff_3: "YuLife is neither a subsidiary nor affiliate of The Guardian Life Insurance Company of America (Guardian).  YuLife is an independent, third-party service provider. Guardian is neither responsible nor liable for services, advice or recommendations made by YuLife.",
     legalStuff_4: `Guardian® is a registered trademark of The Guardian Life Insurance Company of America and is used with express permission. \n©Copyright ${year} The Guardian Life Insurance Company of America.`,
     middleImage: "https://yulife-develop.imgix.net/yuscreen/product-details-guardian-hero-2022-09-21-1/Guardian_DENHMO.png?ixlib=js-3.2.1&w=981&h=492&s=9b0f58d52c4d8785c045e6540748e1ef",
-    titleMarkdown: "**Managed Care plan**"
+    titleMarkdown: "**Managed Care plan**",
+    boxTitle: "Managed Dental Plan",
+    boxDescription: "Guardian’s dental care plan to protect your pearly whites."
 }
 
 export const Guardian_DENCHOI:USProductData = {
@@ -151,7 +157,9 @@ export const Guardian_DENCHOI:USProductData = {
     legalStuff_4: "YuLife is neither a subsidiary nor affiliate of The Guardian Life Insurance Company of America (Guardian).  YuLife is an independent, third-party service provider. Guardian is neither responsible nor liable for services, advice or recommendations made by YuLife.",
     legalStuff_5: `Guardian® is a registered trademark of The Guardian Life Insurance Company of America and is used with express permission. \n©Copyright ${year} The Guardian Life Insurance Company of America.`,
     middleImage: "https://yulife-develop.imgix.net/yuscreen/product-details-guardian-hero-2022-09-21-1/Guardian_DENCHOI.png?ixlib=js-3.2.1&w=981&h=492&s=7f460a447446ffab629c494471ff5f53",
-    titleMarkdown: "**Dental plan**"
+    titleMarkdown: "**Dental plan**",
+    boxTitle: "Dental Choice Plan (PPO and DHMO/MDC)",
+    boxDescription: "Dental Choice Plan (PPO and DHMO/MDC)"
 }
 
 export const Guardian_TLIF:USProductData = {
@@ -174,12 +182,15 @@ export const Guardian_TLIF:USProductData = {
     legalStuff_3: "YuLife is neither a subsidiary nor affiliate of The Guardian Life Insurance Company of America (Guardian).  YuLife is an independent, third-party service provider. Guardian is neither responsible nor liable for services, advice or recommendations made by YuLife.",
     legalStuff_4: `Guardian® is a registered trademark of The Guardian Life Insurance Company of America and is used with express permission. \n©Copyright ${year} The Guardian Life Insurance Company of America.`,
     middleImage: "https://yulife-develop.imgix.net/yuscreen/product-details-guardian-hero-2022-09-21-1/Guardian_TLIF.png?ixlib=js-3.2.1&w=981&h=492&s=e6fdbaa89a861293172c74a4f84454b5",
-    titleMarkdown: "**Term Life insurance**"
+    titleMarkdown: "**Term Life insurance**",
+    boxTitle: "Life Insurance",
+    boxDescription: "Guardian helps you support your loved ones in the case of the unexpected."
 }
 
 export const Guardian_VIS:USProductData = {
     id: "Guardian_VIS",
     heading: "Vision insurance",
+    slotAbreviation: "Vision insurance",
     description: "Take a look into the future and plan ahead with Guardian's Vision insurance.",
     shortDescription: "Take a look into the future and plan ahead with Guardian’s Vision insurance.",
     image_1: Calculator_ImageUrl,
@@ -198,7 +209,9 @@ export const Guardian_VIS:USProductData = {
     legalStuff_2: "YuLife is neither a subsidiary nor affiliate of The Guardian Life Insurance Company of America (Guardian).  YuLife is an independent, third-party service provider. Guardian is neither responsible nor liable for services, advice or recommendations made by YuLife.",
     legalStuff_3:`Guardian® is a registered trademark of The Guardian Life Insurance Company of America and is used with express permission. \n©Copyright ${year} The Guardian Life Insurance Company of America.`,
     middleImage: "https://yulife-develop.imgix.net/yuscreen/product-details-guardian-hero-2022-09-21-1/Guardian_VIS.png?ixlib=js-3.2.1&w=981&h=492&s=362348106cb897524f820b8fc07f8f7f",
-    titleMarkdown: "**Vision insurance**"
+    titleMarkdown: "**Vision insurance**",
+    boxTitle: "Vision Insurance",
+    boxDescription: "Guardian’s vision plan will keep you looking sharp."
 }
 
 export const Guardian_WLIF:USProductData = {
@@ -221,7 +234,9 @@ export const Guardian_WLIF:USProductData = {
     legalStuff_2: "The legal stuff",
     legalStuff_3: "The legal stuff",
     middleImage: "https://yulife-develop.imgix.net/yuscreen/product-details-guardian-hero-2022-09-21-1/Guardian_WLIF.png?ixlib=js-3.2.1&w=981&h=492&s=542daf1099e4ae88d81728d6eea1ca2b",
-    titleMarkdown: "**Voluntary Life insurance**"
+    titleMarkdown: "**Voluntary Life insurance**",
+    boxTitle: "Voluntary life insurance",
+    boxDescription: "Guardian's Life insurance is a key part of a smart financial plan."
 }
 
 export const Guardian_ULIF:USProductData = {
@@ -244,7 +259,9 @@ export const Guardian_ULIF:USProductData = {
     legalStuff_2: "The legal stuff",
     legalStuff_3: "The legal stuff",
     middleImage: "https://yulife-develop.imgix.net/yuscreen/product-details-guardian-hero-2022-09-21-1/Guardian_ULIF.png?ixlib=js-3.2.1&w=981&h=492&s=42585eb9cf614bd58356eb2f22ca36c8",
-    titleMarkdown: "**Voluntary Life insurance**"
+    titleMarkdown: "**Voluntary Life insurance**",
+    boxTitle: "Voluntary life insurance",
+    boxDescription: "Guardian's Life insurance is a key part of a smart financial plan."
 }
 
 export const Guardian_ADD:USProductData = {
@@ -267,7 +284,9 @@ export const Guardian_ADD:USProductData = {
     legalStuff_3: "YuLife is neither a subsidiary nor affiliate of The Guardian Life Insurance Company of America (Guardian).  YuLife is an independent, third-party service provider. Guardian is neither responsible nor liable for services, advice or recommendations made by YuLife.",
     legalStuff_4: `Guardian® is a registered trademark of The Guardian Life Insurance Company of America and is used with express permission. \n©Copyright ${year} The Guardian Life Insurance Company of America.`,
     middleImage: "https://yulife-develop.imgix.net/yuscreen/product-details-guardian-hero-2022-09-21-1/Guardian_ADD.png?ixlib=js-3.2.1&w=981&h=492&s=610962cd257da048ab7c834b2d15be9b",
-    titleMarkdown: "**AD&D insurance**"
+    titleMarkdown: "**AD&D insurance**",
+    boxTitle: "AD&D Insurance",
+    boxDescription: "Guardian’s got you covered in the case of an accidental death or dismemberment."
 }
 
 export const Guardian_STD:USProductData = {
@@ -389,6 +408,7 @@ export const Guardian_VSTD:USProductData = {
 export const Guardian_ACC:USProductData = {
     id: "Guardian_VSTD",
     heading: "Accident insurance",
+    slotAbreviation: "Accident insurance",
     description: "Guardian’s Accident insurance provides a layer of protection that pays you cash when you suffer from a covered injury.",
     shortDescription: "Guardian’s Accident insurance provides a layer of protection that pays you cash when you suffer from a covered injury.",
     image_1: Lock_ImageUrl,
@@ -462,7 +482,7 @@ export const Guardian_HI:USProductData = {
 export const Guardian_SPDIS:USProductData = {
     id: "Guardian_SPDIS",
     heading: "Specified Disease insurance",
-    slotAbreviation: "Hospital indemnity insurance",
+    slotAbreviation: "Specified Disease insurance",
     description: "For employees located in New York, Guardian’s Specified Disease insurance gives you financial protection if you experience a covered serious illness or medical condition, such as stroke, heart attack, or cancer.",
     shortDescription: "Guardian’s Specified Disease insurance gives you financial protection if you experience a covered serious illness or medical condition.",
     image_1: Lock_ImageUrl,
@@ -626,8 +646,6 @@ export const VstdInsurance: YuScreenInfo = {
 export const GapInEnrolVisOutEnrol: YuScreenInfo = {
     mainYuCoinPower: "1",
     SlotProductTitle: Gap,
-    SlotYuCoinPowerText: "+",
-    SlotLeftBackgroundImgSrc: canEnrolPlusImage,
     SecondSlotProductTitle: Guardian_VIS.heading,
 };
 

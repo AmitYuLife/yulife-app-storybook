@@ -28,7 +28,7 @@ import {
   SLOT_TITLE,
 } from "@ids";
 import moment from "moment";
-import { BPEEW_USA_1 } from "04_USA/_data";
+import { BPEEW_USA_1_DENPPO } from "04_USA/_data";
 import { getFullName } from "_utils/users";
 
 export const {

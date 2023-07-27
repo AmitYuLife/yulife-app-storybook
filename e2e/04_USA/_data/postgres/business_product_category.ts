@@ -88,30 +88,6 @@ export const BPC_USA_2_ADD = {
     },
 };
 
-export const BPC_USA_2_WLIF = {
-    type,
-    modelName,
-    data:{
-        product_id: bp.BUSINESS_PRODUCT_USA_2_WLIF.product.data.product_id,
-        category_id: "1",
-        earn_rate: 17,
-        category_name: "App access only",
-        category_description: "All employees will have access to the YuLife app",
-    },
-};
-
-export const BPC_USA_2_ULIF = {
-    type,
-    modelName,
-    data:{
-        product_id: bp.BUSINESS_PRODUCT_USA_2_ULIF.product.data.product_id,
-        category_id: "1",
-        earn_rate: 17,
-        category_name: "App access only",
-        category_description: "All employees will have access to the YuLife app",
-    },
-};
-
 export const BPC_USA_2_VADD = {
     type,
     modelName,
@@ -141,6 +117,18 @@ export const BPC_USA_2_LTD = {
     modelName,
     data:{
         product_id: bp.BUSINESS_PRODUCT_USA_2_LTD.product.data.product_id,
+        category_id: "1",
+        earn_rate: 17,
+        category_name: "App access only",
+        category_description: "All employees will have access to the YuLife app",
+    },
+};
+
+export const BPC_USA_2_HI = {
+    type,
+    modelName,
+    data:{
+        product_id: bp.BUSINESS_PRODUCT_USA_2_HI.product.data.product_id,
         category_id: "1",
         earn_rate: 17,
         category_name: "App access only",
@@ -201,18 +189,6 @@ export const BPC_USA_3_SPDIS = {
     modelName,
     data:{
         product_id: bp.BUSINESS_PRODUCT_USA_3_SPDIS.product.data.product_id,
-        category_id: "1",
-        earn_rate: 17,
-        category_name: "App access only",
-        category_description: "All employees will have access to the YuLife app",
-    },
-};
-
-export const BPC_USA_3_HI = {
-    type,
-    modelName,
-    data:{
-        product_id: bp.BUSINESS_PRODUCT_USA_3_HI.product.data.product_id,
         category_id: "1",
         earn_rate: 17,
         category_name: "App access only",

@@ -18,6 +18,9 @@ export const BUSINESS_PRODUCT_USA_1_DENPPO = generateProductRecords({
     productId: "SEED_USA_2",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
+    product: {
+      contribution_type: "partial",
+   }
   });
 
 export const BUSINESS_PRODUCT_USA_1_DENHMO = generateProductRecords({
@@ -26,6 +29,9 @@ export const BUSINESS_PRODUCT_USA_1_DENHMO = generateProductRecords({
     productId: "SEED_USA_3",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
+    product: {
+      contribution_type: "partial",
+   }
   });
 
 export const BUSINESS_PRODUCT_USA_1_DENCHOI = generateProductRecords({
@@ -34,6 +40,9 @@ export const BUSINESS_PRODUCT_USA_1_DENCHOI = generateProductRecords({
     productId: "SEED_USA_4",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
+    product: {
+      contribution_type: "partial",
+   }
   });
 
 export const BUSINESS_PRODUCT_USA_1_VIS = generateProductRecords({
@@ -42,6 +51,9 @@ export const BUSINESS_PRODUCT_USA_1_VIS = generateProductRecords({
     productId: "SEED_USA_5",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
+    product: {
+      contribution_type: "partial",
+   }
   });
 
 export const BUSINESS_PRODUCT_USA_1_TLIF = generateProductRecords({
@@ -50,6 +62,9 @@ export const BUSINESS_PRODUCT_USA_1_TLIF = generateProductRecords({
     productId: "SEED_USA_6",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
+    product: {
+      contribution_type: "partial",
+   }
   });
 
 export const BUSINESS_PRODUCT_USA_2_ADD = generateProductRecords({
@@ -58,22 +73,9 @@ export const BUSINESS_PRODUCT_USA_2_ADD = generateProductRecords({
     productId: "SEED_USA_7",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
-  });
-
-export const BUSINESS_PRODUCT_USA_2_WLIF = generateProductRecords({
-    productCode: ProductCode.WLIF,
-    carrier: Carrier.Guardian,
-    productId: "SEED_USA_8",
-    businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
-    startDate: "2021-06-03T00:00:00.000Z",
-  });
-
-export const BUSINESS_PRODUCT_USA_2_ULIF = generateProductRecords({
-    productCode: ProductCode.ULIF,
-    carrier: Carrier.Guardian,
-    productId: "SEED_USA_10",
-    businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
-    startDate: "2021-06-03T00:00:00.000Z",
+    product: {
+      contribution_type: "partial",
+   }
   });
 
  export const BUSINESS_PRODUCT_USA_2_VADD = generateProductRecords({
@@ -82,6 +84,9 @@ export const BUSINESS_PRODUCT_USA_2_ULIF = generateProductRecords({
     productId: "SEED_USA_11",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
+    product: {
+      contribution_type: "partial",
+   }
   });
 
 export const BUSINESS_PRODUCT_USA_2_STD = generateProductRecords({
@@ -90,6 +95,9 @@ export const BUSINESS_PRODUCT_USA_2_STD = generateProductRecords({
     productId: "SEED_USA_12",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
+    product: {
+      contribution_type: "partial",
+   }
   });
 
 export const BUSINESS_PRODUCT_USA_2_LTD = generateProductRecords({
@@ -98,7 +106,21 @@ export const BUSINESS_PRODUCT_USA_2_LTD = generateProductRecords({
     productId: "SEED_USA_13",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
+    product: {
+      contribution_type: "partial",
+   }
   });
+  
+  export const BUSINESS_PRODUCT_USA_2_HI = generateProductRecords({
+      productCode: ProductCode.HI,
+      carrier: Carrier.Guardian,
+      productId: "SEED_USA_19",
+      businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
+      startDate: "2021-06-03T00:00:00.000Z",
+      product: {
+        contribution_type: "partial",
+     }
+    });
 
 export const BUSINESS_PRODUCT_USA_3_VSTD = generateProductRecords({
     productCode: ProductCode.VSTD,
@@ -106,6 +128,9 @@ export const BUSINESS_PRODUCT_USA_3_VSTD = generateProductRecords({
     productId: "SEED_USA_14",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
+    product: {
+      contribution_type: "none",
+   }
   });
 
 export const BUSINESS_PRODUCT_USA_3_VLTD = generateProductRecords({
@@ -114,6 +139,9 @@ export const BUSINESS_PRODUCT_USA_3_VLTD = generateProductRecords({
     productId: "SEED_USA_15",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
+    product: {
+      contribution_type: "none",
+   }
   });
 
 export const BUSINESS_PRODUCT_USA_3_ACC = generateProductRecords({
@@ -122,6 +150,9 @@ export const BUSINESS_PRODUCT_USA_3_ACC = generateProductRecords({
     productId: "SEED_USA_16",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
+    product: {
+      contribution_type: "none",
+   }
   });
 
 export const BUSINESS_PRODUCT_USA_3_CRI = generateProductRecords({
@@ -130,6 +161,9 @@ export const BUSINESS_PRODUCT_USA_3_CRI = generateProductRecords({
     productId: "SEED_USA_17",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
+    product: {
+      contribution_type: "none",
+   }
   });
 
 export const BUSINESS_PRODUCT_USA_3_SPDIS = generateProductRecords({
@@ -138,15 +172,11 @@ export const BUSINESS_PRODUCT_USA_3_SPDIS = generateProductRecords({
     productId: "SEED_USA_18",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
+    product: {
+      contribution_type: "none",
+   }
   });
 
-export const BUSINESS_PRODUCT_USA_3_HI = generateProductRecords({
-    productCode: ProductCode.HI,
-    carrier: Carrier.Guardian,
-    productId: "SEED_USA_19",
-    businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
-    startDate: "2021-06-03T00:00:00.000Z",
-  });
 
 export const BUSINESS_PRODUCT_USA_4_ACCSICK = generateProductRecords({
     productCode: ProductCode.ACCSICK,
@@ -154,6 +184,9 @@ export const BUSINESS_PRODUCT_USA_4_ACCSICK = generateProductRecords({
     productId: "SEED_USA_20",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
+    product: {
+      contribution_type: "none",
+   }
   });
 
 export const BUSINESS_PRODUCT_USA_4_CAN = generateProductRecords({
@@ -162,6 +195,9 @@ export const BUSINESS_PRODUCT_USA_4_CAN = generateProductRecords({
     productId: "SEED_USA_21",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
+    product: {
+      contribution_type: "none",
+   }
   });
 
   export const BUSINESS_PRODUCT_USA_4_VLIF = generateProductRecords({
@@ -170,6 +206,9 @@ export const BUSINESS_PRODUCT_USA_4_CAN = generateProductRecords({
     productId: "SEED_USA_9",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
+    product: {
+      contribution_type: "none",
+   }
   });
 
 export const BUSINESS_PRODUCT_USA_5_GAP = generateProductRecords({

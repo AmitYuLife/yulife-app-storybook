@@ -26,6 +26,8 @@ import {
   SURVEY_SCREEN,
   SURVEY_TEXT_BOX,
   CHECK_BOX_STATE,
+  BACK_BUTTON,
+  YUSCREEN_SCROLL_VIEW,
 } from "@ids";
 
 import * as helper from "./_resources/helpers";
@@ -60,67 +62,68 @@ Feature("I am able to see Product Details in US YU Screen ", async () => {
       async () => {
         helper.ONBOARDING_YUSCREEN("Wellbeing/TLIF/DENCHOI", "10");
         helper.YUSCREEN_USA_V4(CUSTOMER_USA_1, "Wellbeing/DENPPO/DENCHOI/TLIF/VIS", "10");
-        helper.MORE_PROTECTION();
-        helper.PRODUCT_CHECK(Guardian_DENPPO, );
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_DENPPO);
-        helper.PRODUCT_CHECK(Guardian_DENCHOI, );
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_DENCHOI);
-        helper.PRODUCT_CHECK(Guardian_DENHMO, );
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_DENHMO);
-        helper.PRODUCT_CHECK(Guardian_VIS, );
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VIS);
-        When("I swipe to the bottom of the page", when.swipeFromText("Vision insurance", "up", "slow"), async () => {
-          helper.PRODUCT_CHECK(Guardian_TLIF, );
+        helper.MORE_PROTECTION()
+        When("I scroll to the bottom of the page", when.swipeFromText("Available to you", "up", "fast"), async () => {
+          helper.MORE_PRODUCTS_PRODUCT_CHECK(Guardian_DENPPO);
+          helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_DENPPO);
+          helper.MORE_PRODUCTS_PRODUCT_CHECK(Guardian_DENCHOI, );
+          helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_DENCHOI);
+          helper.MORE_PRODUCTS_PRODUCT_CHECK(Guardian_DENHMO);
+          helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_DENHMO);
+          helper.MORE_PRODUCTS_PRODUCT_CHECK(Guardian_VIS);
+          helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VIS);
+          helper.MORE_PRODUCTS_PRODUCT_CHECK(Guardian_TLIF);
           helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_TLIF);
         })
+
       }
     );
   });
 
-  Scenario("I can see all product details WLIF/ULIF/VADD", scenario.start, async () => {
+  Scenario("I can see all product details ADD/STD/LTD/VADD/HI", scenario.start, async () => {
     Given(
       "I login as a user",
       given.logInAndGoToTab("yu", CUSTOMER_USA_2, AUTH_USA_2, true, "United States"),
       async () => {
-        helper.ONBOARDING_YUSCREEN("LTD/STD/VADD", "1");
-        helper.YUSCREEN_USA_V4(CUSTOMER_USA_2, "WLIF/ULIF/ADD/STD/LTD", "1");
-        helper.MORE_PROTECTION();
-        helper.PRODUCT_CHECK(Guardian_WLIF, 0);
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_WLIF);
-        helper.PRODUCT_CHECK(Guardian_ADD, );
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_ADD);
-        helper.PRODUCT_CHECK(Guardian_ULIF, );
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_ULIF);
-        helper.PRODUCT_CHECK(Guardian_LTD, );
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_LTD);
-        helper.PRODUCT_CHECK(Guardian_STD, );
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_STD);
-        helper.PRODUCT_CHECK(Guardian_VADD, );
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VADD);
+        helper.ONBOARDING_YUSCREEN("LTD/STD/VADD/HI", "1");
+        helper.YUSCREEN_USA_V4(CUSTOMER_USA_2, "ADD/STD/LTD/VADD/HI", "1");
+        When(`I swipe up the page`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, `${CUSTOMER_USA_2.data.firstName} ${CUSTOMER_USA_2.data.lastName}`, "up"), async () => {
+          Then(`I should see the top text`, then.textVisible(`${CUSTOMER_USA_2.data.firstName} ${CUSTOMER_USA_2.data.lastName}`))
+        })
+        helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_ADD);
+        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_ADD, "Yu Screen");
+        helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_LTD);
+        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_LTD, "Yu Screen");
+        helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_STD, );
+        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_STD, "Yu Screen");
+        helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_VADD);
+        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VADD, "Yu Screen");
+        helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_HI);
+        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_HI, "Yu Screen");
       }
     );
   });
 
-  Scenario("I can see all product details VLTD/VSTD/ACC", scenario.start, async () => {
+  Scenario("I can see all product details VLTD/SPDIS/ACC/CRI/VSTD", scenario.start, async () => {
     Given(
       "I login as a user",
       given.logInAndGoToTab("yu", CUSTOMER_USA_3, AUTH_USA_3, true, "United States"),
       async () => {
-        helper.ONBOARDING_YUSCREEN("CRI/HI/ACC", "1");
-        helper.YUSCREEN_USA_V4(CUSTOMER_USA_3, "VLTD/SPDIS/ACC/CRI/HI", "1");
-        helper.MORE_PROTECTION();
-        helper.PRODUCT_CHECK(Guardian_VSTD, );
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VSTD);
-        helper.PRODUCT_CHECK(Guardian_ACC, );
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_ACC);
-        helper.PRODUCT_CHECK(Guardian_VLTD, );
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VLTD);
-        helper.PRODUCT_CHECK(Guardian_HI, );
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_HI);
-        helper.PRODUCT_CHECK(Guardian_CRI, );
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_CRI);
-        helper.PRODUCT_CHECK(Guardian_SPDIS, );
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_SPDIS);
+        helper.ONBOARDING_YUSCREEN("CRI/SPDIS/ACC", "1");
+        helper.YUSCREEN_USA_V4(CUSTOMER_USA_3, "VLTD/SPDIS/ACC/CRI/VSTD", "1");
+        When(`I swipe up the page`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, `${CUSTOMER_USA_3.data.firstName} ${CUSTOMER_USA_3.data.lastName}`, "up"), async () => {
+          Then(`I should see the top text`, then.textVisible(`${CUSTOMER_USA_3.data.firstName} ${CUSTOMER_USA_3.data.lastName}`))
+        })
+        helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_VSTD);
+        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VSTD, "Yu Screen");
+        helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_ACC);
+        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_ACC, "Yu Screen");
+        helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_VLTD);
+        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VLTD, "Yu Screen");
+        helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_CRI);
+        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_CRI, "Yu Screen");
+        helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_SPDIS);
+        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_SPDIS, "Yu Screen");
       }
     );
   });
@@ -135,6 +138,9 @@ Feature("I am able to see Product Details in US YU Screen ", async () => {
         async () => {
           helper.ONBOARDING_YUSCREEN("ACCSICK/CAN/VLIF", "1");
           helper.YUSCREEN_USA_V4(CUSTOMER_USA_4, "ACCSICK/CAN/VLIF", "1");
+          When(`I swipe up the page`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, `${CUSTOMER_USA_4.data.firstName} ${CUSTOMER_USA_4.data.lastName}`, "up"), async () => {
+            Then(`I should see the top text`, then.textVisible(`${CUSTOMER_USA_4.data.firstName} ${CUSTOMER_USA_4.data.lastName}`))
+          })
           helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_CAN);
           helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_CAN, "Yu Screen");
           helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_ACCSICK);

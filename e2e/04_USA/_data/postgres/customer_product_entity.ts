@@ -31,7 +31,7 @@ export const CPE_DENPPO_1 = {
     is_banned_from_product: false,
     product_variant_id: "Guardian_DENPPO_01_01",
     archived: false,
-    taken_up: true,
+    taken_up: false,
   },
 } as IDatabaseItem;
 
@@ -48,7 +48,7 @@ export const CPE_DENHMO_1 = {
     is_banned_from_product: false,
     product_variant_id: "Guardian_DENHMO_01_01",
     archived: false,
-    taken_up: true,
+    taken_up: false,
   },
 } as IDatabaseItem;
 
@@ -65,7 +65,7 @@ export const CPE_DENCHOI_1 = {
     is_banned_from_product: false,
     product_variant_id: "Guardian_DENCHOI_01_01",
     archived: false,
-    taken_up: true,
+    taken_up: false,
   },
 } as IDatabaseItem;
 
@@ -82,7 +82,7 @@ export const CPE_VIS_1 = {
     is_banned_from_product: false,
     product_variant_id: "Guardian_VIS_01_01",
     archived: false,
-    taken_up: true,
+    taken_up: false,
   },
 } as IDatabaseItem;
 
@@ -99,7 +99,7 @@ export const CPE_TLIF_1 = {
     is_banned_from_product: false,
     product_variant_id: "Guardian_TLIF_01_01",
     archived: false,
-    taken_up: true,
+    taken_up: false,
   },
 } as IDatabaseItem;
 
@@ -116,41 +116,7 @@ export const CPE_ADD_2 = {
     is_banned_from_product: false,
     product_variant_id: "Guardian_ADD_01_01",
     archived: false,
-    taken_up: true,
-  },
-} as IDatabaseItem;
-
-export const CPE_WLIF_2 = {
-  type,
-  modelName,
-  data: {
-    customer_product_id: "US_YUCPID1000001107",
-    customer_id: customer.CUSTOMER_USA_2.data.customerId,
-    earn_rate: 0,
-    start_date: "2022-12-09",
-    end_date: "2199-12-31",
-    underwriting_step: null,
-    is_banned_from_product: false,
-    product_variant_id: "Guardian_WLIF_01_01",
-    archived: false,
-    taken_up: true,
-  },
-} as IDatabaseItem;
-
-export const CPE_ULIF_2 = {
-  type,
-  modelName,
-  data: {
-    customer_product_id: "US_YUCPID1000001108",
-    customer_id: customer.CUSTOMER_USA_2.data.customerId,
-    earn_rate: 0,
-    start_date: "2022-12-09",
-    end_date: "2199-12-31",
-    underwriting_step: null,
-    is_banned_from_product: false,
-    product_variant_id: "Guardian_ULIF_01_01",
-    archived: false,
-    taken_up: true,
+    taken_up: false,
   },
 } as IDatabaseItem;
 
@@ -167,7 +133,7 @@ export const CPE_VADD_2 = {
     is_banned_from_product: false,
     product_variant_id: "Guardian_VADD_01_01",
     archived: false,
-    taken_up: true,
+    taken_up: false,
   },
 } as IDatabaseItem;
 
@@ -184,7 +150,7 @@ export const CPE_STD_2 = {
     is_banned_from_product: false,
     product_variant_id: "Guardian_STD_01_01",
     archived: false,
-    taken_up: true,
+    taken_up: false,
   },
 } as IDatabaseItem;
 
@@ -201,7 +167,24 @@ export const CPE_LTD_2 = {
     is_banned_from_product: false,
     product_variant_id: "Guardian_LTD_01_01",
     archived: false,
-    taken_up: true,
+    taken_up: false,
+  },
+} as IDatabaseItem;
+
+export const CPE_HI_2 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001117",
+    customer_id: customer.CUSTOMER_USA_2.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_HI_01_01",
+    archived: false,
+    taken_up: false,
   },
 } as IDatabaseItem;
 
@@ -218,7 +201,7 @@ export const CPE_VSTD_3 = {
     is_banned_from_product: false,
     product_variant_id: "Guardian_VSTD_01_01",
     archived: false,
-    taken_up: true,
+    taken_up: false,
   },
 } as IDatabaseItem;
 
@@ -235,7 +218,7 @@ export const CPE_VLTD_3 = {
     is_banned_from_product: false,
     product_variant_id: "Guardian_VLTD_01_01",
     archived: false,
-    taken_up: true,
+    taken_up: false,
   },
 } as IDatabaseItem;
 
@@ -252,7 +235,7 @@ export const CPE_ACC_3 = {
     is_banned_from_product: false,
     product_variant_id: "Guardian_ACC_01_01",
     archived: false,
-    taken_up: true,
+    taken_up: false,
   },
 } as IDatabaseItem;
 
@@ -269,7 +252,7 @@ export const CPE_CRI_3 = {
     is_banned_from_product: false,
     product_variant_id: "Guardian_CRI_01_01",
     archived: false,
-    taken_up: true,
+    taken_up: false,
   },
 } as IDatabaseItem;
 
@@ -286,24 +269,7 @@ export const CPE_SPDIS_3 = {
     is_banned_from_product: false,
     product_variant_id: "Guardian_SPDIS_01_01",
     archived: false,
-    taken_up: true,
-  },
-} as IDatabaseItem;
-
-export const CPE_HI_3 = {
-  type,
-  modelName,
-  data: {
-    customer_product_id: "US_YUCPID1000001117",
-    customer_id: customer.CUSTOMER_USA_3.data.customerId,
-    earn_rate: 0,
-    start_date: "2022-12-09",
-    end_date: "2199-12-31",
-    underwriting_step: null,
-    is_banned_from_product: false,
-    product_variant_id: "Guardian_HI_01_01",
-    archived: false,
-    taken_up: true,
+    taken_up: false,
   },
 } as IDatabaseItem;
 
