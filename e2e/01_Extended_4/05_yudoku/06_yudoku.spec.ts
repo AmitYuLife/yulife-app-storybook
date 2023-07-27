@@ -6,7 +6,7 @@ import * as then from "./_steps/then"
 import { AUTH_58,  AUTH_76,  AUTH_84,  AUTH_86, CUSTOMER_58, CUSTOMER_67, CUSTOMER_68, CUSTOMER_71, CUSTOMER_76, CUSTOMER_84, CUSTOMER_86, SUDOKU_ANSWER_71, SUDOKU_ANSWER_68, SUDOKU_ANSWER_67} from "@data"
 import { BACK_BUTTON, BUTTON_CLOSE_HEADER, BUTTON_CLOSE_RIGHT_ID, CANCEL_CANCEL_CHALLENGE, CELL_ROW_COLUMN, CHALLENGE_HISTORY_NEW_SLOT, LEVEL_CHALLENGE_BUTTON, LEVEL_SUMMARY_YUDOKU_LEADERBOARD, MENU_ICON, SETTINGS_SCREEN, SETTINGS_SWITCH, SUDOKU_HINT_TIMER, SUDOKU_NUMBER_INPUT, SUDOKU_PRACTICE_BUTTON, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, SUDOKU_UNRANKED_LABEL, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids"
 import { SUDOKU_STAT_0 } from "_utils/data/mongo/game_sudoku_stats"
-import { PracticeYudokuAnswers } from "./_steps/constants"
+import { PracticeYudokuAnswers } from "./_resources/constants"
 
 Feature("Yudoku", async () => {
   Scenario("I can play, pause, and complete Sudoku and join/view the leaderboard", scenario.start, () => {

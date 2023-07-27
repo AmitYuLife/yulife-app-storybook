@@ -28,7 +28,7 @@ import {
   CHECK_BOX_STATE,
 } from "@ids";
 
-import * as helper from "./_steps/helpers";
+import * as helper from "./_resources/helpers";
 import {
   Guardian_DENPPO,
   Guardian_DENHMO,
@@ -50,7 +50,7 @@ import {
   Guardian_CAN,
   Guardian_ACCSICK,
   Guardian_VLIF,
-} from "./_steps/fixture";
+} from "./_resources/fixture";
 
 Feature("I am able to see Product Details in US YU Screen ", async () => {
   Scenario("I can see all product details Wellbeing/DENPPO/DENHMO/DENCHOI/TLIF/VIS", scenario.start, async () => {

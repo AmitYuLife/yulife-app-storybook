@@ -12,8 +12,8 @@ import {
   import * as given from "./_steps/given";
   import { AUTH_USA_10, AUTH_USA_11, AUTH_USA_5, AUTH_USA_6, AUTH_USA_7, AUTH_USA_8, AUTH_USA_9 } from "../_data/mongo/auths";
   import { BPEEW_USA_10_VIS, CUSTOMER_USA_10, CUSTOMER_USA_11, CUSTOMER_USA_5, CUSTOMER_USA_6, CUSTOMER_USA_7, CUSTOMER_USA_8, CUSTOMER_USA_9 } from "../_data";
-  import * as helper from "./_steps/helpers";
-  import * as fixture from "./_steps/fixture";
+  import * as helper from "./_resources/helpers";
+  import * as fixture from "./_resources/fixture";
   import * as id from "@ids";
   
   Feature("I am able to see sponsored by text/logos and box option types", async () => {

@@ -1,6 +1,6 @@
 import { navigation, tapID, tapText } from "@utils";
 import { screens } from "@appScreens";
-import * as text from "./fixture";
+import * as text from "../_resources/fixture";
 
 export const {
   idVisible,

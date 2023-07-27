@@ -1,6 +1,6 @@
 import { When, Then } from "@yu-life/yulife-bdd-framework";
-import * as when from "./when"
-import * as then from "./then"
+import * as when from "../_steps/when"
+import * as then from "../_steps/then"
 import * as text  from "./fixture";
 import { V4_YUSCREEN, ALL_PRODUCTS_CONTAINER_VIEW, BACK_BUTTON, CAROUSEL_CARD_BUTTON, ONBOARDING_SCREEN, CAROUSEL_CARD, SPONSOR_LOGO_IMAGE, BOX_OPTION_TITLE, BOX_OPTION_DESCRIPTION, RIGHT_SIDE_IMAGE_BOX_OPTION, YUSCREEN_SCROLL_VIEW, LEFT_SIDE_BACKGROUD_IMAGE_SLOT, RIGHT_SIDE_IMAGE_SLOT, LEFT_SIDE_TEXT_SLOT_POWER, WELLBEING_HUB_SCREEN, TEXT_TEMPLATE, INFO_PANEL_IMAGE, PCP_LIST_DESCRIPTION, CONTENT_MIDDLE_ITEM_IMAGE, COUNTDOWN_COMPONENT, ARROW_BUTTON} from "@ids";
 import { BoxOption, USProductData, YuScreenInfo } from "./types";

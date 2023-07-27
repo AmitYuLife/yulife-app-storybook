@@ -19,7 +19,7 @@ import {
   BOX_OPTION_DESCRIPTION,
 } from "@ids";
 import moment = require("moment");
-import * as text from "./fixture";
+import * as text from "../_resources/fixture";
 import {
   BPEEW_USA_1,
   BPEEW_USA_2,
@@ -32,7 +32,7 @@ import {
   CPE_VSTD_3,
   CPE_WLIF_2,
 } from "04_USA/_data";
-import { BoxOption, USProductData } from "./types";
+import { BoxOption, USProductData } from "../_resources/types";
 
 export const {
   idVisible,

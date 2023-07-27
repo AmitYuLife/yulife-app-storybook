@@ -3,7 +3,7 @@ import { navigation, textVisible, CPD_FEEDBACK_BUTTON, CPD_COURSE_SCROLL_VIEW } 
 export { authoriseFitkit, sendSteps } from "@socket";
 import { YUNIVERSITY_COURSE_MODULE_1 } from "@data";
 import { canSeeQuizQuestion } from "./then";
-import { QuizDetails } from "./types";
+import { QuizDetails } from "../_resources/types";
 import { scrollUntilTextVisibleAtIndex } from "_utils/navigation/scrolling";
 
 export const {

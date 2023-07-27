@@ -5,8 +5,8 @@ import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_3, AUTH_3, CUSTOMER_31, AUTH_31, CUSTOMER_34, AUTH_34, CUSTOMER_37, AUTH_37, WELLBEING_HUB_ITEM_3, CUSTOMER_94, AUTH_94, WELLBEING_HUB_ITEM_4, WELLBEING_HUB_ITEM_1 } from "@data";
 import { MENU_ICON, MENU_ITEM, WELLBEING_HUB_SCREEN, BACK_BUTTON, TEXT_TEMPLATE, MORE_INFO_BUTTON, PERK_SCREEN, INPUT_AVIOS_FORM_FIELD, WELLBEING_HUB_SCROLL_VIEW, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids";
-import { nextClaimDate } from "./_steps/constants";
 import { getLocalisedString as t } from "@i18n"
+import { nextClaimDate } from "./_resources/constants";
 
 
 Feature("Wellbeing Hub should be restricted for certain users", async () => {

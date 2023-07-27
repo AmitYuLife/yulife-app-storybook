@@ -1,6 +1,6 @@
 import { When, Then } from "@yu-life/yulife-bdd-framework";
-import * as when from "./when"
-import * as then from "./then"
+import * as when from "../_steps/when"
+import * as then from "../_steps/then"
 import * as text  from "./fixture";
 import { YUMOJI_AVATAR_YUSCREEN_V4, VIEW_TOP_RIGHT_COIN_COUNTER, TEXT_TEMPLATE, BUTTON_CLOSE, RIGHT_STATUS_ICON, YUCOIN_POWER, CONTENT_ITEM_IMAGE, V4_YUSCREEN, ALL_PRODUCTS_CONTAINER_VIEW, BACK_BUTTON, TOP_RIGHT_ITEM_IMAGE, YUGI_INFO_BANNER_IMAGE, PRODUCT_DETAILS_SCROLL_VIEW, CONTENT_ITEM_BUTTON_IMAGE, CONTENT_SMALL_IMAGE_CARD_URL, CONTENT_MIDDLE_ITEM_IMAGE, SCREEN_CLOSE, BUTTON_CLOSE_HEADER, ONBOARDING_SCREEN, LEFT_SIDE_TEXT_SLOT_POWER, CAROUSEL_CARD} from "@ids";
 import { beneficiaries, checkButton, coverAmounts, furtherScreen, keyInfo, navButton, productAdditionalInfo, SAProductData, usefulLinks} from "./types";

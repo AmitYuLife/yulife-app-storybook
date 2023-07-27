@@ -5,7 +5,7 @@ import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { AUTH_FIIT, CUSTOMER_FIIT, MEDIA_2, MEDIA_5, MEDIA_7, USER_FIIT } from "@data"
 import { BACK_BUTTON, CHALLENGE_TILE, FIIT_MEDIA_PLAYER_CLOSE, LEVEL_CHALLENGE_BUTTON, QUESTS_SCREEN, TODAYS_EARNINGS } from "@ids"
-import { fiitCardioMedia, fiitInfo, fiitRebalanceMedia, fiitStrengthMedia } from "./_steps/constants"
+import { fiitCardioMedia, fiitInfo, fiitRebalanceMedia, fiitStrengthMedia } from "./_resources/constants"
 
 Feature("Fiit in app", async () => {
   Scenario("As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge ", scenario.start, () => {

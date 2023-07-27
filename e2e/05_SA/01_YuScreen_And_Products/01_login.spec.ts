@@ -4,8 +4,8 @@ import * as given from "./_steps/given";
 import * as scenario from "./_steps/scenario";
 import { AUTH_SA_1, AUTH_SA_2 } from "../_data/mongo/auths";
 import { CUSTOMER_SA_1, CUSTOMER_SA_2 } from "../_data";
-import * as helper from "./_steps/helpers";
-import * as fixture from "./_steps/fixture";
+import * as helper from "./_resources/helpers";
+import * as fixture from "./_resources/fixture";
 
 
 Feature("As a user I can get past the login screen and see all SA products", async () => {
