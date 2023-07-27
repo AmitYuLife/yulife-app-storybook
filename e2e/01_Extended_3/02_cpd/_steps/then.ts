@@ -1,7 +1,7 @@
 import { navigation, CPD_COURSE_SCROLL_VIEW, CONTENT_MIDDLE_ITEM_IMAGE } from "@utils"
 import { screens } from "@appScreens"
 import { BUSINESS_ACCOUNT_1, CUSTOMER_1, YUNIVERSITY_COURSE_1, YUNIVERSITY_COURSE_MODULE_1 } from "@data"
-import { QuizDetails } from "./types"
+import { QuizDetails } from "../_resources/types"
 import moment from "moment"
 import { scrollUntilTextVisible } from "_utils/navigation/scrolling"
 

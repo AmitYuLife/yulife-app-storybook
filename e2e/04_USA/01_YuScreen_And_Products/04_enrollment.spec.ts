@@ -13,8 +13,8 @@ import {
   import * as given from "./_steps/given";
   import { AUTH_USA_12, AUTH_USA_13, AUTH_USA_14 } from "../_data/mongo/auths";
   import { BPEEW_USA_12_CAN_PRE, BPEEW_USA_13_CRI, CUSTOMER_USA_12, CUSTOMER_USA_13, CUSTOMER_USA_14 } from "../_data";
-  import * as helper from "./_steps/helpers";
-  import * as fixture from "./_steps/fixture";
+  import * as helper from "./_resources/helpers";
+  import * as fixture from "./_resources/fixture";
   import * as id from "@ids";
 
   Feature("I am able to see the correct enrollment windows on the US YuScreen", async () => {

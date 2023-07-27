@@ -1,5 +1,5 @@
 import { idNotVisible, navigation, textNotVisible } from "@navigation";
-import { todaysDate } from "./constants";
+import { todaysDate } from "../_resources/constants";
 import { CHALLENGE_SET_SCROLL, LEADERBOARD_NAME, LEVEL_SUMMARY_YUDOKU_LEADERBOARD, RANK, SCORE, SUDOKU_HOWTOPLAY_BUTTON, SUDOKU_JOINLEADERBOARD_BUTTON, SUDOKU_LEADERBOARD, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, TAKE_A_CHALLENGE_LEFT_BUTTON, TODAYS_EARNINGS} from "@ids"
 import { CUSTOMER_1, CUSTOMER_86, SUDOKU_ANSWER_71 } from "@data";
 import { getDuration } from "@socket";

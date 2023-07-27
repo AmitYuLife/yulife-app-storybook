@@ -1,8 +1,8 @@
 import { CHALLENGE_DETAILS_SCREEN, CHALLENGE_REWARD, CHALLENGE_SUCCESS_SCREEN, CHALLENGE_TYPE, DAILY_STEPS_SCREEN, FIIT_CATEGORY_LIST_DESCRIPTION, FIIT_CATEGORY_LIST_HEADER, FIIT_CATEGORY_LIST_SCREEN, FIIT_MEDIA_ITEM_DESCRIPTION, FIIT_MEDIA_SCROLL_VIEW, FITT_MEDIA_ITEM_TITLE, MEDIA_STAR_REWARD, MEDIA_YUCOIN_REWARD, navigation, REWARD_AMOUNT, TARGET, VIDEO_PLAYER_DESCRIPTION_SCREEN, VIDEO_PLAY_PAUSE_BUTTON, VIEW_TOP_RIGHT_COIN_COUNTER } from "@utils";
 import { screens } from "@appScreens";
 import { MEDIA_2, USER_FIIT } from "@data";
-import { fiitCategories, fiitInfo } from "./constants";
-import { FiitMediaList } from "./types";
+import { fiitCategories, fiitInfo } from "../_resources/constants";
+import { FiitMediaList } from "../_resources/types";
 import { scrollUntilTextVisible } from "_utils/navigation/scrolling";
 
 export const {

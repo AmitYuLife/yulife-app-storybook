@@ -5,8 +5,8 @@ import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_20, AUTH_20, YUNIVERSITY_COURSE_1, YUNIVERSITY_COURSE_MODULE_1, BUSINESS_ACCOUNT_2 } from "@data";
 import { ACTIVITY_HISTORY_SCREEN, BACK_BUTTON, CPD_CERTIFICATE, CPD_COURSES_SCREEN, CPD_COURSE_DETAIL_SCREEN, CPD_COURSE_SCROLL_VIEW, CPD_SAVE_BUTTON, MENU_ICON, MENU_ITEM, VIEW_TOP_RIGHT_COIN_COUNTER, WELLBEING_HUB_SCREEN } from "@ids";
-import { cpdModule1Copy, module1Quiz, module1QuizAnswers, twoDaysAgoDate } from "./_steps/constants";
-import { shuffleAnswers } from "./_steps/helpers";
+import { cpdModule1Copy, module1Quiz, module1QuizAnswers, twoDaysAgoDate } from "./_resources/constants";
+import { shuffleAnswers } from "./_resources/helpers";
 
 Feature("CPD/Yuniversity", async () => {
     Scenario("As a user with access to the Yuniversity, I should be able to see the various modules and chapters", scenario.start, () => {

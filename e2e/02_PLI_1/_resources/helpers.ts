@@ -1,6 +1,6 @@
 import { When, Then } from "@yu-life/yulife-bdd-framework";
-import * as when from "./when";
-import * as then from "./then";
+import * as when from "../_steps/when";
+import * as then from "../_steps/then";
 import { CUSTOMER_37, AUTH_37 } from "@data";
 import {
   CONDITION_OPTION,

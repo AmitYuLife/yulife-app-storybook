@@ -1,8 +1,8 @@
 import { screens } from "@appScreens";
 import { MEDIA_2 } from "@data";
 import { CHALLENGE_TILE, FITT_MEDIA_ITEM_TITLE, idExist, LEVEL_CHALLENGE_BUTTON, navigateViaText, navigation, VIDEO_PLAY_PAUSE_BUTTON } from "@utils";
-import { fiitInfo } from "./constants";
-import { FiitMediaCategory } from "./types";
+import { fiitInfo } from "../_resources/constants";
+import { FiitMediaCategory } from "../_resources/types";
 export { authoriseFitkit, sendSteps } from "@socket";
 
 export const {
