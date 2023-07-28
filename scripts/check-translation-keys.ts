@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const BASE_PATH = __dirname + "/../src/locale/translations";
+const BASE_PATH = __dirname + "/../src/locale/translations/main";
 const translationFiles = fs.readdirSync(BASE_PATH);
 
 // Iterate each file and transform nested keys into strings

@@ -1,61 +1,7 @@
 import * as RNLocalize from "react-native-localize";
 import Polyglot from "node-polyglot";
-import { Language } from "./types";
 import socket, { DETOX_ENABLED } from "@services/socket";
-
-type Translation = {
-  name: string;
-  /**
-   * https://docs.intercom.com/configure-intercom-for-your-product-or-site/customize-the-intercom-messenger/localize-intercom-to-work-with-multiple-languages
-   */
-  intercomLanguage: string;
-  flag?: string;
-  overwrite?: Language;
-  isEnabled: boolean;
-  load: () => unknown;
-};
-
-// lazy requires (metro bundler does not support symlinks)
-
-export const translations: Record<Language, Translation> = {
-  "en-US": {
-    name: "English (US)",
-    intercomLanguage: "en",
-    flag: "🇺🇸",
-    isEnabled: true,
-    load: () => require("./translations/en-US.json"),
-  },
-  "en-GB": {
-    name: "English (UK)",
-    intercomLanguage: "en",
-    flag: "🇬🇧",
-    overwrite: "en",
-    isEnabled: true,
-    load: () => require("./translations/en-GB.json"),
-  },
-  "pt-PT": {
-    name: "Português (Portugal)",
-    intercomLanguage: "pt",
-    flag: "🇵🇹",
-    // TODO: turn it on when the backend's ready too
-    isEnabled: false,
-    load: () => require("./translations/pt-PT.json"),
-  },
-  "ja-JP": {
-    name: "日本語 (JA)",
-    intercomLanguage: "ja",
-    flag: "🇯🇵",
-    // TODO: turn it on when the backend's ready too
-    isEnabled: false,
-    load: () => require("./translations/ja-JP.json"),
-  },
-  en: {
-    name: "English",
-    intercomLanguage: "en",
-    isEnabled: true,
-    load: () => require("./translations/en-GB.json"),
-  },
-};
+import { translations, Language } from "./translations";
 
 class Translator {
   private readonly FALLBACK = { languageTag: "en" as const, isRTL: false };
@@ -75,7 +21,11 @@ class Translator {
 
   public setLocale = async (locale: Language) => {
     if (translations[locale]) {
-      this.dict = new Polyglot({ locale, phrases: translations[locale].load() });
+      const phrases = translations[locale].load();
+
+      if (phrases) {
+        this.dict = new Polyglot({ locale, phrases });
+      }
     }
   };
 

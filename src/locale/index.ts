@@ -1,7 +1,7 @@
 import { LeaderboardMetric } from "@graphql/member";
 import translator from "./translator";
 
-export * from "./types";
+export * from "./translations/translations.types";
 
 // aliases for translate function
 export const translate = translator.translate;

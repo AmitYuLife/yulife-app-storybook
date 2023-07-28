@@ -1,11 +1,11 @@
 {
   "format": {
-    "date_short": "MM/DD/YYYY",
-    "date_readable_short": "MMM DD",
-    "date_readable": "MMMM DD, YYYY",
-    "date_time_readable_short": "MMMM D, h:mm A",
-    "date_time_readable": "MMMM D, YYYY h:mm A",
-    "time_short": "h:mm A",
+    "date_short": "DD/MM/YYYY",
+    "date_readable_short": "DD MMM",
+    "date_readable": "DD MMM YYYY",
+    "date_time_readable_short": "HH:mm Do MMM",
+    "date_time_readable": "HH:mm Do MMM YYYY",
+    "time_short": "HH:mm",
     "duration": "m[m] s[s]",
     "duration_long": "h[h] m[m] s[s]"
   },
@@ -85,7 +85,8 @@
       "copy": "Copy",
       "submit": "Submit",
       "later": "Later",
-      "connect": "Connect"
+      "connect": "Connect",
+      "connect_health_app": "Connect %{healthApp}"
     }
   },
   "period": {
@@ -181,7 +182,7 @@
         "sudoku_leaderboard_today": "Today",
         "summary": "Level %{level} Summary",
         "summary_named": "%{levelName} Summary",
-        "unlock_banner_title": "Unlock Extra Challenge",
+        "unlock_banner_title": "Unlock extra challenges",
         "unlock_banner_description_start": "After reaching levels 50, 100, and 150, you can take on",
         "unlock_banner_description_bold": " one more challenge per day ",
         "unlock_banner_description_end": "and unlock a total of four daily challenges."
@@ -415,7 +416,7 @@
     },
     "no_access": {
       "heading": "Sorry!",
-      "subheading": "You are not able to use this app at the moment"
+      "subheading": "You are not able to use this app at the moment."
     },
     "offline": {
       "heading": "You're offline",
@@ -423,7 +424,7 @@
     },
     "signup_reward": {
       "heading": "Sign-up bounty\nunlocked!",
-      "subheading": "Use your YuCoin for vouchers from Amazon, Athleta, Target and many more!",
+      "subheading": "Use your YuCoin for vouchers from Amazon, Asos, M&S, and many more!",
       "cta_accessibility": "Get started with Yulife",
       "subheading_accessibility": "Use your yucoin for vouchers from Amazon, Asos, M&S, and many more!"
     },
@@ -502,7 +503,7 @@
     "language_selector_settings": {
       "title": "Language",
       "description": "Select your language",
-      "setting_language_loading_message": "Initializing %{value} as your main language ..."
+      "setting_language_loading_message": "Initialising %{value} as your main language ..."
     },
     "measurement_cycling_settings": {
       "title": "Measurement (Cycling)",
@@ -645,7 +646,7 @@
       "header_description": "Welcome to this quick-access hub to all your company’s wellbeing benefits",
       "send_documents": {
         "title": "Email document(s)",
-        "description": "Please enter the e-mail address you would like the document(s) sent to",
+        "description": "Please enter the e-mail address you would like the document(s) sent to:",
         "input_placeholder": "Enter e-mail address",
         "success": "E-mail sent",
         "error": "Sorry! Something went wrong.",
@@ -1091,7 +1092,7 @@
       }
     },
     "coin_confetti": {
-      "accessibility_label": "Plus %{coins} Yu Coin"
+      "accessibility_label": "Plus %{coins} yucoin"
     },
     "multi_factor_pricing": {
       "cover_picker": {
@@ -1238,15 +1239,6 @@
       "message": "Each time you use the hint button you will lose 30 seconds of your time.",
       "cta": "Use a hint"
     },
-    "progress": {
-      "resume": "Resume Game",
-      "paused": "Yudoku Paused"
-    },
-    "error": {
-      "title": "Couldn't submit results",
-      "message": "An error occurred while submitting your Yudoku results",
-      "continue": "Continue"
-    },
     "stats": {
       "personalBest": "Personal best",
       "todaysTime": "Today's time",
@@ -1256,6 +1248,15 @@
       "notApplicable": "n/a",
       "reward": "Reward",
       "unranked": "Unranked"
+    },
+    "progress": {
+      "resume": "Resume Game",
+      "paused": "Yudoku Paused"
+    },
+    "error": {
+      "title": "Couldn't submit results",
+      "message": "An error occurred while submitting your Yudoku results",
+      "continue": "Continue"
     },
     "help": {
       "title": "How to play Yudoku",
