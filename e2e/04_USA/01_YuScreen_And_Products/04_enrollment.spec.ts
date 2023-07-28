@@ -25,7 +25,7 @@ import {
         // skips the creation of a YuMoji
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_12)
         // confirms the right products are visible on the right side of the YuScreen
-        helper.SLOT_VISSIBLE(fixture.CanInsurance)
+        helper.SLOT_VISIBLE(fixture.CanInsurance)
         // checks all the components of the YuScreen are correct e.g. name/create YuMoji/ YuCoin power/ the survey at the bottom of the screen
         helper.YUSCREEN_USA(CUSTOMER_USA_12)
         // checks the logos are not visible as we are in pre-enrollment
@@ -53,7 +53,7 @@ import {
         // skips the creation of a YuMoji
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_13)
          // confirms the right products are visible on the right side of the YuScreen
-        helper.SLOT_VISSIBLE(fixture.CriInsurance)
+        helper.SLOT_VISIBLE(fixture.CriInsurance)
         // checks all the components of the YuScreen are correct e.g. name/create YuMoji/ YuCoin power/ the survey at the bottom of the screen
         helper.YUSCREEN_USA(CUSTOMER_USA_13)
         // checks the logos are not visible as we are in active enrollment

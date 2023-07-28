@@ -527,3 +527,20 @@ export const CPE_VSTD_14 = {
     taken_up: false,
   },
 } as IDatabaseItem;
+
+export const CPE_CRI_15 = {
+  type,
+  modelName,
+  data: {
+    customer_product_id: "US_YUCPID1000001133",
+    customer_id: customer.CUSTOMER_USA_15.data.customerId,
+    earn_rate: 0,
+    start_date: "2022-12-09",
+    end_date: "2199-12-31",
+    underwriting_step: null,
+    is_banned_from_product: false,
+    product_variant_id: "Guardian_CRI_01_01",
+    archived: false,
+    taken_up: false,
+  },
+} as IDatabaseItem;

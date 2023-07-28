@@ -10,8 +10,8 @@ import {
   import * as when from "./_steps/when";
   import * as scenario from "./_steps/scenario";
   import * as given from "./_steps/given";
-  import { AUTH_USA_10, AUTH_USA_11, AUTH_USA_5, AUTH_USA_6, AUTH_USA_7, AUTH_USA_8, AUTH_USA_9 } from "../_data/mongo/auths";
-  import { BPEEW_USA_10_VIS, CUSTOMER_USA_10, CUSTOMER_USA_11, CUSTOMER_USA_5, CUSTOMER_USA_6, CUSTOMER_USA_7, CUSTOMER_USA_8, CUSTOMER_USA_9 } from "../_data";
+  import { AUTH_USA_10, AUTH_USA_11, AUTH_USA_15, AUTH_USA_5, AUTH_USA_6, AUTH_USA_7, AUTH_USA_8, AUTH_USA_9 } from "../_data/mongo/auths";
+  import { BPEEW_USA_10_VIS, CUSTOMER_USA_10, CUSTOMER_USA_11, CUSTOMER_USA_15, CUSTOMER_USA_5, CUSTOMER_USA_6, CUSTOMER_USA_7, CUSTOMER_USA_8, CUSTOMER_USA_9 } from "../_data";
   import * as helper from "./_resources/helpers";
   import * as fixture from "./_resources/fixture";
   import * as id from "@ids";
@@ -21,7 +21,7 @@ import {
       Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_5, AUTH_USA_5, true, "United States"),async () => {
         helper.ONBOARDING_YUSCREEN_USA(fixture.GapInEnrolVisOutEnrol);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_5)
-        helper.SLOT_VISSIBLE(fixture.GapInEnrolVisOutEnrol)
+        helper.SLOT_VISIBLE(fixture.GapInEnrolVisOutEnrol)
         helper.YUSCREEN_USA(CUSTOMER_USA_5);
         helper.SPONSORED_LOGO_VISIBLE()
         helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
@@ -33,7 +33,7 @@ import {
       Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_6, AUTH_USA_6, true, "United States"),async () => {
         helper.ONBOARDING_YUSCREEN_USA(fixture.GapInsurance);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_6)
-        helper.SLOT_VISSIBLE(fixture.GapInsurance)
+        helper.SLOT_VISIBLE(fixture.GapInsurance)
         helper.YUSCREEN_USA(CUSTOMER_USA_6);
         helper.SPONSORED_LOGO_VISIBLE()
         helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
@@ -44,18 +44,18 @@ import {
     Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_7, AUTH_USA_7, true, "United States"),async () => {
         helper.ONBOARDING_YUSCREEN_USA(fixture.VisInsurance);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_7)
-        helper.SLOT_VISSIBLE(fixture.VisInsurance)
+        helper.SLOT_VISIBLE(fixture.VisInsurance)
         helper.YUSCREEN_USA(CUSTOMER_USA_7);
         helper.SPONSORED_LOGO_VISIBLE()
         helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
         helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
     });
   });
-  Scenario("I should NOT  see sponsored by text and logos in yuscreen if contribution_type partial but no logos are selected for that business",scenario.start, async () => {
+  Scenario("I should NOT see sponsored by text and logos in yuscreen if contribution_type partial but no logos are selected for that business",scenario.start, async () => {
     Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_8, AUTH_USA_8, true, "United States"),async () => {
         helper.ONBOARDING_YUSCREEN_USA(fixture.GapInsurance);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_8)
-        helper.SLOT_VISSIBLE(fixture.GapInsurance)
+        helper.SLOT_VISIBLE(fixture.GapInsurance)
         helper.YUSCREEN_USA(CUSTOMER_USA_8);
         helper.SPONSORED_LOGO_NOT_VISIBLE()
         helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
@@ -77,7 +77,7 @@ import {
     Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_10, AUTH_USA_10, true, "United States"),async () => {
         helper.ONBOARDING_YUSCREEN_USA(fixture.GapVisInsuranceInEnrolment);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_10)
-        helper.SLOT_VISSIBLE(fixture.GapVisInsuranceInEnrolment)
+        helper.SLOT_VISIBLE(fixture.GapVisInsuranceInEnrolment)
         helper.YUSCREEN_USA(CUSTOMER_USA_10);
         helper.SPONSORED_LOGO_NOT_VISIBLE()
         helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
@@ -91,7 +91,7 @@ import {
     Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_11, AUTH_USA_11, true, "United States"),async () => {
         helper.ONBOARDING_YUSCREEN_USA(fixture.AccCanInsuranceInEnrolment);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_11)
-        helper.SLOT_VISSIBLE(fixture.AccCanInsuranceInEnrolment)
+        helper.SLOT_VISIBLE(fixture.AccCanInsuranceInEnrolment)
         helper.YUSCREEN_USA(CUSTOMER_USA_11);
         helper.SPONSORED_LOGO_VISIBLE()
         helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
@@ -109,6 +109,18 @@ import {
               Then(`I should NOT see ${fixture.AccidentInsuranceBox.description} text`, then.idNotVisible(id.BOX_OPTION_DESCRIPTION(fixture.AccidentInsuranceBox.description)))
           })
         })
+    });
+  });
+
+  Scenario("I should see sponsored by text and logos but not the product if contribution_type is null",scenario.start, async () => {
+    Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_15, AUTH_USA_15, true, "United States"),async () => {
+        helper.ONBOARDING_YUSCREEN_USA(fixture.BlankProductEnrollmentScreen);
+        helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_15)
+        When("I wait 1 seconds", when.wait(1000), async () => {
+          Then(`I should NOT see the title for CRI insurance`, then.textNotVisible(fixture.CriInsurance.SlotProductTitle))
+      })
+        helper.YUSCREEN_USA(CUSTOMER_USA_15);
+        helper.SPONSORED_LOGO_VISIBLE()
     });
   });
   

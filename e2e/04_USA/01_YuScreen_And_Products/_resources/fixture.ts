@@ -655,6 +655,10 @@ export const AccCanInsuranceInEnrolment: YuScreenInfo = {
     SecondSlotProductTitle: Guardian_ACC.heading,
 };
 
+export const BlankProductEnrollmentScreen: YuScreenInfo = {
+    mainYuCoinPower: "1",
+};
+
 export const AccidentInsuranceBox:BoxOption = {
     imageUrl: "https://yulife-develop.imgix.net/core-products/guardian-accident.svg?ixlib=js-3.2.1&w=360&h=312&s=eb1043542f518fc7229573060b87bcc3",
     title: "Accident Insurance",
