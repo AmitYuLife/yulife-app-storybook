@@ -1,8 +1,9 @@
+import { t } from "@locale";
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { Image, Text } from "@atoms";
 import { Button, SecondaryButton } from "@molecules";
-import { data, getCardBackgroundColor } from "./challenge-details.helpers";
+import { getCardBackgroundColor } from "./challenge-details.helpers";
 import styles from "./challenge-details.styles";
 import Milestones, { IMilestoneProps } from "./milestones";
 import { GenericHeadingAbsolute } from "@organisms";
@@ -65,19 +66,17 @@ function ChallengeDetailsScreen({
         <Button
           disabled={isLoading}
           isLoading={isLoading}
-          label={isLoading ? data.loading : data.ctaLabel}
+          label={isLoading ? t("screens.challenges.details.loading") : t("screens.challenges.details.cta_label")}
           onPress={onPressCta}
           wrapperStyle={styles.ctaButton}
-          testID={TAKE_CHALLENGE_BUTTON(data.ctaLabel)}
+          testID={TAKE_CHALLENGE_BUTTON(t("screens.challenges.details.cta_label"))}
         />
-        {!onPressSetUp ? (
-          <Text style={styles.footer}>{data.footer}</Text>
-        ) : (
+        {!onPressSetUp ? null : (
           <SecondaryButton
-            label={data.setUpLabel}
+            label={t("screens.challenges.details.set_up_label")}
             onPress={onPressSetUp}
             wrapperStyle={styles.setUp}
-            testID={SET_UP_BUTTON(data.setUpLabel)}
+            testID={SET_UP_BUTTON(t("screens.challenges.details.set_up_label"))}
           />
         )}
         {!error ? null : <Text style={styles.error}>{error}</Text>}
