@@ -1,14 +1,14 @@
 
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { BUSINESS_ACCOUNT_1 } from "../postgres/business";
-import { CUSTOMER_86 } from "../postgres/customers";
+import { CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_40, CUSTOMER_47, CUSTOMER_50, CUSTOMER_73, CUSTOMER_84, CUSTOMER_86 } from "../postgres/customers";
 import { SOCIAL_GROUP_1 } from "./social_groups";
-import { SOCIAL_GROUP_LEADERBOARD_1, SOCIAL_GROUP_LEADERBOARD_2_STEPS, SOCIAL_GROUP_LEADERBOARD_7 } from "./social_group_leaderboards";
+import { SOCIAL_GROUP_LEADERBOARD_1, SOCIAL_GROUP_LEADERBOARD_2_STEPS, SOCIAL_GROUP_LEADERBOARD_7, SOCIAL_GROUP_LEADERBOARD_C1_STEPS, SOCIAL_GROUP_LEADERBOARD_C2_STEPS } from "./social_group_leaderboards";
 import { USER_40, USER_58, USER_67, USER_68, USER_71, USER_76, USER_86 } from "./users";
 
 export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_40 = {
-    type:"mongo",
-    modelName:"user_social_leaderboard_enrolments",
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
     data: {
         _id: generateRandomMongoId(),
         consent: true,
@@ -20,8 +20,8 @@ export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_40 = {
 } as IDatabaseItem
 
 export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_58 = {
-    type:"mongo",
-    modelName:"user_social_leaderboard_enrolments",
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
     data: {
         _id: generateRandomMongoId(),
         consent: false,
@@ -33,8 +33,8 @@ export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_58 = {
 } as IDatabaseItem
 
 export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_71 = {
-    type:"mongo",
-    modelName:"user_social_leaderboard_enrolments",
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
     data: {
         _id: generateRandomMongoId(),
         consent: true,
@@ -46,8 +46,8 @@ export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_71 = {
 } as IDatabaseItem
 
 export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_67 = {
-    type:"mongo",
-    modelName:"user_social_leaderboard_enrolments",
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
     data: {
         _id: generateRandomMongoId(),
         consent: true,
@@ -59,8 +59,8 @@ export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_67 = {
 } as IDatabaseItem
 
 export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_68 = {
-    type:"mongo",
-    modelName:"user_social_leaderboard_enrolments",
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
     data: {
         _id: generateRandomMongoId(),
         consent: true,
@@ -72,8 +72,8 @@ export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_68 = {
 } as IDatabaseItem
 
 export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_76 = {
-    type:"mongo",
-    modelName:"user_social_leaderboard_enrolments",
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
     data: {
         _id: generateRandomMongoId(),
         consent: false,
@@ -86,8 +86,8 @@ export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_76 = {
 
 
 export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_86 = {
-    type:"mongo",
-    modelName:"user_social_leaderboard_enrolments",
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
     data: {
         _id: generateRandomMongoId(),
         consent: false,
@@ -95,6 +95,177 @@ export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_86 = {
         isLocked: false,
         userId: USER_86.data.userId,
         socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_1.data._id
+    }
+} as IDatabaseItem
+
+// Daily Step Social Leaderboard Enrollments
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_18_C1_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: false,
+        isLocked: false,
+        userId: CUSTOMER_18.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id
+    }
+} as IDatabaseItem
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_16_C1_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: false,
+        archived: false,
+        isLocked: false,
+        userId: CUSTOMER_16.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id
+    }
+} as IDatabaseItem
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_17_C1_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: false,
+        isLocked: false,
+        userId: CUSTOMER_17.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id
+    }
+} as IDatabaseItem
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_19_C1_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: false,
+        isLocked: false,
+        userId: CUSTOMER_19.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id
+    }
+} as IDatabaseItem
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_19_C2_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: false,
+        isLocked: false,
+        userId: CUSTOMER_19.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C2_STEPS.data._id
+    }
+} as IDatabaseItem
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_20_C2_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: false,
+        isLocked: false,
+        userId: CUSTOMER_20.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C2_STEPS.data._id
+    }
+} as IDatabaseItem
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_21_C1_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: false,
+        isLocked: false,
+        userId: CUSTOMER_21.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id
+    }
+} as IDatabaseItem
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_21_C2_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: false,
+        archived: false,
+        isLocked: false,
+        userId: CUSTOMER_21.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C2_STEPS.data._id
+    }
+} as IDatabaseItem
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_40_C2_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: false,
+        isLocked: false,
+        userId: CUSTOMER_40.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C2_STEPS.data._id
+    }
+} as IDatabaseItem
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_47_C1_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: false,
+        isLocked: false,
+        userId: CUSTOMER_47.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id
+    }
+} as IDatabaseItem
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_50_C1_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: false,
+        isLocked: false,
+        userId: CUSTOMER_50.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id
+    }
+} as IDatabaseItem
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_73_C1_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: false,
+        isLocked: false,
+        userId: CUSTOMER_73.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id
+    }
+} as IDatabaseItem
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_84_C1_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: false,
+        isLocked: false,
+        userId: CUSTOMER_84.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id
     }
 } as IDatabaseItem
 
