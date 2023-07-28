@@ -1,0 +1,13 @@
+deploy:translation:
+  extends: .base-node-18
+  image: node:16.19.0-alpine
+  stage: test
+  interruptible: true
+  needs:
+    - test
+  script:
+    - yarn translations:push
+  only:
+    refs:
+      - develop
+
