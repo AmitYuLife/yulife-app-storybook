@@ -3,7 +3,7 @@
 hasModifiedTranslations=false
 
 for file_path in $(git diff --staged --name-only); do
-    if [[ "$file_path" =~ ^src\/locale\/translations\/.+.json ]]; then
+    if [[ "$file_path" =~ ^src\/locale\/translations\/main\/.+.json ]]; then
         hasModifiedTranslation=true
     fi
 done

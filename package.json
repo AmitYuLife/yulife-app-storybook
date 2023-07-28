@@ -33,6 +33,8 @@
     "detox:usa": "yarn detox:test:base:us e2e/04_USA/**/*.spec.ts",
     "detox:sa": "yarn detox:test:base:sa e2e/05_SA/**/*.spec.ts",
     "develop:workflow": "bitrise :workflow-editor",
+    "download:languages": "tolgee pull ./src/locale/translations/downloaded -o -l en-US ja-JP",
+    "download:languages:local": "TOLGEE_API_KEY=tgpak_gmydqms7obrtemrvmezge5dmoruwimzrmq2tsolvmiyti2rumy npx tolgee pull ./src/locale/translations/downloaded -o -l en-US ja-JP",
     "download:schema:local": "npx apollo client:download-schema --endpoint=http://localhost:5000/graphql ./src/graphql/_core/schema.json",
     "download:schema": "npx apollo client:download-schema --endpoint=https://develop.eu-west-2.api.yulife.engineering/graphql ./src/graphql/_core/schema.json",
     "e2e:build": "tsc -p e2e --noEmit",

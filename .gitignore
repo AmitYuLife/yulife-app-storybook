@@ -86,4 +86,5 @@ storybook-static/
 .env
 
 # ignore generated translation files
+src/locale/translations/downloaded/*
 translations_*_*_*.csv
