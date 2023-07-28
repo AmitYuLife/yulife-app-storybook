@@ -333,3 +333,12 @@ export const BUSINESS_PRODUCT_USA_14_VSTD = generateProductRecords({
     contribution_type: "none",
  }
 });
+
+export const BUSINESS_PRODUCT_USA_15_CRI = generateProductRecords({
+  productCode: ProductCode.CRI,
+  carrier: Carrier.Guardian,
+  productId: "SEED_15_CRI",
+  businessAccountId: BUSINESS_ACCOUNT_USA_2.data.business_account_id,
+  startDate: "2021-06-03T00:00:00.000Z",
+});
+

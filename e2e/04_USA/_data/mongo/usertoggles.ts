@@ -160,3 +160,14 @@ export const CUSTOMER_USA_14_TOGGLES = {
         }
     }
 } as IDatabaseItem
+
+export const CUSTOMER_USA_15_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_USA_15.data.customerId,
+        features: {
+        }
+    }
+} as IDatabaseItem

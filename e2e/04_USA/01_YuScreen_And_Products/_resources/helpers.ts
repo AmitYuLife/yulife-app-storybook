@@ -116,7 +116,7 @@ export const SKIP_YUMOJI_CREATION = async (customer: any) => {
         })
     })
 }
-export const SLOT_VISSIBLE = async (seed:YuScreenInfo) => {
+export const SLOT_VISIBLE = async (seed:YuScreenInfo) => {
     When("I wait 1 seconds", when.wait(1000), async () => {
         Then(`I should see ${seed.mainYuCoinPower} yu coin power text`, then.textVisible(seed.mainYuCoinPower))
         Then(`I should see ${seed.SlotProductTitle} text`, then.textVisible(seed.SlotProductTitle))
