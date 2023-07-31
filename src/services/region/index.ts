@@ -44,7 +44,6 @@ class RegionService {
   private SELECTED_REGION: REGION = "UK";
   private REGION_CONFIG: RegionConfig;
   private REGION_CONFIG_LAST_UPDATED: Date;
-  public ARE_MULTIPLE_REGIONS_ENABLED = Config.MULTI_REGION_ENABLED === "true";
 
   public readonly API_URLS: Record<REGION, string> = {
     UK: Config.API_URL_UK || Config.API_URL,
@@ -57,10 +56,10 @@ class RegionService {
     { key: "UK" as REGION, isEnabled: true, label: "United Kingdom" },
     { key: "US" as REGION, isEnabled: true, label: "United States" },
     { key: "SA" as REGION, isEnabled: true, label: "South Africa" },
-    { key: "JP" as REGION, isEnabled: false, label: "日本 (Japan)" },
+    { key: "JP" as REGION, isEnabled: true, label: "日本 (Japan)" },
   ];
 
-  public getAvailableRegions = () => this.OPTIONS.filter((o) => this.ARE_MULTIPLE_REGIONS_ENABLED || o.isEnabled);
+  public getAvailableRegions = () => this.OPTIONS.filter((o) => o.isEnabled);
   public getPreferredRegion = () => this.SELECTED_REGION;
   public getPreferredRegionUri = () => this.API_URLS[this.SELECTED_REGION];
   public getConfig = <Key extends keyof RegionConfig>(key: Key): RegionConfig[Key] => this.REGION_CONFIG?.[key];
