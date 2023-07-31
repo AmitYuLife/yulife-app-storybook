@@ -505,6 +505,7 @@ workflows:
         - cache_paths: |-
             $BITRISE_SOURCE_DIR/ios/build/Build/Products/Release-iphonesimulator/YuLife.app
             $BITRISE_SOURCE_DIR/node_modules
+            $BITRISE_SOURCE_DIR/src/locale/translations/downloaded
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
@@ -599,7 +600,6 @@ workflows:
 
             # Evaluate command / Run
             eval $command
-
     - script@1:
         title: Collect logs
         is_always_run: true
@@ -1148,7 +1148,6 @@ workflows:
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
 
             yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs failing
-
     - script@1:
         title: Collect logs
         is_always_run: true

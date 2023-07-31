@@ -2,8 +2,10 @@ import axios from "axios";
 
 const TARGET_LOCALE = process.env.TARGET_LOCALE || "en-GB";
 
-const gbLocale = { app: require("../../../src/locale/translations/en-GB.json"), api: {} };
-const targetLocale = { app: require(`../../../src/locale/translations/${TARGET_LOCALE}.json`), api: {} };
+const TRANSLATION_PATH = TARGET_LOCALE === "en-GB" ? "main" : "downloaded";
+
+const gbLocale = { app: require(`../../../src/locale/translations/main/en-GB.json`), api: {} };
+const targetLocale = { app: require(`../../../src/locale/translations/${TRANSLATION_PATH}/${TARGET_LOCALE}.json`), api: {} };
 
 const API_URL = (process.env.API_URL as string) || `http://localhost:5000/`;
 
@@ -147,19 +149,19 @@ export async function initialiseTranslationMapping() {
             "api.default.email.rewards.charity.purchase.opening_line"
         ]
         await getApiTranslations();
-    
+
         const isLocaleStructured = checkStructure(gbLocale, targetLocale);
-    
+
         if (isLocaleStructured.length) {
             console.log("Locale structure is not consistent", isLocaleStructured);
         }
-    
+
         const isLocaleConsistent = checkConsistency(gbLocale, targetLocale, pathsToIgnore);
-    
+
         if (isLocaleConsistent.length) {
             console.log("Locale translations are not consistent", isLocaleConsistent);
         }
-    
+
         translationMapping = generateMapping(gbLocale, targetLocale);
     } else {
         translationMapping = {}
