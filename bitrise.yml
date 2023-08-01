@@ -267,14 +267,14 @@ workflows:
 
             yarn install --frozen-lockfile
     - script@1.2:
-        title: yarn download:languages
+        title: yarn translations:download
         inputs:
         - content: |-
             #!/usr/bin/env bash
             set -e
             set -x
             npm install --global @tolgee/cli
-            yarn download:languages
+            yarn translations:download
     - install-react-native@0.10:
         inputs:
         - version: 9.3.2
@@ -478,14 +478,14 @@ workflows:
     - cocoapods-install@2: {}
     - save-cocoapods-cache@1: {}
     - script@1.2:
-        title: yarn download:languages
+        title: yarn translations:download
         inputs:
         - content: |-
             #!/usr/bin/env bash
             set -e
             set -x
             npm install --global @tolgee/cli
-            yarn download:languages
+            yarn translations:download
     - script@1:
         title: Build Detox
         inputs:
@@ -1789,14 +1789,14 @@ workflows:
 
             yarn install --frozen-lockfile
     - script@1.2:
-        title: yarn download:languages
+        title: yarn translations:download
         inputs:
         - content: |-
             #!/usr/bin/env bash
             set -e
             set -x
             npm install --global @tolgee/cli
-            yarn download:languages
+            yarn translations:download
     - script@1:
         title: Install Ruby Version (asdf)
         inputs:

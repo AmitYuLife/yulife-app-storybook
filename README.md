@@ -76,6 +76,16 @@ Alternatively, if you are developing against a local instance of the API server,
 yarn download:schema:local
 ```
 
+### Download the Translation files
+
+This project uses tolgee for its localisation.
+
+To download the latest version of the translations, run:
+
+```sh
+yarn translations:download:local
+```
+
 ### Start bundler and TypeScript watch process
 
 The Metro bundler and TypeScript watch process must be started before you can build and run either app. Start these with the following command:
