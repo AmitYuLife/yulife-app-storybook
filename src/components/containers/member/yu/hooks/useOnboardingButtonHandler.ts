@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { useNavigationComponentDidAppear } from "@hooks";
 import { MobileOnboardingStepPerformed } from "@graphql/_core/schema/globalTypes";
 
-export type OnboardingHandler = () => Promise<void>;
+export type OnboardingHandler = () => Promise<void> | void;
 
 export const useOnboardingButtonHandler = (
   onboarding: GetYuScreen_getYuScreen_onboarding

@@ -53,8 +53,8 @@ export const Onboarding = ({ onboarding, onPress, onClose }: IOnboardingProps) =
               </View>
             ) : null}
             <View style={styles.itemSlotsContainer}>
-              {productSlots.map((props) => (
-                <ItemSlot key={props.id} {...props} socketType="onboarding" />
+              {productSlots.map(({ onPress: _, ...slot }) => (
+                <ItemSlot key={slot.id} {...slot} onPress={onClose} socketType="onboarding" />
               ))}
             </View>
             {overlayImage ? (
