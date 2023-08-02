@@ -35,9 +35,9 @@
     "detox:usa": "yarn detox:test:base:us e2e/04_USA/**/*.spec.ts",
     "detox:sa": "yarn detox:test:base:sa e2e/05_SA/**/*.spec.ts",
     "develop:workflow": "bitrise :workflow-editor",
-    "translations:push": "node ./scripts/upload-translations",
-    "translations:download": "tolgee pull ./src/locale/translations/downloaded -o -l en-US ja-JP",
-    "translations:download:local": "TOLGEE_API_KEY=tgpak_gmydqms7obrtemrvmezge5dmoruwimzrmq2tsolvmiyti2rumy npx tolgee pull ./src/locale/translations/downloaded -o -l en-US ja-JP",
+    "translations:push": "node ./scripts/tolgee upload",
+    "translations:download": "node ./scripts/tolgee download en-US,ja-JP",
+    "translations:download:local": "TOLGEE_API_KEY=tgpak_gmydqms7obrtemrvmezge5dmoruwimzrmq2tsolvmiyti2rumy yarn translations:download",
     "download:schema:local": "npx apollo client:download-schema --endpoint=http://localhost:5000/graphql ./src/graphql/_core/schema.json",
     "download:schema": "npx apollo client:download-schema --endpoint=https://develop.eu-west-2.api.yulife.engineering/graphql ./src/graphql/_core/schema.json",
     "e2e:build": "tsc -p e2e --noEmit",
@@ -201,7 +201,8 @@
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.1.2",
     "typescript": "^4.9.4",
-    "webpack": "^5.75.0"
+    "webpack": "^5.75.0",
+    "yauzl": "^2.10.0"
   },
   "prettier": {
     "arrowParens": "always",
