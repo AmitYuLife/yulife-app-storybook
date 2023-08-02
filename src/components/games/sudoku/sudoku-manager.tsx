@@ -289,13 +289,18 @@ const SudokuManager = ({
     getDurationSeconds,
   ]);
 
-  const checkFinished = useCallback(() => {
+  const checkFinished = useCallback((): boolean => {
     const isFinished = isGameFinished();
+
     if (isFinished) {
-      completeGame();
-      sudokuDispatch({ type: SUDOKU_END_GAME, payload: {} });
-      updateGameState("endTime", new Date());
+      setTimeout(() => {
+        completeGame();
+        updateGameState("endTime", new Date());
+        sudokuDispatch({ type: SUDOKU_END_GAME, payload: {} });
+      });
     }
+
+    return isFinished;
   }, [completeGame, isGameFinished, updateGameState]);
 
   const getQuadrantValues = useCallback(
@@ -487,7 +492,10 @@ const SudokuManager = ({
       sudokuDispatch({ type: SUDOKU_SET_STATUSES, payload: sudokuState.cellStatuses });
 
       updateGameState("board", sudokuState.board);
-      checkFinished();
+      const isFinished = checkFinished();
+      if (isFinished) {
+        setSelectedCell(undefined);
+      }
     },
     [
       sudokuState?.selectedCell,
