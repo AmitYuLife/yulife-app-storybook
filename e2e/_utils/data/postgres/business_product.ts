@@ -49,7 +49,7 @@ export const BUSINESS_PRODUCT_1_WB = generateProductRecords({
 });
 
 export const BUSINESS_PRODUCT_4_GDental = generateProductRecords({
-    productCode: ProductCode.groupDental,
+    productCode: ProductCode.groupDentalPlan,
     carrier: Carrier.Bupa,
     productId: "YUG0000006",
     policyName: "Justice League Policy GDental",
@@ -167,7 +167,7 @@ export const BUSINESS_PRODUCT_8_GHI = generateProductRecords({
 });
 
 export const BUSINESS_PRODUCT_9_GDent = generateProductRecords({
-  productCode: ProductCode.groupDental,
+  productCode: ProductCode.groupDentalPlan,
   carrier: Carrier.Bupa,
   productId: "YUG1010103",
   policyName: "BLYTHSWOOD Policy GDental Dependent",
@@ -256,7 +256,7 @@ export const BUSINESS_PRODUCT_9_GDent = generateProductRecords({
 })
 
 export const BUSINESS_PRODUCT_10_GDent = generateProductRecords({
-  productCode: ProductCode.groupDental,
+  productCode: ProductCode.groupDentalPlan,
   carrier: Carrier.Bupa,
   productId: "YUG1010104",
   policyName: "BLYTHSWOOD Policy GDental Dependent",
@@ -345,7 +345,7 @@ export const BUSINESS_PRODUCT_10_GDent = generateProductRecords({
 })
 
 export const BUSINESS_PRODUCT_11_GDent = generateProductRecords({
-  productCode: ProductCode.groupDental,
+  productCode: ProductCode.groupDentalPlan,
   carrier: Carrier.Bupa,
   productId: "YUG1010105",
   policyName: "BLYTHSWOOD Policy GDental Dependent",
@@ -434,7 +434,7 @@ export const BUSINESS_PRODUCT_11_GDent = generateProductRecords({
 })
 
 export const BUSINESS_PRODUCT_12_GDent = generateProductRecords({
-  productCode: ProductCode.groupDental,
+  productCode: ProductCode.groupDentalPlan,
   carrier: Carrier.Bupa,
   productId: "YUG1010106",
   policyName: "BLYTHSWOOD Policy GDental Dependent",
