@@ -2,7 +2,7 @@ import React from "react";
 import { LeaderboardPressableTitleProps } from "./pressable-title";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { Style } from "@styles";
-import { LeaderBoardNavigation } from "@molecules";
+import { LeaderboardNavigation } from "@molecules";
 import { useSelector } from "react-redux";
 import { getActiveLeaderboard, getUserFeatures } from "@redux/user/user.selectors";
 import { Navigation } from "@navigation/main";
@@ -28,7 +28,7 @@ export function LeaderboardTitle(props: LeaderboardTitleProps) {
 
   return (
     <View style={styles.wrapper}>
-      <LeaderBoardNavigation
+      <LeaderboardNavigation
         showDuels={showDuels}
         activeLeaderboard={activeLeaderboard}
         onLeftPress={onPressLabel}

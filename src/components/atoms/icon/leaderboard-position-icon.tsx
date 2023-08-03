@@ -5,11 +5,11 @@ import { Style } from "@styles";
 interface IProps {
   width?: number;
   height?: number;
-  rank: number;
+  position: number;
 }
 
-export const LeaderboardRankIcon = memo(({ width = 24, height = 24, rank }: IProps) => {
-  const { backgroundColor, shade, d } = getIconColours(rank);
+export const LeaderboardPositionIcon = memo(({ width = 24, height = 24, position }: IProps) => {
+  const { backgroundColor, shade, d } = getIconColours(position);
   return (
     <Svg width={Style.adjust(width)} height={Style.adjust(height)} fill="none" viewBox="0 0 24 24">
       <Path
@@ -29,8 +29,8 @@ export const LeaderboardRankIcon = memo(({ width = 24, height = 24, rank }: IPro
   );
 });
 
-const getIconColours = (rank: number) => {
-  switch (rank) {
+const getIconColours = (position: number) => {
+  switch (position) {
     case 3: {
       return {
         backgroundColor: "#00ED9D",

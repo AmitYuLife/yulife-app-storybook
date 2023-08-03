@@ -63,9 +63,11 @@ export { default as PerkSubscriptionInfoLoadingScreen } from "./perk/perk-subscr
 export { default as CollectEventRewardScreen } from "./member/events/collect-event-reward/collect-event-reward.screen";
 
 // media
-
 export { default as MeditopiaMediaListScreen } from "./member/media/meditopia-media-list/meditopia-media-list.screen";
 export { default as MediaPlayerScreen } from "./member/media/media-player/media-player.screen";
 export { default as YuniversityMediaPlayerScreen } from "./member/media/media-player/yuniversity-media-player.screen";
 export { default as FiitMediaCategoryListScreen } from "./member/media/fiit-media-category-list/fiit-media-category-list.screen";
 export { default as FiitMediaListScreen } from "./member/media/fiit-media-list/fiit-media-list.screen";
+
+// leaderboard
+export { default as LeaderboardScreen } from "./member/leaderboard/leaderboard.screen";

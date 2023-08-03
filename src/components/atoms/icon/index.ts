@@ -55,7 +55,7 @@ import { EyeOpenIcon } from "./eye-open-icon";
 import { EyeClosedIcon } from "./eye-closed-icon";
 import { PiggyCoinIcon } from "./piggy-coin-icon";
 import { RankGoldIcon } from "./rank-gold-icon";
-import { LeaderboardRankIcon } from "./leaderboard-rank-icon";
+import { LeaderboardPositionIcon } from "./leaderboard-position-icon";
 import { YudokuIcon } from "./yudoku-icon";
 import { DuelsIcon } from "./duels-icon";
 import { DropdownSolidIcon } from "./dropdown-solid-icon";
@@ -121,7 +121,7 @@ export default {
   EyeClosedIcon,
   PiggyCoinIcon,
   RankGoldIcon,
-  LeaderboardRankIcon,
+  LeaderboardPositionIcon,
   YudokuIcon,
   DuelsIcon,
   DropdownSolidIcon,
