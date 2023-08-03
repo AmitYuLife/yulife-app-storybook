@@ -3,47 +3,60 @@ import { StyleSheet, View } from "react-native";
 import { Radio, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { PressableWithDelay } from "@molecules";
-
-interface ICommunity {
-  id: string;
-  name: string;
-}
+import { ILeaderboard } from "@redux/user/user.reducer";
+import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 
 interface IProps {
-  communities: ICommunity[];
+  communities: ILeaderboard[];
   onSelect: (id: string) => void;
-  defaultSelected: string;
+  activeLeaderboardId: string;
 }
 
-const LeaderboardCommunityOverlay = ({ communities, onSelect, defaultSelected }: IProps) => {
-  const [selected, setSelected] = useState(defaultSelected || "");
+interface IItem extends ILeaderboard {
+  onPress: () => void;
+  selected: string;
+}
+
+const LeaderboardCommunityOverlay = ({ activeLeaderboardId, communities, onSelect }: IProps) => {
+  const [selected, setSelected] = useState(activeLeaderboardId || "");
   return (
     <View style={styles.wrapper}>
-      {communities.map((community) => (
-        <PressableWithDelay
-          style={styles.button}
-          key={community.id}
-          onPress={() => {
-            setSelected(community.id);
-            onSelect(community.id);
-          }}
-        >
-          <TextTemplate type="b2" textAlign="center">
-            {community.name}
-          </TextTemplate>
-          <View style={styles.radio}>
-            <Radio selected={selected === community.id} />
-          </View>
-        </PressableWithDelay>
-      ))}
+      <FlashList
+        showsVerticalScrollIndicator={false}
+        estimatedItemSize={40}
+        data={(communities || []).map((community) => ({
+          ...community,
+          onPress: () => {
+            setSelected(community.leaderboardId);
+            onSelect(community.leaderboardId);
+          },
+          selected,
+        }))}
+        renderItem={renderItem}
+        refreshing={false}
+      />
     </View>
   );
 };
+
+const renderItem = ({ item }: ListRenderItemInfo<IItem>) => (
+  <PressableWithDelay style={styles.button} key={item.leaderboardId} onPress={item.onPress}>
+    <TextTemplate type="b2" textAlign="center">
+      {item.name}
+    </TextTemplate>
+    <View style={styles.radio}>
+      <Radio selected={item.selected === item.leaderboardId} />
+    </View>
+  </PressableWithDelay>
+);
 
 const styles = StyleSheet.create({
   wrapper: {
     alignItems: "center",
     paddingHorizontal: Style.adjust(24),
+    flex: 1,
+    flexDirection: "row",
+    marginBottom: Style.adjust(80),
   },
   button: {
     width: "100%",

@@ -16,7 +16,7 @@ const meta: Meta<typeof ListItem> = {
   parameters: {
     design: {
       type: "figma",
-      url: "figma url",
+      url: "https://www.figma.com/file/bpwO4qkwPcBErdjtIru9J4/Game-System?type=design&node-id=1663-25751&mode=design&t=p6ACtv7IulXFBbJg-4",
     },
   },
   args: {
@@ -31,7 +31,7 @@ type Story = StoryObj<typeof ListItem>;
 export const Leaderboard: Story = {
   args: {
     type: "leaderboard",
-    rank: 1,
+    position: 1,
     score: "3,682,780",
   },
 };
@@ -39,9 +39,9 @@ export const Leaderboard: Story = {
 export const LeaderboardActive: Story = {
   args: {
     type: "leaderboard",
-    rank: 1,
+    position: 1,
     score: "3,682,780",
-    active: true,
+    theme: "active",
   },
 };
 

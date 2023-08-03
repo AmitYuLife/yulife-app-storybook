@@ -1,51 +1,107 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
-import { TextTemplate } from "@atoms";
+import { StyleSheet, View, ViewStyle } from "react-native";
+import { SkeletonLoading, TextTemplate } from "@atoms";
 import { Style, Colours } from "@styles";
 import { ArrowIcon } from "@atoms/icon/arrow";
-import { LeaderboardRankIcon } from "@atoms/icon/leaderboard-rank-icon";
+import { LeaderboardPositionIcon } from "@atoms/icon/leaderboard-position-icon";
 import Avatar from "@components/molecules/avatar/avatar";
-import { PressableWithDelay } from "@molecules";
+import { TouchableOpacityWithDelay } from "@molecules";
 import { ITextTemplateType } from "@atoms/text/text-template";
+import { addCommasToNumber } from "@utils";
+import { AvatarHeadIcon } from "@atoms/icon/avatar-head-icon";
 
 type TypeProps =
-  | { type: "leaderboard"; rank: number; score: number | string }
-  | { type: "search"; rank?: never; score?: never };
+  | { type: "leaderboard"; position: number; score: number | string }
+  | { type: "search"; position?: never; score?: never };
 
 interface CommonProps {
   name: string;
   uri: string;
   type: "leaderboard" | "search";
-  onPress: () => void;
-  active?: boolean;
+  onPress?: () => void;
+  theme?: "active" | "highlighted";
+  isLoading?: boolean;
+}
+
+interface IActiveOrHighlighted {
+  colour: string;
+  type: ITextTemplateType;
+  styles: ViewStyle;
 }
 
 type IProps = CommonProps & TypeProps;
 
-export const ListItem = ({ name, uri, type, rank, score, onPress, active }: IProps) => {
+const POSITION_4 = 4;
+
+export const ListItem = ({ name, uri, type, position, score, onPress, isLoading, theme }: IProps) => {
   const isLeaderboard = useMemo(() => type === "leaderboard", [type]);
-  const isActive = useMemo(
+  const isActiveOrHighlighted = useMemo((): IActiveOrHighlighted => {
+    switch (theme) {
+      case "active": {
+        return {
+          colour: Colours.neutral.white,
+          type: "b2b",
+          styles: styles.active,
+        };
+      }
+
+      case "highlighted": {
+        return {
+          colour: "#464647",
+          type: "b2",
+          styles: styles.highlighted,
+        };
+      }
+
+      default: {
+        return {
+          colour: Colours.sudoku.gridThickColor,
+          type: "b2",
+          styles: {},
+        };
+      }
+    }
+  }, [theme]);
+
+  const nameLoadingStyle = useMemo(
     () => ({
-      colour: active ? Colours.neutral.white : Colours.sudoku.gridThickColor,
-      type: (active ? "b2b" : "b2") as ITextTemplateType,
-      styles: active ? styles.active : {},
+      width: position % 2 ? 160 : 120,
+      height: 20,
+      borderRadius: 100,
     }),
-    [active]
+    [position]
   );
 
+  if (isLoading) {
+    return (
+      <View style={styles.wrapper}>
+        <View style={styles.avatar}>
+          <SkeletonLoading style={styles.loadingPosition} />
+        </View>
+        <View style={styles.avatar}>
+          <AvatarHeadIcon colour={Colours.metallic.m100} />
+        </View>
+        <View>
+          <SkeletonLoading style={nameLoadingStyle} />
+        </View>
+        <View style={styles.score}>
+          <SkeletonLoading style={styles.loadingScore} />
+        </View>
+      </View>
+    );
+  }
+
   return (
-    <PressableWithDelay onPress={onPress}>
-      <View style={[styles.wrapper, isActive.styles]}>
+    <TouchableOpacityWithDelay disabled={!onPress} onPress={onPress}>
+      <View style={[styles.wrapper, isActiveOrHighlighted.styles]}>
         {!isLeaderboard ? null : (
-          <View style={styles.rank}>
-            {rank < 4 ? (
-              <LeaderboardRankIcon rank={rank} />
+          <View style={styles.position}>
+            {position < POSITION_4 ? (
+              <LeaderboardPositionIcon position={position} />
             ) : (
-              <View style={styles.rankText}>
-                <TextTemplate textAlign="center" color={isActive.colour} type={isActive.type}>
-                  {rank}
-                </TextTemplate>
-              </View>
+              <TextTemplate textAlign="center" color={isActiveOrHighlighted.colour} type={isActiveOrHighlighted.type}>
+                {position}
+              </TextTemplate>
             )}
           </View>
         )}
@@ -53,21 +109,21 @@ export const ListItem = ({ name, uri, type, rank, score, onPress, active }: IPro
           <Avatar size="small" uri={uri} />
         </View>
         <View style={styles[type]}>
-          <TextTemplate color={isActive.colour} type={isActive.type} numberOfLines={1}>
+          <TextTemplate color={isActiveOrHighlighted.colour} type={isActiveOrHighlighted.type} numberOfLines={1}>
             {name}
           </TextTemplate>
         </View>
         <View style={styles.score}>
           {isLeaderboard ? (
-            <TextTemplate color={isActive.colour} type={isActive.type}>
-              {score}
+            <TextTemplate color={isActiveOrHighlighted.colour} type={isActiveOrHighlighted.type}>
+              {typeof score === "number" ? addCommasToNumber(score) : score}
             </TextTemplate>
           ) : (
             <ArrowIcon />
           )}
         </View>
       </View>
-    </PressableWithDelay>
+    </TouchableOpacityWithDelay>
   );
 };
 
@@ -84,13 +140,9 @@ const styles = StyleSheet.create({
   avatar: {
     marginRight: Style.adjust(9),
   },
-  rank: {
-    paddingLeft: Style.adjust(8),
-    paddingRight: Style.adjust(12),
-  },
-  rankText: {
-    width: Style.adjust(24),
-    height: Style.adjust(24),
+  position: {
+    alignItems: "center",
+    width: Style.adjust(44),
   },
   score: {
     position: "absolute",
@@ -103,9 +155,24 @@ const styles = StyleSheet.create({
   search: {
     flex: 0.9,
   },
+  highlighted: {
+    backgroundColor: "#D5ECFF",
+    borderRadius: 8,
+  },
   active: {
     backgroundColor: "#6AA3DC",
     borderRadius: 8,
+    height: Style.adjust(56),
+  },
+  loadingPosition: {
+    width: Style.adjust(20),
+    height: Style.adjust(20),
+    borderRadius: 100,
+  },
+  loadingScore: {
+    width: Style.adjust(60),
+    height: Style.adjust(15),
+    borderRadius: 100,
   },
 });
 

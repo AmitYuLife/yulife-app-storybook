@@ -20,6 +20,7 @@ export { default as ChallengesListContainer } from "./member/quests/challenges-l
 export { default as ChallengesHistoryContainer } from "./member/quests/challenges-history/challenges-history.container";
 export { default as DailyStepsContainer } from "./member/daily-steps/daily-steps.container";
 export { default as CyclingMeasurementContainer } from "./member/settings/cycling-measurement.container";
+export { default as LeaderboardContainer } from "./member/leaderboard/leaderboard.container";
 
 // referrals containers
 export { default as ReferralsContainer } from "./referrals/referrals.container";

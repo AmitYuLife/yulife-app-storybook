@@ -38,3 +38,4 @@ export { default as MoreChallengesBanner } from "./more-challenges-banner/more-c
 export { default as ShowAndHideBalance } from "./show-and-hide-balance/show-and-hide-balance";
 export { default as ListItem } from "./list-item/list-item";
 export { default as Tabs } from "./tabs/tabs";
+export { default as Podium } from "./podium/podium";

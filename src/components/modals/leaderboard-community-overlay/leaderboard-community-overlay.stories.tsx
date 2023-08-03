@@ -24,15 +24,30 @@ const meta: Meta<typeof LeaderboardCommunityOverlay> = {
     communities: [
       {
         name: "All company",
-        id: "all-company",
+        leaderboardId: "all-company",
+        consent: true,
+        days: 30,
+        hasAccepted: true,
+        inviteFrom: null,
+        metric: "steps",
       },
       {
         name: "Product and Tech",
-        id: "product-and-tech",
+        leaderboardId: "product-and-tech",
+        consent: true,
+        days: 30,
+        hasAccepted: true,
+        inviteFrom: null,
+        metric: "steps",
       },
       {
         name: "Game Squad",
-        id: "game-squad",
+        leaderboardId: "game-squad",
+        consent: true,
+        days: 30,
+        hasAccepted: true,
+        inviteFrom: null,
+        metric: "steps",
       },
     ],
   },
@@ -47,6 +62,6 @@ export const Default: Story = {
 
 export const DefaultSelected: Story = {
   args: {
-    defaultSelected: "all-company",
+    activeLeaderboardId: "all-company",
   },
 };
