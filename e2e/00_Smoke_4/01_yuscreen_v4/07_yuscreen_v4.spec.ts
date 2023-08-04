@@ -98,6 +98,9 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_53, data.AUTH_53, true), async () => {
             helper.ONBOARDING_YUSCREEN("0EarnRate", "1")
             helper.YUSCREEN_V4(data.CUSTOMER_53, "0EarnRateSlot", "1")
+            When(`I tap the product`, when.tapText("Income Protection"), async () => {
+                Then("I should not see a banner for yuCoin as it's set to 0", then.idNotVisible(ids.YUCOIN_POWER("0")))
+            })
         })
     })
 
