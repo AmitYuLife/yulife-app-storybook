@@ -1,6 +1,6 @@
-import Config from "react-native-config";
-import AsyncStorage from "@react-native-community/async-storage";
 import moment from "moment";
+import Config from "react-native-config";
+import { Storage, StorageKey } from "@utils/storage";
 
 const MAX_CONFIG_AGE_IN_MINUTES = 60 * 24; // 24 hours
 
@@ -40,7 +40,6 @@ type RegionStorage = {
 };
 
 class RegionService {
-  private readonly REGION_STORAGE_KEY = "@yulife:region";
   private SELECTED_REGION: REGION = "UK";
   private REGION_CONFIG: RegionConfig;
   private REGION_CONFIG_LAST_UPDATED: Date;
@@ -84,7 +83,7 @@ class RegionService {
 
   public hydratePreferredRegion = async () => {
     try {
-      const data = await AsyncStorage.getItem(this.REGION_STORAGE_KEY);
+      const data = await Storage.getItem(StorageKey.region);
 
       if (data) {
         const json: RegionStorage = JSON.parse(data);
@@ -112,8 +111,8 @@ class RegionService {
   public setConfig = async (config: RegionConfig) => {
     if (config?.mixpanelKey) {
       const now = new Date();
-      await AsyncStorage.setItem(
-        this.REGION_STORAGE_KEY,
+      await Storage.setItem(
+        StorageKey.region,
         JSON.stringify({ region: this.SELECTED_REGION, config, createdAt: now })
       );
       this.REGION_CONFIG = config;

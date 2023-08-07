@@ -20,13 +20,11 @@ import Markdown from "@molecules/markdown/markdown";
 import { TOP_BAR, Style } from "@styles";
 import styles, { markdownStyles } from "./referrals-popover.styles";
 import { getUserSessionCount } from "@redux/user/user.selectors";
-import AsyncStorage from "@react-native-community/async-storage";
+import { Storage, StorageKey } from "@utils/storage";
 
 interface IProps {
   onLeftMenuPress: () => void;
 }
-
-const STORAGE_KEY = "@YuStore:referralsPopover";
 
 const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
   const [getReferralOnboardingPopover, { data, error }] = useDebouncedQuery<
@@ -50,7 +48,7 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
       setPopoverVisible(true);
       dispatch(setOnboardingReferralsBadge(true));
       await performOnboardingStep({ variables: { step: id } });
-      await AsyncStorage.setItem(STORAGE_KEY, "true");
+      await Storage.setItem(StorageKey.referralsPopover, "true");
     } catch (e) {
       Logger.error(e, { file: "referrals-popover" });
     }
@@ -58,7 +56,7 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
 
   useEffect(() => {
     (async () => {
-      const isOnboard = await AsyncStorage.getItem(STORAGE_KEY);
+      const isOnboard = await Storage.getItem(StorageKey.referralsPopover);
       if (sessionCount > 1 && !isOnboard) {
         getReferralOnboardingPopover();
       }

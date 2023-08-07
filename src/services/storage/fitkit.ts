@@ -1,12 +1,11 @@
 import Logger from "@services/logging/logger";
-import AsyncStorage from "@react-native-community/async-storage";
+import { Storage, StorageKey } from "@utils/storage";
 
-const FITKIT_KEY = "@Store:fitkit";
 export const REQUESTED = "REQUESTED";
 
 export async function setFitkitPermission(fitkitPermision: string): Promise<void> {
   try {
-    await AsyncStorage.setItem(FITKIT_KEY, fitkitPermision);
+    await Storage.setItem(StorageKey.fitkitPermission, fitkitPermision);
   } catch (e) {
     Logger.error(e, { event: "setFitkitPermissions" });
   }
@@ -14,7 +13,7 @@ export async function setFitkitPermission(fitkitPermision: string): Promise<void
 
 export async function getFitkitPermission(): Promise<string | null> {
   try {
-    const fitkitPermision = await AsyncStorage.getItem(FITKIT_KEY);
+    const fitkitPermision = await Storage.getItem(StorageKey.fitkitPermission);
     return fitkitPermision;
   } catch (e) {
     Logger.error(e, { event: "getFitkitPermissions" });

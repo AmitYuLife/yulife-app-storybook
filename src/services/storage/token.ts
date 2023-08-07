@@ -1,17 +1,16 @@
-import AsyncStorage from "@react-native-community/async-storage";
 import EncryptedStorage from "react-native-encrypted-storage";
 import Logger from "@services/logging/logger";
 import { AppState, Platform } from "react-native";
+import { Storage, StorageKey } from "@utils/storage";
 
 class TokenService {
-  private TOKEN_KEY = "@Store:token";
   private tempToken: string | null = null;
   // iOS cannot access the encrypted storage while the app is on background
   // only log errors for ios on active state and android in any state
   private shouldLogError = () => Platform.select({ android: true, ios: AppState.currentState === "active" });
   public setToken = async (token: string) => {
     try {
-      await EncryptedStorage.setItem(this.TOKEN_KEY, token);
+      await EncryptedStorage.setItem(StorageKey.token, token);
       this.tempToken = token;
     } catch (e) {
       if (this.shouldLogError()) {
@@ -26,10 +25,10 @@ class TokenService {
         return this.tempToken;
       }
 
-      const securedToken = await EncryptedStorage.getItem(this.TOKEN_KEY);
+      const securedToken = await EncryptedStorage.getItem(StorageKey.token);
 
       if (!securedToken?.length) {
-        const token = await AsyncStorage.getItem(this.TOKEN_KEY);
+        const token = await Storage.getItem(StorageKey.token);
         this.tempToken = token;
         return token;
       }
@@ -48,8 +47,8 @@ class TokenService {
   public clearToken = async () => {
     try {
       this.tempToken = null;
-      await AsyncStorage.removeItem(this.TOKEN_KEY);
-      await EncryptedStorage.removeItem(this.TOKEN_KEY);
+      await Storage.removeItem(StorageKey.token);
+      await EncryptedStorage.removeItem(StorageKey.token);
     } catch (e) {
       if (this.shouldLogError()) {
         Logger.error(e, { event: "EncryptedStorage:clearToken" });

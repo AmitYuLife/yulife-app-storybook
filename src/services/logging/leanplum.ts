@@ -1,13 +1,12 @@
-import AsyncStorage from "@react-native-community/async-storage";
 import { Inbox, Leanplum, LeanplumInbox } from "@leanplum/react-native-sdk";
 
 import region from "@services/region";
 import { Platform } from "react-native";
 import moment from "moment";
+import { Storage, StorageKey } from "@utils/storage";
 
 export default class LeanplumClient {
   public isDevMode = false;
-  private STORAGE_KEY = "@YuStore:leanplum";
   private started = false;
   private enabled = true;
 
@@ -37,7 +36,7 @@ export default class LeanplumClient {
 
   private checkIfDevMode = async () => {
     try {
-      const key = await AsyncStorage.getItem(this.STORAGE_KEY);
+      const key = await Storage.getItem(StorageKey.leanplum);
       return key === "dev";
     } catch (e) {
       return false;
@@ -64,7 +63,7 @@ export default class LeanplumClient {
   public toggleDevelopmentMode = async () => {
     try {
       const isDevMode = await this.checkIfDevMode();
-      await AsyncStorage.setItem(this.STORAGE_KEY, isDevMode ? "prod" : "dev");
+      await Storage.setItem(StorageKey.leanplum, isDevMode ? "prod" : "dev");
     } catch (e) {
       // safe fail
     }
