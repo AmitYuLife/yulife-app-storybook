@@ -1,15 +1,14 @@
 import getMobileAssets from "@graphql/assets/getMobileAssets.gql";
-import AsyncStorage from "@react-native-community/async-storage";
 import { getUserEndPointsVersion } from "@redux/user/user.selectors";
 import Logger from "@services/logging/logger";
 import FastImage from "react-native-fast-image";
 import { call, delay, select, spawn, takeLatest } from "redux-saga/effects";
 import { UPDATE_USER_PROFILE } from "@redux/user/user.actions";
 import { Unpacked } from "@utils";
+import { Storage, StorageKey } from "@utils/storage";
 
 const BATCH_SIZE = 10;
 const PRELOAD_TIMEOUT = 10000; //ms
-const STORAGE_KEY = "@YuStore:mobileAssets";
 
 export function* prefetchAssets() {
   const clientVersion: string = yield call(getAssetVersion);
@@ -34,11 +33,11 @@ export function* prefetchAssets() {
 }
 
 const saveAssetsVersion = async (version: string) => {
-  return AsyncStorage.setItem(STORAGE_KEY, version);
+  return Storage.setItem(StorageKey.mobileAssets, version);
 };
 
 const getAssetVersion = async () => {
-  return AsyncStorage.getItem(STORAGE_KEY);
+  return Storage.getItem(StorageKey.mobileAssets);
 };
 
 export default [takeLatest(UPDATE_USER_PROFILE, prefetchAssets)];

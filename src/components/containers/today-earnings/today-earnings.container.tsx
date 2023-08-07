@@ -13,18 +13,16 @@ import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import moment from "moment";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { GQL_MUTATION_UPSERT_DAILY_PASSIVES } from "@graphql/challenges/upsertDailyPassives.gql";
-import AsyncStorage from "@react-native-community/async-storage";
 import { useBackHandler } from "@hooks";
 import { getLastUpdated } from "@redux/pedometer/pedometer.selectors";
 import { DATE_FORMAT, getCurrentWorld, getCurrentYuniverse } from "@utils";
 import { restartPedometerOnNewDay } from "@redux/pedometer/pedometer.actions";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { Storage, StorageKey } from "@utils/storage";
 
 interface IProps {
   componentId: string;
 }
-
-const RN_FIT_KIT_IOS_CYCLING_PERMISSIONS_SHOWN = "@RNFitKit:iosCyclingPermissionShown";
 
 const TodayEarningsContainer = ({ componentId }: IProps) => {
   const [permissionIsLoading, setPermissionIsLoading] = useState(true);
@@ -55,10 +53,10 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
     }
 
     if (Platform.OS === "ios") {
-      const iosCyclingPermissionShown = await AsyncStorage.getItem(RN_FIT_KIT_IOS_CYCLING_PERMISSIONS_SHOWN);
+      const iosCyclingPermissionShown = await Storage.getItem(StorageKey.iosCyclingPermissionShown);
       if (!iosCyclingPermissionShown) {
         await authoriseFitKitTypes([FitKitType.Cycling], "AppleHealth", false);
-        AsyncStorage.setItem(RN_FIT_KIT_IOS_CYCLING_PERMISSIONS_SHOWN, "true");
+        Storage.setItem(StorageKey.iosCyclingPermissionShown, "true");
       }
     }
 

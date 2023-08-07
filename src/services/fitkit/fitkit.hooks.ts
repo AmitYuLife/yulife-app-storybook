@@ -1,6 +1,5 @@
 import { useCallback, useEffect } from "react";
 import { Alert, Linking, Platform } from "react-native";
-import AsyncStorage from "@react-native-community/async-storage";
 import RNFitKit, { FitKitAuthOptions, FitKitHealthTrackingPlatform, FitKitTypes } from "./fitkit.service";
 import Logger from "@services/logging/logger";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
@@ -17,8 +16,8 @@ import {
 import { AndroidSystemPermissionsConfig, FitKitAndroidSystemPermission } from "./fitkit.permissions";
 import { requestAndroidSystemPermissions } from "./fitkit.system-permissions";
 import moment from "moment";
+import { Storage, StorageKey } from "@utils/storage";
 
-const RNFITKIT_PERMISSIONS_SHOWN = "@RNFitKit:authorised";
 const IOS_ERROR_UNABLE_TO_INVALIDATE_INTERVAL = "Unable to invalidate interval: no data source available.";
 
 export function useFitKit() {
@@ -256,7 +255,7 @@ export function useFitKit() {
       let wasAuthorisationShown = false;
 
       try {
-        const isAuthorised = await AsyncStorage.getItem(RNFITKIT_PERMISSIONS_SHOWN);
+        const isAuthorised = await Storage.getItem(StorageKey.fitKitAuthorised);
 
         if (isAuthorised && isAuthorised === "true") {
           wasAuthorisationShown = true;
@@ -299,7 +298,7 @@ export function useFitKit() {
       dispatch(fitkitSetup(newState));
 
       try {
-        await AsyncStorage.setItem(RNFITKIT_PERMISSIONS_SHOWN, "true");
+        await Storage.setItem(StorageKey.fitKitAuthorised, "true");
       } catch (e) {
         Logger.logMixpanelEvent("app_debug", {
           error: e.message,
