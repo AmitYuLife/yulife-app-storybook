@@ -23,7 +23,7 @@ export const loginAsUser = (
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);
     await navigateViaID(BUTTON_LOGIN(false))
-    await navigateViaText("Next") // sign-up reward screen
+    await navigateViaText(t("Next")) // sign-up reward screen
     await dismissPLIModalIfVisible()
     await dismissNewLooksModalIfVisible()
     await dismissStreakIfVisible()
@@ -43,12 +43,12 @@ export const loginAsPLIUser = (
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);
     await navigateViaID(BUTTON_LOGIN(false))
-    await navigateViaText("Next") // sign-up reward screen
+    await navigateViaText(t("Next")) // sign-up reward screen
     await dismissPLIModalIfVisible()
     await dismissNewLooksModalIfVisible()
-    await tapText("Next")()
-    await tapText("Next")()
-    await tapText("Let's go")()
+    await tapText(t("Next"))()
+    await tapText(t("Next"))()
+    await tapText(t("Let's go"))()
 }
 
 

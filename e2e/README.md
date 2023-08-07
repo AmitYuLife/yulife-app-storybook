@@ -19,6 +19,12 @@
 4. Start the RN server in e2e mode by running `yarn start:e2e` to run the react native packager in E2E mode
 5. Run all the tests by running `yarn detox:test:all`
 
+### Running localised tests
+
+The process is almost identical to running the tests in `en-GB` except for the following:
+1. Before running `yarn detox:test:all` you will need to build the translation mapping file. To do this, set the environment variable `TARGET_LOCALE` to your target locale (e.g. `export TARGET_LOCALE=ja-JP`) and run `yarn detox:build:translations`. This will create the mapping of English used in the tests to the language displayed on the app screen.
+2. When running `yarn detox:test:all`, ensure that the value of the environment variable `TARGET_LOCALE` is the same as the one used in step 1.
+
 ## Debugging
 - The easiest way to check if an element is not found is to open the mochaawesome report in e2e-report
 

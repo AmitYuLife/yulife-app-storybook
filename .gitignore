@@ -88,3 +88,6 @@ storybook-static/
 # ignore generated translation files
 src/locale/translations/downloaded/*
 translations_*_*_*.csv
+
+# Translation mapping
+translation-mapping.json

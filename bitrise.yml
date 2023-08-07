@@ -596,6 +596,9 @@ workflows:
             # Set detox test device
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
 
+            # Build the translation mapping
+            yarn detox:build:translations
+
             # Run tests
             command="TARGET_LOCALE=$TARGET_LOCALE yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel \"${DETOX_LOG_LEVEL:=warn}\" --debug-synchronization 200 --record-logs failing"
 
@@ -2077,6 +2080,9 @@ workflows:
             nvm use
             yarn install --frozen-lockfile
             ./scripts/setupPostgresForBitrise.sh
+            
+            yarn translations:download:local
+
             yarn build
 
             yarn detox:changeRegionDatabase:${API_REGION:=UK}
