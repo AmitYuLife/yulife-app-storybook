@@ -37,7 +37,6 @@ export * from "./mongo/coinledger";
 export * from "./mongo/user_game_state";
 export * from "./mongo/core_rewards";
 export * from "./mongo/core_reward_locations";
-export * from "./mongo/map_level_slot_templates";
 export * from "./mongo/mixpanel_webhooks";
 export * from "./mongo/map_milestone_templates";
 export * from "./mongo/core_streaks";
