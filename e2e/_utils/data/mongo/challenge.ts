@@ -774,7 +774,8 @@ export const CHALLENGE_USER_15_D = {
         level: 4,
         levelSlotTemplateId: "DAILY_PASSIVE_001",
         status: "active",
-
+        levelId: "YU_LEVEL_0004",
+        levelSlotId: "YU_LEVEL_0004_1",
         milestoneLog: [
             {
                 completionData: [],
