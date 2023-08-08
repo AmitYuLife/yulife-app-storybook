@@ -5,7 +5,8 @@ import { Preview } from "@storybook/react";
 import { View } from "react-native";
 import { ApolloProvider } from "@apollo/client";
 import createClient from "../src/graphql/_core/client";
-import translator, { translations } from "../src/locale/translator";
+import translator from "../src/locale/translator";
+import { translations } from "../src/locale/translations";
 const client = createClient();
 
 const Wrapper = (Story, context) => {
