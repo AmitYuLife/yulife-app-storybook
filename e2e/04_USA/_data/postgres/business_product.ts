@@ -51,9 +51,6 @@ export const BUSINESS_PRODUCT_USA_1_VIS = generateProductRecords({
     productId: "SEED_USA_5",
     businessAccountId: BUSINESS_ACCOUNT_USA_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
-    product: {
-      contribution_type: "partial",
-   }
   });
 
 export const BUSINESS_PRODUCT_USA_1_TLIF = generateProductRecords({
