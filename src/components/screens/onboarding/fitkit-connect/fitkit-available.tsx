@@ -22,14 +22,14 @@ const FitKitAvailable: FC<IProps> = ({ connecting, onConnectPress }) => {
   // send the platform for iOS as well?
   const [selectedFitkitPlatform, setSelectedFitkitPlatform] = useState<FitKitHealthTrackingPlatform>("GoogleFit");
   const [connectButtonLabel, setConnectButtonLabel] = useState(
-    isSamsung() ? `${t("labels.cta.connect")} ${t("google_fit")}` : connectButton
+    isSamsung() ? t("labels.cta.connect_health_app", { healthApp: t("google_fit") }) : connectButton
   );
 
   const _setSelectedFitkitPlatform = (platform: FitKitHealthTrackingPlatform) => {
     setConnectButtonLabel(
-      platform === "SamsungHealth"
-        ? `${t("labels.cta.connect")} ${t("samsung_health")}`
-        : `${t("labels.cta.connect")} ${t("google_fit")}`
+      t("labels.cta.connect_health_app", {
+        healthApp: platform === "SamsungHealth" ? t("samsung_health") : t("google_fit"),
+      })
     );
     setSelectedFitkitPlatform(platform);
   };
