@@ -2,21 +2,25 @@ import { StyleSheet, Platform } from "react-native";
 import { Style } from "../../../styles";
 import colours from "@styles/colours";
 
-const FULL_HEIGHT = Style.adjust(205);
-const BOTOM_HEIGHT = Style.adjust(84);
-const RADIUS = Style.adjust(20);
+const TOP_HEIGHT = Style.adjust(120);
+const BOTTOM_HEIGHT = Style.adjust(88);
+const SHADOW_WIDTH = Style.adjust(5);
+const FULL_HEIGHT = Style.adjust(213);
+const BORDER_RADIUS = Style.adjust(20);
+
+export const IMAGE_SIZE = Style.DEVICE_WIDTH / 2 - Style.adjust(25);
 
 const styles = StyleSheet.create({
   contentRewardWrapper: {
-    marginTop: Style.adjust(5),
     flexDirection: "row",
     alignItems: "center",
+    height: Style.adjust(26),
   },
   contentBottom: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: Style.adjust(2),
+    marginTop: Style.adjust(8),
   },
   yucoin: {
     marginLeft: Style.adjust(3),
@@ -26,7 +30,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: Style.adjust(8),
     top: Style.adjust(8),
-    backgroundColor: colours.primary.p107,
     borderRadius: Style.adjust(8),
   },
   contentWrapper: {
@@ -40,18 +43,17 @@ const styles = StyleSheet.create({
     ),
   },
   imageBackground: {
-    backgroundColor: "rgba(255,255,255,0.5)",
     overflow: "hidden",
     bottom: 0,
-    height: FULL_HEIGHT - BOTOM_HEIGHT,
+    height: TOP_HEIGHT,
     left: 0,
     position: "absolute",
     right: 0,
-    borderTopLeftRadius: RADIUS,
-    borderTopRightRadius: RADIUS,
+    borderTopLeftRadius: BORDER_RADIUS,
+    borderTopRightRadius: BORDER_RADIUS,
   },
   imageBackgroundLocked: {
-    backgroundColor: "transparent",
+    backgroundColor: "rgb(128, 128, 128)",
     height: FULL_HEIGHT,
   },
   imageNext: {
@@ -59,51 +61,53 @@ const styles = StyleSheet.create({
     width: Style.adjust(24),
   },
   completedContainer: {
+    flexDirection: "row",
+    alignItems: "center",
     backgroundColor: colours.status.su100,
-    borderRadius: 100,
+    borderRadius: Style.adjust(48),
     paddingHorizontal: Style.adjust(8),
-    padding: Style.adjust(4),
+    height: Style.adjust(26),
   },
   imageWrapper: {
-    height: Style.adjust(165),
+    height: IMAGE_SIZE,
   },
   imageWrapperLocked: {
     alignItems: "center",
     height: FULL_HEIGHT,
     justifyContent: "center",
-    borderRadius: RADIUS,
+    borderRadius: BORDER_RADIUS,
     overflow: "hidden",
   },
   lockedImage: {
     marginBottom: Style.adjust(9),
   },
   lockedOverlay: {
+    ...StyleSheet.absoluteFillObject,
     alignItems: "center",
     backgroundColor: "rgba(255,255,255,0.7)",
-    borderRadius: RADIUS,
-    bottom: 0,
+    borderRadius: BORDER_RADIUS,
     height: "auto",
     justifyContent: "center",
-    left: 0,
-    position: "absolute",
-    right: 0,
-    top: 0,
+  },
+  sectionBottomShadow: {
+    borderBottomLeftRadius: BORDER_RADIUS,
+    borderBottomRightRadius: BORDER_RADIUS,
+    backgroundColor: colours.neutral.n250,
   },
   sectionBottomWrapper: {
     backgroundColor: "rgba(255,255,255,1)",
     flexDirection: "row",
-    height: BOTOM_HEIGHT,
-    borderBottomLeftRadius: RADIUS,
-    borderBottomRightRadius: RADIUS,
-    borderBottomWidth: 5,
-    borderColor: colours.neutral.n250,
+    height: BOTTOM_HEIGHT,
+    borderBottomLeftRadius: BORDER_RADIUS,
+    borderBottomRightRadius: BORDER_RADIUS,
+    marginBottom: SHADOW_WIDTH,
     overflow: "hidden",
   },
   wrapper: {
     maxHeight: FULL_HEIGHT,
     justifyContent: "flex-end",
     marginTop: Style.adjust(13),
-    width: Style.DEVICE_WIDTH / 2 - Style.adjust(25),
+    width: IMAGE_SIZE,
     overflow: "hidden",
   },
   remoteImage: {

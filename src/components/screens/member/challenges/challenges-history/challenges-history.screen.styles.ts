@@ -1,15 +1,8 @@
-import { ImageStyle, Platform, StyleSheet, ViewStyle } from "react-native";
+import { Platform, StyleSheet, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "@styles";
 
 export default StyleSheet.create({
-  background: {
-    height: Style.DEVICE_HEIGHT,
-    width: Style.DEVICE_WIDTH,
-  } as ImageStyle,
-  backgroundWrapper: {
-    ...StyleSheet.absoluteFillObject,
-  } as ViewStyle,
   buttonsWrapper: {
     alignItems: "center",
     left: 0,

@@ -218,6 +218,15 @@ const CYCLING: ISlotSet[] = [
   },
 ];
 
+const DEFAULT: ISlotSet = {
+  style: {
+    position: "absolute",
+    left: 0,
+    top: 0,
+  },
+  width: Style.SCALE_UP_AND_DOWN(50),
+};
+
 export function getSlotImageProps(challengeType: string, currentWorld: number, yuniversalMap?: number) {
   const index = yuniversalMap ? 4 : currentWorld;
 
@@ -235,6 +244,6 @@ export function getSlotImageProps(challengeType: string, currentWorld: number, y
     case "cycling":
       return CYCLING[index] || CYCLING[0];
     default:
-      return { style: null, width: 0 };
+      return DEFAULT;
   }
 }

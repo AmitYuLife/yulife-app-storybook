@@ -1,4 +1,4 @@
-import { ImageSourcePropType, ViewStyle } from "react-native";
+import { ImageSourcePropType, ImageStyle, ViewStyle } from "react-native";
 import { StreakTypes } from "@organisms/game-icon-button/streak.button";
 import { TopBarTypes } from "@organisms/top-bar/top-bar.helpers";
 import { Planets } from "@utils";
@@ -27,7 +27,10 @@ export interface IThemeScreens {
   };
   challengeListScreen: {
     backgroundImage: ImageSourcePropType & Source & string;
-    style: ViewStyle;
+    style: ImageStyle;
+    tileBackgroundColour?: string;
+    durationBackgroundColour?: string;
+    durationTextColour?: string;
     topBarType: TopBarTypes;
   };
   challengeSuccessScreen: {
@@ -48,7 +51,7 @@ export interface IThemeScreens {
   };
   challengeHistoryScreen: {
     backgroundImage: ImageSourcePropType;
-    style: ViewStyle;
+    style: ImageStyle;
     topBarType: TopBarTypes;
   };
   offlineScreen: IScreen & { textColour: string };

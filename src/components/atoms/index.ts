@@ -37,3 +37,4 @@ export { default as Radio } from "./radio/radio";
 export { default as ProgressBar } from "./progress-bar/progress-bar";
 export { default as TooltipIcon } from "./tooltip-icon/tooltip-icon";
 export { default as YuCoinBadge } from "./yucoin-badge/yucoin-badge";
+export { default as ChallengeBackground } from "./challenge-background/challenge-background";

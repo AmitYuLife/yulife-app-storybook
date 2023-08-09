@@ -1,9 +1,9 @@
-import { Loading } from "@atoms";
+import { ChallengeBackground, Loading } from "@atoms";
 import React, { memo } from "react";
 import { GenericHeadingAbsolute } from "@organisms";
-import { Image, StyleSheet, View } from "react-native";
-import challengeListStyle from "@components/screens/member/challenges/challenges-list/challenges-list.screen.styles";
+import { StyleSheet, View } from "react-native";
 import { getTheme } from "@theme";
+import style from "./challenges-loading.style";
 
 interface IProps {
   currentLevel: number;
@@ -15,8 +15,12 @@ const ChallengesLoading = ({ currentLevel, yuniversalMap, onBackPress }: IProps)
   const { challengeListScreen } = getTheme(currentLevel, yuniversalMap);
 
   return (
-    <View style={challengeListScreen.style}>
-      <Image resizeMode="cover" style={challengeListStyle.background} source={challengeListScreen.backgroundImage} />
+    <View style={style.wrapper}>
+      <ChallengeBackground
+        source={challengeListScreen.backgroundImage}
+        style={challengeListScreen.style}
+        backgroundColor={challengeListScreen.style.backgroundColor}
+      />
       <View style={StyleSheet.absoluteFill}>
         <Loading />
       </View>

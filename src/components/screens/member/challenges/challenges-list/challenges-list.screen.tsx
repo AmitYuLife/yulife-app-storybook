@@ -2,8 +2,9 @@ import React, { memo, Component } from "react";
 import { CHALLENGE_SCREEN } from "@ids";
 import { getTheme } from "@theme";
 import { t } from "@locale";
+import { ChallengeBackground } from "@atoms";
 import { ChallengesList, IChallengesListProps } from "@molecules/index";
-import { Image, View, BackHandler } from "react-native";
+import { View, BackHandler } from "react-native";
 import { IMilestoneProps } from "../challenge-details/milestones";
 import styles from "./challenges-list.screen.styles";
 import { NavBar, GenericHeadingPad, TopBarAbsolute } from "@components/organisms";
@@ -73,16 +74,21 @@ class ChallengesListScreen extends Component<IProps, IState> {
     return (
       <View style={styles.wrapper} testID={CHALLENGE_SCREEN}>
         <GenericHeadingPad />
-        <View style={challengeListScreen.style}>
-          <Image
-            onLayout={this.showChallengeTiles}
-            resizeMode="cover"
-            style={styles.background}
-            source={challengeListScreen.backgroundImage}
-          />
-        </View>
+        <ChallengeBackground
+          onLayout={this.showChallengeTiles}
+          source={challengeListScreen.backgroundImage}
+          style={challengeListScreen.style}
+          backgroundColor={challengeListScreen.style.backgroundColor}
+        />
         <View style={styles.challengeSetWrapper}>
-          {this.state.hideChallengeTiles ? null : <ChallengesList challenges={challenges} />}
+          {this.state.hideChallengeTiles ? null : (
+            <ChallengesList
+              challenges={challenges}
+              tileColour={challengeListScreen.tileBackgroundColour}
+              durationColour={challengeListScreen.durationBackgroundColour}
+              durationTextColour={challengeListScreen.durationTextColour}
+            />
+          )}
         </View>
         <TopBarAbsolute
           type={challengeListScreen.topBarType}
@@ -91,7 +97,7 @@ class ChallengesListScreen extends Component<IProps, IState> {
           name={name}
           onPressLeftIcon={onPressLeftIcon}
         />
-        <NavBar activeIndex={1} additionalBottom={2} />
+        <NavBar activeIndex={1} />
       </View>
     );
   }

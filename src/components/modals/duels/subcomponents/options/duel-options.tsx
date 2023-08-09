@@ -62,6 +62,7 @@ export default function DuelOptions({
   return (
     <BlurProvider
       backgroundColor="dark"
+      style={styles.blurStyle}
       render={({ toggleOverlay }) => (
         <View style={styles.safeAreaView}>
           <TopBarAbsolute leftIcon={LeftIcon.CLOSE} onPressLeftIcon={onPressLeftIcon} rightIcon="Coins" />

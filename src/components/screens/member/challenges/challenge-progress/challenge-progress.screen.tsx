@@ -195,7 +195,7 @@ function ChallengeProgressScreen({
         </View>
       )}
       <TopBarAbsolute type={fromGql(topBarType)} onPressLeftIcon={onLeftMenuPress} timer={endDateTime} />
-      <NavBar activeIndex={1} additionalBottom={2} />
+      <NavBar activeIndex={1} />
 
       {/* @TODO: Delete this when our new meditation be released to everyone */}
       {features?.newMediaPlayer ? null : (

@@ -9,9 +9,12 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 
 export interface IChallengesListProps {
   challenges: IChallengeTileProps[];
+  tileColour?: string;
+  durationColour?: string;
+  durationTextColour?: string;
 }
 
-function ChallengeSet({ challenges }: IChallengesListProps) {
+function ChallengeSet({ challenges, tileColour, durationColour, durationTextColour }: IChallengesListProps) {
   const features = useSelector(getUserFeatures);
   const TileComponent = features?.newChallengeList ? ChallengeTile : OldChallengeTile;
 
@@ -26,15 +29,29 @@ function ChallengeSet({ challenges }: IChallengesListProps) {
         <View style={styles.leftColumnWrapper}>
           {challenges
             ?.filter((_, i) => !(i % 2))
-            ?.map((challenge, index) => (
-              <TileComponent key={index} pictureAlign="left" {...challenge} />
+            ?.map((challenge) => (
+              <TileComponent
+                key={challenge.heading}
+                pictureAlign="left"
+                tileColour={tileColour}
+                durationColour={durationColour}
+                durationTextColour={durationTextColour}
+                {...challenge}
+              />
             ))}
         </View>
         <View style={styles.rightColumnWrapper}>
           {challenges
             .filter((_, i) => i % 2)
-            .map((challenge, index) => (
-              <TileComponent key={index} pictureAlign="right" {...challenge} />
+            .map((challenge) => (
+              <TileComponent
+                key={challenge.heading}
+                pictureAlign="right"
+                tileColour={tileColour}
+                durationColour={durationColour}
+                durationTextColour={durationTextColour}
+                {...challenge}
+              />
             ))}
         </View>
       </View>
