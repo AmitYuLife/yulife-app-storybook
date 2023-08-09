@@ -2,6 +2,7 @@ import getMagicLinkWithClient from "@graphql/user/getMagicLink.gql";
 import Logger from "@services/logging/logger";
 import { call, spawn } from "redux-saga/effects";
 import { handleOpenWebView } from "@navigation/utils";
+import { t } from "@locale";
 
 export default function* openMyAccountSaga() {
   try {
@@ -14,7 +15,7 @@ export default function* openMyAccountSaga() {
       return;
     }
 
-    yield call(handleOpenWebView, { uri: data.getMagicLink, title: "Account" });
+    yield call(handleOpenWebView, { uri: data.getMagicLink, title: t("labels.account") });
   } catch (e) {
     yield spawn(() => {
       Logger.error(e, { event: "openMyAccount" });

@@ -97,7 +97,7 @@ const LeaderboardListItem = ({ onPress, onSwitchPress, isActive, name, consent }
           {name}
         </Text>
         <Text style={StyleSheet.flatten([buttonStyles.textSmall, consent ? buttonStyles.active : null])}>
-          {consent ? "On" : "Off"}
+          {consent ? t("labels.on") : t("labels.off")}
         </Text>
       </TouchableOpacityWithDelay>
       <Switch testID={LEADERBOARD_SWITCH(name)} value={consent} onPress={onSwitchPress} />

@@ -24,6 +24,9 @@
     "account_number": "Account number"
   },
   "labels": {
+    "account": "Account",
+    "on": "On",
+    "off": "Off",
     "deleted_user_name": "Your colleague",
     "world_name": {
       "forest": "Forest",
@@ -1007,6 +1010,7 @@
         "empty": "We could not find the friend you’re looking for."
       },
       "hub": {
+        "br": "BR",
         "active_tab": "Active",
         "completed_tab": "Completed",
         "tomorrow_title": "Tomorrow’s Duels",
