@@ -33,8 +33,8 @@ const permissionsConfig: Map<FitKitAndroidSystemPermission, IPermissionConfig> =
     FitKitAndroidSystemPermission.activity,
     {
       titleKey: "permissions.android.alert.activity.title",
-      messageKey: "permissions.android.alert.activity.title",
-      multipleItemsMessageKey: "permissions.android.alert.activity.title",
+      messageKey: "permissions.android.alert.activity.message",
+      multipleItemsMessageKey: "permissions.android.alert.activity.multiple_items_message",
       tracking: (status: PermissionStatus) => {
         Logger.logMixpanelEvent("permission_requested", { type: FitKitAndroidSystemPermission.activity, status });
       },
@@ -93,18 +93,18 @@ export const requestAndroidSystemPermissions = async (
       ? permissionsConfig.get(missingPermissions[0]).titleKey
       : DEFAULT_CONFIG.titleKey;
 
-  const messageKey =
+  const message =
     missingPermissions
       .filter((permission) => permissionsConfig.has(permission))
       .map(
         (permission) =>
           `${
             singleMissing
-              ? permissionsConfig.get(permission).messageKey
-              : permissionsConfig.get(permission).multipleItemsMessageKey
+              ? t(permissionsConfig.get(permission).messageKey)
+              : t(permissionsConfig.get(permission).multipleItemsMessageKey)
           }`
       )
-      .join(` `) || DEFAULT_CONFIG.messageKey;
+      .join(` `) || t(DEFAULT_CONFIG.messageKey);
 
   return new Promise((resolve) => {
     const buttons: AlertButton[] = [
@@ -138,7 +138,7 @@ export const requestAndroidSystemPermissions = async (
         },
       },
     ];
-    Alert.alert(t(titleKey), t(messageKey), buttons);
+    Alert.alert(t(titleKey), message, buttons);
   });
 };
 
