@@ -8,6 +8,7 @@ import { VoidFunction, addCommasToNumber } from "@utils";
 import { Navigation } from "@navigation/main";
 import { useSduiOnChange } from "../_hooks/useSduiOnChange";
 import { ContentItemDropdownInput as GqlInput } from "@graphql/_core/schema";
+import { MODALS } from "@navigation/constants";
 interface Option {
   label: string;
   value: string;
@@ -72,7 +73,10 @@ export const ContentItemDropdownInput = memo((props: GqlInput) => {
   const options = dropdownOptions.map(({ label, value: val }) => ({
     label,
     value: val,
-    onPress: () => onChange(val),
+    onPress: () => {
+      onChange(val);
+      Navigation.dismissOverlay(MODALS.blurredOverlay);
+    },
   }));
 
   const errorMessage =
