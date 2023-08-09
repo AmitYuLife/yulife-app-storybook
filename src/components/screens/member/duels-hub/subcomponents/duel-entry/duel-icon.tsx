@@ -32,7 +32,7 @@ const DuelIcon: FC<Partial<IProps>> = ({ duel, type, userId }) => {
       >
         <View style={styles.wrapper}>
           <Text style={[styles.yucoin, colorStyle]} bold={true}>
-            {hasDrawn ? "-" : duel.yucoin === 0 ? "BR" : duel.yucoin}
+            {hasDrawn ? "-" : duel.yucoin === 0 ? t("modals.duels.hub.br") : duel.yucoin}
           </Text>
           <View style={styles.iconWrapper}>{duel.yucoin === 0 ? <Award /> : <YuCoin />}</View>
         </View>
