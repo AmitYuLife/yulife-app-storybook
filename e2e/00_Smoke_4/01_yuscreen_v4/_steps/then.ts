@@ -336,7 +336,7 @@ export function addCommasToNumber(x: number) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-export const GHIProductInfo = ( productStartDate: any, dependentName:any, yuCoinPower: string) => async () => {
+export const GHIProductInfo = ( productStartDate: any, dependentName:any, yuCoinPower: string, hasDependants = false) => async () => {
   const policyName = "Health Insurance";
   const policyDescription =
     "Your workplace health insurance from Bupa to support your mental, physical and financial wellbeing";
@@ -368,10 +368,17 @@ export const GHIProductInfo = ( productStartDate: any, dependentName:any, yuCoin
   await expect(element(by.text(dependent))).toBeVisible();
   await expect(element(by.text(dependentDescription))).toBeVisible();
   await swipeFromText(dependentDescription, "up", "fast")();
+  if (hasDependants) {
+    await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, dependentDescription, "down")()
+    await expect(element(by.text(dependent))).toBeVisible();
+    await expect(element(by.text(dependentDescription))).toBeVisible();
+    await swipeFromText(dependentDescription, "up", "fast")();
+  }
+  await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, Bupa_markdown_2, "down")()
   await expect(element(by.text(Bupa_markdown_1))).toBeVisible();
   await expect(element(by.text(Bupa_markdown_2))).toBeVisible();
   await expect(element(by.id(ids.CONTENT_MIDDLE_ITEM_IMAGE(GHIRewardImg)))).toBeVisible();
-};
+}
 
 
 export const policyGoesLiveIn = (seed:any) => async () => {

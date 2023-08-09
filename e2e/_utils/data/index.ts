@@ -75,4 +75,4 @@ export * from "./mongo/social_group_leaderboards"
 export * from "./mongo/user_social_leaderboard_enrolments"
 export * from "./mongo/user_social_leaderboard_scores"
 export * from "./mongo/user_statistics"
-
+export * from "./mongo/map_level_slot_templates"
