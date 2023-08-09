@@ -875,6 +875,25 @@
       "samsung_cycling": {
         "title": "Cycling (Unsupported)",
         "description": "Cycling is not supported by Samsung Health. To get rewarded switch to Google Fit."
+      },
+      "alert": {
+        "deny": "Maybe later",
+        "accept": "Enable",
+        "default": {
+          "title": "Getting started",
+          "message": "In order to use the Yulife app please enable a new permission.",
+          "multiple_items_message": "In order to use the Yulife app please enable a new permission."
+        },
+        "location": {
+          "title": "Getting started",
+          "message": "If you would like to be rewarded for cycling using the YuLife app you’ll need to enable location services.",
+          "multiple_items_message": "Location is only required if you would like to be rewarded for cycling."
+        },
+        "activity": {
+          "title": "Getting started",
+          "message": "To offer you rewards you’ll need to allow YuLife to read your physical activity.",
+          "multiple_items_message": "To offer you rewards you’ll need to allow YuLife to read your physical activity."
+        }
       }
     },
     "ios": {
