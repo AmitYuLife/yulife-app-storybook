@@ -12970,10 +12970,10 @@ react-native-push-notification@^8.1.1:
   resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-8.1.1.tgz#a41d20c70ea5a7709417e96261b225461f8dc73a"
   integrity sha512-XpBtG/w+a6WXTxu6l1dNYyTiHnbgnvjoc3KxPTxYkaIABRmvuJZkFxqruyGvfCw7ELAlZEAJO+dthdTabCe1XA==
 
-"react-native-reanimated@git@github.com:software-mansion/react-native-reanimated":
-  version "3.4.0-nightly-20230621-7b43e32d8"
-  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-3.4.0-nightly-20230621-7b43e32d8.tgz#0104f3cadab4a578a73d3fae29effdbdd19484d4"
-  integrity sha512-XfYKwDjHjFB3iSXEOAutWh6fJIcuyW5R15BKSMLbEk1aKdHxQTAPtRpiGzRJIOltUpMhd7tnJzIqDyuagRnYGw==
+react-native-reanimated@^3.4.2:
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-3.4.2.tgz#744154fead6d8d31d5bd9ac617d8c84d74a6f697"
+  integrity sha512-FbtG+f1PB005vDTJSv4zAnTK7nNXi+FjFgbAM5gOzIZDajfph2BFMSUstzIsN8T77+OKuugUBmcTqLnQ24EBVg==
   dependencies:
     "@babel/plugin-transform-object-assign" "^7.16.7"
     "@babel/preset-typescript" "^7.16.7"
