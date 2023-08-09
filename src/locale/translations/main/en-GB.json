@@ -1305,5 +1305,11 @@
       "start": "Start game",
       "title": "Daily Yudoku"
     }
+  },
+  "push_notification": {
+    "challenge_completed": {
+      "title": "Challenge completed",
+      "message": "Time's up! Check how you did on your latest challenge."
+    }
   }
 }
