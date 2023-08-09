@@ -7,6 +7,59 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.94.0] - 2023-08-09
+
+### Bugfixes
+
+- Bugfix: Get challenge button label from remote on today earning
+- Bugfix: Storybook translations
+
+### Tasks
+
+- Task GS-733: update challenge backgrounds
+- Task/XSE-2134:dropdownInput dismissing
+- Task: add type safe async storage
+- Task ISA-1028: move translation mapping generation from testing process
+- Task: New leaderboard container and screen part 1
+- Task: update onboarding slots to redirect to the yuscreen instead of the product
+- Task: remove unused footer translation key
+- Task ISA-874: Create Detox data for social groups
+- Task: tolgee lang pull
+
+### Chores
+
+- Chore: localise a few more bits
+- Chore: localise connect health app
+- Chore: upgrade reanimated
+- Chore: upgrade intercom
+- Chore: fitkit permissions localisation
+- Chore: Challenge completed push notification
+- Chore: tolgee scripts for upload/download
+- Chore: renamed the tolgee scripts
+- Chore: push tolgee keys
+- Chore: update bdd to v51
+
+### Extra
+
+- Detox: Fix - re-seeding map templates + GHI fix + Pension folder moved
+- detox:xse-2114
+- Detox: Fixes 8th aug
+- detox/fixes-04/08
+- detox/xse-2085
+- Detox: switch GDent to GDentPlan
+- ENG-3490: Yudoku last button slow to respond
+- Hotfix: tolgee create dir if doesnt exist
+- DEVOP-1100: Migrate Detox Static AWS Resources
+- Add Tolgee to detox
+- Hotfix: enable JP for prod
+- Detox: Fix 28th july
+- Hotfix: enable japanese everywhere but prod
+- detox:xse-1886-contribution-type
+- Detox: Smoke/extended 5 fix
+- detox:usa-fixes-26/07
+- Detox: Smoke/Extended 5 + cleanup
+- Extended 1 Translations
+
 ## [3.93.0] - 2023-07-26
 
 ### Bugfixes
