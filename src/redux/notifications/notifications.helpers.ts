@@ -1,3 +1,4 @@
+import { t } from "@locale";
 import { YULIFE_PN_CHANNEL_ID } from "@services/constants";
 import { PushNotificationScheduleObject } from "react-native-push-notification";
 
@@ -16,6 +17,6 @@ export const defaultNotificationSettings: Partial<PushNotificationScheduleObject
 };
 
 export const getNotificationTitleAndMessage = () => ({
-  title: "Challenge completed",
-  message: "Time's up! Check how you did on your latest challenge.",
+  title: t("push_notification.challenge_completed.title"),
+  message: t("push_notification.challenge_completed.message"),
 });
