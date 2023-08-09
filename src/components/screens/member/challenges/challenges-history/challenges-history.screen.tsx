@@ -1,7 +1,8 @@
 import React, { memo } from "react";
+import { ChallengeBackground } from "@atoms";
 import { Button } from "@molecules";
 import { GetQuestMapLevel_getQuestMapLevel } from "@graphql/_core/schema";
-import { Image as RNImage, ScrollView, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { IConnectedScreenProps } from "@app/typings";
 import styles from "./challenges-history.screen.styles";
 import { NavBar, TopBarAbsolute, GenericHeadingPad } from "@components/organisms";
@@ -27,9 +28,11 @@ function ChallengesHistory({ level, yuniversalMap, name, onPressActivityHistory,
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
-      <View style={challengeHistoryScreen.style}>
-        <RNImage resizeMode="cover" style={styles.background} source={challengeHistoryScreen.backgroundImage} />
-      </View>
+      <ChallengeBackground
+        source={challengeHistoryScreen.backgroundImage}
+        style={challengeHistoryScreen.style}
+        backgroundColor={challengeHistoryScreen.style.backgroundColor}
+      />
       <View style={styles.challengeSetWrapper}>
         <ScrollView
           showsVerticalScrollIndicator={false}

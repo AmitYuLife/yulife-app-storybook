@@ -1,12 +1,8 @@
-import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
+import { StyleSheet, ViewStyle } from "react-native";
 import { Style } from "@styles";
 import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 
 export default StyleSheet.create({
-  background: {
-    height: Style.DEVICE_HEIGHT,
-    width: Style.DEVICE_WIDTH,
-  } as ImageStyle,
   challengeSetWrapper: {
     alignItems: "center",
     justifyContent: "center",
