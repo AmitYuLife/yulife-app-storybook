@@ -1,28 +1,28 @@
+import { t } from "@locale";
 import Logger from "@services/logging/logger";
 import { Alert, AlertButton, PermissionsAndroid, Permission, PermissionStatus, Platform } from "react-native";
 import { FitKitAndroidSystemPermission } from "./fitkit.permissions";
 
 interface IPermissionConfig {
-  title: string;
-  message: string;
-  multipleItemsMessage: string;
+  titleKey: string;
+  messageKey: string;
+  multipleItemsMessageKey: string;
   tracking?: (status: PermissionStatus) => void;
 }
 
 const DEFAULT_CONFIG: IPermissionConfig = {
-  title: "Getting started",
-  message: "In order to use the Yulife app please enable a new permission.",
-  multipleItemsMessage: "In order to use the Yulife app please enable a new permission.",
+  titleKey: "permissions.android.alert.default.title",
+  messageKey: "permissions.android.alert.default.message",
+  multipleItemsMessageKey: "permissions.android.alert.default.multiple_items_message",
 };
 
 const permissionsConfig: Map<FitKitAndroidSystemPermission, IPermissionConfig> = new Map([
   [
     FitKitAndroidSystemPermission.location,
     {
-      title: "Getting started",
-      message:
-        "If you would like to be rewarded for cycling using the YuLife app you’ll need to enable location services.",
-      multipleItemsMessage: "Location is only required if you would like to be rewarded for cycling.",
+      titleKey: "permissions.android.alert.location.title",
+      messageKey: "permissions.android.alert.location.message",
+      multipleItemsMessageKey: "permissions.android.alert.location.multiple_items_message",
       tracking: (status: PermissionStatus) => {
         Logger.logMixpanelEvent("permission_requested", { type: FitKitAndroidSystemPermission.location, status });
         Logger.setUserProperties({ data_permission_location: status });
@@ -32,9 +32,9 @@ const permissionsConfig: Map<FitKitAndroidSystemPermission, IPermissionConfig> =
   [
     FitKitAndroidSystemPermission.activity,
     {
-      title: "Getting started",
-      message: "To offer you rewards you’ll need to allow YuLife to read your physical activity.",
-      multipleItemsMessage: "To offer you rewards you’ll need to allow YuLife to read your physical activity.",
+      titleKey: "permissions.android.alert.activity.title",
+      messageKey: "permissions.android.alert.activity.title",
+      multipleItemsMessageKey: "permissions.android.alert.activity.title",
       tracking: (status: PermissionStatus) => {
         Logger.logMixpanelEvent("permission_requested", { type: FitKitAndroidSystemPermission.activity, status });
       },
@@ -88,28 +88,28 @@ export const requestAndroidSystemPermissions = async (
 
   const singleMissing = missingPermissions.length === 1;
 
-  const title =
+  const titleKey =
     singleMissing && permissionsConfig.has(missingPermissions[0])
-      ? permissionsConfig.get(missingPermissions[0]).title
-      : DEFAULT_CONFIG.title;
+      ? permissionsConfig.get(missingPermissions[0]).titleKey
+      : DEFAULT_CONFIG.titleKey;
 
-  const message =
+  const messageKey =
     missingPermissions
       .filter((permission) => permissionsConfig.has(permission))
       .map(
         (permission) =>
           `${
             singleMissing
-              ? permissionsConfig.get(permission).message
-              : permissionsConfig.get(permission).multipleItemsMessage
+              ? permissionsConfig.get(permission).messageKey
+              : permissionsConfig.get(permission).multipleItemsMessageKey
           }`
       )
-      .join(` `) || DEFAULT_CONFIG.message;
+      .join(` `) || DEFAULT_CONFIG.messageKey;
 
   return new Promise((resolve) => {
     const buttons: AlertButton[] = [
       {
-        text: "Maybe later",
+        text: t("permissions.android.alert.deny"),
         onPress: () => {
           const result = new Map<FitKitAndroidSystemPermission, PermissionStatus>([
             ...grantedPermissions,
@@ -122,7 +122,7 @@ export const requestAndroidSystemPermissions = async (
         },
       },
       {
-        text: "Enable",
+        text: t("permissions.android.alert.accept"),
         onPress: async () => {
           const permissionsRequestResult = await PermissionsAndroid.requestMultiple(
             missingPermissions.map((permission) => permission as Permission)
@@ -138,7 +138,7 @@ export const requestAndroidSystemPermissions = async (
         },
       },
     ];
-    Alert.alert(title, message, buttons);
+    Alert.alert(t(titleKey), t(messageKey), buttons);
   });
 };
 
