@@ -21,8 +21,7 @@ import { getFitKitConnectCopy } from "@components/screens/onboarding/fitkit-conn
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { buildFitKitPermissions, FitKitAndroidSystemPermission } from "@services/fitkit/fitkit.permissions";
 import { ACTIVITY_FEED, QUESTION_MARK_MODAL, TAKE_A_CHALLENGE_LEFT_BUTTON, WELLDONE_BANNER } from "@ids";
-import { useSelector, useDispatch } from "react-redux";
-import { getHasNotification } from "@redux/levels/levels.selectors";
+import { useDispatch } from "react-redux";
 import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-permissions";
 import { isSamsung } from "@utils/device";
 import RNFitKit from "@yu-life/react-native-fitkit";
@@ -64,7 +63,6 @@ const ActivityFeed = ({
   const dispatch = useDispatch();
   const questionMarkRef = useRef<View>();
   const { authorise, authoriseFitKitTypes } = useFitKit();
-  const hasNotification = useSelector(getHasNotification);
   const t = useTranslation([
     "screens.today_earning.alert.never_ask_again.title",
     "screens.today_earning.alert.never_ask_again.message",
@@ -294,12 +292,8 @@ const ActivityFeed = ({
             testID={TAKE_A_CHALLENGE_LEFT_BUTTON}
             onPress={onTakeChallengePress}
             size="Large"
-            label={hasNotification ? t["screens.daily.challenge_button.back_to_challenge"] : button?.label}
-            accessibilityLabel={
-              hasNotification
-                ? t["screens.daily.challenge_button.back_to_challenge"]
-                : buttonAccessibility?.accessibilityLabel
-            }
+            label={button?.label}
+            accessibilityLabel={buttonAccessibility?.accessibilityLabel}
           />
         </View>
       )}
