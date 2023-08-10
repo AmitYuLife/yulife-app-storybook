@@ -3,6 +3,7 @@ const util = require("util");
 const fs = require("fs");
 const FormData = require("form-data");
 const axios = require("axios");
+const axiosRetry = require("axios-retry");
 
 /** ZIP HELPERS START */
 
@@ -71,22 +72,26 @@ function dumpFile(zip, entry, dest) {
 
 /** ZIP HELPERS END */
 
-const createClient = () =>
-    axios.create({
+const createClient = () => {
+    // eslint-disable-next-line no-restricted-properties
+    const client = axios.create({
         baseURL: "https://app.tolgee.io/v2",
         headers: {
             "X-API-Key": process.env.TOLGEE_API_KEY,
         },
     });
+    axiosRetry(client, { retryDelay: axiosRetry.exponentialDelay, retries: 3 });
+    return client;
+};
 
 const downloadFiles = async (client, languages, filterNamespace) => {
+    const dir = path.join(__dirname, "../src/locale/translations/downloaded");
+
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
+    }
+
     try {
-        const dir = path.join(__dirname, "../src/locale/translations/downloaded");
-
-        if (!fs.existsSync(dir)) {
-            fs.mkdirSync(dir);
-        }
-
         const a = await client.post(
             `/projects/export`,
             { zip: true, format: "JSON", languages, filterNamespace },
@@ -96,7 +101,7 @@ const downloadFiles = async (client, languages, filterNamespace) => {
         const zip = await fromBuffer(Buffer.from(a.data), ZIP_OPTIONS);
         unzip(zip, dir);
     } catch (e) {
-        console.log(e);
+        console.error(e?.response?.data);
     }
 };
 
@@ -109,10 +114,10 @@ const uploadNewFile = async (client, lang) => {
     console.log("Uploading the file ...");
     await client.post(`/projects/import`, form);
     console.log("Applying the changes ...");
-    await client.put(`/projects/import/apply`);
+    await client.put(`/projects/import/apply`, null, { params: { forceMode: "OVERRIDE" } });
 };
 
-const updateTranslationState = async (client, lang) => {
+const updateTranslationState = async (client, lang, shouldAutoTranslate) => {
     // find the new keys uploaded
     console.log("Checking for the newly uploaded keys ...");
     let cursor;
@@ -128,11 +133,13 @@ const updateTranslationState = async (client, lang) => {
             let wasSuccessful = false;
 
             try {
-                await client.put(
-                    `/projects/keys/${key.keyId}/auto-translate`,
-                    {},
-                    { params: { useMachineTranslation: true, useTranslationMemory: true } },
-                );
+                if (shouldAutoTranslate) {
+                    await client.put(
+                        `/projects/keys/${key.keyId}/auto-translate`,
+                        {},
+                        { params: { useMachineTranslation: true, useTranslationMemory: true } },
+                    );
+                }
                 await client.put(`/projects/translations/${key.translations[lang].id}/set-state/REVIEWED`);
                 wasSuccessful = true;
             } catch (e) {
@@ -160,7 +167,7 @@ const updateTranslationState = async (client, lang) => {
     if (method === "upload") {
         console.log("Running @tolgee:upload ...");
         await uploadNewFile(client, MAIN_LANGUAGE);
-        await updateTranslationState(client, MAIN_LANGUAGE);
+        await updateTranslationState(client, MAIN_LANGUAGE, true);
         return;
     }
 
@@ -174,6 +181,12 @@ const updateTranslationState = async (client, lang) => {
         }
 
         await downloadFiles(client, languages, ns);
+        return;
+    }
+
+    if (method === "review") {
+        console.log("Running @tolgee:review ...");
+        await updateTranslationState(client, MAIN_LANGUAGE, false);
         return;
     }
 })();
