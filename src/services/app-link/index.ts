@@ -37,55 +37,6 @@ async function openStore({ appName, appStoreId, appStoreLocale = "gb", playStore
   }
 }
 
-export async function openFiit() {
-  const playStoreId = "tv.fiit.app";
-
-  const deepLink = Platform.select({
-    ios: "fiit://",
-    android: `android-app://${playStoreId}`,
-  });
-  return openApp(deepLink, {
-    appName: "fiit-workouts-fitness-plans",
-    appStoreId: "1296861162",
-    playStoreId: "tv.fiit.app",
-  });
-}
-
-export async function openCalm() {
-  const playStoreId = "com.calm.android";
-  const deepLink = Platform.select({
-    ios: "calm://",
-    android: `android-app://${playStoreId}`,
-  });
-
-  return openApp(deepLink, {
-    appName: "calm",
-    appStoreId: "571800810",
-    playStoreId,
-  });
-}
-
-export async function openHeadspace() {
-  return openApp("headspace://", {
-    appName: "headspace-meditation",
-    appStoreId: "493145008",
-    playStoreId: "com.getsomeheadspace.android",
-  });
-}
-
-export async function openMeditopia() {
-  const playStoreId = "app.meditasyon";
-  const deepLink = Platform.select({
-    ios: "meditopia://",
-    android: `android-app://${playStoreId}`,
-  });
-  return openApp(deepLink, {
-    appName: "meditopia-meditation-sleep",
-    appStoreId: "1190294015",
-    playStoreId,
-  });
-}
-
 export async function openYulife() {
   return openStore({
     appName: "yulife",

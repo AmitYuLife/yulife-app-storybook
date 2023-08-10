@@ -8,8 +8,7 @@ import { ChallengeType } from "@components/molecules/challenge-tile/challenge-ti
 import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR } from "@ids";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Image } from "@atoms";
-import { PressableWithDelay, SecondaryButton, TertiaryButton } from "@molecules";
-import { ExternalAppLinksOverlay } from "./subcomponents/external-app-links-overlay";
+import { PressableWithDelay, TertiaryButton } from "@molecules";
 import { Style } from "@styles";
 import { TopBarType } from "@graphql/_core/schema/globalTypes";
 import { useQuery } from "@apollo/client";
@@ -17,12 +16,10 @@ import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/g
 import { GetQuestMapLevelChallengeDetails, GetQuestMapLevelChallengeDetailsVariables } from "@graphql/_core/schema";
 import { fromGql } from "@organisms/top-bar/top-bar.helpers";
 import { useSelector } from "react-redux";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import { getActiveChallengeAppButton } from "@redux/levels/levels.selectors";
-import { handleLinkPress, openApp, openFiit } from "@services/app-link";
+import { handleLinkPress, openApp } from "@services/app-link";
 import { QuestionMarkIcon } from "@atoms/icon/question-mark-icon";
 import { t } from "@locale";
-import { Fiit } from "@atoms/icon/fiit-icon";
 
 // transparent png 1x1
 const empty_uri = {
@@ -50,9 +47,6 @@ function ChallengeProgressScreen({
   userProgress,
   hideExternalLinks,
 }: IProps) {
-  const [showOverlay, setShowOverlay] = React.useState(false);
-  const { secondaryButtonCtaLabel } = getButtonCtaLabel(challengeType);
-  const features = useSelector(getUserFeatures);
   const appButton = useSelector(getActiveChallengeAppButton);
 
   const { data } = useQuery<GetQuestMapLevelChallengeDetails, GetQuestMapLevelChallengeDetailsVariables>(
@@ -90,12 +84,6 @@ function ChallengeProgressScreen({
     },
   } = data?.getQuestMapLevelChallengeDetails || {};
 
-  React.useEffect(() => {
-    if (!hideExternalLinks) {
-      setShowOverlay(true);
-    }
-  }, [!hideExternalLinks]);
-
   const handleOpenApp = useCallback(async () => {
     if (appButton?.tutorialUrl) {
       return await handleLinkPress(appButton?.tutorialUrl)();
@@ -110,7 +98,6 @@ function ChallengeProgressScreen({
     openApp(url, { appName, appStoreId, appStoreLocale, playStoreId });
   }, [appButton]);
 
-  const handleOpenFiit = useCallback(() => openFiit(), []);
   const openFaqUrl = useCallback(
     async () => await handleLinkPress(appButton?.options?.faqUrl || appButton?.tutorialUrl)(),
     [appButton?.options?.faqUrl, appButton?.tutorialUrl]
@@ -143,82 +130,35 @@ function ChallengeProgressScreen({
       </View>
       {hideExternalLinks ? null : (
         <View style={styles.meditationButtonWrapper}>
-          {!features?.newMediaPlayer ? (
-            <SecondaryButton
-              backgroundColor={actionStyles.primaryColour}
-              borderColor={actionStyles.primaryColour}
-              textColor={actionStyles.secondaryColour}
-              onPress={() => setShowOverlay(true)}
-              label={secondaryButtonCtaLabel}
-              size="Medium"
-            />
-          ) : (
-            <>
-              {/* @TODO: Delete this when Fiit goes live, this a temp solution until Fiit media player goes live */}
-              {!appButton ? (
-                <TertiaryButton
-                  size="Large"
-                  label="Open Fiit app"
-                  onPress={handleOpenFiit}
-                  height={Style.adjust(48)}
-                  LeftIcon={<Fiit colour="black" width={41} height={30} />}
-                />
-              ) : (
-                <>
-                  <PressableWithDelay onPress={openFaqUrl} style={styles.faqUrl}>
-                    <QuestionMarkIcon width={Style.adjust(34)} height={Style.adjust(34)} />
-                  </PressableWithDelay>
-                  <TertiaryButton
-                    size="Large"
-                    label={appButton?.title.replace(t("labels.cta.use"), t("labels.cta.open"))}
-                    onPress={handleOpenApp}
-                    height={Style.adjust(48)}
-                    LeftIcon={
-                      <>
-                        {!appButton?.logo?.uri ? null : (
-                          <Image
-                            source={{
-                              uri: appButton?.logo?.uri,
-                            }}
-                            style={styles.buttonLogo}
-                            width={appButton?.width}
-                            height={appButton?.height}
-                          />
-                        )}
-                      </>
-                    }
+          <PressableWithDelay onPress={openFaqUrl} style={styles.faqUrl}>
+            <QuestionMarkIcon width={Style.adjust(34)} height={Style.adjust(34)} />
+          </PressableWithDelay>
+          <TertiaryButton
+            size="Large"
+            label={appButton?.title.replace(t("labels.cta.use"), t("labels.cta.open"))}
+            onPress={handleOpenApp}
+            height={Style.adjust(48)}
+            LeftIcon={
+              <>
+                {!appButton?.logo?.uri ? null : (
+                  <Image
+                    source={{
+                      uri: appButton?.logo?.uri,
+                    }}
+                    style={styles.buttonLogo}
+                    width={appButton?.width}
+                    height={appButton?.height}
                   />
-                </>
-              )}
-            </>
-          )}
+                )}
+              </>
+            }
+          />
         </View>
       )}
       <TopBarAbsolute type={fromGql(topBarType)} onPressLeftIcon={onLeftMenuPress} timer={endDateTime} />
       <NavBar activeIndex={1} />
-
-      {/* @TODO: Delete this when our new meditation be released to everyone */}
-      {features?.newMediaPlayer ? null : (
-        <ExternalAppLinksOverlay showScreen={showOverlay} setShowScreen={setShowOverlay} />
-      )}
-      {/*  */}
     </View>
   );
 }
 
 export default memo(ChallengeProgressScreen);
-
-const getButtonCtaLabel = (challengeType: ChallengeType) => {
-  switch (challengeType) {
-    case "fiit":
-      return {
-        secondaryButtonCtaLabel: t("screens.challenges.progress.secondary_button_fiit_label"),
-      };
-    case "meditation":
-      return {
-        secondaryButtonCtaLabel: t("screens.challenges.progress.secondary_button_meditation_label"),
-      };
-    default:
-      return {};
-  }
-};
