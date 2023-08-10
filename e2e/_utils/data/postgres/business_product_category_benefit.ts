@@ -20,6 +20,7 @@ export const BPCB_1_GDental = {
         "created_at" : "2023-02-23T14:01:39.326Z",
         "created_by_id" : null,
         "modified_at" : "2023-02-27T11:04:07.180Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -41,6 +42,7 @@ export const BPCB_8_GHI = {
         "created_at" : "2023-02-23T14:01:39.326Z",
         "created_by_id" : null,
         "modified_at" : "2023-02-27T11:04:07.180Z",
+        "benefit_set_product_version_id":"Bupa_GHealth_01",
         "modified_by_id" : null
     }
 }
@@ -56,6 +58,7 @@ export const BPCB_9_GDental = {
         "allowed_product_version_benefit_set_ids":["Level 1 | Couple", "Level 1 | Single Parent Family", "Level 1 | Family","Level 2 | Single", "Level 2 | Couple", "Level 2 | Single Parent Family", "Level 2 | Family", "Level 3 | Single", "Level 3 | Couple", "Level 3 | Single Parent Family", "Level 3 | Family", "Level 4 | Single", "Level 4 | Couple", "Level 4 | Single Parent Family", "Level 4 | Family", "Level 5 | Single", "Level 5 | Couple", "Level 5 | Single Parent Family", "Level 5 | Family"],
         "default_product_version_benefit_set_id" :"Level 1 | Single",
         "business_contribution" : null,
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "archived" : false,
     }
 }
@@ -70,6 +73,7 @@ export const BPCB_10_GDental = {
         "allowed_product_version_benefit_set_ids":["Level 1 | Couple", "Level 1 | Single Parent Family", "Level 1 | Family","Level 2 | Single", "Level 2 | Couple", "Level 2 | Single Parent Family", "Level 2 | Family", "Level 3 | Single", "Level 3 | Couple", "Level 3 | Single Parent Family", "Level 3 | Family", "Level 4 | Single", "Level 4 | Couple", "Level 4 | Single Parent Family", "Level 4 | Family", "Level 5 | Single", "Level 5 | Couple", "Level 5 | Single Parent Family", "Level 5 | Family"],
         "default_product_version_benefit_set_id" :"Level 1 | Single",
         "business_contribution" : null,
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "archived" : false,
     }
 }
@@ -84,6 +88,7 @@ export const BPCB_11_GDental = {
         "allowed_product_version_benefit_set_ids":["Level 1 | Couple", "Level 1 | Single Parent Family", "Level 1 | Family","Level 2 | Single", "Level 2 | Couple", "Level 2 | Single Parent Family", "Level 2 | Family", "Level 3 | Single", "Level 3 | Couple", "Level 3 | Single Parent Family", "Level 3 | Family", "Level 4 | Single", "Level 4 | Couple", "Level 4 | Single Parent Family", "Level 4 | Family", "Level 5 | Single", "Level 5 | Couple", "Level 5 | Single Parent Family", "Level 5 | Family"],
         "default_product_version_benefit_set_id" :"Level 1 | Single",
         "business_contribution" : null,
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "archived" : false,
     }
 }
@@ -98,6 +103,7 @@ export const BPCB_12_GDental = {
         "allowed_product_version_benefit_set_ids":["Level 1 | Couple", "Level 1 | Single Parent Family", "Level 1 | Family","Level 2 | Single", "Level 2 | Couple", "Level 2 | Single Parent Family", "Level 2 | Family", "Level 3 | Single", "Level 3 | Couple", "Level 3 | Single Parent Family", "Level 3 | Family", "Level 4 | Single", "Level 4 | Couple", "Level 4 | Single Parent Family", "Level 4 | Family", "Level 5 | Single", "Level 5 | Couple", "Level 5 | Single Parent Family", "Level 5 | Family"],
         "default_product_version_benefit_set_id" :"Level 1 | Single",
         "business_contribution" : null,
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "archived" : false,
     }
 }
@@ -112,6 +118,7 @@ export const BPCB_10_GDental_Opt_out = {
         "allowed_product_version_benefit_set_ids":["Level 1 | Couple", "Level 1 | Single Parent Family", "Level 1 | Family","Level 2 | Single", "Level 2 | Couple", "Level 2 | Single Parent Family", "Level 2 | Family", "Level 3 | Single", "Level 3 | Couple", "Level 3 | Single Parent Family", "Level 3 | Family", "Level 4 | Single", "Level 4 | Couple", "Level 4 | Single Parent Family", "Level 4 | Family", "Level 5 | Single", "Level 5 | Couple", "Level 5 | Single Parent Family", "Level 5 | Family"],
         "default_product_version_benefit_set_id" :"Level 1 | Single",
         "business_contribution" : null,
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "archived" : false,
     }
 }
@@ -126,6 +133,7 @@ export const BPCB_11_GDental_Opt_out = {
         "allowed_product_version_benefit_set_ids":["Level 1 | Couple", "Level 1 | Single Parent Family", "Level 1 | Family","Level 2 | Single", "Level 2 | Couple", "Level 2 | Single Parent Family", "Level 2 | Family", "Level 3 | Single", "Level 3 | Couple", "Level 3 | Single Parent Family", "Level 3 | Family", "Level 4 | Single", "Level 4 | Couple", "Level 4 | Single Parent Family", "Level 4 | Family", "Level 5 | Single", "Level 5 | Couple", "Level 5 | Single Parent Family", "Level 5 | Family"],
         "default_product_version_benefit_set_id" :"Level 1 | Single",
         "business_contribution" : null,
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "archived" : false,
     }
 }
@@ -140,6 +148,7 @@ export const BPCB_12_GDental_Opt_out = {
         "allowed_product_version_benefit_set_ids":["Level 1 | Couple", "Level 1 | Single Parent Family", "Level 1 | Family","Level 2 | Single", "Level 2 | Couple", "Level 2 | Single Parent Family", "Level 2 | Family", "Level 3 | Single", "Level 3 | Couple", "Level 3 | Single Parent Family", "Level 3 | Family", "Level 4 | Single", "Level 4 | Couple", "Level 4 | Single Parent Family", "Level 4 | Family", "Level 5 | Single", "Level 5 | Couple", "Level 5 | Single Parent Family", "Level 5 | Family"],
         "default_product_version_benefit_set_id" :"Level 1 | Single",
         "business_contribution" : null,
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "archived" : false,
     }
 }
@@ -154,6 +163,8 @@ export const BPCB_4_GDental_Opt_out = {
         "allowed_product_version_benefit_set_ids":["Level 1 | Couple", "Level 1 | Single Parent Family", "Level 1 | Family","Level 2 | Single", "Level 2 | Couple", "Level 2 | Single Parent Family", "Level 2 | Family", "Level 3 | Single", "Level 3 | Couple", "Level 3 | Single Parent Family", "Level 3 | Family", "Level 4 | Single", "Level 4 | Couple", "Level 4 | Single Parent Family", "Level 4 | Family", "Level 5 | Single", "Level 5 | Couple", "Level 5 | Single Parent Family", "Level 5 | Family"],
         "default_product_version_benefit_set_id" :"Level 1 | Single",
         "business_contribution" : null,
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "archived" : false,
     }
 } 
+

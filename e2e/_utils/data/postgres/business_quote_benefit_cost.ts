@@ -15,6 +15,7 @@ export const BQBC_9_GDent_L1_Single = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -30,6 +31,7 @@ export const BQBC_9_GDent_L2_Single = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -45,6 +47,7 @@ export const BQBC_9_GDent_L3_Single = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -60,6 +63,7 @@ export const BQBC_9_GDent_L1_Couple = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -75,6 +79,7 @@ export const BQBC_9_GDent_L1_SPFamily = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     },
 }
@@ -90,6 +95,7 @@ export const BQBC_9_GDent_L2_Couple = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -105,6 +111,7 @@ export const BQBC_9_GDent_L2_SPFamily = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -120,6 +127,7 @@ export const BQBC_9_GDent_L1_Family = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -135,6 +143,7 @@ export const BQBC_9_GDent_L4_Single = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -150,6 +159,7 @@ export const BQBC_9_GDent_L5_Single = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -165,6 +175,7 @@ export const BQBC_9_GDent_L3_Couple = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -180,6 +191,7 @@ export const BQBC_9_GDent_L3_SPFamily = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -195,6 +207,7 @@ export const BQBC_9_GDent_L2_Family = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -210,6 +223,7 @@ export const BQBC_9_GDent_L3_Family = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -225,6 +239,7 @@ export const BQBC_9_GDent_L4_Couple = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -240,6 +255,7 @@ export const BQBC_9_GDent_L4_SPFamily = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -255,6 +271,7 @@ export const BQBC_9_GDent_L5_Couple = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -270,6 +287,7 @@ export const BQBC_9_GDent_L5_SPFamily = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -285,6 +303,7 @@ export const BQBC_9_GDent_L4_Family = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -300,6 +319,7 @@ export const BQBC_9_GDent_L5_Family = {
         "created_at" : "2023-04-17T16:40:03.214Z",
         "created_by_id" : null,
         "modified_at" : "2023-04-17T16:40:03.214Z",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "modified_by_id" : null
     }
 }
@@ -311,6 +331,7 @@ export const BQBC_10_GDent_L1_Single = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 1 | Single",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 9.17,
     }
 }
@@ -322,6 +343,7 @@ export const BQBC_10_GDent_L2_Single = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 2 | Single",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 12.29,
     }
 }
@@ -333,6 +355,7 @@ export const BQBC_10_GDent_L3_Single = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 3 | Single",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 17.10,
     }
 }
@@ -344,6 +367,7 @@ export const BQBC_10_GDent_L1_Couple = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 1 | Couple",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 18.35,
     }
 }
@@ -355,6 +379,7 @@ export const BQBC_10_GDent_L1_SPFamily = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 1 | Single Parent Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 18.35,
     },
 }
@@ -366,6 +391,7 @@ export const BQBC_10_GDent_L2_Couple = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 2 | Couple",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 24.57,
     }
 }
@@ -377,6 +403,7 @@ export const BQBC_10_GDent_L2_SPFamily = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 2 | Single Parent Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 24.57,
     }
 }
@@ -388,6 +415,7 @@ export const BQBC_10_GDent_L1_Family = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 1 | Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 27.52,
     }
 }
@@ -399,6 +427,7 @@ export const BQBC_10_GDent_L4_Single = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 4 | Single",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 29.99,
     }
 }
@@ -410,6 +439,7 @@ export const BQBC_10_GDent_L5_Single = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 5 | Single",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 32.98,
     }
 }
@@ -421,6 +451,7 @@ export const BQBC_10_GDent_L3_Couple = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 3 | Couple",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 34.20,
     }
 }
@@ -432,6 +463,7 @@ export const BQBC_10_GDent_L3_SPFamily = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 3 | Single Parent Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 34.20,
     }
 }
@@ -443,6 +475,7 @@ export const BQBC_10_GDent_L2_Family = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 2 | Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 36.86,
     }
 }
@@ -454,6 +487,7 @@ export const BQBC_10_GDent_L3_Family = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 3 | Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 51.31,
     }
 }
@@ -465,6 +499,7 @@ export const BQBC_10_GDent_L4_Couple = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" :"Level 4 | Couple",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 59.99,
     }
 }
@@ -476,6 +511,7 @@ export const BQBC_10_GDent_L4_SPFamily = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 4 | Single Parent Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 59.99,
     }
 }
@@ -487,6 +523,7 @@ export const BQBC_10_GDent_L5_Couple = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 5 | Couple",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 65.97,
     }
 }
@@ -498,6 +535,7 @@ export const BQBC_10_GDent_L5_SPFamily = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 5 | Single Parent Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 65.97,
     }
 }
@@ -509,6 +547,7 @@ export const BQBC_10_GDent_L4_Family = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 4 | Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 89.98,
     }
 }
@@ -520,6 +559,7 @@ export const BQBC_10_GDent_L5_Family = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_10_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 4 | Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 98.95,
     }
 }
@@ -531,6 +571,7 @@ export const BQBC_11_GDent_L1_Single = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 1 | Single",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 9.17,
     }
 }
@@ -542,6 +583,7 @@ export const BQBC_11_GDent_L2_Single = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 2 | Single",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 12.29,
     }
 }
@@ -553,6 +595,7 @@ export const BQBC_11_GDent_L3_Single = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 3 | Single",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 17.10,
     }
 }
@@ -564,6 +607,7 @@ export const BQBC_11_GDent_L1_Couple = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 1 | Couple",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 18.35,
     }
 }
@@ -575,6 +619,7 @@ export const BQBC_11_GDent_L1_SPFamily = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 1 | Single Parent Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 18.35,
     },
 }
@@ -586,6 +631,7 @@ export const BQBC_11_GDent_L2_Couple = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 2 | Couple",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 24.57,
     }
 }
@@ -597,6 +643,7 @@ export const BQBC_11_GDent_L2_SPFamily = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 2 | Single Parent Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 24.57,
     }
 }
@@ -608,6 +655,7 @@ export const BQBC_11_GDent_L1_Family = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 1 | Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 27.52,
     }
 }
@@ -619,6 +667,7 @@ export const BQBC_11_GDent_L4_Single = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 4 | Single",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 29.99,
     }
 }
@@ -630,6 +679,7 @@ export const BQBC_11_GDent_L5_Single = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 5 | Single",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 32.98,
     }
 }
@@ -641,6 +691,7 @@ export const BQBC_11_GDent_L3_Couple = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 3 | Couple",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 34.20,
     }
 }
@@ -652,6 +703,7 @@ export const BQBC_11_GDent_L3_SPFamily = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 3 | Single Parent Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 34.20,
     }
 }
@@ -663,6 +715,7 @@ export const BQBC_11_GDent_L2_Family = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 2 | Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 36.86,
     }
 }
@@ -674,6 +727,7 @@ export const BQBC_11_GDent_L3_Family = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 3 | Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 51.31,
     }
 }
@@ -685,6 +739,7 @@ export const BQBC_11_GDent_L4_Couple = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" :"Level 4 | Couple",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 59.99,
     }
 }
@@ -696,6 +751,7 @@ export const BQBC_11_GDent_L4_SPFamily = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 4 | Single Parent Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 59.99,
     }
 }
@@ -707,6 +763,7 @@ export const BQBC_11_GDent_L5_Couple = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 5 | Couple",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 65.97,
     }
 }
@@ -718,6 +775,7 @@ export const BQBC_11_GDent_L5_SPFamily = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 5 | Single Parent Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 65.97,
     }
 }
@@ -729,6 +787,7 @@ export const BQBC_11_GDent_L4_Family = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 4 | Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 89.98,
     }
 }
@@ -740,6 +799,7 @@ export const BQBC_11_GDent_L5_Family = {
         "business_quote_benefit_cost_id" : generateRandomPostgresId(),
         "business_quote_id" : BUSINESS_PRODUCT_11_GDent.quote.data.business_quote_id,
         "product_version_benefit_set_id" : "Level 4 | Family",
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "cost" : 98.95,
     }
 }
