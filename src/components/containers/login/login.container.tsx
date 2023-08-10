@@ -44,7 +44,9 @@ const LoginContainer: React.FC<Props> = ({
   const [wasLoginCalled, setWasLogginCalled] = useState(false);
 
   const isFormValid = useMemo(() => !(validateEmail(email) || validatePassword(password)), [email, password]);
-  const [loginUser, { error, loading }]: LoginUserMutationTuple = useMutation(GQL_MUTATION_LOGIN_USER);
+  const [loginUser, { error, loading }]: LoginUserMutationTuple = useMutation(GQL_MUTATION_LOGIN_USER, {
+    fetchPolicy: "no-cache",
+  });
 
   const goToNext = useCallback(
     async (authorised: boolean, onboarded: boolean) => {
