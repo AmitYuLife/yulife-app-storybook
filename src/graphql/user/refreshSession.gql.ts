@@ -20,4 +20,5 @@ export default (variables: RefreshSessionVariables) =>
   client().mutate<RefreshSession, RefreshSessionVariables>({
     mutation: GQL_MUTATION_REFRESH_SESSION,
     variables,
+    fetchPolicy: "no-cache",
   });

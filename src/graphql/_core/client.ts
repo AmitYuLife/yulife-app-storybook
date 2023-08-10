@@ -1,19 +1,10 @@
 import { DETOX_ENABLED } from "@services/socket";
 import { getToken } from "@services/storage";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
-import { persistCache } from "apollo-cache-persist";
 import { setContext } from "@apollo/client/link/context";
-import {
-  ApolloClient,
-  defaultDataIdFromObject,
-  InMemoryCache,
-  NormalizedCacheObject,
-  from,
-  createHttpLink,
-} from "@apollo/client";
+import { ApolloClient, NormalizedCacheObject, from, createHttpLink } from "@apollo/client";
 import moment from "moment";
 import { Platform } from "react-native";
-import AsyncStorage from "@react-native-community/async-storage";
 import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import { store } from "@redux/_core/store";
@@ -22,6 +13,9 @@ import { updateOfflineState } from "@redux/app/app.actions";
 import createRetryLink from "./retryLink";
 import { getCurrentLocale } from "@locale";
 import region from "@services/region";
+
+import { gqlInMemoryCache } from "./cache";
+import { gqlCachePersistor } from "./persistor";
 
 const appJson = require("../../../package.json");
 
@@ -33,56 +27,8 @@ const httpLink = () =>
     fetch,
   });
 
-const defaultYuLifeIdFromObject = (object: any) => `${object.__typename}-${object.id}`;
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const dataIdFromObject = (object: any) => {
-  switch (object.__typename) {
-    case "UserPayload":
-      return `${object.__typename}-${object.expiresAt}`;
-    case "APIConfigLeanplum":
-      return `${object.__typename}-${object.appId}`;
-    case "Level":
-    case "Duel":
-    case "LevelSlot":
-    case "LevelSlotMilestone":
-    case "User":
-      return defaultYuLifeIdFromObject(object);
-    case "DuelOpponent":
-      return `${object.__typename}-${object.duelId}-${object.userId}-${object.score}`;
-    case "DuelSearchResult":
-      return `${object.__typename}-${object.customerId}`;
-    case "MilestoneTarget":
-      return `${object.__typename}-${object.steps}-${object.meditation}-${object.distance}`;
-    case "Reward":
-      return `${object.__typename}-${object.code}`;
-    case "RewardUiSettings":
-      return `${object.__typename}-${object.id}-${object.logoWidth}-${object.logoHeight}`;
-    case "RedeemSteps":
-      return `${object.__typename}-${object.id || object.info}`;
-    case "Denomination":
-      return `${object.__typename}-${object.yuCoin}-${object.value}`;
-    case "LeaderboardItem":
-      return `${object.__typename}-${object.id}-${object.avatar?.id}`;
-    case "AvatarPart":
-      return `${object.__typename}-${object.partId}-${object.order}`;
-    case "AvatarColor":
-      return `${object.__typename}-${object.colorSchemeId}-${object.displayOrder}`;
-    case "YuliferProduct":
-      return `${object.__typename}-${object.productId}-${object.active}`;
-    case "SduiStyle":
-      return `${object.__typename}-${object.property}-${object.value}`;
-    default:
-      return defaultDataIdFromObject(object);
-  }
-};
-
-const cache = new InMemoryCache({ dataIdFromObject });
-
-persistCache({
-  cache,
-  storage: AsyncStorage,
-});
+// restore the persisted the cache
+gqlCachePersistor().restore();
 
 const getAppVersion = () => {
   const version = DeviceInfo.getVersion();
@@ -143,7 +89,7 @@ let client: ApolloClient<NormalizedCacheObject>;
 export default () => {
   if (!client) {
     client = new ApolloClient({
-      cache,
+      cache: gqlInMemoryCache(),
       link: from([authMiddleware, retryLink, httpLink()]),
     });
   }
