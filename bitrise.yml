@@ -808,7 +808,16 @@ workflows:
             # sync the gallery
             brew install awscli
             cd gallery
-            aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE"
+
+            # Temp set AWS Access Key Env Vars
+            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID2
+            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY2
+
+            aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE" --no-progress
+
+            # invalidate CF distribution
+            CLOUDFRONT_DISTRIBUTION_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[*].{id:Id,origin:Origins.Items[0].Id}[?origin=='$REPORT_S3_BUCKET_NAME'].id" --output text)
+            aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
 
             # remove bulk from the report upload, keep screenshots only
             cd ..
@@ -817,7 +826,7 @@ workflows:
 
 
             # Sync the mochawesome report
-            aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$BITRISE_BUILD_NUMBER"
+            aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$BITRISE_BUILD_NUMBER" --no-progress
 
             envman add --key MOCHAWESOME_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/mochawesome.html"
     - slack@3:
@@ -1213,7 +1222,16 @@ workflows:
             # sync the gallery
             brew install awscli
             cd gallery
-            aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE"
+
+            # Temp set AWS Access Key Env Vars
+            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID2
+            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY2
+
+            aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE" --no-progress
+
+            # invalidate CF distribution
+            CLOUDFRONT_DISTRIBUTION_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[*].{id:Id,origin:Origins.Items[0].Id}[?origin=='$REPORT_S3_BUCKET_NAME'].id" --output text)
+            aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
 
             # remove bulk from the report upload, keep screenshots only
             cd ..
@@ -1222,7 +1240,7 @@ workflows:
 
 
             # Sync the mochawesome report
-            aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$BITRISE_BUILD_NUMBER"
+            aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$BITRISE_BUILD_NUMBER" --no-progress
 
             envman add --key MOCHAWESOME_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/mochawesome.html"
     - slack@3:
@@ -1549,7 +1567,16 @@ workflows:
             # sync the gallery
             brew install awscli
             cd gallery
-            aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE"
+
+            # Temp set AWS Access Key Env Vars
+            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID2
+            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY2
+
+            aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE" --no-progress
+
+            # invalidate CF distribution
+            CLOUDFRONT_DISTRIBUTION_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[*].{id:Id,origin:Origins.Items[0].Id}[?origin=='$REPORT_S3_BUCKET_NAME'].id" --output text)
+            aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
 
             # remove bulk from the report upload, keep screenshots only
             cd ..
@@ -1558,7 +1585,7 @@ workflows:
 
 
             # Sync the mochawesome report
-            aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$BITRISE_BUILD_NUMBER"
+            aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$BITRISE_BUILD_NUMBER" --no-progress
 
             envman add --key MOCHAWESOME_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/mochawesome.html"
     - slack@3:
