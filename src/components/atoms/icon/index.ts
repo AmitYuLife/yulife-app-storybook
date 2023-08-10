@@ -2,9 +2,6 @@ import { Clock } from "./clock";
 import { YugiCertificateHead } from "./yugi-certificate-head";
 import { ArrowIcon } from "./arrow";
 import { StreakTicks } from "./streak-ticks";
-import { Calm } from "./calm";
-import { Headspace } from "./headspace";
-import { MeditopiaLogo } from "./meditopia";
 import { CopyIcon } from "./copy-icon";
 import { GPRequestIcon } from "./gp-request-icon";
 import { HandshakeHeartIcon } from "./handshake-heart-icon";
@@ -24,7 +21,6 @@ import { TheOwlFenceIcon } from "./the-owl-fence-icon";
 import { YugiProcessingIcon } from "./yugi-processing-icon";
 import { YugiWellBeingIcon } from "./yugi-wellbeing-icon";
 import { AvatarHeadIcon } from "./avatar-head-icon";
-import { Fiit } from "./fiit-icon";
 import { ShareIcon } from "./share-icon";
 import { BadgeIcon } from "./badge-icon";
 import { RadioIcon } from "./radio-icon";
@@ -67,10 +63,6 @@ export default {
   YugiCertificateHead,
   ArrowIcon,
   StreakTicks,
-  Calm,
-  Fiit,
-  Headspace,
-  MeditopiaLogo,
   CopyIcon,
   GPRequestIcon,
   HandshakeHeartIcon,
