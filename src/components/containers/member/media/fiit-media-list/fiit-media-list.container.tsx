@@ -22,7 +22,7 @@ interface IProps extends IInternalContent {
   reward: number;
 }
 
-const FiitMediaListContainer = ({ levelSlotId, contentMediaTags, title, logo, reward }: IProps) => {
+const FiitMediaListContainer = ({ levelSlotId, contentMediaTags, title, providerLogo, logo, reward }: IProps) => {
   const { data: medias, loading } = useQuery<GetMedia, GetMediaVariables>(GQL_QUERY_GET_VIDEOS_LIST, {
     fetchPolicy: "network-only",
     variables: {
@@ -89,7 +89,9 @@ const FiitMediaListContainer = ({ levelSlotId, contentMediaTags, title, logo, re
       title={t("screens.fiit_media_list.title", { title })}
       description={t("screens.fiit_media_list.description")}
       items={formattedVideos}
+      // TODO: Purge when fiit is swapped for workouts
       logo={logo}
+      providerLogo={providerLogo}
       onLeftIconPress={onLeftIconPress}
       onRightIconPress={onRightIconPress}
       loading={loading || formattedVideos.length === 0}
