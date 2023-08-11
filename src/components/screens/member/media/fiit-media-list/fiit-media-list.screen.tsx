@@ -6,6 +6,7 @@ import { MediaListHeader } from "@molecules";
 import { Colours, Style } from "@styles";
 import { IITem } from "@organisms/media-list-items/media-list-items";
 import { FIIT_MEDIA_SCROLL_VIEW } from "@ids";
+import { GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_providerLogo } from "@graphql/_core/schema";
 
 interface IProps {
   title: string;
@@ -16,6 +17,7 @@ interface IProps {
   onLeftIconPress: () => void;
   onRightIconPress: () => void;
   onItemPress: (item: IITem) => void;
+  providerLogo: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_providerLogo;
 }
 
 const FiitMediaListScreen = ({
@@ -25,16 +27,33 @@ const FiitMediaListScreen = ({
   onLeftIconPress,
   onRightIconPress,
   onItemPress,
+  providerLogo,
   logo,
   loading,
 }: IProps) => {
+  const providerLogoProps = useMemo(
+    () => ({
+      uri: providerLogo?.logo,
+      width: Style.adjust(providerLogo?.width),
+      height: Style.adjust(providerLogo?.height),
+      bottom: Style.adjust(2),
+    }),
+    [providerLogo]
+  );
+
+  // TODO: Purge when fiit swapped with workouts
   const logoProps = useMemo(() => ({ uri: logo, width: Style.adjust(39), height: Style.adjust(18), bottom: 3 }), []);
+
   return (
     <View style={styles.flex}>
       <GenericHeadingPad />
       <View style={styles.wrapper}>
         <ScrollView showsVerticalScrollIndicator={false} testID={FIIT_MEDIA_SCROLL_VIEW}>
-          <MediaListHeader title={title} description={description} logo={logoProps} />
+          <MediaListHeader
+            title={title}
+            description={description}
+            logo={providerLogo ? providerLogoProps : logoProps}
+          />
           <MediaListItems isLoading={loading} items={items} type="media" onPress={onItemPress} />
         </ScrollView>
       </View>

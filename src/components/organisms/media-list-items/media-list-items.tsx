@@ -10,13 +10,12 @@ import MediaListItemsLoading from "./media-list-items-loading";
 import { t } from "@locale";
 import Markdown from "@molecules/markdown/markdown";
 import { ArrowButton } from "@components/molecules/arrow-button";
+import { GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_providerLogo } from "@graphql/_core/schema";
 
 export interface IITem {
   title: string;
   description: string;
-  providerImage?: {
-    uri: string;
-  };
+  providerLogo?: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_providerLogo;
   thumbnail: {
     uri: string;
     id: string;
@@ -61,14 +60,15 @@ const MediaListItems = ({ items, onPress, type, isLoading }: IProps) => {
                     <View style={styles.titleWrapper}>
                       <TextTemplate type="b2b">{item.title}</TextTemplate>
 
-                      {item.providerImage?.uri ? (
+                      {item.providerLogo?.logo?.uri ? (
                         <View>
                           <Image
                             resizeMode="contain"
-                            width={Style.adjust(65)}
+                            width={Style.adjust(item?.providerLogo?.width)}
+                            height={Style.adjust(item?.providerLogo?.height)}
                             testID={PARTNER_LOGO}
                             suppressLoadingUi={true}
-                            source={{ uri: item.providerImage.uri }}
+                            source={{ uri: item.providerLogo?.logo?.uri }}
                           />
                         </View>
                       ) : null}

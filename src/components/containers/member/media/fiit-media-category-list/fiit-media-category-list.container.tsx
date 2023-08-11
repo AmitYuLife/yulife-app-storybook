@@ -91,28 +91,34 @@ const FiitMediaCategoryListContainer = ({
     [createChallengeUsingFiitApp]
   );
 
-  const onItemPress = useCallback((item: IInternalContent) => {
-    dispatch(
-      logMixpanelEventActionCreator("challenge_collection_viewed", {
-        type: "move",
-        subtype: "fiit",
-        collection_name: item.title,
-      })
-    );
-    Navigation.push(ROUTES.fiitMediaCategoryList, {
-      component: {
-        id: ROUTES.fiitMediaList,
-        name: ROUTES.fiitMediaList,
-        passProps: {
-          title: item.title,
-          contentMediaTags: item.contentMediaTags,
-          logo: headerContent.logo,
-          reward,
-          levelSlotId,
+  const onItemPress = useCallback(
+    (item: IInternalContent) => {
+      dispatch(
+        logMixpanelEventActionCreator("challenge_collection_viewed", {
+          type: "move",
+          subtype: "fiit",
+          collection_name: item.title,
+        })
+      );
+
+      Navigation.push(ROUTES.fiitMediaCategoryList, {
+        component: {
+          id: ROUTES.fiitMediaList,
+          name: ROUTES.fiitMediaList,
+          passProps: {
+            title: item.title,
+            contentMediaTags: item.contentMediaTags,
+            // TODO: Purge when fiit is swapped for workouts
+            logo: headerContent.logo,
+            providerLogo: item.providerLogo,
+            reward,
+            levelSlotId,
+          },
         },
-      },
-    });
-  }, []);
+      });
+    },
+    [dispatch, headerContent, levelSlotId, reward]
+  );
 
   const moreInformationPress = useCallback(() => {
     // this needs to change newSduiRewards when the old rewardsDetails is purged

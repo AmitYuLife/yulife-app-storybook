@@ -57,6 +57,14 @@ export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
               id
               uri
             }
+            providerLogo {
+              logo {
+                uri
+                id
+              }
+              width
+              height
+            }
             buttons {
               title
               color
