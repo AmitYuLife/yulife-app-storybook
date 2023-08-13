@@ -1,5 +1,5 @@
 import { StyleSheet, ViewStyle } from "react-native";
-import { Colours, Style } from "../../../styles";
+import { Style } from "../../../styles";
 
 export default StyleSheet.create({
   button: {
@@ -8,18 +8,10 @@ export default StyleSheet.create({
   } as ViewStyle,
   buttonWrapper: {
     alignItems: "center",
-    flexDirection: "row-reverse",
     justifyContent: "center",
-  } as ViewStyle,
-  divider: {
-    backgroundColor: Colours.divider,
-    height: Style.adjust(14),
-    width: 1,
   } as ViewStyle,
   wrapper: {
     alignItems: "center",
-    flexDirection: "row",
     justifyContent: "center",
-    width: "100%",
   } as ViewStyle,
 });

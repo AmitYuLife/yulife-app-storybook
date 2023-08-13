@@ -17,7 +17,6 @@ const LinkGroup = ({ data }: IProps) => (
     {data.map(({ label, onPress }, index) => (
       <View key={index} style={styles.buttonWrapper}>
         <LinkButton wrapperStyle={styles.button} label={label} onPress={onPress} />
-        {data.length === 1 || index + 1 !== data.length ? null : <View style={styles.divider} />}
       </View>
     ))}
   </View>
