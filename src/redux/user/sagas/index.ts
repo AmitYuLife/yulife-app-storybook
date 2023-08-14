@@ -40,6 +40,8 @@ import synchroniseYuScreenSaga from "./synchroniseYuScreen.saga";
 import removeYuScreenNotification from "./removeYuScreenNotification.saga";
 import showEventFinishDialog from "./showEventFinishedDialog.saga";
 import getAllUserDataSaga from "./getAllUserData.saga";
+import changeUserLocaleSaga from "./changeUserLocale.saga";
+import { SET_DEVICE_LOCALE } from "@redux/device/device.actions";
 
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
@@ -63,4 +65,5 @@ export default [
   takeLatest([UPDATE_CURRENT_ROUTE, YUSCREEN_SYNCHRONISED], updateYuScreenNotification),
   takeLatest(REMOVE_YUSCREEN_NOTIFICATIONS, removeYuScreenNotification),
   takeLatest([UPDATE_USER_PROFILE, UPDATE_USER_PROFILE_EVENTS], showEventFinishDialog),
+  takeLatest(SET_DEVICE_LOCALE, changeUserLocaleSaga),
 ];

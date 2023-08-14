@@ -6,6 +6,7 @@ export * from "./BackPersonalProductStep";
 export * from "./CancelQuestMapLevelChallenge";
 export * from "./Challenge";
 export * from "./ChallengeTemplate";
+export * from "./ChangeUserLocale";
 export * from "./ClaimGoalRewards";
 export * from "./ClaimMobileGameWeeklyRewards";
 export * from "./CollectAward";
