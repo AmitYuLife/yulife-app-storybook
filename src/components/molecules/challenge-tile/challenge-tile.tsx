@@ -2,7 +2,7 @@ import React, { memo, useCallback, useMemo, useState } from "react";
 import { Pressable, Image as RNImage, StyleSheet, View } from "react-native";
 import styles, { IMAGE_SIZE } from "./challenge-tile.styles";
 import { CHALLENGE_TILE } from "@ids";
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
 import { t } from "@locale";
 import colours from "@styles/colours";
@@ -21,10 +21,13 @@ export interface IChallengeTileProps {
   durationTextColour?: string;
   pictureAlign?: "left" | "right";
   isCompleted?: boolean;
+  hasSurge?: boolean;
+  hasBonus?: boolean;
 }
 
 type Props = IChallengeTileProps;
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const SurgeIcon = require("@assets/icons/surge.png");
 
 const ChallengeTile = ({
   heading,
@@ -38,6 +41,8 @@ const ChallengeTile = ({
   durationColour = "#FFFED6",
   durationTextColour = "#464647",
   isCompleted,
+  hasSurge,
+  hasBonus,
 }: Props) => {
   const [isPressedIn, setIsPressedIn] = useState<boolean>(false);
 
@@ -64,6 +69,18 @@ const ChallengeTile = ({
   }, []);
 
   const wrapperStyle = useMemo(() => [styles.wrapper, animatedStyle], [animatedStyle]);
+
+  const rewardTextColour = useMemo(() => {
+    if (hasBonus) {
+      return Colours.primary.p600;
+    }
+
+    if (hasSurge) {
+      return Colours.secondary.s100S3;
+    }
+
+    return Colours.neutral.n850;
+  }, [hasBonus, hasSurge]);
 
   if (!heading) {
     return null;
@@ -94,6 +111,9 @@ const ChallengeTile = ({
             style={styles.remoteImage}
           />
         </View>
+        {!hasSurge ? null : (
+          <Image source={SurgeIcon} width={Style.adjust(24)} height={Style.adjust(24)} style={styles.surgeIcon} />
+        )}
         {!isLocked && duration ? (
           <View style={[styles.duration, { backgroundColor: durationColour }]}>
             <TextTemplate type="l2b" color={durationTextColour}>
@@ -115,7 +135,9 @@ const ChallengeTile = ({
                 </View>
                 <View style={styles.contentBottom}>
                   <View style={styles.contentRewardWrapper}>
-                    <TextTemplate type="b2b">{reward}</TextTemplate>
+                    <TextTemplate type="b2b" color={rewardTextColour}>
+                      {reward}
+                    </TextTemplate>
                     <Image
                       width={Style.adjust(16)}
                       height={Style.adjust(16)}
@@ -125,7 +147,20 @@ const ChallengeTile = ({
                     />
                   </View>
                   {!isCompleted ? (
-                    <RNImage source={require("@assets/icons/next.png")} resizeMode="contain" style={styles.imageNext} />
+                    <>
+                      {!hasBonus ? null : (
+                        <View style={styles.hasBonusContainer}>
+                          <TextTemplate type="l2b" color={colours.primary.p600}>
+                            {t("screens.challenge_list.level_boosted")}
+                          </TextTemplate>
+                        </View>
+                      )}
+                      <RNImage
+                        source={require("@assets/icons/next.png")}
+                        resizeMode="contain"
+                        style={styles.imageNext}
+                      />
+                    </>
                   ) : (
                     <View style={styles.completedContainer}>
                       <TextTemplate type="l2b" color={colours.secondary.s200S1}>

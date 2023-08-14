@@ -30,6 +30,8 @@ interface IFormattedChallenge extends IMilestoneProps {
   onPress: () => void;
   reward: string;
   imageUri: string;
+  hasSurge?: boolean;
+  hasBonus?: boolean;
 }
 
 interface IState {

@@ -182,6 +182,8 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
                   availableAtLevel: levelSlot.availableAtLevel || 1,
                   isLocked: levelSlot.isLocked,
                   isCompleted: levelSlot.isCompleted,
+                  hasSurge: levelSlot.hasSurge,
+                  hasBonus: levelSlot.hasBonus,
                 };
 
                 return {
