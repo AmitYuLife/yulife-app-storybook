@@ -61,8 +61,10 @@ const Description: FC<IProps> = ({ duel, type, userId }) => {
     return (
       <View style={styles.wrapper}>
         <Text style={styles.text} testID={DUEL_DESCRIPTION(opponent.score, user.score)}>
-          {addCommasToNumber(opponent.score || 0)} vs. {addCommasToNumber(user.score || 0)}{" "}
-          {t("modals.duels.hub.steps")}
+          {t("modals.duels.hub.score", {
+            opponentScore: addCommasToNumber(opponent.score || 0),
+            userScore: addCommasToNumber(user.score || 0),
+          })}
         </Text>
       </View>
     );

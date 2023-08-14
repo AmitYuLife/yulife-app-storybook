@@ -10,6 +10,7 @@ import { Navigation } from "@navigation/main";
 import colours from "@styles/colours";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { formatOpponentName } from "@utils/duels";
+import { t } from "@locale";
 
 interface IGenericDuelsIntro extends Partial<DuelStepProps> {
   type: "invite" | "response";
@@ -69,12 +70,12 @@ function GenericDuelsIntro({
         <View style={styles.versusSection}>
           <View>
             <TextTemplate type="h3" color={colours.darkGray}>
-              You
+              {t("labels.you")}
             </TextTemplate>
           </View>
           <View style={styles.flex50}>
             <TextTemplate type="h3" color={colours.primary.p600}>
-              VS
+              {t("labels.vs")}
             </TextTemplate>
           </View>
           <View>

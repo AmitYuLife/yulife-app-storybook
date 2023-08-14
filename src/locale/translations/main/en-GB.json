@@ -24,6 +24,7 @@
     "account_number": "Account number"
   },
   "labels": {
+    "vs": "VS",
     "account": "Account",
     "on": "On",
     "off": "Off",
@@ -1028,7 +1029,8 @@
         "steps": "steps",
         "waiting_user_steps_sync": "Waiting for user’s steps to sync",
         "last_know_step": "Last known step count:",
-        "synced": "synced"
+        "synced": "synced",
+        "score": "%{opponentScore} vs. %{userScore} steps"
       },
       "duel_invite": {
         "not_enought_yucoin": {

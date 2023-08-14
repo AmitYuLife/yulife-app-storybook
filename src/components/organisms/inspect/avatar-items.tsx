@@ -26,7 +26,7 @@ const AvatarItems = ({ avatarUri, opponentAvatarUri, name, inspectOtherUser }: I
           />
           <View style={styles.vs}>
             <TextTemplate type="b2b" color={Colours.neutral.n500}>
-              VS
+              {t("labels.vs")}
             </TextTemplate>
           </View>
           <ActivityAvatar
