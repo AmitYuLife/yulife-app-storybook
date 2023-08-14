@@ -1,14 +1,14 @@
 import { StyleSheet, Platform } from "react-native";
-import { Style } from "../../../styles";
+import { Colours, Style } from "@styles";
 import colours from "@styles/colours";
 
-const TOP_HEIGHT = Style.adjust(120);
+export const IMAGE_SIZE = Style.DEVICE_WIDTH / 2 - Style.adjust(25);
+
+const TOP_HEIGHT = (IMAGE_SIZE / 165) * 120;
 const BOTTOM_HEIGHT = Style.adjust(88);
 const SHADOW_WIDTH = Style.adjust(5);
-const FULL_HEIGHT = Style.adjust(213);
+const FULL_HEIGHT = TOP_HEIGHT + BOTTOM_HEIGHT + SHADOW_WIDTH;
 const BORDER_RADIUS = Style.adjust(20);
-
-export const IMAGE_SIZE = Style.DEVICE_WIDTH / 2 - Style.adjust(25);
 
 const styles = StyleSheet.create({
   contentRewardWrapper: {
@@ -25,8 +25,16 @@ const styles = StyleSheet.create({
   yucoin: {
     marginLeft: Style.adjust(3),
   },
+  surgeIcon: {
+    position: "absolute",
+    top: Style.adjust(8),
+    left: Style.adjust(8),
+  },
   duration: {
-    padding: Style.adjust(5),
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: Style.adjust(6),
+    height: Style.adjust(22),
     position: "absolute",
     right: Style.adjust(8),
     top: Style.adjust(8),
@@ -37,8 +45,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(15),
     paddingTop: Style.adjust(
       Platform.select({
-        ios: 11,
-        android: 4,
+        ios: 16,
+        android: 13,
       })
     ),
   },
@@ -60,6 +68,18 @@ const styles = StyleSheet.create({
     height: Style.adjust(24),
     width: Style.adjust(24),
   },
+  hasBonusContainer: {
+    position: "absolute",
+    right: 0,
+    bottom: 0,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: Colours.primary.p40,
+    borderRadius: Style.adjust(48),
+    paddingLeft: Style.adjust(8),
+    paddingRight: Style.adjust(26),
+    height: Style.adjust(26),
+  },
   completedContainer: {
     flexDirection: "row",
     alignItems: "center",
@@ -69,7 +89,7 @@ const styles = StyleSheet.create({
     height: Style.adjust(26),
   },
   imageWrapper: {
-    height: IMAGE_SIZE,
+    height: TOP_HEIGHT,
   },
   imageWrapperLocked: {
     alignItems: "center",
