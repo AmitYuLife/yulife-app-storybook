@@ -364,10 +364,6 @@ export const GHIProductInfo = ( productStartDate: any, dependentName:any, yuCoin
   await expect(element(by.text(coverForWApos))).toBeVisible();
   await expect(element(by.text(howToClaim))).toBeVisible();
   await expect(element(by.text(faq))).toBeVisible();
-  await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, dependentDescription, "down")()
-  await expect(element(by.text(dependent))).toBeVisible();
-  await expect(element(by.text(dependentDescription))).toBeVisible();
-  await swipeFromText(dependentDescription, "up", "fast")();
   if (hasDependants) {
     await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, dependentDescription, "down")()
     await expect(element(by.text(dependent))).toBeVisible();

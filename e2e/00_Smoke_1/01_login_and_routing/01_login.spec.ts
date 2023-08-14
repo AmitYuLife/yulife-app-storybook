@@ -161,7 +161,7 @@ Feature("As a user I can get past the login screen", async () => {
                             Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500))
                         })
                     })
-                    When("I scroll to the description if neeced", when.swipeFromText(t("Leaderboards"), "up", "slow", 0.2), async () => {
+                    When("I scroll to the description if neeced", when.scrollUntilTextVisible(ids.SETTINGS_SCREEN_SCROLL, "Fitness trackers", "down"), async () => {
                         Then("I should see Measurment cycling title", then.idVisible(ids.TEXT_TEMPLATE("Measurement (Cycling)")))
                         Then("I should see Measurment cycling description", then.idVisible(ids.TEXT_TEMPLATE("Change between the imperial (miles) and metric (kilometers) system.")))
                         Then("I should see Measurment method used", then.idVisible(ids.TEXT_TEMPLATE("km")))
