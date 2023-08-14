@@ -13,7 +13,8 @@ export const {
 } = navigation.common
 
 export const {
-    swipeFromText
+    swipeFromText,
+    scrollUntilTextVisible
 } = navigation.scrolling
 
 export const {

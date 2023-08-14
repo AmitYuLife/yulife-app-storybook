@@ -359,11 +359,25 @@ export const minimiseAndReopenApp = async () => {
     await device.launchApp({ newInstance: false });
 }
 
-export const daysRemainingOfWeek = () => {
+export const hoursRemainingOfDay = () => {
+    const now = moment();
+    const timeDiff = moment(now).endOf('day');
+    const result = timeDiff.diff(now, 'hours')
+    return result + 1
+}
+
+export const weeklyQuestsTimeRemaining = () => {
     const eventdate = moment().endOf("week");
     const todaysdate = moment();
     const diff = eventdate.diff(todaysdate, 'days');
-    return diff + 1
+    
+    if (diff === 6) {
+        // returns the hours remaining of the day, as when there is less than 1 day it displays hours
+        return hoursRemainingOfDay()
+    } else {
+        // returns days remaining of the week
+        return diff + 1
+    }
 }
 
 export const closeScreen = (option: "button_only" | "yulife" | "activity history") => async () => {

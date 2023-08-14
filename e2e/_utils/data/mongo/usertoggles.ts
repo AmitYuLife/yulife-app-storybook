@@ -1879,7 +1879,8 @@ export const CUSTOMER_109_TOGGLES = {
     userId: customer.CUSTOMER_109.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      hasSmartPensionActive: true
+      hasSmartPensionActive: true,
+      showOnboardingPensionModal: true
     },
   },
 } as IDatabaseItem;
@@ -1892,7 +1893,8 @@ export const CUSTOMER_110_TOGGLES = {
     userId: customer.CUSTOMER_110.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      hasSmartPensionActive: true
+      hasSmartPensionActive: true,
+      showOnboardingPensionModal: true
     },
   },
 } as IDatabaseItem;
@@ -1905,7 +1907,8 @@ export const CUSTOMER_111_TOGGLES = {
     userId: customer.CUSTOMER_111.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      hasSmartPensionActive: true
+      hasSmartPensionActive: true,
+      showOnboardingPensionModal: true
     },
   },
 } as IDatabaseItem;
@@ -1918,7 +1921,8 @@ export const CUSTOMER_112_TOGGLES = {
     userId: customer.CUSTOMER_112.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      hasSmartPensionActive: true
+      hasSmartPensionActive: true,
+      showOnboardingPensionModal: true
     },
   },
 } as IDatabaseItem;
@@ -1931,7 +1935,8 @@ export const CUSTOMER_113_TOGGLES = {
     userId: customer.CUSTOMER_113.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      hasSmartPensionActive: true
+      hasSmartPensionActive: true,
+      showOnboardingPensionModal: true
     },
   },
 } as IDatabaseItem;
@@ -1944,7 +1949,8 @@ export const CUSTOMER_114_TOGGLES = {
     userId: customer.CUSTOMER_114.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      hasSmartPensionActive: true
+      hasSmartPensionActive: true,
+      showOnboardingPensionModal: true
     },
   },
 } as IDatabaseItem;
@@ -1957,7 +1963,8 @@ export const CUSTOMER_115_TOGGLES = {
     userId: customer.CUSTOMER_115.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      hasSmartPensionActive: true
+      hasSmartPensionActive: true,
+      showOnboardingPensionModal: true
     },
   },
 } as IDatabaseItem;

@@ -16,16 +16,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                 Then("I should see the meditation modal", then.meditationAppModalVisible)
             })
         })
-        When("I tap I'm using a different app", when.tapText("I'm using a different app"), async () => {
-            Then("I should no longer see the modal", then.textNotVisible("Choose an app to start"))
-        })
-        When("I tap Open a meditation app", when.tapText("Open a meditation app"), async () => {
-            Then("I should see the meditation modal", then.meditationAppModalVisible)
-        })
-        When("I tap I'm using a different app", when.tapText("I'm using a different app"), async () => {
-            Then("I should no longer see the modal", then.textNotVisible("Choose an app to start"))
-        })
-        When("I wait to complete this challenge", when.wait(63000), async () => {
+        When("I wait to complete this challenge", when.wait(65000), async () => {
             Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(3, 5))
         })
         When("I tap collect", when.tapText("Collect"), async () => {
@@ -72,9 +63,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             When("I send the mindfulness data", when.sendMindfulnessData(180), async () => {
                 When("I start a meditation challenge", when.startMeditationChallengeFromQuests(90), async () => {
                     Then("I should see the meditation modal", then.meditationAppModalVisible)
-                    When("I tap I'm using a different app", when.tapText("I'm using a different app"), async () => {
-                        Then("I should no longer see the modal", then.textNotVisible("Choose an app to start"))
-                        When("I wait to complete this challenge", when.wait(63000), async () => {
+                        When("I wait to complete this challenge", when.wait(65000), async () => {
                             Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(3, 90))
                             When("I tap collect", when.tapText("Collect"), async () => {
                                 Then("I should see the 'Completed streak day 1' screen", then.completedTodayStreakCopyVisible(1))
@@ -84,7 +73,6 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                                     When("I tap a past level", when.tapID(LEVEL_CHALLENGE_BUTTON(90)), async () => {
                                         Then("I should see other challenges to take", then.multipleIDVisible([CHALLENGE_TILE("short stroll"), CHALLENGE_TILE("brisk walk"), CHALLENGE_TILE("long walk"), CHALLENGE_TILE("meditation")]))
                                     })
-                                })
                             })
                         })
                     })

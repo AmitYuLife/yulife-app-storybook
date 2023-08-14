@@ -5,7 +5,7 @@ import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_69, AUTH_69, CUSTOMER_70, AUTH_70, USER_70, CUSTOMER_78, AUTH_78, USER_78, CUSTOMER_81, AUTH_81, CUSTOMER_89, AUTH_89, CUSTOMER_90, AUTH_90, USER_90 } from "@data";
 import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, QUESTS_SCREEN_YUNIVERSAL, DAILY_STEPS_SCREEN, WELLDONE_BANNER, SPACE_TRAVEL_SCREEN, USER_LEVEL, LEVEL_STAR_COUNT, V4_YUSCREEN, YUMOJI_AVATAR_YUSCREEN_V4, WEEKLY_GOAL_ICON, BACK_BUTTON } from "@ids";
-import { daysRemainingOfWeek } from "@navigation";
+import { weeklyQuestsTimeRemaining } from "@navigation";
 import { getFullName } from "_utils/users";
 
 Feature("End of the world/Yuniverse", async () => {
@@ -314,9 +314,9 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I go to the quests tab", when.tapID(NAV_BAR("quests")), async () => {
             Then("I should see level 201 unlocked in the red planet", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
-            Then("I should see the Weekly Quests activty icon", then.idVisible(WEEKLY_GOAL_ICON(daysRemainingOfWeek(), true)))
+            Then("I should see the Weekly Quests activty icon", then.idVisible(WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), true)))
         })
-        When("I tap the Weekly Goals icon", when.tapID(WEEKLY_GOAL_ICON(daysRemainingOfWeek(), true)), async () => {
+        When("I tap the Weekly Goals icon", when.tapID(WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), true)), async () => {
             Then("I can see the Weekly quests pop-up", then.weeklyQuestsPopUpVisible)
         })
         When("I click the button text without a challenge selected", when.tapText("Let's go"), async () => {
@@ -329,7 +329,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I click the close button", when.tapText("Close"), async () => {
             Then('I can no longer see the modal', then.textNotVisible("Weekly quests"))
-            Then("I should see the Weekly Quests activty icon with no badge", then.idVisible(WEEKLY_GOAL_ICON(daysRemainingOfWeek(), false)))
+            Then("I should see the Weekly Quests activty icon with no badge", then.idVisible(WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), false)))
         }) 
         When("I tap level 201 button", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
             When("I complete a short stroll challenge at level 201", when.selectAndCompleteWalkingChallenge("short stroll", 400), async () => {
@@ -340,7 +340,7 @@ Feature("End of the world/Yuniverse", async () => {
                 })
             })
         })
-        When("I tap the Weekly Goals icon", when.tapID(WEEKLY_GOAL_ICON(daysRemainingOfWeek(), false)), async () => {
+        When("I tap the Weekly Goals icon", when.tapID(WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), false)), async () => {
             Then("I can see the modal with the challenge progress", then.challengeProgressShown(1, 2, "#F43E8E"))
         })
         When("I click the close button", when.tapText("Close"), async () => {
@@ -350,11 +350,11 @@ Feature("End of the world/Yuniverse", async () => {
             When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("brisk walk", 800), async () => {
                 When("I tap collect", when.tapText("Collect"), async () => {
                     Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
-                    Then("I should see the Weekly Quests activty icon with the badge", then.idVisible(WEEKLY_GOAL_ICON(daysRemainingOfWeek(), true)))
+                    Then("I should see the Weekly Quests activty icon with the badge", then.idVisible(WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), true)))
                 })
             })
         })
-        When("I tap the Weekly Goals icon", when.tapID(WEEKLY_GOAL_ICON(daysRemainingOfWeek(), true)), async () => {
+        When("I tap the Weekly Goals icon", when.tapID(WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), true)), async () => {
             Then("I can see the modal with the challenge progress", then.challengeProgressShown(2, 2, "#F43E8E"))
             Then("I can see the challenge is completed", then.completedChallengeModalVisible)
         })
@@ -363,7 +363,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I click the close button", when.tapText("Close"), async () => {
             Then('I can no longer see the modal', then.textNotVisible("Weekly quests"))
-            Then("I should see the Weekly Quests activty icon with the badge", then.idVisible(WEEKLY_GOAL_ICON(daysRemainingOfWeek(), false)))
+            Then("I should see the Weekly Quests activty icon with the badge", then.idVisible(WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), false)))
             Then("I can see the Icon has changed to the Done state", then.textVisible("Done"))
         }) 
     })
