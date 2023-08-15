@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import { View, StyleSheet, ViewStyle, Image, ImageStyle, TextStyle, Platform } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Style, Colours } from "@styles";

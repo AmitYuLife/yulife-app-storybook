@@ -65,6 +65,7 @@ export interface IUserStore {
   id: string;
   firstName: string;
   lastName: string;
+  fullName: string;
   dateOfBirth: string;
   archived: boolean;
   connections: Connection[];
@@ -123,6 +124,7 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   archived: false,
   firstName: "",
   lastName: "",
+  fullName: "",
   dateOfBirth: moment().subtract(30, "years").toISOString(), // Default to 30 years old
   consent: {},
   features: {},
@@ -334,6 +336,7 @@ const getUserSuccess = (
       id,
       firstName,
       lastName,
+      fullName,
       dateOfBirth,
       leaderboards = [],
       mobileConsent,
@@ -350,6 +353,7 @@ const getUserSuccess = (
     archived: false,
     firstName,
     lastName,
+    fullName,
     dateOfBirth,
     connections,
     consent: {
