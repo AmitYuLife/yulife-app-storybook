@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -195,6 +195,7 @@ export interface LoginUser_loginUser_user {
   archived: boolean | null;
   firstName: string | null;
   lastName: string | null;
+  fullName: string | null;
   dateOfBirth: string | null;
   createdAt: string | null;
   redeemedOnboarding: boolean | null;

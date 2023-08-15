@@ -144,7 +144,9 @@ The app needs to be signed before it can be installed on a physical device.
 - Under the _General_ tab of `YuLife` build target, tick the `Automatically manage signing` option and select `Yu Life Limited` as your team.
 
 #### Troubleshooting
+
 ##### `start:bundler` is failing
+
 Sample error message:
 
 ```
@@ -152,6 +154,7 @@ warn Package react-native-navigation contains invalid configuration: "dependency
 ```
 
 Solution:
+
 ```
 rm -rf node_modules ios/Pods
 nvm use 18
@@ -172,12 +175,12 @@ rm -rf ios/Podfile.lock
 
 ###### Cocoapods
 
-Required version of ruby is handled through [rbenv](https://github.com/rbenv/rbenv) To ensure you are running correct ruby version defined in .ruby-version config, follow [installing ruby versions](https://github.com/rbenv/rbenv#installing-ruby-versions). Example if .ruby-version contains 2.7.5:
+Required version of ruby is handled through [rbenv](https://github.com/rbenv/rbenv) To ensure you are running correct ruby version defined in .ruby-version config, follow [installing ruby versions](https://github.com/rbenv/rbenv#installing-ruby-versions). Example if .ruby-version contains 2.7.7:
 
 ```
 brew install rbenv
-rbenv install 2.7.5
-rbenv global 2.7.5
+rbenv install 2.7.7
+rbenv global 2.7.7
 ruby -v
 ```
 
