@@ -38,7 +38,9 @@ export const setPushPermissions = (payload: Partial<IPushNotification>) => ({
   type: SET_PUSH_PERMISSIONS,
 });
 
-export const setDeviceLocale = (payload: { currentDeviceLocale?: Language; locale: Language }) => ({
+type SetDeviceLocalePayload = { currentDeviceLocale?: Language; locale: Language; shouldMutateTheApi?: boolean };
+
+export const setDeviceLocale = (payload: SetDeviceLocalePayload) => ({
   payload,
   type: SET_DEVICE_LOCALE,
 });

@@ -31,7 +31,7 @@ const LanguageSelectorContainer = ({ componentId }: Props) => {
         description: "",
         isSelected: o.id === locale || o.overwrite === locale,
         onPress: () => {
-          dispatch(setDeviceLocale({ locale: o.id }));
+          dispatch(setDeviceLocale({ locale: o.id, shouldMutateTheApi: true }));
           const key = "screens.language_selector_settings.setting_language_loading_message";
           Navigation.setAppLoading(t(key, { value: o.name }));
         },
