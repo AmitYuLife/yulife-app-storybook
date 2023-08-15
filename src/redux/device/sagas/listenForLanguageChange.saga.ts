@@ -8,8 +8,9 @@ export default function* updateLanguage(args: SyncAction<IReduxState>) {
   const state = args?.payload?.device;
   const currentDeviceLocale = findBestAvailableLanguage();
 
+  // user has its device locale changed
   if (state?.currentDeviceLocale && state.currentDeviceLocale !== currentDeviceLocale) {
-    yield put(setDeviceLocale({ currentDeviceLocale, locale: currentDeviceLocale }));
+    yield put(setDeviceLocale({ currentDeviceLocale, locale: currentDeviceLocale, shouldMutateTheApi: true }));
     return;
   }
 

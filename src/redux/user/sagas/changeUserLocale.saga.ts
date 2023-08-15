@@ -5,7 +5,9 @@ import Logger from "@services/logging/logger";
 
 export default function* changeUserLocaleSaga({ payload }: ReturnType<typeof setDeviceLocale>) {
   try {
-    yield call(changeUserLocaleWithClient, { locale: payload.locale });
+    if (payload.shouldMutateTheApi) {
+      yield call(changeUserLocaleWithClient, { locale: payload.locale });
+    }
   } catch (e) {
     Logger.error(e, { event: "changeUserLocale" });
   }
