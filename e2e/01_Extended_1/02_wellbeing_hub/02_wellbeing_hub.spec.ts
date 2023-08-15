@@ -59,8 +59,8 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
     })
 
     Scenario("I can view the Fiit screen as a yulife user and should get Membership already active and Membership claimed when Active account ", scenario.start, async () => {
-        Given("I login as a grouplife user", given.loginAsUser(CUSTOMER_3, AUTH_3), async () => {
-            Then("I should see my coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
+        Given("I login as a grouplife user", given.loginAsUser(CUSTOMER_34, AUTH_34), async () => {
+            Then("I should see my coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
         })
         When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
             Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
