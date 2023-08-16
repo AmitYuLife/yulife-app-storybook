@@ -1,7 +1,5 @@
-import React, { memo, useCallback } from "react";
+import React, { memo } from "react";
 import { useDynamicOnChange } from "../hooks/useDynamicOnChange";
-import { Navigation } from "@navigation/main";
-import { MODALS } from "@navigation/constants";
 import {
   ContentItemDropdownInput as GqlInput,
   ContentItemDropdownInputOptions as GqlOption,
@@ -13,19 +11,11 @@ export const ProductItemDropdownInput = memo((props: GqlInput) => {
   const { answerKey, dropdownOptions, selectInstruction, heading, validation } = props;
 
   const { value: dynamicDataValue, onChange } = useDynamicOnChange<string>(answerKey, formatValue);
-  const closeModal = useCallback(() => Navigation.dismissOverlay(MODALS.blurredOverlay), []);
-  const onOptionPress = useCallback(
-    (val: string) => {
-      onChange(val);
-      closeModal();
-    },
-    [onChange, closeModal]
-  );
 
   const options = dropdownOptions?.map(({ label, value: val }: GqlOption) => ({
     label,
     value: val,
-    onPress: () => onOptionPress(val),
+    onPress: () => onChange(val),
   }));
 
   const errorMessage =
