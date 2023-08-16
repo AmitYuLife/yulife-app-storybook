@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_19, CUSTOMER_35, CUSTOMER_40, CUSTOMER_42, CUSTOMER_47, CUSTOMER_50, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_65, CUSTOMER_75, CUSTOMER_76, CUSTOMER_77, CUSTOMER_83, CUSTOMER_20, CUSTOMER_84, CUSTOMER_111 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_19, CUSTOMER_35, CUSTOMER_40, CUSTOMER_42, CUSTOMER_47, CUSTOMER_50, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_65, CUSTOMER_75, CUSTOMER_76, CUSTOMER_77, CUSTOMER_83, CUSTOMER_20, CUSTOMER_84, CUSTOMER_111, CUSTOMER_109 } from '../postgres/customers';
 import { SHORT_STROLL_MILESTONE_1, LONG_WALK_MILESTONE_1, MEDITATION_MILESTONE_1, SUDOKU_MILESTONE } from './map_milestone_templates';
 import { MEDITATION_1, LONG_WALK_1, SHORT_STROLL_1, CYCLING_1 } from './map_level_slot_templates';
 import { CHALLENGE_TEMPLATE } from "./_templates";
@@ -2210,3 +2210,24 @@ export const CHALLENGE_USER_11 = {
         ],
     }   
 }
+
+export const ONBOARDING_CHALLENGE_109 = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_109.data.customerId,
+        isNewType: true,
+        yuCoinAwarded: 200,
+        XPAwarded: 0,
+        rating: 0,
+        incomingData: {},
+        sources: {},
+        passive: true,
+        levelSlotTemplateId: "MAIN_ONBOARDING_001",
+        status: "completed",
+        date: moment().format("YYYY-MM-DD"),
+        milestoneLog: [],
+    }
+} as IDatabaseItem;

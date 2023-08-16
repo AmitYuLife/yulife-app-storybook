@@ -1,6 +1,6 @@
-import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, BUTTON_LOGIN, NAV_BAR, BUTTON_CLOSE } from "@ids";
+import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, BUTTON_LOGIN, NAV_BAR, BUTTON_CLOSE, BACK_BUTTON } from "@ids";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { completeOnboardingIntro, navigateViaID, navigateViaText } from "./common";
+import { completeOnboardingIntro, navigateViaID, navigateViaText, tapID, textVisible } from "./common";
 import { authoriseFitkit } from "@socket";
 import { CUSTOMER_1, AUTH_1 } from "@data";
 import { tapText, wait } from "@navigation";
@@ -11,7 +11,8 @@ export const loginAsUser = (
     customer = CUSTOMER_1,
     auth = AUTH_1 as IDatabaseItem,
     fitkitAuth = true,
-    region = "United Kingdom"
+    region = "United Kingdom",
+    firstTime = true
 ) => async () => {
     console.log("CUSTOMER ID: ", customer.data.customerId)
     await authoriseFitkit(fitkitAuth)()
@@ -23,10 +24,13 @@ export const loginAsUser = (
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);
     await navigateViaID(BUTTON_LOGIN(false))
-    await navigateViaText(t("Next")) // sign-up reward screen
+    if (firstTime) {
+        await navigateViaText(t("Next")) // sign-up reward screen
+    }
     await dismissPLIModalIfVisible()
     await dismissNewLooksModalIfVisible()
     await dismissStreakIfVisible()
+    await dismissCyclingScreenIfVisible()
 }
 
 export const loginAsPLIUser = (
@@ -52,8 +56,8 @@ export const loginAsPLIUser = (
 }
 
 
-export const logInAndGoToTab = (tab?: "yucoin" | "quests" | "leaderboard" | "rewards" | "yu", customer = CUSTOMER_1, auth = AUTH_1, fitkitAuth = true, region = "United Kingdom") => async () => {
-    await loginAsUser(customer, auth, fitkitAuth, region)()
+export const logInAndGoToTab = (tab?: "yucoin" | "quests" | "leaderboard" | "rewards" | "yu", customer = CUSTOMER_1, auth = AUTH_1, fitkitAuth = true, region = "United Kingdom", firstTime = true) => async () => {
+    await loginAsUser(customer, auth, fitkitAuth, region, firstTime)()
     await navigateViaID(NAV_BAR(tab))
 }
 
@@ -88,6 +92,16 @@ export const dismissStreakIfVisible = async () => {
         await expect(element(by.text(t("Start your Streak")))).toBeVisible()
         await expect(element(by.text(t("Later")))).toBeVisible()
         await navigateViaText(t("Later"))
+    } catch (e) {
+
+    }
+}
+
+export const dismissCyclingScreenIfVisible = async () => {
+    try {
+        await textVisible("Get ready to ride!")()
+        await tapText("Check it out")()
+        await tapID(BACK_BUTTON)()
     } catch (e) {
 
     }

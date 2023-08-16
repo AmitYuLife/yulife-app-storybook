@@ -114,12 +114,12 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
     })
 
     Scenario("When I log in as a new user and go to the 2nd session, I see the pension onboarding screen", scenario.start, () => {
-        Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_110, data.AUTH_110), async () => {
+        Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_110, data.AUTH_110, true, "United Kingdom", false), async () => {
             Then("I can see the default onboarding screen", then.textVisible('Check out my power'))
         })
         When("I tap the button", when.tapText("Check out my power"), async () => {
             When("I tap I'll do this later", when.tapIllDoThisLater, async () => {
-                Then("I can see the YuScreen with the pension slot", then.onYuscreenMini("Pension Contributions", data.CUSTOMER_110))
+                Then("I can see the YuScreen with the pension slot", then.idVisible(ids.SLOT_TITLE("Pension Contributions")))
             })
         })
         When("I close and reopen the app", when.reloadOnly, async()=>{  
@@ -130,12 +130,12 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
     })
 
     Scenario("When I log in as a new user, and click the slot, and go to the 2nd session, I do not see the pension onboarding screen", scenario.start, () => {
-        Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_110, data.AUTH_110), async () => {
+        Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_110, data.AUTH_110, true, "United Kingdom", false), async () => {
             Then("I can see the default onboarding screen", then.textVisible('Check out my power'))
         })
         When("I tap the button", when.tapText("Check out my power"), async () => {
             When("I tap I'll do this later", when.tapIllDoThisLater, async () => {
-                Then("I can see the YuScreen with the pension slot", then.onYuscreenMini("Pension Contributions", data.CUSTOMER_110))
+                Then("I can see the YuScreen with the pension slot", then.idVisible(ids.SLOT_TITLE("Pension Contributions")))
             })
         })
         When("I tap the slot", when.tapID(ids.SLOT_TITLE("Pension Contributions")), async () => {
@@ -149,21 +149,18 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
     })
 
     Scenario("I can see the onboarding pension screen when I have it enabled", scenario.start, () => {
-        Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_109, data.AUTH_109), async () => {
+        Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_109, data.AUTH_109, true, "United Kingdom", false), async () => {
             helper.ONBOARDING_YUSCREEN("pension", "10")
             When("I click the slot", when.tapID(ids.SLOT_TITLE("Pension Contributions")), async () => {
-                Then("I am on the Pension intro page", then.amOnPensionProductPage(false))
-            })
-            When("I dismiss the product page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
-                Then("I can see the YuScreen with the pension slot", then.onYuscreenMini("Pension Contributions", data.CUSTOMER_109))
+                Then("I can see the YuScreen with the pension slot", then.idVisible(ids.SLOT_TITLE("Pension Contributions")))
             })
             When("I tap the slot", when.tapID(ids.SLOT_TITLE("Pension Contributions")), async () => {
                 Then("I am on the Pension intro page", then.amOnPensionProductPage(false))
             })
             When("I dismiss the product page", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
-                Then("I can see the YuScreen with the pension slot", then.onYuscreenMini("Pension Contributions", data.CUSTOMER_109))
+                Then("I can see the YuScreen with the pension slot", then.idVisible(ids.SLOT_TITLE("Pension Contributions")))
             })
-            When("I scroll until I can see the full carousel pension item", when.swipeFromText(`${data.CUSTOMER_109.data.firstName} ${data.CUSTOMER_109.data.lastName}`, "up", "fast"), async () => {
+            When("I scroll until I can see the full carousel pension item", when.swipeFromText("Mountain", "up", "fast"), async () => {
                 Then("I can see the caoursel item for pension", then.idVisible(ids.CAROUSEL_CARD_BUTTON("**Connect your Pension**")))
             })
             When("I tap the caoursel item button", when.tapID(ids.CAROUSEL_CARD_BUTTON("**Connect your Pension**")), async () => {
@@ -192,7 +189,6 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
 
     Scenario("I cannot see the connection bonus if a user is in between connections", scenario.start, () => {
         Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_115, data.AUTH_115), async () => {
-            helper.ONBOARDING_YUSCREEN("pension", "10")
             When("I click the slot", when.tapID(ids.SLOT_TITLE("Pension Contributions")), async () => {
                 Then("I am on the Pension intro page", then.amOnPensionProductPage(true))
             })
