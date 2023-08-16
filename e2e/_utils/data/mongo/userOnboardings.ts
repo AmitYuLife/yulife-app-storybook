@@ -1954,11 +1954,12 @@ export const USER_ONBOARDING_109 = {
     userId: user.USER_109.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
+    firstAppOpen: true,
     performedSteps: {
       personalLifeIntro: true,
       newYumojiBuilder: true,
-      firstAppOpen: true,
       yuScreenOnboarding: true,
+      passiveCycling: true
     },
   },
 } as IDatabaseItem;
@@ -1971,10 +1972,11 @@ export const USER_ONBOARDING_110 = {
     userId: user.USER_110.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
+    firstAppOpen: true,
     performedSteps: {
       personalLifeIntro: true,
       newYumojiBuilder: true,
-      firstAppOpen: true,
+      passiveCycling: true
     },
   },
 } as IDatabaseItem;
