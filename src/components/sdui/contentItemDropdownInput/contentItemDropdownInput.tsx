@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { View } from "react-native";
 import { Icon } from "@atoms";
 import { TouchableOpacityWithDelay, TextField, ListPicker } from "@molecules";
@@ -27,10 +27,22 @@ export const ContentItemDropdownInputBase = memo((props: Props) => {
   const { heading, value, errorMessage, options, selectInstruction, onChange } = props;
   const selectedOption = options.find((option) => option.value === value);
 
+  const listOptions = useMemo(
+    () =>
+      options.map((option) => ({
+        ...option,
+        onPress: async () => {
+          option.onPress();
+          await Navigation.dismissOverlay(MODALS.blurredOverlay);
+        },
+      })),
+    [options]
+  );
+
   const onPress = useCallback(async () => {
-    const child = <ListPicker instruction={selectInstruction} items={options} />;
+    const child = <ListPicker instruction={selectInstruction} items={listOptions} />;
     await Navigation.showOverlayWithChild(child);
-  }, [options, selectInstruction]);
+  }, [listOptions, selectInstruction]);
 
   const handleChanged = useCallback(
     (val: string) => {
@@ -73,10 +85,7 @@ export const ContentItemDropdownInput = memo((props: GqlInput) => {
   const options = dropdownOptions.map(({ label, value: val }) => ({
     label,
     value: val,
-    onPress: () => {
-      onChange(val);
-      Navigation.dismissOverlay(MODALS.blurredOverlay);
-    },
+    onPress: () => onChange(val),
   }));
 
   const errorMessage =
