@@ -271,9 +271,10 @@ const updatePersistedState = (persistedState: IUserStore) => {
     newState.sessionCount = 0;
   }
 
-  if (!persistedState.lastName || !persistedState.firstName) {
+  if (!persistedState.lastName || !persistedState.firstName || !persistedState.fullName) {
     newState.firstName = "";
     newState.lastName = "";
+    newState.fullName = "";
   }
 
   if (!persistedState.surgeIntro) {
@@ -400,6 +401,7 @@ const loginUserSuccess = (
         id,
         firstName,
         lastName,
+        fullName,
         dateOfBirth,
         leaderboards = [],
         mobileConsent,
@@ -416,6 +418,7 @@ const loginUserSuccess = (
     id,
     firstName,
     lastName,
+    fullName,
     dateOfBirth,
     connections,
     consent: {
