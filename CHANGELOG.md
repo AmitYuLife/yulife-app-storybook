@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.95.0] - 2023-08-17
+
+### Bugfixes
+
+- Bugfix: Provider logo fixes
+
+### Tasks
+
+- Task ISA-1099: show localised full name on YuScreen
+- Task GS-733: Update challenge tiles with surge and boost
+
+### Chores
+
+- Chore: Close dropdown input overlay when an item is selected
+- Chore: dont call change language always on init
+- Chore: ISA-1102 Call ChangeUserLocale when switching language on settings
+- Chore: a few more locale snags
+- Chore: flex column for link-group
+- Chore: better apollo cache clearing
+- Chore: Sync tolgee script with API version one
+
+### Extra
+
+- Detox: Fixes 16th aug
+- Detox: Fixes 15th aug
+- Detox: Fixes 13th Aug
+- DEVOP-1100: Fix 'detox ios slow' and 'ios iphone-14-pro' SA and USA workflows
+- Detox: Fixes 10th aug
+- Purge ENG-3515: newMediaPlayer toggle, image-button component and unused icons
+
 ## [3.94.0] - 2023-08-09
 
 ### Bugfixes
