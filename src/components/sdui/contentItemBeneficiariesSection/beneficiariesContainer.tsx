@@ -1,4 +1,3 @@
-import * as React from "react";
 import { StyleSheet, View, ViewStyle, TextStyle } from "react-native";
 import { Navigation } from "@navigation/main";
 import { Colours, Style } from "@styles";
@@ -84,7 +83,7 @@ const BeneficiariesDetails = ({ beneficiaries, onPress }: IBeneficiariesDetailsP
             <View style={styles.beneficiary}>
               <View>
                 <TextTemplate type={"b2b"}>
-                  {truncate(`${beneficiary.firstName} ${beneficiary.lastName}`, 25)}
+                  {truncate(`${beneficiary.firstName} ${beneficiary.lastName}`, 25) /* TODO: localise name ordering */}
                 </TextTemplate>
                 <TextTemplate type={"b2"}>{beneficiary.relationship}</TextTemplate>
               </View>

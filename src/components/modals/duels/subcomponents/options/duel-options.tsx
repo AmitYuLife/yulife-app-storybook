@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { View } from "react-native";
 import { Loading, BlurProvider, TextTemplate } from "@atoms";
 import { Button } from "@molecules";
@@ -71,9 +71,7 @@ export default function DuelOptions({
               <TextTemplate type="b1" textAlign="left">
                 {t("modals.duels.duel_options.header_1")}{" "}
                 <TextTemplate type="b1b" textAlign="left">
-                  {opponent?.firstName && opponent?.lastName
-                    ? `${opponent.firstName} ${opponent.lastName}`
-                    : t("modals.duels.duel_options.colleague")}
+                  {opponent?.fullName || t("modals.duels.duel_options.colleague")}
                 </TextTemplate>{" "}
                 {t("modals.duels.duel_options.header_2")}
               </TextTemplate>

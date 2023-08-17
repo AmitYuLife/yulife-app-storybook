@@ -9,6 +9,7 @@ import styles from "./recent-opponents.styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { DUEL_AVATAR } from "@ids";
 import { t } from "@locale";
+import { formatOpponentName } from "@utils/duels";
 
 interface Props {
   inviteToDuel: (opponentId: string, type: "recents") => Promise<void>;
@@ -53,7 +54,7 @@ function _RecentOpponents({ inviteToDuel }: Props) {
                 testID={DUEL_AVATAR(opponent.fullName)}
               >
                 <Text bold={true} style={styles.name}>
-                  {opponent.fullName}
+                  {formatOpponentName(opponent?.fullName)}
                 </Text>
                 <DuelImage size="medium" uri={opponent?.avatar} />
               </TouchableOpacityWithDelay>

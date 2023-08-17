@@ -5,13 +5,13 @@ export const GQL_QUERY_GET_DUELLER_DETAILS = gql`
     getDuellerDetails(opponentId: $opponentId) {
       user {
         firstName
-        lastName
+        fullName
         avatar
         coins
       }
       opponent {
         firstName
-        lastName
+        fullName
         avatar
         coins
       }

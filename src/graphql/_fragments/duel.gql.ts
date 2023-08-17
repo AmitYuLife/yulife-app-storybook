@@ -9,6 +9,7 @@ export const GQL_FRAGMENT_DUEL_OPPONENTS = gql`
     name {
       firstName
       lastName
+      fullName
     }
     avatar
     duelId

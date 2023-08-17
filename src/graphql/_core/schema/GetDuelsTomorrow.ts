@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -10,6 +10,7 @@
 export interface GetDuelsTomorrow_getDuelsTomorrow_opponents_name {
   firstName: string | null;
   lastName: string | null;
+  fullName: string | null;
 }
 
 export interface GetDuelsTomorrow_getDuelsTomorrow_opponents {
