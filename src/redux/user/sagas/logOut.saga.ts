@@ -1,5 +1,4 @@
-import gqlClient from "@graphql/_core/client";
-import { gqlCachePersistor } from "@graphql/_core/persistor";
+import { clearApolloCache } from "@graphql/_core/clearCache";
 import { setUnauthenticatedRoot } from "@navigation/root";
 import Logger from "@services/logging/logger";
 import { clearToken } from "@services/storage/token";
@@ -10,17 +9,8 @@ import { logOutSuccess } from "../user.actions";
 export default function* logOutSaga() {
   yield call(Logger.logEvent, "log_out");
   yield call(setUnauthenticatedRoot);
-  yield call(() => {
-    // can't be awaited because their libs rely on a weird promise lib and it gets stuck
-    gqlClient().stop();
-    gqlClient()
-      .clearStore()
-      .catch((e) => {
-        Logger.error(e, { location: "logout-reset-apollo-store" });
-      });
-  });
+  yield call(clearApolloCache, { shouldStop: true });
   yield call(clearToken);
-  yield call(() => gqlCachePersistor().purge());
   yield call(() => {
     // can't be awaited because their libs rely on a weird promise lib and it gets stuck
     reduxPersistor.purge().catch((e) => {
