@@ -1,4 +1,3 @@
-import React from "react";
 import { View, StyleSheet, ViewStyle, TextStyle, Platform } from "react-native";
 import { Colours, Style } from "@styles";
 import { TertiaryButton, BUTTON_ICON } from "@molecules";
@@ -32,7 +31,7 @@ export const BeneficiaryItem = ({
   showError,
   testID,
 }: IBeneficiaryProps) => {
-  const name = truncate(`${firstName} ${lastName}`, 15);
+  const name = truncate(`${firstName} ${lastName}`, 15); // TODO: localise name ordering
   const relation = truncate(relationship, 15);
 
   const inputFieldWidth = Platform.select({ ios: 35, android: 50 });

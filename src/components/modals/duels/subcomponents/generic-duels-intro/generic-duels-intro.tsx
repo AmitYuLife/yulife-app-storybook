@@ -80,7 +80,7 @@ function GenericDuelsIntro({
           </View>
           <View>
             <TextTemplate type="h3" color={colours.darkGray}>
-              {formatOpponentName(opponent)}
+              {formatOpponentName(opponent?.fullName)}
             </TextTemplate>
           </View>
         </View>

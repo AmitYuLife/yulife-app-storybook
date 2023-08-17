@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from "react";
+import { FC, useCallback } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Style, Colours } from "@styles";
 import { Text } from "@atoms";
@@ -60,7 +60,7 @@ const DuelInvitations: FC = () => {
                     duel.inviteStatus
                   )}
                 >
-                  {formatOpponentName(opponent?.name)}
+                  {formatOpponentName(opponent?.name?.fullName)}
                 </Text>
               </View>
               <View style={styles.yucoinCtaWrapper}>

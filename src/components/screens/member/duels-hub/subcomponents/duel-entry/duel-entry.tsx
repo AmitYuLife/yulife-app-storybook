@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Text } from "@atoms";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { DuelImage } from "../";
@@ -28,7 +28,7 @@ const DuelEntry: FC<IProps> = ({ duel, type, userId, dailySteps }) => {
           bold={true}
           testID={DUEL_ENTRY(opponent.name.firstName, opponent.name.lastName, duel.yucoin, duel.status)}
         >
-          {formatOpponentName(opponent?.name)}
+          {formatOpponentName(opponent?.name?.fullName)}
         </Text>
         <Description duel={duel} type={type} userId={userId} dailySteps={dailySteps} />
       </View>

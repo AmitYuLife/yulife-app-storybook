@@ -9,7 +9,7 @@ import { t } from "@locale";
 
 export interface ValidDuel {
   id: string;
-  name: { firstName?: string; lastName?: string };
+  name: { firstName?: string; lastName?: string; fullName?: string };
   userId?: string;
   startDateTime?: moment.Moment;
   status: string;
