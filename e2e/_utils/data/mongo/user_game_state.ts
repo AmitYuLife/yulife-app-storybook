@@ -1019,3 +1019,16 @@ export const USER_GAME_STATE_115 = {
     }
 } as IDatabaseItem
 
+export const USER_GAME_STATE_116 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_116_GHI_REWARDS.data.customerId,
+        userId: customer.CUSTOMER_116_GHI_REWARDS.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 80
+    }
+} as IDatabaseItem
+
