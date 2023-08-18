@@ -14,7 +14,6 @@ import { updateUserGoal } from "@redux/user/user.actions";
 import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { ArrowButton } from "../arrow-button";
-import LinearGradient from "react-native-linear-gradient";
 
 interface IEventPanelProps {
   event: IEvent;
@@ -81,15 +80,9 @@ const EventPanel = ({ isDisabled, event, componentId, width, onJoin, onLayout }:
         <View style={containerStyles.container}>
           <View style={styles.header}>
             <View style={styles.headerTitle}>
-              <TextTemplate type="b1b" color={dailyStepsScreen.eventPanel.fontColor}>
+              <TextTemplate numberOfLines={1} type="b1b" color={dailyStepsScreen.eventPanel.fontColor}>
                 {event.title}
               </TextTemplate>
-              <LinearGradient
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={styles.headerShadow}
-                colors={["#ffffff00", dailyStepsScreen.eventPanel.backgroundColor]}
-              />
             </View>
             {event.joined ? (
               <ArrowButton color={Colours.neutral.white} intent={isDisabled ? "secondary" : "primary"} />
