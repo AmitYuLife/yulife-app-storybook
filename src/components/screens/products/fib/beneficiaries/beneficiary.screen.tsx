@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect, useCallback } from "react";
+import { memo, useState, useEffect, useCallback } from "react";
 import { View, StyleSheet, ViewStyle, ScrollView, TextStyle, KeyboardAvoidingView, Platform } from "react-native";
 import { Navigation } from "@navigation/main";
 import { GenericHeadingPad, GenericHeadingAbsolute } from "@organisms";
@@ -43,11 +43,15 @@ export const BeneficiaryScreen = memo((props: Props) => {
       return accumulator + currentValue?.shareOfBenefit;
     }, 0) !== MAX_SUM_ALLOCATED_PERCENTAGE;
 
-  const title = localBeneficiaries?.length ? t("screens.products.beneficiary.edit.title") : t("screens.products.beneficiary.add.title");
+  const title = localBeneficiaries?.length
+    ? t("screens.products.beneficiary.edit.title")
+    : t("screens.products.beneficiary.add.title");
   const message = localBeneficiaries?.length
     ? t("screens.products.beneficiary.edit.message")
     : t("screens.products.beneficiary.add.message");
-  const bottomButtonLabel = localBeneficiaries?.length ? t("labels.cta.done") : t("screens.products.beneficiary.labels.skip");
+  const bottomButtonLabel = localBeneficiaries?.length
+    ? t("labels.cta.done")
+    : t("screens.products.beneficiary.labels.skip");
 
   const onBeneficiaryAllocatedAmountChanged = useCallback(
     (beneficiary: Beneficiary, allocatedAmount: number) => {
@@ -130,7 +134,7 @@ export const BeneficiaryScreen = memo((props: Props) => {
           </Text>
           <Text style={styles.description}>{message}</Text>
 
-          {localBeneficiaries.map((beneficiary, index) => {
+          {localBeneficiaries?.map((beneficiary, index) => {
             const isFocused = focusIndex === index;
             const onBeneficiaryPress = () => {
               showAddBeneficiaryModal(productId, beneficiary);
@@ -142,8 +146,7 @@ export const BeneficiaryScreen = memo((props: Props) => {
             return (
               <View key={index}>
                 <BeneficiaryItem
-                  firstName={beneficiary.firstName}
-                  lastName={beneficiary.lastName}
+                  fullName={beneficiary.fullName}
                   relationship={beneficiary.relationship}
                   shareOfBenefit={beneficiary.shareOfBenefit}
                   onBeneficiaryPress={onBeneficiaryPress}

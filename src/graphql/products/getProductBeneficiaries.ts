@@ -8,6 +8,7 @@ export const GQL_QUERY_GET_PRODUCT_BENEFICIARIES = gql`
         id
         firstName
         lastName
+        fullName
         phoneNumber
         relationship
         shareOfBenefit

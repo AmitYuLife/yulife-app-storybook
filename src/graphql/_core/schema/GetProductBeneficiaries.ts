@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -11,6 +11,7 @@ export interface GetProductBeneficiaries_getProductBeneficiaries_beneficiaries {
   id: string;
   firstName: string;
   lastName: string;
+  fullName: string;
   phoneNumber: string | null;
   relationship: string | null;
   shareOfBenefit: number;
