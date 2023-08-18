@@ -285,6 +285,9 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await idVisible(ids.SLOT_TITLE("Pension Contributions"))()
       await textVisible("Great news!")()
       await idVisible(ids.ONBOARDING_SCREEN_MARKDOWN("Earn up to **15 YuCoin** a day for your existing pension contributions."))
+      if (device.name.includes("(iPhone SE (3rd generation))")) {
+        await swipeFromText("Great news!", "up", "fast")();
+      }
       await textVisible("Tell me more")()
       return
     default:

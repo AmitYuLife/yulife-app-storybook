@@ -177,3 +177,11 @@ export const completeYuScreenIntro = async () => {
   await tapText('Check out my power')()
   await tapText("I'll do this later")()
 }
+
+export const scrollToCarouselItem = (text: string, secondText?: string) => async () => {
+  await swipeFromText(text, "up", "fast")()
+  if (device.name.includes("(iPhone SE (3rd generation))")) {
+    await swipeFromText(secondText, "up", "slow")();
+  }
+}
+
