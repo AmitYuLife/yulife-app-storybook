@@ -21,6 +21,16 @@ export default StyleSheet.create({
     justifyContent: "space-between",
     height: 32,
   },
+  headerTitle: {
+    flex: 1,
+  },
+  headerShadow: {
+    top: 0,
+    right: 0,
+    position: "absolute",
+    width: Style.adjust(10),
+    height: Style.adjust(32),
+  },
   challenges: {
     flexDirection: "row",
     marginTop: Style.adjust(8),
