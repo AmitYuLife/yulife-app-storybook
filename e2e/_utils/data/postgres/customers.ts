@@ -1711,3 +1711,16 @@ export const CUSTOMER_115 = {
     status: "onboarded",
   },
 } as IDatabaseItem
+
+export const CUSTOMER_116_GHI_REWARDS = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Jimmy",
+    lastName: "Rewardlover",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem

@@ -1,7 +1,8 @@
 
 import { Carrier, ProductCode, generateProductRecords } from "@yu-life/yulife-bdd-framework";
-import { BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_6, BUSINESS_ACCOUNT_GDent_9, BUSINESS_ACCOUNT_GHI_8 } from "./business";
+import { BUSINESS_ACCOUNT_10_GHI_REWARDS, BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_6, BUSINESS_ACCOUNT_GDent_9, BUSINESS_ACCOUNT_GHI_8 } from "./business";
 import moment from "moment";
+import { GOAL_PRODUCTS_1 } from "../mongo/goal_products";
 
 const format = "YYYY-MM-DDTHH:mm:ssZ";
 
@@ -521,3 +522,95 @@ export const BUSINESS_PRODUCT_12_GDent = generateProductRecords({
     "created_at" : "2023-04-17T16:40:03.214Z"
   }
 })
+
+export const BUSINESS_PRODUCT_13_GHI_REWARDS = generateProductRecords({
+  productCode: ProductCode.groupHealth,
+  carrier: Carrier.Bupa,
+  productId: "YUG1010107",
+  policyName: "BLYTHSWOOD Policy GHI",
+  businessAccountId: BUSINESS_ACCOUNT_10_GHI_REWARDS.data.business_account_id,
+  startDate: "2020-02-02",
+  product: {
+    policy_start_date: "2020-02-02T00:00:00Z",
+    eventStartDate: moment().subtract(1, "d").format("YYYY-MM-DD"),
+    productGoalTag: GOAL_PRODUCTS_1.data.tag, 
+ },
+  quote: {
+    business_quote_id: "GOYT9B8HK4",
+    "external_quote_id" : "1234",
+    "archived" : false,
+    "unit_rate" : null,
+    "provisional_automatic_acceptance_limit" : null,
+    "provisional_yulife_commission" : 0.0200,
+    "yulife_static_cost" : null,
+    "yulife_expense_loading" : null,
+    "provisional_negotiated_additional_commission" : 0.0000,
+    "provisional_broker_commission" : 0.0200,
+    "sum_assured" : null,
+    "number_of_lives" : 99,
+    "annual_premium" : 50000.00,
+    "flex_benefit" : true,
+    "base_earn_rate" : 2,
+    "max_win_win_rebate" : 0.0000,
+    "quote_issued_date" : "2020-02-02T00:00:00Z",
+    "sales_person" : "dfefsdf",
+    "provisional_payment_frequency" : "M",
+    "provisional_data_upload_frequency" : "A",
+    "deal_type" : null,
+    "type_of_trust" : null,
+    "created_by_id" : null,
+    "created_at" : "2020-02-02T00:00:00Z",
+    "modified_by_id" : null,
+    "modified_at" : "2023-04-17T16:40:55.126Z",
+    "technical_guide" : null,
+    "actively_at_work_condition_override" : false,
+    "actively_at_work_condition" : null,
+    "other_event_limits" : null,
+    "overall_event_limit" : null,
+    "sic_code" : null,
+    "previous_insurer" : null,
+    "pricing_model" : null,
+    "previously_insured" : "unknown",
+    "base_rate" : null,
+    "optalitix_id" : null
+  },
+  schedule: {
+    business_quote_id: "GOYT9B8HK3",
+    "external_schedule_id" : null,
+    "pension_scheme_tax_ref" : null,
+    "effective_date" :  "2020-02-02",
+    "anniversary_date" : "2020-02-02",
+    "automatic_acceptance_limit" : null,
+    "policy_tcs_ref" : null,
+    "created_by_id" : null,
+    "created_at" : "2020-02-02T00:00:00Z",
+    "modified_by_id" : null,
+    "modified_at" : "2023-04-17T16:40:55.126Z",
+    "document_key" : null,
+    "payment_frequency" : "M",
+    "data_upload_frequency" : "A",
+    "policy_specific_condition_statements" : null,
+  },
+  period: {
+    number_of_lives: 99,
+    period_start_date: "2020-02-02T00:00:00Z",
+    period_end_date: moment().add(1, "y").format("YYYY-MM-DD"),
+    annual_premium: 200000.0,
+    period_premium: 200000.0,
+  },
+  invoice:{
+    amount: 31780.0,
+    date_issued: moment().subtract(1, "w").format(format)
+  },
+  commissionTerm: {
+    "broker_commission" : 0.0200,
+    "yulife_commission" : 0.0200,
+    "negotiated_additional_commission" : 0.0000,
+    "true_up_date" : "2023-04-17",
+    "effective_from" : "2024-10-16",
+    "modified_by_id" : null,
+    "created_by_id" : null,
+    "modified_at" : "2023-04-17T16:40:03.214Z",
+    "created_at" : "2020-02-02T00:00:00Z"
+  }
+});
