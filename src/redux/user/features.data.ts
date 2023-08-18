@@ -55,7 +55,6 @@ export const features = [
   "enableDebugTool",
   "loggingEnabled",
   "logYuniversity",
-  "newSignUpBonusCopy",
   "showYuniversityMenuLink",
   "retryChallengeResultQuery",
   "showAllLanguages",
