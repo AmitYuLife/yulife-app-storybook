@@ -6,8 +6,7 @@ import { truncate } from "@utils";
 import { BENEFICIARY_SHARE_INPUT } from "@ids";
 
 interface IBeneficiaryProps {
-  firstName: string;
-  lastName: string;
+  fullName: string;
   relationship: string;
   shareOfBenefit: number;
   onBeneficiaryPress: () => void;
@@ -20,8 +19,7 @@ interface IBeneficiaryProps {
 }
 
 export const BeneficiaryItem = ({
-  firstName,
-  lastName,
+  fullName,
   relationship,
   shareOfBenefit,
   onBeneficiaryPress,
@@ -31,7 +29,7 @@ export const BeneficiaryItem = ({
   showError,
   testID,
 }: IBeneficiaryProps) => {
-  const name = truncate(`${firstName} ${lastName}`, 15); // TODO: localise name ordering
+  const name = truncate(fullName, 15);
   const relation = truncate(relationship, 15);
 
   const inputFieldWidth = Platform.select({ ios: 35, android: 50 });

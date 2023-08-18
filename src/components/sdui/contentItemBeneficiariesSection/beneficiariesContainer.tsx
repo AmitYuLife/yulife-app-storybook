@@ -82,9 +82,7 @@ const BeneficiariesDetails = ({ beneficiaries, onPress }: IBeneficiariesDetailsP
           >
             <View style={styles.beneficiary}>
               <View>
-                <TextTemplate type={"b2b"}>
-                  {truncate(`${beneficiary.firstName} ${beneficiary.lastName}`, 25) /* TODO: localise name ordering */}
-                </TextTemplate>
+                <TextTemplate type={"b2b"}>{truncate(beneficiary.fullName, 25)}</TextTemplate>
                 <TextTemplate type={"b2"}>{beneficiary.relationship}</TextTemplate>
               </View>
               <TextTemplate type={"b1b"}>{`${beneficiary.shareOfBenefit}%`}</TextTemplate>

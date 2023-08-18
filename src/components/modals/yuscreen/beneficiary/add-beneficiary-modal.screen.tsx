@@ -40,6 +40,7 @@ export default function AddBeneficiaryModalScreen({
     id: "",
     firstName: "",
     lastName: "",
+    fullName: "",
     phoneNumber: "",
     relationship: "",
     shareOfBenefit: 0,
