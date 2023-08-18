@@ -28,7 +28,6 @@ export const {
 } = screens.challenges
 
 export const onGHIProductPage = ( product: GHI_PAGE_INFO) => async () => {
-  console.log(product)
   const policyName = "Health Insurance";
   const policyDescription =
     "Your workplace health insurance from Bupa to support your mental, physical and financial wellbeing";
