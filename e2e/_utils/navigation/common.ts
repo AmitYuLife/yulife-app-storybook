@@ -417,3 +417,16 @@ export const enrolmentEndsIn = (seed:string) => async () => {
     var minutes = diffDuration.minutes();
     await idVisible(COUNTDOWN_UNIT(minutes+1, 'Mins'))()
   }
+
+  // to be used for debugging only
+  export const tryTapIdMultipleIndexes = (id: string, indexes: number) => async () => {
+    for(let i = 0; i < indexes + 1; i ++){
+        try {
+            await tapIDAtIndex(id, i)()
+            console.log(`Success at index ${i}`)
+            return
+        } catch {
+            console.log(`couldn't find at index ${i}`)
+        }
+    }
+  }
