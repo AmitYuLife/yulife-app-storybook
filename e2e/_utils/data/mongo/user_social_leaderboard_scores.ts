@@ -3,6 +3,7 @@ import moment from "moment";
 import { SUDOKU_ANSWER_67, SUDOKU_ANSWER_68, SUDOKU_ANSWER_71 } from "./game_sudoku_answer";
 import { USER_16, USER_17, USER_18, USER_19, USER_20, USER_21, USER_40, USER_47, USER_50, USER_67, USER_68, USER_71, USER_73 } from "./users";
 import { CUSTOMER_84 } from "../postgres/customers";
+import { SOCIAL_GROUP_LEADERBOARD_1 } from "./social_group_leaderboards";
 
 export const USER_SOCIAL_LEADERBOARD_SCORE_71 = {
     type: "mongo",
@@ -13,7 +14,10 @@ export const USER_SOCIAL_LEADERBOARD_SCORE_71 = {
         difficultyLevel: 1,
         leaderboardConfigId: "SUDOKU_DAILY",
         userId: USER_71.data.userId,
-        value: SUDOKU_ANSWER_71.data.baseTime
+        value: SUDOKU_ANSWER_71.data.baseTime,
+        activeLeaderboards: [
+            SOCIAL_GROUP_LEADERBOARD_1.data._id
+        ]
     }
 } as IDatabaseItem
 
@@ -26,7 +30,10 @@ export const USER_SOCIAL_LEADERBOARD_SCORE_67 = {
         difficultyLevel: 1,
         leaderboardConfigId: "SUDOKU_DAILY",
         userId: USER_67.data.userId,
-        value: SUDOKU_ANSWER_67.data.baseTime
+        value: SUDOKU_ANSWER_67.data.baseTime,
+        activeLeaderboards: [
+            SOCIAL_GROUP_LEADERBOARD_1.data._id
+        ]
     }
 } as IDatabaseItem
 
@@ -39,7 +46,10 @@ export const USER_SOCIAL_LEADERBOARD_SCORE_68 = {
         difficultyLevel: 1,
         leaderboardConfigId: "SUDOKU_DAILY",
         userId: USER_68.data.userId,
-        value: SUDOKU_ANSWER_68.data.baseTime
+        value: SUDOKU_ANSWER_68.data.baseTime,
+        activeLeaderboards: [
+            SOCIAL_GROUP_LEADERBOARD_1.data._id
+        ]
     }
 } as IDatabaseItem
 

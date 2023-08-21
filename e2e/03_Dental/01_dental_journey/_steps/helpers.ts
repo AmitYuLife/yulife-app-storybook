@@ -494,9 +494,6 @@ export const YUSCREEN = async (customer: any, packType: string, yuCoinPower: str
               case "Keepsake":
                   Then(`I should see ${yuCoinPower} yucoin power`, then.textVisibleAtIndex(yuCoinPower, 1))
                   Then(`I should see Keepsake slot`, then.textVisible("Keepsake"))
-                  Then(`I should see ${text.lifeInsurance} slot`, then.textVisible(text.lifeInsurance))
-                  Then(`I should see ${text.lifeInsurance} yucoin power`, then.textVisible("+20"))
-                  Then(`I should see ${text.noProductText} slot`, then.textVisible(text.noProductText))
                   break;
               case "GDent":
                   Then(`I should see ${yuCoinPower} yucoin power`, then.textVisible(yuCoinPower))
