@@ -11,7 +11,8 @@ export const {
   navigateViaID,
   dismissNotificationScreenIfVisible,
   tapIDAtIndex,
-  tapTextAtIndex
+  tapTextAtIndex,
+  tryTapIdMultipleIndexes
 } = navigation.common;
 
 export const {

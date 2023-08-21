@@ -1718,8 +1718,21 @@ export const CUSTOMER_116_GHI_REWARDS = {
   data: {
     customerId: generateRandomMongoId(),
     email: generateRandomInbox(),
-    firstName: "Jimmy",
-    lastName: "Rewardlover",
+    firstName: "Bali",
+    lastName: "Mumba",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+
+export const CUSTOMER_117_GHI_REWARDS = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Ryan",
+    lastName: "Hardie",
     dateOfBirth: moment().subtract(30, "years").toDate(),
     status: "onboarded",
   },
