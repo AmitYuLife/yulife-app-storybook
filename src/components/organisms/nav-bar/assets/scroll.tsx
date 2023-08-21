@@ -8,8 +8,8 @@ import { getIconColour, IIconProps } from "../nav-bar.helpers";
 import { NAV_BAR } from "@ids";
 import styles from "./assets.styles";
 
-export default function Scroll({ isActive, onPressIn, hasNotification, isHighlighted }: IIconProps) {
-  const fill = getIconColour(isActive || isHighlighted);
+export default function Scroll({ isActive, onPressIn, hasNotification, isSuspended }: IIconProps) {
+  const fill = getIconColour(isActive, isSuspended);
   const size = Style.adjust(54);
 
   return (

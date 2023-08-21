@@ -16,7 +16,6 @@ const NavBarContainer = (props: NavBarContainerProps) => {
       activeIndex={props.activeIndex}
       hasNotification={hasQuestNotification}
       labels={props.labels}
-      highlightedLabel={props.highlightedLabel}
       additionalBottom={props.additionalBottom}
       hasYuScreenNotification={hasYuScreenNotification}
     />

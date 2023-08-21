@@ -9,8 +9,7 @@ export interface INavBarColourScheme {
 
 export interface IIconProps {
   isActive: boolean;
-  isPressed: boolean;
-  isHighlighted: boolean;
+  isSuspended: boolean;
   colourScheme?: INavBarColourScheme;
   hasDismiss?: boolean;
   hasHiddenIcons?: boolean;
@@ -21,6 +20,7 @@ export interface IIconProps {
 }
 
 export interface ILabel {
+  id: string;
   name: string;
   onPress: () => void;
 }
@@ -29,13 +29,18 @@ export interface NavBarProps {
   activeIndex: number;
   hasNotification?: boolean;
   labels?: ILabel[];
-  highlightedLabel?: HighlightedLabel;
   additionalBottom?: number;
   hasYuScreenNotification?: boolean;
 }
 
-export type HighlightedLabel = "yucoin" | "quests" | "yu" | "leaderboard" | "rewards";
+export function getIconColour(isActive: boolean, isSuspended?: boolean) {
+  if (isSuspended) {
+    return Colours.neutral.n200;
+  }
 
-export function getIconColour(isActive: boolean) {
-  return isActive ? Colours.darkHotPink : Colours.neutral.n700;
+  if (isActive) {
+    return Colours.darkHotPink;
+  }
+
+  return Colours.neutral.n700;
 }
