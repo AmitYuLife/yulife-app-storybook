@@ -9,7 +9,7 @@ export function* sduiActionSetBottomTabSaga({ payload }: SduiActionWithServerPay
   const { isValid, data } = parseJSON(getServerPayload(payload), ["routeId"]);
 
   if (isValid) {
-    const { routeId } = data;
+    const { routeId, popCurrentStackTo } = data;
 
     const currentTabIndex = TAB_ROUTES.findIndex((item) => item === routeId);
 
@@ -25,6 +25,10 @@ export function* sduiActionSetBottomTabSaga({ payload }: SduiActionWithServerPay
           },
         })
       );
+    }
+
+    if (popCurrentStackTo) {
+      yield call(() => Navigation.popTo(popCurrentStackTo));
     }
   }
 }
