@@ -1,6 +1,6 @@
 sonarcloud-check:
   tags:
-    - dev_v3
+    - linux_amd64
   # Cancel job if newer commit made
   interruptible: true
   image:
