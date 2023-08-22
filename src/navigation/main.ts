@@ -5,6 +5,9 @@ import { Layout, LayoutRoot, Navigation as NativeNavigation, Options } from "rea
 import { MODALS, ROUTES } from "./constants";
 
 export class Navigation {
+  /** Makes the specified routes(tabs) as inaccessible */
+  public static SUSPENDED_NAV_BAR_ROUTES: Set<string> = new Set([]);
+
   public static setAppLoading = async (loadingText?: string) => {
     await Navigation.setRoot({
       root: {
@@ -39,7 +42,17 @@ export class Navigation {
     NativeNavigation.registerComponent(componentName, componentProvider, concreteComponentProvider);
   };
 
+  public static setBlackListedNavBarRoutes = (componentIds: string[]) => {
+    Navigation.SUSPENDED_NAV_BAR_ROUTES = new Set(componentIds);
+  };
+
+  public static isNavBarRouteSuspended = (componentId: string) => this.SUSPENDED_NAV_BAR_ROUTES.has(componentId);
+
   public static mergeOptions = async (componentId: string, options: Options) => {
+    if (Navigation.isNavBarRouteSuspended(componentId)) {
+      return;
+    }
+
     return NativeNavigation.mergeOptions(componentId, options);
   };
 

@@ -8,8 +8,8 @@ import Svg, { G, Path } from "react-native-svg";
 import { getIconColour, IIconProps } from "../nav-bar.helpers";
 import styles from "./assets.styles";
 
-export default function Girrafe({ isActive, onPressIn, onPressOut, isHighlighted }: IIconProps) {
-  const fill = getIconColour(isActive || isHighlighted);
+export default function Girrafe({ isActive, onPressIn, onPressOut, isSuspended }: IIconProps) {
+  const fill = getIconColour(isActive, isSuspended);
   const size = Style.adjust(54);
 
   return (
