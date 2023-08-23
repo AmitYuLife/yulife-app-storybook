@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -812,6 +812,16 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCa
   value: string;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_titleWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_subtitleWrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard {
   __typename: "ContentItemBoxOptionCard";
   id: string;
@@ -821,6 +831,32 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCa
   image: GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_image | null;
   onPress: GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_onPress | null;
   styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_styles[] | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  innerHeight: number | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  subtitle: string | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  subtitleTextType: string | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  titleWrapperStyles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_titleWrapperStyles[] | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  subtitleWrapperStyles:
+    | GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_subtitleWrapperStyles[]
+    | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  descriptionNumberOfLines: number | null;
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemSwitch_styles {
@@ -1741,6 +1777,16 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBo
   value: string;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_titleWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_subtitleWrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard {
   __typename: "ContentItemBoxOptionCard";
   id: string;
@@ -1750,6 +1796,34 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBo
   image: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_image | null;
   onPress: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_onPress | null;
   styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_styles[] | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  innerHeight: number | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  subtitle: string | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  subtitleTextType: string | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  titleWrapperStyles:
+    | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_titleWrapperStyles[]
+    | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  subtitleWrapperStyles:
+    | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_subtitleWrapperStyles[]
+    | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  descriptionNumberOfLines: number | null;
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSwitch_styles {

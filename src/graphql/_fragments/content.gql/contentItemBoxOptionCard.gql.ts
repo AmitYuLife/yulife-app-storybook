@@ -20,5 +20,15 @@ export const GQL_FRAGMENT_CONTENT_ITEM_BOX_OPTION_CARD = gql`
     styles {
       ...SduiStyle
     }
+    innerHeight
+    subtitle
+    subtitleTextType
+    titleWrapperStyles {
+      ...SduiStyle
+    }
+    subtitleWrapperStyles {
+      ...SduiStyle
+    }
+    descriptionNumberOfLines
   }
 `;

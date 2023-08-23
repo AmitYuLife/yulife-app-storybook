@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import { useDispatch } from "react-redux";
 import { Image, TextTemplate } from "@atoms";
 import { default as BoxOption } from "../box-option/box-option";
@@ -16,6 +16,11 @@ interface Props {
   onPress: SduiAction;
   descriptionTextType?: ComponentProps<typeof TextTemplate>["type"];
   innerHeight?: number;
+  subtitle?: string;
+  subtitleTextType?: ComponentProps<typeof TextTemplate>["type"];
+  titleWrapperStyles?: ViewStyle;
+  subtitleWrapperStyles?: ViewStyle;
+  descriptionNumberOfLines?: number;
 }
 
 export const BoxOptionCard = ({
@@ -25,6 +30,11 @@ export const BoxOptionCard = ({
   descriptionTextType = "b2",
   image,
   onPress,
+  subtitle,
+  subtitleTextType = "l2b",
+  titleWrapperStyles = {},
+  subtitleWrapperStyles = {},
+  descriptionNumberOfLines,
 }: Props) => {
   const dispatch = useDispatch();
   const [adjustedInnerHeight, setAdjustedInnerHeight] = useState(innerHeight);
@@ -61,11 +71,23 @@ export const BoxOptionCard = ({
         <View onLayout={handleLayout} ref={contentWrapperRef} style={styles.contentWrapper}>
           <View style={styles.contentInnerWrapper} testID={BOX_OPTION_DESCRIPTION(description)}>
             {!title ? null : (
-              <View style={styles.titleWrapper} testID={BOX_OPTION_TITLE(title)}>
+              <View
+                style={StyleSheet.flatten([styles.titleWrapper, titleWrapperStyles])}
+                testID={BOX_OPTION_TITLE(title)}
+              >
                 <Title>{title}</Title>
               </View>
             )}
-            {!description ? null : <TextTemplate type={descriptionTextType}>{description}</TextTemplate>}
+            {!subtitle ? null : (
+              <View style={StyleSheet.flatten([styles.subtitleWrapper, subtitleWrapperStyles])}>
+                <TextTemplate type={subtitleTextType}>{subtitle}</TextTemplate>
+              </View>
+            )}
+            {!description ? null : (
+              <TextTemplate numberOfLines={descriptionNumberOfLines} type={descriptionTextType}>
+                {description}
+              </TextTemplate>
+            )}
           </View>
         </View>
         {!onPress ? null : (
@@ -102,6 +124,9 @@ const styles = StyleSheet.create({
   },
   titleWrapper: {
     marginBottom: Style.adjust(8),
+  },
+  subtitleWrapper: {
+    marginBottom: Style.adjust(4),
   },
   arrowWrapper: {
     alignSelf: "center",

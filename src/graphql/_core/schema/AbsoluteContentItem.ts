@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -804,6 +804,16 @@ export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_styles {
   value: string;
 }
 
+export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_titleWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_subtitleWrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface AbsoluteContentItem_item_ContentItemBoxOptionCard {
   __typename: "ContentItemBoxOptionCard";
   id: string;
@@ -813,6 +823,30 @@ export interface AbsoluteContentItem_item_ContentItemBoxOptionCard {
   image: AbsoluteContentItem_item_ContentItemBoxOptionCard_image | null;
   onPress: AbsoluteContentItem_item_ContentItemBoxOptionCard_onPress | null;
   styles: AbsoluteContentItem_item_ContentItemBoxOptionCard_styles[] | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  innerHeight: number | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  subtitle: string | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  subtitleTextType: string | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  titleWrapperStyles: AbsoluteContentItem_item_ContentItemBoxOptionCard_titleWrapperStyles[] | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  subtitleWrapperStyles: AbsoluteContentItem_item_ContentItemBoxOptionCard_subtitleWrapperStyles[] | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  descriptionNumberOfLines: number | null;
 }
 
 export interface AbsoluteContentItem_item_ContentItemSwitch_styles {

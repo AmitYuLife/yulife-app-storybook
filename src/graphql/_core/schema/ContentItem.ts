@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -804,6 +804,16 @@ export interface ContentItem_ContentItemBoxOptionCard_styles {
   value: string;
 }
 
+export interface ContentItem_ContentItemBoxOptionCard_titleWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemBoxOptionCard_subtitleWrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItem_ContentItemBoxOptionCard {
   __typename: "ContentItemBoxOptionCard";
   id: string;
@@ -813,6 +823,30 @@ export interface ContentItem_ContentItemBoxOptionCard {
   image: ContentItem_ContentItemBoxOptionCard_image | null;
   onPress: ContentItem_ContentItemBoxOptionCard_onPress | null;
   styles: ContentItem_ContentItemBoxOptionCard_styles[] | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  innerHeight: number | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  subtitle: string | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  subtitleTextType: string | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  titleWrapperStyles: ContentItem_ContentItemBoxOptionCard_titleWrapperStyles[] | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  subtitleWrapperStyles: ContentItem_ContentItemBoxOptionCard_subtitleWrapperStyles[] | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  descriptionNumberOfLines: number | null;
 }
 
 export interface ContentItem_ContentItemSwitch_styles {
