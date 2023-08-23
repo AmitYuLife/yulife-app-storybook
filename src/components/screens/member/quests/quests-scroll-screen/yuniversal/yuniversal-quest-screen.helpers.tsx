@@ -13,7 +13,6 @@ import { ILevelBubbleProps } from "./level/level-bubble";
 import { showYuModal } from "@navigation/root";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
-import { IFeature } from "@redux/user/user.reducer";
 
 type LevelButtonState =
   | "Completed"
@@ -139,8 +138,7 @@ const getLevelProps = (
   currentLevel: number,
   avatar: { uri: string },
   submitUnity: (levelId: string) => void,
-  isLast: boolean,
-  features: IFeature
+  isLast: boolean
 ): ILevelProps => {
   const levelButtonState = getLevelButtonState(challengesStatus, yuniversalLevel, level.level, isLast);
 
@@ -166,7 +164,7 @@ const getLevelProps = (
         ...commonProps,
         ...slotColours.done,
         isActive: false,
-        onPress: () => showLevelCompleteModal(componentId, level.level, yuniversalMap, levelSlot.name, features),
+        onPress: () => showLevelCompleteModal(componentId, level.level, yuniversalMap, levelSlot.name),
       };
     case "Available":
       return {
@@ -255,8 +253,7 @@ export const getLevelsProps = (
   nextLevelAvailableAt: string,
   currentLevel: number,
   avatar: { uri: string },
-  submitUnity: (levelId: string) => void,
-  features: IFeature
+  submitUnity: (levelId: string) => void
 ): ILevelProps[] =>
   levelList.reduce((acc, level, index) => {
     const levelProps = getLevelProps(
@@ -269,8 +266,7 @@ export const getLevelsProps = (
       currentLevel,
       avatar,
       submitUnity,
-      index === levelList.length - 1,
-      features
+      index === levelList.length - 1
     );
     if (levelProps) {
       acc.push(levelProps);

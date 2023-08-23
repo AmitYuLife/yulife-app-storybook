@@ -49,11 +49,6 @@ export interface IThemeScreens {
     textStyle: { color: string };
     lineColour: string;
   };
-  challengeHistoryScreen: {
-    backgroundImage: ImageSourcePropType;
-    style: ImageStyle;
-    topBarType: TopBarTypes;
-  };
   offlineScreen: IScreen & { textColour: string };
   questsOfflineScreen: {
     backgroundImage: ImageSourcePropType;

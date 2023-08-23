@@ -3,7 +3,6 @@ import { Navigation } from "@navigation/main";
 import { ROUTES, bottomTabs, MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { t } from "@locale";
-import { IFeature } from "@redux/user/user.reducer";
 
 const dismissChestModal = () => Navigation.dismissModal(MODALS.chest);
 
@@ -102,13 +101,12 @@ export const showLevelCompleteModal = (
   componentId: string,
   level: number,
   yuniversalMap?: number,
-  levelName?: string,
-  features?: IFeature
+  levelName?: string
 ) =>
   Navigation.push(componentId, {
     component: {
-      id: features.newChallengeHistory ? ROUTES.challengesHistoryNew : ROUTES.questsChallengesHistory,
-      name: features.newChallengeHistory ? ROUTES.challengesHistoryNew : ROUTES.questsChallengesHistory,
+      id: ROUTES.challengesHistoryNew,
+      name: ROUTES.challengesHistoryNew,
       passProps: {
         level,
         yuniversalMap,
