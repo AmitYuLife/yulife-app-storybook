@@ -38,7 +38,6 @@ export { default as ChallengeSuccessScreen } from "./member/challenges/challenge
 export { default as ChallengeUnavailableScreen } from "./member/challenges/challenge-unavailable/challenge-unavailable.screen";
 export { default as ChallengeDetailsScreen } from "./member/challenges/challenge-details/challenge-details.screen";
 export { default as ChallengesListScreen } from "./member/challenges/challenges-list/challenges-list.screen";
-export { default as ChallengesHistoryScreen } from "./member/challenges/challenges-history/challenges-history.screen";
 export { default as ChallengeExitScreen } from "./member/challenges/challenge-exit/challenge-exit.screen";
 export { default as LevelLockedScreen } from "./member/challenges/level-locked/level-locked.screen";
 

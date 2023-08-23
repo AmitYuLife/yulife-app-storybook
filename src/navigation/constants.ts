@@ -86,7 +86,6 @@ export const ROUTES = {
 
   // quests
   questsChallengesList: "yulife.quests.ChallengesList",
-  questsChallengesHistory: "yulife.quests.ChallengesHistory",
 
   // rewards screens
   rewardDetailsSdui: "yulife.rewards.rewardDetailsSdui",

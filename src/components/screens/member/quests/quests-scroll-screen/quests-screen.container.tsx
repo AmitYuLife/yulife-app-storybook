@@ -26,7 +26,6 @@ import { QuestsMapContext } from "./quests.context";
 import { GQL_QUERY_GET_GAME_WEEKLIES } from "@graphql/weeklies";
 import { useQueryOnScreenSeen } from "@hooks";
 import { ROUTES } from "@navigation/constants";
-import { getUserFeatures } from "@redux/user/user.selectors";
 
 function isAvailable(nextAvailableAt: string): boolean {
   const nextAvailable = nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
@@ -103,7 +102,6 @@ function QuestsScreenContainer(props: Props) {
 
   const dispatch = useDispatch();
   const challengesStatus = useSelector(getChallengesStatus);
-  const features = useSelector(getUserFeatures);
   const nextLevelAvailableAt = useSelector(getNextLevelAvailableAt);
   const currentLevel = useSelector(getCurrentLevel);
   const { yuniversalMap, yuniversalLevel } = useSelector(getYuniversalProgress);
@@ -151,7 +149,7 @@ function QuestsScreenContainer(props: Props) {
                 goToChallengesList(componentId, itemLevel.level);
                 break;
               case "ShowLevelCompleteModal":
-                showLevelCompleteModal(componentId, itemLevel.level, undefined, undefined, features);
+                showLevelCompleteModal(componentId, itemLevel.level, undefined, undefined);
                 break;
               case "DispatchSubmitUnityAction":
                 setUnity(itemLevel.level);
@@ -192,7 +190,6 @@ function QuestsScreenContainer(props: Props) {
           yuniversalMap={yuniversalMap}
           levelList={levelsList}
           onLeftMenuPress={onLeftMenuPress}
-          features={features}
         />
       ) : (
         <QuestsScreen

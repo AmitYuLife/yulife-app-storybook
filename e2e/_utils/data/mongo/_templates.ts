@@ -58,7 +58,6 @@ export const allTogglesTrue = {
       showDuels: true,
       showCommunityGoals: true,
       rewardRedemptionDisabled: false,
-      newChallengeHistory: true
     },
   },
 } as IDatabaseItem;
@@ -278,7 +277,6 @@ export const DEFAULT_TOGGLES = {
       rewardRedemptionDisabled: false,
       showNotificationCentre: true,
       newMediaPlayer: true,
-      newChallengeHistory: true
     },
   },
 } as IDatabaseItem;

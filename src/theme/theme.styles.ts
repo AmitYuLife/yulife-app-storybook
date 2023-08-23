@@ -74,15 +74,6 @@ export const yuniversalStyles: IThemeScreens = {
     textStyle: { color: Colours.neutral.white },
     lineColour: Colours.neutral.white,
   },
-  challengeHistoryScreen: {
-    backgroundImage: require("@assets/yuniversal/yuniversal_1.png"),
-    style: {
-      ...fullImageStyle,
-      height: "100%",
-      backgroundColor: "rgb(61, 1, 57)",
-    },
-    topBarType: "white",
-  },
   offlineScreen: {
     isFullScreen: false,
     isLottie: false,
@@ -165,15 +156,6 @@ export const planetStyles: ITheme = {
         textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
       },
-      challengeHistoryScreen: {
-        backgroundImage: require("@assets/daily-screen/planets/earth/forest.png"),
-        style: {
-          ...fullImageStyle,
-          height: Style.adjust(344),
-          backgroundColor: "rgb(255, 252, 216)",
-        },
-        topBarType: "default",
-      },
       offlineScreen: {
         isFullScreen: false,
         isLottie: false,
@@ -248,14 +230,6 @@ export const planetStyles: ITheme = {
         },
         textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
-      },
-      challengeHistoryScreen: {
-        backgroundImage: require("@assets/daily-screen/planets/earth/ocean.png"),
-        style: {
-          ...commonStyles,
-          backgroundColor: "rgb(1,62,116)",
-        },
-        topBarType: "white",
       },
       offlineScreen: {
         isFullScreen: false,
@@ -334,14 +308,6 @@ export const planetStyles: ITheme = {
         textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
       },
-      challengeHistoryScreen: {
-        backgroundImage: require("@assets/daily-screen/planets/earth/desert.png"),
-        style: {
-          ...commonStyles,
-          backgroundColor: "rgb(255,249,225)",
-        },
-        topBarType: "desert",
-      },
       offlineScreen: {
         isFullScreen: false,
         isLottie: false,
@@ -418,14 +384,6 @@ export const planetStyles: ITheme = {
         textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
       },
-      challengeHistoryScreen: {
-        backgroundImage: require("@assets/daily-screen/planets/earth/mountain.png"),
-        style: {
-          ...commonStyles,
-          backgroundColor: "rgb(248, 212, 219)",
-        },
-        topBarType: "mountain",
-      },
       offlineScreen: {
         isFullScreen: false,
         isLottie: false,
@@ -499,14 +457,6 @@ export const planetStyles: ITheme = {
         textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
       },
-      challengeHistoryScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/red/forest.png"),
-        style: {
-          ...fullImageStyle,
-          backgroundColor: "#FFE8E8",
-        },
-        topBarType: "default",
-      },
       offlineScreen: {
         isFullScreen: false,
         isLottie: false,
@@ -579,14 +529,6 @@ export const planetStyles: ITheme = {
         },
         textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
-      },
-      challengeHistoryScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/red/ocean.png"),
-        style: {
-          ...fullImageStyle,
-          backgroundColor: "#35DBFF",
-        },
-        topBarType: "white",
       },
       offlineScreen: {
         isFullScreen: false,
@@ -663,14 +605,6 @@ export const planetStyles: ITheme = {
         textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
       },
-      challengeHistoryScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/red/desert.png"),
-        style: {
-          ...fullImageStyle,
-          backgroundColor: "#FFE2C8",
-        },
-        topBarType: "desert",
-      },
       offlineScreen: {
         isFullScreen: false,
         isLottie: false,
@@ -745,14 +679,6 @@ export const planetStyles: ITheme = {
         textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
       },
-      challengeHistoryScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/red/mountain.png"),
-        style: {
-          ...fullImageStyle,
-          backgroundColor: "#FFE2E6",
-        },
-        topBarType: "mountain",
-      },
       offlineScreen: {
         isFullScreen: false,
         isLottie: false,
@@ -826,14 +752,6 @@ export const planetStyles: ITheme = {
         textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
       },
-      challengeHistoryScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/bright/forest.png"),
-        style: {
-          ...fullImageStyle,
-          backgroundColor: "#FFE8E8",
-        },
-        topBarType: "default",
-      },
       offlineScreen: {
         isFullScreen: false,
         isLottie: false,
@@ -906,14 +824,6 @@ export const planetStyles: ITheme = {
         },
         textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
-      },
-      challengeHistoryScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/bright/ocean.png"),
-        style: {
-          ...fullImageStyle,
-          backgroundColor: "#35DBFF",
-        },
-        topBarType: "white",
       },
       offlineScreen: {
         isFullScreen: false,
@@ -990,14 +900,6 @@ export const planetStyles: ITheme = {
         textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
       },
-      challengeHistoryScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/bright/desert.png"),
-        style: {
-          ...fullImageStyle,
-          backgroundColor: "#FFE2C8",
-        },
-        topBarType: "desert",
-      },
       offlineScreen: {
         isFullScreen: false,
         isLottie: false,
@@ -1071,14 +973,6 @@ export const planetStyles: ITheme = {
         },
         textStyle: { color: "#333333" },
         lineColour: Colours.neutral.n800,
-      },
-      challengeHistoryScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/bright/mountain.png"),
-        style: {
-          ...fullImageStyle,
-          backgroundColor: "#D6FFFF",
-        },
-        topBarType: "mountain",
       },
       offlineScreen: {
         isFullScreen: false,
