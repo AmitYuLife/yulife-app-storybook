@@ -85,6 +85,7 @@ export const USER_GAME_STATE_8 = {
         activeStreakId: "YU_STREAK_001",
         currentBalance: 320,
         currentLevel: 3,
+        currentStreak: 0,
         nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
     }
 } as IDatabaseItem

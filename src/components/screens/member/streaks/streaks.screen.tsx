@@ -60,16 +60,16 @@ const StreaksScreen = ({
     () =>
       isStreakCompleted
         ? t("screens.streak.accessibility.streak_completed", {
-          header: streakInfo?.header,
-          ribbonLabel,
-          time: accessibilityTimeRemaining,
-        })
+            header: streakInfo?.header,
+            ribbonLabel,
+            time: accessibilityTimeRemaining,
+          })
         : t("screens.streak.accessibility.streak_start", {
-          header: streakInfo?.header,
-          subHeader: streakInfo?.subHeader,
-          streakCompleted,
-          streakMax,
-        }),
+            header: streakInfo?.header,
+            subHeader: streakInfo?.subHeader,
+            streakCompleted,
+            streakMax,
+          }),
     [
       isStreakCompleted,
       streakInfo?.header,
@@ -111,7 +111,11 @@ const StreaksScreen = ({
             label={primaryButtonLabel}
           />
           {!onPressCtaSecondary || isNotValidTime ? null : (
-            <LinkButton wrapperStyle={styles.buttonSecondaryWrapper} onPress={onPressCtaSecondary} label={t("labels.cta.later")} />
+            <LinkButton
+              wrapperStyle={styles.buttonSecondaryWrapper}
+              onPress={onPressCtaSecondary}
+              label={t("labels.cta.later")}
+            />
           )}
         </View>
       </View>
