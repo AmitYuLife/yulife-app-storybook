@@ -213,29 +213,11 @@ export const meditationChallengeDataCorrect = (stage: number, yucoinEarned: numb
     await textVisible(`${mins} minutes`)()
 }
 
-export const challengeStarsCorrect = (starCount: number, challengeType: string,) => async () => {
-    for (let i = 0; i < starCount; i += 1) {
-        await expect(element(by.id(ids.CHALLENGE_HISTORY_STARS(i, challengeType)))).toBeVisible()
-    }
-}
-
-export const allChallengesAndYuCoinsAwardedVisible = async () => {
-    await textVisible("short stroll")()
-    await textVisibleAtIndex("0 mins", 0)()
-    await textVisible("10 yucoin")()
-    await challengeStarsCorrect(3, "short stroll")()
-    await textVisible("brisk walk")()
-    await textVisibleAtIndex("0 mins", 1)()
-    await textVisibleAtIndex("50 yucoin", 0)()
-    await challengeStarsCorrect(3, "brisk walk")()
-    await textVisible("long walk")()
-    await textVisibleAtIndex("0 mins", 2)()
-    await textVisibleAtIndex("60 yucoin", 0)()
-    await challengeStarsCorrect(3, "long walk")()
-    await textVisible("meditation")()
-    await textVisible("10 mins")()
-    await textVisibleAtIndex("60 yucoin", 1)()
-    await challengeStarsCorrect(3, "meditation")()
+export const challengesAndYuCoinsAwardedVisible = async () => {
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("short stroll", "10", 3))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("brisk walk", "50", 3))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("long walk", "60", 3))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("meditation", "60", 3))()
 }
 
 export const canSeeYesterdaysSteps = () => async () => {
