@@ -709,3 +709,12 @@ export const USER_PROFILE_117 = {
         ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
+
+export const USER_PROFILE_1178 = {
+    ...MODEL_DEFAULTS,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customers.CUSTOMER_118_GHI_REWARDS.data.customerId,
+        ...RECORD_DEFAULTS,
+    },
+} as IDatabaseItem;

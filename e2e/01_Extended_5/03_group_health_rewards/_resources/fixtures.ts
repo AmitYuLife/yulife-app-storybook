@@ -23,6 +23,15 @@ export const URBAN_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
     ]
 }
 
+export const THRIVA_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
+  topImageUrl: "https://yulife-develop.imgix.net/reward/teaser/thriva-2023-07-24.png?ixlib=js-3.2.1&fm=png&w=555&s=2ad8f3ff6c9b55819d4e5d477b68a135",
+  headerText: "Complete Daily Quests to Unlock Health Insights With Thriva",
+  description: [
+      "Enjoy Thriva’s at-home blood test kit for free.",
+      "Gain health insights through Thriva’s bespoke blood test journey; Take their at-home test to discover multiple facets of your body’s current health status and receive GP advice from an NHS registered doctor."
+  ]
+}
+
 export const BOOTS_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = {
     heading: "Boots",
     companyDescription: [
@@ -93,7 +102,7 @@ export const URBAN_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = 
     heading: "Urban",
     companyDescription: [
       "If you’ve ever wanted all your massage, beauty, osteopathy, physiotherapy, and pregnancy wellness needs to be met in a day, Urban massage can deliver! (Bet that’ll be a really relaxing day.)",
-      "Urban Massage works with qualified mobile therapists of these respective disciplines, to deliver safe home treatment. If you ever have a bad day, Urban Massage Therapist to the rescue.i"
+      "Urban Massage works with qualified mobile therapists of these respective disciplines, to deliver safe home treatment. If you ever have a bad day, Urban Massage Therapist to the rescue."
     ],
     rewardStepsAmount: 7,
     rewardSteps: [
@@ -113,6 +122,42 @@ export const URBAN_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = 
         " of your vouchers by "
     ],
     voucherExpiryYears: 1
+}
 
-
+export const THRIVA_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = {
+  heading: "Thriva",
+  companyDescription: [
+    "We know. A blood test can sound scary; but let’s be positive — it’s only a little finger prick. What you get in return are insights about your health that can help you make decisions for your future wellbeing. After all, prevention is a whole lot better than cure.",
+  ],
+  rewardDescription: [
+    "Congratulations! You’ve unlocked a take-home blood test kit from Thriva worth £73.",
+    "Of course, it doesn’t just stop there (that’d be silly). In return for your blood sample, you’ll get a GP report back.",
+    "You’ll be able to access these documents through your Thriva account — which will be made on your behalf after filling in some details with us. (We’re making it as hassle free as possible, you’re welcome!)",
+  ],
+  secondaryHeader: "What Will You Be Tested For?",
+  secondaryDescription: [
+    "Ferritin C - understand your iron levels, which can affect your energy, sleep, or heart health.",
+    "Cholesterol - understand your heart health through this essential fat.",
+    "Liver profile - understand your liver health as an indicator for long-term health.",
+    "Creatinine and eGFR - understand your kidney function, another indicator for long-term health.",
+    "HbA1c - understand your diabetes risk with your average blood glucose levels."
+  ],
+  rewardStepsAmount: 7,
+  rewardSteps: [
+    "Claim your reward!",
+    "Fill in your details to get your Thriva account set up, and your test will be shipped to your desired address.",
+    "Check your email, we’ve sent you a link to Thriva’s website.",
+    "Create your Thriva account.",
+    "Your test kit will arrive in 3 – 5 days!",
+    "After you’ve posted the blood sample, the GP report will be accessible on your Thriva account after 10 working days.",
+    "Enjoy your health insights!"
+  ],
+  buttonText: "Claim my kit",
+  vouchers: true,
+  voucherDescription: "Insights on your health await! ",
+  voucherClaimMessage: [
+      "Make sure you claim ",
+      " of your vouchers by "
+  ],
+  voucherExpiryYears: 1
 }
