@@ -199,3 +199,101 @@ export const CRUR_2_THRIVA = {
         "__v": 0
     },
 } as IDatabaseItem;
+
+export const CRUR_3_BOOTS = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_118.data.userId,
+        "rewardId": rewards.CORE_REWARDS_BOOTS_GHI_REWARDS.data._id, 
+        "state": "tease",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_3_YORK = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_118.data.userId,
+        "rewardId": rewards.CORE_REWARDS_YORK_GHI_REWARDS.data._id, 
+        "state": "tease",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_3_URBAN = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_118.data.userId,
+        "rewardId": rewards.CORE_REWARDS_URBAN_GHI_REWARDS.data._id, 
+        "state": "tease",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_3_BUPA = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_118.data.userId,
+        "rewardId": rewards.CORE_REWARDS_BUPA_GHI_REWARDS.data._id, 
+        "state": "tease",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_3_LIVING_DNA = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_118.data.userId,
+        "rewardId": rewards.CORE_REWARDS_LIVING_DNA_GHI_REWARDS.data._id, 
+        "state": "tease",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_3_GARMIN = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_118.data.userId,
+        "rewardId": rewards.CORE_REWARDS_GARMIN_GHI_REWARDS.data._id, 
+        "state": "tease",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_3_THRIVA = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_118.data.userId,
+        "rewardId": rewards.CORE_REWARDS_THRIVA_GHI_REWARDS.data._id, 
+        "state": "tease",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;

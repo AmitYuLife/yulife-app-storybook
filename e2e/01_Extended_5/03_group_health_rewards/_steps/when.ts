@@ -1,6 +1,9 @@
 import { navigation } from "@navigation";
 import { screens } from "@appScreens"
+import moment from "moment";
 export { authoriseFitkit, sendSteps } from "@socket";
+import * as ids from "@ids"
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 
 export const {
   tapText,
@@ -12,7 +15,10 @@ export const {
   dismissNotificationScreenIfVisible,
   tapIDAtIndex,
   tapTextAtIndex,
-  tryTapIdMultipleIndexes
+  tryTapIdMultipleIndexes,
+  typeViaID,
+  clearFieldByID,
+  navigateViaText
 } = navigation.common;
 
 export const {
@@ -32,3 +38,20 @@ export const {
 export const {
   startChallenge,
 } = screens.challenges
+
+export const chooseCorrectDoB = (age: number) => async () => {
+  const format = "YYYY-MMMM-DD";
+  const date = moment().subtract(age, "years").format(format);
+
+  await navigateViaID(ids.DATE_INPUT);
+  await expect(element(by.id(ids.DATE_PICKER))).toBeVisible();
+  await element(by.id(ids.DATE_PICKER)).setDatePickerDate(date, format);
+
+  await navigateViaText("Confirm");
+
+};
+
+export const enterRandomisedEmail = async () => {
+  const emailFront = generateRandomMongoId()
+  await typeViaID(ids.CONTENT_ITEM_INPUT("email"), `${emailFront.toString()}@fakeemail.com`)()
+}

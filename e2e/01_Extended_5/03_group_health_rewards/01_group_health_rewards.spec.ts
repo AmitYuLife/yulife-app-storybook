@@ -26,8 +26,16 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(4))
         })
         When("I click to see the next reward I want to unlock", when.tapTextAtIndex(constants.groupHealthRewardProgressNames[0], 1), async () => {
-            Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-            Then("I should see the correct information for the Boots reward tease", then.onRewardsTeasePage(fixtures.BOOTS_YORK_GHI_REWARDS_TEASE_PAGE_DETAILS))
+            When("I tap on the Boots reward", when.tapRewardInList(data.CORE_REWARDS_BOOTS_GHI_REWARDS), async () => {
+                Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
+                Then("I should see the correct information for the Boots reward tease", then.onRewardsTeasePage(fixtures.BOOTS_YORK_GHI_REWARDS_TEASE_PAGE_DETAILS))
+            })
+        })
+        When("I go back to the rewards screen", when.tryTapIdMultipleIndexes(ids.BUTTON_CLOSE, 3), async () => {
+            When("I tap on the YorkTest reward", when.tapRewardInList(data.CORE_REWARDS_YORK_GHI_REWARDS), async () => {
+                Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
+                Then("I should see the correct information for the York reward tease", then.onRewardsTeasePage(fixtures.BOOTS_YORK_GHI_REWARDS_TEASE_PAGE_DETAILS))
+            })
         })
         When("I tap the CTA button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
             Then("I should see level 80", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(80)))
@@ -46,13 +54,9 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
             When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
-                When("I tap to close the tease screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
-                    When("I tap to close the rewards screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
-                        When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
-                            When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down"), async () => {
-                                Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("1/6"))
-                            })
-                        })
+                When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+                    When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down"), async () => {
+                        Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("1/6"))
                     })
                 })
             })
@@ -63,13 +67,13 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I click to see the next reward I want to unlock", when.tapTextAtIndex(constants.groupHealthRewardProgressNames[0], 1), async () => {
             When("I tap on the YorkTest reward", when.tapRewardInList(data.CORE_REWARDS_YORK_GHI_REWARDS), async () => {
                 Then("I should be on the rewards page for YorkTest", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-                Then("I should see all the reward information for YorkTest", then.onRewardsClaimPage(fixtures.YORK_REWARDS_CLAIM_PAGE_DETAILS, true))
+                Then("I should see all the reward information for YorkTest", then.onBootsAndYorkRewardsClaimPage(fixtures.YORK_REWARDS_CLAIM_PAGE_DETAILS, true))
             })
         })
         When("I go back to the rewards screen", when.tapID(ids.BACK_BUTTON), async () => {
             When("I tap on the Boots reward", when.tapRewardInList(data.CORE_REWARDS_BOOTS_GHI_REWARDS), async () => {
                 Then("I should be on the rewards page for Boots", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-                Then("I should see all the reward information for Boots", then.onRewardsClaimPage(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS, true))
+                Then("I should see all the reward information for Boots", then.onBootsAndYorkRewardsClaimPage(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS, true))
             })
         })
         When("I click to claim my voucher", when.tapText(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS.buttonText), async () => {
@@ -77,18 +81,18 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I tap to buy a £5 voucher", when.tapText(constants.voucherText(fixtures.BOOTS_GHI_VOUCHER_DETAILS.vouchers[0])), async () => {
             When("I tap confirm", when.tapText(t("Confirm")), async () => {
-                Then("I should see the reward information for Boots and the confirmation", then.onRewardsClaimPage(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS, false, "5"))
+                Then("I should see the reward information for Boots and the confirmation", then.onBootsAndYorkRewardsClaimPage(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS, false, "5"))
             })
         })
         When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
             When("I click to see the purchase history", when.tapText(t("Purchased")), async () => {
-                Then("I can see the purchase for today for Urban Massage", then.groupHealthRewardsPurchasedVisible(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS, "5"))
+                Then("I can see the purchase for today for Urban Massage", then.groupHealthRewardsPurchasedVisible(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS))
             })
         })
             
     })
 
-    Scenario("I can succesfully go through the Ubrna Massage GHI Rewards journeys", scenario.start, async () => {
+    Scenario("I can succesfully go through the Ubran Massage GHI Rewards journeys", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_117_GHI_REWARDS, data.AUTH_117), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
@@ -102,8 +106,10 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(9))
         })
         When("I click to see the next reward I want to unlock", when.tapText(constants.groupHealthRewardProgressNames[1]), async () => {
-            Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-            Then("I should see the correct information for the Boots reward tease", then.onRewardsTeasePage(fixtures.URBAN_GHI_REWARDS_TEASE_PAGE_DETAILS))
+            When("I tap on the Urban Massage reward", when.tapRewardInList(data.CORE_REWARDS_URBAN_GHI_REWARDS), async () => {
+                Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
+                Then("I should see the correct information for the Boots reward tease", then.onRewardsTeasePage(fixtures.URBAN_GHI_REWARDS_TEASE_PAGE_DETAILS))
+            })
         })
         When("I tap the CTA button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
             Then("I should see level 34", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(34)))
@@ -122,13 +128,9 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
             When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
-                When("I tap to close the tease screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
-                    When("I tap to close the rewards screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
-                        When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
-                            When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down"), async () => {
-                                Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("2/6"))
-                            })
-                        })
+                When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+                    When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down"), async () => {
+                        Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("2/6"))
                     })
                 })
             })
@@ -139,23 +141,160 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I click to see the next reward I want to unlock", when.tapText(constants.groupHealthRewardProgressNames[1]), async () => {
             When("I tap on the Urban Massage reward", when.tapRewardInList(data.CORE_REWARDS_URBAN_GHI_REWARDS), async () => {
                 Then("I should be on the rewards page for Urban Massage", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-                Then("I should see all the reward information for Urban Massage", then.onRewardsClaimPage(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS, true, undefined, 3))
+                Then("I should see all the reward information for Urban Massage", then.onUrbanRewardsClaimPage(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS, true, undefined, 3))
             })
         })
         When("I click to claim my voucher", when.tapText(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS.buttonText), async () => {
             When("I tap confirm", when.tapText(t("Confirm")), async () => {
-                Then("I should see the reward information for Boots and the confirmation", then.onRewardsClaimPage(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS, false, "10"))
+                Then("I should see the reward information for Boots and the confirmation", then.onUrbanRewardsClaimPage(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS, false, "10"))
             })
         })
         When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
             When("I tap on the Urban Massage reward", when.tapRewardInList(data.CORE_REWARDS_URBAN_GHI_REWARDS), async () => {
-                Then("I should see one less voucher available for Urban Massage", then.onRewardsClaimPage(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS, true, undefined, 2))
+                Then("I should see one less voucher available for Urban Massage", then.onUrbanRewardsClaimPage(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS, true, undefined, 2))
             })
         })
         When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
             When("I click to see the purchase history", when.tapText(t("Purchased")), async () => {
-                Then("I can see the purchase for today for Urban Massage", then.groupHealthRewardsPurchasedVisible(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS, "10"))
+                Then("I can see the purchase for today for Urban Massage", then.groupHealthRewardsPurchasedVisible(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS))
             })
+        })
+            
+    })
+
+    Scenario("I can succesfully go through the Thriva GHI Rewards journeys", scenario.start, async () => {
+        Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_118_GHI_REWARDS, data.AUTH_118), async () => {
+            Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
+        })
+        When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+            Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_1));
+        })
+        When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up"), async () => {
+            Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("2/6"))
+        })
+        When("I scroll until I can see all the progress info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_1, "down"), async () => {
+            Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(49))
+        })
+        When("I click to see the next reward I want to unlock", when.tapText(constants.groupHealthRewardProgressNames[2]), async () => {
+            When("I tap on the Thriva reward", when.tapRewardInList(data.CORE_REWARDS_THRIVA_GHI_REWARDS), async () => {
+                Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
+                Then("I should see the correct information for the Thriva reward tease", then.onRewardsTeasePage(fixtures.THRIVA_GHI_REWARDS_TEASE_PAGE_DETAILS))
+            })
+        })
+        When("I tap the CTA button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
+            Then("I should see level 123", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(123)))
+        })
+        When("I tap level 123", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(123)), async () => {
+            When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
+                When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+                    Then("I should see the well done screen", then.onChallengeComplete(3050, 123))
+                })
+            })
+        })
+        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+            When("I wait 10 seconds", when.wait(10000), async () => {
+                Then("I should see the first day streak screen", then.textVisible("First day done!"))
+            })
+        })
+        When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
+            When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
+                When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+                    When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down"), async () => {
+                        Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("3/6"))
+                    })
+                })
+            })
+        })
+        When("I scroll until I can see all the progress info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_1, "down"), async () => {
+            Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(50))
+        })
+        When("I click to see the next reward I want to unlock", when.tapText(constants.groupHealthRewardProgressNames[2]), async () => {
+            When("I tap on the Thriva reward", when.tapRewardInList(data.CORE_REWARDS_THRIVA_GHI_REWARDS), async () => {
+                Then("I should be on the rewards page for Urban Massage", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
+                Then("I should see all the reward information for Thriva", then.onThrivaRewardsClaimPage(fixtures.THRIVA_REWARDS_CLAIM_PAGE_DETAILS, true))
+            })
+        })
+        When("I click to claim my kit", when.tapText(fixtures.THRIVA_REWARDS_CLAIM_PAGE_DETAILS.buttonText), async () => {
+            Then("I appear on the Thriva important notes page", then.thrivaImportantNotesPageVisible)
+        })
+        When("I click to fill in my details", when.tapText(constants.importantNotesButtonText), async () => {
+            Then("I appear on the Thriva details page", then.thrivaDetailsPageVisible)
+        })
+        When("I type a first name that is too short", when.typeViaID(ids.CONTENT_ITEM_INPUT("firstName"), "J"), async () => {
+            When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("lastName")), async () => {
+                Then("I see a warning about the name being too short", then.textVisible("Must be between 2 and 20 characters"))
+            })
+        })
+        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("firstName")), async () => {
+            When("I type a first name that is too long", when.typeViaID(ids.CONTENT_ITEM_INPUT("firstName"), "Jamesssssssssssssssss"), async () => {
+                When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("lastName")), async () => {
+                    Then("I see a warning about the name being too short", then.textVisible("Must be between 2 and 20 characters"))
+                })
+            })
+        })
+        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("firstName")), async () => {
+            When("I type a first name that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("firstName"), "James"), async () => {
+                When("I type a last name that is too short", when.typeViaID(ids.CONTENT_ITEM_INPUT("lastName"), "R"), async () => {
+                    When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("address1")), async () => {
+                        Then("I see a warning about the name being too short", then.textVisible("Must be between 2 and 19 characters"))
+                    })
+                })
+            })
+        })
+        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("lastName")), async () => {
+            When("I type a last name that is too long", when.typeViaID(ids.CONTENT_ITEM_INPUT("lastName"), "Rogersssssssssssssss"), async () => {
+                When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("address1")), async () => {
+                    Then("I see a warning about the name being too short", then.textVisible("Must be between 2 and 19 characters"))
+                })
+            })
+        })
+        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("lastName")), async () => {
+            When("I type a last name that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("lastName"), "Rogers"), async () => {
+                When("I enter a DOB", when.chooseCorrectDoB(30), async () => {
+                    When("I tap to select a sex at birth", when.tapID(ids.ARROW_BUTTON), async () => {
+                        Then("I can see the gender options listed", then.genderOptionsVisible)
+                    })
+                })
+            })
+        })
+        When("I select Male", when.tapText(t("Male")), async () => {
+            When("I scroll to the bottom of the page", when.scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, "Submit", "down"), async () => {
+                When("I type a first line address that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("address1"), "Rogers' House"), async () => {
+                    When("I type a town that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("town"), "London"), async () => {
+                        When("I type a postcode that is incorrect", when.typeViaID(ids.CONTENT_ITEM_INPUT("postcode"), "London"), async () => {
+                            When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("email")), async () => {
+                                Then("I see a warning about the postcode not being valid", then.textVisible("Please enter a valid UK postcode"))
+                            })
+                        })
+                    })
+                })
+            })
+        })
+        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("postcode")), async () => {
+            When("I type a good postcode", when.typeViaID(ids.CONTENT_ITEM_INPUT("postcode"), "EC1Y 8RQ"), async () => {
+                When("I type a bad email", when.typeViaID(ids.CONTENT_ITEM_INPUT("email"), "RogerzEmailRulez"), async () => {
+                    When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("postcode")), async () => {
+                        Then("I see a warning about the email not being valid", then.textVisible("Please enter a valid email"))
+                    })
+                })
+            })
+        })
+        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("email")), async () => {
+            When("I type a good randomised email", when.enterRandomisedEmail, async () => {
+                When("I tap to submit", when.tapText("Submit"), async () => {
+                    When("I wait for ten seconds", when.wait(10000), async () => {
+                        Then("I can see the Thriva kit is en route", then.thrivaKitOrderedScreenVisible)
+                    })
+                })
+            })
+        })
+        When("I click the button", when.tapText(t("Got it!")), async () => {
+            When("I tap on the Thriva reward", when.tapRewardInList(data.CORE_REWARDS_THRIVA_GHI_REWARDS), async () => {
+                Then("I can see I have claimed the reward", then.onThrivaRewardsClaimPage(fixtures.THRIVA_REWARDS_CLAIM_PAGE_DETAILS, false))
+            })
+        })
+        When("I click to see my voucher", when.tapText(t("View vouchers")), async () => {
+            Then("I can see the purchase for today for Thriva", then.groupHealthRewardsPurchasedVisible(fixtures.THRIVA_REWARDS_CLAIM_PAGE_DETAILS))
         })
             
     })

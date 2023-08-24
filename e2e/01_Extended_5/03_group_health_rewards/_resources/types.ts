@@ -13,6 +13,8 @@ export interface GHI_REWARD_CLAIM_PAGE_DETAILS {
     heading: string,
     companyDescription: string [],
     rewardDescription?: string [],
+    secondaryHeader?: string,
+    secondaryDescription?: string [],
     rewardStepsAmount: number,
     rewardSteps: string [],
     buttonText: string,
