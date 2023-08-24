@@ -4,7 +4,6 @@ import { IConnectedScreenProps } from "../../../../../typings";
 import styles from "./challenge-progress.screen.styles";
 import Exit from "./subcomponents/exit";
 import ProgressBar from "./subcomponents/progress-bar";
-import { ChallengeType } from "@components/molecules/challenge-tile/challenge-tile.types";
 import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR } from "@ids";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Image } from "@atoms";
@@ -16,7 +15,7 @@ import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/g
 import { GetQuestMapLevelChallengeDetails, GetQuestMapLevelChallengeDetailsVariables } from "@graphql/_core/schema";
 import { fromGql } from "@organisms/top-bar/top-bar.helpers";
 import { useSelector } from "react-redux";
-import { getActiveChallengeAppButton } from "@redux/levels/levels.selectors";
+import { IActiveLevel, getActiveChallengeAppButton } from "@redux/levels/levels.selectors";
 import { handleLinkPress, openApp } from "@services/app-link";
 import { QuestionMarkIcon } from "@atoms/icon/question-mark-icon";
 import { t } from "@locale";
@@ -25,13 +24,13 @@ import { t } from "@locale";
 const empty_uri = {
   uri: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=",
 };
-interface IProps extends IConnectedScreenProps {
-  challengeType: ChallengeType;
+interface IChallengeProgressScreenProps extends IConnectedScreenProps {
+  challengeType: IActiveLevel["subtype"];
   levelSlotId: string;
   endDateTime: string;
   userProgress: number;
   progressTargets: number[];
-  unit: "steps" | "minutes";
+  unit: IActiveLevel["unit"];
   onDismissPress: () => void;
   hideExternalLinks: boolean;
 }
@@ -46,7 +45,7 @@ function ChallengeProgressScreen({
   unit,
   userProgress,
   hideExternalLinks,
-}: IProps) {
+}: IChallengeProgressScreenProps) {
   const appButton = useSelector(getActiveChallengeAppButton);
 
   const { data } = useQuery<GetQuestMapLevelChallengeDetails, GetQuestMapLevelChallengeDetailsVariables>(

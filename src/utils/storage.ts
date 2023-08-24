@@ -8,6 +8,7 @@ export enum StorageKey {
   mobileAssets = "@YuStore:mobileAssets",
   fitKitAuthorised = "@RNFitKit:authorised",
   referralsPopover = "@YuStore:referralsPopover",
+  mediaPlayerProgress = "@YuStore:mediaPlayerProgress",
   iosCyclingPermissionShown = "@RNFitKit:iosCyclingPermissionShown",
 }
 

@@ -25,10 +25,12 @@ import {
 import { t } from "@locale";
 import { Modal } from "react-native";
 import { GenericModal } from "@components/modals";
-import { getChallengeIsActive } from "@redux/levels/levels.selectors";
+import { IActiveLevel, getActiveLevel } from "@redux/levels/levels.selectors";
 import Logger from "@services/logging/logger";
 import { updateInAppMeditation } from "@redux/daily-meditation/daily-meditation.actions";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { Storage, StorageKey } from "@utils/storage";
+import { IVideoProgressStorage } from "@components/screens/member/media/media-player/media-player-progress.screen";
 
 interface IVideo extends Media {
   reward: number;
@@ -42,8 +44,7 @@ interface ITrackingInfo {
   subtype: string;
 }
 
-interface IProps {
-  componentId: string;
+export interface IMediaPlayerContainerProps {
   video: IVideo;
   levelSlotId: string;
   onLeftIconPress: () => void;
@@ -51,10 +52,11 @@ interface IProps {
   orientation: "landscape" | "portrait";
   startChallengeButtonLabel: string;
   trackingInfo: ITrackingInfo;
+  autoPlay?: boolean;
+  startTimeInSeconds?: number;
 }
 
 const MediaPlayerContainer = ({
-  componentId,
   video,
   levelSlotId,
   onLeftIconPress,
@@ -62,11 +64,13 @@ const MediaPlayerContainer = ({
   orientation,
   startChallengeButtonLabel,
   trackingInfo,
-}: IProps) => {
-  const [showModal, setShowModal] = useState(false);
-  const [showError, setShowError] = useState(false);
-  const challengeIsActive = useSelector(getChallengeIsActive);
+  autoPlay,
+  startTimeInSeconds,
+}: IMediaPlayerContainerProps) => {
   const dispatch = useDispatch();
+  const activeLevel = useSelector(getActiveLevel);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showError, setShowError] = useState<boolean>(false);
   const [createQuestMapLevelChallengeMutation]: CreateQuestMapLevelChallengeMutationTuple = useMutation(
     GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE
   );
@@ -79,51 +83,52 @@ const MediaPlayerContainer = ({
     GQL_MUTATION_CANCEL_MAP_LEVEL_CHALLENGE
   );
 
+  const navigateToMediaPlayer = useCallback(async () => {
+    setShowModal(false);
+    await Navigation.pop(ROUTES.mediaPlayer);
+  }, []);
+
+  const cancelChallenge = useCallback(async (): Promise<void> => {
+    await Storage.removeItem(StorageKey.mediaPlayerProgress);
+    await cancelMapLevelChallenge({
+      variables: {
+        levelSlotId,
+        contentId: video.id,
+      },
+    });
+    dispatch(challengeCancelAction());
+  }, [video.id, levelSlotId, dispatch, cancelMapLevelChallenge]);
+
   const createChallenge = useCallback(
-    async (contentId: string, hasActiveChallenge?: boolean) => {
-      if (hasActiveChallenge || challengeIsActive) {
-        await cancelChallenge(false);
+    async ({ challengeIsActive, endDateTime }: IActiveLevel): Promise<void> => {
+      if (challengeIsActive || Boolean(endDateTime)) {
+        await cancelChallenge();
       }
 
-      if (video?.duration) {
-        const { data } = await createQuestMapLevelChallengeMutation({ variables: { levelSlotId, contentId } });
-        dispatch(
-          challengeStartSuccessAction({
-            createQuestMapLevelChallenge: data?.createQuestMapLevelChallenge,
-            levelSlotId,
-            videoPlayerIsActive: true,
-            videoDuration: video.duration,
-          })
-        );
-        Navigation.mergeOptions(ROUTES.mediaPlayer, {
-          statusBar: {
-            drawBehind: false,
-            visible: false,
-          },
-        });
+      if (!video?.duration) {
+        return;
       }
-    },
-    [levelSlotId, createQuestMapLevelChallengeMutation, dispatch, video?.duration]
-  );
 
-  const cancelChallenge = useCallback(
-    async (shouldNavigate = true) => {
-      await cancelMapLevelChallenge({
-        variables: {
+      const { data } = await createQuestMapLevelChallengeMutation({ variables: { levelSlotId, contentId: video.id } });
+      dispatch(
+        challengeStartSuccessAction({
+          createQuestMapLevelChallenge: data?.createQuestMapLevelChallenge,
           levelSlotId,
-          contentId: video.id,
+          videoPlayerIsActive: true,
+          videoDuration: video.duration,
+        })
+      );
+      Navigation.mergeOptions(ROUTES.mediaPlayer, {
+        statusBar: {
+          drawBehind: false,
+          visible: false,
         },
       });
-      dispatch(challengeCancelAction());
-      if (shouldNavigate) {
-        setShowModal(false);
-        await Navigation.pop(ROUTES.mediaPlayer);
-      }
     },
-    [video.id, levelSlotId]
+    [dispatch, video?.id, levelSlotId, video?.duration, cancelChallenge, createQuestMapLevelChallengeMutation]
   );
 
-  const endChallenge = useCallback(async () => {
+  const onEnd = useCallback(async (): Promise<void> => {
     try {
       const { data } = await updateQuestMapLevelChallenge({
         variables: { levelSlotId, contentId: video.id, payload: { value: video.duration } },
@@ -131,20 +136,40 @@ const MediaPlayerContainer = ({
 
       const challenge = data?.updateQuestMapLevelChallenge?.challenge;
 
-      if (challenge) {
-        dispatch(challengeEndSuccessAction({ ...challenge }));
-        if (eventType === "mindfullness") {
-          dispatch(updateInAppMeditation({ duration: video.duration, createdAt: challenge.createdAt }));
-        }
-
-        await Navigation.popTo(ROUTES.quests);
-
-        Logger.logMixpanelEvent("meditopia_challenge_end", { levelSlotId, duration: video.duration });
+      if (!challenge) {
+        return;
       }
+
+      dispatch(challengeEndSuccessAction({ ...challenge }));
+
+      if (eventType === "mindfullness") {
+        dispatch(updateInAppMeditation({ duration: video.duration, createdAt: challenge.createdAt }));
+      }
+
+      await Storage.removeItem(StorageKey.mediaPlayerProgress);
+      await Navigation.popTo(ROUTES.quests);
+
+      Logger.logMixpanelEvent("meditopia_challenge_end", { levelSlotId, duration: video.duration });
     } catch (err) {
       throw Error(err);
     }
-  }, [video.duration, levelSlotId, video.id]);
+  }, [video.duration, video.id, levelSlotId, dispatch, eventType, updateQuestMapLevelChallenge]);
+
+  const onProgress = useCallback(
+    async (seconds: number) => {
+      // We only track progress every X seconds
+      // This is to avoid too many writes to storage
+      if (seconds % 10 === 0) {
+        const videoProgress: IVideoProgressStorage = {
+          seconds,
+          id: video.id,
+        };
+
+        await Storage.setItem(StorageKey.mediaPlayerProgress, JSON.stringify(videoProgress));
+      }
+    },
+    [video]
+  );
 
   const onError = useCallback(() => {
     if (trackingInfo) {
@@ -153,36 +178,46 @@ const MediaPlayerContainer = ({
 
     setShowError(true);
     setShowModal(true);
+  }, [dispatch, trackingInfo]);
+
+  const onRightIconPress = useCallback((isModalShown: boolean) => {
+    if (isModalShown) {
+      return setShowModal(true);
+    }
+
+    Navigation.popTo(ROUTES.quests);
   }, []);
 
-  const onRightIconPress = useCallback(
-    (shouldShowModal: boolean) => {
-      if (shouldShowModal) {
-        return setShowModal(true);
-      }
+  const onPress = useCallback(async () => {
+    await cancelChallenge();
+    await navigateToMediaPlayer();
+  }, [cancelChallenge, navigateToMediaPlayer]);
 
-      Navigation.popTo(ROUTES.quests);
-    },
-    [componentId]
-  );
-  const onPress = useCallback(async () => cancelChallenge(), [cancelChallenge]);
-
-  const onPressSecondary = useCallback(async () => {
+  const onPressSecondary = useCallback(async (): Promise<void> => {
     setShowModal(false);
-    if (showError) {
-      if (challengeIsActive) {
-        cancelChallenge(false);
-      }
 
-      await Navigation.popTo(ROUTES.quests);
+    if (!showError) {
+      return;
     }
-  }, [showError, showModal]);
+
+    if (activeLevel.challengeIsActive) {
+      await cancelChallenge();
+    }
+
+    await Navigation.popTo(ROUTES.quests);
+  }, [showError, cancelChallenge, activeLevel]);
+
+  const hideModal = useCallback((): void => {
+    setShowModal(false);
+  }, []);
 
   return (
     <>
       <MediaPlayerScreen
+        startTimeInSeconds={startTimeInSeconds}
         onStart={createChallenge}
-        onEnd={endChallenge}
+        onEnd={onEnd}
+        onProgress={onProgress}
         onError={onError}
         video={video}
         onLeftIconPress={onLeftIconPress}
@@ -191,16 +226,14 @@ const MediaPlayerContainer = ({
         eventType={eventType}
         orientation={orientation}
         startChallengeButtonLabel={startChallengeButtonLabel}
+        autoPlay={autoPlay}
       />
 
-      <Modal
-        statusBarTranslucent={true}
-        animationType="slide"
-        visible={showModal}
-        onRequestClose={() => setShowModal(false)}
-      >
+      <Modal statusBarTranslucent={true} animationType="slide" visible={showModal} onRequestClose={hideModal}>
         <GenericModal
+          onPress={onPress}
           isPrimaryOnePressOnly={true}
+          onPressSecondary={onPressSecondary}
           heading={
             !showError
               ? t("modals.generic_modal.cancel_challenge.heading")
@@ -219,8 +252,6 @@ const MediaPlayerContainer = ({
           ctaLabelSecondary={
             !showError ? t("labels.cta.cancel") : t("modals.generic_modal.on_meditopia_error.cta_label_secondary")
           }
-          onPress={onPress}
-          onPressSecondary={onPressSecondary}
         />
       </Modal>
     </>

@@ -1240,6 +1240,10 @@
       "body": "Earn more and come back later!"
     }
   },
+  "meditation_progress": {
+    "resume": "Resume Meditation",
+    "paused": "Meditation Paused"
+  },
   "sudoku": {
     "difficulty": {
       "easy": "Easy",

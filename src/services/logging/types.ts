@@ -50,6 +50,7 @@ export type MixpanelEvent =
   | "reward_info_viewed"
   | "event_faq_viewed"
   | "meditopia_challenge_end"
+  | "meditopia_challenge_resume"
   | "video_player_button_start_pressed"
   | "video_player_play_button_start_pressed"
   | "video_player_start"

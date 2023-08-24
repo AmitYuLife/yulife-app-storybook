@@ -32,7 +32,7 @@ import {
   UPDATE_CHALLENGE_APP_BUTTON,
 } from "./levels.actions";
 import { CHALLENGE_START_INITIAL_STEPS, ChallengeStartPayload } from "./levels.actions";
-import { IActiveLevel } from "./levels.selectors";
+import { ActiveLevelStatus, IActiveLevel } from "./levels.selectors";
 import { getChallengesAmountAvailable } from "./levels.helpers";
 
 export interface ILevelsStore {
@@ -279,7 +279,10 @@ const challengeEndSuccess = (state: ILevelsStore, challenge: QuestMapActiveChall
     milestonesLog: challenge?.milestoneLog || state.active?.milestonesLog || [],
     rating: challenge?.rating || state.active.rating,
     score: getScore(challenge?.incomingData) || state.active.score,
-    status: (challenge?.milestoneLog || state.active?.milestonesLog || []).length > 0 ? "success" : "failed",
+    status:
+      (challenge?.milestoneLog || state.active?.milestonesLog || []).length > 0
+        ? ActiveLevelStatus.success
+        : ActiveLevelStatus.failed,
     challengeIsActive: false,
     videoPlayerIsActive: false,
   },

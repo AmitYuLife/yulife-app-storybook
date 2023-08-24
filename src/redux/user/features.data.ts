@@ -58,4 +58,5 @@ export const features = [
   "showYuniversityMenuLink",
   "retryChallengeResultQuery",
   "showAllLanguages",
+  "enableResumeInAppMeditation",
 ];

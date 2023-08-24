@@ -7,6 +7,7 @@ import { formatCyclingMetersToKmWithOneDecimal } from "../challenge-progress/sub
 import styles, { SCORE_COLOR } from "./challenge-success.screen.styles";
 import { getTheme } from "@theme";
 import { CHALLENGE_SUCCESS_SCREEN } from "@ids";
+import { IActiveLevel } from "@redux/levels/levels.selectors";
 
 interface IProps {
   onPressCta: () => void;
@@ -16,7 +17,7 @@ interface IProps {
   loading: boolean;
   reward: number;
   score: number;
-  unit: "steps" | "minutes" | "meters";
+  unit: IActiveLevel["unit"];
 }
 
 export default function ChallengeSuccessScreen(props: IProps) {

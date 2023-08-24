@@ -34,13 +34,13 @@ import Logger from "@services/logging/logger";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useAppState, useBackHandler, useGetLottieJson } from "@hooks";
-import { getActiveLevel, getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
+import { IActiveLevel, getActiveLevel, getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import { HourglassIcon } from "@atoms/icon/hourglass-icon";
 import { t } from "@locale";
 import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
 
-interface IProps {
+export interface IVideoPlayerProps {
   source: string;
   poster?: string;
   title: string;
@@ -50,7 +50,8 @@ interface IProps {
   thumbnail: string;
   logo?: string;
   videoLogo?: string;
-  onStart: (hasActiveChallange?: boolean) => void;
+  onStart: (activeLevel: IActiveLevel) => void;
+  onProgress?: (seconds: number) => void;
   onEnd: () => void;
   onError: () => void;
   onLeftIconPress: () => void;
@@ -65,6 +66,8 @@ interface IProps {
   showTimer?: boolean;
   orientation: "landscape" | "portrait";
   startChallengeButtonLabel: string;
+  startTimeInSeconds?: number;
+  autoPlay?: boolean;
 }
 
 const commonProps = {
@@ -82,6 +85,7 @@ const VideoPlayer = ({
   logo,
   videoLogo,
   onEnd,
+  onProgress,
   onError,
   onStart,
   onLeftIconPress,
@@ -96,57 +100,79 @@ const VideoPlayer = ({
   videoSourceType = "mp4",
   showTimer = true,
   orientation,
+  startTimeInSeconds,
   startChallengeButtonLabel,
-}: IProps) => {
-  const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
-  const [appCurrentState, setAppCurrentState] = useState<AppStateStatus>("active");
-  const opacity = useRef(new Animated.Value(1)).current;
-  const lottieRef = useRef<LottieView>();
+  autoPlay = false,
+}: IVideoPlayerProps) => {
   const playerRef = useRef<Video>();
-  const themeColour = useMemo(() => (theme === "light" ? Colours.neutral.white : Colours.neutral.n800), [theme]);
   const reduxDispatch = useDispatch();
-  const videoPlayerIsActive = useSelector(getVideoPlayerIsActive);
+  const lottieRef = useRef<LottieView>();
   const activeLevel = useSelector(getActiveLevel);
+  const opacity = useRef(new Animated.Value(1)).current;
+  const videoPlayerIsActive = useSelector(getVideoPlayerIsActive);
+  const [appCurrentState, setAppCurrentState] = useState<AppStateStatus>("active");
   const { uri: lottieUri, loading: lottieUriLoading } = useGetLottieJson(lottie?.uri);
+  const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
+  const themeColour = useMemo(() => (theme === "light" ? Colours.neutral.white : Colours.neutral.n800), [theme]);
 
   const fadeIn = Animated.timing(opacity, {
     toValue: 1,
     ...commonProps,
   });
+
   const fadeOut = Animated.timing(opacity, {
     toValue: 0,
     ...commonProps,
   });
 
-  const onChangeAppState = useCallback(
-    (appState: AppStateStatus) => {
-      setAppCurrentState(appState);
-      MusicControl.updatePlayback({
-        elapsedTime: state.currentProgressInSeconds,
-      });
-    },
-    [appCurrentState, state.currentProgressInSeconds]
-  );
-
   useBackHandler(() => {
-    if (!state.musicControlMounted) {
+    if (!state.isMusicControlMounted) {
       onLeftIconPress();
     }
 
     return false;
   });
 
-  useAppState(onChangeAppState);
+  /**
+   * Set's the app state, if the video is in the background etc
+   */
+  useAppState((appState: AppStateStatus) => {
+    setAppCurrentState(appState);
+    MusicControl.updatePlayback({
+      elapsedTime: state.currentProgressInSeconds,
+    });
+  });
 
   useEffect(() => {
-    (async () => {
-      if (state.isDoneOnBackground && !state.isPaused && appCurrentState === "active" && videoPlayerIsActive) {
-        dispatch({ type: ActionTypes.SET_END_OF_SESSION_LOADING });
-        await onEnd();
-      }
-    })();
+    if (autoPlay) {
+      dispatch({ type: ActionTypes.SET_MUSIC_CONTROL_MOUNTED });
+    }
+  }, [autoPlay]);
+
+  /**
+   * Set's the player initial start time
+   */
+  useEffect(() => {
+    if (startTimeInSeconds) {
+      playerRef.current?.seek(startTimeInSeconds);
+    }
+  }, [startTimeInSeconds]);
+
+  /**
+   * Triggers the `onEnd` ballback when the video is finished
+   */
+  useEffect(() => {
+    const isPlayerActive = appCurrentState === "active" && videoPlayerIsActive;
+
+    if (state.isDoneOnBackground && isPlayerActive) {
+      dispatch({ type: ActionTypes.SET_END_OF_SESSION_LOADING });
+      onEnd();
+    }
   }, [appCurrentState]);
 
+  /**
+   * Set's up the initial player state
+   */
   useEffect(() => {
     setMusicControlInitialConfig();
     MusicControl.on(Command.play, () => {
@@ -163,6 +189,9 @@ const VideoPlayer = ({
     };
   }, []);
 
+  /**
+   * Allows the video to be played/paused
+   */
   useEffect(() => {
     MusicControl.updatePlayback({
       state: state.isPaused || state.isBuffering ? MusicControl.STATE_PAUSED : MusicControl.STATE_PLAYING,
@@ -175,7 +204,7 @@ const VideoPlayer = ({
       if (
         orientation === "landscape" &&
         !state.isPaused &&
-        state.musicControlMounted &&
+        state.isMusicControlMounted &&
         !state.showFocusScreen &&
         !DETOX_ENABLED
       ) {
@@ -184,27 +213,28 @@ const VideoPlayer = ({
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, [state.musicControlMounted, state.showFocusScreen, state.isPaused]);
+  }, [state.isMusicControlMounted, state.showFocusScreen, state.isPaused]);
 
-  const onProgress = useCallback(
-    ({ currentTime }: OnProgressData) => {
-      const time = moment.duration(currentTime, "seconds").asMilliseconds();
-      const inComingProgress = Math.floor(currentTime);
-      const formatCurrentProgressInSeconds = Math.floor(state.currentProgressInSeconds);
+  const handleOnProgress = useCallback(
+    async ({ currentTime }: OnProgressData): Promise<void> => {
+      const currentProgressInSeconds = Math.floor(currentTime);
 
-      if (formatCurrentProgressInSeconds !== inComingProgress && formatCurrentProgressInSeconds < inComingProgress) {
-        dispatch({ type: ActionTypes.SET_CURRENT_PROGRESS, payload: time });
-      }
+      onProgress && onProgress(currentProgressInSeconds);
+
+      dispatch({
+        type: ActionTypes.SET_CURRENT_PROGRESS,
+        payload: moment.duration(currentProgressInSeconds, "seconds").asMilliseconds(),
+      });
     },
-    [state.currentProgressInSeconds]
+    [state.currentProgressInSeconds, onProgress]
   );
 
-  const onLoad = useCallback(({ duration }: OnLoadData) => {
+  const onLoad = useCallback(({ duration }: OnLoadData): void => {
     const time = moment.duration(duration, "seconds").asMilliseconds();
     dispatch({ type: ActionTypes.SET_DURATION, payload: time });
   }, []);
 
-  const onButtonAction = useCallback(() => {
+  const onButtonAction = useCallback((): void => {
     if (state.showFocusScreen) {
       handleFocusScreen();
       return;
@@ -219,17 +249,19 @@ const VideoPlayer = ({
     reduxDispatch(logMixpanelEventActionCreator(state.isPaused ? "video_player_is_paused" : "video_player_is_playing"));
   }, [state.isPaused, state.durationInSeconds, state.showFocusScreen]);
 
-  const handleStartButton = useCallback(async () => {
+  const handleStartButton = useCallback(async (): Promise<void> => {
     dispatch({ type: ActionTypes.SET_STARTING, payload: true });
     try {
-      await onStart(!!activeLevel.endDateTime);
+      await onStart(activeLevel);
       MusicControl.setNowPlaying({
         title,
         artwork: thumbnail,
         artist: shortDescription,
         duration: state.durationInSeconds,
       });
+
       dispatch({ type: ActionTypes.SET_MUSIC_CONTROL_MOUNTED });
+
       if (lottieUri) {
         lottieRef?.current?.play();
       }
@@ -254,9 +286,9 @@ const VideoPlayer = ({
     } finally {
       dispatch({ type: ActionTypes.SET_STARTING, payload: false });
     }
-  }, [onStart, state.durationInSeconds, activeLevel.endDateTime]);
+  }, [onStart, state.durationInSeconds]);
 
-  const handleOnEnd = useCallback(async () => {
+  const handleOnEnd = useCallback(async (): Promise<void> => {
     if (appCurrentState !== "active") {
       dispatch({ type: ActionTypes.SET_IS_DONE_ON_BACKGROUND });
       return;
@@ -271,7 +303,7 @@ const VideoPlayer = ({
     }
   }, [onEnd, appCurrentState]);
 
-  const handleFocusScreen = useCallback(() => {
+  const handleFocusScreen = useCallback((): void => {
     if (!state.isPaused && !state.showFocusScreen) {
       dispatch({ type: ActionTypes.SET_SHOW_FOCUS_SCREEN, payload: true });
       fadeOut.start();
@@ -284,9 +316,9 @@ const VideoPlayer = ({
   }, [state.isPaused, state.showFocusScreen]);
 
   const handleOnError = useCallback(
-    async ({ error }: LoadError) => {
+    async ({ error }: LoadError): Promise<void> => {
       Logger.error({ name: error[""], message: error.errorString }, { location: "video-player-onError" });
-      if (state.retries > 0 && state.musicControlMounted) {
+      if (state.retries > 0 && state.isMusicControlMounted) {
         playerRef.current.seek(state.currentProgressInSeconds);
         dispatch({ type: ActionTypes.SET_RETRIES });
         return dispatch({ type: ActionTypes.PLAY_PLAYER });
@@ -294,12 +326,12 @@ const VideoPlayer = ({
 
       onError();
     },
-    [state.currentProgressInSeconds, state.musicControlMounted, state.retries]
+    [state.currentProgressInSeconds, state.isMusicControlMounted, state.retries]
   );
 
-  const handleOnRightIconPress = useCallback(() => {
-    onRightIconPress(state.musicControlMounted);
-  }, [state.musicControlMounted]);
+  const handleOnRightIconPress = useCallback((): void => {
+    onRightIconPress(state.isMusicControlMounted);
+  }, [state.isMusicControlMounted]);
 
   const videoUrl = useMemo(
     () =>
@@ -319,8 +351,8 @@ const VideoPlayer = ({
     [videoUrl, videoSourceType]
   );
 
-  const showYuLogo = useMemo(
-    () => (orientation === "portrait" ? { logo: "yulife" as GenericHeadingLogo } : null),
+  const showYuLogo: { logo: GenericHeadingLogo } | null = useMemo(
+    () => (orientation === "portrait" ? { logo: "yulife" } : null),
     [orientation]
   );
 
@@ -343,16 +375,17 @@ const VideoPlayer = ({
           disableFocus={true}
           poster={poster}
           posterResizeMode="cover"
+          progressUpdateInterval={1000}
           resizeMode={orientation === "landscape" ? "none" : "cover"}
           onError={handleOnError}
           onLoad={onLoad}
           onEnd={handleOnEnd}
-          onProgress={onProgress}
+          onProgress={handleOnProgress}
           paused={state.isPaused}
           playInBackground={true}
           ignoreSilentSwitch="ignore"
           style={
-            !state.musicControlMounted
+            !state.isMusicControlMounted
               ? styles.backgroundVideo
               : orientation === "landscape"
               ? styles.backgroundVideoLandscape
@@ -361,11 +394,11 @@ const VideoPlayer = ({
         />
         <GenericHeadingPad />
 
-        {!lottieUri && state.musicControlMounted && !state.isLoadingEndOfSession ? null : (
+        {!lottieUri && state.isMusicControlMounted && !state.isLoadingEndOfSession ? null : (
           <Image source={{ uri: poster }} width={Style.DEVICE_WIDTH} style={{ ...StyleSheet.absoluteFillObject }} />
         )}
         {!lottieUri ? null : <LottieView ref={lottieRef} resizeMode="cover" style={styles.lottie} source={lottieUri} />}
-        {state.musicControlMounted ? null : (
+        {state.isMusicControlMounted ? null : (
           <View style={styles.videoDescription}>
             <VideoPlayerDescription
               title={title}
@@ -380,7 +413,7 @@ const VideoPlayer = ({
           </View>
         )}
 
-        {!state.musicControlMounted || !videoLogo ? null : (
+        {!state.isMusicControlMounted || !videoLogo ? null : (
           <Animated.View style={[styles.videoLogo, { opacity }]}>
             <Image
               suppressLoadingUi={true}
@@ -393,7 +426,7 @@ const VideoPlayer = ({
           </Animated.View>
         )}
 
-        {!state.musicControlMounted ? null : (
+        {!state.isMusicControlMounted ? null : (
           <>
             {!showTimer || state.isLoadingEndOfSession || orientation === "landscape" ? null : (
               <View style={styles.currentProgressTime} testID={VIDEO_PLAYER_TIMER}>
@@ -468,7 +501,7 @@ const VideoPlayer = ({
         </View>
       )}
 
-      {state.musicControlMounted ? null : (
+      {state.isMusicControlMounted ? null : (
         <View style={styles.starSessionButton}>
           <Button
             label={startChallengeButtonLabel}
@@ -484,11 +517,11 @@ const VideoPlayer = ({
         <Animated.View style={styles.topbarWrapper}>
           <GenericHeadingAbsolute
             backgroundColor="transparent"
-            onLeftIconPress={!state.musicControlMounted ? onLeftIconPress : null}
+            onLeftIconPress={!state.isMusicControlMounted ? onLeftIconPress : null}
             color={themeColour}
             {...showYuLogo}
             onRightIconPress={
-              state.showFocusScreen || (orientation === "landscape" && state.musicControlMounted)
+              state.showFocusScreen || (orientation === "landscape" && state.isMusicControlMounted)
                 ? null
                 : handleOnRightIconPress
             }
@@ -497,7 +530,7 @@ const VideoPlayer = ({
         </Animated.View>
       )}
 
-      {!state.musicControlMounted || orientation === "portrait" ? null : (
+      {!state.isMusicControlMounted || orientation === "portrait" ? null : (
         <Animated.View style={[styles.closeButton, { opacity }]}>
           <PressableWithDelay testID={MEDIA_PORTRAIT_CLOSE} onPress={handleOnRightIconPress}>
             <CloseSvg size={Style.adjust(24)} stroke={"white"} />

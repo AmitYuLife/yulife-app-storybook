@@ -7,24 +7,32 @@ import startChallenge from "./startChallenge.helper";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import cancelQuestMapLevelChallenge from "@graphql/challenges/cancelQuestMapLevelChallenge.gql";
 import { challengeResetSuccessAction } from "@redux/levels/levels.actions";
+import { Storage, StorageKey } from "@utils/storage";
 
 export default function* startChallengeIfActiveSaga() {
   try {
     const {
+      status,
+      subtype,
       endDateTime,
       levelSlotId,
-      startDateTime,
-      subtype,
-      status,
-      shouldEndOnLastGoalAchieved,
       fitKitTypes,
+      startDateTime,
       initialPedometerResult,
+      shouldEndOnLastGoalAchieved,
     }: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
-
+    const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
     const videoPlayerIsActive: ReturnType<typeof getVideoPlayerIsActive> = yield select(getVideoPlayerIsActive);
 
-    if (videoPlayerIsActive && levelSlotId) {
+    const isActiveMediaChallenge = videoPlayerIsActive && levelSlotId;
+    const isResumableMediaChallenge = features?.enableResumeInAppMeditation && subtype.includes("meditation");
+
+    // This will cancel any video related challenges that are not meditations
+    // This is because only meditations current have a custom progress screen
+    // So challenges like internal Fiit challenges will still be auto cancelled.
+    if (isActiveMediaChallenge && !isResumableMediaChallenge) {
       try {
+        yield Storage.removeItem(StorageKey.mediaPlayerProgress);
         yield call(cancelQuestMapLevelChallenge, levelSlotId);
         yield put(challengeResetSuccessAction());
         return;
@@ -41,18 +49,17 @@ export default function* startChallengeIfActiveSaga() {
       }
 
       if (initialPedometerResult === null) {
-        const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
         yield fork(setInitialSteps, startDateTime, features);
       }
 
       yield call(startChallenge, {
-        endDateTime,
-        shouldEndOnLastGoalAchieved,
-        levelSlotId,
         subtype,
-        startDateTime,
+        endDateTime,
+        levelSlotId,
         fitKitTypes,
+        startDateTime,
         videoPlayerIsActive,
+        shouldEndOnLastGoalAchieved,
       });
     }
   } catch (error) {

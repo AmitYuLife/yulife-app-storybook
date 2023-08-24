@@ -6,6 +6,12 @@ import {
 } from "@graphql/_core/schema";
 import { IReduxState } from "../_core/reducers";
 import { getChallengesAmountAvailable, getAvailableChallengesForToday } from "./levels.helpers";
+import { ChallengeType } from "@components/molecules/challenge-tile/challenge-tile.types";
+
+export enum ActiveLevelStatus {
+  success = "success",
+  failed = "failed",
+}
 
 export interface IActiveLevel {
   chest: {
@@ -27,10 +33,10 @@ export interface IActiveLevel {
   rating: number;
   score: number;
   startDateTime: string;
-  status: "failed" | "success";
-  subtype: string;
+  status: ActiveLevelStatus;
   challengeIsActive: boolean;
-  unit: string;
+  subtype: ChallengeType | string; // this should not have `string` as a type but it's needed to supress type errors for now
+  unit: "steps" | "minutes" | "meters" | string; // this should not have `string` as a type but it's needed to supress type errors for now
   videoPlayerIsActive: boolean;
   hideExternalLinks: boolean;
   appButton: {
