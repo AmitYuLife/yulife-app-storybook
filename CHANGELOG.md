@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.96.0] - 2023-08-24
+
+### Tasks
+
+- Task GS-768: add ability to resume meditations at a later time
+- Task/XSE-2103: contentItemBoxOptionCard adjustment
+- Task DEVOP-1377: Replace gitlab runner tags
+- Task: Additional pop action on navigate bottom tab
+- Task ISA-1156: suspended nav bar tabs
+- Task/replace gradient with ellipsis
+- Task: prevent event join button overflowing
+- Task: ISA-656 generic bonus screen message
+- Task ISA-1142: use localised full name on beneficiaries screen
+- Task ISA-1141: localise full name ordering on leaderboard and duel screens
+- Task: ISA-1139 tolgee cli pkg
+
+### Chores
+
+- Chore: Purge legacy challenge history
+- Chore: Remove legacy yuscreen routing
+- Chore: purge signup new copy
+- chore/remove-console-log
+- Chore: clear apollo cache on language change
+
+### Extra
+
+- Detox: Fixes 24th Aug
+- Detox/xse 1996 thriva claiming journey
+- Detox: Fixes 23rd August
+- Detox/xse 1995 urban massage claiming journey
+- Detox: Fixes 21st Aug
+- Detox: Fixes 18th Aug
+- detox/xse-1994-boots-yorktest-claiming-journeys
+- Hotfix ISA-1099: get full name from loginUser response
+
 ## [3.95.0] - 2023-08-17
 
 ### Bugfixes
