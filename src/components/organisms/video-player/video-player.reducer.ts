@@ -22,7 +22,7 @@ export interface IState {
   durationInSeconds: number;
   currentProgressInMilliSeconds: number;
   currentProgressInSeconds: number;
-  musicControlMounted: boolean;
+  isMusicControlMounted: boolean;
   loading: boolean;
   isStarting: boolean;
   isBuffering: boolean;
@@ -45,7 +45,7 @@ export const INITIAL_STATE: IState = {
   durationInSeconds: 0,
   currentProgressInMilliSeconds: 0,
   currentProgressInSeconds: 0,
-  musicControlMounted: false,
+  isMusicControlMounted: false,
   loading: true,
   isBuffering: false,
   isPaused: true,
@@ -113,7 +113,7 @@ export const reducer = (state: IState, action: IAction): IState => {
     case ActionTypes.SET_MUSIC_CONTROL_MOUNTED: {
       return {
         ...state,
-        musicControlMounted: true,
+        isMusicControlMounted: true,
         isPaused: false,
       };
     }

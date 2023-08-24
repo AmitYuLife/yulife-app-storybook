@@ -1,49 +1,58 @@
-import React, { memo, useCallback } from "react";
+import React, { memo } from "react";
 import { VideoPlayer } from "@organisms";
 import { Media } from "@graphql/_core/schema";
+import { IVideoPlayerProps } from "@organisms/video-player/video-player";
 
 interface IVideo extends Media {
   reward: number;
   stars: number;
 }
 
-interface IProps {
+interface IMediaPlayerScreenProps
+  extends Pick<
+    IVideoPlayerProps,
+    | "onEnd"
+    | "onStart"
+    | "onError"
+    | "autoPlay"
+    | "eventType"
+    | "onProgress"
+    | "orientation"
+    | "onLeftIconPress"
+    | "onRightIconPress"
+    | "startErrorMessage"
+    | "startTimeInSeconds"
+    | "startChallengeButtonLabel"
+  > {
   video: IVideo;
-  onLeftIconPress: () => void;
-  onRightIconPress: (showModal: boolean) => void;
-  onStart: (contendId: string, hasActiveChallenge?: boolean) => void;
-  onEnd: () => void;
-  onError: () => void;
-  startErrorMessage?: string;
-  eventType: string;
-  orientation: "landscape" | "portrait";
-  startChallengeButtonLabel: string;
 }
 
 const MediaPlayerScreen = ({
   video,
+  startTimeInSeconds,
   onLeftIconPress,
   onRightIconPress,
   onStart,
+  onProgress,
   onEnd,
   onError,
   startErrorMessage,
   eventType,
   orientation,
   startChallengeButtonLabel,
-}: IProps) => {
-  const onStartMedia = useCallback(async (hasActiveChallenge?: boolean) => {
-    await onStart(video.id, hasActiveChallenge);
-  }, []);
-
+  autoPlay,
+}: IMediaPlayerScreenProps) => {
   return (
     <VideoPlayer
+      autoPlay={autoPlay}
+      startTimeInSeconds={startTimeInSeconds}
       source={video.media.uri}
       poster={video.cover.uri}
       tag={video.tag}
       title={video.title}
       thumbnail={video.thumbnail.uri}
       logo={video.logo.uri}
+      onProgress={onProgress}
       videoLogo={video?.videoLogo?.uri}
       description={video.description}
       shortDescription={video.shortDescription}
@@ -52,7 +61,7 @@ const MediaPlayerScreen = ({
       stars={video.stars}
       onLeftIconPress={onLeftIconPress}
       onRightIconPress={onRightIconPress}
-      onStart={onStartMedia}
+      onStart={onStart}
       onEnd={onEnd}
       onError={onError}
       startErrorMessage={startErrorMessage}
