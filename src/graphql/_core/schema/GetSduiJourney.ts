@@ -855,6 +855,10 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard {
    * Supported RN version 3.96.0
    */
   descriptionNumberOfLines: number | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  titleNumberOfLines: number | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_body_ContentItemSwitch_styles {
@@ -1820,6 +1824,10 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptio
    * Supported RN version 3.96.0
    */
   descriptionNumberOfLines: number | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  titleNumberOfLines: number | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemSwitch_styles {

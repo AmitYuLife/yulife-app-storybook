@@ -18,6 +18,7 @@ export const ContentItemBoxOptionCard = memo(
     titleWrapperStyles,
     subtitleWrapperStyles,
     innerHeight,
+    titleNumberOfLines,
     descriptionNumberOfLines,
   }: GqlProps) => (
     <View style={mapServerStyles(styles)}>
@@ -32,6 +33,7 @@ export const ContentItemBoxOptionCard = memo(
         subtitleTextType={subtitleTextType as ITextTemplateType}
         titleWrapperStyles={mapServerStyles(titleWrapperStyles)}
         subtitleWrapperStyles={mapServerStyles(subtitleWrapperStyles)}
+        titleNumberOfLines={titleNumberOfLines}
         descriptionNumberOfLines={descriptionNumberOfLines}
       />
     </View>

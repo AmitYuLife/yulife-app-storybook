@@ -48801,6 +48801,18 @@
             "deprecationReason": null
           },
           {
+            "name": "titleNumberOfLines",
+            "description": "Supported RN version 3.96.0",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "descriptionNumberOfLines",
             "description": "Supported RN version 3.96.0",
             "args": [],

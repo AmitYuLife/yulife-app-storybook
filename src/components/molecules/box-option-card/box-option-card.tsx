@@ -20,6 +20,7 @@ interface Props {
   subtitleTextType?: ComponentProps<typeof TextTemplate>["type"];
   titleWrapperStyles?: ViewStyle;
   subtitleWrapperStyles?: ViewStyle;
+  titleNumberOfLines?: number;
   descriptionNumberOfLines?: number;
 }
 
@@ -34,6 +35,7 @@ export const BoxOptionCard = ({
   subtitleTextType = "l2b",
   titleWrapperStyles = {},
   subtitleWrapperStyles = {},
+  titleNumberOfLines,
   descriptionNumberOfLines,
 }: Props) => {
   const dispatch = useDispatch();
@@ -75,7 +77,7 @@ export const BoxOptionCard = ({
                 style={StyleSheet.flatten([styles.titleWrapper, titleWrapperStyles])}
                 testID={BOX_OPTION_TITLE(title)}
               >
-                <Title>{title}</Title>
+                <Title numberOfLines={titleNumberOfLines}>{title}</Title>
               </View>
             )}
             {!subtitle ? null : (

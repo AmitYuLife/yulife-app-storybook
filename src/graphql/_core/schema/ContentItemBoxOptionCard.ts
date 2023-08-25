@@ -66,4 +66,8 @@ export interface ContentItemBoxOptionCard {
    * Supported RN version 3.96.0
    */
   descriptionNumberOfLines: number | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  titleNumberOfLines: number | null;
 }

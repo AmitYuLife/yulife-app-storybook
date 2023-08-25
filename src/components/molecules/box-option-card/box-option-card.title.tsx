@@ -3,9 +3,14 @@ import { StyleSheet, Text } from "react-native";
 
 type Props = {
   children: string;
+  numberOfLines?: number;
 };
 
-export const Title = ({ children }: Props) => <Text style={styles.title}>{children}</Text>;
+export const Title = ({ children, numberOfLines }: Props) => (
+  <Text numberOfLines={numberOfLines} style={styles.title}>
+    {children}
+  </Text>
+);
 
 const styles = StyleSheet.create({
   title: {
