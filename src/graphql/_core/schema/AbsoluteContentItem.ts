@@ -847,6 +847,10 @@ export interface AbsoluteContentItem_item_ContentItemBoxOptionCard {
    * Supported RN version 3.96.0
    */
   descriptionNumberOfLines: number | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  titleNumberOfLines: number | null;
 }
 
 export interface AbsoluteContentItem_item_ContentItemSwitch_styles {

@@ -857,6 +857,10 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCa
    * Supported RN version 3.96.0
    */
   descriptionNumberOfLines: number | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  titleNumberOfLines: number | null;
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemSwitch_styles {
@@ -1824,6 +1828,10 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBo
    * Supported RN version 3.96.0
    */
   descriptionNumberOfLines: number | null;
+  /**
+   * Supported RN version 3.96.0
+   */
+  titleNumberOfLines: number | null;
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSwitch_styles {
