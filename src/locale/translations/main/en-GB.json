@@ -594,7 +594,7 @@
     },
     "challenge_list": {
       "level_locked": "Level %{availableAtLevel}",
-      "level_boosted": "Boosted",
+      "level_boosted": "Boost",
       "level_completed": "Completed"
     },
     "level_locked": {
