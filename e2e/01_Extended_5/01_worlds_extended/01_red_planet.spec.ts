@@ -150,7 +150,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap level 201 button a fourth time", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
             Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
-        When("I complete a meditation challenge at level 201", when.selectAndCompleteMeditationChallengeWithoutMedia(180), async () => {
+        When("I complete a meditation challenge at level 201", when.selectAndCompleteMeditationChallengeWithMedia(180), async () => {
             Then("I should see the level 201 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
             Then("I should see level 201 has 3 stars", then.idVisible(LEVEL_STAR_COUNT(3)))
             Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17960)))
@@ -217,7 +217,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap level 251 button a fourth time", when.tapID(LEVEL_CHALLENGE_BUTTON(251)), async () => {
             Then("I should be on the level 251 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
-        When("I complete a meditation challenge at level 251", when.selectAndCompleteMeditationChallengeWithoutMedia(180), async () => {
+        When("I complete a meditation challenge at level 251", when.selectAndCompleteMeditationChallengeWithMedia(180), async () => {
             Then("I should see the level 251 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(251)))
             Then("I should see level 251 has 3 stars", then.idVisible(LEVEL_STAR_COUNT(3)))
             Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17960)))

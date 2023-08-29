@@ -60,7 +60,7 @@ Feature("I can get to and complete challenges in the bright planet", async () =>
         When("I tap level 401 button a fourth time", when.tapID(LEVEL_CHALLENGE_BUTTON(401)), async () => {
             Then("I should be on the level 401 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
-        When("I complete a meditation challenge at level 401", when.selectAndCompleteMeditationChallengeWithoutMedia(180), async () => {
+        When("I complete a meditation challenge at level 401", when.selectAndCompleteMeditationChallengeWithMedia(180), async () => {
             Then("I should see the level 401 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(401)))
             Then("I should see level 401 has 3 stars", then.idVisible(LEVEL_STAR_COUNT(3)))
             Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17960)))

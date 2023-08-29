@@ -263,7 +263,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I tap level 201 button a fourth time", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
             Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
-        When("I complete a meditation challenge at level 201", when.selectAndCompleteMeditationChallengeWithoutMedia(180), async () => {
+        When("I complete a meditation challenge at level 201", when.selectAndCompleteMeditationChallenge(180), async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 Then("I should see the level 201 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
                 Then("I should see level 201 has 3 stars", then.idVisible(LEVEL_STAR_COUNT(3)))
