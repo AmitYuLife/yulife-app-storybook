@@ -54,6 +54,8 @@ const requestIdPrefix = `${defaultHeaders.apollo_client_name}_${defaultHeaders.d
 // use a request counter to ensure uniqueness for closely batched requests
 let requestCount = 0;
 
+const getUserId = () => ((store.getState() as any) || {})?.user?.id || "unknown";
+
 const authMiddleware = setContext(async (op, { headers }) => {
   // get the authentication token from async storage if it exists
   const token = await getToken();
@@ -61,7 +63,7 @@ const authMiddleware = setContext(async (op, { headers }) => {
   getClient().leaveBreadcrumb("Apollo request", { name: op.operationName }, "request");
 
   // We want to append the prefix with the current milliseconds to make the request ID unique
-  const requestId = `${requestIdPrefix}_${moment().milliseconds()}_${requestCount}`;
+  const requestId = `${requestIdPrefix}_${getUserId()}_${moment().milliseconds()}_${requestCount}`;
 
   requestCount++;
 
