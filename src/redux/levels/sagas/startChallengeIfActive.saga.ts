@@ -8,6 +8,7 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import cancelQuestMapLevelChallenge from "@graphql/challenges/cancelQuestMapLevelChallenge.gql";
 import { challengeResetSuccessAction } from "@redux/levels/levels.actions";
 import { Storage, StorageKey } from "@utils/storage";
+import moment from "moment";
 
 export default function* startChallengeIfActiveSaga() {
   try {
@@ -24,13 +25,17 @@ export default function* startChallengeIfActiveSaga() {
     const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
     const videoPlayerIsActive: ReturnType<typeof getVideoPlayerIsActive> = yield select(getVideoPlayerIsActive);
 
+    const isMeditation = subtype.includes("meditation");
+    const hasChallengeEnded = moment().isAfter(endDateTime);
     const isActiveMediaChallenge = videoPlayerIsActive && levelSlotId;
-    const isResumableMediaChallenge = features?.enableResumeInAppMeditation && subtype.includes("meditation");
+    const shouldAutoCancelChallengeV1 = isActiveMediaChallenge && isMeditation;
+    const shouldAutoCancelChallengeV2 =
+      (isActiveMediaChallenge && !isMeditation) || (isActiveMediaChallenge && isMeditation && hasChallengeEnded);
 
     // This will cancel any video related challenges that are not meditations
     // This is because only meditations current have a custom progress screen
     // So challenges like internal Fiit challenges will still be auto cancelled.
-    if (isActiveMediaChallenge && !isResumableMediaChallenge) {
+    if (features?.enableResumeInAppMeditation ? shouldAutoCancelChallengeV2 : shouldAutoCancelChallengeV1) {
       try {
         yield Storage.removeItem(StorageKey.mediaPlayerProgress);
         yield call(cancelQuestMapLevelChallenge, levelSlotId);

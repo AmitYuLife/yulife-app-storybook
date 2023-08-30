@@ -39,9 +39,10 @@ const MediaPlayerProgressScreen = ({
   onLeftIconPress,
 }: IMediaPlayerProgressScreenProps) => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [activeVideo, setActiveVideo] = useState<GetMedia_getMedia>(null);
   const [activeVideoProgress, setActiveVideoProgress] = useState<IVideoProgressStorage>(null);
-  const [getVideos, { loading }] = useLazyQuery<GetMedia, GetMediaVariables>(GQL_QUERY_GET_VIDEOS_LIST, {
+  const [getVideos] = useLazyQuery<GetMedia, GetMediaVariables>(GQL_QUERY_GET_VIDEOS_LIST, {
     fetchPolicy: "network-only",
     variables: {
       tags: ["meditopia_challenges"],
@@ -95,12 +96,13 @@ const MediaPlayerProgressScreen = ({
     const result = await getVideos();
     const videoProgress = await getVideoProgress();
     const videoToResume = (result?.data?.getMedia || []).find((video) => video.id === videoProgress?.id);
-    const isVideoResumable = videoProgress && !videoToResume;
+    const isVideoResumable = videoProgress && videoToResume;
 
-    if (isVideoResumable || getHasChallengeEnded(videoToResume)) {
-      return await cancelChallenge();
+    if (!isVideoResumable) {
+      return;
     }
 
+    setIsLoading(false);
     setActiveVideo(videoToResume);
     setActiveVideoProgress(videoProgress);
 
@@ -168,7 +170,7 @@ const MediaPlayerProgressScreen = ({
     return `${durationWatchedFormatted} / ${durationTotalFomatted}`;
   }, [activeVideoProgress, activeVideo]);
 
-  if (loading || !activeVideo || !activeVideoProgress) {
+  if (isLoading) {
     return (
       <View style={styles.wrapper}>
         <Loading />
