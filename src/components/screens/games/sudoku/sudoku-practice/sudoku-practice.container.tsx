@@ -35,7 +35,6 @@ export const SudokuPracticeContainer = ({ componentId }: IProps) => {
     async (params: ISudokuResults) => {
       await delay(SUDOKU_ANIMATION_TIMEOUT);
       (async () => {
-        console.log(params);
         Navigation.push(componentId, {
           component: {
             id: ROUTES.sudokuCompleted,

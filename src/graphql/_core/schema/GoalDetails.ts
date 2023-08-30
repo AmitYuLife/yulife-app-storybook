@@ -124,6 +124,7 @@ export interface GoalDetails {
   headerImage: GoalDetails_headerImage;
   headerBackgroundColor: string;
   headerTextColor: string;
+  hideHint: boolean | null;
   rewards: GoalDetails_rewards[];
   progressUnit: string;
   currentProgress: number;

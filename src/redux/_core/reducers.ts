@@ -36,6 +36,8 @@ import dailyPensionReducer, {
   getInitialState as getInitialDailyPension,
 } from "../daily-pension/daily-pension.reducer";
 
+import hintsReducer, { IHintsStore, getInitialState as getInitialHintsState } from "@redux/hints/hints.reducer";
+
 export interface IReduxState {
   app: IAppStore;
   coins: ICoinsStore;
@@ -53,6 +55,7 @@ export interface IReduxState {
   fitkit: IFitkitStore;
   adBanners: IAdBannersStore;
   sudoku: ISudokuStore;
+  hints: IHintsStore;
 }
 
 export const initialState: IReduxState = {
@@ -68,6 +71,7 @@ export const initialState: IReduxState = {
   dailyMeditation: getInitialDailyMeditation(),
   dailyCycling: getInitialDailyCycling(),
   dailyPension: getInitialDailyPension(),
+  hints: getInitialHintsState(),
   sdui: getInitialSduiState(),
   fitkit: getInitialFitkitState(),
   adBanners: getInitialAdbannersState(),
@@ -94,6 +98,7 @@ const combinedReducers = combineReducers({
   fitkit: fitkitReducer,
   adBanners: adBannersReducer,
   sudoku: sudokuReducer,
+  hints: hintsReducer,
 });
 
 export default combinedReducers;

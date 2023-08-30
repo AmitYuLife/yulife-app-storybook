@@ -340,6 +340,7 @@ const VideoPlayer = ({
         : source,
     [source, DETOX_ENABLED]
   );
+
   const videoSource = useMemo(
     () => ({
       uri: videoUrl,

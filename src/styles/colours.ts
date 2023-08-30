@@ -65,6 +65,7 @@ export default {
   darkGray: "rgb(70,70,70)",
   darkHotPink: "rgb(227,13,118)",
   darkHotPinkShadow: "#95012b",
+  darkPink: "#640038",
   divider: "rgb(96,96,96)",
   gray: "rgb(96,96,96)",
   midGray: "rgb(128,128,128)",
@@ -88,6 +89,7 @@ export default {
     body: "rgb(226, 1, 119)",
     border: "white",
   },
+
   slider: {
     inactive: "#BFBFC2",
     greyBar: "#E7E7EB",
@@ -179,6 +181,7 @@ export default {
       n900: "#464647",
       u100S4: "#FFD600",
       u50S4: "#FFEB80",
+      u30S4: "#FFF060",
       u10S4: "#FFFBE5",
     },
   },
