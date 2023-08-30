@@ -2,7 +2,7 @@ import { FloatingModal, SudokuPauseModal } from "@components/modals";
 import { SUDOKU_PAUSE_ANIMATION_DURATION } from "@components/screens/games/sudoku/sudoku-game/sudoku.config";
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import { Colours, Style } from "@styles";
-import React from "react";
+import React, { useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import Animated, { FadeIn, FadeOut, SlideInDown, SlideOutDown } from "react-native-reanimated";
 import Grid from "./grid";
@@ -16,7 +16,15 @@ interface IProps {
 }
 
 export const SudokuGame = ({ invertHeader }: IProps) => {
-  const { lastPauseTime, unpause } = useSudokuContext();
+  const { lastPauseTime, unpause, enableAnimations } = useSudokuContext();
+
+  const pauseModal = useMemo(() => {
+    return (
+      <FloatingModal showButton={false}>
+        <SudokuPauseModal onClose={unpause} />
+      </FloatingModal>
+    );
+  }, [unpause]);
 
   return (
     <>
@@ -29,20 +37,24 @@ export const SudokuGame = ({ invertHeader }: IProps) => {
       </View>
 
       {lastPauseTime ? (
-        <AnimatedView
-          entering={FadeIn.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
-          exiting={FadeOut.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
-          style={styles.pauseContainer}
-        >
-          <AnimatedView
-            entering={SlideInDown.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
-            exiting={SlideOutDown.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
-          >
-            <FloatingModal showButton={false}>
-              <SudokuPauseModal onClose={unpause} />
-            </FloatingModal>
-          </AnimatedView>
-        </AnimatedView>
+        <>
+          {enableAnimations ? (
+            <AnimatedView
+              entering={FadeIn.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
+              exiting={FadeOut.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
+              style={styles.pauseContainer}
+            >
+              <AnimatedView
+                entering={SlideInDown.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
+                exiting={SlideOutDown.duration(SUDOKU_PAUSE_ANIMATION_DURATION)}
+              >
+                {pauseModal}
+              </AnimatedView>
+            </AnimatedView>
+          ) : (
+            <View style={styles.pauseContainer}>{pauseModal}</View>
+          )}
+        </>
       ) : null}
     </>
   );

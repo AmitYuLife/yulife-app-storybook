@@ -73,7 +73,7 @@ export const SudokuPracticeContainer = ({ componentId }: IProps) => {
       config={board.config}
       onGameComplete={onGameComplete}
       gameIdentifier={"practice"}
-      enableAnimations={features.disableYudokuAnimations}
+      enableAnimations={!features.disableSudokuAnimations}
       detectCheats={false}
       savedState={undefined}
       invertHeader={!!yuniversalMap}

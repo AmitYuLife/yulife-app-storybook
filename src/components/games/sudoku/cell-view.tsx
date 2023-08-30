@@ -12,7 +12,7 @@ import {
 import { Colours } from "@styles";
 import { CELL_ROW_COLUMN } from "@ids";
 
-interface IProps {
+export interface ICellViewProps {
   row: number;
   value?: number;
   column: number;
@@ -52,7 +52,7 @@ const CellView = ({
   isAdjacentActive,
   isColumnComplete,
   isQuadrantActive,
-}: IProps) => {
+}: ICellViewProps) => {
   const circleAnimationScale = useSharedValue(0);
   const backgroundAnimation = useSharedValue("white");
   const [circleBg, setCircleBg] = useState<string>("transparent");
@@ -128,39 +128,39 @@ const CellView = ({
   }, [isGameCompleted]);
 
   const cellStyles = useMemo(() => {
-    const style: ViewStyle[] = [styles.cell];
+    const style: ViewStyle[] = [cellViewStyles.cell];
     style.push(animatedBackgroundStyle);
 
     // Thick column lines
     if (column % SUDOKU_QUADRANT_DIMENSIONS === SUDOKU_QUADRANT_DIMENSIONS - 1 && column !== SUDOKU_DIMENSIONS - 1) {
-      style.push(styles.cellRightMain);
+      style.push(cellViewStyles.cellRightMain);
     }
 
     // Thick row lines
     if (row % SUDOKU_QUADRANT_DIMENSIONS === SUDOKU_QUADRANT_DIMENSIONS - 1 && row !== SUDOKU_DIMENSIONS - 1) {
-      style.push(styles.cellBottomMain);
+      style.push(cellViewStyles.cellBottomMain);
     }
 
     if (row === SUDOKU_DIMENSIONS - 1) {
-      style.push(styles.cellLastRow);
+      style.push(cellViewStyles.cellLastRow);
     }
 
     if (column === SUDOKU_DIMENSIONS - 1) {
-      style.push(styles.cellLastColumn);
+      style.push(cellViewStyles.cellLastColumn);
     }
 
     return style;
   }, [row, animatedBackgroundStyle, column]);
 
   const expandingCircleStyle = useMemo(
-    () => [styles.expandingCircle, animatedStyle, { backgroundColor: circleBg }],
+    () => [cellViewStyles.expandingCircle, animatedStyle, { backgroundColor: circleBg }],
     [animatedStyle, circleBg]
   );
 
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={styles.wrapper}
+      style={cellViewStyles.wrapper}
       activeOpacity={ACTIVE_OPACITY}
       testID={CELL_ROW_COLUMN(row, column, value)}
     >
@@ -182,7 +182,7 @@ const CellView = ({
   );
 };
 
-const styles = StyleSheet.create({
+export const cellViewStyles = StyleSheet.create({
   wrapper: {
     flex: 1,
   },
