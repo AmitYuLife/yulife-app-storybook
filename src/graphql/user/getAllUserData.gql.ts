@@ -10,6 +10,7 @@ import { GQL_FRAGMENT_USER_PASSIVE_CHALLENGES_EARN_RATE } from "./getUserPassive
 import { AppDataType } from "@redux/user/user.actions";
 import {
   GetDailyPensionContribution_getDailyPensionContribution,
+  GetMobileHints_getMobileHints,
   GetUserActiveChallenge_getUserActiveChallenge,
   GetUserActiveStreak_getUserActiveStreak,
   GetUserCoinLedger_coinLedger,
@@ -19,6 +20,7 @@ import {
 } from "@graphql/_core/schema";
 import { GQL_FRAGMENT_USER_ACTIVE_STREAK } from "@graphql/_fragments/userActiveStreak.gql";
 import { GQL_FRAGMENT_DAILY_PENSION_CONTRIBUTION } from "@graphql/_fragments/dailyPensionContribution.gql";
+import { GQL_FRAGMENT_HINT } from "@graphql/_fragments/hint.gql";
 
 interface IUserDataQuery {
   type: AppDataType;
@@ -78,6 +80,13 @@ export const DATA_QUERIES: IUserDataQuery[] = [
     query: "getDailyPensionContribution",
     fragmentName: "DailyPensionContribution",
   },
+  {
+    type: AppDataType.hints,
+    fragment: GQL_FRAGMENT_HINT,
+    alias: "hints",
+    query: "getMobileHints",
+    fragmentName: "Hint",
+  },
 ];
 
 export const generateQuery = (types: AppDataType[]) => {
@@ -99,6 +108,7 @@ export interface GetAllUserDataResponse {
   [AppDataType.activeStreak]: GetUserActiveStreak_getUserActiveStreak;
   [AppDataType.activeChallenge]: GetUserActiveChallenge_getUserActiveChallenge;
   [AppDataType.dailyPension]: GetDailyPensionContribution_getDailyPensionContribution;
+  [AppDataType.hints]: GetMobileHints_getMobileHints[];
 }
 
 export default function getAllUserData(types: AppDataType[]) {

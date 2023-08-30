@@ -124,6 +124,7 @@ export interface GetGoalDetails_getGoalDetails {
   headerImage: GetGoalDetails_getGoalDetails_headerImage;
   headerBackgroundColor: string;
   headerTextColor: string;
+  hideHint: boolean | null;
   rewards: GetGoalDetails_getGoalDetails_rewards[];
   progressUnit: string;
   currentProgress: number;

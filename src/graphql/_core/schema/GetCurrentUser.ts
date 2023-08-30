@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -14,6 +14,20 @@ export interface GetCurrentUser_getDailyPensionContribution {
   active: boolean;
   yuCoinAwarded: number | null;
   contribution: string | null;
+}
+
+export interface GetCurrentUser_getMobileHints_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetCurrentUser_getMobileHints {
+  id: string;
+  title: string;
+  description: string;
+  image: GetCurrentUser_getMobileHints_image;
+  screenBlacklist: string[] | null;
+  screenWhitelist: string[] | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_connections {
@@ -224,6 +238,7 @@ export interface GetCurrentUser_getCurrentUser {
 
 export interface GetCurrentUser {
   getDailyPensionContribution: GetCurrentUser_getDailyPensionContribution;
+  getMobileHints: GetCurrentUser_getMobileHints[] | null;
   getIntercomHash: string | null;
   getCurrentUser: GetCurrentUser_getCurrentUser | null;
 }

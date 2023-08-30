@@ -17,6 +17,7 @@ import { GenericHeadingAbsolute, IInfoCardListCard, InfoCardList } from "@organi
 import { RemoteImage, GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 import { showInfoMessageTooltipPointRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { GetGoalDetails_getGoalDetails_banner as EventBanner } from "@graphql/_core/schema/GetGoalDetails";
+import { ROUTES } from "@navigation/constants";
 import style, {
   HEADER_HEIGHT,
   CONTENT_MARGIN_TOP,
@@ -24,6 +25,7 @@ import style, {
   FAQ_VERTICAL_PADDING,
   SMOOTH_GRADIENT_COLORS,
 } from "./event-dialog.styles";
+import HintContainer from "@components/molecules/hint/hint.container";
 
 const PROGRESS_BAR_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 const TITLE_HEIGHT = Platform.select({
@@ -63,6 +65,7 @@ interface IEventDialogScreenProps {
   button?: EventButton;
   currentProgress: number;
   onFaqViewed?: () => void;
+  hideHint?: boolean;
   headerProps: IHeaderProps;
   onButtonPress?: () => void;
   infoCards: IInfoCardListCard[];
@@ -88,6 +91,7 @@ const EventDialogScreen = ({
   headerProps,
   maxProgress,
   onFaqViewed,
+  hideHint,
   progressUnit,
   progressIcon,
   onButtonPress,
@@ -273,6 +277,7 @@ const EventDialogScreen = ({
                 />
               </View>
             )}
+            <HintContainer hide={hideHint} screen={ROUTES.eventDialog} style={style.hintContainer} />
             {!button ? null : <View style={style.ctaPadding} />}
           </View>
         </Animated.ScrollView>

@@ -85,6 +85,7 @@ export default StyleSheet.create({
   about: { marginTop: Style.adjust(40), marginBottom: Style.adjust(24) },
   bannerWrapper: { marginBottom: Style.adjust(24) },
   banner: { paddingVertical: 0 },
+  hintContainer: { marginBottom: Style.adjust(20) },
   ctaPadding: { height: Style.adjust(60) },
   ctaWrapper: {
     position: "absolute",

@@ -10,6 +10,8 @@ import {
 } from "@graphql/_core/schema";
 import { Style } from "@styles";
 import { t } from "@locale";
+import HintContainer from "@components/molecules/hint/hint.container";
+import { ROUTES } from "@navigation/constants";
 
 interface IProps {
   header: Header;
@@ -37,6 +39,9 @@ const TodayEarningsScreen = ({
           {activityFeed.map((item) => (
             <ActivityFeed key={item.id} {...item} isGoogleFitAuthorised={isGoogleFitAuthorised} />
           ))}
+          <View style={styles.hintWrapper}>
+            <HintContainer screen={ROUTES.todayEarnings} />
+          </View>
         </View>
       </ScrollView>
       <GenericHeadingAbsolute heading={t("screens.today_earning.heading.title")} onLeftIconPress={onLeftIconPress} />
@@ -50,6 +55,10 @@ const styles = StyleSheet.create({
   },
   activityFeedWrapper: {
     marginBottom: Style.adjust(30),
+  },
+  hintWrapper: {
+    marginTop: Style.adjust(24),
+    paddingHorizontal: Style.adjust(24),
   },
 });
 

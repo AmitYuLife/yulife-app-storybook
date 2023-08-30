@@ -58,6 +58,7 @@ export const GQL_FRAGMENT_GOAL_DETAILS = gql`
     }
     headerBackgroundColor
     headerTextColor
+    hideHint
     rewards {
       id
       goalId

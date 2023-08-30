@@ -16,4 +16,6 @@ export * from "./useSafeAreaViewOffset";
 export * from "./useSaveImage";
 export * from "./useNotifications";
 export * from "./useLazyGqlLoading";
+export * from "./useUserFeatures";
 export * from "./useAsyncEffect";
+export * from "./useHint";

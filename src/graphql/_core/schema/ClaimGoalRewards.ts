@@ -124,6 +124,7 @@ export interface ClaimGoalRewards_claimGoalRewards {
   headerImage: ClaimGoalRewards_claimGoalRewards_headerImage;
   headerBackgroundColor: string;
   headerTextColor: string;
+  hideHint: boolean | null;
   rewards: ClaimGoalRewards_claimGoalRewards_rewards[];
   progressUnit: string;
   currentProgress: number;

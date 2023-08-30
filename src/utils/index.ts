@@ -5,6 +5,7 @@ export * from "./device";
 export * from "./number";
 export * from "./string";
 export * from "./quests";
+export * from "./hints";
 export * from "./tests";
 export * from "./types";
 export * from "./object";

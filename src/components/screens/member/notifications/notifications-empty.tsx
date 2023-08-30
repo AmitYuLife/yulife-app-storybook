@@ -13,7 +13,9 @@ export const NotificationsEmpty = () => {
       <View style={styles.icon}>
         <EnvelopeSvg size={Style.adjust(140)} />
       </View>
-      <TextTemplate type="b2">{t["screens.notifications.empty"]}</TextTemplate>
+      <TextTemplate textAlign="center" type="b2">
+        {t["screens.notifications.empty"]}
+      </TextTemplate>
     </View>
   );
 };
@@ -23,6 +25,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flex: 1,
+    paddingHorizontal: Style.adjust(20),
     marginTop: Style.adjust(100),
   },
   icon: {

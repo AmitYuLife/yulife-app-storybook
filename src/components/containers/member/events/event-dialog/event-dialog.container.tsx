@@ -224,6 +224,7 @@ const EventDialogContainer = ({ componentId, event, onLeftIconPress }: IEventDia
       onClaimReward={onClaimReward}
       onButtonPress={onButtonPress}
       onCompleteEvent={onCompleteEvent}
+      hideHint={goalDetails?.hideHint}
       {...goalDetails}
     />
   );
