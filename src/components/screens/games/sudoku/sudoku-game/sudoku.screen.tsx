@@ -39,7 +39,7 @@ export const SudokuScreen = ({ onBack, ...props }: IProps) => {
             backgroundColor="transparent"
             onLeftIconPress={onBack}
           />
-          <SudokuGameContainer {...props} enableAnimations={!features.disableYudokuAnimations} />
+          <SudokuGameContainer {...props} enableAnimations={!features.disableSudokuAnimations} />
         </View>
       </View>
     </>

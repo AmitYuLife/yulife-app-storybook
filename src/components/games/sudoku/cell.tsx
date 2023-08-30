@@ -1,5 +1,6 @@
 import React, { memo, useCallback } from "react";
 import CellView from "./cell-view";
+import CellViewPerformance from "./cell-view-performance";
 import { ISudokuPosition } from "./sudoku.interface";
 
 interface IProps {
@@ -41,8 +42,10 @@ const Cell = ({
     setSelected({ row, column });
   }, [row, setSelected, column]);
 
+  const CellComponent = enableAnimations ? CellView : CellViewPerformance;
+
   return (
-    <CellView
+    <CellComponent
       row={row}
       column={column}
       value={value}
