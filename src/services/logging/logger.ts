@@ -6,7 +6,7 @@ import getBugsnagClient, { BugsnagClient } from "../bugsnag";
 import LeanplumClient from "./leanplum";
 import { MixpanelEvent, MixpanelEventMetadata } from "@services/logging/types";
 import { Event } from "@bugsnag/react-native";
-import region from "@services/region";
+import { region } from "@locale";
 import { Platform } from "react-native";
 
 class LoggerInstance {

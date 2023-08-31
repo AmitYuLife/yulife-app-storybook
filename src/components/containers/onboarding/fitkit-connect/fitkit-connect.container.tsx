@@ -7,7 +7,7 @@ import { handleLinkPress } from "@services/app-link";
 import Storage from "@services/storage";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
-import region from "@services/region";
+import { region } from "@locale";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {

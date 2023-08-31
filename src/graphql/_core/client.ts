@@ -11,8 +11,7 @@ import { store } from "@redux/_core/store";
 import getClient from "@services/bugsnag";
 import { updateOfflineState } from "@redux/app/app.actions";
 import createRetryLink from "./retryLink";
-import { getCurrentLocale } from "@locale";
-import region from "@services/region";
+import { getCurrentLocale, region } from "@locale";
 
 import { gqlInMemoryCache } from "./cache";
 import { gqlCachePersistor } from "./persistor";

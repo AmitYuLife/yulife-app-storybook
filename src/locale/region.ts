@@ -39,7 +39,7 @@ type RegionStorage = {
   createdAt?: Date;
 };
 
-class RegionService {
+export class RegionService {
   private SELECTED_REGION: REGION = "UK";
   private REGION_CONFIG: RegionConfig;
   private REGION_CONFIG_LAST_UPDATED: Date;
@@ -120,6 +120,3 @@ class RegionService {
     }
   };
 }
-
-const region = new RegionService();
-export default region;

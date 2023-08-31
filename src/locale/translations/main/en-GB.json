@@ -181,7 +181,10 @@
         "full_button_label": "Full activity history",
         "menu_label": "map",
         "completed_challenges": "Completed challenges",
-        "sudoku_leaderboard": "Yudoku Leaderboard (%{date})",
+        "sudoku_leaderboard": {
+          "default": "Yudoku Leaderboard (%{date})",
+          "jp": "Number Puzzle Leaderboard (%{date})"
+        },
         "sudoku_leaderboard_today": "Today",
         "summary": "Level %{level} Summary",
         "summary_named": "%{levelName} Summary",
@@ -1250,12 +1253,18 @@
       "medium": "Medium",
       "hard": "Hard"
     },
-    "title": "Yudoku",
+    "title": {
+      "default": "Yudoku",
+      "jp": "Number Puzzle"
+    },
     "game": {
       "undo": "Undo"
     },
     "cancel": {
-      "message": "Your current progress will be lost and if you complete a Yudoku today it will not be ranked on the leaderboard"
+      "message": {
+        "default": "Your current progress will be lost and if you complete a Yudoku today it will not be ranked on the leaderboard",
+        "jp": "Your current progress will be lost and if you complete a Number Puzzle today it will not be ranked on the leaderboard"
+      }
     },
     "hint_popup": {
       "title": "Hints",
@@ -1274,18 +1283,36 @@
     },
     "progress": {
       "resume": "Resume Game",
-      "paused": "Yudoku Paused"
+      "paused": {
+        "default": "Yudoku Paused",
+        "jp": "Number Puzzle Paused"
+      }
     },
     "error": {
       "title": "Couldn't submit results",
-      "message": "An error occurred while submitting your Yudoku results",
+      "message": {
+        "default": "An error occurred while submitting your Yudoku results",
+        "jp": "An error occurred while submitting your Number Puzzle results"
+      },
       "continue": "Continue"
     },
     "help": {
-      "title": "How to play Yudoku",
-      "outline": "To play Yudoku – fill in a 9x9 grid with numbers 1 to 9, such that each number appears only once in each row, each column, and each 3x3 block. The objective is to have a completed and correct grid by the end of the game.",
-      "1": "The basic rules of Yudoku:",
-      "2": "The Yudoku grid is made up of 9x9 cells.",
+      "title": {
+        "default": "How to play Yudoku",
+        "jp": "How to play the Number Puzzle"
+      },
+      "outline": {
+        "default": "To play Yudoku – fill in a 9x9 grid with numbers 1 to 9, such that each number appears only once in each row, each column, and each 3x3 block. The objective is to have a completed and correct grid by the end of the game.",
+        "jp": "To play the Number Puzzle – fill in a 9x9 grid with numbers 1 to 9, such that each number appears only once in each row, each column, and each 3x3 block. The objective is to have a completed and correct grid by the end of the game."
+      },
+      "1": {
+        "default": "The basic rules of Yudoku:",
+        "jp": "The basic rules of the Number Puzzle:"
+      },
+      "2": {
+        "default": "The Yudoku grid is made up of 9x9 cells.",
+        "jp": "The Number Puzzle grid is made up of 9x9 cells."
+      },
       "3": "You are only allowed to use numbers 1 to 9.",
       "4": "In each 3x3 block, only numbers 1 to 9 can be used.",
       "5": "Each vertical column must also only contain numbers 1 to 9.",
@@ -1294,12 +1321,21 @@
     },
     "completed": {
       "title": "Great work!",
-      "sub1": "You finished your daily Yudoku.",
+      "sub1": {
+        "default": "You finished your daily Yudoku.",
+        "jp": "You finished your daily Number Puzzle."
+      },
       "sub2": "Come back tomorrow for a new round.",
       "collect": "Collect",
-      "practice": "Now try the daily Yudoku challenge to earn YuCoin!",
+      "practice": {
+        "default": "Now try the daily Yudoku challenge to earn YuCoin!",
+        "jp": "Now try the daily Number Puzzle challenge to earn YuCoin!"
+      },
       "continue": "Continue",
-      "practice_title": "Yudoku Practice"
+      "practice_title": {
+        "default": "Yudoku Practice",
+        "jp": "Number Puzzle Practice"
+      }
     },
     "pause": {
       "title": "Pause",
@@ -1313,21 +1349,33 @@
       "continueGame": "Continue game",
       "startGame": "Start game",
       "todaysLeaderboard": "Today's Leaderboard",
-      "alreadyDone": "You can only do one Yudoku per day.\nCome back tomorrow!",
+      "alreadyDone": {
+        "default": "You can only do one Yudoku per day.\nCome back tomorrow!",
+        "jp": "You can only do one Number Puzzle per day.\nCome back tomorrow!"
+      },
       "dailyLeaderboard": "Daily Leaderboard",
       "joinDailyLeaderboard": "Join the daily leaderboard",
       "secondAttemptDisclaimer": "As this is not your first attempt today your time will not be ranked on the leaderboard and will not count towards your personal best.",
       "practiceGame": "Practice game"
     },
     "leaderboard_consent": {
-      "title": "Join the daily Yudoku leaderboard?",
+      "title": {
+        "default": "Join the daily Yudoku leaderboard?",
+        "jp": "Join the daily Number Puzzle leaderboard?"
+      },
       "description": "By joining the leaderboard, you are consenting to share details about your activity with other members of this leaderboard. You can opt out at any time via the settings menu.",
       "confirm": "Join the Leaderboard"
     },
     "leaderboard": {
-      "empty_description": "Complete a Yudoku and be the first on the leaderboard today!",
+      "empty_description": {
+        "default": "Complete a Yudoku and be the first on the leaderboard today!",
+        "jp": "Complete a Number Puzzle and be the first on the leaderboard today!"
+      },
       "start": "Start game",
-      "title": "Daily Yudoku"
+      "title": {
+        "default": "Daily Yudoku",
+        "jp": "Daily Number Puzzle"
+      }
     }
   },
   "push_notification": {

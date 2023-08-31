@@ -1,4 +1,4 @@
-import region, { REGION } from "@services/region";
+import { region, REGION } from "@locale";
 import { store } from "@redux/_core/store";
 import { setRegionConfig } from "@redux/app/app.actions";
 import { setUnauthenticatedRoot } from "../../root";

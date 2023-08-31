@@ -2,7 +2,7 @@ import { getApiConfigWithClient } from "@graphql/config";
 import { call } from "redux-saga/effects";
 import { Unpacked } from "@utils";
 import Logger from "@services/logging/logger";
-import region from "@services/region";
+import { region } from "@locale";
 import { initStripe } from "@services/stripe";
 import { SyncAction } from "@redux/_core/types";
 import { DETOX_ENABLED } from "@services/socket";

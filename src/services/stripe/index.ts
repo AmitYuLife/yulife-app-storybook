@@ -1,4 +1,4 @@
-import region from "@services/region";
+import { region } from "@locale";
 import { initStripe as init } from "@stripe/stripe-react-native";
 
 export async function initStripe() {

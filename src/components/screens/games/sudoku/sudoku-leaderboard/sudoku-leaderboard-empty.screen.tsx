@@ -15,7 +15,11 @@ interface IProps {
 const IMAGE_WIDTH = Style.DEVICE_WIDTH / 2;
 
 const SudokuLeaderboardEmptyScreen = ({ date, onClose }: IProps) => {
-  const t = useTranslation(["sudoku.leaderboard.empty_description", "sudoku.leaderboard.start"]);
+  const t = useTranslation([
+    "sudoku.leaderboard.empty_description",
+    "sudoku.leaderboard.title",
+    "sudoku.leaderboard.start",
+  ]);
 
   return (
     <GenericOverlay
@@ -23,7 +27,7 @@ const SudokuLeaderboardEmptyScreen = ({ date, onClose }: IProps) => {
       headingProps={{ rightIconTestID: BUTTON_CLOSE_RIGHT_ID }}
       heading={
         <View style={styles.heading}>
-          <TextTemplate type="b2b">Daily Yudoku</TextTemplate>
+          <TextTemplate type="b2b">{t["sudoku.leaderboard.title"]}</TextTemplate>
           <TextTemplate type="l1">{date}</TextTemplate>
         </View>
       }

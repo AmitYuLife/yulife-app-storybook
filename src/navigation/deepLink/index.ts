@@ -1,5 +1,5 @@
 import qs from "qs";
-import region from "@services/region";
+import { region } from "@locale";
 import * as actions from "./actions";
 import { DeepLinkHandler } from "./types";
 import { pushToScreen } from "@navigation/root";

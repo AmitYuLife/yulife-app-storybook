@@ -2,7 +2,7 @@ import React, { FC, memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { BUTTON_ICON, TertiaryButton } from "@molecules";
 import { Icon, Pad, TextTemplate } from "@atoms";
-import region from "@services/region";
+import { region } from "@locale";
 import { Style } from "@styles";
 import { useDispatch } from "react-redux";
 import { setRegionConfig } from "@redux/app/app.actions";

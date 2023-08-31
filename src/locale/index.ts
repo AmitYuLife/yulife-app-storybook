@@ -1,11 +1,31 @@
+// TODO: shouldn't import from gql
 import { LeaderboardMetric } from "@graphql/member";
 import translator from "./translator";
+import { RegionService } from "./region";
 
+export * from "./region";
 export * from "./translations/translations.types";
 
+export const region = new RegionService();
+
+export const translate: typeof translator["translate"] = (key, args) => {
+  const keyWithRegion = `${key}.${region.getPreferredRegion()?.toLowerCase()}`;
+
+  if (translator.has(keyWithRegion)) {
+    return translator.translate(keyWithRegion, args);
+  }
+
+  const keyWithRegionDefault = `${key}.default`;
+
+  if (translator.has(keyWithRegionDefault)) {
+    return translator.translate(keyWithRegionDefault, args);
+  }
+
+  return translator.translate(key, args);
+};
+
 // aliases for translate function
-export const translate = translator.translate;
-export const t = translator.translate;
+export const t = translate;
 export const findBestAvailableLanguage = translator.findBestAvailableLanguage;
 export const getIntercomLanguage = translator.getIntercomLanguage;
 export const getCurrentLocale = translator.getCurrentLocale;
