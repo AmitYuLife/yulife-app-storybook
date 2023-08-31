@@ -1,11 +1,11 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import moment = require('moment');
 import { GOALS_2, GOALS_3, GOALS_4, GOALS_5 } from "./goals";
-import { GOAL_TEAM_1, GOAL_TEAM_3, GOAL_TEAM_4, GOAL_TEAM_5, GOAL_TEAM_6_GHI_REWARDS, GOAL_TEAM_7_GHI_REWARDS, GOAL_TEAM_8_GHI_REWARDS } from "./goal_team";
-import { CUSTOMER_116_GHI_REWARDS, CUSTOMER_117_GHI_REWARDS, CUSTOMER_118_GHI_REWARDS, CUSTOMER_52, CUSTOMER_71, CUSTOMER_72, CUSTOMER_81 } from "../postgres/customers";
+import { GOAL_TEAM_1, GOAL_TEAM_10_GHI_REWARDS, GOAL_TEAM_3, GOAL_TEAM_4, GOAL_TEAM_5, GOAL_TEAM_6_GHI_REWARDS, GOAL_TEAM_7_GHI_REWARDS, GOAL_TEAM_8_GHI_REWARDS, GOAL_TEAM_9_GHI_REWARDS } from "./goal_team";
+import { CUSTOMER_116_GHI_REWARDS, CUSTOMER_117_GHI_REWARDS, CUSTOMER_118_GHI_REWARDS, CUSTOMER_119_GHI_REWARDS, CUSTOMER_120_GHI_REWARDS, CUSTOMER_52, CUSTOMER_71, CUSTOMER_72, CUSTOMER_81 } from "../postgres/customers";
 import { GOAL_PRODUCTS_1 } from "./goal_products";
 import * as grm from "./goal_reward_milestones";
-import { CPE_116_GHI_REWARDS, CPE_117_GHI_REWARDS, CPE_118_GHI_REWARDS } from "../postgres/customer_product_entity";
+import { CPE_116_GHI_REWARDS, CPE_117_GHI_REWARDS, CPE_118_GHI_REWARDS, CPE_119_GHI_REWARDS, CPE_120_GHI_REWARDS } from "../postgres/customer_product_entity";
 
 
 export const GOAL_PARTICIPATION_1 = {
@@ -243,6 +243,124 @@ export const GOAL_PARTICIPATION_7_GHI_REWARDS = {
       ],
       completed: {
         user_levelled_up: 49
+      }
+    },
+} as IDatabaseItem
+
+export const GOAL_PARTICIPATION_8_GHI_REWARDS = {
+  type: "mongo",
+  modelName: "goal_participation",
+  data:{
+      _id: generateRandomMongoId(),
+      status: "active",
+      typesToTrack: [
+        "user_levelled_up"
+      ],
+      autoClaimRewards: true,
+      customerProductId: CPE_119_GHI_REWARDS.data.customer_product_id,
+      userId: CUSTOMER_119_GHI_REWARDS.data.customerId,
+      goal: GOAL_PRODUCTS_1.data._id,
+      parentType: "goal_products",
+      team: GOAL_TEAM_9_GHI_REWARDS.data._id,
+      iterationId: "1",
+      startDateTime: moment().subtract(1, "d").format("YYYY-MM-DD"),
+      joinGoalTime: moment().subtract(1, "d").format("YYYY-MM-DD"),
+      endDateTime: moment().add(7, "days").format("YYYY-MM-DD"),
+      endDate: moment().add(7, "days").format("YYYY-MM-DD"),
+      trackingEndDateTime: moment().add(7, "days").format("YYYY-MM-DD"),
+      disableTransactions: true,
+      progressSyncedAt: moment(),
+      rewardEligibility: [
+        {
+          milestone: grm.GOAL_REWARD_MILESTONE_15_GHI_REWARDS.data._id,
+          isEligible: true
+        },
+        {
+          milestone: grm.GOAL_REWARD_MILESTONE_16_GHI_REWARDS.data._id,
+          isEligible: true
+        },
+        {
+          milestone: grm.GOAL_REWARD_MILESTONE_17_GHI_REWARDS.data._id,
+          isEligible: true
+        },
+        {
+          milestone: grm.GOAL_REWARD_MILESTONE_18_GHI_REWARDS.data._id,
+          isEligible: true
+        },
+        {
+          milestone: grm.GOAL_REWARD_MILESTONE_19_GHI_REWARDS.data._id,
+          isEligible: true
+        },
+        {
+          milestone: grm.GOAL_REWARD_MILESTONE_20_GHI_REWARDS.data._id,
+          isEligible: true
+        },
+        {
+          milestone: grm.GOAL_REWARD_MILESTONE_21_GHI_REWARDS.data._id,
+          isEligible: true
+        },
+      ],
+      completed: {
+        user_levelled_up: 99
+      }
+    },
+} as IDatabaseItem
+
+export const GOAL_PARTICIPATION_9_GHI_REWARDS = {
+  type: "mongo",
+  modelName: "goal_participation",
+  data:{
+      _id: generateRandomMongoId(),
+      status: "active",
+      typesToTrack: [
+        "user_levelled_up"
+      ],
+      autoClaimRewards: true,
+      customerProductId: CPE_120_GHI_REWARDS.data.customer_product_id,
+      userId: CUSTOMER_120_GHI_REWARDS.data.customerId,
+      goal: GOAL_PRODUCTS_1.data._id,
+      parentType: "goal_products",
+      team: GOAL_TEAM_10_GHI_REWARDS.data._id,
+      iterationId: "1",
+      startDateTime: moment().subtract(1, "d").format("YYYY-MM-DD"),
+      joinGoalTime: moment().subtract(1, "d").format("YYYY-MM-DD"),
+      endDateTime: moment().add(7, "days").format("YYYY-MM-DD"),
+      endDate: moment().add(7, "days").format("YYYY-MM-DD"),
+      trackingEndDateTime: moment().add(7, "days").format("YYYY-MM-DD"),
+      disableTransactions: true,
+      progressSyncedAt: moment(),
+      rewardEligibility: [
+        {
+          milestone: grm.GOAL_REWARD_MILESTONE_15_GHI_REWARDS.data._id,
+          isEligible: true
+        },
+        {
+          milestone: grm.GOAL_REWARD_MILESTONE_16_GHI_REWARDS.data._id,
+          isEligible: true
+        },
+        {
+          milestone: grm.GOAL_REWARD_MILESTONE_17_GHI_REWARDS.data._id,
+          isEligible: true
+        },
+        {
+          milestone: grm.GOAL_REWARD_MILESTONE_18_GHI_REWARDS.data._id,
+          isEligible: true
+        },
+        {
+          milestone: grm.GOAL_REWARD_MILESTONE_19_GHI_REWARDS.data._id,
+          isEligible: true
+        },
+        {
+          milestone: grm.GOAL_REWARD_MILESTONE_20_GHI_REWARDS.data._id,
+          isEligible: true
+        },
+        {
+          milestone: grm.GOAL_REWARD_MILESTONE_21_GHI_REWARDS.data._id,
+          isEligible: true
+        },
+      ],
+      completed: {
+        user_levelled_up: 149
       }
     },
 } as IDatabaseItem

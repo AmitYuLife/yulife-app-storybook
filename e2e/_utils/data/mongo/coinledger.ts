@@ -1044,3 +1044,29 @@ export const COIN_LEDGER_118 = {
         currentLevel: 123
     }
 } as IDatabaseItem
+
+export const COIN_LEDGER_119 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_119_GHI_REWARDS.data.customerId,
+        userId: customer.CUSTOMER_119_GHI_REWARDS.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 211
+    }
+} as IDatabaseItem
+
+export const COIN_LEDGER_120 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_120_GHI_REWARDS.data.customerId,
+        userId: customer.CUSTOMER_120_GHI_REWARDS.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 177
+    }
+} as IDatabaseItem

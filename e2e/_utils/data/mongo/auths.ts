@@ -1524,3 +1524,25 @@ export const AUTH_118 = {
         userId: customer.CUSTOMER_118_GHI_REWARDS.data.customerId,
     }
 }  as IDatabaseItem
+
+export const AUTH_119 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_119_GHI_REWARDS.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_120 = {
+    type: "mongo",
+    modelName: "auth",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_120_GHI_REWARDS.data.customerId,
+    }
+}  as IDatabaseItem
