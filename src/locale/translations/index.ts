@@ -1,4 +1,3 @@
-import Config from "react-native-config";
 import { Language, Translation } from "./translations.types";
 
 export * from "./translations.types";
@@ -30,8 +29,7 @@ export const translations: Record<Language, Translation> = {
     name: "日本語 (JA)",
     intercomLanguage: "ja",
     flag: "🇯🇵",
-    // TODO: turn it on when the backend's ready too
-    isEnabled: !["production", "prod"].includes(Config.ENV),
+    isEnabled: true,
     load: () => require("./downloaded/ja-JP.json"),
   },
 };
