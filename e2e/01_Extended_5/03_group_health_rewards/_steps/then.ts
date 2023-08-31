@@ -3,7 +3,7 @@ import * as ids from "@ids"
 import * as fixtures from "../_resources/fixtures"
 import * as constants from "../_resources/constants"
 import moment from "moment";
-import { GHI_PAGE_INFO, GHI_REWARD_CLAIM_PAGE_DETAILS, GHI_TEASE_PAGE_DETAILS, GHI_VOUCHER_LIST_DETAILS } from "../_resources/types";
+import { GHI_PAGE_INFO, GHI_REWARD_CLAIM_PAGE_DETAILS, GHI_TEASE_PAGE_DETAILS, GHI_VOUCHER_LIST_DETAILS, IMPORTANT_NOTES_PAGE_DETAILS } from "../_resources/types";
 import { screens } from "@appScreens";
 
 export const {
@@ -114,7 +114,7 @@ export const GHIRewardsProgressBarsVisible = (completed: number) => async () => 
       }
 
     break
-    case (completed >= 50):
+    case (completed >= 50 && completed < 100):
       for(let i = 0; i < 3; i ++) {     
         const target = element(by.id(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.groupHealthRewardsLockedImageURL))).atIndex(i)
         await waitFor(target).toExist().withTimeout(0)
@@ -123,6 +123,37 @@ export const GHIRewardsProgressBarsVisible = (completed: number) => async () => 
         await idVisible(ids.TEXT_TEMPLATE(`${stringCompleted}/${constants.groupHealthRewardProgressLevels[i + 3]} Levels completed`, "l2b"))()
       }
       for(let i = 0; i < 3; i ++) {     
+        const target = element(by.id(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.groupHealthRewardsUnlockedImageURL))).atIndex(i)
+        await waitFor(target).toExist().withTimeout(0)
+        await expect(target).toExist()
+
+        await idVisibleAtIndex(ids.TEXT_TEMPLATE("Unlocked", "l2b"), i)()
+      }
+
+    break
+    case (completed >= 100 && completed < 150):
+      for(let i = 0; i < 2; i ++) {     
+        const target = element(by.id(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.groupHealthRewardsLockedImageURL))).atIndex(i)
+        await waitFor(target).toExist().withTimeout(0)
+        await expect(target).toExist()
+
+        await idVisible(ids.TEXT_TEMPLATE(`${stringCompleted}/${constants.groupHealthRewardProgressLevels[i + 4]} Levels completed`, "l2b"))()
+      }
+      for(let i = 0; i < 4; i ++) {     
+        const target = element(by.id(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.groupHealthRewardsUnlockedImageURL))).atIndex(i)
+        await waitFor(target).toExist().withTimeout(0)
+        await expect(target).toExist()
+
+        await idVisibleAtIndex(ids.TEXT_TEMPLATE("Unlocked", "l2b"), i)()
+      }
+
+    break
+    case (completed >= 150 && completed < 200):
+      
+      await idExist(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.groupHealthRewardsLockedImageURL))()
+      await idVisible(ids.TEXT_TEMPLATE(`${stringCompleted}/${constants.groupHealthRewardProgressLevels[5]} Levels completed`, "l2b"))()
+
+      for(let i = 0; i < 5; i ++) {     
         const target = element(by.id(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.groupHealthRewardsUnlockedImageURL))).atIndex(i)
         await waitFor(target).toExist().withTimeout(0)
         await expect(target).toExist()
@@ -247,6 +278,14 @@ export const groupHealthRewardsPurchasedVisible = (product: GHI_REWARD_CLAIM_PAG
     case (prod === "Thriva"):
       await textVisible("1 Thriva Testing Kit")
       break
+    case (prod === "Living DNA"):
+      await textVisible("1 LivingDNA Testing Kit")
+      await textVisible("0 YuCoin")
+      break
+    case (prod === "Health assessment"):
+      await textVisible("1 Health assessment")
+      await textVisible("0 YuCoin")
+      break
   }
 }
 
@@ -301,23 +340,108 @@ export const onThrivaRewardsClaimPage = (product: GHI_REWARD_CLAIM_PAGE_DETAILS,
   await rewardsClaimPageBottomInfoVisible()
 }
 
-export const thrivaImportantNotesPageVisible = async () => {
-  await idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.importantNotesHeaderImage))()
-  await textVisible(constants.importantNotesHeading)()
+export const onLivingDNARewardsClaimPage = (product: GHI_REWARD_CLAIM_PAGE_DETAILS, preClaim: boolean) => async () => {
+  const buttonText = preClaim? product.buttonText : "View vouchers"
+  const voucherMessage = preClaim? "1 voucher left to claim" : "You’ve claimed all your vouchers!"
 
-  constants.importantNotesSubHeadings.forEach(subHeading => async () => {
-    await textVisible(subHeading)()
+  await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, voucherMessage, "down")()
+
+  product.companyDescription.forEach(description => async () => {
+    await textVisible(description)()
+  })
+
+  if(preClaim){
+      
+      await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, product.buttonText, "down")()
+
+      await textVisible(voucherMessage)()
+      await textVisible(product.voucherDescription)()
+      await textVisible(`${product.voucherClaimMessage[0]}1${product.voucherClaimMessage[1]}${moment().add(1, "y").format("DD MMM YYYY")}.`)
+
+      await rewardsClaimPageRewardStepsVisible(product)()
+
+      await textVisible(buttonText)()
+  } else {
+    await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, buttonText, "down")()
+
+    await textVisible(voucherMessage)()
+    await textVisible("For more details, check your email inbox.")()
+    await textVisible(buttonText)()
+      
+  }
+
+  await rewardsClaimPageBottomInfoVisible()
+}
+
+export const onBupaRewardsClaimPage = (product: GHI_REWARD_CLAIM_PAGE_DETAILS, preClaim: boolean, vouchers: number) => async () => {
+  const buttonText = preClaim? product.buttonText : constants.claimReward
+
+  if(preClaim){
+    product.companyDescription.forEach(description => async () => {
+      await textVisible(description)()
+    })
+  
+    await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, product.secondaryHeader, "down")()
+    await textVisible(constants.yourRewardHeader)()
+      product.rewardDescription.forEach(description => async () => {
+        await textVisible(description)()
+    })
+
+    if(vouchers > 0){
+      await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, product.buttonText, "down")()
+      
+      await textVisible("1 voucher left to claim")()
+      await textVisible(product.voucherDescription)()
+      await textVisible(`${product.voucherClaimMessage[0]}1${product.voucherClaimMessage[1]}${moment().add(1, "y").format("DD MMM YYYY")}.`)
+      
+      await rewardsClaimPageRewardStepsVisible(product)()
+      
+      await textVisible(buttonText)()
+    } else {
+      await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, "View vouchers", "down")()
+      
+      await textVisible("You’ve claimed all your vouchers!")()
+      await textVisible("For more details, check your email inbox.")()
+      
+      await textVisible("View vouchers")()
+
+      return
+
+    }
+  } else {
+
+    await textVisible(`1 Health assessment`)()
+    await textVisible(`Purchased date - ${moment().format("DD MMM YYYY")}`)()
+    await textVisible(`Expiry date - ${moment().format("DD MMM YYYY")}`)()
+  }
+  await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, buttonText, "down")()
+
+
+  await rewardsClaimPageRewardStepsVisible(product)()
+
+  await textVisible(buttonText)()
+
+  await rewardsClaimPageBottomInfoVisible()
+}
+
+export const importantNotesPageVisible = (notes: IMPORTANT_NOTES_PAGE_DETAILS) => async () => {
+  await idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.importantNotesHeaderImage))()
+  await textVisible(notes.heading)()
+
+  notes.subheadings.forEach(subheading => async () => {
+    await textVisible(subheading)()
   })
 
   await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, constants.importantNotesButtonText, "down")()
 
-  constants.importantNotes.forEach(note => async () => {
+  notes.importantNotes.forEach(note => async () => {
     await textVisible(note)()
   })
 }
 
+
 export const thrivaDetailsPageVisible = async () => {
-  await idVisible(ids.TEXT_TEMPLATE(constants.thrivaDetailsHeading, "h3"))()
+  await idVisible(ids.TEXT_TEMPLATE(constants.detailsPageHeading, "h3"))()
   await idVisible(ids.CONTENT_ITEM_INPUT("firstName"))()
   await idVisible(ids.CONTENT_ITEM_INPUT("lastName"))()
   await idVisible(ids.DATE_INPUT)()
@@ -331,7 +455,26 @@ export const thrivaDetailsPageVisible = async () => {
 
   await detailsWarningsVisible()
 
-  await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, constants.thrivaDetailsHeading, "up")()  
+  await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, constants.detailsPageHeading, "up")()  
+  
+}
+
+export const livingDNADetailsPageVisible = async () => {
+  await idVisible(ids.TEXT_TEMPLATE(constants.detailsPageHeading, "h3"))()
+  await idVisible(ids.CONTENT_ITEM_INPUT("firstName"))()
+  await idVisible(ids.CONTENT_ITEM_INPUT("lastName"))()
+  await idVisible(ids.CONTENT_ITEM_INPUT("address1"))()
+  await idVisible(ids.CONTENT_ITEM_INPUT("address2"))()
+  await idVisible(ids.CONTENT_ITEM_INPUT("town"))()
+  await idVisible(ids.CONTENT_ITEM_INPUT("county"))()
+  await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, "Submit", "down")()
+  await idVisible(ids.CONTENT_ITEM_INPUT("postcode"))()
+  await idVisible(ids.CONTENT_ITEM_INPUT("phone"))()
+  await idVisible(ids.CONTENT_ITEM_INPUT("email"))()
+
+  await detailsWarningsVisible()
+
+  await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, constants.detailsPageHeading, "up")()  
   
 }
 
@@ -348,13 +491,13 @@ export const genderOptionsVisible = async () => {
   await textVisible("Prefer not to say")()
 }
 
-export const thrivaKitOrderedScreenVisible = async () => {
+export const kitOrderedScreenVisible = (header: string, messages: string []) => async () => {
   await idVisible (ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.parcelImg))()
-  await idVisible (ids.TEXT_TEMPLATE(constants.thrivaSuccessHeader, "h1"))()
+  await idVisible (ids.TEXT_TEMPLATE(header, "h1"))()
   
-  constants.thrivaDeliveryMessages.forEach(message => async () => {
+  messages.forEach(message => async () => {
     await textVisible(message)()
   })
 
-  await textVisible(constants.thrivaSuccessButtonText)()
+  await textVisible(constants.kitOrderedSuccessButtonText)()
 }

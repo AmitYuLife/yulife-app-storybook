@@ -18,7 +18,6 @@ export interface GHI_REWARD_CLAIM_PAGE_DETAILS {
     rewardStepsAmount: number,
     rewardSteps: string [],
     buttonText: string,
-    vouchers?: boolean,
     voucherDescription?: string,
     voucherClaimMessage?: string[],
     voucherExpiryYears: number
@@ -31,4 +30,9 @@ export type GHI_SINGLE_VOUCHER_DETAILS = {
 
 export interface GHI_VOUCHER_LIST_DETAILS {
     vouchers: GHI_SINGLE_VOUCHER_DETAILS[]
+}
+export interface IMPORTANT_NOTES_PAGE_DETAILS {
+    heading: string,
+    subheadings: string[],
+    importantNotes: string[]
 }

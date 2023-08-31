@@ -57,26 +57,14 @@ export const termsAndConditions = "Terms & Conditions"
 export const rewardsPolicy = "Rewards Policy"
 export const claimReward = "Claim my reward"
 
-// Thriva important notes page
+// important notes page
 
 export const importantNotesHeaderImage = "https://yulife-develop.imgix.net/reward-claiming/intro-logo.svg?ixlib=js-3.2.1&w=960&h=672&s=e268f41154dbb95f1ab1bfa4cdadb25e"
-export const importantNotesHeading = "Your Thriva Blood Test Kit Awaits"
-export const importantNotesSubHeadings = [
-    "Ready to get insights on your health?",
-    "We just need a few details from you."
-]
-export const importantNotes = [
-    "Important points to note:",
-    "This is a take-home blood test kit, you will be conducting the test at home and sending in the results to Thriva’s experts. If blood gives you the jitters, do try to have a loved one with you when you take the test.",
-    "You can only use the test kit on yourself. Resale of this kit is not allowed under any circumstances.",
-    "You can only claim one test kit per reward year. The next test kit will be available in the next reward year. For more types of tests, you can visit Thriva’s website.",
-    "Should you have any complaints or comments on the kit, YuLife will happily forward them on your behalf to Thriva’s experts. YuLife is not responsible for the manufacturing, distribution, warranty, or returns of Thriva blood test kits beyond the point of claim — but we’ll do our best to help if we can!"
-]
 export const importantNotesButtonText = "Fill in details"
 
-// Thriva fill in details page
+// fill in details page
 
-export const thrivaDetailsHeading = "Help us get the test kit to you safely! Carefully fill in your details:"
+export const detailsPageHeading = "Help us get the test kit to you safely! Carefully fill in your details:"
 export const thrivaDetailsGender = "Thriva's lab needs this to process your tests — we respect that your identifying gender might be different."
 
 // generic details warnings
@@ -87,12 +75,18 @@ export const detailsCorrectWarningMessages = [
 ]
 export const detailsCorrectWarningYugiImg = "https://yulife-develop.imgix.net/yugi/info-banner/info-2022-07-18.svg?ixlib=js-3.2.1&w=144&height=144&s=71154cfde1b87ec9d46e4d6c432b4b46"
 
-// Thriva ordered page
+// Kit ordered page
 
 export const parcelImg = "https://yulife-develop.imgix.net/reward-claiming/shipment.svg?ixlib=js-3.2.1&w=672&h=546&s=eb52e3f40b29b599ad49f11f689d6a44"
+export const kitOrderedSuccessButtonText = "Got it!"
 export const thrivaSuccessHeader = "Your Thriva test kit is on its way!"
 export const thrivaDeliveryMessages = [
     "Delivery can take around 3-5 working days.",
     "To track your kit delivery, check your email. We’ve sent you a link!"
 ]
-export const thrivaSuccessButtonText = "Got it!"
+export const livingDNASuccessHeader = "Your Living DNA test kit is on its way!"
+export const livingDNADeliveryMessages = [
+    "Delivery can take around 3-5 working days.",
+    "Head over to your Living DNA rewards page to view the rest of your rewards journey!"
+]
+

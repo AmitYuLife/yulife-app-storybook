@@ -710,7 +710,7 @@ export const USER_PROFILE_117 = {
     },
 } as IDatabaseItem;
 
-export const USER_PROFILE_1178 = {
+export const USER_PROFILE_118 = {
     ...MODEL_DEFAULTS,
     data: {
         _id: generateRandomMongoId(),
@@ -718,3 +718,22 @@ export const USER_PROFILE_1178 = {
         ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
+
+export const USER_PROFILE_119 = {
+    ...MODEL_DEFAULTS,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customers.CUSTOMER_119_GHI_REWARDS.data.customerId,
+        ...RECORD_DEFAULTS,
+    },
+} as IDatabaseItem;
+
+export const USER_PROFILE_120 = {
+    ...MODEL_DEFAULTS,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customers.CUSTOMER_120_GHI_REWARDS.data.customerId,
+        ...RECORD_DEFAULTS,
+    },
+} as IDatabaseItem;
+

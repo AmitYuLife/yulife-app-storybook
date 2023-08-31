@@ -1,5 +1,5 @@
 import moment from "moment";
-import { GHI_PAGE_INFO, GHI_REWARD_CLAIM_PAGE_DETAILS, GHI_TEASE_PAGE_DETAILS, GHI_VOUCHER_LIST_DETAILS } from "./types";
+import { GHI_PAGE_INFO, GHI_REWARD_CLAIM_PAGE_DETAILS, GHI_TEASE_PAGE_DETAILS, GHI_VOUCHER_LIST_DETAILS, IMPORTANT_NOTES_PAGE_DETAILS } from "./types";
 
 export const GHI_REWARDS_PAGE_DETAILS_1: GHI_PAGE_INFO = {
   productId: "YUG1010107",
@@ -29,6 +29,24 @@ export const THRIVA_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
   description: [
       "Enjoy Thriva’s at-home blood test kit for free.",
       "Gain health insights through Thriva’s bespoke blood test journey; Take their at-home test to discover multiple facets of your body’s current health status and receive GP advice from an NHS registered doctor."
+  ]
+}
+
+export const LIVING_DNA_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
+  topImageUrl: "https://yulife-develop.imgix.net/reward/teaser/living-dna-2023-07-24.png?ixlib=js-3.2.1&fm=png&w=555&s=54ed7a3ac61216cdea3068b68978f4cf",
+  headerText: "Complete Daily Quests to Unlock Insights Into Your DNA",
+  description: [
+      "Gain insights with a free Living DNA test kit for ancestry and wellbeing.",
+      "Unlock your body’s response to nutrients and exercise, personality traits determined by genes, and even interesting ancestral connections you’ve never known before — all within a swab of your cheek."
+  ]
+}
+
+export const BUPA_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
+  topImageUrl: "https://yulife-develop.imgix.net/reward/teaser/bupa-2023-07-24.png?ixlib=js-3.2.1&fm=png&w=555&s=884d67bde90387029b25b36ed8cd5ae5",
+  headerText: "Complete Daily Quests to Unlock Your Health Assessment",
+  description: [
+      "Benefit from a free Bupa Be.Motivated in-person health assessment.",
+      " Start impacting your future self with a one hour health check to outline your physical and mental wellbeing. Then, receive a year’s worth of lifestyle coaching and behaviour change support!"
   ]
 }
 
@@ -115,7 +133,6 @@ export const URBAN_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = 
       "Enjoy your massage session."
     ],
     buttonText: "Claim my voucher",
-    vouchers: true,
     voucherDescription: "You deserve to relax!",
     voucherClaimMessage: [
         "Make sure you claim ",
@@ -153,11 +170,106 @@ export const THRIVA_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS =
     "Enjoy your health insights!"
   ],
   buttonText: "Claim my kit",
-  vouchers: true,
   voucherDescription: "Insights on your health await! ",
   voucherClaimMessage: [
       "Make sure you claim ",
       " of your vouchers by "
   ],
   voucherExpiryYears: 1
+}
+
+export const LIVING_DNA_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = {
+  heading: "Living DNA",
+  companyDescription: [
+    "Have you ever wondered if you were part neanderthal; or why you just can’t seem to lose that belly fat; or why on a bad day, you can’t even remember what you ate for lunch? These seemingly unrelated things can actually be understood by analysing your DNA.",
+    "Living DNA’s world-leading ancestry and wellbeing tests not only allows you to trace your family’s regional history around the world, but also brings to light aspects of yourself you didn’t know could be measured. Their tests uncover personality traits like memory processing and imagination; nutrigenomics like your response to carbohydrates or metabolism; fitness genomics like your fat loss response to exercise; and much more.",
+    "Discover truths about your body and mind with Living DNA’s tests — and unlock your full potential!"
+  ],
+  rewardStepsAmount: 6,
+  rewardSteps: [
+    "Claim your reward!",
+    "Fill in your details to get your Living DNA kit ordered, and your test will be shipped to your desired address.",
+    "Your test kit will arrive in 3 – 5 days!",
+    "Follow the simple instructions in your kit to activate your account and take your sample.",
+    "After you’ve posted the sample, your DNA results will be accessible on your Living DNA account within 6 – 8 weeks of arrival at the lab (their scientists are hard at work processing thousands of years of DNA data for you).",
+    "Enjoy insights on your DNA!",
+  ],
+  buttonText: "Claim my reward",
+  voucherDescription: "Discover your DNA now! ",
+  voucherClaimMessage: [
+      "Make sure you claim ",
+      " of your vouchers by "
+  ],
+  voucherExpiryYears: 0
+}
+
+export const BUPA_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = {
+  heading: "Health assessment",
+  companyDescription: [
+    "Life can get very busy — we hear ya — sometimes our health is the last thing on our minds. That’s why Bupa Be.Motivated brings the opportunity to you, to get ahead of your health. Not only will the assessment be comprehensive, the results from them will also be analysed and your next steps can be laid out for you. Your health advisor will also connect you with a centre nearest to you. ",
+    "Take this opportunity to work health into your schedule, and form healthier habits. After all, we all want to live our best lives don’t we? ",
+  ],
+  rewardDescription: [
+    "Congrats! You’ve unlocked a free in-person health assessment with Bupa Be.Motivated worth over £200.",
+    "You are now entitled to a comprehensive one hour health check which includes 11 core tests. After which, a Bupa Be.Motivated health adviser will discuss with you how you can set lifestyle, health, and fitness goals based on your results. Even better, they will also provide lifestyle coaching and behaviour change support for a whole year. How grand!",
+  ],
+  secondaryHeader: "What Will You Be Tested For?",
+  secondaryDescription: [
+    "Height assessment ",
+    "Weight assessment ",
+    "Body mass index (BMI)",
+    "Waist to height ratio",
+    "Body fat percentage",
+    "Estimated energy requirement ",
+    "Blood pressure test in both arms ",
+    "Mobility and flexibility review",
+    "Comprehensive cholesterol profile ",
+    "Check for Diabetes - HbA1c (non-fasting blood sugar test)",
+    "Lung age (if you’re a smoker or recent ex-smoker)"
+  ],
+  rewardStepsAmount: 5,
+  rewardSteps: [
+    "Claim your reward!",
+    "Check your email, we’ve sent you the voucher code.",
+    "Call the Bupa Clinics number on 0370 218 4965 to book your in-person health assessment.",
+    "Mention that you are a YuLife member, and make sure you give the consultant your unique voucher number (in your email) to get your health assessment for free. Your membership details can be found in your Bupa Touch account.",
+    "Enjoy your free in-person health assessment! (And, a healthy life ahead.)",
+  ],
+  buttonText: "Claim my voucher",
+  voucherDescription: "Be motivated to get your health assessed! ",
+  voucherClaimMessage: [
+      "Make sure you claim ",
+      " of your vouchers by "
+  ],
+  voucherExpiryYears: 1
+}
+
+export const THRIVA_IMPORTANT_NOTES_DETAILS: IMPORTANT_NOTES_PAGE_DETAILS = {
+  heading: "Your Thriva Blood Test Kit Awaits",
+  subheadings: [
+    "Ready to get insights on your health?",
+    "We just need a few details from you."
+    ],
+  importantNotes: [
+    "Important points to note:",
+    "This is a take-home blood test kit, you will be conducting the test at home and sending in the results to Thriva’s experts. If blood gives you the jitters, do try to have a loved one with you when you take the test.",
+    "You can only use the test kit on yourself. Resale of this kit is not allowed under any circumstances.",
+    "You can only claim one test kit per reward year. The next test kit will be available in the next reward year. For more types of tests, you can visit Thriva’s website.",
+    "Should you have any complaints or comments on the kit, YuLife will happily forward them on your behalf to Thriva’s experts. YuLife is not responsible for the manufacturing, distribution, warranty, or returns of Thriva blood test kits beyond the point of claim — but we’ll do our best to help if we can!"
+    ]
+}
+
+export const LIVING_DNA_IMPORTANT_NOTES_DETAILS: IMPORTANT_NOTES_PAGE_DETAILS = {
+  heading: "Your Living DNA Test Kit Awaits",
+  subheadings: [
+    "Ready to get insights on your DNA?",
+    "We just need a few details from you."
+    ],
+  importantNotes: [
+    "Important points to note:",
+    "This is a take-home DNA test kit. You will be conducting the test at home — it’s a cheek swab — and sending in the results to Living DNA’s experts.",
+    "You can only use the test kit on yourself. Resale of this kit is not allowed under any circumstances.",
+    "You can only claim one test kit this reward year. The next test kit will be available 3 reward years later. For more types of tests, you can visit Living DNA’s website.",
+    "Should you have any complaints or comments on the kit, YuLife will happily forward them on your behalf to Living DNA’s experts. YuLife is not responsible for the manufacturing, distribution, warranty, or returns of Living DNA’s test kits beyond the point of claim — but we’ll do our best to help if we can!"
+    ]
 }
