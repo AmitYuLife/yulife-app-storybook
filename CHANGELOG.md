@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.97.0] - 2023-08-31
+
+### Features
+
+- Feature XSE-2155: ability to deep link to individual reward details page while changing tab
+
+### Tasks
+
+- Task: Toggle to disable yudoku animations
+
+### Chores
+
+- Chore: enable JP language in prod
+- Chore: added userId in requestId
+- Chore/Adding titleNumberOfLines for boxoptionCard
+
+### Extra
+
+- Detox/xse 1997 living dna claiming journey & 1998 Bupa claiming journey
+- GS-721: Hint banners
+- Bug: fix detox test by moving meditation cancel logic into the saga
+- Revert XSE-2155
+- Detox: Fixes 29th Aug
+- Copy: change boosted copy to boost
+
 ## [3.96.0] - 2023-08-24
 
 ### Tasks
