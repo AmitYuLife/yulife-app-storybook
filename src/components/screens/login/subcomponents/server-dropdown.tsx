@@ -5,7 +5,7 @@ import { ListPicker, TouchableOpacityWithDelay } from "@molecules";
 import { MODALS } from "@navigation/constants";
 import { TextTemplate } from "@atoms";
 import icon from "@atoms/icon";
-import region from "@services/region";
+import { region } from "@locale";
 import { Colours, Style } from "@styles";
 import { useDispatch } from "react-redux";
 import { setRegionConfig } from "@redux/app/app.actions";

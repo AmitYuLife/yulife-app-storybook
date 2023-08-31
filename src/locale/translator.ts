@@ -1,6 +1,6 @@
 import * as RNLocalize from "react-native-localize";
 import Polyglot from "node-polyglot";
-import socket, { DETOX_ENABLED } from "@services/socket";
+import { DETOX_ENABLED } from "@services/socket";
 import { translations, Language } from "./translations";
 
 class Translator {
@@ -34,10 +34,6 @@ class Translator {
   public readonly getIntercomLanguage = (locale: Language) => translations[locale]?.intercomLanguage;
   public readonly has = (key: string) => this.dict.has(key);
   public readonly translate = (key: string, config?: Polyglot.InterpolationOptions) => {
-    if (DETOX_ENABLED) {
-      socket.emitTranslationKeyUsed(key);
-    }
-
     return this.dict.t(key, config);
   };
 

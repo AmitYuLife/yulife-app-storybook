@@ -1,6 +1,6 @@
 import { Inbox, Leanplum, LeanplumInbox } from "@leanplum/react-native-sdk";
 
-import region from "@services/region";
+import { region } from "@locale";
 import { Platform } from "react-native";
 import moment from "moment";
 import { Storage, StorageKey } from "@utils/storage";
