@@ -228,13 +228,12 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await textVisible(yuCoinPower)(); // 31
       await textVisible(fixture.yuCoinText)();
       await textVisible(fixture.powerText)();
-      await textVisible(fixture.lifeInsurance)();
+      await textVisible(fixture.wellbeingAccessText)();
       await textNotVisible(paidBy)();
       await textVisibleAtIndex(fixture.productYuCoin, 0)();
       await textVisible(fixture.criticalIllness)();
       await textVisibleAtIndex(fixture.productYuCoin, 1)();
       await textVisible(fixture.incomeProtection)();
-      await textVisibleAtIndex(fixture.productYuCoin, 2)();
       await textVisible(fixture.availableProducts)();
       break;
     case "groupDental":

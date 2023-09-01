@@ -12,7 +12,7 @@ import {
   BUILDER_BODY,
   FIB_BROWSE_SCREEN,
 } from "@utils";
-import { scrollUntilTextVisible, swipeFromText, scrollFromID } from "_utils/navigation/scrolling";
+import { scrollUntilTextVisible, swipeFromText, scrollFromID, swipeFromTextAtIndex } from "_utils/navigation/scrolling";
 import {
   EARN_RATE_ROW,
   PACKAGE_INFO,
@@ -311,7 +311,7 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
       await expect(element(by.text(dentalInsurance))).toBeVisible();
       await swipeFromText(criticalIllness, "up", "slow", 0.2)();
       await expect(element(by.text(PLIYuCoinPower))).toBeVisible();
-      await swipeFromText(WellbeingProduct, "up", "slow")();
+      await swipeFromTextAtIndex(lifeInsurance, "up", "slow", 1)();
       await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible();
       await expect(element(by.text(dentalPriceFrom))).toBeVisible();
       await expect(element(by.text(noProductText))).not.toBeVisible();
@@ -331,7 +331,7 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
       await expect(element(by.text(dentalInsurance))).toBeVisible();
       await swipeFromText(WellbeingProduct, "up", "slow", 0.2)();
       await expect(element(by.text(noProductText))).toBeVisible();
-      await swipeFromText(WellbeingProduct, "up", "slow")();
+      await swipeFromText(lifeInsurance, "up", "slow")();
       await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible();
       await expect(element(by.text(dentalPriceFrom))).toBeVisible();
       await swipeFromText(surveyText, "down", "slow")();
