@@ -73,9 +73,11 @@ export const ItemSlot = memo(
                 testID={LEFT_SIDE_BACKGROUD_IMAGE_SLOT(leftBackgroundImage.id)}
               />
               {leftText ? (
-                <TextTemplate color={leftTextColour || Colours.neutral.white} type="b1b">
-                  {leftText}
-                </TextTemplate>
+                <View style={styles.leftTextWrapper}>
+                  <TextTemplate color={leftTextColour || Colours.neutral.white} type="b1b">
+                    {leftText}
+                  </TextTemplate>
+                </View>
               ) : null}
             </View>
           ) : null}

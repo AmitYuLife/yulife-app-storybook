@@ -139,6 +139,7 @@ export const defaultStyles = StyleSheet.create({
     height: Style.adjust(54),
     width: Style.adjust(45),
   },
+  leftTextWrapper: {},
 });
 
 const depressedStyles = StyleSheet.create({
@@ -233,5 +234,8 @@ const depressedStyles = StyleSheet.create({
   spacer: {
     height: Style.adjust(54),
     width: Style.adjust(45),
+  },
+  leftTextWrapper: {
+    marginTop: Style.adjust(6),
   },
 });
