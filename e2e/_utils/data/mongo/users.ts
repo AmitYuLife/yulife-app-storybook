@@ -2202,3 +2202,17 @@ export const USER_120 = {
     avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
   },
 } as IDatabaseItem;
+
+
+export const USER_121 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_121_GHI_REWARDS.data.customerId,
+    nickname: "Rewardsio",
+    isAvatarCreated: true,
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+  },
+} as IDatabaseItem;
