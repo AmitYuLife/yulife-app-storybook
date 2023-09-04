@@ -24,6 +24,11 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_details_image {
   uri: string | null;
 }
 
+export interface GetQuestMapLevel_getQuestMapLevel_slots_details_backgroundImage {
+  id: string;
+  uri: string | null;
+}
+
 export interface GetQuestMapLevel_getQuestMapLevel_slots_details_milestones {
   id: string;
   target: string;
@@ -119,6 +124,7 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_details {
   heading: string;
   tutorialUrl: string | null;
   image: GetQuestMapLevel_getQuestMapLevel_slots_details_image;
+  backgroundImage: GetQuestMapLevel_getQuestMapLevel_slots_details_backgroundImage;
   milestones: (GetQuestMapLevel_getQuestMapLevel_slots_details_milestones | null)[] | null;
   internalContent: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent[] | null;
 }
@@ -148,6 +154,8 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots {
   reward: string | null;
   hasSurge: boolean;
   hasBonus: boolean;
+  surgeMultiplier: number | null;
+  bonusAmount: number | null;
   fitKitTypes: FitKitType[];
   type: string | null;
   subtype: string | null;

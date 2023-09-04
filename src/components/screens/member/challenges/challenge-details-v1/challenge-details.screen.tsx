@@ -24,7 +24,7 @@ interface IOwnProps {
 
 type Props = IOwnProps & IMilestoneProps;
 
-function ChallengeDetailsScreen({
+function ChallengeDetailsScreenV1({
   heading,
   currentWorld = 0,
   error = null,
@@ -86,4 +86,4 @@ function ChallengeDetailsScreen({
   );
 }
 
-export default React.memo(ChallengeDetailsScreen);
+export default React.memo(ChallengeDetailsScreenV1);
