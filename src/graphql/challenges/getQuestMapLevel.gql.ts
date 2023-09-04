@@ -27,6 +27,8 @@ export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
         reward
         hasSurge
         hasBonus
+        surgeMultiplier
+        bonusAmount
         fitKitTypes
         type
         subtype
@@ -34,6 +36,10 @@ export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
           heading
           tutorialUrl
           image {
+            id
+            uri
+          }
+          backgroundImage {
             id
             uri
           }

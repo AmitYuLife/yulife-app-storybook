@@ -19,6 +19,7 @@ export type ITextTemplateType =
   | "l4"
   | "l4b"
   | "time";
+type ITextDecorationType = "underline" | "strikeThrough";
 
 interface IProps {
   testID?: string;
@@ -26,7 +27,7 @@ interface IProps {
   type: ITextTemplateType;
   color?: ColorValue | string;
   textAlign?: TextStyle["textAlign"];
-  decoration?: "underline" | "strikeThrough";
+  decoration?: ITextDecorationType;
   numberOfLines?: number;
   accessibilityLabel?: string;
   accessibilityRole?: AccessibilityRole;

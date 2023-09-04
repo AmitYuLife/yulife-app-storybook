@@ -5,7 +5,6 @@ import { t } from "@locale";
 import { ChallengeBackground } from "@atoms";
 import { ChallengesList, IChallengesListProps } from "@molecules/index";
 import { View, BackHandler } from "react-native";
-import { IMilestoneProps } from "../challenge-details/milestones";
 import styles from "./challenges-list.screen.styles";
 import { NavBar, GenericHeadingPad, TopBarAbsolute } from "@components/organisms";
 import { Navigation } from "@navigation/main";
@@ -20,7 +19,7 @@ interface IProps extends IChallengesListProps {
   challenges: IFormattedChallenge[];
 }
 
-interface IFormattedChallenge extends IMilestoneProps {
+interface IFormattedChallenge {
   heading: string;
   currentWorld: number;
   duration: string;
@@ -37,6 +36,7 @@ interface IFormattedChallenge extends IMilestoneProps {
 interface IState {
   hideChallengeTiles: boolean;
 }
+
 class ChallengesListScreen extends Component<IProps, IState> {
   public timeout: NodeJS.Timer = null;
   public state = {

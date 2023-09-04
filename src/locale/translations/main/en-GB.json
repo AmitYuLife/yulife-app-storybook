@@ -173,9 +173,16 @@
         "link_button_label": "later"
       },
       "details": {
-        "cta_label": "Take challenge",
         "loading": "Loading...",
-        "set_up_label": "Set up tutorial"
+        "boosted_badge": "Boosted",
+        "cta_label": "Take challenge",
+        "extra_yucoin": "Extra YuCoin",
+        "set_up_label": "Set up tutorial",
+        "surge_badge": "Surge: %{multiplier}x",
+        "bonus_info_popup": {
+          "text": "This boost gives you an additional fixed amount of YuCoin for this challenge.",
+          "cta_label": "Got it"
+        }
       },
       "history": {
         "full_button_label": "Full activity history",
@@ -1100,6 +1107,9 @@
     }
   },
   "molecules": {
+    "yucoin_power_button": {
+      "button_label": "Improves your challenge rewards!"
+    },
     "package_type": {
       "not_equipped": "Not equipped"
     },
