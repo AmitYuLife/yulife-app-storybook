@@ -1115,8 +1115,8 @@ export const CORE_REWARDS_GARMIN_GHI_REWARDS = {
       {
         "_id": generateRandomMongoId(),
         "yuCoin": 0,
-        "providerProductId": "GARMIN_SA",
-        "value": 0
+        "providerProductId": "GARMIN_GB",
+        "value": 1
       }
     ],
     "createdAt": {

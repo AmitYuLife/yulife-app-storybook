@@ -50,6 +50,15 @@ export const BUPA_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
   ]
 }
 
+export const GARMIN_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
+  topImageUrl: "https://yulife-develop.imgix.net/reward/teaser/garmin-2023-07-24.png?ixlib=js-3.2.1&fm=png&w=555&s=0823079e15cf748fbf93a74613673909",
+  headerText: "Complete Daily Quests to Unlock Your Fitness Accessories*",
+  description: [
+      "Track your fitness goals with a free Garmin Forerunner 55 smartwatch, and feel motivated to stay active every single day.",
+      " *If you’d prefer not to have a smartwatch, £100 will be set aside for Great Ormond Street Hospital on your behalf instead."
+  ]
+}
+
 export const BOOTS_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = {
     heading: "Boots",
     companyDescription: [
@@ -237,6 +246,37 @@ export const BUPA_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = {
   ],
   buttonText: "Claim my voucher",
   voucherDescription: "Be motivated to get your health assessed! ",
+  voucherClaimMessage: [
+      "Make sure you claim ",
+      " of your vouchers by "
+  ],
+  voucherExpiryYears: 1
+}
+
+export const GARMIN_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = {
+  heading: "Garmin",
+  companyDescription: [
+    "Walking or running won’t be the only way you can maintain your fitness tracking. If you want to go for a swim, take a dance class, do some yoga, you will be able to track your fitness goals with ease with the Forerunner 55 smartwatch. (You will now also be able to track your steps from your desk to the kitchen — without having to bring your phone.) #you’rewelcome",
+  ],
+  rewardDescription: [
+    "CONGRATULATIONS! ",
+    "You’ve done it. You’ve unlocked a free Garmin smartwatch worth £179.99.",
+    "This swanky timepiece comes in 4 colourways; can track your time, distance, pace, and speed, with a built in GPS; monitor your overall health and wellness with wrist-band heart rate and more; tracks more than just running with an array of built-in activity profiles; and much, much more. ",
+    "OR",
+    "If you'd prefer — and don't need a smartwatch — you can also choose to donate £100 to the children of Great Ormand Street Hospital (GOSH). You won't be able to claim the smartwatch at a later date after donating, but you'll be giving hundreds of children the chance to live to their full potential!"
+  ],
+  
+  rewardStepsAmount: 6,
+  rewardSteps: [
+    "Make your selection of a Garmin smartwatch or GOSH donation by claiming your reward!",
+    "Check your email, we sent you something! (It’s the voucher code.)",
+    "Head to Garmin’s website, www.garmin.com.",
+    "Choose your Garmin Forerunner 55 colour way. ",
+    "At checkout, enter your unique voucher code. ",
+    "Enjoy your Garmin Forerunner 55 Smartwatch free of charge!"
+  ],
+  buttonText: "Claim my voucher",
+  voucherDescription: "Get your Garmin!",
   voucherClaimMessage: [
       "Make sure you claim ",
       " of your vouchers by "

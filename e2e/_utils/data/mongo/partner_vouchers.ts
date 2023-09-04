@@ -14,3 +14,15 @@ export const PARTNER_VOUCHER_1_BUPA = {
       }
 } as IDatabaseItem
 
+export const PARTNER_VOUCHER_2_GARMIN = {
+  type:"mongo",
+  modelName:"partner_vouchers",
+  data: {
+      "code": "Yulife2",
+      "denomination": 1,
+      "partnerId": "GARMIN_GB",
+      "createdAt": moment().subtract(1, "d").toDate(), 
+      "updatedAt": moment().subtract(1, "d").toDate(),
+      "__v": 0
+    }
+} as IDatabaseItem
