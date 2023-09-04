@@ -32,7 +32,7 @@ export const CPE_31 = {
         customer_product_id: "YUCPID0000000031",
         customer_id: customer.CUSTOMER_31.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_GLI_01_01",
+        product_variant_id: "AIG_ReGL_01_01",
         archived: false,
         taken_up: true
     }
@@ -548,7 +548,7 @@ export const CPE_74 = {
         customer_product_id: "YUCPID0000000074",
         customer_id: customer.CUSTOMER_74.data.customerId,
         earn_rate: 10,
-        product_variant_id: "AIG_GLI_01_01",
+        product_variant_id: "AIG_ReGL_01_01",
         archived: false,
         taken_up: true
     }
@@ -603,7 +603,7 @@ export const CPE_FUTURE_PRODUCT = {
         "underwriting_step": null,
         "is_banned_from_product": false,
         "taken_up": true,
-        product_variant_id: "AIG_GLI_01_01",
+        product_variant_id: "AIG_ReGL_01_01",
     }
 } as IDatabaseItem
 
@@ -619,7 +619,7 @@ export const CPE_BUSINESS_LEAVER = {
         "underwriting_step": null,
         "is_banned_from_product": false,
         "taken_up": true,
-        product_variant_id: "AIG_GLI_01_01",
+        product_variant_id: "AIG_ReGL_01_01",
     }
 } as IDatabaseItem
 
