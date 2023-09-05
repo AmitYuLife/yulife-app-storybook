@@ -55,7 +55,7 @@ const YucoinPowerButton = memo(() => {
               <Text style={[styles.yucoinPowerButtonText, styles.yucoinPowerButtonTextBold]}>YuCoin</Text>
               <Text style={styles.yucoinPowerButtonText}>Power</Text>
             </Stack>
-            <TextTemplate lineHeight={Style.adjust(15)} color={Colours.neutral.black} type="l1">
+            <TextTemplate lineHeight={Style.adjust(15)} color={Colours.neutral.n900} type="l1">
               {t("molecules.yucoin_power_button.button_label")}
             </TextTemplate>
           </View>
@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   yucoinPowerButtonText: {
+    color: Colours.darkPink,
     fontSize: Style.adjust(24),
     letterSpacing: Style.getLetterSpacing(Style.adjust(1)),
   },
