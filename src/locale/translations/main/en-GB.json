@@ -709,6 +709,12 @@
       },
       "invites": {
         "subheading": "By turning on a leaderboard, you are opting in to share your most recent %{days} day %{metric} data with other members of the leaderboard. This can be toggled off at any time."
+      },
+      "search": {
+        "recent": "Recent",
+        "friends_not_found": "We couldn’t find the friend you’re\nlooking for.",
+        "loading_state": "Looking for results ...",
+        "search_placeholder": "Search Friends"
       }
     },
     "fitkit_connect": {

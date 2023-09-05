@@ -11,6 +11,7 @@ import userHourlyActivityLastUpdated from "./0009_user_hourly_activity_last_upda
 import dailyPension from "./0010_daily_pension";
 import addLocale from "./0011_add_locale";
 import addFullName from "./0012_add_full_name";
+import addLeaderboard from "./0013_add_leaderboard";
 
 export const migrations = {
   "0": initial,
@@ -26,4 +27,5 @@ export const migrations = {
   "10": dailyPension,
   "11": addLocale,
   "12": addFullName,
+  "13": addLeaderboard,
 };

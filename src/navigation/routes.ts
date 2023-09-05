@@ -472,6 +472,10 @@ const routesForRegistration = [
     name: MODALS.leaderboardCommunityOverlay,
     component: require("../components/modals/leaderboard-community-overlay/leaderboard-community-overlay").default,
   },
+  {
+    name: MODALS.leaderboardSearch,
+    component: require("../components/modals/leaderboard-search/leaderboard-search.modal").default,
+  },
 ];
 
 export default routesForRegistration;

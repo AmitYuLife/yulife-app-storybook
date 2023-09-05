@@ -9,11 +9,12 @@ import { sendTestPush } from "@redux/notifications/notifications.actions";
 import { getUserDataStart, getUserStart } from "@redux/user/user.actions";
 import { DebugScreen } from "@screens";
 import Logger from "@services/logging/logger";
-import { ROUTES } from "@navigation/constants";
+import { MODALS, ROUTES } from "@navigation/constants";
 import { getYuScreen } from "@graphql/yuscreen/getYuScreen.gql";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { IDebugItem } from "@components/screens/member/debug/debug.screen";
+import { showYuModal } from "@navigation/root";
 
 interface IDebugContainerProps {
   componentId: string;
@@ -28,6 +29,7 @@ enum DebugCodes {
   toggleLeanplum = "toggle-leanplum",
   sleepMeditation = "sleep-meditation",
   inspectOpponent = "inspect-opponent",
+  showLeaderboardSearch = "show-leaderboard-search",
   sendTestPushNotification = "send-test-push-notification",
   playGround = "play-ground",
 }
@@ -127,6 +129,18 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                     component: {
                       id: ROUTES.debugPlayground,
                       name: ROUTES.debugPlayground,
+                    },
+                  });
+
+                case DebugCodes.showLeaderboardSearch:
+                  return showYuModal({
+                    component: {
+                      id: MODALS.leaderboardSearch,
+                      name: MODALS.leaderboardSearch,
+                      passProps: {
+                        heading: "Yulife",
+                        subHeading: "All Companies",
+                      },
                     },
                   });
               }

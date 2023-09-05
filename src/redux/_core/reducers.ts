@@ -35,6 +35,10 @@ import dailyPensionReducer, {
   IDailyPensionStore,
   getInitialState as getInitialDailyPension,
 } from "../daily-pension/daily-pension.reducer";
+import leaderboardReducer, {
+  ILeaderboardsStore,
+  getInitialState as getInitialLeaderboardState,
+} from "../leaderboards/leaderboards.reducer";
 
 import hintsReducer, { IHintsStore, getInitialState as getInitialHintsState } from "@redux/hints/hints.reducer";
 
@@ -56,6 +60,7 @@ export interface IReduxState {
   adBanners: IAdBannersStore;
   sudoku: ISudokuStore;
   hints: IHintsStore;
+  leaderboard: ILeaderboardsStore;
 }
 
 export const initialState: IReduxState = {
@@ -76,6 +81,7 @@ export const initialState: IReduxState = {
   fitkit: getInitialFitkitState(),
   adBanners: getInitialAdbannersState(),
   sudoku: getInitialSudokuState(),
+  leaderboard: getInitialLeaderboardState(),
 };
 
 // this alias is created for testing purposes
@@ -99,6 +105,7 @@ const combinedReducers = combineReducers({
   adBanners: adBannersReducer,
   sudoku: sudokuReducer,
   hints: hintsReducer,
+  leaderboard: leaderboardReducer,
 });
 
 export default combinedReducers;
