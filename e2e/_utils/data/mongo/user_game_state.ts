@@ -1042,7 +1042,9 @@ export const USER_GAME_STATE_117 = {
         userId: customer.CUSTOMER_117_GHI_REWARDS.data.customerId,
         currentBalance: 17500,
         currentStreak: 0,
-        currentLevel: 34
+        yuniversalMap: 2,
+        yuniversalLevel: 1,
+        currentLevel: 401,
     }
 } as IDatabaseItem
 

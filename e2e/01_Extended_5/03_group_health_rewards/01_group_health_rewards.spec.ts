@@ -90,7 +90,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             
     })
 
-    Scenario("I can succesfully go through the Ubran Massage GHI Rewards journeys", scenario.start, async () => {
+    Scenario("I can succesfully go through the Ubran Massage GHI Rewards journeys and the GHI hourney levels up when in Yuniversal levels", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_117_GHI_REWARDS, data.AUTH_117), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
@@ -106,16 +106,16 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I click to see the next reward I want to unlock", when.tapText(constants.groupHealthRewardProgressNames[1]), async () => {
             When("I tap on the Urban reward", when.tapRewardInList(data.CORE_REWARDS_URBAN_GHI_REWARDS), async () => {
                 Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-                Then("I should see the correct information for the Boots reward tease", then.onRewardsTeasePage(fixtures.URBAN_GHI_REWARDS_TEASE_PAGE_DETAILS))
+                Then("I should see the correct information for the Urban reward tease", then.onRewardsTeasePage(fixtures.URBAN_GHI_REWARDS_TEASE_PAGE_DETAILS))
             })
         })
         When("I tap the CTA button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should see level 34", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(34)))
+            Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(1)))
         })
-        When("I tap level 34", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(34)), async () => {
+        When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(187, 537), async () => {
             When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
                 When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
-                    Then("I should see the well done screen", then.onChallengeComplete(3050, 34))
+                    Then("I should see the well done screen", then.textVisible("Collect"))
                 })
             })
         })
