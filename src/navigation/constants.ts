@@ -163,6 +163,7 @@ export const MODALS = {
   sudokuPause: "yulife.modals.sudokuPause",
   sudokuLeaderboardConsent: "yulife.modals.sudokuLeaderboardConsent",
   leaderboardCommunityOverlay: "yulife.overlay.leaderboardCommunity",
+  leaderboardSearch: "yulife.modals.leaderboardSearch",
 };
 
 export const bottomTabs: OptionsBottomTabs = {

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import { DocumentNode } from "graphql";
 import { useLazyQuery, LazyQueryHookOptions } from "@apollo/client";
 import { QueryResult } from "@apollo/client";
@@ -12,13 +12,17 @@ export function useDebouncedQuery<TData, TVariables>(
   const timerId = React.useRef<ReturnType<typeof setTimeout>>(null);
   const [query, res] = useLazyQuery<TData, TVariables>(gql, options);
 
+  const [waiting, setWaiting] = React.useState(false);
+
   const fireQuery = useCallback((variables: TVariables) => {
+    setWaiting(true);
     if (timerId?.current) {
       clearTimeout(timerId.current);
     }
 
     timerId.current = setTimeout(() => {
       query({ variables });
+      setWaiting(false);
     }, timeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -36,5 +40,13 @@ export function useDebouncedQuery<TData, TVariables>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return [fireQuery, res];
+  const loading = useMemo(() => {
+    if (waiting) {
+      return true;
+    }
+
+    return res.loading;
+  }, [res.loading, waiting]);
+
+  return [fireQuery, { ...res, loading }];
 }

@@ -72,3 +72,4 @@ export { default as FiitMediaListScreen } from "./member/media/fiit-media-list/f
 
 // leaderboard
 export { default as LeaderboardScreen } from "./member/leaderboard/leaderboard.screen";
+export { default as LeaderboardSearchScreen } from "./member/leaderboard/leaderboard-search.screen";

@@ -223,6 +223,7 @@ export * from "./SduiAction";
 export * from "./SduiStyle";
 export * from "./SduiStyleDynamic";
 export * from "./SearchForDuelOpponent";
+export * from "./SearchLeaderboardUser";
 export * from "./SendMagicLink";
 export * from "./SendWellbeingHubItemDocuments";
 export * from "./SetShareOfBenefitForProduct";
