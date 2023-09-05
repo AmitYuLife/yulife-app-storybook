@@ -55,3 +55,7 @@ export const enterRandomisedEmail = async () => {
   const emailFront = generateRandomMongoId()
   await typeViaID(ids.CONTENT_ITEM_INPUT("email"), `${emailFront.toString()}@fakeemail.com`)()
 }
+
+export const tapYuniverseLevelForFirstTime = (x: number, y: number) => async () => {
+  await element(by.id(ids.QUESTS_SCREEN_YUNIVERSAL(1))).tapAtPoint({x:x, y:y});
+}
