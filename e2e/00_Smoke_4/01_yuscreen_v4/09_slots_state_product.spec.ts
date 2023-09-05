@@ -21,7 +21,7 @@ Feature("Slots updates Enrolment - Opt In Opt out", async () => {
         })
     })
     Scenario("2-Start date not hit and enrolment window open", scenario.start, async () => {
-        Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_97, data.AUTH_97), async () => {
+        Given("I login as a user",  given.logInAndGoToTab("yu", data.CUSTOMER_97, data.AUTH_97), async () => {
             helper.ONBOARD_YU_SCREEN(GdentEnrolNow)
             helper.ON_YU_SCREEN(data.CUSTOMER_97, GdentEnrolNow);
         })
