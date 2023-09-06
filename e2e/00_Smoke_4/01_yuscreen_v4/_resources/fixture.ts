@@ -49,7 +49,7 @@ export const membershipGuideImageSlot =
   "https://yulife-develop.imgix.net/duotone/policy-summary.svg?ixlib=js-3.2.1&w=72&h=72&s=92cb17210cec9cb652d34b59aa4ed723";
 export const faqImageSlot =
   "https://yulife-develop.imgix.net/personalProducts/faqs.svg?ixlib=js-3.2.1&w=72&h=72&s=55f7d3ef6f114b8b9b0f11d069b88844";
-export const leftCanEnrolBackgroundSrc = "https://yulife-develop.imgix.net/yuscreen/slots/background/bg-pink-without-shadow-28-04-23.svg?ixlib=js-3.2.1&w=135&h=162&s=3096ca41589b09354f75a462e30eb289"
+export const leftCanEnrolBackgroundSrc = "https://yulife-develop.imgix.net/yuscreen/slots/background/bg-pink-without-shadow-28-04-23.svg?ixlib=js-3.2.1&w=135&h=156&s=0e808ed69faa1199ca9f97c7c36c79ef"
 export const leftInforceBackgroundSrc = "https://yulife-develop.imgix.net/yuscreen/slots/background/bg-gold-18-07-22.svg?ixlib=js-3.2.1&w=135&h=162&s=4d4883a6124eb597b6a3e8c44ee21c71"
 export const leftFutureEnrolBackgroundSrc = "https://yulife-develop.imgix.net/yuscreen/slots/background/bg-silver-without-shadow-28-04-23.svg?ixlib=js-3.2.1&w=135&h=156&s=86e63fdbb65d035d2ad1de23b110d7a5"
 export const leftInHoldingBackgroundImgSrc = "https://yulife-develop.imgix.net/yuscreen/slots/background/bg-blue-04-04-23-1.svg?ixlib=js-3.2.1&w=135&h=162&s=d70ae545203428b7c20dec42073da494"
