@@ -25,8 +25,8 @@ export const {
 } = screens.menu
 
 export const tapSudoku = async () => {
-  await scrollUntilTextVisible(CHALLENGE_SET_SCROLL, "Daily Yudoku", "down")()
-  await tapText("Daily Yudoku")()
+  await scrollUntilTextVisible(CHALLENGE_SET_SCROLL, "Yudoku", "down")()
+  await tapText("Yudoku")()
 }
 
 export const tapHowToPlay = async () => {

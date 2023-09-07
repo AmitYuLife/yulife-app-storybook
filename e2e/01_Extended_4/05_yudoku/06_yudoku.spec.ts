@@ -291,7 +291,7 @@ Feature("Yudoku", async () => {
                 When("I complete the Yudoku", when.completeYudoku, async () => {
                     When("I tap done", when.tapText("Done"), async () => {
                         When("I tap level 1 button", when.tapID(LEVEL_CHALLENGE_BUTTON(1)), async () => {
-                            Then("I can see the slot for a completed yudoku", then.idVisible(CHALLENGE_HISTORY_NEW_SLOT("Daily Yudoku", "120", 3)))
+                            Then("I can see the slot for a completed yudoku", then.idVisible(CHALLENGE_HISTORY_NEW_SLOT("Yudoku", "120", 3)))
                             Then("I can see the level summary page yudoku leaderboard button", then.canSeeYudokuLeaderboardButton("Today"))
                         })
                     })
