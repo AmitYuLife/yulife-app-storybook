@@ -21,8 +21,8 @@ export const {
 } = navigation.common;
 
 export const canSeeSudokuTile = async () => {
-  await scrollUntilTextVisible(CHALLENGE_SET_SCROLL, "Daily Yudoku", "down")()
-  await textVisible("Daily Yudoku")()
+  await scrollUntilTextVisible(CHALLENGE_SET_SCROLL, "Yudoku", "down")()
+  await textVisible("Yudoku")()
 }
 
 export const amOnSudokuPage = async () => {
