@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.98.0] - 2023-09-08
+
+### Tasks
+
+- Task: No challenge data modal
+- Task: Leaderboard search
+- Task GS-779: update challenge start screen design
+- Task XSE-2214: Improve depressed left text vertical alignment
+
+### Chores
+
+- Chore: Upgrade intercom client
+- Chore: accept regional copy variants
+
+### Extra
+
+- Detox: Fixes 7th Sept
+- Detox: Fix 6th sept
+- update yucoin power text color
+- Detox: Fixes 5th Sept
+- detox:xse-2045-yuniversal-levelling-up-ghi-rewards
+- Detox/xse 2101 garmin claiming journey
+- Detox: Fixes 4th Sept
+- Detox: Fixes 1st Sept
+
 ## [3.97.0] - 2023-08-31
 
 ### Features
