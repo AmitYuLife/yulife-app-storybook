@@ -616,6 +616,16 @@
       "stage": "You have just completed a stage",
       "next": "The next one will be available in %{timeRemaining}"
     },
+    "challenge_no_data": {
+      "title": "Looks like your activity\nisn't syncing!",
+      "description": "Double check that your health app is connected to YuLife. If your activity is safely recorded, and we're connected, let's try syncing up again.",
+      "buttons": {
+        "retry": "Retry sync",
+        "cancel_challenge": "Cancel challenge",
+        "faq": "FAQs",
+        "open_apple_health": "Open Apple Health App"
+      }
+    },
     "challenge_chest_modal": {
       "cta_label_is_next": "Let's do it",
       "heading_is_next": "Take a challenge to unlock the chest",

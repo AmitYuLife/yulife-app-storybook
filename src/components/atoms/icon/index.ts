@@ -57,6 +57,8 @@ import { DuelsIcon } from "./duels-icon";
 import { DropdownSolidIcon } from "./dropdown-solid-icon";
 import { QuestionOutlineIcon } from "./question-outline-icon";
 import { SearchIcon } from "./search-icon";
+import { FaqIcon } from "./faq-icon";
+import { HealthAppIcon } from "./health-app-icon";
 
 export default {
   GlobeIcon,
@@ -120,4 +122,6 @@ export default {
   DropdownSolidIcon,
   QuestionOutlineIcon,
   SearchIcon,
+  FaqIcon,
+  HealthAppIcon,
 };

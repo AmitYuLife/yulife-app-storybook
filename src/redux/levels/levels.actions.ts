@@ -21,6 +21,8 @@ export const CHALLENGE_END = "CHALLENGE_END";
 export const CHALLENGE_END_SUCCESS = "CHALLENGE_END_SUCCESS";
 export const CHALLENGE_END_FAIL = "CHALLENGE_END_FAIL";
 
+export const CHALLENGE_NO_DATA_DEFER = "CHALLENGE_NO_DATA_DEFER";
+
 export const CHALLENGE_RESET = "CHALLENGE_RESET";
 export const CHALLENGE_RESET_SUCCESS = "CHALLENGE_RESET_SUCCESS";
 export const CHALLENGE_RESET_FAIL = "CHALLENGE_RESET_FAIL";
@@ -61,8 +63,9 @@ export const challengeContinueAction = () => ({
   type: CHALLENGE_CONTINUE,
 });
 
-export const challengeEndAction = () => ({
+export const challengeEndAction = (payload?: { skipDefer?: boolean }) => ({
   type: CHALLENGE_END,
+  payload,
 });
 
 export const challengeEndFailAction = () => ({
@@ -72,6 +75,10 @@ export const challengeEndFailAction = () => ({
 export const challengeEndSuccessAction = (payload: QuestMapActiveChallenge) => ({
   payload,
   type: CHALLENGE_END_SUCCESS,
+});
+
+export const challengeNoDataDeferAction = () => ({
+  type: CHALLENGE_NO_DATA_DEFER,
 });
 
 export const challengeResetAction = () => ({

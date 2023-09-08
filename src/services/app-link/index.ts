@@ -85,6 +85,10 @@ export async function openGoogleFit() {
   });
 }
 
+export async function openAppleHealthSummary() {
+  Linking.openURL("x-apple-health://summary");
+}
+
 export const handleLinkPress = (link: string) => async () => {
   try {
     await Linking.openURL(link);

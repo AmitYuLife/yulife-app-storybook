@@ -8,12 +8,12 @@ import {
   CHALLENGE_SUBMIT_UNITY,
 } from "../levels.actions";
 
-import endChallengeSaga from "./endChallenge.saga";
 import resetChallengeSaga from "./resetChallenge.saga";
 import startChallengeIfActiveSaga from "./startChallengeIfActive.saga";
 import startChallengeSuccessSaga from "./startChallengeSuccess.saga";
 import submitUnitySaga from "./submitUnity.saga";
 import endChallengeFailSaga from "./endChallengeFail.saga";
+import endChallengeSaga from "./endChallenge.saga";
 
 export default [
   // startChallenges(),

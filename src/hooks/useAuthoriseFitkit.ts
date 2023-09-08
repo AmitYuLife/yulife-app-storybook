@@ -8,7 +8,7 @@ import Logger from "@services/logging/logger";
 import { buildFitKitPermissions } from "@services/fitkit/fitkit.permissions";
 
 // we can move to env if we have different variants, for now keep as constant since this is the only variant
-const FAQ_LINK = "https://faq.yulife.com/en/articles/2813117-connecting-health-apps-to-yulife";
+export const FAQ_LINK = "https://faq.yulife.com/en/articles/2813117-connecting-health-apps-to-yulife";
 
 export function useAuthoriseFitkit({ authorise }: { authorise: (value: FitKitAuthOptions) => Promise<boolean> }) {
   const [fitkitPermission, setFitkitPermission] = useState("");

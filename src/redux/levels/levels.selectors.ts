@@ -39,6 +39,7 @@ export interface IActiveLevel {
   unit: "steps" | "minutes" | "meters" | string; // this should not have `string` as a type but it's needed to supress type errors for now
   videoPlayerIsActive: boolean;
   hideExternalLinks: boolean;
+  endDeferCount?: number;
   appButton: {
     title: string;
     color?: string;
