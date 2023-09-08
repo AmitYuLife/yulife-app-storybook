@@ -473,6 +473,10 @@ const routesForRegistration = [
     component: require("../components/modals/leaderboard-community-overlay/leaderboard-community-overlay").default,
   },
   {
+    name: MODALS.challengeNoData,
+    component: require("../components/modals/challenge-no-data/challenge-no-data.modal").default,
+  },
+  {
     name: MODALS.leaderboardSearch,
     component: require("../components/modals/leaderboard-search/leaderboard-search.modal").default,
   },

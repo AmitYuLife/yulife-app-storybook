@@ -5,13 +5,24 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
 import { call, put, select, spawn, delay } from "redux-saga/effects";
-import { challengeEndFailAction, challengeEndSuccessAction, challengeResetSuccessAction } from "../levels.actions";
-import { getEndResult } from "../levels.helpers";
+import {
+  challengeEndFailAction,
+  challengeEndSuccessAction,
+  challengeNoDataDeferAction,
+  challengeResetSuccessAction,
+} from "../levels.actions";
+import { logEmptyResultDebugData, getEndResult } from "../levels.helpers";
 import { getActiveLevel, getYuniversalProgress } from "../levels.selectors";
 
 const RETRY_UPDATE_CHALLENGE_COUNT = 5;
 
-export default function* endChallengeSaga() {
+interface IEndChallengeSaga {
+  payload?: {
+    skipDefer: boolean;
+  };
+}
+
+export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
   const active: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
   const { yuniversalMap }: ReturnType<typeof getYuniversalProgress> = yield select(getYuniversalProgress);
 
@@ -29,6 +40,21 @@ export default function* endChallengeSaga() {
         const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
         const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
         const result: Unpacked<typeof getEndResult> = yield call(getEndResult, active, stepsBlackListApps, features);
+        if (result.value === 0 && !payload?.skipDefer && features.enableChallengeNoDataDefer) {
+          yield spawn(async () => {
+            logEmptyResultDebugData({
+              features,
+              result,
+              blacklistApps: stepsBlackListApps,
+              activeChallenge: active,
+            });
+          });
+
+          yield put(challengeNoDataDeferAction());
+
+          return;
+        }
+
         let challengeData: UpdateQuestMapActiveChallenge;
         let challengeStatus = "active";
         let updateActiveChallengeCount = 0;

@@ -22,3 +22,4 @@ export { default as SurgeModal } from "./surge-modal/surge-modal";
 export { default as YuniversityCertificateModal } from "./yuniversity-certificate/yuniversity-certificate";
 export { default as LeaderboardCommunityOverlay } from "./leaderboard-community-overlay/leaderboard-community-overlay";
 export { default as LeaderboardSearchModal } from "./leaderboard-search/leaderboard-search.modal";
+export { default as ChallengeNoDataModal } from "./challenge-no-data/challenge-no-data.modal";

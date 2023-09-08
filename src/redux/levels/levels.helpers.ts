@@ -1,15 +1,50 @@
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import RNFitKit from "@services/fitkit/fitkit.service";
 import Logger from "@services/logging/logger";
-import { DATE_FORMAT_WITH_TZ, getStartAndEndDateTimesWithTimezone } from "@utils";
+import { DATE_FORMAT_WITH_TZ, Unpacked, getStartAndEndDateTimesWithTimezone } from "@utils";
 import moment from "moment";
 import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
 import { IActiveLevel } from "./levels.selectors";
 import { delay } from "@utils/misc";
 import { FitKitSampleType, GenericFitKitResponseType } from "@services/fitkit/fitkit.types";
+import { IFeature } from "@redux/user/user.reducer";
+import { Platform } from "react-native";
 
 const PROTECTED_DATA_INACCESSIBLE_ERROR = "Protected health data is inaccessible";
 const RETRIES = 5;
+
+export async function logEmptyResultDebugData({
+  features,
+  result,
+  activeChallenge,
+  blacklistApps,
+}: {
+  activeChallenge: IActiveLevel;
+  blacklistApps: string[];
+  features: IFeature;
+  result: Unpacked<typeof getEndResult>;
+}) {
+  const queryData = {
+    startTime: moment().subtract(1, "day").startOf("day").format(),
+    endTime: moment().endOf("day").format(),
+    fitKitTypes: Platform.OS === "ios" ? activeChallenge.fitKitTypes : [],
+    features,
+  };
+
+  const data = await queryFitKitSampleData(queryData);
+
+  const logData = {
+    data,
+    result,
+    blacklistApps,
+    fitKitTypes: activeChallenge.fitKitTypes,
+    activeChallengeEndTime: activeChallenge.endDateTime,
+    activeChallengeStartTime: activeChallenge.startDateTime,
+    activeChallengeFitKitTypes: activeChallenge.fitKitTypes,
+  };
+
+  Logger.logMixpanelEvent("end_challenge_no_data", logData);
+}
 
 export async function getEndResult(
   { startDateTime, endDateTime, score, subtype, fitKitTypes }: IActiveLevel,

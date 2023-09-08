@@ -1,8 +1,8 @@
 import moment from "moment";
-import { IMainTabsProps } from "@navigation/root";
+import { IMainTabsProps, showYuModal } from "@navigation/root";
 import { getUnitTarget } from "@utils";
 import { Style } from "@styles/index";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { challengeCancelAction, challengeEndAction, challengeResetAction } from "@redux/levels/levels.actions";
 import {
@@ -24,17 +24,22 @@ import {
 } from "@screens";
 import QuestsScreenContainer from "@screens/member/quests/quests-scroll-screen/quests-screen.container";
 import { BlurProvider } from "@atoms/index";
-import { useAsyncEffect, useTapBackTwiceToExit } from "@hooks";
+import { useAsyncEffect, useTapBackTwiceToExit, useUserFeatures } from "@hooks";
 import SudokuProgressScreen from "@components/screens/games/sudoku/sudoku-progress/sudoku-progress.screen";
 import { Storage, StorageKey } from "@utils/storage";
+import { getModalState, getRouteState } from "@redux/app/app.selectors";
+import { MODALS, ROUTES } from "@navigation/constants";
 
 const QuestsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
   const dispatch = useDispatch();
   const activeLevel = useSelector(getActiveLevel);
+  const currentRoute = useSelector(getRouteState);
   const challengeIsActive = useSelector(getChallengeIsActive);
   const hideExternalLinks = useSelector(getHideExternalLinks);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
+  const features = useUserFeatures();
   const videoPlayerIsActive = useSelector(getVideoPlayerIsActive);
+  const activeModal: ReturnType<typeof getModalState> = useSelector(getModalState);
   const [hasVideoProgressStorage, setHasVideoProgressStorage] = useState<boolean>(false);
 
   useTapBackTwiceToExit(componentId);
@@ -51,6 +56,23 @@ const QuestsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
       }
     }
   }, [activeLevel.endDateTime, activeLevel.levelSlotId, activeLevel.status, challengeIsActive, dispatch]);
+
+  useEffect(() => {
+    if (!features?.enableChallengeNoDataDefer) {
+      return;
+    }
+
+    const hasChallengeEnded = moment().isAfter(activeLevel.endDateTime);
+
+    if (currentRoute === ROUTES.quests && !activeModal && activeLevel.endDeferCount && hasChallengeEnded) {
+      showYuModal({
+        component: {
+          id: MODALS.challengeNoData,
+          name: MODALS.challengeNoData,
+        },
+      });
+    }
+  }, [activeLevel.endDeferCount, activeModal, currentRoute, features?.enableChallengeNoDataDefer]);
 
   const handleResetChallenge = useCallback(
     (wasSuccessful = false) => {

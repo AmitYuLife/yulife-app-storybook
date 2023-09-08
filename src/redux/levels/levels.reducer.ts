@@ -30,6 +30,7 @@ import {
   CHALLENGE_END,
   CHALLENGE_IS_ACTIVE,
   UPDATE_CHALLENGE_APP_BUTTON,
+  CHALLENGE_NO_DATA_DEFER,
 } from "./levels.actions";
 import { CHALLENGE_START_INITIAL_STEPS, ChallengeStartPayload } from "./levels.actions";
 import { ActiveLevelStatus, IActiveLevel } from "./levels.selectors";
@@ -134,6 +135,9 @@ const levelsReducer = (state: ILevelsStore = getInitialState(), action: SyncActi
 
     case CHALLENGE_START_INITIAL_STEPS:
       return { ...state, active: { ...state.active, initialPedometerResult: action.payload } };
+
+    case CHALLENGE_NO_DATA_DEFER:
+      return challengeEndDeferred(state);
 
     case LOGOUT_SUCCESS:
       return getInitialState();
@@ -284,6 +288,7 @@ const challengeEndSuccess = (state: ILevelsStore, challenge: QuestMapActiveChall
         ? ActiveLevelStatus.success
         : ActiveLevelStatus.failed,
     challengeIsActive: false,
+    endDeferCount: 0,
     videoPlayerIsActive: false,
   },
 });
@@ -294,6 +299,7 @@ const challengeResetSuccess = (state: ILevelsStore): ILevelsStore => ({
     ...getInitialState().active,
     isLoading: false,
     videoPlayerIsActive: false,
+    endDeferCount: 0,
   },
 });
 
@@ -303,6 +309,7 @@ const challengeResetFail = (state: ILevelsStore): ILevelsStore => ({
     ...state.active,
     isLoading: false,
     challengeIsActive: false,
+    endDeferCount: 0,
   },
 });
 
@@ -315,6 +322,17 @@ const updateChallengeAppButton = (state: ILevelsStore, button: IButton): ILevels
     },
   },
 });
+
+const challengeEndDeferred = (state: ILevelsStore) => {
+  return {
+    ...state,
+    active: {
+      ...state.active,
+      isLoading: false,
+      endDeferCount: (state?.active.endDeferCount ?? 0) + 1,
+    },
+  };
+};
 
 const pedometerUpdate = (state: ILevelsStore, { steps }: PedometerResponse): ILevelsStore => {
   if (
