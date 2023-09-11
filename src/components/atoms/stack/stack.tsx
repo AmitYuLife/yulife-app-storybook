@@ -1,25 +1,23 @@
 import { Style } from "@styles";
 import { memo, useCallback, useMemo } from "react";
-import { StyleProp, ViewStyle, View } from "react-native";
+import { StyleProp, ViewStyle, View, ViewProps } from "react-native";
 
 export enum StackDirection {
   vertical = "vertical",
   horizontal = "horizontal",
 }
 
-interface IStackProps {
+interface IStackProps extends ViewProps {
   gap?: number;
-  testID?: string;
   children: JSX.Element[];
   direction?: StackDirection;
-  style?: StyleProp<ViewStyle>;
 }
 
 /**
  * Lays out all child components with equal spacing between them.
  */
 const Stack = memo(
-  ({ style, testID, children, gap = Style.adjust(10), direction = StackDirection.vertical }: IStackProps) => {
+  ({ children, gap = Style.adjust(10), direction = StackDirection.vertical, style, ...props }: IStackProps) => {
     const getGap = useCallback(
       (index: number): StyleProp<ViewStyle> => {
         switch (direction) {
@@ -46,7 +44,7 @@ const Stack = memo(
     }, [style, directionStyles]);
 
     return (
-      <View testID={testID} style={computedStyles}>
+      <View style={computedStyles} {...props}>
         {children.filter(Boolean).map((child, index) => (
           <View key={index} style={getGap(index)}>
             {child}

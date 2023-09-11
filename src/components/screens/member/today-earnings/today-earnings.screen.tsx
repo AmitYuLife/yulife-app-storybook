@@ -1,19 +1,22 @@
-import React, { memo } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import React, { memo, useState } from "react";
+import { StyleSheet, View } from "react-native";
 import { TODAYS_EARNINGS } from "@ids";
-import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import TodayYuCoinHeader from "./subcomponents/today-yucoin-header";
+import { ActiveBuffsButton, GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import ActivityFeed from "./subcomponents/activity-feed";
 import {
   GetTodayEarnings_getTodayEarnings_activityFeed as IActivityFeed,
   GetTodayEarnings_getTodayEarnings_header as Header,
 } from "@graphql/_core/schema";
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 import { t } from "@locale";
 import HintContainer from "@components/molecules/hint/hint.container";
 import { ROUTES } from "@navigation/constants";
+import { Stack, YuCoinBadge, TextTemplate } from "@atoms";
+import { YucoinPowerButton } from "@components/molecules";
+import { BuffArea } from "@graphql/_core/schema/globalTypes";
+import { ScrollThresholdView } from "@molecules";
 
-interface IProps {
+interface ITodaysEarningScreenProps {
   header: Header;
   activityFeed: IActivityFeed[];
   isGoogleFitAuthorised: boolean;
@@ -22,29 +25,72 @@ interface IProps {
   currentYuniverse: number;
 }
 
+const GAP = Style.adjust(24);
+const HEADER_HEIGHT = Style.adjust(240);
+
 const TodayEarningsScreen = ({
-  header,
   activityFeed,
   onLeftIconPress,
   isGoogleFitAuthorised,
   currentWorld,
   currentYuniverse,
-}: IProps) => {
+  header: { yuCoinToday },
+}: ITodaysEarningScreenProps) => {
+  const [isThresholdReached, setIsThresholdReached] = useState<boolean>(false);
+
+  const onThresholdStateChanged = (state: boolean): void => {
+    setIsThresholdReached(state);
+  };
+
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
-      <ScrollView testID={TODAYS_EARNINGS} style={styles.wrapper} showsVerticalScrollIndicator={false}>
-        <TodayYuCoinHeader {...header} currentWorld={currentWorld} currentYuniverse={currentYuniverse} />
-        <View style={styles.activityFeedWrapper}>
-          {activityFeed.map((item) => (
-            <ActivityFeed key={item.id} {...item} isGoogleFitAuthorised={isGoogleFitAuthorised} />
-          ))}
+      <ScrollThresholdView
+        bounces={false}
+        style={styles.wrapper}
+        testID={TODAYS_EARNINGS}
+        scrollThreshold={HEADER_HEIGHT}
+        showsVerticalScrollIndicator={false}
+        onThresholdStateChanged={onThresholdStateChanged}
+      >
+        <Stack style={styles.headerWrapper}>
+          <View style={styles.headerYucoinWrapper}>
+            <YuCoinBadge width={110} height={116} currentWorld={currentWorld} currentYuniverse={currentYuniverse} />
+            <ActiveBuffsButton
+              iconWidth={25}
+              iconHeight={25}
+              style={styles.activeBuffs}
+              buffTypes={[BuffArea.stepsMilestone]}
+            />
+          </View>
+          <View style={styles.headerText} accessible={true}>
+            <TextTemplate color={Colours.neutral.n900} type="l1">
+              {t("screens.today_earning.yucoin_header.coins.earned_today")}
+            </TextTemplate>
+            <TextTemplate color={Colours.neutral.n900} type="h1">
+              {t("yu_coin.amount", { amount: yuCoinToday })}
+            </TextTemplate>
+          </View>
+          <YucoinPowerButton />
+        </Stack>
+
+        <Stack style={styles.bodyWrapper}>
+          <Stack gap={GAP}>
+            {activityFeed.map((item) => (
+              <ActivityFeed key={item.id} {...item} isGoogleFitAuthorised={isGoogleFitAuthorised} />
+            ))}
+          </Stack>
           <View style={styles.hintWrapper}>
             <HintContainer screen={ROUTES.todayEarnings} />
           </View>
-        </View>
-      </ScrollView>
-      <GenericHeadingAbsolute heading={t("screens.today_earning.heading.title")} onLeftIconPress={onLeftIconPress} />
+        </Stack>
+      </ScrollThresholdView>
+      <GenericHeadingAbsolute
+        color={Colours.neutral.n900}
+        onLeftIconPress={onLeftIconPress}
+        heading={t("screens.today_earning.heading.title")}
+        backgroundColor={isThresholdReached ? Colours.neutral.white : "#FFFBE5"}
+      />
     </View>
   );
 };
@@ -53,12 +99,31 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
   },
-  activityFeedWrapper: {
-    marginBottom: Style.adjust(30),
+  headerWrapper: {
+    width: "100%",
+    backgroundColor: "#FFFBE5",
+    paddingBottom: Style.adjust(GAP),
+    paddingHorizontal: Style.adjust(GAP),
+  },
+  headerYucoinWrapper: {
+    alignSelf: "center",
+  },
+  headerText: {
+    alignItems: "center",
+  },
+  activeBuffs: {
+    position: "absolute",
+    top: Style.adjust(18),
+    right: Style.adjust(18),
+  },
+  bodyWrapper: {
+    paddingTop: Style.adjust(GAP),
+    paddingHorizontal: Style.adjust(GAP),
+    backgroundColor: Colours.neutral.white,
   },
   hintWrapper: {
-    marginTop: Style.adjust(24),
-    paddingHorizontal: Style.adjust(24),
+    marginTop: Style.adjust(GAP),
+    paddingHorizontal: Style.adjust(GAP),
   },
 });
 

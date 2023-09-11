@@ -390,8 +390,6 @@ const ActivityFeed = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginTop: Style.adjust(24),
-    marginHorizontal: Style.adjust(24),
     padding: Style.adjust(16),
   },
   headerWrapper: {
@@ -403,7 +401,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   progressWrapper: {
-    marginTop: Style.adjust(24),
+    marginTop: Style.adjust(17),
   },
   activeBuff: {
     width: Style.adjust(24),
