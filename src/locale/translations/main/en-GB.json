@@ -224,15 +224,7 @@
       },
       "yucoin_header": {
         "coins": {
-          "earned_today": "earned today",
-          "accessibility": {
-            "accessibility_label": "%{coins} yu coin earned today"
-          }
-        },
-        "yucoin_power": {
-          "accessibility": {
-            "accessibility_label": "%{power} yu coin power"
-          }
+          "earned_today": "Today you've earned"
         }
       },
       "toast": {

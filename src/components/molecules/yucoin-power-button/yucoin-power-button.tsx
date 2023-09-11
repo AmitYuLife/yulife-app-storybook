@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { useSelector } from "react-redux";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ViewStyle } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 
 import { t } from "@locale";
@@ -12,11 +12,15 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { getUserEarnRate, getUserFeatures } from "@redux/user/user.selectors";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 
+interface IYucoinPowerButtonProps {
+  style?: ViewStyle;
+}
+
 /**
  * A large button that displays the users YuCoin power
  * and allows them to navigate to the YuCoin Power modal.
  */
-const YucoinPowerButton = memo(() => {
+const YucoinPowerButton = memo(({ style }: IYucoinPowerButtonProps) => {
   const features = useSelector(getUserFeatures);
   const earnRate = useSelector(getUserEarnRate);
 
@@ -25,7 +29,7 @@ const YucoinPowerButton = memo(() => {
   }
 
   return (
-    <TouchableOpacityWithDelay onPress={showYuCoinPowerExplainedOverlay}>
+    <TouchableOpacityWithDelay style={style} accessibilityRole={"button"} onPress={showYuCoinPowerExplainedOverlay}>
       <View>
         <View style={styles.yucoinPowerButtonShadow} />
         <View style={styles.yucoinPowerButtonInner}>
