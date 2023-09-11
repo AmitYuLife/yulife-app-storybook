@@ -85,7 +85,7 @@ PODS:
   - hermes-engine (0.70.9)
   - HMSegmentedControl (1.5.6)
   - Intercom (15.2.0)
-  - intercom-react-native (5.3.0):
+  - intercom-react-native (5.3.1):
     - Intercom (~> 15.2.0)
     - React-Core
   - Leanplum-iOS-SDK (6.0.2):
@@ -812,7 +812,7 @@ SPEC CHECKSUMS:
   hermes-engine: 918ec5addfbc430c9f443376d739f088b6dc96c3
   HMSegmentedControl: 34c1f54d822d8308e7b24f5d901ec674dfa31352
   Intercom: c849529af6a2b1926e57251382c3c09d4aad625a
-  intercom-react-native: 2a6925bca18d8484483c2f8fb8b48b59ef1c7952
+  intercom-react-native: d74faad59c5f73834a6ea32bed1a45e459d5ade6
   Leanplum-iOS-SDK: 804d2a841eeb797dd47d59e1c8f6a92dc4d7e596
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   libwebp: f62cb61d0a484ba548448a4bd52aabf150ff6eef
