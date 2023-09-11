@@ -1,0 +1,8 @@
+NSCameraUsageDescription = "Send photos to resolve app issues";
+NSHealthShareUsageDescription = "We use your step and meditation data so we can verify you have completed challenges.";
+NSHealthUpdateUsageDescription = "Need the ability to write your step and meditation data so we can update completed challenges";
+NSLocationAlwaysUsageDescription = "Need the ability to access your location movement for step tracking challenges";
+NSLocationWhenInUseUsageDescription = "";
+NSMotionUsageDescription = "We use your pedometer to track how many steps you've taken during the day.";
+NSPhotoLibraryAddUsageDescription = "In order to save this image YuLife will need to be able to add to your photos.";
+NSPhotoLibraryUsageDescription = "Send photos to resolve app issues";

@@ -1,0 +1,8 @@
+NSCameraUsageDescription = "アプリの問題を解決するには写真を送信してください";
+NSHealthShareUsageDescription = "私たちはあなたの歩数と瞑想のデータを使用して、あなたがチャレンジを完了したことを確認します。";
+NSHealthUpdateUsageDescription = "完了したチャレンジを更新できるように、ステップと瞑想のデータを書き込む機能が必要です";
+NSLocationAlwaysUsageDescription = "歩数追跡の課題のために位置の動きにアクセスする機能が必要";
+NSLocationWhenInUseUsageDescription = "";
+NSMotionUsageDescription = "私たちは歩数計を使用して、その日の歩数を追跡します。";
+NSPhotoLibraryAddUsageDescription = "この画像を保存するには、YuLife が写真に追加できる必要があります。";
+NSPhotoLibraryUsageDescription = "アプリの問題を解決するには写真を送信してください";
