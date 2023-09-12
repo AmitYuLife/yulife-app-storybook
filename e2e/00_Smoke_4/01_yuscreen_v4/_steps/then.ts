@@ -132,7 +132,7 @@ export const wellbeingProductInfo = async () => {
 export const groupDentalProductInfo = (packageType: string, yuCoinPower: string) => async () => {
   const policyName = "Bupa Dental Plan";
   const policyDescription =
-    "You can claim cash back, access to Bupa clinics across the UK, and reach Bupa’s experts on their 24/7 Anytime HealthLine.";
+    "Claim cash back, access Bupa clinics across the UK, and reach Bupa experts on their 24/7 Anytime HealthLine.";
   const paidBy = "Employer Paid";
   const policyInfoYugi =
     "This policy is paid for by your employer. Remember if you change jobs, you’ll lose this cover.";

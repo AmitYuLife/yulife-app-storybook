@@ -27,7 +27,7 @@ export const applicationProcessed = "Your application is being processed";
 export const notCoveredYugiInfo =
   "You are not covered, and cannot claim for any treatments carried out before your cover starts.";
 export const GdentMarkDown =
-  "You can claim cash back, get access to Bupa clinics across the UK, and reach Bupa’s experts on their 24/7 Anytime HealthLine.";
+  "Claim cash back, access Bupa clinics across the UK, and reach Bupa experts on their 24/7 Anytime HealthLine.";
 export const coverDetailsText = "Cover details";
 export const bupaDentalPlanText = "Bupa Dental Plan";
 export const coveredForText = "What I’m covered for";

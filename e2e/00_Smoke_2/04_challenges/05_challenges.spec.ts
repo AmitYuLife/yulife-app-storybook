@@ -8,6 +8,7 @@ import * as ids from "@ids";
 import * as data from "@data";
 import { getLocalisedString as t } from "@i18n";
 import { getFullName } from "_utils/users";
+import { AUTH_61, CUSTOMER_61 } from "@data";
 
 Feature("As a user I can take a challenge", async () => {
     Scenario("I can take a challenge and cancel it", scenario.start, async () => {
@@ -241,4 +242,35 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should see the correct yucoin earned so far today after completing the challenge", then.yuCoinEarnedFromEvent(data.GOAL_REWARD_MILESTONE_3.data.rewardValue, data.USER_52.data.earnRate, 3))
         })
     })
+
+    Scenario("When I have unlocked level 50 and level 51, I can do two challenges for level 51", scenario.start, () => {
+        Given("I login as a user on level 51", given.logInAndGoToTab("quests", CUSTOMER_61, AUTH_61), async () => {
+            Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
+            Then("I should see the level 51 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
+        })
+        When("I scroll down", when.scrollFromID(ids.LEVEL_CHALLENGE_BUTTON(51), "up", "slow"), async () => {
+            Then("I should see the level 50 chest unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(50)))
+        })
+        When("I tap the level 50 chest", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(50)), async () => {
+            Then("I should see the on screen message I have achieved Yunity Forest", then.yunityCorrect("Forest"))
+        })
+        When("I wait", when.wait(3000), async () => {
+            Then("I should see the level 51 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51), 2000))
+        })
+        When("I complete a walking challenge at level 51", when.completeChallenge(51, "short stroll"), async () => {
+            Then("I should see the level 51 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
+        })
+        When("I tap this level 52 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(52)), async () => {
+            Then("I should see a message that the next level will be available in 12 hours", then.nextLevelLocked)
+        })
+        When("I tap got it", when.tapText(t("Okay, got it")), async () => {
+            Then("I should see the level 51 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
+        })
+        When("I complete a second walking challenge at level 51", when.completeSecondChallenge(51, "short stroll"), async () => {
+            Then("I should see the level 51 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
+        })
+        When("I tap this level 52 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(52)), async () => {
+            Then("I should see a message that the next level will be available in 12 hours", then.nextLevelLocked)
+        })
+    }) 
 })
