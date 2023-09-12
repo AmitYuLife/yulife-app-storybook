@@ -5,7 +5,7 @@ import React, { memo, useCallback, useMemo, useRef, useState } from "react";
 import { Animated, NativeScrollEvent, StyleSheet, View } from "react-native";
 
 import { t } from "@locale";
-import { useBackHandler } from "@hooks";
+import { useBackHandler, useUserFeatures } from "@hooks";
 import { Colours, Style } from "@styles";
 import { MODALS } from "@navigation/constants";
 import { Image, Stack, TextTemplate } from "@atoms";
@@ -44,6 +44,7 @@ function ChallengeDetailsScreenV2({
 }: IChallengeDetailsScreenProps) {
   const bonusInfoButtonRef = useRef<View>();
   const scrollY = useRef(new Animated.Value(0));
+  const { showYucoinPowerButton } = useUserFeatures();
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
 
@@ -179,7 +180,7 @@ function ChallengeDetailsScreenV2({
             </View>
           )}
 
-          <YucoinPowerButton />
+          {!showYucoinPowerButton ? null : <YucoinPowerButton />}
         </Stack>
       </Animated.ScrollView>
       <LinearGradient style={styles.footerWrapper} colors={SMOOTH_GRADIENT_COLORS}>
