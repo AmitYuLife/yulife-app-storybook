@@ -370,8 +370,9 @@ export const PRODUCT_VIEW = async (seed: ProductStartsSoon) => {
       Then(`I should be able to see ${seed.planName}`, then.textVisible(seed.planName));
       Then(`I should be able to see £ ${seed.pricePerMonth} per month`, then.textVisible(`£${seed.pricePerMonth} per month`));
       Then(`I should be able to see id ${seed.yuCoinPower}`, then.idVisibleAtIndex(YUCOIN_POWER(seed.yuCoinPower),0));
-      Then(`I should be able to see ${seed.coveredForText}`, then.textVisible(seed.coveredForText));
-      Then(`I should be able to see image ${seed.coveredForImgSlot}`, then.idVisible(CONTENT_ITEM_BUTTON_IMAGE(seed.coveredForImgSlot)));
+      // Then(`I should be able to see ${seed.coveredForText}`, then.textVisible(seed.coveredForText));
+      // Then(`I should be able to see image ${seed.coveredForImgSlot}`, then.idVisible(CONTENT_ITEM_BUTTON_IMAGE(seed.coveredForImgSlot)));
+      // ^^^ What I'm Covered For button is currently removed, but might return
       Then(`I should be able to see ${seed.membershipText}`, then.textVisible(seed.membershipText));
       Then(`I should be able to see image ${seed.membershipGuideImgSlot}`, then.idVisible(CONTENT_ITEM_BUTTON_IMAGE(seed.membershipGuideImgSlot)));
       Then(`I should be able to see ${seed.faqText}`, then.textVisible(seed.faqText));

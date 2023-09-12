@@ -58,6 +58,7 @@ export const allTogglesTrue = {
       showDuels: true,
       showCommunityGoals: true,
       rewardRedemptionDisabled: false,
+      showYucoinPowerButton: true
     },
   },
 } as IDatabaseItem;
@@ -277,6 +278,7 @@ export const DEFAULT_TOGGLES = {
       rewardRedemptionDisabled: false,
       showNotificationCentre: true,
       newMediaPlayer: true,
+      showYucoinPowerButton: true
     },
   },
 } as IDatabaseItem;

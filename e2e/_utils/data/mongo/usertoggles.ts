@@ -45,6 +45,7 @@ export const CUSTOMER_2_TOGGLES = {
       showGoals: true,
       yuScreenV3: true,
       showPermissionSettings: true,
+      showYucoinPowerButton: true
     },
   },
 } as IDatabaseItem;

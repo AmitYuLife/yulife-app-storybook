@@ -1,8 +1,10 @@
-import { multipleTextVisible, navigation } from "@utils"
+import { multipleTextVisible, navigation, wait } from "@utils"
 import { screens } from "@appScreens"
 import * as ids from "@ids"
 import { GOALS_2 } from "@data"
 import { buttonVisible } from "_utils/appScreens/challenges"
+import { sendSteps } from "@socket"
+import { getLocalisedString as t } from "@i18n"
 
 
 export const {
@@ -11,7 +13,9 @@ export const {
     expectIsVisibleViaID,
     expectIsVisibleViaText,
     textVisibleAtIndex,
-    idVisibleAtIndex
+    idVisibleAtIndex,
+    navigateViaText,
+    navigateViaID
 } = navigation.common
 
 export const {
@@ -19,6 +23,7 @@ export const {
 
 export const {
     onChallengeComplete,
+    startChallenge,
 } = screens.challenges
 
 export const {
@@ -190,4 +195,52 @@ export const challengeRewardVisible = (yuCoinPower: number, rewardValue: number,
     const minReward = (minRewardValue * yuCoinPower).toString()
     await idVisibleAtIndex(ids.CHALLENGE_REWARD(`${minReward} - ${yuCoinTotal}`), 0)()
     await idVisibleAtIndex(ids.CHALLENGE_REWARD(`${minReward} - ${yuCoinTotal}`), 1)()
+}
+
+export const yunityCorrect = (worldType: "Forest" | "Ocean" |"Desert" |"Mountain1") => async()=>{
+    await wait(5000)()
+    let label = ""
+    let subheading = ""
+
+    switch(worldType){
+        case "Forest":
+            label = "You’ve achieved Yunity with the Forest"
+            subheading = "Take a deep, celebratory breath.\nYou earned a Yunity forest chest!"
+            break 
+        case "Ocean":
+            label = "You’ve achieved Yunity with the Ocean"
+            subheading = "You took the plunge and ascended victorious. You earned a Yunity ocean chest!"
+            break 
+        case "Desert":
+            label = "You’ve achieved Yunity with the Desert"
+            subheading = "You are your own wellbeing oasis and earned a Yunity desert chest!"
+            break
+        case "Mountain1":
+            label = "... and you’ve completed your first journey for unity!"
+            subheading = "You’re ready to explore the Yuniverse in your enlightened state. Enjoy your Yunity Mountain Chest and floating through the cosmos."
+    }
+    
+    try{
+        await textVisible(label, 3000)
+        await textVisible(subheading)()
+        await navigateViaText("Continue")
+    }catch(e){
+        await textVisible(label, 3000)
+        await navigateViaText("Continue")
+    }
+}
+
+export const nextLevelLocked = () => async () => {
+    const timeLeft = /12:3[0-9]:[0-9][0-9]/
+    await idVisible(ids.CHALLENGE_UNAVAILABLE)()
+    await idVisible(ids.TEXT_TEMPLATE(`The next one will be available in ${timeLeft}`))()
+    await textVisible("You have just completed a level")()
+}
+
+export const completeSecondChallenge = (levelNumber: number, challengeType: string) => async () => {
+    await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber))
+    await startChallenge(challengeType)()
+    await sendSteps(400, 35000)()
+    await waitFor(element(by.text(t("Collect")))).toBeVisible().withTimeout(5000)
+    await navigateViaText(t("Collect"))
 }
