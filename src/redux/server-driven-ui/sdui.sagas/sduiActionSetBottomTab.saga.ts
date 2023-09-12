@@ -1,5 +1,5 @@
 import { Navigation } from "@navigation/main";
-import { call } from "redux-saga/effects";
+import { all, call, put } from "redux-saga/effects";
 import { TAB_ROUTES } from "@navigation/root";
 import { getServerPayload } from "../sdui.helpers";
 import { SduiActionWithServerPayload } from "../sdui.types";
@@ -9,7 +9,7 @@ export function* sduiActionSetBottomTabSaga({ payload }: SduiActionWithServerPay
   const { isValid, data } = parseJSON(getServerPayload(payload), ["routeId"]);
 
   if (isValid) {
-    const { routeId, popCurrentStackTo } = data;
+    const { routeId, popCurrentStackTo, postDispatchActions = [] } = data;
 
     const currentTabIndex = TAB_ROUTES.findIndex((item) => item === routeId);
 
@@ -25,6 +25,10 @@ export function* sduiActionSetBottomTabSaga({ payload }: SduiActionWithServerPay
           },
         })
       );
+    }
+
+    if (postDispatchActions.length) {
+      yield all(postDispatchActions.map((action: { type: string }) => put(action)));
     }
 
     if (popCurrentStackTo) {
