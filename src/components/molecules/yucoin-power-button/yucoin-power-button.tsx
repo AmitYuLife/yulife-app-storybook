@@ -15,21 +15,22 @@ import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/y
 
 interface IYucoinPowerButtonProps {
   style?: ViewStyle;
+  onPress?: () => void;
 }
 
 /**
  * A large button that displays the users YuCoin power
  * and allows them to navigate to the YuCoin Power modal.
  */
-const YucoinPowerButton = memo(({ style }: IYucoinPowerButtonProps) => {
+const YucoinPowerButton = memo(({ style, onPress = showYuCoinPowerExplainedOverlay }: IYucoinPowerButtonProps) => {
   const earnRate = useSelector(getUserEarnRate);
 
   return (
     <TouchableOpacityWithDelay
       style={style}
+      onPress={onPress}
       accessibilityRole={"button"}
       testID={YUCOIN_POWER(earnRate)}
-      onPress={showYuCoinPowerExplainedOverlay}
     >
       <View>
         <View style={styles.yucoinPowerButtonShadow} />
