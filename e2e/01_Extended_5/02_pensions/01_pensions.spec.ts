@@ -7,6 +7,7 @@ import * as ids from "@ids";
 import * as data from "@data"
 import { PensionInfoUser111, PensionInfoUser114 } from "./_resources/fixtures"
 import { leftYugiSlotBackgroundImgSrc } from "./_resources/constants"
+import { calculateDailyContribution, calculateInProgressContribution, calculatePensionModalAmount } from "./_resources/utils"
 
 Feature("Smart Pension", async () => {
   Scenario("I can see an active connected pension", scenario.start, () => {
@@ -33,11 +34,11 @@ Feature("Smart Pension", async () => {
       Then("I am back on the yuscreen", then.textVisible(`${data.CUSTOMER_111.data.firstName} ${data.CUSTOMER_111.data.lastName}`))
     })
     When("I go to the Yucoin tab", when.navigateTo("yucoin"), async () => {
-      Then("I can see the contributions", then.textVisible("£10.52"))
+      Then("I can see the contributions", then.textVisible(`£${calculateInProgressContribution(PensionInfoUser111)}`))
     })
     When("I go to earnings", when.tapYuCoinIcon, async () => {
-      When("I scroll if needed", when.scrollUntilTextVisible(ids.TODAYS_EARNINGS, "£10.52 Daily contribution", "down"), async () => {
-        Then("I can see the YuCoin rewarded", then.textVisible("25"))
+      When("I scroll if needed", when.scrollUntilTextVisible(ids.TODAYS_EARNINGS, `£${calculatePensionModalAmount(PensionInfoUser114)} Pension contribution`, "down"), async () => {
+        Then("I can see the YuCoin rewarded", then.textVisible("25/12"))
         Then("I can see the modal telling the user to connect isn't visible", then.cannotSeePensionConnectPrompt)
       })
     })
@@ -108,12 +109,12 @@ Feature("Smart Pension", async () => {
     })
     When("I dismiss the product page", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
       When("I go to the Yu tab", when.navigateTo("yucoin"), async () => {
-        Then("I cannot see the contributions", then.textNotVisible("£10.52"))
+        Then("I cannot see the contributions", then.textNotVisible(calculateDailyContribution(PensionInfoUser114).toString()))
       })
     })
     When("I go to earnings", when.tapYuCoinIcon, async () => {
       When("I scroll if needed", when.scrollUntilTextVisible(ids.TODAYS_EARNINGS, "Today's challenges (0/4)", "down"), async () => {
-        Then("I can see the paused contribution modal", then.canSeePausedPensionEarnings("10.52"))
+        Then("I can see the paused contribution modal", then.canSeePausedPensionEarnings(calculatePensionModalAmount(PensionInfoUser114)))
       })
     })
     When("I tap manage", when.tapText("Manage"), async () => {

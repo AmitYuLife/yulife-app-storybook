@@ -4,4 +4,5 @@ export interface PensionContributionInfo {
     yourContribution: number,
     valuationDate: string,
     valuation: number
+    period: "week" | "month",
 }

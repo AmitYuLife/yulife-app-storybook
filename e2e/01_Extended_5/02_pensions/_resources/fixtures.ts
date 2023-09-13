@@ -6,7 +6,8 @@ export const PensionInfoUser111: PensionContributionInfo = {
     employersContribution: 16,
     yourContribution: 6,
     valuationDate: moment().format("Do MMMM YYYY"),
-    valuation: 123
+    valuation: 123,
+    period: "month"
 }
 
 export const PensionInfoUser114: PensionContributionInfo = {
@@ -14,5 +15,6 @@ export const PensionInfoUser114: PensionContributionInfo = {
     employersContribution: 16,
     yourContribution: 6,
     valuationDate: moment().format("Do MMMM YYYY"),
-    valuation: 123
+    valuation: 123,
+    period: "month"
 }
