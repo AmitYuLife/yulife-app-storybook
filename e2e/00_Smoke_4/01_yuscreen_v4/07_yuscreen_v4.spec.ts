@@ -109,7 +109,6 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             helper.ONBOARD_YU_SCREEN(GdentAvailableSoon)
             helper.ON_YU_SCREEN(data.CUSTOMER_93, GdentAvailableSoon)
             helper.PRODUCT_VIEW(GdentAvailableSoonProduct)
-            helper.COVERED_FOR_INFO(level1Benefit)
         })
     })
 

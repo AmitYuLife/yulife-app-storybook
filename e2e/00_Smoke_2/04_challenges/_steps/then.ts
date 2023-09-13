@@ -40,7 +40,7 @@ export const isOnInivteColleaguePage = async () => {
 
 export const onTodaysEarnings = (steps = 0, cycling: string, mindfulness = 0, yuCoinPowerEarnRate: string) => async () => {
     await expectIsVisibleViaID(ids.TODAYS_EARNINGS)
-    await textVisible("earned today")()
+    await textVisible("Today you've earned")()
     await textVisible("200 YuCoin")()
     await idVisible(ids.YUCOIN_POWER("13"))()
     await expectIsVisibleViaText(`${steps} / 12000 steps`)
