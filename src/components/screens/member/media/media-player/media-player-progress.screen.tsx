@@ -9,7 +9,6 @@ import React, { memo, useCallback, useMemo, useState } from "react";
 import { t } from "@locale";
 import { useAsyncEffect } from "@hooks";
 import { Colours, Style } from "@styles";
-import Logger from "@services/logging/logger";
 import { Button } from "@components/molecules";
 import { showYuModal } from "@navigation/root";
 import { MODALS, ROUTES } from "@navigation/constants";
@@ -19,6 +18,7 @@ import { IActiveLevel } from "@redux/levels/levels.selectors";
 import { challengeCancelAction } from "@redux/levels/levels.actions";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { GQL_QUERY_GET_VIDEOS_LIST } from "@graphql/media/getMedia.gql";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { GetMedia, GetMediaVariables, GetMedia_getMedia } from "@graphql/_core/schema";
 import cancelQuestMapLevelChallenge from "@graphql/challenges/cancelQuestMapLevelChallenge.gql";
 import { IMediaPlayerContainerProps } from "@components/containers/member/media/media-player/media-player.container";
@@ -106,11 +106,13 @@ const MediaPlayerProgressScreen = ({
     setActiveVideo(videoToResume);
     setActiveVideoProgress(videoProgress);
 
-    Logger.logMixpanelEvent("meditopia_challenge_resume", {
-      progress: videoProgress?.seconds,
-      duration: videoToResume?.duration,
-      levelSlotId: activeLevel?.levelSlotId,
-    });
+    dispatch(
+      logMixpanelEventActionCreator("media_challenge_resume", {
+        progress: videoProgress?.seconds,
+        duration: videoToResume?.duration,
+        levelSlotId: activeLevel?.levelSlotId,
+      })
+    );
   }, [activeLevel, isVideoProgressStorage, getVideoProgress, cancelChallenge, getHasChallengeEnded, getVideos]);
 
   /**

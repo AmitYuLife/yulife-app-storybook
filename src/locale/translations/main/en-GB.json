@@ -943,6 +943,11 @@
         "subheading": "Your current progress will be lost but you can retry any time",
         "cta_label": "Exit challenge"
       },
+      "on_media_challenge_end_error": {
+        "heading": "Looks like Yugi's\nspotted an error!",
+        "subheading": "You could try again later, or contact us through your in-app chat — we’re friendly!",
+        "cta_label": "Quest menu"
+      },
       "on_meditopia_error": {
         "heading": "Uh oh, something’s not quite right.",
         "subheading": "We couldn’t load the media. Please check your connection and try again. If you continue to see this message reach out to us via chat.",

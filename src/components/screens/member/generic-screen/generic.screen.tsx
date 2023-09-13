@@ -1,10 +1,11 @@
 import * as React from "react";
 import { useState } from "react";
 import { View } from "react-native";
-import { TextTemplate } from "@atoms";
+import { Image, TextTemplate } from "@atoms";
 import { Button, SecondaryButton } from "@molecules";
 import styles from "./generic.styles";
 import { GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA } from "@ids";
+import { Source } from "react-native-fast-image";
 
 type ButtonProps = React.ComponentProps<typeof Button>;
 export interface IGenericModalProps {
@@ -19,9 +20,15 @@ export interface IGenericModalProps {
   isPrimaryLoading?: ButtonProps["isLoading"];
   isSecondaryLoading?: ButtonProps["isLoading"];
   textAlign?: React.ComponentProps<typeof TextTemplate>["textAlign"];
+  image?: {
+    source: Source;
+    width: number;
+    height: number;
+  };
 }
 
 export default function GenericScreen({
+  image,
   heading,
   subheading,
   ctaLabel,
@@ -48,6 +55,7 @@ export default function GenericScreen({
   const renderSecondaryButton = onPressSecondary && ctaLabelSecondary;
   return (
     <View style={styles.wrapper}>
+      {!image ? null : <Image style={styles.image} source={image.source} width={image.width} height={image.height} />}
       <TextTemplate textAlign={textAlign} type="h2" testID={GENERIC_SCREEN_HEADING(heading)}>
         {heading}
       </TextTemplate>

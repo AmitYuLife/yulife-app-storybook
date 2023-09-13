@@ -6,7 +6,9 @@ import {
   logProductItemViewedActionCreator,
   logProductItemInspectedActionCreator,
   logMixpanelEventActionCreator,
+  logErrorActionCreator,
   LOG_EVENT_STARTED,
+  LOG_ERROR_STARTED,
 } from "./logging.actions";
 
 export function* logProductItemInspected({ payload }: ReturnType<typeof logProductItemInspectedActionCreator>) {
@@ -27,8 +29,13 @@ export function* logMixpanelEvent({ payload }: ReturnType<typeof logMixpanelEven
   yield call(Logger.logMixpanelEvent, payload.eventName, payload.data);
 }
 
+export function* logErrorEvent({ payload }: ReturnType<typeof logErrorActionCreator>) {
+  yield call(Logger.error, payload.error, payload.data);
+}
+
 export default [
   takeEvery(PRODUCT_ITEM_VIEWED, logProductItemViewed),
   takeEvery(PRODUCT_ITEM_INSPECTED, logProductItemInspected),
   takeEvery(LOG_EVENT_STARTED, logMixpanelEvent),
+  takeEvery(LOG_ERROR_STARTED, logErrorEvent),
 ];
