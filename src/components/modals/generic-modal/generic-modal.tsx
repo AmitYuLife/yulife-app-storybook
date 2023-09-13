@@ -17,6 +17,7 @@ export default function GenericModal({
   isSecondaryLoading,
   onPressBack,
   textAlign,
+  image,
 }: IGenericModalProps) {
   const backHandler = () => {
     if (onPressBack) {
@@ -42,6 +43,7 @@ export default function GenericModal({
       isPrimaryOnePressOnly={isPrimaryOnePressOnly}
       isSecondaryLoading={isSecondaryLoading}
       textAlign={textAlign}
+      image={image}
     />
   );
 }

@@ -18,4 +18,7 @@ export default StyleSheet.create({
   subheadingWrapper: {
     marginTop: Style.adjust(16),
   } as ViewStyle,
+  image: {
+    marginBottom: Style.adjust(24),
+  },
 });

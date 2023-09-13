@@ -1,5 +1,6 @@
+import moment from "moment";
 import { MediaPlayerScreen } from "@components/screens";
-import { ROUTES } from "@navigation/constants";
+import { MODALS, ROUTES } from "@navigation/constants";
 import React, { useCallback, memo, useState } from "react";
 import { Navigation } from "@navigation/main";
 import {
@@ -26,11 +27,13 @@ import { t } from "@locale";
 import { Modal } from "react-native";
 import { GenericModal } from "@components/modals";
 import { IActiveLevel, getActiveLevel } from "@redux/levels/levels.selectors";
-import Logger from "@services/logging/logger";
 import { updateInAppMeditation } from "@redux/daily-meditation/daily-meditation.actions";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { logMixpanelEventActionCreator, logErrorActionCreator } from "@redux/logging/logging.actions";
 import { Storage, StorageKey } from "@utils/storage";
 import { IVideoProgressStorage } from "@components/screens/member/media/media-player/media-player-progress.screen";
+import { showYuModal } from "@navigation/root";
+import { Style } from "@styles";
+import { getInAppDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 
 interface IVideo extends Media {
   reward: number;
@@ -56,6 +59,8 @@ export interface IMediaPlayerContainerProps {
   startTimeInSeconds?: number;
 }
 
+const MEDITATION_ANTI_CHEAT_MINUTES = 2;
+
 const MediaPlayerContainer = ({
   video,
   levelSlotId,
@@ -71,6 +76,7 @@ const MediaPlayerContainer = ({
   const activeLevel = useSelector(getActiveLevel);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showError, setShowError] = useState<boolean>(false);
+  const inAppMeditation = useSelector(getInAppDailyMeditation);
   const [createQuestMapLevelChallengeMutation]: CreateQuestMapLevelChallengeMutationTuple = useMutation(
     GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE
   );
@@ -130,30 +136,60 @@ const MediaPlayerContainer = ({
 
   const onEnd = useCallback(async (): Promise<void> => {
     try {
+      const payload = { levelSlotId, contentId: video.id, payload: { value: video.duration } };
+
       const { data } = await updateQuestMapLevelChallenge({
-        variables: { levelSlotId, contentId: video.id, payload: { value: video.duration } },
+        variables: payload,
       });
 
       const challenge = data?.updateQuestMapLevelChallenge?.challenge;
 
       if (!challenge) {
+        dispatch(logMixpanelEventActionCreator("media_challenge_missing", payload));
         return;
       }
 
       dispatch(challengeEndSuccessAction({ ...challenge }));
 
       if (eventType === "mindfullness") {
-        dispatch(updateInAppMeditation({ duration: video.duration, createdAt: challenge.createdAt }));
+        if (moment().diff(inAppMeditation.lastUpdated, "minutes") < MEDITATION_ANTI_CHEAT_MINUTES) {
+          dispatch(logMixpanelEventActionCreator("media_challenge_anti_cheat", { inAppMeditation }));
+        } else {
+          dispatch(updateInAppMeditation({ duration: video.duration, createdAt: challenge.createdAt }));
+        }
       }
 
-      await Storage.removeItem(StorageKey.mediaPlayerProgress);
       await Navigation.popTo(ROUTES.quests);
 
-      Logger.logMixpanelEvent("meditopia_challenge_end", { levelSlotId, duration: video.duration });
+      dispatch(logMixpanelEventActionCreator("media_challenge_end", { levelSlotId, duration: video.duration }));
     } catch (err) {
-      throw Error(err);
+      dispatch(logErrorActionCreator(err, { file: "media-player.container" }));
+      await showYuModal({
+        component: {
+          id: MODALS.generic,
+          name: MODALS.generic,
+          passProps: {
+            isPrimaryOnePressOnly: true,
+            heading: t("modals.generic_modal.on_media_challenge_end_error.heading"),
+            ctaLabel: t("modals.generic_modal.on_media_challenge_end_error.cta_label"),
+            subheading: t("modals.generic_modal.on_media_challenge_end_error.subheading"),
+            image: {
+              source: require("@assets/media-screen/media-failed-modal-hero.png"),
+              width: Style.adjust(200),
+              height: Style.adjust(200),
+            },
+            onPress: async () => {
+              await cancelChallenge();
+              await Navigation.dismissAllModals();
+              await Navigation.popTo(ROUTES.quests);
+            },
+          },
+        },
+      });
+    } finally {
+      await Storage.removeItem(StorageKey.mediaPlayerProgress);
     }
-  }, [video.duration, video.id, levelSlotId, dispatch, eventType, updateQuestMapLevelChallenge]);
+  }, [video.duration, video.id, levelSlotId, dispatch, eventType, updateQuestMapLevelChallenge, cancelChallenge]);
 
   const onProgress = useCallback(
     async (seconds: number) => {

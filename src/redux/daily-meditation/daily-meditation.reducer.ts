@@ -171,10 +171,6 @@ const loginUserSuccess = (state: IDailyMeditationStore, res: LoginUser) => ({
 });
 
 const updateInAppMeditation = (state: IDailyMeditationStore, payload: IAppMeditationPayload): IDailyMeditationStore => {
-  if (moment().diff(state.inAppMeditation.lastUpdated, "minutes") < 2) {
-    return state;
-  }
-
   const { duration, createdAt } = payload;
   const lastUpdated = moment().format();
 
