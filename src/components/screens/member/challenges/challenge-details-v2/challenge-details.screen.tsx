@@ -5,20 +5,23 @@ import React, { memo, useCallback, useMemo, useRef, useState } from "react";
 import { Animated, NativeScrollEvent, StyleSheet, View } from "react-native";
 
 import { t } from "@locale";
-import { useBackHandler, useUserFeatures } from "@hooks";
 import { Colours, Style } from "@styles";
+import { useDispatch } from "react-redux";
 import { MODALS } from "@navigation/constants";
 import { Image, Stack, TextTemplate } from "@atoms";
 import { StackDirection } from "@atoms/stack/stack";
+import { useBackHandler, useUserFeatures } from "@hooks";
 import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { ChallengeDetailsMilestone } from "./challenge-details-milestone";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { GetQuestMapLevel_getQuestMapLevel_slots } from "@graphql/_core/schema";
 import { SMOOTH_GRADIENT_COLORS } from "../../events/event-dialog/event-dialog.styles";
 import { ChallengeDetailsBadge, ChallengeDetailsBadgeIntent } from "./challenge-details-badge";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { Button, SecondaryButton, TouchableOpacityWithDelay, YucoinPowerButton } from "@molecules";
 import { SET_UP_BUTTON, CHALLENGE_TYPE, TAKE_CHALLENGE_BUTTON, CHALLENGE_DETAILS_SCREEN } from "@ids";
+import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 
 interface IChallengeDetailsScreenProps {
   error?: string;
@@ -42,6 +45,7 @@ function ChallengeDetailsScreenV2({
   isLoading = false,
   onPressSetUp = null,
 }: IChallengeDetailsScreenProps) {
+  const dispatch = useDispatch();
   const bonusInfoButtonRef = useRef<View>();
   const scrollY = useRef(new Animated.Value(0));
   const { showYucoinPowerButton } = useUserFeatures();
@@ -53,7 +57,14 @@ function ChallengeDetailsScreenV2({
     return true;
   });
 
-  const showBonusInfoPopup = useCallback(() => {
+  const onPressBonusInfoButton = useCallback(() => {
+    dispatch(
+      logMixpanelEventActionCreator("information_viewed", {
+        name: "Extra Yucoin Info",
+        location: "challenge_details",
+      })
+    );
+
     showTooltipPopupRelativeToView({
       viewRef: bonusInfoButtonRef,
       beakPosition: "autoVertical",
@@ -68,7 +79,18 @@ function ChallengeDetailsScreenV2({
         </Stack>
       ),
     });
-  }, []);
+  }, [dispatch]);
+
+  const onPressYucoinPowerButton = useCallback(() => {
+    dispatch(
+      logMixpanelEventActionCreator("button_pressed", {
+        location: "challenge_details",
+        button_id: "yucoin_power_button",
+      })
+    );
+
+    showYuCoinPowerExplainedOverlay();
+  }, [dispatch]);
 
   const onScroll = Animated.event<NativeScrollEvent>([{ nativeEvent: { contentOffset: { y: scrollY.current } } }], {
     useNativeDriver: true,
@@ -153,7 +175,7 @@ function ChallengeDetailsScreenV2({
               <View style={styles.row}>
                 <Stack direction={StackDirection.horizontal}>
                   <TextTemplate type="b2">{t("screens.challenges.details.extra_yucoin")}</TextTemplate>
-                  <TouchableOpacityWithDelay onPress={showBonusInfoPopup}>
+                  <TouchableOpacityWithDelay onPress={onPressBonusInfoButton}>
                     <View ref={bonusInfoButtonRef}>
                       <Image
                         suppressLoadingUi={true}
@@ -180,7 +202,7 @@ function ChallengeDetailsScreenV2({
             </View>
           )}
 
-          {!showYucoinPowerButton ? null : <YucoinPowerButton />}
+          {!showYucoinPowerButton ? null : <YucoinPowerButton onPress={onPressYucoinPowerButton} />}
         </Stack>
       </Animated.ScrollView>
       <LinearGradient style={styles.footerWrapper} colors={SMOOTH_GRADIENT_COLORS}>
