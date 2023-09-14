@@ -1006,34 +1006,67 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-extended-6-70:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: extended:5
+      opts:
+        is_expand: false
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
+  ios-detox-run-iphone-14-pro-extended-6-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 14 Pro
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: extended:5
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: ja-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
   ios-detox-run-iphone-14-pro-extended-all-70:
     before_run:
     - ios-detox-build-70
     steps:
     - build-router-start@0:
-        title: 'Run extended tests 1/5: iPhone 14 Pro'
+        title: 'Run extended tests 1/6: iPhone 14 Pro'
         inputs:
         - workflows: ios-detox-run-iphone-14-pro-extended-1-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 2/5: iPhone 14 Pro'
+        title: 'Run extended tests 2/6: iPhone 14 Pro'
         inputs:
         - workflows: ios-detox-run-iphone-14-pro-extended-2-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 3/5: iPhone 14 Pro'
+        title: 'Run extended tests 3/6: iPhone 14 Pro'
         inputs:
         - workflows: ios-detox-run-iphone-14-pro-extended-3-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 4/5: iPhone 14 Pro'
+        title: 'Run extended tests 4/6: iPhone 14 Pro'
         inputs:
         - workflows: ios-detox-run-iphone-14-pro-extended-4-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 5/5: iPhone 14 Pro'
+        title: 'Run extended tests 5/6: iPhone 14 Pro'
         inputs:
         - workflows: ios-detox-run-iphone-14-pro-extended-5-70
+        - access_token: $BITRISE_API_TOKEN
+    - build-router-start@0:
+        title: 'Run extended tests 6/6: iPhone 14 Pro'
+        inputs:
+        - workflows: ios-detox-run-iphone-14-pro-extended-6-70
         - access_token: $BITRISE_API_TOKEN
     meta:
       bitrise.io:
@@ -1043,29 +1076,34 @@ workflows:
     - ios-detox-build-70
     steps:
     - build-router-start@0:
-        title: 'Run extended tests 1/5: iPhone 14 Pro Japanese'
+        title: 'Run extended tests 1/6: iPhone 14 Pro Japanese'
         inputs:
         - workflows: ios-detox-run-iphone-14-pro-extended-1-70-JP
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 2/5: iPhone 14 Pro Japanese'
+        title: 'Run extended tests 2/6: iPhone 14 Pro Japanese'
         inputs:
         - workflows: ios-detox-run-iphone-14-pro-extended-2-70-JP
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 3/5: iPhone 14 Pro Japanese'
+        title: 'Run extended tests 3/6: iPhone 14 Pro Japanese'
         inputs:
         - workflows: ios-detox-run-iphone-14-pro-extended-3-70-JP
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 4/5: iPhone 14 Pro Japanese'
+        title: 'Run extended tests 4/6: iPhone 14 Pro Japanese'
         inputs:
         - workflows: ios-detox-run-iphone-14-pro-extended-4-70-JP
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 5/5: iPhone 14 Pro Japanese'
+        title: 'Run extended tests 5/6: iPhone 14 Pro Japanese'
         inputs:
-        - workflows: ios-detox-run-iphone-14-pro-extended-4-70-JP
+        - workflows: ios-detox-run-iphone-14-pro-extended-5-70-JP
+        - access_token: $BITRISE_API_TOKEN
+    - build-router-start@0:
+        title: 'Run extended tests 6/6: iPhone 14 Pro Japanese'
+        inputs:
+        - workflows: ios-detox-run-iphone-14-pro-extended-6-70-JP
         - access_token: $BITRISE_API_TOKEN
     meta:
       bitrise.io:
