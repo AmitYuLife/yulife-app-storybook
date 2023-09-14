@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.99.0] - 2023-09-14
+
+### Tasks
+
+- Task: add logs/error screen to monitor meditations
+- Task GS-786: add start challenge tracking
+- Task: only hide yucoin power button on certain screens
+- Task XSE-2155: Handle postDispatchActions
+- Task GS-783: update todays earning screen design
+- Task: add intitial translations
+
+### Chores
+
+- Chore: Upgrade intercom to 5.3.1
+
+### Extra
+
+- Detox: Pension tests fixes
+- Detox: Fixes 13th sept
+- Detox: Fixes 12th Sept
+
 ## [3.98.0] - 2023-09-08
 
 ### Tasks
