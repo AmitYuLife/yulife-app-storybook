@@ -18,6 +18,7 @@
     "detox:extended:3": "yarn detox:test:base:uk e2e/01_Extended_3/**/*.spec.ts",
     "detox:extended:4": "yarn detox:test:base:uk e2e/01_Extended_4/**/*.spec.ts",
     "detox:extended:5": "yarn detox:test:base:uk e2e/01_Extended_5/**/*.spec.ts",
+    "detox:extended:6": "yarn detox:test:base:uk e2e/01_Extended_6/**/*.spec.ts",
     "detox:extended": "yarn detox:test:base:uk e2e/01_Extended_*/**/*.spec.ts",
     "detox:pli:1": "yarn detox:test:base:uk e2e/02_PLI_1/*.spec.ts",
     "detox:pli:2": "yarn detox:test:base:uk e2e/02_PLI_2/*.spec.ts",

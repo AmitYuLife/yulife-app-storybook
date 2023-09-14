@@ -150,9 +150,9 @@ export const addPaymentDetails = async () => {
   await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Add payment details", "down")();
   await navigateViaText("Add payment details");
   await element(by.label("Card number")).atIndex(0).typeText(cardNumber);
-  await element(by.label("expiration date")).atIndex(0).typeText(cardExpiry);
+  await element(by.label("MM / YY")).atIndex(0).typeText(cardExpiry);
   await element(by.label("CVC")).atIndex(0).typeText(cardCVC);
-  await element(by.label("Postal code")).atIndex(0).typeText(postcode);
+  await element(by.label("Postcode")).atIndex(0).typeText(postcode);
   await tapText("Set up")();
 };
 
@@ -175,9 +175,9 @@ export const addPaymentDetailsMastercard = async () => {
 
   await navigateViaText("+ Add");
   await element(by.label("Card number")).atIndex(0).typeText(cardNumber);
-  await element(by.label("expiration date")).atIndex(0).typeText(cardExpiry);
+  await element(by.label("MM / YY")).atIndex(0).typeText(cardExpiry);
   await element(by.label("CVC")).atIndex(0).typeText(cardCVC);
-  await element(by.label("Postal code")).atIndex(0).typeText(postcode);
+  await element(by.label("Postcode")).atIndex(0).typeText(postcode);
   await tapText("Set up")();
 };
 
