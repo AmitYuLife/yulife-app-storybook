@@ -5,8 +5,11 @@ const pixelRatio = PixelRatio.get();
 const x = Platform.OS === "web" ? 414 : Dimensions.get("window").width;
 const y = Platform.OS === "web" ? 800 : Dimensions.get("window").height;
 
+export const isiOS = () => Platform.OS === "ios";
+export const isAndroid = () => Platform.OS === "android";
+
 const isIPad = () => {
-  if (Platform.OS === "ios") {
+  if (isiOS()) {
     return (
       DeviceInfo.getDeviceId().toLowerCase().includes("ipad") || DeviceInfo.getModel().toLowerCase().includes("ipad")
     );
@@ -15,27 +18,25 @@ const isIPad = () => {
   return false;
 };
 
-const isIphone13 = () => Platform.OS === "ios" && x === 390 && y === 844;
-const isIphoneX = () => Platform.OS === "ios" && y === 812;
-const isIphone8 = () => Platform.OS === "ios" && x === 375 && y === 667;
-const isIphoneXS = () => Platform.OS === "ios" && x === 375 && y === 812;
+const isIphone13 = () => isiOS() && x === 390 && y === 844;
+const isIphoneX = () => isiOS() && y === 812;
+const isIphone8 = () => isiOS() && x === 375 && y === 667;
+const isIphoneXS = () => isiOS() && x === 375 && y === 812;
 
 const isIphoneXPlus = () =>
   // XS Max, XR
-  Platform.OS === "ios" && y === 896;
+  isiOS() && y === 896;
 
 const isAnyIphoneX = () => isIphoneX() || isIphoneXPlus();
-
-const isAndroid = () => Platform.OS === "android";
 
 const isAndroid13AndHigher = () => isAndroid() && Number(DeviceInfo.getSystemVersion()) >= 13;
 
 const isShortAndroid = () => {
-  return Platform.OS === "android" && pixelRatio < 3 && y < 700;
+  return isAndroid() && pixelRatio < 3 && y < 700;
 };
 
 const isXShortAndroid = () => {
-  return Platform.OS === "android" && y < 600;
+  return isAndroid() && y < 600;
 };
 
 const isXShort = () => {
@@ -45,18 +46,18 @@ const isXShort = () => {
 const isShortToMedium = () => y < 700;
 
 const isShortToMediumAndroid = () => {
-  return Platform.OS === "android" && y < 700;
+  return isAndroid() && y < 700;
 };
 
 const isTallAndroid = () => {
-  return Platform.OS === "android" && y > 690;
+  return isAndroid() && y > 690;
 };
 
 const isThinIOS = () => {
-  return Platform.OS === "ios" && x < 400;
+  return isiOS() && x < 400;
 };
 
-const isShortAndWideAndroid = () => Platform.OS === "android" && (Style.PIXEL_RATIO <= 2 || x / y >= 0.6);
+const isShortAndWideAndroid = () => isAndroid() && (Style.PIXEL_RATIO <= 2 || x / y >= 0.6);
 
 const isShortToMediumAndroidAndHighScaledPixel = () => {
   return isShortToMediumAndroid() && scaledPixel > 1.06;
@@ -67,7 +68,7 @@ const isTallAndLowScaledPixelAndroid = () => {
 };
 
 const isShortAndLowScaledPixelAndroid = () => {
-  return Platform.OS === "android" && y <= 690 && scaledPixel < 0.98;
+  return isAndroid() && y <= 690 && scaledPixel < 0.98;
 };
 
 const isShorterThan = (height: number) => {
@@ -82,10 +83,10 @@ const isLargeScreen = () => {
   return y > 810;
 };
 
-const isHuaweiMate10 = () => Platform.OS === "android" && x === 360;
+const isHuaweiMate10 = () => isAndroid() && x === 360;
 
 const platformSelect = ({ ios, android, shorterAndroid, shortAndroid }: { [key: string]: number }) => {
-  if (Platform.OS === "android") {
+  if (isAndroid()) {
     if (y < 600) {
       return shorterAndroid;
     }
@@ -97,7 +98,7 @@ const platformSelect = ({ ios, android, shorterAndroid, shortAndroid }: { [key: 
     return android;
   }
 
-  if (Platform.OS === "ios") {
+  if (isiOS()) {
     return ios;
   }
 };
@@ -112,7 +113,7 @@ const defaultShrinkThreshold = y < 600;
 const defaultGrowThreshold = y > 900;
 
 const getShrinkThreshold = () => {
-  if (y < 785 && x === 360 && Platform.OS === "android") {
+  if (y < 785 && x === 360 && isAndroid()) {
     return { shrinkThreshold: true, shrinkMultiplier: 0.1 };
   }
 
@@ -153,7 +154,7 @@ const adjust = (val: number, options: IAdjustOptions = {}) => {
 export const TOTAL_WIDTH = x * pixelRatio;
 
 const getSafeAreaStart = () => {
-  if (Platform.OS === "android") {
+  if (isAndroid()) {
     return StatusBar.currentHeight;
   }
 
@@ -192,6 +193,7 @@ const Style = {
   SCALE_UP_AND_DOWN,
   SCALE_Y_UP_AND_DOWN,
   TOTAL_WIDTH,
+  isiOS,
   isAndroid,
   isAndroid13AndHigher,
   isAnyIphoneX,
