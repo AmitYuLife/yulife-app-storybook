@@ -202,8 +202,8 @@ export default function ActivityHistoryLevelsItem({
             {renderSourcesColumnSpacing(sources, () => renderCoinEarnedValue("-"))}
             {!mindfulSeconds ? null : renderCoinEarnedValue(mindfulYucoin || "0")}
             {!cycling ? null : renderCoinEarnedValue(cyclingYucoin || "0")}
-            {!pensionYucoin ? null : renderCoinEarnedValue(pensionYucoin || "0")}
             {renderSourcesColumnSpacing(cyclingSources, () => renderCoinEarnedValue("-"))}
+            {!pensionYucoin ? null : renderCoinEarnedValue(pensionYucoin || "0")}
             {challenges.length ? null : renderCoinEarnedValue(0)}
             {challenges.map(({ earned }, index) => renderCoinEarnedValue(earned, { key: index }))}
           </View>
