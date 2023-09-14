@@ -1,45 +1,94 @@
-import * as RNLocalize from "react-native-localize";
 import Polyglot from "node-polyglot";
+import { NativeModules } from "react-native";
+
+import { isiOS } from "@styles/style";
 import { DETOX_ENABLED } from "@services/socket";
-import { translations, Language } from "./translations";
+import { translations, Language, Translation } from "./translations";
 
 class Translator {
-  private readonly FALLBACK = { languageTag: "en" as const, isRTL: false };
   private dict: Polyglot;
+  private readonly fallbackLocale: Language = "en";
 
+  /**
+   * Translator needs to be initiated at start
+   */
   constructor() {
-    // translator needs to be initiated at start
     this.setLocale(this.findBestAvailableLanguage());
   }
 
-  private readonly getAvailableLocales = (showAllOptions = false) =>
-    Object.keys(translations).filter((k: Language) => showAllOptions || translations[k].isEnabled);
-
-  public findBestAvailableLanguage = () =>
-    (RNLocalize.findBestAvailableLanguage(this.getAvailableLocales(DETOX_ENABLED))?.languageTag as Language) ||
-    this.FALLBACK.languageTag;
-
-  public setLocale = async (locale: Language) => {
-    if (translations[locale]) {
-      const phrases = translations[locale].load();
-
-      if (phrases) {
-        this.dict = new Polyglot({ locale, phrases });
-      }
-    }
+  /**
+   * Get an array of all available locales
+   *
+   * @param showAllOptions when true we return all locales (even if they are not enabled)
+   */
+  private readonly getAvailableLocales = (showAllOptions = false): Language[] => {
+    return Object.keys(translations).filter(
+      (language: Language) => showAllOptions || translations[language].isEnabled
+    ) as Language[];
   };
 
-  public readonly getCurrentLocale = () => this.dict.locale() as Language;
-  public readonly getCurrentLocaleOptions = () => translations[this.getCurrentLocale()];
-  public readonly getIntercomLanguage = (locale: Language) => translations[locale]?.intercomLanguage;
-  public readonly has = (key: string) => this.dict.has(key);
-  public readonly translate = (key: string, config?: Polyglot.InterpolationOptions) => {
+  /**
+   * Try and determine the best available language
+   * for the user based on thier device language settings
+   *
+   * Locale codes are in the format of {language}-{region}
+   * so first we will try to find the locale via an exact match
+   * for example "en-US" or "en-GB", if we can't find a match then
+   * we will try to find a match based on the language code only for
+   * example "en-JP" uses the "en" language so it would match "en-GB".
+   */
+  public findBestAvailableLanguage = (): Language => {
+    const deviceLocale = isiOS()
+      ? NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0]
+      : NativeModules.I18nManager.localeIdentifier;
+    const [language, region] = deviceLocale.split(/[_-]+/);
+    const availableLocales = this.getAvailableLocales(DETOX_ENABLED);
+
+    const foundLocaleViaLocale = availableLocales.find((locale) => locale.includes(`${language}-${region}`));
+    const foundLocaleViaLanguage = availableLocales.find((locale) => locale.includes(language));
+
+    return foundLocaleViaLocale || foundLocaleViaLanguage || this.fallbackLocale;
+  };
+
+  public setLocale = async (locale: Language): Promise<void> => {
+    if (!translations[locale]) {
+      return;
+    }
+
+    const phrases = translations[locale].load();
+
+    if (!phrases) {
+      return;
+    }
+
+    this.dict = new Polyglot({ locale, phrases });
+  };
+
+  public readonly getCurrentLocale = (): Language => {
+    return this.dict.locale() as Language;
+  };
+
+  public readonly getCurrentLocaleOptions = (): Translation => {
+    return translations[this.getCurrentLocale()];
+  };
+
+  public readonly getIntercomLanguage = (locale: Language): string => {
+    return translations[locale]?.intercomLanguage;
+  };
+
+  public readonly has = (key: string): boolean => {
+    return this.dict.has(key);
+  };
+
+  public readonly translate = (key: string, config?: Polyglot.InterpolationOptions): string => {
     return this.dict.t(key, config);
   };
 
-  public readonly getAvailableLocaleOptions = (showAllOptions: boolean) =>
-    this.getAvailableLocales(showAllOptions)
-      .map((id: Language) => {
+  public readonly getAvailableLocaleOptions = (
+    showAllOptions: boolean
+  ): { id: Language; name: string; flag: string; overwrite: Language; intercomLanguage: string }[] => {
+    return this.getAvailableLocales(showAllOptions)
+      .map((id) => {
         const translation = translations[id];
 
         return {
@@ -51,6 +100,7 @@ class Translator {
         };
       })
       .filter((item) => item.flag);
+  };
 }
 
 export default new Translator();
