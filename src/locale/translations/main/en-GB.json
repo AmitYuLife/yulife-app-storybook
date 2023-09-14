@@ -1406,5 +1406,19 @@
       "title": "Challenge completed",
       "message": "Time's up! Check how you did on your latest challenge."
     }
+  },
+  "config": {
+    "ios": {
+      "plist": {
+        "ns_location_when_in_use_usage_description": "",
+        "ns_camera_usage_description": "Send photos to resolve app issues",
+        "ns_photo_library_usage_description": "Send photos to resolve app issues",
+        "ns_motion_usage_description": "We use your pedometer to track how many steps you've taken during the day.",
+        "ns_location_always_usage_description": "Need the ability to access your location movement for step tracking challenges",
+        "ns_photo_library_add_usage_description": "In order to save this image YuLife will need to be able to add to your photos.",
+        "ns_health_share_usage_description": "We use your step and meditation data so we can verify you have completed challenges",
+        "ns_health_update_usage_description": "Need the ability to write your step and meditation data so we can update completed challenges"
+      }
+    }
   }
 }
