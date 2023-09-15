@@ -29,7 +29,7 @@ export const selectAndCompleteWalkingChallenge = (challengeType: string, steps: 
 }
 
 export const selectAndCompleteMeditationChallenge = (mindfulnessData: number) => async () => {
-    await navigateViaID(CHALLENGE_TILE("meditation"))
+    await navigateViaID(CHALLENGE_TILE("Meditation"))
     await navigateViaText("Take challenge")
     await tapText("Use a different app")()
     await tapText("maybe later")()
@@ -37,7 +37,7 @@ export const selectAndCompleteMeditationChallenge = (mindfulnessData: number) =>
 }
 
 export const selectAndCompleteMeditationChallengeWithoutMedia = (mindfulnessData: number) => async () => {
-    await navigateViaID(CHALLENGE_TILE("meditation"))
+    await navigateViaID(CHALLENGE_TILE("Meditation"))
     await navigateViaText("Take challenge")
     await tapText("maybe later")()
     await sendMindfulnessData(mindfulnessData, 80000)()

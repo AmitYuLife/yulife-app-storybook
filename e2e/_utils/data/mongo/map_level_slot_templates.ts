@@ -1,4 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+// Do NOT export this seed file inthe index! These are here to be referenced.
 
 export const SHORT_STROLL_1 = {
   type: "mongo",

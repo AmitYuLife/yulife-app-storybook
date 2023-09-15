@@ -38,7 +38,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
 
         // first challenge - short stroll
-        When("I complete a short stroll challenge", when.selectAndCompleteWalkingChallenge("short stroll", 400), async () => {
+        When("I complete a short stroll challenge", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
             Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(1, 12, 400))
         })
         When("I tap collect", when.tapText("Collect"), async () => {
@@ -70,7 +70,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
 
         // second challenge - brisk walk 
-        When("I complete a brisk walk challenge", when.selectAndCompleteWalkingChallenge("brisk walk", 1200), async () => {
+        When("I complete a brisk walk challenge", when.selectAndCompleteWalkingChallenge("Brisk walk", 1200), async () => {
             Then("I should see the correct number of yucoin earned and steps completed in the task", then.stepsChallengeDataCorrect(1, 60, (400 + 1200)))
         })
         When("I tap collect", when.tapText("Collect"), async () => {
@@ -102,7 +102,7 @@ Feature("End of the world/Yuniverse", async () => {
 
         // third challenge - long walk 
 
-        When("I complete a long walk challenge at level 251", when.selectAndCompleteWalkingChallenge("long walk", 2000), async () => {
+        When("I complete a long walk challenge at level 251", when.selectAndCompleteWalkingChallenge("Long Walk", 2000), async () => {
             Then("I should see the correct number of yucoin earned and steps completed in the task", then.stepsChallengeDataCorrect(1, 72, (400 + 1200 + 2000)))
         })
         When("I tap collect", when.tapText("Collect"), async () => {
@@ -216,7 +216,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I tap level 201 button", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
             Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
-        When("I complete a short stroll challenge at level 201", when.selectAndCompleteWalkingChallenge("short stroll", 400), async () => {
+        When("I complete a short stroll challenge at level 201", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 When("I tap done", when.tapText("Done"), async () => {
                     Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
@@ -233,7 +233,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I tap level 201 button a second time", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
             Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
-        When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("brisk walk", 800), async () => {
+        When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("Brisk walk", 800), async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
                 Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(18656)))
@@ -248,7 +248,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I tap level 201 button a third time", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
             Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
-        When("I complete a long walk challenge at level 201", when.selectAndCompleteWalkingChallenge("long walk", 2000), async () => {
+        When("I complete a long walk challenge at level 201", when.selectAndCompleteWalkingChallenge("Long Walk", 2000), async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
                 Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(18686)))
@@ -332,7 +332,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should see the Weekly Quests activty icon with no badge", then.idVisible(WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), false)))
         }) 
         When("I tap level 201 button", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
-            When("I complete a short stroll challenge at level 201", when.selectAndCompleteWalkingChallenge("short stroll", 400), async () => {
+            When("I complete a short stroll challenge at level 201", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
                 When("I tap collect", when.tapText("Collect"), async () => {
                     When("I tap done", when.tapText("Done"), async () => {
                         Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
@@ -347,7 +347,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then('I can no longer see the modal', then.textNotVisible("Weekly quests"))
         }) 
         When("I tap level 201 button a second time", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
-            When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("brisk walk", 800), async () => {
+            When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("Brisk walk", 800), async () => {
                 When("I tap collect", when.tapText("Collect"), async () => {
                     Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
                     Then("I should see the Weekly Quests activty icon with the badge", then.idVisible(WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), true)))

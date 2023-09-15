@@ -12,7 +12,7 @@ Feature("Surges work as intended", async () => {
             Then("I should see level 1 unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(1)))
             Then("I should see I have 200 YuCoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
             When("I tap level 1", when.tapID(LEVEL_CHALLENGE_BUTTON(1)), async () => {
-                Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
+                Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("Short Stroll")))
                 Then("I should see the reward value 10x higher than normal (600)", then.idVisibleAtIndex(CHALLENGE_REWARD("600"),0))
                 When("I complete a short stroll challenge", when.completeShortStroll(300, 40000), async () => {
                     Then("I should see the well done screen", then.textVisible("Well done!"))
@@ -44,7 +44,7 @@ Feature("Surges work as intended", async () => {
             Then("I should see level 1 unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(1)))
             Then("I should see I have 200 YuCoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
             When("I tap level 1", when.tapID(LEVEL_CHALLENGE_BUTTON(1)), async () => {
-                Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
+                Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("Short Stroll")))
                 Then("I should see the reward value is normal (20)", then.idVisibleAtIndex(CHALLENGE_REWARD("20"),0))
                 When("I complete a short stroll challenge", when.completeShortStroll(300, 40000), async () => {
                     Then("I should see the well done screen", then.textVisible("Well done!"))

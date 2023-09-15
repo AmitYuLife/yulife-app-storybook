@@ -149,8 +149,8 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                         Then("I should be on quests", then.idVisible(ids.QUESTS_SCREEN(0)))
                         When("I tap the unlocked level 3 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(3)), async () => {
                             Then("I should be on the level 3 quest screen", then.idVisible(ids.CHALLENGE_SET))
-                            Then("I should see an unlocked challenge", then.idVisible(ids.CHALLENGE_TILE("meditation")))
-                            When("I tap the meditation challenge", when.tapID(ids.CHALLENGE_TILE(t("meditation"))), async () => {
+                            Then("I should see an unlocked challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")))
+                            When("I tap the meditation challenge", when.tapID(ids.CHALLENGE_TILE(t("Meditation"))), async () => {
                                 Then("I should see a screen with a take challenge option", then.textVisible("Take challenge"))
                                 When("I tap 'take challenge'", when.tapText(t("Take challenge")), async () => {
                                     When("I click Use Meditopia app", when.tapText(t('Use Meditopia app')), async () => {

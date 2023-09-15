@@ -50,7 +50,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see my coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
             Then("I should see the level 201 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
         })
-        When("I complete a walking challenge at level 201", when.completeChallenge(201, "short stroll"), async () => {
+        When("I complete a walking challenge at level 201", when.completeChallenge(201, "Short Stroll"), async () => {
             Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
         })
         When("I tap this level 202 button", when.tapID(LEVEL_CHALLENGE_BUTTON(202)), async () => {
@@ -59,7 +59,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap got it", when.tapText(t("Okay, got it")), async () => {
             Then("I should see the level 201 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
         })
-        When("I complete a second walking challenge at level 201", when.completeSecondChallenge(201, "short stroll"), async () => {
+        When("I complete a second walking challenge at level 201", when.completeSecondChallenge(201, "Short Stroll"), async () => {
             Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
         })
         When("I tap this level 202 button", when.tapID(LEVEL_CHALLENGE_BUTTON(202)), async () => {
@@ -78,7 +78,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap level 201 button", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
             Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
-        When("I complete a short stroll challenge at level 201", when.selectAndCompleteWalkingChallenge("short stroll", 400), async () => {
+        When("I complete a short stroll challenge at level 201", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
             When("I tap done", when.tapText(t("Done")), async () => {
                 Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
                 Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17720)))
@@ -93,7 +93,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap level 201 button a second time", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
             Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
-        When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("brisk walk", 800), async () => {
+        When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("Brisk walk", 800), async () => {
             Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
             Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17820)))
         })
@@ -106,7 +106,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap level 201 button a third time", when.tapID(LEVEL_CHALLENGE_BUTTON(201)), async () => {
             Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
-        When("I complete a long walk challenge at level 201", when.selectAndCompleteWalkingChallenge("long walk", 2000), async () => {
+        When("I complete a long walk challenge at level 201", when.selectAndCompleteWalkingChallenge("Long Walk", 2000), async () => {
             Then("I should see the level 201 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(201)))
             Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17920)))
         })
@@ -145,7 +145,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap level 251 button", when.tapID(LEVEL_CHALLENGE_BUTTON(251)), async () => {
             Then("I should be on the level 251 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
-        When("I complete a short stroll challenge at level 251", when.selectAndCompleteWalkingChallenge("short stroll", 400), async () => {
+        When("I complete a short stroll challenge at level 251", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
             When("I tap done", when.tapText(t("Done")), async () => {
                 Then("I should see the level 251 challenge button still available", then.idVisible(LEVEL_CHALLENGE_BUTTON(251)))
                 Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17720)))

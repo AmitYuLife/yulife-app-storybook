@@ -38,7 +38,7 @@ export const onMeditationChallengeComplete = (minutes: number, level: number) =>
 
 }
 
-export const meditationAppModalVisible = () => async () => {
+export const meditationAppModalVisible = async () => {
   await textVisible("Choose an app to start")
   await idVisible(CALM_BUTTON)
   await idVisible(HEADSPACE_BUTTON)
@@ -59,7 +59,7 @@ export const startChallengeFromQuests = (levelButton: number, challengeName: str
   await navigateViaID(CHALLENGE_TILE(challengeName))
   await navigateViaText("Take challenge")
 
-  if (challengeName === "meditation") {
+  if (challengeName === "Meditation") {
     await wait(5000)()
   }
 
@@ -72,14 +72,14 @@ export const startChallengeFromQuests = (levelButton: number, challengeName: str
 
 export const startMeditationChallengeFromQuests = (levelButton: number) => async () => {
   await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelButton))
-  await navigateViaID(CHALLENGE_TILE("meditation"))
+  await navigateViaID(CHALLENGE_TILE("Meditation"))
   await navigateViaText("Take challenge")
   await navigateViaText("Use a different app")
   await dismissNotificationScreenIfVisible()
 }
 
 export const completeShortStroll = (steps: number, waitTime: number) => async () => {
-  await navigateViaID(CHALLENGE_TILE("short stroll"))
+  await navigateViaID(CHALLENGE_TILE("Short Stroll"))
   await navigateViaText("Take challenge")
   await navigateViaText("maybe later")
   await sendSteps(steps, waitTime)()
@@ -116,7 +116,7 @@ export const selectMeditopiaChallengeFromQuests = (levelButton: number, challeng
 
 export const onChallengeDetailsScreen = (yuCoin: string) => async () => {
   await idVisible(CHALLENGE_DETAILS_SCREEN)()
-  await idVisible(CHALLENGE_TYPE("meditation"))()
+  await idVisible(CHALLENGE_TYPE("Meditation"))()
   await idVisible(TARGET("3 mins"))()
   await idVisible(REWARD_AMOUNT(60))()
   await textVisible(yuCoin)()
@@ -128,7 +128,7 @@ export const onChallengeDetailsScreen = (yuCoin: string) => async () => {
 
 export const on3ChallengesDetailsScreen = async () => {
   await idVisible(CHALLENGE_DETAILS_SCREEN)()
-  await idVisible(CHALLENGE_TYPE("meditation"))()
+  await idVisible(CHALLENGE_TYPE("Meditation"))()
   await idVisible(TARGET("3 mins"))()
   await idVisible(TARGET("5 mins"))()
   await idVisible(TARGET("10 mins"))()

@@ -1013,7 +1013,7 @@ workflows:
     - IPHONE_DEVICE: iPhone 14 Pro
       opts:
         is_expand: false
-    - DETOX_TEST_TYPE: extended:5
+    - DETOX_TEST_TYPE: extended:6
       opts:
         is_expand: false
     meta:
@@ -1026,7 +1026,7 @@ workflows:
     - IPHONE_DEVICE: iPhone 14 Pro
       opts:
         is_expand: false
-    - DETOX_TEST_TYPE: extended:5
+    - DETOX_TEST_TYPE: extended:6
       opts:
         is_expand: false
     - TARGET_LOCALE: ja-JP

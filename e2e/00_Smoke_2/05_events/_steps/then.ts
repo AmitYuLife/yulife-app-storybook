@@ -142,13 +142,13 @@ export const allMilestonesVisible = async () => {
 
 export const allChallengesVisible = async () => {
     await idVisible(ids.CHALLENGE_SET)()
-    await idVisible(ids.CHALLENGE_TILE("short stroll"))()
-    await idVisible(ids.CHALLENGE_TILE("brisk walk"))()
-    await idVisible(ids.CHALLENGE_TILE("long walk"))()
-    await idVisible(ids.CHALLENGE_TILE("meditation"))()
-    await swipeFromText("meditation", "up", "fast")()
-    await idVisible(ids.CHALLENGE_TILE("fiit"))()
-    await swipeFromText("fiit", "down", "fast")()
+    await idVisible(ids.CHALLENGE_TILE("Short Stroll"))()
+    await idVisible(ids.CHALLENGE_TILE("Brisk walk"))()
+    await idVisible(ids.CHALLENGE_TILE("Long Walk"))()
+    await idVisible(ids.CHALLENGE_TILE("Meditation"))()
+    await swipeFromText("Meditation", "up", "fast")()
+    await idVisible(ids.CHALLENGE_TILE("Fiit Class"))()
+    await swipeFromText("Fiit Class", "down", "fast")()
 }
 
 export const challengesYuCoinValuesCorrect = (earnRate: number) => async () => {
@@ -156,9 +156,9 @@ export const challengesYuCoinValuesCorrect = (earnRate: number) => async () => {
     await textVisible("10 - 50 YuCoin")()
     await textVisibleAtIndex("20 - 60 YuCoin", 0)()
     await textVisibleAtIndex("20 - 60 YuCoin", 1)()
-    await swipeFromText("meditation", "up", "fast")()
+    await swipeFromText("Meditation", "up", "fast")()
     await textVisible("60 YuCoin")()
-    await swipeFromText("fiit", "down", "fast")()
+    await swipeFromText("Fiit Class", "down", "fast")()
 }
 
 export const stepsChallengeDataCorrect = (level: number, yucoinEarned: number, steps: number) => async () => {
@@ -214,13 +214,13 @@ export const meditationChallengeDataCorrect = (stage: number, yucoinEarned: numb
 }
 
 export const challengesAndYuCoinsAwardedVisible = async () => {
-    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("short stroll", "10", 3))()
-    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("brisk walk", "50", 3))()
-    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("long walk", "60", 3))()
-    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("meditation", "60", 3))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Short Stroll", "10", 3))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Brisk walk", "50", 3))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Long Walk", "60", 3))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Meditation", "60", 3))()
 }
 
-export const canSeeYesterdaysSteps = () => async () => {
+export const canSeeYesterdaysSteps = async () => {
     await textVisible("4,000 steps", 3000)()
 }
 

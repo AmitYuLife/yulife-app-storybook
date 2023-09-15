@@ -29,7 +29,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should on the quests tab", then.idVisible(QUESTS_SCREEN(0)))
         })
         When("I tap a past level", when.tapID(LEVEL_CHALLENGE_BUTTON(5)), async () => {
-            Then("I should see the challenge I just completed with the correct stars", then.onChallengeHistory("meditation", "20", 1, 5))
+            Then("I should see the challenge I just completed with the correct stars", then.onChallengeHistory("Meditation", "20", 1, 5))
         })
         When("I tap full history", when.tapText("Full activity history"), async () => {
             Then("I should be on the activity history", then.textVisible("activity history"))
@@ -38,7 +38,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
 
     Scenario("I can finish a walking challenge in the second world", scenario.start, async () => {
         Given("I login as a user with the second world unlocked", given.logInAndGoToTab("quests", CUSTOMER_3, AUTH_3), async () => {
-            When("I start a walking challenge", when.startChallengeFromQuests(90, "short stroll"), async () => {
+            When("I start a walking challenge", when.startChallengeFromQuests(90, "Short Stroll"), async () => {
                 Then("I should be on the short stroll challenge", then.textVisible("0 steps"))
                 When("I walk 450 steps", when.sendSteps(450, 33000), async () => {
                     Then("I should be on the challenge complete screen", then.onChallengeComplete(450, 90))
@@ -71,7 +71,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                                     Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17740)))
                                     Then("I should on the quests tab", then.idVisible(QUESTS_SCREEN(1)))
                                     When("I tap a past level", when.tapID(LEVEL_CHALLENGE_BUTTON(90)), async () => {
-                                        Then("I should see other challenges to take", then.multipleIDVisible([CHALLENGE_TILE("short stroll"), CHALLENGE_TILE("brisk walk"), CHALLENGE_TILE("long walk"), CHALLENGE_TILE("meditation")]))
+                                        Then("I should see other challenges to take", then.multipleIDVisible([CHALLENGE_TILE("Short Stroll"), CHALLENGE_TILE("Brisk walk"), CHALLENGE_TILE("Long Walk"), CHALLENGE_TILE("Meditation")]))
                                     })
                             })
                         })
@@ -85,7 +85,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         Given("I login as a user with the second world unlocked", given.logInAndGoToTab("quests", CUSTOMER_12, AUTH_12), async () => {
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27700)))
             Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
-            When("I start a walking challenge", when.startChallengeFromQuests(115, "short stroll"), async () => {
+            When("I start a walking challenge", when.startChallengeFromQuests(115, "Short Stroll"), async () => {
                 Then("I should be on the short stroll challenge", then.textVisible("0 steps"))
                 When("I walk over 500 steps", when.sendSteps(600, 33000), async () => {
                     Then("I should be on the challenge complete screen", then.onChallengeComplete(600, 115))
@@ -128,7 +128,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     Scenario("I can finish a walking challenge in the fourth world", scenario.start, async () => {
         Given("I login as a user with the second world unlocked", given.logInAndGoToTab("quests", CUSTOMER_13, AUTH_13), async () => {
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50200)))
-            When("I start a walking challenge", when.startChallengeFromQuests(175, "short stroll"), async () => {
+            When("I start a walking challenge", when.startChallengeFromQuests(175, "Short Stroll"), async () => {
                 Then("I should be on the short stroll challenge", then.textVisible("0 steps"))
                 When("I walk over 500 steps", when.sendSteps(550, 35000), async () => {
                     Then("I should be on the challenge complete screen", then.onChallengeComplete(550, 175))

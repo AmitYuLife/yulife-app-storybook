@@ -12,7 +12,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_MEDITOPIA_1, AUTH_MEDITOPIA_1), async () => {
       Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
-    When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "meditation"), async () => {
+    When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
       Then("I am on the Challenge Details screen", then.onChallengeDetailsScreen("60 x"));
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {
@@ -47,7 +47,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     Given("I login as a user on level 10 who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_MEDITOPIA_2, AUTH_MEDITOPIA_2), async () => {
       Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(550)));
     });
-    When("I select a 14 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(10, "meditation"), async () => {
+    When("I select a 14 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(10, "Meditation"), async () => {
       Then("I am on the Challenge details screen", then.on3ChallengesDetailsScreen);
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {
@@ -81,7 +81,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_MEDITOPIA_1, AUTH_MEDITOPIA_1), async () => {
       Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
-    When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "meditation"), async () => {
+    When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
       Then("I am on the Challenge details screen", then.onChallengeDetailsScreen("60 x"));
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {
@@ -111,7 +111,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_MEDITOPIA_1, AUTH_MEDITOPIA_1), async () => {
       Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
-    When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "meditation"), async () => {
+    When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
       Then("I am on the Challenge Details screen", then.onChallengeDetailsScreen("60 x"));
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {
@@ -136,7 +136,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_MEDITOPIA_1, AUTH_MEDITOPIA_1), async () => {
       Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
-    When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "meditation"), async () => {
+    When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
       Then("I am on the Challenge details screen", then.onChallengeDetailsScreen("60 x"));
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {
@@ -158,7 +158,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_MEDITOPIA_1, AUTH_MEDITOPIA_1), async () => {
       Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
-    When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "meditation"), async () => {
+    When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
       Then("I am on the Challenge details screen", then.onChallengeDetailsScreen("60 x"));
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {

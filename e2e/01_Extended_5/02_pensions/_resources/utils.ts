@@ -33,6 +33,10 @@ export const calculateDailyContribution = (contributionRecord: PensionContributi
             dailyAmount = (balance * 52) / 365;
         }
 
+        if (dailyAmount === 0 ) {
+            return dailyAmount
+        }
+
         return +dailyAmount.toFixed(2);
 }
 
