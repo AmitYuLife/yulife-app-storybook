@@ -32,7 +32,7 @@ export const completeNewWorldShortStroll = (levelNumber: number) => async () => 
     await textVisible(t("Take a challenge to unlock the chest"))()
     await textVisible(t("later"))()
     await navigateViaText(t("Let's do it"))
-    await startChallenge("short stroll")()
+    await startChallenge("Short Stroll")()
     await sendSteps(400, 35000)()
     await waitFor(element(by.text(t("Collect")))).toBeVisible().withTimeout(5000)
     await navigateViaText(t("Collect"))
@@ -58,7 +58,7 @@ export const completeNewWorldMeditation = (levelNumber: number) => async () => {
         await navigateViaText("Let's do it")
     }
 
-    await startChallenge("meditation")()
+    await startChallenge("Meditation")()
     await navigateViaText("I'm using a different app")
     await wait(78000)()
     await navigateViaText("Collect")
@@ -69,7 +69,7 @@ export const completeNewWorldMeditation = (levelNumber: number) => async () => {
 }
 
 export const completYuniversWorldShortStroll = async () => {
-    await startChallenge("short stroll")()
+    await startChallenge("Short Stroll")()
     await sendSteps(400, 35000)()
     await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
     await navigateViaText("Collect")
@@ -114,7 +114,7 @@ export const tapYuniverseLevelAfterFirstTime = (x: number, y: number) => async (
 }
 
 export const selectAndCompleteMeditationChallengeWithoutMedia = (mindfulnessdata: number) => async () => { 
-    await navigateViaID(CHALLENGE_TILE("meditation"))
+    await navigateViaID(CHALLENGE_TILE("Meditation"))
     await navigateViaText(t("Take challenge"))
     await tapText(t("maybe later"))()
     await sendMindfulnessData(mindfulnessdata, 75000)()
@@ -123,7 +123,7 @@ export const selectAndCompleteMeditationChallengeWithoutMedia = (mindfulnessdata
 }
 
 export const selectAndCompleteMeditationChallengeWithMedia = (mindfulnessdata: number) => async () => { 
-    await navigateViaID(CHALLENGE_TILE("meditation"))
+    await navigateViaID(CHALLENGE_TILE("Meditation"))
     await navigateViaText(t("Take challenge"))
     await swipeFromText(t("Or use an app"), "up", "slow")()
     await tapText(t("Use a different app"))()

@@ -16,8 +16,8 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
             Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)))
             When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-                Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("short stroll")))
-                When("I tap this challenge", when.tapID(ids.CHALLENGE_TILE("short stroll")), async () => {
+                Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+                When("I tap this challenge", when.tapID(ids.CHALLENGE_TILE("Short Stroll")), async () => {
                     Then("I should see a screen with a take challenge option", then.textVisible("short stroll / 0 mins"))
                     When("I tap 'take challenge'", when.tapText(t("Take challenge")), async () => {
                         When("I dismiss this screen if visible", when.dismissNotificationScreenIfVisible, async () => {
@@ -44,8 +44,8 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
             Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)))
             When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-                Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("short stroll")))
-                When("I tap this challenge", when.tapID(ids.CHALLENGE_TILE("short stroll")), async () => {
+                Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+                When("I tap this challenge", when.tapID(ids.CHALLENGE_TILE("Short Stroll")), async () => {
                     Then("I should see a screen with a take challenge option", then.textVisible("short stroll / 0 mins"))
                     When("I tap 'take challenge'", when.tapText(t("Take challenge")), async () => {
                         Then("I should see a screen asking me to turn on notifications", then.idVisible(ids.GENERIC_SCREEN_HEADING(t("don't miss out")), 5000))
@@ -77,12 +77,12 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should see a screen telling me to take a challenge to unlock a chest", then.textVisible("Take a challenge to unlock the chest"))
         })
         When("I tap 'lets do it'", when.tapText(t("Let's do it")), async () => {
-            Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("short stroll")))
-            Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("brisk walk")))
-            Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("long walk")))
-            Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("meditation")))
+            Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+            Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk walk")))
+            Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")))
+            Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")))
         })
-        When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
+        When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
             Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
         })
         When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
@@ -111,10 +111,10 @@ Feature("As a user I can take a challenge", async () => {
         Given("I am on the quest tab as a user with a daily challenge", given.logInAndGoToTab("quests", data.CUSTOMER_35, data.AUTH_35), async () => {
             Then("I should see my coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3280)))
             When("I tap level 6", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(6)), async () => {
-                Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("short stroll")))
-                Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("long walk")))
-                Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("meditation")))
-                When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
+                Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+                Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")))
+                Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")))
+                When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
                     Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
                     When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
                         Then("I should see the well done screen", then.onChallengeComplete(3050, 6))
@@ -257,7 +257,7 @@ Feature("As a user I can take a challenge", async () => {
         When("I wait", when.wait(3000), async () => {
             Then("I should see the level 51 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51), 2000))
         })
-        When("I complete a walking challenge at level 51", when.completeChallenge(51, "short stroll"), async () => {
+        When("I complete a walking challenge at level 51", when.completeChallenge(51, "Short Stroll"), async () => {
             Then("I should see the level 51 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
         })
         When("I tap this level 52 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(52)), async () => {
@@ -266,7 +266,7 @@ Feature("As a user I can take a challenge", async () => {
         When("I tap got it", when.tapText(t("Okay, got it")), async () => {
             Then("I should see the level 51 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
         })
-        When("I complete a second walking challenge at level 51", when.completeSecondChallenge(51, "short stroll"), async () => {
+        When("I complete a second walking challenge at level 51", when.completeSecondChallenge(51, "Short Stroll"), async () => {
             Then("I should see the level 51 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
         })
         When("I tap this level 52 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(52)), async () => {

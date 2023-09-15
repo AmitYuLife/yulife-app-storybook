@@ -102,7 +102,7 @@ export const onTodaysYucoin = (steps = 0, mindfulness = 0) => async () => {
     await expectIsVisibleViaText("Take a challenge (3 left)")
 }
 
-export const forestThreeRewardsVisible = () => async () => {
+export const forestThreeRewardsVisible = async () => {
     await textVisible("1 day 2x surge")()
     await textVisible("+1 Challenge per day")()
     await textVisible("Ocean Outfit")()
@@ -110,29 +110,29 @@ export const forestThreeRewardsVisible = () => async () => {
     await navigateViaText("Claim rewards")
 }
 
-export const oceanThreeRewardsVisible = () => async () => {
+export const oceanThreeRewardsVisible = async () => {
     await textVisible("1 day 2x surge")
     await textVisible("+1 Challenge per day")
     await textVisible("Desert Outfit")
     await navigateViaText("Claim rewards")
 }
 
-export const mountainYunityFirstPartCorrect = () => async () => {
+export const mountainYunityFirstPartCorrect = async () => {
     textVisible("You've achieved Yunity with the Mountain ...", 4000)
     navigateViaText("Continue")
 }
 
-export const mountainChestMessageVisible = () => async () => {
+export const mountainChestMessageVisible = async () => {
     textVisible("You have earned Yunity Mountain Chest", 3000)
 }
 
-export const mountainTwoRewardsVisible = () => async () => {
+export const mountainTwoRewardsVisible = async () => {
     await textVisible("7 day 2x surge")
     await textVisible("The Yuniversal Reflection")
     await navigateViaText("Claim rewards")
 }
 
-export const isOnExploreYuniverseScreen = () => async () => {
+export const isOnExploreYuniverseScreen = async () => {
     await textVisible("With your first Yuniversal journey complete, now is a time for reflection and gratitude as you drift amongst the stars. Familiar friends will guide you on your path towards a celestial chest, and what’s inside ...", 3000)
     await navigateViaText("Explore the Yuniverse")
 }
@@ -159,14 +159,14 @@ export const isOnChestScreen = (worldType: "Forest" | "Ocean" |"Desert" |"Mounta
     await textVisible(label, 3000)
 }
 
-export const desertThreeRewardsVisible = () => async () => {
+export const desertThreeRewardsVisible = async () => {
     await textVisible("1 day 2x surge")
     await textVisible("+1 Challenge per day")
     await textVisible("Mountain Outfit")
     await navigateViaText("Claim rewards")
 }
  
-export const nextLevelLocked = () => async () => {
+export const nextLevelLocked = async () => {
     const timeLeft = /12:3[0-9]:[0-9][0-9]/
     await idVisible(CHALLENGE_UNAVAILABLE)()
     await idVisible(TEXT_TEMPLATE(`The next one will be available in ${timeLeft}`))()
@@ -179,13 +179,13 @@ export const nextYuniverseLevelLocked = (level: string) => async () => {
 
 export const challengesAvailableVisible = async () => {
     await idVisible(CHALLENGE_SET)()
-    await idVisible(CHALLENGE_TILE("short stroll"))()
-    await idVisible(CHALLENGE_TILE("brisk walk"))()
-    await idVisible(CHALLENGE_TILE("long walk"))()
-    await idVisible(CHALLENGE_TILE("meditation"))()
-    await swipeFromText("meditation", "up", "fast")()
-    await idVisible(CHALLENGE_TILE("fiit"))()
-    await swipeFromText("fiit", "down", "fast")()
+    await idVisible(CHALLENGE_TILE("Short Stroll"))()
+    await idVisible(CHALLENGE_TILE("Brisk walk"))()
+    await idVisible(CHALLENGE_TILE("Long Walk"))()
+    await idVisible(CHALLENGE_TILE("Meditation"))()
+    await swipeFromText("Meditation", "up", "fast")()
+    await idVisible(CHALLENGE_TILE("Fiit Class"))()
+    await swipeFromText("Fiit Class", "down", "fast")()
 }
 
 export const challengeStarsCorrect = (starCount: number, challengeType: string, ) => async () => {
@@ -196,18 +196,18 @@ export const challengeStarsCorrect = (starCount: number, challengeType: string, 
 
 export const yuniverseChallengesVisible = async () => {
     await idVisible(CHALLENGE_SET)()
-    await idVisible(CHALLENGE_TILE("short stroll"))()
-    await idVisible(CHALLENGE_TILE("meditation"))()
-    await swipeFromText("meditation", "up", "fast")()
-    await idVisible(CHALLENGE_TILE("fiit"))()
-    await swipeFromText("fiit", "down", "fast")()
+    await idVisible(CHALLENGE_TILE("Short Stroll"))()
+    await idVisible(CHALLENGE_TILE("Meditation"))()
+    await swipeFromText("Meditation", "up", "fast")()
+    await idVisible(CHALLENGE_TILE("Fiit Class"))()
+    await swipeFromText("Fiit Class", "down", "fast")()
 }
 
 export const challengesAndYuCoinsAwardedVisible = async () => {
-    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("short stroll", "20", 3))()
-    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("brisk walk", "100", 3))()
-    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("long walk", "80", 2))()
-    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("meditation", "40", 1))()
+    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("Short Stroll", "20", 3))()
+    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("Brisk walk", "100", 3))()
+    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("Long Walk", "80", 2))()
+    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("Meditation", "40", 1))()
 }
 
 export const yunityChestAwardsVisible = (user: typeof USER_1, surgeDuration: 1 | 7) => async () => {

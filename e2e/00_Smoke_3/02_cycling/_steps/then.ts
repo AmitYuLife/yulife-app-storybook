@@ -29,7 +29,7 @@ export const {
 } = screens.dailySteps
 
 
-export const canSeeTodaysCycling = () => async () => {
+export const canSeeTodaysCycling = async () => {
     await textVisible("7.5 km", 3000)()
     await idVisible(ids.CYCLING_COUNT("7.5 km"))()
 }
@@ -38,7 +38,7 @@ export const {
     menuItemsVisible,
 } = screens.menu
 
-export const canSeePreviousDaysCycling = () => async () => {
+export const canSeePreviousDaysCycling = async () => {
     await textVisible("3.0 km cycled", 3000)()
     await textVisible("4.0 km cycled", 3000)()
     await textVisible("5.0 km cycled", 3000)()

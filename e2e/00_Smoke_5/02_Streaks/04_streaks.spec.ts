@@ -16,8 +16,8 @@ Feature("As a user I can use the streaks functionality", async () => {
                     Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
                     When("I tap the level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
                         Then("I should be on the level one quest screen", then.idVisible(ids.CHALLENGE_SET))
-                        Then("I should see an unlocked short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("short stroll")))
-                        When("I tap the unlocked short stroll challenge", when.tapID(ids.CHALLENGE_TILE("short stroll")), async () => {
+                        Then("I should see an unlocked short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+                        When("I tap the unlocked short stroll challenge", when.tapID(ids.CHALLENGE_TILE("Short Stroll")), async () => {
                             Then("I should see a screen with a take challenge option", then.textVisible("short stroll / 0 mins"))
                             Then("I should see the number of steps I need to complete the challenge", then.textVisible(t("%{quantity} steps", { quantity: 300 })))
                             When("I tap 'take challenge'", when.tapText(t("Take challenge")), async () => {
@@ -62,8 +62,8 @@ Feature("As a user I can use the streaks functionality", async () => {
                     Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
                     Then("I should see the second challenge set is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(2)))
                     When("I tap the level 2 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(2)), async () => {
-                        Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("short stroll")))
-                        When("I start a challenge", when.startChallenge("short stroll"), async () => {
+                        Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+                        When("I start a challenge", when.startChallenge("Short Stroll"), async () => {
                             Then("The challenge should start", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
                             When("I walk over 300 steps", when.sendSteps(400, 35000), async () => {
                                 Then("I should see the well done screen", then.onChallengeComplete(400, 2))
@@ -96,10 +96,10 @@ Feature("As a user I can use the streaks functionality", async () => {
             When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
                 Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)))
                 When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
-                    Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("short stroll")))
-                    Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("long walk")))
-                    Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("meditation")))
-                    When("I start the short stroll challenge", when.startChallenge("short stroll"), async () => {
+                    Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+                    Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")))
+                    Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")))
+                    When("I start the short stroll challenge", when.startChallenge("Short Stroll"), async () => {
                         Then("The challenge should start", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
                         When("I walk over 100 steps", when.sendSteps(400, 35000), async () => {
                             Then("I should see the well done screen", then.onChallengeComplete(400, 5))
@@ -135,8 +135,8 @@ Feature("As a user I can use the streaks functionality", async () => {
                 When("I tap take a challenge", when.tapText(t("Take a challenge")), async () => {
                     Then("I should see the third level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(3)))
                     When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(3)), async () => {
-                        Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("short stroll")))
-                        When("I start the short stroll challenge", when.startChallenge("short stroll"), async () => {
+                        Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+                        When("I start the short stroll challenge", when.startChallenge("Short Stroll"), async () => {
                             Then("The challenge should start", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
                             When("I walk over 100 steps", when.sendSteps(400, 35000), async () => {
                                 Then("I should see the well done screen", then.onChallengeComplete(400, 3))
@@ -157,8 +157,8 @@ Feature("As a user I can use the streaks functionality", async () => {
             When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
                 Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)))
                 When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
-                    Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("short stroll")))
-                    When("I start the short stroll challenge", when.startChallenge("short stroll"), async () => {
+                    Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+                    When("I start the short stroll challenge", when.startChallenge("Short Stroll"), async () => {
                         Then("The challenge should start", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
                         When("I wait for the challenge to finish", when.wait(32000), async () => {
                             Then("I should see the challenge failed screen", then.textVisible("you didn’t make it", 6000))
@@ -170,7 +170,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                                         Then("I should see the start streak screen", then.headingStartStreakCopyVisible(5))
                                         When("I tap take a challenge", when.tapText(t("Take a challenge")), async () => {
                                             Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
-                                            When("I start a challenge", when.startChallengeFromQuests(5, "short stroll"), async () => {
+                                            When("I start a challenge", when.startChallengeFromQuests(5, "Short Stroll"), async () => {
                                                 When("I complete the challenge", when.sendSteps(300, 38000), async () => {
                                                     Then("I should see the challenge complete screen", then.onChallengeComplete(300, 5))
                                                     When("I tap collect", when.tapText(t("Collect")), async () => {
@@ -222,10 +222,10 @@ Feature("As a user I can use the streaks functionality", async () => {
                         Then("I should see 0/5 on the daily steps screen", then.textVisible("0/5"))
                         When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
                             When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(51)), async () => {
-                                Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("short stroll")))
-                                Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("long walk")))
-                                Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("meditation")))
-                                When("I start the short stroll challenge", when.startChallenge("short stroll"), async () => {
+                                Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+                                Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")))
+                                Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")))
+                                When("I start the short stroll challenge", when.startChallenge("Short Stroll"), async () => {
                                     Then("The challenge should start", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
                                     When("I walk over 300 steps", when.sendSteps(305, 35000), async () => {
                                         Then("I should see the well done screen", then.onChallengeComplete(305, 51))

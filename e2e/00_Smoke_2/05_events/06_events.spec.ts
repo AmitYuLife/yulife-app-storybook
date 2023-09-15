@@ -35,7 +35,7 @@ Feature("As a user I can opt in and take an event", async () => {
         })
 
         // 1st challenge
-        When("I complete a short stroll challenge", when.selectAndCompleteWalkingChallenge("short stroll", 400), async () => {
+        When("I complete a short stroll challenge", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
             Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(152, 10, 400))
         })
         When("I tap collect", when.tapText(t("Collect")), async () => {
@@ -72,7 +72,7 @@ Feature("As a user I can opt in and take an event", async () => {
 
         // 2nd challenge
 
-        When("I complete a brisk walk challenge", when.selectAndCompleteWalkingChallenge("brisk walk", 1200), async () => {
+        When("I complete a brisk walk challenge", when.selectAndCompleteWalkingChallenge("Brisk walk", 1200), async () => {
             Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(152, 50, (1200 + 400)))
         })
         When("I tap collect", when.tapText(t("Collect")), async () => {
@@ -100,7 +100,7 @@ Feature("As a user I can opt in and take an event", async () => {
 
         // 3rd challenge
 
-        When("I complete a long walk challenge", when.selectAndCompleteWalkingChallenge("long walk", 3000), async () => {
+        When("I complete a long walk challenge", when.selectAndCompleteWalkingChallenge("Long Walk", 3000), async () => {
             Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(152, 60, (1600 + 3000)))
         })
         When("I tap collect", when.tapText(t("Collect")), async () => {

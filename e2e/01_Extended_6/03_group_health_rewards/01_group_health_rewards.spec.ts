@@ -39,7 +39,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I should see level 80", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(80)))
         })
         When("I tap level 80", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(80)), async () => {
-            When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
+            When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
                 When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
                     Then("I should see the well done screen", then.onChallengeComplete(3050, 80))
                 })
@@ -113,7 +113,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(1)))
         })
         When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(187, 537), async () => {
-            When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
+            When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
                 When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
                     Then("I should see the well done screen", then.textVisible("Collect"))
                 })
@@ -183,7 +183,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I should see level 123", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(123)))
         })
         When("I tap level 123", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(123)), async () => {
-            When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
+            When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
                 When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
                     Then("I should see the well done screen", then.onChallengeComplete(3050, 123))
                 })
@@ -320,7 +320,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I should see level 211", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(211)))
         })
         When("I tap level 211", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(211)), async () => {
-            When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
+            When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
                 When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
                     Then("I should see the well done screen", then.onChallengeComplete(3050, 211))
                 })
@@ -468,7 +468,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I should see level 177", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(177)))
         })
         When("I tap level 178", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(177)), async () => {
-            When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
+            When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
                 When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
                     Then("I should see the well done screen", then.onChallengeComplete(3050, 177))
                 })
@@ -538,7 +538,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I should see level 241", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(241)))
         })
         When("I tap level 241", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(241)), async () => {
-            When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
+            When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
                 When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
                     Then("I should see the well done screen", then.onChallengeComplete(3050, 241))
                 })
