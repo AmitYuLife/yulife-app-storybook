@@ -1,3 +1,4 @@
+import { WrongNumberIcon } from "@atoms/icon/wrong-number-icon";
 import {
   SODUKU_NUMBER_ANIMATION_TIME,
   SUDOKU_CELL_SIZE,
@@ -9,7 +10,7 @@ import {
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import { Colours, Style } from "@styles";
 import React, { memo, useEffect, useMemo } from "react";
-import { PixelRatio, StyleSheet, Text, View } from "react-native";
+import { PixelRatio, StyleSheet, View } from "react-native";
 import Animated, {
   BounceIn,
   withSequence,
@@ -32,8 +33,6 @@ interface IProps {
   isGameCompleted?: boolean;
   isColumnCompleted?: boolean;
 }
-
-const AnimatedText = Animated.createAnimatedComponent(Text);
 
 const CellNumber = ({
   value,
@@ -98,14 +97,20 @@ const CellNumber = ({
   return (
     <View style={styles.wrapper}>
       {value && !lastPauseTime ? (
-        <AnimatedText
+        <Animated.View
           entering={enableAnimations ? BounceIn.duration(SODUKU_NUMBER_ANIMATION_TIME) : null}
           exiting={enableAnimations ? BounceOut.duration(SODUKU_NUMBER_ANIMATION_TIME) : null}
-          style={style}
-          allowFontScaling={false}
+          style={styles.numberWrapper}
         >
-          {value}
-        </AnimatedText>
+          <Animated.Text style={style} allowFontScaling={false}>
+            {value}
+          </Animated.Text>
+          {isWrong ? (
+            <View style={styles.wrongNumberIcon}>
+              <WrongNumberIcon />
+            </View>
+          ) : null}
+        </Animated.View>
       ) : null}
     </View>
   );
@@ -122,10 +127,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  numberWrapper: {
+    justifyContent: "center",
+    width: "100%",
+  },
   text: {
     textAlign: "center",
     fontSize: Style.adjust(22),
-    width: PixelRatio.roundToNearestPixel(SUDOKU_CELL_SIZE * 0.9),
     lineHeight: PixelRatio.roundToNearestPixel(SUDOKU_CELL_SIZE * 0.9),
+  },
+  wrongNumberIcon: {
+    position: "absolute",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    bottom: 2,
   },
 });
