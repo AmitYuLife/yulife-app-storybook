@@ -4,7 +4,7 @@ import { Linking, Platform, StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { ActionButton, Button, SecondaryButton } from "@components/molecules";
 import { challengeEndAction } from "@redux/levels/levels.actions";
-import { FAQ_LINK, useTranslation } from "@hooks";
+import { useTranslation } from "@hooks";
 import { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getActiveLevel } from "@redux/levels/levels.selectors";
@@ -27,6 +27,7 @@ function ChallengeNoDataModal() {
     "screens.challenge_no_data.buttons.cancel_challenge",
     "screens.challenge_no_data.buttons.faq",
     "screens.challenge_no_data.buttons.open_apple_health",
+    "screens.daily.fitkit.help.faq_uri",
   ]);
 
   useEffect(() => {
@@ -58,8 +59,8 @@ function ChallengeNoDataModal() {
   }, [dispatch]);
 
   const openHelp = useCallback(() => {
-    Linking.openURL(FAQ_LINK);
-  }, []);
+    Linking.openURL(t["screens.daily.fitkit.help.faq_uri"]);
+  }, [t]);
 
   return (
     <View style={styles.wrapper}>
