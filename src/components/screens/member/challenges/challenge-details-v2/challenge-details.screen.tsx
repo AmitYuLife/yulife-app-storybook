@@ -20,7 +20,13 @@ import { SMOOTH_GRADIENT_COLORS } from "../../events/event-dialog/event-dialog.s
 import { ChallengeDetailsBadge, ChallengeDetailsBadgeIntent } from "./challenge-details-badge";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { Button, SecondaryButton, TouchableOpacityWithDelay, YucoinPowerButton } from "@molecules";
-import { SET_UP_BUTTON, CHALLENGE_TYPE, TAKE_CHALLENGE_BUTTON, CHALLENGE_DETAILS_SCREEN } from "@ids";
+import {
+  SET_UP_BUTTON,
+  CHALLENGE_TYPE,
+  TAKE_CHALLENGE_BUTTON,
+  CHALLENGE_DETAILS_SCREEN_NEW,
+  CHALLENGE_PAGE_BOOST_SLOT,
+} from "@ids";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 
 interface IChallengeDetailsScreenProps {
@@ -125,7 +131,7 @@ function ChallengeDetailsScreenV2({
         style={styles.wrapper}
         overScrollMode="never"
         scrollEventThrottle={32}
-        testID={CHALLENGE_DETAILS_SCREEN}
+        testID={CHALLENGE_DETAILS_SCREEN_NEW}
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="never"
         contentContainerStyle={styles.scrollContentContainer}
@@ -171,7 +177,7 @@ function ChallengeDetailsScreenV2({
           </View>
 
           {!slot.bonusAmount ? null : (
-            <View style={styles.card}>
+            <View style={styles.card} testID={CHALLENGE_PAGE_BOOST_SLOT(slot.bonusAmount)}>
               <View style={styles.row}>
                 <Stack direction={StackDirection.horizontal}>
                   <TextTemplate type="b2">{t("screens.challenges.details.extra_yucoin")}</TextTemplate>

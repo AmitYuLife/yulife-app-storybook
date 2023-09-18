@@ -1214,6 +1214,8 @@ export const CUSTOMER_69_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
+      enableChallengeBonuses: true,
+      newChallengeList: true
     },
   },
 } as IDatabaseItem;
@@ -1621,6 +1623,8 @@ export const CUSTOMER_89_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
+      enableChallengeBonuses: true,
+      newChallengeList: true,
     },
   },
 } as IDatabaseItem;
@@ -2043,6 +2047,23 @@ export const CUSTOMER_121_TOGGLES = {
       ...DEFAULT_TOGGLES.data.features,
       hasSmartPensionActive: true,
       enableProductGoals: true,
+    },
+  },
+} as IDatabaseItem;
+
+
+export const CUSTOMER_122_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_122.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      showBrainGameSudoku: true,
+      enableChallengeBonuses: true,
+      newChallengeList: true,
+      showFiit: true,
     },
   },
 } as IDatabaseItem;

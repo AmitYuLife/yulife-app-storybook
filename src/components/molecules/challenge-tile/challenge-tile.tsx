@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { Pressable, Image as RNImage, StyleSheet, View } from "react-native";
 import styles, { IMAGE_SIZE } from "./challenge-tile.styles";
-import { CHALLENGE_TILE } from "@ids";
+import { CHALLENGE_REWARD, CHALLENGE_TILE, CHALLENGE_TILE_BOOST_TAG } from "@ids";
 import { Colours, Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
 import { t } from "@locale";
@@ -127,7 +127,7 @@ const ChallengeTile = ({
             <TextTemplate type={"b2b"}>{t("screens.challenge_list.level_locked", { availableAtLevel })}</TextTemplate>
           </View>
         ) : (
-          <View style={styles.sectionBottomShadow}>
+          <View style={styles.sectionBottomShadow} testID={CHALLENGE_TILE_BOOST_TAG(heading, reward, hasBonus)}>
             <View style={styles.sectionBottomWrapper} testID={CHALLENGE_TILE(heading)}>
               <View style={styles.contentWrapper}>
                 <View>
@@ -135,7 +135,7 @@ const ChallengeTile = ({
                 </View>
                 <View style={styles.contentBottom}>
                   <View style={styles.contentRewardWrapper}>
-                    <TextTemplate type="b2b" color={rewardTextColour}>
+                    <TextTemplate type="b2b" color={rewardTextColour} testID={CHALLENGE_REWARD(reward)}>
                       {reward}
                     </TextTemplate>
                     <Image

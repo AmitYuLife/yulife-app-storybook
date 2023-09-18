@@ -1789,3 +1789,17 @@ export const CUSTOMER_121_GHI_REWARDS = {
     status: "onboarded",
   },
 } as IDatabaseItem
+
+export const CUSTOMER_122 = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Testing",
+    lastName: "Boosts",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+

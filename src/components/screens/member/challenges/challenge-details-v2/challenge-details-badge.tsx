@@ -3,6 +3,7 @@ import { StyleSheet, View } from "react-native";
 
 import { TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
+import { CHALLENGE_DETAILS_BADGE } from "@ids";
 
 export enum ChallengeDetailsBadgeIntent {
   boost = "boost",
@@ -26,7 +27,7 @@ export const ChallengeDetailsBadge = memo(({ text, intent, icon }: IChallengeDet
   }, [intent]);
 
   return (
-    <View style={[styles.badge, { backgroundColor: intentStyles.background }]}>
+    <View style={[styles.badge, { backgroundColor: intentStyles.background }]} testID={CHALLENGE_DETAILS_BADGE(text)}>
       {icon ? <View style={styles.badgeIcon}>{icon}</View> : null}
       <TextTemplate type="l2b" color={intentStyles.text}>
         {text}

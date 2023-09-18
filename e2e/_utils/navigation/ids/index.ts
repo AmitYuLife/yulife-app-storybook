@@ -391,6 +391,9 @@ export const MEDIA_STAR_REWARD = (star: number) => `MEDIA_REWARD_${star}`
 export const MEDIA_YUCOIN_REWARD = (yucoin: number) => `MEDIA_REWARD_${yucoin}`
 export const MEDIA_SMALL_LOGO = (logoUrl: string) => `MEDIA_SMALL_LOGO_${logoUrl}`
 export const CHALLENGE_SUCCESS_SCREEN = "CHALLENGE_SUCCESS_SCREEN"
+export const CHALLENGE_TILE_BOOST_TAG = (heading: string, reward: string, hasBonus: boolean) => `CHALLENGE_TILE_BOOST_TAG_${heading}_${reward}_${hasBonus}`
+export const CHALLENGE_PAGE_BOOST_SLOT = (reward: number) => `CHALLENGE_PAGE_BOOST_SLOT_${reward}`
+export const CHALLENGE_DETAILS_BADGE = (text: string) => `CHALLENGE_DETAILS_BADGE_${text}`
 
 // MEDITOPIA
 export const MEDITOPIA_LOGO = "MEDITOPIA_LOGO";
@@ -401,6 +404,7 @@ export const MEDITOPIA_TIMER_MINUTES = (mins: string) => `MEDITOPIA_TIMER_MINUTE
 export const MEDITOPIA_TIMER_SECS = (secs: string) =>  `MEDITOPIA_TIMER_SECS_${secs}`;
 export const LOADING_BAR = "LOADING_BAR";
 export const CHALLENGE_DETAILS_SCREEN = "CHALLENGE_DETAILS_SCREEN";
+export const CHALLENGE_DETAILS_SCREEN_NEW = "CHALLENGE_DETAILS_SCREEN_NEW";
 export const TAKE_CHALLENGE_BUTTON = (text: string) => `TAKE_CHALLENGE_BUTTON_${text}`
 export const SET_UP_BUTTON =  (text: string) => `SET_UP_BUTTON_${text}`
 export const REWARD_AMOUNT = (amount: number) => `REWARD_AMOUNT_${amount}`
