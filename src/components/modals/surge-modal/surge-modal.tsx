@@ -9,6 +9,7 @@ import useInterval from "@use-it/interval";
 import { DETOX_ENABLED } from "@services/socket";
 import { MODALS } from "@navigation/constants";
 import { t } from "@locale";
+import { TEXT_TEMPLATE } from "@ids";
 
 const REFRESH_RATE_ONE_MINUTE = 1000 * 60;
 const REFRESH_RATE_ONE_SECOND = 1000;
@@ -48,12 +49,20 @@ const SurgeModal = ({ title, description, multiplier, endDateTime }: IProps) => 
   );
 
   const parser = description.split("$");
+
   return (
     <View style={styles.contentWrapper}>
       <View style={styles.title} accessibilityLabel={title}>
-        <TextTemplate type={"h2"}>{title}</TextTemplate>
+        <TextTemplate type={"h2"} testID={TEXT_TEMPLATE(title)}>
+          {title}
+        </TextTemplate>
       </View>
-      <TextTemplate type="b2" textAlign="center" accessibilityLabel={descriptionAccessibilityLabel}>
+      <TextTemplate
+        type="b2"
+        textAlign="center"
+        accessibilityLabel={descriptionAccessibilityLabel}
+        testID={TEXT_TEMPLATE(`${parser[0]}${multiplier}${parser[2]}`)}
+      >
         {parser.map((text, index) => {
           if (text === "multiplier" || text === "endDateTime") {
             return (

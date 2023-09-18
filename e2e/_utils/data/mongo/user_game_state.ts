@@ -536,7 +536,8 @@ export const USER_GAME_STATE_35 = {
             userId: customer.CUSTOMER_60.data.customerId,
             currentBalance: 17500,
             currentStreak: 0,
-            currentLevel: 49
+            currentLevel: 49,
+            nextLevelAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
         }
     } as IDatabaseItem
 

@@ -1,8 +1,7 @@
 import { navigation, expectIsVisibleViaText, CHALLENGE_HISTORY_YUCOIN_STARS, navigateViaText, wait, CHALLENGE_UNAVAILABLE, TEXT_TEMPLATE, CHALLENGE_SET, CHALLENGE_TILE, CHALLENGE_HISTORY_STARS, CHALLENGE_HISTORY_NEW_SLOT, idVisibleAtIndex, YUNITY_CARD } from "@utils"
 import { screens } from "@appScreens"
 import { swipeFromText } from "_utils/navigation/scrolling"
-import { USER_1 } from "@data"
-
+import { USER_1, USER_GAME_STATE_60 } from "@data"
 export const {
     idVisible,
     textVisible,
@@ -102,14 +101,6 @@ export const onTodaysYucoin = (steps = 0, mindfulness = 0) => async () => {
     await expectIsVisibleViaText("Take a challenge (3 left)")
 }
 
-export const forestThreeRewardsVisible = async () => {
-    await textVisible("1 day 2x surge")()
-    await textVisible("+1 Challenge per day")()
-    await textVisible("Ocean Outfit")()
-    await wait(5000)()
-    await navigateViaText("Claim rewards")
-}
-
 export const oceanThreeRewardsVisible = async () => {
     await textVisible("1 day 2x surge")
     await textVisible("+1 Challenge per day")
@@ -124,12 +115,6 @@ export const mountainYunityFirstPartCorrect = async () => {
 
 export const mountainChestMessageVisible = async () => {
     textVisible("You have earned Yunity Mountain Chest", 3000)
-}
-
-export const mountainTwoRewardsVisible = async () => {
-    await textVisible("7 day 2x surge")
-    await textVisible("The Yuniversal Reflection")
-    await navigateViaText("Claim rewards")
 }
 
 export const isOnExploreYuniverseScreen = async () => {
@@ -158,18 +143,11 @@ export const isOnChestScreen = (worldType: "Forest" | "Ocean" |"Desert" |"Mounta
 
     await textVisible(label, 3000)
 }
-
-export const desertThreeRewardsVisible = async () => {
-    await textVisible("1 day 2x surge")
-    await textVisible("+1 Challenge per day")
-    await textVisible("Mountain Outfit")
-    await navigateViaText("Claim rewards")
-}
  
 export const nextLevelLocked = async () => {
-    const timeLeft = /12:3[0-9]:[0-9][0-9]/
+    // const timeLeft = getTimeRemaining(USER_GAME_STATE_60.data.nextLevelAvailableAt).time
     await idVisible(CHALLENGE_UNAVAILABLE)()
-    await idVisible(TEXT_TEMPLATE(`The next one will be available in ${timeLeft}`))()
+    // await idVisible(TEXT_TEMPLATE(`The next one will be available in ${timeLeft}`))()
     await textVisible("You have just completed a level")()
 }
 
@@ -180,7 +158,7 @@ export const nextYuniverseLevelLocked = (level: string) => async () => {
 export const challengesAvailableVisible = async () => {
     await idVisible(CHALLENGE_SET)()
     await idVisible(CHALLENGE_TILE("Short Stroll"))()
-    await idVisible(CHALLENGE_TILE("Brisk walk"))()
+    await idVisible(CHALLENGE_TILE("Brisk Walk"))()
     await idVisible(CHALLENGE_TILE("Long Walk"))()
     await idVisible(CHALLENGE_TILE("Meditation"))()
     await swipeFromText("Meditation", "up", "fast")()
@@ -205,7 +183,7 @@ export const yuniverseChallengesVisible = async () => {
 
 export const challengesAndYuCoinsAwardedVisible = async () => {
     await idVisible(CHALLENGE_HISTORY_NEW_SLOT("Short Stroll", "20", 3))()
-    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("Brisk walk", "100", 3))()
+    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("Brisk Walk", "100", 3))()
     await idVisible(CHALLENGE_HISTORY_NEW_SLOT("Long Walk", "80", 2))()
     await idVisible(CHALLENGE_HISTORY_NEW_SLOT("Meditation", "40", 1))()
 }

@@ -72,7 +72,7 @@ Feature("As a user I can opt in and take an event", async () => {
 
         // 2nd challenge
 
-        When("I complete a brisk walk challenge", when.selectAndCompleteWalkingChallenge("Brisk walk", 1200), async () => {
+        When("I complete a brisk walk challenge", when.selectAndCompleteWalkingChallenge("Brisk Walk", 1200), async () => {
             Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(152, 50, (1200 + 400)))
         })
         When("I tap collect", when.tapText(t("Collect")), async () => {
