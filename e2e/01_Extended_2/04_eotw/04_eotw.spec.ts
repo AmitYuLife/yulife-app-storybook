@@ -20,7 +20,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should see that I have achieved Yunity Mountain", then.yunityCorrect("Mountain"))
             Then("I should see the correct rewards in the chest for moving into EOTW/yuniverse", then.mountainTwoRewardsVisible)
         })
-        When("I wait", when.wait(5000), async () => {
+        When("I wait", when.wait(1000), async () => {
             When("I tap claim rewards", when.tapText("Claim rewards"), async () => {
                 Then("I am on explore the yuniverse screen", then.isOnExploreYuniverseScreen)
             })
@@ -34,7 +34,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(1, 187, 537), async () => {
             Then("I should be on the quest screen and see 5 challenges unlocked", then.yuniverseChallengesVisible)
-            Then("I should see the 2x surge yucoin value for the 5 unlocked challenges", then.yuniverseChallengesYuCoinValuesCorrect(6))
+            Then("I should see the 2x surge yucoin value for the 5 unlocked challenges", then.yuniverseChallengesYuCoinTilesCorrect(6))
         })
 
         // first challenge - short stroll
@@ -377,7 +377,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I tap level 400 button", when.tapID(LEVEL_CHALLENGE_BUTTON(400)), async () => {
             Then("I should see that I have achieved Yunity Mountain", then.yunityCorrect("Mountain"))
-            Then("I should see the correct rewards in the chest for moving into EOTW/yuniverse", then.mountainTwoRewardsVisible)
+            Then("I should see the correct rewards in the chest for moving into EOTW/yuniverse", then.mountainTwoRewardsVisible(true))
         })
         When("I wait", when.wait(5000), async () => {
             When("I tap claim rewards", when.tapText("Claim rewards"), async () => {
@@ -390,7 +390,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(1, 187, 537, 430), async () => {
             Then("I should be on the quest screen and see 5 challenges unlocked", then.yuniverseChallengesVisible)
-            Then("I should see the 2x surge yucoin value for the 5 unlocked challenges", then.yuniverseChallengesYuCoinValuesCorrect(10))
+            Then("I should see the 2x surge yucoin value for the 5 unlocked challenges", then.yuniverseChallengesYuCoinTilesCorrect(10))
         })
     })
 

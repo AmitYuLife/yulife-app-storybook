@@ -1085,3 +1085,16 @@ export const COIN_LEDGER_121 = {
         currentLevel: 241
     }
 } as IDatabaseItem
+
+export const COIN_LEDGER_122 = {
+    type:"mongo",
+    modelName:"coinledger",
+    data:{
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_122.data.customerId,
+        userId: customer.CUSTOMER_122.data.customerId,
+        currentBalance: 500,
+        currentStreak: 1,
+        currentLevel: 50
+    }
+} as IDatabaseItem
