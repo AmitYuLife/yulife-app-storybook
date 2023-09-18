@@ -23,6 +23,5 @@ export const iCanSeeSurgeIcon = (multiplier: string, expireDate: string) => asyn
 
 export const canSeeSurgeModal = async () => {
     await idVisible(TEXT_TEMPLATE("Surge alert!"))()
-    await idVisible(TEXT_TEMPLATE("All challenges are surging"))()
-    await idVisible(TEXT_TEMPLATE(". That means you’ll earn 10 times as many YuCoin for every completed challenge. Don’t miss out - this surge ends in"))()
+    await idVisible(TEXT_TEMPLATE("All challenges are surging 10x. That means you’ll earn 10 times as many YuCoin for every completed challenge. Don’t miss out - this surge ends in "))()
 }

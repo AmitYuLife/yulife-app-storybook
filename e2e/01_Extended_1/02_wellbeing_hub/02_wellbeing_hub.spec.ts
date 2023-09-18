@@ -15,7 +15,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
             Then("I should see my coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
         When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-            Then("I should NOT see Fiit on the screen", then.textNotVisible("Fiit Class"))
+            Then("I should NOT see Fiit on the screen", then.textNotVisible("Fiit"))
             Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
             Then("I should see all Wellbeing Hub services", then.wellbeingServiceVisible)
         })
@@ -64,9 +64,9 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
         })
         When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
             Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
-            Then("I should see Fiit on the screen", then.textVisible("Fiit Class"))
+            Then("I should see Fiit on the screen", then.textVisible("Fiit"))
         })
-        When("I tap the Fiit tab", when.tapID(TEXT_TEMPLATE("Fiit Class")), async () => {
+        When("I tap the Fiit tab", when.tapID(TEXT_TEMPLATE("Fiit")), async () => {
             Then("I should see Welcome to Fiit", then.textVisible("Welcome to Fiit"))
         })
         When("I tap Activate your Fiit account", when.navigateViaButton("Activate your Fiit account"), async () => {
@@ -117,7 +117,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
     Scenario("I should see Membership limit reached on the Fiit screen as trying to active account when no avalaible seat for it", scenario.start, async () => {
         Given("I login as a grouplife user", given.loginAsUser(CUSTOMER_31, AUTH_31), async () => {
             When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-                When("I tap the Fiit tab", when.tapID(TEXT_TEMPLATE("Fiit Class")), async () => {
+                When("I tap the Fiit tab", when.tapID(TEXT_TEMPLATE("Fiit")), async () => {
                     When("I tap Activate your Fiit account", when.navigateViaButton("Activate your Fiit account"), async () => {
                         Then("I should see Membership limit reached", then.textVisible("Membership limit reached"))
                         Then("I should see all membership was purchased text", then.canSeeFiitLimitReached)
@@ -129,7 +129,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
     Scenario("I should NOT see the Fiit screen as a yulife user who does not have the product assigned to it", scenario.start, async () => {
         Given("I login as a grouplife user", given.loginAsUser(CUSTOMER_37, AUTH_37), async () => {
             When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-                Then("I should NOT see Fiit on the screen", then.textNotVisible("Fiit Class"))
+                Then("I should NOT see Fiit on the screen", then.textNotVisible("Fiit"))
             })
         })
     })

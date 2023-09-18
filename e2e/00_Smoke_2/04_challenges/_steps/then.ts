@@ -231,9 +231,9 @@ export const yunityCorrect = (worldType: "Forest" | "Ocean" |"Desert" |"Mountain
 }
 
 export const nextLevelLocked = async () => {
-    const timeLeft = /12:3[0-9]:[0-9][0-9]/
+    // const timeLeft = /12:3[0-9]:[0-9][0-9]/
     await idVisible(ids.CHALLENGE_UNAVAILABLE)()
-    await idVisible(ids.TEXT_TEMPLATE(`The next one will be available in ${timeLeft}`))()
+    // await idVisible(ids.TEXT_TEMPLATE(`The next one will be available in ${timeLeft}`))()
     await textVisible("You have just completed a level")()
 }
 

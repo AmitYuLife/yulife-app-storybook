@@ -143,7 +143,7 @@ export const allMilestonesVisible = async () => {
 export const allChallengesVisible = async () => {
     await idVisible(ids.CHALLENGE_SET)()
     await idVisible(ids.CHALLENGE_TILE("Short Stroll"))()
-    await idVisible(ids.CHALLENGE_TILE("Brisk walk"))()
+    await idVisible(ids.CHALLENGE_TILE("Brisk Walk"))()
     await idVisible(ids.CHALLENGE_TILE("Long Walk"))()
     await idVisible(ids.CHALLENGE_TILE("Meditation"))()
     await swipeFromText("Meditation", "up", "fast")()
@@ -215,7 +215,7 @@ export const meditationChallengeDataCorrect = (stage: number, yucoinEarned: numb
 
 export const challengesAndYuCoinsAwardedVisible = async () => {
     await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Short Stroll", "10", 3))()
-    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Brisk walk", "50", 3))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Brisk Walk", "50", 3))()
     await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Long Walk", "60", 3))()
     await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Meditation", "60", 3))()
 }

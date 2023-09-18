@@ -33,20 +33,23 @@ export const calculateDailyContribution = (contributionRecord: PensionContributi
             dailyAmount = (balance * 52) / 365;
         }
 
-        if (dailyAmount === 0 ) {
-            return dailyAmount
-        }
-
         return +dailyAmount.toFixed(2);
 }
 
 export const calculateInProgressContribution = (pensionContribution: PensionContributionInfo) => {
-    return (calculateDailyContribution(pensionContribution) / pensionRewardPeriodHours *
+    const calc = (calculateDailyContribution(pensionContribution) / pensionRewardPeriodHours *
     dailyPensionProgressWithLimit).toFixed(2)
+    const contribution = calc === "0.00" ? 0 : calc
+
+    return contribution
 }
 
 export const calculatePensionModalAmount = (pensionContribution: PensionContributionInfo) => {
     const inProgressContribution = calculateInProgressContribution(pensionContribution)
+
+    if (inProgressContribution === 0) {
+        return "Pension (Syncing ... )"
+    }
 
     return `${inProgressContribution}/${calculateDailyContribution(pensionContribution)}`
 }

@@ -149,7 +149,7 @@ export const celestialChestAwardsVisible = (user: typeof USER_1) => async () => 
 export const challengesAvailableVisible = async () => {
     await idVisible(ids.CHALLENGE_SET)()
     await idVisible(ids.CHALLENGE_TILE("Short Stroll"))()
-    await idVisible(ids.CHALLENGE_TILE("Brisk walk"))()
+    await idVisible(ids.CHALLENGE_TILE("Brisk Walk"))()
     await idVisible(ids.CHALLENGE_TILE("Long Walk"))()
     await idVisible(ids.CHALLENGE_TILE("Meditation"))()
     await swipeFromText("Meditation", "up", "fast")()
@@ -165,7 +165,7 @@ export const challengeStarsCorrect = (starCount: number, challengeType: string, 
 
 export const challengesAndYuCoinsAwardedVisible = async () => {
     await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Short Stroll", "6", 3))()
-    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Brisk walk", "30", 3))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Brisk Walk", "30", 3))()
     await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Long Walk", "24", 2))()
     await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Meditation", "12", 1))()
 }

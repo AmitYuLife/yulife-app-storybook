@@ -71,7 +71,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                                     Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17740)))
                                     Then("I should on the quests tab", then.idVisible(QUESTS_SCREEN(1)))
                                     When("I tap a past level", when.tapID(LEVEL_CHALLENGE_BUTTON(90)), async () => {
-                                        Then("I should see other challenges to take", then.multipleIDVisible([CHALLENGE_TILE("Short Stroll"), CHALLENGE_TILE("Brisk walk"), CHALLENGE_TILE("Long Walk"), CHALLENGE_TILE("Meditation")]))
+                                        Then("I should see other challenges to take", then.multipleIDVisible([CHALLENGE_TILE("Short Stroll"), CHALLENGE_TILE("Brisk Walk"), CHALLENGE_TILE("Long Walk"), CHALLENGE_TILE("Meditation")]))
                                     })
                             })
                         })

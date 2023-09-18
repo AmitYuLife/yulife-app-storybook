@@ -18,7 +18,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                         Then("I should be on the level one quest screen", then.idVisible(ids.CHALLENGE_SET))
                         Then("I should see an unlocked short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
                         When("I tap the unlocked short stroll challenge", when.tapID(ids.CHALLENGE_TILE("Short Stroll")), async () => {
-                            Then("I should see a screen with a take challenge option", then.textVisible("short stroll / 0 mins"))
+                            Then("I should see a screen with a take challenge option", then.textVisible("Short Stroll / 0 mins"))
                             Then("I should see the number of steps I need to complete the challenge", then.textVisible(t("%{quantity} steps", { quantity: 300 })))
                             When("I tap 'take challenge'", when.tapText(t("Take challenge")), async () => {
                                 When("I wait", when.wait(5000), async () => {
