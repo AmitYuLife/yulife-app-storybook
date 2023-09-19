@@ -14,7 +14,7 @@ export type RadioListItemProps = {
 };
 
 const _RadioListItem = ({ title, description, id, onPress, isSelected }: RadioListItemProps) => (
-  <View key={title} style={styles.option}>
+  <TouchableOpacityWithDelay testID={SETTINGS_NAME(id)} key={title} onPress={onPress} style={styles.option}>
     <View>
       <TextTemplate type="b2b" testID={TEXT_TEMPLATE(title)}>
         {title}
@@ -23,10 +23,10 @@ const _RadioListItem = ({ title, description, id, onPress, isSelected }: RadioLi
         {description}
       </TextTemplate>
     </View>
-    <TouchableOpacityWithDelay testID={SETTINGS_NAME(id)} onPress={onPress} style={styles.radioWrapper}>
+    <View style={styles.radioWrapper}>
       <Radio selected={isSelected} />
-    </TouchableOpacityWithDelay>
-  </View>
+    </View>
+  </TouchableOpacityWithDelay>
 );
 
 export const RadioListItem = memo(_RadioListItem);
