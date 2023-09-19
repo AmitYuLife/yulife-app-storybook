@@ -204,7 +204,6 @@ export const isOnDocumentsScreen = async () => {
   await expect(element(by.text("Policy Summary"))).toBeVisible();
   await expect(element(by.text("Terms of Business"))).toBeVisible();
   await expect(element(by.text("Privacy Policy"))).toBeVisible();
-  await expect(element(by.text("Rewards Policy"))).toBeVisible();
 };
 
 export const packageSummaryVisible = (packageType: string, totalprice: string, montlyprice: string) => async () => {

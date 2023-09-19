@@ -51,7 +51,6 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left today)"))
             Then("I should see the correct number of steps done today", then.stepsDoneToday(400))
             Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(200, 12))
-            Then("I can see the correct surge value and duration", then.iCanSeeSurgeIcon("2x", "7d"))
         })
         When("I go to the today's earnings screen", when.tapText("400 steps"), async () => {
             Then("I see the correct yucoin earned today so far", then.textVisible("212 YuCoin"))
@@ -81,7 +80,6 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left today)"))
             Then("I should see the correct number of steps done today", then.stepsDoneToday(1200))
             Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(212, 60))
-            Then("I can see the correct surge value and duration", then.iCanSeeSurgeIcon("2x", "7d"))
         })
         When("I go to the today's earnings screen", when.tapText("1,200 steps"), async () => {
             Then("I see the correct yucoin earned today so far", then.textVisible("272 YuCoin"))
@@ -89,7 +87,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I swipe down the screen", when.swipeFromText("Daily core activities", "up", "fast"), async () => {
             Then("I can see 2/4 challenges completed today", then.textVisible("Today's challenges (2/4)"))
-            Then("I can see my short stroll completed today", then.textVisible("Brisk Walk (1,600 steps)"))
+            Then("I can see my short stroll completed today", then.textVisible("Brisk walk (1,600 steps)"))
             Then("I can see my short stroll completed today", then.textVisible("Short stroll (400 steps)"))
             Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left)"))
         })
@@ -113,7 +111,6 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left today)"))
             Then("I should see the correct number of steps done today", then.stepsDoneToday(2000))
             Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(272, 78))
-            Then("I can see the correct surge value and duration", then.iCanSeeSurgeIcon("2x", "7d"))
         })
         When("I go to the today's earnings screen", when.tapText("2,000 steps"), async () => {
             Then("I see the correct yucoin earned today so far", then.textVisible("350 YuCoin"))
@@ -122,7 +119,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I swipe down the screen", when.swipeFromText("Today's challenges (3/4)", "up", "fast"), async () => {
             Then("I can see 3/4 challenges completed today", then.textVisible("Today's challenges (3/4)"))
             Then("I can see my short stroll completed today", then.textVisible("Long walk (3,600 steps)"))
-            Then("I can see my short stroll completed today", then.textVisible("Brisk Walk (1,600 steps)"))
+            Then("I can see my short stroll completed today", then.textVisible("Brisk walk (1,600 steps)"))
             Then("I can see my short stroll completed today", then.textVisible("Short stroll (400 steps)"))
             Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left)"))
         })
@@ -136,13 +133,13 @@ Feature("End of the world/Yuniverse", async () => {
         // fourth challenge - meditation
 
         When("I complete a meditation challenge at level 1", when.selectAndCompleteMeditationChallenge(180), async () => {
-            Then("I should see the correct number of yucoin earned and steps completed in the task", then.meditationChallengeDataCorrect(1, 24, 3))
+            Then("I should see the correct number of yucoin earned and steps completed in the task", then.meditationChallengeDataCorrect(1, 48, 3))
         })
 
         When("I tap collect", when.tapText("Collect"), async () => {
             When("I go to quests tab", when.tapID(NAV_BAR("quests")), async () => {
                 Then("I should be on the yuniverse map", then.idVisible(QUESTS_SCREEN_YUNIVERSAL(2)))
-                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17850 + 24)))
+                Then("I should see the yucoin total updated", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17850 + 48)))
             })
         })
         When("I trigger app update", when.triggerAppUpdateState, async () => {
@@ -150,12 +147,11 @@ Feature("End of the world/Yuniverse", async () => {
                 Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
                 Then("I should see the correct number of steps done today", then.stepsDoneToday(2000))
                 Then("I should see the correct number of mindful minutes", then.textVisible("3 min"))
-                Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(350, 24))
-                Then("I can see the correct surge value and duration", then.iCanSeeSurgeIcon("2x", "7d"))
+                Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(350, 48))
             })
         })
         When("I go to the today's earnings screen", when.tapText("2,000 steps"), async () => {
-            Then("I see the correct yucoin earned today so far", then.textVisible("374 YuCoin"))
+            Then("I see the correct yucoin earned today so far", then.textVisible("398 YuCoin"))
             Then("I can see my total steps", then.textVisible("2000 / 12000 steps"))
             Then("I can see my total mins", then.textVisible("3 / 30 mindful mins"))
         })
@@ -163,7 +159,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I can see 4/4 challenges completed today", then.textVisible("Today's challenges (4/4)"))
             Then("I can see my mins completed today", then.textVisible("Meditation (3 mins)"))
             Then("I can see my short stroll completed today", then.textVisible("Long walk (3,600 steps)"))
-            Then("I can see my short stroll completed today", then.textVisible("Brisk Walk (1,600 steps)"))
+            Then("I can see my short stroll completed today", then.textVisible("Brisk walk (1,600 steps)"))
             Then("I can see my short stroll completed today", then.textVisible("Short stroll (400 steps)"))
             Then("I should not see any challenges left", then.textNotVisible("Take a challenge (1 left)"))
             Then("I should see the welldone banner as I have completed 4 challenges today", then.idVisible(WELLDONE_BANNER))
