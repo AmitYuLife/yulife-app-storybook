@@ -6,9 +6,7 @@ import Storage from "@services/storage";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
 import { buildFitKitPermissions } from "@services/fitkit/fitkit.permissions";
-
-// we can move to env if we have different variants, for now keep as constant since this is the only variant
-export const FAQ_LINK = "https://faq.yulife.com/en/articles/2813117-connecting-health-apps-to-yulife";
+import { t } from "@locale";
 
 export function useAuthoriseFitkit({ authorise }: { authorise: (value: FitKitAuthOptions) => Promise<boolean> }) {
   const [fitkitPermission, setFitkitPermission] = useState("");
@@ -57,7 +55,10 @@ export function useAuthoriseFitkit({ authorise }: { authorise: (value: FitKitAut
           return await authorise(buildFitKitPermissions());
         }
 
-        handleOpenWebView({ uri: FAQ_LINK, title: "Help" });
+        handleOpenWebView({
+          uri: t("screens.daily.fitkit.help.faq_uri"),
+          title: t("screens.daily.fitkit.help.title"),
+        });
       } catch (e) {
         Logger.error(e, { file: "daily-steps-content", platform: "ios" });
       }

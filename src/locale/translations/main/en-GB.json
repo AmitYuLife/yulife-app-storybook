@@ -346,6 +346,10 @@
         "subheading": "Your steps will update when next online Last update: %{lastUpdate}"
       },
       "fitkit": {
+        "help": {
+          "title": "Help",
+          "faq_uri": "https://faq.yulife.com/en/articles/2813117-connecting-health-apps-to-yulife"
+        },
         "unavailable": {
           "heading": "device not supported",
           "subheading_android": "your device requires Google Play Services in order to use this app.",
