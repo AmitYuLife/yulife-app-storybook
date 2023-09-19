@@ -70,7 +70,7 @@ export const mountainTwoRewardsVisible = (level400 = false) => async () => {
 }
 
 export const isOnExploreYuniverseScreen = async () => {
-    await textVisible("Now is a time for reflection and gratitude as\nyou drift amongst the stars. Familiar friends\nwill guide you on your path towards the\nCelestial Chest", 3000)()
+    await textVisible("Now is a time for reflection and gratitude as you drift amongst the stars. Familiar friends will guide you on your path towards the Celestial Chest.", 3000)()
 }
 
 export const yuniverseChallengesVisible = async () => {
@@ -112,12 +112,6 @@ export function addCommasToNumber(x: number) {
 export const stepsDoneToday = (steps: number) => async () => {
     const stepsComma = addCommasToNumber(steps)
     await textVisible(`${stepsComma} steps`)()
-}
-
-export const iCanSeeSurgeIcon = (multiplier: string, expireDate: string) => async () => {
-    await idVisible(ids.TEXT_TEMPLATE(multiplier))()
-    await idVisible(ids.TEXT_TEMPLATE(expireDate))()
-    await idVisible(ids.SURGE_ICON)()
 }
 
 export const stepsChallengeDataCorrect = (stage: number, yucoinEarned: number, steps: number) =>  async () => {

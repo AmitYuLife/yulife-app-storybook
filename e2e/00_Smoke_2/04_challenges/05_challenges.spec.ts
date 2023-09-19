@@ -48,8 +48,7 @@ Feature("As a user I can take a challenge", async () => {
                 When("I tap this challenge", when.tapID(ids.CHALLENGE_TILE("Short Stroll")), async () => {
                     Then("I should see a screen with a take challenge option", then.textVisible("Short Stroll / 0 mins"))
                     When("I tap 'take challenge'", when.tapText(t("Take challenge")), async () => {
-                        Then("I should see a screen asking me to turn on notifications", then.idVisible(ids.GENERIC_SCREEN_HEADING(t("don't miss out")), 5000))
-                        When("I dismiss this screen", when.tapID(ids.GENERIC_SCREEN_CTA(t("maybe later"))), async () => {
+                        When("I dismiss this screen", when.dismissNotificationScreenIfVisible, async () => {
                             Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
                             When("I wait for the challenge to end", when.wait(35000), async () => {
                                 Then("I should see the didn't make it screen", then.textVisible("you didn’t make it", 5000))
