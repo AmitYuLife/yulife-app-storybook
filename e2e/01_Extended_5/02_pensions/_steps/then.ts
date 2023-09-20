@@ -91,7 +91,11 @@ export const canSeePendingPensionEarnings = async () => {
 }
 
 export const canSeePausedPensionEarnings = (contrib: string) => async () => {
-  await textVisible(`£${contrib} Pension contribution`)()
+  if (contrib === "Pension (Syncing ... )") {
+    await textVisible(contrib)()
+  } else {
+    await textVisible(`£${contrib} Pension contribution`)()
+  }
   await textVisible('Paused')()
   await textVisible("Manage")()
 }
