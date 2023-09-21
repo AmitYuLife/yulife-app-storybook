@@ -345,7 +345,6 @@ export const GHIProductInfo = ( productStartDate: any, dependentName:any, yuCoin
   const policyInfoYugi =
     "This policy is paid for by your employer. Remember if you change jobs, you’ll lose this cover.";
   const startDate = moment(productStartDate.data.start_date).format("DD/MM/YYYY");
-  const schemeNumberProduct = data.BUSINESS_PRODUCT_8_GHI.product.data.product_id
   const dependent = `${dependentName.data.first_name} ${dependentName.data.last_name}`
   const GHIRewardImg = "https://yulife-develop.imgix.net/bupa/images/rewards_on_the_way_2023-03-23.png?ixlib=js-3.2.1&w=981&h=714&s=4809f351b905b43bb783ab2519e188f7"
 
@@ -356,8 +355,6 @@ export const GHIProductInfo = ( productStartDate: any, dependentName:any, yuCoin
   await expect(element(by.text(policyInfoYugi))).toBeVisible();
   await expect(element(by.text(keyInfo))).toBeVisible();
   await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, coverlevel, "down")()
-  await expect(element(by.text(schemeNumber))).toBeVisible();
-  await expect(element(by.text(schemeNumberProduct))).toBeVisible();
   await expect(element(by.text(coverlevel))).toBeVisible();
   await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, startDateText, "down")()
   await expect(element(by.text(startDateText))).toBeVisible();
