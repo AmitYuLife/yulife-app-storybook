@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.100.0] - 2023-09-21
+
+### Features
+
+- Task: lock today earning screen behind feature toggle
+
+### Bugfixes
+
+- Bugfix ENG-3487: Activity history pension yucoin
+
+### Tasks
+
+- Task XSE-2260: Update react-native-device-info
+- Task ENG-3598: health faq link
+- Task: Yudoku wrong number icon
+- Task: use user language to determine locale instead of region
+- Task: add ability to translate app config files
+
+### Chores
+
+- Chore: Modify radio-list-item component for better touchable area
+
+### Extra
+
+- Detox: Fixes 20th sept
+- Detox: Fixes 19th Sept
+- Detox: Fixes 18th Sept
+- Detox: boost testing
+- Detox: Fixes 15th Sept
+- Detox: Fixes 14th Sept
+
 ## [3.99.0] - 2023-09-14
 
 ### Tasks
