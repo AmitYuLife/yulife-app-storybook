@@ -1,7 +1,7 @@
 import Polyglot from "node-polyglot";
 import { NativeModules } from "react-native";
 
-import { isiOS } from "@styles/style";
+import { isWeb, isiOS } from "@styles/style";
 import { DETOX_ENABLED } from "@services/socket";
 import { translations, Language, Translation } from "./translations";
 
@@ -38,6 +38,10 @@ class Translator {
    * example "en-JP" uses the "en" language so it would match "en-GB".
    */
   public findBestAvailableLanguage = (): Language => {
+    if (isWeb()) {
+      return this.fallbackLocale;
+    }
+
     const deviceLocale = isiOS()
       ? NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0]
       : NativeModules.I18nManager.localeIdentifier;
