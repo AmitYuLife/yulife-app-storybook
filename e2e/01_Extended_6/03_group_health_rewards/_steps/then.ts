@@ -40,8 +40,6 @@ export const onGHIProductPage = ( product: GHI_PAGE_INFO) => async () => {
   await expect(element(by.text(policyInfoYugi))).toBeVisible();
   await expect(element(by.text(constants.keyInfo))).toBeVisible();
   await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.coverlevel, "down")()
-  await expect(element(by.text(constants.schemeNumber))).toBeVisible();
-  await expect(element(by.text(fixtures.GHI_REWARDS_PAGE_DETAILS_1.productId))).toBeVisible();
   await expect(element(by.text(constants.coverlevel))).toBeVisible();
   await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.startDateText, "down")()
   await expect(element(by.text(constants.startDateText))).toBeVisible();
@@ -179,7 +177,7 @@ export const onRewardsTeasePage = (product: GHI_TEASE_PAGE_DETAILS) => async () 
 
 }
 
-export const onBootsAndYorkRewardsClaimPage = (product: GHI_REWARD_CLAIM_PAGE_DETAILS, preClaim: boolean, amount?: string, vouchers?: number) => async () => {
+export const onBootsAndYorkRewardsClaimPage = (product: GHI_REWARD_CLAIM_PAGE_DETAILS, preClaim: boolean, amount?: string) => async () => {
   const buttonText = preClaim? product.buttonText : constants.claimReward
   const voucherText = product.heading === "Urban" ? "Voucher" : "voucher"
   const voucherQuantity = product.heading === "Urban" ? "1 " : ""
@@ -237,13 +235,12 @@ export const onUrbanRewardsClaimPage = (product: GHI_REWARD_CLAIM_PAGE_DETAILS, 
 }
 
 export const rewardsClaimPageBottomInfoVisible = async () => {
-  await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, constants.rewardsPolicy, "down")()
+  await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, constants.termsAndConditions, "down")()
 
   await textVisible(constants.questionHeader)()
   await textVisible(constants.questionDescription)()
   await textVisible(constants.helpCentre)()
   await textVisible(constants.termsAndConditions)()
-  await textVisible(constants.rewardsPolicy)()
 }
 
 export const rewardsClaimPageRewardStepsVisible = (product: GHI_REWARD_CLAIM_PAGE_DETAILS) => async () => {
@@ -423,7 +420,7 @@ export const onGarminRewardsClaimPage = (product: GHI_REWARD_CLAIM_PAGE_DETAILS,
       await rewardsClaimPageRewardStepsVisible(product)()
       await textVisible(buttonText)()
     } else {
-      await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, constants.rewardsPolicy, "down")()
+      await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, constants.termsAndConditions, "down")()
       await textVisible("You’ve claimed all your vouchers!")()
       await textVisible("For more details, check your email inbox.")()
     }

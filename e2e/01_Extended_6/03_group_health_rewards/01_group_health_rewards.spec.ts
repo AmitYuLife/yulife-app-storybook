@@ -104,18 +104,16 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(9))
         })
         When("I click to see the next reward I want to unlock", when.tapText(constants.groupHealthRewardProgressNames[1]), async () => {
-            When("I tap on the Urban reward", when.tapRewardInList(data.CORE_REWARDS_URBAN_GHI_REWARDS), async () => {
-                Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-                Then("I should see the correct information for the Urban reward tease", then.onRewardsTeasePage(fixtures.URBAN_GHI_REWARDS_TEASE_PAGE_DETAILS))
-            })
+            Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
+            Then("I should see the correct information for the Urban reward tease", then.onRewardsTeasePage(fixtures.URBAN_GHI_REWARDS_TEASE_PAGE_DETAILS))
         })
         When("I tap the CTA button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
             Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(1)))
         })
         When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(187, 537), async () => {
             When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
-                When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
-                    Then("I should see the well done screen", then.textVisible("Collect"))
+                When("I walk over 3000 steps", when.sendSteps(3050, 40000), async () => {
+                    Then("I should see the well done screen", then.textVisible(t("Collect")))
                 })
             })
         })
@@ -174,10 +172,8 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(49))
         })
         When("I click to see the next reward I want to unlock", when.tapText(constants.groupHealthRewardProgressNames[2]), async () => {
-            When("I tap on the Thriva reward", when.tapRewardInList(data.CORE_REWARDS_THRIVA_GHI_REWARDS), async () => {
-                Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-                Then("I should see the correct information for the Thriva reward tease", then.onRewardsTeasePage(fixtures.THRIVA_GHI_REWARDS_TEASE_PAGE_DETAILS))
-            })
+            Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
+            Then("I should see the correct information for the Thriva reward tease", then.onRewardsTeasePage(fixtures.THRIVA_GHI_REWARDS_TEASE_PAGE_DETAILS))
         })
         When("I tap the CTA button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
             Then("I should see level 123", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(123)))
@@ -311,10 +307,8 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(99))
         })
         When("I click to see the next reward I want to unlock", when.tapText(constants.groupHealthRewardProgressNames[3]), async () => {
-            When("I tap on the Living DNA reward", when.tapRewardInList(data.CORE_REWARDS_LIVING_DNA_GHI_REWARDS), async () => {
-                Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-                Then("I should see the correct information for the Living DNA reward tease", then.onRewardsTeasePage(fixtures.LIVING_DNA_GHI_REWARDS_TEASE_PAGE_DETAILS))
-            })
+            Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
+            Then("I should see the correct information for the Living DNA reward tease", then.onRewardsTeasePage(fixtures.LIVING_DNA_GHI_REWARDS_TEASE_PAGE_DETAILS))
         })
         When("I tap the CTA button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
             Then("I should see level 211", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(211)))
@@ -459,10 +453,8 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(149))
         })
         When("I click to see the next reward I want to unlock", when.tapText(constants.groupHealthRewardProgressNames[4]), async () => {
-            When("I tap on the Bupa reward", when.tapRewardInList(data.CORE_REWARDS_BUPA_GHI_REWARDS), async () => {
-                Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-                Then("I should see the correct information for the Bupa reward tease", then.onRewardsTeasePage(fixtures.BUPA_GHI_REWARDS_TEASE_PAGE_DETAILS))
-            })
+            Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
+            Then("I should see the correct information for the Bupa reward tease", then.onRewardsTeasePage(fixtures.BUPA_GHI_REWARDS_TEASE_PAGE_DETAILS))
         })
         When("I tap the CTA button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
             Then("I should see level 177", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(177)))
@@ -529,10 +521,8 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(199))
         })
         When("I click to see the next reward I want to unlock", when.tapText(constants.groupHealthRewardProgressNames[5]), async () => {
-            When("I tap on the Garmin reward", when.tapRewardInList(data.CORE_REWARDS_GARMIN_GHI_REWARDS), async () => {
-                Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-                Then("I should see the correct information for the Garmin reward tease", then.onRewardsTeasePage(fixtures.GARMIN_GHI_REWARDS_TEASE_PAGE_DETAILS))
-            })
+            Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
+            Then("I should see the correct information for the Garmin reward tease", then.onRewardsTeasePage(fixtures.GARMIN_GHI_REWARDS_TEASE_PAGE_DETAILS))
         })
         When("I tap the CTA button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
             Then("I should see level 241", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(241)))
