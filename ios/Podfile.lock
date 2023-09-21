@@ -450,7 +450,7 @@ PODS:
     - React-Core
   - RNDateTimePicker (6.7.1):
     - React-Core
-  - RNDeviceInfo (10.3.0):
+  - RNDeviceInfo (10.11.0):
     - React-Core
   - RNFastImage (8.6.3):
     - React-Core
@@ -860,7 +860,7 @@ SPEC CHECKSUMS:
   RNCClipboard: 41d8d918092ae8e676f18adada19104fa3e68495
   RNCPushNotificationIOS: 87b8d16d3ede4532745e05b03c42cff33a36cc45
   RNDateTimePicker: 0530a73a6f3a1a85814cbde0802736993b9e675e
-  RNDeviceInfo: 4701f0bf2a06b34654745053db0ce4cb0c53ada7
+  RNDeviceInfo: bf8a32acbcb875f568217285d1793b0e8588c974
   RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
   RNFitKit: 616d0226b7c2df643037e955434d347057eed612
   RNFlashList: ade81b4e928ebd585dd492014d40fb8d0e848aab
@@ -881,4 +881,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 21de182fa1d4f7d25913fc0720c4253f64e523ea
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1
