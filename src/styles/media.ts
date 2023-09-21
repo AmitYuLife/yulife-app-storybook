@@ -1,36 +1,50 @@
 export const DEVICES = {
+  /**
+   * Also covers: iPhone 6,7,8,SE2
+   */
   iPhone8: {
-    // iPhone 6,7,8,SE2
     width: 375,
     height: 812,
   },
+  /**
+   * Also covers: iPhone 6+,7+,8+
+   */
   iPhone8Plus: {
-    // iPhone 6+,7+,8+
     width: 414,
     height: 736,
   },
+  /**
+   * Also covers: iPhone XR, iPhone 11 Pro Max, iPhone Xs Max
+   */
   iPhone11: {
-    // iPhone XR, iPhone 11 Pro Max, iPhone Xs Max
     width: 414,
     height: 896,
   },
+  /**
+   * Also covers: iPhone 13 mini, iPhone 11 Pro, iPhone X, iPhone Xs
+   */
   iPhone12Mini: {
-    // iPhone 13 mini, iPhone 11 Pro, iPhone X, iPhone Xs,
     width: 375,
     height: 812,
   },
+  /**
+   * Also covers: iPhone 12 Pro, iPhone 13, iPhone 13 Pro, iPhone 14
+   */
   iPhone12: {
-    // iPhone 12 Pro, iPhone 13, iPhone 13 Pro, iPhone 14
     width: 390,
     height: 844,
   },
+  /**
+   * Also covers: iPhone13ProMax, iPhone14Plus
+   */
   iPhone12ProMax: {
-    // iPhone13ProMax, iPhone14Plus,
     width: 428,
     height: 926,
   },
+  /**
+   * Also covers: Samsung Galaxy S6, Samsung Galaxy S7
+   */
   SamsungGalaxyA5: {
-    // Samsung Galaxy S6, Samsung Galaxy S7
     width: 360,
     height: 592,
   },
@@ -38,10 +52,16 @@ export const DEVICES = {
     width: 411,
     height: 683,
   },
+  /**
+   * Also covers: iPhone 15, iPhone 15 Pro
+   */
   iPhone14Pro: {
     width: 393,
     height: 852,
   },
+  /**
+   * Also covers: iPhone15Plus, iPhone15ProMax
+   */
   iPhone14ProMax: {
     width: 430,
     height: 932,
