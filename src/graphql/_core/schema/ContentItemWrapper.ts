@@ -19,6 +19,16 @@ export interface ContentItemWrapper_onPress {
   payload: string | null;
 }
 
+export interface ContentItemWrapper_localDispatchActions {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItemWrapper_localDispatchActionsOnMount {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface ContentItemWrapper {
   id: string;
   styles: ContentItemWrapper_styles[] | null;
@@ -36,4 +46,16 @@ export interface ContentItemWrapper {
    * Supported RN version 3.87.0
    */
   scrollViewProps: string | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  dynamicStyleKey: string | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  localDispatchActions: ContentItemWrapper_localDispatchActions[] | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  localDispatchActionsOnMount: ContentItemWrapper_localDispatchActionsOnMount[] | null;
 }

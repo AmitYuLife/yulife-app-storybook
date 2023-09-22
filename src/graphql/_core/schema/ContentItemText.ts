@@ -21,4 +21,8 @@ export interface ContentItemText {
   underline: boolean | null;
   numberOfLines: number | null;
   styles: ContentItemText_styles[] | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  dynamicStyleKey: string | null;
 }

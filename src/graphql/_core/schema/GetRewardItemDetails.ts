@@ -80,6 +80,10 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemTe
   underline: boolean | null;
   numberOfLines: number | null;
   styles: GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles[] | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  dynamicStyleKey: string | null;
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemMarkdown_styles {

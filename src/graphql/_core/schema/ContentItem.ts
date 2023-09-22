@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -241,6 +241,10 @@ export interface ContentItem_ContentItemText {
   underline: boolean | null;
   numberOfLines: number | null;
   styles: ContentItem_ContentItemText_styles[] | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  dynamicStyleKey: string | null;
 }
 
 export interface ContentItem_ContentItemTextInput_validation {
@@ -745,6 +749,16 @@ export interface ContentItem_ContentItemWrapper_onPress {
   payload: string | null;
 }
 
+export interface ContentItem_ContentItemWrapper_localDispatchActions {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItem_ContentItemWrapper_localDispatchActionsOnMount {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface ContentItem_ContentItemWrapper {
   __typename: "ContentItemWrapper";
   id: string;
@@ -763,6 +777,18 @@ export interface ContentItem_ContentItemWrapper {
    * Supported RN version 3.87.0
    */
   scrollViewProps: string | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  dynamicStyleKey: string | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  localDispatchActions: ContentItem_ContentItemWrapper_localDispatchActions[] | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  localDispatchActionsOnMount: ContentItem_ContentItemWrapper_localDispatchActionsOnMount[] | null;
 }
 
 export interface ContentItem_ContentItemInfoCard_image {

@@ -1,4 +1,4 @@
-import React, { memo, useMemo, useCallback } from "react";
+import React, { memo, useMemo, useCallback, useContext, useEffect } from "react";
 import { ContentItemWrapper as Props } from "@graphql/_core/schema";
 import { parseJSON } from "@utils";
 import { renderItemContent } from "@components/sdui/_renderer/renderer";
@@ -6,23 +6,54 @@ import { Absolute } from "@components/sdui/_renderer/sections/absolute";
 import { groupBy } from "lodash";
 import { useDispatch } from "react-redux";
 import { getWrappingComponent } from "./getWrappingComponent";
+import { SduiDispatchContext, SduiStateContext } from "../_context/SduiProvider";
 
 export const ContentItemWrapper = memo(
-  ({ children, styles, pointerEvents, absolute, onPress, scrollViewProps }: Props) => {
+  ({
+    children,
+    styles,
+    pointerEvents,
+    absolute,
+    onPress,
+    scrollViewProps,
+    dynamicStyleKey,
+    localDispatchActions,
+    localDispatchActionsOnMount,
+  }: Props) => {
     const { data, isValid } = parseJSON(children);
     const { data: absoluteData, isValid: absoluteValidity } = parseJSON(absolute);
     const dispatch = useDispatch();
+    const localContextDispatch = useContext(SduiDispatchContext);
+    const { dynamicStyles } = useContext(SduiStateContext);
 
-    const handlePress = useCallback(() => {
-      if (!onPress) {
+    const dynamicStyle = dynamicStyles[dynamicStyleKey];
+
+    useEffect(() => {
+      if (!localDispatchActionsOnMount?.length) {
         return;
       }
 
-      dispatch({
-        type: onPress.type,
-        payload: { serverPayload: onPress.payload },
+      localDispatchActionsOnMount.forEach((action) => {
+        localContextDispatch(action);
       });
-    }, [onPress]);
+    }, []);
+
+    const handlePress = useCallback(() => {
+      if (!onPress && !localDispatchActions?.length) {
+        return;
+      }
+
+      if (onPress) {
+        dispatch({
+          type: onPress.type,
+          payload: { serverPayload: onPress.payload },
+        });
+      }
+
+      (localDispatchActions || []).forEach((action) => {
+        localContextDispatch(action);
+      });
+    }, [onPress, localDispatchActions, localContextDispatch]);
 
     const { background, foreground } = useMemo(() => {
       if (!absoluteValidity) {
@@ -37,11 +68,12 @@ export const ContentItemWrapper = memo(
     }
 
     const { Component, componentProps } = getWrappingComponent({
-      isPressable: !!onPress,
+      isPressable: !!onPress || !!localDispatchActions?.length,
       onPress: handlePress,
       scrollViewProps,
-      styles,
+      styles: styles || [],
       pointerEvents,
+      dynamicStyles: dynamicStyle || [],
     });
 
     return (

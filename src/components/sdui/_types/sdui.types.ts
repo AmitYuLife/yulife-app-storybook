@@ -9,10 +9,11 @@ export enum SduiLocalActionTypes {
   SET_DYNAMIC_DATA = "SET_DYNAMIC_DATA",
   UPDATE_DYNAMIC_DATA = "UPDATE_DYNAMIC_DATA",
   UPDATE_BUS = "UPDATE_BUS",
+  SDUI_ACTION_UPDATE_DYNAMIC_STYLES = "SDUI_ACTION_UPDATE_DYNAMIC_STYLES",
 }
 
 export interface SduiContextAction {
-  type: SduiLocalActionTypes;
+  type: string;
   payload?: any;
 }
 
@@ -25,7 +26,12 @@ export interface ISduiContext {
   sduiDispatch: Dispatch<SduiContextAction>;
 }
 
+type DynamicStyleKey = string;
+type StylePair = Array<Record<"property" | "value", string>>;
+type DynamicStyleMap = Record<DynamicStyleKey, StylePair>;
+
 export interface SduiReducerState {
   bus: Record<string, any>;
   dynamicData: DynamicData;
+  dynamicStyles: DynamicStyleMap;
 }

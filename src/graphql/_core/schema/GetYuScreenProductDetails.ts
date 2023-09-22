@@ -143,6 +143,10 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   underline: boolean | null;
   numberOfLines: number | null;
   styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemText_styles[] | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  dynamicStyleKey: string | null;
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton_onPress {
@@ -531,6 +535,16 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   payload: string | null;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemWrapper_localDispatchActions {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemWrapper_localDispatchActionsOnMount {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemWrapper {
   __typename: "ContentItemWrapper";
   id: string;
@@ -549,6 +563,22 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
    * Supported RN version 3.87.0
    */
   scrollViewProps: string | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  dynamicStyleKey: string | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  localDispatchActions:
+    | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemWrapper_localDispatchActions[]
+    | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  localDispatchActionsOnMount:
+    | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemWrapper_localDispatchActionsOnMount[]
+    | null;
 }
 
 export type GetYuScreenProductDetails_getYuScreenProductDetails_body =

@@ -1,9 +1,10 @@
-import React, { ComponentProps, memo } from "react";
+import React, { ComponentProps, memo, useContext } from "react";
 import { View } from "react-native";
 import { TEXT_TEMPLATE } from "@ids";
 import { TextTemplate } from "@atoms";
 import { ContentItemText as GqlText } from "@graphql/_core/schema";
 import { mapServerStyles } from "../_utils/mapServerStyles";
+import { SduiStateContext } from "../_context/SduiProvider";
 
 type TemplateProps = ComponentProps<typeof TextTemplate>;
 
@@ -14,11 +15,14 @@ export const ContentItemText = memo(({ text, textType, textAlign, styles, colour
     return null;
   }
 
+  const mappedServerStyle = mapServerStyles(styles) || {};
+  const mappedServerStyleColor: string | undefined = mappedServerStyle.color as string;
+
   return (
-    <View style={mapServerStyles(styles)}>
+    <View style={mappedServerStyle}>
       <TextTemplate
         {...props}
-        color={colour}
+        color={mappedServerStyleColor || colour}
         type={textType as TemplateProps["type"]}
         textAlign={textAlign as TemplateProps["textAlign"]}
         testID={TEXT_TEMPLATE(text, textType)}
@@ -27,4 +31,13 @@ export const ContentItemText = memo(({ text, textType, textAlign, styles, colour
       </TextTemplate>
     </View>
   );
+});
+
+export const ContentItemTextSdui = memo((props: Props) => {
+  const { dynamicStyles } = useContext(SduiStateContext);
+  const defaultStyle = props.styles || [];
+  const dynamicStyle = dynamicStyles[props.dynamicStyleKey] || [];
+  const styles = [...defaultStyle, ...dynamicStyle];
+
+  return <ContentItemText {...props} styles={styles} />;
 });

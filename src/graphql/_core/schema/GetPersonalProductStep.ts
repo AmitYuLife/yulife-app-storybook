@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -283,6 +283,10 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemT
   underline: boolean | null;
   numberOfLines: number | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemText_styles[] | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  dynamicStyleKey: string | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_onPress {
@@ -743,6 +747,10 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemC
   underline: boolean | null;
   numberOfLines: number | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_coverPickerTitle_styles[] | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  dynamicStyleKey: string | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_onPress {

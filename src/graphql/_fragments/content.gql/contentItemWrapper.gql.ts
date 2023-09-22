@@ -17,5 +17,12 @@ export const GQL_FRAGMENT_CONTENT_ITEM_WRAPPER = gql`
       ...SduiAction
     }
     scrollViewProps
+    dynamicStyleKey
+    localDispatchActions {
+      ...SduiAction
+    }
+    localDispatchActionsOnMount {
+      ...SduiAction
+    }
   }
 `;
