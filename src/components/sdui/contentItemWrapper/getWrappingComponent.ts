@@ -1,5 +1,5 @@
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { ContentItemWrapper } from "@graphql/_core/schema";
+import { ContentItemWrapper, SduiStyle } from "@graphql/_core/schema";
 import { VoidFunction, parseJSON } from "@utils";
 import { ScrollView, View } from "react-native";
 import { mapPointerEvents } from "../_utils/mapPointerEvents";
@@ -9,6 +9,7 @@ type Params = Pick<ContentItemWrapper, "styles" | "scrollViewProps" | "pointerEv
   isPressable: boolean;
   onPress: VoidFunction;
   id?: string;
+  dynamicStyles?: SduiStyle[];
 };
 
 type WrappingComponent = {
@@ -32,10 +33,11 @@ export const getWrappingComponent = ({
   onPress,
   styles,
   pointerEvents,
+  dynamicStyles,
 }: Params): WrappingComponent => {
   const baseProps = {
     pointerEvents: mapPointerEvents(pointerEvents),
-    style: mapServerStyles(styles),
+    style: mapServerStyles([...styles, ...dynamicStyles]),
   };
 
   if (scrollViewProps) {

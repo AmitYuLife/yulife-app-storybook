@@ -1,5 +1,6 @@
 import { useReducer } from "react";
 import { SduiContextAction, SduiLocalActionTypes, SduiReducerState } from "../_types/sdui.types";
+import { parseJSON } from "@utils";
 
 const reducer = (state: SduiReducerState, action: SduiContextAction) => {
   switch (action.type) {
@@ -30,6 +31,21 @@ const reducer = (state: SduiReducerState, action: SduiContextAction) => {
       };
     }
 
+    case SduiLocalActionTypes.SDUI_ACTION_UPDATE_DYNAMIC_STYLES: {
+      const { isValid, data } = parseJSON(action.payload);
+
+      if (!isValid) {
+        return state;
+      }
+
+      const newState = {
+        ...state,
+        dynamicStyles: { ...state.dynamicStyles, ...data },
+      };
+
+      return newState;
+    }
+
     default: {
       return state;
     }
@@ -39,6 +55,7 @@ const reducer = (state: SduiReducerState, action: SduiContextAction) => {
 export const INITIAL_REDUCER_STATE = Object.freeze({
   bus: {},
   dynamicData: {},
+  dynamicStyles: {},
 });
 
 export function useSduiReducer() {

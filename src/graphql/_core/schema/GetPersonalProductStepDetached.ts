@@ -171,6 +171,10 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   underline: boolean | null;
   numberOfLines: number | null;
   styles: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemText_styles[] | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  dynamicStyleKey: string | null;
 }
 
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemTextInput_validation {
@@ -227,6 +231,10 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   styles:
     | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_coverPickerTitle_styles[]
     | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  dynamicStyleKey: string | null;
 }
 
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button_onPress {

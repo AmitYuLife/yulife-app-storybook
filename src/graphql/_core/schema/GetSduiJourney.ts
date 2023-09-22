@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -245,6 +245,10 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemText {
   underline: boolean | null;
   numberOfLines: number | null;
   styles: GetSduiJourney_getSduiJourney_body_ContentItemText_styles[] | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  dynamicStyleKey: string | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_body_ContentItemTextInput_validation {
@@ -753,6 +757,16 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemWrapper_onPress {
   payload: string | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemWrapper_localDispatchActions {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemWrapper_localDispatchActionsOnMount {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetSduiJourney_getSduiJourney_body_ContentItemWrapper {
   __typename: "ContentItemWrapper";
   id: string;
@@ -771,6 +785,20 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemWrapper {
    * Supported RN version 3.87.0
    */
   scrollViewProps: string | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  dynamicStyleKey: string | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  localDispatchActions: GetSduiJourney_getSduiJourney_body_ContentItemWrapper_localDispatchActions[] | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  localDispatchActionsOnMount:
+    | GetSduiJourney_getSduiJourney_body_ContentItemWrapper_localDispatchActionsOnMount[]
+    | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_body_ContentItemInfoCard_image {
@@ -1210,6 +1238,10 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemText {
   underline: boolean | null;
   numberOfLines: number | null;
   styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemText_styles[] | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  dynamicStyleKey: string | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemTextInput_validation {
@@ -1720,6 +1752,16 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper_
   payload: string | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper_localDispatchActions {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper_localDispatchActionsOnMount {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper {
   __typename: "ContentItemWrapper";
   id: string;
@@ -1738,6 +1780,20 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper 
    * Supported RN version 3.87.0
    */
   scrollViewProps: string | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  dynamicStyleKey: string | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  localDispatchActions: GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper_localDispatchActions[] | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  localDispatchActionsOnMount:
+    | GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper_localDispatchActionsOnMount[]
+    | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemInfoCard_image {

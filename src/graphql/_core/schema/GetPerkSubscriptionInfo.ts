@@ -66,6 +66,10 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
   underline: boolean | null;
   numberOfLines: number | null;
   styles: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemText_styles[] | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  dynamicStyleKey: string | null;
 }
 
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemImage_image {

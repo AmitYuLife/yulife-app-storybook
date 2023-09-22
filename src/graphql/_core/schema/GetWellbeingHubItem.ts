@@ -77,6 +77,10 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText {
   underline: boolean | null;
   numberOfLines: number | null;
   styles: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText_styles[] | null;
+  /**
+   * Supported RN version 3.99.0
+   */
+  dynamicStyleKey: string | null;
 }
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdown_styles {

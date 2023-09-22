@@ -15,5 +15,6 @@ export const GQL_FRAGMENT_CONTENT_ITEM_TEXT = gql`
     styles {
       ...SduiStyle
     }
+    dynamicStyleKey
   }
 `;

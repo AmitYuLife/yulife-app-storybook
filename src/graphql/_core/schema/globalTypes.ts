@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -232,6 +232,7 @@ export enum SduiActionType {
   SDUI_ACTION_SEND_MUTATION = "SDUI_ACTION_SEND_MUTATION",
   SDUI_ACTION_SET_BOTTOM_TAB = "SDUI_ACTION_SET_BOTTOM_TAB",
   SDUI_ACTION_SHOW_OVERLAY_LIST_PICKER = "SDUI_ACTION_SHOW_OVERLAY_LIST_PICKER",
+  SDUI_ACTION_UPDATE_DYNAMIC_STYLES = "SDUI_ACTION_UPDATE_DYNAMIC_STYLES",
 }
 
 export enum SubmitSduiJourneyAction {

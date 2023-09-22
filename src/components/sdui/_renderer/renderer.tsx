@@ -4,7 +4,6 @@ import {
   ContentItemMarkdown,
   ContentItemButton,
   ContentItemImage,
-  ContentItemText,
   ContentItemTextInput,
   ContentItemRowIconTextBanner,
   ContentItemLottieSdui,
@@ -24,6 +23,7 @@ import {
   ContentItemSwitch,
   ContentItemShowHideBalance,
   ContentItemDatePickerSdui,
+  ContentItemTextSdui,
 } from "@components/sdui";
 import { ContentItem } from "@graphql/_core/schema";
 
@@ -31,7 +31,7 @@ export const componentMap = {
   ContentItemMarkdown,
   ContentItemButton,
   ContentItemImage,
-  ContentItemText,
+  ContentItemText: ContentItemTextSdui,
   ContentItemTextInput,
   ContentItemRowIconTextBanner,
   ContentItemLottie: ContentItemLottieSdui,

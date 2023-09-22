@@ -3,7 +3,7 @@ import { Animated } from "react-native";
 import { useSduiReducer } from "../_hooks";
 import { SduiContextAction, SduiReducerState } from "../_types/sdui.types";
 
-const INITIAL_SDUI_STATE: SduiReducerState = Object.freeze({ bus: {}, dynamicData: {} });
+const INITIAL_SDUI_STATE: SduiReducerState = Object.freeze({ bus: {}, dynamicData: {}, dynamicStyles: {} });
 const INITIAL_SDUI_DISPATCH = (): null => null;
 const INITIAL_LOADING_STATE = false;
 const INITIAL_SCROLL_STATE = new Animated.Value(0);
