@@ -39,7 +39,7 @@ Feature("Smart Pension", async () => {
     When("I go to earnings", when.tapYuCoinIcon, async () => {
       Then("I am on the earnings page", then.idVisible(ids.TODAYS_EARNINGS))
     })
-    When("I scroll if needed", when.scrollUntilTextVisible(ids.TODAYS_EARNINGS, `£${calculatePensionModalAmount(PensionInfoUser114)} Pension contribution`, "down"), async () => {
+    When("I scroll if needed", when.scrollUntilTextVisible(ids.TODAYS_EARNINGS, `${calculatePensionModalAmount(PensionInfoUser114)}`, "down"), async () => {
       Then("I can see the YuCoin rewarded", then.textVisible("25/12"))
       Then("I can see the modal telling the user to connect isn't visible", then.cannotSeePensionConnectPrompt)
     })
@@ -115,7 +115,7 @@ Feature("Smart Pension", async () => {
     })
     When("I go to earnings", when.tapYuCoinIcon, async () => {
       When("I scroll if needed", when.scrollUntilTextVisible(ids.TODAYS_EARNINGS, "Today's challenges (0/4)", "down"), async () => {
-        Then("I can see the paused contribution modal", then.canSeePausedPensionEarnings(calculatePensionModalAmount(PensionInfoUser114, false)))
+        Then("I can see the paused contribution modal", then.canSeePausedPensionEarnings(calculatePensionModalAmount(PensionInfoUser114)))
       })
     })
     When("I tap manage", when.tapText("Manage"), async () => {

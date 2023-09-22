@@ -44,16 +44,12 @@ export const calculateInProgressContribution = (pensionContribution: PensionCont
     return contribution
 }
 
-export const calculatePensionModalAmount = (pensionContribution: PensionContributionInfo, statusIsActive = true) => {
-    let inProgressContribution = calculateInProgressContribution(pensionContribution)
+export const calculatePensionModalAmount = (pensionContribution: PensionContributionInfo) => {
+    const inProgressContribution = calculateInProgressContribution(pensionContribution)
 
     if (inProgressContribution === 0) {
-        if (!statusIsActive) {
-            return "Pension (Syncing ... )"
-        }
-        
-        inProgressContribution = "0.00"
+        return "Pension (Syncing ... )"
     }
 
-    return `${inProgressContribution}/${calculateDailyContribution(pensionContribution)}`
+    return `£${inProgressContribution}/${calculateDailyContribution(pensionContribution)} Pension contribution`
 }
