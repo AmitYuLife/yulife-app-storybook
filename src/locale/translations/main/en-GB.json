@@ -90,7 +90,8 @@
       "submit": "Submit",
       "later": "Later",
       "connect": "Connect",
-      "connect_health_app": "Connect %{healthApp}"
+      "connect_health_app": "Connect %{healthApp}",
+      "cool": "Cool!"
     }
   },
   "period": {
@@ -110,6 +111,15 @@
     "lower_case": "yucoin",
     "camel_case": "YuCoin",
     "amount": "%{amount} YuCoin"
+  },
+  "yucoin_power": {
+    "yucoin": "YuCoin",
+    "power": "Power",
+    "description": "Potential YuCoin earnings",
+    "tool_tip": {
+      "title": "Potential YuCoin earnings",
+      "description": "Earn this amount of YuCoin every month by completing all four daily challenges (additional challenge unlocked every 50 levels), maxing your daily core activities, opening chests, and completing streaks."
+    }
   },
   "activity_types": {
     "steps": {
