@@ -90,3 +90,7 @@ export const livingDNADeliveryMessages = [
     "Head over to your Living DNA rewards page to view the rest of your rewards journey!"
 ]
 
+// sparkle animation
+
+export const sparkleAnimation = "https://yulife-develop.imgix.net/products/group/rewards/card-stars.png?ixlib=js-3.2.1&s=bf4beba34d32a3c412a95c90caadb320"
+

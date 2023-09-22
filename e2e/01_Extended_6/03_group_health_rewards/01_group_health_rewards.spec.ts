@@ -21,6 +21,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up"), async () => {
             Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("0/6"))
+            Then("I can't see the sparkle animation due to not unlocking it yet", then.idNotVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.sparkleAnimation)))
         })
         When("I scroll until I can see all the progress info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_1, "down"), async () => {
             Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(4))
@@ -55,6 +56,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
                     When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down"), async () => {
                         Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("1/6"))
+                        Then("I can see the sparkle animation due to unlocking the reward", then.idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.sparkleAnimation)))
                     })
                 })
             })
@@ -87,10 +89,19 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 Then("I can see the purchase for today for Urban Massage", then.groupHealthRewardsPurchasedVisible(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS))
             })
         })
+        When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
+            When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
+                When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+                    When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down"), async () => {
+                        Then("I can't see the sparkle animation due to purchasing the reward", then.idNotVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.sparkleAnimation)))
+                    })
+                })
+            })
+        })
             
     })
 
-    Scenario("I can succesfully go through the Ubran Massage GHI Rewards journeys and the GHI hourney levels up when in Yuniversal levels", scenario.start, async () => {
+    Scenario("I can succesfully go through the Urban Massage GHI Rewards journeys and the GHI hourney levels up when in Yuniversal levels", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_117_GHI_REWARDS, data.AUTH_117), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
