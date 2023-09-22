@@ -81,3 +81,4 @@ export { default as YucoinPowerButton } from "./yucoin-power-button/yucoin-power
 export { default as StarRating } from "./star-rating/star-rating";
 export { default as SearchInputWithIcon } from "./search-input-with-icon/search-input-with-icon";
 export { default as ScrollThresholdView } from "./scroll-threshold-view/scroll-threshold-view";
+export { default as YuCoinPowerCard } from "../molecules/yucoin-power-card/yucoin-power-card";

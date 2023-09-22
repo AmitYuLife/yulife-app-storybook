@@ -28,11 +28,10 @@ interface IProps {
 
 const InspectDetailsItem = ({ text, infoText, value, remoteImage, label, showInfoPopup }: IProps) => {
   const questionMarkRef = useRef<View>();
-  const showPopup = useCallback(() => showInfoPopup(questionMarkRef, infoText), [
-    questionMarkRef,
-    infoText,
-    showInfoPopup,
-  ]);
+  const showPopup = useCallback(
+    () => showInfoPopup(questionMarkRef, infoText),
+    [questionMarkRef, infoText, showInfoPopup]
+  );
 
   return (
     <View style={styles.itemWrapper}>
@@ -46,7 +45,12 @@ const InspectDetailsItem = ({ text, infoText, value, remoteImage, label, showInf
         {!infoText ? null : (
           <PressableWithDelay onPress={showPopup}>
             <View ref={questionMarkRef} style={styles.infoWrapper} collapsable={false}>
-              <InfoIcon height={22} width={22} colour={Colours.neutral.n800} filled={false} />
+              <InfoIcon
+                height={Style.adjust(22)}
+                width={Style.adjust(22)}
+                colour={Colours.neutral.n800}
+                filled={false}
+              />
             </View>
           </PressableWithDelay>
         )}
