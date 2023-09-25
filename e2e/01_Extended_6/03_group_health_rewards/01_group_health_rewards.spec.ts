@@ -153,7 +153,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I click to claim my voucher", when.tapText(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS.buttonText), async () => {
             When("I tap confirm", when.tapText(t("Confirm")), async () => {
-                Then("I should see the reward information for Boots and the confirmation", then.onUrbanRewardsClaimPage(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS, false, "10"))
+                Then("I should see the reward information for Urban Massage and the confirmation", then.onUrbanRewardsClaimPage(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS, false, "10"))
             })
         })
         When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
@@ -216,90 +216,25 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I click to see the next reward I want to unlock", when.tapText(constants.groupHealthRewardProgressNames[2]), async () => {
             When("I tap on the Thriva reward", when.tapRewardInList(data.CORE_REWARDS_THRIVA_GHI_REWARDS), async () => {
                 Then("I should be on the rewards page for Thriva", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-                Then("I should see all the reward information for Thriva", then.onThrivaRewardsClaimPage(fixtures.THRIVA_REWARDS_CLAIM_PAGE_DETAILS, true))
+                Then("I should see all the reward information for Thriva", then.onThrivaRewardsClaimPage(fixtures.THRIVA_REWARDS_CLAIM_PAGE_DETAILS, true, 1))
             })
         })
         When("I click to claim my kit", when.tapText(fixtures.THRIVA_REWARDS_CLAIM_PAGE_DETAILS.buttonText), async () => {
-            Then("I appear on the Thriva important notes page", then.importantNotesPageVisible(fixtures.THRIVA_IMPORTANT_NOTES_DETAILS))
-        })
-        When("I click to fill in my details", when.tapText(constants.importantNotesButtonText), async () => {
-            Then("I appear on the Thriva details page", then.thrivaDetailsPageVisible)
-        })
-        When("I type a first name that is too short", when.typeViaID(ids.CONTENT_ITEM_INPUT("firstName"), "J"), async () => {
-            When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("lastName")), async () => {
-                Then("I see a warning about the name being too short", then.textVisible("Must be between 2 and 20 characters"))
+            When("I tap confirm", when.tapText(t("Confirm")), async () => {
+                Then("I should see the reward information for Thriva and the confirmation", then.onThrivaRewardsClaimPage(fixtures.THRIVA_REWARDS_CLAIM_PAGE_DETAILS, false))
             })
         })
-        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("firstName")), async () => {
-            When("I type a first name that is too long", when.typeViaID(ids.CONTENT_ITEM_INPUT("firstName"), "Jamesssssssssssssssss"), async () => {
-                When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("lastName")), async () => {
-                    Then("I see a warning about the name being too long", then.textVisible("Must be between 2 and 20 characters"))
-                })
-            })
-        })
-        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("firstName")), async () => {
-            When("I type a first name that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("firstName"), "James"), async () => {
-                When("I type a last name that is too short", when.typeViaID(ids.CONTENT_ITEM_INPUT("lastName"), "R"), async () => {
-                    When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("address1")), async () => {
-                        Then("I see a warning about the name being too short", then.textVisible("Must be between 2 and 19 characters"))
-                    })
-                })
-            })
-        })
-        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("lastName")), async () => {
-            When("I type a last name that is too long", when.typeViaID(ids.CONTENT_ITEM_INPUT("lastName"), "Rogersssssssssssssss"), async () => {
-                When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("address1")), async () => {
-                    Then("I see a warning about the name being too long", then.textVisible("Must be between 2 and 19 characters"))
-                })
-            })
-        })
-        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("lastName")), async () => {
-            When("I type a last name that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("lastName"), "Rogers"), async () => {
-                When("I enter a DOB", when.chooseCorrectDoB(30), async () => {
-                    When("I tap to select a sex at birth", when.tapID(ids.ARROW_BUTTON), async () => {
-                        Then("I can see the gender options listed", then.genderOptionsVisible)
-                    })
-                })
-            })
-        })
-        When("I select Male", when.tapText(t("Male")), async () => {
-            When("I scroll to the bottom of the page", when.scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, "Submit", "down"), async () => {
-                When("I type a first line address that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("address1"), "Rogers' House"), async () => {
-                    When("I type a town that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("town"), "London"), async () => {
-                        When("I type a postcode that is incorrect", when.typeViaID(ids.CONTENT_ITEM_INPUT("postcode"), "London"), async () => {
-                            When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("email")), async () => {
-                                Then("I see a warning about the postcode not being valid", then.textVisible("Please enter a valid UK postcode"))
-                            })
-                        })
-                    })
-                })
-            })
-        })
-        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("postcode")), async () => {
-            When("I type a good postcode", when.typeViaID(ids.CONTENT_ITEM_INPUT("postcode"), "EC1Y 8RQ"), async () => {
-                When("I type a bad email", when.typeViaID(ids.CONTENT_ITEM_INPUT("email"), "RogerzEmailRulez"), async () => {
-                    When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("postcode")), async () => {
-                        Then("I see a warning about the email not being valid", then.textVisible("Please enter a valid email"))
-                    })
-                })
-            })
-        })
-        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("email")), async () => {
-            When("I type a good randomised email", when.enterRandomisedEmail, async () => {
-                When("I tap to submit", when.tapText("Submit"), async () => {
-                    When("I wait for ten seconds", when.wait(10000), async () => {
-                        Then("I can see the Thriva kit is en route", then.kitOrderedScreenVisible(constants.thrivaSuccessHeader, constants.thrivaDeliveryMessages))
-                    })
-                })
-            })
-        })
-        When("I click the button", when.tapText(t("Got it!")), async () => {
+        When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
             When("I tap on the Thriva reward", when.tapRewardInList(data.CORE_REWARDS_THRIVA_GHI_REWARDS), async () => {
-                Then("I can see I have claimed the reward", then.onThrivaRewardsClaimPage(fixtures.THRIVA_REWARDS_CLAIM_PAGE_DETAILS, false))
+                Then("I should see I've used all my vouchers", then.onThrivaRewardsClaimPage(fixtures.THRIVA_REWARDS_CLAIM_PAGE_DETAILS, true, 0))
             })
         })
-        When("I click to see my voucher", when.tapText(t("View vouchers")), async () => {
-            Then("I can see the purchase for today for Thriva", then.groupHealthRewardsPurchasedVisible(fixtures.THRIVA_REWARDS_CLAIM_PAGE_DETAILS))
+        When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
+            When("I scroll to the top", when.scrollUntilTextVisible(ids.REWARDS_LIST_SCREEN_SCROLL, "Purchased", "up"), async () => {
+                When("I click to see the purchase history", when.tapText(t("Purchased")), async () => {
+                    Then("I can see the purchase for today for Thriva", then.groupHealthRewardsPurchasedVisible(fixtures.THRIVA_REWARDS_CLAIM_PAGE_DETAILS))
+                })
+            })
         })
             
     })

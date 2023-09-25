@@ -160,7 +160,7 @@ export const THRIVA_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS =
     "Of course, it doesn’t just stop there (that’d be silly). In return for your blood sample, you’ll get a GP report back.",
     "You’ll be able to access these documents through your Thriva account — which will be made on your behalf after filling in some details with us. (We’re making it as hassle free as possible, you’re welcome!)",
   ],
-  secondaryHeader: "What Will You Be Tested For?",
+  secondaryHeader: "What will you be tested for?",
   secondaryDescription: [
     "Ferritin C - understand your iron levels, which can affect your energy, sleep, or heart health.",
     "Cholesterol - understand your heart health through this essential fat.",
@@ -168,14 +168,16 @@ export const THRIVA_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS =
     "Creatinine and eGFR - understand your kidney function, another indicator for long-term health.",
     "HbA1c - understand your diabetes risk with your average blood glucose levels."
   ],
-  rewardStepsAmount: 7,
+  rewardStepsAmount: 9,
   rewardSteps: [
     "Claim your reward!",
-    "Fill in your details to get your Thriva account set up, and your test will be shipped to your desired address.",
-    "Check your email, we’ve sent you a link to Thriva’s website.",
-    "Create your Thriva account.",
-    "Your test kit will arrive in 3 – 5 days!",
-    "After you’ve posted the blood sample, the GP report will be accessible on your Thriva account after 10 working days.",
+    "You will be taken to Thriva’s website, thriva.co.",
+    "Add the specialised-for-YuLife Thriva test kit to your cart.",
+    "Secure your checkout by creating your Thriva account.",
+    "Check your email, we’ve sent you the voucher code.",
+    "At checkout, enter your unique voucher code to receive your free kit.",
+    "Your test kit will arrive in 2 – 4 days!",
+    "After you’ve posted the blood sample, the GP report will be accessible on your Thriva account after 2 working days.",
     "Enjoy your health insights!"
   ],
   buttonText: "Claim my kit",

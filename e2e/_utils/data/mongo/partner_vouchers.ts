@@ -26,3 +26,16 @@ export const PARTNER_VOUCHER_2_GARMIN = {
       "__v": 0
     }
 } as IDatabaseItem
+
+export const PARTNER_VOUCHER_3_THRIVA = {
+  type:"mongo",
+  modelName:"partner_vouchers",
+  data: {
+      "code": "Yulife2",
+      "denomination": 1,
+      "partnerId": "THRIVA_FREE_UK",
+      "createdAt": moment().subtract(1, "d").toDate(), 
+      "updatedAt": moment().subtract(1, "d").toDate(),
+      "__v": 0
+    }
+} as IDatabaseItem

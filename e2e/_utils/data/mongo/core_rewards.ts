@@ -1160,11 +1160,11 @@ export const CORE_REWARDS_GARMIN_GHI_REWARDS = {
 } as IDatabaseItem
 
 export const CORE_REWARDS_THRIVA_GHI_REWARDS = {
-    type: "mongo",
-    modelName: "core_rewards",
-    data: {
-        "_id": "64b7b195a85859af773442e4",
-        "loyaltyProgramme": [],
+  type: "mongo",
+  modelName: "core_rewards",
+  data: {
+    "_id": "64b7b195a85859af773442e4",
+    "loyaltyProgramme": [],
     "restrictions": {
       "availableForLabels": [
         "64b7b195a85859af773442e4_tease",
@@ -1187,11 +1187,11 @@ export const CORE_REWARDS_THRIVA_GHI_REWARDS = {
     },
     "claimType": "locked",
     "images": {
-      "detailHeaderKey": "cms/1690888021390_Thriva.png",
-      "listItemImageKey": "cms/1690888021357_Feed Image (1).png",
+      "detailHeaderKey": "imgixGlobal::cms/1690888021390_Thriva.png",
+      "listItemImageKey": "imgixGlobal::cms/1690888021357_Feed Image (1).png",
       "websiteImageKey": ""
     },
-    "rewardProviderId": "thriva",
+    "rewardProviderId": "partnerVoucher",
     "name": {
       "en-GB": "Thriva",
       "es-ES": "Thriva",
@@ -1199,7 +1199,7 @@ export const CORE_REWARDS_THRIVA_GHI_REWARDS = {
     },
     "code": "thriva",
     "description": {
-      "en-GB": "We know. A blood test can sound scary; but let’s be positive — it’s only a little finger prick. What you get in return are insights about your health that can help you make decisions for your future wellbeing. After all, prevention is a whole lot better than cure. \n\n## Your Reward\n\nCongratulations! You’ve unlocked a take-home blood test kit from Thriva worth £73.\n\nOf course, it doesn’t just stop there (that’d be silly). In return for your blood sample, you’ll get a GP report back. \n\nYou’ll be able to access these documents through your Thriva account — which will be made on your behalf after filling in some details with us. (We’re making it as hassle free as possible, you’re welcome!)\n\n## What Will You Be Tested For?\n\n- Ferritin C - understand your iron levels, which can affect your energy, sleep, or heart health.\n- Cholesterol - understand your heart health through this essential fat.\n- Liver profile - understand your liver health as an indicator for long-term health.\n- Creatinine and eGFR - understand your kidney function, another indicator for long-term health.\n- HbA1c - understand your diabetes risk with your average blood glucose levels.- ",
+      "en-GB": "We know. A blood test can sound scary; but let’s B positive — it’s only a little finger prick. What you get in return are insights about your health that can help you make decisions for your future wellbeing. After all, prevention is a whole lot better than cure.\n\n### \n\n### Your reward\n\nCongratulations! You’ve unlocked a take-home blood test kit from Thriva worth £73.\n\nOf course, it doesn’t just stop there (that’d be silly). In return for your blood sample, you’ll get a GP report back. \n\nYou’ll be able to access these documents through your Thriva account — which you will create on your claiming journey.\n\n### \n\n### What will you be tested for?\n\n* Ferritin C - understand your iron levels, which can affect your energy, sleep, or heart health.\n* Cholesterol - understand your heart health through this essential fat.\n* Liver profile - understand your liver health as an indicator for long-term health.\n* Creatinine and eGFR - understand your kidney function, another indicator for long-term health.\n* HbA1c - understand your diabetes risk with your average blood glucose levels.",
       "es-ES": "Lo sabemos. Un análisis de sangre puede dar miedo, pero seamos positivos: es sólo un pequeño pinchazo en el dedo. Lo que obtienes a cambio es información sobre tu salud que puede ayudarte a tomar decisiones para tu bienestar futuro. Al fin y al cabo, más vale prevenir que curar.\n\n## Tu recompensa\n\n¡Enhorabuena! Has desbloqueado un kit de análisis de sangre para llevar a casa de Thriva valorado en 73 £.\n\nPor supuesto, la cosa no acaba aquí (sería una tontería). A cambio de tu muestra de sangre, recibirás un informe médico.\n\nPodrás acceder a estos documentos a través de tu cuenta de Thriva, que se abrirá en tu nombre tras rellenar algunos datos con nosotros. (Te lo ponemos lo más fácil posible, de nada).\n\n## ¿Qué pruebas se le realizarán?\n\n- Ferritina C: conozca sus niveles de hierro, que pueden afectar a su energía, sueño o salud cardiaca.\n- Colesterol: conozca la salud de su corazón a través de esta grasa esencial.\n- Perfil hepático: conozca la salud de su hígado como indicador de su salud a largo plazo.\n- Creatinina y eGFR: conozca su función renal, otro indicador de salud a largo plazo.\n- HbA1c: conozca su riesgo de diabetes gracias a sus niveles medios de glucosa en sangre.",
       "ja-JP": "私たちは知っている。血液検査は怖いと思われるかもしれませんが、前向きに考えましょう。その見返りとして得られるのは、あなたの健康についての洞察であり、将来の健康のための決断に役立つものです。結局のところ、予防は治療に勝るのです。\n\n## ご褒美\n\nおめでとうございます！Thrivaの家庭用血液検査キット73ポンド相当を獲得しました。\n\nもちろん、それだけでは終わりません（バカバカしい）。血液サンプルの見返りとして、GPレポートが戻ってきます。\n\nこれらの書類にはThrivaのアカウントからアクセスすることができます。(私たちはできるだけ手間をかけないようにしています。）\n\n## 何を検査されますか？\n\n- フェリチンC - エネルギー、睡眠、または心臓の健康に影響を与える可能性のある鉄のレベルを把握します。\n- コレステロール-この必須脂肪を通して心臓の健康状態を把握します。\n- 肝臓プロファイル - 長期的な健康の指標として肝臓の健康状態を把握します。\n- クレアチニンとeGFR-長期的な健康のもう一つの指標である腎機能を把握します。\n- HbA1c-平均血糖値から糖尿病リスクを把握します。"
     },
@@ -1213,29 +1213,37 @@ export const CORE_REWARDS_THRIVA_GHI_REWARDS = {
           "ja-JP": "報酬を請求する"
         },
         {
-          "en-GB": "Fill in your details to get your Thriva account set up, and your test will be shipped to your desired address.",
+          "en-GB": "You will be taken to Thriva’s website, thriva.co.",
           "es-ES": "Rellene sus datos para configurar su cuenta Thriva, y su prueba será enviada a la dirección que desee.",
           "ja-JP": "あなたの詳細情報を入力し、Thrivaアカウントを設定すると、テストはあなたの希望する住所に発送されます。"
         },
         {
-          "en-GB": "Check your email, we’ve sent you a link to Thriva’s website.",
+          "en-GB": "Add the specialised-for-YuLife Thriva test kit to your cart.",
           "es-ES": "Comprueba tu correo electrónico, te hemos enviado un enlace al sitio web de Thriva.",
           "ja-JP": "スリバのウェブサイトへのリンクを送りましたので、メールをチェックしてください。"
         },
         {
-          "en-GB": "Create your Thriva account.",
+          "en-GB": "Secure your checkout by creating your Thriva account.",
           "es-ES": "Cree su cuenta Thriva.",
           "ja-JP": "Thrivaアカウントを作成してください。"
         },
         {
-          "en-GB": "Your test kit will arrive in 3 – 5 days!",
+          "en-GB": "Check your email, we’ve sent you the voucher code.",
           "es-ES": "Espere entre 3 y 5 días. Su kit de prueba llegará, ¡se lo prometemos!",
           "ja-JP": "検査キットは3～5日で届きます！"
         },
         {
-          "en-GB": "After you’ve posted the blood sample, the GP report will be accessible on your Thriva account after 10 working days.",
+          "en-GB": "At checkout, enter your unique voucher code to receive your free kit.",
           "es-ES": "Una vez que haya enviado la muestra de sangre, podrá acceder al informe del médico de cabecera en su cuenta de Thriva transcurridos 10 días laborables.\n¡Disfrute de sus conocimientos sobre salud!",
           "ja-JP": "血液サンプルの提出後、10営業日後にあなたのスリヴァ・アカウントからGPレポートにアクセスできるようになります。"
+        },
+        {
+          "en-GB": "Your test kit will arrive in 2 – 4 days!",
+          "ja-JP": "健康への洞察を楽しもう！"
+        },
+        {
+          "en-GB": "After you’ve posted the blood sample, the GP report will be accessible on your Thriva account after 2 working days.",
+          "ja-JP": "血液サンプルの提出後、2営業日後にあなたのスリヴァ・アカウントからGPレポートにアクセスできるようになります。"
         },
         {
           "en-GB": "Enjoy your health insights!",
@@ -1243,7 +1251,7 @@ export const CORE_REWARDS_THRIVA_GHI_REWARDS = {
         }
       ],
       "info": {
-        "en-GB": "Your Reward Journey:",
+        "en-GB": "Your reward journey:",
         "es-ES": "Su viaje de recompensa:",
         "ja-JP": "あなたの報酬の旅"
       }
@@ -1252,17 +1260,21 @@ export const CORE_REWARDS_THRIVA_GHI_REWARDS = {
       {
         "_id": generateRandomMongoId(),
         "yuCoin": 0,
-        "value": 1
+        "value": 1,
+        "providerProductId": "THRIVA_FREE_UK"
       }
     ],
     "createdAt": {
       "$date": "2023-07-19T09:49:09.868Z"
     },
     "updatedAt": {
-      "$date": "2023-08-15T00:33:50.538Z"
+      "$date": "2023-09-22T00:33:50.641Z"
     },
     "__v": 0,
-    "denominationUnit": "Thriva Testing kit",
+    "denominationUnit": {
+      "en-GB": "Thriva Testing kit",
+      "ja-JP": "トリバ検査キット"
+    },
     "copy": {
       "offerSubheading": {
         "en-GB": "Claim it for free!",
@@ -1300,6 +1312,7 @@ export const CORE_REWARDS_THRIVA_GHI_REWARDS = {
         "ja-JP": "報酬を請求する"
       }
     }
-    }
+  }
 } as IDatabaseItem
+
 

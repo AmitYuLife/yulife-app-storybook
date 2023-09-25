@@ -287,42 +287,38 @@ export const groupHealthRewardsPurchasedVisible = (product: GHI_REWARD_CLAIM_PAG
 }
 
 
-export const onThrivaRewardsClaimPage = (product: GHI_REWARD_CLAIM_PAGE_DETAILS, preClaim: boolean) => async () => {
-  const buttonText = preClaim? product.buttonText : "View vouchers"
-
-  product.companyDescription.forEach(description => async () => {
-    await textVisible(description)()
-  })
-
-  await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, product.secondaryHeader, "down")()
-  await textVisible(constants.yourRewardHeader)()
-    product.rewardDescription.forEach(description => async () => {
-      await textVisible(description)()
-    })
+export const onThrivaRewardsClaimPage = (product: GHI_REWARD_CLAIM_PAGE_DETAILS, preClaim: boolean, vouchers?: number) => async () => {
+  const buttonText = preClaim? product.buttonText : constants.claimReward
+  const voucherMessage = vouchers > 0 ? "1 voucher left to claim" : "You’ve claimed all your vouchers!"
 
   if(preClaim){
-    await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, "1 voucher left to claim", "down")()
+    product.companyDescription.forEach(description => async () => {
+      await textVisible(description)()
+    })  
+    await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, product.secondaryHeader, "down")()
+    await textVisible("Your reward")()
+      product.rewardDescription.forEach(description => async () => {
+        await textVisible(description)()
+      })
+    await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, voucherMessage, "down")()
     await textVisible(product.secondaryHeader)()
     product.secondaryDescription.forEach(description => async () => {
       await textVisible(description)()
     })
-    await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, product.buttonText, "down")()
-    await textVisible("1 voucher left to claim")()
-    await textVisible(product.voucherDescription)()
-    await textVisible(`${product.voucherClaimMessage[0]}1${product.voucherClaimMessage[1]}${moment().add(1, "y").format("DD MMM YYYY")}.`)
-    await rewardsClaimPageRewardStepsVisible(product)()
-    await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, buttonText, "down")()
-    await textVisible(buttonText)()
+    if(vouchers > 0){
+      await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, product.buttonText, "down")()
+      await textVisible(product.voucherDescription)()
+      await textVisible(`${product.voucherClaimMessage[0]}1${product.voucherClaimMessage[1]}${moment().add(1, "y").format("DD MMM YYYY")}.`)
+      await rewardsClaimPageRewardStepsVisible(product)()
+      await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, buttonText, "down")()
+      await textVisible(buttonText)()
+    }
   } else {
-
-    await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, "You’ve claimed all your vouchers!", "down")()
-    await textVisible(product.secondaryHeader)()
-    product.secondaryDescription.forEach(description => async () => {
-      await textVisible(description)()
-    })
+    await textVisible(`1 Thriva Testing kit`)()
+    await textVisible(`Purchased date - ${moment().format("DD MMM YYYY")}`)()
+    await textVisible(`Expiry date - ${moment().format("DD MMM YYYY")}`)()
     await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, buttonText, "down")()
-    await textVisible("You’ve claimed all your vouchers!")()
-    await textVisible("For more details, check your email inbox.")()
+    await rewardsClaimPageRewardStepsVisible(product)()
     await textVisible(buttonText)()
       
   }
@@ -448,26 +444,6 @@ export const importantNotesPageVisible = (notes: IMPORTANT_NOTES_PAGE_DETAILS) =
   notes.importantNotes.forEach(note => async () => {
     await textVisible(note)()
   })
-}
-
-
-export const thrivaDetailsPageVisible = async () => {
-  await idVisible(ids.TEXT_TEMPLATE(constants.detailsPageHeading, "h3"))()
-  await idVisible(ids.CONTENT_ITEM_INPUT("firstName"))()
-  await idVisible(ids.CONTENT_ITEM_INPUT("lastName"))()
-  await idVisible(ids.DATE_INPUT)()
-  await idVisible(ids.TEXT_TEMPLATE(constants.thrivaDetailsGender, "l1"))()
-  await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, "Submit", "down")()
-  await idVisible(ids.CONTENT_ITEM_INPUT("address1"))()
-  await idVisible(ids.CONTENT_ITEM_INPUT("address2"))()
-  await idVisible(ids.CONTENT_ITEM_INPUT("town"))()
-  await idVisible(ids.CONTENT_ITEM_INPUT("postcode"))()
-  await idVisible(ids.CONTENT_ITEM_INPUT("email"))()
-
-  await detailsWarningsVisible()
-
-  await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, constants.detailsPageHeading, "up")()  
-  
 }
 
 export const livingDNADetailsPageVisible = async () => {
