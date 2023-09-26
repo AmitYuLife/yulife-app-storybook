@@ -4,7 +4,9 @@ import { Storage, StorageKey } from "@utils/storage";
 
 const MAX_CONFIG_AGE_IN_MINUTES = 60 * 24; // 24 hours
 
-export type REGION = "UK" | "US" | "SA" | "JP";
+export const REGION_LIST = ["UK", "US", "SA", "JP"] as const;
+
+export type REGION = typeof REGION_LIST[number];
 
 type RegionConfig = {
   language: string;
@@ -58,9 +60,10 @@ export class RegionService {
     { key: "JP" as REGION, isEnabled: true, label: "日本 (Japan)" },
   ];
 
-  public getAvailableRegions = () => this.OPTIONS.filter((o) => o.isEnabled);
+  public getAvailableRegions = (limit?: REGION[]) =>
+    this.OPTIONS.filter((o) => o.isEnabled && (!limit || limit.includes(o.key)));
   public getPreferredRegion = () => this.SELECTED_REGION;
-  public getPreferredRegionUri = () => this.API_URLS[this.SELECTED_REGION];
+  public getRegionUri = (region?: REGION) => this.API_URLS[region || this.SELECTED_REGION];
   public getConfig = <Key extends keyof RegionConfig>(key: Key): RegionConfig[Key] => this.REGION_CONFIG?.[key];
 
   public configIsOutdated = () => {

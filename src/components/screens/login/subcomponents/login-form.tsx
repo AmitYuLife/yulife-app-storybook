@@ -4,7 +4,6 @@ import * as Animatable from "react-native-animatable";
 import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD } from "@ids";
 import { Pad, TextTemplate } from "@atoms";
 import { Button, LinkGroup, PressableWithDelay, TextInput, TextInputError } from "@molecules";
-import { ServerDropdown } from "./server-dropdown";
 import { Style } from "@styles";
 import { getModalState } from "@redux/app/app.selectors";
 import { useSelector } from "react-redux";
@@ -105,7 +104,6 @@ export const LoginForm = (props: LoginFormProps) => {
           <Pad height={100} />
           <View style={styles.headingInnerWrapper}>
             <TextTemplate type="h2">{t["screens.login.heading"]}</TextTemplate>
-            <ServerDropdown />
           </View>
         </View>
       )}

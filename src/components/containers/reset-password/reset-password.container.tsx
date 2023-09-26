@@ -1,10 +1,11 @@
-import { GQL_MUTATION_SEND_MAGIC_LINK, SendMagicLinkMutationTuple } from "@graphql/user";
+import { GQL_MUTATION_SEND_MAGIC_LINK } from "@graphql/user";
 import React, { useState, useMemo, FC, useCallback } from "react";
 import { Navigation } from "@navigation/main";
 import { EmailSentScreen, ResetPasswordScreen } from "@screens";
-import { useMutation } from "@apollo/client";
 import Logger from "@services/logging/logger";
 import { validateEmail } from "@utils/email";
+import { useMutatationAllRegions } from "@hooks";
+import { SendMagicLink } from "@graphql/_core/schema";
 
 interface IProps {
   componentId: string;
@@ -19,7 +20,10 @@ const ResetPasswordContainer: FC<IProps> = (props) => {
     wasEmailSent: false,
   });
 
-  const [sendMagicLink, { loading }]: SendMagicLinkMutationTuple = useMutation(GQL_MUTATION_SEND_MAGIC_LINK);
+  const {
+    mutate: sendMagicLink,
+    result: { loading },
+  } = useMutatationAllRegions<SendMagicLink>(GQL_MUTATION_SEND_MAGIC_LINK);
 
   const disableSubmit = useMemo(() => email === "" || emailError !== "", [email, emailError]);
 
@@ -32,7 +36,7 @@ const ResetPasswordContainer: FC<IProps> = (props) => {
           },
         });
 
-        if (results && results.data) {
+        if (results.length > 0) {
           setState({ wasEmailSent: true, emailError, email });
         }
       } catch (e) {

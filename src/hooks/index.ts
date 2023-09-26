@@ -19,3 +19,4 @@ export * from "./useLazyGqlLoading";
 export * from "./useUserFeatures";
 export * from "./useAsyncEffect";
 export * from "./useHint";
+export * from "./useMutationAllRegions";
