@@ -5,6 +5,7 @@ import * as constants from "../_resources/constants"
 import moment from "moment";
 import { GHI_PAGE_INFO, GHI_REWARD_CLAIM_PAGE_DETAILS, GHI_TEASE_PAGE_DETAILS, GHI_VOUCHER_LIST_DETAILS, IMPORTANT_NOTES_PAGE_DETAILS } from "../_resources/types";
 import { screens } from "@appScreens";
+import { readInbox } from "@yu-life/yulife-bdd-framework"
 
 export const {
   scrollUntilTextVisible,
@@ -487,4 +488,20 @@ export const kitOrderedScreenVisible = (header: string, messages: string []) => 
   })
 
   await textVisible(constants.kitOrderedSuccessButtonText)()
+}
+
+export const logInbox = (email: string) => async () => {
+  const inbox = await readInbox(email, true)
+
+  console.log(inbox[0].subject)
+  console.log(inbox[0].text)
+}
+
+export const GHIRewardEmailReceived = (emailAddress: string, emailSubject: string) => async () => {
+  const inbox = await readInbox(emailAddress, true)
+
+  if(inbox[0].subject !== emailSubject) {
+    throw new Error("Email subject is incorrect")
+  }
+  
 }
