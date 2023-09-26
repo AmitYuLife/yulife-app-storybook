@@ -2,18 +2,16 @@ import React, { FC, memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { BUTTON_ICON, TertiaryButton } from "@molecules";
 import { Icon, Pad, TextTemplate } from "@atoms";
-import { region } from "@locale";
+import { REGION, region } from "@locale";
 import { Style } from "@styles";
-import { useDispatch } from "react-redux";
-import { setRegionConfig } from "@redux/app/app.actions";
 import { useTranslation } from "@hooks";
 
 type ServerListProps = {
-  onPress: () => void;
+  onPress: (r: REGION) => void;
+  restrictToRegions: REGION[];
 };
 
-export const ServerList: FC<ServerListProps> = memo(({ onPress }) => {
-  const dispatch = useDispatch();
+export const ServerList: FC<ServerListProps> = memo(({ onPress, restrictToRegions }) => {
   const translations = useTranslation([
     "screens.login.server_location.heading",
     "screens.login.server_location.description",
@@ -27,18 +25,14 @@ export const ServerList: FC<ServerListProps> = memo(({ onPress }) => {
         <TextTemplate type="b2">{translations["screens.login.server_location.description"]}</TextTemplate>
       </View>
 
-      {region.getAvailableRegions().map((o) => {
+      {region.getAvailableRegions(restrictToRegions).map((o) => {
         const Flag = REGION_TO_FLAG_MAPPING[o.key];
         return (
           <View style={styles.button} key={o.key}>
             <TertiaryButton
               size="Fill"
               label={o.label}
-              onPress={() => {
-                region.setRegion(o.key);
-                dispatch(setRegionConfig());
-                onPress();
-              }}
+              onPress={() => onPress(o.key)}
               height={Style.adjust(60)}
               LeftIcon={<Flag />}
               rightIcon={BUTTON_ICON.ARROW_RIGHT}

@@ -303,8 +303,8 @@
       "server_location": {
         "short": "Company location",
         "long": "Please select your company's location",
-        "heading": "Select your company location",
-        "description": "Your reward store items will depend on the location where your company is located"
+        "heading": "Select your region",
+        "description": "We found more than one identity for you. Please choose the region you'd like to login continue to."
       },
       "accessibility": {
         "hide_keyboard": "Hide keyboard",

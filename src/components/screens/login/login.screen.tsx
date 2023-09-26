@@ -1,42 +1,37 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo } from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { useDispatch, useSelector } from "react-redux";
 import { UnauthorisedGradient } from "@atoms";
 import { CentredScreen } from "@molecules";
 import { LoginForm, LoginFormProps } from "./subcomponents/login-form";
-import { getIsAppFreshlyInstalled } from "@redux/device/device.selectors";
-import { markAppAsInstalled } from "@redux/device/device.actions";
 import { ServerList } from "./subcomponents/server-list";
 import { Style } from "@styles";
+import { REGION } from "@locale";
 
-type LoginScreenProps = LoginFormProps;
+type LoginScreenProps = LoginFormProps & {
+  regionSelect?: {
+    onSelect: (region: REGION) => void;
+    restrictTo: REGION[];
+  };
+};
 
-type Page = "region" | "login";
-
-export const LoginScreen = memo((props: LoginScreenProps) => {
-  const dispatch = useDispatch();
-  const isAppFreshlyInstalled = useSelector(getIsAppFreshlyInstalled);
-  const [activePage, setActivePage] = useState<Page>(isAppFreshlyInstalled ? "region" : "login");
-  const setLoginAsActive = useCallback(() => {
-    setActivePage("login");
-    dispatch(markAppAsInstalled());
-  }, []);
-
-  return (
-    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.flex}>
-      <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
-        <CentredScreen
-          backgroundImage={require("@assets/centred-screen/forestBackground.png")}
-          style={styles.wrapper}
-          BackgroundGradient={<UnauthorisedGradient />}
-        >
-          {activePage === "region" ? <ServerList onPress={setLoginAsActive} /> : <LoginForm {...props} />}
-        </CentredScreen>
-      </Animatable.View>
-    </KeyboardAvoidingView>
-  );
-});
+export const LoginScreen = memo((props: LoginScreenProps) => (
+  <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.flex}>
+    <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
+      <CentredScreen
+        backgroundImage={require("@assets/centred-screen/forestBackground.png")}
+        style={styles.wrapper}
+        BackgroundGradient={<UnauthorisedGradient />}
+      >
+        {props.regionSelect ? (
+          <ServerList onPress={props.regionSelect.onSelect} restrictToRegions={props.regionSelect.restrictTo} />
+        ) : (
+          <LoginForm {...props} />
+        )}
+      </CentredScreen>
+    </Animatable.View>
+  </KeyboardAvoidingView>
+));
 
 export default LoginScreen;
 

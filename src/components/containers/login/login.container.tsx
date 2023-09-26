@@ -1,11 +1,10 @@
-import { useMutation } from "@apollo/client";
-import { GQL_MUTATION_LOGIN_USER, LoginUserMutationTuple } from "@graphql/user";
+import { GQL_MUTATION_LOGIN_USER } from "@graphql/user";
 import { bottomTabs, ROUTES } from "@navigation/constants";
 import { setAuthenticatedRoot } from "@navigation/root";
 import { TOKEN_EXPIRATION, SESSION_EXPIRED_ERROR } from "@services/constants";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { Style } from "@styles/index";
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { AccessibilityInfo, Alert, Keyboard, Platform } from "react-native";
 import { useDispatch } from "react-redux";
 import { LoginMethod, IntercomHashMethod } from "@graphql/_core/schema/globalTypes";
@@ -14,15 +13,19 @@ import { loginUserSuccess } from "@redux/user/user.actions";
 import { setToken } from "@services/storage";
 import { LoginScreen } from "@screens";
 import { validatePassword } from "./login.helpers";
-import { t } from "@locale";
+import { REGION, t, region as regionService } from "@locale";
 import { Navigation } from "@navigation/main";
 import { validateEmail } from "@utils/email";
+import { LoginUser } from "@graphql/_core/schema";
+import { setRegionConfig } from "@redux/app/app.actions";
+import { useMutatationAllRegions } from "@hooks";
 
-const trimGraphQLError = (message: string) => message.replace(/^GraphQL error: /, "");
+const trimGraphQLError = (message: string = "") => message.replace(/^GraphQL error: /, "");
 
 interface Props {
   componentId: string;
   otp?: string;
+  region?: REGION;
   email?: string;
   hasSessionExpiredError?: boolean;
 }
@@ -32,6 +35,7 @@ const LoginContainer: React.FC<Props> = ({
   otp,
   email: incomingEmail,
   hasSessionExpiredError = false,
+  region,
 }) => {
   const dispatch = useDispatch();
   const { authorised: fitkitAuthorised, loading: fitkitLoading } = useFitKit();
@@ -44,9 +48,16 @@ const LoginContainer: React.FC<Props> = ({
   const [wasLoginCalled, setWasLogginCalled] = useState(false);
 
   const isFormValid = useMemo(() => !(validateEmail(email) || validatePassword(password)), [email, password]);
-  const [loginUser, { error, loading }]: LoginUserMutationTuple = useMutation(GQL_MUTATION_LOGIN_USER, {
-    fetchPolicy: "no-cache",
-  });
+  const {
+    mutate: loginUser,
+    result: { lastError, loading, data: logins },
+  } = useMutatationAllRegions<LoginUser>(
+    GQL_MUTATION_LOGIN_USER,
+    {
+      fetchPolicy: "no-cache",
+    },
+    region ? [region] : undefined
+  );
 
   const goToNext = useCallback(
     async (authorised: boolean, onboarded: boolean) => {
@@ -103,36 +114,61 @@ const LoginContainer: React.FC<Props> = ({
     [isUsingOtp]
   );
 
-  const onLogIn = useCallback(
-    async (authorised: boolean) => {
-      if (isFormValid || isUsingOtp) {
-        try {
-          const results = await loginUser({
-            variables: {
-              email: email.toLowerCase(),
-              intercomHashMethod: Platform.OS as IntercomHashMethod,
-              method: isUsingOtp ? LoginMethod.OTP : LoginMethod.PASSWORD,
-              password: isUsingOtp ? otp : password,
-              tokenExpiration: TOKEN_EXPIRATION,
-            },
-          });
+  const loginForRegion = useCallback(
+    async (r: REGION, loginOptions = logins) => {
+      // let's persist the region and config
+      regionService.setRegion(r);
+      dispatch(setRegionConfig());
 
-          if (results?.data?.loginUser?.token) {
-            await setToken(results.data.loginUser.token);
-            dispatch(loginUserSuccess(results.data));
+      const needle = loginOptions.find((d) => d.region === r);
+      if (needle?.data?.loginUser?.token) {
+        await setToken(needle.data.loginUser.token);
+        dispatch(loginUserSuccess(needle.data));
 
-            // no need to send the user to healthkit-connect if device is an ipad
-            await goToNext(Style.isIPad() ? true : authorised, results.data.loginUser.user.redeemedOnboarding);
-          } else {
-            handleError(t("screens.login.accessibility.alert_error_default_message"));
-          }
-        } catch (e) {
-          handleError(trimGraphQLError(e?.message));
-        }
+        // no need to send the user to healthkit-connect if device is an ipad
+        await goToNext(Style.isIPad() ? true : fitkitAuthorised, needle.data.loginUser.user.redeemedOnboarding);
+      } else {
+        handleError(t("screens.login.accessibility.alert_error_default_message"));
       }
     },
-    [email, isUsingOtp, password, otp, dispatch, goToNext, isFormValid, loginUser]
+    [logins, fitkitAuthorised, dispatch, setRegionConfig, setToken, goToNext, loginUserSuccess, handleError]
   );
+
+  const onLogIn = useCallback(async () => {
+    if (isFormValid || isUsingOtp) {
+      try {
+        const results = await loginUser({
+          variables: {
+            email: email.toLowerCase(),
+            intercomHashMethod: Platform.OS as IntercomHashMethod,
+            method: isUsingOtp ? LoginMethod.OTP : LoginMethod.PASSWORD,
+            password: isUsingOtp ? otp : password,
+            tokenExpiration: TOKEN_EXPIRATION,
+          },
+        });
+
+        // only 1 hit, login for this region
+        if (results.length === 1) {
+          await loginForRegion(results[0].region, results);
+          return;
+        }
+      } catch (e) {
+        handleError(trimGraphQLError(e?.message));
+      }
+    }
+  }, [
+    email,
+    isUsingOtp,
+    password,
+    otp,
+    dispatch,
+    goToNext,
+    isFormValid,
+    loginUser,
+    logins,
+    isFormValid,
+    loginForRegion,
+  ]);
 
   const onResetPassword = useCallback(async () => {
     await Navigation.push(componentId, {
@@ -157,24 +193,47 @@ const LoginContainer: React.FC<Props> = ({
     setSessionExpiredError("");
   }, []);
 
+  // OTP in use, trigger a login
   // checking for !fitkitLoading to wait until authorised will be assigned,
   // otherwise it will be assigned with undefined
   // that will lead to infinite loading on FitKitConnect screen.
-  if (isUsingOtp && !fitkitLoading && !wasLoginCalled) {
-    setWasLogginCalled(true);
-    onLogIn(fitkitAuthorised);
-  }
+  useEffect(() => {
+    if (isUsingOtp && !fitkitLoading && !wasLoginCalled) {
+      setWasLogginCalled(true);
+      onLogIn();
+    }
+  }, [isUsingOtp, fitkitLoading, wasLoginCalled, setWasLogginCalled]);
+
+  // manage errors
+  useEffect(() => {
+    if (lastError) {
+      handleError(lastError);
+    }
+  }, [lastError, handleError]);
+
+  // if there's more than 1 results, return
+  const regionSelect = useMemo(
+    () =>
+      logins.length > 1
+        ? {
+            restrictTo: logins.map((d) => d.region),
+            onSelect: (r: REGION) => loginForRegion(r),
+          }
+        : undefined,
+    [logins.length, loginForRegion]
+  );
 
   return (
     <LoginScreen
+      regionSelect={regionSelect}
       disabled={!isFormValid || wasLoginCalled}
       email={email}
       emailError={emailError}
       isLoggingIn={loading || wasLoginCalled}
-      loginError={(error && trimGraphQLError(error.message)) || sessionExpiredError}
+      loginError={trimGraphQLError(lastError) || sessionExpiredError}
       onEmailChange={onEmailChange}
       onResetPasswordPress={onResetPassword}
-      onLogInPress={() => onLogIn(fitkitAuthorised)}
+      onLogInPress={() => onLogIn()}
       onPasswordChange={onPasswordChange}
       password={password}
       passwordError={passwordError}
