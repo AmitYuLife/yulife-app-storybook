@@ -59,7 +59,7 @@ function ChallengeDetailsScreenV2({
   const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
 
   useBackHandler(() => {
-    onPressClose();
+    onPressBack();
     return true;
   });
 
