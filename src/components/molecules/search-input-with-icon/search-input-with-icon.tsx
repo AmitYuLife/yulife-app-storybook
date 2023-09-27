@@ -36,6 +36,7 @@ const SearchInputWithIcon = ({ onChangeText, placeholder, wrapperStyles }: IProp
         onFocus={onFocus}
         onBlur={onBlur}
         placeholder={placeholder}
+        placeholderTextColor={Colours.lightGray}
       />
     </View>
   );

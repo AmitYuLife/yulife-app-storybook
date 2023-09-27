@@ -59,6 +59,7 @@ import { QuestionOutlineIcon } from "./question-outline-icon";
 import { SearchIcon } from "./search-icon";
 import { FaqIcon } from "./faq-icon";
 import { HealthAppIcon } from "./health-app-icon";
+import { TrophyIcon } from "./trophy-icon";
 
 export default {
   GlobeIcon,
@@ -124,4 +125,5 @@ export default {
   SearchIcon,
   FaqIcon,
   HealthAppIcon,
+  TrophyIcon,
 };

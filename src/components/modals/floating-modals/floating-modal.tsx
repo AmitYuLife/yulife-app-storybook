@@ -7,6 +7,7 @@ import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import { useTranslation } from "@hooks";
 import { Source } from "react-native-fast-image";
 import { CloseSvg, Image, TextTemplate } from "@atoms";
+import Logger from "@services/logging/logger";
 
 interface IProps {
   closeOverlay?: () => void;
@@ -42,9 +43,10 @@ const FloatingModal = ({
   isCloseButtonSecondary,
   title,
 }: IProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [iconAsset, setIconAsset] = useState<Source>(icon);
   const CloseButton = isCloseButtonSecondary ? SecondaryButton : Button;
   const translation = useTranslation(["labels.cta.close"]);
-  const [iconAsset, setIconAsset] = useState<Source>(icon);
 
   const content = useMemo(() => {
     if (isValidElement(children)) {
@@ -55,9 +57,16 @@ const FloatingModal = ({
     return <Content onClose={closeOverlay} setIcon={setIconAsset} />;
   }, [children, closeOverlay, setIconAsset]);
 
-  const onButtonPress = useCallback(() => {
+  const onButtonPress = useCallback(async () => {
     if (buttonOnPress) {
-      buttonOnPress();
+      try {
+        setIsLoading(true);
+        await buttonOnPress();
+      } catch (err) {
+        Logger.error(err, { location: "floating-modal" });
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     closeOverlay();
@@ -87,6 +96,7 @@ const FloatingModal = ({
             onPress={onButtonPress}
             label={buttonLabel || translation["labels.cta.close"]}
             wrapperStyle={styles.buttonWrapperStyle}
+            isLoading={isLoading}
           />
         )}
         {!showCloseIcon ? null : (

@@ -1,9 +1,9 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { IntercomHashMethod, FitKitType } from "./globalTypes";
+import { IntercomHashMethod, FitKitType, SocialGroupLeaderboardConfigId } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetCurrentUser
@@ -236,11 +236,40 @@ export interface GetCurrentUser_getCurrentUser {
   leaderboards: (GetCurrentUser_getCurrentUser_leaderboards | null)[] | null;
 }
 
+export interface GetCurrentUser_getMobileSocialGroupLeaderboards_leaderboards_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetCurrentUser_getMobileSocialGroupLeaderboards_leaderboards_selectedIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetCurrentUser_getMobileSocialGroupLeaderboards_leaderboards {
+  leaderboardId: string;
+  name: string;
+  description: string;
+  shortDescription: string;
+  consent: boolean;
+  isLocked: boolean;
+  leaderboardConfigId: SocialGroupLeaderboardConfigId;
+  icon: GetCurrentUser_getMobileSocialGroupLeaderboards_leaderboards_icon;
+  selectedIcon: GetCurrentUser_getMobileSocialGroupLeaderboards_leaderboards_selectedIcon;
+}
+
+export interface GetCurrentUser_getMobileSocialGroupLeaderboards {
+  socialGroupId: string;
+  name: string;
+  leaderboards: GetCurrentUser_getMobileSocialGroupLeaderboards_leaderboards[];
+}
+
 export interface GetCurrentUser {
   getDailyPensionContribution: GetCurrentUser_getDailyPensionContribution;
   getMobileHints: GetCurrentUser_getMobileHints[] | null;
   getIntercomHash: string | null;
   getCurrentUser: GetCurrentUser_getCurrentUser | null;
+  getMobileSocialGroupLeaderboards: GetCurrentUser_getMobileSocialGroupLeaderboards[];
 }
 
 export interface GetCurrentUserVariables {

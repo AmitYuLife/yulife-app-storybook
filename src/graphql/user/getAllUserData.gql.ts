@@ -11,6 +11,7 @@ import { AppDataType } from "@redux/user/user.actions";
 import {
   GetDailyPensionContribution_getDailyPensionContribution,
   GetMobileHints_getMobileHints,
+  GetMobileSocialGroupLeaderboards_getMobileSocialGroupLeaderboards,
   GetUserActiveChallenge_getUserActiveChallenge,
   GetUserActiveStreak_getUserActiveStreak,
   GetUserCoinLedger_coinLedger,
@@ -21,6 +22,7 @@ import {
 import { GQL_FRAGMENT_USER_ACTIVE_STREAK } from "@graphql/_fragments/userActiveStreak.gql";
 import { GQL_FRAGMENT_DAILY_PENSION_CONTRIBUTION } from "@graphql/_fragments/dailyPensionContribution.gql";
 import { GQL_FRAGMENT_HINT } from "@graphql/_fragments/hint.gql";
+import { GQL_FRAGMENT_SOCIAL_GROUP } from "@graphql/_fragments/socialGroup.gql";
 
 interface IUserDataQuery {
   type: AppDataType;
@@ -87,6 +89,13 @@ export const DATA_QUERIES: IUserDataQuery[] = [
     query: "getMobileHints",
     fragmentName: "Hint",
   },
+  {
+    type: AppDataType.socialGroups,
+    fragment: GQL_FRAGMENT_SOCIAL_GROUP,
+    alias: "socialGroups",
+    query: "getMobileSocialGroupLeaderboards",
+    fragmentName: "SocialGroup",
+  },
 ];
 
 export const generateQuery = (types: AppDataType[]) => {
@@ -109,6 +118,7 @@ export interface GetAllUserDataResponse {
   [AppDataType.activeChallenge]: GetUserActiveChallenge_getUserActiveChallenge;
   [AppDataType.dailyPension]: GetDailyPensionContribution_getDailyPensionContribution;
   [AppDataType.hints]: GetMobileHints_getMobileHints[];
+  [AppDataType.socialGroups]: GetMobileSocialGroupLeaderboards_getMobileSocialGroupLeaderboards[];
 }
 
 export default function getAllUserData(types: AppDataType[]) {

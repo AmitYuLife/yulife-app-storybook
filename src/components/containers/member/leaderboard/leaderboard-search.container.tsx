@@ -2,7 +2,7 @@ import { LeaderboardSearchScreen } from "@components/screens";
 import { SearchLeaderboardUser, SearchLeaderboardUserVariables } from "@graphql/_core/schema";
 import { GQL_QUERY_SEARCH_LEADERBOARD_USER } from "@graphql/member/searchLeaderboardUser.gql";
 import { useDebouncedQuery } from "@hooks";
-import { MODALS, ROUTES } from "@navigation/constants";
+import { MODALS } from "@navigation/constants";
 import React, { memo, useCallback } from "react";
 import { Navigation } from "react-native-navigation";
 
@@ -11,6 +11,7 @@ export interface ILeaderboardSearchContainerProps {
   subHeading: string;
   socialGroupId?: string;
   socialGroupLeaderboardId?: string;
+  onItemPress?: (userId: string) => void;
 }
 
 const LeaderboardSearchContainer = ({
@@ -18,6 +19,7 @@ const LeaderboardSearchContainer = ({
   subHeading,
   socialGroupId,
   socialGroupLeaderboardId,
+  onItemPress,
 }: ILeaderboardSearchContainerProps) => {
   const [searchLeaderboardUser, { data, loading }] = useDebouncedQuery<
     SearchLeaderboardUser,
@@ -26,17 +28,8 @@ const LeaderboardSearchContainer = ({
     fetchPolicy: "network-only",
   });
 
-  const onItemPress = useCallback((userId: string) => {
-    Navigation.push(ROUTES.leaderboardsLegacy, {
-      component: {
-        id: ROUTES.inspect,
-        name: ROUTES.inspect,
-        passProps: {
-          userId,
-        },
-      },
-    });
-
+  const handlePress = useCallback((userId: string) => {
+    onItemPress?.(userId);
     Navigation.dismissAllModals();
   }, []);
 
@@ -53,7 +46,7 @@ const LeaderboardSearchContainer = ({
       socialGroupId={socialGroupId}
       socialGroupLeaderboardId={socialGroupLeaderboardId}
       searchLeaderboardUser={searchLeaderboardUser}
-      onItemPress={onItemPress}
+      onItemPress={handlePress}
       onClose={onClose}
     />
   );

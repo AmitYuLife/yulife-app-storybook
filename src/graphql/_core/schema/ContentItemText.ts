@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -22,7 +22,7 @@ export interface ContentItemText {
   numberOfLines: number | null;
   styles: ContentItemText_styles[] | null;
   /**
-   * Supported RN version 3.99.0
+   * Supported RN Version 3.100.0
    */
   dynamicStyleKey: string | null;
 }

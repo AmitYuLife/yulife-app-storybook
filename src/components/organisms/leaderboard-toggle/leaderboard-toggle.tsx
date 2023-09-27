@@ -6,25 +6,25 @@ import { Style } from "@styles";
 import { memo, useCallback } from "react";
 import { View, StyleSheet } from "react-native";
 
+export interface IChangeConsentProps {
+  name: string;
+  socialGroupId?: string;
+  leaderboardId: string;
+  consent: boolean;
+}
+
 interface IProps {
   name: string;
   consent?: boolean;
+  socialGroupId?: string;
   leaderboardId?: string;
-  onChangeConsent: ({
-    leaderboardId,
-    consent,
-    name,
-  }: {
-    leaderboardId: string;
-    consent: boolean;
-    name: string;
-  }) => void;
+  onChangeConsent: (consentProps: IChangeConsentProps) => void;
 }
 
-const LeaderboardToggle = ({ onChangeConsent, leaderboardId, name, consent }: IProps) => {
+const LeaderboardToggle = ({ onChangeConsent, socialGroupId, leaderboardId, name, consent }: IProps) => {
   const onToggle = useCallback(() => {
-    onChangeConsent({ leaderboardId, name, consent: !consent });
-  }, [consent, leaderboardId, name, onChangeConsent]);
+    onChangeConsent({ socialGroupId, leaderboardId, name, consent: !consent });
+  }, [consent, socialGroupId, leaderboardId, name, onChangeConsent]);
 
   return (
     <View style={styles.wrapper} testID={SETTINGS_SWITCH(name, !!consent)}>

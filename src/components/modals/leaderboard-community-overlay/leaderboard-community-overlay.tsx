@@ -3,34 +3,38 @@ import { StyleSheet, View } from "react-native";
 import { Radio, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { PressableWithDelay } from "@molecules";
-import { ILeaderboard } from "@redux/user/user.reducer";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
+import { ISocialGroup } from "@redux/leaderboards/leaderboards.reducer";
+import { useSelector } from "react-redux";
+import { getActiveSocialGroup } from "@redux/leaderboards/leaderboards.selectors";
 
 interface IProps {
-  communities: ILeaderboard[];
+  socialGroups: ISocialGroup[];
   onSelect: (id: string) => void;
-  activeLeaderboardId: string;
 }
 
-interface IItem extends ILeaderboard {
+interface IItem {
+  socialGroup: ISocialGroup;
   onPress: () => void;
-  selected: string;
+  selected: boolean;
 }
 
-const LeaderboardCommunityOverlay = ({ activeLeaderboardId, communities, onSelect }: IProps) => {
-  const [selected, setSelected] = useState(activeLeaderboardId || "");
+const LeaderboardCommunityOverlay = ({ socialGroups = [], onSelect }: IProps) => {
+  const activeSocialGroup = useSelector(getActiveSocialGroup);
+  const [selectedSocialGroupId, setSelectedSocialGroupId] = useState(activeSocialGroup?.socialGroupId || "");
+
   return (
     <View style={styles.wrapper}>
       <FlashList
         showsVerticalScrollIndicator={false}
         estimatedItemSize={40}
-        data={(communities || []).map((community) => ({
-          ...community,
+        data={socialGroups.map((socialGroup) => ({
+          socialGroup,
           onPress: () => {
-            setSelected(community.leaderboardId);
-            onSelect(community.leaderboardId);
+            setSelectedSocialGroupId(socialGroup.socialGroupId);
+            onSelect(socialGroup.socialGroupId);
           },
-          selected,
+          selected: socialGroup.socialGroupId === selectedSocialGroupId,
         }))}
         renderItem={renderItem}
         refreshing={false}
@@ -40,12 +44,12 @@ const LeaderboardCommunityOverlay = ({ activeLeaderboardId, communities, onSelec
 };
 
 const renderItem = ({ item }: ListRenderItemInfo<IItem>) => (
-  <PressableWithDelay style={styles.button} key={item.leaderboardId} onPress={item.onPress}>
+  <PressableWithDelay style={styles.button} onPress={item.onPress}>
     <TextTemplate type="b2" textAlign="center">
-      {item.name}
+      {item.socialGroup.name}
     </TextTemplate>
     <View style={styles.radio}>
-      <Radio selected={item.selected === item.leaderboardId} />
+      <Radio selected={item.selected} />
     </View>
   </PressableWithDelay>
 );

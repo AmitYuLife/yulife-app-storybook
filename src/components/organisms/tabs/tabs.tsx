@@ -1,9 +1,9 @@
-import React, { memo, useState } from "react";
+import { Source } from "react-native-fast-image";
+import React, { memo, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { TextTemplate } from "@atoms";
+import { Image, SkeletonLoading, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { PressableWithDelay } from "@molecules";
-import LinearGradient from "react-native-linear-gradient";
 
 interface IIcon {
   width?: number;
@@ -11,57 +11,88 @@ interface IIcon {
   colour?: string;
 }
 
+interface IIcons {
+  icon: Source;
+  selectedIcon: Source;
+  width?: number;
+  height?: number;
+}
+
 export interface IList {
   name: string;
-  Icon: React.MemoExoticComponent<({ width, height, colour }: IIcon) => JSX.Element>;
+  Icon?: React.MemoExoticComponent<({ width, height, colour }: IIcon) => JSX.Element>;
+  icons?: IIcons;
   onPress: () => void;
 }
 
 interface IProps {
   list: IList[];
   defaultTab?: number;
+  isLoading?: boolean;
+  initialLoading?: boolean;
 }
 
-const Tabs = ({ list, defaultTab }: IProps) => {
-  const [selected, setSelected] = useState(list[defaultTab <= list.length - 1 ? defaultTab : 0]?.name);
+const Tabs = ({ list, defaultTab, isLoading }: IProps) => {
+  const [selected, setSelected] = useState("");
+
+  useEffect(() => {
+    setSelected(list[defaultTab <= list?.length - 1 ? defaultTab : 0]?.name);
+  }, [list, defaultTab]);
+
   return (
-    <View>
-      <View style={styles.wrapper}>
-        {list.map(({ name, Icon, onPress }) => {
-          const isSelected = name === selected;
-          const colour = isSelected ? Colours.primary.p600 : "#5C5757";
-          const border = isSelected ? styles.listBorder : {};
-          return (
-            <PressableWithDelay
-              key={name}
-              style={styles.listWrapper}
-              onPress={() => {
+    <View style={styles.wrapper}>
+      {list?.map(({ name, Icon, icons, onPress }) => {
+        const isSelected = name === selected;
+        const colour = isSelected ? Colours.primary.p600 : "#5C5757";
+        const border = isSelected ? styles.listBorder : {};
+
+        return (
+          <PressableWithDelay
+            key={name}
+            style={styles.listWrapper}
+            onPress={() => {
+              if (!isLoading) {
                 setSelected(name);
                 onPress();
-              }}
-            >
-              <View style={[styles.list, border]}>
-                {!Icon ? null : <Icon colour={colour} />}
-                <View style={styles.listName}>
-                  <TextTemplate color={colour} type={isSelected ? "b2b" : "b2"}>
-                    {name}
-                  </TextTemplate>
-                </View>
+              }
+            }}
+          >
+            <View style={[styles.list, border]}>
+              {!Icon ? null : <Icon colour={colour} />}
+              {!icons ? null : (
+                <Image
+                  source={isSelected ? icons.selectedIcon : icons.icon}
+                  width={icons.width}
+                  height={icons.height}
+                />
+              )}
+              <View style={styles.listName}>
+                <TextTemplate color={colour} type={isSelected ? "b2b" : "b2"}>
+                  {name}
+                </TextTemplate>
               </View>
-            </PressableWithDelay>
-          );
-        })}
-      </View>
-      <LinearGradient
-        useAngle={true}
-        angle={180}
-        colors={["#F5F5F5", "#F6F6F6", "#F7F7F7", "#F8F8F8", "#F9F9F9", "#FAFAFA"]}
-        locations={[0.16, 0.16, 0.16, 0.16, 0.16, 0.16]}
-        style={[styles.whiteFade]}
-      />
+            </View>
+          </PressableWithDelay>
+        );
+      })}
     </View>
   );
 };
+
+const TabsLoading = memo(() => (
+  <View style={styles.wrapper}>
+    <View style={styles.listWrapper}>
+      <SkeletonLoading style={styles.loadingList} />
+    </View>
+    <View style={styles.listWrapper}>
+      <SkeletonLoading style={styles.loadingList} />
+    </View>
+  </View>
+));
+
+const _Tabs = ({ list, defaultTab, isLoading, initialLoading }: IProps) => (
+  <View>{initialLoading ? <TabsLoading /> : <Tabs list={list} isLoading={isLoading} defaultTab={defaultTab} />}</View>
+);
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -78,16 +109,16 @@ const styles = StyleSheet.create({
   },
   listBorder: {
     borderBottomColor: Colours.primary.p600,
-    borderBottomWidth: 3,
+    borderBottomWidth: 2,
   },
   listName: {
     marginLeft: Style.adjust(8),
     paddingBottom: Style.adjust(8),
   },
-  whiteFade: {
-    width: "100%",
-    height: Style.adjust(7),
+  loadingList: {
+    width: Style.adjust(72),
+    height: Style.adjust(23),
   },
 });
 
-export default memo(Tabs);
+export default memo(_Tabs);

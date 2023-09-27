@@ -1,0 +1,94 @@
+import React, { memo, useCallback } from "react";
+import { useQuery } from "@apollo/client";
+import { GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS } from "@graphql/socialGroupLeaderboard/getMobileSocialGroupLeaderboardItems";
+import {
+  GetMobileSocialGroupLeaderboardItems,
+  GetMobileSocialGroupLeaderboardItems_getMobileSocialGroupLeaderboardItems as SocialGroupLeaderboardItem,
+} from "@graphql/_core/schema";
+import GenericOverlay from "../generic-overlay/generic-overlay";
+import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
+import { ListItem } from "@organisms";
+import { Platform, StyleSheet, View } from "react-native";
+import { NAV_BAR, Style } from "@styles";
+import { Navigation } from "@navigation/main";
+
+interface IProps {
+  leaderboardId: string;
+  limit: number;
+  targetId: string;
+  onListItemPress: (userId: string, position: number) => void;
+}
+
+const LeaderboardRankModal = ({ leaderboardId, limit, targetId, onListItemPress }: IProps) => {
+  const { data, loading } = useQuery<GetMobileSocialGroupLeaderboardItems>(GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS, {
+    variables: {
+      leaderboardId,
+      limit,
+      targetId,
+    },
+    fetchPolicy: "network-only",
+  });
+
+  const renderItem = useCallback(
+    ({ item, index }: ListRenderItemInfo<SocialGroupLeaderboardItem>) => {
+      return (
+        <ListItem
+          type="leaderboard"
+          onPress={() => onListItemPress(item.id, index + 1)}
+          uri={item?.avatar?.uri}
+          score={item.score}
+          theme={item.userId === targetId ? "highlighted" : null}
+          {...item}
+        />
+      );
+    },
+    [targetId, onListItemPress]
+  );
+
+  return (
+    <GenericOverlay onClose={onClose}>
+      <View style={styles.wrapper}>
+        {loading ? (
+          <ListItemsLoading />
+        ) : (
+          <FlashList
+            showsVerticalScrollIndicator={false}
+            estimatedItemSize={45}
+            scrollEventThrottle={16}
+            contentContainerStyle={styles.listContainer}
+            data={data?.getMobileSocialGroupLeaderboardItems}
+            keyExtractor={keyExtractor}
+            renderItem={renderItem}
+          />
+        )}
+      </View>
+    </GenericOverlay>
+  );
+};
+
+const onClose = () => Navigation.dismissAllModals();
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    paddingHorizontal: Style.adjust(16),
+  },
+  listContainer: {
+    paddingBottom: Platform.select({
+      ios: NAV_BAR.DEFAULT_FULL_HEIGHT - Style.adjust(35),
+      android: NAV_BAR.DEFAULT_FULL_HEIGHT,
+    }),
+  },
+});
+
+const ListItemsLoading = () => (
+  <>
+    {Array.from({ length: 40 }).map((_, index) => (
+      <ListItem key={index} isLoading={true} position={index} type="leaderboard" name={null} uri={null} score={null} />
+    ))}
+  </>
+);
+
+const keyExtractor = (item: SocialGroupLeaderboardItem) => item.id;
+
+export default memo(LeaderboardRankModal);

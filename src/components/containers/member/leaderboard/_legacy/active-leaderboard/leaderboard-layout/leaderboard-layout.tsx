@@ -24,7 +24,7 @@ export const LeaderboardLayout = ({ children }: Props) => {
 
 const openMenu = () => {
   setScreenViewForBurgerMenu();
-  Navigation.mergeOptions(ROUTES.leaderboardsLegacy, {
+  Navigation.mergeOptions(ROUTES.leaderboard, {
     sideMenu: {
       left: {
         enabled: true,

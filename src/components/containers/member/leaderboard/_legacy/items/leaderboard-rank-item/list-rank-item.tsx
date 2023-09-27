@@ -20,7 +20,7 @@ const _ListRankItem = ({
   isCurrentUser = false,
   id = "",
   index,
-  componentId = ROUTES.leaderboardsLegacy,
+  componentId = ROUTES.leaderboard,
 }: ILeaderboardRankItemProps) => {
   const onPress = useCallback(() => {
     Navigation.push(componentId, {

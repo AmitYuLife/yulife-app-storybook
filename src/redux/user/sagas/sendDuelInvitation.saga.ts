@@ -31,7 +31,7 @@ export default function* sendDuelInvitation() {
     yield take(UPDATE_CURRENT_ROUTE);
   }
 
-  const whitelist = [ROUTES.dailySteps, ROUTES.quests, ROUTES.yuScreen, ROUTES.leaderboardsLegacy, ROUTES.rewards];
+  const whitelist = [ROUTES.dailySteps, ROUTES.quests, ROUTES.yuScreen, ROUTES.leaderboard, ROUTES.rewards];
 
   if (duels.length && isDuelsEnabled && whitelist.includes(currentRoute) && !currentModal) {
     const invitation = duels.find((duel) => {

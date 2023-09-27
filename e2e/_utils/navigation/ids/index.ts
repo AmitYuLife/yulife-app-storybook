@@ -176,6 +176,7 @@ export const LEADERBOARD_INFO = "LEADERBOARD_INFO"
 export const LEADERBOARD_TITLE = (title:string) => `LEADERBOARD_TITLE_${title}`
 export const LEADERBOARD_DROPDOWN = "LEADERBOARD_DROPDOWN"
 export const DUELS_BUTTON = "DUELS_BUTTON"
+export const SEARCH_BUTTON = "SEARCH_BUTTON"
 export const GOALS_BUTTON = "GOALS_BUTTON"
 export const LEADERBOARD_SCROLL_LIST = "LEADERBOARD_SCROLL_LIST"
 export const LEADERBOARD_STATUS = (leaderboardName: string, leaderboardStatus: string) => `LEADERBOARD_STATUS_${leaderboardName}_${leaderboardStatus}`

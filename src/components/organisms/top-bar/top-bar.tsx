@@ -1,23 +1,12 @@
-import React from "react";
+import React, { memo } from "react";
 import { getOnboardingReferralsBadge } from "@redux/onboarding/onboarding.selectors";
 import { useSelector } from "react-redux";
 import TopBarView from "./top-bar.view";
 import { TopBarViewProps } from "./top-bar.helpers";
-import { TOP_BAR_HEIGHT } from "./top-bar.styles";
 
 const TopBarContainer = (props: TopBarViewProps) => {
-  const {
-    onPressLeftIcon,
-    timer,
-    leftIcons,
-    name,
-    menuLabel,
-    leftIcon,
-    middleLabel,
-    type,
-    onLayout,
-    rightIcon,
-  } = props;
+  const { onPressLeftIcon, timer, leftIcons, name, menuLabel, leftIcon, middleLabel, type, onLayout, rightIcon } =
+    props;
   const showBadge = useSelector(getOnboardingReferralsBadge);
 
   return (
@@ -37,4 +26,4 @@ const TopBarContainer = (props: TopBarViewProps) => {
   );
 };
 
-export default Object.assign(TopBarContainer, { HEIGHT: TOP_BAR_HEIGHT });
+export default memo(TopBarContainer);

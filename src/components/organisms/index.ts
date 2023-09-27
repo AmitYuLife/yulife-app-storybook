@@ -39,4 +39,6 @@ export { default as ShowAndHideBalance } from "./show-and-hide-balance/show-and-
 export { default as ListItem } from "./list-item/list-item";
 export { default as Tabs } from "./tabs/tabs";
 export { default as Podium } from "./podium/podium";
+export { default as JoinLeaderboard } from "./join-leaderboard/join-leaderboard";
+export { default as LeaderboardFloatingRank } from "./leaderboard-floating-rank/leaderboard-floating-rank";
 export { default as ActivityPanel } from "./activity-panel/activity-panel";

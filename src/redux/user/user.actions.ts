@@ -91,6 +91,7 @@ export enum AppDataType {
   activeChallenge = "activeChallenge",
   dailyPension = "dailyPension",
   hints = "hints",
+  socialGroups = "socialGroups",
 }
 
 export const getUserDataStart = (payload: AppDataType[] = Object.values(AppDataType)) => ({

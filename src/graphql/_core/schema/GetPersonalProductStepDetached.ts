@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -57,7 +57,8 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
     | "ContentItemCollapsingHeaderAgePercentProductInfo"
     | "ContentItemPerks"
     | "ContentItemAppDownloadPrompt"
-    | "ContentItemPerksComparison";
+    | "ContentItemPerksComparison"
+    | "ContentItemRewardsBanner";
 }
 
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPersonalProductFaqs_headingImage_image {
@@ -172,7 +173,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   numberOfLines: number | null;
   styles: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemText_styles[] | null;
   /**
-   * Supported RN version 3.99.0
+   * Supported RN Version 3.100.0
    */
   dynamicStyleKey: string | null;
 }
@@ -232,7 +233,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
     | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_coverPickerTitle_styles[]
     | null;
   /**
-   * Supported RN version 3.99.0
+   * Supported RN Version 3.100.0
    */
   dynamicStyleKey: string | null;
 }

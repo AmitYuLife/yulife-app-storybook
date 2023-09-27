@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { SkeletonLoading, TextTemplate } from "@atoms";
 import { Style, Colours } from "@styles";
@@ -7,18 +7,18 @@ import { LeaderboardPositionIcon } from "@atoms/icon/leaderboard-position-icon";
 import Avatar from "@components/molecules/avatar/avatar";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { ITextTemplateType } from "@atoms/text/text-template";
-import { addCommasToNumber } from "@utils";
 import { AvatarHeadIcon } from "@atoms/icon/avatar-head-icon";
 
 type TypeProps =
   | { type: "leaderboard"; position: number; score: number | string }
   | { type: "search"; position?: never; score?: never };
 
-interface CommonProps {
+interface CommonProps<T> {
   name: string;
   uri: string;
   type: "leaderboard" | "search";
-  onPress?: () => void;
+  onPress?: (data?: T) => void;
+  data?: T;
   theme?: "active" | "highlighted";
   isLoading?: boolean;
 }
@@ -29,11 +29,11 @@ interface IActiveOrHighlighted {
   styles: ViewStyle;
 }
 
-type IProps = CommonProps & TypeProps;
+type IProps<T> = CommonProps<T> & TypeProps;
 
 const POSITION_4 = 4;
 
-export const ListItem = ({ name, uri, type, position, score, onPress, isLoading, theme }: IProps) => {
+export const ListItem = <T,>({ name, uri, type, position, score, onPress, isLoading, theme, data }: IProps<T>) => {
   const isLeaderboard = useMemo(() => type === "leaderboard", [type]);
   const isActiveOrHighlighted = useMemo((): IActiveOrHighlighted => {
     switch (theme) {
@@ -62,6 +62,8 @@ export const ListItem = ({ name, uri, type, position, score, onPress, isLoading,
       }
     }
   }, [theme]);
+
+  const handleOnPress = useCallback(() => (onPress ? onPress(data) : null), [data, onPress]);
 
   const nameLoadingStyle = useMemo(
     () => ({
@@ -92,7 +94,7 @@ export const ListItem = ({ name, uri, type, position, score, onPress, isLoading,
   }
 
   return (
-    <TouchableOpacityWithDelay disabled={!onPress} onPress={onPress}>
+    <TouchableOpacityWithDelay disabled={!onPress} onPress={handleOnPress}>
       <View style={[styles.wrapper, isActiveOrHighlighted.styles]}>
         {!isLeaderboard ? null : (
           <View style={styles.position}>
@@ -116,7 +118,7 @@ export const ListItem = ({ name, uri, type, position, score, onPress, isLoading,
         <View style={styles.score}>
           {isLeaderboard ? (
             <TextTemplate color={isActiveOrHighlighted.colour} type={isActiveOrHighlighted.type}>
-              {typeof score === "number" ? addCommasToNumber(score) : score}
+              {score}
             </TextTemplate>
           ) : (
             <ArrowIcon />

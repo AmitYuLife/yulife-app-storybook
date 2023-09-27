@@ -93,7 +93,7 @@ const ROUTE_MAPPING = Object.freeze({
     accessibilityLabelKey: "navbar.yu.accessibility_label",
     accessibilityTextKey: "navbar.yu.accessibility_text_value",
   },
-  [ROUTES.leaderboardsLegacy]: {
+  [ROUTES.leaderboard]: {
     Component: Trophy,
     accessibilityLabelKey: "navbar.leaderboard.accessibility_label",
     accessibilityTextKey: "navbar.leaderboard.accessibility_text_value",

@@ -6,6 +6,7 @@ import {
 import { IReduxState } from "../_core/reducers";
 import { getAdBanners } from "../ad-banners/ad-banners.selectors";
 import { UserProfileEventStatus } from "@graphql/_core/schema/globalTypes";
+import { shallowEqual } from "react-redux";
 
 export type Connection = GetCurrentUser_getCurrentUser_connections;
 export type Leaderboard = GetCurrentUser_getCurrentUser_leaderboards;
@@ -36,7 +37,11 @@ export const getActiveLeaderboardId = createSelector(reducer, activeLeaderboardI
 
 const activeLeaderboardSelector = (state: State) =>
   state.leaderboards.find((leaderboard) => leaderboard.leaderboardId === state.activeLeaderboardId);
-export const getActiveLeaderboard = createSelector(reducer, activeLeaderboardSelector);
+export const getActiveLeaderboard = createSelector(reducer, activeLeaderboardSelector, {
+  memoizeOptions: {
+    resultEqualityCheck: shallowEqual,
+  },
+});
 
 const currentUserIdSelector = (state: State) => state.id;
 export const getCurrentUserId = createSelector(reducer, currentUserIdSelector);

@@ -6,11 +6,13 @@ import { GetCurrentUser } from "../_core/schema";
 import { IntercomHashMethod } from "../_core/schema/globalTypes";
 import { GQL_FRAGMENT_DAILY_PENSION_CONTRIBUTION } from "@graphql/_fragments/dailyPensionContribution.gql";
 import { GQL_FRAGMENT_HINT } from "@graphql/_fragments/hint.gql";
+import { GQL_FRAGMENT_SOCIAL_GROUP } from "@graphql/_fragments/socialGroup.gql";
 
 export const GQL_QUERY_GET_CURRENT_USER = gql`
   ${GQL_FRAGMENT_USER}
   ${GQL_FRAGMENT_HINT}
   ${GQL_FRAGMENT_DAILY_PENSION_CONTRIBUTION}
+  ${GQL_FRAGMENT_SOCIAL_GROUP}
 
   query GetCurrentUser($intercomHashMethod: IntercomHashMethod!) {
     getDailyPensionContribution {
@@ -22,6 +24,9 @@ export const GQL_QUERY_GET_CURRENT_USER = gql`
     getIntercomHash(method: $intercomHashMethod)
     getCurrentUser {
       ...User
+    }
+    getMobileSocialGroupLeaderboards {
+      ...SocialGroup
     }
   }
 `;
