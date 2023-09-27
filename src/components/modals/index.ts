@@ -23,3 +23,4 @@ export { default as YuniversityCertificateModal } from "./yuniversity-certificat
 export { default as LeaderboardCommunityOverlay } from "./leaderboard-community-overlay/leaderboard-community-overlay";
 export { default as LeaderboardSearchModal } from "./leaderboard-search/leaderboard-search.modal";
 export { default as ChallengeNoDataModal } from "./challenge-no-data/challenge-no-data.modal";
+export { default as JoinLeaderboardOverlay } from "./join-leaderboard-overlay/join-leaderboard-overlay";

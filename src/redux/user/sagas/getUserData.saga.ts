@@ -8,6 +8,7 @@ import { getUserSuccess, setUserNoAccessAction } from "../user.actions";
 import setLoggerIdentity from "./setLoggerIdentity.helper";
 import { updateDailyPensionSuccess } from "@redux/daily-pension/daily-pension.actions";
 import { updateHintsSuccess } from "@redux/hints/hints.actions";
+import { updateSocialGroupLeaderboardsSuccess } from "@redux/leaderboards/leaderboards.actions";
 
 // TODO: Purge when getAllUserData is live
 export default function* getUserDataSaga() {
@@ -36,6 +37,10 @@ export default function* getUserDataSaga() {
 
         if (data?.getMobileHints) {
           yield put(updateHintsSuccess(data.getMobileHints));
+        }
+
+        if (data?.getMobileSocialGroupLeaderboards) {
+          yield put(updateSocialGroupLeaderboardsSuccess(data.getMobileSocialGroupLeaderboards));
         }
       }
     }

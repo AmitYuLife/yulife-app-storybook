@@ -711,7 +711,27 @@
         "duels_button": "Duels",
         "steps": "%{days} day %{metric}",
         "info_copy": "The leaderboards are set to a %{days} day rolling system. That means they show your %{metric} history for just the last %{days} days.\n\nTo get higher up the leaderboard, aim to do more than you did %{days} days ago!",
-        "info_heading": "About Leaderboards"
+        "info_heading": "About Leaderboards", 
+        "communities_info": {
+          "heading": "Communities",
+          "content":"Represents a grouping of users. For example the whole company or a specific department."
+        },
+        "steps_info": {
+          "heading": "Steps Leaderboard",
+          "content":"Our rolling monthly leaderboard where your daily steps count towards your ranking. Each day your step count is added to your total. As a new day begins, the steps from the oldest day are automatically removed, ensuring that your position reflects your most recent activity in a frame of 30 days."
+        },
+        "cycling_info": {
+          "heading": "Cycling Leaderboard",
+          "content":"Our rolling monthly leaderboard where your cycled distance count towards your ranking. Each day your distance is added to your total. As a new day begins, the steps from the oldest day are automatically removed, ensuring that your position reflects your most recent activity in a frame of 30 days."
+        },
+        "yudoku_info": {
+          "heading": "Yudoku Leaderboard",
+          "content":"This leaderboard shows the daily scores achieved by users and will be reset every day."
+        },
+        "opting_info": {
+          "heading": "Opting in & out",
+          "content":"Visit the settings menu to opt out or in at any time for a specific leaderboard."
+        }
       },
       "list": {
         "heading": "Leaderboards"
@@ -723,7 +743,9 @@
         "heading": "Join the Leaderboard?",
         "subheading": "By joining the leaderboard, you are consenting to share details about your activity with other members of this leaderboard.\n\nYou can opt out at any time by tapping the name of the leaderboard and adjusting your settings.",
         "ctaLabel": "Yes",
-        "ctaLabelSecondary": "No thanks"
+        "ctaLabelSecondary": "No thanks",
+        "description": "By joining the leaderboard, you are consenting to share details about your activity with other members of this leaderboard. You can opt out at any time via the settings menu.",
+        "confirm": "Join the Leaderboard"
       },
       "turn_board_off": {
         "ctaLabel": "Keep it on!",
@@ -738,7 +760,8 @@
         "recent": "Recent",
         "friends_not_found": "We couldn’t find the friend you’re\nlooking for.",
         "loading_state": "Looking for results ...",
-        "search_placeholder": "Search Friends"
+        "search_placeholder": "Search Friends",
+        "sub_heading": "Search Leaderboards"
       }
     },
     "fitkit_connect": {

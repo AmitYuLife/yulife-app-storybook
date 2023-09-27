@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -52,7 +52,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemCollapsingHeaderAgePercentProductInfo"
     | "ContentItemPerks"
     | "ContentItemAppDownloadPrompt"
-    | "ContentItemPerksComparison";
+    | "ContentItemPerksComparison"
+    | "ContentItemRewardsBanner";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation {
@@ -284,7 +285,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemT
   numberOfLines: number | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemText_styles[] | null;
   /**
-   * Supported RN version 3.99.0
+   * Supported RN Version 3.100.0
    */
   dynamicStyleKey: string | null;
 }
@@ -748,7 +749,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemC
   numberOfLines: number | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_coverPickerTitle_styles[] | null;
   /**
-   * Supported RN version 3.99.0
+   * Supported RN Version 3.100.0
    */
   dynamicStyleKey: string | null;
 }
@@ -1847,7 +1848,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemPerks"
     | "ContentItemAppDownloadPrompt"
     | "ContentItemPerksComparison"
-    | "ContentItemDropdownInput";
+    | "ContentItemDropdownInput"
+    | "ContentItemRewardsBanner";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -2136,7 +2138,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemPerks"
     | "ContentItemAppDownloadPrompt"
     | "ContentItemPerksComparison"
-    | "ContentItemDropdownInput";
+    | "ContentItemDropdownInput"
+    | "ContentItemRewardsBanner";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
@@ -2349,7 +2352,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemPerks"
     | "ContentItemAppDownloadPrompt"
     | "ContentItemPerksComparison"
-    | "ContentItemDropdownInput";
+    | "ContentItemDropdownInput"
+    | "ContentItemRewardsBanner";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {
@@ -2733,7 +2737,8 @@ export interface GetPersonalProductStep_getPersonalProductStep {
    */
   header: (GetPersonalProductStep_getPersonalProductStep_header | null)[] | null;
   /**
-   * Content that just sits on the screen. Anywhere you want. Be careful with this powerful tool. Not supported by detached steps.
+   * Content that just sits on the screen. Anywhere you want. Be careful with this
+   * powerful tool. Not supported by detached steps.
    */
   absolute: (GetPersonalProductStep_getPersonalProductStep_absolute | null)[] | null;
 }

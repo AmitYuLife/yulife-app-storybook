@@ -28,6 +28,10 @@ export const ROUTES = {
   duelsHub: "yulife.member.DuelsHub",
   duelsSearch: "yulife.member.DuelsSearch",
 
+  // leaderboard
+  leaderboard: "yulife.member.Leaderboards",
+  leaderboardInfo: "yulife.member.LeaderboardInfo",
+
   // leaderboard legacy
   leaderboardsLegacy: "yulife.member.Leaderboards.legacy",
   leaderboardInfoLegacy: "yulife.member.LeaderboardInfo.legacy",
@@ -57,6 +61,7 @@ export const ROUTES = {
   languageSelector: "yulife.member.languageSelector",
   permissions: "yulife.member.permissions",
   leaderboardSettings: "yulife.member.leaderboardSettings",
+  leaderboardSettingsNew: "yulife.member.leaderboardSettingsNew",
 
   // yuniversity
   yuniversityQuiz: "yulife.member.yuniversityQuiz",
@@ -165,6 +170,8 @@ export const MODALS = {
   leaderboardCommunityOverlay: "yulife.overlay.leaderboardCommunity",
   challengeNoData: "yulife.modals.challengeNoData",
   leaderboardSearch: "yulife.modals.leaderboardSearch",
+  joinLeaderboardOverlay: "yulife.overlay.joinLeaderboard",
+  leaderboardRank: "yulife.modals.leaderboardRank",
 };
 
 export const bottomTabs: OptionsBottomTabs = {

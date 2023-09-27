@@ -12,6 +12,7 @@ import dailyPension from "./0010_daily_pension";
 import addLocale from "./0011_add_locale";
 import addFullName from "./0012_add_full_name";
 import addLeaderboard from "./0013_add_leaderboard";
+import addSocialGroupLeaderboards from "./0014_add_social_group_leaderboards";
 
 export const migrations = {
   "0": initial,
@@ -28,4 +29,5 @@ export const migrations = {
   "11": addLocale,
   "12": addFullName,
   "13": addLeaderboard,
+  "14": addSocialGroupLeaderboards,
 };

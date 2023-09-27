@@ -30,7 +30,7 @@ const ActiveLeaderboardContainer = (props: Props) => {
 
   const [, { data, loading, networkStatus, refetch }] = useQueryOnScreenSeen<GetLeaderboard, GetLeaderboardVariables>(
     GQL_QUERY_LEADERBOARD,
-    ROUTES.leaderboardsLegacy,
+    ROUTES.leaderboard,
     {
       variables: {
         leaderboardId: activeLeaderboard?.leaderboardId,

@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -58,7 +58,8 @@ export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepD
     | "ContentItemPerks"
     | "ContentItemAppDownloadPrompt"
     | "ContentItemPerksComparison"
-    | "ContentItemDropdownInput";
+    | "ContentItemDropdownInput"
+    | "ContentItemRewardsBanner";
 }
 
 export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepDetachedDocuments_body_ContentItemPersonalProductDocuments_headingImage_image {

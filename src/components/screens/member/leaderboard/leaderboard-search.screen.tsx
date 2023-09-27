@@ -57,10 +57,15 @@ const LeaderboardSearchScreen = ({
         return;
       }
 
-      await searchLeaderboardUser({ name: text, socialGroupId, socialGroupLeaderboardId });
+      searchLeaderboardUser({ name: text, socialGroupId, socialGroupLeaderboardId });
     },
     [searchLeaderboardUser, socialGroupId, socialGroupLeaderboardId]
   );
+
+  const handleClose = useCallback(() => {
+    Keyboard.dismiss();
+    onClose();
+  }, [onClose]);
 
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<SearchLeaderboardUser_searchLeaderboardUser>) => (
@@ -83,7 +88,9 @@ const LeaderboardSearchScreen = ({
   const Heading = useMemo(
     () => (
       <View style={styles.heading}>
-        <TextTemplate type="l1">{heading}</TextTemplate>
+        <TextTemplate type="l1" numberOfLines={1}>
+          {heading}
+        </TextTemplate>
         <TextTemplate type="b2b">{subHeading}</TextTemplate>
       </View>
     ),
@@ -125,7 +132,7 @@ const LeaderboardSearchScreen = ({
           keyboardShouldPersistTaps="handled"
         />
       )}
-      <GenericHeadingAbsolute onRightIconPress={onClose} heading={Heading} />
+      <GenericHeadingAbsolute onRightIconPress={handleClose} heading={Heading} />
     </KeyboardAvoidingView>
   );
 };

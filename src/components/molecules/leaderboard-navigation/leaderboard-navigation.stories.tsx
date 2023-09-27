@@ -12,11 +12,12 @@ const meta: Meta<typeof LeaderboardNavigation> = {
     },
   },
   args: {
-    activeLeaderboard: {
-      days: 30,
+    activeSocialGroup: {
+      socialGroupId: "test",
       name: "Yulife",
+      leaderboards: [],
     },
-    metricName: "test",
+    description: "test",
     showDuels: true,
   },
 };

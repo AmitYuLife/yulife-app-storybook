@@ -1,16 +1,55 @@
 import { REHYDRATE } from "redux-persist";
 import { SyncAction } from "@redux/_core/types";
-import { SearchLeaderboardUser_searchLeaderboardUser as SearchItem } from "@graphql/_core/schema";
-import { ADD_RECENT_SEARCH_ITEM } from "./leaderboards.actions";
+import {
+  SearchLeaderboardUser_searchLeaderboardUser as SearchItem,
+  GetMobileSocialGroupLeaderboards_getMobileSocialGroupLeaderboards as ISocialGroupData,
+} from "@graphql/_core/schema";
+import {
+  ADD_RECENT_SEARCH_ITEM,
+  UPDATE_SOCIAL_GROUP_LEADERBOARDS_SUCCESS,
+  UPDATE_ACTIVE_SOCIAL_GROUP_ID,
+  UPDATE_ACTIVE_SOCIAL_GROUP_LEADERBOARD_ID,
+  UPDATE_SOCIAL_GROUP_LEADERBOARD_CONSENTS,
+} from "./leaderboards.actions";
 
 const MAX_SEARCH_ITEMS = 50;
 
+export interface ISocialGroupLeaderboard {
+  leaderboardId: string;
+  name: string;
+  description: string;
+  shortDescription: string;
+  leaderboardConfigId: string;
+  consent: boolean;
+  isLocked: boolean;
+  icon: {
+    id: string;
+    uri: string;
+  };
+  selectedIcon: {
+    id: string;
+    uri: string;
+  };
+}
+
+export interface ISocialGroup {
+  socialGroupId: string;
+  name: string;
+  leaderboards: ISocialGroupLeaderboard[];
+}
+
 export interface ILeaderboardsStore {
+  socialGroups: ISocialGroup[];
+  activeSocialGroupId: string;
+  activeLeaderboardId: string;
   recentSearch: SearchItem[];
 }
 
 export const getInitialState = (): ILeaderboardsStore => ({
+  socialGroups: [],
   recentSearch: [],
+  activeSocialGroupId: null,
+  activeLeaderboardId: null,
 });
 
 const leaderboardReducer = (state: ILeaderboardsStore = getInitialState(), action: SyncAction): ILeaderboardsStore => {
@@ -25,10 +64,24 @@ const leaderboardReducer = (state: ILeaderboardsStore = getInitialState(), actio
     case ADD_RECENT_SEARCH_ITEM:
       return addRecent(state, action.payload);
 
+    case UPDATE_SOCIAL_GROUP_LEADERBOARDS_SUCCESS:
+      return updateSocialGroupLeaderboardsSuccess(state, action.payload);
+
+    case UPDATE_ACTIVE_SOCIAL_GROUP_ID:
+      return updateActiveSocialGroupId(state, action.payload);
+
+    case UPDATE_ACTIVE_SOCIAL_GROUP_LEADERBOARD_ID:
+      return updateActiveSocialGroupLeaderboardId(state, action.payload);
+
+    case UPDATE_SOCIAL_GROUP_LEADERBOARD_CONSENTS:
+      return updateSocialGroupLeaderboardConsents(state, action.payload);
+
     default:
       return state;
   }
 };
+
+export default leaderboardReducer;
 
 const addRecent = (state: ILeaderboardsStore, { item: searchItem }: { item: SearchItem }) => {
   const filteredSearchItems = state?.recentSearch ? state.recentSearch.filter((item) => item.id !== searchItem.id) : [];
@@ -39,4 +92,104 @@ const addRecent = (state: ILeaderboardsStore, { item: searchItem }: { item: Sear
   return { ...state, recentSearch: [searchItem, ...filteredSearchItems] };
 };
 
-export default leaderboardReducer;
+const updateSocialGroupLeaderboardsSuccess = (state: ILeaderboardsStore, socialGroupsData: ISocialGroupData[]) => {
+  const activeLeaderboardConfigId = state.socialGroups
+    ?.find((socialGroup) => socialGroup.socialGroupId === state.activeSocialGroupId)
+    ?.leaderboards?.find((leaderboard) => leaderboard.leaderboardId === state.activeLeaderboardId)?.leaderboardConfigId;
+
+  const selectedSocialGroup =
+    socialGroupsData?.find((socialGroup) => socialGroup.socialGroupId === state.activeSocialGroupId) ||
+    socialGroupsData[0];
+  const selectedLeaderboard =
+    selectedSocialGroup?.leaderboards?.find((leaderboard) => leaderboard.leaderboardId === state.activeLeaderboardId) ||
+    selectedSocialGroup?.leaderboards?.find(
+      (leaderboard) => leaderboard.leaderboardConfigId === activeLeaderboardConfigId
+    ) ||
+    selectedSocialGroup?.leaderboards?.[0];
+
+  const socialGroups: ISocialGroup[] = socialGroupsData;
+
+  return {
+    ...state,
+    socialGroups,
+    activeSocialGroupId: selectedSocialGroup?.socialGroupId || null,
+    activeLeaderboardId: selectedLeaderboard?.leaderboardId || null,
+  };
+};
+
+const updateActiveSocialGroupId = (state: ILeaderboardsStore, socialGroupId: string) => {
+  if (socialGroupId === state.activeSocialGroupId) {
+    return state;
+  }
+
+  const activeLeaderboardConfigId = state.socialGroups
+    ?.find((socialGroup) => socialGroup.socialGroupId === state.activeSocialGroupId)
+    ?.leaderboards?.find((leaderboard) => leaderboard.leaderboardId === state.activeLeaderboardId)?.leaderboardConfigId;
+
+  const selectedSocialGroup = state.socialGroups?.find((socialGroup) => socialGroup.socialGroupId === socialGroupId);
+  const selectedLeaderboard =
+    selectedSocialGroup?.leaderboards?.find(
+      (leaderboard) => leaderboard.leaderboardConfigId === activeLeaderboardConfigId
+    ) || selectedSocialGroup?.leaderboards?.[0];
+
+  return {
+    ...state,
+    activeSocialGroupId: selectedSocialGroup?.socialGroupId || null,
+    activeLeaderboardId: selectedLeaderboard?.leaderboardId || null,
+  };
+};
+
+const updateActiveSocialGroupLeaderboardId = (state: ILeaderboardsStore, leaderboardId: string) => {
+  if (leaderboardId === state.activeLeaderboardId) {
+    return state;
+  }
+
+  const selectedSocialGroup = state.socialGroups?.find(
+    (socialGroup) => socialGroup.socialGroupId === state.activeSocialGroupId
+  );
+  const selectedLeaderboard = selectedSocialGroup?.leaderboards?.find(
+    (leaderboard) => leaderboard.leaderboardId === leaderboardId
+  );
+
+  return {
+    ...state,
+    activeLeaderboardId: selectedLeaderboard?.leaderboardId || null,
+  };
+};
+
+export interface IUpdateSocialGroupLeaderboardConsent {
+  socialGroupId: string;
+  leaderboards: {
+    leaderboardId: string;
+    consent: boolean;
+  }[];
+}
+
+const updateSocialGroupLeaderboardConsents = (
+  state: ILeaderboardsStore,
+  payload: IUpdateSocialGroupLeaderboardConsent
+) => {
+  const { socialGroupId, leaderboards } = payload;
+  const leaderboardMap = new Map(leaderboards.map((leaderboard) => [leaderboard.leaderboardId, leaderboard.consent]));
+  const selectedSocialGroupIndex = state.socialGroups.findIndex(
+    (socialGroup) => socialGroup.socialGroupId === socialGroupId
+  );
+
+  state.socialGroups[selectedSocialGroupIndex].leaderboards = state.socialGroups[
+    selectedSocialGroupIndex
+  ]?.leaderboards.map((leaderboard) => {
+    if (leaderboardMap.has(leaderboard.leaderboardId)) {
+      return {
+        ...leaderboard,
+        consent: leaderboardMap.get(leaderboard.leaderboardId),
+      };
+    }
+
+    return leaderboard;
+  });
+
+  return {
+    ...state,
+    socialGroups: [...state.socialGroups],
+  };
+};

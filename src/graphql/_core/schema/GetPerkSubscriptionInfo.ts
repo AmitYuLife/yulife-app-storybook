@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -67,7 +67,7 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
   numberOfLines: number | null;
   styles: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemText_styles[] | null;
   /**
-   * Supported RN version 3.99.0
+   * Supported RN Version 3.100.0
    */
   dynamicStyleKey: string | null;
 }

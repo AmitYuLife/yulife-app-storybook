@@ -89,10 +89,10 @@ export const labels = [
     },
   },
   {
-    id: ROUTES.leaderboardsLegacy,
+    id: ROUTES.leaderboard,
     name: "leaderboard",
     onPress: () => {
-      Navigation.mergeOptions(ROUTES.leaderboardsLegacy, {
+      Navigation.mergeOptions(ROUTES.leaderboard, {
         bottomTabs: {
           currentTabIndex: 3,
         },
@@ -176,8 +176,8 @@ export async function setAuthenticatedRoot(dispatchAuthenticatedEvent?: () => vo
                   children: [
                     {
                       component: {
-                        id: ROUTES.leaderboardsLegacy,
-                        name: ROUTES.leaderboardsLegacy,
+                        id: ROUTES.leaderboard,
+                        name: ROUTES.leaderboard,
                         options: { bottomTabs },
                       },
                     },
@@ -368,7 +368,7 @@ export async function setDuelsScreen(currentRoute: string) {
   }
 
   await labels[3].onPress();
-  await pushToScreen(ROUTES.leaderboardsLegacy, {
+  await pushToScreen(ROUTES.leaderboard, {
     component: {
       id: ROUTES.duelsHub,
       name: ROUTES.duelsHub,

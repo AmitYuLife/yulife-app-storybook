@@ -21,33 +21,21 @@ const meta: Meta<typeof LeaderboardCommunityOverlay> = {
     ),
   ],
   args: {
-    communities: [
+    socialGroups: [
       {
         name: "All company",
-        leaderboardId: "all-company",
-        consent: true,
-        days: 30,
-        hasAccepted: true,
-        inviteFrom: null,
-        metric: "steps",
+        socialGroupId: "test-1",
+        leaderboards: [],
       },
       {
         name: "Product and Tech",
-        leaderboardId: "product-and-tech",
-        consent: true,
-        days: 30,
-        hasAccepted: true,
-        inviteFrom: null,
-        metric: "steps",
+        socialGroupId: "test-2",
+        leaderboards: [],
       },
       {
         name: "Game Squad",
-        leaderboardId: "game-squad",
-        consent: true,
-        days: 30,
-        hasAccepted: true,
-        inviteFrom: null,
-        metric: "steps",
+        socialGroupId: "test-3",
+        leaderboards: [],
       },
     ],
   },
@@ -58,10 +46,4 @@ type Story = StoryObj<typeof LeaderboardCommunityOverlay>;
 
 export const Default: Story = {
   args: {},
-};
-
-export const DefaultSelected: Story = {
-  args: {
-    activeLeaderboardId: "all-company",
-  },
 };

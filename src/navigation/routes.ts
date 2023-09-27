@@ -151,6 +151,18 @@ const routesForRegistration = [
     component: require("../components/containers/member/yuniversity/yuniversity-courses.container").default,
   },
 
+  // Leaderboard
+  {
+    hasMenu: true,
+    renderAfterMs: 450,
+    name: ROUTES.leaderboard,
+    component: require("../components/containers/member/leaderboard").default,
+  },
+  {
+    name: ROUTES.leaderboardInfo,
+    component: require("../components/containers/member/leaderboard/leaderboard-info/leaderboard-info").default,
+  },
+
   // Leaderboard legacy
   {
     hasMenu: true,
@@ -257,6 +269,11 @@ const routesForRegistration = [
   {
     name: ROUTES.leaderboardSettings,
     component: require("../components/containers/member/leaderboard-settings/leaderboard-settings.container").default,
+  },
+  {
+    name: ROUTES.leaderboardSettingsNew,
+    component: require("../components/containers/member/leaderboard-settings-new/leaderboard-settings.container")
+      .default,
   },
 
   // quests screens
@@ -479,6 +496,14 @@ const routesForRegistration = [
   {
     name: MODALS.leaderboardSearch,
     component: require("../components/modals/leaderboard-search/leaderboard-search.modal").default,
+  },
+  {
+    name: MODALS.joinLeaderboardOverlay,
+    component: require("../components/modals/join-leaderboard-overlay/join-leaderboard-overlay").default,
+  },
+  {
+    name: MODALS.leaderboardRank,
+    component: require("../components/modals/leaderboard-rank-modal/leaderboard-rank-modal").default,
   },
 ];
 

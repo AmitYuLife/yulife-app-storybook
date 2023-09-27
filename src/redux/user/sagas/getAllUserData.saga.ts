@@ -15,6 +15,7 @@ import {
 import { Action } from "redux";
 import { updateDailyPensionSuccess } from "@redux/daily-pension/daily-pension.actions";
 import { updateHintsSuccess } from "@redux/hints/hints.actions";
+import { updateSocialGroupLeaderboardsSuccess } from "@redux/leaderboards/leaderboards.actions";
 
 const SUCCESS_ACTIONS: Record<AppDataType, (data: GetAllUserDataResponse[AppDataType]) => Action> = {
   [AppDataType.activeChallenge]: getUserActiveChallengeSuccess,
@@ -25,6 +26,7 @@ const SUCCESS_ACTIONS: Record<AppDataType, (data: GetAllUserDataResponse[AppData
   [AppDataType.passiveChallengesEarnRate]: getUserPassiveChallengesEarnRateSuccess,
   [AppDataType.dailyPension]: updateDailyPensionSuccess,
   [AppDataType.hints]: updateHintsSuccess,
+  [AppDataType.socialGroups]: updateSocialGroupLeaderboardsSuccess,
 };
 
 export default function* getAllUserDataSaga({ payload }: { payload: AppDataType[] } & Action<AppDataType>) {

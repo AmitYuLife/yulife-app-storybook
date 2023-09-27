@@ -11,6 +11,7 @@ interface Props {
   width?: number;
   emptyHeight?: number;
   emptyWidth?: number;
+  suppressLoadingUi?: boolean;
 }
 
 export const BODY_AVATAR_HEIGHT = Style.SCALE_UP_AND_DOWN(128.5);
@@ -26,12 +27,22 @@ function _Yumoji({
   width = BODY_AVATAR_WIDTH,
   emptyHeight = EMPTY_BODY_AVATAR_HEIGHT,
   emptyWidth = EMPTY_BODY_AVATAR_WIDTH,
+  suppressLoadingUi,
 }: Props) {
   if (!uri) {
     return <EmptyMaleBody height={emptyHeight} width={emptyWidth} />;
   }
 
-  return <Image testID={testID} width={width} height={height} source={{ uri }} theme={theme} />;
+  return (
+    <Image
+      testID={testID}
+      suppressLoadingUi={suppressLoadingUi}
+      width={width}
+      height={height}
+      source={{ uri }}
+      theme={theme}
+    />
+  );
 }
 
 const MemoizedYumoji = React.memo(_Yumoji);

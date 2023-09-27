@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -246,7 +246,7 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemText {
   numberOfLines: number | null;
   styles: GetSduiJourney_getSduiJourney_body_ContentItemText_styles[] | null;
   /**
-   * Supported RN version 3.99.0
+   * Supported RN Version 3.100.0
    */
   dynamicStyleKey: string | null;
 }
@@ -786,15 +786,15 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemWrapper {
    */
   scrollViewProps: string | null;
   /**
-   * Supported RN version 3.99.0
+   * Supported RN Version 3.100.0
    */
   dynamicStyleKey: string | null;
   /**
-   * Supported RN version 3.99.0
+   * Supported RN Version 3.100.0
    */
   localDispatchActions: GetSduiJourney_getSduiJourney_body_ContentItemWrapper_localDispatchActions[] | null;
   /**
-   * Supported RN version 3.99.0
+   * Supported RN Version 3.100.0
    */
   localDispatchActionsOnMount:
     | GetSduiJourney_getSduiJourney_body_ContentItemWrapper_localDispatchActionsOnMount[]
@@ -1239,7 +1239,7 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemText {
   numberOfLines: number | null;
   styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemText_styles[] | null;
   /**
-   * Supported RN version 3.99.0
+   * Supported RN Version 3.100.0
    */
   dynamicStyleKey: string | null;
 }
@@ -1781,15 +1781,15 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper 
    */
   scrollViewProps: string | null;
   /**
-   * Supported RN version 3.99.0
+   * Supported RN Version 3.100.0
    */
   dynamicStyleKey: string | null;
   /**
-   * Supported RN version 3.99.0
+   * Supported RN Version 3.100.0
    */
   localDispatchActions: GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper_localDispatchActions[] | null;
   /**
-   * Supported RN version 3.99.0
+   * Supported RN Version 3.100.0
    */
   localDispatchActionsOnMount:
     | GetSduiJourney_getSduiJourney_absolute_item_ContentItemWrapper_localDispatchActionsOnMount[]

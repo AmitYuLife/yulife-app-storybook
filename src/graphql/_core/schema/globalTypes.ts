@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -235,6 +235,11 @@ export enum SduiActionType {
   SDUI_ACTION_UPDATE_DYNAMIC_STYLES = "SDUI_ACTION_UPDATE_DYNAMIC_STYLES",
 }
 
+export enum SocialGroupLeaderboardConfigId {
+  dailysudoku = "dailysudoku",
+  steps30days = "steps30days",
+}
+
 export enum SubmitSduiJourneyAction {
   POP = "POP",
   PUSH = "PUSH",
@@ -376,6 +381,11 @@ export interface SampleDebugDataSource {
   bundleIdentifier?: string | null;
   name?: string | null;
   version?: string | null;
+}
+
+export interface SocialLeaderboardConstent {
+  id: string;
+  consent: boolean;
 }
 
 export interface SubscribeToPerkField {
