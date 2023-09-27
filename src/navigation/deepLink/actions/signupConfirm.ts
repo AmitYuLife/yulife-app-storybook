@@ -8,6 +8,7 @@ export const signUpConfirm: DeepLinkHandler = {
   name: "signup/confirm",
   unauthorisedOnly: true,
   action: ({ customParams }) => {
+    // TODO: handle log in user in a saga
     if (customParams?.region) {
       const valid = region.OPTIONS.find((o) => o.key === customParams.region);
 

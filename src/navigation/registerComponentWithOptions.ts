@@ -19,7 +19,7 @@ export const registerComponentWithOptions = (requiredParams: RequiredParams, opt
   const { name, component } = requiredParams;
   const { renderAfterMs, hasMenu } = optionalParams;
 
-  const apolloClient = client("AUTO");
+  const apolloClient = client();
 
   Navigation.registerComponent(name, () =>
     withErrorBoundary(

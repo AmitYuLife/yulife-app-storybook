@@ -11,14 +11,20 @@ import { store } from "@redux/_core/store";
 import getClient from "@services/bugsnag";
 import { updateOfflineState } from "@redux/app/app.actions";
 import createRetryLink from "./retryLink";
-import { REGION, REGION_LIST, getCurrentLocale, region as regionService } from "@locale";
+import { getCurrentLocale, REGION, region, REGION_LIST } from "@locale";
 
 import { gqlInMemoryCache } from "./cache";
 import { gqlCachePersistor } from "./persistor";
 
 const appJson = require("../../../package.json");
 
-const httpLink = () => createHttpLink({ fetch });
+const buildRegionalGqlUri = (r?: REGION) => `${region.getRegionUri(r)}/graphql`;
+
+const httpLink = (r?: REGION) =>
+  createHttpLink({
+    uri: buildRegionalGqlUri(r),
+    fetch,
+  });
 
 // restore the persisted the cache
 gqlCachePersistor().restore();
@@ -49,7 +55,7 @@ let requestCount = 0;
 
 const getUserId = () => ((store.getState() as any) || {})?.user?.id || "unknown";
 
-const authMiddleware = (region?: REGION) =>
+const authMiddleware = (r?: REGION) =>
   setContext(async (op, { headers }) => {
     // get the authentication token from async storage if it exists
     const token = await getToken();
@@ -61,12 +67,9 @@ const authMiddleware = (region?: REGION) =>
 
     requestCount++;
 
-    // if a region is specified, use that URI
-    const uri = `${regionService.getRegionUri(region)}/graphql`;
-
     // return the headers to the context so httpLink can read them
     return {
-      uri,
+      uri: buildRegionalGqlUri(r),
       headers: {
         ...headers,
         ...defaultHeaders,
@@ -83,21 +86,28 @@ const retryLink = createRetryLink(() => {
   store.dispatch(updateOfflineState(true));
 });
 
-// hashmap of all clients for every region
-export const clients = {} as Record<REGION | "AUTO", ApolloClient<NormalizedCacheObject>>;
+let defaultClient: ApolloClient<NormalizedCacheObject>;
 
-const makeClient = (r: REGION | "AUTO" = regionService.getPreferredRegion()) => {
-  if (!clients[r]) {
-    clients[r] = new ApolloClient({
+export default () => {
+  if (!defaultClient) {
+    defaultClient = new ApolloClient({
       cache: gqlInMemoryCache(),
-      link: from([authMiddleware(r === "AUTO" ? undefined : r), retryLink, httpLink()]),
+      link: from([authMiddleware(), retryLink, httpLink()]),
     });
   }
 
-  return clients[r];
+  return defaultClient;
 };
 
-// make a client for every region
-REGION_LIST.forEach((r) => makeClient(r));
+export const regionalClients = REGION_LIST.map((r) => {
+  const client = new ApolloClient({
+    cache: gqlInMemoryCache(),
+    link: from([authMiddleware(r), httpLink(r)]),
+  }) as ApolloClientWithRegion;
 
-export default makeClient;
+  client.__REGION = r;
+
+  return client;
+});
+
+type ApolloClientWithRegion = ApolloClient<NormalizedCacheObject> & { __REGION?: REGION };

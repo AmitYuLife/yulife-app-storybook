@@ -84,6 +84,7 @@ export class RegionService {
     return false;
   };
 
+  /** returns a bool saying if a config is valid */
   public hydratePreferredRegion = async () => {
     try {
       const data = await Storage.getItem(StorageKey.region);
@@ -98,12 +99,17 @@ export class RegionService {
             this.SELECTED_REGION = region;
             this.REGION_CONFIG = config;
             this.REGION_CONFIG_LAST_UPDATED = createdAt;
+
+            return !this.configIsOutdated();
           }
         }
       }
+
+      return false;
     } catch (e) {
       // safe fail
       // config will be fetched in a redux saga
+      return false;
     }
   };
 

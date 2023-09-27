@@ -19,6 +19,7 @@ import { validateEmail } from "@utils/email";
 import { LoginUser } from "@graphql/_core/schema";
 import { setRegionConfig } from "@redux/app/app.actions";
 import { useMutatationAllRegions } from "@hooks";
+import { getApiConfigWithClient } from "@graphql/config";
 
 const trimGraphQLError = (message: string = "") => message.replace(/^GraphQL error: /, "");
 
@@ -118,7 +119,15 @@ const LoginContainer: React.FC<Props> = ({
     async (r: REGION, loginOptions = logins) => {
       // let's persist the region and config
       regionService.setRegion(r);
-      dispatch(setRegionConfig());
+
+      // fetch the config
+      const response = await getApiConfigWithClient();
+
+      if (response?.data?.config?.mixpanelKey) {
+        await regionService.setConfig(response.data.config);
+      }
+
+      dispatch(setRegionConfig(false));
 
       const needle = loginOptions.find((d) => d.region === r);
       if (needle?.data?.loginUser?.token) {
@@ -131,7 +140,7 @@ const LoginContainer: React.FC<Props> = ({
         handleError(t("screens.login.accessibility.alert_error_default_message"));
       }
     },
-    [logins, fitkitAuthorised, dispatch, setRegionConfig, setToken, goToNext, loginUserSuccess, handleError]
+    [logins, fitkitAuthorised, dispatch, goToNext, handleError]
   );
 
   const onLogIn = useCallback(async () => {
