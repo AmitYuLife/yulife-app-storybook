@@ -43,11 +43,8 @@ export const LeaderboardListItems = ({
     return null;
   }
 
-  const activeLeaderboard = leaderboards.find((board) => board.leaderboardId === activeLeaderboardId) || {
-    metric: "steps",
-    days: 30,
-  };
-  const metricName = getMetricName(activeLeaderboard.metric as LeaderboardMetric);
+  const activeLeaderboard = leaderboards.find((board) => board.leaderboardId === activeLeaderboardId);
+  const metricName = getMetricName((activeLeaderboard.metric as LeaderboardMetric) || "steps");
 
   return (
     <FlashList
@@ -61,7 +58,7 @@ export const LeaderboardListItems = ({
       ListHeaderComponent={
         <View style={styles.header}>
           <TextTemplate type="b2">
-            {t("screens.leaderboard.invites.subheading", { days: activeLeaderboard.days, metric: metricName })}
+            {t("screens.leaderboard.invites.subheading", { days: activeLeaderboard?.days || 30, metric: metricName })}
           </TextTemplate>
         </View>
       }
