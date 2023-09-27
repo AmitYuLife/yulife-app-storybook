@@ -10,19 +10,14 @@ import deepLink from "@navigation/deepLink";
 
 const initialPayloadTypes = ["INIT", "SET_MAIN_ROOT"];
 
-export default function* hydrateApiConfigSaga(payload: SyncAction) {
+export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
   try {
-    let shouldFetchConfig = true;
-    const isFromInit = initialPayloadTypes.includes(payload?.type);
+    let shouldFetchConfig: boolean = "shouldFetchConfig" in (payload || {}) ? payload?.shouldFetchConfig : true;
+    const isFromInit = initialPayloadTypes.includes(type);
 
     if (isFromInit) {
-      yield call(region.hydratePreferredRegion);
-
-      const existingConfig = region.getConfig("mixpanelKey");
-
-      if (existingConfig?.length && !region.configIsOutdated()) {
-        shouldFetchConfig = false;
-      }
+      const hasValidRegionConfig: boolean = yield call(region.hydratePreferredRegion);
+      shouldFetchConfig = !hasValidRegionConfig;
 
       // We're not running 3 servers for each region at the same time; so every time we select a region that's not spun up, we get a thrown error
       // When reloading the app only, we need the previous part (hydration) to run as it was saved locally

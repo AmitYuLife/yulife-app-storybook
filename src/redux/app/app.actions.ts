@@ -45,8 +45,9 @@ export const setUnauthenticated = () => ({
   type: UNAUTHENTICATED,
 });
 
-export const setRegionConfig = () => ({
+export const setRegionConfig = (shouldFetchConfig = true) => ({
   type: SET_REGION_CONFIG,
+  payload: { shouldFetchConfig },
 });
 
 export const checkConnection = (hasDelay = false) => ({
