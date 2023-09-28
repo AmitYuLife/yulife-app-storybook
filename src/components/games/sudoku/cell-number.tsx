@@ -63,6 +63,12 @@ const CellNumber = ({
   useEffect(() => {
     if (isGameCompleted || isColumnCompleted || isRowCompleted) {
       scaleDownAnimation.value = SUDOKU_NUMBER_WAVE_SCALE;
+
+      const timeout = setTimeout(() => {
+        scaleDownAnimation.value = 1;
+      }, SUDOKU_NUMBER_WAVE_SCALE_DURATION * 2);
+
+      return () => clearTimeout(timeout);
     }
   }, [isGameCompleted, isColumnCompleted, isRowCompleted, scaleDownAnimation]);
 
