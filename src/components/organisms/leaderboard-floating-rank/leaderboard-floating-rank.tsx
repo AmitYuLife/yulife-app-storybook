@@ -51,7 +51,7 @@ const LeaderboardFloatingRank = ({
         extrapolate: "clamp",
       }),
     };
-  }, [offset]);
+  }, [offset, scrollValue, finalOffset]);
 
   return (
     <Animated.View style={wrapperStyle} pointerEvents={disableTouch ? "none" : "auto"}>
