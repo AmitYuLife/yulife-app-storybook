@@ -26,7 +26,7 @@ const JoinLeaderboard = ({ onPress }: IProps) => (
 const styles = StyleSheet.create({
   wrapper: {
     marginTop: Style.adjust(30),
-    paddingHorizontal: Style.adjust(14),
+    paddingHorizontal: Style.adjust(30),
   },
   description: {
     marginTop: Style.adjust(8),
