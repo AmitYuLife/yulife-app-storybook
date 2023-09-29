@@ -93,7 +93,7 @@ export const LeaderboardScreen = ({
     return [navigationItem, ...filterCurrentUser];
   }, [items, itemsIsLoading, navigationItem]);
 
-  const showTrophy = !itemsIsLoading && showYudokuEmptyMessage;
+  const showTrophy = (!itemsIsLoading && showYudokuEmptyMessage) || !activeLeaderboard?.consent;
 
   const onItemPress = useCallback(
     ({ item, index }: ListRenderItemInfo<SocialGroupLeaderboardItem>) => {
@@ -228,8 +228,7 @@ export const LeaderboardScreen = ({
 
   const RefreshComponent = useMemo(
     () => <RefreshControl style={styles.refreshControl} refreshing={isLoading} onRefresh={onRefresh} />,
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [isLoading]
+    []
   );
 
   return (
@@ -319,7 +318,7 @@ export const styles = StyleSheet.create({
   list: {
     flex: 1,
     paddingBottom: NAV_BAR.DEFAULT_FULL_HEIGHT / 2,
-    backgroundColor: "#FBFBFB",
+    backgroundColor: Platform.select({ ios: "#FBFBFB", android: "#CEEBFF" }),
   },
   listContainer: {
     backgroundColor: "#FBFBFB",
