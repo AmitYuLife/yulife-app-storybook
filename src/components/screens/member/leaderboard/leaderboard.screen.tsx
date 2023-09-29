@@ -226,6 +226,13 @@ export const LeaderboardScreen = ({
 
   const getItemType = useCallback((item: SocialGroupLeaderboardItem) => (item.id === "header" ? "header" : "item"), []);
 
+  const listStyle = useMemo(
+    () => ({
+      ...styles.list,
+      backgroundColor: Platform.select({ ios: "#FBFBFB", android: showTrophy ? "#FBFBFB" : "#CEEBFF" }),
+    }),
+    [showTrophy]
+  );
   const RefreshComponent = useMemo(
     () => <RefreshControl style={styles.refreshControl} refreshing={isLoading} onRefresh={onRefresh} />,
     []
@@ -236,7 +243,7 @@ export const LeaderboardScreen = ({
       <Animated.View style={refreshControlStyle}>
         <GenericHeadingPad />
       </Animated.View>
-      <View style={styles.list}>
+      <View style={listStyle}>
         <FlashList
           ref={flashList}
           showsVerticalScrollIndicator={false}
@@ -318,7 +325,6 @@ export const styles = StyleSheet.create({
   list: {
     flex: 1,
     paddingBottom: NAV_BAR.DEFAULT_FULL_HEIGHT / 2,
-    backgroundColor: Platform.select({ ios: "#FBFBFB", android: "#CEEBFF" }),
   },
   listContainer: {
     backgroundColor: "#FBFBFB",
