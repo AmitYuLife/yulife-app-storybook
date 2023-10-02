@@ -1,5 +1,4 @@
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { useDispatch } from "react-redux";
 import { Image, TextTemplate } from "@atoms";
 import { default as BoxOption } from "../box-option/box-option";
 import { RemoteImage, SduiAction } from "@graphql/_core/schema";
@@ -8,6 +7,7 @@ import { ComponentProps, useRef, useState } from "react";
 import { Title } from "./box-option-card.title";
 import { BOX_OPTION_DESCRIPTION, BOX_OPTION_TITLE, RIGHT_SIDE_IMAGE_BOX_OPTION } from "@ids";
 import { ArrowButton } from "../arrow-button";
+import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 
 interface Props {
   title: string;
@@ -38,7 +38,6 @@ export const BoxOptionCard = ({
   titleNumberOfLines,
   descriptionNumberOfLines,
 }: Props) => {
-  const dispatch = useDispatch();
   const [adjustedInnerHeight, setAdjustedInnerHeight] = useState(innerHeight);
 
   const contentWrapperRef = useRef(null as View);
@@ -52,9 +51,11 @@ export const BoxOptionCard = ({
     });
   };
 
+  const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onPress);
+
   return (
     <BoxOption
-      onPress={!onPress ? null : () => dispatch(onPress)}
+      onPress={handleSduiAction}
       isSelected={false}
       wrapperStyle={styles.wrapper}
       innerHeight={Style.adjust(adjustedInnerHeight)}
@@ -92,7 +93,7 @@ export const BoxOptionCard = ({
             )}
           </View>
         </View>
-        {!onPress ? null : (
+        {!handleSduiAction ? null : (
           <View style={styles.arrowWrapper}>
             <ArrowButton color={Colours.primary.p600} />
           </View>
