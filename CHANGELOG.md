@@ -7,6 +7,43 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.101.0] - 2023-10-02
+
+### Bugfixes
+
+- Bugfix: fix box-option-card sduiAction
+- Bugfix: Leaderboard
+- Bugfix: Small sudoku numbers when pausing
+- Bugfix: Xcode 15 build
+- Bugfix: update challenge details screen back press on android
+
+### Tasks
+
+- Task: Update Leaderboard copies
+- Task: Create GenericFullScreenLoading component
+- Task GS: Leaderboards
+- Task: ISA-1262 re translate when base key changes
+- Task GS-781: Create YuCoinPowerCard component
+- Task GS-781: Create ActivityPanel component
+
+### Chores
+
+- Chore: fix multi-region detox
+- Chore: Set fallback locale for storybook
+
+### Extra
+
+- Hotfix: leaderboard list item copy issue
+- PoC: swap order of region selector
+- Detox: xse 2086 email receipts ghi rewards
+- Detox:xse 2211 new thriva journey
+- Detox/xse 2151 sparkle animation
+- Detox: Fixes 22nd Sept
+- XSE-2105: Implement server-driven dynamic styles
+- detox/smoke-4-fixes
+- detox/ghi-rewards-fixes
+- Detox: Sept 21
+
 ## [3.100.0] - 2023-09-21
 
 ### Features
