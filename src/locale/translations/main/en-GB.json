@@ -449,6 +449,10 @@
       "heading": "You're offline",
       "subheading": "Check your internet connection."
     },
+    "generic_error": {
+      "heading": "Unable to load",
+      "subheading": "We were unable to load this page."
+    },
     "signup_reward": {
       "heading": "Sign-up bounty\nunlocked!",
       "subheading": "Exchange YuCoin for vouchers from your favourite brands, donate to charities, save the earth, and more!",
