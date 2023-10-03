@@ -11,6 +11,7 @@ export const SOCIAL_GROUP_1 = {
         socialGroupId: BUSINESS_ACCOUNT_1.data.business_account_id,
         archived: false,
         socialGroupType: "business_tag",
+        name: "SG1"
     }
 } as IDatabaseItem
 
@@ -22,6 +23,7 @@ export const SOCIAL_GROUP_2 = {
         socialGroupId: BUSINESS_ACCOUNT_2.data.business_account_id,
         archived: false,
         socialGroupType: "business_tag",
+        name: "SG2"
     }
 } as IDatabaseItem
 
@@ -33,6 +35,7 @@ export const SOCIAL_GROUP_7 = {
         socialGroupId: BUSINESS_ACCOUNT_7.data.business_account_id,
         archived: false,
         socialGroupType: "business_tag",
+        name: "SG7"
     }
 } as IDatabaseItem
 
@@ -44,6 +47,7 @@ export const SOCIAL_GROUP_C1 = {
         socialGroupId: LEADERBOARD_1.data.leaderboardId,
         archived: false,
         socialGroupType: "custom",
+        name: LEADERBOARD_1.data.name
     }
 } as IDatabaseItem
 
@@ -55,5 +59,6 @@ export const SOCIAL_GROUP_C2 = {
         socialGroupId: LEADERBOARD_2.data.leaderboardId,
         archived: false,
         socialGroupType: "custom",
+        name: LEADERBOARD_2.data.name
     }
 } as IDatabaseItem

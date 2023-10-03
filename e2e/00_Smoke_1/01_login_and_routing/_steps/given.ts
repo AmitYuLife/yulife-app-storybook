@@ -46,7 +46,6 @@ export const seenOnboardingScreens = async (): Promise<void> => {
 }
 
 export const loginToDailySteps = async (): Promise<void> => {
-    await tapText("United Kingdom")();
     await enterValidCredentials()();
     await when.tapOnLogin();
     await when.tapNext();

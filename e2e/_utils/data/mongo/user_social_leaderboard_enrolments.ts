@@ -4,7 +4,20 @@ import { BUSINESS_ACCOUNT_1 } from "../postgres/business";
 import { CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_40, CUSTOMER_47, CUSTOMER_50, CUSTOMER_73, CUSTOMER_84, CUSTOMER_86 } from "../postgres/customers";
 import { SOCIAL_GROUP_1 } from "./social_groups";
 import { SOCIAL_GROUP_LEADERBOARD_1, SOCIAL_GROUP_LEADERBOARD_2_STEPS, SOCIAL_GROUP_LEADERBOARD_7, SOCIAL_GROUP_LEADERBOARD_C1_STEPS, SOCIAL_GROUP_LEADERBOARD_C2_STEPS } from "./social_group_leaderboards";
-import { USER_40, USER_58, USER_67, USER_68, USER_71, USER_76, USER_86 } from "./users";
+import { USER_20, USER_40, USER_58, USER_67, USER_68, USER_71, USER_76, USER_86 } from "./users";
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_20 = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: false,
+        isLocked: false,
+        userId: USER_20.data.userId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_2_STEPS.data._id
+    }
+} as IDatabaseItem
 
 export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_40 = {
     type: "mongo",
