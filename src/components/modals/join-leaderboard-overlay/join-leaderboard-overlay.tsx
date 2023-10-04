@@ -52,7 +52,9 @@ const JoinLeaderboardOverlay = ({ activeSocialGroup, onSwitch }: IProps) => {
           <View key={name} style={styles.group}>
             <Image source={icon} width={Style.adjust(24)} height={Style.adjust(24)} />
             <View style={styles.groupInfo}>
-              <TextTemplate type="b2">{name} Leaderboard</TextTemplate>
+              <TextTemplate type="b2">
+                {name} {t("leaderboard")}
+              </TextTemplate>
               <TextTemplate type="l2">{description}</TextTemplate>
             </View>
             <View style={styles.switch}>

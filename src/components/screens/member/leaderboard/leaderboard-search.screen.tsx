@@ -104,6 +104,7 @@ const LeaderboardSearchScreen = ({
         placeholder={t("screens.leaderboard.search.search_placeholder")}
         onChangeText={onChangeText}
         wrapperStyles={styles.searchIcon}
+        textInputStyle={styles.textInput}
       />
       <Pad height={Style.adjust(searchTextEmpty ? 16 : 24)} />
       {!searchTextEmpty ? null : (
@@ -173,5 +174,8 @@ const styles = StyleSheet.create({
     minHeight: Style.adjust(70),
     maxWidth: Style.adjust(278),
     marginTop: Style.adjust(32),
+  },
+  textInput: {
+    color: "#5C5757",
   },
 });
