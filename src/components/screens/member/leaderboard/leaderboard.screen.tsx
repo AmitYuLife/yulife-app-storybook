@@ -229,9 +229,12 @@ export const LeaderboardScreen = ({
   const listStyle = useMemo(
     () => ({
       ...styles.list,
-      backgroundColor: Platform.select({ ios: "#FBFBFB", android: showTrophy ? "#FBFBFB" : "#CEEBFF" }),
+      backgroundColor: Platform.select({
+        ios: "#FBFBFB",
+        android: data.length < 11 || showTrophy ? "#FBFBFB" : "#CEEBFF",
+      }),
     }),
-    [showTrophy]
+    [showTrophy, data.length]
   );
   const RefreshComponent = useMemo(
     () => <RefreshControl style={styles.refreshControl} refreshing={isLoading} onRefresh={onRefresh} />,

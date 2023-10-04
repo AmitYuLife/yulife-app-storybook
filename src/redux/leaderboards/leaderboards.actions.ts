@@ -10,6 +10,8 @@ export const UPDATE_SOCIAL_GROUP_LEADERBOARDS_SUCCESS = "UPDATE_SOCIAL_GROUP_LEA
 export const UPDATE_ACTIVE_SOCIAL_GROUP_ID = "UPDATE_ACTIVE_SOCIAL_GROUP_ID";
 export const UPDATE_ACTIVE_SOCIAL_GROUP_LEADERBOARD_ID = "UPDATE_ACTIVE_SOCIAL_GROUP_LEADERBOARD_ID";
 export const UPDATE_SOCIAL_GROUP_LEADERBOARD_CONSENTS = "UPDATE_SOCIAL_GROUP_LEADERBOARD_CONSENTS";
+export const CLEAR_SOCIAL_GROUP_LEADERBOARD_RECENT_SEARCH_HISTORY =
+  "CLEAR_SOCIAL_GROUP_LEADERBOARD_RECENT_SEARCH_HISTORY";
 
 export const addLeaderboardRecentSearch = (payload: { item: SearchItem }): SyncAction => ({
   payload,
@@ -34,4 +36,8 @@ export const updateActiveSocialGroupLeaderboardId = (payload: string) => ({
 export const updateSocialGroupLeaderboardConsents = (payload: IUpdateSocialGroupLeaderboardConsent) => ({
   type: UPDATE_SOCIAL_GROUP_LEADERBOARD_CONSENTS,
   payload,
+});
+
+export const clearSocialGroupLeaderboardRecentSearchHistory = () => ({
+  type: CLEAR_SOCIAL_GROUP_LEADERBOARD_RECENT_SEARCH_HISTORY,
 });

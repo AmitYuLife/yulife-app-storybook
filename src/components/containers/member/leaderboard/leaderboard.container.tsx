@@ -51,6 +51,14 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
       fetchPolicy: "network-only",
     });
 
+  const socialGroupsWithConsent = useMemo(
+    () =>
+      socialGroups.filter(
+        (socialGroup) => socialGroup.leaderboards.filter((leaderboard) => leaderboard.consent).length > 0
+      ),
+    [socialGroups]
+  );
+
   const { leaderboardItems, top3 } = useMemo(() => {
     const items = (activeLeaderboard?.consent && data?.getMobileSocialGroupLeaderboardItems) || [];
     const first3 = items.slice(0, 3).reduce((obj, item, index) => ({ ...obj, [`top${index + 1}`]: item.avatar.uri }), {
@@ -102,7 +110,7 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
   }, [activeSocialGroup, dispatch, socialGroups]);
 
   const onJoinLeaderboardPress = useCallback(async () => {
-    let consents: SocialLeaderboardConstent[];
+    let consents: SocialLeaderboardConstent[] = [];
     const children = (
       <JoinLeaderboardOverlay
         activeSocialGroup={activeSocialGroup}
@@ -198,7 +206,7 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
       activeSocialGroup={activeSocialGroup}
       activeLeaderboard={activeLeaderboard}
       showDuels={showDuels}
-      showSearch={showLeaderboardSearch}
+      showSearch={showLeaderboardSearch && socialGroupsWithConsent.length > 0}
       onRefresh={refetch}
       isLoading={loading}
       itemsIsLoading={loading}

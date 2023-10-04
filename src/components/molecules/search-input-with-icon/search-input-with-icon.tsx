@@ -1,15 +1,16 @@
 import { SearchIcon } from "@atoms/icon/search-icon";
 import { Colours, Style } from "@styles";
 import { memo, useCallback, useMemo, useState } from "react";
-import { StyleSheet, TextInput, View, ViewStyle } from "react-native";
+import { StyleSheet, TextInput, TextStyle, View, ViewStyle } from "react-native";
 
 interface IProps {
   placeholder: string;
   onChangeText: (text: string) => void;
   wrapperStyles?: ViewStyle;
+  textInputStyle?: TextStyle;
 }
 
-const SearchInputWithIcon = ({ onChangeText, placeholder, wrapperStyles }: IProps) => {
+const SearchInputWithIcon = ({ onChangeText, placeholder, wrapperStyles, textInputStyle }: IProps) => {
   const [isActive, setIsActive] = useState(false);
 
   const onFocus = useCallback(() => setIsActive(true), []);
@@ -20,6 +21,14 @@ const SearchInputWithIcon = ({ onChangeText, placeholder, wrapperStyles }: IProp
     [isActive, wrapperStyles]
   );
 
+  const textInputStyles = useMemo(
+    () => ({
+      ...styles.textInput,
+      ...textInputStyle,
+    }),
+    [textInputStyle]
+  );
+
   return (
     <View style={wrapperStyle}>
       <View style={styles.iconWrapper}>
@@ -28,7 +37,7 @@ const SearchInputWithIcon = ({ onChangeText, placeholder, wrapperStyles }: IProp
       <TextInput
         allowFontScaling={false}
         autoCorrect={false}
-        style={styles.textInput}
+        style={textInputStyles}
         onChangeText={onChangeText}
         autoFocus={false}
         cursorColor={Colours.status.in300}
