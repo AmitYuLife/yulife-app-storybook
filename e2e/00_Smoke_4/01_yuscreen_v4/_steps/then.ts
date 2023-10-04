@@ -121,7 +121,7 @@ export const wellbeingProductInfo = async () => {
   const policyDescription =
     "A YuLife Wellbeing access membership rewards you with YuCoin, discounts, and vouchers for building healthier habits.";
   const policyInsurance = "There is no insurance attached to this membership.";
-  const paidBy = "Employer Paid";
+  const paidBy = "Employer Scheme";
 
   await expect(element(by.text(policyName)).atIndex(1)).toBeVisible();
   await expect(element(by.text(paidBy))).toBeVisible();

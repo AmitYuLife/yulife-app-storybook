@@ -115,7 +115,7 @@ Feature("Smart Pension", async () => {
     })
     When("I go to earnings", when.tapYuCoinIcon, async () => {
       When("I scroll if needed", when.scrollUntilTextVisible(ids.TODAYS_EARNINGS, "Today's challenges (0/4)", "down"), async () => {
-        Then("I can see the paused contribution modal", then.canSeePausedPensionEarnings(calculatePensionModalAmount(PensionInfoUser114)))
+        Then("I can see the paused contribution modal", then.canSeePausedPensionEarnings)
       })
     })
     When("I tap manage", when.tapText("Manage"), async () => {
