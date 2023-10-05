@@ -36,7 +36,7 @@ export interface ContentItemCoverPicker_coverPickerTitle {
   numberOfLines: number | null;
   styles: ContentItemCoverPicker_coverPickerTitle_styles[] | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101
    */
   dynamicStyleKey: string | null;
 }

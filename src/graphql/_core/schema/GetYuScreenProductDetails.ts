@@ -145,7 +145,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   numberOfLines: number | null;
   styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemText_styles[] | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101
    */
   dynamicStyleKey: string | null;
 }
@@ -565,17 +565,17 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
    */
   scrollViewProps: string | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101.0
    */
   dynamicStyleKey: string | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101.0
    */
   localDispatchActions:
     | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemWrapper_localDispatchActions[]
     | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101.0
    */
   localDispatchActionsOnMount:
     | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemWrapper_localDispatchActionsOnMount[]

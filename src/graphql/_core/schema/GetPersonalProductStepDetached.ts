@@ -173,7 +173,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   numberOfLines: number | null;
   styles: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemText_styles[] | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101
    */
   dynamicStyleKey: string | null;
 }
@@ -233,7 +233,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
     | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_coverPickerTitle_styles[]
     | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101
    */
   dynamicStyleKey: string | null;
 }

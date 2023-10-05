@@ -81,7 +81,7 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemTe
   numberOfLines: number | null;
   styles: GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles[] | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101
    */
   dynamicStyleKey: string | null;
 }

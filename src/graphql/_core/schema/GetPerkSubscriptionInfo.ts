@@ -67,7 +67,7 @@ export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_Content
   numberOfLines: number | null;
   styles: GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemText_styles[] | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101
    */
   dynamicStyleKey: string | null;
 }

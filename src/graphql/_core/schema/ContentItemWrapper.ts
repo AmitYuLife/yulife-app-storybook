@@ -47,15 +47,15 @@ export interface ContentItemWrapper {
    */
   scrollViewProps: string | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101.0
    */
   dynamicStyleKey: string | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101.0
    */
   localDispatchActions: ContentItemWrapper_localDispatchActions[] | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101.0
    */
   localDispatchActionsOnMount: ContentItemWrapper_localDispatchActionsOnMount[] | null;
 }

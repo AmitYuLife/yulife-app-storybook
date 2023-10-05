@@ -285,7 +285,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemT
   numberOfLines: number | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemText_styles[] | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101
    */
   dynamicStyleKey: string | null;
 }
@@ -749,7 +749,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemC
   numberOfLines: number | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_coverPickerTitle_styles[] | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101
    */
   dynamicStyleKey: string | null;
 }
@@ -2737,8 +2737,7 @@ export interface GetPersonalProductStep_getPersonalProductStep {
    */
   header: (GetPersonalProductStep_getPersonalProductStep_header | null)[] | null;
   /**
-   * Content that just sits on the screen. Anywhere you want. Be careful with this
-   * powerful tool. Not supported by detached steps.
+   * Content that just sits on the screen. Anywhere you want. Be careful with this powerful tool. Not supported by detached steps.
    */
   absolute: (GetPersonalProductStep_getPersonalProductStep_absolute | null)[] | null;
 }

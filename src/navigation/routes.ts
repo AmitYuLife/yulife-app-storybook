@@ -325,9 +325,14 @@ const routesForRegistration = [
     name: ROUTES.wellbeingHubItems,
     component: require("../components/containers/wellbeing-hub/wellbeing-hub-items.container").default,
   },
+  // TODO: purge
   {
     name: ROUTES.wellbeingHubDetails,
     component: require("../components/containers/wellbeing-hub/wellbeing-hub-details.container").default,
+  },
+  {
+    name: ROUTES.sduiWellbeingHubItemDetails,
+    component: require("../components/containers/sdui-static/sdui-static.container").default,
   },
   // webview
   {
