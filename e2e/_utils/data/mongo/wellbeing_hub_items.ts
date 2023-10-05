@@ -14,7 +14,7 @@ export const WELLBEING_HUB_ITEM_1 = {
       "source": "internal_dashboard",
       "enabled": true,
       "query": {
-         "productCountry": {}
+         "workLocationCountry": {}
        },
       "restrictions": {
          "perkId": "FIIT_12_MONTH"
@@ -88,7 +88,7 @@ export const WELLBEING_HUB_ITEM_3 = {
       "source": "internal_dashboard",
       "enabled": true,
       "query": {
-         "productCountry": {
+         "workLocationCountry": {
            "contains": [
              "US",
            ]
@@ -144,7 +144,7 @@ export const WELLBEING_HUB_ITEM_4 = {
       "source": "internal_dashboard",
       "enabled": true,
       "query": {
-         "productCountry": {
+         "workLocationCountry": {
            "contains": [
              "UK",
            ]
