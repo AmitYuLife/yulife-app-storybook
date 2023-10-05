@@ -1,4 +1,4 @@
-import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_10_GHI_REWARDS, BUSINESS_ACCOUNT_2, BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5, BUSINESS_ACCOUNT_6, BUSINESS_ACCOUNT_7, BUSINESS_ACCOUNT_GDent_9, BUSINESS_ACCOUNT_GHI_8 } from './business';
 import * as customer from './customers';
 import moment = require('moment');
@@ -387,6 +387,7 @@ export const BUSINESS_EMPLOYEE_34 = {
     type,
     modelName,
     data:{
+        business_employee_id: generateRandomPostgresId(),
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
         customer_id: customer.CUSTOMER_34.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
@@ -1104,6 +1105,7 @@ export const BUSINESS_EMPLOYEE_94 = {
     type,
     modelName,
     data:{
+        business_employee_id: generateRandomPostgresId(),
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
         customer_id: customer.CUSTOMER_94.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
