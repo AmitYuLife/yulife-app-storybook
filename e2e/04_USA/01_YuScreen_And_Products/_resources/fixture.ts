@@ -63,7 +63,7 @@ export const Transamerica_Sponsor = "https://yulife-develop.imgix.net/sponsored-
 export const Yulife_Sponsor = "https://yulife-develop.imgix.net/sponsored-logos/yulife-1.svg?ixlib=js-3.2.1&w=153&s=db02cee6a0d16063f910ad2d3b0cb3be"
 
 //Slot Left Image
-export const canEnrolPlusImage = "https://yulife-develop.imgix.net/yuscreen/slots/background/bg-pink-without-shadow-28-04-23.svg?ixlib=js-3.2.1&w=135&h=156&s=0e808ed69faa1199ca9f97c7c36c79ef"
+export const canEnrolPlusImage = "https://yulife-develop.imgix.net/yuscreen/slots/background/bg-pink-18-07-22.svg?ixlib=js-3.2.1&w=135&h=162&s=dfaea3f4cea2df3368c3b2a8564c568c"
 
 //Wellbeing Hub
 
@@ -577,7 +577,7 @@ export const Guardian_VLIF:USProductData = {
 export const MyWellbeingHubBox:BoxOption = {
     imageUrl: "https://yulife-develop.imgix.net/yuscreen/box-option-card/wellbeing-hub.png?ixlib=js-3.2.1&w=360&h=312&s=10e0f8e3fa178066a180ca7828345458",
     title: "My Wellbeing Hub",
-    description: "Access your exclusive wellness benefits here"
+    description: "Access your exclusive employee benefits here"
 }
 
 export const ExploreInsureanceBox:BoxOption = {
