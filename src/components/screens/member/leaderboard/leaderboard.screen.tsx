@@ -1,4 +1,4 @@
-import React, { RefObject, memo, useCallback, useMemo, useRef } from "react";
+import React, { RefObject, memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { Animated, Platform, RefreshControl, StyleSheet, View } from "react-native";
 import { GenericHeadingPad, LeaderboardFloatingRank, NavBar, TopBar } from "@organisms";
 import { Colours, NAV_BAR, Style, TOP_BAR } from "@styles";
@@ -81,6 +81,13 @@ export const LeaderboardScreen = ({
     () => !items.length && activeLeaderboard?.leaderboardConfigId === SocialGroupLeaderboardConfigId.dailysudoku,
     [items.length, activeLeaderboard]
   );
+
+  useEffect(() => {
+    flashList.current?.scrollToOffset({
+      offset: 0,
+      animated: false,
+    });
+  }, [items]);
 
   const navigationItem = useMemo(() => ({ id: "header" }), []);
   const data = useMemo(() => {
