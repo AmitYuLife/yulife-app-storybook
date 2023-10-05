@@ -19,6 +19,7 @@ export const GQL_QUERY_GET_WELLBEING_HUB_DETAILS = gql`
   query GetWellbeingHubItem($id: ID!, $os: OS) {
     wellbeingHubItem(id: $id, os: $os) {
       id
+      sduiStepId
       title
       description
       thumbnail {

@@ -242,7 +242,7 @@ export interface AbsoluteContentItem_item_ContentItemText {
   numberOfLines: number | null;
   styles: AbsoluteContentItem_item_ContentItemText_styles[] | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101
    */
   dynamicStyleKey: string | null;
 }
@@ -778,15 +778,15 @@ export interface AbsoluteContentItem_item_ContentItemWrapper {
    */
   scrollViewProps: string | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101.0
    */
   dynamicStyleKey: string | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101.0
    */
   localDispatchActions: AbsoluteContentItem_item_ContentItemWrapper_localDispatchActions[] | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101.0
    */
   localDispatchActionsOnMount: AbsoluteContentItem_item_ContentItemWrapper_localDispatchActionsOnMount[] | null;
 }

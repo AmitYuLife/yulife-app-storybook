@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -21,6 +21,7 @@ export interface GetWellbeingHubItems_wellbeingHubItems_icon {
 
 export interface GetWellbeingHubItems_wellbeingHubItems {
   id: string;
+  sduiStepId: string;
   thumbnail: GetWellbeingHubItems_wellbeingHubItems_thumbnail | null;
   icon: GetWellbeingHubItems_wellbeingHubItems_icon | null;
   title: string;

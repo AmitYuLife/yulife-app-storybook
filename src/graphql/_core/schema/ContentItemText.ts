@@ -22,7 +22,7 @@ export interface ContentItemText {
   numberOfLines: number | null;
   styles: ContentItemText_styles[] | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101
    */
   dynamicStyleKey: string | null;
 }

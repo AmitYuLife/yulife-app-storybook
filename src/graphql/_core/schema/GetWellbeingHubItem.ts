@@ -78,7 +78,7 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText {
   numberOfLines: number | null;
   styles: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText_styles[] | null;
   /**
-   * Supported RN Version 3.100.0
+   * Supported RN Version 3.101
    */
   dynamicStyleKey: string | null;
 }
@@ -289,6 +289,7 @@ export type GetWellbeingHubItem_wellbeingHubItem_content =
 
 export interface GetWellbeingHubItem_wellbeingHubItem {
   id: string;
+  sduiStepId: string;
   title: string;
   description: string;
   thumbnail: GetWellbeingHubItem_wellbeingHubItem_thumbnail | null;

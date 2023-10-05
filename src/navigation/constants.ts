@@ -88,6 +88,7 @@ export const ROUTES = {
   // wellbeing hub
   wellbeingHubItems: "yulife.wellbeingHub.WellbeingHubItems",
   wellbeingHubDetails: "yulife.wellbeingHub.WellbeingHubDetails",
+  sduiWellbeingHubItemDetails: "yulife.wellbeingHub.sduiItemDetails",
 
   // quests
   questsChallengesList: "yulife.quests.ChallengesList",
