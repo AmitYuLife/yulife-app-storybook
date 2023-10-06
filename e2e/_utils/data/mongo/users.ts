@@ -2237,3 +2237,45 @@ export const USER_122 = {
     earnRate: 10,
   },
 } as IDatabaseItem;
+
+export const USER_123 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_123_MPP.data.customerId,
+    nickname: "Multz",
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 10,
+      },
+    ],
+    earnRate: 10,
+  },
+} as IDatabaseItem;
+
+export const USER_124 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_124_MPP.data.customerId,
+    nickname: "Multz",
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 10,
+      },
+    ],
+    earnRate: 10,
+  },
+} as IDatabaseItem;

@@ -1803,3 +1803,29 @@ export const CUSTOMER_122 = {
   },
 } as IDatabaseItem
 
+export const CUSTOMER_123_MPP = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Multi",
+    lastName: "Prodz",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+
+export const CUSTOMER_124_MPP = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Multz",
+    lastName: "Proddy",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+

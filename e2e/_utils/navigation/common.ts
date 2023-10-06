@@ -430,3 +430,16 @@ export const enrolmentEndsIn = (seed:string) => async () => {
         }
     }
   }
+
+    // to be used for debugging only
+    export const testMultipleIndexesVisibility = (id: string, indexes: number) => async () => {
+        for(let i = 0; i < indexes + 1; i ++){
+            try {
+                await idVisibleAtIndex(id, i)()
+                console.log(`Success at index ${i}`)
+                return
+            } catch {
+                console.log(`couldn't see at index ${i}`)
+            }
+        }
+      }

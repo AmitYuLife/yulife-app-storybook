@@ -1098,3 +1098,29 @@ export const COIN_LEDGER_122 = {
         currentLevel: 50
     }
 } as IDatabaseItem
+
+export const COIN_LEDGER_123 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_123_MPP.data.customerId,
+        userId: customer.CUSTOMER_123_MPP.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 50
+    }
+} as IDatabaseItem
+
+export const COIN_LEDGER_124 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_124_MPP.data.customerId,
+        userId: customer.CUSTOMER_124_MPP.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 50
+    }
+} as IDatabaseItem
