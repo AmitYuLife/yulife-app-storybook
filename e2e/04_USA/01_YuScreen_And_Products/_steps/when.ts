@@ -15,6 +15,7 @@ import {
   SDUI_SCREEN_SCROLL_VIEW,
   BUTTON_CLOSE,
 } from "@utils";
+import { USProductData } from "../_resources/types";
 
 export const {
   scrollFromText,
@@ -149,3 +150,16 @@ export const addContactDetails = async () => {
   await typeViaID(CONTENT_ITEM_INPUT("phone"), "07123456789\n")();
   await tapText("Claim now", 2000)();
 };
+
+export const attemptToTapSlot = (productCard: USProductData) => async () => {
+  try {
+      await tapText(productCard.slotAbreviation)()
+  } catch (err) {
+    try {
+      await tapText(productCard.boxTitle)()
+    } catch (err) {
+      await tapText("More protection")()
+      await tapText(productCard.boxTitle)()
+    }
+  }
+}

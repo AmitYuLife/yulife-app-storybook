@@ -60,7 +60,7 @@ Feature("I am able to see Product Details in US YU Screen ", async () => {
       "I login as a user with earn rate 0 from WellbeingProduct",
       given.logInAndGoToTab("yu", CUSTOMER_USA_1, AUTH_USA_1, true, "United States"),
       async () => {
-        helper.ONBOARDING_YUSCREEN("Wellbeing/TLIF/DENCHOI", "10");
+        helper.ONBOARDING_YUSCREEN("Wellbeing/DENPPO/DENCHOI", "10");
         helper.YUSCREEN_USA_V4(CUSTOMER_USA_1, "Wellbeing/DENPPO/DENCHOI/TLIF/VIS", "10");
         helper.MORE_PROTECTION()
         When("I scroll to the bottom of the page", when.swipeFromText("Available to you", "up", "fast"), async () => {
@@ -97,9 +97,9 @@ Feature("I am able to see Product Details in US YU Screen ", async () => {
         helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_STD, );
         helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_STD, "Yu Screen");
         helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_VADD);
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VADD, "Yu Screen");
+        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VADD, "pcp", false);
         helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_HI);
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_HI, "Yu Screen");
+        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_HI, "pcp", false);
       }
     );
   });
@@ -115,15 +115,15 @@ Feature("I am able to see Product Details in US YU Screen ", async () => {
           Then(`I should see the top text`, then.textVisible(`${CUSTOMER_USA_3.data.firstName} ${CUSTOMER_USA_3.data.lastName}`))
         })
         helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_VSTD);
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VSTD, "Yu Screen");
+        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VSTD, "pcp", false);
         helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_ACC);
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_ACC, "Yu Screen");
+        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_ACC, "pcp", false);
         helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_VLTD);
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VLTD, "Yu Screen");
+        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_VLTD, "pcp", false);
         helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_CRI);
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_CRI, "Yu Screen");
+        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_CRI, "pcp", false);
         helper.SLOT_YU_SCREEN_PRODUCT_CHECK(Guardian_SPDIS);
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_SPDIS, "Yu Screen");
+        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_SPDIS, "pcp", false);
       }
     );
   });
