@@ -1,5 +1,5 @@
 import { generateRandomPostgresId } from "@yu-life/yulife-bdd-framework";
-import {  BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_13_GHI_REWARDS, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent } from "./business_product"
+import {  BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_13_GHI_REWARDS, BUSINESS_PRODUCT_14_MPP_GDental, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent } from "./business_product"
 
 const type = "postgres"
 const modelName = "business_product_category_benefit"
@@ -186,5 +186,20 @@ export const BPCB_GHI_REWARDS = {
         "modified_at" : "2023-02-27T11:04:07.180Z",
         "modified_by_id" : null,
         "benefit_set_product_version_id":"Bupa_GHealth_01",
+    }
+}
+
+export const BPCB_14_GDental = {
+    type,
+    modelName,
+    data: {
+        "business_product_category_benefit_id" : generateRandomPostgresId(),
+        "business_product_id" :  BUSINESS_PRODUCT_14_MPP_GDental.product.data.product_id,
+        "category_id" : "1",
+        "allowed_product_version_benefit_set_ids":["Level 1 | Couple", "Level 1 | Single Parent Family", "Level 1 | Family","Level 2 | Single", "Level 2 | Couple", "Level 2 | Single Parent Family", "Level 2 | Family", "Level 3 | Single", "Level 3 | Couple", "Level 3 | Single Parent Family", "Level 3 | Family", "Level 4 | Single", "Level 4 | Couple", "Level 4 | Single Parent Family", "Level 4 | Family", "Level 5 | Single", "Level 5 | Couple", "Level 5 | Single Parent Family", "Level 5 | Family"],
+        "default_product_version_benefit_set_id" :"Level 1 | Single",
+        "business_contribution" : null,
+        "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
+        "archived" : false,
     }
 }

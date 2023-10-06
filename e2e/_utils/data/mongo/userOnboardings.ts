@@ -10,6 +10,7 @@ import {
   BUSINESS_ACCOUNT_GHI_8,
   BUSINESS_ACCOUNT_GDent_9,
   BUSINESS_ACCOUNT_10_GHI_REWARDS,
+  BUSINESS_ACCOUNT_11_MPP,
 } from "../postgres/business";
 import * as user from './users';
 import { USER_84_LEADERBOARD } from "./user_leaderboards";
@@ -2182,6 +2183,40 @@ export const USER_ONBOARDING_122 = {
       personalLifeIntro: true,
       newYumojiBuilder: true,
       passiveCycling: true
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_123 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_123.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_11_MPP.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+      yuScreenOnboarding: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_124 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_124.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_11_MPP.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+      yuScreenOnboarding: true,
     },
   },
 } as IDatabaseItem;
