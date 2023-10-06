@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.102.0] - 2023-10-06
+
+### Bugfixes
+
+- Bugfix: Scroll to the top of the screen when changing leaderboards
+- Bugfix: react-native-fast-image tintColor
+- Bugfix: Leaderboard part 2
+
+### Tasks
+
+- Task ISA-1316: sdui wellbeing hub items
+
+### Extra
+
+- Fix: Use !onPress instead of !handleSduiAction which is always present
+- Detox: USA fixes 5th oct
+- Detox: Fixes 5th Oct
+- Detox: Fixes 4th oct
+- Detox: Fixes 3rd Oct
+- Fix: ENG-3539 add error screen for wellbeing hub details
+
 ## [3.101.0] - 2023-10-02
 
 ### Bugfixes
