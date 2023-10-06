@@ -52,7 +52,7 @@ export const MORE_PRODUCTS_PRODUCT_CHECK = async (productCard: USProductData) =>
 
 export const SLOT_YU_SCREEN_PRODUCT_CHECK = async (productCard: USProductData) => {
     When("I wait", when.wait(2000), async () => {
-        When(`I tap on slot ${productCard.slotAbreviation}`, when.tapText(productCard.slotAbreviation), async () => {
+        When(`I tap on slot ${productCard.slotAbreviation}`, when.attemptToTapSlot(productCard), async () => {
             Then(`I should see product card with description ${productCard.slotAbreviation}`, then.onMoreProtectionProductsCard(productCard))
         })
     })
@@ -63,7 +63,7 @@ export const SLOT_DESCRIPTION_PRODUCT_CHECK = async (productCard: USProductData)
 }
 
 
-export const LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION = async (productCard: USProductData, screen = "All Products Carousel" ) => {
+export const LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION = async (productCard: USProductData, screen = "All Products Carousel", hasBanners = true) => {
 
     When(`I tap on slot ${text.Legal_Stuff}`, when.tapText(text.Legal_Stuff), async () => {
         Then(`I should see correct legal stuff of ${productCard.heading}`, then.onLegalStuffPage(productCard))
@@ -73,7 +73,7 @@ export const LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION = async (productCard:
             if(screen === "All Products Carousel") {
                 Then(`I should see correct short description of ${productCard.slotAbreviation} in the list`, then.onDescriptionProductCard(productCard))
             } else if(screen === "pcp"){
-                Then("I'm on the pcp page", then.onPCPPage)
+                Then("I'm on the pcp page", then.onPCPPage(hasBanners))
             } else  {
                 Then(`I should see again ${text.createYumujiCTA}`, then.textVisible(text.createYumujiCTA))
             }
