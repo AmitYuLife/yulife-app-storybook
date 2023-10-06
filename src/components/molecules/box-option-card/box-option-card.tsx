@@ -55,7 +55,7 @@ export const BoxOptionCard = ({
 
   return (
     <BoxOption
-      onPress={handleSduiAction}
+      onPress={onPress ? handleSduiAction : null}
       isSelected={false}
       wrapperStyle={styles.wrapper}
       innerHeight={Style.adjust(adjustedInnerHeight)}
@@ -93,7 +93,7 @@ export const BoxOptionCard = ({
             )}
           </View>
         </View>
-        {!handleSduiAction ? null : (
+        {!onPress ? null : (
           <View style={styles.arrowWrapper}>
             <ArrowButton color={Colours.primary.p600} />
           </View>
