@@ -20,6 +20,7 @@ import { LoginUser } from "@graphql/_core/schema";
 import { setRegionConfig } from "@redux/app/app.actions";
 import { useMutatationAllRegions } from "@hooks";
 import { getApiConfigWithClient } from "@graphql/config";
+import DeviceInfo from "react-native-device-info";
 
 const trimGraphQLError = (message: string = "") => message.replace(/^GraphQL error: /, "");
 
@@ -144,6 +145,8 @@ const LoginContainer: React.FC<Props> = ({
   );
 
   const onLogIn = useCallback(async () => {
+    const uniqueDeviceId = await DeviceInfo.getUniqueId();
+
     if (isFormValid || isUsingOtp) {
       try {
         const results = await loginUser({
@@ -153,6 +156,7 @@ const LoginContainer: React.FC<Props> = ({
             method: isUsingOtp ? LoginMethod.OTP : LoginMethod.PASSWORD,
             password: isUsingOtp ? otp : password,
             tokenExpiration: TOKEN_EXPIRATION,
+            uniqueDeviceId,
           },
         });
 
@@ -170,6 +174,7 @@ const LoginContainer: React.FC<Props> = ({
     isUsingOtp,
     password,
     otp,
+    handleError,
     dispatch,
     goToNext,
     isFormValid,
