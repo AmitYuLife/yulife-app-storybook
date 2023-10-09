@@ -1176,7 +1176,7 @@ workflows:
       opts:
         is_expand: false
     - API_REGION: SA
-    - API_ENV_OVERWRITE: NODE_ENV=detox DEBUG=yu:* server__region=en-ZA server__port=5002
+    - API_ENV_OVERWRITE: NODE_ENV=detox DEBUG=yu:* server__locale=en-ZA server__region=SA server__port=5002
     - API_PORT: "5002"
     steps:
     - cache-pull@2.7:

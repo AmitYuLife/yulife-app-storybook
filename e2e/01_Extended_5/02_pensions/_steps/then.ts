@@ -86,7 +86,7 @@ export const onPensionProductPage = async () => {
 
 export const canSeePendingPensionEarnings = async () => {
   await textVisible("We are waiting for data from your pension provider. This can take up to one month.")()
-  await textVisible("? Pension contribution")()
+  await textVisible("Pension contribution")()
   await textVisible("Waiting")()
 }
 
