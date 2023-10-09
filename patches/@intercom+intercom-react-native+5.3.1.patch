@@ -1,0 +1,19 @@
+diff --git a/node_modules/@intercom/intercom-react-native/ios/IntercomModule.m b/node_modules/@intercom/intercom-react-native/ios/IntercomModule.m
+index be200c7..06616ea 100644
+--- a/node_modules/@intercom/intercom-react-native/ios/IntercomModule.m
++++ b/node_modules/@intercom/intercom-react-native/ios/IntercomModule.m
+@@ -82,10 +82,10 @@ - (NSData *)dataFromHexString:(NSString *)string {
+                   rejecter:(RCTPromiseRejectBlock)reject) {
+     @try {
+         NSData *data = [self dataFromHexString:token];
+-        [Intercom setDeviceToken:data failure:^(NSError * _Nullable error) {
+-            reject(SEND_TOKEN_TO_INTERCOM, @"Error in sendTokenToIntercom", error);
+-        }];
+-
++        // we have removed this reject otherwise it causes a double resolve/reject exception
++        // if Intercom can add a success callback for the setDeviceToken method we can remove this
++        // reject(SEND_TOKEN_TO_INTERCOM, @"Error in sendTokenToIntercom", error);
++        [Intercom setDeviceToken:data failure:nil];
+         resolve(@(YES));
+     } @catch (NSException *exception) {
+         reject(SEND_TOKEN_TO_INTERCOM, @"Error in sendTokenToIntercom", [self exceptionToError:exception :SEND_TOKEN_TO_INTERCOM :@"sendTokenToIntercom"]);

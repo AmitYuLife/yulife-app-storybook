@@ -35,9 +35,15 @@ class LoggerInstance {
 
   public logOut = async () => {
     if (this.initialised) {
-      await Intercom.logout();
       Mixpanel.clearSuperProperties();
       Mixpanel.reset();
+      try {
+        await Intercom.logout();
+      } catch (err) {
+        this.error(err, {
+          location: "logger.logOut",
+        });
+      }
     }
 
     this.userId = "";
@@ -64,26 +70,39 @@ class LoggerInstance {
     this.userId = userId;
     this.bugsnag.setUser(userId, "", "");
     Mixpanel.identify(userId);
-    await this.setIntercomUser(userId, intercomHash);
     this.leanplum.setUserId(userId);
+    await this.setIntercomUser(userId, intercomHash);
   };
 
   private setIntercomUser = async (userId: string, hash: string) => {
     this.userId = null;
-    await Intercom.logout();
-    await Intercom.setUserHash(hash);
-    await Intercom.loginUserWithUserAttributes({ userId });
+    try {
+      await Intercom.logout();
+      await Intercom.setUserHash(hash);
+      await Intercom.loginUserWithUserAttributes({ userId });
+    } catch (err) {
+      this.error(err, {
+        location: "logger.setIntercomUser",
+      });
+    }
+
     this.userId = userId;
   };
 
-  public logEvent = (event: string, metadata: Record<string, any> = {}) => {
+  public logEvent = async (event: string, metadata: Record<string, any> = {}) => {
     if (!this.initialised || !this.userId) {
       return;
     }
 
     const data = this.addDefaultEventProperties(metadata);
+    try {
+      await Intercom.logEvent(event, data);
+    } catch (err) {
+      this.error(err, {
+        location: "logger.logEvent",
+      });
+    }
 
-    Intercom.logEvent(event, data);
     Mixpanel.trackWithProperties(event, data);
   };
 
@@ -95,24 +114,36 @@ class LoggerInstance {
     Mixpanel.trackWithProperties(event, this.addDefaultEventProperties(metadata));
   };
 
-  public setUserLanguagePreferenceOnIntercom = (languageOverride: string) => {
+  public setUserLanguagePreferenceOnIntercom = async (languageOverride: string) => {
     if (!this.initialised || !this.userId) {
       return;
     }
 
-    Intercom.updateUser({ languageOverride });
+    try {
+      await Intercom.updateUser({ languageOverride });
+    } catch (err) {
+      this.error(err, {
+        location: "logger.setUserLanguagePreferenceOnIntercom",
+      });
+    }
   };
 
-  public setUserProperties = (props: Record<string, any>, customAttrs = false) => {
+  public setUserProperties = async (props: Record<string, any>, customAttrs = false) => {
     if (!this.initialised || !this.userId) {
       return;
     }
 
     const eventProperties = this.addDefaultEventProperties(props);
-    if (customAttrs) {
-      Intercom.updateUser({ customAttributes: eventProperties });
-    } else {
-      Intercom.updateUser(eventProperties);
+    try {
+      if (customAttrs) {
+        await Intercom.updateUser({ customAttributes: eventProperties });
+      } else {
+        await Intercom.updateUser(eventProperties);
+      }
+    } catch (err) {
+      this.error(err, {
+        location: "logger.setUserProperties",
+      });
     }
 
     Mixpanel.set(eventProperties);

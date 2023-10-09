@@ -1,9 +1,9 @@
+import { IntercomClient } from "@services/logging/intercom";
 import { call } from "redux-saga/effects";
-import Intercom from "@intercom/intercom-react-native";
 
 export function* sduiActionOpenSupportChatSaga() {
   try {
-    yield call(Intercom.displayMessenger);
+    yield call(IntercomClient.displayMessenger);
   } catch (e) {
     // shrug (log)
   }
