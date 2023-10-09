@@ -305,7 +305,7 @@
         "short": "Company location",
         "long": "Please select your company's location",
         "heading": "Select your region",
-        "description": "We found more than one identity for you. Please choose the region you'd like to login continue to."
+        "description": "We found more than one account for you. Please choose the region where you’d like to continue your login journey."
       },
       "accessibility": {
         "hide_keyboard": "Hide keyboard",
