@@ -1,8 +1,8 @@
 import React, { memo } from "react";
 import { ViewStyle } from "react-native";
-import Intercom from "@intercom/intercom-react-native";
 import { Style, Colours } from "@styles";
 import Markdown from "../markdown/markdown";
+import { IntercomClient } from "@services/logging/intercom";
 
 type Props = {
   text: string;
@@ -21,7 +21,7 @@ const GroupProductDisclaimer = memo((props: Props) => (
 export default GroupProductDisclaimer;
 
 const markdownLinkActions = {
-  contactUs: () => Intercom.displayMessageComposer(),
+  contactUs: () => IntercomClient.displayMessageComposer(),
 };
 
 const markdownStyles = {
