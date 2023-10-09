@@ -9,6 +9,7 @@ export const GQL_MUTATION_LOGIN_USER = gql`
   mutation LoginUser(
     $email: String!
     $password: String!
+    $uniqueDeviceId: String
     $method: LoginMethod
     $tokenExpiration: Int
     $intercomHashMethod: IntercomHashMethod
@@ -16,6 +17,7 @@ export const GQL_MUTATION_LOGIN_USER = gql`
     loginUser(
       email: $email
       password: $password
+      uniqueDeviceId: $uniqueDeviceId
       method: $method
       tokenExpiration: $tokenExpiration
       intercomHashMethod: $intercomHashMethod
