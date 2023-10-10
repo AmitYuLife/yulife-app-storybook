@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUserId, getActiveLeaderboard } from "@redux/user/user.selectors";
 import { GetLeaderboard, GetLeaderboardVariables } from "@graphql/_core/schema";
@@ -21,6 +21,7 @@ type Props = OwnProps;
 export const PAGE_SIZE = 501; // number of rows to show +1
 
 const ActiveLeaderboardContainer = (props: Props) => {
+  const [initialLoading, setInitialLoading] = useState(true);
   const dispatch = useDispatch();
 
   const activeLeaderboard = useSelector(getActiveLeaderboard);
@@ -38,6 +39,7 @@ const ActiveLeaderboardContainer = (props: Props) => {
         limit: PAGE_SIZE,
       },
       notifyOnNetworkStatusChange: true,
+      onCompleted: () => setInitialLoading(false),
       fetchPolicy: "network-only", // caching breaks because it shares the same query w/ leaderboard-lean
     }
   );
@@ -66,7 +68,7 @@ const ActiveLeaderboardContainer = (props: Props) => {
     });
   }, []);
 
-  if (activeLeaderboard?.isLoading || networkStatus === NetworkStatus.loading) {
+  if (initialLoading || networkStatus === NetworkStatus.loading) {
     return (
       <LeaderboardLayout>
         <LeaderboardSkeleton />
@@ -84,6 +86,7 @@ const ActiveLeaderboardContainer = (props: Props) => {
           isRefetching={networkStatus === NetworkStatus.refetch}
           isLoading={loading}
           openModal={openModal}
+          initialLoading={initialLoading}
         />
       </ConsentGuard>
     </LeaderboardLayout>

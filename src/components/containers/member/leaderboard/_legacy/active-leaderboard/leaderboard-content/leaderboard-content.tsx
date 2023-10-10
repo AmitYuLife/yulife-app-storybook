@@ -18,6 +18,7 @@ export interface LeaderboardContentContainerProps {
   leaderboardItems: GetLeaderboard["getLeaderboard"];
   currentUserId: string;
   isRefetching: boolean;
+  initialLoading: boolean;
   isLoading: boolean;
   onRefetch: () => void;
   openModal: () => void;
@@ -32,6 +33,7 @@ export const LeaderboardContentContainer = ({
   openModal,
   isRefetching,
   isLoading,
+  initialLoading,
 }: LeaderboardContentContainerProps) => {
   const [scrollValue] = useState(new Animated.Value(0));
   const [flatListHeight, setFlatListHeight] = useState(0);
@@ -106,7 +108,7 @@ export const LeaderboardContentContainer = ({
         scrollEventThrottle={16}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], { useNativeDriver: true })}
       />
-      <IOSPodium scrollValue={scrollValue} leaderboardItems={leaderboardItems} />
+      <IOSPodium scrollValue={scrollValue} leaderboardItems={leaderboardItems} initialLoading={initialLoading} />
       <FloatingRankItem
         onPress={handlePressFloater}
         item={myLeaderboardItem}
@@ -120,8 +122,9 @@ export const LeaderboardContentContainer = ({
 function IOSPodium({
   leaderboardItems,
   scrollValue,
-}: Partial<LeaderboardContentContainerProps> & { scrollValue: Animated.Value }) {
-  if (Platform.OS === "android") {
+  initialLoading,
+}: Partial<LeaderboardContentContainerProps> & { scrollValue: Animated.Value; initialLoading: boolean }) {
+  if (Platform.OS === "android" && leaderboardItems.length && !initialLoading) {
     return null;
   }
 
