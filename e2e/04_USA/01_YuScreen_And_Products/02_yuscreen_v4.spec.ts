@@ -75,7 +75,6 @@ Feature("I am able to see Product Details in US YU Screen ", async () => {
           helper.MORE_PRODUCTS_PRODUCT_CHECK(Guardian_TLIF);
           helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(Guardian_TLIF);
         })
-
       }
     );
   });

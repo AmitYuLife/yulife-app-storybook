@@ -4,7 +4,7 @@ export const voucherText = (voucher: GHI_SINGLE_VOUCHER_DETAILS) => `£${voucher
 
 // rewards claim page - before unlock
 
-export const paidBy = "Employer Paid";
+export const paidBy = "Employer Scheme";
 export const keyInfo = "Key Info";
 export const coverlevel = "Cover Level";
 export const startDateText = "Start date";
