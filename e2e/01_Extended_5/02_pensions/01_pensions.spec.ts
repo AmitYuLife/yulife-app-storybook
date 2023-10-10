@@ -85,7 +85,7 @@ Feature("Smart Pension", async () => {
       When("I go to the Yu tab", when.navigateTo("yucoin"), async () => {
         When("I go to earnings", when.tapYuCoinIcon, async () => {
           When("I scroll if needed", when.scrollUntilTextVisible(ids.TODAYS_EARNINGS, "Today's challenges (0/4)", "down"), async () => {
-            Then("I can see the Pending pension modal", then.canSeePendingPensionEarnings)
+            Then("I can see the Pending pension modal", then.canSeePendingPensionEarnings(false))
             Then("I cannot see the Manage button", then.textNotVisible("Manage"))
           })
         })
