@@ -24,7 +24,7 @@ export function* sduiActionProductUnderwritingStepPushSaga(action: ProductStepAc
       ["GetPersonalProductStep"]
     );
     if (dispatchActions.length) {
-      yield all(dispatchActions.map((dispatchAction: { type: string }) => put(dispatchAction)));
+      yield all(dispatchActions.map((dispatchAction: { type: string; payload?: string }) => put(dispatchAction)));
     }
   } catch (e) {
     // shrug (log)

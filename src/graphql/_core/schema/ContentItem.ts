@@ -622,6 +622,25 @@ export interface ContentItem_ContentItemAccordion {
   subheading: string | null;
 }
 
+export interface ContentItem_ContentItemMedia_modalCopy_error {
+  heading: string;
+  subheading: string;
+  ctaLabel: string;
+  ctaLabelSecondary: string;
+}
+
+export interface ContentItem_ContentItemMedia_modalCopy_cancel {
+  heading: string;
+  subheading: string;
+  ctaLabel: string;
+  ctaLabelSecondary: string;
+}
+
+export interface ContentItem_ContentItemMedia_modalCopy {
+  error: ContentItem_ContentItemMedia_modalCopy_error;
+  cancel: ContentItem_ContentItemMedia_modalCopy_cancel;
+}
+
 export interface ContentItem_ContentItemMedia_source {
   id: string;
   uri: string | null;
@@ -691,8 +710,10 @@ export interface ContentItem_ContentItemMedia {
   __typename: "ContentItemMedia";
   id: string;
   mediaTitle: string;
+  mediaSubtitle: string;
   description: string;
   shortDescription: string;
+  modalCopy: ContentItem_ContentItemMedia_modalCopy;
   theme: string;
   orientation: ContentItemMediaOrientation;
   duration: number;

@@ -630,6 +630,25 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemAccordion {
   subheading: string | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_modalCopy_error {
+  heading: string;
+  subheading: string;
+  ctaLabel: string;
+  ctaLabelSecondary: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_modalCopy_cancel {
+  heading: string;
+  subheading: string;
+  ctaLabel: string;
+  ctaLabelSecondary: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_modalCopy {
+  error: GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_modalCopy_error;
+  cancel: GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_modalCopy_cancel;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_source {
   id: string;
   uri: string | null;
@@ -699,8 +718,10 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia {
   __typename: "ContentItemMedia";
   id: string;
   mediaTitle: string;
+  mediaSubtitle: string;
   description: string;
   shortDescription: string;
+  modalCopy: GetSduiStaticStep_getSduiStaticStep_body_ContentItemMedia_modalCopy;
   theme: string;
   orientation: ContentItemMediaOrientation;
   duration: number;
@@ -1627,6 +1648,25 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemAc
   subheading: string | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_modalCopy_error {
+  heading: string;
+  subheading: string;
+  ctaLabel: string;
+  ctaLabelSecondary: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_modalCopy_cancel {
+  heading: string;
+  subheading: string;
+  ctaLabel: string;
+  ctaLabelSecondary: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_modalCopy {
+  error: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_modalCopy_error;
+  cancel: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_modalCopy_cancel;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_source {
   id: string;
   uri: string | null;
@@ -1696,8 +1736,10 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMe
   __typename: "ContentItemMedia";
   id: string;
   mediaTitle: string;
+  mediaSubtitle: string;
   description: string;
   shortDescription: string;
+  modalCopy: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMedia_modalCopy;
   theme: string;
   orientation: ContentItemMediaOrientation;
   duration: number;

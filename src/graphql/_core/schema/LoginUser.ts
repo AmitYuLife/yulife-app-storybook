@@ -230,6 +230,7 @@ export interface LoginUser {
 export interface LoginUserVariables {
   email: string;
   password: string;
+  uniqueDeviceId?: string | null;
   method?: LoginMethod | null;
   tokenExpiration?: number | null;
   intercomHashMethod?: IntercomHashMethod | null;

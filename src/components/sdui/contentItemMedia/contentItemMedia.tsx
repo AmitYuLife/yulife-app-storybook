@@ -5,12 +5,13 @@ import { Modal, StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";
 import { GenericModal } from "@components/modals";
-import { t } from "@locale";
 
 export const ContentItemMedia = memo(
   ({
     theme,
     mediaTitle,
+    mediaSubtitle,
+    modalCopy,
     source,
     poster,
     thumbnail,
@@ -59,6 +60,7 @@ export const ContentItemMedia = memo(
           {...props}
           theme={theme as "light" | "dark"}
           title={mediaTitle}
+          subtitle={mediaSubtitle}
           source={source.uri}
           poster={poster.uri}
           thumbnail={thumbnail.uri}
@@ -80,24 +82,7 @@ export const ContentItemMedia = memo(
         >
           <GenericModal
             isPrimaryOnePressOnly={true}
-            heading={
-              !showError
-                ? t("modals.generic_modal.cancel_challenge.heading")
-                : t("modals.generic_modal.on_meditopia_error.heading")
-            }
-            subheading={
-              !showError
-                ? t("modals.generic_modal.cancel_challenge.subheading")
-                : t("modals.generic_modal.on_meditopia_error.subheading")
-            }
-            ctaLabel={
-              !showError
-                ? t("modals.generic_modal.cancel_challenge.cta_label")
-                : t("modals.generic_modal.on_meditopia_error.cta_label")
-            }
-            ctaLabelSecondary={
-              !showError ? t("labels.cta.cancel") : t("modals.generic_modal.on_meditopia_error.cta_label_secondary")
-            }
+            {...(showError ? modalCopy.error : modalCopy.cancel)}
             onPress={onPress}
             onPressSecondary={onPressSecondary}
           />
