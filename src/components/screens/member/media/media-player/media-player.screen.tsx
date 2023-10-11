@@ -1,7 +1,8 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { VideoPlayer } from "@organisms";
 import { Media } from "@graphql/_core/schema";
 import { IVideoPlayerProps } from "@organisms/video-player/video-player";
+import { t } from "@locale";
 
 interface IVideo extends Media {
   reward: number;
@@ -42,6 +43,8 @@ const MediaPlayerScreen = ({
   startChallengeButtonLabel,
   autoPlay,
 }: IMediaPlayerScreenProps) => {
+  const subtitle = useMemo(() => t(`screens.video_player.video_type.${eventType}`), [eventType]);
+
   return (
     <VideoPlayer
       autoPlay={autoPlay}
@@ -50,6 +53,7 @@ const MediaPlayerScreen = ({
       poster={video.cover.uri}
       tag={video.tag}
       title={video.title}
+      subtitle={subtitle}
       thumbnail={video.thumbnail.uri}
       logo={video.logo.uri}
       onProgress={onProgress}

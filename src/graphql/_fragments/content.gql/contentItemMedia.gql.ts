@@ -10,8 +10,23 @@ export const GQL_FRAGMENT_CONTENT_ITEM_MEDIA = gql`
   fragment ContentItemMedia on ContentItemMedia {
     id
     mediaTitle
+    mediaSubtitle
     description
     shortDescription
+    modalCopy {
+      error {
+        heading
+        subheading
+        ctaLabel
+        ctaLabelSecondary
+      }
+      cancel {
+        heading
+        subheading
+        ctaLabel
+        ctaLabelSecondary
+      }
+    }
     theme
     orientation
     duration

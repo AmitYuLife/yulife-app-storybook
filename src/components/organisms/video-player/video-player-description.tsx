@@ -1,23 +1,22 @@
 import React, { memo, useMemo } from "react";
 import { Image as RNImage, StyleSheet, View } from "react-native";
 import moment from "moment";
-import { t } from "@locale";
 import { Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { StarIcon } from "@atoms/icon/star-icon";
 import { MEDIA_SMALL_LOGO, MEDIA_STAR_REWARD, MEDIA_YUCOIN_REWARD, VIDEO_PLAYER_DESCRIPTION_SCREEN } from "@ids";
 interface IProps {
   title: string;
+  subtitle: string;
   description: string;
   duration?: number;
   stars?: number;
   yuCoin: number;
   logo: string;
   tag?: string;
-  eventType: string;
 }
 
-const VideoPlayerDescription = ({ title, tag, description, duration, stars, yuCoin, logo, eventType }: IProps) => {
+const VideoPlayerDescription = ({ title, subtitle, tag, description, duration, stars, yuCoin, logo }: IProps) => {
   const timeType = useMemo(() => (Math.floor(duration) < 60 ? "sec" : "min"), [duration]);
   const durationFormatted = useMemo(
     () => moment.utc(duration * 1000).format(timeType === "sec" ? "s" : "m"),
@@ -34,7 +33,7 @@ const VideoPlayerDescription = ({ title, tag, description, duration, stars, yuCo
           <Image testID={MEDIA_SMALL_LOGO(logo)} source={{ uri: logo }} width={16} height={16} />
           <View style={styles.subTitle}>
             <TextTemplate type="l2b">
-              {t(`screens.video_player.video_type.${eventType}`)} • {durationFormatted} {timeType}
+              {subtitle} • {durationFormatted} {timeType}
             </TextTemplate>
           </View>
         </View>

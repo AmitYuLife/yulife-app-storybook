@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -8,6 +8,25 @@ import { ContentItemMediaOrientation, SduiActionType } from "./globalTypes";
 // ====================================================
 // GraphQL fragment: ContentItemMedia
 // ====================================================
+
+export interface ContentItemMedia_modalCopy_error {
+  heading: string;
+  subheading: string;
+  ctaLabel: string;
+  ctaLabelSecondary: string;
+}
+
+export interface ContentItemMedia_modalCopy_cancel {
+  heading: string;
+  subheading: string;
+  ctaLabel: string;
+  ctaLabelSecondary: string;
+}
+
+export interface ContentItemMedia_modalCopy {
+  error: ContentItemMedia_modalCopy_error;
+  cancel: ContentItemMedia_modalCopy_cancel;
+}
 
 export interface ContentItemMedia_source {
   id: string;
@@ -77,8 +96,10 @@ export interface ContentItemMedia_onEnd {
 export interface ContentItemMedia {
   id: string;
   mediaTitle: string;
+  mediaSubtitle: string;
   description: string;
   shortDescription: string;
+  modalCopy: ContentItemMedia_modalCopy;
   theme: string;
   orientation: ContentItemMediaOrientation;
   duration: number;

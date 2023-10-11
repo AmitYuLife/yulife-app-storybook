@@ -44,6 +44,7 @@ export interface IVideoPlayerProps {
   source: string;
   poster?: string;
   title: string;
+  subtitle: string;
   description: string;
   shortDescription: string;
   tag?: string;
@@ -79,6 +80,7 @@ const VideoPlayer = ({
   source,
   poster,
   title,
+  subtitle,
   description,
   tag,
   thumbnail,
@@ -403,13 +405,13 @@ const VideoPlayer = ({
           <View style={styles.videoDescription}>
             <VideoPlayerDescription
               title={title}
+              subtitle={subtitle}
               description={description}
               duration={state.durationInSeconds}
               yuCoin={yuCoin}
               stars={stars}
               tag={tag}
               logo={logo}
-              eventType={eventType}
             />
           </View>
         )}

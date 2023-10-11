@@ -108,8 +108,8 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                       routeId: "sleep_meditation",
                       isSduiStatic: true,
                       props: {
-                        stepId: "sleep_meditation",
-                        dynamicId: "sleep_meditation_test",
+                        stepId: "goal_media",
+                        dynamicId: "sleep_meditation",
                       },
                     }),
                   });

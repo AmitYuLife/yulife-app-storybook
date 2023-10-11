@@ -25,7 +25,7 @@ export function* sduiActionNavigateBackSaga({ payload }: SduiActionWithServerPay
 
     // Dispatch additional actions supplied by the server
     if (dispatchActions.length) {
-      yield all(dispatchActions.map((dispatchAction: { type: string }) => put(dispatchAction)));
+      yield all(dispatchActions.map((dispatchAction: { type: string; payload?: string }) => put(dispatchAction)));
     }
   } catch (e) {
     yield spawn(() => {
