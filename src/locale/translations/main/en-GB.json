@@ -1171,7 +1171,9 @@
   },
   "molecules": {
     "yucoin_power_button": {
-      "button_label": "Improves your challenge rewards!"
+      "button_label": "Improves your challenge rewards!",
+      "yucoin": "YuCoin",
+      "power": "Power"
     },
     "package_type": {
       "not_equipped": "Not equipped"

@@ -1,5 +1,5 @@
 import { Style } from "@styles";
-import { memo, useCallback, useMemo } from "react";
+import { ReactNode, memo, useCallback, useMemo } from "react";
 import { StyleProp, ViewStyle, View, ViewProps } from "react-native";
 
 export enum StackDirection {
@@ -9,50 +9,57 @@ export enum StackDirection {
 
 interface IStackProps extends ViewProps {
   gap?: number;
-  children: JSX.Element[];
+  children: ReactNode;
   direction?: StackDirection;
 }
 
 /**
  * Lays out all child components with equal spacing between them.
  */
-const Stack = memo(
-  ({ children, gap = Style.adjust(10), direction = StackDirection.vertical, style, ...props }: IStackProps) => {
-    const getGap = useCallback(
-      (index: number): StyleProp<ViewStyle> => {
-        switch (direction) {
-          case StackDirection.horizontal:
-            return { marginLeft: index === 0 ? 0 : gap, justifyContent: "center" };
-          default:
-            return { marginTop: index === 0 ? 0 : gap, justifyContent: "center" };
-        }
-      },
-      [gap, direction]
-    );
-
-    const directionStyles = useMemo((): ViewStyle => {
+const Stack = ({
+  children,
+  gap = Style.adjust(10),
+  direction = StackDirection.vertical,
+  style,
+  ...props
+}: IStackProps) => {
+  const getGap = useCallback(
+    (index: number): StyleProp<ViewStyle> => {
       switch (direction) {
         case StackDirection.horizontal:
-          return { flexDirection: "row" };
+          return { marginLeft: index === 0 ? 0 : gap, justifyContent: "center" };
         default:
-          return { flexDirection: "column" };
+          return { marginTop: index === 0 ? 0 : gap, justifyContent: "center" };
       }
-    }, [direction]);
+    },
+    [gap, direction]
+  );
 
-    const computedStyles = useMemo((): StyleProp<ViewStyle> => {
-      return [style, directionStyles];
-    }, [style, directionStyles]);
+  const directionStyles = useMemo((): ViewStyle => {
+    switch (direction) {
+      case StackDirection.horizontal:
+        return { flexDirection: "row" };
+      default:
+        return { flexDirection: "column" };
+    }
+  }, [direction]);
 
-    return (
-      <View style={computedStyles} {...props}>
-        {children.filter(Boolean).map((child, index) => (
-          <View key={index} style={getGap(index)}>
-            {child}
-          </View>
-        ))}
-      </View>
-    );
-  }
-);
+  const computedStyles = useMemo((): StyleProp<ViewStyle> => {
+    return [style, directionStyles];
+  }, [style, directionStyles]);
 
-export default Stack;
+  // We ensure that children is an array even if one element was passed into the Stack
+  const childNodes = useMemo(() => (Array.isArray(children) ? children : [children]), [children]);
+
+  return (
+    <View style={computedStyles} {...props}>
+      {childNodes.filter(Boolean).map((child, index) => (
+        <View key={index} style={getGap(index)}>
+          {child}
+        </View>
+      ))}
+    </View>
+  );
+};
+
+export default memo(Stack);
