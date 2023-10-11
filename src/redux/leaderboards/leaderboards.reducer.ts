@@ -1,6 +1,5 @@
 import { REHYDRATE } from "redux-persist";
 import { SyncAction } from "@redux/_core/types";
-import { CLEAR_SOCIAL_GROUP_LEADERBOARD_RECENT_SEARCH_HISTORY } from "./leaderboards.actions";
 import {
   SearchLeaderboardUser_searchLeaderboardUser as SearchItem,
   GetMobileSocialGroupLeaderboards_getMobileSocialGroupLeaderboards as ISocialGroupData,
@@ -10,6 +9,7 @@ import {
   UPDATE_SOCIAL_GROUP_LEADERBOARDS_SUCCESS,
   UPDATE_ACTIVE_SOCIAL_GROUP_ID,
   UPDATE_ACTIVE_SOCIAL_GROUP_LEADERBOARD_ID,
+  CLEAR_SOCIAL_GROUP_LEADERBOARD_RECENT_SEARCH_HISTORY,
   UPDATE_SOCIAL_GROUP_LEADERBOARD_CONSENTS,
 } from "./leaderboards.actions";
 import { LOGOUT_SUCCESS } from "@redux/user/user.actions";
@@ -79,8 +79,10 @@ const leaderboardReducer = (state: ILeaderboardsStore = getInitialState(), actio
       return updateSocialGroupLeaderboardConsents(state, action.payload);
 
     case CLEAR_SOCIAL_GROUP_LEADERBOARD_RECENT_SEARCH_HISTORY:
-    case LOGOUT_SUCCESS:
       return clearSocialGroupLeaderboardRecentSearchHistory(state);
+
+    case LOGOUT_SUCCESS:
+      return getInitialState();
 
     default:
       return state;

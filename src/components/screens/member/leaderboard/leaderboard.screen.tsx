@@ -89,16 +89,17 @@ export const LeaderboardScreen = ({
     });
   }, [items]);
 
-  const navigationItem = useMemo(() => ({ id: "header" }), []);
+  const navigationItems = useMemo(() => [{ id: "header" }, { id: "tabs" }], []);
+
   const data = useMemo(() => {
-    const stickItem = [navigationItem];
+    const stickItem = [...navigationItems];
     if (itemsIsLoading) {
       return stickItem;
     }
 
     const filterCurrentUser = items.filter((item) => item.position < PAGE_SIZE);
-    return [navigationItem, ...filterCurrentUser];
-  }, [items, itemsIsLoading, navigationItem]);
+    return [...navigationItems, ...filterCurrentUser];
+  }, [items, itemsIsLoading, navigationItems]);
 
   const showTrophy = (!itemsIsLoading && showYudokuEmptyMessage) || !activeLeaderboard?.consent;
 
@@ -109,10 +110,32 @@ export const LeaderboardScreen = ({
     [onListItemPress]
   );
 
+  const { refreshControlStyle, opacity, stickyHeaderIndices, onScroll } = useMemo(() => {
+    const clampedOpacity = scrollValue.interpolate({
+      inputRange: [0, PODIUM_HEIGHT - 60],
+      outputRange: [1, 0],
+      extrapolate: "clamp",
+    });
+    return {
+      opacity: clampedOpacity,
+      refreshControlStyle: [
+        styles.refreshControl,
+        {
+          opacity: clampedOpacity,
+        },
+      ],
+      stickyHeaderIndices: [1],
+      onScroll: Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], {
+        useNativeDriver: true,
+      }),
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const renderItem = useCallback(
     (listItem: ListRenderItemInfo<SocialGroupLeaderboardItem>) => {
       const { item } = listItem;
-      if (item.id === "header") {
+      if (item.id === "tabs") {
         return (
           <LeaderboardListTabs
             leaderboards={activeSocialGroup?.leaderboards}
@@ -123,11 +146,45 @@ export const LeaderboardScreen = ({
         );
       }
 
+      if (item.id === "header") {
+        return (
+          <LeaderboardListHeaderComponent
+            opacity={opacity}
+            activeSocialGroup={activeSocialGroup}
+            navigationDescription={activeLeaderboard?.shortDescription}
+            showDuels={showDuels}
+            showSearch={showSearch}
+            showTrophy={showTrophy}
+            ranks={ranks}
+            onLeftNavigationPress={onLeftNavigationPress}
+            onDuelPress={onDuelPress}
+            onSearchPress={onSearchPress}
+            onQuestionMarkPress={onQuestionMarkPress}
+          />
+        );
+      }
+
       return (
         <LeaderboardListItem onPress={onItemPress} currentUserInfo={currentUserInfo} listItem={listItem} item={item} />
       );
     },
-    [onItemPress, currentUserInfo, activeSocialGroup, activeLeaderboard, itemsIsLoading, onUpdateActiveLeaderboard]
+    [
+      onItemPress,
+      currentUserInfo,
+      activeSocialGroup,
+      activeLeaderboard,
+      itemsIsLoading,
+      onUpdateActiveLeaderboard,
+      opacity,
+      showDuels,
+      showSearch,
+      showTrophy,
+      ranks,
+      onLeftNavigationPress,
+      onDuelPress,
+      onSearchPress,
+      onQuestionMarkPress,
+    ]
   );
 
   const leftIcons = useMemo(
@@ -165,58 +222,6 @@ export const LeaderboardScreen = ({
       animated: true,
     });
   }, [currentUserInfo?.position, onShowRankModal]);
-
-  const { refreshControlStyle, opacity, stickyHeaderIndices, onScroll } = useMemo(() => {
-    const clampedOpacity = scrollValue.interpolate({
-      inputRange: [0, PODIUM_HEIGHT - 60],
-      outputRange: [1, 0],
-      extrapolate: "clamp",
-    });
-    return {
-      opacity: clampedOpacity,
-      refreshControlStyle: [
-        styles.refreshControl,
-        {
-          opacity: clampedOpacity,
-        },
-      ],
-      stickyHeaderIndices: [0],
-      onScroll: Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], {
-        useNativeDriver: true,
-      }),
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const renderHeader = useCallback(() => {
-    return (
-      <LeaderboardListHeaderComponent
-        opacity={opacity}
-        activeSocialGroup={activeSocialGroup}
-        navigationDescription={activeLeaderboard?.shortDescription}
-        showDuels={showDuels}
-        showSearch={showSearch}
-        showTrophy={showTrophy}
-        ranks={ranks}
-        onLeftNavigationPress={onLeftNavigationPress}
-        onDuelPress={onDuelPress}
-        onSearchPress={onSearchPress}
-        onQuestionMarkPress={onQuestionMarkPress}
-      />
-    );
-  }, [
-    opacity,
-    activeSocialGroup,
-    activeLeaderboard,
-    showDuels,
-    showSearch,
-    showTrophy,
-    ranks,
-    onLeftNavigationPress,
-    onDuelPress,
-    onSearchPress,
-    onQuestionMarkPress,
-  ]);
 
   const renderFooter = useCallback(
     () => (
@@ -266,7 +271,6 @@ export const LeaderboardScreen = ({
           onRefresh={onRefresh}
           refreshing={isLoading}
           refreshControl={RefreshComponent}
-          ListHeaderComponent={renderHeader}
           ListFooterComponent={renderFooter}
           stickyHeaderIndices={stickyHeaderIndices}
           stickyHeaderHiddenOnScroll={true}
