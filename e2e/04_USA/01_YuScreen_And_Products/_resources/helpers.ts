@@ -92,7 +92,7 @@ export const ONBOARDING_YUSCREEN_USA = async (seed:YuScreenInfo) => {
     //if seed data have info for second slot will run below
     seed.SecondSlotProductTitle && Then(`I should see ${seed.SecondSlotProductTitle} text`, then.textVisible(seed.SecondSlotProductTitle))
     seed.SecondSlotLeftBackgroundImgSrc && Then(`I should be able to see ${seed.SecondSlotLeftBackgroundImgSrc} background image on left`, then.idVisibleAtIndex(LEFT_SIDE_BACKGROUD_IMAGE_SLOT(seed.SecondSlotLeftBackgroundImgSrc), 1));
-    seed.SecondSlotLeftBackgroundImgSrc && Then(`I should be able to see ${seed.SlotYuCoinPowerText} text power on left of slot 2`, then.idVisibleAtIndex(LEFT_SIDE_TEXT_SLOT_POWER(seed.SlotYuCoinPowerText), 1));
+    seed.SlotYuCoinPowerText && Then(`I should be able to see ${seed.SlotYuCoinPowerText} text power on left of slot 2`, then.idVisibleAtIndex(LEFT_SIDE_TEXT_SLOT_POWER(seed.SlotYuCoinPowerText), 1));
 
     Then(`I should see ${ONBOARDING_SCREEN} id`, then.idVisible(ONBOARDING_SCREEN))
     Then(`I should see ${text.protectionPowered} text`, then.textVisible(text.protectionPowered))
@@ -125,7 +125,7 @@ export const SLOT_VISIBLE = async (seed:YuScreenInfo) => {
         
         seed.SecondSlotProductTitle && Then(`I should see ${seed.SecondSlotProductTitle} text`, then.textVisible(seed.SecondSlotProductTitle))
         seed.SecondSlotLeftBackgroundImgSrc && Then(`I should be able to see ${seed.SecondSlotLeftBackgroundImgSrc} background image on left`, then.idVisibleAtIndex(LEFT_SIDE_BACKGROUD_IMAGE_SLOT(seed.SecondSlotLeftBackgroundImgSrc), 1));
-        seed.SecondSlotLeftBackgroundImgSrc && Then(`I should be able to see ${seed.SlotYuCoinPowerText} text power on left of slot 2`, then.idVisibleAtIndex(LEFT_SIDE_TEXT_SLOT_POWER(seed.SlotYuCoinPowerText), 1));
+        seed.SlotYuCoinPowerText && Then(`I should be able to see ${seed.SlotYuCoinPowerText} text power on left of slot 2`, then.idVisibleAtIndex(LEFT_SIDE_TEXT_SLOT_POWER(seed.SlotYuCoinPowerText), 1));
 
     })
 }

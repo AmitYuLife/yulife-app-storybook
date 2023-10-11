@@ -65,6 +65,8 @@ export const Yulife_Sponsor = "https://yulife-develop.imgix.net/sponsored-logos/
 //Slot Left Image
 export const canEnrolPlusImage = "https://yulife-develop.imgix.net/yuscreen/slots/background/bg-pink-18-07-22.svg?ixlib=js-3.2.1&w=135&h=162&s=dfaea3f4cea2df3368c3b2a8564c568c"
 
+const futureEnrolImage = "https://yulife-develop.imgix.net/yuscreen/slots/background/bg-blue-with-yugi-10-08-23.svg?ixlib=js-3.2.1&w=135&h=162&s=d57d3ccace0152970b703d691fc11a0a"
+
 //Wellbeing Hub
 
 export const wellbeingHubDescription = "Welcome to this quick-access hub to all your company’s wellbeing benefits"
@@ -610,10 +612,9 @@ export const PCPListInfoPanel: InfoPanel = {
 export const GapVisInsuranceInEnrolment: YuScreenInfo = {
     mainYuCoinPower: "1",
     SlotProductTitle: Gap,
-    SlotYuCoinPowerText: "+",
-    SlotLeftBackgroundImgSrc: canEnrolPlusImage,
+    SlotLeftBackgroundImgSrc: futureEnrolImage,
     SecondSlotProductTitle: Guardian_VIS.heading,
-    SecondSlotLeftBackgroundImgSrc: canEnrolPlusImage
+    SecondSlotLeftBackgroundImgSrc: futureEnrolImage
 };
 
 export const VisInsuranceInEnrolment: YuScreenInfo = {
