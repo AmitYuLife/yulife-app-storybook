@@ -87,7 +87,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
                 })
             })
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("groupDental")
-            helper.GROUP_DENTAL_PRODUCT_VIEW("Employer Paid", "5")
+            helper.GROUP_DENTAL_PRODUCT_VIEW("Employer Scheme", "5")
             helper.ORDO_JOURNEY_VIEW()
             helper.FIELD_VALIDATION();
             helper.CHECKOUT_PROCESS();
