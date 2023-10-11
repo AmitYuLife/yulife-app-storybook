@@ -42,11 +42,13 @@ import showEventFinishDialog from "./showEventFinishedDialog.saga";
 import getAllUserDataSaga from "./getAllUserData.saga";
 import changeUserLocaleSaga from "./changeUserLocale.saga";
 import { SET_DEVICE_LOCALE } from "@redux/device/device.actions";
+import fetchUserData from "./fetchUserData.saga";
 
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
   takeLatest(GET_USER_START, getUserDataSaga),
   takeLatest(GET_ALL_USER_DATA_START, getAllUserDataSaga),
+  takeLatest(AUTHENTICATED, fetchUserData),
   takeLatest(UPDATE_USER_PROFILE, sendDuelInvitationSaga),
   takeLatest(SET_USER_NO_ACCESS, setUserNoAccessSaga),
   takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),
