@@ -78,6 +78,8 @@ export { default as ActionButton } from "./action-button/action-button";
 export { default as Avatar } from "./avatar/avatar";
 export { default as LeaderboardNavigation } from "./leaderboard-navigation/leaderboard-navigation";
 export { default as YucoinPowerButton } from "./yucoin-power-button/yucoin-power-button";
+export { default as YucoinPowerButtonMini } from "./yucoin-power-button-mini/yucoin-power-button-mini";
+export { default as YucoinPowerButtonBase } from "./yucoin-power-button-base/yucoin-power-button-base";
 export { default as StarRating } from "./star-rating/star-rating";
 export { default as SearchInputWithIcon } from "./search-input-with-icon/search-input-with-icon";
 export { default as ScrollThresholdView } from "./scroll-threshold-view/scroll-threshold-view";

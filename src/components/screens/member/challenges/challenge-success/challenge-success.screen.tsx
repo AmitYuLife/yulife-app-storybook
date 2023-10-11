@@ -1,13 +1,19 @@
 import * as React from "react";
-import { Image, View } from "react-native";
-import { LevelLine, Stars, TextTemplate } from "@atoms";
+import { Image, StyleSheet, View } from "react-native";
+import { LevelLine, Stack, Stars, TextTemplate } from "@atoms";
 import { t } from "@locale";
-import { AnimatedPlusPoints, Button, CentredScreen } from "@molecules";
+import { AnimatedPlusPoints, Button, CentredScreen, YucoinPowerButtonMini } from "@molecules";
 import { formatCyclingMetersToKmWithOneDecimal } from "../challenge-progress/subcomponents/progress-bar.helpers";
-import styles, { SCORE_COLOR } from "./challenge-success.screen.styles";
 import { getTheme } from "@theme";
 import { CHALLENGE_SUCCESS_SCREEN } from "@ids";
 import { IActiveLevel } from "@redux/levels/levels.selectors";
+import { Style } from "@styles";
+import { commonStyles } from "../challenge-failed/challenge-failed.screen.styles";
+import { useUserFeatures } from "@hooks";
+import { useDispatch } from "react-redux";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
+import { useCallback } from "react";
 
 interface IProps {
   onPressCta: () => void;
@@ -20,49 +26,77 @@ interface IProps {
   unit: IActiveLevel["unit"];
 }
 
-export default function ChallengeSuccessScreen(props: IProps) {
-  const { level, yuniversalMap, onPressCta, rating, reward, score, unit, loading } = props;
+export default function ChallengeSuccessScreen({
+  unit,
+  level,
+  score,
+  rating,
+  reward,
+  loading,
+  onPressCta,
+  yuniversalMap,
+}: IProps) {
+  const dispatch = useDispatch();
+  const { showYucoinPowerButton } = useUserFeatures();
   const { challengeSuccessScreen } = getTheme(level, yuniversalMap);
+
+  const onPressYucoinPowerButton = useCallback(() => {
+    dispatch(
+      logMixpanelEventActionCreator("button_pressed", {
+        location: "challenge_success",
+        button_id: "yucoin_power_button",
+      })
+    );
+
+    showYuCoinPowerExplainedOverlay();
+  }, [dispatch]);
 
   return (
     <CentredScreen testID={CHALLENGE_SUCCESS_SCREEN} {...challengeSuccessScreen}>
-      <View style={styles.ratingWrapper}>
-        <Stars isLeftHighlighted={rating > 0} isMidHighlighted={rating > 1} isRightHighlighted={rating > 2} />
-        <View style={styles.levelWrapper}>
-          <View style={styles.levelLineWrapper}>
-            <LevelLine colour={challengeSuccessScreen.lineColour} />
+      <View style={styles.wrapper}>
+        <View style={styles.topWrapper}>
+          <View style={styles.ratingWrapper}>
+            <Stars isLeftHighlighted={rating > 0} isMidHighlighted={rating > 1} isRightHighlighted={rating > 2} />
+            <View style={styles.levelWrapper}>
+              <View style={styles.levelLineWrapper}>
+                <LevelLine colour={challengeSuccessScreen.lineColour} />
+              </View>
+              <View style={styles.level}>
+                <TextTemplate type="l1" color={challengeSuccessScreen.textStyle.color} textAlign="center">
+                  {yuniversalMap ? t("screens.challenge_success.stage", { level }) : t("labels.level", { level })}
+                </TextTemplate>
+              </View>
+            </View>
           </View>
-          <View style={styles.level}>
-            <TextTemplate type="l1" color={challengeSuccessScreen.textStyle.color} textAlign="center">
-              {yuniversalMap ? t("screens.challenge_success.stage", { level }) : t("labels.level", { level })}
+          <View style={styles.heading}>
+            <TextTemplate type="h1" color={challengeSuccessScreen.textStyle.color} textAlign="center">
+              {t("screens.challenge_success.footer")}
             </TextTemplate>
           </View>
+          <View>
+            <View style={styles.plusPointsWrapper}>
+              <AnimatedPlusPoints type="challenge-success" coins={reward} />
+            </View>
+            <Image source={require("@assets/challenge-success/challenge-success.png")} />
+            <View style={styles.score}>
+              <TextTemplate type="h2" color={styles.score.color} textAlign="center">
+                {renderScore(score, unit)}
+              </TextTemplate>
+            </View>
+          </View>
         </View>
-      </View>
-      <View style={styles.heading}>
-        <TextTemplate type="h1" color={challengeSuccessScreen.textStyle.color} textAlign="center">
-          {t("screens.challenge_success.footer")}
-        </TextTemplate>
-      </View>
-      <View>
-        <View style={styles.plusPointsWrapper}>
-          <AnimatedPlusPoints type="challenge-success" coins={reward} />
-        </View>
-        <Image source={require("@assets/challenge-success/challenge-success.png")} />
-        <View style={styles.score}>
-          <TextTemplate type="h2" color={SCORE_COLOR} textAlign="center">
-            {renderScore(score, unit)}
-          </TextTemplate>
-        </View>
-      </View>
 
-      <Button
-        label={t("labels.cta.collect")}
-        isLoading={loading}
-        onPress={onPressCta}
-        size="Small"
-        wrapperStyle={styles.cta}
-      />
+        <Stack gap={Style.adjust(22)} style={styles.ctaWrapper}>
+          {showYucoinPowerButton ? <YucoinPowerButtonMini onPress={onPressYucoinPowerButton} /> : null}
+          <Button
+            label={t("labels.cta.collect")}
+            isLoading={loading}
+            onPress={onPressCta}
+            size="Fill"
+            wrapperStyle={styles.cta}
+          />
+        </Stack>
+      </View>
     </CentredScreen>
   );
 }
@@ -84,3 +118,41 @@ function renderScore(score: number, unit: IProps["unit"]) {
       return `${score}`;
   }
 }
+
+const styles = StyleSheet.create({
+  ...commonStyles,
+  wrapper: {
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  topWrapper: {
+    flex: 1,
+  },
+  cta: {
+    marginBottom: Style.adjust(32),
+  },
+  ctaWrapper: {
+    alignSelf: "stretch",
+    paddingHorizontal: Style.adjust(32),
+  },
+  level: {
+    textAlign: "center",
+    color: "rgb(168, 105, 22)",
+    fontSize: Style.adjust(14),
+    marginTop: Style.adjust(-10),
+  },
+  plusPointsWrapper: {
+    alignItems: "center",
+    marginBottom: Style.adjust(48),
+  },
+  score: {
+    left: 0,
+    right: 0,
+    textAlign: "center",
+    position: "absolute",
+    bottom: Style.adjust(24),
+    fontSize: Style.adjust(25),
+    color: "rgb(168, 105, 22)",
+  },
+});
