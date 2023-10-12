@@ -2,7 +2,7 @@ import { StyleSheet, Platform } from "react-native";
 import { Colours, Style } from "@styles";
 import colours from "@styles/colours";
 
-export const IMAGE_SIZE = Style.DEVICE_WIDTH / 2 - Style.adjust(25);
+export const IMAGE_SIZE = Style.DEVICE_WIDTH / 2 - Style.adjust(23);
 
 const TOP_HEIGHT = (IMAGE_SIZE / 165) * 120;
 const BOTTOM_HEIGHT = Style.adjust(88);
