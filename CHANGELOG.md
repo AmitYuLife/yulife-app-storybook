@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.103.0] - 2023-10-12
+
+### Bugfixes
+
+- Bugfix ENG-3664: New leaderboard swap toggle hidden on small screens
+- Bugfix: Challenge list on iPhone 12 Pro max
+- Bugfix: Leaderboard fixes
+- Bugfix ENG-3639: Challenge meditation not loading
+- Bugfix ENG-3373: Intercom saga crashes
+- Bugfix: Show leaderboard navigation on android devices when leaderboard is empty
+
+### Tasks
+
+- Task GS-782: add yucoin power to success screen
+- Task: SDUI media refactor
+
+### Extra
+
+- Detox: Fixes 11th Oct
+- Detox: Fixes 10th Oct
+- Detox: US bitrise fix
+- Detox: Fixes 9th oct
+- ENG-3655: Update copy for region selector
+- ISA-1299: Add device fingerprint for ios and android
+- Detox:xse 2118 mpp redesign
+- Detox: USA fixes 6th Oct
+
 ## [3.102.0] - 2023-10-06
 
 ### Bugfixes
