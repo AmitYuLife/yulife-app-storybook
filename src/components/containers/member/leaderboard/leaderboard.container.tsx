@@ -129,7 +129,7 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
       buttonLabel: t("labels.cta.continue"),
       paddingTop: Style.adjust(80),
       showCloseIcon: false,
-      height: Style.adjust(Style.DEVICE_HEIGHT / 1.5),
+      height: getJoinLeaderboardOverlayHeight(),
       buttonOnPress: async () => {
         if (consents.length) {
           await updateSocialLeaderboardConsents({ consents });
@@ -251,5 +251,10 @@ const onDuelPress = () =>
       name: ROUTES.duelsHub,
     },
   });
+
+const getJoinLeaderboardOverlayHeight = () => {
+  const heightPercentage = Style.DEVICE_HEIGHT <= 700 ? 80 : 60;
+  return Style.adjust((Style.DEVICE_HEIGHT / 100) * heightPercentage);
+};
 
 export default memo(LeaderboardContainer);
