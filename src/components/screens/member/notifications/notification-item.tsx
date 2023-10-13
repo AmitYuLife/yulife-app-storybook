@@ -6,9 +6,10 @@ import { Colours, Style } from "@styles";
 import moment from "moment";
 import React, { memo, useCallback, useMemo } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import { useNotifications } from "@hooks";
 
 interface IProps {
-  onOpen: (messageId: string) => void;
+  onOpen: ReturnType<typeof useNotifications>["onOpen"];
   item: Message;
 }
 
@@ -23,13 +24,16 @@ const NotificationItem = ({ onOpen, item }: IProps) => {
   }, [item]);
 
   const onPress = useCallback(() => {
-    onOpen(item.messageId);
+    onOpen(item.messageId, item.data);
   }, [item, onOpen]);
 
   return (
     <BoxOption isSelected={false} onPress={onPress} innerWrapperStyle={styles.wrapper} innerHeight={Style.adjust(110)}>
       <>
-        <Image source={{ uri: item.imageUrl }} style={styles.image} />
+        <Image
+          source={!item.imageUrl ? require("@assets/notification/default_thumbnail.png") : { uri: item.imageUrl }}
+          style={styles.image}
+        />
         <View style={styles.contentWrapper}>
           <Text>{item.title}</Text>
           <TextTemplate type="l1" numberOfLines={1}>
