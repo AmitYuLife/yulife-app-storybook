@@ -56,10 +56,6 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
       });
     }
 
-    if (!meditationPermissionGranted && !cyclingPermissionGranted) {
-      return;
-    }
-
     const startTime = moment().startOf("day");
     const endTime = moment().endOf("day");
 
@@ -101,9 +97,7 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
       ? []
       : processResult(cycling, "Biking", startTime, endTime);
 
-    const meditationResults: ChallengesPayload[] = !meditationPermissionGranted
-      ? []
-      : processResult(meditation, "MindfulSession", startTime, endTime);
+    const meditationResults: ChallengesPayload[] = processResult(meditation, "MindfulSession", startTime, endTime);
 
     if (!cyclingResults.length && !meditationResults.length) {
       return;
