@@ -107,6 +107,14 @@ export default class LeanplumClient {
     return Leanplum.forceContentUpdate();
   };
 
+  public markAsRead = async (messageId: string) => {
+    if (!this.enabled) {
+      return;
+    }
+
+    return LeanplumInbox.markAsRead(messageId);
+  };
+
   public onInboxUpdate = (callback: () => void) => {
     if (!this.enabled) {
       return;

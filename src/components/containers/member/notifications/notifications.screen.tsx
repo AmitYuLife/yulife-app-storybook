@@ -8,13 +8,14 @@ import { FlashList } from "@shopify/flash-list";
 import { Style } from "@styles";
 import React, { memo, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
+import { useNotifications } from "@hooks";
 
 interface IProps {
   onClose: () => void;
   notifications: Message[];
   isInitialized?: boolean;
   onRefresh: () => void;
-  onOpen: (messageId: string) => void;
+  onOpen: ReturnType<typeof useNotifications>["onOpen"];
 }
 
 export const NotificationsScreen = ({ onClose, onOpen, isInitialized, notifications, onRefresh }: IProps) => {

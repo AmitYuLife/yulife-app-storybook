@@ -16,6 +16,7 @@ import { sduiActionGenericNavigateBack } from "./sduiActionGenericNavigateBack.s
 import { sduiActionGenericNavigateBackToRoot } from "./sduiActionGenericNavigateBackToRoot.saga";
 import { sduiActionShowOverlayListPicker } from "./sduiActionShowOverlayListPicker.saga";
 import { sduiActionOpenMagicLink } from "./sduiActionOpenMagicLink.saga";
+import { sduiActionShowFloatingModal } from "./sduiActionShowFloatingModal";
 
 export default [
   takeLeading(SduiActionType.SDUI_ACTION_SHOW_OVERLAY_LIST_PICKER, sduiActionShowOverlayListPicker),
@@ -34,4 +35,5 @@ export default [
   takeLeading(SduiActionType.SDUI_ACTION_GENERIC_NAVIGATE_BACK_TO_ROOT, sduiActionGenericNavigateBackToRoot),
   takeLeading(SduiActionType.SDUI_ACTION_OPEN_MAGIC_LINK, sduiActionOpenMagicLink),
   takeEvery(SduiActionType.SDUI_ACTION_LOG_EVENT, sduiActionLogEventSaga),
+  takeEvery(SduiActionType.SDUI_ACTION_SHOW_FLOATING_MODAL, sduiActionShowFloatingModal),
 ];

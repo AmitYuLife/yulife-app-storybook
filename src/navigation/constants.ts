@@ -173,6 +173,7 @@ export const MODALS = {
   leaderboardSearch: "yulife.modals.leaderboardSearch",
   joinLeaderboardOverlay: "yulife.overlay.joinLeaderboard",
   leaderboardRank: "yulife.modals.leaderboardRank",
+  genericWithHeroImage: "yulife.modals.genericWithHeroImage",
 };
 
 export const bottomTabs: OptionsBottomTabs = {
