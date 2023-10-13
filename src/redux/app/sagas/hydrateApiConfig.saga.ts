@@ -12,8 +12,8 @@ const initialPayloadTypes = ["INIT", "SET_MAIN_ROOT"];
 
 export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
   try {
-    let shouldFetchConfig: boolean = "shouldFetchConfig" in (payload || {}) ? payload?.shouldFetchConfig : true;
     const isFromInit = initialPayloadTypes.includes(type);
+    let shouldFetchConfig: boolean = typeof payload === "object" ? (payload || {})?.shouldFetchConfig : true;
 
     if (isFromInit) {
       const hasValidRegionConfig: boolean = yield call(region.hydratePreferredRegion);
