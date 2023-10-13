@@ -33,5 +33,7 @@ export default memo(
   LeaderboardListItem,
   (prevProps, nextProps) =>
     prevProps.listItem.item.userId === nextProps.listItem.item.userId &&
-    prevProps.listItem.item.score === nextProps.listItem.item.score
+    prevProps.listItem.item.score === nextProps.listItem.item.score &&
+    prevProps.listItem.item.position === nextProps.listItem.item.position &&
+    prevProps.listItem.item.avatar === nextProps.listItem.item.avatar
 );
