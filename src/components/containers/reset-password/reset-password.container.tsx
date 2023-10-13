@@ -33,6 +33,7 @@ const ResetPasswordContainer: FC<IProps> = (props) => {
         const results = await sendMagicLink({
           variables: {
             email,
+            isResetPasswordRequest: true,
           },
         });
 
