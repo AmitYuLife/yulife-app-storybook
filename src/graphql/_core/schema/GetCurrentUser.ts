@@ -3,32 +3,11 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { IntercomHashMethod, FitKitType, SocialGroupLeaderboardConfigId } from "./globalTypes";
+import { IntercomHashMethod, FitKitType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetCurrentUser
 // ====================================================
-
-export interface GetCurrentUser_getDailyPensionContribution {
-  id: string;
-  active: boolean;
-  yuCoinAwarded: number | null;
-  contribution: string | null;
-}
-
-export interface GetCurrentUser_getMobileHints_image {
-  id: string;
-  uri: string | null;
-}
-
-export interface GetCurrentUser_getMobileHints {
-  id: string;
-  title: string;
-  description: string;
-  image: GetCurrentUser_getMobileHints_image;
-  screenBlacklist: string[] | null;
-  screenWhitelist: string[] | null;
-}
 
 export interface GetCurrentUser_getCurrentUser_connections {
   name: string | null;
@@ -236,40 +215,17 @@ export interface GetCurrentUser_getCurrentUser {
   leaderboards: (GetCurrentUser_getCurrentUser_leaderboards | null)[] | null;
 }
 
-export interface GetCurrentUser_getMobileSocialGroupLeaderboards_leaderboards_icon {
+export interface GetCurrentUser_getDailyPensionContribution {
   id: string;
-  uri: string | null;
-}
-
-export interface GetCurrentUser_getMobileSocialGroupLeaderboards_leaderboards_selectedIcon {
-  id: string;
-  uri: string | null;
-}
-
-export interface GetCurrentUser_getMobileSocialGroupLeaderboards_leaderboards {
-  leaderboardId: string;
-  name: string;
-  description: string;
-  shortDescription: string;
-  consent: boolean;
-  isLocked: boolean;
-  leaderboardConfigId: SocialGroupLeaderboardConfigId;
-  icon: GetCurrentUser_getMobileSocialGroupLeaderboards_leaderboards_icon;
-  selectedIcon: GetCurrentUser_getMobileSocialGroupLeaderboards_leaderboards_selectedIcon;
-}
-
-export interface GetCurrentUser_getMobileSocialGroupLeaderboards {
-  socialGroupId: string;
-  name: string;
-  leaderboards: GetCurrentUser_getMobileSocialGroupLeaderboards_leaderboards[];
+  active: boolean;
+  yuCoinAwarded: number | null;
+  contribution: string | null;
 }
 
 export interface GetCurrentUser {
-  getDailyPensionContribution: GetCurrentUser_getDailyPensionContribution;
-  getMobileHints: GetCurrentUser_getMobileHints[] | null;
-  getIntercomHash: string | null;
   getCurrentUser: GetCurrentUser_getCurrentUser | null;
-  getMobileSocialGroupLeaderboards: GetCurrentUser_getMobileSocialGroupLeaderboards[];
+  getDailyPensionContribution: GetCurrentUser_getDailyPensionContribution;
+  getIntercomHash: string | null;
 }
 
 export interface GetCurrentUserVariables {

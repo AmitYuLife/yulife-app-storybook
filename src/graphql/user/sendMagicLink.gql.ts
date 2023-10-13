@@ -3,8 +3,8 @@ import { SendMagicLink, SendMagicLinkVariables } from "@graphql/_core/schema";
 import { gql } from "@apollo/client";
 
 export const GQL_MUTATION_SEND_MAGIC_LINK = gql`
-  mutation SendMagicLink($email: String!) {
-    sendMagicLink(email: $email) {
+  mutation SendMagicLink($email: String!, $isResetPasswordRequest: Boolean) {
+    sendMagicLink(email: $email, isResetPasswordRequest: $isResetPasswordRequest) {
       message
     }
   }
