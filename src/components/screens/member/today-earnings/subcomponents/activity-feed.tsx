@@ -212,6 +212,7 @@ const ActivityFeed = ({
 
       switch (activity.type) {
         case "steps":
+        case "meditation":
           return false;
         case "cycling":
           return !locationPermissionsGranted || !googleFitIsAuthorised;
