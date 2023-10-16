@@ -6,22 +6,26 @@ import * as then from "./_steps/then"
 import * as ids from "@ids"
 import * as data from "@data"
 
-// SKIP FOR NOW TO GET GREEN FOR ONBOARDING
-FeatureSkip("I receive the correct emails", async () => {
+Feature("I receive the correct emails", async () => {
     Scenario("I receive a magic link when I have forgot my password", scenario.start, async () => {
-        Then("I should ", then.textVisible("need help logging in?"))
-        When("I click need help loggin in", when.tapText("need help logging in?"), async () => {
+        Then("I should be on the login page", then.textVisible("Need help logging in?"))
+        When("I click need help loggin in", when.tapText("Need help logging in?"), async () => {
             Then("I should be on the need help screen", then.isOnNeedHelpScreen)
-            When("I enter an email", when.typeViaID(ids.INPUT_RESET_PASSWORD, data.CUSTOMER_36.data.email), async () => {
-                When("I tap email me...", when.tapText("email me a magic link"), async () => {
-                    Then("I should be on the email sent screen", then.isOnEmailSentScreen(data.CUSTOMER_36.data.email))
-                    Then("I should have received the correct email", then.hasReceivedMagicLinkEmail(data.CUSTOMER_36.data.email))
-                })
+        })
+        When("I enter an email", when.typeViaID(ids.INPUT_RESET_PASSWORD, data.CUSTOMER_36.data.email), async () => {
+            When("I tap email me...", when.tapText("Email me a magic link"), async () => {
+                Then("I should be on the email sent screen", then.isOnEmailSentScreen(data.CUSTOMER_36.data.email))
+                Then("I should have received the correct email", then.hasReceivedMagicLinkEmail(data.CUSTOMER_36.data.email))
+            })
+        })
+        When("I kill the app", when.terminateApp, async () => {
+            When("I follow the link", when.followEmailLink(data.CUSTOMER_36.data.email), async () => {
+                Then("I should be on the login page", then.textVisible("Need help logging in?"))
             })
         })
     })
 
-    Scenario("I receive the correct email when redeeming an avios reward", scenario.start, async () => {
+    ScenarioSkip("I receive the correct email when redeeming an avios reward", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("rewards", data.CUSTOMER_36, data.AUTH_36), async () => {
             Then("I should be on the Rewards tab", then.idVisible(ids.REWARDS_SCREEN))
             When("I tap avios reward", when.tapRewardInList(data.CORE_REWARDS_AVIOS), async () => {
@@ -53,7 +57,7 @@ FeatureSkip("I receive the correct emails", async () => {
         })
     })
 
-    Scenario("I receive the correct email when redeeming a voucher reward", scenario.start, async () => {
+    ScenarioSkip("I receive the correct email when redeeming a voucher reward", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("rewards", data.CUSTOMER_36, data.AUTH_36), async () => {
             Then("I should be on the Rewards tab", then.idVisible(ids.REWARDS_SCREEN))
             When("I scroll to Nike reward", when.scrollFromID(ids.REWARDS_SCREEN, "up", "slow"), async () => {

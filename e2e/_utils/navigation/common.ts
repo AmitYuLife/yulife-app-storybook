@@ -23,6 +23,10 @@ export const restartWithData = async () => {
     await device.launchApp({ delete: true, });
 }
 
+export const terminateApp = async () => {
+    await device.terminateApp();
+}
+
 export const restartWithoutDelete = async () => {
     await device.terminateApp();
     await device.launchApp({ delete: false, });
