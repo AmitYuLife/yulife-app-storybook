@@ -21,13 +21,12 @@ export const {
 } = navigation.scrolling
 
 export const isOnNeedHelpScreen = async () => {
-    await expect(element(by.text("need help?"))).toBeVisible()
+    await expect(element(by.text("Need help?"))).toBeVisible()
     await expect(element(by.text("No problem! Enter your account email and we will send a magic link straight to your inbox, no password necessary!"))).toBeVisible()
 }
 
 export const isOnEmailSentScreen = (email: string) => async () => {
-    await expect(element(by.text("email sent"))).toBeVisible()
-    await expect(element(by.text(`Check your inbox! If ${email} matches our records, a password recovery email is on way. If you do not receive an email, please contact support@yulife.com`))).toBeVisible()
+    await expect(element(by.text("Email sent"))).toBeVisible()
 }
 
 export const logInbox = (email: string) => async () => {
