@@ -188,16 +188,18 @@ function useScrollHandler(items: IPageItem[]) {
   const listRef = useRef(null as RNFlatList);
 
   useEffect(() => {
-    dispatch(
-      sduiEventActionCreator("modal_viewed", {
-        name: items[activeIndex].id,
-        modal_index: activeIndex,
-      })
-    );
+    if (items[activeIndex]) {
+      dispatch(
+        sduiEventActionCreator("modal_viewed", {
+          name: items[activeIndex].id,
+          modal_index: activeIndex,
+        })
+      );
 
-    const offset = Style.DEVICE_WIDTH * activeIndex;
+      const offset = Style.DEVICE_WIDTH * activeIndex;
 
-    listRef.current.scrollToOffset({ offset, animated: true });
+      listRef.current.scrollToOffset({ offset, animated: true });
+    }
   }, [activeIndex]);
 
   return { listRef, activeIndex, setActiveIndex, userInteractionToggler, setUserInteractionToggler };
