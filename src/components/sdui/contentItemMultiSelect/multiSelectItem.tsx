@@ -28,6 +28,8 @@ const SIZE = Platform.select({
     ],
     Style.adjust(40)
   ),
+  //Storybook
+  web: Style.adjust(40),
 });
 
 function MultiSelectItem(props: MultiSelectItemProps) {
