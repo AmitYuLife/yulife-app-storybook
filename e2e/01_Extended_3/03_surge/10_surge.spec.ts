@@ -3,23 +3,23 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_34, AUTH_34 } from "@data"
-import { CHALLENGE_TILE, LEVEL_CHALLENGE_BUTTON, VIEW_TOP_RIGHT_COIN_COUNTER, CHALLENGE_REWARD, SURGE_ICON, TEXT_TEMPLATE, DAILY_STEPS_SCREEN } from "@ids"
+import * as data from "@data"
+import * as ids from "@ids"
 
 Feature("Surges work as intended", async () => {
     Scenario("I can complete a challenge with a user that has a surge and my reward is x10", scenario.start, async () => {
-        Given("I login as a user with a surge", given.logInAndGoToTab("quests", CUSTOMER_34, AUTH_34), async () => {
-            Then("I should see level 1 unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(1)))
-            Then("I should see I have 200 YuCoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
-            When("I tap level 1", when.tapID(LEVEL_CHALLENGE_BUTTON(1)), async () => {
-                Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("Short Stroll")))
-                Then("I should see the reward value 10x higher than normal (600)", then.idVisibleAtIndex(CHALLENGE_REWARD("600"),0))
+        Given("I login as a user with a surge", given.logInAndGoToTab("quests", data.CUSTOMER_34,data.AUTH_34), async () => {
+            Then("I should see level 1 unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)))
+            Then("I should see I have 200 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
+            When("I tap level 1", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
+                Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+                Then("I should see the reward value 10x higher than normal (600)", then.idVisibleAtIndex(ids.CHALLENGE_REWARD("600"),0))
                 When("I complete a short stroll challenge", when.completeShortStroll(300, 40000), async () => {
                     Then("I should see the well done screen", then.textVisible("Well done!"))
-                    Then("I should see +600 reward", then.idVisible(CHALLENGE_REWARD(100)))
+                    Then("I should see +600 reward", then.idVisible(ids.CHALLENGE_REWARD(100)))
                     When("I tap collect", when.tapText("Collect"), async () => {
                         When("I tap done", when.tapText("Done"), async () => {
-                            Then("I should see I have 800 YuCoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(300)))
+                            Then("I should see I have 800 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(300)))
                         })
                     })
                 })
@@ -28,12 +28,12 @@ Feature("Surges work as intended", async () => {
     })
 
     Scenario("I log in and can see the daily surge icon ", scenario.start, async () => {
-        Given("I login as a user with a surge", given.logInAndGoToTab("yucoin", CUSTOMER_34, AUTH_34), async () => {
+        Given("I login as a user with a surge", given.logInAndGoToTab("yucoin", data.CUSTOMER_34, data.AUTH_34), async () => {
             Then("I should see the surge icon on the today's screen proving the surge is active", then.iCanSeeSurgeIcon("10x", " 1d"))
-            When("I tap the icon", when.tapID(SURGE_ICON), async () => {
+            When("I tap the icon", when.tapID(ids.SURGE_ICON), async () => {
                 Then("I should see the surge modal appear", then.canSeeSurgeModal)
                 When("I tap the close button", when.tapText("Close"), async () => {
-                    Then("I should be back on the yucoin tab", then.idVisible(DAILY_STEPS_SCREEN))
+                    Then("I should be back on the yucoin tab", then.idVisible(ids.DAILY_STEPS_SCREEN))
                 })
             })
         })
@@ -41,17 +41,17 @@ Feature("Surges work as intended", async () => {
 
     Scenario("I can complete a challenge with a user without a surge and get the standard reward", scenario.start, async () => {
         Given("I login as a user with a surge", given.logInAndGoToTab("quests"), async () => {
-            Then("I should see level 1 unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(1)))
-            Then("I should see I have 200 YuCoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
-            When("I tap level 1", when.tapID(LEVEL_CHALLENGE_BUTTON(1)), async () => {
-                Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("Short Stroll")))
-                Then("I should see the reward value is normal (20)", then.idVisibleAtIndex(CHALLENGE_REWARD("20"),0))
+            Then("I should see level 1 unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)))
+            Then("I should see I have 200 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
+            When("I tap level 1", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
+                Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+                Then("I should see the reward value is normal (20)", then.idVisibleAtIndex(ids.CHALLENGE_REWARD("20"),0))
                 When("I complete a short stroll challenge", when.completeShortStroll(300, 40000), async () => {
                     Then("I should see the well done screen", then.textVisible("Well done!"))
-                    Then("I should see +20 reward", then.idVisible(CHALLENGE_REWARD(20)))
+                    Then("I should see +20 reward", then.idVisible(ids.CHALLENGE_REWARD(20)))
                     When("I tap collect", when.tapText("Collect"), async () => {
                         When("I tap done", when.tapText("Done"), async () => {
-                            Then("I should see I have 320 YuCoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(220)))
+                            Then("I should see I have 320 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(220)))
                         })
                     })
                 })

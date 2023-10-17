@@ -3,14 +3,13 @@ import * as scenario from "./_steps/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
 import * as then from "./_steps/then";
-import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, STEPS_COUNT, MINDFUL_COUNT } from "@ids";
-import { CUSTOMER_MEDITOPIA_1, AUTH_MEDITOPIA_1, CUSTOMER_MEDITOPIA_2, AUTH_MEDITOPIA_2 } from "@data";
-import { getLocalisedString as t } from "@i18n"
+import * as ids from "@ids"
+import * as data from "@data"
 
 Feature("As a user I can take a Meditopia challenge", async () => {
   Scenario("I can successfully take and complete a 5 minute Meditopia challenge in app", scenario.start, async () => {
-    Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_MEDITOPIA_1, AUTH_MEDITOPIA_1), async () => {
-      Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+    Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
+      Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
       Then("I am on the Challenge Details screen", then.onChallengeDetailsScreen("60 x"));
@@ -33,19 +32,19 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I should see the first day streak screen", then.textVisible("First day done!", 10000));
     });
     When("I dismiss the streak screen", when.tapText("Done", 5000), async () => {
-      Then("I should be on the quest screen", then.idVisible(LEVEL_CHALLENGE_BUTTON(2), 3000));
+      Then("I should be on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(2), 3000));
     });
-    When("I back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-      Then("I should see my updated coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(250)));
-      Then("I should see the number of steps I just completed", then.idVisible(STEPS_COUNT(0)));
-      Then("I should see the number of mindfulness mins I just completed", then.idVisible(MINDFUL_COUNT("5 min")));
+    When("I back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+      Then("I should see my updated coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(250)));
+      Then("I should see the number of steps I just completed", then.idVisible(ids.STEPS_COUNT(0)));
+      Then("I should see the number of mindfulness mins I just completed", then.idVisible(ids.MINDFUL_COUNT("5 min")));
       Then("I should see the number of coins I've earned today (60)", then.textVisible("250 YuCoin today"));
     });
   });
 
   Scenario("I can successfully take and complete a 14 minute Meditopia challenge in app", scenario.start, async () => {
-    Given("I login as a user on level 10 who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_MEDITOPIA_2, AUTH_MEDITOPIA_2), async () => {
-      Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(550)));
+    Given("I login as a user on level 10 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_2, data.AUTH_MEDITOPIA_2), async () => {
+      Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(550)));
     });
     When("I select a 14 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(10, "Meditation"), async () => {
       Then("I am on the Challenge details screen", then.on3ChallengesDetailsScreen);
@@ -67,19 +66,19 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I should see the first day streak screen", then.textVisible("First day done!", 10000));
     });
     When("I dismiss the streak screen", when.tapText("Done", 4000), async () => {
-      Then("I should be on the quest screen", then.idVisible(LEVEL_CHALLENGE_BUTTON(11), 3000));
+      Then("I should be on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(11), 3000));
     });
-    When("I back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-      Then("I should see my updated coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(630)));
-      Then("I should see the number of steps I just completed", then.idVisible(STEPS_COUNT(0)));
-      Then("I should see the number of mindfulness mins I just completed", then.idVisible(MINDFUL_COUNT("14 min")));
+    When("I back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+      Then("I should see my updated coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(630)));
+      Then("I should see the number of steps I just completed", then.idVisible(ids.STEPS_COUNT(0)));
+      Then("I should see the number of mindfulness mins I just completed", then.idVisible(ids.MINDFUL_COUNT("14 min")));
       Then("I should see the number of coins I've earned today (250)", then.textVisible("280 YuCoin today"));
     });
   });
 
   Scenario("I can successfully take and quit a Meditopia challenge in app", scenario.start, async () => {
-    Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_MEDITOPIA_1, AUTH_MEDITOPIA_1), async () => {
-      Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+    Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
+      Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
       Then("I am on the Challenge details screen", then.onChallengeDetailsScreen("60 x"));
@@ -108,8 +107,8 @@ Feature("As a user I can take a Meditopia challenge", async () => {
   });
 
   Scenario("I can successfully take, pause, start and finish a Meditopia challenge in app", scenario.start, async () => {
-    Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_MEDITOPIA_1, AUTH_MEDITOPIA_1), async () => {
-      Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+    Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
+      Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
       Then("I am on the Challenge Details screen", then.onChallengeDetailsScreen("60 x"));
@@ -133,8 +132,8 @@ Feature("As a user I can take a Meditopia challenge", async () => {
   });
 
   Scenario("I can successfully take a Meditopia challenge in app and hide the on screen elements", scenario.start, async () => {
-    Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_MEDITOPIA_1, AUTH_MEDITOPIA_1), async () => {
-      Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+    Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
+      Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
       Then("I am on the Challenge details screen", then.onChallengeDetailsScreen("60 x"));
@@ -155,8 +154,8 @@ Feature("As a user I can take a Meditopia challenge", async () => {
   });
 
   Scenario("I can successfully take a Meditopia challenge in app, close and reopen the app, and the challenge still runs", scenario.start, async () => {
-    Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", CUSTOMER_MEDITOPIA_1, AUTH_MEDITOPIA_1), async () => {
-      Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+    Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
+      Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
       Then("I am on the Challenge details screen", then.onChallengeDetailsScreen("60 x"));
@@ -180,11 +179,11 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I should see the first day streak screen", then.textVisible("First day done!", 10000));
     });
     When("I dismiss the streak screen", when.tapText("Done", 5000), async () => {
-      Then("I should be on the quest screen", then.idVisible(LEVEL_CHALLENGE_BUTTON(2), 3000));
+      Then("I should be on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(2), 3000));
     });
-    When("I back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-      Then("I should see my updated coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(250)));
-      Then("I should see the number of steps I just completed", then.idVisible(STEPS_COUNT(0)));
+    When("I back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+      Then("I should see my updated coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(250)));
+      Then("I should see the number of steps I just completed", then.idVisible(ids.STEPS_COUNT(0)));
       Then("I should see the number of coins I've earned today (270) - 10 from passive and 60 from challenge", then.textVisible("250 YuCoin today"));
     });
   });
