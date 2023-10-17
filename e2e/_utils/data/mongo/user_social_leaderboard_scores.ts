@@ -3,7 +3,7 @@ import moment from "moment";
 import { SUDOKU_ANSWER_67, SUDOKU_ANSWER_68, SUDOKU_ANSWER_71 } from "./game_sudoku_answer";
 import { USER_16, USER_17, USER_18, USER_19, USER_20, USER_21, USER_40, USER_47, USER_50, USER_67, USER_68, USER_71, USER_73 } from "./users";
 import { CUSTOMER_84 } from "../postgres/customers";
-import { SOCIAL_GROUP_LEADERBOARD_1 } from "./social_group_leaderboards";
+import { SOCIAL_GROUP_LEADERBOARD_1, SOCIAL_GROUP_LEADERBOARD_C1_STEPS, SOCIAL_GROUP_LEADERBOARD_C2_STEPS } from "./social_group_leaderboards";
 
 export const USER_SOCIAL_LEADERBOARD_SCORE_71 = {
     type: "mongo",
@@ -62,7 +62,10 @@ export const USER_18_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_18.data.userId,
-        value: 0
+        value: 0,
+        activeLeaderboards: [
+            SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id
+        ]
     }
 }
 
@@ -84,7 +87,10 @@ export const USER_17_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_17.data.userId,
-        value: 0
+        value: 0,
+        activeLeaderboards: [
+            SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id
+        ]
     }
 }
 
@@ -95,7 +101,10 @@ export const USER_19_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_19.data.userId,
-        value: 0
+        value: 0,
+        activeLeaderboards: [
+            SOCIAL_GROUP_LEADERBOARD_C2_STEPS.data._id
+        ]
     }
 }
 
@@ -106,7 +115,10 @@ export const USER_20_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_20.data.userId,
-        value: 0
+        value: 0,
+        activeLeaderboards: [
+            SOCIAL_GROUP_LEADERBOARD_C2_STEPS.data._id
+        ]
     }
 }
 
@@ -117,7 +129,7 @@ export const USER_21_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_21.data.userId,
-        value: 0
+        value: 0,
     }
 }
 
@@ -128,7 +140,10 @@ export const USER_40_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_40.data.userId,
-        value: 0
+        value: 0,
+        activeLeaderboards: [
+            SOCIAL_GROUP_LEADERBOARD_C2_STEPS.data._id
+        ]
     }
 }
 
@@ -139,7 +154,10 @@ export const USER_47_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_47.data.userId,
-        value: 0
+        value: 0,
+        activeLeaderboards: [
+            SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id
+        ]
     }
 }
 
@@ -150,7 +168,10 @@ export const USER_50_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_50.data.userId,
-        value: 0
+        value: 0,
+        activeLeaderboards: [
+            SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id
+        ]
     }
 }
 
@@ -161,7 +182,10 @@ export const USER_73_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_73.data.userId,
-        value: 0
+        value: 0,
+        activeLeaderboards: [
+            SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id
+        ]
     }
 }
 
@@ -172,6 +196,6 @@ export const USER_84_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: CUSTOMER_84.data.userId,
-        value: 0
+        value: 0,
     }
 }      

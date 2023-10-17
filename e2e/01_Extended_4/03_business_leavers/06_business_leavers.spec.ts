@@ -21,7 +21,7 @@ Feature("As a business leaver I should still have app access", async () => {
                 })
             })
             When("I go to the leaderboard", when.tapID(NAV_BAR('leaderboard')), async()=>{
-                Then("I should see the users name", then.idVisible(LEADERBOARD_NAME('Bus Leaf')))
+                Then("I should see the users name", then.idVisible(LEADERBOARD_NAME('Bus Leaf', "0", 1)))
                 Then("I should see this is the public leaderboard", then.idVisible(LEADERBOARD_TITLE('Public')))
             })
         })

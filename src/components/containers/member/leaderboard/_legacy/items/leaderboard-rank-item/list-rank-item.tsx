@@ -41,7 +41,7 @@ const _ListRankItem = ({
   return (
     <>
       <TouchableOpacityWithDelay
-        testID={LEADERBOARD_NAME(name)}
+        testID={LEADERBOARD_NAME(name, score.toString(), rank)}
         delay={200}
         style={baseStyles.wrapper}
         onPress={onPress}

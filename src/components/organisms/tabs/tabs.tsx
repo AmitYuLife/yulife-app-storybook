@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native";
 import { Image, SkeletonLoading, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { PressableWithDelay } from "@molecules";
+import { LEADBOARD_TAB } from "@ids";
 
 interface IIcon {
   width?: number;
@@ -67,7 +68,7 @@ const Tabs = ({ list, defaultTab, isLoading }: IProps) => {
                 />
               )}
               <View style={styles.listName}>
-                <TextTemplate color={colour} type={isSelected ? "b2b" : "b2"}>
+                <TextTemplate color={colour} type={isSelected ? "b2b" : "b2"} testID={LEADBOARD_TAB(name)}>
                   {name}
                 </TextTemplate>
               </View>

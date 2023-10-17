@@ -3,7 +3,7 @@ import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framew
 import { BUSINESS_ACCOUNT_1 } from "../postgres/business";
 import { CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_40, CUSTOMER_47, CUSTOMER_50, CUSTOMER_73, CUSTOMER_84, CUSTOMER_86 } from "../postgres/customers";
 import { SOCIAL_GROUP_1 } from "./social_groups";
-import { SOCIAL_GROUP_LEADERBOARD_1, SOCIAL_GROUP_LEADERBOARD_2_STEPS, SOCIAL_GROUP_LEADERBOARD_7, SOCIAL_GROUP_LEADERBOARD_C1_STEPS, SOCIAL_GROUP_LEADERBOARD_C2_STEPS } from "./social_group_leaderboards";
+import { SOCIAL_GROUP_LEADERBOARD_1, SOCIAL_GROUP_LEADERBOARD_2_STEPS, SOCIAL_GROUP_LEADERBOARD_7, SOCIAL_GROUP_LEADERBOARD_C1_STEPS, SOCIAL_GROUP_LEADERBOARD_C1_SUDOKU, SOCIAL_GROUP_LEADERBOARD_C2_STEPS, SOCIAL_GROUP_LEADERBOARD_STEPS_1 } from "./social_group_leaderboards";
 import { USER_20, USER_40, USER_58, USER_67, USER_68, USER_71, USER_76, USER_86 } from "./users";
 
 export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_20 = {
@@ -84,7 +84,20 @@ export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_68 = {
     }
 } as IDatabaseItem
 
-export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_76 = {
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_76_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: false,
+        archived: false,
+        isLocked: false,
+        userId: USER_76.data.userId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_STEPS_1.data._id
+    }
+} as IDatabaseItem
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_76_SUDOKU = {
     type: "mongo",
     modelName: "user_social_leaderboard_enrolments",
     data: {
@@ -139,6 +152,19 @@ export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_16_C1_STEPS = {
     }
 } as IDatabaseItem
 
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_16_C1_SUDOKU = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: false,
+        archived: false,
+        isLocked: false,
+        userId: CUSTOMER_16.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C1_SUDOKU.data._id
+    }
+} as IDatabaseItem
+
 export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_17_C1_STEPS = {
     type: "mongo",
     modelName: "user_social_leaderboard_enrolments",
@@ -149,6 +175,19 @@ export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_17_C1_STEPS = {
         isLocked: false,
         userId: CUSTOMER_17.data.customerId,
         socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id
+    }
+} as IDatabaseItem
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_17_C1_SUDOKU = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: false,
+        archived: false,
+        isLocked: false,
+        userId: CUSTOMER_17.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C1_SUDOKU.data._id
     }
 } as IDatabaseItem
 

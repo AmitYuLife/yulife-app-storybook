@@ -3,6 +3,8 @@ import * as ids from "@ids"
 export { addStepsHistoricalData, addCyclingHistoricalData, addMindfulnessHistoricalData } from "@socket";
 import { getLocalisedString as t } from "@i18n";
 import { CUSTOMER_1 } from "@data";
+import { SocialGroupLeaderboard, UserLeaderboardListItem } from "../_resources/types";
+import { screens } from "@appScreens";
 
 export const {
     tapID,
@@ -11,7 +13,8 @@ export const {
     restartWithData,
     navigateViaText,
     wait,
-    navigateViaID
+    navigateViaID,
+    tapIDAtIndex,
 } = navigation.common
 
 export const {
@@ -26,8 +29,12 @@ export const {
     scrollFromID,
     scrollUntilIdVisible,
     swipeFromText,
-    scrollUntilTextVisible
+    scrollUntilTextVisible,
 } = navigation.scrolling
+
+export const {
+    tapMenuItem
+  } = screens.menu
 
 export const turnOffLeaderboard = (leaderboardID: string) => async () => {
     const leaderboard = element(by.id(leaderboardID))
@@ -76,4 +83,12 @@ export const clickLetsGo = async () => {
 
 export const clickDuelButton = async () => {
     await navigateViaText(t("Challenge to duel"), 1000)
+}
+
+export const tapLeaderboardConsentSwitch = (leaderboard: SocialGroupLeaderboard, consent: boolean) => async () => {
+    await tapID(ids.LEADERBOARD_SWITCH(leaderboard.type, consent))()
+}
+
+export const tapLeaderboardUser = (user:  UserLeaderboardListItem) => async () => {
+    await tapID(ids.LEADERBOARD_NAME(user.name, user.score, user.rank))()
 }

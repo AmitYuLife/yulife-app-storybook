@@ -5,6 +5,7 @@ import { t } from "@locale";
 import { Style } from "@styles";
 import { Switch } from "@molecules";
 import { ISocialGroup } from "@redux/leaderboards/leaderboards.reducer";
+import { LEADERBOARD_DESC, LEADERBOARD_SWITCH, LEADERBOARD_TITLE } from "@ids";
 
 export type IConsents = Record<string, boolean>;
 interface IProps {
@@ -48,17 +49,23 @@ const JoinLeaderboardOverlay = ({ activeSocialGroup, onSwitch }: IProps) => {
         </View>
       </View>
       <View style={styles.groups}>
-        {activeSocialGroup?.leaderboards.map(({ leaderboardId, icon, name, description }) => (
+        {activeSocialGroup?.leaderboards.map(({ leaderboardId, icon, name, description, consent }) => (
           <View key={name} style={styles.group}>
             <Image source={icon} width={Style.adjust(24)} height={Style.adjust(24)} />
             <View style={styles.groupInfo}>
-              <TextTemplate type="b2">
+              <TextTemplate type="b2" testID={LEADERBOARD_TITLE(`${name} Leaderboard`)}>
                 {name} {t("leaderboard")}
               </TextTemplate>
-              <TextTemplate type="l2">{description}</TextTemplate>
+              <TextTemplate type="l2" testID={LEADERBOARD_DESC(description)}>
+                {description}
+              </TextTemplate>
             </View>
             <View style={styles.switch}>
-              <Switch value={leaderboardConsents[leaderboardId]} onPress={() => onPress(leaderboardId)} />
+              <Switch
+                value={leaderboardConsents[leaderboardId]}
+                onPress={() => onPress(leaderboardId)}
+                testID={LEADERBOARD_SWITCH(name, consent)}
+              />
             </View>
           </View>
         ))}

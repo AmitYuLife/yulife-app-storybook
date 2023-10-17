@@ -168,7 +168,7 @@ export const PURCHASE_IMAGE = (url: any) => `PURCHASE_IMAGE_${url}`
 export const CONTENT_ITEM_IMAGE = "CONTENT_ITEM_IMAGE"
 
 // leaderboard
-export const LEADERBOARD_NAME = (name: string) => `LEADERBOARD_NAME_${name}`
+export const LEADERBOARD_NAME = (name: string, score: string, rank: number) => `LEADERBOARD_NAME_${name}_${score}_${rank}`
 export const LEADERBOARD_SCREEN = "LEADERBOARD_SCREEN";
 export const LEADERBOARD_TOP_SCREEN = "LEADERBOARD_TOP_SCREEN"
 export const LEADERBOARD_INFO_BUTTON = "LEADERBOARD_INFO_BUTTON"
@@ -180,8 +180,12 @@ export const SEARCH_BUTTON = "SEARCH_BUTTON"
 export const GOALS_BUTTON = "GOALS_BUTTON"
 export const LEADERBOARD_SCROLL_LIST = "LEADERBOARD_SCROLL_LIST"
 export const LEADERBOARD_STATUS = (leaderboardName: string, leaderboardStatus: string) => `LEADERBOARD_STATUS_${leaderboardName}_${leaderboardStatus}`
-export const LEADERBOARD_SWITCH = (leaderboardName: string) => `LEADERBOARD_SWITCH_${leaderboardName}`
+export const LEADERBOARD_SWITCH = (leaderboardName: string, consent?: boolean) => `LEADERBOARD_SWITCH_${leaderboardName}${consent}`
+export const LEADERBOARD_COMMUNITY_LIST = (names: string[]) => `LEADERBOARD_COMMUNITY_LIST_${names}`
+
 export const SCORE = (num: any) => `SCORE_${num}`
+export const LEADERBOARD_DESC = (desc: string) => `LEADERBOARD_DESC_${desc}`
+export const LEADBOARD_TAB = (tabName: string) => `LEADERBOARD_NAME_${tabName}`
 
 // YUSCREEN
 export const YUSCREEN = "YUSCREEN"

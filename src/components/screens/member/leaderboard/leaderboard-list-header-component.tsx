@@ -7,6 +7,7 @@ import { QuestionOutlineIcon } from "@atoms/icon/question-outline-icon";
 import { ITop3, styles } from "./leaderboard.screen";
 import { TrophyIcon } from "@atoms/icon/trophy-icon";
 import { ISocialGroup } from "@redux/leaderboards/leaderboards.reducer";
+import { LEADERBOARD_INFO_BUTTON } from "@ids";
 
 interface IProps {
   showTrophy: boolean;
@@ -69,7 +70,11 @@ const LeaderboardListHeaderComponent = ({
         />
       </View>
     </View>
-    <TouchableOpacityWithDelay style={styles.podiumQuestionMark} onPress={onQuestionMarkPress}>
+    <TouchableOpacityWithDelay
+      style={styles.podiumQuestionMark}
+      onPress={onQuestionMarkPress}
+      testID={LEADERBOARD_INFO_BUTTON}
+    >
       <QuestionOutlineIcon colour="#345E8C" />
     </TouchableOpacityWithDelay>
   </View>

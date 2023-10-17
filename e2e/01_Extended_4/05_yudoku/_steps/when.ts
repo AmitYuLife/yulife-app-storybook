@@ -1,8 +1,9 @@
 
 import { navigation } from "@utils";
 export { authoriseFitkit, sendSteps } from "@socket";
-import { CELL_ROW_COLUMN, CHALLENGE_SET_SCROLL, SUDOKU_COMPLETED_SCREEN_SCROLL, SUDOKU_HINT, SUDOKU_NUMBER_INPUT, SUDOKU_PAUSE, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_UNDO_BUTTON} from "@ids"
+import { CELL_ROW_COLUMN, CHALLENGE_SET_SCROLL, LEADERBOARD_SWITCH, SUDOKU_COMPLETED_SCREEN_SCROLL, SUDOKU_HINT, SUDOKU_NUMBER_INPUT, SUDOKU_PAUSE, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_UNDO_BUTTON} from "@ids"
 import { screens } from "@appScreens";
+import { SocialGroupLeaderboard } from "../_resources/types";
 
 export const {
   tapText,
@@ -11,7 +12,7 @@ export const {
   navigateTo,
   tapYuCoinIcon,
   navigateViaID,
-  dismissNotificationScreenIfVisible
+  dismissNotificationScreenIfVisible,
 } = navigation.common;
 
 export const {
@@ -104,4 +105,8 @@ export const completeYudokuPractice = (answersArr) => async () => {
     await tapID(CELL_ROW_COLUMN(row, column, value))()
     await tapID(SUDOKU_NUMBER_INPUT(answer))()
   }
+}
+
+export const tapLeaderboardConsentSwitch = (leaderboard: SocialGroupLeaderboard, consent: boolean) => async () => {
+  await tapID(LEADERBOARD_SWITCH(leaderboard.type, consent))()
 }

@@ -1,10 +1,11 @@
 import { idNotVisible, navigation, textNotVisible } from "@navigation";
-import { todaysDate } from "../_resources/constants";
+import { leaderboardConsentCta, leaderboardConsentDesc, leaderboardConsentHeading, todaysDate } from "../_resources/constants";
 import { CHALLENGE_SET_SCROLL, LEADERBOARD_NAME, LEVEL_SUMMARY_YUDOKU_LEADERBOARD, RANK, SCORE, SUDOKU_HOWTOPLAY_BUTTON, SUDOKU_JOINLEADERBOARD_BUTTON, SUDOKU_LEADERBOARD, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, TAKE_A_CHALLENGE_LEFT_BUTTON, TODAYS_EARNINGS} from "@ids"
 import { CUSTOMER_1, CUSTOMER_86, SUDOKU_ANSWER_71 } from "@data";
 import { getDuration } from "@socket";
 import { SUDOKU_STAT_0, SUDOKU_STAT_1 } from "_utils/data/mongo/game_sudoku_stats";
 import { getFullName } from "_utils/users";
+import { UserLeaderboardListItem } from "../_resources/types";
 
 
 export const {
@@ -100,7 +101,7 @@ export const canSeeLeaderboard = (user: typeof CUSTOMER_86, answer: typeof SUDOK
   if (isOnHomeScreen) {
     await idVisible(SUDOKU_LEADERBOARD(rank, getFullName(user), time))()
   } else {
-    await idVisible(LEADERBOARD_NAME(getFullName(user)), 2000)()
+    await idVisible(LEADERBOARD_NAME(getFullName(user), time, rank), 2000)()
     await idVisible(SCORE(time))()
     await idVisible(RANK(getFullName(user), rank))()
   }
@@ -159,4 +160,16 @@ export const amOnCompletedPracticeScreen = (hintsNum: number, mistakesNum: numbe
   await textVisible("Now try the daily Yudoku challenge to earn YuCoin!")()
   await idVisible(SUDOKU_STAT("Hints", hintsNum))()
   await idVisible(SUDOKU_STAT("Mistakes", mistakesNum))()
+}
+
+export const leaderboardVisible = (customers: UserLeaderboardListItem[]) => async () => {
+  for(const { name, rank, score } of customers){
+      await idVisible(LEADERBOARD_NAME(name, score, rank))()
+  }
+}
+
+export const onLeaderboardWithoutConsent = async () => {
+  await textVisible(leaderboardConsentHeading)()
+  await textVisible(leaderboardConsentDesc)()
+  await textVisible(leaderboardConsentCta)()
 }
