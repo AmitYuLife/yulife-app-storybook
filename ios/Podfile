@@ -21,7 +21,7 @@ target 'YuLife' do
     #
     # Note that if you have use_frameworks! enabled, Flipper will not work and
     # you should disable the next line.
-    :flipper_configuration => FlipperConfiguration.enabled,
+    :flipper_configuration => FlipperConfiguration.enabled(["Debug"], { 'Flipper' => '0.222.0' }),
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
@@ -68,7 +68,7 @@ target 'YuLife' do
       target.build_configurations.each do |config|
         config.build_settings['CODE_SIGNING_ALLOWED'] = "NO"
         config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)', '_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION']
-       end
+      end
     end
   end
 end
