@@ -25,6 +25,11 @@ const sagaMiddleware = createSagaMiddleware({
 
 const middlewares = [sagaMiddleware];
 
+if (__DEV__) {
+  const createDebugger = require("redux-flipper").default;
+  middlewares.push(createDebugger());
+}
+
 const composeEnhancers = Config.ENV === "dev" ? composeWithDevTools({ name: "YuLife Redux" }) : compose;
 const persistedReducer = persistReducer(persistConfig, combinedReducers);
 
