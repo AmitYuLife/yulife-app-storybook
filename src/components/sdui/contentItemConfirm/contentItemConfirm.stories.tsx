@@ -1,0 +1,31 @@
+import type { Meta, StoryObj } from "@storybook/react";
+import { ContentItemConfirm } from "./contentItemConfirm";
+import { ContentItemConfirmCheckboxType } from "@graphql/_core/schema/globalTypes";
+
+type Story = StoryObj<typeof ContentItemConfirm>;
+
+const meta: Meta<typeof ContentItemConfirm> = {
+  component: ContentItemConfirm,
+  title: "Design System/SDUI/ContentItemConfirm",
+  tags: ["autodocs"],
+  parameters: {},
+  args: {
+    id: "declaration_confirmation-1",
+    confirmLabel: "I have read and agreed to the above statements.",
+    styles: [
+      { property: "backgroundColor", value: "#FAFAFE" },
+      { property: "borderWidth", value: "1" },
+      { property: "borderRadius", value: "8" },
+      { property: "borderColor", value: "#ABABAD" },
+    ],
+    checkboxType: ContentItemConfirmCheckboxType.cubic,
+    answerKey: "answerKey",
+    checked: true,
+  },
+};
+
+export default meta;
+
+export const Default: Story = {
+  args: {},
+};

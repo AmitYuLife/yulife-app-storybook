@@ -1,8 +1,9 @@
 import React, { memo, useMemo, useState, useCallback } from "react";
-import { StyleSheet, View, ViewStyle, ActivityIndicator, StyleProp, ColorValue } from "react-native";
+import { StyleSheet, View, ViewStyle, ActivityIndicator, StyleProp, ColorValue, Image as RNImage } from "react-native";
 import FastImage, { FastImageProps, ImageStyle, OnLoadEvent, ResizeMode, Source } from "react-native-fast-image";
 import { Colours } from "@styles";
 import { shallowEqual } from "react-redux";
+import { isWeb } from "@styles/style";
 
 interface Props {
   width: number;
@@ -64,6 +65,13 @@ export const Image = memo(
 
         if (propHeight) {
           return;
+        }
+
+        // this is only for storybook
+        if (isWeb()) {
+          RNImage.getSize((source as { uri: string }).uri, (w, h) => {
+            setNativeSize({ width: w, height: h });
+          });
         }
 
         // In rare occasions nativeWidth can be 0
