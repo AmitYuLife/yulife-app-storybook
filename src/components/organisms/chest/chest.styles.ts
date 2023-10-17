@@ -11,6 +11,7 @@ export const cardPositions = {
   xPositionsThreeCards: [CENTER_X - Style.adjust(147), CENTER_X - Style.adjust(53), CENTER_X + Style.adjust(43)],
 };
 
+const LOTTIE_CHEST_ASPECT_RATIO = 812 / 375;
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   chestLottie: {
     width: Style.DEVICE_WIDTH,
+    height: Style.DEVICE_WIDTH * LOTTIE_CHEST_ASPECT_RATIO,
   } as ViewStyle,
 });
 
