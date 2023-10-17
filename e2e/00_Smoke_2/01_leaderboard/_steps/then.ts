@@ -1,6 +1,9 @@
 import * as ids from "@ids"
 import { screens } from "@appScreens"
 import { navigation } from "@navigation"
+import { leaderboardConsentCta, leaderboardConsentDesc, leaderboardConsentHeading } from "../_resources/constants"
+import { SocialGroupLeaderboard, UserLeaderboardListItem } from "../_resources/types"
+import { SOCIAL_GROUP_LEADERBOARD_C1_STEPS } from "@data"
 
 export const {
     textVisible,
@@ -29,29 +32,27 @@ export const {
     onChooseAvatarBodyScreen
 } = screens.yuscreen
 
-export const onLeaderboardConsent = async () => {
-    const firstParagraph = "By joining the leaderboard, you are consenting to share details about your activity with other members of this leaderboard."
-    const secondParagraph ="You can opt out at any time by tapping the name of the leaderboard and adjusting your settings."
-    const copy = ["Join the Leaderboard?", firstParagraph,secondParagraph, "Yes"]
-
-    await swipeFromText("Yes", "up", "slow")()
-    for (const i of copy) {
-        await expect(element(by.text(i))).toBeVisible()
-    }
-
+export const onLeaderboardWithoutConsent = async () => {
+    await textVisible(leaderboardConsentHeading)()
+    await textVisible(leaderboardConsentDesc)()
+    await textVisible(leaderboardConsentCta)()
+    await idVisible(ids.LEADBOARD_TAB("Steps"))()
+    await idVisible(ids.LEADBOARD_TAB("Yudoku"))()
 }
 
-export const leaderboardVisible = (customers: any[], steps?: any[]) => async () => {
-    let i = 0
+export const canSeeLeaderboardListModal = (socialGroupLeaderboards: SocialGroupLeaderboard[], consent: boolean) => async () => {
+    for (const leaderboard of socialGroupLeaderboards) {
+        await idVisible(ids.LEADERBOARD_TITLE(leaderboard.title))()
+        await idVisible(ids.LEADERBOARD_DESC(leaderboard.desc))()
+        await idVisible(ids.LEADERBOARD_SWITCH(leaderboard.type, consent))()
+    }
 
-    for(const customer of customers){
-        const name = customer.data.firstName + " " + customer.data.lastName
-        await expect(element(by.id(ids.LEADERBOARD_NAME(name)))).toBeVisible()
-        const stepCount = steps?.[i]
-        if(stepCount){
-            await expect(element(by.text(stepCount.toString()))).toBeVisible()
-        }
-        i++
+    await textVisible('Continue')()
+}
+
+export const leaderboardVisible = (customers: UserLeaderboardListItem[]) => async () => {
+    for(const { name, rank, score } of customers){
+        await idVisible(ids.LEADERBOARD_NAME(name, score, rank))()
     }
 }
 

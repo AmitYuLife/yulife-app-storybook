@@ -43,21 +43,6 @@ export const onLeaderboardConsent = async () => {
 
 }
 
-export const leaderboardVisible = (customers: any[], steps?: number[], scrollToTop = true) => async () => {
-    let i = 0
-
-    for(const customer of customers){
-        const name = customer.data.firstName + " " + customer.data.lastName
-        await scrollUntilIdVisible(ids.LEADERBOARD_SCROLL_LIST, ids.LEADERBOARD_NAME(name), "down")()
-        await expect(element(by.id(ids.LEADERBOARD_NAME(name)))).toBeVisible()
-        const stepCount = steps?.[i]
-        if(stepCount){
-            await expect(element(by.text(stepCount.toString()))).toBeVisible()
-        }
-        i++
-    }
-}
-
 export const leaderboardStatus = (leaderboardName: string, status: "active" | "inactive") => async () => {
     await expect(element(by.id(ids.LEADERBOARD_STATUS(leaderboardName, status)))).toBeVisible()
 }

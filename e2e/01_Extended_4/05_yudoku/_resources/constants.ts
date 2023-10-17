@@ -55,3 +55,7 @@ export const PracticeYudokuAnswers = [
     {row: 8, column: 3, value: 0, answer: 3},
     {row: 8, column: 5, value: 0, answer: 8},
   ]
+
+  export const leaderboardConsentHeading = "Join the Leaderboard?"
+  export const leaderboardConsentDesc = "By joining the leaderboard, you are consenting to share details about your activity with other members of a leaderboard. You can opt out at any time via the settings menu."
+  export const leaderboardConsentCta = 'Join the Leaderboard'

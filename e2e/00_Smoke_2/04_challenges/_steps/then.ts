@@ -98,21 +98,6 @@ export const onEventDetailsScreen = async () => {
     }
     await scrollUntilTextVisible(ids.EVENT_DIALOG_SCREEN_SCROLL, eventDescriptionTitle, "up")()
     await swipeFromText(eventDescriptionTitle, "down", "fast")()
-
-}
-
-export const leaderboardVisible = (customers: any[], steps?: any[]) => async () => {
-    let i = 0
-
-    for(const customer of customers){
-        const name = customer.data.firstName + " " + customer.data.lastName
-        await expect(element(by.id(ids.LEADERBOARD_NAME(name)))).toBeVisible()
-        const stepCount = steps?.[i]
-        if(stepCount){
-            await expect(element(by.text(stepCount.toString()))).toBeVisible()
-        }
-        i++
-    }
 }
 
 export const personalDataVisible = (name: string,  world: string) => async () => {

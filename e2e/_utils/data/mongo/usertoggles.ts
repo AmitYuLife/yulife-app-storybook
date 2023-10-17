@@ -212,7 +212,12 @@ export const CUSTOMER_16_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_16.data.customerId,
-    features: allTogglesTrue.data.features,
+    features: {
+      showNewLeaderBoard: true,
+      showLeaderboardSearch: true,
+      useNewLeaderboardServices: true,
+      ...DEFAULT_TOGGLES.data.features,
+    }
   },
 } as IDatabaseItem;
 
@@ -222,7 +227,12 @@ export const CUSTOMER_17_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_17.data.customerId,
-    features: allTogglesTrue.data.features,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      useNewLeaderboardServices: true,
+      showNewLeaderBoard: true,
+      showLeaderboardSearch: true,
+    }
   },
 } as IDatabaseItem;
 
@@ -237,7 +247,9 @@ export const CUSTOMER_18_TOGGLES = {
       hideSmartHealthScreen: false,
       hideYuMatterScreen: true,
       showDuels: true,
-      showBrainGameSudoku: true
+      showNewLeaderBoard: true,
+      showLeaderboardSearch: true,
+      useNewLeaderboardServices: true,
     },
   },
 } as IDatabaseItem;
@@ -251,6 +263,9 @@ export const CUSTOMER_19_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showDuels: true,
+      useNewLeaderboardServices: true,
+      showNewLeaderBoard: true,
+      showLeaderboardSearch: true,
     },
   },
 } as IDatabaseItem;
@@ -300,6 +315,7 @@ export const CUSTOMER_20_TOGGLES = {
       showGoals: true,
       useCoreChallengesService: true,
       useActiveChallengesService: true,
+      useNewLeaderboardServices: true
     },
   },
 } as IDatabaseItem;
@@ -702,6 +718,7 @@ export const CUSTOMER_40_TOGGLES = {
       showStats: true,
       showDuels: true,
       showCommunityGoals: true,
+      useNewLeaderboardServices: true
     },
   },
 } as IDatabaseItem;
@@ -965,7 +982,9 @@ export const CUSTOMER_47_TOGGLES = {
       showDuels: true,
       showInspect: true,
       passiveCyclingEnabled: true,
-      showBrainGameSudoku: true
+      showNewLeaderBoard: true,
+      showLeaderboardSearch: true,
+      useNewLeaderboardServices: true,
     },
   },
 } as IDatabaseItem;
@@ -981,6 +1000,9 @@ export const CUSTOMER_50_TOGGLES = {
       showDuels: true,
       showInspect: true,
       passiveCyclingEnabled: true,
+      showNewLeaderBoard: true,
+      showLeaderboardSearch: true,
+      useNewLeaderboardServices: true,
     },
   },
 } as IDatabaseItem;
@@ -1321,6 +1343,7 @@ export const CUSTOMER_73_TOGGLES = {
       ...allTogglesTrue.data.features,
       yuScreenV3: true,
       yuScreenV4: false,
+      useNewLeaderboardServices: true
     },
   },
 } as IDatabaseItem;
@@ -1390,7 +1413,9 @@ export const CUSTOMER_76_TOGGLES = {
       yuScreenV3: true,
       showPermissionSettings: true,
       yuScreenV4: false,
-      showBrainGameSudoku: true
+      showBrainGameSudoku: true,
+      showNewLeaderBoard: true,
+      useNewLeaderboardServices: true
     },
   },
 } as IDatabaseItem;
@@ -1523,7 +1548,8 @@ export const CUSTOMER_84_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showDuels: true,
-      showBrainGameSudoku: true
+      showBrainGameSudoku: true,
+      useNewLeaderboardServices: true
     },
   },
 } as IDatabaseItem;
@@ -1569,7 +1595,8 @@ export const CUSTOMER_86_TOGGLES = {
     userId: customer.CUSTOMER_86.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      showBrainGameSudoku: true
+      showBrainGameSudoku: true,
+      showNewLeaderBoard: true,
     },
   },
 } as IDatabaseItem;

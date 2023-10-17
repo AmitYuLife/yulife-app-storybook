@@ -7,6 +7,7 @@ import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { ISocialGroup } from "@redux/leaderboards/leaderboards.reducer";
 import { useSelector } from "react-redux";
 import { getActiveSocialGroup } from "@redux/leaderboards/leaderboards.selectors";
+import { LEADERBOARD_COMMUNITY_LIST } from "@ids";
 
 interface IProps {
   socialGroups: ISocialGroup[];
@@ -38,6 +39,7 @@ const LeaderboardCommunityOverlay = ({ socialGroups = [], onSelect }: IProps) =>
         }))}
         renderItem={renderItem}
         refreshing={false}
+        testID={LEADERBOARD_COMMUNITY_LIST(socialGroups.map((gr) => gr.name))}
       />
     </View>
   );

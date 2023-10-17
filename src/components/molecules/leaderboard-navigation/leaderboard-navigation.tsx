@@ -44,7 +44,7 @@ const LeaderboardNavigation = ({
           </View>
         </View>
         <View>
-          <TextTemplate type="l1" color={colour}>
+          <TextTemplate type="l1" color={colour} testID={LEADERBOARD_DROPDOWN}>
             {description}
           </TextTemplate>
         </View>
