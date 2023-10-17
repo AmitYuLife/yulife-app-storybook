@@ -3,14 +3,14 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { AUTH_58,  AUTH_76,  AUTH_84,  AUTH_86, CUSTOMER_58, CUSTOMER_67, CUSTOMER_68, CUSTOMER_71, CUSTOMER_76, CUSTOMER_84, CUSTOMER_86, SUDOKU_ANSWER_71, SUDOKU_ANSWER_68, SUDOKU_ANSWER_67} from "@data"
+import * as data from "@data"
 import { BACK_BUTTON, BUTTON_CLOSE_HEADER, BUTTON_CLOSE_RIGHT_ID, CANCEL_CANCEL_CHALLENGE, CELL_ROW_COLUMN, CHALLENGE_HISTORY_NEW_SLOT, LEVEL_CHALLENGE_BUTTON, LEVEL_SUMMARY_YUDOKU_LEADERBOARD, MENU_ICON, SETTINGS_SCREEN, SETTINGS_SWITCH, SUDOKU_HINT_TIMER, SUDOKU_NUMBER_INPUT, SUDOKU_PRACTICE_BUTTON, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, SUDOKU_UNRANKED_LABEL, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids"
 import { SUDOKU_STAT_0 } from "_utils/data/mongo/game_sudoku_stats"
 import { PracticeYudokuAnswers } from "./_resources/constants"
 
 Feature("Yudoku", async () => {
   Scenario("I can play, pause, and complete Sudoku and join/view the leaderboard", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("yucoin", CUSTOMER_86, AUTH_86), async () => {
+    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_86, data.AUTH_86), async () => {
         Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(700)))
     })
     When("I tap take take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
@@ -39,15 +39,15 @@ Feature("Yudoku", async () => {
         })
     })
     When("I tap the join button", when.tapJoinLeaderboardButton, async () => {
-        Then("I can see the leaderboard entries", then.canSeeLeaderboard(CUSTOMER_71, SUDOKU_ANSWER_71, 1))
-        Then("I can see the leaderboard entries", then.canSeeLeaderboard(CUSTOMER_67, SUDOKU_ANSWER_67, 2))
-        Then("I can see the leaderboard entries", then.canSeeLeaderboard(CUSTOMER_68, SUDOKU_ANSWER_68, 3))
+        Then("I can see the leaderboard entries", then.canSeeLeaderboard(data.CUSTOMER_71, data.SUDOKU_ANSWER_71, 1))
+        Then("I can see the leaderboard entries", then.canSeeLeaderboard(data.CUSTOMER_67, data.SUDOKU_ANSWER_67, 2))
+        Then("I can see the leaderboard entries", then.canSeeLeaderboard(data.CUSTOMER_68, data.SUDOKU_ANSWER_68, 3))
     })
     When("I press back", when.tapID(BACK_BUTTON), async () => {
         Then("I can see the home screen has leaderboard related content", then.canSeeHomeAfterLeaderboardJoin)
-        Then("I can see the leaderboard entries on the home screen", then.canSeeLeaderboard(CUSTOMER_71, SUDOKU_ANSWER_71, 1, true))
-        Then("I can see the leaderboard entries on the home screen", then.canSeeLeaderboard(CUSTOMER_68, SUDOKU_ANSWER_68, 3, true))
-        Then("I can see the leaderboard entries on the home screen", then.canSeeLeaderboard(CUSTOMER_67, SUDOKU_ANSWER_67, 2, true))
+        Then("I can see the leaderboard entries on the home screen", then.canSeeLeaderboard(data.CUSTOMER_71, data.SUDOKU_ANSWER_71, 1, true))
+        Then("I can see the leaderboard entries on the home screen", then.canSeeLeaderboard(data.CUSTOMER_68, data.SUDOKU_ANSWER_68, 3, true))
+        Then("I can see the leaderboard entries on the home screen", then.canSeeLeaderboard(data.CUSTOMER_67, data.SUDOKU_ANSWER_67, 2, true))
     })
     When("I tap start game", when.tapStartGame, async () => {
         When("I tap maybe later", when.dismissNotificationScreenIfVisible, async () => {
@@ -104,18 +104,18 @@ Feature("Yudoku", async () => {
         Then("I should see the start game button is unavailable", then.cannotSeeStartGame)
     })
     When("I tap the soduku challenge", when.tapSudoku, async () => {
-        Then("I am on the summary", then.onSudokuSummaryScreen(1, 1, CUSTOMER_86))
-        Then("I can see the leaderboard entry first place is the user", then.canSeeManuallyEnteredLeaderboard(CUSTOMER_86, 1))
+        Then("I am on the summary", then.onSudokuSummaryScreen(1, 1, data.CUSTOMER_86))
+        Then("I can see the leaderboard entry first place is the user", then.canSeeManuallyEnteredLeaderboard(data.CUSTOMER_86, 1))
     })
     When("I go to the leaderboard", when.tapLeaderboard, async () => {
-        Then("I can see the leaderboard entries", then.canSeeLeaderboard(CUSTOMER_71, SUDOKU_ANSWER_71, 2))
-        Then("I can see the leaderboard entries", then.canSeeLeaderboard(CUSTOMER_68, SUDOKU_ANSWER_68, 4))
-        Then("I can see the leaderboard entries", then.canSeeLeaderboard(CUSTOMER_67, SUDOKU_ANSWER_67, 3))
+        Then("I can see the leaderboard entries", then.canSeeLeaderboard(data.CUSTOMER_71, data.SUDOKU_ANSWER_71, 2))
+        Then("I can see the leaderboard entries", then.canSeeLeaderboard(data.CUSTOMER_68, data.SUDOKU_ANSWER_68, 4))
+        Then("I can see the leaderboard entries", then.canSeeLeaderboard(data.CUSTOMER_67, data.SUDOKU_ANSWER_67, 3))
     })
   })
 
   Scenario("I can see Sudoku leaderboard empty states", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("yucoin", CUSTOMER_58, AUTH_58), async () => {
+    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_58, data.AUTH_58), async () => {
         Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(665)))
     })
     When("I tap take take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
@@ -139,7 +139,7 @@ Feature("Yudoku", async () => {
   })
 
   Scenario("I am penalised when making more than 3 mistakes", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("yucoin", CUSTOMER_86, AUTH_86), async () => {
+    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_86, data.AUTH_86), async () => {
         Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(700)))
     })
     When("I tap take take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
@@ -173,7 +173,7 @@ Feature("Yudoku", async () => {
   })
 
   Scenario("I can cancel a yudoku", scenario.start, async () => {
-    Given("I login", given.logInAndGoToTab("yucoin", CUSTOMER_86, AUTH_86), async () => {
+    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_86, data.AUTH_86), async () => {
         Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(700)))
     })
     When("I tap take take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
@@ -213,8 +213,8 @@ Feature("Yudoku", async () => {
     When("I tap join", when.tapJoinLeaderboardButton, async () => {
         When("I tap level 152 button", when.tapID(LEVEL_CHALLENGE_BUTTON(152)), async () => {
             When("I tap the soduku challenge", when.tapSudoku, async () => {
-                Then("I cannot see a leaderbord entry for the user, Cersei is still first", then.canSeeLeaderboard(CUSTOMER_71, SUDOKU_ANSWER_71, 1, true))
-                Then('I can see there is an Unranked label', then.idVisible(SUDOKU_UNRANKED_LABEL))
+                Then("I cannot see a leaderbord entry for the user, Cersei is still first", then.canSeeLeaderboard(data.CUSTOMER_71, data.SUDOKU_ANSWER_71, 1, true))
+                Then('I can see there is data.an Unrdata.anked label', then.idVisible(SUDOKU_UNRANKED_LABEL))
                 Then("I can see the personal best has not updated", then.canSeePersonalBest(SUDOKU_STAT_0))
             })
         })
@@ -222,7 +222,7 @@ Feature("Yudoku", async () => {
   })
 
   Scenario("I can go to and leave the Yudoku leaderboard", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("yucoin", CUSTOMER_76, AUTH_76), async () => {
+    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_76, data.AUTH_76), async () => {
         Then("I should see 200 YuCoin in the top right hand corner", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
     })
     When("I tap take take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
@@ -300,14 +300,14 @@ Feature("Yudoku", async () => {
         })
     })    
     When("I tap yudoku leaderboard", when.tapID(LEVEL_SUMMARY_YUDOKU_LEADERBOARD("Today")), async () => {
-        Then("I can see the leaderboard entries", then.canSeeLeaderboard(CUSTOMER_71, SUDOKU_ANSWER_71, 2))
-        Then("I can see the leaderboard entries", then.canSeeLeaderboard(CUSTOMER_67, SUDOKU_ANSWER_67, 3))
-        Then("I can see the leaderboard entries", then.canSeeLeaderboard(CUSTOMER_68, SUDOKU_ANSWER_68, 4))
+        Then("I can see the leaderboard entries", then.canSeeLeaderboard(data.CUSTOMER_71, data.SUDOKU_ANSWER_71, 2))
+        Then("I can see the leaderboard entries", then.canSeeLeaderboard(data.CUSTOMER_67, data.SUDOKU_ANSWER_67, 3))
+        Then("I can see the leaderboard entries", then.canSeeLeaderboard(data.CUSTOMER_68, data.SUDOKU_ANSWER_68, 4))
     })
   })
 
     Scenario("I can see my yudoku daily time in the earnings screen", scenario.start, async () => {
-        Given("I login", given.logInAndGoToTab("yucoin", CUSTOMER_84, AUTH_84), async () => {
+        Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_84, data.AUTH_84), async () => {
             Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(700)))
         })
         When("I click on the YuCoin Icon to see the breakdown of my earnings", when.tapYuCoinIcon, async () => {
@@ -316,7 +316,7 @@ Feature("Yudoku", async () => {
     })
 
     Scenario("I can take the Yudoku practice game as many times as I want", scenario.start, () => {
-        Given("I login", given.logInAndGoToTab("yucoin", CUSTOMER_76, AUTH_76), async () => {
+        Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_76, data.AUTH_76), async () => {
             Then("I should see 200 YuCoin in the top right hand corner", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
         })
         When("I tap take take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {

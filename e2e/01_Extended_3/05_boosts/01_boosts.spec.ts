@@ -3,12 +3,12 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { AUTH_122, CUSTOMER_122, USER_122, USER_GAME_STATE_122 } from "@data"
+import * as data from "@data"
 import * as ids from "@ids"
 
 Feature("Level boosts", async () => {
   Scenario("As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge ", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("quests", CUSTOMER_122, AUTH_122, true, "United Kingdom", false), async () => {
+    Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_122, data.AUTH_122, true, "United Kingdom", false), async () => {
       Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
       Then("I should see that level 50 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(50)))
     })
@@ -25,7 +25,7 @@ Feature("Level boosts", async () => {
       Then("I should see that level 51 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
     })
     When("I tap the level 51 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(51)), async () => {
-      Then("I can see the boosted challenge tiles", then.canSeeBoostedChallengeTiles(USER_122))
+      Then("I can see the boosted challenge tiles", then.canSeeBoostedChallengeTiles(data.USER_122))
     })
     When("I tap the tile", when.tapID(ids.CHALLENGE_TILE("Long Walk")), async () => {
       Then("I can see the challenge page with the boost tab", then.canSeeChallengePage("10", 60, true))
@@ -38,7 +38,7 @@ Feature("Level boosts", async () => {
       })
     })
     When('I Tap collect', when.tapText("Collect"), async () => {
-      Then("I can see the yucoin balance is correct", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(USER_GAME_STATE_122.data.currentBalance + 120)))
+      Then("I can see the yucoin balance is correct", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(data.USER_GAME_STATE_122.data.currentBalance + 120)))
     })
   })
 })
