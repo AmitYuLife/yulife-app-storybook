@@ -1,4 +1,7 @@
 import React, { memo, useCallback, useState } from "react";
+import { useSelector } from "react-redux";
+import { getRouteState } from "@redux/app/app.selectors";
+import { Navigation } from "@navigation/main";
 import { VideoPlayer } from "@organisms";
 import { ContentItemMedia as GqlMarkdown } from "@graphql/_core/schema";
 import { Modal, StyleSheet, View } from "react-native";
@@ -23,12 +26,17 @@ export const ContentItemMedia = memo(
     orientation,
     ...props
   }: GqlMarkdown) => {
+    const currentRoute: ReturnType<typeof getRouteState> = useSelector(getRouteState);
+    const closeMedia = () => {
+      Navigation.pop(currentRoute);
+    };
+
     const [showModal, setShowModal] = useState(false);
     const [showError, setShowError] = useState(false);
     const { handleSduiAction: handleLeftIconPress } = useSduiCallbackFunctionOrReduxAction(onLeftIconPress);
     const { handleSduiAction: handleRightIconPress } = useSduiCallbackFunctionOrReduxAction(onRightIconPress);
     const { handleSduiAction: handleOnStart } = useSduiCallbackFunctionOrReduxAction(onStart);
-    const { handleSduiAction: handleOnEnd } = useSduiCallbackFunctionOrReduxAction(onEnd);
+    const { handleSduiAction: handleOnEnd } = useSduiCallbackFunctionOrReduxAction(onEnd, closeMedia);
 
     const rightIconPress = useCallback((shouldShowModal: boolean) => {
       if (shouldShowModal) {
