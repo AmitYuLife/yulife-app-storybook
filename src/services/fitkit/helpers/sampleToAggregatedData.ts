@@ -15,10 +15,10 @@ export const processResult = (
   }
 
   if (response?.results?.length === 0) {
-    return emptyAggregatedData(start.clone().format(), end.clone().format(), type, bucketSize);
+    return emptyAggregatedData(start.format(), end.format(), type, bucketSize);
   }
 
-  return sampleDataToAggregatedData(start.clone().format(), end.clone().format(), response.results, bucketSize);
+  return sampleDataToAggregatedData(start.format(), end.format(), response.results, bucketSize);
 };
 
 interface ChallengesPayloadWithInApp extends ChallengesPayload {

@@ -112,16 +112,18 @@ const getMeditation = async (
     return [];
   }
 
+  const start = moment(meditationLastUpdate).startOf("day");
+
   const meditationConfiguration = getAggregationMindfulSessionConfiguration();
   const meditation = await queryFitKitAggregatedData({
-    start: moment(meditationLastUpdate).startOf("day"),
+    start: start.clone(),
     end: endDateMeditation,
     features: userFeatures,
     metaData,
     ...meditationConfiguration,
   });
 
-  return processResult(meditation, "MindfulSession", moment(meditationLastUpdate), endDateMeditation);
+  return processResult(meditation, "MindfulSession", start.clone(), endDateMeditation);
 };
 
 const getSteps = async (
@@ -135,16 +137,18 @@ const getSteps = async (
     return [];
   }
 
+  const start = moment(stepsLastUpdate).startOf("day");
+
   const stepsConfiguration = getAggregationStepCountConfiguration(stepsBlackListApps);
   const steps: QueryFitKitByTypesResponse = await queryFitKitAggregatedData({
-    start: moment(stepsLastUpdate).startOf("day"),
+    start: start.clone(),
     end: endDateSteps,
     features: userFeatures,
     metaData,
     ...stepsConfiguration,
   });
 
-  return processResult(steps, "StepCount", moment(stepsLastUpdate), endDateSteps);
+  return processResult(steps, "StepCount", start.clone(), endDateSteps);
 };
 
 const checkPermissions = async (userFeatures: IUserStore["features"]) => {
