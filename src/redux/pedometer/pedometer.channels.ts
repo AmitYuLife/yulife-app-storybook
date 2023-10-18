@@ -4,7 +4,7 @@ import moment from "moment";
 import { eventChannel } from "redux-saga";
 
 export const NEXT_DAY_STARTED = "next day started";
-export function stepsChannel(startTime: string, blackListApps: string[]) {
+export function stepsChannel(startTime: string, blackListApps: string[], canFallbackToStepDetectorSensor: boolean) {
   return eventChannel((emitter) => {
     const { PEDOMETER_UPDATE } = RNFitKit.constants;
     let startDate = moment().format(DATE_FORMAT);
@@ -28,7 +28,7 @@ export function stepsChannel(startTime: string, blackListApps: string[]) {
       emitter(input);
     });
 
-    RNFitKit.startPedometerUpdatesFromDate(startTime, { blackListApps });
+    RNFitKit.startPedometerUpdatesFromDate(startTime, { blackListApps, canFallbackToStepDetectorSensor });
 
     const unlisten = () => {
       subscriber.remove();

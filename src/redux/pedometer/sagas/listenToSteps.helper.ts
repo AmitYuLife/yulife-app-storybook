@@ -25,7 +25,12 @@ export default function* listenToSteps() {
   const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
   const momentStartDay = moment().startOf("day");
   const startOfDay = momentStartDay.format();
-  const channel: ReturnType<typeof stepsChannel> = yield call(stepsChannel, startOfDay, stepsBlackListApps);
+  const channel: ReturnType<typeof stepsChannel> = yield call(
+    stepsChannel,
+    startOfDay,
+    stepsBlackListApps,
+    features.canFallbackToStepDetectorSensor
+  );
   const maxStepsAnomalyWindowMs: ReturnType<typeof getMaxStepsAnomalyWindowMs> = yield select(
     getMaxStepsAnomalyWindowMs
   );

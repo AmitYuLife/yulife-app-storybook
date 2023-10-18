@@ -59,4 +59,5 @@ export const features = [
   "retryChallengeResultQuery",
   "showAllLanguages",
   "enableResumeInAppMeditation",
+  "canFallbackToStepDetectorSensor",
 ];
