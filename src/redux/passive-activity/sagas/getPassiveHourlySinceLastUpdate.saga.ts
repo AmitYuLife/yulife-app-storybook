@@ -47,12 +47,12 @@ const getSteps = async (
 
   const stepsConfiguration = getAggregationStepCountHourlyConfiguration(stepsBlackListApps);
   const steps: QueryFitKitByTypesResponse = await queryFitKitAggregatedData({
-    start,
+    start: start.clone(),
     end: endDateSteps,
     features: userFeatures,
     metaData: { file: "getPassiveHourlySinceLastUpdate.saga" },
     ...stepsConfiguration,
   });
 
-  return processResult(steps, "StepCount", start, endDateSteps, "hour");
+  return processResult(steps, "StepCount", start.clone(), endDateSteps, "hour");
 };
