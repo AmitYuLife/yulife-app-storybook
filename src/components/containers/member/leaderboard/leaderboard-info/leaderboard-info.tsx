@@ -2,9 +2,9 @@ import React, { useCallback } from "react";
 import { TextTemplate } from "@atoms";
 import { StyleSheet, ViewStyle, View, ScrollView } from "react-native";
 import { LEADERBOARD_INFO } from "@ids";
-import { Style } from "@styles";
+import { Style, TOP_BAR } from "@styles";
 import { Navigation } from "@navigation/main";
-import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import { GenericHeadingAbsolute } from "@organisms";
 import { useBackHandler } from "@hooks";
 import { t } from "@locale";
 
@@ -23,8 +23,7 @@ function LeaderboardInfoScreen({ componentId }: IProps) {
   });
   return (
     <View style={styles.wrapper} testID={LEADERBOARD_INFO}>
-      <ScrollView>
-        <GenericHeadingPad />
+      <ScrollView style={styles.scrollView}>
         <TextTemplate type="h2">{t("screens.leaderboard.podium.info_heading")}</TextTemplate>
         <View style={styles.sectionContainer}>
           <TextTemplate type="b1b">{t("screens.leaderboard.podium.communities_info.heading")}</TextTemplate>
@@ -56,11 +55,16 @@ export default LeaderboardInfoScreen;
 
 const styles = StyleSheet.create({
   sectionContainer: {
-    paddingVertical: Style.adjust(20),
+    paddingTop: Style.adjust(40),
   },
   wrapper: {
+    ...StyleSheet.absoluteFillObject,
+  } as ViewStyle,
+  scrollView: {
+    ...StyleSheet.absoluteFillObject,
+    top: TOP_BAR.TOP_BAR_WITH_PAD,
     backgroundColor: "#FFFFFF",
     paddingHorizontal: Style.adjust(24),
-    paddingTop: Style.adjust(24),
+    paddingVertical: Style.adjust(24),
   } as ViewStyle,
 });
