@@ -7,6 +7,50 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.104.0] - 2023-10-19
+
+### Bugfixes
+
+- Bugfix: hermes dependencies
+- Bugfix: Passive last update
+- Bugfix: leaderboard-info styles
+- Bugfix ENG-3570: Disable Override force-dark on android
+- Bugfix ENG-3561: Quest map on iPhone15
+- Bugfix: ContentItemMedia stuck on video end
+- Bugfix ENG-3449: Protect page items access in FullScreenSwiper
+- Bugfix ENG-3666: Rotating phone zoom in bug on iPhone
+- Bugfix ENG-3481: User not awarded for in-app passive mindful mins on Samsung Health
+- Bugfix ENG-3665: Leaderboard not incrementing position correctly on refresh
+- Bugfix: Download translations on Storybook pipeline to prevent it from failing
+
+### Tasks
+
+- Task ENG-3620 & ENG-3567 & ENG-3586: Sudoku red numbers
+- Task: Rename useMutationAllRegions.tsx to useMutationAllRegions.ts
+- Task: New unities
+- Task: Sensor fallback for android
+- Task: New unity filesize reduction
+- Task/XSE-2236: leanplum notification work and hero image modal addition
+
+### Chores
+
+- Chore/erase cocoapods cache
+- Chore: Upgrade RN and Flipper
+
+### Extra
+
+- Detox: Duels refactor
+- Feat XSE-2174: Display locked reward overlay based on a new variable
+- Detox: Fix 18th oct
+- detox:extended-fixes-17/10
+- Detox: New leaderboard testing
+- Detox: Extended import cleanup
+- add sdui component stories
+- Detox: Deep link test
+- Hotfix HACK-68: always use isResetPasswordRequest
+- Hotfix: broken deeplinks
+- Detox: Fixes 12th oct
+
 ## [3.103.0] - 2023-10-12
 
 ### Bugfixes
