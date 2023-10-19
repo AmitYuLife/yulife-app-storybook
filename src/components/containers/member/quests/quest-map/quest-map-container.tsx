@@ -1,0 +1,294 @@
+import { useQuery } from "@apollo/client";
+import { GetMobileGameWeeklies, GetQuestMap } from "@graphql/_core/schema";
+import { GQL_QUERY_GET_QUEST_MAP } from "@graphql/challenges";
+import React, { memo, useCallback, useMemo, useState } from "react";
+import { Style } from "@styles";
+import {
+  getChallengesStatus,
+  getCurrentLevel,
+  getNextLevelAvailableAt,
+  getYuniversalProgress,
+} from "@redux/levels/levels.selectors";
+
+import {
+  goToChallengesList,
+  showLevelCompleteModal,
+  showChestModal,
+  showChallengeUnavailableModal,
+  showLevelUnavailableModal,
+  getLevelAction,
+} from "@components/screens/member/quests/quests-scroll-screen/quests-screen.container.helpers";
+
+import { QUEST_MAP_CONFIG } from "./quest-map.config";
+import { useDispatch, useSelector } from "react-redux";
+import { submitUnityAction } from "@redux/levels/levels.actions";
+import Unity from "@components/screens/member/quests/quests-scroll-screen/unity-movies/unity";
+import { YuniversalQuestsScreen } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/yuniversal-quest-screen";
+import { GQL_QUERY_GET_GAME_WEEKLIES } from "@graphql/weeklies";
+import { ROUTES } from "@navigation/constants";
+import { useQueryOnScreenSeen } from "@hooks";
+import { getEpisode, getLevelStatus, getMinLevel, getSeperator, isAvailable } from "./quest-map-helpers";
+import { first } from "lodash";
+import QuestMapScreen from "./quest-map.screen";
+
+const EPISODES_PER_PLANET = 32;
+const LEVELS_PER_WORLD = 200;
+
+interface IQuestMapContainerProps {
+  onLeftMenuPress: () => void;
+  componentId: string;
+}
+
+const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerProps) => {
+  const { yuniversalLevel } = useSelector(getYuniversalProgress);
+
+  const { data } = useQuery<GetQuestMap>(GQL_QUERY_GET_QUEST_MAP, {
+    fetchPolicy: "network-only",
+  });
+
+  const [, { data: weeklies }] = useQueryOnScreenSeen<GetMobileGameWeeklies>(
+    GQL_QUERY_GET_GAME_WEEKLIES,
+    ROUTES.quests
+  );
+
+  const dispatch = useDispatch();
+  const currentLevel = useSelector(getCurrentLevel);
+  const [levelId, setLevelId] = useState<string>(null);
+  const [unity, setUnity] = useState<number | null>(null);
+  const challengesStatus = useSelector(getChallengesStatus);
+  const [repeatedUnity, setRepeatedUnity] = useState(false);
+  const { yuniversalMap } = useSelector(getYuniversalProgress);
+
+  const nextLevelAvailableAt = useSelector(getNextLevelAvailableAt);
+
+  const levelsList = useMemo(() => data?.levels.filter((level) => level.level) || [], [data]);
+  const formattedLevels = useMemo(() => {
+    if (yuniversalMap) {
+      return [];
+    }
+
+    return levelsList.map((itemLevel) => {
+      const levelStatus = getLevelStatus(challengesStatus, currentLevel, itemLevel.level, nextLevelAvailableAt);
+      const isChestLevel = !!itemLevel.levelChest;
+
+      return {
+        ...itemLevel,
+        ...levelStatus,
+        isChestLevel,
+        onPress: () => {
+          const levelAvailable = isAvailable(nextLevelAvailableAt);
+          const action = getLevelAction({
+            levelStatus,
+            challengesStatus,
+            itemLevel,
+            levelAvailable,
+          });
+
+          switch (action) {
+            case "SetUnity":
+              setUnity(itemLevel.level);
+              setLevelId(itemLevel.id);
+              setRepeatedUnity(true);
+              break;
+            case "GoToChallengesList":
+              goToChallengesList(componentId, itemLevel.level);
+              break;
+            case "ShowLevelCompleteModal":
+              showLevelCompleteModal(componentId, itemLevel.level);
+              break;
+            case "DispatchSubmitUnityAction":
+              setUnity(itemLevel.level);
+              setLevelId(itemLevel.id);
+              dispatch(submitUnityAction({ levelId: itemLevel.id }));
+              setRepeatedUnity(false);
+              break;
+            case "ShowChestModal":
+              showChestModal(componentId, itemLevel, null, levelStatus.isNext);
+              break;
+            case "ShowChallengeUnavailableModal":
+              showChallengeUnavailableModal(nextLevelAvailableAt);
+              break;
+            case "ShowLevelUnavailableModal":
+            default:
+              showLevelUnavailableModal(itemLevel.level);
+              break;
+          }
+        },
+      };
+    });
+  }, [yuniversalMap, levelsList, challengesStatus, currentLevel, nextLevelAvailableAt, componentId, dispatch]);
+
+  const items = useMemo(() => {
+    if (!data?.levels || yuniversalMap) {
+      return [];
+    }
+
+    const episodes = [];
+    let tempEpisode = [];
+
+    for (const level of data.levels) {
+      // Unity is every 50 levels, and unity has no other levels in the episode
+      // So we push it as its own chunk
+      const formattedLevel = formattedLevels.find((e) => e.level === level.level);
+      if (level.level % 50 === 0) {
+        if (currentLevel > level.level - 1) {
+          episodes.push([formattedLevel]);
+        }
+
+        continue;
+      }
+
+      tempEpisode.push(formattedLevel);
+
+      // Once we have all 7 levels of the episode, we push the chunk
+      if (tempEpisode.length === 7) {
+        episodes.push(tempEpisode);
+        tempEpisode = [];
+      }
+    }
+
+    return episodes
+      .map((levels) => {
+        const firstLevel = first(levels);
+        const episode = getEpisode(firstLevel.level);
+        const seperator = getSeperator({ currentLevel, episode });
+
+        if (!(episode in QUEST_MAP_CONFIG.episodes)) {
+          return null;
+        }
+
+        return {
+          levels,
+          episodeConfig: QUEST_MAP_CONFIG.episodes[episode],
+          seperator,
+        };
+      })
+      .filter(Boolean);
+  }, [currentLevel, data?.levels, formattedLevels, yuniversalMap]);
+
+  const itemOffsets = useMemo(() => {
+    const offsets: number[] = [];
+
+    for (const itemIndex in items) {
+      if (yuniversalMap) {
+        return [];
+      }
+
+      const item = items[itemIndex];
+      if (!item) {
+        continue;
+      }
+
+      const minLevel = getMinLevel(item?.levels);
+      const episode = getEpisode(minLevel);
+      const minLevelForPlanet = Math.floor((minLevel - 1) / LEVELS_PER_WORLD);
+      const minEpisodeForPlanet = minLevelForPlanet * EPISODES_PER_PLANET;
+      const episodeConfig = QUEST_MAP_CONFIG.episodes[episode];
+
+      if (!episodeConfig) {
+        continue;
+      }
+
+      const lowerEpisodes = Object.entries(QUEST_MAP_CONFIG.episodes)
+        .filter(([itemConfig]) => +itemConfig > minEpisodeForPlanet && +itemConfig < episode)
+        .map(([, itemConfig]) => ({ height: itemConfig?.episodeHeight, width: itemConfig?.episodeWidth }))
+        .reduce((prev, cur) => prev + Style.DEVICE_WIDTH * (1 / (cur.width / cur.height)), 0);
+
+      offsets.push(Math.floor(lowerEpisodes));
+    }
+
+    return offsets;
+  }, [items, yuniversalMap]);
+
+  const itemHeights: number[] = useMemo(
+    () =>
+      items.filter(Boolean).map((episode) => {
+        if (!episode?.episodeConfig.episodeWidth || !episode?.episodeConfig?.episodeHeight) {
+          return 0;
+        }
+
+        const lottieAspectRatio = episode?.episodeConfig.episodeWidth / episode?.episodeConfig?.episodeHeight;
+        const finalepisodeHeight = Style.DEVICE_WIDTH * (1 / lottieAspectRatio);
+
+        const unityHeight = episode.seperator
+          ? Style.DEVICE_WIDTH * (episode?.seperator?.height / episode?.seperator?.width)
+          : 0;
+
+        return finalepisodeHeight + unityHeight;
+      }),
+    [items]
+  );
+
+  const snapOffsets = useMemo(() => {
+    const offsets: number[] = [];
+
+    for (const itemIndex in items) {
+      let currentSnapPosition = itemOffsets[itemIndex];
+      const item = items[itemIndex];
+      if (!item) {
+        continue;
+      }
+
+      const minLevel = getMinLevel(item?.levels);
+      const episode = getEpisode(minLevel);
+      const lottie = QUEST_MAP_CONFIG.episodes[episode];
+      const lottieAdjustment = 1 / (lottie.episodeWidth / lottie.episodeHeight);
+      const leftOverepisodeHeight = Style.DEVICE_HEIGHT - Style.DEVICE_WIDTH * lottieAdjustment;
+
+      if (lottie.snapPosition === "center") {
+        currentSnapPosition -= leftOverepisodeHeight / 2;
+      } else if (lottie.snapPosition === "top") {
+        currentSnapPosition -= leftOverepisodeHeight;
+      }
+
+      if (lottie?.snapOffsetY) {
+        const adjustedSnapOffset = lottie?.snapOffsetY * lottieAdjustment;
+        currentSnapPosition += adjustedSnapOffset;
+      }
+
+      if (item?.seperator) {
+        const height = Style.DEVICE_WIDTH * (item.seperator.height / item.seperator.width);
+        currentSnapPosition += height / 2;
+      }
+
+      offsets.push(Math.floor(currentSnapPosition));
+    }
+
+    return offsets;
+  }, [itemOffsets, items]);
+
+  const hideUnity = useCallback(() => {
+    setUnity(null);
+  }, []);
+
+  if (!data?.levels && !unity && !yuniversalMap) {
+    return null;
+  }
+
+  return (
+    <>
+      {unity ? <Unity level={unity} levelId={levelId} repeatedUnity={repeatedUnity} onSkip={hideUnity} /> : null}
+      {yuniversalMap && !unity ? (
+        <YuniversalQuestsScreen
+          componentId={componentId}
+          yuniversalLevel={yuniversalLevel}
+          yuniversalMap={yuniversalMap}
+          levelList={levelsList}
+          onLeftMenuPress={onLeftMenuPress}
+        />
+      ) : null}
+      {!unity && !yuniversalMap ? (
+        <QuestMapScreen
+          items={items}
+          onLeftMenuPress={onLeftMenuPress}
+          weeklies={weeklies?.getMobileGameWeeklies}
+          currentLevel={currentLevel}
+          snapOffsets={snapOffsets}
+          itemHeights={itemHeights}
+        />
+      ) : null}
+    </>
+  );
+};
+
+export default memo(QuestMapContainer);

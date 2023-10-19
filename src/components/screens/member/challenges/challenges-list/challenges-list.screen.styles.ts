@@ -8,7 +8,6 @@ export default StyleSheet.create({
     justifyContent: "center",
     left: 0,
     paddingHorizontal: Style.adjust(16),
-    paddingBottom: Style.adjust(80),
     position: "absolute",
     right: 0,
     bottom: 0,

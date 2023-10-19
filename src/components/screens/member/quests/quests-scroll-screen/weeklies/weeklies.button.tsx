@@ -4,11 +4,13 @@ import { WeeklyQuestsModal } from "./weeklies.modal";
 import { showFloatingModal } from "@modals";
 import { Weeklies } from "@organisms";
 import { QuestsMapContext } from "../quests.context";
+import { GetMobileGameWeeklies_getMobileGameWeeklies } from "@graphql/_core/schema";
 
 const ICON = require("@assets/icons/weeklies.png");
 const CLAIMED_ICON = require("@assets/icons/trophy.png");
 
 type Props = {
+  weeklies?: GetMobileGameWeeklies_getMobileGameWeeklies;
   isVisible: boolean;
 };
 
@@ -21,8 +23,9 @@ const handlePress = async (isClaimed?: boolean) => {
   });
 };
 
-export const WeeklyQuestsButton = memo(({ isVisible }: Props) => {
-  const { weeklies } = useContext(QuestsMapContext);
+export const WeeklyQuestsButton = memo(({ weeklies: weekliesProp, isVisible }: Props) => {
+  const { weeklies: weekliesContext } = useContext(QuestsMapContext);
+  const weeklies = !weekliesProp ? weekliesContext : weekliesProp;
 
   const claimableRewards = weeklies?.activityProgress?.filter?.((e) => e.isClaimable)?.length;
   const isClaimed = !!weeklies?.activityProgress.every((e) => e.isClaimed);

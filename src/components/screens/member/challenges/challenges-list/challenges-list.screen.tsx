@@ -6,7 +6,7 @@ import { ChallengeBackground } from "@atoms";
 import { ChallengesList, IChallengesListProps } from "@molecules/index";
 import { View, BackHandler } from "react-native";
 import styles from "./challenges-list.screen.styles";
-import { NavBar, GenericHeadingPad, TopBarAbsolute } from "@components/organisms";
+import { GenericHeadingPad, TopBarAbsolute } from "@components/organisms";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
@@ -99,7 +99,6 @@ class ChallengesListScreen extends Component<IProps, IState> {
           name={name}
           onPressLeftIcon={onPressLeftIcon}
         />
-        <NavBar activeIndex={1} />
       </View>
     );
   }
