@@ -39,3 +39,7 @@ export const restartToDuelsRequest = (customer:any, auth:any, fitkitAuth=true) =
     await loginOnly(customer, auth, fitkitAuth)()
     await navigateViaText("Next")
 }
+
+export const searchForDuelOpponent = (user: string) => async () => {
+    await typeViaID("SEARCH_INPUT", user)()
+}

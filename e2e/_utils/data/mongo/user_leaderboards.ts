@@ -36,16 +36,6 @@ export const USER_17_LEADERBOARD = {
     },
 } as IDatabaseItem;
 
-export const USER_19_LEADERBOARD_A = {
-    type: "mongo",
-    modelName: "user_leaderboards",
-    data: {
-        leaderboardId: LEADERBOARD_1.data.leaderboardId,
-        userId: CUSTOMER_19.data.customerId,
-        consent: true,
-    },
-} as IDatabaseItem;
-
 export const USER_19_LEADERBOARD_B = {
     type: "mongo",
     modelName: "user_leaderboards",
@@ -83,16 +73,6 @@ export const USER_21_LEADERBOARD_B = {
         leaderboardId: LEADERBOARD_2.data.leaderboardId,
         userId: CUSTOMER_21.data.customerId,
         consent: false,
-    },
-} as IDatabaseItem;
-
-export const USER_27_LEADERBOARD = {
-    type: "mongo",
-    modelName: "user_leaderboards",
-    data: {
-        leaderboardId: LEADERBOARD_3.data.leaderboardId,
-        userId: CUSTOMER_27.data.customerId,
-        consent: true,
     },
 } as IDatabaseItem;
 
