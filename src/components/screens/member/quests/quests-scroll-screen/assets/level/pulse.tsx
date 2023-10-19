@@ -6,6 +6,7 @@ import { DETOX_ENABLED } from "@services/socket";
 interface IProps {
   interval: number;
   size: number;
+  adjustYPosition?: boolean;
   pulseMaxSize: number;
   backgroundColor: string;
   style?: ViewStyle;
@@ -13,7 +14,7 @@ interface IProps {
 
 function _Pulse(props: IProps) {
   const anim = React.useRef(new Animated.Value(0));
-  const { interval, pulseMaxSize, backgroundColor, size, style } = props;
+  const { interval, pulseMaxSize, backgroundColor, size, style, adjustYPosition = true } = props;
 
   React.useEffect(() => {
     if (!DETOX_ENABLED) {
@@ -53,9 +54,13 @@ function _Pulse(props: IProps) {
           marginLeft: -pulseMaxSize / 2,
           width: pulseMaxSize,
         },
-        typeof style.bottom === "undefined"
-          ? { top: (CIRCLE_SIZE - pulseMaxSize) / 2 }
-          : { bottom: (CIRCLE_SIZE - pulseMaxSize) / 2 },
+        // TODO: Remove this once new quest map is enabled
+        // It is only true for the old quest map
+        adjustYPosition
+          ? typeof style.bottom === "undefined"
+            ? { top: (CIRCLE_SIZE - pulseMaxSize) / 2 }
+            : { bottom: (CIRCLE_SIZE - pulseMaxSize) / 2 }
+          : {},
       ]}
     >
       <Animated.View

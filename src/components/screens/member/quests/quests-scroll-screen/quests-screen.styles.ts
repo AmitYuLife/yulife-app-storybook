@@ -2,7 +2,7 @@ import { StyleSheet, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style, TOP_BAR } from "@styles";
 
-function scrollViewAdjustPosition() {
+export function scrollViewAdjustPosition() {
   if (isIphoneX()) {
     return {
       bottom: -10,

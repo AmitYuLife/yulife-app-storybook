@@ -100,6 +100,7 @@
     "graphql": "^16.6.0",
     "jsc-android": "^250230.2.1",
     "json-schema-yup-transformer": "^1.6.12",
+    "lodash": "^4.17.21",
     "lottie-ios": "3.4.1",
     "lottie-react-native": "^5.1.4",
     "moment": "^2.29.4",
