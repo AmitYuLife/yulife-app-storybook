@@ -7,14 +7,14 @@ import {
   GetSudokuLeaderboardVariables,
 } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_SUDOKU_BOARDS } from "@graphql/brainGames/sudoku/getSudokuBoards.gql";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { first } from "lodash";
 import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { getSudokuState } from "@redux/sudoku/sudoku.selectors";
-import { sudokuReset, sudokuStateChanged } from "@redux/sudoku/sudoku.actions";
+import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import SudokuStagingScreen from "./sudoku-staging.screen";
 import { showYuModal } from "@navigation/root";
 import { GQL_QUERY_GET_SODUKU_LEADERBOARD } from "@graphql/brainGames/sudoku/getSudokuLeaderboards.gql";
@@ -36,14 +36,12 @@ interface IProps {
 
 export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
   const dispatch = useDispatch();
-  const date = useMemo(() => new Date(), []);
   const sudokuState = useSelector(getSudokuState);
-
   const activeChallenge = useSelector(getActiveLevel);
   const [createQuestMapLevelChallenge] = useMutation(GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE);
 
   const [, { data }] = useQueryOnScreenSeen<GetSudokuBoard>(GQL_QUERY_GET_SUDOKU_BOARDS, ROUTES.sudokuStaging, {
-    fetchPolicy: "network-only",
+    fetchPolicy: "no-cache",
   });
 
   const showSecondAttemptDisclaimer = useMemo(() => {
@@ -70,13 +68,6 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
     }
   );
 
-  useEffect(() => {
-    const currentDate = moment(date).format(DATE_FORMAT);
-    if (sudokuState?.gameIdentifier !== currentDate || sudokuState?.levelSlotId !== slot.id) {
-      dispatch(sudokuReset({ gameIdentifier: currentDate, levelSlotId: slot.id }));
-    }
-  }, [sudokuState, slot, dispatch, date]);
-
   const board = first(data?.getSudokuBoard?.boards);
 
   const startGame = useCallback(async () => {
@@ -98,35 +89,33 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
       })
     );
 
-    const currentDate = moment(date).format(DATE_FORMAT);
+    const currentDate = moment().format(DATE_FORMAT);
 
     const newState = {
       ...sudokuState,
       levelSlotId: slot.id,
       reward: slot.reward,
       startDateTime: new Date(),
+      gameIdentifier: currentDate,
       date: currentDate,
-      board: sudokuState.board ? sudokuState.board : board?.puzzle,
     };
 
-    dispatch(sudokuStateChanged(newState));
+    dispatch(sudokuReset({ ...newState }));
 
     return Navigation.push(componentId, {
       component: {
         id: ROUTES.sudokuGame,
         name: ROUTES.sudokuGame,
-        passProps: { board, stats: data?.getSudokuBoard?.stats, date: currentDate, levelSlotId: slot.id },
+        passProps: { date: currentDate, levelSlotId: slot.id },
       },
     });
   }, [
-    board,
-    date,
+    activeChallenge.levelSlotId,
+    createQuestMapLevelChallenge,
+    slot.id,
+    slot.reward,
     dispatch,
     sudokuState,
-    data?.getSudokuBoard.stats,
-    slot,
-    activeChallenge,
-    createQuestMapLevelChallenge,
     componentId,
   ]);
 
