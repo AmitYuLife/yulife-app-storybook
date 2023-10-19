@@ -27,6 +27,9 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
                 Then("I should be on the Search for a friend screen", then.textVisible("Search for a friend:"))
                 Then("I should see Angela Martin", then.textVisible("Angela Martin"))
             })
+            When("I search for angela", when.searchForDuelOpponent("Angela"), async () => {
+                Then("I should see Angela Martin", then.textVisible("Angela Martin"))
+            })
             When("I tap a Angela Martin", when.tapText("Angela Martin"), async()=>{
                 Then("I should be on the start duel screen", then.multipleTextVisible(["The matchup:", "Set the duel"]))
             })
@@ -45,15 +48,11 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             })
             When("I tap confirm", when.tapText("Confirm"), async()=>{
                 Then("I should be on the duels hub", then.idVisible(ids.DUELS_HUB))
-            })
-            When("I reload the app (caching not showing duels invite on detox)", when.reloadAppToTab("leaderboard"), async()=>{
-                When("I go to the duels hub", when.tapID(ids.DUELS_BUTTON), async()=>{
-                    Then("I should see the duel I just requested", then.idVisible(ids.DUELS_HUB_INVITATION("Angela", "Martin", 25, "invited"), 5000))
-                })
+                Then("I should see the duel I just requested", then.idVisible(ids.DUELS_HUB_INVITATION("Angela", "Martin", 25, "invited"), 5000))
             })
             When("I restart and login as the invited user", when.restartToDuelsRequest(data.CUSTOMER_19, data.AUTH_19), async()=>{
                 When("I close and reopen the app", when.reloadOnly, async()=>{  
-                    When("I wait", when.wait(15000), async () => {
+                    When("I wait", when.wait(5000), async () => {
                         Then("I should see the vs screen", then.textVisible("Oscar has invited you to a 1-day duel for 25 YuCoin!"))
                     })
                 })
@@ -68,10 +67,10 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             })
             When("I tap the duels button", when.tapID(ids.DUELS_BUTTON), async()=>{
                 Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]))
-                When("I tap complete the duels intro", when.completeOnboardingIntro, async () => {
-                    Then("I should be on the duels hub", then.onDuelsHub)
-                    Then("I should see my upcoming duel", then.idVisible(ids.DUEL_ENTRY("Oscar", "Martinez", 25, "accepted"), 1500))
-                })
+            })
+            When("I tap complete the duels intro", when.completeOnboardingIntro, async () => {
+                Then("I should be on the duels hub", then.onDuelsHub)
+                Then("I should see my upcoming duel", then.idVisible(ids.DUEL_ENTRY("Oscar", "Martinez", 25, "accepted"), 1500))
             })
         })
     })

@@ -315,7 +315,9 @@ export const CUSTOMER_20_TOGGLES = {
       showGoals: true,
       useCoreChallengesService: true,
       useActiveChallengesService: true,
-      useNewLeaderboardServices: true
+      useNewLeaderboardServices: true,
+      showNewLeaderBoard: true,
+      showLeaderboardSearch: true,
     },
   },
 } as IDatabaseItem;
@@ -439,7 +441,10 @@ export const CUSTOMER_27_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_27.data.customerId,
-    features: allTogglesTrue.data.features,
+    features: {
+      ...allTogglesTrue.data.features,
+      useNewLeaderboardServices: true,
+    } 
   },
 } as IDatabaseItem;
 
@@ -449,7 +454,10 @@ export const CUSTOMER_28_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_28.data.customerId,
-    features: allTogglesTrue.data.features,
+    features: {
+      ...allTogglesTrue.data.features,
+      useNewLeaderboardServices: true,
+    } 
   },
 } as IDatabaseItem;
 
