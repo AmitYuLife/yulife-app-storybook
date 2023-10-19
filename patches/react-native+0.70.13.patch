@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native/scripts/cocoapods/hermes.rb b/node_modules/react-native/scripts/cocoapods/hermes.rb
+index 747b744..4ccb04f 100644
+--- a/node_modules/react-native/scripts/cocoapods/hermes.rb
++++ b/node_modules/react-native/scripts/cocoapods/hermes.rb
+@@ -16,5 +16,7 @@ def install_hermes_if_enabled(hermes_enabled, react_native_path)
+ 
+     pod 'React-hermes', :path => "#{react_native_path}/ReactCommon/hermes"
+     pod 'libevent', '~> 2.1.12'
+-    pod 'hermes-engine', :podspec => "#{react_native_path}/sdks/hermes/hermes-engine.podspec"
++
++    # This is fixed in 0.72 https://github.com/facebook/react-native/commit/8de71e58b6280d7a4957cc859e14268f6dde3bea
++    pod 'hermes-engine', :podspec => "#{react_native_path}/sdks/hermes-engine/hermes-engine.podspec", :tag => "0.70.13"
+ end
