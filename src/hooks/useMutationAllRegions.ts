@@ -13,7 +13,7 @@ import { regionalClients } from "@graphql/_core/client";
  * @param regions - allows restriction of which regions to call
  * @returns
  */
-export const useMutatationAllRegions = <T = object,>(
+export const useMutatationAllRegions = <T = object>(
   mutation: DocumentNode,
   options?: Partial<MutationOptions>,
   regions?: REGION[]
