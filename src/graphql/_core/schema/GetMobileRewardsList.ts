@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -23,6 +23,7 @@ export interface GetMobileRewardsList_data_list {
   __typename: "MobileRewardsListItem";
   id: string;
   isLocked: boolean;
+  showLockedRewardOverlay: boolean;
   name: string;
   description: string;
   imageUrl: GetMobileRewardsList_data_list_imageUrl;

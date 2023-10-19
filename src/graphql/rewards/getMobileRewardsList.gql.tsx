@@ -17,6 +17,7 @@ export const GQL_QUERY_GET_MOBILE_REWARDS_LIST = gql`
         __typename
         id
         isLocked
+        showLockedRewardOverlay
         name
         description
         imageUrl {

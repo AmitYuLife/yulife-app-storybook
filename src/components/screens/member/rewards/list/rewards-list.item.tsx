@@ -13,11 +13,19 @@ type RewardsListItem = GetMobileRewardsList_data_list & {
   onPress: () => void;
 };
 
-const _RewardsListItem = ({ onPress, imageUrl, name, description, pills, isLocked, id }: RewardsListItem) => (
+const _RewardsListItem = ({
+  onPress,
+  imageUrl,
+  name,
+  description,
+  pills,
+  showLockedRewardOverlay,
+  id,
+}: RewardsListItem) => (
   <BoxOption
     onPress={onPress}
     isSelected={false}
-    innerWrapperStyle={isLocked && styles.locked}
+    innerWrapperStyle={showLockedRewardOverlay && styles.locked}
     wrapperStyle={styles.wrapper}
     innerHeight={BOX_HEIGHT}
     testID={REWARD_ITEM(id)}
@@ -33,7 +41,7 @@ const _RewardsListItem = ({ onPress, imageUrl, name, description, pills, isLocke
             resizeMode="cover"
           />
         )}
-        {!isLocked ? null : <Lock testID={LOCKED_REWARD_ITEM(id)} />}
+        {!showLockedRewardOverlay ? null : <Lock testID={LOCKED_REWARD_ITEM(id)} />}
       </View>
       <View style={styles.detailWrapper}>
         <TextTemplate type="b2b">{name}</TextTemplate>
@@ -42,7 +50,7 @@ const _RewardsListItem = ({ onPress, imageUrl, name, description, pills, isLocke
         </TextTemplate>
       </View>
       <View>
-        <ArrowButton color={isLocked ? Colours.neutral.n800 : Colours.primary.p600} />
+        <ArrowButton color={showLockedRewardOverlay ? Colours.neutral.n800 : Colours.primary.p600} />
       </View>
       <View style={styles.pillsWrapper}>
         {pills.map((p) => (
