@@ -480,6 +480,11 @@ workflows:
             npm i -g yarn
             yarn install --frozen-lockfile
     - restore-cocoapods-cache@1: {}
+    - script:
+        inputs:
+        - content: |
+            #!/bin/bash
+            envman add --key NO_FLIPPER --value 1
     - cocoapods-install@2: {}
     - save-cocoapods-cache@1: {}
     - script@1.2:
@@ -1885,6 +1890,11 @@ workflows:
             asdf install ruby $(cat .ruby-version)
             asdf global ruby $(cat .ruby-version)
     - restore-cocoapods-cache@1: {}
+    - script:
+        inputs:
+        - content: |
+            #!/bin/bash
+            envman add --key NO_FLIPPER --value 1
     - cocoapods-install@2.3: {}
     - save-cocoapods-cache@1: {}
     - script@1.2:
