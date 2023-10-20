@@ -5,11 +5,11 @@ import moment = require('moment');
 import { AUTH_TEMPLATE } from "./_templates"
 
 const type = "mongo"
-const modelName ="auth"
+const modelName ="authpassword"
 
 export const AUTH_1 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         _id: generateRandomMongoId(),
         attempts: 1,
@@ -25,7 +25,7 @@ export const AUTH_1 = {
 
 export const AUTH_2 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         _id: generateRandomMongoId(),
         attempts: 1,
@@ -41,7 +41,7 @@ export const AUTH_2 = {
 
 export const AUTH_3 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_2.data,
         _id: generateRandomMongoId(),
@@ -51,7 +51,7 @@ export const AUTH_3 = {
 
 export const AUTH_4 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_2.data,
         _id: generateRandomMongoId(),
@@ -61,7 +61,7 @@ export const AUTH_4 = {
 
 export const AUTH_5 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         _id: generateRandomMongoId(),
         lastIp: "35.176.60.174",
@@ -75,7 +75,7 @@ export const AUTH_5 = {
 
 export const AUTH_6 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         _id: generateRandomMongoId(),
         lastIp: "35.176.60.174",
@@ -89,7 +89,7 @@ export const AUTH_6 = {
 
 export const AUTH_7 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         _id: generateRandomMongoId(),
         lastIp: "35.176.60.174",
@@ -104,7 +104,7 @@ export const AUTH_7 = {
 
 export const AUTH_8 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         _id: generateRandomMongoId(),
         lastIp: "35.176.60.174",
@@ -118,7 +118,7 @@ export const AUTH_8 = {
 
 export const AUTH_9 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         _id: generateRandomMongoId(),
@@ -128,7 +128,7 @@ export const AUTH_9 = {
 
 export const AUTH_10 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -140,7 +140,7 @@ export const AUTH_10 = {
 
 export const AUTH_11 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.333",
@@ -152,7 +152,7 @@ export const AUTH_11 = {
 
 export const AUTH_12 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.444",
@@ -164,7 +164,7 @@ export const AUTH_12 = {
 
 export const AUTH_13 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.555",
@@ -175,7 +175,7 @@ export const AUTH_13 = {
 
 export const AUTH_14 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.666",
@@ -186,7 +186,7 @@ export const AUTH_14 = {
 
 export const AUTH_ARCHIVED = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.777",
@@ -197,7 +197,7 @@ export const AUTH_ARCHIVED = {
 
 export const AUTH_15 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.888",
@@ -208,7 +208,7 @@ export const AUTH_15 = {
 
 export const AUTH_16 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.999",
@@ -219,7 +219,7 @@ export const AUTH_16 = {
 
 export const AUTH_17 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.111",
@@ -230,7 +230,7 @@ export const AUTH_17 = {
 
 export const AUTH_18 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -241,7 +241,7 @@ export const AUTH_18 = {
 
 export const AUTH_19 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -252,7 +252,7 @@ export const AUTH_19 = {
 
 export const AUTH_20 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -263,7 +263,7 @@ export const AUTH_20 = {
 
 export const AUTH_21 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.333",
@@ -274,7 +274,7 @@ export const AUTH_21 = {
 
 export const AUTH_22 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
@@ -286,7 +286,7 @@ export const AUTH_22 = {
 
 export const AUTH_23 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.555",
@@ -297,7 +297,7 @@ export const AUTH_23 = {
 
 export const AUTH_ALPHA = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.666",
@@ -308,7 +308,7 @@ export const AUTH_ALPHA = {
 
 export const AUTH_24 ={
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.777",
@@ -319,7 +319,7 @@ export const AUTH_24 ={
 
 export const AUTH_25 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.888",
@@ -330,7 +330,7 @@ export const AUTH_25 = {
 
 export const AUTH_26 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.888",
@@ -342,7 +342,7 @@ export const AUTH_26 = {
 
 export const AUTH_27 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.888",
@@ -353,7 +353,7 @@ export const AUTH_27 = {
 
 export const AUTH_28 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.888",
@@ -364,7 +364,7 @@ export const AUTH_28 = {
 
 export const AUTH_29 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.888",
@@ -375,7 +375,7 @@ export const AUTH_29 = {
 
 export const AUTH_30 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.888",
@@ -485,7 +485,7 @@ export const AUTH_39 = {
 
 export const AUTH_40 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
@@ -562,7 +562,7 @@ export const AUTH_46 = {
 
 export const AUTH_47 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -606,7 +606,7 @@ export const AUTH_50 = {
 
 export const AUTH_51 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -617,7 +617,7 @@ export const AUTH_51 = {
 
 export const AUTH_53 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -628,7 +628,7 @@ export const AUTH_53 = {
 
 export const AUTH_52 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -639,7 +639,7 @@ export const AUTH_52 = {
 
 export const AUTH_54 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -650,7 +650,7 @@ export const AUTH_54 = {
 
 export const AUTH_55 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -661,7 +661,7 @@ export const AUTH_55 = {
 
 export const AUTH_56 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -672,7 +672,7 @@ export const AUTH_56 = {
 
 export const AUTH_57 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -683,7 +683,7 @@ export const AUTH_57 = {
 
 export const AUTH_58 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -694,7 +694,7 @@ export const AUTH_58 = {
 
 export const AUTH_MEDITOPIA_1 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         _id: generateRandomMongoId(),
         lastIp: "35.176.60.174",
@@ -708,7 +708,7 @@ export const AUTH_MEDITOPIA_1 = {
 
 export const AUTH_MEDITOPIA_2 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         _id: generateRandomMongoId(),
         lastIp: "35.176.60.174",
@@ -722,7 +722,7 @@ export const AUTH_MEDITOPIA_2 = {
 
 export const AUTH_MEDITOPIA_3 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         _id: generateRandomMongoId(),
         lastIp: "35.176.60.174",
@@ -736,7 +736,7 @@ export const AUTH_MEDITOPIA_3 = {
 
 export const AUTH_DENTAL_1 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.444",
@@ -747,7 +747,7 @@ export const AUTH_DENTAL_1 = {
 
 export const AUTH_DENTAL_2 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.444",
@@ -802,7 +802,7 @@ export const AUTH_PLI_5 = {
 
 export const AUTH_PLI_6 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -813,7 +813,7 @@ export const AUTH_PLI_6 = {
 
 export const AUTH_PLI_7 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -824,7 +824,7 @@ export const AUTH_PLI_7 = {
 
 export const AUTH_PLI_9 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -835,7 +835,7 @@ export const AUTH_PLI_9 = {
 
 export const AUTH_PLI_10 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -846,7 +846,7 @@ export const AUTH_PLI_10 = {
 
 export const AUTH_60 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -857,7 +857,7 @@ export const AUTH_60 = {
 
 export const AUTH_61 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -868,7 +868,7 @@ export const AUTH_61 = {
 
 export const AUTH_63 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -879,7 +879,7 @@ export const AUTH_63 = {
 
 export const AUTH_64 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -890,7 +890,7 @@ export const AUTH_64 = {
 
 export const AUTH_65 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -901,7 +901,7 @@ export const AUTH_65 = {
 
 export const AUTH_66 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
@@ -912,7 +912,7 @@ export const AUTH_66 = {
 
 export const AUTH_67 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
@@ -923,7 +923,7 @@ export const AUTH_67 = {
 
 export const AUTH_68 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
@@ -934,7 +934,7 @@ export const AUTH_68 = {
 
 export const AUTH_71 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -945,7 +945,7 @@ export const AUTH_71 = {
 
 export const AUTH_72 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -959,7 +959,7 @@ export const AUTH_72 = {
 
 export const AUTH_69 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
@@ -970,7 +970,7 @@ export const AUTH_69 = {
 
 export const AUTH_70 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
@@ -981,7 +981,7 @@ export const AUTH_70 = {
 
 export const AUTH_73 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -992,7 +992,7 @@ export const AUTH_73 = {
 
 export const AUTH_74 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1003,7 +1003,7 @@ export const AUTH_74 = {
 
 export const AUTH_75 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1014,7 +1014,7 @@ export const AUTH_75 = {
 
 export const AUTH_76 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         _id: generateRandomMongoId(),
         attempts: 1,
@@ -1030,7 +1030,7 @@ export const AUTH_76 = {
 
 export const AUTH_77 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.111",
@@ -1041,7 +1041,7 @@ export const AUTH_77 = {
 
 export const AUTH_78 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
@@ -1052,7 +1052,7 @@ export const AUTH_78 = {
 
 export const AUTH_79 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
@@ -1063,7 +1063,7 @@ export const AUTH_79 = {
 
 export const AUTH_80 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
@@ -1074,7 +1074,7 @@ export const AUTH_80 = {
 
 export const AUTH_81 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
@@ -1085,7 +1085,7 @@ export const AUTH_81 = {
 
 export const AUTH_82 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
@@ -1096,7 +1096,7 @@ export const AUTH_82 = {
 
 export const AUTH_83 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
@@ -1107,7 +1107,7 @@ export const AUTH_83 = {
 
 export const AUTH_84 = {
   type: "mongo",
-  modelName: "auth",
+  modelName: "authpassword",
   data: {
       ...AUTH_TEMPLATE.data,
       lastIp: "35.176.60.44422",
@@ -1118,7 +1118,7 @@ export const AUTH_84 = {
 
 export const AUTH_85 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
@@ -1129,7 +1129,7 @@ export const AUTH_85 = {
 
   export const AUTH_FIIT = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
       ...AUTH_TEMPLATE.data,
       lastIp: "35.176.60.44422",
@@ -1140,7 +1140,7 @@ export const AUTH_85 = {
 
 export const AUTH_86 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1151,7 +1151,7 @@ export const AUTH_86 = {
       
 export const AUTH_FUTURE_PRODUCT = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.41129",
@@ -1162,7 +1162,7 @@ export const AUTH_FUTURE_PRODUCT = {
 
   export const AUTH_LEAVER = {
         type: "mongo",
-        modelName: "auth",
+        modelName: "authpassword",
         data: {
             ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.43323",
@@ -1173,7 +1173,7 @@ export const AUTH_FUTURE_PRODUCT = {
 
 export const AUTH_GHI = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
     lastIp: "35.176.60.43323",
@@ -1184,7 +1184,7 @@ export const AUTH_GHI = {
 
 export const AUTH_GHI_STARTED = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
     lastIp: "35.176.60.43323",
@@ -1195,7 +1195,7 @@ export const AUTH_GHI_STARTED = {
 
 export const AUTH_89 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1207,7 +1207,7 @@ export const AUTH_89 = {
 
 export const AUTH_90 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.44422",
@@ -1218,7 +1218,7 @@ export const AUTH_90 = {
 
 export const AUTH_91 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1229,7 +1229,7 @@ export const AUTH_91 = {
 
 export const AUTH_92 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1240,7 +1240,7 @@ export const AUTH_92 = {
 
 export const AUTH_93 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1251,7 +1251,7 @@ export const AUTH_93 = {
 
 export const AUTH_94 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1262,7 +1262,7 @@ export const AUTH_94 = {
 
 export const AUTH_95 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1273,7 +1273,7 @@ export const AUTH_95 = {
 
 export const AUTH_96 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1284,7 +1284,7 @@ export const AUTH_96 = {
 
 export const AUTH_97 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1295,7 +1295,7 @@ export const AUTH_97 = {
 
 export const AUTH_98 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1306,7 +1306,7 @@ export const AUTH_98 = {
 
 export const AUTH_99 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1317,7 +1317,7 @@ export const AUTH_99 = {
 
 export const AUTH_100 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1328,7 +1328,7 @@ export const AUTH_100 = {
 
 export const AUTH_101 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1339,7 +1339,7 @@ export const AUTH_101 = {
 
 export const AUTH_102 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1350,7 +1350,7 @@ export const AUTH_102 = {
 
 export const AUTH_103 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1361,7 +1361,7 @@ export const AUTH_103 = {
 
 export const AUTH_104 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1372,7 +1372,7 @@ export const AUTH_104 = {
 
 export const AUTH_105 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1383,7 +1383,7 @@ export const AUTH_105 = {
 
 export const AUTH_106 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1394,7 +1394,7 @@ export const AUTH_106 = {
 
 export const AUTH_107 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1405,7 +1405,7 @@ export const AUTH_107 = {
 
 export const AUTH_108 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1417,7 +1417,7 @@ export const AUTH_108 = {
 
 export const AUTH_109 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1428,7 +1428,7 @@ export const AUTH_109 = {
 
 export const AUTH_110 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1439,7 +1439,7 @@ export const AUTH_110 = {
 
 export const AUTH_111 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1450,7 +1450,7 @@ export const AUTH_111 = {
 
 export const AUTH_112 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1461,7 +1461,7 @@ export const AUTH_112 = {
 
 export const AUTH_113 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1472,7 +1472,7 @@ export const AUTH_113 = {
 
 export const AUTH_114 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1483,7 +1483,7 @@ export const AUTH_114 = {
 
 export const AUTH_115 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1494,7 +1494,7 @@ export const AUTH_115 = {
 
 export const AUTH_116 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1505,7 +1505,7 @@ export const AUTH_116 = {
 
 export const AUTH_117 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1516,7 +1516,7 @@ export const AUTH_117 = {
 
 export const AUTH_118 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1527,7 +1527,7 @@ export const AUTH_118 = {
 
 export const AUTH_119 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1538,7 +1538,7 @@ export const AUTH_119 = {
 
 export const AUTH_120 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1549,7 +1549,7 @@ export const AUTH_120 = {
 
 export const AUTH_121 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1560,7 +1560,7 @@ export const AUTH_121 = {
 
 export const AUTH_122 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1571,7 +1571,7 @@ export const AUTH_122 = {
 
 export const AUTH_123 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
@@ -1582,7 +1582,7 @@ export const AUTH_123 = {
 
 export const AUTH_124 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",

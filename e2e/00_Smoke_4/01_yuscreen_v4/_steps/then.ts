@@ -46,7 +46,7 @@ const updatePayment = "Update payment details";
 const faq = "FAQs";
 const membershipGuide = "Membership Guide";
 const productInfo = "Product Information (IPID)";
-const paidBy = "Employer Scheme";
+const paidBy = "Employer scheme";
 const keyInfo = "Key Info";
 const coverlevel = "Cover Level";
 const startDateText = "Start date";
@@ -121,7 +121,7 @@ export const wellbeingProductInfo = async () => {
   const policyDescription =
     "A YuLife Wellbeing access membership rewards you with YuCoin, discounts, and vouchers for building healthier habits.";
   const policyInsurance = "There is no insurance attached to this membership.";
-  const paidBy = "Employer Scheme";
+  const paidBy = "Employer scheme";
 
   await expect(element(by.text(policyName)).atIndex(1)).toBeVisible();
   await expect(element(by.text(paidBy))).toBeVisible();
@@ -133,7 +133,7 @@ export const groupDentalProductInfo = (packageType: string, yuCoinPower: string)
   const policyName = "Bupa Dental Plan";
   const policyDescription =
     "Claim cash back, access Bupa clinics across the UK, and reach Bupa experts on their 24/7 Anytime HealthLine.";
-  const paidBy = "Employer Scheme";
+  const paidBy = "Employer scheme";
   const policyInfoYugi =
     "This policy is paid for by your employer. Remember if you change jobs, you'll lose this cover.";
   const keyInfo = "Key Info";

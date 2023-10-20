@@ -5,12 +5,12 @@ import moment = require('moment');
 import { AUTH_TEMPLATE } from "./_templates"
 
 const type = "mongo"
-const modelName ="auth"
+const modelName ="authpassword"
 
 
 export const AUTH_USA_1 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
@@ -21,7 +21,7 @@ export const AUTH_USA_1 = {
 
 export const AUTH_USA_2 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
@@ -32,7 +32,7 @@ export const AUTH_USA_2 = {
 
 export const AUTH_USA_3 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
@@ -43,7 +43,7 @@ export const AUTH_USA_3 = {
 
 export const AUTH_USA_4 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
@@ -54,7 +54,7 @@ export const AUTH_USA_4 = {
 
 export const AUTH_USA_5 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
@@ -65,7 +65,7 @@ export const AUTH_USA_5 = {
 
 export const AUTH_USA_6 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
@@ -76,7 +76,7 @@ export const AUTH_USA_6 = {
 
 export const AUTH_USA_7 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
@@ -87,7 +87,7 @@ export const AUTH_USA_7 = {
 
 export const AUTH_USA_8 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
@@ -98,7 +98,7 @@ export const AUTH_USA_8 = {
 
 export const AUTH_USA_9 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
@@ -109,7 +109,7 @@ export const AUTH_USA_9 = {
 
 export const AUTH_USA_10 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
@@ -120,7 +120,7 @@ export const AUTH_USA_10 = {
 
 export const AUTH_USA_11 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
@@ -131,7 +131,7 @@ export const AUTH_USA_11 = {
 
 export const AUTH_USA_12 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
@@ -142,7 +142,7 @@ export const AUTH_USA_12 = {
 
 export const AUTH_USA_13 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
@@ -153,7 +153,7 @@ export const AUTH_USA_13 = {
 
 export const AUTH_USA_14 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
@@ -164,7 +164,7 @@ export const AUTH_USA_14 = {
 
 export const AUTH_USA_15 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
