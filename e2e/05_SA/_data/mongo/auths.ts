@@ -5,12 +5,12 @@ import moment = require('moment');
 import { AUTH_TEMPLATE } from "./_templates"
 
 const type = "mongo"
-const modelName ="auth"
+const modelName ="authpassword"
 
 
 export const AUTH_SA_1 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
@@ -21,7 +21,7 @@ export const AUTH_SA_1 = {
 
 export const AUTH_SA_2 = {
     type: "mongo",
-    modelName: "auth",
+    modelName: "authpassword",
     data: {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",

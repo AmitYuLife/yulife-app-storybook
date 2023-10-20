@@ -4,7 +4,7 @@ import moment = require("moment");
 
 export const AUTH_TEMPLATE = {
   type: "mongo",
-  modelName: "auth",
+  modelName: "authpassword",
   data: {
     userId: generateRandomMongoId(),
     attempts: 1,
