@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
-import Video, { LoadError, OnLoadData, OnProgressData } from "react-native-video";
+import Video, { OnLoadData, OnProgressData } from "react-native-video";
 import moment from "moment";
 import MusicControl, { Command } from "react-native-music-control";
 import { Animated, StyleSheet, View, AppStateStatus } from "react-native";
@@ -318,8 +318,9 @@ const VideoPlayer = ({
   }, [state.isPaused, state.showFocusScreen]);
 
   const handleOnError = useCallback(
-    async ({ error }: LoadError): Promise<void> => {
-      Logger.error({ name: error[""], message: error.errorString }, { location: "video-player-onError" });
+    async (err: any): Promise<void> => {
+      Logger.error(new Error(JSON.stringify(err?.error || {})), { location: "video-player-onError" });
+
       if (state.retries > 0 && state.isMusicControlMounted) {
         playerRef.current.seek(state.currentProgressInSeconds);
         dispatch({ type: ActionTypes.SET_RETRIES });
