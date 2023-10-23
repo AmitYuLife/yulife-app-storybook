@@ -7,5 +7,7 @@ export interface SocialGroupLeaderboard {
 export interface UserLeaderboardListItem {
     name: string,
     score: string,
-    rank: number
+    rank: number,
+    secondaryRank?: number
+    // The order of users with the same score can be random, so a second rank field can be used if needed
 }

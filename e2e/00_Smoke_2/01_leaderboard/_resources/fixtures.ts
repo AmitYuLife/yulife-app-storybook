@@ -17,7 +17,8 @@ export const DefaultYudokuLeaderboard: SocialGroupLeaderboard = {
 export const User16LeaderboardItem: UserLeaderboardListItem = {
     name: `${CUSTOMER_16.data.firstName} ${CUSTOMER_16.data.lastName}`,
     score: "0",
-    rank: 6
+    rank: 5,
+    secondaryRank: 6
 }
 
 // Ryan

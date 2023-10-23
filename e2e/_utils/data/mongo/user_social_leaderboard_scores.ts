@@ -2,8 +2,11 @@ import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framew
 import moment from "moment";
 import { SUDOKU_ANSWER_67, SUDOKU_ANSWER_68, SUDOKU_ANSWER_71 } from "./game_sudoku_answer";
 import { USER_16, USER_17, USER_18, USER_19, USER_20, USER_21, USER_27, USER_28, USER_40, USER_47, USER_50, USER_67, USER_68, USER_71, USER_73 } from "./users";
-import { CUSTOMER_84 } from "../postgres/customers";
+import { CUSTOMER_84, CUSTOMER_LEAVER } from "../postgres/customers";
 import { SOCIAL_GROUP_LEADERBOARD_1, SOCIAL_GROUP_LEADERBOARD_2_STEPS, SOCIAL_GROUP_LEADERBOARD_C1_STEPS, SOCIAL_GROUP_LEADERBOARD_C2_STEPS, SOCIAL_GROUP_LEADERBOARD_C3_STEPS } from "./social_group_leaderboards";
+
+const globalLeaversStepsId = "65366dfe40f828ef2775a91c"
+const globalLeaversSudokuId = "6536849a6ce716c125256186"
 
 export const USER_SOCIAL_LEADERBOARD_SCORE_71 = {
     type: "mongo",
@@ -230,3 +233,17 @@ export const USER_84_STEPS_SCORE = {
         value: 0,
     }
 }      
+
+export const USER_LEAVER_SCORE_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_scores",
+    data: {
+        _id: generateRandomMongoId(),
+        leaderboardConfigId: "STEPS_30_DAYS",
+        userId: CUSTOMER_LEAVER.data.customerId,
+        value: 0,
+        activeLeaderboards: [
+            globalLeaversStepsId
+        ]
+    }
+}

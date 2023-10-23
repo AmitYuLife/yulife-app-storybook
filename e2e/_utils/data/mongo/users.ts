@@ -1773,7 +1773,8 @@ export const USER_LEAVER = {
   modelName: "users",
   data: {
     userId: customer.CUSTOMER_LEAVER.data.customerId,
-    nickname: "leaf"
+    nickname: "leaf",
+    earnRate: 1
   },
 } as IDatabaseItem;
 

@@ -7,7 +7,7 @@ import * as data from "@data"
 import * as ids from "@ids"
 
 Feature("Level boosts", async () => {
-  Scenario("As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge ", scenario.start, () => {
+  Scenario("I can see boosted challenges and receive boosted rewards", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_122, data.AUTH_122, true, "United Kingdom", false), async () => {
       Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
       Then("I should see that level 50 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(50)))
