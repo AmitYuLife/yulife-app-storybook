@@ -1,8 +1,6 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import Logger from "@services/logging/logger";
-import Config from "react-native-config";
 import { applyMiddleware, compose, createStore, Store } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
 import { createMigrate, persistReducer, persistStore } from "redux-persist";
 import createSagaMiddleware from "redux-saga";
 import { migrations } from "./migrations";
@@ -30,13 +28,12 @@ if (__DEV__) {
   middlewares.push(createDebugger());
 }
 
-const composeEnhancers = Config.ENV === "dev" ? composeWithDevTools({ name: "YuLife Redux" }) : compose;
 const persistedReducer = persistReducer(persistConfig, combinedReducers);
 
 let configuredStore: ReturnType<typeof createStore>;
 
 const configureStore = (preloadedState?: IReduxState): Store<IReduxState> => {
-  configuredStore = createStore(persistedReducer, preloadedState, composeEnhancers(applyMiddleware(...middlewares)));
+  configuredStore = createStore(persistedReducer, preloadedState, compose(applyMiddleware(...middlewares)));
 
   // Enable hot reloading for reducers.
   // if (Config.ENV === "dev" && (module.hot && typeof module.hot.accept === "function")) {

@@ -4,7 +4,7 @@ import Logger from "./logger";
 export class IntercomClient {
   public static displayMessenger = async () => {
     try {
-      await Intercom.displayMessenger();
+      await Intercom.present();
     } catch (e) {
       Logger.error(e, { location: "IntercomClient.displayMessenger" });
     }
@@ -12,7 +12,7 @@ export class IntercomClient {
 
   public static displayMessageComposer = async () => {
     try {
-      await Intercom.displayMessageComposer();
+      await Intercom.presentMessageComposer();
     } catch (e) {
       Logger.error(e, { location: "IntercomClient.displayMessageComposer" });
     }
