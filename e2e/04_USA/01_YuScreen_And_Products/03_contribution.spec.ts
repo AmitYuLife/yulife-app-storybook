@@ -24,7 +24,7 @@ import {
         helper.SLOT_VISIBLE(fixture.GapInEnrolVisOutEnrol)
         helper.YUSCREEN_USA(CUSTOMER_USA_5);
         helper.SPONSORED_LOGO_VISIBLE()
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
+        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
         helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
         helper.CHECK_EXPLORE_INSURANCE(fixture.VisionInsuranceBox)
       });
@@ -36,7 +36,7 @@ import {
         helper.SLOT_VISIBLE(fixture.GapInsurance)
         helper.YUSCREEN_USA(CUSTOMER_USA_6);
         helper.SPONSORED_LOGO_VISIBLE()
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
+        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
         helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
       });
     });
@@ -48,7 +48,7 @@ import {
         helper.YUSCREEN_USA(CUSTOMER_USA_7);
         helper.SPONSORED_LOGO_VISIBLE()
         helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
+        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
     });
   });
   Scenario("I should NOT see sponsored by text and logos in yuscreen if contribution_type partial but no logos are selected for that business",scenario.start, async () => {
@@ -58,7 +58,7 @@ import {
         helper.SLOT_VISIBLE(fixture.GapInsurance)
         helper.YUSCREEN_USA(CUSTOMER_USA_8);
         helper.SPONSORED_LOGO_NOT_VISIBLE()
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
+        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
         helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
     });
   });
@@ -69,7 +69,7 @@ import {
         helper.YUSCREEN_USA(CUSTOMER_USA_9);
         helper.SPONSORED_LOGO_VISIBLE()
         helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
+        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
     });
   });
 
@@ -81,9 +81,9 @@ import {
         helper.YUSCREEN_USA(CUSTOMER_USA_10);
         helper.SPONSORED_LOGO_NOT_VISIBLE()
         helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
+        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
         helper.ENROLMENT_VISIBLE(BPEEW_USA_10_VIS, "active")
-        helper.CHECK_WELLBEING_HUB(CUSTOMER_USA_10, fixture.MyWellbeingHubBox)
+        helper.CHECK_WELLBEING_HUB(CUSTOMER_USA_10, fixture.MyWellbeingHubBoxUS)
     });
   });
 
@@ -94,7 +94,7 @@ import {
         helper.SLOT_VISIBLE(fixture.AccCanInsuranceInEnrolment)
         helper.YUSCREEN_USA(CUSTOMER_USA_11);
         helper.SPONSORED_LOGO_VISIBLE()
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
+        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
         helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
         // checks that cancer options appear in the explore insurance page
         helper.CHECK_EXPLORE_INSURANCE(fixture.CancerInsuranceBox)

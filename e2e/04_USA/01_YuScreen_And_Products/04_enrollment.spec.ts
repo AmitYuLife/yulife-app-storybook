@@ -31,7 +31,7 @@ import {
         // checks the logos are not visible as we are in pre-enrollment
         helper.SPONSORED_LOGO_NOT_VISIBLE()
         // checks that the My Wellbeing box is visible as is expected
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
+        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
         // checks explore insurance option is not there as it is pre-enrollment
         helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
         // checks the countdown timer is visible in the correct format and shows the correct information
@@ -59,7 +59,7 @@ import {
         // checks the logos are not visible as we are in active enrollment
         helper.SPONSORED_LOGO_NOT_VISIBLE()
         // checks that the My Wellbeing box is visible as is expected
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
+        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
         // checks explore insurance option is not there as it is active-enrollment
         helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
         // checks the countdown timer is visible in the correct format and shows the correct information
@@ -91,7 +91,7 @@ import {
         // checks that the sponsored logos appear now we're in post enrollment
         helper.SPONSORED_LOGO_VISIBLE()
         // checks that the My Wellbeing box is visible as is expected
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBox)
+        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
         // checks explore insurance option is there as it is post-enrollment
         helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
         // checks the countdown timer is not visible as we are in post-enrollment

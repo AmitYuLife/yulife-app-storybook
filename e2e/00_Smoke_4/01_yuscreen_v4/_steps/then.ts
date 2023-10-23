@@ -5,6 +5,7 @@ import moment = require("moment");
 import * as data from "@data";
 import { scrollUntilTextVisible } from "./when";
 import * as fixture from "../_resources/fixture";
+import { scrollUntilIdVisible } from "_utils/navigation/scrolling"
 
 export const {
   idVisible,
@@ -236,6 +237,18 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await textVisible(fixture.incomeProtection)();
       await textVisible(fixture.availableProducts)();
       break;
+      case "3 Products Slots Started":
+      await textVisible(yuCoinPower)(); // 31
+      await textVisible(fixture.yuCoinText)();
+      await textVisible(fixture.powerText)();
+      await textVisible(fixture.wellbeingAccessText)();
+      await textVisible(paidBy)();
+      await textVisibleAtIndex(fixture.productYuCoin, 0)();
+      await textVisible(fixture.criticalIllness)();
+      await textVisibleAtIndex(fixture.productYuCoin, 1)();
+      await textVisible(fixture.incomeProtection)();
+      await textVisible(fixture.availableProducts)();
+      break;
     case "groupDental":
       await textVisibleAtIndex(yuCoinPower, 0)();
       await textVisible(fixture.yuCoinText)();
@@ -424,4 +437,19 @@ export const canSeePensionPopUpModal = async () => {
 export const cannotSeePensionPopUpModal = async () => {
   await textNotVisible("We want to help you take care of your savings by rewarding you YuCoin based on your pension contribution!")()
   await textNotVisible("Find all information about connecting your pension here:")()
+}
+
+export const wellbeingHubVisible = async () => {
+  await idVisible(ids.RIGHT_SIDE_IMAGE_BOX_OPTION(fixture.wellbeingButtonimg))
+  await idVisible(ids.BOX_OPTION_TITLE(fixture.wellbeingButtonTitle))
+  await idVisible(ids.BOX_OPTION_DESCRIPTION(fixture.wellbeingButtonDes))
+}
+
+export const wellbeingServiceVisible = async () => {
+  const titles = ["YuMatter", "Yuniversity", "Beam", "HiBob", "More Happi"]
+
+  for (const i of titles) {
+      await scrollUntilIdVisible(ids.WELLBEING_HUB_SCROLL_VIEW, ids.TEXT_TEMPLATE(i), "down")()
+      await expect(element(by.id(ids.TEXT_TEMPLATE(i)))).toBeVisible()
+  }
 }

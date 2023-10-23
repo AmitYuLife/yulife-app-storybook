@@ -367,7 +367,8 @@ export const CPE_48_WELLBEING = {
         earn_rate: 1,
         product_variant_id: "YuLife_Wellbeing_01_01",
         archived: false,
-        taken_up: true
+        taken_up: true,
+        start_date: moment().format("YYYY-MM-DD"),
     }
 } as IDatabaseItem
 
