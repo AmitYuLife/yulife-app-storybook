@@ -58,6 +58,15 @@ export const BUSINESS_PRODUCT_4_GDental = generateProductRecords({
     startDate: "2020-02-02T00:00:00Z",
 });
 
+export const BUSINESS_PRODUCT_4_GDental_CHOICE = generateProductRecords({
+  productCode: ProductCode.groupDentalChoice,
+  carrier: Carrier.Bupa,
+  productId: "YUG1020307",
+  policyName: "Justice League Policy GDental",
+  businessAccountId:  BUSINESS_ACCOUNT_6.data.business_account_id,
+  startDate: "2020-02-02T00:00:00Z",
+});
+
 export const BUSINESS_PRODUCT_FUTURE = generateProductRecords({
     productCode: ProductCode.registeredGroupLife,
     carrier: Carrier.AIG,

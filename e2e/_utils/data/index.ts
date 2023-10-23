@@ -34,7 +34,6 @@ export * from "./mongo/users";
 export * from "./mongo/user_profile"
 export * from "./mongo/usertoggles";
 export * from "./mongo/challenge";
-export * from "./mongo/coinledger";
 export * from "./mongo/user_game_state";
 export * from "./mongo/core_rewards";
 export * from "./mongo/mixpanel_webhooks";

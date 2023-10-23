@@ -1164,3 +1164,17 @@ export const CPE_124_RGL = {
         start_date: moment().add(1, "d").format("YYYY-MM-DD"),
     }
 } as IDatabaseItem
+
+export const CPE_125_GDent = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011411",
+        customer_id: customer.CUSTOMER_125.data.customerId,
+        earn_rate: 5,
+        product_variant_id: "Bupa_GDentChoice_01_01",
+        archived: false,
+        taken_up: true,
+        start_date: moment().subtract(1, "months").format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem

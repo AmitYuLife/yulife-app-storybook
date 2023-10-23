@@ -2279,3 +2279,22 @@ export const USER_124 = {
     earnRate: 10,
   },
 } as IDatabaseItem;
+
+export const USER_125 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_125.data.customerId,
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 5,
+      },
+    ],
+    earnRate: 5,
+  },
+} as IDatabaseItem;

@@ -40,6 +40,11 @@ export const yuMojiBuilder = "Create your Yumoji to step into the Yuniverse"
 export const enrolNow = "Enrol now"
 export const editChoice = "Edit choice"
 
+// dental descriptions
+
+export const dentalPlanDescription = "Claim cash back, access Bupa clinics across the UK, and reach Bupa experts on their 24/7 Anytime HealthLine."
+export const dentalChoiceDescription = "Claim cash back for dental treatments, and add your partner or child to your policy."
+
 
 //images slot button
 
