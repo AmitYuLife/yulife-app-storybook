@@ -5,7 +5,7 @@ import * as then from "./_steps/then"
 import * as when from "./_steps/when"
 import * as data from "@data";
 import * as helper from "./_resources/helpers"
-import { GdentAvailableSoon, GdentAvailableSoonProduct, level1Benefit } from "./_resources/fixture";
+import { GdentAvailableSoon, GdentAvailableSoonProduct, level1Benefit, wellbeingButtonTitle } from "./_resources/fixture";
 import * as ids from "@ids";
 
 
@@ -60,12 +60,23 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             helper.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
     })
 
-    Scenario("As a YuLifer with 6 slots i should  NOT see More protection coming soon slot ", scenario.start, async () => {
+    Scenario("As a YuLifer with 6 slots i should  NOT see More protection coming soon slot and I can see the wellbeing hub on the UK YuScreen", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_48, data.AUTH_48), async () => {
-            helper.ONBOARDING_YUSCREEN("3 Products Slots", "31")
+            helper.ONBOARDING_YUSCREEN("3 Products Slots Started", "31")
             helper.YUSCREEN_V4(data.CUSTOMER_48, "6 Products Slots", "31", "More protection")
             helper.CREATE_DEFAULT_YUMOJI(300);
-            helper.WELLBEING_PRODUCT_VIEW(1, 31)
+            When("I swipe up the screen", when.swipeFromText("Browse more protection", "down", "fast"), async () => {
+                helper.WELLBEING_PRODUCT_VIEW(1, 31)
+            })
+            When("I close the Wellbeing Access page", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
+                When("I scroll to see the wellbeing hub", when.scrollUntilTextVisible(ids.YUSCREEN_SCROLL_VIEW, "Browse more protection", "down"), async () => {
+                    Then("I should see the wellbeing hub", then.wellbeingHubVisible)
+                })
+            })
+            When("I click on the wellbeing hub", when.tapText(wellbeingButtonTitle), async () => {
+                Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN))
+                Then("I should see all Wellbeing Hub services", then.wellbeingServiceVisible)
+            })
         })
     })
 

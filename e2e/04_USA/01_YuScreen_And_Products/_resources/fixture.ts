@@ -586,10 +586,10 @@ export const Guardian_VLIF:USProductData = {
     titleMarkdown: "**Voluntary Term Life insurance**"
 }
 
-export const MyWellbeingHubBox:BoxOption = {
+export const MyWellbeingHubBoxUS:BoxOption = {
     imageUrl: "https://yulife-develop.imgix.net/yuscreen/box-option-card/wellbeing-hub.png?ixlib=js-3.2.1&w=360&h=312&s=10e0f8e3fa178066a180ca7828345458",
     title: "My Wellbeing Hub",
-    description: "Access your exclusive employee benefits here"
+    description: "Access your exclusive wellness benefits here"
 }
 
 export const ExploreInsureanceBox:BoxOption = {

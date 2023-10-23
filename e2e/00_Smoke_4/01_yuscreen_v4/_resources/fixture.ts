@@ -56,6 +56,16 @@ export const leftInHoldingBackgroundImgSrc = "https://yulife-develop.imgix.net/y
 export const rightSideInactiveBottleImgSrc = "https://yulife-develop.imgix.net/yuscreen/slots/product-items/colour/group/inactive/bottle-05-04-23-02.svg?ixlib=js-3.2.1&w=156&h=129&s=fca8d6926be12720bb1dc957ee745b62"
 export const rightSideInForceImgBottleSrc = "https://yulife-develop.imgix.net/yuscreen/slots/product-items/colour/group/bottle-18-7-22.svg?ixlib=js-3.2.1&w=156&h=129&s=51e734473283c34179855092e4eb7960"
 
+// wellbeing hub button
+
+export const wellbeingButtonimg = "https://yulife-develop.imgix.net/yuscreen/box-option-card/wellbeing-hub.png?ixlib=js-3.2.1&w=360&h=312&s=10e0f8e3fa178066a180ca7828345458"
+export const wellbeingButtonTitle = "My Wellbeing Hub"
+export const wellbeingButtonDes= "Access your exclusive employee benefits here"
+
+// wellbeing hub
+
+export const wellbeingHubDescription = "Welcome to this quick-access hub to all your company’s wellbeing benefits"
+
 //Buttons
 
 export const gotItText = "Got it";

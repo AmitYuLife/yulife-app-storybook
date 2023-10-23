@@ -854,6 +854,7 @@ export const CUSTOMER_48_TOGGLES = {
       yuScreenV4: true,
       hasCoveaFibActive: true,
       hasBupaDentActive: true,
+      showYuScreenWellbeingButton: true
     },
   },
 } as IDatabaseItem;
