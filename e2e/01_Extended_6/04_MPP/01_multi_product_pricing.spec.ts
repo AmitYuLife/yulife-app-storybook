@@ -16,10 +16,10 @@ Feature("The MPP changes are visible in the YuLife App", async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_123_MPP, data.AUTH_123), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
             Then("I can see the slot for the YuLife Saas product as this is always first", then.correctYuScreenSlotVisible(fixtures.yulifeSaasProductSlot, true, false, 0, 0))
-            Then("I can see the slot for the RGL", then.correctYuScreenSlotVisible(fixtures.rglProductSlot, false, true, 0, 0))
             Then("I can see the slot for the GCI", then.correctYuScreenSlotVisible(fixtures.gciProductSlot, true, true, 0, 0))
-            Then("I can see the slot for the gDent", then.correctYuScreenSlotVisible(fixtures.gDentProductSlot, false, false, 0, 0))
-            Then("I can't see the health insurance", then.textNotVisible(fixtures.gHealthProductSlot.name))
+            Then("I can see the slot for the gHealth", then.correctYuScreenSlotVisible(fixtures.gHealthProductSlot, true, false, 0, 1))
+            Then("I can see the slot for the RGL", then.correctYuScreenSlotVisible(fixtures.rglProductSlot, false, true, 0, 0))
+            Then("I can't see the dental insurance", then.textNotVisible(fixtures.gDentProductSlot.name))
             Then("I can see an option to see all protection", then.idVisible(ids.SLOT_TITLE("See all protection")))
         })
         When("I click on the Saas product", when.tapText(fixtures.yulifeSaasProductSlot.name), async () => {
@@ -31,15 +31,15 @@ Feature("The MPP changes are visible in the YuLife App", async () => {
         })
         When("I tap to see the owned products", when.tapText(constants.ownedPill), async () => {
             Then("I can see the YuLife Saas product at the top as that's always first", then.deeperEnvironmentSlotVisible(fixtures.yulifeDeeperEnvironmentSlot, true, true, 0))
-            Then("I can see the RGL product", then.deeperEnvironmentSlotVisible(fixtures.rglDeeperEnvironmentSlot, true, false, 0, 20))
             Then("I can see the GCI product", then.deeperEnvironmentSlotVisible(fixtures.gciDeeperEnvironmentSlot, true, true, 0, 10))
+            Then("I can see the GHealth product", then.deeperEnvironmentSlotVisible(fixtures.gHealthDeeperEnvironmentSlot, true, true, 0))
         })
         When("I tap YuLife", when.tapText(fixtures.yulifeDeeperEnvironmentSlot.name), async () => {
             Then("I am still on the page and still see the product", then.deeperEnvironmentSlotVisible(fixtures.yulifeDeeperEnvironmentSlot, true, true, 0))
         })
-        When("I scroll to the bottom", when.scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, fixtures.gHealthDeeperEnvironmentSlot.text, "down"), async () => {
+        When("I scroll to the bottom", when.scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, fixtures.gDentDeeperEnvironmentSlot.text, "down"), async () => {
+            Then("I can see the RGL product", then.deeperEnvironmentSlotVisible(fixtures.rglDeeperEnvironmentSlot, true, false, 0, 20))
             Then("I can see the Dental product", then.deeperEnvironmentSlotVisible(fixtures.gDentDeeperEnvironmentSlot, true, true, 0))
-            Then("I can see the GHealth product", then.deeperEnvironmentSlotVisible(fixtures.gHealthDeeperEnvironmentSlot, true, true, 0))
         })
         
     })
@@ -48,11 +48,10 @@ Feature("The MPP changes are visible in the YuLife App", async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_124_MPP, data.AUTH_124), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
             Then("I can see the slot for the YuLife Saas product as this is always first", then.correctYuScreenSlotVisible(fixtures.yulifeSaasProductSlot, true, false, 0, 0))
-            Then("I can see the slot for the RGL", then.correctYuScreenSlotVisible(fixtures.rglProductSlot, false, true, 0, 0))
             Then("I can see the slot for the GCI", then.correctYuScreenSlotVisible(fixtures.gciProductSlot, true, true, 0, 0))
-            Then("I can see the slot for the PLI now as it's taken up", then.correctYuScreenSlotVisible(fixtures.pliProductSlot, true, true, 1, 1))
-            Then("I can't see the slot for the gDent as this has been moved down due to PLI being taken up", then.textNotVisible(fixtures.gDentProductSlot.name))
-            Then("I can't see the health insurance", then.textNotVisible(fixtures.gHealthProductSlot.name))
+            Then("I can see the slot for the PLI now as it's taken up", then.correctYuScreenSlotVisible(fixtures.pliProductSlot, true, true, 0, 1))
+            Then("I can see the slot for the gHealth", then.correctYuScreenSlotVisible(fixtures.gHealthProductSlot, true, false, 0, 1))
+            Then("I can't see the dental insurance", then.textNotVisible(fixtures.gDentProductSlot.name))
             Then("I can see an option to see all protection", then.idVisible(ids.SLOT_TITLE("See all protection")))
         })
         When("I click on the Saas product", when.tapText(fixtures.yulifeSaasProductSlot.name), async () => {
@@ -61,13 +60,13 @@ Feature("The MPP changes are visible in the YuLife App", async () => {
         When("I click to see all protection", when.tapID(ids.SLOT_TITLE("See all protection")), async () => {
             Then("I appear on the deeper environment page", then.deeperProductSlotEnviornmentVisible(10))
             Then("I can see the YuLife Saas product at the top as that's always first", then.deeperEnvironmentSlotVisible(fixtures.yulifeDeeperEnvironmentSlot, true, true, 0))
-            Then("I can see the RGL product", then.deeperEnvironmentSlotVisible(fixtures.rglDeeperEnvironmentSlot, true, false, 0, 20))
             Then("I can see the GCI product", then.deeperEnvironmentSlotVisible(fixtures.gciDeeperEnvironmentSlot, true, true, 0, 10))
+            Then("I can see the PLI product", then.deeperEnvironmentSlotVisible(fixtures.pliDeeperEnvironmentSlot, true, true, 1, 6))
         })
-        When("I scroll to the bottom", when.scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, fixtures.gHealthDeeperEnvironmentSlot.text, "down"), async () => {
-            Then("I can see the PLI product", then.deeperEnvironmentSlotVisible(fixtures.pliDeeperEnvironmentSlot, true, true, 1))
-            Then("I can see the Dental product", then.deeperEnvironmentSlotVisible(fixtures.gDentDeeperEnvironmentSlot, true, true, 0))
+        When("I scroll to the bottom", when.scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, fixtures.gDentDeeperEnvironmentSlot.text, "down"), async () => {
             Then("I can see the GHealth product", then.deeperEnvironmentSlotVisible(fixtures.gHealthDeeperEnvironmentSlot, true, true, 0))
+            Then("I can see the RGL product", then.deeperEnvironmentSlotVisible(fixtures.rglDeeperEnvironmentSlot, true, false, 0, 20))
+            Then("I can see the Dental product", then.deeperEnvironmentSlotVisible(fixtures.gDentDeeperEnvironmentSlot, true, true, 0))
         })
         When("I scroll to the top", when.scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, constants.deeperEnvironmentHeader, "up"), async () => {
             When("I tap to see the Available products", when.tapText(constants.availablePill), async () => {
