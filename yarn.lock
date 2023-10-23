@@ -2547,10 +2547,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@intercom/intercom-react-native@5.3.1":
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/@intercom/intercom-react-native/-/intercom-react-native-5.3.1.tgz#c91a8004668409a3a3b6f0bcc2581f52fa42dbd0"
-  integrity sha512-peZ+ClyXw9Ak0AjTzw6zgjYlO/RCIy+aVTgWFjacxCaTX5rZR2SxtTk06QYJwU/WGeonb7S4uzQICNf3pDUMIQ==
+"@intercom/intercom-react-native@6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@intercom/intercom-react-native/-/intercom-react-native-6.1.0.tgz#6db38a66a76239be65619137d2bf2b6e625bda8b"
+  integrity sha512-LngrMrcV0YzjIuz7Mn95YNvb44EBhq1rDxxie+ElqTf//dEJUwPgYaJpV2ksuoBDZwVBBHuy9NqvAoJgB0WURw==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
@@ -3089,10 +3089,10 @@
   resolved "https://registry.yarnpkg.com/@redux-saga/types/-/types-1.2.1.tgz#9403f51c17cae37edf870c6bc0c81c1ece5ccef8"
   integrity sha512-1dgmkh+3so0+LlBWRhGA33ua4MYr7tUOj+a9Si28vUi0IUFNbff1T3sgpeDJI/LaC75bBYnQ0A3wXjn0OrRNBA==
 
-"@shopify/flash-list@^1.4.3":
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/@shopify/flash-list/-/flash-list-1.4.3.tgz#b7a4fe03d64f3c5ce9646859b49b9d95307f203d"
-  integrity sha512-jtIReAbwWzYBV0dQ6Io9wBX+pD0C4qQFMrb5/fkEvX8PYDgBl5KRYvpfr9WLLj8CV2Jsn1X0mYOsB+ysWrI/8g==
+"@shopify/flash-list@^1.6.1":
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@shopify/flash-list/-/flash-list-1.6.1.tgz#7a46d8ec4e125b8b7bf686777d932c7c950e00c7"
+  integrity sha512-SlBlpP7+zol6D1SKaf402aS30Qgwdjwb8/Qn2CupYwXnTcu2l8TiXB766vcsIvKTqUO7ELfQnCwCq8NXx55FsQ==
   dependencies:
     recyclerlistview "4.2.0"
     tslib "2.4.0"
@@ -12904,24 +12904,24 @@ react-devtools-core@4.24.0:
     shell-quote "^1.6.1"
     ws "^7"
 
-react-devtools-core@4.27.8:
-  version "4.27.8"
-  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.27.8.tgz#b7b387b079c14ae9a214d4846a402da2b6efd164"
-  integrity sha512-KwoH8/wN/+m5wTItLnsgVraGNmFrcTWR3k1VimP1HjtMMw4CNF+F5vg4S/0tzTEKIdpCi2R7mPNTC+/dswZMgw==
+react-devtools-core@4.28.4:
+  version "4.28.4"
+  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.28.4.tgz#fb8183eada77093f4c2f9830e664bf22255abe27"
+  integrity sha512-IUZKLv3CimeM07G3vX4H4loxVpByrzq3HvfTX7v9migalwvLs9ZY5D3S3pKR33U+GguYfBBdMMZyToFhsSE/iQ==
   dependencies:
     shell-quote "^1.6.1"
     ws "^7"
 
-react-devtools@^4.27.8:
-  version "4.27.8"
-  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-4.27.8.tgz#c995aa9ca5eb0d98ba8edfe5850b9af94eea885d"
-  integrity sha512-DeqAofBIZZaEew6lMZStInTukF24CIaMvJ1nwDLWPCbdVHyLDpy4JA7d5AArt97xnE2X7HTKXIFFCMwcannA2A==
+react-devtools@^4.28.4:
+  version "4.28.4"
+  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-4.28.4.tgz#d8fbdc183f306adf28266a0a39fcbc9ca2865d2c"
+  integrity sha512-V6oLo9xmkMPCcFFpXkObp+P/xUGHl3wLHxZBDy/u1eStpBr5s12Nrl1k9LGhuhe1MRNFLUgDtNDJh9qEjowJuQ==
   dependencies:
     cross-spawn "^5.0.1"
     electron "^23.1.2"
     ip "^1.1.4"
     minimist "^1.2.3"
-    react-devtools-core "4.27.8"
+    react-devtools-core "4.28.4"
     update-notifier "^2.1.0"
 
 react-docgen-typescript@^2.2.2:
@@ -13071,10 +13071,10 @@ react-native-music-control@^1.4.1:
   resolved "https://registry.yarnpkg.com/react-native-music-control/-/react-native-music-control-1.4.1.tgz#a1212c082f39783ff10befec1ef53cade585933e"
   integrity sha512-IBiP2Yhb9iUPutXFFfNWKnf+CG/up9oPlMqY6qq1MDlhJ6giMCGQ+qO/Qd5hoDE0ZfxyqShs3CZaSch+oV/2zg==
 
-react-native-navigation@7.32.1:
-  version "7.32.1"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-7.32.1.tgz#29dd95dae6f4afb6dcbc756dae1849dbbdab2a54"
-  integrity sha512-qqpccWh6MqTG0hn/XeggKonSYg+h64kOsYBot/+g2EUC/Usp8TZsKi1B2gzsUrDQy8EmsF9iTBoZMIgjxFG/WQ==
+react-native-navigation@7.37.1:
+  version "7.37.1"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-7.37.1.tgz#7bb1165f8e454f2956f62a10cdfe927a6cc43008"
+  integrity sha512-3LM5tawVwfo8iNwH+caAt2jI+9lGVIeXKv9jmRp7esXz3DEypi8yfKBVjz/IDsCo6VBjAwocw1f2EuIXxRyiuA==
   dependencies:
     hoist-non-react-statics "3.x.x"
     lodash "4.17.x"
@@ -13092,10 +13092,10 @@ react-native-push-notification@^8.1.1:
   resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-8.1.1.tgz#a41d20c70ea5a7709417e96261b225461f8dc73a"
   integrity sha512-XpBtG/w+a6WXTxu6l1dNYyTiHnbgnvjoc3KxPTxYkaIABRmvuJZkFxqruyGvfCw7ELAlZEAJO+dthdTabCe1XA==
 
-react-native-reanimated@^3.4.2:
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-3.4.2.tgz#744154fead6d8d31d5bd9ac617d8c84d74a6f697"
-  integrity sha512-FbtG+f1PB005vDTJSv4zAnTK7nNXi+FjFgbAM5gOzIZDajfph2BFMSUstzIsN8T77+OKuugUBmcTqLnQ24EBVg==
+react-native-reanimated@^3.5.4:
+  version "3.5.4"
+  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-3.5.4.tgz#a6c2b0c43b6dad246f5d276213974afedb8e3fc7"
+  integrity sha512-8we9LLDO1o4Oj9/DICeEJ2K1tjfqkJagqQUglxeUAkol/HcEJ6PGxIrpBcNryLqCDYEcu6FZWld/FzizBIw6bg==
   dependencies:
     "@babel/plugin-transform-object-assign" "^7.16.7"
     "@babel/preset-typescript" "^7.16.7"
@@ -13378,11 +13378,6 @@ recyclerlistview@4.2.0:
     lodash.debounce "4.0.8"
     prop-types "15.8.1"
     ts-object-utils "0.0.5"
-
-redux-devtools-extension@^2.13.9:
-  version "2.13.9"
-  resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.9.tgz#6b764e8028b507adcb75a1cae790f71e6be08ae7"
-  integrity sha512-cNJ8Q/EtjhQaZ71c8I9+BPySIBVEKssbPpskBfsXqb8HJ002A3KRVHfeRzwRo6mGPqsm7XuHTqNSNeS1Khig0A==
 
 redux-flipper@^2.0.2:
   version "2.0.2"

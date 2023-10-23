@@ -1,5 +1,5 @@
 diff --git a/node_modules/@intercom/intercom-react-native/ios/IntercomModule.m b/node_modules/@intercom/intercom-react-native/ios/IntercomModule.m
-index be200c7..06616ea 100644
+index bc21f51..b1f59bb 100644
 --- a/node_modules/@intercom/intercom-react-native/ios/IntercomModule.m
 +++ b/node_modules/@intercom/intercom-react-native/ios/IntercomModule.m
 @@ -82,10 +82,10 @@ - (NSData *)dataFromHexString:(NSString *)string {
