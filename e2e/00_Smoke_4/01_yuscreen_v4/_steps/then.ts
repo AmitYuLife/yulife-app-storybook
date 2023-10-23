@@ -130,10 +130,9 @@ export const wellbeingProductInfo = async () => {
   await expect(element(by.text(policyInsurance))).toBeVisible();
 };
 
-export const groupDentalProductInfo = (packageType: string, yuCoinPower: string) => async () => {
-  const policyName = "Bupa Dental Plan";
-  const policyDescription =
-    "Claim cash back, access Bupa clinics across the UK, and reach Bupa experts on their 24/7 Anytime HealthLine.";
+export const groupDentalProductInfo = (packageType: string, yuCoinPower: string, dentalType: "Plan" | "Choice") => async () => {
+  const policyName = `Bupa Dental ${dentalType}`;
+  const policyDescription = dentalType === "Plan" ? fixture.dentalPlanDescription : fixture.dentalChoiceDescription
   const paidBy = "Employer scheme";
   const policyInfoYugi =
     "This policy is paid for by your employer. Remember if you change jobs, you'll lose this cover.";
@@ -255,7 +254,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await textVisible(fixture.powerText)();
       await textVisibleAtIndex(fixture.dentalYuCoin, 1)();
       await textVisible(fixture.groupDental)();
-      await textNotVisible(paidBy)();
+      await textVisible(paidBy)();
       await textVisible(fixture.availableProducts)();
       break;
     case "0EarnRate":

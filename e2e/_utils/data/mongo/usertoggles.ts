@@ -2143,3 +2143,17 @@ export const CUSTOMER_124_TOGGLES = {
     },
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_125_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_125.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      yuScreenV4: true,
+      hasBupaDentActive: true,
+    },
+  },
+} as IDatabaseItem;

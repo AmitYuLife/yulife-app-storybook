@@ -209,9 +209,9 @@ export const ONBOARDING_YUSCREEN = async (packType: string, yuCoinPower: string)
   Then(`I should see the onboarding Yuscreen and see ${packType}`, then.onboardingYuscreenV4(packType, yuCoinPower));
 };
 
-export const GROUP_DENTAL_PRODUCT_VIEW = async (packageType: string, yuCoinPower: string) => {
+export const GROUP_DENTAL_PRODUCT_VIEW = async (packageType: string, yuCoinPower: string, dentalType: "Plan" | "Choice") => {
   When(`I tap Dental Cover`, when.tapText("Dental Cover"), async () => {
-    Then("I should see correct product details", then.groupDentalProductInfo(packageType, yuCoinPower));
+    Then("I should see correct product details", then.groupDentalProductInfo(packageType, yuCoinPower, dentalType));
   });
 };
 

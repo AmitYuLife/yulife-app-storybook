@@ -1590,3 +1590,14 @@ export const AUTH_124 = {
         userId: customer.CUSTOMER_124_MPP.data.customerId,
     }
 }  as IDatabaseItem
+
+export const AUTH_125 = {
+    type: "mongo",
+    modelName: "authpassword",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_125.data.customerId,
+    }
+}  as IDatabaseItem
