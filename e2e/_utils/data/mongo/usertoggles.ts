@@ -1048,7 +1048,8 @@ export const CUSTOMER_52_TOGGLES = {
       showTodayEarningsScreen: true,
       showGoals: true,
       yuScreenV3: true,
-      showPermissionSettings: true
+      showPermissionSettings: true,
+      newChallengeList: true
     },
   },
 } as IDatabaseItem;
@@ -1620,6 +1621,8 @@ export const CUSTOMER_LEAVER_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
+      useNewLeaderboardServices: true,
+      showNewLeaderBoard: true,
     },
   },
 } as IDatabaseItem;

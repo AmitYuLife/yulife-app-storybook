@@ -51,8 +51,13 @@ export const canSeeLeaderboardListModal = (socialGroupLeaderboards: SocialGroupL
 }
 
 export const leaderboardVisible = (customers: UserLeaderboardListItem[]) => async () => {
-    for(const { name, rank, score } of customers){
-        await idVisible(ids.LEADERBOARD_NAME(name, score, rank))()
+    for(const { name, rank, score, secondaryRank } of customers){
+        try {
+            await idVisible(ids.LEADERBOARD_NAME(name, score, rank))()
+        } catch {
+            secondaryRank && await idVisible(ids.LEADERBOARD_NAME(name, score, secondaryRank))()
+        }
+        
     }
 }
 
