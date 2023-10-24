@@ -100,7 +100,10 @@ const addRecent = (state: ILeaderboardsStore, { item: searchItem }: { item: Sear
   return { ...state, recentSearch: [searchItem, ...filteredSearchItems] };
 };
 
-const updateSocialGroupLeaderboardsSuccess = (state: ILeaderboardsStore, socialGroupsData: ISocialGroupData[]) => {
+const updateSocialGroupLeaderboardsSuccess = (
+  state: ILeaderboardsStore,
+  socialGroupsData: ISocialGroupData[]
+): ILeaderboardsStore => {
   const activeLeaderboardConfigId = state.socialGroups
     ?.find((socialGroup) => socialGroup.socialGroupId === state.activeSocialGroupId)
     ?.leaderboards?.find((leaderboard) => leaderboard.leaderboardId === state.activeLeaderboardId)?.leaderboardConfigId;
