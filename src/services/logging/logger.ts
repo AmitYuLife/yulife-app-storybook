@@ -12,6 +12,7 @@ import { Platform } from "react-native";
 class LoggerInstance {
   private userId = "";
   private initialised = false;
+  private intercomLoggedIn = false;
   private appVersion: string;
   private appVersionMajorMinor: string;
   private appVersionRegex = /(\d+.\d+).(\d+)/;
@@ -34,6 +35,9 @@ class LoggerInstance {
   };
 
   public logOut = async () => {
+    this.userId = "";
+    this.intercomLoggedIn = false;
+
     if (this.initialised) {
       Mixpanel.clearSuperProperties();
       Mixpanel.reset();
@@ -45,8 +49,6 @@ class LoggerInstance {
         });
       }
     }
-
-    this.userId = "";
   };
 
   private addDefaultEventProperties = (props: Record<string, any>): Record<string, any> => {
@@ -67,19 +69,19 @@ class LoggerInstance {
       await this.logOut();
     }
 
-    this.userId = userId;
+    await this.setIntercomUser(userId, intercomHash);
     this.bugsnag.setUser(userId, "", "");
     Mixpanel.identify(userId);
     this.leanplum.setUserId(userId);
-    await this.setIntercomUser(userId, intercomHash);
+    this.userId = userId;
   };
 
   private setIntercomUser = async (userId: string, hash: string) => {
     this.userId = null;
     try {
-      await Intercom.logout();
       await Intercom.setUserHash(hash);
       await Intercom.loginUserWithUserAttributes({ userId });
+      this.intercomLoggedIn = true;
     } catch (err) {
       this.error(err, {
         location: "logger.setIntercomUser",
@@ -95,6 +97,11 @@ class LoggerInstance {
     }
 
     const data = this.addDefaultEventProperties(metadata);
+    Mixpanel.trackWithProperties(event, data);
+    if (!this.intercomLoggedIn) {
+      return;
+    }
+
     try {
       await Intercom.logEvent(event, data);
     } catch (err) {
@@ -102,8 +109,6 @@ class LoggerInstance {
         location: "logger.logEvent",
       });
     }
-
-    Mixpanel.trackWithProperties(event, data);
   };
 
   public logMixpanelEvent = (event: MixpanelEvent, metadata: MixpanelEventMetadata = {}) => {
@@ -115,7 +120,7 @@ class LoggerInstance {
   };
 
   public setUserLanguagePreferenceOnIntercom = async (languageOverride: string) => {
-    if (!this.initialised || !this.userId) {
+    if (!this.initialised || !this.userId || !this.intercomLoggedIn) {
       return;
     }
 
@@ -134,6 +139,11 @@ class LoggerInstance {
     }
 
     const eventProperties = this.addDefaultEventProperties(props);
+    Mixpanel.set(eventProperties);
+    if (!this.intercomLoggedIn) {
+      return;
+    }
+
     try {
       if (customAttrs) {
         await Intercom.updateUser({ customAttributes: eventProperties });
@@ -145,8 +155,6 @@ class LoggerInstance {
         location: "logger.setUserProperties",
       });
     }
-
-    Mixpanel.set(eventProperties);
   };
 
   public error = (error: Error, tags: Record<string, string | number | boolean>) => {
