@@ -156,10 +156,12 @@ Feature("As a user I can take a challenge", async () => {
             })
         })
         When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-            Then("I should see the short stroll and meditation challenge rewards of 26-78 yucoin each", then.challengeRewardVisible(data.USER_52.data.earnRate, 6, 2))
+            Then("I should see the short stroll and meditation challenge rewards of 26-78 yucoin each", then.canSeeNewChallengeTiles(data.USER_52))
         })
-        When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-            Then("I should see the correct event for me to complete and the progress bar", then.eventToBeCompletedVisible(0, 0))
+        When("I click to go back", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
+            When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+                Then("I should see the correct event for me to complete and the progress bar", then.eventToBeCompletedVisible(0, 0))
+            })
         })
         When("I click on the challenge profiles viewed", when.tapChallenge("0 / 5 " + t("profiles viewed")), async () => {
             When("I scroll to text", when.scrollUntilTextVisible(ids.EVENT_DIALOG_SCREEN_SCROLL, data.GOALS_2.data.description, "down"), async () => {
@@ -168,7 +170,7 @@ Feature("As a user I can take a challenge", async () => {
         })
         When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
             When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.LEADERBOARD_4.data.name)))
+                Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_7.data.name)))
             })
         })
         helper.INSPECT_USER(data.CUSTOMER_55, "Forest", data.CUSTOMER_52)();
@@ -191,7 +193,7 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(data.GOAL_REWARD_MILESTONE_3.data.rewardValue, data.USER_52.data.earnRate, 1))
         })
         When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-            Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.LEADERBOARD_4.data.name)))
+            Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_7.data.name)))
         })
         helper.INSPECT_USER(data.CUSTOMER_54, "Forest", data.CUSTOMER_52)();
         helper.INSPECT_USER(data.CUSTOMER_58, "Forest", data.CUSTOMER_52)();
@@ -214,7 +216,7 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(data.GOAL_REWARD_MILESTONE_3.data.rewardValue, data.USER_52.data.earnRate, 2))
         })
         When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-            Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.LEADERBOARD_4.data.name)))
+            Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_7.data.name)))
         })
         When("I scroll to the bottom of the bottom of the leaderboard", when.scrollFromID(ids.LEADERBOARD_SCROLL_LIST, "up", "fast"), async () => {
             Then("I should see Stephen's name in the leaderboard", then.textVisible(getFullName(data.CUSTOMER_57)))

@@ -59,7 +59,9 @@ export const allTogglesTrue = {
       showCommunityGoals: true,
       rewardRedemptionDisabled: false,
       showYucoinPowerButton: true,
-      showBrainGameSudoku: true
+      showBrainGameSudoku: true,
+      newChallengeList: true,
+      useNewLeaderboardServices: true
     },
   },
 } as IDatabaseItem;
@@ -199,6 +201,8 @@ export const mediaContentToggle = {
       showCommunityGoals: true,
       passiveCyclingEnabled: true,
       newMediaPlayer: true,
+      newChallengeList: true,
+      useNewLeaderboardServices: true
     },
   },
 } as IDatabaseItem;
@@ -280,7 +284,10 @@ export const DEFAULT_TOGGLES = {
       showNotificationCentre: true,
       newMediaPlayer: true,
       showYucoinPowerButton: true,
-      showBrainGameSudoku: true
+      showBrainGameSudoku: true,
+      newChallengeList: true,
+      showFiit: true,
+      useNewLeaderboardServices: true
     },
   },
 } as IDatabaseItem;
