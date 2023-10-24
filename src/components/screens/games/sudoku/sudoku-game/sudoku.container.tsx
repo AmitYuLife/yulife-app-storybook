@@ -19,7 +19,7 @@ import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { GQL_MUTATION_TOGGLE_CHALLENGE_PAUSE } from "@graphql/challenges/toggleChallengePause.gql";
 import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { SudokuDifficulty } from "@graphql/_core/schema/globalTypes";
+import { SocialGroupLeaderboardConfigId, SudokuDifficulty } from "@graphql/_core/schema/globalTypes";
 import { GQL_MUTATION_SUBMIT_SUDOKU_SOLUTION } from "@graphql/brainGames/sudoku/submitSudokuResults.gql";
 import { ISudokuResults } from "@components/games/sudoku/sudoku.interface";
 import { useBackHandler, useTranslation } from "@hooks";
@@ -27,6 +27,8 @@ import { delay } from "@utils/misc";
 import { challengeEndSuccessAction } from "@redux/levels/levels.actions";
 import { Alert } from "react-native";
 import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
+import { getActiveSocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
+import { GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS } from "@graphql/socialGroupLeaderboard/getMobileSocialGroupLeaderboardItems";
 
 export interface ISodukuBoard {
   puzzle: SudokuBoard;
@@ -45,6 +47,8 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const features = useSelector(getUserFeatures);
   const sudokuState = useSelector(getSudokuState);
+  const activeLeaderboard = useSelector(getActiveSocialGroupLeaderboard);
+
   const [sendPause] = useMutation(GQL_MUTATION_TOGGLE_CHALLENGE_PAUSE);
   const [submitSudokuSolution] = useMutation<SubmitSudokuSolution, SubmitSudokuSolutionVariables>(
     GQL_MUTATION_SUBMIT_SUDOKU_SOLUTION
@@ -149,6 +153,16 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
               dispatch(getUserDataStart([AppDataType.activeChallenge]));
               showSubmissionError(rej);
             },
+            ...(activeLeaderboard?.leaderboardConfigId === SocialGroupLeaderboardConfigId.dailysudoku && {
+              refetchQueries: [
+                {
+                  query: GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS,
+                  variables: {
+                    leaderboardId: activeLeaderboard?.leaderboardId,
+                  },
+                },
+              ],
+            }),
           });
 
           if (results?.data) {
