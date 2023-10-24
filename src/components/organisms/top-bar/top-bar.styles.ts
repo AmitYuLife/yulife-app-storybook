@@ -2,7 +2,7 @@ import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../styles";
 import { TOP_BAR } from "@styles";
 
-export const TOP_BAR_HEIGHT = TOP_BAR.HEIGHT + TOP_BAR.PADDING_TOP + TOP_BAR.PADDING_BOTTOM;
+export const TOP_BAR_HEIGHT = TOP_BAR.HEIGHT;
 
 export default StyleSheet.create({
   wrapper: {
