@@ -1,4 +1,4 @@
-export type Language = "en" | "en-US" | "en-GB" | "ja-JP";
+export type Language = "en" | "en-US" | "en-GB" | "ja-JP" | "es-US";
 
 export type Translation = {
   name: string;
@@ -9,5 +9,6 @@ export type Translation = {
   flag?: string;
   overwrite?: Language;
   isEnabled: boolean;
+  isEnabledForTest?: boolean;
   load: () => unknown;
 };

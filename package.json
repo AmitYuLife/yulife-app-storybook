@@ -242,7 +242,7 @@
     "runner-config": "e2e/.mocharc.json"
   },
   "config": {
-    "translatedLocales": "en-US,ja-JP"
+    "translatedLocales": "en-US,ja-JP,es-US"
   },
   "snyk": true
 }

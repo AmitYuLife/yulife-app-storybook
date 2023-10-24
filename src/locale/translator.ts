@@ -1,9 +1,9 @@
 import Polyglot from "node-polyglot";
 import { NativeModules } from "react-native";
-
 import { isWeb, isiOS } from "@styles/style";
 import { DETOX_ENABLED } from "@services/socket";
 import { translations, Language, Translation } from "./translations";
+import { IS_DEVELOP } from "@utils";
 
 class Translator {
   private dict: Polyglot;
@@ -22,9 +22,13 @@ class Translator {
    * @param showAllOptions when true we return all locales (even if they are not enabled)
    */
   private readonly getAvailableLocales = (showAllOptions = false): Language[] => {
-    return Object.keys(translations).filter(
-      (language: Language) => showAllOptions || translations[language].isEnabled
-    ) as Language[];
+    return Object.keys(translations).filter((language: Language) => {
+      const translation = translations[language];
+
+      const isEnabled = translation.isEnabled || (IS_DEVELOP && translation.isEnabledForTest);
+
+      return showAllOptions || isEnabled;
+    }) as Language[];
   };
 
   /**
