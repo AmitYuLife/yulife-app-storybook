@@ -26,9 +26,10 @@ import {
   ONBOARDING_SCREEN,
   V4_YUSCREEN,
   SLOT_TITLE,
+  YUSCREEN_SCROLL_VIEW,
 } from "@ids";
 import moment from "moment";
-import { BPEEW_USA_1_DENPPO } from "04_USA/_data";
+import { expect } from "detox"
 import { getFullName } from "_utils/users";
 
 export const {
@@ -307,15 +308,16 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
       await textVisibleAtIndex("10", 2)();
       await expect(element(by.text(WellbeingProduct))).toBeVisible();
       await textVisible("1")();
-      await expect(element(by.text(dentalYuCoinPower))).toBeVisible();
-      await expect(element(by.text(dentalInsurance))).toBeVisible();
       await swipeFromText(criticalIllness, "up", "slow", 0.2)();
       await expect(element(by.text(PLIYuCoinPower))).toBeVisible();
-      await swipeFromTextAtIndex(lifeInsurance, "up", "slow", 1)();
+      await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, dentalInsurance, "down")()
+      await expect(element(by.text(dentalYuCoinPower))).toBeVisible();
+      await idVisible(SLOT_TITLE(dentalInsurance))()
+      await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, dentalPriceFrom, "down")()
       await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible();
       await expect(element(by.text(dentalPriceFrom))).toBeVisible();
       await expect(element(by.text(noProductText))).not.toBeVisible();
-      await swipeFromText(surveyText, "down", "slow")();
+      await swipeFromText(dentalPriceFrom, "down", "fast")();
       break;
     case "5 Products Slots":
       await textVisibleAtIndex(yuCoinPower, 0)();

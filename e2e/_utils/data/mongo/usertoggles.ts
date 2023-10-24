@@ -900,6 +900,58 @@ export const CUSTOMER_53_TOGGLES = {
   },
 } as IDatabaseItem;
 
+export const CUSTOMER_54_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_54.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      yuScreenV4: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_55_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_55.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      yuScreenV4: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_56_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_55.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      yuScreenV4: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_57_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_55.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      yuScreenV4: true,
+    },
+  },
+} as IDatabaseItem;
+
 export const CUSTOMER_PLI_2_TOGGLES = {
   type: "mongo",
   modelName: "usertoggles",
@@ -1049,7 +1101,10 @@ export const CUSTOMER_52_TOGGLES = {
       showGoals: true,
       yuScreenV3: true,
       showPermissionSettings: true,
-      newChallengeList: true
+      newChallengeList: true,
+      showBrainGameSudoku: true,
+      showFiit: true,
+      useNewLeaderboardServices: true
     },
   },
 } as IDatabaseItem;

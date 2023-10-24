@@ -65,7 +65,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             helper.ONBOARDING_YUSCREEN("3 Products Slots Started", "31")
             helper.YUSCREEN_V4(data.CUSTOMER_48, "6 Products Slots", "31", "More protection")
             helper.CREATE_DEFAULT_YUMOJI(300);
-            When("I swipe up the screen", when.swipeFromText("Browse more protection", "down", "fast"), async () => {
+            When("I swipe up the screen", when.swipeFromText("My Wellbeing Hub", "down", "fast"), async () => {
                 helper.WELLBEING_PRODUCT_VIEW(1, 31)
             })
             When("I close the Wellbeing Access page", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
