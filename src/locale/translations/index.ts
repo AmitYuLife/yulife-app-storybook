@@ -25,6 +25,14 @@ export const translations: Record<Language, Translation> = {
     isEnabled: true,
     load: () => require("./downloaded/en-US.json"),
   },
+  "es-US": {
+    name: "Español (Estados Unidos)",
+    intercomLanguage: "es",
+    flag: "🇺🇸",
+    isEnabled: false,
+    isEnabledForTest: true,
+    load: () => require("./downloaded/es-US.json"),
+  },
   "ja-JP": {
     name: "日本語 (JA)",
     intercomLanguage: "ja",
