@@ -42,24 +42,24 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can change consent to a leaderboard I belong to", scenario.start, async () => {
         Given("I login", given.loginAsUser(data.CUSTOMER_17, data.AUTH_17), async () => {
             When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.LEADERBOARD_1.data.name)))
+                Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([User17LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem]))
             })
             When("I tap on the leaderboard name", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
-                Then("I should see my active leaderboard", then.idVisible(ids.LEADERBOARD_COMMUNITY_LIST([data.LEADERBOARD_1.data.name])))
+                Then("I should see my active leaderboard", then.idVisible(ids.LEADERBOARD_COMMUNITY_LIST([data.SOCIAL_GROUP_C1.data.name])))
             })
             When("I tap close", when.tapText("View Leaderboard"), async () => {
                 When("I tap the menu", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
                     When("I tap settings", when.tapMenuItem("Settings"), async () => {
                         When('I tap leaderboards', when.tapText("Leaderboards"), async () => {
-                            Then("I can see the option for Yudoku leaderboards", then.idVisible(ids.SETTINGS_SWITCH(`${data.LEADERBOARD_1.data.name} Steps`, true)))
+                            Then("I can see the option for Steps leaderboards", then.idVisible(ids.SETTINGS_SWITCH(`${data.SOCIAL_GROUP_C1.data.name} Steps`, true)))
                         })
                     })
                 })
             })
-            When("I tap the ID to switch consent off", when.tapID(ids.SETTINGS_SWITCH(`${data.LEADERBOARD_1.data.name} Steps`, true)), async () => {
+            When("I tap the ID to switch consent off", when.tapID(ids.SETTINGS_SWITCH(`${data.SOCIAL_GROUP_C1.data.name} Steps`, true)), async () => {
                 When("I tap turn it off", when.tapText("Turn it off"), async () => {
-                    Then("I can see the option for Yudoku leaderboards", then.idVisible(ids.SETTINGS_SWITCH(`${data.LEADERBOARD_1.data.name} Steps`, false)))
+                    Then("I can see the option for Yudoku leaderboards", then.idVisible(ids.SETTINGS_SWITCH(`${data.SOCIAL_GROUP_C1.data.name} Steps`, false)))
                 })
             })
             When("I tap close", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
@@ -72,25 +72,24 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         Given("I login", given.loginAsUser(data.CUSTOMER_19, data.AUTH_19), async () => {
             When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
-                    When("I click leaderboard 2", when.tapText(data.LEADERBOARD_2.data.name), async () => {
+                    When("I click leaderboard 2", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_C2.data.name)), async () => {
                         When("I tap view", when.tapText("View Leaderboard"), async () => {
-                            Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.LEADERBOARD_2.data.name)))
+                            Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE("LB2")))
                             Then("I should be on the second leaderboard", then.leaderboardVisible([User20LeaderboardItem, User40LeaderboardItem]))
                         })
                     })
                 })
             })
         })
-        When("I scroll to the top of the page", when.scrollUntilIdVisible(ids.LEADERBOARD_SCROLL_LIST, ids.LEADERBOARD_TITLE(data.LEADERBOARD_2.data.name), "down"), async () => {
+        When("I scroll to the top of the page", when.scrollUntilIdVisible(ids.LEADERBOARD_SCROLL_LIST, ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C2.data.name), "down"), async () => {
             When("I tap the leaderboard drop down", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
-                Then("I should be on the leaderboard selection screen", then.idVisible(ids.LEADERBOARD_COMMUNITY_LIST([data.LEADERBOARD_1.data.name, data.LEADERBOARD_2.data.name])))
+                Then("I should be on the leaderboard selection screen", then.idVisible(ids.LEADERBOARD_COMMUNITY_LIST([data.SOCIAL_GROUP_C1.data.name, data.SOCIAL_GROUP_C2.data.name])))
             })
         })
-        When("I tap the first leaderboard, Lb1", when.tapText(data.LEADERBOARD_1.data.name), async () => {
+        When("I tap the first leaderboard, Lb1", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_C1.data.name)), async () => {
             When("I tap view", when.tapText("View Leaderboard"), async () => {
                 Then("I should see the first leaderboard", then.leaderboardVisible([User18LeaderboardItem]))
             })
-            
         })
     })
 
@@ -102,7 +101,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         helper.CREATE_AVATAR(data.CUSTOMER_47)();
         When("I wait", when.wait(6000), async () => {
             When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.LEADERBOARD_1.data.name)))
+                Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([User17LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem]))
             })
         })
@@ -166,7 +165,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         helper.CREATE_AVATAR(data.CUSTOMER_47)();
         When("I wait", when.wait(6000), async () => {
             When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.LEADERBOARD_1.data.name)))
+                Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([User17LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem]))
             })
         })

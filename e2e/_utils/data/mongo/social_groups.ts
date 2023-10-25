@@ -1,7 +1,6 @@
 
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_2, BUSINESS_ACCOUNT_7 } from "../postgres/business";
-import { LEADERBOARD_1, LEADERBOARD_2, LEADERBOARD_3, LEADERBOARD_4 } from "./leaderboard";
 
 export const SOCIAL_GROUP_1 = {
     type: "mongo",
@@ -56,10 +55,10 @@ export const SOCIAL_GROUP_C1 = {
     modelName: "social_groups",
     data: {
         _id: generateRandomMongoId(),
-        socialGroupId: LEADERBOARD_1.data.leaderboardId,
+        socialGroupId: generateRandomMongoId(),
         archived: false,
         socialGroupType: "custom",
-        name: LEADERBOARD_1.data.name
+        name: "LB1"
     }
 } as IDatabaseItem
 
@@ -68,10 +67,10 @@ export const SOCIAL_GROUP_C2 = {
     modelName: "social_groups",
     data: {
         _id: generateRandomMongoId(),
-        socialGroupId: LEADERBOARD_2.data.leaderboardId,
+        socialGroupId: generateRandomMongoId(),
         archived: false,
         socialGroupType: "custom",
-        name: LEADERBOARD_2.data.name
+        name: "LB2"
     }
 } as IDatabaseItem
 
@@ -80,9 +79,9 @@ export const SOCIAL_GROUP_3 = {
     modelName: "social_groups",
     data: {
         _id: generateRandomMongoId(),
-        socialGroupId: LEADERBOARD_3.data.leaderboardId,
+        socialGroupId: generateRandomMongoId(),
         archived: false,
         socialGroupType: "custom",
-        name: LEADERBOARD_3.data.name
+        name: "LB3"
     }
 } as IDatabaseItem

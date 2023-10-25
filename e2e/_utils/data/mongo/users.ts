@@ -1550,6 +1550,18 @@ export const USER_83 = {
   },
 } as IDatabaseItem;
 
+export const USER_84 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_84.data.customerId,
+    nickname: "Sloogy Dreamer",
+    earnRate: 20,
+  },
+} as IDatabaseItem;
+
 export const USER_DENTAL_1 = {
   type: "mongo",
   modelName: "users",
