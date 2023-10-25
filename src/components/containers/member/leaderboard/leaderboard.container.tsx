@@ -78,11 +78,13 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
       return;
     }
 
-    getSocialGroupLeaderboardItems({
-      variables: {
-        leaderboardId: activeLeaderboard?.leaderboardId,
-      },
-    });
+    if (activeLeaderboard?.leaderboardId) {
+      getSocialGroupLeaderboardItems({
+        variables: {
+          leaderboardId: activeLeaderboard?.leaderboardId,
+        },
+      });
+    }
   }, [activeLeaderboard, getSocialGroupLeaderboardItems]);
 
   const selectSocialGroupLeaderboard = useCallback(
