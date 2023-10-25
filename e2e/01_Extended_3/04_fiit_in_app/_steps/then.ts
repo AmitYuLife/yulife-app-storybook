@@ -16,7 +16,8 @@ export const {
 export const {
   onChallengeComplete,
   onMeditationChallengeComplete,
-  isOnQuitChallengeScreen
+  isOnQuitChallengeScreen,
+  canSeeNewChallengePage
 } = screens.challenges;
 
 export const {
@@ -24,16 +25,6 @@ export const {
 } = navigation.scrolling;
 
 export const { onCreateAvatarScreen } = screens.yuscreen;
-
-export const canSeeFiitChallengeDetailsScreen = (user: typeof USER_FIIT) => async () => {
-  const { earnRate } = user.data
-  const { challengeName, duration } = fiitInfo
-
-  await idVisible(CHALLENGE_DETAILS_SCREEN)()
-  await idVisible(CHALLENGE_TYPE(challengeName))()
-  await idVisible(TARGET(duration))()
-  await idVisible(REWARD_AMOUNT(earnRate * 6))()
-}
 
 export const canSeeWorkoutCollectionsScreen = async () => {
   const { title, description, logo } = fiitInfo

@@ -5,6 +5,7 @@ import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as data from "@data"
 import * as ids from "@ids"
+import { longWalkMaxReward } from "./_resources/constants"
 
 Feature("Level boosts", async () => {
   Scenario("I can see boosted challenges and receive boosted rewards", scenario.start, () => {
@@ -28,7 +29,7 @@ Feature("Level boosts", async () => {
       Then("I can see the boosted challenge tiles", then.canSeeBoostedChallengeTiles(data.USER_122))
     })
     When("I tap the tile", when.tapID(ids.CHALLENGE_TILE("Long Walk")), async () => {
-      Then("I can see the challenge page with the boost tab", then.canSeeChallengePage("10", 60, true))
+      Then("I can see the challenge page with the boost tab", then.canSeeNewChallengePage("long walk", data.USER_122.data.earnRate, longWalkMaxReward))
     })
     When("I click back button", when.tapID(ids.SCREEN_CLOSE), async () => {
       When("I tap the level 51 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(51)), async () => {

@@ -5,7 +5,7 @@ import { t } from "@locale";
 import { StarRating } from "@molecules";
 import { Colours, Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
-import { TARGET, REWARD_AMOUNT } from "@ids";
+import { TARGET, REWARD_AMOUNT, TARGET_AND_REWARD } from "@ids";
 import { SurgeIcon } from "@atoms/icon/surge-icon";
 import { IStarRatingProps } from "@components/molecules/star-rating/star-rating";
 import { ChallengeDetailsBadge, ChallengeDetailsBadgeIntent } from "./challenge-details-badge";
@@ -58,7 +58,7 @@ export const ChallengeDetailsMilestone = memo(
 
     return (
       <View>
-        <View style={styles.row}>
+        <View style={styles.row} testID={TARGET_AND_REWARD(milestone.target, rewardAmount)}>
           <View testID={TARGET(milestone.target)}>
             <TextTemplate type="b2">{milestone.target}</TextTemplate>
             <StarRating activeStars={activeStars} totalStars={totalStars} />

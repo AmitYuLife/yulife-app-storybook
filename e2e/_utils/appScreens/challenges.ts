@@ -1,11 +1,10 @@
 import {
-  navigateViaText, navigateViaID, CHALLENGE_TILE, idVisible, CHALLENGE_PROGRESS_BAR, wait, LEVEL_CHALLENGE_BUTTON, expectIsVisibleViaID, textVisible, CALM_BUTTON, HEADSPACE_BUTTON, MEDITATION_STAR_REWARD, MEDITATION_YUCOIN_REWARD,
-  MEDITOPIA_CHALLENGE_LOAD_SCREEN, USE_OTHER_APP_BUTTON, MEDITOPIA_BUTTON, VIEW_TOP_RIGHT_COIN_COUNTER, VIDEO_PLAYER_TIMER, VIDEO_PROGRESS_BAR, VIDEO_PLAY_PAUSE_BUTTON, textNotVisible, MEDITOPIA_TIMER_MINUTES, MEDITOPIA_TIMER_SECS, idNotVisible, GENERIC_SCREEN_CTA,
-  GENERIC_SCREEN_HEADING, SCREEN_CLOSE, CHOOSE_MEDITOPIA_SCREEN, LOADING_BAR, idVisibleAtIndex, CHALLENGE_DETAILS_SCREEN, TAKE_CHALLENGE_BUTTON, SET_UP_BUTTON, REWARD_AMOUNT, CHALLENGE_TYPE, TARGET, TODAYS_MEDITATION_SCREEN, TODAYS_MEDITATION_HEADER, TODAYS_MEDITATION_DESCRIPTION,
-  VIDEO_PLAYER, VIDEO_LOGO, MEDITATION_PARTNER_LOGO, dismissNotificationScreenIfVisible
+  navigateViaText, navigateViaID, expectIsVisibleViaID, textVisible, idVisible,  dismissNotificationScreenIfVisible, wait, textNotVisible, idNotVisible, idVisibleAtIndex
 } from "@navigation"
 import { sendSteps } from "@socket";
 import { getLocalisedString as t } from "@i18n";
+import * as ids from "@ids"
+import { BriskWalkTargetsAndRewards, FiitTargetsAndRewards, LongWalkTargetsAndRewards, MeditationTargetsAndRewards, ShortStrollTargetsAndRewards, YudokuTargetsAndRewards } from "./utils";
 
 export const onChallengeComplete = (stepCount: number, level = 1) => async () => {
   const steps = `${stepCount} steps`
@@ -40,23 +39,23 @@ export const onMeditationChallengeComplete = (minutes: number, level: number) =>
 
 export const meditationAppModalVisible = async () => {
   await textVisible("Choose an app to start")
-  await idVisible(CALM_BUTTON)
-  await idVisible(HEADSPACE_BUTTON)
+  await idVisible(ids.CALM_BUTTON)
+  await idVisible(ids.HEADSPACE_BUTTON)
 }
 
 export const startChallenge = (challengeTile: string,) => async () => {
-  await navigateViaID(CHALLENGE_TILE(challengeTile))
+  await navigateViaID(ids.CHALLENGE_TILE(challengeTile))
   await navigateViaText(t("Take challenge"))
   try {
     await navigateViaText(t("maybe later"))
   } catch (e) {
-    await idVisible(CHALLENGE_PROGRESS_BAR)()
+    await idVisible(ids.CHALLENGE_PROGRESS_BAR)()
   }
 }
 
 export const startChallengeFromQuests = (levelButton: number, challengeName: string) => async () => {
-  await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelButton))
-  await navigateViaID(CHALLENGE_TILE(challengeName))
+  await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelButton))
+  await navigateViaID(ids.CHALLENGE_TILE(challengeName))
   await navigateViaText("Take challenge")
 
   if (challengeName === "Meditation") {
@@ -66,20 +65,20 @@ export const startChallengeFromQuests = (levelButton: number, challengeName: str
   try {
     await navigateViaText("maybe later")
   } catch (e) {
-    await idVisible(CHALLENGE_PROGRESS_BAR)()
+    await idVisible(ids.CHALLENGE_PROGRESS_BAR)()
   }
 }
 
 export const startMeditationChallengeFromQuests = (levelButton: number) => async () => {
-  await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelButton))
-  await navigateViaID(CHALLENGE_TILE("Meditation"))
+  await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelButton))
+  await navigateViaID(ids.CHALLENGE_TILE("Meditation"))
   await navigateViaText("Take challenge")
   await navigateViaText("Use a different app")
   await dismissNotificationScreenIfVisible()
 }
 
 export const completeShortStroll = (steps: number, waitTime: number) => async () => {
-  await navigateViaID(CHALLENGE_TILE("Short Stroll"))
+  await navigateViaID(ids.CHALLENGE_TILE("Short Stroll"))
   await navigateViaText("Take challenge")
   await navigateViaText("maybe later")
   await sendSteps(steps, waitTime)()
@@ -98,7 +97,7 @@ export const buttonVisible = (text: string) => async () => {
 export const openOtherAppButtonVisible = async () => {
   const buttonText = element(by.text("Use a different app"))
   await expect(buttonText).toBeVisible()
-  await expectIsVisibleViaID(USE_OTHER_APP_BUTTON)
+  await expectIsVisibleViaID(ids.USE_OTHER_APP_BUTTON)
 }
 
 export const meditopiaContentCardVisible = (mins: string, yuCoin: string) => async () => {
@@ -106,37 +105,37 @@ export const meditopiaContentCardVisible = (mins: string, yuCoin: string) => asy
 }
 
 export const isOnChallengeLoadScreen = async () => {
-  await expectIsVisibleViaID(MEDITOPIA_CHALLENGE_LOAD_SCREEN);
+  await expectIsVisibleViaID(ids.MEDITOPIA_CHALLENGE_LOAD_SCREEN);
 };
 
 export const selectMeditopiaChallengeFromQuests = (levelButton: number, challengeName: string) => async () => {
-  await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelButton))
-  await navigateViaID(CHALLENGE_TILE(challengeName))
+  await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelButton))
+  await navigateViaID(ids.CHALLENGE_TILE(challengeName))
 }
 
 export const onChallengeDetailsScreen = (yuCoin: string) => async () => {
-  await idVisible(CHALLENGE_DETAILS_SCREEN)()
-  await idVisible(CHALLENGE_TYPE("Meditation"))()
-  await idVisible(TARGET("3 mins"))()
-  await idVisible(REWARD_AMOUNT(60))()
+  await idVisible(ids.CHALLENGE_DETAILS_SCREEN)()
+  await idVisible(ids.CHALLENGE_TYPE("Meditation"))()
+  await idVisible(ids.TARGET("3 mins"))()
+  await idVisible(ids.REWARD_AMOUNT(60))()
   await textVisible(yuCoin)()
-  await idVisible(TAKE_CHALLENGE_BUTTON("Take challenge"))()
-  await idVisible(SET_UP_BUTTON("Set up tutorial"))()
+  await idVisible(ids.TAKE_CHALLENGE_BUTTON("Take challenge"))()
+  await idVisible(ids.SET_UP_BUTTON("Set up tutorial"))()
   await buttonVisible("Take challenge")()
   await buttonVisible("Set up tutorial")()
 }
 
 export const on3ChallengesDetailsScreen = async () => {
-  await idVisible(CHALLENGE_DETAILS_SCREEN)()
-  await idVisible(CHALLENGE_TYPE("Meditation"))()
-  await idVisible(TARGET("3 mins"))()
-  await idVisible(TARGET("5 mins"))()
-  await idVisible(TARGET("10 mins"))()
-  await idVisible(REWARD_AMOUNT(20))()
-  await idVisible(REWARD_AMOUNT(40))()
-  await idVisible(REWARD_AMOUNT(60))()
-  await idVisible(TAKE_CHALLENGE_BUTTON("Take challenge"))()
-  await idVisible(SET_UP_BUTTON("Set up tutorial"))()
+  await idVisible(ids.CHALLENGE_DETAILS_SCREEN)()
+  await idVisible(ids.CHALLENGE_TYPE("Meditation"))()
+  await idVisible(ids.TARGET("3 mins"))()
+  await idVisible(ids.TARGET("5 mins"))()
+  await idVisible(ids.TARGET("10 mins"))()
+  await idVisible(ids.REWARD_AMOUNT(20))()
+  await idVisible(ids.REWARD_AMOUNT(40))()
+  await idVisible(ids.REWARD_AMOUNT(60))()
+  await idVisible(ids.TAKE_CHALLENGE_BUTTON("Take challenge"))()
+  await idVisible(ids.SET_UP_BUTTON("Set up tutorial"))()
 }
 
 export const tapTakeChallenge = async () => {
@@ -221,9 +220,9 @@ export const onMeditationContentIntroScreen =
         await textVisible(label)()
         await textVisible(challengeStats, 3000)()
         await textVisible(subheading)()
-        await idVisible((MEDITATION_STAR_REWARD(stars)))
-        await idVisible((MEDITATION_YUCOIN_REWARD(yuCoinReward)))
-        await idVisible((VIEW_TOP_RIGHT_COIN_COUNTER(yuCoinTotal)))
+        await idVisible((ids.MEDITATION_STAR_REWARD(stars)))
+        await idVisible((ids.MEDITATION_YUCOIN_REWARD(yuCoinReward)))
+        await idVisible((ids.VIEW_TOP_RIGHT_COIN_COUNTER(yuCoinTotal)))
         await buttonVisible("Start session")()
       } catch (e) {
         await textVisible(label, 3000)()
@@ -239,17 +238,17 @@ export const completeMeditopiaContentSession = async () => {
   try {
     await navigateViaText("maybe later")
   } catch (e) {
-    await idVisible(VIDEO_PLAYER)()
-    await idVisible(VIDEO_LOGO)()
-    await idVisible(VIDEO_PLAYER_TIMER)()
-    await idVisible(VIDEO_PROGRESS_BAR)()
-    await idVisible(VIDEO_PLAY_PAUSE_BUTTON(false))()
+    await idVisible(ids.VIDEO_PLAYER)()
+    await idVisible(ids.VIDEO_LOGO)()
+    await idVisible(ids.VIDEO_PLAYER_TIMER)()
+    await idVisible(ids.VIDEO_PROGRESS_BAR)()
+    await idVisible(ids.VIDEO_PLAY_PAUSE_BUTTON(false))()
   }
-  await idVisible(VIDEO_PLAYER)()
-  await idVisible(VIDEO_LOGO)()
-  await idVisible(VIDEO_PLAYER_TIMER)()
-  await idVisible(VIDEO_PROGRESS_BAR)()
-  await idVisible(VIDEO_PLAY_PAUSE_BUTTON(false))()
+  await idVisible(ids.VIDEO_PLAYER)()
+  await idVisible(ids.VIDEO_LOGO)()
+  await idVisible(ids.VIDEO_PLAYER_TIMER)()
+  await idVisible(ids.VIDEO_PROGRESS_BAR)()
+  await idVisible(ids.VIDEO_PLAY_PAUSE_BUTTON(false))()
   await wait(20000)()
 }
 
@@ -272,51 +271,51 @@ export const onMeditopiaChallengeComplete = (minutes: number, level: number, yuC
 export const pauseMeditopiaChallenge = async () => {
   await navigateViaText("maybe later")
   await wait(3000)()
-  await navigateViaID(VIDEO_PLAY_PAUSE_BUTTON(false))
+  await navigateViaID(ids.VIDEO_PLAY_PAUSE_BUTTON(false))
 }
 
 export const pauseChallengeTimeVisible = async () => {
   await textNotVisible("00:00")()
-  await idVisible(VIDEO_PLAY_PAUSE_BUTTON(true))()
-  await idNotVisible(MEDITOPIA_TIMER_SECS(":00"))()
-  await idVisibleAtIndex((MEDITOPIA_TIMER_MINUTES("00")), 0)()
+  await idVisible(ids.VIDEO_PLAY_PAUSE_BUTTON(true))()
+  await idNotVisible(ids.MEDITOPIA_TIMER_SECS(":00"))()
+  await idVisibleAtIndex((ids.MEDITOPIA_TIMER_MINUTES("00")), 0)()
 }
 
 export const playAndFinishMeditopiaChallenge = async () => {
-  await navigateViaID(VIDEO_PLAY_PAUSE_BUTTON(true))
+  await navigateViaID(ids.VIDEO_PLAY_PAUSE_BUTTON(true))
   await wait(15000)()
 }
 
 export const startAndQuitMeditopiaChallenge = async () => {
   await navigateViaText("maybe later")
-  await navigateViaID(SCREEN_CLOSE)
+  await navigateViaID(ids.SCREEN_CLOSE)
 }
 
 export const quitMeditopiaChallenge = async () => {
-  await navigateViaID(SCREEN_CLOSE)
+  await navigateViaID(ids.SCREEN_CLOSE)
 }
 
 export const isOnQuitChallengeScreen = async () => {
-  await idVisible(GENERIC_SCREEN_HEADING("Call it quits?"))()
+  await idVisible(ids.GENERIC_SCREEN_HEADING("Call it quits?"))()
   await textVisible("Call it quits?")()
   await textVisible("Your current progress will be lost but you can retry any time")()
   await buttonVisible("Exit challenge")()
   await buttonVisible("Cancel")()
-  await idVisible(GENERIC_SCREEN_CTA("Exit challenge"))()
-  await idVisible(GENERIC_SCREEN_CTA("Cancel"))()
+  await idVisible(ids.GENERIC_SCREEN_CTA("Exit challenge"))()
+  await idVisible(ids.GENERIC_SCREEN_CTA("Cancel"))()
 }
 
 export const closeQuitChallengeScreen = async () => {
-  await navigateViaID(GENERIC_SCREEN_CTA(t("Cancel")))
+  await navigateViaID(ids.GENERIC_SCREEN_CTA(t("Cancel")))
 }
 
 export const exitMeditopiaChallenge = async () => {
-  await navigateViaID(GENERIC_SCREEN_CTA(t("Exit challenge")))
+  await navigateViaID(ids.GENERIC_SCREEN_CTA(t("Exit challenge")))
 }
 
 export const onChooseMeditopiaContentScreen = async () => {
   await textVisible("Meditate inside the YuLife app with Meditopia")()
-  await idVisible(CHOOSE_MEDITOPIA_SCREEN)()
+  await idVisible(ids.CHOOSE_MEDITOPIA_SCREEN)()
 }
 
 export const startMeditopiaChallenge = async () => {
@@ -325,21 +324,21 @@ export const startMeditopiaChallenge = async () => {
 }
 
 export const clickScrubber = async () => {
-  await navigateViaID(VIDEO_PROGRESS_BAR)
+  await navigateViaID(ids.VIDEO_PROGRESS_BAR)
 }
 
 export const onScreenButtonsNotVisible = async () => {
-  await idNotVisible(SCREEN_CLOSE)()
-  await idNotVisible(VIDEO_PLAY_PAUSE_BUTTON(true))()
-  await idNotVisible(LOADING_BAR)()
+  await idNotVisible(ids.SCREEN_CLOSE)()
+  await idNotVisible(ids.VIDEO_PLAY_PAUSE_BUTTON(true))()
+  await idNotVisible(ids.LOADING_BAR)()
 }
 
 export const isOnTodaysMeditationScreen = (mins1: string, yuCoin1: string) => async () => {
   await wait(2000)()
-  await idVisible(TODAYS_MEDITATION_SCREEN)()
-  await idVisible(TODAYS_MEDITATION_HEADER("Today’s Meditations"))()
-  await idVisible(TODAYS_MEDITATION_DESCRIPTION("Free sessions powered by"))()
-  await idVisible(MEDITATION_PARTNER_LOGO)()
+  await idVisible(ids.TODAYS_MEDITATION_SCREEN)()
+  await idVisible(ids.TODAYS_MEDITATION_HEADER("Today’s Meditations"))()
+  await idVisible(ids.TODAYS_MEDITATION_DESCRIPTION("Free sessions powered by"))()
+  await idVisible(ids.MEDITATION_PARTNER_LOGO)()
   await textVisible("Today’s Meditations")()
   await textVisible("Free sessions powered by")()
   await meditopiaContentCardVisible(mins1, yuCoin1)()
@@ -354,10 +353,10 @@ export const isOnTodaysMeditationScreen = (mins1: string, yuCoin1: string) => as
 }
 
 export const isOnTodaysMeditationScreen2Challenges = (mins1: string, yuCoin1: string, mins2: string, yuCoin2: string) => async () => {
-  await idVisible(TODAYS_MEDITATION_SCREEN)()
-  await idVisible(TODAYS_MEDITATION_HEADER("Today’s Meditations"))()
-  await idVisible(TODAYS_MEDITATION_DESCRIPTION("Free sessions powered by"))()
-  await idVisible(MEDITATION_PARTNER_LOGO)()
+  await idVisible(ids.TODAYS_MEDITATION_SCREEN)()
+  await idVisible(ids.TODAYS_MEDITATION_HEADER("Today’s Meditations"))()
+  await idVisible(ids.TODAYS_MEDITATION_DESCRIPTION("Free sessions powered by"))()
+  await idVisible(ids.MEDITATION_PARTNER_LOGO)()
   await textVisible("Today’s Meditations")()
   await textVisible("Free sessions powered by")()
   await meditopiaContentCardVisible(mins1, yuCoin1)()
@@ -377,5 +376,46 @@ export const tapAwarenessContentCard = (mins1: string, yuCoin1: string) => async
 }
 
 export const exitChallenge = async () => {
-  await navigateViaID(GENERIC_SCREEN_CTA("Exit challenge"))
+  await navigateViaID(ids.GENERIC_SCREEN_CTA("Exit challenge"))
+}
+
+export const canSeeNewChallengePage = (challenges: "short stroll" | "brisk walk" | "meditation" | "long walk" | "fiit" | "yudoku", earnRate: number, boostReward?: number) => async () => {
+  let challengeDetails: typeof MeditationTargetsAndRewards
+  await idVisible(ids.CHALLENGE_DETAILS_SCREEN_NEW)()
+  await idVisible(ids.YUCOIN_POWER(earnRate))()
+
+  switch (challenges) {
+    case "short stroll":
+      challengeDetails = ShortStrollTargetsAndRewards
+      break;
+    case "brisk walk":
+      challengeDetails = BriskWalkTargetsAndRewards
+      break;
+    case "long walk":
+      challengeDetails = LongWalkTargetsAndRewards
+      break;
+    case "meditation":
+      challengeDetails = MeditationTargetsAndRewards
+      break;
+    case "fiit":
+      challengeDetails = FiitTargetsAndRewards
+      break;
+    case "yudoku":
+      challengeDetails = YudokuTargetsAndRewards
+      break;
+    default:
+      break;
+  }
+
+  for (const chal of challengeDetails) {
+    await idVisible(ids.TARGET_AND_REWARD(chal.target, chal.baseRewardAmount * earnRate))()
+    await idVisible(ids.TARGET(chal.target))()
+    await idVisible(ids.REWARD_AMOUNT(chal.baseRewardAmount * earnRate))()
+  }
+
+  if (boostReward) {
+    await textVisible("Extra YuCoin")()
+    await idVisible(ids.CHALLENGE_PAGE_BOOST_SLOT(boostReward * earnRate))()
+    await idVisible(ids.CHALLENGE_DETAILS_BADGE("Boosted"))()
+  }
 }

@@ -12,7 +12,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
-      Then("I am on the Challenge Details screen", then.onChallengeDetailsScreen("60 x"));
+      Then("I am on the Challenge Details screen", then.canSeeNewChallengePage("meditation", data.USER_MEDITOPIA_1.data.earnRate));
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {
       Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
@@ -47,7 +47,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(550)));
     });
     When("I select a 14 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(10, "Meditation"), async () => {
-      Then("I am on the Challenge details screen", then.on3ChallengesDetailsScreen);
+      Then("I am on the Challenge details screen", then.canSeeNewChallengePage("meditation", data.USER_MEDITOPIA_1.data.earnRate));
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {
       Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen2Challenges("5", "40", "14", "60"));
@@ -81,7 +81,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
-      Then("I am on the Challenge details screen", then.onChallengeDetailsScreen("60 x"));
+      Then("I am on the Challenge details screen", then.canSeeNewChallengePage("meditation", data.USER_MEDITOPIA_1.data.earnRate));
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {
       Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
@@ -111,7 +111,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
-      Then("I am on the Challenge Details screen", then.onChallengeDetailsScreen("60 x"));
+      Then("I am on the Challenge Details screen", then.canSeeNewChallengePage("meditation", data.USER_MEDITOPIA_1.data.earnRate));
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {
       Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
@@ -136,7 +136,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
-      Then("I am on the Challenge details screen", then.onChallengeDetailsScreen("60 x"));
+      Then("I am on the Challenge details screen", then.canSeeNewChallengePage("meditation", data.USER_MEDITOPIA_1.data.earnRate));
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {
       Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
@@ -158,7 +158,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
-      Then("I am on the Challenge details screen", then.onChallengeDetailsScreen("60 x"));
+      Then("I am on the Challenge details screen", then.canSeeNewChallengePage("meditation", data.USER_MEDITOPIA_1.data.earnRate));
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {
       Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));

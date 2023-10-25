@@ -6,12 +6,13 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import styles from "./search-item.styles";
 import { SearchedOpponent } from "../duels-search.container";
 import { t } from "@locale";
+import { DUEL_SEARCH_LIST_ITEM } from "@ids";
 
 function DuelsSearchItem({ item, index }: ListRenderItemInfo<SearchedOpponent>) {
   return (
     <TouchableOpacityWithDelay onPress={item?.onPress}>
       <View style={index === 0 ? [styles.opponentCard, styles.firstCard] : styles.opponentCard}>
-        <View style={styles.nameSection}>
+        <View style={styles.nameSection} testID={DUEL_SEARCH_LIST_ITEM(item.fullName)}>
           <View style={styles.duelImageWrapper}>
             <DuelImage uri={item?.avatar} />
           </View>

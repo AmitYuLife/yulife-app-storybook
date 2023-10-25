@@ -183,7 +183,6 @@ export const LEADERBOARD_STATUS = (leaderboardName: string, leaderboardStatus: s
 export const LEADERBOARD_SWITCH = (leaderboardName: string, consent?: boolean) => `LEADERBOARD_SWITCH_${leaderboardName}${consent}`
 export const LEADERBOARD_COMMUNITY_LIST = (names: string[]) => `LEADERBOARD_COMMUNITY_LIST_${names}`
 export const COMMUNITY_LIST_ITEM = (title: string) => `COMMUNITY_LIST_ITEM_${title}`
-
 export const SCORE = (num: any) => `SCORE_${num}`
 export const LEADERBOARD_DESC = (desc: string) => `LEADERBOARD_DESC_${desc}`
 export const LEADBOARD_TAB = (tabName: string) => `LEADERBOARD_NAME_${tabName}`
@@ -341,6 +340,7 @@ export const DUEL_ENTRY = (firstName: string, lastName: string, wager: number, s
 export const DUEL_ICON = (firstName:string, lastName:string, status:any) => `DUEL_ICON_${firstName}_${lastName}_${status}`
 export const DUEL_DESCRIPTION = (opponentSteps: number, userSteps:number) => `DUEL_DESCRIPTION_${opponentSteps}_${userSteps}`
 export const DUEL_AVATAR = (fullName: string) => `DUEL_AVATAR_${fullName}`
+export const DUEL_SEARCH_LIST_ITEM = (name: string) => `DUEL_SEARCH_LIST_ITEM_${name}`
 
 // COMMUNITY GOALS
 export const NICKNAME_INPUT = "NICKNAME_INPUT"
@@ -423,6 +423,7 @@ export const VIDEO_PLAYER_SCREEN = "VIDEO_PLAYER_SCREEN";
 export const VIDEO_LOGO = "VIDEO_LOGO";
 export const MEDITATION_PARTNER_LOGO = PARTNER_LOGO
 export const VIDEO_PLAYER = "VIDEO_PLAYER";
+export const TARGET_AND_REWARD = (target: string, reward: number) => `TARGET_AND_REWARD_${target}${reward}`
 
 // INSPECT SCREEN
 export const YUMOJI = "YUMOJI";
