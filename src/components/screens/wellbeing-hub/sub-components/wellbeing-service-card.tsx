@@ -19,12 +19,22 @@ interface IProps {
 }
 
 const WellBeingServiceCard: FC<IProps> = ({ card }) => {
-  const enableSduiWellbeingHubItem = useSelector(getUserFeatures)?.enableSduiWellbeingHubItem;
+  const isSdui = useSelector(getUserFeatures)?.enableSduiWellbeingHubItemDetails;
 
   const onPress = useCallback(async () => {
     const { id, route, sduiStepId } = card;
 
-    if (enableSduiWellbeingHubItem) {
+    // A wellbeing hub item can be another app screen; e.g: Yuniversity
+    if (route && ROUTES_SET.has(route)) {
+      return await Navigation.push(ROUTES.wellbeingHubItems, {
+        component: {
+          id: route,
+          name: route,
+        },
+      });
+    }
+
+    if (isSdui) {
       return pushToScreen(ROUTES.wellbeingHubItems, {
         component: {
           id: ROUTES.sduiWellbeingHubItemDetails,
@@ -33,15 +43,6 @@ const WellBeingServiceCard: FC<IProps> = ({ card }) => {
             dynamicId: id,
             stepId: sduiStepId || "wellbeing_hub_item_details",
           },
-        },
-      });
-    }
-
-    if (route && ROUTES_SET.has(route)) {
-      return await Navigation.push(ROUTES.wellbeingHubItems, {
-        component: {
-          id: route,
-          name: route,
         },
       });
     }
