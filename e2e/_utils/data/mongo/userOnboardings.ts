@@ -13,7 +13,6 @@ import {
   BUSINESS_ACCOUNT_11_MPP,
 } from "../postgres/business";
 import * as user from './users';
-import { USER_84_LEADERBOARD } from "./user_leaderboards";
 
 const type = "mongo";
 const modelName = "user_onboardings";
@@ -1439,7 +1438,7 @@ export const USER_ONBOARDING_84 = {
   modelName,
   data: {
     _id: generateRandomMongoId(),
-    userId: USER_84_LEADERBOARD.data.userId,
+    userId: user.USER_84.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
     performedSteps: {

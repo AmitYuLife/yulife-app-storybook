@@ -39,7 +39,6 @@ export * from "./mongo/core_rewards";
 export * from "./mongo/mixpanel_webhooks";
 export * from "./mongo/map_milestone_templates";
 export * from "./mongo/core_streaks";
-export * from "./mongo/leaderboard"
 export * from "./mongo/duel_challenge_templates"
 export * from "./mongo/duel_wager_template"
 export * from "./mongo/userDuel"
@@ -67,7 +66,6 @@ export * from "./mongo/goal_weeklies"
 export * from "./mongo/game_sudoku_board"
 export * from "./mongo/game_sudoku_answer"
 export * from "./mongo/game_sudoku_stats"
-export * from "./mongo/user_leaderboards"
 export * from "./mongo/user_coin_transactions"
 export * from "./mongo/user_challenge_history"
 export * from "./mongo/social_groups"

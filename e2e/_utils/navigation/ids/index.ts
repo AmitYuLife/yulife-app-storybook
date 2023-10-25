@@ -182,6 +182,7 @@ export const LEADERBOARD_SCROLL_LIST = "LEADERBOARD_SCROLL_LIST"
 export const LEADERBOARD_STATUS = (leaderboardName: string, leaderboardStatus: string) => `LEADERBOARD_STATUS_${leaderboardName}_${leaderboardStatus}`
 export const LEADERBOARD_SWITCH = (leaderboardName: string, consent?: boolean) => `LEADERBOARD_SWITCH_${leaderboardName}${consent}`
 export const LEADERBOARD_COMMUNITY_LIST = (names: string[]) => `LEADERBOARD_COMMUNITY_LIST_${names}`
+export const COMMUNITY_LIST_ITEM = (title: string) => `COMMUNITY_LIST_ITEM_${title}`
 
 export const SCORE = (num: any) => `SCORE_${num}`
 export const LEADERBOARD_DESC = (desc: string) => `LEADERBOARD_DESC_${desc}`
