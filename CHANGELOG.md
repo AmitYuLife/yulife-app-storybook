@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.105.0] - 2023-10-25
+
+### Bugfixes
+
+- Bugfix ENG-3661: Variable "$leaderboardId" of required type "String!" was not provided
+- Bugfix: wellbeing hub routing
+- Bugfix: TopBar height overlapping other components
+- Bugfix: Refresh Yudoku leaderboard if selected when completing a Yudoku challenge
+
+### Tasks
+
+- Task: stringify video error
+- Task: New quest map
+
+### Chores
+
+- Chore: Improve client logger
+- ISA-1396 Chore: add spanish US
+- Chore: Upgrade intercom
+
+### Extra
+
+- Detox: Fixes 25th Oct pt 2
+- Detox: leavers test fix
+- Detox: Fixes 25th Oct
+- Detox: Fixes 24th oct
+- Detox: extended 6 fixes
+- Detox: Fixes 23rd Oct
+- Detox/xse 2240
+- detox:xse-2170 - UK Wellbeing Hub on YuScreen
+- Detox: Fixes 20th oct
+
 ## [3.104.0] - 2023-10-19
 
 ### Bugfixes
