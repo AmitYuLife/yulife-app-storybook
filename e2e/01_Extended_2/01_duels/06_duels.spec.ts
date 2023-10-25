@@ -145,7 +145,7 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             When("I tap Challenge a friend", when.tapID(ids.CHALLENGE_FRIEND_BUTTON), async () => {
                 Then("I should be on the search for a friend page", then.textVisible("Search for a friend:"))
             })
-            When("I tap on Toby Flenderson", when.tapID(ids.DUEL_AVATAR("Toby Flenderson")), async () => {
+            When("I tap on Toby Flenderson", when.tapID(ids.DUEL_SEARCH_LIST_ITEM("Toby Flenderson")), async () => {
                 Then("I should be on the matchup page", then.textVisible("The matchup:"))
                 Then("I should see You", then.textVisible("You"))
                 Then("I should see Toby Flenderson", then.textVisible("Toby Flenderson"))

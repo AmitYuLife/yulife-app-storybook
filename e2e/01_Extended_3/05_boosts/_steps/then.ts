@@ -14,7 +14,8 @@ export const {
 export const {
   onChallengeComplete,
   onMeditationChallengeComplete,
-  isOnQuitChallengeScreen
+  isOnQuitChallengeScreen,
+  canSeeNewChallengePage
 } = screens.challenges;
 
 export const {
@@ -47,16 +48,6 @@ export const canSeeBoostedChallengeTiles = (user: typeof USER_122) => async () =
   await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Fiit Class", fiitBonused.toString(), true))()
   await scrollUntilIdVisible(ids.CHALLENGE_SET_SCROLL, ids.CHALLENGE_TILE_BOOST_TAG("Yudoku", "120", true), "down")()
   await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Yudoku", yudokuBonused.toString(), true))()
-}
-
-export const canSeeChallengePage = (power: string, reward: number, isBoosted: boolean) => async () => {
-  await idVisible(ids.CHALLENGE_DETAILS_SCREEN_NEW)()
-  await idVisible(ids.YUCOIN_POWER(power))()
-
-  if (isBoosted) {
-    await idVisible(ids.CHALLENGE_PAGE_BOOST_SLOT(reward))()
-    await idVisible(ids.CHALLENGE_DETAILS_BADGE("Boosted"))()
-  }
 }
 
 export const stepsChallengeDataCorrect = (stage: number, yucoinEarned: number, steps: number) =>  async () => {

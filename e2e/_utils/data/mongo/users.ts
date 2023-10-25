@@ -473,6 +473,7 @@ export const USER_28 = {
       },
     ],
     earnRate: 7,
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
   },
 } as IDatabaseItem;
 

@@ -25,6 +25,7 @@ export const {
 export const {
     onChallengeComplete,
     startChallenge,
+    canSeeNewChallengePage
 } = screens.challenges
 
 export const {

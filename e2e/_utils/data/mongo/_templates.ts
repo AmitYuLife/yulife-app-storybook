@@ -61,7 +61,7 @@ export const allTogglesTrue = {
       showYucoinPowerButton: true,
       showBrainGameSudoku: true,
       newChallengeList: true,
-      useNewLeaderboardServices: true
+      useNewLeaderboardServices: true,
     },
   },
 } as IDatabaseItem;
@@ -155,6 +155,7 @@ export const allTogglesTrueFor_PLI = {
       hasCoveaFibActive: true,
       hasBupaDentActive: true,
       showDailyScreenCustomIcon: true,
+      showYucoinPowerButton: true
     },
   },
 } as IDatabaseItem;
@@ -202,7 +203,10 @@ export const mediaContentToggle = {
       passiveCyclingEnabled: true,
       newMediaPlayer: true,
       newChallengeList: true,
-      useNewLeaderboardServices: true
+      useNewLeaderboardServices: true,
+      showYucoinPowerButton: true,
+      showBrainGameSudoku: true,
+      showFiit: true,
     },
   },
 } as IDatabaseItem;
@@ -234,6 +238,7 @@ export const allTogglesTrueFor_PLI_V4 = {
       hasCoveaFibActive: true,
       hasBupaDentActive: true,
       showDailyScreenCustomIcon: true,
+      showYucoinPowerButton: true
     },
   },
 } as IDatabaseItem;
@@ -287,7 +292,7 @@ export const DEFAULT_TOGGLES = {
       showBrainGameSudoku: true,
       newChallengeList: true,
       showFiit: true,
-      useNewLeaderboardServices: true
+      useNewLeaderboardServices: true,
     },
   },
 } as IDatabaseItem;

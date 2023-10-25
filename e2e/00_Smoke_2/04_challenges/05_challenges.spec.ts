@@ -15,27 +15,27 @@ Feature("As a user I can take a challenge", async () => {
         Given("I login and go to the quests tab", given.logInAndGoToTab("quests"), async () => {
             Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
             Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)))
-            When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-                Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
-                When("I tap this challenge", when.tapID(ids.CHALLENGE_TILE("Short Stroll")), async () => {
-                    Then("I should see a screen with a take challenge option", then.textVisible("Short Stroll / 0 mins"))
-                    When("I tap 'take challenge'", when.tapText(t("Take challenge")), async () => {
-                        When("I dismiss this screen if visible", when.dismissNotificationScreenIfVisible, async () => {
-                            Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
-                            Then("I should see the cancel button", then.idVisible(ids.BUTTON_CLOSE_CHALLENGE))
-                            When("I tap this button", when.tapID(ids.BUTTON_CLOSE_CHALLENGE), async () => {
-                                Then("I should see the cancel challenge confirmation screen", then.textVisible("Call it quits?"))
-                                When("I tap exit", when.tapText(t("Exit challenge")), async () => {
-                                    Then("I should be back on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
-                                    When("I go back to the yuicoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-                                        Then("I should see the number of points I started with", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
-                                    })
-                                })
-                            })
-                        })
-                    })
-                })
+        })
+        When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
+            Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+        })
+        When("I tap this challenge", when.tapID(ids.CHALLENGE_TILE("Short Stroll")), async () => {
+            Then("I should see a screen with a take challenge option", then.canSeeNewChallengePage("short stroll", data.USER_1.data.earnRate))
+        })
+        When("I tap 'take challenge'", when.tapText(t("Take challenge")), async () => {
+            When("I dismiss this screen if visible", when.dismissNotificationScreenIfVisible, async () => {
+                Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
+                Then("I should see the cancel button", then.idVisible(ids.BUTTON_CLOSE_CHALLENGE))
             })
+        })
+        When("I tap this button", when.tapID(ids.BUTTON_CLOSE_CHALLENGE), async () => {
+            Then("I should see the cancel challenge confirmation screen", then.textVisible("Call it quits?"))
+        })
+        When("I tap exit", when.tapText(t("Exit challenge")), async () => {
+            Then("I should be back on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
+        })
+        When("I go back to the yuicoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+            Then("I should see the number of points I started with", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
         })
     })
 

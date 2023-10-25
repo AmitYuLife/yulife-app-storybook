@@ -20,7 +20,7 @@ Feature("As a user my activity is monitored correctly", async () => {
                 })
             })
             When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_2.data.name)))
+                Then("I should be on the leaderboard screen", then.textVisible("Angela Martin"))
                 Then("I should see the duel button on the leaderboard screen", then.idVisible(ids.DUELS_BUTTON))
             })
             When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
@@ -44,7 +44,7 @@ Feature("As a user my activity is monitored correctly", async () => {
                 Then("I should see the leaderboard consent screen as my leaderboard has been reset", then.onLeaderboardConsent)
             })
             When("I tap 'Yes'", when.tapText(t("Yes")), async () => {
-                Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_2.data.name)))
+                Then("I should be on the leaderboard screen", then.textVisible("Angela Martin"))
                 Then("I should not see the duel button on the leaderboard screen", then.idNotVisible(ids.DUELS_BUTTON))
             })
         })

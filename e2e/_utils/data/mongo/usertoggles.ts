@@ -12,6 +12,18 @@ import { BUSINESS_ACCOUNT_5 } from "../postgres/business";
 const type = "mongo";
 const modelName = "usertoggles";
 
+export const CUSTOMER_1_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_1.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features
+    }
+  },
+} as IDatabaseItem;
+
 export const CUSTOMER_2_TOGGLES = {
   type: "mongo",
   modelName: "usertoggles",

@@ -17,7 +17,7 @@ Feature("Fiit in app", async () => {
       Then("I should see the 'fiit class' challenge tile", then.idVisible(ids.CHALLENGE_TILE(fiitInfo.challengeName)))
     })
     When("I tap on the fiit class challenge tile", when.tapID(ids.CHALLENGE_TILE(fiitInfo.challengeName)), async () => {
-      Then("I should be able to see details about the challenge", then.canSeeFiitChallengeDetailsScreen(data.USER_FIIT))
+      Then("I should be able to see details about the challenge", then.canSeeNewChallengePage("fiit", data.USER_FIIT.data.earnRate))
     })
     When("I tap 'Take challenge'", when.tapTakeChallenge, async () => {
       Then("I should be on the Fiit 'Workout collections' screen", then.canSeeWorkoutCollectionsScreen)
@@ -79,7 +79,7 @@ Feature("Fiit in app", async () => {
       Then("I should see the 'fiit class' challenge tile", then.idVisible(ids.CHALLENGE_TILE(fiitInfo.challengeName)))
     })
     When("I tap on the fiit class challenge tile", when.tapID(ids.CHALLENGE_TILE(fiitInfo.challengeName)), async () => {
-      Then("I should be able to see details about the challenge", then.canSeeFiitChallengeDetailsScreen(data.USER_FIIT))
+      Then("I should be able to see details about the challenge", then.canSeeNewChallengePage("fiit", data.USER_FIIT.data.earnRate))
     })
     When("I tap 'Take challenge'", when.tapTakeChallenge, async () => {
       Then("I should be on the Fiit 'Workout collections' screen", then.canSeeWorkoutCollectionsScreen)
@@ -120,7 +120,7 @@ Feature("Fiit in app", async () => {
       Then("I should see the 'fiit class' challenge tile", then.idVisible(ids.CHALLENGE_TILE(fiitInfo.challengeName)))
     })
     When("I tap on the fiit class challenge tile", when.tapID(ids.CHALLENGE_TILE(fiitInfo.challengeName)), async () => {
-      Then("I should be able to see details about the challenge", then.canSeeFiitChallengeDetailsScreen(data.USER_FIIT))
+      Then("I should be able to see details about the challenge", then.canSeeNewChallengePage("fiit", data.USER_FIIT.data.earnRate))
     })
     When("I tap 'Take challenge'", when.tapTakeChallenge, async () => {
       Then("I should be on the Fiit 'Workout collections' screen", then.canSeeWorkoutCollectionsScreen)
