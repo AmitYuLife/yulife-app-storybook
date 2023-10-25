@@ -1,6 +1,6 @@
 {
   "name": "yulife",
-  "version": "3.105.0",
+  "version": "3.106.0",
   "versionCode": 57,
   "private": true,
   "scripts": {
@@ -80,7 +80,7 @@
     "@apollo/client": "^3.7.3",
     "@bugsnag/plugin-react-native-navigation": "^7.18.0",
     "@bugsnag/react-native": "^7.18.2",
-    "@intercom/intercom-react-native":"6.1.0",
+    "@intercom/intercom-react-native": "6.1.0",
     "@leanplum/react-native-sdk": "^2.0.0",
     "@react-native-camera-roll/camera-roll": "^5.3.1",
     "@react-native-community/async-storage": "^1.12.1",
