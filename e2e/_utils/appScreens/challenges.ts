@@ -4,7 +4,9 @@ import {
 import { sendSteps } from "@socket";
 import { getLocalisedString as t } from "@i18n";
 import * as ids from "@ids"
-import { BriskWalkTargetsAndRewards, FiitTargetsAndRewards, LongWalkTargetsAndRewards, MeditationTargetsAndRewards, ShortStrollTargetsAndRewards, YudokuTargetsAndRewards } from "./utils";
+import { BriskWalkTargetsAndRewards, FiitTargetsAndRewards, LongWalkTargetsAndRewards, MeditationTargetsAndRewards, ShortStrollTargetsAndRewards, YudokuTargetsAndRewards, briskWalkMaxReward, fiitMaxReward, longWalkMaxReward, meditationMaxReward, shortStrollMaxReward, yudokuMaxReward } from "./utils";
+import { USER_122 } from "@data";
+import { scrollUntilIdVisible } from "_utils/navigation/scrolling";
 
 export const onChallengeComplete = (stepCount: number, level = 1) => async () => {
   const steps = `${stepCount} steps`
@@ -418,4 +420,37 @@ export const canSeeNewChallengePage = (challenges: "short stroll" | "brisk walk"
     await idVisible(ids.CHALLENGE_PAGE_BOOST_SLOT(boostReward * earnRate))()
     await idVisible(ids.CHALLENGE_DETAILS_BADGE("Boosted"))()
   }
+}
+
+export const canSeeChallengeTiles = (user: typeof USER_122, bonus?: "surge" | "boost", surgeAmount?: number) => async () => {
+  const earnRate = user.data.earnRate
+  let isBoosted = false
+
+  let shortStrollTileReward = (shortStrollMaxReward * earnRate)
+  let briskWalkTileReward = (briskWalkMaxReward * earnRate)
+  let longWalkTileReward = (longWalkMaxReward * earnRate)
+  let meditationTileReward = (meditationMaxReward * earnRate)
+  let fiitTileReward = (fiitMaxReward * earnRate)
+  let yudokuTileReward = (yudokuMaxReward * earnRate)
+
+  const addBonus = (int: number) => {
+    if (bonus) {
+      const multiplier = bonus === "surge" ? surgeAmount : 2
+      isBoosted = bonus === "boost" ? true : false
+    
+      return (int * multiplier).toString()
+    }
+
+    return int.toString()
+  }
+  
+
+  await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Short Stroll", addBonus(shortStrollTileReward), isBoosted))()
+  await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Brisk Walk", addBonus(briskWalkTileReward), isBoosted))()
+  await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Long Walk", addBonus(longWalkTileReward), isBoosted))()
+  await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Meditation", addBonus(meditationTileReward), isBoosted))()
+  await scrollUntilIdVisible(ids.CHALLENGE_SET_SCROLL, ids.CHALLENGE_TILE_BOOST_TAG("Fiit Class", addBonus(fiitTileReward), isBoosted), "down")()
+  await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Fiit Class", addBonus(fiitTileReward), isBoosted))()
+  await scrollUntilIdVisible(ids.CHALLENGE_SET_SCROLL, ids.CHALLENGE_TILE_BOOST_TAG("Yudoku", addBonus(yudokuTileReward), isBoosted), "down")()
+  await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Yudoku", addBonus(yudokuTileReward), isBoosted))()
 }

@@ -181,7 +181,7 @@ export const GOALS_BUTTON = "GOALS_BUTTON"
 export const LEADERBOARD_SCROLL_LIST = "LEADERBOARD_SCROLL_LIST"
 export const LEADERBOARD_STATUS = (leaderboardName: string, leaderboardStatus: string) => `LEADERBOARD_STATUS_${leaderboardName}_${leaderboardStatus}`
 export const LEADERBOARD_SWITCH = (leaderboardName: string, consent?: boolean) => `LEADERBOARD_SWITCH_${leaderboardName}${consent}`
-export const LEADERBOARD_COMMUNITY_LIST = (names: string[]) => `LEADERBOARD_COMMUNITY_LIST_${names}`
+export const LEADERBOARD_COMMUNITY_LIST = (names: string[]) => `LEADERBOARD_COMMUNITY_LIST_${names.sort()}`
 export const COMMUNITY_LIST_ITEM = (title: string) => `COMMUNITY_LIST_ITEM_${title}`
 export const SCORE = (num: any) => `SCORE_${num}`
 export const LEADERBOARD_DESC = (desc: string) => `LEADERBOARD_DESC_${desc}`
@@ -400,6 +400,7 @@ export const CHALLENGE_SUCCESS_SCREEN = "CHALLENGE_SUCCESS_SCREEN"
 export const CHALLENGE_TILE_BOOST_TAG = (heading: string, reward: string, hasBonus: boolean) => `CHALLENGE_TILE_BOOST_TAG_${heading}_${reward}_${hasBonus}`
 export const CHALLENGE_PAGE_BOOST_SLOT = (reward: number) => `CHALLENGE_PAGE_BOOST_SLOT_${reward}`
 export const CHALLENGE_DETAILS_BADGE = (text: string) => `CHALLENGE_DETAILS_BADGE_${text}`
+export const CHALLENGE_TILE_SURGE_ICON = "CHALLENGE_TILE_SURGE_ICON"
 
 // MEDITOPIA
 export const MEDITOPIA_LOGO = "MEDITOPIA_LOGO";

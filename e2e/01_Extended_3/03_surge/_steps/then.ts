@@ -13,8 +13,8 @@ export const {
 } = navigation.common
 
 export const {
-    
-} = screens.yuscreen
+    canSeeChallengeTiles  
+} = screens.challenges
 
 export const iCanSeeSurgeIcon = (multiplier: string, expireDate: string) => async () => {
     await idVisible(TEXT_TEMPLATE(multiplier))()

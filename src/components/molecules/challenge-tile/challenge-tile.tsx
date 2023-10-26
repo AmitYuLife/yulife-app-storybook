@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { Pressable, Image as RNImage, StyleSheet, View } from "react-native";
 import styles, { IMAGE_SIZE } from "./challenge-tile.styles";
-import { CHALLENGE_REWARD, CHALLENGE_TILE, CHALLENGE_TILE_BOOST_TAG } from "@ids";
+import { CHALLENGE_REWARD, CHALLENGE_TILE, CHALLENGE_TILE_BOOST_TAG, CHALLENGE_TILE_SURGE_ICON } from "@ids";
 import { Colours, Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
 import { t } from "@locale";
@@ -112,7 +112,13 @@ const ChallengeTile = ({
           />
         </View>
         {!hasSurge ? null : (
-          <Image source={SurgeIcon} width={Style.adjust(24)} height={Style.adjust(24)} style={styles.surgeIcon} />
+          <Image
+            source={SurgeIcon}
+            width={Style.adjust(24)}
+            height={Style.adjust(24)}
+            style={styles.surgeIcon}
+            testID={CHALLENGE_TILE_SURGE_ICON}
+          />
         )}
         {!isLocked && duration ? (
           <View style={[styles.duration, { backgroundColor: durationColour }]}>

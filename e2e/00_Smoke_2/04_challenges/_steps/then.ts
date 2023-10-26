@@ -25,7 +25,8 @@ export const {
 export const {
     onChallengeComplete,
     startChallenge,
-    canSeeNewChallengePage
+    canSeeNewChallengePage,
+    canSeeChallengeTiles
 } = screens.challenges
 
 export const {
@@ -52,9 +53,9 @@ export const onTodaysEarnings = (steps = 0, cycling: string, mindfulness = 0, yu
     await textVisibleAtIndex(`0/${yuCoinPowerEarnRate}`,0)()
     await textVisibleAtIndex(`0/${yuCoinPowerEarnRate}`,1)()
     await textVisibleAtIndex(`0/${yuCoinPowerEarnRate}`,2)()
-    await expectIsVisibleViaText("Today's challenges (0/1)")
     await scrollUntilTextVisible(ids.TODAYS_EARNINGS,"No challenge done","down")()
     await scrollUntilTextVisible(ids.TODAYS_EARNINGS,"Take a challenge (1 left)","down")()
+    await textVisible("Today's challenges (0/1)")()
 }
 
 export const yuCoinPowerInfo = (yuCoinPower: number) => async () => {
@@ -184,25 +185,6 @@ export const challengeRewardVisible = (yuCoinPower: number, rewardValue: number,
     await idVisibleAtIndex(ids.CHALLENGE_REWARD(`${minReward} - ${yuCoinTotal}`), 0)()
     await idVisibleAtIndex(ids.CHALLENGE_REWARD(`${minReward} - ${yuCoinTotal}`), 1)()
 }
-
-export const canSeeNewChallengeTiles = (user: typeof USER_122) => async () => {
-    const earnRate = user.data.earnRate
-    const shortStrollMaxYuCoin = (shortStrollMaxReward * earnRate)
-    const briskWalkMaxYuCoin = (briskWalkMaxReward * earnRate)
-    const longWalkMaxYuCoin = (longWalkMaxReward * earnRate)
-    const meditationMaxYuCoin = (meditationMaxReward * earnRate)
-    const fiitMaxYuCoin = (fiitMaxReward * earnRate)
-    const yudokuMaxYuCoin = (yudokuMaxReward * earnRate)
-  
-    await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Short Stroll", shortStrollMaxYuCoin.toString(), false))()
-    await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Brisk Walk", briskWalkMaxYuCoin.toString(), false))()
-    await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Long Walk", longWalkMaxYuCoin.toString(), false))()
-    await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Meditation", meditationMaxYuCoin.toString(), false))()
-    await scrollUntilIdVisible(ids.CHALLENGE_SET_SCROLL, ids.CHALLENGE_TILE_BOOST_TAG("Fiit Class", fiitMaxYuCoin.toString(), false), "down")()
-    await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Fiit Class", fiitMaxYuCoin.toString(), false))()
-    await scrollUntilIdVisible(ids.CHALLENGE_SET_SCROLL, ids.CHALLENGE_TILE_BOOST_TAG("Yudoku", yudokuMaxYuCoin.toString(), false), "down")()
-    await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Yudoku", yudokuMaxYuCoin.toString(), false))()
-  }
 
 export const yunityCorrect = (worldType: "Forest" | "Ocean" |"Desert" |"Mountain1") => async()=>{
     await wait(5000)()

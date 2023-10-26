@@ -26,7 +26,7 @@ Feature("Level boosts", async () => {
       Then("I should see that level 51 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
     })
     When("I tap the level 51 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(51)), async () => {
-      Then("I can see the boosted challenge tiles", then.canSeeBoostedChallengeTiles(data.USER_122))
+      Then("I can see the boosted challenge tiles", then.canSeeChallengeTiles(data.USER_122, "boost"))
     })
     When("I tap the tile", when.tapID(ids.CHALLENGE_TILE("Long Walk")), async () => {
       Then("I can see the challenge page with the boost tab", then.canSeeNewChallengePage("long walk", data.USER_122.data.earnRate, longWalkMaxReward))

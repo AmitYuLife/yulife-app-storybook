@@ -5,6 +5,7 @@ import { getLocalisedString as t } from "@i18n";
 import { CUSTOMER_1 } from "@data";
 import { SocialGroupLeaderboard, UserLeaderboardListItem } from "../_resources/types";
 import { screens } from "@appScreens";
+import { leaderboardConsentCta, leaderboardConsentHeading } from "../_resources/constants";
 
 export const {
     tapID,
@@ -45,6 +46,9 @@ export const turnOffLeaderboard = (leaderboardID: string) => async () => {
 }
 
 export const clickUser = (user: typeof CUSTOMER_1) => async () => {
+    if (device.name.includes("(iPhone SE (3rd generation))")) {
+        await swipeFromText(leaderboardConsentHeading, "up", "slow")()
+    }
     await tapText(`${user.data.firstName} ${user.data.lastName}`)()
 }
 
@@ -90,5 +94,16 @@ export const tapLeaderboardConsentSwitch = (leaderboard: SocialGroupLeaderboard,
 }
 
 export const tapLeaderboardUser = (user:  UserLeaderboardListItem) => async () => {
+    if (device.name.includes("(iPhone SE (3rd generation))")) {
+        await swipeFromText("Steps", "up", "slow")()
+    }
     await tapID(ids.LEADERBOARD_NAME(user.name, user.score, user.rank))()
+}
+
+export const tapJoinLeaderboard = async () => {
+    if (device.name.includes("(iPhone SE (3rd generation))")) {
+        await swipeFromText(leaderboardConsentHeading, "up", "fast")()
+    }
+    
+    await tapText(leaderboardConsentCta)()
 }
