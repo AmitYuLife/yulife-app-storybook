@@ -46,7 +46,7 @@ Feature("As a user I can take a challenge", async () => {
             When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
                 Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
                 When("I tap this challenge", when.tapID(ids.CHALLENGE_TILE("Short Stroll")), async () => {
-                    Then("I should see a screen with a take challenge option", then.textVisible("Short Stroll / 0 mins"))
+                    Then("I should see a screen with a take challenge option", then.canSeeNewChallengePage("short stroll", data.USER_1.data.earnRate))
                     When("I tap 'take challenge'", when.tapText(t("Take challenge")), async () => {
                         When("I dismiss this screen", when.dismissNotificationScreenIfVisible, async () => {
                             Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
@@ -156,7 +156,7 @@ Feature("As a user I can take a challenge", async () => {
             })
         })
         When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-            Then("I should see the short stroll and meditation challenge rewards of 26-78 yucoin each", then.canSeeNewChallengeTiles(data.USER_52))
+            Then("I should see the short stroll and meditation challenge rewards of 26-78 yucoin each", then.canSeeChallengeTiles(data.USER_52))
         })
         When("I click to go back", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
             When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {

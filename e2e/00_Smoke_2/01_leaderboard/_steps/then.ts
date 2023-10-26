@@ -3,7 +3,6 @@ import { screens } from "@appScreens"
 import { navigation } from "@navigation"
 import { leaderboardConsentCta, leaderboardConsentDesc, leaderboardConsentHeading } from "../_resources/constants"
 import { SocialGroupLeaderboard, UserLeaderboardListItem } from "../_resources/types"
-import { SOCIAL_GROUP_LEADERBOARD_C1_STEPS } from "@data"
 
 export const {
     textVisible,
@@ -13,14 +12,15 @@ export const {
     textNotVisible,
     wait,
     textVisibleAtIndex,
-    idVisibleAtIndex
+    idVisibleAtIndex,
 } = navigation.common
 
 export const {
     scrollFromID,
     scrollFromText,
     scrollUntilIdVisible,
-    swipeFromText
+    swipeFromText,
+    scrollUntilTextVisible
 } = navigation.scrolling
 
 export const {
@@ -34,6 +34,7 @@ export const {
 
 export const onLeaderboardWithoutConsent = async () => {
     await textVisible(leaderboardConsentHeading)()
+    await swipeFromText(leaderboardConsentHeading, "up", "fast")()
     await textVisible(leaderboardConsentDesc)()
     await textVisible(leaderboardConsentCta)()
     await idVisible(ids.LEADBOARD_TAB("Steps"))()
@@ -51,6 +52,10 @@ export const canSeeLeaderboardListModal = (socialGroupLeaderboards: SocialGroupL
 }
 
 export const leaderboardVisible = (customers: UserLeaderboardListItem[]) => async () => {
+    if (device.name.includes("(iPhone SE (3rd generation))")) {
+        await swipeFromText("Steps", "up", "fast")()
+    }
+
     for(const { name, rank, score, secondaryRank } of customers){
         try {
             await idVisible(ids.LEADERBOARD_NAME(name, score, rank))()

@@ -18,4 +18,5 @@ export const {
 
 export const {
     onChallengeComplete,
+    canSeeNewChallengePage
 } = screens.challenges

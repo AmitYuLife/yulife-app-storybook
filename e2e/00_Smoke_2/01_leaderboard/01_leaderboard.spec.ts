@@ -20,7 +20,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("I can see the emtpy yudoku leaderboard state", then.onLeaderboardWithoutConsent)
         })
         When('I tap the steps tab', when.tapID(ids.LEADBOARD_TAB("Steps")), async () => {
-            When("I tap Join the leaderboard", when.tapText("Join the Leaderboard"), async () => {
+            When("I tap Join the leaderboard", when.tapJoinLeaderboard, async () => {
                 Then('I can see the leaderboard list modal', then.canSeeLeaderboardListModal([DefaultStepsLeaderboard, DefaultYudokuLeaderboard], false))
             })
         })
@@ -31,10 +31,12 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 })
             })
         })
-        When("I tap 30 days", when.tapID(ids.LEADERBOARD_INFO_BUTTON), async () => {
-            Then("I should be on the about leaderboard page", then.idVisible(ids.LEADERBOARD_INFO))
-            When("I tap the back button", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
-                Then("I should be back on the leaderboard", then.leaderboardVisible([User16LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem]))
+        When("I swipe up if needed", when.swipeFromText("Steps", "down", "fast"), async () => {
+            When("I tap 30 days", when.tapID(ids.LEADERBOARD_INFO_BUTTON), async () => {
+                Then("I should be on the about leaderboard page", then.idVisible(ids.LEADERBOARD_INFO))
+                When("I tap the back button", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
+                    Then("I should be back on the leaderboard", then.leaderboardVisible([User16LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem]))
+                })
             })
         })
     })
@@ -45,8 +47,10 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([User17LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem]))
             })
-            When("I tap on the leaderboard name", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
-                Then("I should see my active leaderboard", then.idVisible(ids.LEADERBOARD_COMMUNITY_LIST([data.SOCIAL_GROUP_C1.data.name])))
+            When("I swipe up if needed", when.swipeFromText("Steps", "down", "fast"), async () => {
+                When("I tap on the leaderboard name", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
+                    Then("I should see my active leaderboard", then.idVisible(ids.LEADERBOARD_COMMUNITY_LIST([data.SOCIAL_GROUP_C1.data.name])))
+                })
             })
             When("I tap close", when.tapText("View Leaderboard"), async () => {
                 When("I tap the menu", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
@@ -83,7 +87,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
         When("I scroll to the top of the page", when.scrollUntilIdVisible(ids.LEADERBOARD_SCROLL_LIST, ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C2.data.name), "down"), async () => {
             When("I tap the leaderboard drop down", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
-                Then("I should be on the leaderboard selection screen", then.idVisible(ids.LEADERBOARD_COMMUNITY_LIST([data.SOCIAL_GROUP_C1.data.name, data.SOCIAL_GROUP_C2.data.name])))
+                Then("I should be on the leaderboard selection screen", then.idVisible(ids.LEADERBOARD_COMMUNITY_LIST([data.SOCIAL_GROUP_C2.data.name, data.SOCIAL_GROUP_C1.data.name])))
             })
         })
         When("I tap the first leaderboard, Lb1", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_C1.data.name)), async () => {

@@ -15,7 +15,8 @@ export const {
 
 export const {
     onChallengeComplete,
-    onMeditationChallengeComplete
+    onMeditationChallengeComplete,
+    canSeeChallengeTiles
 } = screens.challenges
 
 export const {
@@ -82,21 +83,6 @@ export const yuniverseChallengesVisible = async () => {
     await swipeFromText("Meditation", "up", "fast")()
     await idVisible(ids.CHALLENGE_TILE("Fiit Class"))()
     await swipeFromText("Fiit Class", "down", "fast")()
-}
-
-export const yuniverseChallengesYuCoinTilesCorrect = (earnRate: number) => async () => {
-    const shortStrollBonused = (shortStrollMaxReward * earnRate) * 2
-    const briskWalkBonused = (briskWalkMaxReward * earnRate) * 2
-    const longWalkBonused = (longWalkMaxReward * earnRate) * 2
-    const meditationBonused = (meditationMaxReward * earnRate) * 2
-    const fiitBonused = (fiitMaxReward * earnRate) * 2
-
-    await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Short Stroll", shortStrollBonused.toString(), true))()
-    await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Brisk Walk", briskWalkBonused.toString(), true))()
-    await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Long Walk", longWalkBonused.toString(), true))()
-    await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Meditation", meditationBonused.toString(), true))()
-    await scrollUntilIdVisible(ids.CHALLENGE_SET_SCROLL, ids.CHALLENGE_TILE_BOOST_TAG("Fiit Class", fiitBonused.toString(), true), "down")()
-    await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Fiit Class", fiitBonused.toString(), true))()
 }
 
 export const yucoinTodayEarnedWithSurge = (yucoinStart: number, yucoinEarned: number) => async () => {
