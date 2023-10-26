@@ -27,10 +27,14 @@ import {
   V4_YUSCREEN,
   SLOT_TITLE,
   YUSCREEN_SCROLL_VIEW,
+  BOX_OPTION_DESCRIPTION,
+  BOX_OPTION_TITLE,
+  RIGHT_SIDE_IMAGE_BOX_OPTION,
 } from "@ids";
 import moment from "moment";
 import { expect } from "detox"
 import { getFullName } from "_utils/users";
+import { wellbeingButtonDes, wellbeingButtonimg, wellbeingButtonTitle } from "00_Smoke_4/01_yuscreen_v4/_resources/fixture";
 
 export const {
   idVisible,
@@ -574,3 +578,15 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
   await swipeFromText(protectionPowered, "up", "slow")();
   await expect(element(by.text(buttonText))).toBeVisible();
 };
+
+export const wellbeingHubVisible = (visible = true) => async () => {
+  if(visible){
+    await idVisible(RIGHT_SIDE_IMAGE_BOX_OPTION(wellbeingButtonimg))
+    await idVisible(BOX_OPTION_TITLE(wellbeingButtonTitle))
+    await idVisible(BOX_OPTION_DESCRIPTION(wellbeingButtonDes))
+  } else {
+    await idNotVisible(RIGHT_SIDE_IMAGE_BOX_OPTION(wellbeingButtonimg))
+    await idNotVisible(BOX_OPTION_TITLE(wellbeingButtonTitle))
+    await idNotVisible(BOX_OPTION_DESCRIPTION(wellbeingButtonDes))
+  }
+}

@@ -1842,3 +1842,16 @@ export const CUSTOMER_125 = {
   },
 } as IDatabaseItem
 
+export const CUSTOMER_126_LEAVER_WELLBEING = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Leaves",
+    lastName: "McLeaverson",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+

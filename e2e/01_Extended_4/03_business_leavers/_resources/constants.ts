@@ -1,0 +1,2 @@
+export const availableAnytime = "Available anytime"
+export const leaversProductBackgroundImg = "https://yulife-develop.imgix.net/yuscreen/slots/background/bg-pink-without-shadow-28-04-23.svg?ixlib=js-3.2.1&w=135&h=156&s=0e808ed69faa1199ca9f97c7c36c79ef"

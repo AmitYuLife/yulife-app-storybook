@@ -2312,3 +2312,14 @@ export const USER_125 = {
     earnRate: 5,
   },
 } as IDatabaseItem;
+
+export const USER_126 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_126_LEAVER_WELLBEING.data.customerId,
+    nickname: "Leavo",
+    earnRate: 1
+  },
+} as IDatabaseItem;
