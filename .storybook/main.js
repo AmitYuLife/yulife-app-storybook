@@ -44,7 +44,7 @@ const CUSTOM_CONFIG = {
         },
       },
       {
-        test: /\.(png|jpe?g|woff|woff2|eot|otf|ttf|svg)$/,
+        test: /\.(png|jpe?g|woff|woff2|eot|otf|ttf|svg|webp)$/,
         loader: "file-loader",
         options: {
           name: "[name].[hash:8].[ext]",
