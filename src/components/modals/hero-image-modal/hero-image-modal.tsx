@@ -44,7 +44,6 @@ const HeroImageModal = (props: Props) => {
                   imageStyle={styles.hero}
                   source={!imageUrl ? require("@assets/hero-image-modal/default.png") : { uri: imageUrl }}
                   width={Style.DEVICE_WIDTH - Style.adjust(48)}
-                  resizeMode="cover"
                 />
               </View>
               <View style={styles.content}>
