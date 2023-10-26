@@ -36,6 +36,7 @@ export const {
   packageScreenCorrect,
   onYuscreenV4,
   onSkinToneScreen,
+  wellbeingHubVisible
 } = screens.yuscreen;
 
 const coverForWApos = "What I’m covered for";
@@ -436,12 +437,6 @@ export const canSeePensionPopUpModal = async () => {
 export const cannotSeePensionPopUpModal = async () => {
   await textNotVisible("We want to help you take care of your savings by rewarding you YuCoin based on your pension contribution!")()
   await textNotVisible("Find all information about connecting your pension here:")()
-}
-
-export const wellbeingHubVisible = async () => {
-  await idVisible(ids.RIGHT_SIDE_IMAGE_BOX_OPTION(fixture.wellbeingButtonimg))
-  await idVisible(ids.BOX_OPTION_TITLE(fixture.wellbeingButtonTitle))
-  await idVisible(ids.BOX_OPTION_DESCRIPTION(fixture.wellbeingButtonDes))
 }
 
 export const wellbeingServiceVisible = async () => {

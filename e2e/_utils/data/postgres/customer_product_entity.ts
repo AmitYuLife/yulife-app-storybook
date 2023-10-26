@@ -1178,3 +1178,18 @@ export const CPE_125_GDent = {
         start_date: moment().subtract(1, "months").format("YYYY-MM-DD"),
     }
 } as IDatabaseItem
+
+export const CPE_126_WELLBEING = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011412",
+        customer_id: customer.CUSTOMER_126_LEAVER_WELLBEING.data.customerId,
+        earn_rate: 1,
+        product_variant_id: "YuLife_Wellbeing_01_01",
+        archived: false,
+        taken_up: true,
+        start_date: moment().subtract(1, "years").format("YYYY-MM-DD"),
+        end_date: moment().subtract(10, "weeks").format("YYYY-MM-DD")
+    }
+} as IDatabaseItem

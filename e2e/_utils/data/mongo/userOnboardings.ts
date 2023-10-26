@@ -2236,3 +2236,20 @@ export const USER_ONBOARDING_125 = {
     },
   },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_126 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_126.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_6.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    firstAppOpen: true,
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      yuScreenOnboarding: true,
+    },
+  },
+} as IDatabaseItem;

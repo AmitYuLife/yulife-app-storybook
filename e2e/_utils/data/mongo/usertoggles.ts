@@ -2227,3 +2227,19 @@ export const CUSTOMER_125_TOGGLES = {
     },
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_126_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_126_LEAVER_WELLBEING.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      yuScreenV4: true,
+      hasCoveaFibActive: true,
+      hasBupaDentActive: true,
+      showYuScreenWellbeingButton: true
+    },
+  },
+} as IDatabaseItem;
