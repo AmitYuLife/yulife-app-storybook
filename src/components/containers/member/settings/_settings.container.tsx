@@ -127,7 +127,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
     isVisible: true,
     items: [
       {
-        isVisible: !features.showNewLeaderBoard,
+        isVisible: true,
         title: t("screens.leaderboard_settings.title"),
         description: t("screens.leaderboard_settings.description"),
         onPress: () => {
@@ -135,19 +135,6 @@ function SettingsContainer({ componentId }: IOwnProps) {
             component: {
               id: ROUTES.leaderboardSettings,
               name: ROUTES.leaderboardSettings,
-            },
-          });
-        },
-      },
-      {
-        isVisible: features.showNewLeaderBoard,
-        title: t("screens.leaderboard_settings.title"),
-        description: t("screens.leaderboard_settings.description"),
-        onPress: () => {
-          Navigation.push(ROUTES.settings, {
-            component: {
-              id: ROUTES.leaderboardSettingsNew,
-              name: ROUTES.leaderboardSettingsNew,
             },
           });
         },

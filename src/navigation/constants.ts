@@ -61,7 +61,6 @@ export const ROUTES = {
   languageSelector: "yulife.member.languageSelector",
   permissions: "yulife.member.permissions",
   leaderboardSettings: "yulife.member.leaderboardSettings",
-  leaderboardSettingsNew: "yulife.member.leaderboardSettingsNew",
 
   // yuniversity
   yuniversityQuiz: "yulife.member.yuniversityQuiz",
