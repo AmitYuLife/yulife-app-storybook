@@ -270,11 +270,6 @@ const routesForRegistration = [
     name: ROUTES.leaderboardSettings,
     component: require("../components/containers/member/leaderboard-settings/leaderboard-settings.container").default,
   },
-  {
-    name: ROUTES.leaderboardSettingsNew,
-    component: require("../components/containers/member/leaderboard-settings-new/leaderboard-settings.container")
-      .default,
-  },
 
   // quests screens
   {

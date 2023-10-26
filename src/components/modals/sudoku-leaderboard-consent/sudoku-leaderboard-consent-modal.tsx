@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { TextTemplate, Wrapper } from "@atoms";
 import { Style, TOP_BAR } from "@styles";
@@ -11,8 +11,11 @@ import { Button } from "@components/molecules";
 import { UpdateSudokuLeaderboardConsent, UpdateSudokuLeaderboardConsentVariables } from "@graphql/_core/schema";
 import { useMutation } from "@apollo/client";
 import { GQL_MUTATION_UPDATE_SUDOKU_LEADERBOARD_CONSENT } from "@graphql/brainGames/sudoku/updateSudokuLeaderboardConsent.gql";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { getActiveSocialGroup } from "@redux/leaderboards/leaderboards.selectors";
+import { SocialGroupLeaderboardConfigId } from "@graphql/_core/schema/globalTypes";
+import { updateSocialGroupLeaderboardConsents } from "@redux/leaderboards/leaderboards.actions";
 
 interface IProps {
   onConsented?: () => void;
@@ -21,10 +24,19 @@ interface IProps {
 const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
   const onClose = useCallback(() => Navigation.dismissModal(MODALS.sudokuLeaderboardConsent), []);
   const dispatch = useDispatch();
+  const activeSocialGroup = useSelector(getActiveSocialGroup);
   const [updateSudokuLeaderboardConsent, { loading }] = useMutation<
     UpdateSudokuLeaderboardConsent,
     UpdateSudokuLeaderboardConsentVariables
   >(GQL_MUTATION_UPDATE_SUDOKU_LEADERBOARD_CONSENT);
+
+  const activeYudokuLeaderboard = useMemo(
+    () =>
+      activeSocialGroup.leaderboards.find(
+        (leaderboard) => leaderboard.leaderboardConfigId === SocialGroupLeaderboardConfigId.dailysudoku
+      ),
+    [activeSocialGroup]
+  );
 
   const t = useTranslation([
     "sudoku.leaderboard_consent.title",
@@ -50,6 +62,18 @@ const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
         consent: true,
       },
       onCompleted: () => {
+        dispatch(
+          updateSocialGroupLeaderboardConsents({
+            socialGroupId: activeSocialGroup?.socialGroupId,
+            leaderboards: [
+              {
+                leaderboardId: activeYudokuLeaderboard?.leaderboardId,
+                consent: true,
+              },
+            ],
+          })
+        );
+
         onClose();
         if (onConsented) {
           onConsented();
@@ -59,30 +83,28 @@ const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
   }, [dispatch, updateSudokuLeaderboardConsent, onClose, onConsented]);
 
   return (
-    <>
-      <GenericOverlay onClose={onClose}>
-        <ScrollView contentContainerStyle={styles.wrapper}>
-          <Wrapper alignItems="center">
-            <View>
-              <View style={styles.contentWrapper}>
-                <LeaderboardConsentImage width={Style.DEVICE_WIDTH} />
-                <View style={styles.textWrapper}>
-                  <View style={styles.titleWrapper}>
-                    <TextTemplate type={"h1"} textAlign="center">
-                      {t["sudoku.leaderboard_consent.title"]}
-                    </TextTemplate>
-                  </View>
-                  <TextTemplate type={"b2"} textAlign="center">
-                    {t["sudoku.leaderboard_consent.description"]}
+    <GenericOverlay onClose={onClose}>
+      <ScrollView contentContainerStyle={styles.wrapper}>
+        <Wrapper alignItems="center">
+          <View>
+            <View style={styles.contentWrapper}>
+              <LeaderboardConsentImage width={Style.DEVICE_WIDTH} />
+              <View style={styles.textWrapper}>
+                <View style={styles.titleWrapper}>
+                  <TextTemplate type={"h1"} textAlign="center">
+                    {t["sudoku.leaderboard_consent.title"]}
                   </TextTemplate>
                 </View>
+                <TextTemplate type={"b2"} textAlign="center">
+                  {t["sudoku.leaderboard_consent.description"]}
+                </TextTemplate>
               </View>
-              <Button onPress={onSubmit} isLoading={loading} label={t["sudoku.leaderboard_consent.confirm"]} />
             </View>
-          </Wrapper>
-        </ScrollView>
-      </GenericOverlay>
-    </>
+            <Button onPress={onSubmit} isLoading={loading} label={t["sudoku.leaderboard_consent.confirm"]} />
+          </View>
+        </Wrapper>
+      </ScrollView>
+    </GenericOverlay>
   );
 };
 
