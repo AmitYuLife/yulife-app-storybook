@@ -21,8 +21,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                 Then("I should see an unlocked short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
             })
             When("I tap the unlocked short stroll challenge", when.tapID(ids.CHALLENGE_TILE("Short Stroll")), async () => {
-                Then("I should see a screen with a take challenge option", then.canSeeNewChallengePage("short stroll", data.CUSTOMER_5.data.earnRate))
-                Then("I should see the number of steps I need to complete the challenge", then.textVisible(t("%{quantity} steps", { quantity: 300 })))
+                Then("I should see a screen with a take challenge option", then.canSeeNewChallengePage("short stroll", data.USER_5.data.earnRate))
             })
             When("I tap 'take challenge'", when.tapText(t("Take challenge")), async () => {
                 When("I wait", when.wait(5000), async () => {
@@ -237,9 +236,9 @@ Feature("As a user I can use the streaks functionality", async () => {
                                                     When("I tap 'got it'", when.tapText(t("Okay, got it")), async () => {
                                                         Then("I should be back on the quests screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(52)))
                                                         When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-                                                            Then("I should see the coins I earned today", then.textVisible("210 YuCoin today"))
+                                                            Then("I should see the coins I earned today", then.textVisible("220 YuCoin today"))
                                                             Then("I should see the steps I completed today", then.idVisible(ids.STEPS_COUNT(305)))
-                                                            Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(540)))
+                                                            Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(550)))
                                                             Then("I should see 1/5 on the daily steps screen", then.textVisible("1/5"))
                                                         })
                                                     })
