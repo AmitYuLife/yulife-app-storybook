@@ -5,7 +5,6 @@ import { useLazyQuery } from "@apollo/client";
 import { StyleSheet, View } from "react-native";
 import { Navigation } from "react-native-navigation";
 import React, { memo, useCallback, useMemo, useState } from "react";
-
 import { t } from "@locale";
 import { useAsyncEffect } from "@hooks";
 import { Colours, Style } from "@styles";
@@ -13,10 +12,10 @@ import { Button } from "@components/molecules";
 import { showYuModal } from "@navigation/root";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { Storage, StorageKey } from "@utils/storage";
-import { TextTemplate, Image, Loading } from "@atoms";
+import { TextTemplate, Image } from "@atoms";
 import { IActiveLevel } from "@redux/levels/levels.selectors";
 import { challengeCancelAction } from "@redux/levels/levels.actions";
-import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
+import { GenericFullScreenLoading, GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { GQL_QUERY_GET_VIDEOS_LIST } from "@graphql/media/getMedia.gql";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { GetMedia, GetMediaVariables, GetMedia_getMedia } from "@graphql/_core/schema";
@@ -175,7 +174,7 @@ const MediaPlayerProgressScreen = ({
   if (isLoading) {
     return (
       <View style={styles.wrapper}>
-        <Loading />
+        <GenericFullScreenLoading onRightIconPress={onDismissPress} />
       </View>
     );
   }
