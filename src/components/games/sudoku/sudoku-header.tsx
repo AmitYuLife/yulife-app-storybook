@@ -8,6 +8,7 @@ import SudokuHint from "@components/games/sudoku/sudoku-hint";
 import { useTranslation } from "@hooks";
 import { memo, useMemo } from "react";
 import { TextTemplate } from "@atoms";
+import moment from "moment";
 
 interface IProps {
   invert?: boolean;
@@ -16,8 +17,9 @@ interface IProps {
 const SudokuHeader = ({ invert }: IProps) => {
   const { mistakes, config } = useSudokuContext();
   const state = useSelector(getSudokuState);
-  const t = useTranslation(["sudoku.pause.mistakes"]);
+  const t = useTranslation(["sudoku.pause.mistakes", "format.date_short"]);
   const color = useMemo(() => (invert ? Colours.neutral.white : undefined), [invert]);
+  const date = useMemo(() => moment(state.date).format(t["format.date_short"]), [state.date, t]);
 
   return (
     <View style={styles.wrapper}>
@@ -26,7 +28,7 @@ const SudokuHeader = ({ invert }: IProps) => {
       </View>
       <View style={styles.timeWrapper}>
         <TextTemplate type={"l1"} color={color}>
-          {state.gameIdentifier}
+          {date}
         </TextTemplate>
         <TextTemplate type="b2b" color={color}>
           {t["sudoku.pause.mistakes"]}: {mistakes}/{config.MISTAKES_BEFORE_PENALTY}

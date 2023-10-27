@@ -8,7 +8,7 @@ export const sudokuStateChanged = (payload: Partial<ISudokuStore>) => ({
   type: SUDOKU_STATE_CHANGED,
 });
 
-export const sudokuReset = (payload?: Partial<ISudokuStore>) => ({
+export const sudokuReset = (payload?: Pick<ISudokuStore, "startTime" | "date" | "levelSlotId" | "gameIdentifier">) => ({
   payload,
   type: SUDOKU_RESET,
 });
