@@ -57,7 +57,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   const { data } = useQuery<GetSudokuBoard>(GQL_QUERY_GET_SUDOKU_BOARDS, {
     fetchPolicy: "no-cache",
     variables: {
-      date: sudokuState.gameIdentifier,
+      date: sudokuState.date,
     },
   });
 
@@ -138,7 +138,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
           const results = await submitSudokuSolution({
             variables: {
               results: {
-                date: sudokuState.gameIdentifier,
+                date: sudokuState.date,
                 mistakes: params.mistakes,
                 hints: params.hints,
                 baseTime: params.adjustedTime,
@@ -171,7 +171,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
         })();
       });
     },
-    [dispatch, onPause, showSubmissionError, submitSudokuSolution, sudokuState.gameIdentifier, sudokuState.levelSlotId]
+    [dispatch, onPause, showSubmissionError, submitSudokuSolution, sudokuState.date, sudokuState.levelSlotId]
   );
 
   const onGameComplete = useCallback(

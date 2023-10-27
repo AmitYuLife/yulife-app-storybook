@@ -32,7 +32,7 @@ const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
 
   const activeYudokuLeaderboard = useMemo(
     () =>
-      activeSocialGroup.leaderboards.find(
+      activeSocialGroup?.leaderboards?.find(
         (leaderboard) => leaderboard.leaderboardConfigId === SocialGroupLeaderboardConfigId.dailysudoku
       ),
     [activeSocialGroup]
@@ -81,6 +81,11 @@ const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
       },
     });
   }, [dispatch, updateSudokuLeaderboardConsent, onClose, onConsented]);
+
+  if (!activeYudokuLeaderboard) {
+    onClose();
+    return;
+  }
 
   return (
     <GenericOverlay onClose={onClose}>

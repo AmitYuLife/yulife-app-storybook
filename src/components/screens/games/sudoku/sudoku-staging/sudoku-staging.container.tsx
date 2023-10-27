@@ -7,13 +7,11 @@ import {
   GetSudokuLeaderboardVariables,
 } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_SUDOKU_BOARDS } from "@graphql/brainGames/sudoku/getSudokuBoards.gql";
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { first } from "lodash";
 import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { useDispatch, useSelector } from "react-redux";
-import moment from "moment";
-import { getSudokuState } from "@redux/sudoku/sudoku.selectors";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import SudokuStagingScreen from "./sudoku-staging.screen";
 import { showYuModal } from "@navigation/root";
@@ -23,11 +21,11 @@ import { GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE } from "@graphql/challeng
 import { getActiveLevel } from "@redux/levels/levels.selectors";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/getQuestMapChallengeDetails.gql";
-import { DATE_FORMAT } from "@utils";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useQueryOnScreenSeen } from "@hooks";
 import { challengeCancelAction, challengeStartSuccessAction } from "@redux/levels/levels.actions";
 import cancelQuestMapLevelChallenge from "@graphql/challenges/cancelQuestMapLevelChallenge.gql";
+import { getCurrentDateState, getRouteState } from "@redux/app/app.selectors";
 
 interface IProps {
   componentId: string;
@@ -36,28 +34,29 @@ interface IProps {
 
 export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
   const dispatch = useDispatch();
-  const sudokuState = useSelector(getSudokuState);
   const activeChallenge = useSelector(getActiveLevel);
+  const currentDate = useSelector(getCurrentDateState);
+  const currentScreen = useSelector(getRouteState);
   const [createQuestMapLevelChallenge] = useMutation(GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE);
 
-  const [, { data }] = useQueryOnScreenSeen<GetSudokuBoard>(GQL_QUERY_GET_SUDOKU_BOARDS, ROUTES.sudokuStaging, {
+  const [, { data }] = useQueryOnScreenSeen<GetSudokuBoard>(GQL_QUERY_GET_SUDOKU_BOARDS, componentId, {
     fetchPolicy: "no-cache",
   });
 
   const showSecondAttemptDisclaimer = useMemo(() => {
-    return !data?.getSudokuBoard?.leaderboardEligible && !data?.getSudokuBoard?.results;
+    return !data?.getSudokuBoard?.leaderboardEligible;
   }, [data]);
 
   const [, { data: leaderboard }] = useQueryOnScreenSeen<GetSudokuLeaderboard, GetSudokuLeaderboardVariables>(
     GQL_QUERY_GET_SODUKU_LEADERBOARD,
-    ROUTES.sudokuStaging,
+    componentId,
     {
+      fetchPolicy: "network-only",
       variables: {
-        date: moment().format(DATE_FORMAT),
+        date: currentDate,
         difficulty: SudokuDifficulty.EASY,
         limit: 3,
       },
-      fetchPolicy: "network-only",
     }
   );
 
@@ -67,6 +66,19 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
       variables: { levelSlotId: slot.id },
     }
   );
+
+  useEffect(() => {
+    if (currentScreen === componentId) {
+      dispatch(
+        sudokuReset({
+          gameIdentifier: `${currentDate}_${SudokuDifficulty.EASY}`,
+          levelSlotId: slot?.id,
+          startTime: null,
+          date: currentDate,
+        })
+      );
+    }
+  }, [currentDate]);
 
   const board = first(data?.getSudokuBoard?.boards);
 
@@ -89,18 +101,14 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
       })
     );
 
-    const currentDate = moment().format(DATE_FORMAT);
-
-    const newState = {
-      ...sudokuState,
-      levelSlotId: slot.id,
-      reward: slot.reward,
-      startDateTime: new Date(),
-      gameIdentifier: currentDate,
-      date: currentDate,
-    };
-
-    dispatch(sudokuReset({ ...newState }));
+    dispatch(
+      sudokuReset({
+        levelSlotId: slot.id,
+        startTime: new Date(),
+        gameIdentifier: `${currentDate}_${SudokuDifficulty.EASY}`,
+        date: currentDate,
+      })
+    );
 
     return Navigation.push(componentId, {
       component: {
@@ -109,15 +117,7 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
         passProps: { date: currentDate, levelSlotId: slot.id },
       },
     });
-  }, [
-    activeChallenge.levelSlotId,
-    createQuestMapLevelChallenge,
-    slot.id,
-    slot.reward,
-    dispatch,
-    sudokuState,
-    componentId,
-  ]);
+  }, [activeChallenge.levelSlotId, createQuestMapLevelChallenge, slot.id, dispatch, componentId, currentDate]);
 
   const onBack = useCallback(() => {
     Navigation.pop(componentId);

@@ -14,6 +14,7 @@ interface ISodukuHistory extends ISudokuPosition {
 type SudokuBoard = number[][];
 export interface ISudokuStore {
   gameIdentifier: string;
+  date: string;
   hintsUsed: number;
   mistakes: number;
   guesses?: number[];
@@ -31,6 +32,7 @@ export interface ISudokuStore {
 
 const DEFAULT_SUDOKU_STORE: ISudokuStore = {
   gameIdentifier: "",
+  date: "",
   hintsUsed: 0,
   cellStatuses: [],
   endTime: null,

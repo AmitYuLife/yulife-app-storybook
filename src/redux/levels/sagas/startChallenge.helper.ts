@@ -145,7 +145,7 @@ export default function* startChallenge({
         }
 
         yield put(challengeResetSuccessAction());
-        yield put(sudokuReset({}));
+        yield put(sudokuReset());
 
         inProgress = false;
       } catch (e) {

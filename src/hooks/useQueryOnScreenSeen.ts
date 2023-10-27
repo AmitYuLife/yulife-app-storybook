@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 export function useQueryOnScreenSeen<T = any, TVariables = OperationVariables>(
   gqlQuery: DocumentNode,
   screenName: string,
-  queryOptions: LazyQueryHookOptions<T, TVariables> = {}
+  options?: LazyQueryHookOptions<T, TVariables>
 ): QueryTuple<T, TVariables> {
   const hasBeenQueried = useRef(false);
   const currentScreen = useSelector(getRouteState);
@@ -21,7 +21,7 @@ export function useQueryOnScreenSeen<T = any, TVariables = OperationVariables>(
 
   const [query, queryResult] = useLazyQuery<T, TVariables>(gqlQuery, {
     fetchPolicy: "cache-and-network",
-    ...queryOptions,
+    ...options,
   });
 
   useEffect(() => {
