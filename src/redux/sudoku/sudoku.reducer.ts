@@ -49,17 +49,14 @@ export const getInitialState = (): ISudokuStore => ({ ...DEFAULT_SUDOKU_STORE })
 
 const sudokuReducer = (state: ISudokuStore = getInitialState(), action: SyncAction): ISudokuStore => {
   switch (action.type) {
-    case SUDOKU_STATE_CHANGED: {
+    case SUDOKU_STATE_CHANGED:
       return { ...state, ...action.payload };
-    }
 
-    case SUDOKU_RESET: {
-      return { ...getInitialState(), ...(action.payload ? action.payload : {}) };
-    }
+    case SUDOKU_RESET:
+      return { ...getInitialState(), ...(action.payload || {}) };
 
-    default: {
+    default:
       return state || getInitialState();
-    }
   }
 };
 
