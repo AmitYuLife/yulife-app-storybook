@@ -16,3 +16,6 @@ export const getRouteState = createSelector(reducer, routeSelector);
 
 const modalSelector = (state: IAppStore): string => state.activeModal;
 export const getModalState = createSelector(reducer, modalSelector);
+
+const currentDateSelector = (state: IAppStore): string => state.currentDate;
+export const getCurrentDateState = createSelector(reducer, currentDateSelector);
