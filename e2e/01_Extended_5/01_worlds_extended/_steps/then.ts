@@ -15,7 +15,8 @@ export const {
 
 export const {
     onChallengeComplete,
-    onMeditationChallengeComplete
+    onMeditationChallengeComplete,
+    canSeeChallengeTiles
 } = screens.challenges
 
 export const {
@@ -188,9 +189,13 @@ export const challengesAndYuCoinsAwardedVisible = async () => {
     await idVisible(CHALLENGE_HISTORY_NEW_SLOT("Meditation", "40", 1))()
 }
 
-export const yunityChestAwardsVisible = (user: typeof USER_1, surgeDuration: 1 | 7) => async () => {
+export const yunityChestAwardsVisible = (user: typeof USER_1, levelsBoosted: number) => async () => {
     const yuCoinEarned = user.data.earnRate * 50;
     
-    await idVisibleAtIndex(YUNITY_CARD(`${surgeDuration} day\n2x surge`), 0)() 
+    if (levelsBoosted > 1) {
+        await idVisibleAtIndex(YUNITY_CARD(`${levelsBoosted} Levels\nBoost`), 0)() 
+    } else {
+        await idVisibleAtIndex(YUNITY_CARD(`1 Level\nBoost`), 0)() 
+    } 
     await idVisibleAtIndex(YUNITY_CARD(`${yuCoinEarned}\nYuCoin`), 0)() 
 }

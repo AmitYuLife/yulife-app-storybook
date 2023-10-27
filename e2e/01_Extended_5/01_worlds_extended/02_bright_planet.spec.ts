@@ -84,7 +84,7 @@ Feature("I can get to and complete challenges in the bright planet", async () =>
             Then("I should see that I've achived Yunity with the Forest", then.yunityCorrect("Forest"))
         })
         When("I tap to open the chest", when.tapText(t("Open the chest")), async () => {
-            Then("I should see I have the correct items in the Yunity Chest", then.yunityChestAwardsVisible(data.USER_80, 7))
+            Then("I should see I have the correct items in the Yunity Chest", then.yunityChestAwardsVisible(data.USER_80, 6))
         })
     })
 

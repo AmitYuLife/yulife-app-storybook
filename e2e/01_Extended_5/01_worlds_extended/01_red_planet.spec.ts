@@ -143,12 +143,12 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see the level 251 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(251)))
         })
         When("I tap level 251 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(251)), async () => {
-            Then("I should be on the level 251 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
+            Then("I should be on the level 251 quest screen and see all 5 challenges available to me to take", then.canSeeChallengeTiles(data.USER_67, "boost"))
         })
         When("I complete a short stroll challenge at level 251", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
             When("I tap done", when.tapText(t("Done")), async () => {
                 Then("I should see the level 251 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(251)))
-                Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17720)))
+                Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17740)))
             })
         })
         When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
@@ -159,7 +159,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         })
     }) 
     
-    Scenario("As a user opening a Yunity Chest at level 250, I want the chest to contain a 1 day surge and YuCoin worth 50x the users earn rate", scenario.start, () => {
+    Scenario("As a user opening a Yunity Chest at level 250, I want the chest to contain a level boost and YuCoin worth 50x the users earn rate", scenario.start, () => {
         Given("I login as a user with level 250 unclaimed", given.logInAndGoToTab("quests", data.CUSTOMER_79, data.AUTH_79), async () => {
             Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
             Then("I should see the level 250 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(250)))
