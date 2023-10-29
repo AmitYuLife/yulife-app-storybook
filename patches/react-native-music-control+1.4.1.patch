@@ -1,3 +1,20 @@
+diff --git a/node_modules/react-native-music-control/android/src/main/java/com/tanguyantoine/react/MusicControlModule.java b/node_modules/react-native-music-control/android/src/main/java/com/tanguyantoine/react/MusicControlModule.java
+index f33abc5..5b1936d 100644
+--- a/node_modules/react-native-music-control/android/src/main/java/com/tanguyantoine/react/MusicControlModule.java
++++ b/node_modules/react-native-music-control/android/src/main/java/com/tanguyantoine/react/MusicControlModule.java
+@@ -201,7 +201,11 @@ public class MusicControlModule extends ReactContextBaseJavaModule implements Co
+         filter.addAction(Intent.ACTION_MEDIA_BUTTON);
+         filter.addAction(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
+         receiver = new MusicControlReceiver(this, context);
+-        context.registerReceiver(receiver, filter);
++        if (Build.VERSION.SDK_INT >= 34 && context.getApplicationInfo().targetSdkVersion >= 34) {
++            context.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
++        } else {
++            context.registerReceiver(receiver, filter);
++        }
+ 
+         Intent myIntent = new Intent(context, MusicControlNotification.NotificationService.class);
+
 diff --git a/node_modules/react-native-music-control/android/src/main/java/com/tanguyantoine/react/MusicControlNotification.java b/node_modules/react-native-music-control/android/src/main/java/com/tanguyantoine/react/MusicControlNotification.java
 index 4b71f1e..86cc3e6 100644
 --- a/node_modules/react-native-music-control/android/src/main/java/com/tanguyantoine/react/MusicControlNotification.java
