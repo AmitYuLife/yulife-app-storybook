@@ -241,6 +241,7 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
   const surveyText = "We love hearing from you.\nHelp shape the future of YuLife!";
   const surveyLabel = "Share your thoughts";
   const groupDental = "Dental Cover";
+  const dentalChoice = "Bupa Dental Choice"
   const paidBy = "Employer paid";
   const employerScheme = "Employer scheme";
   const HealthInsurance = "Health Insurance"
@@ -345,6 +346,15 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
     case "groupDental":
       await textVisibleAtIndex(yuCoinPower, 0)();
       await expect(element(by.text(groupDental))).toBeVisible();
+      await expect(element(by.text(employerScheme))).toBeVisible();
+      await expect(element(by.text(noProductText))).toBeVisible();
+      await swipeFromText(createYumujiCTA, "up", "fast")();
+      await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible();
+      await swipeFromText(surveyText, "down", "fast")();
+      break;
+      case "dentalChoice":
+      await textVisibleAtIndex(yuCoinPower, 0)();
+      await expect(element(by.text(dentalChoice))).toBeVisible();
       await expect(element(by.text(employerScheme))).toBeVisible();
       await expect(element(by.text(noProductText))).toBeVisible();
       await swipeFromText(createYumujiCTA, "up", "fast")();

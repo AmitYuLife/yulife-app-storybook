@@ -107,7 +107,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
 
     Scenario("As a YuLifer with Group Dental Choice product I should see correct Product Details and be able to order Ordo toothbrush", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_125, data.AUTH_125), async () => {
-            Then("I should be on the YuScreen V4", then.onYuscreenV4(data.CUSTOMER_125, "groupDental", "5"))
+            Then("I should be on the YuScreen V4", then.onYuscreenV4(data.CUSTOMER_125, "dentalChoice", "5"))
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("groupDental")
             helper.GROUP_DENTAL_PRODUCT_VIEW("Employer scheme", "5", "Choice")
             helper.ORDO_JOURNEY_VIEW()
