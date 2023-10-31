@@ -78,7 +78,7 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
         })
       );
     }
-  }, [currentDate]);
+  }, [currentDate, currentScreen]);
 
   const board = first(data?.getSudokuBoard?.boards);
 
