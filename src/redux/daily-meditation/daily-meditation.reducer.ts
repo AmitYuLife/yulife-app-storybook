@@ -125,6 +125,7 @@ const updatePersistedState = (state: IDailyMeditationStore, persistedState: IDai
         ...state.inAppMeditation,
         duration: 0,
       },
+      lastUpdated: moment().format(),
     };
   }
 
@@ -143,6 +144,7 @@ const updateStateOnAppUpdate = (state: IDailyMeditationStore): IDailyMeditationS
         ...state.inAppMeditation,
         duration: 0,
       },
+      lastUpdated: moment().format(),
     };
   }
 
