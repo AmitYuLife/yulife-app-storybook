@@ -6,7 +6,7 @@ import * as then from "./_steps/then";
 import * as helper from "./_resources/helpers";
 import * as ids from "@ids";
 import * as data from "@data";
-import { DefaultStepsLeaderboard, DefaultYudokuLeaderboard, User16LeaderboardItem, User17LeaderboardItem, User18LeaderboardItem, User20LeaderboardItem, User40LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem } from "./_resources/fixtures";
+import { DefaultStepsLeaderboard, DefaultYudokuLeaderboard, User16LeaderboardItem, User17LeaderboardItem, User18LeaderboardItem, User20LeaderboardItem, User39LeaderboardItem, User40LeaderboardItem, User44LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem } from "./_resources/fixtures";
 import { getFullName } from "_utils/users";
 
 Feature("As a user I can see my achievements on the leaderboard", async () => {
@@ -96,7 +96,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             })
         })
     })
-
+ 
     Scenario("I can inspect other members and view their data and avatars from the leaderboard - seed data", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_47, data.AUTH_47), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
@@ -242,6 +242,80 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             When("I click on the duels button", when.clickDuelButton, async () => {
                 Then("I should be on the start duel screen", then.multipleTextVisible(["The matchup:", "Set the duel", "You", "Michael Scott"]))
             })
+        })
+    })
+
+    Scenario("Social groups / leaderboards based on 'rules' function as expected", scenario.start, async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_39, data.AUTH_39), async () => {
+            When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+                Then("I am on the leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem]))
+            })
+        }) 
+        When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
+            When("I click the leaderboard with rules", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_BA5_RULE.data.name)), async () => {
+                When("I tap view", when.tapText("View Leaderboard"), async () => {
+                    Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_BA5_RULE.data.name)))
+                    Then("I should be on the second leaderboard", then.leaderboardVisible([User39LeaderboardItem]))
+                    Then("I cannot see the user who was archived due to having a different department", then.cannotSeeLeaderboardUser(User44LeaderboardItem))
+                })
+            })
+        })
+    })
+
+    Scenario("Leaderboard search functions as expected", scenario.start, async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_39, data.AUTH_39), async () => {
+            When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+                Then("I am on the leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem]))
+            })
+        })
+        When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {
+            Then("I am on the search screen", then.textVisible("Search Leaderboards"))
+        })
+        When("I search for someone not in the leaderboard", when.searchLeaderboard("wrongstring") , async () => {
+            Then("I cannot see anyone", then.canSeeEmptyLeaderboardSearch)
+        })
+        When("I search for Trump, who is in this leaderboard", when.searchLeaderboard(data.CUSTOMER_44.data.firstName) , async () => {
+            Then("I can see that user in the list", then.idVisible(ids.LEADERBOARD_SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
+        })
+        When("I tap Donald Trumo", when.tapText(getFullName(data.CUSTOMER_44)), async () => {
+            Then("I should be on the Inspect screen", then.isOnInspectScreen)
+            Then("Donald's name is visible", then.idVisible(ids.TEXT_TEMPLATE(getFullName(data.CUSTOMER_44))))
+        })
+        When("I exit", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
+            When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {
+                Then("I can see Donald Trumps name is under recent searches", then.idVisible(ids.LEADERBOARD_SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
+            })
+        })
+        When("I exit", when.tapID(ids.LEADERBOARD_SEARCH_CLOSE), async () => {
+            When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
+                Then("I can see the list of leaderboards the user is in", then.idVisible(ids.LEADERBOARD_COMMUNITY_LIST([data.SOCIAL_GROUP_BA5_RULE.data.name, data.SOCIAL_GROUP_BA5_TAG.data.name, data.SOCIAL_GROUP_BA5.data.name])))
+            })
+        })
+        When("I click the leaderboard with rules", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_BA5_RULE.data.name)), async () => {
+            When("I tap view", when.tapText("View Leaderboard"), async () => {
+                Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_BA5_RULE.data.name)))
+            })
+        })
+        When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {
+            Then("I can see Donald Trumps name is under recent searches", then.idVisible(ids.LEADERBOARD_SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
+        })
+        When("I search for Trump, who isn't in this leaderboard", when.searchLeaderboard(data.CUSTOMER_44.data.firstName) , async () => {
+            Then("I can still see that user in the list", then.idVisible(ids.LEADERBOARD_SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
+        })
+        When("I exit", when.tapID(ids.LEADERBOARD_SEARCH_CLOSE), async () => {
+            When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
+                When("I click the leaderboard with rules", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_BA5_TAG.data.name)), async () => {
+                    When("I tap view", when.tapText("View Leaderboard"), async () => {
+                        Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_BA5_TAG.data.name)))
+                    })
+                })
+            })
+        })
+        When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {
+            Then("I can see Donald Trumps name is under recent searches", then.idVisible(ids.LEADERBOARD_SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
+        })
+        When("I search for Trump, who isn't in this leaderboard", when.searchLeaderboard(data.CUSTOMER_44.data.firstName) , async () => {
+            Then("I can still see that user in the list", then.idVisible(ids.LEADERBOARD_SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
         })
     })
 })

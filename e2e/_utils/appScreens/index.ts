@@ -4,6 +4,7 @@ import * as rewards from "./rewards"
 import * as streaks from "./streaks"
 import * as challenges from "./challenges"
 import * as yuscreen from "./yuscreen"
+import * as leaderboard from "./leaderboard"
 
 export const screens = {
     dailySteps,
@@ -11,5 +12,6 @@ export const screens = {
     rewards,
     streaks,
     challenges,
-    yuscreen
+    yuscreen,
+    leaderboard
 }

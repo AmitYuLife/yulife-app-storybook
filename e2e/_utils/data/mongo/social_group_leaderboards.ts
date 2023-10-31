@@ -1,7 +1,7 @@
 
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { BUSINESS_ACCOUNT_1 } from "../postgres/business";
-import { SOCIAL_GROUP_1, SOCIAL_GROUP_2, SOCIAL_GROUP_3, SOCIAL_GROUP_7, SOCIAL_GROUP_7_A, SOCIAL_GROUP_C1, SOCIAL_GROUP_C2 } from "./social_groups";
+import { SOCIAL_GROUP_1, SOCIAL_GROUP_2, SOCIAL_GROUP_3, SOCIAL_GROUP_7, SOCIAL_GROUP_7_A, SOCIAL_GROUP_BA5, SOCIAL_GROUP_BA5_RULE, SOCIAL_GROUP_BA5_TAG, SOCIAL_GROUP_C1, SOCIAL_GROUP_C2 } from "./social_groups";
 
 export const SOCIAL_GROUP_LEADERBOARD_STEPS_1 = {
     type: "mongo",
@@ -141,6 +141,72 @@ export const SOCIAL_GROUP_LEADERBOARD_C3_SUDOKU = {
     data: {
         _id: generateRandomMongoId(),
         socialGroup: SOCIAL_GROUP_3.data._id,
+        archived: false,
+        leaderboardConfigId: "SUDOKU_DAILY",
+    }
+} as IDatabaseItem
+
+export const SOCIAL_GROUP_LEADERBOARD_5_STEPS = {
+    type: "mongo",
+    modelName: "social_group_leaderboards",
+    data: {
+        _id: generateRandomMongoId(),
+        socialGroup: SOCIAL_GROUP_BA5.data._id,
+        archived: false,
+        leaderboardConfigId: "STEPS_30_DAYS",
+    }
+} as IDatabaseItem
+
+export const SOCIAL_GROUP_LEADERBOARD_5_SUDOKU = {
+    type: "mongo",
+    modelName: "social_group_leaderboards",
+    data: {
+        _id: generateRandomMongoId(),
+        socialGroup: SOCIAL_GROUP_BA5.data._id,
+        archived: false,
+        leaderboardConfigId: "SUDOKU_DAILY",
+    }
+} as IDatabaseItem
+
+export const SOCIAL_GROUP_LEADERBOARD_5_RULE_STEPS = {
+    type: "mongo",
+    modelName: "social_group_leaderboards",
+    data: {
+        _id: generateRandomMongoId(),
+        socialGroup: SOCIAL_GROUP_BA5_RULE.data._id,
+        archived: false,
+        leaderboardConfigId: "STEPS_30_DAYS",
+    }
+} as IDatabaseItem
+
+export const SOCIAL_GROUP_LEADERBOARD_5_RULE_SUDOKU = {
+    type: "mongo",
+    modelName: "social_group_leaderboards",
+    data: {
+        _id: generateRandomMongoId(),
+        socialGroup: SOCIAL_GROUP_BA5_RULE.data._id,
+        archived: false,
+        leaderboardConfigId: "SUDOKU_DAILY",
+    }
+} as IDatabaseItem
+
+export const SOCIAL_GROUP_LEADERBOARD_5_TAG_STEPS = {
+    type: "mongo",
+    modelName: "social_group_leaderboards",
+    data: {
+        _id: generateRandomMongoId(),
+        socialGroup: SOCIAL_GROUP_BA5_TAG.data._id,
+        archived: false,
+        leaderboardConfigId: "STEPS_30_DAYS",
+    }
+} as IDatabaseItem
+
+export const SOCIAL_GROUP_LEADERBOARD_5_TAG_SUDOKU = {
+    type: "mongo",
+    modelName: "social_group_leaderboards",
+    data: {
+        _id: generateRandomMongoId(),
+        socialGroup: SOCIAL_GROUP_BA5_TAG.data._id,
         archived: false,
         leaderboardConfigId: "SUDOKU_DAILY",
     }

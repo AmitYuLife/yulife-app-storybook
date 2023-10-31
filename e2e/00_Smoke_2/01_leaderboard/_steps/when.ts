@@ -16,6 +16,8 @@ export const {
     wait,
     navigateViaID,
     tapIDAtIndex,
+    clearFieldByID,
+    typeViaID
 } = navigation.common
 
 export const {
@@ -36,6 +38,10 @@ export const {
 export const {
     tapMenuItem
   } = screens.menu
+
+  export const {
+    searchLeaderboard
+  } = screens.leaderboard
 
 export const turnOffLeaderboard = (leaderboardID: string) => async () => {
     const leaderboard = element(by.id(leaderboardID))

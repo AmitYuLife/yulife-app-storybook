@@ -1,8 +1,6 @@
 
-import { CUSTOMER_LEAVER } from "@data";
-import { dataManagerUK } from "@dataManager";
+import { screens } from "@appScreens";
 import { navigation } from "@utils";
-import { dataManager } from "@yu-life/yulife-bdd-framework";
 export { authoriseFitkit, sendSteps } from "@socket";
 export const { logInAndGoToTab } = navigation.login;
 
@@ -14,4 +12,8 @@ export const {
   tapYuCoinIcon,
   navigateViaID,
 } = navigation.common;
+
+export const {
+  searchLeaderboard
+} = screens.leaderboard
 

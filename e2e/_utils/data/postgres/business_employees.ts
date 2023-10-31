@@ -443,6 +443,7 @@ export const BUSINESS_EMPLOYEE_39 = {
     type,
     modelName,
     data: {
+        business_employee_id: generateRandomPostgresId(),
         business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
         customer_id: customer.CUSTOMER_39.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
@@ -531,6 +532,7 @@ export const BUSINESS_EMPLOYEE_44 = {
     type: "postgres",
     modelName: "business_employee",
     data: {
+        business_employee_id: generateRandomPostgresId(),
         business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
         customer_id: customer.CUSTOMER_44.data.customerId,
         employment_start_date: moment().subtract(12, "months").toDate(),

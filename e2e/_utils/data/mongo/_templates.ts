@@ -63,6 +63,8 @@ export const allTogglesTrue = {
       newChallengeList: true,
       useNewLeaderboardServices: true,
       enableChallengeBonuses: true,
+      showNewLeaderBoard: true,
+      showLeaderboardSearch: true,
     },
   },
 } as IDatabaseItem;

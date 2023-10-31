@@ -1,6 +1,6 @@
 import * as ids from "@ids"
 import { screens } from "@appScreens"
-import { navigation } from "@navigation"
+import { idNotVisible, navigation } from "@navigation"
 import { leaderboardConsentCta, leaderboardConsentDesc, leaderboardConsentHeading } from "../_resources/constants"
 import { SocialGroupLeaderboard, UserLeaderboardListItem } from "../_resources/types"
 
@@ -56,13 +56,8 @@ export const leaderboardVisible = (customers: UserLeaderboardListItem[]) => asyn
         await swipeFromText("Steps", "up", "fast")()
     }
 
-    for(const { name, rank, score, secondaryRank } of customers){
-        try {
-            await idVisible(ids.LEADERBOARD_NAME(name, score, rank))()
-        } catch {
-            secondaryRank && await idVisible(ids.LEADERBOARD_NAME(name, score, secondaryRank))()
-        }
-        
+    for(const { name, rank, score } of customers){
+        await idVisible(ids.LEADERBOARD_NAME(name, score, rank))()
     }
 }
 
@@ -242,4 +237,12 @@ export const cyclingComparativeDrawResults = (opponentAvCycling: number, myAvCyc
 export const winStreakVisible = (winStreak: number) => async () => {
     await idVisible(ids.INSPECT_ACTIVITY("Win streak"))()
     await idVisible(ids.INSPECT_DATA(winStreak, ""))()  
+}
+
+export const cannotSeeLeaderboardUser = (user: UserLeaderboardListItem) => async () => {
+    await idNotVisible(ids.LEADERBOARD_NAME(user.name, user.score, user.rank))()
+}
+
+export const canSeeEmptyLeaderboardSearch = async () => {
+    await textVisible("We couldn’t find the friend you’re\nlooking for.")()
 }
