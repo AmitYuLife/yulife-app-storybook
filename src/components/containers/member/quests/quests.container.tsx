@@ -46,6 +46,7 @@ const QuestsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
   const videoPlayerIsActive = useSelector(getVideoPlayerIsActive);
   const activeModal: ReturnType<typeof getModalState> = useSelector(getModalState);
   const [hasVideoProgressStorage, setHasVideoProgressStorage] = useState<boolean>(false);
+  const [hasShownDeferModal, setHasShownDeferModal] = useState<boolean>(false);
 
   useTapBackTwiceToExit(componentId);
 
@@ -63,13 +64,26 @@ const QuestsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
   }, [activeLevel.endDateTime, activeLevel.levelSlotId, activeLevel.status, challengeIsActive, dispatch]);
 
   useEffect(() => {
+    if (!activeLevel?.challengeIsActive && hasShownDeferModal) {
+      setHasShownDeferModal(false);
+    }
+  }, [activeLevel, dispatch, hasShownDeferModal]);
+
+  useEffect(() => {
     if (!features?.enableChallengeNoDataDefer) {
       return;
     }
 
     const hasChallengeEnded = moment().isAfter(activeLevel.endDateTime);
+    const shouldShowDeferModal =
+      activeLevel?.challengeIsActive &&
+      !activeModal &&
+      hasChallengeEnded &&
+      activeLevel.endDeferCount &&
+      currentRoute === ROUTES.quests;
 
-    if (currentRoute === ROUTES.quests && !activeModal && activeLevel.endDeferCount && hasChallengeEnded) {
+    if (shouldShowDeferModal && !hasShownDeferModal) {
+      setHasShownDeferModal(true);
       showYuModal({
         component: {
           id: MODALS.challengeNoData,
@@ -77,7 +91,14 @@ const QuestsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
         },
       });
     }
-  }, [activeLevel.endDeferCount, activeModal, currentRoute, features?.enableChallengeNoDataDefer]);
+  }, [
+    activeLevel,
+    activeLevel.endDeferCount,
+    activeModal,
+    currentRoute,
+    features.enableChallengeNoDataDefer,
+    hasShownDeferModal,
+  ]);
 
   const handleResetChallenge = useCallback(
     (wasSuccessful = false) => {
