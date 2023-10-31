@@ -1690,6 +1690,7 @@ export const CUSTOMER_LEAVER_TOGGLES = {
       showFiit: true,
       useNewLeaderboardServices: true,
       showNewLeaderBoard: true,
+      showLeaderboardSearch: true,
     },
   },
 } as IDatabaseItem;

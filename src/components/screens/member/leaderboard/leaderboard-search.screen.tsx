@@ -15,6 +15,7 @@ import { t } from "@locale";
 import { useDispatch, useSelector } from "react-redux";
 import { getLeaderboardRecentSearch } from "@redux/leaderboards/leaderboards.selectors";
 import { addLeaderboardRecentSearch } from "@redux/leaderboards/leaderboards.actions";
+import { LEADERBOARD_SEARCH_CLOSE, LEADERBOARD_SEARCH_RESULTS } from "@ids";
 
 interface IProps {
   heading: string;
@@ -131,9 +132,14 @@ const LeaderboardSearchScreen = ({
           estimatedItemSize={Style.adjust(45)}
           renderItem={renderItem}
           keyboardShouldPersistTaps="handled"
+          testID={LEADERBOARD_SEARCH_RESULTS(items.map((i) => i.name).sort())}
         />
       )}
-      <GenericHeadingAbsolute onRightIconPress={handleClose} heading={Heading} />
+      <GenericHeadingAbsolute
+        onRightIconPress={handleClose}
+        heading={Heading}
+        rightIconTestID={LEADERBOARD_SEARCH_CLOSE}
+      />
     </KeyboardAvoidingView>
   );
 };

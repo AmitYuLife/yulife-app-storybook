@@ -1,4 +1,5 @@
 import { SearchIcon } from "@atoms/icon/search-icon";
+import { INPUT_FIELD } from "@ids";
 import { Colours, Style } from "@styles";
 import { memo, useCallback, useMemo, useState } from "react";
 import { StyleSheet, TextInput, TextStyle, View, ViewStyle } from "react-native";
@@ -46,6 +47,7 @@ const SearchInputWithIcon = ({ onChangeText, placeholder, wrapperStyles, textInp
         onBlur={onBlur}
         placeholder={placeholder}
         placeholderTextColor={Colours.lightGray}
+        testID={INPUT_FIELD}
       />
     </View>
   );

@@ -1,4 +1,4 @@
-import { CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_20, CUSTOMER_40, CUSTOMER_47, CUSTOMER_50 } from "@data";
+import { CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_20, CUSTOMER_39, CUSTOMER_40, CUSTOMER_44, CUSTOMER_47, CUSTOMER_50 } from "@data";
 import { SocialGroupLeaderboard, UserLeaderboardListItem } from "./types";
 
 export const DefaultStepsLeaderboard: SocialGroupLeaderboard = {
@@ -16,9 +16,8 @@ export const DefaultYudokuLeaderboard: SocialGroupLeaderboard = {
 // Stanley
 export const User16LeaderboardItem: UserLeaderboardListItem = {
     name: `${CUSTOMER_16.data.firstName} ${CUSTOMER_16.data.lastName}`,
-    score: "0",
+    score: "50",
     rank: 5,
-    secondaryRank: 6
 }
 
 // Ryan
@@ -61,4 +60,18 @@ export const User50LeaderboardItem: UserLeaderboardListItem = {
     name: `${CUSTOMER_50.data.firstName} ${CUSTOMER_50.data.lastName}`,
     score: "12,800",
     rank: 1
+}
+
+// Eugene
+export const User39LeaderboardItem: UserLeaderboardListItem = {
+    name: `${CUSTOMER_39.data.firstName} ${CUSTOMER_39.data.lastName}`,
+    score: "75,000",
+    rank: 1
+}
+
+// Trump
+export const User44LeaderboardItem: UserLeaderboardListItem = {
+    name: `${CUSTOMER_44.data.firstName} ${CUSTOMER_44.data.lastName}`,
+    score: "0",
+    rank: 2
 }
