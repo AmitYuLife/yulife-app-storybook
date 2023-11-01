@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState, FC, useRef, useEffect, memo } from "react";
-import { ImageSourcePropType, StyleSheet, View } from "react-native";
+import { ImageSourcePropType, View } from "react-native";
 import { useDispatch } from "react-redux";
 import LottieView from "lottie-react-native";
 import { Chest, ChestType, ChestItemType, CHEST_STATE } from "@organisms";
@@ -155,7 +155,7 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, leve
       {page !== EOTW_CHEST_PAGE.TRAVEL_ANIMATION ? null : (
         <LottieView
           resizeMode="cover"
-          style={StyleSheet.absoluteFill}
+          style={styles.lottie}
           ref={travelRef}
           source={PLANET_TRAVEL_ANIMATION[currentPlanetName]}
           autoPlay={false}

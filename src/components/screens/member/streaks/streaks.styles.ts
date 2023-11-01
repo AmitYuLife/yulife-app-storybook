@@ -47,6 +47,10 @@ export default StyleSheet.create({
     height: Style.adjust(220),
     marginBottom: Style.adjust(Style.isShortToMedium() ? Style.adjust(15) : Style.adjust(32)),
   },
+  lottie: {
+    width: Style.adjust(220),
+    height: Style.adjust(220),
+  },
   activeBuffsButton: {
     position: "absolute",
     top: Style.adjust(100),

@@ -75,15 +75,11 @@ export const ContentItemLottie = memo((props: Props) => {
 
   return (
     <Animated.View
-      style={[
-        styles.wrapper,
-        { opacity, height: Style.DEVICE_WIDTH * (1 / aspectRatio) },
-        mapServerStyles(serverStyles),
-      ]}
+      style={[styles.wrapper, { opacity, height: Style.DEVICE_WIDTH / aspectRatio }, mapServerStyles(serverStyles)]}
     >
       <LottieView
         ref={lottieRef}
-        style={styles.wrapper}
+        style={[styles.wrapper, { height: Style.DEVICE_WIDTH / aspectRatio }]}
         source={lottieAnimation}
         autoPlay={autoPlay}
         loop={shouldLoop}

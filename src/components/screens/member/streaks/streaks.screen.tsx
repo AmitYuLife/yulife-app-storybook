@@ -85,7 +85,7 @@ const StreaksScreen = ({
       <GenericHeadingPad />
       <View style={styles.wrapper}>
         <View style={styles.lottieWrapper}>
-          <LottieView source={streakInfo?.image} autoPlay={autoPlayLottie} loop={false} />
+          <LottieView style={styles.lottie} source={streakInfo?.image} autoPlay={autoPlayLottie} loop={false} />
           {hideBuffs ? null : (
             <ActiveBuffsButton style={styles.activeBuffsButton} iconWidth={35} iconHeight={35} buffTypes={buffTypes} />
           )}

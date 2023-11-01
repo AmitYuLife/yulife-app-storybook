@@ -172,6 +172,7 @@ const style = StyleSheet.create({
   lottie: {
     flex: 1,
     width: Style.DEVICE_WIDTH,
+    height: Style.DEVICE_WIDTH * (220 / 180),
     alignSelf: "center",
   },
 });

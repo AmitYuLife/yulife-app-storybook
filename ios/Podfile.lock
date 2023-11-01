@@ -100,9 +100,9 @@ PODS:
   - libwebp/sharpyuv (1.3.2)
   - libwebp/webp (1.3.2):
     - libwebp/sharpyuv
-  - lottie-ios (3.4.1)
-  - lottie-react-native (5.1.4):
-    - lottie-ios (~> 3.4.0)
+  - lottie-ios (4.3.3)
+  - lottie-react-native (6.3.1):
+    - lottie-ios (~> 4.3.0)
     - React-Core
   - Mixpanel (3.6.5)
   - OpenSSL-Universal (1.1.1100)
@@ -560,7 +560,6 @@ DEPENDENCIES:
   - hermes-engine (from `../node_modules/react-native/sdks/hermes/hermes-engine.podspec`)
   - "intercom-react-native (from `../node_modules/@intercom/intercom-react-native`)"
   - libevent (~> 2.1.12)
-  - lottie-ios (from `../node_modules/lottie-ios`)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
   - OpenSSL-Universal (= 1.1.1100)
   - Permission-PhotoLibraryAddOnly (from `../node_modules/react-native-permissions/ios/PhotoLibraryAddOnly`)
@@ -640,6 +639,7 @@ SPEC REPOS:
     - Leanplum-iOS-SDK
     - libevent
     - libwebp
+    - lottie-ios
     - Mixpanel
     - OpenSSL-Universal
     - SDWebImage
@@ -672,8 +672,6 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/sdks/hermes/hermes-engine.podspec"
   intercom-react-native:
     :path: "../node_modules/@intercom/intercom-react-native"
-  lottie-ios:
-    :path: "../node_modules/lottie-ios"
   lottie-react-native:
     :path: "../node_modules/lottie-react-native"
   Permission-PhotoLibraryAddOnly:
@@ -815,8 +813,8 @@ SPEC CHECKSUMS:
   Leanplum-iOS-SDK: 804d2a841eeb797dd47d59e1c8f6a92dc4d7e596
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
-  lottie-ios: 016449b5d8be0c3dcbcfa0a9988469999cd04c5d
-  lottie-react-native: b702fab740cdb952a8e2354713d3beda63ff97b0
+  lottie-ios: 25e7b2675dad5c3ddad369ac9baab03560c5bfdd
+  lottie-react-native: c9f1db4f4124dcce9f8159e65d8dc6e8bcb11fb4
   Mixpanel: de8296d8568806ab17bfced0f823c908b808e1e0
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   Permission-PhotoLibraryAddOnly: 6dba8924024e239af2e282daa8a88967679b4983

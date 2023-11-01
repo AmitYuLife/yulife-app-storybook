@@ -19,6 +19,11 @@ export default StyleSheet.create({
     justifyContent: "center",
     width: Style.DEVICE_WIDTH,
   } as TextStyle,
+  lottie: {
+    ...StyleSheet.absoluteFillObject,
+    width: "100%",
+    height: "100%",
+  },
   page: {
     ...StyleSheet.absoluteFillObject,
   } as ViewStyle,
