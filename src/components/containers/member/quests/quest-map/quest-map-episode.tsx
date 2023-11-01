@@ -53,13 +53,14 @@ const QuestMapEpisode = ({ episode, height }: IQuestMapDayProps) => {
 
 const styles = StyleSheet.create({
   backgroundContainer: {
-    marginBottom: 0,
+    marginBottom: -1,
     alignItems: "center",
     justifyContent: "center",
   },
 
   seperator: {
     top: 0,
+    marginBottom: -1,
     width: Style.DEVICE_WIDTH,
   },
   lottie: {

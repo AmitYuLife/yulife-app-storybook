@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Platform, SafeAreaView, StyleSheet, View, ViewStyle } from "react-native";
 import { NavBar, TopBar } from "@organisms";
 import { IConnectedScreenProps } from "@app/typings";
@@ -10,7 +10,8 @@ import { WeeklyQuestsButton } from "@components/screens/member/quests/quests-scr
 import { useUserFeatures } from "@hooks";
 import { IQuestMapItem } from "./quest-map.interface";
 import { GetMobileGameWeeklies_getMobileGameWeeklies } from "@graphql/_core/schema";
-import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
+import { FlashList, ListRenderItemInfo, ViewToken } from "@shopify/flash-list";
+import { first, isEmpty } from "lodash";
 
 interface IQuestMapScreenProps extends IConnectedScreenProps {
   currentLevel: number;
@@ -45,6 +46,7 @@ const QuestMapScreen = ({
 }: IQuestMapScreenProps) => {
   const features = useUserFeatures();
   const flashlistRef = useRef<FlashList<IQuestMapItem>>(null);
+  const [topBarType, setTopBarType] = useState(getTopBarType(currentLevel));
 
   const renderItem = useCallback(
     ({ item, index }: ListRenderItemInfo<IQuestMapItem>) => {
@@ -54,9 +56,14 @@ const QuestMapScreen = ({
   );
 
   const currentLevelEpisode = useMemo(() => {
-    const episode = items.findIndex((item) => item.levels.some((level) => level.level === currentLevel));
-    return episode;
-  }, [currentLevel, items]);
+    const activeEpisode = items.findIndex((item) =>
+      item.levels.some((level) => {
+        return level.isNext && level.isActive;
+      })
+    );
+
+    return activeEpisode ?? 0;
+  }, [items]);
 
   const scrollToLevel = useCallback(
     (_time: { elapsedTimeInMs: number }, animated: boolean = false) => {
@@ -73,7 +80,9 @@ const QuestMapScreen = ({
   }, [currentLevel, scrollToLevel]);
 
   const overrideItemLayout = useCallback((layout: { span?: number; size?: number }, item: IQuestMapItem) => {
-    if (!item) return null;
+    if (!item) {
+      return null;
+    }
 
     const seperator = item.seperator;
     const seperatorHeight = seperator ? Style.DEVICE_WIDTH * (seperator?.height / seperator?.width) : 0;
@@ -83,6 +92,23 @@ const QuestMapScreen = ({
 
     layout.size = height;
   }, []);
+
+  const onViewableItemsChanged = useCallback(
+    ({ viewableItems }: { viewableItems: ViewToken[] }) => {
+      if (isEmpty(viewableItems)) {
+        return;
+      }
+
+      const itemIndex = first(viewableItems).index;
+      const item = first(items[itemIndex]?.levels)?.level;
+      if (!item) {
+        return;
+      }
+
+      setTopBarType(getTopBarType(item));
+    },
+    [items]
+  );
 
   if (!items) {
     return null;
@@ -102,6 +128,7 @@ const QuestMapScreen = ({
           renderItem={renderItem}
           keyExtractor={keyExtractor}
           snapToOffsets={snapOffsets}
+          onViewableItemsChanged={onViewableItemsChanged}
           disableIntervalMomentum={true}
           overrideItemLayout={overrideItemLayout}
           showsVerticalScrollIndicator={false}
@@ -111,7 +138,7 @@ const QuestMapScreen = ({
       </View>
 
       <View style={styles.header}>
-        <TopBar type={getTopBarType(currentLevel)} onPressLeftIcon={onLeftMenuPress} />
+        <TopBar type={topBarType} onPressLeftIcon={onLeftMenuPress} />
       </View>
 
       <View style={styles.leftIconList}>
@@ -132,7 +159,7 @@ const styles = {
   } as ViewStyle,
   container: {
     ...StyleSheet.absoluteFillObject,
-    ...scrollViewAdjustPosition(),
+    flex: 1,
   },
   questContainer: {
     ...StyleSheet.absoluteFillObject,

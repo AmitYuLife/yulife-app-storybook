@@ -68,8 +68,13 @@ export interface IEpisodeConfig {
   episodeKey: number;
 }
 
+export interface IQuestMapLevel extends GetQuestMap_levels {
+  isNext?: boolean;
+  isActive?: boolean;
+}
+
 export interface IQuestMapItem {
-  levels: GetQuestMap_levels[];
+  levels: IQuestMapLevel[];
   seperator?: ISeperatorConfig;
   episodeConfig: IEpisodeConfig;
 }
