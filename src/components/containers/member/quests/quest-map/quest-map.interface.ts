@@ -1,4 +1,5 @@
 import { GetQuestMap_levels } from "@graphql/_core/schema";
+import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { Source } from "react-native-fast-image";
 
 export interface IEpisodeLevelConfig {
@@ -66,6 +67,8 @@ export interface IEpisodeConfig {
   seperator?: ISeperatorConfig;
 
   episodeKey: number;
+
+  topBarType?: TOP_BAR_TYPES;
 }
 
 export interface IQuestMapLevel extends GetQuestMap_levels {

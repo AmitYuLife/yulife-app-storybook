@@ -105,7 +105,7 @@ const QuestMapScreen = ({
         return;
       }
 
-      setTopBarType(getTopBarType(item));
+      setTopBarType(items[itemIndex]?.episodeConfig?.topBarType ?? getTopBarType(item));
     },
     [items]
   );
