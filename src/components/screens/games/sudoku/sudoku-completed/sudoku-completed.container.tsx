@@ -3,7 +3,7 @@ import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { useDispatch } from "react-redux";
 import { challengeResetAction } from "@redux/levels/levels.actions";
-import { memo, useCallback } from "react";
+import { memo, useCallback, useEffect } from "react";
 import SudokuCompletedScreen from "./sudoku-completed.screen";
 import { showYuModal } from "@navigation/root";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
@@ -24,8 +24,12 @@ export const SudokuCompletedContainer = ({ reward, isPractice, results, stats }:
     return true;
   });
 
-  const onCollect = useCallback(() => {
+  useEffect(() => {
     dispatch(challengeResetAction());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const onCollect = useCallback(() => {
     dispatch(sudokuReset());
     dispatch(displayStreaksCompletedAction());
 
