@@ -1,3 +1,4 @@
+import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { IEpisodeConfig } from "../quest-map.interface";
 
 export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
@@ -147,6 +148,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   // Bright planet ocean
   73: {
     background: require("../episodes/bright/ocean/bright-ocean-1.webp"),
+    topBarType: TOP_BAR_TYPES.DESERT,
     episodeHeight: 1004,
     episodeWidth: 375,
     snapOffsetY: 80,
@@ -165,7 +167,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   74: {
     background: require("../episodes/bright/ocean/bright-ocean-2.webp"),
-
+    topBarType: TOP_BAR_TYPES.DESERT,
     episodeHeight: 649,
     episodeWidth: 375,
     snapPosition: "center",
@@ -183,7 +185,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   75: {
     background: require("../episodes/bright/ocean/bright-ocean-3.webp"),
-
+    topBarType: TOP_BAR_TYPES.DESERT,
     episodeHeight: 703,
     episodeWidth: 375,
     episodeKey: 76,
@@ -221,7 +223,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   77: {
     background: require("../episodes/bright/ocean/bright-ocean-5.webp"),
-
+    topBarType: TOP_BAR_TYPES.DESERT,
     episodeHeight: 640,
     episodeWidth: 375,
     episodeKey: 78,
@@ -240,7 +242,6 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   78: {
     background: require("../episodes/bright/ocean/bright-ocean-6.webp"),
-
     episodeHeight: 575,
     episodeWidth: 375,
     episodeKey: 79,
@@ -259,14 +260,13 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   79: {
     background: require("../episodes/bright/ocean/bright-ocean-7.webp"),
-
+    topBarType: TOP_BAR_TYPES.DESERT,
     episodeHeight: 684,
     snapOffsetY: 40,
     episodeWidth: 375,
     episodeKey: 80,
     snapPosition: "center",
     bubbleOffsetY: -65,
-
     seperator: {
       background: require("../episodes/bright/ocean/bright-ocean-seperator.webp"),
       width: 1080,
@@ -284,7 +284,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   80: {
     background: require("../episodes/bright/ocean/bright-ocean-8.webp"),
-
+    topBarType: TOP_BAR_TYPES.DESERT,
     episodeHeight: 711,
     episodeWidth: 375,
     episodeKey: 81,
@@ -442,7 +442,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   // Bright planet mountain
   89: {
     background: require("../episodes/bright/mountain/bright-mountain-1.webp"),
-
+    topBarType: TOP_BAR_TYPES.MOUNTAIN,
     episodeHeight: 1009,
     episodeWidth: 375,
     snapPosition: "top",
@@ -461,7 +461,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   90: {
     background: require("../episodes/bright/mountain/bright-mountain-2.webp"),
-
+    topBarType: TOP_BAR_TYPES.MOUNTAIN,
     episodeHeight: 686,
     episodeWidth: 375,
     episodeKey: 91,
@@ -479,7 +479,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   91: {
     background: require("../episodes/bright/mountain/bright-mountain-3.webp"),
-
+    topBarType: TOP_BAR_TYPES.MOUNTAIN,
     episodeHeight: 728,
     episodeWidth: 375,
     episodeKey: 92,
@@ -498,7 +498,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   92: {
     background: require("../episodes/bright/mountain/bright-mountain-4.webp"),
-
+    topBarType: TOP_BAR_TYPES.MOUNTAIN,
     episodeHeight: 729,
     episodeKey: 93,
     episodeWidth: 375,
@@ -516,7 +516,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   93: {
     background: require("../episodes/bright/mountain/bright-mountain-5.webp"),
-
+    topBarType: TOP_BAR_TYPES.MOUNTAIN,
     episodeHeight: 600,
     episodeWidth: 375,
     snapOffsetY: 10,
@@ -535,7 +535,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   94: {
     background: require("../episodes/bright/mountain/bright-mountain-6.webp"),
-
+    topBarType: TOP_BAR_TYPES.DESERT,
     episodeHeight: 785,
     episodeKey: 95,
     episodeWidth: 375,
@@ -554,7 +554,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   95: {
     background: require("../episodes/bright/mountain/bright-mountain-7.webp"),
-
+    topBarType: TOP_BAR_TYPES.DESERT,
     episodeHeight: 712,
     episodeKey: 96,
     episodeWidth: 375,
@@ -578,7 +578,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   96: {
     background: require("../episodes/bright/mountain/bright-mountain-8.webp"),
-
+    topBarType: TOP_BAR_TYPES.DESERT,
     episodeHeight: 871,
     episodeKey: 97,
     episodeWidth: 375,
