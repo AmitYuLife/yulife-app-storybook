@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.106.0] - 2023-11-01
+
+### Bugfixes
+
+- Bugfix: Customisable color per episode top bar
+- Bugfix: New map fixes
+- Bugfix ENG-3683: Check for exact alarm permission
+- Bugfix ENG-3440 ENG-3441: Set last update when meditation data reset
+- Bugfix: No data defer modal
+- Bugfix ENG-3690: Reset sudoku
+- Bugfix: Unity 450 crash
+- Bugfix: Backport fix for register receiver for android 14
+- Bugfix: fixing hero Image modal image resizing
+- Bugfix: Fix Storybook deployment by adding support for webp files
+
+### Tasks
+
+- Task DEVOP-1739: Update sonar cloud version
+- Task: Use GenericFullScreenLoading instead of Loading on MediaPlayerProgressScreen
+
+### Chores
+
+- Chore/version check in notification center
+- Chore: added current date to app state
+
+### Extra
+
+- Detox: Rule social groups + Leaderboard search
+- detox/ordo-fixes-27/10
+- Fix: use current date for sudoku
+- Detox: Fixes 27th oct
+- detox:xse-2316
+- Detox: Fixed 26th oct
+- Purge ENG-3682: Old Leaderboard settings screen and use new leaderboard endpoints
+
 ## [3.105.0] - 2023-10-25
 
 ### Bugfixes
