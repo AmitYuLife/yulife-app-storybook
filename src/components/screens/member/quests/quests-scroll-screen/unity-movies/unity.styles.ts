@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   lottie: {
     width: Style.DEVICE_WIDTH,
+    height: Style.DEVICE_HEIGHT,
   } as ViewStyle,
   yucoinBadgeWrapper: {
     width: Style.adjust(218),

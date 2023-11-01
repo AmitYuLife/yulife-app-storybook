@@ -140,8 +140,13 @@ const LottieBackground = memo((props: LottieBackgroundProps) => {
   }
 
   return (
-    <Animated.View style={[styles.lottieWrapper, { opacity, height: Style.DEVICE_WIDTH * (1 / aspectRatio) }]}>
-      <LottieView ref={lottieRef} style={styles.lottieWrapper} source={lottieAnimation} loop={false} />
+    <Animated.View style={[styles.lottieWrapper, { opacity, height: Style.DEVICE_WIDTH / aspectRatio }]}>
+      <LottieView
+        ref={lottieRef}
+        style={[styles.lottieWrapper, { height: Style.DEVICE_WIDTH / aspectRatio }]}
+        source={lottieAnimation}
+        loop={false}
+      />
     </Animated.View>
   );
 });

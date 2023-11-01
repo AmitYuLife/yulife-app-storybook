@@ -649,6 +649,7 @@ const styles = StyleSheet.create({
   lottie: {
     ...StyleSheet.absoluteFillObject,
     height: "100%",
+    width: "100%",
   },
   endOfSessionLoading: {
     marginTop: Style.adjust(16),

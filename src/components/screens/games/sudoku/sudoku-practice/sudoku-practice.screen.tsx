@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   },
   lottie: {
     width: Style.DEVICE_WIDTH,
+    height: Style.DEVICE_HEIGHT,
     zIndex: -1,
     position: "absolute",
   },

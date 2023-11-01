@@ -17,5 +17,6 @@ export default StyleSheet.create({
   } as ViewStyle,
   lottie: {
     width: Style.DEVICE_WIDTH,
+    height: Style.DEVICE_HEIGHT,
   } as ImageStyle,
 });
