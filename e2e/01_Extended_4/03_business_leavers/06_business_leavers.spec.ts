@@ -22,7 +22,7 @@ Feature("As a business leaver I should still have app access", async () => {
                 })
             })
             When("I go to the leaderboard", when.tapID(ids.NAV_BAR('leaderboard')), async()=>{
-                Then("I should see the users name", then.idVisible(ids.LEADERBOARD_NAME('Bus Leaf', "0", 1)))
+                Then("I should see the users name", then.idVisible(ids.LEADERBOARD_NAME('Bus Leaf', "50", 1)))
                 Then("I should see this is the public leaderboard", then.idVisible(ids.LEADERBOARD_TITLE('Public')))
             })
             When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {

@@ -323,7 +323,7 @@ export const onDentalInsuranceOverview = async () => {
 
 export const ageRejectionTextInfo = (rejectionReason: string) => async () => {
   const rejectionTitle = "Sorry about this!";
-  const rejectionPLIAgeText = "Based on your age we are unable to offer you personal life insurance.";
+  const rejectionPLIAgeText = `Unfortunately we are unable to offer personal life insurance to anyone under the age of 18, please try again in future!`;
   const rejectionDentalAgeText =
     "Based on the information you provided we’re not able to offer you dental insurance right now. For more information please email support@yulife.com";
   const rejectionCovidText =

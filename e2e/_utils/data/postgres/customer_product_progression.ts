@@ -288,7 +288,7 @@ export const CUSTOMER_PLI_PROGRESSION_7 = {
     data: {
         "customer_product_progression_id" : generateRandomPostgresId(),
         "customer_product_id" : "YUCPID0000000157",
-        "step_id" : "Covea_FIB_02_rejection_age",
+        "step_id" : "Covea_FIB_02_rejection_age_young",
         "step_data" : "{}",
         "archived" : false,
         "archived_at" : null,
