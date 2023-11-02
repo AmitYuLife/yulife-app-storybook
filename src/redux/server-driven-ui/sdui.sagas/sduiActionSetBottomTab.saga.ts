@@ -27,12 +27,12 @@ export function* sduiActionSetBottomTabSaga({ payload }: SduiActionWithServerPay
       );
     }
 
-    if (postDispatchActions.length) {
-      yield all(postDispatchActions.map((action: { type: string }) => put(action)));
-    }
-
     if (popCurrentStackTo) {
       yield call(() => Navigation.popTo(popCurrentStackTo));
+    }
+
+    if (postDispatchActions.length) {
+      yield all(postDispatchActions.map((action: { type: string }) => put(action)));
     }
   }
 }
