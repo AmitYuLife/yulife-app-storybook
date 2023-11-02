@@ -5,7 +5,6 @@ import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as ids from "@ids"
 import * as data from "@data"
-import { SUDOKU_STAT_0 } from "_utils/data/mongo/game_sudoku_stats"
 import { PracticeYudokuAnswers } from "./_resources/constants"
 import { DefaultYudokuLeaderboard, User67LeaderboardItemSudoku, User68LeaderboardItemSudoku, User71LeaderboardItemSudoku } from "./_resources/fixtures"
 
@@ -22,7 +21,7 @@ Feature("Yudoku", async () => {
     When("I tap the soduku challenge", when.tapSudoku, async () => {
         Then("I am on the sudoku page", then.amOnSudokuPage)
         Then("I cannot see leaderboard content", then.cannotSeeLeaderboard)
-        Then("I can see the users personal best", then.canSeePersonalBest(SUDOKU_STAT_0))
+        Then("I can see the users personal best", then.canSeePersonalBest(data.USER_STAT_86))
         Then("I can see todays time is n/a", then.idVisible(ids.SUDOKU_STAT("Today's time", "n/a")))
         Then("I can see the 60 reward", then.idVisible(ids.SUDOKU_STAT("Reward", 60)))
     })
@@ -216,7 +215,7 @@ Feature("Yudoku", async () => {
             When("I tap the soduku challenge", when.tapSudoku, async () => {
                 Then("I cannot see a leaderbord entry for the user, Cersei is still first", then.canSeeLeaderboard(data.CUSTOMER_71, data.SUDOKU_ANSWER_71, 1, true))
                 Then('I can see there is data.an Unrdata.anked label', then.idVisible(ids.SUDOKU_UNRANKED_LABEL))
-                Then("I can see the personal best has not updated", then.canSeePersonalBest(SUDOKU_STAT_0))
+                Then("I can see the personal best has not updated", then.canSeePersonalBest(data.USER_STAT_86))
             })
         })
     })
@@ -257,11 +256,11 @@ Feature("Yudoku", async () => {
         })
     })
     When('I tap leaderboards', when.tapText("Leaderboards"), async () => {
-        Then("I can see the option for Yudoku leaderboards", then.idVisible(ids.SETTINGS_SWITCH("Yudoku", true)))
+        Then("I can see the option for Yudoku leaderboards", then.idVisible(ids.SETTINGS_SWITCH(`${data.SOCIAL_GROUP_1.data.name} Yudoku`, true)))
     })
-    When("I tap the toggle", when.tapID(ids.SETTINGS_SWITCH("Yudoku", true)), async () => {
+    When("I tap the toggle", when.tapID(ids.SETTINGS_SWITCH(`${data.SOCIAL_GROUP_1.data.name} Yudoku`, true)), async () => {
         When("I tap turn it off", when.tapText("Turn it off"), async () => {
-            Then("I can see the option for Yudoku leaderboards is off ", then.idVisible(ids.SETTINGS_SWITCH("Yudoku", false)))
+            Then("I can see the option for Yudoku leaderboards is off ", then.idVisible(ids.SETTINGS_SWITCH(`${data.SOCIAL_GROUP_1.data.name} Yudoku`, false)))
         })
     })
     When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER("Leaderboards")), async () => {
@@ -280,18 +279,16 @@ Feature("Yudoku", async () => {
         })
     })
     When('I tap leaderboards', when.tapText("Leaderboards"), async () => {
-        Then("I can see the option for Yudoku leaderboards is on", then.idVisible(ids.SETTINGS_SWITCH("Yudoku", true)))
+        Then("I can see the option for Yudoku leaderboards is on", then.idVisible(ids.SETTINGS_SWITCH(`${data.SOCIAL_GROUP_1.data.name} Yudoku`, true)))
     })
     When("I close settings", when.tapID(ids.BUTTON_CLOSE_HEADER("Leaderboards")), async () => {
         When('I go to quests', when.navigateTo("quests"), async () => {
             When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
                 When("I tap the soduku challenge", when.tapSudoku, async () => {
                     When("I complete the Yudoku", when.completeYudoku, async () => {
-                        When("I tap done", when.tapText("Done"), async () => {
-                            When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-                                Then("I can see the slot for a completed yudoku", then.idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Yudoku", "120", 3)))
-                                Then("I can see the level summary page yudoku leaderboard button", then.canSeeYudokuLeaderboardButton("Today"))
-                            })
+                        When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
+                            Then("I can see the slot for a completed yudoku", then.idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Yudoku", "120", 3)))
+                            Then("I can see the level summary page yudoku leaderboard button", then.canSeeYudokuLeaderboardButton("Today"))
                         })
                     })
                 })

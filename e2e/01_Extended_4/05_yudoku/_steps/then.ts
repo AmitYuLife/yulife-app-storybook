@@ -1,9 +1,8 @@
 import { idNotVisible, navigation, textNotVisible } from "@navigation";
 import { leaderboardConsentCta, leaderboardConsentDesc, leaderboardConsentHeading, todaysDate } from "../_resources/constants";
 import { CHALLENGE_SET_SCROLL, LEADERBOARD_NAME, LEVEL_SUMMARY_YUDOKU_LEADERBOARD, RANK, SCORE, SUDOKU_HOWTOPLAY_BUTTON, SUDOKU_JOINLEADERBOARD_BUTTON, SUDOKU_LEADERBOARD, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, TAKE_A_CHALLENGE_LEFT_BUTTON, TODAYS_EARNINGS} from "@ids"
-import { CUSTOMER_1, CUSTOMER_86, SUDOKU_ANSWER_71 } from "@data";
+import { CUSTOMER_1, CUSTOMER_86, SUDOKU_ANSWER_71, USER_STAT_86 } from "@data";
 import { getDuration } from "@socket";
-import { SUDOKU_STAT_0, SUDOKU_STAT_1 } from "_utils/data/mongo/game_sudoku_stats";
 import { getFullName } from "_utils/users";
 import { UserLeaderboardListItem } from "../_resources/types";
 
@@ -124,7 +123,7 @@ export const cannotSeeLeaderboard = async () => {
   await textNotVisible("Today's Leaderboard")()
 }
 
-export const canSeePersonalBest = (stat: typeof SUDOKU_STAT_0) => async () => {
+export const canSeePersonalBest = (stat: typeof USER_STAT_86) => async () => {
   const time = getDuration(stat.data.personalBest)
   await idVisible(SUDOKU_STAT("Personal best", time))()
 }

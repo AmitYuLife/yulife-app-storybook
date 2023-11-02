@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_19, CUSTOMER_35, CUSTOMER_40, CUSTOMER_42, CUSTOMER_47, CUSTOMER_50, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_65, CUSTOMER_75, CUSTOMER_76, CUSTOMER_77, CUSTOMER_83, CUSTOMER_20, CUSTOMER_84, CUSTOMER_111, CUSTOMER_109, CUSTOMER_39, CUSTOMER_16 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_19, CUSTOMER_35, CUSTOMER_40, CUSTOMER_42, CUSTOMER_47, CUSTOMER_50, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_65, CUSTOMER_75, CUSTOMER_76, CUSTOMER_77, CUSTOMER_83, CUSTOMER_20, CUSTOMER_84, CUSTOMER_111, CUSTOMER_109, CUSTOMER_39, CUSTOMER_16, CUSTOMER_LEAVER } from '../postgres/customers';
 import { SHORT_STROLL_MILESTONE_1, LONG_WALK_MILESTONE_1, MEDITATION_MILESTONE_1, SUDOKU_MILESTONE } from './map_milestone_templates';
 import { MEDITATION_1, LONG_WALK_1, SHORT_STROLL_1, CYCLING_1 } from './map_level_slot_templates';
 import { CHALLENGE_TEMPLATE } from "./_templates";
@@ -795,6 +795,43 @@ export const CHALLENGE_USER_16 = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_16.data.customerId,
+        ...generateChallengeDates(moment("00:01", "HH:mm").subtract(5, "days"), moment("23:59", "HH:mm").subtract(5, "days")),
+        "sources": {
+            "device": {
+                "steps": 50
+            }
+        },
+        "incomingData": {
+            "steps": 50,
+            "meditation": 0
+        },
+        "levelSlotTemplateId": "DAILY_PASSIVE_001",
+        "isNewType": true,
+        "status": "passive",
+        "passive": true,
+        "yuCoinAwarded": 0,
+        "milestoneLog": [
+            {
+                "completionData": [],
+                "_id": generateRandomMongoId(),
+                "data": {
+                    "meditation": 0,
+                    "steps": 50
+                },
+                "yuCoinAwarded": 20,
+                "completed": moment().subtract(1, "day").toDate(),
+                "id": "YU_MILESTONE_DAILY_STEPS_0"
+            },
+        ],
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_LEAVER = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_LEAVER.data.customerId,
         ...generateChallengeDates(moment("00:01", "HH:mm").subtract(5, "days"), moment("23:59", "HH:mm").subtract(5, "days")),
         "sources": {
             "device": {

@@ -1492,7 +1492,8 @@ export const CUSTOMER_76_TOGGLES = {
       yuScreenV4: false,
       showBrainGameSudoku: true,
       showNewLeaderBoard: true,
-      useNewLeaderboardServices: true
+      useNewLeaderboardServices: true,
+      newChallengeList: true,
     },
   },
 } as IDatabaseItem;
