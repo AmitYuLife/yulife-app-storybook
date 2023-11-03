@@ -1,6 +1,9 @@
 import { navigation } from "@utils"
-import { scrollUntilIdVisible } from "_utils/navigation/scrolling"
-import { TEXT_TEMPLATE, WELLBEING_HUB_SCROLL_VIEW } from "@ids"
+import { scrollUntilIdVisible, scrollUntilTextVisible } from "_utils/navigation/scrolling"
+import { TEXT_TEMPLATE, WELLBEING_HUB_ITEM_SCROLL_VIEW, WELLBEING_HUB_SCROLL_VIEW } from "@ids"
+import * as fixture from "../_resources/fixtures"
+import * as constant from "../_resources/constants"
+import { BupaWellbeingHubItem } from "../_resources/types"
 
 export const {
     idVisible,
@@ -44,4 +47,39 @@ export const canSeeFiitLimitReached = async () => {
    
     await expect(element(by.text(limitReachedText))).toBeVisible()
    
+}
+
+export const bupaWellbeingItemsVisible = async () => {
+    const bupaItems = 
+    [
+        fixture.bluaHealthItem,
+        fixture.anytimeHelplineItem,
+        fixture.familyMentalHealthLineItem,
+        fixture.menopauseHealthLineItem,
+        fixture.directAccessItem
+    ]
+
+    for (const i of bupaItems) {
+        await scrollUntilTextVisible(WELLBEING_HUB_SCROLL_VIEW, i.buttonDesc, "down")()
+        await idVisible(TEXT_TEMPLATE(i.title))()
+        await textVisible(i.buttonDesc)()
+    }
+}
+
+export const onCorrectWellbeingItemPage = (item: BupaWellbeingHubItem) => async () => {
+    for (const i of item.content) {
+        await scrollUntilTextVisible(WELLBEING_HUB_ITEM_SCROLL_VIEW, i.text[i.text.length - 1], "down")()
+        await textVisible(i.header)()
+        i.text.forEach(text => async () => {
+            await textVisible(text)()
+        })
+    }
+   await haveAQuestionVisible()
+}
+
+export const haveAQuestionVisible = async () => {
+    await scrollUntilTextVisible(WELLBEING_HUB_ITEM_SCROLL_VIEW, constant.helpCentreButtonText, "down")()
+    await textVisible (constant.haveAQuestionHeader)()
+    await textVisible (constant.haveAQuestionText)()
+    await textVisible (constant.helpCentreButtonText)()
 }

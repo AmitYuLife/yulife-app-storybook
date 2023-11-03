@@ -8,7 +8,8 @@ export const {
     typeViaID,
     replaceTextViaID,
     replaceTextByID,
-    clearFieldByID
+    clearFieldByID,
+    tapIDAtIndex
 } = navigation.common
 
 export const {
