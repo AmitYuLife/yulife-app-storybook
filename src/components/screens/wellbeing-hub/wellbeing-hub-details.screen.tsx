@@ -7,7 +7,7 @@ import {
 } from "@graphql/_core/schema/GetWellbeingHubItem";
 import { Style } from "@styles";
 import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
-import { MORE_INFO_BUTTON } from "@ids";
+import { MORE_INFO_BUTTON, WELLBEING_HUB_ITEM_SCROLL_VIEW } from "@ids";
 import { TapToCopy } from "@organisms";
 import Logger from "@services/logging/logger";
 import { handleLinkPress } from "@services/app-link";
@@ -28,7 +28,11 @@ export const WellbeingHubDetailsScreen = memo(function (props: IProps) {
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContentContainerStyle}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContentContainerStyle}
+        testID={WELLBEING_HUB_ITEM_SCROLL_VIEW}
+      >
         {item.content.map((i, index) => (
           <View key={`${i.__typename}-${index}`}>{getItemContent(i, item.id, item.title)}</View>
         ))}

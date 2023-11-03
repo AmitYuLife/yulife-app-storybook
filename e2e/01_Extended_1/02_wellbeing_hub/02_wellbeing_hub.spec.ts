@@ -5,6 +5,7 @@ import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as data from "@data"
 import * as ids from "@ids"
+import * as fixture from "./_resources/fixtures"
 import { getLocalisedString as t } from "@i18n"
 import { nextClaimDate } from "./_resources/constants";
 
@@ -150,6 +151,39 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
                 Then("I should see Fiit that is assigned to the UK on the screen", then.textNotVisible(data.WELLBEING_HUB_ITEM_4.data.title))
                 Then("I should not be able to see the item that is assigned to the US", then.textNotVisible(data.WELLBEING_HUB_ITEM_3.data.title))
             })
+        })
+    })
+})
+
+Scenario("I can see the Bupa wellbeing products in their own tab if assigned to the user", scenario.start, async () => {
+    Given("I login as a grouplife user", given.loginAsUser(data.CUSTOMER_116_GHI_REWARDS, data.AUTH_116), async () => {
+        When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
+            When("I click to see the Health Insurance options", when.tapText("Health Insurance"), async () => {
+                Then("I should see all the Bupa products", then.bupaWellbeingItemsVisible)
+            })
+        })
+    })
+    When("I click to see Blua Health", when.tapID(ids.TEXT_TEMPLATE(fixture.bluaHealthItem.title)), async () => {
+        Then("I am on the Blua Health page", then.onCorrectWellbeingItemPage(fixture.bluaHealthItem))
+    })
+    When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
+        When("I click to see Anytime Helpline", when.tapID(ids.TEXT_TEMPLATE(fixture.anytimeHelplineItem.title)), async () => {
+            Then("I am on the Anytime Helpline page", then.onCorrectWellbeingItemPage(fixture.anytimeHelplineItem))
+        })
+    })
+    When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
+        When("I click to see Family Mental Healthline", when.tapID(ids.TEXT_TEMPLATE(fixture.familyMentalHealthLineItem.title)), async () => {
+            Then("I am on the Family Mental Healthline page", then.onCorrectWellbeingItemPage(fixture.familyMentalHealthLineItem))
+        })
+    })
+    When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
+        When("I click to see Menopause Healthline", when.tapID(ids.TEXT_TEMPLATE(fixture.menopauseHealthLineItem.title)), async () => {
+            Then("I am on the Menopause Healthline page", then.onCorrectWellbeingItemPage(fixture.menopauseHealthLineItem))
+        })
+    })
+    When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
+        When("I click to see Direct Access", when.tapID(ids.TEXT_TEMPLATE(fixture.directAccessItem.title)), async () => {
+            Then("I am on the Direct Access page", then.onCorrectWellbeingItemPage(fixture.directAccessItem))
         })
     })
 })
