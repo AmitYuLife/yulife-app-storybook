@@ -189,7 +189,16 @@ const MediaPlayerContainer = ({
     } finally {
       await Storage.removeItem(StorageKey.mediaPlayerProgress);
     }
-  }, [video.duration, video.id, levelSlotId, dispatch, eventType, updateQuestMapLevelChallenge, cancelChallenge]);
+  }, [
+    video.duration,
+    video.id,
+    levelSlotId,
+    dispatch,
+    eventType,
+    updateQuestMapLevelChallenge,
+    cancelChallenge,
+    inAppMeditation,
+  ]);
 
   const onProgress = useCallback(
     async (seconds: number) => {
