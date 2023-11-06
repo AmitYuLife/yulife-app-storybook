@@ -10,7 +10,7 @@ import {
 import Logger from "@services/logging/logger";
 import { RewardsListScreen } from "@screens/index";
 import { IMainTabsProps, showYuModal } from "@navigation/root";
-import { useQueryOnScreenSeenOnce, useTapBackTwiceToExit } from "@hooks";
+import { useQueryOnScreenSeen, useTapBackTwiceToExit } from "@hooks";
 import { t } from "@locale";
 
 const _RewardsListContainer = (props: IMainTabsProps) => {
@@ -19,7 +19,7 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
 
   useTapBackTwiceToExit(componentId);
 
-  const [getRewards, { loading, data: rewards }] = useQueryOnScreenSeenOnce<Rewards, RewardsVariables>(
+  const [getRewards, { loading, data: rewards }] = useQueryOnScreenSeen<Rewards, RewardsVariables>(
     GQL_QUERY_GET_MOBILE_REWARDS_LIST,
     ROUTES.rewards,
     { variables: { tag } }
