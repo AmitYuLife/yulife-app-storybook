@@ -5,6 +5,14 @@ import { DocumentNode } from "graphql";
 import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 
+type ScreenSeenHookOptions = {
+  refetch: boolean;
+};
+
+const DEFAULT_SCREEN_SEEN_HOOK_OPTIONS = {
+  refetch: true,
+};
+
 /**
  *
  * @param gqlQuery GQL query
@@ -13,27 +21,33 @@ import { useSelector } from "react-redux";
 export function useQueryOnScreenSeen<T = any, TVariables = OperationVariables>(
   gqlQuery: DocumentNode,
   screenName: string,
-  options?: LazyQueryHookOptions<T, TVariables>
+  lazyQueryHookOptions?: LazyQueryHookOptions<T, TVariables>,
+  screenSeenHookOptionsArgs: ScreenSeenHookOptions = { refetch: true }
 ): QueryTuple<T, TVariables> {
   const hasBeenQueried = useRef(false);
   const currentScreen = useSelector(getRouteState);
   const isScreenActive = currentScreen === screenName;
+  const screenSeenHookOptions = { ...DEFAULT_SCREEN_SEEN_HOOK_OPTIONS, ...screenSeenHookOptionsArgs };
 
   const [query, queryResult] = useLazyQuery<T, TVariables>(gqlQuery, {
     fetchPolicy: "cache-and-network",
-    ...options,
+    ...lazyQueryHookOptions,
   });
 
   useEffect(() => {
-    if (isScreenActive) {
-      if (!hasBeenQueried.current) {
-        query();
-        hasBeenQueried.current = true;
-      } else {
-        queryResult.refetch();
-      }
+    if (!isScreenActive) {
+      return;
     }
-  }, [isScreenActive]);
+
+    if (!hasBeenQueried.current) {
+      query();
+      hasBeenQueried.current = true;
+    }
+
+    if (screenSeenHookOptions.refetch) {
+      queryResult.refetch();
+    }
+  }, [isScreenActive, screenSeenHookOptions.refetch]);
 
   return [query, queryResult];
 }

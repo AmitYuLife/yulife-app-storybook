@@ -75,6 +75,7 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
           passProps: {
             stepId: rewards?.data?.sduiStepId,
             dynamicId: reward.id,
+            shouldRefetchOnScreenSeen: true,
           },
           options: { bottomTabs },
         },
