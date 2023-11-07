@@ -257,8 +257,8 @@ export const voucherOptionsVisible = (voucherDetails: GHI_VOUCHER_LIST_DETAILS) 
   })
 }
 
-export const groupHealthRewardsPurchasedVisible = (product: GHI_REWARD_CLAIM_PAGE_DETAILS) => async () => {
-  const prod = product.heading
+export const groupHealthRewardsPurchasedVisible = (product?: GHI_REWARD_CLAIM_PAGE_DETAILS) => async () => {
+  const prod = product ? product.heading : "GOSH"
 
   await textVisible(moment().format("DD"))()
   await textVisible(moment().format("MMM"))()
@@ -282,6 +282,10 @@ export const groupHealthRewardsPurchasedVisible = (product: GHI_REWARD_CLAIM_PAG
       break
     case (prod === "Garmin"):
       await textVisible("1 Watch")
+      await textVisible("0 YuCoin")
+      break
+    case (prod === "GOSH"):
+      await textVisible("100 £ Donation to GOSH")
       await textVisible("0 YuCoin")
       break
   }
@@ -396,7 +400,6 @@ export const onBupaRewardsClaimPage = (product: GHI_REWARD_CLAIM_PAGE_DETAILS, p
 export const onGarminRewardsClaimPage = (product: GHI_REWARD_CLAIM_PAGE_DETAILS, preClaim: boolean, vouchers: number) => async () => {
   const buttonText = preClaim? product.buttonText : constants.claimReward
   const voucherMessage = vouchers > 0 ? "1 voucher left to claim" : "You’ve claimed all your vouchers!"
-  console.log("preclaim = ", preClaim, " and the button message is ", voucherMessage)
 
   if(preClaim){
     product.companyDescription.forEach(description => async () => {
@@ -455,7 +458,7 @@ export const livingDNADetailsPageVisible = async () => {
   await idVisible(ids.CONTENT_ITEM_INPUT("address2"))()
   await idVisible(ids.CONTENT_ITEM_INPUT("town"))()
   await idVisible(ids.CONTENT_ITEM_INPUT("county"))()
-  await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, "Submit", "down")()
+  await scrollUntilIdVisible(ids.SDUI_BODY_SCROLL, ids.INFO_PANEL_IMAGE(constants.detailsCorrectWarningYugiImg), "down")()
   await idVisible(ids.CONTENT_ITEM_INPUT("postcode"))()
   await idVisible(ids.CONTENT_ITEM_INPUT("phone"))()
   await idVisible(ids.CONTENT_ITEM_INPUT("email"))()
@@ -504,4 +507,18 @@ export const GHIRewardEmailReceived = (emailAddress: string, emailSubject: strin
     throw new Error("Email subject is incorrect")
   }
   
+}
+
+export const goshConfirmationModalVisible = async () => {
+  await textVisible(constants.areYouSure)()
+  await textVisible(constants.goshWarningMessage)()
+  await textVisible(constants.makeDonation)()
+  await textVisible("Cancel")()
+}
+
+export const onGOSHRewardsClaimPage = async () => {
+  await textVisible(`100 £ Donation to GOSH`)()
+  await textVisible(`Purchased date - ${moment().format("DD MMM YYYY")}`)()
+  await textVisible(constants.donationHeader)()
+  await textVisible(constants.donationMessage)()
 }
