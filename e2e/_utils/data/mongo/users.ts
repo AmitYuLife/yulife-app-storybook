@@ -2323,3 +2323,16 @@ export const USER_126 = {
     earnRate: 1
   },
 } as IDatabaseItem;
+
+export const USER_127 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_127_GHI_REWARDS.data.customerId,
+    nickname: "Rewazza",
+    isAvatarCreated: true,
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+  },
+} as IDatabaseItem;

@@ -866,3 +866,16 @@ export const CGP_125_GDental_Choice = {
     }
 } as IDatabaseItem
 
+export const CBP_GHI_REWARDS_7 = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_13_GHI_REWARDS.product.data.product_id,
+        customer_product_id: cpe.CPE_127_GHI_REWARDS.data.customer_product_id,
+        "category_id" : "1",
+        "start_date" : "2023-04-26",
+        "archived" : false,
+        "data" : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\"}"
+    }       
+} as IDatabaseItem
+

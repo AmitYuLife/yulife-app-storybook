@@ -2245,3 +2245,17 @@ export const CUSTOMER_126_TOGGLES = {
     },
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_127_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_127_GHI_REWARDS.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      hasSmartPensionActive: true,
+      enableProductGoals: true,
+    },
+  },
+} as IDatabaseItem;

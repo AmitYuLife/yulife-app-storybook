@@ -101,3 +101,17 @@ export const thrivaEmailSubject = "[detox] Your Thriva Voucher Awaits!"
 
 export const sparkleAnimation = "https://yulife-develop.imgix.net/products/group/rewards/card-stars.png?ixlib=js-3.2.1&s=bf4beba34d32a3c412a95c90caadb320"
 
+// Garmin choice
+
+export const selectReward = "Select your reward"
+export const chooseGarmin = "Get my Garmin"
+export const chooseGOSH = "Make a GOSH donation instead"
+export const areYouSure = "Are you sure?"
+export const goshWarningMessage = "You won't be able to get a Garmin if you donate to GOSH:"
+export const makeDonation = "Make donation 💖"
+
+// GOSH confirmation
+
+export const donationHeader = "Thank you for your donation!"
+export const donationMessage = "Your donation will help to give support to seriously ill children and their families, offering them the best chance to fulfil their potential. To learn more about GOSH's work and how your donation will make a difference, please click here."
+

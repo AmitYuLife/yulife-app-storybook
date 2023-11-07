@@ -1155,7 +1155,18 @@ export const CORE_REWARDS_GARMIN_GHI_REWARDS = {
         "en-GB": "Claim my reward",
         "ja-JP": "報酬を請求する"
       }
-    }
+    },
+    "alternativeClaim": {
+      "alternativeRewardCode": "gosh",
+      "optionPrimaryLabel": {
+        "en-GB": "Get my Garmin",
+        "es-ES": "Conseguir mi Garmin"
+      },
+      "optionAlternativeLabel": {
+        "en-GB": "Make a GOSH donation instead",
+        "es-ES": "Haz una donación a GOSH"
+      }
+    },
     }
 } as IDatabaseItem
 
@@ -1312,6 +1323,109 @@ export const CORE_REWARDS_THRIVA_GHI_REWARDS = {
         "ja-JP": "報酬を請求する"
       }
     }
+  }
+} as IDatabaseItem
+
+export const CORE_REWARDS_GOSH_GHI_REWARDS = {
+  type: "mongo",
+  modelName: "core_rewards",
+  data: {
+    "_id": "6512f45770c344f66a694f54",
+    "loyaltyProgramme": [],
+    "restrictions": {
+      "availableForLabels": [
+        "alternativeClaim"
+      ],
+      "restrictedForLabels": [],
+      "locations": [
+        "GB"
+      ]
+    },
+    "tags": [],
+    "badge": {},
+    "website": {
+      "isFeaturedOnWebsite": false
+    },
+    "claimType": "locked",
+    "images": {
+      "detailHeaderKey": "imgixGlobal::cms/1695987416025_GOSH.png",
+      "listItemImageKey": "imgixGlobal::cms/1695987416650_GOSH.png",
+      "websiteImageKey": ""
+    },
+    "rewardProviderId": "link",
+    "name": {
+      "en-GB": "GOSH",
+      "es-ES": "GOSH"
+    },
+    "code": "gosh",
+    "description": {
+      "en-GB": ".",
+      "es-ES": "."
+    },
+    "redemptionUrl": null,
+    "currencyCode": "GBP",
+    "termsAndConditionsUrl": "https://www.gosh.org/charity-terms-and-conditions/",
+    "shouldCountTowardsDonations": true,
+    "availableDenominations": [
+      {
+        "_id": generateRandomMongoId(),
+        "displayName": {
+          "en-GB": "£",
+          "es-ES": "£"
+        },
+        "yuCoin": 0,
+        "value": 100
+      }
+    ],
+    "copy": {
+      "alertHeading": {
+        "en-GB": "Are you sure?",
+        "es-ES": "¿Seguro?"
+      },
+      "alertSubheading": {
+        "en-GB": "You won't be able to get a Garmin if you donate to GOSH:",
+        "es-ES": "No podrás conseguir un Garmin si donas a GOSH:"
+      },
+      "redeemCtaLabel": null,
+      "unlockedClaimableSlogan": null,
+      "alertOkLabel": {
+        "en-GB": "Make donation 💖",
+        "es-ES": "Hacer donación 💖"
+      },
+      "alertCancelLabel": null,
+      "ctaLabel": null
+    },
+    "redemptionSteps": {
+      "steps": [],
+      "info": {
+        "en-GB": "Redeem",
+        "es-ES": "Canjear"
+      }
+    },
+    "customConfirmation": {
+      "title": {
+        "en-GB": "Thank you for your donation!",
+        "es-ES": "Gracias por su donación."
+      },
+      "description": {
+        "en-GB": "Your donation will help to give support to seriously ill children and their families, offering them the best chance to fulfil their potential. To learn more about GOSH's work and how your donation will make a difference, please click [here](https://www.gosh.org/what-we-do/).",
+        "es-ES": "Su donación ayudará a prestar apoyo a los niños gravemente enfermos y a sus familias, ofreciéndoles la mejor oportunidad de desarrollar todo su potencial. Para saber más sobre el trabajo de GOSH y cómo su donación marcará la diferencia, haga clic [aquí](https://www.gosh.org/what-we-do/)."
+      }
+    },
+    "createdAt": {
+      "$date": "2023-09-26T15:10:15.997Z"
+    },
+    "updatedAt": {
+      "$date": "2023-10-17T05:37:05.896Z"
+    },
+    "__v": 0,
+    "denominationUnit": {
+      "en-GB": "£ Donation to GOSH",
+      "es-ES": "£ Donación a GOSH"
+    },
+    "archived": false,
+    "alternativeClaim": null,
+    "donationType": "charity"
   }
 } as IDatabaseItem
 

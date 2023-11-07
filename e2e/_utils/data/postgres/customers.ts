@@ -1855,3 +1855,16 @@ export const CUSTOMER_126_LEAVER_WELLBEING = {
   },
 } as IDatabaseItem
 
+export const CUSTOMER_127_GHI_REWARDS = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Luke",
+    lastName: "Cundle",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+
