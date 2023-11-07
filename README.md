@@ -42,11 +42,9 @@ yarn
 
 You'll also need to install iOS pods by running
 
-```
-cd ios && bundle exec pod install && cd ../
-```
+`yarn pod:install`
 
-If running `pod install` produces the error `SDK "iphoneos" cannot be located`, this means the XCode installation path is incorrect (it's probably installed under "Applications").
+If running `pod:install` produces the error `SDK "iphoneos" cannot be located`, this means the XCode installation path is incorrect (it's probably installed under "Applications").
 
 You can check this by running
 
@@ -195,7 +193,7 @@ bundle install
 install pods with:
 
 ```
-bundle exec pod install --repo-update
+yarn pod:install
 ```
 
 ##### Building
