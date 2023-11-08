@@ -13,6 +13,7 @@ import { ILevelBubbleProps } from "./level/level-bubble";
 import { showYuModal } from "@navigation/root";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
+import { getAssets } from "../unity-movies/unity.data";
 
 type LevelButtonState =
   | "Completed"
@@ -179,6 +180,8 @@ const getLevelProps = (
         ...slotColours.active,
         isActive: true,
         onPress: () => {
+          const assets = getAssets(currentLevel - 1);
+
           showYuModal({
             component: {
               id: MODALS.EOTWChest,
@@ -187,6 +190,7 @@ const getLevelProps = (
                 level: currentLevel,
                 levelId: level.id,
                 yuniversalLevel,
+                assets,
                 yuniversalMap,
                 avatar,
                 onPressCta: () => {

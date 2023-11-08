@@ -6,7 +6,7 @@ import { Chest, ChestType, ChestItemType, CHEST_STATE } from "@organisms";
 import { Button } from "@molecules";
 import { TextTemplate } from "@atoms";
 import styles from "./eotw-chest.styles";
-import { getAssets } from "../quests/quests-scroll-screen/unity-movies/unity.data";
+import { IUnityData } from "../quests/quests-scroll-screen/unity-movies/unity.data";
 import { DETOX_ENABLED } from "@services/socket";
 import EOTWSpaceTravel from "./eotw-space-travel";
 import { Style } from "@styles";
@@ -23,6 +23,7 @@ interface IProps {
   levelId: string;
   items: ChestItemType[];
   avatar: ImageSourcePropType;
+  assets: IUnityData;
   onPressCta: () => void;
 }
 enum EOTW_CHEST_PAGE {
@@ -31,16 +32,16 @@ enum EOTW_CHEST_PAGE {
   TRAVEL_ANIMATION,
 }
 
-const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, levelId, onPressCta, avatar }) => {
+const EOTWChestScreen: FC<IProps> = memo(({ chestType, assets, title, items, level, levelId, onPressCta, avatar }) => {
   const [chestState, setChestState] = useState(CHEST_STATE.CLOSED);
   const [page, setPage] = useState(EOTW_CHEST_PAGE.CHEST);
+  const [isInitialized, setIsInitialized] = useState<boolean>(false);
   const [beginningButton, setBeginningButton] = useState(false);
   const dispatch = useDispatch();
   const currentPlanet = getCurrentPlanet(level);
   const currentPlanetName = getCurrentPlanetByLevel(level);
 
   const travelRef = useRef<LottieView>(null);
-
   const [travel, setTravel] = useState(false);
 
   const chestButtonLabel = useMemo(
@@ -91,17 +92,23 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, title, items, level, leve
     });
   }, []);
 
-  const { color, waves } = useMemo(() => getAssets(level - 1), [level]);
+  const onInitialized = useCallback(() => {
+    setIsInitialized(true);
+  }, []);
+
+  const { color, waves } = assets;
+
   return (
     <View style={styles.wrapper} testID={CELESTIAL_CHEST_SCREEN}>
       <LottieView
         resizeMode="cover"
         style={styles.fullScreenLottie}
         source={waves}
+        onLayout={onInitialized}
         autoPlay={true}
         loop={DETOX_ENABLED ? false : true}
       />
-      {page !== EOTW_CHEST_PAGE.CHEST ? null : (
+      {page !== EOTW_CHEST_PAGE.CHEST || !isInitialized ? null : (
         <View style={styles.chestPage}>
           {chestState !== CHEST_STATE.OPEN ? null : (
             <View style={styles.chestTitleWrapper}>
