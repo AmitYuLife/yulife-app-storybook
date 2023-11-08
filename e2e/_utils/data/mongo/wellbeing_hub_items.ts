@@ -17,7 +17,8 @@ export const WELLBEING_HUB_ITEM_1 = {
          "workLocationCountry": {}
        },
       "restrictions": {
-         "perkId": "FIIT_12_MONTH"
+         "showForPerkIds": "FIIT_12_MONTH",
+         "perkId":"FIIT_12_MONTH"
       },
       "content": [
          {
@@ -95,6 +96,7 @@ export const WELLBEING_HUB_ITEM_3 = {
          }
        },
       "restrictions": {
+         "showForPerkIds": "FIIT_12_MONTH",
          "perkId": "FIIT_12_MONTH"
       },
       "content": [
@@ -151,6 +153,7 @@ export const WELLBEING_HUB_ITEM_4 = {
          }
        },
       "restrictions": {
+         "showForPerkIds": "FIIT_12_MONTH",
          "perkId": "FIIT_12_MONTH"
       },
       "content": [
@@ -206,7 +209,8 @@ export const WELLBEING_HUB_ITEM_5 = {
       },
       "order": 1,
       "restrictions": {
-        "perkId": "BUPA_HEALTH_INSURANCE"
+        "perkId": "BUPA_HEALTH_INSURANCE",
+        "showForPerkIds": "BUPA_HEALTH_INSURANCE"
       },
       "content": [
         {
@@ -350,7 +354,8 @@ export const WELLBEING_HUB_ITEM_6 = {
       },
       "order": 2,
       "restrictions": {
-        "perkId": "BUPA_HEALTH_INSURANCE"
+        "perkId": "BUPA_HEALTH_INSURANCE",
+        "showForPerkIds": "BUPA_HEALTH_INSURANCE"
       },
       "content": [
         {
@@ -460,7 +465,8 @@ export const WELLBEING_HUB_ITEM_7 = {
       },
       "order": 3,
       "restrictions": {
-        "perkId": "BUPA_HEALTH_INSURANCE"
+        "perkId": "BUPA_HEALTH_INSURANCE",
+        "showForPerkIds": "BUPA_HEALTH_INSURANCE"
       },
       "content": [
         {
@@ -570,7 +576,8 @@ export const WELLBEING_HUB_ITEM_8 = {
       },
       "order": 4,
       "restrictions": {
-        "perkId": "BUPA_HEALTH_INSURANCE"
+        "perkId": "BUPA_HEALTH_INSURANCE",
+         "showForPerkIds": "BUPA_HEALTH_INSURANCE"
       },
       "content": [
         {
@@ -680,7 +687,8 @@ export const WELLBEING_HUB_ITEM_9 = {
       },
       "order": 5,
       "restrictions": {
-        "perkId": "BUPA_HEALTH_INSURANCE"
+        "perkId": "BUPA_HEALTH_INSURANCE",
+        "showForPerkIds": "BUPA_HEALTH_INSURANCE"
       },
       "content": [
         {
