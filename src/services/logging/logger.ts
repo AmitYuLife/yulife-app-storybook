@@ -79,6 +79,16 @@ class LoggerInstance {
   private setIntercomUser = async (userId: string, hash: string) => {
     this.userId = null;
     try {
+      //If we're already logged in Intercom.loginUserWithUserAttributes throws an exception.
+      await Intercom.logout();
+    } catch (error) {
+      // But if we are not logged in Intercom.logout throws an exception.
+      // This can be ignored as it should happen only first time we log in.
+      // This situation although silly, can't be avoided,
+      // because we can not check if user is logged in or not, so we have to try.
+    }
+
+    try {
       await Intercom.setUserHash(hash);
       await Intercom.loginUserWithUserAttributes({ userId });
       this.intercomLoggedIn = true;
