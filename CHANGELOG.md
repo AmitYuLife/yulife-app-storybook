@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.107.0] - 2023-11-08
+
+### Bugfixes
+
+- Bugfix: Login intercom flow
+- Bugfix: White screen yuniverse while loading
+- Bugfix: Intercom setup
+- Bugfix XSE-2343: Refetch GetMobileRewardsList on yulife.member.Rewards screen seen
+- Bugfix: Add inAppMeditation on useCallback dependency
+- Bugfix: Auto SDUI lottie aspect ratio
+- Bugfix XSE-2327: Reorder post dispatch actions
+- Bugfix: Challenge success flashing after yudoku
+
+### Tasks
+
+- Task XSE-2347: Add ability to refetch sdui static on screen seen
+- Task: Remove logic for unable to invalidate interval for iOS
+
+### Chores
+
+- Chore: Add pod:install command on package.json and small clean up
+- Chore: Lottie upgrade
+
+### Extra
+
+- Detox/fixes_8_11_23
+- Detox:xse-2051-GOSH-claiming-journey
+- Detox:xse-1850-wellbeing-hub-bupa
+- Detox: Fixes 2nd Nov
+
 ## [3.106.0] - 2023-11-01
 
 ### Bugfixes
