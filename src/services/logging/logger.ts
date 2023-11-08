@@ -11,6 +11,7 @@ import { Platform } from "react-native";
 
 class LoggerInstance {
   private userId = "";
+  private updatingUser: boolean = false;
   private initialised = false;
   private intercomLoggedIn = false;
   private appVersion: string;
@@ -60,24 +61,33 @@ class LoggerInstance {
   };
 
   public setUserId = async (userId: string, intercomHash: string) => {
-    if (this.userId) {
-      // already logged in - ignore everything
-      if (this.userId === userId) {
-        return;
-      }
-
-      await this.logOut();
+    if (this.updatingUser) {
+      return;
     }
 
-    await this.setIntercomUser(userId, intercomHash);
-    this.bugsnag.setUser(userId, "", "");
-    Mixpanel.identify(userId);
-    this.leanplum.setUserId(userId);
-    this.userId = userId;
+    try {
+      this.updatingUser = true;
+      if (this.userId) {
+        // already logged in - ignore everything
+        if (this.userId === userId) {
+          this.updatingUser = false;
+          return;
+        }
+
+        await this.logOut();
+      }
+
+      await this.setIntercomUser(userId, intercomHash);
+      this.bugsnag.setUser(userId, "", "");
+      Mixpanel.identify(userId);
+      this.leanplum.setUserId(userId);
+      this.userId = userId;
+    } finally {
+      this.updatingUser = false;
+    }
   };
 
   private setIntercomUser = async (userId: string, hash: string) => {
-    this.userId = null;
     try {
       //If we're already logged in Intercom.loginUserWithUserAttributes throws an exception.
       await Intercom.logout();
@@ -97,8 +107,6 @@ class LoggerInstance {
         location: "logger.setIntercomUser",
       });
     }
-
-    this.userId = userId;
   };
 
   public logEvent = async (event: string, metadata: Record<string, any> = {}) => {
