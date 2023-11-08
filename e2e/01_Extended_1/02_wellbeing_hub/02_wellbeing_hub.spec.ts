@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -20,7 +20,6 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
             Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN))
             Then("I should see all Wellbeing Hub services", then.wellbeingServiceVisible)
         })
-
         When("I scroll back up to the top", then.swipeFromText("Beam", "down", "slow"), async () => {
             When("I tap the smart health tab", when.tapID(ids.TEXT_TEMPLATE("Smart Health")), async () => {
                 Then("I should be on the smart health tab", then.textVisible("What is Smart Health?"))
