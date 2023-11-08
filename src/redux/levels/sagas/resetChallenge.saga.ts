@@ -7,6 +7,7 @@ import { Navigation } from "@navigation/main";
 import { call, put, select } from "redux-saga/effects";
 import { challengeResetSuccessAction } from "../levels.actions";
 import { getActiveLevel, getChallengesStatus, getCurrentLevel, IActiveLevel } from "../levels.selectors";
+import { IUnityData, getAssets } from "@components/screens/member/quests/quests-scroll-screen/unity-movies/unity.data";
 
 export default function* resetChallengeSaga() {
   const { done }: ReturnType<typeof getChallengesStatus> = yield select(getChallengesStatus);
@@ -16,7 +17,9 @@ export default function* resetChallengeSaga() {
 
   if (done < 1 && active.status === "success") {
     if (active.yuniversalChest) {
-      yield call(showEOTWChestModal, active, level, { uri: avatar?.avatarRemoteFiles?.pngMini });
+      const assets = getAssets(level - 1);
+
+      yield call(showEOTWChestModal, active, level, { uri: avatar?.avatarRemoteFiles?.pngMini }, assets);
     } else if ((active?.chest?.value || 0) > 0) {
       yield call(showChestModal, active);
     }
@@ -25,7 +28,7 @@ export default function* resetChallengeSaga() {
   yield put(challengeResetSuccessAction());
 }
 
-export function showEOTWChestModal(active: IActiveLevel, level: number, avatar: Source) {
+export function showEOTWChestModal(active: IActiveLevel, level: number, avatar: Source, assets: IUnityData) {
   showYuModal({
     component: {
       id: MODALS.EOTWChest,
@@ -36,6 +39,7 @@ export function showEOTWChestModal(active: IActiveLevel, level: number, avatar: 
         level: level,
         levelId: active.levelSlotId,
         items: active.yuniversalChest.items,
+        assets,
         avatar,
         onPressCta: () => {
           Navigation.mergeOptions(ROUTES.dailySteps, {
