@@ -98,7 +98,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
                 })
             })
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("groupDental")
-            helper.GROUP_DENTAL_PRODUCT_VIEW("Employer scheme", "5", "Plan")
+            helper.GROUP_DENTAL_PRODUCT_VIEW("Employer scheme", "5", "Plan", "34343434")
             helper.ORDO_JOURNEY_VIEW()
             helper.FIELD_VALIDATION();
             helper.CHECKOUT_PROCESS();
@@ -109,7 +109,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_125, data.AUTH_125), async () => {
             Then("I should be on the YuScreen V4", then.onYuscreenV4(data.CUSTOMER_125, "dentalChoice", "5"))
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("groupDental")
-            helper.GROUP_DENTAL_PRODUCT_VIEW("Employer scheme", "5", "Choice")
+            helper.GROUP_DENTAL_PRODUCT_VIEW("Employer scheme", "5", "Choice", "56565656")
             helper.ORDO_JOURNEY_VIEW()
             helper.FIELD_VALIDATION();
             helper.CHECKOUT_PROCESS();

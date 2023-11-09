@@ -131,7 +131,7 @@ export const wellbeingProductInfo = async () => {
   await expect(element(by.text(policyInsurance))).toBeVisible();
 };
 
-export const groupDentalProductInfo = (packageType: string, yuCoinPower: string, dentalType: "Plan" | "Choice") => async () => {
+export const groupDentalProductInfo = (packageType: string, yuCoinPower: string, dentalType: "Plan" | "Choice", membershipNumber?: string) => async () => {
   const policyName = `Bupa Dental ${dentalType}`;
   const policyDescription = dentalType === "Plan" ? fixture.dentalPlanDescription : fixture.dentalChoiceDescription
   const paidBy = "Employer scheme";
@@ -142,18 +142,21 @@ export const groupDentalProductInfo = (packageType: string, yuCoinPower: string,
   const startDateText = "Start date";
   const level = "Level 4";
   const startDate = moment().subtract(1, "months").format("DD/MM/YYYY");
+  const membershipNumberText = "Membership Number" 
 
   await idVisible(ids.TEXT_TEMPLATE(policyName))();
-  await expect(element(by.text(paidBy))).toBeVisible();
-  await expect(element(by.text(policyDescription))).toBeVisible();
-  await expect(element(by.text(packageType))).toBeVisible();
-  await expect(element(by.id(ids.YUCOIN_POWER(yuCoinPower)))).toBeVisible();
-  await expect(element(by.text(policyInfoYugi))).toBeVisible();
-  await expect(element(by.text(keyInfo))).toBeVisible();
+  await textVisible(paidBy)();
+  await textVisible(policyDescription)();
+  await textVisible(packageType)();
+  await idVisible(ids.YUCOIN_POWER(yuCoinPower))();
+  await textVisible(policyInfoYugi)();
+  await textVisible(keyInfo)();
   await swipeFromText(keyInfo, "up", "slow", 0.3)();
-  await expect(element(by.text(coverlevel))).toBeVisible();
-  await expect(element(by.text(startDateText))).toBeVisible();
-  await expect(element(by.text(startDate))).toBeVisible();
+  await textVisible(coverlevel)();
+  await textVisible(startDateText)();
+  await textVisible(startDate)();
+  membershipNumber && await textVisible(membershipNumberText)();
+  membershipNumber && await textVisible(membershipNumber)();
   // commenting out until found a way to ID
   // await expect(element(by.text(level))).toBeVisible();
 };

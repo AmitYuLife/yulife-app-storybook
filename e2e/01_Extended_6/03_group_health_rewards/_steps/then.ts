@@ -36,23 +36,26 @@ export const onGHIProductPage = ( product: GHI_PAGE_INFO) => async () => {
     "This policy is paid for by your employer. Remember if you change jobs, you’ll lose this cover.";
   
   await idVisible(ids.TEXT_TEMPLATE(policyName))();
-  await expect(element(by.text(constants.paidBy))).toBeVisible();
-  await expect(element(by.text(policyDescription))).toBeVisible();
-  await expect(element(by.text(policyInfoYugi))).toBeVisible();
-  await expect(element(by.text(constants.keyInfo))).toBeVisible();
+  await textVisible(constants.paidBy)();
+  await textVisible(policyDescription)();
+  await textVisible(policyInfoYugi)();
+  await textVisible(constants.keyInfo)();
   await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.coverlevel, "down")()
-  await expect(element(by.text(constants.coverlevel))).toBeVisible();
+  await textVisible(constants.coverlevel)();
   await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.startDateText, "down")()
-  await expect(element(by.text(constants.startDateText))).toBeVisible();
-  await expect(element(by.text(product.startDate))).toBeVisible(); 
+  await textVisible(constants.startDateText)();
+  await textVisible(product.startDate)(); 
   await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "down")()
-  await expect(element(by.text(constants.coverForWApos))).toBeVisible();
-  await expect(element(by.text(constants.howToClaim))).toBeVisible();
-  await expect(element(by.text(constants.faq))).toBeVisible();
+  product.membershipNumber && await textVisible(constants.membershipNumberText)();
+  product.membershipNumber && await textVisible(product.membershipNumber)();
+  product.membershipNumber! && await textVisible(constants.membershipNumberText)();
+  await textVisible(constants.coverForWApos)();
+  await textVisible(constants.howToClaim)();
+  await textVisible(constants.faq)();
 
   await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_2, "down")()
-  await expect(element(by.text(constants.Bupa_markdown_1))).toBeVisible();
-  await expect(element(by.text(constants.Bupa_markdown_2))).toBeVisible();
+  await textVisible(constants.Bupa_markdown_1)();
+  await textVisible(constants.Bupa_markdown_2)();
 
 }
 

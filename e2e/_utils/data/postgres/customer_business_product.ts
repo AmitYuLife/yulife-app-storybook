@@ -323,6 +323,7 @@ export const CGP_51_GDental = {
             date_of_birth: CUSTOMER_51.data.date_of_birth,
             salary: 100000,
             country: "UK",
+            externalMembershipNumber: "34343434"
         }
     }
 } as IDatabaseItem
@@ -639,7 +640,7 @@ export const CBP_GHI_REWARDS = {
         "category_id" : "1",
         "start_date" : "2023-04-26",
         "archived" : false,
-        "data" : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\"}"
+        "data" : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\", \"externalMembershipNumber\":\"12121212\"}"
     }       
 } as IDatabaseItem
 
@@ -862,6 +863,7 @@ export const CGP_125_GDental_Choice = {
             date_of_birth: CUSTOMER_125.data.date_of_birth,
             salary: 100000,
             country: "UK",
+            externalMembershipNumber: "56565656"
         }
     }
 } as IDatabaseItem

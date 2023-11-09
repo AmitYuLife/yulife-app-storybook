@@ -106,7 +106,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
         When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
-            Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_1));
+            Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_2));
         })
         When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up"), async () => {
             Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("1/6"))
@@ -175,7 +175,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
         When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
-            Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_1));
+            Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_2));
         })
         When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up"), async () => {
             Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("2/6"))
@@ -246,7 +246,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
         When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
-            Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_1));
+            Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_2));
         })
         When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up"), async () => {
             Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("3/6"))
@@ -392,7 +392,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
         When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
-            Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_1));
+            Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_2));
         })
         When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up"), async () => {
             Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("4/6"))
@@ -461,7 +461,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
         When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
-            Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_1));
+            Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_2));
         })
         When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up"), async () => {
             Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("5/6"))
@@ -538,7 +538,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
         When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
-            Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_1));
+            Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_2));
         })
         When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up"), async () => {
             Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("5/6"))

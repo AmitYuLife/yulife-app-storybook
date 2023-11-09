@@ -4,6 +4,12 @@ import { GHI_PAGE_INFO, GHI_REWARD_CLAIM_PAGE_DETAILS, GHI_TEASE_PAGE_DETAILS, G
 export const GHI_REWARDS_PAGE_DETAILS_1: GHI_PAGE_INFO = {
   productId: "YUG1010107",
   startDate: moment().subtract(1, "y").format("DD/MM/YYYY"),
+  membershipNumber: "12121212"
+}
+
+export const GHI_REWARDS_PAGE_DETAILS_2: GHI_PAGE_INFO = {
+  productId: "YUG1010107",
+  startDate: moment().subtract(1, "y").format("DD/MM/YYYY"),
 }
 
 export const BOOTS_YORK_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
