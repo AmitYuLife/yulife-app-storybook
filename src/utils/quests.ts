@@ -16,6 +16,7 @@ export enum Planets {
   EARTH = "earth",
   RED = "red",
   BRIGHT = "bright",
+  ORANGE = "orange",
 }
 
 export function getCurrentWorldName(currentLevel: number): WorldName {
@@ -154,7 +155,7 @@ export function toOrdinalWord(n: number): string {
   return arr[n - 1];
 }
 
-export const getCurrentPlanetByLevel = (currentLevel: number) => {
+export const getCurrentPlanetByLevel = (currentLevel: number, hasNewMap?: boolean) => {
   if (currentLevel < 201) {
     return Planets.EARTH;
   }
@@ -163,7 +164,15 @@ export const getCurrentPlanetByLevel = (currentLevel: number) => {
     return Planets.RED;
   }
 
-  if (currentLevel > 400) {
+  if (currentLevel > 400 && !hasNewMap) {
     return Planets.BRIGHT;
+  }
+
+  if (currentLevel < 601) {
+    return Planets.BRIGHT;
+  }
+
+  if (currentLevel > 600) {
+    return Planets.ORANGE;
   }
 };

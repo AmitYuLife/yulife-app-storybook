@@ -15,6 +15,7 @@ import { PLANET_TRAVEL_ANIMATION, SPACE_TRAVEL_ANIMATION_DURATION } from "./eotw
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { getCurrentPlanet, getCurrentPlanetByLevel } from "@utils";
 import { CELESTIAL_CHEST_SCREEN, TEXT_TEMPLATE } from "@ids";
+import { useUserFeatures } from "@hooks";
 
 interface IProps {
   chestType: ChestType;
@@ -38,8 +39,9 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, assets, title, items, lev
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
   const [beginningButton, setBeginningButton] = useState(false);
   const dispatch = useDispatch();
+  const features = useUserFeatures();
   const currentPlanet = getCurrentPlanet(level);
-  const currentPlanetName = getCurrentPlanetByLevel(level);
+  const currentPlanetName = getCurrentPlanetByLevel(level, features?.enableWebpQuestMap);
 
   const travelRef = useRef<LottieView>(null);
   const [travel, setTravel] = useState(false);

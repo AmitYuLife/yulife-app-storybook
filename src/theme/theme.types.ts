@@ -65,4 +65,7 @@ export interface ITheme {
   [Planets.BRIGHT]: {
     [key: number]: IThemeScreens;
   };
+  [Planets.ORANGE]: {
+    [key: number]: IThemeScreens;
+  };
 }
