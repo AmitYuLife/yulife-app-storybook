@@ -209,11 +209,11 @@ export const ONBOARDING_YUSCREEN = async (packType: string, yuCoinPower: string)
   Then(`I should see the onboarding Yuscreen and see ${packType}`, then.onboardingYuscreenV4(packType, yuCoinPower));
 };
 
-export const GROUP_DENTAL_PRODUCT_VIEW = async (packageType: string, yuCoinPower: string, dentalType: "Plan" | "Choice") => {
+export const GROUP_DENTAL_PRODUCT_VIEW = async (packageType: string, yuCoinPower: string, dentalType: "Plan" | "Choice", membershipNumber?: string) => {
   const productText = dentalType === "Plan" ? "Dental Cover" : "Bupa Dental Choice"
 
   When(`I tap Dental Cover`, when.tapText(productText), async () => {
-    Then("I should see correct product details", then.groupDentalProductInfo(packageType, yuCoinPower, dentalType));
+    Then("I should see correct product details", then.groupDentalProductInfo(packageType, yuCoinPower, dentalType, membershipNumber));
   });
 };
 

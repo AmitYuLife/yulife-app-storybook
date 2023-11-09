@@ -1,6 +1,7 @@
 export interface GHI_PAGE_INFO {
     productId: string,
     startDate: string,
+    membershipNumber?: string
 }
 
 export interface GHI_TEASE_PAGE_DETAILS {
