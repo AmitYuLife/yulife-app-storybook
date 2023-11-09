@@ -204,7 +204,6 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   76: {
     background: require("../episodes/bright/ocean/bright-ocean-4.webp"),
-
     episodeHeight: 614,
     episodeWidth: 375,
     snapPosition: "center",

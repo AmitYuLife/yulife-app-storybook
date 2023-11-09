@@ -1,8 +1,9 @@
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { getCurrentPlanetByLevel, getCurrentWorld, getNormalizedLevel } from "@utils";
+import { Planets, getCurrentPlanetByLevel, getCurrentWorld, getNormalizedLevel } from "@utils";
 import { TopBarTypes } from "@organisms/top-bar/top-bar.helpers";
 import { mapSlices, loadingSlices } from "./assets";
 import offsets from "./assets/offsets";
+import { IFeature } from "@redux/user/user.reducer";
 
 export const getTopBarType = (currentLevel: number) => {
   const topBarTypes: { [key: number]: TopBarTypes } = {
@@ -17,11 +18,15 @@ export const getTopBarType = (currentLevel: number) => {
   return topBarTypes[currentWorld] ?? "forest";
 };
 
-export const getWorldData = (currentLevel: number) => {
+export const getWorldData = (currentLevel: number, features: IFeature) => {
   const iphoneX = isIphoneX();
   const currentWorld = getCurrentWorld(currentLevel);
-  const currentPlanet = getCurrentPlanetByLevel(currentLevel);
+  let currentPlanet = getCurrentPlanetByLevel(currentLevel, features?.enableWebpQuestMap);
   const normalizedLevel = getNormalizedLevel(currentLevel);
+
+  if (currentPlanet === Planets.ORANGE) {
+    currentPlanet = Planets.BRIGHT;
+  }
 
   switch (currentWorld) {
     case 3:

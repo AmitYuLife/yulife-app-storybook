@@ -1511,7 +1511,9 @@ const planetsLoadingSlices = {
   },
 };
 
-export const interstitialsSlices = (currentPlanet: Planets): { [x: string]: IMapSlice[] } => ({
+type OldMapPlanets = Extract<Planets, Planets.EARTH | Planets.RED | Planets.BRIGHT>;
+
+export const interstitialsSlices = (currentPlanet: OldMapPlanets): { [x: string]: IMapSlice[] } => ({
   forest: [
     {
       id: "MAP_SLICE_W01_INTERSTITIALS_01",
@@ -1573,7 +1575,7 @@ export const interstitialsSlices = (currentPlanet: Planets): { [x: string]: IMap
   ],
 });
 
-const WorldSlices = (currentPlanet: Planets): IMapSlice[] => [
+const WorldSlices = (currentPlanet: OldMapPlanets): IMapSlice[] => [
   /**
    *  FOREST WORLD
    *  first episode
@@ -2677,7 +2679,9 @@ const WorldSlices = (currentPlanet: Planets): IMapSlice[] => [
 ];
 // placeholder interstitials for mountain
 
-const getWorldSlices = (currentPlanet: Planets): IMapSlice[] => {
+const getWorldSlices = (planet: Planets): IMapSlice[] => {
+  const currentPlanet = planet === Planets.ORANGE ? Planets.BRIGHT : planet;
+
   if (isIphoneX) {
     return [
       ...interstitialsSlices(currentPlanet).forest,
@@ -2691,7 +2695,7 @@ const getWorldSlices = (currentPlanet: Planets): IMapSlice[] => {
 
 export default getWorldSlices;
 
-export const loadingSlices = (currentPlanet: Planets): { [x: string]: IMapSlice } => ({
+export const loadingSlices = (currentPlanet: OldMapPlanets): { [x: string]: IMapSlice } => ({
   forest: {
     id: "MAP_SLICE_W01_LOADING_01",
     image: planetsLoadingSlices[currentPlanet].w1s1,

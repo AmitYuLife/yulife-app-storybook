@@ -47,7 +47,7 @@ const QuestsScreen: FC<IProps> = ({ hideUnity, unity, levelId, repeatedUnity, on
 
   const scrollToActiveLevel = useCallback(() => {
     const currentWorld = getCurrentWorld(activeLevel);
-    const currentPlanet = getCurrentPlanetByLevel(currentLevel);
+    const currentPlanet = getCurrentPlanetByLevel(currentLevel, features?.enableWebpQuestMap);
     const normalizedLevel = getNormalizedLevel(activeLevel);
     const result = mapSlices(currentPlanet).find((slice) =>
       slice.slots.some((item) => item.index === normalizedLevel - 1)
@@ -87,7 +87,7 @@ const QuestsScreen: FC<IProps> = ({ hideUnity, unity, levelId, repeatedUnity, on
    * If we attempt to wrap this up in useMemo the scrolly quests won't update,
    * because the data its getting is `slices` and not the levels.
    */
-  const { initialScrollIndex, slices, snapOffsets } = getWorldData(currentLevel);
+  const { initialScrollIndex, slices, snapOffsets } = getWorldData(currentLevel, features);
 
   if (unity) {
     return <Unity level={unity} levelId={levelId} repeatedUnity={repeatedUnity} onSkip={hideUnity} />;
