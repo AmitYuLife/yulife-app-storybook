@@ -6,10 +6,11 @@ import { useBackHandler } from "@hooks";
 import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_QUEST_MAP_LEVEL } from "@graphql/challenges";
 import { useSelector } from "react-redux";
-import { getUserFeatures } from "@redux/user/user.selectors";
+import { getBusinessAccountId, getUserFeatures } from "@redux/user/user.selectors";
 import ChallengesHistoryNewScreen from "@components/screens/member/challenges/challenges-history-new/challenges-history-new.screen";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { t } from "@locale";
+import { getSocialGroups } from "@redux/leaderboards/leaderboards.selectors";
 
 interface IProps extends IConnectedScreenProps {
   level: number;
@@ -27,7 +28,9 @@ function ChallengesHistoryNewContainer({
   yuniversalMap,
   onPressActivityHistory,
 }: IProps) {
-  const userFeatures = useSelector(getUserFeatures);
+  const { showBrainGameSudoku } = useSelector(getUserFeatures);
+  const socialGroups = useSelector(getSocialGroups);
+  const businessAccountId = useSelector(getBusinessAccountId);
   const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
 
   const { loading, data } = useQuery<GetQuestMapLevel>(GQL_QUERY_GET_QUEST_MAP_LEVEL, {
@@ -48,6 +51,15 @@ function ChallengesHistoryNewContainer({
     [level, levelName]
   );
 
+  const showSudokuLeaderboardButton = useMemo(() => {
+    const socialGroup = socialGroups.find((sg) => sg.socialGroupId === businessAccountId);
+    const sudokuLeaderboard = socialGroup?.leaderboards?.find(
+      (leaderboard) => leaderboard.leaderboardConfigId === "dailysudoku"
+    );
+
+    return sudokuLeaderboard?.consent && showBrainGameSudoku;
+  }, [businessAccountId, socialGroups, showBrainGameSudoku]);
+
   if (loading || !data?.getQuestMapLevel) {
     return <LoadingScreen onBack={handleClose} />;
   }
@@ -60,7 +72,7 @@ function ChallengesHistoryNewContainer({
       level={data?.getQuestMapLevel}
       leaderboardDate={data?.getQuestMapLevel?.date}
       onPressActivityHistory={onPressActivityHistory}
-      showSudokuLeaderboard={userFeatures?.showBrainGameSudoku}
+      showSudokuLeaderboard={showSudokuLeaderboardButton}
     />
   );
 }
