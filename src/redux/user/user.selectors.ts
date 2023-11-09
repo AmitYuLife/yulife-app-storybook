@@ -35,6 +35,9 @@ export const getAcceptedLeaderboards = createSelector(reducer, acceptedLeaderboa
 const activeLeaderboardIdSelector = (state: State) => state.activeLeaderboardId;
 export const getActiveLeaderboardId = createSelector(reducer, activeLeaderboardIdSelector);
 
+const businessAccountIdSelector = (state: State) => state.businessAccountId;
+export const getBusinessAccountId = createSelector(reducer, businessAccountIdSelector);
+
 const activeLeaderboardSelector = (state: State) =>
   state.leaderboards.find((leaderboard) => leaderboard.leaderboardId === state.activeLeaderboardId);
 export const getActiveLeaderboard = createSelector(reducer, activeLeaderboardSelector, {

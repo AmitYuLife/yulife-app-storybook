@@ -67,6 +67,7 @@ export interface IUserStore {
   lastName: string;
   fullName: string;
   dateOfBirth: string;
+  businessAccountId: string;
   archived: boolean;
   connections: Connection[];
   consent: MobileConsentInput;
@@ -125,6 +126,7 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   firstName: "",
   lastName: "",
   fullName: "",
+  businessAccountId: "",
   dateOfBirth: moment().subtract(30, "years").toISOString(), // Default to 30 years old
   consent: {},
   features: {},
@@ -343,6 +345,7 @@ const getUserSuccess = (
       mobileConsent,
       userFeatures = [],
       connections = [],
+      businessAccountId,
     },
   }: GetCurrentUser
 ): IUserStore => {
@@ -357,6 +360,7 @@ const getUserSuccess = (
     fullName,
     dateOfBirth,
     connections,
+    businessAccountId,
     consent: {
       ...mobileConsent,
     },
@@ -407,6 +411,7 @@ const loginUserSuccess = (
         mobileConsent,
         userFeatures = [],
         connections = [],
+        businessAccountId,
       },
     },
   }: LoginUser
@@ -427,6 +432,7 @@ const loginUserSuccess = (
     features: userFeatures.reduce(reduceUserFeatures, {}),
     leaderboards,
     activeLeaderboardId,
+    businessAccountId,
   };
 };
 
