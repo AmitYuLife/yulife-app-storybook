@@ -2,10 +2,12 @@ import { Feature, Given, Scenario, Then, When, ScenarioOnly, FeatureOnly } from 
 
 import * as given from "./_steps/given";
 import * as scenario from "./_steps/scenario";
-import { AUTH_SA_1, AUTH_SA_2 } from "../_data/mongo/auths";
-import { CUSTOMER_SA_1, CUSTOMER_SA_2 } from "../_data";
+import * as then from "./_steps/then"
+import { AUTH_SA_1, AUTH_SA_2, AUTH_SA_3 } from "../_data/mongo/auths";
+import { CUSTOMER_SA_1, CUSTOMER_SA_2, CUSTOMER_SA_3 } from "../_data";
 import * as helper from "./_resources/helpers";
 import * as fixture from "./_resources/fixture";
+import * as constant from "./_resources/constants"
 
 
 Feature("As a user I can get past the login screen and see all SA products", async () => {
@@ -39,7 +41,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
           helper.CLOSE_PRODUCT_WINDOW()
           helper.PRODUCT_CHECK(fixture.GIP);
           helper.KEY_INFO(fixture.GIPKeyInfo);
-          helper.COVER_AMOUNTS_INFO(fixture.GIPCoverAmounts, fixture.usefulLinksText)
+          helper.COVER_AMOUNTS_INFO(fixture.GIPCoverAmounts, constant.usefulLinksText)
           helper.USEFUL_LINKS_INFO(fixture.UsefulLinksNoBeneficiaries)
           helper.ADDITIONAL_INFO(fixture.ProductAdditionalInfo)
           helper.NAVIGATE_BUTTON(true,fixture.IncreaseCoverToGIP)
@@ -49,7 +51,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
           helper.CLOSE_PRODUCT_WINDOW()
           helper.PRODUCT_CHECK_LONG_NAME(fixture.TmpGIP);
           helper.KEY_INFO(fixture.TmpGIPKeyInfo);
-          helper.COVER_AMOUNTS_INFO(fixture.TmpGIPCoverAmounts, fixture.usefulLinksText)
+          helper.COVER_AMOUNTS_INFO(fixture.TmpGIPCoverAmounts, constant.usefulLinksText)
           helper.USEFUL_LINKS_INFO(fixture.UsefulLinksNoBeneficiaries)
           helper.ADDITIONAL_INFO(fixture.ProductAdditionalInfo)
           helper.NAVIGATE_BUTTON(true,fixture.IncreaseCoverToTempGIP)
@@ -59,7 +61,7 @@ Feature("As a user I can get past the login screen and see all SA products", asy
           helper.CLOSE_PRODUCT_WINDOW()
           helper.PRODUCT_CHECK(fixture.LumpSum);
           helper.KEY_INFO(fixture.LMPSKeyInfo);
-          helper.COVER_AMOUNTS_INFO(fixture.LMPSCoverAmounts, fixture.usefulLinksText)
+          helper.COVER_AMOUNTS_INFO(fixture.LMPSCoverAmounts, constant.usefulLinksText)
           helper.USEFUL_LINKS_INFO(fixture.UsefulLinksNoBeneficiaries)
           helper.ADDITIONAL_INFO(fixture.ProductAdditionalInfo)
           helper.NAVIGATE_BUTTON(true,fixture.IncreaseCoverToTempLMSP)
@@ -97,6 +99,19 @@ Feature("As a user I can get past the login screen and see all SA products", asy
           helper.CLOSE_PRODUCT_WINDOW() 
         })
       })
-  });
+
+  Scenario("I can login and see the GCI product in the SA app", scenario.start, async () => {
+    Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_SA_3, AUTH_SA_3, true, "South Africa", false),async () => {
+        Then("I should be on the users YuScreen", then.textVisible(`${CUSTOMER_SA_3.data.firstName} ${CUSTOMER_SA_3.data.lastName}`))
+        Then("I can see the GCI product slot", then.productSlotVisible(fixture.gciProductSlot, 0, 0, "4"))
+      })
+      helper.PRODUCT_CHECK(fixture.gciProduct1);
+      helper.KEY_INFO(fixture.gciKeyInfo);
+      helper.COVER_AMOUNTS_INFO(fixture.gciCoverAmounts, constant.usefulLinksText)
+      helper.USEFUL_LINKS_INFO(fixture.UsefulLinksNoBeneficiaries)
+      helper.ADDITIONAL_INFO(fixture.ProductAdditionalInfo)
+    })
+
+  })
 
 

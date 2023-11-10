@@ -90,4 +90,15 @@ export const D_GrFun_SA_2 = {
         "archived" : false
     },
 } as IDatabaseItem;
+
+export const D_GCI_SA_3 = {
+    type,
+    modelName,
+    data: {
+        "document_id" : generateRandomTransformedUuid(),
+        "document_type" : "Insurance Certificate",
+        "remote_url_key" : "https:\/\/yulifetest.cloudcover.insure\/ShowFile?Doc=URSDRNIXHZFNANAOWSZW",
+        "archived" : false
+    },
+} as IDatabaseItem;
     

@@ -95,3 +95,9 @@ export interface checkButton {
     requestedFormScreenSubtitle?: string,
     finishFormScreenButton: string
 }
+
+export interface ProductSlot {
+    name: string,
+    scheme: string,
+    img: string
+}

@@ -88,4 +88,17 @@ export const BUSINESS_PRODUCT_SA_1_Wellbeing = generateProductRecords({
      policy_end_date : "3000-12-31",
   },
 });
-    
+
+export const BUSINESS_PRODUCT_SA_1_GCI = generateProductRecords({
+   productCode: ProductCode.groupCriticalIllness,
+   carrier: Carrier.YuLifeSA,
+   productId: "SEED_SA_8",
+   businessAccountId: BUSINESS_ACCOUNT_SA_1.data.business_account_id,
+   startDate: moment().subtract(7, "d").format(format),
+   product: {
+     policy_start_date: moment().subtract(7, "d").format(format),
+     policy_end_date : "3000-12-31",
+  },
+});
+
+
