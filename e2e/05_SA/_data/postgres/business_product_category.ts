@@ -1,4 +1,4 @@
-import {  BUSINESS_PRODUCT_SA_1_GIP, BUSINESS_PRODUCT_SA_1_GrFun, BUSINESS_PRODUCT_SA_1_LSDC, BUSINESS_PRODUCT_SA_1_MeGL, BUSINESS_PRODUCT_SA_1_SpGL, BUSINESS_PRODUCT_SA_1_TmpGIP } from "./business_product"
+import {  BUSINESS_PRODUCT_SA_1_GCI, BUSINESS_PRODUCT_SA_1_GIP, BUSINESS_PRODUCT_SA_1_GrFun, BUSINESS_PRODUCT_SA_1_LSDC, BUSINESS_PRODUCT_SA_1_MeGL, BUSINESS_PRODUCT_SA_1_SpGL, BUSINESS_PRODUCT_SA_1_TmpGIP } from "./business_product"
 
 const type = "postgres"
 const modelName = "business_product_category"
@@ -105,6 +105,21 @@ export const BPC_SA_1_SpGL = {
         "multiple_or_amount" : 0.000,
         "category_name" : "Accountant",
         "custom_data" : "{\"BasisOfCover\":\"Unapproved\",\"FreeCoverLimit\":0,\"MultipleOfSalarySpouse\":0,\"ReplacementRatio\":0,\"FixedCoverAmountSpouse\":0,\"ChildCoverAmountStillBorn\":0,\"ChildCoverAmount0105\":0,\"ChildCoverAmount0613\":0,\"ChildCoverAmount1421\":0,\"RepatriationMaxCoverAmount\":0,\"INITIALPERIOD\":0,\"DeferedPeriod\":0}",
+    },
+};
+
+export const BPC_SA_1_GCI = {
+    type,
+    modelName,
+    data:{
+        product_id: BUSINESS_PRODUCT_SA_1_GCI.product.data.product_id,
+        "category_id" : "1",
+        "category_description" : "Directors",
+        "earn_rate" : 4,
+        "benefit_basis" : "flat_amount",
+        "multiple_or_amount" : 0.000,
+        "category_name" : "Directors",
+        "custom_data" : "{\"BasisOfCover\":\"Unapproved\",\"FreeCoverLimit\":90000,\"MultipleOfSalarySpouse\":0,\"ReplacementRatio\":75,\"FixedCoverAmountSpouse\":0,\"ChildCoverAmountStillBorn\":0,\"ChildCoverAmount0105\":0,\"ChildCoverAmount0613\":0,\"ChildCoverAmount1421\":0,\"RepatriationMaxCoverAmount\":0,\"INITIALPERIOD\":12,\"DeferedPeriod\":3}",
     },
 };
     

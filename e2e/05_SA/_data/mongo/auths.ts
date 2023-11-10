@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import {CUSTOMER_SA_1, CUSTOMER_SA_2 } from '../postgres/customers';
+import * as customer from "../postgres/customers"
 import moment = require('moment');
 import { AUTH_TEMPLATE } from "./_templates"
 
@@ -15,7 +15,7 @@ export const AUTH_SA_1 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_SA_1.data.customerId,
+        userId: customer.CUSTOMER_SA_1.data.customerId,
     }
 }  as IDatabaseItem
 
@@ -26,7 +26,18 @@ export const AUTH_SA_2 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "37.34.118.97",
         _id: generateRandomMongoId(),
-        userId: CUSTOMER_SA_2.data.customerId,
+        userId: customer.CUSTOMER_SA_2.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_SA_3 = {
+    type: "mongo",
+    modelName: "authpassword",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "37.34.118.97",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_SA_3.data.customerId,
     }
 }  as IDatabaseItem
 

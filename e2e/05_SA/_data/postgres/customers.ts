@@ -31,3 +31,16 @@ export const CUSTOMER_SA_2 = {
         status: "onboarded",
     }
 } as IDatabaseItem;
+
+export const CUSTOMER_SA_3 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Faf",
+        lastName: "De Klerk",
+        dateOfBirth: moment().subtract(28, "years").toDate(),
+        status: "onboarded",
+    }
+} as IDatabaseItem;
