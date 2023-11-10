@@ -6,7 +6,7 @@ import getMagicLinkWithClient from "@graphql/user/getMagicLink.gql";
 import { parseJSON } from "@utils";
 import { handleOpenWebView } from "@navigation/utils";
 import { MagicLinkSite } from "@graphql/_core/schema/globalTypes";
-import { AnyAction, Dispatch } from "redux";
+import { AnyAction, Dispatch } from "@reduxjs/toolkit";
 import client from "@graphql/_core/client";
 
 type Payload = {

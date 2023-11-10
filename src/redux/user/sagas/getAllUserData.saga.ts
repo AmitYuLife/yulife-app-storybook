@@ -12,7 +12,7 @@ import {
   getUserTodayActivitySuccess,
   getUserCoinLedgerSuccess,
 } from "../user.actions";
-import { Action } from "redux";
+import { Action } from "@reduxjs/toolkit";
 import { updateDailyPensionSuccess } from "@redux/daily-pension/daily-pension.actions";
 import { updateHintsSuccess } from "@redux/hints/hints.actions";
 import { updateSocialGroupLeaderboardsSuccess } from "@redux/leaderboards/leaderboards.actions";

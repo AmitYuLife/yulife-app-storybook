@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import Logger from "@services/logging/logger";
-import { applyMiddleware, compose, createStore, Store } from "redux";
+import { configureStore as toolkitConfigureStore, Store } from "@reduxjs/toolkit";
 import { createMigrate, persistReducer, persistStore } from "redux-persist";
 import createSagaMiddleware from "redux-saga";
 import { migrations } from "./migrations";
@@ -30,10 +30,10 @@ if (__DEV__) {
 
 const persistedReducer = persistReducer(persistConfig, combinedReducers);
 
-let configuredStore: ReturnType<typeof createStore>;
+let configuredStore: ReturnType<typeof toolkitConfigureStore>;
 
 const configureStore = (preloadedState?: IReduxState): Store<IReduxState> => {
-  configuredStore = createStore(persistedReducer, preloadedState, compose(applyMiddleware(...middlewares)));
+  configuredStore = toolkitConfigureStore({ reducer: persistedReducer, preloadedState, middleware: middlewares });
 
   // Enable hot reloading for reducers.
   // if (Config.ENV === "dev" && (module.hot && typeof module.hot.accept === "function")) {
@@ -49,5 +49,5 @@ const configureStore = (preloadedState?: IReduxState): Store<IReduxState> => {
 };
 
 export const store = configuredStore ? configuredStore : configureStore();
-export const mockStore = createStore(persistedReducer);
+export const mockStore = toolkitConfigureStore({ reducer: persistedReducer });
 export const persistor = persistStore(store);
