@@ -5,7 +5,7 @@ import { ROUTES } from "@navigation/constants";
 import { WebViewErrorBoundary } from "@components/screens/web-view/web-view.error-boundary";
 import { useBackHandler } from "@hooks";
 import { useDispatch } from "react-redux";
-import { AnyAction, Dispatch } from "redux";
+import { AnyAction, Dispatch } from "@reduxjs/toolkit";
 
 export interface WebViewContainerProps {
   uri: string;
