@@ -1,48 +1,52 @@
-import React, { memo, useMemo } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
-import { GetSudokuLeaderboard_getSudokuLeaderboard } from "@graphql/_core/schema";
-import { FlashList } from "@shopify/flash-list";
-import { ListRankItem } from "@components/containers/member/leaderboard/_legacy/items";
+import { GetMobileSocialGroupLeaderboardItems_getMobileSocialGroupLeaderboardItems as SocialGroupLeaderboardItem } from "@graphql/_core/schema";
+import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { TextTemplate } from "@atoms";
 import moment from "moment";
-import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { getDuration } from "@components/games/sudoku/sudoku-utils";
+import { GenericHeadingAbsolute, GenericHeadingPad, ListItem } from "@organisms";
 
 import { useTranslation } from "@hooks";
 
 interface IProps {
   onBack?: () => void;
-  componentId?: string;
   date?: string;
-  leaderboard: GetSudokuLeaderboard_getSudokuLeaderboard[];
+  leaderboard: SocialGroupLeaderboardItem[];
+  onListItemPress: (userId: string, leaderboardPlacement: number) => void;
 }
 
-const SudokuLeaderboardScreen = ({ onBack, componentId, date, leaderboard }: IProps) => {
+const SudokuLeaderboardScreen = ({ onBack, date, leaderboard, onListItemPress }: IProps) => {
   const t = useTranslation(["sudoku.leaderboard.title", "format.date_readable"]);
   const formattedDate = useMemo(() => moment(date).format(t["format.date_readable"]), [date, t]);
 
-  const renderItem = ({ item, index }: { item: GetSudokuLeaderboard_getSudokuLeaderboard; index: number }) => {
-    return (
-      <ListRankItem
-        firstName=""
-        isCurrentUser={false}
-        index={index}
-        lastName=""
-        rank={item.position}
-        id={item.userId}
-        uri={item.avatarRemoteFiles?.pngMini}
-        componentId={componentId}
-        score={getDuration(item.adjustedTime)}
-        {...item}
-      />
-    );
-  };
+  const onItemPress = useCallback(
+    ({ item, index }: ListRenderItemInfo<SocialGroupLeaderboardItem>) => {
+      onListItemPress(item.id, index + 1);
+    },
+    [onListItemPress]
+  );
+
+  const renderItem = useCallback(
+    (listItem: { item: SocialGroupLeaderboardItem; index: number }) => {
+      const { item } = listItem;
+      return (
+        <ListItem
+          type="leaderboard"
+          onPress={onItemPress}
+          data={listItem}
+          uri={item?.avatar?.uri}
+          score={item.score}
+          {...item}
+        />
+      );
+    },
+    [onItemPress]
+  );
 
   return (
     <>
       <GenericHeadingPad />
-
       <GenericHeadingAbsolute
         logo="yulife"
         backgroundColor="transparent"
@@ -54,13 +58,15 @@ const SudokuLeaderboardScreen = ({ onBack, componentId, date, leaderboard }: IPr
           </View>
         }
       />
-      <FlashList
-        showsVerticalScrollIndicator={false}
-        estimatedItemSize={95}
-        data={leaderboard}
-        renderItem={renderItem}
-        scrollEventThrottle={16}
-      />
+      <View style={styles.list}>
+        <FlashList
+          showsVerticalScrollIndicator={false}
+          estimatedItemSize={95}
+          data={leaderboard}
+          renderItem={renderItem}
+          scrollEventThrottle={16}
+        />
+      </View>
     </>
   );
 };
@@ -73,18 +79,20 @@ const styles = StyleSheet.create({
   wrapper: {
     alignItems: "center",
   },
-
   contentWrapper: {
     marginBottom: Style.adjust(20),
   },
-
   textWrapper: {
     paddingHorizontal: 25,
   },
-
   titleWrapper: {
     marginTop: Style.adjust(30),
     marginBottom: Style.adjust(20),
+  },
+  list: {
+    marginTop: Style.adjust(20),
+    flex: 1,
+    paddingHorizontal: Style.adjust(16),
   },
 });
 

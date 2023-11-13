@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -382,6 +382,11 @@ export interface SampleDebugDataSource {
   bundleIdentifier?: string | null;
   name?: string | null;
   version?: string | null;
+}
+
+export interface SocialGroupLeaderboardItemsFilter {
+  date?: string | null;
+  difficulty?: SudokuDifficulty | null;
 }
 
 export interface SocialLeaderboardConstent {
