@@ -1,7 +1,9 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
+
+import { SocialGroupLeaderboardItemsFilter } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetMobileSocialGroupLeaderboardItems
@@ -32,4 +34,5 @@ export interface GetMobileSocialGroupLeaderboardItemsVariables {
   leaderboardId: string;
   limit?: number | null;
   targetId?: string | null;
+  filter?: SocialGroupLeaderboardItemsFilter | null;
 }
