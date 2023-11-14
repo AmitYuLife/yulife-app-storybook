@@ -6,7 +6,6 @@ import colours from "@styles/colours";
 import { useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import SudokuLeaderboardAvatar from "./sudoku-leaderboard-avatar";
-import { getDuration } from "./sudoku-utils";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { ISudokuLeaderboardItem } from "./sudoku.interface";
 import { SUDOKU_LEADERBOARD } from "@ids";
@@ -43,18 +42,18 @@ const SudokuLeaderboardBox = ({ leaderboard, onPress }: IProps) => {
     <TouchableOpacityWithDelay onPress={onPress}>
       <View style={styles.container}>
         <View style={styles.wrapper}>
-          <SudokuLeaderboardAvatar uri={topUser?.avatarRemoteFiles?.pngFull} />
+          <SudokuLeaderboardAvatar uri={topUser?.avatar?.uri} />
           <View style={styles.contentWrapper}>
             {leaderboard.map((user, index) => (
               <View
                 key={user.position}
                 style={styles.contentItem}
-                testID={SUDOKU_LEADERBOARD(user.position, user.name, getDuration(user.adjustedTime))}
+                testID={SUDOKU_LEADERBOARD(user.position, user.name, user.score)}
               >
                 <TextTemplate type={index === 0 ? "b2b" : "l1"}>
                   {user.position}. {user.name}
                 </TextTemplate>
-                <TextTemplate type={index === 0 ? "b2b" : "l1"}>{getDuration(user.adjustedTime)}</TextTemplate>
+                <TextTemplate type={index === 0 ? "b2b" : "l1"}>{user.score}</TextTemplate>
               </View>
             ))}
           </View>

@@ -6,11 +6,11 @@ import { useBackHandler } from "@hooks";
 import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_QUEST_MAP_LEVEL } from "@graphql/challenges";
 import { useSelector } from "react-redux";
-import { getBusinessAccountId, getUserFeatures } from "@redux/user/user.selectors";
+import { getUserFeatures } from "@redux/user/user.selectors";
 import ChallengesHistoryNewScreen from "@components/screens/member/challenges/challenges-history-new/challenges-history-new.screen";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { t } from "@locale";
-import { getSocialGroups } from "@redux/leaderboards/leaderboards.selectors";
+import { getActiveSocialGroup } from "@redux/leaderboards/leaderboards.selectors";
 
 interface IProps extends IConnectedScreenProps {
   level: number;
@@ -29,9 +29,13 @@ function ChallengesHistoryNewContainer({
   onPressActivityHistory,
 }: IProps) {
   const { showBrainGameSudoku } = useSelector(getUserFeatures);
-  const socialGroups = useSelector(getSocialGroups);
-  const businessAccountId = useSelector(getBusinessAccountId);
+  const activeSocialGroup = useSelector(getActiveSocialGroup);
   const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
+
+  const yudokuLeaderboard = useMemo(
+    () => activeSocialGroup?.leaderboards.find((l) => l.leaderboardConfigId === "dailysudoku"),
+    [activeSocialGroup?.leaderboards]
+  );
 
   const { loading, data } = useQuery<GetQuestMapLevel>(GQL_QUERY_GET_QUEST_MAP_LEVEL, {
     variables: { level, yuniversalMap: yuniversalMap ? yuniversalMap : undefined },
@@ -51,14 +55,10 @@ function ChallengesHistoryNewContainer({
     [level, levelName]
   );
 
-  const showSudokuLeaderboardButton = useMemo(() => {
-    const socialGroup = socialGroups.find((sg) => sg.socialGroupId === businessAccountId);
-    const sudokuLeaderboard = socialGroup?.leaderboards?.find(
-      (leaderboard) => leaderboard.leaderboardConfigId === "dailysudoku"
-    );
-
-    return sudokuLeaderboard?.consent && showBrainGameSudoku;
-  }, [businessAccountId, socialGroups, showBrainGameSudoku]);
+  const showSudokuLeaderboardButton = useMemo(
+    () => yudokuLeaderboard?.consent && showBrainGameSudoku,
+    [yudokuLeaderboard, showBrainGameSudoku]
+  );
 
   if (loading || !data?.getQuestMapLevel) {
     return <LoadingScreen onBack={handleClose} />;

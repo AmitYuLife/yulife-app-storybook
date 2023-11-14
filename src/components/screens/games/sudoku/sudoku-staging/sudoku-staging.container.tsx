@@ -1,10 +1,9 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import {
+  GetMobileSocialGroupLeaderboardItems,
   GetQuestMapLevelChallengeDetails,
   GetQuestMapLevel_getQuestMapLevel_slots,
   GetSudokuBoard,
-  GetSudokuLeaderboard,
-  GetSudokuLeaderboardVariables,
 } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_SUDOKU_BOARDS } from "@graphql/brainGames/sudoku/getSudokuBoards.gql";
 import { useCallback, useEffect, useMemo } from "react";
@@ -15,7 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import SudokuStagingScreen from "./sudoku-staging.screen";
 import { showYuModal } from "@navigation/root";
-import { GQL_QUERY_GET_SODUKU_LEADERBOARD } from "@graphql/brainGames/sudoku/getSudokuLeaderboards.gql";
 import { SudokuDifficulty } from "@graphql/_core/schema/globalTypes";
 import { GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE } from "@graphql/challenges";
 import { getActiveLevel } from "@redux/levels/levels.selectors";
@@ -26,6 +24,8 @@ import { useQueryOnScreenSeen } from "@hooks";
 import { challengeCancelAction, challengeStartSuccessAction } from "@redux/levels/levels.actions";
 import cancelQuestMapLevelChallenge from "@graphql/challenges/cancelQuestMapLevelChallenge.gql";
 import { getCurrentDateState, getRouteState } from "@redux/app/app.selectors";
+import { getActiveSocialGroup } from "@redux/leaderboards/leaderboards.selectors";
+import { GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS } from "@graphql/socialGroupLeaderboard/getMobileSocialGroupLeaderboardItems";
 
 interface IProps {
   componentId: string;
@@ -34,10 +34,17 @@ interface IProps {
 
 export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
   const dispatch = useDispatch();
+  const activeSocialGroup = useSelector(getActiveSocialGroup);
   const activeChallenge = useSelector(getActiveLevel);
   const currentDate = useSelector(getCurrentDateState);
   const currentScreen = useSelector(getRouteState);
+  const isScreenActive = currentScreen === componentId;
   const [createQuestMapLevelChallenge] = useMutation(GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE);
+
+  const yudokuLeaderboard = useMemo(
+    () => activeSocialGroup?.leaderboards.find((l) => l.leaderboardConfigId === "dailysudoku"),
+    [activeSocialGroup?.leaderboards]
+  );
 
   const [, { data }] = useQueryOnScreenSeen<GetSudokuBoard>(GQL_QUERY_GET_SUDOKU_BOARDS, componentId, {
     fetchPolicy: "no-cache",
@@ -47,18 +54,27 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
     return !data?.getSudokuBoard?.leaderboardEligible;
   }, [data]);
 
-  const [, { data: leaderboard }] = useQueryOnScreenSeen<GetSudokuLeaderboard, GetSudokuLeaderboardVariables>(
-    GQL_QUERY_GET_SODUKU_LEADERBOARD,
-    componentId,
+  const [getSocialGroupLeaderboardItems, { data: leaderboard }] = useLazyQuery<GetMobileSocialGroupLeaderboardItems>(
+    GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS,
     {
-      fetchPolicy: "network-only",
-      variables: {
-        date: currentDate,
-        difficulty: SudokuDifficulty.EASY,
-        limit: 3,
-      },
+      fetchPolicy: "no-cache",
     }
   );
+
+  useEffect(() => {
+    if (yudokuLeaderboard?.leaderboardId && yudokuLeaderboard?.consent) {
+      getSocialGroupLeaderboardItems({
+        variables: {
+          leaderboardId: yudokuLeaderboard?.leaderboardId,
+          filter: {
+            date: currentDate,
+            difficulty: SudokuDifficulty.EASY,
+          },
+          limit: 3,
+        },
+      });
+    }
+  }, [yudokuLeaderboard?.leaderboardId, getSocialGroupLeaderboardItems, isScreenActive]);
 
   const { data: levelDetails, loading: isDetailsLoading } = useQuery<GetQuestMapLevelChallengeDetails>(
     GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS,
@@ -68,7 +84,7 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
   );
 
   useEffect(() => {
-    if (currentScreen === componentId) {
+    if (isScreenActive) {
       dispatch(
         sudokuReset({
           gameIdentifier: `${currentDate}_${SudokuDifficulty.EASY}`,
@@ -78,7 +94,7 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
         })
       );
     }
-  }, [currentDate, currentScreen]);
+  }, [currentDate, isScreenActive]);
 
   const board = first(data?.getSudokuBoard?.boards);
 
@@ -198,10 +214,10 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
       onHelp={onHelp}
       onLeaderboardPress={onLeaderboardPress}
       showSecondAttemptDisclaimer={showSecondAttemptDisclaimer}
-      leaderboard={leaderboard?.getSudokuLeaderboard}
+      leaderboard={leaderboard?.getMobileSocialGroupLeaderboardItems}
       onStartPractice={onStartPractice}
       levelDetails={levelDetails?.getQuestMapLevelChallengeDetails}
-      hasLeaderboardConsent={!!data?.getSudokuBoard?.stats?.leaderboardId}
+      hasLeaderboardConsent={yudokuLeaderboard?.consent}
     />
   );
 };
