@@ -24,7 +24,7 @@ import { useQueryOnScreenSeen } from "@hooks";
 import { challengeCancelAction, challengeStartSuccessAction } from "@redux/levels/levels.actions";
 import cancelQuestMapLevelChallenge from "@graphql/challenges/cancelQuestMapLevelChallenge.gql";
 import { getCurrentDateState, getRouteState } from "@redux/app/app.selectors";
-import { getActiveSocialGroup } from "@redux/leaderboards/leaderboards.selectors";
+import { getActiveYudokuLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
 import { GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS } from "@graphql/socialGroupLeaderboard/getMobileSocialGroupLeaderboardItems";
 
 interface IProps {
@@ -34,17 +34,12 @@ interface IProps {
 
 export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
   const dispatch = useDispatch();
-  const activeSocialGroup = useSelector(getActiveSocialGroup);
+  const activeYudokuLeaderboard = useSelector(getActiveYudokuLeaderboard);
   const activeChallenge = useSelector(getActiveLevel);
   const currentDate = useSelector(getCurrentDateState);
   const currentScreen = useSelector(getRouteState);
   const isScreenActive = currentScreen === componentId;
   const [createQuestMapLevelChallenge] = useMutation(GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE);
-
-  const yudokuLeaderboard = useMemo(
-    () => activeSocialGroup?.leaderboards.find((l) => l.leaderboardConfigId === "dailysudoku"),
-    [activeSocialGroup?.leaderboards]
-  );
 
   const [, { data }] = useQueryOnScreenSeen<GetSudokuBoard>(GQL_QUERY_GET_SUDOKU_BOARDS, componentId, {
     fetchPolicy: "no-cache",
@@ -62,10 +57,10 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
   );
 
   useEffect(() => {
-    if (yudokuLeaderboard?.leaderboardId && yudokuLeaderboard?.consent) {
+    if (activeYudokuLeaderboard?.leaderboardId && activeYudokuLeaderboard?.consent) {
       getSocialGroupLeaderboardItems({
         variables: {
-          leaderboardId: yudokuLeaderboard?.leaderboardId,
+          leaderboardId: activeYudokuLeaderboard?.leaderboardId,
           filter: {
             date: currentDate,
             difficulty: SudokuDifficulty.EASY,
@@ -74,7 +69,7 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
         },
       });
     }
-  }, [yudokuLeaderboard?.leaderboardId, getSocialGroupLeaderboardItems, isScreenActive]);
+  }, [activeYudokuLeaderboard?.leaderboardId, getSocialGroupLeaderboardItems, isScreenActive]);
 
   const { data: levelDetails, loading: isDetailsLoading } = useQuery<GetQuestMapLevelChallengeDetails>(
     GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS,
@@ -217,7 +212,7 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
       leaderboard={leaderboard?.getMobileSocialGroupLeaderboardItems}
       onStartPractice={onStartPractice}
       levelDetails={levelDetails?.getQuestMapLevelChallengeDetails}
-      hasLeaderboardConsent={yudokuLeaderboard?.consent}
+      hasLeaderboardConsent={activeYudokuLeaderboard?.consent}
     />
   );
 };

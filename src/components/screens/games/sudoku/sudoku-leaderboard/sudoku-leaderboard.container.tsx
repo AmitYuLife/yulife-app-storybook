@@ -11,7 +11,7 @@ import { DATE_FORMAT } from "@utils";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS } from "@graphql/socialGroupLeaderboard/getMobileSocialGroupLeaderboardItems";
 import { useSelector } from "react-redux";
-import { getActiveSocialGroup } from "@redux/leaderboards/leaderboards.selectors";
+import { getActiveYudokuLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
 import { ROUTES } from "@navigation/constants";
 
 interface IProps {
@@ -22,17 +22,12 @@ interface IProps {
 }
 
 const SudokuLeaderboardContainer = ({ componentId, date }: IProps) => {
-  const activeSocialGroup = useSelector(getActiveSocialGroup);
+  const activeYudokuLeaderboard = useSelector(getActiveYudokuLeaderboard);
   const leaderboardDate = date || moment().format(DATE_FORMAT);
   const t = useTranslation(["format.date_readable"]);
   const formattedDate = useMemo(() => {
     return moment(leaderboardDate).format(t["format.date_readable"]);
   }, [leaderboardDate, t]);
-
-  const yudokuLeaderboard = useMemo(
-    () => activeSocialGroup?.leaderboards.find((l) => l.leaderboardConfigId === "dailysudoku"),
-    [activeSocialGroup?.leaderboards]
-  );
 
   const [getSocialGroupLeaderboardItems, { data: leaderboard, loading: isLoading }] =
     useLazyQuery<GetMobileSocialGroupLeaderboardItems>(GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS, {
@@ -40,10 +35,10 @@ const SudokuLeaderboardContainer = ({ componentId, date }: IProps) => {
     });
 
   useEffect(() => {
-    if (yudokuLeaderboard?.leaderboardId) {
+    if (activeYudokuLeaderboard?.leaderboardId) {
       getSocialGroupLeaderboardItems({
         variables: {
-          leaderboardId: yudokuLeaderboard?.leaderboardId,
+          leaderboardId: activeYudokuLeaderboard?.leaderboardId,
           filter: {
             date: leaderboardDate,
             difficulty: SudokuDifficulty.EASY,
@@ -52,7 +47,7 @@ const SudokuLeaderboardContainer = ({ componentId, date }: IProps) => {
         },
       });
     }
-  }, [yudokuLeaderboard?.leaderboardId, getSocialGroupLeaderboardItems]);
+  }, [activeYudokuLeaderboard?.leaderboardId, getSocialGroupLeaderboardItems]);
 
   const onClose = useCallback(() => Navigation.pop(componentId), [componentId]);
 
