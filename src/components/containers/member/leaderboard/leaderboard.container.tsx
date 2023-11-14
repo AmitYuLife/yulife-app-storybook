@@ -255,8 +255,19 @@ const onDuelPress = () =>
   });
 
 const getJoinLeaderboardOverlayHeight = () => {
-  const heightPercentage = Style.DEVICE_HEIGHT <= 700 ? 80 : 60;
-  return Style.adjust((Style.DEVICE_HEIGHT / 100) * heightPercentage);
+  return Style.adjust((Style.DEVICE_HEIGHT / 100) * getHeightPercentage());
+};
+
+const getHeightPercentage = () => {
+  if (Style.DEVICE_HEIGHT <= 700) {
+    return 80;
+  }
+
+  if (Style.DEVICE_HEIGHT <= 812) {
+    return 65;
+  }
+
+  return 60;
 };
 
 export default memo(LeaderboardContainer);
