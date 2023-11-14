@@ -2153,6 +2153,7 @@ workflows:
             git pull
 
             nvm use
+            yarn global add node-gyp
             yarn install --frozen-lockfile
             ./scripts/setupPostgresForBitrise.sh
             
