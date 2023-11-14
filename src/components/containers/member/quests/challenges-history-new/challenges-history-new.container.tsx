@@ -10,7 +10,7 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import ChallengesHistoryNewScreen from "@components/screens/member/challenges/challenges-history-new/challenges-history-new.screen";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { t } from "@locale";
-import { getActiveSocialGroup } from "@redux/leaderboards/leaderboards.selectors";
+import { getActiveYudokuLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
 
 interface IProps extends IConnectedScreenProps {
   level: number;
@@ -29,13 +29,8 @@ function ChallengesHistoryNewContainer({
   onPressActivityHistory,
 }: IProps) {
   const { showBrainGameSudoku } = useSelector(getUserFeatures);
-  const activeSocialGroup = useSelector(getActiveSocialGroup);
   const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
-
-  const yudokuLeaderboard = useMemo(
-    () => activeSocialGroup?.leaderboards.find((l) => l.leaderboardConfigId === "dailysudoku"),
-    [activeSocialGroup?.leaderboards]
-  );
+  const activeYudokuLeaderboard = useSelector(getActiveYudokuLeaderboard);
 
   const { loading, data } = useQuery<GetQuestMapLevel>(GQL_QUERY_GET_QUEST_MAP_LEVEL, {
     variables: { level, yuniversalMap: yuniversalMap ? yuniversalMap : undefined },
@@ -56,8 +51,8 @@ function ChallengesHistoryNewContainer({
   );
 
   const showSudokuLeaderboardButton = useMemo(
-    () => yudokuLeaderboard?.consent && showBrainGameSudoku,
-    [yudokuLeaderboard, showBrainGameSudoku]
+    () => activeYudokuLeaderboard?.consent && showBrainGameSudoku,
+    [activeYudokuLeaderboard, showBrainGameSudoku]
   );
 
   if (loading || !data?.getQuestMapLevel) {

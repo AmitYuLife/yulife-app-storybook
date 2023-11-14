@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from "react";
+import React, { memo, useCallback } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { TextTemplate, Wrapper } from "@atoms";
 import { Style, TOP_BAR } from "@styles";
@@ -13,8 +13,7 @@ import { useMutation } from "@apollo/client";
 import { GQL_MUTATION_UPDATE_SUDOKU_LEADERBOARD_CONSENT } from "@graphql/brainGames/sudoku/updateSudokuLeaderboardConsent.gql";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { getActiveSocialGroup } from "@redux/leaderboards/leaderboards.selectors";
-import { SocialGroupLeaderboardConfigId } from "@graphql/_core/schema/globalTypes";
+import { getActiveSocialGroup, getActiveYudokuLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
 import { updateSocialGroupLeaderboardConsents } from "@redux/leaderboards/leaderboards.actions";
 
 interface IProps {
@@ -25,18 +24,11 @@ const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
   const onClose = useCallback(() => Navigation.dismissModal(MODALS.sudokuLeaderboardConsent), []);
   const dispatch = useDispatch();
   const activeSocialGroup = useSelector(getActiveSocialGroup);
+  const activeYudokuLeaderboard = useSelector(getActiveYudokuLeaderboard);
   const [updateSudokuLeaderboardConsent, { loading }] = useMutation<
     UpdateSudokuLeaderboardConsent,
     UpdateSudokuLeaderboardConsentVariables
   >(GQL_MUTATION_UPDATE_SUDOKU_LEADERBOARD_CONSENT);
-
-  const activeYudokuLeaderboard = useMemo(
-    () =>
-      activeSocialGroup?.leaderboards?.find(
-        (leaderboard) => leaderboard.leaderboardConfigId === SocialGroupLeaderboardConfigId.dailysudoku
-      ),
-    [activeSocialGroup]
-  );
 
   const t = useTranslation([
     "sudoku.leaderboard_consent.title",
