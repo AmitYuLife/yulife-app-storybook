@@ -30,8 +30,8 @@ const SudokuLeaderboardContainer = ({ componentId, date }: IProps) => {
   }, [leaderboardDate, t]);
 
   const yudokuLeaderboard = useMemo(
-    () => activeSocialGroup.leaderboards.find((l) => l.leaderboardConfigId === "dailysudoku"),
-    [activeSocialGroup.leaderboards]
+    () => activeSocialGroup?.leaderboards.find((l) => l.leaderboardConfigId === "dailysudoku"),
+    [activeSocialGroup?.leaderboards]
   );
 
   const [getSocialGroupLeaderboardItems, { data: leaderboard, loading: isLoading }] =

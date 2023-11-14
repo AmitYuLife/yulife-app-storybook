@@ -1,6 +1,3 @@
-import { useQuery } from "@apollo/client";
-import { GetSudokuLeaderboard, GetSudokuLeaderboardVariables } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_SODUKU_LEADERBOARD } from "@graphql/brainGames/sudoku/getSudokuLeaderboards.gql";
 import { useCallback, useMemo } from "react";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
@@ -27,29 +24,14 @@ export const SudokuHistoryButtonContainer = ({ date, componentId }: IProps) => {
     });
   }, [componentId, date]);
 
-  const { data: sudokuLeaderboard } = useQuery<GetSudokuLeaderboard, GetSudokuLeaderboardVariables>(
-    GQL_QUERY_GET_SODUKU_LEADERBOARD,
-    {
-      variables: {
-        date,
-        limit: 1,
-      },
-      fetchPolicy: "network-only",
-    }
-  );
-
   const dateString = useMemo(() => {
     const dateMoment = moment(date);
     if (moment().isSame(dateMoment, "day")) {
       return t("screens.challenges.history.sudoku_leaderboard_today");
     }
 
-    return dateMoment.format("Do MMMM");
+    return dateMoment.format("Do MMM");
   }, [date]);
-
-  if (!sudokuLeaderboard) {
-    return null;
-  }
 
   return (
     <SudokuHistoryButton

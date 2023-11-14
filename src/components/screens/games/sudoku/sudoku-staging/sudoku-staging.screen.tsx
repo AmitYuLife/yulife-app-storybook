@@ -3,7 +3,7 @@ import {
   GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails,
   GetQuestMapLevel_getQuestMapLevel_slots,
   GetSudokuBoard,
-  GetSudokuLeaderboard_getSudokuLeaderboard,
+  GetMobileSocialGroupLeaderboardItems_getMobileSocialGroupLeaderboardItems as SocialGroupLeaderboardItem,
 } from "@graphql/_core/schema";
 import { memo, useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
@@ -40,7 +40,7 @@ interface IProps {
   hasLeaderboardConsent?: boolean;
   showSecondAttemptDisclaimer?: boolean;
   slot: GetQuestMapLevel_getQuestMapLevel_slots;
-  leaderboard: GetSudokuLeaderboard_getSudokuLeaderboard[];
+  leaderboard: SocialGroupLeaderboardItem[];
   levelDetails: GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails;
 }
 

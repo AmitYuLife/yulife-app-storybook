@@ -40,10 +40,16 @@ export interface ISudokuStats {
 }
 
 export interface ISudokuLeaderboardItem {
-  name: string;
-  adjustedTime: number;
+  id: string;
   userId: string;
+  score: string;
+  name: string;
   position: number;
-  leaderboardId?: string;
-  avatarRemoteFiles: { svgFull: string | null; pngFull: string | null; pngMini: string | null } | null;
+  isTarget: boolean;
+  firstName: string;
+  lastName: string;
+  avatar: {
+    id: string;
+    uri: string;
+  };
 }

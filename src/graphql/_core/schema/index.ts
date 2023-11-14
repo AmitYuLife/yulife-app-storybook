@@ -161,7 +161,6 @@ export * from "./GetSduiStaticStep";
 export * from "./GetSession";
 export * from "./GetStatistics";
 export * from "./GetSudokuBoard";
-export * from "./GetSudokuLeaderboard";
 export * from "./GetSudokuPractice";
 export * from "./GetSudokuStats";
 export * from "./GetTodayEarnings";
