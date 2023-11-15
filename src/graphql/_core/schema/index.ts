@@ -249,7 +249,6 @@ export * from "./UpdateMobileRewardStoreLocation";
 export * from "./UpdateMobileSocialLeaderboardConsents";
 export * from "./UpdateNickname";
 export * from "./UpdateQuestMapLevelChallenge";
-export * from "./UpdateSudokuLeaderboardConsent";
 export * from "./UpdateUserHourlyActivity";
 export * from "./UpdateUserNotificationsSettings";
 export * from "./UpsertDailyPassives";
