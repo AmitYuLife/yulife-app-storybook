@@ -23,7 +23,8 @@ const isIphone13 = () => isiOS() && x === 390 && y === 844;
 const isIphoneX = () => isiOS() && y === 812;
 const isIphone8 = () => isiOS() && x === 375 && y === 667;
 const isIphoneXS = () => isiOS() && x === 375 && y === 812;
-const isIphone15Series = () => isiOS() && y > 851;
+const isIphone15AndPro = () => isiOS() && x === 393 && y === 852;
+const isIphone15PlusAndMax = () => isiOS() && x === 430 && y === 932;
 
 const isIphoneXPlus = () =>
   // XS Max, XR
@@ -204,7 +205,8 @@ const Style = {
   isIphoneXPlus,
   isIphone8,
   isIphoneXS,
-  isIphone15Series,
+  isIphone15AndPro,
+  isIphone15PlusAndMax,
   isShortToMedium,
   isShortAndWideAndroid,
   isShortAndroid,
