@@ -8,7 +8,9 @@ export interface IEpisodeSettings {
   topBarType: TopBarTypes;
 }
 
-export const MAP_SLICE_HEIGHT = Style.SCALE_UP_AND_DOWN(Style.isIphone15Series() ? 181 : 180);
+export const MAP_SLICE_HEIGHT = Style.SCALE_UP_AND_DOWN(
+  Style.isIphone15PlusAndMax() || Style.isIphone15AndPro() ? 181 : 180
+);
 export const HALF_MAP_SLICE_HEIGHT = MAP_SLICE_HEIGHT / 2;
 
 export const episodeSettings = {
