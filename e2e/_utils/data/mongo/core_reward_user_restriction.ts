@@ -12,6 +12,7 @@ export const CRUR_1_BOOTS = {
         "userId": users.USER_116.data.userId,
         "rewardId": rewards.CORE_REWARDS_BOOTS_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -26,6 +27,7 @@ export const CRUR_1_YORK = {
         "userId": users.USER_116.data.userId,
         "rewardId": rewards.CORE_REWARDS_YORK_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -40,6 +42,7 @@ export const CRUR_1_URBAN = {
         "userId": users.USER_116.data.userId,
         "rewardId": rewards.CORE_REWARDS_URBAN_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -54,6 +57,7 @@ export const CRUR_1_BUPA = {
         "userId": users.USER_116.data.userId,
         "rewardId": rewards.CORE_REWARDS_BUPA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -68,6 +72,7 @@ export const CRUR_1_LIVING_DNA = {
         "userId": users.USER_116.data.userId,
         "rewardId": rewards.CORE_REWARDS_LIVING_DNA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -82,6 +87,7 @@ export const CRUR_1_GARMIN = {
         "userId": users.USER_116.data.userId,
         "rewardId": rewards.CORE_REWARDS_GARMIN_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -96,6 +102,7 @@ export const CRUR_1_THRIVA = {
         "userId": users.USER_116.data.userId,
         "rewardId": rewards.CORE_REWARDS_THRIVA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -110,6 +117,7 @@ export const CRUR_2_BOOTS = {
         "userId": users.USER_117.data.userId,
         "rewardId": rewards.CORE_REWARDS_BOOTS_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -124,6 +132,7 @@ export const CRUR_2_YORK = {
         "userId": users.USER_117.data.userId,
         "rewardId": rewards.CORE_REWARDS_YORK_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -138,6 +147,7 @@ export const CRUR_2_URBAN = {
         "userId": users.USER_117.data.userId,
         "rewardId": rewards.CORE_REWARDS_URBAN_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -152,6 +162,7 @@ export const CRUR_2_BUPA = {
         "userId": users.USER_117.data.userId,
         "rewardId": rewards.CORE_REWARDS_BUPA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -166,6 +177,7 @@ export const CRUR_2_LIVING_DNA = {
         "userId": users.USER_117.data.userId,
         "rewardId": rewards.CORE_REWARDS_LIVING_DNA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -180,6 +192,7 @@ export const CRUR_2_GARMIN = {
         "userId": users.USER_117.data.userId,
         "rewardId": rewards.CORE_REWARDS_GARMIN_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -194,6 +207,7 @@ export const CRUR_2_THRIVA = {
         "userId": users.USER_117.data.userId,
         "rewardId": rewards.CORE_REWARDS_THRIVA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -208,6 +222,7 @@ export const CRUR_3_BOOTS = {
         "userId": users.USER_118.data.userId,
         "rewardId": rewards.CORE_REWARDS_BOOTS_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -222,6 +237,7 @@ export const CRUR_3_YORK = {
         "userId": users.USER_118.data.userId,
         "rewardId": rewards.CORE_REWARDS_YORK_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -236,6 +252,7 @@ export const CRUR_3_URBAN = {
         "userId": users.USER_118.data.userId,
         "rewardId": rewards.CORE_REWARDS_URBAN_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -250,6 +267,7 @@ export const CRUR_3_BUPA = {
         "userId": users.USER_118.data.userId,
         "rewardId": rewards.CORE_REWARDS_BUPA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -264,6 +282,7 @@ export const CRUR_3_LIVING_DNA = {
         "userId": users.USER_118.data.userId,
         "rewardId": rewards.CORE_REWARDS_LIVING_DNA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -278,6 +297,7 @@ export const CRUR_3_GARMIN = {
         "userId": users.USER_118.data.userId,
         "rewardId": rewards.CORE_REWARDS_GARMIN_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -292,6 +312,7 @@ export const CRUR_3_THRIVA = {
         "userId": users.USER_118.data.userId,
         "rewardId": rewards.CORE_REWARDS_THRIVA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -306,6 +327,7 @@ export const CRUR_4_BOOTS = {
         "userId": users.USER_119.data.userId,
         "rewardId": rewards.CORE_REWARDS_BOOTS_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -320,6 +342,7 @@ export const CRUR_4_YORK = {
         "userId": users.USER_119.data.userId,
         "rewardId": rewards.CORE_REWARDS_YORK_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -334,6 +357,7 @@ export const CRUR_4_URBAN = {
         "userId": users.USER_119.data.userId,
         "rewardId": rewards.CORE_REWARDS_URBAN_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -348,6 +372,7 @@ export const CRUR_4_BUPA = {
         "userId": users.USER_119.data.userId,
         "rewardId": rewards.CORE_REWARDS_BUPA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -362,6 +387,7 @@ export const CRUR_4_LIVING_DNA = {
         "userId": users.USER_119.data.userId,
         "rewardId": rewards.CORE_REWARDS_LIVING_DNA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -376,6 +402,7 @@ export const CRUR_4_GARMIN = {
         "userId": users.USER_119.data.userId,
         "rewardId": rewards.CORE_REWARDS_GARMIN_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -390,6 +417,7 @@ export const CRUR_4_THRIVA = {
         "userId": users.USER_119.data.userId,
         "rewardId": rewards.CORE_REWARDS_THRIVA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -404,6 +432,7 @@ export const CRUR_5_BOOTS = {
         "userId": users.USER_120.data.userId,
         "rewardId": rewards.CORE_REWARDS_BOOTS_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -418,6 +447,7 @@ export const CRUR_5_YORK = {
         "userId": users.USER_120.data.userId,
         "rewardId": rewards.CORE_REWARDS_YORK_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -432,6 +462,7 @@ export const CRUR_5_URBAN = {
         "userId": users.USER_120.data.userId,
         "rewardId": rewards.CORE_REWARDS_URBAN_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -446,6 +477,7 @@ export const CRUR_5_BUPA = {
         "userId": users.USER_120.data.userId,
         "rewardId": rewards.CORE_REWARDS_BUPA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -460,6 +492,7 @@ export const CRUR_5_LIVING_DNA = {
         "userId": users.USER_120.data.userId,
         "rewardId": rewards.CORE_REWARDS_LIVING_DNA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -474,6 +507,7 @@ export const CRUR_5_GARMIN = {
         "userId": users.USER_120.data.userId,
         "rewardId": rewards.CORE_REWARDS_GARMIN_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -488,6 +522,7 @@ export const CRUR_5_THRIVA = {
         "userId": users.USER_120.data.userId,
         "rewardId": rewards.CORE_REWARDS_THRIVA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -502,6 +537,7 @@ export const CRUR_6_BOOTS = {
         "userId": users.USER_121.data.userId,
         "rewardId": rewards.CORE_REWARDS_BOOTS_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -516,6 +552,7 @@ export const CRUR_6_YORK = {
         "userId": users.USER_121.data.userId,
         "rewardId": rewards.CORE_REWARDS_YORK_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -530,6 +567,7 @@ export const CRUR_6_URBAN = {
         "userId": users.USER_121.data.userId,
         "rewardId": rewards.CORE_REWARDS_URBAN_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -544,6 +582,7 @@ export const CRUR_6_BUPA = {
         "userId": users.USER_121.data.userId,
         "rewardId": rewards.CORE_REWARDS_BUPA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -558,6 +597,7 @@ export const CRUR_6_LIVING_DNA = {
         "userId": users.USER_121.data.userId,
         "rewardId": rewards.CORE_REWARDS_LIVING_DNA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -572,6 +612,7 @@ export const CRUR_6_GARMIN = {
         "userId": users.USER_121.data.userId,
         "rewardId": rewards.CORE_REWARDS_GARMIN_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -586,6 +627,7 @@ export const CRUR_6_THRIVA = {
         "userId": users.USER_121.data.userId,
         "rewardId": rewards.CORE_REWARDS_THRIVA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -600,6 +642,7 @@ export const CRUR_7_BOOTS = {
         "userId": users.USER_127.data.userId,
         "rewardId": rewards.CORE_REWARDS_BOOTS_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -614,6 +657,7 @@ export const CRUR_7_YORK = {
         "userId": users.USER_127.data.userId,
         "rewardId": rewards.CORE_REWARDS_YORK_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -628,6 +672,7 @@ export const CRUR_7_URBAN = {
         "userId": users.USER_127.data.userId,
         "rewardId": rewards.CORE_REWARDS_URBAN_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -642,6 +687,7 @@ export const CRUR_7_BUPA = {
         "userId": users.USER_127.data.userId,
         "rewardId": rewards.CORE_REWARDS_BUPA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -656,6 +702,7 @@ export const CRUR_7_LIVING_DNA = {
         "userId": users.USER_127.data.userId,
         "rewardId": rewards.CORE_REWARDS_LIVING_DNA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -670,6 +717,7 @@ export const CRUR_7_GARMIN = {
         "userId": users.USER_127.data.userId,
         "rewardId": rewards.CORE_REWARDS_GARMIN_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0
@@ -684,6 +732,7 @@ export const CRUR_7_THRIVA = {
         "userId": users.USER_127.data.userId,
         "rewardId": rewards.CORE_REWARDS_THRIVA_GHI_REWARDS.data._id, 
         "state": "tease",
+        "source": "goal_products",
         "createdAt": moment(),
         "updatedAt": moment(),
         "__v": 0

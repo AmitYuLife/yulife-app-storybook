@@ -101,8 +101,6 @@ export const canSeeLeaderboard = (user: typeof CUSTOMER_86, answer: typeof SUDOK
     await idVisible(SUDOKU_LEADERBOARD(rank, getFullName(user), time))()
   } else {
     await idVisible(LEADERBOARD_NAME(getFullName(user), time, rank, "leaderboard"), 2000)()
-    await idVisible(SCORE(time))()
-    await idVisible(RANK(getFullName(user), rank))()
   }
 }
 
@@ -124,7 +122,7 @@ export const cannotSeeLeaderboard = async () => {
 }
 
 export const canSeePersonalBest = (stat: typeof USER_STAT_86) => async () => {
-  const time = getDuration(stat.data.personalBest)
+  const time = getDuration(stat.data.currentValue)
   await idVisible(SUDOKU_STAT("Personal best", time))()
 }
 
@@ -162,7 +160,7 @@ export const amOnCompletedPracticeScreen = (hintsNum: number, mistakesNum: numbe
 }
 
 export const leaderboardVisible = (customers: UserLeaderboardListItem[]) => async () => {
-  for(const { name, rank, score, } of customers){
+  for(const { name, rank, score } of customers){
       await idVisible(LEADERBOARD_NAME(name, score, rank, "leaderboard"))()
   }
 }
