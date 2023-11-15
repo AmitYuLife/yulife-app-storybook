@@ -8,13 +8,16 @@ import LeaderboardConsentImage from "@components/games/sudoku/leaderboard/Leader
 import { MODALS } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { Button } from "@components/molecules";
-import { UpdateSudokuLeaderboardConsent, UpdateSudokuLeaderboardConsentVariables } from "@graphql/_core/schema";
+import {
+  UpdateMobileSocialLeaderboardConsents,
+  UpdateMobileSocialLeaderboardConsentsVariables,
+} from "@graphql/_core/schema";
 import { useMutation } from "@apollo/client";
-import { GQL_MUTATION_UPDATE_SUDOKU_LEADERBOARD_CONSENT } from "@graphql/brainGames/sudoku/updateSudokuLeaderboardConsent.gql";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { getActiveSocialGroup, getActiveYudokuLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
 import { updateSocialGroupLeaderboardConsents } from "@redux/leaderboards/leaderboards.actions";
+import { GQL_MUTATION_UPDATE_MOBILE_SOCIAL_LEADERBOARD_CONSENTS } from "@graphql/socialGroupLeaderboard/updateMobileSocialLeaderboardConsents";
 
 interface IProps {
   onConsented?: () => void;
@@ -26,9 +29,9 @@ const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
   const activeSocialGroup = useSelector(getActiveSocialGroup);
   const activeYudokuLeaderboard = useSelector(getActiveYudokuLeaderboard);
   const [updateSudokuLeaderboardConsent, { loading }] = useMutation<
-    UpdateSudokuLeaderboardConsent,
-    UpdateSudokuLeaderboardConsentVariables
-  >(GQL_MUTATION_UPDATE_SUDOKU_LEADERBOARD_CONSENT);
+    UpdateMobileSocialLeaderboardConsents,
+    UpdateMobileSocialLeaderboardConsentsVariables
+  >(GQL_MUTATION_UPDATE_MOBILE_SOCIAL_LEADERBOARD_CONSENTS);
 
   const t = useTranslation([
     "sudoku.leaderboard_consent.title",
@@ -42,6 +45,10 @@ const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
   });
 
   const onSubmit = useCallback(() => {
+    if (!activeYudokuLeaderboard?.leaderboardId) {
+      return;
+    }
+
     dispatch(
       logMixpanelEventActionCreator("leaderboard_toggle", {
         name: "sudoku",
@@ -51,7 +58,12 @@ const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
 
     updateSudokuLeaderboardConsent({
       variables: {
-        consent: true,
+        consents: [
+          {
+            id: activeYudokuLeaderboard?.leaderboardId,
+            consent: true,
+          },
+        ],
       },
       onCompleted: () => {
         dispatch(
@@ -72,7 +84,14 @@ const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
         }
       },
     });
-  }, [dispatch, updateSudokuLeaderboardConsent, onClose, onConsented]);
+  }, [
+    dispatch,
+    updateSudokuLeaderboardConsent,
+    onClose,
+    onConsented,
+    activeYudokuLeaderboard?.leaderboardId,
+    activeSocialGroup?.socialGroupId,
+  ]);
 
   if (!activeYudokuLeaderboard) {
     onClose();
