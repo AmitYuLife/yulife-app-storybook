@@ -8,4 +8,5 @@ export interface UserLeaderboardListItem {
     name: string,
     score: string,
     rank: number,
+    type?: string
 }

@@ -4,7 +4,6 @@ import { View } from "react-native";
 import { styles } from "./leaderboard.screen";
 import { ListRenderItemInfo } from "@shopify/flash-list";
 import { GetMobileSocialGroupLeaderboardItems_getMobileSocialGroupLeaderboardItems as SocialGroupLeaderboardItem } from "@graphql/_core/schema";
-import { LEADERBOARD_NAME } from "@ids";
 
 interface IItemsProps {
   item: SocialGroupLeaderboardItem;
@@ -17,7 +16,7 @@ const LeaderboardListItem = ({ onPress, listItem, currentUserInfo }: IItemsProps
   const { item } = listItem;
 
   return (
-    <View style={styles.listWrapper} testID={LEADERBOARD_NAME(item.name, item.score, item.position)}>
+    <View style={styles.listWrapper}>
       <ListItem
         type="leaderboard"
         onPress={onPress}

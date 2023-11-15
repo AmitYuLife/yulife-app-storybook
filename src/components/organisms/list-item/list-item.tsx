@@ -8,9 +8,10 @@ import Avatar from "@components/molecules/avatar/avatar";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { ITextTemplateType } from "@atoms/text/text-template";
 import { AvatarHeadIcon } from "@atoms/icon/avatar-head-icon";
+import { LEADERBOARD_NAME } from "@ids";
 
 type TypeProps =
-  | { type: "leaderboard"; position: number; score: number | string }
+  | { type: "leaderboard"; position: number; score: string }
   | { type: "search"; position?: never; score?: never };
 
 interface CommonProps<T> {
@@ -94,7 +95,11 @@ export const ListItem = <T,>({ name, uri, type, position, score, onPress, isLoad
   }
 
   return (
-    <TouchableOpacityWithDelay disabled={!onPress} onPress={handleOnPress}>
+    <TouchableOpacityWithDelay
+      disabled={!onPress}
+      onPress={handleOnPress}
+      testID={LEADERBOARD_NAME(name, score, position, type)}
+    >
       <View style={[styles.wrapper, isActiveOrHighlighted.styles]}>
         {!isLeaderboard ? null : (
           <View style={styles.position}>

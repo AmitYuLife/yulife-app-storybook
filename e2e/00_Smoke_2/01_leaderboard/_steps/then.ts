@@ -57,7 +57,7 @@ export const leaderboardVisible = (customers: UserLeaderboardListItem[]) => asyn
     }
 
     for(const { name, rank, score } of customers){
-        await idVisible(ids.LEADERBOARD_NAME(name, score, rank))()
+        await idVisible(ids.LEADERBOARD_NAME(name, score, rank, "leaderboard"))()
     }
 }
 
@@ -240,7 +240,7 @@ export const winStreakVisible = (winStreak: number) => async () => {
 }
 
 export const cannotSeeLeaderboardUser = (user: UserLeaderboardListItem) => async () => {
-    await idNotVisible(ids.LEADERBOARD_NAME(user.name, user.score, user.rank))()
+    await idNotVisible(ids.LEADERBOARD_NAME(user.name, user.score, user.rank, user.type))()
 }
 
 export const canSeeEmptyLeaderboardSearch = async () => {

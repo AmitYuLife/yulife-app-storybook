@@ -168,7 +168,7 @@ export const PURCHASE_IMAGE = (url: any) => `PURCHASE_IMAGE_${url}`
 export const CONTENT_ITEM_IMAGE = "CONTENT_ITEM_IMAGE"
 
 // leaderboard
-export const LEADERBOARD_NAME = (name: string, score: string, rank: number) => `LEADERBOARD_NAME_${name}_${score}_${rank}`
+export const LEADERBOARD_NAME = (name: string, score: string, rank: number, type?: string) => `LEADERBOARD_NAME_${name}_${score}_${rank}${type ? `_${type}` : null}`
 export const LEADERBOARD_SCREEN = "LEADERBOARD_SCREEN";
 export const LEADERBOARD_TOP_SCREEN = "LEADERBOARD_TOP_SCREEN"
 export const LEADERBOARD_INFO_BUTTON = "LEADERBOARD_INFO_BUTTON"

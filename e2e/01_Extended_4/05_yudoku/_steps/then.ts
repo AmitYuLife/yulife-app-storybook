@@ -100,7 +100,7 @@ export const canSeeLeaderboard = (user: typeof CUSTOMER_86, answer: typeof SUDOK
   if (isOnHomeScreen) {
     await idVisible(SUDOKU_LEADERBOARD(rank, getFullName(user), time))()
   } else {
-    await idVisible(LEADERBOARD_NAME(getFullName(user), time, rank), 2000)()
+    await idVisible(LEADERBOARD_NAME(getFullName(user), time, rank, "leaderboard"), 2000)()
     await idVisible(SCORE(time))()
     await idVisible(RANK(getFullName(user), rank))()
   }
@@ -162,8 +162,8 @@ export const amOnCompletedPracticeScreen = (hintsNum: number, mistakesNum: numbe
 }
 
 export const leaderboardVisible = (customers: UserLeaderboardListItem[]) => async () => {
-  for(const { name, rank, score } of customers){
-      await idVisible(LEADERBOARD_NAME(name, score, rank))()
+  for(const { name, rank, score, } of customers){
+      await idVisible(LEADERBOARD_NAME(name, score, rank, "leaderboard"))()
   }
 }
 
