@@ -57,7 +57,7 @@ export const leaderboardVisible = (customers: UserLeaderboardListItem[]) => asyn
     }
 
     for(const { name, rank, score } of customers){
-        await idVisible(ids.LEADERBOARD_NAME(name, score, rank, "leaderboard"))()
+        await idVisibleAtIndex(ids.LEADERBOARD_NAME(name, score, rank, "leaderboard"), 0)()
     }
 }
 

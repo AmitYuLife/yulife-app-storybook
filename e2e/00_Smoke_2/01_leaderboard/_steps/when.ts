@@ -100,10 +100,12 @@ export const tapLeaderboardConsentSwitch = (leaderboard: SocialGroupLeaderboard,
 }
 
 export const tapLeaderboardUser = (user:  UserLeaderboardListItem) => async () => {
+    const type = user.type ? user.type : "leaderboard"
+
     if (device.name.includes("(iPhone SE (3rd generation))")) {
         await swipeFromText("Steps", "up", "slow")()
     }
-    await tapID(ids.LEADERBOARD_NAME(user.name, user.score, user.rank, user.type))()
+    await tapIDAtIndex(ids.LEADERBOARD_NAME(user.name, user.score, user.rank, type), 0)()
 }
 
 export const tapJoinLeaderboard = async () => {
