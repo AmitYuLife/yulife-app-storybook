@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.108.0] - 2023-11-16
+
+### Bugfixes
+
+- Bugfix ENG-3727: Quest map unable to do quests on some iPhones
+- Bugfix ENG-3736: Yudoku toggle hidden on leaderboard on small devices
+- Bugfix: Wrong level order
+
+### Tasks
+
+- Task: Move testID to ListItem instead of LeaderboardListItem
+- Task: Create getActiveYudokuLeaderboard selector
+- Task: Update Yudoku daily/history leaderboards to use getSocialGroupLeaderboardItems
+- Task: Hide sudoku history button when not consented
+- Task: Orange planet
+
+### Chores
+
+- Chore: Replace redux with redux toolkit
+
+### Improvements
+
+- Purge: getSudokuLeaderboard graphql endpoint and small improvements
+
+### Extra
+
+- Detox/fixes 15/11
+- Purge: updateSudokuLeaderboardConsent graphql endpoint
+- Fix: Bitrise api setup
+- detox:fixes-13/11
+- Detox:xse-1901-SA-GCI-product
+- detox:xse-2285
+
 ## [3.107.0] - 2023-11-08
 
 ### Bugfixes
