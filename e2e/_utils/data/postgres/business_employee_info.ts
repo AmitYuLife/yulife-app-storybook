@@ -1,6 +1,6 @@
 import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
-import { BUSINESS_EMPLOYEE_34, BUSINESS_EMPLOYEE_39, BUSINESS_EMPLOYEE_44, BUSINESS_EMPLOYEE_94 } from "./business_employees";
+import { BUSINESS_EMPLOYEE_128, BUSINESS_EMPLOYEE_129, BUSINESS_EMPLOYEE_34, BUSINESS_EMPLOYEE_39, BUSINESS_EMPLOYEE_44, BUSINESS_EMPLOYEE_94 } from "./business_employees";
 
 const GENERIC_EMPLOYEE_INFO = {
   business_employee_id: generateRandomPostgresId(),
@@ -68,5 +68,27 @@ export const BUSINESS_EMPLOYEE_INFO_94 = {
   data: {
     ...GENERIC_EMPLOYEE_INFO,
     business_employee_id: BUSINESS_EMPLOYEE_94.data.business_employee_id,
+  },
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_INFO_128 = {
+  type: "postgres",
+  modelName: "business_employee_info",
+  data: {
+    ...GENERIC_EMPLOYEE_INFO,
+    business_employee_id: BUSINESS_EMPLOYEE_128.data.business_employee_id,
+    department: "Senior Management",
+    pay_grade: "Grade 55"
+  },
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_INFO_129 = {
+  type: "postgres",
+  modelName: "business_employee_info",
+  data: {
+    ...GENERIC_EMPLOYEE_INFO,
+    business_employee_id: BUSINESS_EMPLOYEE_129.data.business_employee_id,
+    department: "Senior Management",
+    pay_grade: "Grade 45"
   },
 } as IDatabaseItem

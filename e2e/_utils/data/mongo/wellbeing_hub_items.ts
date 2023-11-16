@@ -1,6 +1,7 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
+import { BUSINESS_ACCOUNT_12_WELLBEING_ELIGIBILITY } from "../postgres/business";
 
 export const WELLBEING_HUB_ITEM_1 = {
    modelName: "wellbeing_hub_item",
@@ -778,4 +779,38 @@ export const WELLBEING_HUB_ITEM_9 = {
       "__v": 0,
       "enabled": true
     }
+} as IDatabaseItem
+
+export const WELLBEING_HUB_ITEM_10 = {
+  modelName: "wellbeing_hub_item",
+  type: "mongo",
+  data: {
+     "_id": generateRandomMongoId(),
+     "title": "Restricted",
+     "description": "This item is only visible to certain employees",
+     "thumbnailImage": "cms/1669639176057_Yuniversity@3x.png",
+     "iconImage": "content/icons/yulife.png",
+     "order": 3,
+     "enabled": true,
+     "seed": true,
+     "route": "yulife.member.yuniversityCourses",
+     "source": "internal_dashboard",
+     "content": [],
+     "restrictions": {
+        "businessAccountId": BUSINESS_ACCOUNT_12_WELLBEING_ELIGIBILITY.data.business_account_id 
+     },
+     "query": {
+      "department": {
+        "contains": [
+          "Senior Management"
+        ]
+      },
+      "payGrade": {
+        "contains": [
+          "Grade 55", "Grade 65"
+        ]
+      }
+    },
+     "updatedAt": moment().toISOString(),
+  }
 } as IDatabaseItem

@@ -1178,3 +1178,29 @@ export const USER_GAME_STATE_127 = {
         currentLevel: 241
     }
 } as IDatabaseItem
+
+export const USER_GAME_STATE_128 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_128_WELLBEING_ELIGIBILITY.data.customerId,
+        userId: customer.CUSTOMER_128_WELLBEING_ELIGIBILITY.data.customerId,
+        currentBalance: 10000,
+        currentStreak: 0,
+        currentLevel: 36
+    }
+} as IDatabaseItem
+
+export const USER_GAME_STATE_129 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_129_WELLBEING_ELIGIBILITY.data.customerId,
+        userId: customer.CUSTOMER_129_WELLBEING_ELIGIBILITY.data.customerId,
+        currentBalance: 10000,
+        currentStreak: 0,
+        currentLevel: 36
+    }
+} as IDatabaseItem
