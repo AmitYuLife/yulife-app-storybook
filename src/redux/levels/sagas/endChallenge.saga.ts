@@ -13,6 +13,7 @@ import {
 } from "../levels.actions";
 import { logEmptyResultDebugData, getEndResult } from "../levels.helpers";
 import { getActiveLevel, getYuniversalProgress } from "../levels.selectors";
+import { isEmpty } from "lodash";
 
 const RETRY_UPDATE_CHALLENGE_COUNT = 5;
 
@@ -40,7 +41,12 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
         const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
         const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
         const result: Unpacked<typeof getEndResult> = yield call(getEndResult, active, stepsBlackListApps, features);
-        if (result.value === 0 && !payload?.skipDefer && features.enableChallengeNoDataDefer) {
+        if (
+          result.value === 0 &&
+          !payload?.skipDefer &&
+          features.enableChallengeNoDataDefer &&
+          !isEmpty(active.fitKitTypes)
+        ) {
           yield spawn(async () => {
             logEmptyResultDebugData({
               features,
