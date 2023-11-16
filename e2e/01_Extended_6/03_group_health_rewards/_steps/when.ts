@@ -4,6 +4,7 @@ import moment from "moment";
 export { authoriseFitkit, sendSteps } from "@socket";
 import * as ids from "@ids"
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
+import { expect } from 'detox'
 
 export const {
   tapText,

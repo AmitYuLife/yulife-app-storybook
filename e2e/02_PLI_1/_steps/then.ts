@@ -1,14 +1,14 @@
-import { navigation, wait } from "@utils";
+import { navigation } from "@utils";
 import {
   DATE_INPUT,
   PERCENTAGE_COVERED,
-  REFERRALS_INVITE_BUTTON,
   PRODUCT_STEP_BODY_SCROLL_VIEW,
   TEXT_TEMPLATE,
 } from "@ids";
 import { screens } from "@appScreens";
 import { scrollUntilTextVisible } from "_utils/navigation/scrolling";
 import moment from "moment";
+import { expect } from 'detox'
 
 export const { idVisible, textVisible, idNotVisible, textNotVisible, multipleTextVisible, textVisibleAtIndex } =
   navigation.common;

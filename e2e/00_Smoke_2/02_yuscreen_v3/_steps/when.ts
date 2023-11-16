@@ -1,7 +1,6 @@
 import { navigation } from "@utils"
 import * as ids from "@ids"
 
-
 export const {
     scrollFromText,
     scrollFromID,

@@ -1,6 +1,7 @@
 import {navigation} from "@utils"
 import { screens } from "@appScreens"
 import { readInbox } from "@yu-life/yulife-bdd-framework"
+import { expect } from 'detox'
 
 export const {
     idVisible,

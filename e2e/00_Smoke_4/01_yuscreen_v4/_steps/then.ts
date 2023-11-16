@@ -5,6 +5,7 @@ import moment = require("moment");
 import * as data from "@data";
 import { scrollUntilTextVisible } from "./when";
 import * as fixture from "../_resources/fixture";
+import {expect} from 'detox'
 import { scrollUntilIdVisible } from "_utils/navigation/scrolling"
 
 export const {

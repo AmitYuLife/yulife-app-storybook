@@ -5,6 +5,8 @@ import { authoriseFitkit } from "@socket";
 import { CUSTOMER_1, AUTH_1 } from "@data";
 import { tapText, wait } from "@navigation";
 import { getLocalisedString as t } from "@i18n";
+import {expect} from 'detox'
+
 
 
 export const loginAsUser = (

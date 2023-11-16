@@ -7,6 +7,7 @@ import { navigateViaText, navigation, tapText } from "@navigation"
 import { AUTH_1, CUSTOMER_1, CUSTOMER_4 } from "@data";
 import { selectRegionIfVisible } from "_utils/navigation/login";
 import { getLocalisedString as t } from "@i18n";
+import {expect} from 'detox'
 
 export const {
     loginOnly,

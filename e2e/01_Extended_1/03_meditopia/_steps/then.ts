@@ -1,5 +1,6 @@
 import { navigation } from "@utils"
 import { screens } from "@appScreens"
+import {expect} from 'detox'
 import * as ids from "@ids"
 
 export const {

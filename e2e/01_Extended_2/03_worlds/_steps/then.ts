@@ -1,6 +1,7 @@
 import { navigation, expectIsVisibleViaText, expectIsVisibleViaID, CHALLENGE_HISTORY_STARS, STEPS_COUNT, CHALLENGE_HISTORY_NEW_SLOT } from "@utils"
 import { screens } from "@appScreens"
 import { addCommasToNumber } from "_utils/appScreens/rewards"
+import { expect } from 'detox'
 
 export const {
     idVisible,

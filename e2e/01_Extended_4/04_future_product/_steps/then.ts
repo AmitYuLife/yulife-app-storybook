@@ -1,7 +1,6 @@
 import { COUNTDOWN_UNIT, navigation } from "@navigation";
 import moment from "moment";
 
-
 export const {
   idVisible,
   textVisible,

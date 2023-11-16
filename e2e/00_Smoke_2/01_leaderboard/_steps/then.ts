@@ -1,5 +1,6 @@
 import * as ids from "@ids"
 import { screens } from "@appScreens"
+import {expect} from 'detox'
 import { idNotVisible, navigation } from "@navigation"
 import { leaderboardConsentCta, leaderboardConsentDesc, leaderboardConsentHeading } from "../_resources/constants"
 import { SocialGroupLeaderboard, UserLeaderboardListItem } from "../_resources/types"

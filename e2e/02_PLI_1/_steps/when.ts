@@ -1,22 +1,20 @@
 import { booleanIdVisible, navigation } from "@utils";
-import { screens } from "@appScreens";
 import {
   AVATAR_ITEM,
   CONTENT_ITEM_INPUT,
   DATE_INPUT,
   DATE_PICKER,
-  FULL_SCREEN_SWIPER,
   MALE_BODY,
   PRODUCT_STEP_BODY_SCROLL_VIEW,
   SEARCH_INPUT,
   YUMOJI_OUTFIT_LABEL,
   YUMOJI_OUTFIT_RADIO,
-  YUSCREEN_AVATAR,
   LEFT_PRODUCT_STEP_MULTI_BUTTON,
   FULL_SCREEN_LOTTIE_SWIPER,
 } from "@ids";
 import moment from "moment";
 import { CUSTOMER_37 } from "@data";
+import { expect } from 'detox'
 
 export const {
   scrollFromText,

@@ -671,10 +671,13 @@ workflows:
             export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY2
 
             # set path for s3
+            DATE=$(date +'%d-%m-%Y')
+            DEVICE_NAME="${IPHONE_DEVICE// /-}"
+            
             if [ "$TARGET_LOCALE" = "en-GB" ]; then
-                S3_PATH="$DETOX_TEST_TYPE/$IPHONE_DEVICE"
+                S3_PATH="$DETOX_TEST_TYPE/$DATE/$DEVICE_NAME"
             else
-                S3_PATH="$TARGET_LOCALE/$DETOX_TEST_TYPE/$IPHONE_DEVICE"
+                S3_PATH="$TARGET_LOCALE/$DETOX_TEST_TYPE/$DATE/$DEVICE_NAME"
             fi
 
             # upload to s3
@@ -690,10 +693,10 @@ workflows:
             rm -rf "$FOLDER_NAME"
 
 
-            # Sync the mochawesome report
+            # Sync the jest report
             aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$BITRISE_BUILD_NUMBER" --no-progress
 
-            envman add --key MOCHAWESOME_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/mochawesome.html"
+            envman add --key JEST_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/jest_html_reporters.html"
             envman add --key SCREENSHOTS_REPORT --value $(echo "https://$REPORT_DNS_NAME/screenshots/$S3_PATH/index.html" | sed -e 's/ /%20/g')
     - slack@3:
         inputs:
@@ -709,7 +712,7 @@ workflows:
             Test Type|$DETOX_TEST_TYPE
             Locale|$TARGET_LOCALE
         - buttons: |-
-            View Results|${MOCHAWESOME_REPORT}
+            View Results|${JEST_REPORT}
             View Job|${BITRISE_BUILD_URL}
             Download Results|${BITRISE_BUILD_URL}#?tab=artifacts
             Screenshots|${SCREENSHOTS_REPORT}
@@ -830,10 +833,10 @@ workflows:
             rm -rf "$FOLDER_NAME"
 
 
-            # Sync the mochawesome report
+            # Sync the jest report
             aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$BITRISE_BUILD_NUMBER" --no-progress
 
-            envman add --key MOCHAWESOME_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/mochawesome.html"
+            envman add --key JEST_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/jest_html_reporters.html"
     - slack@3:
         inputs:
         - api_token: ""
@@ -847,7 +850,7 @@ workflows:
             Device|$IPHONE_DEVICE
             Test Type|$DETOX_TEST_TYPE
         - buttons: |+
-            View Results|${MOCHAWESOME_REPORT}
+            View Results|${JEST_REPORT}
             View Job|${BITRISE_BUILD_URL}
             Download Results|${BITRISE_BUILD_URL}#?tab=artifacts
 
@@ -1282,10 +1285,10 @@ workflows:
             rm -rf "$FOLDER_NAME"
 
 
-            # Sync the mochawesome report
+            # Sync the jest report
             aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$BITRISE_BUILD_NUMBER" --no-progress
 
-            envman add --key MOCHAWESOME_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/mochawesome.html"
+            envman add --key JEST_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/jest_html_reporters.html"
     - slack@3:
         inputs:
         - api_token: ""
@@ -1299,7 +1302,7 @@ workflows:
             Device|$IPHONE_DEVICE
             Test Type|$DETOX_TEST_TYPE
         - buttons: |+
-            View Results|${MOCHAWESOME_REPORT}
+            View Results|${JEST_REPORT}
             View Job|${BITRISE_BUILD_URL}
             Download Results|${BITRISE_BUILD_URL}#?tab=artifacts
 
@@ -1627,10 +1630,10 @@ workflows:
             rm -rf "$FOLDER_NAME"
 
 
-            # Sync the mochawesome report
+            # Sync the jest report
             aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$BITRISE_BUILD_NUMBER" --no-progress
 
-            envman add --key MOCHAWESOME_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/mochawesome.html"
+            envman add --key JEST_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/jest_html_reporters.html"
     - slack@3:
         inputs:
         - api_token: ""
@@ -1644,7 +1647,7 @@ workflows:
             Device|$IPHONE_DEVICE
             Test Type|$DETOX_TEST_TYPE
         - buttons: |+
-            View Results|${MOCHAWESOME_REPORT}
+            View Results|${JEST_REPORT}
             View Job|${BITRISE_BUILD_URL}
             Download Results|${BITRISE_BUILD_URL}#?tab=artifacts
 

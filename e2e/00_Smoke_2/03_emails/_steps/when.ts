@@ -2,8 +2,6 @@ import { navigation } from "@utils"
 import { screens } from "@appScreens"
 import { readEmailContent } from "@yu-life/yulife-bdd-framework";
 
-
-
 export const {
     scrollFromText,
     scrollFromID,

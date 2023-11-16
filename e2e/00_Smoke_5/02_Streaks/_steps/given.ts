@@ -6,7 +6,6 @@ export const {
     loginAsUser,
 } = navigation.login
 
-
 export const logInWithStreakScreen = (customer = CUSTOMER_1, auth = AUTH_1, fitkitAuth = true) => async () => {
     await authoriseFitkit(fitkitAuth)()
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));

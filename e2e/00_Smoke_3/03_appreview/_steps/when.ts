@@ -1,7 +1,6 @@
 import { screens } from "@appScreens"
 import { navigation } from "@utils"
 
-
 export const {
     tapRewardInList,
     tapDenomination,

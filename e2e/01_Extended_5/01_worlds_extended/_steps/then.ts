@@ -1,7 +1,9 @@
-import { navigation, expectIsVisibleViaText, CHALLENGE_HISTORY_YUCOIN_STARS, navigateViaText, wait, CHALLENGE_UNAVAILABLE, TEXT_TEMPLATE, CHALLENGE_SET, CHALLENGE_TILE, CHALLENGE_HISTORY_STARS, CHALLENGE_HISTORY_NEW_SLOT, idVisibleAtIndex, YUNITY_CARD } from "@utils"
+import { navigation, expectIsVisibleViaText, CHALLENGE_HISTORY_YUCOIN_STARS, navigateViaText, wait, CHALLENGE_UNAVAILABLE, CHALLENGE_SET, CHALLENGE_TILE, CHALLENGE_HISTORY_STARS, CHALLENGE_HISTORY_NEW_SLOT, idVisibleAtIndex, YUNITY_CARD } from "@utils"
 import { screens } from "@appScreens"
 import { swipeFromText } from "_utils/navigation/scrolling"
-import { USER_1, USER_GAME_STATE_60 } from "@data"
+import { USER_1 } from "@data"
+import { expect } from 'detox'
+
 export const {
     idVisible,
     textVisible,

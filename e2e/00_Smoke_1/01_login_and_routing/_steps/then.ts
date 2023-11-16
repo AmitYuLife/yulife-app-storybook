@@ -3,6 +3,7 @@ import { expectDoesNotExistViaText, expectIsVisibleViaID, expectIsVisibleViaText
 import { navigation } from "@navigation"
 import { screens } from "@appScreens"
 import { getLocalisedString as t } from "@i18n";
+import {expect} from 'detox'
 
 export const {
     textVisible,

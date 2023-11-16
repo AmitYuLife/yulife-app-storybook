@@ -1,12 +1,11 @@
 import { multipleTextVisible, navigation, wait } from "@utils"
 import { screens } from "@appScreens"
 import * as ids from "@ids"
-import { GOALS_2, USER_122 } from "@data"
+import { GOALS_2 } from "@data"
 import { buttonVisible } from "_utils/appScreens/challenges"
+import {expect} from 'detox'
 import { sendSteps } from "@socket"
 import { getLocalisedString as t } from "@i18n"
-import { shortStrollMaxReward, briskWalkMaxReward, longWalkMaxReward, meditationMaxReward, fiitMaxReward, yudokuMaxReward } from "../_resources/constants"
-
 
 export const {
     idVisible,

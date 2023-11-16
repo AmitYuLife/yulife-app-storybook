@@ -21,7 +21,7 @@
     "detox:extended": "yarn detox:test:base:uk e2e/01_Extended_*/**/*.spec.ts",
     "detox:pli:1": "yarn detox:test:base:uk e2e/02_PLI_1/*.spec.ts",
     "detox:pli:2": "yarn detox:test:base:uk e2e/02_PLI_2/*.spec.ts",
-    "detox:report": "open e2e-report/mochawesome.html",
+    "detox:report": "open e2e-report/jest_html_reporters.html",
     "detox:smoke:1": "yarn detox:test:base:uk e2e/00_Smoke_1/**/*.spec.ts",
     "detox:smoke:2": "yarn detox:test:base:uk e2e/00_Smoke_2/**/*.spec.ts",
     "detox:smoke:3": "yarn detox:test:base:uk e2e/00_Smoke_3/**/*.spec.ts",
@@ -32,7 +32,7 @@
     "detox:test:base:sa": "API_URL=http://localhost:5002/  yarn detox:test:base",
     "detox:test:base:uk": "API_URL=http://localhost:5000/  yarn detox:test:base",
     "detox:test:base:us": "API_URL=http://localhost:5001/  yarn detox:test:base",
-    "detox:test:base": "TS_NODE_PROJECT=./e2e/tsconfig.json yarn detox test --cleanup -c ios.sim.debug --loglevel verbose e2e/init.ts",
+    "detox:test:base": "TS_NODE_PROJECT=./e2e/tsconfig.json yarn detox test --cleanup -c ios.sim.debug --loglevel verbose --json --outputFile=e2e-report/results.json",
     "detox:usa": "yarn detox:test:base:us e2e/04_USA/**/*.spec.ts",
     "detox:sa": "yarn detox:test:base:sa e2e/05_SA/**/*.spec.ts",
     "develop:workflow": "bitrise :workflow-editor",
@@ -151,8 +151,7 @@
     "@storybook/react-webpack5": "^7.0.24",
     "@storybook/theming": "^7.0.24",
     "@tsconfig/react-native": "^2.0.3",
-    "@types/detox": "^18.1.0",
-    "@types/mocha": "^10.0.1",
+    "@types/jest": "^29.5.3",
     "@types/node": "^18.11.18",
     "@types/node-polyglot": "^2.4.2",
     "@types/react": "^18.0.26",
@@ -164,7 +163,7 @@
     "@types/react-test-renderer": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
-    "@yu-life/yulife-bdd-framework": "0.0.54",
+    "@yu-life/yulife-bdd-framework": "0.0.56",
     "axios": "^1.4.0",
     "axios-retry": "^3.6.0",
     "babel-loader": "^9.1.2",
@@ -184,10 +183,10 @@
     "express": "^4.18.2",
     "file-loader": "^6.2.0",
     "git-hooks": "^1.1.10",
+    "jest": "^29.6.2",
+    "jest-html-reporters": "^3.1.4",
     "lint-staged": "^13.1.1",
     "metro-react-native-babel-preset": "^0.73.6",
-    "mocha": "^10.2.0",
-    "mochawesome": "^7.1.3",
     "npm-run-all": "^4.1.5",
     "patch-package": "^6.5.1",
     "prettier": "^2.8.1",
@@ -203,6 +202,7 @@
     "socket.io-client": "^4.5.4",
     "storybook": "^7.0.24",
     "storybook-addon-designs": "^7.0.0-beta.2",
+    "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.1.2",
     "typescript": "^4.9.4",
@@ -220,6 +220,18 @@
     ]
   },
   "detox": {
+    "plugins": {
+      "screenshot": {
+        "enabled": true,
+        "shouldTakeAutomaticSnapshots": true,
+        "keepOnlyFailedTestsArtifacts": false,
+        "takeWhen": {
+          "testStart": true,
+          "testDone": true,
+          "appNotReady": true
+        }
+      }
+    },
     "configurations": {
       "ios.sim.debug": {
         "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/YuLife.app",
@@ -236,11 +248,14 @@
         "name": "iPhone 14 Pro"
       }
     },
-    "test-runner": "mocha",
-    "runner-config": "e2e/.mocharc.json"
+    "test-runner": "jest",
+    "runner-config": "e2e/jest.config.ts"
   },
   "config": {
     "translatedLocales": "en-US,ja-JP,es-US"
   },
-  "snyk": true
+  "snyk": true,
+  "jestJsonReporter": {
+    "outputFile": "e2e-report/results.json"
+  }
 }

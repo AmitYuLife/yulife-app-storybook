@@ -2,6 +2,9 @@ import { expectIsVisibleViaText, REWARD_ITEM, expectIsVisibleViaID, LOCKED_REWAR
 import { scrollFromText, scrollUntilIdVisible, swipeFromText } from "_utils/navigation/scrolling"
 import { REWARDS_LIST_SCREEN_SCROLL, TEXT_TEMPLATE } from "@ids"
 import moment = require("moment")
+import {expect} from 'detox'
+
+
 
 type rewardType = "avios"
 

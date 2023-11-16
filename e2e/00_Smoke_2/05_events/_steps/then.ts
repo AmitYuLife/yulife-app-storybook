@@ -4,6 +4,7 @@ import * as ids from "@ids"
 import * as data from "@data"
 import { buttonVisible } from "_utils/appScreens/challenges"
 import { addCommasToNumber } from "_utils/appScreens/rewards"
+import { expect } from 'detox'
 
 export const {
     menuItemsVisible,

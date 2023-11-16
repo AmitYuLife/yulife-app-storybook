@@ -1,9 +1,8 @@
 import { navigation, navigateViaText, wait } from "@utils"
 import { screens } from "@appScreens"
 import { USER_1 } from "@data"
+import { expect } from 'detox'
 import * as ids from "@ids"
-import { briskWalkMaxReward, fiitMaxReward, longWalkMaxReward, meditationMaxReward, shortStrollMaxReward } from "../_resources/constants"
-
 
 export const {
     idVisible,

@@ -1,7 +1,6 @@
 import { navigation } from "@navigation"
 import { screens } from "@appScreens"
 
-
 export const {
     tapID,
     tapText,
