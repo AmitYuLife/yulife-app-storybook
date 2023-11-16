@@ -1,11 +1,10 @@
 import { navigation } from "@utils"
-import { DATE_INPUT, PERCENTAGE_COVERED, REFERRALS_INVITE_BUTTON, PRODUCT_STEP_BODY_SCROLL_VIEW, YULIFE_BUPA_LOGO } from "@ids"
+import { DATE_INPUT, PERCENTAGE_COVERED, PRODUCT_STEP_BODY_SCROLL_VIEW, YULIFE_BUPA_LOGO } from "@ids"
 import { screens } from "@appScreens"
 import { scrollUntilTextVisible, swipeFromText } from "_utils/navigation/scrolling"
 import moment from "moment"
-import { PAYMENT_PLAN_DENTAL_1 } from "@data"
 export { onYuscreenV4 } from "_utils/appScreens/yuscreen"
-
+import { expect } from 'detox'
 
 export const {
     idVisible,

@@ -1,6 +1,5 @@
-import { navigation, tapID, tapText } from "@utils";
+import { navigation } from "@utils";
 import { screens } from "@appScreens";
-import * as text from "../_resources/fixture";
 import { ProductSlot } from "../_resources/types";
 import * as ids from "@ids"
 import * as constant from "../_resources/constants"
@@ -35,9 +34,6 @@ export const {
   packageScreenCorrect,
   onSkinToneScreen,
 } = screens.yuscreen;
-
-
-
 
 export const { swipeToID, swipeFromText } = navigation.scrolling;
 

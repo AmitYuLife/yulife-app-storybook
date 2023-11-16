@@ -1,7 +1,7 @@
 import { navigation } from "@utils"
 import { screens } from "@appScreens"
 import * as ids from "@ids"
-
+import {expect} from 'detox'
 
 export const {
     idVisible,

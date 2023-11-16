@@ -2,7 +2,6 @@ import { navigation } from "@utils"
 import { screens } from "@appScreens"
 import { TEXT_TEMPLATE } from "@ids"
 
-
 export const {
     idVisible,
     textVisible,

@@ -2,7 +2,6 @@ import { navigation } from "@navigation";
 import * as ids from "@ids"
 import { PensionContributionInfo } from "../_resources/types";
 import { boldTextType, nonBoldTextType, pensionPageDesc } from "../_resources/constants";
-import moment from "moment";
 
 export const {
   scrollUntilTextVisible,

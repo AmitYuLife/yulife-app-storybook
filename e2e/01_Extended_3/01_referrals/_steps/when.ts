@@ -1,5 +1,4 @@
 import { navigation } from "@utils"
-import { screens } from "@appScreens"
 
 export const {
     scrollFromText,

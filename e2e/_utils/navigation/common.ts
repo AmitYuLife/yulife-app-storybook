@@ -3,6 +3,7 @@ import { BUTTON_CLOSE_HEADER, COUNTDOWN_UNIT, DAILYSTEP_SCREEN_COIN, NAV_BAR } f
 import { dismissNewLooksModalIfVisible } from "./login";
 import moment from "moment";
 import { getLocalisedString as t } from "@i18n";
+import {expect} from 'detox'
 
 export const restart = async (locale = "en-GB", dm = dataManager) => {
     await device.terminateApp();

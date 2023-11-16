@@ -1,6 +1,5 @@
 import { navigation } from "@navigation";
 
-
 export const {
   tapText,
   tapID,

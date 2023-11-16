@@ -1,11 +1,7 @@
 const detoxInstance = require("detox");
-const config = require("../package.json").detox;
-const adapter = require("detox/runners/mocha/adapter");
-const addContext = require("mochawesome/addContext");
 
 import * as path from "path";
 import { socketServer } from "./_utils/socket";
-import { getTestPath } from "./mocha.utils";
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 import * as dataUK from "@data";
 import * as dataUS from "./04_USA/_data";
@@ -34,37 +30,17 @@ switch (API_URL) {
     break;
 }
 
-before(async () => {
+beforeAll(async () => {
   await socketServer.startServer();
   console.log("Adding data...", Object.values(dataToInsert).length);
   dataManager.addData(dataToInsert as any);
   await dataManager.connect(API_URL, true);
   await dataManager.resetData();
   await dataManager.reseed();
-  await detoxInstance.init(config);
-});
-
-beforeEach(async function () {
-  await adapter.beforeEach(this);
-});
-
-afterEach(async function () {
-  await adapter.afterEach(this);
-
-  try {
-    const keys = socketServer.getAndClearUsedTranslationKeys();
-    addContext(this, { title: "Translation keys", value: keys })
-  } catch { }
-
-  try {
-    const [before, after] = getTestPath(this.currentTest, this.currentTest.state);
-    addContext(this, before);
-    addContext(this, after);
-  } catch (e) { }
 });
 
 // comment out for detox debugging/dev
-after(async () => {
+afterAll(async () => {
   await detoxInstance.cleanup();
   await socketServer.close();
   await dataManager.resetData();

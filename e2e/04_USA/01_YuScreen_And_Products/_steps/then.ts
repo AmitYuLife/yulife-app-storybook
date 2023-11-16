@@ -1,15 +1,8 @@
-import { navigation, tapID, tapText } from "@utils";
+import { navigation } from "@utils";
 import { screens } from "@appScreens";
 import {
-  AVATAR_ITEM,
-  RIGHT_STATUS_ICON,
-  BACKGROUND_COLOUR_PRODUCT,
   ONBOARDING_SCREEN,
-  YUCOIN_POWER,
-  TEXT_TEMPLATE,
   V4_YUSCREEN,
-  BACK_BUTTON,
-  CONTENT_ITEM_IMAGE,
   CONTENT_SMALL_IMAGE_CARD_URL,
   CONTENT_MIDDLE_ITEM_IMAGE,
   PCP_LIST_DESCRIPTION,
@@ -27,13 +20,9 @@ import {
   BPEEW_USA_2_ADD,
   BPEEW_USA_3_ACC,
   BUSINESS_ACCOUNT_USA_1,
-  CPE_ACCSICK_4,
-  CPE_CAN_4,
-  // CPE_ULIF_2,
-  CPE_VLTD_3,
-  CPE_VSTD_3,
 } from "04_USA/_data";
 import { BoxOption, USProductData } from "../_resources/types";
+import { expect } from 'detox'
 
 export const {
   idVisible,

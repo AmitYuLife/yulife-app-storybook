@@ -1,20 +1,10 @@
 import {
   navigation,
-  YEAR_SCROLLER,
-  MONTH_SCROLLER,
-  booleanTextVisible,
-  booleanIdVisible,
-  HIGHLIGHTED_SCROLLER_VALUE,
-  CUSTOM_COVER_SCREEN,
-  PERCENTAGE_COVERED,
-  wait,
-  SCROLLER_VALUE,
   DUELS_HUB,
   EMPTY_DUELS_HUB,
   CHALLENGE_FRIEND_BUTTON,
 } from "@utils";
-import { screens } from "@appScreens";
-import moment = require("moment");
+import { expect } from 'detox'
 
 export const {
   idVisible,

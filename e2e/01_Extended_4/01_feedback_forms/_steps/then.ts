@@ -1,6 +1,4 @@
-import { navigation, YEAR_SCROLLER, MONTH_SCROLLER, booleanTextVisible, booleanIdVisible, HIGHLIGHTED_SCROLLER_VALUE, CUSTOM_COVER_SCREEN, PERCENTAGE_COVERED, wait, SCROLLER_VALUE, DUELS_HUB } from "@utils"
-import { screens } from "@appScreens"
-import moment = require("moment")
+import { navigation } from "@utils"
 
 export const {
     idVisible,

@@ -4,7 +4,6 @@ import * as ids from "@ids"
 import { availableAnytime, leaversProductBackgroundImg } from "../_resources/constants";
 export { onYuscreenV4, wellbeingHubVisible } from "_utils/appScreens/yuscreen";
 
-
 export const {
   idVisible,
   textVisible,

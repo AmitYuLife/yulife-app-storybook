@@ -1,5 +1,8 @@
 import { MENU_ITEM } from "@ids";
 import { navigateViaID } from "@navigation";
+import {expect} from 'detox'
+
+
 
 export const menuItemsVisible = async () => {
     const menuItems = ["Activity History", "My Account", "Wellbeing Hub", "Settings", "Chat", "Log out"]

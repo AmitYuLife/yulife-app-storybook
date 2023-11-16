@@ -2,6 +2,7 @@ import { screens } from "@appScreens"
 import { navigation } from "@utils"
 import { permissionSettings } from "../_resources/fixtures"
 import * as ids from "@ids"
+import {expect} from 'detox'
 
 export const {
     onDailySteps,

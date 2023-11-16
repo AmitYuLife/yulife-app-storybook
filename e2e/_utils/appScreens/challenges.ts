@@ -3,6 +3,7 @@ import {
 } from "@navigation"
 import { sendSteps } from "@socket";
 import { getLocalisedString as t } from "@i18n";
+import {expect} from 'detox'
 import * as ids from "@ids"
 import { BriskWalkTargetsAndRewards, FiitTargetsAndRewards, LongWalkTargetsAndRewards, MeditationTargetsAndRewards, ShortStrollTargetsAndRewards, YudokuTargetsAndRewards, briskWalkMaxReward, fiitMaxReward, longWalkMaxReward, meditationMaxReward, shortStrollMaxReward, yudokuMaxReward } from "./utils";
 import { USER_122 } from "@data";

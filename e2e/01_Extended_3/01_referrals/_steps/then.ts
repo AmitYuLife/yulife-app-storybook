@@ -1,7 +1,7 @@
 import { navigation } from "@utils"
 import { REFERRALS_INVITE_BUTTON } from "@ids"
 import { screens } from "@appScreens"
-
+import { expect } from 'detox'
 
 export const {
     idVisible,

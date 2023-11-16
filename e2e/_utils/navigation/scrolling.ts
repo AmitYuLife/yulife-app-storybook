@@ -1,6 +1,8 @@
 import { ACTIVITY_HISTORY_SCREEN, ACTIVITY_HISTORY_SCREEN_SCROLL, TEXT_TEMPLATE } from "@ids";
 import { booleanIdVisible, booleanTextVisible, navigateViaText, wait } from "./common";
 import { addCommasToNumber } from "_utils/appScreens/rewards";
+import {expect} from 'detox'
+
 
 export const scrollFromText = (text: string, direction: any, speed: any, percentage?: any) => async () => {
   const target = element(by.text(text));

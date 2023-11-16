@@ -2,6 +2,7 @@ import { navigation } from "@utils"
 import { screens } from "@appScreens"
 import { formatNumber } from "../_resources/helpers"
 import * as ids from "@ids"
+import { expect } from 'detox'
 
 export const {
     textVisible,

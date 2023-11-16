@@ -1,11 +1,11 @@
 import { navigation } from "@navigation";
 import * as ids from "@ids"
-import * as fixtures from "../_resources/fixtures"
 import * as constants from "../_resources/constants"
 import moment from "moment";
 import { GHI_PAGE_INFO, GHI_REWARD_CLAIM_PAGE_DETAILS, GHI_TEASE_PAGE_DETAILS, GHI_VOUCHER_LIST_DETAILS, IMPORTANT_NOTES_PAGE_DETAILS } from "../_resources/types";
 import { screens } from "@appScreens";
 import { readInbox } from "@yu-life/yulife-bdd-framework"
+import { expect } from 'detox'
 
 export const {
   scrollUntilTextVisible,

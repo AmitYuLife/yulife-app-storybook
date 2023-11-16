@@ -1,8 +1,6 @@
 import { navigation, textVisibleAtIndex } from "@navigation";
 import * as ids from "@ids"
-// import * as fixtures from "../_resources/fixtures"
 import * as constants from "../_resources/constants"
-import moment from "moment";
 import { screens } from "@appScreens";
 import { deeperEnvironmentSlot, yuScreenSlot } from "../_resources/types";
 
