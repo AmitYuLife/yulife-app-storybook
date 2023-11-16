@@ -11,6 +11,7 @@ import {
   BUSINESS_ACCOUNT_GDent_9,
   BUSINESS_ACCOUNT_10_GHI_REWARDS,
   BUSINESS_ACCOUNT_11_MPP,
+  BUSINESS_ACCOUNT_12_WELLBEING_ELIGIBILITY,
 } from "../postgres/business";
 import * as user from './users';
 
@@ -2262,6 +2263,40 @@ export const USER_ONBOARDING_127 = {
     userId: user.USER_127.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_10_GHI_REWARDS.data.business_account_id,
     businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+      yuScreenOnboarding: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_128 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_128.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_12_WELLBEING_ELIGIBILITY.data.business_account_id,
+    businessName: "Eligiblity Rewards",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+      yuScreenOnboarding: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_129 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_129.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_12_WELLBEING_ELIGIBILITY.data.business_account_id,
+    businessName: "Eligiblity Rewards",
     performedSteps: {
       personalLifeIntro: true,
       newYumojiBuilder: true,

@@ -1868,3 +1868,29 @@ export const CUSTOMER_127_GHI_REWARDS = {
   },
 } as IDatabaseItem
 
+export const CUSTOMER_128_WELLBEING_ELIGIBILITY = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Totes",
+    lastName: "Eligible",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+
+export const CUSTOMER_129_WELLBEING_ELIGIBILITY = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Notquite",
+    lastName: "Eligible",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+

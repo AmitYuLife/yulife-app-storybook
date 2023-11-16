@@ -1623,3 +1623,25 @@ export const AUTH_127 = {
         userId: customer.CUSTOMER_127_GHI_REWARDS.data.customerId,
     }
 }  as IDatabaseItem
+
+export const AUTH_128 = {
+    type: "mongo",
+    modelName: "authpassword",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_128_WELLBEING_ELIGIBILITY.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_129 = {
+    type: "mongo",
+    modelName: "authpassword",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_129_WELLBEING_ELIGIBILITY.data.customerId,
+    }
+}  as IDatabaseItem

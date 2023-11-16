@@ -2259,3 +2259,35 @@ export const CUSTOMER_127_TOGGLES = {
     },
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_128_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_128_WELLBEING_ELIGIBILITY.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      yuScreenV4: true,
+      hasCoveaFibActive: true,
+      hasBupaDentActive: true,
+      showYuScreenWellbeingButton: true
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_129_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_129_WELLBEING_ELIGIBILITY.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      yuScreenV4: true,
+      hasCoveaFibActive: true,
+      hasBupaDentActive: true,
+      showYuScreenWellbeingButton: true
+    },
+  },
+} as IDatabaseItem;

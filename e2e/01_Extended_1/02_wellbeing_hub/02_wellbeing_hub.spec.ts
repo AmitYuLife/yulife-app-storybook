@@ -152,37 +152,58 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
             })
         })
     })
-})
-
-Scenario("I can see the Bupa wellbeing products in their own tab if assigned to the user", scenario.start, async () => {
-    Given("I login as a grouplife user", given.loginAsUser(data.CUSTOMER_116_GHI_REWARDS, data.AUTH_116), async () => {
-        When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-            When("I click to see the Health Insurance options", when.tapText("Health Insurance"), async () => {
-                Then("I should see all the Bupa products", then.bupaWellbeingItemsVisible)
+    
+    Scenario("I can see the Bupa wellbeing products in their own tab if assigned to the user", scenario.start, async () => {
+        Given("I login as a grouplife user", given.loginAsUser(data.CUSTOMER_116_GHI_REWARDS, data.AUTH_116), async () => {
+            When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
+                When("I click to see the Health Insurance options", when.tapText("Health Insurance"), async () => {
+                    Then("I should see all the Bupa products", then.bupaWellbeingItemsVisible)
+                })
+            })
+        })
+        When("I click to see Blua Health", when.tapID(ids.TEXT_TEMPLATE(fixture.bluaHealthItem.title)), async () => {
+            Then("I am on the Blua Health page", then.onCorrectWellbeingItemPage(fixture.bluaHealthItem))
+        })
+        When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
+            When("I click to see Anytime Helpline", when.tapID(ids.TEXT_TEMPLATE(fixture.anytimeHelplineItem.title)), async () => {
+                Then("I am on the Anytime Helpline page", then.onCorrectWellbeingItemPage(fixture.anytimeHelplineItem))
+            })
+        })
+        When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
+            When("I click to see Family Mental Healthline", when.tapID(ids.TEXT_TEMPLATE(fixture.familyMentalHealthLineItem.title)), async () => {
+                Then("I am on the Family Mental Healthline page", then.onCorrectWellbeingItemPage(fixture.familyMentalHealthLineItem))
+            })
+        })
+        When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
+            When("I click to see Menopause Healthline", when.tapID(ids.TEXT_TEMPLATE(fixture.menopauseHealthLineItem.title)), async () => {
+                Then("I am on the Menopause Healthline page", then.onCorrectWellbeingItemPage(fixture.menopauseHealthLineItem))
+            })
+        })
+        When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
+            When("I click to see Direct Access", when.tapID(ids.TEXT_TEMPLATE(fixture.directAccessItem.title)), async () => {
+                Then("I am on the Direct Access page", then.onCorrectWellbeingItemPage(fixture.directAccessItem))
             })
         })
     })
-    When("I click to see Blua Health", when.tapID(ids.TEXT_TEMPLATE(fixture.bluaHealthItem.title)), async () => {
-        Then("I am on the Blua Health page", then.onCorrectWellbeingItemPage(fixture.bluaHealthItem))
-    })
-    When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
-        When("I click to see Anytime Helpline", when.tapID(ids.TEXT_TEMPLATE(fixture.anytimeHelplineItem.title)), async () => {
-            Then("I am on the Anytime Helpline page", then.onCorrectWellbeingItemPage(fixture.anytimeHelplineItem))
+
+    Scenario("I can see a restricted wellbeing hub item when I fulfil the eligibility criteria", scenario.start, async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_128_WELLBEING_ELIGIBILITY, data.AUTH_128), async () => {
+            When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
+                Then("I should see the restricted product on the screen", then.textVisible(data.WELLBEING_HUB_ITEM_10.data.title))
+                // is visible as employee is one of the two acceptable grades and in the correct department
+            })
         })
     })
-    When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
-        When("I click to see Family Mental Healthline", when.tapID(ids.TEXT_TEMPLATE(fixture.familyMentalHealthLineItem.title)), async () => {
-            Then("I am on the Family Mental Healthline page", then.onCorrectWellbeingItemPage(fixture.familyMentalHealthLineItem))
+
+    Scenario("I cannot see a restricted wellbeing hub item when I fulfil only some of the eligibility criteria", scenario.start, async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_129_WELLBEING_ELIGIBILITY, data.AUTH_129), async () => {
+            When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
+                Then("I shouldn't see the restricted product on the screen", then.textNotVisible(data.WELLBEING_HUB_ITEM_10.data.title))
+                // isn't visible as despite being correct department employee is the wrong grade
+            })
         })
     })
-    When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
-        When("I click to see Menopause Healthline", when.tapID(ids.TEXT_TEMPLATE(fixture.menopauseHealthLineItem.title)), async () => {
-            Then("I am on the Menopause Healthline page", then.onCorrectWellbeingItemPage(fixture.menopauseHealthLineItem))
-        })
-    })
-    When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
-        When("I click to see Direct Access", when.tapID(ids.TEXT_TEMPLATE(fixture.directAccessItem.title)), async () => {
-            Then("I am on the Direct Access page", then.onCorrectWellbeingItemPage(fixture.directAccessItem))
-        })
-    })
+
+    
+    
 })
