@@ -15,6 +15,8 @@ export const BPC_SA_1_MeGL = {
         "benefit_basis" : "multiple_of_salary",
         "multiple_or_amount" : 4.000,
         "custom_data" : "{\"BasisOfCover\":\"Unapproved\",\"FreeCoverLimit\":2000000,\"MultipleOfSalarySpouse\":0,\"ReplacementRatio\":0,\"FixedCoverAmountSpouse\":0,\"ChildCoverAmountStillBorn\":0,\"ChildCoverAmount0105\":0,\"ChildCoverAmount0613\":0,\"ChildCoverAmount1421\":0,\"RepatriationMaxCoverAmount\":0,\"INITIALPERIOD\":0,\"DeferedPeriod\":0}",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -29,6 +31,8 @@ export const BPC_SA_2_MeGL = {
         "benefit_basis" : "flat_amount",
         "multiple_or_amount" : 500000.000,
         "custom_data" : "{\"BasisOfCover\":\"Unapproved\",\"FreeCoverLimit\":1500000,\"MultipleOfSalarySpouse\":0,\"ReplacementRatio\":0,\"FixedCoverAmountSpouse\":0,\"ChildCoverAmountStillBorn\":0,\"ChildCoverAmount0105\":0,\"ChildCoverAmount0613\":0,\"ChildCoverAmount1421\":0,\"RepatriationMaxCoverAmount\":0,\"INITIALPERIOD\":0,\"DeferedPeriod\":0}",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -44,6 +48,8 @@ export const BPC_SA_1_GrFun = {
         "multiple_or_amount" : 50000.000,
         "is_benefit_visible" : false,
         "custom_data" : "{\"BasisOfCover\":\"Unapproved\",\"FreeCoverLimit\":0,\"MultipleOfSalarySpouse\":0,\"ReplacementRatio\":0,\"FixedCoverAmountSpouse\":0,\"ChildCoverAmountStillBorn\":5000,\"ChildCoverAmount0105\":20000,\"ChildCoverAmount0613\":60000,\"ChildCoverAmount1421\":100000,\"RepatriationMaxCoverAmount\":20000,\"INITIALPERIOD\":0,\"DeferedPeriod\":0}",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -59,6 +65,8 @@ export const BPC_SA_1_GIP = {
         "multiple_or_amount" : 0.000,
         "category_name" : "Directors",
         "custom_data" : "{\"BasisOfCover\":\"Unapproved\",\"FreeCoverLimit\":90000,\"MultipleOfSalarySpouse\":0,\"ReplacementRatio\":75,\"FixedCoverAmountSpouse\":0,\"ChildCoverAmountStillBorn\":0,\"ChildCoverAmount0105\":0,\"ChildCoverAmount0613\":0,\"ChildCoverAmount1421\":0,\"RepatriationMaxCoverAmount\":0,\"INITIALPERIOD\":12,\"DeferedPeriod\":3}",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -75,6 +83,8 @@ export const BPC_SA_1_LSDC = {
         "category_name" : "Directors",
         "is_benefit_visible" : false,
         "custom_data" : "{\"BasisOfCover\":\"Unapproved\",\"FreeCoverLimit\":1500000,\"MultipleOfSalarySpouse\":0,\"ReplacementRatio\":0,\"FixedCoverAmountSpouse\":0,\"ChildCoverAmountStillBorn\":0,\"ChildCoverAmount0105\":0,\"ChildCoverAmount0613\":0,\"ChildCoverAmount1421\":0,\"RepatriationMaxCoverAmount\":0,\"INITIALPERIOD\":0,\"DeferedPeriod\":6}",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -90,6 +100,8 @@ export const BPC_SA_1_TmpGIP = {
         "multiple_or_amount" : 0.000,
         "category_name" : "Accountant",
         "custom_data" : "{\"BasisOfCover\":\"Unapproved\",\"FreeCoverLimit\":150000,\"MultipleOfSalarySpouse\":0,\"ReplacementRatio\":75,\"FixedCoverAmountSpouse\":0,\"ChildCoverAmountStillBorn\":0,\"ChildCoverAmount0105\":0,\"ChildCoverAmount0613\":0,\"ChildCoverAmount1421\":0,\"RepatriationMaxCoverAmount\":0,\"INITIALPERIOD\":12,\"DeferedPeriod\":6}",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -105,6 +117,8 @@ export const BPC_SA_1_SpGL = {
         "multiple_or_amount" : 0.000,
         "category_name" : "Accountant",
         "custom_data" : "{\"BasisOfCover\":\"Unapproved\",\"FreeCoverLimit\":0,\"MultipleOfSalarySpouse\":0,\"ReplacementRatio\":0,\"FixedCoverAmountSpouse\":0,\"ChildCoverAmountStillBorn\":0,\"ChildCoverAmount0105\":0,\"ChildCoverAmount0613\":0,\"ChildCoverAmount1421\":0,\"RepatriationMaxCoverAmount\":0,\"INITIALPERIOD\":0,\"DeferedPeriod\":0}",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -120,6 +134,8 @@ export const BPC_SA_1_GCI = {
         "multiple_or_amount" : 0.000,
         "category_name" : "Directors",
         "custom_data" : "{\"BasisOfCover\":\"Unapproved\",\"FreeCoverLimit\":90000,\"MultipleOfSalarySpouse\":0,\"ReplacementRatio\":75,\"FixedCoverAmountSpouse\":0,\"ChildCoverAmountStillBorn\":0,\"ChildCoverAmount0105\":0,\"ChildCoverAmount0613\":0,\"ChildCoverAmount1421\":0,\"RepatriationMaxCoverAmount\":0,\"INITIALPERIOD\":12,\"DeferedPeriod\":3}",
+        version_id: 1,
+        version_archived: false
     },
 };
     

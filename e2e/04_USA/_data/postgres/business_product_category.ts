@@ -13,6 +13,8 @@ export const BPC_USA_1_WB = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -25,6 +27,8 @@ export const BPC_USA_1_DENPPO = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -37,6 +41,8 @@ export const BPC_USA_1_DENHMO = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -49,6 +55,8 @@ export const BPC_USA_1_DENCHOI = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -61,6 +69,8 @@ export const BPC_USA_1_VIS = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -73,6 +83,8 @@ export const BPC_USA_1_TLIF = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -85,6 +97,8 @@ export const BPC_USA_2_ADD = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -97,6 +111,8 @@ export const BPC_USA_2_VADD = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -109,6 +125,8 @@ export const BPC_USA_2_STD = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -121,6 +139,8 @@ export const BPC_USA_2_LTD = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -133,6 +153,8 @@ export const BPC_USA_2_HI = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -145,6 +167,8 @@ export const BPC_USA_3_VSTD = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -157,6 +181,8 @@ export const BPC_USA_3_VLTD = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -169,6 +195,8 @@ export const BPC_USA_3_ACC = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -181,6 +209,8 @@ export const BPC_USA_3_CRI = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -193,6 +223,8 @@ export const BPC_USA_3_SPDIS = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -205,6 +237,8 @@ export const BPC_USA_4_ACCSICK = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -217,6 +251,8 @@ export const BPC_USA_4_CAN = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -229,6 +265,8 @@ export const BPC_USA_4_VLIF = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -243,6 +281,8 @@ export const BPC_USA_5_GAP = {
         category_description: "All employees will have access to the YuLife app",
         "enrolment_method" : "external",
         "election_option" : "opt-in",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -255,6 +295,8 @@ export const BPC_USA_5_VIS = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -269,6 +311,8 @@ export const BPC_USA_6_GAP = {
         category_description: "All employees will have access to the YuLife app",
         "enrolment_method" : "external",
         "election_option" : "opt-in",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -281,6 +325,8 @@ export const BPC_USA_7_VIS = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -293,6 +339,8 @@ export const BPC_USA_8_GAP = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -305,6 +353,8 @@ export const BPC_USA_10_GAP = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -317,6 +367,8 @@ export const BPC_USA_10_VIS = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -329,6 +381,8 @@ export const BPC_USA_11_ACC = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -341,6 +395,8 @@ export const BPC_USA_11_CAN = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -353,6 +409,8 @@ export const BPC_USA_12_CAN = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -366,6 +424,8 @@ export const BPC_USA_13_CRI = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -378,6 +438,8 @@ export const BPC_USA_14_VSTD = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
 
@@ -390,5 +452,7 @@ export const BPC_USA_15_CRI = {
         earn_rate: 17,
         category_name: "App access only",
         category_description: "All employees will have access to the YuLife app",
+        version_id: 1,
+        version_archived: false
     },
 };
