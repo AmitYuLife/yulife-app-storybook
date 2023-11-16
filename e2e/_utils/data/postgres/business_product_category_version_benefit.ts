@@ -2,7 +2,7 @@ import { generateRandomPostgresId } from "@yu-life/yulife-bdd-framework";
 import {  BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_13_GHI_REWARDS, BUSINESS_PRODUCT_14_MPP_GDental, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_4_GDental_CHOICE, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent } from "./business_product"
 
 const type = "postgres"
-const modelName = "business_product_category_benefit"
+const modelName = "business_product_category_version_benefit"
 
 
 export const BPCB_1_GDental = {
@@ -21,7 +21,8 @@ export const BPCB_1_GDental = {
         "created_by_id" : null,
         "modified_at" : "2023-02-27T11:04:07.180Z",
         "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
-        "modified_by_id" : null
+        "modified_by_id" : null,
+        "version_id": 1
     }
 }
 
@@ -43,7 +44,8 @@ export const BPCB_8_GHI = {
         "created_by_id" : null,
         "modified_at" : "2023-02-27T11:04:07.180Z",
         "benefit_set_product_version_id":"Bupa_GHealth_01",
-        "modified_by_id" : null
+        "modified_by_id" : null,
+        "version_id": 1
     }
 }
 
@@ -60,6 +62,7 @@ export const BPCB_9_GDental = {
         "business_contribution" : null,
         "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "archived" : false,
+        "version_id": 1
     }
 }
 
@@ -75,6 +78,7 @@ export const BPCB_10_GDental = {
         "business_contribution" : null,
         "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "archived" : false,
+        "version_id": 1
     }
 }
 
@@ -90,6 +94,7 @@ export const BPCB_11_GDental = {
         "business_contribution" : null,
         "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "archived" : false,
+        "version_id": 1
     }
 }
 
@@ -105,6 +110,7 @@ export const BPCB_12_GDental = {
         "business_contribution" : null,
         "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "archived" : false,
+        "version_id": 1
     }
 }
 
@@ -120,6 +126,7 @@ export const BPCB_10_GDental_Opt_out = {
         "business_contribution" : null,
         "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "archived" : false,
+        "version_id": 1
     }
 }
 
@@ -135,6 +142,7 @@ export const BPCB_11_GDental_Opt_out = {
         "business_contribution" : null,
         "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "archived" : false,
+        "version_id": 1
     }
 }
 
@@ -150,6 +158,7 @@ export const BPCB_12_GDental_Opt_out = {
         "business_contribution" : null,
         "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "archived" : false,
+        "version_id": 1
     }
 }
 
@@ -165,6 +174,7 @@ export const BPCB_4_GDental_Opt_out = {
         "business_contribution" : null,
         "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "archived" : false,
+        "version_id": 1
     }
 }
 
@@ -186,6 +196,7 @@ export const BPCB_GHI_REWARDS = {
         "modified_at" : "2023-02-27T11:04:07.180Z",
         "modified_by_id" : null,
         "benefit_set_product_version_id":"Bupa_GHealth_01",
+        "version_id": 1
     }
 }
 
@@ -201,6 +212,7 @@ export const BPCB_14_GDental = {
         "business_contribution" : null,
         "benefit_set_product_version_id" :"Bupa_GDentPlan_01",
         "archived" : false,
+        "version_id": 1
     }
 }
 
@@ -220,6 +232,7 @@ export const BPCB_125_GDental = {
         "created_by_id" : null,
         "modified_at" : "2023-02-27T11:04:07.180Z",
         "benefit_set_product_version_id" :"Bupa_GDentChoice_01",
-        "modified_by_id" : null
+        "modified_by_id" : null,
+        "version_id": 1
     }
 }

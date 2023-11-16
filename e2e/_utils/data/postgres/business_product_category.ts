@@ -20,7 +20,9 @@ export const BPC_1 = {
         benefit_definition: "Basic annual salary as at the date of death",
         min_entry_age: 16,
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
-        category_name: "All employees"
+        category_name: "All employees",
+        version_id: 1,
+        version_archived: false
     }
 } as IDatabaseItem
 
@@ -37,7 +39,9 @@ export const BPC_4_RGL = {
         benefit_definition: "Basic annual salary as at the date of death",
         min_entry_age: 16,
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
-        category_name: "All employees"
+        category_name: "All employees",
+        version_id: 1,
+        version_archived: false
     }
 } as IDatabaseItem
 
@@ -54,7 +58,9 @@ export const BPC_4_GIP = {
         benefit_definition: "Basic annual salary as at the date of death",
         min_entry_age: 16,
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
-        category_name: "All employees"
+        category_name: "All employees",
+        version_id: 1,
+        version_archived: false
     }
 } as IDatabaseItem
 
@@ -71,7 +77,9 @@ export const BPC_4_GCI = {
         benefit_definition: "Basic annual salary as at the date of death",
         min_entry_age: 16,
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
-        category_name: "All employees"
+        category_name: "All employees",
+        version_id: 1,
+        version_archived: false
     }
 } as IDatabaseItem
 
@@ -88,7 +96,9 @@ export const BPC_6_GDental = {
         benefit_definition: "Basic annual salary as at the date of death",
         min_entry_age: 16,
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
-        category_name: "All employees"
+        category_name: "All employees",
+        version_id: 1,
+        version_archived: false
     }
 } as IDatabaseItem
 
@@ -102,6 +112,8 @@ export const BPC_1_WELLBEING = {
         earn_rate: 10,
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
         category_name : "App access only",
+        version_id: 1,
+        version_archived: false
     }
 } as IDatabaseItem
     
@@ -119,7 +131,9 @@ export const BPC_ENDED = {
         benefit_definition: "Basic annual salary as at the date of death",
         min_entry_age: 16,
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
-        category_name: "All employees"
+        category_name: "All employees",
+        version_id: 1,
+        version_archived: false
     }
 } as IDatabaseItem
 
@@ -137,7 +151,9 @@ export const BPC_FUTURE = {
         benefit_definition: "Basic annual salary as at the date of death",
         min_entry_age: 16,
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
-        category_name: "All employees"
+        category_name: "All employees",
+        version_id: 1,
+        version_archived: false
     }
 } as IDatabaseItem
 
@@ -154,6 +170,8 @@ export const BPC_1_GHI_1 = {
         category_name : "cat1",
         enrolment_method : "external",
         election_option : "opt-out",
+        version_id: 1,
+        version_archived: false
     }
 }
 
@@ -169,6 +187,8 @@ export const BPC_9_GDental = {
         election_option : "opt-out",
         category_name: "All employees",
         "is_closed" : false,
+        version_id: 1,
+        version_archived: false
     }
 }
 
@@ -184,6 +204,8 @@ export const BPC_10_GDental = {
         election_option : "opt-in",
         category_name: "All employees",
         "is_closed" : false,
+        version_id: 1,
+        version_archived: false
     }
 }
 
@@ -199,6 +221,8 @@ export const BPC_11_GDental = {
         election_option : "opt-in",
         category_name: "All employees",
         "is_closed" : false,
+        version_id: 1,
+        version_archived: false
     }
 }
 
@@ -214,6 +238,8 @@ export const BPC_12_GDental = {
         election_option : "opt-in",
         category_name: "All employees",
         "is_closed" : false,
+        version_id: 1,
+        version_archived: false
     }
 }
 
@@ -229,6 +255,8 @@ export const BPC_10_GDental_Opt_out = {
         election_option : "opt-out",
         category_name: "All employees",
         "is_closed" : false,
+        version_id: 1,
+        version_archived: false
     }
 }
 
@@ -244,6 +272,8 @@ export const BPC_11_GDental_Opt_out = {
         election_option : "opt-out",
         category_name: "All employees",
         "is_closed" : false,
+        version_id: 1,
+        version_archived: false
     }
 }
 
@@ -259,6 +289,8 @@ export const BPC_12_GDental_Opt_out = {
         election_option : "opt-out",
         category_name: "All employees",
         "is_closed" : false,
+        version_id: 1,
+        version_archived: false
     }
 }
 
@@ -274,6 +306,8 @@ export const BPC_4_GDental_Opt_out = {
         election_option : "opt-out",
         category_name: "All employees",
         "is_closed" : false,
+        version_id: 1,
+        version_archived: false
     }
 }
 
@@ -289,6 +323,8 @@ export const BPC_9_GDental_Opt_out = {
         election_option : "opt-in",
         category_name: "All employees",
         "is_closed" : false,
+        version_id: 1,
+        version_archived: false
     }
 }
 
@@ -304,6 +340,8 @@ export const BPC_GHI_REWARDS = {
         category_name : "cat1",
         enrolment_method : "external",
         election_option : "opt-out",
+        version_id: 1,
+        version_archived: false
     }
 }
 
@@ -319,6 +357,8 @@ export const BPC_14_GDental = {
         election_option : "opt-in",
         category_name: "All employees",
         "is_closed" : false,
+        version_id: 1,
+        version_archived: false
     }
 }
 
@@ -335,7 +375,9 @@ export const BPC_14_GCI = {
         benefit_definition: "Basic annual salary as at the date of death",
         min_entry_age: 16,
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
-        category_name: "All employees"
+        category_name: "All employees",
+        version_id: 1,
+        version_archived: false
     }
 } as IDatabaseItem
 
@@ -352,7 +394,9 @@ export const BPC_14_SAAS = {
         benefit_definition: "Basic annual salary as at the date of death",
         min_entry_age: 16,
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
-        category_name: "All employees"
+        category_name: "All employees",
+        version_id: 1,
+        version_archived: false
     }
 } as IDatabaseItem
 
@@ -369,7 +413,9 @@ export const BPC_14_GHI = {
         benefit_definition: "Basic annual salary as at the date of death",
         min_entry_age: 16,
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
-        category_name: "All employees"
+        category_name: "All employees",
+        version_id: 1,
+        version_archived: false
     }
 } as IDatabaseItem
 
@@ -386,7 +432,9 @@ export const BPC_14_RGL = {
         benefit_definition: "Basic annual salary as at the date of death",
         min_entry_age: 16,
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
-        category_name: "All employees"
+        category_name: "All employees",
+        version_id: 1,
+        version_archived: false
     }
 } as IDatabaseItem
 
@@ -403,6 +451,8 @@ export const BPC_125_GDental = {
         benefit_definition: "Basic annual salary as at the date of death",
         min_entry_age: 16,
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
-        category_name: "All employees"
+        category_name: "All employees",
+        version_id: 1,
+        version_archived: false
     }
 } as IDatabaseItem
