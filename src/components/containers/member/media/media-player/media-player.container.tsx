@@ -124,12 +124,15 @@ const MediaPlayerContainer = ({
           videoDuration: video.duration,
         })
       );
-      Navigation.mergeOptions(ROUTES.mediaPlayer, {
-        statusBar: {
-          drawBehind: false,
-          visible: false,
-        },
-      });
+
+      if (orientation === "landscape") {
+        Navigation.mergeOptions(ROUTES.mediaPlayer, {
+          statusBar: {
+            drawBehind: false,
+            visible: false,
+          },
+        });
+      }
     },
     [dispatch, video?.id, levelSlotId, video?.duration, cancelChallenge, createQuestMapLevelChallengeMutation]
   );
