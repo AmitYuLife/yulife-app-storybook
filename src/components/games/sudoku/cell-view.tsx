@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useMemo, useState } from "react";
-import { StyleSheet, TouchableOpacity, View, ViewStyle } from "react-native";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import Animated, { Easing, useSharedValue, useAnimatedStyle, withDelay, withTiming } from "react-native-reanimated";
 import CellNumber from "./cell-number";
 import {
@@ -11,6 +11,7 @@ import {
 } from "@components/screens/games/sudoku/sudoku-game/sudoku.config";
 import { Colours } from "@styles";
 import { CELL_ROW_COLUMN } from "@ids";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 
 export interface ICellViewProps {
   row: number;
@@ -158,7 +159,7 @@ const CellView = ({
   );
 
   return (
-    <TouchableOpacity
+    <TouchableOpacityWithDelay
       onPress={onPress}
       style={cellViewStyles.wrapper}
       activeOpacity={ACTIVE_OPACITY}
@@ -178,7 +179,7 @@ const CellView = ({
           enableAnimations={enableAnimations}
         />
       </AnimatedView>
-    </TouchableOpacity>
+    </TouchableOpacityWithDelay>
   );
 };
 

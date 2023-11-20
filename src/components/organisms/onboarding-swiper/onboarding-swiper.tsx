@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, View, ViewToken, ListRenderItem, TouchableOpacity } from "react-native";
+import { FlatList, View, ViewToken, ListRenderItem } from "react-native";
 import { Text, PageIndicator } from "@atoms";
 import styles from "./onboarding-swiper.styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
@@ -91,7 +91,7 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
             </TouchableOpacityWithDelay>
           )}
           {isLastPage ? (
-            <TouchableOpacity
+            <TouchableOpacityWithDelay
               delayPressIn={0}
               onPress={onClose}
               style={[styles.actionButton, styles.lastPageActionButton]}
@@ -99,7 +99,7 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
               <Text bold={true} style={[styles.actionButtonText, styles.lastPageActionButtonText]}>
                 {buttonLabel}
               </Text>
-            </TouchableOpacity>
+            </TouchableOpacityWithDelay>
           ) : (
             <TouchableOpacityWithDelay delay={300} style={styles.actionButton} onPress={this.scrollToNext}>
               <Text bold={true} style={styles.actionButtonText}>

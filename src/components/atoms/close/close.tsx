@@ -1,15 +1,8 @@
 import { BUTTON_CLOSE } from "@ids";
 import * as React from "react";
-import {
-  Image,
-  Platform,
-  StyleSheet,
-  TouchableOpacity,
-  TouchableWithoutFeedbackProps,
-  ViewStyle,
-  ImageStyle,
-} from "react-native";
+import { Image, Platform, StyleSheet, ViewStyle, ImageStyle } from "react-native";
 import { Style } from "@styles";
+import { TouchableOpacityWithDelay } from "@molecules";
 
 const getTop = () => {
   if (Style.isAnyIphoneX()) {
@@ -32,14 +25,16 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-interface IProps extends TouchableWithoutFeedbackProps {
+interface IProps {
   imageStyle?: ImageStyle;
+  style?: ViewStyle;
+  onPress?: () => void;
 }
 
 export default function Close({ onPress, style = {}, imageStyle }: IProps) {
   return (
-    <TouchableOpacity style={[styles.wrapper, style]} onPress={onPress} testID={BUTTON_CLOSE}>
-      <Image style={imageStyle} source={require("../../../../assets/icons/close.png")} />
-    </TouchableOpacity>
+    <TouchableOpacityWithDelay style={[styles.wrapper, style]} onPress={onPress} testID={BUTTON_CLOSE}>
+      <Image style={imageStyle} source={require("@assets/icons/close.png")} />
+    </TouchableOpacityWithDelay>
   );
 }

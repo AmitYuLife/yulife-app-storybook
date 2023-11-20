@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { Colours, Style } from "@styles";
 import { useSudokuContext } from "@screens/games/sudoku/sudoku-game/sudoku.context";
 import { memo, useCallback, useEffect, useState } from "react";
@@ -9,6 +9,7 @@ import { TextTemplate } from "@atoms";
 import { DETOX_ENABLED } from "@services/socket";
 import { SUDOKU_PAUSE } from "@ids";
 import { useTranslation } from "@hooks";
+import { TouchableOpacityWithDelay } from "@molecules";
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 
@@ -74,7 +75,7 @@ const SudokuTimer = ({ invert }: IProps) => {
 
   return (
     <View>
-      <TouchableOpacity
+      <TouchableOpacityWithDelay
         style={styles.wrapper}
         onPress={endTime ? undefined : pause}
         testID={SUDOKU_PAUSE}
@@ -102,7 +103,7 @@ const SudokuTimer = ({ invert }: IProps) => {
             {timeAgo}
           </TextTemplate>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacityWithDelay>
     </View>
   );
 };

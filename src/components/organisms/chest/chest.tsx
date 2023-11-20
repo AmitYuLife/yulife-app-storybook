@@ -1,5 +1,5 @@
 import React, { FC, memo, useEffect, useRef, useMemo, RefObject, useCallback } from "react";
-import { View, Animated, Easing, TouchableOpacity, ViewStyle } from "react-native";
+import { View, Animated, Easing, ViewStyle } from "react-native";
 import LottieView from "lottie-react-native";
 import { Style } from "@styles";
 import { DETOX_ENABLED } from "@services/socket";
@@ -14,6 +14,7 @@ import { MODALS } from "@navigation/constants";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { CELESTIAL_CARD, YUNITY_CARD } from "@ids";
+import { TouchableOpacityWithDelay } from "@molecules";
 
 export type ChestType = "FOREST" | "OCEAN" | "DESERT" | "MOUNTAIN" | "CELESTIAL";
 
@@ -297,9 +298,9 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
                 style={infoCardWrappers[index]}
                 testID={YUNITY_CARD(item.description)}
               >
-                <TouchableOpacity onPress={infoHandlers[index]}>
+                <TouchableOpacityWithDelay onPress={infoHandlers[index]}>
                   <View style={cardStyles.cardInner} />
-                </TouchableOpacity>
+                </TouchableOpacityWithDelay>
               </View>
             )
           )}

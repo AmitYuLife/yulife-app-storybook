@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from "react";
-import { TouchableOpacity, View, StyleSheet, TextStyle, ViewStyle, Insets } from "react-native";
+import { View, StyleSheet, TextStyle, ViewStyle, Insets } from "react-native";
 import { BUTTON_TOP_LEFT_BAR, MENU_ICON_BADGE } from "@ids";
 import { Back, CloseSvg } from "@atoms";
 import { Menu } from "../assets";
@@ -7,6 +7,7 @@ import { Text } from "@atoms/index";
 import { Style, TOP_BAR, Colours } from "@styles/index";
 import { t } from "@locale";
 import NotificationSvg from "@atoms/notification/notification-svg";
+import { TouchableOpacityWithDelay } from "@molecules";
 
 export enum LeftIcon {
   MENU = "Menu",
@@ -38,7 +39,7 @@ const Left = ({ icons = [], hasBadge, colour, label, textStyle }: Props) => {
   return (
     <View style={styles.wrapper}>
       {filteredIcons.map(({ icon, testID, onPress, hitSlop, style }) => (
-        <TouchableOpacity
+        <TouchableOpacityWithDelay
           key={icon}
           hitSlop={hitSlop || TOP_BAR.HIT_SLOP}
           style={[styles.icon, style]}
@@ -49,7 +50,7 @@ const Left = ({ icons = [], hasBadge, colour, label, textStyle }: Props) => {
         >
           <Icon icon={icon} colour={colour} hasBadge={hasBadge} />
           <MenuLabel label={label} textStyle={textStyle} />
-        </TouchableOpacity>
+        </TouchableOpacityWithDelay>
       ))}
     </View>
   );

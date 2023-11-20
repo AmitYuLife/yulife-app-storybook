@@ -1,11 +1,12 @@
 import React, { ComponentProps, memo, useState } from "react";
-import { StyleSheet, TouchableOpacity, View, ViewStyle } from "react-native";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { InfoPanel } from "@components/molecules";
 import { Colours, Style } from "@styles";
 import { PercentPicker } from "./percent-picker";
 import { Options } from "./options";
 import { t } from "@locale";
+import { TouchableOpacityWithDelay } from "@molecules";
 
 interface Props {
   options: ComponentProps<typeof Options>["options"];
@@ -39,11 +40,11 @@ const CoverPicker = ({
       {!showCustom ? (
         <>
           <Options activeValue={activeValue} options={options} onPickCover={onPickCover} />
-          <TouchableOpacity style={styles.toggleCustomButton} onPress={handleToggleCustom}>
+          <TouchableOpacityWithDelay style={styles.toggleCustomButton} onPress={handleToggleCustom}>
             <TextTemplate type="l1" decoration="underline">
               {t("molecules.multi_factor_pricing.cover_picker.choose_custom")}
             </TextTemplate>
-          </TouchableOpacity>
+          </TouchableOpacityWithDelay>
         </>
       ) : (
         <PercentPicker {...percentPicker} activeValue={activeValue} onPickCover={onPickCover} />
