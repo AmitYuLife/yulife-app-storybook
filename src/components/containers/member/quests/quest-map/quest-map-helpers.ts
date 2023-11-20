@@ -1,7 +1,7 @@
 import { getChallengesStatus } from "@redux/levels/levels.selectors";
-import moment from "moment";
 import { QUEST_MAP_CONFIG } from "./quest-map.config";
 import { ISeperatorConfig } from "./quest-map.interface";
+import { getIsLevelAvailable } from "@components/screens/member/quests/quests-scroll-screen/quests-screen.container.helpers";
 
 export const getEpisode = (level: number) => {
   let episode = 0;
@@ -23,12 +23,6 @@ export const getMinLevel = (levels: { level: number }[]) => {
   return levels.reduce<number>((prev, cur) => (prev < cur.level ? prev : cur.level), Infinity);
 };
 
-export const isAvailable = (nextAvailableAt: string): boolean => {
-  const nextAvailable = nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
-
-  return nextAvailable >= 0;
-};
-
 export const getLevelStatus = (
   challengesStatus: ReturnType<typeof getChallengesStatus>,
   currentLevel: number,
@@ -37,7 +31,7 @@ export const getLevelStatus = (
 ) => {
   const { hasDone: hasDoneChallenge, isAvailable: isChallengeAvailable } = challengesStatus;
 
-  const hasTimer = !isAvailable(nextAvailableAt);
+  const hasTimer = !getIsLevelAvailable(nextAvailableAt);
 
   if (currentLevel === level) {
     return {
