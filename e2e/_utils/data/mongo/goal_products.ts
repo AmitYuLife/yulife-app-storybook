@@ -16,5 +16,6 @@ export const GOAL_PRODUCTS_1 = {
             "en-GB" : "Group Health Rewards",
             "ja-JP" : "6days - 通常のGHイベントと同様、6日間で行われる。テスト用に最適。"
         },
+        status: "active"
     },
 } as IDatabaseItem

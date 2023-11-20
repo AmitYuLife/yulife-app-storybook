@@ -299,7 +299,8 @@ export const GOAL_REWARD_MILESTONE_15_GHI_REWARDS = {
             "ja-JP": "特別割引"
           },
         parentType: "goal_products",
-        earnRateBased: true, 
+        earnRateBased: true,
+        status: "active" 
     }
 };
 
@@ -326,7 +327,8 @@ export const GOAL_REWARD_MILESTONE_16_GHI_REWARDS = {
             "ja-JP": "特別割引"
           },
         parentType: "goal_products",
-        earnRateBased: false, 
+        earnRateBased: false,
+        status: "active" 
     }
 };
 
@@ -353,7 +355,8 @@ export const GOAL_REWARD_MILESTONE_17_GHI_REWARDS = {
             "ja-JP": "アーバン"
           },
         parentType: "goal_products",
-        earnRateBased: false, 
+        earnRateBased: false,
+        status: "active" 
     }
 };
 
@@ -380,7 +383,8 @@ export const GOAL_REWARD_MILESTONE_18_GHI_REWARDS = {
             "ja-JP": "トリバ"
           },
         parentType: "goal_products",
-        earnRateBased: false, 
+        earnRateBased: false,
+        status: "active"
     }
 };
 
@@ -407,7 +411,8 @@ export const GOAL_REWARD_MILESTONE_19_GHI_REWARDS = {
             "ja-JP": "生きたDNA"
           },
         parentType: "goal_products",
-        earnRateBased: false, 
+        earnRateBased: false,
+        status: "active" 
     }
 };
 
@@ -434,7 +439,8 @@ export const GOAL_REWARD_MILESTONE_20_GHI_REWARDS = {
             "ja-JP": "ブパ・ヘルス"
           },
         parentType: "goal_products",
-        earnRateBased: true, 
+        earnRateBased: true,
+        status: "active" 
     }
 };
 
@@ -461,7 +467,8 @@ export const GOAL_REWARD_MILESTONE_21_GHI_REWARDS = {
             "ja-JP": "ガーミン"
           },
         parentType: "goal_products",
-        earnRateBased: true, 
+        earnRateBased: true,
+        status: "active" 
     }
 };
 
