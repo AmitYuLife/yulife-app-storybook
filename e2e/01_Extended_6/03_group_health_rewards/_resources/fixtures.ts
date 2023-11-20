@@ -14,7 +14,7 @@ export const GHI_REWARDS_PAGE_DETAILS_2: GHI_PAGE_INFO = {
 
 export const BOOTS_YORK_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
     topImageUrl: "https://yulife-develop.imgix.net/reward/teaser/boots-york-2023-07-21.png?ixlib=js-3.2.1&fm=png&w=555&s=deff6db337f6f43ec317b084d8332e74",
-    headerText: "Complete Daily Quests to Unlock Boots and YorkTest",
+    headerText: "Complete a challenge daily to unlock Boots and YorkTest",
     description: [
         "Prioritising your personal health is important. Care for your health and beauty with Boots vouchers, and understand your body’s food sensitivity with 40% off YorkTest food and intolerance testing."
     ]
@@ -22,7 +22,7 @@ export const BOOTS_YORK_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS 
 
 export const URBAN_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
     topImageUrl: "https://yulife-develop.imgix.net/reward/teaser/urban-2023-07-24.png?ixlib=js-3.2.1&fm=png&w=555&s=de8774e562ddbaa34e07710adfda98d8",
-    headerText: "Complete Daily Quests to Unlock Your Urban Massage Vouchers",
+    headerText: "Complete a challenge daily to unlock your Urban massage vouchers",
     description: [
         "De-stress with three £10 vouchers for Urban Massage packages of your choosing",
         "With Urban Massage's curated massage packages — including Thai, sports, and deep-tissue, among others — you can indulge in the rest and relaxation that you deserve."
@@ -31,7 +31,7 @@ export const URBAN_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
 
 export const THRIVA_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
   topImageUrl: "https://yulife-develop.imgix.net/reward/teaser/thriva-2023-07-24.png?ixlib=js-3.2.1&fm=png&w=555&s=2ad8f3ff6c9b55819d4e5d477b68a135",
-  headerText: "Complete Daily Quests to Unlock Health Insights With Thriva",
+  headerText: "Complete a challenge daily to unlock health insights with Thriva",
   description: [
       "Enjoy Thriva’s at-home blood test kit for free.",
       "Gain health insights through Thriva’s bespoke blood test journey; Take their at-home test to discover multiple facets of your body’s current health status and receive GP advice from an NHS registered doctor."
@@ -40,7 +40,7 @@ export const THRIVA_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
 
 export const LIVING_DNA_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
   topImageUrl: "https://yulife-develop.imgix.net/reward/teaser/living-dna-2023-07-24.png?ixlib=js-3.2.1&fm=png&w=555&s=54ed7a3ac61216cdea3068b68978f4cf",
-  headerText: "Complete Daily Quests to Unlock Insights Into Your DNA",
+  headerText: "Complete a challenge daily to unlock insights into your DNA",
   description: [
       "Gain insights with a free Living DNA test kit for ancestry and wellbeing.",
       "Unlock your body’s response to nutrients and exercise, personality traits determined by genes, and even interesting ancestral connections you’ve never known before — all within a swab of your cheek."
@@ -49,7 +49,7 @@ export const LIVING_DNA_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS 
 
 export const BUPA_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
   topImageUrl: "https://yulife-develop.imgix.net/reward/teaser/bupa-2023-07-24.png?ixlib=js-3.2.1&fm=png&w=555&s=884d67bde90387029b25b36ed8cd5ae5",
-  headerText: "Complete Daily Quests to Unlock Your Health Assessment",
+  headerText: "Complete a challenge daily to unlock your health assessment",
   description: [
       "Benefit from a free Bupa Be.Motivated in-person health assessment.",
       " Start impacting your future self with a one hour health check to outline your physical and mental wellbeing. Then, receive a year’s worth of lifestyle coaching and behaviour change support!"
@@ -58,7 +58,7 @@ export const BUPA_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
 
 export const GARMIN_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
   topImageUrl: "https://yulife-develop.imgix.net/reward/teaser/garmin-2023-07-24.png?ixlib=js-3.2.1&fm=png&w=555&s=0823079e15cf748fbf93a74613673909",
-  headerText: "Complete Daily Quests to Unlock Your Fitness Accessories*",
+  headerText: "Complete a challenge daily to unlock your fitness accessories*",
   description: [
       "Track your fitness goals with a free Garmin Forerunner 55 smartwatch, and feel motivated to stay active every single day.",
       " *If you’d prefer not to have a smartwatch, £100 will be set aside for Great Ormond Street Hospital on your behalf instead."

@@ -86,7 +86,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
             When("I click to see the purchase history", when.tapText(t("Purchased")), async () => {
-                Then("I can see the purchase for today for Urban Massage", then.groupHealthRewardsPurchasedVisible(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS))
+                Then("I can see the purchase for today for the boots voucher", then.groupHealthRewardsPurchasedVisible(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS))
             })
         })
         When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
@@ -99,7 +99,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
             
-    })
+     })
 
     Scenario("I can succesfully go through the Urban Massage GHI Rewards journeys and the GHI hourney levels up when in Yuniversal levels", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_117_GHI_REWARDS, data.AUTH_117), async () => {

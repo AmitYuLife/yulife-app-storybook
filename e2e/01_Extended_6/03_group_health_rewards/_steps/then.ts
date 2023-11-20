@@ -273,10 +273,10 @@ export const groupHealthRewardsPurchasedVisible = (product?: GHI_REWARD_CLAIM_PA
       await textVisible("1 £10 Urban voucher")
       break
     case (prod === "Thriva"):
-      await textVisible("1 Thriva Testing Kit")
+      await textVisible("1 Thriva Testing kit")
       break
     case (prod === "Living DNA"):
-      await textVisible("1 LivingDNA Testing Kit")
+      await textVisible("1 LivingDNA Testing kit")
       await textVisible("0 YuCoin")
       break
     case (prod === "Health assessment"):
