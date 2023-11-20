@@ -164,7 +164,10 @@ const getMeditation = (
   };
 
   if (!fitkitMeditation && !inAppMeditation.duration) {
-    return null;
+    return {
+      error: true,
+      results: [],
+    };
   }
 
   if (!fitkitMeditation && inAppMeditation.duration) {
