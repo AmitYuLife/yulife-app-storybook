@@ -207,7 +207,7 @@ const MediaPlayerContainer = ({
     async (seconds: number) => {
       // We only track progress every X seconds
       // This is to avoid too many writes to storage
-      if (seconds % 10 === 0 && seconds > 0) {
+      if (seconds % 5 === 0 || seconds === 1) {
         const videoProgress: IVideoProgressStorage = {
           seconds,
           id: video.id,
