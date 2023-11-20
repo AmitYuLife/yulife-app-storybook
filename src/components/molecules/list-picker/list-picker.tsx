@@ -1,9 +1,10 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "@atoms";
 import styles from "./list-picker.styles";
 import { TEXT_TEMPLATE } from "@ids";
 import { t } from "@locale";
+import { TouchableOpacityWithDelay } from "@molecules";
 
 interface IItem {
   label: string;
@@ -24,7 +25,7 @@ const ListPicker: React.FC<IProps> = ({ items, instruction, onPressCancel, close
         <Text style={styles.instruction}>{instruction}</Text>
       </View>
       {items.map((item, index) => (
-        <TouchableOpacity
+        <TouchableOpacityWithDelay
           key={index}
           style={StyleSheet.flatten([styles.itemWrapper, index + 1 === items.length ? styles.itemWrapperLast : {}])}
           onPress={item.onPress}
@@ -32,11 +33,11 @@ const ListPicker: React.FC<IProps> = ({ items, instruction, onPressCancel, close
           <Text style={styles.item} testID={TEXT_TEMPLATE(item.label)}>
             {item.label}
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacityWithDelay>
       ))}
-      <TouchableOpacity onPress={onPressCancel ? onPressCancel : closeOverlay} style={styles.cancelWrapper}>
+      <TouchableOpacityWithDelay onPress={onPressCancel ? onPressCancel : closeOverlay} style={styles.cancelWrapper}>
         <Text style={styles.cancel}>{t("labels.cta.cancel")}</Text>
-      </TouchableOpacity>
+      </TouchableOpacityWithDelay>
     </View>
   );
 };

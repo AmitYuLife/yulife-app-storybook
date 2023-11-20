@@ -1,9 +1,10 @@
 import * as React from "react";
 import { Style } from "@styles";
-import { Image as RNImage, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image as RNImage, StyleSheet, View } from "react-native";
 import { Text, Image } from "@atoms";
 import Assets, { BoxedHeart, Coins } from "./assets";
 import styles from "./picker.styles";
+import { TouchableOpacityWithDelay } from "@molecules";
 
 enum ICONS {
   HEART = "heart",
@@ -39,7 +40,7 @@ class Picker extends React.PureComponent<IProps> {
   public render() {
     const { onPress, label, placeholder = "" } = this.props;
     return (
-      <TouchableOpacity
+      <TouchableOpacityWithDelay
         onPress={onPress}
         style={StyleSheet.flatten([styles.wrapper, label ? styles.wrapperFilled : {}])}
       >
@@ -49,7 +50,7 @@ class Picker extends React.PureComponent<IProps> {
         </View>
         <RNImage style={styles.arrow} source={Assets.v} />
         {label ? null : <View style={styles.overlay} />}
-      </TouchableOpacity>
+      </TouchableOpacityWithDelay>
     );
   }
 }

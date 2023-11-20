@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useMemo, useState } from "react";
-import { TouchableOpacity, View, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import CellNumber from "./cell-number";
 import {
   SUDOKU_DIMENSIONS,
@@ -8,6 +8,7 @@ import {
 import { Colours } from "@styles";
 import { CELL_ROW_COLUMN } from "@ids";
 import { ICellViewProps, cellViewStyles } from "./cell-view";
+import { TouchableOpacityWithDelay } from "@molecules";
 
 const ACTIVE_OPACITY = 0.85;
 
@@ -94,7 +95,7 @@ const CellViewPerformance = ({
   );
 
   return (
-    <TouchableOpacity
+    <TouchableOpacityWithDelay
       onPress={onPress}
       style={cellViewStyles.wrapper}
       activeOpacity={ACTIVE_OPACITY}
@@ -114,7 +115,7 @@ const CellViewPerformance = ({
           enableAnimations={enableAnimations}
         />
       </View>
-    </TouchableOpacity>
+    </TouchableOpacityWithDelay>
   );
 };
 

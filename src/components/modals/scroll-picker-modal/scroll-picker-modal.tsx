@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TouchableOpacity, StyleSheet, ViewStyle, Platform } from "react-native";
+import { View, StyleSheet, ViewStyle, Platform } from "react-native";
 import { Icon, TextTemplate } from "@atoms";
 import { Picker } from "./subcomponents/picker";
 import { Buttons } from "./subcomponents/buttons";
@@ -33,14 +33,14 @@ const ScrollPickerModal = (props: Props) => {
       <TouchableOpacityWithDelay activeOpacity={1} style={styles.pressableBackground} onPress={onCancel} />
       <View style={styles.innerWrapper}>
         {!hasToggle ? null : (
-          <TouchableOpacity style={styles.toggleWrapper} onPress={toggle}>
+          <TouchableOpacityWithDelay style={styles.toggleWrapper} onPress={toggle}>
             <View style={styles.iconWrapper}>
               <Icon.SwitchIcon />
             </View>
             <TextTemplate type="b2b" color={Colours.primary.p600}>
               {toggleLabel}
             </TextTemplate>
-          </TouchableOpacity>
+          </TouchableOpacityWithDelay>
         )}
         <View style={styles.pickerWrapper}>
           {pickers.map(({ onIndexChange, items, defaultIndex, id }, i) => (

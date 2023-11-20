@@ -1,8 +1,9 @@
 import { Text } from "@atoms/index";
 import React from "react";
-import { StyleSheet, View, Image, StyleProp, ViewStyle, TouchableOpacity, Linking } from "react-native";
+import { StyleSheet, View, Image, StyleProp, ViewStyle, Linking } from "react-native";
 import SimpleMarkdown from "simple-markdown";
 import getMarkdownStyles from "./markdown.styles";
+import { TouchableOpacityWithDelay } from "@molecules";
 
 interface IProps {
   text: string;
@@ -120,7 +121,7 @@ class Markdown extends React.PureComponent<IProps, IState> {
     const { linkActions } = this.props;
 
     return (
-      <TouchableOpacity
+      <TouchableOpacityWithDelay
         style={styles.linkWrapper}
         key={"linkWrapper_" + key}
         onPress={() => {
@@ -136,7 +137,7 @@ class Markdown extends React.PureComponent<IProps, IState> {
         }}
       >
         {this.renderNodes(node.props.children, key, concatStyles(null, styles.link))}
-      </TouchableOpacity>
+      </TouchableOpacityWithDelay>
     );
   }
 

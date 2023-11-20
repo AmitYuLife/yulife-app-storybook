@@ -1,5 +1,6 @@
 import * as React from "react";
-import { View, StyleSheet, ViewStyle, TouchableOpacity } from "react-native";
+import { View, StyleSheet, ViewStyle } from "react-native";
+import { TouchableOpacityWithDelay } from "@molecules";
 
 interface IProps {
   pageCount: number;
@@ -16,9 +17,9 @@ function PageIndicator({ pageCount, activePage, onPress }: IProps) {
         const testId = `indicator-${i}-${isActivePage ? "active" : "inactive"}`;
 
         return onPress ? (
-          <TouchableOpacity hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }} onPress={() => onPress(i)}>
+          <TouchableOpacityWithDelay hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }} onPress={() => onPress(i)}>
             <View testID={testId} key={i} style={indicatorStyles} />
-          </TouchableOpacity>
+          </TouchableOpacityWithDelay>
         ) : (
           <View testID={testId} key={i} style={indicatorStyles} />
         );

@@ -1,7 +1,7 @@
 import { LEVEL_CHALLENGE_BUTTON } from "@ids";
 import moment from "moment";
 import React, { memo, useMemo, useState } from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Style, Colours } from "@styles";
 import useInterval from "@use-it/interval";
 import { getCurrentWorld, getNormalizedLevel } from "@utils";
@@ -13,6 +13,7 @@ import {
 } from "@components/screens/member/quests/quests-scroll-screen/assets/level/level.helpers";
 import { CIRCLE_SIZE } from "@components/screens/member/quests/quests-scroll-screen/assets/level/level.styles";
 import Pulse from "@components/screens/member/quests/quests-scroll-screen/assets/level/pulse";
+import { TouchableOpacityWithDelay } from "@molecules";
 
 interface IQuestMapLevelProps {
   currentLevel: number;
@@ -80,7 +81,7 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
         </View>
       )}
       <View style={styles.bubble}>
-        <TouchableOpacity
+        <TouchableOpacityWithDelay
           activeOpacity={0.8}
           onPress={level.onPress}
           style={touchableStyles}
@@ -88,7 +89,7 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
           testID={LEVEL_CHALLENGE_BUTTON(level.level)}
         >
           {levelText}
-        </TouchableOpacity>
+        </TouchableOpacityWithDelay>
       </View>
     </View>
   );
