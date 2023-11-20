@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { GetMobileGameWeeklies, GetQuestMap } from "@graphql/_core/schema";
+import { GetMobileGameWeeklies, GetQuestMap, GetQuestMap_levels } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_QUEST_MAP } from "@graphql/challenges";
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { Style } from "@styles";
@@ -9,15 +9,7 @@ import {
   getNextLevelAvailableAt,
   getYuniversalProgress,
 } from "@redux/levels/levels.selectors";
-
-import {
-  goToChallengesList,
-  showLevelCompleteModal,
-  showChestModal,
-  showChallengeUnavailableModal,
-  showLevelUnavailableModal,
-  getLevelAction,
-} from "@components/screens/member/quests/quests-scroll-screen/quests-screen.container.helpers";
+import { handlePressLevelItem } from "@components/screens/member/quests/quests-scroll-screen/quests-screen.container.helpers";
 
 import { QUEST_MAP_CONFIG } from "./quest-map.config";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,9 +19,10 @@ import { YuniversalQuestsScreen } from "@components/screens/member/quests/quests
 import { GQL_QUERY_GET_GAME_WEEKLIES } from "@graphql/weeklies";
 import { ROUTES } from "@navigation/constants";
 import { useQueryOnScreenSeen } from "@hooks";
-import { getEpisode, getLevelStatus, getMinLevel, getSeperator, isAvailable } from "./quest-map-helpers";
+import { getEpisode, getLevelStatus, getMinLevel, getSeperator } from "./quest-map-helpers";
 import { first } from "lodash";
 import QuestMapScreen from "./quest-map.screen";
+import { Navigation } from "@navigation/main";
 
 const EPISODES_PER_PLANET = 32;
 const LEVELS_PER_WORLD = 200;
@@ -62,6 +55,23 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
   const nextLevelAvailableAt = useSelector(getNextLevelAvailableAt);
 
   const levelsList = useMemo(() => data?.levels.filter((level) => level.level) || [], [data]);
+
+  const handleSetUnity = useCallback((itemLevel: GetQuestMap_levels) => {
+    setUnity(itemLevel.level);
+    setLevelId(itemLevel.id);
+    setRepeatedUnity(true);
+  }, []);
+
+  const handleSubmitUnity = useCallback(
+    (itemLevel: GetQuestMap_levels) => {
+      setUnity(itemLevel.level);
+      setLevelId(itemLevel.id);
+      dispatch(submitUnityAction({ levelId: itemLevel.id }));
+      setRepeatedUnity(false);
+    },
+    [dispatch]
+  );
+
   const formattedLevels = useMemo(() => {
     if (yuniversalMap) {
       return [];
@@ -75,45 +85,21 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
         ...itemLevel,
         ...levelStatus,
         isChestLevel,
-        onPress: () => {
-          const levelAvailable = isAvailable(nextLevelAvailableAt);
-          const action = getLevelAction({
-            levelStatus,
-            challengesStatus,
-            itemLevel,
-            levelAvailable,
-          });
-
-          switch (action) {
-            case "SetUnity":
-              setUnity(itemLevel.level);
-              setLevelId(itemLevel.id);
-              setRepeatedUnity(true);
-              break;
-            case "GoToChallengesList":
-              goToChallengesList(componentId, itemLevel.level);
-              break;
-            case "ShowLevelCompleteModal":
-              showLevelCompleteModal(componentId, itemLevel.level);
-              break;
-            case "DispatchSubmitUnityAction":
-              setUnity(itemLevel.level);
-              setLevelId(itemLevel.id);
-              dispatch(submitUnityAction({ levelId: itemLevel.id }));
-              setRepeatedUnity(false);
-              break;
-            case "ShowChestModal":
-              showChestModal(componentId, itemLevel, null, levelStatus.isNext);
-              break;
-            case "ShowChallengeUnavailableModal":
-              showChallengeUnavailableModal(nextLevelAvailableAt);
-              break;
-            case "ShowLevelUnavailableModal":
-            default:
-              showLevelUnavailableModal(itemLevel.level);
-              break;
-          }
-        },
+        onPress: handlePressLevelItem({
+          componentId,
+          challengesStatus,
+          handleSetUnity,
+          handleSubmitUnity,
+          itemLevel,
+          levelStatus,
+          nextLevelAvailableAt,
+          levelUnavailableModalProps: {
+            level: itemLevel.level,
+            onPressCta: Navigation.dismissOverlayWithChild,
+            onPressClose: Navigation.dismissOverlayWithChild,
+            type: "unavailable",
+          },
+        }),
       };
     });
   }, [yuniversalMap, levelsList, challengesStatus, currentLevel, nextLevelAvailableAt, componentId, dispatch]);

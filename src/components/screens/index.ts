@@ -41,7 +41,6 @@ export { default as ChallengeDetailsScreenV2 } from "./member/challenges/challen
 export { default as ChallengeDetailsScreenV1 } from "./member/challenges/challenge-details-v1/challenge-details.screen";
 export { default as ChallengesListScreen } from "./member/challenges/challenges-list/challenges-list.screen";
 export { default as ChallengeExitScreen } from "./member/challenges/challenge-exit/challenge-exit.screen";
-export { default as LevelLockedScreen } from "./member/challenges/level-locked/level-locked.screen";
 
 // rewards screens
 export { default as PurchasedListScreen } from "./member/rewards/purchased/rewards-purchased.screen";

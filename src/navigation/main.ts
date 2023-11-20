@@ -4,6 +4,8 @@ import { ComponentProvider, ViewStyle } from "react-native";
 import { Layout, LayoutRoot, Navigation as NativeNavigation, Options } from "react-native-navigation";
 import { MODALS, ROUTES } from "./constants";
 
+const BLURRED_OVERLAY_COMPONENT_ID = MODALS.blurredOverlay;
+
 export class Navigation {
   /** Makes the specified routes(tabs) as inaccessible */
   public static SUSPENDED_NAV_BAR_ROUTES: Set<string> = new Set([]);
@@ -112,8 +114,8 @@ export class Navigation {
 
     return NativeNavigation.showOverlay({
       component: {
-        id: MODALS.blurredOverlay,
-        name: MODALS.blurredOverlay,
+        id: BLURRED_OVERLAY_COMPONENT_ID,
+        name: BLURRED_OVERLAY_COMPONENT_ID,
         options: {
           layout: {
             componentBackgroundColor: "transparent",
@@ -129,5 +131,8 @@ export class Navigation {
         },
       },
     });
+  }
+  public static dismissOverlayWithChild() {
+    return NativeNavigation.dismissOverlay(BLURRED_OVERLAY_COMPONENT_ID);
   }
 }

@@ -329,6 +329,9 @@ export default {
     sameAsActiveCellBackgroundColor: "#B9B9CC",
     completedGameCellBackgroundTransitionColor: "rgba(0,255,0,.10)",
   },
+  gradient: {
+    whiteTransparent: "rgba(255,255,255,0)",
+  },
   activityHistoryHeading: "#FBD127",
   hexToRGB,
   rgbToHex,

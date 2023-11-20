@@ -10,17 +10,10 @@ import {
   getNextLevelAvailableAt,
   getYuniversalProgress,
 } from "@redux/levels/levels.selectors";
-import {
-  goToChallengesList,
-  showLevelCompleteModal,
-  showChestModal,
-  showChallengeUnavailableModal,
-  showLevelUnavailableModal,
-  getLevelAction,
-} from "./quests-screen.container.helpers";
+import { handlePressLevelItem } from "./quests-screen.container.helpers";
 import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_QUEST_MAP } from "@graphql/challenges";
-import { GetMobileGameWeeklies, GetQuestMap } from "@graphql/_core/schema";
+import { GetMobileGameWeeklies, GetQuestMap, GetQuestMap_levels } from "@graphql/_core/schema";
 import { YuniversalQuestsScreen } from "./yuniversal/yuniversal-quest-screen";
 import { QuestsMapContext } from "./quests.context";
 import { GQL_QUERY_GET_GAME_WEEKLIES } from "@graphql/weeklies";
@@ -120,6 +113,21 @@ function QuestsScreenContainer(props: Props) {
   );
 
   const levelsList = data?.levels || [];
+  const handleSetUnity = useCallback((itemLevel: GetQuestMap_levels) => {
+    setUnity(itemLevel.level);
+    setLevelId(itemLevel.id);
+    setRepeatedUnity(true);
+  }, []);
+
+  const handleSubmitUnity = useCallback(
+    (itemLevel: GetQuestMap_levels) => {
+      setUnity(itemLevel.level);
+      setLevelId(itemLevel.id);
+      dispatch(submitUnityAction({ levelId: itemLevel.id }));
+      setRepeatedUnity(false);
+    },
+    [dispatch]
+  );
   const formattedData = yuniversalMap
     ? []
     : levelsList.map((itemLevel) => {
@@ -130,45 +138,18 @@ function QuestsScreenContainer(props: Props) {
           ...itemLevel,
           ...levelStatus,
           isChestLevel,
-          onPress: () => {
-            const levelAvailable = isAvailable(nextLevelAvailableAt);
-            const action = getLevelAction({
-              levelStatus,
-              challengesStatus,
-              itemLevel,
-              levelAvailable,
-            });
-
-            switch (action) {
-              case "SetUnity":
-                setUnity(itemLevel.level);
-                setLevelId(itemLevel.id);
-                setRepeatedUnity(true);
-                break;
-              case "GoToChallengesList":
-                goToChallengesList(componentId, itemLevel.level);
-                break;
-              case "ShowLevelCompleteModal":
-                showLevelCompleteModal(componentId, itemLevel.level, undefined, undefined);
-                break;
-              case "DispatchSubmitUnityAction":
-                setUnity(itemLevel.level);
-                setLevelId(itemLevel.id);
-                dispatch(submitUnityAction({ levelId: itemLevel.id }));
-                setRepeatedUnity(false);
-                break;
-              case "ShowChestModal":
-                showChestModal(componentId, itemLevel, null, levelStatus.isNext);
-                break;
-              case "ShowChallengeUnavailableModal":
-                showChallengeUnavailableModal(nextLevelAvailableAt);
-                break;
-              case "ShowLevelUnavailableModal":
-              default:
-                showLevelUnavailableModal(itemLevel.level);
-                break;
-            }
-          },
+          onPress: handlePressLevelItem({
+            componentId,
+            challengesStatus,
+            handleSetUnity,
+            handleSubmitUnity,
+            itemLevel,
+            levelStatus,
+            nextLevelAvailableAt,
+            levelUnavailableModalProps: {
+              level: itemLevel.level,
+            },
+          }),
         };
       });
 
