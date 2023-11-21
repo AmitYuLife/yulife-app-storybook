@@ -1241,27 +1241,27 @@
   },
   "navbar": {
     "yucoin": {
-      "label": "yucoin",
+      "label": "YuCoin",
       "accessibility_label": "Open yucoin",
       "accessibility_text_value": "1 out of 5"
     },
     "quest": {
-      "label": "quests",
+      "label": "Quests",
       "accessibility_label": "Open quest",
       "accessibility_text_value": "2 out of 5"
     },
     "yu": {
-      "label": "yu",
+      "label": "Yu",
       "accessibility_label": "Open yu screen",
       "accessibility_text_value": "3 out of 5"
     },
     "leaderboard": {
-      "label": "leaderboard",
+      "label": "Leaderboard",
       "accessibility_label": "Open leaderboard",
       "accessibility_text_value": "4 out of 5"
     },
     "rewards": {
-      "label": "rewards",
+      "label": "Rewards",
       "accessibility_label": "Open rewards",
       "accessibility_text_value": "5 out of 5"
     }
