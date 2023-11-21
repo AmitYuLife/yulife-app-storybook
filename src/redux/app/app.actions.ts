@@ -1,3 +1,4 @@
+import { createAction } from "@reduxjs/toolkit";
 import { SyncAction } from "../_core/types";
 
 export const SET_MAIN_ROOT = "SET_MAIN_ROOT";
@@ -11,6 +12,7 @@ export const UPDATE_APP_STATE_ACTIVE = "UPDATE_APP_STATE_ACTIVE";
 export const UPDATE_CURRENT_ROUTE = "UPDATE_CURRENT_ROUTE";
 export const UPDATE_CURRENT_MODAL = "UPDATE_CURRENT_MODAL";
 export const UPDATE_OFFLINE_STATE = "UPDATE_OFFLINE_STATE";
+export const UPDATE_CURRENT_DATE = "UPDATE_CURRENT_DATE";
 
 export const updateAppState = (appState: string): SyncAction<string> => ({
   payload: appState,
@@ -59,3 +61,5 @@ export const setMainRoot = (url: string) => ({
   payload: url,
   type: SET_MAIN_ROOT,
 });
+
+export const updateCurrentDate = createAction(UPDATE_CURRENT_DATE, (date: string) => ({ payload: { date } }));
