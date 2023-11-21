@@ -13,11 +13,11 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         })
         When("I send the mindfulness data", when.sendMindfulnessData(180), async () => {
             When("I start a meditation challenge", when.startMeditationChallengeFromQuests(5), async () => {
-                Then("I should see the meditation modal", then.meditationAppModalVisible)
+                Then("I should be on the Meditation challenge progress screen", then.idVisible(ids.CHALLENGE_PROGRESS_SCREEN("meditation")))
+                When("I wait to complete this challenge", when.wait(65000), async () => {
+                    Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(3, 5))
+                })
             })
-        })
-        When("I wait to complete this challenge", when.wait(65000), async () => {
-            Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(3, 5))
         })
         When("I tap collect", when.tapText("Collect"), async () => {
             Then("I should see the streak completed screen", then.completedTodayStreakCopyVisible(5))
@@ -62,7 +62,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see my updated coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
             When("I send the mindfulness data", when.sendMindfulnessData(180), async () => {
                 When("I start a meditation challenge", when.startMeditationChallengeFromQuests(90), async () => {
-                    Then("I should see the meditation modal", then.meditationAppModalVisible)
+                    Then("I should be on the Meditation challenge progress screen", then.idVisible(ids.CHALLENGE_PROGRESS_SCREEN("meditation")))
                         When("I wait to complete this challenge", when.wait(65000), async () => {
                             Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(3, 90))
                             When("I tap collect", when.tapText("Collect"), async () => {
@@ -110,7 +110,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         })
         When("I send the mindfulness data", when.sendMindfulnessData(300), async () => {
             When("I start a meditation challenge", when.startMeditationChallengeFromQuests(115), async () => {
-                Then("I should see the meditation modal", then.meditationAppModalVisible)
+                Then("I should be on the Meditation challenge progress screen", then.idVisible(ids.CHALLENGE_PROGRESS_SCREEN("meditation")))
                 Then("I should no longer see the modal", then.textNotVisible("Choose an app to start"))
             })
         })
@@ -152,7 +152,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         })
         When("I send the mindfulness data", when.sendMindfulnessData(300), async () => {
             When("I start a meditation challenge", when.startMeditationChallengeFromQuests(175), async () => {
-                Then("I should see the meditation modal", then.meditationAppModalVisible)
+                Then("I should be on the Meditation challenge progress screen", then.idVisible(ids.CHALLENGE_PROGRESS_SCREEN("meditation")))
                 Then("I should no longer see the modal", then.textNotVisible("Choose an app to start"))
                     
             })

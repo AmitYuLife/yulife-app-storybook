@@ -17,7 +17,6 @@ export const {
 export const {
     onChallengeComplete,
     onMeditationChallengeComplete,
-    meditationAppModalVisible
 } = screens.challenges
 
 export const onMeditation = async () => {

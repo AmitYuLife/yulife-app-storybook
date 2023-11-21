@@ -4,7 +4,7 @@ import { IConnectedScreenProps } from "../../../../../typings";
 import styles from "./challenge-progress.screen.styles";
 import Exit from "./subcomponents/exit";
 import ProgressBar from "./subcomponents/progress-bar";
-import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR } from "@ids";
+import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR, CHALLENGE_PROGRESS_SCREEN } from "@ids";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Image } from "@atoms";
 import { PressableWithDelay, TertiaryButton } from "@molecules";
@@ -103,9 +103,11 @@ function ChallengeProgressScreen({
   );
 
   const menuLabel = heading || challengeType || "";
-
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, { backgroundColor: backgroundColour }])}>
+    <View
+      style={StyleSheet.flatten([styles.wrapper, { backgroundColor: backgroundColour }])}
+      testID={CHALLENGE_PROGRESS_SCREEN(challengeType)}
+    >
       <GenericHeadingPad />
       <Image
         width={Style.DEVICE_WIDTH}
