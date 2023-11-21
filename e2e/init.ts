@@ -1,5 +1,3 @@
-const detoxInstance = require("detox");
-
 import * as path from "path";
 import { socketServer } from "./_utils/socket";
 import { dataManager } from "@yu-life/yulife-bdd-framework";
@@ -41,7 +39,6 @@ beforeAll(async () => {
 
 // comment out for detox debugging/dev
 afterAll(async () => {
-  await detoxInstance.cleanup();
   await socketServer.close();
   await dataManager.resetData();
 });

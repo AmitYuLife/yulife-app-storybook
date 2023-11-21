@@ -32,7 +32,7 @@
     "detox:test:base:sa": "API_URL=http://localhost:5002/  yarn detox:test:base",
     "detox:test:base:uk": "API_URL=http://localhost:5000/  yarn detox:test:base",
     "detox:test:base:us": "API_URL=http://localhost:5001/  yarn detox:test:base",
-    "detox:test:base": "TS_NODE_PROJECT=./e2e/tsconfig.json yarn detox test --cleanup -c ios.sim.debug --loglevel verbose --json --outputFile=e2e-report/results.json",
+    "detox:test:base": "TS_NODE_PROJECT=./e2e/tsconfig.json yarn detox test -i --cleanup -c ios.sim.debug --loglevel verbose --json --outputFile=e2e-report/results.json",
     "detox:usa": "yarn detox:test:base:us e2e/04_USA/**/*.spec.ts",
     "detox:sa": "yarn detox:test:base:sa e2e/05_SA/**/*.spec.ts",
     "develop:workflow": "bitrise :workflow-editor",
@@ -171,7 +171,7 @@
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-react-native-web": "^0.18.10",
     "babel-plugin-transform-remove-console": "^6.9.4",
-    "detox": "19.13.0",
+    "detox": "20.13.5",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-config-react": "^1.1.7",
@@ -219,43 +219,8 @@
       "./assets/fonts/"
     ]
   },
-  "detox": {
-    "plugins": {
-      "screenshot": {
-        "enabled": true,
-        "shouldTakeAutomaticSnapshots": true,
-        "keepOnlyFailedTestsArtifacts": false,
-        "takeWhen": {
-          "testStart": true,
-          "testDone": true,
-          "appNotReady": true
-        }
-      }
-    },
-    "configurations": {
-      "ios.sim.debug": {
-        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/YuLife.app",
-        "build": "xcodebuild -workspace ios/YuLife.xcworkspace -scheme local -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
-        "type": "ios.simulator",
-        "device": {
-          "type": "iPhone 14 Pro"
-        }
-      },
-      "ios.sim.release": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/YuLife.app",
-        "build": "xcodebuild -workspace ios/YuLife.xcworkspace -scheme local -configuration Release -sdk iphonesimulator -derivedDataPath ios/build EXCLUDED_ARCHS=arm64",
-        "type": "ios.simulator",
-        "name": "iPhone 14 Pro"
-      }
-    },
-    "test-runner": "jest",
-    "runner-config": "e2e/jest.config.ts"
-  },
   "config": {
     "translatedLocales": "en-US,ja-JP,es-US"
   },
-  "snyk": true,
-  "jestJsonReporter": {
-    "outputFile": "e2e-report/results.json"
-  }
+  "snyk": true
 }
