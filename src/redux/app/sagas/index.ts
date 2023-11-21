@@ -20,6 +20,7 @@ import checkConnectionSaga from "./checkConnection.saga";
 import showOfflineScreenSaga from "./showOfflineScreen.saga";
 import loggingNetworkState from "./loggingNetworkState.saga";
 import logDeviceStateSaga from "./logDeviceStateSaga.saga";
+import checkDateChangedSaga from "./checkDateChanged.saga";
 import listenToMemoryWarning from "./listenToMemoryWarning.saga";
 import cancelExpiredChalllengeSaga from "./cancelExpiredChallengesSaga";
 // import logBreadcrumbsSaga from "./logBreadcrumbs.saga";
@@ -39,6 +40,7 @@ export default [
   takeLatest(CHECK_CONNECTION, checkConnectionSaga),
   takeLatest(UPDATE_OFFLINE_STATE, showOfflineScreenSaga),
   takeEvery("*", logDeviceStateSaga),
+  takeEvery("*", checkDateChangedSaga),
   // takeEvery("*", logBreadcrumbsSaga), // disabled, leads to memory leaks on iOS when dropping big breadcrumbs,
   // need @bugsnag/react-native version >= 7.3 to work properly
   // https://github.com/bugsnag/bugsnag-react-native/issues/467
