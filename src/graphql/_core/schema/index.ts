@@ -46,6 +46,7 @@ export * from "./ContentItemFullScreenLottieSwiper";
 export * from "./ContentItemFullScreenSwiper";
 export * from "./ContentItemGpDetails";
 export * from "./ContentItemHeaderBar";
+export * from "./ContentItemHint";
 export * from "./ContentItemImage";
 export * from "./ContentItemInfoButton";
 export * from "./ContentItemInfoCard";

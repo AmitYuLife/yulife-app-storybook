@@ -19,6 +19,7 @@ import {
   ContentItemText,
   ContentItemButton,
   ContentItemRowIconTextBanner,
+  ContentItemHint,
 } from "@components/sdui";
 import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED } from "@graphql/personalProduct/getPersonalProductStepDetached.gql";
 import { GetPersonalProductStepDetached_getPersonalProductStepDetached_body as GPPSSQ_Body } from "@graphql/_core/schema";
@@ -234,6 +235,8 @@ const renderItemContent = (item: GPPSSQ_Body): JSX.Element => {
       return <ProductStepMarkdown key={item.id} {...item} />;
     case "ContentItemRowIconTextBanner":
       return <ContentItemRowIconTextBanner key={item.id} {...item} />;
+    case "ContentItemHint":
+      return <ContentItemHint key={item.id} {...item} />;
     default:
       return null;
   }

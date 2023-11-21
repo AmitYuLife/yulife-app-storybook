@@ -994,6 +994,31 @@ export interface ContentItem_ContentItemDatePicker {
   styles: ContentItem_ContentItemDatePicker_styles[] | null;
 }
 
+export interface ContentItem_ContentItemHint_hintImage {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItem_ContentItemHint_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItem_ContentItemHint_styles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemHint {
+  __typename: "ContentItemHint";
+  id: string;
+  hintTitle: string;
+  description: string;
+  hintImage: ContentItem_ContentItemHint_hintImage;
+  onPress: ContentItem_ContentItemHint_onPress | null;
+  styles: ContentItem_ContentItemHint_styles[] | null;
+}
+
 export type ContentItem =
   | ContentItem_ContentItemProcessingTimer
   | ContentItem_ContentItemMarkdown
@@ -1019,4 +1044,5 @@ export type ContentItem =
   | ContentItem_ContentItemBoxOptionCard
   | ContentItem_ContentItemSwitch
   | ContentItem_ContentItemShowHideBalance
-  | ContentItem_ContentItemDatePicker;
+  | ContentItem_ContentItemDatePicker
+  | ContentItem_ContentItemHint;

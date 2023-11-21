@@ -582,6 +582,31 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
     | null;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemHint_hintImage {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemHint_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemHint_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemHint {
+  __typename: "ContentItemHint";
+  id: string;
+  hintTitle: string;
+  description: string;
+  hintImage: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemHint_hintImage;
+  onPress: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemHint_onPress | null;
+  styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemHint_styles[] | null;
+}
+
 export type GetYuScreenProductDetails_getYuScreenProductDetails_body =
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemCollapsingGenericHeader
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader
@@ -598,7 +623,8 @@ export type GetYuScreenProductDetails_getYuScreenProductDetails_body =
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemYuCoinPower
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemLinearGradient
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProcessingTimer
-  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemWrapper;
+  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemWrapper
+  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemHint;
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemProductDetailsHeader {
   __typename:
@@ -620,7 +646,8 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_Cont
     | "ContentItemMarkdown"
     | "ContentItemYuCoinPower"
     | "ContentItemWrapper"
-    | "ContentItemRewardsBanner";
+    | "ContentItemRewardsBanner"
+    | "ContentItemHint";
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_footer_ContentItemButton_onPress {
@@ -730,7 +757,8 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_Cont
     | "ContentItemMarkdown"
     | "ContentItemYuCoinPower"
     | "ContentItemWrapper"
-    | "ContentItemRewardsBanner";
+    | "ContentItemRewardsBanner"
+    | "ContentItemHint";
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_header_ContentItemHeaderBar_onLeftIconPress {
@@ -811,7 +839,8 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_it
     | "ContentItemMarkdown"
     | "ContentItemYuCoinPower"
     | "ContentItemWrapper"
-    | "ContentItemRewardsBanner";
+    | "ContentItemRewardsBanner"
+    | "ContentItemHint";
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemPad_styles {

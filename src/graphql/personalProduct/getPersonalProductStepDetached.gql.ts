@@ -13,6 +13,7 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_PERSONAL_PRODUCT_FAQS,
   GQL_FRAGMENT_CONTENT_ITEM_PERSONAL_PRODUCT_DOCUMENTS,
   GQL_FRAGMENT_CONTENT_ITEM_DROPDOWN_INPUT,
+  GQL_FRAGMENT_CONTENT_ITEM_HINT,
 } from "@graphql/_fragments/content.gql";
 
 export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED = gql`
@@ -29,6 +30,7 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN}
   ${GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER}
   ${GQL_FRAGMENT_CONTENT_ITEM_DROPDOWN_INPUT}
+  ${GQL_FRAGMENT_CONTENT_ITEM_HINT}
 
   query GetPersonalProductStepDetached($productId: String!, $stepId: String!) {
     getPersonalProductStepDetached(productId: $productId, stepId: $stepId) {
@@ -75,6 +77,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED = gql`
         }
         ... on ContentItemDropdownInput {
           ...ContentItemDropdownInput
+        }
+        ... on ContentItemHint {
+          ...ContentItemHint
         }
       }
     }

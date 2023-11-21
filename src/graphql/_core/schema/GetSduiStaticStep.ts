@@ -1006,6 +1006,31 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemDatePicker 
   styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemDatePicker_styles[] | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemHint_hintImage {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemHint_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemHint_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemHint {
+  __typename: "ContentItemHint";
+  id: string;
+  hintTitle: string;
+  description: string;
+  hintImage: GetSduiStaticStep_getSduiStaticStep_body_ContentItemHint_hintImage;
+  onPress: GetSduiStaticStep_getSduiStaticStep_body_ContentItemHint_onPress | null;
+  styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemHint_styles[] | null;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemProcessingTimer
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemMarkdown
@@ -1031,7 +1056,8 @@ export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemSwitch
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemShowHideBalance
-  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemDatePicker;
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemDatePicker
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemHint;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProcessingTimer {
   __typename:
@@ -2030,6 +2056,31 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemDa
   styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemDatePicker_styles[] | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHint_hintImage {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHint_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHint_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHint {
+  __typename: "ContentItemHint";
+  id: string;
+  hintTitle: string;
+  description: string;
+  hintImage: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHint_hintImage;
+  onPress: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHint_onPress | null;
+  styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHint_styles[] | null;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProcessingTimer
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown
@@ -2055,7 +2106,8 @@ export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSwitch
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemShowHideBalance
-  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemDatePicker;
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemDatePicker
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHint;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_styles {
   property: string;

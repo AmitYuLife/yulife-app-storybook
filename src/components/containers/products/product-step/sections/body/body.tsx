@@ -40,6 +40,7 @@ import {
   ContentItemYuCoinPower,
   ContentItemRowIconTextBanner,
   ContentItemCostPayoutBenefitCard,
+  ContentItemHint,
 } from "@components/sdui";
 import { ProductStepContext } from "../../product-step.context";
 import { ProductStepContentItemGpDetails } from "../../subcomponents/product-step.gp-details";
@@ -173,6 +174,8 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ContentItemCostPayoutBenefitCard key={item.id} {...item} />;
     case "ContentItemDropdownInput":
       return <ProductItemDropdownInput key={item.id} {...item} />;
+    case "ContentItemHint":
+      return <ContentItemHint key={item.id} {...item} />;
     default:
       return null;
   }

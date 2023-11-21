@@ -5,14 +5,16 @@ import colours from "@styles/colours";
 import { memo, useCallback, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
+import { TouchableOpacityWithDelay } from "..";
 
 interface IHintProps {
   label: string;
   description: string;
   image: { uri: string };
+  onPress?: () => void;
 }
 
-const Hint = ({ label, description, image }: IHintProps) => {
+const Hint = ({ label, description, image, onPress }: IHintProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const onLoad = useCallback(() => {
@@ -23,8 +25,10 @@ const Hint = ({ label, description, image }: IHintProps) => {
     opacity: withTiming(isLoading ? 0 : 1, { duration: 400 }),
   }));
 
+  const Wrapper = onPress ? TouchableOpacityWithDelay : View;
+
   return (
-    <View style={styles.wrapper}>
+    <Wrapper onPress={onPress} style={styles.wrapper}>
       <View style={styles.container}>
         <View style={styles.contentContainer}>
           <View style={styles.titleContainer}>
@@ -52,7 +56,7 @@ const Hint = ({ label, description, image }: IHintProps) => {
           </Animated.View>
         </View>
       </View>
-    </View>
+    </Wrapper>
   );
 };
 

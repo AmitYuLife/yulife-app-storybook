@@ -1004,6 +1004,31 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemDatePicker {
   styles: GetSduiJourney_getSduiJourney_body_ContentItemDatePicker_styles[] | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemHint_hintImage {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemHint_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemHint_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemHint {
+  __typename: "ContentItemHint";
+  id: string;
+  hintTitle: string;
+  description: string;
+  hintImage: GetSduiJourney_getSduiJourney_body_ContentItemHint_hintImage;
+  onPress: GetSduiJourney_getSduiJourney_body_ContentItemHint_onPress | null;
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemHint_styles[] | null;
+}
+
 export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_body_ContentItemMarkdown
@@ -1029,7 +1054,8 @@ export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard
   | GetSduiJourney_getSduiJourney_body_ContentItemSwitch
   | GetSduiJourney_getSduiJourney_body_ContentItemShowHideBalance
-  | GetSduiJourney_getSduiJourney_body_ContentItemDatePicker;
+  | GetSduiJourney_getSduiJourney_body_ContentItemDatePicker
+  | GetSduiJourney_getSduiJourney_body_ContentItemHint;
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer {
   __typename:
@@ -2022,6 +2048,31 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePick
   styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker_styles[] | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemHint_hintImage {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemHint_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemHint_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemHint {
+  __typename: "ContentItemHint";
+  id: string;
+  hintTitle: string;
+  description: string;
+  hintImage: GetSduiJourney_getSduiJourney_absolute_item_ContentItemHint_hintImage;
+  onPress: GetSduiJourney_getSduiJourney_absolute_item_ContentItemHint_onPress | null;
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemHint_styles[] | null;
+}
+
 export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown
@@ -2047,7 +2098,8 @@ export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemSwitch
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemShowHideBalance
-  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker;
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemHint;
 
 export interface GetSduiJourney_getSduiJourney_absolute_styles {
   property: string;

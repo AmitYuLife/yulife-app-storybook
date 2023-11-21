@@ -71,3 +71,4 @@ export * from "./contentItem.gql";
 export * from "./absoluteContentItem.gql";
 export * from "./contentItemDropdownInput";
 export * from "./contentItemWrapper.gql";
+export * from "./contentItemHint.gql";
