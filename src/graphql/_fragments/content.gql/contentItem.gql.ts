@@ -22,7 +22,8 @@ import { GQL_FRAGMENT_CONTENT_ITEM_INFO_CARD } from "./contentItemInfoCard.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_BOX_OPTION_CARD } from "./contentItemBoxOptionCard.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_SWITCH } from "./contentItemSwitch.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_SHOW_HIDE_BALANCE } from "./contentItemShowHideBalance.gql";
-import { GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER } from "@graphql/_fragments/content.gql/contentItemDatePicker.gql";
+import { GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER } from "./contentItemDatePicker.gql";
+import { GQL_FRAGMENT_CONTENT_ITEM_HINT } from "./contentItemHint.gql";
 
 export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN}
@@ -49,6 +50,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_SWITCH}
   ${GQL_FRAGMENT_CONTENT_ITEM_SHOW_HIDE_BALANCE}
   ${GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER}
+  ${GQL_FRAGMENT_CONTENT_ITEM_HINT}
 
   fragment ContentItem on ContentItem {
     __typename
@@ -123,6 +125,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
     }
     ... on ContentItemDatePicker {
       ...ContentItemDatePicker
+    }
+    ... on ContentItemHint {
+      ...ContentItemHint
     }
   }
 `;

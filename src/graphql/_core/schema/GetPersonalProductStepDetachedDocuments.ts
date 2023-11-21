@@ -59,7 +59,8 @@ export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepD
     | "ContentItemAppDownloadPrompt"
     | "ContentItemPerksComparison"
     | "ContentItemDropdownInput"
-    | "ContentItemRewardsBanner";
+    | "ContentItemRewardsBanner"
+    | "ContentItemHint";
 }
 
 export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepDetachedDocuments_body_ContentItemPersonalProductDocuments_headingImage_image {

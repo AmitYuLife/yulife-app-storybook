@@ -15,6 +15,7 @@ import {
   ContentItemYuCoinPower,
   ContentItemLinearGradient,
   ContentItemWrapper,
+  ContentItemHint,
 } from "@components/sdui";
 import { ProductDetailsButton } from "../subcomponents/product-details.button";
 import media from "@styles/media";
@@ -98,6 +99,8 @@ const renderItemContent = (item: BodyItems): JSX.Element => {
       return <ContentItemLinearGradient key={item.id} {...item} />;
     case "ContentItemWrapper":
       return <ContentItemWrapper key={item.id} {...item} />;
+    case "ContentItemHint":
+      return <ContentItemHint key={item.id} {...item} />;
     default:
       return null;
   }

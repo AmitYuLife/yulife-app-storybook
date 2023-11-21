@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -13,6 +13,9 @@ export interface CancelQuestMapLevelChallenge_cancelQuestMapLevelChallenge {
 }
 
 export interface CancelQuestMapLevelChallenge {
+  /**
+   * contentId is deprecated starting with 3.108 client version
+   */
   cancelQuestMapLevelChallenge: CancelQuestMapLevelChallenge_cancelQuestMapLevelChallenge | null;
 }
 

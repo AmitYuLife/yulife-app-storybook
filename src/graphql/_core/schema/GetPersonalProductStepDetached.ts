@@ -768,6 +768,31 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   selectInstruction: string | null;
 }
 
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemHint_hintImage {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemHint_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemHint_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemHint {
+  __typename: "ContentItemHint";
+  id: string;
+  hintTitle: string;
+  description: string;
+  hintImage: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemHint_hintImage;
+  onPress: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemHint_onPress | null;
+  styles: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemHint_styles[] | null;
+}
+
 export type GetPersonalProductStepDetached_getPersonalProductStepDetached_body =
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemLottie
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPersonalProductFaqs
@@ -782,7 +807,8 @@ export type GetPersonalProductStepDetached_getPersonalProductStepDetached_body =
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPad
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemMarkdown
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner
-  | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemDropdownInput;
+  | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemDropdownInput
+  | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemHint;
 
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached {
   stepId: string;

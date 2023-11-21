@@ -1765,6 +1765,31 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemD
   selectInstruction: string | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemHint_hintImage {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemHint_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemHint_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemHint {
+  __typename: "ContentItemHint";
+  id: string;
+  hintTitle: string;
+  description: string;
+  hintImage: GetPersonalProductStep_getPersonalProductStep_body_ContentItemHint_hintImage;
+  onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemHint_onPress | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemHint_styles[] | null;
+}
+
 export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemProgressBar
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput
@@ -1800,7 +1825,8 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemCostPayoutBenefitCard
-  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemDropdownInput;
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemDropdownInput
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemHint;
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemLottie {
   __typename:
@@ -1849,7 +1875,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemAppDownloadPrompt"
     | "ContentItemPerksComparison"
     | "ContentItemDropdownInput"
-    | "ContentItemRewardsBanner";
+    | "ContentItemRewardsBanner"
+    | "ContentItemHint";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -2139,7 +2166,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemAppDownloadPrompt"
     | "ContentItemPerksComparison"
     | "ContentItemDropdownInput"
-    | "ContentItemRewardsBanner";
+    | "ContentItemRewardsBanner"
+    | "ContentItemHint";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
@@ -2353,7 +2381,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemAppDownloadPrompt"
     | "ContentItemPerksComparison"
     | "ContentItemDropdownInput"
-    | "ContentItemRewardsBanner";
+    | "ContentItemRewardsBanner"
+    | "ContentItemHint";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {

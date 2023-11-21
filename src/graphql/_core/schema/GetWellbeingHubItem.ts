@@ -59,7 +59,8 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemTextInp
     | "ContentItemStages"
     | "ContentItemMarkdownBlock"
     | "ContentItemSwitch"
-    | "ContentItemShowHideBalance";
+    | "ContentItemShowHideBalance"
+    | "ContentItemHint";
 }
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText_styles {

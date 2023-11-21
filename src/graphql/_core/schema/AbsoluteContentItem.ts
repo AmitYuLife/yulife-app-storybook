@@ -994,6 +994,31 @@ export interface AbsoluteContentItem_item_ContentItemDatePicker {
   styles: AbsoluteContentItem_item_ContentItemDatePicker_styles[] | null;
 }
 
+export interface AbsoluteContentItem_item_ContentItemHint_hintImage {
+  id: string;
+  uri: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemHint_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemHint_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemHint {
+  __typename: "ContentItemHint";
+  id: string;
+  hintTitle: string;
+  description: string;
+  hintImage: AbsoluteContentItem_item_ContentItemHint_hintImage;
+  onPress: AbsoluteContentItem_item_ContentItemHint_onPress | null;
+  styles: AbsoluteContentItem_item_ContentItemHint_styles[] | null;
+}
+
 export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemProcessingTimer
   | AbsoluteContentItem_item_ContentItemMarkdown
@@ -1019,7 +1044,8 @@ export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemBoxOptionCard
   | AbsoluteContentItem_item_ContentItemSwitch
   | AbsoluteContentItem_item_ContentItemShowHideBalance
-  | AbsoluteContentItem_item_ContentItemDatePicker;
+  | AbsoluteContentItem_item_ContentItemDatePicker
+  | AbsoluteContentItem_item_ContentItemHint;
 
 export interface AbsoluteContentItem_styles {
   property: string;
