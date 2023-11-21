@@ -274,4 +274,27 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should see a message that the next level will be available in 12 hours", then.nextLevelLocked)
         })
     }) 
+
+    Scenario("I am able to start a meditation challenge, close, then reopen the app", scenario.start, () =>{
+        Given("I login as a user who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_13, data.AUTH_13), async () => {
+            Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(50200)))
+        })
+        When("I send the mindfulness data", when.sendMindfulnessData(500), async () => {
+            When("I start a meditation challenge", when.startMeditationChallengeFromQuests(175), async () => {
+                Then("I should be on the Meditation challenge progress screen", then.idVisible(ids.CHALLENGE_PROGRESS_SCREEN("meditation")))
+            })
+        })
+        When("I close and reopen the app", when.closeAndReopenApp, async()=>{
+            Then("I should be on the Meditation challenge progress screen", then.idVisible(ids.CHALLENGE_PROGRESS_SCREEN("meditation")))
+        })
+        When("I wait for the challenge to complete", when.wait(50000), async()=>{
+            Then("I should see the Collect button", then.textVisible("Collect"))
+        })
+        When("I click collect", when.tapText("Collect"), async()=>{
+            When("I tap Done", when.tapText("Done"), async()=>{
+                Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(50250)))
+                Then("I should see the level 175 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(175)))
+            })
+        })
+    })
 })

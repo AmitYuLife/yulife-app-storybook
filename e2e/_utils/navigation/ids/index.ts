@@ -59,6 +59,7 @@ export const MEDIA_PORTRAIT_CLOSE = "MEDIA_PORTRAIT_CLOSE"
 export const CHALLENGE_SET_SCROLL = "CHALLENGE_SET_SCROLL"
 export const REWARDS_LIST_SCREEN_SCROLL = "REWARDS_LIST_SCREEN_SCROLL"
 export const SDUI_BODY_SCROLL = "SDUI_BODY_SCROLL"
+export const CHALLENGE_PROGRESS_SCREEN = (challengeType:string) => `CHALLENGE_PROGRESS_SCREEN_${challengeType}`
 
 // buttons
 export const BUTTON_LOGIN = (disabled: boolean) => `BUTTON_LOGIN_${disabled})`;

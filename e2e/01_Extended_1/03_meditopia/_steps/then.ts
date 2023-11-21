@@ -15,7 +15,6 @@ export const {
 export const {
     onChallengeComplete,
     onMeditationChallengeComplete,
-    meditationAppModalVisible,
     onMeditationContentIntroScreen,
     onMeditopiaChallengeComplete,
     pauseChallengeTimeVisible,

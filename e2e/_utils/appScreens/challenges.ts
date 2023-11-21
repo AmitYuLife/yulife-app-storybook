@@ -40,12 +40,6 @@ export const onMeditationChallengeComplete = (minutes: number, level: number) =>
 
 }
 
-export const meditationAppModalVisible = async () => {
-  await textVisible("Choose an app to start")
-  await idVisible(ids.CALM_BUTTON)
-  await idVisible(ids.HEADSPACE_BUTTON)
-}
-
 export const startChallenge = (challengeTile: string,) => async () => {
   await navigateViaID(ids.CHALLENGE_TILE(challengeTile))
   await navigateViaText(t("Take challenge"))

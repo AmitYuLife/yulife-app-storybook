@@ -245,3 +245,13 @@ export const getDuration = (seconds: number) => {
   const formatString = seconds > 60 * 60 ? SUDOKU_TIME_FORMAT_LONG : SUDOKU_TIME_FORMAT;
   return moment.utc(seconds * 1000).format(formatString);
 };
+
+export const closeAndReopenApp = async () =>{
+    await device.sendToHome();
+    await device.launchApp({ newInstance: false });
+}
+
+export const quitAndReopenApp = async () => {
+    await device.terminateApp();
+    await device.launchApp({ newInstance: false });
+}

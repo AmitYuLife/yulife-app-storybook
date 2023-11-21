@@ -1,6 +1,6 @@
 import { screens } from "@appScreens"
 import { navigation } from "@utils"
-export { authoriseFitkit, sendSteps } from "@socket";
+export { authoriseFitkit, sendSteps, sendMindfulnessData, closeAndReopenApp, quitAndReopenApp } from "@socket";
 import * as ids from "@ids"
 import { sendSteps } from "@socket";
 import { getLocalisedString as t } from "@i18n"
@@ -21,6 +21,7 @@ export const {
 
 export const {
     startChallenge,
+    startMeditationChallengeFromQuests
 } = screens.challenges
 
 export const tapChallenge = (challenge: string) => async () => {
