@@ -139,7 +139,8 @@ const getLevelProps = (
   currentLevel: number,
   avatar: { uri: string },
   submitUnity: (levelId: string) => void,
-  isLast: boolean
+  isLast: boolean,
+  useHalfModalsForQuestMap: boolean
 ): ILevelProps => {
   const levelButtonState = getLevelButtonState(challengesStatus, yuniversalLevel, level.level, isLast);
 
@@ -245,6 +246,7 @@ const getLevelProps = (
         icon: lockIcon,
         onPress: () =>
           showLevelUnavailableModal({
+            useHalfModalsForQuestMap,
             name: levelSlot.name,
             level: level.level,
           }),
@@ -261,7 +263,8 @@ export const getLevelsProps = (
   nextLevelAvailableAt: string,
   currentLevel: number,
   avatar: { uri: string },
-  submitUnity: (levelId: string) => void
+  submitUnity: (levelId: string) => void,
+  useHalfModalsForQuestMap: boolean
 ): ILevelProps[] =>
   levelList.reduce((acc, level, index) => {
     const levelProps = getLevelProps(
@@ -274,7 +277,8 @@ export const getLevelsProps = (
       currentLevel,
       avatar,
       submitUnity,
-      index === levelList.length - 1
+      index === levelList.length - 1,
+      useHalfModalsForQuestMap
     );
     if (levelProps) {
       acc.push(levelProps);

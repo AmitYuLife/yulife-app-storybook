@@ -10,3 +10,7 @@ export type QuestDetailModalProps = {
   onPressCtaDismiss?: VoidFunction;
   type: QuestDetailModalType;
 };
+
+export type QuestFeatureToggles = {
+  useHalfModalsForQuestMap: boolean;
+};

@@ -413,6 +413,10 @@ const routesForRegistration = [
     component: require("../components/modals/generic-overlay/generic-overlay-template").default,
   },
   {
+    name: MODALS.levelUnavailable,
+    component: require("../components/modals/level-unavailable/level-unavailable.modal").default,
+  },
+  {
     name: MODALS.pushNotifications,
     component: require("../components/modals/push-notifications/push-notifications.modal").default,
   },

@@ -4,6 +4,7 @@ export { default as CollectRewardModal } from "./collect-reward/collect-reward.m
 export { default as FeedbackModal } from "./feedback/feedback.modal";
 export { default as GenericModal } from "./generic-modal/generic-modal";
 export { default as GenericConnectionErrorModal } from "./generic-modal/generic-connection-error-modal";
+export { default as LevelUnavailableModal } from "./level-unavailable/level-unavailable.modal";
 export { default as PushNotificationsModal } from "./push-notifications/push-notifications.modal";
 export { default as StreaksModal } from "./streaks/streaks.modal";
 export { default as DuelInviteModal } from "./duels/duel-invite.modal";
