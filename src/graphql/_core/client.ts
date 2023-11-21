@@ -6,6 +6,7 @@ import { ApolloClient, NormalizedCacheObject, from, createHttpLink } from "@apol
 import moment from "moment";
 import { Platform } from "react-native";
 import Config from "react-native-config";
+import { apolloDevToolsInit } from "react-native-apollo-devtools-client";
 import DeviceInfo from "react-native-device-info";
 import { store } from "@redux/_core/store";
 import getClient from "@services/bugsnag";
@@ -94,6 +95,10 @@ export default () => {
       cache: gqlInMemoryCache(),
       link: from([authMiddleware(), retryLink, httpLink()]),
     });
+
+    if (__DEV__) {
+      apolloDevToolsInit(defaultClient);
+    }
   }
 
   return defaultClient;
