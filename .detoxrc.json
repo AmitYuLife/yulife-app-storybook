@@ -1,0 +1,41 @@
+{
+  "testRunner": {
+    "args": {
+      "$0": "jest",
+      "config": "e2e/jest.config.ts"
+    },
+    "jest": {
+      "setupTimeout": 120000
+    }
+  },
+  "apps": {
+    "ios.debug": {
+      "type": "ios.app",
+      "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/YuLife.app",
+      "build":
+        "xcodebuild -workspace ios/YuLife.xcworkspace -scheme local -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build"
+    },
+    "ios.release": {
+      "type": "ios.app",
+      "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/YuLife.app",
+      "build":
+        "xcodebuild -workspace ios/YuLife.xcworkspace -scheme local -configuration Release -sdk iphonesimulator -derivedDataPath ios/build EXCLUDED_ARCHS=arm64"
+    }
+  },
+  "devices": {
+    "ios.simulator": {
+      "type": "ios.simulator",
+      "device": { "type": "iPhone 14 Pro" }
+    }
+  },
+  "configurations": {
+    "ios.sim.debug": {
+      "device": "ios.simulator",
+      "app": "ios.debug"
+    },
+    "ios.sim.release": {
+      "device": "ios.simulator",
+      "app": "ios.release"
+    }
+  }
+}

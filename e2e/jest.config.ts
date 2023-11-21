@@ -1,7 +1,7 @@
 import { pathsToModuleNameMapper } from 'ts-jest'
 import { compilerOptions } from './tsconfig.json'
 import type { JestConfigWithTsJest } from 'ts-jest'
-import {mapValues} from 'lodash'
+import { mapValues } from 'lodash'
 
 const pathObj = pathsToModuleNameMapper(compilerOptions.paths)
 
@@ -12,7 +12,6 @@ const jestConfig: JestConfigWithTsJest = {
   testMatch: ["**/*.spec.ts"],
   verbose: true,
   preset: "ts-jest",
-  testEnvironment: __dirname + "/environment",
   reporters: [
     "default",
 	  ["../node_modules/jest-html-reporters", { "publicPath": "./e2e-report" }],
@@ -20,7 +19,10 @@ const jestConfig: JestConfigWithTsJest = {
   modulePaths: [__dirname],
   moduleNameMapper: mapValues(pathObj, v => `<rootDir>/${v}`),
   resolver: undefined,
-  setupFilesAfterEnv: ['./init.ts']
+  setupFilesAfterEnv: ['./init.ts'],
+  globalSetup: 'detox/runners/jest/globalSetup',
+  globalTeardown: 'detox/runners/jest/globalTeardown',
+  testEnvironment: 'detox/runners/jest/testEnvironment',
 }
 
 export default jestConfig

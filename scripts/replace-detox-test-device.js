@@ -1,6 +1,6 @@
 const path = require("path");
 const fs = require("fs");
-const pkg = require("../package.json");
+const config = require("../.detoxrc.json")
 
 const [_, __, deviceName] = process.argv;
 
@@ -9,10 +9,10 @@ if (!deviceName) {
   return;
 }
 
-pkg.detox.configurations["ios.sim.release"].name = deviceName;
+config.devices["ios.simulator"].device["type"] = deviceName
 
-var packageFile = path.join(__dirname, "..", "package.json");
-const toWrite = JSON.stringify(pkg, null, 2);
-fs.writeFileSync(packageFile, toWrite);
+var configFile = path.join(__dirname, "..", ".detoxrc.json");
+const toWrite = JSON.stringify(config, null, 2);
+fs.writeFileSync(configFile, toWrite);
 
-console.log(`Updated package.json detox config to run against ${deviceName}`);
+console.log(`Updated .detoxrc.json to run against ${deviceName}`);
