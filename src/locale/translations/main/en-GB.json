@@ -636,10 +636,10 @@
       "next": "The next one will be available in %{timeRemaining}"
     },
     "challenge_no_data": {
-      "title": "Looks like your activity\nisn't syncing!",
-      "description": "Double check that your health app is connected to YuLife. If your activity is safely recorded, and we're connected, let's try syncing up again.",
+      "title": "Oops! Your active challenge isn't syncing yet.",
+      "description": "We're missing your active challenge data. Make sure the challenge activity is synced within your health app. If you hit a snag, you can always cancel and give it another go.",
       "buttons": {
-        "retry": "Retry sync",
+        "retry": "Try sync again",
         "cancel_challenge": "Cancel challenge",
         "faq": "FAQs",
         "open_apple_health": "Open Apple Health App"
