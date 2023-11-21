@@ -23,6 +23,7 @@ import { getEpisode, getLevelStatus, getMinLevel, getSeperator } from "./quest-m
 import { first } from "lodash";
 import QuestMapScreen from "./quest-map.screen";
 import { Navigation } from "@navigation/main";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 const EPISODES_PER_PLANET = 32;
 const LEVELS_PER_WORLD = 200;
@@ -51,6 +52,7 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
   const challengesStatus = useSelector(getChallengesStatus);
   const [repeatedUnity, setRepeatedUnity] = useState(false);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
+  const features = useSelector(getUserFeatures);
 
   const nextLevelAvailableAt = useSelector(getNextLevelAvailableAt);
 
@@ -93,6 +95,7 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
           itemLevel,
           levelStatus,
           nextLevelAvailableAt,
+          useHalfModalsForQuestMap: features.useHalfModalsForQuestMap,
           levelUnavailableModalProps: {
             level: itemLevel.level,
             onPressCta: Navigation.dismissOverlayWithChild,

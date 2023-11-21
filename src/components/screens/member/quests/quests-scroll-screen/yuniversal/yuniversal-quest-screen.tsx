@@ -11,7 +11,7 @@ import { IConnectedScreenProps } from "@app/typings";
 import { GetQuestMap_levels } from "@graphql/_core/schema";
 import { getLevelsProps } from "./yuniversal-quest-screen.helpers";
 import { QUESTS_SCREEN_YUNIVERSAL } from "@ids";
-import { getUserAvatar } from "@redux/user/user.selectors";
+import { getUserAvatar, getUserFeatures } from "@redux/user/user.selectors";
 import { submitUnityAction } from "@redux/levels/levels.actions";
 
 const BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversal_quest_map_1.json");
@@ -35,6 +35,7 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
   const nextLevelAvailableAt = useSelector(getNextLevelAvailableAt);
   const currentLevel = useSelector(getCurrentLevel);
   const avatar = useSelector(getUserAvatar);
+  const features = useSelector(getUserFeatures);
 
   const submitUnity = useCallback(
     (levelId: string) => {
@@ -52,7 +53,8 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
     nextLevelAvailableAt,
     currentLevel,
     { uri: avatar?.avatarRemoteFiles?.pngMini },
-    submitUnity
+    submitUnity,
+    features.useHalfModalsForQuestMap
   );
 
   return (

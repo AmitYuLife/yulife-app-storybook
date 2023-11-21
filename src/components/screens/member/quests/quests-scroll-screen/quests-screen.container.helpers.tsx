@@ -5,7 +5,7 @@ import { ROUTES, bottomTabs, MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { t } from "@locale";
 import { ITodayChallengesStatus } from "@redux/levels/levels.selectors";
-import { QuestDetailModalProps } from "./quest-detail-modal/quest-detail-modal.types";
+import { QuestDetailModalProps, QuestFeatureToggles } from "./quest-detail-modal/quest-detail-modal.types";
 import { QuestDetailModal } from "./quest-detail-modal/quest-detail-modal.component";
 
 const dismissChestModal = () => Navigation.dismissModal(MODALS.chest);
@@ -86,16 +86,36 @@ export const showChallengeUnavailableModal = (nextAvailableAt: string, isYuniver
     },
   });
 
-export const showLevelUnavailableModal = ({ name, level, ...props }: Partial<QuestDetailModalProps>) =>
-  Navigation.showOverlayWithChild(
-    <QuestDetailModal
-      name={name}
-      level={level}
-      onPressCta={props.onPressCta || Navigation.dismissOverlayWithChild}
-      onPressClose={props.onPressClose || Navigation.dismissOverlayWithChild}
-      type="unavailable"
-    />
-  );
+export const showLevelUnavailableModal = ({
+  name,
+  level,
+  useHalfModalsForQuestMap,
+  ...props
+}: Partial<QuestDetailModalProps> & QuestFeatureToggles) => {
+  if (useHalfModalsForQuestMap) {
+    return Navigation.showOverlayWithChild(
+      <QuestDetailModal
+        name={name}
+        level={level}
+        onPressCta={props.onPressCta || Navigation.dismissOverlayWithChild}
+        onPressClose={props.onPressClose || Navigation.dismissOverlayWithChild}
+        type="unavailable"
+      />
+    );
+  }
+
+  showYuModal({
+    component: {
+      id: MODALS.levelUnavailable,
+      name: MODALS.levelUnavailable,
+      passProps: {
+        level,
+        name,
+        onPressCta: () => Navigation.dismissModal(MODALS.levelUnavailable),
+      },
+    },
+  });
+};
 
 export const showLevelCompleteModal = (
   componentId: string,
@@ -218,6 +238,7 @@ type HandlePressLevelItemParams = {
   handleSetUnity: (itemLevel: GetQuestMap_levels) => void;
   handleSubmitUnity: (itemLevel: GetQuestMap_levels) => void;
   levelUnavailableModalProps: Partial<QuestDetailModalProps>;
+  useHalfModalsForQuestMap: boolean;
 };
 
 export const handlePressLevelItem =
@@ -230,6 +251,7 @@ export const handlePressLevelItem =
     handleSetUnity,
     handleSubmitUnity,
     levelUnavailableModalProps,
+    useHalfModalsForQuestMap,
   }: HandlePressLevelItemParams) =>
   () => {
     const levelAvailable = getIsLevelAvailable(nextLevelAvailableAt);
@@ -255,6 +277,6 @@ export const handlePressLevelItem =
         return showChallengeUnavailableModal(nextLevelAvailableAt);
       case "ShowLevelUnavailableModal":
       default:
-        showLevelUnavailableModal(levelUnavailableModalProps);
+        showLevelUnavailableModal({ useHalfModalsForQuestMap, ...levelUnavailableModalProps });
     }
   };

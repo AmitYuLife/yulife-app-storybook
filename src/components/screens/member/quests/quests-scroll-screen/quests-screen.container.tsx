@@ -19,6 +19,7 @@ import { QuestsMapContext } from "./quests.context";
 import { GQL_QUERY_GET_GAME_WEEKLIES } from "@graphql/weeklies";
 import { useQueryOnScreenSeen } from "@hooks";
 import { ROUTES } from "@navigation/constants";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 function isAvailable(nextAvailableAt: string): boolean {
   const nextAvailable = nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
@@ -92,6 +93,7 @@ function QuestsScreenContainer(props: Props) {
   const [unity, setUnity] = useState<number | null>(null);
   const [levelId, setLevelId] = useState<string>(null);
   const [repeatedUnity, setRepeatedUnity] = useState(false);
+  const features = useSelector(getUserFeatures);
 
   const dispatch = useDispatch();
   const challengesStatus = useSelector(getChallengesStatus);
@@ -149,6 +151,7 @@ function QuestsScreenContainer(props: Props) {
             levelUnavailableModalProps: {
               level: itemLevel.level,
             },
+            useHalfModalsForQuestMap: features.useHalfModalsForQuestMap,
           }),
         };
       });
