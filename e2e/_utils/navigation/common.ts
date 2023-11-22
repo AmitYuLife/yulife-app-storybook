@@ -270,6 +270,7 @@ export const tryCatchTextVisible = (textArr, waitTime = 0) => async () => {
 export const completeOnboardingIntro = async () => {
     await navigateViaText("Next")
     await navigateViaText("Next")
+    await wait(1000)()
     await navigateViaText("Let's go")
 }
 
