@@ -20,10 +20,11 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             When("I tap next", when.tapText("Next"), async () => {
                 Then("I should be on the third duels intro screen", then.multipleTextVisible(["Out-step your opponent", "Let's go"]))
             })
-            When("I tap Let's go", when.tapText("Let's go"), async()=>{          
+            When("I tap Let's go", when.tapText("Let's go"), async()=>{
                 Then("I should be on the empty duels hub", then.onEmptyDuelsHub)
             })
             When("I tap challenge a colleague", when.tapID(ids.CHALLENGE_FRIEND_BUTTON), async()=>{
+                Then("I should see that my current YuCoin total is 220", then.textVisible("220"))
                 Then("I should be on the Search for a friend screen", then.textVisible("Search for a friend:"))
                 Then("I should see Angela Martin", then.textVisible("Angela Martin"))
             })
@@ -47,11 +48,12 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
                 Then("I should see a confirmation modal", then.textVisible("Confirm invitation?"))
             })
             When("I tap confirm", when.tapText("Confirm"), async()=>{
+                Then("I should see the correct amount deducted from my YuCoin total from the top bar", then.textVisible("195"))
                 Then("I should be on the duels hub", then.idVisible(ids.DUELS_HUB))
                 Then("I should see the duel I just requested", then.idVisible(ids.DUELS_HUB_INVITATION("Angela", "Martin", 25, "invited"), 5000))
             })
             When("I restart and login as the invited user", when.restartToDuelsRequest(data.CUSTOMER_19, data.AUTH_19), async()=>{
-                When("I close and reopen the app", when.reloadOnly, async()=>{  
+                When("I close and reopen the app", when.reloadOnly, async()=>{
                     When("I wait", when.wait(5000), async () => {
                         Then("I should see the vs screen", then.textVisible("Oscar has invited you to a 1-day duel for 25 YuCoin!"))
                     })
@@ -74,7 +76,7 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             })
         })
     })
-    
+
     Scenario("As a user who has accepted a duel, I am able to compete in it", scenario.start, async()=>{
         Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", data.CUSTOMER_17, data.AUTH_17), async () => {
             Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON))
@@ -95,7 +97,7 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             })
         })
     })
-    
+
     Scenario("I am able to view my won and lost duels", scenario.start, async()=>{
         Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", data.CUSTOMER_19, data.AUTH_19), async () => {
             Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON))
@@ -115,7 +117,7 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             Then("I should see the steps for this duel", then.idVisible(ids.DUEL_DESCRIPTION(400, 600)))
         })
     })
-    
+
     Scenario("I am able to view my past duels with deleted users", scenario.start, async()=>{
         Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", data.CUSTOMER_84, data.AUTH_84), async () => {
             Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON))
@@ -152,5 +154,5 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             })
         })
     })
-    
+
 })
