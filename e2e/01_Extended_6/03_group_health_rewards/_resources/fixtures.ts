@@ -58,7 +58,7 @@ export const BUPA_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
 
 export const GARMIN_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
   topImageUrl: "https://yulife-develop.imgix.net/reward/teaser/garmin-2023-07-24.png?ixlib=js-3.2.1&fm=png&w=555&s=0823079e15cf748fbf93a74613673909",
-  headerText: "Complete a challenge daily to unlock your fitness accessories*",
+  headerText: "Complete a challenge daily to unlock your Garmin smartwatch*",
   description: [
       "Track your fitness goals with a free Garmin Forerunner 55 smartwatch, and feel motivated to stay active every single day.",
       " *If you’d prefer not to have a smartwatch, £100 will be set aside for Great Ormond Street Hospital on your behalf instead."
