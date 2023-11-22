@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -1023,7 +1023,7 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemHint {
   __typename: "ContentItemHint";
   id: string;
   hintTitle: string;
-  description: string;
+  contentItemHintDescription: string;
   hintImage: GetSduiJourney_getSduiJourney_body_ContentItemHint_hintImage;
   onPress: GetSduiJourney_getSduiJourney_body_ContentItemHint_onPress | null;
   styles: GetSduiJourney_getSduiJourney_body_ContentItemHint_styles[] | null;
@@ -2067,7 +2067,7 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemHint {
   __typename: "ContentItemHint";
   id: string;
   hintTitle: string;
-  description: string;
+  contentItemHintDescription: string;
   hintImage: GetSduiJourney_getSduiJourney_absolute_item_ContentItemHint_hintImage;
   onPress: GetSduiJourney_getSduiJourney_absolute_item_ContentItemHint_onPress | null;
   styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemHint_styles[] | null;

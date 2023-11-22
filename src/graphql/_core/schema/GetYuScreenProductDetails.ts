@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -601,7 +601,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   __typename: "ContentItemHint";
   id: string;
   hintTitle: string;
-  description: string;
+  contentItemHintDescription: string;
   hintImage: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemHint_hintImage;
   onPress: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemHint_onPress | null;
   styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemHint_styles[] | null;

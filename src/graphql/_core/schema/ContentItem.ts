@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -1013,7 +1013,7 @@ export interface ContentItem_ContentItemHint {
   __typename: "ContentItemHint";
   id: string;
   hintTitle: string;
-  description: string;
+  contentItemHintDescription: string;
   hintImage: ContentItem_ContentItemHint_hintImage;
   onPress: ContentItem_ContentItemHint_onPress | null;
   styles: ContentItem_ContentItemHint_styles[] | null;
