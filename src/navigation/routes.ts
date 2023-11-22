@@ -165,14 +165,6 @@ const routesForRegistration = [
 
   // Leaderboard legacy
   {
-    hasMenu: true,
-    renderAfterMs: 450,
-    name: ROUTES.leaderboardsLegacy,
-    component:
-      require("../components/containers/member/leaderboard/_legacy/active-leaderboard/active-leaderboard.container")
-        .default,
-  },
-  {
     name: ROUTES.leaderboardInfoLegacy,
     component: require("../components/containers/member/leaderboard/_legacy/leaderboard-info/leaderboard-info").default,
   },

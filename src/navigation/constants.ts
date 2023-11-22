@@ -33,7 +33,6 @@ export const ROUTES = {
   leaderboardInfo: "yulife.member.LeaderboardInfo",
 
   // leaderboard legacy
-  leaderboardsLegacy: "yulife.member.Leaderboards.legacy",
   leaderboardInfoLegacy: "yulife.member.LeaderboardInfo.legacy",
   leaderboardsListLegacy: "yulife.member.LeaderboardsList.legacy",
   // end
