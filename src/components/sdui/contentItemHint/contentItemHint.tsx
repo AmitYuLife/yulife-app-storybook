@@ -6,7 +6,7 @@ import { mapServerStyles } from "../_utils/mapServerStyles";
 import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";
 
 export const ContentItemHint = memo((props: GqlHint) => {
-  const { hintTitle, description, hintImage, onPress, styles } = props;
+  const { hintTitle, contentItemHintDescription: description, hintImage, onPress, styles } = props;
 
   const mappedServerStyle = mapServerStyles(styles) || {};
   const { handleSduiAction: handlePress } = useSduiCallbackFunctionOrReduxAction(onPress);

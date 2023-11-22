@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -787,7 +787,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   __typename: "ContentItemHint";
   id: string;
   hintTitle: string;
-  description: string;
+  contentItemHintDescription: string;
   hintImage: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemHint_hintImage;
   onPress: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemHint_onPress | null;
   styles: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemHint_styles[] | null;

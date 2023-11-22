@@ -9,7 +9,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_HINT = gql`
   fragment ContentItemHint on ContentItemHint {
     id
     hintTitle
-    description
+    contentItemHintDescription: description
     hintImage {
       ...RemoteImage
     }
