@@ -376,10 +376,8 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })
-        When("I click the button", when.tapText(t("Got it!")), async () => {
-            When("I tap on the Living DNA reward", when.tapRewardInList(data.CORE_REWARDS_LIVING_DNA_GHI_REWARDS), async () => {
-                Then("I can see I have claimed the reward", then.onLivingDNARewardsClaimPage(fixtures.THRIVA_REWARDS_CLAIM_PAGE_DETAILS, false))
-            })
+        When("I click the button", when.tapText(t("Got it!")), async () => { 
+            Then("I can see I have claimed the reward", then.onLivingDNARewardsClaimPage(fixtures.THRIVA_REWARDS_CLAIM_PAGE_DETAILS, false))
         })
         When("I click to see my voucher", when.tapText(t("View vouchers")), async () => {
             Then("I can see the purchase for today for Living DNA", then.groupHealthRewardsPurchasedVisible(fixtures.LIVING_DNA_REWARDS_CLAIM_PAGE_DETAILS))
