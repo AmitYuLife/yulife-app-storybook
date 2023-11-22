@@ -41,18 +41,30 @@ export function useFitKit() {
         const startTime = moment().subtract(5, "days").startOf("day").format(DATE_FORMAT_WITH_TZ);
         const endTime = moment().format(DATE_FORMAT_WITH_TZ);
 
-        const res = await RNFitKit.aggregateQuery({
+        const args = {
           aggregateBy: {
-            bucketSize: { value: 1, type: FitKitTypes.TimeRange.DAYS },
+            bucketSize: {
+              value: 1,
+              type: FitKitTypes.TimeRange.DAYS,
+            },
             type: FitKitTypes.AggregateType.Time,
           },
           disableUserEntries: false,
           endTime,
           startTime,
+        };
+
+        const stepsResponse = await RNFitKit.aggregateQuery({
+          ...args,
           types: [FitKitTypes.Types.StepCount],
         });
 
-        isAuthorised = res && res.length > 0;
+        isAuthorised = stepsResponse?.length > 0;
+
+        if (!isAuthorised) {
+          const mindfulResponse = await RNFitKit.sampleQuery({ ...args, type: FitKitTypes.Types.MindfulSession });
+          isAuthorised = mindfulResponse?.length > 0;
+        }
       } else {
         isAuthorised = await RNFitKit.isAuthorised();
       }
