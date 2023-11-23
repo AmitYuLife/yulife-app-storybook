@@ -76,7 +76,7 @@
     "tsc": "tsc --noUnusedLocals --noUnusedParameters"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.3",
+    "@apollo/client": "^3.8.7",
     "@bugsnag/plugin-react-native-navigation": "^7.18.0",
     "@bugsnag/react-native": "^7.18.2",
     "@intercom/intercom-react-native": "6.1.0",
@@ -97,7 +97,7 @@
     "apollo-cache-persist": "^0.1.1",
     "clevertap-react-native": "^0.9.4",
     "email-validator": "^2.0.4",
-    "graphql": "^16.6.0",
+    "graphql": "^16.8.1",
     "jsc-android": "^250230.2.1",
     "json-schema-yup-transformer": "^1.6.12",
     "lodash": "^4.17.21",
