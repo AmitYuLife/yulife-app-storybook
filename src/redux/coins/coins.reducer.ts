@@ -7,11 +7,11 @@ import {
   UPDATE_DAILY_MEDITATION_EMPTY_RESULT,
   UPDATE_DAILY_MEDITATION_SUCCESS,
 } from "../daily-meditation/daily-meditation.actions";
-import { UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE, START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
+import { UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE } from "../daily-steps/daily-steps.actions";
 
 import { UPDATE_TOTAL_COINS } from "./coins.actions";
 import { UPDATE_DAILY_CYCLING_SUCCESS } from "@redux/daily-cycling/daily-cycling.actions";
-import { UPDATE_APP_STATE_ACTIVE } from "@redux/app/app.actions";
+import { UPDATE_CURRENT_DATE } from "@redux/app/app.actions";
 import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
 import { UPDATE_DAILY_PENSION_SUCCESS } from "@redux/daily-pension/daily-pension.actions";
 import {
@@ -67,10 +67,8 @@ const coinsReducer = (state: ICoinsStore = getInitialState(), action: SyncAction
       }
 
       return { ...state };
-    case UPDATE_APP_STATE_ACTIVE:
-      return updateStateOnAppStateActive(state);
-    case START_DAILY_STEPS:
-      return startDailyStepsSuccess(state);
+    case UPDATE_CURRENT_DATE:
+      return { ...state, ...getDailyResetCoinStore() };
     case UPDATE_DAILY_MEDITATION_SUCCESS:
       return updateDailyMeditationSuccess(state, action.payload);
     case UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE:
@@ -137,6 +135,8 @@ const updatePersistedState = (persistedState: ICoinsStore) => {
     return newState;
   }
 
+  // do we want the reset to only run after UPDATE_CURRENT_DATE
+  // might show a bit of the numbers showing a number then going down.
   const shouldResetCoinStore = getShouldResetCoinStore(persistedState.lastUpdated);
 
   if (shouldResetCoinStore) {
@@ -144,27 +144,6 @@ const updatePersistedState = (persistedState: ICoinsStore) => {
   }
 
   return { ...persistedState };
-};
-
-const updateStateOnAppStateActive = (state: ICoinsStore) => {
-  const shouldResetCoinStore = getShouldResetCoinStore(state.lastUpdated);
-
-  if (shouldResetCoinStore) {
-    return { ...state, ...getDailyResetCoinStore() };
-  }
-
-  return { ...state };
-};
-
-const startDailyStepsSuccess = (state: ICoinsStore) => {
-  // Ensures that the coin state is reset immediately when the user access the app for the first time that day.
-  const shouldResetCoinStore = getShouldResetCoinStore(state.lastUpdated);
-
-  if (shouldResetCoinStore) {
-    return { ...state, ...getDailyResetCoinStore() };
-  }
-
-  return state;
 };
 
 const sumCompletedChallenges = (challenges: GetCurrentUser_getCurrentUser_todayActivity[] = []): number =>

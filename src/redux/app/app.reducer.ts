@@ -67,7 +67,7 @@ const updateOfflineState = (state: IAppStore, isOffline: boolean): IAppStore => 
   isOffline,
 });
 
-const updateCurrentDate = (state: IAppStore, payload: { date: string }): IAppStore => ({
+const updateCurrentDate = (state: IAppStore, payload: string): IAppStore => ({
   ...state,
-  currentDate: payload.date,
+  currentDate: payload,
 });
