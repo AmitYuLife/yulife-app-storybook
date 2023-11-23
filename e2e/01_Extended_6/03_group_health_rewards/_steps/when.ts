@@ -52,11 +52,12 @@ export const chooseCorrectDoB = (age: number) => async () => {
 
 };
 
-export const enterRandomisedEmail = async () => {
-  const emailFront = generateRandomMongoId()
-  await typeViaID(ids.CONTENT_ITEM_INPUT("email"), `${emailFront.toString()}@fakeemail.com`)()
-}
-
 export const tapYuniverseLevelForFirstTime = (x: number, y: number) => async () => {
   await element(by.id(ids.QUESTS_SCREEN_YUNIVERSAL(1))).tapAtPoint({x:x, y:y});
+}
+
+export const setStoreRegion = async () => {
+  await tapID(ids.NAV_BAR("rewards"))()
+  await tapText("Confirm selection", 2000)()
+  await tapID(ids.NAV_BAR("yu"), 2000)()
 }
