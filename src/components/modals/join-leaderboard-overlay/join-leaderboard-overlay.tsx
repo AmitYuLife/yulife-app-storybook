@@ -7,10 +7,11 @@ import { Switch } from "@molecules";
 import { ISocialGroup } from "@redux/leaderboards/leaderboards.reducer";
 import { LEADERBOARD_DESC, LEADERBOARD_SWITCH, LEADERBOARD_TITLE } from "@ids";
 
-export type IConsents = Record<string, boolean>;
+export type IConsents = Record<string, { consent: boolean; name: string }>;
+
 interface IProps {
   activeSocialGroup: ISocialGroup;
-  onSwitch: (consent: IConsents) => void;
+  onSwitch: (consents: IConsents) => void;
 }
 
 const JoinLeaderboardOverlay = ({ activeSocialGroup, onSwitch }: IProps) => {
@@ -19,7 +20,13 @@ const JoinLeaderboardOverlay = ({ activeSocialGroup, onSwitch }: IProps) => {
   useEffect(() => {
     setLeaderboardConsents(
       activeSocialGroup?.leaderboards.reduce(
-        (obj, leaderboard) => ({ ...obj, [leaderboard.leaderboardId]: leaderboard.consent }),
+        (obj, leaderboard) => ({
+          ...obj,
+          [leaderboard.leaderboardId]: {
+            consent: leaderboard.consent,
+            name: leaderboard.name,
+          },
+        }),
         leaderboardConsents
       )
     );
@@ -28,7 +35,13 @@ const JoinLeaderboardOverlay = ({ activeSocialGroup, onSwitch }: IProps) => {
 
   const onPress = useCallback(
     (leaderboardId: string) => {
-      const newLeaderboardsConsents = { ...leaderboardConsents, [leaderboardId]: !leaderboardConsents[leaderboardId] };
+      const newLeaderboardsConsents = {
+        ...leaderboardConsents,
+        [leaderboardId]: {
+          consent: !leaderboardConsents[leaderboardId].consent,
+          name: leaderboardConsents[leaderboardId].name,
+        },
+      };
 
       setLeaderboardConsents(newLeaderboardsConsents);
       onSwitch(newLeaderboardsConsents);
@@ -62,7 +75,7 @@ const JoinLeaderboardOverlay = ({ activeSocialGroup, onSwitch }: IProps) => {
             </View>
             <View style={styles.switch}>
               <Switch
-                value={leaderboardConsents[leaderboardId]}
+                value={leaderboardConsents[leaderboardId]?.consent}
                 onPress={() => onPress(leaderboardId)}
                 testID={LEADERBOARD_SWITCH(name, consent)}
               />

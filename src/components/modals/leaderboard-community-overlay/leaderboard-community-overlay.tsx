@@ -11,7 +11,7 @@ import { COMMUNITY_LIST_ITEM, LEADERBOARD_COMMUNITY_LIST } from "@ids";
 
 interface IProps {
   socialGroups: ISocialGroup[];
-  onSelect: (id: string) => void;
+  onSelect: (socialGroup: { id: string; name: string }) => void;
 }
 
 interface IItem {
@@ -33,7 +33,7 @@ const LeaderboardCommunityOverlay = ({ socialGroups = [], onSelect }: IProps) =>
           socialGroup,
           onPress: () => {
             setSelectedSocialGroupId(socialGroup.socialGroupId);
-            onSelect(socialGroup.socialGroupId);
+            onSelect({ id: socialGroup.socialGroupId, name: socialGroup.name });
           },
           selected: socialGroup.socialGroupId === selectedSocialGroupId,
         }))}

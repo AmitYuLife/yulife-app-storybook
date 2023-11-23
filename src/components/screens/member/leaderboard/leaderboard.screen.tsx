@@ -31,7 +31,7 @@ interface IProps {
   onNotificationPress: () => void;
   onShowRankModal: () => void;
   onListItemPress: (userId: string, leaderboardPlacement: number) => void;
-  onUpdateActiveLeaderboard: (leaderboardId: string) => void;
+  onUpdateActiveLeaderboard: (leaderboard: { leaderboardId: string; name: string }) => void;
   activeSocialGroup: ISocialGroup;
   activeLeaderboard: ISocialGroupLeaderboard;
   showDuels: boolean;
