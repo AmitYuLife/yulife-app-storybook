@@ -255,6 +255,10 @@ const routesForRegistration = [
     component: require("../components/containers/member/debug/level-selector/level-selector.container").default,
   },
   {
+    name: ROUTES.workoutDebug,
+    component: require("../components/containers/member/debug/workout-debug/workout-debug.container").default,
+  },
+  {
     name: ROUTES.permissions,
     component: require("../components/containers/member/permissions/permissions.container").default,
   },

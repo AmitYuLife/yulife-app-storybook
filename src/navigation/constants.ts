@@ -124,6 +124,7 @@ export const ROUTES = {
   levelSelector: "yulife.debug.levelSelector",
   userFeatures: "yulife.debug.userFeatures",
   debugPlayground: "yulife.debug.debugPlayground",
+  workoutDebug: "yulife.debug.workoutDebug",
 };
 
 export const MODALS = {
