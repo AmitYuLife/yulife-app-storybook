@@ -1,5 +1,11 @@
 import { takeLatest } from "redux-saga/effects";
-import { AUTHENTICATED, SET_MAIN_ROOT, UPDATE_APP_STATE, UPDATE_CURRENT_ROUTE } from "../../app/app.actions";
+import {
+  AUTHENTICATED,
+  SET_MAIN_ROOT,
+  UPDATE_APP_STATE,
+  UPDATE_CURRENT_DATE,
+  UPDATE_CURRENT_ROUTE,
+} from "../../app/app.actions";
 import { CHALLENGE_RESET_SUCCESS } from "../../levels/levels.actions";
 import {
   FITKIT_CONSENT_AUTHORISED,
@@ -46,14 +52,13 @@ import fetchUserData from "./fetchUserData.saga";
 
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
-  takeLatest(GET_USER_START, getUserDataSaga),
   takeLatest(GET_ALL_USER_DATA_START, getAllUserDataSaga),
   takeLatest(AUTHENTICATED, fetchUserData),
   takeLatest(UPDATE_USER_PROFILE, sendDuelInvitationSaga),
   takeLatest(SET_USER_NO_ACCESS, setUserNoAccessSaga),
   takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),
   takeLatest(FITKIT_CONSENT_AUTHORISED, fitKitConsentAuthorisedSaga),
-  takeLatest(CHALLENGE_RESET_SUCCESS, getUserDataSaga),
+  takeLatest([GET_USER_START, CHALLENGE_RESET_SUCCESS, UPDATE_CURRENT_DATE], getUserDataSaga),
   takeLatest([CHALLENGE_RESET_SUCCESS, REFRESH_USER_PROFILE_EVENTS], getUserProfileEvents),
   takeLatest(UPDATE_LEADERBOARD_CONSENT_START, updateLeaderboardConsentSaga),
   takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),

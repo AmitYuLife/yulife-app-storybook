@@ -20,7 +20,7 @@ import {
 } from "./daily-meditation.actions";
 import { PassiveMeditationMilestones, ExchangeRateMeditation as ExchangeRate } from "./daily-meditation.selectors";
 import { SyncAction } from "@redux/_core/types";
-import { UPDATE_APP_STATE_ACTIVE } from "@redux/app/app.actions";
+import { UPDATE_CURRENT_DATE } from "@redux/app/app.actions";
 import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
 
 interface IAppDailyMeditationProps {
@@ -66,8 +66,9 @@ const dailyMeditationReducer = (
 
       return state;
 
-    case UPDATE_APP_STATE_ACTIVE:
-      return updateStateOnAppUpdate(state);
+    case UPDATE_CURRENT_DATE:
+      return resetDailyMeditationState(state);
+
     case UPDATE_DAILY_MEDITATION_SUCCESS:
       return updateDailyMeditationSucces(state, action.payload);
 
@@ -132,24 +133,15 @@ const updatePersistedState = (state: IDailyMeditationStore, persistedState: IDai
   return { ...persistedState };
 };
 
-const updateStateOnAppUpdate = (state: IDailyMeditationStore): IDailyMeditationStore => {
-  const lastUpdated = moment(state.lastUpdated).startOf("day").format();
-  const today = moment().startOf("day").format();
-
-  if (lastUpdated !== today) {
-    return {
-      ...state,
-      dailyMeditation: 0,
-      inAppMeditation: {
-        ...state.inAppMeditation,
-        duration: 0,
-      },
-      lastUpdated: moment().format(),
-    };
-  }
-
-  return { ...state };
-};
+const resetDailyMeditationState = (state: IDailyMeditationStore) => ({
+  ...state,
+  dailyMeditation: 0,
+  inAppMeditation: {
+    ...state.inAppMeditation,
+    duration: 0,
+  },
+  lastUpdated: moment().format(),
+});
 
 const getUserSuccess = (state: IDailyMeditationStore, res: GetCurrentUser) => ({
   ...state,

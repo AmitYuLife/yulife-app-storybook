@@ -62,4 +62,4 @@ export const setMainRoot = (url: string) => ({
   type: SET_MAIN_ROOT,
 });
 
-export const updateCurrentDate = createAction(UPDATE_CURRENT_DATE, (date: string) => ({ payload: { date } }));
+export const updateCurrentDate = createAction<string>(UPDATE_CURRENT_DATE);

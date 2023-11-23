@@ -21,7 +21,7 @@ import {
   UPDATE_DAILY_CYCLING_DISTANCE_MEASUREMENT_TYPE,
 } from "./daily-cycling.actions";
 import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
-import { UPDATE_APP_STATE_ACTIVE } from "@redux/app/app.actions";
+import { UPDATE_CURRENT_DATE } from "@redux/app/app.actions";
 import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
 
 export interface IDailyCyclingStore {
@@ -47,8 +47,11 @@ const dailyCyclingReducer = (state: IDailyCyclingStore = getInitialState(), acti
 
       return state;
 
-    case UPDATE_APP_STATE_ACTIVE:
-      return updateStateOnAppStateActive(state);
+    case UPDATE_CURRENT_DATE:
+    case PEDOMETER_RESTART_ON_NEW_DAY:
+    case UPDATE_DAILY_CYCLING_EMPTY_RESULT:
+      return { ...state, dailyCycling: 0 };
+
     case UPDATE_DAILY_CYCLING_SUCCESS:
       return updateDailyCyclingSuccess(state, action.payload);
 
@@ -57,10 +60,6 @@ const dailyCyclingReducer = (state: IDailyCyclingStore = getInitialState(), acti
 
     case UPDATE_USER_PROFILE:
       return { ...state, cyclingMeasurement: action.payload.gameSettings.cyclingMeasurement };
-
-    case PEDOMETER_RESTART_ON_NEW_DAY:
-    case UPDATE_DAILY_CYCLING_EMPTY_RESULT:
-      return { ...state, dailyCycling: 0 };
 
     case GET_USER_SUCCESS:
       return getUserSuccess(state, action.payload);
@@ -108,20 +107,6 @@ const updatePersistedState = (state: IDailyCyclingStore, persistedState: IDailyC
   }
 
   return { ...persistedState };
-};
-
-const updateStateOnAppStateActive = (state: IDailyCyclingStore) => {
-  const lastUpdated = moment(state.lastUpdated).startOf("day").format();
-  const today = moment().startOf("day").format();
-
-  if (lastUpdated !== today) {
-    return {
-      ...state,
-      dailyCycling: 0,
-    };
-  }
-
-  return { ...state };
 };
 
 const getUserSuccess = (state: IDailyCyclingStore, res: GetCurrentUser) => ({

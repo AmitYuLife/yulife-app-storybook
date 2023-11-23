@@ -29,7 +29,7 @@ import {
 } from "./daily-steps.actions";
 import { SyncAction } from "@redux/_core/types";
 import { ExchangeRate, PassiveStepsMilestones } from "./daily-steps.selectors";
-import { UPDATE_APP_STATE_ACTIVE } from "@redux/app/app.actions";
+import { UPDATE_CURRENT_DATE } from "@redux/app/app.actions";
 
 const MAX_ANOMALY_DETECTION_WINDOW_MS = 10000; // in ms
 
@@ -112,8 +112,9 @@ const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: 
 
       return { ...state };
 
-    case UPDATE_APP_STATE_ACTIVE:
-      return updateStateOnAppStateActive(state);
+    case UPDATE_CURRENT_DATE:
+      return updateCurrentDate(state);
+
     case PEDOMETER_UPDATES_START:
       return { ...state, isFetching: true };
 
@@ -188,23 +189,6 @@ const updateUserProfile = (state: IDailyStepsStore, gameSettings: GameSettings) 
   blackListApps: gameSettings?.blackListApps?.steps,
 });
 
-const updateStateOnAppStateActive = (state: IDailyStepsStore) => {
-  const lastUpdated = moment(state.lastUpdated).startOf("day").format();
-  const today = moment().startOf("day").format();
-
-  if (lastUpdated !== today) {
-    return {
-      ...state,
-      dailySteps: 0,
-      serverSteps: 0,
-      isFetching: true,
-      isServerFetchedThisSession: false,
-    };
-  }
-
-  return state;
-};
-
 const updateDailyStepsSuccess = (state: IDailyStepsStore, { challenge }: { challenge: Challenge }) => {
   const lastUpdated = moment.unix(challenge.updatedAt).format();
   return {
@@ -248,4 +232,12 @@ const loginUserSuccess = (state: IDailyStepsStore, res: LoginUser) => ({
 const changePanelVisibility = (state: IDailyStepsStore, payload: boolean): IDailyStepsStore => ({
   ...state,
   showPanel: payload,
+});
+
+const updateCurrentDate = (state: IDailyStepsStore) => ({
+  ...state,
+  dailySteps: 0,
+  serverSteps: 0,
+  isFetching: false,
+  isServerFetchedThisSession: false,
 });
