@@ -7,6 +7,49 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.109.0] - 2023-11-23
+
+### Features
+
+- Task XSE-2345: Hide half modals behind useHalfModalsForQuestMap feature toggle
+- Feature XSE-2345: Handle quest level press
+
+### Bugfixes
+
+- Bugfix: Coin ledger not refreshing after duel invite
+- Bugfix: Add ContentItemHint compatibility layer
+- Bugfix: Navigation issues on Android devices by replacing TouchableOpacity...
+- Bugfix: Save video progress every 5s instead of 10s
+- Bugfix ENG-3739: Error of null [sampleToAggregatedData, getDailyPassiveActivity]
+- Bugfix: Don't show defer if empty fitkitTypes
+- Bugfix: VideoPlayer component play button overlay on orientation portrait
+
+### Tasks
+
+- Task: Check for mindful minutes too to check if user have apple health permissions enabled
+- Task XSE-2364: create ContentItemHint for SDUI
+- Task: Capitalise navbar text
+- Task: Add react-native-apollo-devtools-client
+
+### Chores
+
+- Revert "Merge branch 'chore/upgrade-rn-70-14' into 'develop'"
+- Chore: upgrade rn to 0.70.14
+- Chore: Update challenge no data defer copy
+- Chore: update current date
+
+### Extra
+
+- detox:fixes for ghi rewards
+- Detox: YuCoin balance check on duel request
+- Detox/GS-812
+- Upgrade detox to v20.13.5
+- Detox/ghi fixes 17/11
+- detox/fixes-other-markets
+- detox:fix for category benefit version id
+- Move Detox over to Jest
+- detox:tps-2579 done
+
 ## [3.108.0] - 2023-11-16
 
 ### Bugfixes
