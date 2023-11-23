@@ -18,7 +18,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I tap level 200 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(200)), async () => {
             Then("I should see that I have achieved Yunity Mountain", then.yunityCorrect("Mountain"))
-            Then("I should see the correct rewards in the chest for moving into EOTW/yuniverse", then.mountainTwoRewardsVisible)
+            Then("I should see the correct rewards in the chest for moving into EOTW/yuniverse", then.mountainTwoRewardsVisible())
         })
         When("I wait", when.wait(1000), async () => {
             When("I tap claim rewards", when.tapText("Claim rewards"), async () => {
@@ -58,7 +58,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I swipe down the screen", when.swipeFromText("0 / 30 mindful mins", "up", "fast"), async () => {
             Then("I can see 1/4 challenges completed today", then.textVisible("Today's challenges (1/4)"))
-            Then("I can see my short stroll completed today", then.textVisible("Short stroll (400 steps)"))
+            Then("I can see my short stroll completed today", then.textVisible("Short Stroll (400 steps)"))
             Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left)"))
         })
         When("I tap take a challenge", when.tapText("Take a challenge (3 left)"), async () => {
@@ -87,8 +87,8 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I swipe down the screen", when.swipeFromText("Daily core activities", "up", "fast"), async () => {
             Then("I can see 2/4 challenges completed today", then.textVisible("Today's challenges (2/4)"))
-            Then("I can see my short stroll completed today", then.textVisible("Brisk walk (1,600 steps)"))
-            Then("I can see my short stroll completed today", then.textVisible("Short stroll (400 steps)"))
+            Then("I can see my short stroll completed today", then.textVisible("Brisk Walk (1,600 steps)"))
+            Then("I can see my short stroll completed today", then.textVisible("Short Stroll (400 steps)"))
             Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left)"))
         })
         When("I tap take a challenge", when.tapText("Take a challenge (2 left)"), async () => {
@@ -118,9 +118,9 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I swipe down the screen", when.swipeFromText("Today's challenges (3/4)", "up", "fast"), async () => {
             Then("I can see 3/4 challenges completed today", then.textVisible("Today's challenges (3/4)"))
-            Then("I can see my short stroll completed today", then.textVisible("Long walk (3,600 steps)"))
-            Then("I can see my short stroll completed today", then.textVisible("Brisk walk (1,600 steps)"))
-            Then("I can see my short stroll completed today", then.textVisible("Short stroll (400 steps)"))
+            Then("I can see my short stroll completed today", then.textVisible("Long Walk (3,600 steps)"))
+            Then("I can see my short stroll completed today", then.textVisible("Brisk Walk (1,600 steps)"))
+            Then("I can see my short stroll completed today", then.textVisible("Short Stroll (400 steps)"))
             Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left)"))
         })
         When("I tap take a challenge", when.tapText("Take a challenge (1 left)"), async () => {
@@ -158,9 +158,9 @@ Feature("End of the world/Yuniverse", async () => {
         When("I swipe down the screen", when.swipeFromText("Today's challenges (4/4)", "up", "fast"), async () => {
             Then("I can see 4/4 challenges completed today", then.textVisible("Today's challenges (4/4)"))
             Then("I can see my mins completed today", then.textVisible("Meditation (3 mins)"))
-            Then("I can see my short stroll completed today", then.textVisible("Long walk (3,600 steps)"))
-            Then("I can see my short stroll completed today", then.textVisible("Brisk walk (1,600 steps)"))
-            Then("I can see my short stroll completed today", then.textVisible("Short stroll (400 steps)"))
+            Then("I can see my short stroll completed today", then.textVisible("Long Walk (3,600 steps)"))
+            Then("I can see my short stroll completed today", then.textVisible("Brisk Walk (1,600 steps)"))
+            Then("I can see my short stroll completed today", then.textVisible("Short Stroll (400 steps)"))
             Then("I should not see any challenges left", then.textNotVisible("Take a challenge (1 left)"))
             Then("I should see the welldone banner as I have completed 4 challenges today", then.idVisible(ids.WELLDONE_BANNER))
         })
