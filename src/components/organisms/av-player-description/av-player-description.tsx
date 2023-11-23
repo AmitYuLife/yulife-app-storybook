@@ -16,7 +16,7 @@ interface IProps {
   tag?: string;
 }
 
-const VideoPlayerDescription = ({ title, subtitle, tag, description, duration, stars, yuCoin, logo }: IProps) => {
+const AvPlayerDescription = ({ title, subtitle, tag, description, duration, stars, yuCoin, logo }: IProps) => {
   const timeType = useMemo(() => (Math.floor(duration) < 60 ? "sec" : "min"), [duration]);
   const durationFormatted = useMemo(
     () => moment.utc(duration * 1000).format(timeType === "sec" ? "s" : "m"),
@@ -73,7 +73,7 @@ const VideoPlayerDescription = ({ title, subtitle, tag, description, duration, s
   );
 };
 
-export default memo(VideoPlayerDescription);
+export default memo(AvPlayerDescription);
 
 const styles = StyleSheet.create({
   wrapper: {

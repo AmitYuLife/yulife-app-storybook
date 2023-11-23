@@ -11,7 +11,7 @@ interface IProps {
   textType: ITextTemplateType;
 }
 
-const VideoPlayerTimer = ({ time, colour, textType }: IProps) => {
+const AvPlayerTimer = ({ time, colour, textType }: IProps) => {
   const timeFormatted = useMemo(
     () => ({
       minutes: moment.utc(time).format("mm"),
@@ -51,4 +51,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(VideoPlayerTimer);
+export default memo(AvPlayerTimer);

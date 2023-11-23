@@ -3,11 +3,11 @@ import { StyleSheet, View } from "react-native";
 import LottieView from "lottie-react-native";
 import { Style, Colours } from "@styles";
 import { TextTemplate } from "@atoms";
-const lottieJson = require("./meditation-anim-lottie.json");
+const lottieJson = require("./meditation-lottie.json");
 import { MEDITOPIA_CHALLENGE_LOAD_SCREEN } from "@ids";
 import { t } from "@locale";
 
-const VideoPlayerLoading = () => (
+const AvPlayerLoading = () => (
   <View style={styles.wrapper} testID={MEDITOPIA_CHALLENGE_LOAD_SCREEN}>
     <LottieView resizeMode="cover" style={styles.lottie} source={lottieJson} autoPlay={true} />
     <View style={styles.loading}>
@@ -36,4 +36,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(VideoPlayerLoading);
+export default memo(AvPlayerLoading);

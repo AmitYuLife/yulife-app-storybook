@@ -22,11 +22,15 @@ import {
   ActionTypes,
   setMusicControlInitialConfig,
 } from "./video-player.reducer";
-import VideoPlayerLoading from "./video-player-loading";
-import VideoPlayerDescription from "./video-player-description";
-import VideoPlayerTimer from "./video-player-timer";
 import { Button, PressableWithDelay, VidePlayerButton } from "@molecules";
-import { GenericHeadingAbsolute, GenericHeadingLogo, GenericHeadingPad } from "@organisms";
+import {
+  AvPlayerDescription,
+  AvPlayerLoading,
+  AvPlayerTimer,
+  GenericHeadingAbsolute,
+  GenericHeadingLogo,
+  GenericHeadingPad,
+} from "@organisms";
 import { PlayIcon } from "@atoms/icon/play-icon";
 import {
   VIDEO_PLAYER_TIMER,
@@ -411,7 +415,7 @@ const VideoPlayer = ({
         {!lottieUri ? null : <LottieView ref={lottieRef} resizeMode="cover" style={styles.lottie} source={lottieUri} />}
         {state.isMusicControlMounted ? null : (
           <View style={styles.videoDescription}>
-            <VideoPlayerDescription
+            <AvPlayerDescription
               title={title}
               subtitle={subtitle}
               description={description}
@@ -441,7 +445,7 @@ const VideoPlayer = ({
           <>
             {!showTimer || state.isLoadingEndOfSession || orientation === "landscape" ? null : (
               <View style={styles.currentProgressTime} testID={VIDEO_PLAYER_TIMER}>
-                <VideoPlayerTimer textType="time" time={state.currentProgressInMilliSeconds} colour={themeColour} />
+                <AvPlayerTimer textType="time" time={state.currentProgressInMilliSeconds} colour={themeColour} />
               </View>
             )}
             {!state.isLoadingEndOfSession ? null : (
@@ -471,7 +475,7 @@ const VideoPlayer = ({
             {orientation === "landscape" ? null : (
               <Animated.View style={[styles.progressBarContainer, { opacity }]} testID={VIDEO_PROGRESS_BAR}>
                 <View style={styles.currentProgress}>
-                  <VideoPlayerTimer textType="l2b" time={state.currentProgressInMilliSeconds} colour={themeColour} />
+                  <AvPlayerTimer textType="l2b" time={state.currentProgressInMilliSeconds} colour={themeColour} />
                 </View>
                 <View style={[styles.progressBar, { backgroundColor: themeColour }]}>
                   <View
@@ -487,7 +491,7 @@ const VideoPlayer = ({
                   />
                 </View>
                 <View style={styles.duration}>
-                  <VideoPlayerTimer textType="l2b" time={state.durationInMilliSeconds} colour={themeColour} />
+                  <AvPlayerTimer textType="l2b" time={state.durationInMilliSeconds} colour={themeColour} />
                 </View>
               </Animated.View>
             )}
@@ -522,7 +526,7 @@ const VideoPlayer = ({
           />
         </View>
       )}
-      {!state.loading && !lottieUriLoading ? null : <VideoPlayerLoading />}
+      {!state.loading && !lottieUriLoading ? null : <AvPlayerLoading />}
 
       {!state.durationInSeconds ? null : (
         <Animated.View style={styles.topbarWrapper}>
