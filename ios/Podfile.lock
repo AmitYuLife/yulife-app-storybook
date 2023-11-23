@@ -108,6 +108,9 @@ PODS:
   - OpenSSL-Universal (1.1.1100)
   - Permission-PhotoLibraryAddOnly (3.6.1):
     - RNPermissions
+  - PromisesObjC (2.3.1)
+  - PromisesSwift (2.3.1):
+    - PromisesObjC (= 2.3.1)
   - RCT-Folly (2021.07.22.00):
     - boost
     - DoubleConversion
@@ -358,10 +361,11 @@ PODS:
     - React-Core
   - react-native-netinfo (9.3.7):
     - React-Core
-  - react-native-video (5.2.1):
+  - react-native-video (6.0.0-beta.0):
     - React-Core
-    - react-native-video/Video (= 5.2.1)
-  - react-native-video/Video (5.2.1):
+    - react-native-video/Video (= 6.0.0-beta.0)
+  - react-native-video/Video (6.0.0-beta.0):
+    - PromisesSwift
     - React-Core
   - react-native-view-shot (3.5.0):
     - React-Core
@@ -642,6 +646,8 @@ SPEC REPOS:
     - lottie-ios
     - Mixpanel
     - OpenSSL-Universal
+    - PromisesObjC
+    - PromisesSwift
     - SDWebImage
     - SDWebImageWebPCoder
     - SocketRocket
@@ -818,6 +824,8 @@ SPEC CHECKSUMS:
   Mixpanel: de8296d8568806ab17bfced0f823c908b808e1e0
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   Permission-PhotoLibraryAddOnly: 6dba8924024e239af2e282daa8a88967679b4983
+  PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
+  PromisesSwift: 28dca69a9c40779916ac2d6985a0192a5cb4a265
   RCT-Folly: 0080d0a6ebf2577475bda044aa59e2ca1f909cda
   RCTRequired: 66ec53b22edfc02ffdacdcea5fca23793210f024
   RCTTypeSafety: 57667853547bee8a337094a90baf2229b357b77b
@@ -843,7 +851,7 @@ SPEC CHECKSUMS:
   react-native-mixpanel: 5d0bcea791fd938c35138be2d00e50e19b9de601
   react-native-music-control: 3fc719c179a6562e18af1ac6e30ba9e33b397a31
   react-native-netinfo: 2517ad504b3d303e90d7a431b0fcaef76d207983
-  react-native-video: c26780b224543c62d5e1b2a7244a5cd1b50e8253
+  react-native-video: e9e6fe3ab11d515bd79abd5d81e07db538943c56
   react-native-view-shot: 792829857bbb23a9c8acdad9a640554bdee397a3
   react-native-webview: 994b9f8fbb504d6314dc40d83f94f27c6831b3bf
   React-perflogger: c6702b0cb84be970b5fcb230162a229195295ece
