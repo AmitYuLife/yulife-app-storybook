@@ -5,6 +5,7 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as ids from "@ids"
 import * as data from "@data"
+import * as helper from "./_resources/helpers";
 
 Feature("As a user I can take a Meditopia challenge", async () => {
   Scenario("I can successfully take and complete a 5 minute Meditopia challenge in app", scenario.start, async () => {
@@ -186,5 +187,10 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I should see the number of steps I just completed", then.idVisible(ids.STEPS_COUNT(0)));
       Then("I should see the number of coins I've earned today (270) - 10 from passive and 60 from challenge", then.textVisible("250 YuCoin today"));
     });
+  });
+
+  Scenario("I can take a Meditopia challenge in app and still successfully complete it after midnight", scenario.start, async () => {
+    helper.START_MEDITATION_FAKE_TIME();
+    helper.END_MEDITATION_FAKE_TIME();
   });
 });
