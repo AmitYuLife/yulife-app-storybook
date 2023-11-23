@@ -28,6 +28,8 @@ import {
   updateSocialGroupLeaderboardConsents,
 } from "@redux/leaderboards/leaderboards.actions";
 import { GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS } from "@graphql/socialGroupLeaderboard/getMobileSocialGroupLeaderboardItems";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { IConsents } from "@components/modals/join-leaderboard-overlay/join-leaderboard-overlay";
 
 export const PAGE_SIZE = 501;
 
@@ -88,16 +90,22 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
   }, [activeLeaderboard, getSocialGroupLeaderboardItems]);
 
   const selectSocialGroupLeaderboard = useCallback(
-    (leaderboardId: string) => {
-      dispatch(updateActiveSocialGroupLeaderboardId(leaderboardId));
+    (leaderboard: { leaderboardId: string; name: string }) => {
+      dispatch(updateActiveSocialGroupLeaderboardId(leaderboard.leaderboardId));
+      dispatch(
+        logMixpanelEventActionCreator("screen_view", {
+          name: `leadeboard_${leaderboard.name.toLowerCase()}`,
+        })
+      );
     },
     [dispatch]
   );
 
   const onLeftNavigationPress = useCallback(async () => {
-    let socialGroupId = "";
+    let socialGroup = { id: "", name: "" };
+
     const children = (
-      <LeaderboardCommunityOverlay onSelect={(id: string) => (socialGroupId = id)} socialGroups={socialGroups} />
+      <LeaderboardCommunityOverlay onSelect={(group) => (socialGroup = group)} socialGroups={socialGroups} />
     );
     await showFloatingModal({
       children,
@@ -106,20 +114,35 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
       buttonLabel: t("overlays.leaderboard_community.button_label"),
       paddingTop: Style.adjust(80),
       buttonOnPress: () => {
-        dispatch(updateActiveSocialGroupId(socialGroupId || activeSocialGroup?.socialGroupId));
+        dispatch(updateActiveSocialGroupId(socialGroup.id || activeSocialGroup?.socialGroupId));
+        dispatch(
+          logMixpanelEventActionCreator("button_pressed", {
+            name: socialGroup.name,
+          })
+        );
       },
     });
+
+    dispatch(
+      logMixpanelEventActionCreator("modal_viewed", {
+        name: "leaderboard_community",
+      })
+    );
   }, [activeSocialGroup, dispatch, socialGroups]);
 
   const onJoinLeaderboardPress = useCallback(async () => {
-    let consents: SocialLeaderboardConstent[] = [];
+    const leaderboardConsent: { consents: SocialLeaderboardConstent[]; tracking: IConsents } = {
+      consents: [],
+      tracking: {},
+    };
+
     const children = (
       <JoinLeaderboardOverlay
         activeSocialGroup={activeSocialGroup}
         onSwitch={(consent) => {
-          consents = Object.keys(consent).map((key) => ({
+          leaderboardConsent.consents = Object.keys(consent).map((key) => ({
             id: key,
-            consent: consent[key],
+            consent: consent[key].consent,
           }));
         }}
       />
@@ -133,15 +156,20 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
       showCloseIcon: false,
       height: getJoinLeaderboardOverlayHeight(),
       buttonOnPress: async () => {
-        if (consents.length) {
-          await updateSocialLeaderboardConsents({ consents });
+        if (leaderboardConsent.consents.length) {
+          await updateSocialLeaderboardConsents({ consents: leaderboardConsent.consents });
           dispatch(
             updateSocialGroupLeaderboardConsents({
               socialGroupId: activeSocialGroup?.socialGroupId,
-              leaderboards: consents.map((consent) => ({
+              leaderboards: leaderboardConsent.consents.map((consent) => ({
                 leaderboardId: consent.id,
                 consent: consent.consent,
               })),
+            })
+          );
+          dispatch(
+            logMixpanelEventActionCreator("leaderboard_toggle", {
+              ...leaderboardConsent.tracking,
             })
           );
         }

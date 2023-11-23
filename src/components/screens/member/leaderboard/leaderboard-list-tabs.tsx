@@ -9,7 +9,7 @@ interface ITabsProps {
   itemsIsLoading: boolean;
   leaderboards: ISocialGroupLeaderboard[];
   activeLeaderboard: ISocialGroupLeaderboard;
-  onSelect: (leaderboardId: string) => void;
+  onSelect: (leaderboard: { leaderboardId: string; name: string }) => void;
 }
 
 const LeaderboardTabs = ({ leaderboards = [], activeLeaderboard, itemsIsLoading, onSelect }: ITabsProps) => {
@@ -26,7 +26,7 @@ const LeaderboardTabs = ({ leaderboards = [], activeLeaderboard, itemsIsLoading,
           height: size,
         },
         onPress: () => {
-          onSelect(leaderboard.leaderboardId);
+          onSelect({ leaderboardId: leaderboard.leaderboardId, name: leaderboard.name });
         },
       };
     });
