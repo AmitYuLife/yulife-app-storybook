@@ -8,7 +8,7 @@ import {
   GQL_MUTATION_COMPLETE_IN_APP_YUNIVERSITY_MODULE_CHAPTER,
   CompleteYuniversityModuleChapterTuple,
 } from "@graphql/yuniversity/completeInAppYuniversityModuleChapter.gql";
-import { LoadError, OnProgressData } from "react-native-video";
+import { OnVideoErrorData, OnProgressData } from "react-native-video";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
@@ -61,7 +61,7 @@ const YuniversityMediaPlayerContainer = ({ video, moduleId, chapterId, trackingD
   }, [trackingData, moduleId, chapterId, video, completeChapter, logYuniversityEvents, dispatch]);
 
   const onError = useCallback(
-    (e: LoadError) => {
+    (e: OnVideoErrorData) => {
       logYuniversityEvents({ type: "cpdVideoError", error: e?.error?.errorString });
     },
     [logYuniversityEvents]

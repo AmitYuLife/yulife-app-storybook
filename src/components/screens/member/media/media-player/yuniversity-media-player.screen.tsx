@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { Media } from "@graphql/_core/schema";
 import VideoPlayer from "react-native-video-controls";
-import { LoadError, OnProgressData } from "react-native-video";
+import { OnVideoErrorData, OnProgressData } from "react-native-video";
 import Config from "react-native-config";
 import { DETOX_ENABLED } from "@services/socket";
 
@@ -13,7 +13,7 @@ interface IProps {
   onEnd: () => void;
   onPause: () => void;
   onPlay: () => void;
-  onError: (error: LoadError) => void;
+  onError: (error: OnVideoErrorData) => void;
   onProgress: (data: OnProgressData) => void;
 }
 

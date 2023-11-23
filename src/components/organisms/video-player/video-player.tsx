@@ -1,5 +1,12 @@
 import React, { memo, useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
-import Video, { OnLoadData, OnProgressData } from "react-native-video";
+import Video, {
+  VideoRef,
+  OnLoadData,
+  OnProgressData,
+  PosterResizeModeType,
+  ResizeMode,
+  IgnoreSilentSwitchType,
+} from "react-native-video";
 import moment from "moment";
 import MusicControl, { Command } from "react-native-music-control";
 import { Animated, StyleSheet, View, AppStateStatus } from "react-native";
@@ -106,7 +113,7 @@ const VideoPlayer = ({
   startChallengeButtonLabel,
   autoPlay = false,
 }: IVideoPlayerProps) => {
-  const playerRef = useRef<Video>();
+  const playerRef = useRef<VideoRef>();
   const reduxDispatch = useDispatch();
   const lottieRef = useRef<LottieView>();
   const activeLevel = useSelector(getActiveLevel);
@@ -378,16 +385,16 @@ const VideoPlayer = ({
           minLoadRetryCount={20}
           disableFocus={true}
           poster={poster}
-          posterResizeMode="cover"
+          posterResizeMode={PosterResizeModeType.COVER}
           progressUpdateInterval={1000}
-          resizeMode={orientation === "landscape" ? "none" : "cover"}
+          resizeMode={orientation === "landscape" ? ResizeMode.NONE : ResizeMode.COVER}
           onError={handleOnError}
           onLoad={onLoad}
           onEnd={handleOnEnd}
           onProgress={handleOnProgress}
           paused={state.isPaused}
           playInBackground={true}
-          ignoreSilentSwitch="ignore"
+          ignoreSilentSwitch={IgnoreSilentSwitchType.IGNORE}
           style={
             !state.isMusicControlMounted
               ? styles.backgroundVideo
