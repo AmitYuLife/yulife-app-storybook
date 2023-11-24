@@ -83,7 +83,7 @@
     "@leanplum/react-native-sdk": "^2.0.0",
     "@react-native-camera-roll/camera-roll": "^5.3.1",
     "@react-native-community/async-storage": "^1.12.1",
-    "@react-native-community/blur": "^4.3.0",
+    "@react-native-community/blur": "^4.3.2",
     "@react-native-community/clipboard": "^1.5.1",
     "@react-native-community/datetimepicker": "^6.7.1",
     "@react-native-community/netinfo": "^11.1.0",
