@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Button, LinkButton } from "@molecules";
 import { Style } from "@styles";
@@ -11,19 +11,16 @@ interface Props {
   confirmLabel?: string;
 }
 
-export const Buttons = ({
-  onConfirm,
-  onCancel,
-  cancelLabel = t("labels.cta.cool"),
-  confirmLabel = t("labels.cta.back"),
-}: Props) => {
-  return (
-    <View style={styles.wrapper}>
-      <Button size="Fill" label={confirmLabel} onPress={onConfirm} />
-      <LinkButton label={cancelLabel} onPress={onCancel} />
-    </View>
-  );
-};
+export const Buttons = memo(
+  ({ onConfirm, onCancel, cancelLabel = t("labels.cta.cool"), confirmLabel = t("labels.cta.back") }: Props) => {
+    return (
+      <View style={styles.wrapper}>
+        <Button size="Fill" label={confirmLabel} onPress={onConfirm} />
+        <LinkButton label={cancelLabel} onPress={onCancel} />
+      </View>
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   wrapper: {

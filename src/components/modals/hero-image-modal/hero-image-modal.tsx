@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { View, StyleSheet, ViewStyle, TouchableWithoutFeedback } from "react-native";
+import { View, StyleSheet, ViewStyle } from "react-native";
 import { Buttons } from "./subcomponents/buttons";
 import { Colours, Style } from "@styles";
 import { TextTemplate } from "@atoms";
@@ -19,12 +19,6 @@ interface Props {
 const HeroImageModal = (props: Props) => {
   const { onConfirm, cancelLabel, confirmLabel, imageUrl, header, description, closeOverlay } = props;
 
-  const onWrapperPressed = useCallback(() => {
-    if (closeOverlay) {
-      closeOverlay();
-    }
-  }, [closeOverlay]);
-
   const onConfirmButtonPressed = useCallback(() => {
     if (closeOverlay) {
       closeOverlay();
@@ -34,55 +28,41 @@ const HeroImageModal = (props: Props) => {
   }, [closeOverlay, onConfirm]);
 
   return (
-    <TouchableWithoutFeedback onPress={onWrapperPressed}>
-      <View style={styles.wrapper}>
-        <View style={styles.modalContainer}>
-          <TouchableWithoutFeedback>
-            <View style={styles.innerWrapper}>
-              <View style={styles.imageWrapper}>
-                <Image
-                  imageStyle={styles.hero}
-                  source={!imageUrl ? require("@assets/hero-image-modal/default.png") : { uri: imageUrl }}
-                  width={Style.DEVICE_WIDTH - Style.adjust(48)}
-                />
-              </View>
-              <View style={styles.content}>
-                <View style={styles.headerWrapper}>
-                  <TextTemplate type="h3" color={Colours.darkPink} lineHeight={Style.adjust(28)} textAlign="center">
-                    {header}
-                  </TextTemplate>
-                </View>
-                <View style={styles.descriptionWrapper}>
-                  <TextTemplate type="b2" color={Colours.neutral.n850} lineHeight={Style.adjust(20)} textAlign="center">
-                    {description}
-                  </TextTemplate>
-                </View>
-                <Buttons
-                  onConfirm={onConfirmButtonPressed}
-                  onCancel={closeOverlay}
-                  cancelLabel={cancelLabel}
-                  confirmLabel={confirmLabel}
-                />
-              </View>
-            </View>
-          </TouchableWithoutFeedback>
+    <View style={styles.modalContainer}>
+      <View style={styles.innerWrapper}>
+        <View style={styles.imageWrapper}>
+          <Image
+            imageStyle={styles.hero}
+            source={!imageUrl ? require("@assets/hero-image-modal/default.png") : { uri: imageUrl }}
+            width={Style.DEVICE_WIDTH - Style.adjust(24)}
+          />
+        </View>
+        <View style={styles.content}>
+          <View style={styles.headerWrapper}>
+            <TextTemplate type="h3" color={Colours.darkPink} lineHeight={Style.adjust(28)} textAlign="center">
+              {header}
+            </TextTemplate>
+          </View>
+          <View style={styles.descriptionWrapper}>
+            <TextTemplate type="b2" color={Colours.neutral.n850} lineHeight={Style.adjust(20)} textAlign="center">
+              {description}
+            </TextTemplate>
+          </View>
+          <Buttons
+            onConfirm={onConfirmButtonPressed}
+            onCancel={closeOverlay}
+            cancelLabel={cancelLabel}
+            confirmLabel={confirmLabel}
+          />
         </View>
       </View>
-    </TouchableWithoutFeedback>
+    </View>
   );
 };
 
 export default memo(HeroImageModal);
 
 const styles = StyleSheet.create({
-  wrapper: {
-    height: Style.DEVICE_HEIGHT,
-    width: Style.DEVICE_WIDTH,
-    position: "absolute",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: Style.adjust(24),
-  } as ViewStyle,
   modalContainer: {
     backgroundColor: Colours.neutral.white,
     borderRadius: Style.adjust(16),
