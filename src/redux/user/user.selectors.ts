@@ -87,5 +87,5 @@ export const getUserEventsWithAds = createSelector(getUserActiveEvents, getAdBan
   return [...events, ...formatData];
 });
 
-const yuScreenNotification = (state: State) => state.notification?.hasYuScreenNotification;
-export const getYuScreenNotification = createSelector(reducer, yuScreenNotification);
+const tabNotifications = (state: State) => state.tabNotifications || [];
+export const getTabNotifications = createSelector(reducer, tabNotifications);

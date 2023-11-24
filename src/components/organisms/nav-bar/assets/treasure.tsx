@@ -2,13 +2,13 @@
 import { Style } from "@styles/index";
 import { t } from "@locale";
 import * as React from "react";
-import Svg, { G, Path } from "react-native-svg";
+import Svg, { Circle, G, Path } from "react-native-svg";
 import { getIconColour, IIconProps } from "../nav-bar.helpers";
 import { NAV_BAR } from "@ids";
 import { Platform, View, Text } from "react-native";
 import styles from "./assets.styles";
 
-export default function Treasure({ isActive, onPressIn, onPressOut, isSuspended }: IIconProps) {
+export default function Treasure({ isActive, hasNotification, onPressIn, onPressOut, isSuspended }: IIconProps) {
   const fill = getIconColour(isActive, isSuspended);
   const size = Style.adjust(54);
 
@@ -62,6 +62,7 @@ export default function Treasure({ isActive, onPressIn, onPressOut, isSuspended 
             fill={fill}
           />
         </G>
+        {!hasNotification ? null : <Circle cx="35.6" cy="10.25" r="4.5" fill="#ec6f65" stroke="#fff" />}
       </Svg>
       <Text style={[styles.text, { color: fill }]}>{t("navbar.rewards.label")}</Text>
     </View>

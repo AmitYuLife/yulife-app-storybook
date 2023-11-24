@@ -185,6 +185,14 @@ export enum MobileOnboardingStepPerformed {
   yuScreenOnboardingPension = "yuScreenOnboardingPension",
 }
 
+export enum MobileTabs {
+  dailySteps = "dailySteps",
+  leaderboard = "leaderboard",
+  quests = "quests",
+  rewards = "rewards",
+  yuScreen = "yuScreen",
+}
+
 export enum OS {
   android = "android",
   ios = "ios",

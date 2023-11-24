@@ -1,15 +1,16 @@
 import { call, put, select, spawn } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { yuScreenSynchronised } from "@redux/user/user.actions";
-import { getYuScreenNotification } from "../user.selectors";
+import { getTabNotifications } from "../user.selectors";
 import { getYuScreen } from "@graphql/yuscreen/getYuScreen.gql";
+import { MobileTabs } from "@graphql/_core/schema/globalTypes";
 
 export default function* synchroniseYuScreenSaga() {
   try {
-    const hasNotification: ReturnType<typeof getYuScreenNotification> = yield select(getYuScreenNotification);
+    const tabNotifications: ReturnType<typeof getTabNotifications> = yield select(getTabNotifications);
 
     // New notification sent for the customer. Update the YuScreen product slots.
-    if (hasNotification) {
+    if (tabNotifications.includes(MobileTabs.yuScreen)) {
       yield call(getYuScreen);
     }
 

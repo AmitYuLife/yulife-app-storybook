@@ -2,13 +2,13 @@
 import { Style } from "@styles/index";
 import * as React from "react";
 import { Platform, Text, View } from "react-native";
-import Svg, { G, Path } from "react-native-svg";
+import Svg, { Circle, G, Path } from "react-native-svg";
 import { t } from "@locale";
 import { getIconColour, IIconProps } from "../nav-bar.helpers";
 import { NAV_BAR } from "@ids";
 import styles from "./assets.styles";
 
-export default function Trophy({ isActive, onPressIn, onPressOut, isSuspended }: IIconProps) {
+export default function Trophy({ isActive, hasNotification, onPressIn, onPressOut, isSuspended }: IIconProps) {
   const fill = getIconColour(isActive, isSuspended);
   const size = Style.adjust(54);
 
@@ -45,6 +45,7 @@ export default function Trophy({ isActive, onPressIn, onPressOut, isSuspended }:
           />
           <Path d="M22.35 9.75L31.65 9.75" fill="none" stroke={fill} strokeLinecap="round" strokeLinejoin="round" />
         </G>
+        {!hasNotification ? null : <Circle cx="35.6" cy="10.25" r="4.5" fill="#ec6f65" stroke="#fff" />}
       </Svg>
       <Text style={[styles.text, { color: fill }]}>{t("navbar.leaderboard.label")}</Text>
     </View>

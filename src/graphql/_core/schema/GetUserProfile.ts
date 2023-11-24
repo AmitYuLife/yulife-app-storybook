@@ -1,9 +1,9 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { DistanceMeasurementType, SduiActionType, UserProfileEventStatus } from "./globalTypes";
+import { DistanceMeasurementType, SduiActionType, UserProfileEventStatus, MobileTabs } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetUserProfile
@@ -79,7 +79,6 @@ export interface GetUserProfile_getUserProfile_notification {
   hasMobileWhatsNewModal: boolean;
   hasAppReview: boolean;
   hasDailyScreenCustomIcon: boolean;
-  hasYuScreenNotification: boolean;
   hasAdBanners: boolean;
 }
 
@@ -160,6 +159,7 @@ export interface GetUserProfile_getUserProfile {
   endPointsVersion: GetUserProfile_getUserProfile_endPointsVersion;
   notification: GetUserProfile_getUserProfile_notification;
   events: GetUserProfile_getUserProfile_events[];
+  tabNotifications: MobileTabs[];
 }
 
 export interface GetUserProfile {
