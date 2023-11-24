@@ -359,7 +359,7 @@ PODS:
     - React
   - react-native-music-control (1.4.1):
     - React-Core
-  - react-native-netinfo (9.3.7):
+  - react-native-netinfo (11.1.0):
     - React-Core
   - react-native-video (6.0.0-beta.0):
     - React-Core
@@ -850,7 +850,7 @@ SPEC CHECKSUMS:
   react-native-leanplum: e8351d2ae71c39d515a29b95c9d5d5fd08990170
   react-native-mixpanel: 5d0bcea791fd938c35138be2d00e50e19b9de601
   react-native-music-control: 3fc719c179a6562e18af1ac6e30ba9e33b397a31
-  react-native-netinfo: 2517ad504b3d303e90d7a431b0fcaef76d207983
+  react-native-netinfo: 3aa5637c18834966e0c932de8ae1ae56fea20a97
   react-native-video: e9e6fe3ab11d515bd79abd5d81e07db538943c56
   react-native-view-shot: 792829857bbb23a9c8acdad9a640554bdee397a3
   react-native-webview: 994b9f8fbb504d6314dc40d83f94f27c6831b3bf
