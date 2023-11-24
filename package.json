@@ -86,7 +86,7 @@
     "@react-native-community/blur": "^4.3.0",
     "@react-native-community/clipboard": "^1.5.1",
     "@react-native-community/datetimepicker": "^6.7.1",
-    "@react-native-community/netinfo": "^9.3.7",
+    "@react-native-community/netinfo": "^11.1.0",
     "@react-native-community/push-notification-ios": "^1.10.1",
     "@reduxjs/toolkit": "^1.9.7",
     "@shopify/flash-list": "^1.6.1",
