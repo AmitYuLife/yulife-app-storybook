@@ -501,6 +501,11 @@ const routesForRegistration = [
     name: MODALS.leaderboardRank,
     component: require("../components/modals/leaderboard-rank-modal/leaderboard-rank-modal").default,
   },
+
+  {
+    name: MODALS.genericWithHeroImage,
+    component: require("../components/modals/hero-image-modal/hero-image-modal").default,
+  },
 ];
 
 export default routesForRegistration;

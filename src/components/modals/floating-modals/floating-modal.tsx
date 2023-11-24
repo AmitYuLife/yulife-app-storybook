@@ -1,5 +1,5 @@
 import React, { memo, isValidElement, ReactElement, useMemo, useState, useCallback } from "react";
-import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
+import { KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { Button, PressableWithDelay, SecondaryButton } from "@molecules";
 import { Style, Colours } from "@styles";
 import { ContentItemLottie } from "@components/sdui";
@@ -22,6 +22,7 @@ interface IProps {
   icon?: Source;
   isCloseButtonSecondary?: boolean;
   title?: string;
+  wrapperStyle?: ViewStyle;
 }
 
 export interface IFloatingModalContentProps {
@@ -42,6 +43,7 @@ const FloatingModal = ({
   paddingTop = Style.adjust(124),
   isCloseButtonSecondary,
   title,
+  wrapperStyle,
 }: IProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [iconAsset, setIconAsset] = useState<Source>(icon);
@@ -71,9 +73,14 @@ const FloatingModal = ({
 
     closeOverlay();
   }, [buttonOnPress, closeOverlay]);
+
+  const wrapperStyles = useMemo(
+    () => ({ ...styles.wrapper, paddingTop, minHeight: height, ...wrapperStyle }),
+    [wrapperStyle, paddingTop, height]
+  );
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
-      <View style={[styles.wrapper, { paddingTop, minHeight: height }]}>
+      <View style={wrapperStyles}>
         {!title ? null : (
           <View style={styles.title}>
             <TextTemplate type="h3">{title}</TextTemplate>
@@ -90,7 +97,6 @@ const FloatingModal = ({
           </View>
         )}
         {content}
-
         {!showButton ? null : (
           <CloseButton
             onPress={onButtonPress}
@@ -111,7 +117,7 @@ const FloatingModal = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: "white",
+    backgroundColor: Colours.neutral.white,
     borderTopLeftRadius: Style.adjust(20),
     borderTopRightRadius: Style.adjust(20),
   },
