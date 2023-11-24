@@ -55,12 +55,12 @@ export const GQL_QUERY_GET_USER_PROFILE = gql`
         hasMobileWhatsNewModal
         hasAppReview
         hasDailyScreenCustomIcon
-        hasYuScreenNotification
         hasAdBanners
       }
       events {
         ...UserProfileEvents
       }
+      tabNotifications
     }
   }
 `;

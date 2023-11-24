@@ -3,21 +3,22 @@ import { useSelector } from "react-redux";
 import NavBarView from "./nav-bar.view";
 import { getHasNotification as getQuestNotification } from "@redux/levels/levels.selectors";
 import { NavBarProps } from "./nav-bar.helpers";
-import { getYuScreenNotification } from "@redux/user/user.selectors";
+import { getTabNotifications } from "@redux/user/user.selectors";
+import { Optional } from "@utils";
 
-type NavBarContainerProps = NavBarProps;
+type NavBarContainerProps = Optional<NavBarProps, "hasQuestNotification" | "tabNotifications">;
 
 const NavBarContainer = (props: NavBarContainerProps) => {
   const hasQuestNotification = useSelector(getQuestNotification);
-  const hasYuScreenNotification = useSelector(getYuScreenNotification);
+  const tabNotifications = useSelector(getTabNotifications);
 
   return (
     <NavBarView
       activeIndex={props.activeIndex}
-      hasNotification={hasQuestNotification}
       labels={props.labels}
       additionalBottom={props.additionalBottom}
-      hasYuScreenNotification={hasYuScreenNotification}
+      hasQuestNotification={hasQuestNotification}
+      tabNotifications={tabNotifications}
     />
   );
 };

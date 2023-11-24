@@ -10,8 +10,9 @@ import {
   GetUserProfile_getUserProfile_events as Events,
   GetUserSurge_getUserSurge as IUserSurge,
   GetUserLeaderboards_getUserLeaderboards,
+  MarkMobileNotificationsAsViewedByTypeVariables,
 } from "@graphql/_core/schema";
-import { MobileConsentInput } from "@graphql/_core/schema/globalTypes";
+import { MobileConsentInput, MobileTabs } from "@graphql/_core/schema/globalTypes";
 import { SyncAction } from "../_core/types";
 import {
   GET_USER_SUCCESS,
@@ -32,9 +33,9 @@ import {
   UPDATE_USER_AVATAR,
   UPDATE_USER_SURGE,
   UPDATE_USER_GOAL,
-  REMOVE_YUSCREEN_NOTIFICATIONS,
   GET_USER_LEADERBOARDS_SUCCESS,
   REMOVE_USER_PROFILE_EVENT,
+  MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE,
 } from "./user.actions";
 import { AUTHENTICATED } from "@redux/app/app.actions";
 import { reduceUserFeatures } from "./user.helpers";
@@ -113,10 +114,10 @@ export interface IUserStore {
     hasPendingForm: boolean;
     hasAppReview: boolean;
     hasDailyScreenCustomIcon: boolean;
-    hasYuScreenNotification: boolean;
     hasAdBanners: boolean;
   };
   events: Partial<Events>[];
+  tabNotifications: MobileTabs[];
 }
 
 export const getInitialState = (sessionCount: number = 0): IUserStore => ({
@@ -173,10 +174,10 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
     hasPendingForm: false,
     hasAppReview: false,
     hasDailyScreenCustomIcon: false,
-    hasYuScreenNotification: false,
     hasAdBanners: false,
   },
   events: [],
+  tabNotifications: [],
 });
 
 export const userReducer = (state: IUserStore = getInitialState(), action: SyncAction): IUserStore => {
@@ -246,8 +247,8 @@ export const userReducer = (state: IUserStore = getInitialState(), action: SyncA
     case LOGOUT_SUCCESS:
       return getInitialState(state.sessionCount);
 
-    case REMOVE_YUSCREEN_NOTIFICATIONS:
-      return removeYuScreenNotifications(state);
+    case MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE:
+      return markNotificationsAsViewedByType(state, action.payload);
 
     case AUTHENTICATED:
       return {
@@ -520,6 +521,7 @@ const updateUserProfile = (state: IUserStore, payload: Partial<IUserStore>) => (
     ...payload.notification,
   },
   events: payload.events,
+  tabNotifications: payload.tabNotifications,
 });
 
 const updateUserProfileEvents = (state: IUserStore, events: IUserStore["events"]) => ({
@@ -550,10 +552,10 @@ const updateUserSurge = (state: IUserStore, payload: IUserSurge) => ({
   },
 });
 
-const removeYuScreenNotifications = (state: IUserStore) => ({
+const markNotificationsAsViewedByType = (
+  state: IUserStore,
+  payload: MarkMobileNotificationsAsViewedByTypeVariables
+) => ({
   ...state,
-  notification: {
-    ...state.notification,
-    hasYuScreenNotification: false,
-  },
+  tabNotifications: state.tabNotifications.filter((it) => it !== payload.type),
 });

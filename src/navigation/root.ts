@@ -11,6 +11,7 @@ import { store } from "@redux/_core/store";
 import { IReduxState } from "@redux/_core/reducers";
 import { updateCurrentRoute } from "@redux/app/app.actions";
 import { Layout } from "react-native-navigation";
+import { MobileTabs } from "@graphql/_core/schema/globalTypes";
 
 const icon = require("@assets/icons/clock.png");
 
@@ -45,7 +46,7 @@ export function generateOnLeftMenuPress(route: string) {
 export const labels = [
   {
     id: ROUTES.dailySteps,
-    name: "yucoin",
+    name: MobileTabs.dailySteps,
     onPress: () => {
       Navigation.mergeOptions(ROUTES.dailySteps, {
         bottomTabs: {
@@ -60,7 +61,7 @@ export const labels = [
   },
   {
     id: ROUTES.quests,
-    name: "quests",
+    name: MobileTabs.quests,
     onPress: () => {
       Navigation.mergeOptions(ROUTES.quests, {
         bottomTabs: {
@@ -75,7 +76,7 @@ export const labels = [
   },
   {
     id: ROUTES.yuScreen,
-    name: "yu",
+    name: MobileTabs.yuScreen,
     onPress: () => {
       Navigation.mergeOptions(ROUTES.yuScreen, {
         bottomTabs: {
@@ -90,7 +91,7 @@ export const labels = [
   },
   {
     id: ROUTES.leaderboard,
-    name: "leaderboard",
+    name: MobileTabs.leaderboard,
     onPress: () => {
       Navigation.mergeOptions(ROUTES.leaderboard, {
         bottomTabs: {
@@ -105,7 +106,7 @@ export const labels = [
   },
   {
     id: ROUTES.rewards,
-    name: "rewards",
+    name: MobileTabs.rewards,
     onPress: () => {
       Navigation.mergeOptions(ROUTES.rewards, {
         bottomTabs: {

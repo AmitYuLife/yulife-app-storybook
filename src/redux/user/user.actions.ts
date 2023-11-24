@@ -15,7 +15,7 @@ import {
   GetUserCoinLedger_coinLedger,
   GetUserTodayActivity_todayActivity,
 } from "@graphql/_core/schema";
-import { MobileConsentInput } from "@graphql/_core/schema/globalTypes";
+import { MobileConsentInput, MobileTabs } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "./user.reducer";
 import { Connection } from "./user.selectors";
 
@@ -64,7 +64,7 @@ export const UPDATE_USER_AVATAR = "UPDATE_USER_AVATAR";
 export const UPDATE_USER_SURGE = "UPDATE_USER_SURGE";
 export const UPDATE_USER_GOAL = "UPDATE_USER_GOAL";
 export const YUSCREEN_SYNCHRONISED = "YUSCREEN_SYNCHRONISED";
-export const REMOVE_YUSCREEN_NOTIFICATIONS = "REMOVE_YUSCREEN_NOTIFICATIONS";
+export const MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE = "MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE";
 
 export const refreshUserToken = () => ({
   type: REFRESH_USER_TOKEN,
@@ -255,6 +255,7 @@ export const updateUserSurge = (payload: IUserSurge) => ({
   payload,
 });
 
-export const removeYuScreenNotifications = () => ({
-  type: REMOVE_YUSCREEN_NOTIFICATIONS,
+export const markNotificationsAsViewedByType = (type: MobileTabs) => ({
+  type: MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE,
+  payload: { type },
 });

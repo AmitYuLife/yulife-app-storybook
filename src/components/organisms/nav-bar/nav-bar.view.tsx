@@ -10,9 +10,10 @@ import styles from "./nav-bar.styles";
 import useInterval from "@use-it/interval";
 import { IIconProps, NavBarProps } from "./nav-bar.helpers";
 import { t } from "@locale";
+import { MobileTabs } from "@graphql/_core/schema/globalTypes";
 
 const NavBarView = (props: NavBarProps) => {
-  const { activeIndex, hasNotification, hasYuScreenNotification, labels = defaultLabels, additionalBottom = 0 } = props;
+  const { activeIndex, hasQuestNotification, tabNotifications, labels = defaultLabels, additionalBottom = 0 } = props;
   const [hasLaidOut, setHasLaidOut] = useState(false);
   const [displayElevation, setDisplayElevation] = useState(false);
 
@@ -34,12 +35,11 @@ const NavBarView = (props: NavBarProps) => {
     []
   );
 
-  const notifications: Record<string, boolean> = useMemo(
+  const notifications: Partial<Record<MobileTabs, boolean>> = useMemo(
     () => ({
-      "1": hasNotification,
-      "2": hasYuScreenNotification,
+      [MobileTabs.quests]: hasQuestNotification,
     }),
-    [hasNotification, hasYuScreenNotification]
+    [hasQuestNotification]
   );
 
   const bottomStyle = useMemo(() => ({ bottom: NAV_BAR.getPositionBottom({ additionalBottom }) }), [additionalBottom]);
@@ -62,11 +62,13 @@ const NavBarView = (props: NavBarProps) => {
               Component={data.Component}
               accessibilityLabel={t(data.accessibilityLabelKey)}
               accessibilityValue={t(data.accessibilityTextKey)}
-              hasNotification={notifications[i.toString()]}
+              hasNotification={
+                notifications[label.name as MobileTabs] || tabNotifications.includes(label.name as MobileTabs)
+              }
               isActive={isActive}
               isSuspended={Navigation.isNavBarRouteSuspended(label.id)}
-              onPressIn={labels[i].onPress}
-              onPressOut={handlePressOut(labels[i].onPress)}
+              onPressIn={label.onPress}
+              onPressOut={handlePressOut(label.onPress)}
             />
           );
         })}
