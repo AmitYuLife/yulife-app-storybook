@@ -157,8 +157,8 @@ export const YUCOIN_POWER_CHECK = async (customer: any, yuCoinPower: number) => 
   const firstName = customer.data.firstName;
   const lastName = customer.data.lastName;
 
-  When("I swipe to YuCoin power", when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, "YuCoin", "up"), async () => {
-    When(`I tap YuCoin`, when.tapText("YuCoin"), async () => {
+  When("I swipe to the top", when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, `${firstName} ${lastName}`, "up"), async () => {
+    When(`I tap YuCoin`, when.tapTextAtIndex("YuCoin", 0), async () => {
       When("I wait", when.wait(4000), async () => {
         Then("I should see correct YuCoin Power text", then.yuCoinPowerInfo(yuCoinPower));
       });

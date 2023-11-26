@@ -253,7 +253,7 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
   await expect(element(by.text(createYumujiText))).toBeVisible();
   await expect(element(by.text(createYumujiCTA))).toBeVisible();
   await textVisibleAtIndex(yuCoinPower, 0)();
-  await textVisible("YuCoin")();
+  await textVisibleAtIndex("YuCoin", 0)();
   await textVisible("Power")();
 
   switch (packType) {

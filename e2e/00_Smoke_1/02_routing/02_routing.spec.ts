@@ -6,6 +6,7 @@ import * as then from "./_steps/then"
 import * as ids from "@ids";
 import * as data from "@data";
 import { getLocalisedString as t } from "@i18n";
+import { locationModalButton } from "00_Smoke_1/03_Rewards/_resources/constants";
 
 Feature("As a user I can navigate through member routes correctly", async () => {
 
@@ -44,7 +45,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             Then("I should see 11.3 km cycled in activity history", then.textVisible("11.3 km cycled"))
         })
         When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER(t("activity history"))), async () => {
-            Then("I should be the yucoin tab", then.onDailySteps)
+            Then("I should be the yucoin tab", then.onDailySteps())
         })
         When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
             Then("I should see the menu items", then.menuItemsVisible)
@@ -96,7 +97,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             Then("the switch should be on", then.idVisible(ids.SETTINGS_SWITCH("Marketing updates", true)))
         })
         When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER(t("Settings"))), async () => {
-            Then("I should be the yucoin tab", then.onDailySteps)
+            Then("I should be the yucoin tab", then.onDailySteps())
         })
         When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
             Then("I should see the menu items", then.menuItemsVisible)
@@ -123,18 +124,21 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_8, data.AUTH_8), async () => {
             When("I go to rewards", when.tapID(ids.NAV_BAR("rewards")), async () => {
                 Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 2000))
-                Then("I should see a John Lewis reward", then.rewardVisible(data.CORE_REWARDS_JOHN_LEWIS))
-                Then("I should see a locked reward", then.lockedRewardVisible(data.CORE_REWARDS_BLOOM_UNAVAILABLE))
-                Then("I should see the Purchased tab", then.textVisible("Purchased", 1500))
-                When("I tap the Purchased tab", when.tapText(t("Purchased")), async () => {
-                    When("I wait", when.wait(2500), async () => {
-                        Then("the tab should be in an empty state, as I have not purchases anything", then.idVisible(ids.CHECK_REWARDS_BUTTON, 1500))
-                        When("I tap 'check rewards", when.tapID(ids.CHECK_REWARDS_BUTTON), async () => {
-                            Then("I should be back on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
-                        })
-                    })
-                })
+                Then("I should see the modal to select store location", then.rewardsLocationModalVisible)
             })
+        })
+        When("I dismiss the modal", when.tapText(locationModalButton), async () => {
+            Then("I should see a John Lewis reward", then.rewardVisible(data.CORE_REWARDS_JOHN_LEWIS))
+            Then("I should see a locked reward", then.lockedRewardVisible(data.CORE_REWARDS_BLOOM_UNAVAILABLE))
+            Then("I should see the Purchased tab", then.textVisible("Purchased", 1500))
+        })
+        When("I tap the Purchased tab", when.tapText(t("Purchased")), async () => {
+            When("I wait", when.wait(2500), async () => {
+                Then("the tab should be in an empty state, as I have not purchases anything", then.idVisible(ids.CHECK_REWARDS_BUTTON, 1500))
+            })
+        })
+        When("I tap 'check rewards", when.tapID(ids.CHECK_REWARDS_BUTTON), async () => {
+            Then("I should be back on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
         })
     })
 
@@ -143,36 +147,36 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         Given("I login", given.loginAsUser(data.CUSTOMER_8, data.AUTH_8), async () => {
             When("I go to quests", when.tapID(ids.NAV_BAR("quests")), async () => {
                 Then("I should be on quests", then.idVisible(ids.QUESTS_SCREEN(0)))
-                When("I tap the locked level 4 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(4)), async () => {
-                    Then("I should see a popup telling me I will unlock this at level 4", then.textVisible("Unlock at level 4"))
-                    When("I tap 'got it'", when.tapText(t("Okay, got it")), async () => {
-                        Then("I should be on quests", then.idVisible(ids.QUESTS_SCREEN(0)))
-                        When("I tap the unlocked level 3 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(3)), async () => {
-                            Then("I should be on the level 3 quest screen", then.idVisible(ids.CHALLENGE_SET))
-                            Then("I should see an unlocked challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")))
-                            When("I tap the meditation challenge", when.tapID(ids.CHALLENGE_TILE(t("Meditation"))), async () => {
-                                Then("I should see a screen with a take challenge option", then.textVisible("Take challenge"))
-                                When("I tap 'take challenge'", when.tapText(t("Take challenge")), async () => {
-                                    When("I click Use Meditopia app", when.tapText(t('Use Meditopia app')), async () => {
-                                        When("I dismiss this screen", when.dismissNotificationScreenIfVisible, async () => {
-                                            Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
-                                            When("I close this screen", when.tapID(ids.BUTTON_CLOSE_CHALLENGE), async () => {
-                                                Then("I should see an exit challenge screen", then.multipleTextVisible(["Call it quits?", "Cancel", "Exit challenge"]))
-                                                When("I tap Cancel", when.tapText(t("Cancel")), async () => {
-                                                    Then("I should be back on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
-                                                    When("I close this screen again and exit the challenge", [when.tapID(ids.BUTTON_CLOSE_CHALLENGE), when.tapText("Exit challenge")], async () => {
-                                                        Then("I should be back on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
-                                                    })
-                                                })
-                                            })
-                                        })
-                                    })
-                                })
-                            })
-                        })
-                    })
+            })
+        })
+        When("I tap the locked level 4 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(4)), async () => {
+            Then("I should see a popup telling me I will unlock this at level 4", then.textVisible("Unlock at level 4"))
+        })
+        When("I tap 'got it'", when.tapText(t("Got it")), async () => {
+            Then("I should be on quests", then.idVisible(ids.QUESTS_SCREEN(0)))
+        })
+        When("I tap the unlocked level 3 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(3)), async () => {
+            Then("I should be on the level 3 quest screen", then.idVisible(ids.CHALLENGE_SET))
+            Then("I should see an unlocked challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")))
+        })
+        When("I tap the meditation challenge", when.tapID(ids.CHALLENGE_TILE(t("Meditation"))), async () => {
+            Then("I should see a screen with a take challenge option", then.textVisible("Take challenge"))
+        })
+        When("I tap 'take challenge'", when.tapText(t("Take challenge")), async () => {
+            When("I click Use Meditopia app", when.tapText(t('Use Meditopia app')), async () => {
+                When("I dismiss this screen", when.dismissNotificationScreenIfVisible, async () => {
+                    Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
                 })
             })
+        })
+        When("I close this screen", when.tapID(ids.BUTTON_CLOSE_CHALLENGE), async () => {
+            Then("I should see an exit challenge screen", then.multipleTextVisible(["Call it quits?", "Cancel", "Exit challenge"]))
+        })
+        When("I tap Cancel", when.tapText(t("Cancel")), async () => {
+            Then("I should be back on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
+        })
+        When("I close this screen again and exit the challenge", [when.tapID(ids.BUTTON_CLOSE_CHALLENGE), when.tapText("Exit challenge")], async () => {
+            Then("I should be back on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
         })
     })
 

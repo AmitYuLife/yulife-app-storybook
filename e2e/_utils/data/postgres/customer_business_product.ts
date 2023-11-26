@@ -1,6 +1,6 @@
 import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import { BUSINESS_PRODUCT_3, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_ENDED, BUSINESS_PRODUCT_FUTURE, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_13_GHI_REWARDS, BUSINESS_PRODUCT_14_MPP_GDental, BUSINESS_PRODUCT_14_GCI, BUSINESS_PRODUCT_14_SAAS, BUSINESS_PRODUCT_14_GHI, BUSINESS_PRODUCT_14_RGL, BUSINESS_PRODUCT_4_GDental_CHOICE } from "./business_product"
-import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_53, CUSTOMER_74, CUSTOMER_LEAVER, CUSTOMER_FUTURE_PRODUCT, CUSTOMER_94, CUSTOMER_96, CUSTOMER_123_MPP, CUSTOMER_124_MPP, CUSTOMER_125 } from "./customers"
+import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_53, CUSTOMER_74, CUSTOMER_LEAVER, CUSTOMER_FUTURE_PRODUCT, CUSTOMER_94, CUSTOMER_96, CUSTOMER_123_MPP, CUSTOMER_124_MPP, CUSTOMER_125, CUSTOMER_126_LEAVER_WELLBEING } from "./customers"
 import * as cpe from "./customer_product_entity"
 import moment = require('moment');
 
@@ -864,6 +864,22 @@ export const CGP_125_GDental_Choice = {
             salary: 100000,
             country: "UK",
             externalMembershipNumber: "56565656"
+        }
+    }
+} as IDatabaseItem
+
+export const CGP_126_WELLBEING_LEAVER = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_1_WB.product.data.product_id,
+        customer_product_id: cpe.CPE_126_WELLBEING.data.customer_product_id,
+        category_id: 1,
+        start_date: moment().subtract(1, "years").toDate(),
+        data: {
+            salary: 60000,
+            country: "UK",
+            date_of_birth: CUSTOMER_126_LEAVER_WELLBEING.data.date_of_birth,
         }
     }
 } as IDatabaseItem
