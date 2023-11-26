@@ -3,6 +3,7 @@ import { navigation } from "@utils"
 import { permissionSettings } from "../_resources/fixtures"
 import * as ids from "@ids"
 import {expect} from 'detox'
+export { rewardsLocationModalVisible } from "../../03_Rewards/_steps/then"
 
 export const {
     onDailySteps,

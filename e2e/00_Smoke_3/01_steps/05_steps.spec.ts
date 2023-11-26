@@ -38,7 +38,7 @@ Feature("As a user my activity is monitored correctly", async () => {
                 Then("I should see the historical steps from yesterday loaded in meaning the refresh has worked", then.canSeeYesterdaysSteps)
             })
             When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER(t("activity history"))), async () => {
-                Then("I should be the yucoin tab", then.onDailySteps)
+                Then("I should be the yucoin tab", then.onDailySteps())
             })
             When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard consent screen as my leaderboard has been reset", then.onLeaderboardConsent)

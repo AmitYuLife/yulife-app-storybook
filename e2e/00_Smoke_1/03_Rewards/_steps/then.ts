@@ -1,5 +1,6 @@
 import { navigation } from "@utils"
 import { screens } from "@appScreens"
+import * as constant from "../_resources/constants"
 
 export const {
     idVisible,
@@ -21,3 +22,10 @@ export const {
     purchasedRewardVisible,
     onRewardHistoryScreen
 } = screens.rewards
+
+export const rewardsLocationModalVisible = async () => {
+    await textVisible(constant.locationModalTitle)()
+    await textVisible(constant.locationModalDesc)()
+    await textVisible(constant.locationModalStoreLocation)()
+    await textVisible(constant.locationModalButton)()
+}

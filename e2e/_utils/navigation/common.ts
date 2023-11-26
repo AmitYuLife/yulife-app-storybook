@@ -449,3 +449,16 @@ export const enrolmentEndsIn = (seed:string) => async () => {
             }
         }
       }
+
+        // to be used for debugging only
+    export const testMultipleTextVisibility = (text: string, indexes: number) => async () => {
+        for(let i = 0; i < indexes + 1; i ++){
+            try {
+                await textVisibleAtIndex(text, i)()
+                console.log(`Success at index ${i}`)
+                return
+            } catch {
+                console.log(`couldn't see at index ${i}`)
+            }
+        }
+      }

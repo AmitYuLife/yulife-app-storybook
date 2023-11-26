@@ -171,30 +171,30 @@ export const yuCoinPowerInfo = (yuCoinPower: number) => async () => {
   await textVisibleAtIndex(`${yuCoinPower}`, 2);
   await textVisibleAtIndex(`${yuCoinPower}`, 3);
   await swipeFromText("Activities that earn YuCoin:", "up", "slow")();
-  await expectIsVisibleViaText(`${yuCoinPower * 6}`);
-  await expectIsVisibleViaText(`${yuCoinPower * 20}`);
-  await expectIsVisibleViaText(`${addCommasToNumber(yuCoinPower * 250)}`);
+  await textVisible(`${yuCoinPower * 6}`);
+  await textVisible(`${yuCoinPower * 20}`);
+  await textVisible(`${addCommasToNumber(yuCoinPower * 250)}`);
 
   if (yuCoinPower < 2) {
-    await expect(element(by.text(wellbeingEarn))).toBeVisible();
-    await expectIsVisibleViaText("2000 steps");
-    await expectIsVisibleViaText("1.6km cycling");
-    await expectIsVisibleViaText("5 mindful minutes");
-    await expectIsVisibleViaText("complete 1 challenge");
-    await expectIsVisibleViaText("open 1 chest");
-    await expectIsVisibleViaText("complete 1 streak");
+    await textVisible(wellbeingEarn)();
+    await textVisible("2000 steps");
+    await textVisible("1.6km cycling");
+    await textVisible("5 mindful minutes");
+    await textVisible("complete 1 challenge");
+    await textVisible("open 1 chest");
+    await textVisible("complete 1 streak");
   } else {
     await swipeFromText("Activities that earn YuCoin:", "down", "slow")();
-    await expect(element(by.text(baseYucoinPower))).toBeVisible();
-    await expect(element(by.text(powerBoost))).toBeVisible();
+    await textVisible(baseYucoinPower)()
+    await textVisible(powerBoost)()
     await swipeFromText("Activities that earn YuCoin:", "up", "slow")();
-    await expectIsVisibleViaText("2000 steps");
-    await expectIsVisibleViaText("1.6km cycling");
-    await expectIsVisibleViaText("5 mindful minutes");
+    await textVisible("2000 steps");
+    await textVisible("1.6km cycling");
+    await textVisible("5 mindful minutes");
     await swipeFromText("Activities that earn YuCoin:", "up", "slow")();
-    await expectIsVisibleViaText("complete 1 challenge");
-    await expectIsVisibleViaText("open 1 chest");
-    await expectIsVisibleViaText("complete 1 streak");
+    await textVisible("complete 1 challenge");
+    await textVisible("open 1 chest");
+    await textVisible("complete 1 streak");
   }
 };
 
@@ -213,7 +213,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
   switch (packType) {
     case "wellbeing only":
       await textVisibleAtIndex(yuCoinPower, 0)();
-      await textVisible(fixture.yuCoinText)();
+      await textVisibleAtIndex(fixture.yuCoinText, 0)();
       await textVisible(fixture.powerText)();
       await textVisibleAtIndex(yuCoinPower, 1)();
       await textVisible(fixture.wellbeingAccessText)();
@@ -224,14 +224,14 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       break;
     case "dentalAndPli":
       await textVisible(yuCoinPower, 0)();
-      await textVisible(fixture.yuCoinText)();
+      await textVisibleAtIndex(fixture.yuCoinText, 0)();
       await textVisible(fixture.powerText)();
       await textVisible(fixture.availableProducts)();
       await textNotVisible(fixture.noProductText)();
       break;
     case "3 Products Slots":
       await textVisible(yuCoinPower)(); // 31
-      await textVisible(fixture.yuCoinText)();
+      await textVisibleAtIndex(fixture.yuCoinText, 0)();
       await textVisible(fixture.powerText)();
       await textVisible(fixture.wellbeingAccessText)();
       await textNotVisible(paidBy)();
@@ -243,7 +243,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       break;
       case "3 Products Slots Started":
       await textVisible(yuCoinPower)(); // 31
-      await textVisible(fixture.yuCoinText)();
+      await textVisibleAtIndex(fixture.yuCoinText, 0)();
       await textVisible(fixture.powerText)();
       await textVisible(fixture.wellbeingAccessText)();
       await textVisible(paidBy)();
@@ -255,7 +255,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       break;
     case "groupDental":
       await textVisibleAtIndex(yuCoinPower, 0)();
-      await textVisible(fixture.yuCoinText)();
+      await textVisibleAtIndex(fixture.yuCoinText, 0)();
       await textVisible(fixture.powerText)();
       await textVisibleAtIndex(fixture.dentalYuCoin, 1)();
       await textVisible(fixture.groupDental)();
@@ -272,7 +272,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
     case "LifeInsurance":
       await textVisibleAtIndex(yuCoinPower, 0)();
       await textVisibleAtIndex(yuCoinPower, 1)();
-      await textVisible(fixture.yuCoinText)();
+      await textVisibleAtIndex(fixture.yuCoinText, 0)();
       await textVisible(fixture.powerText)();
       await textVisible(fixture.lifeInsurance)();
       await textVisible(fixture.availableProducts)();
@@ -280,7 +280,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
     case "GHI_FUTURE":
       await textVisibleAtIndex(yuCoinPower, 0)();
       await textVisibleAtIndex(yuCoinPower, 1)();
-      await textVisible(fixture.yuCoinText)();
+      await textVisibleAtIndex(fixture.yuCoinText, 0)();
       await textVisible(fixture.powerText)();
       await textVisible(fixture.HealthInsurance)();
       await textVisible(fixture.StartsSoon)(); // if product date in future user see this
@@ -290,7 +290,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
     case "GHI_STARTED":
       await textVisibleAtIndex(yuCoinPower, 0)();
       await textVisibleAtIndex(yuCoinPower, 1)();
-      await textVisible(fixture.yuCoinText)();
+      await textVisibleAtIndex(fixture.yuCoinText, 0)();
       await textVisible(fixture.powerText)();
       await textVisible(fixture.HealthInsurance)();
       await textNotVisible(fixture.StartsSoon)();

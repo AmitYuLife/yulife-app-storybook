@@ -22,7 +22,7 @@ Feature("Referrals work as intended", async () => {
                         When("I tap on the invite button", when.tapText("Invite a colleague"), async () => {
                             Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage)
                             When("I press the back button", when.tapID(ids.BACK_BUTTON), async () => {
-                                Then("I should be on the daily steps screen", then.onDailySteps)
+                                Then("I should be on the daily steps screen", then.onDailySteps())
                                 Then("the menu icon should no longer have a badge", then.idVisible(ids.MENU_ICON_BADGE(false)))
                                 When("I go to the menu", when.tapID(ids.MENU_ICON), async () => {
                                     Then("I should be on the menu", then.menuItemsVisible)
