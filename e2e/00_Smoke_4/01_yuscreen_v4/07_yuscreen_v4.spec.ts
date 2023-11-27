@@ -26,7 +26,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             helper.YUSCREEN_V4(data.CUSTOMER_44, "dentalAndPli", "1")
             helper.CREATE_DEFAULT_YUMOJI(520);
             helper.YUCOIN_POWER_CHECK(data.CUSTOMER_44, 1)
-            helper.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live")
+            helper.CORRECT_PRODUCT_SLOT_BACKGROUND(data.CUSTOMER_44, "0 product live")
             helper.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
             helper.CHECK_PRODUCT_BUTTON_LINK("Life Insurance", "Personal Life Insurance");
             helper.CHECK_CAROUSEL_DENTAL_BUTTON_LINK();
@@ -47,7 +47,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             })
             helper.PAYMENT_FAILED()
             helper.CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED("Life Insurance")
-            helper.CORRECT_PRODUCT_SLOT_BACKGROUND("dental only")
+            helper.CORRECT_PRODUCT_SLOT_BACKGROUND(data.CUSTOMER_45, "dental only")
             helper.DENTAL_PRODUCT_VIEW("Epic", "0321")
         })
     })
@@ -56,7 +56,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_46, data.AUTH_46), async () => {
             Then("I should be on the YuScreen V4", then.onYuscreenV4(data.CUSTOMER_46, "PliPermanentlyRejectedAndDentalInactive", "5" ))
         })   
-            helper.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live")
+            helper.CORRECT_PRODUCT_SLOT_BACKGROUND(data.CUSTOMER_46, "0 product live")
             helper.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
     })
 
@@ -70,7 +70,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             })
             When("I close the Wellbeing Access page", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
                 When("I scroll to see the wellbeing hub", when.scrollUntilTextVisible(ids.YUSCREEN_SCROLL_VIEW, "Browse more protection", "down"), async () => {
-                    Then("I should see the wellbeing hub", then.wellbeingHubVisible)
+                    Then("I should see the wellbeing hub", then.wellbeingHubVisible())
                 })
             })
             When("I click on the wellbeing hub", when.tapText(wellbeingButtonTitle), async () => {
@@ -97,7 +97,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
                     Then("I should be on the YuScreen V4", then.onYuscreenV4(data.CUSTOMER_51, "groupDental", "5"))
                 })
             })
-            helper.CORRECT_PRODUCT_SLOT_BACKGROUND("groupDental")
+            helper.CORRECT_PRODUCT_SLOT_BACKGROUND(data.CUSTOMER_51, "groupDental")
             helper.GROUP_DENTAL_PRODUCT_VIEW("Employer scheme", "5", "Plan", "34343434")
             helper.ORDO_JOURNEY_VIEW()
             helper.FIELD_VALIDATION();
@@ -108,7 +108,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
     Scenario("As a YuLifer with Group Dental Choice product I should see correct Product Details and be able to order Ordo toothbrush", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_125, data.AUTH_125), async () => {
             Then("I should be on the YuScreen V4", then.onYuscreenV4(data.CUSTOMER_125, "dentalChoice", "5"))
-            helper.CORRECT_PRODUCT_SLOT_BACKGROUND("groupDental")
+            helper.CORRECT_PRODUCT_SLOT_BACKGROUND(data.CUSTOMER_125, "groupDental")
             helper.GROUP_DENTAL_PRODUCT_VIEW("Employer scheme", "5", "Choice", "56565656")
             helper.ORDO_JOURNEY_VIEW()
             helper.FIELD_VALIDATION();
