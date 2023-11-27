@@ -12,7 +12,7 @@ import { getLocalisedString as t } from "@i18n";
 
 
 Feature("I am able to see GHI Rewards in App", async () => {
-    Scenario("I can succesfully go through the Boots and YorkTest GHI Rewards journeys", scenario.start, async () => {
+    Scenario("I can succesfully go through the Boots and YorkTest GHI Rewards journeys and with the toggle can see half modals for level teases", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_116_GHI_REWARDS, data.AUTH_116), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
@@ -41,10 +41,15 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I tap the CTA button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
             Then("I should see level 80", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(80)))
         })
-        When("I tap level 80", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(80)), async () => {
-            When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
-                When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
-                    Then("I should see the well done screen", then.onChallengeComplete(3050, 80))
+        When("I tap level 81", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(81)), async () => {
+            Then("I see the half modal for level 81 being locked as this user has the toggle switched on", then.lockedLevelHalfModalVisible(81))
+        })
+        When("I tap to close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
+            When("I tap level 80", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(80)), async () => {
+                When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
+                    When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+                        Then("I should see the well done screen", then.onChallengeComplete(3050, 80))
+                    })
                 })
             })
         })

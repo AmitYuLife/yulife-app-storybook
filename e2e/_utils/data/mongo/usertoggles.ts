@@ -2085,6 +2085,7 @@ export const CUSTOMER_116_TOGGLES = {
       ...DEFAULT_TOGGLES.data.features,
       hasSmartPensionActive: true,
       enableProductGoals: true,
+      useHalfModalsForQuestMap: true
     },
   },
 } as IDatabaseItem;

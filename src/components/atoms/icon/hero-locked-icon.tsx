@@ -3,6 +3,7 @@ import Svg, { Circle, Path, Rect } from "react-native-svg";
 import { memo } from "react";
 import { Style } from "@styles";
 import { ViewStyle } from "react-native";
+import { CHALLENGE_LOCKED_ICON } from "@ids";
 
 interface Props {
   style: ViewStyle;
@@ -18,6 +19,7 @@ export const HeroLockedIcon = memo(({ style }: Props) => {
       width={width ?? Style.adjust(140)}
       height={height ?? Style.adjust(140)}
       viewBox="0 0 140 140"
+      testID={CHALLENGE_LOCKED_ICON}
     >
       <Circle cx={70} cy={70} r={70} fill="#7B46FE" />
       <Path

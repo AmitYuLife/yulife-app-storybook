@@ -525,3 +525,9 @@ export const onGOSHRewardsClaimPage = async () => {
   await textVisible(constants.donationHeader)()
   await textVisible(constants.donationMessage)()
 }
+
+export const lockedLevelHalfModalVisible = (level: number) => async () => {
+  await idVisible(ids.QUEST_LOCKED_HALF_MODAL(constants.lockedLevelText(level)))()
+  await textVisible(constants.lockedLevelText(level))()
+  await idVisible(ids.CHALLENGE_LOCKED_ICON)()
+}
