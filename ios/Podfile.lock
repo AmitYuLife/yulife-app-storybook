@@ -361,6 +361,9 @@ PODS:
     - React-Core
   - react-native-netinfo (11.1.0):
     - React-Core
+  - react-native-track-player (4.0.1):
+    - React-Core
+    - SwiftAudioEx (= 1.0.0)
   - react-native-video (6.0.0-beta.0):
     - React-Core
     - react-native-video/Video (= 6.0.0-beta.0)
@@ -529,6 +532,7 @@ PODS:
     - StripeUICore (= 22.8.4)
   - StripeUICore (22.8.4):
     - StripeCore (= 22.8.4)
+  - SwiftAudioEx (1.0.0)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -594,6 +598,7 @@ DEPENDENCIES:
   - react-native-mixpanel (from `../node_modules/react-native-mixpanel`)
   - react-native-music-control (from `../node_modules/react-native-music-control`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
+  - react-native-track-player (from `../node_modules/react-native-track-player`)
   - react-native-video (from `../node_modules/react-native-video`)
   - react-native-view-shot (from `../node_modules/react-native-view-shot`)
   - react-native-webview (from `../node_modules/react-native-webview`)
@@ -656,6 +661,7 @@ SPEC REPOS:
     - StripeCore
     - StripeFinancialConnections
     - StripeUICore
+    - SwiftAudioEx
 
 EXTERNAL SOURCES:
   boost:
@@ -732,6 +738,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-music-control"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
+  react-native-track-player:
+    :path: "../node_modules/react-native-track-player"
   react-native-video:
     :path: "../node_modules/react-native-video"
   react-native-view-shot:
@@ -851,6 +859,7 @@ SPEC CHECKSUMS:
   react-native-mixpanel: 5d0bcea791fd938c35138be2d00e50e19b9de601
   react-native-music-control: 3fc719c179a6562e18af1ac6e30ba9e33b397a31
   react-native-netinfo: 3aa5637c18834966e0c932de8ae1ae56fea20a97
+  react-native-track-player: 97d76dbbd35f27cc709e5f04540615e54264b3f9
   react-native-video: e9e6fe3ab11d515bd79abd5d81e07db538943c56
   react-native-view-shot: 792829857bbb23a9c8acdad9a640554bdee397a3
   react-native-webview: 994b9f8fbb504d6314dc40d83f94f27c6831b3bf
@@ -887,6 +896,7 @@ SPEC CHECKSUMS:
   StripeCore: 193f27552fb98108ebfe0df11651fe5f38948305
   StripeFinancialConnections: 955c345ada7d0dff1a9bd15c4ebc97eacce4ac75
   StripeUICore: 6a5bbea0164d63bd91000f001903e7901859e1a4
+  SwiftAudioEx: 6f511018b7a0fdfd14ed1bb4081f953588245cc0
   Yoga: 445485143df46a9d5d4ef61cbbc629fec40fb9a0
 
 PODFILE CHECKSUM: 2fe66a0af4400b28b840ab08807364d450e5e10f
