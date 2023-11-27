@@ -9,6 +9,7 @@ import { getConfigByType } from "./__helpers/get-config-by-type";
 import { useMemo } from "react";
 import { gradient } from "./quest-detail-modal.config";
 import { questDetailModalStyles, BOTTOM_GRADIENT_BASE_HEIGHT, BUTTON_HEIGHT } from "./quest-detail-modal.styles";
+import { BUTTON_CLOSE, QUEST_LOCKED_HALF_MODAL } from "@ids";
 
 export const QuestDetailModal = (props: QuestDetailModalProps) => {
   const { type, onPressCta, onPressCtaDismiss, onPressClose } = props;
@@ -26,7 +27,7 @@ export const QuestDetailModal = (props: QuestDetailModalProps) => {
   }, [onPressCtaDismiss, type]);
 
   return (
-    <View style={questDetailModalStyles.bottomWrapper}>
+    <View style={questDetailModalStyles.bottomWrapper} testID={QUEST_LOCKED_HALF_MODAL(calculated.heading)}>
       <View style={questDetailModalStyles.overshootCushion}>
         <View style={questDetailModalStyles.safeAreaView}>
           <View style={questDetailModalStyles.innerWrapper}>
@@ -76,7 +77,11 @@ export const QuestDetailModal = (props: QuestDetailModalProps) => {
             <calculated.HeaderIcon style={questDetailModalStyles.image} />
           </View>
         )}
-        <TouchableOpacityWithDelay onPress={onPressClose} style={questDetailModalStyles.closeButtonWrapper}>
+        <TouchableOpacityWithDelay
+          onPress={onPressClose}
+          style={questDetailModalStyles.closeButtonWrapper}
+          testID={BUTTON_CLOSE}
+        >
           <CloseSvg stroke={Colours.neutral.n800} accessible={false} />
         </TouchableOpacityWithDelay>
       </View>

@@ -117,3 +117,6 @@ export const makeDonation = "Make donation 💖"
 export const donationHeader = "Thank you for your donation!"
 export const donationMessage = "Your donation will help to give support to seriously ill children and their families, offering them the best chance to fulfil their potential. To learn more about GOSH's work and how your donation will make a difference, please click here."
 
+// Quest Screen Modals
+
+export const lockedLevelText = (level: number) => { return `Unlock at level ${level.toString()}`}

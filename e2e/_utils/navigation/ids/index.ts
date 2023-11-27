@@ -149,6 +149,7 @@ export const CHALLENGE_HISTORY_NEW_SLOT = (type: string, yucoin: string, rating:
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`
+export const QUEST_LOCKED_HALF_MODAL = (heading: string) => `QUEST_LOCKED_HALF_MODAL_${heading}`
 
 // text
 export const STATS_TITLE = (title: string) => `STATS_TITLES_${title}`
@@ -405,6 +406,7 @@ export const CHALLENGE_TILE_BOOST_TAG = (heading: string, reward: string, hasBon
 export const CHALLENGE_PAGE_BOOST_SLOT = (reward: number) => `CHALLENGE_PAGE_BOOST_SLOT_${reward}`
 export const CHALLENGE_DETAILS_BADGE = (text: string) => `CHALLENGE_DETAILS_BADGE_${text}`
 export const CHALLENGE_TILE_SURGE_ICON = "CHALLENGE_TILE_SURGE_ICON"
+export const CHALLENGE_LOCKED_ICON = "CHALLENGE_LOCKED_ICON"
 
 // MEDITOPIA
 export const MEDITOPIA_LOGO = "MEDITOPIA_LOGO";
