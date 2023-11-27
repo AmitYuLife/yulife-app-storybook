@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { ContentItemMultiSelect as GqlMultiSelect } from "@graphql/_core/schema";
 import { Style } from "@styles";
@@ -9,18 +9,12 @@ interface Props extends GqlMultiSelect {
   onChange: (value: string[]) => void;
 }
 
-export const ContentItemMultiSelect = memo(({ choices, selectedValues: initialSelectedValues, onChange }: Props) => {
-  const [selectedValues, setSelectedValues] = useState(initialSelectedValues || []);
-
+export const ContentItemMultiSelect = memo(({ choices, selectedValues, onChange }: Props) => {
   const handleValueChange = useCallback(
-    (val: string) => {
-      setSelectedValues((oldState) => {
-        const newState = buildNewState(oldState, val);
-        onChange(newState);
-        return newState;
-      });
+    (value: string) => {
+      onChange(buildNewState(selectedValues, value));
     },
-    [onChange]
+    [onChange, selectedValues]
   );
 
   return (
