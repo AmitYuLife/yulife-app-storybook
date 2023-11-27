@@ -89,7 +89,7 @@ Feature("PLI HAPPY", async () => {
         helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "1");
         helper_V4.YUSCREEN_V4(CUSTOMER_44, "dentalAndPli", "1");
         helper_V4.CREATE_DEFAULT_YUMOJI(520);
-        helper_V4.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live");
+        helper_V4.CORRECT_PRODUCT_SLOT_BACKGROUND(CUSTOMER_44, "0 product live");
         helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
         helper.ONBOARDING();
         helper.INTRO_START(CUSTOMER_44);

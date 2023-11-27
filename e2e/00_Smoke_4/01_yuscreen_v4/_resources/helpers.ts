@@ -105,9 +105,12 @@ export const PAYMENT_FAILED = async () => {
   Then("I should see correct status icon if payment failed", then.idVisibleAtIndex(RIGHT_STATUS_ICON, 0));
 };
 
-export const CORRECT_PRODUCT_SLOT_BACKGROUND = async (status: string) => {
+export const CORRECT_PRODUCT_SLOT_BACKGROUND = async (customer: any, status: string) => {
+  const firstName = customer.data.firstName;
+  const lastName = customer.data.lastName;
+
   When("I wait", when.wait(1000), async () => {
-    When("I scroll up if needed", when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, "YuCoin", "up", 0.8, 0.8), async () => {
+    When("I scroll up if needed", when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, `${firstName} ${lastName}`, "up", 0.8, 0.8), async () => {
       Then("I should see correct products Slot background colours", then.productSlotsAreCorrect(status));
     })
   });
@@ -325,7 +328,7 @@ export const ONBOARD_YU_SCREEN = async (seed:OnboardingYuScreenInfo) => {
   seed.firstSlotLeftBackgroundImgSrc && Then(`I should be able to see ${seed.firstSlotLeftBackgroundImgSrc} background image on left`, then.idVisible(LEFT_SIDE_BACKGROUD_IMAGE_SLOT(seed.firstSlotLeftBackgroundImgSrc)));
   seed.firstSlotRightImgSrc && Then(`I should be able to see ${seed.firstSlotRightImgSrc} background image on right`, then.idVisible(RIGHT_SIDE_IMAGE_SLOT(seed.firstSlotRightImgSrc)));
   Then(`I should be able to see ${seed.lastSlotProductTitle}`, then.textVisible(seed.lastSlotProductTitle));
-  Then(`I should be able to see ${fixture.yuCoinText}`, then.textVisible(fixture.yuCoinText));
+  Then(`I should be able to see ${fixture.yuCoinText}`, then.textVisibleAtIndex(fixture.yuCoinText, 0));
   Then(`I should be able to see ${fixture.powerText}`, then.textVisible(fixture.powerText));
   Then(`I should be able to see ${fixture.protectionPowered}`, then.textVisible(fixture.protectionPowered));
   Then(`I should be able to see ${fixture.earnRewardsCopy}`,then.textVisible(fixture.earnRewardsCopy))
@@ -347,7 +350,7 @@ export const ON_YU_SCREEN = async (customer: any, seed:OnboardingYuScreenInfo) =
         Then(`I should be able to see ${seed.firstSlotProductSubtitle}`, then.textVisible(seed.firstSlotProductTitle));
         seed.firstSlotLeftBackgroundImgSrc && Then(`I should be able to see ${seed.firstSlotLeftBackgroundImgSrc} background image on left`, then.idVisible(LEFT_SIDE_BACKGROUD_IMAGE_SLOT(seed.firstSlotLeftBackgroundImgSrc)));
         seed.firstSlotRightImgSrc && Then(`I should be able to see ${seed.firstSlotRightImgSrc} background image on right`, then.idVisible(RIGHT_SIDE_IMAGE_SLOT(seed.firstSlotRightImgSrc)));
-        Then(`I should be able to see ${fixture.yuCoinText}`, then.textVisible(fixture.yuCoinText));
+        Then(`I should be able to see ${fixture.yuCoinText}`, then.textVisibleAtIndex(fixture.yuCoinText, 0));
         Then(`I should be able to see ${fixture.powerText}`, then.textVisible(fixture.powerText));
         When(`I swipe from text ${seed.firstSlotProductTitle}`, when.swipeFromText(seed.firstSlotProductTitle, "up", "fast"), async () => {
           Then(`I should be able to see ${fixture.surveyText}`, then.textVisible(fixture.surveyText));
