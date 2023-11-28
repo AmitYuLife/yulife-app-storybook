@@ -40,7 +40,7 @@ export const YUG0000003_BLUA_HEALTH = {
     modelName,
     data:{
         "perk_eligibility_id" : "YUG0000003_BLUA_HEALTH",
-        "perk_id" : "BUPA_HEALTH_INSURANCE",
+        "perk_id": "BUPA_HEALTH_INSURANCE_BLUA_HEALTH",
         "business_product_id" : BUSINESS_PRODUCT_13_GHI_REWARDS.product.data.product_id,
         "max_seats" : 10,
         "archived" : false,
