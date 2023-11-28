@@ -53,7 +53,7 @@ Feature("As a user I can take a challenge", async () => {
                             When("I wait for the challenge to end", when.wait(35000), async () => {
                                 Then("I should see the didn't make it screen", then.textVisible("you didn’t make it", 5000))
                                 Then("I should see the sub copy", then.textVisible("So close! Why not try again?"))
-                                When("I tap Okay, got it", when.tapText(t("Okay, got it")), async () => {
+                                When("I tap Got it", when.tapText(t("Got it")), async () => {
                                     Then("I should be back on quests", then.idVisible(ids.QUESTS_SCREEN(0)))
                                     When("I go back to the yuicoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
                                         Then("I should see the number of points I started with", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
@@ -264,7 +264,7 @@ Feature("As a user I can take a challenge", async () => {
         When("I tap this level 52 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(52)), async () => {
             Then("I should see a message that the next level will be available in 12 hours", then.nextLevelLocked)
         })
-        When("I tap got it", when.tapText(t("Okay, got it")), async () => {
+        When("I tap got it", when.tapText(t("Got it")), async () => {
             Then("I should see the level 51 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
         })
         When("I complete a second walking challenge at level 51", when.completeSecondChallenge(51, "Short Stroll"), async () => {
