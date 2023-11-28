@@ -20,7 +20,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap this level 50 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(50)), async () => {
             Then("I should see a message that the next level will be available in 12 hours", then.nextLevelLocked)
         })
-        When("I tap got it", when.tapText(t("Okay, got it")), async () => {
+        When("I tap got it", when.tapText(t("Got it")), async () => {
             Then("I should see the level 50 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(50)))
         })
     }) 
@@ -38,7 +38,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                 Then("I should see a message that the next level will be available in 12 hours", then.nextLevelLocked)
             })
         })
-        // When("I tap got it", when.tapText(t("Okay, got it")), async () => {
+        // When("I tap got it", when.tapText(t("Got it")), async () => {
         //     Then("I should see the level 199 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(199)))
         // })
 

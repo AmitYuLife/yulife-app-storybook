@@ -108,7 +108,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                                     Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
                                     When("I tap the level 6 challenge", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(6)), async () => {
                                         Then("I should see a challenge unavailable screen", then.idVisible(ids.CHALLENGE_UNAVAILABLE))
-                                        When("I tap 'got it'", when.tapText(t("Okay, got it")), async () => {
+                                        When("I tap 'got it'", when.tapText(t("Got it")), async () => {
                                             Then("I should be back on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
                                             When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
                                                 Then("I should see the coins I earned today", then.textVisible("2,710 YuCoin today"))
@@ -161,7 +161,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                         Then("The challenge should start", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
                         When("I wait for the challenge to finish", when.wait(32000), async () => {
                             Then("I should see the challenge failed screen", then.textVisible("you didn’t make it", 6000))
-                            When("I tap Okay, got it", when.tapText(t("Okay, got it")), async () => {
+                            When("I tap Got it", when.tapText(t("Got it")), async () => {
                                 Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
                                 When("I go back to the yuicoin screen", when.tapID(ids.NAV_BAR("yucoin")), async () => {
                                     Then("I should still see 4/5 streaks", then.textVisible("4/5"))
@@ -233,7 +233,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                                             When("I tap 'done'", when.tapText(t("Done")), async () => {
                                                 When("I tap the level 52 challenge", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(52)), async () => {
                                                     Then("I should see a challenge unavailable screen", then.idVisible(ids.CHALLENGE_UNAVAILABLE))
-                                                    When("I tap 'got it'", when.tapText(t("Okay, got it")), async () => {
+                                                    When("I tap 'got it'", when.tapText(t("Got it")), async () => {
                                                         Then("I should be back on the quests screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(52)))
                                                         When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
                                                             Then("I should see the coins I earned today", then.textVisible("220 YuCoin today"))
