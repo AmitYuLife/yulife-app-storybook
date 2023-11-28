@@ -1,25 +1,25 @@
-module.exports = {
-  extends: [
+{
+  "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
     "plugin:react-hooks/recommended",
-    "@react-native-community",
+    "@react-native-community"
   ],
-  plugins: ["react", "@typescript-eslint", "yulife-rn-client", "deprecation"],
-  env: {
-    browser: true,
+  "plugins": ["react", "@typescript-eslint", "deprecation"],
+  "env": {
+    "browser": true
   },
-  globals: {
-    React: "readonly",
-    NodeJS: "readonly",
-    JSX: "readonly",
-    global: "readonly",
+  "globals": {
+    "React": "readonly",
+    "NodeJS": "readonly",
+    "JSX": "readonly",
+    "global": "readonly"
   },
-  rules: {
+  "rules": {
     "comma-dangle": "off",
-    quotes: 0,
+    "quotes": 0,
     "no-shadow": "off",
     "no-extra-boolean-cast": "warn",
     "react-native/no-inline-styles": "warn",
@@ -37,40 +37,47 @@ module.exports = {
     "react/jsx-boolean-value": ["error", "always"],
     "react/prop-types": "off",
     "react-hooks/exhaustive-deps": "warn",
-    "yulife-rn-client/no-scale-up-and-down": "warn",
     "deprecation/deprecation": "warn",
     "no-else-return": [
       "error",
       {
-        allowElseIf: false,
-      },
+        "allowElseIf": false
+      }
     ],
-    semi: 2,
+    "semi": 2,
     "padding-line-between-statements": [
       "error",
       {
-        blankLine: "always",
-        prev: "block-like",
-        next: "*",
-      },
+        "blankLine": "always",
+        "prev": "block-like",
+        "next": "*"
+      }
     ],
+    "no-restricted-properties": [
+      "warn",
+      {
+        "object": "Style",
+        "property": "SCALE_UP_AND_DOWN",
+        "message": "Do not use the SCALE_UP_AND_DOWN function. Instead pass through the integer directly, or use the `Style.proportionSizes` function when available."
+      }
+    ]
   },
-  settings: {
-    react: {
-      pragma: "React",
-      version: "detect",
-    },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
   },
-  overrides: [
+  "overrides": [
     {
-      files: ["*.stories.tsx"],
-      rules: {
-        "react-native/no-inline-styles": "off",
-      },
-    },
+      "files": ["*.stories.tsx"],
+      "rules": {
+        "react-native/no-inline-styles": "off"
+      }
+    }
   ],
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    project: "./tsconfig.json",
-  },
-};
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}
