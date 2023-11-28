@@ -156,7 +156,6 @@ export * from "./GetReferralBackground";
 export * from "./GetReferralInformation";
 export * from "./GetReferralOnboardingPopover";
 export * from "./GetRewardItemDetails";
-export * from "./GetRewards";
 export * from "./GetSduiJourney";
 export * from "./GetSduiStaticStep";
 export * from "./GetSession";
