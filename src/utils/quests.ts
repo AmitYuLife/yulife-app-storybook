@@ -76,6 +76,7 @@ export function getUnitTarget(
     case "cycling":
       return "distance";
     case "fiit":
+    case "workout":
       return "duration";
     case "calories":
       return "calories";
