@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import YuCoinPowerButtonMini from "./yucoin-power-button-micro";
+import YucoinPowerButtonMicro from "./yucoin-power-button-micro";
 
-type Story = StoryObj<typeof YuCoinPowerButtonMini>;
+type Story = StoryObj<typeof YucoinPowerButtonMicro>;
 
-const meta: Meta<typeof YuCoinPowerButtonMini> = {
-  component: YuCoinPowerButtonMini,
-  title: "Design System/Molecules/YuCoinPowerButtonMini",
+const meta: Meta<typeof YucoinPowerButtonMicro> = {
+  component: YucoinPowerButtonMicro,
+  title: "Design System/Molecules/YucoinPowerButtonMicro",
   tags: ["autodocs"],
   parameters: {
     design: {
