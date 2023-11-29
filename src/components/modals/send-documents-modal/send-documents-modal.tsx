@@ -1,13 +1,12 @@
 import React, { memo, useState, useCallback } from "react";
 import { Alert, Keyboard, ScrollView, StyleSheet, View, ViewStyle } from "react-native";
-import { TextTemplate } from "@atoms";
+import { TextTemplate } from "@atoms/text/text-template";
 import { Style } from "@styles";
 import { Button, TextInput } from "@components/molecules";
 import { useMutation } from "@apollo/client";
 import { MODALS } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { t } from "@locale";
-
 import { GQL_MUTATION_SEND_WELLBEING_HUB_ITEM_DOCUMENTS } from "@graphql/wellbeingHub";
 import { showFloatingModal } from "../floating-modals/showFloatingModal";
 import { validateEmail } from "@utils/email";
