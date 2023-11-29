@@ -101,6 +101,7 @@
     "jsc-android": "^250230.2.1",
     "json-schema-yup-transformer": "^1.6.12",
     "lodash": "^4.17.21",
+    "lottie-react": "^2.4.0",
     "lottie-react-native": "^6.3.1",
     "moment": "^2.29.4",
     "node-polyglot": "^2.4.2",
