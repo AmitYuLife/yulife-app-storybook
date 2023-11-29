@@ -5,7 +5,8 @@
     "plugin:@typescript-eslint/recommended",
     "prettier",
     "plugin:react-hooks/recommended",
-    "@react-native-community"
+    "@react-native-community",
+    "plugin:storybook/recommended"
   ],
   "plugins": ["react", "@typescript-eslint", "deprecation"],
   "env": {

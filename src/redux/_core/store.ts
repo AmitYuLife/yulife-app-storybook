@@ -6,6 +6,7 @@ import createSagaMiddleware from "redux-saga";
 import { migrations } from "./migrations";
 import combinedReducers, { IReduxState } from "./reducers";
 import sagas from "./sagas";
+import Config from "react-native-config";
 
 const persistConfig = {
   blacklist: ["app", "pedometer", "avatarCache", "notifications", "sdui", "fitkit"],
@@ -23,7 +24,7 @@ const sagaMiddleware = createSagaMiddleware({
 
 const middlewares = [sagaMiddleware];
 
-if (__DEV__) {
+if (Config.ENV === "dev") {
   const createDebugger = require("redux-flipper").default;
   middlewares.push(createDebugger());
 }

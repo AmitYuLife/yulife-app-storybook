@@ -31,6 +31,7 @@ const CUSTOM_CONFIG = {
       "react-native-view-shot": path.join(__dirname, "/aliases/react-native-view-shot"),
       "react-native-reanimated": path.join(__dirname, "/aliases/react-native-reanimated"),
       "react-native-permissions": path.join(__dirname, "/aliases/react-native-permissions"),
+      "lottie-react-native": path.join(__dirname, "/aliases/lottie-react-native"),
     },
     extensions: [".web.js", ".js", ".ts", ".tsx"],
   },
@@ -56,13 +57,16 @@ const CUSTOM_CONFIG = {
 };
 module.exports = {
   stories: ["../src/components/@(atoms|molecules|organisms|screens|sdui|modals)/**/*.stories.@(js|jsx|ts|tsx)"],
+
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "storybook-addon-designs",
   ],
+
   staticDirs: [{ from: "../assets", to: "/assets" }],
+
   webpackFinal: (config) => {
     const newConfig = {
       ...config,
@@ -81,8 +85,13 @@ module.exports = {
     };
     return newConfig;
   },
+
   framework: {
     name: "@storybook/react-webpack5",
     options: {},
+  },
+
+  docs: {
+    autodocs: true,
   },
 };

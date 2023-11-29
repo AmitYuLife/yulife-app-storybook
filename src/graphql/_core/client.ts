@@ -96,7 +96,7 @@ export default () => {
       link: from([authMiddleware(), retryLink, httpLink()]),
     });
 
-    if (__DEV__) {
+    if (Config.ENV === "dev") {
       apolloDevToolsInit(defaultClient);
     }
   }
