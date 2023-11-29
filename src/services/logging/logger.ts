@@ -62,7 +62,7 @@ class LoggerInstance {
     };
   };
 
-  public setUserId = async (userId: string, intercomHash: string, loginIntercomUserOnce?: boolean) => {
+  public setUserId = async (userId: string, intercomHash: string, gameIntercomLoginOnce?: boolean) => {
     if (this.updatingUser) {
       return;
     }
@@ -79,7 +79,7 @@ class LoggerInstance {
         await this.logOut();
       }
 
-      loginIntercomUserOnce
+      gameIntercomLoginOnce
         ? await this.setIntercomUserOnce(userId, intercomHash)
         : await this.setIntercomUser(userId, intercomHash);
       this.bugsnag.setUser(userId, "", "");
