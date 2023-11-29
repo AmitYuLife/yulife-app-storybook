@@ -9,6 +9,7 @@ import { showYuModal } from "@navigation/root";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import { useBackHandler } from "@hooks";
 import { displayStreaksCompletedAction } from "@redux/streaks/streaks.actions";
+import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
 
 interface IProps {
   results: GetSudokuBoard_getSudokuBoard_results;
@@ -32,6 +33,7 @@ export const SudokuCompletedContainer = ({ reward, isPractice, results, stats }:
   const onCollect = useCallback(() => {
     dispatch(sudokuReset());
     dispatch(displayStreaksCompletedAction());
+    dispatch(getUserDataStart([AppDataType.activeStreak]));
 
     Navigation.popTo(isPractice ? ROUTES.sudokuStaging : ROUTES.quests);
 
