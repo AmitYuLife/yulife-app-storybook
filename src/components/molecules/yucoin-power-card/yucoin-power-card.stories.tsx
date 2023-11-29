@@ -23,6 +23,6 @@ export const Default: Story = {
 
 export const Selected: Story = {
   args: {
-    isSelected: true,
+    isPoweredUp: true,
   },
 };

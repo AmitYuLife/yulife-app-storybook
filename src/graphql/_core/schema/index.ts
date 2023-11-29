@@ -183,6 +183,7 @@ export * from "./GetWellbeingHubCategories";
 export * from "./GetWellbeingHubItem";
 export * from "./GetWellbeingHubItems";
 export * from "./GetYuCoinPowerExplained";
+export * from "./GetYuCoinPowerInfo";
 export * from "./GetYuScreen";
 export * from "./GetYuScreenProductDetails";
 export * from "./GetYuScreenProductList";

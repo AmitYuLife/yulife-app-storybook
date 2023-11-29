@@ -16,6 +16,7 @@ const meta: Meta<typeof ActivityPanel> = {
     milestone: "12,000",
     rewardText: "up to 120",
     icon: {
+      id: "",
       uri: "https://yulife-local.imgix.net/app-system/icons/default/calendar-2021-10-06.svg?ixlib=js-3.2.1&w=48&h=48&s=cfdb1ab0d0be0c338b3146cae4f7cc7f",
     },
   },
@@ -29,6 +30,6 @@ export const Default: Story = {
 };
 export const PowerUp: Story = {
   args: {
-    isPowerUp: true,
+    isPoweredUp: true,
   },
 };

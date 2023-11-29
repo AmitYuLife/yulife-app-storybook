@@ -20,8 +20,8 @@ const YuCoinPowerExplainedActivityGroup = memo(({ items, title }: Props) => {
         <TextTemplate type="b2b">{title}</TextTemplate>
       </View>
       <View style={styles.activityGroupItemsWrapper}>
-        {items.map((item, index) => (
-          <View key={index} style={styles.activityGroupItem}>
+        {items.map((item) => (
+          <View key={item.label} style={styles.activityGroupItem}>
             <FastImage source={item.icon} style={styles.activityGroupItemIcon} />
             <TextTemplate type="l1">{item.label}</TextTemplate>
             <View style={styles.activityGroupItemYuCoinWrapper}>

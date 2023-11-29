@@ -7,12 +7,12 @@ import { Style } from "@styles";
 import { YUCOIN_POWER } from "@ids";
 import { getUserEarnRate } from "@redux/user/user.selectors";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 
 interface IYucoinPowerButtonBaseProps {
   style?: ViewStyle;
   onPress?: () => void;
   innerStyle?: ViewStyle;
+  isShadowHidden?: boolean;
   children?: React.ReactNode;
 }
 
@@ -32,9 +32,10 @@ const GRADIENT = {
 
 const YucoinPowerButtonBase = ({
   style,
+  onPress,
   children,
   innerStyle,
-  onPress = showYuCoinPowerExplainedOverlay,
+  isShadowHidden,
 }: IYucoinPowerButtonBaseProps) => {
   const earnRate = useSelector(getUserEarnRate);
 
@@ -60,10 +61,11 @@ const YucoinPowerButtonBase = ({
     <TouchableOpacityWithDelay
       style={style}
       onPress={onPress}
+      disabled={!onPress}
       accessibilityRole="button"
       testID={YUCOIN_POWER(earnRate)}
     >
-      <View style={shadowStyle} />
+      {isShadowHidden ? null : <View style={shadowStyle} />}
       <View style={combinedInnerStyle}>
         <LinearGradient
           end={GRADIENT.end}

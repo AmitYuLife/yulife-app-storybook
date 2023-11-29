@@ -71,5 +71,8 @@ export interface GetYuCoinPowerExplained_getYuCoinPowerExplained {
 }
 
 export interface GetYuCoinPowerExplained {
+  /**
+   * @Deprecated - RN client version >= 3.110 uses getYuCoinPowerInfo
+   */
   getYuCoinPowerExplained: GetYuCoinPowerExplained_getYuCoinPowerExplained;
 }

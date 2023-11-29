@@ -354,7 +354,7 @@ const routesForRegistration = [
   // modals
   {
     name: MODALS.yuCoinPowerExplained,
-    component: require("../components/containers/member/yu/yu-coin-power-explained/yu-coin-power-explained").default,
+    component: require("../components/containers/member/yu/yu-coin-power-explained/index").default,
   },
   {
     name: MODALS.policyCertificate,

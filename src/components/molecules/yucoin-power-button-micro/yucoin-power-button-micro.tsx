@@ -1,24 +1,19 @@
-import { useSelector } from "react-redux";
 import React, { memo, useMemo } from "react";
 import { View, Text, StyleSheet, ViewStyle } from "react-native";
 
 import { t } from "@locale";
 import { Style, Colours } from "@styles";
-import { ArrowIcon } from "@atoms/icon/arrow";
+import { Image, TextTemplate } from "@atoms";
 import { YucoinPowerButtonBase } from "@molecules";
-import { StackDirection } from "@atoms/stack/stack";
-import { Stack, Image, TextTemplate } from "@atoms";
-import { getUserEarnRate } from "@redux/user/user.selectors";
-import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 
-interface IYucoinPowerButtonMiniProps {
+interface IYucoinPowerButtonMicroProps {
   style?: ViewStyle;
-  onPress?: () => void;
+  yuCoinPower?: string | number;
 }
 
-const YucoinPowerButtonMini = ({ style, onPress = showYuCoinPowerExplainedOverlay }: IYucoinPowerButtonMiniProps) => {
-  const earnRate = useSelector(getUserEarnRate);
+const YUCOIN_COIN_SIZE = 30;
 
+const YucoinPowerButtonMicro = ({ style, yuCoinPower }: IYucoinPowerButtonMicroProps) => {
   const yucoinPowerButtonStyle = useMemo((): ViewStyle => {
     return {
       ...styles.yucoinPowerButton,
@@ -27,34 +22,37 @@ const YucoinPowerButtonMini = ({ style, onPress = showYuCoinPowerExplainedOverla
   }, [style]);
 
   return (
-    <YucoinPowerButtonBase onPress={onPress} innerStyle={styles.yucoinPowerButtonInner} style={yucoinPowerButtonStyle}>
+    <YucoinPowerButtonBase
+      isShadowHidden={true}
+      style={yucoinPowerButtonStyle}
+      innerStyle={styles.yucoinPowerButtonInner}
+    >
       <View style={styles.yucoinPowerButtonCoinWrapper}>
         <Image
-          width={Style.adjust(28)}
           suppressLoadingUi={true}
-          height={Style.adjust(28)}
           style={styles.yucoinPowerButtonCoin}
+          width={Style.adjust(YUCOIN_COIN_SIZE)}
+          height={Style.adjust(YUCOIN_COIN_SIZE)}
           source={require("@assets/icons/coin.png")}
         />
         <View>
           {/**
            * TODO: to be replaced with the new SVG coin component at a later date
            */}
-          <Text style={styles.yucoinPowerButtonEarnRateText}>{earnRate}</Text>
+          <Text style={styles.yucoinPowerButtonEarnRateText}>{yuCoinPower}</Text>
         </View>
       </View>
       <View style={styles.yucoinPowerButtonTextWrapper}>
-        <Stack gap={Style.adjust(4)} direction={StackDirection.horizontal}>
-          <TextTemplate type="l1b" color={Colours.darkPink}>
+        <View>
+          <TextTemplate type="l3b" color={Colours.darkPink}>
             {t("molecules.yucoin_power_button.yucoin")}
           </TextTemplate>
-          <TextTemplate type="l1" color={Colours.darkPink}>
+        </View>
+        <View style={styles.yucoinPowerTextOffset}>
+          <TextTemplate type="l3" color={Colours.darkPink}>
             {t("molecules.yucoin_power_button.power")}
           </TextTemplate>
-        </Stack>
-      </View>
-      <View style={styles.yucoinPowerButtonArrow}>
-        <ArrowIcon width={Style.adjust(16)} height={Style.adjust(16)} />
+        </View>
       </View>
     </YucoinPowerButtonBase>
   );
@@ -63,35 +61,38 @@ const YucoinPowerButtonMini = ({ style, onPress = showYuCoinPowerExplainedOverla
 const styles = StyleSheet.create({
   yucoinPowerButton: {
     alignSelf: "center",
-    width: Style.adjust(140),
   },
   yucoinPowerButtonInner: {
+    paddingLeft: Style.adjust(5),
     borderRadius: Style.adjust(8),
-    paddingVertical: Style.adjust(1),
-    paddingHorizontal: Style.adjust(3),
+    paddingRight: Style.adjust(10),
+    paddingVertical: Style.adjust(2),
   },
   yucoinPowerButtonCoinWrapper: {
     textAlign: "center",
     alignItems: "center",
     justifyContent: "center",
-    width: Style.adjust(30),
-    height: Style.adjust(30),
+    width: Style.adjust(YUCOIN_COIN_SIZE),
+    height: Style.adjust(YUCOIN_COIN_SIZE),
   },
   yucoinPowerButtonCoin: {
     position: "absolute",
     left: Style.adjust(0),
   },
+  yucoinPowerTextOffset: {
+    marginTop: Style.adjust(-6),
+  },
   yucoinPowerButtonEarnRateText: {
     color: Colours.orange,
-    fontSize: Style.adjust(18),
+    fontSize: Style.adjust(14),
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
   },
   yucoinPowerButtonTextWrapper: {
-    marginLeft: Style.adjust(3),
+    marginLeft: Style.adjust(5),
   },
   yucoinPowerButtonArrow: {
     marginLeft: "auto",
   },
 });
 
-export default memo(YucoinPowerButtonMini);
+export default memo(YucoinPowerButtonMicro);
