@@ -8,6 +8,7 @@ import { MixpanelEvent, MixpanelEventMetadata } from "@services/logging/types";
 import { Event } from "@bugsnag/react-native";
 import { region } from "@locale";
 import { Platform } from "react-native";
+import { Storage, StorageKey } from "@utils/storage";
 
 class LoggerInstance {
   private userId = "";
@@ -44,6 +45,7 @@ class LoggerInstance {
       Mixpanel.reset();
       try {
         await Intercom.logout();
+        await Storage.removeItem(StorageKey.intercomIsLoggedIn);
       } catch (err) {
         this.error(err, {
           location: "logger.logOut",
@@ -60,7 +62,7 @@ class LoggerInstance {
     };
   };
 
-  public setUserId = async (userId: string, intercomHash: string) => {
+  public setUserId = async (userId: string, intercomHash: string, loginIntercomUserOnce?: boolean) => {
     if (this.updatingUser) {
       return;
     }
@@ -77,13 +79,35 @@ class LoggerInstance {
         await this.logOut();
       }
 
-      await this.setIntercomUser(userId, intercomHash);
+      loginIntercomUserOnce
+        ? await this.setIntercomUserOnce(userId, intercomHash)
+        : await this.setIntercomUser(userId, intercomHash);
       this.bugsnag.setUser(userId, "", "");
       Mixpanel.identify(userId);
       this.leanplum.setUserId(userId);
       this.userId = userId;
     } finally {
       this.updatingUser = false;
+    }
+  };
+
+  private setIntercomUserOnce = async (userId: string, hash: string) => {
+    const intercomIsLoggedIn = await Storage.getItem(StorageKey.intercomIsLoggedIn);
+
+    if (intercomIsLoggedIn === "true") {
+      this.intercomLoggedIn = true;
+      return;
+    }
+
+    try {
+      await Intercom.setUserHash(hash);
+      await Intercom.loginUserWithUserAttributes({ userId });
+      this.intercomLoggedIn = true;
+      await Storage.setItem(StorageKey.intercomIsLoggedIn, "true");
+    } catch (err) {
+      this.error(err, {
+        location: "logger.setIntercomUserOnce",
+      });
     }
   };
 
