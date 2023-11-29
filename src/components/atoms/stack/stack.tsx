@@ -53,11 +53,14 @@ const Stack = ({
 
   return (
     <View style={computedStyles} {...props}>
-      {childNodes.filter(Boolean).map((child, index) => (
-        <View key={index} style={getGap(index)}>
-          {child}
-        </View>
-      ))}
+      {childNodes
+        .flat()
+        .filter(Boolean)
+        .map((child, index) => (
+          <View key={index} style={getGap(index)}>
+            {child}
+          </View>
+        ))}
     </View>
   );
 };

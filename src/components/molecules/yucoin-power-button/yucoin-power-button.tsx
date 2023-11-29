@@ -9,6 +9,7 @@ import { YucoinPowerButtonBase } from "@molecules";
 import { TextTemplate, Stack, Image } from "@atoms";
 import { StackDirection } from "@atoms/stack/stack";
 import { getUserEarnRate } from "@redux/user/user.selectors";
+import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 
 interface IYucoinPowerButtonProps {
   style?: ViewStyle;
@@ -19,7 +20,7 @@ interface IYucoinPowerButtonProps {
  * A large button that displays the users YuCoin power
  * and allows them to navigate to the YuCoin Power modal.
  */
-const YucoinPowerButton = ({ style, onPress }: IYucoinPowerButtonProps) => {
+const YucoinPowerButton = ({ style, onPress = showYuCoinPowerExplainedOverlay }: IYucoinPowerButtonProps) => {
   const earnRate = useSelector(getUserEarnRate);
 
   return (

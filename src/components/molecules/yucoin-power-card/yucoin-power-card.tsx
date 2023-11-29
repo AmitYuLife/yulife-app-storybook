@@ -8,11 +8,12 @@ import { showTooltipPopupRelativeToPoint } from "@organisms/tooltip-popup/toolti
 import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import { SecondaryButton } from "@molecules";
 import { Navigation } from "@navigation/main";
+import { addCommasToNumber } from "@utils";
 
 interface IProps {
-  isSelected?: boolean;
+  isPoweredUp?: boolean;
   yuCoinPower: number;
-  yuCoin: string;
+  yuCoinAmount: number;
 }
 
 const COLOURS = {
@@ -68,13 +69,14 @@ const INFO_ICON_MEASURES = {
 };
 const YUCOIN_POWER_HEIGHT = Style.adjust(90);
 
-const YuCoinPowerCard = ({ isSelected, yuCoinPower = 0, yuCoin }: IProps) => {
+const YuCoinPowerCard = ({ isPoweredUp, yuCoinPower = 0, yuCoinAmount }: IProps) => {
   const [measures, setMeasures] = useState({ x: 0, y: 0 });
-  const selectedColours = useMemo(() => (isSelected ? COLOURS.selected : COLOURS.default), [isSelected]);
+  const selectedColours = useMemo(() => (isPoweredUp ? COLOURS.selected : COLOURS.default), [isPoweredUp]);
 
   const onLayout = useCallback(({ nativeEvent }: LayoutChangeEvent) => {
-    const x = nativeEvent.layout.x + INFO_ICON_MEASURES.x + INFO_ICON_MEASURES.width / 2;
-    const y = nativeEvent.layout.y + INFO_ICON_MEASURES.y + YUCOIN_POWER_HEIGHT + INFO_ICON_MEASURES.height;
+    const offset = 5;
+    const x = nativeEvent.layout.x + INFO_ICON_MEASURES.x + INFO_ICON_MEASURES.width - offset;
+    const y = nativeEvent.layout.y + INFO_ICON_MEASURES.y + INFO_ICON_MEASURES.height + offset;
     setMeasures({ x, y });
   }, []);
 
@@ -82,7 +84,7 @@ const YuCoinPowerCard = ({ isSelected, yuCoinPower = 0, yuCoin }: IProps) => {
     () =>
       showTooltipPopupRelativeToPoint({
         x: measures.x,
-        y: measures.y,
+        y: measures.y + YUCOIN_POWER_HEIGHT,
         beakPosition: "topCenter",
         children: (
           <View style={styles.toolTipWrapper}>
@@ -164,14 +166,15 @@ const YuCoinPowerCard = ({ isSelected, yuCoinPower = 0, yuCoin }: IProps) => {
           </Text>
           <Text
             y={44}
-            x={206}
+            x={230}
             fontSize={28}
             fontFamily={Style.FONT_FAMILY_PRIMARY_BOLD}
             letterSpacing={1}
             fontWeight="bold"
             fill={selectedColours[16]}
+            textAnchor="middle"
           >
-            {yuCoin}
+            {addCommasToNumber(yuCoinAmount)}
           </Text>
           <ForeignObject y={20} x={287}>
             <YuCoinMiniSvg size={24} hasShadow={true} />

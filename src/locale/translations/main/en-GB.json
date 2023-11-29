@@ -886,6 +886,9 @@
     },
     "meditopia_media_list": {
       "startChallengeButtonLabel": "Start session"
+    },
+    "yu_coin_power_explained": {
+      "heading": "YuCoin Power"
     }
   },
   "permissions": {

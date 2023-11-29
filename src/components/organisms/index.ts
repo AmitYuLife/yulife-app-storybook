@@ -42,6 +42,7 @@ export { default as Podium } from "./podium/podium";
 export { default as JoinLeaderboard } from "./join-leaderboard/join-leaderboard";
 export { default as LeaderboardFloatingRank } from "./leaderboard-floating-rank/leaderboard-floating-rank";
 export { default as ActivityPanel } from "./activity-panel/activity-panel";
+export { default as ProductSelect } from "./product-select/product-select";
 export { default as GenericFullScreenLoading } from "./generic-full-screen-loading/generic-full-screen-loading";
 export { default as AvPlayerDescription } from "./av-player-description/av-player-description";
 export { default as AvPlayerLoading } from "./av-player-loading/av-player-loading";

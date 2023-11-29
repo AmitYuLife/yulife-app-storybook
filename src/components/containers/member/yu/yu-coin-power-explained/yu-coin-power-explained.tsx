@@ -1,114 +1,215 @@
-import React, { memo, useCallback } from "react";
-import { View, ScrollView } from "react-native";
-import { Navigation } from "@navigation/main";
-import { MODALS } from "@navigation/constants";
-import { Loading, Text, TextTemplate, YuCoinBadge } from "@atoms";
-import { Button } from "@molecules";
-import { useQuery } from "@apollo/client";
-import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
-import { useBackHandler } from "@hooks";
-import { GQL_QUERY_GET_YU_COIN_POWER_EXPLAINED } from "@graphql/yuscreen/getYuCoinPowerExplained";
-import { EARN_RATE, TEXT_TEMPLATE, YUCOIN_TITLE, YUCOIN_EXPLAINED_SCROLL_VIEW } from "@ids";
-import { GetYuCoinPowerExplained } from "@graphql/_core/schema";
-import { Style } from "@styles";
-import { YuCoinPowerSVG } from "./yu-coin-power-svg";
-import Markdown from "@molecules/markdown/markdown";
-import {
-  descriptionMarkdownStyles,
-  styles,
-  titleMarkdownStyles,
-  yuCoinPowerHeight,
-} from "./yu-coin-power-explained.styles";
-import YuCoinPowerExplainedActivityGroup from "./yu-coin-power-explained-activity-group";
-import { useDispatch, useSelector } from "react-redux";
-import { logEvent } from "../helpers/logEvent";
-import { getCurrentLevel } from "@redux/levels/levels.selectors";
-import { getCurrentWorld, getCurrentYuniverse } from "@utils";
+import { FlashList } from "@shopify/flash-list";
+import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 
-const YuCoinPowerExplained = memo(() => {
-  const dispatch = useDispatch();
-  const currentLevel = useSelector(getCurrentLevel);
-  const currentYuniverse = getCurrentYuniverse(currentLevel);
-  const currentWorld = getCurrentWorld(currentLevel);
-  const { data } = useQuery<GetYuCoinPowerExplained>(GQL_QUERY_GET_YU_COIN_POWER_EXPLAINED, {
-    fetchPolicy: "no-cache",
+import { t } from "@locale";
+import { Colours, Style } from "@styles";
+import { useQuery } from "@apollo/client";
+import { YuCoinPowerCard } from "@molecules";
+import { Navigation } from "@navigation/main";
+import { Loading, Stack, TextTemplate } from "@atoms";
+import YuCoinPowerExplainedProduct from "./yu-coin-power-explained-product";
+import { GQL_QUERY_GET_YU_COIN_POWER_INFO } from "@graphql/yuscreen/getYuCoinPowerInfo";
+import { ActivityPanel, GenericHeadingAbsolute, GenericHeadingPad, ProductSelect } from "@organisms";
+import {
+  GetYuCoinPowerInfo,
+  GetYuCoinPowerInfo_getYuCoinPowerInfo_sections_items as IGetYuCoinPowerInfoSectionItems,
+} from "@graphql/_core/schema";
+
+const PADDING_LARGE = 35;
+const ESTIMATED_ITEM_SIZE = 105;
+const HEADER_BACKGROUND_OFFSET = 500;
+const NUMBER_OF_ACTIVITY_COLUMNS_TO_SHOW = 3;
+
+const YuCoinPowerExplained = () => {
+  const [selectedPersonalProducts, setSelectedPersonalProducts] = useState<Record<string, boolean>>({});
+
+  const {
+    loading,
+    refetch,
+    data: { getYuCoinPowerInfo: { yuCoin, productPreviews, sections = [], products = [] } = {} } = {},
+  } = useQuery<GetYuCoinPowerInfo>(GQL_QUERY_GET_YU_COIN_POWER_INFO, {
+    variables: {
+      fetchPolicy: "network-only",
+      productIds: Object.entries(selectedPersonalProducts)
+        .filter(([_, isSelected]) => {
+          return isSelected;
+        })
+        .map(([productId]) => productId),
+    },
   });
 
-  const dismissOverlay = useCallback(async () => {
-    await Navigation.dismissModal(MODALS.yuCoinPowerExplained);
-    if (data?.getYuCoinPowerExplained?.button) {
-      const event = data?.getYuCoinPowerExplained?.button.event;
-      logEvent(dispatch, event);
-    }
-  }, [data, dispatch]);
+  useEffect(() => {
+    refetch();
+  }, [refetch, selectedPersonalProducts]);
 
-  const backHandler = useCallback(() => {
-    dismissOverlay();
-    return true;
-  }, [dismissOverlay]);
+  const isPreviewingProduct = useMemo(() => {
+    return Object.values(selectedPersonalProducts).some((isSelected) => isSelected);
+  }, [selectedPersonalProducts]);
 
-  useBackHandler(backHandler);
+  const itemSeperator = useCallback(() => <View style={{ width: Style.adjust(10) }} />, []);
 
-  if (!data?.getYuCoinPowerExplained) {
+  const activityPanelWidth = useCallback((numberOfItems: number): ViewStyle => {
+    const screenPadding = PADDING_LARGE * 2;
+    const itemSpacing = 10 * (numberOfItems - 1);
+
+    return {
+      width: (Style.DEVICE_WIDTH - screenPadding - itemSpacing) / NUMBER_OF_ACTIVITY_COLUMNS_TO_SHOW,
+    };
+  }, []);
+
+  const onProductToggle = useCallback(async (productId: string): Promise<void> => {
+    setSelectedPersonalProducts((prev) => {
+      return {
+        ...prev,
+        [productId]: !prev[productId],
+      };
+    });
+  }, []);
+
+  const keyExtractor = useCallback((item: IGetYuCoinPowerInfoSectionItems, index: number): string => {
+    return `${item.title}-${index}`;
+  }, []);
+
+  if (loading) {
     return <Loading />;
   }
 
-  const { activities, button, heading, yuCoin } = data.getYuCoinPowerExplained;
   return (
-    <GenericOverlay onClose={dismissOverlay}>
-      <ScrollView showsVerticalScrollIndicator={false} testID={YUCOIN_EXPLAINED_SCROLL_VIEW}>
-        <View style={styles.wrapper}>
-          <View style={styles.headerWrapper}>
-            <View style={styles.yuCoinIconWrapper}>
-              <YuCoinBadge
-                hasWhiteGlow={false}
-                width={110}
-                height={116}
-                currentWorld={currentWorld}
-                currentYuniverse={currentYuniverse}
-              />
-            </View>
-            <TextTemplate type="b1b" testID={TEXT_TEMPLATE(heading)} textAlign="center">
-              {heading}
-            </TextTemplate>
-          </View>
-          <View>
-            <View style={styles.yuCoinPowerSvgWrapper}>
-              <YuCoinPowerSVG height={yuCoinPowerHeight} width={Style.DEVICE_WIDTH} />
-            </View>
-            <View style={styles.yuCoinPowerWrapper}>
-              <View style={styles.yuCoinPowerEarnRateWrapper}>
-                <Text bold={true} style={styles.yuCoinPowerEarnRate} testID={EARN_RATE(yuCoin.earnRate)}>
-                  {yuCoin.earnRate}
-                </Text>
-              </View>
-              <View style={styles.yuCoinTitle} testID={YUCOIN_TITLE}>
-                <Markdown text={yuCoin.title} markdownStyles={titleMarkdownStyles} />
-              </View>
-              <View style={styles.yuCoinPowerDescription}>
-                <Markdown text={yuCoin.description} markdownStyles={descriptionMarkdownStyles} />
-              </View>
-            </View>
-          </View>
-          <View>
-            <View style={styles.activitiesWrapper}>
-              <View style={styles.activitiesHeading}>
-                <TextTemplate textAlign="center" type="b2b">
-                  {activities.heading}
-                </TextTemplate>
-              </View>
-              <YuCoinPowerExplainedActivityGroup {...activities.dailyCoreActivities} />
-              <View style={styles.activityGroupSpacer} />
-              <YuCoinPowerExplainedActivityGroup {...activities.additionalActivities} />
-            </View>
-          </View>
-          <View style={styles.buttonWrapper}>
-            <Button size="Large" onPress={dismissOverlay} label={button.label} />
-          </View>
+    <>
+      <GenericHeadingPad />
+      <ScrollView style={styles.scrollViewContainer}>
+        <View style={styles.yuCoinPowerCard}>
+          {/* Ensures the header is still white when the user overscrolls */}
+          <View style={styles.yuCoinPowerCardHeaderBackgroundOffset} />
+          <YuCoinPowerCard
+            yuCoinPower={yuCoin?.earnRate}
+            yuCoinAmount={yuCoin?.earnings}
+            isPoweredUp={isPreviewingProduct}
+          />
         </View>
+
+        <Stack style={styles.wrapper} gap={Style.adjust(PADDING_LARGE)}>
+          {!productPreviews?.items?.length ? null : (
+            <Stack style={styles.paddedSection}>
+              <TextTemplate type="l1">{productPreviews.title}</TextTemplate>
+              {productPreviews?.items.map((item) => (
+                <ProductSelect
+                  key={item.id}
+                  id={item.id}
+                  title={item.title}
+                  image={item.image}
+                  onPress={onProductToggle}
+                  yuCoinPower={item.yuCoinPower}
+                  description={item.description}
+                  backgroundColor={item.backgroundColor}
+                  isSelected={selectedPersonalProducts?.[item.id]}
+                />
+              ))}
+            </Stack>
+          )}
+
+          {sections.map((section) => (
+            <Stack key={section.title}>
+              <View style={styles.paddedSection}>
+                <TextTemplate type="b2b">{section.title}</TextTemplate>
+              </View>
+              <FlashList
+                horizontal={true}
+                data={section.items}
+                keyExtractor={keyExtractor}
+                showsHorizontalScrollIndicator={false}
+                ItemSeparatorComponent={itemSeperator}
+                estimatedItemSize={ESTIMATED_ITEM_SIZE}
+                contentContainerStyle={styles.paddedSection}
+                renderItem={({ item }) => (
+                  <ActivityPanel
+                    icon={item.icon}
+                    title={item.title}
+                    milestone={item.milestone}
+                    rewardText={item.rewardText}
+                    isPoweredUp={isPreviewingProduct}
+                    style={activityPanelWidth(section.items.length)}
+                  />
+                )}
+              />
+            </Stack>
+          ))}
+
+          <Stack style={styles.paddedSection} gap={Style.adjust(24)}>
+            {products.map((product) => (
+              <YuCoinPowerExplainedProduct key={product.title} product={product} />
+            ))}
+          </Stack>
+        </Stack>
       </ScrollView>
-    </GenericOverlay>
+      <GenericHeadingAbsolute
+        onRightIconPress={onRightIconPress}
+        heading={t("screens.yu_coin_power_explained.heading")}
+      />
+    </>
   );
+};
+
+const onRightIconPress = () => Navigation.dismissAllModals();
+
+const styles = StyleSheet.create({
+  wrapper: {
+    paddingBottom: Style.adjust(50),
+  },
+  scrollViewContainer: {
+    backgroundColor: Colours.neutral.n50,
+  },
+  paddedSection: {
+    paddingHorizontal: Style.adjust(PADDING_LARGE),
+  },
+  yuCoinPowerCard: {
+    alignItems: "center",
+    paddingBottom: Style.adjust(16),
+    backgroundColor: Colours.neutral.white,
+    borderBottomLeftRadius: Style.adjust(20),
+    borderBottomRightRadius: Style.adjust(20),
+    marginBottom: Style.adjust(PADDING_LARGE),
+  },
+  /* Ensures the header is still white when the user overscrolls */
+  yuCoinPowerCardHeaderBackgroundOffset: {
+    left: 0,
+    right: 0,
+    position: "absolute",
+    backgroundColor: Colours.neutral.white,
+    top: Style.adjust(-HEADER_BACKGROUND_OFFSET),
+    height: Style.adjust(HEADER_BACKGROUND_OFFSET),
+  },
+  productCard: {
+    overflow: "hidden",
+    padding: Style.adjust(1),
+    paddingBottom: Style.adjust(5),
+    borderRadius: Style.adjust(8),
+    borderColor: Colours.neutral.n100,
+    backgroundColor: Colours.neutral.n100,
+  },
+  productCardInner: {
+    overflow: "hidden",
+    borderRadius: Style.adjust(8),
+  },
+  productCardHeader: {
+    minHeight: Style.adjust(150),
+  },
+  productCardBody: {
+    overflow: "hidden",
+    paddingVertical: Style.adjust(15),
+    paddingHorizontal: Style.adjust(20),
+    backgroundColor: Colours.neutral.white,
+  },
+  productCardYuCoin: {
+    position: "absolute",
+    top: Style.adjust(20),
+    left: Style.adjust(20),
+  },
+  productCardimage: {},
+  productCardButton: {
+    marginTop: Style.adjust(20),
+  },
 });
 
-export default YuCoinPowerExplained;
+export default memo(YuCoinPowerExplained);

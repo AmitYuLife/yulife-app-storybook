@@ -1,24 +1,21 @@
-import React, { memo, useMemo } from "react";
-import { Source } from "react-native-fast-image";
-import { Block, Image, TextTemplate, YuCoinMiniSvg } from "@atoms";
-import { StyleSheet, View } from "react-native";
 import { Colours, Style } from "@styles";
+import React, { memo, useMemo } from "react";
+import { StyleSheet, View, ViewStyle } from "react-native";
+import { Block, Image, TextTemplate, YuCoinMiniSvg } from "@atoms";
+import { GetYuCoinPowerInfo_getYuCoinPowerInfo_sections_items as IGetYuCoinPowerInfoSectionItems } from "@graphql/_core/schema";
 
-interface IProps {
-  title: string;
-  milestone: string;
-  rewardText: string;
-  icon: Source;
-  isPowerUp?: boolean;
+interface IProps extends IGetYuCoinPowerInfoSectionItems {
+  style?: ViewStyle;
+  isPoweredUp?: boolean;
 }
 
-const ActivityPanel = ({ title, milestone, rewardText, icon, isPowerUp }: IProps) => {
+const ActivityPanel = ({ title, milestone, rewardText, icon, isPoweredUp, style }: IProps) => {
   const colours = useMemo(
     () =>
-      isPowerUp
+      isPoweredUp
         ? { backgroundColour: "#FCE7F1", colour: "#CC0D6E" }
         : { backgroundColour: "#F7F3FF", colour: "#5C5757" },
-    [isPowerUp]
+    [isPoweredUp]
   );
 
   const iconStyle = useMemo(
@@ -30,7 +27,7 @@ const ActivityPanel = ({ title, milestone, rewardText, icon, isPowerUp }: IProps
   );
 
   return (
-    <Block style={styles.wrapper}>
+    <Block style={[styles.wrapper, style]}>
       <View style={iconStyle}>
         <Image width={Style.adjust(24)} height={Style.adjust(24)} source={icon} />
       </View>
@@ -52,11 +49,10 @@ const ActivityPanel = ({ title, milestone, rewardText, icon, isPowerUp }: IProps
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: Colours.neutral.white,
+    flex: 1,
     alignItems: "center",
-    paddingTop: Style.adjust(12),
-    paddingBottom: Style.adjust(16),
-    paddingHorizontal: Style.adjust(30),
+    paddingVertical: Style.adjust(10),
+    backgroundColor: Colours.neutral.white,
   },
   icon: {
     borderRadius: 100,
@@ -67,11 +63,12 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(12),
   },
   milestone: {
+    flex: 1,
     marginTop: Style.adjust(4),
   },
   rewardWrapper: {
     flexDirection: "row",
-    marginTop: Style.adjust(32),
+    marginTop: Style.adjust(12),
   },
   rewardText: {
     marginRight: Style.adjust(4),

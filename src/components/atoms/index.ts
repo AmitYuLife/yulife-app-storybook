@@ -39,3 +39,4 @@ export { default as YuCoinBadge } from "./yucoin-badge/yucoin-badge";
 export { default as ChallengeBackground } from "./challenge-background/challenge-background";
 export { default as Stack } from "./stack/stack";
 export { default as MagnifyingGlass } from "./magnifying-glass/magnifying-glass";
+export { default as PowerCoin } from "./power-coin/power-coin";
