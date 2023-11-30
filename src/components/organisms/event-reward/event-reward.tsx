@@ -15,7 +15,7 @@ import { GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
 import { GOAL_TOOLTIP_INFO, CLAIM_BUTTON, ANIMATED_CIRCLE } from "@ids";
 import { Button, LabelWithImages, PressableWithDelay } from "@molecules";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { refreshUserProfileEvents, getUserStart } from "@redux/user/user.actions";
+import { refreshUserProfileEvents, getUserStart, AppDataType, getUserDataStart } from "@redux/user/user.actions";
 import { ILabelImage } from "@components/molecules/label-with-images/label-with-images";
 import { showInfoMessageTooltipViewRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
 
@@ -152,6 +152,7 @@ const EventReward = ({
       await onClaimReward(reward);
       dispatch(refreshUserProfileEvents());
       dispatch(getUserStart());
+      dispatch(getUserDataStart([AppDataType.coinLedger]));
 
       Vibration.vibrate();
     } catch (e) {

@@ -30,13 +30,6 @@ export const GQL_FRAGMENT_USER = gql`
       companyLeaderboard
       workspaceLeaderboard
     }
-    coinLedger {
-      currentBalance
-      currentLevel
-      yuniversalMap
-      yuniversalLevel
-      nextLevelAvailableAt
-    }
     passiveSteps: passiveChallenge {
       exchange {
         yucoin

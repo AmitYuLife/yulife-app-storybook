@@ -179,7 +179,6 @@ const loginUserSuccess = (state: ICoinsStore, { loginUser }: LoginUser): ICoinsS
   return {
     ...state,
     dailyChallengeEarned: sumCompletedChallenges(loginUser?.user?.todayActivity),
-    total: loginUser?.user?.coinLedger?.currentBalance || state.total,
     lastUpdated: moment().format(DATE_FORMAT),
   };
 };
@@ -202,7 +201,6 @@ const todayActivitySuccess = (
 const getUserSuccess = (state: ICoinsStore, { getCurrentUser }: GetCurrentUser): ICoinsStore => ({
   ...state,
   dailyChallengeEarned: sumCompletedChallenges(getCurrentUser?.todayActivity),
-  total: getCurrentUser?.coinLedger?.currentBalance || state.total,
   lastUpdated: moment().format(DATE_FORMAT),
 });
 

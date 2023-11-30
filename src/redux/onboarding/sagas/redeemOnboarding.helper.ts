@@ -1,7 +1,7 @@
 import upsertOnboardingChallenge from "@graphql/challenges/upsertOnboardingChallenge.gql";
 import Logger from "@services/logging/logger";
 import { call, put, spawn } from "redux-saga/effects";
-import { getUserStart } from "../../user/user.actions";
+import { AppDataType, getUserDataStart, getUserStart } from "../../user/user.actions";
 import { setRedeemedOnboarding } from "../onboarding.actions";
 
 export default function* redeemOnboarding() {
@@ -11,6 +11,7 @@ export default function* redeemOnboarding() {
     if (data?.upsertOnboardingChallenge?.yuCoinAwarded) {
       yield put(setRedeemedOnboarding(data.upsertOnboardingChallenge.yuCoinAwarded));
       yield put(getUserStart());
+      yield put(getUserDataStart([AppDataType.coinLedger]));
     }
   } catch (e) {
     yield spawn(() => {

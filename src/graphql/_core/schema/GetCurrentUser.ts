@@ -28,14 +28,6 @@ export interface GetCurrentUser_getCurrentUser_mobileConsent {
   workspaceLeaderboard: boolean | null;
 }
 
-export interface GetCurrentUser_getCurrentUser_coinLedger {
-  currentBalance: number | null;
-  currentLevel: number | null;
-  yuniversalMap: number | null;
-  yuniversalLevel: number | null;
-  nextLevelAvailableAt: string | null;
-}
-
 export interface GetCurrentUser_getCurrentUser_passiveSteps_exchange {
   yucoin: number | null;
   steps: number | null;
@@ -205,7 +197,6 @@ export interface GetCurrentUser_getCurrentUser {
   connections: (GetCurrentUser_getCurrentUser_connections | null)[] | null;
   userFeatures: (GetCurrentUser_getCurrentUser_userFeatures | null)[] | null;
   mobileConsent: GetCurrentUser_getCurrentUser_mobileConsent | null;
-  coinLedger: GetCurrentUser_getCurrentUser_coinLedger | null;
   passiveSteps: GetCurrentUser_getCurrentUser_passiveSteps | null;
   passiveMeditation: GetCurrentUser_getCurrentUser_passiveMeditation | null;
   passiveCycling: GetCurrentUser_getCurrentUser_passiveCycling | null;
