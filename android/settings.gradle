@@ -13,8 +13,6 @@ include ':yulife-react-native-fitkit'
 project(':yulife-react-native-fitkit').projectDir = new File(rootProject.projectDir, '../node_modules/@yu-life/react-native-fitkit/android')
 include ':react-native-svg'
 project(':react-native-svg').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-svg/android')
-include ':react-native-push-notification'
-project(':react-native-push-notification').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-push-notification/android')
 include ':react-native-mixpanel'
 project(':react-native-mixpanel').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-mixpanel/android')
 include ':react-native-fast-image'
@@ -31,6 +29,9 @@ project(':@leanplum_react-native-sdk').projectDir = new File(rootProject.project
 
 include ':app'
 includeBuild('../node_modules/react-native-gradle-plugin')
+
+apply from: new File(["node", "--print", "require.resolve('expo/package.json')"].execute(null, rootDir).text.trim(), "../scripts/autolinking.gradle")
+useExpoModules()
 
 include ':@react-native-camera-roll_camera-roll'
 project(':@react-native-camera-roll_camera-roll').projectDir = new File(rootProject.projectDir, '../node_modules/@react-native-camera-roll/camera-roll/android')
@@ -53,9 +54,6 @@ project(':yulife-react-native-fitkit').projectDir = new File(rootProject.project
 
 include ':react-native-svg'
 project(':react-native-svg').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-svg/android')
-
-include ':react-native-push-notification'
-project(':react-native-push-notification').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-push-notification/android')
 
 include ':react-native-mixpanel'
 project(':react-native-mixpanel').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-mixpanel/android')

@@ -1,49 +1,57 @@
-import { Platform } from "react-native";
-import PushNotificationIOS from "@react-native-community/push-notification-ios";
-import PushNotification from "react-native-push-notification";
 import { eventChannel } from "redux-saga";
 import Logger from "@services/logging/logger";
-import { YULIFE_PN_CHANNEL_NAME, YULIFE_PN_CHANNEL_ID } from "@services/constants";
+
+import * as ExpoNotification from "expo-notifications";
+import { YULIFE_PN_CHANNEL_NAME, YULIFE_PN_CHANNEL_ID, YULIFE_PN_CHANNEL_DESCRIPTION } from "@services/constants";
 
 export async function createPushNotificationsChannel() {
   return eventChannel((emitter) => {
-    PushNotification.configure({
-      onNotification: (notification) => {
+    ExpoNotification.setNotificationHandler({
+      async handleNotification(notification) {
         emitter(notification);
-        notification.finish(PushNotificationIOS.FetchResult.NoData);
+        return {
+          shouldShowAlert: true,
+          shouldPlaySound: true,
+          shouldSetBadge: true,
+          priority: ExpoNotification.AndroidNotificationPriority.DEFAULT,
+        };
       },
-      onRegister: (result) => {
-        emitter(result);
+      handleError(_, error) {
+        Logger.error(error, { event: "pushNotification" });
       },
-      onRegistrationError: (err) => {
-        Logger.error(err, { event: "pushNotification" });
-      },
-      permissions: {
-        alert: true,
-        badge: true,
-        sound: true,
-      },
-      requestPermissions: Platform.OS === "android",
     });
 
-    PushNotification.createChannel(
-      {
-        channelId: YULIFE_PN_CHANNEL_ID, // (required)
-        channelName: YULIFE_PN_CHANNEL_NAME, // (required)
-        soundName: "default", // (optional) See `soundName` parameter of `localNotification` function
-        importance: 4, // (optional) default: 4. Int value of the Android notification importance
-        vibrate: true, // (optional) default: true. Creates the default vibration patten if true.
-      },
-      (created) => emitter({ created })
+    ExpoNotification.setNotificationChannelAsync(YULIFE_PN_CHANNEL_ID, {
+      enableVibrate: true,
+      enableLights: true,
+      name: YULIFE_PN_CHANNEL_NAME,
+      description: YULIFE_PN_CHANNEL_DESCRIPTION,
+      importance: ExpoNotification.AndroidImportance.DEFAULT,
+      lockscreenVisibility: ExpoNotification.AndroidNotificationVisibility.PUBLIC,
+    });
+
+    ExpoNotification.getDevicePushTokenAsync().then((value) =>
+      emitter({
+        os: value.type,
+        token: value.data,
+      })
     );
 
     return () => null;
   });
 }
 
+/** should rename this into check iOS permissions */
 export function createPushPermissionsChannel() {
   return eventChannel((emitter) => {
-    PushNotification.checkPermissions(emitter);
+    ExpoNotification.requestPermissionsAsync().then((val) =>
+      emitter({
+        alert: val.ios.allowsAlert,
+        badge: val.ios.allowsBadge,
+        sound: val.ios.allowsSound,
+      })
+    );
+
     return () => null;
   });
 }

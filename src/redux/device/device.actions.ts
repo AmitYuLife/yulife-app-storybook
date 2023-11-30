@@ -1,5 +1,4 @@
 import { Language } from "@locale";
-import { PushNotification } from "react-native-push-notification";
 import { IDeviceStore } from "./device.reducer";
 import { IPushNotification } from "./device.selectors";
 
@@ -20,7 +19,7 @@ export const markAppAsInstalled = () => ({
   type: MARK_APP_AS_INSTALLED,
 });
 
-export const pushNotificationReceived = (payload: PushNotification) => ({
+export const pushNotificationReceived = (payload: { os: string; token: string }) => ({
   payload,
   type: PUSH_NOTIFICATION_RECEIVED,
 });

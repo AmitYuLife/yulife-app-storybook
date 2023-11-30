@@ -316,7 +316,6 @@ android {
 dependencies {
     implementation project(':react-native-video')
     implementation project(':react-native-device-info')
-    implementation project(':react-native-push-notification')
     implementation project(':react-native-config')
     implementation project(':react-native-navigation')
     implementation project(':react-native-svg')

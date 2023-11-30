@@ -2,7 +2,6 @@
 #import <IntercomModule.h>
 #import <ReactNativeNavigation/ReactNativeNavigation.h>
 #import "ReactNativeConfig.h"
-#import <RNCPushNotificationIOS.h>
 #import <React/RCTLinkingManager.h>
 #import <UserNotifications/UserNotifications.h>
 #import <Leanplum.h>
@@ -187,29 +186,22 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   completionHandler(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge);
 }
 
-// Required to register for notifications
-- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
-{
-  [RNCPushNotificationIOS didRegisterUserNotificationSettings:notificationSettings];
-}
 // Required for the register event.
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
   [IntercomModule setDeviceToken:deviceToken];
-  [RNCPushNotificationIOS didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+  return [super application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 // Required for the notification event. You must call the completion handler after handling the remote notification.
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
 //    [Leanplum didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
-    [RNCPushNotificationIOS didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
     completionHandler(UIBackgroundFetchResultNoData);
 }
 // Required for the registrationError event.
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
-  [RNCPushNotificationIOS didFailToRegisterForRemoteNotificationsWithError:error];
   [Leanplum didFailToRegisterForRemoteNotificationsWithError:error];
 }
 // IOS 10+ Required for localNotification event
@@ -217,13 +209,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 didReceiveNotificationResponse:(UNNotificationResponse *)response
          withCompletionHandler:(void (^)(void))completionHandler
 {
-  [RNCPushNotificationIOS didReceiveNotificationResponse:response];
   completionHandler();
 }
- //Required for the localNotification event.
- - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
- {
-   [RNCPushNotificationIOS didReceiveLocalNotification:notification];
- }
-
 @end

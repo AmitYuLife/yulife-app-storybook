@@ -11,6 +11,17 @@ PODS:
     - React-Core
   - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
+  - EXApplication (5.1.1):
+    - ExpoModulesCore
+  - EXConstants (14.2.1):
+    - ExpoModulesCore
+  - EXNotifications (0.18.1):
+    - ExpoModulesCore
+  - Expo (48.0.21):
+    - ExpoModulesCore
+  - ExpoModulesCore (1.2.7):
+    - React-Core
+    - ReactCommon/turbomodule/core
   - FBLazyVector (0.70.13)
   - FBReactNativeSpec (0.70.13):
     - RCT-Folly (= 2021.07.22.00)
@@ -457,8 +468,6 @@ PODS:
     - React-Core
   - RNCClipboard (1.5.1):
     - React-Core
-  - RNCPushNotificationIOS (1.10.1):
-    - React-Core
   - RNDateTimePicker (7.6.1):
     - React-Core
   - RNDeviceInfo (10.11.0):
@@ -541,6 +550,11 @@ DEPENDENCIES:
   - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
   - clevertap-react-native (from `../node_modules/clevertap-react-native`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
+  - EXApplication (from `../node_modules/expo-application/ios`)
+  - EXConstants (from `../node_modules/expo-constants/ios`)
+  - EXNotifications (from `../node_modules/expo-notifications/ios`)
+  - Expo (from `../node_modules/expo`)
+  - ExpoModulesCore (from `../node_modules/expo-modules-core`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
   - Flipper (= 0.222.0)
@@ -617,7 +631,6 @@ DEPENDENCIES:
   - ReactNativeNavigation (from `../node_modules/react-native-navigation`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCClipboard (from `../node_modules/@react-native-community/clipboard`)"
-  - "RNCPushNotificationIOS (from `../node_modules/@react-native-community/push-notification-ios`)"
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNFastImage (from `../node_modules/react-native-fast-image`)
@@ -674,6 +687,16 @@ EXTERNAL SOURCES:
     :path: "../node_modules/clevertap-react-native"
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
+  EXApplication:
+    :path: "../node_modules/expo-application/ios"
+  EXConstants:
+    :path: "../node_modules/expo-constants/ios"
+  EXNotifications:
+    :path: "../node_modules/expo-notifications/ios"
+  Expo:
+    :path: "../node_modules/expo"
+  ExpoModulesCore:
+    :path: "../node_modules/expo-modules-core"
   FBLazyVector:
     :path: "../node_modules/react-native/Libraries/FBLazyVector"
   FBReactNativeSpec:
@@ -776,8 +799,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCClipboard:
     :path: "../node_modules/@react-native-community/clipboard"
-  RNCPushNotificationIOS:
-    :path: "../node_modules/@react-native-community/push-notification-ios"
   RNDateTimePicker:
     :path: "../node_modules/@react-native-community/datetimepicker"
   RNDeviceInfo:
@@ -807,6 +828,11 @@ SPEC CHECKSUMS:
   clevertap-react-native: f6040fbb8af58572443a0e6436b4ad749efac530
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
+  EXApplication: d8f53a7eee90a870a75656280e8d4b85726ea903
+  EXConstants: f348da07e21b23d2b085e270d7b74f282df1a7d9
+  EXNotifications: dd628737af60fc8cc62dccebacd326b0fbbc0dcb
+  Expo: 0d9f112757acc6bf32103eabccf91267780bd580
+  ExpoModulesCore: 0749525babb492117f864873612b56c79611bb95
   FBLazyVector: b2ab2b9a9e8e1917caf61518a5fa37bdac445202
   FBReactNativeSpec: 4df8af73da797c1ec9ccd4418cf14fd21c19b8ab
   Flipper: 2134ddbde14751be413e22c2677d743dffaa9945
@@ -878,7 +904,6 @@ SPEC CHECKSUMS:
   ReactNativeNavigation: 827eec439e8e651351d3fa2fd549a16c3c1f221a
   RNCAsyncStorage: 618d03a5f52fbccb3d7010076bc54712844c18ef
   RNCClipboard: 41d8d918092ae8e676f18adada19104fa3e68495
-  RNCPushNotificationIOS: 87b8d16d3ede4532745e05b03c42cff33a36cc45
   RNDateTimePicker: 8fb39263b721223e095248acaf6f406d5b7f6713
   RNDeviceInfo: bf8a32acbcb875f568217285d1793b0e8588c974
   RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
@@ -899,6 +924,6 @@ SPEC CHECKSUMS:
   SwiftAudioEx: 6f511018b7a0fdfd14ed1bb4081f953588245cc0
   Yoga: 445485143df46a9d5d4ef61cbbc629fec40fb9a0
 
-PODFILE CHECKSUM: 2fe66a0af4400b28b840ab08807364d450e5e10f
+PODFILE CHECKSUM: 2a6842a1c89d8c2de346838a79dce64b79d81441
 
 COCOAPODS: 1.12.1

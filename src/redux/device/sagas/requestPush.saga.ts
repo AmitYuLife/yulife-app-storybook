@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import PushNotification from "react-native-push-notification";
+import * as ExpoNotification from "expo-notifications";
 import { call, select } from "redux-saga/effects";
 import { getPushNotifications } from "../device.selectors";
 import { PERMISSIONS, check, request } from "react-native-permissions";
@@ -15,7 +15,7 @@ const requestPermissions = async () => {
   }
 
   if (Platform.OS === "ios") {
-    PushNotification.requestPermissions();
+    ExpoNotification.requestPermissionsAsync();
   }
 };
 
