@@ -19,7 +19,6 @@ import { GenericFullScreenLoading, GenericHeadingPad, NavBar, TopBarAbsolute } f
 import { GQL_QUERY_GET_VIDEOS_LIST } from "@graphql/media/getMedia.gql";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { GetMedia, GetMediaVariables, GetMedia_getMedia } from "@graphql/_core/schema";
-import cancelQuestMapLevelChallenge from "@graphql/challenges/cancelQuestMapLevelChallenge.gql";
 import { IMediaPlayerContainerProps } from "@components/containers/member/media/media-player/media-player.container";
 
 export interface IVideoProgressStorage {
@@ -68,11 +67,9 @@ const MediaPlayerProgressScreen = ({
     return isVideoProgressStorage(videoProgress) ? videoProgress : null;
   }, [isVideoProgressStorage]);
 
-  const cancelChallenge = useCallback(async (): Promise<void> => {
-    await Storage.removeItem(StorageKey.mediaPlayerProgress);
-    await cancelQuestMapLevelChallenge(activeLevel.levelSlotId);
+  const cancelChallenge = useCallback(() => {
     dispatch(challengeCancelAction());
-  }, [activeLevel, dispatch]);
+  }, [dispatch]);
 
   const getHasChallengeEnded = useCallback(
     (video: GetMedia_getMedia): boolean => {
@@ -132,8 +129,8 @@ const MediaPlayerProgressScreen = ({
             heading: t("modals.generic_modal.on_meditopia_error.heading"),
             ctaLabel: t("modals.generic_modal.on_meditopia_error.cta_label"),
             subheading: t("modals.generic_modal.on_meditopia_error.subheading"),
-            onPress: async () => {
-              await cancelChallenge();
+            onPress: () => {
+              cancelChallenge();
               Navigation.dismissAllModals();
             },
           },

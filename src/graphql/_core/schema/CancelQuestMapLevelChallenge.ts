@@ -21,5 +21,4 @@ export interface CancelQuestMapLevelChallenge {
 
 export interface CancelQuestMapLevelChallengeVariables {
   levelSlotId: string;
-  contentId?: string | null;
 }

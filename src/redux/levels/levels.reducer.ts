@@ -25,7 +25,9 @@ import {
   CHALLENGE_RESET,
   CHALLENGE_RESET_FAIL,
   CHALLENGE_RESET_SUCCESS,
+  CHALLENGE_START,
   CHALLENGE_START_SUCCESS,
+  CHALLENGE_START_FAIL,
   CHALLENGE_UPDATE_SUCCESS,
   CHALLENGE_END,
   CHALLENGE_IS_ACTIVE,
@@ -33,7 +35,7 @@ import {
   CHALLENGE_NO_DATA_DEFER,
 } from "./levels.actions";
 import { CHALLENGE_START_INITIAL_STEPS, ChallengeStartPayload } from "./levels.actions";
-import { ActiveLevelStatus, IActiveLevel } from "./levels.selectors";
+import { ActiveLevelState, ActiveLevelStatus, IActiveLevel } from "./levels.selectors";
 import { getChallengesAmountAvailable } from "./levels.helpers";
 
 export interface ILevelsStore {
@@ -75,6 +77,7 @@ export const getInitialState = (): ILevelsStore => ({
     videoPlayerIsActive: false,
     hideExternalLinks: true,
     appButton: null,
+    levelState: null,
   },
   challengesDoneToday: 0,
   dailyChallengeAmountAvailable: 1,
@@ -96,8 +99,14 @@ const levelsReducer = (state: ILevelsStore = getInitialState(), action: SyncActi
     case CHALLENGE_CANCEL:
       return isCancellingChallenge(state);
 
+    case CHALLENGE_START:
+      return challengeStart(state);
+
     case CHALLENGE_START_SUCCESS:
       return challengeStartSuccess(state, action.payload);
+
+    case CHALLENGE_START_FAIL:
+      return challengeStartFail(state);
 
     case GET_USER_COIN_LEDGER_SUCCESS:
       return getCoinLedgerSuccess(state, action.payload);
@@ -106,7 +115,7 @@ const levelsReducer = (state: ILevelsStore = getInitialState(), action: SyncActi
       return getActiveChallengeSuccess(state, action.payload);
 
     case CHALLENGE_IS_ACTIVE:
-      return { ...state, active: { ...state.active, challengeIsActive: true } };
+      return challengeActive(state);
 
     case CHALLENGE_UPDATE_SUCCESS:
       return challengeUpdateSuccess(state, action.payload);
@@ -228,12 +237,20 @@ const isCancellingChallenge = (state: ILevelsStore): ILevelsStore => ({
   },
 });
 
+const challengeActive = (state: ILevelsStore): ILevelsStore => ({
+  ...state,
+  active: {
+    ...state.active,
+    challengeIsActive: true,
+    levelState: ActiveLevelState.CHALLENGE_ACTIVE,
+  },
+});
+
 const challengeStartSuccess = (
   state: ILevelsStore,
   {
-    createQuestMapLevelChallenge: { challenge, levelSlot, chest, yuniversalChest },
+    createQuestMapLevelChallenge: { challenge, levelSlot, chest, yuniversalChest, hideExternalLinks },
     videoPlayerIsActive,
-    hideExternalLinks, // TODO: Delete this after our meditopia player goes live for everyone
   }: ChallengeStartPayload
 ): ILevelsStore => ({
   ...state,
@@ -257,6 +274,25 @@ const challengeStartSuccess = (
     isLoading: false,
     videoPlayerIsActive,
     hideExternalLinks, // TODO: Delete this after our meditopia player goes live for everyone
+    levelState: ActiveLevelState.START_CHALLENGE_SUCCEED,
+  },
+});
+
+const challengeStart = (state: ILevelsStore): ILevelsStore => ({
+  ...state,
+  active: {
+    ...state.active,
+    isLoading: true,
+    levelState: ActiveLevelState.STARTING_CHALLENGE,
+  },
+});
+
+const challengeStartFail = (state: ILevelsStore): ILevelsStore => ({
+  ...state,
+  active: {
+    ...state.active,
+    isLoading: false,
+    levelState: ActiveLevelState.START_CHALLENGE_FAILED,
   },
 });
 

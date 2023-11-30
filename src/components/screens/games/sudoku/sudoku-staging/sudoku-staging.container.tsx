@@ -1,4 +1,4 @@
-import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
+import { useLazyQuery, useQuery } from "@apollo/client";
 import {
   GetMobileSocialGroupLeaderboardItems,
   GetQuestMapLevelChallengeDetails,
@@ -6,7 +6,7 @@ import {
   GetSudokuBoard,
 } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_SUDOKU_BOARDS } from "@graphql/brainGames/sudoku/getSudokuBoards.gql";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { first } from "lodash";
 import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
@@ -15,14 +15,12 @@ import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import SudokuStagingScreen from "./sudoku-staging.screen";
 import { showYuModal } from "@navigation/root";
 import { SudokuDifficulty } from "@graphql/_core/schema/globalTypes";
-import { GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE } from "@graphql/challenges";
-import { getActiveLevel } from "@redux/levels/levels.selectors";
+import { ActiveLevelState, getActiveLevel } from "@redux/levels/levels.selectors";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/getQuestMapChallengeDetails.gql";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useQueryOnScreenSeen } from "@hooks";
-import { challengeCancelAction, challengeStartSuccessAction } from "@redux/levels/levels.actions";
-import cancelQuestMapLevelChallenge from "@graphql/challenges/cancelQuestMapLevelChallenge.gql";
+import { challengeStartAction } from "@redux/levels/levels.actions";
 import { getCurrentDateState, getRouteState } from "@redux/app/app.selectors";
 import { getActiveYudokuLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
 import { GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS } from "@graphql/socialGroupLeaderboard/getMobileSocialGroupLeaderboardItems";
@@ -35,11 +33,11 @@ interface IProps {
 export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
   const dispatch = useDispatch();
   const activeYudokuLeaderboard = useSelector(getActiveYudokuLeaderboard);
-  const activeChallenge = useSelector(getActiveLevel);
+  const activeLevel = useSelector(getActiveLevel);
   const currentDate = useSelector(getCurrentDateState);
   const currentScreen = useSelector(getRouteState);
   const isScreenActive = currentScreen === componentId;
-  const [createQuestMapLevelChallenge] = useMutation(GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE);
+  const [createChallengeLoading, setCreateChallengeLoading] = useState(false);
 
   const [, { data }] = useQueryOnScreenSeen<GetSudokuBoard>(GQL_QUERY_GET_SUDOKU_BOARDS, componentId, {
     fetchPolicy: "no-cache",
@@ -94,41 +92,41 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
   const board = first(data?.getSudokuBoard?.boards);
 
   const startGame = useCallback(async () => {
-    if (activeChallenge.levelSlotId) {
-      await cancelQuestMapLevelChallenge(activeChallenge.levelSlotId);
-      dispatch(challengeCancelAction());
+    setCreateChallengeLoading(true);
+    dispatch(
+      challengeStartAction({
+        levelSlotId: slot.id,
+        createQuestMapLevelChallengeVariables: { levelSlotId: slot.id },
+      })
+    );
+  }, [slot.id, dispatch]);
+
+  useEffect(() => {
+    if (!createChallengeLoading) {
+      return;
     }
 
-    const challenge = await createQuestMapLevelChallenge({
-      variables: {
-        levelSlotId: slot.id,
-      },
-    });
+    setCreateChallengeLoading(false);
 
-    dispatch(
-      challengeStartSuccessAction({
-        createQuestMapLevelChallenge: challenge.data?.createQuestMapLevelChallenge,
-        levelSlotId: slot.id,
-      })
-    );
+    if (activeLevel.levelState === ActiveLevelState.START_CHALLENGE_SUCCEED) {
+      dispatch(
+        sudokuReset({
+          levelSlotId: slot.id,
+          startTime: new Date(),
+          gameIdentifier: `${currentDate}_${SudokuDifficulty.EASY}`,
+          date: currentDate,
+        })
+      );
 
-    dispatch(
-      sudokuReset({
-        levelSlotId: slot.id,
-        startTime: new Date(),
-        gameIdentifier: `${currentDate}_${SudokuDifficulty.EASY}`,
-        date: currentDate,
-      })
-    );
-
-    return Navigation.push(componentId, {
-      component: {
-        id: ROUTES.sudokuGame,
-        name: ROUTES.sudokuGame,
-        passProps: { date: currentDate, levelSlotId: slot.id },
-      },
-    });
-  }, [activeChallenge.levelSlotId, createQuestMapLevelChallenge, slot.id, dispatch, componentId, currentDate]);
+      Navigation.push(componentId, {
+        component: {
+          id: ROUTES.sudokuGame,
+          name: ROUTES.sudokuGame,
+          passProps: { date: currentDate, levelSlotId: slot.id },
+        },
+      });
+    }
+  }, [activeLevel.levelState, createChallengeLoading, componentId, currentDate, dispatch, slot.id]);
 
   const onBack = useCallback(() => {
     Navigation.pop(componentId);

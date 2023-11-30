@@ -56,15 +56,24 @@ export const GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
   }
 `;
 
-const updateQuestMapLevelChallenge = (
-  levelSlotId: string,
-  payload: ChallengePayload,
-  level?: number,
-  yuniversalMap?: number
-) =>
+interface UpdateQuestMapLevelChallengeArgs {
+  levelSlotId: string;
+  payload: ChallengePayload;
+  level?: number;
+  yuniversalMap?: number;
+  contentId?: string;
+}
+
+const updateQuestMapLevelChallenge = ({
+  levelSlotId,
+  payload,
+  level,
+  yuniversalMap,
+  contentId,
+}: UpdateQuestMapLevelChallengeArgs) =>
   client().mutate<UpdateQuestMapLevelChallenge, UpdateQuestMapLevelChallengeVariables>({
     mutation: GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE,
-    variables: { levelSlotId, payload },
+    variables: { levelSlotId, payload, contentId },
     errorPolicy: "ignore",
     ...(!level
       ? {}

@@ -26,7 +26,6 @@ import {
 import { DETOX_ENABLED } from "@services/socket";
 import { Task } from "redux-saga";
 import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
-import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 
 export function* startTracking(
   levelSlotId: string,
@@ -66,7 +65,7 @@ export function* startTracking(
           value: Math.floor(queryResult.results.reduce((accumulator, session) => accumulator + session.value, 0)),
         };
 
-        const { data } = yield call(UpdateQuestMapLevelChallenge, levelSlotId, results);
+        const { data } = yield call(UpdateQuestMapLevelChallenge, { levelSlotId, payload: results });
         const challengeData: UpdateQuestMapActiveChallenge = data?.updateQuestMapLevelChallenge;
 
         yield put(challengeUpdateSuccessAction(challengeData?.challenge));
@@ -116,7 +115,7 @@ export default function* startChallenge({
 }: Args) {
   let challengeTask: Task;
 
-  if (subtype !== "sudoku") {
+  if (fitKitTypes.length) {
     // We don't want to track time when playing sudoku as we want the user to be able to start & then finish after midnight.
     // The challenge will be auto cancelled by quests.conptainer if they go back to the map after the day has ended,
     // but if they are still playing the game, we will allow them to finish.
@@ -144,8 +143,7 @@ export default function* startChallenge({
           yield cancel(challengeTask);
         }
 
-        yield put(challengeResetSuccessAction());
-        yield put(sudokuReset());
+        yield put(challengeResetSuccessAction({ subtype }));
 
         inProgress = false;
       } catch (e) {

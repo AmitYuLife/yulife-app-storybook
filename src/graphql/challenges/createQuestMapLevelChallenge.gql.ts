@@ -1,6 +1,7 @@
 import { MutationTuple } from "@apollo/client";
 import { CreateQuestMapLevelChallengeVariables, CreateQuestMapLevelChallenge } from "@graphql/_core/schema";
 import { gql } from "@apollo/client";
+import client from "../_core/client";
 
 export const GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
   mutation CreateQuestMapLevelChallenge($levelSlotId: String!, $contentId: String) {
@@ -59,7 +60,17 @@ export const GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
     }
   }
 `;
+
 export type CreateQuestMapLevelChallengeMutationTuple = MutationTuple<
   CreateQuestMapLevelChallenge,
   CreateQuestMapLevelChallengeVariables
 >;
+
+const createQuestMapLevelChallenge = (variables: { levelSlotId: string; contentId?: string }) =>
+  client().mutate<CreateQuestMapLevelChallenge, CreateQuestMapLevelChallengeVariables>({
+    mutation: GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE,
+    variables,
+    errorPolicy: "ignore",
+  });
+
+export default createQuestMapLevelChallenge;

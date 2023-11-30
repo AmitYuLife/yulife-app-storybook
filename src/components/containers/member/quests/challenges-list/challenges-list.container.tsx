@@ -1,16 +1,16 @@
-import React, { FC, useState, useCallback, memo, useMemo } from "react";
+import React, { FC, useState, useCallback, memo, useMemo, useEffect } from "react";
 import { GQL_QUERY_GET_QUEST_MAP_LEVEL } from "@graphql/challenges";
 import { Navigation } from "@navigation/main";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   GetQuestMapLevel,
   GetQuestMapLevel_getQuestMapLevel_slots,
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent as InternalContentProps,
 } from "@graphql/_core/schema";
-import { challengeStartSuccessAction } from "@redux/levels/levels.actions";
+import { challengeStartAction } from "@redux/levels/levels.actions";
 import { BlurProvider, IToggleBlur } from "@atoms";
 import { ChallengesListScreen, ChallengeDetailsScreenV2, ChallengeDetailsScreenV1 } from "@screens";
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { handleLinkPress } from "@services/app-link";
 import { getCurrentWorld, isSamsung } from "@utils";
 import { ChallengesLoading } from "@components/molecules";
@@ -20,14 +20,11 @@ import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import {
-  CreateQuestMapLevelChallengeMutationTuple,
-  GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE,
-} from "@graphql/challenges/createQuestMapLevelChallenge.gql";
 import { showYuModal } from "@navigation/root";
 import { t } from "@locale";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useUserFeatures } from "@hooks";
+import { ActiveLevelState, getActiveChallengeState } from "@redux/levels/levels.selectors";
 
 interface IProps {
   componentId: string;
@@ -40,15 +37,12 @@ type Props = IProps;
 
 const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, componentId }) => {
   const features = useUserFeatures();
+  const activeChallengeState = useSelector(getActiveChallengeState);
   const [error, setErrorState] = useState(null as string);
   const [slot, setSlot] = useState(null as GetQuestMapLevel_getQuestMapLevel_slots);
   const [submitting, setSubmittingState] = useState(false);
   const dispatch = useDispatch();
   const { authoriseFitKitTypes } = useFitKit();
-
-  const [createQuestMapLevelChallengeMutation]: CreateQuestMapLevelChallengeMutationTuple = useMutation(
-    GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE
-  );
 
   const { loading, data } = useQuery<GetQuestMapLevel>(GQL_QUERY_GET_QUEST_MAP_LEVEL, {
     variables: { level, yuniversalMap },
@@ -82,28 +76,37 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
 
       await getChallengeDetails(slot.id);
 
-      const activeChallenge = await createQuestMapLevelChallengeMutation({
-        variables: { levelSlotId: slot.id },
-      });
-
-      if (activeChallenge?.data?.createQuestMapLevelChallenge) {
-        dispatch(
-          challengeStartSuccessAction({
-            ...activeChallenge.data,
-            levelSlotId: slot.id,
-            hideExternalLinks: activeChallenge.data.createQuestMapLevelChallenge.hideExternalLinks,
-          })
-        );
-        handleNavPress();
-      } else {
-        setError();
-      }
+      dispatch(
+        challengeStartAction({
+          levelSlotId: slot.id,
+          createQuestMapLevelChallengeVariables: { levelSlotId: slot.id },
+        })
+      );
     } catch (e) {
       setError();
-    } finally {
       setSubmittingState(false);
     }
   };
+
+  useEffect(() => {
+    if (!submitting) {
+      return;
+    }
+
+    setSubmittingState(false);
+
+    switch (activeChallengeState) {
+      case ActiveLevelState.START_CHALLENGE_SUCCEED: {
+        handleNavPress();
+        return;
+      }
+
+      case ActiveLevelState.START_CHALLENGE_FAILED: {
+        setError();
+        return;
+      }
+    }
+  }, [activeChallengeState, submitting, setError, handleNavPress]);
 
   const handleSubmitChallenge = useCallback(async () => {
     const internalContent = slot?.details?.internalContent;
@@ -121,7 +124,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
     return createChallenge();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slot?.id, createQuestMapLevelChallengeMutation, dispatch, handleNavPress, setError]);
+  }, [slot?.id, dispatch, handleNavPress, setError]);
 
   const handleInternalContentChallenge = useCallback(
     (internalContent: InternalContentProps[]) => {

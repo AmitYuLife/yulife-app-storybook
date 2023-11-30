@@ -1,39 +1,21 @@
-import moment from "moment";
 import { MediaPlayerScreen } from "@components/screens";
-import { MODALS, ROUTES } from "@navigation/constants";
-import React, { useCallback, memo, useState } from "react";
+import { ROUTES } from "@navigation/constants";
+import React, { useCallback, memo, useState, useEffect } from "react";
 import { Navigation } from "@navigation/main";
-import {
-  CancelQuestMapLevelChallenge,
-  CancelQuestMapLevelChallengeVariables,
-  Media,
-  UpdateQuestMapLevelChallenge,
-  UpdateQuestMapLevelChallengeVariables,
-} from "@graphql/_core/schema";
-import {
-  CreateQuestMapLevelChallengeMutationTuple,
-  GQL_MUTATION_CANCEL_MAP_LEVEL_CHALLENGE,
-  GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE,
-  GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE,
-} from "@graphql/challenges";
-import { useMutation } from "@apollo/client";
+import { Media } from "@graphql/_core/schema";
 import { useDispatch, useSelector } from "react-redux";
 import {
   challengeCancelAction,
-  challengeEndSuccessAction,
-  challengeStartSuccessAction,
+  finishInAppMediaChallengeAction,
+  challengeStartAction,
 } from "@redux/levels/levels.actions";
 import { t } from "@locale";
 import { Modal } from "react-native";
 import { GenericModal } from "@components/modals";
-import { IActiveLevel, getActiveLevel } from "@redux/levels/levels.selectors";
-import { updateInAppMeditation } from "@redux/daily-meditation/daily-meditation.actions";
-import { logMixpanelEventActionCreator, logErrorActionCreator } from "@redux/logging/logging.actions";
+import { ActiveLevelState, getActiveLevel } from "@redux/levels/levels.selectors";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { Storage, StorageKey } from "@utils/storage";
 import { IVideoProgressStorage } from "@components/screens/member/media/media-player/media-player-progress.screen";
-import { showYuModal } from "@navigation/root";
-import { Style } from "@styles";
-import { getInAppDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 
 interface IVideo extends Media {
   reward: number;
@@ -59,8 +41,6 @@ export interface IMediaPlayerContainerProps {
   startTimeInSeconds?: number;
 }
 
-const MEDITATION_ANTI_CHEAT_MINUTES = 2;
-
 const MediaPlayerContainer = ({
   video,
   levelSlotId,
@@ -76,132 +56,56 @@ const MediaPlayerContainer = ({
   const activeLevel = useSelector(getActiveLevel);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showError, setShowError] = useState<boolean>(false);
-  const inAppMeditation = useSelector(getInAppDailyMeditation);
-  const [createQuestMapLevelChallengeMutation]: CreateQuestMapLevelChallengeMutationTuple = useMutation(
-    GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE
-  );
-  const [updateQuestMapLevelChallenge] = useMutation<
-    UpdateQuestMapLevelChallenge,
-    UpdateQuestMapLevelChallengeVariables
-  >(GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE);
-
-  const [cancelMapLevelChallenge] = useMutation<CancelQuestMapLevelChallenge, CancelQuestMapLevelChallengeVariables>(
-    GQL_MUTATION_CANCEL_MAP_LEVEL_CHALLENGE
-  );
+  const [createChallengeLoading, setCreateChallengeLoading] = useState(false);
 
   const navigateToMediaPlayer = useCallback(async () => {
     setShowModal(false);
     await Navigation.pop(ROUTES.mediaPlayer);
   }, []);
 
-  const cancelChallenge = useCallback(async (): Promise<void> => {
-    await Storage.removeItem(StorageKey.mediaPlayerProgress);
-    await cancelMapLevelChallenge({
-      variables: {
-        levelSlotId,
-        contentId: video.id,
-      },
-    });
+  const cancelChallenge = useCallback(() => {
     dispatch(challengeCancelAction());
-  }, [video.id, levelSlotId, dispatch, cancelMapLevelChallenge]);
+  }, [dispatch]);
 
-  const createChallenge = useCallback(
-    async ({ challengeIsActive, endDateTime }: IActiveLevel): Promise<void> => {
-      if (challengeIsActive || Boolean(endDateTime)) {
-        await cancelChallenge();
-      }
+  const createChallenge = useCallback(() => {
+    if (!video?.duration) {
+      // TODO: show error
+      return;
+    }
 
-      if (!video?.duration) {
-        return;
-      }
-
-      const { data } = await createQuestMapLevelChallengeMutation({ variables: { levelSlotId, contentId: video.id } });
-      dispatch(
-        challengeStartSuccessAction({
-          createQuestMapLevelChallenge: data?.createQuestMapLevelChallenge,
-          levelSlotId,
+    setCreateChallengeLoading(true);
+    dispatch(
+      challengeStartAction({
+        levelSlotId,
+        challengeStartSuccessPayload: {
           videoPlayerIsActive: true,
           videoDuration: video.duration,
-        })
-      );
+        },
+        createQuestMapLevelChallengeVariables: { levelSlotId, contentId: video.id },
+      })
+    );
+  }, [dispatch, levelSlotId, video]);
 
-      if (orientation === "landscape") {
-        Navigation.mergeOptions(ROUTES.mediaPlayer, {
-          statusBar: {
-            drawBehind: false,
-            visible: false,
-          },
-        });
-      }
-    },
-    [dispatch, video?.id, levelSlotId, video?.duration, cancelChallenge, createQuestMapLevelChallengeMutation]
-  );
+  useEffect(() => {
+    if (!createChallengeLoading) {
+      return;
+    }
 
-  const onEnd = useCallback(async (): Promise<void> => {
-    try {
-      const payload = { levelSlotId, contentId: video.id, payload: { value: video.duration } };
+    setCreateChallengeLoading(false);
 
-      const { data } = await updateQuestMapLevelChallenge({
-        variables: payload,
-      });
-
-      const challenge = data?.updateQuestMapLevelChallenge?.challenge;
-
-      if (!challenge) {
-        dispatch(logMixpanelEventActionCreator("media_challenge_missing", payload));
-        return;
-      }
-
-      dispatch(challengeEndSuccessAction({ ...challenge }));
-
-      if (eventType === "mindfullness") {
-        if (moment().diff(inAppMeditation.lastUpdated, "minutes") < MEDITATION_ANTI_CHEAT_MINUTES) {
-          dispatch(logMixpanelEventActionCreator("media_challenge_anti_cheat", { inAppMeditation }));
-        } else {
-          dispatch(updateInAppMeditation({ duration: video.duration, createdAt: challenge.createdAt }));
-        }
-      }
-
-      await Navigation.popTo(ROUTES.quests);
-
-      dispatch(logMixpanelEventActionCreator("media_challenge_end", { levelSlotId, duration: video.duration }));
-    } catch (err) {
-      dispatch(logErrorActionCreator(err, { file: "media-player.container" }));
-      await showYuModal({
-        component: {
-          id: MODALS.generic,
-          name: MODALS.generic,
-          passProps: {
-            isPrimaryOnePressOnly: true,
-            heading: t("modals.generic_modal.on_media_challenge_end_error.heading"),
-            ctaLabel: t("modals.generic_modal.on_media_challenge_end_error.cta_label"),
-            subheading: t("modals.generic_modal.on_media_challenge_end_error.subheading"),
-            image: {
-              source: require("@assets/media-screen/media-failed-modal-hero.png"),
-              width: Style.adjust(200),
-              height: Style.adjust(200),
-            },
-            onPress: async () => {
-              await cancelChallenge();
-              await Navigation.dismissAllModals();
-              await Navigation.popTo(ROUTES.quests);
-            },
-          },
+    if (activeLevel.levelState === ActiveLevelState.START_CHALLENGE_SUCCEED && orientation === "landscape") {
+      Navigation.mergeOptions(ROUTES.mediaPlayer, {
+        statusBar: {
+          drawBehind: false,
+          visible: false,
         },
       });
-    } finally {
-      await Storage.removeItem(StorageKey.mediaPlayerProgress);
     }
-  }, [
-    video.duration,
-    video.id,
-    levelSlotId,
-    dispatch,
-    eventType,
-    updateQuestMapLevelChallenge,
-    cancelChallenge,
-    inAppMeditation,
-  ]);
+  }, [activeLevel.levelState, createChallengeLoading, orientation]);
+
+  const onEnd = useCallback(() => {
+    dispatch(finishInAppMediaChallengeAction({ video, eventType }));
+  }, [video, dispatch, eventType]);
 
   const onProgress = useCallback(
     async (seconds: number) => {
@@ -237,7 +141,7 @@ const MediaPlayerContainer = ({
   }, []);
 
   const onPress = useCallback(async () => {
-    await cancelChallenge();
+    cancelChallenge();
     await navigateToMediaPlayer();
   }, [cancelChallenge, navigateToMediaPlayer]);
 
@@ -249,7 +153,7 @@ const MediaPlayerContainer = ({
     }
 
     if (activeLevel.challengeIsActive) {
-      await cancelChallenge();
+      cancelChallenge();
     }
 
     await Navigation.popTo(ROUTES.quests);

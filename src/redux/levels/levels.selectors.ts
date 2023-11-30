@@ -13,6 +13,13 @@ export enum ActiveLevelStatus {
   failed = "failed",
 }
 
+export enum ActiveLevelState {
+  STARTING_CHALLENGE = "starting_challenge",
+  START_CHALLENGE_SUCCEED = "start_challenge_succeed",
+  START_CHALLENGE_FAILED = "start_challenge_failed",
+  CHALLENGE_ACTIVE = "challenge_active",
+}
+
 export interface IActiveLevel {
   chest: {
     type: string;
@@ -60,6 +67,7 @@ export interface IActiveLevel {
       faqUrl?: string;
     };
   };
+  levelState: ActiveLevelState;
 }
 
 export interface ITodayChallengesStatus {
@@ -105,6 +113,9 @@ export const getHideExternalLinks = createSelector(reducer, getHideExternalLinks
 
 const getActiveChallengeAppButtonSelector = (state: State) => state.active.appButton;
 export const getActiveChallengeAppButton = createSelector(reducer, getActiveChallengeAppButtonSelector);
+
+const getActiveChallengeStateSelector = (state: State) => state.active.levelState;
+export const getActiveChallengeState = createSelector(reducer, getActiveChallengeStateSelector);
 
 const challengesStatusSelector = (state: State) => {
   const done = state.challengesDoneToday;
