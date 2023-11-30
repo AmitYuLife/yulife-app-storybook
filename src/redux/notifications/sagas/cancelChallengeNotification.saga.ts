@@ -1,4 +1,4 @@
-import PushNotification from "react-native-push-notification";
+import * as ExpoNotification from "expo-notifications";
 import { call, select } from "redux-saga/effects";
 import { getActiveLevel } from "../../levels/levels.selectors";
 import { numericId } from "../notifications.helpers";
@@ -9,9 +9,9 @@ export default function* cancelChallengeNotificationSaga() {
     const active: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
 
     if (active.levelSlotId) {
-      const id = Number(numericId(active.levelSlotId)).toString() as string;
+      const id = numericId(active.levelSlotId);
 
-      yield call(() => PushNotification.cancelLocalNotification(id));
+      yield call(() => ExpoNotification.cancelScheduledNotificationAsync(id));
     }
   } catch (error) {
     Logger.error(error, { file: "cancelChallengeNotificationSaga" });

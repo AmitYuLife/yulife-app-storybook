@@ -14,6 +14,9 @@
 # for mixpanel resources
 -keep class **.R$* { *; }
 
+# for expo moduless
+-keep class expo.modules.** { *; }
+
 # for fast image
 -keep public class com.dylanvann.fastimage.* {*;}
 -keep public class com.dylanvann.fastimage.** {*;}

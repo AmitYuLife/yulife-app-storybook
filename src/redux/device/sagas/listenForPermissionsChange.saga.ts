@@ -1,6 +1,5 @@
 import { getToken } from "@services/storage";
 import { Platform, AppStateStatus } from "react-native";
-import { PushNotificationPermissions } from "react-native-push-notification";
 import { PERMISSIONS, check, PermissionStatus } from "react-native-permissions";
 import { Style } from "@styles";
 import { call, put, race, select, take, delay } from "redux-saga/effects";
@@ -10,6 +9,8 @@ import { updateUserConsent } from "../../user/user.actions";
 import { setPushPermissions } from "../device.actions";
 import { createPushPermissionsChannel } from "../device.channels";
 import { getPushNotifications, PushPermissions, PushPermissionsEnum } from "../device.selectors";
+
+type PushNotificationPermissions = Record<"alert" | "badge" | "sound", boolean>;
 
 export default function* listenForPermissionsChangeSaga() {
   const channel: ReturnType<typeof appStateChannel> = yield call(appStateChannel);
