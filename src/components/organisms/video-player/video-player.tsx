@@ -162,15 +162,6 @@ const VideoPlayer = ({
   }, [autoPlay]);
 
   /**
-   * Set's the player initial start time
-   */
-  useEffect(() => {
-    if (startTimeInSeconds) {
-      playerRef.current?.seek(startTimeInSeconds);
-    }
-  }, [startTimeInSeconds]);
-
-  /**
    * Triggers the `onEnd` ballback when the video is finished
    */
   useEffect(() => {
@@ -241,10 +232,16 @@ const VideoPlayer = ({
     [state.currentProgressInSeconds, onProgress]
   );
 
-  const onLoad = useCallback(({ duration }: OnLoadData): void => {
-    const time = moment.duration(duration, "seconds").asMilliseconds();
-    dispatch({ type: ActionTypes.SET_DURATION, payload: time });
-  }, []);
+  const onLoad = useCallback(
+    ({ duration }: OnLoadData): void => {
+      const time = moment.duration(duration, "seconds").asMilliseconds();
+      dispatch({ type: ActionTypes.SET_DURATION, payload: time });
+      if (startTimeInSeconds) {
+        playerRef.current?.seek(startTimeInSeconds);
+      }
+    },
+    [startTimeInSeconds]
+  );
 
   const onButtonAction = useCallback((): void => {
     if (state.showFocusScreen) {
