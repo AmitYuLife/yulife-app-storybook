@@ -453,7 +453,7 @@ PODS:
     - React-CoreModules
     - React-RCTImage
     - React-RCTText
-  - RNCAsyncStorage (1.12.1):
+  - RNCAsyncStorage (1.21.0):
     - React-Core
   - RNCClipboard (1.5.1):
     - React-Core
@@ -615,7 +615,7 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeNavigation (from `../node_modules/react-native-navigation`)
-  - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
+  - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCClipboard (from `../node_modules/@react-native-community/clipboard`)"
   - "RNCPushNotificationIOS (from `../node_modules/@react-native-community/push-notification-ios`)"
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
@@ -773,7 +773,7 @@ EXTERNAL SOURCES:
   ReactNativeNavigation:
     :path: "../node_modules/react-native-navigation"
   RNCAsyncStorage:
-    :path: "../node_modules/@react-native-community/async-storage"
+    :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCClipboard:
     :path: "../node_modules/@react-native-community/clipboard"
   RNCPushNotificationIOS:
@@ -876,7 +876,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 9ea931b43e2c2eb3c66ccdefcba8ff00cb523e09
   ReactCommon: a24276ab12f11099c91af00f7cf2c89d5f55313f
   ReactNativeNavigation: 827eec439e8e651351d3fa2fd549a16c3c1f221a
-  RNCAsyncStorage: b03032fdbdb725bea0bd9e5ec5a7272865ae7398
+  RNCAsyncStorage: 618d03a5f52fbccb3d7010076bc54712844c18ef
   RNCClipboard: 41d8d918092ae8e676f18adada19104fa3e68495
   RNCPushNotificationIOS: 87b8d16d3ede4532745e05b03c42cff33a36cc45
   RNDateTimePicker: 8fb39263b721223e095248acaf6f406d5b7f6713
