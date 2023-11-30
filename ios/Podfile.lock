@@ -1,6 +1,6 @@
 PODS:
   - boost (1.76.0)
-  - BugsnagReactNative (7.18.2):
+  - BugsnagReactNative (7.22.2):
     - React-Core
   - BVLinearGradient (2.6.2):
     - React-Core
@@ -801,7 +801,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost: a7c83b31436843459a1961bfd74b96033dc77234
-  BugsnagReactNative: e3debe54be51169ae09c653b059f1c1b0e594e39
+  BugsnagReactNative: ca14503071d534fcfdcb5f2da08eca140963e5d0
   BVLinearGradient: 34a999fda29036898a09c6a6b728b0b4189e1a44
   CleverTap-iOS-SDK: 75ac31e6989199d2f5414856de3e51356a62632a
   clevertap-react-native: f6040fbb8af58572443a0e6436b4ad749efac530
