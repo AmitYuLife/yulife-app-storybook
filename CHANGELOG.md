@@ -7,6 +7,58 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.110.0] - 2023-11-30
+
+### Bugfixes
+
+- Bugfix: Duplicate component stories
+- ENG-3756: Bugfix: Sudoku streak collect
+- Bugfix: Workout milestone progress
+- Bugfix: Exclude update date action on check date saga
+- Bugfix ENG-3643 ENG-3379: Reset redux daily states on date change
+
+### Tasks
+
+- Task GS-731: Update YuCoin Power Screen
+- Task: Add av-player components stories
+- Task: Rename loginIntercomUserOnce to gameIntercomLoginOnce
+- Task: Purge legacy rewards query
+- Task: DEVOP-1479: UAT: Migrate SA to the new yulife-api TF module - API URL Update
+- Task: update flashlist dependency
+- Task: update blur dependency
+- Task: update netinfo dependency
+- Task: Bright & red quest map level order
+- Task: update apollo graphql dependencies
+- Task: update redux dependencies
+- Task: DEVOP-1479: Dev: Migrate SA to the new yulife-api TF module - API URL Update
+- Task GS-785: Implement Leaderboard Tracking
+- Task: Red planet webp
+
+### Chores
+
+- Chore: Add support for lottie on storybook
+- Chore: Remove react-native-video config from react-native-config
+- Chore: Upgrade storybook and fix build
+- Chore: Only login intercom on login action instead of every time the app is opened
+- Chore: Refactor to avoid parent set state inside component set state
+- Chore: Install react-native-track-player
+- Chore: Keep one FloatingModal, make it more flexible and optimise images
+- Chore: Make video-player components more generic
+- Chore: upgrade rn-video
+
+### Extra
+
+- Detox: Fixes 28/11/23
+- Detox: perk_eligibility fix
+- detox/vbus-2390
+- Purge: eslint-plugin-yulife-rn-client
+- detox/vbus-fixes-27/11
+- detox/fixes-24/11
+- Feat XSE-1987: Add red dot on all tabs
+- detox/vbus-fixes-23/11
+- Detox/GS-813 - Implement Meditation scenario with Jest date mocking for successful completion after midnight
+- Workout challenge
+
 ## [3.109.0] - 2023-11-23
 
 ### Features
