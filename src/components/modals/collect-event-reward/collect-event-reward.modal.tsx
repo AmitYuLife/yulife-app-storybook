@@ -6,7 +6,7 @@ import { GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
 import { t } from "@locale";
 import { MODALS } from "@navigation/constants";
 import { IReward } from "@organisms/event-reward/event-reward";
-import { getUserStart, refreshUserProfileEvents } from "@redux/user/user.actions";
+import { AppDataType, getUserDataStart, getUserStart, refreshUserProfileEvents } from "@redux/user/user.actions";
 import { CollectEventRewardScreen } from "@screens";
 import Logger from "@services/logging/logger";
 import { delay } from "@utils/misc";
@@ -37,6 +37,7 @@ export default function CollectEventRewardModal({ goalIds, event, rewards, compl
 
     // update today's yucoin screen
     dispatch(getUserStart());
+    dispatch(getUserDataStart([AppDataType.coinLedger]));
     Navigation.dismissModal(MODALS.collectEventReward);
   }, [dispatch]);
 

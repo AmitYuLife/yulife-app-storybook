@@ -35,9 +35,7 @@ import {
   CHALLENGE_NO_DATA_DEFER,
 } from "./levels.actions";
 import { CHALLENGE_START_INITIAL_STEPS, ChallengeStartPayload } from "./levels.actions";
-import { ActiveLevelState, ActiveLevelStatus, IActiveLevel } from "./levels.selectors";
-import { getChallengesAmountAvailable } from "./levels.helpers";
-
+import { ActiveLevelState, IActiveLevel, ActiveLevelStatus } from "./levels.selectors";
 export interface ILevelsStore {
   active: IActiveLevel;
   challengesDoneToday: number;
@@ -175,27 +173,13 @@ const getUserSuccess = (state: ILevelsStore, data: GetCurrentUser): ILevelsStore
     challengeIsActive: false,
   },
   challengesDoneToday: data?.getCurrentUser?.challengesDoneToday || 0,
-  dailyChallengeAmountAvailable:
-    data?.getCurrentUser?.dailyChallengeAmountAvailable ||
-    getChallengesAmountAvailable(data?.getCurrentUser?.coinLedger?.currentLevel || 1),
-  level: data?.getCurrentUser?.coinLedger?.currentLevel || 1,
-  yuniversalMap: data?.getCurrentUser?.coinLedger?.yuniversalMap || 0,
-  yuniversalLevel: data?.getCurrentUser?.coinLedger?.yuniversalLevel || 0,
-  nextLevelAvailableAt: data?.getCurrentUser?.coinLedger?.nextLevelAvailableAt || "",
-  currentPlanet: getCurrentPlanetByLevel(data?.getCurrentUser?.coinLedger?.currentLevel || 1),
+  dailyChallengeAmountAvailable: data?.getCurrentUser?.dailyChallengeAmountAvailable,
 });
 
 const loginUserSuccess = (state: ILevelsStore, data: LoginUser): ILevelsStore => ({
   ...state,
   challengesDoneToday: data?.loginUser?.user?.challengesDoneToday || 0,
-  dailyChallengeAmountAvailable:
-    data?.loginUser?.user?.dailyChallengeAmountAvailable ||
-    getChallengesAmountAvailable(data?.loginUser?.user?.coinLedger?.currentLevel || 1),
-  level: data?.loginUser?.user?.coinLedger?.currentLevel || 1,
-  yuniversalMap: data?.loginUser?.user?.coinLedger?.yuniversalMap || 0,
-  yuniversalLevel: data?.loginUser?.user?.coinLedger?.yuniversalLevel || 0,
-  nextLevelAvailableAt: data?.loginUser?.user?.coinLedger?.nextLevelAvailableAt || "",
-  currentPlanet: getCurrentPlanetByLevel(data?.loginUser?.user?.coinLedger?.currentLevel),
+  dailyChallengeAmountAvailable: data?.loginUser?.user?.dailyChallengeAmountAvailable,
 });
 
 const getCoinLedgerSuccess = (state: ILevelsStore, data: GetUserCoinLedger_coinLedger): ILevelsStore => ({

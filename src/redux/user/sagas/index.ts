@@ -23,6 +23,7 @@ import {
   REFRESH_USER_PROFILE_EVENTS,
   UPDATE_USER_PROFILE_EVENTS,
   GET_ALL_USER_DATA_START,
+  AppDataType,
   MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE,
 } from "../user.actions";
 
@@ -48,16 +49,21 @@ import showEventFinishDialog from "./showEventFinishedDialog.saga";
 import getAllUserDataSaga from "./getAllUserData.saga";
 import changeUserLocaleSaga from "./changeUserLocale.saga";
 import { SET_DEVICE_LOCALE } from "@redux/device/device.actions";
-import fetchUserData from "./fetchUserData.saga";
+import fetchUserDataOnAuthenticatedSaga from "./fetchUserDataOnAuthenticated.saga";
+import { generateUserDataSaga } from "../user.helpers";
 
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
   takeLatest(GET_ALL_USER_DATA_START, getAllUserDataSaga),
-  takeLatest(AUTHENTICATED, fetchUserData),
   takeLatest(UPDATE_USER_PROFILE, sendDuelInvitationSaga),
   takeLatest(SET_USER_NO_ACCESS, setUserNoAccessSaga),
   takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),
   takeLatest(FITKIT_CONSENT_AUTHORISED, fitKitConsentAuthorisedSaga),
+  takeLatest(
+    CHALLENGE_RESET_SUCCESS,
+    generateUserDataSaga([AppDataType.activeChallenge, AppDataType.coinLedger, AppDataType.activeStreak])
+  ),
+  takeLatest(AUTHENTICATED, fetchUserDataOnAuthenticatedSaga),
   takeLatest([GET_USER_START, CHALLENGE_RESET_SUCCESS, UPDATE_CURRENT_DATE], getUserDataSaga),
   takeLatest([CHALLENGE_RESET_SUCCESS, REFRESH_USER_PROFILE_EVENTS], getUserProfileEvents),
   takeLatest(UPDATE_LEADERBOARD_CONSENT_START, updateLeaderboardConsentSaga),
