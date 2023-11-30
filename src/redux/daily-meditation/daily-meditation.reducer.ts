@@ -23,7 +23,7 @@ import { SyncAction } from "@redux/_core/types";
 import { UPDATE_CURRENT_DATE } from "@redux/app/app.actions";
 import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
 
-interface IAppDailyMeditationProps {
+export interface IAppDailyMeditationProps {
   duration: number;
   lastUpdated: string;
   createdAt: number;

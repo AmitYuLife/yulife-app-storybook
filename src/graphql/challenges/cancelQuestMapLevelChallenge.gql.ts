@@ -4,8 +4,8 @@ import client from "../_core/client";
 import { CancelQuestMapLevelChallenge, CancelQuestMapLevelChallengeVariables } from "@graphql/_core/schema";
 
 export const GQL_MUTATION_CANCEL_MAP_LEVEL_CHALLENGE = gql`
-  mutation CancelQuestMapLevelChallenge($levelSlotId: String!, $contentId: String) {
-    cancelQuestMapLevelChallenge(levelSlotId: $levelSlotId, contentId: $contentId) {
+  mutation CancelQuestMapLevelChallenge($levelSlotId: String!) {
+    cancelQuestMapLevelChallenge(levelSlotId: $levelSlotId) {
       levelSlotId
       status
     }

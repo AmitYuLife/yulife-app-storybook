@@ -45,7 +45,7 @@ import Logger from "@services/logging/logger";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useAppState, useBackHandler, useGetLottieJson } from "@hooks";
-import { IActiveLevel, getActiveLevel, getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
+import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import { HourglassIcon } from "@atoms/icon/hourglass-icon";
 import { t } from "@locale";
@@ -62,7 +62,7 @@ export interface IVideoPlayerProps {
   thumbnail: string;
   logo?: string;
   videoLogo?: string;
-  onStart: (activeLevel: IActiveLevel) => void;
+  onStart: () => void;
   onProgress?: (seconds: number) => void;
   onEnd: () => void;
   onError: () => void;
@@ -120,7 +120,6 @@ const VideoPlayer = ({
   const playerRef = useRef<VideoRef>();
   const reduxDispatch = useDispatch();
   const lottieRef = useRef<LottieView>();
-  const activeLevel = useSelector(getActiveLevel);
   const opacity = useRef(new Animated.Value(1)).current;
   const videoPlayerIsActive = useSelector(getVideoPlayerIsActive);
   const [appCurrentState, setAppCurrentState] = useState<AppStateStatus>("active");
@@ -265,7 +264,7 @@ const VideoPlayer = ({
   const handleStartButton = useCallback(async (): Promise<void> => {
     dispatch({ type: ActionTypes.SET_STARTING, payload: true });
     try {
-      await onStart(activeLevel);
+      await onStart();
       MusicControl.setNowPlaying({
         title,
         artwork: thumbnail,
