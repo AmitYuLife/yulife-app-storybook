@@ -1462,6 +1462,7 @@
       "message": "Time's up! Check how you did on your latest challenge."
     }
   },
+  "yucoin_power": "**YuCoin** Power",
   "config": {
     "ios": {
       "plist": {

@@ -69,6 +69,7 @@ const BOX_HEIGHT = Style.adjust(116);
 
 const styles = StyleSheet.create({
   wrapper: {
+    marginHorizontal: Style.adjust(16),
     marginBottom: Style.adjust(16),
   },
   main: {

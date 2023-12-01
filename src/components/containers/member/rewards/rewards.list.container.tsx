@@ -1,17 +1,22 @@
 import { GQL_QUERY_GET_MOBILE_REWARDS_LIST } from "@graphql/rewards";
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useMemo, useState } from "react";
 import { Navigation } from "@navigation/main";
 import {
   GetMobileRewardsList as Rewards,
   GetMobileRewardsListVariables as RewardsVariables,
   GetMobileRewardsList_data_list,
+  GetRewardsProductsList,
 } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
 import { RewardsListScreen } from "@screens/index";
 import { IMainTabsProps, showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeen, useTapBackTwiceToExit } from "@hooks";
 import { t } from "@locale";
+import { GQL_QUERY_GET_REWARDS_PRODUCT_LIST } from "@graphql/rewards/getRewardProductsList.gql";
+import { useQuery } from "@apollo/client";
+
+const MAX_PERSONAL_PRODUCTS_TO_SHOW = 2;
 
 const _RewardsListContainer = (props: IMainTabsProps) => {
   const { componentId, onLeftMenuPress } = props;
@@ -24,6 +29,13 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
     ROUTES.rewards,
     { variables: { tag } }
   );
+
+  const { loading: loadingProducts, data: products } = useQuery<GetRewardsProductsList>(
+    GQL_QUERY_GET_REWARDS_PRODUCT_LIST,
+    { fetchPolicy: "network-only" }
+  );
+
+  const isLoading = (!rewards?.data?.list?.length && loading) || loadingProducts;
 
   const handleStoreLocationPress = useCallback(
     () =>
@@ -85,17 +97,22 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
     [rewards?.data?.sduiStepId]
   );
 
+  const productsList = useMemo(() => {
+    return products?.getRewardsProductsList?.slice(0, MAX_PERSONAL_PRODUCTS_TO_SHOW) || [];
+  }, [products]);
+
   return (
     <RewardsListScreen
-      data={rewards?.data}
-      onItemPress={handleRewardDetailsItemPress}
-      onLeftMenuPress={onLeftMenuPress}
-      onRefresh={getRewards}
-      onTagPress={setTag}
-      onPurchasesPress={handlePurchasesPress}
-      onChangeStoreLocationPress={handleStoreLocationPress}
       selectedTag={tag}
-      loading={!rewards?.data?.list?.length && loading}
+      onTagPress={setTag}
+      loading={isLoading}
+      onRefresh={getRewards}
+      rewardsData={rewards?.data}
+      productsList={productsList}
+      onLeftMenuPress={onLeftMenuPress}
+      onPurchasesPress={handlePurchasesPress}
+      onItemPress={handleRewardDetailsItemPress}
+      onChangeStoreLocationPress={handleStoreLocationPress}
     />
   );
 };

@@ -20,23 +20,22 @@ const _HistoryAndStoreLocation = ({ selectedStore, onChangeStorePress, onHistory
 
   return (
     <View style={styles.wrapper}>
-      <View style={styles.linkGroupWrapper} />
       <View style={styles.linkGroup}>
-        <PressableWithDelay style={styles.history} hitSlop={5} onPress={onHistoryPress}>
-          <TextTemplate type="b2" color={Colours.primary.p600}>
-            {t["screens.rewards.list.history"]}
-          </TextTemplate>
-        </PressableWithDelay>
         {!selectedStore ? null : (
           <>
-            <View style={styles.divider} />
-            <PressableWithDelay style={styles.changeStore} hitSlop={5} onPress={onChangeStorePress}>
+            <PressableWithDelay hitSlop={5} onPress={onChangeStorePress}>
               <TextTemplate type="b2" color={Colours.primary.p600}>
                 {`${t["screens.rewards.list.store"]}: ${selectedStore}`}
               </TextTemplate>
             </PressableWithDelay>
+            <View style={styles.divider} />
           </>
         )}
+        <PressableWithDelay hitSlop={5} onPress={onHistoryPress}>
+          <TextTemplate type="b2" color={Colours.primary.p600}>
+            {t["screens.rewards.list.history"]}
+          </TextTemplate>
+        </PressableWithDelay>
       </View>
     </View>
   );
@@ -52,14 +51,18 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginTop: Style.adjust(8),
     marginBottom: Style.adjust(16),
+    marginRight: Style.adjust(16),
   },
-  linkGroupWrapper: { flexDirection: "row" },
-  linkGroup: { flexDirection: "row", alignItems: "center" },
+  linkGroup: {
+    width: Style.DEVICE_WIDTH,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   divider: {
     backgroundColor: Colours.divider,
     height: Style.adjust(16),
     width: 1,
+    marginHorizontal: Style.adjust(8),
   },
-  history: { marginRight: Style.adjust(8) },
-  changeStore: { marginLeft: Style.adjust(8) },
 });
