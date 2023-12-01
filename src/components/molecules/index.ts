@@ -84,4 +84,5 @@ export { default as YucoinPowerButtonBase } from "./yucoin-power-button-base/yuc
 export { default as StarRating } from "./star-rating/star-rating";
 export { default as SearchInputWithIcon } from "./search-input-with-icon/search-input-with-icon";
 export { default as ScrollThresholdView } from "./scroll-threshold-view/scroll-threshold-view";
-export { default as YuCoinPowerCard } from "../molecules/yucoin-power-card/yucoin-power-card";
+export { default as YuCoinPowerCard } from "./yucoin-power-card/yucoin-power-card";
+export { default as LottieView } from "./lottie-view/lottie-view";
