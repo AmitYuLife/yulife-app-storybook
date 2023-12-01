@@ -106,8 +106,6 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
       return;
     }
 
-    setCreateChallengeLoading(false);
-
     if (activeLevel.levelState === ActiveLevelState.START_CHALLENGE_SUCCEED) {
       dispatch(
         sudokuReset({
@@ -125,6 +123,11 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
           passProps: { date: currentDate, levelSlotId: slot.id },
         },
       });
+      return;
+    }
+
+    if (activeLevel.levelState === ActiveLevelState.START_CHALLENGE_FAILED) {
+      setCreateChallengeLoading(false);
     }
   }, [activeLevel.levelState, createChallengeLoading, componentId, currentDate, dispatch, slot.id]);
 

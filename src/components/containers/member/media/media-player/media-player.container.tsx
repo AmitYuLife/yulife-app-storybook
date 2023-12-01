@@ -91,15 +91,22 @@ const MediaPlayerContainer = ({
       return;
     }
 
-    setCreateChallengeLoading(false);
+    if (activeLevel.levelState === ActiveLevelState.START_CHALLENGE_SUCCEED) {
+      if (orientation === "landscape") {
+        Navigation.mergeOptions(ROUTES.mediaPlayer, {
+          statusBar: {
+            drawBehind: false,
+            visible: false,
+          },
+        });
+      }
 
-    if (activeLevel.levelState === ActiveLevelState.START_CHALLENGE_SUCCEED && orientation === "landscape") {
-      Navigation.mergeOptions(ROUTES.mediaPlayer, {
-        statusBar: {
-          drawBehind: false,
-          visible: false,
-        },
-      });
+      setCreateChallengeLoading(false);
+      return;
+    }
+
+    if (activeLevel.levelState === ActiveLevelState.START_CHALLENGE_FAILED) {
+      setCreateChallengeLoading(false);
     }
   }, [activeLevel.levelState, createChallengeLoading, orientation]);
 
