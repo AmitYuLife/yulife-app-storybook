@@ -1,17 +1,21 @@
 import * as React from "react";
-import { GetMobileRewardsList_data, GetMobileRewardsList_data_list } from "@graphql/_core/schema";
+import {
+  GetMobileRewardsList_data,
+  GetMobileRewardsList_data_list,
+  GetRewardsProductsList,
+} from "@graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { StyleSheet, ViewStyle, View } from "react-native";
 import { Style, NAV_BAR } from "@styles";
-import { ChipList } from "@molecules";
-import { RewardsList } from "./rewards-list";
+import RewardsList from "./rewards-list";
 import { RewardsListLayout } from "../subcomponents/rewards-layout";
 import { RewardsListLoading } from "../subcomponents/rewards-loading";
 import FirstTimeStoreSelection from "./subcomponents/first-time-store-selection";
 import { REWARDS_LIST_SCREEN } from "@ids";
 
 export interface IRewardsListScreenProps extends IConnectedScreenProps {
-  data: GetMobileRewardsList_data;
+  rewardsData: GetMobileRewardsList_data;
+  productsList?: GetRewardsProductsList["getRewardsProductsList"];
   onItemPress: (item: GetMobileRewardsList_data_list) => void;
   onRefresh: () => void;
   selectedTag: string;
@@ -23,7 +27,8 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
 
 const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
   const {
-    data,
+    rewardsData,
+    productsList,
     selectedTag,
     onLeftMenuPress,
     onTagPress,
@@ -34,14 +39,8 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
     loading,
   } = props;
 
-  const chips = (data?.tags || []).map((tag) => ({
-    value: tag,
-    isSelected: selectedTag === tag,
-    onPress: onTagPress,
-  }));
-
   // can't use negation as we need to ignore null and undefined
-  const shouldShowFirstTimeModal = data?.hasUserSelectedStoreLocation === false;
+  const shouldShowFirstTimeModal = rewardsData?.hasUserSelectedStoreLocation === false;
 
   return (
     <RewardsListLayout
@@ -49,24 +48,26 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
       Overlay={
         <FirstTimeStoreSelection
           isActive={shouldShowFirstTimeModal}
-          currentStore={data?.rewardStoreLocation}
-          currentStoreLabel={data?.rewardStoreLocationLabel}
+          currentStore={rewardsData?.rewardStoreLocation}
+          currentStoreLabel={rewardsData?.rewardStoreLocationLabel}
           onChangeStoreLocationPress={onChangeStoreLocationPress}
         />
       }
     >
-      {!chips.length ? null : <ChipList chips={chips} />}
       <View style={styles.listWrapper} testID={REWARDS_LIST_SCREEN}>
         {loading ? (
           <RewardsListLoading />
         ) : (
           <RewardsList
+            loading={loading}
+            data={rewardsData}
+            onRefresh={onRefresh}
+            onTagPress={onTagPress}
+            onItemPress={onItemPress}
+            selectedTag={selectedTag}
+            productsList={productsList}
             onPurchasesPress={onPurchasesPress}
             onChangeStoreLocationPress={onChangeStoreLocationPress}
-            onRefresh={onRefresh}
-            data={data}
-            onItemPress={onItemPress}
-            loading={loading}
           />
         )}
       </View>

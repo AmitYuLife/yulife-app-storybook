@@ -18,7 +18,8 @@ export type ITextTemplateType =
   | "l3b"
   | "l4"
   | "l4b"
-  | "time";
+  | "time"
+  | "bigYuCoin";
 type ITextDecorationType = "underline" | "strikeThrough";
 
 interface IProps {
@@ -165,6 +166,12 @@ export const styles = StyleSheet.create({
     fontSize: Style.adjust(62),
     lineHeight: Style.adjust(58),
     letterSpacing: Style.getLetterSpacing(Style.adjust(1)),
+  },
+  bigYuCoin: {
+    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+    fontSize: Style.adjust(40),
+    lineHeight: Style.adjust(40),
+    letterSpacing: Style.getLetterSpacing(Style.adjust(0.6)),
   },
   underline: {
     textDecorationLine: "underline",

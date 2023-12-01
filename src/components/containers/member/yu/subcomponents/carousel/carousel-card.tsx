@@ -35,7 +35,6 @@ export const CarouselCard = memo(
     const currentRoute = useSelector(getRouteState);
     const handlePress = useYuScreenOnPressHandler({ event: button?.event, onPress: button?.onPress, currentRoute });
     const defaultStyles = mapVariantToDefaultStyle(nullSafeVariant);
-
     const [titleStyles, descriptionStyles] = useMemo(
       () =>
         [titleMarkdownStyles, descriptionMarkdownStyles].map((serverStyles, index) => {

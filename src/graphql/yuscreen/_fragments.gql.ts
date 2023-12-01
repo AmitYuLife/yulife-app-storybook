@@ -2,6 +2,7 @@ import {
   GQL_FRAGMENT_REMOTE_IMAGE,
   GQL_FRAGMENT_SDUI_ACTION,
   GQL_FRAGMENT_SDUI_STYLE,
+  GQL_FRAGMENT_PRODUCT_ACTION,
   GQL_FRAGMENT_VARIABLE_REMOTE_IMAGE,
 } from "@graphql/_fragments/shared.gql";
 import { gql } from "@apollo/client";
@@ -237,15 +238,6 @@ export const GQL_QUERY_PRODUCT_PAYMENT_HISTORY_ITEM = gql`
     amount
     date
     status
-  }
-`;
-
-export const GQL_FRAGMENT_PRODUCT_ACTION = gql`
-  fragment ProductAction on ProductAction {
-    productId
-    nextRouteId
-    nextModalId
-    shouldBeNormalised
   }
 `;
 
