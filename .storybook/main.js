@@ -1,4 +1,6 @@
 const path = require("path");
+const webpack = require("webpack");
+
 const CUSTOM_CONFIG = {
   resolve: {
     alias: {
@@ -52,6 +54,11 @@ const CUSTOM_CONFIG = {
       },
     ],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      __DEV__: process.env.NODE_ENV === "development",
+    }),
+  ],
 };
 module.exports = {
   stories: ["../src/components/@(atoms|molecules|organisms|screens|sdui|modals)/**/*.stories.@(js|jsx|ts|tsx)"],
@@ -80,6 +87,7 @@ module.exports = {
         ...config.module,
         rules: CUSTOM_CONFIG.module.rules,
       },
+      plugins: [...config.plugins, ...CUSTOM_CONFIG.plugins],
     };
     return newConfig;
   },
