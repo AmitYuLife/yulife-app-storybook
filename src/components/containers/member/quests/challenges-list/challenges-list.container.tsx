@@ -93,8 +93,6 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
       return;
     }
 
-    setSubmittingState(false);
-
     switch (activeChallengeState) {
       case ActiveLevelState.START_CHALLENGE_SUCCEED: {
         handleNavPress();
@@ -103,6 +101,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
 
       case ActiveLevelState.START_CHALLENGE_FAILED: {
         setError();
+        setSubmittingState(false);
         return;
       }
     }
