@@ -1,0 +1,12 @@
+query GetUserNotificationsSettings {
+  getUserNotificationsSettings {
+    id
+    type
+    name
+    isActive
+    isAvailable
+    alertTimestamp
+    order
+    description
+  }
+}

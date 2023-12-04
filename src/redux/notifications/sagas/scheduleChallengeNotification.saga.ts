@@ -3,9 +3,8 @@ import moment from "moment";
 import * as ExpoNotification from "expo-notifications";
 import { call } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
-import { GetUserNotificationsSettings } from "@graphql/_core/schema";
-import { UserNotificationsType } from "@graphql/_core/schema/globalTypes";
-import getUserNotificationsSettings from "@graphql/pushNotifications/getUserNotificationsSettings.gql";
+import client from "@graphql/_core/client";
+import { gql, GetUserNotificationsSettingsQuery, UserNotificationsType } from "@graphql/__generated";
 import { challengeStartSuccessAction } from "../../levels/levels.actions";
 import {
   expoDefaultNotificationTrigger,
@@ -14,6 +13,9 @@ import {
   numericId,
 } from "../notifications.helpers";
 import { addSecondsToChallengeEndDateTime } from "@utils";
+
+const getUserNotificationsSettings = () =>
+  client().query({ query: gql(`GetUserNotificationsSettingsDocument`), fetchPolicy: "cache-first" });
 
 type Action = ReturnType<typeof challengeStartSuccessAction>;
 
@@ -33,11 +35,11 @@ export default function* scheduleChallengeNotificationSaga({ payload }: Action) 
   }
 
   try {
-    const { data }: ApolloQueryResult<GetUserNotificationsSettings> = yield call(getUserNotificationsSettings);
+    const { data }: ApolloQueryResult<GetUserNotificationsSettingsQuery> = yield call(getUserNotificationsSettings);
 
     if (data?.getUserNotificationsSettings?.length) {
       const challengeCompletion = data.getUserNotificationsSettings.find(
-        (item) => item.type === UserNotificationsType.challengeCompletion
+        (item) => item.type === UserNotificationsType.ChallengeCompletion
       );
 
       if (challengeCompletion?.isActive) {
