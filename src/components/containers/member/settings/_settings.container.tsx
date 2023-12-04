@@ -7,16 +7,7 @@ import { updateConnectionStart } from "@redux/user/user.actions";
 import { Connection, getUserConnections, getUserFeatures } from "@redux/user/user.selectors";
 import { SettingsScreen } from "@screens/index";
 import { useQuery, useMutation, useApolloClient } from "@apollo/client";
-import {
-  GQL_QUERY_GET_USER_NOTIFICATIONS_SETTINGS,
-  GQL_MUTATION_UPDATE_USER_NOTIFICATIONS_SETTINGS,
-} from "@graphql/pushNotifications";
-import {
-  GetUserNotificationsSettings as NotificationData,
-  GetUserNotificationsSettings_getUserNotificationsSettings as Notification,
-  UpdateUserNotificationsSettingsVariables as Variables,
-  UpdateUserNotificationsSettings as ReturnedData,
-} from "@graphql/_core/schema";
+import { gql, NotificationSettingsProps } from "@graphql/__generated";
 import Logger from "@services/logging/logger";
 import { ScrollPickerModal } from "@components/modals";
 import { showYuModal } from "@navigation/root";
@@ -39,14 +30,11 @@ function SettingsContainer({ componentId }: IOwnProps) {
   // local state
   const [isTimeModalVisible, setIsTimeModalVisible] = React.useState<boolean>(false);
   const [modalDate, setModalDate] = React.useState<string>(null);
-  const [selectedNotification, setNotification] = React.useState<Notification>(null);
+  const [selectedNotification, setNotification] = React.useState<NotificationSettingsProps>(null);
 
   // gql
-  const [updateNotification] = useMutation<ReturnedData, Variables>(GQL_MUTATION_UPDATE_USER_NOTIFICATIONS_SETTINGS);
-  const notificationSettings = useQuery<NotificationData>(
-    GQL_QUERY_GET_USER_NOTIFICATIONS_SETTINGS,
-    graphqlFetchPolicy
-  );
+  const [updateNotification] = useMutation(gql(`UpdateUserNotificationsSettingsDocument`));
+  const notificationSettings = useQuery(gql(`GetUserNotificationsSettingsDocument`), graphqlFetchPolicy);
   const notifications = notificationSettings?.data?.getUserNotificationsSettings || [];
   const cyclingMeasurement = useSelector(getDailyCyclingMeasurement);
 
@@ -62,7 +50,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
       alertTimestamp: i.type === type && time ? time : i.alertTimestamp,
     }));
     client.writeQuery({
-      query: GQL_QUERY_GET_USER_NOTIFICATIONS_SETTINGS,
+      query: gql("GetUserNotificationsSettingsDocument"),
       data: {
         getUserNotificationsSettings: filterNotifications,
       },
