@@ -275,6 +275,18 @@ adb -s <device name> reverse tcp:8081 tcp:8081
 
 You can then run `yarn start` and `yarn start:android` as above.
 
+#### Using the local API server (Android)
+
+If you want to develop against a local instance of the API server on Android, you will need to use your local IP address instead of `http://localhost`, e.g. `http://10.0.0.2`. You can find your local IP address by using `Option` + `Click` on the WiFi icon from the MacOS menu in the top right. Or run:
+
+```sh
+ipconfig getifaddr en0
+```
+
+For local development, a quick way to update the API URLs is by replacing the configs in `src/locale/region.ts`.
+
+Alternatively, if you want use localhost, you can run `adb reverse tcp:5000 tcp:5000`.
+
 #### Building from Android Studio
 
 You should have installed Android Studio during the React Native installation process as described above.
@@ -290,6 +302,10 @@ Wait patiently for the project to sync all of its dependencies. Once it's up-to-
 ##### Build profiles (Android)
 
 Choose your build profile from the `Build Profile` menu, which can be found as a vertical tab on the left side of Android Studio's window. By default, the `debug` profile is selected which connects to the develop API server. Alternate profiles available are `local`, which will connect to a local API instance, `uat` and `production`.
+
+##### Error: `Corrupted DataBlock found in cache` (Android)
+
+This error may be fixed by killing all Gradle daemon processes with `pkill -f '.*GradleDaemon.*'`. When that's done, restart the project.
 
 #### How to import Hardware Profiles to Android Studio
 
@@ -636,3 +652,24 @@ Once all dependencies are installed, you can run
 It will start the offline Workflow Editor, changes will be saved on the bitrise.yml file, do not forget to commit and push your changes <3
 
 Pipelines and stages cannot be edited on the Workflow Editor. If you want a UI tool to create/modify pipelines and/or stages, you can use this tool built by one of the Bitrise engineers (not officially maintained) (Pipeline UI)[https://damienbitrise.github.io/Pipeline-UI/]
+
+## Testing Screen Readers
+
+### VoiceOVer (iOS)
+
+Currently, it is not possible to use VoiceOver with an iOS simulator.
+
+To enable VoiceOver on a physical device, follow (this tutorial)[https://support.apple.com/en-gb/guide/iphone/iph3e2e415f/ios].
+
+### TalkBack (Android)
+
+TalkBack can be run on a physical device or via an emulator.
+
+To run it on an emulator, you must use an emulator that has Play Store access.
+
+The remaining steps are the same for both physical and virtual devices:
+
+- Install the Android Accessibility Suite from the Play Store.
+- Go to Settings > Accessibility > TalkBack and toggle it on.
+
+For emulators, it is also recommended to toggle on the `TalkBack shortcut` accessibility button. This is an overlay button that allows you to turn TalkBack on and off easily. Without it, you’ll get stuck because you need 2- and 3-finger gestures to navigate the device!
