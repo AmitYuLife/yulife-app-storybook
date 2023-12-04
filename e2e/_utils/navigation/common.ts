@@ -14,6 +14,9 @@ export const restart = async (locale = "en-GB", dm = dataManager) => {
         languageAndLocale: {
             language: locale,
             locale: locale
+        },
+        permissions: {
+            notifications: 'YES',
         }
     });
 }
@@ -21,7 +24,12 @@ export const restart = async (locale = "en-GB", dm = dataManager) => {
 export const restartWithData = async () => {
     await device.terminateApp();
     await device.clearKeychain();
-    await device.launchApp({ delete: true, });
+    await device.launchApp({
+        delete: true,
+        permissions: {
+            notifications: 'YES',
+        }
+    });
 }
 
 export const terminateApp = async () => {
@@ -30,7 +38,12 @@ export const terminateApp = async () => {
 
 export const restartWithoutDelete = async () => {
     await device.terminateApp();
-    await device.launchApp({ delete: false, });
+    await device.launchApp({
+        delete: false,
+        permissions: {
+            notifications: 'YES',
+        }
+    });
 }
 
 export const start = async () => {
@@ -38,7 +51,9 @@ export const start = async () => {
     await device.clearKeychain();
     await device.launchApp({
         delete: true,
-        permissions: {},
+        permissions: {
+            notifications: 'YES',
+        }
     });
 }
 
@@ -335,10 +350,20 @@ export const capitalizeFirstLetter = (string: string) => {
 
 export const restartWithoutDeleteTwoTimes = async () => {
     await device.terminateApp();
-    await device.launchApp({ delete: false, });
+    await device.launchApp({
+        delete: false,
+        permissions: {
+            notifications: 'YES',
+        }
+    });
     await wait(2000)()
     await device.terminateApp();
-    await device.launchApp({ delete: false, });
+    await device.launchApp({
+        delete: false,
+        permissions: {
+            notifications: 'YES',
+        }
+    });
     await dismissNewLooksModalIfVisible()
 }
 
@@ -362,7 +387,12 @@ export const tapTextAtIndex = (text: string, index = 0, waitTime = 0) => async (
 
 export const minimiseAndReopenApp = async () => {
     await device.sendToHome();
-    await device.launchApp({ newInstance: false });
+    await device.launchApp({
+        newInstance: false,
+        permissions: {
+            notifications: 'YES',
+        }
+    });
 }
 
 export const hoursRemainingOfDay = () => {
@@ -376,7 +406,7 @@ export const weeklyQuestsTimeRemaining = () => {
     const eventdate = moment().endOf("week");
     const todaysdate = moment();
     const diff = eventdate.diff(todaysdate, 'days');
-    
+
     if (diff === 6) {
         // returns the hours remaining of the day, as when there is less than 1 day it displays hours
         return hoursRemainingOfDay()

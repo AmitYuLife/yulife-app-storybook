@@ -42,9 +42,12 @@ export const followEmailLink = (emailAddress: string) => async () => {
     if (!link) {
       throw new Error(`Link not found in the email`);
     }
-    
+
     await device.launchApp({
       newInstance: true,
       url: link,
+      permissions: {
+        notifications: 'YES',
+      }
     });
 };

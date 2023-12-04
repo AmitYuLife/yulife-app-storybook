@@ -47,5 +47,10 @@ export const pauseVideo = (pause: boolean) => async () => {
 export const minimiseAndReopenApp = async () => {
   await device.sendToHome();
   await wait(10000)()
-  await device.launchApp({ newInstance: false });
+  await device.launchApp({
+    newInstance: false,
+    permissions: {
+      notifications: 'YES',
+    }
+  });
 }
