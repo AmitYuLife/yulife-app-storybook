@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.111.0] - 2023-12-06
+
+### Bugfixes
+
+- Bugfix: Define **DEV** for storybook
+- Bugfix: Remove challenge loading state change from use effect
+- Bugfix: VideoPlayer seek on onLoad event
+- Bugfix: Move finish in app meditation challege logic to saga
+
+### Tasks
+
+- Task: DEVOP-1883: Dev: Migrate US to the new yulife-api TF module - API URL Update
+- Task: Add Screen Reader Info to README.md
+- Task: update react-native-device-info
+- Task: Upgrade lottie
+- Task GS-780: Personal Products in Rewards
+- Task: Update async storage dependency
+- Task: Remove coinLedger from getCurrentUser
+- Task: update bugsnag dependencies
+- Task: update datetimepicker dependency
+
+### Chores
+
+- Chore: Upgrade react native clipboard
+- Chore: Create LottiewView wrapper
+- Chore: migrate to expo notifications
+
+### Extra
+
+- Detox: Enable notifications permission in Launch API
+- POC: new gql codegen
+
 ## [3.110.0] - 2023-11-30
 
 ### Bugfixes
