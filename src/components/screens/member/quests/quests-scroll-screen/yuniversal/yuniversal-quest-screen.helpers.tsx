@@ -75,6 +75,7 @@ interface SlotColours {
   shadowColour: string;
   textColour: string;
   pressColour: string;
+  notificationColour: string;
 }
 
 export const slotColours: Record<string, SlotColours> = {
@@ -83,24 +84,28 @@ export const slotColours: Record<string, SlotColours> = {
     shadowColour: Colours.primary.p600Shadow,
     textColour: Colours.neutral.white,
     pressColour: Colours.primary.p100,
+    notificationColour: Colours.primary.p600,
   },
   waiting: {
     backgroundColour: "rgb(145,0,76)",
     shadowColour: "rgb(100,0,50)",
     textColour: Colours.neutral.white,
     pressColour: "rgb(100,0,50)",
+    notificationColour: "rgb(145,0,76)",
   },
   done: {
     backgroundColour: Colours.ocean.us106,
     shadowColour: "#A759A7",
     textColour: Colours.neutral.white,
     pressColour: Colours.ocean.us105,
+    notificationColour: Colours.ocean.us106,
   },
   locked: {
     backgroundColour: Colours.neutral.white,
     shadowColour: "#DFDFDF",
     textColour: "#956AFF",
     pressColour: Colours.neutral.n200,
+    notificationColour: "#956AFF",
   },
   chestLocked: {
     backgroundColour: "#9796FE",
@@ -108,6 +113,7 @@ export const slotColours: Record<string, SlotColours> = {
     shadowColour: "#7243F9",
     textColour: "#956AFF",
     pressColour: Colours.neutral.n200,
+    notificationColour: "#956AFF",
   },
 };
 
@@ -126,6 +132,10 @@ interface ILevelProps {
   pressColour: string;
   icon?: ILevelBubbleProps["icon"];
   nextLevelAvailableAt?: string;
+  notificationIcon?: {
+    uri?: string;
+  };
+  notificationBorderWidth?: number;
   onPress: () => void;
 }
 
@@ -158,6 +168,7 @@ const getLevelProps = (
     radius: isChest ? 27.5 : 25,
     text: text || level.level,
     rating: level.rating,
+    notificationIcon: level.notificationIcon,
   };
 
   switch (levelButtonState) {
@@ -174,6 +185,7 @@ const getLevelProps = (
         ...slotColours.active,
         isActive: true,
         onPress: () => goToChallengesList(componentId, level.level, levelSlot.name, yuniversalMap),
+        notificationBorderWidth: 2,
       };
     case "UnityAvailable":
       return {
@@ -227,6 +239,7 @@ const getLevelProps = (
         isActive: true,
         nextLevelAvailableAt,
         onPress: () => showChallengeUnavailableModal(nextLevelAvailableAt, true),
+        notificationBorderWidth: 2,
       };
     case "UnityLocked":
       return {

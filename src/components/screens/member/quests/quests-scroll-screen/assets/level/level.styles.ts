@@ -2,24 +2,31 @@ import { StyleSheet } from "react-native";
 import { Style } from "../../../../../../../styles";
 
 export const CIRCLE_SIZE = Style.SCALE_UP_AND_DOWN(50);
+export const LEVEL_SIZE = CIRCLE_SIZE + Style.SCALE_UP_AND_DOWN(12);
+export const HIGH_DENSITY_REPOSITION_VALUE = Style.PIXEL_RATIO >= 3 ? Style.SCALE_UP_AND_DOWN(10) : 0;
 
 const styles = StyleSheet.create({
   bubble: {
-    alignItems: "center",
-    borderRadius: CIRCLE_SIZE,
-    height: CIRCLE_SIZE + (Style.PIXEL_RATIO >= 3 ? Style.SCALE_UP_AND_DOWN(20) : 0),
-    justifyContent: "center",
-    marginLeft: -CIRCLE_SIZE / 2,
     position: "absolute",
-    width: CIRCLE_SIZE + (Style.PIXEL_RATIO >= 3 ? Style.SCALE_UP_AND_DOWN(20) : 0),
+    width: LEVEL_SIZE,
+    height: LEVEL_SIZE,
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: -Style.SCALE_UP_AND_DOWN(6) + HIGH_DENSITY_REPOSITION_VALUE,
+    marginLeft: -LEVEL_SIZE / 2 + HIGH_DENSITY_REPOSITION_VALUE,
     overflow: "hidden",
   },
-  bubbleButton: {
-    borderRadius: CIRCLE_SIZE,
-    height: CIRCLE_SIZE,
-    width: CIRCLE_SIZE,
-    justifyContent: "center",
+  bubbleText: {
+    position: "absolute",
+    width: LEVEL_SIZE,
+    height: LEVEL_SIZE,
     alignItems: "center",
+    justifyContent: "center",
+  },
+  notificationImage: {
+    position: "absolute",
+    top: Style.SCALE_UP_AND_DOWN(4),
+    right: Style.SCALE_UP_AND_DOWN(4),
   },
   text: {
     color: "#ffffff",

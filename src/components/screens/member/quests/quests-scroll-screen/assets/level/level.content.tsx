@@ -8,7 +8,7 @@ import { QuestsMapLevel } from "../../quests.context";
 import { LEVEL_STAR_COUNT } from "@ids";
 import { t } from "@locale";
 
-const getWorldColor = (level: number) => {
+export const getWorldColor = (level: number) => {
   const worldsByLevel = getCurrentWorld(level);
   switch (worldsByLevel) {
     case 1:
