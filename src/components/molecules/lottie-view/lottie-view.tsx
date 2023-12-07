@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { forwardRef, memo } from "react";
 import LottieView, { LottieViewProps } from "lottie-react-native";
 import { useGetLottieJson } from "@hooks";
 import { Loading } from "@atoms";
@@ -8,7 +8,7 @@ export interface ILottieProps extends LottieViewProps {
   suppressLoadingUi?: boolean;
 }
 
-const LottieWrapper = (props: ILottieProps) => {
+const LottieWrapper = forwardRef<LottieView, ILottieProps>((props, ref) => {
   const { uri, loading } = useGetLottieJson(typeof props.source === "string" ? props.source : null);
 
   return (
@@ -18,10 +18,10 @@ const LottieWrapper = (props: ILottieProps) => {
           <Loading />
         </View>
       ) : (
-        <LottieView {...props} source={uri || props.source} />
+        <LottieView ref={ref} {...props} source={uri || props.source} />
       )}
     </>
   );
-};
+});
 
 export default memo(LottieWrapper);
