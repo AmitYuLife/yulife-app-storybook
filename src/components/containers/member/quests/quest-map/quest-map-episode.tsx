@@ -30,13 +30,15 @@ const QuestMapEpisode = ({ episode, height }: IQuestMapDayProps) => {
   );
 
   return (
-    <View>
+    <View pointerEvents="box-none">
       {episode?.seperator ? (
         <FastImage source={episode.seperator.background} style={{ ...styles.seperator, height: seperatorHeight }} />
       ) : null}
 
-      <View style={backgroundContainerStyle}>
-        <FastImage source={episode.episodeConfig.background} style={lottieStyles} resizeMode="contain" />
+      <View style={backgroundContainerStyle} pointerEvents="box-none">
+        <View style={lottieStyles} pointerEvents="none">
+          <FastImage source={episode.episodeConfig.background} style={lottieStyles} resizeMode="contain" />
+        </View>
         {!episode.levels?.length ? null : (
           <EpisodeLevels
             width={Style.DEVICE_WIDTH}
