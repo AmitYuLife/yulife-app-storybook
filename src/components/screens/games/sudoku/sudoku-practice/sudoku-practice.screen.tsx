@@ -1,11 +1,11 @@
 import { StyleSheet, View } from "react-native";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
-import LottieView from "lottie-react-native";
 import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { useSelector } from "react-redux";
 import { ISudokuGameContainerProps, SudokuGameContainer } from "@components/games/sudoku/sudoku-game-container";
 import { memo } from "react";
+import { LottieView } from "@molecules";
 
 const BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversal_quest_map_1.json");
 

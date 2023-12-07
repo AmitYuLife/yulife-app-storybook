@@ -1,11 +1,11 @@
 import React, { memo, PropsWithChildren } from "react";
 import { Image as RNImage, ImageSourcePropType, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native";
-import LottieView from "lottie-react-native";
 import styles from "./centred-screen.styles";
 import { Style } from "@styles";
 import { Image } from "@atoms";
 import { IScreen } from "@theme";
 import { Source } from "react-native-fast-image";
+import { LottieView } from "@molecules";
 
 interface Props {
   children?: React.ReactNode;

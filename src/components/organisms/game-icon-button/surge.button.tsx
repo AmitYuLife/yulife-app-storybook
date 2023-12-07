@@ -1,6 +1,5 @@
 import React, { memo } from "react";
 import { StyleSheet } from "react-native";
-import LottieView from "lottie-react-native";
 import { Style } from "@styles";
 import moment from "moment";
 import { minifiedFromNow } from "@utils";
@@ -8,6 +7,7 @@ import { TEXT_TEMPLATE, SURGE_ICON } from "@ids";
 import { GameButton } from "./_base.button";
 import { useRemainingTime } from "./helpers/useRemainingTime";
 import { t } from "@locale";
+import { LottieView } from "@molecules";
 
 const LottieIcon = require("./assets/surge-lottie.json");
 

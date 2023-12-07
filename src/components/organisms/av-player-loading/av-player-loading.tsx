@@ -1,11 +1,11 @@
 import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
-import LottieView from "lottie-react-native";
 import { Style, Colours } from "@styles";
 import { TextTemplate } from "@atoms";
 const lottieJson = require("./meditation-lottie.json");
 import { MEDITOPIA_CHALLENGE_LOAD_SCREEN } from "@ids";
 import { t } from "@locale";
+import { LottieView } from "@molecules";
 
 const AvPlayerLoading = () => (
   <View style={styles.wrapper} testID={MEDITOPIA_CHALLENGE_LOAD_SCREEN}>

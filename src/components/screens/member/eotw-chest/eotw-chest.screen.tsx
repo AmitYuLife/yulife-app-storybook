@@ -1,9 +1,9 @@
 import React, { useCallback, useMemo, useState, FC, useRef, useEffect, memo } from "react";
 import { ImageSourcePropType, View } from "react-native";
 import { useDispatch } from "react-redux";
-import LottieView from "lottie-react-native";
+import Lottie from "lottie-react-native";
 import { Chest, ChestType, ChestItemType, CHEST_STATE } from "@organisms";
-import { Button } from "@molecules";
+import { Button, LottieView } from "@molecules";
 import { TextTemplate } from "@atoms";
 import styles from "./eotw-chest.styles";
 import { IUnityData } from "../quests/quests-scroll-screen/unity-movies/unity.data";
@@ -43,7 +43,7 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, assets, title, items, lev
   const currentPlanet = getCurrentPlanet(level);
   const currentPlanetName = getCurrentPlanetByLevel(level, features?.enableWebpQuestMap);
 
-  const travelRef = useRef<LottieView>(null);
+  const travelRef = useRef<Lottie>(null);
   const [travel, setTravel] = useState(false);
 
   const chestButtonLabel = useMemo(

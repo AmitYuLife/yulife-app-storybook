@@ -1,6 +1,5 @@
 import { Image, TextTemplate } from "@atoms";
-import LottieView from "lottie-react-native";
-import { Button, CentredScreen } from "@molecules";
+import { Button, CentredScreen, LottieView } from "@molecules";
 import { IReward } from "@organisms/event-reward/event-reward";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
 import { DETOX_ENABLED } from "@services/socket";

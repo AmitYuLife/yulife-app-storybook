@@ -1,6 +1,6 @@
-import React, { FC, memo, useEffect, useRef, useMemo, RefObject, useCallback } from "react";
+import React, { FC, memo, useEffect, useRef, useMemo, useCallback } from "react";
 import { View, Animated, Easing, ViewStyle } from "react-native";
-import LottieView from "lottie-react-native";
+import Lottie from "lottie-react-native";
 import { Style } from "@styles";
 import { DETOX_ENABLED } from "@services/socket";
 import { ChestCard } from "@organisms";
@@ -14,7 +14,7 @@ import { MODALS } from "@navigation/constants";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { CELESTIAL_CARD, YUNITY_CARD } from "@ids";
-import { TouchableOpacityWithDelay } from "@molecules";
+import { LottieView, TouchableOpacityWithDelay } from "@molecules";
 
 export type ChestType = "FOREST" | "OCEAN" | "DESERT" | "MOUNTAIN" | "CELESTIAL";
 
@@ -72,7 +72,7 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
   }, [chestType]);
 
   const { chestShakingLottie, chestOpeningLottie } = useAssets(chestType, currentPlanet);
-  const lottieChestRef: RefObject<LottieView> = useRef();
+  const lottieChestRef = useRef<Lottie>();
 
   const openingChestOpacity = useRef(new Animated.Value(0.1));
 

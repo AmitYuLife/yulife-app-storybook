@@ -1,10 +1,9 @@
 import React, { useMemo } from "react";
 import { View } from "react-native";
 import { TextTemplate } from "@atoms";
-import { Button, LinkButton } from "@molecules";
+import { Button, LinkButton, LottieView } from "@molecules";
 import { ActiveBuffsButton } from "@organisms";
 import styles from "./streaks.styles";
-import LottieView from "lottie-react-native";
 import StreakCompletion from "@components/screens/member/streaks/subcomponents/streak-completion";
 import StreakStart from "./subcomponents/streak-start";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";

@@ -1,6 +1,6 @@
 import { t } from "@locale";
 import { useDispatch } from "react-redux";
-import LottieView from "lottie-react-native";
+import Lottie from "lottie-react-native";
 import Svg, { Circle } from "react-native-svg";
 import { StyleSheet, Vibration, View } from "react-native";
 import React, { memo, useRef, useMemo, useEffect, useCallback, useState } from "react";
@@ -13,7 +13,7 @@ import { RadioIcon } from "@atoms/icon/radio-icon";
 import { RemoteImage } from "@graphql/_core/schema";
 import { GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
 import { GOAL_TOOLTIP_INFO, CLAIM_BUTTON, ANIMATED_CIRCLE } from "@ids";
-import { Button, LabelWithImages, PressableWithDelay } from "@molecules";
+import { Button, LabelWithImages, LottieView, PressableWithDelay } from "@molecules";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { refreshUserProfileEvents, getUserStart, AppDataType, getUserDataStart } from "@redux/user/user.actions";
 import { ILabelImage } from "@components/molecules/label-with-images/label-with-images";
@@ -89,7 +89,7 @@ const EventReward = ({
   const dispatch = useDispatch();
   const questionMarkRef = useRef<View>();
   const scaleAnimationRef = useSharedValue<number>(1);
-  const explosionAnimationRef = useRef<LottieView>(null);
+  const explosionAnimationRef = useRef<Lottie>(null);
   const [initialStatus] = useState<GoalRewardStatus>(status);
   const [delayedStatus, setDelayedStatus] = useState<GoalRewardStatus>(status);
 
