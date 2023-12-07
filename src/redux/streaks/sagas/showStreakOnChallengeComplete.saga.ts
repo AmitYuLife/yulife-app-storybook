@@ -1,8 +1,8 @@
-import { MODALS } from "@navigation/constants";
+import { MODALS, ROUTES } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { Navigation } from "@navigation/main";
 import { call, select, take, delay, race } from "redux-saga/effects";
-import { getModalState } from "../../app/app.selectors";
+import { getModalState, getRouteState } from "../../app/app.selectors";
 import { GET_USER_ACTIVE_STREAK_SUCCESS, GET_USER_SUCCESS } from "../../user/user.actions";
 import { getUserFeatures } from "../../user/user.selectors";
 import { getStreaks } from "../streaks.selectors";
@@ -17,6 +17,7 @@ export default function* showStreakOnChallengeCompleteSaga() {
 
   const streaks: ReturnType<typeof getStreaks> = yield select(getStreaks);
   const activeModal: ReturnType<typeof getModalState> = yield select(getModalState);
+  const activeRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
   const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
   if (
@@ -24,7 +25,7 @@ export default function* showStreakOnChallengeCompleteSaga() {
     streaksBeforeUpdate.currentStreak !== streaks.currentStreak &&
     activeModal !== MODALS.streaks
   ) {
-    if (activeModal === MODALS.chest) {
+    if (activeModal === MODALS.chest || activeRoute === ROUTES.sudokuGame) {
       yield delay(4000);
     }
 
