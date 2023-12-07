@@ -117,7 +117,7 @@ PODS:
     - React-Core
   - Mixpanel (3.6.5)
   - OpenSSL-Universal (1.1.1100)
-  - Permission-PhotoLibraryAddOnly (3.6.1):
+  - Permission-PhotoLibraryAddOnly (3.10.1):
     - RNPermissions
   - PromisesObjC (2.3.1)
   - PromisesSwift (2.3.1):
@@ -480,7 +480,7 @@ PODS:
     - React
   - RNFlashList (1.6.3):
     - React-Core
-  - RNPermissions (3.6.1):
+  - RNPermissions (3.10.1):
     - React-Core
   - RNReanimated (3.5.4):
     - DoubleConversion
@@ -857,7 +857,7 @@ SPEC CHECKSUMS:
   lottie-react-native: a2ae9c27c273b060b2affff2957bc0ff7fdca353
   Mixpanel: de8296d8568806ab17bfced0f823c908b808e1e0
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
-  Permission-PhotoLibraryAddOnly: 6dba8924024e239af2e282daa8a88967679b4983
+  Permission-PhotoLibraryAddOnly: c4fbf91806bbdc3ed877049bc09fbe58ad9a7c97
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   PromisesSwift: 28dca69a9c40779916ac2d6985a0192a5cb4a265
   RCT-Folly: 0080d0a6ebf2577475bda044aa59e2ca1f909cda
@@ -909,7 +909,7 @@ SPEC CHECKSUMS:
   RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
   RNFitKit: 616d0226b7c2df643037e955434d347057eed612
   RNFlashList: 4b4b6b093afc0df60ae08f9cbf6ccd4c836c667a
-  RNPermissions: dcdb7b99796bbeda6975a6e79ad519c41b251b1c
+  RNPermissions: 4e3714e18afe7141d000beae3755e5b5fb2f5e05
   RNReanimated: 12a905af0de1a7f728eacebc5a6af1cc5ada64ad
   RNSVG: d787d64ca06b9158e763ad2638a8c4edce00782a
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
