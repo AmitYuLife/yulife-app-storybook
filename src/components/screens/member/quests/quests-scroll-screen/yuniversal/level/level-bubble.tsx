@@ -1,6 +1,6 @@
 import React, { FC, memo, useCallback, useRef, useEffect, useMemo, useState } from "react";
-import { Animated, Easing } from "react-native";
-import { G, Path, Circle, Text, ClipPath } from "react-native-svg";
+import { Animated, Easing, ViewStyle } from "react-native";
+import { G, Path, Circle, Text, ClipPath, Defs, Mask, Rect } from "react-native-svg";
 import moment from "moment";
 import { DETOX_ENABLED } from "@services/socket";
 import { usePressedInWithDelay } from "@hooks";
@@ -9,6 +9,10 @@ import { getQuestScreenTimer } from "@utils";
 import { getLevelIcon } from "./level-slot-helpers";
 import { LevelBubbleBackground } from "./level-bubble-background";
 import { LevelOverlay } from "./level-overlay";
+import { Image } from "@atoms";
+import { Style } from "@styles";
+
+const HEIGHT_WIDTH_MULTIPLIER = Style.DEVICE_WIDTH / 375;
 
 export interface ILevelBubbleProps {
   x: number;
@@ -25,6 +29,10 @@ export interface ILevelBubbleProps {
   withOverlay?: boolean;
   pressColour: string;
   nextLevelAvailableAt?: string;
+  notificationIcon?: {
+    uri?: string;
+  };
+  notificationBorderWidth?: number;
   onPress: () => void;
 }
 
@@ -43,6 +51,8 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
   withOverlay,
   pressColour,
   nextLevelAvailableAt,
+  notificationIcon,
+  notificationBorderWidth,
   onPress,
 }) => {
   const [nextAvailableTimer, setNextAvailableTimer] = useState(null);
@@ -90,6 +100,14 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
       },
     ];
   }, [animatedPulse, nextLevelAvailableAt]);
+
+  const maskId = `notification-mask_${x}_${y}`;
+  const mask = notificationIcon ? `url(#${maskId})` : null;
+  const notificationImageStyle = {
+    position: "absolute",
+    top: (y - radius - 2) * HEIGHT_WIDTH_MULTIPLIER,
+    left: (x + radius - 14) * HEIGHT_WIDTH_MULTIPLIER,
+  } as ViewStyle;
 
   useEffect(() => {
     return () => {
@@ -141,7 +159,14 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
 
   return (
     <G x={x} y={y} onPressIn={handlePress}>
-      <Circle y={3} r={radius} fill={shadowColour} />
+      <Defs>
+        <Mask id={maskId} x={0} y={0} width={radius * 2} height={radius * 2 + 3}>
+          <Rect x={0} y={0} width={radius * 2} height={radius * 2 + 3} fill="white" />
+          {!notificationBorderWidth ? null : (
+            <Circle x={radius * 2 - 6} y={6} r={12 + notificationBorderWidth} fill="black" />
+          )}
+        </Mask>
+      </Defs>
       {!isActive ? null : (
         <>
           {pulse.map((props, index) => (
@@ -149,7 +174,13 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
           ))}
         </>
       )}
-      <LevelBubbleBackground radius={radius} colour={backgroundColour} colour2={backgroundColour2} />
+      {/* Shifting position back and forth so that the mask encompasses the whole bubble */}
+      <G x={-radius} y={-radius} mask={mask}>
+        <G x={radius} y={radius}>
+          <Circle y={3} r={radius} fill={shadowColour} />
+          <LevelBubbleBackground radius={radius} colour={backgroundColour} colour2={backgroundColour2} />
+        </G>
+      </G>
       {!showTimer ? null : (
         <>
           <Text y={-3} fill={textColour} font={FONT_TIMER} textAnchor="middle">
@@ -183,6 +214,19 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
               opacity={rating > 2 ? 1 : 0.5}
               d="m33.283 32.187.77 2.429 2.512-.006-2.035 1.496.782 2.425-2.029-1.505-2.028 1.505.782-2.425-2.035-1.496 2.511.006.77-2.429Z"
               fill="#fff"
+            />
+          </>
+        )}
+        {!notificationIcon?.uri ? null : (
+          <>
+            <Circle x={radius * 2 - 6} y={6} r={12} fill={backgroundColour} />
+            {/* not using react-native-svg image as it doesn't support tintColor */}
+            <Image
+              style={notificationImageStyle}
+              width={16}
+              height={16}
+              source={notificationIcon}
+              tintColor={textColour}
             />
           </>
         )}

@@ -2,18 +2,25 @@ import { LEVEL_CHALLENGE_BUTTON } from "@ids";
 import moment from "moment";
 import React, { memo, useMemo, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Style, Colours } from "@styles";
+import { Style } from "@styles";
 import useInterval from "@use-it/interval";
 import { getCurrentWorld, getNormalizedLevel } from "@utils";
 import { QuestsMapLevel } from "@components/screens";
 import getLevelButton from "@components/screens/member/quests/quests-scroll-screen/assets/level/level.content";
 import {
-  getBackgroundColor,
+  getButtonColours,
   getPulseColor,
+  isActiveLevelWithNotification,
+  isHistoricalLevel,
 } from "@components/screens/member/quests/quests-scroll-screen/assets/level/level.helpers";
-import { CIRCLE_SIZE } from "@components/screens/member/quests/quests-scroll-screen/assets/level/level.styles";
+import {
+  CIRCLE_SIZE,
+  LEVEL_SIZE,
+} from "@components/screens/member/quests/quests-scroll-screen/assets/level/level.styles";
 import Pulse from "@components/screens/member/quests/quests-scroll-screen/assets/level/pulse";
 import { TouchableOpacityWithDelay } from "@molecules";
+import { Image } from "@atoms";
+import { LevelSvg } from "@components/screens/member/quests/quests-scroll-screen/assets/level/levelSvg";
 
 interface IQuestMapLevelProps {
   currentLevel: number;
@@ -42,26 +49,10 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
 
   const currentWorld = getCurrentWorld(level.level);
   const normalizedLevel = getNormalizedLevel(level.level);
-  const bubbleBackgroundColor = getBackgroundColor(nextAvailableTimer, level, currentWorld);
+  const { backgroundColour, notificationColour } = getButtonColours(nextAvailableTimer, level, currentWorld);
   const bubblePulseColor = getPulseColor(normalizedLevel);
-  const bubbleBorder = useMemo(
-    () =>
-      level.isDone && !level.isActive
-        ? {
-            borderWidth: 2,
-            borderColor: Colours.neutral.white,
-          }
-        : {},
-    [level.isDone, level.isActive]
-  );
-
-  const touchableStyles = useMemo(() => {
-    return {
-      ...styles.bubbleButton,
-      ...bubbleBorder,
-      backgroundColor: bubbleBackgroundColor,
-    };
-  }, [bubbleBackgroundColor, bubbleBorder]);
+  const bubbleBorderWidth = isHistoricalLevel(level) ? 2 : 0;
+  const notificationBorderWidth = isActiveLevelWithNotification(level) ? 2 : 0;
 
   const levelText = useMemo(() => {
     return getLevelButton(nextAvailableTimer, currentLevel, level, normalizedLevel);
@@ -84,11 +75,25 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
         <TouchableOpacityWithDelay
           activeOpacity={0.8}
           onPress={level.onPress}
-          style={touchableStyles}
           hitSlop={BUTTON_HITSLOP}
           testID={LEVEL_CHALLENGE_BUTTON(level.level)}
         >
-          {levelText}
+          <LevelSvg
+            backgroundColour={backgroundColour}
+            borderWidth={bubbleBorderWidth}
+            notificationBorderWidth={notificationBorderWidth}
+            hasNotification={!!level.notificationIcon}
+          />
+          <View style={styles.bubbleText}>{levelText}</View>
+          {!level.notificationIcon ? null : (
+            <Image
+              style={styles.notificationImage}
+              tintColor={notificationColour}
+              width={16}
+              height={16}
+              source={level.notificationIcon}
+            />
+          )}
         </TouchableOpacityWithDelay>
       </View>
     </View>
@@ -96,23 +101,25 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
 };
 
 const styles = StyleSheet.create({
-  container: { alignItems: "center", justifyContent: "center" },
+  container: {
+    width: LEVEL_SIZE,
+    height: LEVEL_SIZE,
+  },
   bubble: {
-    alignItems: "center",
-    borderRadius: CIRCLE_SIZE,
-    aspectRatio: 1,
-    justifyContent: "center",
     width: "100%",
     height: "100%",
-    overflow: "hidden",
   },
-  bubbleButton: {
-    borderRadius: CIRCLE_SIZE,
-    height: CIRCLE_SIZE,
-    width: CIRCLE_SIZE,
-    aspectRatio: 1,
-    justifyContent: "center",
+  bubbleText: {
+    position: "absolute",
+    width: LEVEL_SIZE,
+    height: LEVEL_SIZE,
     alignItems: "center",
+    justifyContent: "center",
+  },
+  notificationImage: {
+    position: "absolute",
+    top: Style.adjust(4),
+    right: Style.adjust(4),
   },
   levelPulse: {
     position: "absolute",
@@ -121,21 +128,6 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
   },
-  text: {
-    color: "#ffffff",
-    fontSize: Style.SCALE_UP_AND_DOWN(19),
-    lineHeight: Style.SCALE_UP_AND_DOWN(19),
-  },
-  textPending: {
-    color: "#ffffff",
-    fontSize: Style.SCALE_UP_AND_DOWN(11),
-    lineHeight: Style.SCALE_UP_AND_DOWN(11),
-    textAlign: "center",
-  },
-  column: {
-    flexDirection: "column",
-  },
-  stars: { flexDirection: "row", justifyContent: "center", alignItems: "center" },
 });
 
 export default memo(QuestMapLevel);

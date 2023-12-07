@@ -1,6 +1,9 @@
-import { Style } from "../../../../../../../styles";
+import { getNormalizedLevel } from "@utils";
+import { Colours, Style } from "@styles";
 import { QuestsMapLevel } from "../../quests.context";
 import { IMapSlice } from "../slices";
+import { getWorldColor } from "./level.content";
+import { HIGH_DENSITY_REPOSITION_VALUE } from "./level.styles";
 
 interface IBubbleColours {
   [x: number]: {
@@ -13,6 +16,11 @@ interface IPosition {
   left: number;
   bottom?: number;
   top?: number;
+}
+
+interface IButtonColours {
+  backgroundColour: string;
+  notificationColour?: string;
 }
 
 const worldBubbleColours: IBubbleColours = {
@@ -55,36 +63,52 @@ function getGemColor(level: QuestsMapLevel) {
   return "white";
 }
 
-export function getBackgroundColor(nextAvailable: number, level: QuestsMapLevel, normalizedWorld: number): string {
-  // time for more of that fucking awful logic
+export function getButtonColours(
+  nextAvailable: number,
+  level: QuestsMapLevel,
+  normalizedWorld: number
+): IButtonColours {
+  const worldColor = getWorldColor(getNormalizedLevel(level.level))?.color;
 
   if (level.level % 50 === 0) {
-    return getGemColor(level);
+    return {
+      backgroundColour: getGemColor(level),
+    };
   }
 
   if (level.isActive) {
     // current level colour is always the same
-    return nextAvailable < 0 ? "rgb(145,0,76)" : "rgb(226, 1, 119)";
+    const backgroundColour = nextAvailable < 0 ? "rgb(145,0,76)" : "rgb(226, 1, 119)";
+    return {
+      backgroundColour,
+      notificationColour: Colours.neutral.white,
+    };
   }
 
   if (level.isDone) {
-    return worldBubbleColours[normalizedWorld].notAvailable;
+    return {
+      backgroundColour: worldBubbleColours[normalizedWorld].notAvailable,
+      notificationColour: worldColor,
+    };
   }
 
-  return worldBubbleColours[normalizedWorld].available;
+  return {
+    backgroundColour: worldBubbleColours[normalizedWorld].available,
+    notificationColour: worldColor,
+  };
 }
 
 export function getButtonPosition(slots: IMapSlice["slots"], index: number, isPulse?: boolean) {
-  const highDensityRepositionValue = Style.PIXEL_RATIO >= 3 && !isPulse ? Style.SCALE_UP_AND_DOWN(10) : 0;
+  const adjustment = isPulse ? 0 : HIGH_DENSITY_REPOSITION_VALUE;
   const record = slots[index];
   const style: IPosition = {
-    left: Style.SCALE_UP_AND_DOWN(record.left) - highDensityRepositionValue,
+    left: Style.SCALE_UP_AND_DOWN(record.left) - adjustment,
   };
 
   if (typeof record.bottom !== "undefined") {
-    style.bottom = Style.SCALE_UP_AND_DOWN(record.bottom) - highDensityRepositionValue;
+    style.bottom = Style.SCALE_UP_AND_DOWN(record.bottom) - adjustment;
   } else if (typeof record.top !== "undefined") {
-    style.top = Style.SCALE_UP_AND_DOWN(record.top) - highDensityRepositionValue;
+    style.top = Style.SCALE_UP_AND_DOWN(record.top) - adjustment;
   } else {
     style.bottom = 0;
   }
@@ -106,3 +130,6 @@ export function getPulseColor(level: number) {
       return "rgb(145,0,76)";
   }
 }
+
+export const isHistoricalLevel = (level: QuestsMapLevel) => level.isDone && !level.isActive;
+export const isActiveLevelWithNotification = (level: QuestsMapLevel) => level.isActive && !!level.notificationIcon;
