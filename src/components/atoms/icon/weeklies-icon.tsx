@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { Style } from "@styles";
 import Svg, { Rect, Path, Circle } from "react-native-svg";
 import { StyleSheet, View } from "react-native";
-import LottieView from "lottie-react-native";
+import { LottieView } from "@molecules";
 
 const shineLottie = require("@assets/lottie/shine.json");
 

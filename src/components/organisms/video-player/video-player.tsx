@@ -10,7 +10,7 @@ import Video, {
 import moment from "moment";
 import MusicControl, { Command } from "react-native-music-control";
 import { Animated, StyleSheet, View, AppStateStatus } from "react-native";
-import LottieView from "lottie-react-native";
+import Lottie from "lottie-react-native";
 import Config from "react-native-config";
 import { CloseSvg, Image, Logo, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
@@ -22,7 +22,7 @@ import {
   ActionTypes,
   setMusicControlInitialConfig,
 } from "./video-player.reducer";
-import { Button, PressableWithDelay, VidePlayerButton } from "@molecules";
+import { Button, LottieView, PressableWithDelay, VidePlayerButton } from "@molecules";
 import {
   AvPlayerDescription,
   AvPlayerLoading,
@@ -119,7 +119,7 @@ const VideoPlayer = ({
 }: IVideoPlayerProps) => {
   const playerRef = useRef<VideoRef>();
   const reduxDispatch = useDispatch();
-  const lottieRef = useRef<LottieView>();
+  const lottieRef = useRef<Lottie>();
   const opacity = useRef(new Animated.Value(1)).current;
   const videoPlayerIsActive = useSelector(getVideoPlayerIsActive);
   const [appCurrentState, setAppCurrentState] = useState<AppStateStatus>("active");

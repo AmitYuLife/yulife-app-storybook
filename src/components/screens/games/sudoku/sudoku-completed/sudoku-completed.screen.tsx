@@ -6,11 +6,12 @@ import SudokuStatsList from "@components/games/sudoku/sudoku-stats-list";
 import { GetSudokuBoard_getSudokuBoard_results, GetSudokuBoard_getSudokuBoard_stats } from "@graphql/_core/schema";
 import { Button } from "@components/molecules";
 import { Style } from "@styles";
-import LottieView from "lottie-react-native";
+import Lottie from "lottie-react-native";
 import colours from "@styles/colours";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import { DETOX_ENABLED } from "@services/socket";
 import { SUDOKU_COMPLETED_SCREEN_SCROLL } from "@ids";
+import { LottieView } from "@molecules";
 
 interface IProps {
   onCollect: () => void;
@@ -26,7 +27,7 @@ const SPIRAL_ANIMATION = require("./assets/spiral.json");
 const SHINE_ANIMATION = require("./assets/shine.json");
 
 const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }: IProps) => {
-  const lottie = useRef<LottieView>();
+  const lottie = useRef<Lottie>();
   const t = useTranslation([
     "sudoku.title",
     "sudoku.completed.title",

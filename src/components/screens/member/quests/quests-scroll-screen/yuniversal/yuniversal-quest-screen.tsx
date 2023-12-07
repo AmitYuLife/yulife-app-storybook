@@ -1,7 +1,6 @@
 import React, { FC, memo, useCallback } from "react";
 import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import LottieView from "lottie-react-native";
 import { getChallengesStatus, getCurrentLevel, getNextLevelAvailableAt } from "@redux/levels/levels.selectors";
 import styles from "./yuniversal-quest-screen.styles";
 import { NavBar, TopBar } from "@organisms";
@@ -13,6 +12,7 @@ import { getLevelsProps } from "./yuniversal-quest-screen.helpers";
 import { QUESTS_SCREEN_YUNIVERSAL } from "@ids";
 import { getUserAvatar, getUserFeatures } from "@redux/user/user.selectors";
 import { submitUnityAction } from "@redux/levels/levels.actions";
+import { LottieView } from "@molecules";
 
 const BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversal_quest_map_1.json");
 
