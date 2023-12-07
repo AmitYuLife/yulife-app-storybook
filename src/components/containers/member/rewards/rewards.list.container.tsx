@@ -15,12 +15,17 @@ import { useQueryOnScreenSeen, useTapBackTwiceToExit } from "@hooks";
 import { t } from "@locale";
 import { GQL_QUERY_GET_REWARDS_PRODUCT_LIST } from "@graphql/rewards/getRewardProductsList.gql";
 import { useQuery } from "@apollo/client";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { useSelector } from "react-redux";
+import { RewardMilestoneDetails } from "../../../screens/member/rewards/list/subcomponents/reward-milestone-details";
 
 const MAX_PERSONAL_PRODUCTS_TO_SHOW = 2;
 
 const _RewardsListContainer = (props: IMainTabsProps) => {
   const { componentId, onLeftMenuPress } = props;
   const [tag, setTag] = useState("All");
+  const features = useSelector(getUserFeatures);
+  const useHalfModalsForRewardDetails = features.useHalfModalsForRewardDetails;
 
   useTapBackTwiceToExit(componentId);
 
@@ -78,6 +83,21 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
             },
           },
         });
+      }
+
+      if (useHalfModalsForRewardDetails && reward.teaseDetails) {
+        return Navigation.showOverlayWithChild(
+          <RewardMilestoneDetails
+            target={reward.teaseDetails.target}
+            progress={reward.teaseDetails.progress}
+            rewardQuantity={reward.teaseDetails.rewardQuantity}
+            rewardTitle={reward.name}
+            primaryColor={reward.teaseDetails.theme.primaryColor}
+            secondaryColor={reward.teaseDetails.theme.secondaryColor}
+            rewardImage={reward.teaseDetails.image}
+            hint={reward.teaseDetails.hint}
+          />
+        );
       }
 
       return Navigation.push(componentId, {
