@@ -1,7 +1,7 @@
 import { Style } from "@styles";
 import { StyleSheet } from "react-native";
 
-export default StyleSheet.create({
+export const baseStyles = StyleSheet.create({
   wrapper: {
     minHeight: Style.adjust(143),
     borderRadius: 8,
@@ -64,5 +64,33 @@ export default StyleSheet.create({
     height: Style.adjust(12),
     resizeMode: "contain",
     marginRight: 5,
+  },
+  backgroundImage: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: Style.adjust(15),
+    height: "100%",
+    overflow: "hidden",
+  },
+});
+
+export const rewardsEventPanelStyles = StyleSheet.create({
+  ...baseStyles,
+  wrapper: {
+    height: Style.adjust(141),
+    borderRadius: Style.adjust(15),
+  },
+  container: {
+    height: Style.adjust(137),
+    padding: Style.adjust(16),
+    borderWidth: 1,
+    borderRadius: Style.adjust(15),
+  },
+  challenges: {
+    flexDirection: "row",
+  },
+  tags: {
+    position: "absolute",
+    bottom: Style.adjust(8),
+    left: Style.adjust(16),
   },
 });
