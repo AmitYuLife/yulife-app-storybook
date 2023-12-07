@@ -27,12 +27,12 @@ export const SudokuCompletedContainer = ({ reward, isPractice, results, stats }:
 
   useEffect(() => {
     dispatch(challengeResetAction());
+    dispatch(displayStreaksCompletedAction());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onCollect = useCallback(() => {
     dispatch(sudokuReset());
-    dispatch(displayStreaksCompletedAction());
     dispatch(getUserDataStart([AppDataType.activeStreak]));
 
     Navigation.popTo(isPractice ? ROUTES.sudokuStaging : ROUTES.quests);
