@@ -1,0 +1,13 @@
+query GetAdBanners($place: String) {
+  getAdBanners(place: $place) {
+    id
+    imageUrl {
+      uri
+    }
+    navigateTo
+    startDate
+    endDate
+    height
+    width
+  }
+}
