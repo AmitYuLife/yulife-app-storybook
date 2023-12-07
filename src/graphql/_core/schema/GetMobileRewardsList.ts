@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -19,6 +19,30 @@ export interface GetMobileRewardsList_data_list_pills {
   backgroundColor: string;
 }
 
+export interface GetMobileRewardsList_data_list_teaseDetails_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetMobileRewardsList_data_list_teaseDetails_theme {
+  primaryColor: string;
+  secondaryColor: string;
+}
+
+export interface GetMobileRewardsList_data_list_teaseDetails_hint {
+  label: string | null;
+  description: string | null;
+}
+
+export interface GetMobileRewardsList_data_list_teaseDetails {
+  progress: number;
+  target: number;
+  rewardQuantity: number;
+  image: GetMobileRewardsList_data_list_teaseDetails_image;
+  theme: GetMobileRewardsList_data_list_teaseDetails_theme;
+  hint: GetMobileRewardsList_data_list_teaseDetails_hint | null;
+}
+
 export interface GetMobileRewardsList_data_list {
   __typename: "MobileRewardsListItem";
   id: string;
@@ -28,6 +52,7 @@ export interface GetMobileRewardsList_data_list {
   description: string;
   imageUrl: GetMobileRewardsList_data_list_imageUrl;
   pills: GetMobileRewardsList_data_list_pills[];
+  teaseDetails: GetMobileRewardsList_data_list_teaseDetails | null;
 }
 
 export interface GetMobileRewardsList_data {

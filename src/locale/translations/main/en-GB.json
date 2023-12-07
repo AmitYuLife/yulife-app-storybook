@@ -789,6 +789,15 @@
         "confirm_label": "Yes - I'm ready"
       }
     },
+    "locked_reward_modal": {
+      "progress_status": "%{progress} / %{target} Levels completed",
+      "cta": "Got it!",
+      "heading": "Level up to unlock",
+      "hint": {
+        "label": "More rewards ahead!",
+        "descriptionMarkdown": "Doing challenges everyday will get you unlocking more rewards faster.\n\n__**Learn more**__"
+      }
+    },
     "rewards": {
       "list": {
         "rewards": "Rewards",

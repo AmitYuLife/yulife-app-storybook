@@ -41,3 +41,4 @@ export { default as Stack } from "./stack/stack";
 export { default as MagnifyingGlass } from "./magnifying-glass/magnifying-glass";
 export { default as YuCoinLabel } from "./yucoin-label/yucoin-label";
 export { default as PowerCoin } from "./power-coin/power-coin";
+export { WorldCard } from "./world-card/world-card";

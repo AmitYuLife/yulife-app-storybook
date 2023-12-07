@@ -6,16 +6,19 @@ import { memo, useCallback, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
 import { TouchableOpacityWithDelay } from "..";
+import Markdown from "../markdown/markdown";
+import getMarkdownStyles from "../markdown/markdown.styles";
 
 interface IHintProps {
   label: string;
   description: string;
-  image: { uri: string };
+  markdownDescription?: string;
+  image: { uri?: string; Element?: JSX.Element };
   onPress?: () => void;
 }
 
-const Hint = ({ label, description, image, onPress }: IHintProps) => {
-  const [isLoading, setIsLoading] = useState(true);
+const Hint = ({ label, description, markdownDescription, image, onPress }: IHintProps) => {
+  const [isLoading, setIsLoading] = useState(!!image?.uri);
 
   const onLoad = useCallback(() => {
     setIsLoading(false);
@@ -40,19 +43,26 @@ const Hint = ({ label, description, image, onPress }: IHintProps) => {
             </TextTemplate>
           </View>
           <View>
-            <TextTemplate type="l2">{description}</TextTemplate>
+            {!markdownDescription ? null : (
+              <Markdown text={markdownDescription} markdownStyles={getMarkdownStyles(markdownStyles)} />
+            )}
+            {!description ? null : <TextTemplate type="l2">{description}</TextTemplate>}
           </View>
         </View>
         <View style={styles.imageContainer}>
           <Animated.View style={animatedStyle}>
-            <Image
-              suppressLoadingUi={true}
-              onLoad={onLoad}
-              width={Style.adjust(80)}
-              height={Style.adjust(80)}
-              resizeMode="contain"
-              source={image}
-            />
+            {!image ? null : image.uri ? (
+              <Image
+                suppressLoadingUi={true}
+                onLoad={onLoad}
+                width={Style.adjust(80)}
+                height={Style.adjust(80)}
+                resizeMode="contain"
+                source={image}
+              />
+            ) : image.Element ? (
+              image.Element
+            ) : null}
           </Animated.View>
         </View>
       </View>
@@ -83,7 +93,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: Style.adjust(6),
+    marginBottom: Style.adjust(8),
   },
   contentContainer: {
     flex: 1,
@@ -100,5 +110,15 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
   },
 });
+
+const markdownStyles = {
+  text: {
+    fontSize: Style.adjust(12),
+    lineHeight: Style.adjust(16),
+  },
+  paragraph: {
+    paddingVertical: 0,
+  },
+};
 
 export default memo(Hint);

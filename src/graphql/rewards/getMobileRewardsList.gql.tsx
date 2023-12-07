@@ -29,6 +29,22 @@ export const GQL_QUERY_GET_MOBILE_REWARDS_LIST = gql`
           text
           backgroundColor
         }
+        teaseDetails {
+          progress
+          target
+          rewardQuantity
+          image {
+            ...RemoteImage
+          }
+          theme {
+            primaryColor
+            secondaryColor
+          }
+          hint {
+            label
+            description
+          }
+        }
       }
     }
   }
