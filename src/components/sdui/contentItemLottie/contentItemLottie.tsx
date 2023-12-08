@@ -1,11 +1,13 @@
 import React, { memo, useState, useEffect, useRef, useCallback, MutableRefObject } from "react";
-import LottieView from "lottie-react-native";
+import Lottie from "lottie-react-native";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { useDispatch } from "react-redux";
 import { Animated, StyleSheet, ViewStyle } from "react-native";
 import { Style } from "@styles";
 import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";
+import { useGetLottieJson } from "@hooks";
+import { LottieView } from "@molecules";
 
 type Props = Omit<GqlLottie, "onAnimationEnd"> & {
   shouldPlay?: boolean;
@@ -17,35 +19,16 @@ const GRACE_PERIOD = 2000;
 // If you require this component to be used with SDUI, use the wrapped version ContentItemLottieSdui below.
 export const ContentItemLottie = memo((props: Props) => {
   const [shouldLoop, setShouldLoop] = useState(false);
-  const lottieRef = useRef<LottieView>(null);
-  const isUnmounted = useRef(false);
-  const [lottieAnimation, setLottieAnimation] = useState(null);
+  const lottieRef = useRef<Lottie>(null);
   const { autoPlay, loop, uri, styles: serverStyles, onAnimationEnd, shouldPlay, shouldUseFadeIn, aspectRatio } = props;
   const dispatch = useDispatch();
   const { opacity } = useFadeIn(shouldUseFadeIn);
   usePlayControl(lottieRef, shouldPlay);
   const onAnimationEndDelay = useRef(null);
-
-  useEffect(() => {
-    if (uri && !lottieAnimation) {
-      (async () => {
-        try {
-          const response = await fetch(uri, { method: "GET" });
-          const json = await response.json();
-
-          if (!isUnmounted.current) {
-            setLottieAnimation(json);
-          }
-        } catch (e) {
-          // safe fail
-        }
-      })();
-    }
-  }, [uri, lottieAnimation]);
+  const { uri: lottieUri, loading: lottieUriLoading } = useGetLottieJson(uri);
 
   useEffect(
     () => () => {
-      isUnmounted.current = true;
       if (onAnimationEndDelay.current) {
         clearTimeout(onAnimationEndDelay.current);
       }
@@ -69,11 +52,11 @@ export const ContentItemLottie = memo((props: Props) => {
     }
   }, [loop, shouldLoop, onAnimationEnd, dispatch]);
 
-  if (!lottieAnimation) {
+  if (lottieUriLoading) {
     return null;
   }
 
-  const animationAspectRatio = aspectRatio ?? (lottieAnimation?.w / lottieAnimation?.h || 1);
+  const animationAspectRatio = aspectRatio ?? (lottieUri?.w / lottieUri?.h || 1);
 
   return (
     <Animated.View
@@ -86,7 +69,7 @@ export const ContentItemLottie = memo((props: Props) => {
       <LottieView
         ref={lottieRef}
         style={[styles.wrapper, { height: Style.DEVICE_WIDTH / animationAspectRatio }]}
-        source={lottieAnimation}
+        source={lottieUri}
         autoPlay={autoPlay}
         loop={shouldLoop}
         onAnimationFinish={handleAnimationEnd}
@@ -132,7 +115,7 @@ const useFadeIn = (shouldUseFadeIn: boolean) => {
   return { opacity };
 };
 
-const usePlayControl = (lottieRef: MutableRefObject<LottieView>, shouldPlay: boolean) => {
+const usePlayControl = (lottieRef: MutableRefObject<Lottie>, shouldPlay: boolean) => {
   const shouldPlayPrevious = useRef(false);
   const firstTabPlayTimeout = useRef(null);
 

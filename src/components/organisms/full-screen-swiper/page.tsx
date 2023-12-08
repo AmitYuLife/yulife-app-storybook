@@ -1,8 +1,10 @@
-import React, { memo, MutableRefObject, useEffect, useRef, useState } from "react";
+import React, { memo, MutableRefObject, useEffect, useRef } from "react";
 import { Animated, StyleSheet, View } from "react-native";
-import LottieView from "lottie-react-native";
+import Lottie from "lottie-react-native";
 import { Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
+import { useGetLottieJson } from "@hooks";
+import { LottieView } from "@molecules";
 
 export interface IPageItem {
   id: string;
@@ -104,38 +106,13 @@ type LottieBackgroundProps = {
 };
 
 const LottieBackground = memo((props: LottieBackgroundProps) => {
-  const lottieRef = useRef<LottieView>(null);
-  const isUnmounted = useRef(false);
-  const [lottieAnimation, setLottieAnimation] = useState(null);
+  const lottieRef = useRef<Lottie>(null);
   const { uri, shouldPlay, shouldUseFadeIn, aspectRatio } = props;
   const { opacity } = useFadeIn(shouldUseFadeIn);
+  const { uri: lottieUri, loading: lottieUriLoading } = useGetLottieJson(uri);
   usePlayControl(lottieRef, shouldPlay);
 
-  useEffect(() => {
-    if (uri && !lottieAnimation) {
-      (async () => {
-        try {
-          const response = await fetch(uri, { method: "GET" });
-          const json = await response.json();
-
-          if (!isUnmounted.current) {
-            setLottieAnimation(json);
-          }
-        } catch (e) {
-          // safe fail
-        }
-      })();
-    }
-  }, [uri, lottieAnimation]);
-
-  useEffect(
-    () => () => {
-      isUnmounted.current = true;
-    },
-    []
-  );
-
-  if (!lottieAnimation) {
+  if (lottieUriLoading) {
     return null;
   }
 
@@ -144,7 +121,7 @@ const LottieBackground = memo((props: LottieBackgroundProps) => {
       <LottieView
         ref={lottieRef}
         style={[styles.lottieWrapper, { height: Style.DEVICE_WIDTH / aspectRatio }]}
-        source={lottieAnimation}
+        source={lottieUri}
         loop={false}
       />
     </Animated.View>
@@ -173,7 +150,7 @@ const useFadeIn = (shouldUseFadeIn: boolean) => {
   return { opacity };
 };
 
-const usePlayControl = (lottieRef: MutableRefObject<LottieView>, shouldPlay: boolean) => {
+const usePlayControl = (lottieRef: MutableRefObject<Lottie>, shouldPlay: boolean) => {
   const shouldPlayPrevious = useRef(false);
   const firstTabPlayTimeout = useRef(null);
 
