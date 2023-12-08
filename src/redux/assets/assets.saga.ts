@@ -1,11 +1,12 @@
-import getMobileAssets from "@graphql/assets/getMobileAssets.gql";
 import { getUserEndPointsVersion } from "@redux/user/user.selectors";
 import Logger from "@services/logging/logger";
 import FastImage from "react-native-fast-image";
 import { call, delay, select, spawn, takeLatest } from "redux-saga/effects";
 import { UPDATE_USER_PROFILE } from "@redux/user/user.actions";
-import { Unpacked } from "@utils";
 import { Storage, StorageKey } from "@utils/storage";
+import client from "@graphql/_core/client";
+import { gql, GetMobileAssetsWithVersionQuery } from "@graphql/__generated";
+import { ApolloQueryResult } from "@apollo/client";
 
 const BATCH_SIZE = 10;
 const PRELOAD_TIMEOUT = 10000; //ms
@@ -14,11 +15,19 @@ export function* prefetchAssets() {
   const clientVersion: string = yield call(getAssetVersion);
   const endPoints: ReturnType<typeof getUserEndPointsVersion> = yield select(getUserEndPointsVersion);
   yield call(FastImage.enableDiskCaching);
+
   if (clientVersion !== endPoints?.getMobileAssets) {
     try {
-      const { data }: Unpacked<typeof getMobileAssets> = yield call(getMobileAssets);
-      if (data && data.getMobileAssetsWithVersion?.assets) {
-        yield call(saveAssetsVersion, data?.getMobileAssetsWithVersion?.version);
+      const { data }: ApolloQueryResult<GetMobileAssetsWithVersionQuery> = yield call(() =>
+        client().query({
+          query: gql(`GetMobileAssetsWithVersionDocument`),
+          fetchPolicy: "network-only",
+        })
+      );
+
+      if (data?.getMobileAssetsWithVersion?.assets) {
+        yield call(saveAssetsVersion, data.getMobileAssetsWithVersion.version);
+
         for (let i = 0; i < data.getMobileAssetsWithVersion.assets.length; i += BATCH_SIZE) {
           FastImage.preload(data.getMobileAssetsWithVersion.assets.slice(i, i + BATCH_SIZE));
           yield delay(PRELOAD_TIMEOUT);

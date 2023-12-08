@@ -1,0 +1,8 @@
+query GetMobileAssetsWithVersion {
+  getMobileAssetsWithVersion {
+    assets {
+      uri
+    }
+    version
+  }
+}

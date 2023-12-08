@@ -9137,6 +9137,17 @@ export type GetAdBannersQuery = {
   } | null> | null;
 };
 
+export type GetMobileAssetsWithVersionQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetMobileAssetsWithVersionQuery = {
+  __typename?: "Query";
+  getMobileAssetsWithVersion: {
+    __typename?: "MobileAssets";
+    version: string;
+    assets: Array<{ __typename?: "RemoteImage"; uri?: string | null }>;
+  };
+};
+
 export type GetUserNotificationsSettingsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetUserNotificationsSettingsQuery = {
@@ -9217,6 +9228,39 @@ export const GetAdBannersDocument = {
     },
   ],
 } as unknown as DocumentNode<GetAdBannersQuery, GetAdBannersQueryVariables>;
+export const GetMobileAssetsWithVersionDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileAssetsWithVersion" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getMobileAssetsWithVersion" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "assets" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "version" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetMobileAssetsWithVersionQuery, GetMobileAssetsWithVersionQueryVariables>;
 export const GetUserNotificationsSettingsDocument = {
   kind: "Document",
   definitions: [
