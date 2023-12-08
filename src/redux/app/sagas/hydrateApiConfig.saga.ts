@@ -1,12 +1,13 @@
-import { getApiConfigWithClient } from "@graphql/config";
 import { call } from "redux-saga/effects";
-import { Unpacked } from "@utils";
 import Logger from "@services/logging/logger";
 import { region } from "@locale";
 import { initStripe } from "@services/stripe";
 import { SyncAction } from "@redux/_core/types";
 import { DETOX_ENABLED } from "@services/socket";
 import deepLink from "@navigation/deepLink";
+import client from "@graphql/_core/client";
+import { gql, GetPublicYuApiConfigQuery } from "@graphql/__generated";
+import { ApolloQueryResult } from "@apollo/client";
 
 const initialPayloadTypes = ["INIT", "SET_MAIN_ROOT"];
 
@@ -27,7 +28,12 @@ export default function* hydrateApiConfigSaga({ type, payload }: SyncAction) {
     }
 
     if (shouldFetchConfig) {
-      const response: Unpacked<typeof getApiConfigWithClient> = yield call(getApiConfigWithClient);
+      const response: ApolloQueryResult<GetPublicYuApiConfigQuery> = yield call(() =>
+        client().query({
+          query: gql("GetPublicYuApiConfigDocument"),
+          fetchPolicy: "no-cache",
+        })
+      );
 
       if (response?.data?.config?.mixpanelKey) {
         yield call(region.setConfig, response.data.config);

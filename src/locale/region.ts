@@ -26,7 +26,7 @@ type RegionConfig = {
   leanplum: {
     appId: string;
     prodKey: string;
-    devKey: string;
+    devKey?: string;
   };
   sduiStaticDeeplinks: {
     name: string;
