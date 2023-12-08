@@ -14,6 +14,7 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
  */
 const documents = {
   GetAdBannersDocument: types.GetAdBannersDocument,
+  GetMobileAssetsWithVersionDocument: types.GetMobileAssetsWithVersionDocument,
   GetUserNotificationsSettingsDocument: types.GetUserNotificationsSettingsDocument,
   UpdateUserNotificationsSettingsDocument: types.UpdateUserNotificationsSettingsDocument,
 };
@@ -36,6 +37,12 @@ export function gql(source: string): unknown;
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetAdBannersDocument"): typeof documents["GetAdBannersDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "GetMobileAssetsWithVersionDocument"
+): typeof documents["GetMobileAssetsWithVersionDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -18,7 +18,7 @@ export default function* getAdBannersSaga() {
       client().query({
         query: gql(`GetAdBannersDocument`),
         variables: { place: "dailyScreen" }, // we only have ads on dailyScreen for now
-        fetchPolicy: "cache-first",
+        fetchPolicy: "network-only",
       })
     );
 
