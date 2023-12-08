@@ -1,7 +1,7 @@
 #import <Bugsnag/Bugsnag.h>
 #import <IntercomModule.h>
 #import <ReactNativeNavigation/ReactNativeNavigation.h>
-#import "ReactNativeConfig.h"
+#import "RNCConfig.h"
 #import <React/RCTLinkingManager.h>
 #import <UserNotifications/UserNotifications.h>
 #import <Leanplum.h>
@@ -25,7 +25,7 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 @interface AppDelegate () <RCTCxxBridgeDelegate, RCTTurboModuleManagerDelegate> {
   RCTTurboModuleManager *_turboModuleManager;
   RCTSurfacePresenterBridgeAdapter *_bridgeAdapter;
-  std::shared_ptr<const facebook::react::ReactNativeConfig> _reactNativeConfig;
+  std::shared_ptr<const facebook::react::RNCConfig> _reactNativeConfig;
   facebook::react::ContextContainer::Shared _contextContainer;
 }
 @end
@@ -72,15 +72,15 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 #endif
 
   // Intercom
-  NSString *intercomApiKey = [ReactNativeConfig envFor:@"INTERCOM_API_KEY_IOS"];
-  NSString *intercomAppId = [ReactNativeConfig envFor:@"INTERCOM_APP_ID"];
+  NSString *intercomApiKey = [RNCConfig envFor:@"INTERCOM_API_KEY_IOS"];
+  NSString *intercomAppId = [RNCConfig envFor:@"INTERCOM_APP_ID"];
   [IntercomModule initialize:intercomApiKey withAppId:intercomAppId];
 
   // Bugsnag
   NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
   NSString *appBundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-  NSString *bugsnagApiKey = [ReactNativeConfig envFor:@"BUGSNAG_API_KEY"];
-  NSString *stage = [ ReactNativeConfig envFor:@"ENV"];
+  NSString *bugsnagApiKey = [RNCConfig envFor:@"BUGSNAG_API_KEY"];
+  NSString *stage = [ RNCConfig envFor:@"ENV"];
   BugsnagConfiguration *config = [BugsnagConfiguration loadConfig];
   config.appVersion = appVersion;
   config.bundleVersion = appBundleVersion;
