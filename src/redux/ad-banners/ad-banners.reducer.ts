@@ -1,9 +1,9 @@
-import { GetAdBanners_getAdBanners } from "@graphql/_core/schema";
+import { GetAdBannersQuery } from "@graphql/__generated";
 import { SyncAction } from "../_core/types";
 import { ADD_AD_BANNERS } from "./ad-banners.actions";
 
 export interface IAdBannersStore {
-  banners: GetAdBanners_getAdBanners[];
+  banners: GetAdBannersQuery["getAdBanners"];
 }
 
 export const getInitialAdbannersState = (): IAdBannersStore => ({

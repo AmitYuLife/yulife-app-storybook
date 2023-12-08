@@ -1086,7 +1086,7 @@ export type ContentItemComparisonTableSelectPackageBenefitSet = {
   __typename?: "ContentItemComparisonTableSelectPackageBenefitSet";
   benefits?: Maybe<Array<ContentItemComparisonTableSelectPackageBenefit>>;
   cost?: Maybe<Scalars["String"]["output"]>;
-  costValue?: Maybe<Scalars["Float"]["output"]>;
+  costValue?: Maybe<Scalars["Int"]["output"]>;
   employeeFunded?: Maybe<Scalars["Boolean"]["output"]>;
   level: Scalars["String"]["output"];
 };
@@ -3244,6 +3244,7 @@ export enum ExportEmployeesType {
   Basic = "BASIC",
   BeneficiariesMissing = "BENEFICIARIES_MISSING",
   Comprehensive = "COMPREHENSIVE",
+  YuCoinRedemptionReport = "YU_COIN_REDEMPTION_REPORT",
 }
 
 export type FeedbackForm = {
@@ -4035,6 +4036,7 @@ export type MobileRewardsListItem = {
   name: Scalars["String"]["output"];
   pills: Array<MobileRewardsListItemPill>;
   showLockedRewardOverlay: Scalars["Boolean"]["output"];
+  teaseDetails?: Maybe<MobileRewardsListItemTease>;
 };
 
 export type MobileRewardsListItemPill = {
@@ -4042,6 +4044,28 @@ export type MobileRewardsListItemPill = {
   backgroundColor: Scalars["String"]["output"];
   id: Scalars["ID"]["output"];
   text: Scalars["String"]["output"];
+};
+
+export type MobileRewardsListItemTease = {
+  __typename?: "MobileRewardsListItemTease";
+  hint?: Maybe<MobileRewardsListItemTeaseHint>;
+  image: RemoteImage;
+  progress: Scalars["Int"]["output"];
+  rewardQuantity: Scalars["Int"]["output"];
+  target: Scalars["Int"]["output"];
+  theme: MobileRewardsListItemTeaseTheme;
+};
+
+export type MobileRewardsListItemTeaseHint = {
+  __typename?: "MobileRewardsListItemTeaseHint";
+  description?: Maybe<Scalars["String"]["output"]>;
+  label?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type MobileRewardsListItemTeaseTheme = {
+  __typename?: "MobileRewardsListItemTeaseTheme";
+  primaryColor: Scalars["String"]["output"];
+  secondaryColor: Scalars["String"]["output"];
 };
 
 export enum MobileTabs {
@@ -9095,6 +9119,24 @@ export type UpdateUserAvatarResponse = {
   updated?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
+export type GetAdBannersQueryVariables = Exact<{
+  place?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type GetAdBannersQuery = {
+  __typename?: "Query";
+  getAdBanners?: Array<{
+    __typename?: "AdBanner";
+    id: string;
+    navigateTo: string;
+    startDate: string;
+    endDate?: string | null;
+    height?: number | null;
+    width?: number | null;
+    imageUrl: { __typename?: "RemoteImage"; uri?: string | null };
+  } | null> | null;
+};
+
 export type GetUserNotificationsSettingsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetUserNotificationsSettingsQuery = {
@@ -9123,6 +9165,58 @@ export type UpdateUserNotificationsSettingsMutation = {
   updateUserNotificationsSettings?: boolean | null;
 };
 
+export const GetAdBannersDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetAdBanners" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "place" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getAdBanners" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "place" },
+                value: { kind: "Variable", name: { kind: "Name", value: "place" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "imageUrl" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "navigateTo" } },
+                { kind: "Field", name: { kind: "Name", value: "startDate" } },
+                { kind: "Field", name: { kind: "Name", value: "endDate" } },
+                { kind: "Field", name: { kind: "Name", value: "height" } },
+                { kind: "Field", name: { kind: "Name", value: "width" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetAdBannersQuery, GetAdBannersQueryVariables>;
 export const GetUserNotificationsSettingsDocument = {
   kind: "Document",
   definitions: [
