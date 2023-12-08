@@ -9148,6 +9148,33 @@ export type GetMobileAssetsWithVersionQuery = {
   };
 };
 
+export type GetPublicYuApiConfigQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetPublicYuApiConfigQuery = {
+  __typename?: "Query";
+  config: {
+    __typename?: "APIConfig";
+    language: string;
+    stripeKey: string;
+    mixpanelKey: string;
+    urls: {
+      __typename?: "APIConfigUrls";
+      members: string;
+      website: string;
+      privacyPolicy: string;
+      rewardsPolicy: string;
+    };
+    intercom: { __typename?: "APIConfigIntercom"; appId: string; ios: string; android: string };
+    leanplum: { __typename?: "APIConfigLeanplum"; appId: string; prodKey: string; devKey?: string | null };
+    sduiStaticDeeplinks: Array<{
+      __typename?: "APIConfigSDUIStaticDeepLink";
+      name: string;
+      stepId: string;
+      dynamicRouteId?: string | null;
+    }>;
+  };
+};
+
 export type GetUserNotificationsSettingsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetUserNotificationsSettingsQuery = {
@@ -9261,6 +9288,83 @@ export const GetMobileAssetsWithVersionDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMobileAssetsWithVersionQuery, GetMobileAssetsWithVersionQueryVariables>;
+export const GetPublicYuApiConfigDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetPublicYuAPIConfig" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "config" },
+            name: { kind: "Name", value: "getPublicYuAPIConfig" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "language" } },
+                { kind: "Field", name: { kind: "Name", value: "stripeKey" } },
+                { kind: "Field", name: { kind: "Name", value: "mixpanelKey" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "urls" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "members" } },
+                      { kind: "Field", name: { kind: "Name", value: "website" } },
+                      { kind: "Field", name: { kind: "Name", value: "privacyPolicy" } },
+                      { kind: "Field", name: { kind: "Name", value: "rewardsPolicy" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "intercom" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "appId" } },
+                      { kind: "Field", name: { kind: "Name", value: "ios" } },
+                      { kind: "Field", name: { kind: "Name", value: "android" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "leanplum" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "appId" } },
+                      { kind: "Field", name: { kind: "Name", value: "prodKey" } },
+                      { kind: "Field", name: { kind: "Name", value: "devKey" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "sduiStaticDeeplinks" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      { kind: "Field", name: { kind: "Name", value: "stepId" } },
+                      { kind: "Field", name: { kind: "Name", value: "dynamicRouteId" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetPublicYuApiConfigQuery, GetPublicYuApiConfigQueryVariables>;
 export const GetUserNotificationsSettingsDocument = {
   kind: "Document",
   definitions: [

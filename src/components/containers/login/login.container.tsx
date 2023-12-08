@@ -19,8 +19,9 @@ import { validateEmail } from "@utils/email";
 import { LoginUser } from "@graphql/_core/schema";
 import { setRegionConfig } from "@redux/app/app.actions";
 import { useMutatationAllRegions } from "@hooks";
-import { getApiConfigWithClient } from "@graphql/config";
 import DeviceInfo from "react-native-device-info";
+import client from "@graphql/_core/client";
+import { gql } from "@graphql/__generated";
 
 const trimGraphQLError = (message: string = "") => message.replace(/^GraphQL error: /, "");
 
@@ -122,7 +123,11 @@ const LoginContainer: React.FC<Props> = ({
       regionService.setRegion(r);
 
       // fetch the config
-      const response = await getApiConfigWithClient();
+
+      const response = await client().query({
+        query: gql("GetPublicYuApiConfigDocument"),
+        fetchPolicy: "no-cache",
+      });
 
       if (response?.data?.config?.mixpanelKey) {
         await regionService.setConfig(response.data.config);

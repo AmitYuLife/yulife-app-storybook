@@ -1,0 +1,28 @@
+query GetPublicYuAPIConfig {
+  config: getPublicYuAPIConfig {
+    language
+    stripeKey
+    mixpanelKey
+    urls {
+      members
+      website
+      privacyPolicy
+      rewardsPolicy
+    }
+    intercom {
+      appId
+      ios
+      android
+    }
+    leanplum {
+      appId
+      prodKey
+      devKey
+    }
+    sduiStaticDeeplinks {
+      name
+      stepId
+      dynamicRouteId
+    }
+  }
+}
