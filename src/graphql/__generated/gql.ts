@@ -39,6 +39,7 @@ const documents = {
   GetMediaDocument: types.GetMediaDocument,
   GetUserNotificationsSettingsDocument: types.GetUserNotificationsSettingsDocument,
   UpdateUserNotificationsSettingsDocument: types.UpdateUserNotificationsSettingsDocument,
+  GetUserSurgeDocument: types.GetUserSurgeDocument,
   GetTodayEarningsDocument: types.GetTodayEarningsDocument,
 };
 
@@ -166,6 +167,10 @@ export function gql(
 export function gql(
   source: "UpdateUserNotificationsSettingsDocument"
 ): typeof documents["UpdateUserNotificationsSettingsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetUserSurgeDocument"): typeof documents["GetUserSurgeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
