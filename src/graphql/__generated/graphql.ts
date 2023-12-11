@@ -9126,7 +9126,49 @@ export type UpdateUserAvatarResponse = {
   updated?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
+export type ContentItemLottieFragment = {
+  __typename?: "ContentItemLottie";
+  id: string;
+  uri: string;
+  autoPlay: boolean;
+  loop: boolean;
+  aspectRatio?: number | null;
+  styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+  onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+};
+
+export type MediaFragment = {
+  __typename?: "Media";
+  id: string;
+  title: string;
+  description: string;
+  shortDescription: string;
+  duration?: number | null;
+  tag?: string | null;
+  theme: string;
+  sourceType?: string | null;
+  media: { __typename?: "RemoteMedia"; id: string; uri?: string | null };
+  cover: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  thumbnail: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  videoLogo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  lottie?: {
+    __typename?: "ContentItemLottie";
+    id: string;
+    uri: string;
+    autoPlay: boolean;
+    loop: boolean;
+    aspectRatio?: number | null;
+    styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+    onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  } | null;
+};
+
 export type RemoteImageFragment = { __typename?: "RemoteImage"; id: string; uri?: string | null };
+
+export type SduiActionFragment = { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+
+export type SduiStyleFragment = { __typename?: "SduiStyle"; property: string; value: string };
 
 export type GetAdBannersQueryVariables = Exact<{
   place?: InputMaybe<Scalars["String"]["input"]>;
@@ -9429,6 +9471,40 @@ export type AddDeviceTokenMutation = {
   } | null;
 };
 
+export type GetMediaQueryVariables = Exact<{
+  tags?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>> | InputMaybe<Scalars["String"]["input"]>>;
+}>;
+
+export type GetMediaQuery = {
+  __typename?: "Query";
+  getMedia?: Array<{
+    __typename?: "Media";
+    id: string;
+    title: string;
+    description: string;
+    shortDescription: string;
+    duration?: number | null;
+    tag?: string | null;
+    theme: string;
+    sourceType?: string | null;
+    media: { __typename?: "RemoteMedia"; id: string; uri?: string | null };
+    cover: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    thumbnail: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    videoLogo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    lottie?: {
+      __typename?: "ContentItemLottie";
+      id: string;
+      uri: string;
+      autoPlay: boolean;
+      loop: boolean;
+      aspectRatio?: number | null;
+      styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+      onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    } | null;
+  } | null> | null;
+};
+
 export type GetUserNotificationsSettingsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetUserNotificationsSettingsQuery = {
@@ -9533,6 +9609,241 @@ export type GetTodayEarningsQuery = {
   };
 };
 
+export const SduiStyleFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SduiStyleFragment, unknown>;
+export const SduiActionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SduiActionFragment, unknown>;
+export const ContentItemLottieFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemLottie" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLottie" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+          { kind: "Field", name: { kind: "Name", value: "autoPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "loop" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onAnimationEnd" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContentItemLottieFragment, unknown>;
+export const MediaFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Media" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Media" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          { kind: "Field", name: { kind: "Name", value: "duration" } },
+          { kind: "Field", name: { kind: "Name", value: "tag" } },
+          { kind: "Field", name: { kind: "Name", value: "theme" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cover" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "thumbnail" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "logo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "videoLogo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "lottie" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemLottie" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "sourceType" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemLottie" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLottie" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+          { kind: "Field", name: { kind: "Name", value: "autoPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "loop" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onAnimationEnd" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MediaFragment, unknown>;
 export const RemoteImageFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -10524,6 +10835,179 @@ export const AddDeviceTokenDocument = {
     },
   ],
 } as unknown as DocumentNode<AddDeviceTokenMutation, AddDeviceTokenMutationVariables>;
+export const GetMediaDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMedia" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "tags" } },
+          type: { kind: "ListType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getMedia" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "tags" },
+                value: { kind: "Variable", name: { kind: "Name", value: "tags" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "Media" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemLottie" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLottie" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+          { kind: "Field", name: { kind: "Name", value: "autoPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "loop" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onAnimationEnd" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Media" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Media" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          { kind: "Field", name: { kind: "Name", value: "duration" } },
+          { kind: "Field", name: { kind: "Name", value: "tag" } },
+          { kind: "Field", name: { kind: "Name", value: "theme" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cover" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "thumbnail" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "logo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "videoLogo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "lottie" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemLottie" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "sourceType" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetMediaQuery, GetMediaQueryVariables>;
 export const GetUserNotificationsSettingsDocument = {
   kind: "Document",
   definitions: [

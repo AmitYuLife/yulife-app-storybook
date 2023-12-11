@@ -1,0 +1,4 @@
+fragment SduiStyle on SduiStyle {
+  property
+  value
+}

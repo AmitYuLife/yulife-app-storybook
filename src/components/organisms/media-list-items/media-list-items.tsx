@@ -10,14 +10,20 @@ import MediaListItemsLoading from "./media-list-items-loading";
 import { t } from "@locale";
 import Markdown from "@molecules/markdown/markdown";
 import { ArrowButton } from "@components/molecules/arrow-button";
-import { GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_providerLogo } from "@graphql/_core/schema";
 
 export interface IITem {
   title: string;
   description: string;
-  providerLogo?: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_providerLogo;
+  providerLogo?: {
+    logo: {
+      uri?: string;
+      id: string;
+    };
+    width: number;
+    height: number;
+  };
   thumbnail: {
-    uri: string;
+    uri?: string;
     id: string;
   };
   formattedDuration?: string;
