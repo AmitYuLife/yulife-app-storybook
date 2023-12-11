@@ -1,0 +1,9 @@
+mutation AddDeviceToken($deviceToken: String!, $os: OS!, $deviceId: String!, $subscribed: Boolean!) {
+  addDeviceToken(deviceToken: $deviceToken, os: $os, deviceId: $deviceId, subscribed: $subscribed) {
+    userId
+    deviceToken
+    deviceId
+    subscribed
+    os
+  }
+}

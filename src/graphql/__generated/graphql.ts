@@ -9175,6 +9175,25 @@ export type GetPublicYuApiConfigQuery = {
   };
 };
 
+export type AddDeviceTokenMutationVariables = Exact<{
+  deviceToken: Scalars["String"]["input"];
+  os: Os;
+  deviceId: Scalars["String"]["input"];
+  subscribed: Scalars["Boolean"]["input"];
+}>;
+
+export type AddDeviceTokenMutation = {
+  __typename?: "Mutation";
+  addDeviceToken?: {
+    __typename?: "DeviceResponse";
+    userId?: string | null;
+    deviceToken?: string | null;
+    deviceId?: string | null;
+    subscribed?: boolean | null;
+    os?: Os | null;
+  } | null;
+};
+
 export type GetUserNotificationsSettingsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetUserNotificationsSettingsQuery = {
@@ -9365,6 +9384,79 @@ export const GetPublicYuApiConfigDocument = {
     },
   ],
 } as unknown as DocumentNode<GetPublicYuApiConfigQuery, GetPublicYuApiConfigQueryVariables>;
+export const AddDeviceTokenDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "AddDeviceToken" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "deviceToken" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "os" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "OS" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "deviceId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "subscribed" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "addDeviceToken" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "deviceToken" },
+                value: { kind: "Variable", name: { kind: "Name", value: "deviceToken" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "os" },
+                value: { kind: "Variable", name: { kind: "Name", value: "os" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "deviceId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "deviceId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "subscribed" },
+                value: { kind: "Variable", name: { kind: "Name", value: "subscribed" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "userId" } },
+                { kind: "Field", name: { kind: "Name", value: "deviceToken" } },
+                { kind: "Field", name: { kind: "Name", value: "deviceId" } },
+                { kind: "Field", name: { kind: "Name", value: "subscribed" } },
+                { kind: "Field", name: { kind: "Name", value: "os" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<AddDeviceTokenMutation, AddDeviceTokenMutationVariables>;
 export const GetUserNotificationsSettingsDocument = {
   kind: "Document",
   definitions: [
