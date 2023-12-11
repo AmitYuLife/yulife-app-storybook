@@ -5,12 +5,12 @@ import { useSelector } from "react-redux";
 import InspectScreen from "@components/screens/member/inspect/inspect.screen";
 import { ROUTES } from "@navigation/constants";
 import { getCurrentUserId } from "@redux/user/user.selectors";
-import { GQL_QUERY_GET_STATISTICS } from "@graphql/statistics/getStatistics.gql";
-import { GetStatistics, GetDuels } from "@graphql/_core/schema";
+import { GetDuels } from "@graphql/_core/schema";
 import { useBackHandler } from "@hooks";
 import { GQL_QUERY_GET_DUELS } from "@graphql/duels";
 import { onDuelPress } from "../leaderboard/_legacy/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog.helpers";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
+import { gql } from "@graphql/__generated";
 
 interface IProps {
   componentId: string;
@@ -44,7 +44,8 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
   const onPressChallengeDuel = useCallback(() => {
     inspectOtherUser ? onDuelPress(duels, currentUserId, userId, leaderboardPlacement, "inspect") : openDuelHub();
   }, [inspectOtherUser, onClose, onDuelPress, duelsData]);
-  const { loading, data } = useQuery<GetStatistics>(GQL_QUERY_GET_STATISTICS, {
+
+  const { loading, data } = useQuery(gql("GetStatisticsDocument"), {
     variables: { userId },
     fetchPolicy: "network-only",
   });
