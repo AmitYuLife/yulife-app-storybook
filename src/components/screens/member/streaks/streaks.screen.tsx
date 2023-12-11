@@ -9,7 +9,7 @@ import StreakStart from "./subcomponents/streak-start";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Style } from "@styles";
 import { DETOX_ENABLED } from "@services/socket";
-import { BuffArea } from "@graphql/_core/schema/globalTypes";
+import { BuffArea } from "@graphql/__generated";
 import { t } from "@locale";
 
 interface IProps {
@@ -53,7 +53,7 @@ const StreaksScreen = ({
   const autoPlayLottie = DETOX_ENABLED ? false : true;
 
   const streakInfo = getStreakInfo(streakMax, heading, subHeading, reward, currentStreakCompleted);
-  const buffTypes = useMemo(() => [BuffArea.streak], []);
+  const buffTypes = useMemo(() => [BuffArea.Streak], []);
 
   const accessibilityLabel = useMemo(
     () =>

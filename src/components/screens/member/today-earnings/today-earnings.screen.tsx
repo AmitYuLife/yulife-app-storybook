@@ -13,7 +13,7 @@ import HintContainer from "@components/molecules/hint/hint.container";
 import { ROUTES } from "@navigation/constants";
 import { Stack, YuCoinBadge, TextTemplate } from "@atoms";
 import { YucoinPowerButton } from "@components/molecules";
-import { BuffArea } from "@graphql/_core/schema/globalTypes";
+import { BuffArea } from "@graphql/__generated";
 import { ScrollThresholdView } from "@molecules";
 
 interface ITodaysEarningScreenProps {
@@ -60,7 +60,7 @@ const TodayEarningsScreen = ({
               iconWidth={25}
               iconHeight={25}
               style={styles.activeBuffs}
-              buffTypes={[BuffArea.stepsMilestone]}
+              buffTypes={[BuffArea.StepsMilestone]}
             />
           </View>
           <View style={styles.headerText} accessible={true}>

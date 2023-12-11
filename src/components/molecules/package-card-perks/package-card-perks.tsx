@@ -3,7 +3,7 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { Source } from "react-native-fast-image";
 import { Colours, Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
-import { RemoteImage } from "@graphql/_core/schema";
+import { RemoteImage } from "@graphql/__generated";
 
 interface Props {
   leftIcon: RemoteImage;

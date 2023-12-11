@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { ScrollView, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import { GetActiveBuffsOverlay_getActiveBuffsOverlay } from "@graphql/_core/schema";
+import { GetActiveBuffsOverlayQuery, gql, useFragment } from "@graphql/__generated";
 import { Image, TextTemplate } from "@atoms";
 import { PressableWithDelay } from "@molecules";
 import { Style, Colours } from "@styles";
@@ -10,12 +10,15 @@ import Equipment from "./equipment";
 import { t } from "@locale";
 
 interface IProps {
-  activeBuffs: GetActiveBuffsOverlay_getActiveBuffsOverlay;
+  activeBuffs: GetActiveBuffsOverlayQuery["getActiveBuffsOverlay"];
   closeOverlay?: () => void;
 }
 
 const ActiveBuffs = ({ activeBuffs, closeOverlay }: IProps) => {
-  const { icon: powerUpIcon, image: headImage, title, equipment } = activeBuffs;
+  const { title, equipment } = activeBuffs;
+
+  const powerUpIcon = useFragment(gql("RemoteImageFragmentDoc"), activeBuffs.icon);
+  const headImage = useFragment(gql("RemoteImageFragmentDoc"), activeBuffs.image);
 
   return (
     <View style={styles.wrapper}>
