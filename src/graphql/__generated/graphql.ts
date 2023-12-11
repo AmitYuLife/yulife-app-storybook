@@ -9273,6 +9273,62 @@ export type GetPublicYuApiConfigQuery = {
   };
 };
 
+export type DeleteConnectionMutationVariables = Exact<{
+  name: Scalars["String"]["input"];
+}>;
+
+export type DeleteConnectionMutation = { __typename?: "Mutation"; deleteConnection?: boolean | null };
+
+export type GetConnectionsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetConnectionsQuery = {
+  __typename?: "Query";
+  getCurrentUser?: {
+    __typename: "User";
+    id?: string | null;
+    connections?: Array<{
+      __typename?: "Connection";
+      name?: string | null;
+      isConnected?: boolean | null;
+      lastUpdated?: number | null;
+    } | null> | null;
+  } | null;
+};
+
+export type GetNewConnectionLinkMutationVariables = Exact<{
+  name: Scalars["String"]["input"];
+}>;
+
+export type GetNewConnectionLinkMutation = { __typename?: "Mutation"; getNewConnectionLink?: string | null };
+
+export type GetDailyScreenCustomIconQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetDailyScreenCustomIconQuery = {
+  __typename?: "Query";
+  getDailyScreenCustomIcon?: {
+    __typename?: "DailyScreenCustomIcon";
+    name: string;
+    position: string;
+    y: number;
+    x: number;
+    image: {
+      __typename?: "DailyScreenCustomIconImage";
+      width: number;
+      height: number;
+      source: { __typename?: "RemoteImage"; uri?: string | null };
+    };
+    text: {
+      __typename?: "DailyScreenCustomIconText";
+      x: number;
+      y: number;
+      type: string;
+      value: string;
+      colour: string;
+    };
+    onPress: { __typename?: "SduiAction"; payload?: string | null; type: SduiActionType };
+  } | null;
+};
+
 export type AddDeviceTokenMutationVariables = Exact<{
   deviceToken: Scalars["String"]["input"];
   os: Os;
@@ -9717,6 +9773,208 @@ export const GetPublicYuApiConfigDocument = {
     },
   ],
 } as unknown as DocumentNode<GetPublicYuApiConfigQuery, GetPublicYuApiConfigQueryVariables>;
+export const DeleteConnectionDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "DeleteConnection" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "name" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteConnection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "name" },
+                value: { kind: "Variable", name: { kind: "Name", value: "name" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<DeleteConnectionMutation, DeleteConnectionMutationVariables>;
+export const GetConnectionsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetConnections" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getCurrentUser" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "connections" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      { kind: "Field", name: { kind: "Name", value: "isConnected" } },
+                      { kind: "Field", name: { kind: "Name", value: "lastUpdated" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetConnectionsQuery, GetConnectionsQueryVariables>;
+export const GetNewConnectionLinkDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "GetNewConnectionLink" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "name" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getNewConnectionLink" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "name" },
+                value: { kind: "Variable", name: { kind: "Name", value: "name" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetNewConnectionLinkMutation, GetNewConnectionLinkMutationVariables>;
+export const GetDailyScreenCustomIconDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetDailyScreenCustomIcon" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getDailyScreenCustomIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "position" } },
+                { kind: "Field", name: { kind: "Name", value: "y" } },
+                { kind: "Field", name: { kind: "Name", value: "x" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      { kind: "Field", name: { kind: "Name", value: "height" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "source" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "uri" },
+                              arguments: [
+                                {
+                                  kind: "Argument",
+                                  name: { kind: "Name", value: "options" },
+                                  value: {
+                                    kind: "ObjectValue",
+                                    fields: [
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "width" },
+                                        value: { kind: "IntValue", value: "116" },
+                                      },
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "height" },
+                                        value: { kind: "IntValue", value: "112" },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "text" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "x" } },
+                      { kind: "Field", name: { kind: "Name", value: "y" } },
+                      { kind: "Field", name: { kind: "Name", value: "type" } },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                      { kind: "Field", name: { kind: "Name", value: "colour" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "payload" } },
+                      { kind: "Field", name: { kind: "Name", value: "type" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetDailyScreenCustomIconQuery, GetDailyScreenCustomIconQueryVariables>;
 export const AddDeviceTokenDocument = {
   kind: "Document",
   definitions: [

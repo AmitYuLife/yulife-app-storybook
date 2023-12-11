@@ -20,6 +20,10 @@ const documents = {
   GetSudokuStatsDocument: types.GetSudokuStatsDocument,
   SubmitSudokuSolutionDocument: types.SubmitSudokuSolutionDocument,
   GetPublicYuApiConfigDocument: types.GetPublicYuApiConfigDocument,
+  DeleteConnectionDocument: types.DeleteConnectionDocument,
+  GetConnectionsDocument: types.GetConnectionsDocument,
+  GetNewConnectionLinkDocument: types.GetNewConnectionLinkDocument,
+  GetDailyScreenCustomIconDocument: types.GetDailyScreenCustomIconDocument,
   AddDeviceTokenDocument: types.AddDeviceTokenDocument,
   GetUserNotificationsSettingsDocument: types.GetUserNotificationsSettingsDocument,
   UpdateUserNotificationsSettingsDocument: types.UpdateUserNotificationsSettingsDocument,
@@ -69,6 +73,22 @@ export function gql(source: "SubmitSudokuSolutionDocument"): typeof documents["S
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetPublicYuApiConfigDocument"): typeof documents["GetPublicYuApiConfigDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "DeleteConnectionDocument"): typeof documents["DeleteConnectionDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetConnectionsDocument"): typeof documents["GetConnectionsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetNewConnectionLinkDocument"): typeof documents["GetNewConnectionLinkDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetDailyScreenCustomIconDocument"): typeof documents["GetDailyScreenCustomIconDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

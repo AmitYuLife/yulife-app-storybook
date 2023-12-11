@@ -10,10 +10,8 @@ import { Surge, Streak, TopBar, NavBar, DailyStepsContent, CustomIcon } from "@o
 import { Style, TOP_BAR } from "@styles";
 import styles from "./daily-steps.screen.styles";
 import ReferralsPopover from "./referrals-popover";
-import {
-  GetDailyScreenCustomIcon_getDailyScreenCustomIcon,
-  GetUserProfile_getUserProfile_surge,
-} from "@graphql/_core/schema";
+import { GetUserProfile_getUserProfile_surge } from "@graphql/_core/schema";
+import { GetDailyScreenCustomIconQuery } from "@graphql/__generated";
 import { SurgeModal, showFloatingModal } from "@components/modals";
 import { MODALS } from "@navigation/constants";
 import { InformationIcon } from "@atoms/icon/information-icon";
@@ -32,7 +30,7 @@ interface IProps extends IConnectedScreenProps {
   onNotificationPress?: () => void;
   onStreakPress?: () => void;
   userSurge: GetUserProfile_getUserProfile_surge;
-  customIcon: GetDailyScreenCustomIcon_getDailyScreenCustomIcon;
+  customIcon: GetDailyScreenCustomIconQuery["getDailyScreenCustomIcon"];
   currentWorld: number;
   currentYuniverse: number;
   theme: IThemeScreens;

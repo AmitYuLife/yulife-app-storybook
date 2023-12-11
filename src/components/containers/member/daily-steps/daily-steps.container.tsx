@@ -11,8 +11,7 @@ import { FitkitContext } from "@services/fitkit/fitkit.context";
 import { useNavigationComponentDidAppear, useTapBackTwiceToExit } from "@hooks";
 import { getUserNotification, getUserSurge, getUserEventsWithAds, getUserFeatures } from "@redux/user/user.selectors";
 import { useLazyQuery } from "@apollo/client";
-import { GetDailyScreenCustomIcon } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_DAILY_SCREEN_CUSTOM_ICON } from "@graphql/dailyScreenCustomIcon";
+import { gql } from "@graphql/__generated";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { getCurrentWorld, getCurrentYuniverse } from "@utils";
 import { dailyScreenInformationIcon } from "@redux/onboarding/onboarding.selectors";
@@ -30,12 +29,9 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
   const hasDailyScreenCustomIcon = userNotification?.hasDailyScreenCustomIcon;
   const isDailyScreenInformationIconHidden = useSelector(dailyScreenInformationIcon);
 
-  const [getDailyScreenCustomIcon, { data }] = useLazyQuery<GetDailyScreenCustomIcon>(
-    GQL_QUERY_GET_DAILY_SCREEN_CUSTOM_ICON,
-    {
-      fetchPolicy: "cache-and-network",
-    }
-  );
+  const [getDailyScreenCustomIcon, { data }] = useLazyQuery(gql("GetDailyScreenCustomIconDocument"), {
+    fetchPolicy: "cache-and-network",
+  });
 
   useEffect(() => {
     if (hasDailyScreenCustomIcon) {

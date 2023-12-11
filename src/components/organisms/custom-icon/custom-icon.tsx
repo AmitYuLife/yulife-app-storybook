@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { Image, TextTemplate } from "@atoms";
 import { ITextTemplateType } from "@atoms/text/text-template";
 import { Source } from "react-native-fast-image";
-import { SduiAction } from "@graphql/_core/schema";
+import { SduiAction } from "@graphql/__generated";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 interface ICustomIconImage {

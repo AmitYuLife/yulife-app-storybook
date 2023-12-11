@@ -1,6 +1,7 @@
-import { deleteConnectionWithClient, getNewConnectionLinkWithClient } from "@graphql/connections";
+import { MutationResult } from "@apollo/client";
+import client from "@graphql/_core/client";
+import { DeleteConnectionMutation, GetNewConnectionLinkMutation, gql } from "@graphql/__generated";
 import Logger from "@services/logging/logger";
-import { Unpacked } from "@utils";
 import { Linking } from "react-native";
 import { call, put, spawn } from "redux-saga/effects";
 
@@ -10,9 +11,14 @@ export default function* updateConnectionSaga({ payload }: ReturnType<typeof upd
   if (payload.isConnected) {
     // disconnect
     try {
-      const result: Unpacked<typeof deleteConnectionWithClient> = yield call(deleteConnectionWithClient, payload.name);
+      const result: MutationResult<DeleteConnectionMutation> = yield call(() =>
+        client().mutate({
+          mutation: gql("DeleteConnectionDocument"),
+          variables: { name: payload.name },
+        })
+      );
 
-      if (result && result.data && result.data.deleteConnection) {
+      if (result?.data?.deleteConnection) {
         yield put(updateConnectionSuccess({ ...payload, isConnected: false }));
       } else {
         yield put(updateConnectionFailed(payload));
@@ -26,12 +32,14 @@ export default function* updateConnectionSaga({ payload }: ReturnType<typeof upd
   } else {
     // connect
     try {
-      const result: Unpacked<typeof getNewConnectionLinkWithClient> = yield call(
-        getNewConnectionLinkWithClient,
-        payload.name
+      const result: MutationResult<GetNewConnectionLinkMutation> = yield call(() =>
+        client().mutate({
+          mutation: gql("GetNewConnectionLinkDocument"),
+          variables: { name: payload.name },
+        })
       );
 
-      if (result && result.data && result.data.getNewConnectionLink) {
+      if (result?.data?.getNewConnectionLink) {
         yield call(() => Linking.openURL(result.data.getNewConnectionLink));
       } else {
         yield put(updateConnectionFailed(payload));

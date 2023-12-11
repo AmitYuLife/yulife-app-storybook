@@ -1,1 +1,0 @@
-export * from "./getDailyScreenCustomIcon.gql";
