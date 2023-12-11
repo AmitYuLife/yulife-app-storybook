@@ -4,14 +4,14 @@ import { IConnectedScreenProps } from "../../../../../typings";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Button } from "@molecules";
 import { useQuery } from "@apollo/client";
-import { GetQuestMapLevelChallengeDetails, GetSudokuBoard } from "@graphql/_core/schema";
+import { GetQuestMapLevelChallengeDetails } from "@graphql/_core/schema";
 import { useSelector } from "react-redux";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { SUDOKU_PLANET_STYLES, SUDOKU_YUNIVERSAL_STYLES } from "../sudoku-game/sudoku.config";
 import { getCurrentWorldName } from "@utils";
-import { GQL_QUERY_GET_SUDOKU_BOARDS } from "@graphql/brainGames/sudoku/getSudokuBoards.gql";
+import { gql } from "@graphql/__generated";
 import { Colours, Style } from "@styles";
 import moment from "moment";
 import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/getQuestMapChallengeDetails.gql";
@@ -33,7 +33,7 @@ function SudokuProgressScreen({ levelSlotId, onDismissPress, onLeftMenuPress }: 
     "format.date_readable",
   ]);
 
-  const { data: sudokuData } = useQuery<GetSudokuBoard>(GQL_QUERY_GET_SUDOKU_BOARDS, {
+  const { data: sudokuData } = useQuery(gql(`GetSudokuBoardDocument`), {
     fetchPolicy: "no-cache",
   });
 

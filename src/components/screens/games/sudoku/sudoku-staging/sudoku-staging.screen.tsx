@@ -2,11 +2,11 @@ import { Button } from "@components/molecules";
 import {
   GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails,
   GetQuestMapLevel_getQuestMapLevel_slots,
-  GetSudokuBoard,
   GetMobileSocialGroupLeaderboardItems_getMobileSocialGroupLeaderboardItems as SocialGroupLeaderboardItem,
 } from "@graphql/_core/schema";
 import { memo, useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
+import { GetSudokuBoardQuery } from "@graphql/__generated";
 import { GenericHeadingAbsolute } from "@organisms";
 import { useSelector } from "react-redux";
 import SudokuPersonalBestIcon from "@atoms/icon/sudoku-personal-best-svg";
@@ -34,7 +34,7 @@ interface IProps {
   onHelp: () => void;
   onClose: () => void;
   onStart: () => void;
-  data: GetSudokuBoard;
+  data: GetSudokuBoardQuery;
   onStartPractice: () => void;
   onLeaderboardPress: () => void;
   hasLeaderboardConsent?: boolean;

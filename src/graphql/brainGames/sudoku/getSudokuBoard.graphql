@@ -1,0 +1,28 @@
+query GetSudokuBoard($date: String) {
+  getSudokuBoard(date: $date) {
+    boards {
+      difficulty
+      solution
+      puzzle
+      config {
+        PENALTY_HINT
+        MISTAKES_BEFORE_PENALTY
+        MISTAKE_PENALTY_TIME
+        HINT_COOLDOWN
+      }
+    }
+    date
+    stats {
+      personalBest
+      leaderboardId
+    }
+    results {
+      mistakes
+      hints
+      leaderboardId
+      adjustedTime
+      difficulty
+    }
+    leaderboardEligible
+  }
+}

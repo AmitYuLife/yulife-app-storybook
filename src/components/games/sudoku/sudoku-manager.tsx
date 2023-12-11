@@ -10,7 +10,7 @@ import {
 } from "@screens/games/sudoku/sudoku-game/sudoku.config";
 import { ISodukuBoard } from "@screens/games/sudoku/sudoku-game/sudoku.container";
 import { ISudokuStore } from "@redux/sudoku/sudoku.reducer";
-import { SudokuDifficulty } from "@graphql/_core/schema/globalTypes";
+import { SudokuDifficulty } from "@graphql/__generated";
 import {
   SUDOKU_ADD_GUESS,
   SUDOKU_ADD_MISTAKE,
@@ -276,7 +276,7 @@ const SudokuManager = ({
     onGameComplete({
       hints: sudokuState.hintsUsed,
       mistakes: sudokuState.mistakes,
-      difficulty: SudokuDifficulty.EASY,
+      difficulty: SudokuDifficulty.Easy,
       adjustedTime: getDurationSeconds(new Date()),
       guesses: sudokuState.guesses,
     });

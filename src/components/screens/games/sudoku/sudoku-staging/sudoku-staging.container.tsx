@@ -3,9 +3,8 @@ import {
   GetMobileSocialGroupLeaderboardItems,
   GetQuestMapLevelChallengeDetails,
   GetQuestMapLevel_getQuestMapLevel_slots,
-  GetSudokuBoard,
 } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_SUDOKU_BOARDS } from "@graphql/brainGames/sudoku/getSudokuBoards.gql";
+import { gql } from "@graphql/__generated";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { first } from "lodash";
 import { Navigation } from "@navigation/main";
@@ -39,7 +38,7 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
   const isScreenActive = currentScreen === componentId;
   const [createChallengeLoading, setCreateChallengeLoading] = useState(false);
 
-  const [, { data }] = useQueryOnScreenSeen<GetSudokuBoard>(GQL_QUERY_GET_SUDOKU_BOARDS, componentId, {
+  const [, { data }] = useQueryOnScreenSeen(gql(`GetSudokuBoardDocument`), componentId, {
     fetchPolicy: "no-cache",
   });
 

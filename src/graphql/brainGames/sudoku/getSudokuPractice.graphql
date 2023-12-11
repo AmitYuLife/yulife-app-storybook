@@ -1,0 +1,13 @@
+query GetSudokuPractice {
+  getSudokuPractice {
+    solution
+    puzzle
+    difficulty
+    config {
+      PENALTY_HINT
+      MISTAKES_BEFORE_PENALTY
+      MISTAKE_PENALTY_TIME
+      HINT_COOLDOWN
+    }
+  }
+}

@@ -4,23 +4,14 @@ import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { useSelector, useDispatch } from "react-redux";
 import { getSudokuState } from "@redux/sudoku/sudoku.selectors";
-import {
-  GetSudokuBoard,
-  GetSudokuBoard_getSudokuBoard_results,
-  SubmitSudokuSolution,
-  SubmitSudokuSolutionVariables,
-} from "@graphql/_core/schema";
 import { sudokuStateChanged } from "@redux/sudoku/sudoku.actions";
 import { memo, useCallback } from "react";
 import { first } from "lodash";
 import { useMutation, useQuery } from "@apollo/client";
-import { GQL_QUERY_GET_SUDOKU_BOARDS } from "@graphql/brainGames/sudoku/getSudokuBoards.gql";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { GQL_MUTATION_TOGGLE_CHALLENGE_PAUSE } from "@graphql/challenges/toggleChallengePause.gql";
 import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { SocialGroupLeaderboardConfigId, SudokuDifficulty } from "@graphql/_core/schema/globalTypes";
-import { GQL_MUTATION_SUBMIT_SUDOKU_SOLUTION } from "@graphql/brainGames/sudoku/submitSudokuResults.gql";
 import { ISudokuResults } from "@components/games/sudoku/sudoku.interface";
 import { useBackHandler, useTranslation } from "@hooks";
 import { delay } from "@utils/misc";
@@ -29,6 +20,14 @@ import { Alert } from "react-native";
 import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
 import { getActiveSocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
 import { GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS } from "@graphql/socialGroupLeaderboard/getMobileSocialGroupLeaderboardItems";
+import {
+  gql,
+  SocialGroupLeaderboardConfigId,
+  SudokuDifficulty,
+  SubmitSudokuSolutionMutation,
+  GetSudokuBoardQuery,
+} from "@graphql/__generated";
+import { UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge } from "@graphql/_core/schema"; // TODO: purge when migrating challenge
 
 export interface ISodukuBoard {
   puzzle: SudokuBoard;
@@ -50,11 +49,9 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   const activeLeaderboard = useSelector(getActiveSocialGroupLeaderboard);
 
   const [sendPause] = useMutation(GQL_MUTATION_TOGGLE_CHALLENGE_PAUSE);
-  const [submitSudokuSolution] = useMutation<SubmitSudokuSolution, SubmitSudokuSolutionVariables>(
-    GQL_MUTATION_SUBMIT_SUDOKU_SOLUTION
-  );
+  const [submitSudokuSolution] = useMutation(gql(`SubmitSudokuSolutionDocument`));
 
-  const { data } = useQuery<GetSudokuBoard>(GQL_QUERY_GET_SUDOKU_BOARDS, {
+  const { data } = useQuery(gql(`GetSudokuBoardDocument`), {
     fetchPolicy: "no-cache",
     variables: {
       date: sudokuState.date,
@@ -73,14 +70,14 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   const board = first(data?.getSudokuBoard?.boards);
 
   const navigateToCompleted = useCallback(
-    (parmas: GetSudokuBoard_getSudokuBoard_results, result: SubmitSudokuSolution) => {
+    (params: GetSudokuBoardQuery["getSudokuBoard"], result: SubmitSudokuSolutionMutation) => {
       Navigation.push(componentId, {
         component: {
           id: ROUTES.sudokuCompleted,
           name: ROUTES.sudokuCompleted,
           passProps: {
             results: {
-              ...parmas,
+              ...params,
               adjustedTime: result?.submitSudokuSolution.incomingData.duration,
               leaderboardId: data.getSudokuBoard.stats?.leaderboardId,
               leaderboardEligible: data?.getSudokuBoard?.leaderboardEligible,
@@ -133,7 +130,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
 
   const submitSolution = useCallback(
     (params: ISudokuResults) => {
-      return new Promise<SubmitSudokuSolution>((res, rej) => {
+      return new Promise<SubmitSudokuSolutionMutation>((res, rej) => {
         (async () => {
           const results = await submitSudokuSolution({
             variables: {
@@ -145,7 +142,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
                 guesses: params.guesses,
                 adjustedTime: params.adjustedTime,
                 levelSlotId: sudokuState.levelSlotId,
-                difficulty: SudokuDifficulty.EASY,
+                difficulty: SudokuDifficulty.Easy,
               },
             },
             onError: () => {
@@ -153,7 +150,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
               dispatch(getUserDataStart([AppDataType.activeChallenge]));
               showSubmissionError(rej);
             },
-            ...(activeLeaderboard?.leaderboardConfigId === SocialGroupLeaderboardConfigId.dailysudoku && {
+            ...(activeLeaderboard?.leaderboardConfigId === SocialGroupLeaderboardConfigId.Dailysudoku && {
               refetchQueries: [
                 {
                   query: GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS,
@@ -189,10 +186,13 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
             challengeEndSuccessAction({
               ...result.submitSudokuSolution,
               createdAt: 1,
-            })
+            } as unknown as UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge)
           );
 
-          navigateToCompleted({ ...params, leaderboardId: undefined }, result);
+          navigateToCompleted(
+            { ...params, leaderboardId: undefined } as unknown as GetSudokuBoardQuery["getSudokuBoard"],
+            result
+          );
         }
       })();
     },
