@@ -1,0 +1,11 @@
+query GetConnections {
+  getCurrentUser {
+    __typename
+    id
+    connections {
+      name
+      isConnected
+      lastUpdated
+    }
+  }
+}

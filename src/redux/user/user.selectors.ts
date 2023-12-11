@@ -1,14 +1,12 @@
 import { createSelector } from "reselect";
-import {
-  GetCurrentUser_getCurrentUser_connections,
-  GetCurrentUser_getCurrentUser_leaderboards,
-} from "@graphql/_core/schema";
+import { GetCurrentUser_getCurrentUser_leaderboards } from "@graphql/_core/schema";
+import { GetConnectionsQuery } from "@graphql/__generated";
 import { IReduxState } from "../_core/reducers";
 import { getAdBanners } from "../ad-banners/ad-banners.selectors";
 import { UserProfileEventStatus } from "@graphql/_core/schema/globalTypes";
 import { shallowEqual } from "react-redux";
 
-export type Connection = GetCurrentUser_getCurrentUser_connections;
+export type Connection = GetConnectionsQuery["getCurrentUser"]["connections"][0];
 export type Leaderboard = GetCurrentUser_getCurrentUser_leaderboards;
 
 type State = IReduxState["user"];
