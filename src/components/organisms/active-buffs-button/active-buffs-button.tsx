@@ -3,7 +3,7 @@ import { ViewStyle } from "react-native";
 import { useSelector } from "react-redux";
 import { Navigation } from "@navigation/main";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { gql, BuffArea, useFragment } from "@graphql/__generated";
+import { gql, BuffArea } from "@graphql/__generated";
 import { Image } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
 import ActiveBuffsModal from "@components/modals/active-buffs/active-buffs.modal";
@@ -53,9 +53,7 @@ const ActiveBuffsButton = ({ buffTypes, style, iconWidth = 40, iconHeight = 40 }
     return null;
   }
 
-  // the following is not a react hook, it's a simple mapper
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const buffIcon = useFragment(gql(`RemoteImageFragmentDoc`), data?.getActiveBuffsOverlay?.icon);
+  const buffIcon = data?.getActiveBuffsOverlay?.icon;
 
   return (
     <TouchableOpacityWithDelay onPress={onPress} style={style}>

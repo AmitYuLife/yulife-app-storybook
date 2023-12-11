@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from "react";
 import { View } from "react-native";
-import { GetActiveBuffsOverlayQuery, gql, useFragment } from "@graphql/__generated";
+import { GetActiveBuffsOverlayQuery } from "@graphql/__generated";
 import { PackageCardPerks, SlotIcon } from "@molecules";
 import styles from "./active-buffs.styles";
 
@@ -25,14 +25,7 @@ const Equipment = memo(({ item }: IProps) => {
       </View>
       <View style={styles.perksContainer}>
         {item.buffs.map((buff, index) => (
-          <PackageCardPerks
-            key={index}
-            // the following is not a react hook, it's a simple mapper
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            leftIcon={useFragment(gql("RemoteImageFragmentDoc"), buff.icon)}
-            title={buff.title}
-            description={buff.description}
-          />
+          <PackageCardPerks key={index} leftIcon={buff.icon} title={buff.title} description={buff.description} />
         ))}
       </View>
     </View>

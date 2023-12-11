@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { ScrollView, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import { GetActiveBuffsOverlayQuery, gql, useFragment } from "@graphql/__generated";
+import { GetActiveBuffsOverlayQuery } from "@graphql/__generated";
 import { Image, TextTemplate } from "@atoms";
 import { PressableWithDelay } from "@molecules";
 import { Style, Colours } from "@styles";
@@ -15,21 +15,18 @@ interface IProps {
 }
 
 const ActiveBuffs = ({ activeBuffs, closeOverlay }: IProps) => {
-  const { title, equipment } = activeBuffs;
-
-  const powerUpIcon = useFragment(gql("RemoteImageFragmentDoc"), activeBuffs.icon);
-  const headImage = useFragment(gql("RemoteImageFragmentDoc"), activeBuffs.image);
+  const { title, equipment, icon, image } = activeBuffs;
 
   return (
     <View style={styles.wrapper}>
       <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
         <PressableWithDelay onPress={closeOverlay} style={styles.pressable}>
-          <Image style={styles.headImage} width={Style.adjust(407)} height={Style.adjust(158)} source={headImage} />
+          <Image style={styles.headImage} width={Style.adjust(407)} height={Style.adjust(158)} source={image} />
           <View style={styles.titleWrapper}>
             <TextTemplate type="h2" color={Colours.neutral.white} textAlign="center">
               {title}
             </TextTemplate>
-            <Image style={styles.powerUpIcon} width={Style.adjust(40)} height={Style.adjust(40)} source={powerUpIcon} />
+            <Image style={styles.powerUpIcon} width={Style.adjust(40)} height={Style.adjust(40)} source={icon} />
           </View>
           {equipment.map((item, index) => (
             <Equipment key={index} item={item} />

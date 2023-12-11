@@ -9119,9 +9119,7 @@ export type UpdateUserAvatarResponse = {
   updated?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
-export type RemoteImageFragment = { __typename?: "RemoteImage"; id: string; uri?: string | null } & {
-  " $fragmentName"?: "RemoteImageFragment";
-};
+export type RemoteImageFragment = { __typename?: "RemoteImage"; id: string; uri?: string | null };
 
 export type GetAdBannersQueryVariables = Exact<{
   place?: InputMaybe<Scalars["String"]["input"]>;
@@ -9259,8 +9257,8 @@ export type GetActiveBuffsOverlayQuery = {
   getActiveBuffsOverlay: {
     __typename?: "ActiveBuffsOverlay";
     title: string;
-    icon: { __typename?: "RemoteImage" } & { " $fragmentRefs"?: { RemoteImageFragment: RemoteImageFragment } };
-    image: { __typename?: "RemoteImage" } & { " $fragmentRefs"?: { RemoteImageFragment: RemoteImageFragment } };
+    icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     equipment: Array<{
       __typename?: "ActiveBuffsOverlayEquipment";
       slotUri: string;
@@ -9269,7 +9267,7 @@ export type GetActiveBuffsOverlayQuery = {
         __typename?: "ActiveBuffsOverlayBuff";
         title: string;
         description: string;
-        icon: { __typename?: "RemoteImage" } & { " $fragmentRefs"?: { RemoteImageFragment: RemoteImageFragment } };
+        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       }>;
     }>;
   };

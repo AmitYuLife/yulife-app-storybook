@@ -13,6 +13,7 @@ const config: CodegenConfig = {
       preset: "client",
       presetConfig: {
         gqlTagName: "gql",
+        fragmentMasking: false,
         // TODO: enable persisted docs
         // persistedDocuments: true,
         // hashAlgorithm: "sha256",
