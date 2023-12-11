@@ -383,7 +383,7 @@ PODS:
     - React-Core
   - react-native-view-shot (3.5.0):
     - React-Core
-  - react-native-webview (11.26.0):
+  - react-native-webview (13.6.3):
     - React-Core
   - React-perflogger (0.70.13)
   - React-RCTActionSheet (0.70.13):
@@ -888,7 +888,7 @@ SPEC CHECKSUMS:
   react-native-track-player: 97d76dbbd35f27cc709e5f04540615e54264b3f9
   react-native-video: e9e6fe3ab11d515bd79abd5d81e07db538943c56
   react-native-view-shot: 792829857bbb23a9c8acdad9a640554bdee397a3
-  react-native-webview: 994b9f8fbb504d6314dc40d83f94f27c6831b3bf
+  react-native-webview: 88293a0f23eca8465c0433c023ec632930e644d0
   React-perflogger: c6702b0cb84be970b5fcb230162a229195295ece
   React-RCTActionSheet: cbe5a12f5417120bbc03c105c9ea9a4c6d2b5d84
   React-RCTAnimation: ac313d82cac7b1c90dd817de5eca6d367c66d588
