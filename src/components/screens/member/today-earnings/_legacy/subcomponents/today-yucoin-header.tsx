@@ -4,7 +4,7 @@ import { YuCoinPower } from "@components/molecules";
 import { TextTemplate, YuCoinBadge } from "@atoms";
 import { Colours, Style } from "@styles";
 import { ActiveBuffsButton } from "@organisms";
-import { BuffArea } from "@graphql/_core/schema/globalTypes";
+import { BuffArea } from "@graphql/__generated";
 import { PressableWithDelay } from "@molecules";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 import { t } from "@locale";
@@ -15,7 +15,7 @@ interface IProps {
   currentYuniverse: number;
 }
 const TodayYuCoinHeader = ({ yuCoinToday, yuCoinPower, currentWorld, currentYuniverse }: IProps) => {
-  const buffTypes = useMemo(() => [BuffArea.stepsMilestone], []);
+  const buffTypes = useMemo(() => [BuffArea.StepsMilestone], []);
 
   return (
     <>

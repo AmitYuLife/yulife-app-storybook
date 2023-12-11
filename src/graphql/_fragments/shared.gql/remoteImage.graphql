@@ -1,0 +1,4 @@
+fragment RemoteImage on RemoteImage {
+  id
+  uri
+}

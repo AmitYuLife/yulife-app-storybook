@@ -6,7 +6,7 @@ import { ActiveBuffsButton } from "@organisms";
 import styles from "./animated-chest.styles";
 import assets from "./assets";
 import { DETOX_ENABLED } from "@services/socket";
-import { BuffArea } from "@graphql/_core/schema/globalTypes";
+import { BuffArea } from "@graphql/__generated";
 import { t } from "@locale";
 
 interface IProps {
@@ -23,7 +23,7 @@ export default class AnimatedChestScreen extends React.PureComponent<IProps> {
   private coinYOffset = new Animated.Value(500);
   private confettiScale = new Animated.Value(0);
   private confettiOpacity = new Animated.Value(0);
-  private buffTypes = [BuffArea.chest];
+  private buffTypes = [BuffArea.Chest];
 
   public componentWillUnmount() {
     if (this.animationDelay) {

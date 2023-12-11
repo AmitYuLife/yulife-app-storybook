@@ -3,9 +3,7 @@ import { ViewStyle } from "react-native";
 import { useSelector } from "react-redux";
 import { Navigation } from "@navigation/main";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { GetActiveBuffsOverlay, GetActiveBuffsOverlayVariables } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_ACTIVE_BUFFS_OVERLAY } from "@graphql/buffs";
-import { BuffArea } from "@graphql/_core/schema/globalTypes";
+import { gql, BuffArea, useFragment } from "@graphql/__generated";
 import { Image } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
 import ActiveBuffsModal from "@components/modals/active-buffs/active-buffs.modal";
@@ -22,12 +20,9 @@ interface IProps {
 }
 
 const ActiveBuffsButton = ({ buffTypes, style, iconWidth = 40, iconHeight = 40 }: IProps) => {
-  const [getActiveBuffs, { data }] = useLazyQuery<GetActiveBuffsOverlay, GetActiveBuffsOverlayVariables>(
-    GQL_QUERY_GET_ACTIVE_BUFFS_OVERLAY,
-    {
-      fetchPolicy: "network-only",
-    }
-  );
+  const [getActiveBuffs, { data }] = useLazyQuery(gql("GetActiveBuffsOverlayDocument"), {
+    fetchPolicy: "network-only",
+  });
 
   const features = useSelector(getUserFeatures);
   const location = useSelector(getRouteState);
@@ -58,13 +53,13 @@ const ActiveBuffsButton = ({ buffTypes, style, iconWidth = 40, iconHeight = 40 }
     return null;
   }
 
+  // the following is not a react hook, it's a simple mapper
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const buffIcon = useFragment(gql(`RemoteImageFragmentDoc`), data?.getActiveBuffsOverlay?.icon);
+
   return (
     <TouchableOpacityWithDelay onPress={onPress} style={style}>
-      <Image
-        width={Style.adjust(iconWidth)}
-        height={Style.adjust(iconHeight)}
-        source={data?.getActiveBuffsOverlay?.icon}
-      />
+      <Image width={Style.adjust(iconWidth)} height={Style.adjust(iconHeight)} source={buffIcon} />
     </TouchableOpacityWithDelay>
   );
 };
