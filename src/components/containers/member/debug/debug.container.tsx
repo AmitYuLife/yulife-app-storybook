@@ -1,6 +1,6 @@
 import { upperFirst } from "lodash";
 import { useMutation, useQuery } from "@apollo/client";
-import { GQL_QUERY_DEBUG_CODES, GQL_MUTATION_RESET_DATA, ResetDataMutationTuple } from "@graphql/debug";
+import { gql } from "@graphql/__generated";
 import React, { memo, useCallback, useMemo } from "react";
 import { Alert } from "react-native";
 import { Navigation } from "@navigation/main";
@@ -37,8 +37,8 @@ enum DebugCodes {
 
 const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
   const dispatch = useDispatch();
-  const [resetData]: ResetDataMutationTuple = useMutation(GQL_MUTATION_RESET_DATA);
-  const { data } = useQuery(GQL_QUERY_DEBUG_CODES, { fetchPolicy: "no-cache" });
+  const [resetData] = useMutation(gql("ResetDataDocument"));
+  const { data } = useQuery(gql("GetDebugCodesDocument"), { fetchPolicy: "no-cache" });
 
   const handleClose = useCallback((): void => {
     Navigation.popToRoot(componentId);

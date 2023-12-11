@@ -24,6 +24,11 @@ const documents = {
   GetConnectionsDocument: types.GetConnectionsDocument,
   GetNewConnectionLinkDocument: types.GetNewConnectionLinkDocument,
   GetDailyScreenCustomIconDocument: types.GetDailyScreenCustomIconDocument,
+  GetDebugCodesDocument: types.GetDebugCodesDocument,
+  GetUserDebugDataDocument: types.GetUserDebugDataDocument,
+  ResetDataDocument: types.ResetDataDocument,
+  SetUserQuestProgressDocument: types.SetUserQuestProgressDocument,
+  SubmitUserDebugDataDocument: types.SubmitUserDebugDataDocument,
   AddDeviceTokenDocument: types.AddDeviceTokenDocument,
   GetUserNotificationsSettingsDocument: types.GetUserNotificationsSettingsDocument,
   UpdateUserNotificationsSettingsDocument: types.UpdateUserNotificationsSettingsDocument,
@@ -89,6 +94,26 @@ export function gql(source: "GetNewConnectionLinkDocument"): typeof documents["G
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetDailyScreenCustomIconDocument"): typeof documents["GetDailyScreenCustomIconDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetDebugCodesDocument"): typeof documents["GetDebugCodesDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetUserDebugDataDocument"): typeof documents["GetUserDebugDataDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "ResetDataDocument"): typeof documents["ResetDataDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "SetUserQuestProgressDocument"): typeof documents["SetUserQuestProgressDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "SubmitUserDebugDataDocument"): typeof documents["SubmitUserDebugDataDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
