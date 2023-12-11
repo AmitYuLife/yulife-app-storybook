@@ -9148,6 +9148,104 @@ export type GetMobileAssetsWithVersionQuery = {
   };
 };
 
+export type GetSudokuBoardQueryVariables = Exact<{
+  date?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type GetSudokuBoardQuery = {
+  __typename?: "Query";
+  getSudokuBoard?: {
+    __typename?: "SudokuBoardResponse";
+    date: string;
+    leaderboardEligible: boolean;
+    boards: Array<{
+      __typename?: "SudokuBoard";
+      difficulty: SudokuDifficulty;
+      solution: Array<Array<number> | null>;
+      puzzle: Array<Array<number> | null>;
+      config: {
+        __typename?: "SudokuConfig";
+        PENALTY_HINT: number;
+        MISTAKES_BEFORE_PENALTY: number;
+        MISTAKE_PENALTY_TIME: number;
+        HINT_COOLDOWN: number;
+      };
+    }>;
+    stats?: { __typename?: "SudokuStats"; personalBest?: number | null; leaderboardId?: string | null } | null;
+    results?: {
+      __typename?: "SudokuResults";
+      mistakes: number;
+      hints: number;
+      leaderboardId?: string | null;
+      adjustedTime: number;
+      difficulty: SudokuDifficulty;
+    } | null;
+  } | null;
+};
+
+export type GetSudokuPracticeQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetSudokuPracticeQuery = {
+  __typename?: "Query";
+  getSudokuPractice: {
+    __typename?: "SudokuBoard";
+    solution: Array<Array<number> | null>;
+    puzzle: Array<Array<number> | null>;
+    difficulty: SudokuDifficulty;
+    config: {
+      __typename?: "SudokuConfig";
+      PENALTY_HINT: number;
+      MISTAKES_BEFORE_PENALTY: number;
+      MISTAKE_PENALTY_TIME: number;
+      HINT_COOLDOWN: number;
+    };
+  };
+};
+
+export type GetSudokuStatsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetSudokuStatsQuery = {
+  __typename?: "Query";
+  getSudokuStats?: { __typename?: "SudokuStats"; leaderboardId?: string | null } | null;
+};
+
+export type SubmitSudokuSolutionMutationVariables = Exact<{
+  results: SudokuSubmission;
+}>;
+
+export type SubmitSudokuSolutionMutation = {
+  __typename?: "Mutation";
+  submitSudokuSolution?: {
+    __typename?: "Challenge";
+    level?: number | null;
+    levelSlotId?: string | null;
+    startDateTime?: string | null;
+    status?: string | null;
+    endDateTime?: string | null;
+    yuCoinAwarded?: number | null;
+    rating?: number | null;
+    incomingData?: {
+      __typename?: "MilestoneTarget";
+      steps?: number | null;
+      meditation?: number | null;
+      distance?: number | null;
+      duration?: number | null;
+      calories?: number | null;
+    } | null;
+    milestoneLog?: Array<{
+      __typename?: "MilestoneLogEntry";
+      data?: {
+        __typename?: "MilestoneTarget";
+        steps?: number | null;
+        meditation?: number | null;
+        distance?: number | null;
+        duration?: number | null;
+        calories?: number | null;
+      } | null;
+    } | null> | null;
+  } | null;
+};
+
 export type GetPublicYuApiConfigQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetPublicYuApiConfigQuery = {
@@ -9307,6 +9405,241 @@ export const GetMobileAssetsWithVersionDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMobileAssetsWithVersionQuery, GetMobileAssetsWithVersionQueryVariables>;
+export const GetSudokuBoardDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetSudokuBoard" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "date" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getSudokuBoard" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "date" },
+                value: { kind: "Variable", name: { kind: "Name", value: "date" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "boards" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "difficulty" } },
+                      { kind: "Field", name: { kind: "Name", value: "solution" } },
+                      { kind: "Field", name: { kind: "Name", value: "puzzle" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "config" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "PENALTY_HINT" } },
+                            { kind: "Field", name: { kind: "Name", value: "MISTAKES_BEFORE_PENALTY" } },
+                            { kind: "Field", name: { kind: "Name", value: "MISTAKE_PENALTY_TIME" } },
+                            { kind: "Field", name: { kind: "Name", value: "HINT_COOLDOWN" } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "date" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "stats" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "personalBest" } },
+                      { kind: "Field", name: { kind: "Name", value: "leaderboardId" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "results" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "mistakes" } },
+                      { kind: "Field", name: { kind: "Name", value: "hints" } },
+                      { kind: "Field", name: { kind: "Name", value: "leaderboardId" } },
+                      { kind: "Field", name: { kind: "Name", value: "adjustedTime" } },
+                      { kind: "Field", name: { kind: "Name", value: "difficulty" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "leaderboardEligible" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetSudokuBoardQuery, GetSudokuBoardQueryVariables>;
+export const GetSudokuPracticeDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetSudokuPractice" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getSudokuPractice" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "solution" } },
+                { kind: "Field", name: { kind: "Name", value: "puzzle" } },
+                { kind: "Field", name: { kind: "Name", value: "difficulty" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "config" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "PENALTY_HINT" } },
+                      { kind: "Field", name: { kind: "Name", value: "MISTAKES_BEFORE_PENALTY" } },
+                      { kind: "Field", name: { kind: "Name", value: "MISTAKE_PENALTY_TIME" } },
+                      { kind: "Field", name: { kind: "Name", value: "HINT_COOLDOWN" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetSudokuPracticeQuery, GetSudokuPracticeQueryVariables>;
+export const GetSudokuStatsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetSudokuStats" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getSudokuStats" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "leaderboardId" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetSudokuStatsQuery, GetSudokuStatsQueryVariables>;
+export const SubmitSudokuSolutionDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SubmitSudokuSolution" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "results" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "SudokuSubmission" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "submitSudokuSolution" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "results" },
+                value: { kind: "Variable", name: { kind: "Name", value: "results" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "level" } },
+                { kind: "Field", name: { kind: "Name", value: "levelSlotId" } },
+                { kind: "Field", name: { kind: "Name", value: "startDateTime" } },
+                { kind: "Field", name: { kind: "Name", value: "status" } },
+                { kind: "Field", name: { kind: "Name", value: "endDateTime" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "incomingData" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "steps" } },
+                      { kind: "Field", name: { kind: "Name", value: "meditation" } },
+                      { kind: "Field", name: { kind: "Name", value: "distance" } },
+                      { kind: "Field", name: { kind: "Name", value: "duration" } },
+                      { kind: "Field", name: { kind: "Name", value: "calories" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "milestoneLog" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "data" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "steps" } },
+                            { kind: "Field", name: { kind: "Name", value: "meditation" } },
+                            { kind: "Field", name: { kind: "Name", value: "distance" } },
+                            { kind: "Field", name: { kind: "Name", value: "duration" } },
+                            { kind: "Field", name: { kind: "Name", value: "calories" } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
+                { kind: "Field", name: { kind: "Name", value: "rating" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SubmitSudokuSolutionMutation, SubmitSudokuSolutionMutationVariables>;
 export const GetPublicYuApiConfigDocument = {
   kind: "Document",
   definitions: [

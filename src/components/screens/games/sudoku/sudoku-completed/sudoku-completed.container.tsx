@@ -1,4 +1,3 @@
-import { GetSudokuBoard_getSudokuBoard_results, GetSudokuBoard_getSudokuBoard_stats } from "@graphql/_core/schema";
 import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { useDispatch } from "react-redux";
@@ -10,10 +9,11 @@ import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import { useBackHandler } from "@hooks";
 import { displayStreaksCompletedAction } from "@redux/streaks/streaks.actions";
 import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
+import { GetSudokuBoardQuery } from "@graphql/__generated";
 
 interface IProps {
-  results: GetSudokuBoard_getSudokuBoard_results;
-  stats: GetSudokuBoard_getSudokuBoard_stats;
+  results: GetSudokuBoardQuery["getSudokuBoard"]["results"];
+  stats: GetSudokuBoardQuery["getSudokuBoard"]["stats"];
   isPractice?: boolean;
   reward: number;
 }

@@ -2,14 +2,13 @@ import { SudokuBoard } from "@components/games/sudoku/sudoku-manager";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { useSelector } from "react-redux";
-import { GetSudokuPractice } from "@graphql/_core/schema";
+import { gql } from "@graphql/__generated";
 import { memo, useCallback } from "react";
 import { useQuery } from "@apollo/client";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { ISudokuResults } from "@components/games/sudoku/sudoku.interface";
 import { useBackHandler } from "@hooks";
 import SudokuPracticeScreen from "./sudoku-practice.screen";
-import { GQL_QUERY_GET_SUDOKU_PRACTICE } from "@graphql/brainGames/sudoku/getSudokuPractice.gql";
 import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { delay } from "@utils/misc";
 import { getUserFeatures } from "@redux/user/user.selectors";
@@ -28,7 +27,7 @@ const SUDOKU_ANIMATION_TIMEOUT = 2000;
 export const SudokuPracticeContainer = ({ componentId }: IProps) => {
   const features = useSelector(getUserFeatures);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
-  const { data } = useQuery<GetSudokuPractice>(GQL_QUERY_GET_SUDOKU_PRACTICE, { fetchPolicy: "network-only" });
+  const { data } = useQuery(gql(`GetSudokuPracticeDocument`), { fetchPolicy: "network-only" });
   const board = data?.getSudokuPractice;
 
   const onGameComplete = useCallback(

@@ -8,9 +8,9 @@ export interface ISodukuHistory extends ISudokuPosition {
 }
 
 export enum SudokuDifficulty {
-  EASY = "EASY",
-  HARD = "HARD",
-  MEDIUM = "MEDIUM",
+  Easy = "EASY",
+  Hard = "HARD",
+  Medium = "MEDIUM",
 }
 
 export interface ISudokuConfig {
@@ -35,8 +35,8 @@ export interface ISudokuResults {
 }
 
 export interface ISudokuStats {
-  personalBest: number | null;
-  leaderboardId: string | null;
+  personalBest?: number | null;
+  leaderboardId?: string | null;
 }
 
 export interface ISudokuLeaderboardItem {

@@ -15,6 +15,10 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
 const documents = {
   GetAdBannersDocument: types.GetAdBannersDocument,
   GetMobileAssetsWithVersionDocument: types.GetMobileAssetsWithVersionDocument,
+  GetSudokuBoardDocument: types.GetSudokuBoardDocument,
+  GetSudokuPracticeDocument: types.GetSudokuPracticeDocument,
+  GetSudokuStatsDocument: types.GetSudokuStatsDocument,
+  SubmitSudokuSolutionDocument: types.SubmitSudokuSolutionDocument,
   GetPublicYuApiConfigDocument: types.GetPublicYuApiConfigDocument,
   AddDeviceTokenDocument: types.AddDeviceTokenDocument,
   GetUserNotificationsSettingsDocument: types.GetUserNotificationsSettingsDocument,
@@ -45,6 +49,22 @@ export function gql(source: "GetAdBannersDocument"): typeof documents["GetAdBann
 export function gql(
   source: "GetMobileAssetsWithVersionDocument"
 ): typeof documents["GetMobileAssetsWithVersionDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetSudokuBoardDocument"): typeof documents["GetSudokuBoardDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetSudokuPracticeDocument"): typeof documents["GetSudokuPracticeDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetSudokuStatsDocument"): typeof documents["GetSudokuStatsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "SubmitSudokuSolutionDocument"): typeof documents["SubmitSudokuSolutionDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

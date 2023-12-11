@@ -3,7 +3,6 @@ import React, { memo, useCallback, useRef } from "react";
 import { Image, TextTemplate } from "@atoms";
 import { useTranslation } from "@hooks";
 import SudokuStatsList from "@components/games/sudoku/sudoku-stats-list";
-import { GetSudokuBoard_getSudokuBoard_results, GetSudokuBoard_getSudokuBoard_stats } from "@graphql/_core/schema";
 import { Button } from "@components/molecules";
 import { Style } from "@styles";
 import Lottie from "lottie-react-native";
@@ -12,12 +11,13 @@ import Animated, { FadeInDown } from "react-native-reanimated";
 import { DETOX_ENABLED } from "@services/socket";
 import { SUDOKU_COMPLETED_SCREEN_SCROLL } from "@ids";
 import { LottieView } from "@molecules";
+import { GetSudokuBoardQuery } from "@graphql/__generated";
 
 interface IProps {
   onCollect: () => void;
   isPractice?: boolean;
-  results: GetSudokuBoard_getSudokuBoard_results & { leaderboardId?: string };
-  stats: GetSudokuBoard_getSudokuBoard_stats;
+  results: GetSudokuBoardQuery["getSudokuBoard"]["results"] & { leaderboardId?: string };
+  stats: GetSudokuBoardQuery["getSudokuBoard"]["stats"];
   reward?: number;
 }
 
