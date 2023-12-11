@@ -3,10 +3,6 @@ import { StyleSheet, View } from "react-native";
 import { TODAYS_EARNINGS } from "@ids";
 import { ActiveBuffsButton, GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import ActivityFeed from "./subcomponents/activity-feed";
-import {
-  GetTodayEarnings_getTodayEarnings_activityFeed as IActivityFeed,
-  GetTodayEarnings_getTodayEarnings_header as Header,
-} from "@graphql/_core/schema";
 import { Colours, Style } from "@styles";
 import { t } from "@locale";
 import HintContainer from "@components/molecules/hint/hint.container";
@@ -15,10 +11,11 @@ import { Stack, YuCoinBadge, TextTemplate } from "@atoms";
 import { YucoinPowerButton } from "@components/molecules";
 import { BuffArea } from "@graphql/__generated";
 import { ScrollThresholdView } from "@molecules";
+import { GetTodayEarningsQuery } from "@graphql/__generated";
 
 interface ITodaysEarningScreenProps {
-  header: Header;
-  activityFeed: IActivityFeed[];
+  header: GetTodayEarningsQuery["getTodayEarnings"]["header"];
+  activityFeed: GetTodayEarningsQuery["getTodayEarnings"]["activityFeed"];
   isGoogleFitAuthorised: boolean;
   onLeftIconPress: () => void;
   currentWorld: number;

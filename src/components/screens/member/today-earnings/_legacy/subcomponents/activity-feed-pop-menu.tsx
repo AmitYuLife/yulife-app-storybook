@@ -4,20 +4,18 @@ import { Navigation } from "@navigation/main";
 import { Style } from "@styles";
 import { Block, CloseSvg, Image, TextTemplate } from "@atoms";
 import { StyleSheet, View } from "react-native";
-import {
-  GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_body as IBody,
-  GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_toast as IToast,
-  GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_accessibility as IAccesibility,
-} from "@graphql/_core/schema";
 import { ROUTES } from "@navigation/constants";
 import { useTranslation } from "@hooks";
 import { useDispatch } from "react-redux";
+import { GetTodayEarningsQuery } from "@graphql/__generated";
+
+type IQuestionMarkModal = GetTodayEarningsQuery["getTodayEarnings"]["activityFeed"][0]["questionMarkModal"];
 
 interface IProps {
   header: string;
-  body: IBody[];
-  toast: IToast;
-  accessibility: IAccesibility;
+  body: IQuestionMarkModal["body"];
+  toast: IQuestionMarkModal["toast"];
+  accessibility: IQuestionMarkModal["accessibility"];
 }
 
 const ActivityFeedPopMenu = ({ header, body, toast, accessibility }: IProps) => {
