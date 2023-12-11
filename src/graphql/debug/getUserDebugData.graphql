@@ -1,0 +1,12 @@
+query GetUserDebugData {
+  getUserDebugData {
+    id
+    sampleQuery {
+      startTime
+      endTime
+      fitKitTypes
+      disableTypeFilter
+      active
+    }
+  }
+}

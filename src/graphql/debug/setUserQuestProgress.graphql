@@ -1,0 +1,3 @@
+mutation SetUserQuestProgress($currentLevel: Int!, $yuniversalMap: Int, $yuniversalLevel: Int) {
+  setUserQuestProgress(currentLevel: $currentLevel, yuniversalMap: $yuniversalMap, yuniversalLevel: $yuniversalLevel)
+}

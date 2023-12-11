@@ -1,0 +1,3 @@
+mutation ResetData($code: String!, $type: String) {
+  resetData(code: $code, type: $type)
+}

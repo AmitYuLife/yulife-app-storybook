@@ -1,0 +1,5 @@
+mutation SubmitUserDebugData($id: String, $results: [SampleDebugData]!) {
+  submitUserDebugData(id: $id, results: $results) {
+    success
+  }
+}

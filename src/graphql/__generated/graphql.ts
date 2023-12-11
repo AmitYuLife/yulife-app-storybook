@@ -9329,6 +9329,53 @@ export type GetDailyScreenCustomIconQuery = {
   } | null;
 };
 
+export type GetDebugCodesQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetDebugCodesQuery = { __typename?: "Query"; getDebugCodes?: Array<string | null> | null };
+
+export type GetUserDebugDataQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetUserDebugDataQuery = {
+  __typename?: "Query";
+  getUserDebugData: {
+    __typename?: "DebugData";
+    id?: string | null;
+    sampleQuery?: {
+      __typename?: "SampleQueryDebug";
+      startTime: string;
+      endTime: string;
+      fitKitTypes: Array<FitKitType>;
+      disableTypeFilter?: boolean | null;
+      active?: boolean | null;
+    } | null;
+  };
+};
+
+export type ResetDataMutationVariables = Exact<{
+  code: Scalars["String"]["input"];
+  type?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type ResetDataMutation = { __typename?: "Mutation"; resetData?: boolean | null };
+
+export type SetUserQuestProgressMutationVariables = Exact<{
+  currentLevel: Scalars["Int"]["input"];
+  yuniversalMap?: InputMaybe<Scalars["Int"]["input"]>;
+  yuniversalLevel?: InputMaybe<Scalars["Int"]["input"]>;
+}>;
+
+export type SetUserQuestProgressMutation = { __typename?: "Mutation"; setUserQuestProgress?: boolean | null };
+
+export type SubmitUserDebugDataMutationVariables = Exact<{
+  id?: InputMaybe<Scalars["String"]["input"]>;
+  results: Array<InputMaybe<SampleDebugData>> | InputMaybe<SampleDebugData>;
+}>;
+
+export type SubmitUserDebugDataMutation = {
+  __typename?: "Mutation";
+  submitUserDebugData?: { __typename?: "SubmitUserDebugDataResponse"; success?: boolean | null } | null;
+};
+
 export type AddDeviceTokenMutationVariables = Exact<{
   deviceToken: Scalars["String"]["input"];
   os: Os;
@@ -9975,6 +10022,205 @@ export const GetDailyScreenCustomIconDocument = {
     },
   ],
 } as unknown as DocumentNode<GetDailyScreenCustomIconQuery, GetDailyScreenCustomIconQueryVariables>;
+export const GetDebugCodesDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetDebugCodes" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [{ kind: "Field", name: { kind: "Name", value: "getDebugCodes" } }],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetDebugCodesQuery, GetDebugCodesQueryVariables>;
+export const GetUserDebugDataDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetUserDebugData" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getUserDebugData" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "sampleQuery" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "startTime" } },
+                      { kind: "Field", name: { kind: "Name", value: "endTime" } },
+                      { kind: "Field", name: { kind: "Name", value: "fitKitTypes" } },
+                      { kind: "Field", name: { kind: "Name", value: "disableTypeFilter" } },
+                      { kind: "Field", name: { kind: "Name", value: "active" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetUserDebugDataQuery, GetUserDebugDataQueryVariables>;
+export const ResetDataDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "ResetData" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "code" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "type" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "resetData" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "code" },
+                value: { kind: "Variable", name: { kind: "Name", value: "code" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "type" },
+                value: { kind: "Variable", name: { kind: "Name", value: "type" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ResetDataMutation, ResetDataMutationVariables>;
+export const SetUserQuestProgressDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SetUserQuestProgress" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "currentLevel" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Int" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "yuniversalMap" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "yuniversalLevel" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "setUserQuestProgress" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "currentLevel" },
+                value: { kind: "Variable", name: { kind: "Name", value: "currentLevel" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "yuniversalMap" },
+                value: { kind: "Variable", name: { kind: "Name", value: "yuniversalMap" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "yuniversalLevel" },
+                value: { kind: "Variable", name: { kind: "Name", value: "yuniversalLevel" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SetUserQuestProgressMutation, SetUserQuestProgressMutationVariables>;
+export const SubmitUserDebugDataDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SubmitUserDebugData" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "results" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "ListType", type: { kind: "NamedType", name: { kind: "Name", value: "SampleDebugData" } } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "submitUserDebugData" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: { kind: "Variable", name: { kind: "Name", value: "id" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "results" },
+                value: { kind: "Variable", name: { kind: "Name", value: "results" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "success" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SubmitUserDebugDataMutation, SubmitUserDebugDataMutationVariables>;
 export const AddDeviceTokenDocument = {
   kind: "Document",
   definitions: [
