@@ -24,7 +24,7 @@ export default function* fetchConnectionsSaga({ payload }: ReturnType<typeof upd
     if (payload === "active" && !!active.levelSlotId && loadingConnections && loadingConnections.length) {
       // get only connections
       const { data }: QueryResult<GetConnectionsQuery> = yield call(() =>
-        client().mutate({ mutation: gql("GetConnectionsDocument"), fetchPolicy: "network-only" })
+        client().query({ query: gql("GetConnectionsDocument"), fetchPolicy: "network-only" })
       );
 
       if (data?.getCurrentUser?.connections) {
