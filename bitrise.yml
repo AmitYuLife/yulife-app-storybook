@@ -666,10 +666,6 @@ workflows:
             brew install awscli
             cd gallery
 
-            # Temp set AWS Access Key Env Vars
-            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID2
-            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY2
-
             # set path for s3
             DATE=$(date +'%d-%m-%Y')
             DEVICE_NAME="${IPHONE_DEVICE// /-}"
@@ -816,10 +812,6 @@ workflows:
             # sync the gallery
             brew install awscli
             cd gallery
-
-            # Temp set AWS Access Key Env Vars
-            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID2
-            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY2
 
             aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE" --no-progress
 
@@ -1269,10 +1261,6 @@ workflows:
             brew install awscli
             cd gallery
 
-            # Temp set AWS Access Key Env Vars
-            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID2
-            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY2
-
             aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE" --no-progress
 
             # invalidate CF distribution
@@ -1613,10 +1601,6 @@ workflows:
             # sync the gallery
             brew install awscli
             cd gallery
-
-            # Temp set AWS Access Key Env Vars
-            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID2
-            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY2
 
             aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE" --no-progress
 
