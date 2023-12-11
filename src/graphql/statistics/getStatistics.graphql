@@ -1,0 +1,54 @@
+query GetStatistics($userId: String) {
+  getStatistics(userId: $userId) {
+    current {
+      avatar {
+        id
+        uri
+      }
+      level
+      yuniversalMap
+      fullName
+      sections {
+        general {
+          title
+          subtitle
+          stats {
+            ...UserStatisticDetails
+          }
+        }
+        duels {
+          title
+          subtitle
+          stats {
+            ...UserStatisticDetails
+          }
+        }
+        activity {
+          title
+          subtitle
+          stats {
+            ...UserStatisticDetails
+          }
+        }
+      }
+    }
+    opponent {
+      avatar {
+        id
+        uri
+      }
+      level
+      yuniversalMap
+      fullName
+      sections {
+        activity {
+          title
+          subtitle
+          stats {
+            ...UserStatisticDetails
+          }
+        }
+      }
+    }
+  }
+}

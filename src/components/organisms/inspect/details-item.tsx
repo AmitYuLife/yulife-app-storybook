@@ -4,7 +4,7 @@ import { Image, TextTemplate } from "@atoms";
 import { PressableWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
 import { InfoIcon } from "@atoms/icon/info-icon";
-import { RemoteImage } from "@graphql/_core/schema";
+import { RemoteImage } from "@graphql/__generated";
 import { addCommasToNumber } from "@utils";
 import { INSPECT_ACTIVITY, INSPECT_DATA } from "@ids";
 
