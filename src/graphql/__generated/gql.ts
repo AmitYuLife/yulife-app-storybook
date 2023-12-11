@@ -13,7 +13,11 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+  ContentItemLottieFragmentDoc: types.ContentItemLottieFragmentDoc,
+  MediaFragmentDoc: types.MediaFragmentDoc,
   RemoteImageFragmentDoc: types.RemoteImageFragmentDoc,
+  SduiActionFragmentDoc: types.SduiActionFragmentDoc,
+  SduiStyleFragmentDoc: types.SduiStyleFragmentDoc,
   GetAdBannersDocument: types.GetAdBannersDocument,
   GetMobileAssetsWithVersionDocument: types.GetMobileAssetsWithVersionDocument,
   GetSudokuBoardDocument: types.GetSudokuBoardDocument,
@@ -32,6 +36,7 @@ const documents = {
   SetUserQuestProgressDocument: types.SetUserQuestProgressDocument,
   SubmitUserDebugDataDocument: types.SubmitUserDebugDataDocument,
   AddDeviceTokenDocument: types.AddDeviceTokenDocument,
+  GetMediaDocument: types.GetMediaDocument,
   GetUserNotificationsSettingsDocument: types.GetUserNotificationsSettingsDocument,
   UpdateUserNotificationsSettingsDocument: types.UpdateUserNotificationsSettingsDocument,
   GetTodayEarningsDocument: types.GetTodayEarningsDocument,
@@ -54,7 +59,23 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "ContentItemLottieFragmentDoc"): typeof documents["ContentItemLottieFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "MediaFragmentDoc"): typeof documents["MediaFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "RemoteImageFragmentDoc"): typeof documents["RemoteImageFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "SduiActionFragmentDoc"): typeof documents["SduiActionFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "SduiStyleFragmentDoc"): typeof documents["SduiStyleFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -129,6 +150,10 @@ export function gql(source: "SubmitUserDebugDataDocument"): typeof documents["Su
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "AddDeviceTokenDocument"): typeof documents["AddDeviceTokenDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetMediaDocument"): typeof documents["GetMediaDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

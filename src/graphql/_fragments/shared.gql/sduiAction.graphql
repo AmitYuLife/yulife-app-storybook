@@ -1,0 +1,4 @@
+fragment SduiAction on SduiAction {
+  type
+  payload
+}

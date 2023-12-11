@@ -1,0 +1,5 @@
+query GetMedia($tags: [String]) {
+  getMedia(tags: $tags) {
+    ...Media
+  }
+}

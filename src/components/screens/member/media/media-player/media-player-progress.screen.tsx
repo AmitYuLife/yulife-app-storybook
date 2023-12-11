@@ -16,11 +16,11 @@ import { TextTemplate, Image } from "@atoms";
 import { IActiveLevel } from "@redux/levels/levels.selectors";
 import { challengeCancelAction } from "@redux/levels/levels.actions";
 import { GenericFullScreenLoading, GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
-import { GQL_QUERY_GET_VIDEOS_LIST } from "@graphql/media/getMedia.gql";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { GetMedia, GetMediaVariables, GetMedia_getMedia } from "@graphql/_core/schema";
 import { IMediaPlayerContainerProps } from "@components/containers/member/media/media-player/media-player.container";
+import { GetMediaQuery, gql } from "@graphql/__generated";
 
+type IMedia = GetMediaQuery["getMedia"][0];
 export interface IVideoProgressStorage {
   id: string;
   seconds: number;
@@ -38,9 +38,9 @@ const MediaPlayerProgressScreen = ({
 }: IMediaPlayerProgressScreenProps) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [activeVideo, setActiveVideo] = useState<GetMedia_getMedia>(null);
+  const [activeVideo, setActiveVideo] = useState<IMedia>(null);
   const [activeVideoProgress, setActiveVideoProgress] = useState<IVideoProgressStorage>(null);
-  const [getVideos] = useLazyQuery<GetMedia, GetMediaVariables>(GQL_QUERY_GET_VIDEOS_LIST, {
+  const [getVideos] = useLazyQuery(gql("GetMediaDocument"), {
     fetchPolicy: "network-only",
     variables: {
       tags: ["meditopia_challenges"],
@@ -72,7 +72,7 @@ const MediaPlayerProgressScreen = ({
   }, [dispatch]);
 
   const getHasChallengeEnded = useCallback(
-    (video: GetMedia_getMedia): boolean => {
+    (video: IMedia): boolean => {
       return (
         moment()
           // Add an additional time to be extra sure
