@@ -25,7 +25,7 @@ export const ContentItemLottie = memo((props: Props) => {
   const { opacity } = useFadeIn(shouldUseFadeIn);
   usePlayControl(lottieRef, shouldPlay);
   const onAnimationEndDelay = useRef(null);
-  const { uri: lottieUri, loading: lottieUriLoading } = useGetLottieJson(uri);
+  const { uri: lottieUri } = useGetLottieJson(uri);
 
   useEffect(
     () => () => {
@@ -52,7 +52,7 @@ export const ContentItemLottie = memo((props: Props) => {
     }
   }, [loop, shouldLoop, onAnimationEnd, dispatch]);
 
-  if (lottieUriLoading) {
+  if (!lottieUri) {
     return null;
   }
 
