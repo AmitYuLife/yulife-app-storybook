@@ -4,18 +4,15 @@ import { TODAYS_EARNINGS } from "@ids";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import TodayYuCoinHeader from "./subcomponents/today-yucoin-header";
 import ActivityFeed from "./subcomponents/activity-feed";
-import {
-  GetTodayEarnings_getTodayEarnings_activityFeed as IActivityFeed,
-  GetTodayEarnings_getTodayEarnings_header as Header,
-} from "@graphql/_core/schema";
 import { Style } from "@styles";
 import { t } from "@locale";
 import HintContainer from "@components/molecules/hint/hint.container";
 import { ROUTES } from "@navigation/constants";
+import { GetTodayEarningsQuery } from "@graphql/__generated";
 
 interface IProps {
-  header: Header;
-  activityFeed: IActivityFeed[];
+  header: GetTodayEarningsQuery["getTodayEarnings"]["header"];
+  activityFeed: GetTodayEarningsQuery["getTodayEarnings"]["activityFeed"];
   isGoogleFitAuthorised: boolean;
   onLeftIconPress: () => void;
   currentWorld: number;

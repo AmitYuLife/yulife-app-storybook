@@ -34,6 +34,7 @@ const documents = {
   AddDeviceTokenDocument: types.AddDeviceTokenDocument,
   GetUserNotificationsSettingsDocument: types.GetUserNotificationsSettingsDocument,
   UpdateUserNotificationsSettingsDocument: types.UpdateUserNotificationsSettingsDocument,
+  GetTodayEarningsDocument: types.GetTodayEarningsDocument,
 };
 
 /**
@@ -140,6 +141,10 @@ export function gql(
 export function gql(
   source: "UpdateUserNotificationsSettingsDocument"
 ): typeof documents["UpdateUserNotificationsSettingsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetTodayEarningsDocument"): typeof documents["GetTodayEarningsDocument"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

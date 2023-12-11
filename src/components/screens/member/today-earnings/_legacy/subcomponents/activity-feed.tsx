@@ -6,14 +6,6 @@ import { Style } from "@styles";
 import { handleNavigateToQuestsTab } from "@navigation/utils";
 import { PressableWithDelay, Button, Toast } from "@molecules";
 import { ActivityProgress } from "@organisms";
-import {
-  GetTodayEarnings_getTodayEarnings_activityFeed_activityProgress as IActivityProgress,
-  GetTodayEarnings_getTodayEarnings_activityFeed_button as IButton,
-  GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal as IQuestionMarkModal,
-  GetTodayEarnings_getTodayEarnings_activityFeed_toast as IToast,
-  GetTodayEarnings_getTodayEarnings_activityFeed_wellDoneBanner as IWellDoneBanner,
-  GetTodayEarnings_getTodayEarnings_activityFeed_titleAccessibility as IAccessibility,
-} from "@graphql/_core/schema";
 import ActivityFeedPopMenu from "./activity-feed-pop-menu";
 import { ROUTES } from "@navigation/constants";
 import { openGoogleFit } from "@services/app-link";
@@ -29,18 +21,21 @@ import { FitKitTypes } from "@services/fitkit/fitkit.service";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { useTranslation } from "@hooks";
+import { GetTodayEarningsQuery } from "@graphql/__generated";
+
+type IActivityFeed = GetTodayEarningsQuery["getTodayEarnings"]["activityFeed"][0];
 
 interface IProps {
   id: string;
   title: string;
-  titleAccessibility: IAccessibility;
-  emptyMessage: string;
-  wellDoneBanner: IWellDoneBanner;
-  button: IButton;
-  buttonAccessibility: IAccessibility;
-  toast: IToast;
-  questionMarkModal: IQuestionMarkModal;
-  activityProgress: IActivityProgress[];
+  titleAccessibility: IActivityFeed["titleAccessibility"];
+  emptyMessage?: string;
+  wellDoneBanner?: IActivityFeed["wellDoneBanner"];
+  button?: IActivityFeed["button"];
+  buttonAccessibility?: IActivityFeed["buttonAccessibility"];
+  toast?: IActivityFeed["toast"];
+  questionMarkModal?: IActivityFeed["questionMarkModal"];
+  activityProgress?: IActivityFeed["activityProgress"];
   isGoogleFitAuthorised: boolean;
 }
 
@@ -201,7 +196,7 @@ const ActivityFeed = ({
   }, [dispatch, button]);
 
   const isDisabled = useCallback(
-    (activity: IActivityProgress) => {
+    (activity: IActivityFeed["activityProgress"][0]) => {
       if (Platform.OS === "ios") {
         return false;
       }

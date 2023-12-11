@@ -5528,6 +5528,7 @@ export type Query = {
   getQuestMapLevelChallengeContent?: Maybe<Array<Maybe<QuestMapLevelChallengeContent>>>;
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
+  getRandomNumber?: Maybe<RandomNumber>;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
   getReferralBackground: RemoteImage;
@@ -6370,6 +6371,12 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
+
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
 
 export type RedeemSteps = {
   __typename?: "RedeemSteps";
@@ -9450,6 +9457,82 @@ export type UpdateUserNotificationsSettingsMutation = {
   updateUserNotificationsSettings?: boolean | null;
 };
 
+export type GetTodayEarningsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetTodayEarningsQuery = {
+  __typename?: "Query";
+  getTodayEarnings: {
+    __typename?: "TodayEarnings";
+    header: { __typename?: "TodayEarningsHeader"; yuCoinToday: string; yuCoinPower: number };
+    activityFeed: Array<{
+      __typename?: "TodayEarningsActivityFeed";
+      id: string;
+      title: string;
+      emptyMessage?: string | null;
+      titleAccessibility: {
+        __typename?: "Accessibility";
+        accessibilityLabel: string;
+        accessibilityRole?: string | null;
+      };
+      wellDoneBanner?: { __typename?: "RemoteImage"; uri?: string | null } | null;
+      button?: {
+        __typename?: "ContentItemButton";
+        label: string;
+        type?: ContentItemButtonType | null;
+        onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      } | null;
+      buttonAccessibility?: {
+        __typename?: "Accessibility";
+        accessibilityLabel: string;
+        accessibilityRole?: string | null;
+      } | null;
+      toast?: {
+        __typename?: "TodayEarningsToast";
+        backgroundColor: string;
+        borderColor: string;
+        description?: string | null;
+        iconUrl: { __typename?: "RemoteImage"; uri?: string | null };
+      } | null;
+      questionMarkModal?: {
+        __typename?: "TodayEarningsQuestionMarkModal";
+        header: string;
+        iconUrl: { __typename?: "RemoteImage"; uri?: string | null };
+        body: Array<{
+          __typename?: "TodayEarningsQuestionMarkBody";
+          title: string;
+          iconUrl: { __typename?: "RemoteImage"; uri?: string | null };
+        }>;
+        toast: {
+          __typename?: "TodayEarningsToast";
+          backgroundColor: string;
+          borderColor: string;
+          description?: string | null;
+          iconUrl: { __typename?: "RemoteImage"; uri?: string | null };
+          button?: {
+            __typename?: "ContentItemButton";
+            label: string;
+            onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+          } | null;
+        };
+        accessibility: { __typename?: "Accessibility"; accessibilityLabel: string; accessibilityRole?: string | null };
+        event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      } | null;
+      activityProgress: Array<{
+        __typename?: "TodayEarningsActivityProgress";
+        type: string;
+        activitySubTotal: string;
+        yuCoinSubTotal: string;
+        rating: number;
+        maxLength: number;
+        currentPosition: number;
+        accessibility: { __typename?: "Accessibility"; accessibilityLabel: string; accessibilityRole?: string | null };
+        iconUrl: { __typename?: "RemoteImage"; uri?: string | null };
+      }>;
+    }>;
+  };
+};
+
 export const RemoteImageFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -10529,3 +10612,422 @@ export const UpdateUserNotificationsSettingsDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateUserNotificationsSettingsMutation, UpdateUserNotificationsSettingsMutationVariables>;
+export const GetTodayEarningsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetTodayEarnings" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getTodayEarnings" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "header" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "yuCoinToday" } },
+                      { kind: "Field", name: { kind: "Name", value: "yuCoinPower" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "activityFeed" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "titleAccessibility" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "accessibilityLabel" } },
+                            { kind: "Field", name: { kind: "Name", value: "accessibilityRole" } },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "emptyMessage" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "wellDoneBanner" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "uri" },
+                              arguments: [
+                                {
+                                  kind: "Argument",
+                                  name: { kind: "Name", value: "options" },
+                                  value: {
+                                    kind: "ObjectValue",
+                                    fields: [
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "width" },
+                                        value: { kind: "IntValue", value: "654" },
+                                      },
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "height" },
+                                        value: { kind: "IntValue", value: "272" },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "button" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "label" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "onPress" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "type" } },
+                                  { kind: "Field", name: { kind: "Name", value: "payload" } },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "event" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "type" } },
+                                  { kind: "Field", name: { kind: "Name", value: "payload" } },
+                                ],
+                              },
+                            },
+                            { kind: "Field", name: { kind: "Name", value: "type" } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "buttonAccessibility" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "accessibilityLabel" } },
+                            { kind: "Field", name: { kind: "Name", value: "accessibilityRole" } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "toast" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                            { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+                            { kind: "Field", name: { kind: "Name", value: "description" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "iconUrl" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "uri" },
+                                    arguments: [
+                                      {
+                                        kind: "Argument",
+                                        name: { kind: "Name", value: "options" },
+                                        value: {
+                                          kind: "ObjectValue",
+                                          fields: [
+                                            {
+                                              kind: "ObjectField",
+                                              name: { kind: "Name", value: "width" },
+                                              value: { kind: "IntValue", value: "114" },
+                                            },
+                                            {
+                                              kind: "ObjectField",
+                                              name: { kind: "Name", value: "height" },
+                                              value: { kind: "IntValue", value: "128" },
+                                            },
+                                          ],
+                                        },
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "questionMarkModal" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "header" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "iconUrl" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "uri" },
+                                    arguments: [
+                                      {
+                                        kind: "Argument",
+                                        name: { kind: "Name", value: "options" },
+                                        value: {
+                                          kind: "ObjectValue",
+                                          fields: [
+                                            {
+                                              kind: "ObjectField",
+                                              name: { kind: "Name", value: "width" },
+                                              value: { kind: "IntValue", value: "48" },
+                                            },
+                                            {
+                                              kind: "ObjectField",
+                                              name: { kind: "Name", value: "height" },
+                                              value: { kind: "IntValue", value: "48" },
+                                            },
+                                          ],
+                                        },
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "body" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "title" } },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "iconUrl" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "Field",
+                                          name: { kind: "Name", value: "uri" },
+                                          arguments: [
+                                            {
+                                              kind: "Argument",
+                                              name: { kind: "Name", value: "options" },
+                                              value: {
+                                                kind: "ObjectValue",
+                                                fields: [
+                                                  {
+                                                    kind: "ObjectField",
+                                                    name: { kind: "Name", value: "width" },
+                                                    value: { kind: "IntValue", value: "32" },
+                                                  },
+                                                  {
+                                                    kind: "ObjectField",
+                                                    name: { kind: "Name", value: "height" },
+                                                    value: { kind: "IntValue", value: "32" },
+                                                  },
+                                                ],
+                                              },
+                                            },
+                                          ],
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "toast" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                                  { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+                                  { kind: "Field", name: { kind: "Name", value: "description" } },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "iconUrl" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "Field",
+                                          name: { kind: "Name", value: "uri" },
+                                          arguments: [
+                                            {
+                                              kind: "Argument",
+                                              name: { kind: "Name", value: "options" },
+                                              value: {
+                                                kind: "ObjectValue",
+                                                fields: [
+                                                  {
+                                                    kind: "ObjectField",
+                                                    name: { kind: "Name", value: "width" },
+                                                    value: { kind: "IntValue", value: "114" },
+                                                  },
+                                                  {
+                                                    kind: "ObjectField",
+                                                    name: { kind: "Name", value: "height" },
+                                                    value: { kind: "IntValue", value: "128" },
+                                                  },
+                                                ],
+                                              },
+                                            },
+                                          ],
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "button" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        { kind: "Field", name: { kind: "Name", value: "label" } },
+                                        {
+                                          kind: "Field",
+                                          name: { kind: "Name", value: "onPress" },
+                                          selectionSet: {
+                                            kind: "SelectionSet",
+                                            selections: [
+                                              { kind: "Field", name: { kind: "Name", value: "type" } },
+                                              { kind: "Field", name: { kind: "Name", value: "payload" } },
+                                            ],
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "accessibility" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "accessibilityLabel" } },
+                                  { kind: "Field", name: { kind: "Name", value: "accessibilityRole" } },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "event" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "type" } },
+                                  { kind: "Field", name: { kind: "Name", value: "payload" } },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "activityProgress" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "type" } },
+                            { kind: "Field", name: { kind: "Name", value: "activitySubTotal" } },
+                            { kind: "Field", name: { kind: "Name", value: "yuCoinSubTotal" } },
+                            { kind: "Field", name: { kind: "Name", value: "rating" } },
+                            { kind: "Field", name: { kind: "Name", value: "maxLength" } },
+                            { kind: "Field", name: { kind: "Name", value: "currentPosition" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "accessibility" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "accessibilityLabel" } },
+                                  { kind: "Field", name: { kind: "Name", value: "accessibilityRole" } },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "iconUrl" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "uri" },
+                                    arguments: [
+                                      {
+                                        kind: "Argument",
+                                        name: { kind: "Name", value: "options" },
+                                        value: {
+                                          kind: "ObjectValue",
+                                          fields: [
+                                            {
+                                              kind: "ObjectField",
+                                              name: { kind: "Name", value: "width" },
+                                              value: { kind: "IntValue", value: "64" },
+                                            },
+                                            {
+                                              kind: "ObjectField",
+                                              name: { kind: "Name", value: "height" },
+                                              value: { kind: "IntValue", value: "64" },
+                                            },
+                                          ],
+                                        },
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetTodayEarningsQuery, GetTodayEarningsQueryVariables>;
