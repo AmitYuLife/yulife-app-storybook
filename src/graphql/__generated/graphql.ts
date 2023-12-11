@@ -9533,6 +9533,29 @@ export type UpdateUserNotificationsSettingsMutation = {
   updateUserNotificationsSettings?: boolean | null;
 };
 
+export type GetUserSurgeQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetUserSurgeQuery = {
+  __typename?: "Query";
+  getUserSurge?: {
+    __typename?: "Surge";
+    endDateTime: string;
+    multiplier: string;
+    title: string;
+    description: string;
+    lottie: {
+      __typename?: "ContentItemLottie";
+      id: string;
+      uri: string;
+      autoPlay: boolean;
+      loop: boolean;
+      aspectRatio?: number | null;
+      styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+      onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    };
+  } | null;
+};
+
 export type GetTodayEarningsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetTodayEarningsQuery = {
@@ -11096,6 +11119,97 @@ export const UpdateUserNotificationsSettingsDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateUserNotificationsSettingsMutation, UpdateUserNotificationsSettingsMutationVariables>;
+export const GetUserSurgeDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetUserSurge" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getUserSurge" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "endDateTime" } },
+                { kind: "Field", name: { kind: "Name", value: "multiplier" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "lottie" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemLottie" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemLottie" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLottie" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+          { kind: "Field", name: { kind: "Name", value: "autoPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "loop" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onAnimationEnd" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetUserSurgeQuery, GetUserSurgeQueryVariables>;
 export const GetTodayEarningsDocument = {
   kind: "Document",
   definitions: [

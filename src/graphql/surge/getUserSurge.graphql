@@ -1,0 +1,11 @@
+query GetUserSurge {
+  getUserSurge {
+    endDateTime
+    multiplier
+    title
+    description
+    lottie {
+      ...ContentItemLottie
+    }
+  }
+}

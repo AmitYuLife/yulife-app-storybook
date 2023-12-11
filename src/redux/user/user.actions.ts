@@ -4,7 +4,6 @@ import {
   UpdateAvatar_updateUserAvatarParts_avatarRemoteFiles as AvatarRemoteFiles,
   UpdateLeaderboardConsentVariables,
   UpdateMemberConsent,
-  GetUserSurge_getUserSurge as IUserSurge,
   GetUserProfile_getUserProfile_events as Events,
   GetUserLeaderboards_getUserLeaderboards,
   GetUserFeatures_getUserFeatures,
@@ -18,6 +17,7 @@ import {
 import { MobileConsentInput, MobileTabs } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "./user.reducer";
 import { Connection } from "./user.selectors";
+import { GetUserSurgeQuery } from "@graphql/__generated";
 
 export interface ISetIsUpdatingLeaderboardPayload {
   isLoading: boolean;
@@ -250,7 +250,7 @@ export const updateUserAvatarRemoteFiles = (payload: AvatarRemoteFiles) => ({
   payload,
 });
 
-export const updateUserSurge = (payload: IUserSurge) => ({
+export const updateUserSurge = (payload: GetUserSurgeQuery["getUserSurge"]) => ({
   type: UPDATE_USER_SURGE,
   payload,
 });
