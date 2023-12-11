@@ -1,7 +1,7 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
 import dotenv from "dotenv";
 
-dotenv.config();
+dotenv.config({ path: process.env?.ENVFILE });
 
 const { API_URL_UK } = process.env;
 

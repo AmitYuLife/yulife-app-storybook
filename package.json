@@ -46,6 +46,7 @@
     "e2e:build": "tsc -p e2e --noEmit",
     "e2e:watch": "tsc -p e2e --noEmit --watch",
     "generate:gql:types:new": "graphql-codegen --config codegen.ts",
+    "generate:gql:types:new:local": "ENVFILE=.env.local graphql-codegen --config codegen.ts",
     "postgenerate:gql:types:new": "prettier src/graphql/__generated --write",
     "generate:gql:types": "npx apollo client:codegen --tagName=gql --localSchemaFile=./src/graphql/_core/schema.json --target=typescript --no-addTypename --outputFlat src/graphql/_core/schema",
     "generate:index:schema": "node ./scripts/generate-index-schema-file-gql.js",
