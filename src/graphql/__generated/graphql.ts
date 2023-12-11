@@ -4270,7 +4270,6 @@ export type Mutation = {
   testDuelPushNotifications?: Maybe<Scalars["Boolean"]["output"]>;
   testEmailReminder?: Maybe<EmailReminderRecipientsAndDates>;
   testGroupPremium?: Maybe<TestGroupPremiumResponse>;
-  testInviteEmployeesWithFutureJoinDate?: Maybe<Scalars["Boolean"]["output"]>;
   testPaymentCharge?: Maybe<Scalars["Boolean"]["output"]>;
   testPaymentChargeByBusiness?: Maybe<Scalars["Boolean"]["output"]>;
   testPushNotification?: Maybe<Scalars["Boolean"]["output"]>;
@@ -4821,10 +4820,6 @@ export type MutationTestGroupPremiumArgs = {
   to?: InputMaybe<Scalars["String"]["input"]>;
   type: Scalars["String"]["input"];
   unitRate: Scalars["Float"]["input"];
-};
-
-export type MutationTestInviteEmployeesWithFutureJoinDateArgs = {
-  inviteDate?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MutationTestPaymentChargeArgs = {
@@ -5528,7 +5523,6 @@ export type Query = {
   getQuestMapLevelChallengeContent?: Maybe<Array<Maybe<QuestMapLevelChallengeContent>>>;
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
-  getRandomNumber?: Maybe<RandomNumber>;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
   getReferralBackground: RemoteImage;
@@ -6371,12 +6365,6 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
-
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
 
 export type RedeemSteps = {
   __typename?: "RedeemSteps";
@@ -9482,6 +9470,12 @@ export type AddDeviceTokenMutation = {
   } | null;
 };
 
+export type ChangeUserLocaleMutationVariables = Exact<{
+  locale: Scalars["String"]["input"];
+}>;
+
+export type ChangeUserLocaleMutation = { __typename?: "Mutation"; changeUserLocale: boolean };
+
 export type GetMediaQueryVariables = Exact<{
   tags?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>> | InputMaybe<Scalars["String"]["input"]>>;
 }>;
@@ -11016,6 +11010,39 @@ export const AddDeviceTokenDocument = {
     },
   ],
 } as unknown as DocumentNode<AddDeviceTokenMutation, AddDeviceTokenMutationVariables>;
+export const ChangeUserLocaleDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "ChangeUserLocale" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "locale" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "changeUserLocale" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "locale" },
+                value: { kind: "Variable", name: { kind: "Name", value: "locale" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ChangeUserLocaleMutation, ChangeUserLocaleMutationVariables>;
 export const GetMediaDocument = {
   kind: "Document",
   definitions: [
