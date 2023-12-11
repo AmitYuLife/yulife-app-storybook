@@ -109,10 +109,10 @@ const LottieBackground = memo((props: LottieBackgroundProps) => {
   const lottieRef = useRef<Lottie>(null);
   const { uri, shouldPlay, shouldUseFadeIn, aspectRatio } = props;
   const { opacity } = useFadeIn(shouldUseFadeIn);
-  const { uri: lottieUri, loading: lottieUriLoading } = useGetLottieJson(uri);
+  const { uri: lottieUri } = useGetLottieJson(uri);
   usePlayControl(lottieRef, shouldPlay);
 
-  if (lottieUriLoading) {
+  if (!lottieUri) {
     return null;
   }
 
