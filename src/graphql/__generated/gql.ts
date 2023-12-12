@@ -39,6 +39,8 @@ const documents = {
   AddDeviceTokenDocument: types.AddDeviceTokenDocument,
   ChangeUserLocaleDocument: types.ChangeUserLocaleDocument,
   GetMediaDocument: types.GetMediaDocument,
+  ConfirmPaymentCardDocument: types.ConfirmPaymentCardDocument,
+  GetMobilePaymentCardSetupDocument: types.GetMobilePaymentCardSetupDocument,
   GetUserNotificationsSettingsDocument: types.GetUserNotificationsSettingsDocument,
   UpdateUserNotificationsSettingsDocument: types.UpdateUserNotificationsSettingsDocument,
   GetReferralBackgroundDocument: types.GetReferralBackgroundDocument,
@@ -169,6 +171,14 @@ export function gql(source: "ChangeUserLocaleDocument"): typeof documents["Chang
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetMediaDocument"): typeof documents["GetMediaDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "ConfirmPaymentCardDocument"): typeof documents["ConfirmPaymentCardDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetMobilePaymentCardSetupDocument"): typeof documents["GetMobilePaymentCardSetupDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
