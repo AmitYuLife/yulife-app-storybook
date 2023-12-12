@@ -52,7 +52,13 @@ const PackageCardHeader = (props: Props) => {
 
   return (
     <View style={styles.wrapper}>
-      <Image style={styles.headerImage} source={headerImage} width={props.width + OFFSET} height={HEADER_HEIGHT} />
+      <Image
+        style={styles.headerImage}
+        resizeMode="cover"
+        source={headerImage}
+        width={props.width + OFFSET}
+        height={HEADER_HEIGHT}
+      />
       <View style={styles.inner} testID={TEXT_TEMPLATE(props.coverType)}>
         <SlotIcon
           backgroundUrl={props.header.slotInfo.backgroundUrl.uri}
