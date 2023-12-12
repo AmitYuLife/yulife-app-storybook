@@ -1,10 +1,10 @@
 import React, { useRef, RefObject, memo, useContext, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as Animated from "react-native-animatable";
-import LottieView from "lottie-react-native";
+import Lottie from "lottie-react-native";
 import { View, StyleSheet, ViewStyle, FlatList, Platform, ListRenderItemInfo } from "react-native";
 import { TextTemplate } from "@atoms";
-import { Button } from "@molecules";
+import { Button, LottieView } from "@molecules";
 import { Style, TOP_BAR, Colours } from "@styles";
 import { FIB_INTRO_SCREEN } from "@ids";
 import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm } from "@graphql/_core/schema";
@@ -20,7 +20,7 @@ export const ProductStepYugiConfirm = memo(function (props: Props) {
   const contextConsumer = useContext(ProductStepContext);
   const { productId, stepId, dynamicData, isLoading: isInLoadingContext } = contextConsumer;
   const { yugiHeading, content, buttonText, buttonOnPress, id } = props;
-  const lottieYugiRef: RefObject<LottieView> = useRef();
+  const lottieYugiRef: RefObject<Lottie> = useRef();
   const swiper: RefObject<FlatList> = useRef();
   const dispatch = useDispatch();
 
@@ -37,14 +37,7 @@ export const ProductStepYugiConfirm = memo(function (props: Props) {
   return (
     <View style={styles.yugiIntroWrapper}>
       <View style={styles.lottieWrapper} testID={FIB_INTRO_SCREEN}>
-        <LottieView
-          resizeMode="cover"
-          style={styles.lottie}
-          source={lottieJson}
-          autoPlay={true}
-          loop={false}
-          ref={lottieYugiRef}
-        />
+        <LottieView style={styles.lottie} source={lottieJson} autoPlay={true} loop={false} ref={lottieYugiRef} />
       </View>
 
       <Animated.View
