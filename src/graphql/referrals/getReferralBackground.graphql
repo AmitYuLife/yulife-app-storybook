@@ -1,0 +1,6 @@
+query GetReferralBackground {
+  getReferralBackground {
+    id
+    uri
+  }
+}

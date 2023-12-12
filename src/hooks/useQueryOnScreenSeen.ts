@@ -1,7 +1,6 @@
-import { OperationVariables } from "@apollo/client";
+import { OperationVariables, TypedDocumentNode, DocumentNode } from "@apollo/client";
 import { LazyQueryHookOptions, QueryTuple, useLazyQuery } from "@apollo/client";
 import { getRouteState } from "@redux/app/app.selectors";
-import { DocumentNode } from "graphql";
 import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 
@@ -19,7 +18,7 @@ const DEFAULT_SCREEN_SEEN_HOOK_OPTIONS = {
  * @param activeView ROUTES or MODALS values
  */
 export function useQueryOnScreenSeen<T = any, TVariables = OperationVariables>(
-  gqlQuery: DocumentNode,
+  gqlQuery: DocumentNode | TypedDocumentNode<T, TVariables>,
   screenName: string,
   lazyQueryHookOptions?: LazyQueryHookOptions<T, TVariables>,
   screenSeenHookOptionsArgs: ScreenSeenHookOptions = { refetch: true }

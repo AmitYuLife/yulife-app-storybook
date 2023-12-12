@@ -41,6 +41,9 @@ const documents = {
   GetMediaDocument: types.GetMediaDocument,
   GetUserNotificationsSettingsDocument: types.GetUserNotificationsSettingsDocument,
   UpdateUserNotificationsSettingsDocument: types.UpdateUserNotificationsSettingsDocument,
+  GetReferralBackgroundDocument: types.GetReferralBackgroundDocument,
+  GetReferralOnboardingPopoverDocument: types.GetReferralOnboardingPopoverDocument,
+  GetReferralInformationDocument: types.GetReferralInformationDocument,
   GetStatisticsDocument: types.GetStatisticsDocument,
   GetUserSurgeDocument: types.GetUserSurgeDocument,
   GetTodayEarningsDocument: types.GetTodayEarningsDocument,
@@ -178,6 +181,20 @@ export function gql(
 export function gql(
   source: "UpdateUserNotificationsSettingsDocument"
 ): typeof documents["UpdateUserNotificationsSettingsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetReferralBackgroundDocument"): typeof documents["GetReferralBackgroundDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "GetReferralOnboardingPopoverDocument"
+): typeof documents["GetReferralOnboardingPopoverDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetReferralInformationDocument"): typeof documents["GetReferralInformationDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

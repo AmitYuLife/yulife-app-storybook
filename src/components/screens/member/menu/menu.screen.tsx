@@ -4,8 +4,7 @@ import { useSelector } from "react-redux";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { getOnboardingReferralsBadge } from "@redux/onboarding/onboarding.selectors";
 import { useDebouncedQuery } from "@hooks";
-import { GetReferralBackground, GetReferralBackground_getReferralBackground } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_REFERRAL_BACKGROUND } from "@graphql/referrals";
+import { gql } from "@graphql/__generated";
 import { MENU_ITEM, MENU_SCREEN, REFERRALS_BUTTON_BADGE } from "@ids";
 import { CloseSvg, Image, Pad } from "@atoms";
 import Logo from "@atoms/logo";
@@ -34,11 +33,8 @@ interface IProps {
 const HIT_SLOP = { left: 8, right: 8 };
 
 const MenuScreen = ({ onDebugPress, onInvitePress, onPressClose, links, version, showReferralButton }: IProps) => {
-  const [getReferralBackground, { data, loading }] = useDebouncedQuery<
-    GetReferralBackground,
-    GetReferralBackground_getReferralBackground
-  >(
-    GQL_QUERY_GET_REFERRAL_BACKGROUND,
+  const [getReferralBackground, { data, loading }] = useDebouncedQuery(
+    gql("GetReferralBackgroundDocument"),
     {
       fetchPolicy: "cache-and-network",
     },
@@ -53,6 +49,7 @@ const MenuScreen = ({ onDebugPress, onInvitePress, onPressClose, links, version,
       getReferralBackground();
     }
   }, [showReferralButton, currentLevel]);
+
   return (
     <>
       <View style={styles.wrapper} testID={MENU_SCREEN}>

@@ -269,6 +269,7 @@ export type AssignProductToTeamMemberResult = {
 export type AssignProductToTeamMemberResultError = {
   __typename?: "AssignProductToTeamMemberResultError";
   inputId?: Maybe<Scalars["String"]["output"]>;
+  label?: Maybe<Scalars["String"]["output"]>;
   message?: Maybe<Scalars["String"]["output"]>;
   path?: Maybe<Scalars["String"]["output"]>;
   rowNumber?: Maybe<Scalars["Int"]["output"]>;
@@ -5550,6 +5551,7 @@ export type Query = {
   getTeamDashboardDates: Array<TeamDashboardDates>;
   getTeamDashboardGoals: TeamDashboardGoals;
   getTeamDidYouKnowInsights: TeamAnalyticsDashboardDidYouKnowSummary;
+  getTeamMemberFields: TeamEmployeeFields;
   getTeamMemberForm: TeamMemberForm;
   getTeamMemberProfile: TeamEmployeeProfile;
   getTeamProductInformation: TeamProductInformation;
@@ -7179,6 +7181,11 @@ export type TeamEmployeeField = {
   selectedOption?: Maybe<Scalars["String"]["output"]>;
   tooltip?: Maybe<Scalars["String"]["output"]>;
   value?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type TeamEmployeeFields = {
+  __typename?: "TeamEmployeeFields";
+  sections: Array<TeamEmployeeSection>;
 };
 
 export type TeamEmployeeProduct = {
@@ -9538,6 +9545,53 @@ export type UpdateUserNotificationsSettingsMutation = {
   updateUserNotificationsSettings?: boolean | null;
 };
 
+export type GetReferralBackgroundQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetReferralBackgroundQuery = {
+  __typename?: "Query";
+  getReferralBackground: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+};
+
+export type GetReferralOnboardingPopoverQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetReferralOnboardingPopoverQuery = {
+  __typename?: "Query";
+  getReferralOnboardingPopover: {
+    __typename?: "ReferralOnboardingPopover";
+    id: MobileOnboardingStepPerformed;
+    showPopover: boolean;
+    onboardingMessage?: string | null;
+    image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  };
+};
+
+export type GetReferralInformationQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+}>;
+
+export type GetReferralInformationQuery = {
+  __typename?: "Query";
+  referralInformation: {
+    __typename?: "UserReferralInformation";
+    rewardForReferral: number;
+    referralLink: string;
+    shareCTA: string;
+    shareMessage: string;
+    disclaimer: string;
+    referralHistory: Array<{
+      __typename?: "ReferralHistoryItem";
+      id: string;
+      name: string;
+      date: string;
+      avatarUrl?: string | null;
+      coin: number;
+    }>;
+    background: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    markdown: { __typename?: "ReferralMarkdown"; header: string; historyTitle: string; historyEmptyMessage: string };
+  };
+};
+
 export type GetStatisticsQueryVariables = Exact<{
   userId?: InputMaybe<Scalars["String"]["input"]>;
 }>;
@@ -11304,6 +11358,160 @@ export const UpdateUserNotificationsSettingsDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateUserNotificationsSettingsMutation, UpdateUserNotificationsSettingsMutationVariables>;
+export const GetReferralBackgroundDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetReferralBackground" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getReferralBackground" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetReferralBackgroundQuery, GetReferralBackgroundQueryVariables>;
+export const GetReferralOnboardingPopoverDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetReferralOnboardingPopover" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getReferralOnboardingPopover" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "showPopover" } },
+                { kind: "Field", name: { kind: "Name", value: "onboardingMessage" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetReferralOnboardingPopoverQuery, GetReferralOnboardingPopoverQueryVariables>;
+export const GetReferralInformationDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetReferralInformation" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "offset" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "referralInformation" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "limit" },
+                value: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "offset" },
+                value: { kind: "Variable", name: { kind: "Name", value: "offset" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "rewardForReferral" } },
+                { kind: "Field", name: { kind: "Name", value: "referralLink" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "referralHistory" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      { kind: "Field", name: { kind: "Name", value: "date" } },
+                      { kind: "Field", name: { kind: "Name", value: "avatarUrl" } },
+                      { kind: "Field", name: { kind: "Name", value: "coin" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "background" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "shareCTA" } },
+                { kind: "Field", name: { kind: "Name", value: "shareMessage" } },
+                { kind: "Field", name: { kind: "Name", value: "disclaimer" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "markdown" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "header" } },
+                      { kind: "Field", name: { kind: "Name", value: "historyTitle" } },
+                      { kind: "Field", name: { kind: "Name", value: "historyEmptyMessage" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetReferralInformationQuery, GetReferralInformationQueryVariables>;
 export const GetStatisticsDocument = {
   kind: "Document",
   definitions: [

@@ -1,9 +1,8 @@
 import { useCallback, useRef, useState } from "react";
-import { DocumentNode } from "graphql";
-import { useQuery } from "@apollo/client";
+import { DocumentNode, TypedDocumentNode, useQuery } from "@apollo/client";
 
 export type LazyGqlLoadingArgs<TData, TRes, TVars> = {
-  gql: DocumentNode;
+  gql: DocumentNode | TypedDocumentNode<TData, TVars>;
   buildVariables: (page: number) => TVars;
   buildFullData: (newData: TRes, prevData: TData[]) => TData[];
   checkIfReachedEnd: (data: TRes) => boolean;
