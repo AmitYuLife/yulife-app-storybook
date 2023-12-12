@@ -1,9 +1,6 @@
 import React, { memo, useMemo } from "react";
 import { View } from "react-native";
-import {
-  GetReferralInformation_referralInformation,
-  GetReferralInformation_referralInformation_referralHistory,
-} from "@graphql/_core/schema";
+import { GetReferralInformationQuery } from "@graphql/__generated";
 import { REFERRALS_INVITE_BUTTON } from "@ids";
 import { TextTemplate, Image } from "@atoms";
 import { Button } from "@molecules";
@@ -15,11 +12,13 @@ import { styles, markdownStyles } from "./referrals.styles";
 import { MixpanelEvent } from "@services/logging/types";
 import { t } from "@locale";
 
+type Item = GetReferralInformationQuery["referralInformation"]["referralHistory"][0];
+
 interface IHeaderProps {
   onShare: () => void;
-  info: GetReferralInformation_referralInformation;
+  info: GetReferralInformationQuery["referralInformation"];
   componentId: string;
-  data: (string | GetReferralInformation_referralInformation_referralHistory)[];
+  data: (string | Item)[];
 }
 
 const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => {

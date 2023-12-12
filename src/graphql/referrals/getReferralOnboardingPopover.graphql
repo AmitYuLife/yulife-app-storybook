@@ -1,0 +1,11 @@
+query GetReferralOnboardingPopover {
+  getReferralOnboardingPopover {
+    id
+    showPopover
+    onboardingMessage
+    image {
+      id
+      uri
+    }
+  }
+}

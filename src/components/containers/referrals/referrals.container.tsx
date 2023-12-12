@@ -2,9 +2,12 @@ import React, { useCallback, useEffect, memo } from "react";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { ReferralsScreen } from "@components/screens";
-import { GQL_QUERY_GET_REFERRAL_INFORMATION } from "@graphql/referrals";
+import {
+  gql,
+  GetReferralInformationQuery as Req,
+  GetReferralInformationQueryVariables as ReqVars,
+} from "@graphql/__generated";
 import { Navigation } from "@navigation/main";
-import { GetReferralInformation as Req, GetReferralInformationVariables as ReqVars } from "@graphql/_core/schema";
 import { LazyGqlLoadingArgs, useLazyGqlLoading } from "@hooks";
 import ReferralsLoadingScreen from "@components/screens/referrals/referrals-loading.screen";
 import Logger from "@services/logging/logger";
@@ -18,7 +21,7 @@ interface IProps {
 const LIMIT = 20;
 
 const LAZY_LOADING_ARGS: LazyGqlLoadingArgs<Req["referralInformation"]["referralHistory"][0] | string, Req, ReqVars> = {
-  gql: GQL_QUERY_GET_REFERRAL_INFORMATION,
+  gql: gql("GetReferralInformationDocument"),
   buildVariables: (page) => ({ offset: Math.floor(page * LIMIT), limit: LIMIT }),
   buildFullData: (req, prevData) => [...prevData, ...(req.referralInformation.referralHistory || [])],
   checkIfReachedEnd: (req) => req.referralInformation.referralHistory.length === 0,

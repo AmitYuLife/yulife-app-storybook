@@ -3,10 +3,7 @@ import { View } from "react-native";
 import { useDispatch } from "react-redux";
 import { setOnboardingReferralsBadge } from "@redux/onboarding/onboarding.actions";
 import moment from "moment";
-import {
-  GetReferralInformation_referralInformation,
-  GetReferralInformation_referralInformation_referralHistory,
-} from "@graphql/_core/schema";
+import { GetReferralInformationQuery } from "@graphql/__generated";
 import { REFERRALS_SCREEN } from "@ids";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { UserAvatarCoinCard } from "@molecules";
@@ -16,13 +13,14 @@ import { getDateFormat } from "@locale";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import ReferralsHeader from "./referrals-header";
 
-type ItemProps = GetReferralInformation_referralInformation_referralHistory;
+type ItemProps = GetReferralInformationQuery["referralInformation"]["referralHistory"][0];
+
 interface IProps {
   onShare: () => Promise<void>;
-  info: GetReferralInformation_referralInformation;
+  info: GetReferralInformationQuery["referralInformation"];
   handleClose: () => void;
   componentId: string;
-  data: (string | GetReferralInformation_referralInformation_referralHistory)[];
+  data: (string | ItemProps)[];
   loading: boolean;
   onFetchMoreData: () => void;
   onRefresh: () => void;

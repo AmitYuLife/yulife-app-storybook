@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef } from "react";
 import { REGION } from "@locale";
-import { DocumentNode, FetchResult, MutationOptions } from "@apollo/client";
+import { DocumentNode, FetchResult, MutationOptions, OperationVariables, TypedDocumentNode } from "@apollo/client";
 import { regionalClients } from "@graphql/_core/client";
 
 /**
@@ -13,8 +13,8 @@ import { regionalClients } from "@graphql/_core/client";
  * @param regions - allows restriction of which regions to call
  * @returns
  */
-export const useMutatationAllRegions = <T = object>(
-  mutation: DocumentNode,
+export const useMutatationAllRegions = <T = object, TVariables = OperationVariables>(
+  mutation: DocumentNode | TypedDocumentNode<T, TVariables>,
   options?: Partial<MutationOptions>,
   regions?: REGION[]
 ) => {
