@@ -58,6 +58,12 @@ To update this path use
 sudo xcode-select --switch /Applications/Xcode.app
 ```
 
+If you can no longer use git in your terminal, you need to reapprove the Xcode licence, do that with
+
+```su
+sudo xcodebuild -license
+```
+
 ### Download Apollo Schema
 
 This project uses Apollo/GraphQL for its backend communication.
