@@ -47,3 +47,5 @@ export { default as GenericFullScreenLoading } from "./generic-full-screen-loadi
 export { default as AvPlayerDescription } from "./av-player-description/av-player-description";
 export { default as AvPlayerLoading } from "./av-player-loading/av-player-loading";
 export { default as AvPlayerTimer } from "./av-player-timer/av-player-timer";
+export { default as AvPlayerProgressBar } from "./av-player-progress-bar/av-player-progress-bar";
+export { default as AudioPlayer } from "./audio-player/audio-player";
