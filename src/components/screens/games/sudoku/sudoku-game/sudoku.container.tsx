@@ -5,7 +5,7 @@ import { ROUTES } from "@navigation/constants";
 import { useSelector, useDispatch } from "react-redux";
 import { getSudokuState } from "@redux/sudoku/sudoku.selectors";
 import { sudokuStateChanged } from "@redux/sudoku/sudoku.actions";
-import { memo, useCallback } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { first } from "lodash";
 import { useMutation, useQuery } from "@apollo/client";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
@@ -47,6 +47,13 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   const features = useSelector(getUserFeatures);
   const sudokuState = useSelector(getSudokuState);
   const activeLeaderboard = useSelector(getActiveSocialGroupLeaderboard);
+
+  const canRefetch = useMemo(
+    () =>
+      activeLeaderboard?.leaderboardConfigId === SocialGroupLeaderboardConfigId.Dailysudoku &&
+      activeLeaderboard?.consent,
+    [activeLeaderboard]
+  );
 
   const [sendPause] = useMutation(GQL_MUTATION_TOGGLE_CHALLENGE_PAUSE);
   const [submitSudokuSolution] = useMutation(gql(`SubmitSudokuSolutionDocument`));
@@ -150,7 +157,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
               dispatch(getUserDataStart([AppDataType.activeChallenge]));
               showSubmissionError(rej);
             },
-            ...(activeLeaderboard?.leaderboardConfigId === SocialGroupLeaderboardConfigId.Dailysudoku && {
+            ...(canRefetch && {
               refetchQueries: [
                 {
                   query: GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS,
