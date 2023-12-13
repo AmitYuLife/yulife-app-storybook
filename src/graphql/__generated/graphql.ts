@@ -269,7 +269,6 @@ export type AssignProductToTeamMemberResult = {
 export type AssignProductToTeamMemberResultError = {
   __typename?: "AssignProductToTeamMemberResultError";
   inputId?: Maybe<Scalars["String"]["output"]>;
-  label?: Maybe<Scalars["String"]["output"]>;
   message?: Maybe<Scalars["String"]["output"]>;
   path?: Maybe<Scalars["String"]["output"]>;
   rowNumber?: Maybe<Scalars["Int"]["output"]>;
@@ -4271,6 +4270,7 @@ export type Mutation = {
   testDuelPushNotifications?: Maybe<Scalars["Boolean"]["output"]>;
   testEmailReminder?: Maybe<EmailReminderRecipientsAndDates>;
   testGroupPremium?: Maybe<TestGroupPremiumResponse>;
+  testInviteEmployeesWithFutureJoinDate?: Maybe<Scalars["Boolean"]["output"]>;
   testPaymentCharge?: Maybe<Scalars["Boolean"]["output"]>;
   testPaymentChargeByBusiness?: Maybe<Scalars["Boolean"]["output"]>;
   testPushNotification?: Maybe<Scalars["Boolean"]["output"]>;
@@ -4821,6 +4821,10 @@ export type MutationTestGroupPremiumArgs = {
   to?: InputMaybe<Scalars["String"]["input"]>;
   type: Scalars["String"]["input"];
   unitRate: Scalars["Float"]["input"];
+};
+
+export type MutationTestInviteEmployeesWithFutureJoinDateArgs = {
+  inviteDate?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MutationTestPaymentChargeArgs = {
@@ -5524,6 +5528,7 @@ export type Query = {
   getQuestMapLevelChallengeContent?: Maybe<Array<Maybe<QuestMapLevelChallengeContent>>>;
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
+  getRandomNumber?: Maybe<RandomNumber>;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
   getReferralBackground: RemoteImage;
@@ -5551,7 +5556,6 @@ export type Query = {
   getTeamDashboardDates: Array<TeamDashboardDates>;
   getTeamDashboardGoals: TeamDashboardGoals;
   getTeamDidYouKnowInsights: TeamAnalyticsDashboardDidYouKnowSummary;
-  getTeamMemberFields: TeamEmployeeFields;
   getTeamMemberForm: TeamMemberForm;
   getTeamMemberProfile: TeamEmployeeProfile;
   getTeamProductInformation: TeamProductInformation;
@@ -6368,6 +6372,12 @@ export enum RnViewPointerEvents {
   None = "NONE",
 }
 
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
+
 export type RedeemSteps = {
   __typename?: "RedeemSteps";
   id?: Maybe<Scalars["ID"]["output"]>;
@@ -7181,11 +7191,6 @@ export type TeamEmployeeField = {
   selectedOption?: Maybe<Scalars["String"]["output"]>;
   tooltip?: Maybe<Scalars["String"]["output"]>;
   value?: Maybe<Scalars["String"]["output"]>;
-};
-
-export type TeamEmployeeFields = {
-  __typename?: "TeamEmployeeFields";
-  sections: Array<TeamEmployeeSection>;
 };
 
 export type TeamEmployeeProduct = {
@@ -9517,6 +9522,34 @@ export type GetMediaQuery = {
   } | null> | null;
 };
 
+export type ConfirmPaymentCardMutationVariables = Exact<{
+  paymentId: Scalars["String"]["input"];
+}>;
+
+export type ConfirmPaymentCardMutation = {
+  __typename?: "Mutation";
+  confirmPaymentCard: {
+    __typename?: "ConfirmedPaymentCard";
+    cardValidTill: string;
+    cardLast4: string;
+    cardBrand: string;
+    customerPaymentMethodId: string;
+  };
+};
+
+export type GetMobilePaymentCardSetupQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetMobilePaymentCardSetupQuery = {
+  __typename?: "Query";
+  setup: {
+    __typename?: "MobilePaymentCardSetup";
+    paymentId: string;
+    providerCustomerId: string;
+    clientSecret: string;
+    ephemeralSecret: string;
+  };
+};
+
 export type GetUserNotificationsSettingsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetUserNotificationsSettingsQuery = {
@@ -11270,6 +11303,77 @@ export const GetMediaDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMediaQuery, GetMediaQueryVariables>;
+export const ConfirmPaymentCardDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "ConfirmPaymentCard" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "paymentId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "confirmPaymentCard" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "paymentId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "paymentId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "cardValidTill" } },
+                { kind: "Field", name: { kind: "Name", value: "cardLast4" } },
+                { kind: "Field", name: { kind: "Name", value: "cardBrand" } },
+                { kind: "Field", name: { kind: "Name", value: "customerPaymentMethodId" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ConfirmPaymentCardMutation, ConfirmPaymentCardMutationVariables>;
+export const GetMobilePaymentCardSetupDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobilePaymentCardSetup" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "setup" },
+            name: { kind: "Name", value: "getMobilePaymentCardSetup" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "paymentId" } },
+                { kind: "Field", name: { kind: "Name", value: "providerCustomerId" } },
+                { kind: "Field", name: { kind: "Name", value: "clientSecret" } },
+                { kind: "Field", name: { kind: "Name", value: "ephemeralSecret" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetMobilePaymentCardSetupQuery, GetMobilePaymentCardSetupQueryVariables>;
 export const GetUserNotificationsSettingsDocument = {
   kind: "Document",
   definitions: [

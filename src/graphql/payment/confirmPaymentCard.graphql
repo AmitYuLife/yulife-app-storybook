@@ -1,0 +1,8 @@
+mutation ConfirmPaymentCard($paymentId: String!) {
+  confirmPaymentCard(paymentId: $paymentId) {
+    cardValidTill
+    cardLast4
+    cardBrand
+    customerPaymentMethodId
+  }
+}

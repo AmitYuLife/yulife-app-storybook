@@ -1,0 +1,8 @@
+query GetMobilePaymentCardSetup {
+  setup: getMobilePaymentCardSetup {
+    paymentId
+    providerCustomerId
+    clientSecret
+    ephemeralSecret
+  }
+}

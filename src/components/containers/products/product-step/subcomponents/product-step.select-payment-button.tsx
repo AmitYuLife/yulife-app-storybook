@@ -2,15 +2,10 @@ import React, { memo, useCallback, useContext, useEffect, useState } from "react
 import Logger from "@services/logging/logger";
 import { useMutation, useQuery } from "@apollo/client";
 import { useStripe, PaymentSheet, PaymentSheetError } from "@stripe/stripe-react-native";
-import {
-  ContentItemPersonalProductSelectPaymentButton as GqlSelectPaymentBtn,
-  GetMobilePaymentCardSetup,
-  ConfirmPaymentCard,
-  ConfirmPaymentCardVariables,
-} from "@graphql/_core/schema";
-import { GQL_QUERY_GET_MOBILE_PAYMENT_CARD_SETUP, GQL_MUTATION_CONFIRM_PAYMENT_CARD } from "@graphql/payment";
+import { ContentItemPersonalProductSelectPaymentButton as GqlSelectPaymentBtn } from "@graphql/_core/schema";
 import { ContentItemInfoButton } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
+import { gql } from "@graphql/__generated";
 
 type Props = GqlSelectPaymentBtn;
 
@@ -21,13 +16,11 @@ export const ProductStepSelectPaymentButton = memo((props: Props) => {
   const [needsRefetch, setsNeedsRefetch] = useState(false);
   const [buttonEnabled, setButtonEnabled] = useState(false);
 
-  const { data, loading, refetch } = useQuery<GetMobilePaymentCardSetup>(GQL_QUERY_GET_MOBILE_PAYMENT_CARD_SETUP, {
+  const { data, loading, refetch } = useQuery(gql("GetMobilePaymentCardSetupDocument"), {
     fetchPolicy: "network-only",
   });
 
-  const [confirmPaymentCard] = useMutation<ConfirmPaymentCard, ConfirmPaymentCardVariables>(
-    GQL_MUTATION_CONFIRM_PAYMENT_CARD
-  );
+  const [confirmPaymentCard] = useMutation(gql("ConfirmPaymentCardDocument"));
 
   const onRefetch = useCallback(async () => {
     try {
