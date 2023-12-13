@@ -26,6 +26,7 @@ import { Button, LottieView, PressableWithDelay, VidePlayerButton } from "@molec
 import {
   AvPlayerDescription,
   AvPlayerLoading,
+  AvPlayerProgressBar,
   AvPlayerTimer,
   GenericHeadingAbsolute,
   GenericHeadingLogo,
@@ -474,16 +475,9 @@ const VideoPlayer = ({
                   <AvPlayerTimer textType="l2b" time={state.currentProgressInMilliSeconds} colour={themeColour} />
                 </View>
                 <View style={[styles.progressBar, { backgroundColor: themeColour }]}>
-                  <View
-                    style={[
-                      styles.currentProgressBar,
-                      {
-                        width:
-                          `${Math.round(
-                            (state.currentProgressInMilliSeconds / state.durationInMilliSeconds) * 100
-                          )}%` || 0,
-                      },
-                    ]}
+                  <AvPlayerProgressBar
+                    currentProgress={state.currentProgressInSeconds}
+                    duration={state.durationInSeconds}
                   />
                 </View>
                 <View style={styles.duration}>

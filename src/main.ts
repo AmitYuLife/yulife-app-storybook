@@ -4,6 +4,8 @@ import { ROUTES } from "@navigation/constants";
 import registerScreens from "./navigation/index";
 import { DETOX_ENABLED } from "@services/socket";
 import { OptionsModalPresentationStyle } from "react-native-navigation";
+import AudioPlayerService from "@services/audio-player";
+import TrackPlayer from "react-native-track-player";
 
 if (DETOX_ENABLED) {
   LogBox.ignoreLogs([
@@ -21,6 +23,7 @@ Navigation.registerComponent(
   () => require("./components/containers/app-loading/app-loading.container").default
 );
 
+TrackPlayer.registerPlaybackService(() => AudioPlayerService.registerAudioPlayerListeners);
 Navigation.events().registerAppLaunchedListener(async () => {
   await Navigation.setAppLoading();
 

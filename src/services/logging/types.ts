@@ -72,4 +72,14 @@ export type MixpanelEvent =
   | "challenge_selected"
   | "leaderboard_switched"
   | "leaderboard_toggle"
-  | "end_challenge_no_data";
+  | "end_challenge_no_data"
+  | "audio_player_button_start_pressed"
+  | "audio_player_play_button_start_pressed"
+  | "audio_player_start"
+  | "audio_player_is_playing"
+  | "audio_player_is_paused"
+  | "audio_player_focused"
+  | "audio_player_is_buffering"
+  | "audio_started"
+  | "audio_cancelled"
+  | "audio_completed";
