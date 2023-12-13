@@ -1,6 +1,8 @@
 import { Style, Colours } from "@styles";
 import { StyleSheet } from "react-native";
 
+export const MAX_PROGRESS_WIDTH = Style.DEVICE_WIDTH * 0.7;
+
 export const rewardCardStyles = StyleSheet.create({
   wrapper: {
     paddingTop: Style.adjust(10),
@@ -71,7 +73,6 @@ export const rewardCardStyles = StyleSheet.create({
     top: 8,
     bottom: 2,
     left: 0,
-    right: Style.adjust(120),
     borderTopRightRadius: 999,
     borderBottomRightRadius: 999,
     backgroundColor: Colours.primary.p600,
