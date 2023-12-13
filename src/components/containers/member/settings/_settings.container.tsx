@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { Navigation } from "@navigation/main";
 import { useSelector, useDispatch } from "react-redux";
 import { MODALS, ROUTES } from "@navigation/constants";
@@ -23,43 +23,52 @@ const graphqlFetchPolicy = { fetchPolicy: "cache-and-network" as "cache-and-netw
 function SettingsContainer({ componentId }: IOwnProps) {
   const dispatch = useDispatch();
 
-  // redux selectors
   const connections = useSelector(getUserConnections);
   const features = useSelector(getUserFeatures);
-
-  // local state
-  const [isTimeModalVisible, setIsTimeModalVisible] = React.useState<boolean>(false);
-  const [modalDate, setModalDate] = React.useState<string>(null);
-  const [selectedNotification, setNotification] = React.useState<NotificationSettingsProps>(null);
-
-  // gql
-  const [updateNotification] = useMutation(gql(`UpdateUserNotificationsSettingsDocument`));
-  const notificationSettings = useQuery(gql(`GetUserNotificationsSettingsDocument`), graphqlFetchPolicy);
-  const notifications = notificationSettings?.data?.getUserNotificationsSettings || [];
   const cyclingMeasurement = useSelector(getDailyCyclingMeasurement);
+
+  const [isTimeModalVisible, setIsTimeModalVisible] = useState<boolean>(false);
+  const [modalDate, setModalDate] = useState<string>(null);
+  const [selectedNotification, setNotification] = useState<NotificationSettingsProps>(null);
+
+  const [updateNotification, { loading: notificationLoading }] = useMutation(
+    gql(`UpdateUserNotificationsSettingsDocument`)
+  );
+  const notificationSettings = useQuery(gql(`GetUserNotificationsSettingsDocument`), graphqlFetchPolicy);
+  const notifications = useMemo(
+    () => notificationSettings?.data?.getUserNotificationsSettings || [],
+    [notificationSettings]
+  );
 
   // helper functions
   const handleClose = React.useCallback(() => Navigation.popToRoot(componentId), [componentId]);
   const handleTimeModalCancel = React.useCallback(() => setIsTimeModalVisible(false), []);
   const client = useApolloClient();
 
-  const updateQueryCache = (type: string, isActive: boolean, time?: string) => {
-    const filterNotifications = notifications.map((i) => ({
-      ...i,
-      isActive: i.type === type ? isActive : i.isActive,
-      alertTimestamp: i.type === type && time ? time : i.alertTimestamp,
-    }));
-    client.writeQuery({
-      query: gql("GetUserNotificationsSettingsDocument"),
-      data: {
-        getUserNotificationsSettings: filterNotifications,
-      },
-    });
-  };
+  const updateQueryCache = useCallback(
+    (type: string, isActive: boolean, time?: string) => {
+      const filterNotifications = notifications.map((i) => ({
+        ...i,
+        isActive: i.type === type ? isActive : i.isActive,
+        alertTimestamp: i.type === type && time ? time : i.alertTimestamp,
+      }));
+      client.writeQuery({
+        query: gql("GetUserNotificationsSettingsDocument"),
+        data: {
+          getUserNotificationsSettings: filterNotifications,
+        },
+      });
+    },
+    [client, notifications]
+  );
 
   const handleTimeModalConfirm = React.useCallback(
     async () => {
       try {
+        if (!selectedNotification) {
+          return;
+        }
+
         updateQueryCache(selectedNotification.type, true, modalDate);
         setIsTimeModalVisible(false);
         await updateNotification({
@@ -109,68 +118,71 @@ function SettingsContainer({ componentId }: IOwnProps) {
     []
   );
 
-  const gameSettings = {
-    name: "gameSettings",
-    title: t("screens.settings.game_settings"),
-    isVisible: true,
-    items: [
-      {
-        isVisible: true,
-        title: t("screens.leaderboard_settings.title"),
-        description: t("screens.leaderboard_settings.description"),
-        onPress: () => {
-          Navigation.push(ROUTES.settings, {
-            component: {
-              id: ROUTES.leaderboardSettings,
-              name: ROUTES.leaderboardSettings,
-            },
-          });
+  const gameSettings = useMemo(
+    () => ({
+      name: "gameSettings",
+      title: t("screens.settings.game_settings"),
+      isVisible: true,
+      items: [
+        {
+          isVisible: true,
+          title: t("screens.leaderboard_settings.title"),
+          description: t("screens.leaderboard_settings.description"),
+          onPress: () => {
+            Navigation.push(ROUTES.settings, {
+              component: {
+                id: ROUTES.leaderboardSettings,
+                name: ROUTES.leaderboardSettings,
+              },
+            });
+          },
         },
-      },
-      {
-        isVisible: true,
-        title: t("screens.permissions.title"),
-        description: t("screens.permissions.description"),
-        value: "",
-        onPress: () => {
-          Navigation.push(ROUTES.settings, {
-            component: {
-              id: ROUTES.permissions,
-              name: ROUTES.permissions,
-            },
-          });
+        {
+          isVisible: true,
+          title: t("screens.permissions.title"),
+          description: t("screens.permissions.description"),
+          value: "",
+          onPress: () => {
+            Navigation.push(ROUTES.settings, {
+              component: {
+                id: ROUTES.permissions,
+                name: ROUTES.permissions,
+              },
+            });
+          },
         },
-      },
-      {
-        isVisible: true,
-        title: t("screens.measurement_cycling_settings.title"),
-        description: t("screens.measurement_cycling_settings.description"),
-        value: cyclingMeasurement,
-        onPress: () => {
-          Navigation.push(ROUTES.settings, {
-            component: {
-              id: ROUTES.cyclingMeasurement,
-              name: ROUTES.cyclingMeasurement,
-            },
-          });
+        {
+          isVisible: true,
+          title: t("screens.measurement_cycling_settings.title"),
+          description: t("screens.measurement_cycling_settings.description"),
+          value: cyclingMeasurement,
+          onPress: () => {
+            Navigation.push(ROUTES.settings, {
+              component: {
+                id: ROUTES.cyclingMeasurement,
+                name: ROUTES.cyclingMeasurement,
+              },
+            });
+          },
         },
-      },
-      {
-        isVisible: features.showLangSelector,
-        title: t("screens.language_selector_settings.title"),
-        description: t("screens.language_selector_settings.description"),
-        value: getCurrentLocale(),
-        onPress: () => {
-          Navigation.push(ROUTES.settings, {
-            component: {
-              id: ROUTES.languageSelector,
-              name: ROUTES.languageSelector,
-            },
-          });
+        {
+          isVisible: features.showLangSelector,
+          title: t("screens.language_selector_settings.title"),
+          description: t("screens.language_selector_settings.description"),
+          value: getCurrentLocale(),
+          onPress: () => {
+            Navigation.push(ROUTES.settings, {
+              component: {
+                id: ROUTES.languageSelector,
+                name: ROUTES.languageSelector,
+              },
+            });
+          },
         },
-      },
-    ],
-  };
+      ],
+    }),
+    [cyclingMeasurement, features.showLangSelector]
+  );
 
   const connection = {
     title: t("screens.settings.fitness_trackers.label"),
@@ -184,36 +196,41 @@ function SettingsContainer({ componentId }: IOwnProps) {
     name: "connections",
   } as any;
 
-  const notification = {
-    isVisible: features.showNotifications,
-    items: notifications.map((n) => ({
-      ...n,
-      onSwitchPress: async () => {
-        try {
-          updateQueryCache(n.type, !n.isActive);
-          await updateNotification({
-            variables: {
-              type: n.type,
-              isActive: !n.isActive,
-              time: n.alertTimestamp,
-            },
-          });
-        } catch (e) {
-          Logger.error(e, { file: "settings-container-consent" });
-        } finally {
-          setNotification(null);
-          setIsTimeModalVisible(false);
-        }
-      },
-      onTimePress: () => {
-        setIsTimeModalVisible(true);
-        setModalDate(n.alertTimestamp);
-        setNotification(n);
-      },
-    })),
-    title: t("screens.settings.push_notifications.label"),
-    name: "notifications",
-  } as any;
+  const notification = useMemo(
+    () => ({
+      isVisible: features.showNotifications,
+      items: notifications.map((n) => ({
+        ...n,
+        onSwitchPress: async () => {
+          try {
+            updateQueryCache(n.type, !n.isActive);
+            await updateNotification({
+              variables: {
+                type: n.type,
+                isActive: !n.isActive,
+                time: n.alertTimestamp,
+              },
+            });
+          } catch (e) {
+            Logger.error(e, { file: "settings-container-consent" });
+          } finally {
+            setNotification(null);
+            setIsTimeModalVisible(false);
+          }
+        },
+        onTimePress: () => {
+          if (notificationLoading) return;
+
+          setIsTimeModalVisible(true);
+          setModalDate(n.alertTimestamp);
+          setNotification(n);
+        },
+      })),
+      title: t("screens.settings.push_notifications.label"),
+      name: "notifications",
+    }),
+    [features.showNotifications, notificationLoading, notifications, updateNotification, updateQueryCache]
+  );
 
   const pickers = useMemo(() => {
     const times = generateTimes();
