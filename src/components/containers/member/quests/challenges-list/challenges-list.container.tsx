@@ -23,7 +23,7 @@ import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { showYuModal } from "@navigation/root";
 import { t } from "@locale";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { useUserFeatures } from "@hooks";
+import { usePopToQuestsRootOnNewDate, useUserFeatures } from "@hooks";
 import { ActiveLevelState, getActiveChallengeState } from "@redux/levels/levels.selectors";
 
 interface IProps {
@@ -43,6 +43,8 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
   const [submitting, setSubmittingState] = useState(false);
   const dispatch = useDispatch();
   const { authoriseFitKitTypes } = useFitKit();
+
+  usePopToQuestsRootOnNewDate(level);
 
   const { loading, data } = useQuery<GetQuestMapLevel>(GQL_QUERY_GET_QUEST_MAP_LEVEL, {
     variables: { level, yuniversalMap },
@@ -139,6 +141,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
                 fitKitTypes: slot.fitKitTypes,
                 tutorialUrl: slot.details.tutorialUrl,
                 ...internalContent[0],
+                level,
               },
             },
           });
@@ -157,6 +160,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
                 tutorialUrl: slot.details.tutorialUrl,
                 content: internalContent,
                 reward: slot.reward,
+                level,
               },
             },
           });
@@ -214,6 +218,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
                               passProps: {
                                 slot: levelSlot,
                                 createChallenge,
+                                level,
                               },
                             },
                           });

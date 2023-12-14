@@ -2,6 +2,7 @@ import { Navigation } from "@navigation/main";
 import NetInfo from "@react-native-community/netinfo";
 import { AppState, AppStateStatus, Linking, Platform } from "react-native";
 import { eventChannel } from "redux-saga";
+import FitKit from "@yu-life/react-native-fitkit";
 
 export function appStateChannel() {
   return eventChannel<AppStateStatus>((emitter) => {
@@ -81,5 +82,13 @@ export function memoryWarningChannel() {
     };
 
     return unlisten;
+  });
+}
+
+export function dateChangeChannel() {
+  return eventChannel((emitter) => {
+    const listener = FitKit.addOnDateChangeListener(() => emitter(true));
+
+    return () => listener.remove();
   });
 }

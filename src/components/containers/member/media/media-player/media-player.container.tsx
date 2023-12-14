@@ -16,6 +16,7 @@ import { ActiveLevelState, getActiveLevel } from "@redux/levels/levels.selectors
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { Storage, StorageKey } from "@utils/storage";
 import { IVideoProgressStorage } from "@components/screens/member/media/media-player/media-player-progress.screen";
+import { usePopToQuestsRootOnNewDate } from "@hooks";
 
 interface IVideo extends Media {
   reward: number;
@@ -39,6 +40,7 @@ export interface IMediaPlayerContainerProps {
   trackingInfo: ITrackingInfo;
   autoPlay?: boolean;
   startTimeInSeconds?: number;
+  level: number;
 }
 
 const MediaPlayerContainer = ({
@@ -51,6 +53,7 @@ const MediaPlayerContainer = ({
   trackingInfo,
   autoPlay,
   startTimeInSeconds,
+  level,
 }: IMediaPlayerContainerProps) => {
   const dispatch = useDispatch();
   const activeLevel = useSelector(getActiveLevel);
@@ -66,6 +69,8 @@ const MediaPlayerContainer = ({
   const cancelChallenge = useCallback(() => {
     dispatch(challengeCancelAction());
   }, [dispatch]);
+
+  usePopToQuestsRootOnNewDate(level);
 
   const createChallenge = useCallback(() => {
     if (!video?.duration) {

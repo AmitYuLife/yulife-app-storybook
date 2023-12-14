@@ -28,6 +28,7 @@ interface IProps {
   buttons: IButtons[];
   moreInformationPress: () => void;
   promotionReward: IPromotionReward;
+  level: number;
 }
 
 const MeditopiaMediaListScreen = ({
@@ -44,6 +45,7 @@ const MeditopiaMediaListScreen = ({
   buttons,
   promotionReward,
   moreInformationPress,
+  level,
 }: IProps) => {
   const handleOnPress = useCallback((video: IITem) => {
     Navigation.push(ROUTES.meditopiaMediaList, {
@@ -57,6 +59,7 @@ const MeditopiaMediaListScreen = ({
           eventType: "mindfullness",
           orientation: "portrait",
           startChallengeButtonLabel: t("screens.meditopia_media_list.startChallengeButtonLabel"),
+          level,
         },
       },
     });

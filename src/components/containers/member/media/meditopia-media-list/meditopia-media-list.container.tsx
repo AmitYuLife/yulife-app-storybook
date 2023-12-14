@@ -15,7 +15,7 @@ import Logger from "@services/logging/logger";
 import { useDispatch } from "react-redux";
 import { updateChallengeAppButton } from "@redux/levels/levels.actions";
 import { t } from "@locale";
-import { useBackHandler } from "@hooks";
+import { useBackHandler, usePopToQuestsRootOnNewDate } from "@hooks";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import { showYuModal } from "@navigation/root";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
@@ -27,6 +27,7 @@ interface IProps extends IInternalContent {
   levelSlotId: string;
   fitKitTypes: FitKitType[];
   tutorialUrl: string;
+  level: number;
 }
 
 const MeditopiaMediaListContainer = ({
@@ -40,6 +41,7 @@ const MeditopiaMediaListContainer = ({
   buttons,
   tutorialUrl,
   promotionReward,
+  level,
 }: IProps) => {
   const [otherAppLoading, setOtherAppLoading] = useState("");
   const { authoriseFitKitTypes } = useFitKit();
@@ -54,6 +56,8 @@ const MeditopiaMediaListContainer = ({
       },
     }
   );
+
+  usePopToQuestsRootOnNewDate(level);
 
   const onLeftIconPress = useCallback(() => Navigation.popTo(ROUTES.questsChallengesList), []);
   const onRightIconPress = useCallback(() => Navigation.popTo(ROUTES.quests), []);
@@ -154,7 +158,8 @@ const MeditopiaMediaListContainer = ({
       handleOtherMeditationApp={handleOtherMeditationApp}
       otherAppLoading={otherAppLoading}
       promotionReward={promotionReward}
-      moreInformationPress={moreInformationPress} //n
+      moreInformationPress={moreInformationPress}
+      level={level}
     />
   );
 };

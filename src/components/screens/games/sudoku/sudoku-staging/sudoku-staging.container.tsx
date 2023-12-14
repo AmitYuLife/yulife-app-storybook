@@ -18,7 +18,7 @@ import { ActiveLevelState, getActiveLevel } from "@redux/levels/levels.selectors
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/getQuestMapChallengeDetails.gql";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { useQueryOnScreenSeen } from "@hooks";
+import { usePopToQuestsRootOnNewDate, useQueryOnScreenSeen } from "@hooks";
 import { challengeStartAction } from "@redux/levels/levels.actions";
 import { getCurrentDateState, getRouteState } from "@redux/app/app.selectors";
 import { getActiveYudokuLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
@@ -27,9 +27,10 @@ import { GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS } from "@graphql/socialGroupLe
 interface IProps {
   componentId: string;
   slot: GetQuestMapLevel_getQuestMapLevel_slots;
+  level: number;
 }
 
-export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
+export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => {
   const dispatch = useDispatch();
   const activeYudokuLeaderboard = useSelector(getActiveYudokuLeaderboard);
   const activeLevel = useSelector(getActiveLevel);
@@ -41,6 +42,8 @@ export const SudokuStagingContainer = ({ componentId, slot }: IProps) => {
   const [, { data }] = useQueryOnScreenSeen(gql(`GetSudokuBoardDocument`), componentId, {
     fetchPolicy: "no-cache",
   });
+
+  usePopToQuestsRootOnNewDate(level);
 
   const showSecondAttemptDisclaimer = useMemo(() => {
     return !data?.getSudokuBoard?.leaderboardEligible;

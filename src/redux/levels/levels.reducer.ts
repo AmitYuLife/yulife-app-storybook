@@ -221,7 +221,7 @@ const getActiveChallengeSuccess = (
     startDateTime: data?.challenge?.startDateTime || "",
     subtype: data?.levelSlot?.subtype || "",
     unit: data?.levelSlot?.unit || state.active.unit || "",
-    challengeIsActive: false,
+    challengeIsActive: !!data?.challenge?.id,
   },
 });
 

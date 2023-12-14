@@ -8,7 +8,7 @@ import {
 } from "@graphql/_core/schema";
 import { MODALS, ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
-import { useBackHandler } from "@hooks";
+import { useBackHandler, usePopToQuestsRootOnNewDate } from "@hooks";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import { showYuModal } from "@navigation/root";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
@@ -27,6 +27,7 @@ interface IProps {
   tutorialUrl: string;
   content: IInternalContent[];
   reward: number;
+  level: number;
 }
 
 const FiitMediaCategoryListContainer = ({
@@ -36,6 +37,7 @@ const FiitMediaCategoryListContainer = ({
   content,
   reward,
   tutorialUrl,
+  level,
 }: IProps) => {
   const [otherAppLoading, setOtherAppLoading] = useState("");
   const { authoriseFitKitTypes } = useFitKit();
@@ -49,6 +51,8 @@ const FiitMediaCategoryListContainer = ({
     onLeftIconPress();
     return false;
   });
+
+  usePopToQuestsRootOnNewDate(level);
 
   const createChallengeUsingFiitApp = useCallback(async () => {
     setOtherAppLoading("fiit-workouts-fitness-plans");
@@ -113,6 +117,7 @@ const FiitMediaCategoryListContainer = ({
             providerLogo: item.providerLogo,
             reward,
             levelSlotId,
+            level,
           },
         },
       });
