@@ -170,7 +170,7 @@ const getUserSuccess = (state: ILevelsStore, data: GetCurrentUser): ILevelsStore
     startDateTime: data?.getCurrentUser?.activeChallenge?.challenge?.startDateTime || "",
     subtype: data?.getCurrentUser?.activeChallenge?.levelSlot?.subtype || "",
     unit: data?.getCurrentUser?.activeChallenge?.levelSlot?.unit || state.active.unit || "",
-    challengeIsActive: false,
+    challengeIsActive: !!data?.getCurrentUser?.activeChallenge?.challenge?.id,
   },
   challengesDoneToday: data?.getCurrentUser?.challengesDoneToday || 0,
   dailyChallengeAmountAvailable: data?.getCurrentUser?.dailyChallengeAmountAvailable,
@@ -178,6 +178,19 @@ const getUserSuccess = (state: ILevelsStore, data: GetCurrentUser): ILevelsStore
 
 const loginUserSuccess = (state: ILevelsStore, data: LoginUser): ILevelsStore => ({
   ...state,
+  active: {
+    ...state.active,
+    shouldEndOnLastGoalAchieved: data?.loginUser?.user?.activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved,
+    fitKitTypes: data?.loginUser?.user?.activeChallenge?.levelSlot?.fitKitTypes || [],
+    endDateTime: data?.loginUser?.user?.activeChallenge?.challenge?.endDateTime || "",
+    levelSlotId: data?.loginUser?.user?.activeChallenge?.challenge?.levelSlotId || "",
+    milestones: data?.loginUser?.user?.activeChallenge?.levelSlot?.milestones || [],
+    rating: data?.loginUser?.user?.activeChallenge?.challenge?.rating || state.active.rating || 0,
+    startDateTime: data?.loginUser?.user?.activeChallenge?.challenge?.startDateTime || "",
+    subtype: data?.loginUser?.user?.activeChallenge?.levelSlot?.subtype || "",
+    unit: data?.loginUser?.user?.activeChallenge?.levelSlot?.unit || state.active.unit || "",
+    challengeIsActive: !!data?.loginUser?.user?.activeChallenge?.challenge?.id,
+  },
   challengesDoneToday: data?.loginUser?.user?.challengesDoneToday || 0,
   dailyChallengeAmountAvailable: data?.loginUser?.user?.dailyChallengeAmountAvailable,
 });
