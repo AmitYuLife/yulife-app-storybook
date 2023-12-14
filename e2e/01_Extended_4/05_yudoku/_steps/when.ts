@@ -84,7 +84,7 @@ export const tapExitChallenge = async () => {
   await tapText("Exit challenge")()
 }
 
-export const completeYudoku = async () => {
+export const completeYudoku = (shouldCollect = true) => async () => {
   await tapStartGame()
   await dismissNotificationScreenIfVisible()
   await wait(9000)()
@@ -95,7 +95,9 @@ export const completeYudoku = async () => {
   await tapID(CELL_ROW_COLUMN(8, 8, 0))()
   await tapID(SUDOKU_NUMBER_INPUT(8))()
   await wait(3000)()
-  await tapCollect()
+  if (shouldCollect) {
+    await tapCollect()
+  }
 }
 
 export const completeYudokuPractice = (answersArr) => async () => {
