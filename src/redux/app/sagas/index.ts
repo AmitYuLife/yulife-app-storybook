@@ -23,11 +23,13 @@ import logDeviceStateSaga from "./logDeviceStateSaga.saga";
 import checkDateChangedSaga from "./checkDateChanged.saga";
 import listenToMemoryWarning from "./listenToMemoryWarning.saga";
 import cancelExpiredChalllengeSaga from "./cancelExpiredChallengesSaga";
+import listenOnDateChangeSaga from "./listenOnDateChangeSaga";
 // import logBreadcrumbsSaga from "./logBreadcrumbs.saga";
 
 export default [
   takeLatest(AUTHENTICATED, listenToAppStateSaga),
   takeLatest(AUTHENTICATED, cancelExpiredChalllengeSaga),
+  takeLatest(AUTHENTICATED, listenOnDateChangeSaga),
   takeLatest("INIT", listenToComponentDidAppear),
   takeLatest("INIT", listenToComponentDidDisappear),
   takeLatest("INIT", listenToLinkingSaga),

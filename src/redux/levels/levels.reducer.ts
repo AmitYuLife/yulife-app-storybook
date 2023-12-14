@@ -170,7 +170,7 @@ const getUserSuccess = (state: ILevelsStore, data: GetCurrentUser): ILevelsStore
     startDateTime: data?.getCurrentUser?.activeChallenge?.challenge?.startDateTime || "",
     subtype: data?.getCurrentUser?.activeChallenge?.levelSlot?.subtype || "",
     unit: data?.getCurrentUser?.activeChallenge?.levelSlot?.unit || state.active.unit || "",
-    challengeIsActive: false,
+    challengeIsActive: !!data?.getCurrentUser?.activeChallenge?.challenge?.id,
   },
   challengesDoneToday: data?.getCurrentUser?.challengesDoneToday || 0,
   dailyChallengeAmountAvailable: data?.getCurrentUser?.dailyChallengeAmountAvailable,
@@ -208,7 +208,7 @@ const getActiveChallengeSuccess = (
     startDateTime: data?.challenge?.startDateTime || "",
     subtype: data?.levelSlot?.subtype || "",
     unit: data?.levelSlot?.unit || state.active.unit || "",
-    challengeIsActive: false,
+    challengeIsActive: !!data?.challenge?.id,
   },
 });
 

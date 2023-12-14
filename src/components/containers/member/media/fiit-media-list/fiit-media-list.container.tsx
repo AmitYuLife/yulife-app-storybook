@@ -4,7 +4,7 @@ import { Navigation } from "@navigation/main";
 import { FiitMediaListScreen } from "@components/screens";
 import { GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent as IInternalContent } from "@graphql/_core/schema";
 import { ROUTES } from "@navigation/constants";
-import { useBackHandler } from "@hooks";
+import { useBackHandler, usePopToQuestsRootOnNewDate } from "@hooks";
 import moment from "moment";
 import { t } from "@locale";
 import { useDispatch } from "react-redux";
@@ -16,9 +16,18 @@ interface IProps extends IInternalContent {
   componentId: string;
   levelSlotId: string;
   reward: number;
+  level: number;
 }
 
-const FiitMediaListContainer = ({ levelSlotId, contentMediaTags, title, providerLogo, logo, reward }: IProps) => {
+const FiitMediaListContainer = ({
+  levelSlotId,
+  contentMediaTags,
+  title,
+  providerLogo,
+  logo,
+  reward,
+  level,
+}: IProps) => {
   const { data: medias, loading } = useQuery(gql("GetMediaDocument"), {
     fetchPolicy: "network-only",
     variables: {
@@ -48,6 +57,8 @@ const FiitMediaListContainer = ({ levelSlotId, contentMediaTags, title, provider
     });
   }, [medias?.getMedia, reward]);
 
+  usePopToQuestsRootOnNewDate(level);
+
   const handleOnItemPress = useCallback((video: IITem) => {
     dispatch(
       logMixpanelEventActionCreator("challenge_subcollection_viewed", {
@@ -69,6 +80,7 @@ const FiitMediaListContainer = ({ levelSlotId, contentMediaTags, title, provider
           eventType: "workout",
           orientation: "landscape",
           startChallengeButtonLabel: t("screens.fiit_media_list.startChallengeButtonLabel"),
+          level,
           trackingInfo: {
             collection_name: title,
             subcollection_name: video.title,
