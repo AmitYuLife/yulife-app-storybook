@@ -7,6 +7,7 @@ import * as ids from "@ids"
 import * as data from "@data"
 import { PracticeYudokuAnswers } from "./_resources/constants"
 import { DefaultYudokuLeaderboard, User67LeaderboardItemSudoku, User68LeaderboardItemSudoku, User71LeaderboardItemSudoku } from "./_resources/fixtures"
+import { getLocalisedString as t } from "@i18n";
 
 Feature("Yudoku", async () => {
   Scenario("I can play, pause, and complete Sudoku and join/view the leaderboard", scenario.start, () => {
@@ -207,7 +208,7 @@ Feature("Yudoku", async () => {
             Then("I can see the disclaimer for a 2nd attempt", then.canSeeAttemptDisclaimer)
         })
     })
-    When("I complete the Yudoku", when.completeYudoku, async () => {
+    When("I complete the Yudoku", when.completeYudoku(), async () => {
         Then("I can see  the join leaderboard prompt", then.amOnLeaderboardIntroModal)
     })
     When("I tap join", when.tapJoinLeaderboardButton, async () => {
@@ -285,7 +286,7 @@ Feature("Yudoku", async () => {
         When('I go to quests', when.navigateTo("quests"), async () => {
             When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
                 When("I tap the soduku challenge", when.tapSudoku, async () => {
-                    When("I complete the Yudoku", when.completeYudoku, async () => {
+                    When("I complete the Yudoku", when.completeYudoku(), async () => {
                         When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
                             Then("I can see the slot for a completed yudoku", then.idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Yudoku", "120", 3)))
                             Then("I can see the level summary page yudoku leaderboard button", then.canSeeYudokuLeaderboardButton("Today"))
@@ -294,7 +295,7 @@ Feature("Yudoku", async () => {
                 })
             })
         })
-    })    
+    })
     When("I tap yudoku leaderboard", when.tapID(ids.LEVEL_SUMMARY_YUDOKU_LEADERBOARD("Today")), async () => {
         Then("I can see the leaderboard entries", then.canSeeLeaderboard(data.CUSTOMER_71, data.SUDOKU_ANSWER_71, 2))
         Then("I can see the leaderboard entries", then.canSeeLeaderboard(data.CUSTOMER_67, data.SUDOKU_ANSWER_67, 3))
@@ -347,4 +348,31 @@ Feature("Yudoku", async () => {
             Then("i can see the board has cleared", then.idVisible(ids.CELL_ROW_COLUMN(0, 3, 0)))
         })
       })
+
+      Scenario("I can get a reward after I complete a streak with Yudoku", scenario.start, async () => {
+        Given("I login as a user with 4/5 streaks", given.logInAndGoToTab("yucoin", data.CUSTOMER_7, data.AUTH_7) , async () => {
+            Then("I should see 640 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(640)))
+        })
+        When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
+            Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)))
+        })
+        When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
+            Then("I should see the Yudoku challenge", then.idVisible(ids.CHALLENGE_TILE("Yudoku")))
+        })
+        When("I tap the soduku challenge", when.tapSudoku, async () => {
+            Then("I am on the sudoku page", then.amOnSudokuPage)
+        })
+        When("I complete the Yudoku", when.completeYudoku(false), async () => {
+            Then("I should see my reward of 2500 coins", then.textVisible(t("Collect %{reward} %{type}", { reward: 2500, type: "YuCoin" }), 4000))
+        })
+        When("I tap collect 2500 yucoin", when.tapText(t("Collect %{reward} %{type}", { reward: 2500, type: "YuCoin" })), async () => {
+            When("I tap collect", when.tapCollect, async () => {
+                Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
+            })
+        })
+        When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+            Then("I should see the coins I earned today", then.textVisible("2,760 YuCoin today"))
+            Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3200)))
+        })
+    })
 })
