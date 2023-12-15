@@ -42,7 +42,7 @@
     "posttranslations:download": "yarn translations:configs",
     "translations:download:local": "TOLGEE_API_KEY=tgpak_gmydqms7obrtemrvmezge5dmoruwimzrmq2tsolvmiyti2rumy yarn translations:download",
     "download:schema:local": "npx apollo client:download-schema --endpoint=http://localhost:5000/graphql ./src/graphql/_core/schema.json",
-    "download:schema": "npx apollo client:download-schema --endpoint=https://develop.eu-west-2.api.yulife.engineering/graphql ./src/graphql/_core/schema.json",
+    "download:schema": "npx apollo client:download-schema --endpoint=https://api.develop.uk.yulife.engineering/graphql ./src/graphql/_core/schema.json",
     "e2e:build": "tsc -p e2e --noEmit",
     "e2e:watch": "tsc -p e2e --noEmit --watch",
     "generate:gql:types:new": "graphql-codegen --config codegen.ts",
