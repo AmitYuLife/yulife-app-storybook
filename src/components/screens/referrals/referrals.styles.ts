@@ -40,6 +40,10 @@ export const styles = StyleSheet.create({
     marginHorizontal: Style.adjust(24),
   },
   footer: { height: Style.adjust(80) },
+  qrCode: {
+    alignItems: "center",
+    marginBottom: Style.adjust(10),
+  },
 });
 
 export const markdownStyles = StyleSheet.create({
