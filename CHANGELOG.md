@@ -7,6 +7,72 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.112.0] - 2023-12-15
+
+### Features
+
+- XSE-2345: Implement feature toggled half modal for reward tease
+
+### Bugfixes
+
+- Bugfix: Emit update current date on date change
+- Bugfix: Update active level redux state on login
+- Bugfix ENG-3773: Quest map showing out of order
+- Bugfix ENG-3771: Leaderboard not available
+- Bugfix: Settings race condition
+- Bugfix: Call getUserDataSaga on UPDATE_CURRENT_DATE if no active challenge
+- Bugfix: PackageCardHeader image
+- Bugfix: LottieView on sdui
+- Bugfix ENG-3727: Some levels not clickable
+- Bugfix: Sudoku streak issue
+- Bugfix: Get updated coinledger after unity
+
+### Tasks
+
+- Task: DEVOP-1869: Dev: Migrate UK to the new yulife-api TF module - API URL Update
+- Task: Implement dynamic progress bar length on reward card
+- Task: move referrals to new gql
+- Task: update README with xcode select instructions
+- Task: locale to new gql
+- task/DEVOP-1468: Decommission Legacy Detox Static AWS Resources
+- Task: update react-native-webview
+- Task: remove duplicate translation key
+- Task: Use useGetLottieJson hook
+- Task: update react-native-config
+- Task: upgrade react native cameraroll dependency
+- Task: DEVOP-1884: UAT: Migrate US to the new yulife-api TF module - API URL Update
+- Task: update react-native-permissions
+- Task: Use LottieView component - Batch 1
+- Task: Add ref props to LottiewView component
+- Task XSE-2362: Quest map notification icons
+- Task XSE-2342: EventPanel variations
+
+### Chores
+
+- Chore: Add QR code on referral screen
+- Chore: AudioPlayer component
+- Chore: Move payment to new gql
+- Chore: Move getStatistics to new gql
+- Chore: Move getUserSurge to new gql
+- Chore: Move getMedia to new gql
+- Chore: Move getTodayEarnings to new gql
+- Chore: disabled gql fragment masking
+- Chore: buffs to new gql
+- Chore: debug to new gql
+- Chore: Get graphql scheme from local env
+- Chore: connections to new gql
+- Chore: sudoku to new gql
+- Chore: Move addDeviceToken to new gql
+- Chore: Move getPublicYuAPIConfig to new gql
+- Chore: move mobile assets to new gql
+- Chore: move ad banners to new gql format
+
+### Extra
+
+- Detox/ENG-3756
+- Bugifx: Yugi confirm Lottie
+- Purge: Old getMobileAssets.gql.ts
+
 ## [3.111.0] - 2023-12-06
 
 ### Bugfixes
