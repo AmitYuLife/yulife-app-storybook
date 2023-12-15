@@ -11,6 +11,8 @@ import { Colours, Style } from "@styles";
 import { styles, markdownStyles } from "./referrals.styles";
 import { MixpanelEvent } from "@services/logging/types";
 import { t } from "@locale";
+import QRCode from "react-qr-code";
+import { useUserFeatures } from "@hooks";
 
 type Item = GetReferralInformationQuery["referralInformation"]["referralHistory"][0];
 
@@ -21,7 +23,10 @@ interface IHeaderProps {
   data: (string | Item)[];
 }
 
+const QR_CODE_SIZE = Style.adjust(84);
+
 const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => {
+  const { tempGameEnableReferralQRCode } = useUserFeatures();
   const tapToCopyAnalytics = useMemo(
     () => ({
       name: "referral_link_copied" as MixpanelEvent,
@@ -60,6 +65,11 @@ const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => 
             analyticsEvent={tapToCopyAnalytics}
           />
         </View>
+        {!tempGameEnableReferralQRCode ? null : (
+          <View style={styles.qrCode}>
+            <QRCode size={QR_CODE_SIZE} value={referralLink} viewBox={`0 0 ${QR_CODE_SIZE} ${QR_CODE_SIZE} `} />
+          </View>
+        )}
         <TextTemplate type="l2b" textAlign="center">
           {t("screens.referrals.or")}
         </TextTemplate>
