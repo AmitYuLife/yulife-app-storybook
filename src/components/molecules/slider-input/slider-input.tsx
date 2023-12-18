@@ -22,28 +22,31 @@ export interface SliderInputProps {
 
 export function SliderInput(props: SliderInputProps) {
   const { maxValue, onChange, leftLabel, rightLabel, score, minValue = 0 } = props;
-  const valueIterator = useMemo(() => new Array(maxValue - minValue + 1).fill(0), [maxValue, minValue]);
+  const valueIterator = useMemo(
+    () => new Array(maxValue - minValue + 1).fill(0).map((_, i) => i + minValue),
+    [maxValue, minValue]
+  );
 
   return (
     <View style={styles.wrapper}>
       <View style={StyleSheet.flatten([styles.valueWrapper, styles.textWrapper])}>
-        {valueIterator.map((_, i) => {
+        {valueIterator.map((i) => {
           const isActive = score === i;
 
           return (
-            <PressableWithDelay hitSlop={5} key={i} onPress={() => onChange(i + minValue)} testID={SLIDER_INPUT(i)}>
-              <AnimatedText isActive={isActive} index={i + minValue} />
+            <PressableWithDelay hitSlop={5} key={i} onPress={() => onChange(i)} testID={SLIDER_INPUT(i)}>
+              <AnimatedText isActive={isActive} index={i} />
             </PressableWithDelay>
           );
         })}
       </View>
       <View style={StyleSheet.flatten([styles.greyBarWrapper, styles.valueWrapper])}>
-        {valueIterator.map((_, i) => {
+        {valueIterator.map((i) => {
           const isActive = score >= i;
           const activeStyles = isActive ? styles.activeCircle : {};
 
           return (
-            <PressableWithDelay hitSlop={5} key={i} onPress={() => onChange(i + minValue)}>
+            <PressableWithDelay hitSlop={5} key={i} onPress={() => onChange(i)}>
               <View style={styles.circleWrapper}>
                 <View style={StyleSheet.flatten([styles.circle, activeStyles])} />
               </View>

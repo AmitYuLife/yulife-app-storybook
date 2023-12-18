@@ -90,6 +90,7 @@ export * from "./ContentItemSelectedPackageCard";
 export * from "./ContentItemSelectedPackageCardProviderLogo";
 export * from "./ContentItemSelectedPackageCards";
 export * from "./ContentItemShowHideBalance";
+export * from "./ContentItemSliderInput";
 export * from "./ContentItemSwitch";
 export * from "./ContentItemText";
 export * from "./ContentItemTextGroup";

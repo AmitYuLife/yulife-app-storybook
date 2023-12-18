@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -18,6 +18,7 @@ import {
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemTextInput {
   __typename:
     | "ContentItemTextInput"
+    | "ContentItemSliderInput"
     | "ContentItemRowIconTextBanner"
     | "ContentItemLottie"
     | "ContentItemPad"

@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -1019,6 +1019,22 @@ export interface AbsoluteContentItem_item_ContentItemHint {
   styles: AbsoluteContentItem_item_ContentItemHint_styles[] | null;
 }
 
+export interface AbsoluteContentItem_item_ContentItemSliderInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemSliderInput {
+  __typename: "ContentItemSliderInput";
+  id: string;
+  answerKey: string;
+  minValue: number;
+  maxValue: number;
+  leftLabel: string;
+  rightLabel: string;
+  styles: AbsoluteContentItem_item_ContentItemSliderInput_styles[] | null;
+}
+
 export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemProcessingTimer
   | AbsoluteContentItem_item_ContentItemMarkdown
@@ -1045,7 +1061,8 @@ export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemSwitch
   | AbsoluteContentItem_item_ContentItemShowHideBalance
   | AbsoluteContentItem_item_ContentItemDatePicker
-  | AbsoluteContentItem_item_ContentItemHint;
+  | AbsoluteContentItem_item_ContentItemHint
+  | AbsoluteContentItem_item_ContentItemSliderInput;
 
 export interface AbsoluteContentItem_styles {
   property: string;

@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -32,6 +32,7 @@ export interface GetRewardItemDetails_getRewardItemDetails_availableDenomination
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemTextInput {
   __typename:
     | "ContentItemTextInput"
+    | "ContentItemSliderInput"
     | "ContentItemRowIconTextBanner"
     | "ContentItemLottie"
     | "ContentItemPad"
