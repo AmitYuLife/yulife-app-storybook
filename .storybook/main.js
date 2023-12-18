@@ -31,7 +31,6 @@ const CUSTOM_CONFIG = {
       "react-native-view-shot": path.join(__dirname, "/aliases/react-native-view-shot"),
       "react-native-reanimated": path.join(__dirname, "/aliases/react-native-reanimated"),
       "react-native-permissions": path.join(__dirname, "/aliases/react-native-permissions"),
-      "lottie-react-native": path.join(__dirname, "/aliases/lottie-react-native"),
       "react-native-track-player": path.join(__dirname, "/aliases/react-native-track-player"),
     },
     extensions: [".web.js", ".js", ".ts", ".tsx"],
