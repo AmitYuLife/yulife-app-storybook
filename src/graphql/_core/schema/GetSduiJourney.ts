@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -1029,6 +1029,22 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemHint {
   styles: GetSduiJourney_getSduiJourney_body_ContentItemHint_styles[] | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemSliderInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemSliderInput {
+  __typename: "ContentItemSliderInput";
+  id: string;
+  answerKey: string;
+  minValue: number;
+  maxValue: number;
+  leftLabel: string;
+  rightLabel: string;
+  styles: GetSduiJourney_getSduiJourney_body_ContentItemSliderInput_styles[] | null;
+}
+
 export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_body_ContentItemMarkdown
@@ -1055,7 +1071,8 @@ export type GetSduiJourney_getSduiJourney_body =
   | GetSduiJourney_getSduiJourney_body_ContentItemSwitch
   | GetSduiJourney_getSduiJourney_body_ContentItemShowHideBalance
   | GetSduiJourney_getSduiJourney_body_ContentItemDatePicker
-  | GetSduiJourney_getSduiJourney_body_ContentItemHint;
+  | GetSduiJourney_getSduiJourney_body_ContentItemHint
+  | GetSduiJourney_getSduiJourney_body_ContentItemSliderInput;
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer {
   __typename:
@@ -2073,6 +2090,22 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemHint {
   styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemHint_styles[] | null;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemSliderInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemSliderInput {
+  __typename: "ContentItemSliderInput";
+  id: string;
+  answerKey: string;
+  minValue: number;
+  maxValue: number;
+  leftLabel: string;
+  rightLabel: string;
+  styles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemSliderInput_styles[] | null;
+}
+
 export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemProcessingTimer
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemMarkdown
@@ -2099,7 +2132,8 @@ export type GetSduiJourney_getSduiJourney_absolute_item =
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemSwitch
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemShowHideBalance
   | GetSduiJourney_getSduiJourney_absolute_item_ContentItemDatePicker
-  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemHint;
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemHint
+  | GetSduiJourney_getSduiJourney_absolute_item_ContentItemSliderInput;
 
 export interface GetSduiJourney_getSduiJourney_absolute_styles {
   property: string;

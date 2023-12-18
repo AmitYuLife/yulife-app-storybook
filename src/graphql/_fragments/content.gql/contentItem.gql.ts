@@ -24,6 +24,7 @@ import { GQL_FRAGMENT_CONTENT_ITEM_SWITCH } from "./contentItemSwitch.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_SHOW_HIDE_BALANCE } from "./contentItemShowHideBalance.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER } from "./contentItemDatePicker.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_HINT } from "./contentItemHint.gql";
+import { GQL_FRAGMENT_CONTENT_ITEM_SLIDER_INPUT } from "./contentItemSliderInput.gql";
 
 export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN}
@@ -33,6 +34,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_FORM}
   ${GQL_FRAGMENT_CONTENT_ITEM_TEXT}
   ${GQL_FRAGMENT_CONTENT_ITEM_TEXT_INPUT}
+  ${GQL_FRAGMENT_CONTENT_ITEM_SLIDER_INPUT}
   ${GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER}
   ${GQL_FRAGMENT_CONTENT_ITEM_LOTTIE}
   ${GQL_FRAGMENT_CONTENT_ITEM_PAD}
@@ -128,6 +130,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
     }
     ... on ContentItemHint {
       ...ContentItemHint
+    }
+    ... on ContentItemSliderInput {
+      ...ContentItemSliderInput
     }
   }
 `;

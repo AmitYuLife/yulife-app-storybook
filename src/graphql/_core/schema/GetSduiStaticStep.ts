@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -1031,6 +1031,22 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemHint {
   styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemHint_styles[] | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemSliderInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemSliderInput {
+  __typename: "ContentItemSliderInput";
+  id: string;
+  answerKey: string;
+  minValue: number;
+  maxValue: number;
+  leftLabel: string;
+  rightLabel: string;
+  styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemSliderInput_styles[] | null;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemProcessingTimer
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemMarkdown
@@ -1057,7 +1073,8 @@ export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemSwitch
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemShowHideBalance
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemDatePicker
-  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemHint;
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemHint
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemSliderInput;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProcessingTimer {
   __typename:
@@ -2081,6 +2098,22 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHi
   styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHint_styles[] | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSliderInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSliderInput {
+  __typename: "ContentItemSliderInput";
+  id: string;
+  answerKey: string;
+  minValue: number;
+  maxValue: number;
+  leftLabel: string;
+  rightLabel: string;
+  styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSliderInput_styles[] | null;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProcessingTimer
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown
@@ -2107,7 +2140,8 @@ export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSwitch
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemShowHideBalance
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemDatePicker
-  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHint;
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHint
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSliderInput;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_styles {
   property: string;
