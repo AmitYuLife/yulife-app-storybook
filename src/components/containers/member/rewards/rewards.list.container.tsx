@@ -35,12 +35,11 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
     { variables: { tag } }
   );
 
-  const { loading: loadingProducts, data: products } = useQuery<GetRewardsProductsList>(
-    GQL_QUERY_GET_REWARDS_PRODUCT_LIST,
-    { fetchPolicy: "network-only" }
-  );
+  const { data: products } = useQuery<GetRewardsProductsList>(GQL_QUERY_GET_REWARDS_PRODUCT_LIST, {
+    fetchPolicy: "network-only",
+  });
 
-  const isLoading = (!rewards?.data?.list?.length && loading) || loadingProducts;
+  const isLoading = !rewards?.data?.list?.length && loading;
 
   const handleStoreLocationPress = useCallback(
     () =>
