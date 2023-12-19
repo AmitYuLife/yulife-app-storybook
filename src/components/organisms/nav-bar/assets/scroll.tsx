@@ -1,67 +1,58 @@
-// tslint:disable:max-line-length
-import { Style } from "@styles/index";
-import * as React from "react";
-import Svg, { Circle, G, Path } from "react-native-svg";
-import { Platform, View, Text } from "react-native";
+import React, { memo } from "react";
+import Svg, { Path } from "react-native-svg";
+import { View } from "react-native";
 import { t } from "@locale";
 import { getIconColour, IIconProps } from "../nav-bar.helpers";
 import { NAV_BAR } from "@ids";
-import styles from "./assets.styles";
+import styles, { NAV_BAR_ICON_SIZE } from "./assets.styles";
+import { PressableWithDelay } from "@molecules";
+import { TextTemplate } from "@atoms";
 
-export default function Scroll({ isActive, onPressIn, hasNotification, isSuspended }: IIconProps) {
+const Scroll = ({ isActive, onPressIn, hasNotification, isSuspended }: IIconProps) => {
   const fill = getIconColour(isActive, isSuspended);
-  const size = Style.adjust(54);
 
   return (
-    <View>
-      <Svg
-        onPressIn={onPressIn}
-        onPressOut={onPressIn}
-        viewBox="0 0 54 54"
-        width={size}
-        height={size}
-        testID={NAV_BAR("quests")}
-      >
-        <G>
-          {Platform.OS === "ios" ? <Path d="M0 0H54V54H0z" fill="#fff" /> : null}
-          <Path d="M36.35 7.25h-15.8A1.66 1.66 0 0019 9v16.8" fill="none" stroke={fill} strokeMiterlimit={10} />
-          <Path
-            d="M34.75 10.75h1.6a1.76 1.76 0 00.3-3.5 1.7 1.7 0 00-1.89 1.51.28.28 0 000 .09v18.7M34.75 25.75h-17.4a1.71 1.71 0 00-1.61 1.81v.09a1.65 1.65 0 001.6 1.6h15.8a1.67 1.67 0 001.6-1.7"
-            fill="none"
-            stroke={fill}
-            strokeMiterlimit={10}
-          />
-          <Path
-            d="M34.75 27.45a1.56 1.56 0 01-3.12-.12 1.1 1.1 0 010-.18 1.62 1.62 0 011.6-1.4h1.6"
-            fill="none"
-            stroke={fill}
-            strokeMiterlimit={10}
-          />
-          <Path
-            d="M30.85 12.35L28.45 10M28.35 12.35l2.5-2.4"
-            fill="none"
-            stroke={fill}
-            strokeLinecap="round"
-            strokeMiterlimit={10}
-          />
-          <Path
-            d="M27.15 13.65c-1.3 1.5.5 3.9-1.4 6.2"
-            fill="none"
-            stroke={fill}
-            strokeLinecap="round"
-            strokeMiterlimit={10}
-            strokeDasharray="4,4,4,4"
-          />
-          <Path
-            d="M23.85 23.35a1.2 1.2 0 10-1.2-1.2 1.16 1.16 0 001.12 1.2z"
-            fill="none"
-            stroke={fill}
-            strokeMiterlimit={10}
-          />
-          {!hasNotification ? null : <Circle cx="35.6" cy="10.25" r="4.5" fill="#ec6f65" stroke="#fff" />}
-        </G>
+    <PressableWithDelay style={styles.wrapper} onPress={onPressIn}>
+      <Svg viewBox="0 0 24 24" width={NAV_BAR_ICON_SIZE} height={NAV_BAR_ICON_SIZE} testID={NAV_BAR("quests")}>
+        <Path
+          fill={fill}
+          fillRule="evenodd"
+          d="M3.643 2.746C3.643 1.543 4.51.5 5.714.5H21.43v1H5.714c-.555 0-1.071.494-1.071 1.246v16.762h-1V2.746Z"
+          clipRule="evenodd"
+        />
+        <Path
+          fill={fill}
+          fillRule="evenodd"
+          d="M19.357 2.746c0-1.203.867-2.246 2.072-2.246 1.204 0 2.07 1.043 2.07 2.246s-.866 2.246-2.07 2.246h-1.072v16.262h-1V2.746Zm1 1.246h1.071c.556 0 1.072-.493 1.072-1.246 0-.752-.516-1.246-1.071-1.246-.556 0-1.072.494-1.072 1.246v1.246Z"
+          clipRule="evenodd"
+        />
+        <Path
+          fill={fill}
+          fillRule="evenodd"
+          d="M.5 21.254c0-1.203.867-2.246 2.071-2.246h17.286v1H2.571c-.555 0-1.071.493-1.071 1.246 0 .752.516 1.246 1.071 1.246h15.715c.555 0 1.071-.494 1.071-1.246h1c0 1.203-.867 2.246-2.071 2.246H2.57C1.367 23.5.5 22.457.5 21.254Z"
+          clipRule="evenodd"
+        />
+        <Path
+          fill={fill}
+          fillRule="evenodd"
+          d="M18.286 20.008c-.556 0-1.072.493-1.072 1.246 0 .752.516 1.246 1.072 1.246.555 0 1.071-.494 1.071-1.246h1c0 1.203-.867 2.246-2.071 2.246-1.205 0-2.072-1.043-2.072-2.246s.867-2.246 2.072-2.246h1.571v1h-1.571ZM13.179 3.396a.5.5 0 0 1 .707 0l2.4 2.4a.5.5 0 0 1-.707.708l-2.4-2.4a.5.5 0 0 1 0-.708Z"
+          clipRule="evenodd"
+        />
+        <Path
+          fill={fill}
+          fillRule="evenodd"
+          d="M16.286 3.396a.5.5 0 0 1 0 .708l-2.4 2.4a.5.5 0 1 1-.707-.708l2.4-2.4a.5.5 0 0 1 .707 0ZM12.649 7.039a.5.5 0 0 1 .07.704 1.543 1.543 0 0 0-.29.544.5.5 0 0 1-.956-.29c.094-.31.243-.61.472-.889a.5.5 0 0 1 .704-.069Zm-.828 2.225a.5.5 0 0 1 .525.474l.008.152c.025.47.053 1.006-.003 1.556a.5.5 0 1 1-.995-.101c.048-.469.024-.927-.001-1.407l-.008-.149a.5.5 0 0 1 .474-.525Zm-.194 3.246a.5.5 0 0 1 .202.678 4.779 4.779 0 0 1-.51.755.5.5 0 0 1-.774-.635c.166-.201.298-.4.405-.597a.5.5 0 0 1 .677-.2ZM8.97 15.25a.7.7 0 1 0 0 1.4.7.7 0 0 0 0-1.4Zm-1.7.7a1.7 1.7 0 1 1 3.4 0 1.7 1.7 0 0 1-3.4 0Z"
+          clipRule="evenodd"
+        />
       </Svg>
-      <Text style={[styles.text, { color: fill }]}>{t("navbar.quest.label")}</Text>
-    </View>
+      {!hasNotification ? null : <View style={styles.notification} />}
+      <View style={styles.text}>
+        <TextTemplate type="l3b" color={fill} lineHeight={10}>
+          {t("navbar.quest.label")}
+        </TextTemplate>
+      </View>
+    </PressableWithDelay>
   );
-}
+};
+
+export default memo(Scroll);

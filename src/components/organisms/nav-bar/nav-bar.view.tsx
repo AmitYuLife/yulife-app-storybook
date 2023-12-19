@@ -28,13 +28,6 @@ const NavBarView = (props: NavBarProps) => {
     setHasLaidOut(true);
   }, []);
 
-  const handlePressOut = useCallback(
-    (onPress: () => void) => () => {
-      onPress();
-    },
-    []
-  );
-
   const notifications: Partial<Record<MobileTabs, boolean>> = useMemo(
     () => ({
       [MobileTabs.quests]: hasQuestNotification,
@@ -68,7 +61,6 @@ const NavBarView = (props: NavBarProps) => {
               isActive={isActive}
               isSuspended={Navigation.isNavBarRouteSuspended(label.id)}
               onPressIn={label.onPress}
-              onPressOut={handlePressOut(label.onPress)}
             />
           );
         })}
