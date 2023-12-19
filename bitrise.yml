@@ -517,7 +517,7 @@ workflows:
             $BITRISE_SOURCE_DIR/src/locale/translations/downloaded
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-all-overnight-70:
     before_run:
     - ios-detox-build-70
@@ -564,7 +564,7 @@ workflows:
         - access_token: $BITRISE_API_TOKEN
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-base-70:
     before_run:
     - ios-git-checkout
@@ -718,7 +718,7 @@ workflows:
         - webhook_url: $SLACK_WEBHOOK_URL
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-base-slow:
     before_run:
     - ios-git-checkout
@@ -852,7 +852,7 @@ workflows:
         - webhook_url: $SLACK_WEBHOOK_URL
     meta:
       bitrise.io:
-        stack: osx-xcode-13.4.x
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-dental-70:
     after_run:
     - ios-detox-run-base-70
@@ -865,7 +865,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-extended-1-70:
     after_run:
     - ios-detox-run-base-70
@@ -878,7 +878,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-extended-1-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -893,7 +893,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-extended-2-70:
     after_run:
     - ios-detox-run-base-70
@@ -906,7 +906,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-extended-2-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -921,7 +921,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-extended-3-70:
     after_run:
     - ios-detox-run-base-70
@@ -934,7 +934,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-extended-3-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -949,7 +949,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-extended-4-70:
     after_run:
     - ios-detox-run-base-70
@@ -962,7 +962,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-extended-4-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -977,7 +977,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-extended-5-70:
     after_run:
     - ios-detox-run-base-70
@@ -990,7 +990,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-extended-5-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1005,7 +1005,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-extended-6-70:
     after_run:
     - ios-detox-run-base-70
@@ -1018,7 +1018,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-extended-6-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1033,7 +1033,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-extended-all-70:
     before_run:
     - ios-detox-build-70
@@ -1070,7 +1070,7 @@ workflows:
         - access_token: $BITRISE_API_TOKEN
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-extended-all-70-JP:
     before_run:
     - ios-detox-build-70
@@ -1107,7 +1107,7 @@ workflows:
         - access_token: $BITRISE_API_TOKEN
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-pli-1-70:
     after_run:
     - ios-detox-run-base-70
@@ -1135,7 +1135,7 @@ workflows:
             echo "This is $DETOX_TEST_TYPE"
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-pli-2-70:
     after_run:
     - ios-detox-run-base-70
@@ -1163,7 +1163,7 @@ workflows:
             echo "This is $DETOX_TEST_TYPE"
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-sa-70:
     before_run:
     - ios-git-checkout
@@ -1300,7 +1300,7 @@ workflows:
         - webhook_url: $SLACK_WEBHOOK_URL
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-smoke-1-70:
     after_run:
     - ios-detox-run-base-70
@@ -1313,7 +1313,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-smoke-1-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1328,7 +1328,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-smoke-2-70:
     after_run:
     - ios-detox-run-base-70
@@ -1341,7 +1341,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-smoke-2-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1356,7 +1356,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-smoke-3-70:
     after_run:
     - ios-detox-run-base-70
@@ -1369,7 +1369,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-smoke-3-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1384,7 +1384,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-smoke-4-70:
     after_run:
     - ios-detox-run-base-70
@@ -1397,7 +1397,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-smoke-4-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1412,7 +1412,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-smoke-5-70:
     after_run:
     - ios-detox-run-base-70
@@ -1425,7 +1425,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-smoke-5-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1440,7 +1440,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-smoke-all-70:
     before_run:
     - ios-detox-build-70
@@ -1472,7 +1472,7 @@ workflows:
         - access_token: $BITRISE_API_TOKEN
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-smoke-all-70-JP:
     before_run:
     - ios-detox-build-70
@@ -1504,7 +1504,7 @@ workflows:
         - access_token: $BITRISE_API_TOKEN
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-14-pro-usa-70:
     before_run:
     - ios-git-checkout
@@ -1641,7 +1641,7 @@ workflows:
         - webhook_url: $SLACK_WEBHOOK_URL
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-se-smoke-1-70:
     after_run:
     - ios-detox-run-base-70
@@ -1654,7 +1654,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-se-smoke-2-70:
     after_run:
     - ios-detox-run-base-70
@@ -1667,7 +1667,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-se-smoke-3-70:
     after_run:
     - ios-detox-run-base-70
@@ -1680,7 +1680,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-se-smoke-4-70:
     after_run:
     - ios-detox-run-base-70
@@ -1693,7 +1693,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-se-smoke-5-70:
     after_run:
     - ios-detox-run-base-70
@@ -1706,7 +1706,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-run-iphone-se-smoke-all-70:
     before_run:
     - ios-detox-build-70
@@ -1738,7 +1738,7 @@ workflows:
         - access_token: $BITRISE_API_TOKEN
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-develop:
     description: Develop builds for iOS platform
     before_run:
@@ -2068,11 +2068,16 @@ workflows:
             # Set detox port for MongoDb
             echo "  port: 27018" >> /opt/homebrew/etc/mongod.conf
 
+            # TODO: Fix me (this is a temporary hack to fix the issue with mongodb not starting)
+            sed -i '' 's/@service_startup ||= formula\.plist_startup\.present\?/@service_startup ||= formula.plist_name.present\?/' /opt/homebrew/Library/Taps/homebrew/homebrew-services/lib/service/formula_wrapper.rb
             # Start MongoDb
             brew services start mongodb/brew/mongodb-community@5.0
 
             echo 'MongoDb config...'
             cat /opt/homebrew/etc/mongod.conf
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.3.x-ventura
   run-postgres:
     steps:
     - script@1:
@@ -2101,6 +2106,9 @@ workflows:
             psql -d postgres -U vagrant -h localhost -c "CREATE DATABASE yulife;"
             psql -d postgres -U vagrant -h localhost -c "CREATE USER yulife WITH PASSWORD 'yulife';"
             psql -d postgres -U vagrant -h localhost -c "ALTER USER yulife WITH SUPERUSER;"
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.3.x-ventura
   run-yulife-api-server:
     before_run:
     - run-postgres
@@ -2161,3 +2169,6 @@ workflows:
         inputs:
         - paths: ~/temp-repos/yulife-api-server/node_modules
         - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.3.x-ventura
