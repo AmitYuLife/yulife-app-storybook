@@ -10,11 +10,13 @@ interface Props extends GqlMultiSelect {
 }
 
 export const ContentItemMultiSelect = memo(({ choices, selectedValues, onChange }: Props) => {
+  const safeSelectedValues = selectedValues || [];
+
   const handleValueChange = useCallback(
     (value: string) => {
-      onChange(buildNewState(selectedValues, value));
+      onChange(buildNewState(safeSelectedValues, value));
     },
-    [onChange, selectedValues]
+    [onChange, safeSelectedValues]
   );
 
   return (
@@ -24,7 +26,7 @@ export const ContentItemMultiSelect = memo(({ choices, selectedValues, onChange 
           <View style={styles.innerWrapper} key={item.id + i}>
             <MultiSelectItem
               id={item.id}
-              active={selectedValues.includes(item.id)}
+              active={safeSelectedValues.includes(item.id)}
               iconUri={item.icon.uri}
               onPress={handleValueChange}
               label={item.label}
