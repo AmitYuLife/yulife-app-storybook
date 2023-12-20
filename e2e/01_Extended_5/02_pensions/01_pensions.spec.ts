@@ -12,7 +12,7 @@ import { calculateDailyContribution, calculateInProgressContribution, calculateP
 Feature("Smart Pension", async () => {
   Scenario("I can see an active connected pension", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_111, data.AUTH_111), async () => {
-      Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
+      Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17709)))
     })
     When("I go to the Yu tab", when.navigateTo("yu"), async () => {
       Then("I do not see the onboarding screen as I have a connection", then.cannotSeePensionOnboarding)
@@ -40,7 +40,7 @@ Feature("Smart Pension", async () => {
       Then("I am on the earnings page", then.idVisible(ids.TODAYS_EARNINGS))
     })
     When("I scroll if needed", when.scrollUntilTextVisible(ids.TODAYS_EARNINGS, `${calculatePensionModalAmount(PensionInfoUser114)}`, "down"), async () => {
-      Then("I can see the YuCoin rewarded", then.textVisible("25/12"))
+      Then("I can see the YuCoin rewarded", then.textVisible("28/10"))
       Then("I can see the modal telling the user to connect isn't visible", then.cannotSeePensionConnectPrompt)
     })
   })

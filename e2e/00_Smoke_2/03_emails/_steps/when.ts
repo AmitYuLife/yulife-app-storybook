@@ -46,8 +46,5 @@ export const followEmailLink = (emailAddress: string) => async () => {
     await device.launchApp({
       newInstance: true,
       url: link,
-      permissions: {
-        notifications: 'YES',
-      }
     });
 };

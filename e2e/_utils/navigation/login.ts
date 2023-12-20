@@ -65,12 +65,7 @@ export const logInAndGoToTab = (tab?: "yucoin" | "quests" | "leaderboard" | "rew
 
 export const restartAndLoginToTab = (tab?: "yucoin" | "quests" | "leaderboard" | "rewards" | "yu", customer = CUSTOMER_1, auth = AUTH_1, fitkitAuth = true) => async () => {
     await device.terminateApp();
-    await device.launchApp({
-        delete: true,
-        permissions: {
-            notifications: 'YES',
-        }
-    });
+    await device.launchApp({ delete: true });
     await loginAsUser(customer, auth, fitkitAuth)()
     await navigateViaID(NAV_BAR(tab))
 }

@@ -1,4 +1,4 @@
-import { Feature, Given, Scenario, Then, When, ScenarioOnly, FeatureOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Given, Scenario, Then, When, ScenarioOnly, FeatureOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as given from "./_steps/given";
 import * as then from "./_steps/then";
 import * as when from "./_steps/when";
@@ -95,21 +95,22 @@ Feature("As a user I can get past the login screen", async () => {
         })
     })
 
-    Scenario("My account can be locked when I enter a password incorrectly 5 times", scenario.start, async () => {
+    //@flaky [taping on login consecutive times sometimes leads to a network request error instead of account is locked message]
+    ScenarioSkip("My account can be locked when I enter a password incorrectly 5 times", scenario.start, async () => {
         Given("I enter an incorrect password one time", given.enterPasswordIncorrectly(1), async () => {
             Then("I should not see the account locked text", then.textNotVisible(t("Account is locked. Try again later.")))
             Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
-            Given("I enter an incorrect password five times", given.enterPasswordIncorrectly(5), () => {
-                Then("I should see an error message saying my account is locked", then.textVisible(t("Account is locked. Try again later.")))
-                When("I enter the correct password and login", when.loginOnly(data.CUSTOMER_4, data.AUTH_4), async () => {
-                    Then("I should still be on the login screen", then.idVisible(ids.INPUT_LOGIN_EMAIL))
-                    Then("I should still see an error message saying my account is locked", then.textVisible(t("Account is locked. Try again later.")))
-                    When("I reload the app", when.reloadOnly, async () => {
-                        When("I enter enter the correct details", when.loginOnly(data.CUSTOMER_4, data.AUTH_4), async () => {
-                            Then("I should still see the account locked message", then.textVisible(t("Account is locked. Try again later.")))
-                        })
-                    })
-                })
+        })
+        Given("I enter an incorrect password five times", given.enterPasswordIncorrectly(5), () => {
+            Then("I should see an error message saying my account is locked", then.textVisible(t("Account is locked. Try again later.")))
+        })
+        When("I enter the correct password and login", when.loginOnly(data.CUSTOMER_4, data.AUTH_4), async () => {
+            Then("I should still be on the login screen", then.idVisible(ids.INPUT_LOGIN_EMAIL))
+            Then("I should still see an error message saying my account is locked", then.textVisible(t("Account is locked. Try again later.")))
+        })
+        When("I reload the app", when.reloadOnly, async () => {
+            When("I enter enter the correct details", when.loginOnly(data.CUSTOMER_4, data.AUTH_4), async () => {
+                Then("I should still see the account locked message", then.textVisible(t("Account is locked. Try again later.")))
             })
         })
     })

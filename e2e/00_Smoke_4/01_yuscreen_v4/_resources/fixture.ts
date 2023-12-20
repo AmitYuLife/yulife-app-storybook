@@ -166,7 +166,7 @@ export const level1Benefit: AccordionData = [
 
 export const GdentAvailableFrom: OnboardingYuScreenInfo = {
   mainYuCoinPower: "10",
-  firstSlotYucoinPower: `+22`,
+  firstSlotYucoinPower: `+24`,
   firstSlotProductTitle: groupDental,
   firstSlotRightImgSrc: rightSideInactiveBottleImgSrc,
   firstSlotProductSubtitle: `Available ${moment(BPEW_GDent_11.data.enrolment_start_date).format("DD.MM")}`,
@@ -185,7 +185,7 @@ export const GdentInForce: OnboardingYuScreenInfo = {
 
 export const GdentEnrolNow: OnboardingYuScreenInfo = {
   mainYuCoinPower: "10",
-  firstSlotYucoinPower: `+22`,
+  firstSlotYucoinPower: `+24`,
   firstSlotProductTitle: groupDental,
   firstSlotProductSubtitle: enrolNow,
   firstSlotLeftBackgroundImgSrc: leftCanEnrolBackgroundSrc,

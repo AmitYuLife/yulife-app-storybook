@@ -122,12 +122,13 @@ export const selectAndCompleteMeditationChallengeWithoutMedia = (mindfulnessdata
     await navigateViaText(t("Collect"))
 }
 
-export const selectAndCompleteMeditationChallengeWithMedia = (mindfulnessdata: number) => async () => { 
+export const selectAndCompleteMeditationChallengeWithMedia = (mindfulnessdata: number) => async () => {
     await navigateViaID(CHALLENGE_TILE("Meditation"))
     await navigateViaText(t("Take challenge"))
     await swipeFromText(t("Or use an app"), "up", "slow")()
     await tapText(t("Use a different app"))()
-    await tapText(t("maybe later"))()
+    // @update ["maybe later" is missing]
+    // await tapText(t("maybe later"))()
     await sendMindfulnessData(mindfulnessdata, 75000)()
     await waitFor(element(by.text(t("Collect")))).toBeVisible().withTimeout(5000)
     await navigateViaText(t("Collect"))

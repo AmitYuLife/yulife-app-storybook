@@ -13,10 +13,5 @@ export const start = async () => {
     surgeDataManager.addData(data as any)
     await device.terminateApp();
     await surgeDataManager.reseed();
-    await device.launchApp({
-        delete: true,
-        permissions: {
-            notifications: 'YES',
-        }
-    });
+    await device.launchApp({ delete: true });
 }

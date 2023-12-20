@@ -3,7 +3,7 @@ import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, BUTTON_LOGIN } from "@ids";
 export { authoriseFitkit, sendSteps, addCyclingData, sendMindfulnessData } from "@socket";
 import * as when from "./when";
 import { sendReduxEvent } from "@socket";
-import { navigateViaText, navigation, tapText } from "@navigation"
+import { navigateViaText, navigation, tapText, wait } from "@navigation"
 import { AUTH_1, CUSTOMER_1, CUSTOMER_4 } from "@data";
 import { selectRegionIfVisible } from "_utils/navigation/login";
 import { getLocalisedString as t } from "@i18n";
@@ -78,6 +78,7 @@ export const enterPasswordIncorrectly = (attempts: number, region = "United King
         await passwordField.tap();
         await passwordField.replaceText(`p_w_${i}`);
         await loginButton.tap();
+        wait(4000)
     }
 }
 
