@@ -269,6 +269,7 @@ export type AssignProductToTeamMemberResult = {
 export type AssignProductToTeamMemberResultError = {
   __typename?: "AssignProductToTeamMemberResultError";
   inputId?: Maybe<Scalars["String"]["output"]>;
+  label?: Maybe<Scalars["String"]["output"]>;
   message?: Maybe<Scalars["String"]["output"]>;
   path?: Maybe<Scalars["String"]["output"]>;
   rowNumber?: Maybe<Scalars["Int"]["output"]>;
@@ -830,6 +831,7 @@ export type ContentItem =
   | ContentItemSelectedPackageCard
   | ContentItemSexPicker
   | ContentItemShowHideBalance
+  | ContentItemSliderInput
   | ContentItemStages
   | ContentItemSwitch
   | ContentItemTable
@@ -2199,6 +2201,17 @@ export type ContentItemShowHideBalance = {
   wrapperStyles?: Maybe<Array<SduiStyle>>;
 };
 
+export type ContentItemSliderInput = {
+  __typename?: "ContentItemSliderInput";
+  answerKey: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
+  leftLabel: Scalars["String"]["output"];
+  maxValue: Scalars["Float"]["output"];
+  minValue: Scalars["Float"]["output"];
+  rightLabel: Scalars["String"]["output"];
+  styles?: Maybe<Array<SduiStyle>>;
+};
+
 export type ContentItemStages = {
   __typename?: "ContentItemStages";
   id: Scalars["ID"]["output"];
@@ -3555,6 +3568,39 @@ export type HrisEmployeeFilter = {
   query: Scalars["String"]["output"];
 };
 
+export type HrisEmployeesFilterInput = {
+  rowType?: InputMaybe<MemberDataRowType>;
+};
+
+export type HrisMemberDataImport = {
+  __typename?: "HrisMemberDataImport";
+  rowCounts: HrisMemberDataImportRowCounts;
+  rows: Array<HrisMemberDataImportRow>;
+};
+
+export type HrisMemberDataImportIgnoreRow = {
+  __typename?: "HrisMemberDataImportIgnoreRow";
+  message?: Maybe<Scalars["String"]["output"]>;
+  previewResult: MemberData;
+  rowCreatedAt: Scalars["String"]["output"];
+  rowId: Scalars["String"]["output"];
+  rowType: MemberDataRowType;
+};
+
+export type HrisMemberDataImportRow =
+  | HrisMemberDataImportIgnoreRow
+  | MemberDataImportInsertRow
+  | MemberDataImportUpdateRow;
+
+export type HrisMemberDataImportRowCounts = {
+  __typename?: "HrisMemberDataImportRowCounts";
+  ignores: Scalars["Int"]["output"];
+  inserts: Scalars["Int"]["output"];
+  /** errors: Int! TODO */
+  total: Scalars["Int"]["output"];
+  updates: Scalars["Int"]["output"];
+};
+
 export type HrisSampleItem = {
   __typename?: "HrisSampleItem";
   percentSatisfied: Scalars["Int"]["output"];
@@ -3862,6 +3908,85 @@ export type MedicalPractice = {
   /** List of practicioners available for a practice */
   practicioners?: Maybe<Array<Maybe<Practicioner>>>;
 };
+
+export type MemberData = {
+  __typename?: "MemberData";
+  baseSalary?: Maybe<Scalars["Float"]["output"]>;
+  baseSalaryCurrency?: Maybe<Scalars["String"]["output"]>;
+  contractType?: Maybe<Scalars["String"]["output"]>;
+  dateOfBirth?: Maybe<Scalars["String"]["output"]>;
+  email?: Maybe<Scalars["String"]["output"]>;
+  employmentStartDate?: Maybe<Scalars["String"]["output"]>;
+  employmentStatus?: Maybe<Scalars["String"]["output"]>;
+  firstName?: Maybe<Scalars["String"]["output"]>;
+  gender?: Maybe<Scalars["String"]["output"]>;
+  inviteCode?: Maybe<Scalars["String"]["output"]>;
+  jobTitle?: Maybe<Scalars["String"]["output"]>;
+  lastName?: Maybe<Scalars["String"]["output"]>;
+  niNumber?: Maybe<Scalars["String"]["output"]>;
+  secondaryEmail?: Maybe<Scalars["String"]["output"]>;
+  workLocationCountry?: Maybe<Scalars["String"]["output"]>;
+  workLocationName?: Maybe<Scalars["String"]["output"]>;
+  workLocationPostcode?: Maybe<Scalars["String"]["output"]>;
+};
+
+export enum MemberDataFieldNames {
+  BaseSalary = "baseSalary",
+  BaseSalaryCurrency = "baseSalaryCurrency",
+  ContractType = "contractType",
+  DateOfBirth = "dateOfBirth",
+  Email = "email",
+  EmploymentStartDate = "employmentStartDate",
+  EmploymentStatus = "employmentStatus",
+  FirstName = "firstName",
+  Gender = "gender",
+  InviteCode = "inviteCode",
+  JobTitle = "jobTitle",
+  LastName = "lastName",
+  NiNumber = "niNumber",
+  SecondaryEmail = "secondaryEmail",
+  WorkLocationCountry = "workLocationCountry",
+  WorkLocationName = "workLocationName",
+  WorkLocationPostcode = "workLocationPostcode",
+}
+
+export type MemberDataImportInsertRow = {
+  __typename?: "MemberDataImportInsertRow";
+  previewResult: MemberData;
+  rowCreatedAt: Scalars["String"]["output"];
+  rowId: Scalars["String"]["output"];
+  rowType: MemberDataRowType;
+};
+
+export type MemberDataImportProcessResult = {
+  __typename?: "MemberDataImportProcessResult";
+  businessEmployeeId: Scalars["String"]["output"];
+  customerId: Scalars["String"]["output"];
+  persisted: Scalars["Boolean"]["output"];
+};
+
+export type MemberDataImportRow = MemberDataImportInsertRow | MemberDataImportUpdateRow;
+
+export type MemberDataImportUpdate = {
+  __typename?: "MemberDataImportUpdate";
+  after: MemberData;
+  before: MemberData;
+  updatedFields: Array<MemberDataFieldNames>;
+};
+
+export type MemberDataImportUpdateRow = {
+  __typename?: "MemberDataImportUpdateRow";
+  previewResult: MemberDataImportUpdate;
+  rowCreatedAt: Scalars["String"]["output"];
+  rowId: Scalars["String"]["output"];
+  rowType: MemberDataRowType;
+};
+
+export enum MemberDataRowType {
+  Ignore = "ignore",
+  Insert = "insert",
+  Update = "update",
+}
 
 export type MemberOnboardingYuCoinProgress = {
   __typename?: "MemberOnboardingYuCoinProgress";
@@ -4270,7 +4395,6 @@ export type Mutation = {
   testDuelPushNotifications?: Maybe<Scalars["Boolean"]["output"]>;
   testEmailReminder?: Maybe<EmailReminderRecipientsAndDates>;
   testGroupPremium?: Maybe<TestGroupPremiumResponse>;
-  testInviteEmployeesWithFutureJoinDate?: Maybe<Scalars["Boolean"]["output"]>;
   testPaymentCharge?: Maybe<Scalars["Boolean"]["output"]>;
   testPaymentChargeByBusiness?: Maybe<Scalars["Boolean"]["output"]>;
   testPushNotification?: Maybe<Scalars["Boolean"]["output"]>;
@@ -4823,10 +4947,6 @@ export type MutationTestGroupPremiumArgs = {
   unitRate: Scalars["Float"]["input"];
 };
 
-export type MutationTestInviteEmployeesWithFutureJoinDateArgs = {
-  inviteDate?: InputMaybe<Scalars["String"]["input"]>;
-};
-
 export type MutationTestPaymentChargeArgs = {
   dueDate?: InputMaybe<Scalars["String"]["input"]>;
   invoiceId?: InputMaybe<Scalars["String"]["input"]>;
@@ -5241,7 +5361,7 @@ export type PreviewColumn = {
 export type PricingConfiguration = {
   __typename?: "PricingConfiguration";
   configuration: Scalars["String"]["output"];
-  value: Scalars["Int"]["output"];
+  value: Scalars["String"]["output"];
 };
 
 export type Product = {
@@ -5466,6 +5586,7 @@ export type Query = {
   getGoalDetails?: Maybe<GoalDetails>;
   getHRBusinessAccessUsers: Array<BusinessAccessUser>;
   getHrisConnection: HrisConnection;
+  getHrisEmployeeRows: HrisMemberDataImport;
   getHrisSyncHistory: HrisSyncList;
   getImgixUploadURL?: Maybe<ImgixUploadInfo>;
   getInAppYuniversityCourseModuleDetails: InAppYuniversityCourseModuleDetails;
@@ -5556,6 +5677,7 @@ export type Query = {
   getTeamDashboardDates: Array<TeamDashboardDates>;
   getTeamDashboardGoals: TeamDashboardGoals;
   getTeamDidYouKnowInsights: TeamAnalyticsDashboardDidYouKnowSummary;
+  getTeamMemberFields: TeamEmployeeFields;
   getTeamMemberForm: TeamMemberForm;
   getTeamMemberProfile: TeamEmployeeProfile;
   getTeamProductInformation: TeamProductInformation;
@@ -5770,6 +5892,13 @@ export type QueryGetEngagementDashboardPeriodWrapUpArgs = {
 export type QueryGetGoalDetailsArgs = {
   id: Scalars["ID"]["input"];
   stageId?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetHrisEmployeeRowsArgs = {
+  filter?: InputMaybe<HrisEmployeesFilterInput>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -7191,6 +7320,11 @@ export type TeamEmployeeField = {
   selectedOption?: Maybe<Scalars["String"]["output"]>;
   tooltip?: Maybe<Scalars["String"]["output"]>;
   value?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type TeamEmployeeFields = {
+  __typename?: "TeamEmployeeFields";
+  sections: Array<TeamEmployeeSection>;
 };
 
 export type TeamEmployeeProduct = {
@@ -9522,6 +9656,54 @@ export type GetMediaQuery = {
   } | null> | null;
 };
 
+export type GetMobileWhatsNewModalQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetMobileWhatsNewModalQuery = {
+  __typename?: "Query";
+  getMobileWhatsNewModal?: {
+    __typename?: "MobileWhatsNewModal";
+    id: MobileOnboardingStepPerformed;
+    title: string;
+    autoPlaySpeedMs: number;
+    dismissMinVisibleIndex: number;
+    ctaMinVisibleIndex?: number | null;
+    refetchQueries?: Array<string> | null;
+    theme: {
+      __typename?: "MobileWhatsNewModalTheme";
+      statusBar?: string | null;
+      primaryColor: string;
+      titleColor: string;
+      progressBarForegroundColor: string;
+      progressBarBackgroundColor: string;
+    };
+    button?: {
+      __typename?: "MobileWhatsNewButton";
+      label: string;
+      onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+    } | null;
+    close: {
+      __typename?: "MobileWhatsNewModalClose";
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    };
+    items: Array<{
+      __typename?: "MobileWhatsNewModalItem";
+      id: string;
+      heading: string;
+      paragraph: string;
+      styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+      backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      lottie?: { __typename?: "MobileWhatsNewModalItemLottie"; jsonUri: string; aspectRatio: number } | null;
+    }>;
+  } | null;
+};
+
+export type PerformMobileOnboardingStepMutationVariables = Exact<{
+  step?: InputMaybe<MobileOnboardingStepPerformed>;
+}>;
+
+export type PerformMobileOnboardingStepMutation = { __typename?: "Mutation"; performMobileOnboardingStep: boolean };
+
 export type ConfirmPaymentCardMutationVariables = Exact<{
   paymentId: Scalars["String"]["input"];
 }>;
@@ -11303,6 +11485,180 @@ export const GetMediaDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMediaQuery, GetMediaQueryVariables>;
+export const GetMobileWhatsNewModalDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileWhatsNewModal" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getMobileWhatsNewModal" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "autoPlaySpeedMs" } },
+                { kind: "Field", name: { kind: "Name", value: "dismissMinVisibleIndex" } },
+                { kind: "Field", name: { kind: "Name", value: "ctaMinVisibleIndex" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "theme" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "statusBar" } },
+                      { kind: "Field", name: { kind: "Name", value: "primaryColor" } },
+                      { kind: "Field", name: { kind: "Name", value: "titleColor" } },
+                      { kind: "Field", name: { kind: "Name", value: "progressBarForegroundColor" } },
+                      { kind: "Field", name: { kind: "Name", value: "progressBarBackgroundColor" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "button" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "onPress" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "type" } },
+                            { kind: "Field", name: { kind: "Name", value: "payload" } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "close" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "icon" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "uri" } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "onPress" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "type" } },
+                            { kind: "Field", name: { kind: "Name", value: "payload" } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "heading" } },
+                      { kind: "Field", name: { kind: "Name", value: "paragraph" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "styles" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "property" } },
+                            { kind: "Field", name: { kind: "Name", value: "value" } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "backgroundImage" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "uri" } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "lottie" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "jsonUri" } },
+                            { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "refetchQueries" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetMobileWhatsNewModalQuery, GetMobileWhatsNewModalQueryVariables>;
+export const PerformMobileOnboardingStepDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "PerformMobileOnboardingStep" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "step" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "MobileOnboardingStepPerformed" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "performMobileOnboardingStep" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "step" },
+                value: { kind: "Variable", name: { kind: "Name", value: "step" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<PerformMobileOnboardingStepMutation, PerformMobileOnboardingStepMutationVariables>;
 export const ConfirmPaymentCardDocument = {
   kind: "Document",
   definitions: [

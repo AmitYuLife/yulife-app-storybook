@@ -3,13 +3,7 @@ import { View, Image } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { setOnboardingReferralsBadge } from "@redux/onboarding/onboarding.actions";
 import { useMutation } from "@apollo/client";
-import { gql } from "@graphql/__generated";
-import { MobileOnboardingStepPerformed } from "@graphql/_core/schema/globalTypes";
-import { GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP } from "@graphql/onboardingSteps/performMobileOnboardingStep.gql";
-import {
-  PerformMobileOnboardingStep,
-  PerformMobileOnboardingStepVariables,
-} from "@graphql/_core/schema/PerformMobileOnboardingStep";
+import { MobileOnboardingStepPerformed, gql } from "@graphql/__generated";
 import { useDebouncedQuery } from "@hooks";
 import Logger from "@services/logging/logger";
 import { Popover } from "@molecules";
@@ -30,9 +24,7 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
       fetchPolicy: "network-only",
     }
   );
-  const [performOnboardingStep] = useMutation<PerformMobileOnboardingStep, PerformMobileOnboardingStepVariables>(
-    GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP
-  );
+  const [performOnboardingStep] = useMutation(gql("PerformMobileOnboardingStepDocument"));
 
   const [popoverVisible, setPopoverVisible] = useState(false);
   const dispatch = useDispatch();
@@ -44,7 +36,7 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
     try {
       setPopoverVisible(true);
       dispatch(setOnboardingReferralsBadge(true));
-      await performOnboardingStep({ variables: { step: id as unknown as MobileOnboardingStepPerformed } });
+      await performOnboardingStep({ variables: { step: id as unknown as MobileOnboardingStepPerformed } }); //remove unknown when we finish to refactor getYuScreen.gql
       await Storage.setItem(StorageKey.referralsPopover, "true");
     } catch (e) {
       Logger.error(e, { file: "referrals-popover" });

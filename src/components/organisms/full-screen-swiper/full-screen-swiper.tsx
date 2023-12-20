@@ -19,7 +19,7 @@ interface Props {
   close: {
     icon: {
       id: string;
-      uri: string;
+      uri?: string;
     };
     onPress: (currentIndex: number) => void;
   };

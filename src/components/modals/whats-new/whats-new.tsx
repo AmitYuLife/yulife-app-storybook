@@ -1,19 +1,18 @@
 import React, { useMemo } from "react";
 import { FullScreenSwiper } from "@organisms/full-screen-swiper/full-screen-swiper";
-import { GetMobileWhatsNewModal } from "@graphql/_core/schema";
 import { useDispatch } from "react-redux";
 import { useMutation } from "@apollo/client";
-import { GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP } from "@graphql/onboardingSteps/performMobileOnboardingStep.gql";
 import { Navigation } from "@navigation/main";
 import { filterRefetchQueries } from "@graphql/_core/filterRefetchQueries";
+import { GetMobileWhatsNewModalQuery, gql } from "@graphql/__generated";
 
-type ModalProps = GetMobileWhatsNewModal["getMobileWhatsNewModal"] & {
+type ModalProps = GetMobileWhatsNewModalQuery["getMobileWhatsNewModal"] & {
   componentId: string;
 };
 
 const WhatsNewModal = (props: ModalProps) => {
   const dispatch = useDispatch();
-  const [performMobileOnboardingStep] = useMutation(GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP);
+  const [performMobileOnboardingStep] = useMutation(gql("PerformMobileOnboardingStepDocument"));
 
   const performMobileOnboardingStepArgs = useMemo(() => {
     return {

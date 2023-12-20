@@ -13,7 +13,7 @@ export interface IPageItem {
   paragraph: string;
   styles?: Array<{ property: string; value: string }>;
   backgroundImage: {
-    uri: string;
+    uri?: string;
   };
   lottie?: {
     jsonUri: string;
