@@ -29,6 +29,7 @@ export interface GetWellbeingHubItem_wellbeingHubItem_icon {
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemTextInput {
   __typename:
     | "ContentItemTextInput"
+    | "ContentItemTextAreaInput"
     | "ContentItemSliderInput"
     | "ContentItemRowIconTextBanner"
     | "ContentItemLottie"

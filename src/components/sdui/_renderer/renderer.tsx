@@ -26,6 +26,7 @@ import {
   ContentItemTextSdui,
   ContentItemHint,
   ContentItemSliderInput,
+  ContentItemTextAreaInput,
 } from "@components/sdui";
 import { ContentItem } from "@graphql/_core/schema";
 
@@ -55,6 +56,7 @@ export const componentMap = {
   ContentItemDatePicker: ContentItemDatePickerSdui,
   ContentItemHint,
   ContentItemSliderInput,
+  ContentItemTextAreaInput,
 } as Record<string, (props: any) => JSX.Element>;
 
 export const renderItemContent = (item: ContentItem): JSX.Element | null => {

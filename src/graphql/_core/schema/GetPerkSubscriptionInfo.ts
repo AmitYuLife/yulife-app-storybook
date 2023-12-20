@@ -18,6 +18,7 @@ import {
 export interface GetPerkSubscriptionInfo_getPerkSubscriptionInfo_content_ContentItemTextInput {
   __typename:
     | "ContentItemTextInput"
+    | "ContentItemTextAreaInput"
     | "ContentItemSliderInput"
     | "ContentItemRowIconTextBanner"
     | "ContentItemLottie"

@@ -1047,6 +1047,21 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemSliderInput
   styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemSliderInput_styles[] | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextAreaInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextAreaInput {
+  __typename: "ContentItemTextAreaInput";
+  id: string;
+  answerKey: string;
+  placeholder: string | null;
+  numberOfLines: number | null;
+  maxLength: number | null;
+  styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextAreaInput_styles[] | null;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemProcessingTimer
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemMarkdown
@@ -1074,7 +1089,8 @@ export type GetSduiStaticStep_getSduiStaticStep_body =
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemShowHideBalance
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemDatePicker
   | GetSduiStaticStep_getSduiStaticStep_body_ContentItemHint
-  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemSliderInput;
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemSliderInput
+  | GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextAreaInput;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProcessingTimer {
   __typename:
@@ -2114,6 +2130,21 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSl
   styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSliderInput_styles[] | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextAreaInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextAreaInput {
+  __typename: "ContentItemTextAreaInput";
+  id: string;
+  answerKey: string;
+  placeholder: string | null;
+  numberOfLines: number | null;
+  maxLength: number | null;
+  styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextAreaInput_styles[] | null;
+}
+
 export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemProcessingTimer
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemMarkdown
@@ -2141,7 +2172,8 @@ export type GetSduiStaticStep_getSduiStaticStep_absolute_item =
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemShowHideBalance
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemDatePicker
   | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemHint
-  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSliderInput;
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSliderInput
+  | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextAreaInput;
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_styles {
   property: string;

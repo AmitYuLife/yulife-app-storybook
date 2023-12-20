@@ -13,6 +13,7 @@ export * from "./contentItemProgressBar/contentItemProgressBar";
 export * from "./contentItemProgressSteps/contentItemProgressSteps";
 export * from "./contentItemTextInput/contentItemTextInput";
 export * from "./contentItemSliderInput/contentItemSliderInput";
+export * from "./contentItemTextAreaInput/contentItemTextAreaInput";
 export * from "./contentItemDatePicker/contentItemDatePicker";
 export * from "./contentItemRadio/contentItemRadio";
 export * from "./contentItemFaqs/contentItemFaqs";

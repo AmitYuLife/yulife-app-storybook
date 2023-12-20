@@ -93,6 +93,7 @@ export * from "./ContentItemShowHideBalance";
 export * from "./ContentItemSliderInput";
 export * from "./ContentItemSwitch";
 export * from "./ContentItemText";
+export * from "./ContentItemTextAreaInput";
 export * from "./ContentItemTextGroup";
 export * from "./ContentItemTextInput";
 export * from "./ContentItemWrapper";

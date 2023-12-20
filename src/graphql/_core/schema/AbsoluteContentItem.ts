@@ -1035,6 +1035,21 @@ export interface AbsoluteContentItem_item_ContentItemSliderInput {
   styles: AbsoluteContentItem_item_ContentItemSliderInput_styles[] | null;
 }
 
+export interface AbsoluteContentItem_item_ContentItemTextAreaInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemTextAreaInput {
+  __typename: "ContentItemTextAreaInput";
+  id: string;
+  answerKey: string;
+  placeholder: string | null;
+  numberOfLines: number | null;
+  maxLength: number | null;
+  styles: AbsoluteContentItem_item_ContentItemTextAreaInput_styles[] | null;
+}
+
 export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemProcessingTimer
   | AbsoluteContentItem_item_ContentItemMarkdown
@@ -1062,7 +1077,8 @@ export type AbsoluteContentItem_item =
   | AbsoluteContentItem_item_ContentItemShowHideBalance
   | AbsoluteContentItem_item_ContentItemDatePicker
   | AbsoluteContentItem_item_ContentItemHint
-  | AbsoluteContentItem_item_ContentItemSliderInput;
+  | AbsoluteContentItem_item_ContentItemSliderInput
+  | AbsoluteContentItem_item_ContentItemTextAreaInput;
 
 export interface AbsoluteContentItem_styles {
   property: string;

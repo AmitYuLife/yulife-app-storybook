@@ -32,6 +32,7 @@ export interface GetRewardItemDetails_getRewardItemDetails_availableDenomination
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemTextInput {
   __typename:
     | "ContentItemTextInput"
+    | "ContentItemTextAreaInput"
     | "ContentItemSliderInput"
     | "ContentItemRowIconTextBanner"
     | "ContentItemLottie"
