@@ -20,8 +20,8 @@ import {
 } from "./daily-meditation.actions";
 import { PassiveMeditationMilestones, ExchangeRateMeditation as ExchangeRate } from "./daily-meditation.selectors";
 import { SyncAction } from "@redux/_core/types";
-import { UPDATE_CURRENT_DATE } from "@redux/app/app.actions";
 import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
+import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
 
 export interface IAppDailyMeditationProps {
   duration: number;

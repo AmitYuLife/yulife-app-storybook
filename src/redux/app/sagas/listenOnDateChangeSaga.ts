@@ -1,8 +1,8 @@
 import { call, put, take } from "redux-saga/effects";
 import { dateChangeChannel } from "../app.channels";
-import { updateCurrentDate } from "../app.actions";
 import moment from "moment";
 import { DATE_FORMAT } from "@utils";
+import { updateCurrentDate } from "@redux/device/device.actions";
 
 export default function* listenOnDateChangeSaga() {
   const channel: ReturnType<typeof dateChangeChannel> = yield call(dateChangeChannel);

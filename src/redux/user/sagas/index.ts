@@ -1,11 +1,5 @@
 import { takeLatest } from "redux-saga/effects";
-import {
-  AUTHENTICATED,
-  SET_MAIN_ROOT,
-  UPDATE_APP_STATE,
-  UPDATE_CURRENT_DATE,
-  UPDATE_CURRENT_ROUTE,
-} from "../../app/app.actions";
+import { AUTHENTICATED, SET_MAIN_ROOT, UPDATE_APP_STATE, UPDATE_CURRENT_ROUTE } from "../../app/app.actions";
 import { CHALLENGE_RESET_SUCCESS } from "../../levels/levels.actions";
 import {
   FITKIT_CONSENT_AUTHORISED,
@@ -48,7 +42,7 @@ import markNotificationsAsViewedByType from "./markNotificationsAsViewedByType.s
 import showEventFinishDialog from "./showEventFinishedDialog.saga";
 import getAllUserDataSaga from "./getAllUserData.saga";
 import changeUserLocaleSaga from "./changeUserLocale.saga";
-import { SET_DEVICE_LOCALE } from "@redux/device/device.actions";
+import { SET_DEVICE_LOCALE, UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
 import fetchUserDataOnAuthenticatedSaga from "./fetchUserDataOnAuthenticated.saga";
 import { generateUserDataSaga } from "../user.helpers";
 import getUserOnUpdatedDateSaga from "./getUserOnUpdatedDateSaga.saga";

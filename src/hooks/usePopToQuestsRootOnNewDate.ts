@@ -4,7 +4,7 @@ import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { useSelector } from "react-redux";
 import { getActiveLevel, getCurrentLevel } from "@redux/levels/levels.selectors";
-import { getCurrentDateState } from "@redux/app/app.selectors";
+import { getCurrentDateState } from "@redux/device/device.selectors";
 
 export const usePopToQuestsRootOnNewDate = (levelOnPage: number) => {
   const { enablePopToRootOnDateChange } = useUserFeatures();

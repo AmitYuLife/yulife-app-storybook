@@ -31,3 +31,6 @@ export const getPushNotifications = createSelector(reducer, pushNotificationsSel
 
 const isFreshlyInstalledSelector = (state: State) => state.isAppFreshlyInstalled;
 export const getIsAppFreshlyInstalled = createSelector(reducer, isFreshlyInstalledSelector);
+
+const currentDateSelector = (state: State): string => state.currentDate;
+export const getCurrentDateState = createSelector(reducer, currentDateSelector);

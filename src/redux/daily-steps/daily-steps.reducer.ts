@@ -29,7 +29,7 @@ import {
 } from "./daily-steps.actions";
 import { SyncAction } from "@redux/_core/types";
 import { ExchangeRate, PassiveStepsMilestones } from "./daily-steps.selectors";
-import { UPDATE_CURRENT_DATE } from "@redux/app/app.actions";
+import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
 
 const MAX_ANOMALY_DETECTION_WINDOW_MS = 10000; // in ms
 

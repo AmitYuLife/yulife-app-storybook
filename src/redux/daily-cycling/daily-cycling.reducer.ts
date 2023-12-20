@@ -21,8 +21,8 @@ import {
   UPDATE_DAILY_CYCLING_DISTANCE_MEASUREMENT_TYPE,
 } from "./daily-cycling.actions";
 import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
-import { UPDATE_CURRENT_DATE } from "@redux/app/app.actions";
 import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
+import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
 
 export interface IDailyCyclingStore {
   cyclingMeasurement: DistanceMeasurementType;

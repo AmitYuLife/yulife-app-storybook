@@ -20,9 +20,10 @@ import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/g
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { usePopToQuestsRootOnNewDate, useQueryOnScreenSeen } from "@hooks";
 import { challengeStartAction } from "@redux/levels/levels.actions";
-import { getCurrentDateState, getRouteState } from "@redux/app/app.selectors";
+import { getRouteState } from "@redux/app/app.selectors";
 import { getActiveYudokuLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
 import { GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS } from "@graphql/socialGroupLeaderboard/getMobileSocialGroupLeaderboardItems";
+import { getCurrentDateState } from "@redux/device/device.selectors";
 
 interface IProps {
   componentId: string;
