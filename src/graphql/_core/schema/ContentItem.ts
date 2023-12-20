@@ -1035,6 +1035,21 @@ export interface ContentItem_ContentItemSliderInput {
   styles: ContentItem_ContentItemSliderInput_styles[] | null;
 }
 
+export interface ContentItem_ContentItemTextAreaInput_styles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemTextAreaInput {
+  __typename: "ContentItemTextAreaInput";
+  id: string;
+  answerKey: string;
+  placeholder: string | null;
+  numberOfLines: number | null;
+  maxLength: number | null;
+  styles: ContentItem_ContentItemTextAreaInput_styles[] | null;
+}
+
 export type ContentItem =
   | ContentItem_ContentItemProcessingTimer
   | ContentItem_ContentItemMarkdown
@@ -1062,4 +1077,5 @@ export type ContentItem =
   | ContentItem_ContentItemShowHideBalance
   | ContentItem_ContentItemDatePicker
   | ContentItem_ContentItemHint
-  | ContentItem_ContentItemSliderInput;
+  | ContentItem_ContentItemSliderInput
+  | ContentItem_ContentItemTextAreaInput;

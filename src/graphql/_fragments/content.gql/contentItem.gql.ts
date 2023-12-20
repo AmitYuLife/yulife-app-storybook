@@ -25,6 +25,7 @@ import { GQL_FRAGMENT_CONTENT_ITEM_SHOW_HIDE_BALANCE } from "./contentItemShowHi
 import { GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER } from "./contentItemDatePicker.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_HINT } from "./contentItemHint.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_SLIDER_INPUT } from "./contentItemSliderInput.gql";
+import { GQL_FRAGMENT_CONTENT_ITEM_TEXT_AREA_INPUT } from "./contentItemTextAreaInput.gql";
 
 export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN}
@@ -53,6 +54,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_SHOW_HIDE_BALANCE}
   ${GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER}
   ${GQL_FRAGMENT_CONTENT_ITEM_HINT}
+  ${GQL_FRAGMENT_CONTENT_ITEM_TEXT_AREA_INPUT}
 
   fragment ContentItem on ContentItem {
     __typename
@@ -133,6 +135,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
     }
     ... on ContentItemSliderInput {
       ...ContentItemSliderInput
+    }
+    ... on ContentItemTextAreaInput {
+      ...ContentItemTextAreaInput
     }
   }
 `;

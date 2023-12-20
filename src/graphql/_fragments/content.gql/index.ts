@@ -61,6 +61,7 @@ export * from "./contentItemSelectedPackageCards.gql";
 export * from "./contentItemText.gql";
 export * from "./contentItemTextInput.gql";
 export * from "./contentItemSliderInput.gql";
+export * from "./contentItemTextAreaInput.gql";
 export * from "./contentItemYuCoinPower.gql";
 export * from "./yuScreenItemSlot.gql";
 export * from "./contentItemForm.gql";
