@@ -39,8 +39,9 @@ export const availableToYou = "Available to you"
 //Footer copy texts
 export const Guardian_Video_Title = "Watch the following Guardian video to learn more:"
 export const Legal_Stuff = "The legal stuff"
+export const Legal_Information = "Legal information"
 export const Footer_Text_Part1 = "*2021 Guardian reporting and January 2021 Fair Health Data"
-export const Footer_Text_Part2 = "Guardian insurance coverage options available through your employer are included, but do not reflect your individual elections."
+export const Footer_Text_Part2 = "The insurance coverage options offered by your employer through Guardian are included, but do not reflect your individual choices."
 export const Footer_Text_Part3 = "Refer to your enrollment site to make your benefit selection."
 
 //Images URL in product cards
@@ -103,8 +104,8 @@ export const Guardian_DENPPO:USProductData = {
     legalStuff_3: `Guardian® is a registered trademark of The Guardian Life Insurance Company of America and is used with express permission. \n©Copyright ${year} The Guardian Life Insurance Company of America.`,
     middleImage: "https://yulife-develop.imgix.net/yuscreen/product-details-guardian-hero-2022-09-21-1/Guardian_DENPPO.png?ixlib=js-3.2.1&w=981&h=492&s=7e2621f97ddcb9f121003b4b78723066",
     titleMarkdown: "**Dental insurance**",
-    boxTitle: "Dental Insurance",
-    boxDescription: "Guardian’s dental protection to keep you and your family smiling."
+    boxTitle: "Dental insurance",
+    boxDescription: "With Guardian's Dental insurance you'll have the care needed to keep you and your family smiling."
 }
 
 export const Guardian_DENHMO:USProductData = {

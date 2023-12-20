@@ -24,7 +24,7 @@ export const YUSCREEN_SA = async (customer: any, packType: string, yuCoinPower: 
             Then(`I should see ${text.createYumujiHeading} text`, then.textVisible(`${text.createYumujiHeading}`))
             Then(`I should see ${text.createYumujiText} text`, then.textVisible(`${text.createYumujiText}`))
             Then(`I should see ${text.createYumujiCTA} text`, then.textVisible(`${text.createYumujiCTA}`))
-            Then(`I should see ${text.yuCoinText} text`, then.textVisible(`${text.yuCoinText}`))
+            Then(`I should see ${text.yuCoinText} text`, then.textVisibleAtIndex(text.yuCoinText, 0))
             Then(`I should see ${text.powerText} text`, then.textVisible(`${text.powerText}`))
 
             switch (packType) {
@@ -77,7 +77,7 @@ export const ONBOARDING_YUSCREEN_SA = async (packType: string, yuCoinPower: stri
     
     const earnRate0 = "1"; // If product having 0 earn rate will get 1
 
-    Then(`I should see ${text.yuCoinText} text`, then.textVisible(text.yuCoinText))
+    Then(`I should see ${text.yuCoinText} text`, then.textVisibleAtIndex(text.yuCoinText, 0))
     Then(`I should see ${text.powerText} text`, then.textVisible(text.powerText))
 
   switch (packType) {
