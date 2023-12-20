@@ -1,10 +1,10 @@
 import { put, select } from "redux-saga/effects";
-import { DATE_FORMAT } from "@utils";
 import moment from "moment";
 
-import { UPDATE_CURRENT_DATE, updateCurrentDate } from "../app.actions";
-import { getCurrentDateState } from "../app.selectors";
 import { Action } from "@reduxjs/toolkit";
+import { UPDATE_CURRENT_DATE, updateCurrentDate } from "@redux/device/device.actions";
+import { DATE_FORMAT } from "@utils";
+import { getCurrentDateState } from "@redux/device/device.selectors";
 
 export default function* checkDateChanged({ type }: Action) {
   if (type === UPDATE_CURRENT_DATE) {
@@ -12,9 +12,9 @@ export default function* checkDateChanged({ type }: Action) {
   }
 
   const currentReduxDate: string = yield select(getCurrentDateState);
-  const date = moment().format(DATE_FORMAT);
+  const date = moment();
 
-  if (!currentReduxDate || date !== currentReduxDate) {
-    yield put(updateCurrentDate(date));
+  if (date.isAfter(moment(currentReduxDate), "day")) {
+    yield put(updateCurrentDate(date.format(DATE_FORMAT)));
   }
 }

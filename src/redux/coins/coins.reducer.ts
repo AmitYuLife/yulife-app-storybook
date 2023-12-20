@@ -11,7 +11,6 @@ import { UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE } from "../daily-steps/daily-ste
 
 import { UPDATE_TOTAL_COINS } from "./coins.actions";
 import { UPDATE_DAILY_CYCLING_SUCCESS } from "@redux/daily-cycling/daily-cycling.actions";
-import { UPDATE_CURRENT_DATE } from "@redux/app/app.actions";
 import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
 import { UPDATE_DAILY_PENSION_SUCCESS } from "@redux/daily-pension/daily-pension.actions";
 import {
@@ -30,6 +29,7 @@ import {
   GET_USER_COIN_LEDGER_SUCCESS,
   GET_USER_TODAY_ACTIVITY_SUCCESS,
 } from "@redux/user/user.actions";
+import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
 
 export interface ICoinsStore {
   dailyChallengeEarned: number; // number of coins earned in the current day through challenges

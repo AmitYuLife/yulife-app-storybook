@@ -9,12 +9,16 @@ import {
   SET_PUSH_PERMISSIONS,
   MARK_APP_AS_INSTALLED,
   SET_DEVICE_LOCALE,
+  UPDATE_CURRENT_DATE,
 } from "./device.actions";
+import moment from "moment";
+import { DATE_FORMAT } from "@utils";
 
 export interface IDeviceStore {
   deviceId: string;
   deviceToken: string;
   os: string;
+  currentDate: string;
   /** @description - the selected user locale on their phone's settings */
   currentDeviceLocale: Language;
   /** @description - the selected user locale in the YuLife app */
@@ -42,6 +46,7 @@ export const getInitialState = (): IDeviceStore => {
     os: Platform.OS,
     isAppFreshlyInstalled: true,
     currentDeviceLocale: locale,
+    currentDate: moment().format(DATE_FORMAT),
     locale,
     pushNotifications: {
       requested: false,
@@ -66,6 +71,9 @@ const deviceReducer = (state: IDeviceStore = getInitialState(), action: SyncActi
 
     case SET_PUSH_PERMISSIONS:
       return setPushPermissions(state, action.payload);
+
+    case UPDATE_CURRENT_DATE:
+      return updateCurrentDate(state, action.payload);
 
     default:
       return state;
@@ -105,4 +113,9 @@ const setPushPermissions = (state: IDeviceStore, pushPermissions: Partial<IPushN
     ...state.pushNotifications,
     ...pushPermissions,
   },
+});
+
+const updateCurrentDate = (state: IDeviceStore, payload: string): IDeviceStore => ({
+  ...state,
+  currentDate: payload,
 });
