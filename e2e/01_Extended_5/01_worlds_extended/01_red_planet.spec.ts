@@ -23,7 +23,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap got it", when.tapText(t("Got it")), async () => {
             Then("I should see the level 50 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(50)))
         })
-    }) 
+    })
 
     Scenario("I can't transition from the level 199 to the yuniverse level 200 on the same day", scenario.start, () => {
         Given("I login as a user on level 199", given.logInAndGoToTab("quests", data.CUSTOMER_63, data.AUTH_63), async () => {
@@ -43,7 +43,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         // })
 
         // ^^^ Currently maps are not displayed optimally on iPhone 14 so this level is displayed too low down.
-    }) 
+    })
 
     Scenario("When I have unlocked level 200 and level 201, I can do two challenges for level 201", scenario.start, () => {
         Given("I login as a user on level 201", given.logInAndGoToTab("quests", data.CUSTOMER_64, data.AUTH_64), async () => {
@@ -65,7 +65,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap this level 202 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(202)), async () => {
             Then("I should see a message that the next level will be available in 12 hours", then.nextLevelLocked)
         })
-    }) 
+    })
 
     Scenario("When I am at level 201 I can see all my challenges with their yucoin value and I can take max 4 in a day", scenario.start, () => {
         Given("I login as a user on level 201", given.logInAndGoToTab("yucoin", data.CUSTOMER_64, data.AUTH_64), async () => {
@@ -119,6 +119,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap level 201 button a fourth time", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(201)), async () => {
             Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
+        // @update ["maybe later" from when.selectAndCompleteMeditationChallengeWithMedia is missing]
         When("I complete a meditation challenge at level 201", when.selectAndCompleteMeditationChallengeWithMedia(180), async () => {
             Then("I should see the level 201 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)))
             Then("I should see level 201 has 3 stars", then.idVisible(ids.LEVEL_STAR_COUNT(3)))
@@ -132,7 +133,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                 Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
             })
         })
-    }) 
+    })
 
     Scenario("When I am at level 251 I can see all my challenges with their yucoin value and I can take max 4 in a day", scenario.start, () => {
         Given("I login as a user on level 251", given.logInAndGoToTab("yucoin", data.CUSTOMER_67, data.AUTH_67), async () => {
@@ -157,8 +158,8 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "3"})), async () => {
             Then("I should see the level 251 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(251)))
         })
-    }) 
-    
+    })
+
     Scenario("As a user opening a Yunity Chest at level 250, I want the chest to contain a level boost and YuCoin worth 50x the users earn rate", scenario.start, () => {
         Given("I login as a user with level 250 unclaimed", given.logInAndGoToTab("quests", data.CUSTOMER_79, data.AUTH_79), async () => {
             Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
@@ -172,7 +173,3 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         })
     })
 })
-
-
-
-

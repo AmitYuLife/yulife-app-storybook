@@ -248,20 +248,10 @@ export const getDuration = (seconds: number) => {
 
 export const closeAndReopenApp = async () =>{
     await device.sendToHome();
-    await device.launchApp({
-        permissions: {
-            notifications: 'YES',
-        },
-        newInstance: false
-    });
+    await device.launchApp({ newInstance: false });
 }
 
 export const quitAndReopenApp = async () => {
     await device.terminateApp();
-    await device.launchApp({
-        permissions: {
-            notifications: 'YES',
-        },
-        newInstance: false
-    });
+    await device.launchApp({ newInstance: false });
 }
