@@ -1,0 +1,51 @@
+query GetMobileWhatsNewModal {
+  getMobileWhatsNewModal {
+    id
+    title
+    autoPlaySpeedMs
+    dismissMinVisibleIndex
+    ctaMinVisibleIndex
+    theme {
+      statusBar
+      primaryColor
+      titleColor
+      progressBarForegroundColor
+      progressBarBackgroundColor
+    }
+    button {
+      label
+      onPress {
+        type
+        payload
+      }
+    }
+    close {
+      icon {
+        id
+        uri
+      }
+      onPress {
+        type
+        payload
+      }
+    }
+    items {
+      id
+      heading
+      paragraph
+      styles {
+        property
+        value
+      }
+      backgroundImage {
+        id
+        uri
+      }
+      lottie {
+        jsonUri
+        aspectRatio
+      }
+    }
+    refetchQueries
+  }
+}

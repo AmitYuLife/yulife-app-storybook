@@ -11,16 +11,14 @@ import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
 import {
   GetYumojiRemoteParts,
   GetYumojiRemoteFittingRoom,
-  PerformMobileOnboardingStep,
-  PerformMobileOnboardingStepVariables,
   GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_yuWorlds,
   GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_popover,
   GetYumojiRemoteParts_avatar,
 } from "@graphql/_core/schema";
 import { Yumoji } from "./yumoji";
-import { GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP } from "@graphql/onboardingSteps/performMobileOnboardingStep.gql";
 import Logger from "@services/logging/logger";
 import { useYumojiFittingRoom, AVATAR_WIDTH, AVATAR_HEIGHT } from "./hooks/useYumojiFittingRoom";
+import { MobileOnboardingStepPerformed, gql } from "@graphql/__generated";
 
 type Props = {
   coverType: CoverType;
@@ -165,14 +163,12 @@ interface ITarget {
 function usePopover({ popover }: Pick<GetYumojiRemoteFittingRoom["getYumojiRemoteFittingRoom"], "popover">) {
   const [isClosed, setIsClosed] = useState(false);
 
-  const [performOnboardingStep] = useMutation<PerformMobileOnboardingStep, PerformMobileOnboardingStepVariables>(
-    GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP
-  );
+  const [performOnboardingStep] = useMutation(gql("PerformMobileOnboardingStepDocument"));
   const [popoverTarget, setPopoverTarget] = useState({} as ITarget);
 
   const updateOnboardingStep = useCallback(async () => {
     try {
-      await performOnboardingStep({ variables: { step: popover.id } });
+      await performOnboardingStep({ variables: { step: popover.id as unknown as MobileOnboardingStepPerformed } }); //remove unknown when we finish to refactor getYuScreen.gql
       setIsClosed(true);
     } catch (e) {
       Logger.error(e, { where: "yumoji-try-on" });

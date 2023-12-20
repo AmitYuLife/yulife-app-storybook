@@ -1,7 +1,6 @@
 import FastImage from "react-native-fast-image";
 import { Navigation } from "@navigation/main";
 import { call, delay, select, spawn, take } from "redux-saga/effects";
-import { getMobileWhatsNewModalClient } from "@graphql/onboardingSteps/getMobileWhatsNewModal.gql";
 import { MODALS } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
@@ -11,6 +10,9 @@ import { showYuModal } from "@navigation/root";
 import { getToken } from "@services/storage";
 import { getUserNotification } from "@redux/user/user.selectors";
 import { OptionsStatusBar } from "react-native-navigation";
+import { QueryResult } from "@apollo/client";
+import { GetMobileWhatsNewModalQuery, gql } from "@graphql/__generated";
+import client from "@graphql/_core/client";
 
 export function* getMobileWhatsNewModalSaga(dataPayload: { payload: string; type: string }) {
   const { payload: appState, type } = dataPayload || {};
@@ -31,7 +33,9 @@ export function* getMobileWhatsNewModalSaga(dataPayload: { payload: string; type
   }
 
   try {
-    const { data }: Unpacked<typeof getMobileWhatsNewModalClient> = yield call(getMobileWhatsNewModalClient);
+    const { data }: QueryResult<GetMobileWhatsNewModalQuery> = yield call(() =>
+      client().query({ query: gql("GetMobileWhatsNewModalDocument"), fetchPolicy: "network-only" })
+    );
 
     if (data?.getMobileWhatsNewModal) {
       const preloadAssets = data.getMobileWhatsNewModal.items.map((item) => item.backgroundImage);

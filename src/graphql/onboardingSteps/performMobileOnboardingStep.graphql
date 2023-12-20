@@ -1,0 +1,3 @@
+mutation PerformMobileOnboardingStep($step: MobileOnboardingStepPerformed) {
+  performMobileOnboardingStep(step: $step)
+}

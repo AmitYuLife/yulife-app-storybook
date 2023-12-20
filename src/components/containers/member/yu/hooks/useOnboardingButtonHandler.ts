@@ -1,14 +1,14 @@
 import { useCallback, useContext, useState } from "react";
 import { Navigation } from "@navigation/main";
 import { useMutation } from "@apollo/client";
-import { GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP } from "@graphql/onboardingSteps/performMobileOnboardingStep.gql";
 import { ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { YuScreenContext } from "../context/yu-screen.context";
-import { GetYuScreen_getYuScreen_onboarding } from "@graphql/_core/schema";
 import { useDispatch } from "react-redux";
 import { useNavigationComponentDidAppear } from "@hooks";
 import { MobileOnboardingStepPerformed } from "@graphql/_core/schema/globalTypes";
+import { MobileOnboardingStepPerformed as MobileOnboardingStepPerformedNew, gql } from "@graphql/__generated";
+import { GetYuScreen_getYuScreen_onboarding } from "@graphql/_core/schema";
 
 export type OnboardingHandler = () => Promise<void> | void;
 
@@ -22,7 +22,7 @@ export const useOnboardingButtonHandler = (
   const dispatch = useDispatch();
   const { yumojiRemoteUrl } = useContext(YuScreenContext);
   const [shouldShowOnboarding, setShouldShowOnboarding] = useState<boolean>(true);
-  const [performOnboarding] = useMutation(GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP);
+  const [performOnboarding] = useMutation(gql("PerformMobileOnboardingStepDocument"));
 
   /**
    * Hide the onboarding screen when the user navigates to the pension screen.
@@ -36,7 +36,7 @@ export const useOnboardingButtonHandler = (
   const markOnboardingAsViewed = useCallback(async () => {
     try {
       // Mark the onboarding step as completed.
-      await performOnboarding({ variables: { step: onboarding?.id } });
+      await performOnboarding({ variables: { step: onboarding?.id as unknown as MobileOnboardingStepPerformedNew } }); //remove unknown when we finish to refactor getYuScreen.gql
     } catch (e) {
       Logger.error(e, { where: "use-onboarding-dismissal-handler-perform-onboarding" });
     }
