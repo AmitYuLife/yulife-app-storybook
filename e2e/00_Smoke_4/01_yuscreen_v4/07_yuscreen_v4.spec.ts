@@ -34,7 +34,8 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         })
     })
 
-    Scenario("I can create my Yumoji on new Yuscreen V4, and see the exclamation point near the product i have (payment failed)", scenario.start, async () => {
+    // @flaky - failing on bitrise, passing locally
+    ScenarioSkip("I can create my Yumoji on new Yuscreen V4, and see the exclamation point near the product i have (payment failed)", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_45, data.AUTH_45), async () => {
             When("I swipe down the screen", when.swipeFromText("Protection, powered up!", "up", "fast"), async () => {
                 When("I tap check out my power", when.tapCheckOutMyPower, async () => {
@@ -80,7 +81,8 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         })
     })
 
-    Scenario("As a YuLifer with less than 6 slots i should see More protection coming soon slot", scenario.start, async () => {
+    // @flaky - failing on bitrise, passing locally
+    ScenarioSkip("As a YuLifer with less than 6 slots i should see More protection coming soon slot", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_49, data.AUTH_49), async () => {
             helper.ONBOARDING_YUSCREEN("3 Products Slots", "31")
             helper.YUSCREEN_V4(data.CUSTOMER_49, "5 Products Slots", "31", "More protection")

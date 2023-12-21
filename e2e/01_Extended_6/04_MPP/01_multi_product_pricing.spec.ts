@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, FeatureSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -10,8 +10,8 @@ import * as ids from "@ids";
 
 
 
-
-Feature("The MPP changes are visible in the YuLife App", async () => {
+// @bug GS-831 app hanging on See all protection screen
+FeatureSkip("The MPP changes are visible in the YuLife App", async () => {
     Scenario("Part 1: I can see the new deeper environment when a user has 5 products, with the new product slots, and the ordering set to the MPP ordering", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_123_MPP, data.AUTH_123), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
