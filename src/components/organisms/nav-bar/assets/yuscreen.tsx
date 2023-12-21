@@ -28,7 +28,7 @@ const Yuscreen = ({ isActive, hasNotification, onPressIn, isSuspended }: IIconPr
       </Svg>
       {!hasNotification ? null : <View style={styles.notification} />}
       <View style={styles.text}>
-        <TextTemplate type="l3b" color={fill} lineHeight={10}>
+        <TextTemplate type="l3b" color={fill}>
           {t("navbar.yu.label")}
         </TextTemplate>
       </View>
