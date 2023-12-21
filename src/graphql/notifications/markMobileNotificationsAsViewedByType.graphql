@@ -1,0 +1,3 @@
+mutation MarkMobileNotificationsAsViewedByType($type: String) {
+  markMobileNotificationsAsViewedByType(type: $type)
+}
