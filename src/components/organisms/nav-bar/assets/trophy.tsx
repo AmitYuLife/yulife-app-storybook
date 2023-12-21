@@ -39,7 +39,7 @@ const Trophy = ({ isActive, hasNotification, onPressIn, isSuspended }: IIconProp
       </Svg>
       {!hasNotification ? null : <View style={styles.notification} />}
       <View style={styles.text}>
-        <TextTemplate type="l3b" color={fill} lineHeight={10}>
+        <TextTemplate type="l3b" color={fill}>
           {t("navbar.leaderboard.label")}
         </TextTemplate>
       </View>

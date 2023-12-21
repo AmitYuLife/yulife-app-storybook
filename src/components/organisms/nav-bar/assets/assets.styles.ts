@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   text: {
     position: "absolute",
     alignSelf: "center",
-    bottom: 0,
+    bottom: -3,
   } as TextStyle,
   notification: {
     position: "absolute",

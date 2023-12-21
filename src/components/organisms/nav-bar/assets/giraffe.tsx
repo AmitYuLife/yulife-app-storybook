@@ -41,7 +41,7 @@ const Girrafe = ({ isActive, onPressIn, isSuspended }: IIconProps) => {
         />
       </Svg>
       <View style={styles.text}>
-        <TextTemplate type="l3b" color={fill} lineHeight={10}>
+        <TextTemplate type="l3b" color={fill}>
           {t("navbar.yucoin.label")}
         </TextTemplate>
       </View>
