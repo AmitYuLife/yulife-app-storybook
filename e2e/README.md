@@ -29,6 +29,9 @@ The process is almost identical to running the tests in `en-GB` except for the f
 - The easiest way to check if an element is not found is to open the mochaawesome report in e2e-report
 
 ## Gotchas
+- Most problems can be solved by deleting `node_modules` using `rm -rf node_modules`,  and `pods` using `rm -rf ios/Pods`,  then rebuilding again.
+- If there is no ios/build/Build folder and you've tried the above, it is possible the app is being built in the wrong location. To ensure it is built in ios/build/Build try the following:
+1. Open xcode -> settings -> locations -> advanced (Derived Data) -> select unique
 
 ### Keyboard error
 Problem: detox complains keyboard is not on screen
