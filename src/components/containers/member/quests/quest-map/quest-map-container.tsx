@@ -9,8 +9,11 @@ import {
   getNextLevelAvailableAt,
   getYuniversalProgress,
 } from "@redux/levels/levels.selectors";
-import { handlePressLevelItem } from "@components/screens/member/quests/quests-scroll-screen/quests-screen.container.helpers";
-
+import {
+  buildChestModalSubmitHandler,
+  getIsLevelAvailable,
+  handlePressLevelItem,
+} from "@components/screens/member/quests/quests-scroll-screen/quests-screen.container.helpers";
 import { QUEST_MAP_CONFIG } from "./quest-map.config";
 import { useDispatch, useSelector } from "react-redux";
 import { submitUnityAction } from "@redux/levels/levels.actions";
@@ -22,7 +25,6 @@ import { useQueryOnScreenSeen } from "@hooks";
 import { getEpisode, getLevelStatus, getMinLevel, getSeperator } from "./quest-map-helpers";
 import { first } from "lodash";
 import QuestMapScreen from "./quest-map.screen";
-import { Navigation } from "@navigation/main";
 import { getUserFeatures } from "@redux/user/user.selectors";
 
 const EPISODES_PER_PLANET = 32;
@@ -96,12 +98,16 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
           levelStatus,
           nextLevelAvailableAt,
           useHalfModalsForQuestMap: features.useHalfModalsForQuestMap,
-          levelUnavailableModalProps: {
+          goals: itemLevel.goals,
+          handlePressShowChestModal: buildChestModalSubmitHandler({
+            isNext: levelStatus.isNext,
+            componentId,
             level: itemLevel.level,
-            onPressCta: Navigation.dismissOverlayWithChild,
-            onPressClose: Navigation.dismissOverlayWithChild,
-            type: "unavailable",
-          },
+            useHalfModalsForQuestMap: features.useHalfModalsForQuestMap,
+            yuniversalMap,
+            goals: itemLevel.goals,
+            levelAvailable: getIsLevelAvailable(nextLevelAvailableAt),
+          }),
         }),
       };
     });

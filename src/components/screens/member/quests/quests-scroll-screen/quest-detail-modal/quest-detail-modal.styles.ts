@@ -2,11 +2,12 @@ import { Style, Colours } from "@styles";
 import { StyleSheet, ViewStyle, TextStyle } from "react-native";
 
 export const BUTTON_HEIGHT = Style.adjust(60);
-export const BOTTOM_GRADIENT_BASE_HEIGHT = Style.adjust(140);
+export const BOTTOM_GRADIENT_BASE_HEIGHT = Style.adjust(80);
 const IMAGE_OVERSHOOT_HEIGHT = Style.adjust(40);
 const HEADER_IMAGE_SIZE = Style.adjust(140);
 
 export const questDetailModalStyles = StyleSheet.create({
+  listSpacer: { height: 8 },
   bottomWrapper: {
     position: "absolute",
     left: 0,
@@ -52,10 +53,11 @@ export const questDetailModalStyles = StyleSheet.create({
     position: "absolute",
     left: 0,
     right: 0,
-    bottom: Style.adjust(16),
+    bottom: 0,
   },
   buttonWrapper: {
     paddingHorizontal: Style.adjust(32),
+    bottom: Style.adjust(16),
   },
   closeButtonWrapper: {
     position: "absolute",
@@ -81,4 +83,5 @@ export const questDetailModalStyles = StyleSheet.create({
     borderTopLeftRadius: Style.adjust(16),
     borderTopRightRadius: Style.adjust(16),
   },
+  hintWrapper: { marginTop: Style.adjust(8) },
 });

@@ -10,7 +10,7 @@ interface LevelSlot {
   lockIcon?: ILevelBubbleProps["icon"];
 }
 
-export const slots: LevelSlot[] = [
+export const YUNIVERSAL_LEVEL_SLOTS: LevelSlot[] = [
   {
     level: 1,
     x: 187,

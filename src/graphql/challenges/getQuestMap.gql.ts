@@ -14,6 +14,10 @@ export const GQL_QUERY_GET_QUEST_MAP = gql`
       notificationIcon {
         ...RemoteImage
       }
+      goals {
+        goalId
+        milestoneId
+      }
     }
   }
 `;

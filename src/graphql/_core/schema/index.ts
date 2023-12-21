@@ -122,6 +122,7 @@ export * from "./GetDuelsCompleted";
 export * from "./GetDuelsToday";
 export * from "./GetDuelsTomorrow";
 export * from "./GetGoalDetails";
+export * from "./GetGoalMilestoneDetails";
 export * from "./GetInAppYuniversityCourseModuleDetails";
 export * from "./GetInAppYuniversityCourses";
 export * from "./GetLeaderboard";

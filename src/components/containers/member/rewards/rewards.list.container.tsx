@@ -112,7 +112,6 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
         },
       });
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [rewards?.data?.sduiStepId]
   );
 

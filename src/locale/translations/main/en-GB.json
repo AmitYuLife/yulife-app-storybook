@@ -648,10 +648,19 @@
     },
     "challenge_chest_modal": {
       "cta_label_is_next": "Let's do it",
-      "heading_is_next": "Take a challenge to unlock the chest",
+      "heading_is_next": "Almost there! Take a challenge to unlock your reward.",
       "heading_is_not_next_level": "Unlock at level %{level}",
       "heading_is_not_next_stage": "Unlock at %{name}",
-      "heading_is_completed": "You get %{yucoin} YuCoin"
+      "heading_is_completed": "You get %{yucoin} YuCoin",
+      "card": "A chest full of YuCoin!"
+    },
+    "challenge_next_modal": {
+      "heading": "Almost there! Take a challenge to unlock your reward.",
+      "cta_submit": "Let's go!",
+      "cta_reject": "Maybe later"
+    },
+    "challenge_unavailable_modal": {
+      "next_available_at": "This level will be available in %{text}"
     },
     "yumoji_builder": {
       "create": {

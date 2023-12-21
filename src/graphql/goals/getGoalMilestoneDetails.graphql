@@ -1,0 +1,26 @@
+query GetGoalMilestoneDetails($goals: [GetGoalMilestoneDetailsInput]) {
+  getGoalMilestoneDetails(goals: $goals) {
+    list {
+      rewardTitle
+      progress
+      target
+      rewardQuantity
+      image {
+        id
+        uri
+      }
+      theme {
+        primaryColor
+        secondaryColor
+      }
+    }
+    hint {
+      label
+      description
+      image {
+        id
+        uri
+      }
+    }
+  }
+}

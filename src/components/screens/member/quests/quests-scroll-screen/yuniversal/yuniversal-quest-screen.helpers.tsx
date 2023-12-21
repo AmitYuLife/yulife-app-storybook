@@ -1,12 +1,13 @@
 import { ITodayChallengesStatus } from "@redux/levels/levels.selectors";
 import { GetQuestMap_levels } from "@graphql/_core/schema";
-import { slots } from "./level/level-slots";
+import { YUNIVERSAL_LEVEL_SLOTS } from "./level/level-slots";
 import {
   goToChallengesList,
   showLevelCompleteModal,
-  showChestModal,
   showChallengeUnavailableModal,
   showLevelUnavailableModal,
+  showChestModal,
+  getIsLevelAvailable,
 } from "../quests-screen.container.helpers";
 import { Colours } from "@styles";
 import { ILevelBubbleProps } from "./level/level-bubble";
@@ -154,7 +155,7 @@ const getLevelProps = (
 ): ILevelProps => {
   const levelButtonState = getLevelButtonState(challengesStatus, yuniversalLevel, level.level, isLast);
 
-  const levelSlot = slots.find((slot) => slot.level === level.level);
+  const levelSlot = YUNIVERSAL_LEVEL_SLOTS.find((slot) => slot.level === level.level);
 
   if (!levelSlot) {
     return null;
@@ -184,7 +185,17 @@ const getLevelProps = (
         ...commonProps,
         ...slotColours.active,
         isActive: true,
-        onPress: () => goToChallengesList(componentId, level.level, levelSlot.name, yuniversalMap),
+        onPress: () =>
+          goToChallengesList({
+            componentId,
+            useHalfModalsForQuestMap,
+            level: level.level,
+            name: levelSlot.name,
+            yuniversalMap,
+            goals: level.goals,
+            isNavigatingFromModal: false,
+            levelAvailable: getIsLevelAvailable(nextLevelAvailableAt),
+          }),
         notificationBorderWidth: 2,
       };
     case "UnityAvailable":
@@ -230,7 +241,14 @@ const getLevelProps = (
         ...slotColours.locked,
         isActive: false,
         nextLevelAvailableAt,
-        onPress: () => showChallengeUnavailableModal(nextLevelAvailableAt, true),
+        onPress: () =>
+          showChallengeUnavailableModal({
+            nextAvailableAt: nextLevelAvailableAt,
+            isYuniversalLevel: true,
+            useHalfModalsForQuestMap,
+            goals: level.goals,
+            level: level.level,
+          }),
       };
     case "HardTimeGated":
       return {
@@ -238,7 +256,14 @@ const getLevelProps = (
         ...slotColours.waiting,
         isActive: true,
         nextLevelAvailableAt,
-        onPress: () => showChallengeUnavailableModal(nextLevelAvailableAt, true),
+        onPress: () =>
+          showChallengeUnavailableModal({
+            nextAvailableAt: nextLevelAvailableAt,
+            isYuniversalLevel: true,
+            useHalfModalsForQuestMap,
+            goals: level.goals,
+            level: level.level,
+          }),
         notificationBorderWidth: 2,
       };
     case "UnityLocked":
@@ -248,7 +273,16 @@ const getLevelProps = (
         withOverlay: true,
         isActive: false,
         icon: lockIcon,
-        onPress: () => showChestModal(componentId, level, yuniversalMap, false, levelSlot.name),
+        onPress: () =>
+          showChestModal({
+            useHalfModalsForQuestMap,
+            componentId,
+            level: level.level,
+            yuniversalMap,
+            isNext: false,
+            name: levelSlot.name,
+            goals: level.goals,
+          }),
       };
     case "Locked":
     default:
@@ -262,6 +296,7 @@ const getLevelProps = (
             useHalfModalsForQuestMap,
             name: levelSlot.name,
             level: level.level,
+            goals: level.goals,
           }),
       };
   }

@@ -10,7 +10,11 @@ import {
   getNextLevelAvailableAt,
   getYuniversalProgress,
 } from "@redux/levels/levels.selectors";
-import { handlePressLevelItem } from "./quests-screen.container.helpers";
+import {
+  buildChestModalSubmitHandler,
+  getIsLevelAvailable,
+  handlePressLevelItem,
+} from "./quests-screen.container.helpers";
 import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_QUEST_MAP } from "@graphql/challenges";
 import { GetMobileGameWeeklies, GetQuestMap, GetQuestMap_levels } from "@graphql/_core/schema";
@@ -94,6 +98,7 @@ function QuestsScreenContainer(props: Props) {
   const [levelId, setLevelId] = useState<string>(null);
   const [repeatedUnity, setRepeatedUnity] = useState(false);
   const features = useSelector(getUserFeatures);
+  const useHalfModalsForQuestMap = features.useHalfModalsForQuestMap;
 
   const dispatch = useDispatch();
   const challengesStatus = useSelector(getChallengesStatus);
@@ -148,9 +153,16 @@ function QuestsScreenContainer(props: Props) {
             itemLevel,
             levelStatus,
             nextLevelAvailableAt,
-            levelUnavailableModalProps: {
+            handlePressShowChestModal: buildChestModalSubmitHandler({
+              isNext: levelStatus.isNext,
+              componentId,
               level: itemLevel.level,
-            },
+              useHalfModalsForQuestMap,
+              goals: itemLevel.goals,
+              yuniversalMap,
+              levelAvailable: getIsLevelAvailable(nextLevelAvailableAt),
+            }),
+            goals: itemLevel.goals,
             useHalfModalsForQuestMap: features.useHalfModalsForQuestMap,
           }),
         };

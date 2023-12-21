@@ -6,11 +6,11 @@ import { ViewStyle } from "react-native";
 import { CHALLENGE_LOCKED_ICON } from "@ids";
 
 interface Props {
-  style: ViewStyle;
+  style?: ViewStyle;
 }
 
 export const HeroLockedIcon = memo(({ style }: Props) => {
-  const { width, height, ...styles } = style;
+  const { width, height, ...styles } = style || {};
 
   return (
     <Svg
