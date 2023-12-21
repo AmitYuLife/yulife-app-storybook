@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.113.0] - 2023-12-21
+
+### Features
+
+- Feature XSE-2345: Implement half-screen overlays on Quest tab
+
+### Bugfixes
+
+- Bugfix: Navbar text bit cut in some androids
+- Bugfix: Coin ledger refetch on pull down activity history
+- Bugfix: Reset coins reload
+- Bugfix: Only ask user for notification permission after start a challenge or chat
+- Bugfix: Protect from passed falsy value to selectedValues
+- Bugfix: fix issue with chiplist losing state
+
+### Tasks
+
+- Task ISA-1637: TextArea SDUI component
+- Task GS-823: Navigation Bar update icons
+- Task: Use native support for lottie web
+- Task ISA-1637: slider input
+- Task: DEVOP-1870: UAT: Migrate UK to the new yulife-api TF module - API URL Update
+
+### Chores
+
+- Chore: Move onboardingSteps to new gql
+- Chore: update bitrise stack to xcode 14.3
+
+### Extra
+
+- Detox: readme gotcha update
+- Detox/fixes 20/12
+- detox/tag-fixes-2-20/12
+
 ## [3.112.0] - 2023-12-15
 
 ### Features
