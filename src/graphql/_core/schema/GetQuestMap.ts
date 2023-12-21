@@ -12,6 +12,11 @@ export interface GetQuestMap_levels_notificationIcon {
   uri: string | null;
 }
 
+export interface GetQuestMap_levels_goals {
+  goalId: string;
+  milestoneId: string | null;
+}
+
 export interface GetQuestMap_levels {
   id: string;
   __typename: "QuestMapLevelListItem";
@@ -19,6 +24,7 @@ export interface GetQuestMap_levels {
   rating: number | null;
   levelChest: string | null;
   notificationIcon: GetQuestMap_levels_notificationIcon | null;
+  goals: GetQuestMap_levels_goals[] | null;
 }
 
 export interface GetQuestMap {

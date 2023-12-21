@@ -2,31 +2,89 @@ import moment from "moment";
 import { GetQuestMap_levels } from "@graphql/_core/schema";
 import { Navigation } from "@navigation/main";
 import { ROUTES, bottomTabs, MODALS } from "@navigation/constants";
-import { showYuModal } from "@navigation/root";
+import { pushToScreen, showYuModal } from "@navigation/root";
 import { t } from "@locale";
 import { ITodayChallengesStatus } from "@redux/levels/levels.selectors";
-import { QuestDetailModalProps, QuestFeatureToggles } from "./quest-detail-modal/quest-detail-modal.types";
-import { QuestDetailModal } from "./quest-detail-modal/quest-detail-modal.component";
+import {
+  LegacyQuestModalProps,
+  QuestDetailModalContainerProps,
+  QuestFeatureToggles,
+} from "./quest-detail-modal/quest-detail-modal.types";
+import { QuestDetailModalContainer } from "./quest-detail-modal/quest-detail-modal.container";
 
-const dismissChestModal = () => Navigation.dismissModal(MODALS.chest);
+export const dismissChestModal = () => Navigation.dismissModal(MODALS.chest);
 
 const dismissChallengeUnavailableModal = () => Navigation.dismissModal(MODALS.challengeUnavailable);
 
-export const goToChallengesList = (componentId: string, level: number, levelName?: string, yuniversalMap?: number) =>
-  Navigation.push(componentId, {
-    component: {
-      id: ROUTES.questsChallengesList,
-      name: ROUTES.questsChallengesList,
-      passProps: {
-        level,
-        levelName,
-        yuniversalMap,
+type GoToChallengesListProps = Pick<QuestDetailModalContainerProps, "name" | "level" | "goals" | "yuniversalMap"> & {
+  componentId: string;
+  useHalfModalsForQuestMap: boolean;
+  isNavigatingFromModal: boolean;
+  levelAvailable: boolean;
+  isChestLevel?: boolean;
+};
+export const goToChallengesList = ({
+  componentId,
+  useHalfModalsForQuestMap,
+  name,
+  level,
+  goals,
+  yuniversalMap,
+  isNavigatingFromModal,
+  levelAvailable,
+  isChestLevel,
+}: GoToChallengesListProps) => {
+  const goToQuestChallengesList = () => {
+    pushToScreen(componentId, {
+      component: {
+        id: ROUTES.questsChallengesList,
+        name: ROUTES.questsChallengesList,
+        passProps: {
+          level,
+          levelName: name,
+          yuniversalMap,
+        },
+        options: { bottomTabs },
       },
-      options: { bottomTabs },
-    },
-  });
+    });
+  };
 
-const buildChestModalCopy = (isNext: boolean, level: number, name?: string) => {
+  const heading = t("screens.challenge_next_modal.heading");
+  const ctaLabelSubmit = t("screens.challenge_next_modal.cta_submit");
+  const ctaLabelReject = t("screens.challenge_next_modal.cta_reject");
+
+  if (isChestLevel && !useHalfModalsForQuestMap) {
+    dismissChestModal();
+  }
+
+  if (!levelAvailable || !useHalfModalsForQuestMap) {
+    return goToQuestChallengesList();
+  }
+
+  if (isNavigatingFromModal) {
+    Navigation.dismissOverlayWithChild();
+    return goToQuestChallengesList();
+  }
+
+  return Navigation.showOverlayWithChild(
+    <QuestDetailModalContainer
+      name={name}
+      level={level}
+      onPressCta={() => {
+        Navigation.dismissOverlayWithChild();
+        goToQuestChallengesList();
+      }}
+      onPressClose={Navigation.dismissOverlayWithChild}
+      onPressCtaDismiss={Navigation.dismissOverlayWithChild}
+      ctaLabelSubmit={ctaLabelSubmit}
+      ctaLabelReject={ctaLabelReject}
+      heading={heading}
+      goals={goals}
+    />
+  );
+};
+
+export const buildChestModalCopy = (isNext: boolean, level: number, name?: string) => {
   if (isNext) {
     return {
       ctaLabel: t("screens.challenge_chest_modal.cta_label_is_next"),
@@ -47,33 +105,75 @@ const buildChestModalCopy = (isNext: boolean, level: number, name?: string) => {
   };
 };
 
-export const showChestModal = (
-  componentId: string,
-  level: GetQuestMap_levels,
-  yuniversalMap: number,
-  isNext: boolean,
-  name?: string
-) =>
+export const showChestModal = ({
+  useHalfModalsForQuestMap,
+  level,
+  isNext,
+  name,
+  onPressCta,
+  goals,
+}: Partial<QuestDetailModalContainerProps> & QuestFeatureToggles & Partial<LegacyQuestModalProps>) => {
+  const { ctaLabel, heading } = buildChestModalCopy(isNext, level, name);
+
+  if (useHalfModalsForQuestMap) {
+    return Navigation.showOverlayWithChild(
+      <QuestDetailModalContainer
+        name={name}
+        level={level}
+        onPressCta={onPressCta}
+        onPressCtaDismiss={isNext ? Navigation.dismissOverlayWithChild : null}
+        onPressClose={Navigation.dismissOverlayWithChild}
+        ctaLabelSubmit={ctaLabel}
+        ctaLabelReject={!isNext ? null : t("screens.challenge_next_modal.cta_reject")}
+        heading={heading}
+        goals={goals}
+        displayChestCard={true}
+      />
+    );
+  }
+
   showYuModal({
     component: {
       id: MODALS.chest,
       name: MODALS.chest,
       passProps: {
-        ...buildChestModalCopy(isNext, level.level, name),
+        ctaLabel,
+        heading,
         isLocked: true,
-        onPressCta: () => {
-          if (isNext) {
-            goToChallengesList(componentId, level.level, null, yuniversalMap);
-          }
-
-          dismissChestModal();
-        },
+        onPressCta,
         onPressCtaSecondary: isNext ? dismissChestModal : null,
       },
     },
   });
+};
 
-export const showChallengeUnavailableModal = (nextAvailableAt: string, isYuniversalLevel = false) =>
+export const showChallengeUnavailableModal = ({
+  nextAvailableAt,
+  isYuniversalLevel,
+  useHalfModalsForQuestMap,
+  goals,
+  level,
+}: {
+  nextAvailableAt: string;
+  isYuniversalLevel: boolean;
+  useHalfModalsForQuestMap: boolean;
+  goals: Array<{ goalId: string; milestoneId: string }>;
+  level: number;
+}) => {
+  if (useHalfModalsForQuestMap) {
+    return Navigation.showOverlayWithChild(
+      <QuestDetailModalContainer
+        level={level}
+        nextAvailableAt={nextAvailableAt}
+        onPressCta={Navigation.dismissOverlayWithChild}
+        onPressClose={Navigation.dismissOverlayWithChild}
+        goals={goals}
+        heading={t("screens.level_locked.level", { level })}
+        ctaLabelSubmit={t("labels.cta.got_it")}
+      />
+    );
+  }
+
   showYuModal({
     component: {
       id: MODALS.challengeUnavailable,
@@ -85,21 +185,26 @@ export const showChallengeUnavailableModal = (nextAvailableAt: string, isYuniver
       },
     },
   });
+};
 
 export const showLevelUnavailableModal = ({
   name,
   level,
   useHalfModalsForQuestMap,
-  ...props
-}: Partial<QuestDetailModalProps> & QuestFeatureToggles) => {
+  goals,
+  onPressCta,
+  onPressClose,
+}: Partial<QuestDetailModalContainerProps> & QuestFeatureToggles) => {
   if (useHalfModalsForQuestMap) {
     return Navigation.showOverlayWithChild(
-      <QuestDetailModal
+      <QuestDetailModalContainer
         name={name}
         level={level}
-        onPressCta={props.onPressCta || Navigation.dismissOverlayWithChild}
-        onPressClose={props.onPressClose || Navigation.dismissOverlayWithChild}
-        type="unavailable"
+        onPressCta={onPressCta || Navigation.dismissOverlayWithChild}
+        onPressClose={onPressClose || Navigation.dismissOverlayWithChild}
+        goals={goals}
+        heading={t(name ? "screens.level_locked.stage" : "screens.level_locked.level", { name, level })}
+        ctaLabelSubmit={t("labels.cta.got_it")}
       />
     );
   }
@@ -234,11 +339,53 @@ type HandlePressLevelItemParams = {
     isPrevious: boolean;
     nextAvailableAt: string;
   };
+  goals: Array<{ goalId: string; milestoneId: string }>;
   challengesStatus: ITodayChallengesStatus;
   handleSetUnity: (itemLevel: GetQuestMap_levels) => void;
   handleSubmitUnity: (itemLevel: GetQuestMap_levels) => void;
-  levelUnavailableModalProps: Partial<QuestDetailModalProps>;
+  handlePressShowChestModal: () => void;
+  yuniversalMap?: number;
   useHalfModalsForQuestMap: boolean;
+  name?: string;
+};
+
+type BuildChestModalSubmitHandler = {
+  componentId: string;
+  isNext: boolean;
+  level: number;
+  useHalfModalsForQuestMap: boolean;
+  goals: Array<{ goalId: string; milestoneId: string }>;
+  yuniversalMap: number;
+  levelAvailable: boolean;
+};
+export const buildChestModalSubmitHandler = ({
+  isNext,
+  componentId,
+  level,
+  useHalfModalsForQuestMap,
+  goals,
+  yuniversalMap,
+  levelAvailable,
+}: BuildChestModalSubmitHandler) => {
+  return () => {
+    if (isNext) {
+      goToChallengesList({
+        componentId,
+        useHalfModalsForQuestMap,
+        level,
+        goals,
+        yuniversalMap,
+        isNavigatingFromModal: true,
+        levelAvailable,
+      });
+    }
+
+    if (useHalfModalsForQuestMap) {
+      Navigation.dismissOverlayWithChild();
+    } else {
+      dismissChestModal();
+    }
+  };
 };
 
 export const handlePressLevelItem =
@@ -250,8 +397,10 @@ export const handlePressLevelItem =
     challengesStatus,
     handleSetUnity,
     handleSubmitUnity,
-    levelUnavailableModalProps,
     useHalfModalsForQuestMap,
+    goals,
+    yuniversalMap,
+    name,
   }: HandlePressLevelItemParams) =>
   () => {
     const levelAvailable = getIsLevelAvailable(nextLevelAvailableAt);
@@ -262,21 +411,69 @@ export const handlePressLevelItem =
       levelAvailable,
     });
 
+    const defaultProps = {
+      componentId,
+      useHalfModalsForQuestMap,
+      name,
+      level: itemLevel.level,
+      goals,
+      yuniversalMap,
+      isNext: levelStatus.isNext,
+      isNavigatingFromModal: false,
+      levelAvailable,
+    };
+
     switch (action) {
       case "SetUnity":
         return handleSetUnity(itemLevel);
       case "GoToChallengesList":
-        return goToChallengesList(componentId, itemLevel.level);
+        return goToChallengesList(defaultProps);
       case "ShowLevelCompleteModal":
         return showLevelCompleteModal(componentId, itemLevel.level);
       case "DispatchSubmitUnityAction":
         return handleSubmitUnity(itemLevel);
       case "ShowChestModal":
-        return showChestModal(componentId, itemLevel, null, levelStatus.isNext);
+        return showChestModal({
+          useHalfModalsForQuestMap,
+          level: itemLevel.level,
+          isNext: levelStatus.isNext,
+          name: name,
+          onPressCta: levelStatus.isNext
+            ? () =>
+                goToChallengesList({
+                  ...defaultProps,
+                  isNavigatingFromModal: useHalfModalsForQuestMap,
+                  isChestLevel: true,
+                })
+            : buildChestModalSubmitHandler({
+                isNext: levelStatus.isNext,
+                componentId,
+                level: itemLevel.level,
+                useHalfModalsForQuestMap,
+                goals: itemLevel.goals,
+                yuniversalMap,
+                levelAvailable,
+              }),
+          goals,
+        });
+
       case "ShowChallengeUnavailableModal":
-        return showChallengeUnavailableModal(nextLevelAvailableAt);
+        return showChallengeUnavailableModal({
+          nextAvailableAt: nextLevelAvailableAt,
+          isYuniversalLevel: false,
+          useHalfModalsForQuestMap,
+          goals,
+          level: itemLevel.level,
+        });
       case "ShowLevelUnavailableModal":
       default:
-        showLevelUnavailableModal({ useHalfModalsForQuestMap, ...levelUnavailableModalProps });
+        showLevelUnavailableModal({
+          name,
+          level: itemLevel.level,
+          useHalfModalsForQuestMap,
+          goals,
+          onPressCta: Navigation.dismissOverlayWithChild,
+          onPressClose: Navigation.dismissOverlayWithChild,
+        });
     }
   };

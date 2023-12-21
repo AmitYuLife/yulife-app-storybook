@@ -219,7 +219,9 @@ function SettingsContainer({ componentId }: IOwnProps) {
           }
         },
         onTimePress: () => {
-          if (notificationLoading) return;
+          if (notificationLoading) {
+            return;
+          }
 
           setIsTimeModalVisible(true);
           setModalDate(n.alertTimestamp);

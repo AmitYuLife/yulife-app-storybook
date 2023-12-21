@@ -23,6 +23,7 @@ import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { showYuModal } from "@navigation/root";
 import { t } from "@locale";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { YUNIVERSAL_LEVEL_SLOTS } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/level/level-slots";
 import { usePopToQuestsRootOnNewDate, useUserFeatures } from "@hooks";
 import { ActiveLevelState, getActiveChallengeState } from "@redux/levels/levels.selectors";
 
@@ -53,7 +54,17 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
 
   const currentWorld = getCurrentWorld(level);
 
-  const name = useMemo(() => levelName || `level ${level}`, [level, levelName]);
+  const name = useMemo(() => {
+    if (yuniversalMap > 0) {
+      const yuniversalLevel = YUNIVERSAL_LEVEL_SLOTS.find((yuniversalSlot) => yuniversalSlot.level === level);
+
+      if (yuniversalLevel) {
+        return yuniversalLevel.name;
+      }
+    }
+
+    return levelName || `level ${level}`;
+  }, [level, levelName, yuniversalMap]);
 
   const setError = useCallback(() => {
     setErrorState(t("create_challenge_error"));

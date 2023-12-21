@@ -1,18 +1,19 @@
-import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import { LayoutChangeEvent, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { CloseSvg, TextTemplate } from "@atoms";
 import { t } from "@locale";
 import { Button, LinkButton, TouchableOpacityWithDelay } from "@components/molecules";
 import { Colours } from "@styles";
 import { QuestDetailModalProps } from "./quest-detail-modal.types";
 import LinearGradient from "react-native-linear-gradient";
-import { getConfigByType } from "./__helpers/get-config-by-type";
-import { useMemo } from "react";
+import { memo, useCallback, useMemo, useState } from "react";
 import { gradient } from "./quest-detail-modal.config";
 import { questDetailModalStyles, BOTTOM_GRADIENT_BASE_HEIGHT, BUTTON_HEIGHT } from "./quest-detail-modal.styles";
 import { BUTTON_CLOSE, QUEST_LOCKED_HALF_MODAL } from "@ids";
+import { NextAvailableAt } from "./__subcomponents/next-available-at";
 
-export const QuestDetailModal = (props: QuestDetailModalProps) => {
-  const { type, onPressCta, onPressCtaDismiss, onPressClose } = props;
+export const QuestDetailModal = memo((props: QuestDetailModalProps) => {
+  const [scrollContentHeight, setScrollContentHeight] = useState(0);
+  const { onPressCta, onPressCtaDismiss, onPressClose } = props;
 
   const calculated = useMemo(() => {
     const bottomFillerHeight = BOTTOM_GRADIENT_BASE_HEIGHT + (onPressCtaDismiss ? BUTTON_HEIGHT : 0);
@@ -21,26 +22,37 @@ export const QuestDetailModal = (props: QuestDetailModalProps) => {
       scrollviewBottomPadStyle: {
         height: bottomFillerHeight,
       },
-      heading: getConfigByType(props).heading,
-      HeaderIcon: getConfigByType(props).headerIcon,
     };
-  }, [onPressCtaDismiss, type]);
+  }, [onPressCtaDismiss]);
+
+  const handleLayout = useCallback((event: LayoutChangeEvent) => {
+    setScrollContentHeight(event.nativeEvent.layout.height);
+  }, []);
 
   return (
-    <View style={questDetailModalStyles.bottomWrapper} testID={QUEST_LOCKED_HALF_MODAL(calculated.heading)}>
+    <View style={questDetailModalStyles.bottomWrapper} testID={QUEST_LOCKED_HALF_MODAL(props.heading)}>
       <View style={questDetailModalStyles.overshootCushion}>
         <View style={questDetailModalStyles.safeAreaView}>
           <View style={questDetailModalStyles.innerWrapper}>
-            <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
-              <View style={questDetailModalStyles.topPad} />
-              {!calculated.heading ? null : (
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              style={{ height: scrollContentHeight + BOTTOM_GRADIENT_BASE_HEIGHT }}
+              bounces={false}
+            >
+              <View onLayout={handleLayout}>
+                <View style={questDetailModalStyles.topPad} />
                 <View style={questDetailModalStyles.textWrapper}>
-                  <TextTemplate textAlign="center" type="h2">
-                    {calculated.heading}
-                  </TextTemplate>
+                  {props.nextAvailableAt ? (
+                    <NextAvailableAt nextAvailableAt={props.nextAvailableAt} />
+                  ) : props.heading ? (
+                    <TextTemplate textAlign="center" type="h2">
+                      {props.heading}
+                    </TextTemplate>
+                  ) : null}
                 </View>
-              )}
-              <View style={calculated.scrollviewBottomPadStyle} />
+                {props.children}
+                <View style={calculated.scrollviewBottomPadStyle} />
+              </View>
             </ScrollView>
             <SafeAreaView style={questDetailModalStyles.buttonAbsolute}>
               <View style={questDetailModalStyles.bottomFadeWrapper}>
@@ -53,11 +65,11 @@ export const QuestDetailModal = (props: QuestDetailModalProps) => {
                 />
               </View>
               <View style={questDetailModalStyles.buttonWrapper}>
-                <Button size="Fill" label={t("labels.cta.got_it")} onPress={onPressCta} />
+                <Button size="Fill" label={props.ctaLabel} onPress={onPressCta} />
               </View>
               {!onPressCtaDismiss ? null : (
                 <View style={questDetailModalStyles.buttonWrapper}>
-                  <LinkButton label={t("labels.cta.not_now")} onPress={onPressCta} />
+                  <LinkButton label={props.dismissLabel || t("labels.cta.not_now")} onPress={onPressCtaDismiss} />
                 </View>
               )}
             </SafeAreaView>
@@ -72,9 +84,9 @@ export const QuestDetailModal = (props: QuestDetailModalProps) => {
             style={StyleSheet.absoluteFillObject}
           />
         </View>
-        {!calculated.HeaderIcon ? null : (
+        {!props.HeaderIcon ? null : (
           <View style={questDetailModalStyles.imageWrapper}>
-            <calculated.HeaderIcon style={questDetailModalStyles.image} />
+            <props.HeaderIcon style={questDetailModalStyles.image} />
           </View>
         )}
         <TouchableOpacityWithDelay
@@ -87,4 +99,4 @@ export const QuestDetailModal = (props: QuestDetailModalProps) => {
       </View>
     </View>
   );
-};
+});

@@ -361,6 +361,11 @@ export interface CustomerBeneficiaryUpdate {
   remove?: boolean | null;
 }
 
+export interface GetGoalMilestoneDetailsInput {
+  goalId: string;
+  milestoneId?: string | null;
+}
+
 export interface MobileConsentInput {
   mobileHealth?: boolean | null;
   marketing?: boolean | null;
