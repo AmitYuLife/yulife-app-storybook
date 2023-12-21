@@ -6,7 +6,7 @@ import moment from "moment";
 import React, { useCallback, FC } from "react";
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserStart } from "@redux/user/user.actions";
+import { AppDataType, getUserDataStart, getUserStart } from "@redux/user/user.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import Logger from "@services/logging/logger";
 import GenericConnectionErrorModal from "@modals/generic-modal/generic-connection-error-modal";
@@ -104,6 +104,7 @@ const ActivityHistoryContainer: FC<Props> = ({ componentId }) => {
           ) {
             handleRefresh();
             dispatch(getUserStart());
+            dispatch(getUserDataStart([AppDataType.coinLedger, AppDataType.todayActivity]));
           }
         } catch (e) {
           Logger.error(e, { event: "@activity_history_reload_catched" });
