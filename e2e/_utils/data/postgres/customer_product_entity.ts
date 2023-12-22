@@ -885,7 +885,7 @@ export const CPE_108_GDent = {
         "taken_up" : true,
         product_variant_id : "Bupa_GDentPlan_01_01",
     }
-}
+} as IDatabaseItem
 
 export const CPE_116_GHI_REWARDS = {
     type: "postgres",
@@ -901,7 +901,7 @@ export const CPE_116_GHI_REWARDS = {
         "taken_up" : true,
         product_variant_id : "Bupa_GHealth_01_01",
     }
-}
+} as IDatabaseItem
 
 export const CPE_117_GHI_REWARDS = {
     type: "postgres",
@@ -917,7 +917,7 @@ export const CPE_117_GHI_REWARDS = {
         "taken_up" : true,
         product_variant_id : "Bupa_GHealth_01_01",
     }
-}
+} as IDatabaseItem
 
 export const CPE_118_GHI_REWARDS = {
     type: "postgres",
@@ -933,7 +933,7 @@ export const CPE_118_GHI_REWARDS = {
         "taken_up" : true,
         product_variant_id : "Bupa_GHealth_01_01",
     }
-}
+} as IDatabaseItem
 
 export const CPE_119_GHI_REWARDS = {
     type: "postgres",
@@ -949,7 +949,7 @@ export const CPE_119_GHI_REWARDS = {
         "taken_up" : true,
         product_variant_id : "Bupa_GHealth_01_01",
     }
-}
+} as IDatabaseItem
 
 export const CPE_120_GHI_REWARDS = {
     type: "postgres",
@@ -965,7 +965,7 @@ export const CPE_120_GHI_REWARDS = {
         "taken_up" : true,
         product_variant_id : "Bupa_GHealth_01_01",
     }
-}
+} as IDatabaseItem
 
 export const CPE_121_GHI_REWARDS = {
     type: "postgres",
@@ -981,7 +981,7 @@ export const CPE_121_GHI_REWARDS = {
         "taken_up" : true,
         product_variant_id : "Bupa_GHealth_01_01",
     }
-}
+} as IDatabaseItem
 
 export const CPE_123_GCI = {
     type,
@@ -1208,4 +1208,20 @@ export const CPE_127_GHI_REWARDS = {
         "taken_up" : true,
         product_variant_id : "Bupa_GHealth_01_01",
     }
-}
+} as IDatabaseItem
+
+export const CPE_130_GHI_LEAVER = {
+    type: "postgres",
+    modelName: "customer_product_entity",
+    data: {
+        customerId: customer.CUSTOMER_130_GHI_LEAVER.data.customerId,
+        customer_product_id: "YUCPID0000011414",
+        "earn_rate" : 0,
+        "start_date" : moment().subtract(1, "y").format("YYYY-MM-DD"),
+        "end_date" : moment().subtract(1, "weeks").format("YYYY-MM-DD"),
+        "is_banned_from_product" : false,
+        "archived" : false,
+        "taken_up" : true,
+        product_variant_id : "Bupa_GHealth_01_01",
+    }
+} as IDatabaseItem

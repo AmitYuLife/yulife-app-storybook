@@ -8,6 +8,8 @@ import * as ids from "@ids";
 import * as constants from "./_resources/constants"
 import * as fixtures from "./_resources/fixtures"
 import { getLocalisedString as t } from "@i18n";
+import { CORE_REWARDS_URBAN_GHI_REWARDS } from "@data";
+import moment from "moment";
 
 
 
@@ -162,7 +164,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I click to claim my voucher", when.tapText(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS.buttonText), async () => {
             When("I tap confirm", when.tapText(t("Confirm")), async () => {
-                Then("I should see the reward information for Boots and the confirmation", then.onUrbanRewardsClaimPage(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS, false, "10"))
+                Then("I should see the reward information for Urban and the confirmation", then.onUrbanRewardsClaimPage(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS, false, "10"))
                 Then("I can see the correct email has been received", then.GHIRewardEmailReceived(data.CUSTOMER_117_GHI_REWARDS.data.email, constants.urbanMassageEmailSubject))
             })
         })
@@ -624,6 +626,40 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })
+            
+    })
+
+    Scenario("I can succesfully go through the GOSH Rewards journeys", scenario.start, async () => {
+        Given("I deactivated the cbp for the expired product", given.archiveCustomerBusinessProductsByDate(moment().format("YYYY-MM-DD")), async () => {
+            When("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_130_GHI_LEAVER, data.AUTH_130), async () => {
+                When("I go to the store to select my region before returning to the YuScreen", when.setStoreRegion, async () => {
+                    Then("I should see the Keepsake product", then.textVisible('Keepsake'))
+                })
+            })
+        })
+        When("I go to rewards", when.tapID(ids.NAV_BAR("rewards")), async () => {
+            Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 2000))
+            Then("I can see the urban massage reward still, as I have one remaining voucher", then.idVisible(ids.REWARD_ITEM(CORE_REWARDS_URBAN_GHI_REWARDS.data._id)))
+            Then("I can't see the other GHI rewards from the game", then.multipleRewardsNotVisible(constants.ghiRewardIdsMinusUrban))
+        })
+        When("I tap on the Urban reward", when.tapRewardInList(data.CORE_REWARDS_URBAN_GHI_REWARDS), async () => {
+            When("I scroll to the button to claim", when.scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS.buttonText, "down"), async () => {
+                When("I click to claim my voucher", when.tapText(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS.buttonText), async () => {
+                    When("I tap confirm", when.tapText(t("Confirm")), async () => {
+                        Then("I should see the reward information for Urban and the confirmation", then.onUrbanRewardsClaimPage(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS, false, "10"))
+                    })
+                })
+            })
+        })
+        When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
+            When("I wait", when.wait(3000), async () => {
+                Then("I can't see the urban massage reward, as I have used my remaining voucher", then.idNotVisible(ids.REWARD_ITEM(CORE_REWARDS_URBAN_GHI_REWARDS.data._id)))
+            })
+        })
+        When("I click to see the purchase history", when.tapText(t("Purchased")), async () => {
+            Then("I can see the purchase for today for Urban Massage", then.groupHealthRewardsPurchasedVisible(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS))
+        })
+        
             
     })
 

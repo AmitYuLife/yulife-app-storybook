@@ -1645,3 +1645,14 @@ export const AUTH_129 = {
         userId: customer.CUSTOMER_129_WELLBEING_ELIGIBILITY.data.customerId,
     }
 }  as IDatabaseItem
+
+export const AUTH_130 = {
+    type: "mongo",
+    modelName: "authpassword",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_130_GHI_LEAVER.data.customerId,
+    }
+}  as IDatabaseItem

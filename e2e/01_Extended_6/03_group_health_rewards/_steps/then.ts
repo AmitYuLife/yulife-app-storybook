@@ -531,3 +531,9 @@ export const lockedLevelHalfModalVisible = (level: number) => async () => {
   await textVisible(constants.lockedLevelText(level))()
   await idVisible(ids.CHALLENGE_LOCKED_ICON)()
 }
+
+export const multipleRewardsNotVisible = (idArr: string[]) => async () => {
+  idArr.forEach((id) => async () => {
+      await idNotVisible(ids.REWARD_ITEM(id))
+  })
+}

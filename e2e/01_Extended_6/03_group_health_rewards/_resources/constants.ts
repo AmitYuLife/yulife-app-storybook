@@ -1,3 +1,4 @@
+import { CORE_REWARDS_BOOTS_GHI_REWARDS, CORE_REWARDS_BUPA_GHI_REWARDS, CORE_REWARDS_GARMIN_GHI_REWARDS, CORE_REWARDS_LIVING_DNA_GHI_REWARDS, CORE_REWARDS_THRIVA_GHI_REWARDS, CORE_REWARDS_YORK_GHI_REWARDS } from "@data";
 import { GHI_SINGLE_VOUCHER_DETAILS } from "./types";
 
 export const voucherText = (voucher: GHI_SINGLE_VOUCHER_DETAILS) => `£${voucher.value} Voucher - ${voucher.cost} YuCoin`
@@ -120,3 +121,12 @@ export const donationMessage = "Your donation will help to give support to serio
 // Quest Screen Modals
 
 export const lockedLevelText = (level: number) => { return `Unlock at level ${level.toString()}`}
+
+export const ghiRewardIdsMinusUrban = [
+    CORE_REWARDS_BOOTS_GHI_REWARDS.data._id,
+    CORE_REWARDS_YORK_GHI_REWARDS.data._id,
+    CORE_REWARDS_BUPA_GHI_REWARDS.data._id,
+    CORE_REWARDS_LIVING_DNA_GHI_REWARDS.data._id,
+    CORE_REWARDS_THRIVA_GHI_REWARDS.data._id,
+    CORE_REWARDS_GARMIN_GHI_REWARDS.data._id,
+]
