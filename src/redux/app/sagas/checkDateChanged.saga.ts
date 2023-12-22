@@ -14,7 +14,8 @@ export default function* checkDateChanged({ type }: Action) {
   const currentReduxDate: string = yield select(getCurrentDateState);
   const date = moment();
 
-  if (date.isAfter(moment(currentReduxDate), "day")) {
+  // currentReduxDate will be undefined if updating from an older version
+  if (!currentReduxDate || date.isAfter(moment(currentReduxDate), "day")) {
     yield put(updateCurrentDate(date.format(DATE_FORMAT)));
   }
 }
