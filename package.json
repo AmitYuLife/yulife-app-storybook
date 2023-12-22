@@ -103,6 +103,7 @@
     "email-validator": "^2.0.4",
     "expo": "^48.0.21",
     "expo-notifications": "~0.18.1",
+    "expo-secure-store": "~12.1.1",
     "graphql": "^16.8.1",
     "jsc-android": "^250230.2.1",
     "json-schema-yup-transformer": "^1.6.12",
