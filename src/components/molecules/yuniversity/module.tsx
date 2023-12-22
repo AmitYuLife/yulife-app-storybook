@@ -5,13 +5,13 @@ import { Image, TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 
 export interface IModule {
-  icon: { id: string; uri: string };
+  icon: { id: string; uri?: string };
   iconHeight: number;
   iconWidth: number;
   title: string;
-  description: string;
-  ctaLabel: string;
-  ctaEnabled: boolean;
+  description?: string;
+  ctaLabel?: string;
+  ctaEnabled?: boolean;
   onPress: () => void;
   wrapperStyle?: ViewStyle;
   children?: React.ReactNode;

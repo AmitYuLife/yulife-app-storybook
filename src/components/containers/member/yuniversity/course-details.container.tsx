@@ -4,15 +4,13 @@ import { ROUTES } from "@navigation/constants";
 import CourseDetailsScreen from "@components/screens/member/yuniversity/course-details.screen";
 import { Loading } from "@atoms";
 import { useQuery } from "@apollo/client";
-import {
-  GetInAppYuniversityCourseModuleDetails as GetModuleDetails,
-  GetInAppYuniversityCourseModuleDetailsVariables as GetModuleDetailsVariables,
-  GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_chapters_videoMedia as IGqlMedia,
-} from "@graphql/_core/schema/GetInAppYuniversityCourseModuleDetails";
-import { GQL_QUERY_GET_YUNIVERSITY_COURSE_MODULE_DETAILS } from "@graphql/yuniversity/getYuniversityCourseModuleDetails.gql";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { GetInAppYuniversityCourseModuleDetailsQuery, gql } from "@graphql/__generated";
+
+type IGqlMedia =
+  GetInAppYuniversityCourseModuleDetailsQuery["getInAppYuniversityCourseModuleDetails"]["chapters"]["0"]["videoMedia"];
 interface IProps {
   moduleId: string;
   courseId: string;
@@ -26,11 +24,10 @@ const CourseDetailsContainer = ({ moduleId, courseId, popTo }: IProps) => {
   const dispatch = useDispatch();
   const userLevel = useSelector(getCurrentLevel);
 
-  const { data, loading } = useQuery<GetModuleDetails, GetModuleDetailsVariables>(
-    GQL_QUERY_GET_YUNIVERSITY_COURSE_MODULE_DETAILS,
-
-    { variables: { id: moduleId }, fetchPolicy: "no-cache" }
-  );
+  const { data, loading } = useQuery(gql("GetInAppYuniversityCourseModuleDetailsDocument"), {
+    variables: { id: moduleId },
+    fetchPolicy: "no-cache",
+  });
 
   const onChapterPress = useCallback(
     (video: IGqlMedia, chapterId: string) => {

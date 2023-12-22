@@ -8,14 +8,14 @@ import TagsWithImage, { Tag } from "./tags-with-image";
 import { ArrowButton } from "../arrow-button";
 
 interface IStatus {
-  icon: { uri: string; id: string };
+  icon: { uri?: string; id: string };
   text: string;
 }
 
 export interface ICourseItem {
   tags: string;
   title: string;
-  image: { uri: string; id: string };
+  image: { uri?: string; id: string };
   status?: IStatus;
   imageTags?: Tag[];
 }

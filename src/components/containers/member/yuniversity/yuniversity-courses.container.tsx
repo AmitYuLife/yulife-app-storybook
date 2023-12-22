@@ -4,14 +4,10 @@ import { ROUTES } from "@navigation/constants";
 import YuniversityCoursesScreen, { IHeaderProps } from "@components/screens/member/yuniversity/yuniversity.screen";
 import { Loading } from "@atoms";
 import { useQuery } from "@apollo/client";
-import {
-  COURSE_CATEGORY_CPD,
-  GQL_QUERY_GET_YUNIVERSITY_COURSES,
-} from "@graphql/yuniversity/getInAppYuniversityCourses.gql";
-import { GetInAppYuniversityCourses } from "@graphql/_core/schema/GetInAppYuniversityCourses";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { gql } from "@graphql/__generated";
 
 interface IProps {
   popTo?: string;
@@ -22,8 +18,8 @@ const YuniversityCoursesContainer = ({ popTo }: IProps) => {
   const userLevel = useSelector(getCurrentLevel);
 
   const onLeftIconPress = useCallback(() => Navigation.popTo(popTo || ROUTES.wellbeingHubItems), [popTo]);
-  const { data, loading } = useQuery<GetInAppYuniversityCourses>(GQL_QUERY_GET_YUNIVERSITY_COURSES, {
-    variables: { category: COURSE_CATEGORY_CPD },
+  const { data, loading } = useQuery(gql("GetInAppYuniversityCoursesDocument"), {
+    variables: { category: "cpd" },
     fetchPolicy: "network-only",
   });
 

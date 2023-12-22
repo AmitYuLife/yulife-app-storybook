@@ -8,20 +8,19 @@ import { Module, YuniversityModuleReward } from "@molecules";
 import { ChapterContentItem, GenericHeadingAbsolute, GenericHeadingPad, ModuleNotes } from "@organisms";
 import Markdown from "@molecules/markdown/markdown";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
-import {
-  GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails as IGqlCourseModuleDetails,
-  GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_chapters_videoMedia as IGqlMedia,
-} from "@graphql/_core/schema/GetInAppYuniversityCourseModuleDetails";
 import TagsWithImage from "@components/molecules/yuniversity/tags-with-image";
 import { CPD_COURSE_DETAIL_SCREEN, CPD_COURSE_SCROLL_VIEW } from "@ids";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { GetInAppYuniversityCourseModuleDetailsQuery } from "@graphql/__generated";
 
+type IGqlMedia =
+  GetInAppYuniversityCourseModuleDetailsQuery["getInAppYuniversityCourseModuleDetails"]["chapters"]["0"]["videoMedia"];
 export interface ICourseModuleDetailsProps {
   onBackPress: () => void;
   onClose: () => void;
-  moduleDetails: IGqlCourseModuleDetails;
+  moduleDetails: GetInAppYuniversityCourseModuleDetailsQuery["getInAppYuniversityCourseModuleDetails"];
   courseId: string;
   onChapterPress: (video: IGqlMedia, chapterId: string, chapterTitle: string) => void;
   startQuiz: () => void;
