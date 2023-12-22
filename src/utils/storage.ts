@@ -71,20 +71,19 @@ export class Storage {
   }
 
   private static async migrateAndGetEncryptedLegacyValue(key: EncryptedStorageKey): Promise<string | null> {
+    let legacyValue: string | null = null;
+
     try {
-      const legacyValue = await LegacyEncryptedStorage.getItem(key);
+      legacyValue = await LegacyEncryptedStorage.getItem(key);
 
-      if (!legacyValue) {
-        return null;
+      if (legacyValue) {
+        await this.setEncryptedItem(key, legacyValue);
       }
-
-      await this.setEncryptedItem(key, legacyValue);
-
-      return legacyValue;
     } catch (error) {
       Logger.error(error, { file: "storage" });
-      return null;
     }
+
+    return legacyValue;
   }
 
   /**
