@@ -1,7 +1,7 @@
-import { CORE_REWARDS_NIKE } from "@data";
+import { CORE_REWARDS_NIKE, CORE_REWARDS_URBAN_GHI_REWARDS, CUSTOMER_130_GHI_LEAVER, GOAL_PARTICIPATION_12_GHI_LEAVER } from "@data";
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
-import { USER_2 } from "./users";
+import { USER_130, USER_2 } from "./users";
 
 export const REWARD_LEDGER_1 = {
     type:"mongo",
@@ -24,4 +24,19 @@ export const REWARD_LEDGER_1 = {
         claimedAt: moment().subtract(10, "minutes").toISOString(),
         updatedAt: moment().subtract(5, "minutes").toISOString(),
     }
+} as IDatabaseItem
+
+export const REWARD_LEDGER_2 = {
+    type:"mongo",
+    modelName:"rewardsledgers",
+    data: {
+        "_id": generateRandomMongoId(),
+        "amount": 1,
+        "claimBy": moment().add(7, "days").toISOString(),
+        "reward": CORE_REWARDS_URBAN_GHI_REWARDS.data._id,
+        "userId": CUSTOMER_130_GHI_LEAVER.data.customerId,
+        "status": "unlocked",
+        unlockedAt: moment().subtract(5, "minutes").toISOString(),
+        updatedAt: moment().subtract(10, "minutes").toISOString(),
+      }
 } as IDatabaseItem

@@ -2292,3 +2292,17 @@ export const CUSTOMER_129_TOGGLES = {
     },
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_130_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_130_GHI_LEAVER.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      hasSmartPensionActive: true,
+      enableProductGoals: true,
+    },
+  },
+} as IDatabaseItem;

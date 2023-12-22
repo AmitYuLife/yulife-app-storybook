@@ -1894,3 +1894,16 @@ export const CUSTOMER_129_WELLBEING_ELIGIBILITY = {
   },
 } as IDatabaseItem
 
+export const CUSTOMER_130_GHI_LEAVER = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Graham",
+    lastName: "Carey",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+

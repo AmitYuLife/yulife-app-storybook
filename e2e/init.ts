@@ -37,7 +37,7 @@ beforeAll(async () => {
   await dataManager.reseed();
 });
 
-// comment out for detox debugging/dev
+//comment out for detox debugging/dev
 afterAll(async () => {
   await socketServer.close();
   await dataManager.resetData();
