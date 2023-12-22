@@ -4,14 +4,11 @@ import React, { useCallback, memo, useEffect, useRef } from "react";
 import { Navigation } from "@navigation/main";
 import { Media } from "@graphql/_core/schema";
 import { useMutation } from "@apollo/client";
-import {
-  GQL_MUTATION_COMPLETE_IN_APP_YUNIVERSITY_MODULE_CHAPTER,
-  CompleteYuniversityModuleChapterTuple,
-} from "@graphql/yuniversity/completeInAppYuniversityModuleChapter.gql";
 import { OnVideoErrorData, OnProgressData } from "react-native-video";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import { gql } from "@graphql/__generated";
 
 interface IProps {
   componentId: string;
@@ -24,9 +21,7 @@ interface IProps {
 const YuniversityMediaPlayerContainer = ({ video, moduleId, chapterId, trackingData }: IProps) => {
   const videoProgressRef = useRef(0);
 
-  const [completeChapter]: CompleteYuniversityModuleChapterTuple = useMutation(
-    GQL_MUTATION_COMPLETE_IN_APP_YUNIVERSITY_MODULE_CHAPTER
-  );
+  const [completeChapter] = useMutation(gql("CompleteInAppYuniversityModuleChapterDocument"));
   const dispatch = useDispatch();
   const { logYuniversity } = useSelector(getUserFeatures);
 

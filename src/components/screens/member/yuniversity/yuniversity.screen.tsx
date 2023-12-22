@@ -7,8 +7,8 @@ import { Style } from "@styles";
 import { Animated, NativeScrollEvent, View } from "react-native";
 import { Source } from "react-native-fast-image";
 import style, { CONTENT_MARGIN_TOP, HEADER_HEIGHT, TITLE_HEIGHT } from "./styles";
-import { GetInAppYuniversityCourses_getInAppYuniversityCourses_courses as ICourse } from "@graphql/_core/schema/GetInAppYuniversityCourses";
 import { CPD_COURSES_SCREEN } from "@ids";
+import { GetInAppYuniversityCoursesQuery } from "@graphql/__generated";
 
 export interface IHeaderProps {
   title: string;
@@ -19,10 +19,12 @@ export interface IHeaderProps {
   onLeftIconPress: () => void;
 }
 
+type ICourse = GetInAppYuniversityCoursesQuery["getInAppYuniversityCourses"]["courses"];
+
 interface IProps {
   category: string;
   categoryImageUri: string;
-  courses: ICourse[];
+  courses: ICourse;
   headerProps: IHeaderProps;
   testID?: string;
   onModulePress: (courseSlug: string, moduleSlug: string) => void;

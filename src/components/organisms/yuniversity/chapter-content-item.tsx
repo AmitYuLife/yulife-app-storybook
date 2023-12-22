@@ -1,7 +1,10 @@
 import React, { memo, useCallback } from "react";
 import { CourseContentItem } from "@components/molecules";
 import { ICourseItem } from "@components/molecules/yuniversity/course-content-item";
-import { GetInAppYuniversityCourseModuleDetails_getInAppYuniversityCourseModuleDetails_chapters_videoMedia as IGqlMedia } from "@graphql/_core/schema/GetInAppYuniversityCourseModuleDetails";
+import { GetInAppYuniversityCourseModuleDetailsQuery } from "@graphql/__generated";
+
+type IGqlMedia =
+  GetInAppYuniversityCourseModuleDetailsQuery["getInAppYuniversityCourseModuleDetails"]["chapters"][0]["videoMedia"];
 
 type IChapterContentItem = ICourseItem & {
   slug: string;

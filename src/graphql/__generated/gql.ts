@@ -53,6 +53,9 @@ const documents = {
   GetStatisticsDocument: types.GetStatisticsDocument,
   GetUserSurgeDocument: types.GetUserSurgeDocument,
   GetTodayEarningsDocument: types.GetTodayEarningsDocument,
+  CompleteInAppYuniversityModuleChapterDocument: types.CompleteInAppYuniversityModuleChapterDocument,
+  GetInAppYuniversityCoursesDocument: types.GetInAppYuniversityCoursesDocument,
+  GetInAppYuniversityCourseModuleDetailsDocument: types.GetInAppYuniversityCourseModuleDetailsDocument,
 };
 
 /**
@@ -241,6 +244,24 @@ export function gql(source: "GetUserSurgeDocument"): typeof documents["GetUserSu
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetTodayEarningsDocument"): typeof documents["GetTodayEarningsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "CompleteInAppYuniversityModuleChapterDocument"
+): typeof documents["CompleteInAppYuniversityModuleChapterDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "GetInAppYuniversityCoursesDocument"
+): typeof documents["GetInAppYuniversityCoursesDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "GetInAppYuniversityCourseModuleDetailsDocument"
+): typeof documents["GetInAppYuniversityCourseModuleDetailsDocument"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

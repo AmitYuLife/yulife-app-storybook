@@ -5,7 +5,7 @@ import { View, StyleSheet } from "react-native";
 
 export interface Tag {
   tag: string;
-  image?: { uri: string };
+  image?: { uri?: string };
 }
 
 interface IProps {
