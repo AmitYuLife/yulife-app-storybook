@@ -9,7 +9,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   backgroundLottie: {
     width: Style.DEVICE_WIDTH,
-    height: (Style.DEVICE_WIDTH * 812) / 375,
+    height: Style.DEVICE_HEIGHT,
     position: "absolute",
   } as ImageStyle,
   topBarWrapper: {
@@ -21,5 +21,7 @@ export default StyleSheet.create({
   levelsWrapper: {
     position: "absolute",
     bottom: Style.DEVICE_HEIGHT > Media.DEVICES.iPhone8.height ? 0 : Style.adjust(-40),
+    width: Style.DEVICE_WIDTH,
+    height: (Style.DEVICE_WIDTH * 812) / 375,
   } as ViewStyle,
 });

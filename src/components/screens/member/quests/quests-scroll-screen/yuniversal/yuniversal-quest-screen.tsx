@@ -68,7 +68,7 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
       />
       {!levelMap?.length ? null : (
         <View style={styles.levelsWrapper}>
-          <YuniversalQuestSvg width={styles.backgroundLottie.width} height={styles.backgroundLottie.height}>
+          <YuniversalQuestSvg width={styles.levelsWrapper.width} height={styles.levelsWrapper.height}>
             {levelMap.map((level) => (
               <LevelBubble {...level} key={level.text} />
             ))}
