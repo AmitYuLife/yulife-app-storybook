@@ -9,16 +9,16 @@ import QuestMapEpisode from "./quest-map-episode";
 import { WeeklyQuestsButton } from "@components/screens/member/quests/quests-scroll-screen/weeklies/weeklies.button";
 import { useUserFeatures } from "@hooks";
 import { IQuestMapItem } from "./quest-map.interface";
-import { GetMobileGameWeeklies_getMobileGameWeeklies } from "@graphql/_core/schema";
 import { FlashList, ListRenderItemInfo, ViewToken } from "@shopify/flash-list";
 import { first, isEmpty } from "lodash";
+import { GetMobileGameWeekliesQuery } from "@graphql/__generated";
 
 interface IQuestMapScreenProps extends IConnectedScreenProps {
   currentLevel: number;
   snapOffsets: number[];
   itemHeights: number[];
   items?: IQuestMapItem[];
-  weeklies?: GetMobileGameWeeklies_getMobileGameWeeklies;
+  weeklies?: GetMobileGameWeekliesQuery["getMobileGameWeeklies"];
 }
 
 const VIEWABILITY_CONFIG = {

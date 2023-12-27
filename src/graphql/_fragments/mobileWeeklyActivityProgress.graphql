@@ -1,0 +1,14 @@
+fragment MobileWeeklyActivityProgress on MobileWeeklyActivityProgress {
+  id
+  activitySubTotal
+  yuCoinSubTotal
+  currentPosition
+  maxLength
+  isClaimable
+  isClaimed
+  isJoined
+  iconUrl {
+    id
+    uri
+  }
+}

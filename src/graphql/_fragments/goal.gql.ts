@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+// @Purge this after this MR and 3936 been merged
 export const GQL_FRAGMENT_GOAL = gql`
   fragment UserProfileEvents on UserProfileEvents {
     id

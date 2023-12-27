@@ -1,0 +1,5 @@
+mutation JoinWeeklyGoal($goalId: String!) {
+  joinWeeklyGoal(goalId: $goalId) {
+    ...MobileWeeklyActivityProgress
+  }
+}
