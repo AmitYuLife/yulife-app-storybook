@@ -1,0 +1,29 @@
+fragment ContentItemDatePicker on ContentItemDatePicker {
+  id
+  initialDate
+  maxDate
+  minDate
+  dateFormat
+  label
+  labelWrapperStyles {
+    ...SduiStyle
+  }
+  subLabel
+  pickerStyles {
+    ...SduiStyle
+  }
+  buttonStyles {
+    ...SduiStyle
+  }
+  buttonLeftIcon {
+    ...RemoteImage
+  }
+  buttonRightIcon {
+    ...RemoteImage
+  }
+  size: buttonSize
+  answerKey
+  styles {
+    ...SduiStyle
+  }
+}

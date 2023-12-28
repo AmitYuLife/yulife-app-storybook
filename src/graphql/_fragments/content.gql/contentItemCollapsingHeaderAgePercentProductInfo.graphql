@@ -1,0 +1,24 @@
+fragment ContentItemCollapsingHeaderAgePercentProductInfo on ContentItemCollapsingHeaderAgePercentProductInfo {
+  id
+  styles {
+    ...SduiStyle
+  }
+  expandOnComponentId
+  expandThreshold
+  collapsingHeaderAgePercentProductInfoData: data {
+    answerKeys {
+      ...ContentItemAnswerKeys
+    }
+    agePercentCoverList {
+      ...ContentItemAgePercentCoverPickerAgeOption
+    }
+    monthlyCostDynamicCopy
+    monthlyCostReplacementString
+    salaryPercentDynamicCopy
+    salaryPercentReplacementString
+    defaultActiveAgeToEnd
+    defaultActiveCoverType
+    defaultActiveSalaryPercent
+    defaultActiveWorldId
+  }
+}

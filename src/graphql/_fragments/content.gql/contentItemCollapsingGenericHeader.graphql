@@ -1,0 +1,16 @@
+fragment ContentItemCollapsingGenericHeader on ContentItemCollapsingGenericHeader {
+  id
+  title
+  styles {
+    ...SduiStyle
+  }
+  contentItemCollapsingGenericHeaderRightIcon: rightIcon {
+    ...RemoteImage
+  }
+  collapsedRightIcon {
+    ...RemoteImage
+  }
+  onPressRightIcon {
+    ...SduiAction
+  }
+}
