@@ -1,0 +1,12 @@
+fragment ContentItemCostPayoutBenefitCard on ContentItemCostPayoutBenefitCard {
+  id
+  costValue
+  costDescription
+  coverType
+  benefitDescription
+  benefitValue
+  benefitIntervalMarkdown
+  styles {
+    ...SduiStyle
+  }
+}

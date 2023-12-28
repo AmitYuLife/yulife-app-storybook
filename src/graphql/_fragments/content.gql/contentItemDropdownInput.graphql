@@ -1,0 +1,16 @@
+fragment ContentItemDropdownInput on ContentItemDropdownInput {
+  id
+  heading
+  answerKey
+  validation {
+    validationName
+    validationValue
+  }
+  styles {
+    ...SduiStyle
+  }
+  dropdownOptions: options {
+    ...ContentItemDropdownInputOptions
+  }
+  selectInstruction
+}

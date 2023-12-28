@@ -1,0 +1,9 @@
+fragment ContentItemConfirm on ContentItemConfirm {
+  id
+  confirmLabel: text
+  answerKey
+  checkboxType
+  styles {
+    ...SduiStyle
+  }
+}

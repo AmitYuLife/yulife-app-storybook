@@ -1,0 +1,4 @@
+fragment ContentItemDropdownInputOptions on ContentItemDropdownInputOptions {
+  label
+  value
+}
