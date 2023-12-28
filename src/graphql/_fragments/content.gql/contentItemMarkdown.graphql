@@ -1,0 +1,14 @@
+fragment ContentItemMarkdown on ContentItemMarkdown {
+  id
+  title
+  markdown
+  perkId
+  parsedMarkdown
+  markdownStyles
+  styles {
+    ...SduiStyle
+  }
+  markdownContainerStyle {
+    ...SduiStyle
+  }
+}

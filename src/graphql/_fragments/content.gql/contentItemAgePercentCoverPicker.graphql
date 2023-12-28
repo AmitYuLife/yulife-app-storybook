@@ -1,0 +1,34 @@
+fragment ContentItemAgePercentCoverPicker on ContentItemAgePercentCoverPicker {
+  id
+  styles {
+    ...SduiStyle
+  }
+  percentsToDefault
+  contentItemAgePercentCoverPickerOptions: options {
+    ...ContentItemAgePercentCoverPickerAgeOption
+  }
+  topHeading
+  restrictedPercentInfoCardText {
+    ...ContentItemMarkdown
+  }
+  costPayoutBenefitHeading
+  costPayoutBenefitPayoutSchedule
+  costPayoutBenefitCostSchedule
+  ageText {
+    ...ContentItemMarkdown
+  }
+  answerKeyPercent
+  answerKeyPercentDefaultValue
+  answerKeyAge
+  answerKeyAgeDefaultValue
+  answerKeyCoverType
+  answerKeyCoverTypeDefaultValue
+  answerKeyMaxSalaryPercent
+  answerKeyMaxSalaryPercentDefaultValue
+
+  customCover {
+    ...ContentItemCoverPickerCustomCover
+  }
+  userAge
+  agePickerButtonRightIconImageUrl
+}

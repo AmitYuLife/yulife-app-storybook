@@ -1,0 +1,6 @@
+fragment ContentItemForm on ContentItemForm {
+  elements {
+    __typename
+    ...ContentItemFormElements
+  }
+}

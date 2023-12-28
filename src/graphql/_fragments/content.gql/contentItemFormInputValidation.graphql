@@ -1,0 +1,4 @@
+fragment ContentItemFormInputValidation on ContentItemFormInputValidation {
+  regex
+  message
+}

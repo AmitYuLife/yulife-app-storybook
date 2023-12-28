@@ -1,0 +1,12 @@
+fragment ContentItemFormElements on ContentItemFormElements {
+  __typename
+  ... on ContentItemFormTextInput {
+    ...ContentItemFormTextInput
+  }
+  ... on ContentItemFormSelectInput {
+    ...ContentItemFormSelectInput
+  }
+  ... on ContentItemFormSubmitButton {
+    ...ContentItemFormSubmitButton
+  }
+}

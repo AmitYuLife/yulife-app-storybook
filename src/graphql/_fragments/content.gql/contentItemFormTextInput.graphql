@@ -1,0 +1,13 @@
+fragment ContentItemFormTextInput on ContentItemFormTextInput {
+  id
+  name
+  placeholder
+  defaultValue
+  type
+  icon {
+    ...RemoteImage
+  }
+  validation {
+    ...ContentItemFormInputValidation
+  }
+}

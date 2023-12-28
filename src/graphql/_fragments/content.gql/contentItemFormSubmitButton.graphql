@@ -1,0 +1,4 @@
+fragment ContentItemFormSubmitButton on ContentItemFormSubmitButton {
+  id
+  label
+}
