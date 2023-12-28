@@ -3,17 +3,17 @@ import { InfoCard } from "@components/molecules";
 import { Image } from "@atoms";
 import { Style } from "@styles";
 import style from "./info-card-list.styles";
-import { GetGoalDetails_getGoalDetails_infoCards_styles as InfoCardStyle } from "@graphql/_core/schema/GetGoalDetails";
 import { mapServerStyles } from "@components/sdui";
+import { GetGoalDetailsQuery } from "@graphql/__generated";
 
 export type IInfoCardListCard = {
   icon: {
     id: string;
-    uri: string;
+    uri?: string;
   };
   title: string;
   description: string;
-  styles: InfoCardStyle[];
+  styles?: GetGoalDetailsQuery["getGoalDetails"]["infoCards"][0]["styles"];
 };
 
 interface IProps {

@@ -1,0 +1,5 @@
+mutation JoinGoal($goalId: String!) {
+  joinGoal(goalId: $goalId) {
+    ...UserProfileEvents
+  }
+}

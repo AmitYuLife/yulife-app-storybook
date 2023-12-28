@@ -11,7 +11,7 @@ interface IStarWrapper {
 
 export interface ILabelImage {
   id?: string;
-  uri: string;
+  uri?: string;
 }
 
 const LabelWithImages = ({ labelImages, backgroundColor }: IStarWrapper) => {

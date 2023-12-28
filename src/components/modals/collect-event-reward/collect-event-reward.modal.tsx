@@ -1,8 +1,5 @@
 import { useMutation } from "@apollo/client";
 import { eventState } from "@components/screens/member/events/collect-event-reward/collect-event-reward.screen";
-import { GQL_MUTATION_CLAIM_GOAL_REWARDS } from "@graphql/goals/claimGoalRewards.gql";
-import { ClaimGoalRewards, ClaimGoalRewardsVariables } from "@graphql/_core/schema";
-import { GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
 import { t } from "@locale";
 import { MODALS } from "@navigation/constants";
 import { IReward } from "@organisms/event-reward/event-reward";
@@ -13,7 +10,8 @@ import { delay } from "@utils/misc";
 import React, { useCallback, useMemo, useState } from "react";
 import { Navigation } from "@navigation/main";
 import { useDispatch } from "react-redux";
-import { GQL_QUERY_GET_GOAL_DETAILS } from "@graphql/goals/getGoalDetails.gql";
+
+import { GoalRewardStatus, gql } from "@graphql/__generated";
 
 interface IProps {
   goalIds?: string[];
@@ -28,7 +26,7 @@ const AFTER_ALL_REWARDS_REDEEMED_DELAY = 200;
 export default function CollectEventRewardModal({ goalIds, event, rewards, completed = false }: IProps) {
   const [localRewards, setLocalRewards] = useState(rewards || []);
   const [eventFinished, setEventFinished] = useState(
-    completed && rewards.every(({ status }) => status !== GoalRewardStatus.completed)
+    completed && rewards.every(({ status }) => status !== GoalRewardStatus.Completed)
   );
   const dispatch = useDispatch();
 
@@ -41,11 +39,11 @@ export default function CollectEventRewardModal({ goalIds, event, rewards, compl
     Navigation.dismissModal(MODALS.collectEventReward);
   }, [dispatch]);
 
-  const [claimGoalRewardsMutation] = useMutation<ClaimGoalRewards, ClaimGoalRewardsVariables>(
-    GQL_MUTATION_CLAIM_GOAL_REWARDS,
+  const [claimGoalRewardsMutation] = useMutation(
+    gql("ClaimGoalRewardsDocument"),
     goalIds && {
       refetchQueries: goalIds.map((goalId) => ({
-        query: GQL_QUERY_GET_GOAL_DETAILS,
+        query: gql("GetGoalDetailsDocument"),
         variables: { id: goalId },
       })),
     }
@@ -58,7 +56,7 @@ export default function CollectEventRewardModal({ goalIds, event, rewards, compl
           return 0;
         }
 
-        if (status1 === GoalRewardStatus.completed) {
+        if (status1 === GoalRewardStatus.Completed) {
           return -1;
         }
 
@@ -66,7 +64,7 @@ export default function CollectEventRewardModal({ goalIds, event, rewards, compl
       })
       .reduce<{ orderedRewards: IReward[]; unclaimedRewardIds: string[] }>(
         (map, reward, index) => {
-          if (reward.status === GoalRewardStatus.completed) {
+          if (reward.status === GoalRewardStatus.Completed) {
             map.unclaimedRewardIds.push(reward.id);
           }
 
@@ -92,7 +90,7 @@ export default function CollectEventRewardModal({ goalIds, event, rewards, compl
         setLocalRewards((stateRewards) => {
           return stateRewards.map((reward) => {
             if (unclaimedRewardIds.includes(reward.id)) {
-              return { ...reward, status: GoalRewardStatus.claimed };
+              return { ...reward, status: GoalRewardStatus.Claimed };
             }
 
             return reward;

@@ -9350,6 +9350,68 @@ export type ContentItemLottieFragment = {
   onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
 };
 
+export type GoalDetailsFragment = {
+  __typename?: "GoalDetails";
+  title: string;
+  labels?: Array<string> | null;
+  headerBackgroundColor: string;
+  headerTextColor: string;
+  hideHint?: boolean | null;
+  progressUnit: string;
+  currentProgress: number;
+  maxProgress: number;
+  milestones: Array<number>;
+  headerImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  rewards: Array<{
+    __typename?: "GoalReward";
+    id: string;
+    goalId: string;
+    title: string;
+    description?: string | null;
+    status: GoalRewardStatus;
+    animated: boolean;
+    infoText?: string | null;
+    itemBackground: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    item: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    stars?: Array<{ __typename?: "RemoteImage"; id: string; uri?: string | null }> | null;
+    infoBadgeUri?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  }>;
+  progressIcon: { __typename?: "RemoteImage"; uri?: string | null };
+  about?: { __typename?: "GoalInfoComponent"; title?: string | null; markdown?: string | null } | null;
+  faq?: {
+    __typename?: "GoalFaq";
+    text: string;
+    icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  } | null;
+  infoCards?: Array<{
+    __typename?: "GoalInfoCard";
+    title: string;
+    description: string;
+    icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+  }> | null;
+  banner?: {
+    __typename?: "ContentItemRowIconTextBanner";
+    id: string;
+    type: ContentItemRowIconTextBannerType;
+    markdown: string;
+    icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+  } | null;
+  button?: {
+    __typename?: "GoalDetailsButton";
+    label: string;
+    shadowColor?: string | null;
+    backgroundColor?: string | null;
+    onPress?: {
+      __typename?: "GoalButtonAction";
+      goalType?: GoalActionType | null;
+      sduiType?: SduiActionType | null;
+      payload?: string | null;
+    } | null;
+  } | null;
+};
+
 export type MediaFragment = {
   __typename?: "Media";
   id: string;
@@ -9425,6 +9487,46 @@ export type SocialGroupLeaderboardFragment = {
   leaderboardConfigId: SocialGroupLeaderboardConfigId;
   icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   selectedIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+};
+
+export type UserProfileEventsFragment = {
+  __typename?: "UserProfileEvents";
+  id: string;
+  stageId: string;
+  participationId?: string | null;
+  title: string;
+  description?: string | null;
+  startDate?: string | null;
+  endDate?: string | null;
+  status?: UserProfileEventStatus | null;
+  joined?: boolean | null;
+  challenges: Array<{
+    __typename?: "UserProfileEventsChallenges";
+    description: string;
+    icon: { __typename?: "RemoteImage"; uri?: string | null };
+  }>;
+  tags: {
+    __typename?: "UserProfileEventsTags";
+    tag: string;
+    joined?: string | null;
+    icon: { __typename?: "RemoteImage"; uri?: string | null };
+  };
+  badge?: {
+    __typename?: "UserProfileEventsBadge";
+    text: string;
+    backgroundColor?: string | null;
+    icon: { __typename?: "RemoteImage"; uri?: string | null };
+  } | null;
+  progressBar: { __typename?: "UserProfileEventsProgressBar"; max: number; current: number };
+  milestones: Array<{
+    __typename?: "UserProfileEventMilestone";
+    targetValue: number;
+    animated?: boolean | null;
+    rewardId?: string | null;
+    rewardClaimed?: boolean | null;
+    isClaimable?: boolean | null;
+    image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
+  }>;
 };
 
 export type UserStatisticDetailsFragment = {
@@ -9739,6 +9841,150 @@ export type AddDeviceTokenMutation = {
   } | null;
 };
 
+export type ClaimGoalRewardsMutationVariables = Exact<{
+  rewardIds: Array<Scalars["String"]["input"]> | Scalars["String"]["input"];
+}>;
+
+export type ClaimGoalRewardsMutation = {
+  __typename?: "Mutation";
+  claimGoalRewards?: {
+    __typename?: "GoalDetails";
+    title: string;
+    labels?: Array<string> | null;
+    headerBackgroundColor: string;
+    headerTextColor: string;
+    hideHint?: boolean | null;
+    progressUnit: string;
+    currentProgress: number;
+    maxProgress: number;
+    milestones: Array<number>;
+    headerImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    rewards: Array<{
+      __typename?: "GoalReward";
+      id: string;
+      goalId: string;
+      title: string;
+      description?: string | null;
+      status: GoalRewardStatus;
+      animated: boolean;
+      infoText?: string | null;
+      itemBackground: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      item: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      stars?: Array<{ __typename?: "RemoteImage"; id: string; uri?: string | null }> | null;
+      infoBadgeUri?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    }>;
+    progressIcon: { __typename?: "RemoteImage"; uri?: string | null };
+    about?: { __typename?: "GoalInfoComponent"; title?: string | null; markdown?: string | null } | null;
+    faq?: {
+      __typename?: "GoalFaq";
+      text: string;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    infoCards?: Array<{
+      __typename?: "GoalInfoCard";
+      title: string;
+      description: string;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+    }> | null;
+    banner?: {
+      __typename?: "ContentItemRowIconTextBanner";
+      id: string;
+      type: ContentItemRowIconTextBannerType;
+      markdown: string;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+    } | null;
+    button?: {
+      __typename?: "GoalDetailsButton";
+      label: string;
+      shadowColor?: string | null;
+      backgroundColor?: string | null;
+      onPress?: {
+        __typename?: "GoalButtonAction";
+        goalType?: GoalActionType | null;
+        sduiType?: SduiActionType | null;
+        payload?: string | null;
+      } | null;
+    } | null;
+  } | null;
+};
+
+export type CompleteGoalMutationVariables = Exact<{
+  participationId: Scalars["String"]["input"];
+}>;
+
+export type CompleteGoalMutation = { __typename?: "Mutation"; completeGoal?: boolean | null };
+
+export type GetGoalDetailsQueryVariables = Exact<{
+  id: Scalars["ID"]["input"];
+}>;
+
+export type GetGoalDetailsQuery = {
+  __typename?: "Query";
+  getGoalDetails?: {
+    __typename?: "GoalDetails";
+    title: string;
+    labels?: Array<string> | null;
+    headerBackgroundColor: string;
+    headerTextColor: string;
+    hideHint?: boolean | null;
+    progressUnit: string;
+    currentProgress: number;
+    maxProgress: number;
+    milestones: Array<number>;
+    headerImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    rewards: Array<{
+      __typename?: "GoalReward";
+      id: string;
+      goalId: string;
+      title: string;
+      description?: string | null;
+      status: GoalRewardStatus;
+      animated: boolean;
+      infoText?: string | null;
+      itemBackground: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      item: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      stars?: Array<{ __typename?: "RemoteImage"; id: string; uri?: string | null }> | null;
+      infoBadgeUri?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    }>;
+    progressIcon: { __typename?: "RemoteImage"; uri?: string | null };
+    about?: { __typename?: "GoalInfoComponent"; title?: string | null; markdown?: string | null } | null;
+    faq?: {
+      __typename?: "GoalFaq";
+      text: string;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    infoCards?: Array<{
+      __typename?: "GoalInfoCard";
+      title: string;
+      description: string;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+    }> | null;
+    banner?: {
+      __typename?: "ContentItemRowIconTextBanner";
+      id: string;
+      type: ContentItemRowIconTextBannerType;
+      markdown: string;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+    } | null;
+    button?: {
+      __typename?: "GoalDetailsButton";
+      label: string;
+      shadowColor?: string | null;
+      backgroundColor?: string | null;
+      onPress?: {
+        __typename?: "GoalButtonAction";
+        goalType?: GoalActionType | null;
+        sduiType?: SduiActionType | null;
+        payload?: string | null;
+      } | null;
+    } | null;
+  } | null;
+};
+
 export type GetGoalMilestoneDetailsQueryVariables = Exact<{
   goals?: InputMaybe<Array<InputMaybe<GetGoalMilestoneDetailsInput>> | InputMaybe<GetGoalMilestoneDetailsInput>>;
 }>;
@@ -9763,6 +10009,53 @@ export type GetGoalMilestoneDetailsQuery = {
       image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     } | null;
   };
+};
+
+export type JoinGoalMutationVariables = Exact<{
+  goalId: Scalars["String"]["input"];
+}>;
+
+export type JoinGoalMutation = {
+  __typename?: "Mutation";
+  joinGoal?: {
+    __typename?: "UserProfileEvents";
+    id: string;
+    stageId: string;
+    participationId?: string | null;
+    title: string;
+    description?: string | null;
+    startDate?: string | null;
+    endDate?: string | null;
+    status?: UserProfileEventStatus | null;
+    joined?: boolean | null;
+    challenges: Array<{
+      __typename?: "UserProfileEventsChallenges";
+      description: string;
+      icon: { __typename?: "RemoteImage"; uri?: string | null };
+    }>;
+    tags: {
+      __typename?: "UserProfileEventsTags";
+      tag: string;
+      joined?: string | null;
+      icon: { __typename?: "RemoteImage"; uri?: string | null };
+    };
+    badge?: {
+      __typename?: "UserProfileEventsBadge";
+      text: string;
+      backgroundColor?: string | null;
+      icon: { __typename?: "RemoteImage"; uri?: string | null };
+    } | null;
+    progressBar: { __typename?: "UserProfileEventsProgressBar"; max: number; current: number };
+    milestones: Array<{
+      __typename?: "UserProfileEventMilestone";
+      targetValue: number;
+      animated?: boolean | null;
+      rewardId?: string | null;
+      rewardClaimed?: boolean | null;
+      isClaimable?: boolean | null;
+      image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
+    }>;
+  } | null;
 };
 
 export type ChangeUserLocaleMutationVariables = Exact<{
@@ -10405,6 +10698,232 @@ export type GetInAppYuniversityCourseModuleDetailsQuery = {
   };
 };
 
+export const GoalDetailsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GoalDetails" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GoalDetails" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "labels" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "headerImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "headerBackgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "headerTextColor" } },
+          { kind: "Field", name: { kind: "Name", value: "hideHint" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "rewards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "goalId" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "itemBackground" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "item" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "status" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "stars" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "animated" } },
+                { kind: "Field", name: { kind: "Name", value: "infoText" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "infoBadgeUri" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "progressUnit" } },
+          { kind: "Field", name: { kind: "Name", value: "currentProgress" } },
+          { kind: "Field", name: { kind: "Name", value: "maxProgress" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "progressIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "milestones" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "about" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "markdown" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "faq" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "infoCards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "styles" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "property" } },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "banner" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "styles" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "property" } },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "markdown" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "button" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "goalType" } },
+                      { kind: "Field", name: { kind: "Name", value: "sduiType" } },
+                      { kind: "Field", name: { kind: "Name", value: "payload" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "shadowColor" } },
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GoalDetailsFragment, unknown>;
 export const SduiStyleFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -10811,6 +11330,119 @@ export const SocialGroupFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<SocialGroupFragment, unknown>;
+export const UserProfileEventsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserProfileEvents" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserProfileEvents" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "stageId" } },
+          { kind: "Field", name: { kind: "Name", value: "participationId" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "startDate" } },
+          { kind: "Field", name: { kind: "Name", value: "endDate" } },
+          { kind: "Field", name: { kind: "Name", value: "status" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "challenges" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "tags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "tag" } },
+                { kind: "Field", name: { kind: "Name", value: "joined" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "joined" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "badge" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "progressBar" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "max" } },
+                { kind: "Field", name: { kind: "Name", value: "current" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "milestones" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "targetValue" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "animated" } },
+                { kind: "Field", name: { kind: "Name", value: "rewardId" } },
+                { kind: "Field", name: { kind: "Name", value: "rewardClaimed" } },
+                { kind: "Field", name: { kind: "Name", value: "isClaimable" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserProfileEventsFragment, unknown>;
 export const UserStatisticDetailsFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -11841,6 +12473,561 @@ export const AddDeviceTokenDocument = {
     },
   ],
 } as unknown as DocumentNode<AddDeviceTokenMutation, AddDeviceTokenMutationVariables>;
+export const ClaimGoalRewardsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "ClaimGoalRewards" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "rewardIds" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "claimGoalRewards" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "rewardIds" },
+                value: { kind: "Variable", name: { kind: "Name", value: "rewardIds" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GoalDetails" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GoalDetails" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GoalDetails" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "labels" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "headerImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "headerBackgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "headerTextColor" } },
+          { kind: "Field", name: { kind: "Name", value: "hideHint" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "rewards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "goalId" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "itemBackground" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "item" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "status" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "stars" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "animated" } },
+                { kind: "Field", name: { kind: "Name", value: "infoText" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "infoBadgeUri" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "progressUnit" } },
+          { kind: "Field", name: { kind: "Name", value: "currentProgress" } },
+          { kind: "Field", name: { kind: "Name", value: "maxProgress" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "progressIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "milestones" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "about" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "markdown" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "faq" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "infoCards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "styles" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "property" } },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "banner" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "styles" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "property" } },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "markdown" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "button" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "goalType" } },
+                      { kind: "Field", name: { kind: "Name", value: "sduiType" } },
+                      { kind: "Field", name: { kind: "Name", value: "payload" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "shadowColor" } },
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ClaimGoalRewardsMutation, ClaimGoalRewardsMutationVariables>;
+export const CompleteGoalDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "CompleteGoal" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "participationId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "completeGoal" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "participationId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "participationId" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CompleteGoalMutation, CompleteGoalMutationVariables>;
+export const GetGoalDetailsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetGoalDetails" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getGoalDetails" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: { kind: "Variable", name: { kind: "Name", value: "id" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GoalDetails" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GoalDetails" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GoalDetails" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "labels" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "headerImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "headerBackgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "headerTextColor" } },
+          { kind: "Field", name: { kind: "Name", value: "hideHint" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "rewards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "goalId" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "itemBackground" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "item" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "status" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "stars" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "animated" } },
+                { kind: "Field", name: { kind: "Name", value: "infoText" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "infoBadgeUri" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "progressUnit" } },
+          { kind: "Field", name: { kind: "Name", value: "currentProgress" } },
+          { kind: "Field", name: { kind: "Name", value: "maxProgress" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "progressIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "milestones" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "about" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "markdown" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "faq" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "infoCards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "styles" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "property" } },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "banner" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "styles" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "property" } },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "markdown" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "button" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "goalType" } },
+                      { kind: "Field", name: { kind: "Name", value: "sduiType" } },
+                      { kind: "Field", name: { kind: "Name", value: "payload" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "shadowColor" } },
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetGoalDetailsQuery, GetGoalDetailsQueryVariables>;
 export const GetGoalMilestoneDetailsDocument = {
   kind: "Document",
   definitions: [
@@ -11939,6 +13126,151 @@ export const GetGoalMilestoneDetailsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetGoalMilestoneDetailsQuery, GetGoalMilestoneDetailsQueryVariables>;
+export const JoinGoalDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "JoinGoal" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "goalId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "joinGoal" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "goalId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "goalId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserProfileEvents" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserProfileEvents" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserProfileEvents" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "stageId" } },
+          { kind: "Field", name: { kind: "Name", value: "participationId" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "startDate" } },
+          { kind: "Field", name: { kind: "Name", value: "endDate" } },
+          { kind: "Field", name: { kind: "Name", value: "status" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "challenges" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "tags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "tag" } },
+                { kind: "Field", name: { kind: "Name", value: "joined" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "joined" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "badge" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "progressBar" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "max" } },
+                { kind: "Field", name: { kind: "Name", value: "current" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "milestones" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "targetValue" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "animated" } },
+                { kind: "Field", name: { kind: "Name", value: "rewardId" } },
+                { kind: "Field", name: { kind: "Name", value: "rewardClaimed" } },
+                { kind: "Field", name: { kind: "Name", value: "isClaimable" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<JoinGoalMutation, JoinGoalMutationVariables>;
 export const ChangeUserLocaleDocument = {
   kind: "Document",
   definitions: [

@@ -1,7 +1,6 @@
+import React, { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useMutation, useQuery } from "@apollo/client";
-import React, { useCallback, useEffect } from "react";
-
 import { t } from "@locale";
 import { useBackHandler } from "@hooks";
 import { Navigation } from "@navigation/main";
@@ -9,25 +8,15 @@ import Logger from "@services/logging/logger";
 import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { IReward } from "@organisms/event-reward/event-reward";
-import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
-import { GetGoalDetails } from "@graphql/_core/schema/GetGoalDetails";
-import { GQL_QUERY_GET_GOAL_DETAILS } from "@graphql/goals/getGoalDetails.gql";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { refreshUserProfileEvents, removeUserProfileEvent, updateUserGoal } from "@redux/user/user.actions";
-import { GQL_MUTATION_CLAIM_GOAL_REWARDS } from "@graphql/goals/claimGoalRewards.gql";
 import EventDialogScreen from "@components/screens/member/events/event-dialog/event-dialog.screen";
-import { GoalActionType, GoalRewardStatus, SduiActionType } from "@graphql/_core/schema/globalTypes";
+import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import EventDialogLoadingScreen from "@components/screens/member/events/event-dialog/event-dialog-loading.screen";
-import {
-  JoinGoal,
-  ClaimGoalRewards,
-  JoinGoalVariables,
-  ClaimGoalRewardsVariables,
-  GetUserProfile_getUserProfile_events as IEvent,
-  CompleteGoal,
-  CompleteGoalVariables,
-} from "@graphql/_core/schema";
-import { GQL_MUTATION_COMPLETE_GOAL } from "@graphql/goals/completeGoal.gql";
+import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
+import { GetGoalDetailsQuery, GoalActionType, GoalRewardStatus, gql } from "@graphql/__generated";
+
+type ISDUITypeNew = GetGoalDetailsQuery["getGoalDetails"]["button"]["onPress"]["sduiType"]; //delete this after refactor
 
 interface IEventDialogContainerProps {
   event: IEvent;
@@ -40,20 +29,17 @@ const EventDialogContainer = ({ componentId, event, onLeftIconPress }: IEventDia
     loading,
     refetch,
     data: { getGoalDetails: goalDetails } = {},
-  } = useQuery<GetGoalDetails>(GQL_QUERY_GET_GOAL_DETAILS, {
-    variables: { id: event.id, stageId: event.stageId },
+  } = useQuery(gql("GetGoalDetailsDocument"), {
+    variables: { id: event.id },
     fetchPolicy: "network-only",
   });
 
   const dispatch = useDispatch();
-  const [joinGoalMutation] = useMutation<JoinGoal, JoinGoalVariables>(GQL_MUTATION_JOIN_GOAL);
-  const [completeGoalMutation] = useMutation<CompleteGoal, CompleteGoalVariables>(GQL_MUTATION_COMPLETE_GOAL);
-  const [claimGoalRewardsMutation] = useMutation<ClaimGoalRewards, ClaimGoalRewardsVariables>(
-    GQL_MUTATION_CLAIM_GOAL_REWARDS,
-    {
-      refetchQueries: [{ query: GQL_QUERY_GET_GOAL_DETAILS, variables: { id: event.id } }],
-    }
-  );
+  const [joinGoalMutation] = useMutation(gql("JoinGoalDocument"));
+  const [completeGoalMutation] = useMutation(gql("CompleteGoalDocument"));
+  const [claimGoalRewardsMutation] = useMutation(gql("ClaimGoalRewardsDocument"), {
+    refetchQueries: [{ query: gql("GetGoalDetailsDocument"), variables: { id: event.id } }],
+  });
 
   useBackHandler(() => {
     Navigation.popToRoot(componentId);
@@ -101,7 +87,9 @@ const EventDialogContainer = ({ componentId, event, onLeftIconPress }: IEventDia
    * Navigates to the specified component id
    */
   const navigateToComponentId = useCallback(async (): Promise<void> => {
-    if (goalDetails.button?.onPress?.sduiType !== SduiActionType.SDUI_ACTION_SET_BOTTOM_TAB) {
+    if (
+      goalDetails.button?.onPress?.sduiType !== (SduiActionType.SDUI_ACTION_SET_BOTTOM_TAB as unknown as ISDUITypeNew)
+    ) {
       return;
     }
 
@@ -149,7 +137,7 @@ const EventDialogContainer = ({ componentId, event, onLeftIconPress }: IEventDia
     }
 
     switch (goalDetails.button?.onPress?.goalType) {
-      case GoalActionType.CLAIM_REWARD:
+      case GoalActionType.ClaimReward:
         return await showYuModal({
           component: {
             id: MODALS.collectEventReward,
@@ -157,14 +145,14 @@ const EventDialogContainer = ({ componentId, event, onLeftIconPress }: IEventDia
             passProps: {
               goalIds: [event.id],
               event: goalDetails.title,
-              rewards: goalDetails.rewards.filter((reward) => reward.status === GoalRewardStatus.completed),
+              rewards: goalDetails.rewards.filter((reward) => reward.status === GoalRewardStatus.Completed),
               completed:
-                goalDetails.rewards.filter(({ status }) => status !== GoalRewardStatus.completed).length ===
+                goalDetails.rewards.filter(({ status }) => status !== GoalRewardStatus.Claimed).length ===
                 goalDetails.milestones.length,
             },
           },
         });
-      case GoalActionType.CLOSE_EVENT:
+      case GoalActionType.CloseEvent:
         return await showYuModal({
           component: {
             id: MODALS.generic,
@@ -180,7 +168,7 @@ const EventDialogContainer = ({ componentId, event, onLeftIconPress }: IEventDia
             },
           },
         });
-      case GoalActionType.JOIN_GOAL:
+      case GoalActionType.JoinGoal:
         try {
           const response = await joinGoalMutation({ variables: { goalId: event.id } });
 

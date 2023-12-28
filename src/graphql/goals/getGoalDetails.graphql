@@ -1,0 +1,5 @@
+query GetGoalDetails($id: ID!) {
+  getGoalDetails(id: $id) {
+    ...GoalDetails
+  }
+}

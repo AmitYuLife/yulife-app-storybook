@@ -5,19 +5,17 @@ import Svg, { Circle } from "react-native-svg";
 import { StyleSheet, Vibration, View } from "react-native";
 import React, { memo, useRef, useMemo, useEffect, useCallback, useState } from "react";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming, withSequence } from "react-native-reanimated";
-
 import { Colours, Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
 import Logger from "@services/logging/logger";
 import { RadioIcon } from "@atoms/icon/radio-icon";
-import { RemoteImage } from "@graphql/_core/schema";
-import { GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
 import { GOAL_TOOLTIP_INFO, CLAIM_BUTTON, ANIMATED_CIRCLE } from "@ids";
 import { Button, LabelWithImages, LottieView, PressableWithDelay } from "@molecules";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { refreshUserProfileEvents, getUserStart, AppDataType, getUserDataStart } from "@redux/user/user.actions";
 import { ILabelImage } from "@components/molecules/label-with-images/label-with-images";
 import { showInfoMessageTooltipViewRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
+import { GoalRewardStatus, RemoteImage } from "@graphql/__generated";
 
 const shineAnimationSource = require("@assets/lottie/shine.json");
 const explosionAnimationSource = require("@assets/lottie/explosion.json");
@@ -43,7 +41,7 @@ export interface IReward {
   item: RemoteImage;
   infoText?: string;
   animated?: boolean;
-  description: string;
+  description?: string;
   stars?: ILabelImage[];
   animationDelay?: number;
   status: GoalRewardStatus;
@@ -93,8 +91,8 @@ const EventReward = ({
   const [initialStatus] = useState<GoalRewardStatus>(status);
   const [delayedStatus, setDelayedStatus] = useState<GoalRewardStatus>(status);
 
-  const isRewardDelayedStatusClaimed = delayedStatus === GoalRewardStatus.claimed;
-  const isRewardDelayedStatusCompleted = delayedStatus === GoalRewardStatus.completed;
+  const isRewardDelayedStatusClaimed = delayedStatus === GoalRewardStatus.Claimed;
+  const isRewardDelayedStatusCompleted = delayedStatus === GoalRewardStatus.Completed;
   const isRewardClaimable = isRewardDelayedStatusCompleted && isClaimRewardEnabled;
 
   /**
@@ -182,9 +180,9 @@ const EventReward = ({
         height,
         width,
         marginHorizontal,
-        borderColor: delayedStatus === GoalRewardStatus.claimed ? Colours.event.claimedColor : Colours.neutral.n100,
+        borderColor: delayedStatus === GoalRewardStatus.Claimed ? Colours.event.claimedColor : Colours.neutral.n100,
         backgroundColor:
-          delayedStatus === GoalRewardStatus.claimed ? Colours.event.claimedBackgroundColor : Colours.neutral.white,
+          delayedStatus === GoalRewardStatus.Claimed ? Colours.event.claimedBackgroundColor : Colours.neutral.white,
       },
     };
   }, [height, width, marginHorizontal, delayedStatus]);
@@ -198,11 +196,11 @@ const EventReward = ({
 
   const statusColor = useMemo((): string => {
     switch (delayedStatus) {
-      case GoalRewardStatus.claimed:
+      case GoalRewardStatus.Claimed:
         return Colours.event.claimedColor;
-      case GoalRewardStatus.completed:
+      case GoalRewardStatus.Completed:
         return Colours.primary.p400;
-      case GoalRewardStatus.pending:
+      case GoalRewardStatus.Pending:
       default:
         return Colours.neutral.n100;
     }

@@ -14,9 +14,8 @@ import { UserProfileEventStatus } from "@graphql/_core/schema/globalTypes";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
 import { Button, HeadingAndCopy, InfoPanel, PressableWithDelay } from "@molecules";
 import { GenericHeadingAbsolute, IInfoCardListCard, InfoCardList } from "@organisms";
-import { RemoteImage, GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
+import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 import { showInfoMessageTooltipPointRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
-import { GetGoalDetails_getGoalDetails_banner as EventBanner } from "@graphql/_core/schema/GetGoalDetails";
 import { ROUTES } from "@navigation/constants";
 import style, {
   HEADER_HEIGHT,
@@ -26,6 +25,7 @@ import style, {
   SMOOTH_GRADIENT_COLORS,
 } from "./event-dialog.styles";
 import HintContainer from "@components/molecules/hint/hint.container";
+import { GetGoalDetailsQuery, RemoteImage } from "@graphql/__generated";
 
 const PROGRESS_BAR_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 const TITLE_HEIGHT = Platform.select({
@@ -43,8 +43,8 @@ interface IHeaderProps {
 }
 
 interface IAboutProps {
-  title: string;
-  markdown: string;
+  title?: string;
+  markdown?: string;
 }
 
 interface IFaqProps {
@@ -56,20 +56,20 @@ interface IEventDialogScreenProps {
   event: IEvent;
   faq?: IFaqProps;
   rewards: IReward[];
-  about: IAboutProps;
+  about?: IAboutProps;
   maxProgress: number;
   progressUnit: string;
   progressIcon: Source;
   milestones: number[];
-  banner?: EventBanner;
+  banner?: GetGoalDetailsQuery["getGoalDetails"]["banner"];
   button?: EventButton;
   currentProgress: number;
   onFaqViewed?: () => void;
   hideHint?: boolean;
   headerProps: IHeaderProps;
   onButtonPress?: () => void;
-  infoCards: IInfoCardListCard[];
-  onClaimReward?: (reward: IReward) => Promise<void>;
+  infoCards?: IInfoCardListCard[];
+  onClaimReward: (reward: IReward) => Promise<void>;
   onCompleteEvent: (participationId: string) => Promise<void>;
 }
 

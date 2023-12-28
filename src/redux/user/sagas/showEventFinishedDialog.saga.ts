@@ -1,15 +1,16 @@
-import getGoalDetails from "@graphql/goals/getGoalDetails.gql";
 import { GetUserProfile_getUserProfile_events as Events } from "@graphql/_core/schema";
 import { t } from "@locale";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { showGenericModal } from "@navigation/utils";
 import { getModalState, getRouteState } from "@redux/app/app.selectors";
-import { Unpacked } from "@utils";
 import { Navigation } from "@navigation/main";
 import { all, call, select } from "redux-saga/effects";
 import { updateUserProfile, updateUserProfileEvents } from "../user.actions";
 import { IUserStore } from "../user.reducer";
+import { GetGoalDetailsQuery, gql } from "@graphql/__generated";
+import client from "@graphql/_core/client";
+import { ApolloQueryResult } from "@apollo/client";
 
 function* showCompletedEvents(completedEvents: Partial<Events>[]) {
   const activeRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
@@ -18,9 +19,14 @@ function* showCompletedEvents(completedEvents: Partial<Events>[]) {
     return;
   }
 
-  const response: Unpacked<typeof getGoalDetails>[] = yield all(
+  const response: ApolloQueryResult<GetGoalDetailsQuery>[] = yield all(
     completedEvents.map(({ id }) => {
-      return call(getGoalDetails, { id });
+      return call(() =>
+        client().query({
+          query: gql("GetGoalDetailsDocument"),
+          variables: { id },
+        })
+      );
     })
   );
   // flatten getGoalDetails.rewards into single array

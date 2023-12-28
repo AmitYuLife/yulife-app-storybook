@@ -1,0 +1,3 @@
+mutation CompleteGoal($participationId: String!) {
+  completeGoal(participationId: $participationId)
+}

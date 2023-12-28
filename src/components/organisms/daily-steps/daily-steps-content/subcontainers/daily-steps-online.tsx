@@ -22,8 +22,7 @@ import { REFERRALS_BUTTON_HOMEPAGE } from "@ids";
 import { ROUTES } from "@navigation/constants";
 import { updateUserGoal } from "@redux/user/user.actions";
 import { useMutation } from "@apollo/client";
-import { JoinGoal, JoinGoalVariables, GetUserProfile_getUserProfile_events as Events } from "@graphql/_core/schema";
-import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
+import { GetUserProfile_getUserProfile_events as Events } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
 import { Navigation } from "@navigation/main";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
@@ -31,6 +30,7 @@ import { t, getCurrentLocale } from "@locale";
 import { getTheme } from "@theme";
 import { changePanelVisibility } from "@redux/daily-steps/daily-steps.actions";
 import { getDailyPensionContribution } from "@redux/daily-pension/daily-pension.selectors";
+import { gql } from "@graphql/__generated";
 
 type DailyStepsOnlineProps = {
   onReferralsButtonPress: () => void;
@@ -57,7 +57,7 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
 
   const dispatch = useDispatch();
   const fitkit = useFitKit();
-  const [joinGoalMutation] = useMutation<JoinGoal, JoinGoalVariables>(GQL_MUTATION_JOIN_GOAL);
+  const [joinGoalMutation] = useMutation(gql("JoinGoalDocument"));
 
   const counterStyle = useMemo(
     () => ({
