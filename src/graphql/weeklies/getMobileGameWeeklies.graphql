@@ -1,0 +1,11 @@
+query GetMobileGameWeeklies {
+  getMobileGameWeeklies {
+    id
+    endDateTime
+    hasUnclaimedRewards
+    hasJoined
+    activityProgress {
+      ...MobileWeeklyActivityProgress
+    }
+  }
+}

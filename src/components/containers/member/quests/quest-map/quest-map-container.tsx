@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { GetMobileGameWeeklies, GetQuestMap, GetQuestMap_levels } from "@graphql/_core/schema";
+import { GetQuestMap, GetQuestMap_levels } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_QUEST_MAP } from "@graphql/challenges";
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { Style } from "@styles";
@@ -19,13 +19,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { submitUnityAction } from "@redux/levels/levels.actions";
 import Unity from "@components/screens/member/quests/quests-scroll-screen/unity-movies/unity";
 import { YuniversalQuestsScreen } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/yuniversal-quest-screen";
-import { GQL_QUERY_GET_GAME_WEEKLIES } from "@graphql/weeklies";
 import { ROUTES } from "@navigation/constants";
 import { useQueryOnScreenSeen } from "@hooks";
 import { getEpisode, getLevelStatus, getMinLevel, getSeperator } from "./quest-map-helpers";
 import { first } from "lodash";
 import QuestMapScreen from "./quest-map.screen";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import { gql } from "@graphql/__generated";
 
 const EPISODES_PER_PLANET = 32;
 const LEVELS_PER_WORLD = 200;
@@ -42,10 +42,7 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
     fetchPolicy: "network-only",
   });
 
-  const [, { data: weeklies }] = useQueryOnScreenSeen<GetMobileGameWeeklies>(
-    GQL_QUERY_GET_GAME_WEEKLIES,
-    ROUTES.quests
-  );
+  const [, { data: weeklies }] = useQueryOnScreenSeen(gql("GetMobileGameWeekliesDocument"), ROUTES.quests);
 
   const dispatch = useDispatch();
   const currentLevel = useSelector(getCurrentLevel);

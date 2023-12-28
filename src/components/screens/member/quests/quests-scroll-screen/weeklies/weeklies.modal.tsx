@@ -3,29 +3,22 @@ import { Image, StyleSheet, View } from "react-native";
 import moment from "moment";
 
 import { Loading, Pad, TextTemplate } from "@atoms";
-import {
-  GetMobileGameWeeklies,
-  ClaimMobileGameWeeklyRewards as ClaimWeeklies,
-  ClaimMobileGameWeeklyRewardsVariables as ClaimWeekliesVars,
-} from "@graphql/_core/schema";
 import { Style, Colours } from "@styles";
 import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { useMutation, useQuery } from "@apollo/client";
-import { GQL_QUERY_GET_GAME_WEEKLIES, GQL_MUTATION_CLAIM_WEEKLY_GAME_REWARDS } from "@graphql/weeklies";
 import { getTimeRemaining } from "@utils";
 import { DETOX_ENABLED } from "@services/socket";
 import { ActivityClaimable } from "@organisms";
 import { useTranslation } from "@hooks";
 import { useDispatch } from "react-redux";
 import { Button } from "@components/molecules";
-import { JoinWeeklyGoal, JoinWeeklyGoalVariables } from "@graphql/_core/schema/JoinWeeklyGoal";
-import { GQL_MUTATION_JOIN_WEEKLY_GOAL } from "@graphql/weeklies/joinWeeklyGoal.gql";
 import { IFloatingModalContentProps } from "@components/modals/floating-modals/floating-modal";
 import colours from "@styles/colours";
 import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
 import { RadioIcon } from "@atoms/icon/radio-icon";
 import { t as translate } from "@locale";
+import { gql } from "@graphql/__generated";
 
 const handleCloseOverlay = () => Navigation.dismissOverlay(MODALS.blurredOverlay);
 
@@ -48,23 +41,17 @@ export const WeeklyQuestsModal = memo(({ onClose, setIcon }: IFloatingModalConte
     data,
     loading: weekliesLoading,
     refetch,
-  } = useQuery<GetMobileGameWeeklies>(GQL_QUERY_GET_GAME_WEEKLIES, {
+  } = useQuery(gql("GetMobileGameWeekliesDocument"), {
     fetchPolicy: "no-cache",
     notifyOnNetworkStatusChange: true,
   });
-  const [claim, { loading: claimLoading }] = useMutation<ClaimWeeklies, ClaimWeekliesVars>(
-    GQL_MUTATION_CLAIM_WEEKLY_GAME_REWARDS,
-    {
-      refetchQueries: ["GetMobileGameWeeklies", "GetQuestMap"],
-    }
-  );
+  const [claim, { loading: claimLoading }] = useMutation(gql("ClaimMobileGameWeeklyRewardsDocument"), {
+    refetchQueries: ["GetMobileGameWeeklies", "GetQuestMap"],
+  });
 
-  const [join, { loading: joinLoading }] = useMutation<JoinWeeklyGoal, JoinWeeklyGoalVariables>(
-    GQL_MUTATION_JOIN_WEEKLY_GOAL,
-    {
-      refetchQueries: ["GetMobileGameWeeklies", "GetQuestMap"],
-    }
-  );
+  const [join, { loading: joinLoading }] = useMutation(gql("JoinWeeklyGoalDocument"), {
+    refetchQueries: ["GetMobileGameWeeklies", "GetQuestMap"],
+  });
 
   const joinWeekly = useCallback(async () => {
     const goalId = data?.getMobileGameWeeklies?.activityProgress?.[selectedEvent]?.id;

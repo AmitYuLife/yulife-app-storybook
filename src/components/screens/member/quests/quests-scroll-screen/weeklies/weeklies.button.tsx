@@ -4,13 +4,13 @@ import { WeeklyQuestsModal } from "./weeklies.modal";
 import { showFloatingModal } from "@modals";
 import { Weeklies } from "@organisms";
 import { QuestsMapContext } from "../quests.context";
-import { GetMobileGameWeeklies_getMobileGameWeeklies } from "@graphql/_core/schema";
+import { GetMobileGameWeekliesQuery } from "@graphql/__generated";
 
 const ICON = require("@assets/icons/weeklies.png");
 const CLAIMED_ICON = require("@assets/icons/trophy.png");
 
 type Props = {
-  weeklies?: GetMobileGameWeeklies_getMobileGameWeeklies;
+  weeklies?: GetMobileGameWeekliesQuery["getMobileGameWeeklies"];
   isVisible: boolean;
 };
 

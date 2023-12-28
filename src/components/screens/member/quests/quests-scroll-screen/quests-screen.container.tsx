@@ -17,13 +17,13 @@ import {
 } from "./quests-screen.container.helpers";
 import { useQuery } from "@apollo/client";
 import { GQL_QUERY_GET_QUEST_MAP } from "@graphql/challenges";
-import { GetMobileGameWeeklies, GetQuestMap, GetQuestMap_levels } from "@graphql/_core/schema";
+import { GetQuestMap, GetQuestMap_levels } from "@graphql/_core/schema";
 import { YuniversalQuestsScreen } from "./yuniversal/yuniversal-quest-screen";
 import { QuestsMapContext } from "./quests.context";
-import { GQL_QUERY_GET_GAME_WEEKLIES } from "@graphql/weeklies";
 import { useQueryOnScreenSeen } from "@hooks";
 import { ROUTES } from "@navigation/constants";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import { gql } from "@graphql/__generated";
 
 function isAvailable(nextAvailableAt: string): boolean {
   const nextAvailable = nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
@@ -114,8 +114,8 @@ function QuestsScreenContainer(props: Props) {
     fetchPolicy: "network-only",
   });
 
-  const [, { loading: weekliesLoading, data: weekliesData }] = useQueryOnScreenSeen<GetMobileGameWeeklies>(
-    GQL_QUERY_GET_GAME_WEEKLIES,
+  const [, { loading: weekliesLoading, data: weekliesData }] = useQueryOnScreenSeen(
+    gql("GetMobileGameWeekliesDocument"),
     ROUTES.quests
   );
 

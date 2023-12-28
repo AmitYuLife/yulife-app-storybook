@@ -1,4 +1,5 @@
-import { GetMobileGameWeeklies_getMobileGameWeeklies, GetQuestMap_levels } from "@graphql/_core/schema";
+import { GetMobileGameWeekliesQuery } from "@graphql/__generated";
+import { GetQuestMap_levels } from "@graphql/_core/schema";
 import { createContext } from "react";
 
 export interface QuestsMapLevel extends GetQuestMap_levels {
@@ -12,7 +13,7 @@ export interface QuestsMapLevel extends GetQuestMap_levels {
 
 interface IQuestsMapContext {
   isLoading: boolean;
-  weeklies: GetMobileGameWeeklies_getMobileGameWeeklies;
+  weeklies: GetMobileGameWeekliesQuery["getMobileGameWeeklies"];
   formattedLevels: QuestsMapLevel[];
   levelsList: GetQuestMap_levels[];
   currentLevel: number;

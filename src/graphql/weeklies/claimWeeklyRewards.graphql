@@ -1,0 +1,3 @@
+mutation ClaimMobileGameWeeklyRewards($rewardIds: [String!]!) {
+  claimMobileGameWeeklyRewards(rewardIds: $rewardIds)
+}

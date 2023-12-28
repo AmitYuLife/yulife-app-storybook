@@ -9377,6 +9377,19 @@ export type MediaFragment = {
   } | null;
 };
 
+export type MobileWeeklyActivityProgressFragment = {
+  __typename?: "MobileWeeklyActivityProgress";
+  id: string;
+  activitySubTotal: string;
+  yuCoinSubTotal: string;
+  currentPosition: number;
+  maxLength: number;
+  isClaimable: boolean;
+  isClaimed: boolean;
+  isJoined: boolean;
+  iconUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+};
+
 export type RemoteImageFragment = { __typename?: "RemoteImage"; id: string; uri?: string | null };
 
 export type SduiActionFragment = { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
@@ -10111,6 +10124,57 @@ export type GetTodayEarningsQuery = {
   };
 };
 
+export type ClaimMobileGameWeeklyRewardsMutationVariables = Exact<{
+  rewardIds: Array<Scalars["String"]["input"]> | Scalars["String"]["input"];
+}>;
+
+export type ClaimMobileGameWeeklyRewardsMutation = { __typename?: "Mutation"; claimMobileGameWeeklyRewards: boolean };
+
+export type GetMobileGameWeekliesQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetMobileGameWeekliesQuery = {
+  __typename?: "Query";
+  getMobileGameWeeklies: {
+    __typename?: "MobileGameWeeklies";
+    id: string;
+    endDateTime?: string | null;
+    hasUnclaimedRewards: boolean;
+    hasJoined: boolean;
+    activityProgress: Array<{
+      __typename?: "MobileWeeklyActivityProgress";
+      id: string;
+      activitySubTotal: string;
+      yuCoinSubTotal: string;
+      currentPosition: number;
+      maxLength: number;
+      isClaimable: boolean;
+      isClaimed: boolean;
+      isJoined: boolean;
+      iconUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }>;
+  };
+};
+
+export type JoinWeeklyGoalMutationVariables = Exact<{
+  goalId: Scalars["String"]["input"];
+}>;
+
+export type JoinWeeklyGoalMutation = {
+  __typename?: "Mutation";
+  joinWeeklyGoal?: {
+    __typename?: "MobileWeeklyActivityProgress";
+    id: string;
+    activitySubTotal: string;
+    yuCoinSubTotal: string;
+    currentPosition: number;
+    maxLength: number;
+    isClaimable: boolean;
+    isClaimed: boolean;
+    isJoined: boolean;
+    iconUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  } | null;
+};
+
 export type CompleteInAppYuniversityModuleChapterMutationVariables = Exact<{
   moduleId: Scalars["String"]["input"];
   chapterId: Scalars["String"]["input"];
@@ -10490,6 +10554,40 @@ export const MediaFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<MediaFragment, unknown>;
+export const MobileWeeklyActivityProgressFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileWeeklyActivityProgress" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileWeeklyActivityProgress" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "activitySubTotal" } },
+          { kind: "Field", name: { kind: "Name", value: "yuCoinSubTotal" } },
+          { kind: "Field", name: { kind: "Name", value: "currentPosition" } },
+          { kind: "Field", name: { kind: "Name", value: "maxLength" } },
+          { kind: "Field", name: { kind: "Name", value: "isClaimable" } },
+          { kind: "Field", name: { kind: "Name", value: "isClaimed" } },
+          { kind: "Field", name: { kind: "Name", value: "isJoined" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "iconUrl" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MobileWeeklyActivityProgressFragment, unknown>;
 export const RemoteImageFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -13123,6 +13221,178 @@ export const GetTodayEarningsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetTodayEarningsQuery, GetTodayEarningsQueryVariables>;
+export const ClaimMobileGameWeeklyRewardsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "ClaimMobileGameWeeklyRewards" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "rewardIds" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "claimMobileGameWeeklyRewards" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "rewardIds" },
+                value: { kind: "Variable", name: { kind: "Name", value: "rewardIds" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ClaimMobileGameWeeklyRewardsMutation, ClaimMobileGameWeeklyRewardsMutationVariables>;
+export const GetMobileGameWeekliesDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileGameWeeklies" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getMobileGameWeeklies" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "endDateTime" } },
+                { kind: "Field", name: { kind: "Name", value: "hasUnclaimedRewards" } },
+                { kind: "Field", name: { kind: "Name", value: "hasJoined" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "activityProgress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "FragmentSpread", name: { kind: "Name", value: "MobileWeeklyActivityProgress" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileWeeklyActivityProgress" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileWeeklyActivityProgress" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "activitySubTotal" } },
+          { kind: "Field", name: { kind: "Name", value: "yuCoinSubTotal" } },
+          { kind: "Field", name: { kind: "Name", value: "currentPosition" } },
+          { kind: "Field", name: { kind: "Name", value: "maxLength" } },
+          { kind: "Field", name: { kind: "Name", value: "isClaimable" } },
+          { kind: "Field", name: { kind: "Name", value: "isClaimed" } },
+          { kind: "Field", name: { kind: "Name", value: "isJoined" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "iconUrl" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetMobileGameWeekliesQuery, GetMobileGameWeekliesQueryVariables>;
+export const JoinWeeklyGoalDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "JoinWeeklyGoal" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "goalId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "joinWeeklyGoal" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "goalId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "goalId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileWeeklyActivityProgress" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileWeeklyActivityProgress" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileWeeklyActivityProgress" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "activitySubTotal" } },
+          { kind: "Field", name: { kind: "Name", value: "yuCoinSubTotal" } },
+          { kind: "Field", name: { kind: "Name", value: "currentPosition" } },
+          { kind: "Field", name: { kind: "Name", value: "maxLength" } },
+          { kind: "Field", name: { kind: "Name", value: "isClaimable" } },
+          { kind: "Field", name: { kind: "Name", value: "isClaimed" } },
+          { kind: "Field", name: { kind: "Name", value: "isJoined" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "iconUrl" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<JoinWeeklyGoalMutation, JoinWeeklyGoalMutationVariables>;
 export const CompleteInAppYuniversityModuleChapterDocument = {
   kind: "Document",
   definitions: [
