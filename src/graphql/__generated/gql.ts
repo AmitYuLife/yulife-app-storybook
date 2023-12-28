@@ -13,6 +13,15 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+  ContentItemAccordionFragmentDoc: types.ContentItemAccordionFragmentDoc,
+  ContentItemAgePercentCoverPickerAgeOptionFragmentDoc: types.ContentItemAgePercentCoverPickerAgeOptionFragmentDoc,
+  ContentItemAgePercentCoverPickerPercentOptionFragmentDoc:
+    types.ContentItemAgePercentCoverPickerPercentOptionFragmentDoc,
+  ContentItemAnswerKeysFragmentDoc: types.ContentItemAnswerKeysFragmentDoc,
+  ContentItemBeneficiariesSectionFragmentDoc: types.ContentItemBeneficiariesSectionFragmentDoc,
+  ContentItemBoxFragmentDoc: types.ContentItemBoxFragmentDoc,
+  ContentItemBoxOptionCardFragmentDoc: types.ContentItemBoxOptionCardFragmentDoc,
+  ContentItemButtonFragmentDoc: types.ContentItemButtonFragmentDoc,
   ContentItemLottieFragmentDoc: types.ContentItemLottieFragmentDoc,
   GoalDetailsFragmentDoc: types.GoalDetailsFragmentDoc,
   MediaFragmentDoc: types.MediaFragmentDoc,
@@ -87,6 +96,46 @@ const documents = {
  */
 export function gql(source: string): unknown;
 
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "ContentItemAccordionFragmentDoc"): typeof documents["ContentItemAccordionFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "ContentItemAgePercentCoverPickerAgeOptionFragmentDoc"
+): typeof documents["ContentItemAgePercentCoverPickerAgeOptionFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "ContentItemAgePercentCoverPickerPercentOptionFragmentDoc"
+): typeof documents["ContentItemAgePercentCoverPickerPercentOptionFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "ContentItemAnswerKeysFragmentDoc"): typeof documents["ContentItemAnswerKeysFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "ContentItemBeneficiariesSectionFragmentDoc"
+): typeof documents["ContentItemBeneficiariesSectionFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "ContentItemBoxFragmentDoc"): typeof documents["ContentItemBoxFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "ContentItemBoxOptionCardFragmentDoc"
+): typeof documents["ContentItemBoxOptionCardFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "ContentItemButtonFragmentDoc"): typeof documents["ContentItemButtonFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

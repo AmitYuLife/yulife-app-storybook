@@ -9339,6 +9339,108 @@ export type UpdateUserAvatarResponse = {
   updated?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
+export type ContentItemAccordionFragment = {
+  __typename?: "ContentItemAccordion";
+  id: string;
+  heading?: string | null;
+  subheading?: string | null;
+  headerIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  infoIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+  items: Array<{
+    __typename?: "ContentItemAccordionItem";
+    leftText: string;
+    rightTextBody?: string | null;
+    rightTextLabel?: string | null;
+    info?: {
+      __typename?: "ContentItemAccordionItemInfo";
+      onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    } | null;
+  }>;
+};
+
+export type ContentItemAgePercentCoverPickerAgeOptionFragment = {
+  __typename?: "ContentItemAgePercentCoverPickerAgeOption";
+  age: number;
+  contentItemAgePercentCoverPickerAgeOptions: Array<{
+    __typename?: "ContentItemAgePercentCoverPickerPercentOption";
+    cost: string;
+    monthlyPayout: string;
+    coverType: CoverType;
+    contentItemAgePercentCoverPickerPercentOptionValue: number;
+  }>;
+};
+
+export type ContentItemAgePercentCoverPickerPercentOptionFragment = {
+  __typename?: "ContentItemAgePercentCoverPickerPercentOption";
+  cost: string;
+  monthlyPayout: string;
+  coverType: CoverType;
+  contentItemAgePercentCoverPickerPercentOptionValue: number;
+};
+
+export type ContentItemAnswerKeysFragment = {
+  __typename?: "ContentItemAnswerKeys";
+  ageToEnd?: string | null;
+  salaryPercent?: string | null;
+  coverType?: string | null;
+  worldId?: string | null;
+};
+
+export type ContentItemBeneficiariesSectionFragment = {
+  __typename?: "ContentItemBeneficiariesSection";
+  id: string;
+  productId: string;
+  styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+};
+
+export type ContentItemBoxFragment = {
+  __typename?: "ContentItemBox";
+  id: string;
+  title?: string | null;
+  markdown: string;
+  parsedMarkdown?: string | null;
+  canCopy?: boolean | null;
+};
+
+export type ContentItemBoxOptionCardFragment = {
+  __typename?: "ContentItemBoxOptionCard";
+  id: string;
+  innerHeight?: number | null;
+  subtitle?: string | null;
+  subtitleTextType?: string | null;
+  descriptionNumberOfLines?: number | null;
+  titleNumberOfLines?: number | null;
+  contentItemBoxOptionCardTitle?: string | null;
+  contentItemBoxOptionCardDescription?: string | null;
+  contentItemBoxOptionCardDescriptionTextType?: string | null;
+  image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+  titleWrapperStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+  subtitleWrapperStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+};
+
+export type ContentItemButtonFragment = {
+  __typename?: "ContentItemButton";
+  id: string;
+  label: string;
+  value?: string | null;
+  disabledState?: string | null;
+  borderColor?: string | null;
+  backgroundColor?: string | null;
+  textColor?: string | null;
+  buttonSize?: ContentItemButtonSize | null;
+  contentItemButtonUri?: string | null;
+  buttonType?: ContentItemButtonType | null;
+  onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  contentItemButtonRightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+  containerStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+};
+
 export type ContentItemLottieFragment = {
   __typename?: "ContentItemLottie";
   id: string;
@@ -10698,6 +10800,537 @@ export type GetInAppYuniversityCourseModuleDetailsQuery = {
   };
 };
 
+export const RemoteImageFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<RemoteImageFragment, unknown>;
+export const SduiStyleFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SduiStyleFragment, unknown>;
+export const SduiActionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SduiActionFragment, unknown>;
+export const ContentItemAccordionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemAccordion" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemAccordion" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "heading" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "headerIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "infoIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "leftText" } },
+                { kind: "Field", name: { kind: "Name", value: "rightTextBody" } },
+                { kind: "Field", name: { kind: "Name", value: "rightTextLabel" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "info" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "onPress" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "subheading" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContentItemAccordionFragment, unknown>;
+export const ContentItemAgePercentCoverPickerPercentOptionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemAgePercentCoverPickerPercentOption" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ContentItemAgePercentCoverPickerPercentOption" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemAgePercentCoverPickerPercentOptionValue" },
+            name: { kind: "Name", value: "value" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "cost" } },
+          { kind: "Field", name: { kind: "Name", value: "monthlyPayout" } },
+          { kind: "Field", name: { kind: "Name", value: "coverType" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContentItemAgePercentCoverPickerPercentOptionFragment, unknown>;
+export const ContentItemAgePercentCoverPickerAgeOptionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemAgePercentCoverPickerAgeOption" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemAgePercentCoverPickerAgeOption" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "age" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemAgePercentCoverPickerAgeOptions" },
+            name: { kind: "Name", value: "options" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ContentItemAgePercentCoverPickerPercentOption" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemAgePercentCoverPickerPercentOption" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ContentItemAgePercentCoverPickerPercentOption" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemAgePercentCoverPickerPercentOptionValue" },
+            name: { kind: "Name", value: "value" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "cost" } },
+          { kind: "Field", name: { kind: "Name", value: "monthlyPayout" } },
+          { kind: "Field", name: { kind: "Name", value: "coverType" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContentItemAgePercentCoverPickerAgeOptionFragment, unknown>;
+export const ContentItemAnswerKeysFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemAnswerKeys" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemAnswerKeys" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "ageToEnd" } },
+          { kind: "Field", name: { kind: "Name", value: "salaryPercent" } },
+          { kind: "Field", name: { kind: "Name", value: "coverType" } },
+          { kind: "Field", name: { kind: "Name", value: "worldId" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContentItemAnswerKeysFragment, unknown>;
+export const ContentItemBeneficiariesSectionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemBeneficiariesSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBeneficiariesSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "productId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContentItemBeneficiariesSectionFragment, unknown>;
+export const ContentItemBoxFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemBox" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBox" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "markdown" } },
+          { kind: "Field", name: { kind: "Name", value: "parsedMarkdown" } },
+          { kind: "Field", name: { kind: "Name", value: "canCopy" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContentItemBoxFragment, unknown>;
+export const ContentItemBoxOptionCardFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemBoxOptionCard" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemBoxOptionCard" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemBoxOptionCardTitle" },
+            name: { kind: "Name", value: "title" },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemBoxOptionCardDescription" },
+            name: { kind: "Name", value: "description" },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemBoxOptionCardDescriptionTextType" },
+            name: { kind: "Name", value: "descriptionTextType" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "innerHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitleTextType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "titleWrapperStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "subtitleWrapperStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "descriptionNumberOfLines" } },
+          { kind: "Field", name: { kind: "Name", value: "titleNumberOfLines" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContentItemBoxOptionCardFragment, unknown>;
+export const ContentItemButtonFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemButton" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemButton" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemButtonUri" },
+            name: { kind: "Name", value: "uri" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", alias: { kind: "Name", value: "buttonType" }, name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          { kind: "Field", name: { kind: "Name", value: "disabledState" } },
+          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "event" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemButtonRightIcon" },
+            name: { kind: "Name", value: "rightIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "containerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContentItemButtonFragment, unknown>;
 export const GoalDetailsFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -10924,40 +11557,6 @@ export const GoalDetailsFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<GoalDetailsFragment, unknown>;
-export const SduiStyleFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SduiStyle" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "property" } },
-          { kind: "Field", name: { kind: "Name", value: "value" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<SduiStyleFragment, unknown>;
-export const SduiActionFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SduiAction" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "type" } },
-          { kind: "Field", name: { kind: "Name", value: "payload" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<SduiActionFragment, unknown>;
 export const ContentItemLottieFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -11193,23 +11792,6 @@ export const MobileWeeklyActivityProgressFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<MobileWeeklyActivityProgressFragment, unknown>;
-export const RemoteImageFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<RemoteImageFragment, unknown>;
 export const SocialGroupLeaderboardFragmentDoc = {
   kind: "Document",
   definitions: [

@@ -1,0 +1,24 @@
+fragment ContentItemAccordion on ContentItemAccordion {
+  id
+  heading
+  headerIcon {
+    ...RemoteImage
+  }
+  infoIcon {
+    ...RemoteImage
+  }
+  styles {
+    ...SduiStyle
+  }
+  items {
+    leftText
+    rightTextBody
+    rightTextLabel
+    info {
+      onPress {
+        ...SduiAction
+      }
+    }
+  }
+  subheading
+}

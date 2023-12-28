@@ -1,0 +1,6 @@
+fragment ContentItemAnswerKeys on ContentItemAnswerKeys {
+  ageToEnd
+  salaryPercent
+  coverType
+  worldId
+}
