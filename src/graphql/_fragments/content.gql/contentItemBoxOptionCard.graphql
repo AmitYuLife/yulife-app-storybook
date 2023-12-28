@@ -1,0 +1,26 @@
+fragment ContentItemBoxOptionCard on ContentItemBoxOptionCard {
+  id
+  contentItemBoxOptionCardTitle: title
+  contentItemBoxOptionCardDescription: description
+  contentItemBoxOptionCardDescriptionTextType: descriptionTextType
+  image {
+    ...RemoteImage
+  }
+  onPress {
+    ...SduiAction
+  }
+  styles {
+    ...SduiStyle
+  }
+  innerHeight
+  subtitle
+  subtitleTextType
+  titleWrapperStyles {
+    ...SduiStyle
+  }
+  subtitleWrapperStyles {
+    ...SduiStyle
+  }
+  descriptionNumberOfLines
+  titleNumberOfLines
+}

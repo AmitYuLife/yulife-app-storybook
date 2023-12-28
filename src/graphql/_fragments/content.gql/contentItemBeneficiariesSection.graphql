@@ -1,0 +1,7 @@
+fragment ContentItemBeneficiariesSection on ContentItemBeneficiariesSection {
+  id
+  productId
+  styles {
+    ...SduiStyle
+  }
+}

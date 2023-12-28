@@ -1,0 +1,32 @@
+fragment ContentItemButton on ContentItemButton {
+  id
+  contentItemButtonUri: uri
+  label
+  buttonType: type
+  value
+  disabledState
+  borderColor
+  backgroundColor
+  textColor
+  onPress {
+    ...SduiAction
+  }
+  event {
+    ...SduiAction
+  }
+  icon {
+    id
+    uri
+  }
+  contentItemButtonRightIcon: rightIcon {
+    id
+    uri
+  }
+  styles {
+    ...SduiStyle
+  }
+  containerStyles {
+    ...SduiStyle
+  }
+  buttonSize
+}

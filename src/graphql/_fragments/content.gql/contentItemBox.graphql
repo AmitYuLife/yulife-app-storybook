@@ -1,0 +1,7 @@
+fragment ContentItemBox on ContentItemBox {
+  id
+  title
+  markdown
+  parsedMarkdown
+  canCopy
+}

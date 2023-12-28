@@ -1,0 +1,6 @@
+fragment ContentItemAgePercentCoverPickerPercentOption on ContentItemAgePercentCoverPickerPercentOption {
+  contentItemAgePercentCoverPickerPercentOptionValue: value
+  cost
+  monthlyPayout
+  coverType
+}
