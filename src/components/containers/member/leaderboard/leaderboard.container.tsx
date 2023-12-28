@@ -7,14 +7,9 @@ import { Navigation } from "@navigation/main";
 import { t } from "@locale";
 import { JoinLeaderboardOverlay, LeaderboardCommunityOverlay, showFloatingModal } from "@modals";
 import { Style } from "@styles";
-import { useLazyQuery } from "@apollo/client";
-import { SocialLeaderboardConstent } from "@graphql/_core/schema/globalTypes";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { IList } from "@organisms/tabs/tabs";
-import updateSocialLeaderboardConsents from "@graphql/socialGroupLeaderboard/updateMobileSocialLeaderboardConsents";
-import {
-  GetMobileSocialGroupLeaderboardItems,
-  GetMobileSocialGroupLeaderboards_getMobileSocialGroupLeaderboards as IGqlGroups,
-} from "@graphql/_core/schema";
+import { GetMobileSocialGroupLeaderboards_getMobileSocialGroupLeaderboards as IGqlGroups } from "@graphql/_core/schema";
 import { showYuModal } from "@navigation/root";
 import { useUserFeatures } from "@hooks";
 import {
@@ -27,9 +22,9 @@ import {
   updateActiveSocialGroupLeaderboardId,
   updateSocialGroupLeaderboardConsents,
 } from "@redux/leaderboards/leaderboards.actions";
-import { GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS } from "@graphql/socialGroupLeaderboard/getMobileSocialGroupLeaderboardItems";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { IConsents } from "@components/modals/join-leaderboard-overlay/join-leaderboard-overlay";
+import { SocialLeaderboardConstent, gql } from "@graphql/__generated";
 
 export const PAGE_SIZE = 501;
 
@@ -47,11 +42,13 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
   const socialGroups = useSelector(getSocialGroups);
   const activeSocialGroup = useSelector(getActiveSocialGroup);
   const { showDuels, showLeaderboardSearch, showNotificationCentre } = useUserFeatures();
-
-  const [getSocialGroupLeaderboardItems, { data, loading, refetch }] =
-    useLazyQuery<GetMobileSocialGroupLeaderboardItems>(GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS, {
+  const [updateConsentMutation] = useMutation(gql("UpdateMobileSocialLeaderboardConsentsDocument"));
+  const [getSocialGroupLeaderboardItems, { data, loading, refetch }] = useLazyQuery(
+    gql("GetMobileSocialGroupLeaderboardItemsDocument"),
+    {
       fetchPolicy: "network-only",
-    });
+    }
+  );
 
   const socialGroupsWithConsent = useMemo(
     () =>
@@ -157,7 +154,7 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
       height: getJoinLeaderboardOverlayHeight(),
       buttonOnPress: async () => {
         if (leaderboardConsent.consents.length) {
-          await updateSocialLeaderboardConsents({ consents: leaderboardConsent.consents });
+          await updateConsentMutation({ variables: { consents: leaderboardConsent.consents } });
           dispatch(
             updateSocialGroupLeaderboardConsents({
               socialGroupId: activeSocialGroup?.socialGroupId,

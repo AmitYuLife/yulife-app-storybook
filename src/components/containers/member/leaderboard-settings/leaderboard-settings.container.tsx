@@ -8,25 +8,16 @@ import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { showYuModal } from "@navigation/root";
 import { getSocialGroups } from "@redux/leaderboards/leaderboards.selectors";
 import { useMutation } from "@apollo/client";
-import {
-  UpdateMobileSocialLeaderboardConsents,
-  UpdateMobileSocialLeaderboardConsentsVariables,
-} from "@graphql/_core/schema";
-import updateSocialLeaderboardConsents, {
-  GQL_MUTATION_UPDATE_MOBILE_SOCIAL_LEADERBOARD_CONSENTS,
-} from "@graphql/socialGroupLeaderboard/updateMobileSocialLeaderboardConsents";
 import { updateSocialGroupLeaderboardConsents } from "@redux/leaderboards/leaderboards.actions";
 import { IChangeConsentProps } from "@organisms/leaderboard-toggle/leaderboard-toggle";
+import { gql } from "@graphql/__generated";
 
 interface IProps {
   componentId: string;
 }
 
 const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
-  const [updateConsentMutation] = useMutation<
-    UpdateMobileSocialLeaderboardConsents,
-    UpdateMobileSocialLeaderboardConsentsVariables
-  >(GQL_MUTATION_UPDATE_MOBILE_SOCIAL_LEADERBOARD_CONSENTS);
+  const [updateConsentMutation] = useMutation(gql("UpdateMobileSocialLeaderboardConsentsDocument"));
   const dispatch = useDispatch();
   const socialGroups = useSelector(getSocialGroups);
 
@@ -53,7 +44,7 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
         isActive: consent,
       });
 
-      await updateSocialLeaderboardConsents({ consents: [{ id: leaderboardId, consent }] });
+      await updateConsentMutation({ variables: { consents: [{ id: leaderboardId, consent }] } });
       dispatch(updateSocialGroupLeaderboardConsents({ socialGroupId, leaderboards: [{ leaderboardId, consent }] }));
       dismissModal();
     },

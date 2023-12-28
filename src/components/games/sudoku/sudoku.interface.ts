@@ -50,6 +50,6 @@ export interface ISudokuLeaderboardItem {
   lastName: string;
   avatar: {
     id: string;
-    uri: string;
+    uri?: string;
   };
 }

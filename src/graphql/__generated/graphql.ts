@@ -9396,6 +9396,37 @@ export type SduiActionFragment = { __typename?: "SduiAction"; type: SduiActionTy
 
 export type SduiStyleFragment = { __typename?: "SduiStyle"; property: string; value: string };
 
+export type SocialGroupFragment = {
+  __typename?: "SocialGroupLeaderboardGroup";
+  socialGroupId: string;
+  name: string;
+  leaderboards: Array<{
+    __typename?: "SocialGroupLeaderboard";
+    leaderboardId: string;
+    name: string;
+    description: string;
+    shortDescription: string;
+    consent: boolean;
+    isLocked: boolean;
+    leaderboardConfigId: SocialGroupLeaderboardConfigId;
+    icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    selectedIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  }>;
+};
+
+export type SocialGroupLeaderboardFragment = {
+  __typename?: "SocialGroupLeaderboard";
+  leaderboardId: string;
+  name: string;
+  description: string;
+  shortDescription: string;
+  consent: boolean;
+  isLocked: boolean;
+  leaderboardConfigId: SocialGroupLeaderboardConfigId;
+  icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  selectedIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+};
+
 export type UserStatisticDetailsFragment = {
   __typename?: "UserStatisticDetails";
   id: string;
@@ -9932,6 +9963,61 @@ export type GetReferralInformationQuery = {
     background: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     markdown: { __typename?: "ReferralMarkdown"; header: string; historyTitle: string; historyEmptyMessage: string };
   };
+};
+
+export type GetMobileSocialGroupLeaderboardItemsQueryVariables = Exact<{
+  leaderboardId: Scalars["String"]["input"];
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  targetId?: InputMaybe<Scalars["String"]["input"]>;
+  filter?: InputMaybe<SocialGroupLeaderboardItemsFilter>;
+}>;
+
+export type GetMobileSocialGroupLeaderboardItemsQuery = {
+  __typename?: "Query";
+  getMobileSocialGroupLeaderboardItems: Array<{
+    __typename?: "SocialGroupLeaderboardItem";
+    id: string;
+    userId: string;
+    score: string;
+    name: string;
+    position: number;
+    isTarget: boolean;
+    firstName: string;
+    lastName: string;
+    avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  }>;
+};
+
+export type GetMobileSocialGroupLeaderboardsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetMobileSocialGroupLeaderboardsQuery = {
+  __typename?: "Query";
+  getMobileSocialGroupLeaderboards: Array<{
+    __typename?: "SocialGroupLeaderboardGroup";
+    socialGroupId: string;
+    name: string;
+    leaderboards: Array<{
+      __typename?: "SocialGroupLeaderboard";
+      leaderboardId: string;
+      name: string;
+      description: string;
+      shortDescription: string;
+      consent: boolean;
+      isLocked: boolean;
+      leaderboardConfigId: SocialGroupLeaderboardConfigId;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      selectedIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }>;
+  }>;
+};
+
+export type UpdateMobileSocialLeaderboardConsentsMutationVariables = Exact<{
+  consents: Array<InputMaybe<SocialLeaderboardConstent>> | InputMaybe<SocialLeaderboardConstent>;
+}>;
+
+export type UpdateMobileSocialLeaderboardConsentsMutation = {
+  __typename?: "Mutation";
+  updateMobileSocialLeaderboardConsents?: boolean | null;
 };
 
 export type GetStatisticsQueryVariables = Exact<{
@@ -10605,6 +10691,126 @@ export const RemoteImageFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<RemoteImageFragment, unknown>;
+export const SocialGroupLeaderboardFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SocialGroupLeaderboard" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboard" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "leaderboardId" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          { kind: "Field", name: { kind: "Name", value: "consent" } },
+          { kind: "Field", name: { kind: "Name", value: "isLocked" } },
+          { kind: "Field", name: { kind: "Name", value: "leaderboardConfigId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "selectedIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SocialGroupLeaderboardFragment, unknown>;
+export const SocialGroupFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SocialGroup" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardGroup" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "socialGroupId" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leaderboards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SocialGroupLeaderboard" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SocialGroupLeaderboard" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboard" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "leaderboardId" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          { kind: "Field", name: { kind: "Name", value: "consent" } },
+          { kind: "Field", name: { kind: "Name", value: "isLocked" } },
+          { kind: "Field", name: { kind: "Name", value: "leaderboardConfigId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "selectedIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SocialGroupFragment, unknown>;
 export const UserStatisticDetailsFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -12462,6 +12668,226 @@ export const GetReferralInformationDocument = {
     },
   ],
 } as unknown as DocumentNode<GetReferralInformationQuery, GetReferralInformationQueryVariables>;
+export const GetMobileSocialGroupLeaderboardItemsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileSocialGroupLeaderboardItems" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "leaderboardId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "targetId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "filter" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardItemsFilter" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getMobileSocialGroupLeaderboardItems" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "leaderboardId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "leaderboardId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "limit" },
+                value: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "targetId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "targetId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "filter" },
+                value: { kind: "Variable", name: { kind: "Name", value: "filter" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "userId" } },
+                { kind: "Field", name: { kind: "Name", value: "score" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "position" } },
+                { kind: "Field", name: { kind: "Name", value: "isTarget" } },
+                { kind: "Field", name: { kind: "Name", value: "firstName" } },
+                { kind: "Field", name: { kind: "Name", value: "lastName" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "avatar" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetMobileSocialGroupLeaderboardItemsQuery,
+  GetMobileSocialGroupLeaderboardItemsQueryVariables
+>;
+export const GetMobileSocialGroupLeaderboardsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileSocialGroupLeaderboards" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getMobileSocialGroupLeaderboards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SocialGroup" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SocialGroupLeaderboard" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboard" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "leaderboardId" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          { kind: "Field", name: { kind: "Name", value: "consent" } },
+          { kind: "Field", name: { kind: "Name", value: "isLocked" } },
+          { kind: "Field", name: { kind: "Name", value: "leaderboardConfigId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "selectedIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SocialGroup" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardGroup" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "socialGroupId" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leaderboards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SocialGroupLeaderboard" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetMobileSocialGroupLeaderboardsQuery, GetMobileSocialGroupLeaderboardsQueryVariables>;
+export const UpdateMobileSocialLeaderboardConsentsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpdateMobileSocialLeaderboardConsents" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "consents" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: { kind: "NamedType", name: { kind: "Name", value: "SocialLeaderboardConstent" } },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateMobileSocialLeaderboardConsents" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "consents" },
+                value: { kind: "Variable", name: { kind: "Name", value: "consents" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  UpdateMobileSocialLeaderboardConsentsMutation,
+  UpdateMobileSocialLeaderboardConsentsMutationVariables
+>;
 export const GetStatisticsDocument = {
   kind: "Document",
   definitions: [

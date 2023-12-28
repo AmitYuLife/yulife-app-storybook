@@ -2,11 +2,10 @@ import { Button } from "@components/molecules";
 import {
   GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails,
   GetQuestMapLevel_getQuestMapLevel_slots,
-  GetMobileSocialGroupLeaderboardItems_getMobileSocialGroupLeaderboardItems as SocialGroupLeaderboardItem,
 } from "@graphql/_core/schema";
 import { memo, useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { GetSudokuBoardQuery } from "@graphql/__generated";
+import { GetMobileSocialGroupLeaderboardItemsQuery, GetSudokuBoardQuery } from "@graphql/__generated";
 import { GenericHeadingAbsolute } from "@organisms";
 import { useSelector } from "react-redux";
 import SudokuPersonalBestIcon from "@atoms/icon/sudoku-personal-best-svg";
@@ -40,7 +39,7 @@ interface IProps {
   hasLeaderboardConsent?: boolean;
   showSecondAttemptDisclaimer?: boolean;
   slot: GetQuestMapLevel_getQuestMapLevel_slots;
-  leaderboard: SocialGroupLeaderboardItem[];
+  leaderboard: GetMobileSocialGroupLeaderboardItemsQuery["getMobileSocialGroupLeaderboardItems"];
   levelDetails: GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails;
 }
 

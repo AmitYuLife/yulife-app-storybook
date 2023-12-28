@@ -3,16 +3,15 @@ import { useBackHandler, useTranslation } from "@hooks";
 import { Navigation } from "@navigation/main";
 import SudokuLeaderboardEmptyScreen from "./sudoku-leaderboard-empty.screen";
 import { useLazyQuery } from "@apollo/client";
-import { GetMobileSocialGroupLeaderboardItems, GetSudokuBoard_getSudokuBoard_results } from "@graphql/_core/schema";
-import { SudokuDifficulty } from "@graphql/_core/schema/globalTypes";
+import { GetSudokuBoard_getSudokuBoard_results } from "@graphql/_core/schema";
 import SudokuLeaderboardScreen from "./sudoku-leaderboard.screen";
 import moment from "moment";
 import { DATE_FORMAT } from "@utils";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
-import { GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS } from "@graphql/socialGroupLeaderboard/getMobileSocialGroupLeaderboardItems";
 import { useSelector } from "react-redux";
 import { getActiveYudokuLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
 import { ROUTES } from "@navigation/constants";
+import { SudokuDifficulty, gql } from "@graphql/__generated";
 
 interface IProps {
   componentId: string;
@@ -29,10 +28,12 @@ const SudokuLeaderboardContainer = ({ componentId, date }: IProps) => {
     return moment(leaderboardDate).format(t["format.date_readable"]);
   }, [leaderboardDate, t]);
 
-  const [getSocialGroupLeaderboardItems, { data: leaderboard, loading: isLoading }] =
-    useLazyQuery<GetMobileSocialGroupLeaderboardItems>(GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS, {
+  const [getSocialGroupLeaderboardItems, { data: leaderboard, loading: isLoading }] = useLazyQuery(
+    gql("GetMobileSocialGroupLeaderboardItemsDocument"),
+    {
       fetchPolicy: "no-cache",
-    });
+    }
+  );
 
   useEffect(() => {
     if (activeYudokuLeaderboard?.leaderboardId) {
@@ -41,7 +42,7 @@ const SudokuLeaderboardContainer = ({ componentId, date }: IProps) => {
           leaderboardId: activeYudokuLeaderboard?.leaderboardId,
           filter: {
             date: leaderboardDate,
-            difficulty: SudokuDifficulty.EASY,
+            difficulty: SudokuDifficulty.Easy,
           },
           limit: 100,
         },

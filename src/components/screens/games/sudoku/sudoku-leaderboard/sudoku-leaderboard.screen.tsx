@@ -1,18 +1,20 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
-import { GetMobileSocialGroupLeaderboardItems_getMobileSocialGroupLeaderboardItems as SocialGroupLeaderboardItem } from "@graphql/_core/schema";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { TextTemplate } from "@atoms";
 import moment from "moment";
 import { GenericHeadingAbsolute, GenericHeadingPad, ListItem } from "@organisms";
 
 import { useTranslation } from "@hooks";
+import { GetMobileSocialGroupLeaderboardItemsQuery } from "@graphql/__generated";
+
+type SocialGroupLeaderboardItem = GetMobileSocialGroupLeaderboardItemsQuery["getMobileSocialGroupLeaderboardItems"][0];
 
 interface IProps {
   onBack?: () => void;
   date?: string;
-  leaderboard: SocialGroupLeaderboardItem[];
+  leaderboard: GetMobileSocialGroupLeaderboardItemsQuery["getMobileSocialGroupLeaderboardItems"];
   onListItemPress: (userId: string, leaderboardPlacement: number) => void;
 }
 
