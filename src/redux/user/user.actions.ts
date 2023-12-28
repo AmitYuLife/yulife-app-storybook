@@ -4,7 +4,6 @@ import {
   UpdateAvatar_updateUserAvatarParts_avatarRemoteFiles as AvatarRemoteFiles,
   UpdateLeaderboardConsentVariables,
   UpdateMemberConsent,
-  GetUserProfile_getUserProfile_events as Events,
   GetUserLeaderboards_getUserLeaderboards,
   GetUserFeatures_getUserFeatures,
   GetUserConnections_getUserConnections,
@@ -17,7 +16,7 @@ import {
 import { MobileConsentInput, MobileTabs } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "./user.reducer";
 import { Connection } from "./user.selectors";
-import { GetUserSurgeQuery } from "@graphql/__generated";
+import { GetUserSurgeQuery, JoinGoalMutation } from "@graphql/__generated";
 
 export interface ISetIsUpdatingLeaderboardPayload {
   isLoading: boolean;
@@ -240,7 +239,7 @@ export const refreshUserProfileEvents = () => ({
   type: REFRESH_USER_PROFILE_EVENTS,
 });
 
-export const updateUserGoal = (payload: Partial<Events>) => ({
+export const updateUserGoal = (payload: Partial<JoinGoalMutation["joinGoal"]>) => ({
   type: UPDATE_USER_GOAL,
   payload,
 });

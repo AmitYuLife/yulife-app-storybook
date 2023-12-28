@@ -1,0 +1,89 @@
+fragment GoalDetails on GoalDetails {
+  title
+  labels
+  headerImage {
+    id
+    uri
+  }
+  headerBackgroundColor
+  headerTextColor
+  hideHint
+  rewards {
+    id
+    goalId
+    title
+    description
+    itemBackground {
+      id
+      uri
+    }
+    item {
+      id
+      uri
+    }
+    status
+    stars {
+      id
+      uri
+    }
+    animated
+    infoText
+    infoBadgeUri {
+      id
+      uri
+    }
+  }
+  progressUnit
+  currentProgress
+  maxProgress
+  progressIcon {
+    uri
+  }
+  milestones
+  about {
+    title
+    markdown
+  }
+  faq {
+    text
+    icon {
+      id
+      uri
+    }
+  }
+  infoCards {
+    icon {
+      id
+      uri
+    }
+    title
+    description
+    styles {
+      property
+      value
+    }
+  }
+  banner {
+    id
+    icon {
+      id
+      uri
+    }
+    type
+    styles {
+      property
+      value
+    }
+    markdown
+  }
+  button {
+    label
+    onPress {
+      goalType
+      sduiType
+      payload
+    }
+    shadowColor
+    backgroundColor
+  }
+}

@@ -1,0 +1,45 @@
+fragment UserProfileEvents on UserProfileEvents {
+  id
+  stageId
+  participationId
+  title
+  description
+  startDate
+  endDate
+  status
+  challenges {
+    description
+    icon {
+      uri
+    }
+  }
+  tags {
+    tag
+    joined
+    icon {
+      uri
+    }
+  }
+  joined
+  badge {
+    text
+    icon {
+      uri
+    }
+    backgroundColor
+  }
+  progressBar {
+    max
+    current
+  }
+  milestones {
+    targetValue
+    image {
+      uri
+    }
+    animated
+    rewardId
+    rewardClaimed
+    isClaimable
+  }
+}

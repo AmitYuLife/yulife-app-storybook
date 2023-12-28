@@ -1,0 +1,5 @@
+mutation ClaimGoalRewards($rewardIds: [String!]!) {
+  claimGoalRewards(rewardIds: $rewardIds) {
+    ...GoalDetails
+  }
+}
