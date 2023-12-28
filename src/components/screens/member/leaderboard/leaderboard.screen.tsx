@@ -3,7 +3,6 @@ import { Animated, Platform, RefreshControl, StyleSheet, View } from "react-nati
 import { GenericHeadingPad, LeaderboardFloatingRank, NavBar, TopBar } from "@organisms";
 import { Colours, NAV_BAR, Style, TOP_BAR } from "@styles";
 import { FlashList as _FlashList, ListRenderItemInfo } from "@shopify/flash-list";
-import { GetMobileSocialGroupLeaderboardItems_getMobileSocialGroupLeaderboardItems as SocialGroupLeaderboardItem } from "@graphql/_core/schema";
 import { PAGE_SIZE } from "@components/containers/member/leaderboard/leaderboard.container";
 import { SocialGroupLeaderboardConfigId } from "@graphql/_core/schema/globalTypes";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
@@ -13,14 +12,18 @@ import LeaderboardListHeaderComponent from "./leaderboard-list-header-component"
 import LeaderboardListItem from "./leaderboard-list-item";
 import LeaderboardListTabs from "./leaderboard-list-tabs";
 import { ISocialGroup, ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.reducer";
+import { GetMobileSocialGroupLeaderboardItemsQuery } from "@graphql/__generated";
 
 export interface ITop3 {
   top1?: string;
   top2?: string;
   top3?: string;
 }
+
+type SocialGroupLeaderboardItems = GetMobileSocialGroupLeaderboardItemsQuery["getMobileSocialGroupLeaderboardItems"];
+type SocialGroupLeaderboardItem = SocialGroupLeaderboardItems[0];
 interface IProps {
-  items: SocialGroupLeaderboardItem[];
+  items: SocialGroupLeaderboardItems;
   onLeftNavigationPress: () => void;
   onDuelPress: () => void;
   onSearchPress: () => void;

@@ -1,0 +1,26 @@
+query GetMobileSocialGroupLeaderboardItems(
+  $leaderboardId: String!
+  $limit: Int
+  $targetId: String
+  $filter: SocialGroupLeaderboardItemsFilter
+) {
+  getMobileSocialGroupLeaderboardItems(
+    leaderboardId: $leaderboardId
+    limit: $limit
+    targetId: $targetId
+    filter: $filter
+  ) {
+    id
+    userId
+    score
+    name
+    position
+    isTarget
+    firstName
+    lastName
+    avatar {
+      id
+      uri
+    }
+  }
+}

@@ -8,16 +8,12 @@ import LeaderboardConsentImage from "@components/games/sudoku/leaderboard/Leader
 import { MODALS } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { Button } from "@components/molecules";
-import {
-  UpdateMobileSocialLeaderboardConsents,
-  UpdateMobileSocialLeaderboardConsentsVariables,
-} from "@graphql/_core/schema";
 import { useMutation } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { getActiveSocialGroup, getActiveYudokuLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
 import { updateSocialGroupLeaderboardConsents } from "@redux/leaderboards/leaderboards.actions";
-import { GQL_MUTATION_UPDATE_MOBILE_SOCIAL_LEADERBOARD_CONSENTS } from "@graphql/socialGroupLeaderboard/updateMobileSocialLeaderboardConsents";
+import { gql } from "@graphql/__generated";
 
 interface IProps {
   onConsented?: () => void;
@@ -28,10 +24,9 @@ const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
   const dispatch = useDispatch();
   const activeSocialGroup = useSelector(getActiveSocialGroup);
   const activeYudokuLeaderboard = useSelector(getActiveYudokuLeaderboard);
-  const [updateSudokuLeaderboardConsent, { loading }] = useMutation<
-    UpdateMobileSocialLeaderboardConsents,
-    UpdateMobileSocialLeaderboardConsentsVariables
-  >(GQL_MUTATION_UPDATE_MOBILE_SOCIAL_LEADERBOARD_CONSENTS);
+  const [updateSudokuLeaderboardConsent, { loading }] = useMutation(
+    gql("UpdateMobileSocialLeaderboardConsentsDocument")
+  );
 
   const t = useTranslation([
     "sudoku.leaderboard_consent.title",

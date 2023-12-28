@@ -1,0 +1,7 @@
+fragment SocialGroup on SocialGroupLeaderboardGroup {
+  socialGroupId
+  name
+  leaderboards {
+    ...SocialGroupLeaderboard
+  }
+}

@@ -19,6 +19,8 @@ const documents = {
   RemoteImageFragmentDoc: types.RemoteImageFragmentDoc,
   SduiActionFragmentDoc: types.SduiActionFragmentDoc,
   SduiStyleFragmentDoc: types.SduiStyleFragmentDoc,
+  SocialGroupFragmentDoc: types.SocialGroupFragmentDoc,
+  SocialGroupLeaderboardFragmentDoc: types.SocialGroupLeaderboardFragmentDoc,
   UserStatisticDetailsFragmentDoc: types.UserStatisticDetailsFragmentDoc,
   GetAdBannersDocument: types.GetAdBannersDocument,
   GetMobileAssetsWithVersionDocument: types.GetMobileAssetsWithVersionDocument,
@@ -51,6 +53,9 @@ const documents = {
   GetReferralBackgroundDocument: types.GetReferralBackgroundDocument,
   GetReferralOnboardingPopoverDocument: types.GetReferralOnboardingPopoverDocument,
   GetReferralInformationDocument: types.GetReferralInformationDocument,
+  GetMobileSocialGroupLeaderboardItemsDocument: types.GetMobileSocialGroupLeaderboardItemsDocument,
+  GetMobileSocialGroupLeaderboardsDocument: types.GetMobileSocialGroupLeaderboardsDocument,
+  UpdateMobileSocialLeaderboardConsentsDocument: types.UpdateMobileSocialLeaderboardConsentsDocument,
   GetStatisticsDocument: types.GetStatisticsDocument,
   GetUserSurgeDocument: types.GetUserSurgeDocument,
   GetTodayEarningsDocument: types.GetTodayEarningsDocument,
@@ -102,6 +107,14 @@ export function gql(source: "SduiActionFragmentDoc"): typeof documents["SduiActi
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "SduiStyleFragmentDoc"): typeof documents["SduiStyleFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "SocialGroupFragmentDoc"): typeof documents["SocialGroupFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "SocialGroupLeaderboardFragmentDoc"): typeof documents["SocialGroupLeaderboardFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -242,6 +255,24 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetReferralInformationDocument"): typeof documents["GetReferralInformationDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "GetMobileSocialGroupLeaderboardItemsDocument"
+): typeof documents["GetMobileSocialGroupLeaderboardItemsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "GetMobileSocialGroupLeaderboardsDocument"
+): typeof documents["GetMobileSocialGroupLeaderboardsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "UpdateMobileSocialLeaderboardConsentsDocument"
+): typeof documents["UpdateMobileSocialLeaderboardConsentsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

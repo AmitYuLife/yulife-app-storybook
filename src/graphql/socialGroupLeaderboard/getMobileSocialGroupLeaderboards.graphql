@@ -1,0 +1,5 @@
+query GetMobileSocialGroupLeaderboards {
+  getMobileSocialGroupLeaderboards {
+    ...SocialGroup
+  }
+}

@@ -1,16 +1,12 @@
 import React, { memo, useCallback } from "react";
 import { useQuery } from "@apollo/client";
-import { GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS } from "@graphql/socialGroupLeaderboard/getMobileSocialGroupLeaderboardItems";
-import {
-  GetMobileSocialGroupLeaderboardItems,
-  GetMobileSocialGroupLeaderboardItems_getMobileSocialGroupLeaderboardItems as SocialGroupLeaderboardItem,
-} from "@graphql/_core/schema";
 import GenericOverlay from "../generic-overlay/generic-overlay";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { ListItem } from "@organisms";
 import { Platform, StyleSheet, View } from "react-native";
 import { NAV_BAR, Style } from "@styles";
 import { Navigation } from "@navigation/main";
+import { GetMobileSocialGroupLeaderboardItemsQuery, gql } from "@graphql/__generated";
 
 interface IProps {
   leaderboardId: string;
@@ -19,8 +15,10 @@ interface IProps {
   onListItemPress: (userId: string, position: number) => void;
 }
 
+type SocialGroupLeaderboardItem = GetMobileSocialGroupLeaderboardItemsQuery["getMobileSocialGroupLeaderboardItems"][0];
+
 const LeaderboardRankModal = ({ leaderboardId, limit, targetId, onListItemPress }: IProps) => {
-  const { data, loading } = useQuery<GetMobileSocialGroupLeaderboardItems>(GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS, {
+  const { data, loading } = useQuery(gql("GetMobileSocialGroupLeaderboardItemsDocument"), {
     variables: {
       leaderboardId,
       limit,

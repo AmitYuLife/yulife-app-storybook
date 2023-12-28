@@ -1,10 +1,6 @@
 import { useLazyQuery, useQuery } from "@apollo/client";
-import {
-  GetMobileSocialGroupLeaderboardItems,
-  GetQuestMapLevelChallengeDetails,
-  GetQuestMapLevel_getQuestMapLevel_slots,
-} from "@graphql/_core/schema";
-import { gql } from "@graphql/__generated";
+import { GetQuestMapLevelChallengeDetails, GetQuestMapLevel_getQuestMapLevel_slots } from "@graphql/_core/schema";
+import { SudokuDifficulty, gql } from "@graphql/__generated";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { first } from "lodash";
 import { Navigation } from "@navigation/main";
@@ -13,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import SudokuStagingScreen from "./sudoku-staging.screen";
 import { showYuModal } from "@navigation/root";
-import { SudokuDifficulty } from "@graphql/_core/schema/globalTypes";
 import { ActiveLevelState, getActiveLevel } from "@redux/levels/levels.selectors";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/getQuestMapChallengeDetails.gql";
@@ -22,7 +17,6 @@ import { usePopToQuestsRootOnNewDate, useQueryOnScreenSeen } from "@hooks";
 import { challengeStartAction } from "@redux/levels/levels.actions";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getActiveYudokuLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
-import { GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS } from "@graphql/socialGroupLeaderboard/getMobileSocialGroupLeaderboardItems";
 import { getCurrentDateState } from "@redux/device/device.selectors";
 
 interface IProps {
@@ -50,8 +44,8 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
     return !data?.getSudokuBoard?.leaderboardEligible;
   }, [data]);
 
-  const [getSocialGroupLeaderboardItems, { data: leaderboard }] = useLazyQuery<GetMobileSocialGroupLeaderboardItems>(
-    GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS,
+  const [getSocialGroupLeaderboardItems, { data: leaderboard }] = useLazyQuery(
+    gql("GetMobileSocialGroupLeaderboardItemsDocument"),
     {
       fetchPolicy: "no-cache",
     }
@@ -64,7 +58,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
           leaderboardId: activeYudokuLeaderboard?.leaderboardId,
           filter: {
             date: currentDate,
-            difficulty: SudokuDifficulty.EASY,
+            difficulty: SudokuDifficulty.Easy,
           },
           limit: 3,
         },
@@ -83,7 +77,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
     if (isScreenActive) {
       dispatch(
         sudokuReset({
-          gameIdentifier: `${currentDate}_${SudokuDifficulty.EASY}`,
+          gameIdentifier: `${currentDate}_${SudokuDifficulty.Easy}`,
           levelSlotId: slot?.id,
           startTime: null,
           date: currentDate,
@@ -114,7 +108,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
         sudokuReset({
           levelSlotId: slot.id,
           startTime: new Date(),
-          gameIdentifier: `${currentDate}_${SudokuDifficulty.EASY}`,
+          gameIdentifier: `${currentDate}_${SudokuDifficulty.Easy}`,
           date: currentDate,
         })
       );

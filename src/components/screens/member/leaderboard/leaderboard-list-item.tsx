@@ -3,8 +3,9 @@ import { memo } from "react";
 import { View } from "react-native";
 import { styles } from "./leaderboard.screen";
 import { ListRenderItemInfo } from "@shopify/flash-list";
-import { GetMobileSocialGroupLeaderboardItems_getMobileSocialGroupLeaderboardItems as SocialGroupLeaderboardItem } from "@graphql/_core/schema";
+import { GetMobileSocialGroupLeaderboardItemsQuery } from "@graphql/__generated";
 
+type SocialGroupLeaderboardItem = GetMobileSocialGroupLeaderboardItemsQuery["getMobileSocialGroupLeaderboardItems"][0];
 interface IItemsProps {
   item: SocialGroupLeaderboardItem;
   currentUserInfo: SocialGroupLeaderboardItem;

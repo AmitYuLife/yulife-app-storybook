@@ -19,7 +19,6 @@ import { challengeEndSuccessAction } from "@redux/levels/levels.actions";
 import { Alert } from "react-native";
 import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
 import { getActiveSocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
-import { GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS } from "@graphql/socialGroupLeaderboard/getMobileSocialGroupLeaderboardItems";
 import {
   gql,
   SocialGroupLeaderboardConfigId,
@@ -160,7 +159,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
             ...(canRefetch && {
               refetchQueries: [
                 {
-                  query: GQL_QUERY_SOCIAL_GROUP_LEADERBOARD_ITEMS,
+                  query: gql("GetMobileSocialGroupLeaderboardItemsDocument"),
                   variables: {
                     leaderboardId: activeLeaderboard?.leaderboardId,
                   },

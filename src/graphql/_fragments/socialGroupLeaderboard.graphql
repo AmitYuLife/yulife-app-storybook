@@ -1,0 +1,15 @@
+fragment SocialGroupLeaderboard on SocialGroupLeaderboard {
+  leaderboardId
+  name
+  description
+  shortDescription
+  consent
+  isLocked
+  leaderboardConfigId
+  icon {
+    ...RemoteImage
+  }
+  selectedIcon {
+    ...RemoteImage
+  }
+}
