@@ -1,0 +1,4 @@
+fragment ContentItemFormSelectInputOptions on ContentItemFormSelectInputOptions {
+  label
+  value
+}

@@ -1,0 +1,18 @@
+fragment ContentItemFormSelectInput on ContentItemFormSelectInput {
+  id
+  name
+  placeholder
+  modalPlaceholder
+  defaultOption {
+    ...ContentItemFormSelectInputOptions
+  }
+  icon {
+    ...RemoteImage
+  }
+  options {
+    ...ContentItemFormSelectInputOptions
+  }
+  validation {
+    ...ContentItemFormInputValidation
+  }
+}
