@@ -1,0 +1,14 @@
+fragment ContentItemHint on ContentItemHint {
+  id
+  hintTitle
+  contentItemHintDescription: description
+  hintImage {
+    ...RemoteImage
+  }
+  onPress {
+    ...SduiAction
+  }
+  styles {
+    ...SduiStyle
+  }
+}

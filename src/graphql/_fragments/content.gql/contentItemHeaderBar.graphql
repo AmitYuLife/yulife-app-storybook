@@ -1,0 +1,16 @@
+fragment ContentItemHeaderBar on ContentItemHeaderBar {
+  id
+  logo
+  heading
+  leftIcon
+  contentItemHeaderBarRightIcon: rightIcon
+  onLeftIconPress {
+    ...SduiAction
+  }
+  onRightIconPress {
+    ...SduiAction
+  }
+  publishKeyHeight
+  color
+  backgroundColor
+}

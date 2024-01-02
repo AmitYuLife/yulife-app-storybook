@@ -1,0 +1,62 @@
+fragment ContentItemMedia on ContentItemMedia {
+  id
+  mediaTitle
+  mediaSubtitle
+  description
+  shortDescription
+  modalCopy {
+    error {
+      heading
+      subheading
+      ctaLabel
+      ctaLabelSecondary
+    }
+    cancel {
+      heading
+      subheading
+      ctaLabel
+      ctaLabelSecondary
+    }
+  }
+  theme
+  orientation
+  duration
+  yuCoin
+  stars
+  sourceType
+  eventType
+  startErrorMessage
+  startChallengeButtonLabel
+  showTimer
+  source {
+    id
+    uri
+  }
+  mediaLogo {
+    ...RemoteImage
+  }
+  poster {
+    ...RemoteImage
+  }
+  videoLogo {
+    ...RemoteImage
+  }
+  thumbnail {
+    ...RemoteImage
+  }
+  lottie {
+    ...ContentItemLottie
+  }
+  onLeftIconPress {
+    ...SduiAction
+  }
+  onRightIconPress {
+    ...SduiAction
+  }
+  onStart {
+    ...SduiAction
+  }
+  onEnd {
+    ...SduiAction
+  }
+}

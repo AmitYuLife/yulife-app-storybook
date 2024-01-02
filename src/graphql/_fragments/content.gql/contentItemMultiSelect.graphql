@@ -1,0 +1,12 @@
+fragment ContentItemMultiSelect on ContentItemMultiSelect {
+  id
+  answerKey
+  choices {
+    id
+    label
+    icon {
+      id
+      uri
+    }
+  }
+}

@@ -1,0 +1,20 @@
+fragment ContentItemList on ContentItemList {
+  id
+  wrapperStyles {
+    ...SduiStyle
+  }
+  items {
+    id
+    text {
+      value
+      colour
+    }
+    circle {
+      colour
+      backgroundColour
+    }
+    styles {
+      ...SduiStyle
+    }
+  }
+}
