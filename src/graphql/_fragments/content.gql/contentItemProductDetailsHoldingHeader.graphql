@@ -1,0 +1,20 @@
+fragment ContentItemProductDetailsHoldingHeader on ContentItemProductDetailsHoldingHeader {
+  id
+  linearGradient {
+    colors
+    start {
+      ...LinearGradientOrientation
+    }
+    end {
+      ...LinearGradientOrientation
+    }
+  }
+  image {
+    ...RemoteImage
+  }
+  title
+  description
+  timer {
+    secondsUntilTarget
+  }
+}

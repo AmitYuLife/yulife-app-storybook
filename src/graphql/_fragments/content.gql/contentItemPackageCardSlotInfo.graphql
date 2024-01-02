@@ -1,0 +1,10 @@
+fragment ContentItemPackageCardSlotInfo on ContentItemPackageCardSlotInfo {
+  name
+  status
+  backgroundUrl {
+    ...RemoteImage
+  }
+  logoUrl {
+    ...RemoteImage
+  }
+}

@@ -1,0 +1,6 @@
+fragment ContentItemProductDetailsHeaderFunding on ContentItemProductDetailsHeaderFunding {
+  text
+  theme {
+    ...ContentItemProductDetailsHeaderFundingTheme
+  }
+}

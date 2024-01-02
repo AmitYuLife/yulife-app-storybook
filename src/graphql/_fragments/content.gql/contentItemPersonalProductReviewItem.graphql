@@ -1,0 +1,15 @@
+fragment ContentItemPersonalProductReviewItem on ContentItemPersonalProductReviewItem {
+  id
+  text: heading
+  subheading
+  stepKey
+  leftIcon {
+    ...RemoteImage
+  }
+  rightIcon {
+    ...RemoteImage
+  }
+  onPress {
+    ...SduiAction
+  }
+}
