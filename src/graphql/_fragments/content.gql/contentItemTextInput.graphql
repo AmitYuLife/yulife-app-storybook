@@ -1,0 +1,14 @@
+fragment ContentItemTextInput on ContentItemTextInput {
+  id
+  heading
+  answerKey
+  type
+  prefixValue
+  validation {
+    validationName
+    validationValue
+  }
+  styles {
+    ...SduiStyle
+  }
+}

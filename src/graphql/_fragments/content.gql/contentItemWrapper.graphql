@@ -1,0 +1,20 @@
+fragment ContentItemWrapper on ContentItemWrapper {
+  id
+  styles {
+    ...SduiStyle
+  }
+  children
+  pointerEvents
+  absolute
+  onPress {
+    ...SduiAction
+  }
+  scrollViewProps
+  dynamicStyleKey
+  localDispatchActions {
+    ...SduiAction
+  }
+  localDispatchActionsOnMount {
+    ...SduiAction
+  }
+}

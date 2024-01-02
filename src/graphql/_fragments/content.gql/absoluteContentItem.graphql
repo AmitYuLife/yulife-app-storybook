@@ -1,0 +1,12 @@
+fragment AbsoluteContentItem on AbsoluteContentItem {
+  isBackground
+  item {
+    ...ContentItem
+  }
+  styles {
+    ...SduiStyle
+  }
+  dynamicStyles {
+    ...SduiStyleDynamic
+  }
+}

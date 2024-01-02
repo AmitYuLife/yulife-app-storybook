@@ -1,0 +1,21 @@
+fragment ContentItemTextGroup on ContentItemTextGroup {
+  id
+  items {
+    label
+    onPress {
+      ...SduiAction
+    }
+    rightIcon {
+      ...RemoteImage
+    }
+    styles {
+      ...SduiStyle
+    }
+    labelStyles {
+      ...SduiStyle
+    }
+  }
+  styles {
+    ...SduiStyle
+  }
+}

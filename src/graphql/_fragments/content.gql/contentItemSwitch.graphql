@@ -1,0 +1,13 @@
+fragment ContentItemSwitch on ContentItemSwitch {
+  id
+  styles {
+    ...SduiStyle
+  }
+  wrapperStyles {
+    ...SduiStyle
+  }
+  onPress {
+    ...SduiAction
+  }
+  defaultValue
+}

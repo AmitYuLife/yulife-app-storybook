@@ -1,0 +1,10 @@
+fragment ContentItemTextAreaInput on ContentItemTextAreaInput {
+  id
+  answerKey
+  placeholder
+  numberOfLines
+  maxLength
+  styles {
+    ...SduiStyle
+  }
+}

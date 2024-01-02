@@ -1,0 +1,13 @@
+fragment ContentItemText on ContentItemText {
+  id
+  textType: type
+  text
+  colour
+  textAlign
+  underline
+  numberOfLines
+  styles {
+    ...SduiStyle
+  }
+  dynamicStyleKey
+}
