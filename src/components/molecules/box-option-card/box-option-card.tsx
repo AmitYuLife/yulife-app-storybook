@@ -1,19 +1,22 @@
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { default as BoxOption } from "../box-option/box-option";
-import { RemoteImage, SduiAction } from "@graphql/_core/schema";
+import { ContentItemButton_event, RemoteImage, SduiAction } from "@graphql/_core/schema";
 import { Style, Colours } from "@styles";
-import { ComponentProps, useRef, useState } from "react";
+import { ComponentProps, useCallback, useRef, useState } from "react";
 import { Title } from "./box-option-card.title";
 import { BOX_OPTION_DESCRIPTION, BOX_OPTION_TITLE, RIGHT_SIDE_IMAGE_BOX_OPTION } from "@ids";
 import { ArrowButton } from "../arrow-button";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
+import { useDispatch } from "react-redux";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 interface Props {
   title: string;
   description: string;
   image: RemoteImage;
   onPress: SduiAction;
+  event?: SduiAction;
   descriptionTextType?: ComponentProps<typeof TextTemplate>["type"];
   innerHeight?: number;
   subtitle?: string;
@@ -31,6 +34,7 @@ export const BoxOptionCard = ({
   descriptionTextType = "b2",
   image,
   onPress,
+  event,
   subtitle,
   subtitleTextType = "l2b",
   titleWrapperStyles = {},
@@ -38,6 +42,8 @@ export const BoxOptionCard = ({
   titleNumberOfLines,
   descriptionNumberOfLines,
 }: Props) => {
+  const dispatch = useDispatch();
+
   const [adjustedInnerHeight, setAdjustedInnerHeight] = useState(innerHeight);
 
   const contentWrapperRef = useRef(null as View);
@@ -51,7 +57,19 @@ export const BoxOptionCard = ({
     });
   };
 
-  const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onPress);
+  const eventCallback = useCallback(() => {
+    const safeEventObj: Partial<ContentItemButton_event> = event || { payload: null };
+    const payload = JSON.parse(safeEventObj.payload);
+    const safePayloadObj = payload || {};
+    dispatch(
+      logMixpanelEventActionCreator(
+        safePayloadObj.name || "button_pressed",
+        safePayloadObj.props || { sdui_location: "app" }
+      )
+    );
+  }, [event, dispatch, logMixpanelEventActionCreator]);
+
+  const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onPress, eventCallback);
 
   return (
     <BoxOption

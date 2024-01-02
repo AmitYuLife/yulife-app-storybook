@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -25,11 +25,17 @@ export interface GetYuScreen_getYuScreen_boxOptionCards_onPress {
   payload: string | null;
 }
 
+export interface GetYuScreen_getYuScreen_boxOptionCards_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetYuScreen_getYuScreen_boxOptionCards {
   title: string | null;
   description: string | null;
   image: GetYuScreen_getYuScreen_boxOptionCards_image | null;
   onPress: GetYuScreen_getYuScreen_boxOptionCards_onPress | null;
+  event: GetYuScreen_getYuScreen_boxOptionCards_event | null;
 }
 
 export interface GetYuScreen_getYuScreen_onboarding_button_event {

@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -846,6 +846,11 @@ export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_onPress {
   payload: string | null;
 }
 
+export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_styles {
   property: string;
   value: string;
@@ -869,6 +874,7 @@ export interface AbsoluteContentItem_item_ContentItemBoxOptionCard {
   contentItemBoxOptionCardDescriptionTextType: string | null;
   image: AbsoluteContentItem_item_ContentItemBoxOptionCard_image | null;
   onPress: AbsoluteContentItem_item_ContentItemBoxOptionCard_onPress | null;
+  event: AbsoluteContentItem_item_ContentItemBoxOptionCard_event | null;
   styles: AbsoluteContentItem_item_ContentItemBoxOptionCard_styles[] | null;
   /**
    * Supported RN version 3.96.0
@@ -1046,7 +1052,7 @@ export interface AbsoluteContentItem_item_ContentItemTextAreaInput {
   answerKey: string;
   placeholder: string | null;
   numberOfLines: number | null;
-  maxLength: number | null;
+  maxLength: number;
   styles: AbsoluteContentItem_item_ContentItemTextAreaInput_styles[] | null;
 }
 

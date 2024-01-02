@@ -17,6 +17,6 @@ export interface ContentItemTextAreaInput {
   answerKey: string;
   placeholder: string | null;
   numberOfLines: number | null;
-  maxLength: number | null;
+  maxLength: number;
   styles: ContentItemTextAreaInput_styles[] | null;
 }
