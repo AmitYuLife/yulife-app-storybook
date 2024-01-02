@@ -1,0 +1,32 @@
+fragment ContentItemPackageCards on ContentItemPackageCards {
+  id
+  answerKey
+  answerKeyDefaultValue
+  filterBasedOnAnswerKey
+  packageCards {
+    id
+    value
+    packageMaxValue
+    coverType
+    bonusEarnRate
+    header {
+      backgroundUrl {
+        ...RemoteImage
+      }
+      slotInfo {
+        ...ContentItemPackageCardSlotInfo
+      }
+    }
+    powers {
+      leftIcon {
+        ...RemoteImage
+      }
+      rightIcon {
+        ...RemoteImage
+      }
+      title
+      description
+      isLocked
+    }
+  }
+}

@@ -1,0 +1,5 @@
+fragment ContentItemProductDetailsHeaderFundingTheme on ContentItemProductDetailsHeaderFundingTheme {
+  backgroundColor
+  borderColor
+  textColor
+}

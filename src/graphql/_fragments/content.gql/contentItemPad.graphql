@@ -1,0 +1,11 @@
+fragment ContentItemPad on ContentItemPad {
+  id
+  amount
+  pointerEvents
+  styles {
+    ...SduiStyle
+  }
+  dynamicStyles {
+    ...SduiStyleDynamic
+  }
+}

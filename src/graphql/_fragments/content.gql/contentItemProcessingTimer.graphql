@@ -1,0 +1,9 @@
+fragment ContentItemProcessingTimer on ContentItemProcessingTimer {
+  id
+  secondsUntilTarget
+  backgroundUrl
+  contentItemProcessingTimerHeading: heading
+  onClose {
+    ...SduiAction
+  }
+}

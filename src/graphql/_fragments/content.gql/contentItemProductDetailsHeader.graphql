@@ -1,0 +1,27 @@
+fragment ContentItemProductDetailsHeader on ContentItemProductDetailsHeader {
+  id
+  coverType
+  productName
+  productDetailsHeaderYuCoinPower: yuCoinPower
+  styles {
+    ...SduiStyle
+  }
+  providerLogo {
+    ...VariableRemoteImage
+  }
+  itemSlot {
+    ...YuScreenItemSlot
+  }
+  productIdentifier {
+    label
+    value
+  }
+  benefit {
+    title
+    markdown
+  }
+  funding {
+    ...ContentItemProductDetailsHeaderFunding
+  }
+  showSlotLabel
+}

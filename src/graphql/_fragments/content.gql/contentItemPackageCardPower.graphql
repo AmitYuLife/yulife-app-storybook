@@ -1,0 +1,12 @@
+fragment ContentItemPackageCardPower on ContentItemPackageCardPower {
+  id
+  leftIcon {
+    ...RemoteImage
+  }
+  rightIcon {
+    ...RemoteImage
+  }
+  powerTitle: title
+  description
+  isLocked
+}

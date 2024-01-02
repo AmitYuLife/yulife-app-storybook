@@ -1,0 +1,28 @@
+fragment ContentItemPersonalProductDocuments on ContentItemPersonalProductDocuments {
+  id
+  headingImage {
+    id
+    image {
+      id
+      uri
+    }
+  }
+  headingMarkdown {
+    id
+    markdown
+    parsedMarkdown
+  }
+  documents {
+    id
+    linkLabel
+    rightIcon {
+      id
+      uri
+    }
+    leftIcon {
+      id
+      uri
+    }
+    url
+  }
+}

@@ -1,0 +1,4 @@
+fragment LinearGradientOrientation on LinearGradientOrientation {
+  x
+  y
+}
