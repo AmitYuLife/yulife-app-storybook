@@ -287,13 +287,12 @@ Feature("Yudoku", async () => {
         When('I go to quests', when.navigateTo("quests"), async () => {
             When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
                 When("I tap the soduku challenge", when.tapSudoku, async () => {
-                    When("I complete the Yudoku", when.completeYudoku(), async () => {
+                    When("I complete the Yudoku", when.completeYudoku(false), async () => {
                         When("I tap done", when.tapText("Done"), async () => {
-                            When("I tap collect", when.tapCollect, async () => {
+                            When("I tap collect", when.tapText("Collect"), async () => {
                                 When("I tap level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-                                    // @update [fails to find the slot info even though the correct values are displayed]
-                                    // Then("I can see the slot for a completed yudoku", then.idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Yudoku", "120", 3)))
-                                    // Then("I can see the level summary page yudoku leaderboard button", then.canSeeYudokuLeaderboardButton("Today"))
+                                    Then("I can see the slot for a completed yudoku", then.idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Yudoku", "120", 3)))
+                                    Then("I can see the level summary page yudoku leaderboard button", then.canSeeYudokuLeaderboardButton("Today"))
                                 })
                             })
                         })
