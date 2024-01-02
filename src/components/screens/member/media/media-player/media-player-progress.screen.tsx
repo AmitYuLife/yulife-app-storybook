@@ -1,6 +1,6 @@
 import moment from "moment";
 import { truncate } from "lodash";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLazyQuery } from "@apollo/client";
 import { StyleSheet, View } from "react-native";
 import { Navigation } from "react-native-navigation";
@@ -19,6 +19,7 @@ import { GenericFullScreenLoading, GenericHeadingPad, NavBar, TopBarAbsolute } f
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { IMediaPlayerContainerProps } from "@components/containers/member/media/media-player/media-player.container";
 import { GetMediaQuery, gql } from "@graphql/__generated";
+import { getRouteState } from "@redux/app/app.selectors";
 
 type IMedia = GetMediaQuery["getMedia"][0];
 export interface IVideoProgressStorage {
@@ -40,6 +41,7 @@ const MediaPlayerProgressScreen = ({
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [activeVideo, setActiveVideo] = useState<IMedia>(null);
   const [activeVideoProgress, setActiveVideoProgress] = useState<IVideoProgressStorage>(null);
+  const currentRoute = useSelector(getRouteState);
   const [getVideos] = useLazyQuery(gql("GetMediaDocument"), {
     fetchPolicy: "network-only",
     variables: {
@@ -92,7 +94,7 @@ const MediaPlayerProgressScreen = ({
     const result = await getVideos();
     const videoProgress = await getVideoProgress();
     const videoToResume = (result?.data?.getMedia || []).find((video) => video.id === videoProgress?.id);
-    const isVideoResumable = videoProgress && videoToResume;
+    const isVideoResumable = videoProgress && videoToResume && currentRoute === ROUTES.quests;
 
     if (!isVideoResumable) {
       return;
@@ -109,7 +111,15 @@ const MediaPlayerProgressScreen = ({
         levelSlotId: activeLevel?.levelSlotId,
       })
     );
-  }, [activeLevel, isVideoProgressStorage, getVideoProgress, cancelChallenge, getHasChallengeEnded, getVideos]);
+  }, [
+    activeLevel?.levelSlotId,
+    isVideoProgressStorage,
+    getVideoProgress,
+    cancelChallenge,
+    getHasChallengeEnded,
+    getVideos,
+    currentRoute,
+  ]);
 
   /**
    * Navigates to the media screen to resume the challenge
