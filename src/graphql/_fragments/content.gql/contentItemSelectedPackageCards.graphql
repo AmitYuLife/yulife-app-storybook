@@ -1,0 +1,17 @@
+fragment ContentItemSelectedPackageCards on ContentItemSelectedPackageCards {
+  id
+  styles {
+    ...SduiStyle
+  }
+  providerLogo {
+    ...ContentItemSelectedPackageCardProviderLogo
+  }
+  packageCardsPriceDescription: priceDescription
+  coverOptions {
+    coverType
+    price
+    slotInfo {
+      ...ContentItemPackageCardSlotInfo
+    }
+  }
+}

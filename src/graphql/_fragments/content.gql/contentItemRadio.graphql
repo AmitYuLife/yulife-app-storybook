@@ -1,0 +1,15 @@
+fragment ContentItemRadio on ContentItemRadio {
+  id
+  iconOptions
+  answerKey
+  styles {
+    ...SduiStyle
+  }
+  choices {
+    label
+    value
+    renderAsIcon {
+      ...ContentItemRadioIcon
+    }
+  }
+}

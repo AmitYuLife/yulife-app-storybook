@@ -1,0 +1,4 @@
+fragment ContentItemProgressStepsThemeOption on ContentItemProgressStepsThemeOption {
+  active
+  inactive
+}

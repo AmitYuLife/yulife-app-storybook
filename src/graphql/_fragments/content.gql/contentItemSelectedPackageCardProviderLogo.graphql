@@ -1,0 +1,6 @@
+fragment ContentItemSelectedPackageCardProviderLogo on ContentItemSelectedPackageCardProviderLogo {
+  url {
+    ...RemoteImage
+  }
+  width
+}
