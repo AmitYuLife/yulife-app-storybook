@@ -173,7 +173,8 @@ const QuestsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
       // subtype, however only internal meditations set `videoPlayerIsActive` to true
       // therefore we can use this to assume it is an internal meditation, and external
       // ones can use the default `ChallengeProgressScreen` screen instead.
-      const isInternalMeditation = videoPlayerIsActive || hasVideoProgressStorage;
+      const isInternalMeditation =
+        (videoPlayerIsActive || hasVideoProgressStorage) && currentRoute !== ROUTES.mediaPlayer;
 
       if (activeLevel.subtype === "meditation" && isInternalMeditation) {
         return (
@@ -199,7 +200,7 @@ const QuestsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
         />
       );
     },
-    [activeLevel, hideExternalLinks, onLeftMenuPress, videoPlayerIsActive, hasVideoProgressStorage]
+    [activeLevel, hideExternalLinks, onLeftMenuPress, videoPlayerIsActive, hasVideoProgressStorage, currentRoute]
   );
 
   if (Style.isIPad()) {
