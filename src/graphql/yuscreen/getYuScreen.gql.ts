@@ -157,6 +157,9 @@ const GQL_FRAGMENT_YU_SCREEN_BOX_OPTION_CARDS = gql`
     onPress {
       ...SduiAction
     }
+    event {
+      ...SduiAction
+    }
   }
 `;
 

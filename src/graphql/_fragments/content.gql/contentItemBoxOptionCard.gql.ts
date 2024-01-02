@@ -17,6 +17,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM_BOX_OPTION_CARD = gql`
     onPress {
       ...SduiAction
     }
+    event {
+      ...SduiAction
+    }
     styles {
       ...SduiStyle
     }

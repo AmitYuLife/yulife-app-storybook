@@ -12,6 +12,7 @@ export const ContentItemBoxOptionCard = memo(
     contentItemBoxOptionCardDescriptionTextType: descriptionTextType,
     image,
     onPress,
+    event,
     styles,
     subtitle,
     subtitleTextType,
@@ -28,6 +29,7 @@ export const ContentItemBoxOptionCard = memo(
         description={description}
         image={image}
         onPress={onPress}
+        event={event}
         innerHeight={innerHeight}
         subtitle={subtitle}
         subtitleTextType={subtitleTextType as ITextTemplateType}

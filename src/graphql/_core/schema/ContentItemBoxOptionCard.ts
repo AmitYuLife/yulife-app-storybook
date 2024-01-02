@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -15,6 +15,11 @@ export interface ContentItemBoxOptionCard_image {
 }
 
 export interface ContentItemBoxOptionCard_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItemBoxOptionCard_event {
   type: SduiActionType;
   payload: string | null;
 }
@@ -41,6 +46,7 @@ export interface ContentItemBoxOptionCard {
   contentItemBoxOptionCardDescriptionTextType: string | null;
   image: ContentItemBoxOptionCard_image | null;
   onPress: ContentItemBoxOptionCard_onPress | null;
+  event: ContentItemBoxOptionCard_event | null;
   styles: ContentItemBoxOptionCard_styles[] | null;
   /**
    * Supported RN version 3.96.0

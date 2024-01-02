@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -856,6 +856,11 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCa
   payload: string | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_styles {
   property: string;
   value: string;
@@ -879,6 +884,7 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCa
   contentItemBoxOptionCardDescriptionTextType: string | null;
   image: GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_image | null;
   onPress: GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_onPress | null;
+  event: GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_event | null;
   styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_styles[] | null;
   /**
    * Supported RN version 3.96.0
@@ -1058,7 +1064,7 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextAreaInp
   answerKey: string;
   placeholder: string | null;
   numberOfLines: number | null;
-  maxLength: number | null;
+  maxLength: number;
   styles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemTextAreaInput_styles[] | null;
 }
 
@@ -1935,6 +1941,11 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBo
   payload: string | null;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_styles {
   property: string;
   value: string;
@@ -1958,6 +1969,7 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBo
   contentItemBoxOptionCardDescriptionTextType: string | null;
   image: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_image | null;
   onPress: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_onPress | null;
+  event: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_event | null;
   styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_styles[] | null;
   /**
    * Supported RN version 3.96.0
@@ -2141,7 +2153,7 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTe
   answerKey: string;
   placeholder: string | null;
   numberOfLines: number | null;
-  maxLength: number | null;
+  maxLength: number;
   styles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemTextAreaInput_styles[] | null;
 }
 

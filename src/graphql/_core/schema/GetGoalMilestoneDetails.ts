@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -40,12 +40,12 @@ export interface GetGoalMilestoneDetails_getGoalMilestoneDetails_hint {
 }
 
 export interface GetGoalMilestoneDetails_getGoalMilestoneDetails {
-  list: GetGoalMilestoneDetails_getGoalMilestoneDetails_list[] | null;
+  list: GetGoalMilestoneDetails_getGoalMilestoneDetails_list[];
   hint: GetGoalMilestoneDetails_getGoalMilestoneDetails_hint | null;
 }
 
 export interface GetGoalMilestoneDetails {
-  getGoalMilestoneDetails: GetGoalMilestoneDetails_getGoalMilestoneDetails | null;
+  getGoalMilestoneDetails: GetGoalMilestoneDetails_getGoalMilestoneDetails;
 }
 
 export interface GetGoalMilestoneDetailsVariables {
