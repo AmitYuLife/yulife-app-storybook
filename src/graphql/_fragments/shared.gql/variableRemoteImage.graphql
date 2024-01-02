@@ -1,0 +1,6 @@
+fragment VariableRemoteImage on VariableRemoteImage {
+  image {
+    ...RemoteImage
+  }
+  width
+}

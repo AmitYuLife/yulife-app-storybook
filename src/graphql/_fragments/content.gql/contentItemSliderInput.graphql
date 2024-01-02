@@ -1,0 +1,11 @@
+fragment ContentItemSliderInput on ContentItemSliderInput {
+  id
+  answerKey
+  minValue
+  maxValue
+  leftLabel
+  rightLabel
+  styles {
+    ...SduiStyle
+  }
+}

@@ -1,0 +1,84 @@
+fragment ContentItem on ContentItem {
+  __typename
+  ... on ContentItemMarkdown {
+    ...ContentItemMarkdown
+  }
+  ... on ContentItemBox {
+    ...ContentItemBox
+  }
+  ... on ContentItemButton {
+    ...ContentItemButton
+  }
+  ... on ContentItemImage {
+    ...ContentItemImage
+  }
+  ... on ContentItemForm {
+    ...ContentItemForm
+  }
+  ... on ContentItemText {
+    ...ContentItemText
+  }
+  ... on ContentItemTextInput {
+    ...ContentItemTextInput
+  }
+  ... on ContentItemDropdownInput {
+    ...ContentItemDropdownInput
+  }
+  ... on ContentItemRowIconTextBanner {
+    ...ContentItemRowIconTextBanner
+  }
+  ... on ContentItemLottie {
+    ...ContentItemLottie
+  }
+  ... on ContentItemPad {
+    ...ContentItemPad
+  }
+  ... on ContentItemRadio {
+    ...ContentItemRadio
+  }
+  ... on ContentItemHeaderBar {
+    ...ContentItemHeaderBar
+  }
+  ... on ContentItemProgressBar {
+    ...ContentItemProgressBar
+  }
+  ... on ContentItemTextGroup {
+    ...ContentItemTextGroup
+  }
+  ... on ContentItemAccordion {
+    ...ContentItemAccordion
+  }
+  ... on ContentItemMedia {
+    ...ContentItemMedia
+  }
+  ... on ContentItemLinearGradient {
+    ...ContentItemLinearGradient
+  }
+  ... on ContentItemWrapper {
+    ...ContentItemWrapper
+  }
+  ... on ContentItemInfoCard {
+    ...ContentItemInfoCard
+  }
+  ... on ContentItemBoxOptionCard {
+    ...ContentItemBoxOptionCard
+  }
+  ... on ContentItemSwitch {
+    ...ContentItemSwitch
+  }
+  ... on ContentItemShowHideBalance {
+    ...ContentItemShowHideBalance
+  }
+  ... on ContentItemDatePicker {
+    ...ContentItemDatePicker
+  }
+  ... on ContentItemHint {
+    ...ContentItemHint
+  }
+  ... on ContentItemSliderInput {
+    ...ContentItemSliderInput
+  }
+  ... on ContentItemTextAreaInput {
+    ...ContentItemTextAreaInput
+  }
+}

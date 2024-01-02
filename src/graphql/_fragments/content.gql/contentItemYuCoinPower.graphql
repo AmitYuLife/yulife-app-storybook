@@ -1,0 +1,13 @@
+fragment ContentItemYuCoinPower on ContentItemYuCoinPower {
+  id
+  yuCoinPower
+  styles {
+    ...SduiStyle
+  }
+  containerStyles {
+    ...SduiStyle
+  }
+  marginHorizontal
+  interactive
+  inactive
+}

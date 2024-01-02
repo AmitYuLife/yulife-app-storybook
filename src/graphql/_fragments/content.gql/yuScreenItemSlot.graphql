@@ -1,0 +1,4 @@
+fragment YuScreenItemSlot on YuScreenItemSlot {
+  iconUrl
+  backgroundUrl
+}

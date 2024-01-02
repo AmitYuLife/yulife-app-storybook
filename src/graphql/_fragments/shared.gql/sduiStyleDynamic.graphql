@@ -1,0 +1,5 @@
+fragment SduiStyleDynamic on SduiStyleDynamic {
+  property
+  value
+  defaultValue
+}

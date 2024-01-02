@@ -1,0 +1,6 @@
+fragment ProductAction on ProductAction {
+  productId
+  nextRouteId
+  nextModalId
+  shouldBeNormalised
+}
