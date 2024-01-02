@@ -1,0 +1,11 @@
+fragment ContentItemMultiButton on ContentItemMultiButton {
+  id
+  buttons {
+    ...ContentItemButton
+  }
+  value
+  answerKey
+  styles {
+    ...SduiStyle
+  }
+}

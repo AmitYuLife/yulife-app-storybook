@@ -1,0 +1,16 @@
+fragment ContentItemImage on ContentItemImage {
+  id
+  image {
+    ...RemoteImage
+  }
+  styles {
+    ...SduiStyle
+  }
+  wrapperStyles {
+    ...SduiStyle
+  }
+  onPress {
+    ...SduiAction
+  }
+  contentItemImageSize: size
+}

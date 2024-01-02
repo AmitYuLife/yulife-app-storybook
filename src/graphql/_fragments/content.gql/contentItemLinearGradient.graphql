@@ -1,0 +1,13 @@
+fragment ContentItemLinearGradient on ContentItemLinearGradient {
+  id
+  colors
+  styles {
+    ...SduiStyle
+  }
+  start {
+    ...LinearGradientOrientation
+  }
+  end {
+    ...LinearGradientOrientation
+  }
+}

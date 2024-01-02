@@ -1,0 +1,23 @@
+fragment ContentItemInfoButton on ContentItemInfoButton {
+  id
+  label
+  infoBtnLeftIcon: leftIcon {
+    ...RemoteImage
+  }
+  infoBtnRightIcon: rightIcon {
+    ...RemoteImage
+  }
+  onPress {
+    ...SduiAction
+  }
+  active {
+    label
+    leftIcon {
+      ...RemoteImage
+    }
+    rightIcon {
+      ...RemoteImage
+    }
+  }
+  answerKeys
+}

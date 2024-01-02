@@ -1,0 +1,11 @@
+fragment ContentItemKeyValueBox on ContentItemKeyValueBox {
+  id
+  boxKey: key
+  boxValue: value
+  styles {
+    ...SduiStyle
+  }
+  wrapperStyles {
+    ...SduiStyle
+  }
+}

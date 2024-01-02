@@ -1,0 +1,7 @@
+fragment ContentItemOverlay on ContentItemOverlay {
+  id
+  markdown
+  buttons {
+    ...ContentItemButton
+  }
+}
