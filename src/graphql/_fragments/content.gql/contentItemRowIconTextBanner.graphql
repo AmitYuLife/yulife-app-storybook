@@ -1,0 +1,20 @@
+fragment ContentItemRowIconTextBanner on ContentItemRowIconTextBanner {
+  id
+  bannerType: type
+  markdown
+  bannerIcon: icon {
+    ...RemoteImage
+  }
+  styles {
+    ...SduiStyle
+  }
+  titleMarkdown
+  showCloseIcon
+  bannerButton: button {
+    ...ContentItemButton
+  }
+  showIcon
+  containerActions {
+    ...ContentItemRowIconTextBannerContainerActions
+  }
+}

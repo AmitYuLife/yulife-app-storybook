@@ -1,0 +1,11 @@
+fragment ContentItemProgressSteps on ContentItemProgressSteps {
+  id
+  currentStep
+  numberOfSteps
+  theme {
+    ...ContentItemProgressStepsTheme
+  }
+  wrapperStyles {
+    ...SduiStyle
+  }
+}

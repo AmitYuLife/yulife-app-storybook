@@ -1,0 +1,7 @@
+fragment ContentItemProgressBar on ContentItemProgressBar {
+  id
+  maxLength
+  currentPosition
+  progressType: type
+  publishKeyHeight
+}

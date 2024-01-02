@@ -1,0 +1,14 @@
+fragment ContentItemProgressStepsTheme on ContentItemProgressStepsTheme {
+  barColour {
+    ...ContentItemProgressStepsThemeOption
+  }
+  barBorderColour {
+    ...ContentItemProgressStepsThemeOption
+  }
+  stepBackgroundColour {
+    ...ContentItemProgressStepsThemeOption
+  }
+  stepTextColour {
+    ...ContentItemProgressStepsThemeOption
+  }
+}

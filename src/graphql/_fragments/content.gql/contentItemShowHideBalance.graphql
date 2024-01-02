@@ -1,0 +1,13 @@
+fragment ContentItemShowHideBalance on ContentItemShowHideBalance {
+  id
+  balance
+  currency
+  balanceDescription
+  balanceDescriptionValue
+  styles {
+    ...SduiStyle
+  }
+  wrapperStyles {
+    ...SduiStyle
+  }
+}

@@ -1,0 +1,18 @@
+fragment ContentItemRadioIcon on ContentItemRadioIcon {
+  icon {
+    ...RemoteImage
+  }
+  textColor
+  selectedStyles {
+    ...SduiStyle
+  }
+  wrapperStyles {
+    ...SduiStyle
+  }
+  innerWrapperStyles {
+    ...SduiStyle
+  }
+  boxOptionHeight
+  imageWidth
+  imageHeight
+}

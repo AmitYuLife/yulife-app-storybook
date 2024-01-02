@@ -1,0 +1,9 @@
+fragment ContentItemRowIconTextBannerContainerActions on ContentItemRowIconTextBannerContainerActions {
+  id
+  event {
+    ...SduiAction
+  }
+  onPress {
+    ...SduiAction
+  }
+}
