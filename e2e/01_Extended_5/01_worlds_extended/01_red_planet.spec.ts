@@ -119,7 +119,6 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap level 201 button a fourth time", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(201)), async () => {
             Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
-        // @update ["maybe later" from when.selectAndCompleteMeditationChallengeWithMedia is missing]
         When("I complete a meditation challenge at level 201", when.selectAndCompleteMeditationChallengeWithMedia(180), async () => {
             Then("I should see the level 201 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)))
             Then("I should see level 201 has 3 stars", then.idVisible(ids.LEVEL_STAR_COUNT(3)))

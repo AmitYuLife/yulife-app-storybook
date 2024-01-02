@@ -48,10 +48,13 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I tap to close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
             When("I tap level 80", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(80)), async () => {
-                When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
-                    When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
-                        Then("I should see the well done screen", then.onChallengeComplete(3050, 80))
-                    })
+                Then("I should see a screen telling me to take a challenge to unlock a my reward", then.textVisible("Almost there! Take a challenge to unlock your reward."))
+            })
+        })
+        When("I tap the Let's go button to proceed", when.tapText("Let's go!"), async () => {
+            When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
+                When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+                    Then("I should see the well done screen", then.onChallengeComplete(3050, 80))
                 })
             })
         })
@@ -107,7 +110,6 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })
-            
      })
 
     Scenario("I can succesfully go through the Urban Massage GHI Rewards journeys and the GHI hourney levels up when in Yuniversal levels", scenario.start, async () => {
@@ -178,7 +180,6 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 Then("I can see the purchase for today for Urban Massage", then.groupHealthRewardsPurchasedVisible(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS))
             })
         })
-            
     })
 
     Scenario("I can succesfully go through the Thriva GHI Rewards journeys", scenario.start, async () => {
@@ -251,7 +252,6 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })
-            
     })
 
     Scenario("I can succesfully go through the Living DNA GHI Rewards journeys", scenario.start, async () => {
@@ -397,7 +397,6 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I click to see my voucher", when.tapText(t("View vouchers")), async () => {
             Then("I can see the purchase for today for Living DNA", then.groupHealthRewardsPurchasedVisible(fixtures.LIVING_DNA_REWARDS_CLAIM_PAGE_DETAILS))
         })
-            
     })
 
     Scenario("I can succesfully go through the Bupa GHI Rewards journeys", scenario.start, async () => {
@@ -468,7 +467,6 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 Then("I can see the purchase for today for Bupa", then.groupHealthRewardsPurchasedVisible(fixtures.BUPA_REWARDS_CLAIM_PAGE_DETAILS))
             })
         })
-            
     })
 
     Scenario("I can succesfully go through the Garmin Rewards journeys", scenario.start, async () => {
@@ -547,7 +545,6 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })
-            
     })
 
     Scenario("I can succesfully go through the GOSH Rewards journeys", scenario.start, async () => {
@@ -626,7 +623,6 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })
-            
     })
 
     Scenario("I can succesfully go through the GOSH Rewards journeys", scenario.start, async () => {
@@ -659,8 +655,6 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I click to see the purchase history", when.tapText(t("Purchased")), async () => {
             Then("I can see the purchase for today for Urban Massage", then.groupHealthRewardsPurchasedVisible(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS))
         })
-        
-            
     })
 
 })

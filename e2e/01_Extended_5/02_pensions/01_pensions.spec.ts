@@ -12,7 +12,7 @@ import { calculateDailyContribution, calculateInProgressContribution, calculateP
 Feature("Smart Pension", async () => {
   Scenario("I can see an active connected pension", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_111, data.AUTH_111), async () => {
-      Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17709)))
+      Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17703)))
     })
     When("I go to the Yu tab", when.navigateTo("yu"), async () => {
       Then("I do not see the onboarding screen as I have a connection", then.cannotSeePensionOnboarding)

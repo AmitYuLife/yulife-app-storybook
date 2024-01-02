@@ -29,7 +29,7 @@ export const {
 
 export const completeNewWorldShortStroll = (levelNumber: number) => async () => {
     await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelNumber))
-    await textVisible(t("Take a challenge to unlock the chest"))()
+    await textVisible(t("Almost there! Take a challenge to unlock your reward."))()
     await textVisible(t("later"))()
     await navigateViaText(t("Let's do it"))
     await startChallenge("Short Stroll")()
@@ -127,8 +127,7 @@ export const selectAndCompleteMeditationChallengeWithMedia = (mindfulnessdata: n
     await navigateViaText(t("Take challenge"))
     await swipeFromText(t("Or use an app"), "up", "slow")()
     await tapText(t("Use a different app"))()
-    // @update ["maybe later" is missing]
-    // await tapText(t("maybe later"))()
+    await tapText(t("maybe later"))()
     await sendMindfulnessData(mindfulnessdata, 75000)()
     await waitFor(element(by.text(t("Collect")))).toBeVisible().withTimeout(5000)
     await navigateViaText(t("Collect"))
