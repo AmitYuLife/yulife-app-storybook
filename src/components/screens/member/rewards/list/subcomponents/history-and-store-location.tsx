@@ -48,16 +48,15 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
     marginTop: Style.adjust(8),
     marginBottom: Style.adjust(16),
-    marginRight: Style.adjust(16),
   },
   linkGroup: {
-    width: Style.DEVICE_WIDTH,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    marginLeft: Style.adjust(8),
   },
   divider: {
     backgroundColor: Colours.divider,
