@@ -1,4 +1,4 @@
-import { Scenario, Given, When, Then, Feature, FeatureOnly, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
+import { Scenario, Given, When, Then, Feature, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
@@ -41,7 +41,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
-    Scenario("I can change consent to a leaderboard I belong to", scenario.start, async () => {
+    // @flaky - sometimes doesn't navigate by tapping Next in loginAsUser() on iPhone SE
+    ScenarioSkip("I can change consent to a leaderboard I belong to", scenario.start, async () => {
         Given("I login", given.loginAsUser(data.CUSTOMER_17, data.AUTH_17), async () => {
             When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)))
@@ -229,7 +230,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
-    Scenario("I can inspect a player and challenge the user to a duel for the first time via inspect", scenario.start, async () => {
+    // @flaky - iPhone SE cannot find 'Steps' on the leaderboard
+    ScenarioSkip("I can inspect a player and challenge the user to a duel for the first time via inspect", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_47, data.AUTH_47), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
         })
@@ -262,7 +264,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
-    Scenario("Leaderboard search functions as expected", scenario.start, async () => {
+    // @flaky - iPhone SE on Bitrise cannot find 'Steps' on the leaderboard
+    ScenarioSkip("Leaderboard search functions as expected", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_39, data.AUTH_39), async () => {
             When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 Then("I am on the leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem]))

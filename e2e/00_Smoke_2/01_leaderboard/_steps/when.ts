@@ -53,7 +53,7 @@ export const turnOffLeaderboard = (leaderboardID: string) => async () => {
 
 export const clickUser = (user: typeof CUSTOMER_1) => async () => {
     if (device.name.includes("(iPhone SE (3rd generation))")) {
-        await swipeFromText(leaderboardConsentHeading, "up", "slow")()
+        await swipeFromText("Steps", "up", "slow")()
     }
     await tapText(`${user.data.firstName} ${user.data.lastName}`)()
 }
