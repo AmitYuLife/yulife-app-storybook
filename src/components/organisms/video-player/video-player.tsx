@@ -244,7 +244,11 @@ const VideoPlayer = ({
     [startTimeInSeconds]
   );
 
-  const onButtonAction = useCallback((): void => {
+  const onButtonAction = useCallback(async () => {
+    if (Math.floor(state.durationInSeconds) <= state.currentProgressInSeconds && !state.isPaused) {
+      return handleOnEnd();
+    }
+
     if (state.showFocusScreen) {
       handleFocusScreen();
       return;
@@ -257,7 +261,7 @@ const VideoPlayer = ({
     }
 
     reduxDispatch(logMixpanelEventActionCreator(state.isPaused ? "video_player_is_paused" : "video_player_is_playing"));
-  }, [state.isPaused, state.durationInSeconds, state.showFocusScreen]);
+  }, [state.isPaused, state.durationInSeconds, state.showFocusScreen, state.currentProgressInSeconds]);
 
   const handleStartButton = useCallback(async (): Promise<void> => {
     dispatch({ type: ActionTypes.SET_STARTING, payload: true });
@@ -492,7 +496,13 @@ const VideoPlayer = ({
                   <Logo type="inverted" width={24} height={24} />
                 </View>
               )}
-              {state.showTryAgainError ? null : <VidePlayerButton onPress={onButtonAction} isPaused={state.isPaused} />}
+              {state.showTryAgainError ? null : (
+                <VidePlayerButton
+                  onPress={onButtonAction}
+                  isPaused={state.isPaused}
+                  disabled={state.isLoadingEndOfSession}
+                />
+              )}
             </Animated.View>
           </>
         )}
