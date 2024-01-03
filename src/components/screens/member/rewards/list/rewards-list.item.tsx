@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     alignItems: "center",
+    height: "100%",
   },
   locked: {
     backgroundColor: Colours.neutral.n50,
