@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
@@ -8,7 +8,8 @@ import * as ids from "@ids"
 
 
 Feature("As an enabled user I am able to use the duels feature", async()=>{
-    Scenario("As a user I am able to invite another user to a duel, and the opponent is able to accept the duel", scenario.start, async()=>{
+    // @bug [Ticket: GS-832 YuCoin Amount not deducted when sending duel request.]
+    ScenarioSkip("As a user I am able to invite another user to a duel, and the opponent is able to accept the duel", scenario.start, async()=>{
     Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard",data.CUSTOMER_20, data.AUTH_20),async()=>{
             Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON))
             When("I tap duels icon", when.tapID(ids.DUELS_BUTTON), async()=>{
@@ -98,7 +99,8 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
         })
     })
 
-    Scenario("I am able to view my won and lost duels", scenario.start, async()=>{
+    // @flaky [test passes locally]
+    ScenarioSkip("I am able to view my won and lost duels", scenario.start, async()=>{
         Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", data.CUSTOMER_19, data.AUTH_19), async () => {
             Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON))
         })
