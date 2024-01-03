@@ -24,8 +24,8 @@ export const getWorldData = (currentLevel: number, features: IFeature) => {
   let currentPlanet = getCurrentPlanetByLevel(currentLevel, features?.enableWebpQuestMap);
   const normalizedLevel = getNormalizedLevel(currentLevel);
 
-  if (currentPlanet === Planets.ORANGE) {
-    currentPlanet = Planets.BRIGHT;
+  if (currentPlanet === Planets.ORANGE || currentPlanet === Planets.BRIGHT) {
+    currentPlanet = Planets.RED;
   }
 
   switch (currentWorld) {
