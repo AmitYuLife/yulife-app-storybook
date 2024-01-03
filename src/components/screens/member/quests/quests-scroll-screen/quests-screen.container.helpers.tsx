@@ -57,7 +57,7 @@ export const goToChallengesList = ({
     dismissChestModal();
   }
 
-  if (!levelAvailable || !useHalfModalsForQuestMap) {
+  if (!goals?.length || !levelAvailable || !useHalfModalsForQuestMap) {
     return goToQuestChallengesList();
   }
 
