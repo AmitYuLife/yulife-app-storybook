@@ -2,6 +2,7 @@ import { Style, Colours } from "@styles";
 import { StyleSheet } from "react-native";
 
 export const MAX_PROGRESS_WIDTH = Style.DEVICE_WIDTH * 0.7;
+export const MAX_UI_PROGRESS_PERCENTAGE = 0.97;
 
 export const rewardCardStyles = StyleSheet.create({
   wrapper: {
@@ -25,7 +26,7 @@ export const rewardCardStyles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 1,
     borderColor: Colours.neutral.n100,
-    borderRadius: 8,
+    borderRadius: 16,
   },
   row: {
     flexDirection: "row",
@@ -49,24 +50,48 @@ export const rewardCardStyles = StyleSheet.create({
   },
   barTargetWrapper: {
     position: "absolute",
-    top: 4,
-    right: Style.adjust(40),
-    backgroundColor: Colours.metallic.m100,
-    paddingHorizontal: Style.adjust(12),
-    height: Style.adjust(16),
+    top: 2,
+    right: Style.adjust(51),
+    backgroundColor: Colours.neutral.white,
+    borderWidth: 1,
+    borderColor: Colours.neutral.n200,
+    height: Style.adjust(20),
+    width: Style.adjust(20),
     borderRadius: Style.adjust(16),
     justifyContent: "center",
     alignItems: "center",
-    width: Style.adjust(40),
+  },
+  barTargetWrapperShimLeft: {
+    backgroundColor: Colours.neutral.white,
+    height: 6,
+    width: 8,
+    position: "absolute",
+    left: 0,
+    top: Style.adjust(9),
+    bottom: 0,
+  },
+  barTargetWrapperShimRight: {
+    backgroundColor: Colours.neutral.white,
+    height: 6,
+    width: 8,
+    position: "absolute",
+    right: Style.adjust(67),
+    top: Style.adjust(9),
+    bottom: 0,
+  },
+  starIconWrapper: {
+    marginTop: -1,
   },
   emptyBar: {
     position: "absolute",
     top: 8,
     bottom: 2,
     left: 0,
-    right: Style.adjust(50),
-    backgroundColor: Colours.metallic.m100,
+    right: Style.adjust(54),
+    backgroundColor: Colours.neutral.white,
     height: Style.adjust(8),
+    borderWidth: 1,
+    borderColor: Colours.neutral.n200,
   },
   filledBar: {
     position: "absolute",
@@ -80,7 +105,7 @@ export const rewardCardStyles = StyleSheet.create({
   },
   barWrapper: {
     height: Style.adjust(32),
-    marginTop: Style.adjust(8),
+    marginTop: Style.adjust(12),
     width: "100%",
   },
 });

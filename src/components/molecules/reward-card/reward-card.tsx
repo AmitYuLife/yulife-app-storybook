@@ -3,8 +3,9 @@ import { StyleSheet, View } from "react-native";
 import { Image, TextTemplate, WorldCard } from "@atoms";
 import { RemoteImage } from "@graphql/_core/schema";
 import { t } from "@locale";
-import { Style } from "@styles";
-import { MAX_PROGRESS_WIDTH, rewardCardStyles as styles } from "./reward-card.styles";
+import { Colours, Style } from "@styles";
+import { MAX_PROGRESS_WIDTH, MAX_UI_PROGRESS_PERCENTAGE, rewardCardStyles as styles } from "./reward-card.styles";
+import { StarIcon } from "@atoms/icon/star-icon";
 
 type RewardCardProps = {
   progress: number;
@@ -26,7 +27,9 @@ export const RewardCard = ({
   rewardImage,
 }: RewardCardProps) => {
   const calculated = useMemo(() => {
-    const filledBarWidth = { width: Math.max(0, MAX_PROGRESS_WIDTH * (progress / target)) };
+    const filledBarWidth = {
+      width: Math.max(0, MAX_PROGRESS_WIDTH * Math.min(MAX_UI_PROGRESS_PERCENTAGE, progress / target)),
+    };
 
     return {
       filledBarWidth,
@@ -47,12 +50,14 @@ export const RewardCard = ({
         </View>
         <View style={styles.barWrapper}>
           <View style={styles.emptyBar} />
-          <View style={[styles.filledBar, calculated.filledBarWidth]} />
           <View style={styles.barTargetWrapper}>
-            <TextTemplate textAlign="center" type="l3b">
-              {target}
-            </TextTemplate>
+            <View style={styles.starIconWrapper}>
+              <StarIcon size={Style.adjust(9)} color={Colours.neutral.n200} />
+            </View>
           </View>
+          <View style={styles.barTargetWrapperShimRight} />
+          <View style={styles.barTargetWrapperShimLeft} />
+          <View style={[styles.filledBar, calculated.filledBarWidth]} />
         </View>
       </View>
       {!rewardImage?.uri ? null : (
