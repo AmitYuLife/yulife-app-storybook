@@ -107,7 +107,7 @@ export const dentalProductInfo = (packageType: string, membershipEnding: string)
   await expect(element(by.text(packageType))).toBeVisible();
   await expect(element(by.text(name))).toBeVisible();
   await expect(element(by.text(membershipNumber))).toBeVisible();
-  await swipeFromText(membershipNumber, "up", "fast")();
+  await swipeFromText(membershipNumber, "up", "slow")();
   await expect(element(by.text(coverFor))).toBeVisible();
   await expect(element(by.text(howToClaim))).toBeVisible();
   await expect(element(by.text(billingInfo))).toBeVisible();

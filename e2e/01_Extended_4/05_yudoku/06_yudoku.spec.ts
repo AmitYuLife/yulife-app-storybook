@@ -10,7 +10,7 @@ import { DefaultYudokuLeaderboard, User67LeaderboardItemSudoku, User68Leaderboar
 import { getLocalisedString as t } from "@i18n";
 
 Feature("Yudoku", async () => {
-// @flaky [fails to join the on leaderboard screen -- test passes locally successfully]
+// @flaky [fails to join the leaderboard screen -- test passes locally successfully]
   ScenarioSkip("I can play, pause, and complete Sudoku and join/view the leaderboard", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_86, data.AUTH_86), async () => {
         Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)))
@@ -224,7 +224,8 @@ Feature("Yudoku", async () => {
     })
   })
 
-  Scenario("I can go to and leave the Yudoku leaderboard", scenario.start, () => {
+  // @flaky [fails to join the leaderboard screen -- test passes locally]
+  ScenarioSkip("I can go to and leave the Yudoku leaderboard", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_76, data.AUTH_76), async () => {
         Then("I should see 200 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
     })

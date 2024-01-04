@@ -12,8 +12,8 @@ Feature("DENTAL SAD", async () => {
         helper.CANCELED_DENTAL_POLICY();
         helper.PACKAGE_COVERING("Common");
         helper.BUPA_CLAIM();
-        helper.FAQ();
         helper.PAYMENT_HISTORY("£12.99", "Failed");
+        helper.FAQ();
       }
     );
   });

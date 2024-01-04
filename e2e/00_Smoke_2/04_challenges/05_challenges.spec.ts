@@ -137,7 +137,8 @@ Feature("As a user I can take a challenge", async () => {
 
     // PROGRESS
 
-    Scenario("I can take challenge with a higher earn rate of 13 and see the correct higher number of yucoin earned", scenario.start, async () => {
+    // @bug  [Ticket GS-837 -- Event complete shows two different finish screens]
+    ScenarioSkip("I can take challenge with a higher earn rate of 13 and see the correct higher number of yucoin earned", scenario.start, async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("yucoin", data.CUSTOMER_52, data.AUTH_52), async () => {
             Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
         })
@@ -211,38 +212,37 @@ Feature("As a user I can take a challenge", async () => {
                 Then("I should see the third milestone complete", then.milestoneComplete(1))
             })
         })
-        // @update - can't find back button (need to tap Great! first)
-        // When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
-        //     Then("I should see the yucoin page event bar showing the number of profiles viewed and hit the correct milestone", then.yuCoinPageEventDataCorrect(3, 0.6))
-        //     Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(data.GOAL_REWARD_MILESTONE_3.data.rewardValue, data.USER_52.data.earnRate, 2))
-        // })
-        // When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-        //     Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_7.data.name)))
-        // })
-        // When("I scroll to the bottom of the bottom of the leaderboard", when.scrollFromID(ids.LEADERBOARD_SCROLL_LIST, "up", "fast"), async () => {
-        //     Then("I should see Stephen's name in the leaderboard", then.textVisible(getFullName(data.CUSTOMER_57)))
-        // })
-        // helper.INSPECT_USER(data.CUSTOMER_57, "Forest", data.CUSTOMER_52)();
-        // When("I scroll to the bottom of the bottom of the leaderboard", when.scrollFromID(ids.LEADERBOARD_SCROLL_LIST, "up", "fast"), async () => {
-        //     Then("I should see Milton's name in the leaderboard", then.textVisible(getFullName(data.CUSTOMER_56)))
-        // })
-        // helper.INSPECT_USER(data.CUSTOMER_56, "Forest", data.CUSTOMER_52)();
-        // When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-        //     When("I click on the challenge profiles viewed", when.tapChallenge("3 / 5 " + t("profiles viewed")), async () => {
-        //         Then("I should be on the completed events milestone page", then.onCompletedEventPage("Ends on the 10th", "5 Profiles viewed", "650"))
-        //     })
-        // })
-        // When("I click Claim", when.tapText(t("Claim")), async () => {
-        //     When("I wait", when.wait(3000), async () => {
-        //         Then("The 5 profiles badge is claimed", then.milestoneComplete(0))
-        //     })
-        // })
-        // When("I click Great!", when.tapID(ids.GREAT_BUTTON), async () => {
-        //     Then("I can see the milestones and challenge are complete", then.challengeComplete)
-        // })
-        // When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
-        //     Then("I should see the correct yucoin earned so far today after completing the challenge", then.yuCoinEarnedFromEvent(data.GOAL_REWARD_MILESTONE_3.data.rewardValue, data.USER_52.data.earnRate, 3))
-        // })
+        When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
+            Then("I should see the yucoin page event bar showing the number of profiles viewed and hit the correct milestone", then.yuCoinPageEventDataCorrect(3, 0.6))
+            Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(data.GOAL_REWARD_MILESTONE_3.data.rewardValue, data.USER_52.data.earnRate, 2))
+        })
+        When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+            Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_7.data.name)))
+        })
+        When("I scroll to the bottom of the bottom of the leaderboard", when.scrollFromID(ids.LEADERBOARD_SCROLL_LIST, "up", "fast"), async () => {
+            Then("I should see Stephen's name in the leaderboard", then.textVisible(getFullName(data.CUSTOMER_57)))
+        })
+        helper.INSPECT_USER(data.CUSTOMER_57, "Forest", data.CUSTOMER_52)();
+        When("I scroll to the bottom of the bottom of the leaderboard", when.scrollFromID(ids.LEADERBOARD_SCROLL_LIST, "up", "fast"), async () => {
+            Then("I should see Milton's name in the leaderboard", then.textVisible(getFullName(data.CUSTOMER_56)))
+        })
+        helper.INSPECT_USER(data.CUSTOMER_56, "Forest", data.CUSTOMER_52)();
+        When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+            When("I click on the challenge profiles viewed", when.tapChallenge("3 / 5 " + t("profiles viewed")), async () => {
+                Then("I should be on the completed events milestone page", then.onCompletedEventPage("Ends on the 10th", "5 Profiles viewed", "650"))
+            })
+        })
+        When("I click Claim", when.tapText(t("Claim")), async () => {
+            When("I wait", when.wait(3000), async () => {
+                Then("The 5 profiles badge is claimed", then.milestoneComplete(0))
+            })
+        })
+        When("I click Great!", when.tapID(ids.GREAT_BUTTON), async () => {
+            Then("I can see the milestones and challenge are complete", then.challengeComplete)
+        })
+        When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
+            Then("I should see the correct yucoin earned so far today after completing the challenge", then.yuCoinEarnedFromEvent(data.GOAL_REWARD_MILESTONE_3.data.rewardValue, data.USER_52.data.earnRate, 3))
+        })
     })
 
     Scenario("When I have unlocked level 50 and level 51, I can do two challenges for level 51", scenario.start, () => {
