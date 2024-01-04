@@ -203,6 +203,10 @@ const routesForRegistration = [
     component: require("../components/containers/member/debug/play-ground").default,
   },
   {
+    name: ROUTES.yuHealthDebug,
+    component: require("../components/containers/member/debug/yu-health-debug").default,
+  },
+  {
     name: ROUTES.changeMemberNickname,
     component: require("../components/containers/member/change-member-nickname/change-member-nickname.container")
       .default,
