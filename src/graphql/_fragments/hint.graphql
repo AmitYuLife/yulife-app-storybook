@@ -1,0 +1,10 @@
+fragment Hint on Hint {
+  id
+  title
+  description
+  image {
+    ...RemoteImage
+  }
+  screenBlacklist
+  screenWhitelist
+}

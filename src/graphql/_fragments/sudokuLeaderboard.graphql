@@ -1,0 +1,10 @@
+fragment SudokuLeaderboard on SudokuLeaderboardItem {
+  name
+  adjustedTime
+  userId
+  name
+  position
+  avatarRemoteFiles {
+    ...YumojiRemoteFiles
+  }
+}

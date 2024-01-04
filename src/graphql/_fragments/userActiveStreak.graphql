@@ -1,0 +1,9 @@
+fragment UserActiveStreak on ActiveStreak {
+  id
+  type
+  value
+  maxStreak
+  streakAwardId
+  streak
+  nextStreakAvailableAt
+}

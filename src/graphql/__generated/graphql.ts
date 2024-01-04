@@ -9348,6 +9348,79 @@ export type UpdateUserAvatarResponse = {
   updated?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
+export type YumojiRemoteFilesFragment = {
+  __typename: "AvatarRemoteFiles";
+  svgFull?: string | null;
+  pngFull?: string | null;
+  pngMini?: string | null;
+};
+
+export type ChallengeFragment = {
+  __typename: "Challenge";
+  id?: string | null;
+  actions?: Array<string | null> | null;
+  challengeTemplateId?: string | null;
+  currentData?: number | null;
+  currentTarget?: number | null;
+  customerId?: string | null;
+  data?: Array<number | null> | null;
+  endTime?: number | null;
+  startTime?: number | null;
+  status?: string | null;
+  target?: Array<number | null> | null;
+  updatedAt?: number | null;
+  XPAwarded?: number | null;
+  yuCoinAwarded?: number | null;
+  milestoneLog?: Array<{
+    __typename?: "MilestoneLogEntry";
+    id?: string | null;
+    completed?: number | null;
+    completionData?: Array<number | null> | null;
+    description?: string | null;
+  } | null> | null;
+};
+
+export type MilestoneFragment = {
+  __typename?: "Milestone";
+  id?: string | null;
+  description?: string | null;
+  unit?: string | null;
+  target?: Array<number | null> | null;
+  coins?: number | null;
+  XP?: number | null;
+};
+
+export type ChallengeTemplateFragment = {
+  __typename: "ChallengeTemplate";
+  id?: string | null;
+  name?: string | null;
+  description?: string | null;
+  type?: string | null;
+  subtype?: string | null;
+  level?: number | null;
+  passive?: boolean | null;
+  actions?: Array<string | null> | null;
+  target?: Array<number | null> | null;
+  totalCoins?: number | null;
+  totalXP?: number | null;
+  timelimit?: number | null;
+  successTitle?: string | null;
+  successDescription?: string | null;
+  failureTitle?: string | null;
+  failureDescription?: string | null;
+  challengeCompleteText?: string | null;
+  unit?: string | null;
+  milestones?: Array<{
+    __typename?: "Milestone";
+    id?: string | null;
+    description?: string | null;
+    unit?: string | null;
+    target?: Array<number | null> | null;
+    coins?: number | null;
+    XP?: number | null;
+  } | null> | null;
+};
+
 export type AbsoluteContentItemFragment = {
   __typename?: "AbsoluteContentItem";
   isBackground?: boolean | null;
@@ -11914,6 +11987,31 @@ export type ContentItemYugiConfirmFragment = {
 
 export type YuScreenItemSlotFragment = { __typename?: "YuScreenItemSlot"; iconUrl: string; backgroundUrl: string };
 
+export type DailyPensionContributionFragment = {
+  __typename?: "DailyPensionContribution";
+  id: string;
+  active: boolean;
+  yuCoinAwarded?: number | null;
+  contribution?: string | null;
+};
+
+export type DuelOpponentFragment = {
+  __typename?: "DuelOpponent";
+  userId?: string | null;
+  score?: number | null;
+  status?: string | null;
+  startDateTime?: string | null;
+  avatar?: string | null;
+  duelId?: string | null;
+  lastTimeOpponentDataRetrieved?: string | null;
+  name?: {
+    __typename?: "DuelOpponentName";
+    firstName?: string | null;
+    lastName?: string | null;
+    fullName?: string | null;
+  } | null;
+};
+
 export type GoalDetailsFragment = {
   __typename?: "GoalDetails";
   title: string;
@@ -11974,6 +12072,16 @@ export type GoalDetailsFragment = {
       payload?: string | null;
     } | null;
   } | null;
+};
+
+export type HintFragment = {
+  __typename?: "Hint";
+  id: string;
+  title: string;
+  description: string;
+  screenBlacklist?: Array<string> | null;
+  screenWhitelist?: Array<string> | null;
+  image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
 };
 
 export type MediaFragment = {
@@ -12076,6 +12184,251 @@ export type SocialGroupLeaderboardFragment = {
   selectedIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
 };
 
+export type SudokuLeaderboardFragment = {
+  __typename?: "SudokuLeaderboardItem";
+  name: string;
+  adjustedTime: number;
+  userId: string;
+  position: number;
+  avatarRemoteFiles?: {
+    __typename: "AvatarRemoteFiles";
+    svgFull?: string | null;
+    pngFull?: string | null;
+    pngMini?: string | null;
+  } | null;
+};
+
+export type UserFragment = {
+  __typename: "User";
+  id?: string | null;
+  archived?: boolean | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  fullName?: string | null;
+  dateOfBirth?: string | null;
+  createdAt?: string | null;
+  redeemedOnboarding?: boolean | null;
+  businessAccountId?: string | null;
+  challengesDoneToday?: number | null;
+  dailyChallengeAmountAvailable?: number | null;
+  connections?: Array<{
+    __typename?: "Connection";
+    name?: string | null;
+    isConnected?: boolean | null;
+    lastUpdated?: number | null;
+  } | null> | null;
+  userFeatures?: Array<{ __typename?: "UserFeature"; name?: string | null; value?: boolean | null } | null> | null;
+  mobileConsent?: {
+    __typename?: "MobileConsent";
+    mobileHealth?: boolean | null;
+    marketing?: boolean | null;
+    pushNotifications?: boolean | null;
+    companyLeaderboard?: boolean | null;
+    workspaceLeaderboard?: boolean | null;
+  } | null;
+  passiveSteps?: {
+    __typename?: "PassiveChallenge";
+    exchange?: {
+      __typename?: "PassiveStepsExchange";
+      yucoin?: number | null;
+      steps?: number | null;
+      meditation?: number | null;
+      surge?: number | null;
+    } | null;
+    levelSlot?: {
+      __typename?: "LevelSlot";
+      id?: string | null;
+      milestones?: Array<{
+        __typename?: "LevelSlotMilestone";
+        id?: string | null;
+        coins?: number | null;
+      } | null> | null;
+    } | null;
+  } | null;
+  passiveMeditation?: {
+    __typename?: "PassiveChallenge";
+    exchange?: {
+      __typename?: "PassiveStepsExchange";
+      yucoin?: number | null;
+      steps?: number | null;
+      meditation?: number | null;
+      surge?: number | null;
+    } | null;
+    levelSlot?: {
+      __typename?: "LevelSlot";
+      id?: string | null;
+      subtype?: string | null;
+      unit?: string | null;
+      milestones?: Array<{
+        __typename?: "LevelSlotMilestone";
+        id?: string | null;
+        XP?: number | null;
+        coins?: number | null;
+        target?: { __typename?: "MilestoneTarget"; steps?: number | null; meditation?: number | null } | null;
+      } | null> | null;
+    } | null;
+  } | null;
+  passiveCycling?: {
+    __typename?: "PassiveChallenge";
+    levelSlot?: {
+      __typename?: "LevelSlot";
+      id?: string | null;
+      subtype?: string | null;
+      unit?: string | null;
+      milestones?: Array<{
+        __typename?: "LevelSlotMilestone";
+        id?: string | null;
+        XP?: number | null;
+        coins?: number | null;
+        target?: {
+          __typename?: "MilestoneTarget";
+          steps?: number | null;
+          meditation?: number | null;
+          distance?: number | null;
+        } | null;
+      } | null> | null;
+    } | null;
+  } | null;
+  activeChallenge?: {
+    __typename?: "ActiveChallenge";
+    challenge?: {
+      __typename?: "Challenge";
+      id?: string | null;
+      level?: number | null;
+      levelSlotId?: string | null;
+      status?: string | null;
+      endDateTime?: string | null;
+      startDateTime?: string | null;
+      rating?: number | null;
+      subtype?: string | null;
+      yuCoinAwarded?: number | null;
+      incomingData?: {
+        __typename?: "MilestoneTarget";
+        steps?: number | null;
+        meditation?: number | null;
+        distance?: number | null;
+        duration?: number | null;
+      } | null;
+    } | null;
+    levelSlot?: {
+      __typename?: "LevelSlot";
+      subtype?: string | null;
+      unit?: string | null;
+      shouldEndOnLastGoalAchieved?: boolean | null;
+      fitKitTypes?: Array<FitKitType> | null;
+      milestones?: Array<{
+        __typename?: "LevelSlotMilestone";
+        id?: string | null;
+        XP?: number | null;
+        coins?: number | null;
+        target?: {
+          __typename?: "MilestoneTarget";
+          steps?: number | null;
+          meditation?: number | null;
+          distance?: number | null;
+          duration?: number | null;
+          calories?: number | null;
+        } | null;
+      } | null> | null;
+    } | null;
+  } | null;
+  activeStreak?: {
+    __typename?: "ActiveStreak";
+    id?: string | null;
+    type?: string | null;
+    value?: number | null;
+    maxStreak?: number | null;
+    streakAwardId?: string | null;
+    streak?: number | null;
+    nextStreakAvailableAt?: string | null;
+  } | null;
+  todayActivity?: Array<{
+    __typename?: "ActivityHistoryChallenge";
+    id?: string | null;
+    earned?: number | null;
+    milestones?: number | null;
+    name?: string | null;
+    score?: string | null;
+  } | null> | null;
+  leaderboards?: Array<{
+    __typename?: "Leaderboard";
+    leaderboardId?: string | null;
+    name?: string | null;
+    metric?: string | null;
+    days?: number | null;
+    consent?: boolean | null;
+    hasAccepted?: boolean | null;
+    inviteFrom?: string | null;
+  } | null> | null;
+};
+
+export type UserActiveChallengeFragment = {
+  __typename?: "ActiveChallenge";
+  challenge?: {
+    __typename?: "Challenge";
+    id?: string | null;
+    level?: number | null;
+    levelSlotId?: string | null;
+    status?: string | null;
+    endDateTime?: string | null;
+    startDateTime?: string | null;
+    rating?: number | null;
+    subtype?: string | null;
+    yuCoinAwarded?: number | null;
+    incomingData?: {
+      __typename?: "MilestoneTarget";
+      steps?: number | null;
+      meditation?: number | null;
+      distance?: number | null;
+      duration?: number | null;
+      calories?: number | null;
+    } | null;
+  } | null;
+  levelSlot?: {
+    __typename?: "LevelSlot";
+    subtype?: string | null;
+    unit?: string | null;
+    shouldEndOnLastGoalAchieved?: boolean | null;
+    fitKitTypes?: Array<FitKitType> | null;
+    milestones?: Array<{
+      __typename?: "LevelSlotMilestone";
+      id?: string | null;
+      XP?: number | null;
+      coins?: number | null;
+      target?: {
+        __typename?: "MilestoneTarget";
+        steps?: number | null;
+        meditation?: number | null;
+        distance?: number | null;
+        duration?: number | null;
+        calories?: number | null;
+      } | null;
+    } | null> | null;
+  } | null;
+};
+
+export type UserActiveStreakFragment = {
+  __typename?: "ActiveStreak";
+  id?: string | null;
+  type?: string | null;
+  value?: number | null;
+  maxStreak?: number | null;
+  streakAwardId?: string | null;
+  streak?: number | null;
+  nextStreakAvailableAt?: string | null;
+};
+
+export type UserCoinLedgerFragment = {
+  __typename?: "CoinLedger";
+  currentBalance?: number | null;
+  currentLevel?: number | null;
+  yuniversalMap?: number | null;
+  yuniversalLevel?: number | null;
+  nextLevelAvailableAt?: string | null;
+};
+
+export type UserFeatureFragment = { __typename?: "UserFeature"; name?: string | null; value?: boolean | null };
+
 export type UserProfileEventsFragment = {
   __typename?: "UserProfileEvents";
   id: string;
@@ -12125,6 +12478,15 @@ export type UserStatisticDetailsFragment = {
   value: number;
   info?: string | null;
   icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+};
+
+export type UserTodayActivityFragment = {
+  __typename?: "ActivityHistoryChallenge";
+  id?: string | null;
+  earned?: number | null;
+  milestones?: number | null;
+  name?: string | null;
+  score?: string | null;
 };
 
 export type GetAdBannersQueryVariables = Exact<{
@@ -13446,6 +13808,128 @@ export type GetInAppYuniversityCourseModuleDetailsQuery = {
   };
 };
 
+export const ChallengeFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Challenge" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Challenge" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "actions" } },
+          { kind: "Field", name: { kind: "Name", value: "challengeTemplateId" } },
+          { kind: "Field", name: { kind: "Name", value: "currentData" } },
+          { kind: "Field", name: { kind: "Name", value: "currentTarget" } },
+          { kind: "Field", name: { kind: "Name", value: "customerId" } },
+          { kind: "Field", name: { kind: "Name", value: "data" } },
+          { kind: "Field", name: { kind: "Name", value: "endTime" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "milestoneLog" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "completed" } },
+                { kind: "Field", name: { kind: "Name", value: "completionData" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "startTime" } },
+          { kind: "Field", name: { kind: "Name", value: "status" } },
+          { kind: "Field", name: { kind: "Name", value: "target" } },
+          { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
+          { kind: "Field", name: { kind: "Name", value: "XPAwarded" } },
+          { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ChallengeFragment, unknown>;
+export const MilestoneFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Milestone" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Milestone" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "unit" } },
+          { kind: "Field", name: { kind: "Name", value: "target" } },
+          { kind: "Field", name: { kind: "Name", value: "coins" } },
+          { kind: "Field", name: { kind: "Name", value: "XP" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MilestoneFragment, unknown>;
+export const ChallengeTemplateFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ChallengeTemplate" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ChallengeTemplate" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "subtype" } },
+          { kind: "Field", name: { kind: "Name", value: "level" } },
+          { kind: "Field", name: { kind: "Name", value: "passive" } },
+          { kind: "Field", name: { kind: "Name", value: "actions" } },
+          { kind: "Field", name: { kind: "Name", value: "target" } },
+          { kind: "Field", name: { kind: "Name", value: "totalCoins" } },
+          { kind: "Field", name: { kind: "Name", value: "totalXP" } },
+          { kind: "Field", name: { kind: "Name", value: "timelimit" } },
+          { kind: "Field", name: { kind: "Name", value: "successTitle" } },
+          { kind: "Field", name: { kind: "Name", value: "successDescription" } },
+          { kind: "Field", name: { kind: "Name", value: "failureTitle" } },
+          { kind: "Field", name: { kind: "Name", value: "failureDescription" } },
+          { kind: "Field", name: { kind: "Name", value: "challengeCompleteText" } },
+          { kind: "Field", name: { kind: "Name", value: "unit" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "milestones" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "Milestone" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Milestone" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Milestone" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "unit" } },
+          { kind: "Field", name: { kind: "Name", value: "target" } },
+          { kind: "Field", name: { kind: "Name", value: "coins" } },
+          { kind: "Field", name: { kind: "Name", value: "XP" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ChallengeTemplateFragment, unknown>;
 export const SduiStyleFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -24219,6 +24703,59 @@ export const ContentItemYugiConfirmFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ContentItemYugiConfirmFragment, unknown>;
+export const DailyPensionContributionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "DailyPensionContribution" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "DailyPensionContribution" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "active" } },
+          { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
+          { kind: "Field", name: { kind: "Name", value: "contribution" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<DailyPensionContributionFragment, unknown>;
+export const DuelOpponentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "DuelOpponent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "DuelOpponent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "userId" } },
+          { kind: "Field", name: { kind: "Name", value: "score" } },
+          { kind: "Field", name: { kind: "Name", value: "status" } },
+          { kind: "Field", name: { kind: "Name", value: "startDateTime" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "name" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "firstName" } },
+                { kind: "Field", name: { kind: "Name", value: "lastName" } },
+                { kind: "Field", name: { kind: "Name", value: "fullName" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "avatar" } },
+          { kind: "Field", name: { kind: "Name", value: "duelId" } },
+          { kind: "Field", name: { kind: "Name", value: "lastTimeOpponentDataRetrieved" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<DuelOpponentFragment, unknown>;
 export const GoalDetailsFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -24445,6 +24982,46 @@ export const GoalDetailsFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<GoalDetailsFragment, unknown>;
+export const HintFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Hint" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Hint" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "screenBlacklist" } },
+          { kind: "Field", name: { kind: "Name", value: "screenWhitelist" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<HintFragment, unknown>;
 export const MediaFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -24759,6 +25336,649 @@ export const SocialGroupFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<SocialGroupFragment, unknown>;
+export const YumojiRemoteFilesFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "YumojiRemoteFiles" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "AvatarRemoteFiles" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "svgFull" },
+            name: { kind: "Name", value: "image" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "options" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "format" },
+                      value: { kind: "EnumValue", value: "svg" },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+          { kind: "Field", alias: { kind: "Name", value: "pngFull" }, name: { kind: "Name", value: "image" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "pngMini" },
+            name: { kind: "Name", value: "image" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "options" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "width" },
+                      value: { kind: "FloatValue", value: "66.25" },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "height" },
+                      value: { kind: "FloatValue", value: "138.25" },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<YumojiRemoteFilesFragment, unknown>;
+export const SudokuLeaderboardFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SudokuLeaderboard" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SudokuLeaderboardItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "adjustedTime" } },
+          { kind: "Field", name: { kind: "Name", value: "userId" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "avatarRemoteFiles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemoteFiles" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "YumojiRemoteFiles" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "AvatarRemoteFiles" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "svgFull" },
+            name: { kind: "Name", value: "image" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "options" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "format" },
+                      value: { kind: "EnumValue", value: "svg" },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+          { kind: "Field", alias: { kind: "Name", value: "pngFull" }, name: { kind: "Name", value: "image" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "pngMini" },
+            name: { kind: "Name", value: "image" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "options" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "width" },
+                      value: { kind: "FloatValue", value: "66.25" },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "height" },
+                      value: { kind: "FloatValue", value: "138.25" },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SudokuLeaderboardFragment, unknown>;
+export const UserFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "User" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "User" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "archived" } },
+          { kind: "Field", name: { kind: "Name", value: "firstName" } },
+          { kind: "Field", name: { kind: "Name", value: "lastName" } },
+          { kind: "Field", name: { kind: "Name", value: "fullName" } },
+          { kind: "Field", name: { kind: "Name", value: "dateOfBirth" } },
+          { kind: "Field", name: { kind: "Name", value: "createdAt" } },
+          { kind: "Field", name: { kind: "Name", value: "redeemedOnboarding" } },
+          { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
+          { kind: "Field", name: { kind: "Name", value: "challengesDoneToday" } },
+          { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "connections" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "isConnected" } },
+                { kind: "Field", name: { kind: "Name", value: "lastUpdated" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "userFeatures" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "mobileConsent" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "mobileHealth" } },
+                { kind: "Field", name: { kind: "Name", value: "marketing" } },
+                { kind: "Field", name: { kind: "Name", value: "pushNotifications" } },
+                { kind: "Field", name: { kind: "Name", value: "companyLeaderboard" } },
+                { kind: "Field", name: { kind: "Name", value: "workspaceLeaderboard" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "passiveSteps" },
+            name: { kind: "Name", value: "passiveChallenge" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "exchange" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "yucoin" } },
+                      { kind: "Field", name: { kind: "Name", value: "steps" } },
+                      { kind: "Field", name: { kind: "Name", value: "meditation" } },
+                      { kind: "Field", name: { kind: "Name", value: "surge" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "levelSlot" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "milestones" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "coins" } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "passiveMeditation" },
+            name: { kind: "Name", value: "passiveChallenge" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: { kind: "EnumValue", value: "MEDITATION" },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "exchange" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "yucoin" } },
+                      { kind: "Field", name: { kind: "Name", value: "steps" } },
+                      { kind: "Field", name: { kind: "Name", value: "meditation" } },
+                      { kind: "Field", name: { kind: "Name", value: "surge" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "levelSlot" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "subtype" } },
+                      { kind: "Field", name: { kind: "Name", value: "unit" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "milestones" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "XP" } },
+                            { kind: "Field", name: { kind: "Name", value: "coins" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "target" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "steps" } },
+                                  { kind: "Field", name: { kind: "Name", value: "meditation" } },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "passiveCycling" },
+            name: { kind: "Name", value: "passiveChallenge" },
+            arguments: [
+              { kind: "Argument", name: { kind: "Name", value: "id" }, value: { kind: "EnumValue", value: "CYCLING" } },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "levelSlot" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "subtype" } },
+                      { kind: "Field", name: { kind: "Name", value: "unit" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "milestones" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "XP" } },
+                            { kind: "Field", name: { kind: "Name", value: "coins" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "target" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "steps" } },
+                                  { kind: "Field", name: { kind: "Name", value: "meditation" } },
+                                  { kind: "Field", name: { kind: "Name", value: "distance" } },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "activeChallenge" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "challenge" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "level" } },
+                      { kind: "Field", name: { kind: "Name", value: "levelSlotId" } },
+                      { kind: "Field", name: { kind: "Name", value: "status" } },
+                      { kind: "Field", name: { kind: "Name", value: "endDateTime" } },
+                      { kind: "Field", name: { kind: "Name", value: "startDateTime" } },
+                      { kind: "Field", name: { kind: "Name", value: "rating" } },
+                      { kind: "Field", name: { kind: "Name", value: "subtype" } },
+                      { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "incomingData" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "steps" } },
+                            { kind: "Field", name: { kind: "Name", value: "meditation" } },
+                            { kind: "Field", name: { kind: "Name", value: "distance" } },
+                            { kind: "Field", name: { kind: "Name", value: "duration" } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "levelSlot" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "subtype" } },
+                      { kind: "Field", name: { kind: "Name", value: "unit" } },
+                      { kind: "Field", name: { kind: "Name", value: "shouldEndOnLastGoalAchieved" } },
+                      { kind: "Field", name: { kind: "Name", value: "fitKitTypes" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "milestones" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "XP" } },
+                            { kind: "Field", name: { kind: "Name", value: "coins" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "target" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "steps" } },
+                                  { kind: "Field", name: { kind: "Name", value: "meditation" } },
+                                  { kind: "Field", name: { kind: "Name", value: "distance" } },
+                                  { kind: "Field", name: { kind: "Name", value: "duration" } },
+                                  { kind: "Field", name: { kind: "Name", value: "calories" } },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "activeStreak" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+                { kind: "Field", name: { kind: "Name", value: "maxStreak" } },
+                { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
+                { kind: "Field", name: { kind: "Name", value: "streak" } },
+                { kind: "Field", name: { kind: "Name", value: "nextStreakAvailableAt" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "todayActivity" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "earned" } },
+                { kind: "Field", name: { kind: "Name", value: "milestones" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "score" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leaderboards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "leaderboardId" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "metric" } },
+                { kind: "Field", name: { kind: "Name", value: "days" } },
+                { kind: "Field", name: { kind: "Name", value: "consent" } },
+                { kind: "Field", name: { kind: "Name", value: "hasAccepted" } },
+                { kind: "Field", name: { kind: "Name", value: "inviteFrom" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserFragment, unknown>;
+export const UserActiveChallengeFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserActiveChallenge" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ActiveChallenge" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "challenge" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "level" } },
+                { kind: "Field", name: { kind: "Name", value: "levelSlotId" } },
+                { kind: "Field", name: { kind: "Name", value: "status" } },
+                { kind: "Field", name: { kind: "Name", value: "endDateTime" } },
+                { kind: "Field", name: { kind: "Name", value: "startDateTime" } },
+                { kind: "Field", name: { kind: "Name", value: "rating" } },
+                { kind: "Field", name: { kind: "Name", value: "subtype" } },
+                { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "incomingData" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "steps" } },
+                      { kind: "Field", name: { kind: "Name", value: "meditation" } },
+                      { kind: "Field", name: { kind: "Name", value: "distance" } },
+                      { kind: "Field", name: { kind: "Name", value: "duration" } },
+                      { kind: "Field", name: { kind: "Name", value: "calories" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "levelSlot" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "subtype" } },
+                { kind: "Field", name: { kind: "Name", value: "unit" } },
+                { kind: "Field", name: { kind: "Name", value: "shouldEndOnLastGoalAchieved" } },
+                { kind: "Field", name: { kind: "Name", value: "fitKitTypes" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "milestones" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "XP" } },
+                      { kind: "Field", name: { kind: "Name", value: "coins" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "target" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "steps" } },
+                            { kind: "Field", name: { kind: "Name", value: "meditation" } },
+                            { kind: "Field", name: { kind: "Name", value: "distance" } },
+                            { kind: "Field", name: { kind: "Name", value: "duration" } },
+                            { kind: "Field", name: { kind: "Name", value: "calories" } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserActiveChallengeFragment, unknown>;
+export const UserActiveStreakFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserActiveStreak" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ActiveStreak" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          { kind: "Field", name: { kind: "Name", value: "maxStreak" } },
+          { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
+          { kind: "Field", name: { kind: "Name", value: "streak" } },
+          { kind: "Field", name: { kind: "Name", value: "nextStreakAvailableAt" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserActiveStreakFragment, unknown>;
+export const UserCoinLedgerFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserCoinLedger" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "CoinLedger" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "currentBalance" } },
+          { kind: "Field", name: { kind: "Name", value: "currentLevel" } },
+          { kind: "Field", name: { kind: "Name", value: "yuniversalMap" } },
+          { kind: "Field", name: { kind: "Name", value: "yuniversalLevel" } },
+          { kind: "Field", name: { kind: "Name", value: "nextLevelAvailableAt" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserCoinLedgerFragment, unknown>;
+export const UserFeatureFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserFeature" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserFeature" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserFeatureFragment, unknown>;
 export const UserProfileEventsFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -24928,6 +26148,26 @@ export const UserStatisticDetailsFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<UserStatisticDetailsFragment, unknown>;
+export const UserTodayActivityFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserTodayActivity" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ActivityHistoryChallenge" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "earned" } },
+          { kind: "Field", name: { kind: "Name", value: "milestones" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "score" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserTodayActivityFragment, unknown>;
 export const GetAdBannersDocument = {
   kind: "Document",
   definitions: [

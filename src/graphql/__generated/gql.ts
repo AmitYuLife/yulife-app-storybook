@@ -13,6 +13,10 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+  YumojiRemoteFilesFragmentDoc: types.YumojiRemoteFilesFragmentDoc,
+  ChallengeFragmentDoc: types.ChallengeFragmentDoc,
+  MilestoneFragmentDoc: types.MilestoneFragmentDoc,
+  ChallengeTemplateFragmentDoc: types.ChallengeTemplateFragmentDoc,
   AbsoluteContentItemFragmentDoc: types.AbsoluteContentItemFragmentDoc,
   ContentItemFragmentDoc: types.ContentItemFragmentDoc,
   ContentItemAccordionFragmentDoc: types.ContentItemAccordionFragmentDoc,
@@ -104,7 +108,10 @@ const documents = {
   ContentItemYuCoinPowerFragmentDoc: types.ContentItemYuCoinPowerFragmentDoc,
   ContentItemYugiConfirmFragmentDoc: types.ContentItemYugiConfirmFragmentDoc,
   YuScreenItemSlotFragmentDoc: types.YuScreenItemSlotFragmentDoc,
+  DailyPensionContributionFragmentDoc: types.DailyPensionContributionFragmentDoc,
+  DuelOpponentFragmentDoc: types.DuelOpponentFragmentDoc,
   GoalDetailsFragmentDoc: types.GoalDetailsFragmentDoc,
+  HintFragmentDoc: types.HintFragmentDoc,
   MediaFragmentDoc: types.MediaFragmentDoc,
   MobileWeeklyActivityProgressFragmentDoc: types.MobileWeeklyActivityProgressFragmentDoc,
   LinearGradientOrientationFragmentDoc: types.LinearGradientOrientationFragmentDoc,
@@ -116,8 +123,15 @@ const documents = {
   VariableRemoteImageFragmentDoc: types.VariableRemoteImageFragmentDoc,
   SocialGroupFragmentDoc: types.SocialGroupFragmentDoc,
   SocialGroupLeaderboardFragmentDoc: types.SocialGroupLeaderboardFragmentDoc,
+  SudokuLeaderboardFragmentDoc: types.SudokuLeaderboardFragmentDoc,
+  UserFragmentDoc: types.UserFragmentDoc,
+  UserActiveChallengeFragmentDoc: types.UserActiveChallengeFragmentDoc,
+  UserActiveStreakFragmentDoc: types.UserActiveStreakFragmentDoc,
+  UserCoinLedgerFragmentDoc: types.UserCoinLedgerFragmentDoc,
+  UserFeatureFragmentDoc: types.UserFeatureFragmentDoc,
   UserProfileEventsFragmentDoc: types.UserProfileEventsFragmentDoc,
   UserStatisticDetailsFragmentDoc: types.UserStatisticDetailsFragmentDoc,
+  UserTodayActivityFragmentDoc: types.UserTodayActivityFragmentDoc,
   GetAdBannersDocument: types.GetAdBannersDocument,
   GetMobileAssetsWithVersionDocument: types.GetMobileAssetsWithVersionDocument,
   GetSudokuBoardDocument: types.GetSudokuBoardDocument,
@@ -183,6 +197,22 @@ const documents = {
  */
 export function gql(source: string): unknown;
 
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "YumojiRemoteFilesFragmentDoc"): typeof documents["YumojiRemoteFilesFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "ChallengeFragmentDoc"): typeof documents["ChallengeFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "MilestoneFragmentDoc"): typeof documents["MilestoneFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "ChallengeTemplateFragmentDoc"): typeof documents["ChallengeTemplateFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -634,7 +664,21 @@ export function gql(source: "YuScreenItemSlotFragmentDoc"): typeof documents["Yu
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(
+  source: "DailyPensionContributionFragmentDoc"
+): typeof documents["DailyPensionContributionFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "DuelOpponentFragmentDoc"): typeof documents["DuelOpponentFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "GoalDetailsFragmentDoc"): typeof documents["GoalDetailsFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "HintFragmentDoc"): typeof documents["HintFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -686,11 +730,39 @@ export function gql(source: "SocialGroupLeaderboardFragmentDoc"): typeof documen
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "SudokuLeaderboardFragmentDoc"): typeof documents["SudokuLeaderboardFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "UserFragmentDoc"): typeof documents["UserFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "UserActiveChallengeFragmentDoc"): typeof documents["UserActiveChallengeFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "UserActiveStreakFragmentDoc"): typeof documents["UserActiveStreakFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "UserCoinLedgerFragmentDoc"): typeof documents["UserCoinLedgerFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "UserFeatureFragmentDoc"): typeof documents["UserFeatureFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "UserProfileEventsFragmentDoc"): typeof documents["UserProfileEventsFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "UserStatisticDetailsFragmentDoc"): typeof documents["UserStatisticDetailsFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "UserTodayActivityFragmentDoc"): typeof documents["UserTodayActivityFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

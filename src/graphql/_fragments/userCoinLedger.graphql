@@ -1,0 +1,7 @@
+fragment UserCoinLedger on CoinLedger {
+  currentBalance
+  currentLevel
+  yuniversalMap
+  yuniversalLevel
+  nextLevelAvailableAt
+}
