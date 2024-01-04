@@ -7,6 +7,51 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.114.0] - 2024-01-04
+
+### Bugfixes
+
+- Bugfix ENG-3787: In-app meditation restarting sometimes when video ends
+- Bugfix: Only mount/track media-player-progress-screen once
+- Bugfix: Remove whitespace above yuniversal quest map on tall devices
+- Bugfix: Device reducer date
+
+### Tasks
+
+- Task: Add webp earth, remove bright planet pngs
+- Task XSE-2345: Update reward card target from level label to star
+- Task XSE-2345: Go to challenge list when no chest or reward
+- Task: align reward header to center
+- Task: ensure async storage returns legacy value even if it cant set using the new library
+- Task: migrate react-native-encrypted-storage to expo-secure-store
+- Task: Have RewardsListItem BoxOption child have height fill
+
+### Chores
+
+- Chore: Generate graphql schema for sdui
+- Chore: Move sdui-content to new gql batch 7
+- Chore: Move sdui-content to new gql batch 6
+- Chore: Move sdui-content to new gql batch 5
+- Chore: Move sdui-content to new gql batch 4
+- Chore: Move sdui-content to new gql batch 2
+- Chore: Move sdui-content to new gql batch 3
+- Chore: Move sdui-content to new gql batch 1
+- Chore: Move goals to new gql
+- Chore: Move leaderboards to new gql
+- Chore: Move weeklies to new gql
+- Chore: Move yuniversity to new gql
+- Chore: Add get skips script for e2e tests
+- Chore: Move markMobileNotificationsAsViewedByType to new gql
+
+### Extra
+
+- Detox/fixes-03/01
+- Detox/3_1_23_skips
+- Feat XSE-2400: Add mixpanel event support to ContentItemBoxOptionCard component
+- Detox/fixes-27/12
+- Detox/xse 2359
+- Detox/add skips
+
 ## [3.113.0] - 2023-12-21
 
 ### Features
