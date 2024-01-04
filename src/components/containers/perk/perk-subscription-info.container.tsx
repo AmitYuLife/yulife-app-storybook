@@ -1,13 +1,11 @@
 import React, { memo, useCallback } from "react";
 import { Navigation } from "@navigation/main";
 import { useMutation, useQuery } from "@apollo/client";
-import { GQL_QUERY_GET_PERK_SUBSCRIPTION_INFO } from "@graphql/perks/getPerkSubscriptionInfo.gql";
-import { GetPerkSubscriptionInfo } from "@graphql/_core/schema";
 import { PerkSubscriptionInfoLoadingScreen, PerkSubscriptionInfoScreen } from "@components/screens";
-import { GQL_MUTATION_SUBSCRIBE_TO_PERK, SubscribeToPerkMutationTuple } from "@graphql/perks/subscribeToPerk.gql";
 import { showYuModal } from "@navigation/root";
 import { MODALS } from "@navigation/constants";
 import Logger from "@services/logging/logger";
+import { gql } from "@graphql/__generated";
 
 interface Props {
   componentId: string;
@@ -15,10 +13,8 @@ interface Props {
 }
 
 const PerkSubscriptionInfoContainer = ({ componentId, perkId }: Props) => {
-  const [subscribeToPerk, { loading: submitLoading }]: SubscribeToPerkMutationTuple = useMutation(
-    GQL_MUTATION_SUBSCRIBE_TO_PERK
-  );
-  const { data, loading } = useQuery<GetPerkSubscriptionInfo>(GQL_QUERY_GET_PERK_SUBSCRIPTION_INFO, {
+  const [subscribeToPerk, { loading: submitLoading }] = useMutation(gql("SubscribeToPerkDocument"));
+  const { data, loading } = useQuery(gql("GetPerkSubscriptionInfoDocument"), {
     variables: { perkId },
     fetchPolicy: "no-cache",
   });

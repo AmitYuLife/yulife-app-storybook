@@ -1,0 +1,25 @@
+query GetPerkSubscriptionInfo($perkId: ID!) {
+  getPerkSubscriptionInfo(perkId: $perkId) {
+    content {
+      __typename
+      ... on ContentItemText {
+        ...ContentItemText
+      }
+      ... on ContentItemImage {
+        ...ContentItemImage
+      }
+      ... on ContentItemMarkdown {
+        ...ContentItemMarkdown
+      }
+      ... on ContentItemBox {
+        ...ContentItemBox
+      }
+      ... on ContentItemButton {
+        ...ContentItemButton
+      }
+      ... on ContentItemForm {
+        ...ContentItemForm
+      }
+    }
+  }
+}
