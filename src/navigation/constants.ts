@@ -125,6 +125,7 @@ export const ROUTES = {
   userFeatures: "yulife.debug.userFeatures",
   debugPlayground: "yulife.debug.debugPlayground",
   workoutDebug: "yulife.debug.workoutDebug",
+  yuHealthDebug: "yulife.debug.yuHealthDebug",
 };
 
 export const MODALS = {

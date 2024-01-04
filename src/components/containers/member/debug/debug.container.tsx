@@ -33,6 +33,7 @@ enum DebugCodes {
   sendTestPushNotification = "send-test-push-notification",
   playGround = "play-ground",
   workoutDebug = "workout-debug",
+  yuHealthDebug = "yu-health-debug",
 }
 
 const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
@@ -138,6 +139,14 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                     component: {
                       id: ROUTES.workoutDebug,
                       name: ROUTES.workoutDebug,
+                    },
+                  });
+
+                case DebugCodes.yuHealthDebug:
+                  return Navigation.push(componentId, {
+                    component: {
+                      id: ROUTES.yuHealthDebug,
+                      name: ROUTES.yuHealthDebug,
                     },
                   });
 
