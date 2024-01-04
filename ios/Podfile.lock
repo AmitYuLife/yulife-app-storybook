@@ -362,7 +362,7 @@ PODS:
     - React-Core
   - react-native-flipper (0.212.0):
     - React-Core
-  - react-native-in-app-review (4.2.1):
+  - react-native-in-app-review (4.3.3):
     - React-Core
   - react-native-leanplum (2.0.0):
     - Leanplum-iOS-SDK (= 6.0.2)
@@ -891,7 +891,7 @@ SPEC CHECKSUMS:
   react-native-config: 86038147314e2e6d10ea9972022aa171e6b1d4d8
   react-native-encrypted-storage: db300a3f2f0aba1e818417c1c0a6be549038deb7
   react-native-flipper: 9c1957af24b76493ba74f46d000a5c1d485e7731
-  react-native-in-app-review: a073f67c5f3392af6ea7fb383217cdb1aa2aa726
+  react-native-in-app-review: db8bb167a5f238e7ceca5c242d6b36ce8c4404a4
   react-native-leanplum: e8351d2ae71c39d515a29b95c9d5d5fd08990170
   react-native-mixpanel: 5d0bcea791fd938c35138be2d00e50e19b9de601
   react-native-music-control: 3fc719c179a6562e18af1ac6e30ba9e33b397a31
