@@ -4,17 +4,15 @@ import { Style } from "@styles";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { Body } from "@components/containers/products/product-step/sections";
 import { ContentItemForm } from "@molecules";
-import {
-  GetPerkSubscriptionInfo_getPerkSubscriptionInfo,
-  GetPersonalProductStep_getPersonalProductStep_body as IBody,
-} from "@graphql/_core/schema";
+import { GetPersonalProductStep_getPersonalProductStep_body as IBody } from "@graphql/_core/schema";
 import { IElement } from "@components/molecules/content-item-form/content-item-form";
 import { PERK_SCREEN } from "@ids";
+import { GetPerkSubscriptionInfoQuery } from "@graphql/__generated";
 
 interface IProps {
   handleBack: () => void;
   onSubmit: (formValues: Record<string, string>) => void;
-  item: GetPerkSubscriptionInfo_getPerkSubscriptionInfo;
+  item: GetPerkSubscriptionInfoQuery["getPerkSubscriptionInfo"];
   loading: boolean;
 }
 
@@ -24,7 +22,7 @@ const keyboardAvoidingViewBehavior = Platform.select({
 });
 
 const PerkSubscriptionInfoScreen = ({ handleBack, item, onSubmit, loading }: IProps) => {
-  const getForm: any = useMemo(() => item?.content?.find((i) => i?.__typename === "ContentItemForm"), [item?.content]);
+  const getForm: any = useMemo(() => item?.content?.find((i) => i?.__typename === "ContentItemForm"), [item?.content]); //@TODO: fix this type later
 
   return (
     <KeyboardAvoidingView behavior={keyboardAvoidingViewBehavior} style={styles.wrapper}>

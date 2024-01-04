@@ -1,0 +1,7 @@
+mutation SubscribeToPerk($perkId: ID!, $perkFields: [SubscribeToPerkField]!) {
+  subscribeToPerk(perkId: $perkId, perkFields: $perkFields) {
+    title
+    description
+    buttonLabel
+  }
+}

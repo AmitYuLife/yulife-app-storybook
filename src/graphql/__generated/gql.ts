@@ -148,6 +148,8 @@ const documents = {
   PerformMobileOnboardingStepDocument: types.PerformMobileOnboardingStepDocument,
   ConfirmPaymentCardDocument: types.ConfirmPaymentCardDocument,
   GetMobilePaymentCardSetupDocument: types.GetMobilePaymentCardSetupDocument,
+  GetPerkSubscriptionInfoDocument: types.GetPerkSubscriptionInfoDocument,
+  SubscribeToPerkDocument: types.SubscribeToPerkDocument,
   GetUserNotificationsSettingsDocument: types.GetUserNotificationsSettingsDocument,
   UpdateUserNotificationsSettingsDocument: types.UpdateUserNotificationsSettingsDocument,
   GetReferralBackgroundDocument: types.GetReferralBackgroundDocument,
@@ -815,6 +817,14 @@ export function gql(source: "ConfirmPaymentCardDocument"): typeof documents["Con
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetMobilePaymentCardSetupDocument"): typeof documents["GetMobilePaymentCardSetupDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetPerkSubscriptionInfoDocument"): typeof documents["GetPerkSubscriptionInfoDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "SubscribeToPerkDocument"): typeof documents["SubscribeToPerkDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
