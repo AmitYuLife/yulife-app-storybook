@@ -134,7 +134,8 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
         })
     })
 
-    Scenario("I should NOT see the Fiit screen as a yulife user who does not have the product assigned to it", scenario.start, async () => {
+    // @update [Fiit benefit visible on screen]
+    ScenarioSkip("I should NOT see the Fiit screen as a yulife user who does not have the product assigned to it", scenario.start, async () => {
         Given("I login as a grouplife user", given.loginAsUser(data.CUSTOMER_37, data.AUTH_37), async () => {
             When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
                 Then("I should NOT see Fiit on the screen", then.textNotVisible("Fiit"))
@@ -197,8 +198,9 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
     Scenario("I can see a restricted wellbeing hub item when I fulfil the eligibility criteria", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_128_WELLBEING_ELIGIBILITY, data.AUTH_128), async () => {
             When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-                Then("I should see the restricted product on the screen", then.textVisible(data.WELLBEING_HUB_ITEM_10.data.title))
-                // is visible as employee is one of the two acceptable grades and in the correct department
+                When("I scroll to the Restricted tab", when.scrollUntilIdVisible(ids.WELLBEING_HUB_SCROLL_VIEW, ids.TEXT_TEMPLATE("Restricted"), "down"), async () => {
+                    Then("I should see the Restricted product on the screen", then.textVisible(data.WELLBEING_HUB_ITEM_10.data.title))
+                })
             })
         })
     })

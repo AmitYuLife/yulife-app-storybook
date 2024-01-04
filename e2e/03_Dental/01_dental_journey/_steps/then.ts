@@ -176,7 +176,7 @@ export const dentalProductInfo = (packageType: string, membershipEnding: string)
     await expect(element(by.text(name))).toBeVisible();
     await expect(element(by.text(membershipNumber))).toBeVisible();
     await expect(element(by.id(YULIFE_BUPA_LOGO))).toBeVisible()
-    await swipeFromText(membershipNumber, "up", "fast")()
+    await swipeFromText(membershipNumber, "up", "slow")()
     await expect(element(by.text(coverFor))).toBeVisible();
     await expect(element(by.text(bupaClaim))).toBeVisible();
     await expect(element(by.text(billingInfo))).toBeVisible();

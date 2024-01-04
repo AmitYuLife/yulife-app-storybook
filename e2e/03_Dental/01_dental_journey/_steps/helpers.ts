@@ -344,7 +344,7 @@ export const FAQ = async () => {
 };
 
 export const PAYMENT_HISTORY = async (ammountPaid: string, payStatus: string) => {
-  When("I tap View payment history text", when.tapText("View payment history"), async () => {
+  When("I tap View payment history text", when.tapText("View payment history", 1000, true), async () => {
     Then("I should see View payment history info", then.paymentHistoryInfo(ammountPaid, payStatus));
     When("I tap to go back to Policy details screen", when.tapID(BACK_BUTTON), async () => {
       Then("I should see again Billing info", then.textVisible("Billing info"));
@@ -443,7 +443,7 @@ export const CANCELED_DENTAL_POLICY = async () => {
 };
 
 export const ONBOARDING_YUSCREEN = async (packType: string, yuCoinPower: string) => {
-    
+
   const earnRate0 = "1"; // If product having 0 earn rate will get 1
 
   Then(`I should see ${text.yuCoinText} text`, then.textVisibleAtIndex(text.yuCoinText, 0))

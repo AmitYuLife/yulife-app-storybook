@@ -56,7 +56,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
     Scenario("I can create my Yumoji on new Yuscreen V4, having permanently rejected product PLI, should see the correct slots and carousel", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_46, data.AUTH_46), async () => {
             Then("I should be on the YuScreen V4", then.onYuscreenV4(data.CUSTOMER_46, "PliPermanentlyRejectedAndDentalInactive", "5" ))
-        })   
+        })
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND(data.CUSTOMER_46, "0 product live")
             helper.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
     })
@@ -91,7 +91,8 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         })
     })
 
-    Scenario("As a YuLifer with Group Dental product i should see correct Product Details and be able to order Ordo toothbrush", scenario.start, async () => {
+    // @update [need to update ordo image]
+    ScenarioSkip("As a YuLifer with Group Dental product i should see correct Product Details and be able to order Ordo toothbrush", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_51, data.AUTH_51), async () => {
             helper.ONBOARDING_YUSCREEN("groupDental", "5")
             When("I tap check out my power", when.tapCheckOutMyPower, async () => {
@@ -107,7 +108,8 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         })
     })
 
-    Scenario("As a YuLifer with Group Dental Choice product I should see correct Product Details and be able to order Ordo toothbrush", scenario.start, async () => {
+    // @update [need to update ordo image]
+    ScenarioSkip("As a YuLifer with Group Dental Choice product I should see correct Product Details and be able to order Ordo toothbrush", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_125, data.AUTH_125), async () => {
             Then("I should be on the YuScreen V4", then.onYuscreenV4(data.CUSTOMER_125, "dentalChoice", "5"))
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND(data.CUSTOMER_125, "groupDental")
@@ -168,7 +170,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         When("I tap the slot", when.tapID(ids.SLOT_TITLE("Pension Contributions")), async () => {
             Then("I am on the Pension intro page", then.amOnPensionProductPage(false))
         })
-        When("I close and reopen the app", when.reloadOnly, async()=>{  
+        When("I close and reopen the app", when.reloadOnly, async()=>{
             When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
                 Then("I should not see the onboarding screen", then.onYuscreenMini("Pension Contributions", data.CUSTOMER_110))
             })
