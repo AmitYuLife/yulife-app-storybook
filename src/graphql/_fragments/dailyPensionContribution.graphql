@@ -1,0 +1,6 @@
+fragment DailyPensionContribution on DailyPensionContribution {
+  id
+  active
+  yuCoinAwarded
+  contribution
+}

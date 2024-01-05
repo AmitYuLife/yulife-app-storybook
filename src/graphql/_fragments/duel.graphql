@@ -1,0 +1,14 @@
+fragment DuelOpponent on DuelOpponent {
+  userId
+  score
+  status
+  startDateTime
+  name {
+    firstName
+    lastName
+    fullName
+  }
+  avatar
+  duelId
+  lastTimeOpponentDataRetrieved
+}

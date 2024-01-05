@@ -1,0 +1,7 @@
+fragment UserTodayActivity on ActivityHistoryChallenge {
+  id
+  earned
+  milestones
+  name
+  score
+}

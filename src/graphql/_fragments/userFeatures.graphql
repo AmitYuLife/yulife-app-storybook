@@ -1,0 +1,4 @@
+fragment UserFeature on UserFeature {
+  name
+  value
+}

@@ -1,0 +1,8 @@
+fragment Milestone on Milestone {
+  id
+  description
+  unit
+  target
+  coins
+  XP
+}
