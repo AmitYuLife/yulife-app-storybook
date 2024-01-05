@@ -1,13 +1,10 @@
+import { isAndroid, isWeb, isiOS } from "@utils";
 import { Dimensions, PixelRatio, Platform, StatusBar } from "react-native";
 import DeviceInfo from "react-native-device-info";
 
 const pixelRatio = PixelRatio.get();
-const x = Platform.OS === "web" ? 414 : Dimensions.get("window").width;
-const y = Platform.OS === "web" ? 800 : Dimensions.get("window").height;
-
-export const isiOS = () => Platform.OS === "ios";
-export const isAndroid = () => Platform.OS === "android";
-export const isWeb = () => Platform.OS === "web";
+const x = isWeb() ? 414 : Dimensions.get("window").width;
+const y = isWeb() ? 800 : Dimensions.get("window").height;
 
 const isIPad = () => {
   if (isiOS()) {
@@ -196,8 +193,6 @@ const Style = {
   SCALE_UP_AND_DOWN,
   SCALE_Y_UP_AND_DOWN,
   TOTAL_WIDTH,
-  isiOS,
-  isAndroid,
   isAndroid13AndHigher,
   isAnyIphoneX,
   isIphone13,

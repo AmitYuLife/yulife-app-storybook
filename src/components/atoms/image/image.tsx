@@ -3,7 +3,7 @@ import { StyleSheet, View, ViewStyle, ActivityIndicator, StyleProp, ColorValue, 
 import FastImage, { FastImageProps, ImageStyle, OnLoadEvent, ResizeMode, Source } from "react-native-fast-image";
 import { Colours } from "@styles";
 import { shallowEqual } from "react-redux";
-import { isWeb } from "@styles/style";
+import { isWeb } from "@utils";
 
 interface Props {
   width: number;
