@@ -63,8 +63,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
         })
     })
 
-    // @update [Fiit benefit unavailable for logged in user]
-    ScenarioSkip("I can view the Fiit screen as a yulife user and should get Membership already active and Membership claimed when Active account ", scenario.start, async () => {
+    Scenario("I can view the Fiit screen as a yulife user and should get Membership already active and Membership claimed when Active account ", scenario.start, async () => {
         Given("I login as a grouplife user", given.loginAsUser(data.CUSTOMER_34, data.AUTH_34), async () => {
             Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
         })
@@ -120,8 +119,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
         })
     })
 
-    // @update [Fiit benefit unavailable for logged in user]
-    ScenarioSkip("I should see Membership limit reached on the Fiit screen as trying to active account when no avalaible seat for it", scenario.start, async () => {
+    Scenario("I should see Membership limit reached on the Fiit screen as trying to active account when no avalaible seat for it", scenario.start, async () => {
         Given("I login as a grouplife user", given.loginAsUser(data.CUSTOMER_31, data.AUTH_31), async () => {
             When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
                 When("I tap the Fiit tab", when.tapID(ids.TEXT_TEMPLATE("Fiit")), async () => {

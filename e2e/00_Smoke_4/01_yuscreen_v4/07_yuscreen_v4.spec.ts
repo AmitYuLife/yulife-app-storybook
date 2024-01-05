@@ -91,8 +91,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         })
     })
 
-    // @update [need to update ordo image]
-    ScenarioSkip("As a YuLifer with Group Dental product i should see correct Product Details and be able to order Ordo toothbrush", scenario.start, async () => {
+    Scenario("As a YuLifer with Group Dental product I should see correct Product Details and be able to order Ordo toothbrush", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_51, data.AUTH_51), async () => {
             helper.ONBOARDING_YUSCREEN("groupDental", "5")
             When("I tap check out my power", when.tapCheckOutMyPower, async () => {
@@ -108,8 +107,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         })
     })
 
-    // @update [need to update ordo image]
-    ScenarioSkip("As a YuLifer with Group Dental Choice product I should see correct Product Details and be able to order Ordo toothbrush", scenario.start, async () => {
+    Scenario("As a YuLifer with Group Dental Choice product I should see correct Product Details and be able to order Ordo toothbrush", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_125, data.AUTH_125), async () => {
             Then("I should be on the YuScreen V4", then.onYuscreenV4(data.CUSTOMER_125, "dentalChoice", "5"))
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND(data.CUSTOMER_125, "groupDental")

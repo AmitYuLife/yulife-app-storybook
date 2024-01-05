@@ -79,11 +79,11 @@ export const milestoneComplete = (index: number) => async () => {
 }
 
 export const onCompletedAllEventMilestonesPage = (event: string, challengeType1: string, yuCoin1: string, yuCoin2: string, yuCoin3: string) => async () => {
-    const eventTitle = `${event} event`
+    const eventTitle = `${event} event finished`
 
     await textVisible(eventTitle)()
     await textVisible("Great job!")()
-    await textVisible("You have reached the event milestone!\nCongratulations. Claim your rewards")()
+    await textVisible("You collected all milestone rewards. Good job! \n This event will be closed.")()
     await textVisible(challengeType1)()
     await textVisible(yuCoin1)()
     await idVisible(ids.ANIMATED_CIRCLE("#F43E8E"))()

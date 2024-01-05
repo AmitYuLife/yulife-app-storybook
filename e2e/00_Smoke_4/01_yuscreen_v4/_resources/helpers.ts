@@ -246,7 +246,7 @@ export const ORDO_JOURNEY_VIEW = async () => {
   const claimButton = "Claim now";
   const adressSendText = "Let us know where to send your toothbrush:";
   const ordoToothBrushImage =
-    "https://yulife-develop.imgix.net/bupa/images/claim_ordo-2022-11-17.png?ixlib=js-3.2.1&w=981&h=714&s=02d52c51650ca1eb346423f3fb059bdd";
+    "https://yulife-develop.imgix.net/bupa/ordo-toothbrush/card-enabled.png?ixlib=js-3.2.1&w=981&h=714&s=027be54e14499b05adece57c7ebf2aaf";
 
   When("I swipe down from Key Info", when.swipeFromText("Key Info", "up", "fast"), async () => {
     Then("I should see Ordo image", then.idVisible(CONTENT_MIDDLE_ITEM_IMAGE(ordoToothBrushImage)));
