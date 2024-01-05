@@ -1,9 +1,8 @@
 import Polyglot from "node-polyglot";
 import { NativeModules } from "react-native";
-import { isWeb, isiOS } from "@styles/style";
 import { DETOX_ENABLED } from "@services/socket";
 import { translations, Language, Translation } from "./translations";
-import { IS_DEVELOP } from "@utils";
+import { IS_DEVELOP, isWeb, isiOS } from "@utils";
 
 class Translator {
   private dict: Polyglot;

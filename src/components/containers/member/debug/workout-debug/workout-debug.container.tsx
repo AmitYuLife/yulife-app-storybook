@@ -5,7 +5,8 @@ import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import { Colours, Style, TOP_BAR } from "@styles";
+import { Colours, TOP_BAR } from "@styles";
+import { isAndroid } from "@utils";
 import RNFitKit, { FitKitTypes, SampleQueryResult } from "@yu-life/react-native-fitkit";
 import moment from "moment";
 import { memo, useCallback, useState } from "react";
@@ -59,7 +60,7 @@ const WorkoutDebugContainer = () => {
   return (
     <>
       <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-        {Style.isAndroid() ? <GenericHeadingPad /> : null}
+        {isAndroid() ? <GenericHeadingPad /> : null}
         {!hasPermission ? (
           <>
             <View style={styles.title}>
@@ -67,10 +68,7 @@ const WorkoutDebugContainer = () => {
                 Permission not checked 😭
               </TextTemplate>
             </View>
-            <Button
-              label="Check permission"
-              onPress={Style.isAndroid() ? checkAndroidPermission : checkIosPermission}
-            />
+            <Button label="Check permission" onPress={isAndroid() ? checkAndroidPermission : checkIosPermission} />
           </>
         ) : null}
         {hasPermission ? (

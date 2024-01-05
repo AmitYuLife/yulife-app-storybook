@@ -4,8 +4,12 @@ import { DETOX_ENABLED } from "@services/socket";
 import * as semver from "semver";
 const appJson = require("../../package.json");
 
+export const isiOS = () => Platform.OS === "ios";
+export const isAndroid = () => Platform.OS === "android";
+export const isWeb = () => Platform.OS === "web";
+
 export const isSamsung = () => {
-  if (Platform.OS === "android") {
+  if (isAndroid()) {
     return DeviceInfo.getBrand().toLowerCase().includes("samsung");
   }
 
