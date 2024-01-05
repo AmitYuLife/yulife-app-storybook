@@ -428,6 +428,7 @@ export type BulkMemberUpload = {
   __typename?: "BulkMemberUpload";
   importId?: Maybe<Scalars["String"]["output"]>;
   preview?: Maybe<BulkUploadPreview>;
+  /** @deprecated This will always be undefined and will be purged in the next release */
   result?: Maybe<BulkUploadResult>;
   status?: Maybe<BulkUploadStatus>;
   uploadType?: Maybe<BulkMemberUploadType>;
@@ -478,6 +479,7 @@ export type BulkUploadResult = {
 export enum BulkUploadStatus {
   Completed = "completed",
   Failed = "failed",
+  Loaded = "loaded",
   Parsed = "parsed",
   Pending = "pending",
 }
@@ -13806,6 +13808,26 @@ export type GetInAppYuniversityCourseModuleDetailsQuery = {
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     } | null;
   };
+};
+
+export type UpdateAvatarMutationVariables = Exact<{
+  avatar?: InputMaybe<Array<InputMaybe<UserAvatarPartUpdate>> | InputMaybe<UserAvatarPartUpdate>>;
+}>;
+
+export type UpdateAvatarMutation = {
+  __typename?: "Mutation";
+  updateUserAvatarParts?: {
+    __typename?: "updateUserAvatarResponse";
+    rewarded?: boolean | null;
+    rewardAmount?: number | null;
+    updated?: boolean | null;
+    avatarRemoteFiles?: {
+      __typename: "AvatarRemoteFiles";
+      svgFull?: string | null;
+      pngFull?: string | null;
+      pngMini?: string | null;
+    } | null;
+  } | null;
 };
 
 export const ChallengeFragmentDoc = {
@@ -30883,3 +30905,114 @@ export const GetInAppYuniversityCourseModuleDetailsDocument = {
   GetInAppYuniversityCourseModuleDetailsQuery,
   GetInAppYuniversityCourseModuleDetailsQueryVariables
 >;
+export const UpdateAvatarDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpdateAvatar" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "avatar" } },
+          type: {
+            kind: "ListType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "UserAvatarPartUpdate" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateUserAvatarParts" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "avatar" },
+                value: { kind: "Variable", name: { kind: "Name", value: "avatar" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "rewarded" } },
+                { kind: "Field", name: { kind: "Name", value: "rewardAmount" } },
+                { kind: "Field", name: { kind: "Name", value: "updated" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "avatarRemoteFiles" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemoteFiles" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "YumojiRemoteFiles" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "AvatarRemoteFiles" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "svgFull" },
+            name: { kind: "Name", value: "image" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "options" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "format" },
+                      value: { kind: "EnumValue", value: "svg" },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+          { kind: "Field", alias: { kind: "Name", value: "pngFull" }, name: { kind: "Name", value: "image" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "pngMini" },
+            name: { kind: "Name", value: "image" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "options" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "width" },
+                      value: { kind: "FloatValue", value: "66.25" },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "height" },
+                      value: { kind: "FloatValue", value: "138.25" },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpdateAvatarMutation, UpdateAvatarMutationVariables>;

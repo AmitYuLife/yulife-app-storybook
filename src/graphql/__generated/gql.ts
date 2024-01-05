@@ -181,6 +181,7 @@ const documents = {
   CompleteInAppYuniversityModuleChapterDocument: types.CompleteInAppYuniversityModuleChapterDocument,
   GetInAppYuniversityCoursesDocument: types.GetInAppYuniversityCoursesDocument,
   GetInAppYuniversityCourseModuleDetailsDocument: types.GetInAppYuniversityCourseModuleDetailsDocument,
+  UpdateAvatarDocument: types.UpdateAvatarDocument,
 };
 
 /**
@@ -985,6 +986,10 @@ export function gql(
 export function gql(
   source: "GetInAppYuniversityCourseModuleDetailsDocument"
 ): typeof documents["GetInAppYuniversityCourseModuleDetailsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "UpdateAvatarDocument"): typeof documents["UpdateAvatarDocument"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

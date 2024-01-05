@@ -1,0 +1,10 @@
+mutation UpdateAvatar($avatar: [UserAvatarPartUpdate]) {
+  updateUserAvatarParts(avatar: $avatar) {
+    rewarded
+    rewardAmount
+    updated
+    avatarRemoteFiles {
+      ...YumojiRemoteFiles
+    }
+  }
+}

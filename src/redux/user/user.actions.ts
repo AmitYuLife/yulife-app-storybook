@@ -1,7 +1,6 @@
 import {
   GetCurrentUser,
   LoginUser,
-  UpdateAvatar_updateUserAvatarParts_avatarRemoteFiles as AvatarRemoteFiles,
   UpdateLeaderboardConsentVariables,
   UpdateMemberConsent,
   GetUserLeaderboards_getUserLeaderboards,
@@ -16,7 +15,7 @@ import {
 import { MobileConsentInput, MobileTabs } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "./user.reducer";
 import { Connection } from "./user.selectors";
-import { GetUserSurgeQuery, JoinGoalMutation } from "@graphql/__generated";
+import { GetUserSurgeQuery, AvatarRemoteFiles, JoinGoalMutation } from "@graphql/__generated";
 
 export interface ISetIsUpdatingLeaderboardPayload {
   isLoading: boolean;
