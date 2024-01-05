@@ -17,7 +17,6 @@ import {
   GetYumojiBuilderItemsForCategoryVariables,
 } from "@graphql/_core/schema";
 import SelectBody from "@components/screens/member/yu-screen/select-body/select-body";
-import { GQL_MUTATION_UPDATE_AVATAR, UpdateAvatarMutationTuple } from "@graphql/yuscreen/updateAvatar.gql";
 import { showAwardModal, returnToYuScreen, showExitModal } from "./yumoji-builder.helpers";
 import Logger from "@services/logging/logger";
 import { cache } from "@services/image";
@@ -27,7 +26,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
 import { updateUserAvatarRemoteFiles } from "@redux/user/user.actions";
 import { getUserAvatar } from "@redux/user/user.selectors";
-import { filterRefetchQueries } from "@graphql/_core/filterRefetchQueries";
+import { gql } from "@graphql/__generated";
 
 const YumojiBuilderContainer = () => {
   const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
@@ -42,7 +41,7 @@ const YumojiBuilderContainer = () => {
 
   const hasYumoji = !!avatar?.avatarRemoteFiles?.pngFull;
 
-  const [updateUserAvatar]: UpdateAvatarMutationTuple = useMutation(GQL_MUTATION_UPDATE_AVATAR);
+  const [updateUserAvatar] = useMutation(gql("UpdateAvatarDocument"));
 
   const handleAvatarUpdate = useCallback(async () => {
     try {
@@ -54,8 +53,8 @@ const YumojiBuilderContainer = () => {
             colorSchemeId: item.colorSchemeId || "",
           })),
         },
-        // TODO: work out how to avoid refetch and instead set the fragment direct instead of re-fetching
-        refetchQueries: filterRefetchQueries(["GetLeaderboard"]),
+
+        refetchQueries: [gql("GetMobileSocialGroupLeaderboardItemsDocument")],
       });
 
       appDispatch(updateUserAvatarRemoteFiles(response?.data?.updateUserAvatarParts?.avatarRemoteFiles));
