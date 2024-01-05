@@ -15,7 +15,6 @@ export enum StorageKey {
   referralsPopover = "@YuStore:referralsPopover",
   mediaPlayerProgress = "@YuStore:mediaPlayerProgress",
   iosCyclingPermissionShown = "@RNFitKit:iosCyclingPermissionShown",
-  intercomIsLoggedIn = "@YuStore:intercomIsLoggedIn",
 }
 
 /**
@@ -23,6 +22,7 @@ export enum StorageKey {
  */
 export enum EncryptedStorageKey {
   token = "@Store:token",
+  intercomHash = "@Store:intercomHash",
 }
 
 /**
