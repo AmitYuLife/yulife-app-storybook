@@ -2,7 +2,7 @@ import { GQL_MUTATION_INVITE_TO_DUEL, GQL_QUERY_GET_DUELS, InviteToDuelMutationT
 import React, { useState } from "react";
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserStart } from "@redux/user/user.actions";
+import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
 import { useMutation, useQuery } from "@apollo/client";
 import { Alert, View } from "react-native";
 import moment from "moment";
@@ -107,7 +107,7 @@ const DuelInviteModal: React.FC<IProps> = ({
         });
       }
 
-      dispatch(getUserStart());
+      dispatch(getUserDataStart([AppDataType.coinLedger]));
     } catch (e) {
       setIsLoading(false);
       Navigation.dismissModal(componentId);
