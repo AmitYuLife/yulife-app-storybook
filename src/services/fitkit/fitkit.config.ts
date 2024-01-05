@@ -8,12 +8,12 @@ export const getAggregationCyclingConfiguration = (features: IUserStore["feature
   const additionalFitnessActivities = getAdditionalCyclingFitnessActivities(features);
 
   return {
-    timeRange: features.iosCyclingUseDays
-      ? Platform.select({
-          android: TimeRange.SECONDS,
-          ios: TimeRange.DAYS,
-        })
-      : TimeRange.SECONDS,
+    timeRange: Platform.select({
+      // Android is actually 'minimum time', so one second is appropriate
+      android: TimeRange.SECONDS,
+      // iOS is bucket size
+      ios: TimeRange.DAYS,
+    }),
     fitKitTypes: [FitKitType.Cycling, ...additionalFitnessActivities],
     aggregationType: AggregationType.ActivitySegment,
   };
