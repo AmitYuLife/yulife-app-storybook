@@ -8,13 +8,14 @@ import { MixpanelEvent, MixpanelEventMetadata } from "@services/logging/types";
 import { Event } from "@bugsnag/react-native";
 import { region } from "@locale";
 import { Platform } from "react-native";
-import { Storage, StorageKey } from "@utils/storage";
+import { EncryptedStorageKey, Storage } from "@utils/storage";
 
 class LoggerInstance {
   private userId = "";
   private updatingUser: boolean = false;
   private initialised = false;
   private intercomLoggedIn = false;
+  private intercomLoading = false;
   private appVersion: string;
   private appVersionMajorMinor: string;
   private appVersionRegex = /(\d+.\d+).(\d+)/;
@@ -45,7 +46,7 @@ class LoggerInstance {
       Mixpanel.reset();
       try {
         await Intercom.logout();
-        await Storage.removeItem(StorageKey.intercomIsLoggedIn);
+        await Storage.removeEncryptedItem(EncryptedStorageKey.intercomHash);
       } catch (err) {
         this.error(err, {
           location: "logger.logOut",
@@ -92,22 +93,26 @@ class LoggerInstance {
   };
 
   private setIntercomUserOnce = async (userId: string, hash: string) => {
-    const intercomIsLoggedIn = await Storage.getItem(StorageKey.intercomIsLoggedIn);
+    const intercomHash = await Storage.getEncryptedItem(EncryptedStorageKey.intercomHash);
 
-    if (intercomIsLoggedIn === "true") {
+    if (intercomHash === hash || this.intercomLoading) {
       this.intercomLoggedIn = true;
       return;
     }
 
     try {
+      this.intercomLoading = true;
       await Intercom.setUserHash(hash);
       await Intercom.loginUserWithUserAttributes({ userId });
       this.intercomLoggedIn = true;
-      await Storage.setItem(StorageKey.intercomIsLoggedIn, "true");
+      await Storage.setEncryptedItem(EncryptedStorageKey.intercomHash, hash);
     } catch (err) {
       this.error(err, {
         location: "logger.setIntercomUserOnce",
       });
+      this.intercomLoggedIn = false;
+    } finally {
+      this.intercomLoading = false;
     }
   };
 

@@ -7,7 +7,7 @@ export default function* setLoggerIdentity(userId: string, intercomHash: string)
   const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
   yield call(Logger.init);
-  yield call(Logger.setUserId, userId, intercomHash, features?.gameIntercomLoginOnce);
+  yield call(Logger.setUserId, userId, intercomHash, features?.tempGameIntercomLoginOnce);
 
   const localeOptions = getCurrentLocaleOptions();
 
