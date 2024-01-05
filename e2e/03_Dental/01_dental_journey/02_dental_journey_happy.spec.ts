@@ -67,8 +67,10 @@ Feature("DENTAL HAPPY", async () => {
         helper_V4.DENTAL_PRODUCT_VIEW("Epic", "0123");
         helper.PACKAGE_COVERING("Epic");
         helper.BUPA_CLAIM();
-        helper.PAYMENT_HISTORY("£18.99", "Paid");
         helper.FAQ();
+        When("I scroll to see the payment history text", when.swipeFromText("FAQs", "down", "fast"), async () => {
+          helper.PAYMENT_HISTORY("£18.99", "Paid");
+        })
       }
     );
   });

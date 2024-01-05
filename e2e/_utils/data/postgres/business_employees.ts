@@ -1445,6 +1445,17 @@ export const BUSINESS_EMPLOYEE_124 = {
     }
 } as IDatabaseItem
 
+export const  BUSINESS_EMPLOYEE_125 = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_6.data.business_account_id,
+        customer_id: customer.CUSTOMER_125.data.customerId,
+        employment_start_date: moment().subtract(1, "year").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
 export const  BUSINESS_EMPLOYEE_126_LEAVER_WELLBEING = {
     type,
     modelName,

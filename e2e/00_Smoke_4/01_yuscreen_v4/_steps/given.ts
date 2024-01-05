@@ -1,5 +1,7 @@
 import { navigation, navigateViaText, completeOnboardingIntro } from "@navigation"
 import { CUSTOMER_1, AUTH_1 } from "@data"
+import { dataManager } from "@yu-life/yulife-bdd-framework"
+import moment from "moment"
 
 export const {
     logInAndGoToTab
@@ -10,4 +12,8 @@ export const loginToYuScreen = (skipIntro = true, customer = CUSTOMER_1, auth = 
     if (skipIntro === true) {
         await completeOnboardingIntro()
     }
+}
+
+export const productStartDateNotificationWorker = () => async () => {
+    await dataManager.triggerWorkerTask("Business.ProductStartDateNotificationTask", {})
 }

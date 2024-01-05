@@ -7,6 +7,8 @@ import * as data from "@data";
 import * as helper from "./_resources/helpers"
 import { GdentAvailableSoon, GdentAvailableSoonProduct, level1Benefit, wellbeingButtonTitle } from "./_resources/fixture";
 import * as ids from "@ids";
+import { CORE_REWARDS_ORDO_REWARDS } from "@data";
+import moment from "moment";
 
 
 Feature("I am able to use the yuscreen v4, create a yumoji and see my correct product slot details", async () => {
@@ -91,30 +93,52 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         })
     })
 
-    Scenario("As a YuLifer with Group Dental product I should see correct Product Details and be able to order Ordo toothbrush", scenario.start, async () => {
-        Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_51, data.AUTH_51), async () => {
-            helper.ONBOARDING_YUSCREEN("groupDental", "5")
-            When("I tap check out my power", when.tapCheckOutMyPower, async () => {
-                When("I tap I'll do this later", when.tapIllDoThisLater, async () => {
-                    Then("I should be on the YuScreen V4", then.onYuscreenV4(data.CUSTOMER_51, "groupDental", "5"))
+    Scenario("As a YuLifer with Group Dental product i should see correct Product Details and be able to order Ordo toothbrush", scenario.start, async () => {
+        Given("I run the worker to acknowledge the product start date", given.productStartDateNotificationWorker(), async () => {
+            When("I login as a user", when.logInAndGoToTab("yu", data.CUSTOMER_51, data.AUTH_51), async () => {
+                helper.ONBOARDING_YUSCREEN("groupDental", "5")
+                When("I tap check out my power", when.tapCheckOutMyPower, async () => {
+                    When("I tap I'll do this later", when.tapIllDoThisLater, async () => {
+                        Then("I should be on the YuScreen V4", then.onYuscreenV4(data.CUSTOMER_51, "groupDental", "5"))
+                    })
                 })
             })
-            helper.CORRECT_PRODUCT_SLOT_BACKGROUND(data.CUSTOMER_51, "groupDental")
-            helper.GROUP_DENTAL_PRODUCT_VIEW("Employer scheme", "5", "Plan", "34343434")
-            helper.ORDO_JOURNEY_VIEW()
-            helper.FIELD_VALIDATION();
-            helper.CHECKOUT_PROCESS();
+        })
+        helper.CORRECT_PRODUCT_SLOT_BACKGROUND(data.CUSTOMER_51, "groupDental")
+        helper.GROUP_DENTAL_PRODUCT_VIEW("Employer scheme", "5", "Plan", "34343434")
+        helper.ORDO_JOURNEY_VIEW()
+        helper.FIELD_VALIDATION();
+        helper.CHECKOUT_PROCESS();
+        When("I swipe to the top", when.swipeFromText("Documents", "down", "fast"), async () => {
+            When("I close the tab", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
+                When("I go to the rewards screen", when.tapID(ids.NAV_BAR("rewards")), async () => {
+                    When("I confirm my location", when.tapText("Confirm selection", 2000), async () => {
+                        Then("I can see the ordo reward", then.idVisible(ids.REWARD_ITEM(CORE_REWARDS_ORDO_REWARDS.data._id)))
+                    })
+                })
+            })
         })
     })
 
     Scenario("As a YuLifer with Group Dental Choice product I should see correct Product Details and be able to order Ordo toothbrush", scenario.start, async () => {
-        Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_125, data.AUTH_125), async () => {
-            Then("I should be on the YuScreen V4", then.onYuscreenV4(data.CUSTOMER_125, "dentalChoice", "5"))
-            helper.CORRECT_PRODUCT_SLOT_BACKGROUND(data.CUSTOMER_125, "groupDental")
-            helper.GROUP_DENTAL_PRODUCT_VIEW("Employer scheme", "5", "Choice", "56565656")
-            helper.ORDO_JOURNEY_VIEW()
-            helper.FIELD_VALIDATION();
-            helper.CHECKOUT_PROCESS();
+        Given("I run the worker to acknowledge the product start date", given.productStartDateNotificationWorker(), async () => {
+            When("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_125, data.AUTH_125), async () => {
+                Then("I should be on the YuScreen V4", then.onYuscreenV4(data.CUSTOMER_125, "dentalChoice", "5"))
+            })
+        })
+        helper.CORRECT_PRODUCT_SLOT_BACKGROUND(data.CUSTOMER_125, "groupDental")
+        helper.GROUP_DENTAL_PRODUCT_VIEW("Employer scheme", "5", "Choice", "56565656")
+        helper.ORDO_JOURNEY_VIEW()
+        helper.FIELD_VALIDATION();
+        helper.CHECKOUT_PROCESS();
+        When("I swipe to the top", when.swipeFromText("Documents", "down", "fast"), async () => {
+            When("I close the tab", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
+                When("I go to the rewards screen", when.tapID(ids.NAV_BAR("rewards")), async () => {
+                    When("I confirm my location", when.tapText("Confirm selection", 2000), async () => {
+                        Then("I can see the ordo reward", then.idVisible(ids.REWARD_ITEM(CORE_REWARDS_ORDO_REWARDS.data._id)))
+                    })
+                })
+            })
         })
     })
 

@@ -434,7 +434,7 @@ export const CPE_51_GDent = {
         product_variant_id: "Bupa_GDentPlan_01_01",
         archived: false,
         taken_up: true,
-        start_date: moment().subtract(1, "months").format("YYYY-MM-DD"),
+        start_date: moment().format("YYYY-MM-DD"),
     }
 } as IDatabaseItem
 
@@ -1175,7 +1175,7 @@ export const CPE_125_GDent = {
         product_variant_id: "Bupa_GDentChoice_01_01",
         archived: false,
         taken_up: true,
-        start_date: moment().subtract(1, "months").format("YYYY-MM-DD"),
+        start_date: moment().format("YYYY-MM-DD"),
     }
 } as IDatabaseItem
 
