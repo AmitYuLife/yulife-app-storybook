@@ -107,12 +107,12 @@ export const dentalProductInfo = (packageType: string, membershipEnding: string)
   await expect(element(by.text(packageType))).toBeVisible();
   await expect(element(by.text(name))).toBeVisible();
   await expect(element(by.text(membershipNumber))).toBeVisible();
-  await swipeFromText(membershipNumber, "up", "slow")();
   await expect(element(by.text(coverFor))).toBeVisible();
   await expect(element(by.text(howToClaim))).toBeVisible();
   await expect(element(by.text(billingInfo))).toBeVisible();
   await expect(element(by.text(paymenHistory))).toBeVisible();
   await expect(element(by.text(updatePayment))).toBeVisible();
+  await swipeFromText(membershipNumber, "up", "fast")();
   await expect(element(by.text(faq))).toBeVisible();
   await expect(element(by.text(membershipGuide))).toBeVisible();
   await expect(element(by.text(productInfo))).toBeVisible();
@@ -142,7 +142,7 @@ export const groupDentalProductInfo = (packageType: string, yuCoinPower: string,
   const coverlevel = "Cover Level";
   const startDateText = "Start date";
   const level = "Level 4";
-  const startDate = moment().subtract(1, "months").format("DD/MM/YYYY");
+  const startDate = moment().format("DD/MM/YYYY");
   const membershipNumberText = "Membership Number" 
 
   await idVisible(ids.TEXT_TEMPLATE(policyName))();

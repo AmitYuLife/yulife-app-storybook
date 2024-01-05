@@ -31,6 +31,10 @@ export const {
   tapTextAtIndex
 } = navigation.common;
 
+export const {
+  logInAndGoToTab
+} = navigation.login
+
 export const tapAvatarItem = (avatarItem: string, status: string) => async () => {
   const item = element(
     by.id(ids.AVATAR_ITEM(`https://yulife-develop.imgix.net/yuscreen_products_assets/default/${avatarItem}`, status))

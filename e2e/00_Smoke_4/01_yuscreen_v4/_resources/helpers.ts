@@ -302,14 +302,14 @@ export const FIELD_VALIDATION = async () => {
 export const CHECKOUT_PROCESS = async () => {
   const ordoShipped = "Your Ordo toothbrush is on the way!";
   const processInfo = "Your order is being processed, delivery can take around 5 working days.";
-  const ordoToothBrushImage =
-    "https://yulife-develop.imgix.net/bupa/images/claim_ordo-2022-11-17.png?ixlib=js-3.2.1&w=981&h=714&s=02d52c51650ca1eb346423f3fb059bdd";
+  const ordoToothBrushConfirmationImage =
+    "https://yulife-develop.imgix.net/bupa/ordo-toothbrush/card-ordered.png?ixlib=js-3.2.1&w=981&h=714&s=bb66a331729c9896bdfb98d981f8c479";
 
   When("I tap claim now", when.tapText("Claim now"), async () => {
     Then(`I should be able to see ${ordoShipped}`, then.textVisible(ordoShipped, 4000));
     Then(`I should be able to see ${processInfo}`, then.textVisible(processInfo));
     When("I press Done", when.tapText("Done"), async () => {
-      Then("I should not see Ordo image", then.idNotVisible(CONTENT_MIDDLE_ITEM_IMAGE(ordoToothBrushImage)));
+      Then("I should see Ordo confirmation image", then.idVisible(CONTENT_MIDDLE_ITEM_IMAGE(ordoToothBrushConfirmationImage)));
     });
   });
 };
