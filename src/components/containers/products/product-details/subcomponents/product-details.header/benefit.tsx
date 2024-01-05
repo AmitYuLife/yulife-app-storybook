@@ -3,7 +3,7 @@ import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { ContentItemProductDetailsHeader_benefit } from "@graphql/_core/schema";
 import Markdown from "@components/molecules/markdown/markdown";
-import { Colours, Style } from "@styles";
+import { Style } from "@styles";
 import { YU_COIN_POWER_HEIGHT_WIDTH_MULTIPLIER } from "@components/molecules";
 
 interface Props {
@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#F2F2FA", // No Figma name
   } as ViewStyle,
   placeholder: {
-    backgroundColor: Colours.neutral.white,
     height: YU_COIN_POWER_HEIGHT,
   } as ViewStyle,
 });
