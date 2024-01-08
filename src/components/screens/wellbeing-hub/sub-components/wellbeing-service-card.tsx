@@ -10,8 +10,6 @@ import { ImageStyle } from "react-native-fast-image";
 import { TEXT_TEMPLATE } from "@ids";
 import { ArrowButton } from "@components/molecules/arrow-button";
 import { pushToScreen } from "@navigation/root";
-import { useSelector } from "react-redux";
-import { getUserFeatures } from "@redux/user/user.selectors";
 
 const ROUTES_SET = new Set(Object.values(ROUTES));
 interface IProps {
@@ -19,8 +17,6 @@ interface IProps {
 }
 
 const WellBeingServiceCard: FC<IProps> = ({ card }) => {
-  const isSdui = useSelector(getUserFeatures)?.enableSduiWellbeingHubItemDetails;
-
   const onPress = useCallback(async () => {
     const { id, route, sduiStepId } = card;
 
@@ -34,25 +30,13 @@ const WellBeingServiceCard: FC<IProps> = ({ card }) => {
       });
     }
 
-    if (isSdui) {
-      return pushToScreen(ROUTES.wellbeingHubItems, {
-        component: {
-          id: ROUTES.sduiWellbeingHubItemDetails,
-          name: ROUTES.sduiWellbeingHubItemDetails,
-          passProps: {
-            dynamicId: id,
-            stepId: sduiStepId || "wellbeing_hub_item_details",
-          },
-        },
-      });
-    }
-
-    await Navigation.push(ROUTES.wellbeingHubItems, {
+    return pushToScreen(ROUTES.wellbeingHubItems, {
       component: {
-        id: ROUTES.wellbeingHubDetails,
-        name: ROUTES.wellbeingHubDetails,
+        id: ROUTES.sduiWellbeingHubItemDetails,
+        name: ROUTES.sduiWellbeingHubItemDetails,
         passProps: {
-          itemId: id,
+          dynamicId: id,
+          stepId: sduiStepId || "wellbeing_hub_item_details",
         },
       },
     });
