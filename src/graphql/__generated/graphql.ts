@@ -3618,7 +3618,7 @@ export type HrisEmployeeFilter = {
 };
 
 export type HrisEmployeesFilterInput = {
-  rowType?: InputMaybe<MemberDataRowType>;
+  rowType?: InputMaybe<Array<MemberDataRowType>>;
 };
 
 export type HrisMemberDataImport = {
@@ -13723,6 +13723,35 @@ export type JoinWeeklyGoalMutation = {
     iconUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   } | null;
 };
+
+export type GetWellbeingHubItemsQueryVariables = Exact<{
+  os?: InputMaybe<Os>;
+  width?: InputMaybe<Scalars["Float"]["input"]>;
+  height?: InputMaybe<Scalars["Float"]["input"]>;
+  categories?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>> | InputMaybe<Scalars["String"]["input"]>>;
+}>;
+
+export type GetWellbeingHubItemsQuery = {
+  __typename?: "Query";
+  items: Array<{
+    __typename?: "WellbeingHubItem";
+    id: string;
+    sduiStepId: string;
+    title: string;
+    description: string;
+    route?: string | null;
+    thumbnail?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  }>;
+  categories: Array<{ __typename?: "WellbeingHubCategory"; id: string; name: string }>;
+};
+
+export type SendWellbeingHubItemDocumentsMutationVariables = Exact<{
+  itemId: Scalars["String"]["input"];
+  email: Scalars["String"]["input"];
+}>;
+
+export type SendWellbeingHubItemDocumentsMutation = { __typename?: "Mutation"; sendWellbeingHubItemDocuments: boolean };
 
 export type CompleteInAppYuniversityModuleChapterMutationVariables = Exact<{
   moduleId: Scalars["String"]["input"];
@@ -30630,6 +30659,188 @@ export const JoinWeeklyGoalDocument = {
     },
   ],
 } as unknown as DocumentNode<JoinWeeklyGoalMutation, JoinWeeklyGoalMutationVariables>;
+export const GetWellbeingHubItemsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetWellbeingHubItems" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "os" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "OS" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "width" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Float" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "height" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Float" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "categories" } },
+          type: { kind: "ListType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "items" },
+            name: { kind: "Name", value: "wellbeingHubItems" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "os" },
+                value: { kind: "Variable", name: { kind: "Name", value: "os" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "categories" },
+                value: { kind: "Variable", name: { kind: "Name", value: "categories" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "sduiStepId" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "thumbnail" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "uri" },
+                        arguments: [
+                          {
+                            kind: "Argument",
+                            name: { kind: "Name", value: "options" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "width" },
+                                  value: { kind: "Variable", name: { kind: "Name", value: "width" } },
+                                },
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "height" },
+                                  value: { kind: "Variable", name: { kind: "Name", value: "height" } },
+                                },
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "crop" },
+                                  value: { kind: "StringValue", value: "fit", block: false },
+                                },
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "format" },
+                                  value: { kind: "EnumValue", value: "png" },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "route" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "categories" },
+            name: { kind: "Name", value: "wellbeingHubCategories" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "os" },
+                value: { kind: "Variable", name: { kind: "Name", value: "os" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetWellbeingHubItemsQuery, GetWellbeingHubItemsQueryVariables>;
+export const SendWellbeingHubItemDocumentsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SendWellbeingHubItemDocuments" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "itemId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "email" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sendWellbeingHubItemDocuments" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "itemId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "itemId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "email" },
+                value: { kind: "Variable", name: { kind: "Name", value: "email" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SendWellbeingHubItemDocumentsMutation, SendWellbeingHubItemDocumentsMutationVariables>;
 export const CompleteInAppYuniversityModuleChapterDocument = {
   kind: "Document",
   definitions: [

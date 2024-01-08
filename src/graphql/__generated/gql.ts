@@ -179,6 +179,8 @@ const documents = {
   ClaimMobileGameWeeklyRewardsDocument: types.ClaimMobileGameWeeklyRewardsDocument,
   GetMobileGameWeekliesDocument: types.GetMobileGameWeekliesDocument,
   JoinWeeklyGoalDocument: types.JoinWeeklyGoalDocument,
+  GetWellbeingHubItemsDocument: types.GetWellbeingHubItemsDocument,
+  SendWellbeingHubItemDocumentsDocument: types.SendWellbeingHubItemDocumentsDocument,
   CompleteInAppYuniversityModuleChapterDocument: types.CompleteInAppYuniversityModuleChapterDocument,
   GetInAppYuniversityCoursesDocument: types.GetInAppYuniversityCoursesDocument,
   GetInAppYuniversityCourseModuleDetailsDocument: types.GetInAppYuniversityCourseModuleDetailsDocument,
@@ -973,6 +975,16 @@ export function gql(source: "GetMobileGameWeekliesDocument"): typeof documents["
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "JoinWeeklyGoalDocument"): typeof documents["JoinWeeklyGoalDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetWellbeingHubItemsDocument"): typeof documents["GetWellbeingHubItemsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "SendWellbeingHubItemDocumentsDocument"
+): typeof documents["SendWellbeingHubItemDocumentsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

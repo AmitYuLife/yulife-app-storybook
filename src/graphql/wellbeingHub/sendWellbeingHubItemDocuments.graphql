@@ -1,0 +1,3 @@
+mutation SendWellbeingHubItemDocuments($itemId: String!, $email: String!) {
+  sendWellbeingHubItemDocuments(itemId: $itemId, email: $email)
+}
