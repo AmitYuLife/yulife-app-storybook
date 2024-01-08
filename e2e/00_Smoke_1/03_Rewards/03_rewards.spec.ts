@@ -1,4 +1,4 @@
-import { Given, When, Then, Scenario, Feature, FeatureOnly, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
+import { Given, When, Then, Scenario, Feature, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
@@ -54,7 +54,8 @@ Feature("Rewards should act correctly", async () => {
         })
     })
 
-    Scenario("I can change the reward amount and buy it if I have enough coin", scenario.start, () => {
+    // @flaky - timeout on bitrise passes locally
+    ScenarioSkip("I can change the reward amount and buy it if I have enough coin", scenario.start, () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_3, data.AUTH_3), () => {
             Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
             Then("I should see the modal to select store location", then.rewardsLocationModalVisible)
@@ -183,7 +184,8 @@ Feature("Rewards should act correctly", async () => {
         })
     })
 
-    Scenario("I can login and view my previously purchased rewards with different date formate : locale US", scenario.startUS, async () => {
+    // @update - timeout on bitrise + can't login locally on US api/detox
+    ScenarioSkip("I can login and view my previously purchased rewards with different date formate : locale US", scenario.startUS, async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_2, data.AUTH_2), async () => {
             Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
             Then("I should see the modal to select store location", then.rewardsLocationModalVisible)

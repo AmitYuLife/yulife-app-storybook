@@ -15,6 +15,7 @@ if (DETOX_ENABLED) {
     "Warning: An effect function",
     "An effect function",
     "Possible Unhandled",
+    "An error occurred!",
   ]);
 }
 

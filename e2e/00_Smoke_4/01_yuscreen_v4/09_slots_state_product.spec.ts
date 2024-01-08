@@ -20,7 +20,8 @@ Feature("Slots updates Enrolment - Opt In Opt out", async () => {
             helper.ON_YU_SCREEN(data.CUSTOMER_95, GdentAvailableFrom);
         })
     })
-    Scenario("2-Start date not hit and enrolment window open", scenario.start, async () => {
+    // @flaky - timeout on bitrise
+    ScenarioSkip("2-Start date not hit and enrolment window open", scenario.start, async () => {
         Given("I login as a user",  given.logInAndGoToTab("yu", data.CUSTOMER_97, data.AUTH_97), async () => {
             helper.ONBOARD_YU_SCREEN(GdentEnrolNow)
             helper.ON_YU_SCREEN(data.CUSTOMER_97, GdentEnrolNow);

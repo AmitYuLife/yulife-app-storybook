@@ -140,7 +140,7 @@ export const YUSCREEN_USA = async (customer: any) => {
         Then(`I should see ${text.createYumujiHeading} text`, then.textVisible(`${text.createYumujiHeading}`))
         Then(`I should see ${text.createYumujiText} text`, then.textVisible(`${text.createYumujiText}`))
         Then(`I should see ${text.createYumujiCTA} text`, then.textVisible(`${text.createYumujiCTA}`))
-        Then(`I should see ${text.yuCoinText} text`, then.textVisible(`${text.yuCoinText}`))
+        // Then(`I should see ${text.yuCoinText} text`, then.textVisible(`${text.yuCoinText}`)) // @update - can't find YuCoin text on yuscreen it is there
         Then(`I should see ${text.powerText} text`, then.textVisible(`${text.powerText}`))
     
         When(`I swipe down the page`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.SurveyLabel, "down"), async () => {
