@@ -4193,6 +4193,12 @@ export type MobilePaymentCardSetup = {
   providerCustomerId: Scalars["String"]["output"];
 };
 
+export type MobilePendingUserJourney = {
+  __typename?: "MobilePendingUserJourney";
+  delay: Scalars["Int"]["output"];
+  journeyId: Scalars["String"]["output"];
+};
+
 export type MobilePurchasesList = {
   __typename?: "MobilePurchasesList";
   id: Scalars["ID"]["output"];
@@ -5732,7 +5738,6 @@ export type Query = {
   getQuestMapLevelChallengeContent?: Maybe<Array<Maybe<QuestMapLevelChallengeContent>>>;
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
-  getRandomNumber?: Maybe<RandomNumber>;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
   getReferralBackground: RemoteImage;
@@ -5833,6 +5838,7 @@ export type Query = {
   mobileUpgradeRequired?: Maybe<MobileUpgradeRequired>;
   pendingAppStoreReview?: Maybe<AppStoreReviewPrompt>;
   pendingFeedbackForm?: Maybe<FeedbackForm>;
+  pendingMobileUserJourney?: Maybe<MobilePendingUserJourney>;
   peopleWelcomeModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
   referralInformation: UserReferralInformation;
   /** Search for the name of someone you can invite to a duel. */
@@ -6233,7 +6239,7 @@ export type QueryGetTeamAnalyticsTableDataArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetTeamAssignProductFieldsArgs = {
-  businessEmployeeId: Scalars["String"]["input"];
+  businessEmployeeId?: InputMaybe<Scalars["String"]["input"]>;
   categoryId?: InputMaybe<Scalars["String"]["input"]>;
   filterOutAssignedProducts?: InputMaybe<Scalars["Boolean"]["input"]>;
   productId?: InputMaybe<Scalars["String"]["input"]>;
@@ -6588,12 +6594,6 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
-
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
 
 export type RedeemSteps = {
   __typename?: "RedeemSteps";
@@ -13047,6 +13047,64 @@ export type GetMediaQuery = {
       onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     } | null;
   } | null> | null;
+};
+
+export type GetPendingUserFeedbackQueryVariables = Exact<{
+  supportedTypes?: InputMaybe<Array<InputMaybe<FeedbackFormQuestionType>> | InputMaybe<FeedbackFormQuestionType>>;
+}>;
+
+export type GetPendingUserFeedbackQuery = {
+  __typename?: "Query";
+  pendingMobileUserJourney?: { __typename: "MobilePendingUserJourney"; journeyId: string; delay: number } | null;
+  pendingAppStoreReview?: {
+    __typename: "AppStoreReviewPrompt";
+    id: string;
+    image: string;
+    title: string;
+    body: string;
+    rejectedTitle: string;
+    rejectedBody: string;
+    showAfterEvent?: string | null;
+    showAfterSeconds: number;
+  } | null;
+  pendingFeedbackForm?: {
+    __typename: "FeedbackForm";
+    id: string;
+    title: string;
+    label: string;
+    awardYucoin?: number | null;
+    questions: Array<{
+      __typename: "FeedbackFormQuestion";
+      key: string;
+      questionText: string;
+      description?: string | null;
+      type: FeedbackFormQuestionType;
+      isRoot?: boolean | null;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      range?: { __typename: "FeedbackFormQuestionRange"; id: string; min?: number | null; max?: number | null } | null;
+      labels?: {
+        __typename: "FeedbackFormQuestionLabels";
+        id: string;
+        left?: string | null;
+        right?: string | null;
+        placeholder?: string | null;
+        submit?: string | null;
+      } | null;
+      nextConditions: Array<{
+        __typename: "FeedbackFormQuestionNextCondition";
+        id: string;
+        questionKey: string;
+        regexMatch: string;
+      }>;
+      options?: Array<{
+        __typename?: "FeedbackFormQuestionOption";
+        id: string;
+        label: string;
+        value: string;
+      } | null> | null;
+    }>;
+  } | null;
 };
 
 export type MarkMobileNotificationsAsViewedByTypeMutationVariables = Exact<{
@@ -28168,6 +28226,172 @@ export const GetMediaDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMediaQuery, GetMediaQueryVariables>;
+export const GetPendingUserFeedbackDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetPendingUserFeedback" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "supportedTypes" } },
+          type: {
+            kind: "ListType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "FeedbackFormQuestionType" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "pendingMobileUserJourney" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "journeyId" } },
+                { kind: "Field", name: { kind: "Name", value: "delay" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "pendingAppStoreReview" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "image" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "body" } },
+                { kind: "Field", name: { kind: "Name", value: "rejectedTitle" } },
+                { kind: "Field", name: { kind: "Name", value: "rejectedBody" } },
+                { kind: "Field", name: { kind: "Name", value: "showAfterEvent" } },
+                { kind: "Field", name: { kind: "Name", value: "showAfterSeconds" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "pendingFeedbackForm" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "supportedTypes" },
+                value: { kind: "Variable", name: { kind: "Name", value: "supportedTypes" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "awardYucoin" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "questions" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                      { kind: "Field", name: { kind: "Name", value: "key" } },
+                      { kind: "Field", name: { kind: "Name", value: "questionText" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "uri" } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "icon" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "uri" } },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "type" } },
+                      { kind: "Field", name: { kind: "Name", value: "isRoot" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "range" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "min" } },
+                            { kind: "Field", name: { kind: "Name", value: "max" } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "labels" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "left" } },
+                            { kind: "Field", name: { kind: "Name", value: "right" } },
+                            { kind: "Field", name: { kind: "Name", value: "placeholder" } },
+                            { kind: "Field", name: { kind: "Name", value: "submit" } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "nextConditions" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "questionKey" } },
+                            { kind: "Field", name: { kind: "Name", value: "regexMatch" } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "options" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "label" } },
+                            { kind: "Field", name: { kind: "Name", value: "value" } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetPendingUserFeedbackQuery, GetPendingUserFeedbackQueryVariables>;
 export const MarkMobileNotificationsAsViewedByTypeDocument = {
   kind: "Document",
   definitions: [
