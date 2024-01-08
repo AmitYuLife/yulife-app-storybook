@@ -17,6 +17,7 @@ import {
   import * as id from "@ids";
   
   Feature("I am able to see sponsored by text/logos and box option types", async () => {
+    // @update added to YUSCREEN_USA
   Scenario("I can see sponsored by text and logos in yuscreen if contribution_type none and can view the explore my insurance page",scenario.start, async () => {
       Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_5, AUTH_USA_5, true, "United States"),async () => {
         helper.ONBOARDING_YUSCREEN_USA(fixture.GapInEnrolVisOutEnrol);
