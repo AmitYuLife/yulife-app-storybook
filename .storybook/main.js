@@ -23,7 +23,6 @@ const CUSTOM_CONFIG = {
       "react-native-webview": path.join(__dirname, "/aliases/react-native-webview"),
       "react-native-fast-image": path.join(__dirname, "/aliases/react-native-fast-image"),
       "react-native-encrypted-storage": path.join(__dirname, "/aliases/react-native-encrypted-storage"),
-      "react-native-music-control": path.join(__dirname, "/aliases/react-native-music-control"),
       "react-native-video": path.join(__dirname, "/aliases/react-native-video"),
       "react-native-video-controls": path.join(__dirname, "/aliases/react-native-video-controls"),
       "react-native-config": path.join(__dirname, "/aliases/react-native-config"),

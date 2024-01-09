@@ -8,20 +8,12 @@ import Video, {
   IgnoreSilentSwitchType,
 } from "react-native-video";
 import moment from "moment";
-import MusicControl, { Command } from "react-native-music-control";
 import { Animated, StyleSheet, View, AppStateStatus } from "react-native";
 import Lottie from "lottie-react-native";
 import Config from "react-native-config";
 import { CloseSvg, Image, Logo, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
-import {
-  IState,
-  IAction,
-  reducer,
-  INITIAL_STATE,
-  ActionTypes,
-  setMusicControlInitialConfig,
-} from "./video-player.reducer";
+import { IState, IAction, reducer, INITIAL_STATE, ActionTypes } from "./video-player.reducer";
 import { Button, LottieView, PressableWithDelay, VidePlayerButton } from "@molecules";
 import {
   AvPlayerDescription,
@@ -95,7 +87,6 @@ const VideoPlayer = ({
   subtitle,
   description,
   tag,
-  thumbnail,
   logo,
   videoLogo,
   onEnd,
@@ -106,7 +97,6 @@ const VideoPlayer = ({
   onRightIconPress,
   startErrorMessage,
   theme,
-  shortDescription,
   yuCoin,
   stars,
   lottie,
@@ -151,9 +141,6 @@ const VideoPlayer = ({
    */
   useAppState((appState: AppStateStatus) => {
     setAppCurrentState(appState);
-    MusicControl.updatePlayback({
-      elapsedTime: state.currentProgressInSeconds,
-    });
   });
 
   useEffect(() => {
@@ -178,30 +165,11 @@ const VideoPlayer = ({
    * Set's up the initial player state
    */
   useEffect(() => {
-    setMusicControlInitialConfig();
-    MusicControl.on(Command.play, () => {
-      dispatch({ type: ActionTypes.PLAY_PLAYER });
-    });
-    MusicControl.on(Command.pause, () => {
-      dispatch({ type: ActionTypes.PAUSE_PLAYER });
-    });
-
     return () => {
       fadeIn.stop();
       fadeOut.stop();
-      MusicControl.resetNowPlaying();
     };
   }, []);
-
-  /**
-   * Allows the video to be played/paused
-   */
-  useEffect(() => {
-    MusicControl.updatePlayback({
-      state: state.isPaused || state.isBuffering ? MusicControl.STATE_PAUSED : MusicControl.STATE_PLAYING,
-      elapsedTime: state.currentProgressInSeconds,
-    });
-  }, [state.isPaused, state.isBuffering]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -267,12 +235,6 @@ const VideoPlayer = ({
     dispatch({ type: ActionTypes.SET_STARTING, payload: true });
     try {
       await onStart();
-      MusicControl.setNowPlaying({
-        title,
-        artwork: thumbnail,
-        artist: shortDescription,
-        duration: state.durationInSeconds,
-      });
 
       dispatch({ type: ActionTypes.SET_MUSIC_CONTROL_MOUNTED });
 
