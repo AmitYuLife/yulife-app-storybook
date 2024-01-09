@@ -5,7 +5,7 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Image, TextTemplate } from "@atoms";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
-import { GetWellbeingHubItems_wellbeingHubItems as WellbeingCard } from "@graphql/_core/schema";
+import { GetWellbeingHubItemsQuery } from "@graphql/__generated";
 import { ImageStyle } from "react-native-fast-image";
 import { TEXT_TEMPLATE } from "@ids";
 import { ArrowButton } from "@components/molecules/arrow-button";
@@ -13,7 +13,7 @@ import { pushToScreen } from "@navigation/root";
 
 const ROUTES_SET = new Set(Object.values(ROUTES));
 interface IProps {
-  card: WellbeingCard;
+  card: GetWellbeingHubItemsQuery["items"][0];
 }
 
 const WellBeingServiceCard: FC<IProps> = ({ card }) => {

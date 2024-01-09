@@ -7,7 +7,7 @@ import { useMutation } from "@apollo/client";
 import { MODALS } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { t } from "@locale";
-import { GQL_MUTATION_SEND_WELLBEING_HUB_ITEM_DOCUMENTS } from "@graphql/wellbeingHub";
+import { gql } from "@graphql/__generated";
 import { showFloatingModal } from "../floating-modals/showFloatingModal";
 import { validateEmail } from "@utils/email";
 
@@ -27,7 +27,7 @@ const SendDocumentsModal = ({ itemId }: IProps) => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
 
-  const [sendWellbeingHubItemDocuments] = useMutation(GQL_MUTATION_SEND_WELLBEING_HUB_ITEM_DOCUMENTS);
+  const [sendWellbeingHubItemDocuments] = useMutation(gql("SendWellbeingHubItemDocumentsDocument"));
 
   const handleSubmit = useCallback(async () => {
     setLoading(true);

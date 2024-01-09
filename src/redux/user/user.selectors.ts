@@ -27,6 +27,9 @@ export const getUserFeatures = createSelector(reducer, userFeaturesSelector);
 const userNameSelector = (state: State) => state.fullName;
 export const getUserName = createSelector(reducer, userNameSelector);
 
+const userFirstNameSelector = (state: State) => state.fullName;
+export const getUserFirstName = createSelector(reducer, userFirstNameSelector);
+
 const acceptedLeaderboardsSelector = (state: State) => state.leaderboards.filter((l) => l.hasAccepted);
 export const getAcceptedLeaderboards = createSelector(reducer, acceptedLeaderboardsSelector);
 
