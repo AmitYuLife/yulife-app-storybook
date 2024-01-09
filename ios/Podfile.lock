@@ -94,9 +94,9 @@ PODS:
   - glog (0.3.5)
   - hermes-engine (0.70.13)
   - HMSegmentedControl (1.5.6)
-  - Intercom (16.1.1)
-  - intercom-react-native (6.1.0):
-    - Intercom (~> 16.1.1)
+  - Intercom (16.3.2)
+  - intercom-react-native (6.3.0):
+    - Intercom (~> 16.3.2)
     - React-Core
   - Leanplum-iOS-SDK (6.0.2):
     - CleverTap-iOS-SDK (~> 4.1.5)
@@ -859,8 +859,8 @@ SPEC CHECKSUMS:
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   hermes-engine: 724382db3322a3745b0741d753bbe70e26927aac
   HMSegmentedControl: 34c1f54d822d8308e7b24f5d901ec674dfa31352
-  Intercom: 3aa20de5b2b8aab05a5a48728de565fc85ec65f7
-  intercom-react-native: 47c68beddbcf93e1061ebbda8907b7578d9338e4
+  Intercom: 5e6500e73a51edf6a4b4ad33f09bfe38962b774c
+  intercom-react-native: b08e2cf04883320c0d45b54ce9f50bc945ef9b48
   Leanplum-iOS-SDK: 804d2a841eeb797dd47d59e1c8f6a92dc4d7e596
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
