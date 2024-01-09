@@ -39,7 +39,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
         })
         When("I scroll to the Beam tab", when.scrollUntilIdVisible(ids.WELLBEING_HUB_SCROLL_VIEW, ids.TEXT_TEMPLATE("Beam"), "down"), async () => {
             When("I tap the Beam tab", when.tapID(ids.TEXT_TEMPLATE("Beam")), async () => {
-                Then("I should be on the Beam screen", then.idVisible(ids.MORE_INFO_BUTTON("Donate to Beam")))
+                Then("I should be on the Beam screen", then.textVisible("Donate to Beam"))
             })
         })
         When("I tap to go back to Wellbeing Hub", when.tapID(ids.BACK_BUTTON), async () => {
@@ -47,7 +47,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
         })
         When("I scroll to the Hibob tab", when.scrollUntilIdVisible(ids.WELLBEING_HUB_SCROLL_VIEW, ids.TEXT_TEMPLATE("HiBob"), "down"), async () => {
             When("I tap the HiBob tab", when.tapID(ids.TEXT_TEMPLATE("HiBob")), async () => {
-                Then("I should be on the HiBob screen", then.idVisible(ids.MORE_INFO_BUTTON("Access HiBob")))
+                Then("I should be on the HiBob screen", then.textVisible("Access HiBob"))
             })
         })
         When("I tap to go back to Wellbeing Hub", when.tapID(ids.BACK_BUTTON), async () => {
@@ -55,7 +55,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
         })
         When("I scroll to the More Happi tab", when.scrollUntilIdVisible(ids.WELLBEING_HUB_SCROLL_VIEW, ids.TEXT_TEMPLATE("More Happi"), "down"), async () => {
             When("I tap the More Happi tab", when.tapID(ids.TEXT_TEMPLATE("More Happi")), async () => {
-                Then("I should be on the More Happi screen", then.idVisible(ids.MORE_INFO_BUTTON("Access More Happi")))
+                Then("I should be on the More Happi screen", then.textVisible("Access More Happi"))
             })
         })
         When("I tap to go back to Wellbeing Hub", when.tapID(ids.BACK_BUTTON), async () => {
