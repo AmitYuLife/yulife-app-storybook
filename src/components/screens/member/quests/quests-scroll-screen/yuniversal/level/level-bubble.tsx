@@ -11,6 +11,7 @@ import { LevelBubbleBackground } from "./level-bubble-background";
 import { LevelOverlay } from "./level-overlay";
 import { Image } from "@atoms";
 import { Style } from "@styles";
+import { GHI_REWARD_ICON } from "@ids";
 
 const HEIGHT_WIDTH_MULTIPLIER = Style.DEVICE_WIDTH / 375;
 
@@ -227,6 +228,7 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
               height={16}
               source={notificationIcon}
               tintColor={textColour}
+              testID={GHI_REWARD_ICON(text.toString())}
             />
           </>
         )}

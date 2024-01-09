@@ -537,3 +537,4 @@ export const multipleRewardsNotVisible = (idArr: string[]) => async () => {
       await idNotVisible(ids.REWARD_ITEM(id))
   })
 }
+

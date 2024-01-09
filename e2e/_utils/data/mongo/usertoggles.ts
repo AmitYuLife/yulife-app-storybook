@@ -2085,7 +2085,8 @@ export const CUSTOMER_116_TOGGLES = {
       ...DEFAULT_TOGGLES.data.features,
       hasSmartPensionActive: true,
       enableProductGoals: true,
-      useHalfModalsForQuestMap: true
+      useHalfModalsForQuestMap: true,
+      showQuestMapNotificationIcons: true
     },
   },
 } as IDatabaseItem;
@@ -2100,6 +2101,7 @@ export const CUSTOMER_117_TOGGLES = {
       ...DEFAULT_TOGGLES.data.features,
       hasSmartPensionActive: true,
       enableProductGoals: true,
+      showQuestMapNotificationIcons: true
     },
   },
 } as IDatabaseItem;
@@ -2303,6 +2305,22 @@ export const CUSTOMER_130_TOGGLES = {
       ...DEFAULT_TOGGLES.data.features,
       hasSmartPensionActive: true,
       enableProductGoals: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_131_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_131_GHI_REWARDS.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      hasSmartPensionActive: true,
+      enableProductGoals: true,
+      useHalfModalsForQuestMap: true,
+      showQuestMapNotificationIcons: true
     },
   },
 } as IDatabaseItem;

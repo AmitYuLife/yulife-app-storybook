@@ -1907,3 +1907,16 @@ export const CUSTOMER_130_GHI_LEAVER = {
   },
 } as IDatabaseItem
 
+export const CUSTOMER_131_GHI_REWARDS = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Lewis",
+    lastName: "Gibson",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+
