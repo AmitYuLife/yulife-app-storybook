@@ -1225,3 +1225,19 @@ export const CPE_130_GHI_LEAVER = {
         product_variant_id : "Bupa_GHealth_01_01",
     }
 } as IDatabaseItem
+
+export const CPE_131_GHI_REWARDS = {
+    type: "postgres",
+    modelName: "customer_product_entity",
+    data: {
+        customerId: customer.CUSTOMER_131_GHI_REWARDS.data.customerId,
+        customer_product_id: "YUCPID0000011415",
+        "earn_rate" : 0,
+        "start_date" : moment().subtract(1, "y").format("YYYY-MM-DD"),
+        "end_date" : "2199-12-31",
+        "is_banned_from_product" : false,
+        "archived" : false,
+        "taken_up" : true,
+        product_variant_id : "Bupa_GHealth_01_01",
+    }
+} as IDatabaseItem

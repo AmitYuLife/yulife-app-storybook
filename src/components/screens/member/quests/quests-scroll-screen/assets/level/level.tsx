@@ -1,4 +1,4 @@
-import { LEVEL_CHALLENGE_BUTTON } from "@ids";
+import { GHI_REWARD_ICON, LEVEL_CHALLENGE_BUTTON } from "@ids";
 import { TouchableOpacityWithDelay } from "@molecules/index";
 import moment from "moment";
 import React, { useMemo, useState } from "react";
@@ -93,6 +93,7 @@ function LevelBubble(props: IProps) {
             width={16}
             height={16}
             source={level.notificationIcon}
+            testID={GHI_REWARD_ICON(level.level.toString())}
           />
         )}
         <View style={styles.bubbleText}>{levelText}</View>

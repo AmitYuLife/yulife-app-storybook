@@ -408,6 +408,7 @@ export const CHALLENGE_PAGE_BOOST_SLOT = (reward: number) => `CHALLENGE_PAGE_BOO
 export const CHALLENGE_DETAILS_BADGE = (text: string) => `CHALLENGE_DETAILS_BADGE_${text}`
 export const CHALLENGE_TILE_SURGE_ICON = "CHALLENGE_TILE_SURGE_ICON"
 export const CHALLENGE_LOCKED_ICON = "CHALLENGE_LOCKED_ICON"
+export const GHI_REWARD_ICON = (level: string) => `GHI_REWARD_ICON_${level}`
 
 // MEDITOPIA
 export const MEDITOPIA_LOGO = "MEDITOPIA_LOGO";

@@ -61,3 +61,10 @@ export const setStoreRegion = async () => {
   await tapText("Confirm selection", 2000)()
   await tapID(ids.NAV_BAR("yu"), 2000)()
 }
+
+export const navigateYunityForestJourneyCorrect = async () => {
+  await wait(5000)()
+  await navigateViaText("Continue")
+  await navigateViaText("Open the chest")
+  await navigateViaText("Claim rewards")
+}
