@@ -15944,11 +15944,6 @@ react-native-modal-datetime-picker@^17.1.0:
   dependencies:
     prop-types "^15.7.2"
 
-react-native-music-control@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/react-native-music-control/-/react-native-music-control-1.4.1.tgz#a1212c082f39783ff10befec1ef53cade585933e"
-  integrity sha512-IBiP2Yhb9iUPutXFFfNWKnf+CG/up9oPlMqY6qq1MDlhJ6giMCGQ+qO/Qd5hoDE0ZfxyqShs3CZaSch+oV/2zg==
-
 react-native-navigation@7.37.1:
   version "7.37.1"
   resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-7.37.1.tgz#7bb1165f8e454f2956f62a10cdfe927a6cc43008"

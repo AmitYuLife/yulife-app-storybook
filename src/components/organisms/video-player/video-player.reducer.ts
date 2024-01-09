@@ -1,5 +1,3 @@
-import MusicControl from "react-native-music-control";
-
 export enum ActionTypes {
   PAUSE_PLAYER = "PAUSE_PLAYER",
   PLAY_PLAYER = "PLAY_PLAYER",
@@ -56,25 +54,6 @@ export const INITIAL_STATE: IState = {
   showTryAgainError: false,
   startErrorMessage: null,
   retries: 3,
-};
-
-export const setMusicControlInitialConfig = () => {
-  MusicControl.enableBackgroundMode(true);
-  MusicControl.enableControl("play", true);
-  MusicControl.enableControl("pause", true);
-  MusicControl.enableControl("stop", false);
-  MusicControl.enableControl("nextTrack", false);
-  MusicControl.enableControl("previousTrack", false);
-  MusicControl.enableControl("seekForward", false);
-  MusicControl.enableControl("seekBackward", false);
-  MusicControl.enableControl("seek", false);
-  MusicControl.enableControl("setRating", false);
-  MusicControl.enableControl("volume", true);
-  MusicControl.enableControl("remoteVolume", false);
-  MusicControl.enableControl("enableLanguageOption", false);
-  MusicControl.enableControl("disableLanguageOption", false);
-  MusicControl.enableControl("closeNotification", true, { when: "never" });
-  MusicControl.handleAudioInterruptions(true);
 };
 
 export const reducer = (state: IState, action: IAction): IState => {
