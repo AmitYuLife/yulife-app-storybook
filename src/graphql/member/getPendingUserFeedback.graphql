@@ -1,10 +1,10 @@
 query GetPendingUserFeedback($supportedTypes: [FeedbackFormQuestionType]) {
-  pendingMobileUserJourney {
+  journey: pendingMobileUserJourney {
     __typename
     journeyId
     delay
   }
-  pendingAppStoreReview {
+  appStore: pendingAppStoreReview {
     __typename
     id
     image
@@ -15,7 +15,7 @@ query GetPendingUserFeedback($supportedTypes: [FeedbackFormQuestionType]) {
     showAfterEvent
     showAfterSeconds
   }
-  pendingFeedbackForm(supportedTypes: $supportedTypes) {
+  form: pendingFeedbackForm(supportedTypes: $supportedTypes) {
     __typename
     id
     title

@@ -260,6 +260,12 @@ export type AssignProductInput = {
   productSalary?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+export type AssignProductSelectedProductInformation = {
+  __typename?: "AssignProductSelectedProductInformation";
+  categoryName?: Maybe<Scalars["String"]["output"]>;
+  productName?: Maybe<Scalars["String"]["output"]>;
+};
+
 export type AssignProductToTeamMemberResult = {
   __typename?: "AssignProductToTeamMemberResult";
   errors?: Maybe<Array<Maybe<AssignProductToTeamMemberResultError>>>;
@@ -3417,6 +3423,12 @@ export type GetProductYumojiPartResponse = {
   yumojiPartType: AvatarPartType;
 };
 
+export type GetTeamCreateAssignProductFieldsResult = {
+  __typename?: "GetTeamCreateAssignProductFieldsResult";
+  sections: Array<TeamEmployeeSection>;
+  selectedProductInformation?: Maybe<AssignProductSelectedProductInformation>;
+};
+
 export type GetTeamSocialGroupsResponse = {
   __typename?: "GetTeamSocialGroupsResponse";
   count: Scalars["Int"]["output"];
@@ -5762,6 +5774,7 @@ export type Query = {
   getTeamAnalyticsSummaryCard: TeamAnalyticsDashboardWidget;
   getTeamAnalyticsTableData: TeamAnalyticsTable;
   getTeamAssignProductFields: Array<TeamEmployeeSection>;
+  getTeamCreateAssignProductFields: GetTeamCreateAssignProductFieldsResult;
   getTeamDashboardDates: Array<TeamDashboardDates>;
   getTeamDashboardGoals: TeamDashboardGoals;
   getTeamDidYouKnowInsights: TeamAnalyticsDashboardDidYouKnowSummary;
@@ -6240,6 +6253,13 @@ export type QueryGetTeamAnalyticsTableDataArgs = {
 /** Default types to be extended / root query */
 export type QueryGetTeamAssignProductFieldsArgs = {
   businessEmployeeId?: InputMaybe<Scalars["String"]["input"]>;
+  categoryId?: InputMaybe<Scalars["String"]["input"]>;
+  filterOutAssignedProducts?: InputMaybe<Scalars["Boolean"]["input"]>;
+  productId?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetTeamCreateAssignProductFieldsArgs = {
   categoryId?: InputMaybe<Scalars["String"]["input"]>;
   filterOutAssignedProducts?: InputMaybe<Scalars["Boolean"]["input"]>;
   productId?: InputMaybe<Scalars["String"]["input"]>;
@@ -13055,8 +13075,8 @@ export type GetPendingUserFeedbackQueryVariables = Exact<{
 
 export type GetPendingUserFeedbackQuery = {
   __typename?: "Query";
-  pendingMobileUserJourney?: { __typename: "MobilePendingUserJourney"; journeyId: string; delay: number } | null;
-  pendingAppStoreReview?: {
+  journey?: { __typename: "MobilePendingUserJourney"; journeyId: string; delay: number } | null;
+  appStore?: {
     __typename: "AppStoreReviewPrompt";
     id: string;
     image: string;
@@ -13067,7 +13087,7 @@ export type GetPendingUserFeedbackQuery = {
     showAfterEvent?: string | null;
     showAfterSeconds: number;
   } | null;
-  pendingFeedbackForm?: {
+  form?: {
     __typename: "FeedbackForm";
     id: string;
     title: string;
@@ -13105,6 +13125,16 @@ export type GetPendingUserFeedbackQuery = {
       } | null> | null;
     }>;
   } | null;
+};
+
+export type SubmitFeedbackFormMutationVariables = Exact<{
+  id: Scalars["ID"]["input"];
+  answers?: InputMaybe<Array<InputMaybe<AnswerInput>> | InputMaybe<AnswerInput>>;
+}>;
+
+export type SubmitFeedbackFormMutation = {
+  __typename?: "Mutation";
+  submitFeedbackForm: { __typename?: "SubmitFeedbackFormResponse"; message: string };
 };
 
 export type MarkMobileNotificationsAsViewedByTypeMutationVariables = Exact<{
@@ -28277,6 +28307,7 @@ export const GetPendingUserFeedbackDocument = {
         selections: [
           {
             kind: "Field",
+            alias: { kind: "Name", value: "journey" },
             name: { kind: "Name", value: "pendingMobileUserJourney" },
             selectionSet: {
               kind: "SelectionSet",
@@ -28289,6 +28320,7 @@ export const GetPendingUserFeedbackDocument = {
           },
           {
             kind: "Field",
+            alias: { kind: "Name", value: "appStore" },
             name: { kind: "Name", value: "pendingAppStoreReview" },
             selectionSet: {
               kind: "SelectionSet",
@@ -28307,6 +28339,7 @@ export const GetPendingUserFeedbackDocument = {
           },
           {
             kind: "Field",
+            alias: { kind: "Name", value: "form" },
             name: { kind: "Name", value: "pendingFeedbackForm" },
             arguments: [
               {
@@ -28421,6 +28454,53 @@ export const GetPendingUserFeedbackDocument = {
     },
   ],
 } as unknown as DocumentNode<GetPendingUserFeedbackQuery, GetPendingUserFeedbackQueryVariables>;
+export const SubmitFeedbackFormDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SubmitFeedbackForm" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "answers" } },
+          type: { kind: "ListType", type: { kind: "NamedType", name: { kind: "Name", value: "AnswerInput" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "submitFeedbackForm" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: { kind: "Variable", name: { kind: "Name", value: "id" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "answers" },
+                value: { kind: "Variable", name: { kind: "Name", value: "answers" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "message" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SubmitFeedbackFormMutation, SubmitFeedbackFormMutationVariables>;
 export const MarkMobileNotificationsAsViewedByTypeDocument = {
   kind: "Document",
   definitions: [
