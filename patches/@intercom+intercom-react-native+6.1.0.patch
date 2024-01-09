@@ -1,3 +1,14 @@
+diff --git a/node_modules/@intercom/intercom-react-native/android/build.gradle b/node_modules/@intercom/intercom-react-native/android/build.gradle
+index 65f5da5..ab3801a 100644
+--- a/node_modules/@intercom/intercom-react-native/android/build.gradle
++++ b/node_modules/@intercom/intercom-react-native/android/build.gradle
+@@ -60,5 +60,5 @@ dependencies {
+     //noinspection GradleDynamicVersion
+     implementation "com.facebook.react:react-native:+"  // From node_modules
+     implementation "com.google.firebase:firebase-messaging:${safeExtGet('firebaseMessagingVersion', '20.2.+')}"
+-    implementation 'io.intercom.android:intercom-sdk:15.3.0'
++    implementation 'io.intercom.android:intercom-sdk:15.6.0'
+ }
 diff --git a/node_modules/@intercom/intercom-react-native/ios/IntercomModule.m b/node_modules/@intercom/intercom-react-native/ios/IntercomModule.m
 index bc21f51..b1f59bb 100644
 --- a/node_modules/@intercom/intercom-react-native/ios/IntercomModule.m
