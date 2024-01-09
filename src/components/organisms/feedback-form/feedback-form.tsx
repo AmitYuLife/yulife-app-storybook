@@ -1,16 +1,14 @@
 import React, { useCallback, memo } from "react";
 import { Loading } from "@atoms";
-import { FeedbackFormQuestionType, AnswerInput } from "@graphql/_core/schema/globalTypes";
+import { FeedbackFormQuestionType, AnswerInput, GetPendingUserFeedbackQuery } from "@graphql/__generated";
 import NumberSliderQuestion from "./questions/number-slider";
 import CommentQuestion from "./questions/comment";
 import MultipleChoice from "./questions/multiple-choice";
-import { PendingPromptsForm } from "@graphql/_core/schema";
 import useFormState from "./form-state.hook";
-import { SUPPORTED_TYPES } from "@graphql/member";
 import Logger from "@services/logging/logger";
 
 interface Props {
-  form: PendingPromptsForm["pendingFeedbackForm"];
+  form: GetPendingUserFeedbackQuery["form"];
   submitForm: (answers: AnswerInput[]) => void;
   loading: boolean;
 }
@@ -21,11 +19,7 @@ interface Props {
  */
 
 const FeedbackModal = ({ form, submitForm, loading }: Props) => {
-  const { defaultAnswer, saveAnswer, question, answers, canGoBack, goBack } = useFormState(
-    form,
-    submitForm,
-    SUPPORTED_TYPES
-  );
+  const { defaultAnswer, saveAnswer, question, answers, canGoBack, goBack } = useFormState(form, submitForm);
   const onDismiss = useCallback(() => {
     submitForm(answers);
     Logger.logMixpanelEvent("modal_dismissed", {
@@ -39,7 +33,7 @@ const FeedbackModal = ({ form, submitForm, loading }: Props) => {
     return <Loading />;
   }
 
-  if (question.type === FeedbackFormQuestionType.NUMBER_SLIDER) {
+  if (question.type === FeedbackFormQuestionType.NumberSlider) {
     return (
       <NumberSliderQuestion
         slider={{
@@ -62,7 +56,7 @@ const FeedbackModal = ({ form, submitForm, loading }: Props) => {
     );
   }
 
-  if (question.type === FeedbackFormQuestionType.COMMENT) {
+  if (question.type === FeedbackFormQuestionType.Comment) {
     return (
       <CommentQuestion
         heading={form?.title}
@@ -80,7 +74,7 @@ const FeedbackModal = ({ form, submitForm, loading }: Props) => {
     );
   }
 
-  if (question.type === FeedbackFormQuestionType.MULTIPLE_CHOICE) {
+  if (question.type === FeedbackFormQuestionType.MultipleChoice) {
     return (
       <MultipleChoice
         heading={form?.title}

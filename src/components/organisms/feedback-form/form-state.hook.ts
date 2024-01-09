@@ -1,13 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
-import { PendingPromptsForm } from "@graphql/_core/schema";
-import { AnswerInput, FeedbackFormQuestionType } from "@graphql/_core/schema/globalTypes";
+import { GetPendingUserFeedbackQuery, AnswerInput } from "@graphql/__generated";
 import { useBackHandler } from "@hooks";
 import Logger from "@services/logging/logger";
+import { SUPPORTED_FEEDBACK_FORM_TYPES } from "@graphql/constants";
 
 export default function useFormState(
-  form: PendingPromptsForm["pendingFeedbackForm"],
-  submitForm: (answers: AnswerInput[]) => void,
-  supportedQuestionTypes: FeedbackFormQuestionType[]
+  form: GetPendingUserFeedbackQuery["form"],
+  submitForm: (answers: AnswerInput[]) => void
 ) {
   const [answers, setAnswers] = useState([] as AnswerInput[]);
   const [question, setQuestion] = useState<Question>(null);
@@ -43,7 +42,7 @@ export default function useFormState(
       }
 
       setAnswers(newAnswers);
-      const nextQuestion = getNextQuestion(question, value, form.questions, supportedQuestionTypes);
+      const nextQuestion = getNextQuestion(question, value, form.questions);
       if (nextQuestion) {
         setQuestion(nextQuestion);
         Logger.logMixpanelEvent("question_interaction", {
@@ -60,7 +59,7 @@ export default function useFormState(
         });
       }
     },
-    [answers, submitForm, question, form, supportedQuestionTypes]
+    [answers, submitForm, question, form]
   );
 
   /**
@@ -105,14 +104,9 @@ export default function useFormState(
  * Helpers & types
  */
 
-type Question = PendingPromptsForm["pendingFeedbackForm"]["questions"][0];
+type Question = GetPendingUserFeedbackQuery["form"]["questions"][0];
 
-const getNextQuestion = (
-  currentQuestion: Question,
-  answerValue: string,
-  questions: Question[],
-  supportedQuestionTypes: FeedbackFormQuestionType[]
-): Question => {
+const getNextQuestion = (currentQuestion: Question, answerValue: string, questions: Question[]): Question => {
   // find a matching regex condition
   const condition = currentQuestion.nextConditions.find((c) => answerValue.match(new RegExp(c.regexMatch)));
   if (!condition) {
@@ -121,7 +115,7 @@ const getNextQuestion = (
 
   // return the question by the condition key
   const nextQuestion = questions.find(
-    (q) => q.key === condition.questionKey && supportedQuestionTypes.includes(q.type)
+    (q) => q.key === condition.questionKey && SUPPORTED_FEEDBACK_FORM_TYPES.includes(q.type)
   );
   return nextQuestion;
 };

@@ -1,39 +1,33 @@
 import React, { useCallback, useEffect } from "react";
 import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
-import {
-  GQL_SUBMIT_FEEDBACK_FORM,
-  SubmitFeedbackFormMutationTuple,
-  GQL_PENDING_PROMPTS_FORM,
-  SUPPORTED_TYPES,
-} from "@graphql/member";
+import { SUPPORTED_FEEDBACK_FORM_TYPES } from "@graphql/constants";
 import { useMutation, useQuery } from "@apollo/client";
-import { PendingPromptsForm } from "@graphql/_core/schema";
 import { AnswerInput } from "@graphql/_core/schema/globalTypes";
 import { FeedbackForm } from "@organisms";
 import { useDispatch } from "react-redux";
 import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
 import Logger from "@services/logging/logger";
+import { gql } from "@graphql/__generated";
 
 const FeedbackModal = () => {
-  const [submitFeedbackForm, { loading: submitting }] =
-    useMutation<SubmitFeedbackFormMutationTuple>(GQL_SUBMIT_FEEDBACK_FORM);
-  const { data, loading: queryLoading } = useQuery<PendingPromptsForm>(GQL_PENDING_PROMPTS_FORM, {
+  const [submitFeedbackForm, { loading: submitting }] = useMutation(gql("SubmitFeedbackFormDocument"));
+  const { data, loading: queryLoading } = useQuery(gql("GetPendingUserFeedbackDocument"), {
     fetchPolicy: "cache-only",
     variables: {
-      supportedTypes: SUPPORTED_TYPES,
+      supportedTypes: SUPPORTED_FEEDBACK_FORM_TYPES,
     },
   });
 
   useEffect(() => {
-    if (data?.pendingFeedbackForm) {
+    if (data?.form) {
       Logger.logMixpanelEvent("modal_viewed", {
         name: "feedback.modal",
-        survey_title: data.pendingFeedbackForm.title,
-        reward_value: data.pendingFeedbackForm.awardYucoin,
+        survey_title: data.form.title,
+        reward_value: data.form.awardYucoin,
       });
     }
-  }, [data?.pendingFeedbackForm]);
+  }, [data?.form]);
 
   const dispatch = useDispatch();
 
@@ -42,13 +36,13 @@ const FeedbackModal = () => {
       try {
         await submitFeedbackForm({
           variables: {
-            id: data.pendingFeedbackForm.id,
+            id: data.form.id,
             answers,
           },
         });
         dispatch(getUserDataStart([AppDataType.coinLedger, AppDataType.todayActivity]));
       } catch (e) {
-        Logger.error(e, { location: "feedback.modal", feedbackId: data?.pendingFeedbackForm?.id });
+        Logger.error(e, { location: "feedback.modal", feedbackId: data?.form?.id });
       } finally {
         await Navigation.dismissModal(MODALS.feedback);
       }
@@ -56,7 +50,7 @@ const FeedbackModal = () => {
     [submitFeedbackForm, dispatch, data]
   );
 
-  return <FeedbackForm form={data.pendingFeedbackForm} submitForm={submitForm} loading={submitting || queryLoading} />;
+  return <FeedbackForm form={data.form} submitForm={submitForm} loading={submitting || queryLoading} />;
 };
 
 export default FeedbackModal;
