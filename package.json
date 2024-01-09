@@ -83,7 +83,7 @@
     "@apollo/client": "^3.8.7",
     "@bugsnag/plugin-react-native-navigation": "^7.19.0",
     "@bugsnag/react-native": "^7.22.2",
-    "@intercom/intercom-react-native": "6.1.0",
+    "@intercom/intercom-react-native": "6.3.0",
     "@leanplum/react-native-sdk": "^2.0.0",
     "@lottiefiles/react-lottie-player": "^3.5.3",
     "@react-native-async-storage/async-storage": "^1.21.0",
