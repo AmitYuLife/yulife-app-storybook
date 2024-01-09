@@ -41,6 +41,7 @@ import leaderboardReducer, {
 } from "../leaderboards/leaderboards.reducer";
 
 import hintsReducer, { IHintsStore, getInitialState as getInitialHintsState } from "@redux/hints/hints.reducer";
+import yuHealthReducer, { IYuHealthStore, getInitialYuHealthState } from "@redux/yu-health/yu-health.reducer";
 
 export interface IReduxState {
   app: IAppStore;
@@ -61,6 +62,7 @@ export interface IReduxState {
   sudoku: ISudokuStore;
   hints: IHintsStore;
   leaderboard: ILeaderboardsStore;
+  yuHealth: IYuHealthStore;
 }
 
 export const initialState: IReduxState = {
@@ -82,6 +84,7 @@ export const initialState: IReduxState = {
   adBanners: getInitialAdbannersState(),
   sudoku: getInitialSudokuState(),
   leaderboard: getInitialLeaderboardState(),
+  yuHealth: getInitialYuHealthState(),
 };
 
 // this alias is created for testing purposes
@@ -106,6 +109,7 @@ const combinedReducers = combineReducers({
   sudoku: sudokuReducer,
   hints: hintsReducer,
   leaderboard: leaderboardReducer,
+  yuHealth: yuHealthReducer,
 });
 
 export default combinedReducers;

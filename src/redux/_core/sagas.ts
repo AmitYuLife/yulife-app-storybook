@@ -21,6 +21,7 @@ import assetsSagas from "../assets/assets.saga";
 import serverDrivenUISagas from "../server-driven-ui/sdui.sagas";
 import adBannersSagas from "../ad-banners/sagas";
 import getDailyPensionSagas from "../daily-pension/sagas";
+import yuHealthSagas from "../yu-health/sagas";
 
 export default function* allSagas() {
   yield all([
@@ -46,5 +47,6 @@ export default function* allSagas() {
     ...detoxSagas,
     ...serverDrivenUISagas,
     ...adBannersSagas,
+    ...yuHealthSagas,
   ]);
 }
