@@ -1,7 +1,7 @@
 import { navigation } from "@utils"
 import {expect} from 'detox'
 import { scrollUntilIdVisible, scrollUntilTextVisible } from "_utils/navigation/scrolling"
-import { TEXT_TEMPLATE, WELLBEING_HUB_ITEM_SCROLL_VIEW, WELLBEING_HUB_SCROLL_VIEW } from "@ids"
+import { SDUI_BODY_SCROLL, TEXT_TEMPLATE, WELLBEING_HUB_ITEM_SCROLL_VIEW, WELLBEING_HUB_SCROLL_VIEW } from "@ids"
 import * as fixture from "../_resources/fixtures"
 import * as constant from "../_resources/constants"
 import { BupaWellbeingHubItem } from "../_resources/types"
@@ -69,7 +69,7 @@ export const bupaWellbeingItemsVisible = async () => {
 
 export const onCorrectWellbeingItemPage = (item: BupaWellbeingHubItem) => async () => {
     for (const i of item.content) {
-        await scrollUntilTextVisible(WELLBEING_HUB_ITEM_SCROLL_VIEW, i.text[i.text.length - 1], "down")()
+        await scrollUntilTextVisible(SDUI_BODY_SCROLL, i.text[i.text.length - 1], "down")()
         await textVisible(i.header)()
         i.text.forEach(text => async () => {
             await textVisible(text)()
@@ -79,7 +79,7 @@ export const onCorrectWellbeingItemPage = (item: BupaWellbeingHubItem) => async 
 }
 
 export const haveAQuestionVisible = async () => {
-    await scrollUntilTextVisible(WELLBEING_HUB_ITEM_SCROLL_VIEW, constant.helpCentreButtonText, "down")()
+    await scrollUntilTextVisible(SDUI_BODY_SCROLL, constant.helpCentreButtonText, "down")()
     await textVisible (constant.haveAQuestionHeader)()
     await textVisible (constant.haveAQuestionText)()
     await textVisible (constant.helpCentreButtonText)()

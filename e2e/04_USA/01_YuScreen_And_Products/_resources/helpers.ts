@@ -211,11 +211,12 @@ export const ENROLMENT_VISIBLE = async (date:typeof BPEW_GDent_10, state = "pre"
 
 export const CHECK_WELLBEING_HUB = async (customer: any, seed: BoxOption) => {
     const firstName = customer.data.firstName;
+    const lastName = customer.data.lastName;
 
     When(`I scroll down to ${seed.description}`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, seed.description, "down"), async () => {
         When(`I tap ${seed.description}`, when.tapText(seed.description), async () => {
             Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
-            Then(`I should see Hi ${firstName} text`, then.textVisible(`Hi ${firstName}`))
+            Then(`I should see Hi ${firstName} ${lastName} text`, then.textVisible(`Hi ${firstName} ${lastName}`))
             Then(`I should see Hi ${text.wellbeingHubDescription} text`, then.textVisible(text.wellbeingHubDescription))
             Then(`I should see All text`, then.textVisible("All"))
             Then("I should see Smart Health ", then.idVisible(TEXT_TEMPLATE("Smart Health")))
