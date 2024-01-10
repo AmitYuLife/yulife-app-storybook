@@ -25,6 +25,7 @@ function* showCompletedEvents(completedEvents: Partial<Events>[]) {
         client().query({
           query: gql("GetGoalDetailsDocument"),
           variables: { id },
+          fetchPolicy: "network-only",
         })
       );
     })
