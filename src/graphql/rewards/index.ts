@@ -1,5 +1,4 @@
 export * from "./getAllPurchases.gql";
-export * from "./getMobileRewardsList.gql";
 export * from "./getMobilePurchasesList.gql";
 export * from "./redeemReward.gql";
 export * from "./getRewardItemDetails.gql";

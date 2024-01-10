@@ -5,6 +5,7 @@ import { ViewStyle, StyleSheet, Animated, Easing } from "react-native";
 import { Colours } from "@styles";
 import { EVENT_PROGRESS_BAR } from "@ids";
 import { DETOX_ENABLED } from "@services/socket";
+import { Pulse } from "@atoms";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -74,9 +75,19 @@ export interface IProgressBarProps {
   isDisabled?: boolean;
   type?: "full" | "compact";
   milestones?: ProgressBarMilestone[];
+  showPulse?: boolean;
 }
 
-const ProgressBar = ({ isDisabled, width, current, max, milestones = [], type = "full", style }: IProgressBarProps) => {
+const ProgressBar = ({
+  isDisabled,
+  width,
+  current,
+  max,
+  milestones = [],
+  type = "full",
+  style,
+  showPulse,
+}: IProgressBarProps) => {
   const progressBarValues = useMemo(
     () => (type === "full" ? FULL_PROGRESS_BAR_VALUES : COMPACT_PROGRESS_BAR_VALUES),
     [type]
@@ -96,9 +107,10 @@ const ProgressBar = ({ isDisabled, width, current, max, milestones = [], type = 
   const color = isDisabled ? Colours.neutral.n200 : Colours.primary.p400;
   const fullWidth = useMemo(() => width || defaultWidth, [width, defaultWidth]);
 
-  // these extra pixels are so that rounded edges are not cut off outside the viewBox
-  const adjustedWidth = useMemo(() => fullWidth + 10, [fullWidth]);
-  const svgStyle = useMemo(() => ({ top: -1, left: -1 }), []);
+  // these extra pixels are so that rounded edges and pulse animations are not cut off outside the viewBox
+  const adjustedWidth = useMemo(() => fullWidth + 22, [fullWidth]);
+  const svgStyle = useMemo(() => ({ top: -1, left: -1, marginVertical: -11 }), []);
+  const svgHeight = adjustedHeight + 30;
 
   const progress = useMemo(() => (current > max ? max : current) / max, [current, max]);
   const viewBox = useMemo(() => `0 0 ${adjustedWidth} ${adjustedHeight}`, [adjustedWidth, adjustedHeight]);
@@ -106,8 +118,6 @@ const ProgressBar = ({ isDisabled, width, current, max, milestones = [], type = 
     () => Math.max(progress * fullWidth, rectBorderRadius * 2),
     [progress, fullWidth, rectBorderRadius]
   );
-
-  const svgHeight = adjustedHeight + 8;
 
   return (
     <Svg
@@ -117,6 +127,9 @@ const ProgressBar = ({ isDisabled, width, current, max, milestones = [], type = 
       style={StyleSheet.flatten([svgStyle, style])}
       testID={EVENT_PROGRESS_BAR(progress)}
     >
+      {!showPulse ? null : (
+        <Pulse x={fullWidth + circleHorizontalOffset} y={circleVerticalCenter} radius={25} innerRadius={10} />
+      )}
       {/* progress bar border */}
       <Rect
         x={1}

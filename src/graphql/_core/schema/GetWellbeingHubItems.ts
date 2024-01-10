@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -9,28 +9,34 @@ import { OS } from "./globalTypes";
 // GraphQL query operation: GetWellbeingHubItems
 // ====================================================
 
-export interface GetWellbeingHubItems_wellbeingHubItems_thumbnail {
+export interface GetWellbeingHubItems_items_thumbnail {
   id: string;
   uri: string | null;
 }
 
-export interface GetWellbeingHubItems_wellbeingHubItems_icon {
+export interface GetWellbeingHubItems_items_icon {
   id: string;
   uri: string | null;
 }
 
-export interface GetWellbeingHubItems_wellbeingHubItems {
+export interface GetWellbeingHubItems_items {
   id: string;
   sduiStepId: string;
-  thumbnail: GetWellbeingHubItems_wellbeingHubItems_thumbnail | null;
-  icon: GetWellbeingHubItems_wellbeingHubItems_icon | null;
+  thumbnail: GetWellbeingHubItems_items_thumbnail | null;
+  icon: GetWellbeingHubItems_items_icon | null;
   title: string;
   description: string;
   route: string | null;
 }
 
+export interface GetWellbeingHubItems_categories {
+  id: string;
+  name: string;
+}
+
 export interface GetWellbeingHubItems {
-  wellbeingHubItems: GetWellbeingHubItems_wellbeingHubItems[];
+  items: GetWellbeingHubItems_items[];
+  categories: GetWellbeingHubItems_categories[];
 }
 
 export interface GetWellbeingHubItemsVariables {

@@ -41,7 +41,8 @@ export interface IEventPanelProps {
   };
   isDisabled?: boolean;
   buttonText?: string;
-  onPanelPress: () => void;
+  showPulse?: boolean;
+  onPanelPress?: () => void;
   onButtonPress?: () => void;
   onLayout?: () => void;
 }
@@ -61,6 +62,7 @@ const EventPanel = ({
   tags,
   isDisabled,
   buttonText,
+  showPulse,
   onPanelPress,
   onButtonPress,
   onLayout,
@@ -71,26 +73,41 @@ const EventPanel = ({
   const wrapperStyle = [styles.wrapper, { backgroundColor: borderColor, width }];
   const containerStyle = [styles.container, { backgroundColor, borderColor }];
   const badgeStyle = [styles.badgeContainer, { backgroundColor: badge?.backgroundColor }];
+  const challengeColors =
+    type === "rewards"
+      ? {
+          fontColor: Colours.primary.p600,
+        }
+      : {
+          fontColor: fontColor,
+          tintColor: fontColor,
+        };
 
   return (
     <PressableWithDelay onPress={onPanelPress}>
       <View style={wrapperStyle} onLayout={onLayout}>
         <View style={containerStyle}>
           {!backgroundImage || type !== "rewards" ? null : (
-            <Image width={width - 2} source={backgroundImage} style={styles.backgroundImage} resizeMode="cover" />
+            <Image
+              width={width - 4}
+              height={Style.adjust(133)}
+              source={backgroundImage}
+              style={styles.backgroundImage}
+              resizeMode="cover"
+            />
           )}
           <View style={styles.header}>
             <View style={styles.headerTitle}>
-              <TextTemplate numberOfLines={1} type="b1b" color={fontColor}>
+              <TextTemplate numberOfLines={1} type={type === "rewards" ? "b2b" : "b1b"} color={fontColor}>
                 {title}
               </TextTemplate>
             </View>
-            {!buttonText ? (
+            {!onPanelPress ? null : buttonText ? (
+              <Button onPress={buttonPress} size="ExtraSmall" shadowColor="transparent" label={buttonText} />
+            ) : (
               <TouchableWithoutFeedback onPress={buttonPress}>
                 <ArrowButton color={Colours.neutral.white} intent={isDisabled ? "secondary" : "primary"} />
               </TouchableWithoutFeedback>
-            ) : (
-              <Button onPress={buttonPress} size="ExtraSmall" shadowColor="transparent" label={buttonText} />
             )}
           </View>
           <View style={styles.challenges}>
@@ -102,9 +119,13 @@ const EventPanel = ({
                   height={Style.adjust(16)}
                   style={styles.challengeIcon}
                   source={challenge.icon}
-                  tintColor={fontColor}
+                  tintColor={challengeColors.tintColor}
                 />
-                <TextTemplate type="l1" color={fontColor} testID={EVENT_DESCRIPTION(challenge.description)}>
+                <TextTemplate
+                  type="l1"
+                  color={challengeColors.fontColor}
+                  testID={EVENT_DESCRIPTION(challenge.description)}
+                >
                   {challenge.description}
                 </TextTemplate>
               </View>
@@ -118,6 +139,7 @@ const EventPanel = ({
               current={progressBar.current}
               max={progressBar.max}
               milestones={milestones}
+              showPulse={showPulse}
             />
           </View>
           <View style={styles.tags}>

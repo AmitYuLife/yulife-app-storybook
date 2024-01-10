@@ -171,6 +171,9 @@ const documents = {
   GetReferralBackgroundDocument: types.GetReferralBackgroundDocument,
   GetReferralOnboardingPopoverDocument: types.GetReferralOnboardingPopoverDocument,
   GetReferralInformationDocument: types.GetReferralInformationDocument,
+  GetMobileRewardsGoalProductMilestonesDocument: types.GetMobileRewardsGoalProductMilestonesDocument,
+  GetMobileRewardsListDocument: types.GetMobileRewardsListDocument,
+  GetRewardsProductsListDocument: types.GetRewardsProductsListDocument,
   GetMobileSocialGroupLeaderboardItemsDocument: types.GetMobileSocialGroupLeaderboardItemsDocument,
   GetMobileSocialGroupLeaderboardsDocument: types.GetMobileSocialGroupLeaderboardsDocument,
   UpdateMobileSocialLeaderboardConsentsDocument: types.UpdateMobileSocialLeaderboardConsentsDocument,
@@ -936,6 +939,20 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetReferralInformationDocument"): typeof documents["GetReferralInformationDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "GetMobileRewardsGoalProductMilestonesDocument"
+): typeof documents["GetMobileRewardsGoalProductMilestonesDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetMobileRewardsListDocument"): typeof documents["GetMobileRewardsListDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetRewardsProductsListDocument"): typeof documents["GetRewardsProductsListDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

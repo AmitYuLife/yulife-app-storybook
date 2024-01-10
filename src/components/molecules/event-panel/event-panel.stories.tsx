@@ -80,14 +80,14 @@ const rewardArgs: ComponentProps<typeof EventPanel> = {
   type: "rewards",
   width: 360,
   backgroundImage: {
-    uri: "https://yulife-local.imgix.net/product-game/card-bg-forest-2023-12-06.svg?ixlib=js-3.2.1&w=1023&h=405&s=965018cfff743e1c72f9b5de017ad90d",
+    uri: "https://yulife-local.imgix.net/product-game/card-bg-forest-2023-12-18.svg?ixlib=js-3.2.1&w=1017&h=408&s=f90d8d039373ccea7a7f0a8411d4bf78",
   },
   title: "Level up to unlock new rewards",
   challenges: [
     {
-      description: "1 / 6 Rewards",
+      description: "1/6 Rewards",
       icon: {
-        uri: "https://yulife-local.imgix.net/static_steps/game_mechanics_information/gift.svg?ixlib=js-3.2.1&w=48&h=48&s=373c711384f483e7da1582e361678bfd",
+        uri: "https://yulife-local.imgix.net/duotone/gift-box-pink.svg?ixlib=js-3.2.1&w=48&h=48&s=e8be56330f7d653e68cc3e22652d6311",
       },
     },
   ],
@@ -128,8 +128,8 @@ const rewardArgs: ComponentProps<typeof EventPanel> = {
     },
   ],
   fontColor: "#464647",
-  backgroundColor: "#C6F0FF",
-  borderColor: "#BAE2F0",
+  backgroundColor: "#FFFFFF",
+  borderColor: "#E7E7EB",
   tags: {
     tag: "165 days left",
     icon: {
@@ -137,6 +137,7 @@ const rewardArgs: ComponentProps<typeof EventPanel> = {
     },
   },
   isDisabled: false,
+  buttonText: null,
   onPanelPress: () => {
     /* do nothing */
   },

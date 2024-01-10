@@ -6,10 +6,9 @@ import { ScrollableLayout } from "@molecules";
 import { styles, QuestionProps } from "./common";
 import { FEEDBACK_FORM_QUESTION, FEEDBACK_TEXT_INPUT } from "@ids";
 import { Style } from "@styles";
-import { PendingPromptsForm_pendingFeedbackForm_questions_options as IOptions } from "@graphql/_core/schema";
-
+import { FeedbackFormQuestionOption } from "@graphql/__generated";
 interface Props extends QuestionProps {
-  options: IOptions[];
+  options: FeedbackFormQuestionOption[];
 }
 
 export default ({
