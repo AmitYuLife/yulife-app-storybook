@@ -13,6 +13,7 @@ import {
 import moment from "moment";
 import { CUSTOMER_37 } from "@data";
 import { expect } from 'detox'
+import { dataManager, generateRandomPostgresId } from "@yu-life/yulife-bdd-framework";
 
 export const {
   scrollFromText,
@@ -195,3 +196,33 @@ export const continueCheckoutDental = async () => {
   await tapText(acceptAndRead)();
   await navigateViaText("Continue to payment");
 };
+
+export const sendStripeInvoice = (id: string, subscription: string, charge: number) => async () => {
+  await dataManager.sendStripeWebhookEvent({
+  id: generateRandomPostgresId(),
+  type: "invoice.created",
+  data: {
+    object: {
+      id: id,
+      subscription: subscription,
+      subtotal: charge
+      }
+    }
+  })
+  await wait(5000)()
+}
+
+export const sendStripePayment = (id: string, subscription: string, charge: number) => async () => {
+  await dataManager.sendStripeWebhookEvent({
+  id: generateRandomPostgresId(),
+  type: "invoice.payment_succeeded",
+  data: {
+    object: {
+      id: id,
+      subscription: subscription,
+      subtotal: charge
+      }
+    }
+  })
+  await wait(5000)()
+}
