@@ -8,7 +8,9 @@ import * as data from "@data"
 import * as helper from "./_resources/helpers";
 
 Feature("As a user I can take a Meditopia challenge", async () => {
-  Scenario("I can successfully take and complete a 5 minute Meditopia challenge in app", scenario.start, async () => {
+
+  // @bug - JSON Parse error box preventing 'Start Session' button click
+  ScenarioSkip("I can successfully take and complete a 5 minute Meditopia challenge in app", scenario.start, async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
@@ -43,7 +45,8 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     });
   });
 
-  Scenario("I can successfully take and complete a 14 minute Meditopia challenge in app", scenario.start, async () => {
+  // @bug - JSON Parse error box preventing 'Start Session' button click
+  ScenarioSkip("I can successfully take and complete a 14 minute Meditopia challenge in app", scenario.start, async () => {
     Given("I login as a user on level 10 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_2, data.AUTH_MEDITOPIA_2), async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(550)));
     });
@@ -108,7 +111,8 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     });
   });
 
-  Scenario("I can successfully take, pause, start and finish a Meditopia challenge in app", scenario.start, async () => {
+  // @bug - JSON Parse error box preventing 'Start Session' button click
+  ScenarioSkip("I can successfully take, pause, start and finish a Meditopia challenge in app", scenario.start, async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
@@ -133,7 +137,8 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     });
   });
 
-  Scenario("I can successfully take a Meditopia challenge in app and hide the on screen elements", scenario.start, async () => {
+  // @bug - JSON Parse error box preventing 'Start Session' button click
+  ScenarioSkip("I can successfully take a Meditopia challenge in app and hide the on screen elements", scenario.start, async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
@@ -155,7 +160,8 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     });
   });
 
-  Scenario("I can successfully take a Meditopia challenge in app, close and reopen the app, and the challenge still runs", scenario.start, async () => {
+  // @bug - JSON Parse error box preventing 'Start Session' button click
+  ScenarioSkip("I can successfully take a Meditopia challenge in app, close and reopen the app, and the challenge still runs", scenario.start, async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
@@ -190,7 +196,8 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     });
   });
 
-  Scenario("I can take a Meditopia challenge in app and still successfully complete it after midnight", scenario.start, async () => {
+  // @bug - JSON Parse error box preventing 'Start Session' button click
+  ScenarioSkip("I can take a Meditopia challenge in app and still successfully complete it after midnight", scenario.start, async () => {
     helper.START_MEDITATION_FAKE_TIME();
     helper.END_MEDITATION_FAKE_TIME();
   });

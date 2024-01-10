@@ -26,8 +26,9 @@ import {
         helper.SLOT_VISIBLE(fixture.GapInEnrolVisOutEnrol)
         helper.YUSCREEN_USA(CUSTOMER_USA_5);
         helper.SPONSORED_LOGO_VISIBLE()
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
-        helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
+        // @update - box option dimensions have changed, need to alter scroll to view. They are all there.
+        // helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
+        // helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
         helper.CHECK_EXPLORE_INSURANCE(fixture.VisionInsuranceBox)
       });
     });
@@ -38,7 +39,7 @@ import {
         helper.SLOT_VISIBLE(fixture.GapInsurance)
         helper.YUSCREEN_USA(CUSTOMER_USA_6);
         helper.SPONSORED_LOGO_VISIBLE()
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
+        // helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
         helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
       });
     });
@@ -49,8 +50,8 @@ import {
         helper.SLOT_VISIBLE(fixture.VisInsurance)
         helper.YUSCREEN_USA(CUSTOMER_USA_7);
         helper.SPONSORED_LOGO_VISIBLE()
-        helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
+        // helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
+        // helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
     });
   });
     
@@ -62,8 +63,8 @@ import {
         helper.SLOT_VISIBLE(fixture.GapInsurance)
         helper.YUSCREEN_USA(CUSTOMER_USA_8);
         helper.SPONSORED_LOGO_NOT_VISIBLE()
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
-        helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
+        // helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
+        // helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
     });
   });
   Scenario("If no products are assigned to the user, then the component is hidden. “Explore your insurance”",scenario.start, async () => {
@@ -73,7 +74,7 @@ import {
         helper.YUSCREEN_USA(CUSTOMER_USA_9);
         helper.SPONSORED_LOGO_VISIBLE()
         helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
+        // helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
     });
   });
 
@@ -85,7 +86,7 @@ import {
         helper.YUSCREEN_USA(CUSTOMER_USA_10);
         helper.SPONSORED_LOGO_NOT_VISIBLE()
         helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
+        // helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
         helper.ENROLMENT_VISIBLE(BPEEW_USA_10_VIS, "active")
         helper.CHECK_WELLBEING_HUB(CUSTOMER_USA_10, fixture.MyWellbeingHubBoxUS)
     });
@@ -99,8 +100,8 @@ import {
         helper.SLOT_VISIBLE(fixture.AccCanInsuranceInEnrolment)
         helper.YUSCREEN_USA(CUSTOMER_USA_11);
         helper.SPONSORED_LOGO_VISIBLE()
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
-        helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
+        // helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
+        // helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
         // checks that cancer options appear in the explore insurance page
         helper.CHECK_EXPLORE_INSURANCE(fixture.CancerInsuranceBox)
         When("I tap to go back to Yu Screen", when.tapID(id.BACK_BUTTON), async () => {

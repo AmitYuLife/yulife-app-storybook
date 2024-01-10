@@ -154,6 +154,7 @@ export const YUSCREEN_USA = async (customer: any) => {
     })
 }
 
+// @update - box option dimensions have changed, need to alter scroll to view. They are all there.
 export const BOX_OPTION_VISIBLE = async (seed: BoxOption) => {
     When(`I swipe from text ${text.createYumujiCTA, "up", "fast"}`, when.swipeFromText(text.createYumujiCTA, "up", "fast"), async () => {
         Then(`I should see ${seed.imageUrl} text`, then.idVisible(RIGHT_SIDE_IMAGE_BOX_OPTION(seed.imageUrl)))
