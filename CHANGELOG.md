@@ -7,6 +7,56 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.115.0] - 2024-01-10
+
+### Bugfixes
+
+- Bugfix ENG-3804: Event completed banner keeps popping up
+- Bugfix: benefits placeholder background
+- Bugfix: Refetch leaderboard when avatar updates
+
+### Tasks
+
+- Task: rename boosted to boost
+- Task XSE-2342: Rewards Store Goal Product Milestones
+- Task: YuHealth redux, default provider saga
+- Task ISA-1696: fetch pending journeys
+- Task: Add health connect min sdk exception
+- Task: Duel coins
+- Task: Change intercomLoginOnce toggle and small improvements
+- Task: Purge iosCyclingUseDays
+- Task: update react-native-in-app-review
+- Task: update react-native-linear-gradient
+- Task: Add YuHealth™
+- Task: update react-native-view-shot
+
+### Chores
+
+- Chore: fix detox pass percentage
+- Chore: upgrade intercom
+- Chore: feedback forms to new gql
+- Chore: wellbeing hub items to new gql
+- Chore: Upgrade intercom android sdk
+- Chore: Patch react-native-reanimated and expo-modules-core to update boost url
+- Chore: Move fragments to new gql
+- Chore: Move perk-subscription to new gql
+
+### Extra
+
+- Detox/10_1_24_fixes
+- Detox/vbus 1899 part 2
+- Detox/9_1_23_fixes
+- Purge: react-native-music-control
+- Detox/vbus 2339
+- Purge: hardcoded wellbeing hub
+- Detox/8_1_24_fixes_skips
+- Hotfix: added android tools to the manifest itself
+- Detox/Skips-05/01
+- Detox/vbus 1899 part one
+- detox/5_1_23_updates
+- Move isAndroid/isIos/isWeb to utils
+- Detox/fixes-04/01
+
 ## [3.114.0] - 2024-01-04
 
 ### Bugfixes
