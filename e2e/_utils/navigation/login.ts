@@ -8,7 +8,7 @@ import { getLocalisedString as t } from "@i18n";
 import {expect} from 'detox'
 
 
-
+// @flaky - sometimes cannot find Next button on login. Added wait, but need to watch behaviour
 export const loginAsUser = (
     customer = CUSTOMER_1,
     auth = AUTH_1 as IDatabaseItem,
@@ -27,7 +27,8 @@ export const loginAsUser = (
     await passwordField.replaceText(auth.data.password);
     await navigateViaID(BUTTON_LOGIN(false))
     if (firstTime) {
-        await navigateViaText(t("Next")) // sign-up reward screen
+        wait(3000)()
+        await navigateViaText("Next") // sign-up reward screen
     }
     await dismissPLIModalIfVisible()
     await dismissNewLooksModalIfVisible()
