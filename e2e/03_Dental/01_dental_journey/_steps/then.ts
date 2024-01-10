@@ -227,22 +227,16 @@ export const FAQInfo = async () => {
     await expect(element(by.text(faq14))).toBeVisible();
 }
 
-export const paymentHistoryInfo = (ammountPaid: string, payStatus: string) => async () => {
+export const paymentHistoryInfo = (amountPaid: string, payStatus: string, index= 0) => async () => {
     const paymentText = "Payment History"
     const todayDate = moment().format("DD/MM/YYYY")
     const helpInfo = "See something that doesn't look right? Feel free to contact us via chat"
 
-    await expect(element(by.text(paymentText))).toBeVisible();
-    await expect(element(by.text(todayDate))).toBeVisible();
-    await expect(element(by.text(ammountPaid))).toBeVisible();
-    await expect(element(by.text(payStatus))).toBeVisible();
-    await expect(element(by.text(helpInfo))).toBeVisible();
-
-    if(payStatus === "Failed") {
-        await expect(element(by.text(payStatus))).toBeVisible();
-    } else {
-        await expect(element(by.text(payStatus))).toBeVisible();
-    }
+    await textVisible(paymentText)()
+    await textVisibleAtIndex(todayDate, index)()
+    await textVisible(amountPaid)()
+    await textVisibleAtIndex(payStatus, index)()
+    await textVisible(helpInfo)()
 }
 
 export const cancelledNotificationVisible = async () => {
