@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback, useRef, useEffect, useMemo, useState } from "react";
+import React, { FC, memo, useCallback, useRef, useState } from "react";
 import { Animated, Easing, ViewStyle } from "react-native";
 import { G, Path, Circle, Text, ClipPath, Defs, Mask, Rect } from "react-native-svg";
 import moment from "moment";
@@ -9,7 +9,7 @@ import { getQuestScreenTimer } from "@utils";
 import { getLevelIcon } from "./level-slot-helpers";
 import { LevelBubbleBackground } from "./level-bubble-background";
 import { LevelOverlay } from "./level-overlay";
-import { Image } from "@atoms";
+import { Image, Pulse } from "@atoms";
 import { Style } from "@styles";
 import { GHI_REWARD_ICON } from "@ids";
 
@@ -70,38 +70,6 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
     nextLevelAvailableAt ? 1000 : null
   );
 
-  const animatedPulse = useRef(new Animated.Value(0)).current;
-  const pulse = useMemo(() => {
-    const startingOpacity = nextLevelAvailableAt ? 0.4 : 0.8;
-    return [
-      {
-        r: animatedPulse.interpolate({ inputRange: [0, 1], outputRange: [20, 60] }),
-        opacity: animatedPulse.interpolate({ inputRange: [0, 1], outputRange: [startingOpacity, 0] }),
-      },
-      {
-        r: animatedPulse.interpolate({ inputRange: [0, 0.25, 0.25, 1], outputRange: [50, 60, 20, 50] }),
-        opacity: animatedPulse.interpolate({
-          inputRange: [0, 0.25, 0.25, 1],
-          outputRange: [startingOpacity / 4, 0, startingOpacity, startingOpacity / 4],
-        }),
-      },
-      {
-        r: animatedPulse.interpolate({ inputRange: [0, 0.5, 0.5, 1], outputRange: [40, 60, 20, 40] }),
-        opacity: animatedPulse.interpolate({
-          inputRange: [0, 0.5, 0.5, 1],
-          outputRange: [startingOpacity / 2, 0, startingOpacity, startingOpacity / 2],
-        }),
-      },
-      {
-        r: animatedPulse.interpolate({ inputRange: [0, 0.75, 0.75, 1], outputRange: [30, 60, 20, 30] }),
-        opacity: animatedPulse.interpolate({
-          inputRange: [0, 0.75, 0.75, 1],
-          outputRange: [(startingOpacity * 3) / 4, 0, startingOpacity, (startingOpacity * 3) / 4],
-        }),
-      },
-    ];
-  }, [animatedPulse, nextLevelAvailableAt]);
-
   const maskId = `notification-mask_${x}_${y}`;
   const mask = notificationIcon ? `url(#${maskId})` : null;
   const notificationImageStyle = {
@@ -109,30 +77,6 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
     top: (y - radius - 2) * HEIGHT_WIDTH_MULTIPLIER,
     left: (x + radius - 14) * HEIGHT_WIDTH_MULTIPLIER,
   } as ViewStyle;
-
-  useEffect(() => {
-    return () => {
-      animatedPulse.stopAnimation();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (isActive && !DETOX_ENABLED) {
-      animatedPulse.stopAnimation();
-      animatedPulse.setValue(0);
-      Animated.loop(
-        Animated.timing(animatedPulse, {
-          toValue: 1,
-          duration: nextLevelAvailableAt ? 10000 : 5000,
-          easing: Easing.linear,
-          useNativeDriver: true,
-        })
-      ).start(() => animatedPulse.setValue(0));
-    } else {
-      animatedPulse.stopAnimation();
-      animatedPulse.setValue(0);
-    }
-  }, [isActive, animatedPulse, nextLevelAvailableAt]);
 
   const { handlePress: handlePressWithDelay } = usePressedInWithDelay({ onPress, delay: 1000 });
 
@@ -157,6 +101,8 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
   const textFont = isActive ? FONT_ACTIVE : FONT_COMPLETE;
   const textY = isActive ? 6 : 3;
   const showRating = !showTimer && !showIcon && !isActive;
+  const pulseDuration = nextLevelAvailableAt ? 10000 : 5000;
+  const pulseOpacity = nextLevelAvailableAt ? 0.4 : 0.8;
 
   return (
     <G x={x} y={y} onPressIn={handlePress}>
@@ -168,13 +114,6 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
           )}
         </Mask>
       </Defs>
-      {!isActive ? null : (
-        <>
-          {pulse.map((props, index) => (
-            <AnimatedCircle fill="none" stroke="white" key={index} {...props} />
-          ))}
-        </>
-      )}
       {/* Shifting position back and forth so that the mask encompasses the whole bubble */}
       <G x={-radius} y={-radius} mask={mask}>
         <G x={radius} y={radius}>
@@ -182,6 +121,7 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
           <LevelBubbleBackground radius={radius} colour={backgroundColour} colour2={backgroundColour2} />
         </G>
       </G>
+      {!isActive ? null : <Pulse radius={60} innerRadius={radius} duration={pulseDuration} opacity={pulseOpacity} />}
       {!showTimer ? null : (
         <>
           <Text y={-3} fill={textColour} font={FONT_TIMER} textAnchor="middle">

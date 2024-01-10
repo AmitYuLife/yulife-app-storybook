@@ -1,4 +1,3 @@
-import { GQL_QUERY_GET_MOBILE_REWARDS_LIST } from "@graphql/rewards";
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { Navigation } from "@navigation/main";
@@ -7,17 +6,19 @@ import {
   GetMobileRewardsListVariables as RewardsVariables,
   GetMobileRewardsList_data_list,
   GetRewardsProductsList,
+  GetMobileRewardsGoalProductMilestones as GoalProductMilestones,
 } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
 import { RewardsListScreen } from "@screens/index";
 import { IMainTabsProps, showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeen, useTapBackTwiceToExit } from "@hooks";
 import { t } from "@locale";
-import { GQL_QUERY_GET_REWARDS_PRODUCT_LIST } from "@graphql/rewards/getRewardProductsList.gql";
 import { useQuery } from "@apollo/client";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { useSelector } from "react-redux";
 import { RewardMilestoneDetails } from "../../../screens/member/rewards/list/subcomponents/reward-milestone-details";
+import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
+import { gql } from "@graphql/__generated";
 
 const MAX_PERSONAL_PRODUCTS_TO_SHOW = 2;
 
@@ -30,14 +31,28 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
   useTapBackTwiceToExit(componentId);
 
   const [getRewards, { loading, data: rewards }] = useQueryOnScreenSeen<Rewards, RewardsVariables>(
-    GQL_QUERY_GET_MOBILE_REWARDS_LIST,
+    gql("GetMobileRewardsListDocument"),
     ROUTES.rewards,
     { variables: { tag } }
   );
 
-  const { data: products } = useQuery<GetRewardsProductsList>(GQL_QUERY_GET_REWARDS_PRODUCT_LIST, {
+  const [getGoalProductMilestones, { data: goalProductMilestones }] = useQueryOnScreenSeen<GoalProductMilestones>(
+    gql("GetMobileRewardsGoalProductMilestonesDocument"),
+    ROUTES.rewards
+  );
+
+  const { data: products } = useQuery<GetRewardsProductsList>(gql("GetRewardsProductsListDocument"), {
     fetchPolicy: "network-only",
   });
+
+  const goalProductAction =
+    goalProductMilestones?.getMobileRewardsGoalProductMilestones?.goalProductMilestones?.sduiAction;
+  const { handleSduiAction: onGoalProductMilestonesPress } = useSduiCallbackFunctionOrReduxAction(goalProductAction);
+
+  const onRefresh = useCallback(() => {
+    getRewards();
+    getGoalProductMilestones();
+  }, [getRewards, getGoalProductMilestones]);
 
   const isLoading = !rewards?.data?.list?.length && loading;
 
@@ -124,9 +139,11 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
       selectedTag={tag}
       onTagPress={setTag}
       loading={isLoading}
-      onRefresh={getRewards}
+      onRefresh={onRefresh}
       rewardsData={rewards?.data}
       productsList={productsList}
+      goalProductMilestones={goalProductMilestones?.getMobileRewardsGoalProductMilestones}
+      onGoalProductMilestonesPress={!goalProductAction ? null : onGoalProductMilestonesPress}
       onLeftMenuPress={onLeftMenuPress}
       onPurchasesPress={handlePurchasesPress}
       onItemPress={handleRewardDetailsItemPress}

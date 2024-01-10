@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import {
+  GetMobileRewardsGoalProductMilestones,
   GetMobileRewardsList_data,
   GetMobileRewardsList_data_list,
   GetRewardsProductsList,
@@ -16,10 +17,13 @@ import { Stack } from "@atoms";
 import { StackDirection } from "@atoms/stack/stack";
 import HistoryAndStoreLocation from "./subcomponents/history-and-store-location";
 import { RewardsListItem } from "./rewards-list.item";
+import { EventPanel } from "@molecules";
 
 export interface IRewardsListScreenProps extends IConnectedScreenProps {
   rewardsData: GetMobileRewardsList_data;
   productsList?: GetRewardsProductsList["getRewardsProductsList"];
+  goalProductMilestones?: GetMobileRewardsGoalProductMilestones["getMobileRewardsGoalProductMilestones"];
+  onGoalProductMilestonesPress?: () => void;
   onItemPress: (item: GetMobileRewardsList_data_list) => void;
   onRefresh: () => void;
   selectedTag: string;
@@ -29,7 +33,11 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
   loading: boolean;
 }
 
-const CHIP_LIST_ID = "chip-list";
+const EXTRA_DATA = {
+  ChipList: "ChipList",
+  GoalProductMilestones: "GoalProductMilestones",
+} as const;
+type IData = GetMobileRewardsList_data["list"][number] | typeof EXTRA_DATA[keyof typeof EXTRA_DATA];
 
 const keyExtractor = (item: GetMobileRewardsList_data_list) => {
   if (typeof item === "string") {
@@ -43,9 +51,11 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
   const {
     rewardsData,
     productsList,
+    goalProductMilestones,
     selectedTag,
     onLeftMenuPress,
     onTagPress,
+    onGoalProductMilestonesPress,
     onRefresh,
     onItemPress,
     onPurchasesPress,
@@ -65,8 +75,8 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
   }, [onTagPress, selectedTag, rewardsData]);
 
   const renderItem = useCallback(
-    ({ item }: ListRenderItemInfo<GetMobileRewardsList_data_list | typeof CHIP_LIST_ID>) => {
-      if (item === CHIP_LIST_ID) {
+    ({ item }: ListRenderItemInfo<IData>) => {
+      if (item === EXTRA_DATA.ChipList) {
         if (!chips.length) {
           return null;
         }
@@ -78,16 +88,41 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
         );
       }
 
+      if (item === EXTRA_DATA.GoalProductMilestones) {
+        if (selectedTag !== "All") {
+          return null;
+        }
+
+        if (goalProductMilestones?.goalProductMilestones) {
+          return (
+            <View style={styles.rewardsEventPanel}>
+              <EventPanel
+                {...goalProductMilestones.goalProductMilestones}
+                type={"rewards"}
+                width={EVENT_PANEL_WIDTH}
+                onPanelPress={onGoalProductMilestonesPress}
+                showPulse={true}
+              />
+            </View>
+          );
+        }
+
+        return null;
+      }
+
       if (item.__typename === "MobileRewardsListItem") {
         return <RewardsListItem {...item} onPress={() => onItemPress(item)} />;
       }
 
       return null;
     },
-    [chips, onItemPress]
+    [chips, goalProductMilestones, onItemPress, onGoalProductMilestonesPress]
   );
 
-  const dataWithChiplist = useMemo(() => [CHIP_LIST_ID, ...(rewardsData?.list || [])], [rewardsData]);
+  const dataWithChiplist = useMemo(
+    () => [EXTRA_DATA.ChipList, EXTRA_DATA.GoalProductMilestones, ...(rewardsData?.list || [])],
+    [rewardsData]
+  );
 
   return (
     <RewardsListLayout
@@ -142,6 +177,9 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
 
 export default RewardsListScreen;
 
+const MARGIN = Style.adjust(16);
+const EVENT_PANEL_WIDTH = Style.DEVICE_WIDTH - MARGIN * 2;
+
 const styles = StyleSheet.create({
   listWrapper: {
     flex: 1,
@@ -157,7 +195,11 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginHorizontal: Style.adjust(16),
-    marginBottom: Style.adjust(16),
+    marginHorizontal: MARGIN,
+    marginBottom: MARGIN,
+  },
+  rewardsEventPanel: {
+    marginHorizontal: MARGIN,
+    marginBottom: MARGIN,
   },
 });

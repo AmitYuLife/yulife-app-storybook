@@ -9,6 +9,9 @@ fragment ContentItemBoxOptionCard on ContentItemBoxOptionCard {
   onPress {
     ...SduiAction
   }
+  event {
+    ...SduiAction
+  }
   styles {
     ...SduiStyle
   }

@@ -1,4 +1,4 @@
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 import { StyleSheet } from "react-native";
 
 export const baseStyles = StyleSheet.create({
@@ -65,12 +65,7 @@ export const baseStyles = StyleSheet.create({
     resizeMode: "contain",
     marginRight: 5,
   },
-  backgroundImage: {
-    ...StyleSheet.absoluteFillObject,
-    borderRadius: Style.adjust(15),
-    height: "100%",
-    overflow: "hidden",
-  },
+  backgroundImage: {},
 });
 
 export const rewardsEventPanelStyles = StyleSheet.create({
@@ -84,13 +79,38 @@ export const rewardsEventPanelStyles = StyleSheet.create({
     padding: Style.adjust(16),
     borderWidth: 1,
     borderRadius: Style.adjust(15),
+    overflow: "hidden",
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    height: Style.adjust(27),
   },
   challenges: {
     flexDirection: "row",
   },
+  challengeContainer: {
+    flexDirection: "row",
+    paddingHorizontal: Style.adjust(10),
+    paddingVertical: Style.adjust(2),
+    backgroundColor: Colours.primary.p40,
+    borderRadius: Style.adjust(17),
+  },
+  progressBar: {
+    marginTop: Style.adjust(6),
+  },
   tags: {
+    flexDirection: "row",
+    marginTop: Style.adjust(2),
+    justifyContent: "space-between",
+  },
+  backgroundImage: {
     position: "absolute",
-    bottom: Style.adjust(8),
-    left: Style.adjust(16),
+    top: 1,
+    left: 1,
+    right: 1,
+    bottom: 1,
+    borderRadius: Style.adjust(13),
+    overflow: "hidden",
   },
 });
