@@ -19,3 +19,7 @@ export const startedYucoinPill = "https://yulife-develop.imgix.net/yuscreen-all-
 export const notStartedYucoinPill = "https://yulife-develop.imgix.net/yuscreen-all-products/yucoin-badges/2023-08-23/blue.svg?ixlib=js-3.2.1&w=204&h=78&s=476fdcd04912227533821185f5992ae7"
 export const noProductsImg = "https://yulife-develop.imgix.net/yuscreen-all-products/empty/megaphone.png?ixlib=js-3.2.1&fm=png&w=438&h=429&s=1b217bb07aa7fd66c1e30a9e05d6fd89"
 export const noProductsMessage = "Watch this space, more from YuLife coming soon!"
+
+// product benefit text
+
+export const criticalIllnessBenefitHeader = "salary as lump sum"
