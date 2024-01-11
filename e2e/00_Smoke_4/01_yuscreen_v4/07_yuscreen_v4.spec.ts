@@ -9,6 +9,7 @@ import { GdentAvailableSoon, GdentAvailableSoonProduct, level1Benefit, wellbeing
 import * as ids from "@ids";
 import { CORE_REWARDS_ORDO_REWARDS } from "@data";
 import moment from "moment";
+import * as constants from "./_resources/constants"
 
 
 Feature("I am able to use the yuscreen v4, create a yumoji and see my correct product slot details", async () => {
@@ -69,17 +70,23 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             helper.ONBOARDING_YUSCREEN("3 Products Slots Started", "31")
             helper.YUSCREEN_V4(data.CUSTOMER_48, "6 Products Slots", "31", "More protection")
             helper.CREATE_DEFAULT_YUMOJI(300);
-            When("I swipe up the screen", when.swipeFromText("My Wellbeing Hub", "down", "fast"), async () => {
-                helper.WELLBEING_PRODUCT_VIEW(1, 31)
+            // add in test for company toggle showing product benefit
+            When("I view the critical illness product", when.tapText("Critical Illness"), async () => {
+                Then("I should see the product benefit information due to the company toggle being set to true", then.textVisible(`9x ${constants.criticalIllnessBenefitHeader}`))
             })
-            When("I close the Wellbeing Access page", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
-                When("I scroll to see the wellbeing hub", when.scrollUntilTextVisible(ids.YUSCREEN_SCROLL_VIEW, "Browse more protection", "down"), async () => {
-                    Then("I should see the wellbeing hub", then.wellbeingHubVisible())
+            When("I close the product screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
+                When("I swipe up the screen", when.swipeFromText("My Wellbeing Hub", "down", "fast"), async () => {
+                    helper.WELLBEING_PRODUCT_VIEW(1, 31)
                 })
-            })
-            When("I click on the wellbeing hub", when.tapText(wellbeingButtonTitle), async () => {
-                Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN))
-                Then("I should see all Wellbeing Hub services", then.wellbeingServiceVisible)
+                When("I close the Wellbeing Access page", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
+                    When("I scroll to see the wellbeing hub", when.scrollUntilTextVisible(ids.YUSCREEN_SCROLL_VIEW, "Browse more protection", "down"), async () => {
+                        Then("I should see the wellbeing hub", then.wellbeingHubVisible())
+                    })
+                })
+                When("I click on the wellbeing hub", when.tapText(wellbeingButtonTitle), async () => {
+                    Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN))
+                    Then("I should see all Wellbeing Hub services", then.wellbeingServiceVisible)
+                })
             })
         })
     })

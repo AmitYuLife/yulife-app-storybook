@@ -1,0 +1,1 @@
+export const criticalIllnessBenefitHeader = "salary as lump sum"

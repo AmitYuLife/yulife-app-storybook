@@ -7,7 +7,7 @@ import {
   DEFAULT_TOGGLES,
 } from "./_templates";
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { BUSINESS_ACCOUNT_5 } from "../postgres/business";
+import { BUSINESS_ACCOUNT_5, BUSINESS_ACCOUNT_6 } from "../postgres/business";
 
 const type = "mongo";
 const modelName = "usertoggles";
@@ -2324,3 +2324,15 @@ export const CUSTOMER_131_TOGGLES = {
     },
   },
 } as IDatabaseItem;
+
+export const BUSINESS_6_USER_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+      _id: generateRandomMongoId(),
+      businessAccountId: BUSINESS_ACCOUNT_6.data.business_account_id,
+      toggleType: 'business',
+      features: { dataRefreshEnabled: true,
+        hasProductBenefitVisible: true},
+  }
+} as IDatabaseItem

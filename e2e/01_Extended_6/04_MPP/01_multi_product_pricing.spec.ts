@@ -54,8 +54,14 @@ FeatureSkip("The MPP changes are visible in the YuLife App", async () => {
             Then("I can't see the dental insurance", then.textNotVisible(fixtures.gDentProductSlot.name))
             Then("I can see an option to see all protection", then.idVisible(ids.SLOT_TITLE("See all protection")))
         })
-        When("I click on the Saas product", when.tapText(fixtures.yulifeSaasProductSlot.name), async () => {
-            Then("I stay on the YuScreen", then.textVisible(`${data.CUSTOMER_124_MPP.data.firstName} ${data.CUSTOMER_124_MPP.data.lastName}`))
+        // add in test for company toggle not showing product benefit
+        When("I view the critical illness product", when.tapText("Critical Illness"), async () => {
+            Then("I should not see the product benefit information due to the company toggle not being provided", then.textNotVisible(`9x ${constants.criticalIllnessBenefitHeader}`))
+        })
+        When("I close the product screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
+            When("I click on the Saas product", when.tapText(fixtures.yulifeSaasProductSlot.name), async () => {
+                Then("I stay on the YuScreen", then.textVisible(`${data.CUSTOMER_124_MPP.data.firstName} ${data.CUSTOMER_124_MPP.data.lastName}`))
+            })
         })
         When("I click to see all protection", when.tapID(ids.SLOT_TITLE("See all protection")), async () => {
             Then("I appear on the deeper environment page", then.deeperProductSlotEnviornmentVisible(10))
