@@ -1,0 +1,2 @@
+export const ordoNotAvailableImage = "https://yulife-develop.imgix.net/bupa/ordo-toothbrush/card-disabled.png?ixlib=js-3.2.1&w=981&h=714&s=78ec02310a611d9acf7b9ffa7beb535d"
+export const ordoAvailableImage = "https://yulife-develop.imgix.net/bupa/ordo-toothbrush/card-enabled.png?ixlib=js-3.2.1&w=981&h=714&s=027be54e14499b05adece57c7ebf2aaf";

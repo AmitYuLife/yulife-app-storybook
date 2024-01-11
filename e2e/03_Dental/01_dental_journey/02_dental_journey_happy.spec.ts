@@ -17,7 +17,8 @@ import * as helper from "./_steps/helpers";
 import { CUSTOMER_DENTAL_1, CUSTOMER_37, AUTH_37, AUTH_DENTAL_1, CORE_REWARDS_ORDO_REWARDS, PAYMENT_PLAN_DENTAL_1 } from "@data";
 import * as helper_pli from "02_PLI_1/_resources/helpers";
 import * as helper_V4 from "00_Smoke_4/01_yuscreen_v4/_resources/helpers";
-import { BACK_BUTTON, BUTTON_CLOSE, NAV_BAR, REWARD_ITEM } from "@ids";
+import { BACK_BUTTON, BUTTON_CLOSE, CONTENT_MIDDLE_ITEM_IMAGE, NAV_BAR, REWARD_ITEM } from "@ids";
+import { ordoAvailableImage, ordoNotAvailableImage } from "./_resources/constants";
 
 Feature("DENTAL HAPPY", async () => {
   Scenario("I can buy Dental and PLI ,only allow previously used card for purchase of new product", scenario.start, async () => {
@@ -84,23 +85,34 @@ Feature("DENTAL HAPPY", async () => {
         })
       }) 
     });
-    When("I sent an invoice to stripe for the second payment", when.sendStripeInvoice("123", PAYMENT_PLAN_DENTAL_1.data.providerSubscriptionId, 1999), async () => {
-      When("I send a second payment to stripe", when.sendStripePayment("123", PAYMENT_PLAN_DENTAL_1.data.providerSubscriptionId, 1999), async () => {
-        When("I navigate to the yu screen", when.tapID(NAV_BAR("yu")), async () => {
-          When(`I tap Dental insurance`, when.tapText("Dental"), async () => {
-            When("I tap View payment history text", when.tapText("View payment history", 1000, true), async () => {
-              Then("I should see View payment history info for the second payment", then.paymentHistoryInfo("£19.99", "Paid"));
-            })
+    When("I navigate to the yu screen", when.tapID(NAV_BAR("yu")), async () => {
+      When(`I tap Dental insurance`, when.tapText("Dental"), async () => {
+        When("I swipe to the bottom", when.swipeFromText("Billing info", "up", "fast"), async () => {
+          Then("I see an image saying I cannot order an ordo toothbrush yet", then.idVisible(CONTENT_MIDDLE_ITEM_IMAGE(ordoNotAvailableImage)))
+        })
+      })
+    })
+    When("I swipe to the top", when.swipeFromText("FAQs", "down", "fast"), async () => {
+      When("I sent an invoice to stripe for the second payment", when.sendStripeInvoice("123", PAYMENT_PLAN_DENTAL_1.data.providerSubscriptionId, 1999), async () => {
+        When("I send a second payment to stripe", when.sendStripePayment("123", PAYMENT_PLAN_DENTAL_1.data.providerSubscriptionId, 1999), async () => {
+          When("I tap View payment history text", when.tapText("View payment history", 1000, true), async () => {
+            Then("I should see View payment history info for the second payment", then.paymentHistoryInfo("£19.99", "Paid"));
           })
         })
       })
     })
     When("I close the payment history", when.tapID(BACK_BUTTON), async () => {
       When("I close the dental information", when.tapIDAtIndex(BUTTON_CLOSE, 2), async () => {
-        When("I tap rewards", when.tapID(NAV_BAR("rewards")), async () => {
-          Then("I can see the ordo reward as there's now two payments", then.idVisible(REWARD_ITEM(CORE_REWARDS_ORDO_REWARDS.data._id)))
+        When(`I tap Dental insurance`, when.tapText("Dental"), async () => {
+          When("I swipe to the bottom", when.swipeFromText("Billing info", "up", "fast"), async () => {
+            Then("I see an image saying I cann order an ordo toothbrush", then.idVisible(CONTENT_MIDDLE_ITEM_IMAGE(ordoAvailableImage)))
+          })
         })
-        
+      })
+    })
+    When("I close the dental information", when.tapIDAtIndex(BUTTON_CLOSE, 2), async () => {
+      When("I tap rewards", when.tapID(NAV_BAR("rewards")), async () => {
+        Then("I can see the ordo reward as there's now two payments", then.idVisible(REWARD_ITEM(CORE_REWARDS_ORDO_REWARDS.data._id)))    
       })
     })
   });
