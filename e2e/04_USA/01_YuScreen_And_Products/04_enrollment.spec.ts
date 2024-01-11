@@ -31,8 +31,7 @@ import {
         // checks the logos are not visible as we are in pre-enrollment
         helper.SPONSORED_LOGO_NOT_VISIBLE()
         // checks that the My Wellbeing box is visible as is expected
-        // @update - box option dimensions have changed, need to alter scroll to view. They are all there.
-        // helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
+        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
         // checks explore insurance option is not there as it is pre-enrollment
         helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
         // checks the countdown timer is visible in the correct format and shows the correct information
@@ -60,11 +59,13 @@ import {
         // checks the logos are not visible as we are in active enrollment
         helper.SPONSORED_LOGO_NOT_VISIBLE()
         // checks that the My Wellbeing box is visible as is expected
-        // helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
-        // checks explore insurance option is not there as it is active-enrollment
-        helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
-        // checks the countdown timer is visible in the correct format and shows the correct information
-        helper.ENROLMENT_VISIBLE(BPEEW_USA_13_CRI, "active")
+        When("I scroll to the bottom", when.swipeFromText(fixture.createYumujiCTA, "up", "fast"), async () => {
+          helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
+          // checks explore insurance option is not there as it is active-enrollment
+          helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
+          // checks the countdown timer is visible in the correct format and shows the correct information
+          helper.ENROLMENT_VISIBLE(BPEEW_USA_13_CRI, "active")
+        })
         // swiping up page as button doesn't work for automated testing
         When(`I swipe up the page`, when.scrollUntilTextVisible(id.YUSCREEN_SCROLL_VIEW, `${CUSTOMER_USA_13.data.firstName} ${CUSTOMER_USA_13.data.lastName}`, "up"), async () => {
           Then(`I should see the top text`, then.textVisible(`${CUSTOMER_USA_13.data.firstName} ${CUSTOMER_USA_13.data.lastName}`))
@@ -92,9 +93,9 @@ import {
         // checks that the sponsored logos appear now we're in post enrollment
         helper.SPONSORED_LOGO_VISIBLE()
         // checks that the My Wellbeing box is visible as is expected
-        // helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
+        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
         // checks explore insurance option is there as it is post-enrollment
-        // helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
+        helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
         // checks the countdown timer is not visible as we are in post-enrollment
         When(`I swipe down the page`, when.scrollUntilTextVisible(id.YUSCREEN_SCROLL_VIEW, fixture.SurveyLabel, "down"), async () => {
           Then(`I should NOT see the enrollment section`, then.idNotVisible(id.COUNTDOWN_COMPONENT))

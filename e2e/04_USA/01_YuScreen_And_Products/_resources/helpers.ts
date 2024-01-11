@@ -25,7 +25,9 @@ export const YUSCREEN_USA_V4 = async (customer: any, packType: string, yuCoinPow
 }
 
 export const ONBOARDING_YUSCREEN = async (packType: string, yuCoinPower: string) => {
-    Then(`I should see the onboarding Yuscreen and see ${packType}`, then.onboardingUsYuscreenV4(packType, yuCoinPower))
+    When("I wait", when.wait(2500), async()=>{
+        Then(`I should see the onboarding Yuscreen and see ${packType}`, then.onboardingUsYuscreenV4(packType, yuCoinPower))
+    })
 }
 
 
@@ -154,12 +156,11 @@ export const YUSCREEN_USA = async (customer: any) => {
     })
 }
 
-// @update - box option dimensions have changed, need to alter scroll to view. They are all there.
-export const BOX_OPTION_VISIBLE = async (seed: BoxOption) => {
-    When(`I swipe from text ${text.createYumujiCTA, "up", "fast"}`, when.swipeFromText(text.createYumujiCTA, "up", "fast"), async () => {
-        Then(`I should see ${seed.imageUrl} text`, then.idVisible(RIGHT_SIDE_IMAGE_BOX_OPTION(seed.imageUrl)))
-        Then(`I should see ${seed.title} text`, then.idVisible(BOX_OPTION_TITLE(seed.title)))
-        Then(`I should see ${seed.description} text`, then.idVisible(BOX_OPTION_DESCRIPTION(seed.description)))
+export const BOX_OPTION_VISIBLE = async (seed:BoxOption) => {
+    When(`I scroll to the ${seed.title} box`, when.scrollUntilIdVisible(YUSCREEN_SCROLL_VIEW, BOX_OPTION_DESCRIPTION(seed.description), "down"), async()=>{
+        Then(`I should see ${seed.title} image`, then.idVisible(RIGHT_SIDE_IMAGE_BOX_OPTION(seed.imageUrl)))
+        Then(`I should see ${seed.title} title`, then.idVisible(BOX_OPTION_TITLE(seed.title)))
+        Then(`I should see ${seed.title} description`, then.idVisible(BOX_OPTION_DESCRIPTION(seed.description)))
     })
     When(`I scroll up the page`, when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.powerText, "up"), async () => {
         Then(`I should see ${text.powerText} text`, then.textVisible(`${text.powerText}`))

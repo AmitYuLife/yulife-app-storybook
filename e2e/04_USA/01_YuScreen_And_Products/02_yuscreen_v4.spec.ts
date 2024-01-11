@@ -61,8 +61,8 @@ Feature("I am able to see Product Details in US YU Screen ", async () => {
       "I login as a user with earn rate 0 from WellbeingProduct",
       given.logInAndGoToTab("yu", CUSTOMER_USA_1, AUTH_USA_1, true, "United States"),
       async () => {
-        helper.ONBOARDING_YUSCREEN("Wellbeing/DENPPO/DENCHOI", "10");
         helper.YUSCREEN_USA_V4(CUSTOMER_USA_1, "Wellbeing/DENPPO/DENCHOI/TLIF/VIS", "10");
+        helper.ONBOARDING_YUSCREEN("Wellbeing/DENPPO/DENCHOI", "10");
         helper.MORE_PROTECTION()
         When("I scroll to the bottom of the page", when.swipeFromText("Available to you", "up", "fast"), async () => {
           helper.MORE_PRODUCTS_PRODUCT_CHECK(Guardian_DENPPO);

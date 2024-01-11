@@ -413,7 +413,7 @@ export const canSeeNewChallengePage = (challenges: "short stroll" | "brisk walk"
   if (boostReward) {
     await textVisible("Extra YuCoin")()
     await idVisible(ids.CHALLENGE_PAGE_BOOST_SLOT(boostReward * earnRate))()
-    await idVisible(ids.CHALLENGE_DETAILS_BADGE("Boosted"))()
+    await idVisible(ids.CHALLENGE_DETAILS_BADGE("Boost"))()
   }
 }
 
