@@ -1,5 +1,18 @@
 import { GetActivityHistory_getActivityHistoryWithLevels_sources as Sources } from "@graphql/_core/schema";
+import { PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
+import { IFeature } from "@redux/user/user.reducer";
 import { ItemProps } from "@screens/member/activity-history-levels/activity-history-levels.item";
+import {
+  getAggregationCyclingConfiguration,
+  getAggregationStepCountConfiguration,
+  getMindfulSessionFitKitTypes,
+} from "@services/fitkit/fitkit.config";
+import { queryFitKitAggregatedData, queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
+import { processResult } from "@services/fitkit/helpers/sampleToAggregatedData";
+import { yuHealthAggregateQuery } from "@services/fitkit/yu-health.helpers";
+import { DATE_FORMAT_WITH_TZ } from "@utils";
+import { BucketSize, HealthDataType, IAggregateQueryResponse } from "@yu-life/react-native-yu-health";
+import { Moment } from "moment";
 
 export interface IFormattedDatesByMonth {
   title: string;
@@ -43,3 +56,105 @@ export function countSources(sources: Partial<Sources>) {
 
   return sourceCount;
 }
+
+export const fetchFitkitActivityData = async ({ start, end, features, stepsBlackListApps }: IFetchActivityRequest) => {
+  const metaData = { file: "activity-history.container" };
+  const cyclingConfig = getAggregationCyclingConfiguration(features);
+  const stepsConfig = getAggregationStepCountConfiguration(stepsBlackListApps);
+
+  const [steps, meditation, cycling] = await Promise.all([
+    queryFitKitAggregatedData({ start, end, features, metaData, ...stepsConfig }),
+    queryFitKitSampleData({
+      startTime: start.format(DATE_FORMAT_WITH_TZ),
+      endTime: end.format(DATE_FORMAT_WITH_TZ),
+      fitKitTypes: getMindfulSessionFitKitTypes(),
+      features,
+      metaData,
+    }),
+    queryFitKitAggregatedData({ start, end, features, metaData, ...cyclingConfig }),
+  ]);
+
+  const stepsResults = processResult(steps, "StepCount", start, end);
+  const meditationResults = processResult(meditation, "MindfulSession", start, end);
+  const cyclingResults = processResult(cycling, "Biking", start, end);
+
+  return { stepsResults, meditationResults, cyclingResults };
+};
+
+export const fetchYuHealthActivityData = async ({
+  start,
+  features,
+  end,
+  stepsBlackListApps,
+}: IFetchActivityRequest) => {
+  const sharedOptions = {
+    startTime: start.toDate(),
+    endTime: end.toDate(),
+    bucketConfig: {
+      value: 1,
+      unit: BucketSize.day,
+    },
+    queryOptions: { blacklistApps: stepsBlackListApps, disableUserEntries: features.disableUserEntries },
+  };
+
+  const [yuHealthSteps, yuHealthMeditation, yuHealthCycling] = await Promise.all([
+    yuHealthAggregateQuery({
+      features,
+      metadata: { file: "activity-history.container" },
+      params: { ...sharedOptions, dataType: HealthDataType.steps },
+    }),
+    yuHealthAggregateQuery({
+      features,
+      metadata: { file: "activity-history.container" },
+      params: { ...sharedOptions, dataType: HealthDataType.mindfulMinutes },
+    }),
+    yuHealthAggregateQuery({
+      features,
+      metadata: { file: "activity-history.container" },
+      params: { ...sharedOptions, dataType: HealthDataType.cyclingDistance },
+    }),
+  ]);
+
+  const stepsResults = processYuHealthResult(yuHealthSteps, start, end, PassiveChallengeType.STEPS);
+  const meditationResults = processYuHealthResult(yuHealthMeditation, start, end, PassiveChallengeType.MEDITATION);
+  const cyclingResults = processYuHealthResult(yuHealthCycling, start, end, PassiveChallengeType.CYCLING);
+
+  return { stepsResults, meditationResults, cyclingResults };
+};
+
+const processYuHealthResult = (
+  response: IAggregateQueryResponse[],
+  start: Moment,
+  end: Moment,
+  challengeType: PassiveChallengeType
+) => {
+  return processResult(
+    {
+      results: response.map((item) => ({
+        startDateTime: item.startTime.toISOString(),
+        endDateTime: item.endTime.toISOString(),
+        value: Math.floor(item.value),
+        type: challengeType,
+      })),
+      error: null,
+    },
+    challengeType,
+    start,
+    end
+  );
+};
+
+interface IFetchActivityRequest {
+  features: IFeature;
+  start: Moment;
+  end: Moment;
+  stepsBlackListApps: string[];
+}
+
+export const fetchActivityData = async ({ features, stepsBlackListApps, start, end }: IFetchActivityRequest) => {
+  if (!features.tempGameEnableYuHealth) {
+    return fetchFitkitActivityData({ features, stepsBlackListApps, start, end });
+  }
+
+  return fetchYuHealthActivityData({ features, stepsBlackListApps, start, end });
+};

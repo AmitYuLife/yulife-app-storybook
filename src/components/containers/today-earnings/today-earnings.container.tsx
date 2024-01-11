@@ -83,14 +83,7 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
       },
     });
     await getTodaysEarnings();
-  }, [
-    dailySteps,
-    features.usePassiveChallengesService,
-    getTodaysEarnings,
-    upsertDailyPassives,
-    pedometerLastUpdate,
-    dispatch,
-  ]);
+  }, [dailySteps, getTodaysEarnings, upsertDailyPassives, pedometerLastUpdate, dispatch]);
 
   useEffect(() => {
     (async () => {

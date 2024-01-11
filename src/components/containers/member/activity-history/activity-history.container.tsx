@@ -1,7 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { GQL_QUERY_GET_ACTIVITY_HISTORY } from "@graphql/user";
 import { GetActivityHistory as Req, GetActivityHistoryVariables as ReqVars } from "@graphql/_core/schema";
-import { queryFitKitSampleData, queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
 import moment from "moment";
 import React, { useCallback, FC } from "react";
 import { Navigation } from "@navigation/main";
@@ -15,15 +14,9 @@ import {
   GQL_MUTATION_UPSERT_DAILY_PASSIVES,
   UpsertDailyPassivesMutationTuple,
 } from "@graphql/challenges/upsertDailyPassives.gql";
-import { DATE_FORMAT_WITH_TZ } from "@utils";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
-import { processResult } from "@services/fitkit/helpers/sampleToAggregatedData";
-import {
-  getAggregationCyclingConfiguration,
-  getAggregationStepCountConfiguration,
-  getMindfulSessionFitKitTypes,
-} from "@services/fitkit/fitkit.config";
 import { LazyGqlLoadingArgs, useLazyGqlLoading } from "@hooks";
+import { fetchActivityData } from "./activity-history.helpers";
 
 type Props = {
   componentId: string;
@@ -70,24 +63,13 @@ const ActivityHistoryContainer: FC<Props> = ({ componentId }) => {
       const start = moment().subtract(30, "days").startOf("day");
       const end = moment().subtract(1, "days").endOf("day");
 
-      const metaData = { file: "activity-history.container" };
-      const cyclingConfig = getAggregationCyclingConfiguration(features);
-      const stepsConfig = getAggregationStepCountConfiguration(stepsBlackListApps);
-      const [steps, meditation, cycling] = await Promise.all([
-        queryFitKitAggregatedData({ start, end, features, metaData, ...stepsConfig }),
-        queryFitKitSampleData({
-          startTime: start.format(DATE_FORMAT_WITH_TZ),
-          endTime: end.format(DATE_FORMAT_WITH_TZ),
-          fitKitTypes: getMindfulSessionFitKitTypes(),
-          features,
-          metaData,
-        }),
-        queryFitKitAggregatedData({ start, end, features, metaData, ...cyclingConfig }),
-      ]);
+      const { stepsResults, meditationResults, cyclingResults } = await fetchActivityData({
+        features,
+        stepsBlackListApps,
+        start,
+        end,
+      });
 
-      const stepsResults = processResult(steps, "StepCount", start, end);
-      const meditationResults = processResult(meditation, "MindfulSession", start, end);
-      const cyclingResults = processResult(cycling, "Biking", start, end);
       const payload = [...stepsResults, ...meditationResults, ...cyclingResults];
 
       if (payload.length) {

@@ -1,5 +1,5 @@
 import moment, { Moment } from "moment";
-import { ChallengesPayload } from "@graphql/_core/schema/globalTypes";
+import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import { fitkitTypeToGqlType } from "../cast/fitkitTypes";
 import { QueryFitKitByTypesResponse } from "../fitkit.types";
 
@@ -68,15 +68,21 @@ function sampleDataToAggregatedData(
 function emptyAggregatedData(
   startTime: string,
   endTime: string,
-  type: string,
+  dataType: string | PassiveChallengeType,
   bucketSize: moment.unitOfTime.DurationConstructor
 ): ChallengesPayload[] {
   const buckets = getBuckets(startTime, endTime, bucketSize);
+
+  // TODO: type is either fitkit type (fitkit) or PassiveChallengeType (yuhealth)
+  // This can be removed when the switch is made
+  const isPassiveType = Object.values(PassiveChallengeType).includes(dataType as PassiveChallengeType);
+  const activityType = isPassiveType ? (dataType as PassiveChallengeType) : fitkitTypeToGqlType(dataType);
+
   return buckets.map(({ end, start }) => ({
     startDateTime: start.format(),
     endDateTime: end.format(),
     value: 0,
-    type: fitkitTypeToGqlType(type),
+    type: activityType,
   }));
 }
 
