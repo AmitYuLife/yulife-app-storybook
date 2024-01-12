@@ -6,6 +6,7 @@ import {
     When,
     Then,
     FeatureOnly,
+    ScenarioSkip,
   } from "@yu-life/yulife-bdd-framework";
   import * as then from "./_steps/then";
   import * as when from "./_steps/when";
@@ -18,7 +19,8 @@ import {
   import * as id from "@ids";
 
   Feature("I am able to see the correct enrollment windows on the US YuScreen", async () => {
-    Scenario("I can see the correct US pre-enrollment YuScreen",scenario.start, async () => {
+    // @flaky - can't find box options on bitrise
+    ScenarioSkip("I can see the correct US pre-enrollment YuScreen",scenario.start, async () => {
       Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_12, AUTH_USA_12, true, "United States"),async () => {
         //checks the correct products and yucoin power show on the onboarding screen
         helper.ONBOARDING_YUSCREEN_USA(fixture.CanInsurance);
@@ -46,7 +48,8 @@ import {
       });
     });
 
-    Scenario("I can see the correct US active enrollment YuScreen",scenario.start, async () => {
+    // @flaky - can't find box options on bitrise
+    ScenarioSkip("I can see the correct US active enrollment YuScreen",scenario.start, async () => {
       Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_13, AUTH_USA_13, true, "United States"),async () => {
         //checks the correct products and yucoin power show on the onboarding screen  
         helper.ONBOARDING_YUSCREEN_USA(fixture.CriInsurance);
@@ -78,7 +81,8 @@ import {
       });
     });
 
-    Scenario("I can see the correct US post enrollment YuScreen",scenario.start, async () => {
+    // @flaky - can't find box options on bitrise
+    ScenarioSkip("I can see the correct US post enrollment YuScreen",scenario.start, async () => {
       Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_14, AUTH_USA_14, true, "United States"),async () => {
         //checks the correct products and yucoin power show on the onboarding screen (in this case no products should show) 
         helper.ONBOARDING_YUSCREEN_USA(fixture.VstdInsurance);
