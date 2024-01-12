@@ -9,9 +9,10 @@ interface IProps {
   time: number;
   colour: string;
   textType: ITextTemplateType;
+  opacity?: number;
 }
 
-const AvPlayerTimer = ({ time, colour, textType }: IProps) => {
+const AvPlayerTimer = ({ time, colour, textType, opacity }: IProps) => {
   const timeFormatted = useMemo(
     () => ({
       minutes: moment.utc(time).format("mm"),
@@ -20,8 +21,16 @@ const AvPlayerTimer = ({ time, colour, textType }: IProps) => {
     [time]
   );
 
+  const wrapperStyle = useMemo(
+    () => ({
+      ...styles.wrapper,
+      opacity,
+    }),
+    [opacity]
+  );
+
   return (
-    <View style={styles.wrapper}>
+    <View style={wrapperStyle}>
       <View style={styles.minutes} testID={MEDITOPIA_TIMER_MINUTES(timeFormatted.minutes)}>
         <TextTemplate type={textType} color={colour}>
           {timeFormatted.minutes}
