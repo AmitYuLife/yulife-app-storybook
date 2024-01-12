@@ -2,6 +2,7 @@ import moment, { Moment } from "moment";
 import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import { fitkitTypeToGqlType } from "../cast/fitkitTypes";
 import { QueryFitKitByTypesResponse } from "../fitkit.types";
+import { IAggregateQueryResponse } from "@yu-life/react-native-yu-health";
 
 export const processResult = (
   response: QueryFitKitByTypesResponse,
@@ -19,6 +20,28 @@ export const processResult = (
   }
 
   return sampleDataToAggregatedData(start.format(), end.format(), response.results, bucketSize);
+};
+
+export const processYuHealthResult = (
+  response: IAggregateQueryResponse[],
+  start: Moment,
+  end: Moment,
+  challengeType: PassiveChallengeType
+) => {
+  return processResult(
+    {
+      results: response.map((item) => ({
+        startDateTime: item.startTime.toISOString(),
+        endDateTime: item.endTime.toISOString(),
+        value: Math.floor(item.value),
+        type: challengeType,
+      })),
+      error: null,
+    },
+    challengeType,
+    start,
+    end
+  );
 };
 
 interface ChallengesPayloadWithInApp extends ChallengesPayload {

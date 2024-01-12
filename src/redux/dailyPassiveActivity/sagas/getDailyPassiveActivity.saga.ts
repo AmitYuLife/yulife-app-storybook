@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment, { Moment } from "moment";
 import { all, call, select, spawn, delay, put } from "redux-saga/effects";
 import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import { queryFitKitSampleData, queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
@@ -14,9 +14,13 @@ import { getToken } from "@services/storage";
 import { Unpacked } from "@utils";
 import RNFitKit, { FitKitTypes } from "@yu-life/react-native-fitkit";
 import { getInAppDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
-import { processResult } from "@services/fitkit/helpers/sampleToAggregatedData";
+import { processResult, processYuHealthResult } from "@services/fitkit/helpers/sampleToAggregatedData";
 import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
 import { getAggregationCyclingConfiguration, getMindfulSessionFitKitTypes } from "@services/fitkit/fitkit.config";
+import { IFeature } from "@redux/user/user.reducer";
+import { yuHealthAggregateQuery } from "@services/fitkit/yu-health.helpers";
+import { BucketSize, HealthDataType } from "@yu-life/react-native-yu-health";
+import { IAppDailyMeditationProps } from "@redux/daily-meditation/daily-meditation.reducer";
 
 export default function* getDailyPassiveActivity(dataPayload: { payload: string; type: string }) {
   const { payload: appState, type } = dataPayload || {};
@@ -30,12 +34,12 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
   }
 
   try {
-    const userFeatures: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
-    if (!Object.keys(userFeatures).length) {
+    const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+    if (!Object.keys(features).length) {
       return;
     }
 
-    const setDefaultPermissionCheck = userFeatures.disableCheckPermission || Platform.OS === "ios";
+    const setDefaultPermissionCheck = features.disableCheckPermission || Platform.OS === "ios";
     const [meditationPermissionGranted, cyclingPermissionGranted] = yield all([
       setDefaultPermissionCheck
         ? true
@@ -45,7 +49,7 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
         : call(RNFitKit.isAuthorised, { read: [FitKitTypes.Types.Biking], platform: "GoogleFit" }),
     ]);
 
-    if ((!meditationPermissionGranted || !cyclingPermissionGranted) && userFeatures.loggingEnabled) {
+    if ((!meditationPermissionGranted || !cyclingPermissionGranted) && features.loggingEnabled) {
       Logger.logMixpanelEvent("app_debug", {
         type: "google_fit_permission_not_granted",
         permissions: {
@@ -60,14 +64,14 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
     const endTime = moment().endOf("day");
 
     const inAppDailyMeditation: ReturnType<typeof getInAppDailyMeditation> = yield select(getInAppDailyMeditation);
-    const fitkitMeditation: QueryFitKitByTypesResponse = !meditationPermissionGranted
+
+    const meditationResults: ChallengesPayload[] = !meditationPermissionGranted
       ? null
-      : yield call(queryFitKitSampleData, {
-          startTime: startTime.format(),
-          endTime: endTime.format(),
-          fitKitTypes: getMindfulSessionFitKitTypes(),
-          features: userFeatures,
-          metaData: { file: "getDailyPassiveActivity.saga" },
+      : yield call(getMeditation, {
+          startTime: startTime,
+          endTime: endTime,
+          features: features,
+          inAppMeditation: inAppDailyMeditation,
         });
 
     let shouldQueryCycling = true;
@@ -76,30 +80,15 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
         cyclingPermissionGranted;
     }
 
-    const meditation = getMeditation(inAppDailyMeditation, fitkitMeditation);
-
-    const cyclingConfig = getAggregationCyclingConfiguration(userFeatures);
-    const cycling: QueryFitKitByTypesResponse = !shouldQueryCycling
-      ? null
-      : yield call(queryFitKitAggregatedData, {
-          start: startTime,
-          end: endTime,
-          features: userFeatures,
-          metaData: { file: "getDailyPassiveActivity.saga" },
-          ...cyclingConfig,
-        });
-
-    if (!meditation?.results && !cycling?.results) {
-      return;
-    }
-
     const cyclingResults: ChallengesPayload[] = !shouldQueryCycling
       ? []
-      : processResult(cycling, "Biking", startTime, endTime);
+      : yield call(getCycling, {
+          startTime: startTime,
+          endTime: endTime,
+          features: features,
+        });
 
-    const meditationResults: ChallengesPayload[] = processResult(meditation, "MindfulSession", startTime, endTime);
-
-    if (!cyclingResults.length && !meditationResults.length) {
+    if (!meditationResults?.length && !cyclingResults?.length) {
       return;
     }
 
@@ -151,7 +140,98 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
   }
 }
 
-const getMeditation = (
+const getMeditation = async ({
+  startTime,
+  endTime,
+  features,
+  inAppMeditation,
+}: {
+  startTime: Moment;
+  endTime: Moment;
+  features: IFeature;
+  inAppMeditation: IAppDailyMeditationProps;
+}): Promise<ChallengesPayload[]> => {
+  if (!features.tempGameEnableYuHealth) {
+    const meditationResponse = await queryFitKitSampleData({
+      startTime: startTime.format(),
+      endTime: endTime.format(),
+      features,
+      fitKitTypes: getMindfulSessionFitKitTypes(),
+      metaData: { file: "getDailyPassiveActivity.saga.getMeditation" },
+    });
+
+    const meditation = parseMeditation(inAppMeditation, meditationResponse);
+    if (!meditation.results?.length) {
+      return [];
+    }
+
+    return processResult(meditation, "MindfulSession", startTime, endTime);
+  }
+
+  const yuHealthMeditation = await yuHealthAggregateQuery({
+    features,
+    metadata: { file: "getDailyPassiveActivity.saga.getMeditation" },
+    params: {
+      startTime: startTime.toDate(),
+      dataType: HealthDataType.mindfulMinutes,
+      endTime: endTime.toDate(),
+      bucketConfig: { value: 1, unit: BucketSize.day },
+    },
+  });
+
+  if (!yuHealthMeditation.length) {
+    return [];
+  }
+
+  return processYuHealthResult(yuHealthMeditation, startTime, endTime, PassiveChallengeType.MEDITATION);
+};
+
+const getCycling = async ({
+  startTime,
+  endTime,
+  features,
+}: {
+  startTime: Moment;
+  endTime: Moment;
+  features: IFeature;
+}): Promise<ChallengesPayload[]> => {
+  if (!features.tempGameEnableYuHealth) {
+    const cyclingConfig = getAggregationCyclingConfiguration(features);
+
+    const response = await queryFitKitAggregatedData({
+      start: startTime,
+      end: endTime,
+      features: features,
+      metaData: { file: "getDailyPassiveActivity.saga.getCycling" },
+      ...cyclingConfig,
+    });
+
+    if (!response.results?.length) {
+      return [];
+    }
+
+    return processResult(response, "Biking", startTime, endTime);
+  }
+
+  const yuHealthCycling = await yuHealthAggregateQuery({
+    features,
+    metadata: { file: "getDailyPassiveActivity.saga.getCycling" },
+    params: {
+      startTime: startTime.toDate(),
+      dataType: HealthDataType.cyclingDistance,
+      endTime: endTime.toDate(),
+      bucketConfig: { value: 1, unit: BucketSize.day },
+    },
+  });
+
+  if (!yuHealthCycling.length) {
+    return [];
+  }
+
+  return processYuHealthResult(yuHealthCycling, startTime, endTime, PassiveChallengeType.CYCLING);
+};
+
+const parseMeditation = (
   inAppMeditation: IAppMeditationPayload,
   fitkitMeditation: QueryFitKitByTypesResponse
 ): QueryFitKitByTypesResponse => {
