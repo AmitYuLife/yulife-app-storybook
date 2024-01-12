@@ -14,8 +14,9 @@ export const yuHealthAggregateQuery = async ({
   metadata,
   params,
 }: IYuHealthAggregateQuery): Promise<IAggregateQueryResponse[]> => {
-  const { loggingEnabled } = {
+  const { loggingEnabled, disableUserEntries } = {
     loggingEnabled: false,
+    disableUserEntries: true,
     ...features,
   };
 
@@ -30,7 +31,7 @@ export const yuHealthAggregateQuery = async ({
       });
     }
 
-    const results = await aggregateQuery(params);
+    const results = await aggregateQuery({ ...params, queryOptions: { ...params?.queryOptions, disableUserEntries } });
 
     if (loggingEnabled && results) {
       Logger.logMixpanelEvent("app_debug", {

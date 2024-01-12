@@ -8,10 +8,10 @@ import {
   getMindfulSessionFitKitTypes,
 } from "@services/fitkit/fitkit.config";
 import { queryFitKitAggregatedData, queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
-import { processResult } from "@services/fitkit/helpers/sampleToAggregatedData";
+import { processResult, processYuHealthResult } from "@services/fitkit/helpers/sampleToAggregatedData";
 import { yuHealthAggregateQuery } from "@services/fitkit/yu-health.helpers";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
-import { BucketSize, HealthDataType, IAggregateQueryResponse } from "@yu-life/react-native-yu-health";
+import { BucketSize, HealthDataType } from "@yu-life/react-native-yu-health";
 import { Moment } from "moment";
 
 export interface IFormattedDatesByMonth {
@@ -94,7 +94,7 @@ export const fetchYuHealthActivityData = async ({
       value: 1,
       unit: BucketSize.day,
     },
-    queryOptions: { blacklistApps: stepsBlackListApps, disableUserEntries: features.disableUserEntries },
+    queryOptions: { blacklistApps: stepsBlackListApps },
   };
 
   const [yuHealthSteps, yuHealthMeditation, yuHealthCycling] = await Promise.all([
@@ -120,28 +120,6 @@ export const fetchYuHealthActivityData = async ({
   const cyclingResults = processYuHealthResult(yuHealthCycling, start, end, PassiveChallengeType.CYCLING);
 
   return { stepsResults, meditationResults, cyclingResults };
-};
-
-const processYuHealthResult = (
-  response: IAggregateQueryResponse[],
-  start: Moment,
-  end: Moment,
-  challengeType: PassiveChallengeType
-) => {
-  return processResult(
-    {
-      results: response.map((item) => ({
-        startDateTime: item.startTime.toISOString(),
-        endDateTime: item.endTime.toISOString(),
-        value: Math.floor(item.value),
-        type: challengeType,
-      })),
-      error: null,
-    },
-    challengeType,
-    start,
-    end
-  );
 };
 
 interface IFetchActivityRequest {
