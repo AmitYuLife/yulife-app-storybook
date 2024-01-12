@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { Animated, StyleSheet, View, AppStateStatus } from "react-native";
-import { Image, TextTemplate } from "@atoms";
+import { Image, Loading, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import {
   IAudioPlayerState,
@@ -125,6 +125,8 @@ const AudioPlayer = ({
 
   const isPaused = state.playerState === State.Paused;
   const isPlaying = state.playerState === State.Playing;
+  const isBuffering =
+    state.playerState === State.Buffering || state.playerState === State.Ready || state.playerState === State.Loading;
 
   useTrackPlayerEvents(PLAYER_EVENTS, (event) => {
     switch (event.type) {
@@ -139,7 +141,7 @@ const AudioPlayer = ({
       }
 
       case Event.PlaybackState: {
-        return dispatch({ type: AudioPlayerActionTypes.SET_PLAYER_STATE, payload: event.state });
+        return handlePlayerState(event.state);
       }
 
       case Event.PlaybackProgressUpdated: {
@@ -156,6 +158,17 @@ const AudioPlayer = ({
 
   const audioUrl = useMemo(() => (DETOX_ENABLED ? AUDIO_SAMPLE : source), [source, DETOX_ENABLED]);
 
+  const handlePlayerState = useCallback(
+    (playerState: State) => {
+      if (playerState === State.Ready && state.currentProgressInSeconds > 0 && state.showPlayer) {
+        AudioPlayerService.playTrack();
+      }
+
+      dispatch({ type: AudioPlayerActionTypes.SET_PLAYER_STATE, payload: playerState });
+    },
+    [state.showPlayer, state.currentProgressInSeconds]
+  );
+
   useEffect(() => {
     return () => {
       fadeIn.stop();
@@ -163,6 +176,13 @@ const AudioPlayer = ({
       AudioPlayerService.resetPlayer();
     };
   }, []);
+
+  useEffect(() => {
+    if (!isBuffering && state.playerState && !state.showPlayer) {
+      dispatch({ type: AudioPlayerActionTypes.SET_SHOW_PLAYER, payload: true });
+      lottieRef?.current?.play();
+    }
+  }, [isBuffering]);
 
   const fadeIn = Animated.timing(opacity, {
     toValue: 1,
@@ -241,8 +261,6 @@ const AudioPlayer = ({
       });
       await onStart(activeLevel);
       await AudioPlayerService.playTrack();
-      lottieRef?.current?.play();
-      dispatch({ type: AudioPlayerActionTypes.SET_SHOW_PLAYER, payload: true });
       if (state.startErrorMessage) {
         dispatch({
           type: AudioPlayerActionTypes.SET_START_ERROR_MESSAGE,
@@ -343,7 +361,12 @@ const AudioPlayer = ({
           <>
             {state.isLoadingEndOfSession ? null : (
               <View style={styles.currentProgressTime} testID={VIDEO_PLAYER_TIMER}>
-                <AvPlayerTimer textType="time" time={state.currentProgressInMilliseconds} colour={themeColour} />
+                <AvPlayerTimer
+                  textType="time"
+                  time={state.currentProgressInMilliseconds}
+                  colour={themeColour}
+                  opacity={isBuffering ? 0.5 : 1}
+                />
               </View>
             )}
             {!state.isLoadingEndOfSession ? null : (
@@ -399,11 +422,18 @@ const AudioPlayer = ({
             label={startChallengeButtonLabel}
             onPress={handleStartButton}
             leftIcon={<PlayIcon />}
-            isLoading={state.isStarting || state.playerState === State.Buffering}
+            isLoading={state.isStarting || isBuffering}
           />
         </View>
       )}
       {!lottieUriLoading ? null : <AvPlayerLoading />}
+
+      {!isBuffering || state.currentProgressInSeconds === 0 ? null : (
+        <View style={styles.bufferWrapper}>
+          <Loading color="white" style={styles.buffer} />
+        </View>
+      )}
+
       <Animated.View style={styles.topbarWrapper}>
         <GenericHeadingAbsolute
           backgroundColor="transparent"
@@ -516,6 +546,15 @@ const styles = StyleSheet.create({
   },
   errorButton: {
     marginTop: Style.adjust(15),
+  },
+  bufferWrapper: {
+    width: Style.DEVICE_WIDTH,
+    height: Style.DEVICE_HEIGHT,
+    position: "absolute",
+  },
+  buffer: {
+    marginLeft: Style.adjust(5),
+    top: 50,
   },
 });
 
