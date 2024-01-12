@@ -24,7 +24,7 @@ export const rewards_exclusive_pill = "Health insurance exclusive"
 
 export const groupHealthRewardsHeading = "Group Health Rewards"
 export const groupHealthRewardsCompleted = (completed: string) => `${completed} Rewards unlocked`
-export const groupHealthRewardsDescription = "Unlock rewards by completing quests. The more levels you complete, the more rewards you will unlock.\n\n6 days left before it all resets, go go go!"
+export const groupHealthRewardsDescription = "Unlock rewards by levelling up each day.\n\nComplete at least one challenge per day to level up. The more days you complete a challenge, the more rewards you will unlock.\n\n6 days left of this journey to go before your progress resets. You've got this!"
 export const yugiRewardsImageURL = "https://yulife-develop.imgix.net/products/group/rewards/yugi-swipe-2023-07-18.svg?ixlib=js-3.2.1&h=444&w=387&s=0a699bce95b4beadf3b95f99ecfdd6e5"
 export const groupHealthRewardsLockedImageURL = "https://yulife-develop.imgix.net/content/icons/lock.svg?ixlib=js-3.2.1&w=192&h=192&s=066080739af592173a3a631e3504fe8c"
 export const groupHealthRewardsUnlockedImageURL = "https://yulife-develop.imgix.net/content/icons/chest.svg?ixlib=js-3.2.1&w=96&h=96&s=f298206b4d2b5507d96a6f563c226a33"
