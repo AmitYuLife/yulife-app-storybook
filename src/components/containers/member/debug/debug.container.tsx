@@ -15,6 +15,7 @@ import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { IDebugItem } from "@components/screens/member/debug/debug.screen";
 import { showYuModal } from "@navigation/root";
+import { clearApolloCache } from "@graphql/_core/clearCache";
 
 interface IDebugContainerProps {
   componentId: string;
@@ -30,6 +31,7 @@ enum DebugCodes {
   sleepMeditation = "sleep-meditation",
   inspectOpponent = "inspect-opponent",
   showLeaderboardSearch = "show-leaderboard-search",
+  clearApolloCachedData = "clear-apollo-cached-data",
   sendTestPushNotification = "send-test-push-notification",
   playGround = "play-ground",
   workoutDebug = "workout-debug",
@@ -161,6 +163,10 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                       },
                     },
                   });
+
+                case DebugCodes.clearApolloCachedData:
+                  await clearApolloCache();
+                  return Alert.alert("Apollo cache cleared");
               }
 
               await resetData({ variables: { code } });
