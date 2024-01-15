@@ -32,7 +32,7 @@ import * as helper_V4 from "00_Smoke_4/01_yuscreen_v4/_resources/helpers";
 
 Feature("PLI HAPPY", async () => {
   Scenario(
-    "As a completely healthy male user with Covea FIB enabled, I should be able to purchase PLI and Dental, Only allow previously used card for purchase of new product",
+    "As a completely healthy male user with Covea FIB enabled, I should be able to purchase PLI, Only allow previously used card for purchase of new product",
     scenario.start,
     async () => {
       Given(
@@ -40,7 +40,7 @@ Feature("PLI HAPPY", async () => {
         given.loginToYuScreen(false, CUSTOMER_37, AUTH_37),
         async () => {
           helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "10");
-          helper_V4.YUSCREEN_V4(CUSTOMER_37, "dentalAndPli", "10");
+          helper_V4.YUSCREEN_V4(CUSTOMER_37, "LifeInsurance", "10");
           helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
           helper.ONBOARDING();
           helper.INTRO_START();
@@ -73,9 +73,6 @@ Feature("PLI HAPPY", async () => {
           helper.COVER_STYLE_SELECTION("rare", "62%", "£20.94", "£1,291.67");
           helper.CHECKOUT(true, "Rare");
           helper.REVIEW_YUSCREEN();
-          helper.GET_PRODUCT("Dental", "Dental Insurance");
-          helper_dental.ONBOARDING();
-          helper_dental.CHOOSE_PLAN_AND_CHECKOUT();
         }
       );
     }
@@ -87,7 +84,7 @@ Feature("PLI HAPPY", async () => {
     async () => {
       Given("I login as a user with Covea FIB enabled", given.logInAndGoToTab("yu", CUSTOMER_44, AUTH_44), async () => {
         helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "1");
-        helper_V4.YUSCREEN_V4(CUSTOMER_44, "dentalAndPli", "1");
+        helper_V4.YUSCREEN_V4(CUSTOMER_44, "LifeInsurance", "1");
         helper_V4.CREATE_DEFAULT_YUMOJI(520);
         helper_V4.CORRECT_PRODUCT_SLOT_BACKGROUND(CUSTOMER_44, "0 product live");
         helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
@@ -161,7 +158,7 @@ Feature("PLI HAPPY", async () => {
         given.loginToYuScreen(false, CUSTOMER_37, AUTH_37),
         async () => {
           helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "10");
-          helper_V4.YUSCREEN_V4(CUSTOMER_37, "dentalAndPli", "10");
+          helper_V4.YUSCREEN_V4(CUSTOMER_37, "LifeInsurance", "10");
           helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
           helper.ONBOARDING();
           helper.INTRO_START();
@@ -209,7 +206,7 @@ Feature("PLI HAPPY", async () => {
         given.loginToYuScreen(false, CUSTOMER_PLI_2, AUTH_PLI_2),
         async () => {
           helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "1");
-          helper_V4.YUSCREEN_V4(CUSTOMER_PLI_2, "dentalAndPli", "1");
+          helper_V4.YUSCREEN_V4(CUSTOMER_PLI_2, "LifeInsurance", "1");
           helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
           helper.ONBOARDING();
         }
@@ -226,7 +223,7 @@ Feature("PLI HAPPY", async () => {
         given.loginToYuScreen(false, CUSTOMER_PLI_3, AUTH_PLI_3),
         async () => {
           helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "1");
-          helper_V4.YUSCREEN_V4(CUSTOMER_PLI_3, "dentalAndPli", "1");
+          helper_V4.YUSCREEN_V4(CUSTOMER_PLI_3, "LifeInsurance", "1");
           helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
           helper.ONBOARDING();
         }
@@ -243,7 +240,7 @@ Feature("PLI HAPPY", async () => {
         given.loginToYuScreen(false, CUSTOMER_PLI_4, AUTH_PLI_4),
         async () => {
           helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "1");
-          helper_V4.YUSCREEN_V4(CUSTOMER_PLI_4, "dentalAndPli", "1");
+          helper_V4.YUSCREEN_V4(CUSTOMER_PLI_4, "LifeInsurance", "1");
           helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
           helper.ONBOARDING();
         }
@@ -253,7 +250,7 @@ Feature("PLI HAPPY", async () => {
   Scenario("I can buy PLI with locale set to US and should see price in £ but not in $", scenario.startUS, async () => {
     Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_37, AUTH_37 ), async () => {
           helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "10");
-          helper_V4.YUSCREEN_V4(CUSTOMER_37, "dentalAndPli", "10");
+          helper_V4.YUSCREEN_V4(CUSTOMER_37, "LifeInsurance", "10");
           helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
           helper.ONBOARDING();
           helper.INTRO_START();

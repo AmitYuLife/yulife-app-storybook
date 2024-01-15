@@ -1,18 +1,6 @@
-import {
-  Feature,
-  Scenario,
-  Given,
-  When,
-  Then,
-  ScenarioOnly,
-  FeatureOnly,
-  ScenarioSkip,
-  FeatureSkip,
-} from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../02_PLI_1/_steps/scenario";
 import * as given from "../02_PLI_1/_steps/given";
-import * as when from "../02_PLI_1/_steps/when";
-import * as then from "../02_PLI_1/_steps/then";
 import * as helper from "../02_PLI_1/_resources/helpers";
 import {
   CUSTOMER_37,
@@ -21,14 +9,7 @@ import {
   AUTH_PLI_5,
   CUSTOMER_PLI_6,
   AUTH_PLI_6,
-  CUSTOMER_PLI_7,
-  AUTH_PLI_7,
-  CUSTOMER_PLI_9,
-  AUTH_PLI_9,
-  CUSTOMER_PLI_10,
-  AUTH_PLI_10,
 } from "@data";
-import { POPOVER } from "@ids";
 import * as helper_V4 from "00_Smoke_4/01_yuscreen_v4/_resources/helpers";
 
 Feature("PLI SAD", async () => {
@@ -169,14 +150,15 @@ Feature("PLI SAD", async () => {
         "I login as a user with Covea FIB enabled",
         given.loginToYuScreen(false, CUSTOMER_PLI_5, AUTH_PLI_5),
         async () => {
-          helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "1");
+          helper_V4.ONBOARDING_YUSCREEN("genericRejection", "1");
           helper_V4.YUSCREEN_V4(CUSTOMER_PLI_5, "genericRejection", "1");
         }
       );
     }
   );
 
-  Scenario(
+  // @update [Need to update test flow -- dental has been removed]
+  ScenarioSkip(
     "As a user with failed payment on PLI i should see payment overdue warning when want to buy Dental",
     scenario.start,
     async () => {
@@ -187,51 +169,6 @@ Feature("PLI SAD", async () => {
           helper_V4.ONBOARDING_YUSCREEN("LifeInsurance", "10");
           helper_V4.YUSCREEN_V4(CUSTOMER_PLI_6, "PliPermanentlyRejectedAndDentalInactive", "10");
           helper_V4.CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED("Dental"); //slot text should be the same after navigate through it
-        }
-      );
-    }
-  );
-
-  Scenario(
-    "As a user with age rejection for PLI, i still should see the product slot and be able to get Dental",
-    scenario.start,
-    async () => {
-      Given(
-        "I login as a user with Covea FIB enabled",
-        given.loginToYuScreen(false, CUSTOMER_PLI_7, AUTH_PLI_7),
-        async () => {
-          helper_V4.REJECTION_SCREEN_INFO("Life Insurance", "pliAgeRejected");
-          helper_V4.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
-        }
-      );
-    }
-  );
-
-  Scenario(
-    "As a user with age rejection for Dental, i still should see the product slot and be able to get PLI",
-    scenario.start,
-    async () => {
-      Given(
-        "I login as a user with Covea FIB enabled",
-        given.loginToYuScreen(false, CUSTOMER_PLI_9, AUTH_PLI_9),
-        async () => {
-          helper_V4.REJECTION_SCREEN_INFO("Dental", "dentalAgeRejected");
-          helper_V4.CHECK_PRODUCT_BUTTON_LINK("Life Insurance", "Personal Life Insurance");
-        }
-      );
-    }
-  );
-
-  Scenario(
-    "As a user with covid rejection for PLI, i still should see the product slot and be able to get Dental",
-    scenario.start,
-    async () => {
-      Given(
-        "I login as a user with Covea FIB enabled",
-        given.loginToYuScreen(false, CUSTOMER_PLI_10, AUTH_PLI_10),
-        async () => {
-          helper_V4.REJECTION_SCREEN_INFO("Life Insurance", "pliCovidRejected");
-          helper_V4.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
         }
       );
     }
