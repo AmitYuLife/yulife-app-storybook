@@ -8,9 +8,7 @@ import * as data from "@data"
 import * as helper from "./_resources/helpers";
 
 Feature("As a user I can take a Meditopia challenge", async () => {
-
-  // @bug - JSON Parse error box preventing 'Start Session' button click
-  ScenarioSkip("I can successfully take and complete a 5 minute Meditopia challenge in app", scenario.start, async () => {
+  Scenario("I can successfully take and complete a 5 minute Meditopia challenge in app", scenario.start, async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
@@ -22,7 +20,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     });
     When("I tap the Awareness content card", when.tapAwarenessContentCard("5", "40"), async () => {
       When("I wait 3 seconds", when.wait3Seconds, async () => {
-        Then("I should be on the Awareness Content intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 1, 60, 200)
+        Then("I should be on the Relaxing the body Content intro screen", then.onMeditationContentIntroScreen("Relaxing the body", 15, 1, 60, 200)
         );
       });
     });

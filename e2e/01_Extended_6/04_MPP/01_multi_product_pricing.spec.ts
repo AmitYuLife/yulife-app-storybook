@@ -10,8 +10,7 @@ import * as ids from "@ids";
 
 
 
-// @bug GS-831 app hanging on See all protection screen
-FeatureSkip("The MPP changes are visible in the YuLife App", async () => {
+Feature("The MPP changes are visible in the YuLife App", async () => {
     Scenario("Part 1: I can see the new deeper environment when a user has 5 products, with the new product slots, and the ordering set to the MPP ordering", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_123_MPP, data.AUTH_123), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
