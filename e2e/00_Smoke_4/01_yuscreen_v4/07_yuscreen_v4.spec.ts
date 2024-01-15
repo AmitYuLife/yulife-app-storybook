@@ -24,7 +24,8 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         })
     })
 
-    Scenario("I can create my Yumoji on new Yuscreen V4 and navigate to products via slots and carousel", scenario.start, async () => {
+    // @update [Need to update test flow -- dental has been removed]
+    ScenarioSkip("I can create my Yumoji on new Yuscreen V4 and navigate to products via slots and carousel", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_44, data.AUTH_44), async () => {
             helper.ONBOARDING_YUSCREEN("dentalAndPli", "1")
             helper.YUSCREEN_V4(data.CUSTOMER_44, "dentalAndPli", "1")
@@ -57,7 +58,8 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         })
     })
 
-    Scenario("I can create my Yumoji on new Yuscreen V4, having permanently rejected product PLI, should see the correct slots and carousel", scenario.start, async () => {
+    // @update [Need to update test flow -- dental has been removed]
+    ScenarioSkip("I can create my Yumoji on new Yuscreen V4, having permanently rejected product PLI, should see the correct slots and carousel", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_46, data.AUTH_46), async () => {
             Then("I should be on the YuScreen V4", then.onYuscreenV4(data.CUSTOMER_46, "PliPermanentlyRejectedAndDentalInactive", "5" ))
         })

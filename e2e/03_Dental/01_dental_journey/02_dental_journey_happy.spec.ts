@@ -21,7 +21,8 @@ import { BACK_BUTTON, BUTTON_CLOSE, CONTENT_MIDDLE_ITEM_IMAGE, NAV_BAR, REWARD_I
 import { ordoAvailableImage, ordoNotAvailableImage } from "./_resources/constants";
 
 Feature("DENTAL HAPPY", async () => {
-  Scenario("I can buy Dental and PLI ,only allow previously used card for purchase of new product", scenario.start, async () => {
+  // @update [Dental has been removed]
+  ScenarioSkip("I can buy Dental and PLI ,only allow previously used card for purchase of new product", scenario.start, async () => {
       Given("I login as a user with Bupa Dental enabled", given.loginToYuScreen(false, CUSTOMER_37, AUTH_37), async () => {
           helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "10");
           helper_V4.YUSCREEN_V4(CUSTOMER_37, "dentalAndPli", "10");
@@ -64,7 +65,8 @@ Feature("DENTAL HAPPY", async () => {
     }
   );
 
-  Scenario("Dental product view", scenario.start, async () => {
+  // @update [Dental has been removed]
+  ScenarioSkip("Dental product view", scenario.start, async () => {
     Given("I login as a user with Bupa Dental product approved", given.loginToYuScreen(false, CUSTOMER_DENTAL_1, AUTH_DENTAL_1), async () => {
         helper_V4.DENTAL_PRODUCT_VIEW("Epic", "0123");
         helper.PACKAGE_COVERING("Epic");

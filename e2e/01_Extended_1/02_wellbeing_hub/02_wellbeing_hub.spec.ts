@@ -207,7 +207,6 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_129_WELLBEING_ELIGIBILITY, data.AUTH_129), async () => {
             When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
                 Then("I shouldn't see the restricted product on the screen", then.textNotVisible(data.WELLBEING_HUB_ITEM_10.data.title))
-                // isn't visible as despite being correct department employee is the wrong grade
             })
         })
     })
