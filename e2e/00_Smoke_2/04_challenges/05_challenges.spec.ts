@@ -137,8 +137,7 @@ Feature("As a user I can take a challenge", async () => {
 
     // PROGRESS
 
-    // @bug  [Ticket GS-837 -- Event complete shows two different finish screens]
-    ScenarioSkip("I can take challenge with a higher earn rate of 13 and see the correct higher number of yucoin earned", scenario.start, async () => {
+    Scenario("I can take challenge with a higher earn rate of 13 and see the correct higher number of yucoin earned", scenario.start, async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("yucoin", data.CUSTOMER_52, data.AUTH_52), async () => {
             Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
         })
@@ -185,8 +184,10 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("Ends on the 10th", "650", 1, "1 Profile viewed"))
         })
         When("I click Claim", when.tapText(t("Claim")), async () => {
-            When("I wait", when.wait(5000), async () => {
-                Then("I should see the first milestone complete", then.milestoneComplete(0))
+            When("I click great", when.tapText("Great!"), async()=>{
+                When("I wait", when.wait(5000), async () => {
+                    Then("I should see the first milestone complete", then.milestoneComplete(0))
+                })
             })
         })
         When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {

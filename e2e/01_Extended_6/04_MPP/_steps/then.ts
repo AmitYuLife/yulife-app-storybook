@@ -81,7 +81,7 @@ const provideCorrectYucoinPill = (owned: boolean, started: boolean) => {
   }
 }
 
-export const noProductsDeeperEnvironmentVisible = () => {
-  idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.noProductsImg))()
-  idVisible(ids.TEXT_TEMPLATE(constants.noProductsMessage, "h3"))()
+export const noProductsDeeperEnvironmentVisible = async () => {
+  await idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.noProductsImg))()
+  await idVisible(ids.TEXT_TEMPLATE(constants.noProductsMessage, "h3"))()
 }

@@ -8,8 +8,7 @@ import * as ids from "@ids"
 
 
 Feature("As an enabled user I am able to use the duels feature", async()=>{
-    // @bug [Ticket: GS-832 YuCoin Amount not deducted when sending duel request.]
-    ScenarioSkip("As a user I am able to invite another user to a duel, and the opponent is able to accept the duel", scenario.start, async()=>{
+    Scenario("As a user I am able to invite another user to a duel, and the opponent is able to accept the duel", scenario.start, async()=>{
     Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard",data.CUSTOMER_20, data.AUTH_20),async()=>{
             Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON))
             When("I tap duels icon", when.tapID(ids.DUELS_BUTTON), async()=>{
