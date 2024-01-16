@@ -67,14 +67,18 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             helper.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
     })
 
-    Scenario("As a YuLifer with 6 slots i should  NOT see More protection coming soon slot and I can see the wellbeing hub on the UK YuScreen", scenario.start, async () => {
+    Scenario("As a YuLifer with 6 slots I can see the wellbeing hub on the UK YuScreen", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_48, data.AUTH_48), async () => {
             helper.ONBOARDING_YUSCREEN("3 Products Slots Started", "31")
             helper.YUSCREEN_V4(data.CUSTOMER_48, "6 Products Slots", "31", "More protection")
-            helper.CREATE_DEFAULT_YUMOJI(300);
-            // add in test for company toggle showing product benefit
-            When("I view the critical illness product", when.tapText("Critical Illness"), async () => {
-                Then("I should see the product benefit information due to the company toggle being set to true", then.textVisible(`9x ${constants.criticalIllnessBenefitHeader}`))
+
+            When("I scroll up to create my Yumoji", when.scrollUntilTextVisible(ids.YUSCREEN_SCROLL_VIEW, "Create Yumoji", "up"), async () => {
+                helper.CREATE_DEFAULT_YUMOJI(300);
+                When("I scroll up to find critical illness slot", when.scrollUntilTextVisible(ids.YUSCREEN_SCROLL_VIEW, "Critical Illness", "up"), async () => {
+                    When("I view the critical illness product", when.tapText("Critical Illness"), async () => {
+                        Then("I should see the product benefit information due to the company toggle being set to true", then.textVisible(`9x ${constants.criticalIllnessBenefitHeader}`))
+                    })
+                })
             })
             When("I close the product screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
                 When("I swipe up the screen", when.swipeFromText("My Wellbeing Hub", "down", "fast"), async () => {

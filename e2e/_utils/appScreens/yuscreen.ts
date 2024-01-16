@@ -315,14 +315,10 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
       await textVisible("1")();
       await swipeFromText(criticalIllness, "up", "slow", 0.2)();
       await expect(element(by.text(PLIYuCoinPower))).toBeVisible();
-      await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, dentalInsurance, "down")()
-      await expect(element(by.text(dentalYuCoinPower))).toBeVisible();
-      await idVisible(SLOT_TITLE(dentalInsurance))()
-      await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, dentalPriceFrom, "down")()
+      await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, "Extend your life insurance", "down")()
       await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible();
-      await expect(element(by.text(dentalPriceFrom))).toBeVisible();
-      await expect(element(by.text(noProductText))).not.toBeVisible();
-      await swipeFromText(dentalPriceFrom, "down", "fast")();
+      await expect(element(by.text(noProductText))).toBeVisible();
+      await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, "Create Yumoji", "up")()
       break;
     case "5 Products Slots":
       await textVisibleAtIndex(yuCoinPower, 0)();
