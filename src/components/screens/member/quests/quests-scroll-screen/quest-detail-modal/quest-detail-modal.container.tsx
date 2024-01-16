@@ -17,25 +17,12 @@ import { GetGoalMilestoneDetails } from "@graphql/_core/schema";
 import { questDetailModalStyles } from "./quest-detail-modal.styles";
 import { HeroLockedIcon } from "@atoms/icon/hero-locked-icon";
 import { gql } from "@graphql/__generated";
+import { VoidFunction } from "@utils";
 
 export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerProps) => {
   const currentRoute = useSelector(getRouteState);
 
   const calculated = useMemo(() => {
-    const pressHint = () => {
-      pushToScreen(currentRoute, {
-        component: {
-          id: ROUTES.sduiStatic,
-          name: ROUTES.sduiStatic,
-          passProps: {
-            stepId: "game_mechanics_information",
-            dynamicId: currentRoute,
-          },
-        },
-      });
-      Navigation.dismissOverlayWithChild();
-    };
-
     const goals = !props.goals
       ? []
       : props.goals.reduce((acc, goal) => {
@@ -45,6 +32,22 @@ export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerP
 
           return [...acc, { goalId: goal.goalId, milestoneId: goal.milestoneId }];
         }, []);
+
+    const pressHint: null | VoidFunction = !goals?.length
+      ? null
+      : () => {
+          pushToScreen(currentRoute, {
+            component: {
+              id: ROUTES.sduiStatic,
+              name: ROUTES.sduiStatic,
+              passProps: {
+                stepId: "game_mechanics_information",
+                dynamicId: currentRoute,
+              },
+            },
+          });
+          Navigation.dismissOverlayWithChild();
+        };
 
     return {
       heading: props.heading,
@@ -60,7 +63,6 @@ export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerP
     variables: {
       goals: calculated.goals,
     },
-    skip: !calculated.goals?.length,
     fetchPolicy: "no-cache",
   });
 
