@@ -770,6 +770,11 @@ export const WELLBEING_HUB_ITEM_9 = {
           "uri": "https://faq.yulife.com/en/"
         }
       ],
+      "query": {
+        "employmentStartDate": {
+          "lessThan": moment().subtract(6, "months").format("YYYY-MM-DD")
+        }
+      },
       "createdAt": {
         "$date": "2023-07-31T14:39:24.453Z"
       },
@@ -814,3 +819,4 @@ export const WELLBEING_HUB_ITEM_10 = {
      "updatedAt": moment().toISOString(),
   }
 } as IDatabaseItem
+ 

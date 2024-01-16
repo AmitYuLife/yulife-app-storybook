@@ -14,7 +14,8 @@ export const {
 
 export const {
     scrollFromID,
-    scrollUntilIdVisible
+    scrollUntilIdVisible,
+    swipeFromText
 } = navigation.scrolling
 
 export const navigateViaButton = (text: string) => async () => {

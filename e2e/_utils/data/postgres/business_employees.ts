@@ -1363,7 +1363,7 @@ export const BUSINESS_EMPLOYEE_117 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_10_GHI_REWARDS.data.business_account_id,
         customer_id: customer.CUSTOMER_117_GHI_REWARDS.data.customerId,
-        employment_start_date: moment().subtract(8, "months").toDate(),
+        employment_start_date: moment().subtract(5, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
