@@ -1,3 +1,4 @@
+import { isEmpty } from "lodash";
 import { FlashList } from "@shopify/flash-list";
 import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
@@ -7,8 +8,9 @@ import { Colours, Style } from "@styles";
 import { useQuery } from "@apollo/client";
 import { YuCoinPowerCard } from "@molecules";
 import { Navigation } from "@navigation/main";
-import { Loading, Stack, TextTemplate } from "@atoms";
+import { Stack, TextTemplate } from "@atoms";
 import YuCoinPowerExplainedProduct from "./yu-coin-power-explained-product";
+import YuCoinPowerExplainedSkeleton from "./yu-coin-power-explained-skeleton";
 import { GQL_QUERY_GET_YU_COIN_POWER_INFO } from "@graphql/yuscreen/getYuCoinPowerInfo";
 import { ActivityPanel, GenericHeadingAbsolute, GenericHeadingPad, ProductSelect } from "@organisms";
 import {
@@ -16,21 +18,17 @@ import {
   GetYuCoinPowerInfo_getYuCoinPowerInfo_sections_items as IGetYuCoinPowerInfoSectionItems,
 } from "@graphql/_core/schema";
 
-const PADDING_LARGE = 35;
-const ESTIMATED_ITEM_SIZE = 105;
-const HEADER_BACKGROUND_OFFSET = 500;
-const NUMBER_OF_ACTIVITY_COLUMNS_TO_SHOW = 3;
+export const PADDING_LARGE = 35;
+export const ESTIMATED_ITEM_SIZE = 105;
+export const HEADER_BACKGROUND_OFFSET = 500;
+export const NUMBER_OF_ACTIVITY_COLUMNS_TO_SHOW = 3;
 
 const YuCoinPowerExplained = () => {
   const [selectedPersonalProducts, setSelectedPersonalProducts] = useState<Record<string, boolean>>({});
 
-  const {
-    loading,
-    refetch,
-    data: { getYuCoinPowerInfo: { yuCoin, productPreviews, sections = [], products = [] } = {} } = {},
-  } = useQuery<GetYuCoinPowerInfo>(GQL_QUERY_GET_YU_COIN_POWER_INFO, {
+  const { loading, refetch, previousData, data } = useQuery<GetYuCoinPowerInfo>(GQL_QUERY_GET_YU_COIN_POWER_INFO, {
     variables: {
-      fetchPolicy: "network-only",
+      fetchPolicy: "cache-and-network",
       productIds: Object.entries(selectedPersonalProducts)
         .filter(([_, isSelected]) => {
           return isSelected;
@@ -42,10 +40,6 @@ const YuCoinPowerExplained = () => {
   useEffect(() => {
     refetch();
   }, [refetch, selectedPersonalProducts]);
-
-  const isPreviewingProduct = useMemo(() => {
-    return Object.values(selectedPersonalProducts).some((isSelected) => isSelected);
-  }, [selectedPersonalProducts]);
 
   const itemSeperator = useCallback(() => <View style={{ width: Style.adjust(10) }} />, []);
 
@@ -71,9 +65,19 @@ const YuCoinPowerExplained = () => {
     return `${item.title}-${index}`;
   }, []);
 
-  if (loading) {
-    return <Loading />;
+  const isPreviewingProduct = useMemo((): boolean => {
+    return Object.values(selectedPersonalProducts).some((isSelected) => isSelected);
+  }, [selectedPersonalProducts]);
+
+  const currentData = useMemo((): GetYuCoinPowerInfo => {
+    return loading ? previousData : data;
+  }, [data, loading, previousData]);
+
+  if (isEmpty(currentData) && loading) {
+    return <YuCoinPowerExplainedSkeleton />;
   }
+
+  const { getYuCoinPowerInfo: { yuCoin, productPreviews, sections = [], products = [] } = {} } = currentData;
 
   return (
     <>
@@ -211,5 +215,7 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(20),
   },
 });
+
+export const yuCoinExplainedStyles = styles;
 
 export default memo(YuCoinPowerExplained);
