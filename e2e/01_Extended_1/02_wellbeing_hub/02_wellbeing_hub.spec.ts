@@ -210,4 +210,17 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
             })
         })
     })
+
+    Scenario("I can still see a category even if I do not qualify for one entry within the category", scenario.start, async () => {
+        Given("I login as a grouplife user", given.loginAsUser(data.CUSTOMER_117_GHI_REWARDS, data.AUTH_117), async () => {
+            When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
+                When("I click to see the Health Insurance options", when.tapText("Health Insurance"), async () => {
+                    When("I scroll to the bottom", when.swipeFromText("Health Insurance", "up", "fast"), async () => {
+                        Then("I should not see direct access as the employee hasn't worked there long enough", then.idNotVisible(ids.TEXT_TEMPLATE(fixture.directAccessItem.title)))
+                        Then("I should not see the description for direct access either", then.textNotVisible(fixture.directAccessItem.buttonDesc))
+                    })
+                })
+            })
+        })
+    })
 })
