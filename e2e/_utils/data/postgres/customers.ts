@@ -1920,3 +1920,15 @@ export const CUSTOMER_131_GHI_REWARDS = {
   },
 } as IDatabaseItem
 
+export const CUSTOMER_132 = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Time",
+    lastName: "Traveler",
+    dateOfBirth: moment().subtract(32, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem

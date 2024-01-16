@@ -2336,3 +2336,13 @@ export const BUSINESS_6_USER_TOGGLES = {
         hasProductBenefitVisible: true},
   }
 } as IDatabaseItem
+
+export const CUSTOMER_132_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_132.data.customerId,
+    features: allTogglesTrue.data.features,
+  },
+} as IDatabaseItem;

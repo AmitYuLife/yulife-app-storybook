@@ -2339,3 +2339,18 @@ export const USER_ONBOARDING_131 = {
     },
   },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_132 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_132.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+    businessName: "Justice League",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+    },
+  },
+} as IDatabaseItem;

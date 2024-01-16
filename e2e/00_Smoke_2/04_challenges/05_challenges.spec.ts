@@ -300,4 +300,31 @@ Feature("As a user I can take a challenge", async () => {
             })
         })
     })
+
+    Scenario("I can confirm the accurate reset of data and successfully redeem a challenge initiated the day before, completed just after midnight", scenario.start, async () => {
+        Given("I login as a user who initiated a walking challenge yesterday", given.loginAsUser(data.CUSTOMER_132, data.AUTH_132), async () => {
+            Then("I should see my updated coin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
+        })
+        When("I tap the quests screen", when.tapID(ids.NAV_BAR("quests")), async () => {
+            Then("I should see the well done screen", then.onChallengeComplete(450, 1))
+        })
+        When("I tap to collect the reward from the walking challenge I completed just after midnight", when.tapText(t("Collect")), async () => {
+            Then("I should still see the correct yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
+        })
+        When("I go to the yucoin screen", when.navigateTo("yucoin"), async () => {
+            Then("I should see that my daily steps activity is correct", then.textVisible("0 steps"))
+            Then("I should see the correct amount of YuCoin collected today", then.textVisible("200 YuCoin today"))
+            Then("I should see that I still have 1 challenge left", then.textVisible("Take a challenge (1 left today)"))
+          })
+    })
+
+    Scenario("I can take a long walk challenge and still successfully complete and collect the chest reward after midnight", scenario.start, async () => {
+        helper.START_WALKING_CHALLENGE_FAKE_TIME();
+        helper.END_WALKING_CHALLENGE_FAKE_TIME();
+    })
+
+    Scenario("I can take a long walk challenge, put app in background, open app and still successfully complete and collect the chest reward after midnight", scenario.start, async () => {
+        helper.START_WALKING_CHALLENGE_MINIMISE_FAKE_TIME();
+        helper.END_WALKING_CHALLENGE_FAKE_TIME();
+    })
 })

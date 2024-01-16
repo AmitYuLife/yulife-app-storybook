@@ -8,6 +8,7 @@ import * as data from "@data"
 import { PracticeYudokuAnswers } from "./_resources/constants"
 import { DefaultYudokuLeaderboard, User67LeaderboardItemSudoku, User68LeaderboardItemSudoku, User71LeaderboardItemSudoku } from "./_resources/fixtures"
 import { getLocalisedString as t } from "@i18n";
+import * as helper from "./_resources/helpers";
 
 Feature("Yudoku", async () => {
 // @flaky [fails to join the leaderboard screen -- test passes locally successfully]
@@ -382,4 +383,17 @@ Feature("Yudoku", async () => {
             Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3200)))
         })
     })
+
+    Scenario("I can start a Yudoku before midnight, put app in background, open app and finish it after midnight", scenario.start, async () => {
+        helper.START_YUDOKU_MINIMISE_FAKE_TIME();
+        helper.END_YUDOKU_FAKE_TIME();
+    })
+
+    Scenario("I can start a Yudoku before midnight, force close the app, open app and finish it after midnight", scenario.start, async () => {
+        helper.START_YUDOKU_CLOSE_OPEN_APP_FAKE_TIME();
+            When("I click resume game", when.tapResumeSudoku, async () => {
+                helper.END_YUDOKU_FAKE_TIME();
+            })
+    })
+
 })
