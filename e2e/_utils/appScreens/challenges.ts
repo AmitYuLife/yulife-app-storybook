@@ -279,8 +279,9 @@ export const pauseChallengeTimeVisible = async () => {
 }
 
 export const playAndFinishMeditopiaChallenge = async () => {
+  await wait(2000)()
   await navigateViaID(ids.VIDEO_PLAY_PAUSE_BUTTON(true))
-  await wait(15000)()
+  await wait(18000)()
 }
 
 export const startAndQuitMeditopiaChallenge = async () => {
@@ -368,7 +369,7 @@ export const isOnTodaysMeditationScreen2Challenges = (mins1: string, yuCoin1: st
   await openOtherAppButtonVisible()
 }
 
-export const tapAwarenessContentCard = (mins1: string, yuCoin1: string) => async () => {
+export const tapMeditopiaContentCard = (mins1: string, yuCoin1: string) => async () => {
   await navigateViaText(`${mins1} mins • Earn ${yuCoin1}`)
 }
 

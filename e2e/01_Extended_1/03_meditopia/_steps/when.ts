@@ -30,7 +30,7 @@ export const {
     startAndQuitMeditopiaChallenge,
     startMeditopiaChallenge,
     clickScrubber,
-    tapAwarenessContentCard,
+    tapMeditopiaContentCard,
     tapTakeChallenge,
     tapStartSession
 } = screens.challenges
