@@ -1,5 +1,6 @@
 import React, { memo } from "react";
-import { SvgCss, SvgProps } from "react-native-svg";
+import { SvgProps } from "react-native-svg";
+import { SvgCss } from "react-native-svg/css";
 import { EMPTY_AVATAR } from "@ids";
 import TouchableOpacityWithDelay from "../touchable-opacity-delay/touchable-opacity-delay";
 import { Colours } from "@styles";
