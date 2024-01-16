@@ -556,6 +556,17 @@ transactions.push({
     level: 1
 });
 
+// CUSTOMER_132
+transactions.push({
+    _id: generateRandomMongoId(),
+    userId: Customers.CUSTOMER_132.data.customerId,
+    coins: 200,
+    source: "onboardingChallenge",
+    sourceId: generateRandomMongoId(),
+    totalCoins: 200,
+    level: 1
+});
+
 // export all in 1 go
 module.exports = transactions.reduce((acc, transaction) => {
     acc[transaction._id] = {

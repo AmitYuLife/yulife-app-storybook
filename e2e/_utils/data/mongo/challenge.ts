@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_19, CUSTOMER_35, CUSTOMER_40, CUSTOMER_42, CUSTOMER_47, CUSTOMER_50, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_65, CUSTOMER_75, CUSTOMER_76, CUSTOMER_77, CUSTOMER_83, CUSTOMER_20, CUSTOMER_84, CUSTOMER_111, CUSTOMER_109, CUSTOMER_39, CUSTOMER_16, CUSTOMER_LEAVER } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_19, CUSTOMER_35, CUSTOMER_40, CUSTOMER_42, CUSTOMER_47, CUSTOMER_50, CUSTOMER_52, CUSTOMER_54, CUSTOMER_55, CUSTOMER_56, CUSTOMER_57, CUSTOMER_58, CUSTOMER_65, CUSTOMER_75, CUSTOMER_76, CUSTOMER_77, CUSTOMER_83, CUSTOMER_20, CUSTOMER_84, CUSTOMER_111, CUSTOMER_109, CUSTOMER_39, CUSTOMER_16, CUSTOMER_LEAVER, CUSTOMER_132 } from '../postgres/customers';
 import { SHORT_STROLL_MILESTONE_1, LONG_WALK_MILESTONE_1, MEDITATION_MILESTONE_1, SUDOKU_MILESTONE } from './map_milestone_templates';
 import { MEDITATION_1, LONG_WALK_1, SHORT_STROLL_1, CYCLING_1 } from './map_level_slot_templates';
 import { CHALLENGE_TEMPLATE } from "./_templates";
@@ -2340,5 +2340,35 @@ export const ONBOARDING_CHALLENGE_109 = {
         status: "completed",
         date: moment().format("YYYY-MM-DD"),
         milestoneLog: [],
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_132 = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_132.data.customerId,
+        ...generateChallengeDates(moment("23:59", "HH:mm").subtract(1, "days"), moment("00:01", "HH:mm")),
+        date: null,
+        incomingData: {
+            steps: 450
+        },
+        level: 1,
+        levelSlotTemplateId: "DAILY_PASSIVE_001",
+        status: "active",
+        levelId: "YU_LEVEL_0001",
+        levelSlotId: "YU_LEVEL_0001_1",
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                data: {
+                    steps: 450
+                },
+                id: SHORT_STROLL_MILESTONE_1.data.id
+            },
+        ],
     }
 } as IDatabaseItem;

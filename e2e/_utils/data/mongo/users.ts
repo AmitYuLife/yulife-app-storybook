@@ -2388,3 +2388,23 @@ export const USER_131 = {
     avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
   },
 } as IDatabaseItem;
+
+export const USER_132 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_2.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_132.data.customerId,
+    earnRate: 10,
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        earnRate: 10,
+        type: "employer",
+      },
+    ],
+  },
+} as IDatabaseItem;

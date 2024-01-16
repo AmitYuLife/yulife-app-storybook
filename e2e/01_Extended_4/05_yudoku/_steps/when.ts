@@ -1,8 +1,10 @@
 import { navigation } from "@utils";
-export { authoriseFitkit, sendSteps } from "@socket";
-import { CELL_ROW_COLUMN, CHALLENGE_SET_SCROLL, LEADERBOARD_SWITCH, SUDOKU_COMPLETED_SCREEN_SCROLL, SUDOKU_HINT, SUDOKU_NUMBER_INPUT, SUDOKU_PAUSE, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_UNDO_BUTTON} from "@ids"
+import { CELL_ROW_COLUMN, CHALLENGE_SET_SCROLL, LEADERBOARD_SWITCH, SUDOKU_COMPLETED_SCREEN_SCROLL, SUDOKU_HINT, SUDOKU_NUMBER_INPUT, SUDOKU_PAUSE, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_UNDO_BUTTON } from "@ids"
 import { screens } from "@appScreens";
 import { SocialGroupLeaderboard } from "../_resources/types";
+export { minimiseAndReopenApp, reloadOnly } from "@utils";
+export { authoriseFitkit, sendSteps } from "@socket";
+
 
 export const {
   tapText,
@@ -84,8 +86,10 @@ export const tapExitChallenge = async () => {
   await tapText("Exit challenge")()
 }
 
-export const completeYudoku = (shouldCollect = true) => async () => {
-  await tapStartGame()
+export const completeYudoku = (shouldCollect = true, shouldStart = true) => async () => {
+  if (shouldStart) {
+    await tapStartGame()
+  }
   await dismissNotificationScreenIfVisible()
   await wait(9000)()
   await tapID(CELL_ROW_COLUMN(8, 6, 0))()
