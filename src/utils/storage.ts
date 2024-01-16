@@ -64,7 +64,13 @@ export class Storage {
     await EncryptedStorage.deleteItemAsync(this.formatExpoStorageKey(key));
 
     try {
-      await LegacyEncryptedStorage.removeItem(key);
+      // We need to check the item still exists before removing it
+      // otherwise LegacyEncryptedStorage will throw an error
+      const legacyValue = await LegacyEncryptedStorage.getItem(key);
+
+      if (legacyValue) {
+        await LegacyEncryptedStorage.removeItem(key);
+      }
     } catch (error) {
       Logger.error(error, { file: "storage" });
     }
