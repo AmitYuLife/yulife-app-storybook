@@ -7,6 +7,45 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.116.0] - 2024-01-17
+
+### Features
+
+- Task: add clear apollo cache debug feature
+
+### Bugfixes
+
+- Bugfix: fix intercom storage warning log when logging out
+- Bugfix: AudioPlayer buffer state and improvements
+
+### Tasks
+
+- Task: YuHealth™ getPassiveSinceLastUpdateAndroid & getPassiveSinceLastUpdateIos
+- Task: Bump yu-health to 1.0.9
+- Task: YuHealth™ getPassiveHourlySinceLastUpdate
+- Task: Generate query name
+- Task: YuHealth™ Workout screen, bump version
+- Task: update react-native-svg
+- Task: update yucoin power screen loading state
+- Task XSE-2472: Remove skip to display future hint
+- Task: YuHealth™ getDailyPassiveActivity
+- Task: YuHealth™ Activity History
+
+### Extra
+
+- Detox/events bug update
+- Purge: Leaderboard legacy
+- Detox/fixes-16/01
+- Detox/Meditopia tests bug fixes
+- Detox: Data Reset Validation and Previous Day Challenge Completion
+- detox/tps-2688
+- detox/bug_fixes
+- Detox/fixes-15/01
+- Detox/12_1_24_fixes
+- Detox/10 1 24 updates
+- detox/vbus-1727
+- detox/vbus-2252
+
 ## [3.115.0] - 2024-01-10
 
 ### Bugfixes
