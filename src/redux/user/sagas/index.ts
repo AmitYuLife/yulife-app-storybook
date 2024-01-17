@@ -9,7 +9,6 @@ import {
   OPEN_MY_ACCOUNT,
   SET_USER_NO_ACCESS,
   UPDATE_CONNECTION_START,
-  UPDATE_LEADERBOARD_CONSENT_START,
   UPDATE_USER_CONSENT,
   UPDATE_USER_PROFILE,
   REFRESH_USER_PROFILE,
@@ -31,7 +30,6 @@ import openMyAccountSaga from "./openMyAccount.saga";
 import setUserNoAccessSaga from "./setUserNoAccess.saga";
 import showSurgeIntroSaga from "./showSurgeIntro.saga";
 import updateConnectionSaga from "./updateConnection.saga";
-import updateLeaderboardConsentSaga from "./updateLeaderboardConsent.saga";
 import updateUserConsentSaga from "./updateUserConsent.saga";
 import sendDuelInvitationSaga from "./sendDuelInvitation.saga";
 import getUserProfileData from "./getUserProfileData.sagas";
@@ -62,7 +60,6 @@ export default [
   takeLatest([GET_USER_START, CHALLENGE_RESET_SUCCESS], getUserDataSaga),
   takeLatest(UPDATE_CURRENT_DATE, getUserOnUpdatedDateSaga),
   takeLatest([CHALLENGE_RESET_SUCCESS, REFRESH_USER_PROFILE_EVENTS], getUserProfileEvents),
-  takeLatest(UPDATE_LEADERBOARD_CONSENT_START, updateLeaderboardConsentSaga),
   takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),
   takeLatest(LOGOUT_START, logOutSaga),
   takeLatest(OPEN_MY_ACCOUNT, openMyAccountSaga),

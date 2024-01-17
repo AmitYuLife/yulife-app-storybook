@@ -8,9 +8,9 @@ import { getCurrentUserId } from "@redux/user/user.selectors";
 import { GetDuels } from "@graphql/_core/schema";
 import { useBackHandler } from "@hooks";
 import { GQL_QUERY_GET_DUELS } from "@graphql/duels";
-import { onDuelPress } from "../leaderboard/_legacy/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog.helpers";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { gql } from "@graphql/__generated";
+import { onDuelPress } from "@utils/duels";
 
 interface IProps {
   componentId: string;
