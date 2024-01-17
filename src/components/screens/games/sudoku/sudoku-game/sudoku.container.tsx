@@ -153,7 +153,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
             },
             onError: () => {
               onPause();
-              dispatch(getUserDataStart([AppDataType.activeChallenge]));
+              dispatch(getUserDataStart({ types: [AppDataType.activeChallenge] }));
               showSubmissionError(rej);
             },
             ...(canRefetch && {

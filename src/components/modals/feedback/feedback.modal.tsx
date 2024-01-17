@@ -40,7 +40,7 @@ const FeedbackModal = () => {
             answers,
           },
         });
-        dispatch(getUserDataStart([AppDataType.coinLedger, AppDataType.todayActivity]));
+        dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
       } catch (e) {
         Logger.error(e, { location: "feedback.modal", feedbackId: data?.form?.id });
       } finally {

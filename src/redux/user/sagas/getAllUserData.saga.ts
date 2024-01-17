@@ -11,6 +11,7 @@ import {
   AppDataType,
   getUserTodayActivitySuccess,
   getUserCoinLedgerSuccess,
+  IAppDataTypePayload,
 } from "../user.actions";
 import { Action } from "@reduxjs/toolkit";
 import { updateDailyPensionSuccess } from "@redux/daily-pension/daily-pension.actions";
@@ -29,13 +30,13 @@ const SUCCESS_ACTIONS: Record<AppDataType, (data: GetAllUserDataResponse[AppData
   [AppDataType.socialGroups]: updateSocialGroupLeaderboardsSuccess,
 };
 
-export default function* getAllUserDataSaga({ payload }: { payload: AppDataType[] } & Action<AppDataType>) {
+export default function* getAllUserDataSaga({ payload }: { payload: IAppDataTypePayload } & Action<AppDataType>) {
   try {
     const token: Unpacked<typeof getToken> = yield call(getToken);
     if (token) {
       const { data }: Unpacked<typeof getAllUserData> = yield call(getAllUserData, payload);
       if (data) {
-        for (const type of payload) {
+        for (const type of payload.types) {
           if (SUCCESS_ACTIONS[type]) {
             yield put(SUCCESS_ACTIONS[type](data[type]));
           }
@@ -43,6 +44,6 @@ export default function* getAllUserDataSaga({ payload }: { payload: AppDataType[
       }
     }
   } catch (e) {
-    Logger.error(e, { event: "getAllUserDataSaga", payload: payload.join(",") });
+    Logger.error(e, { event: "getAllUserDataSaga", payload: payload.types.join(",") });
   }
 }

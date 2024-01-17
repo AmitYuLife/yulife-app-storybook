@@ -9,7 +9,7 @@ import { AppDataType, getUserDataStart } from "../user.actions";
 export default function* fetchUserOnAppStateChangeSaga({ payload }: ReturnType<typeof setAuthenticated>) {
   if (!payload) {
     yield call(getUserDataSaga);
-    yield put(getUserDataStart([AppDataType.coinLedger]));
+    yield put(getUserDataStart({ types: [AppDataType.coinLedger] }));
   }
 
   const appState: ReturnType<typeof appStateChannel> = yield call(appStateChannel);
@@ -20,7 +20,7 @@ export default function* fetchUserOnAppStateChangeSaga({ payload }: ReturnType<t
 
     if (state === "active" && !active.levelSlotId) {
       yield call(getUserDataSaga);
-      yield put(getUserDataStart([AppDataType.coinLedger, AppDataType.activeStreak]));
+      yield put(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.activeStreak] }));
     }
   }
 }

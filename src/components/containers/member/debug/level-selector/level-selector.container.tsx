@@ -27,7 +27,7 @@ const LevelSelector = () => {
         refetchQueries: [{ query: GQL_QUERY_GET_QUEST_MAP }],
       });
       if (success) {
-        dispatch(getUserDataStart([AppDataType.coinLedger, AppDataType.todayActivity]));
+        dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
       }
 
       Navigation.popToRoot(ROUTES.debug);

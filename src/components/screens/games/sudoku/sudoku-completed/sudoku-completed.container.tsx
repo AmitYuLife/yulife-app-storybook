@@ -33,7 +33,7 @@ export const SudokuCompletedContainer = ({ reward, isPractice, results, stats }:
 
   const onCollect = useCallback(() => {
     dispatch(sudokuReset());
-    dispatch(getUserDataStart([AppDataType.activeStreak]));
+    dispatch(getUserDataStart({ types: [AppDataType.activeStreak] }));
 
     Navigation.popTo(isPractice ? ROUTES.sudokuStaging : ROUTES.quests);
 
