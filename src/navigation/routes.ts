@@ -156,25 +156,12 @@ const routesForRegistration = [
     hasMenu: true,
     renderAfterMs: 450,
     name: ROUTES.leaderboard,
-    component: require("../components/containers/member/leaderboard").default,
+    component: require("../components/containers/member/leaderboard/leaderboard.container").default,
   },
   {
     name: ROUTES.leaderboardInfo,
     component: require("../components/containers/member/leaderboard/leaderboard-info/leaderboard-info").default,
   },
-
-  // Leaderboard legacy
-  {
-    name: ROUTES.leaderboardInfoLegacy,
-    component: require("../components/containers/member/leaderboard/_legacy/leaderboard-info/leaderboard-info").default,
-  },
-  {
-    name: ROUTES.leaderboardsListLegacy,
-    component:
-      require("../components/containers/member/leaderboard/_legacy/leaderboard-list/leaderboard-list.container")
-        .default,
-  },
-  // end
 
   {
     name: ROUTES.notifications,
@@ -360,10 +347,6 @@ const routesForRegistration = [
     component: require("../components/containers/products/product-details/product-details.modal").default,
   },
   {
-    name: MODALS.leaderboardLean,
-    component: require("../components/containers/member/leaderboard/_legacy/leaderboard-lean/leaderboard-lean").default,
-  },
-  {
     name: MODALS.challengeUnavailable,
     component: require("../components/modals/challenge-unavailable/challenge-unavailable.modal").default,
   },
@@ -418,10 +401,6 @@ const routesForRegistration = [
   {
     name: MODALS.streaks,
     component: require("../components/modals/streaks/streaks.modal").default,
-  },
-  {
-    name: MODALS.leaderboards,
-    component: require("../components/modals/generic-modal/generic-modal").default,
   },
   {
     name: MODALS.rewards,

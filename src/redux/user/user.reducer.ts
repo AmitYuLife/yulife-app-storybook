@@ -4,12 +4,10 @@ import {
   GetCurrentUser_getCurrentUser_connections,
   GetCurrentUser_getCurrentUser_leaderboards,
   LoginUser,
-  UpdateLeaderboardConsentVariables,
   UpdateMemberConsent,
   GetUserProfile_getUserProfile_surge_lottie,
   GetUserProfile_getUserProfile_events as Events,
   GetUserSurge_getUserSurge as IUserSurge,
-  GetUserLeaderboards_getUserLeaderboards,
   MarkMobileNotificationsAsViewedByTypeVariables,
 } from "@graphql/_core/schema";
 import { MobileConsentInput, MobileTabs } from "@graphql/_core/schema/globalTypes";
@@ -22,18 +20,13 @@ import {
   UPDATE_CONNECTION_FAILED,
   UPDATE_CONNECTION_START,
   UPDATE_CONNECTION_SUCCESS,
-  UPDATE_LEADERBOARD_CONSENT_FAILED,
-  UPDATE_LEADERBOARD_CONSENT_START,
-  UPDATE_LEADERBOARD_CONSENT_SUCCESS,
   UPDATE_USER_CONSENT_SUCCESS,
-  UPDATE_ACTIVE_LEADERBOARD_ID,
   LOGOUT_SUCCESS,
   UPDATE_USER_PROFILE,
   UPDATE_USER_PROFILE_EVENTS,
   UPDATE_USER_AVATAR,
   UPDATE_USER_SURGE,
   UPDATE_USER_GOAL,
-  GET_USER_LEADERBOARDS_SUCCESS,
   REMOVE_USER_PROFILE_EVENT,
   MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE,
 } from "./user.actions";
@@ -73,8 +66,6 @@ export interface IUserStore {
   connections: Connection[];
   consent: MobileConsentInput;
   features: IFeature;
-  leaderboards: ILeaderboard[];
-  activeLeaderboardId: string;
   earnRate: number;
   surgeIntro: {
     visibility: boolean;
@@ -132,8 +123,6 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   consent: {},
   features: {},
   connections: [],
-  leaderboards: [],
-  activeLeaderboardId: "",
   earnRate: 0,
   //check if we still need this
   surgeIntro: {
@@ -182,8 +171,6 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
 
 export const userReducer = (state: IUserStore = getInitialState(), action: SyncAction): IUserStore => {
   switch (action.type) {
-    case UPDATE_ACTIVE_LEADERBOARD_ID:
-      return { ...state, activeLeaderboardId: action.payload };
     case SET_USER_NO_ACCESS:
       return { ...state, archived: true };
 
@@ -201,18 +188,8 @@ export const userReducer = (state: IUserStore = getInitialState(), action: SyncA
     case LOGIN_USER_SUCCESS:
       return loginUserSuccess(state, action.payload);
 
-    case GET_USER_LEADERBOARDS_SUCCESS:
-      return getUserLeaderboardsSuccess(state, action.payload);
-
     case UPDATE_USER_CONSENT_SUCCESS:
       return updateUserConsentSuccess(state, action.payload);
-
-    case UPDATE_LEADERBOARD_CONSENT_START:
-      return updateLeaderboardLoading(state, action.payload, true);
-
-    case UPDATE_LEADERBOARD_CONSENT_SUCCESS:
-    case UPDATE_LEADERBOARD_CONSENT_FAILED:
-      return updateLeaderboardConsent(state, action.payload);
 
     case UPDATE_CONNECTION_START:
       return updateConnectionsLoading(state, action.payload, true);
@@ -342,7 +319,6 @@ const getUserSuccess = (
       lastName,
       fullName,
       dateOfBirth,
-      leaderboards = [],
       mobileConsent,
       userFeatures = [],
       connections = [],
@@ -350,8 +326,6 @@ const getUserSuccess = (
     },
   }: GetCurrentUser
 ): IUserStore => {
-  const activeLeaderboardId = activeLeaderboardSafeguard(state.activeLeaderboardId, leaderboards);
-
   return {
     ...state,
     id,
@@ -366,37 +340,8 @@ const getUserSuccess = (
       ...mobileConsent,
     },
     features: userFeatures.reduce(reduceUserFeatures, {}),
-    leaderboards,
-    activeLeaderboardId,
   };
 };
-
-const getUserLeaderboardsSuccess = (
-  state: IUserStore,
-  leaderboards: GetUserLeaderboards_getUserLeaderboards[]
-): IUserStore => {
-  const activeLeaderboardId = activeLeaderboardSafeguard(state.activeLeaderboardId, leaderboards);
-
-  return {
-    ...state,
-    leaderboards,
-    activeLeaderboardId,
-  };
-};
-
-function activeLeaderboardSafeguard(
-  activeLeaderboardId: string,
-  leaderboards: GetCurrentUser_getCurrentUser_leaderboards[]
-) {
-  const activeLeaderboardExists =
-    activeLeaderboardId && leaderboards.findIndex((item) => item.leaderboardId === activeLeaderboardId) !== -1;
-
-  if (!activeLeaderboardExists) {
-    return leaderboards[0]?.leaderboardId;
-  }
-
-  return activeLeaderboardId;
-}
 
 const loginUserSuccess = (
   state: IUserStore,
@@ -408,7 +353,6 @@ const loginUserSuccess = (
         lastName,
         fullName,
         dateOfBirth,
-        leaderboards = [],
         mobileConsent,
         userFeatures = [],
         connections = [],
@@ -417,8 +361,6 @@ const loginUserSuccess = (
     },
   }: LoginUser
 ): IUserStore => {
-  const activeLeaderboardId = activeLeaderboardSafeguard(state.activeLeaderboardId, leaderboards);
-
   return {
     ...state,
     id,
@@ -431,8 +373,6 @@ const loginUserSuccess = (
       ...mobileConsent,
     },
     features: userFeatures.reduce(reduceUserFeatures, {}),
-    leaderboards,
-    activeLeaderboardId,
     businessAccountId,
   };
 };
@@ -442,33 +382,6 @@ const updateUserConsentSuccess = (state: IUserStore, { upsertMobileConsent }: Up
   consent: {
     ...upsertMobileConsent,
   },
-});
-
-// Only updates loading states
-const updateLeaderboardLoading = (
-  state: IUserStore,
-  payload: UpdateLeaderboardConsentVariables,
-  isLoading: boolean
-): IUserStore => ({
-  ...state,
-  leaderboards: state.leaderboards.map((leaderboard) => {
-    if (leaderboard.leaderboardId === payload.leaderboardId) {
-      return { ...leaderboard, isLoading };
-    }
-
-    return leaderboard;
-  }),
-});
-
-const updateLeaderboardConsent = (state: IUserStore, payload: UpdateLeaderboardConsentVariables): IUserStore => ({
-  ...state,
-  leaderboards: state.leaderboards.map((leaderboard) => {
-    if (leaderboard.leaderboardId === payload.leaderboardId) {
-      return { ...leaderboard, isLoading: false, consent: payload.consent };
-    }
-
-    return leaderboard;
-  }),
 });
 
 // Only updates loading states

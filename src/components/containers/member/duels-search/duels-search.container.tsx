@@ -17,16 +17,13 @@ import { GetDuels } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_DUELS } from "@graphql/duels";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { useSelector } from "react-redux";
-import {
-  showExistingDuelAlert,
-  validDuels,
-} from "../leaderboard/_legacy/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog.helpers";
 import { useBackHandler, useDebouncedQuery } from "@hooks";
 import { SearchInput, SearchList } from "@molecules";
 import DuelsSearchItem from "./subcomponents/search-item";
 import { showYuModal } from "@navigation/root";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { t } from "@locale";
+import { showExistingDuelAlert, validDuels } from "@utils/duels";
 
 export interface SearchedOpponent extends SearchForDuelOpponent_searchForDuelOpponent {
   onPress: () => Promise<void>;

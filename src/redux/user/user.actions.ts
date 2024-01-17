@@ -1,9 +1,7 @@
 import {
   GetCurrentUser,
   LoginUser,
-  UpdateLeaderboardConsentVariables,
   UpdateMemberConsent,
-  GetUserLeaderboards_getUserLeaderboards,
   GetUserFeatures_getUserFeatures,
   GetUserConnections_getUserConnections,
   GetUserActiveChallenge_getUserActiveChallenge,
@@ -37,13 +35,8 @@ export const GET_USER_ACTIVE_STREAK_SUCCESS = "GET_USER_ACTIVE_STREAK_SUCCESS";
 export const GET_USER_COIN_LEDGER_SUCCESS = "GET_USER_COIN_LEDGER_SUCCESS";
 export const GET_USER_TODAY_ACTIVITY_SUCCESS = "GET_USER_TODAY_ACTIVITY_SUCCESS";
 export const GET_USER_FEATURES_SUCCESS = "GET_USER_FEATURES_SUCCESS";
-export const GET_USER_LEADERBOARDS_SUCCESS = "GET_USER_LEADERBOARDS_SUCCESS";
 export const GET_USER_CONNECTIONS_SUCCESS = "GET_USER_CONNECTIONS_SUCCESS";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
-export const UPDATE_ACTIVE_LEADERBOARD_ID = "UPDATE_ACTIVE_LEADERBOARD_ID";
-export const UPDATE_LEADERBOARD_CONSENT_START = "UPDATE_LEADERBOARD_CONSENT_START";
-export const UPDATE_LEADERBOARD_CONSENT_FAILED = "UPDATE_LEADERBOARD_CONSENT_FAILED";
-export const UPDATE_LEADERBOARD_CONSENT_SUCCESS = "UPDATE_LEADERBOARD_CONSENT_SUCCESS";
 export const UPDATE_USER_CONSENT = "UPDATE_USER_CONSENT";
 export const UPDATE_USER_CONSENT_SUCCESS = "UPDATE_USER_CONSENT_SUCCESS";
 export const UPDATE_CONNECTION_START = "UPDATE_CONNECTION_START";
@@ -83,7 +76,6 @@ export const setUserNoAccessAction = () => ({
 export enum AppDataType {
   coinLedger = "coinLedger",
   todayActivity = "todayActivity",
-  leaderboards = "leaderboards",
   passiveChallengesEarnRate = "passiveChallengesEarnRate",
   activeStreak = "activeStreak",
   activeChallenge = "activeChallenge",
@@ -104,11 +96,6 @@ export const getUserDataStart = (payload: IAppDataTypePayload = { types: Object.
 
 export const getUserStart = () => ({
   type: GET_USER_START,
-});
-
-export const getUserLeaderboardsSuccess = (payload: GetUserLeaderboards_getUserLeaderboards[]) => ({
-  payload,
-  type: GET_USER_LEADERBOARDS_SUCCESS as typeof GET_USER_LEADERBOARDS_SUCCESS,
 });
 
 export const getUserPassiveChallengesEarnRateSuccess = (
@@ -162,21 +149,6 @@ export const loginUserSuccess = (payload: LoginUser) => ({
   type: LOGIN_USER_SUCCESS,
 });
 
-export const updateLeaderboardConsent = (payload: UpdateLeaderboardConsentVariables) => ({
-  payload,
-  type: UPDATE_LEADERBOARD_CONSENT_START,
-});
-
-export const updateLeaderboardConsentFailed = (payload: UpdateLeaderboardConsentVariables) => ({
-  payload,
-  type: UPDATE_LEADERBOARD_CONSENT_FAILED,
-});
-
-export const updateLeaderboardConsentSuccess = (payload: UpdateLeaderboardConsentVariables) => ({
-  payload,
-  type: UPDATE_LEADERBOARD_CONSENT_SUCCESS,
-});
-
 export const updateUserConsent = (payload: MobileConsentInput) => ({
   payload,
   type: UPDATE_USER_CONSENT,
@@ -216,11 +188,6 @@ export const openMyAccount = () => ({
 
 export const setShowSurgeIntro = (payload: IUserStore["surgeIntro"]) => ({
   type: SET_SHOW_SURGE_INTRO,
-  payload,
-});
-
-export const updateActiveLeaderboardId = (payload: IUserStore["activeLeaderboardId"]) => ({
-  type: UPDATE_ACTIVE_LEADERBOARD_ID,
   payload,
 });
 

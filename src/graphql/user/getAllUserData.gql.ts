@@ -4,7 +4,6 @@ import client from "../_core/client";
 import { Platform } from "react-native";
 import { GQL_FRAGMENT_USER_COIN_LEDGER } from "@graphql/_fragments/userCoinLedger.gql";
 import { GQL_FRAGMENT_USER_TODAY_ACTIVITY } from "@graphql/_fragments/userTodayActivity.gql";
-import { GQL_FRAGMENT_USER_LEADERBOARDS } from "@graphql/_fragments/userLeaderboards.gql";
 import { GQL_FRAGMENT_USER_ACTIVE_CHALLENGE } from "@graphql/_fragments/userActiveChallenge.gql";
 import { GQL_FRAGMENT_USER_PASSIVE_CHALLENGES_EARN_RATE } from "./getUserPassiveChallengesEarnRate.gql";
 import { AppDataType, IAppDataTypePayload } from "@redux/user/user.actions";
@@ -15,7 +14,6 @@ import {
   GetUserActiveChallenge_getUserActiveChallenge,
   GetUserActiveStreak_getUserActiveStreak,
   GetUserCoinLedger_coinLedger,
-  GetUserLeaderboards_getUserLeaderboards,
   GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate,
   GetUserTodayActivity_todayActivity,
 } from "@graphql/_core/schema";
@@ -46,13 +44,6 @@ export const DATA_QUERIES: IUserDataQuery[] = [
     alias: "todayActivity",
     query: "getUserTodayActivity",
     fragmentName: "UserTodayActivity",
-  },
-  {
-    type: AppDataType.leaderboards,
-    fragment: GQL_FRAGMENT_USER_LEADERBOARDS,
-    alias: "leaderboards",
-    query: "getUserLeaderboards",
-    fragmentName: "Leaderboard",
   },
   {
     type: AppDataType.passiveChallengesEarnRate,
@@ -122,7 +113,6 @@ export const generateQuery = (types: AppDataType[], overrideQueryName?: string) 
 export interface GetAllUserDataResponse {
   [AppDataType.coinLedger]: GetUserCoinLedger_coinLedger;
   [AppDataType.todayActivity]: GetUserTodayActivity_todayActivity;
-  [AppDataType.leaderboards]: GetUserLeaderboards_getUserLeaderboards[];
   [AppDataType.passiveChallengesEarnRate]: GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate;
   [AppDataType.activeStreak]: GetUserActiveStreak_getUserActiveStreak;
   [AppDataType.activeChallenge]: GetUserActiveChallenge_getUserActiveChallenge;

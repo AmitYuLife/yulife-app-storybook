@@ -32,10 +32,6 @@ export const ROUTES = {
   leaderboard: "yulife.member.Leaderboards",
   leaderboardInfo: "yulife.member.LeaderboardInfo",
 
-  // leaderboard legacy
-  leaderboardInfoLegacy: "yulife.member.LeaderboardInfo.legacy",
-  leaderboardsListLegacy: "yulife.member.LeaderboardsList.legacy",
-  // end
   chooseLeaderboard: "yulife.member.chooseLeaderboard",
   debug: "yulife.member.Debug",
   yuScreen: "yulife.member.Yuscreen",
@@ -137,8 +133,6 @@ export const MODALS = {
   generic: "yulife.modals.Generic",
   genericOverlay: "yulife.modals.GenericOverlay",
   genericConnectionError: "yulife.modals.GenericConnectionError",
-  leaderboards: "yulife.modals.Leaderboards",
-  leaderboardLean: "yulife.modals.LeaderboardLean",
   levelUnavailable: "yulife.modals.LevelUnavailable",
   pushNotifications: "yulife.modals.PushNotifications",
   rewards: "yulife.modals.Rewards",

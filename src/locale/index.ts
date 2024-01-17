@@ -1,7 +1,7 @@
-// TODO: shouldn't import from gql
-import { LeaderboardMetric } from "@graphql/member";
 import translator from "./translator";
 import { RegionService } from "./region";
+
+type LeaderboardMetric = "steps" | "distance" | "coins" | "meditation" | null;
 
 export * from "./region";
 export * from "./translations/translations.types";

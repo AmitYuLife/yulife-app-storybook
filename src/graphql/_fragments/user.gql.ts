@@ -137,14 +137,5 @@ export const GQL_FRAGMENT_USER = gql`
       name
       score
     }
-    leaderboards {
-      leaderboardId
-      name
-      metric
-      days
-      consent
-      hasAccepted
-      inviteFrom
-    }
   }
 `;

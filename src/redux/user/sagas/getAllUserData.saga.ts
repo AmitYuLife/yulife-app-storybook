@@ -4,7 +4,6 @@ import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
 import getAllUserData, { GetAllUserDataResponse } from "@graphql/user/getAllUserData.gql";
 import {
-  getUserLeaderboardsSuccess,
   getUserPassiveChallengesEarnRateSuccess,
   getUserActiveChallengeSuccess,
   getUserActiveStreakSuccess,
@@ -23,7 +22,6 @@ const SUCCESS_ACTIONS: Record<AppDataType, (data: GetAllUserDataResponse[AppData
   [AppDataType.activeStreak]: getUserActiveStreakSuccess,
   [AppDataType.coinLedger]: getUserCoinLedgerSuccess,
   [AppDataType.todayActivity]: getUserTodayActivitySuccess,
-  [AppDataType.leaderboards]: getUserLeaderboardsSuccess,
   [AppDataType.passiveChallengesEarnRate]: getUserPassiveChallengesEarnRateSuccess,
   [AppDataType.dailyPension]: updateDailyPensionSuccess,
   [AppDataType.hints]: updateHintsSuccess,
