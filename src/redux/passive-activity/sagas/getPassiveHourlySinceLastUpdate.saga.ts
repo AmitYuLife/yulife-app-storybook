@@ -1,13 +1,15 @@
-import { ChallengesPayload } from "@graphql/_core/schema/globalTypes";
+import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import moment from "moment";
 import { call, select } from "redux-saga/effects";
 import { queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
 import { IUserStore } from "@redux/user/user.reducer";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import { getAggregationStepCountHourlyConfiguration } from "@services/fitkit/fitkit.config";
-import { processResult } from "@services/fitkit/helpers/sampleToAggregatedData";
+import { processResult, processYuHealthResult } from "@services/fitkit/helpers/sampleToAggregatedData";
 import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
 import { PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT } from "@services/constants";
+import { BucketSize, HealthDataType } from "@yu-life/react-native-yu-health";
+import { yuHealthAggregateQuery } from "@services/fitkit/yu-health.helpers";
 
 export default function* getPassiveHourlySinceLastUpdate(
   stepsLastUpdate: string,
@@ -37,7 +39,7 @@ const getSteps = async (
   stepsLastUpdate: string,
   endDateSteps: moment.Moment,
   stepsBlackListApps: string[],
-  userFeatures: IUserStore["features"]
+  features: IUserStore["features"]
 ): Promise<ChallengesPayload[]> => {
   if (!stepsLastUpdate) {
     return [];
@@ -45,14 +47,36 @@ const getSteps = async (
 
   const start = moment(stepsLastUpdate).add(1, "hour").startOf("hour");
 
-  const stepsConfiguration = getAggregationStepCountHourlyConfiguration(stepsBlackListApps);
-  const steps: QueryFitKitByTypesResponse = await queryFitKitAggregatedData({
-    start: start.clone(),
-    end: endDateSteps,
-    features: userFeatures,
-    metaData: { file: "getPassiveHourlySinceLastUpdate.saga" },
-    ...stepsConfiguration,
+  if (!features.tempGameEnableYuHealth) {
+    const stepsConfiguration = getAggregationStepCountHourlyConfiguration(stepsBlackListApps);
+
+    const steps: QueryFitKitByTypesResponse = await queryFitKitAggregatedData({
+      start: start.clone(),
+      end: endDateSteps,
+      features,
+      metaData: { file: "getPassiveHourlySinceLastUpdate.saga" },
+      ...stepsConfiguration,
+    });
+
+    return processResult(steps, "StepCount", start.clone(), endDateSteps, "hour");
+  }
+
+  const response = await yuHealthAggregateQuery({
+    features,
+    metadata: { file: "getPassiveHourlySinceLastUpdate.saga.getSteps" },
+    params: {
+      startTime: start.toDate(),
+      endTime: endDateSteps.toDate(),
+      dataType: HealthDataType.steps,
+      bucketConfig: {
+        unit: BucketSize.hour,
+        value: 1,
+      },
+      queryOptions: {
+        blacklistApps: stepsBlackListApps,
+      },
+    },
   });
 
-  return processResult(steps, "StepCount", start.clone(), endDateSteps, "hour");
+  return processYuHealthResult(response, start, endDateSteps, PassiveChallengeType.STEPS, "hour");
 };
