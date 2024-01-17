@@ -1,16 +1,19 @@
-import { ChallengesPayload } from "@graphql/_core/schema/globalTypes";
+import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import moment from "moment";
 import { call } from "redux-saga/effects";
 import { queryFitKitSampleData, queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
 import { IUserStore } from "@redux/user/user.reducer";
 import { getEndDates } from "./helper";
-import { processResult } from "@services/fitkit/helpers/sampleToAggregatedData";
+import { processResult, processYuHealthResult } from "@services/fitkit/helpers/sampleToAggregatedData";
 import {
   getAggregationCyclingConfiguration,
   getAggregationStepCountConfiguration,
   getMindfulSessionFitKitTypes,
 } from "@services/fitkit/fitkit.config";
+import { yuHealthAggregateQuery } from "@services/fitkit/yu-health.helpers";
+import { HealthDataType, BucketSize } from "@yu-life/react-native-yu-health";
 
+// TODO: Merge with getPassiveSinceLastUpdateAndroid
 export default function* getPassiveSinceLastUpdateIos(
   stepsLastUpdate: string,
   meditationLastUpdate: string,
@@ -48,64 +51,120 @@ export default function* getPassiveSinceLastUpdateIos(
 const getSteps = async (
   stepsLastUpdate: string,
   endDateSteps: moment.Moment,
-  userFeatures: IUserStore["features"],
+  features: IUserStore["features"],
   metaData: Record<string, any>
 ): Promise<ChallengesPayload[]> => {
   if (!stepsLastUpdate) {
     return [];
   }
 
-  const stepsConfiguration = getAggregationStepCountConfiguration([]);
-  const steps = await queryFitKitAggregatedData({
-    start: moment(stepsLastUpdate).startOf("day"),
-    end: endDateSteps,
-    features: userFeatures,
-    metaData,
-    ...stepsConfiguration,
+  const startTime = moment(stepsLastUpdate).startOf("day");
+
+  if (!features.tempGameEnableYuHealth) {
+    const stepsConfiguration = getAggregationStepCountConfiguration([]);
+    const steps = await queryFitKitAggregatedData({
+      start: startTime,
+      end: endDateSteps,
+      features,
+      metaData,
+      ...stepsConfiguration,
+    });
+
+    return processResult(steps, "StepCount", moment(stepsLastUpdate).startOf("day"), endDateSteps);
+  }
+
+  const yuHealthSteps = await yuHealthAggregateQuery({
+    features,
+    metadata: { file: "getPassiveSinceLastUpdateIos.saga.getSteps" },
+    params: {
+      startTime: startTime.toDate(),
+      dataType: HealthDataType.steps,
+      endTime: endDateSteps.toDate(),
+      bucketConfig: { value: 1, unit: BucketSize.day },
+    },
   });
 
-  return processResult(steps, "StepCount", moment(stepsLastUpdate).startOf("day"), endDateSteps);
+  return processYuHealthResult(yuHealthSteps, startTime.clone(), endDateSteps, PassiveChallengeType.STEPS);
 };
 
 const getMeditation = async (
   meditationLastUpdate: string,
   endDateMeditation: moment.Moment,
-  userFeatures: IUserStore["features"],
+  features: IUserStore["features"],
   metaData: Record<string, any>
 ): Promise<ChallengesPayload[]> => {
   if (!meditationLastUpdate) {
     return [];
   }
 
-  const meditation = await queryFitKitSampleData({
-    startTime: moment(meditationLastUpdate).startOf("day").format(),
-    endTime: endDateMeditation.format(),
-    fitKitTypes: getMindfulSessionFitKitTypes(),
-    features: userFeatures,
-    metaData,
+  const startTime = moment(meditationLastUpdate).startOf("day");
+
+  if (!features.tempGameEnableYuHealth) {
+    const meditation = await queryFitKitSampleData({
+      startTime: startTime.format(),
+      endTime: endDateMeditation.format(),
+      fitKitTypes: getMindfulSessionFitKitTypes(),
+      features: features,
+      metaData,
+    });
+
+    return processResult(meditation, "MindfulSession", moment(meditationLastUpdate).startOf("day"), endDateMeditation);
+  }
+
+  const yuHealthMeditation = await yuHealthAggregateQuery({
+    features,
+    metadata: { file: "getPassiveSinceLastUpdateIos.saga.getMeditation" },
+    params: {
+      startTime: startTime.toDate(),
+      dataType: HealthDataType.mindfulMinutes,
+      endTime: endDateMeditation.toDate(),
+      bucketConfig: { value: 1, unit: BucketSize.day },
+    },
   });
 
-  return processResult(meditation, "MindfulSession", moment(meditationLastUpdate).startOf("day"), endDateMeditation);
+  return processYuHealthResult(
+    yuHealthMeditation,
+    startTime.clone(),
+    endDateMeditation,
+    PassiveChallengeType.MEDITATION
+  );
 };
 
 const getCycling = async (
   cyclingLastUpdate: string,
   endDateCycling: moment.Moment,
-  userFeatures: IUserStore["features"],
+  features: IUserStore["features"],
   metaData: Record<string, any>
 ): Promise<ChallengesPayload[]> => {
   if (!cyclingLastUpdate) {
     return [];
   }
 
-  const cyclingConfig = getAggregationCyclingConfiguration(userFeatures);
-  const cycling = await queryFitKitAggregatedData({
-    start: moment(cyclingLastUpdate).startOf("day"),
-    end: endDateCycling,
-    features: userFeatures,
-    metaData,
-    ...cyclingConfig,
+  const startTime = moment(cyclingLastUpdate).startOf("day");
+
+  if (!features.tempGameEnableYuHealth) {
+    const cyclingConfig = getAggregationCyclingConfiguration(features);
+    const cycling = await queryFitKitAggregatedData({
+      start: startTime,
+      end: endDateCycling,
+      features,
+      metaData,
+      ...cyclingConfig,
+    });
+
+    return processResult(cycling, "Biking", moment(cyclingLastUpdate).startOf("day"), endDateCycling);
+  }
+
+  const yuHealthCycling = await yuHealthAggregateQuery({
+    features,
+    metadata: { file: "getPassiveSinceLastUpdateIos.saga.getCycling" },
+    params: {
+      startTime: startTime.toDate(),
+      dataType: HealthDataType.cyclingDistance,
+      endTime: endDateCycling.toDate(),
+      bucketConfig: { value: 1, unit: BucketSize.day },
+    },
   });
 
-  return processResult(cycling, "Biking", moment(cyclingLastUpdate).startOf("day"), endDateCycling);
+  return processYuHealthResult(yuHealthCycling, startTime.clone(), endDateCycling, PassiveChallengeType.CYCLING);
 };
