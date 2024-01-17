@@ -34,9 +34,11 @@ export default function* sendPassiveActivity(): any {
       return;
     }
 
-    const { meditation: meditationLastUpdate, cycling: cyclingLastUpdate, steps: stepsLastUpdate } = yield select(
-      getUserPassiveChallengesLastUpdate
-    );
+    const {
+      meditation: meditationLastUpdate,
+      cycling: cyclingLastUpdate,
+      steps: stepsLastUpdate,
+    } = yield select(getUserPassiveChallengesLastUpdate);
 
     if (!stepsLastUpdate && !meditationLastUpdate && !cyclingLastUpdate) {
       return;
@@ -59,11 +61,8 @@ export default function* sendPassiveActivity(): any {
     while (!lastUpdateValidation.upToDate && attempts < 12) {
       attempts++;
 
-      const {
-        isStepLastUpdateYesterday,
-        isMeditationLastUpdateYesterday,
-        isCyclingLastUpdateYesterday,
-      } = lastUpdateValidation;
+      const { isStepLastUpdateYesterday, isMeditationLastUpdateYesterday, isCyclingLastUpdateYesterday } =
+        lastUpdateValidation;
       if (Platform.OS === "android") {
         allResults = yield call(
           getPassiveSinceLastUpdateAndroid,
