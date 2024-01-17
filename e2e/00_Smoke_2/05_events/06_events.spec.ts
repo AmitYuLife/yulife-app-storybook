@@ -9,8 +9,7 @@ import { twoDaysAgoDate } from "./_resources/consts";
 import { getLocalisedString as t } from "@i18n";
 
 Feature("As a user I can opt in and take an event", async () => {
-    // @bug GS-837 - event challenge complete screen potentially incorrect
-    ScenarioSkip("I can take and complete a 3 star challenge event and hit all the event milestones", scenario.start, async () => {
+    Scenario("I can take and complete a 3 star challenge event and hit all the event milestones", scenario.start, async () => {
         Given("I login and go to yucoin page", given.logInAndGoToTab("yucoin", data.CUSTOMER_72, data.AUTH_72), async () => {
             Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
             Then("I should not see any cycling stats on the screen as I have cycled 0km so far today", then.idNotVisible(ids.CYCLING_COUNT("km")))
@@ -55,7 +54,6 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should see 'Claimed'", then.textVisible("Claimed"))
             Then("I should see 1/4 perfect challenges", then.textVisible("1 / 4 perfect challenges"))
         })
-        // @flaky iPhone SE can't find 150 yucoin value for third milestone in firstChallengeClaimedVisible on bitrise
         When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
             Then("I should see my new total yucoin earned today with the 1st milestone completed", then.yuCoinTodayEarned([210], 100))
         })
@@ -68,8 +66,7 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should see the yucoin value for the 5 unlocked challenges", then.challengesYuCoinValuesCorrect(6))
         })
 
-        // // 2nd challenge
-
+        // 2nd challenge
         When("I complete a brisk walk challenge", when.selectAndCompleteWalkingChallenge("Brisk Walk", 1200), async () => {
             Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(152, 50, (1200 + 400)))
         })
@@ -96,8 +93,7 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should see the yucoin value for the 5 unlocked challenges", then.challengesYuCoinValuesCorrect(6))
         })
 
-        // // 3rd challenge
-
+        // 3rd challenge
         When("I complete a long walk challenge", when.selectAndCompleteWalkingChallenge("Long Walk", 3000), async () => {
             Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(152, 60, (1600 + 3000)))
         })
@@ -130,10 +126,9 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should see the yucoin value for the 5 unlocked challenges", then.challengesYuCoinValuesCorrect(6))
         })
 
-        // // 4th challenge
-
+        // 4th challenge
         When("I complete a meditation challenge at level 152", when.selectAndCompleteMeditationChallenge(600), async () => {
-            Then("I am on the event completed page", then.onCompletedAllEventMilestonesPage(data.GOALS_4.data.title, data.GOAL_REWARD_MILESTONE_11.data.rewardDescription, data.GOAL_REWARD_MILESTONE_11.data.rewardTitle, data.GOAL_REWARD_MILESTONE_9.data.rewardTitle, data.GOAL_REWARD_MILESTONE_10.data.rewardTitle))
+            Then("I am on the event completed page", then.onGreatJobCompletedEventPage(data.GOALS_4.data.title, "200"))
         })
         When("I click Claim", when.tapText(t("Claim")), async () => {
             When("I wait", when.wait(5000), async () => {
