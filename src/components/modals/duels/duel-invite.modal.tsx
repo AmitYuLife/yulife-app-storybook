@@ -107,7 +107,7 @@ const DuelInviteModal: React.FC<IProps> = ({
         });
       }
 
-      dispatch(getUserDataStart([AppDataType.coinLedger]));
+      dispatch(getUserDataStart({ types: [AppDataType.coinLedger] }));
     } catch (e) {
       setIsLoading(false);
       Navigation.dismissModal(componentId);

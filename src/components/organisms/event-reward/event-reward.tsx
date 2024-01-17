@@ -150,7 +150,7 @@ const EventReward = ({
       await onClaimReward(reward);
       dispatch(refreshUserProfileEvents());
       dispatch(getUserStart());
-      dispatch(getUserDataStart([AppDataType.coinLedger]));
+      dispatch(getUserDataStart({ types: [AppDataType.coinLedger] }));
 
       Vibration.vibrate();
     } catch (e) {

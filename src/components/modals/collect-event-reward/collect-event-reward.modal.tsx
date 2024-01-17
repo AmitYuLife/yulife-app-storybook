@@ -35,7 +35,7 @@ export default function CollectEventRewardModal({ goalIds, event, rewards, compl
 
     // update today's yucoin screen
     dispatch(getUserStart());
-    dispatch(getUserDataStart([AppDataType.coinLedger]));
+    dispatch(getUserDataStart({ types: [AppDataType.coinLedger] }));
     Navigation.dismissModal(MODALS.collectEventReward);
   }, [dispatch]);
 

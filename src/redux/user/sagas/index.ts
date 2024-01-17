@@ -56,7 +56,7 @@ export default [
   takeLatest(FITKIT_CONSENT_AUTHORISED, fitKitConsentAuthorisedSaga),
   takeLatest(
     CHALLENGE_RESET_SUCCESS,
-    generateUserDataSaga([AppDataType.activeChallenge, AppDataType.coinLedger, AppDataType.activeStreak])
+    generateUserDataSaga({ types: [AppDataType.activeChallenge, AppDataType.coinLedger, AppDataType.activeStreak] })
   ),
   takeLatest(AUTHENTICATED, fetchUserDataOnAuthenticatedSaga),
   takeLatest([GET_USER_START, CHALLENGE_RESET_SUCCESS], getUserDataSaga),

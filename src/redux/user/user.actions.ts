@@ -92,7 +92,12 @@ export enum AppDataType {
   socialGroups = "socialGroups",
 }
 
-export const getUserDataStart = (payload: AppDataType[] = Object.values(AppDataType)) => ({
+export interface IAppDataTypePayload {
+  types: AppDataType[];
+  overrideQueryName?: string;
+}
+
+export const getUserDataStart = (payload: IAppDataTypePayload = { types: Object.values(AppDataType) }) => ({
   type: GET_ALL_USER_DATA_START,
   payload,
 });

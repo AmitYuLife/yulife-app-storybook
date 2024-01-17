@@ -7,7 +7,7 @@ import { GQL_FRAGMENT_USER_TODAY_ACTIVITY } from "@graphql/_fragments/userTodayA
 import { GQL_FRAGMENT_USER_LEADERBOARDS } from "@graphql/_fragments/userLeaderboards.gql";
 import { GQL_FRAGMENT_USER_ACTIVE_CHALLENGE } from "@graphql/_fragments/userActiveChallenge.gql";
 import { GQL_FRAGMENT_USER_PASSIVE_CHALLENGES_EARN_RATE } from "./getUserPassiveChallengesEarnRate.gql";
-import { AppDataType } from "@redux/user/user.actions";
+import { AppDataType, IAppDataTypePayload } from "@redux/user/user.actions";
 import {
   GetDailyPensionContribution_getDailyPensionContribution,
   GetMobileHints_getMobileHints,
@@ -98,13 +98,23 @@ export const DATA_QUERIES: IUserDataQuery[] = [
   },
 ];
 
-export const generateQuery = (types: AppDataType[]) => {
+export const generateQueryName = (types: AppDataType[]) => {
+  if (types.length === Object.values(AppDataType).length) {
+    return `GetAllUserData`;
+  }
+
+  const queryNames = [...types].sort().map((type) => type.charAt(0).toUpperCase() + type.slice(1));
+  return `Get${queryNames.join("")}`;
+};
+
+export const generateQuery = (types: AppDataType[], overrideQueryName?: string) => {
   const queries = DATA_QUERIES.filter(({ type }) => types.includes(type));
+  const queryName = overrideQueryName || generateQueryName(types);
 
   return gqlNoCodegen`
     ${queries.map(({ fragment }) => fragment.loc.source.body).join("\n")}
 
-    query GetAllUserData {
+    query ${queryName} {
       ${queries.map(({ alias, fragmentName, query }) => `${alias}: ${query} { ...${fragmentName}}`).join("\n")}
     }`;
 };
@@ -121,8 +131,8 @@ export interface GetAllUserDataResponse {
   [AppDataType.socialGroups]: GetMobileSocialGroupLeaderboards_getMobileSocialGroupLeaderboards[];
 }
 
-export default function getAllUserData(types: AppDataType[]) {
-  const query = generateQuery(types);
+export default function getAllUserData({ types, overrideQueryName }: IAppDataTypePayload) {
+  const query = generateQuery(types, overrideQueryName);
 
   return client().query<GetAllUserDataResponse>({
     fetchPolicy: "network-only",

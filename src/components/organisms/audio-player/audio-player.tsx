@@ -270,7 +270,7 @@ const AudioPlayer = ({
 
       reduxDispatch(logMixpanelEventActionCreator("audio_player_button_start_pressed", { type: eventType }));
     } catch (err) {
-      reduxDispatch(getUserDataStart([AppDataType.activeChallenge]));
+      reduxDispatch(getUserDataStart({ types: [AppDataType.activeChallenge] }));
       Logger.error(err, {
         location: "audio-player-handleStartButton",
       });

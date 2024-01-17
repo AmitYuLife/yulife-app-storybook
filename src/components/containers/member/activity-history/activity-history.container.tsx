@@ -86,7 +86,7 @@ const ActivityHistoryContainer: FC<Props> = ({ componentId }) => {
           ) {
             handleRefresh();
             dispatch(getUserStart());
-            dispatch(getUserDataStart([AppDataType.coinLedger, AppDataType.todayActivity]));
+            dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
           }
         } catch (e) {
           Logger.error(e, { event: "@activity_history_reload_catched" });

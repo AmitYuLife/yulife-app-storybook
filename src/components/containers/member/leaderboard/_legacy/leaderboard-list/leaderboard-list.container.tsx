@@ -60,7 +60,7 @@ function LeaderboardListContainer(props: Props) {
   }, [componentId]);
 
   const onRefresh = useCallback(() => {
-    dispatch(getUserDataStart([AppDataType.leaderboards]));
+    dispatch(getUserDataStart({ types: [AppDataType.leaderboards] }));
   }, [dispatch]);
 
   useBackHandler(() => {

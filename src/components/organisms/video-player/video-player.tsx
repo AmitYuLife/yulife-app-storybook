@@ -251,7 +251,7 @@ const VideoPlayer = ({
 
       reduxDispatch(logMixpanelEventActionCreator("video_player_button_start_pressed", { type: eventType }));
     } catch (err) {
-      reduxDispatch(getUserDataStart([AppDataType.activeChallenge]));
+      reduxDispatch(getUserDataStart({ types: [AppDataType.activeChallenge] }));
       Logger.error(err, {
         location: "video-player-handleStartButton",
       });

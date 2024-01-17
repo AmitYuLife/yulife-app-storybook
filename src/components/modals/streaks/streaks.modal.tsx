@@ -174,7 +174,9 @@ const StreaksModal: React.FC<Props> = ({
           });
 
           if (result?.data?.collectAward) {
-            dispatch(getUserDataStart([AppDataType.coinLedger, AppDataType.todayActivity, AppDataType.activeStreak]));
+            dispatch(
+              getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity, AppDataType.activeStreak] })
+            );
           }
 
           onPressCtaPrimary();
