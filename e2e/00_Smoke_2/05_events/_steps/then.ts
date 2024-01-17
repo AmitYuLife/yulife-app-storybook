@@ -60,7 +60,7 @@ export const claimVisible = (numOfStars: number) => async () => {
     await idVisible(ids.NUM_OF_STARS(numOfStars))()
 }
 
-export const onCompletedEventMilestonePage = (event: string, yuCoin: string, numOfStars: number, challengeType: string) => async () => {
+export const onGreatJobCompletedEventPage = (event: string, yuCoin: string) => async () => {
     const eventTitle = `${event} event`
 
     await textVisible(eventTitle)()
@@ -68,8 +68,6 @@ export const onCompletedEventMilestonePage = (event: string, yuCoin: string, num
     await textVisible("You have reached the event milestone!\nCongratulations. Claim your rewards")()
     await textVisible(`${yuCoin} YuCoin`)()
     await idVisible(ids.ANIMATED_CIRCLE("#F43E8E"))()
-    await idVisible(ids.NUM_OF_STARS(numOfStars))()
-    await textVisible(challengeType)()
     await buttonVisible("Claim")()
 }
 
