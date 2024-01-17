@@ -26,7 +26,8 @@ export const processYuHealthResult = (
   response: IAggregateQueryResponse[],
   start: Moment,
   end: Moment,
-  challengeType: PassiveChallengeType
+  challengeType: PassiveChallengeType,
+  bucketSize: moment.unitOfTime.DurationConstructor = "day"
 ) => {
   return processResult(
     {
@@ -40,7 +41,8 @@ export const processYuHealthResult = (
     },
     challengeType,
     start,
-    end
+    end,
+    bucketSize
   );
 };
 
