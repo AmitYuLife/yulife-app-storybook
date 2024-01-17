@@ -1,57 +1,47 @@
 import { TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
-import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { Colours, TOP_BAR } from "@styles";
 import { isAndroid } from "@utils";
-import RNFitKit, { FitKitTypes, SampleQueryResult } from "@yu-life/react-native-fitkit";
+import {
+  HealthProviderCapability,
+  IActivityQueryResponse,
+  activityQuery,
+  hasPermission as hasYuHealthPermission,
+  requestPermissions,
+} from "@yu-life/react-native-yu-health";
 import moment from "moment";
 import { memo, useCallback, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 const WorkoutDebugContainer = () => {
-  const { authoriseFitKitTypes } = useFitKit();
-
   const [hasPermission, setHasPermission] = useState<boolean>(false);
-  const [workouts, setWorkouts] = useState<SampleQueryResult[]>([]);
+  const [workouts, setWorkouts] = useState<IActivityQueryResponse[]>([]);
 
   const getWorkouts = useCallback(async () => {
     try {
-      const workoutResults = await RNFitKit.sampleQuery({
-        disableUserEntries: false,
-        endTime: moment().format(),
-        startTime: moment().subtract(24, "hour").format(),
-        type: FitKitTypes.Types.Workout,
+      const results = await activityQuery({
+        startTime: moment().subtract(24, "hour").toDate(),
+        endTime: moment().toDate(),
       });
 
-      setWorkouts(workoutResults);
+      setWorkouts(results.result);
     } catch (e) {
       console.log(e);
     }
   }, []);
 
-  const checkAndroidPermission = useCallback(async () => {
-    const workoutAuthorised = await RNFitKit.isAuthorised({
-      read: [FitKitTypes.Types.Workout],
-      platform: "GoogleFit",
-    });
-
-    if (workoutAuthorised) {
-      setHasPermission(true);
+  const checkPermissions = useCallback(async () => {
+    const alreadyHasPermission = await hasYuHealthPermission(HealthProviderCapability.ACTIVITIES);
+    if (!alreadyHasPermission) {
+      await requestPermissions([HealthProviderCapability.ACTIVITIES]);
     }
-
-    await getWorkouts();
-  }, [getWorkouts]);
-
-  const checkIosPermission = useCallback(async () => {
-    await authoriseFitKitTypes([FitKitType.Workout], "AppleHealth", false);
 
     setHasPermission(true);
     await getWorkouts();
-  }, [authoriseFitKitTypes, getWorkouts]);
+  }, [getWorkouts]);
 
   const onClose = () => {
     Navigation.pop(ROUTES.workoutDebug);
@@ -68,7 +58,7 @@ const WorkoutDebugContainer = () => {
                 Permission not checked 😭
               </TextTemplate>
             </View>
-            <Button label="Check permission" onPress={isAndroid() ? checkAndroidPermission : checkIosPermission} />
+            <Button label="Check permission" onPress={checkPermissions} />
           </>
         ) : null}
         {hasPermission ? (
@@ -78,11 +68,10 @@ const WorkoutDebugContainer = () => {
                 <TextTemplate type="b1b">Workouts found in last 12h: ({workouts.length})</TextTemplate>
               </View>
               <View style={styles.workoutContainer}>
-                {workouts.map((workout: SampleQueryResult) => (
+                {workouts.map((workout: IActivityQueryResponse) => (
                   <View style={styles.workout} key={workout.startTime}>
                     <View style={styles.workoutHeader}>
-                      <TextTemplate type="b2b">{workout.workoutName}</TextTemplate>
-                      <TextTemplate type="l1">ID: {workout.workoutId}</TextTemplate>
+                      <TextTemplate type="b2b">{workout.activity}</TextTemplate>
                     </View>
                     <TextTemplate type="l1">
                       <TextTemplate type="l1b">Start time: </TextTemplate>
@@ -107,11 +96,11 @@ const WorkoutDebugContainer = () => {
                     ) : null}
                     <TextTemplate type="l1">
                       <TextTemplate type="l1b">User entered: </TextTemplate>
-                      {workout.userEntered ? "Yes" : "No"}
+                      {workout.isUserEntered ? "Yes" : "No"}
                     </TextTemplate>
                     <TextTemplate type="l1">
                       <TextTemplate type="l1b">Bundle identifier: </TextTemplate>
-                      {workout.source.bundleIdentifier}
+                      {workout.bundleIdentifier}
                     </TextTemplate>
                   </View>
                 ))}
