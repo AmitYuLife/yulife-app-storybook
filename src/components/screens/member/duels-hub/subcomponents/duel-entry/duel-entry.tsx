@@ -3,14 +3,14 @@ import { Text } from "@atoms";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { DuelImage } from "../";
 import { Style } from "@styles";
-import { GetDuelsTomorrow_getDuelsTomorrow, GetDuelsToday_getDuelsToday } from "@graphql/_core/schema";
 import Description from "./description";
 import DuelIcon from "./duel-icon";
 import { DUEL_ENTRY } from "@ids";
 import { formatOpponentName } from "@utils/duels";
+import { GetDuelsTodayQuery, GetDuelsTomorrowQuery } from "@graphql/__generated";
 
 interface IProps {
-  duel: GetDuelsTomorrow_getDuelsTomorrow | GetDuelsToday_getDuelsToday;
+  duel: GetDuelsTomorrowQuery["getDuelsTomorrow"][0] | GetDuelsTodayQuery["getDuelsToday"][0];
   type: "today" | "tomorrow" | "completed";
   userId: string;
   dailySteps?: number;

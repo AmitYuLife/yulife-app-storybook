@@ -2,14 +2,14 @@ import React, { FC } from "react";
 import { Text } from "@atoms";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { addCommasToNumber, minifiedFromNow } from "@utils";
-import { GetDuelsTomorrow_getDuelsTomorrow, GetDuelsToday_getDuelsToday } from "@graphql/_core/schema";
 import moment from "moment";
 import { Colours, Style } from "@styles";
 import { DUEL_DESCRIPTION } from "@ids";
 import { t } from "@locale";
+import { GetDuelsTodayQuery, GetDuelsTomorrowQuery } from "@graphql/__generated";
 
 interface IProps {
-  duel: GetDuelsTomorrow_getDuelsTomorrow | GetDuelsToday_getDuelsToday;
+  duel: GetDuelsTomorrowQuery["getDuelsTomorrow"][0] | GetDuelsTodayQuery["getDuelsToday"][0];
   type: "today" | "tomorrow" | "completed";
   userId: string;
   dailySteps?: number;

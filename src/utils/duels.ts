@@ -3,9 +3,9 @@ import moment from "moment";
 import { Alert } from "react-native";
 import Logger from "@services/logging/logger";
 import { MODALS, ROUTES } from "@navigation/constants";
-import { GetDuels_getDuels } from "@graphql/_core/schema";
 import { showYuModal } from "@navigation/root";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
+import { GetDuelsQuery } from "@graphql/__generated";
 
 export interface ValidDuel {
   id: string;
@@ -48,7 +48,7 @@ const getPage = (requestLocation: DuelRequestLocation) => {
   }
 };
 
-export const validDuels = (duels: GetDuels_getDuels[], currentUserId: string): ValidDuel[] => {
+export const validDuels = (duels: GetDuelsQuery["getDuels"], currentUserId: string): ValidDuel[] => {
   const now = moment();
   return duels.reduce((acc, duel) => {
     if (["accepted", "pending"].includes(duel.status)) {
@@ -92,7 +92,7 @@ const navigateToDuelInvite = async (
 };
 
 export const onDuelPress = async (
-  duels: GetDuels_getDuels[],
+  duels: GetDuelsQuery["getDuels"],
   currentUserId: string,
   opponentId: string,
   leaderboardPlacement: number,

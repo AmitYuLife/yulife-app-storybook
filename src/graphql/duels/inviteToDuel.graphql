@@ -1,0 +1,19 @@
+mutation InviteToDuel(
+  $opponentUserIds: [String!]
+  $startDateTime: String!
+  $duration: Int!
+  $yucoin: Int!
+  $requestLocation: String
+  $leaderboardPlacement: Int
+) {
+  inviteToDuel(
+    opponentUserIds: $opponentUserIds
+    startDateTime: $startDateTime
+    duration: $duration
+    yucoin: $yucoin
+    requestLocation: $requestLocation
+    leaderboardPlacement: $leaderboardPlacement
+  ) {
+    id
+  }
+}

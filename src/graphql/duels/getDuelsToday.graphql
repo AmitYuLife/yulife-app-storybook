@@ -1,0 +1,13 @@
+query GetDuelsToday {
+  getDuelsToday {
+    id
+    opponents {
+      ...DuelOpponent
+    }
+    duration
+    type
+    yucoin
+    status
+    updatedAt
+  }
+}

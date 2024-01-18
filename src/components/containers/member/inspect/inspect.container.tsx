@@ -5,9 +5,7 @@ import { useSelector } from "react-redux";
 import InspectScreen from "@components/screens/member/inspect/inspect.screen";
 import { ROUTES } from "@navigation/constants";
 import { getCurrentUserId } from "@redux/user/user.selectors";
-import { GetDuels } from "@graphql/_core/schema";
 import { useBackHandler } from "@hooks";
-import { GQL_QUERY_GET_DUELS } from "@graphql/duels";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { gql } from "@graphql/__generated";
 import { onDuelPress } from "@utils/duels";
@@ -29,7 +27,7 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
 
   useBackHandler(onClose);
 
-  const [getDuels, { loading: duelsLoading, data: duelsData }] = useLazyQuery<GetDuels>(GQL_QUERY_GET_DUELS, {
+  const [getDuels, { loading: duelsLoading, data: duelsData }] = useLazyQuery(gql("GetDuelsDocument"), {
     fetchPolicy: "network-only",
   });
 

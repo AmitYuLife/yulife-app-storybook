@@ -4,10 +4,11 @@ import { call, select, take, delay } from "redux-saga/effects";
 import { UPDATE_CURRENT_ROUTE } from "../../app/app.actions";
 import { getModalState, getRouteState } from "../../app/app.selectors";
 import { getUserFeatures, getCurrentUserId } from "../user.selectors";
-import getDuelsWithClient from "@graphql/duels/getDuels.gql";
 import { GetDuels } from "@graphql/_core/schema";
 import { showYuModal } from "@navigation/root";
 import { getUserNotification } from "@redux/user/user.selectors";
+import client from "@graphql/_core/client";
+import { gql } from "@graphql/__generated";
 
 export default function* sendDuelInvitation() {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
@@ -22,7 +23,12 @@ export default function* sendDuelInvitation() {
     return;
   }
 
-  const { data }: ApolloQueryResult<GetDuels> = yield call(getDuelsWithClient);
+  const { data }: ApolloQueryResult<GetDuels> = yield call(() =>
+    client().query({
+      fetchPolicy: "network-only",
+      query: gql("GetDuelsDocument"),
+    })
+  );
 
   const duels = data?.getDuels || [];
 

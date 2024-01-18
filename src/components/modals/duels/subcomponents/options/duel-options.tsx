@@ -4,9 +4,7 @@ import { Loading, BlurProvider, TextTemplate } from "@atoms";
 import { Button } from "@molecules";
 import styles from "./duel-options.styles";
 import { DuelStepProps } from "../../duels.types";
-import { GQL_QUERY_GET_DUEL_TEMPLATES } from "@graphql/duels/getDuelTemplates.gql";
 import { useQuery } from "@apollo/client";
-import { GetDuelTemplates } from "@graphql/_core/schema";
 import WagerDropdown from "./subcomponents/wager-dropdown/wager-dropdown";
 import { DUEL_OPTIONS_SCREEN } from "@ids";
 import { ListPicker } from "@components/molecules";
@@ -14,6 +12,7 @@ import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { Navigation } from "@navigation/main";
 import { t } from "@locale";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { gql } from "@graphql/__generated";
 
 interface IOptions {
   id: string;
@@ -31,7 +30,7 @@ export default function DuelOptions({
   isLoading,
 }: DuelStepProps) {
   const [pickerAmountLabel, setPickerAmountLabel] = useState(null);
-  const { data, loading } = useQuery<GetDuelTemplates>(GQL_QUERY_GET_DUEL_TEMPLATES, {
+  const { data, loading } = useQuery(gql("GetDuelTemplatesDocument"), {
     fetchPolicy: "network-only",
   });
   const wagers = data?.getDuelTemplates?.wagerTemplate || [];

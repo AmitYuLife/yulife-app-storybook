@@ -1,0 +1,14 @@
+query GetDuelTemplates {
+  getDuelTemplates {
+    challengeTemplate {
+      id
+      type
+      description
+      duration
+    }
+    wagerTemplate {
+      id
+      yucoin
+    }
+  }
+}

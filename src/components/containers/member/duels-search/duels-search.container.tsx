@@ -5,7 +5,6 @@ import { Navigation } from "@navigation/main";
 import { DUELS_SEARCH } from "@ids";
 import { GenericHeadingPad, TopBarAbsolute } from "@organisms";
 import styles from "./duels-search.styles";
-import { GQL_QUERY_SEARCH_FOR_DUEL_OPPONENT } from "@graphql/duels/searchForDuelOpponents.gql";
 import {
   SearchForDuelOpponent,
   SearchForDuelOpponentVariables,
@@ -13,8 +12,6 @@ import {
 } from "@graphql/_core/schema/SearchForDuelOpponent";
 import RecentOpponents from "./subcomponents/recent-opponents";
 import { useQuery } from "@apollo/client";
-import { GetDuels } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_DUELS } from "@graphql/duels";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { useSelector } from "react-redux";
 import { useBackHandler, useDebouncedQuery } from "@hooks";
@@ -24,6 +21,7 @@ import { showYuModal } from "@navigation/root";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { t } from "@locale";
 import { showExistingDuelAlert, validDuels } from "@utils/duels";
+import { gql } from "@graphql/__generated";
 
 export interface SearchedOpponent extends SearchForDuelOpponent_searchForDuelOpponent {
   onPress: () => Promise<void>;
@@ -76,9 +74,9 @@ function _DuelsSearchContainer() {
   const [search, { loading, data, networkStatus }] = useDebouncedQuery<
     SearchForDuelOpponent,
     SearchForDuelOpponentVariables
-  >(GQL_QUERY_SEARCH_FOR_DUEL_OPPONENT, { fetchPolicy: "cache-and-network" }, DEBOUNCE, { query: "" });
+  >(gql("SearchForDuelOpponentDocument"), { fetchPolicy: "cache-and-network" }, DEBOUNCE, { query: "" });
 
-  const getDuels = useQuery<GetDuels>(GQL_QUERY_GET_DUELS, {
+  const getDuels = useQuery(gql("GetDuelsDocument"), {
     fetchPolicy: "cache-and-network",
   });
 
