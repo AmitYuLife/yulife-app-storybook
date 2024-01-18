@@ -13,6 +13,7 @@ import { getRouteState } from "@redux/app/app.selectors";
 import { useYuScreenOnPressHandler } from "@components/containers/member/yu/hooks/useYuScreenOnPressHandler";
 import { Source } from "react-native-fast-image";
 import { mapServerStyles } from "@components/sdui";
+import { PRODUCT_CARD_BOTTOM, PRODUCT_CARD_IMAGE, PRODUCT_CARD_TITLE } from "@ids";
 
 interface IProductCardProps {
   backgroundImage?: Source;
@@ -79,13 +80,14 @@ const ProductCard = ({
   return (
     <TouchableOpacityWithDelay style={styles.productTouchable} onPress={onTilePress}>
       <View style={styles.productTileShadow}>
-        <View style={styles.productTile}>
+        <View style={styles.productTile} testID={PRODUCT_CARD_TITLE(title)}>
           <View>
             <Image
               width={PRODUCT_IMAGE_WIDTH}
               height={PRODUCT_IMAGE_HEIGHT}
               source={backgroundImage}
               resizeMode="cover"
+              testID={PRODUCT_CARD_IMAGE(backgroundImage.uri)}
             />
             {!imageOverlay ? null : (
               <View style={mapServerStyles(imageOverlay.styles)}>
@@ -98,7 +100,7 @@ const ProductCard = ({
           {!yuCoinPowerIncrease ? null : (
             <YuCoinLabel earnRate={`+${yuCoinPowerIncrease}`} style={styles.yuCoinLabel} />
           )}
-          <View style={styles.productTileBottom}>
+          <View style={styles.productTileBottom} testID={PRODUCT_CARD_BOTTOM(cta)}>
             <TextTemplate type="b2b">{title}</TextTemplate>
             <TextTemplate type="b2b" color={Colours.primary.p600}>
               {cta}

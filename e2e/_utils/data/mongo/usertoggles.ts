@@ -821,6 +821,7 @@ export const CUSTOMER_44_TOGGLES = {
       yuScreenV4: true,
       hasCoveaFibActive: true,
       hasBupaDentActive: true,
+      showRewardsProducts:true,
     },
   },
 } as IDatabaseItem;

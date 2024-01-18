@@ -145,7 +145,7 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should be on today's earning screen and see the correct yucoin earn power", then.onTodaysEarnings(0, "0.0 / 9.6 km", 0, "78"))
         })
         When("I tap 13", when.tapID(ids.YUCOIN_POWER("13")), async () => {
-            Then("I am on the YuCoin Power overview screen", then.yuCoinPowerInfo(data.USER_52.data.earnRate))
+            Then("I am on the YuCoin Power overview screen", then.yuCoinPowerInfoVisible(data.USER_52.data.earnRate))
         })
         When("I scroll down the page", when.scrollFromID(ids.YUCOIN_EXPLAINED_SCROLL_VIEW, "up", "fast"), async () => {
             Then("I should see Got it!", then.textVisible("Got it!"))
