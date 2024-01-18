@@ -396,4 +396,28 @@ Feature("Yudoku", async () => {
             })
     })
 
+    Scenario("I can close and reopen the app during a yudoku challenge", scenario.start, async () => {
+        Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_86, data.AUTH_86), async () => {
+            Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)))
+        })
+        When("I tap take take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
+            When("I tap level 152 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152)), async () => {
+                Then("I should see the Sodoku tile is available", then.canSeeSudokuTile)
+            })
+        })
+        When("I tap the soduku challenge", when.tapSudoku, async () => {
+            Then("I am on the sudoku page", then.amOnSudokuPage)
+        })
+        When("I tap start game", when.tapStartGame, async () => {
+            When("I tap maybe later", when.dismissNotificationScreenIfVisible, async () => {
+                Then("I am on the Sudoku challenge screen", then.amOnSudokuChallenge)
+            })
+        })
+        When("I close and reopen the app", when.closeAndReopenApp, async()=>{
+            Then("I am back on the Sudoku challenge screen", then.amOnSudokuChallenge)
+        })
+        When("I complete the Yudoku", when.completeYudoku(true, false), async () => {
+            Then("I can see the join leaderboard prompt", then.amOnLeaderboardIntroModal)
+        })
+    })
 })
