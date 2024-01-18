@@ -12,14 +12,14 @@ import { store } from "@redux/_core/store";
 import getClient from "@services/bugsnag";
 import { updateOfflineState } from "@redux/app/app.actions";
 import createRetryLink from "./retryLink";
-import { getCurrentLocale, REGION, REGION_LIST } from "@locale";
+import { getCurrentLocale, REGION, region, REGION_LIST } from "@locale";
 
 import { gqlInMemoryCache } from "./cache";
 import { gqlCachePersistor } from "./persistor";
 
 const appJson = require("../../../package.json");
 
-const buildRegionalGqlUri = (_r?: REGION) => `http://192.168.50.127:5000/graphql`;
+const buildRegionalGqlUri = (r?: REGION) => `${region.getRegionUri(r)}/graphql`;
 
 const httpLink = (r?: REGION) =>
   createHttpLink({
