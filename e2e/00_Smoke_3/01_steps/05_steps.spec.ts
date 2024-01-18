@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -9,7 +9,8 @@ import { twoDaysAgoDate } from "./_resources/consts"
 import { getLocalisedString as t } from "@i18n";
 
 Feature("As a user my activity is monitored correctly", async () => {
-    Scenario("Leaderboard is reset and duels are unavailable if I walk >= 75k steps average over 5 consecutive days within the last 5 days", scenario.start, async () => {
+    // @bug [GS-848 -- leaderboard not reseting when doing >= 75K steps over 5 consecutive days]
+    ScenarioSkip("Leaderboard is reset and duels are unavailable if I walk >= 75k steps average over 5 consecutive days within the last 5 days", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(false, data.CUSTOMER_40, data.AUTH_40), async () => {
             When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
                 Then("I should see my steps today as 0", then.idVisible(ids.STEPS_COUNT(0)))

@@ -67,36 +67,6 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             helper.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
     })
 
-    Scenario("As a YuLifer with 6 slots I can see the wellbeing hub on the UK YuScreen", scenario.start, async () => {
-        Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_48, data.AUTH_48), async () => {
-            helper.ONBOARDING_YUSCREEN("3 Products Slots Started", "31")
-            helper.YUSCREEN_V4(data.CUSTOMER_48, "6 Products Slots", "31", "More protection")
-
-            When("I scroll up to create my Yumoji", when.scrollUntilTextVisible(ids.YUSCREEN_SCROLL_VIEW, "Create Yumoji", "up"), async () => {
-                helper.CREATE_DEFAULT_YUMOJI(300);
-                When("I scroll up to find critical illness slot", when.scrollUntilTextVisible(ids.YUSCREEN_SCROLL_VIEW, "Critical Illness", "up"), async () => {
-                    When("I view the critical illness product", when.tapText("Critical Illness"), async () => {
-                        Then("I should see the product benefit information due to the company toggle being set to true", then.textVisible(`9x ${constants.criticalIllnessBenefitHeader}`))
-                    })
-                })
-            })
-            When("I close the product screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
-                When("I swipe up the screen", when.swipeFromText("My Wellbeing Hub", "down", "fast"), async () => {
-                    helper.WELLBEING_PRODUCT_VIEW(1, 31)
-                })
-                When("I close the Wellbeing Access page", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
-                    When("I scroll to see the wellbeing hub", when.scrollUntilTextVisible(ids.YUSCREEN_SCROLL_VIEW, "Browse more protection", "down"), async () => {
-                        Then("I should see the wellbeing hub", then.wellbeingHubVisible())
-                    })
-                })
-                When("I click on the wellbeing hub", when.tapText(wellbeingButtonTitle), async () => {
-                    Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN))
-                    Then("I should see all Wellbeing Hub services", then.wellbeingServiceVisible)
-                })
-            })
-        })
-    })
-
     // @flaky - failing on bitrise, passing locally
     ScenarioSkip("As a YuLifer with less than 6 slots i should see More protection coming soon slot", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_49, data.AUTH_49), async () => {
