@@ -3,12 +3,12 @@ import React, { useCallback, useMemo } from "react";
 import { t } from "@locale";
 import { Navigation } from "@navigation/main";
 import { GetMobilePurchasesList as Req, GetMobilePurchasesListVariables as ReqVars } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_MOBILE_PURCHASES_LIST } from "@graphql/rewards";
 import { ROUTES } from "@navigation/constants";
 import { PurchasedListScreen } from "@screens/index";
 import { IMainTabsProps } from "@navigation/root";
 import { addCommasToNumber } from "@utils";
 import { useLazyGqlLoading, LazyGqlLoadingArgs } from "@hooks";
+import { gql } from "@graphql/__generated";
 
 type Props = Pick<IMainTabsProps, "componentId"> & { filter: Record<string, string> };
 
@@ -16,7 +16,7 @@ const LIMIT = 20;
 
 function createLazyLoadingArgs(filter = {}): LazyGqlLoadingArgs<Req["data"]["list"][0], Req, ReqVars> {
   return {
-    gql: GQL_QUERY_GET_MOBILE_PURCHASES_LIST,
+    gql: gql("GetMobilePurchasesListDocument"),
     buildVariables: (page) => ({ filter, offset: Math.floor(page * LIMIT), limit: LIMIT }),
     buildFullData: (req, prevData) => [...prevData, ...(req.data.list || [])],
     checkIfReachedEnd: (req) => req.data.list.length === 0,

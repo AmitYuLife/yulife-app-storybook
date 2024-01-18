@@ -8,8 +8,7 @@ import { useTranslation } from "@hooks";
 import { Button, BUTTON_ICON, TertiaryButton } from "@molecules";
 import { GlobeIcon } from "@atoms/icon/globe-icon";
 import { useMutation } from "@apollo/client";
-import { UpdateMobileRewardStoreLocation, UpdateMobileRewardStoreLocationVariables } from "@graphql/_core/schema";
-import { GQL_MUTATION_UPDATE_MOBILE_REWARD_STORE_LOCATION } from "@graphql/rewards";
+import { gql } from "@graphql/__generated";
 
 type Props = {
   isActive: boolean;
@@ -27,10 +26,7 @@ const _FirstTimeStoreSelection = (props: Props) => {
     "screens.rewards.list.welcome.confirm",
   ]);
 
-  const [updateRewardStoreLocation] = useMutation<
-    UpdateMobileRewardStoreLocation,
-    UpdateMobileRewardStoreLocationVariables
-  >(GQL_MUTATION_UPDATE_MOBILE_REWARD_STORE_LOCATION, {
+  const [updateRewardStoreLocation] = useMutation(gql("UpdateMobileRewardStoreLocationDocument"), {
     refetchQueries: ["GetMobileRewardsList"],
   });
 
