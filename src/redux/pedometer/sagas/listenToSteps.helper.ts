@@ -11,11 +11,14 @@ import {
   updatePedometerSuccessAction,
 } from "../pedometer.actions";
 import { stepsChannel, NEXT_DAY_STARTED } from "../pedometer.channels";
+import { stepsChannel as yuHealthStepsChannel } from "../yu-health.pedometer.channels";
 import { getLastUpdated, getSteps } from "../pedometer.selectors";
 import { getMaxStepsAnomalyWindowMs, getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 
 const ERROR_NOT_AUTHORISED = "Pedometer not authorised";
 const STEPS_PER_MILLISECONDS_LIMIT = 2;
+
+type StepChannel = ReturnType<typeof stepsChannel> | ReturnType<typeof yuHealthStepsChannel>;
 
 export default function* listenToSteps() {
   let isRunning = true;
@@ -25,12 +28,9 @@ export default function* listenToSteps() {
   const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
   const momentStartDay = moment().startOf("day");
   const startOfDay = momentStartDay.format();
-  const channel: ReturnType<typeof stepsChannel> = yield call(
-    stepsChannel,
-    startOfDay,
-    stepsBlackListApps,
-    features.canFallbackToStepDetectorSensor
-  );
+  const channel: StepChannel = features.tempGameEnableYuHealth
+    ? yield call(yuHealthStepsChannel, startOfDay, stepsBlackListApps)
+    : yield call(stepsChannel, startOfDay, stepsBlackListApps, features.canFallbackToStepDetectorSensor);
   const maxStepsAnomalyWindowMs: ReturnType<typeof getMaxStepsAnomalyWindowMs> = yield select(
     getMaxStepsAnomalyWindowMs
   );
