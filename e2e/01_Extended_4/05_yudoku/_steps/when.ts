@@ -3,7 +3,7 @@ import { CELL_ROW_COLUMN, CHALLENGE_SET_SCROLL, LEADERBOARD_SWITCH, SUDOKU_COMPL
 import { screens } from "@appScreens";
 import { SocialGroupLeaderboard } from "../_resources/types";
 export { minimiseAndReopenApp, reloadOnly } from "@utils";
-export { authoriseFitkit, sendSteps } from "@socket";
+export { authoriseFitkit, sendSteps, closeAndReopenApp } from "@socket";
 
 
 export const {
