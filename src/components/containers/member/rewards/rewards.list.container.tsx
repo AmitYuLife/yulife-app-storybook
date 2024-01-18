@@ -78,6 +78,13 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
 
   const handleRewardDetailsItemPress = useCallback(
     (reward: GetMobileRewardsList_data_list) => {
+      /**
+       * locked means that the reward does not have
+       * available denominations
+       * this is to clarify that a reward in tease
+       * state may look and behave
+       * as locked but its isLocked value is false
+       */
       if (reward.isLocked) {
         Logger.logMixpanelEvent("reward_viewed", {
           locked: true,
@@ -100,16 +107,20 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
       }
 
       if (useHalfModalsForRewardDetails && reward.teaseDetails) {
+        const { target, progress, rewardQuantity, theme, image, hint, modalTitle } = reward.teaseDetails || {};
+        const { primaryColor, secondaryColor } = theme || {};
+
         return Navigation.showOverlayWithChild(
           <RewardMilestoneDetails
-            target={reward.teaseDetails.target}
-            progress={reward.teaseDetails.progress}
-            rewardQuantity={reward.teaseDetails.rewardQuantity}
+            modalTitle={modalTitle}
+            target={target}
+            progress={progress}
+            rewardQuantity={rewardQuantity}
             rewardTitle={reward.name}
-            primaryColor={reward.teaseDetails.theme.primaryColor}
-            secondaryColor={reward.teaseDetails.theme.secondaryColor}
-            rewardImage={reward.teaseDetails.image}
-            hint={reward.teaseDetails.hint}
+            primaryColor={primaryColor}
+            secondaryColor={secondaryColor}
+            rewardImage={image}
+            hint={hint}
           />
         );
       }

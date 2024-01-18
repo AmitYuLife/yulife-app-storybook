@@ -41,6 +41,7 @@ export interface GetMobileRewardsList_data_list_teaseDetails {
   image: GetMobileRewardsList_data_list_teaseDetails_image;
   theme: GetMobileRewardsList_data_list_teaseDetails_theme;
   hint: GetMobileRewardsList_data_list_teaseDetails_hint | null;
+  modalTitle: string | null;
 }
 
 export interface GetMobileRewardsList_data_list {
