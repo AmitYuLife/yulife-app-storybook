@@ -1,0 +1,17 @@
+mutation RespondToDuel(
+  $duelId: String!
+  $startDateTime: String!
+  $hasAccepted: Boolean!
+  $requestLocation: String
+  $leaderboardPlacement: Int
+) {
+  respondToDuel(
+    duelId: $duelId
+    startDateTime: $startDateTime
+    hasAccepted: $hasAccepted
+    requestLocation: $requestLocation
+    leaderboardPlacement: $leaderboardPlacement
+  ) {
+    id
+  }
+}

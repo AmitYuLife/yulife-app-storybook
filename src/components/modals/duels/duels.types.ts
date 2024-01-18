@@ -1,13 +1,14 @@
-import { GetDuellerDetails_getDuellerDetails } from "@graphql/_core/schema/GetDuellerDetails";
+import { GetDuellerDetailsQuery } from "@graphql/__generated";
 
 export type Step = "INTRO" | "OPTIONS";
 
 export const DEFAULT_DUEL_AMOUNT: number | null = null;
 
+type IGetDuellerDetails = GetDuellerDetailsQuery["getDuellerDetails"];
 export interface DuelStepProps {
   yucoin: number;
-  user: GetDuellerDetails_getDuellerDetails["user"];
-  opponent: GetDuellerDetails_getDuellerDetails["opponent"];
+  user: IGetDuellerDetails["user"];
+  opponent: IGetDuellerDetails["opponent"];
   loading: boolean;
   onChange?: any;
   setYucoin?: any;

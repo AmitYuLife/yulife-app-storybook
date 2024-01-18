@@ -4,11 +4,11 @@ import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Style, Colours } from "@styles";
 import YuCoin from "./yucoin";
 import Award from "./award";
-import { GetDuelsTomorrow_getDuelsTomorrow, GetDuelsToday_getDuelsToday } from "@graphql/_core/schema";
 import { DUEL_ICON } from "@ids";
 import { t } from "@locale";
+import { GetDuelsTodayQuery, GetDuelsTomorrowQuery } from "@graphql/__generated";
 interface IProps {
-  duel: GetDuelsTomorrow_getDuelsTomorrow | GetDuelsToday_getDuelsToday;
+  duel: GetDuelsTomorrowQuery["getDuelsTomorrow"][0] | GetDuelsTodayQuery["getDuelsToday"][0];
   type: "today" | "tomorrow" | "completed";
   userId: string;
   dailySteps?: number;

@@ -1,0 +1,13 @@
+query GetDuelInvitations {
+  getDuelInvitations {
+    id
+    opponents {
+      ...DuelOpponent
+    }
+    duration
+    type
+    yucoin
+    status
+    inviteStatus
+  }
+}

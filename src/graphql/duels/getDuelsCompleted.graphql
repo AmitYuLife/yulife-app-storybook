@@ -1,0 +1,15 @@
+query GetDuelsCompleted {
+  getDuelsCompleted {
+    id
+    duels {
+      id
+      opponents {
+        ...DuelOpponent
+      }
+      duration
+      type
+      yucoin
+      status
+    }
+  }
+}

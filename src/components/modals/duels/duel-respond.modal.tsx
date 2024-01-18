@@ -3,9 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { View, Alert, StyleSheet } from "react-native";
 import { getUserStart } from "@redux/user/user.actions";
 import { useMutation, useQuery } from "@apollo/client";
-import { GQL_MUTATION_RESPOND_TO_DUEL, GQL_QUERY_GET_DUELS, RespondToDuelMutationTuple } from "@graphql/duels";
-import { GetDuels_getDuels } from "@graphql/_core/schema/GetDuels";
-import { GetDuellerDetails_getDuellerDetails } from "@graphql/_core/schema/GetDuellerDetails";
 import moment from "moment";
 import { DATE_FORMAT_WITHOUT_TZ } from "@utils";
 import { DuelBackground } from "./subcomponents";
@@ -14,18 +11,18 @@ import DuelResponseIntro from "./subcomponents/duel-response-intro/duel-response
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { Loading } from "@atoms";
 import styles from "./duel-respond.styles";
-import { GQL_QUERY_GET_DUELLER_DETAILS } from "@graphql/duels/getDuellerDetails";
 import { useBackHandler } from "@hooks";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { filterRefetchQueries } from "@graphql/_core/filterRefetchQueries";
 import { Navigation } from "@navigation/main";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { t } from "@locale";
+import { GetDuelsQuery, gql } from "@graphql/__generated";
 
 interface IProps {
   duelId: string;
   componentId: string;
-  invitation?: GetDuels_getDuels;
+  invitation?: GetDuelsQuery["getDuels"][0];
   requestLocation: "leaderboards" | "search_list" | "recents";
   leaderboardPlacement: number;
 }
@@ -45,26 +42,26 @@ const DuelRespondModal: React.FC<IProps> = ({
   });
 
   const userCoins = useSelector(getTotalCoins);
-  const getDuelsQuery = useQuery(GQL_QUERY_GET_DUELS, {
+  const getDuelsQuery = useQuery(gql("GetDuelsDocument"), {
     fetchPolicy: "cache-and-network",
   });
 
   if (!invitation) {
-    const duels: GetDuels_getDuels[] = getDuelsQuery?.data?.getDuels;
+    const duels = getDuelsQuery?.data?.getDuels;
     invitation = duels.find(({ id }) => id === duelId);
   }
 
   const opponentId = invitation?.opponents[0].userId;
   const inviteStartDateTime = invitation?.opponents[0].startDateTime;
 
-  const getDuellerDetailsQuery = useQuery(GQL_QUERY_GET_DUELLER_DETAILS, {
+  const getDuellerDetailsQuery = useQuery(gql("GetDuellerDetailsDocument"), {
     fetchPolicy: "cache-and-network",
     variables: {
       opponentId,
     },
   });
 
-  const DuellerDetails: GetDuellerDetails_getDuellerDetails = getDuellerDetailsQuery?.data?.getDuellerDetails;
+  const DuellerDetails = getDuellerDetailsQuery?.data?.getDuellerDetails;
   const user = DuellerDetails?.user;
   const opponent = DuellerDetails?.opponent;
 
@@ -74,7 +71,7 @@ const DuelRespondModal: React.FC<IProps> = ({
 
   const startDateTime = inviteStartDateTime || moment().add(1, "day").startOf("day").format(DATE_FORMAT_WITHOUT_TZ);
 
-  const [respondToInvite]: RespondToDuelMutationTuple = useMutation(GQL_MUTATION_RESPOND_TO_DUEL, {
+  const [respondToInvite] = useMutation(gql("RespondToDuelDocument"), {
     refetchQueries: filterRefetchQueries(["GetDuelInvitations"]),
   });
 

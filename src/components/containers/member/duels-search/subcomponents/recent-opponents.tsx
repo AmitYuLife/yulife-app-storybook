@@ -2,21 +2,20 @@ import React from "react";
 import { View } from "react-native";
 import { Loading, Text } from "@atoms";
 import { useQuery } from "@apollo/client";
-import { GQL_QUERY_GET_RECENT_DUEL_OPPONENTS } from "@graphql/duels/getRecentDuelOpponents.gql";
-import { GetRecentDuelOpponents } from "@graphql/_core/schema";
 import { DuelImage } from "@components/screens/member/duels-hub/subcomponents";
 import styles from "./recent-opponents.styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { DUEL_AVATAR } from "@ids";
 import { t } from "@locale";
 import { formatOpponentName } from "@utils/duels";
+import { gql } from "@graphql/__generated";
 
 interface Props {
   inviteToDuel: (opponentId: string, type: "recents") => Promise<void>;
 }
 
 function _RecentOpponents({ inviteToDuel }: Props) {
-  const { data, loading } = useQuery<GetRecentDuelOpponents>(GQL_QUERY_GET_RECENT_DUEL_OPPONENTS, {
+  const { data, loading } = useQuery(gql("GetRecentDuelOpponentsDocument"), {
     fetchPolicy: "cache-and-network",
   });
 

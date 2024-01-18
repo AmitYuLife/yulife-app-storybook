@@ -1,9 +1,7 @@
 import * as React from "react";
 import { View, SectionList, SectionListRenderItem, SectionListData } from "react-native";
 import styles from "./completed-duels.styles";
-import { GQL_QUERY_GET_DUELS_COMPLETED } from "@graphql/duels/getDuelsCompleted.gql";
 import { useQuery } from "@apollo/client";
-import { GetDuelsCompleted, GetDuelsCompleted_getDuelsCompleted_duels } from "@graphql/_core/schema";
 import { DuelEntry, DuelEmpty } from "../subcomponents";
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
@@ -15,8 +13,10 @@ import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { DuelSkeleton } from "../subcomponents/duel-skeleton/duel-skeleton";
 import { t } from "@locale";
+import { GetDuelsCompletedQuery, gql } from "@graphql/__generated";
 
-interface ItemData extends GetDuelsCompleted_getDuelsCompleted_duels {
+type IGetDuelsCompletedDuels = GetDuelsCompletedQuery["getDuelsCompleted"][0]["duels"][0];
+interface ItemData extends IGetDuelsCompletedDuels {
   userId: string;
   dailySteps: number;
 }
@@ -64,10 +64,10 @@ const getItemLayout = (_: SectionListData<ItemData>[], index: number) => ({
   index,
 });
 
-const keyExtractor = (item: GetDuelsCompleted_getDuelsCompleted_duels) => item.id;
+const keyExtractor = (item: IGetDuelsCompletedDuels) => item.id;
 
 const CompletedDuelsScreen = () => {
-  const { data, loading, networkStatus } = useQuery<GetDuelsCompleted>(GQL_QUERY_GET_DUELS_COMPLETED, {
+  const { data, loading, networkStatus } = useQuery(gql("GetDuelsCompletedDocument"), {
     fetchPolicy: "no-cache",
   });
   const userId = useSelector(getCurrentUserId);

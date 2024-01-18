@@ -1,0 +1,20 @@
+query GetDuellerDetails($opponentId: String!) {
+  getDuellerDetails(opponentId: $opponentId) {
+    user {
+      firstName
+      fullName
+      avatar
+      coins
+    }
+    opponent {
+      firstName
+      fullName
+      avatar
+      coins
+    }
+    nextStepAlert {
+      title
+      subtitle
+    }
+  }
+}

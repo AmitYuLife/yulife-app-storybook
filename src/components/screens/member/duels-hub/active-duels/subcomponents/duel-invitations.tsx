@@ -2,8 +2,7 @@ import { FC, useCallback } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Style, Colours } from "@styles";
 import { Text } from "@atoms";
-import { GQL_QUERY_GET_DUEL_INVITATIONS } from "@graphql/duels/getDuelInvitations.gql";
-import { GetDuelInvitations } from "@graphql/_core/schema";
+
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { TouchableOpacityWithDelay } from "@components/molecules";
@@ -14,15 +13,12 @@ import { useQueryOnScreenSeen } from "@hooks";
 import { showYuModal } from "@navigation/root";
 import { t } from "@locale";
 import { formatOpponentName } from "@utils/duels";
+import { GetDuelInvitationsQuery, gql } from "@graphql/__generated";
 
 const DuelInvitations: FC = () => {
-  const [, { data, loading }] = useQueryOnScreenSeen<GetDuelInvitations>(
-    GQL_QUERY_GET_DUEL_INVITATIONS,
-    ROUTES.duelsHub,
-    {
-      fetchPolicy: "no-cache",
-    }
-  );
+  const [, { data, loading }] = useQueryOnScreenSeen(gql("GetDuelInvitationsDocument"), ROUTES.duelsHub, {
+    fetchPolicy: "no-cache",
+  });
 
   const userId = useSelector(getCurrentUserId);
   const duels = data?.getDuelInvitations || [];
@@ -77,7 +73,7 @@ const DuelInvitations: FC = () => {
   );
 };
 
-const DuelInvitationStatus: FC<{ duel: GetDuelInvitations["getDuelInvitations"][0] }> = ({ duel }) => {
+const DuelInvitationStatus: FC<{ duel: GetDuelInvitationsQuery["getDuelInvitations"][0] }> = ({ duel }) => {
   const showRespondModal = useCallback(() => {
     showYuModal({
       component: {

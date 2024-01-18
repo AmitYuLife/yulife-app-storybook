@@ -1,4 +1,3 @@
-import { GQL_MUTATION_INVITE_TO_DUEL, GQL_QUERY_GET_DUELS, InviteToDuelMutationTuple } from "@graphql/duels";
 import React, { useState } from "react";
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,10 +11,9 @@ import { Step } from "./duels.types";
 import styles from "./duel-invite.modal.styles";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { ROUTES } from "@navigation/constants";
-import { GQL_QUERY_GET_DUELLER_DETAILS } from "@graphql/duels/getDuellerDetails";
-import { GQL_QUERY_GET_DUEL_INVITATIONS } from "@graphql/duels/getDuelInvitations.gql";
 import { useBackHandler } from "@hooks";
 import { t } from "@locale";
+import { gql } from "@graphql/__generated";
 
 const STEPS = {
   INTRO: {
@@ -66,11 +64,11 @@ const DuelInviteModal: React.FC<IProps> = ({
   });
 
   const { StepComponent, NEXT } = STEPS[step];
-  const [inviteToDuel]: InviteToDuelMutationTuple = useMutation(GQL_MUTATION_INVITE_TO_DUEL, {
-    refetchQueries: [{ query: GQL_QUERY_GET_DUEL_INVITATIONS }, { query: GQL_QUERY_GET_DUELS }],
+  const [inviteToDuel] = useMutation(gql("InviteToDuelDocument"), {
+    refetchQueries: [{ query: gql("GetDuelInvitationsDocument") }, { query: gql("GetDuelsDocument") }],
   });
 
-  const { data, loading } = useQuery(GQL_QUERY_GET_DUELLER_DETAILS, {
+  const { data, loading } = useQuery(gql("GetDuellerDetailsDocument"), {
     fetchPolicy: "no-cache",
     variables: {
       opponentId,
