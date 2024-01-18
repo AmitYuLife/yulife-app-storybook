@@ -26,6 +26,7 @@ type RewardMilestoneDetailsProps = {
     label: string;
     description: string;
   };
+  modalTitle: string | null;
 };
 
 export const RewardMilestoneDetails = ({
@@ -37,24 +38,29 @@ export const RewardMilestoneDetails = ({
   secondaryColor,
   rewardImage,
   hint,
+  modalTitle,
 }: RewardMilestoneDetailsProps) => {
+  const hasCompleteRewardCardInfo =
+    target && rewardQuantity && rewardTitle && primaryColor && secondaryColor && rewardImage;
   const currentRoute = useSelector(getRouteState);
 
   const calculated = useMemo(() => {
     return {
-      hintPress: () => {
-        pushToScreen(currentRoute, {
-          component: {
-            id: ROUTES.sduiStatic,
-            name: ROUTES.sduiStatic,
-            passProps: {
-              stepId: "game_mechanics_information",
-              dynamicId: currentRoute,
-            },
+      hintPress: !hasCompleteRewardCardInfo
+        ? null
+        : () => {
+            pushToScreen(currentRoute, {
+              component: {
+                id: ROUTES.sduiStatic,
+                name: ROUTES.sduiStatic,
+                passProps: {
+                  stepId: "game_mechanics_information",
+                  dynamicId: currentRoute,
+                },
+              },
+            });
+            Navigation.dismissOverlayWithChild();
           },
-        });
-        Navigation.dismissOverlayWithChild();
-      },
       hintImage: {
         Element: <GiftUnlockedStarsSvg />,
       },
@@ -63,22 +69,26 @@ export const RewardMilestoneDetails = ({
 
   return (
     <ScrollableContentOverlay
-      heading={t("screens.locked_reward_modal.heading")}
+      heading={modalTitle ?? t("screens.locked_reward_modal.heading")}
       HeaderIcon={HeroLockedIcon}
       ctaLabel={t("screens.locked_reward_modal.cta")}
       onPressClose={Navigation.dismissOverlayWithChild}
       onPressCta={Navigation.dismissOverlayWithChild}
     >
-      <View style={styles.space} />
-      <RewardCard
-        target={target}
-        progress={progress}
-        rewardQuantity={rewardQuantity}
-        rewardTitle={rewardTitle}
-        primaryColor={primaryColor}
-        secondaryColor={secondaryColor}
-        rewardImage={rewardImage}
-      />
+      {!hasCompleteRewardCardInfo ? null : (
+        <>
+          <View style={styles.space} />
+          <RewardCard
+            target={target}
+            progress={progress}
+            rewardQuantity={rewardQuantity}
+            rewardTitle={rewardTitle}
+            primaryColor={primaryColor}
+            secondaryColor={secondaryColor}
+            rewardImage={rewardImage}
+          />
+        </>
+      )}
       <View style={styles.space} />
       {!hint ? null : (
         <Hint

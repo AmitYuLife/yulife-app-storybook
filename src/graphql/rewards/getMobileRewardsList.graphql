@@ -38,6 +38,7 @@ query GetMobileRewardsList($tag: String) {
           label
           description
         }
+        modalTitle
       }
     }
   }

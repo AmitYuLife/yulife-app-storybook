@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -290,6 +290,7 @@ export enum YuProductStatus {
   locked = "locked",
   ownedNoPolicy = "ownedNoPolicy",
   rejected = "rejected",
+  terminated = "terminated",
   unlockable = "unlockable",
 }
 
