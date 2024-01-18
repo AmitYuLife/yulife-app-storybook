@@ -36,6 +36,11 @@ export const {
     scrollUntilIdVisible
 } = navigation.scrolling
 
+export const {
+    yuCoinPowerInfoVisible
+} = screens.yuscreen
+
+
 export const isOnInivteColleaguePage = async () => {
     await expect(element(by.id(ids.REFERRALS_INVITE_BUTTON))).toBeVisible
     await expect(element(by.text("Your referrals"))).toBeVisible()
@@ -55,17 +60,6 @@ export const onTodaysEarnings = (steps = 0, cycling: string, mindfulness = 0, yu
     await scrollUntilTextVisible(ids.TODAYS_EARNINGS,"No challenge done","down")()
     await scrollUntilTextVisible(ids.TODAYS_EARNINGS,"Take a challenge (1 left)","down")()
     await textVisible("Today's challenges (0/1)")()
-}
-
-export const yuCoinPowerInfo = (yuCoinPower: number) => async () => {
-
-    const baseYucoinPower = "Equipping yourself with policies boosts your YuCoin Power in the Yuniverse."
-    const yuCoinPowerTitle = "YuCoin\nPower"
-    const powerBoost = `For every 1 YuCoin you would\nhave earned, you now earn ${yuCoinPower}!`
-
-    await expect(element(by.text(yuCoinPowerTitle))).toBeVisible();
-    await expect(element(by.text(baseYucoinPower))).toBeVisible()
-    await expect(element(by.text(powerBoost))).toBeVisible()
 }
 
 export const eventToBeCompletedVisible = (numberOfProfiles: number, progressWidth: number) => async () => {

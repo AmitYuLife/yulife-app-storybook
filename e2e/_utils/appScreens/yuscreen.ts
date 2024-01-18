@@ -592,3 +592,42 @@ export const wellbeingHubVisible = (visible = true) => async () => {
     await idNotVisible(BOX_OPTION_DESCRIPTION(wellbeingButtonDes))
   }
 }
+
+
+export const yuCoinPowerInfoVisible = (yuCoinPower: number) => async () => {
+  const powerBoost = `For every 1 YuCoin you would\nhave earned, you now earn ${yuCoinPower}!`;
+  const baseYucoinPower = "Equipping yourself with policies boosts your YuCoin Power in the Yuniverse.";
+  const wellbeingEarn = "You can earn YuCoin for your wellbeing activities!";
+
+  await textVisibleAtIndex(`${yuCoinPower}`, 1)();
+  await textVisibleAtIndex(`${yuCoinPower}`, 2)();
+  await textVisibleAtIndex(`${yuCoinPower}`, 3)();
+  await swipeFromText("Activities that earn YuCoin:", "up", "slow")();
+  await textVisible(`${yuCoinPower * 6}`)();
+  await textVisible(`${yuCoinPower * 20}`)();
+  const streakMultiple = (yuCoinPower * 250).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  await textVisible(streakMultiple)();
+
+  if (yuCoinPower < 2) {
+    await textVisible(wellbeingEarn)();
+    await textVisible(baseYucoinPower)()
+    await textVisible("2000 steps")();
+    await textVisible("1.6km cycling")();
+    await textVisible("5 mindful minutes")();
+    await textVisible("complete 1 challenge")();
+    await textVisible("open 1 chest")();
+    await textVisible("complete 1 streak")();
+  } else {
+    await swipeFromText("Activities that earn YuCoin:", "down", "slow")();
+    await textVisible(baseYucoinPower)()
+    await textVisible(powerBoost)()
+    await swipeFromText("Activities that earn YuCoin:", "up", "slow")();
+    await textVisible("2000 steps")();
+    await textVisible("1.6km cycling")();
+    await textVisible("5 mindful minutes")();
+    await swipeFromText("Activities that earn YuCoin:", "up", "slow")();
+    await textVisible("complete 1 challenge")();
+    await textVisible("open 1 chest")();
+    await textVisible("complete 1 streak")();
+  }
+};

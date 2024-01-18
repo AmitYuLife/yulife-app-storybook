@@ -149,7 +149,7 @@ export const WELLBEING_PRODUCT_VIEW = async (
     Then("I should see correct product details", then.wellbeingProductInfo);
   })
   When("I tap the Wellbeing YuCoin icon", when.tapID(YUCOIN_POWER(wellbeingAccessYuCoin)), async () => {
-    Then("I should see correct YuCoin Power text", then.yuCoinPowerInfo(yuCoinPower));
+    Then("I should see correct YuCoin Power text", then.yuCoinPowerInfoVisible(yuCoinPower));
   })
   When("I click Got it", when.tapText("Got it!"), async () => {
     Then("I should see Wellbeing Access", then.textVisibleAtIndex("Wellbeing Access", 1));
@@ -163,7 +163,7 @@ export const YUCOIN_POWER_CHECK = async (customer: any, yuCoinPower: number) => 
   When("I swipe to the top", when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, `${firstName} ${lastName}`, "up"), async () => {
     When(`I tap YuCoin`, when.tapTextAtIndex("YuCoin", 0), async () => {
       When("I wait", when.wait(4000), async () => {
-        Then("I should see correct YuCoin Power text", then.yuCoinPowerInfo(yuCoinPower));
+        Then("I should see correct YuCoin Power text", then.yuCoinPowerInfoVisible(yuCoinPower));
       });
     });
   })

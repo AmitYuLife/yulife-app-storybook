@@ -145,6 +145,13 @@ export const YUNITY_CARD = (description: string) => `YUNITY_CARD_${description}`
 export const COUNTDOWN_COMPONENT = "COUNTDOWN_COMPONENT"
 export const COUNTDOWN_UNIT = (unit: number, dateType: string) => unit < 10 && (dateType === 'Mins' || 'Hours') ? `COUNTDOWN_UNIT0${unit}_${dateType}` : `COUNTDOWN_UNIT${unit}_${dateType}`
 export const CHALLENGE_HISTORY_NEW_SLOT = (type: string, yucoin: string, rating: number) => `CHALLENGE_HISTORY_NEW_SLOT_${type}_${yucoin}_${rating}`
+export const PRODUCT_CARD_TITLE = (title:string) => `PRODUCT_CARD_${title}`
+export const PRODUCT_CARD_IMAGE = (imageURL: any) => `PRODUCT_CARD_IMAGE${imageURL}`
+export const PRODUCT_CARD_BOTTOM = (copy: string) => `PRODUCT_CARD_BOTTOM${copy}`
+export const YUCOIN_LABEL = (yuCoin: string) => `YUCOIN_LABEL${yuCoin}`
+export const DISMISS_BUTTON = "DISMISS_BUTTON"
+
+
 
 
 // modals

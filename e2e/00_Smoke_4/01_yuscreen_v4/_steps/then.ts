@@ -37,7 +37,8 @@ export const {
   packageScreenCorrect,
   onYuscreenV4,
   onSkinToneScreen,
-  wellbeingHubVisible
+  wellbeingHubVisible,
+  yuCoinPowerInfoVisible
 } = screens.yuscreen;
 
 const coverForWApos = "What I’m covered for";
@@ -160,42 +161,6 @@ export const groupDentalProductInfo = (packageType: string, yuCoinPower: string,
   membershipNumber && await textVisible(membershipNumber)();
   // commenting out until found a way to ID
   // await expect(element(by.text(level))).toBeVisible();
-};
-
-export const yuCoinPowerInfo = (yuCoinPower: number) => async () => {
-  const powerBoost = `For every 1 YuCoin you would\nhave earned, you now earn ${yuCoinPower}!`;
-  const baseYucoinPower = "Equipping yourself with policies boosts your YuCoin Power in the Yuniverse.";
-  const wellbeingEarn = "You can earn YuCoin for your wellbeing activities!";
-
-  await textVisibleAtIndex(`${yuCoinPower}`, 1);
-  await textVisibleAtIndex(`${yuCoinPower}`, 2);
-  await textVisibleAtIndex(`${yuCoinPower}`, 3);
-  await swipeFromText("Activities that earn YuCoin:", "up", "slow")();
-  await textVisible(`${yuCoinPower * 6}`);
-  await textVisible(`${yuCoinPower * 20}`);
-  await textVisible(`${addCommasToNumber(yuCoinPower * 250)}`);
-
-  if (yuCoinPower < 2) {
-    await textVisible(wellbeingEarn)();
-    await textVisible("2000 steps");
-    await textVisible("1.6km cycling");
-    await textVisible("5 mindful minutes");
-    await textVisible("complete 1 challenge");
-    await textVisible("open 1 chest");
-    await textVisible("complete 1 streak");
-  } else {
-    await swipeFromText("Activities that earn YuCoin:", "down", "slow")();
-    await textVisible(baseYucoinPower)()
-    await textVisible(powerBoost)()
-    await swipeFromText("Activities that earn YuCoin:", "up", "slow")();
-    await textVisible("2000 steps");
-    await textVisible("1.6km cycling");
-    await textVisible("5 mindful minutes");
-    await swipeFromText("Activities that earn YuCoin:", "up", "slow")();
-    await textVisible("complete 1 challenge");
-    await textVisible("open 1 chest");
-    await textVisible("complete 1 streak");
-  }
 };
 
 export const paymentOverdueInfo = async () => {
