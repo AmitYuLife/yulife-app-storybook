@@ -1,0 +1,3 @@
+mutation SubmitAppStoreReviewAction($id: ID!, $action: AppStoreReviewPromptAction!) {
+  submitAppStoreReviewAction(id: $id, action: $action)
+}

@@ -157,8 +157,12 @@ const documents = {
   JoinGoalDocument: types.JoinGoalDocument,
   ChangeUserLocaleDocument: types.ChangeUserLocaleDocument,
   GetMediaDocument: types.GetMediaDocument,
+  CollectAwardDocument: types.CollectAwardDocument,
   GetPendingUserFeedbackDocument: types.GetPendingUserFeedbackDocument,
+  SearchLeaderboardUserDocument: types.SearchLeaderboardUserDocument,
+  SubmitAppStoreReviewActionDocument: types.SubmitAppStoreReviewActionDocument,
   SubmitFeedbackFormDocument: types.SubmitFeedbackFormDocument,
+  UpdateMemberConsentDocument: types.UpdateMemberConsentDocument,
   MarkMobileNotificationsAsViewedByTypeDocument: types.MarkMobileNotificationsAsViewedByTypeDocument,
   GetMobileWhatsNewModalDocument: types.GetMobileWhatsNewModalDocument,
   PerformMobileOnboardingStepDocument: types.PerformMobileOnboardingStepDocument,
@@ -876,11 +880,29 @@ export function gql(source: "GetMediaDocument"): typeof documents["GetMediaDocum
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "CollectAwardDocument"): typeof documents["CollectAwardDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "GetPendingUserFeedbackDocument"): typeof documents["GetPendingUserFeedbackDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "SearchLeaderboardUserDocument"): typeof documents["SearchLeaderboardUserDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "SubmitAppStoreReviewActionDocument"
+): typeof documents["SubmitAppStoreReviewActionDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "SubmitFeedbackFormDocument"): typeof documents["SubmitFeedbackFormDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "UpdateMemberConsentDocument"): typeof documents["UpdateMemberConsentDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

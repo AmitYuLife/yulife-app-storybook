@@ -1,5 +1,4 @@
 import { useMutation } from "@apollo/client";
-import { GQL_MUTATION_COLLECT_AWARD, CollectAwardMutationTuple } from "@graphql/member";
 import { getTimeRemaining } from "@utils";
 import React, { useMemo, useState, useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
@@ -11,6 +10,7 @@ import { Navigation } from "@navigation/main";
 import { IStreakCopy, streakCopy } from "./copy";
 import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
 import { DETOX_ENABLED } from "@services/socket";
+import { gql } from "@graphql/__generated";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -161,7 +161,7 @@ const StreaksModal: React.FC<Props> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [collectAward]: CollectAwardMutationTuple = useMutation(GQL_MUTATION_COLLECT_AWARD);
+  const [collectAward] = useMutation(gql("CollectAwardDocument"));
 
   const onSubmit = streakAwardId
     ? async () => {

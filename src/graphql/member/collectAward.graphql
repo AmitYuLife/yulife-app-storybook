@@ -1,0 +1,3 @@
+mutation CollectAward($awardId: String!) {
+  collectAward(awardId: $awardId)
+}
