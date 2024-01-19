@@ -19,8 +19,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             helper.YUSCREEN_V4(data.CUSTOMER_43, "wellbeing only", "10")
             helper.CREATE_DEFAULT_YUMOJI(300);
             helper.YUCOIN_POWER_CHECK(data.CUSTOMER_43, 10)
-            // @flaky [sometimes fails to execute helper in correct order -- test passes locally]
-            // helper.WELLBEING_PRODUCT_VIEW(10, 10)
+            helper.WELLBEING_PRODUCT_VIEW(10, 10)
         })
     })
 

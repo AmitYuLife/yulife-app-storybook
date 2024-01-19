@@ -9,8 +9,7 @@ import { leaverDentalProduct, leaverLifeInsuranceProduct } from "./_resources/fi
 import { getFullName } from "_utils/users"
 
 Feature("As a business leaver I should still have app access", async () => {
-    // @flaky [test passes locally]
-    ScenarioSkip("As a business leaver with no persional products, I should still have app access", scenario.start, () => {
+    Scenario("As a business leaver with no persional products, I should still have app access", scenario.start, () => {
         Given("I trigger the free product worker", given.triggerFreeProduct, async()=>{
             When("I login", when.logInAndGoToTab("yu", data.CUSTOMER_LEAVER, data.AUTH_LEAVER), async () => {
                 Then("I should be on the onboarding yuscreen v4", then.idVisible(ids.ONBOARDING_SCREEN_V4))

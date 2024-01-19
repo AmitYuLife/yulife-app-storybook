@@ -119,9 +119,8 @@ Feature("As a user I can navigate through member routes correctly", async () => 
 
         })
     })
-    // Still needs fixing. Feature works but test stalls and fails
-    // @flaky [test passes successfully locally]
-    ScenarioSkip("I can view all the reward screens", scenario.start, async () => {
+
+    Scenario("I can view all the reward screens", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_8, data.AUTH_8), async () => {
             When("I go to rewards", when.tapID(ids.NAV_BAR("rewards")), async () => {
                 Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 2000))

@@ -22,7 +22,7 @@ const YuCoinLabel = ({ earnRate, style }: IYuCoinLabelProps) => {
       ...style,
     };
   }, [style]);
-  
+
   return (
     <YucoinPowerButtonBase
       isShadowHidden={true}
@@ -38,7 +38,9 @@ const YuCoinLabel = ({ earnRate, style }: IYuCoinLabelProps) => {
           source={require("@assets/icons/coin.png")}
         />
         <View>
-          <Text style={styles.yucoinPowerButtonEarnRateText} testID={YUCOIN_LABEL(earnRate)}>{earnRate}</Text>
+          <Text style={styles.yucoinPowerButtonEarnRateText} testID={YUCOIN_LABEL(earnRate)}>
+            {earnRate}
+          </Text>
         </View>
       </View>
       <View style={styles.yucoinPowerButtonTextWrapper}>
