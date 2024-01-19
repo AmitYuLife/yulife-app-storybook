@@ -1,90 +1,43 @@
-import React, { memo, useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useMemo, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import { GenericHeadingAbsolute, GenericHeadingPad, Tabs } from "@organisms";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { Style } from "@styles";
-import {
-  getAvailabilityStatus,
-  HealthProvider,
-  HealthProviderCapability,
-  HealthProviderAvailability,
-  getCapabilities,
-} from "@yu-life/react-native-yu-health";
-import { TextTemplate } from "@atoms";
-import colours from "@styles/colours";
-
-interface IHealthProvider {
-  name: HealthProvider;
-  status: HealthProviderAvailability;
-  capabilities?: HealthProviderCapability[];
-}
-
-const getStateColor = (state: string) => {
-  switch (state) {
-    case HealthProviderAvailability.available:
-      return "rgb(0,155,0)";
-    case HealthProviderAvailability.not_available:
-      return "rgb(155,0,0)";
-    case HealthProviderAvailability.update_required:
-      return "rgb(155,100,0)";
-    default:
-      return "black";
-  }
-};
+import YuHealthInfo from "./yu-health-info";
+import YuHealthActivity from "./yu-health-activity";
 
 const YuHealthDebug = () => {
-  const [providerStatus, setProviderStatus] = useState<IHealthProvider[]>([]);
-
-  const getStatus = useCallback(async () => {
-    const status: Record<HealthProvider, HealthProviderAvailability> = await getAvailabilityStatus([]);
-
-    const capabilities = await getCapabilities();
-
-    const providers: IHealthProvider[] = Object.keys(status).map((provider: HealthProvider) => {
-      return {
-        name: provider,
-        status: status[provider],
-        capabilities: capabilities[provider],
-      };
-    });
-
-    setProviderStatus(providers);
-  }, []);
-
-  useEffect(() => {
-    getStatus();
-  }, [getStatus]);
+  const [activeTab, setActiveTab] = useState<string>("YuHealth");
 
   const onBack = useCallback(() => {
     Navigation.popToRoot(ROUTES.debug);
   }, []);
 
+  const list = useMemo(() => {
+    return [
+      {
+        name: "YuHealth",
+        onPress: () => {
+          setActiveTab("YuHealth");
+        },
+      },
+      {
+        name: "Activity",
+        onPress: () => {
+          setActiveTab("Activity");
+        },
+      },
+    ];
+  }, []);
+
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
+      <Tabs list={list} />
       <ScrollView>
-        <View style={styles.container}>
-          {providerStatus.map((provider) => (
-            <View style={styles.providerContainer} key={provider.name}>
-              <View style={styles.providerHeaderContainer}>
-                <TextTemplate type="b1b">{provider.name}</TextTemplate>
-                <TextTemplate type="b2b" color={getStateColor(provider.status)}>
-                  {provider.status}
-                </TextTemplate>
-              </View>
-              <View style={styles.capabilities}>
-                {provider.capabilities?.map((capability) => (
-                  <View style={styles.capability} key={capability}>
-                    <TextTemplate type="b2" color={colours.yuscreen.white} key={capability}>
-                      {capability}
-                    </TextTemplate>
-                  </View>
-                ))}
-              </View>
-            </View>
-          ))}
-        </View>
+        {activeTab === "YuHealth" ? <YuHealthInfo /> : null}
+        {activeTab === "Activity" ? <YuHealthActivity /> : null}
       </ScrollView>
       <GenericHeadingAbsolute heading={"YuHealth"} onLeftIconPress={onBack} />
     </View>
@@ -98,30 +51,6 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     padding: Style.adjust(16),
-  },
-
-  capability: {
-    padding: Style.adjust(6),
-    paddingHorizontal: Style.adjust(10),
-    borderRadius: Style.adjust(8),
-    marginRight: Style.adjust(6),
-    marginBottom: Style.adjust(6),
-    backgroundColor: colours.products.fib.rare,
-  },
-
-  capabilities: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    marginTop: Style.adjust(20),
-  },
-
-  providerContainer: {
-    backgroundColor: colours.products.fib.rareLight,
-    padding: Style.adjust(20),
-  },
-  providerHeaderContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
   },
 });
 

@@ -1,5 +1,5 @@
 import { GetActivityHistory_getActivityHistoryWithLevels_sources as Sources } from "@graphql/_core/schema";
-import { PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
+import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import { IFeature } from "@redux/user/user.reducer";
 import { ItemProps } from "@screens/member/activity-history-levels/activity-history-levels.item";
 import {
@@ -81,12 +81,18 @@ export const fetchFitkitActivityData = async ({ start, end, features, stepsBlack
   return { stepsResults, meditationResults, cyclingResults };
 };
 
+export interface IFetchActivityResponse {
+  stepsResults: ChallengesPayload[];
+  meditationResults: ChallengesPayload[];
+  cyclingResults: ChallengesPayload[];
+}
+
 export const fetchYuHealthActivityData = async ({
   start,
   features,
   end,
   stepsBlackListApps,
-}: IFetchActivityRequest) => {
+}: IFetchActivityRequest): Promise<IFetchActivityResponse> => {
   const sharedOptions = {
     startTime: start.toDate(),
     endTime: end.toDate(),
