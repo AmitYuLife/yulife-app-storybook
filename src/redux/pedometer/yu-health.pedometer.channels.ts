@@ -28,8 +28,8 @@ export function stepsChannel(startTime: string, blackListApps: string[]) {
     });
 
     startPedometer({
-      startTime: moment(startTime).toDate().toISOString() as any, // TODO: fix type
-      endTime: moment(startTime).endOf("day").toISOString() as any, // TODO: fix type
+      startTime: moment(startTime).toDate(),
+      endTime: moment(startTime).endOf("day").toDate(),
       queryOptions: { blacklistApps: blackListApps },
     });
 
