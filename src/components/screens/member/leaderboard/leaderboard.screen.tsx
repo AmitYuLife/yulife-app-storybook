@@ -6,7 +6,7 @@ import { FlashList as _FlashList, ListRenderItemInfo } from "@shopify/flash-list
 import { PAGE_SIZE } from "@components/containers/member/leaderboard/leaderboard.container";
 import { SocialGroupLeaderboardConfigId } from "@graphql/_core/schema/globalTypes";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
-import { NOTIF_CENTRE } from "@ids";
+import { LEADERBOARD_SCROLL_LIST, NOTIF_CENTRE } from "@ids";
 import LeaderboardListFooterComponent from "./leaderboard-list-footer-componet";
 import LeaderboardListHeaderComponent from "./leaderboard-list-header-component";
 import LeaderboardListItem from "./leaderboard-list-item";
@@ -263,6 +263,7 @@ export const LeaderboardScreen = ({
       </Animated.View>
       <View style={listStyle}>
         <FlashList
+          testID={LEADERBOARD_SCROLL_LIST}
           ref={flashList}
           showsVerticalScrollIndicator={false}
           estimatedItemSize={56}

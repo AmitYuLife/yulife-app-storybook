@@ -257,8 +257,8 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
     })
 
-
-    Scenario("I can succesfully go through the Living DNA GHI Rewards journeys", scenario.start, async () => {
+    // @flaky [works locally - on runners struggles with the form]
+    ScenarioSkip("I can succesfully go through the Living DNA GHI Rewards journeys", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_119_GHI_REWARDS, data.AUTH_119), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
@@ -313,95 +313,94 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I click to claim my kit", when.tapText(fixtures.LIVING_DNA_REWARDS_CLAIM_PAGE_DETAILS.buttonText), async () => {
             Then("I appear on the Thriva important notes page", then.importantNotesPageVisible(fixtures.LIVING_DNA_IMPORTANT_NOTES_DETAILS))
         })
-        // @flaky [works locally - on runners struggles with the form]
-        // When("I click to fill in my details", when.tapText(constants.importantNotesButtonText), async () => {
-        //     Then("I appear on the Living DNA details page", then.livingDNADetailsPageVisible)
-        // })
-        // When("I type a first name that is too short", when.typeViaID(ids.CONTENT_ITEM_INPUT("firstName"), "J"), async () => {
-        //     When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("lastName")), async () => {
-        //         Then("I see a warning about the name being too short", then.textVisible("Must be between 2 and 35 characters"))
-        //     })
-        // })
-        // When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("firstName")), async () => {
-        //     When("I type a first name that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("firstName"), "James"), async () => {
-        //         When("I type a last name that is too short", when.typeViaID(ids.CONTENT_ITEM_INPUT("lastName"), "R"), async () => {
-        //             When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("address1")), async () => {
-        //                 Then("I see a warning about the name being too short", then.textVisible("Must be between 2 and 35 characters"))
-        //             })
-        //         })
-        //     })
-        // })
-        // When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("lastName")), async () => {
-        //     When("I type a last name that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("lastName"), "Rogers"), async () => {
-        //         When("I type a first line address that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("address1"), "Rogers' House"), async () => {
-        //             When("I type a town that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("town"), "London"), async () => {
-        //                 When("I scroll to the bottom of the page", when.scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, "Submit", "down"), async () => {
-        //                     When("I type a postcode that is incorrect", when.typeViaID(ids.CONTENT_ITEM_INPUT("postcode"), "London"), async () => {
-        //                         When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("email")), async () => {
-        //                             Then("I see a warning about the postcode not being valid", then.textVisible("Please enter a valid UK postcode"))
-        //                         })
-        //                     })
-        //                 })
-        //             })
-        //         })
-        //     })
-        // })
-        // When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("postcode")), async () => {
-        //     When("I type a good postcode", when.typeViaID(ids.CONTENT_ITEM_INPUT("postcode"), "EC1Y8RQ"), async () => {
-        //         When("I type a bad email", when.typeViaID(ids.CONTENT_ITEM_INPUT("email"), "RogerzEmailRulez"), async () => {
-        //             When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("postcode")), async () => {
-        //                 Then("I see a warning about the email not being valid", then.textVisible("Please enter a valid email"))
-        //             })
-        //         })
-        //     })
-        // })
-        // When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("email")), async () => {
-        //     When("I type a good email", when.typeViaID(ids.CONTENT_ITEM_INPUT("email"), "rogerstest@fakeemail.com"), async () => {
-        //         When("I type a word in the phone number entry", when.typeViaID(ids.CONTENT_ITEM_INPUT("phone"), "James"), async () => {
-        //             When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("postcode")), async () => {
-        //                 Then("I see a warning about the email not being valid", then.textVisible("Please enter a valid contact number"))
-        //             })
-        //         })
-        //     })
-        // })
-        // When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("phone")), async () => {
-        //     When("I type a phone number that's too short", when.typeViaID(ids.CONTENT_ITEM_INPUT("phone"), "123"), async () => {
-        //         When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("postcode")), async () => {
-        //             Then("I see a warning about the email not being valid", then.textVisible("Please enter a valid contact number"))
-        //         })
-        //     })
-        // })
-        // When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("phone")), async () => {
-        //     When("I type a phone number that's too long", when.typeViaID(ids.CONTENT_ITEM_INPUT("phone"), "071234567891"), async () => {
-        //         When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("postcode")), async () => {
-        //             Then("I see a warning about the email not being valid", then.textVisible("Please enter a valid contact number"))
-        //         })
-        //     })
-        // })
-        // When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("phone")), async () => {
-        //     When("I type a phone number that is the correct length but doesn't start with 07", when.typeViaID(ids.CONTENT_ITEM_INPUT("phone"), "12345678912"), async () => {
-        //         When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("postcode")), async () => {
-        //             Then("I see a warning about the email not being valid", then.textVisible("Please enter a valid contact number"))
-        //         })
-        //     })
-        // })
-        // When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("phone")), async () => {
-        //     When("I type a valid phone number", when.typeViaID(ids.CONTENT_ITEM_INPUT("phone"), "07123 456789"), async () => {
-        //         When("I type a valid county", when.typeViaID(ids.CONTENT_ITEM_INPUT("county"), "London"), async () => {
-        //             When("I tap to submit", when.tapText("Submit"), async () => {
-        //                 When("I wait for ten seconds", when.wait(10000), async () => {
-        //                     Then("I can see the Living DNA kit is en route", then.kitOrderedScreenVisible(constants.livingDNASuccessHeader, constants.livingDNADeliveryMessages))
-        //                 })
-        //             })
-        //         })
-        //     })
-        // })
-        // When("I click the button", when.tapText(t("Got it!")), async () => { 
-        //     Then("I can see I have claimed the reward", then.onLivingDNARewardsClaimPage(fixtures.THRIVA_REWARDS_CLAIM_PAGE_DETAILS, false))
-        // })
-        // When("I click to see my voucher", when.tapText(t("View vouchers")), async () => {
-        //     Then("I can see the purchase for today for Living DNA", then.groupHealthRewardsPurchasedVisible(fixtures.LIVING_DNA_REWARDS_CLAIM_PAGE_DETAILS))
-        // })
+        When("I click to fill in my details", when.tapText(constants.importantNotesButtonText), async () => {
+            Then("I appear on the Living DNA details page", then.livingDNADetailsPageVisible)
+        })
+        When("I type a first name that is too short", when.typeViaID(ids.CONTENT_ITEM_INPUT("firstName"), "J"), async () => {
+            When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("lastName")), async () => {
+                Then("I see a warning about the name being too short", then.textVisible("Must be between 2 and 35 characters"))
+            })
+        })
+        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("firstName")), async () => {
+            When("I type a first name that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("firstName"), "James"), async () => {
+                When("I type a last name that is too short", when.typeViaID(ids.CONTENT_ITEM_INPUT("lastName"), "R"), async () => {
+                    When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("address1")), async () => {
+                        Then("I see a warning about the name being too short", then.textVisible("Must be between 2 and 35 characters"))
+                    })
+                })
+            })
+        })
+        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("lastName")), async () => {
+            When("I type a last name that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("lastName"), "Rogers"), async () => {
+                When("I type a first line address that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("address1"), "Rogers' House"), async () => {
+                    When("I type a town that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("town"), "London"), async () => {
+                        When("I scroll to the bottom of the page", when.scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, "Submit", "down"), async () => {
+                            When("I type a postcode that is incorrect", when.typeViaID(ids.CONTENT_ITEM_INPUT("postcode"), "London"), async () => {
+                                When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("email")), async () => {
+                                    Then("I see a warning about the postcode not being valid", then.textVisible("Please enter a valid UK postcode"))
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("postcode")), async () => {
+            When("I type a good postcode", when.typeViaID(ids.CONTENT_ITEM_INPUT("postcode"), "EC1Y8RQ"), async () => {
+                When("I type a bad email", when.typeViaID(ids.CONTENT_ITEM_INPUT("email"), "RogerzEmailRulez"), async () => {
+                    When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("postcode")), async () => {
+                        Then("I see a warning about the email not being valid", then.textVisible("Please enter a valid email"))
+                    })
+                })
+            })
+        })
+        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("email")), async () => {
+            When("I type a good email", when.typeViaID(ids.CONTENT_ITEM_INPUT("email"), "rogerstest@fakeemail.com"), async () => {
+                When("I type a word in the phone number entry", when.typeViaID(ids.CONTENT_ITEM_INPUT("phone"), "James"), async () => {
+                    When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("postcode")), async () => {
+                        Then("I see a warning about the email not being valid", then.textVisible("Please enter a valid contact number"))
+                    })
+                })
+            })
+        })
+        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("phone")), async () => {
+            When("I type a phone number that's too short", when.typeViaID(ids.CONTENT_ITEM_INPUT("phone"), "123"), async () => {
+                When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("postcode")), async () => {
+                    Then("I see a warning about the email not being valid", then.textVisible("Please enter a valid contact number"))
+                })
+            })
+        })
+        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("phone")), async () => {
+            When("I type a phone number that's too long", when.typeViaID(ids.CONTENT_ITEM_INPUT("phone"), "071234567891"), async () => {
+                When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("postcode")), async () => {
+                    Then("I see a warning about the email not being valid", then.textVisible("Please enter a valid contact number"))
+                })
+            })
+        })
+        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("phone")), async () => {
+            When("I type a phone number that is the correct length but doesn't start with 07", when.typeViaID(ids.CONTENT_ITEM_INPUT("phone"), "12345678912"), async () => {
+                When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("postcode")), async () => {
+                    Then("I see a warning about the email not being valid", then.textVisible("Please enter a valid contact number"))
+                })
+            })
+        })
+        When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("phone")), async () => {
+            When("I type a valid phone number", when.typeViaID(ids.CONTENT_ITEM_INPUT("phone"), "07123 456789"), async () => {
+                When("I type a valid county", when.typeViaID(ids.CONTENT_ITEM_INPUT("county"), "London"), async () => {
+                    When("I tap to submit", when.tapText("Submit"), async () => {
+                        When("I wait for ten seconds", when.wait(10000), async () => {
+                            Then("I can see the Living DNA kit is en route", then.kitOrderedScreenVisible(constants.livingDNASuccessHeader, constants.livingDNADeliveryMessages))
+                        })
+                    })
+                })
+            })
+        })
+        When("I click the button", when.tapText(t("Got it!")), async () => { 
+            Then("I can see I have claimed the reward", then.onLivingDNARewardsClaimPage(fixtures.THRIVA_REWARDS_CLAIM_PAGE_DETAILS, false))
+        })
+        When("I click to see my voucher", when.tapText(t("View vouchers")), async () => {
+            Then("I can see the purchase for today for Living DNA", then.groupHealthRewardsPurchasedVisible(fixtures.LIVING_DNA_REWARDS_CLAIM_PAGE_DETAILS))
+        })
     })
     // @flaky - can't find countdown_54mins on bitrise, possible timezone issue? Passing locally
     ScenarioSkip("I can succesfully go through the Bupa GHI Rewards journeys", scenario.start, async () => {

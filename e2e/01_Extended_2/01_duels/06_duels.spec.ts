@@ -64,7 +64,7 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             })
             When("I tap confirm", when.tapText("Confirm"), async()=>{
                 When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () =>{
-                    Then("I should see the duels button", then.idVisible(ids.DUELS_BUTTON))
+                    Then("I should see the duels button", then.idVisible(ids.DUELS_BUTTON, 2000))
                 })
             })
             When("I tap the duels button", when.tapID(ids.DUELS_BUTTON), async()=>{

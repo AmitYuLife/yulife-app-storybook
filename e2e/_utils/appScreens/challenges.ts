@@ -333,7 +333,7 @@ export const onScreenButtonsNotVisible = async () => {
 
 export const isOnTodaysMeditationScreen = (mins1: string, yuCoin1: string) => async () => {
   await wait(2000)()
-  await idVisible(ids.TODAYS_MEDITATION_SCREEN)()
+  await idVisible(ids.TODAYS_MEDITATION_SCREEN, 2000)()
   await idVisible(ids.TODAYS_MEDITATION_HEADER("Today’s Meditations"))()
   await idVisible(ids.TODAYS_MEDITATION_DESCRIPTION("Free sessions powered by"))()
   await idVisible(ids.MEDITATION_PARTNER_LOGO)()
