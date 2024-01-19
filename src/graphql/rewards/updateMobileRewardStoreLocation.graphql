@@ -1,0 +1,3 @@
+mutation UpdateMobileRewardStoreLocation($location: String!) {
+  updateMobileRewardStoreLocation(location: $location)
+}

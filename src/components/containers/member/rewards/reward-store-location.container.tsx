@@ -4,20 +4,12 @@ import { StyleSheet, View } from "react-native";
 import { Navigation } from "@navigation/main";
 import Logger from "@services/logging/logger";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
-import {
-  GetMobileRewardStoreLocations,
-  UpdateMobileRewardStoreLocation,
-  UpdateMobileRewardStoreLocationVariables,
-} from "@graphql/_core/schema";
-import {
-  GQL_QUERY_GET_MOBILE_REWARD_STORE_LOCATIONS,
-  GQL_MUTATION_UPDATE_MOBILE_REWARD_STORE_LOCATION,
-} from "@graphql/rewards";
 import { REWARD_STORE_SETTINGS_SCREEN } from "@ids";
 import { GenericHeadingAbsolute, GenericHeadingPad, RadioListItem, RadioListItemProps } from "@organisms";
 import { Button, InfoPanel } from "@molecules";
 import { Style } from "@styles";
 import { useTranslation } from "@hooks";
+import { gql } from "@graphql/__generated";
 
 interface IProps {
   componentId: string;
@@ -30,17 +22,11 @@ const RewardStoreContainer = ({ componentId }: IProps) => {
     "screens.rewards.store_location.confirm_selection",
     "screens.rewards.store_location.info_box",
   ]);
-  const { data, loading: queryLoading } = useQuery<GetMobileRewardStoreLocations>(
-    GQL_QUERY_GET_MOBILE_REWARD_STORE_LOCATIONS,
-    {
-      fetchPolicy: "network-only",
-    }
-  );
+  const { data, loading: queryLoading } = useQuery(gql("GetMobileRewardStoreLocationsDocument"), {
+    fetchPolicy: "network-only",
+  });
 
-  const [updateRewardStoreLocation, { loading }] = useMutation<
-    UpdateMobileRewardStoreLocation,
-    UpdateMobileRewardStoreLocationVariables
-  >(GQL_MUTATION_UPDATE_MOBILE_REWARD_STORE_LOCATION, {
+  const [updateRewardStoreLocation, { loading }] = useMutation(gql("UpdateMobileRewardStoreLocationDocument"), {
     refetchQueries: ["GetMobileRewardStoreLocations", "GetMobileRewardsList"],
   });
 
