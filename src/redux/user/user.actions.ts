@@ -10,10 +10,10 @@ import {
   GetUserCoinLedger_coinLedger,
   GetUserTodayActivity_todayActivity,
 } from "@graphql/_core/schema";
-import { MobileConsentInput, MobileTabs } from "@graphql/_core/schema/globalTypes";
+import { MobileTabs } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "./user.reducer";
 import { Connection } from "./user.selectors";
-import { GetUserSurgeQuery, AvatarRemoteFiles, JoinGoalMutation } from "@graphql/__generated";
+import { GetUserSurgeQuery, AvatarRemoteFiles, JoinGoalMutation, MobileConsentInput } from "@graphql/__generated";
 
 export interface ISetIsUpdatingLeaderboardPayload {
   isLoading: boolean;

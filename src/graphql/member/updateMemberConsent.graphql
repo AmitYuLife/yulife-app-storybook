@@ -1,0 +1,9 @@
+mutation UpdateMemberConsent($consent: MobileConsentInput) {
+  upsertMobileConsent(consent: $consent) {
+    mobileHealth
+    marketing
+    pushNotifications
+    companyLeaderboard
+    workspaceLeaderboard
+  }
+}

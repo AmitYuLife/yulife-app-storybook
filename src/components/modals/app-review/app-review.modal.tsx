@@ -5,15 +5,11 @@ import { useBackHandler } from "@hooks";
 import AppReviewModalScreen from "@screens/app-review/app-review.screen";
 import InAppReview from "react-native-in-app-review";
 import { useMutation } from "@apollo/client";
-import {
-  GQL_SUBMIT_APP_STORE_REVIEW_ACTION,
-  SubmitAppStoreReviewActionMutationTuple,
-} from "@graphql/member/submitAppStoreReviewAction.gql";
-import { AppStoreReviewPromptAction } from "@graphql/_core/schema/globalTypes";
 import { openYulife } from "@services/app-link";
 import Logger from "@services/logging/logger";
 import { t } from "@locale";
 import { IntercomClient } from "@services/logging/intercom";
+import { AppStoreReviewPromptAction, gql } from "@graphql/__generated";
 
 export interface ReviewModalProps {
   id: string;
@@ -24,9 +20,7 @@ export interface ReviewModalProps {
   image: string;
 }
 const AppReviewModal: FC<ReviewModalProps> = (props: ReviewModalProps) => {
-  const [submitAppReviewAction] = useMutation<SubmitAppStoreReviewActionMutationTuple>(
-    GQL_SUBMIT_APP_STORE_REVIEW_ACTION
-  );
+  const [submitAppReviewAction] = useMutation(gql("SubmitAppStoreReviewActionDocument"));
 
   const backHandler = () => {
     Navigation.dismissModal(MODALS.appReview);
@@ -62,7 +56,7 @@ const AppReviewModal: FC<ReviewModalProps> = (props: ReviewModalProps) => {
 
   const onFirstButtonPress = useCallback(async () => {
     if (isFirstStateShown) {
-      await submitAppReview(AppStoreReviewPromptAction.REVIEWED);
+      await submitAppReview(AppStoreReviewPromptAction.Reviewed);
       await openReview();
     } else {
       IntercomClient.displayMessenger();
@@ -73,7 +67,7 @@ const AppReviewModal: FC<ReviewModalProps> = (props: ReviewModalProps) => {
 
   const onSecondButtonPress = useCallback(async () => {
     if (isFirstStateShown) {
-      await submitAppReview(AppStoreReviewPromptAction.DISMISSED_NOT_REALLY);
+      await submitAppReview(AppStoreReviewPromptAction.DismissedNotReally);
       setIsFirstStateShown(false);
     } else {
       Navigation.dismissModal(MODALS.appReview);
@@ -81,7 +75,7 @@ const AppReviewModal: FC<ReviewModalProps> = (props: ReviewModalProps) => {
   }, [isFirstStateShown, setIsFirstStateShown, submitAppReview]);
 
   const onAskLaterButtonPress = useCallback(async () => {
-    await submitAppReview(AppStoreReviewPromptAction.DISMISSED_ASK_LATER);
+    await submitAppReview(AppStoreReviewPromptAction.DismissedAskLater);
     Navigation.dismissModal(MODALS.appReview);
   }, [submitAppReview]);
 

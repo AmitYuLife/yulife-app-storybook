@@ -13404,6 +13404,12 @@ export type GetMediaQuery = {
   } | null> | null;
 };
 
+export type CollectAwardMutationVariables = Exact<{
+  awardId: Scalars["String"]["input"];
+}>;
+
+export type CollectAwardMutation = { __typename?: "Mutation"; collectAward?: boolean | null };
+
 export type GetPendingUserFeedbackQueryVariables = Exact<{
   supportedTypes?: InputMaybe<Array<InputMaybe<FeedbackFormQuestionType>> | InputMaybe<FeedbackFormQuestionType>>;
 }>;
@@ -13462,6 +13468,29 @@ export type GetPendingUserFeedbackQuery = {
   } | null;
 };
 
+export type SearchLeaderboardUserQueryVariables = Exact<{
+  name: Scalars["String"]["input"];
+  socialGroupId?: InputMaybe<Scalars["ID"]["input"]>;
+  socialGroupLeaderboardId?: InputMaybe<Scalars["ID"]["input"]>;
+}>;
+
+export type SearchLeaderboardUserQuery = {
+  __typename?: "Query";
+  searchLeaderboardUser: Array<{
+    __typename?: "SearchLeaderboardUser";
+    id: string;
+    name: string;
+    avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  }>;
+};
+
+export type SubmitAppStoreReviewActionMutationVariables = Exact<{
+  id: Scalars["ID"]["input"];
+  action: AppStoreReviewPromptAction;
+}>;
+
+export type SubmitAppStoreReviewActionMutation = { __typename?: "Mutation"; submitAppStoreReviewAction: boolean };
+
 export type SubmitFeedbackFormMutationVariables = Exact<{
   id: Scalars["ID"]["input"];
   answers?: InputMaybe<Array<InputMaybe<AnswerInput>> | InputMaybe<AnswerInput>>;
@@ -13470,6 +13499,22 @@ export type SubmitFeedbackFormMutationVariables = Exact<{
 export type SubmitFeedbackFormMutation = {
   __typename?: "Mutation";
   submitFeedbackForm: { __typename?: "SubmitFeedbackFormResponse"; message: string };
+};
+
+export type UpdateMemberConsentMutationVariables = Exact<{
+  consent?: InputMaybe<MobileConsentInput>;
+}>;
+
+export type UpdateMemberConsentMutation = {
+  __typename?: "Mutation";
+  upsertMobileConsent?: {
+    __typename?: "MobileConsent";
+    mobileHealth?: boolean | null;
+    marketing?: boolean | null;
+    pushNotifications?: boolean | null;
+    companyLeaderboard?: boolean | null;
+    workspaceLeaderboard?: boolean | null;
+  } | null;
 };
 
 export type MarkMobileNotificationsAsViewedByTypeMutationVariables = Exact<{
@@ -29469,6 +29514,39 @@ export const GetMediaDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMediaQuery, GetMediaQueryVariables>;
+export const CollectAwardDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "CollectAward" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "awardId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "collectAward" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "awardId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "awardId" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CollectAwardMutation, CollectAwardMutationVariables>;
 export const GetPendingUserFeedbackDocument = {
   kind: "Document",
   definitions: [
@@ -29638,6 +29716,123 @@ export const GetPendingUserFeedbackDocument = {
     },
   ],
 } as unknown as DocumentNode<GetPendingUserFeedbackQuery, GetPendingUserFeedbackQueryVariables>;
+export const SearchLeaderboardUserDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "SearchLeaderboardUser" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "name" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "socialGroupId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "socialGroupLeaderboardId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "searchLeaderboardUser" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "name" },
+                value: { kind: "Variable", name: { kind: "Name", value: "name" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "socialGroupId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "socialGroupId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "socialGroupLeaderboardId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "socialGroupLeaderboardId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "avatar" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SearchLeaderboardUserQuery, SearchLeaderboardUserQueryVariables>;
+export const SubmitAppStoreReviewActionDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SubmitAppStoreReviewAction" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "action" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "AppStoreReviewPromptAction" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "submitAppStoreReviewAction" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: { kind: "Variable", name: { kind: "Name", value: "id" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "action" },
+                value: { kind: "Variable", name: { kind: "Name", value: "action" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SubmitAppStoreReviewActionMutation, SubmitAppStoreReviewActionMutationVariables>;
 export const SubmitFeedbackFormDocument = {
   kind: "Document",
   definitions: [
@@ -29685,6 +29880,49 @@ export const SubmitFeedbackFormDocument = {
     },
   ],
 } as unknown as DocumentNode<SubmitFeedbackFormMutation, SubmitFeedbackFormMutationVariables>;
+export const UpdateMemberConsentDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpdateMemberConsent" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "consent" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "MobileConsentInput" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "upsertMobileConsent" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "consent" },
+                value: { kind: "Variable", name: { kind: "Name", value: "consent" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "mobileHealth" } },
+                { kind: "Field", name: { kind: "Name", value: "marketing" } },
+                { kind: "Field", name: { kind: "Name", value: "pushNotifications" } },
+                { kind: "Field", name: { kind: "Name", value: "companyLeaderboard" } },
+                { kind: "Field", name: { kind: "Name", value: "workspaceLeaderboard" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpdateMemberConsentMutation, UpdateMemberConsentMutationVariables>;
 export const MarkMobileNotificationsAsViewedByTypeDocument = {
   kind: "Document",
   definitions: [
