@@ -117,8 +117,7 @@ Feature("Yudoku", async () => {
     })
   })
 
-  // @flaky [test passes locally]
-  ScenarioSkip("I can see Sudoku leaderboard empty states", scenario.start, () => {
+    Scenario("I can see Sudoku leaderboard empty states", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_58, data.AUTH_58), async () => {
         Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(665)))
     })

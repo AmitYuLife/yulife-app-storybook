@@ -7,8 +7,7 @@ import * as data from "@data"
 import * as ids from "@ids"
 
 Feature("Referrals work as intended", async () => {
-    // @flaky - app crashes on bitrise passes locally
-    ScenarioSkip("As a user with referrals enabled I can view the referrals popover, button and screen", scenario.start, async () => {
+    Scenario("As a user with referrals enabled I can view the referrals popover, button and screen", scenario.start, async () => {
         Given("I login as a user with a referrals enabled", given.loginAsUser(data.CUSTOMER_35, data.AUTH_35), async () => {
             Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)
             When("I close and reopen the app", when.restartWithoutDeleteTwoTimes, async () => {
@@ -37,8 +36,7 @@ Feature("Referrals work as intended", async () => {
         })
     })
 
-    // @flaky [test passes locally]
-    ScenarioSkip("As a user with referrals enabled I can only see the popover the second time I log in", scenario.start, async () => {
+    Scenario("As a user with referrals enabled I can only see the popover the second time I log in", scenario.start, async () => {
         Given("I login as a user with a referrals enabled", given.loginAsUser(data.CUSTOMER_35, data.AUTH_35), async () => {
             Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)
                 When("I close and reopen the app", when.restartWithoutDeleteTwoTimes, async () => {

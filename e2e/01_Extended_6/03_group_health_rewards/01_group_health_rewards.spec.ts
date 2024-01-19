@@ -184,8 +184,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
     })
 
-    // @update - timeout on bitrise on streak screen - passing  locally 
-    ScenarioSkip("I can succesfully go through the Thriva GHI Rewards journeys", scenario.start, async () => {
+    Scenario("I can succesfully go through the Thriva GHI Rewards journeys", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_118_GHI_REWARDS, data.AUTH_118), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })

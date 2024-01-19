@@ -10,8 +10,7 @@ import { DefaultStepsLeaderboard, DefaultYudokuLeaderboard, User16LeaderboardIte
 import { getFullName } from "_utils/users";
 
 Feature("As a user I can see my achievements on the leaderboard", async () => {
-    // @flaky - passing locally, couldn't find leaderboard name on bitrise
-    ScenarioSkip("I can consent to my company leaderboard", scenario.start, async () => {
+    Scenario("I can consent to my company leaderboard", scenario.start, async () => {
         Given("I login", given.loginAsUser(data.CUSTOMER_16, data.AUTH_16), async () => {
             When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard screen without consent", then.onLeaderboardWithoutConsent)
@@ -42,8 +41,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
-    // @flaky - sometimes doesn't navigate by tapping Next in loginAsUser() on iPhone SE
-    ScenarioSkip("I can change consent to a leaderboard I belong to", scenario.start, async () => {
+    Scenario("I can change consent to a leaderboard I belong to", scenario.start, async () => {
         Given("I login", given.loginAsUser(data.CUSTOMER_17, data.AUTH_17), async () => {
             When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)))
@@ -74,8 +72,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
-    // @flaky - iPhone SE could not find LEADERBOARD_DROPDOWN
-    ScenarioSkip("I can check other leaderboards", scenario.start, async () => {
+    Scenario("I can check other leaderboards", scenario.start, async () => {
         Given("I login", given.loginAsUser(data.CUSTOMER_19, data.AUTH_19), async () => {
             When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
@@ -100,8 +97,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
  
-    // @flaky - passing locally, couldn't find leaderboard name on bitrise
-    ScenarioSkip("I can inspect other members and view their data and avatars from the leaderboard - seed data", scenario.start, async () => {
+    Scenario("I can inspect other members and view their data and avatars from the leaderboard - seed data", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_47, data.AUTH_47), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
             Then("I should be on the onboarding yuscreen v4", then.idVisible(ids.ONBOARDING_SCREEN_V4))
@@ -201,8 +197,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
-    // @flaky [sometimes doesn't navigate to inspect screen -- test passes locally]
-    ScenarioSkip("I can inspect myself and challenge a different user to a duel for the first time via inspect", scenario.start, async () => {
+    Scenario("I can inspect myself and challenge a different user to a duel for the first time via inspect", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_47, data.AUTH_47), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
         })
@@ -252,8 +247,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
-    // @flaky [fails to get to the leaderboard screen -- test passes locally]
-    ScenarioSkip("Social groups / leaderboards based on 'rules' function as expected", scenario.start, async () => {
+    Scenario("Social groups / leaderboards based on 'rules' function as expected", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_39, data.AUTH_39), async () => {
             When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 Then("I am on the leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem]))

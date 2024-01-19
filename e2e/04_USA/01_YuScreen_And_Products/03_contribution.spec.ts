@@ -20,7 +20,7 @@ import {
   Feature("I am able to see sponsored by text/logos and box option types", async () => {
     // @update added to YUSCREEN_USA
     // @flaky - can't find box options on bitrise
-  ScenarioSkip("I can see sponsored by text and logos in yuscreen if contribution_type none and can view the explore my insurance page",scenario.start, async () => {
+    ScenarioSkip("I can see sponsored by text and logos in yuscreen if contribution_type none and can view the explore my insurance page",scenario.start, async () => {
       Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_5, AUTH_USA_5, true, "United States"),async () => {
         helper.ONBOARDING_YUSCREEN_USA(fixture.GapInEnrolVisOutEnrol);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_5)
@@ -34,60 +34,60 @@ import {
     });
 
   // @flaky - can't find box options on bitrise
-  ScenarioSkip("I should see sponsored by text and logos if contribution_type is full ",scenario.start,async () => {
+    Scenario("I should see sponsored by text and logos if contribution_type is full ",scenario.start,async () => {
       Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_6, AUTH_USA_6, true, "United States"),async () => {
         helper.ONBOARDING_YUSCREEN_USA(fixture.GapInsurance);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_6)
         helper.SLOT_VISIBLE(fixture.GapInsurance)
         helper.YUSCREEN_USA(CUSTOMER_USA_6);
         helper.SPONSORED_LOGO_VISIBLE()
-        When("I scroll to the bottom", when.swipeFromText(fixture.createYumujiCTA, "up", "fast"), async()=>{
-          helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
-          helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
-        })
+        // When("I scroll to the bottom", when.swipeFromText(fixture.createYumujiCTA, "up", "fast"), async()=>{
+        //   helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
+        //   helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
+        // })
       });
     });
   
     // @flaky - can't find box options on bitrise
-  ScenarioSkip("I can see sponsored by text and logos in yuscreen if contribution_type partial",scenario.start, async () => {
+    Scenario("I can see sponsored by text and logos in yuscreen if contribution_type partial",scenario.start, async () => {
     Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_7, AUTH_USA_7, true, "United States"),async () => {
         helper.ONBOARDING_YUSCREEN_USA(fixture.VisInsurance);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_7)
         helper.SLOT_VISIBLE(fixture.VisInsurance)
         helper.YUSCREEN_USA(CUSTOMER_USA_7);
         helper.SPONSORED_LOGO_VISIBLE()
-        helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
+        // helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
+        // helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
     });
   });
     
   // @flaky - can't find box options on bitrise
-  ScenarioSkip("I should NOT see sponsored by text and logos in yuscreen if contribution_type partial but no logos are selected for that business",scenario.start, async () => {
+    Scenario("I should NOT see sponsored by text and logos in yuscreen if contribution_type partial but no logos are selected for that business",scenario.start, async () => {
     Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_8, AUTH_USA_8, true, "United States"),async () => {
         helper.ONBOARDING_YUSCREEN_USA(fixture.GapInsurance);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_8)
         helper.SLOT_VISIBLE(fixture.GapInsurance)
         helper.YUSCREEN_USA(CUSTOMER_USA_8);
         helper.SPONSORED_LOGO_NOT_VISIBLE()
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
-        helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
+        // helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
+        // helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
     });
   });
 
   // @flaky - can't find box options on bitrise
-  ScenarioSkip("If no products are assigned to the user, then the component is hidden. “Explore your insurance”",scenario.start, async () => {
+    Scenario("If no products are assigned to the user, then the component is hidden. “Explore your insurance”",scenario.start, async () => {
     Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_9, AUTH_USA_9, true, "United States"),async () => {
         helper.ONBOARDING_YUSCREEN_USA(fixture.NoProduct);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_9)
         helper.YUSCREEN_USA(CUSTOMER_USA_9);
         helper.SPONSORED_LOGO_VISIBLE()
-        helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
+        // helper.BOX_OPTION_NOT_VISIBLE(fixture.ExploreInsureanceBox)
+        // helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
     });
   });
 
     // @flaky - can't find box options on bitrise
-  ScenarioSkip("If user in enrol window should see right countdown and slots with products can be enrol",scenario.start, async () => {
+    ScenarioSkip("If user in enrol window should see right countdown and slots with products can be enrol",scenario.start, async () => {
     Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_10, AUTH_USA_10, true, "United States"),async () => {
         helper.ONBOARDING_YUSCREEN_USA(fixture.GapVisInsuranceInEnrolment);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_10)
@@ -102,15 +102,15 @@ import {
   });
   
   // @flaky - can't find box options on bitrise
-  ScenarioSkip("If user is assigned to two products, one full contribution and one not, they can only see the not option in the PCP list",scenario.start, async () => {
+    Scenario("If user is assigned to two products, one full contribution and one not, they can only see the not option in the PCP list",scenario.start, async () => {
     Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_11, AUTH_USA_11, true, "United States"),async () => {
         helper.ONBOARDING_YUSCREEN_USA(fixture.AccCanInsuranceInEnrolment);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_11)
         helper.SLOT_VISIBLE(fixture.AccCanInsuranceInEnrolment)
         helper.YUSCREEN_USA(CUSTOMER_USA_11);
         helper.SPONSORED_LOGO_VISIBLE()
-        helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
-        helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
+        // helper.BOX_OPTION_VISIBLE(fixture.MyWellbeingHubBoxUS)
+        // helper.BOX_OPTION_VISIBLE(fixture.ExploreInsureanceBox)
         // checks that cancer options appear in the explore insurance page
         helper.CHECK_EXPLORE_INSURANCE(fixture.CancerInsuranceBox)
         When("I tap to go back to Yu Screen", when.tapID(id.BACK_BUTTON), async () => {

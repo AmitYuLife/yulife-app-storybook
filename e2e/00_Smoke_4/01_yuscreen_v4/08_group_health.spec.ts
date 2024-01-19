@@ -8,8 +8,7 @@ import { CPED_1_GHI_FUTURE, CPED_1_GHI_STARTED } from "_utils/data/postgres/cust
 
 
 Feature("I am able to see GHI in App", async () => {
-    // @flaky - App crashed on bitrise, passed locally
-    ScenarioSkip("As a YuLifer with GHI product with start date in future i should be able to see prduct details and dependent", scenario.start, async () => {
+    Scenario("As a YuLifer with GHI product with start date in future i should be able to see prduct details and dependent", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_GHI, data.AUTH_GHI), async () => {
             helper.ONBOARDING_YUSCREEN("GHI_FUTURE", "10")
             helper.YUSCREEN_V4(data.CUSTOMER_GHI, "GHI_FUTURE", "10")

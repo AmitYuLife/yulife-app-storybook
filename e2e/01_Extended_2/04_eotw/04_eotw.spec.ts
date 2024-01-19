@@ -166,8 +166,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
     })
 
-    // @flaky [test passes locally]
-    ScenarioSkip("I complete level 7 in EOTW, I finish EOTW and enter the red planet with a yucoin surge of 2", scenario.start, () => {
+    Scenario("I complete level 7 in EOTW, I finish EOTW and enter the red planet with a yucoin surge of 2", scenario.start, () => {
         Given("I login as a user on level 207 with a earn rate of 6", given.logInAndGoToTab("yucoin", data.CUSTOMER_70, data.AUTH_70), async () => {
             Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
