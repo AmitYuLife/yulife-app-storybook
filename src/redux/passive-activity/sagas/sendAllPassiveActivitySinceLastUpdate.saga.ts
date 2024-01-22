@@ -153,6 +153,8 @@ export default function* sendPassiveActivity(): any {
         const firstDay = startDateTime.format(readableDateFormat);
         const lastDay = endOfYesterday.format(readableDateFormat);
 
+        // adding 6s delay here to prevent it to colliding with leanplum modal
+        yield delay(6000);
         yield showRewardModal(firstDay, lastDay, awardedYucoin);
         yield put(refreshTotalCoins());
       }
