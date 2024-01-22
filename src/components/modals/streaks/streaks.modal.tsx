@@ -1,120 +1,20 @@
 import { useMutation } from "@apollo/client";
-import { getTimeRemaining } from "@utils";
-import React, { useMemo, useState, useEffect } from "react";
-import { connect, useDispatch } from "react-redux";
-import { IReduxState } from "@redux/_core/reducers";
-import { getStreakAwardId } from "@redux/streaks/streaks.selectors";
+import React, { useCallback, useMemo, useState } from "react";
+import { connect } from "react-redux";
 import { StreaksScreen } from "@screens";
 import { useBackHandler } from "@hooks";
 import { Navigation } from "@navigation/main";
-import { IStreakCopy, streakCopy } from "./copy";
-import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
-import { DETOX_ENABLED } from "@services/socket";
+import { streakCopy } from "./copy";
+import { ConnectedState, Props } from "./streaks.types";
+import { mapStateToProps } from "./_helpers/map-state-to-props";
+import { getSubHeading } from "./_helpers/get-subheading";
+import { getLabelCtaPrimary } from "./_helpers/get-label-cta-primary";
+import { getStreakCompleted } from "./_helpers/get-streak-completed";
+import { useBackHandlerCallback } from "./_helpers/use-back-handler-callback";
+import { useTimer } from "./_helpers/use-timer";
+import { useSubmitHandler } from "./_helpers/use-submit-handler";
+import { getHeading } from "./_helpers/get-heading";
 import { gql } from "@graphql/__generated";
-
-type ConnectedState = ReturnType<typeof mapStateToProps>;
-
-interface IProps {
-  componentId: string;
-  isDoneToday: boolean;
-  onPressCtaPrimary: () => void;
-  reward: string;
-  onPressCtaSecondary: (() => void) | null;
-  streakCompleted: number;
-  streakMax: number;
-  nextStreakAvailableAt: string;
-  type: string;
-}
-
-type Props = IProps & ConnectedState;
-
-const getStreakCompleted = ({
-  streakAwardId,
-  streakCompleted,
-  streakMax,
-}: Pick<Props, "streakAwardId" | "streakCompleted" | "streakMax">) => {
-  // If there is an award, it must be for a full streak, so display
-  // the full streak even if it is not full right now
-  return streakAwardId ? streakMax : streakCompleted;
-};
-
-const getLabelCtaPrimary = ({
-  streakMax,
-  isDoneToday,
-  streakAwardId,
-  streakCompleted,
-  copy,
-}: Pick<Props, "isDoneToday" | "streakCompleted" | "streakMax" | "streakAwardId"> & { copy: IStreakCopy }) => {
-  const { ctaLabelDone, ctaLabelCollect, ctaLabelTakeChallenge } = copy;
-  if (getStreakCompleted({ streakAwardId, streakCompleted, streakMax }) === streakMax) {
-    if (!streakAwardId) {
-      return ctaLabelDone;
-    }
-
-    return ctaLabelCollect;
-  }
-
-  if (isDoneToday) {
-    return ctaLabelDone;
-  }
-
-  return ctaLabelTakeChallenge;
-};
-
-const getSubHeading = ({
-  isDoneToday,
-  streakMax,
-  streakAwardId,
-  streakCompleted,
-  copy,
-}: Pick<Props, "streakCompleted" | "isDoneToday" | "streakMax" | "streakAwardId"> & { copy: IStreakCopy }) => {
-  const { subheadingCollected, subheadingCompleted, subheadingTodayStreakDone } = copy;
-  if (getStreakCompleted({ streakAwardId, streakCompleted, streakMax }) === streakMax) {
-    if (!streakAwardId) {
-      return subheadingCollected;
-    }
-
-    return subheadingCompleted;
-  }
-
-  if (isDoneToday) {
-    return subheadingTodayStreakDone;
-  }
-
-  const streakNumber = streakMax - streakCompleted;
-
-  return getSubHeadingInstructions(streakCompleted, streakNumber, copy);
-};
-
-const getSubHeadingInstructions = (streakCompleted: number, streakNumber: number, copy: IStreakCopy) => {
-  if (streakCompleted === 0) {
-    return copy.subheadingInstructionsFirstDay;
-  }
-
-  if (streakNumber === 1) {
-    return copy.subheadingInstructionsToday;
-  }
-
-  return copy.subheadingInstructions;
-};
-
-const getHeading = ({
-  isDoneToday,
-  streakMax,
-  streakAwardId,
-  streakCompleted,
-  copy,
-}: Pick<Props, "streakAwardId" | "isDoneToday" | "streakMax" | "streakCompleted"> & { copy: IStreakCopy }) => {
-  if (getStreakCompleted({ streakAwardId, streakCompleted, streakMax }) === streakMax) {
-    return copy.headingCompleted;
-  }
-
-  if (isDoneToday) {
-    return copy.headingCompletedTodayStreak;
-  }
-
-  return copy.headingStartStreakDay;
-};
 
 const StreaksModal: React.FC<Props> = ({
   componentId,
@@ -128,65 +28,13 @@ const StreaksModal: React.FC<Props> = ({
   reward,
   type,
 }) => {
-  const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(false);
-  const [timeRemaining, setTimeRemaining] = useState(getTimeRemaining(nextStreakAvailableAt, "medium"));
-
-  useBackHandler(() => {
-    if (onPressCtaSecondary) {
-      onPressCtaSecondary();
-      return true;
-    }
-
-    return false;
-  });
-
-  const handleClose = () => {
-    Navigation.dismissModal(componentId);
-  };
-
-  useEffect(() => {
-    if (streakMax === streakCompleted && !streakAwardId) {
-      const callback = () => {
-        setTimeRemaining(getTimeRemaining(nextStreakAvailableAt, "medium"));
-        timer = setTimeout(callback, DETOX_ENABLED ? 2000 : 1000); // detox will hang for timers less than 1500ms
-      };
-
-      let timer = setTimeout(callback, 1000);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  const backHandler = useBackHandlerCallback(onPressCtaSecondary);
+  useBackHandler(backHandler);
+  const handleClose = useCallback(() => Navigation.dismissModal(componentId), [componentId]);
+  const { timeRemaining } = useTimer({ nextStreakAvailableAt, streakMax, streakCompleted, streakAwardId });
   const [collectAward] = useMutation(gql("CollectAwardDocument"));
-
-  const onSubmit = streakAwardId
-    ? async () => {
-        try {
-          setLoading(true);
-          const result = await collectAward({
-            variables: {
-              awardId: streakAwardId,
-            },
-          });
-
-          if (result?.data?.collectAward) {
-            dispatch(
-              getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity, AppDataType.activeStreak] })
-            );
-          }
-
-          onPressCtaPrimary();
-        } catch (e) {
-          onPressCtaPrimary();
-        } finally {
-          setLoading(false);
-        }
-      }
-    : onPressCtaPrimary;
+  const onSubmit = useSubmitHandler({ streakAwardId, onPressCtaPrimary, setLoading, collectAward });
 
   const copy = useMemo(() => {
     const remainingStreak = (streakMax - streakCompleted).toString();
@@ -219,9 +67,5 @@ const StreaksModal: React.FC<Props> = ({
     />
   );
 };
-
-const mapStateToProps = (state: IReduxState) => ({
-  streakAwardId: getStreakAwardId(state),
-});
 
 export default connect<ConnectedState>(mapStateToProps)(StreaksModal);
