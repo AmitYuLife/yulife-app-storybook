@@ -1,5 +1,6 @@
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import RNFitKit from "@services/fitkit/fitkit.service";
+import { queryPedometerFromDate } from "@yu-life/react-native-yu-health";
 import Logger from "@services/logging/logger";
 import { DATE_FORMAT_WITH_TZ, Unpacked, getStartAndEndDateTimesWithTimezone } from "@utils";
 import moment from "moment";
@@ -116,8 +117,22 @@ export async function getEndResult(
     // RNFitKit.queryPedometerFromDate
     // Android: queries google fit history, steps from sensor are stored in score
     // iOS: fetches steps from sensors
-    const pedometerResults = await RNFitKit.queryPedometerFromDate(start, end, { blackListApps });
-    const pedometerValue = pedometerResults?.steps || 0;
+
+    let pedometerValue;
+    if (features.tempGameEnableYuHealth) {
+      const pedometerResults = await queryPedometerFromDate({
+        startTime: moment(start).toDate(),
+        endTime: moment(end).toDate(),
+        queryOptions: {
+          blacklistApps: blackListApps,
+          disableUserEntries: features.disableUserEntries,
+        },
+      });
+      pedometerValue = pedometerResults?.result.value || 0;
+    } else {
+      const pedometerResults = await RNFitKit.queryPedometerFromDate(start, end, { blackListApps });
+      pedometerValue = pedometerResults?.steps || 0;
+    }
 
     Logger.logMixpanelEvent("end_challenge_result", {
       startDateTime,

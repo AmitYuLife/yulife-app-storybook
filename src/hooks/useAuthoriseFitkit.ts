@@ -1,31 +1,49 @@
 import { useState, useRef, useEffect } from "react";
 import { Linking, Platform } from "react-native";
 import RNFitKit, { FitKitAuthOptions, FitKitHealthTrackingPlatform } from "@yu-life/react-native-fitkit";
+import { queryPedometerFromDate } from "@yu-life/react-native-yu-health";
 import moment from "moment";
 import Storage from "@services/storage";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
 import { buildFitKitPermissions } from "@services/fitkit/fitkit.permissions";
 import { t } from "@locale";
+import { useUserFeatures } from "@hooks";
 
 export function useAuthoriseFitkit({ authorise }: { authorise: (value: FitKitAuthOptions) => Promise<boolean> }) {
   const [fitkitPermission, setFitkitPermission] = useState("");
   const [isIosMotionAuthorised, setIsIosMotionAuthorised] = useState(false);
+  const features = useUserFeatures();
 
   const timer = useRef(null);
 
   useEffect(() => {
     if (Platform.OS === "ios") {
       const now = moment();
-      const dayStart = now.clone().startOf("day").format();
-      const dayEnd = now.clone().endOf("day").format();
-      RNFitKit.queryPedometerFromDate(dayStart, dayEnd)
-        .then(() => {
-          setIsIosMotionAuthorised(true);
+      const dayStart = now.clone().startOf("day");
+      const dayEnd = now.clone().endOf("day");
+
+      if (features.tempGameEnableYuHealth) {
+        queryPedometerFromDate({
+          startTime: dayStart.toDate(),
+          endTime: dayEnd.toDate(),
+          queryOptions: {},
         })
-        .catch(() => {
-          setIsIosMotionAuthorised(false);
-        });
+          .then(() => {
+            setIsIosMotionAuthorised(true);
+          })
+          .catch(() => {
+            setIsIosMotionAuthorised(false);
+          });
+      } else {
+        RNFitKit.queryPedometerFromDate(dayStart.format(), dayEnd.format())
+          .then(() => {
+            setIsIosMotionAuthorised(true);
+          })
+          .catch(() => {
+            setIsIosMotionAuthorised(false);
+          });
+      }
     }
   }, [setIsIosMotionAuthorised]);
 
