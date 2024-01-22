@@ -222,6 +222,7 @@ export enum RewardsChestType {
 }
 
 export enum SduiActionType {
+  GET_ALL_USER_DATA_START = "GET_ALL_USER_DATA_START",
   OPEN_MY_ACCOUNT = "OPEN_MY_ACCOUNT",
   REFRESH_TOTAL_COINS = "REFRESH_TOTAL_COINS",
   SDUI_ACTION_GENERIC_NAVIGATE_BACK = "SDUI_ACTION_GENERIC_NAVIGATE_BACK",
@@ -327,13 +328,6 @@ export interface AnswerInput {
   value?: string | null;
 }
 
-export interface AviosMetadata {
-  firstName: string;
-  lastName: string;
-  loyaltyProgramme: string;
-  accountNumber: string;
-}
-
 export interface BeneficiaryShareOfBenefit {
   beneficiaryId: string;
   percentage: number;
@@ -374,10 +368,6 @@ export interface MobileConsentInput {
   pushNotifications?: boolean | null;
   companyLeaderboard?: boolean | null;
   workspaceLeaderboard?: boolean | null;
-}
-
-export interface ProductMetadata {
-  avios?: AviosMetadata | null;
 }
 
 export interface RewardListFilter {

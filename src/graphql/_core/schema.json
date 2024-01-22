@@ -7251,6 +7251,12 @@
             "description": "Generic: Accepts client-side floating modal identifier and its props as stringified payload, E.g: {\"modalId\":\"some.modal\",\"props\":{\"header\":\"You sure?\",\"description\":\"You won't be able to come back!\",\"cancelLabel\":\"Cancel\",\"confirmLabel\":\"Exit\",\"onConfirm\": \"{}\"}}; RN client version >= 3.103.0",
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "GET_ALL_USER_DATA_START",
+            "description": "Generic: Fetch all user data",
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "possibleTypes": null
@@ -9421,12 +9427,16 @@
                 "deprecationReason": null
               },
               {
-                "name": "filterOutAssignedProducts",
+                "name": "filterProductIds",
                 "description": null,
                 "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 },
                 "defaultValue": null,
                 "isDeprecated": false,
@@ -31711,6 +31721,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "assistiveText",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -31920,10 +31942,78 @@
       },
       {
         "kind": "OBJECT",
+        "name": "TeamEmployeeProductFields",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "label",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "TeamEmployeeFields",
         "description": null,
         "specifiedByUrl": null,
         "fields": [
+          {
+            "name": "productFields",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "TeamEmployeeProductFields",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "sections",
             "description": null,
@@ -32245,7 +32335,7 @@
         "specifiedByUrl": null,
         "fields": [
           {
-            "name": "productName",
+            "name": "categoryId",
             "description": null,
             "args": [],
             "type": {
@@ -32258,6 +32348,42 @@
           },
           {
             "name": "categoryName",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "productCode",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "productId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "productName",
             "description": null,
             "args": [],
             "type": {
@@ -38518,6 +38644,12 @@
           },
           {
             "name": "Pending",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PolicyEnded",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
