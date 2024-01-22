@@ -1932,3 +1932,16 @@ export const CUSTOMER_132 = {
     status: "onboarded",
   },
 } as IDatabaseItem
+
+export const CUSTOMER_133_GHI_FUTURE = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Alfie",
+    lastName: "Devine",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem

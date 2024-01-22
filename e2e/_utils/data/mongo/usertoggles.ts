@@ -2347,3 +2347,19 @@ export const CUSTOMER_132_TOGGLES = {
     features: allTogglesTrue.data.features,
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_133_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_133_GHI_FUTURE.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      hasSmartPensionActive: true,
+      enableProductGoals: true,
+      useHalfModalsForQuestMap: true,
+      showQuestMapNotificationIcons: true
+    },
+  },
+} as IDatabaseItem;

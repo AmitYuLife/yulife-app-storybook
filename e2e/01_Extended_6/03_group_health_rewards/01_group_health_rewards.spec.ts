@@ -10,6 +10,7 @@ import * as fixtures from "./_resources/fixtures"
 import { getLocalisedString as t } from "@i18n";
 import { CORE_REWARDS_URBAN_GHI_REWARDS } from "@data";
 import moment from "moment";
+import { textVisible } from "@navigation";
 
 
 
@@ -35,21 +36,27 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I should see the correct information for the Boots reward tease", then.onRewardsTeasePage(fixtures.BOOTS_YORK_GHI_REWARDS_TEASE_PAGE_DETAILS))
         })
         When("I go back to the rewards screen", when.tryTapIdMultipleIndexes(ids.BUTTON_CLOSE, 3), async () => {
-            When("I tap on the YorkTest reward", when.tapRewardInList(data.CORE_REWARDS_YORK_GHI_REWARDS), async () => {
-                Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-                Then("I should see the correct information for the York reward tease", then.onRewardsTeasePage(fixtures.BOOTS_YORK_GHI_REWARDS_TEASE_PAGE_DETAILS))
-            })
+            Then("I should see the new tease text for unlocked items", then.textVisibleAtIndex("Level up to unlock!", 0))
+        })
+        When("I tap on the YorkTest reward", when.tapRewardInList(data.CORE_REWARDS_YORK_GHI_REWARDS), async () => {
+            Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
+            Then("I should see the correct information for the York reward tease", then.onRewardsTeasePage(fixtures.BOOTS_YORK_GHI_REWARDS_TEASE_PAGE_DETAILS))
         })
         When("I tap the CTA button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
             Then("I should see level 80", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(80)))
             Then("I should see the reward icon on the next level", then.idVisible(ids.GHI_REWARD_ICON("80")))
         })
         When("I tap level 81", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(81)), async () => {
-            Then("I see the half modal for level 81 being locked as this user has the toggle switched on", then.lockedLevelHalfModalVisible(81))
+            Then("I see the half modal for level 81 being locked as this user has the toggle switched on", then.lockedLevelHalfModalVisible(81, false, true,))
+        })
+        When("I tap to close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
+            When("I tap level 81", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(85)), async () => {
+                Then("I see the half modal for level 81 being locked as this user has the toggle switched on", then.lockedLevelHalfModalVisible(85, true, true, "3 x Urban Massage Vouchers", "4 / 10"))
+            })
         })
         When("I tap to close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
             When("I tap level 80", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(80)), async () => {
-                Then("I should see a screen telling me to take a challenge to unlock a my reward", then.textVisible("Almost there! Take a challenge to unlock your reward."))
+                Then("I should see a screen telling me to take a challenge to unlock a my reward", then.unlockedLevelHalfModalVisible("1 x Exclusive Discounts", "4 / 5"))
             })
         })
         When("I tap the Let's go button to proceed", when.tapText("Let's go!"), async () => {
@@ -65,6 +72,11 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
         When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
+            When("I tap level 85 again", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(85)), async () => {
+                Then("I see the half modal for level 81 being locked and the hint is gone due to me unlocking a reward", then.lockedLevelHalfModalVisible(85, true, false, "3 x Urban Massage Vouchers", "5 / 10"))
+            })
+        })
+        When("I tap to close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
             When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
                 When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
                     When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down"), async () => {
@@ -703,6 +715,18 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
             Then("I should see the reward icon but for level 52 despite the clock being there", then.idVisible(ids.GHI_REWARD_ICON("52")))
+        })
+        
+     })
+
+     Scenario("Half modals display the correct tease for games starting in the future", scenario.start, async () => {
+        Given("I login as a user", given.logInAndGoToTab("quests", data.CUSTOMER_133_GHI_FUTURE, data.AUTH_133), async () => {
+            Then("I am on the quest screen", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
+            Then("I should see level 22", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(22)))
+        })
+        When("I tap level 23", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(23)), async () => {
+            Then("I see the half modal for level 81 being locked as this user has the toggle switched on", then.lockedLevelHalfModalVisible(23, false, false,))
+            Then("I see the tease for the rewards game starting soon", then.ghiRewardsTeaseVisible)
         })
         
      })

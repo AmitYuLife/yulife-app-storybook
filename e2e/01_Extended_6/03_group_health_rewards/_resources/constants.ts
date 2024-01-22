@@ -121,6 +121,13 @@ export const donationMessage = "Your donation will help to give support to serio
 // Quest Screen Modals
 
 export const lockedLevelText = (level: number) => { return `Unlock at level ${level.toString()}`}
+export const takeChallengeText = "Almost there! Take a challenge to unlock your reward."
+export const moreRewardsAheadHeader = "More rewards ahead!"
+export const moreRewardsAheadText = "Doing challenges every day helps you unlock more rewards faster."
+export const learnMoreButton = "Learn more"
+export const chestTease = "A chest full of YuCoin!"
+export const rewardsTeaseHeader = "Stay tuned!"
+export const rewardsTeaseText = "Soon you’ll unlock exciting rewards as you progress through levels."
 
 export const ghiRewardIdsMinusUrban = [
     CORE_REWARDS_BOOTS_GHI_REWARDS.data._id,

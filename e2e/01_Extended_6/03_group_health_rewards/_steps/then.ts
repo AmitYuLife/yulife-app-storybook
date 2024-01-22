@@ -21,7 +21,8 @@ export const {
   completedTodayStreakCopyVisible,
   textNotVisible,
   tapID,
-  idVisibleAtIndex
+  idVisibleAtIndex,
+  textVisibleAtIndex
 } = navigation.common;
 
 export const {
@@ -526,15 +527,40 @@ export const onGOSHRewardsClaimPage = async () => {
   await textVisible(constants.donationMessage)()
 }
 
-export const lockedLevelHalfModalVisible = (level: number) => async () => {
+export const lockedLevelHalfModalVisible = (level: number, chest: boolean, hint: boolean, reward?: string, levels?: string ) => async () => {
   await idVisible(ids.QUEST_LOCKED_HALF_MODAL(constants.lockedLevelText(level)))()
   await textVisible(constants.lockedLevelText(level))()
   await idVisible(ids.CHALLENGE_LOCKED_ICON)()
+
+  chest && await textVisible(constants.chestTease)()
+  hint && await moreRewardsAheadModalVisible()
+  reward && await textVisible(reward)()
+  levels && await textVisible(`${levels} Levels completed`)()
 }
 
 export const multipleRewardsNotVisible = (idArr: string[]) => async () => {
   idArr.forEach((id) => async () => {
       await idNotVisible(ids.REWARD_ITEM(id))
   })
+}
+
+export const unlockedLevelHalfModalVisible = (reward: string, levels: string) => async () => {
+  await idVisible(ids.QUEST_LOCKED_HALF_MODAL(constants.takeChallengeText))()
+  await textVisible(constants.takeChallengeText)()
+  await idVisible(ids.CHALLENGE_LOCKED_ICON)()
+  await textVisible(reward)()
+  await textVisible(`${levels} Levels completed`)()
+  await moreRewardsAheadModalVisible()
+}
+
+export const moreRewardsAheadModalVisible = async () => {
+  await textVisible(constants.moreRewardsAheadHeader)()
+  await textVisible(constants.moreRewardsAheadText)()
+  await textVisible(constants.learnMoreButton)()
+}
+
+export const ghiRewardsTeaseVisible = async () => {
+  await textVisible(constants.rewardsTeaseHeader)()
+  await textVisible(constants.rewardsTeaseText)()
 }
 
