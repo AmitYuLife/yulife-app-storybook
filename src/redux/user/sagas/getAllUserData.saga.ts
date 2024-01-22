@@ -28,13 +28,18 @@ const SUCCESS_ACTIONS: Record<AppDataType, (data: GetAllUserDataResponse[AppData
   [AppDataType.socialGroups]: updateSocialGroupLeaderboardsSuccess,
 };
 
-export default function* getAllUserDataSaga({ payload }: { payload: IAppDataTypePayload } & Action<AppDataType>) {
+export default function* getAllUserDataSaga({
+  payload,
+}: { payload: IAppDataTypePayload | AppDataType[] } & Action<AppDataType>) {
   try {
     const token: Unpacked<typeof getToken> = yield call(getToken);
     if (token) {
-      const { data }: Unpacked<typeof getAllUserData> = yield call(getAllUserData, payload);
+      const types = Array.isArray(payload) ? payload : payload.types;
+      const overrideQueryName = Array.isArray(payload) ? undefined : payload.overrideQueryName;
+
+      const { data }: Unpacked<typeof getAllUserData> = yield call(getAllUserData, { types, overrideQueryName });
       if (data) {
-        for (const type of payload.types) {
+        for (const type of types) {
           if (SUCCESS_ACTIONS[type]) {
             yield put(SUCCESS_ACTIONS[type](data[type]));
           }
@@ -42,6 +47,6 @@ export default function* getAllUserDataSaga({ payload }: { payload: IAppDataType
       }
     }
   } catch (e) {
-    Logger.error(e, { event: "getAllUserDataSaga", payload: payload.types.join(",") });
+    Logger.error(e, { event: "getAllUserDataSaga", payload: JSON.stringify(payload) });
   }
 }
