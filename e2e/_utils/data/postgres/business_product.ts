@@ -128,7 +128,6 @@ export const BUSINESS_PRODUCT_8_GHI = generateProductRecords({
       "overall_event_limit" : null,
       "sic_code" : null,
       "previous_insurer" : null,
-      "pricing_model" : null,
       "previously_insured" : "unknown",
       "base_rate" : null,
       "optalitix_id" : null
@@ -215,7 +214,6 @@ export const BUSINESS_PRODUCT_9_GDent = generateProductRecords({
     "overall_event_limit" : null,
     "sic_code" : null,
     "previous_insurer" : null,
-    "pricing_model" : null,
     "previously_insured" : "unknown",
     "base_rate" : null,
     "optalitix_id" : null
@@ -302,7 +300,6 @@ export const BUSINESS_PRODUCT_10_GDent = generateProductRecords({
     "overall_event_limit" : null,
     "sic_code" : null,
     "previous_insurer" : null,
-    "pricing_model" : null,
     "previously_insured" : "unknown",
     "base_rate" : null,
     "optalitix_id" : null
@@ -389,7 +386,6 @@ export const BUSINESS_PRODUCT_11_GDent = generateProductRecords({
     "overall_event_limit" : null,
     "sic_code" : null,
     "previous_insurer" : null,
-    "pricing_model" : null,
     "previously_insured" : "unknown",
     "base_rate" : null,
     "optalitix_id" : null
@@ -476,7 +472,6 @@ export const BUSINESS_PRODUCT_12_GDent = generateProductRecords({
     "overall_event_limit" : null,
     "sic_code" : null,
     "previous_insurer" : null,
-    "pricing_model" : null,
     "previously_insured" : "unknown",
     "base_rate" : null,
     "optalitix_id" : null
@@ -566,7 +561,6 @@ export const BUSINESS_PRODUCT_13_GHI_REWARDS = generateProductRecords({
     "overall_event_limit" : null,
     "sic_code" : null,
     "previous_insurer" : null,
-    "pricing_model" : null,
     "previously_insured" : "unknown",
     "base_rate" : null,
     "optalitix_id" : null
