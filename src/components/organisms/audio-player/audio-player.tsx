@@ -173,7 +173,6 @@ const AudioPlayer = ({
     return () => {
       fadeIn.stop();
       fadeOut.stop();
-      AudioPlayerService.resetPlayer();
     };
   }, []);
 
@@ -216,6 +215,13 @@ const AudioPlayer = ({
     if (startTimeInSeconds && state.showPlayer) {
       TrackPlayer.seekTo(startTimeInSeconds);
     }
+
+    return () => {
+      // This is for android only
+      if (state.showPlayer) {
+        AudioPlayerService.resetPlayer();
+      }
+    };
   }, [state.showPlayer]);
 
   /**
