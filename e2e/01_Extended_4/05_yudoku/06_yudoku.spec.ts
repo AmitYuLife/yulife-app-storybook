@@ -211,7 +211,7 @@ Feature("Yudoku", async () => {
         })
     })
     When("I complete the Yudoku", when.completeYudoku(), async () => {
-        Then("I can see  the join leaderboard prompt", then.amOnLeaderboardIntroModal)
+        Then("I can see the join leaderboard prompt", then.amOnLeaderboardIntroModal)
     })
     When("I tap join", when.tapJoinLeaderboardButton, async () => {
         When("I tap level 152 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152)), async () => {

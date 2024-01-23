@@ -379,6 +379,7 @@ export const exitChallenge = async () => {
 
 export const canSeeNewChallengePage = (challenges: "short stroll" | "brisk walk" | "meditation" | "long walk" | "fiit" | "yudoku", earnRate: number, boostReward?: number) => async () => {
   let challengeDetails: typeof MeditationTargetsAndRewards
+  await wait(2500)()
   await idVisible(ids.CHALLENGE_DETAILS_SCREEN_NEW)()
   await idVisible(ids.YUCOIN_POWER(earnRate))()
 

@@ -36,6 +36,7 @@ export const amOnSudokuHowToPlay = async () => {
 }
 
 export const amOnLeaderboardIntroModal = async () => {
+  await wait(2500)()
   await textVisible("Join the daily Yudoku leaderboard?")()
 }
 
