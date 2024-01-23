@@ -30,7 +30,11 @@ export default function getClient(): BugsnagClient {
         // Return `false` if you'd like to stop this error being reported
         // We can also control with 'enabledReleaseStages' config which environments
         // we want to report errors if we want to remove next line
-        if (Config.ENV === "dev" || Config.ENV === "test") {
+        if (Config.ENV === "dev") {
+          return false;
+        }
+
+        if (Config.ENV === "test") {
           console.error(JSON.stringify(event, null, 2));
           return false;
         }
