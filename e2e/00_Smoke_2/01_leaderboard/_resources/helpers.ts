@@ -38,12 +38,22 @@ export const CREATE_AVATAR = (customer: any) => async () => {
         })
     })
     When("I tap a colour", when.tapColour("#2B2B2B"), async () => {
-        When("I tap eye colour", when.tapTab("eyeColour"), async () => {
-            Then("I should be on the Eye Colour tab", then.textVisible("Eye Colour"))
+        When("I tap on the Headwear tab", when.tapTab("headwear"), async () => {
+            Then("I should be on the Headwear tab", then.textVisible("Headwear"))
         })
     })
+    When("I select the cowboy hat", when.tapItem("cowboy_hat_1"), async () => {
+        When("I tap on the Headwear colour tab", when.tapTab("headwearHairColour"), async () => {
+            When("I select a colour", when.tapColour("#F2BB7A"), async () => {
+                Then("I should be on the Headwear Colour tab", then.textVisible("Headwear Colour"))
+            })
+        })
+    })
+    When("I tap eye colour", when.tapTab("eyeColour"), async () => {
+        Then("I should be on the Eye Colour tab", then.textVisible("Eye Colour"))
+    })
     When("I select a colour", when.tapColour("#3C9172"), async () => {
-        When("I tap the accessories tab", when.tapTab("glasses"), async () => {
+        When("I tap the accessories tab", when.tapTab("glasses", true, "left"), async () => {
             Then("I should be on the Accessories tab", then.textVisible("Accessories"))
         })
     })

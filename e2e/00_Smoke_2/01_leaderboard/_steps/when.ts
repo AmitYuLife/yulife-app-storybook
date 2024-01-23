@@ -33,6 +33,7 @@ export const {
     scrollUntilIdVisible,
     swipeFromText,
     scrollUntilTextVisible,
+    swipeToID,
 } = navigation.scrolling
 
 export const {
@@ -62,7 +63,10 @@ export const wait3secs = async () => {
     await wait(3000)()
 }
 
-export const tapTab = (tabName: string) => async () => {
+export const tapTab = (tabName: string, shouldSwipe = false,  direction?: Detox.Direction,) => async () => {
+    if (shouldSwipe) {
+        await swipeToID(ids.CATEGORY_TYPE(tabName), ids.YUMOJI_PART_ID(tabName), direction, 1)()
+    }
     const tab = element(by.id(ids.CATEGORY_TYPE(tabName)))
     await tab.tap()
 }
