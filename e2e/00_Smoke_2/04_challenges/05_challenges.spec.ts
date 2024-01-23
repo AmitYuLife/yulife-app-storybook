@@ -137,7 +137,8 @@ Feature("As a user I can take a challenge", async () => {
 
     // PROGRESS
 
-    Scenario("I can take challenge with a higher earn rate of 13 and see the correct higher number of yucoin earned", scenario.start, async () => {
+    // @flaky - Fails to match leaderboard on iPhone SE, passing on 14 Pro. Need to buff scroll
+    ScenarioSkip("I can take challenge with a higher earn rate of 13 and see the correct higher number of yucoin earned", scenario.start, async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("yucoin", data.CUSTOMER_52, data.AUTH_52), async () => {
             Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
         })

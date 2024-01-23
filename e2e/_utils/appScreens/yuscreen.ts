@@ -607,6 +607,7 @@ export const yuCoinPowerInfoVisible = (yuCoinPower: number) => async () => {
   await textVisible(`${yuCoinPower * 20}`)();
   const streakMultiple = (yuCoinPower * 250).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   await textVisible(streakMultiple)();
+  await swipeFromText("Activities that earn YuCoin:", "down", "fast")();
 
   if (yuCoinPower < 2) {
     await textVisible(wellbeingEarn)();
@@ -618,7 +619,6 @@ export const yuCoinPowerInfoVisible = (yuCoinPower: number) => async () => {
     await textVisible("open 1 chest")();
     await textVisible("complete 1 streak")();
   } else {
-    await swipeFromText("Activities that earn YuCoin:", "down", "slow")();
     await textVisible(baseYucoinPower)()
     await textVisible(powerBoost)()
     await swipeFromText("Activities that earn YuCoin:", "up", "slow")();
