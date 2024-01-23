@@ -96,7 +96,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             })
         })
     })
- 
+
     Scenario("I can inspect other members and view their data and avatars from the leaderboard - seed data", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_47, data.AUTH_47), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
