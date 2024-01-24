@@ -58,7 +58,6 @@ const MediaPlayerScreen = ({
           tag={video.tag}
           title={video.title}
           subtitle={subtitle}
-          duration={video.duration}
           thumbnail={video.thumbnail.uri}
           logo={video.logo.uri}
           onProgress={onProgress}
