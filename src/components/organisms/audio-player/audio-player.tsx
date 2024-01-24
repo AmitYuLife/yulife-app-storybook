@@ -62,7 +62,6 @@ export interface IAudioPlayerProps {
   startChallengeButtonLabel: string;
   startTimeInSeconds?: number;
   autoPlay?: boolean;
-  duration: number;
 }
 
 const COMMON_PROPS = {
@@ -106,7 +105,6 @@ const AudioPlayer = ({
   eventType,
   startTimeInSeconds,
   startChallengeButtonLabel,
-  duration,
   onProgress,
 }: IAudioPlayerProps) => {
   const [appCurrentState, setAppCurrentState] = useState<AppStateStatus>("active");
@@ -146,12 +144,12 @@ const AudioPlayer = ({
 
       case Event.PlaybackProgressUpdated: {
         const position = Math.round(event.position);
+        const duration = Math.round(event.duration);
         onProgress(position);
-        dispatch({
+        return dispatch({
           type: AudioPlayerActionTypes.SET_CURRENT_PROGRESS,
-          payload: position,
+          payload: { position, duration },
         });
-        return;
       }
     }
   });
@@ -345,7 +343,7 @@ const AudioPlayer = ({
               stars={stars}
               tag={tag}
               logo={logo}
-              duration={duration}
+              duration={state.durationInSeconds}
             />
           </View>
         )}
@@ -403,10 +401,13 @@ const AudioPlayer = ({
                 <AvPlayerTimer textType="l2b" time={state.currentProgressInMilliseconds} colour={themeColour} />
               </View>
               <View style={[styles.progressBar, { backgroundColor: themeColour }]}>
-                <AvPlayerProgressBar currentProgress={state.currentProgressInSeconds} duration={duration} />
+                <AvPlayerProgressBar
+                  currentProgress={state.currentProgressInSeconds}
+                  duration={state.durationInSeconds}
+                />
               </View>
               <View style={styles.duration}>
-                <AvPlayerTimer textType="l2b" time={duration * 1000} colour={themeColour} />
+                <AvPlayerTimer textType="l2b" time={state.durationInSeconds * 1000} colour={themeColour} />
               </View>
             </Animated.View>
             <Animated.View style={[styles.buttonWrapper, { opacity }]} testID={VIDEO_PLAY_PAUSE_BUTTON(isPaused)}>

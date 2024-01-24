@@ -23,6 +23,7 @@ export interface IAudioPlayerState {
   startErrorMessage: string;
   currentProgressInMilliseconds: number;
   currentProgressInSeconds: number;
+  durationInSeconds: number;
 }
 
 export interface IAudioPlayerAction {
@@ -41,6 +42,7 @@ export const INITIAL_STATE: IAudioPlayerState = {
   startErrorMessage: null,
   currentProgressInMilliseconds: 0,
   currentProgressInSeconds: 0,
+  durationInSeconds: 0,
 };
 
 export const reducer = (state: IAudioPlayerState, action: IAudioPlayerAction): IAudioPlayerState => {
@@ -48,8 +50,11 @@ export const reducer = (state: IAudioPlayerState, action: IAudioPlayerAction): I
     case AudioPlayerActionTypes.SET_CURRENT_PROGRESS: {
       return {
         ...state,
-        currentProgressInMilliseconds: action.payload * 1000,
-        currentProgressInSeconds: action.payload,
+        currentProgressInMilliseconds: action.payload.position * 1000,
+        currentProgressInSeconds: action.payload.position,
+        ...(!state.durationInSeconds && {
+          durationInSeconds: action.payload.duration,
+        }),
       };
     }
 
