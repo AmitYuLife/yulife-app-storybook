@@ -7,7 +7,7 @@ import * as data from "@data"
 import * as ids from "@ids"
 
 Feature("Referrals work as intended", async () => {
-    Scenario("As a user with referrals enabled I can view the referrals popover, button and screen", scenario.start, async () => {
+    Scenario("As a user with referrals enabled I can view the referrals popover, button, QR code and screen", scenario.start, async () => {
         Given("I login as a user with a referrals enabled", given.loginAsUser(data.CUSTOMER_35, data.AUTH_35), async () => {
             Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)
             When("I close and reopen the app", when.restartWithoutDeleteTwoTimes, async () => {
@@ -72,6 +72,7 @@ Feature("Referrals work as intended", async () => {
                 Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)
                 When("I go to the menu", when.tapID(ids.MENU_ICON), async () => {
                     Then("I should not see the invite button", then.textNotVisible("Invite a colleague"))
+                    Then("I should not see the referrals QR code", then.idNotVisible(ids.REFERRALS_QR_CODE))
                 })
             })
         })

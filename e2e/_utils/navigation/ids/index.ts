@@ -384,6 +384,7 @@ export const REFERRALS_BUTTON_BADGE = (bool: boolean) => `REFERRALS_BUTTON_BADGE
 export const MENU_ICON_BADGE = (bool: boolean) => `MENU_ICON_BADGE_${bool}`
 export const REFERRALS_INVITE_BUTTON = `REFERRALS_INVITE_BUTTON`
 export const REFERRALS_BUTTON_HOMEPAGE = "REFERRALS_BUTTON_HOMEPAGE"
+export const REFERRALS_QR_CODE = "REFERRALS_QR_CODE"
 
 // SETTINGS SCREEN
 export const SETTINGS_NAME = (name:string) => `SETTINGS_NAME_${name}`

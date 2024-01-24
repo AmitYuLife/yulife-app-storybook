@@ -611,6 +611,7 @@ export const CUSTOMER_35_TOGGLES = {
       showCommunityGoals: true,
       showReferrals: true,
       yuScreenV3: true,
+      tempGameEnableReferralQRCode: true,
     },
   },
 } as IDatabaseItem;
@@ -666,6 +667,7 @@ export const CUSTOMER_37_TOGGLES = {
       showDuels: true,
       showCommunityGoals: true,
       showReferrals: true,
+      tempGameEnableReferralQRCode: true,
       yuScreenV3: true,
       hasCoveaFibActive: true,
       hasBupaDentActive: true,
