@@ -9,6 +9,7 @@ import { Event } from "@bugsnag/react-native";
 import { region } from "@locale";
 import { Platform } from "react-native";
 import { EncryptedStorageKey, Storage } from "@utils/storage";
+import moment from "moment";
 
 class LoggerInstance {
   private userId = "";
@@ -58,6 +59,7 @@ class LoggerInstance {
   private addDefaultEventProperties = (props: Record<string, any>): Record<string, any> => {
     return {
       ...props,
+      user_utc_offset: moment().utcOffset(),
       app_version: this.appVersion,
       app_version_major_minor: this.appVersionMajorMinor,
     };
