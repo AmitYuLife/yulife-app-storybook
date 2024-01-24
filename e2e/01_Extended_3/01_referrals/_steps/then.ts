@@ -1,5 +1,5 @@
 import { navigation } from "@utils"
-import { REFERRALS_INVITE_BUTTON } from "@ids"
+import * as ids from "@ids"
 import { screens } from "@appScreens"
 import { expect } from 'detox'
 
@@ -30,6 +30,7 @@ export const referralsPopoverNotVisible = async () => {
 }
 
 export const isOnInivteColleaguePage = async () => {
-    await expect(element(by.id(REFERRALS_INVITE_BUTTON))).toBeVisible
+    await expect(element(by.id(ids.REFERRALS_QR_CODE))).toBeVisible
+    await expect(element(by.id(ids.REFERRALS_INVITE_BUTTON))).toBeVisible
     await expect(element(by.text("Your referrals"))).toBeVisible()
 }

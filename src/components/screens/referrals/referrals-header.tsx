@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { View } from "react-native";
 import { GetReferralInformationQuery } from "@graphql/__generated";
-import { REFERRALS_INVITE_BUTTON } from "@ids";
+import { REFERRALS_INVITE_BUTTON, REFERRALS_QR_CODE } from "@ids";
 import { TextTemplate, Image } from "@atoms";
 import { Button } from "@molecules";
 import { ShareIcon } from "@atoms/icon/share-icon";
@@ -67,7 +67,12 @@ const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => 
         </View>
         {!tempGameEnableReferralQRCode ? null : (
           <View style={styles.qrCode}>
-            <QRCode size={QR_CODE_SIZE} value={referralLink} viewBox={`0 0 ${QR_CODE_SIZE} ${QR_CODE_SIZE} `} />
+            <QRCode
+              size={QR_CODE_SIZE}
+              value={referralLink}
+              viewBox={`0 0 ${QR_CODE_SIZE} ${QR_CODE_SIZE} `}
+              data-testid={REFERRALS_QR_CODE}
+            />
           </View>
         )}
         <TextTemplate type="l2b" textAlign="center">

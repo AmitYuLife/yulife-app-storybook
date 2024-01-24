@@ -106,7 +106,7 @@ Feature("As a user I can take a challenge", async () => {
         })
     })
 
-    Scenario("I can complete today's challenge and then the homepage button updates to invite a colleague", scenario.start, async () => {
+    Scenario("I can complete today's challenge and then the homepage button updates to invite a colleague through a link and a QR code", scenario.start, async () => {
         Given("I am on the quest tab as a user with a daily challenge", given.logInAndGoToTab("quests", data.CUSTOMER_35, data.AUTH_35), async () => {
             Then("I should see my coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3280)))
             When("I tap level 6", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(6)), async () => {
