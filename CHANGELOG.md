@@ -7,6 +7,48 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.117.0] - 2024-01-24
+
+### Bugfixes
+
+- Bugfix: AudioPlayer use duration from media instead of duration from db
+- Bugfix: Payload types
+- Bugfix ENG-3811: The player is not initialized call setupPlayer first android only
+- Bugfix ENG-3801 / ENG-3807 / : Leanplum notification error
+
+### Tasks
+
+- Task XSE-2342: Rewards component in the rewards store - hint
+- Task: Update getCurrentUserWithClient fetch policy from network-only to no-cache
+- Task: Remove bugsnag logging on dev
+- Task: Add query pedometer from date
+- Task: Bump yu health
+- Task: YuHealth activity comparison
+- Task: YuHealth iOS error
+- Task: Regional uri
+- Task: YuHealth pedometer
+- Task XSE-2473: Handle pending event start rewards tease
+
+### Chores
+
+- Chore: send UTC offset as a mixpanel prop on all mobile events
+- Chore XSE-2341: Factor out Streak modal helpers
+- Chore: Move rewards to new gql
+- Chore: Move duels to new gql
+- Chore: Move members to new gql
+
+### Extra
+
+- Detox/23_1_24 fixes
+- Detox/yumoji_headwear
+- Detox/vbus 2345
+- detox/remove_pricing_model
+- detox/18_1_24_skips
+- Detox/fixes-19/01
+- Detox/rewards_store_products - GS-780
+- Detox/fixes-18/01
+- Detox/close_reopen_yudoku GS-812
+
 ## [3.116.0] - 2024-01-17
 
 ### Features
