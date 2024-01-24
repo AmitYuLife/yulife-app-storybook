@@ -18,6 +18,7 @@ import { StackDirection } from "@atoms/stack/stack";
 import HistoryAndStoreLocation from "./subcomponents/history-and-store-location";
 import { RewardsListItem } from "./rewards-list.item";
 import { EventPanel } from "@molecules";
+import { ContentItemHint } from "@components/sdui";
 
 export interface IRewardsListScreenProps extends IConnectedScreenProps {
   rewardsData: GetMobileRewardsList_data;
@@ -103,6 +104,14 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
                 onPanelPress={onGoalProductMilestonesPress}
                 showPulse={true}
               />
+            </View>
+          );
+        }
+
+        if (goalProductMilestones?.hint) {
+          return (
+            <View style={styles.rewardsEventPanel}>
+              <ContentItemHint {...goalProductMilestones.hint} />
             </View>
           );
         }

@@ -11,7 +11,7 @@ import getMarkdownStyles from "../markdown/markdown.styles";
 
 interface IHintProps {
   label: string;
-  description: string;
+  description?: string;
   markdownDescription?: string;
   image: { uri?: string; Element?: JSX.Element };
   onPress?: () => void;
