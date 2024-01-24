@@ -39,7 +39,7 @@ export const GQL_QUERY_GET_CURRENT_USER_LEADERBOARD = gql`
 
 export default function getCurrentUserWithClient() {
   return client().query<GetCurrentUser>({
-    fetchPolicy: "network-only",
+    fetchPolicy: "no-cache",
     query: GQL_QUERY_GET_CURRENT_USER,
     variables: {
       intercomHashMethod: Platform.OS as IntercomHashMethod,
