@@ -13,7 +13,7 @@ export const ContentItemHint = memo((props: GqlHint) => {
 
   return (
     <View style={mappedServerStyle}>
-      <Hint label={hintTitle} description={description} image={hintImage} onPress={onPress && handlePress} />
+      <Hint label={hintTitle} markdownDescription={description} image={hintImage} onPress={onPress && handlePress} />
     </View>
   );
 });
