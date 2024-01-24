@@ -179,7 +179,7 @@ export const CPE_DENTAL_2 = {
         earn_rate: 2,
         productVariantId: "Bupa_Dent_01_01",
         startDate: moment().format(),
-        endDate: moment("2199-12-31", "YYYY-MM-DD").format(),
+        endDate: moment().add(7, "d").format(),
         world_id: "forest",
         taken_up: true
     }
