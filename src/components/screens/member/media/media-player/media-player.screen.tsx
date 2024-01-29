@@ -55,6 +55,7 @@ const MediaPlayerScreen = ({
           startTimeInSeconds={startTimeInSeconds}
           source={video.media.uri}
           poster={video.cover.uri}
+          audioDuration={video.duration}
           tag={video.tag}
           title={video.title}
           subtitle={subtitle}
