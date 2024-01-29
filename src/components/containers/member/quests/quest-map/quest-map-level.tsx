@@ -71,31 +71,30 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
           />
         </View>
       )}
-      <View style={styles.bubble}>
-        <TouchableOpacityWithDelay
-          activeOpacity={0.8}
-          onPress={level.onPress}
-          hitSlop={BUTTON_HITSLOP}
-          testID={LEVEL_CHALLENGE_BUTTON(level.level)}
-        >
-          <LevelSvg
-            backgroundColour={backgroundColour}
-            borderWidth={bubbleBorderWidth}
-            notificationBorderWidth={notificationBorderWidth}
-            hasNotification={!!level.notificationIcon}
+      <TouchableOpacityWithDelay
+        activeOpacity={0.8}
+        onPress={level.onPress}
+        style={styles.bubble}
+        hitSlop={BUTTON_HITSLOP}
+        testID={LEVEL_CHALLENGE_BUTTON(level.level)}
+      >
+        <LevelSvg
+          backgroundColour={backgroundColour}
+          borderWidth={bubbleBorderWidth}
+          notificationBorderWidth={notificationBorderWidth}
+          hasNotification={!!level.notificationIcon}
+        />
+        <View style={styles.bubbleText}>{levelText}</View>
+        {!level.notificationIcon ? null : (
+          <Image
+            style={styles.notificationImage}
+            tintColor={notificationColour}
+            width={16}
+            height={16}
+            source={level.notificationIcon}
           />
-          <View style={styles.bubbleText}>{levelText}</View>
-          {!level.notificationIcon ? null : (
-            <Image
-              style={styles.notificationImage}
-              tintColor={notificationColour}
-              width={16}
-              height={16}
-              source={level.notificationIcon}
-            />
-          )}
-        </TouchableOpacityWithDelay>
-      </View>
+        )}
+      </TouchableOpacityWithDelay>
     </View>
   );
 };
