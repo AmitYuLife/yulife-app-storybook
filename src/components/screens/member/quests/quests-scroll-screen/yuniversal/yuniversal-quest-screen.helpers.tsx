@@ -8,6 +8,7 @@ import {
   showLevelUnavailableModal,
   showChestModal,
   getIsLevelAvailable,
+  buildChestModalSubmitHandler,
 } from "../quests-screen.container.helpers";
 import { Colours } from "@styles";
 import { ILevelBubbleProps } from "./level/level-bubble";
@@ -282,6 +283,15 @@ const getLevelProps = (
             isNext: false,
             name: levelSlot.name,
             goals: level.goals,
+            onPressCta: buildChestModalSubmitHandler({
+              useHalfModalsForQuestMap,
+              componentId,
+              level: level.level,
+              yuniversalMap,
+              isNext: false,
+              goals: level.goals,
+              levelAvailable: false,
+            }),
           }),
       };
     case "Locked":

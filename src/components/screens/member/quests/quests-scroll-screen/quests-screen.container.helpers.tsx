@@ -11,6 +11,7 @@ import {
   QuestFeatureToggles,
 } from "./quest-detail-modal/quest-detail-modal.types";
 import { QuestDetailModalContainer } from "./quest-detail-modal/quest-detail-modal.container";
+import { VoidFunction } from "@utils";
 
 export const dismissChestModal = () => Navigation.dismissModal(MODALS.chest);
 
@@ -112,7 +113,9 @@ export const showChestModal = ({
   name,
   onPressCta,
   goals,
-}: Partial<QuestDetailModalContainerProps> & QuestFeatureToggles & Partial<LegacyQuestModalProps>) => {
+}: Partial<QuestDetailModalContainerProps> &
+  QuestFeatureToggles &
+  Partial<LegacyQuestModalProps> & { onPressCta: VoidFunction }) => {
   const { ctaLabel, heading } = buildChestModalCopy(isNext, level, name);
 
   if (useHalfModalsForQuestMap) {
@@ -438,23 +441,8 @@ export const handlePressLevelItem =
           level: itemLevel.level,
           isNext: levelStatus.isNext,
           name: name,
-          onPressCta: levelStatus.isNext
-            ? () =>
-                goToChallengesList({
-                  ...defaultProps,
-                  isNavigatingFromModal: useHalfModalsForQuestMap,
-                  isChestLevel: true,
-                })
-            : buildChestModalSubmitHandler({
-                isNext: levelStatus.isNext,
-                componentId,
-                level: itemLevel.level,
-                useHalfModalsForQuestMap,
-                goals: itemLevel.goals,
-                yuniversalMap,
-                levelAvailable,
-              }),
           goals,
+          onPressCta: buildChestModalSubmitHandler(defaultProps),
         });
 
       case "ShowChallengeUnavailableModal":
