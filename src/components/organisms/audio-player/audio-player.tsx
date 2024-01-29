@@ -62,6 +62,7 @@ export interface IAudioPlayerProps {
   startChallengeButtonLabel: string;
   startTimeInSeconds?: number;
   autoPlay?: boolean;
+  audioDuration: number;
 }
 
 const COMMON_PROPS = {
@@ -106,6 +107,7 @@ const AudioPlayer = ({
   startTimeInSeconds,
   startChallengeButtonLabel,
   onProgress,
+  audioDuration,
 }: IAudioPlayerProps) => {
   const [appCurrentState, setAppCurrentState] = useState<AppStateStatus>("active");
   const [state, dispatch] = useReducer<React.Reducer<IAudioPlayerState, IAudioPlayerAction>>(reducer, INITIAL_STATE);
@@ -343,7 +345,7 @@ const AudioPlayer = ({
               stars={stars}
               tag={tag}
               logo={logo}
-              duration={state.durationInSeconds}
+              duration={audioDuration}
             />
           </View>
         )}
