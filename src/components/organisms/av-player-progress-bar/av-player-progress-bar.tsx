@@ -9,7 +9,8 @@ interface IProps {
 
 const AvPlayerProgressBar = ({ currentProgress, duration }: IProps) => {
   const currentInMilliSeconds = currentProgress * 1000;
-  const durationInMilliSeconds = duration * 1000;
+  const durationInMilliSeconds = duration * 1000 || 100; //condition only for android
+
   return (
     <View
       style={[

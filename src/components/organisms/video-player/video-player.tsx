@@ -191,7 +191,9 @@ const VideoPlayer = ({
     async ({ currentTime }: OnProgressData): Promise<void> => {
       const currentProgressInSeconds = Math.floor(currentTime);
 
-      onProgress && onProgress(currentProgressInSeconds);
+      if (onProgress && currentProgressInSeconds > 0) {
+        onProgress(currentProgressInSeconds);
+      }
 
       dispatch({
         type: ActionTypes.SET_CURRENT_PROGRESS,
