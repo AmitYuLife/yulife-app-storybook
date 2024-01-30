@@ -1,21 +1,13 @@
 import { getNormalizedLevel } from "@utils";
-import { Colours, Style } from "@styles";
+import { Colours } from "@styles";
 import { QuestsMapLevel } from "../../quests.context";
-import { IMapSlice } from "../slices";
 import { getWorldColor } from "./level.content";
-import { HIGH_DENSITY_REPOSITION_VALUE } from "./level.styles";
 
 interface IBubbleColours {
   [x: number]: {
     available: string;
     notAvailable: string;
   };
-}
-
-interface IPosition {
-  left: number;
-  bottom?: number;
-  top?: number;
 }
 
 interface IButtonColours {
@@ -96,24 +88,6 @@ export function getButtonColours(
     backgroundColour: worldBubbleColours[normalizedWorld].available,
     notificationColour: worldColor,
   };
-}
-
-export function getButtonPosition(slots: IMapSlice["slots"], index: number, isPulse?: boolean) {
-  const adjustment = isPulse ? 0 : HIGH_DENSITY_REPOSITION_VALUE;
-  const record = slots[index];
-  const style: IPosition = {
-    left: Style.SCALE_UP_AND_DOWN(record.left) - adjustment,
-  };
-
-  if (typeof record.bottom !== "undefined") {
-    style.bottom = Style.SCALE_UP_AND_DOWN(record.bottom) - adjustment;
-  } else if (typeof record.top !== "undefined") {
-    style.top = Style.SCALE_UP_AND_DOWN(record.top) - adjustment;
-  } else {
-    style.bottom = 0;
-  }
-
-  return style;
 }
 
 export function getPulseColor(level: number) {

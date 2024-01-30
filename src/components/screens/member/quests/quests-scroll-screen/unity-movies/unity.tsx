@@ -17,7 +17,6 @@ import { t } from "@locale";
 import { useSelector } from "react-redux";
 import { getCurrentPlanetByLevel, getCurrentWorld, getCurrentYuniverse } from "@utils";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
-import { useUserFeatures } from "@hooks";
 
 // placeholder image
 const PLANETARY_BACKGROUND = require("./assets/yuniversal-images/planetary_background.png");
@@ -44,7 +43,6 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
   const [introFinished, setIntroFinished] = useState(false);
   const [chestState, setChestState] = useState(CHEST_STATE.CLOSED);
   const isYuniversal = useMemo(() => level % 200 === 0, [level]);
-  const { enableWebpQuestMap } = useUserFeatures();
   const currentLevel = useSelector(getCurrentLevel);
   const currentYuniverse = getCurrentYuniverse(currentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
@@ -384,7 +382,7 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
             items={data.getUnityRewards.chest.items}
             chestState={chestState}
             setChestState={setChestState}
-            currentPlanet={getCurrentPlanetByLevel(currentLevel - 1, enableWebpQuestMap)}
+            currentPlanet={getCurrentPlanetByLevel(currentLevel - 1)}
           />
           {chestState === CHEST_STATE.OPENING ? null : (
             <Animated.View style={[styles.buttonWrapper]}>

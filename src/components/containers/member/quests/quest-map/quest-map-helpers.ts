@@ -2,6 +2,21 @@ import { getChallengesStatus } from "@redux/levels/levels.selectors";
 import { QUEST_MAP_CONFIG } from "./quest-map.config";
 import { ISeperatorConfig } from "./quest-map.interface";
 import { getIsLevelAvailable } from "@components/screens/member/quests/quests-scroll-screen/quests-screen.container.helpers";
+import { TopBarTypes } from "@organisms/top-bar/top-bar.helpers";
+import { getCurrentWorld } from "@utils";
+
+export const getTopBarType = (currentLevel: number) => {
+  const topBarTypes: { [key: number]: TopBarTypes } = {
+    0: "forest",
+    1: "white",
+    2: "desert",
+    3: "white",
+  };
+
+  const currentWorld = getCurrentWorld(currentLevel);
+
+  return topBarTypes[currentWorld] ?? "forest";
+};
 
 export const getEpisode = (level: number) => {
   let episode = 0;

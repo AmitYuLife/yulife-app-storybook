@@ -156,17 +156,13 @@ export function toOrdinalWord(n: number): string {
   return arr[n - 1];
 }
 
-export const getCurrentPlanetByLevel = (currentLevel: number, hasNewMap?: boolean) => {
+export const getCurrentPlanetByLevel = (currentLevel: number) => {
   if (currentLevel < 201) {
     return Planets.EARTH;
   }
 
   if (currentLevel < 401) {
     return Planets.RED;
-  }
-
-  if (currentLevel > 400 && !hasNewMap) {
-    return Planets.BRIGHT;
   }
 
   if (currentLevel < 601) {
