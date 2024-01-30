@@ -2,11 +2,11 @@ import * as React from "react";
 import Svg, { Circle, Path, Rect } from "react-native-svg";
 import { memo } from "react";
 import { Style } from "@styles";
-import { ViewStyle } from "react-native";
 import { CHALLENGE_LOCKED_ICON } from "@ids";
+import { SvgViewStyle } from "@styles/types";
 
 interface Props {
-  style?: ViewStyle;
+  style?: SvgViewStyle;
 }
 
 export const HeroLockedIcon = memo(({ style }: Props) => {

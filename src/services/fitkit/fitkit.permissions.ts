@@ -7,7 +7,7 @@ export enum FitKitAndroidSystemPermission {
 }
 
 export const AndroidSystemPermissionsConfig = new Map(
-  Platform.Version > 28
+  +Platform.Version > 28
     ? [
         [FitKitTypes.Types.MindfulSession, FitKitAndroidSystemPermission.activity],
         [FitKitTypes.Types.StepCount, FitKitAndroidSystemPermission.activity],

@@ -1,11 +1,12 @@
-diff --git a/cocoapods-patch-20230510-8304-ez9uzs/CleverTap-iOS-SDK/CleverTapSDK/CTLocalDataStore.m b/Pods/CleverTap-iOS-SDK/CleverTapSDK/CTLocalDataStore.m
-index 135ef93ac..8994833bc 100644
---- a/cocoapods-patch-20230510-8304-ez9uzs/CleverTap-iOS-SDK/CleverTapSDK/CTLocalDataStore.m
+diff --git a/cocoapods-patch-20240117-8400-x9w6au/CleverTap-iOS-SDK/CleverTapSDK/CTLocalDataStore.m b/Pods/CleverTap-iOS-SDK/CleverTapSDK/CTLocalDataStore.m
+index 135ef93ac..4dff736b1 100644
+--- a/cocoapods-patch-20240117-8400-x9w6au/CleverTap-iOS-SDK/CleverTapSDK/CTLocalDataStore.m
 +++ b/Pods/CleverTap-iOS-SDK/CleverTapSDK/CTLocalDataStore.m
-@@ -413,6 +413,7 @@ - (NSDictionary*)syncWithRemoteData:(NSDictionary *)responseData {
+@@ -413,6 +413,8 @@ - (NSDictionary*)syncWithRemoteData:(NSDictionary *)responseData {
          CleverTapLogInternal(self.config.logLevel, @"%@: Failed to process data sync from upstream: %@", self, e.debugDescription);
          return nil;
      }
++    
 +    return nil;
  }
  

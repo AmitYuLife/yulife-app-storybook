@@ -3,8 +3,9 @@ import { View, StyleSheet } from "react-native";
 import { DarkScreen } from "@atoms";
 import { Style } from "@styles";
 import styles from "./popover.styles";
-import { PressableWithDelay, TouchableOpacityWithDelay } from "..";
 import { POPOVER } from "@ids";
+import PressableWithDelay from "../pressable-delay/pressable-delay";
+import TouchableOpacityWithDelay from "../touchable-opacity-delay/touchable-opacity-delay";
 
 interface IProps {
   targetX?: number;

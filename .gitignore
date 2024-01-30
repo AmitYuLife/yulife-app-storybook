@@ -2,6 +2,11 @@
 #
 .DS_Store
 
+.expo
+
+*.keystore
+!debug.keystore
+
 # Xcode
 #
 build/
@@ -92,3 +97,8 @@ translations_*_*_*.csv
 
 # Translation mapping
 translation-mapping.json
+
+# Temporary files created by Metro to check the health of the file watcher
+.metro-health-check*
+# testing
+/coverage

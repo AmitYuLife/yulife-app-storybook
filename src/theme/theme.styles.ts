@@ -1,23 +1,23 @@
 import { Colours, Style } from "@styles";
 import { Planets } from "@utils";
-import { ViewStyle } from "react-native";
+import { ImageStyle, ViewStyle } from "react-native";
 import { ITheme, IThemeScreens } from "./theme.types";
 
-const commonStyles = {
+const commonStyles: Pick<ViewStyle, "width" | "height"> = {
   width: "100%",
   height: Style.SCALE_UP_AND_DOWN(300),
 };
 
-const fullImageStyle = {
+const fullImageStyle: Pick<ImageStyle, "width" | "height"> = {
   width: "100%",
   height: Style.adjust(812),
 };
 
-const challengeSuccessAndFailedStyle = {
+const challengeSuccessAndFailedStyle: ViewStyle = {
   flex: 1,
   justifyContent: "flex-start",
   alignItems: "center",
-} as ViewStyle;
+};
 
 const LINE_COLOR = "rgb(251, 207, 39)";
 

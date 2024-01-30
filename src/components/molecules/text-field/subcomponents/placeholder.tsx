@@ -40,7 +40,7 @@ export const Placeholder = ({ scale, translateY, opacity, title, isFocused, hasI
     bottom: isFocused ? 0 : 8,
   };
 
-  const dynamicTextStyles = { transform: [{ scale }, { translateX: placeholderTranslateX }] };
+  const dynamicTextStyles: TextStyle = { transform: [{ scale }, { translateX: placeholderTranslateX }] };
 
   return (
     <Animated.View pointerEvents="none" style={[styles.placeholderWrapper, dynamicStyles]}>

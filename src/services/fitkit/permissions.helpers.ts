@@ -276,7 +276,7 @@ const checkGoogleFitPermission = async (options: FitKitAuthOptions): Promise<Per
 };
 
 const checkAndroidSystemPermission = async (permission: Permission): Promise<PermissionStatus> => {
-  if (Platform.Version < 29 && (permission as any) === FitKitAndroidSystemPermission.activity) {
+  if (+Platform.Version < 29 && (permission as any) === FitKitAndroidSystemPermission.activity) {
     return "authorised";
   }
 

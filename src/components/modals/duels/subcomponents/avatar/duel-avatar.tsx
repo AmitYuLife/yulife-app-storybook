@@ -1,5 +1,5 @@
 import React from "react";
-import { Animated, Easing, View } from "react-native";
+import { Animated, Easing, View, ViewStyle } from "react-native";
 import { AvatarEmpty } from "@molecules";
 import FastImage from "react-native-fast-image";
 import styles from "./duel-avatar.styles";
@@ -96,12 +96,15 @@ function _DuelAvatar({ reverse, uri, shouldAnimate = true }: IProps) {
   return (
     <View>
       <Animated.View
-        style={[styles.wrapper, { transform: shouldAnimate ? translateXStyle : [nonAnimatedTranslateStyle] }]}
+        style={[
+          styles.wrapper,
+          { transform: shouldAnimate ? translateXStyle : [nonAnimatedTranslateStyle] } as ViewStyle,
+        ]}
       >
         <Animated.View
           style={[
             styles.innerWrapper,
-            { transform: shouldAnimate ? bounceStyle : [nonAnimatedRotateStyle, perspectiveStyle] },
+            { transform: shouldAnimate ? bounceStyle : [nonAnimatedRotateStyle, perspectiveStyle] } as ViewStyle,
           ]}
         >
           <Animated.View style={{ opacity }}>

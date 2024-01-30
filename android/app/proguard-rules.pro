@@ -7,7 +7,13 @@
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
+
 # Add any project specific keep options here:
+
+# for react-native-reanimated
+-keep class com.swmansion.reanimated.** { *; }
+-keep class com.facebook.react.turbomodule.** { *; }
+-keep class com.reactnativenavigation.views.element.animators.** { *; }
 
 -keep class com.yulife.BuildConfig { *; }
 
@@ -25,4 +31,32 @@
 -keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
   **[] $VALUES;
   public *;
+}
+
+-keep class com.reactnativestripesdk.**
+-keep class com.stripe.android.** { *; }
+-keepattributes Signature
+
+# For using GSON @Expose annotation
+-keepattributes *Annotation*
+
+-dontwarn com.stripe.android.pushProvisioning.PushProvisioningActivity$g
+-dontwarn com.stripe.android.pushProvisioning.PushProvisioningActivityStarter$Args
+-dontwarn com.stripe.android.pushProvisioning.PushProvisioningActivityStarter$Error
+-dontwarn com.stripe.android.pushProvisioning.PushProvisioningActivityStarter
+-dontwarn com.stripe.android.pushProvisioning.PushProvisioningEphemeralKeyProvider
+
+-keep class javax.lang.model.element.** { *; }
+# Gson specific classes
+-keep class sun.misc.Unsafe { *; }
+
+-dontwarn javax.lang.model.element.Element
+-dontwarn javax.lang.model.type.TypeMirror
+-dontwarn javax.lang.model.type.TypeVisitor
+-dontwarn javax.lang.model.util.SimpleTypeVisitor7
+-dontwarn org.joda.convert.FromString
+-dontwarn org.joda.convert.ToString
+
+-keepclassmembers class com.android.installreferrer.api.** {
+  *;
 }

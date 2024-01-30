@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { Colours, Style } from "@styles";
 import { TextTemplate, Image } from "@atoms";
 import { StyleSheet, View } from "react-native";
-import { SecondaryButton } from "@molecules";
+import { SecondaryButton } from "../button/secondary-button/secondary-button";
 
 const BUTTON_COLOR = "#F186BA";
 

@@ -4,7 +4,9 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "react-native",
-    "lib": ["es6"],
+    "lib": [
+      "es6"
+    ],
     "module": "es2015",
     "moduleResolution": "node",
     "noEmit": true,
@@ -13,38 +15,105 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@assets/*": ["./assets/*"],
-      "@locale": ["./src/locale/index"],
-      "@hooks": ["./src/hooks/index"],
-      "@atoms": ["./src/components/atoms/index"],
-      "@atoms/*": ["./src/components/atoms/*"],
-      "@organisms": ["./src/components/organisms/index"],
-      "@organisms/*": ["./src/components/organisms/*"],
-      "@components/*": ["./src/components/*"],
-      "@containers": ["./src/components/containers/index"],
-      "@containers/*": ["./src/components/containers/*"],
-      "@modals": ["./src/components/modals/index"],
-      "@modals/*": ["./src/components/modals/*"],
-      "@molecules": ["./src/components/molecules/index"],
-      "@molecules/*": ["./src/components/molecules/*"],
-      "@screens": ["./src/components/screens/index"],
-      "@screens/*": ["./src/components/screens/*"],
-      "@graphql/*": ["./src/graphql/*"],
-      "@navigation": ["./src/navigation/index"],
-      "@navigation/*": ["./src/navigation/*"],
-      "@redux/*": ["./src/redux/*"],
-      "@services/*": ["./src/services/*"],
-      "@styles": ["./src/styles/index"],
-      "@styles/*": ["./src/styles/*"],
-      "@utils": ["./src/utils/index"],
-      "@utils/*": ["./src/utils/*"],
-      "@e2e/*": ["./src/e2e/*"],
-      "@ids": ["./e2e/_utils/navigation/ids"],
-      "@app/*": ["./src/*"],
-      "@mockclient": ["./e2e/_utils/socket/client"],
-      "@theme": ["./src/theme/index"],
-      "@theme/*": ["./src/theme/*"]
+      "@assets/*": [
+        "./assets/*"
+      ],
+      "@locale": [
+        "./src/locale/index"
+      ],
+      "@hooks": [
+        "./src/hooks/index"
+      ],
+      "@atoms": [
+        "./src/components/atoms/index"
+      ],
+      "@atoms/*": [
+        "./src/components/atoms/*"
+      ],
+      "@organisms": [
+        "./src/components/organisms/index"
+      ],
+      "@organisms/*": [
+        "./src/components/organisms/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@containers": [
+        "./src/components/containers/index"
+      ],
+      "@containers/*": [
+        "./src/components/containers/*"
+      ],
+      "@modals": [
+        "./src/components/modals/index"
+      ],
+      "@modals/*": [
+        "./src/components/modals/*"
+      ],
+      "@molecules": [
+        "./src/components/molecules/index"
+      ],
+      "@molecules/*": [
+        "./src/components/molecules/*"
+      ],
+      "@screens": [
+        "./src/components/screens/index"
+      ],
+      "@screens/*": [
+        "./src/components/screens/*"
+      ],
+      "@graphql/*": [
+        "./src/graphql/*"
+      ],
+      "@navigation": [
+        "./src/navigation/index"
+      ],
+      "@navigation/*": [
+        "./src/navigation/*"
+      ],
+      "@redux/*": [
+        "./src/redux/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
+      ],
+      "@styles": [
+        "./src/styles/index"
+      ],
+      "@styles/*": [
+        "./src/styles/*"
+      ],
+      "@utils": [
+        "./src/utils/index"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@e2e/*": [
+        "./src/e2e/*"
+      ],
+      "@ids": [
+        "./e2e/_utils/navigation/ids"
+      ],
+      "@app/*": [
+        "./src/*"
+      ],
+      "@mockclient": [
+        "./e2e/_utils/socket/client"
+      ],
+      "@theme": [
+        "./src/theme/index"
+      ],
+      "@theme/*": [
+        "./src/theme/*"
+      ]
     }
   },
-  "exclude": ["e2e", "node_modules", "babel.config.js", "metro.config.js"]
+  "exclude": [
+    "e2e",
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js"
+  ],
 }

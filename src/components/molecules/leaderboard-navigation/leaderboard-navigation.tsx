@@ -3,13 +3,13 @@ import { StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { DropdownSolidIcon } from "@atoms/icon/dropdown-solid-icon";
 import { Style } from "@styles";
-import { TouchableOpacityWithDelay } from "@molecules";
 import { DuelsIcon } from "@atoms/icon/duels-icon";
 import { t } from "@locale";
 import { DUELS_BUTTON, LEADERBOARD_DROPDOWN, LEADERBOARD_TITLE, LEADERBOARD_TOP_SCREEN, SEARCH_BUTTON } from "@ids";
 import { truncate } from "@utils";
 import { SearchIcon } from "@atoms/icon/search-icon";
 import { ISocialGroup } from "@redux/leaderboards/leaderboards.reducer";
+import TouchableOpacityWithDelay from "../touchable-opacity-delay/touchable-opacity-delay";
 
 const colour = "#345E8C";
 

@@ -1,6 +1,6 @@
 test:
   extends: .base-node-18
-  image: node:16.19.0-alpine
+  image: node:18.19.0-alpine
   stage: test
   interruptible: true
   script:

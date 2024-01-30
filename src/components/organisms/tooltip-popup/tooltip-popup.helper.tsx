@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { MODALS } from "@navigation/constants";
-import { View, ViewStyle } from "react-native";
+import { TouchableOpacity, View, ViewStyle } from "react-native";
 import { Navigation } from "@navigation/main";
 import TooltipPopupWrapper, { BeakPosition } from "./tooltip-popup-wrapper";
 import InfoMessage from "@organisms/info-message/info-message";
@@ -8,7 +8,7 @@ import { Sizes } from "@components/molecules/button/button.types";
 import { InfoMessageTooltipPointRelative } from "./info-tooltip-popup";
 
 interface PopoverProps {
-  viewRef: React.MutableRefObject<View>;
+  viewRef: React.MutableRefObject<View | TouchableOpacity>;
   children: React.ReactNode | (({ onClose }: { onClose: () => void }) => ReactElement);
   style?: ViewStyle;
   beakPosition?: BeakPosition;

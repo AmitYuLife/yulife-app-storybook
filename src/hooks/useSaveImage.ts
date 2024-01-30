@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { Alert, Linking, Platform } from "react-native";
-import { CameraRoll } from "@react-native-camera-roll/camera-roll";
+import * as MediaLibrary from "expo-media-library";
 import { check, request, PERMISSIONS, RESULTS } from "react-native-permissions";
 import { t } from "@locale";
 
@@ -34,7 +34,7 @@ export function useSaveImage() {
       return;
     }
 
-    await CameraRoll.save(uri);
+    await MediaLibrary.saveToLibraryAsync(uri);
     Alert.alert(t("save_image.image_saved.title"), t("save_image.image_saved.description"));
     setReady(true);
   }, []);
@@ -73,7 +73,7 @@ export function useSaveImage() {
             break;
           case RESULTS.GRANTED:
           case RESULTS.LIMITED:
-            await CameraRoll.save(uri);
+            await MediaLibrary.saveToLibraryAsync(uri);
             Alert.alert(t("save_image.image_saved.title"), t("save_image.image_saved.description"));
             setReady(true);
             break;
