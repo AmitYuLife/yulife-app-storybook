@@ -1,4 +1,4 @@
-import { CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2 } from "./customers";
+import { CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_DENTAL_RENEW, CUSTOMER_DENTAL_RENEW_2 } from "./customers";
 import moment from "moment";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
@@ -28,4 +28,27 @@ export const CUSTOMER_PAYMENT_METHOD_DENTAL_2 = {
         isPrimary: true
     }
 };
-    
+
+export const CUSTOMER_PAYMENT_METHOD_DENTAL_RENEW = {
+    type: "postgres",
+    modelName,
+    data: {
+        accountNumberEnding: "4242",
+        customerId: CUSTOMER_DENTAL_RENEW.data.customerId,
+        paymentMethodId: "YUPAYMENTMETHOD002",
+        status: "active",
+        isPrimary: true
+    }
+};
+
+export const CUSTOMER_PAYMENT_METHOD_DENTAL_RENEW_2 = {
+    type: "postgres",
+    modelName,
+    data: {
+        accountNumberEnding: "4242",
+        customerId: CUSTOMER_DENTAL_RENEW_2.data.customerId,
+        paymentMethodId: "YUPAYMENTMETHOD002",
+        status: "active",
+        isPrimary: true
+    }
+};

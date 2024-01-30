@@ -2365,3 +2365,41 @@ export const CUSTOMER_133_TOGGLES = {
     },
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_DENTAL_RENEW_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_DENTAL_RENEW.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      hideSmartHealthScreen: false,
+      hideYuMatterScreen: true,
+      showDuels: true,
+      yuScreenV3: true,
+      yuScreenV4: false,
+      hasCoveaFibActive: true,
+      hasBupaDentActive: true,
+    },
+  },
+  } as IDatabaseItem;
+
+  export const CUSTOMER_DENTAL_RENEW_2_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+      _id: generateRandomMongoId(),
+      userId: customer.CUSTOMER_DENTAL_RENEW_2.data.customerId,
+      features: {
+        ...DEFAULT_TOGGLES.data.features,
+        hideSmartHealthScreen: false,
+        hideYuMatterScreen: true,
+        showDuels: true,
+        yuScreenV3: true,
+        yuScreenV4: false,
+        hasCoveaFibActive: true,
+        hasBupaDentActive: true,
+      },
+    },
+    } as IDatabaseItem;

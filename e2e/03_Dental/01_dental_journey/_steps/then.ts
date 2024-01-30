@@ -1,10 +1,11 @@
 import { navigation } from "@utils"
-import { DATE_INPUT, PERCENTAGE_COVERED, PRODUCT_STEP_BODY_SCROLL_VIEW, YULIFE_BUPA_LOGO } from "@ids"
+import { DATE_INPUT, INFO_PANEL_IMAGE, MARKDOWN_TEXT, PERCENTAGE_COVERED, PRODUCT_STEP_BODY_SCROLL_VIEW, WARNING_BANNER, YUGI_INFO_BANNER_IMAGE, YULIFE_BUPA_LOGO } from "@ids"
 import { screens } from "@appScreens"
 import { scrollUntilTextVisible, swipeFromText } from "_utils/navigation/scrolling"
 import moment from "moment"
 export { onYuscreenV4 } from "_utils/appScreens/yuscreen"
 import { expect } from 'detox'
+import { dentalCancellationMessage, dentalCancellationYugi, dentalCancelledMessage, dentalCancelledYugi } from "../_resources/constants"
 
 export const {
     idVisible,
@@ -244,4 +245,13 @@ export const cancelledNotificationVisible = async () => {
     const notification = `Your policy ends soon. In the meantime, you're still covered and can still make claims for treatment received up until ${policyEndDate}.`
  
     await expect(element(by.text(notification))).toBeVisible();
+ }
+
+ export const personalDentalCancelledModalVisible = (cancelled: boolean, date: string) => async () => {
+    const yugiMessage = cancelled? dentalCancelledYugi : dentalCancellationYugi
+    const cancellationMessage = cancelled? dentalCancelledMessage(date) : dentalCancellationMessage(date)
+
+    await idVisible(YUGI_INFO_BANNER_IMAGE(yugiMessage))()
+    await idVisible(INFO_PANEL_IMAGE(yugiMessage))()
+    await idVisible(WARNING_BANNER(cancellationMessage))()
  }

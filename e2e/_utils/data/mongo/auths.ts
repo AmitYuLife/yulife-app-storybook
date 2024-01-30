@@ -1689,3 +1689,25 @@ export const AUTH_133 = {
         userId: customer.CUSTOMER_133_GHI_FUTURE.data.customerId,
     }
 }  as IDatabaseItem
+
+export const AUTH_DENTAL_RENEW = {
+    type: "mongo",
+    modelName: "authpassword",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.444",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_DENTAL_RENEW.data.customerId,
+    }
+} as IDatabaseItem
+
+export const AUTH_DENTAL_RENEW_2 = {
+    type: "mongo",
+    modelName: "authpassword",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.444",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_DENTAL_RENEW_2.data.customerId,
+    }
+} as IDatabaseItem

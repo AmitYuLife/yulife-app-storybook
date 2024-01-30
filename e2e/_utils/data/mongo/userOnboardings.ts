@@ -2371,3 +2371,45 @@ export const USER_ONBOARDING_133 = {
     },
   },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_CUSTOMER_DENTAL_RENEW = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_DENTAL_RENEW.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      yuScreenChest: true,
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      personalProductLaunchDental: true,
+      personalProductLaunchPLI: true,
+      yuScreenGloves: true,
+      firstAppOpen: true,
+      yuScreenOnboarding: true,
+    },
+  },
+  } as IDatabaseItem;
+
+  export const USER_ONBOARDING_CUSTOMER_DENTAL_RENEW_2 = {
+    type,
+    modelName,
+    data: {
+      _id: generateRandomMongoId(),
+      userId: user.USER_DENTAL_RENEW_2.data.userId,
+      businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
+      businessName: "Bonus Onboarding Ltd.",
+      performedSteps: {
+        yuScreenChest: true,
+        personalLifeIntro: true,
+        newYumojiBuilder: true,
+        personalProductLaunchDental: true,
+        personalProductLaunchPLI: true,
+        yuScreenGloves: true,
+        firstAppOpen: true,
+        yuScreenOnboarding: true,
+      },
+    },
+    } as IDatabaseItem;

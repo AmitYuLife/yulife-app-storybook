@@ -1258,3 +1258,29 @@ export const USER_GAME_STATE_133 = {
         currentLevel: 22
     }
 } as IDatabaseItem
+
+export const USER_GAME_STATE_DENTAL_RENEW = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_DENTAL_RENEW.data.customerId,
+        userId: customer.CUSTOMER_DENTAL_RENEW.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 22
+    }
+} as IDatabaseItem
+
+export const USER_GAME_STATE_DENTAL_RENEW_2 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_DENTAL_RENEW_2.data.customerId,
+        userId: customer.CUSTOMER_DENTAL_RENEW_2.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 22
+    }
+} as IDatabaseItem

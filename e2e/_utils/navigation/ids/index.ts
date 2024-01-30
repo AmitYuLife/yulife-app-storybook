@@ -150,6 +150,7 @@ export const PRODUCT_CARD_IMAGE = (imageURL: any) => `PRODUCT_CARD_IMAGE${imageU
 export const PRODUCT_CARD_BOTTOM = (copy: string) => `PRODUCT_CARD_BOTTOM${copy}`
 export const YUCOIN_LABEL = (yuCoin: string) => `YUCOIN_LABEL${yuCoin}`
 export const DISMISS_BUTTON = "DISMISS_BUTTON"
+export const WARNING_BANNER = (text: string) => `WARNING_BANNER_${text}`
 
 
 
@@ -535,3 +536,9 @@ export const CANCEL_CANCEL_CHALLENGE = "CANCEL_CANCEL_CHALLENGE"
 export const SUDOKU_UNRANKED_LABEL = "SUDOKU_UNRANKED_LABEL"
 export const SUDOKU_PRACTICE_BUTTON = "JOIN_PRACTICE_SUDUKU"
 export const LEVEL_SUMMARY_YUDOKU_LEADERBOARD = (date: string) => `LEVEL_SUMMARY_YUDOKU_LEADERBOARD_${date}`
+
+// functions
+
+export const removeTextStyling = (inputString: string) => {
+    return inputString.replace(/\*/g, '').replace(/\n/g, '')
+}

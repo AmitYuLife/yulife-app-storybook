@@ -10,6 +10,7 @@ interface IProps {
   markdownStyles?: StyleProp<any>;
   containerStyle?: ViewStyle;
   linkActions?: Record<string, any>;
+  testID?: string;
 }
 
 interface IState {
