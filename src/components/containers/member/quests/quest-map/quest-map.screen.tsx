@@ -3,7 +3,6 @@ import { Platform, SafeAreaView, StyleSheet, View, ViewStyle } from "react-nativ
 import { NavBar, TopBar } from "@organisms";
 import { IConnectedScreenProps } from "@app/typings";
 import { Style, TOP_BAR } from "@styles";
-import { getTopBarType } from "@components/screens/member/quests/quests-scroll-screen/quests-screen.helpers";
 import { scrollViewAdjustPosition } from "@components/screens/member/quests/quests-scroll-screen/quests-screen.styles";
 import QuestMapEpisode from "./quest-map-episode";
 import { WeeklyQuestsButton } from "@components/screens/member/quests/quests-scroll-screen/weeklies/weeklies.button";
@@ -12,6 +11,7 @@ import { IQuestMapItem } from "./quest-map.interface";
 import { FlashList, ListRenderItemInfo, ViewToken } from "@shopify/flash-list";
 import { first, isEmpty } from "lodash";
 import { GetMobileGameWeekliesQuery } from "@graphql/__generated";
+import { getTopBarType } from "./quest-map-helpers";
 
 interface IQuestMapScreenProps extends IConnectedScreenProps {
   currentLevel: number;
