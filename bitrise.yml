@@ -357,10 +357,6 @@ workflows:
             # debug log
             set -x
 
-            ls ./android/app/build/generated/assets/react/$BUNDLE_OUTPUT_FOLDER
-            ls ./android/app/build/generated/sourcemaps/react/$BUNDLE_OUTPUT_FOLDER
-            ls ./android/app/build/intermediates/sourcemaps/react/$BUNDLE_OUTPUT_FOLDER
-
             npm install --global @bugsnag/source-maps
 
             PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')
@@ -373,7 +369,7 @@ workflows:
               --api-key $BUGSNAG_API_KEY \
               --app-version $PACKAGE_VERSION \
               --platform android \
-              --bundle android/app/build/generated/assets/react/$BUNDLE_OUTPUT_FOLDER/index.android.bundle \
+              --bundle android/app/build/generated/assets/createBundleReleaseJsAndAssets/index.android.bundle \
               --source-map android/app/build/intermediates/sourcemaps/react/$BUNDLE_OUTPUT_FOLDER/index.android.bundle.packager.map \
               --overwrite
   ios-UAT:
