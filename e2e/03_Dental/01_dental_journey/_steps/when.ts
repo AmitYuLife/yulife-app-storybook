@@ -49,7 +49,7 @@ export const {
   tapIDAtIndex,
 } = navigation.common;
 
-export const { loginOnly, logInAndGoToTab } = navigation.login;
+export const { loginOnly, logInAndGoToTab, loginToYuScreen } = navigation.login;
 
 export const createDefaultYumoji = async () => {
   await tapText("Create your Yumoji")();

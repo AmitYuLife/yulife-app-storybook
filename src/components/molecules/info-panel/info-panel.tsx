@@ -9,7 +9,7 @@ import PressableWithDelay from "../pressable-delay/pressable-delay";
 import { Button } from "../button";
 import { BUTTON_SIZES } from "../button/button.types";
 import { CtaErrorSVG, CtaInformationSVG, CtaSuccessSVG, CtaWarningSVG } from "./svgs";
-import { INFO_PANEL_IMAGE, PCP_LIST_DESCRIPTION } from "@ids";
+import { INFO_PANEL_IMAGE, PCP_LIST_DESCRIPTION, removeTextStyling, WARNING_BANNER } from "@ids";
 import { RemoteImage } from "@graphql/__generated";
 
 export type BannerType = "success" | "info" | "warning" | "error" | "neutral";
@@ -61,6 +61,7 @@ const InfoPanel = ({
         wrapperStyle,
         additionalWrapperStyles,
       ])}
+      testID={WARNING_BANNER(removeTextStyling(markdown))}
     >
       <View style={styles.innerWrapper}>
         <View style={styles.contentWrapper}>

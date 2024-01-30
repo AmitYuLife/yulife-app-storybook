@@ -2421,3 +2421,59 @@ export const USER_133 = {
     avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
   },
 } as IDatabaseItem;
+
+export const USER_DENTAL_RENEW = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_DENTAL_RENEW.data.customerId,
+    nickname: "Sloogy Dreamer",
+    isAvatarCreated: true,
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 0,
+      },
+    ],
+    earnRate: 0,
+    activityLastReceived: {
+      cycling: moment().subtract(5, "days").toString(),
+      steps: moment().subtract(5, "days").toString(),
+      meditation: moment().subtract(5, "days").toString(),
+    },
+  },
+  } as IDatabaseItem;
+
+  export const USER_DENTAL_RENEW_2 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+      ...USER_DATA_TEMPLATE.data,
+      _id: generateRandomMongoId(),
+      userId: customer.CUSTOMER_DENTAL_RENEW_2.data.customerId,
+      nickname: "Sloogy Dreamer",
+      isAvatarCreated: true,
+      avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+      products: [
+        {
+          productId: generateRandomMongoId(),
+          productType: "Yulife",
+          option: "epic",
+          type: "employer",
+          earnRate: 0,
+        },
+      ],
+      earnRate: 0,
+      activityLastReceived: {
+        cycling: moment().subtract(5, "days").toString(),
+        steps: moment().subtract(5, "days").toString(),
+        meditation: moment().subtract(5, "days").toString(),
+      },
+    },
+    } as IDatabaseItem;

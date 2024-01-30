@@ -1257,3 +1257,31 @@ export const CPE_133_GHI_FUTURE = {
         product_variant_id : "Bupa_GHealth_01_01",
     }
 } as IDatabaseItem
+
+export const CPE_DENTAL_RENEW = {
+    type: "postgres",
+    modelName: "customer_product_entity",
+    data: {
+        customer_id: customer.CUSTOMER_DENTAL_RENEW.data.customerId,
+        customerProductId: "YUCPID00000011417",
+        earn_rate: 10,
+        productVariantId: "Bupa_Dent_01_03",
+        startDate: moment().add(30, "days").subtract(1, "years").format(),
+        world_id: "forest",
+        taken_up: true
+    }
+} as IDatabaseItem
+
+export const CPE_DENTAL_RENEW_2 = {
+    type: "postgres",
+    modelName: "customer_product_entity",
+    data: {
+        customer_id: customer.CUSTOMER_DENTAL_RENEW_2.data.customerId,
+        customerProductId: "YUCPID00000011418",
+        earn_rate: 10,
+        productVariantId: "Bupa_Dent_01_03",
+        startDate: "2023-02-01",
+        world_id: "forest",
+        taken_up: true
+    }
+} as IDatabaseItem

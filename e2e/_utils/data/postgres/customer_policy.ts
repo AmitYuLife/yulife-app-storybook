@@ -1,6 +1,6 @@
 import moment from "moment";
-import { CUSTOMER_QUOTE_DENTAL_1, CUSTOMER_QUOTE_DENTAL_2, CUSTOMER_QUOTE_DENTAL_3, CUSTOMER_QUOTE_DENTAL_85, CUSTOMER_QUOTE_PLI_124, CUSTOMER_QUOTE_PLI_6 } from "./customer_quote";
-import { CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2,  CUSTOMER_45, CUSTOMER_PLI_6, CUSTOMER_85, CUSTOMER_124_MPP } from "./customers";
+import { CUSTOMER_QUOTE_DENTAL_1, CUSTOMER_QUOTE_DENTAL_2, CUSTOMER_QUOTE_DENTAL_3, CUSTOMER_QUOTE_DENTAL_85, CUSTOMER_QUOTE_DENTAL_RENEW, CUSTOMER_QUOTE_DENTAL_RENEW_2, CUSTOMER_QUOTE_PLI_124, CUSTOMER_QUOTE_PLI_6 } from "./customer_quote";
+import { CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2,  CUSTOMER_45, CUSTOMER_PLI_6, CUSTOMER_85, CUSTOMER_124_MPP, CUSTOMER_DENTAL_RENEW, CUSTOMER_DENTAL_RENEW_2 } from "./customers";
 import { generateRandomPostgresId } from "@yu-life/yulife-bdd-framework";
 
 const modelName = "customer_policy";
@@ -202,5 +202,51 @@ export const CUSTOMER_POLICY_PLI_124 = {
         "archived_at" : null,
         "modified_by_id" : "1.86.0",
         "external_policy_id" : null
+    }
+};
+
+export const CUSTOMER_POLICY_DENTAL_RENEW = {
+    type: "postgres",
+    modelName,
+    data: {
+        externalPolicyId: "123",
+        quoteId: CUSTOMER_QUOTE_DENTAL_RENEW.data.quoteId,
+        policyId: generateRandomPostgresId(),
+        policyType: "Dental",
+        policyOwner: `${CUSTOMER_DENTAL_RENEW.data.firstName} ${CUSTOMER_DENTAL_RENEW.data.lastName}`,
+        startDate: moment().add(30, "days").subtract(1, "years").format(),
+        finalPayment: null,
+        indexation: "Level",
+        indexationPercentage: 0,
+        indexationFrequency: "Monthly",
+        premiumFrequency: "Monthly",
+        jointLifeIndicator: "Single",
+        companyFca: 783352,
+        region: "UK",
+        postIssueSample: false,
+        policyStatus: "Live"
+    }
+};
+
+export const CUSTOMER_POLICY_DENTAL_RENEW_2 = {
+    type: "postgres",
+    modelName,
+    data: {
+        externalPolicyId: "123",
+        quoteId: CUSTOMER_QUOTE_DENTAL_RENEW_2.data.quoteId,
+        policyId: generateRandomPostgresId(),
+        policyType: "Dental",
+        policyOwner: `${CUSTOMER_DENTAL_RENEW_2.data.firstName} ${CUSTOMER_DENTAL_RENEW_2.data.lastName}`,
+        startDate: "2023-02-01",
+        finalPayment: null,
+        indexation: "Level",
+        indexationPercentage: 0,
+        indexationFrequency: "Monthly",
+        premiumFrequency: "Monthly",
+        jointLifeIndicator: "Single",
+        companyFca: 783352,
+        region: "UK",
+        postIssueSample: false,
+        policyStatus: "Live"
     }
 };

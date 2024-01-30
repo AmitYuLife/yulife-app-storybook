@@ -1,7 +1,7 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
 import { CUSTOMER_9 } from "./customers";
-import { CPE_124_GDent, CPE_124_PLI, CPE_85, CPE_DENTAL_1, CPE_DENTAL_2, CPE_DENTAL_3 } from "./customer_product_entity";
+import { CPE_124_GDent, CPE_124_PLI, CPE_85, CPE_DENTAL_1, CPE_DENTAL_2, CPE_DENTAL_3, CPE_DENTAL_RENEW, CPE_DENTAL_RENEW_2 } from "./customer_product_entity";
 import { generateRandomPostgresId } from "@yu-life/yulife-bdd-framework";
 
 const modelName = "customer_quote";
@@ -292,4 +292,35 @@ export const CUSTOMER_QUOTE_PLI_124 = {
         risk_rate_gender_spec : 0.019051593
     }
 } as IDatabaseItem;
-    
+
+export const CUSTOMER_QUOTE_DENTAL_RENEW = {
+    type: "postgres",
+    modelName,
+    data: {
+        quoteId: generateRandomPostgresId(),
+        customerProductId: CPE_DENTAL_RENEW.data.customerProductId,
+        insuranceType: "Dental",
+        insuranceMonthlyPayment: "18.99",
+        insuranceTermYears: -1,
+        validTill: moment().add(30, "days").format(),
+        createdAt: moment().add(30, "days").subtract(1, "years").format(),
+        modifiedAt: moment().format(),
+        coverType: "epic"
+    }
+} as IDatabaseItem;
+
+export const CUSTOMER_QUOTE_DENTAL_RENEW_2 = {
+    type: "postgres",
+    modelName,
+    data: {
+        quoteId: generateRandomPostgresId(),
+        customerProductId: CPE_DENTAL_RENEW_2.data.customerProductId,
+        insuranceType: "Dental",
+        insuranceMonthlyPayment: "18.99",
+        insuranceTermYears: -1,
+        validTill: moment().add(30, "days").format(),
+        createdAt: "2023-02-01",
+        modifiedAt: moment().format(),
+        coverType: "epic"
+    }
+} as IDatabaseItem;

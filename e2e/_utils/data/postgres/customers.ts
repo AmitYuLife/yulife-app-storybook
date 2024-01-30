@@ -1945,3 +1945,29 @@ export const CUSTOMER_133_GHI_FUTURE = {
     status: "onboarded",
   },
 } as IDatabaseItem
+
+export const CUSTOMER_DENTAL_RENEW = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Harry",
+    lastName: "Todd",
+    dateOfBirth: moment().subtract(23, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_DENTAL_RENEW_2 = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Harry",
+    lastName: "Todd",
+    dateOfBirth: moment().subtract(23, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem;

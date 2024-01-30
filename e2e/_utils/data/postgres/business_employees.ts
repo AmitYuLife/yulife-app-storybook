@@ -1545,3 +1545,25 @@ export const BUSINESS_EMPLOYEE_133 = {
         employment_leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_DENTAL_RENEW = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
+        customer_id: customer.CUSTOMER_DENTAL_RENEW.data.customerId,
+        employment_start_date: moment().subtract(14, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_DENTAL_RENEW_2 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
+        customer_id: customer.CUSTOMER_DENTAL_RENEW_2.data.customerId,
+        employment_start_date: moment().subtract(14, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem

@@ -14,11 +14,12 @@ import * as given from "./_steps/given";
 import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as helper from "./_steps/helpers";
-import { CUSTOMER_DENTAL_1, CUSTOMER_37, AUTH_37, AUTH_DENTAL_1, CORE_REWARDS_ORDO_REWARDS, PAYMENT_PLAN_DENTAL_1 } from "@data";
+import { CUSTOMER_DENTAL_1, CUSTOMER_37, AUTH_37, AUTH_DENTAL_1, CORE_REWARDS_ORDO_REWARDS, PAYMENT_PLAN_DENTAL_1, CUSTOMER_DENTAL_RENEW, AUTH_DENTAL_RENEW, CUSTOMER_DENTAL_RENEW_2, AUTH_DENTAL_RENEW_2 } from "@data";
 import * as helper_pli from "02_PLI_1/_resources/helpers";
 import * as helper_V4 from "00_Smoke_4/01_yuscreen_v4/_resources/helpers";
 import { BACK_BUTTON, BUTTON_CLOSE, CONTENT_MIDDLE_ITEM_IMAGE, NAV_BAR, REWARD_ITEM } from "@ids";
 import { ordoAvailableImage, ordoNotAvailableImage } from "./_resources/constants";
+import moment from "moment";
 
 Feature("DENTAL HAPPY", async () => {
   // @update [Dental has been removed]
@@ -118,4 +119,28 @@ Feature("DENTAL HAPPY", async () => {
       })
     })
   });
+
+  //this test will stop working when we reach 2025 as all possible renewal dates will have been covered then
+  Scenario("Existing customers see a warning their personal dental is ending when they are 30 days from renewal", scenario.start, async () => {
+    Given("I login as a user with Bupa Dental product approved", when.loginToYuScreen(false, CUSTOMER_DENTAL_RENEW, AUTH_DENTAL_RENEW), async () => {
+      When(`I tap Dental insurance`, when.tapText("Dental"), async () => {
+        Then("I see the warning message about my personal dental being cancelled", then.personalDentalCancelledModalVisible(false, moment().add(30, "days").format("DD/MM/YYYY")))
+      })
+    })
+  });
+
+  //this test will stop working when we reach 2025 as all possible renewal dates will have been covered then
+  // on Feb 1st 2024 these dates and the dates for the products will need to change to be today to keep working
+  Scenario("Once customers dental has been cancelled they can still see the product on the YuScreen", scenario.start, async () => {
+    Given("I run the sunset worker", given.sunsetPersonalDentalWorker("2024-02-01"), async () => {
+      Given("I run the cancel worker", given.cancelPersonalDentalWorker("2024-02-01"), async () => {
+        When("I login as a user with Bupa Dental product approved", when.loginToYuScreen(false, CUSTOMER_DENTAL_RENEW_2, AUTH_DENTAL_RENEW_2), async () => {
+          When(`I tap Dental insurance`, when.tapText("Bupa Dental Plan for YuLife"), async () => {
+            Then("I see the warning message about my personal dental having been cancelled", then.personalDentalCancelledModalVisible(true, moment().format("DD/MM/YYYY")))
+          })
+        })
+      })
+    })
+  });
+
 });
