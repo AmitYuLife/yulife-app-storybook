@@ -1,4 +1,5 @@
 import { VoidFunction } from "@utils";
+import React, { ReactNode } from "react";
 
 export type QuestDetailModalType = "unavailable" | "chest" | "next";
 
@@ -27,7 +28,7 @@ export type QuestDetailModalProps = {
   onPressClose: VoidFunction;
   onPressCtaDismiss?: VoidFunction;
   heading?: string;
-  HeaderIcon: (props: any) => JSX.Element;
+  HeaderIcon: (props: any) => ReactNode;
   ctaLabel?: string;
   dismissLabel?: string;
   children?: React.ReactNode;

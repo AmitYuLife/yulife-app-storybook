@@ -2,7 +2,7 @@ import { t } from "@locale";
 import { useDispatch } from "react-redux";
 import Lottie from "lottie-react-native";
 import Svg, { Circle } from "react-native-svg";
-import { StyleSheet, Vibration, View } from "react-native";
+import { StyleSheet, Vibration, View, ViewStyle } from "react-native";
 import React, { memo, useRef, useMemo, useEffect, useCallback, useState } from "react";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming, withSequence } from "react-native-reanimated";
 import { Colours, Style } from "@styles";
@@ -166,12 +166,14 @@ const EventReward = ({
     return <LottieView style={styles.image} source={shineAnimationSource} autoPlay={true} loop={true} />;
   }, [animated, isRewardDelayedStatusCompleted]);
 
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [
-      { translateY: IMAGE_TRANSFORM_SCALE - scaleAnimationRef.value * IMAGE_TRANSFORM_SCALE },
-      { scale: scaleAnimationRef.value },
-    ],
-  }));
+  const animatedStyle = useAnimatedStyle(
+    (): ViewStyle => ({
+      transform: [
+        { translateY: IMAGE_TRANSFORM_SCALE - scaleAnimationRef.value * IMAGE_TRANSFORM_SCALE },
+        { scale: scaleAnimationRef.value },
+      ],
+    })
+  );
 
   const wrapperStyle = useMemo(() => {
     return {

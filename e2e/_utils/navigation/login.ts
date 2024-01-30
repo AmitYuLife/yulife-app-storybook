@@ -1,9 +1,9 @@
 import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, BUTTON_LOGIN, NAV_BAR, BUTTON_CLOSE, BACK_BUTTON } from "@ids";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { completeOnboardingIntro, navigateViaID, navigateViaText, tapID, textVisible } from "./common";
+import { completeOnboardingIntro, navigateViaID, navigateViaText, tapID, textVisible, wait } from "./common";
 import { authoriseFitkit } from "@socket";
 import { CUSTOMER_1, AUTH_1 } from "@data";
-import { tapText, wait } from "@navigation";
+import { tapText } from "@navigation";
 import { getLocalisedString as t } from "@i18n";
 import {expect} from 'detox'
 
@@ -27,8 +27,8 @@ export const loginAsUser = (
     await passwordField.replaceText(auth.data.password);
     await navigateViaID(BUTTON_LOGIN(false))
     if (firstTime) {
-        wait(3000)()
-        await navigateViaText("Next") // sign-up reward screen
+        await wait(3000)()
+        await navigateViaText(t("Next")) // sign-up reward screen
     }
     await dismissPLIModalIfVisible()
     await dismissNewLooksModalIfVisible()

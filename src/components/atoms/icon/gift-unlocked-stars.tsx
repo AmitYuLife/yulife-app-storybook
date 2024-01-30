@@ -1,10 +1,10 @@
 import { Style } from "@styles";
+import { SvgViewStyle } from "@styles/types";
 import * as React from "react";
-import { ViewStyle } from "react-native";
 import Svg, { G, Path, Rect, Defs, ClipPath } from "react-native-svg";
 
 interface Props {
-  style?: ViewStyle;
+  style?: SvgViewStyle;
 }
 
 export const GiftUnlockedStarsSvg = ({ style = {} }: Props) => {

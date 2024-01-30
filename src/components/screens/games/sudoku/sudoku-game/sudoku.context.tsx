@@ -17,7 +17,7 @@ export interface ISudokuContext {
   getPosition: ({
     row,
     column,
-    boardType = SudokuBoardType.INITIAL,
+    boardType,
   }: {
     boardType?: SudokuBoardType;
   } & ISudokuPosition) => number;

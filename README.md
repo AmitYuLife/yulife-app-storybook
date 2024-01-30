@@ -20,7 +20,7 @@ Follow the [React Native Installation Instructions](https://reactnative.dev/docs
 - react-native-cli
 - XCode (v14.2 or newer)
 - XCode Command Line Tools
-- Java Development Kit (JDK 11)
+- Java Development Kit (JDK 17)
 - Android Studio
 - Android SDK
 
@@ -179,12 +179,12 @@ rm -rf ios/Podfile.lock
 
 ###### Cocoapods
 
-Required version of ruby is handled through [rbenv](https://github.com/rbenv/rbenv) To ensure you are running correct ruby version defined in .ruby-version config, follow [installing ruby versions](https://github.com/rbenv/rbenv#installing-ruby-versions). Example if .ruby-version contains 2.7.7:
+Required version of ruby is handled through [rbenv](https://github.com/rbenv/rbenv) To ensure you are running correct ruby version defined in .ruby-version config, follow [installing ruby versions](https://github.com/rbenv/rbenv#installing-ruby-versions). Example if .ruby-version contains 3.2.2:
 
 ```
 brew install rbenv
-rbenv install 2.7.7
-rbenv global 2.7.7
+rbenv install 3.2.2
+rbenv global 3.2.2
 ruby -v
 ```
 

@@ -214,12 +214,14 @@ const Chest: FC<IProps> = ({ levelId, chestType, items, chestState, setChestStat
           })
         );
       }),
-      cardWrappers: items.map((_, index) => ({
-        ...styles.cardWrapper,
-        zIndex: index === 1 ? 2 : 1,
-        opacity: cardOpacities.current[index],
-        transform: [{ translateY: cardYs.current[index] }, { translateX: cardXs[index] }],
-      })),
+      cardWrappers: items.map(
+        (_, index): ViewStyle => ({
+          ...styles.cardWrapper,
+          zIndex: index === 1 ? 2 : 1,
+          opacity: cardOpacities.current[index],
+          transform: [{ translateY: cardYs.current[index] }, { translateX: cardXs[index] }],
+        })
+      ),
       infoCardWrappers: items.map(
         (_, index) =>
           ({

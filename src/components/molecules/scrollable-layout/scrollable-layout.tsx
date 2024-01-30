@@ -2,8 +2,8 @@ import React, { RefObject } from "react";
 import { Colours, Style } from "@styles";
 import { ScrollView, View, ViewStyle, StyleSheet, Platform, KeyboardAvoidingView } from "react-native";
 import { CTA } from "./cta";
-import { GenericHeadingAbsolute, GenericHeadingLogo, GenericHeadingPad } from "@organisms";
 import { SCROLLABLE_LAYOUT } from "@ids";
+import { GenericHeadingAbsolute, GenericHeadingLogo, GenericHeadingPad } from "@organisms/generic-heading";
 
 interface Props {
   children: React.ReactNode;

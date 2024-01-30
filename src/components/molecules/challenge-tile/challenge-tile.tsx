@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
-import { Pressable, Image as RNImage, StyleSheet, View } from "react-native";
+import { Pressable, Image as RNImage, StyleSheet, View, ViewStyle } from "react-native";
 import styles, { IMAGE_SIZE } from "./challenge-tile.styles";
 import { CHALLENGE_REWARD, CHALLENGE_TILE, CHALLENGE_TILE_BOOST_TAG, CHALLENGE_TILE_SURGE_ICON } from "@ids";
 import { Colours, Style } from "@styles";
@@ -46,19 +46,21 @@ const ChallengeTile = ({
 }: Props) => {
   const [isPressedIn, setIsPressedIn] = useState<boolean>(false);
 
-  const animatedStyle = useAnimatedStyle(() => ({
-    opacity: withTiming(isPressedIn ? 0.9 : 1, { duration: 120 }),
-    transform: [
-      {
-        scale: withTiming(isPressedIn ? 0.985 : 1, { duration: 120 }),
-      },
-      {
-        translateY: withTiming(isPressedIn ? 5 : 0, {
-          duration: 100,
-        }),
-      },
-    ],
-  }));
+  const animatedStyle = useAnimatedStyle(
+    (): ViewStyle => ({
+      opacity: withTiming(isPressedIn ? 0.9 : 1, { duration: 120 }),
+      transform: [
+        {
+          scale: withTiming(isPressedIn ? 0.985 : 1, { duration: 120 }),
+        },
+        {
+          translateY: withTiming(isPressedIn ? 5 : 0, {
+            duration: 100,
+          }),
+        },
+      ],
+    })
+  );
 
   const onPressIn = useCallback(() => {
     setIsPressedIn(true);

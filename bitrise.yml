@@ -45,7 +45,7 @@ meta:
   bitrise.io:
     machine_type: performance
     machine_type_id: g2-m1.4core
-    stack: osx-xcode-13.0.x
+    stack: osx-xcode-14.3.x-ventura
 trigger_map:
 - push_branch: develop
   pipeline: pipeline-develop
@@ -174,6 +174,9 @@ workflows:
       opts:
         is_expand: false
     steps:
+    - set-java-version@1:
+        inputs:
+        - set_java_version: "17"
     - install-missing-android-tools: {}
     - gradle-runner:
         inputs:
@@ -237,13 +240,7 @@ workflows:
     - git-clone:
         inputs:
         - reset_repository: "Yes"
-    - script@1:
-        inputs:
-        - content: node -v
     - nvm@1:
-        inputs:
-        - node_version: 16.19.0
-        - nvm_version: 0.38.0
     - script@1:
         title: Magic
         inputs:
@@ -294,11 +291,6 @@ workflows:
             set -x
 
             yarn tsc
-    - codecov@3.2:
-        is_always_run: true
-        inputs:
-        - OS: macos
-        - CODECOV_TOKEN: $CODECOV_TOKEN
     - script@1.2:
         title: Set version code
         inputs:
@@ -450,15 +442,12 @@ workflows:
         - itunescon_user: $BITRISE_PROVISION_URL
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-detox-build-70:
     before_run:
     - ios-git-checkout
     steps:
     - nvm@1:
-        inputs:
-        - node_version: 16.19.0
-        - nvm_version: 0.38.0
     - script@1:
         title: Install dependencies & build binary
         inputs:
@@ -479,7 +468,7 @@ workflows:
             nvm use
             npm i -g yarn
             yarn install --frozen-lockfile
-    - restore-cocoapods-cache@1: {}
+    # - restore-cocoapods-cache@1: {}
     - script:
         inputs:
         - content: |
@@ -577,18 +566,17 @@ workflows:
     - cache-pull@2.7:
         title: Bitrise.io Cache:Pull - iOS build + node_modules
     - nvm@1:
-        inputs:
-        - node_version: 16.19.0
     - script@1:
         title: Run Detox Tests
         inputs:
-        - content: |+
+        - content: |
             #!/usr/bin/env bash
             # fail if any commands fails
             set -e
 
             # Install dependencies
             brew tap wix/brew
+            brew update
             brew install wix/brew/applesimutils || true
             . $HOME/.nvm/nvm.sh
             nvm use
@@ -605,7 +593,7 @@ workflows:
             yarn detox:build:translations
 
             # Run tests
-            command="TARGET_LOCALE=$TARGET_LOCALE yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel \"${DETOX_LOG_LEVEL:=warn}\" --debug-synchronization 200 --record-logs failing"
+            command="TARGET_LOCALE=$TARGET_LOCALE yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel \"${DETOX_LOG_LEVEL:=warn}\" --debug-synchronization 200 --record-logs all"
 
             # If SKIP_ASSERTIONS flag is set, prefix the command with its value
             [[ -n $SKIP_ASSERTIONS ]] && command="SKIP_ASSERTIONS=$SKIP_ASSERTIONS $command"
@@ -652,7 +640,7 @@ workflows:
             FOLDER_NAME=$(ls -t | grep 'ios.')
             cp -R "$FOLDER_NAME" screenshots
 
-            # flatten the directory using ios.sim.debug folder
+            # flatten the directory using ios.sim.release folder
             npm install --global @hutsoninc/flatten-dir-cli
             flatten "$FOLDER_NAME"
             find "$FOLDER_NAME" -type f -name 'testDone*.png' -delete || true
@@ -669,7 +657,7 @@ workflows:
             # set path for s3
             DATE=$(date +'%d-%m-%Y')
             DEVICE_NAME="${IPHONE_DEVICE// /-}"
-            
+
             if [ "$TARGET_LOCALE" = "en-GB" ]; then
                 S3_PATH="$DETOX_TEST_TYPE/$DATE/$DEVICE_NAME"
             else
@@ -734,8 +722,6 @@ workflows:
     - cache-pull@2.7:
         title: Bitrise.io Cache:Pull - iOS build + node_modules
     - nvm@1:
-        inputs:
-        - node_version: 16.19.0
     - script@1:
         title: Run Detox Tests
         inputs:
@@ -746,6 +732,7 @@ workflows:
 
             # Install dependencies
             brew tap wix/brew
+            brew update
             brew install wix/brew/applesimutils || true
             . $HOME/.nvm/nvm.sh
             nvm use
@@ -799,7 +786,7 @@ workflows:
             FOLDER_NAME=$(ls -t | grep 'ios.')
             cp -R "$FOLDER_NAME" screenshots
 
-            # flatten the directory using ios.sim.debug folder
+            # flatten the directory using ios.sim.release folder
             npm install --global @hutsoninc/flatten-dir-cli
             flatten "$FOLDER_NAME"
             find "$FOLDER_NAME" -type f -name 'testDone*.png' -delete || true
@@ -1176,24 +1163,24 @@ workflows:
       opts:
         is_expand: false
     - API_REGION: SA
-    - API_ENV_OVERWRITE: NODE_ENV=detox DEBUG=yu:* server__locale=en-ZA server__region=SA server__port=5002
+    - API_ENV_OVERWRITE: NODE_ENV=detox DEBUG=yu:* server__locale=en-ZA server__region=SA
+        server__port=5002
     - API_PORT: "5002"
     steps:
     - cache-pull@2.7:
         title: Bitrise.io Cache:Pull - iOS build + node_modules
     - nvm@1:
-        inputs:
-        - node_version: 16.19.0
     - script@1:
         title: Run Detox Tests
         inputs:
-        - content: |+
+        - content: |
             #! /usr/bin/env bash
             # fail if any commands fails
             set -e -x
 
             # Install dependencies
             brew tap wix/brew
+            brew update
             brew install wix/brew/applesimutils || true
             . $HOME/.nvm/nvm.sh
             nvm use
@@ -1206,7 +1193,7 @@ workflows:
             # Set detox test device
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
 
-            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs failing
+            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs all
     - script@1:
         title: Collect logs
         is_always_run: true
@@ -1247,7 +1234,7 @@ workflows:
             FOLDER_NAME=$(ls -t | grep 'ios.')
             cp -R "$FOLDER_NAME" screenshots
 
-            # flatten the directory using ios.sim.debug folder
+            # flatten the directory using ios.sim.release folder
             npm install --global @hutsoninc/flatten-dir-cli
             flatten "$FOLDER_NAME"
             find "$FOLDER_NAME" -type f -name 'testDone*.png' -delete || true
@@ -1517,14 +1504,13 @@ workflows:
       opts:
         is_expand: false
     - API_REGION: US
-    - API_ENV_OVERWRITE: NODE_ENV=detox DEBUG=yu:* server__locale=en-US server__region=US server__port=5001
+    - API_ENV_OVERWRITE: NODE_ENV=detox DEBUG=yu:* server__locale=en-US server__region=US
+        server__port=5001
     - API_PORT: "5001"
     steps:
     - cache-pull@2.7:
         title: Bitrise.io Cache:Pull - iOS build + node_modules
     - nvm@1:
-        inputs:
-        - node_version: 16.19.0
     - script@1:
         title: Run Detox Tests
         inputs:
@@ -1535,6 +1521,7 @@ workflows:
 
             # Install dependencies
             brew tap wix/brew
+            brew update
             brew install wix/brew/applesimutils || true
             . $HOME/.nvm/nvm.sh
             nvm use
@@ -1547,7 +1534,11 @@ workflows:
             # Set detox test device
             node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
 
-            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs failing
+
+            sleep 5
+            echo "starting the tests"
+
+            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs all
     - script@1:
         title: Collect logs
         is_always_run: true
@@ -1588,7 +1579,7 @@ workflows:
             FOLDER_NAME=$(ls -t | grep 'ios.')
             cp -R "$FOLDER_NAME" screenshots
 
-            # flatten the directory using ios.sim.debug folder
+            # flatten the directory using ios.sim.release folder
             npm install --global @hutsoninc/flatten-dir-cli
             flatten "$FOLDER_NAME"
             find "$FOLDER_NAME" -type f -name 'testDone*.png' -delete || true
@@ -1803,7 +1794,7 @@ workflows:
         - webhook_url: $SLACK_WEBHOOK_URL
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-git-checkout:
     steps:
     - activate-ssh-key@4.1:
@@ -1816,9 +1807,6 @@ workflows:
     - ios-git-checkout
     steps:
     - nvm@1:
-        inputs:
-        - node_version: 16.19.0
-        - nvm_version: 0.38.0
     - script@1.2:
         title: BITRISE SUPPORT - DEBUG
         inputs:
@@ -1876,7 +1864,7 @@ workflows:
             cd ios
             asdf install ruby $(cat .ruby-version)
             asdf global ruby $(cat .ruby-version)
-    - restore-cocoapods-cache@1: {}
+    # - restore-cocoapods-cache@1: {}
     - script:
         inputs:
         - content: |
@@ -1911,7 +1899,7 @@ workflows:
             cat ios/YuLife/Info.plist
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-production:
     before_run:
     - ios-primary
@@ -2001,7 +1989,7 @@ workflows:
         - emoji_on_error: ':apple-icon:'
     meta:
       bitrise.io:
-        stack: osx-xcode-14.2.x-ventura
+        stack: osx-xcode-14.3.x-ventura
   ios-pull-request: {}
   ios-set-uat-env-vars:
     steps:
@@ -2120,8 +2108,6 @@ workflows:
         inputs:
         - key: yarn-cache-silicon-{{ checksum "package-lock.json" "**/*.patch" }}
     - nvm@1:
-        inputs:
-        - node_version: 18.18.2
     - script@1.2:
         title: Pull & Run yulife-api-server (API)
         inputs:
@@ -2151,11 +2137,9 @@ workflows:
             yarn global add node-gyp
             yarn install --frozen-lockfile
             ./scripts/setupPostgresForBitrise.sh
-            
+
             yarn translations:download:local
-
             yarn build
-
             yarn detox:changeRegionDatabase:${API_REGION:=UK}
 
             npm install -g forever

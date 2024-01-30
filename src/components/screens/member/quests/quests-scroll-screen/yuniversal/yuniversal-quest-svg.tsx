@@ -1,9 +1,9 @@
 import React, { FC, memo } from "react";
-import Svg, { Path } from "react-native-svg";
+import Svg, { NumberProp, Path } from "react-native-svg";
 
 interface IProps {
-  width: number | string;
-  height: number | string;
+  width: NumberProp;
+  height: NumberProp;
   children?: React.ReactNode;
 }
 

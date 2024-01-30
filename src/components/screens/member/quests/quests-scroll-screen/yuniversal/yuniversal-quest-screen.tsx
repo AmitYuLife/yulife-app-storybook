@@ -2,7 +2,7 @@ import React, { FC, memo, useCallback } from "react";
 import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getChallengesStatus, getCurrentLevel, getNextLevelAvailableAt } from "@redux/levels/levels.selectors";
-import styles from "./yuniversal-quest-screen.styles";
+import styles, { LEVELS_WRAPPER_HEIGHT, LEVELS_WRAPPER_WIDTH } from "./yuniversal-quest-screen.styles";
 import { NavBar, TopBar } from "@organisms";
 import { YuniversalQuestSvg } from "./yuniversal-quest-svg";
 import { LevelBubble } from "./level/level-bubble";
@@ -68,7 +68,7 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
       />
       {!levelMap?.length ? null : (
         <View style={styles.levelsWrapper}>
-          <YuniversalQuestSvg width={styles.levelsWrapper.width} height={styles.levelsWrapper.height}>
+          <YuniversalQuestSvg width={LEVELS_WRAPPER_WIDTH} height={LEVELS_WRAPPER_HEIGHT}>
             {levelMap.map((level) => (
               <LevelBubble {...level} key={level.text} />
             ))}

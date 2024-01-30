@@ -6,7 +6,7 @@ const MAX_CONFIG_AGE_IN_MINUTES = 60 * 24; // 24 hours
 
 export const REGION_LIST = ["UK", "US", "SA", "JP"] as const;
 
-export type REGION = typeof REGION_LIST[number];
+export type REGION = (typeof REGION_LIST)[number];
 
 type RegionConfig = {
   language: string;

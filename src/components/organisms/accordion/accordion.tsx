@@ -1,5 +1,5 @@
 import React, { ComponentProps, memo, useContext, useEffect, useMemo, useRef, useState } from "react";
-import { Animated, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
+import { Animated, DimensionValue, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { Source } from "react-native-fast-image";
 import { Header } from "./subcomponents/header";
 import { Content } from "./subcomponents/content";
@@ -134,7 +134,7 @@ interface GetHeight {
   contentHeight: number;
 }
 
-const getHeight = ({ headerHeight, collapsed, contentHeight }: GetHeight) => {
+const getHeight = ({ headerHeight, collapsed, contentHeight }: GetHeight): DimensionValue => {
   if (!headerHeight) {
     return "auto";
   }

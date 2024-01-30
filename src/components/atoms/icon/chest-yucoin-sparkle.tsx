@@ -1,10 +1,10 @@
 import { Style } from "@styles";
+import { SvgViewStyle } from "@styles/types";
 import { memo } from "react";
-import { ViewStyle } from "react-native";
 import Svg, { Path, Mask, Ellipse, G, Rect } from "react-native-svg";
 
 type Props = {
-  style?: ViewStyle;
+  style?: SvgViewStyle;
 };
 
 export const ChestYucoinSparkle = memo(({ style = { width: Style.adjust(130), height: Style.adjust(120) } }: Props) => (

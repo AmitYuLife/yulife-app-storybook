@@ -1,4 +1,4 @@
-import React, { memo, isValidElement, ReactElement, useMemo, useState, useCallback } from "react";
+import React, { memo, isValidElement, ReactElement, useMemo, useState, useCallback, ReactNode } from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { Button, PressableWithDelay, SecondaryButton } from "@molecules";
 import { Style, Colours } from "@styles";
@@ -9,9 +9,11 @@ import { Source } from "react-native-fast-image";
 import { CloseSvg, Image, TextTemplate } from "@atoms";
 import Logger from "@services/logging/logger";
 
+type FloatingModalComponent = (props: IFloatingModalContentProps) => ReactNode;
+
 interface IProps {
   closeOverlay?: () => void;
-  children: ReactElement | ((props: IFloatingModalContentProps) => ReactElement);
+  children: ReactElement | FloatingModalComponent;
   height?: number;
   paddingTop?: number;
   lottie?: GqlLottie;
@@ -55,7 +57,7 @@ const FloatingModal = ({
       return children;
     }
 
-    const Content = children;
+    const Content = children as FloatingModalComponent;
     return <Content onClose={closeOverlay} setIcon={setIconAsset} />;
   }, [children, closeOverlay, setIconAsset]);
 
