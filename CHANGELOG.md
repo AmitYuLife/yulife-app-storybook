@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.0.0] - 2024-01-31
+
+### Bugfixes
+
+- Bugfix: Ping API node version
+- Bugfix: Fix Bitrise Android build
+- Bugfix: ENG-3843 ENG-3832 Levels not clickable
+- Bugfix: Small improvements on audio-player and video-player for android
+- Bugfix: Show duration on audio-player description
+
+### Tasks
+
+- Task: Split APKs, enable r8
+- Task: Purge old map
+- Task: Upgrade to React Native 0.73
+
+### Chores
+
+- Chore GS: Improve Audio player error tracking
+
+### Extra
+
+- (HEAD -> develop, origin/develop, origin/HEAD) bump version to 4.0.0
+- detox/vbus-2395-v2
+- Hotfix: level chest unavailable modal undismissable in yuniversal
+- Detox/fixes-29/01
+- Detox/skip-24/01
+- Detox/referral_qr_code
+
 ## [3.117.0] - 2024-01-24
 
 ### Bugfixes
