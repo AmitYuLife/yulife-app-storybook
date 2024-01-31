@@ -30,7 +30,7 @@ import { IActiveLevel, getActiveLevel, getVideoPlayerIsActive } from "@redux/lev
 import { HourglassIcon } from "@atoms/icon/hourglass-icon";
 import { t } from "@locale";
 import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
-import TrackPlayer, { State, Event, useTrackPlayerEvents } from "react-native-track-player";
+import TrackPlayer, { State, Event, useTrackPlayerEvents, PlaybackErrorEvent } from "react-native-track-player";
 import AudioPlayerService from "@services/audio-player";
 import LottieView from "lottie-react-native";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema"; // this is temp until we refactor lottie types
@@ -137,7 +137,7 @@ const AudioPlayer = ({
       }
 
       case Event.PlaybackError: {
-        return handleOnError(event.message);
+        return handleOnError(event);
       }
 
       case Event.PlaybackState: {
@@ -317,8 +317,8 @@ const AudioPlayer = ({
     }
   }, [state.showFocusScreen, isPaused]);
 
-  const handleOnError = useCallback(async (err: any) => {
-    Logger.error(err, { location: "audio-player-onError" });
+  const handleOnError = useCallback(async (err: PlaybackErrorEvent) => {
+    Logger.error(new Error(err?.message), { location: "audio-player-onError", ...err });
     onError();
   }, []);
 
