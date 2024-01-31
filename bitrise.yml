@@ -2104,6 +2104,8 @@ workflows:
         inputs:
         - key: yarn-cache-silicon-{{ checksum "package-lock.json" "**/*.patch" }}
     - nvm@1:
+        inputs:
+        - node_version: 18.18.2
     - script@1.2:
         title: Pull & Run yulife-api-server (API)
         inputs:
