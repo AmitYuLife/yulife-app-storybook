@@ -57,7 +57,10 @@ export const CUSTOMER_2_TOGGLES = {
       showGoals: true,
       yuScreenV3: true,
       showPermissionSettings: true,
-      showYucoinPowerButton: true
+      showYucoinPowerButton: true,
+      tempGameTodayYuCoinCheckIns:true,
+      showDailySurvey:true,
+      showNotificationCentre:true
     },
   },
 } as IDatabaseItem;
@@ -78,7 +81,13 @@ export const CUSTOMER_5_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_5.data.customerId,
-    features: allTogglesTrue.data.features,
+    features: {
+      ...allTogglesTrue.data.features, 
+      showYucoinPowerButton: true,
+      tempGameTodayYuCoinCheckIns: true,
+      showDailySurvey: true,
+      showNotificationCentre: true
+},
   },
 } as IDatabaseItem;
 
