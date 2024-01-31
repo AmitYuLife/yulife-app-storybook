@@ -1,5 +1,5 @@
 import {
-  navigateViaText, navigateViaID, expectIsVisibleViaID, textVisible, idVisible,  dismissNotificationScreenIfVisible, wait, textNotVisible, idNotVisible, idVisibleAtIndex
+  navigateViaText, navigateViaID, expectIsVisibleViaID, textVisible, idVisible,  dismissNotificationScreenIfVisible, wait, textNotVisible, idNotVisible, idVisibleAtIndex, tapText
 } from "@navigation"
 import { sendSteps } from "@socket";
 import { getLocalisedString as t } from "@i18n";
@@ -450,4 +450,11 @@ export const canSeeChallengeTiles = (user: typeof USER_122, bonus?: "surge" | "b
   await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Fiit Class", addBonus(fiitTileReward), isBoosted))()
   await scrollUntilIdVisible(ids.CHALLENGE_SET_SCROLL, ids.CHALLENGE_TILE_BOOST_TAG("Yudoku", addBonus(yudokuTileReward), isBoosted), "down")()
   await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Yudoku", addBonus(yudokuTileReward), isBoosted))()
+}
+
+export const completeMoodMonitor = (answers:string[]) => async () =>{
+  for (const ans of answers) {
+    await tapText(ans, 1000)()
+    await tapText("Next", 1000)()
+  }
 }
