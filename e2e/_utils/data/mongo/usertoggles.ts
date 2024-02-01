@@ -2375,6 +2375,22 @@ export const CUSTOMER_133_TOGGLES = {
   },
 } as IDatabaseItem;
 
+export const CUSTOMER_134_TOGGLES = {
+  type: "mongo",
+  modelName: "usertoggles",
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_134_GHI_REWARDS.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      hasSmartPensionActive: true,
+      enableProductGoals: true,
+      useHalfModalsForQuestMap: true,
+      showQuestMapNotificationIcons: true
+    },
+  },
+} as IDatabaseItem;
+
 export const CUSTOMER_DENTAL_RENEW_TOGGLES = {
   type: "mongo",
   modelName: "usertoggles",

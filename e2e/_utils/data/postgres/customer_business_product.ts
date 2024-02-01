@@ -1,5 +1,5 @@
 import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { BUSINESS_PRODUCT_3, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_ENDED, BUSINESS_PRODUCT_FUTURE, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_13_GHI_REWARDS, BUSINESS_PRODUCT_14_MPP_GDental, BUSINESS_PRODUCT_14_GCI, BUSINESS_PRODUCT_14_SAAS, BUSINESS_PRODUCT_14_GHI, BUSINESS_PRODUCT_14_RGL, BUSINESS_PRODUCT_4_GDental_CHOICE } from "./business_product"
+import { BUSINESS_PRODUCT_3, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_ENDED, BUSINESS_PRODUCT_FUTURE, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_13_GHI_REWARDS, BUSINESS_PRODUCT_14_MPP_GDental, BUSINESS_PRODUCT_14_GCI, BUSINESS_PRODUCT_14_SAAS, BUSINESS_PRODUCT_14_GHI, BUSINESS_PRODUCT_14_RGL, BUSINESS_PRODUCT_4_GDental_CHOICE, BUSINESS_PRODUCT_15_GHI_REWARDS } from "./business_product"
 import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_48, CUSTOMER_49, CUSTOMER_51, CUSTOMER_53, CUSTOMER_74, CUSTOMER_LEAVER, CUSTOMER_FUTURE_PRODUCT, CUSTOMER_94, CUSTOMER_96, CUSTOMER_123_MPP, CUSTOMER_124_MPP, CUSTOMER_125, CUSTOMER_126_LEAVER_WELLBEING } from "./customers"
 import * as cpe from "./customer_product_entity"
 import moment = require('moment');
@@ -937,3 +937,28 @@ export const CBP_GHI_REWARDS_9 = {
     }       
 } as IDatabaseItem
 
+export const CBP_GHI_REWARDS_10 = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_13_GHI_REWARDS.product.data.product_id,
+        customer_product_id: cpe.CPE_134_GHI_REWARDS.data.customer_product_id,
+        "category_id" : "1",
+        "start_date" : "2023-04-26",
+        "archived" : false,
+        "data" : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\", \"externalMembershipNumber\":\"12121212\"}"
+    }       
+} as IDatabaseItem
+
+export const CBP_GHI_REWARDS_11 = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_15_GHI_REWARDS.product.data.product_id,
+        customer_product_id: cpe.CPE_134_GHI_REWARDS_2.data.customer_product_id,
+        "category_id" : "1",
+        "start_date" : "2023-04-26",
+        "archived" : false,
+        "data" : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\", \"externalMembershipNumber\":\"12121212\"}"
+    }       
+} as IDatabaseItem

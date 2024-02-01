@@ -8,3 +8,9 @@ export const archiveCustomerBusinessProductsByDate = (date: string) => async () 
 		date: date,
     })
 }
+
+export const synchroniseProductGoalParticipants = (prod: string) => async () => {
+  await dataManager.triggerWorkerTask("Goals.SynchroniseProductGoalParticipants", {
+  businessProductId: prod,
+  })
+}

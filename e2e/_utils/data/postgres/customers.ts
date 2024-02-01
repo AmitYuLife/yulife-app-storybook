@@ -1946,6 +1946,19 @@ export const CUSTOMER_133_GHI_FUTURE = {
   },
 } as IDatabaseItem
 
+export const CUSTOMER_134_GHI_REWARDS = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Dyarko",
+    lastName: "Gyabi",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+
 export const CUSTOMER_DENTAL_RENEW = {
   type: "postgres",
   modelName: "customer",

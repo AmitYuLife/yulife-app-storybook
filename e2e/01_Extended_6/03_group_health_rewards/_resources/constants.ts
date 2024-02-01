@@ -137,3 +137,5 @@ export const ghiRewardIdsMinusUrban = [
     CORE_REWARDS_THRIVA_GHI_REWARDS.data._id,
     CORE_REWARDS_GARMIN_GHI_REWARDS.data._id,
 ]
+
+export const rewardsGameOnTheWayImg = "https://yulife-develop.imgix.net/bupa/images/rewards_on_the_way_2023-03-23.png?ixlib=js-3.2.1&w=981&h=714&s=4809f351b905b43bb783ab2519e188f7"

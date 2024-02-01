@@ -1259,6 +1259,19 @@ export const USER_GAME_STATE_133 = {
     }
 } as IDatabaseItem
 
+export const USER_GAME_STATE_134 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_134_GHI_REWARDS.data.customerId,
+        userId: customer.CUSTOMER_134_GHI_REWARDS.data.customerId,
+        currentBalance: 17500,
+        currentStreak: 0,
+        currentLevel: 80
+    }
+} as IDatabaseItem
+
 export const USER_GAME_STATE_DENTAL_RENEW = {
     type: "mongo",
     modelName: "user_game_state",
