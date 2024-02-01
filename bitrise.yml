@@ -13,6 +13,7 @@ app:
     opts:
       is_expand: false
   - BUNDLE_OUTPUT_FOLDER: release
+  - BUNDLE_OUTPUT_ASSETS_FOLDER: createBundleReleaseJsAndAssets
     opts:
       is_expand: false
   - BITRISE_PROJECT_PATH: ios/YuLife.xcworkspace
@@ -101,6 +102,7 @@ workflows:
     - RELEASE_ENVIRONMENT: uat
     - ENVFILE: .env.uat
     - BUNDLE_OUTPUT_FOLDER: uat
+    - BUNDLE_OUTPUT_ASSETS_FOLDER: createBundleUatJsAndAssets
       opts:
         is_expand: false
     steps:
@@ -174,6 +176,7 @@ workflows:
     - RELEASE_ENVIRONMENT: develop
     - ENVFILE: .env.develop
     - BUNDLE_OUTPUT_FOLDER: release
+    - BUNDLE_OUTPUT_ASSETS_FOLDER: createBundleReleaseJsAndAssets
       opts:
         is_expand: false
     steps:
@@ -320,6 +323,7 @@ workflows:
       opts:
         is_expand: false
     - BUNDLE_OUTPUT_FOLDER: production
+    - BUNDLE_OUTPUT_ASSETS_FOLDER: createBundleProductionJsAndAssets
       opts:
         is_expand: false
     steps:
@@ -375,7 +379,7 @@ workflows:
               --api-key $BUGSNAG_API_KEY \
               --app-version $PACKAGE_VERSION \
               --platform android \
-              --bundle android/app/build/generated/assets/createBundleReleaseJsAndAssets/index.android.bundle \
+              --bundle android/app/build/generated/assets/$BUNDLE_OUTPUT_ASSETS_FOLDER/index.android.bundle \
               --source-map android/app/build/intermediates/sourcemaps/react/$BUNDLE_OUTPUT_FOLDER/index.android.bundle.packager.map \
               --overwrite
   ios-UAT:
