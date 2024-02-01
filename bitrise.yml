@@ -104,6 +104,9 @@ workflows:
       opts:
         is_expand: false
     steps:
+    - set-java-version@1:
+        inputs:
+        - set_java_version: "17"
     - install-missing-android-tools: {}
     - gradle-runner@1:
         title: 'Gradle: clean'
@@ -320,6 +323,9 @@ workflows:
       opts:
         is_expand: false
     steps:
+    - set-java-version@1:
+        inputs:
+        - set_java_version: "17"
     - install-missing-android-tools: {}
     - gradle-runner:
         title: assembleProduction
