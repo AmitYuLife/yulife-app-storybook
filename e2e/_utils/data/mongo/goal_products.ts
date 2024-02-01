@@ -19,3 +19,20 @@ export const GOAL_PRODUCTS_1 = {
         status: "active"
     },
 } as IDatabaseItem
+
+export const GOAL_PRODUCTS_2 = {
+    type: "mongo",
+    modelName: "goal_products",
+    data:{
+        _id: generateRandomMongoId(),
+        durationUnit: "years",
+        duration: 1,
+        productId: "Bupa_GHealth",
+        tag: "GH_REWARDS_2",
+        title: {
+            "en-GB" : "Group Health Rewards Version 2",
+            "ja-JP" : "6days - 通常のGHイベントと同様、6日間で行われる。テスト用に最適。"
+        },
+        status: "active"
+    },
+} as IDatabaseItem

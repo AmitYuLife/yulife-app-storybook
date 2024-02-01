@@ -1258,12 +1258,44 @@ export const CPE_133_GHI_FUTURE = {
     }
 } as IDatabaseItem
 
+export const CPE_134_GHI_REWARDS = {
+    type: "postgres",
+    modelName: "customer_product_entity",
+    data: {
+        customerId: customer.CUSTOMER_134_GHI_REWARDS.data.customerId,
+        customer_product_id: "YUCPID0000011417",
+        "earn_rate" : 0,
+        "start_date" : moment().subtract(1, "y").format("YYYY-MM-DD"),
+        "end_date" : "2199-12-31",
+        "is_banned_from_product" : false,
+        "archived" : false,
+        "taken_up" : true,
+        product_variant_id : "Bupa_GHealth_01_01",
+    }
+} as IDatabaseItem
+
+export const CPE_134_GHI_REWARDS_2 = {
+    type: "postgres",
+    modelName: "customer_product_entity",
+    data: {
+        customerId: customer.CUSTOMER_134_GHI_REWARDS.data.customerId,
+        customer_product_id: "YUCPID0000011418",
+        "earn_rate" : 0,
+        "start_date" : moment().subtract(1, "y").format("YYYY-MM-DD"),
+        "end_date" : "2199-12-31",
+        "is_banned_from_product" : false,
+        "archived" : false,
+        "taken_up" : true,
+        product_variant_id : "Bupa_GHealth_01_01",
+    }
+} as IDatabaseItem
+
 export const CPE_DENTAL_RENEW = {
     type: "postgres",
     modelName: "customer_product_entity",
     data: {
         customer_id: customer.CUSTOMER_DENTAL_RENEW.data.customerId,
-        customerProductId: "YUCPID00000011417",
+        customerProductId: "YUCPID00000011419",
         earn_rate: 10,
         productVariantId: "Bupa_Dent_01_03",
         startDate: moment().add(30, "days").subtract(1, "years").format(),
@@ -1277,7 +1309,7 @@ export const CPE_DENTAL_RENEW_2 = {
     modelName: "customer_product_entity",
     data: {
         customer_id: customer.CUSTOMER_DENTAL_RENEW_2.data.customerId,
-        customerProductId: "YUCPID00000011418",
+        customerProductId: "YUCPID00000011420",
         earn_rate: 10,
         productVariantId: "Bupa_Dent_01_03",
         startDate: "2023-02-01",

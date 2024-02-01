@@ -731,4 +731,28 @@ Feature("I am able to see GHI Rewards in App", async () => {
         
      })
 
+     Scenario("A user signed up to two games can only play in one", scenario.start, async () => {
+        Given("I run the worker to assign game participation", given.synchroniseProductGoalParticipants("YUG1010113"), async () => {
+            When("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_134_GHI_REWARDS, data.AUTH_134), async () => {
+                Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
+            })
+            When("I click on the first health insurance project", when.tapTextAtIndex("Health Insurance", 0), async () => {
+                When("I swipe to the bottom", when.swipeFromText("Key Info", "up", "fast"), async () => {
+                    Then("I can see the rewards game hasn't started as I am in another game already", then.idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.rewardsGameOnTheWayImg)))
+                })
+            })
+            When("I swipe to the top", when.swipeFromText("FAQs", "down", "fast"), async () => {
+                When("I close the screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
+                    When("I click on the second health insurance project", when.tapTextAtIndex("Health Insurance", 1), async () => {
+                        When("I scroll until I can see all the progress info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_1, "down"), async () => {
+                            Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(4))
+                        })
+                    })
+                })
+            })
+        })
+                
+        
+     })
+
 })

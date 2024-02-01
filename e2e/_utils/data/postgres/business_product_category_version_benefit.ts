@@ -1,5 +1,5 @@
 import { generateRandomPostgresId } from "@yu-life/yulife-bdd-framework";
-import {  BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_13_GHI_REWARDS, BUSINESS_PRODUCT_14_MPP_GDental, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_4_GDental_CHOICE, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent } from "./business_product"
+import {  BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_13_GHI_REWARDS, BUSINESS_PRODUCT_14_MPP_GDental, BUSINESS_PRODUCT_15_GHI_REWARDS, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_4_GDental_CHOICE, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent } from "./business_product"
 
 const type = "postgres"
 const modelName = "business_product_category_version_benefit"
@@ -233,6 +233,28 @@ export const BPCB_125_GDental = {
         "modified_at" : "2023-02-27T11:04:07.180Z",
         "benefit_set_product_version_id" :"Bupa_GDentChoice_01",
         "modified_by_id" : null,
+        "version_id": 1
+    }
+}
+
+export const BPCB_GHI_REWARDS_2 = {
+    type,
+    modelName,
+    data: {
+        "business_product_category_benefit_id" : generateRandomPostgresId(),
+        "business_product_id" :  BUSINESS_PRODUCT_15_GHI_REWARDS.product.data.product_id,
+        "category_id" : "1",
+        "allowed_product_version_benefit_set_ids":["Select Key | Couple", "Select Key | Single Parent Family", "Select Key | Family"],
+        "default_product_version_benefit_set_id" :"Select Key | Single",
+        "business_contribution" : null,
+        "archived" : false,
+        "archive_reason" : null,
+        "archived_at" : null,
+        "created_at" : "2023-02-23T14:01:39.326Z",
+        "created_by_id" : null,
+        "modified_at" : "2023-02-27T11:04:07.180Z",
+        "modified_by_id" : null,
+        "benefit_set_product_version_id":"Bupa_GHealth_01",
         "version_id": 1
     }
 }

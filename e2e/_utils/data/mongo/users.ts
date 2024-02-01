@@ -2422,6 +2422,19 @@ export const USER_133 = {
   },
 } as IDatabaseItem;
 
+export const USER_134 = {
+  type: "mongo",
+  modelName: "users",
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_134_GHI_REWARDS.data.customerId,
+    nickname: "Rewardsio",
+    isAvatarCreated: true,
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+  },
+} as IDatabaseItem;
+
 export const USER_DENTAL_RENEW = {
   type: "mongo",
   modelName: "users",

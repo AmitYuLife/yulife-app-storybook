@@ -211,15 +211,12 @@ export const getPermissionsConfig = async (): Promise<SettingsPermissions> => {
 };
 
 const getPermissionsData = async () => {
-  const [
-    isGoogleFitAuthorised,
-    isSamsungHealthStepsAuthorised,
-    isSamsungHealthStepDailyTrendAuthorised,
-  ] = await Promise.all([
-    checkGoogleFitAuthorised(),
-    checkSamsungHealthStepsAuthorised(),
-    checkSamsungHealthStepDailyTrendAuthorised(),
-  ]);
+  const [isGoogleFitAuthorised, isSamsungHealthStepsAuthorised, isSamsungHealthStepDailyTrendAuthorised] =
+    await Promise.all([
+      checkGoogleFitAuthorised(),
+      checkSamsungHealthStepsAuthorised(),
+      checkSamsungHealthStepDailyTrendAuthorised(),
+    ]);
 
   const showSamsungHealthPermissions =
     isSamsung() &&
@@ -248,14 +245,12 @@ export const checkPermissions = async (): Promise<SettingsPermissions> => {
   } = await getPermissionsData();
 
   const processedPermissions = await Promise.all(
-    permissions.map(
-      async (item): Promise<Permissions> => {
-        return {
-          ...item,
-          status: await item.checkStatus(),
-        };
-      }
-    )
+    permissions.map(async (item): Promise<Permissions> => {
+      return {
+        ...item,
+        status: await item.checkStatus(),
+      };
+    })
   );
 
   const systemPermission = processedPermissions.filter((item) => systemPermissionIDs.includes(item.id));
