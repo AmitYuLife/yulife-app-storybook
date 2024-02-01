@@ -12,6 +12,8 @@ import { FlashList, ListRenderItemInfo, ViewToken } from "@shopify/flash-list";
 import { first, isEmpty } from "lodash";
 import { GetMobileGameWeekliesQuery } from "@graphql/__generated";
 import { getTopBarType } from "./quest-map-helpers";
+import { QUESTS_SCREEN } from "@ids";
+import { getCurrentWorld } from "@utils";
 
 interface IQuestMapScreenProps extends IConnectedScreenProps {
   currentLevel: number;
@@ -115,7 +117,7 @@ const QuestMapScreen = ({
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} testID={QUESTS_SCREEN(getCurrentWorld(currentLevel))}>
       <View style={styles.questContainer}>
         <FlashList
           data={items}
