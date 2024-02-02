@@ -474,7 +474,7 @@ workflows:
             nvm use
             npm i -g yarn
             yarn install --frozen-lockfile
-    # - restore-cocoapods-cache@1: {}
+    - restore-cocoapods-cache@1: {}
     - script:
         inputs:
         - content: |
