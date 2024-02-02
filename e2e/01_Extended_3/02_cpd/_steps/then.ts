@@ -1,9 +1,10 @@
-import { navigation, CPD_COURSE_SCROLL_VIEW, CONTENT_MIDDLE_ITEM_IMAGE } from "@utils"
+import { navigation } from "@utils"
 import { screens } from "@appScreens"
 import { BUSINESS_ACCOUNT_1, CUSTOMER_1, YUNIVERSITY_COURSE_1, YUNIVERSITY_COURSE_MODULE_1 } from "@data"
 import { QuizDetails } from "../_resources/types"
 import moment from "moment"
 import { scrollUntilTextVisible } from "_utils/navigation/scrolling"
+import * as ids from "@ids"
 
 export const {
     idVisible,
@@ -59,7 +60,7 @@ export const canSeeModuleDetails = (module: typeof YUNIVERSITY_COURSE_MODULE_1, 
     await textVisible(`${durationMinutes / 60} CPD hours`)()
 
     for (const i of copy) {
-        await scrollUntilTextVisible(CPD_COURSE_SCROLL_VIEW, i, "down")()
+        await scrollUntilTextVisible(ids.CPD_COURSE_SCROLL_VIEW, i, "down")()
     }
 }
 
@@ -106,7 +107,7 @@ export const canSeeQuizQuestion = (quizQuestions: QuizDetails, questionNum: numb
 }
 
 export const quizComplete = (correctAnswers: number) => async () => {
-    await idVisible(CONTENT_MIDDLE_ITEM_IMAGE("https://yulife-develop.imgix.net/yugi/yugi-newspaper.svg?ixlib=js-3.2.1&w=927&h=990&s=07236bb0ecbaf9369f996b2121da6f86"))();
+    await idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE("https://yulife-develop.imgix.net/yugi/yugi-newspaper.svg?ixlib=js-3.2.1&w=927&h=990&s=07236bb0ecbaf9369f996b2121da6f86"))();
 
     if (correctAnswers > 3) {
         await textVisible("Congratulations!")()

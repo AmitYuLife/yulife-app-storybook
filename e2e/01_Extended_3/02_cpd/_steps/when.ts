@@ -1,10 +1,11 @@
 import { screens } from "@appScreens"
-import { navigation, textVisible, CPD_FEEDBACK_BUTTON, CPD_COURSE_SCROLL_VIEW } from "@utils"
+import { navigation, textVisible } from "@utils"
 export { authoriseFitkit, sendSteps } from "@socket";
 import { YUNIVERSITY_COURSE_MODULE_1 } from "@data";
 import { canSeeQuizQuestion } from "./then";
 import { QuizDetails } from "../_resources/types";
 import { scrollUntilTextVisibleAtIndex } from "_utils/navigation/scrolling";
+import * as ids from "@ids"
 
 export const {
     tapText,
@@ -54,7 +55,7 @@ export const completeQuiz = (quizQuestions: QuizDetails, quizAnswers: number[]) 
 
     await textVisible("Self assessment")()
     await swipeFromText("Self assessment", "up", "slow")()
-    await tapID(CPD_FEEDBACK_BUTTON("Happy"))()
+    await tapID(ids.CPD_FEEDBACK_BUTTON("Happy"))()
     await tapText("Finish")()
 }
 
@@ -73,8 +74,8 @@ export const scrollToChapter = (module: typeof YUNIVERSITY_COURSE_MODULE_1, chap
     const chapterTitle = `Chapter ${chapter}: ${title}`
 
     if (direction === "up") {
-        await scrollUntilTextVisibleAtIndex(CPD_COURSE_SCROLL_VIEW, chapterTitle, direction, chapter - 1)()
+        await scrollUntilTextVisibleAtIndex(ids.CPD_COURSE_SCROLL_VIEW, chapterTitle, direction, chapter - 1)()
     } else {
-        await scrollUntilTextVisibleAtIndex(CPD_COURSE_SCROLL_VIEW, chapterInfo, direction, chapter - 1)()
+        await scrollUntilTextVisibleAtIndex(ids.CPD_COURSE_SCROLL_VIEW, chapterInfo, direction, chapter - 1)()
     }
 }

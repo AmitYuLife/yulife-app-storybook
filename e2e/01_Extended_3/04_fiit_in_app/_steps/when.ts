@@ -1,9 +1,10 @@
 import { screens } from "@appScreens";
 import { MEDIA_2 } from "@data";
-import { CHALLENGE_TILE, FITT_MEDIA_ITEM_TITLE, LEVEL_CHALLENGE_BUTTON, navigation, VIDEO_PLAY_PAUSE_BUTTON } from "@utils";
+import { navigation } from "@utils";
 import { fiitInfo } from "../_resources/constants";
 import { FiitMediaCategory } from "../_resources/types";
 export { authoriseFitkit, sendSteps } from "@socket";
+import * as ids from "@ids"
 
 export const {
   tapText,
@@ -22,18 +23,18 @@ export const {
 
 export const takeFiitChallengeFromQuests = (level: number) => async () => {
   const { challengeName } = fiitInfo
-  await tapID(LEVEL_CHALLENGE_BUTTON(level), 500)()
-  await tapID(CHALLENGE_TILE(challengeName), 500)()
+  await tapID(ids.LEVEL_CHALLENGE_BUTTON(level), 500)()
+  await tapID(ids.CHALLENGE_TILE(challengeName), 500)()
   await tapText("Take challenge")()
 }
 
 export const tapFiitCategory = (category: FiitMediaCategory) => async () => {
-  await tapID(FITT_MEDIA_ITEM_TITLE(category))()
+  await tapID(ids.FITT_MEDIA_ITEM_TITLE(category))()
 }
 
 export const tapFiitVideo = (media: typeof MEDIA_2) => async () => {
   const { data: { title } } = media
-  await tapID(FITT_MEDIA_ITEM_TITLE(title))()
+  await tapID(ids.FITT_MEDIA_ITEM_TITLE(title))()
 }
 
 export const playFiitVideo = async () => {
@@ -41,7 +42,7 @@ export const playFiitVideo = async () => {
 }
 
 export const pauseVideo = (pause: boolean) => async () => {
-  await navigateViaID(VIDEO_PLAY_PAUSE_BUTTON(!pause))
+  await navigateViaID(ids.VIDEO_PLAY_PAUSE_BUTTON(!pause))
 }
 
 export const minimiseAndReopenApp = async () => {

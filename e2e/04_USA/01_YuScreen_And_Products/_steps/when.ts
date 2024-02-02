@@ -1,16 +1,6 @@
-import {
-  navigation,
-  CATEGORY_TYPE,
-  YUMOJI_PART_ID,
-  COLOUR,
-  AVATAR_BUILDER_LIST,
-  AVATAR_ITEM,
-  MALE_BODY,
-  CONTENT_ITEM_INPUT,
-  SDUI_SCREEN_SCROLL_VIEW,
-  BUTTON_CLOSE,
-} from "@utils";
+import { navigation } from "@utils";
 import { USProductData } from "../_resources/types";
+import * as ids from "@ids"
 
 export const {
   scrollFromText,
@@ -41,25 +31,25 @@ export const {
 
 export const tapAvatarItem = (avatarItem: string, status: string) => async () => {
   const item = element(
-    by.id(AVATAR_ITEM(`https://yulife-develop.imgix.net/yuscreen_products_assets/default/${avatarItem}`, status))
+    by.id(ids.AVATAR_ITEM(`https://yulife-develop.imgix.net/yuscreen_products_assets/default/${avatarItem}`, status))
   );
   await item.tap();
 };
 
 export const tapTab = (tabName: string) => async () => {
-  const tab = element(by.id(CATEGORY_TYPE(tabName)));
+  const tab = element(by.id(ids.CATEGORY_TYPE(tabName)));
   await tab.tap();
 };
 
 export const tapItem = (partID: string) => async () => {
-  await scrollUntilIdVisible(AVATAR_BUILDER_LIST, YUMOJI_PART_ID(partID), "down")();
-  const item = element(by.id(YUMOJI_PART_ID(partID)));
+  await scrollUntilIdVisible(ids.AVATAR_BUILDER_LIST, ids.YUMOJI_PART_ID(partID), "down")();
+  const item = element(by.id(ids.YUMOJI_PART_ID(partID)));
   await item.tap();
 };
 
 export const tapColour = (hexValue: string) => async () => {
-  await scrollUntilIdVisible(AVATAR_BUILDER_LIST, COLOUR(hexValue), "down")();
-  const colour = element(by.id(COLOUR(hexValue)));
+  await scrollUntilIdVisible(ids.AVATAR_BUILDER_LIST, ids.COLOUR(hexValue), "down")();
+  const colour = element(by.id(ids.COLOUR(hexValue)));
   await colour.tap();
 };
 
@@ -77,7 +67,7 @@ export const editYumoji =
     await textVisible("Edit your Yumoji")();
 
     await textVisible("Pick a body type")();
-    await tapID(MALE_BODY)();
+    await tapID(ids.MALE_BODY)();
 
     const continueButton = element(by.text("Continue"));
     await continueButton.tap();
@@ -108,7 +98,7 @@ export const editYumoji =
 
 export const createDefaultYumoji = async () => {
   await tapText("Create Yumoji")();
-  await tapID(MALE_BODY)();
+  await tapID(ids.MALE_BODY)();
   await tapText("Continue")();
   await tapText("Save")();
   await tapText("Save changes")();
@@ -131,18 +121,18 @@ export const closeScreen = async () => {
     buttonIndex = 1;
   }
 
-  await tapIDAtIndex(BUTTON_CLOSE, buttonIndex)();
+  await tapIDAtIndex(ids.BUTTON_CLOSE, buttonIndex)();
 };
 
 export const addContactDetails = async () => {
-  await typeViaID(CONTENT_ITEM_INPUT("title"), "Mr\n")();
-  await typeViaID(CONTENT_ITEM_INPUT("firstName"), "Eugene\n")();
-  await typeViaID(CONTENT_ITEM_INPUT("lastName"), "Grosu\n")();
-  await typeViaID(CONTENT_ITEM_INPUT("address1"), "Eugene's House\n")();
-  await typeViaID(CONTENT_ITEM_INPUT("town"), "London\n")();
-  await scrollFromID(SDUI_SCREEN_SCROLL_VIEW, "up", "slow")();
-  await typeViaID(CONTENT_ITEM_INPUT("postcode"), "HA9 7FN\n")();
-  await typeViaID(CONTENT_ITEM_INPUT("phone"), "07123456789\n")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("title"), "Mr\n")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("firstName"), "Eugene\n")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("lastName"), "Grosu\n")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("address1"), "Eugene's House\n")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("town"), "London\n")();
+  await scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "up", "slow")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("postcode"), "HA9 7FN\n")();
+  await typeViaID(ids.CONTENT_ITEM_INPUT("phone"), "07123456789\n")();
   await tapText("Claim now", 2000)();
 };
 

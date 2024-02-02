@@ -1,9 +1,10 @@
 import { screens } from "@appScreens"
-import { navigation, navigateViaID, LEVEL_CHALLENGE_BUTTON, QUESTS_SCREEN_YUNIVERSAL, textVisible, CHALLENGE_TILE } from "@utils"
+import { navigation, navigateViaID, textVisible } from "@utils"
 export { authoriseFitkit, sendSteps } from "@socket";
 import { sendSteps, fitKitAddSampleQueries, sendMindfulnessData } from "@socket"
 import moment = require("moment");
 import { getLocalisedString as t } from "@i18n"
+import * as ids from "@ids"
 
 export const {
     tapText,
@@ -28,7 +29,7 @@ export const {
 
 
 export const completeNewWorldShortStroll = (levelNumber: number) => async () => {
-    await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelNumber))
+    await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber))
     await textVisible(t("Almost there! Take a challenge to unlock your reward."))()
     await textVisible(t("later"))()
     await navigateViaText(t("Let's do it"))
@@ -52,7 +53,7 @@ export const completeNewWorldMeditation = (levelNumber: number) => async () => {
     const chestCTAVisible = await booleanTextVisible("Let's do it")
     const collectCTAVIsible = await booleanTextVisible("Collect")
     await fitKitAddSampleQueries(record)
-    await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelNumber))
+    await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber))
 
     if (chestCTAVisible === true) {
         await navigateViaText("Let's do it")
@@ -82,7 +83,7 @@ export const tapExploreYuniverse = async () => {
 }
 
 export const completeChallenge = (levelNumber: number, challengeType: string) => async () => {
-    await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelNumber))
+    await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber))
     await startChallenge(challengeType)()
     await sendSteps(400, 35000)()
     await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
@@ -91,7 +92,7 @@ export const completeChallenge = (levelNumber: number, challengeType: string) =>
 }
 
 export const completeSecondChallenge = (levelNumber: number, challengeType: string) => async () => {
-    await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelNumber))
+    await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber))
     await startChallenge(challengeType)()
     await sendSteps(400, 35000)()
     await waitFor(element(by.text(t("Collect")))).toBeVisible().withTimeout(5000)
@@ -106,15 +107,15 @@ export const selectAndCompleteWalkingChallenge = (challengeType: string, steps: 
 }
 
 export const tapYuniverseLevelForFirstTime = (x: number, y: number) => async () => {
-    await element(by.id(QUESTS_SCREEN_YUNIVERSAL(1))).tapAtPoint({x:x, y:y});
+    await element(by.id(ids.QUESTS_SCREEN_YUNIVERSAL(1))).tapAtPoint({x:x, y:y});
 }
 
 export const tapYuniverseLevelAfterFirstTime = (x: number, y: number) => async () => {
-    await element(by.id(QUESTS_SCREEN_YUNIVERSAL(2))).tapAtPoint({x:x, y:y});
+    await element(by.id(ids.QUESTS_SCREEN_YUNIVERSAL(2))).tapAtPoint({x:x, y:y});
 }
 
 export const selectAndCompleteMeditationChallengeWithoutMedia = (mindfulnessdata: number) => async () => { 
-    await navigateViaID(CHALLENGE_TILE("Meditation"))
+    await navigateViaID(ids.CHALLENGE_TILE("Meditation"))
     await navigateViaText(t("Take challenge"))
     await tapText(t("maybe later"))()
     await sendMindfulnessData(mindfulnessdata, 75000)()
@@ -123,7 +124,7 @@ export const selectAndCompleteMeditationChallengeWithoutMedia = (mindfulnessdata
 }
 
 export const selectAndCompleteMeditationChallengeWithMedia = (mindfulnessdata: number) => async () => {
-    await navigateViaID(CHALLENGE_TILE("Meditation"))
+    await navigateViaID(ids.CHALLENGE_TILE("Meditation"))
     await navigateViaText(t("Take challenge"))
     await swipeFromText(t("Or use an app"), "up", "slow")()
     await tapText(t("Use a different app"))()

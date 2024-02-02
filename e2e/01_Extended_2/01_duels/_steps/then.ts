@@ -1,10 +1,6 @@
-import {
-  navigation,
-  DUELS_HUB,
-  EMPTY_DUELS_HUB,
-  CHALLENGE_FRIEND_BUTTON,
-} from "@utils";
+import { navigation } from "@utils";
 import { expect } from 'detox'
+import * as ids from "@ids"
 
 export const {
   idVisible,
@@ -18,15 +14,15 @@ export const {
 } = navigation.common;
 
 export const onEmptyDuelsHub = async () => {
-  await expect(element(by.id(DUELS_HUB))).toBeVisible();
-  await expect(element(by.id(CHALLENGE_FRIEND_BUTTON))).toBeVisible();
-  await expect(element(by.id(EMPTY_DUELS_HUB))).toBeVisible();
+  await expect(element(by.id(ids.DUELS_HUB))).toBeVisible();
+  await expect(element(by.id(ids.CHALLENGE_FRIEND_BUTTON))).toBeVisible();
+  await expect(element(by.id(ids.EMPTY_DUELS_HUB))).toBeVisible();
 
   await expect(element(by.text("You’re not duelling with anybody today."))).toBeVisible();
 };
 
 export const onDuelsHub = async () => {
-  await expect(element(by.id(DUELS_HUB))).toBeVisible();
+  await expect(element(by.id(ids.DUELS_HUB))).toBeVisible();
 };
 
 export const wagerModalVisible = async () => {

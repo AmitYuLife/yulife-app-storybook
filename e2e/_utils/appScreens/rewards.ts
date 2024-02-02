@@ -1,6 +1,6 @@
-import { expectIsVisibleViaText, REWARD_ITEM, expectIsVisibleViaID, LOCKED_REWARD_ITEM, WEGIFT_CONFIRMED, PURCHASE_IMAGE, wait, textVisible, textVisibleAtIndex } from "@navigation"
+import { expectIsVisibleViaText, expectIsVisibleViaID, wait, textVisible, textVisibleAtIndex } from "@navigation"
 import { scrollFromText, scrollUntilIdVisible, swipeFromText } from "_utils/navigation/scrolling"
-import { REWARDS_LIST_SCREEN_SCROLL, TEXT_TEMPLATE } from "@ids"
+import { LOCKED_REWARD_ITEM, PURCHASE_IMAGE, REWARDS_LIST_SCREEN_SCROLL, REWARD_ITEM, TEXT_TEMPLATE, WEGIFT_CONFIRMED } from "@ids"
 import moment = require("moment")
 import {expect} from 'detox'
 

@@ -1,5 +1,6 @@
-import { COUNTDOWN_UNIT, navigation } from "@navigation";
+import { navigation } from "@navigation";
 import moment from "moment";
+import * as ids from "@ids"
 
 export const {
   idVisible,
@@ -27,17 +28,17 @@ export const onFutureProductScreen = (customer_product_entity:any) => async()=>{
   const diffDuration = moment.duration(targetDate.diff(currentDate));
   
   const days = Math.floor(diffDuration.asDays())
-  await idVisible(COUNTDOWN_UNIT(days, 'Days'))()
+  await idVisible(ids.COUNTDOWN_UNIT(days, 'Days'))()
 
   var hours = diffDuration.hours()
-  await idVisible(COUNTDOWN_UNIT(hours, 'Hours'))()
+  await idVisible(ids.COUNTDOWN_UNIT(hours, 'Hours'))()
 
   var minutes = diffDuration.minutes();
 
   try {
-    await idVisible(COUNTDOWN_UNIT(minutes, 'Mins'))()
+    await idVisible(ids.COUNTDOWN_UNIT(minutes, 'Mins'))()
   } catch {
-    await idVisible(COUNTDOWN_UNIT(minutes + 1, 'Mins'))()
+    await idVisible(ids.COUNTDOWN_UNIT(minutes + 1, 'Mins'))()
   }
   
 

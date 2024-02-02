@@ -1,8 +1,9 @@
-import { navigation, expectIsVisibleViaText, CHALLENGE_HISTORY_YUCOIN_STARS, navigateViaText, wait, CHALLENGE_UNAVAILABLE, CHALLENGE_SET, CHALLENGE_TILE, CHALLENGE_HISTORY_STARS, CHALLENGE_HISTORY_NEW_SLOT, idVisibleAtIndex, YUNITY_CARD } from "@utils"
+import { navigation, expectIsVisibleViaText, navigateViaText, wait, idVisibleAtIndex } from "@utils"
 import { screens } from "@appScreens"
 import { swipeFromText } from "_utils/navigation/scrolling"
 import { USER_1 } from "@data"
 import { expect } from 'detox'
+import * as ids from "@ids"
 
 export const {
     idVisible,
@@ -51,7 +52,7 @@ export const onChallengeHistory = (challengeType: string, levelNum: number, yuco
 
     for (const yucoin of yucoinNums) {
       const str = `${yucoin}`;
-      const id = CHALLENGE_HISTORY_YUCOIN_STARS(str, starsCount[yuCoinIndex], challengeType, yuCoinIndex);
+      const id = ids.CHALLENGE_HISTORY_YUCOIN_STARS(str, starsCount[yuCoinIndex], challengeType, yuCoinIndex);
       await expect(element(by.id(id))).toBeVisible();
       yuCoinIndex++
     }
@@ -149,7 +150,7 @@ export const isOnChestScreen = (worldType: "Forest" | "Ocean" |"Desert" |"Mounta
  
 export const nextLevelLocked = async () => {
     // const timeLeft = getTimeRemaining(USER_GAME_STATE_60.data.nextLevelAvailableAt).time
-    await idVisible(CHALLENGE_UNAVAILABLE)()
+    await idVisible(ids.CHALLENGE_UNAVAILABLE)()
     // await idVisible(TEXT_TEMPLATE(`The next one will be available in ${timeLeft}`))()
     await textVisible("You have just completed a level")()
 }
@@ -159,45 +160,45 @@ export const nextYuniverseLevelLocked = (level: string) => async () => {
 }
 
 export const challengesAvailableVisible = async () => {
-    await idVisible(CHALLENGE_SET)()
-    await idVisible(CHALLENGE_TILE("Short Stroll"))()
-    await idVisible(CHALLENGE_TILE("Brisk Walk"))()
-    await idVisible(CHALLENGE_TILE("Long Walk"))()
-    await idVisible(CHALLENGE_TILE("Meditation"))()
+    await idVisible(ids.CHALLENGE_SET)()
+    await idVisible(ids.CHALLENGE_TILE("Short Stroll"))()
+    await idVisible(ids.CHALLENGE_TILE("Brisk Walk"))()
+    await idVisible(ids.CHALLENGE_TILE("Long Walk"))()
+    await idVisible(ids.CHALLENGE_TILE("Meditation"))()
     await swipeFromText("Meditation", "up", "fast")()
-    await idVisible(CHALLENGE_TILE("Fiit Class"))()
+    await idVisible(ids.CHALLENGE_TILE("Fiit Class"))()
     await swipeFromText("Fiit Class", "down", "fast")()
 }
 
 export const challengeStarsCorrect = (starCount: number, challengeType: string, ) => async () => {
     for (let i = 0; i < starCount; i += 1) {
-        await expect(element(by.id(CHALLENGE_HISTORY_STARS(i, challengeType)))).toBeVisible()
+        await expect(element(by.id(ids.CHALLENGE_HISTORY_STARS(i, challengeType)))).toBeVisible()
     }
 }
 
 export const yuniverseChallengesVisible = async () => {
-    await idVisible(CHALLENGE_SET)()
-    await idVisible(CHALLENGE_TILE("Short Stroll"))()
-    await idVisible(CHALLENGE_TILE("Meditation"))()
+    await idVisible(ids.CHALLENGE_SET)()
+    await idVisible(ids.CHALLENGE_TILE("Short Stroll"))()
+    await idVisible(ids.CHALLENGE_TILE("Meditation"))()
     await swipeFromText("Meditation", "up", "fast")()
-    await idVisible(CHALLENGE_TILE("Fiit Class"))()
+    await idVisible(ids.CHALLENGE_TILE("Fiit Class"))()
     await swipeFromText("Fiit Class", "down", "fast")()
 }
 
 export const challengesAndYuCoinsAwardedVisible = async () => {
-    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("Short Stroll", "20", 3))()
-    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("Brisk Walk", "100", 3))()
-    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("Long Walk", "80", 2))()
-    await idVisible(CHALLENGE_HISTORY_NEW_SLOT("Meditation", "40", 1))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Short Stroll", "20", 3))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Brisk Walk", "100", 3))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Long Walk", "80", 2))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Meditation", "40", 1))()
 }
 
 export const yunityChestAwardsVisible = (user: typeof USER_1, levelsBoosted: number) => async () => {
     const yuCoinEarned = user.data.earnRate * 50;
     
     if (levelsBoosted > 1) {
-        await idVisibleAtIndex(YUNITY_CARD(`${levelsBoosted} Levels\nBoost`), 0)() 
+        await idVisibleAtIndex(ids.YUNITY_CARD(`${levelsBoosted} Levels\nBoost`), 0)() 
     } else {
-        await idVisibleAtIndex(YUNITY_CARD(`1 Level\nBoost`), 0)() 
+        await idVisibleAtIndex(ids.YUNITY_CARD(`1 Level\nBoost`), 0)() 
     } 
-    await idVisibleAtIndex(YUNITY_CARD(`${yuCoinEarned}\nYuCoin`), 0)() 
+    await idVisibleAtIndex(ids.YUNITY_CARD(`${yuCoinEarned}\nYuCoin`), 0)() 
 }
