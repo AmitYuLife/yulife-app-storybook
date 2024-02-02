@@ -5,13 +5,10 @@ import * as then from "./_steps/then";
 import * as when from "./_steps/when";
 import * as scenario from "./_steps/scenario";
 import {
-  INPUT_LOGIN_EMAIL,
-  INPUT_RESET_PASSWORD,
   STEPS_COUNT,
   CYCLING_COUNT,
   MINDFUL_COUNT,
   YUCOIN_POWER_INFO,
-  NAV_BAR,
 } from "@ids";
 import { AUTH_USA_1 } from "../_data/mongo/auths";
 import { CUSTOMER_USA_1 } from "../_data";

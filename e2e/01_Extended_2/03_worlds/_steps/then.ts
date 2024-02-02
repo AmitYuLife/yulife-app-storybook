@@ -1,7 +1,9 @@
-import { navigation, expectIsVisibleViaText, expectIsVisibleViaID, CHALLENGE_HISTORY_STARS, STEPS_COUNT, CHALLENGE_HISTORY_NEW_SLOT } from "@utils"
+import { navigation, expectIsVisibleViaText, expectIsVisibleViaID } from "@utils"
 import { screens } from "@appScreens"
 import { addCommasToNumber } from "_utils/appScreens/rewards"
 import { expect } from 'detox'
+import * as ids from "@ids"
+
 
 export const {
     idVisible,
@@ -26,7 +28,7 @@ export const onMeditation = async () => {
     }
 }
 export const stepsAndCoinsVisible = (steps: number, coins: number) => async () => {
-    await expectIsVisibleViaID(STEPS_COUNT(steps))
+    await expectIsVisibleViaID(ids.STEPS_COUNT(steps))
     await expectIsVisibleViaText(`${addCommasToNumber(coins)} YuCoin today`)
 }
 
@@ -55,5 +57,5 @@ export const onChallengeHistory = (challengeType: string, yucoinNum: string, sta
         await expect(element(by.text(value))).toBeVisible()
     }
 
-    await idVisible(CHALLENGE_HISTORY_NEW_SLOT(challengeType, yucoinNum, starCount))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT(challengeType, yucoinNum, starCount))()
 }

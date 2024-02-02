@@ -1,17 +1,4 @@
-import {
-  navigation,
-  YUSCREEN,
-  GET_STARTED_BUTTON,
-  EMPTY_YUSCREEN_COPY,
-  MALE_BODY,
-  FEMALE_BODY,
-  BODY_ITEM_TITLE,
-  AVATAR_BODY,
-  PERSONAL_PRODUCT,
-  SURVEY_SCREEN,
-  BUILDER_BODY,
-  FIB_BROWSE_SCREEN,
-} from "@utils";
+import { navigation } from "@utils";
 import { scrollUntilTextVisible, swipeFromText, scrollFromID, swipeFromTextAtIndex } from "_utils/navigation/scrolling";
 import {
   EARN_RATE_ROW,
@@ -30,6 +17,17 @@ import {
   BOX_OPTION_DESCRIPTION,
   BOX_OPTION_TITLE,
   RIGHT_SIDE_IMAGE_BOX_OPTION,
+  YUSCREEN,
+  GET_STARTED_BUTTON,
+  EMPTY_YUSCREEN_COPY,
+  MALE_BODY,
+  FEMALE_BODY,
+  BODY_ITEM_TITLE,
+  AVATAR_BODY,
+  PERSONAL_PRODUCT,
+  SURVEY_SCREEN,
+  BUILDER_BODY,
+  FIB_BROWSE_SCREEN,
 } from "@ids";
 import moment from "moment";
 import { expect } from "detox"

@@ -15,20 +15,7 @@ import * as then from "./_steps/then";
 import * as when from "./_steps/when";
 import { AUTH_USA_1, AUTH_USA_2, AUTH_USA_3, AUTH_USA_4 } from "../_data/mongo/auths";
 import { CUSTOMER_USA_1, CUSTOMER_USA_2, CUSTOMER_USA_3, CUSTOMER_USA_4 } from "../_data";
-import {
-  AVATAR_ITEM,
-  RIGHT_STATUS_ICON,
-  BACKGROUND_COLOUR_PRODUCT,
-  ONBOARDING_SCREEN,
-  YUCOIN_POWER,
-  TEXT_TEMPLATE,
-  YUSCREEN_AVATAR,
-  SURVEY_SCREEN,
-  SURVEY_TEXT_BOX,
-  CHECK_BOX_STATE,
-  BACK_BUTTON,
-  YUSCREEN_SCROLL_VIEW,
-} from "@ids";
+import { YUSCREEN_SCROLL_VIEW } from "@ids";
 
 import * as helper from "./_resources/helpers";
 import {

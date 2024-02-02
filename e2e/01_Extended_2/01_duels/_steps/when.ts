@@ -1,6 +1,7 @@
-import { navigation, BODY_ITEM_TITLE, navigateViaText } from "@utils"
+import { navigation, navigateViaText } from "@utils"
 import { loginOnly } from "_utils/navigation/login";
 export { authoriseFitkit, sendSteps } from "@socket";
+import * as ids from "@ids"
 
 export const {
     scrollFromText,
@@ -26,7 +27,7 @@ export const {
 
 
 export const tapTab = (tabName: string) => async () => {
-    const tab = element(by.id(BODY_ITEM_TITLE(tabName)))
+    const tab = element(by.id(ids.BODY_ITEM_TITLE(tabName)))
     await tab.tap()
 }
 

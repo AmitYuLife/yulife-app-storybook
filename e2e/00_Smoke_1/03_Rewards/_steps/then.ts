@@ -1,6 +1,7 @@
-import { PRODUCT_CARD_BOTTOM, PRODUCT_CARD_IMAGE, PRODUCT_CARD_TITLE, YUCOIN_LABEL, navigation } from "@utils"
+import { navigation } from "@utils"
 import { screens } from "@appScreens"
 import * as constant from "../_resources/constants"
+import * as ids from "@ids"
 
 export const {
     idVisible,
@@ -35,11 +36,11 @@ export const rewardsLocationModalVisible = async () => {
 }
 
 export const rewardProductCardVisible = (productCardObj) => async () =>{
-    await idVisible(PRODUCT_CARD_TITLE(productCardObj.title))()
-    await idVisible(PRODUCT_CARD_IMAGE(productCardObj.image))()
-    await idVisible(PRODUCT_CARD_BOTTOM(productCardObj.bottomText))()
+    await idVisible(ids.PRODUCT_CARD_TITLE(productCardObj.title))()
+    await idVisible(ids.PRODUCT_CARD_IMAGE(productCardObj.image))()
+    await idVisible(ids.PRODUCT_CARD_BOTTOM(productCardObj.bottomText))()
 
     if (productCardObj.yuCoinPowerIncrease){
-        await idVisible(YUCOIN_LABEL(productCardObj.yuCoinPowerIncrease))()
+        await idVisible(ids.YUCOIN_LABEL(productCardObj.yuCoinPowerIncrease))()
     }
 }

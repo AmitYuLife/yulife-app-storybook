@@ -1,5 +1,4 @@
-import { navigation, textVisibleAtIndex } from "@navigation";
-import * as ids from "@ids"
+import { navigation } from "@navigation";
 import { screens } from "@appScreens";
 
 export const {
