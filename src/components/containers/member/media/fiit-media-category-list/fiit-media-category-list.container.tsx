@@ -129,6 +129,7 @@ const FiitMediaCategoryListContainer = ({
     // this needs to change newSduiRewards when the old rewardsDetails is purged
     dispatch(
       logMixpanelEventActionCreator("button_pressed", {
+        button_id: "promotion_reward_fiit",
         location: "fiit_media_category_list",
       })
     );
