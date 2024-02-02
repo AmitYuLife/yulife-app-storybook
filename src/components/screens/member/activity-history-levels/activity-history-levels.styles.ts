@@ -1,4 +1,5 @@
 import { Style, Colours } from "@styles/index";
+import { isAndroid } from "@utils";
 import { Platform, StyleSheet, ViewStyle } from "react-native";
 
 const headerTwoWidth = Style.adjust(Style.DEVICE_WIDTH > 360 ? 56 : 40);
@@ -7,6 +8,8 @@ const distanceTwoThree = Style.adjust(12);
 export const dividerHeight = Style.adjust(34);
 export const rowHeight = Style.adjust(23);
 export const bottomDividerHeight = Style.adjust(20);
+
+const shouldLeaveSpaceForYuCoinColumn = isAndroid() && Style.DEVICE_HEIGHT > 900 && Style.DEVICE_WIDTH < 450;
 
 export default StyleSheet.create({
   activityLabelWrapper: {
@@ -19,7 +22,7 @@ export default StyleSheet.create({
     width: Style.adjust(180),
   } as ViewStyle,
   activityLabelsWrapper: {
-    width: Style.adjust(150),
+    width: Style.adjust(shouldLeaveSpaceForYuCoinColumn ? 145 : 150),
   } as ViewStyle,
   bottomDivider: {
     borderBottomColor: Colours.neutral.n100,
@@ -133,10 +136,10 @@ export default StyleSheet.create({
     overflow: "hidden",
   } as ViewStyle,
   starWrapper: {
-    marginLeft: Style.adjust(5),
+    marginLeft: Style.adjust(shouldLeaveSpaceForYuCoinColumn ? 2 : 5),
   } as ViewStyle,
   starsColumn: {
-    width: Style.adjust(60),
+    width: Style.adjust(shouldLeaveSpaceForYuCoinColumn ? 30 : 60),
   } as ViewStyle,
   starsWrapper: {
     alignItems: "center",
