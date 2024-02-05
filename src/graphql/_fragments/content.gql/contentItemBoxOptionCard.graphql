@@ -18,12 +18,24 @@ fragment ContentItemBoxOptionCard on ContentItemBoxOptionCard {
   innerHeight
   subtitle
   subtitleTextType
+  titleStyles {
+    ...SduiStyle
+  }
   titleWrapperStyles {
     ...SduiStyle
   }
   subtitleWrapperStyles {
     ...SduiStyle
   }
+  innerWrapperStyles {
+    ...SduiStyle
+  }
+  contentInnerWrapperStyles {
+    ...SduiStyle
+  }
   descriptionNumberOfLines
   titleNumberOfLines
+  variableImage {
+    ...VariableRemoteImage
+  }
 }

@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -856,6 +856,11 @@ export interface ContentItem_ContentItemBoxOptionCard_styles {
   value: string;
 }
 
+export interface ContentItem_ContentItemBoxOptionCard_titleStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItem_ContentItemBoxOptionCard_titleWrapperStyles {
   property: string;
   value: string;
@@ -864,6 +869,27 @@ export interface ContentItem_ContentItemBoxOptionCard_titleWrapperStyles {
 export interface ContentItem_ContentItemBoxOptionCard_subtitleWrapperStyles {
   property: string;
   value: string;
+}
+
+export interface ContentItem_ContentItemBoxOptionCard_innerWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemBoxOptionCard_contentInnerWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItem_ContentItemBoxOptionCard_variableImage_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItem_ContentItemBoxOptionCard_variableImage {
+  image: ContentItem_ContentItemBoxOptionCard_variableImage_image;
+  width: number;
+  height: number | null;
 }
 
 export interface ContentItem_ContentItemBoxOptionCard {
@@ -889,6 +915,10 @@ export interface ContentItem_ContentItemBoxOptionCard {
    */
   subtitleTextType: string | null;
   /**
+   * Supported RN version 3.118.0
+   */
+  titleStyles: ContentItem_ContentItemBoxOptionCard_titleStyles[] | null;
+  /**
    * Supported RN version 3.96.0
    */
   titleWrapperStyles: ContentItem_ContentItemBoxOptionCard_titleWrapperStyles[] | null;
@@ -897,6 +927,14 @@ export interface ContentItem_ContentItemBoxOptionCard {
    */
   subtitleWrapperStyles: ContentItem_ContentItemBoxOptionCard_subtitleWrapperStyles[] | null;
   /**
+   * Supported RN version 3.118.0
+   */
+  innerWrapperStyles: ContentItem_ContentItemBoxOptionCard_innerWrapperStyles[] | null;
+  /**
+   * Supported RN version 3.118.0
+   */
+  contentInnerWrapperStyles: ContentItem_ContentItemBoxOptionCard_contentInnerWrapperStyles[] | null;
+  /**
    * Supported RN version 3.96.0
    */
   descriptionNumberOfLines: number | null;
@@ -904,6 +942,10 @@ export interface ContentItem_ContentItemBoxOptionCard {
    * Supported RN version 3.96.0
    */
   titleNumberOfLines: number | null;
+  /**
+   * Displays variableImage instead of image if present. Supported RN version 3.118.0
+   */
+  variableImage: ContentItem_ContentItemBoxOptionCard_variableImage | null;
 }
 
 export interface ContentItem_ContentItemSwitch_styles {

@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -55,6 +55,7 @@ export interface YuScreenCarouselItem_images_image {
 export interface YuScreenCarouselItem_images {
   image: YuScreenCarouselItem_images_image;
   width: number;
+  height: number | null;
 }
 
 export interface YuScreenCarouselItem_titleMarkdownStyles {

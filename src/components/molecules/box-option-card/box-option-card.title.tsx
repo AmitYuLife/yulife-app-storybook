@@ -1,13 +1,14 @@
 import { Colours, Style } from "@styles";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, ViewStyle } from "react-native";
 
 type Props = {
   children: string;
   numberOfLines?: number;
+  style?: ViewStyle;
 };
 
-export const Title = ({ children, numberOfLines }: Props) => (
-  <Text numberOfLines={numberOfLines} style={styles.title}>
+export const Title = ({ children, numberOfLines, style }: Props) => (
+  <Text numberOfLines={numberOfLines} style={StyleSheet.flatten([styles.title, style])}>
     {children}
   </Text>
 );

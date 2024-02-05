@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -271,6 +271,7 @@ export interface GetYuScreen_getYuScreen_spanningProductSlot_images_image {
 export interface GetYuScreen_getYuScreen_spanningProductSlot_images {
   image: GetYuScreen_getYuScreen_spanningProductSlot_images_image;
   width: number;
+  height: number | null;
 }
 
 export interface GetYuScreen_getYuScreen_spanningProductSlot {
@@ -324,6 +325,7 @@ export interface GetYuScreen_getYuScreen_productCarousel_items_images_image {
 export interface GetYuScreen_getYuScreen_productCarousel_items_images {
   image: GetYuScreen_getYuScreen_productCarousel_items_images_image;
   width: number;
+  height: number | null;
 }
 
 export interface GetYuScreen_getYuScreen_productCarousel_items_titleMarkdownStyles {
@@ -390,6 +392,7 @@ export interface GetYuScreen_getYuScreen_carrierLogo_image {
 export interface GetYuScreen_getYuScreen_carrierLogo {
   image: GetYuScreen_getYuScreen_carrierLogo_image;
   width: number;
+  height: number | null;
 }
 
 export interface GetYuScreen_getYuScreen_enrollCopy_styles {

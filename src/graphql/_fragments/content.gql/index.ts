@@ -69,6 +69,7 @@ export * from "./contentItemYugiConfirm.gql";
 export * from "./contentItemPersonalProductInfo.gql";
 export * from "./contentItemSelectedPackageAccordion.gql";
 export * from "./contentItemBox.gql";
+export * from "./contentItemBoxOptionCard.gql";
 export * from "./contentItem.gql";
 export * from "./absoluteContentItem.gql";
 export * from "./contentItemDropdownInput";

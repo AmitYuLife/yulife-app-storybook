@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -22,6 +22,7 @@ export interface ContentItemProductDetailsHeader_providerLogo_image {
 export interface ContentItemProductDetailsHeader_providerLogo {
   image: ContentItemProductDetailsHeader_providerLogo_image;
   width: number;
+  height: number | null;
 }
 
 export interface ContentItemProductDetailsHeader_itemSlot {

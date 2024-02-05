@@ -15,10 +15,20 @@ interface IProps {
 
   /** pass in a category name to pre select */
   preselectCategory?: string;
+
+  /** If set to "pop", will use Navigation.pop instead of Navigation.popToRoot */
+  closeNavigationOption?: string;
 }
 
-const WellbeingHubItemsContainer: FC<IProps> = ({ componentId, preselectCategory }) => {
-  const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
+const WellbeingHubItemsContainer: FC<IProps> = ({ componentId, preselectCategory, closeNavigationOption }: IProps) => {
+  const handleClose = useCallback(() => {
+    if (closeNavigationOption === "pop") {
+      Navigation.pop(componentId);
+    } else {
+      Navigation.popToRoot(componentId);
+    }
+  }, [componentId, closeNavigationOption]);
+
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [categoryToPreselect, setCategoryToPreselect] = useState(preselectCategory || null);
   const firstName = useSelector(getUserFirstName);

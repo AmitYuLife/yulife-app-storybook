@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -15,4 +15,5 @@ export interface VariableRemoteImage_image {
 export interface VariableRemoteImage {
   image: VariableRemoteImage_image;
   width: number;
+  height: number | null;
 }

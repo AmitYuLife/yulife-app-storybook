@@ -42,7 +42,7 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
         <View style={styles.inner}>
           <View style={styles.leftSide}>
             {funding ? <Funding {...funding} /> : null}
-            <ProviderLogo image={providerLogo?.image} width={providerLogo?.width} />
+            <ProviderLogo image={providerLogo?.image} width={providerLogo?.width} height={providerLogo?.height} />
             <Title titleType="h2" title={productName} />
             <ProductIdentifier productIdentifier={productIdentifier} />
           </View>

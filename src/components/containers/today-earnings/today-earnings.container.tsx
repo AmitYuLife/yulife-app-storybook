@@ -21,9 +21,12 @@ import { gql } from "@graphql/__generated";
 
 interface IProps {
   componentId: string;
+
+  /** If set to "pop", will use Navigation.pop instead of Navigation.popToRoot */
+  closeNavigationOption?: string;
 }
 
-const TodayEarningsContainer = ({ componentId }: IProps) => {
+const TodayEarningsContainer = ({ componentId, closeNavigationOption }: IProps) => {
   const [permissionIsLoading, setPermissionIsLoading] = useState(true);
   const [isGoogleFitAuthorised, setIsGoogleFitAuthorised] = useState(false);
   const { authoriseFitKitTypes } = useFitKit();
@@ -93,7 +96,13 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
     })();
   }, []);
 
-  const onLeftIconPress = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
+  const onLeftIconPress = useCallback(() => {
+    if (closeNavigationOption === "pop") {
+      Navigation.pop(componentId);
+    } else {
+      Navigation.popToRoot(componentId);
+    }
+  }, [componentId]);
 
   useBackHandler(() => {
     onLeftIconPress();

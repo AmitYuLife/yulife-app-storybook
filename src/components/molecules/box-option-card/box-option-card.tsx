@@ -1,7 +1,7 @@
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { default as BoxOption } from "../box-option/box-option";
-import { ContentItemButton_event, RemoteImage, SduiAction } from "@graphql/_core/schema";
+import { ContentItemButton_event, RemoteImage, SduiAction, VariableRemoteImage } from "@graphql/_core/schema";
 import { Style, Colours } from "@styles";
 import { ComponentProps, useCallback, useRef, useState } from "react";
 import { Title } from "./box-option-card.title";
@@ -14,15 +14,19 @@ import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 interface Props {
   title: string;
   description: string;
-  image: RemoteImage;
+  image?: RemoteImage;
+  variableImage?: VariableRemoteImage;
   onPress: SduiAction;
   event?: SduiAction;
   descriptionTextType?: ComponentProps<typeof TextTemplate>["type"];
   innerHeight?: number;
   subtitle?: string;
   subtitleTextType?: ComponentProps<typeof TextTemplate>["type"];
+  titleStyles?: ViewStyle;
   titleWrapperStyles?: ViewStyle;
   subtitleWrapperStyles?: ViewStyle;
+  innerWrapperStyles?: ViewStyle;
+  contentInnerWrapperStyles?: ViewStyle;
   titleNumberOfLines?: number;
   descriptionNumberOfLines?: number;
 }
@@ -33,12 +37,16 @@ export const BoxOptionCard = ({
   innerHeight = 120,
   descriptionTextType = "b2",
   image,
+  variableImage,
   onPress,
   event,
   subtitle,
   subtitleTextType = "l2b",
   titleWrapperStyles = {},
+  titleStyles = {},
   subtitleWrapperStyles = {},
+  innerWrapperStyles = {},
+  contentInnerWrapperStyles = {},
   titleNumberOfLines,
   descriptionNumberOfLines,
 }: Props) => {
@@ -71,6 +79,8 @@ export const BoxOptionCard = ({
 
   const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onPress, eventCallback);
 
+  const imageUri = variableImage?.image.uri || image?.uri;
+
   return (
     <BoxOption
       onPress={onPress ? handleSduiAction : null}
@@ -78,25 +88,30 @@ export const BoxOptionCard = ({
       wrapperStyle={styles.wrapper}
       innerHeight={Style.adjust(adjustedInnerHeight)}
     >
-      <View style={styles.innerWrapper}>
-        {!image?.uri ? null : (
+      <View style={StyleSheet.flatten([styles.innerWrapper, innerWrapperStyles])}>
+        {!imageUri ? null : (
           <View style={styles.imageWrapper}>
             <Image
-              height={Style.adjust(104)}
-              width={Style.adjust(120)}
-              source={{ uri: image.uri }}
-              testID={RIGHT_SIDE_IMAGE_BOX_OPTION(image.uri)}
+              height={Style.adjust(variableImage ? variableImage.height ?? variableImage.width : 104)}
+              width={Style.adjust(variableImage ? variableImage.width : 120)}
+              source={{ uri: imageUri }}
+              testID={RIGHT_SIDE_IMAGE_BOX_OPTION(imageUri)}
             />
           </View>
         )}
         <View onLayout={handleLayout} ref={contentWrapperRef} style={styles.contentWrapper}>
-          <View style={styles.contentInnerWrapper} testID={BOX_OPTION_DESCRIPTION(description)}>
+          <View
+            style={StyleSheet.flatten([styles.contentInnerWrapper, contentInnerWrapperStyles])}
+            testID={BOX_OPTION_DESCRIPTION(description)}
+          >
             {!title ? null : (
               <View
                 style={StyleSheet.flatten([styles.titleWrapper, titleWrapperStyles])}
                 testID={BOX_OPTION_TITLE(title)}
               >
-                <Title numberOfLines={titleNumberOfLines}>{title}</Title>
+                <Title style={titleStyles} numberOfLines={titleNumberOfLines}>
+                  {title}
+                </Title>
               </View>
             )}
             {!subtitle ? null : (
