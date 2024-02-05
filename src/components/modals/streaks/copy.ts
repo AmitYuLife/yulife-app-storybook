@@ -10,6 +10,7 @@ export interface IStreakCopy {
   subheadingInstructionsToday: string;
   subheadingTodayStreakDone: string[];
   subheadingInstructions: string;
+  subheadingNextStreak: string;
   headingCompleted: string;
   headingCompletedTodayStreak: string[];
   headingStartStreakDay: string[];
@@ -46,4 +47,5 @@ export const streakCopy = (streakMax: string, reward: string, type: string): ISt
     t("screens.streak.heading_start_streak_day.day4"),
     t("screens.streak.heading_start_streak_day.day5"),
   ],
+  subheadingNextStreak: t("screens.streak.completion.next_streak"),
 });

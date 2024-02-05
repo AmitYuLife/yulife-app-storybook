@@ -4,16 +4,14 @@ import { useEffect, useState } from "react";
 
 interface UseTimerProps {
   nextStreakAvailableAt: string;
-  streakMax: number;
-  streakCompleted: number;
-  streakAwardId: string;
+  shouldShowTimer: boolean;
 }
 
-export function useTimer({ nextStreakAvailableAt, streakMax, streakCompleted, streakAwardId }: UseTimerProps) {
+export function useTimer({ nextStreakAvailableAt, shouldShowTimer }: UseTimerProps) {
   const [timeRemaining, setTimeRemaining] = useState(getTimeRemaining(nextStreakAvailableAt, "medium"));
 
   useEffect(() => {
-    if (streakMax === streakCompleted && !streakAwardId) {
+    if (shouldShowTimer) {
       const callback = () => {
         setTimeRemaining(getTimeRemaining(nextStreakAvailableAt, "medium"));
         timer = setTimeout(callback, DETOX_ENABLED ? 2000 : 1000); // detox will hang for timers less than 1500ms

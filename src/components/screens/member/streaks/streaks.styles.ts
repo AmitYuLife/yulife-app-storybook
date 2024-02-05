@@ -1,12 +1,27 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Style } from "@styles";
+import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { Style, TOP_BAR } from "@styles";
 
 export default StyleSheet.create({
   buttonWrapper: {
     flex: 1,
-    marginBottom: Style.adjust(30),
     justifyContent: "flex-end",
+    position: "absolute",
+    left: Style.adjust(24),
+    right: Style.adjust(24),
+    bottom: Platform.select({
+      ios: 0,
+      android: Style.adjust(24),
+    }),
+    alignItems: "center",
   } as ViewStyle,
+  bottomPad: {
+    height: TOP_BAR.TOP_BAR_WITH_PAD,
+    width: Style.DEVICE_WIDTH,
+  },
+  bottomPadLarge: {
+    height: Style.adjust(150),
+    width: Style.DEVICE_WIDTH,
+  },
   buttonPrimaryWrapper: {
     marginTop: Style.adjust(32),
   } as ViewStyle,
@@ -29,36 +44,4 @@ export default StyleSheet.create({
   streakWrapperLast: {
     marginRight: 0,
   } as ViewStyle,
-  streaksWrapper: {
-    flexDirection: "row",
-    marginTop: Style.adjust(16),
-  } as ViewStyle,
-  wrapper: {
-    alignItems: "center",
-    backgroundColor: "rgba(255,255,255,0.9)",
-    flex: 1,
-    paddingHorizontal: Style.adjust(24),
-  } as ViewStyle,
-  progressWrapper: {
-    alignItems: "center",
-  } as ViewStyle,
-  lottieWrapper: {
-    width: Style.adjust(220),
-    height: Style.adjust(220),
-    marginBottom: Style.adjust(Style.isShortToMedium() ? Style.adjust(15) : Style.adjust(32)),
-  },
-  lottie: {
-    width: Style.adjust(220),
-    height: Style.adjust(220),
-  },
-  activeBuffsButton: {
-    position: "absolute",
-    top: Style.adjust(100),
-    right: Style.adjust(44),
-    shadowColor: "#000000",
-    shadowOffset: { width: Style.adjust(2), height: Style.adjust(2) },
-    shadowOpacity: 0.16,
-    shadowRadius: 7,
-    elevation: 2,
-  },
 });

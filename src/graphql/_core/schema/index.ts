@@ -163,6 +163,7 @@ export * from "./GetSduiJourney";
 export * from "./GetSduiStaticStep";
 export * from "./GetSession";
 export * from "./GetStatistics";
+export * from "./GetStreakDetails";
 export * from "./GetSudokuBoard";
 export * from "./GetSudokuPractice";
 export * from "./GetSudokuStats";

@@ -35,6 +35,14 @@ export const goToChallengesList = ({
   levelAvailable,
   isChestLevel,
 }: GoToChallengesListProps) => {
+  if (isNavigatingFromModal) {
+    Navigation.dismissOverlayWithChild();
+  }
+
+  if (isChestLevel && !useHalfModalsForQuestMap) {
+    dismissChestModal();
+  }
+
   const goToQuestChallengesList = () => {
     pushToScreen(componentId, {
       component: {
@@ -54,16 +62,7 @@ export const goToChallengesList = ({
   const ctaLabelSubmit = t("screens.challenge_next_modal.cta_submit");
   const ctaLabelReject = t("screens.challenge_next_modal.cta_reject");
 
-  if (isChestLevel && !useHalfModalsForQuestMap) {
-    dismissChestModal();
-  }
-
-  if (!goals?.length || !levelAvailable || !useHalfModalsForQuestMap) {
-    return goToQuestChallengesList();
-  }
-
-  if (isNavigatingFromModal) {
-    Navigation.dismissOverlayWithChild();
+  if (!goals?.length || !levelAvailable || !useHalfModalsForQuestMap || isNavigatingFromModal) {
     return goToQuestChallengesList();
   }
 
