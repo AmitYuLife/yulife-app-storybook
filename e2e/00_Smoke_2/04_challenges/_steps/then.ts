@@ -1,4 +1,5 @@
-import { multipleTextVisible, navigation, wait } from "@utils"
+import { multipleTextVisible, navigation } from "@utils"
+import {wait} from "../../../_utils/navigation/common"
 import { screens } from "@appScreens"
 import * as ids from "@ids"
 import { GOALS_2 } from "@data"
@@ -187,15 +188,15 @@ export const yunityCorrect = (worldType: "Forest" | "Ocean" |"Desert" |"Mountain
 
     switch(worldType){
         case "Forest":
-            label = "You’ve achieved Yunity with the Forest"
-            subheading = "Take a deep, celebratory breath.\nYou earned a Yunity forest chest!"
+            label = "You've achieved Yunity\nwith the Forest"
+            subheading = "Take a deep, celebratory breath."
             break 
         case "Ocean":
-            label = "You’ve achieved Yunity with the Ocean"
+            label = "You’ve achieved Yunity\nwith the Ocean"
             subheading = "You took the plunge and ascended victorious. You earned a Yunity ocean chest!"
             break 
         case "Desert":
-            label = "You’ve achieved Yunity with the Desert"
+            label = "You’ve achieved Yunity\nwith the Desert"
             subheading = "You are your own wellbeing oasis and earned a Yunity desert chest!"
             break
         case "Mountain1":
@@ -204,11 +205,11 @@ export const yunityCorrect = (worldType: "Forest" | "Ocean" |"Desert" |"Mountain
     }
     
     try{
-        await textVisible(label, 3000)
+        await textVisible(label, 3000)()
         await textVisible(subheading)()
         await navigateViaText("Continue")
     }catch(e){
-        await textVisible(label, 3000)
+        await textVisible(label, 3000)()
         await navigateViaText("Continue")
     }
 }

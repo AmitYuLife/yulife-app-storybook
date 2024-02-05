@@ -109,7 +109,8 @@ export const tapText = (text: string, waitTime = 0, longPress?: boolean) => asyn
 
 export const textVisible = (text: string, waitTime = 0) => async () => {
     const target = element(by.text(text))
-    await waitFor(target).toBeVisible().withTimeout(waitTime)
+    await navigation.common.wait(waitTime)()
+    await wait(waitTime)()
     await expect(target).toBeVisible()
 }
 
