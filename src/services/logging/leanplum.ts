@@ -122,4 +122,8 @@ export default class LeanplumClient {
 
     return LeanplumInbox.onForceContentUpdate(callback);
   };
+
+  public setUserLastUpdated = () => {
+    return Leanplum.setUserAttributes({ lastUpdated: new Date() });
+  };
 }
