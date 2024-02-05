@@ -3,7 +3,6 @@ import { screens } from "@appScreens"
 import { BUSINESS_ACCOUNT_1, CUSTOMER_1, YUNIVERSITY_COURSE_1, YUNIVERSITY_COURSE_MODULE_1 } from "@data"
 import { QuizDetails } from "../_resources/types"
 import moment from "moment"
-import { scrollUntilTextVisible } from "_utils/navigation/scrolling"
 import * as ids from "@ids"
 
 export const {
@@ -21,7 +20,8 @@ export const {
 } = screens.challenges
 
 export const {
-    swipeFromText
+    swipeFromText,
+    scrollUntilTextVisible
 } = navigation.scrolling
 
 export const {

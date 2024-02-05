@@ -1,10 +1,9 @@
 import { screens } from "@appScreens"
-import { navigation, textVisible } from "@utils"
+import { navigation } from "@utils"
 export { authoriseFitkit, sendSteps } from "@socket";
 import { YUNIVERSITY_COURSE_MODULE_1 } from "@data";
 import { canSeeQuizQuestion } from "./then";
 import { QuizDetails } from "../_resources/types";
-import { scrollUntilTextVisibleAtIndex } from "_utils/navigation/scrolling";
 import * as ids from "@ids"
 
 export const {
@@ -17,6 +16,7 @@ export const {
     tapIDAtPoint,
     tapTextAtIndex,
     closeScreen,
+    textVisible
 } = navigation.common
 
 export const {
@@ -27,7 +27,8 @@ export const {
 export const {
     scrollFromID,
     swipeFromText,
-    scrollUntilTextVisible
+    scrollUntilTextVisible,
+    scrollUntilTextVisibleAtIndex
 } = navigation.scrolling
 
 export const tapModule = (module: typeof YUNIVERSITY_COURSE_MODULE_1) => async () => {

@@ -1,4 +1,4 @@
-import { navigation, expectIsVisibleViaText, expectIsVisibleViaID } from "@utils"
+import { navigation } from "@utils"
 import { screens } from "@appScreens"
 import { addCommasToNumber } from "_utils/appScreens/rewards"
 import { expect } from 'detox'
@@ -10,7 +10,9 @@ export const {
     textVisible,
     multipleIDVisible,
     completedTodayStreakCopyVisible,
-    textNotVisible
+    textNotVisible,
+    expectIsVisibleViaID,
+    expectIsVisibleViaText
 } = navigation.common
 
 export const {

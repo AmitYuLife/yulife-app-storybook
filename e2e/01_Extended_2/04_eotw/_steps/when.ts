@@ -1,5 +1,5 @@
 import { screens } from "@appScreens"
-import { navigation, navigateViaID } from "@utils"
+import { navigation } from "@utils"
 export { authoriseFitkit, sendSteps } from "@socket";
 import { sendSteps, sendMindfulnessData, sendReduxEvent } from "@socket"
 import * as ids from "@ids"
@@ -11,7 +11,8 @@ export const {
     navigateViaText,
     wait,
     booleanTextVisible,
-    tapIDAtPoint
+    tapIDAtPoint,
+    navigateViaID
 } = navigation.common
 
 export const {

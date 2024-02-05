@@ -1,4 +1,4 @@
-import { multipleTextVisible, navigation } from "@utils"
+import { navigation } from "@utils"
 import { screens } from "@appScreens"
 import * as ids from "@ids"
 import * as data from "@data"
@@ -18,7 +18,8 @@ export const {
     textVisibleAtIndex,
     idVisibleAtIndex,
     idNotVisible,
-    textNotVisible
+    textNotVisible,
+    multipleTextVisible
 } = navigation.common
 
 export const {
