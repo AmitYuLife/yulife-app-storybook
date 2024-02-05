@@ -46,21 +46,19 @@ export const RewardMilestoneDetails = ({
 
   const calculated = useMemo(() => {
     return {
-      hintPress: !hasCompleteRewardCardInfo
-        ? null
-        : () => {
-            pushToScreen(currentRoute, {
-              component: {
-                id: ROUTES.sduiStatic,
-                name: ROUTES.sduiStatic,
-                passProps: {
-                  stepId: "game_mechanics_information",
-                  dynamicId: currentRoute,
-                },
-              },
-            });
-            Navigation.dismissOverlayWithChild();
+      hintPress: () => {
+        pushToScreen(currentRoute, {
+          component: {
+            id: ROUTES.sduiStatic,
+            name: ROUTES.sduiStatic,
+            passProps: {
+              stepId: "game_mechanics_information",
+              dynamicId: currentRoute,
+            },
           },
+        });
+        Navigation.dismissOverlayWithChild();
+      },
       hintImage: {
         Element: <GiftUnlockedStarsSvg />,
       },
