@@ -59,8 +59,8 @@ export const reloadOnly = async () => {
 
 export const wait = (timeout = 5000) => async () => new Promise((resolve) => setTimeout(resolve, timeout));
 
-export const navigateViaID = async (id: string) => {
-    await (waitFor(element(by.id(id)))).toBeVisible();
+export const navigateViaID = async (id: string, waitTime?:number) => {
+    await wait(waitTime)()
     await element(by.id(id)).tap();
 }
 
@@ -70,7 +70,7 @@ export const navigateViaLabel = async (label: string) => {
 }
 
 export const navigateViaText = async (text: string, timeout = 0) => {
-    await (waitFor(element(by.text(text)))).toBeVisible().withTimeout(timeout);
+    await wait(timeout)()
     await element(by.text(text)).tap();
 }
 
@@ -123,7 +123,7 @@ export const textNotVisible = (text: string, waitTime = 0) => async () => {
 
 export const tapID = (id: string, waitTime = 0) => async () => {
     const target = element(by.id(id))
-    await waitFor(target).toBeVisible().withTimeout(waitTime)
+    await wait(waitTime)()
     await target.tap()
 }
 

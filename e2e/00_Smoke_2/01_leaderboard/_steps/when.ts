@@ -92,7 +92,7 @@ export const clickNext = async () => {
 }
 
 export const clickLetsGo = async () => {
-    await navigateViaText(t("Let's go"))
+    await tapText("Let's go")()
 }
 
 export const clickDuelButton = async () => {

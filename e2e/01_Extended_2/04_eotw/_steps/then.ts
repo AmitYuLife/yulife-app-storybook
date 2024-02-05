@@ -1,4 +1,4 @@
-import { navigation, navigateViaText, wait } from "@utils"
+import { navigation } from "@utils"
 import { screens } from "@appScreens"
 import { USER_1 } from "@data"
 import { expect } from 'detox'
@@ -9,7 +9,9 @@ export const {
     textVisible,
     textNotVisible,
     idExist,
-    textVisibleAtIndex
+    textVisibleAtIndex,
+    navigateViaText,
+    wait
 } = navigation.common
 
 export const {

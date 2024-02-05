@@ -58,8 +58,7 @@ Feature("Slots updates Enrolment - Opt In Opt out", async () => {
         })
     })
 
-//"Slots updates Enrolment - Opt Out"
-    Scenario("Future start date No enrolment window user with category opt in", scenario.start, async () => {
+    Scenario("Future start date No enrolment window user with category opt in [Slots updates Enrolment - Opt Out]", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_93, data.AUTH_93), async () => {
             helper.ONBOARD_YU_SCREEN(GdentAvailableSoon)
             helper.ON_YU_SCREEN(data.CUSTOMER_93,GdentAvailableSoon);
