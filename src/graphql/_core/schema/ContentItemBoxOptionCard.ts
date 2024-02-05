@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -29,6 +29,11 @@ export interface ContentItemBoxOptionCard_styles {
   value: string;
 }
 
+export interface ContentItemBoxOptionCard_titleStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemBoxOptionCard_titleWrapperStyles {
   property: string;
   value: string;
@@ -37,6 +42,27 @@ export interface ContentItemBoxOptionCard_titleWrapperStyles {
 export interface ContentItemBoxOptionCard_subtitleWrapperStyles {
   property: string;
   value: string;
+}
+
+export interface ContentItemBoxOptionCard_innerWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItemBoxOptionCard_contentInnerWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface ContentItemBoxOptionCard_variableImage_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItemBoxOptionCard_variableImage {
+  image: ContentItemBoxOptionCard_variableImage_image;
+  width: number;
+  height: number | null;
 }
 
 export interface ContentItemBoxOptionCard {
@@ -61,6 +87,10 @@ export interface ContentItemBoxOptionCard {
    */
   subtitleTextType: string | null;
   /**
+   * Supported RN version 3.118.0
+   */
+  titleStyles: ContentItemBoxOptionCard_titleStyles[] | null;
+  /**
    * Supported RN version 3.96.0
    */
   titleWrapperStyles: ContentItemBoxOptionCard_titleWrapperStyles[] | null;
@@ -69,6 +99,14 @@ export interface ContentItemBoxOptionCard {
    */
   subtitleWrapperStyles: ContentItemBoxOptionCard_subtitleWrapperStyles[] | null;
   /**
+   * Supported RN version 3.118.0
+   */
+  innerWrapperStyles: ContentItemBoxOptionCard_innerWrapperStyles[] | null;
+  /**
+   * Supported RN version 3.118.0
+   */
+  contentInnerWrapperStyles: ContentItemBoxOptionCard_contentInnerWrapperStyles[] | null;
+  /**
    * Supported RN version 3.96.0
    */
   descriptionNumberOfLines: number | null;
@@ -76,4 +114,8 @@ export interface ContentItemBoxOptionCard {
    * Supported RN version 3.96.0
    */
   titleNumberOfLines: number | null;
+  /**
+   * Displays variableImage instead of image if present. Supported RN version 3.118.0
+   */
+  variableImage: ContentItemBoxOptionCard_variableImage | null;
 }

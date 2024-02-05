@@ -3,4 +3,5 @@ fragment VariableRemoteImage on VariableRemoteImage {
     ...RemoteImage
   }
   width
+  height
 }

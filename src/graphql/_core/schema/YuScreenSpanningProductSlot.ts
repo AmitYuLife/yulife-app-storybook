@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -15,6 +15,7 @@ export interface YuScreenSpanningProductSlot_images_image {
 export interface YuScreenSpanningProductSlot_images {
   image: YuScreenSpanningProductSlot_images_image;
   width: number;
+  height: number | null;
 }
 
 export interface YuScreenSpanningProductSlot {

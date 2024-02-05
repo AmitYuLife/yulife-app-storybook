@@ -192,7 +192,7 @@ const ActivityFeed = ({
     }
 
     handleNavigateToQuestsTab();
-    Navigation.pop(ROUTES.todayEarnings);
+    Navigation.popToRoot(ROUTES.todayEarnings);
   }, [dispatch, button]);
 
   const isDisabled = useCallback(

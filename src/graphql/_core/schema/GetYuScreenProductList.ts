@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -55,6 +55,7 @@ export interface GetYuScreenProductList_getYuScreenProductList_body_images_image
 export interface GetYuScreenProductList_getYuScreenProductList_body_images {
   image: GetYuScreenProductList_getYuScreenProductList_body_images_image;
   width: number;
+  height: number | null;
 }
 
 export interface GetYuScreenProductList_getYuScreenProductList_body_titleMarkdownStyles {

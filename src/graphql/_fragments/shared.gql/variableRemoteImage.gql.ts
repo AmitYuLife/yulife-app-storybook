@@ -9,5 +9,6 @@ export const GQL_FRAGMENT_VARIABLE_REMOTE_IMAGE = gql`
       ...RemoteImage
     }
     width
+    height
   }
 `;

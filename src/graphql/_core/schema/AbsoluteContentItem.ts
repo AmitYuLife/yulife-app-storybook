@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -856,6 +856,11 @@ export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_styles {
   value: string;
 }
 
+export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_titleStyles {
+  property: string;
+  value: string;
+}
+
 export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_titleWrapperStyles {
   property: string;
   value: string;
@@ -864,6 +869,27 @@ export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_titleWrapperS
 export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_subtitleWrapperStyles {
   property: string;
   value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_innerWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_contentInnerWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_variableImage_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface AbsoluteContentItem_item_ContentItemBoxOptionCard_variableImage {
+  image: AbsoluteContentItem_item_ContentItemBoxOptionCard_variableImage_image;
+  width: number;
+  height: number | null;
 }
 
 export interface AbsoluteContentItem_item_ContentItemBoxOptionCard {
@@ -889,6 +915,10 @@ export interface AbsoluteContentItem_item_ContentItemBoxOptionCard {
    */
   subtitleTextType: string | null;
   /**
+   * Supported RN version 3.118.0
+   */
+  titleStyles: AbsoluteContentItem_item_ContentItemBoxOptionCard_titleStyles[] | null;
+  /**
    * Supported RN version 3.96.0
    */
   titleWrapperStyles: AbsoluteContentItem_item_ContentItemBoxOptionCard_titleWrapperStyles[] | null;
@@ -897,6 +927,14 @@ export interface AbsoluteContentItem_item_ContentItemBoxOptionCard {
    */
   subtitleWrapperStyles: AbsoluteContentItem_item_ContentItemBoxOptionCard_subtitleWrapperStyles[] | null;
   /**
+   * Supported RN version 3.118.0
+   */
+  innerWrapperStyles: AbsoluteContentItem_item_ContentItemBoxOptionCard_innerWrapperStyles[] | null;
+  /**
+   * Supported RN version 3.118.0
+   */
+  contentInnerWrapperStyles: AbsoluteContentItem_item_ContentItemBoxOptionCard_contentInnerWrapperStyles[] | null;
+  /**
    * Supported RN version 3.96.0
    */
   descriptionNumberOfLines: number | null;
@@ -904,6 +942,10 @@ export interface AbsoluteContentItem_item_ContentItemBoxOptionCard {
    * Supported RN version 3.96.0
    */
   titleNumberOfLines: number | null;
+  /**
+   * Displays variableImage instead of image if present. Supported RN version 3.118.0
+   */
+  variableImage: AbsoluteContentItem_item_ContentItemBoxOptionCard_variableImage | null;
 }
 
 export interface AbsoluteContentItem_item_ContentItemSwitch_styles {

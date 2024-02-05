@@ -16,6 +16,7 @@ import {
   ContentItemLinearGradient,
   ContentItemWrapper,
   ContentItemHint,
+  ContentItemBoxOptionCard,
 } from "@components/sdui";
 import { ProductDetailsButton } from "../subcomponents/product-details.button";
 import media from "@styles/media";
@@ -101,6 +102,8 @@ const renderItemContent = (item: BodyItems): JSX.Element => {
       return <ContentItemWrapper key={item.id} {...item} />;
     case "ContentItemHint":
       return <ContentItemHint key={item.id} {...item} />;
+    case "ContentItemBoxOptionCard":
+      return <ContentItemBoxOptionCard key={item.id} {...item} />;
     default:
       return null;
   }

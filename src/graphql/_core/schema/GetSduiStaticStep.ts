@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -866,6 +866,11 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCa
   value: string;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_titleStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_titleWrapperStyles {
   property: string;
   value: string;
@@ -874,6 +879,27 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCa
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_subtitleWrapperStyles {
   property: string;
   value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_innerWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_contentInnerWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_variableImage_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_variableImage {
+  image: GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_variableImage_image;
+  width: number;
+  height: number | null;
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard {
@@ -899,6 +925,10 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCa
    */
   subtitleTextType: string | null;
   /**
+   * Supported RN version 3.118.0
+   */
+  titleStyles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_titleStyles[] | null;
+  /**
    * Supported RN version 3.96.0
    */
   titleWrapperStyles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_titleWrapperStyles[] | null;
@@ -909,6 +939,16 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCa
     | GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_subtitleWrapperStyles[]
     | null;
   /**
+   * Supported RN version 3.118.0
+   */
+  innerWrapperStyles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_innerWrapperStyles[] | null;
+  /**
+   * Supported RN version 3.118.0
+   */
+  contentInnerWrapperStyles:
+    | GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_contentInnerWrapperStyles[]
+    | null;
+  /**
    * Supported RN version 3.96.0
    */
   descriptionNumberOfLines: number | null;
@@ -916,6 +956,10 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCa
    * Supported RN version 3.96.0
    */
   titleNumberOfLines: number | null;
+  /**
+   * Displays variableImage instead of image if present. Supported RN version 3.118.0
+   */
+  variableImage: GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_variableImage | null;
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemSwitch_styles {
@@ -1951,6 +1995,11 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBo
   value: string;
 }
 
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_titleStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_titleWrapperStyles {
   property: string;
   value: string;
@@ -1959,6 +2008,27 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBo
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_subtitleWrapperStyles {
   property: string;
   value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_innerWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_contentInnerWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_variableImage_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_variableImage {
+  image: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_variableImage_image;
+  width: number;
+  height: number | null;
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard {
@@ -1984,6 +2054,10 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBo
    */
   subtitleTextType: string | null;
   /**
+   * Supported RN version 3.118.0
+   */
+  titleStyles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_titleStyles[] | null;
+  /**
    * Supported RN version 3.96.0
    */
   titleWrapperStyles:
@@ -1996,6 +2070,18 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBo
     | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_subtitleWrapperStyles[]
     | null;
   /**
+   * Supported RN version 3.118.0
+   */
+  innerWrapperStyles:
+    | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_innerWrapperStyles[]
+    | null;
+  /**
+   * Supported RN version 3.118.0
+   */
+  contentInnerWrapperStyles:
+    | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_contentInnerWrapperStyles[]
+    | null;
+  /**
    * Supported RN version 3.96.0
    */
   descriptionNumberOfLines: number | null;
@@ -2003,6 +2089,10 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBo
    * Supported RN version 3.96.0
    */
   titleNumberOfLines: number | null;
+  /**
+   * Displays variableImage instead of image if present. Supported RN version 3.118.0
+   */
+  variableImage: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_variableImage | null;
 }
 
 export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemSwitch_styles {

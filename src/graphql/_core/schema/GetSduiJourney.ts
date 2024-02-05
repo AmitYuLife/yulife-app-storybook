@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -866,6 +866,11 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_sty
   value: string;
 }
 
+export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_titleStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_titleWrapperStyles {
   property: string;
   value: string;
@@ -874,6 +879,27 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_tit
 export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_subtitleWrapperStyles {
   property: string;
   value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_innerWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_contentInnerWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_variableImage_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_variableImage {
+  image: GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_variableImage_image;
+  width: number;
+  height: number | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard {
@@ -899,6 +925,10 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard {
    */
   subtitleTextType: string | null;
   /**
+   * Supported RN version 3.118.0
+   */
+  titleStyles: GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_titleStyles[] | null;
+  /**
    * Supported RN version 3.96.0
    */
   titleWrapperStyles: GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_titleWrapperStyles[] | null;
@@ -907,6 +937,16 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard {
    */
   subtitleWrapperStyles: GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_subtitleWrapperStyles[] | null;
   /**
+   * Supported RN version 3.118.0
+   */
+  innerWrapperStyles: GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_innerWrapperStyles[] | null;
+  /**
+   * Supported RN version 3.118.0
+   */
+  contentInnerWrapperStyles:
+    | GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_contentInnerWrapperStyles[]
+    | null;
+  /**
    * Supported RN version 3.96.0
    */
   descriptionNumberOfLines: number | null;
@@ -914,6 +954,10 @@ export interface GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard {
    * Supported RN version 3.96.0
    */
   titleNumberOfLines: number | null;
+  /**
+   * Displays variableImage instead of image if present. Supported RN version 3.118.0
+   */
+  variableImage: GetSduiJourney_getSduiJourney_body_ContentItemBoxOptionCard_variableImage | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_body_ContentItemSwitch_styles {
@@ -1947,6 +1991,11 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptio
   value: string;
 }
 
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_titleStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_titleWrapperStyles {
   property: string;
   value: string;
@@ -1955,6 +2004,27 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptio
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_subtitleWrapperStyles {
   property: string;
   value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_innerWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_contentInnerWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_variableImage_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_variableImage {
+  image: GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_variableImage_image;
+  width: number;
+  height: number | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard {
@@ -1980,6 +2050,10 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptio
    */
   subtitleTextType: string | null;
   /**
+   * Supported RN version 3.118.0
+   */
+  titleStyles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_titleStyles[] | null;
+  /**
    * Supported RN version 3.96.0
    */
   titleWrapperStyles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_titleWrapperStyles[] | null;
@@ -1990,6 +2064,16 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptio
     | GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_subtitleWrapperStyles[]
     | null;
   /**
+   * Supported RN version 3.118.0
+   */
+  innerWrapperStyles: GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_innerWrapperStyles[] | null;
+  /**
+   * Supported RN version 3.118.0
+   */
+  contentInnerWrapperStyles:
+    | GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_contentInnerWrapperStyles[]
+    | null;
+  /**
    * Supported RN version 3.96.0
    */
   descriptionNumberOfLines: number | null;
@@ -1997,6 +2081,10 @@ export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptio
    * Supported RN version 3.96.0
    */
   titleNumberOfLines: number | null;
+  /**
+   * Displays variableImage instead of image if present. Supported RN version 3.118.0
+   */
+  variableImage: GetSduiJourney_getSduiJourney_absolute_item_ContentItemBoxOptionCard_variableImage | null;
 }
 
 export interface GetSduiJourney_getSduiJourney_absolute_item_ContentItemSwitch_styles {
