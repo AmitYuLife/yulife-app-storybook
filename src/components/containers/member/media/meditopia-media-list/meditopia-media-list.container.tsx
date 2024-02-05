@@ -21,6 +21,7 @@ import { showYuModal } from "@navigation/root";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+
 interface IProps extends IInternalContent {
   componentId: string;
   createChallenge: (hideExternalLinks?: boolean) => void;
@@ -125,6 +126,7 @@ const MeditopiaMediaListContainer = ({
     // this needs to change newSduiRewards when the old rewardsDetails is purged
     dispatch(
       logMixpanelEventActionCreator("button_pressed", {
+        button_id: "promotion_reward_meditopia",
         location: "meditopia_media_list",
       })
     );

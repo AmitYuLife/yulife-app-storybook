@@ -114,6 +114,7 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
         dispatch(updateActiveSocialGroupId(socialGroup.id || activeSocialGroup?.socialGroupId));
         dispatch(
           logMixpanelEventActionCreator("button_pressed", {
+            button_id: "view_leaderboard_button",
             name: socialGroup.name,
           })
         );
