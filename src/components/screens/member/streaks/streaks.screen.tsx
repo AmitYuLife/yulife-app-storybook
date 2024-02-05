@@ -1,16 +1,16 @@
 import React, { useMemo } from "react";
-import { View } from "react-native";
-import { TextTemplate } from "@atoms";
-import { Button, LinkButton, LottieView } from "@molecules";
-import { ActiveBuffsButton } from "@organisms";
+import { SafeAreaView, ScrollView, View } from "react-native";
+import { Button, LinkButton } from "@molecules";
+
 import styles from "./streaks.styles";
-import StreakCompletion from "@components/screens/member/streaks/subcomponents/streak-completion";
-import StreakStart from "./subcomponents/streak-start";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { Style } from "@styles";
 import { DETOX_ENABLED } from "@services/socket";
 import { BuffArea } from "@graphql/__generated";
 import { t } from "@locale";
+import { StreaksLegacy } from "./_legacy/streaks.legacy";
+import { useSelector } from "react-redux";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { Fade } from "@atoms";
 
 interface IProps {
   isLoading: boolean;
@@ -27,6 +27,7 @@ interface IProps {
   onSubmit: (() => void) | null;
   onClose: () => void;
   onPressCtaSecondary?: (() => void) | null;
+  children?: React.ReactNode;
 }
 
 const StreaksScreen = ({
@@ -44,7 +45,9 @@ const StreaksScreen = ({
   onPressCtaSecondary,
   reward,
   accessibilityTimeRemaining,
+  children,
 }: IProps) => {
+  const features = useSelector(getUserFeatures);
   const currentStreakCompleted = onPressCtaSecondary ? streakCompleted : streakCompleted - 1;
   const isStreakCompleted = streakMax === streakCompleted && !streakAwardId;
   const hideBuffs = streakMax === streakCompleted;
@@ -79,45 +82,46 @@ const StreaksScreen = ({
       streakMax,
     ]
   );
+
+  const hideLinkButton = isStreakCompleted || !onPressCtaSecondary || isNotValidTime;
+
   return (
     <>
       <GenericHeadingPad />
-      <View style={styles.wrapper}>
-        <View style={styles.lottieWrapper}>
-          <LottieView style={styles.lottie} source={streakInfo?.image} autoPlay={autoPlayLottie} loop={false} />
-          {hideBuffs ? null : (
-            <ActiveBuffsButton style={styles.activeBuffsButton} iconWidth={35} iconHeight={35} buffTypes={buffTypes} />
-          )}
-        </View>
-
-        <View accessible={true} accessibilityLabel={accessibilityLabel} style={styles.progressWrapper}>
-          <TextTemplate type={Style.isShortToMedium() ? "h2" : "h1"} textAlign="center">
-            {streakInfo?.header}
-          </TextTemplate>
-          <View style={styles.streaksWrapper}>
-            {isStreakCompleted ? (
-              <StreakCompletion timeRemaining={timeRemaining} isNotValidTime={isNotValidTime} label={ribbonLabel} />
-            ) : (
-              <StreakStart heading={streakInfo?.subHeader} streakMax={streakMax} streakCompleted={streakCompleted} />
-            )}
-          </View>
-        </View>
-        <View style={styles.buttonWrapper}>
-          <Button
-            isLoading={isLoading}
-            wrapperStyle={styles.buttonPrimaryWrapper}
-            onPress={onSubmit}
-            label={primaryButtonLabel}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <StreaksLegacy
+          streakInfo={streakInfo}
+          autoPlayLottie={autoPlayLottie}
+          hideBuffs={hideBuffs}
+          isStreakCompleted={isStreakCompleted}
+          timeRemaining={timeRemaining}
+          isNotValidTime={isNotValidTime}
+          ribbonLabel={ribbonLabel}
+          streakCompleted={streakCompleted}
+          streakMax={streakMax}
+          buffTypes={buffTypes}
+          accessibilityLabel={accessibilityLabel}
+        />
+        {children}
+        {!features.useStreakDetails ? null : <View style={hideLinkButton ? styles.bottomPad : styles.bottomPadLarge} />}
+      </ScrollView>
+      <SafeAreaView pointerEvents="box-none" style={styles.buttonWrapper}>
+        <Fade />
+        <Button
+          isLoading={isLoading}
+          wrapperStyle={styles.buttonPrimaryWrapper}
+          onPress={onSubmit}
+          label={primaryButtonLabel}
+          size="Fill"
+        />
+        {hideLinkButton ? null : (
+          <LinkButton
+            wrapperStyle={styles.buttonSecondaryWrapper}
+            onPress={onPressCtaSecondary}
+            label={t("labels.cta.later")}
           />
-          {!onPressCtaSecondary || isNotValidTime ? null : (
-            <LinkButton
-              wrapperStyle={styles.buttonSecondaryWrapper}
-              onPress={onPressCtaSecondary}
-              label={t("labels.cta.later")}
-            />
-          )}
-        </View>
-      </View>
+        )}
+      </SafeAreaView>
       <GenericHeadingAbsolute onRightIconPress={onClose} />
     </>
   );
@@ -140,7 +144,7 @@ const getStreakInfo = (
 
   const info = images.map((image, index) => ({
     header: typeof heading === "string" ? heading : heading[index],
-    subHeader: typeof subHeading === "string" ? subHeading : subHeading[index].replace("${reward}", reward),
+    subHeader: (typeof subHeading === "string" ? subHeading : subHeading[index]).replace("${reward}", reward),
     image,
   }));
 

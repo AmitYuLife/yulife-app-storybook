@@ -43,3 +43,4 @@ export { default as YuCoinLabel } from "./yucoin-label/yucoin-label";
 export { default as PowerCoin } from "./power-coin/power-coin";
 export { WorldCard } from "./world-card/world-card";
 export { default as Pulse } from "./pulse/pulse";
+export { Fade } from "./fade/fade";

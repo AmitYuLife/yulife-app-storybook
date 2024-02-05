@@ -1,0 +1,28 @@
+query GetStreakDetails {
+  getStreakDetails {
+    teaserTitle
+    hint {
+      label
+      description
+      image {
+        id
+        uri
+      }
+    }
+    goalMilestone {
+      rewardTitle
+      progress
+      target
+      rewardQuantity
+      showSparks
+      image {
+        id
+        uri
+      }
+      theme {
+        primaryColor
+        secondaryColor
+      }
+    }
+  }
+}

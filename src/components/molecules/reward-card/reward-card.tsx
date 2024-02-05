@@ -1,11 +1,12 @@
 import { useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Image, TextTemplate, WorldCard } from "@atoms";
-import { RemoteImage } from "@graphql/_core/schema";
 import { t } from "@locale";
 import { Colours, Style } from "@styles";
 import { MAX_PROGRESS_WIDTH, MAX_UI_PROGRESS_PERCENTAGE, rewardCardStyles as styles } from "./reward-card.styles";
-import { StarIcon } from "@atoms/icon/star-icon";
+import { ProgressMilestoneComplete } from "../progress-milestone/progress-milestone-complete";
+import { ProgressMilestoneIncomplete } from "../progress-milestone/progress-milestone-incomplete";
+import LottieView from "../lottie-view/lottie-view";
 
 type RewardCardProps = {
   progress: number;
@@ -14,7 +15,11 @@ type RewardCardProps = {
   rewardQuantity: number;
   primaryColor: string;
   secondaryColor: string;
-  rewardImage: RemoteImage;
+  rewardImage: {
+    id: string;
+    uri?: string;
+  };
+  showSparks?: boolean;
 };
 
 export const RewardCard = ({
@@ -25,14 +30,28 @@ export const RewardCard = ({
   primaryColor,
   secondaryColor,
   rewardImage,
+  showSparks,
 }: RewardCardProps) => {
   const calculated = useMemo(() => {
     const filledBarWidth = {
       width: Math.max(0, MAX_PROGRESS_WIDTH * Math.min(MAX_UI_PROGRESS_PERCENTAGE, progress / target)),
     };
+    const isMaxProgress = progress >= target;
+
+    const barTargetWrapperStyles = {
+      ...styles.barTargetWrapper,
+      ...(isMaxProgress
+        ? {
+            backgroundColor: Colours.primary.p600,
+            borderColor: Colours.primary.p600,
+          }
+        : {}),
+    };
 
     return {
       filledBarWidth,
+      barTargetWrapperStyles,
+      isMaxProgress,
     };
   }, [progress, target]);
 
@@ -50,14 +69,11 @@ export const RewardCard = ({
         </View>
         <View style={styles.barWrapper}>
           <View style={styles.emptyBar} />
-          <View style={styles.barTargetWrapper}>
-            <View style={styles.starIconWrapper}>
-              <StarIcon size={Style.adjust(9)} color={Colours.neutral.n200} />
-            </View>
-          </View>
-          <View style={styles.barTargetWrapperShimRight} />
           <View style={styles.barTargetWrapperShimLeft} />
           <View style={[styles.filledBar, calculated.filledBarWidth]} />
+          <View style={styles.progressMilestoneWrapper}>
+            {progress >= target ? <ProgressMilestoneComplete /> : <ProgressMilestoneIncomplete index={0} target={1} />}
+          </View>
         </View>
       </View>
       {!rewardImage?.uri ? null : (
@@ -68,6 +84,9 @@ export const RewardCard = ({
           </View>
           <View style={StyleSheet.flatten([styles.imageOverlay, { borderColor: secondaryColor }])} />
         </View>
+      )}
+      {!showSparks ? null : (
+        <LottieView source={require("./assets/sparkles.json")} style={styles.sparks} autoPlay={true} loop={true} />
       )}
     </View>
   );

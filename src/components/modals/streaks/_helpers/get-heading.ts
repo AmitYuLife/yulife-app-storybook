@@ -9,13 +9,14 @@ export const getHeading = ({
   streakCompleted,
   copy,
 }: Pick<Props, "streakAwardId" | "isDoneToday" | "streakMax" | "streakCompleted"> & { copy: IStreakCopy }) => {
-  if (getStreakCompleted({ streakAwardId, streakCompleted, streakMax }) === streakMax) {
+  const calculatedStreakCompleted = getStreakCompleted({ streakAwardId, streakCompleted, streakMax });
+  if (calculatedStreakCompleted >= streakMax) {
     return copy.headingCompleted;
   }
 
   if (isDoneToday) {
-    return copy.headingCompletedTodayStreak;
+    return copy.headingCompletedTodayStreak[Math.max(0, calculatedStreakCompleted - 1)];
   }
 
-  return copy.headingStartStreakDay;
+  return copy.headingStartStreakDay[Math.max(0, calculatedStreakCompleted - 1)];
 };

@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -687,7 +687,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
    */
   subtitleTextType: string | null;
   /**
-   * Supported RN version 3.118.0
+   * Supported RN version 4.1.0
    */
   titleStyles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemBoxOptionCard_titleStyles[] | null;
   /**
@@ -703,13 +703,13 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
     | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemBoxOptionCard_subtitleWrapperStyles[]
     | null;
   /**
-   * Supported RN version 3.118.0
+   * Supported RN version 4.1.0
    */
   innerWrapperStyles:
     | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemBoxOptionCard_innerWrapperStyles[]
     | null;
   /**
-   * Supported RN version 3.118.0
+   * Supported RN version 4.1.0
    */
   contentInnerWrapperStyles:
     | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemBoxOptionCard_contentInnerWrapperStyles[]
@@ -723,7 +723,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
    */
   titleNumberOfLines: number | null;
   /**
-   * Displays variableImage instead of image if present. Supported RN version 3.118.0
+   * Displays variableImage instead of image if present. Supported RN version 4.1.0
    */
   variableImage: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemBoxOptionCard_variableImage | null;
 }

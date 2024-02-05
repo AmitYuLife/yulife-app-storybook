@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -915,7 +915,7 @@ export interface ContentItem_ContentItemBoxOptionCard {
    */
   subtitleTextType: string | null;
   /**
-   * Supported RN version 3.118.0
+   * Supported RN version 4.1.0
    */
   titleStyles: ContentItem_ContentItemBoxOptionCard_titleStyles[] | null;
   /**
@@ -927,11 +927,11 @@ export interface ContentItem_ContentItemBoxOptionCard {
    */
   subtitleWrapperStyles: ContentItem_ContentItemBoxOptionCard_subtitleWrapperStyles[] | null;
   /**
-   * Supported RN version 3.118.0
+   * Supported RN version 4.1.0
    */
   innerWrapperStyles: ContentItem_ContentItemBoxOptionCard_innerWrapperStyles[] | null;
   /**
-   * Supported RN version 3.118.0
+   * Supported RN version 4.1.0
    */
   contentInnerWrapperStyles: ContentItem_ContentItemBoxOptionCard_contentInnerWrapperStyles[] | null;
   /**
@@ -943,7 +943,7 @@ export interface ContentItem_ContentItemBoxOptionCard {
    */
   titleNumberOfLines: number | null;
   /**
-   * Displays variableImage instead of image if present. Supported RN version 3.118.0
+   * Displays variableImage instead of image if present. Supported RN version 4.1.0
    */
   variableImage: ContentItem_ContentItemBoxOptionCard_variableImage | null;
 }

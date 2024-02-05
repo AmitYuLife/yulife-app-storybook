@@ -9,8 +9,17 @@ export const getSubHeading = ({
   streakAwardId,
   streakCompleted,
   copy,
-}: Pick<Props, "streakCompleted" | "isDoneToday" | "streakMax" | "streakAwardId"> & { copy: IStreakCopy }) => {
+  timeRemaining,
+}: Pick<Props, "streakCompleted" | "isDoneToday" | "streakMax" | "streakAwardId"> & {
+  copy: IStreakCopy;
+  timeRemaining?: string;
+}) => {
   const { subheadingCollected, subheadingCompleted, subheadingTodayStreakDone } = copy;
+
+  if (timeRemaining) {
+    return copy.subheadingNextStreak;
+  }
+
   if (getStreakCompleted({ streakAwardId, streakCompleted, streakMax }) === streakMax) {
     if (!streakAwardId) {
       return subheadingCollected;
@@ -20,10 +29,10 @@ export const getSubHeading = ({
   }
 
   if (isDoneToday) {
-    return subheadingTodayStreakDone;
+    return subheadingTodayStreakDone[Math.max(0, streakCompleted - 1)];
   }
 
   const streakNumber = streakMax - streakCompleted;
 
-  return getSubHeadingInstructions(streakCompleted, streakNumber, copy);
+  return getSubHeadingInstructions(Math.max(0, streakCompleted - 1), streakNumber, copy);
 };

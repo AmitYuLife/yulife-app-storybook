@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   container: {
-    flex: 1,
     borderWidth: 1,
     width: "100%",
     padding: Style.adjust(16),

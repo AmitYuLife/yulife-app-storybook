@@ -1,8 +1,8 @@
 import { Style, Colours } from "@styles";
 import { StyleSheet } from "react-native";
 
-export const MAX_PROGRESS_WIDTH = Style.DEVICE_WIDTH * 0.7;
-export const MAX_UI_PROGRESS_PERCENTAGE = 0.97;
+export const MAX_PROGRESS_WIDTH = Style.DEVICE_WIDTH - Style.adjust(52 * 2);
+export const MAX_UI_PROGRESS_PERCENTAGE = 1;
 
 export const rewardCardStyles = StyleSheet.create({
   wrapper: {
@@ -12,6 +12,13 @@ export const rewardCardStyles = StyleSheet.create({
     position: "absolute",
     top: Style.adjust(16),
     right: Style.adjust(12),
+  },
+  sparks: {
+    position: "absolute",
+    top: 0,
+    right: Style.adjust(18),
+    width: Style.adjust(80 * 1.1),
+    height: Style.adjust(90 * 1.1),
   },
   imageOverlay: {
     position: "absolute",
@@ -26,7 +33,7 @@ export const rewardCardStyles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 1,
     borderColor: Colours.neutral.n100,
-    borderRadius: 16,
+    borderRadius: Style.adjust(16),
   },
   row: {
     flexDirection: "row",
@@ -39,14 +46,14 @@ export const rewardCardStyles = StyleSheet.create({
     maxWidth: Style.adjust(195),
     paddingTop: Style.adjust(34),
     paddingBottom: Style.adjust(2),
-    paddingLeft: Style.adjust(24),
+    paddingLeft: Style.adjust(16),
     marginRight: "auto",
     minHeight: Style.adjust(84),
   },
   worldCardWrapper: {
     position: "absolute",
     top: 0,
-    right: Style.adjust(22),
+    right: Style.adjust(23),
   },
   barTargetWrapper: {
     position: "absolute",
@@ -55,37 +62,48 @@ export const rewardCardStyles = StyleSheet.create({
     backgroundColor: Colours.neutral.white,
     borderWidth: 1,
     borderColor: Colours.neutral.n200,
-    height: Style.adjust(20),
-    width: Style.adjust(20),
+    height: Style.adjust(22),
+    width: Style.adjust(22),
     borderRadius: Style.adjust(16),
     justifyContent: "center",
     alignItems: "center",
+    paddingBottom: 1,
   },
   barTargetWrapperShimLeft: {
+    height: Style.adjust(6),
+    width: Style.adjust(8),
+    top: Style.adjust(11),
     backgroundColor: Colours.neutral.white,
-    height: 6,
-    width: 8,
     position: "absolute",
     left: 0,
-    top: Style.adjust(9),
     bottom: 0,
   },
   barTargetWrapperShimRight: {
-    backgroundColor: Colours.neutral.white,
-    height: 6,
-    width: 8,
-    position: "absolute",
-    right: Style.adjust(67),
-    top: Style.adjust(9),
+    height: Style.adjust(6),
+    width: Style.adjust(2),
+    top: Style.adjust(7),
+    backgroundColor: Colours.neutral.n200,
+    left: 0,
     bottom: 0,
+    position: "absolute",
   },
-  starIconWrapper: {
-    marginTop: -1,
+  progressMilestoneWrapper: {
+    height: Style.adjust(28),
+    width: Style.adjust(28),
+    position: "absolute",
+    top: 0,
+    justifyContent: "center",
+    alignItems: "center",
+    right: Style.adjust(48),
+  },
+  encircledCheckIconWrapper: {
+    backgroundColor: Colours.neutral.white,
+    borderRadius: 999,
   },
   emptyBar: {
     position: "absolute",
-    top: 8,
-    bottom: 2,
+    top: Style.adjust(10),
+    bottom: Style.adjust(2),
     left: 0,
     right: Style.adjust(54),
     backgroundColor: Colours.neutral.white,
@@ -95,17 +113,25 @@ export const rewardCardStyles = StyleSheet.create({
   },
   filledBar: {
     position: "absolute",
-    top: 8,
-    bottom: 2,
+    top: Style.adjust(10),
+    bottom: Style.adjust(2),
     left: 0,
-    borderTopRightRadius: 999,
-    borderBottomRightRadius: 999,
     backgroundColor: Colours.primary.p600,
     height: Style.adjust(8),
+    borderTopRightRadius: 999,
+    borderBottomRightRadius: 999,
   },
   barWrapper: {
     height: Style.adjust(32),
     marginTop: Style.adjust(12),
     width: "100%",
+  },
+  milestoneWrapper: {
+    position: "absolute",
+    top: 0,
+    height: Style.adjust(28),
+    width: Style.adjust(28),
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+/* eslint-disable */
 // @generated
 // This file was automatically generated and should not be edited.
 
@@ -925,7 +925,7 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCa
    */
   subtitleTextType: string | null;
   /**
-   * Supported RN version 3.118.0
+   * Supported RN version 4.1.0
    */
   titleStyles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_titleStyles[] | null;
   /**
@@ -939,11 +939,11 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCa
     | GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_subtitleWrapperStyles[]
     | null;
   /**
-   * Supported RN version 3.118.0
+   * Supported RN version 4.1.0
    */
   innerWrapperStyles: GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_innerWrapperStyles[] | null;
   /**
-   * Supported RN version 3.118.0
+   * Supported RN version 4.1.0
    */
   contentInnerWrapperStyles:
     | GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_contentInnerWrapperStyles[]
@@ -957,7 +957,7 @@ export interface GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCa
    */
   titleNumberOfLines: number | null;
   /**
-   * Displays variableImage instead of image if present. Supported RN version 3.118.0
+   * Displays variableImage instead of image if present. Supported RN version 4.1.0
    */
   variableImage: GetSduiStaticStep_getSduiStaticStep_body_ContentItemBoxOptionCard_variableImage | null;
 }
@@ -2054,7 +2054,7 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBo
    */
   subtitleTextType: string | null;
   /**
-   * Supported RN version 3.118.0
+   * Supported RN version 4.1.0
    */
   titleStyles: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_titleStyles[] | null;
   /**
@@ -2070,13 +2070,13 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBo
     | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_subtitleWrapperStyles[]
     | null;
   /**
-   * Supported RN version 3.118.0
+   * Supported RN version 4.1.0
    */
   innerWrapperStyles:
     | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_innerWrapperStyles[]
     | null;
   /**
-   * Supported RN version 3.118.0
+   * Supported RN version 4.1.0
    */
   contentInnerWrapperStyles:
     | GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_contentInnerWrapperStyles[]
@@ -2090,7 +2090,7 @@ export interface GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBo
    */
   titleNumberOfLines: number | null;
   /**
-   * Displays variableImage instead of image if present. Supported RN version 3.118.0
+   * Displays variableImage instead of image if present. Supported RN version 4.1.0
    */
   variableImage: GetSduiStaticStep_getSduiStaticStep_absolute_item_ContentItemBoxOptionCard_variableImage | null;
 }
