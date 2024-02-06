@@ -1,11 +1,8 @@
 import React, { memo } from "react";
 import { ScrollView, View } from "react-native";
-import OldChallengeTile from "../challenge-tile-old/challenge-tile";
 import ChallengeTile, { IChallengeTileProps } from "../challenge-tile/challenge-tile";
 import styles from "./challenges-list.styles";
 import { CHALLENGE_SET, CHALLENGE_SET_SCROLL } from "@ids";
-import { useSelector } from "react-redux";
-import { getUserFeatures } from "@redux/user/user.selectors";
 
 export interface IChallengesListProps {
   challenges: IChallengeTileProps[];
@@ -15,9 +12,6 @@ export interface IChallengesListProps {
 }
 
 function ChallengeSet({ challenges, tileColour, durationColour, durationTextColour }: IChallengesListProps) {
-  const features = useSelector(getUserFeatures);
-  const TileComponent = features?.newChallengeList ? ChallengeTile : OldChallengeTile;
-
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -30,7 +24,7 @@ function ChallengeSet({ challenges, tileColour, durationColour, durationTextColo
           {challenges
             ?.filter((_, i) => !(i % 2))
             ?.map((challenge) => (
-              <TileComponent
+              <ChallengeTile
                 key={challenge.heading}
                 pictureAlign="left"
                 tileColour={tileColour}
@@ -44,7 +38,7 @@ function ChallengeSet({ challenges, tileColour, durationColour, durationTextColo
           {challenges
             .filter((_, i) => i % 2)
             .map((challenge) => (
-              <TileComponent
+              <ChallengeTile
                 key={challenge.heading}
                 pictureAlign="right"
                 tileColour={tileColour}
