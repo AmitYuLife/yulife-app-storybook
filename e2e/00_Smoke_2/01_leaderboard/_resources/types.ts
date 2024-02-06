@@ -9,4 +9,5 @@ export interface UserLeaderboardListItem {
     score: string,
     rank: number,
     type?: string
+    highlightColour?:string
 }

@@ -112,6 +112,16 @@ export const tapLeaderboardUser = (user:  UserLeaderboardListItem) => async () =
     await tapIDAtIndex(ids.LEADERBOARD_NAME(user.name, user.score, user.rank, type), 0)()
 }
 
+export const tapHighlightedLeaderboardUser = (user: UserLeaderboardListItem) => async () => {
+    if (device.name.includes("(iPhone SE (3rd generation))")) {
+        await swipeFromText("Steps", "up", "slow")()
+    }
+    await tapID(ids.HIGHLIGHTED_LEADERBOARD_NAME(user.name, user.score, user.rank, user.highlightColour,), 1500)()
+}
+
+
+
+
 export const tapJoinLeaderboard = async () => {
     if (device.name.includes("(iPhone SE (3rd generation))")) {
         await swipeFromText(leaderboardConsentHeading, "up", "fast")()

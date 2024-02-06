@@ -31,10 +31,6 @@ export const {
 } = screens.yuscreen
 
 
-export const mountainChestMessageVisible = async () => {
-    textVisible("You have earned Yunity Mountain Chest", 3000)
-}
-
 export const yunityCorrect = (worldType: "Forest" | "Ocean" |"Desert" |"Mountain") => async()=>{
     await wait(5000)()
     let label = ""
@@ -59,7 +55,7 @@ export const yunityCorrect = (worldType: "Forest" | "Ocean" |"Desert" |"Mountain
     }
     await textVisible(label, 3000)()
     await navigateViaText("Continue", 3000)
-    mountainChestMessageVisible()
+    await textVisible("You have earned Yunity Mountain Chest", 3000)()
     await navigateViaText("Open the chest", 3000)
 }
 

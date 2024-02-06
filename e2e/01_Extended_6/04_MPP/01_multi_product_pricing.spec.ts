@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, FeatureSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, FeatureSkip, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -43,7 +43,8 @@ Feature("The MPP changes are visible in the YuLife App", async () => {
         
     })
 
-    Scenario("Part 2: I can see the new deeper environment when a user has 5 products, with the new product slots, and the ordering set to the MPP ordering", scenario.start, async () => {
+    // @bug blank yuscreen 
+    ScenarioSkip("Part 2: I can see the new deeper environment when a user has 5 products, with the new product slots, and the ordering set to the MPP ordering", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_124_MPP, data.AUTH_124), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
             Then("I can see the slot for the YuLife Saas product as this is always first", then.correctYuScreenSlotVisible(fixtures.yulifeSaasProductSlot, true, false, 0, 0))

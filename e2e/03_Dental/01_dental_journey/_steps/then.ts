@@ -1,7 +1,6 @@
 import { navigation } from "@utils"
 import { DATE_INPUT, INFO_PANEL_IMAGE, MARKDOWN_TEXT, PERCENTAGE_COVERED, PRODUCT_STEP_BODY_SCROLL_VIEW, WARNING_BANNER, YUGI_INFO_BANNER_IMAGE, YULIFE_BUPA_LOGO } from "@ids"
 import { screens } from "@appScreens"
-import { scrollUntilTextVisible, swipeFromText } from "_utils/navigation/scrolling"
 import moment from "moment"
 export { onYuscreenV4 } from "_utils/appScreens/yuscreen"
 import { expect } from 'detox'
@@ -20,6 +19,11 @@ export const {
 export const {
     onYuscreenV3
 } = screens.yuscreen
+
+export const {
+    scrollUntilTextVisible,
+    swipeFromText
+} = navigation.scrolling
 
 export const dentalTooltipVisible = async () => {
     await textVisible("Dental insurance with Bupa is here, browse the cover levels to find one that suits you!")
