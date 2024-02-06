@@ -8,7 +8,7 @@ import Avatar from "@components/molecules/avatar/avatar";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { ITextTemplateType } from "@atoms/text/text-template";
 import { AvatarHeadIcon } from "@atoms/icon/avatar-head-icon";
-import { LEADERBOARD_NAME } from "@ids";
+import { HIGHLIGHTED_LEADERBOARD_NAME, LEADERBOARD_NAME } from "@ids";
 
 type TypeProps =
   | { type: "leaderboard"; position: number; score: string }
@@ -115,7 +115,10 @@ export const ListItem = <T,>({ name, uri, type, position, score, onPress, isLoad
         <View style={styles.avatar}>
           <Avatar size="small" uri={uri} />
         </View>
-        <View style={styles[type]}>
+        <View
+          style={styles[type]}
+          testID={HIGHLIGHTED_LEADERBOARD_NAME(name, score, position, isActiveOrHighlighted.colour)}
+        >
           <TextTemplate color={isActiveOrHighlighted.colour} type={isActiveOrHighlighted.type} numberOfLines={1}>
             {name}
           </TextTemplate>

@@ -1,4 +1,4 @@
-import { navigation, expectIsVisibleViaText, navigateViaText, wait, idVisibleAtIndex } from "@utils"
+import { navigation } from "@utils"
 import { screens } from "@appScreens"
 import { swipeFromText } from "_utils/navigation/scrolling"
 import { USER_1 } from "@data"
@@ -11,6 +11,10 @@ export const {
     textNotVisible,
     idExist,
     textVisibleAtIndex,
+    expectIsVisibleViaText,
+    navigateViaText, 
+    wait, 
+    idVisibleAtIndex
 } = navigation.common
 
 export const {

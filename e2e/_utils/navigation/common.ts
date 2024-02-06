@@ -77,7 +77,7 @@ export const navigateViaText = async (text: string, timeout = 0) => {
 
 export const expectIsVisibleViaID = async (id: string, waitTime = 0) => {
     const target = element(by.id(id));
-    await waitFor(target).toExist().withTimeout(waitTime);
+    await wait(waitTime)()
     await expect(target).toBeVisible();
     return target;
 };
@@ -290,7 +290,7 @@ export const completedTodayStreakCopyVisible = (dayNum: number) => async () => {
             await expect(element(by.text(t("Home stretch!")))).toBeVisible()
             break
         case 5:
-            await expect(element(by.text(t("You smashed that Streak!")))).toBeVisible()
+            await expect(element(by.text(t("Smashed that streak!")))).toBeVisible()
             break
     }
 }
@@ -298,7 +298,7 @@ export const completedTodayStreakCopyVisible = (dayNum: number) => async () => {
 export const headingStartStreakCopyVisible = (dayNum: number) => async () => {
     switch (dayNum) {
         case 1:
-            await expect(element(by.text(t("Start your Streak")))).toBeVisible()
+            await expect(element(by.text(t("Start your streak")))).toBeVisible()
             break
         case 2:
             await expect(element(by.text(t("Off to a good start")))).toBeVisible()
@@ -310,7 +310,7 @@ export const headingStartStreakCopyVisible = (dayNum: number) => async () => {
             await expect(element(by.text(t("Keep it up")))).toBeVisible()
             break
         case 5:
-            await expect(element(by.text(t("Close out your Streak")))).toBeVisible()
+            await expect(element(by.text(t("Close out your streak")))).toBeVisible()
             break
     }
 }
@@ -351,7 +351,8 @@ export const idExist = (id: string, waitTime = 0) => async () => {
 
 export const tapIDAtIndex = (id: string, index = 0, waitTime = 0) => async () => {
     const target = element(by.id(id)).atIndex(index)
-    await waitFor(target).toBeVisible().withTimeout(waitTime)
+    await wait(waitTime)()
+    await expect(target).toBeVisible()
     await target.tap()
 }
 

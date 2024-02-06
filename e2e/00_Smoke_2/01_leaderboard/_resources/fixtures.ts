@@ -1,6 +1,10 @@
 import { CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_20, CUSTOMER_39, CUSTOMER_40, CUSTOMER_44, CUSTOMER_47, CUSTOMER_50 } from "@data";
 import { SocialGroupLeaderboard, UserLeaderboardListItem } from "./types";
 
+const highlightedColour = "#464647"
+const notHighlitedColour = "#5C5757"
+
+
 export const DefaultStepsLeaderboard: SocialGroupLeaderboard = {
     type: "Steps",
     title: "Steps Leaderboard",
@@ -31,7 +35,9 @@ export const User17LeaderboardItem: UserLeaderboardListItem = {
 export const User18LeaderboardItem: UserLeaderboardListItem = {
     name: `${CUSTOMER_18.data.firstName} ${CUSTOMER_18.data.lastName}`,
     score: "800",
-    rank: 3
+    rank: 3,
+    highlightColour: notHighlitedColour
+    
 }
 
 // Oscar
@@ -52,7 +58,8 @@ export const User40LeaderboardItem: UserLeaderboardListItem = {
 export const User47LeaderboardItem: UserLeaderboardListItem = {
     name: `${CUSTOMER_47.data.firstName} ${CUSTOMER_47.data.lastName}`,
     score: "10,000",
-    rank: 2
+    rank: 2,
+    highlightColour: highlightedColour
 }
 
 // Lynton

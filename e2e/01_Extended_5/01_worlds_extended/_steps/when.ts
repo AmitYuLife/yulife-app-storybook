@@ -1,5 +1,5 @@
 import { screens } from "@appScreens"
-import { navigation, navigateViaID, textVisible } from "@utils"
+import { navigation } from "@utils"
 export { authoriseFitkit, sendSteps } from "@socket";
 import { sendSteps, fitKitAddSampleQueries, sendMindfulnessData } from "@socket"
 import moment = require("moment");
@@ -13,7 +13,9 @@ export const {
     navigateViaText,
     wait,
     booleanTextVisible,
-    tapIDAtPoint
+    tapIDAtPoint,
+    navigateViaID,
+    textVisible
 } = navigation.common
 
 export const {

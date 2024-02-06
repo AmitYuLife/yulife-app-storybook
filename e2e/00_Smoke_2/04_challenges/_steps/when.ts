@@ -4,7 +4,6 @@ import * as ids from "@ids"
 import { sendSteps } from "@socket";
 import { getLocalisedString as t } from "@i18n"
 export { authoriseFitkit, sendSteps, sendMindfulnessData, closeAndReopenApp, quitAndReopenApp } from "@socket";
-export { minimiseAndReopenApp, navigateTo } from "@utils"
 
 export const {
     tapText,
@@ -13,7 +12,9 @@ export const {
     navigateViaText,
     wait,
     dismissNotificationScreenIfVisible,
-    navigateViaID
+    navigateViaID,
+    minimiseAndReopenApp, 
+    navigateTo
 } = navigation.common
 
 export const {

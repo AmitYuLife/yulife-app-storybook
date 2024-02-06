@@ -205,7 +205,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
         })
         When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
-            When("I click on my own name", when.tapLeaderboardUser(User47LeaderboardItem), async () => {
+            When("I click on my own name", when.tapHighlightedLeaderboardUser(User47LeaderboardItem), async () => {
                 Then("I should be on the Inspect screen", then.isOnInspectScreen)
             })
         })
@@ -233,13 +233,12 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
-    // @flaky - iPhone SE cannot find 'Steps' on the leaderboard
-    ScenarioSkip("I can inspect a player and challenge the user to a duel for the first time via inspect", scenario.start, async () => {
+    Scenario("I can inspect a player and challenge the user to a duel for the first time via inspect", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_47, data.AUTH_47), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
         })
         When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
-            When("I click on user Michael's name", when.tapLeaderboardUser(User18LeaderboardItem), async () => {
+            When("I click on user Michael's name", when.tapHighlightedLeaderboardUser(User18LeaderboardItem), async () => {
                 Then("I should be on the Inspect screen", then.isOnInspectScreen)
             })
         })

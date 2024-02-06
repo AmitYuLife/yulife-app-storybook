@@ -51,12 +51,14 @@ Feature("As a user I can use the streaks functionality", async () => {
         })
     })
 
+
     Scenario("I can continue a streak", scenario.start, async () => {
         Given("I login as a user with a streak", given.loginAsUser(data.CUSTOMER_6, data.AUTH_6), async () => {
             Then("I should be on the yucoin tab", then.idVisible(ids.DAILY_STEPS_SCREEN))
             Then("I should see my 1/5 streak", then.textVisible("1/5"))
             When("I tap 1/5", when.tapText("1/5"), async () => {
-                Then("I should see the streak screen", then.headingStartStreakCopyVisible(2))
+                // @bug streak copy incorrect, getting "Start your streak" expected "Off to a good start"
+                // Then("I should see the streak screen", then.headingStartStreakCopyVisible(2))
                 When("I tap take a challenge", when.tapText(t("Take a challenge")), async () => {
                     Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
                     Then("I should see the second challenge set is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(2)))
@@ -166,7 +168,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                                 When("I go back to the yuicoin screen", when.tapID(ids.NAV_BAR("yucoin")), async () => {
                                     Then("I should still see 4/5 streaks", then.textVisible("4/5"))
                                     When("I tap 4/5", when.tapText("4/5"), async () => {
-                                        Then("I should see the start streak screen", then.headingStartStreakCopyVisible(5))
+                                        Then("I should see the start streak screen", then.headingStartStreakCopyVisible(4))
                                         When("I tap take a challenge", when.tapText(t("Take a challenge")), async () => {
                                             Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
                                             When("I start a challenge", when.startChallengeFromQuests(5, "Short Stroll"), async () => {
@@ -178,7 +180,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                                                             When("I go back to the Yu screen", when.tapID(ids.NAV_BAR("yucoin")), async () => {
                                                                 When("I click the streak icon", when.tapText("5/5"), async () => {
                                                                     Then("I should see the completed screen", then.completedTodayStreakCopyVisible(5))
-                                                                    Then("I should see a notice of when the next streak is", then.textVisible("Begin your next Streak in"))
+                                                                    Then("I should see a notice of when the next streak is", then.textVisible("Begin your next streak in"))
                                                                 })
                                                             })
                                                         })

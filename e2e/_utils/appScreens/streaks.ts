@@ -4,7 +4,7 @@ import {expect} from 'detox'
 
 
 export const onStartStreak = async () => {
-    const title = `Start your Streak`
+    const title = `Start your streak`
     const challengeCTA = "Take a challenge"
     const laterCTA = "Later"
 
@@ -16,7 +16,7 @@ export const onStartStreak = async () => {
 }
 
 export const onStartStreakFromHome = async () => {
-    const title = `Start your Streak`
+    const title = `Start your streak`
     const challengeCTA = "Take a challenge"
     const texts = [title, challengeCTA]
 

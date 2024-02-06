@@ -1,4 +1,4 @@
-import { booleanIdVisible, navigation } from "@utils";
+import { navigation } from "@utils";
 import {
   AVATAR_ITEM,
   CONTENT_ITEM_INPUT,
@@ -47,6 +47,7 @@ export const {
   tapTextAtIndex,
   tapIDAtPoint,
   tapIDAtIndex,
+  booleanIdVisible
 } = navigation.common;
 
 export const { loginOnly, logInAndGoToTab, loginToYuScreen } = navigation.login;
