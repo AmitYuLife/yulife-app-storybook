@@ -16,6 +16,7 @@ export interface GetUserProfile_getUserProfile_gameSettings_blackListApps {
 export interface GetUserProfile_getUserProfile_gameSettings {
   cyclingMeasurement: DistanceMeasurementType;
   maxStepsAnomalyWindowMs: number | null;
+  blackListedNavBarTabs: string[];
   blackListApps: GetUserProfile_getUserProfile_gameSettings_blackListApps | null;
 }
 

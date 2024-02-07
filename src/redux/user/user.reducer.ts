@@ -5,6 +5,7 @@ import {
   GetCurrentUser_getCurrentUser_leaderboards,
   LoginUser,
   UpdateMemberConsent,
+  GetUserProfile_getUserProfile,
   GetUserProfile_getUserProfile_surge_lottie,
   GetUserProfile_getUserProfile_events as Events,
   GetUserSurge_getUserSurge as IUserSurge,
@@ -67,6 +68,7 @@ export interface IUserStore {
   consent: MobileConsentInput;
   features: IFeature;
   earnRate: number;
+  blackListedNavBarTabs: string[];
   surgeIntro: {
     visibility: boolean;
     activity: SurgeActivity;
@@ -123,6 +125,7 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   consent: {},
   features: {},
   connections: [],
+  blackListedNavBarTabs: [],
   earnRate: 0,
   //check if we still need this
   surgeIntro: {
@@ -412,8 +415,9 @@ const updateSurgeIntro = (state: IUserStore, surgeIntro: IUserStore["surgeIntro"
   surgeIntro,
 });
 
-const updateUserProfile = (state: IUserStore, payload: Partial<IUserStore>) => ({
+const updateUserProfile = (state: IUserStore, payload: GetUserProfile_getUserProfile) => ({
   ...state,
+  blackListedNavBarTabs: payload.gameSettings?.blackListedNavBarTabs || state.blackListedNavBarTabs || [],
   earnRate: payload.earnRate,
   surge: {
     ...payload.surge,
