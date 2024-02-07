@@ -7,6 +7,49 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.1.0] - 2024-02-07
+
+### Bugfixes
+
+- Bugfix ENG-3823: Change fetchPolicy for GetUserDebugData query
+- Bugfix: Fix streaks copy when not done
+- Bugfix: Add padding for hint wrapper on streak screen
+- Bugfix: Set android.enableR8.fullMode to false
+- Bugfix: Trigger leanplum notification banners manually
+- Bugfix TPS-3848: Add button_id for button_pressed
+- Bugfix ENG-3844: Leave space for activity history yucoin earned
+- Bugfix GS: CI JDK version
+
+### Tasks
+
+- Task: Handle optional onPress on streak hint
+- Task ISA-1822: improve multi regional error handling
+- Task: DEVOP-1860: Migrate SA Prod to the new YuLife API Terraform Module - API URL Update
+- Task XSE-2341: Add goal product milestone info and hint on streak screen
+- Task: half modal hint links to learn more
+- Task: Restore cocoapods cache
+- Task: Add refresh capability permissions
+- Task: Bitrise Bugsnag bundle location
+
+### Chores
+
+- Chore: implemented suspended tabs
+- Chore: Extract onPress of challenge tile
+- Chore: Purge old challenge tile
+
+### Extra
+
+- Upgrade to React Native 0.73.4
+- Detox/6_2_24_fixes
+- Detox/5_2_24_fixes
+- Feat VBUS-38: ContentItemBoxOptionCard upgrades
+- detox/2_2_24_fixes
+- Detox/fixes-02/02
+- Detox/fix-01/02
+- Detox/vbus 55
+- detox/1_2_24_fixes
+- Detox/mood monitor GS-857
+
 ## [4.0.0] - 2024-01-31
 
 ### Bugfixes
