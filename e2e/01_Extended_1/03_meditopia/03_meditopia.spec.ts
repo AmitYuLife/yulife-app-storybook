@@ -78,14 +78,15 @@ Feature("As a user I can take a Meditopia challenge", async () => {
   });
 
   // @update can't find challenge details or today's meditation screen matchers, otherwise scenario completes challenge and passes
-  Scenario("I can successfully take and quit a Meditopia challenge in app", scenario.start, async () => {
+  // Detox also having trouble finding close button on meditation
+  ScenarioSkip("I can successfully take and quit a Meditopia challenge in app", scenario.start, async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
     });
     When("I select a 5 min content meditopia challenge", when.selectMeditopiaChallengeFromQuests(1, "Meditation"), async () => {
-      // Then("I am on the Challenge details screen", then.canSeeNewChallengePage("meditation", data.USER_MEDITOPIA_1.data.earnRate));
+      Then("I am on the Challenge details screen", then.canSeeNewChallengePage("meditation", data.USER_MEDITOPIA_1.data.earnRate));
       When("I tap Take Challenge", when.tapTakeChallenge, async () => {
-        // Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
+        Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
         When("I tap the Awareness content card", when.tapMeditopiaContentCard("5", "40"), async () => {
           When("I wait 3 seconds", when.wait3Seconds, async () => {
             Then("I should be on the Relaxing the body meditation intro screen", then.onMeditationContentIntroScreen("Relaxing the body", 15, 1, 40, 200));
@@ -103,9 +104,9 @@ Feature("As a user I can take a Meditopia challenge", async () => {
         Then("I should see the quit challenge confirmation sceen", then.isOnQuitChallengeScreen);
       });
     });
-    // When("I exit the challenge via the quit challenge confirmation sceen", when.exitMeditopiaChallenge, async () => {
-    //   Then("I should be on choose Meditopia content screen", then.isOnTodaysMeditationScreen("5", "40"));
-    // });
+    When("I exit the challenge via the quit challenge confirmation sceen", when.exitMeditopiaChallenge, async () => {
+      Then("I should be on choose Meditopia content screen", then.isOnTodaysMeditationScreen("5", "40"));
+    });
   });
 
   Scenario("I can successfully take, pause, start and finish a Meditopia challenge in app", scenario.start, async () => {

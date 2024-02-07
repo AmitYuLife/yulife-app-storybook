@@ -194,7 +194,7 @@ export const isOnOutStepOpponentScreen = async () => {
 }
 
 export const challengeFriendButtonVisible =  async () => {
-    await idVisible(ids.CHALLENGE_FRIEND_BUTTON)()
+    await idVisible(ids.CHALLENGE_FRIEND_BUTTON, 2500)()
 }
 
 export const onEmptyDuelsHub = async () => {

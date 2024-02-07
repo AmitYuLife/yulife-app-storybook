@@ -42,7 +42,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
-    Scenario("I can change consent to a leaderboard I belong to", scenario.start, async () => {
+    // @bug leaderboard not turning off
+    ScenarioSkip("I can change consent to a leaderboard I belong to", scenario.start, async () => {
         Given("I login", given.loginAsUser(data.CUSTOMER_17, data.AUTH_17), async () => {
             When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)))

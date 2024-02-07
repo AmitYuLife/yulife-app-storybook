@@ -34,28 +34,23 @@ export const {
 export const yunityCorrect = (worldType: "Forest" | "Ocean" |"Desert" |"Mountain") => async()=>{
     await wait(5000)()
     let label = ""
-    let subheading = ""
 
     switch(worldType){
         case "Forest":
-            label = "You’ve achieved Yunity with the Forest"
-            subheading = "Take a deep, celebratory breath.\nYou earned a Yunity forest chest!"
+            label = "You've achieved Yunity with the Forest"
             break 
         case "Ocean":
-            label = "You’ve achieved Yunity with the Ocean"
-            subheading = "You took the plunge and ascended victorious. You earned a Yunity ocean chest!"
+            label = "You've achieved Yunity with the Ocean"
             break 
         case "Desert":
-            label = "You’ve achieved Yunity with the Desert"
-            subheading = "You are your own wellbeing oasis and earned a Yunity desert chest!"
+            label = "You've achieved Yunity with the Desert"
             break
         case "Mountain":
             label = "You've achieved Yunity with the Mountain..."
-            subheading = "You’re ready to explore the Yuniverse in your enlightened state. Enjoy your Yunity Mountain Chest and floating through the cosmos."
     }
     await textVisible(label, 3000)()
     await navigateViaText("Continue", 3000)
-    await textVisible("You have earned Yunity Mountain Chest", 3000)()
+    await textVisible(`You've earned the\nYunity ${worldType} Chest!`, 3000)()
     await navigateViaText("Open the chest", 3000)
 }
 

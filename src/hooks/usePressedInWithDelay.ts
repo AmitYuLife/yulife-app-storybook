@@ -1,3 +1,4 @@
+import { DETOX_ENABLED } from "@services/socket";
 import React, { useEffect, useRef } from "react";
 
 interface Args {
@@ -6,6 +7,7 @@ interface Args {
 }
 
 export function usePressedInWithDelay({ delay = 1000, onPress }: Args) {
+  const currentDelay = DETOX_ENABLED ? 0 : delay;
   const [isPressedIn, setIsPressedIn] = React.useState(false);
   const isUnmounted = useRef(false);
   const isWaitingForResponse = useRef(false);
@@ -27,7 +29,7 @@ export function usePressedInWithDelay({ delay = 1000, onPress }: Args) {
         setIsPressedIn(false);
       },
       async handlePress() {
-        if (new Date().valueOf() - calledAt.current.valueOf() > delay) {
+        if (new Date().valueOf() - calledAt.current.valueOf() > currentDelay) {
           calledAt.current = new Date();
           if (onPress && !isWaitingForResponse.current) {
             isWaitingForResponse.current = true;
@@ -40,7 +42,7 @@ export function usePressedInWithDelay({ delay = 1000, onPress }: Args) {
         }
       },
     }),
-    [isPressedIn, calledAt, isWaitingForResponse, delay, onPress]
+    [isPressedIn, calledAt, isWaitingForResponse, currentDelay, onPress]
   );
 }
 
