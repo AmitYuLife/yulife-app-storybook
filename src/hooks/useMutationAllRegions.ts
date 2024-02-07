@@ -20,6 +20,7 @@ export const useMutatationAllRegions = <T = object, TVariables = OperationVariab
 ) => {
   const [responseCount, setResponseCount] = useState(0);
   const [loading, setLoading] = useState(false);
+  const errors = useRef<string[]>([]);
   const results = useRef([] as (FetchResult<T> & { region: REGION })[]);
   const [error, setError] = useState("");
 
@@ -29,6 +30,7 @@ export const useMutatationAllRegions = <T = object, TVariables = OperationVariab
       setLoading(true);
       setError("");
       results.current = [];
+      errors.current = [];
 
       const funcs = regionalClients
         .filter((client) => !regions?.length || regions.includes(client.__REGION))
@@ -40,9 +42,14 @@ export const useMutatationAllRegions = <T = object, TVariables = OperationVariab
                 ...inlineOptions,
                 ...options,
               });
-              results.current.push({ region: client.__REGION, ...data });
+
+              if (data?.errors?.length) {
+                errors.current.push(data.errors[0].originalError?.message);
+              } else {
+                results.current.push({ region: client.__REGION, ...data });
+              }
             } catch (e) {
-              setError(e?.message);
+              errors.current.push(e?.message);
             } finally {
               setResponseCount(responseCount + 1);
             }
@@ -51,6 +58,12 @@ export const useMutatationAllRegions = <T = object, TVariables = OperationVariab
 
       // send in parallel
       await Promise.all(funcs);
+
+      const leastOccurringError = findLeastOccurringError(errors.current);
+
+      if (leastOccurringError) {
+        setError(leastOccurringError);
+      }
 
       setLoading(false);
 
@@ -69,3 +82,16 @@ export const useMutatationAllRegions = <T = object, TVariables = OperationVariab
     },
   };
 };
+
+/**
+ * if someone's trying to query 4 data centres, it will most likely get 3 of the same errors from 3 different data centres
+ * and 1 error from the one they belong to
+ */
+function findLeastOccurringError(arr: string[]): string {
+  const frequencyMap = arr.reduce<Record<string, number>>((acc, str) => {
+    acc[str] = (acc[str] || 0) + 1;
+    return acc;
+  }, {});
+
+  return Object.entries(frequencyMap).reduce((a, b) => (a[1] < b[1] ? a : b))[0];
+}
