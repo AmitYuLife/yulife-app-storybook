@@ -1,3 +1,4 @@
+import { REHYDRATE } from "redux-persist";
 import { takeLatest } from "redux-saga/effects";
 import { AUTHENTICATED, SET_MAIN_ROOT, UPDATE_APP_STATE, UPDATE_CURRENT_ROUTE } from "../../app/app.actions";
 import { CHALLENGE_RESET_SUCCESS } from "../../levels/levels.actions";
@@ -44,6 +45,7 @@ import { SET_DEVICE_LOCALE, UPDATE_CURRENT_DATE } from "@redux/device/device.act
 import fetchUserDataOnAuthenticatedSaga from "./fetchUserDataOnAuthenticated.saga";
 import { generateUserDataSaga } from "../user.helpers";
 import getUserOnUpdatedDateSaga from "./getUserOnUpdatedDateSaga.saga";
+import setSuspendedTabs from "./setSuspendedTabs.saga";
 
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
@@ -72,4 +74,5 @@ export default [
   takeLatest(MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE, markNotificationsAsViewedByType),
   takeLatest([UPDATE_USER_PROFILE, UPDATE_USER_PROFILE_EVENTS], showEventFinishDialog),
   takeLatest(SET_DEVICE_LOCALE, changeUserLocaleSaga),
+  takeLatest([REHYDRATE, UPDATE_USER_PROFILE], setSuspendedTabs),
 ];

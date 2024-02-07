@@ -56,6 +56,9 @@ export const getUserEarnRate = createSelector(reducer, userEarnRate);
 const userNotification = (state: State) => state.notification;
 export const getUserNotification = createSelector(reducer, userNotification);
 
+const blackListedNavBarTabs = (state: State) => state.blackListedNavBarTabs || [];
+export const getBlackListedNavBarTabs = createSelector(reducer, blackListedNavBarTabs);
+
 const userEvents = (state: State) => state.events || [];
 export const getUserEvents = createSelector(reducer, userEvents);
 

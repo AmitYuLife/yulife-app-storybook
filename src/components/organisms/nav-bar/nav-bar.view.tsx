@@ -1,6 +1,5 @@
 import React, { useState, useCallback, memo, useMemo, FC } from "react";
 import { labels as defaultLabels } from "@navigation/root";
-import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { StyleSheet, View, Platform } from "react-native";
 import { NAV_BAR } from "@styles/index";
@@ -11,9 +10,17 @@ import useInterval from "@use-it/interval";
 import { IIconProps, NavBarProps } from "./nav-bar.helpers";
 import { t } from "@locale";
 import { MobileTabs } from "@graphql/_core/schema/globalTypes";
+import { noop } from "@utils";
 
 const NavBarView = (props: NavBarProps) => {
-  const { activeIndex, hasQuestNotification, tabNotifications, labels = defaultLabels, additionalBottom = 0 } = props;
+  const {
+    activeIndex,
+    hasQuestNotification,
+    tabNotifications,
+    labels = defaultLabels,
+    additionalBottom = 0,
+    suspendedTabs = {},
+  } = props;
   const [hasLaidOut, setHasLaidOut] = useState(false);
   const [displayElevation, setDisplayElevation] = useState(false);
 
@@ -48,6 +55,7 @@ const NavBarView = (props: NavBarProps) => {
           }
 
           const isActive = activeIndex === i;
+          const isSuspended = suspendedTabs[label.id];
 
           return (
             <NavBarListItem
@@ -59,8 +67,8 @@ const NavBarView = (props: NavBarProps) => {
                 notifications[label.name as MobileTabs] || tabNotifications.includes(label.name as MobileTabs)
               }
               isActive={isActive}
-              isSuspended={Navigation.isNavBarRouteSuspended(label.id)}
-              onPressIn={label.onPress}
+              isSuspended={isSuspended}
+              onPressIn={isSuspended ? noop : label.onPress}
             />
           );
         })}
