@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import React, { useCallback, useMemo, useState } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { StreaksScreen } from "@screens";
 import { useBackHandler } from "@hooks";
 import { Navigation } from "@navigation/main";
@@ -18,7 +18,6 @@ import { RewardCard } from "@components/molecules/reward-card/reward-card";
 import { View } from "react-native";
 import { streaksModalStyles } from "./streaks.modal.styles";
 import { TextTemplate } from "@atoms";
-import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import Hint from "@components/molecules/hint/hint";
 
@@ -34,6 +33,7 @@ const StreaksModal: React.FC<Props> = ({
   reward,
   type,
 }) => {
+  const dispatch = useDispatch();
   const features = useSelector(getUserFeatures);
   const [isLoading, setLoading] = useState(false);
   const backHandler = useBackHandlerCallback(onPressCtaSecondary);
@@ -45,16 +45,22 @@ const StreaksModal: React.FC<Props> = ({
   const { data } = useQuery(gql("GetStreakDetailsDocument"), {
     fetchPolicy: "no-cache",
   });
+
   const onSubmit = useSubmitHandler({ streakAwardId, onPressCtaPrimary, setLoading, collectAward });
 
-  const { copy } = useMemo(() => {
+  const { copy, handlePressHint } = useMemo(() => {
     const remainingStreak = (streakMax - streakCompleted).toString();
     const streakType = type === "yucoin" ? "YuCoin" : type;
 
+    const pressHintHandler = data?.getStreakDetails?.hint?.onPress
+      ? () => dispatch(data.getStreakDetails.hint.onPress)
+      : null;
+
     return {
       copy: streakCopy(remainingStreak, reward, streakType),
+      handlePressHint: pressHintHandler,
     };
-  }, [streakMax, streakCompleted, type, reward]);
+  }, [streakMax, streakCompleted, type, reward, data]);
 
   const heading = getHeading({
     isDoneToday,
@@ -122,6 +128,7 @@ const StreaksModal: React.FC<Props> = ({
                 label={data.getStreakDetails.hint.label}
                 description={data.getStreakDetails.hint.description}
                 image={data.getStreakDetails.hint.image}
+                onPress={handlePressHint}
               />
             </View>
           )}
