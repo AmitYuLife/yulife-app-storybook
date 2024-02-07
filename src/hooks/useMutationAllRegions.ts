@@ -88,6 +88,10 @@ export const useMutatationAllRegions = <T = object, TVariables = OperationVariab
  * and 1 error from the one they belong to
  */
 function findLeastOccurringError(arr: string[]): string {
+  if (!arr.length) {
+    return;
+  }
+
   const frequencyMap = arr.reduce<Record<string, number>>((acc, str) => {
     acc[str] = (acc[str] || 0) + 1;
     return acc;
