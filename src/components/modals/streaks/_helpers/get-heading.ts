@@ -18,5 +18,5 @@ export const getHeading = ({
     return copy.headingCompletedTodayStreak[Math.max(0, calculatedStreakCompleted - 1)];
   }
 
-  return copy.headingStartStreakDay[Math.max(0, calculatedStreakCompleted - 1)];
+  return copy.headingStartStreakDay[Math.max(0, calculatedStreakCompleted)];
 };
