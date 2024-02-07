@@ -9,6 +9,7 @@ import { getLocalisedString as t } from "@i18n";
 
 Feature("As a user I can get past the login screen", async () => {
 
+    // @update - change user to someone who is in the DB
     Scenario("I cannot login with the wrong password for my email address", scenario.start, async () => {
         Given("I have entered a valid email address but an invalid password", given.enterInvalidCredentials, async () => {
             When("I press `log in`", when.tapOnLogin, async () => {

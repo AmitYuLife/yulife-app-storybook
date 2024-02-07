@@ -92,6 +92,7 @@ export const clickNext = async () => {
 }
 
 export const clickLetsGo = async () => {
+    await wait(1500)()
     await tapText("Let's go")()
 }
 
@@ -112,7 +113,8 @@ export const tapLeaderboardUser = (user:  UserLeaderboardListItem) => async () =
     await tapIDAtIndex(ids.LEADERBOARD_NAME(user.name, user.score, user.rank, type), 0)()
 }
 
-export const tapHighlightedLeaderboardUser = (user: UserLeaderboardListItem) => async () => {
+export const tapHighlightedLeaderboardUser = (user: UserLeaderboardListItem, waitTime=1500) => async () => {
+    await wait(1500)()
     if (device.name.includes("(iPhone SE (3rd generation))")) {
         await swipeFromText("Steps", "up", "slow")()
     }
