@@ -8,6 +8,10 @@ query GetStreakDetails {
         id
         uri
       }
+      onPress {
+        type
+        payload
+      }
     }
     goalMilestone {
       rewardTitle
