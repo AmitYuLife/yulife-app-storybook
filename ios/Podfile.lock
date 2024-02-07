@@ -104,9 +104,9 @@ PODS:
     - FlipperKit/FlipperKitNetworkPlugin
   - fmt (6.2.1)
   - glog (0.3.5)
-  - hermes-engine (0.73.2):
-    - hermes-engine/Pre-built (= 0.73.2)
-  - hermes-engine/Pre-built (0.73.2)
+  - hermes-engine (0.73.4):
+    - hermes-engine/Pre-built (= 0.73.4)
+  - hermes-engine/Pre-built (0.73.4)
   - HMSegmentedControl (1.5.6)
   - Intercom (16.3.2)
   - intercom-react-native (6.3.0):
@@ -1647,7 +1647,7 @@ SPEC CHECKSUMS:
   FlipperKit: 347167ea72c9d718edb15757184384cf31a2cf27
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
-  hermes-engine: b361c9ef5ef3cda53f66e195599b47e1f84ffa35
+  hermes-engine: b2669ce35fc4ac14f523b307aff8896799829fe2
   HMSegmentedControl: 34c1f54d822d8308e7b24f5d901ec674dfa31352
   Intercom: 5e6500e73a51edf6a4b4ad33f09bfe38962b774c
   intercom-react-native: b08e2cf04883320c0d45b54ce9f50bc945ef9b48
