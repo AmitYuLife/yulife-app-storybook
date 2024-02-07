@@ -32,7 +32,7 @@ export default function* debugTool(dataPayload: { payload: string; type: string 
     }
 
     const { data }: QueryResult<GetUserDebugDataQuery> = yield call(() =>
-      client().query({ query: gql("GetUserDebugDataDocument") })
+      client().query({ query: gql("GetUserDebugDataDocument"), fetchPolicy: "network-only" })
     );
 
     if (!data?.getUserDebugData?.sampleQuery) {
