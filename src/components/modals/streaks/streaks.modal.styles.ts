@@ -12,5 +12,6 @@ export const streaksModalStyles = StyleSheet.create({
   },
   hintWrapper: {
     marginTop: Style.adjust(32),
+    paddingHorizontal: Style.adjust(24),
   },
 });
