@@ -42,7 +42,7 @@ interface IChallengeDetailsScreenProps {
 
 export const HEADER_HEIGHT = 268;
 
-function ChallengeDetailsScreenV2({
+function ChallengeDetailsScreen({
   slot,
   onPressCta,
   onPressBack,
@@ -325,4 +325,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(ChallengeDetailsScreenV2);
+export default memo(ChallengeDetailsScreen);
