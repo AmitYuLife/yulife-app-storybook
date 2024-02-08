@@ -39,7 +39,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             })
         })
         When("I tap got it", when.tapText("Got it"), async () => {
-            Then("I should see the level 199 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(199)))
+            Then("I should see the level 200 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(200)))
         })
     })
 

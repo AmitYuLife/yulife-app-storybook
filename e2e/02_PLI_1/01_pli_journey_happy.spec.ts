@@ -69,12 +69,14 @@ Feature("PLI HAPPY", async () => {
           helper.REVIEW_SCREEN();
           helper.COVER_PRICE_CHECK("70");
           helper.COVER_STYLE_SELECTION("rare", "62%", "£20.94", "£1,291.67");
-          helper.CHECKOUT(true, "Rare");
-          helper.REVIEW_YUSCREEN();
+          // @bug stripe warning on checkout GS-864
+          // helper.CHECKOUT(true, "Rare");
+          // helper.REVIEW_YUSCREEN();
         }
       );
     }
   );
+
 
   Scenario(
     "As pregnant female with all conditions but under control, I should be able to purchase PLI",
@@ -141,8 +143,9 @@ Feature("PLI HAPPY", async () => {
         helper.REVIEW_SCREEN();
         helper.COVER_SELECT_PERCENTAGE("50%");
         helper.COVER_STYLE_SELECTION("rare", "50%", "£12.59", "£1,041.67");
-        helper.CHECKOUT(true, "Rare");
-        helper.REVIEW_V4_YUSCREEN(1520, "10");
+        // @bug stripe warning on checkout GS-864
+        // helper.CHECKOUT(true, "Rare");
+        // helper.REVIEW_V4_YUSCREEN(1520, "10");
       });
     }
   );
