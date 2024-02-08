@@ -51,7 +51,7 @@ export const useMutatationAllRegions = <T = object, TVariables = OperationVariab
             } catch (e) {
               errors.current.push(e?.message);
             } finally {
-              setResponseCount(responseCount + 1);
+              setResponseCount((c) => c + 1);
             }
           })()
         );
@@ -69,7 +69,7 @@ export const useMutatationAllRegions = <T = object, TVariables = OperationVariab
 
       return results.current;
     },
-    [mutation, responseCount, setResponseCount, options, setLoading, setError, regions]
+    [mutation, options, regions]
   );
 
   return {
