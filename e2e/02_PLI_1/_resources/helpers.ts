@@ -684,14 +684,16 @@ export const UNDERWRITING_DO_POLICIES_EXCEED = async (answer: YesNo) => {
 export const REVIEW_SCREEN = async () => {
   const correctAnswerText =
     "I confirm that I have understood and answered all the questions honestly, accurately and to the best of my knowledge.";
-  When(
-    "I scroll to the bottom",
-    when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, correctAnswerText, "down"),
-    async () => {
-      Then("I should see both the accurate answer and sharing text", then.textVisible(correctAnswerText));
-      When("I check both checkboxes", when.tapText(correctAnswerText), async () => {
-        When("I tap submit answers", when.tapText("Submit answers"), async () => {
-          Then("I should be on the next screen", then.textNotVisible("Submit answers"));
+  When("I wait 5 seconds", when.wait(5000), async()=>{
+    When(
+      "I scroll to the bottom",
+      when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, correctAnswerText, "down"),
+      async () => {
+        Then("I should see both the accurate answer and sharing text", then.textVisible(correctAnswerText));
+        When("I check both checkboxes", when.tapText(correctAnswerText), async () => {
+          When("I tap submit answers", when.tapText("Submit answers"), async () => {
+            Then("I should be on the next screen", then.textNotVisible("Submit answers"));
+          })
         });
       });
     }
