@@ -1125,7 +1125,6 @@ export const CUSTOMER_52_TOGGLES = {
       showGoals: true,
       yuScreenV3: true,
       showPermissionSettings: true,
-      newChallengeList: true,
       showBrainGameSudoku: true,
       showFiit: true,
       useNewLeaderboardServices: true
@@ -1326,7 +1325,6 @@ export const CUSTOMER_69_TOGGLES = {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
       enableChallengeBonuses: true,
-      newChallengeList: true
     },
   },
 } as IDatabaseItem;
@@ -1505,7 +1503,6 @@ export const CUSTOMER_76_TOGGLES = {
       showBrainGameSudoku: true,
       showNewLeaderBoard: true,
       useNewLeaderboardServices: true,
-      newChallengeList: true,
     },
   },
 } as IDatabaseItem;
@@ -1744,7 +1741,6 @@ export const CUSTOMER_89_TOGGLES = {
       ...DEFAULT_TOGGLES.data.features,
       showFiit: true,
       enableChallengeBonuses: true,
-      newChallengeList: true,
     },
   },
 } as IDatabaseItem;
@@ -2185,7 +2181,6 @@ export const CUSTOMER_122_TOGGLES = {
       ...DEFAULT_TOGGLES.data.features,
       showBrainGameSudoku: true,
       enableChallengeBonuses: true,
-      newChallengeList: true,
       showFiit: true,
     },
   },
@@ -2202,7 +2197,6 @@ export const CUSTOMER_123_TOGGLES = {
       ...allTogglesTrueFor_PLI.data.features,
       showBrainGameSudoku: true,
       enableChallengeBonuses: true,
-      newChallengeList: true,
       showFiit: true,
       showYuScreenFurtherProductList: true,
       hasCoveaFibActive: true,
@@ -2222,7 +2216,6 @@ export const CUSTOMER_124_TOGGLES = {
       ...allTogglesTrueFor_PLI.data.features,
       showBrainGameSudoku: true,
       enableChallengeBonuses: true,
-      newChallengeList: true,
       showFiit: true,
       showYuScreenFurtherProductList: true,
       hasCoveaFibActive: true,

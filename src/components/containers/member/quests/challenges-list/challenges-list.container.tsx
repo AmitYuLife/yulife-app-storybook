@@ -9,7 +9,7 @@ import {
 } from "@graphql/_core/schema";
 import { challengeStartAction } from "@redux/levels/levels.actions";
 import { BlurProvider, IToggleBlur } from "@atoms";
-import { ChallengesListScreen, ChallengeDetailsScreenV2, ChallengeDetailsScreenV1 } from "@screens";
+import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
 import { useQuery } from "@apollo/client";
 import { handleLinkPress } from "@services/app-link";
 import { getCurrentWorld, isSamsung } from "@utils";
@@ -21,7 +21,7 @@ import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { t } from "@locale";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { YUNIVERSAL_LEVEL_SLOTS } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/level/level-slots";
-import { usePopToQuestsRootOnNewDate, useUserFeatures } from "@hooks";
+import { usePopToQuestsRootOnNewDate } from "@hooks";
 import { ActiveLevelState, getActiveChallengeState } from "@redux/levels/levels.selectors";
 import { onPressChallengeTile } from "@utils/challenges";
 
@@ -35,7 +35,6 @@ interface IProps {
 type Props = IProps;
 
 const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, componentId }) => {
-  const features = useUserFeatures();
   const activeChallengeState = useSelector(getActiveChallengeState);
   const [error, setErrorState] = useState(null as string);
   const [slot, setSlot] = useState(null as GetQuestMapLevel_getQuestMapLevel_slots);
@@ -227,32 +226,18 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
           )}
         </>
       )}
-      renderOverlay={({ hideOverlay }: IToggleBlur) =>
-        features?.newChallengeList ? (
-          <ChallengeDetailsScreenV2
-            slot={slot}
-            error={error}
-            isLoading={submitting}
-            onPressBack={hideOverlay}
-            currentWorld={currentWorld}
-            onPressCta={handleSubmitChallenge}
-            onPressClose={navigateToQuestScreen}
-            onPressSetUp={!slot?.details?.tutorialUrl ? null : handleLinkPress(slot.details.tutorialUrl)}
-          />
-        ) : (
-          <ChallengeDetailsScreenV1
-            error={error}
-            isLoading={submitting}
-            onPressClose={hideOverlay}
-            currentWorld={currentWorld}
-            heading={slot?.details?.heading}
-            onPressCta={handleSubmitChallenge}
-            imageUri={slot?.details?.image?.uri}
-            milestones={slot?.details?.milestones}
-            onPressSetUp={!slot?.details?.tutorialUrl ? null : handleLinkPress(slot.details.tutorialUrl)}
-          />
-        )
-      }
+      renderOverlay={({ hideOverlay }: IToggleBlur) => (
+        <ChallengeDetailsScreen
+          slot={slot}
+          error={error}
+          isLoading={submitting}
+          onPressBack={hideOverlay}
+          currentWorld={currentWorld}
+          onPressCta={handleSubmitChallenge}
+          onPressClose={navigateToQuestScreen}
+          onPressSetUp={!slot?.details?.tutorialUrl ? null : handleLinkPress(slot.details.tutorialUrl)}
+        />
+      )}
     />
   );
 };

@@ -35,8 +35,7 @@ export { default as ChallengeFailedScreen } from "./member/challenges/challenge-
 export { default as ChallengeProgressScreen } from "./member/challenges/challenge-progress/challenge-progress.screen";
 export { default as ChallengeSuccessScreen } from "./member/challenges/challenge-success/challenge-success.screen";
 export { default as ChallengeUnavailableScreen } from "./member/challenges/challenge-unavailable/challenge-unavailable.screen";
-export { default as ChallengeDetailsScreenV2 } from "./member/challenges/challenge-details-v2/challenge-details.screen";
-export { default as ChallengeDetailsScreenV1 } from "./member/challenges/challenge-details-v1/challenge-details.screen";
+export { default as ChallengeDetailsScreen } from "./member/challenges/challenge-details/challenge-details.screen";
 export { default as ChallengesListScreen } from "./member/challenges/challenges-list/challenges-list.screen";
 export { default as ChallengeExitScreen } from "./member/challenges/challenge-exit/challenge-exit.screen";
 
