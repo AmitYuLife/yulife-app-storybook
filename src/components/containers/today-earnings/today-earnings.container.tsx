@@ -1,6 +1,6 @@
 import { Platform } from "react-native";
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { TodayEarningsScreen, TodayEarningLoadingScreen, TodayEarningsScreenLegacy } from "@components/screens";
+import { TodayEarningsScreen, TodayEarningLoadingScreen } from "@components/screens";
 import { UpsertDailyPassives, UpsertDailyPassivesVariables } from "@graphql/_core/schema";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import React, { useCallback, useEffect, useState } from "react";
@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import moment from "moment";
 import { GQL_MUTATION_UPSERT_DAILY_PASSIVES } from "@graphql/challenges/upsertDailyPassives.gql";
-import { useBackHandler, useUserFeatures } from "@hooks";
+import { useBackHandler } from "@hooks";
 import { getLastUpdated } from "@redux/pedometer/pedometer.selectors";
 import { DATE_FORMAT, getCurrentWorld, getCurrentYuniverse } from "@utils";
 import { restartPedometerOnNewDay } from "@redux/pedometer/pedometer.actions";
@@ -32,7 +32,6 @@ const TodayEarningsContainer = ({ componentId, closeNavigationOption }: IProps) 
   const { authoriseFitKitTypes } = useFitKit();
   const dailySteps = useSelector(getDailySteps);
   const pedometerLastUpdate = useSelector(getLastUpdated);
-  const features = useUserFeatures();
   const currentLevel = useSelector(getCurrentLevel);
   const currentYuniverse = getCurrentYuniverse(currentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
@@ -113,16 +112,8 @@ const TodayEarningsContainer = ({ componentId, closeNavigationOption }: IProps) 
     return <TodayEarningLoadingScreen handleClose={onLeftIconPress} />;
   }
 
-  return features?.newChallengeList ? (
+  return (
     <TodayEarningsScreen
-      isGoogleFitAuthorised={isGoogleFitAuthorised}
-      onLeftIconPress={onLeftIconPress}
-      currentYuniverse={currentYuniverse}
-      currentWorld={currentWorld}
-      {...data?.getTodayEarnings}
-    />
-  ) : (
-    <TodayEarningsScreenLegacy
       isGoogleFitAuthorised={isGoogleFitAuthorised}
       onLeftIconPress={onLeftIconPress}
       currentYuniverse={currentYuniverse}
