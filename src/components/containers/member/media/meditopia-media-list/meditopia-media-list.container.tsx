@@ -15,12 +15,13 @@ import Logger from "@services/logging/logger";
 import { useDispatch } from "react-redux";
 import { updateChallengeAppButton } from "@redux/levels/levels.actions";
 import { t } from "@locale";
-import { useBackHandler, usePopToQuestsRootOnNewDate } from "@hooks";
+import { useBackHandler, usePopToQuestsRootOnNewDate, useUserFeatures, useVerifyAndAuthorizeCapability } from "@hooks";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import { showYuModal } from "@navigation/root";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { HealthProviderCapability } from "@yu-life/react-native-yu-health";
 
 interface IProps extends IInternalContent {
   componentId: string;
@@ -45,8 +46,10 @@ const MeditopiaMediaListContainer = ({
   level,
 }: IProps) => {
   const [otherAppLoading, setOtherAppLoading] = useState("");
-  const { authoriseFitKitTypes } = useFitKit();
   const dispatch = useDispatch();
+  const { tempGameEnableYuHealth } = useUserFeatures();
+  const { authoriseFitKitTypes } = useFitKit();
+  const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability();
   const { data, loading } = useQuery<GetQuestMapLevelChallengeContent, GetQuestMapLevelChallengeContentVariables>(
     GQL_QUERY_GET_QUEST_MAP_CHALLENGE_CONTENT,
     {
@@ -89,37 +92,57 @@ const MeditopiaMediaListContainer = ({
         setOtherAppLoading("");
       }
     },
-    [dispatch]
+    [createChallenge, dispatch, tutorialUrl]
   );
 
   const handleOtherMeditationApp = useCallback(
     async (appName: string, button?: IButton) => {
-      const activityFromGoogleFitAuthorised = await RNFitKit.isAuthorised({
-        read: [],
-        platform: "GoogleFit",
-      });
+      if (!tempGameEnableYuHealth) {
+        const activityFromGoogleFitAuthorised = await RNFitKit.isAuthorised({
+          read: [],
+          platform: "GoogleFit",
+        });
 
-      if (!activityFromGoogleFitAuthorised && Platform.OS === "android") {
-        return await showYuModal({
-          component: {
-            id: MODALS.switchToGoogleFit,
-            name: MODALS.switchToGoogleFit,
-            passProps: {
-              onConnect: async () => {
-                await authoriseFitKitTypes(fitKitTypes);
-              },
-              onConnected: async () => {
-                await createChallengeOnOtherAppSelected(appName, button);
+        if (!activityFromGoogleFitAuthorised && Platform.OS === "android") {
+          return await showYuModal({
+            component: {
+              id: MODALS.switchToGoogleFit,
+              name: MODALS.switchToGoogleFit,
+              passProps: {
+                onConnect: async () => {
+                  await authoriseFitKitTypes(fitKitTypes);
+                },
+                onConnected: async () => {
+                  await createChallengeOnOtherAppSelected(appName, button);
+                },
               },
             },
-          },
-        });
+          });
+        }
+
+        dispatch(logMixpanelEventActionCreator("mindfulness_app_open", { type: appName }));
+        await createChallengeOnOtherAppSelected(appName, button);
+        return;
+      }
+
+      // TODO: Get capability from API
+      const shouldStart = await verifyAndAuthorizeCapability(HealthProviderCapability.MINDFUL_MINUTES);
+
+      if (!shouldStart) {
+        return;
       }
 
       dispatch(logMixpanelEventActionCreator("mindfulness_app_open", { type: appName }));
       await createChallengeOnOtherAppSelected(appName, button);
     },
-    [createChallengeOnOtherAppSelected]
+    [
+      dispatch,
+      fitKitTypes,
+      authoriseFitKitTypes,
+      verifyAndAuthorizeCapability,
+      tempGameEnableYuHealth,
+      createChallengeOnOtherAppSelected,
+    ]
   );
 
   const moreInformationPress = useCallback(() => {

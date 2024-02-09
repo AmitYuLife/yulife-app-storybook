@@ -8,7 +8,7 @@ import {
 } from "@graphql/_core/schema";
 import { MODALS, ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
-import { useBackHandler, usePopToQuestsRootOnNewDate } from "@hooks";
+import { useBackHandler, usePopToQuestsRootOnNewDate, useUserFeatures, useVerifyAndAuthorizeCapability } from "@hooks";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import { showYuModal } from "@navigation/root";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
@@ -18,6 +18,7 @@ import { IITem } from "@organisms/media-list-items/media-list-items";
 import { updateChallengeAppButton } from "@redux/levels/levels.actions";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { HealthProviderCapability } from "@yu-life/react-native-yu-health";
 
 interface IProps {
   componentId: string;
@@ -39,9 +40,11 @@ const FiitMediaCategoryListContainer = ({
   tutorialUrl,
   level,
 }: IProps) => {
-  const [otherAppLoading, setOtherAppLoading] = useState("");
-  const { authoriseFitKitTypes } = useFitKit();
   const dispatch = useDispatch();
+  const features = useUserFeatures();
+  const { authoriseFitKitTypes } = useFitKit();
+  const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability();
+  const [otherAppLoading, setOtherAppLoading] = useState("");
   const onLeftIconPress = useCallback(() => Navigation.popTo(ROUTES.questsChallengesList), []);
   const onRightIconPress = useCallback(() => Navigation.popTo(ROUTES.quests), []);
 
@@ -67,32 +70,51 @@ const FiitMediaCategoryListContainer = ({
 
   const handleFiitApp = useCallback(
     async (_: string, button?: IButton) => {
-      const activityFromGoogleFitAuthorised = await RNFitKit.isAuthorised({
-        read: [],
-        platform: "GoogleFit",
-      });
+      if (!features.tempGameEnableYuHealth) {
+        const activityFromGoogleFitAuthorised = await RNFitKit.isAuthorised({
+          read: [],
+          platform: "GoogleFit",
+        });
 
-      if (!activityFromGoogleFitAuthorised && Platform.OS === "android") {
-        return await showYuModal({
-          component: {
-            id: MODALS.switchToGoogleFit,
-            name: MODALS.switchToGoogleFit,
-            passProps: {
-              onConnect: async () => {
-                await authoriseFitKitTypes(fitKitTypes);
-              },
-              onConnected: async () => {
-                await createChallengeUsingFiitApp();
+        if (!activityFromGoogleFitAuthorised && Platform.OS === "android") {
+          return await showYuModal({
+            component: {
+              id: MODALS.switchToGoogleFit,
+              name: MODALS.switchToGoogleFit,
+              passProps: {
+                onConnect: async () => {
+                  await authoriseFitKitTypes(fitKitTypes);
+                },
+                onConnected: async () => {
+                  await createChallengeUsingFiitApp();
+                },
               },
             },
-          },
-        });
+          });
+        }
+
+        dispatch(updateChallengeAppButton(button));
+        await createChallengeUsingFiitApp();
+        return;
+      }
+
+      // TODO: From api
+      const shouldStart = await verifyAndAuthorizeCapability(HealthProviderCapability.ACTIVITIES);
+      if (!shouldStart) {
+        return;
       }
 
       dispatch(updateChallengeAppButton(button));
       await createChallengeUsingFiitApp();
     },
-    [createChallengeUsingFiitApp]
+    [
+      dispatch,
+      fitKitTypes,
+      authoriseFitKitTypes,
+      createChallengeUsingFiitApp,
+      verifyAndAuthorizeCapability,
+      features.tempGameEnableYuHealth,
+    ]
   );
 
   const onItemPress = useCallback(
@@ -122,7 +144,7 @@ const FiitMediaCategoryListContainer = ({
         },
       });
     },
-    [dispatch, headerContent, levelSlotId, reward]
+    [dispatch, headerContent, level, levelSlotId, reward]
   );
 
   const moreInformationPress = useCallback(() => {

@@ -7,8 +7,6 @@ import { ChallengesList, IChallengesListProps } from "@molecules/index";
 import { View, BackHandler } from "react-native";
 import styles from "./challenges-list.screen.styles";
 import { GenericHeadingPad, TopBarAbsolute } from "@components/organisms";
-import { Navigation } from "@navigation/main";
-import { ROUTES } from "@navigation/constants";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 interface IProps extends IChallengesListProps {
@@ -16,6 +14,7 @@ interface IProps extends IChallengesListProps {
   yuniversalMap?: number;
   name: string;
   onPressLeftIcon: () => void;
+  onLayout?: () => void;
   challenges: IFormattedChallenge[];
 }
 
@@ -44,7 +43,7 @@ class ChallengesListScreen extends Component<IProps, IState> {
   };
 
   private handleBackPress() {
-    Navigation.pop(ROUTES.questsChallengesList);
+    this.props.onPressLeftIcon();
     return true;
   }
 
@@ -71,10 +70,10 @@ class ChallengesListScreen extends Component<IProps, IState> {
   }
 
   public render() {
-    const { challenges, currentLevel, yuniversalMap, onPressLeftIcon, name } = this.props;
+    const { challenges, currentLevel, yuniversalMap, onPressLeftIcon, name, onLayout } = this.props;
     const { challengeListScreen } = getTheme(currentLevel, yuniversalMap);
     return (
-      <View style={styles.wrapper} testID={CHALLENGE_SCREEN}>
+      <View style={styles.wrapper} testID={CHALLENGE_SCREEN} onLayout={onLayout}>
         <GenericHeadingPad />
         <ChallengeBackground
           onLayout={this.showChallengeTiles}
