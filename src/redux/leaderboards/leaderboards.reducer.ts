@@ -186,9 +186,7 @@ const updateSocialGroupLeaderboardConsents = (
     (socialGroup) => socialGroup.socialGroupId === socialGroupId
   );
 
-  state.socialGroups[selectedSocialGroupIndex].leaderboards = state.socialGroups[
-    selectedSocialGroupIndex
-  ]?.leaderboards.map((leaderboard) => {
+  const leaderboardsConsentUpdated = state.socialGroups[selectedSocialGroupIndex]?.leaderboards.map((leaderboard) => {
     if (leaderboardMap.has(leaderboard.leaderboardId)) {
       return {
         ...leaderboard,
@@ -199,9 +197,20 @@ const updateSocialGroupLeaderboardConsents = (
     return leaderboard;
   });
 
+  const updatedSocialGroup = [
+    {
+      ...state.socialGroups[selectedSocialGroupIndex],
+      leaderboards: [...leaderboardsConsentUpdated],
+    },
+  ];
+
+  const filterSocialGroups = state.socialGroups.filter(
+    (social) => social.socialGroupId !== state.socialGroups[selectedSocialGroupIndex].socialGroupId
+  );
+
   return {
     ...state,
-    socialGroups: [...state.socialGroups],
+    socialGroups: [...filterSocialGroups, ...updatedSocialGroup],
   };
 };
 
