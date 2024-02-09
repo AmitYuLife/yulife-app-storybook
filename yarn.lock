@@ -7049,10 +7049,10 @@
   resolved "https://gitlab.com/api/v4/projects/7775989/packages/npm/@yu-life/react-native-fitkit/-/@yu-life/react-native-fitkit-1.0.37.tgz#9ab5d4f1b76ca50f725f92f9579d12b2a5363446"
   integrity sha1-mrXU8bdspQ9yX5L5V50SsqU2NEY=
 
-"@yu-life/react-native-yu-health@1.0.14":
-  version "1.0.14"
-  resolved "https://gitlab.com/api/v4/projects/52134022/packages/npm/@yu-life/react-native-yu-health/-/@yu-life/react-native-yu-health-1.0.14.tgz#bad6db33aa61aa61c137153cab232500613f0ced"
-  integrity sha1-utbbM6phqmHBNxU8qyMlAGE/DO0=
+"@yu-life/react-native-yu-health@1.0.16":
+  version "1.0.16"
+  resolved "https://gitlab.com/api/v4/projects/52134022/packages/npm/@yu-life/react-native-yu-health/-/@yu-life/react-native-yu-health-1.0.16.tgz#b7044e1d0b5daa8b74c139a9bf81435b03452947"
+  integrity sha1-twROHQtdqot0wTmpv4FDWwNFKUc=
 
 "@yu-life/yulife-bdd-framework@0.0.70":
   version "0.0.70"
