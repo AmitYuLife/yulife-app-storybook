@@ -1,5 +1,7 @@
 import React, { memo } from "react";
 import ChallengesListOldContainer from "./challenges-list-old.container";
+import { useUserFeatures } from "@hooks";
+import ChallengesListContainer from "./challenges-list.container";
 
 interface IChallengesListProps {
   componentId: string;
@@ -9,9 +11,13 @@ interface IChallengesListProps {
 }
 
 const ChallengesListWrapper = (props: IChallengesListProps) => {
-  // TODO: Add new challenges list container under toggle tempGameEnableYuHealth
+  const { tempGameEnableYuHealth } = useUserFeatures();
 
-  return <ChallengesListOldContainer {...props} />;
+  if (!tempGameEnableYuHealth) {
+    return <ChallengesListOldContainer {...props} />;
+  }
+
+  return <ChallengesListContainer {...props} />;
 };
 
 export default memo(ChallengesListWrapper);
