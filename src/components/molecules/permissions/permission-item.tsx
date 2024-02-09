@@ -8,13 +8,15 @@ import { InfoIcon } from "@atoms/icon/info-icon";
 import { PermissionStatus } from "@yu-life/react-native-fitkit";
 import { STATUS_ICON } from "@ids";
 import PressableWithDelay from "../pressable-delay/pressable-delay";
+import { HealthPermissionStatus } from "@yu-life/react-native-yu-health";
 
 interface PermissionItemProps {
   title: string;
-  status: PermissionStatus;
+  status: PermissionStatus | HealthPermissionStatus;
   loading: boolean;
   description: string;
   requirement?: string;
+  onRequest?: () => void;
   showInfoPopup: (viewRef: React.MutableRefObject<View>, markdown: string) => void;
   infoMessage: string;
   errorMessage: string;
@@ -26,13 +28,14 @@ const PermissionItem = ({
   title,
   status,
   loading,
+  onRequest,
   description,
   requirement,
   showInfoPopup,
 }: PermissionItemProps) => {
   const { color, requirementColor } = useMemo(
     () =>
-      status === "not_supported"
+      status === "not_supported" || status === HealthPermissionStatus.unsupported
         ? { color: Colours.neutral.n500, requirementColor: Colours.neutral.n500 }
         : { color: Colours.neutral.n800, requirementColor: Colours.primary.p200 },
     [status]
@@ -40,16 +43,32 @@ const PermissionItem = ({
 
   const permissionRef = useRef<View>();
   const onPress = useCallback(() => {
+    // Fitkit
     if (status === "not_determined") {
       showInfoPopup(permissionRef, infoMessage);
       return;
     }
 
+    // YuHealth
+    if (status === HealthPermissionStatus.notDetermined) {
+      showInfoPopup(permissionRef, infoMessage);
+      return;
+    }
+
+    // Fitkit
     if (status === "denied" || status === "not_asked") {
       showInfoPopup(permissionRef, errorMessage);
       return;
     }
-  }, [status, infoMessage, errorMessage, permissionRef]);
+
+    // YuHealth
+    if (status === HealthPermissionStatus.denied) {
+      showInfoPopup(permissionRef, errorMessage);
+      return;
+    }
+
+    onRequest?.();
+  }, [status, onRequest, showInfoPopup, infoMessage, errorMessage]);
 
   return (
     <PressableWithDelay onPress={onPress}>
@@ -73,8 +92,8 @@ const PermissionItem = ({
   );
 };
 
-const getStatusIcon = (status: PermissionStatus, loading: boolean) => {
-  if (status === "not_supported") {
+const getStatusIcon = (status: PermissionStatus | HealthPermissionStatus, loading: boolean) => {
+  if (status === "not_supported" || status === HealthPermissionStatus.unsupported) {
     return <></>;
   }
 
@@ -85,9 +104,13 @@ const getStatusIcon = (status: PermissionStatus, loading: boolean) => {
   switch (status) {
     case "denied":
     case "not_asked":
+    case HealthPermissionStatus.denied:
+    case HealthPermissionStatus.notAsked:
       return <ExclamationIcon />;
+    case HealthPermissionStatus.notDetermined:
     case "not_determined":
       return <InfoIcon />;
+    case HealthPermissionStatus.granted:
     case "authorised":
       return <RadioIcon checked={true} width={Style.adjust(26)} height={Style.adjust(26)} />;
     default:

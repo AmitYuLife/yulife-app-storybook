@@ -2,7 +2,7 @@ import { PermissionItem, SecondaryButton, SettingsHeader } from "@components/mol
 import React, { memo, useCallback } from "react";
 import { Linking, View } from "react-native";
 import { Permissions } from "@services/fitkit/permissions.helpers";
-import { styles } from "./_styles";
+import { permissionsStyles } from "./_styles";
 import { t } from "@locale";
 import { ChainIcon } from "@atoms/icon/chain-icon";
 
@@ -16,7 +16,7 @@ const SystemPermissionsSection = ({ systemPermission, loading, showInfoPopup }: 
   const openSettings = useCallback(() => Linking.openSettings(), []);
   return (
     <View>
-      <View style={styles.settingsHeader}>
+      <View style={permissionsStyles.settingsHeader}>
         <SettingsHeader title={t("screens.permissions.system_section.header")} />
       </View>
 
@@ -37,7 +37,7 @@ const SystemPermissionsSection = ({ systemPermission, loading, showInfoPopup }: 
       <SecondaryButton
         size="Fill"
         label={t("screens.permissions.system_section.secondary_button")}
-        wrapperStyle={styles.paddingHorizontal24}
+        wrapperStyle={permissionsStyles.paddingHorizontal24}
         onPress={openSettings}
         leftIcon={<ChainIcon />}
       />
