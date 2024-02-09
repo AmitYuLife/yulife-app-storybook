@@ -15,12 +15,23 @@ import { t } from "@locale";
 interface SwitchToGoogleFitModalProps {
   onConnect: () => boolean;
   onConnected: () => boolean;
+  onClose?: () => void;
 }
 
 const SwitchToGoogleFitModal = (props: SwitchToGoogleFitModalProps) => {
-  const { onConnect, onConnected } = props;
-  const onClose = useCallback(() => Navigation.dismissModal(MODALS.switchToGoogleFit), []);
+  const { onConnect, onClose, onConnected } = props;
   const { androidAlertCopy } = getFitKitConnectCopy();
+
+  const onModalClose = useCallback(
+    (hasSwitched?: boolean) => {
+      if (!hasSwitched) {
+        onClose?.();
+      }
+
+      return Navigation.dismissModal(MODALS.switchToGoogleFit);
+    },
+    [onClose]
+  );
 
   const onGoogleFitConnect = useCallback(async () => {
     const { title, message: alertMessage, dismissLabel, downloadLabel, confirmLabel } = androidAlertCopy;
@@ -38,21 +49,21 @@ const SwitchToGoogleFitModal = (props: SwitchToGoogleFitModalProps) => {
           // TODO: check why onConnect is returning undefined, call onConnected only if is authorised === true,
           // if false show a failed message?
           await onConnect();
-          onConnected && onConnected();
-          onClose();
+          onConnected?.();
+          onModalClose(true);
         },
       },
     ];
     return Alert.alert(title, alertMessage, buttons, { cancelable: true });
-  }, [onConnect, onClose, onConnected, openGoogleFit]);
+  }, [androidAlertCopy, onConnect, onConnected, onModalClose]);
 
   useBackHandler(() => {
-    onClose();
+    onModalClose();
     return true;
   });
 
   return (
-    <GenericOverlay onClose={onClose}>
+    <GenericOverlay onClose={onModalClose}>
       <View style={styles.wrapper}>
         <Wrapper alignItems="center">
           <View style={styles.title}>

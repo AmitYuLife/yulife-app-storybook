@@ -6,6 +6,7 @@ import { ROUTES } from "@navigation/constants";
 import { Style } from "@styles";
 import YuHealthInfo from "./yu-health-info";
 import YuHealthActivity from "./yu-health-activity";
+import YuHealthChallenges from "./yu-health-challenges";
 
 const YuHealthDebug = () => {
   const [activeTab, setActiveTab] = useState<string>("YuHealth");
@@ -28,6 +29,12 @@ const YuHealthDebug = () => {
           setActiveTab("Activity");
         },
       },
+      {
+        name: "Challenges",
+        onPress: () => {
+          setActiveTab("Challenges");
+        },
+      },
     ];
   }, []);
 
@@ -38,6 +45,7 @@ const YuHealthDebug = () => {
       <ScrollView>
         {activeTab === "YuHealth" ? <YuHealthInfo /> : null}
         {activeTab === "Activity" ? <YuHealthActivity /> : null}
+        {activeTab === "Challenges" ? <YuHealthChallenges /> : null}
       </ScrollView>
       <GenericHeadingAbsolute heading={"YuHealth"} onLeftIconPress={onBack} />
     </View>
