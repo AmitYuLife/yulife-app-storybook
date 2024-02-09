@@ -34,7 +34,7 @@ interface IProps {
 
 type Props = IProps;
 
-const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, componentId }) => {
+const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap, componentId }) => {
   const activeChallengeState = useSelector(getActiveChallengeState);
   const [error, setErrorState] = useState(null as string);
   const [slot, setSlot] = useState(null as GetQuestMapLevel_getQuestMapLevel_slots);
@@ -242,4 +242,4 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
   );
 };
 
-export default memo(ChallengesListContainer);
+export default memo(ChallengesListOldContainer);

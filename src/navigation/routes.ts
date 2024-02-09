@@ -261,7 +261,8 @@ const routesForRegistration = [
   // quests screens
   {
     name: ROUTES.questsChallengesList,
-    component: require("../components/containers/member/quests/challenges-list/challenges-list.container").default,
+    component: require("../components/containers/member/quests/challenges-list/challenges-list-wrapper.container")
+      .default,
   },
 
   // rewards screens
