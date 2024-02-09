@@ -24,4 +24,12 @@ graph TD
     refreshCapabilityPermissionsSaga --> hasActiveProvider{Has active provider in store?}:::condition
     hasActiveProvider --> |Yes| yuHealthHasPermissions["YuHealth.hasPermissions(Capabilities)"]:::native
     --> YU_HEALTH_UPDATE_CAPABILITY_STATUSES:::action
+    YU_HEALTH_REFRESH_ALL_CAPABILITY_PERMISSIONS:::action --> refreshCapabilityPermissionsSaga
+
+    YU_HEALTH_SWITCH_PROVIDER:::action --> switchProviderSaga:::saga
+    switchProviderSaga --> getAvailabilityStatus:::native --> isProviderAvailable["Is requested provider available?"]:::condition
+    --> |Yes| switchProvider["Switch Provider"]
+    switchProvider --> nativeSetActiveYuHealthProvider2["YuHealth.setActiveYuHealthProvider"]:::native
+    switchProvider --> requestPermissions["YuHealth.requestPermissions(DEFAULT_PERMISSIONS)"]:::native
+    switchProvider --> refreshCapabilityPermissionsSaga
 ```

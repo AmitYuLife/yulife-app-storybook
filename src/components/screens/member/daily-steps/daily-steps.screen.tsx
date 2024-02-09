@@ -6,7 +6,7 @@ import { DAILY_STEPS_SCREEN, NOTIF_CENTRE } from "@ids";
 import { IConnectedScreenProps } from "@app/typings";
 import { Pad, YuCoinBadge } from "@atoms";
 import { TouchableOpacityWithDelay, CentredScreen } from "@molecules";
-import { Surge, Streak, TopBar, NavBar, DailyStepsContent, CustomIcon } from "@organisms";
+import { Surge, Streak, TopBar, NavBar, DailyStepsContentOld, CustomIcon } from "@organisms";
 import { Style, TOP_BAR } from "@styles";
 import styles from "./daily-steps.screen.styles";
 import ReferralsPopover from "./referrals-popover";
@@ -144,7 +144,7 @@ const DailyStepsScreen = ({
             </View>
           </View>
         </TouchableOpacityWithDelay>
-        <DailyStepsContent />
+        <DailyStepsContentOld />
         <View style={styles.leftIconList}>
           {!userSurge?.endDateTime ? null : (
             <Surge multiplier={userSurge?.multiplier} endDateTime={userSurge?.endDateTime} onPress={onSurgePress} />
