@@ -66,7 +66,7 @@ const routesForRegistration = [
   {
     hasMenu: true,
     name: ROUTES.dailySteps,
-    component: require("../components/containers/member/daily-steps/daily-steps.container").default,
+    component: require("../components/containers/member/daily-steps/daily-steps-wrapper.container").default,
   },
   {
     hasMenu: true,

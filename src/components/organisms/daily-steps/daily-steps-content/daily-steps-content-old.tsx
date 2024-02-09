@@ -102,4 +102,4 @@ const _DailyStepsContent = () => {
   return <DailyStepsOnline onReferralsButtonPress={onReferralsButtonPress} />;
 };
 
-export const DailyStepsContent = memo(_DailyStepsContent);
+export const DailyStepsContentOld = memo(_DailyStepsContent);
