@@ -26,7 +26,7 @@ export { default as DuelsIntroScreen } from "./member/duels-hub/duels.intro.scre
 export { default as ChangeMemberNickname } from "./member/change-member-nickname/change-member-nickname.screen";
 export { default as TodayEarningsScreen } from "./member/today-earnings/today-earnings.screen";
 export { default as TodayEarningLoadingScreen } from "./member/today-earnings/today-earnings-loading.screen";
-export { default as PermissionScreen } from "./member/permissions/permissions.screen";
+export { default as PermissionOldScreen } from "./member/permissions/permissions-old.screen";
 
 // quests screens
 export { default as QuestsScreenOffline } from "./member/quests/quests-offline/quests-offline";

@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
-import { PermissionScreen } from "@components/screens";
+import { PermissionOldScreen } from "@components/screens";
 import { checkPermissions, getPermissionsConfig, SettingsPermissions } from "@services/fitkit/permissions.helpers";
 import { AppStateStatus } from "react-native";
 import { useAppState } from "@hooks";
@@ -10,7 +10,7 @@ interface IProps {
   componentId: string;
 }
 
-const PermissionsContainer = ({ componentId }: IProps) => {
+const PermissionsOldContainer = ({ componentId }: IProps) => {
   const [settingsPermissions, setSettingsPermissions] = useState<SettingsPermissions>();
   const [loading, setLoading] = useState(true);
 
@@ -44,7 +44,7 @@ const PermissionsContainer = ({ componentId }: IProps) => {
   const onLeftIconPress = useCallback(() => Navigation.pop(ROUTES.permissions), []);
 
   return (
-    <PermissionScreen
+    <PermissionOldScreen
       loading={loading}
       settingsPermissions={settingsPermissions}
       updatePermissions={getPermissionStatus}
@@ -54,4 +54,4 @@ const PermissionsContainer = ({ componentId }: IProps) => {
   );
 };
 
-export default memo(PermissionsContainer);
+export default memo(PermissionsOldContainer);
