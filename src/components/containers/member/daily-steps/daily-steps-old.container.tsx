@@ -88,7 +88,6 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
         userSurge={userSurge}
         onLeftMenuPress={onLeftMenuPress}
         onNotificationPress={userFeatures.showNotificationCentre ? navigateToNotifications : undefined}
-        fitKitAvailable={fitkit.available}
         hasPermission={fitkit.authorised}
         customIcon={data?.getDailyScreenCustomIcon}
         hasEvents={!!userEvents?.length}

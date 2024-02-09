@@ -1,13 +1,19 @@
 import { IMainTabsProps } from "@navigation/root";
 import React, { memo } from "react";
 import DailyStepsOldContainer from "./daily-steps-old.container";
+import { useUserFeatures } from "@hooks";
+import DailyStepsContainer from "./daily-steps.container";
 
 type Props = IMainTabsProps;
 
 const DailyStepsWrapper = (props: Props) => {
-  // TODO: Add new daily steps container under toggle tempGameEnableYuHealth
+  const { tempGameEnableYuHealth } = useUserFeatures();
 
-  return <DailyStepsOldContainer {...props} />;
+  if (!tempGameEnableYuHealth) {
+    return <DailyStepsOldContainer {...props} />;
+  }
+
+  return <DailyStepsContainer {...props} />;
 };
 
 export default memo(DailyStepsWrapper);

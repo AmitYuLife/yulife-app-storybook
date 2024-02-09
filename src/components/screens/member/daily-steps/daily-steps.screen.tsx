@@ -21,10 +21,13 @@ import { useSelector } from "react-redux";
 import { getModalState } from "@redux/app/app.selectors";
 import { IThemeScreens } from "@theme";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import DailyStepsContent, {
+  IDailyStepsContentProps,
+} from "@organisms/daily-steps/daily-steps-content/daily-steps-content";
+import { useUserFeatures } from "@hooks";
 
 interface IProps extends IConnectedScreenProps {
   showCounter?: boolean;
-  fitKitAvailable: boolean;
   hasPermission: boolean;
   onCoinPress: () => void;
   onNotificationPress?: () => void;
@@ -36,6 +39,7 @@ interface IProps extends IConnectedScreenProps {
   theme: IThemeScreens;
   hasEvents: boolean;
   hideInformationIcon: boolean;
+  contentProps?: IDailyStepsContentProps;
 }
 
 type Props = IProps;
@@ -52,7 +56,9 @@ const DailyStepsScreen = ({
   currentWorld,
   currentYuniverse,
   theme,
+  contentProps,
 }: Props) => {
+  const { tempGameEnableYuHealth } = useUserFeatures();
   const currentModal = useSelector(getModalState);
 
   const { androidImportantForAccessibility, accessibilityElementsHidden } = useMemo(
@@ -144,7 +150,7 @@ const DailyStepsScreen = ({
             </View>
           </View>
         </TouchableOpacityWithDelay>
-        <DailyStepsContentOld />
+        {!tempGameEnableYuHealth ? <DailyStepsContentOld /> : <DailyStepsContent {...contentProps} />}
         <View style={styles.leftIconList}>
           {!userSurge?.endDateTime ? null : (
             <Surge multiplier={userSurge?.multiplier} endDateTime={userSurge?.endDateTime} onPress={onSurgePress} />
