@@ -167,6 +167,9 @@ export const MODALS = {
   joinLeaderboardOverlay: "yulife.overlay.joinLeaderboard",
   leaderboardRank: "yulife.modals.leaderboardRank",
   genericWithHeroImage: "yulife.modals.genericWithHeroImage",
+
+  // YuHealth
+  healthPermission: "yulife.modals.healthPermission",
 };
 
 export const bottomTabs: OptionsBottomTabs = {

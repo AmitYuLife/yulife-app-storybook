@@ -485,6 +485,10 @@ const routesForRegistration = [
     name: MODALS.genericWithHeroImage,
     component: require("../components/modals/hero-image-modal/hero-image-modal").default,
   },
+  {
+    name: MODALS.healthPermission,
+    component: require("../components/modals/health-permission/health-permission.modal").default,
+  },
 ];
 
 export default routesForRegistration;

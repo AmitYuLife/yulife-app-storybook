@@ -21,3 +21,4 @@ export * from "./useAsyncEffect";
 export * from "./useHint";
 export * from "./useMutationAllRegions";
 export * from "./usePopToQuestsRootOnNewDate";
+export * from "./useVerifyAndAuthorizeCapability";

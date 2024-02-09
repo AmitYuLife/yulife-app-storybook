@@ -1,0 +1,71 @@
+import { useVerifyAndAuthorizeCapability } from "@hooks";
+import { TextTemplate } from "@atoms";
+import { getCapabilityStatuses } from "@redux/yu-health/yu-health.selectors";
+import { Style } from "@styles";
+import colours from "@styles/colours";
+import { HealthPermissionStatus, HealthProviderCapability } from "@yu-life/react-native-yu-health";
+import { memo } from "react";
+import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
+import { useSelector } from "react-redux";
+
+const YuHealthChallenges = () => {
+  const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability();
+
+  const capabilityStatuses = useSelector(getCapabilityStatuses);
+
+  const getCapabilityColor = (capability: HealthProviderCapability) => {
+    const status = capabilityStatuses?.[capability];
+
+    switch (status) {
+      case HealthPermissionStatus.granted:
+        return "rgba(0,255,0,0.1)";
+      case HealthPermissionStatus.notDetermined:
+        return "rgba(0,155,155,0.1)";
+      case HealthPermissionStatus.notAsked:
+        return "rgba(255,150,0,0.1)";
+      default:
+        return "rgba(255,0,0,0.1)";
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      {Object.values(HealthProviderCapability).map((capability) => {
+        return (
+          <TouchableOpacity
+            activeOpacity={0.8}
+            key={capability}
+            style={{ ...styles.capability, backgroundColor: getCapabilityColor(capability) }}
+            onPress={async () => {
+              const shouldStart = await verifyAndAuthorizeCapability(capability);
+              Alert.alert("Should we start the challenge?", shouldStart ? "Yes" : "No");
+            }}
+          >
+            <TextTemplate type="l2b">{capability}</TextTemplate>
+            <TextTemplate type="l2">Status: {capabilityStatuses?.[capability]}</TextTemplate>
+          </TouchableOpacity>
+        );
+      })}
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    padding: 20,
+    gap: 10,
+    alignItems: "flex-start",
+  },
+  capability: {
+    width: "48%",
+    padding: Style.adjust(6),
+    paddingHorizontal: Style.adjust(10),
+    borderRadius: Style.adjust(8),
+    minHeight: 80,
+    backgroundColor: colours.products.fib.rare,
+  },
+});
+
+export default memo(YuHealthChallenges);
