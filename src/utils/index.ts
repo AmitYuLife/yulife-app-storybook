@@ -11,3 +11,4 @@ export * from "./types";
 export * from "./object";
 export * from "./getIsJsonSchemaValid";
 export * from "./parseJson";
+export * from "./yuHealth";

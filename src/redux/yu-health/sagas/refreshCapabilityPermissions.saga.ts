@@ -1,12 +1,14 @@
 import { HealthProvider, HealthProviderCapability, hasPermissions } from "@yu-life/react-native-yu-health";
 import { put, select } from "redux-saga/effects";
-import { updateCapabilityStatuses } from "../yu-health.actions";
+import { YU_HEALTH_SET_ACTIVE_PROVIDER, updateCapabilityStatuses } from "../yu-health.actions";
 import { getActiveProviderSelector } from "../yu-health.selectors";
+import { take } from "lodash";
 
 export default function* refreshCapabilityPermissionsSaga() {
-  const activeProvider: HealthProvider = yield select(getActiveProviderSelector);
+  let activeProvider: HealthProvider = yield select(getActiveProviderSelector);
   if (!activeProvider) {
-    return;
+    // Wait until an active provider has been set
+    activeProvider = yield take(YU_HEALTH_SET_ACTIVE_PROVIDER);
   }
 
   const status: Awaited<ReturnType<typeof hasPermissions>> = yield hasPermissions(

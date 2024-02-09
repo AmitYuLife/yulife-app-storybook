@@ -51,8 +51,6 @@ export const yuHealthAggregateQuery = async ({
       type: `yu_health_aggregate_query_response_error`,
     });
 
-    Logger.error(e, { file: "yu-health.helpers.yuHealthAggregateQuery" });
-
     return [];
   }
 };
