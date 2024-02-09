@@ -1,12 +1,14 @@
 import React, { ComponentProps, memo, useCallback, useMemo } from "react";
-import { ContentItemHeaderBar as GqlHeader } from "@graphql/_core/schema/ContentItemHeaderBar";
+import { ContentItemHeaderBar as GqlHeader } from "@graphql/__generated";
 import { ContentItemHeaderBar } from "@components/sdui";
 import { useSelector, useDispatch } from "react-redux";
 import { getSduiLoadingForKey } from "@redux/server-driven-ui/sdui.selectors";
 import { useBackHandler } from "@hooks";
 import { SduiActionWithServerPayload } from "@redux/server-driven-ui/sdui.types";
 
-type Props = GqlHeader;
+type Props = GqlHeader & {
+  contentItemHeaderBarRightIcon?: GqlHeader["rightIcon"];
+};
 
 export const ProductDetailsHeaderBar = memo(
   ({

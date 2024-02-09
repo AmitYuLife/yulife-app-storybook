@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { View } from "react-native";
 import Hint from "@components/molecules/hint/hint";
-import { ContentItemHint as GqlHint } from "@graphql/_core/schema";
+import { ContentItemHintFragment as GqlHint } from "@graphql/__generated";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";
 

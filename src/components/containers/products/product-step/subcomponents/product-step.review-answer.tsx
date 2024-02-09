@@ -1,6 +1,6 @@
 import React, { memo, useContext, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { ContentItemPersonalProductReviewItem as GqlReviewItem } from "@graphql/_core/schema";
+import { ContentItemPersonalProductReviewItemFragment as GqlReviewItem } from "@graphql/__generated";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";

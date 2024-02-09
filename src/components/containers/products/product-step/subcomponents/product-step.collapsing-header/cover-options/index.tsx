@@ -1,6 +1,6 @@
 import React, { memo, useContext, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { ContentItemCollapsingHeaderProductInfo as Props } from "@graphql/_core/schema";
+import { ContentItemCollapsingHeaderProductInfoFragment as Props } from "@graphql/__generated";
 import { Style } from "@styles";
 import { mapCoverTypeToColorTheme } from "@styles";
 import { ProductStepContext } from "../../../product-step.context";

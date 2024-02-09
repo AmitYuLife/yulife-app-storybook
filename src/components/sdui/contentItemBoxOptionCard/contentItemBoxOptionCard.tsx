@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { ContentItemBoxOptionCard as GqlProps } from "@graphql/_core/schema";
+import { ContentItemBoxOptionCardFragment as GqlProps } from "@graphql/__generated";
 import { View } from "react-native";
 import { BoxOptionCard } from "@components/molecules";
 import { mapServerStyles } from "../_utils/mapServerStyles";

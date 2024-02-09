@@ -1,6 +1,5 @@
 import React, { useContext, useMemo } from "react";
 import { Animated, Platform, StyleSheet, View, ViewStyle } from "react-native";
-import { GetYuScreenProductDetails_getYuScreenProductDetails_body as BodyItems } from "@graphql/_core/schema";
 import { ProductDetailsHeader } from "../subcomponents/product-details.header";
 import { UiContext } from "../product-details.context";
 import {
@@ -23,9 +22,12 @@ import media from "@styles/media";
 import { Style } from "@styles";
 import { ProductDetailsHoldingHeader } from "../subcomponents/product-details.holding-header/product-details.holding-header";
 import { PRODUCT_DETAILS_SCROLL_VIEW } from "@ids";
+import { GetYuScreenProductDetailsQuery } from "@graphql/__generated";
+
+type IBodyItems = GetYuScreenProductDetailsQuery["getYuScreenProductDetails"]["body"];
 
 interface Props {
-  body: BodyItems[];
+  body: IBodyItems;
   headerHeight?: number;
 }
 
@@ -70,7 +72,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-const renderItemContent = (item: BodyItems): JSX.Element => {
+const renderItemContent = (item: IBodyItems[0]): JSX.Element => {
   switch (item.__typename) {
     case "ContentItemProductDetailsHeader":
       return <ProductDetailsHeader key={item.id} {...item} />;

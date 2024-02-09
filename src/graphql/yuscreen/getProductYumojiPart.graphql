@@ -1,0 +1,5 @@
+query GetProductYumojiPart($customerProductId: String!) {
+  getProductYumojiPart(customerProductId: $customerProductId) {
+    yumojiPartType
+  }
+}

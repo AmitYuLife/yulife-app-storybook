@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ContentItemProgressBar } from "./contentItemProgressBar";
-import { ContentItemProgressBarType } from "@graphql/_core/schema/globalTypes";
+import { ContentItemProgressBarType } from "@graphql/__generated";
 
 type Story = StoryObj<typeof ContentItemProgressBar>;
 
@@ -13,7 +13,7 @@ const meta: Meta<typeof ContentItemProgressBar> = {
     currentPosition: 100,
     id: "progress-bar",
     maxLength: 200,
-    progressType: ContentItemProgressBarType.yuCoin,
+    progressType: ContentItemProgressBarType.YuCoin,
     publishKeyHeight: "DYNAMIC_HEIGHT_KEY_PROGRESS",
   },
 };

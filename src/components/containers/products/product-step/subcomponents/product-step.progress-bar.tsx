@@ -1,6 +1,6 @@
 import React from "react";
 import { ContentItemProgressBar } from "@components/sdui";
-import { ContentItemProgressBar as GqlProps } from "@graphql/_core/schema";
+import { ContentItemProgressBarFragment as GqlProps } from "@graphql/__generated";
 import { View } from "react-native";
 
 /**

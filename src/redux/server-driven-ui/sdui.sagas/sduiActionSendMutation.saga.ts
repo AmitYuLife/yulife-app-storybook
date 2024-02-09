@@ -1,13 +1,13 @@
 import { gql } from "@apollo/client";
 import { get, parseJSON } from "@utils";
 import { all, call, put } from "redux-saga/effects";
-import { SduiAction } from "@graphql/_core/schema";
 import client from "@graphql/_core/client";
 import { setLoadingState } from "../sdui.actions";
 import { SduiSagaAction } from "../sdui.types";
 import { submitSduiJourney } from "../../../graphql/journey";
 import { getServerPayload } from "../sdui.helpers";
 import Logger from "@services/logging/logger";
+import { SduiAction } from "@graphql/__generated";
 
 type MutationSduiAction = Partial<SduiAction> & { __typename?: "SduiAction" };
 type MutationRequest = (args: { variables: any; refetchQueries?: string[] }) => Promise<unknown>;

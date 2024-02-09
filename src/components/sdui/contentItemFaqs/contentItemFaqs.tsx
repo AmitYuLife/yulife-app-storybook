@@ -4,10 +4,7 @@ import { ProductStepMarkdown } from "@components/containers/products/product-ste
 import { Image, TextTemplate } from "@atoms";
 import { PressableWithDelay, TertiaryButton, YugiHeader } from "@molecules";
 import { Colours, Style } from "@styles";
-import {
-  GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemPersonalProductFaqs as GqlDocuments,
-  GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemPersonalProductFaqs_faqs as GqlDocument,
-} from "@graphql/_core/schema";
+import { ContentItemPersonalProductFaqs as GqlDocuments } from "@graphql/__generated";
 import { ProductStepDetachedNavigationContext } from "@components/containers/products/product-step/product-step-detached-navigation.context";
 import { ArrowButton } from "@components/molecules/arrow-button";
 
@@ -16,7 +13,7 @@ type Props = GqlDocuments;
 export const ContentItemFaqs = memo((props: Props) => {
   const { faqs, headingMarkdown, headingImage } = props;
 
-  const [showingContent, setShowingContent] = useState(null as GqlDocument);
+  const [showingContent, setShowingContent] = useState(null as GqlDocuments["faqs"][0]);
   const { pushNestedHistory, nestedHistory } = useContext(ProductStepDetachedNavigationContext);
 
   const findDocumentById = (id: string) => {

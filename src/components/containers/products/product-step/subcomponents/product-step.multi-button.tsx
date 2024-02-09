@@ -1,6 +1,9 @@
 import React, { memo, useContext, useCallback } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { ContentItemMultiButton as GqlMultiButton, ContentItemButton as GqlButton } from "@graphql/_core/schema";
+import {
+  ContentItemMultiButtonFragment as GqlMultiButton,
+  ContentItemButtonFragment as GqlButton,
+} from "@graphql/__generated";
 import { ContentItemButtonSize } from "@graphql/_core/schema/globalTypes";
 import { Style } from "@styles";
 import { ContentItemButton, mapServerStyles } from "@components/sdui";
@@ -17,17 +20,18 @@ export const ProductStepContentItemMultiButton = memo((props: Props) => {
   const disabled = useSelector(getSduiLoadingForKey("__disabled"));
 
   const buildDynamicOnPress = useCallback(
-    ({ onPress, value, id }: GqlButton) => () =>
-      dispatch({
-        type: onPress.type,
-        payload: {
-          productId,
-          stepId,
-          dynamicData: { ...dynamicData, [props.answerKey]: value },
-          serverPayload: onPress.payload,
-          id: `${stepId} - ${id}`,
-        },
-      }),
+    ({ onPress, value, id }: GqlButton) =>
+      () =>
+        dispatch({
+          type: onPress.type,
+          payload: {
+            productId,
+            stepId,
+            dynamicData: { ...dynamicData, [props.answerKey]: value },
+            serverPayload: onPress.payload,
+            id: `${stepId} - ${id}`,
+          },
+        }),
     [productId, stepId, dynamicData, props.answerKey]
   );
 

@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { ContentItemInfoButton as GqlInfoButton } from "@graphql/_core/schema";
+import { ContentItemInfoButtonFragment as GqlInfoButton } from "@graphql/__generated";
 import { Image, TextTemplate, Loading } from "@atoms";
 import { TouchableWithDelay } from "@components/molecules";
 import { StyleSheet, View } from "react-native";

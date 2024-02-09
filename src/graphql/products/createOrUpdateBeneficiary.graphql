@@ -1,0 +1,13 @@
+mutation CreateOrUpdateBeneficiary($beneficiary: CustomerBeneficiaryUpdate) {
+  updateBeneficiaryForProduct(beneficiary: $beneficiary) {
+    id
+    beneficiaries {
+      id
+      firstName
+      lastName
+      phoneNumber
+      relationship
+      shareOfBenefit
+    }
+  }
+}

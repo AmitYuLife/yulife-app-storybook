@@ -1,11 +1,8 @@
 import React, { memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { View, Animated, ViewStyle, FlatList as RNFlatList } from "react-native";
-import { AvatarPartType, CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
 import { Loading, FlatList, TextTemplate } from "@atoms";
 import { Colours } from "@styles";
 import { useQuery } from "@apollo/client";
-import { GetYumojiPartUrlSetSwiper, GetYumojiPartUrlSetSwiperVariables } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_YUMOJI_PART_URL_SET_SWIPER } from "@graphql/yuscreen/getYumojiPartUrlSetSwiper.gql";
 import { useScrollHandlers } from "../hooks/useScrollHandlers";
 import { useLocalWorldState } from "../hooks";
 import { FLAT_LIST_ITEM } from "./yumoji-swipe-part.types";
@@ -15,6 +12,7 @@ import { ProductStepContext } from "@components/containers/products/product-step
 import { LOCAL_ANSWER_KEY } from "@components/containers/products/product-step/utils";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useDispatch } from "react-redux";
+import { AvatarPartType, CoverType, YuWorld, gql } from "@graphql/__generated";
 
 interface Props {
   onChange: (worldId: YuWorld) => void;
@@ -26,15 +24,12 @@ interface Props {
 }
 
 export const YumojiSwipePart = memo(
-  ({ partType, coverType = CoverType.common, selectedYuWorld, onChange, topText }: Props) => {
-    const { data, loading } = useQuery<GetYumojiPartUrlSetSwiper, GetYumojiPartUrlSetSwiperVariables>(
-      GQL_QUERY_GET_YUMOJI_PART_URL_SET_SWIPER,
-      {
-        variables: {
-          partType,
-        },
-      }
-    );
+  ({ partType, coverType = CoverType.Common, selectedYuWorld, onChange, topText }: Props) => {
+    const { data, loading } = useQuery(gql("GetYumojiPartUrlSetSwiperDocument"), {
+      variables: {
+        partType,
+      },
+    });
     const { current: scrollX } = useRef(new Animated.Value(0));
     const listRef = useRef(null as RNFlatList);
     const scrollToDefaultIndexDelay = useRef(null);

@@ -3,19 +3,17 @@ import { TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { useQuery } from "@apollo/client";
-import { GQL_QUERY_GET_YU_SCREEN_PRODUCT_LIST } from "@graphql/yuscreen/getYuScreenProductList.gql";
-import { GetYuScreenProductList, GetYuScreenProductList_getYuScreenProductList_body } from "@graphql/_core/schema";
 import { CarouselCard } from "@components/containers/member/yu/subcomponents/carousel/carousel-card";
 import { AllProductsLayout } from "./all-products.layout";
-import { YuScreenCarouselItemVariant } from "@graphql/_core/schema/globalTypes";
 import { useBackHandler } from "@hooks";
 import { handleNavigateBack } from "@navigation/utils";
+import { YuScreenCarouselItemVariant, gql } from "@graphql/__generated";
 
 interface Props {
   componentId: string;
 }
 const AllProductsScreen = ({ componentId }: Props) => {
-  const { data, error, loading } = useQuery<GetYuScreenProductList>(GQL_QUERY_GET_YU_SCREEN_PRODUCT_LIST, {
+  const { data, error, loading } = useQuery(gql("GetYuScreenProductListDocument"), {
     fetchPolicy: "cache-and-network",
   });
 
@@ -42,10 +40,7 @@ const AllProductsScreen = ({ componentId }: Props) => {
     );
   }
 
-  const {
-    body,
-    heading,
-  }: { body: GetYuScreenProductList_getYuScreenProductList_body[]; heading: string } = data?.getYuScreenProductList || {
+  const { body, heading } = data?.getYuScreenProductList || {
     body: [],
     heading: null,
   };
@@ -59,7 +54,7 @@ const AllProductsScreen = ({ componentId }: Props) => {
       )}
       {body.map((item) => (
         <View key={item.id} style={styles.cardWrapper}>
-          <CarouselCard {...item} variant={YuScreenCarouselItemVariant.full} />
+          <CarouselCard {...item} variant={YuScreenCarouselItemVariant.Full} />
         </View>
       ))}
     </AllProductsLayout>

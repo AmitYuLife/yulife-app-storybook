@@ -1,5 +1,5 @@
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { ContentItemWrapper, SduiStyle } from "@graphql/_core/schema";
+import { ContentItemWrapper, SduiStyle } from "@graphql/__generated";
 import { VoidFunction, parseJSON } from "@utils";
 import { ScrollView, View } from "react-native";
 import { mapPointerEvents } from "../_utils/mapPointerEvents";

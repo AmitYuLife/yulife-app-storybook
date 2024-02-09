@@ -4,7 +4,7 @@ import { Image, TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Colours, Style } from "@styles";
 import { Source } from "react-native-fast-image";
-import { SduiAction } from "@graphql/_core/schema";
+import { SduiAction } from "@graphql/__generated";
 import { useDispatch } from "react-redux";
 import { ProductStepContext } from "@components/containers/products/product-step/product-step.context";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
@@ -12,11 +12,11 @@ import { DENTAL_TOOLTIP_INFO } from "@ids";
 
 interface Props {
   leftText: string;
-  rightTextBody: string;
-  rightTextLabel: string;
+  rightTextBody?: string;
+  rightTextLabel?: string;
   styles?: ViewStyle;
   info?: {
-    onPress: SduiAction;
+    onPress?: SduiAction;
   };
   infoIcon?: Source;
 }

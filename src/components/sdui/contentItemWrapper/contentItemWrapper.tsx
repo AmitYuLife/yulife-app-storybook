@@ -1,5 +1,5 @@
 import React, { memo, useMemo, useCallback, useContext, useEffect } from "react";
-import { ContentItemWrapper as Props } from "@graphql/_core/schema";
+import { ContentItemWrapperFragment as Props } from "@graphql/__generated";
 import { parseJSON } from "@utils";
 import { renderItemContent } from "@components/sdui/_renderer/renderer";
 import { Absolute } from "@components/sdui/_renderer/sections/absolute";

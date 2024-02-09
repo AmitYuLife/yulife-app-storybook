@@ -39,7 +39,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useAppState, useBackHandler, useGetLottieJson } from "@hooks";
 import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
-import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
+import { ContentItemLottie as GqlLottie } from "@graphql/__generated";
 import { HourglassIcon } from "@atoms/icon/hourglass-icon";
 import { t } from "@locale";
 import { AppDataType, getUserDataStart } from "@redux/user/user.actions";

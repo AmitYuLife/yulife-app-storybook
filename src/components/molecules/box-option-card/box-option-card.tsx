@@ -1,7 +1,7 @@
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { default as BoxOption } from "../box-option/box-option";
-import { ContentItemButton_event, RemoteImage, SduiAction, VariableRemoteImage } from "@graphql/_core/schema";
+import { ContentItemButtonFragment, RemoteImage, SduiAction, VariableRemoteImage } from "@graphql/__generated";
 import { Style, Colours } from "@styles";
 import { ComponentProps, useCallback, useRef, useState } from "react";
 import { Title } from "./box-option-card.title";
@@ -12,11 +12,11 @@ import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 interface Props {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   image?: RemoteImage;
   variableImage?: VariableRemoteImage;
-  onPress: SduiAction;
+  onPress?: SduiAction;
   event?: SduiAction;
   descriptionTextType?: ComponentProps<typeof TextTemplate>["type"];
   innerHeight?: number;
@@ -66,7 +66,7 @@ export const BoxOptionCard = ({
   };
 
   const eventCallback = useCallback(() => {
-    const safeEventObj: Partial<ContentItemButton_event> = event || { payload: null };
+    const safeEventObj: Partial<ContentItemButtonFragment["event"]> = event || { payload: null };
     const payload = JSON.parse(safeEventObj.payload);
     const safePayloadObj = payload || {};
     dispatch(

@@ -1,10 +1,9 @@
 import React, { ComponentProps, memo, useCallback, useState } from "react";
 import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { CONTENT_ITEM_INPUT } from "@ids";
-import { ContentItemTextInput as GqlTextInput } from "@graphql/_core/schema";
+import { ContentItemFormTextInputType, ContentItemTextInputFragment as GqlTextInput } from "@graphql/__generated";
 import { TextField } from "@components/molecules";
 import { Style } from "@styles";
-import { ContentItemFormTextInputType } from "@graphql/_core/schema/globalTypes";
 import { TextTemplate } from "@atoms";
 import media, { DEVICES } from "@styles/media";
 import { addCommasToNumber } from "@utils";
@@ -93,9 +92,9 @@ const styles = StyleSheet.create({
 
 const mapTextFieldType = (type: ContentItemFormTextInputType): ComponentProps<typeof TextField>["type"] => {
   switch (type) {
-    case ContentItemFormTextInputType.number:
+    case ContentItemFormTextInputType.Number:
       return "Number";
-    case ContentItemFormTextInputType.email:
+    case ContentItemFormTextInputType.Email:
     default:
       return "Text";
   }

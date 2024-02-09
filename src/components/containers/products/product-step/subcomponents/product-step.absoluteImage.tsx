@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { ContentItemImage as GqlImage } from "@graphql/_core/schema";
+import { ContentItemImageFragment as GqlImage } from "@graphql/__generated";
 import { Image } from "@atoms";
 import { mapServerStyles } from "@components/sdui";
 

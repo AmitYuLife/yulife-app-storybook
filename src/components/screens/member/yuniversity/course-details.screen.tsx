@@ -7,13 +7,12 @@ import { Image, TextTemplate } from "@atoms";
 import { Module, YuniversityModuleReward } from "@molecules";
 import { ChapterContentItem, GenericHeadingAbsolute, GenericHeadingPad, ModuleNotes } from "@organisms";
 import Markdown from "@molecules/markdown/markdown";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
 import TagsWithImage from "@components/molecules/yuniversity/tags-with-image";
 import { CPD_COURSE_DETAIL_SCREEN, CPD_COURSE_SCROLL_VIEW } from "@ids";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
-import { GetInAppYuniversityCourseModuleDetailsQuery } from "@graphql/__generated";
+import { CoverType, GetInAppYuniversityCourseModuleDetailsQuery } from "@graphql/__generated";
 
 type IGqlMedia =
   GetInAppYuniversityCourseModuleDetailsQuery["getInAppYuniversityCourseModuleDetails"]["chapters"]["0"]["videoMedia"];
@@ -86,7 +85,7 @@ const CourseDetailsScreen = ({
         id: MODALS.yuniversityCertificate,
         name: MODALS.yuniversityCertificate,
         passProps: {
-          coverType: CoverType.rare,
+          coverType: CoverType.Rare,
           keyValuePairs: values,
           content: [
             {

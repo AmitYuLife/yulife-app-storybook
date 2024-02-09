@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
-import { GetPersonalProductStep_getPersonalProductStep_header as GPPS_Header } from "@graphql/_core/schema";
+import { GetPersonalProductStepQuery } from "@graphql/__generated";
 import { ContentItemProcessingTimer, ContentItemProgressSteps } from "@components/sdui";
 import { Colours } from "@styles";
 import {
@@ -11,8 +11,9 @@ import {
 } from "../../subcomponents";
 import { ProductStepContext } from "../../product-step.context";
 
+type GPPS_Header = GetPersonalProductStepQuery["getPersonalProductStep"]["header"];
 interface Props {
-  header: GPPS_Header[];
+  header: GPPS_Header;
   onLayout: (e: LayoutChangeEvent) => void;
 }
 
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-const renderItemContent = (item: GPPS_Header): JSX.Element => {
+const renderItemContent = (item: GPPS_Header[0]): JSX.Element => {
   switch (item.__typename) {
     case "ContentItemHeaderBar":
       return <ProductStepContentItemHeader key={item.__typename} {...item} />;

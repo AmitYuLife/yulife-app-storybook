@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ContentItemLottie } from "./contentItemLottie";
-import { SduiActionType } from "@graphql/_core/schema/globalTypes";
+import { SduiActionType } from "@graphql/__generated";
 
 type Story = StoryObj<typeof ContentItemLottie>;
 
@@ -15,7 +15,7 @@ const meta: Meta<typeof ContentItemLottie> = {
     autoPlay: true,
     loop: true,
     onAnimationEnd: {
-      type: SduiActionType.SDUI_ACTION_SEND_MUTATION,
+      type: SduiActionType.SduiActionSendMutation,
       payload:
         '{"mutation":"submitSduiJourney","action":"PUSH","journeyId":"ordo_claim_bupa_gdent","stepId":"ordo_claim_bupa_gdent_order_details_loading","refetchQueries":["GetSduiJourney"]}',
     },

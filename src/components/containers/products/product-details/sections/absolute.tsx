@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { GetYuScreenProductDetails_getYuScreenProductDetails_absolute as AbsoluteItems } from "@graphql/_core/schema";
 import {
   ContentItemCollapsingGenericHeader,
   ContentItemLinearGradient,
@@ -7,9 +6,11 @@ import {
   ContentItemButton,
 } from "@components/sdui";
 import { IProductDetailsContext, UiContext } from "../product-details.context";
+import { GetYuScreenProductDetailsQuery } from "@graphql/__generated";
 
+type IAboluteItems = GetYuScreenProductDetailsQuery["getYuScreenProductDetails"]["absolute"];
 interface Props {
-  absolute: AbsoluteItems[];
+  absolute: IAboluteItems;
 }
 
 export const Absolute = (props: Props) => {
@@ -24,7 +25,7 @@ export const Absolute = (props: Props) => {
   return <>{absolute.map((item) => renderAbsoluteItemContent(item, uiContext))}</>;
 };
 
-const renderAbsoluteItemContent = ({ item }: AbsoluteItems, uiContext: IProductDetailsContext): JSX.Element => {
+const renderAbsoluteItemContent = ({ item }: IAboluteItems[0], uiContext: IProductDetailsContext): JSX.Element => {
   switch (item.__typename) {
     case "ContentItemPad":
       return <ContentItemPad key={item.id} {...item} />;

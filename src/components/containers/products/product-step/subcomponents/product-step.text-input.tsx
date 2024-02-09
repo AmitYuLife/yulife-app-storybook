@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { ContentItemTextInput as GqlTextInput } from "@graphql/_core/schema/ContentItemTextInput";
+import { ContentItemTextInputFragment as GqlTextInput } from "@graphql/__generated";
 import { ContentItemTextInputBase } from "@components/sdui";
 import { useDynamicOnChange } from "../hooks/useDynamicOnChange";
 import { addCommasToNumber } from "@utils";

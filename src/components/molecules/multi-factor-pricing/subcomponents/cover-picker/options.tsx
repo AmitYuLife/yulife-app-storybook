@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { BoxOption, PackageType } from "@molecules";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { CoverType } from "@graphql/__generated";
 import { Colours, Style } from "@styles";
 
 interface IOption {
@@ -65,7 +65,7 @@ const Option = ({
 };
 
 const mapCoverToStyle = (coverType: CoverType) => {
-  if (coverType === CoverType.epic) {
+  if (coverType === CoverType.Epic) {
     return {
       borderColor: Colours.products.fib.epic,
       backgroundColor: Colours.products.fib.epicLight,
@@ -73,7 +73,7 @@ const mapCoverToStyle = (coverType: CoverType) => {
     };
   }
 
-  if (coverType === CoverType.rare) {
+  if (coverType === CoverType.Rare) {
     return {
       borderColor: Colours.products.fib.rare,
       backgroundColor: Colours.products.fib.rareLight,
@@ -81,7 +81,7 @@ const mapCoverToStyle = (coverType: CoverType) => {
     };
   }
 
-  if (coverType === CoverType.common) {
+  if (coverType === CoverType.Common) {
     return {
       borderColor: Colours.products.fib.common,
       backgroundColor: Colours.products.fib.commonLight,

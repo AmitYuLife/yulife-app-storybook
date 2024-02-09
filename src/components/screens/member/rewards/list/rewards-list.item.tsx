@@ -4,12 +4,12 @@ import { Image, TextTemplate } from "@atoms";
 import { BoxOption } from "@molecules";
 import { REWARD_ITEM, LOCKED_REWARD_ITEM } from "@ids";
 import { Colours, Style } from "@styles";
-import { GetMobileRewardsList_data_list } from "@graphql/_core/schema";
 import Lock from "./subcomponents/lock";
 import RewardPill from "./subcomponents/pill";
 import { ArrowButton } from "@components/molecules/arrow-button";
+import { GetMobileRewardsListQuery } from "@graphql/__generated";
 
-type RewardsListItem = GetMobileRewardsList_data_list & {
+type RewardsListItem = GetMobileRewardsListQuery["data"]["list"][0] & {
   onPress: () => void;
 };
 

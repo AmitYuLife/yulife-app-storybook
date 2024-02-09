@@ -1,6 +1,6 @@
 import React, { ComponentProps, ReactNode, memo } from "react";
-import { ContentItemProgressBarType } from "@graphql/_core/schema/globalTypes";
-import { ContentItemProgressBar as GqlProgressBar } from "@graphql/_core/schema";
+
+import { ContentItemProgressBarType, ContentItemProgressBarFragment as GqlProgressBar } from "@graphql/__generated";
 import { ProgressBar } from "@molecules";
 import { ProgressBarYuCoin } from "@organisms";
 import { LayoutChangeEvent, View } from "react-native";
@@ -12,7 +12,7 @@ export const ContentItemProgressBar = memo((props: GqlProgressBar) => {
   const { maxLength, progressType, publishKeyHeight } = props;
 
   const Component: ProgressBarSuperset =
-    progressType === ContentItemProgressBarType.yuCoin ? ProgressBarYuCoin : ProgressBar;
+    progressType === ContentItemProgressBarType.YuCoin ? ProgressBarYuCoin : ProgressBar;
 
   const { updateBus } = useSduiActionUpdateBus();
 

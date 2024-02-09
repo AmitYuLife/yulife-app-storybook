@@ -5,8 +5,7 @@ import { PackageType } from "@molecules";
 import { Colours, Style } from "@styles";
 import { Image } from "@atoms";
 import { SlotIcon } from "../product-step.slot-icon";
-import { ContentItemPackageCards_packageCards_header } from "@graphql/_core/schema";
-import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
+import { ContentItemPackageCardsFragment, YuWorld, CoverType } from "@graphql/__generated";
 import media from "@styles/media";
 import { ProductStepContext } from "../../product-step.context";
 import { useSetDefaultAnswer } from "../../hooks/useSetDefaultAnswer";
@@ -14,7 +13,7 @@ import { LOCAL_ANSWER_KEY } from "../../utils/localAnswerKeys";
 import { TEXT_TEMPLATE } from "@ids";
 
 interface Props {
-  header: ContentItemPackageCards_packageCards_header;
+  header: ContentItemPackageCardsFragment["packageCards"][0]["header"];
   coverType: CoverType;
   width: number;
 }
@@ -41,7 +40,7 @@ const PackageCardHeader = (props: Props) => {
     dynamicData,
     setDynamicData,
     answerKey: LOCAL_ANSWER_KEY.WorldId,
-    answerKeyDefaultValue: YuWorld.forest,
+    answerKeyDefaultValue: YuWorld.Forest,
   });
 
   const headerImage = props.header?.backgroundUrl?.uri && { uri: props.header.backgroundUrl.uri };

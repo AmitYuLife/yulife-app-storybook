@@ -2,7 +2,7 @@ import React, { ComponentProps, memo, useContext } from "react";
 import { View } from "react-native";
 import { TEXT_TEMPLATE } from "@ids";
 import { TextTemplate } from "@atoms";
-import { ContentItemText as GqlText } from "@graphql/_core/schema";
+import { ContentItemTextFragment as GqlText } from "@graphql/__generated";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { SduiStateContext } from "../_context/SduiProvider";
 

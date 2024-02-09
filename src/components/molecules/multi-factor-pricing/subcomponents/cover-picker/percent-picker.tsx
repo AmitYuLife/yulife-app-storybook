@@ -6,9 +6,8 @@ import { createSnapToOffsets, getOverlayOpacity, renderItem } from "./render-ite
 import { ITEM_WIDTH, styles, highlightStyles } from "./styles";
 import { Colours } from "@styles";
 import { Loading, TextTemplate } from "@atoms";
-import { SduiStyle } from "@graphql/_core/schema";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { HORIZONTAL_SCROLLER } from "@ids";
+import { CoverType, SduiStyle } from "@graphql/__generated";
 
 interface Props {
   range: {
@@ -16,17 +15,17 @@ interface Props {
     max: number;
     step: number;
   };
-  styleVariants: Array<{
+  styleVariants?: Array<{
     id: string;
-    minVisibleIndex: number | null;
-    maxVisibleIndex: number | null;
+    minVisibleIndex?: number | null;
+    maxVisibleIndex?: number | null;
     item: { color: string };
     overlay: {
-      backdropStyles: Array<{ property: string; value: string }>;
+      backdropStyles?: Array<{ property: string; value: string }>;
       highlightLabel: string;
       highlightLabelColor: string;
       overlayTitle: string;
-      overlayTitleWrapperStyles: Array<{ property: string; value: string }>;
+      overlayTitleWrapperStyles?: Array<{ property: string; value: string }>;
     };
   }>;
   coverMap: Array<{

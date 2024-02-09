@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
 import { Navigation } from "@navigation/main";
 import { VideoPlayer } from "@organisms";
-import { ContentItemMedia as GqlMarkdown } from "@graphql/_core/schema";
+import { ContentItemMediaFragment as GqlMarkdown } from "@graphql/__generated";
 import { Modal, StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";

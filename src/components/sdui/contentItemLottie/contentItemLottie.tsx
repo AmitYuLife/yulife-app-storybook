@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect, useRef, useCallback, MutableRefObject } from "react";
 import Lottie from "lottie-react-native";
-import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
+import { ContentItemLottieFragment as GqlLottie } from "@graphql/__generated";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { useDispatch } from "react-redux";
 import { Animated, StyleSheet, ViewStyle } from "react-native";
@@ -12,7 +12,7 @@ import { LottieView } from "@molecules";
 type Props = Omit<GqlLottie, "onAnimationEnd"> & {
   shouldPlay?: boolean;
   shouldUseFadeIn?: boolean;
-  onAnimationEnd: GqlLottie["onAnimationEnd"] | (() => void);
+  onAnimationEnd?: GqlLottie["onAnimationEnd"] | (() => void);
 };
 
 const GRACE_PERIOD = 2000;

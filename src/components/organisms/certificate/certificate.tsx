@@ -1,12 +1,12 @@
 import React, { ComponentProps, FC, memo } from "react";
 import { ImageStyle } from "react-native";
 import { Style } from "@styles";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { Image, ProductColorTheme } from "@atoms";
 import { CertificateLayout } from "./certificate-layout";
 import { ContentKeyValues } from "./content-key-values";
 import { ContentBody } from "./content-body";
 import { ContentHead } from "./content-head";
+import { CoverType } from "@graphql/__generated";
 
 interface Pair {
   label: string;
@@ -23,7 +23,7 @@ interface CertificateProps {
 }
 
 const Certificate: FC<CertificateProps> = (props) => {
-  const { coverType = CoverType.common, keyValuePairs = [], content = [], title = "", subtitle, imageUri } = props;
+  const { coverType = CoverType.Common, keyValuePairs = [], content = [], title = "", subtitle, imageUri } = props;
 
   return (
     <CertificateLayout coverType={coverType}>

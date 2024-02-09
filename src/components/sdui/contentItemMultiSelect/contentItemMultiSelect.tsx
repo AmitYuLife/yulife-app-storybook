@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { ContentItemMultiSelect as GqlMultiSelect } from "@graphql/_core/schema";
+import { ContentItemMultiSelectFragment as GqlMultiSelect } from "@graphql/__generated";
 import { Style } from "@styles";
 import MultiSelectItem from "./multiSelectItem";
 

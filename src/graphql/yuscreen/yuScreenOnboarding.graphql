@@ -1,0 +1,25 @@
+fragment YuScreenOnboarding on YuScreenOnboarding {
+  id
+  heading
+  text
+  button {
+    event {
+      ...SduiAction
+    }
+    label
+    onPress {
+      ...YuScreenProductButtonAction
+    }
+  }
+  placeholder {
+    ...YuScreenProduct
+  }
+  dismissByPlaceholder
+  isYuCoinPowerDisplayed
+  overlayImage {
+    ...RemoteImage
+  }
+  productSlots {
+    ...YuScreenProduct
+  }
+}

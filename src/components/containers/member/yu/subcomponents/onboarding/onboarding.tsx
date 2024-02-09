@@ -1,13 +1,11 @@
 import React from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
-import { GetYuScreen_getYuScreen_onboarding as OnboardingProps } from "@graphql/_core/schema";
 import { CloseSvg, TextTemplate } from "@atoms";
 import { Button, PressableWithDelay } from "@molecules";
 import { DEFAULT_HEIGHT as buttonHeight } from "@components/molecules/button/button.styles";
 import { Colours, Style } from "@styles";
 import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 import navBar from "@styles/nav-bar.styles";
-
 import { YuCoinPower } from "../yu-coin-power/yu-coin-power";
 import { ItemSlot } from "../item-slot/item-slot";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
@@ -20,6 +18,7 @@ import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
 import Markdown from "@components/molecules/markdown/markdown";
 import colours from "@styles/colours";
+import { GetYuScreenQuery } from "@graphql/__generated";
 
 const BACKGROUND_IMAGE = require("@assets/yuscreen/onboarding/onboarding-background.png");
 const ITEM_SLOT_CONTAINER_IMAGE = require("@assets/yuscreen/onboarding/item-slot-container.png");
@@ -27,7 +26,7 @@ const ITEM_SLOT_CONTAINER_IMAGE = require("@assets/yuscreen/onboarding/item-slot
 interface IOnboardingProps {
   onClose: () => void;
   onPress: OnboardingHandler;
-  onboarding: OnboardingProps;
+  onboarding: GetYuScreenQuery["getYuScreen"]["onboarding"];
 }
 
 export const Onboarding = ({ onboarding, onPress, onClose }: IOnboardingProps) => {

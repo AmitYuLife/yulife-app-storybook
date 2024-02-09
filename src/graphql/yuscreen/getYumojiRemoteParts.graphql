@@ -1,0 +1,41 @@
+query GetYumojiRemoteParts {
+  avatar: getYumojiRemoteParts {
+    id
+    shadow {
+      ...YumojiRemotePart
+    }
+    head {
+      ...YumojiRemotePart
+    }
+    eyes {
+      ...YumojiRemotePart
+    }
+    hair {
+      ...YumojiRemotePart
+    }
+    body {
+      ...YumojiRemotePart
+    }
+    pants {
+      ...YumojiRemotePart
+    }
+    chest {
+      ...YumojiRemotePart
+    }
+    gloves {
+      ...YumojiRemotePart
+    }
+    facialHair {
+      ...YumojiRemotePart
+    }
+    glasses {
+      ...YumojiRemotePart
+    }
+    boots {
+      ...YumojiRemotePart
+    }
+    headwear {
+      ...YumojiRemotePart
+    }
+  }
+}

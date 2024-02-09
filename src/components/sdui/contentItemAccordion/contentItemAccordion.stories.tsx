@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ContentItemAccordion } from "./contentItemAccordion";
-import { SduiActionType } from "@graphql/_core/schema/globalTypes";
+import { SduiActionType } from "@graphql/__generated";
 
 type Story = StoryObj<typeof ContentItemAccordion>;
 
@@ -26,7 +26,7 @@ const meta: Meta<typeof ContentItemAccordion> = {
         rightTextBody: "Right Text Body",
         rightTextLabel: "Right Text Label",
         info: {
-          onPress: { type: SduiActionType.OPEN_MY_ACCOUNT, payload: "payload" },
+          onPress: { type: SduiActionType.OpenMyAccount, payload: "payload" },
         },
       },
       {
@@ -34,7 +34,7 @@ const meta: Meta<typeof ContentItemAccordion> = {
         rightTextBody: "Right Text Body",
         rightTextLabel: "Right Text Label",
         info: {
-          onPress: { type: SduiActionType.OPEN_MY_ACCOUNT, payload: "payload" },
+          onPress: { type: SduiActionType.OpenMyAccount, payload: "payload" },
         },
       },
       {
@@ -42,7 +42,7 @@ const meta: Meta<typeof ContentItemAccordion> = {
         rightTextBody: "Right Text Body",
         rightTextLabel: "Right Text Label",
         info: {
-          onPress: { type: SduiActionType.OPEN_MY_ACCOUNT, payload: "payload" },
+          onPress: { type: SduiActionType.OpenMyAccount, payload: "payload" },
         },
       },
       {
@@ -50,7 +50,7 @@ const meta: Meta<typeof ContentItemAccordion> = {
         rightTextBody: "Right Text Body",
         rightTextLabel: "Right Text Label",
         info: {
-          onPress: { type: SduiActionType.OPEN_MY_ACCOUNT, payload: "payload" },
+          onPress: { type: SduiActionType.OpenMyAccount, payload: "payload" },
         },
       },
     ],

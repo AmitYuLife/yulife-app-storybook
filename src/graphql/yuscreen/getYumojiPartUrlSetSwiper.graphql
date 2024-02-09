@@ -1,0 +1,17 @@
+query GetYumojiPartUrlSetSwiper($partType: AvatarPartType) {
+  getYumojiPartUrlSetSwiper(partType: $partType) {
+    variants {
+      coverType
+      worlds {
+        worldId
+        remoteUrl {
+          ...RemoteImage
+        }
+        title {
+          label
+          color
+        }
+      }
+    }
+  }
+}

@@ -1,14 +1,15 @@
 import React, { memo, useMemo } from "react";
 import { Platform, StyleSheet, View, ViewStyle } from "react-native";
-import { GetYuScreenProductDetails_getYuScreenProductDetails_footer as PropsFooter } from "@graphql/_core/schema";
 import { ContentItemFade, ContentItemPad } from "@components/sdui";
 import { useKeyboardListeners } from "@hooks";
 import media from "@styles/media";
 import { Style } from "@styles";
 import { ProductDetailsButton } from "../subcomponents/product-details.button";
+import { GetYuScreenProductDetailsQuery } from "@graphql/__generated";
 
+type IPropsFooter = GetYuScreenProductDetailsQuery["getYuScreenProductDetails"]["footer"];
 interface Props {
-  footer: PropsFooter[];
+  footer: IPropsFooter;
   footerStyle: ViewStyle;
 }
 
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-const renderItemContent = (item: PropsFooter): JSX.Element => {
+const renderItemContent = (item: IPropsFooter[0]): JSX.Element => {
   switch (item.__typename) {
     case "ContentItemButton":
       return <ProductDetailsButton key={item.id} {...item} />;

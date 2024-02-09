@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useContext } from "react";
-import { ContentItemButton as GqlButton } from "@graphql/_core/schema";
+import { ContentItemButtonFragment as GqlButton } from "@graphql/__generated";
 import { ContentItemButton } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
 import { useDispatch, useSelector } from "react-redux";

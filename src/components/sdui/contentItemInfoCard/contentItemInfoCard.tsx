@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Image } from "@atoms";
 import { View } from "react-native";
-import { ContentItemInfoCard as GqlInfoCard } from "@graphql/_core/schema";
+import { ContentItemInfoCardFragment as GqlInfoCard } from "@graphql/__generated";
 import { InfoCard } from "@components/molecules";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { Style } from "@styles";

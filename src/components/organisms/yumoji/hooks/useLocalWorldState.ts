@@ -1,11 +1,11 @@
+import { YuWorld } from "@graphql/__generated";
 import { useEffect, useState } from "react";
-import { YuWorld } from "@graphql/_core/schema/globalTypes";
 
 export const useLocalWorldState = (externalSelectedYuWorld: YuWorld) => {
   const [selectedWorld, setSelectedWorld] = useState(null);
 
   useEffect(() => {
-    setSelectedWorld(externalSelectedYuWorld || YuWorld.forest);
+    setSelectedWorld(externalSelectedYuWorld || YuWorld.Forest);
   }, [externalSelectedYuWorld]);
 
   return { selectedWorld, setSelectedWorld };

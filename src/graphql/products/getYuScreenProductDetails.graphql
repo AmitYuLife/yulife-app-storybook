@@ -1,0 +1,106 @@
+query GetYuScreenProductDetails($customerProductId: String!) {
+  getYuScreenProductDetails(customerProductId: $customerProductId) {
+    containerStyles {
+      ...SduiStyle
+    }
+    footerStyles {
+      ...SduiStyle
+    }
+    body {
+      __typename
+      ... on ContentItemProductDetailsHeader {
+        ...ContentItemProductDetailsHeader
+      }
+      ... on ContentItemProductDetailsHoldingHeader {
+        ...ContentItemProductDetailsHoldingHeader
+      }
+      ... on ContentItemText {
+        ...ContentItemText
+      }
+      ... on ContentItemButton {
+        ...ContentItemButton
+      }
+      ... on ContentItemKeyValueBox {
+        ...ContentItemKeyValueBox
+      }
+      ... on ContentItemBeneficiariesSection {
+        ...ContentItemBeneficiariesSection
+      }
+      ... on ContentItemRowIconTextBanner {
+        ...ContentItemRowIconTextBanner
+      }
+      ... on ContentItemImage {
+        ...ContentItemImage
+      }
+      ... on ContentItemInfoCard {
+        ...ContentItemInfoCard
+      }
+      ... on ContentItemPad {
+        ...ContentItemPad
+      }
+      ... on ContentItemMarkdown {
+        ...ContentItemMarkdown
+      }
+      ... on ContentItemYuCoinPower {
+        ...ContentItemYuCoinPower
+      }
+      ... on ContentItemLinearGradient {
+        ...ContentItemLinearGradient
+      }
+      ... on ContentItemProcessingTimer {
+        ...ContentItemProcessingTimer
+      }
+      ... on ContentItemWrapper {
+        ...ContentItemWrapper
+      }
+      ... on ContentItemHint {
+        ...ContentItemHint
+      }
+      ... on ContentItemBoxOptionCard {
+        ...ContentItemBoxOptionCard
+      }
+    }
+    footer {
+      __typename
+      ... on ContentItemButton {
+        ...ContentItemButton
+      }
+      ... on ContentItemFade {
+        ...ContentItemFade
+      }
+      ... on ContentItemPad {
+        ...ContentItemPad
+      }
+    }
+    header {
+      __typename
+
+      ... on ContentItemHeaderBar {
+        ...ContentItemHeaderBar
+      }
+      ... on ContentItemLinearGradient {
+        ...ContentItemLinearGradient
+      }
+    }
+    absolute {
+      id
+      isBackground
+      shouldAccountForHeader
+      item {
+        __typename
+        ... on ContentItemPad {
+          ...ContentItemPad
+        }
+        ... on ContentItemCollapsingGenericHeader {
+          ...ContentItemCollapsingGenericHeader
+        }
+        ... on ContentItemLinearGradient {
+          ...ContentItemLinearGradient
+        }
+        ... on ContentItemButton {
+          ...ContentItemButton
+        }
+      }
+    }
+  }
+}

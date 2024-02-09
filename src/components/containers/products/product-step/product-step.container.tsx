@@ -2,8 +2,7 @@ import React, { memo, useEffect } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { useDispatch } from "react-redux";
 import { useQuery } from "@apollo/client";
-import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP } from "@graphql/personalProduct/getPersonalProductStep.gql";
-import { GetPersonalProductStep, GetPersonalProductStepVariables } from "@graphql/_core/schema";
+import { gql } from "@graphql/__generated";
 import { Loading } from "@atoms";
 import { mapServerStyles } from "@components/sdui/_utils/mapServerStyles";
 import { ProductStepScreen } from "./product-step.screen";
@@ -17,13 +16,10 @@ const ProductStepContainer = (props: Props) => {
   const { productId } = props;
   const dispatch = useDispatch();
 
-  const { data, loading } = useQuery<GetPersonalProductStep, GetPersonalProductStepVariables>(
-    GQL_QUERY_GET_PERSONAL_PRODUCT_STEP,
-    {
-      variables: { productId },
-      fetchPolicy: "no-cache",
-    }
-  );
+  const { data, loading } = useQuery(gql("GetPersonalProductStepDocument"), {
+    variables: { productId },
+    fetchPolicy: "no-cache",
+  });
 
   useEffect(() => {
     dispatch(setLoadingState({ __disabled: false }));

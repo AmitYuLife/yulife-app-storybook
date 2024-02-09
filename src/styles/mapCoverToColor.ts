@@ -1,4 +1,4 @@
-import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { CoverType } from "@graphql/__generated";
 import { Colours } from "@styles";
 
 export const mapCoverToColor = (coverType?: CoverType) => {
@@ -7,7 +7,7 @@ export const mapCoverToColor = (coverType?: CoverType) => {
   const shadow = getShadowColor(coverType);
 
   switch (coverType) {
-    case CoverType.epic:
+    case CoverType.Epic:
       return {
         gradient: [Colours.products.fib.epic, Colours.products.fib.epicGradientLight],
         secondary: Colours.secondary.s10S3,
@@ -22,7 +22,7 @@ export const mapCoverToColor = (coverType?: CoverType) => {
         certificateBackground: Colours.secondary.s10S3,
         certificatePrimary: Colours.products.fib.epic,
       };
-    case CoverType.rare:
+    case CoverType.Rare:
       return {
         gradient: [Colours.products.fib.rare, Colours.products.fib.rareGradientLight],
         secondary: Colours.secondary.s10S2,
@@ -37,7 +37,7 @@ export const mapCoverToColor = (coverType?: CoverType) => {
         certificateBackground: Colours.secondary.s10S2,
         certificatePrimary: Colours.products.fib.rare,
       };
-    case CoverType.common:
+    case CoverType.Common:
       return {
         gradient: [Colours.products.fib.commonGradientDark, Colours.products.fib.commonGradientLight],
         secondary: Colours.secondary.s10S1,
@@ -72,7 +72,7 @@ export const mapCoverToColor = (coverType?: CoverType) => {
 
 const getSeparatorColor = (coverType: CoverType) => {
   switch (coverType) {
-    case CoverType.common: {
+    case CoverType.Common: {
       const common1 = Colours.hexToRGB(Colours.secondary.s30S1);
       const common2 = Colours.hexToRGB(Colours.products.fib.common);
       const commons1 = `rgba(${common1.r}, ${common1.g}, ${common1.b}, 0.6)`;
@@ -81,7 +81,7 @@ const getSeparatorColor = (coverType: CoverType) => {
       return [commons1, commons2, commons1];
     }
 
-    case CoverType.epic: {
+    case CoverType.Epic: {
       const epic = Colours.hexToRGB(Colours.products.fib.epic);
       const epics1 = `rgba(${epic.r}, ${epic.g}, ${epic.b}, 0.15)`;
       const epics2 = `rgba(${epic.r}, ${epic.g}, ${epic.b}, 0.6)`;
@@ -89,7 +89,7 @@ const getSeparatorColor = (coverType: CoverType) => {
       return [epics1, epics2, epics1];
     }
 
-    case CoverType.rare: {
+    case CoverType.Rare: {
       const rare = Colours.hexToRGB(Colours.products.fib.rareSeparator);
       const rares1 = `rgba(${rare.r}, ${rare.g}, ${rare.b}, 0.15)`;
       const rares2 = `rgba(${rare.r}, ${rare.g}, ${rare.b}, 0.6)`;
@@ -110,21 +110,21 @@ const getSeparatorColor = (coverType: CoverType) => {
 
 const getBorderColor = (coverType: CoverType) => {
   switch (coverType) {
-    case CoverType.common: {
+    case CoverType.Common: {
       const common1 = `rgb(30, 190, 136)`;
       const common2 = `rgb(194, 238, 223)`;
 
       return [common1, common2];
     }
 
-    case CoverType.epic: {
+    case CoverType.Epic: {
       const epic1 = `rgb(179, 150, 255)`;
       const epic2 = `rgb(233, 224, 255)`;
 
       return [epic1, epic2];
     }
 
-    case CoverType.rare: {
+    case CoverType.Rare: {
       const rare1 = `rgb(48, 167, 217)`;
       const rare2 = `rgb(206, 234, 245)`;
 
@@ -142,21 +142,21 @@ const getBorderColor = (coverType: CoverType) => {
 
 const getShadowColor = (coverType: CoverType) => {
   switch (coverType) {
-    case CoverType.common: {
+    case CoverType.Common: {
       const common = Colours.hexToRGB(Colours.products.fib.common);
       const commonShadow = `rgba(${common.r}, ${common.g}, ${common.b}, 0.08)`;
 
       return commonShadow;
     }
 
-    case CoverType.epic: {
+    case CoverType.Epic: {
       const epic = Colours.hexToRGB(Colours.products.fib.epic);
       const epicShadow = `rgba(${epic.r}, ${epic.g}, ${epic.b}, 0.08)`;
 
       return epicShadow;
     }
 
-    case CoverType.rare: {
+    case CoverType.Rare: {
       const rare = Colours.hexToRGB(Colours.products.fib.rare);
       const rareShadow = `rgba(${rare.r}, ${rare.g}, ${rare.b}, 0.08)`;
 
@@ -171,11 +171,11 @@ const getShadowColor = (coverType: CoverType) => {
 
 export const mapCoverTypeToColor = (coverType: CoverType) => {
   switch (coverType) {
-    case CoverType.epic:
+    case CoverType.Epic:
       return Colours.products.fib.epic;
-    case CoverType.rare:
+    case CoverType.Rare:
       return Colours.products.fib.rare;
-    case CoverType.common:
+    case CoverType.Common:
       return Colours.products.fib.common;
     default:
       return Colours.neutral.n800;
@@ -184,11 +184,11 @@ export const mapCoverTypeToColor = (coverType: CoverType) => {
 
 export const mapCoverTypeToColorTheme = (coverType: CoverType) => {
   switch (coverType) {
-    case CoverType.epic:
+    case CoverType.Epic:
       return { primary: Colours.products.fib.epic, secondary: Colours.products.fib.epicLight };
-    case CoverType.rare:
+    case CoverType.Rare:
       return { primary: Colours.products.fib.rare, secondary: Colours.products.fib.rareLight };
-    case CoverType.common:
+    case CoverType.Common:
       return { primary: Colours.products.fib.common, secondary: Colours.products.fib.commonLight };
     default:
       return { primary: Colours.neutral.n800, secondary: Colours.neutral.n100 };

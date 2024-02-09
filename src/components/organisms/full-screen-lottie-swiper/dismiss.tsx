@@ -16,7 +16,7 @@ interface Props {
   close: {
     onPress: (currentIndex: number) => void;
     icon: {
-      uri: string;
+      uri?: string;
     };
   };
   currentIndex: number;

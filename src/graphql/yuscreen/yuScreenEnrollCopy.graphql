@@ -1,0 +1,7 @@
+fragment YuScreenEnrollCopy on YuScreenEnrollCopy {
+  title
+  description
+  styles {
+    ...SduiStyle
+  }
+}

@@ -1,10 +1,5 @@
 import React, { memo, useCallback, useContext, useEffect, useState } from "react";
-import {
-  Address,
-  AddressVariables,
-  Address_findUserAddress,
-  ContentItemSearchPostcode as GqlButton,
-} from "@graphql/_core/schema";
+import { Address, AddressVariables, Address_findUserAddress } from "@graphql/_core/schema";
 import { ProductStepContext } from "@components/containers/products/product-step/product-step.context";
 import { ContentItemSearchPostcode } from "@components/sdui";
 import { useDebouncedQuery } from "@hooks";
@@ -13,6 +8,7 @@ import { ISearchItem } from "@molecules";
 import { formatPostCode } from "@utils";
 import { AddressIcon } from "@atoms";
 import { Colours } from "@styles";
+import { ContentItemSearchPostcodeFragment as GqlButton } from "@graphql/__generated";
 
 type Props = GqlButton;
 

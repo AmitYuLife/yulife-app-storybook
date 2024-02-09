@@ -1,9 +1,9 @@
-import { ContentItemAgePercentCoverPicker } from "@graphql/_core/schema";
+import { ContentItemAgePercentCoverPickerFragment } from "@graphql/__generated";
 import { useMemo } from "react";
 import { KeyedPricing, Age, SalaryPercent } from "./types";
 
 export const useIndexedData = (
-  pricing: ContentItemAgePercentCoverPicker["contentItemAgePercentCoverPickerOptions"]
+  pricing: ContentItemAgePercentCoverPickerFragment["contentItemAgePercentCoverPickerOptions"]
 ) => {
   const indexedData = useMemo(() => {
     const derivedData = pricing.reduce(

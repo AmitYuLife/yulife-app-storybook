@@ -4,9 +4,10 @@ import {
   SubmitUnityVariables,
   UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge as QuestMapActiveChallenge,
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
-  Media,
   CreateQuestMapLevelChallengeVariables,
 } from "@graphql/_core/schema";
+
+import { MediaFragment } from "@graphql/__generated";
 
 export const CHALLENGE_SUBMIT_UNITY = "CHALLENGE_SUBMIT_UNITY";
 
@@ -84,7 +85,7 @@ export const challengeIsActive = createAction(CHALLENGE_IS_ACTIVE);
 
 export const updateChallengeAppButton = createAction<Partial<IButton>>(UPDATE_CHALLENGE_APP_BUTTON);
 
-export const finishInAppMediaChallengeAction = createAction<{ video: Media; eventType: string }>(
+export const finishInAppMediaChallengeAction = createAction<{ video: MediaFragment; eventType: string }>(
   FINISH_IN_APP_MEDIA_CHALLENGE
 );
 

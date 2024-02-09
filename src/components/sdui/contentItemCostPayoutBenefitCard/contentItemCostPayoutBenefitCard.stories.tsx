@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ContentItemCostPayoutBenefitCard } from "./contentItemCostPayoutBenefitCard";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { CoverType } from "@graphql/__generated";
 
 type Story = StoryObj<typeof ContentItemCostPayoutBenefitCard>;
 
@@ -13,7 +13,7 @@ const meta: Meta<typeof ContentItemCostPayoutBenefitCard> = {
     id: "cost-payout-benefit-card-1",
     costValue: `150*`,
     costDescription: "150 per month",
-    coverType: CoverType.epic,
+    coverType: CoverType.Epic,
     benefitDescription: "In the event of your passing, we'll pay out:",
     benefitValue: `£200,000*`,
     benefitIntervalMarkdown: `a year until\n**2024-01-01****`,

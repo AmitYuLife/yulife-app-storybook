@@ -1,6 +1,5 @@
 import { Image } from "@atoms";
 import { Button } from "@molecules";
-import { YuScreenCarousel_items as CarouselItem } from "@graphql/_core/schema";
 import React, { memo, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { BUTTON_HEIGHT, BUTTON_HORIZONTAL_MARGIN, CARD_WIDTH_FULL, CARD_WIDTH_NARROW, styles } from "./styles";
@@ -11,9 +10,10 @@ import { mapServerStyles } from "@components/sdui";
 import Markdown from "@components/molecules/markdown/markdown";
 import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
-import { YuScreenCarouselItemVariant } from "@graphql/_core/schema/globalTypes";
+import { YuScreenCarouselFragment, YuScreenCarouselItemVariant } from "@graphql/__generated";
 
-interface Props extends CarouselItem {
+type IYuScreenCarousel = YuScreenCarouselFragment["items"][0];
+interface Props extends IYuScreenCarousel {
   variant: YuScreenCarouselItemVariant;
   style?: ViewStyle;
 }
@@ -28,10 +28,10 @@ export const CarouselCard = memo(
     images,
     titleMarkdown,
     titleMarkdownStyles,
-    variant = YuScreenCarouselItemVariant.narrow,
+    variant = YuScreenCarouselItemVariant.Narrow,
     style,
   }: Props) => {
-    const nullSafeVariant = variant || YuScreenCarouselItemVariant.narrow;
+    const nullSafeVariant = variant || YuScreenCarouselItemVariant.Narrow;
     const currentRoute = useSelector(getRouteState);
     const handlePress = useYuScreenOnPressHandler({ event: button?.event, onPress: button?.onPress, currentRoute });
     const defaultStyles = mapVariantToDefaultStyle(nullSafeVariant);
@@ -102,7 +102,7 @@ export const CarouselCard = memo(
 );
 
 const mapVariantToDefaultStyle = (variant: Props["variant"]) => {
-  if (variant === YuScreenCarouselItemVariant.narrow) {
+  if (variant === YuScreenCarouselItemVariant.Narrow) {
     return { width: CARD_WIDTH_NARROW, marginLeft: Style.adjust(16) };
   }
 
@@ -110,7 +110,7 @@ const mapVariantToDefaultStyle = (variant: Props["variant"]) => {
 };
 
 const getWidthMultiplier = ({ index, variant }: { index: number; variant: Props["variant"] }) => {
-  if (variant === YuScreenCarouselItemVariant.narrow) {
+  if (variant === YuScreenCarouselItemVariant.Narrow) {
     return 1;
   }
 

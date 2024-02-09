@@ -1,7 +1,7 @@
 import React, { memo, useState } from "react";
 import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import { Style, mapCoverTypeToColorTheme } from "@styles";
-import { ContentItemProductDetailsHeader } from "@graphql/_core/schema";
+import { ContentItemProductDetailsHeaderFragment } from "@graphql/__generated";
 import { PressableWithDelay, YuCoinPower, YU_COIN_POWER_HEIGHT_WIDTH_MULTIPLIER } from "@components/molecules";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 import { Title } from "./title";
@@ -15,7 +15,7 @@ import { Funding } from "./funding";
 const SLOT_ICON_SIZE = Style.adjust(102);
 const YU_COIN_POWER_HEIGHT = Style.DEVICE_WIDTH * YU_COIN_POWER_HEIGHT_WIDTH_MULTIPLIER;
 
-export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader) => {
+export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeaderFragment) => {
   const {
     providerLogo,
     coverType,

@@ -1,4 +1,4 @@
-import { ContentItemPackageCards } from "@graphql/_core/schema";
+import { ContentItemPackageCardsFragment } from "@graphql/__generated";
 import { useRef, useState, useMemo, useEffect } from "react";
 import { Animated, NativeSyntheticEvent, NativeScrollEvent, FlatList as RNFlatList } from "react-native";
 import { useDispatch } from "react-redux";
@@ -8,9 +8,9 @@ import { sduiEventActionCreator } from "../../../utils/sduiEventActionCreator";
 import { PACKAGE_CARD_WIDTH } from "../styles";
 
 type UseScrollHandler = Pick<IProductStepContext, "setDynamicData"> & {
-  packageCards: ContentItemPackageCards["packageCards"];
-  answerKey: ContentItemPackageCards["answerKey"];
-  answerKeyValue: ContentItemPackageCards["answerKeyDefaultValue"];
+  packageCards: ContentItemPackageCardsFragment["packageCards"];
+  answerKey: ContentItemPackageCardsFragment["answerKey"];
+  answerKeyValue: ContentItemPackageCardsFragment["answerKeyDefaultValue"];
   productId: string;
 };
 

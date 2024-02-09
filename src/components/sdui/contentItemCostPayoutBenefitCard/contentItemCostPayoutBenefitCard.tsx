@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { ContentItemCostPayoutBenefitCard as Props } from "@graphql/_core/schema";
+import { ContentItemCostPayoutBenefitCardFragment as Props } from "@graphql/__generated";
 import { View } from "react-native";
 import { CostPayoutBenefitCard } from "@components/molecules";
 import { mapServerStyles } from "../_utils/mapServerStyles";

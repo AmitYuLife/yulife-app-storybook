@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { ContentItemRadio as GqlRadio } from "@graphql/_core/schema";
+import { ContentItemRadioFragment as GqlRadio } from "@graphql/__generated";
 import { ContentItemRadioBase } from "@components/sdui";
 import { useDynamicOnChange } from "../hooks/useDynamicOnChange";
 

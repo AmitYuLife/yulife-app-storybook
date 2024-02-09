@@ -1,10 +1,4 @@
 import React, { useCallback, useMemo } from "react";
-import {
-  GetMobileRewardsGoalProductMilestones,
-  GetMobileRewardsList_data,
-  GetMobileRewardsList_data_list,
-  GetRewardsProductsList,
-} from "@graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { FlatList, ListRenderItemInfo, StyleSheet, View } from "react-native";
 import { Style, NAV_BAR, Colours } from "@styles";
@@ -19,13 +13,23 @@ import HistoryAndStoreLocation from "./subcomponents/history-and-store-location"
 import { RewardsListItem } from "./rewards-list.item";
 import { EventPanel } from "@molecules";
 import { ContentItemHint } from "@components/sdui";
+import {
+  GetMobileRewardsGoalProductMilestonesQuery,
+  GetMobileRewardsListQuery,
+  GetRewardsProductsListQuery,
+} from "@graphql/__generated";
+
+type IRewardsGoalProductMilestones =
+  GetMobileRewardsGoalProductMilestonesQuery["getMobileRewardsGoalProductMilestones"];
+
+type IGetMobileRewardsListData = GetMobileRewardsListQuery["data"];
 
 export interface IRewardsListScreenProps extends IConnectedScreenProps {
-  rewardsData: GetMobileRewardsList_data;
-  productsList?: GetRewardsProductsList["getRewardsProductsList"];
-  goalProductMilestones?: GetMobileRewardsGoalProductMilestones["getMobileRewardsGoalProductMilestones"];
+  rewardsData: IGetMobileRewardsListData;
+  productsList?: GetRewardsProductsListQuery["getRewardsProductsList"];
+  goalProductMilestones?: IRewardsGoalProductMilestones;
   onGoalProductMilestonesPress?: () => void;
-  onItemPress: (item: GetMobileRewardsList_data_list) => void;
+  onItemPress: (item: IGetMobileRewardsListData["list"][0]) => void;
   onRefresh: () => void;
   selectedTag: string;
   onTagPress: React.Dispatch<React.SetStateAction<string>>;
@@ -38,9 +42,9 @@ const EXTRA_DATA = {
   ChipList: "ChipList",
   GoalProductMilestones: "GoalProductMilestones",
 } as const;
-type IData = GetMobileRewardsList_data["list"][number] | typeof EXTRA_DATA[keyof typeof EXTRA_DATA];
+type IData = IGetMobileRewardsListData["list"][number] | typeof EXTRA_DATA[keyof typeof EXTRA_DATA];
 
-const keyExtractor = (item: GetMobileRewardsList_data_list) => {
+const keyExtractor = (item: IGetMobileRewardsListData["list"][0]) => {
   if (typeof item === "string") {
     return `rewards-list_${item}`;
   }

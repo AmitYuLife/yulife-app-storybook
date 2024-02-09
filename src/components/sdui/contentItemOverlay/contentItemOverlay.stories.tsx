@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ContentItemOverlay } from "./contentItemOverlay";
-import { ContentItemButtonType, SduiActionType } from "@graphql/_core/schema/globalTypes";
+import { ContentItemButtonType, SduiActionType } from "@graphql/__generated";
 
 type Story = StoryObj<typeof ContentItemOverlay>;
 
@@ -25,13 +25,13 @@ const meta: Meta<typeof ContentItemOverlay> = {
 
         id: "1",
         label: "Continue",
-        buttonType: ContentItemButtonType.primary,
+        buttonType: ContentItemButtonType.Primary,
         borderColor: "#E30D76",
         backgroundColor: "#E30D76",
         textColor: "#FFFFFF",
         disabledState: null,
         onPress: {
-          type: SduiActionType.SDUI_ACTION_SEND_MUTATION,
+          type: SduiActionType.SduiActionSendMutation,
           payload: JSON.stringify({
             mutation: "submitSduiJourney",
             action: "action",

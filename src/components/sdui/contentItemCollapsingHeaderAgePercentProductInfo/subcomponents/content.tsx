@@ -3,7 +3,7 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { PackageType } from "@molecules";
 import { Style } from "@styles";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { CoverType } from "@graphql/__generated";
 import { SCROLL_PICKER_ACTIVE_ITEM } from "@ids";
 
 interface Props {

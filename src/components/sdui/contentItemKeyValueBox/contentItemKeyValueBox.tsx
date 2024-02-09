@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { ContentItemKeyValueBox as GqlProps } from "@graphql/_core/schema";
+import { ContentItemKeyValueBoxFragment as GqlProps } from "@graphql/__generated";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { TextTemplate } from "@atoms";
 import { StyleSheet, View } from "react-native";

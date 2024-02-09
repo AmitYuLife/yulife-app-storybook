@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { ContentItemMarkdown as GqlMarkdown } from "@graphql/_core/schema/ContentItemMarkdown";
+import { ContentItemMarkdownFragment as GqlMarkdown } from "@graphql/__generated";
 import { ContentItemMarkdown } from "@components/sdui";
 
 type Props = GqlMarkdown;

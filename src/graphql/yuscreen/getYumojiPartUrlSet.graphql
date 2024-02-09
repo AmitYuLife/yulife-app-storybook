@@ -1,0 +1,18 @@
+query GetYumojiPartUrlSet($partType: AvatarPartType) {
+  getYumojiPartUrlSet(partType: $partType) {
+    variants {
+      coverType
+      itemSlotBackgroundUrl
+      worlds {
+        worldId
+        remoteUrl {
+          ...RemoteImage
+        }
+        title {
+          label
+          color
+        }
+      }
+    }
+  }
+}

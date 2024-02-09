@@ -1,8 +1,7 @@
 import React, { memo, useContext, useState } from "react";
 import { LayoutChangeEvent, View } from "react-native";
 import { useDispatch } from "react-redux";
-import { ContentItemCoverPicker as Props } from "@graphql/_core/schema";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { ContentItemCoverPickerFragment as Props, CoverType } from "@graphql/__generated";
 import { ContentItemButton, ContentItemText } from "@components/sdui";
 import { ProductStepContext } from "../../product-step.context";
 import { useSetDefaultAnswer } from "../../hooks/useSetDefaultAnswer";
@@ -24,9 +23,8 @@ export const ProductStepCoverPicker = memo((props: Props) => {
   } = props;
   const [isCustom, setIsCustom] = useState(hasSelectedCustomCover);
   const [title, setTitle] = useState(hasSelectedCustomCover ? customCover.title : coverPickerTitle.text);
-  const { setDynamicData, dynamicData, productId, stepId, componentsLayout, setComponentsLayout } = useContext(
-    ProductStepContext
-  );
+  const { setDynamicData, dynamicData, productId, stepId, componentsLayout, setComponentsLayout } =
+    useContext(ProductStepContext);
 
   const dispatch = useDispatch();
 
@@ -34,7 +32,7 @@ export const ProductStepCoverPicker = memo((props: Props) => {
   useSetDefaultAnswer({
     dynamicData,
     setDynamicData,
-    answerKeyDefaultValue: CoverType.common,
+    answerKeyDefaultValue: CoverType.Common,
     answerKey: LOCAL_ANSWER_KEY.CoverType,
   });
 

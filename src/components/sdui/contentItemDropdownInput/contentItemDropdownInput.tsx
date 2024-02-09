@@ -7,7 +7,7 @@ import { Style, Colours } from "@styles";
 import { VoidFunction, addCommasToNumber } from "@utils";
 import { Navigation } from "@navigation/main";
 import { useSduiOnChange } from "../_hooks/useSduiOnChange";
-import { ContentItemDropdownInput as GqlInput } from "@graphql/_core/schema";
+import { ContentItemDropdownInputFragment as GqlInput } from "@graphql/__generated";
 import { MODALS } from "@navigation/constants";
 interface Option {
   label: string;
@@ -16,10 +16,10 @@ interface Option {
 }
 interface Props {
   errorMessage?: string;
-  heading: string;
+  heading?: string;
   value: string;
   options: Option[];
-  selectInstruction: string;
+  selectInstruction?: string;
   onChange?: (value: string) => void;
 }
 

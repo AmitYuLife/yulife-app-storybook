@@ -1,12 +1,11 @@
 import React, { ComponentProps, memo, useContext, useMemo, useCallback, useState } from "react";
 import { ActivityIndicator, ListRenderItemInfo, StyleSheet, View, ViewStyle } from "react-native";
-import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards as GqlPackageCards } from "@graphql/_core/schema";
+import { ContentItemPackageCardsFragment as GqlPackageCards, CoverType } from "@graphql/__generated";
 import { PackageCard } from "./package-card";
 import { FlatList, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { ProductStepContext } from "../../product-step.context";
 import { useSetDefaultAnswer } from "../../hooks/useSetDefaultAnswer";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { LOCAL_ANSWER_KEY } from "../../utils/localAnswerKeys";
 import { useInitialiseFromDynamicData } from "./hooks/useInitialiseFromDynamicData";
 import { PACKAGE_CARD_WIDTH, PAD_WIDTH } from "./styles";
@@ -21,7 +20,7 @@ export const ProductStepPackageCards = memo((props: GqlPackageCards) => {
   useSetDefaultAnswer({ answerKey, answerKeyDefaultValue, dynamicData, setDynamicData });
   useSetDefaultAnswer({
     answerKey: LOCAL_ANSWER_KEY.CoverType,
-    answerKeyDefaultValue: CoverType.common,
+    answerKeyDefaultValue: CoverType.Common,
     dynamicData,
     setDynamicData,
   });
@@ -30,27 +29,22 @@ export const ProductStepPackageCards = memo((props: GqlPackageCards) => {
     () => props.packageCards.filter((item) => (!maxPackageCardValue ? true : item.value <= maxPackageCardValue)),
     [props.packageCards, maxPackageCardValue]
   );
-  const flatListData = useMemo(() => createFlatListData(filteredPackageCards), [
-    filteredPackageCards,
-    maxPackageCardValue,
-  ]);
+  const flatListData = useMemo(
+    () => createFlatListData(filteredPackageCards),
+    [filteredPackageCards, maxPackageCardValue]
+  );
   const snapToOffsets = Array.from({
     length: flatListData.length - 2 /** to account for the pad items before and after packageCards */,
   }).map((_, i) => i * PACKAGE_CARD_WIDTH);
 
-  const {
-    listRef,
-    handleScroll,
-    handleScrollBeginDrag,
-    handleMomentumScrollEnd,
-    activePackageCardIndex,
-  } = useScrollHandler({
-    packageCards: filteredPackageCards,
-    answerKey,
-    answerKeyValue: dynamicData[answerKey] as number,
-    setDynamicData,
-    productId,
-  });
+  const { listRef, handleScroll, handleScrollBeginDrag, handleMomentumScrollEnd, activePackageCardIndex } =
+    useScrollHandler({
+      packageCards: filteredPackageCards,
+      answerKey,
+      answerKeyValue: dynamicData[answerKey] as number,
+      setDynamicData,
+      productId,
+    });
 
   const { timeout: showLoadingTimeout } = useAutoCleanTimeout();
   const sync = useCallback(() => {

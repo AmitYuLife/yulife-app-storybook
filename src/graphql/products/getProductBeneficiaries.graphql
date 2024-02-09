@@ -1,0 +1,14 @@
+query GetProductBeneficiaries($productId: ID) {
+  getProductBeneficiaries(productId: $productId) {
+    id
+    beneficiaries {
+      id
+      firstName
+      lastName
+      fullName
+      phoneNumber
+      relationship
+      shareOfBenefit
+    }
+  }
+}

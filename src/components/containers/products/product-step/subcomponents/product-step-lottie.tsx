@@ -1,5 +1,5 @@
 import React, { memo, useContext, useMemo } from "react";
-import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
+import { ContentItemLottie as GqlLottie } from "@graphql/__generated";
 import { ContentItemLottie } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
 

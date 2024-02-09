@@ -1,13 +1,6 @@
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { Navigation } from "@navigation/main";
-import {
-  GetMobileRewardsList as Rewards,
-  GetMobileRewardsListVariables as RewardsVariables,
-  GetMobileRewardsList_data_list,
-  GetRewardsProductsList,
-  GetMobileRewardsGoalProductMilestones as GoalProductMilestones,
-} from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
 import { RewardsListScreen } from "@screens/index";
 import { IMainTabsProps, showYuModal } from "@navigation/root";
@@ -18,7 +11,7 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { useSelector } from "react-redux";
 import { RewardMilestoneDetails } from "../../../screens/member/rewards/list/subcomponents/reward-milestone-details";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
-import { gql } from "@graphql/__generated";
+import { GetMobileRewardsListQuery, gql } from "@graphql/__generated";
 
 const MAX_PERSONAL_PRODUCTS_TO_SHOW = 2;
 
@@ -30,18 +23,18 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
 
   useTapBackTwiceToExit(componentId);
 
-  const [getRewards, { loading, data: rewards }] = useQueryOnScreenSeen<Rewards, RewardsVariables>(
+  const [getRewards, { loading, data: rewards }] = useQueryOnScreenSeen(
     gql("GetMobileRewardsListDocument"),
     ROUTES.rewards,
     { variables: { tag } }
   );
 
-  const [getGoalProductMilestones, { data: goalProductMilestones }] = useQueryOnScreenSeen<GoalProductMilestones>(
+  const [getGoalProductMilestones, { data: goalProductMilestones }] = useQueryOnScreenSeen(
     gql("GetMobileRewardsGoalProductMilestonesDocument"),
     ROUTES.rewards
   );
 
-  const { data: products } = useQuery<GetRewardsProductsList>(gql("GetRewardsProductsListDocument"), {
+  const { data: products } = useQuery(gql("GetRewardsProductsListDocument"), {
     fetchPolicy: "network-only",
   });
 
@@ -77,7 +70,7 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
   }, [componentId]);
 
   const handleRewardDetailsItemPress = useCallback(
-    (reward: GetMobileRewardsList_data_list) => {
+    (reward: GetMobileRewardsListQuery["data"]["list"][0]) => {
       /**
        * locked means that the reward does not have
        * available denominations

@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { ContentItemMultiSelect as GqlMultiSelect } from "@graphql/_core/schema/ContentItemMultiSelect";
+import { ContentItemMultiSelectFragment as GqlMultiSelect } from "@graphql/__generated";
 import { ContentItemMultiSelect } from "@components/sdui";
 import { useDynamicOnChange } from "../hooks/useDynamicOnChange";
 

@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { Animated, StyleSheet, View, ViewStyle } from "react-native";
 import { useDispatch } from "react-redux";
 import { DETOX_ENABLED } from "@services/socket";
-import { ContentItemCollapsingGenericHeader as Props } from "@graphql/_core/schema";
+import { ContentItemCollapsingGenericHeaderFragment as Props } from "@graphql/__generated";
 import { CloseSvg } from "@atoms";
 import { GenericHeadingAbsolute } from "@organisms";
 import { Colours } from "@styles";

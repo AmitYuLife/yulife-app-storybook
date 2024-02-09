@@ -21,16 +21,7 @@ import {
   ContentItemRowIconTextBanner,
   ContentItemHint,
 } from "@components/sdui";
-import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED } from "@graphql/personalProduct/getPersonalProductStepDetached.gql";
-import { GetPersonalProductStepDetached_getPersonalProductStepDetached_body as GPPSSQ_Body } from "@graphql/_core/schema";
-
-import {
-  GetPersonalProductStepDetached,
-  GetPersonalProductStepDetachedVariables,
-  GetPersonalProductStepDetached_getPersonalProductStepDetached as DetachedStepData,
-} from "@graphql/_core/schema";
 import { ProductStepContentItemHeaderDetached } from "./subcomponents/detached/product-step.header.detached";
-import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { Colours } from "@styles";
 import {
   ProductStepCoverPicker,
@@ -45,7 +36,10 @@ import { DynamicData } from "@redux/server-driven-ui/sdui.types";
 import { ProductStepDetachedNavigationContext } from "./product-step-detached-navigation.context";
 import { PRODUCT_STEP_BODY_SCROLL_VIEW } from "@ids";
 import { sduiEventActionCreator } from "./utils/sduiEventActionCreator";
+import { gql, SduiActionType, GetPersonalProductStepDetachedQuery } from "@graphql/__generated";
 
+type IPersonalProductStepDetached = GetPersonalProductStepDetachedQuery["getPersonalProductStepDetached"];
+type GPPSSQ_Body = IPersonalProductStepDetached["body"];
 interface Props {
   productId: string;
   stepId: string;
@@ -61,19 +55,16 @@ const ProductStepDetachedContainer = (props: Props) => {
   const [scrollPicker, setScrollPicker] = useState(null as IProductStepScrollPicker);
   const [headerHeight, setHeaderHeight] = useState(0);
   const [headerBottom, setHeaderBottom] = useState(null);
-  const [detachedStep, setDetachedStep] = useState<DetachedStepData>(null);
+  const [detachedStep, setDetachedStep] = useState<IPersonalProductStepDetached>(null);
   const [componentsLayout, setComponentsLayout] = useState({});
   const [wrapperOffset, setWrapperOffset] = useState(0);
   const isMounted = useRef(false);
   const { current: scrollValue } = useRef(new Animated.Value(0));
 
-  const { data, loading } = useQuery<GetPersonalProductStepDetached, GetPersonalProductStepDetachedVariables>(
-    GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED,
-    {
-      variables: { productId, stepId },
-      fetchPolicy: "no-cache",
-    }
-  );
+  const { data, loading } = useQuery(gql("GetPersonalProductStepDetachedDocument"), {
+    variables: { productId, stepId },
+    fetchPolicy: "no-cache",
+  });
 
   useEffect(() => () => Keyboard.dismiss(), []);
 
@@ -178,8 +169,8 @@ const ProductStepDetachedContainer = (props: Props) => {
               logo="yulife"
               leftIcon="BACK"
               contentItemHeaderBarRightIcon="CLOSE"
-              onLeftIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
-              onRightIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
+              onLeftIconPress={{ type: SduiActionType.SduiActionNavigateBack, payload: null }}
+              onRightIconPress={{ type: SduiActionType.SduiActionNavigateBack, payload: null }}
               publishKeyHeight={null}
               color={null}
             />
@@ -211,7 +202,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-const renderItemContent = (item: GPPSSQ_Body): JSX.Element => {
+const renderItemContent = (item: GPPSSQ_Body[0]): JSX.Element => {
   switch (item.__typename) {
     case "ContentItemPersonalProductFaqs":
       return <ContentItemFaqs key={item.id} {...item} />;

@@ -1,14 +1,16 @@
 import React, { memo, useContext, useMemo } from "react";
-import { ContentItemCollapsingHeaderAgePercentProductInfo as Props } from "@graphql/_core/schema";
+import {
+  CoverType,
+  ContentItemCollapsingHeaderAgePercentProductInfoFragment as Props,
+  YuWorld,
+} from "@graphql/__generated";
 import { ProductStepContext } from "../../product-step.context";
 import { ContentItemCollapsingHeaderAgePercentProductInfo } from "@components/sdui";
-import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
 import { SlotIcon } from "../product-step.slot-icon";
 
 export const ProductStepCollapsingHeaderAgePercentProductInfo = memo((props: Props) => {
-  const { scrollValue, headerHeight, stepId, componentsLayout, dynamicData, customerProductId } = useContext(
-    ProductStepContext
-  );
+  const { scrollValue, headerHeight, stepId, componentsLayout, dynamicData, customerProductId } =
+    useContext(ProductStepContext);
   const { expandOnComponentId, collapsingHeaderAgePercentProductInfoData, expandThreshold: gqlExpandThreshold } = props;
   const { answerKeys } = collapsingHeaderAgePercentProductInfoData;
 

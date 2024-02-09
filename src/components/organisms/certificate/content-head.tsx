@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { Style, mapCoverToColor } from "@styles";
 import { Icon, TextTemplate } from "@atoms";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { CoverType } from "@graphql/__generated";
 
 interface Props {
   title: string;

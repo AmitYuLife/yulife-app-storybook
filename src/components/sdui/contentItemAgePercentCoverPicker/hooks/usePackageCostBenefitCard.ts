@@ -1,5 +1,5 @@
 import moment from "moment";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { CoverType } from "@graphql/__generated";
 
 interface UsePackageCostBenefitCardParameters {
   keyedPricing: Record<number, Record<number, { cost: string; monthlyPayout: string }>>;
@@ -15,7 +15,7 @@ interface UsePackageCostBenefitCardParameters {
 const INITIAL_VALUE = {
   costValue: "",
   costDescription: "",
-  coverType: CoverType.common,
+  coverType: CoverType.Common,
   benefitDescription: "",
   benefitValue: "",
   benefitIntervalMarkdown: "",

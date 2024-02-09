@@ -1,0 +1,13 @@
+mutation SetShareOfBenefitForProduct($productId: ID!, $shares: [BeneficiaryShareOfBenefit!]!) {
+  setShareOfBenefitForProduct(productId: $productId, shares: $shares) {
+    id
+    beneficiaries {
+      id
+      firstName
+      lastName
+      phoneNumber
+      relationship
+      shareOfBenefit
+    }
+  }
+}

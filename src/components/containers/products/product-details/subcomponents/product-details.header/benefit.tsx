@@ -1,13 +1,13 @@
 import React, { memo } from "react";
 import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
-import { ContentItemProductDetailsHeader_benefit } from "@graphql/_core/schema";
+import { ContentItemProductDetailsHeader } from "@graphql/__generated";
 import Markdown from "@components/molecules/markdown/markdown";
 import { Style } from "@styles";
 import { YU_COIN_POWER_HEIGHT_WIDTH_MULTIPLIER } from "@components/molecules";
 
 interface Props {
-  benefit?: ContentItemProductDetailsHeader_benefit;
+  benefit?: ContentItemProductDetailsHeader["benefit"];
   onLayout?: (event: LayoutChangeEvent) => void;
   style: ViewStyle;
 }

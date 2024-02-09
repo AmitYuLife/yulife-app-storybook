@@ -1,7 +1,7 @@
 import React, { memo, useContext, useMemo } from "react";
 import { View } from "react-native";
 import { Image } from "@atoms";
-import { ContentItemSelectedPackageCard as GqlProps } from "@graphql/_core/schema";
+import { ContentItemSelectedPackageCardFragment as GqlProps } from "@graphql/__generated";
 import { ProductStepContext } from "../../product-step.context";
 import { mapCoverTypeToColorTheme } from "@styles";
 import styles from "./product-step.selected-package.styles";

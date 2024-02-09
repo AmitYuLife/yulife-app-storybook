@@ -1,8 +1,7 @@
 import React, { memo, useCallback } from "react";
 import { View } from "react-native";
 import { useDispatch } from "react-redux";
-import { ContentItemButton as GqlButton, ContentItemButton_event } from "@graphql/_core/schema";
-import { ContentItemButtonType } from "@graphql/_core/schema/globalTypes";
+import { ContentItemButtonFragment as GqlButton, ContentItemButtonType } from "@graphql/__generated";
 import { Button, LinkButton, SecondaryButton, TertiaryButton } from "@molecules";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
@@ -46,7 +45,7 @@ export const ContentItemButton = memo((props: Props) => {
   const { isValid } = useSduiValidField(disabledState, shouldValidateBus);
   const dispatch = useDispatch();
   const eventCallback = useCallback(() => {
-    const safeEventObj: Partial<ContentItemButton_event> = event || { payload: null };
+    const safeEventObj: Partial<GqlButton["event"]> = event || { payload: null };
     const payload = JSON.parse(safeEventObj.payload);
     const safePayloadObj = payload || {};
     dispatch(
@@ -84,15 +83,15 @@ export const ContentItemButton = memo((props: Props) => {
 });
 
 const getComponent = (type: ContentItemButtonType) => {
-  if (type === ContentItemButtonType.primary) {
+  if (type === ContentItemButtonType.Primary) {
     return Button;
   }
 
-  if (type === ContentItemButtonType.secondary) {
+  if (type === ContentItemButtonType.Secondary) {
     return SecondaryButton;
   }
 
-  if (type === ContentItemButtonType.tertiary) {
+  if (type === ContentItemButtonType.Tertiary) {
     return TertiaryButton;
   }
 

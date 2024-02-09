@@ -1,5 +1,5 @@
 import React, { ComponentProps, memo, useCallback, useContext, useMemo } from "react";
-import { ContentItemHeaderBar as GqlHeader } from "@graphql/_core/schema/ContentItemHeaderBar";
+import { ContentItemHeaderBarFragment as GqlHeader } from "@graphql/__generated";
 import { ContentItemHeaderBar } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
 import { useSelector, useDispatch } from "react-redux";

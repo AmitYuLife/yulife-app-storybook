@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { Image as ImageAtom } from "@atoms";
-import { RemoteImage } from "@graphql/_core/schema";
+import { RemoteImage } from "@graphql/__generated";
 import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 

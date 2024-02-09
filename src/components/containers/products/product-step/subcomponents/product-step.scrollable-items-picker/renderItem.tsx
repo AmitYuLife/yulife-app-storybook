@@ -3,7 +3,7 @@ import { Animated, ListRenderItemInfo, TextStyle, StyleSheet } from "react-nativ
 import { Text } from "@atoms";
 import { styles, ITEM_WIDTH } from "./product-step.scrollable-items-picker.styles";
 import { Style } from "@styles";
-import { ContentItemScrollableItemsPicker_styleVariants } from "@graphql/_core/schema";
+import { ContentItemScrollableItemsPickerFragment } from "@graphql/__generated";
 
 export const createSnapToOffsets = (length: number) => {
   return Array.from({ length }).map((_, i) => ITEM_WIDTH * i);
@@ -12,15 +12,21 @@ export const createSnapToOffsets = (length: number) => {
 interface ParentProps {
   scrollX: Animated.Value;
   itemsLength: number;
-  styleVariants: ContentItemScrollableItemsPicker_styleVariants[];
+  styleVariants: ContentItemScrollableItemsPickerFragment["styleVariants"];
 }
 
-export const renderItem = ({ scrollX, itemsLength, styleVariants }: ParentProps) => ({
-  item,
-  index,
-}: ListRenderItemInfo<number>) => (
-  <MemoizedItem scrollX={scrollX} index={index} item={item} itemsLength={itemsLength} styleVariants={styleVariants} />
-);
+export const renderItem =
+  ({ scrollX, itemsLength, styleVariants }: ParentProps) =>
+  ({ item, index }: ListRenderItemInfo<number>) =>
+    (
+      <MemoizedItem
+        scrollX={scrollX}
+        index={index}
+        item={item}
+        itemsLength={itemsLength}
+        styleVariants={styleVariants}
+      />
+    );
 
 const MemoizedItem = memo(
   ({

@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useContext } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { ContentItemScrollPicker as GqlScrollPicker } from "@graphql/_core/schema";
+import { ContentItemScrollPickerFragment as GqlScrollPicker } from "@graphql/__generated";
 import { Style } from "@styles";
 import { TertiaryButton } from "@molecules";
 import { ProductStepContext } from "../product-step.context";

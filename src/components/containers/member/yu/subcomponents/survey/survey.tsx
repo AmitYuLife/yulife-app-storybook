@@ -1,12 +1,12 @@
 import { SecondaryButton } from "@molecules";
-import { YuScreenSurveyFooter } from "@graphql/_core/schema";
 import { Style } from "@styles";
 import React, { FC, memo } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import Markdown from "@components/molecules/markdown/markdown";
 import { useSduiActionHandler } from "../../hooks/useSduiActionHandler";
+import { YuScreenSurveyFooterFragment } from "@graphql/__generated";
 
-export const Survey: FC<YuScreenSurveyFooter> = memo(
+export const Survey: FC<YuScreenSurveyFooterFragment> = memo(
   ({ markdown, backgroundColour, image, button: { event, onPress, label } }) => {
     const handlePress = useSduiActionHandler({ event, onPress });
 

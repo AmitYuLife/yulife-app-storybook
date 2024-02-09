@@ -1,5 +1,5 @@
 import React, { memo, useContext, useMemo } from "react";
-import { ContentItemInfoButton as GqlInfoButton } from "@graphql/_core/schema";
+import { ContentItemInfoButtonFragment as GqlInfoButton } from "@graphql/__generated";
 import { ContentItemInfoButton } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
 

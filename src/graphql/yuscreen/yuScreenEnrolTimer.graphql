@@ -1,0 +1,17 @@
+fragment YuScreenEnrolTimer on YuScreenEnrolTimer {
+  heading
+  secondsUntilTarget
+  styles {
+    ...SduiStyle
+  }
+  button {
+    label
+    onPress {
+      ...SduiAction
+    }
+    event {
+      ...SduiAction
+    }
+  }
+  backgroundGradientList
+}
