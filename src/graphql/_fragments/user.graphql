@@ -104,6 +104,10 @@ fragment User on User {
       unit
       shouldEndOnLastGoalAchieved
       fitKitTypes
+      yuHealthTypes {
+        dataType
+        capabilities
+      }
       milestones {
         id
         XP

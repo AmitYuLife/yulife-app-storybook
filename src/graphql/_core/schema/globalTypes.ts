@@ -285,6 +285,25 @@ export enum UserProfileEventStatus {
   completed = "completed",
 }
 
+export enum YuHealthCapability {
+  ACTIVITIES = "ACTIVITIES",
+  CALORIES = "CALORIES",
+  CYCLING_DISTANCE = "CYCLING_DISTANCE",
+  HEART_RATE = "HEART_RATE",
+  MINDFUL_MINUTES = "MINDFUL_MINUTES",
+  STEP_COUNT = "STEP_COUNT",
+  WORKOUT_MINUTES = "WORKOUT_MINUTES",
+}
+
+export enum YuHealthDataType {
+  CALORIES = "CALORIES",
+  CYCLING_DISTANCE = "CYCLING_DISTANCE",
+  HEART_RATE = "HEART_RATE",
+  MINDFUL_MINUTES = "MINDFUL_MINUTES",
+  STEP_COUNT = "STEP_COUNT",
+  WORKOUT_MINUTES = "WORKOUT_MINUTES",
+}
+
 export enum YuProductStatus {
   active = "active",
   inProgress = "inProgress",

@@ -1,6 +1,9 @@
 import { gql } from "@apollo/client";
+import { GQL_FRAGMENT_YU_HEALTH_OPTIONS } from "./yuHealth.gql";
 
 export const GQL_FRAGMENT_USER = gql`
+  ${GQL_FRAGMENT_YU_HEALTH_OPTIONS}
+
   fragment User on User {
     __typename
     id
@@ -107,6 +110,9 @@ export const GQL_FRAGMENT_USER = gql`
         unit
         shouldEndOnLastGoalAchieved
         fitKitTypes
+        yuHealth {
+          ...YuHealthOptions
+        }
         milestones {
           id
           XP

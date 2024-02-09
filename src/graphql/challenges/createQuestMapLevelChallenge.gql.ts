@@ -2,8 +2,11 @@ import { MutationTuple } from "@apollo/client";
 import { CreateQuestMapLevelChallengeVariables, CreateQuestMapLevelChallenge } from "@graphql/_core/schema";
 import { gql } from "@apollo/client";
 import client from "../_core/client";
+import { GQL_FRAGMENT_YU_HEALTH_OPTIONS } from "@graphql/_fragments/yuHealth.gql";
 
 export const GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
+  ${GQL_FRAGMENT_YU_HEALTH_OPTIONS}
+
   mutation CreateQuestMapLevelChallenge($levelSlotId: String!, $contentId: String) {
     createQuestMapLevelChallenge(levelSlotId: $levelSlotId, contentId: $contentId) {
       hideExternalLinks
@@ -19,6 +22,9 @@ export const GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
         unit
         shouldEndOnLastGoalAchieved
         fitKitTypes
+        yuHealth {
+          ...YuHealthOptions
+        }
         milestones {
           id
           XP
