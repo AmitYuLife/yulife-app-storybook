@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { Button, SettingsHeader } from "@components/molecules";
 import { View } from "react-native";
 import { TextTemplate } from "@atoms";
-import { styles } from "./_styles";
+import { permissionsStyles } from "./_styles";
 import { t } from "@locale";
 import { GoogleFitIcon } from "@atoms/icon/google-fit-icon";
 
@@ -13,19 +13,19 @@ interface IProps {
 const SwitchGoogleFitSection = ({ connectGoogleFit }: IProps) => {
   return (
     <>
-      <View style={styles.settingsHeader}>
+      <View style={permissionsStyles.settingsHeader}>
         <SettingsHeader title={t("screens.permissions.switch_to_google_fit.title")} />
       </View>
-      <View style={styles.googleFitIconWrapper}>
+      <View style={permissionsStyles.googleFitIconWrapper}>
         <GoogleFitIcon height={80} width={80} />
       </View>
-      <View style={styles.switchGoogleFitWrapper}>
+      <View style={permissionsStyles.switchGoogleFitWrapper}>
         <TextTemplate type="b2">{t("screens.permissions.switch_to_google_fit.description")}</TextTemplate>
       </View>
       <Button
         size="Fill"
         label={t("screens.permissions.switch_to_google_fit.button_label")}
-        wrapperStyle={styles.googleFitActionButton}
+        wrapperStyle={permissionsStyles.googleFitActionButton}
         onPress={connectGoogleFit}
       />
     </>

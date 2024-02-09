@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { Colours, Style } from "@styles";
 
-export const styles = StyleSheet.create({
+export const permissionsStyles = StyleSheet.create({
   settingsHeader: {
     marginTop: Style.adjust(10),
     marginBottom: Style.adjust(24),

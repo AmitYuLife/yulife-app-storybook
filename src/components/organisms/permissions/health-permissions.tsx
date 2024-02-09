@@ -3,7 +3,7 @@ import React, { memo, useCallback } from "react";
 import { Platform, View } from "react-native";
 import { Permissions } from "@services/fitkit/permissions.helpers";
 import { openAppleHealthPrivacy, openGoogleFitApp, openSamsungHealthApp } from "@services/app-link";
-import { styles } from "./_styles";
+import { permissionsStyles } from "./_styles";
 import { t } from "@locale";
 import { ChainIcon } from "@atoms/icon/chain-icon";
 import { Colours } from "@styles";
@@ -59,7 +59,7 @@ const HealthPermissionsSection = ({
 
   return (
     <View testID={HEALTH_SCREEN}>
-      <View style={styles.settingsHeader}>
+      <View style={permissionsStyles.settingsHeader}>
         <SettingsHeader title={healthAppSectionTitle} />
       </View>
 
@@ -79,7 +79,7 @@ const HealthPermissionsSection = ({
 
       {showConnectButtonHealthSection ? (
         <Button
-          wrapperStyle={styles.paddingHorizontal24}
+          wrapperStyle={permissionsStyles.paddingHorizontal24}
           size="Fill"
           label="Connect"
           onPress={onHealthConnect}
@@ -89,7 +89,7 @@ const HealthPermissionsSection = ({
         <SecondaryButton
           size="Fill"
           label={healthApp}
-          wrapperStyle={styles.paddingHorizontal24}
+          wrapperStyle={permissionsStyles.paddingHorizontal24}
           onPress={openHealthApp}
           leftIcon={<ChainIcon />}
         />
