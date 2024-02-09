@@ -2,10 +2,13 @@ import React, { memo, useCallback, useContext, useEffect, useState } from "react
 import Logger from "@services/logging/logger";
 import { useMutation, useQuery } from "@apollo/client";
 import { useStripe, PaymentSheet, PaymentSheetError } from "@stripe/stripe-react-native";
-import { ContentItemPersonalProductSelectPaymentButton as GqlSelectPaymentBtn } from "@graphql/_core/schema";
+
 import { ContentItemInfoButton } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
-import { gql } from "@graphql/__generated";
+import {
+  gql,
+  ContentItemPersonalProductSelectPaymentButtonFragment as GqlSelectPaymentBtn,
+} from "@graphql/__generated";
 
 type Props = GqlSelectPaymentBtn;
 

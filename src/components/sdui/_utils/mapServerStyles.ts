@@ -1,5 +1,4 @@
-import { SduiStyleDynamic } from "@graphql/_core/schema";
-import { SduiStyle } from "@graphql/_core/schema/SduiStyle";
+import { SduiStyle, SduiStyleDynamic } from "@graphql/__generated";
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 
 type LocalStyle = ViewStyle | TextStyle | ImageStyle;

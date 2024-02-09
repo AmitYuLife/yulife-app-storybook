@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { ContentItemConfirm as GqlConfirm } from "@graphql/_core/schema";
+import { ContentItemConfirmFragment as GqlConfirm } from "@graphql/__generated";
 import { Style } from "@styles";
 import { mapServerStyles } from "..";
 import { CheckBox } from "@molecules";

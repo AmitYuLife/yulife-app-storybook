@@ -1,8 +1,8 @@
 import { Dispatch } from "react";
-import { SduiAction } from "@graphql/_core/schema";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { MixpanelEvent } from "@services/logging/types";
 import Logger from "@services/logging/logger";
+import { SduiAction } from "@graphql/__generated";
 
 interface Payload {
   name: MixpanelEvent;

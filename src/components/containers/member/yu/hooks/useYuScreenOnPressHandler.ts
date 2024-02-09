@@ -1,14 +1,16 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { SduiAction, YuScreenProductButtonAction } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
 import { logEvent } from "../helpers/logEvent";
 import { navigateToProduct } from "../helpers/navigateToProduct";
 import { OnboardingHandler } from "./useOnboardingButtonHandler";
+import { GetRewardsProductsListQuery, SduiAction, YuScreenProductButtonAction } from "@graphql/__generated";
 
+type IGetRewardsProductsList = GetRewardsProductsListQuery["getRewardsProductsList"][0];
 interface Props {
   event?: SduiAction;
-  onPress?: OnboardingHandler | YuScreenProductButtonAction;
+  onPress?: OnboardingHandler | YuScreenProductButtonAction | IGetRewardsProductsList["onPress"];
+
   currentRoute: string;
 }
 

@@ -1,0 +1,8 @@
+fragment YumojiRemotePart on YumojiRemotePart {
+  id
+  hidesPartTypes
+  remoteUrl {
+    id
+    uri(options: { width: 530, height: 1106 })
+  }
+}

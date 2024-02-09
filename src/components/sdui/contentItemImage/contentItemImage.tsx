@@ -1,15 +1,15 @@
 import React, { memo, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
-import { ContentItemImage as Props } from "@graphql/_core/schema";
+import { ContentItemImageFragment as IContentItemImage } from "@graphql/__generated";
 import { Image } from "@atoms";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { useDispatch } from "react-redux";
-import { ContentItemImageSize } from "@graphql/_core/schema/globalTypes";
+import { ContentItemImageSize } from "@graphql/__generated";
 import { Style } from "@styles";
 import { CONTENT_MIDDLE_ITEM_IMAGE } from "@ids";
 
-export const ContentItemImage = memo((props: Props) => {
+export const ContentItemImage = memo((props: IContentItemImage) => {
   const wrapperStyles = mapServerStyles(props.wrapperStyles);
   const imageStyles = mapServerStyles(props.styles);
   const dispatch = useDispatch();
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
 });
 
 const getWidth = (width: number, imageSize: ContentItemImageSize) =>
-  imageSize === ContentItemImageSize.fill ? Style.DEVICE_WIDTH : width;
+  imageSize === ContentItemImageSize.Fill ? Style.DEVICE_WIDTH : width;

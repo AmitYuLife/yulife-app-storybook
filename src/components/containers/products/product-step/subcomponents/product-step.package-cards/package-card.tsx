@@ -1,8 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
-import { ContentItemPackageCards_packageCards } from "@graphql/_core/schema";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { ContentItemPackageCardsFragment, CoverType } from "@graphql/__generated";
 import { PackageCardPerks, YuCoinPower } from "@molecules";
 import PackageCardHeader from "./package-card-header";
 import { YUCOIN_POWER } from "@ids";
@@ -11,7 +10,7 @@ interface OwnProps {
   width: number;
 }
 
-type Props = ContentItemPackageCards_packageCards & OwnProps;
+type Props = ContentItemPackageCardsFragment["packageCards"][0] & OwnProps;
 
 export const PackageCard = memo((props: Partial<Props>) => {
   const borderColor = useMemo(() => ({ borderColor: getBorderColor(props.coverType) }), [props.coverType]);
@@ -70,7 +69,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Perks = ({ powers }: { powers: ContentItemPackageCards_packageCards["powers"] }) => {
+const Perks = ({ powers }: { powers: ContentItemPackageCardsFragment["packageCards"][0]["powers"] }) => {
   return (
     <View>
       {powers.map((perk, index: number) => (
@@ -81,11 +80,11 @@ const Perks = ({ powers }: { powers: ContentItemPackageCards_packageCards["power
 };
 
 const getBorderColor = (coverType: CoverType) => {
-  if (coverType === CoverType.epic) {
+  if (coverType === CoverType.Epic) {
     return Colours.products.fib.epic;
   }
 
-  if (coverType === CoverType.rare) {
+  if (coverType === CoverType.Rare) {
     return Colours.products.fib.rare;
   }
 

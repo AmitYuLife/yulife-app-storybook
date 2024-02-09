@@ -3,7 +3,7 @@ import { StyleSheet, View, ViewStyle, Animated } from "react-native";
 import { Style } from "@styles";
 import Svg, { Rect } from "react-native-svg";
 import { ProgressStepItem, IProgressStepItemProps } from "./progress-step-item";
-import { GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps as IContentItemProgressSteps } from "@graphql/_core/schema";
+import { ContentItemProgressStepsFragment as IContentItemProgressSteps } from "@graphql/__generated";
 import { defaultTheme } from "./progress-steps-configuration";
 import { mapServerStyles } from "@components/sdui";
 

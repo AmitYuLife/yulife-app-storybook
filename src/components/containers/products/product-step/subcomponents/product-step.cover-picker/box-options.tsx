@@ -6,9 +6,8 @@ import { PackageType } from "@molecules";
 import { mapServerStyles } from "@components/sdui";
 import { Colours, Style } from "@styles";
 import { PERCENTAGE_COVERED, SELECTED_PACKAGE_TITLE } from "@ids";
-import { ContentItemCoverPicker } from "@graphql/_core/schema";
+import { ContentItemCoverPicker, CoverType } from "@graphql/__generated";
 import { ProductStepContext } from "../../product-step.context";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { LOCAL_ANSWER_KEY } from "../../utils";
 import { BoxOption } from "@molecules";
 import { sduiEventActionCreator } from "../../utils/sduiEventActionCreator";
@@ -20,21 +19,22 @@ export const BoxOptions = memo(({ answerKey, options, styles: serverStyles }: Pr
   const dispatch = useDispatch();
 
   const handlePickCover = useCallback(
-    ({ coverType, value }: { coverType: CoverType; value: number }) => () => {
-      setDynamicData((oldState) => ({
-        ...oldState,
-        [answerKey]: value,
-        [LOCAL_ANSWER_KEY.CoverType]: coverType,
-      }));
-      dispatch(
-        sduiEventActionCreator("package_inspected", {
-          type: coverType,
-          salary_covered: value,
-          cs_product: productId,
-          location: "package-options",
-        })
-      );
-    },
+    ({ coverType, value }: { coverType: CoverType; value: number }) =>
+      () => {
+        setDynamicData((oldState) => ({
+          ...oldState,
+          [answerKey]: value,
+          [LOCAL_ANSWER_KEY.CoverType]: coverType,
+        }));
+        dispatch(
+          sduiEventActionCreator("package_inspected", {
+            type: coverType,
+            salary_covered: value,
+            cs_product: productId,
+            location: "package-options",
+          })
+        );
+      },
     [options, setDynamicData]
   );
 
@@ -73,7 +73,7 @@ export const BoxOptions = memo(({ answerKey, options, styles: serverStyles }: Pr
 });
 
 const mapCoverToStyle = (coverType: CoverType) => {
-  if (coverType === CoverType.epic) {
+  if (coverType === CoverType.Epic) {
     return {
       borderColor: Colours.products.fib.epic,
       backgroundColor: Colours.products.fib.epicLight,
@@ -81,7 +81,7 @@ const mapCoverToStyle = (coverType: CoverType) => {
     };
   }
 
-  if (coverType === CoverType.rare) {
+  if (coverType === CoverType.Rare) {
     return {
       borderColor: Colours.products.fib.rare,
       backgroundColor: Colours.products.fib.rareLight,
@@ -89,7 +89,7 @@ const mapCoverToStyle = (coverType: CoverType) => {
     };
   }
 
-  if (coverType === CoverType.common) {
+  if (coverType === CoverType.Common) {
     return {
       borderColor: Colours.products.fib.common,
       backgroundColor: Colours.products.fib.commonLight,

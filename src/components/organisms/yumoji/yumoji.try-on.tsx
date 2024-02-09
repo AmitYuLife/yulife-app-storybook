@@ -7,18 +7,17 @@ import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { Colours, Style } from "@styles";
 import { Loading, TextTemplate } from "@atoms";
 import { Popover as PopoverMolecule, TouchableOpacityWithDelay } from "@molecules";
-import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
-import {
-  GetYumojiRemoteParts,
-  GetYumojiRemoteFittingRoom,
-  GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_yuWorlds,
-  GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_popover,
-  GetYumojiRemoteParts_avatar,
-} from "@graphql/_core/schema";
 import { Yumoji } from "./yumoji";
 import Logger from "@services/logging/logger";
 import { useYumojiFittingRoom, AVATAR_WIDTH, AVATAR_HEIGHT } from "./hooks/useYumojiFittingRoom";
-import { MobileOnboardingStepPerformed, gql } from "@graphql/__generated";
+import {
+  CoverType,
+  MobileOnboardingStepPerformed,
+  YuWorld,
+  gql,
+  GetYumojiRemoteFittingRoomQuery,
+  GetYumojiRemotePartsQuery,
+} from "@graphql/__generated";
 
 type Props = {
   coverType: CoverType;
@@ -33,16 +32,16 @@ const HIT_SLOP = {
   right: 8,
 };
 
-function _TryOnYumojiPart({ customerProductId, coverType = CoverType.common, onChange }: Props) {
+function _TryOnYumojiPart({ customerProductId, coverType = CoverType.Common, onChange }: Props) {
   const [selectedWorld, setSelectedWorld] = useState<YuWorld>(null);
-  const [avatar, setAvatar] = useState<GetYumojiRemoteParts["avatar"]>(null);
+  const [avatar, setAvatar] = useState<GetYumojiRemotePartsQuery["avatar"]>(null);
 
   const { yumoji, fittingRoom } = useYumojiFittingRoom({ customerProductId, coverType });
   const { yuWorlds = [], popover, selectedYuWorld } = fittingRoom;
   const { updateOnboardingStep, popoverTarget, handleTextLayout, popoverClosed } = usePopover({ popover });
 
   useEffect(() => {
-    setSelectedWorld(selectedYuWorld || YuWorld.forest);
+    setSelectedWorld(selectedYuWorld || YuWorld.Forest);
   }, [selectedYuWorld]);
 
   useEffect(() => {
@@ -56,7 +55,7 @@ function _TryOnYumojiPart({ customerProductId, coverType = CoverType.common, onC
       return;
     }
 
-    const newPartialAvatar: Partial<GetYumojiRemoteParts_avatar> = Object.fromEntries(
+    const newPartialAvatar: Partial<GetYumojiRemotePartsQuery["avatar"]> = Object.fromEntries(
       yuWorld.yumojiParts.map((part) => {
         return [part.partType, part];
       })
@@ -160,7 +159,7 @@ interface ITarget {
   targetY: number;
 }
 
-function usePopover({ popover }: Pick<GetYumojiRemoteFittingRoom["getYumojiRemoteFittingRoom"], "popover">) {
+function usePopover({ popover }: Pick<GetYumojiRemoteFittingRoomQuery["getYumojiRemoteFittingRoom"], "popover">) {
   const [isClosed, setIsClosed] = useState(false);
 
   const [performOnboardingStep] = useMutation(gql("PerformMobileOnboardingStepDocument"));
@@ -184,7 +183,7 @@ function usePopover({ popover }: Pick<GetYumojiRemoteFittingRoom["getYumojiRemot
 }
 
 interface WorldRadioButtons {
-  yuWorlds: GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_yuWorlds[];
+  yuWorlds: GetYumojiRemoteFittingRoomQuery["getYumojiRemoteFittingRoom"]["yuWorlds"];
   selectedWorld: string;
   handlePress: (id: YuWorld) => void;
 }
@@ -228,7 +227,7 @@ const WorldRadioButtons = ({ yuWorlds, selectedWorld, handlePress }: WorldRadioB
 };
 
 interface Popover {
-  popover: GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_popover;
+  popover: GetYumojiRemoteFittingRoomQuery["getYumojiRemoteFittingRoom"]["popover"];
   popoverTarget: ITarget;
   updateOnboardingStep: () => void;
   isClosed: boolean;

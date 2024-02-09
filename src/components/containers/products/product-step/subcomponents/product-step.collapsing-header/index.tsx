@@ -1,7 +1,11 @@
 import React, { memo, useContext, useMemo } from "react";
 import { Animated, StyleSheet, ViewStyle } from "react-native";
-import { ContentItemCollapsingHeaderProductInfoType, CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
-import { ContentItemCollapsingHeaderProductInfo as Props } from "@graphql/_core/schema";
+import { YuWorld } from "@graphql/_core/schema/globalTypes";
+import {
+  ContentItemCollapsingHeaderProductInfoType,
+  CoverType,
+  ContentItemCollapsingHeaderProductInfoFragment as Props,
+} from "@graphql/__generated";
 import { Colours, Style } from "@styles";
 import { ProductStepContext } from "../../product-step.context";
 import { useSetDefaultAnswer } from "../../hooks/useSetDefaultAnswer";
@@ -10,15 +14,14 @@ import { CollapsingHeaderDefault } from "./default";
 import { CollapsingHeaderCoverOptions } from "./cover-options";
 
 export const ProductStepCollapsingHeaderProductInfo = memo((props: Props) => {
-  const { scrollValue, headerHeight, stepId, dynamicData, setDynamicData, componentsLayout } = useContext(
-    ProductStepContext
-  );
+  const { scrollValue, headerHeight, stepId, dynamicData, setDynamicData, componentsLayout } =
+    useContext(ProductStepContext);
   const { answerKey, coverList, expandOnComponentId, type } = props;
 
   useSetDefaultAnswer({
     dynamicData,
     setDynamicData,
-    answerKeyDefaultValue: CoverType.common,
+    answerKeyDefaultValue: CoverType.Common,
     answerKey: LOCAL_ANSWER_KEY.CoverType,
   });
   useSetDefaultAnswer({
@@ -59,7 +62,7 @@ export const ProductStepCollapsingHeaderProductInfo = memo((props: Props) => {
   }, [translateY]);
 
   const CollapsingHeader = useMemo(() => {
-    if (type === ContentItemCollapsingHeaderProductInfoType.coverOptions) {
+    if (type === ContentItemCollapsingHeaderProductInfoType.CoverOptions) {
       return CollapsingHeaderCoverOptions;
     }
 

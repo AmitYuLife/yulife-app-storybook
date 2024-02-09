@@ -8,10 +8,10 @@ import {
   GetPersonalProductStepDetachedDocumentsVariables,
 } from "@graphql/_core/schema";
 import { ProductStepContentItemHeaderDetached } from "./subcomponents/detached/product-step.header.detached";
-import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { ContentItemDocuments } from "@components/sdui";
 import { Style, TOP_BAR } from "@styles";
 import { ProductStepDetachedNavigationContext } from "./product-step-detached-navigation.context";
+import { SduiActionType } from "@graphql/__generated";
 
 const HEADER_HEIGHT_ESTIMATE = TOP_BAR.TOP_BAR_WITH_PAD;
 const EXTRA_PADDING = Style.adjust(32);
@@ -83,8 +83,8 @@ const ProductStepDetachedContainer = (props: any) => {
           heading={null}
           leftIcon="BACK"
           contentItemHeaderBarRightIcon="CLOSE"
-          onLeftIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
-          onRightIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
+          onLeftIconPress={{ type: SduiActionType.SduiActionNavigateBack, payload: null }}
+          onRightIconPress={{ type: SduiActionType.SduiActionNavigateBack, payload: null }}
           publishKeyHeight={null}
           color={null}
         />

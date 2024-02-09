@@ -3,8 +3,7 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { toCapitalLetter } from "@utils";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { TextTemplate } from "@atoms";
-import { ContentItemCollapsingHeaderProductInfo_coverList } from "@graphql/_core/schema";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { ContentItemCollapsingHeaderProductInfoFragment, CoverType } from "@graphql/__generated";
 import { ProductStepContext } from "../../../product-step.context";
 import { useDispatch } from "react-redux";
 import { LOCAL_ANSWER_KEY } from "../../../utils";
@@ -12,7 +11,7 @@ import { Colours, Style, mapCoverTypeToColorTheme } from "@styles";
 import { sduiEventActionCreator } from "../../../utils/sduiEventActionCreator";
 
 interface Props {
-  coverList: ContentItemCollapsingHeaderProductInfo_coverList[];
+  coverList: ContentItemCollapsingHeaderProductInfoFragment["coverList"];
   answerKey: string;
   coverType: CoverType;
   colorTheme: {
@@ -26,21 +25,22 @@ export const CoverListItems = memo(({ coverList, answerKey, coverType, colorThem
   const dispatch = useDispatch();
 
   const handlePickCover = useCallback(
-    ({ type, value }: { type: CoverType; value: number }) => () => {
-      setDynamicData((oldState) => ({
-        ...oldState,
-        [answerKey]: value,
-        [LOCAL_ANSWER_KEY.CoverType]: type,
-      }));
-      dispatch(
-        sduiEventActionCreator("package_inspected", {
-          type,
-          salary_covered: value,
-          cs_product: productId,
-          location: "package-options",
-        })
-      );
-    },
+    ({ type, value }: { type: CoverType; value: number }) =>
+      () => {
+        setDynamicData((oldState) => ({
+          ...oldState,
+          [answerKey]: value,
+          [LOCAL_ANSWER_KEY.CoverType]: type,
+        }));
+        dispatch(
+          sduiEventActionCreator("package_inspected", {
+            type,
+            salary_covered: value,
+            cs_product: productId,
+            location: "package-options",
+          })
+        );
+      },
     [coverList, answerKey, setDynamicData]
   );
 

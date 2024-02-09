@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ContentItemAgePercentCoverPicker } from "./contentItemAgePercentCoverPicker";
-import { ContentItemButtonSize, ContentItemButtonType, CoverType } from "@graphql/_core/schema/globalTypes";
+import { ContentItemButtonSize, ContentItemButtonType, CoverType } from "@graphql/__generated";
 
 type Story = StoryObj<typeof ContentItemAgePercentCoverPicker>;
 
@@ -24,7 +24,7 @@ const meta: Meta<typeof ContentItemAgePercentCoverPicker> = {
     },
     salaryPercent: 10,
     policyEndAge: 75,
-    coverType: CoverType.epic,
+    coverType: CoverType.Epic,
     onToggleAgeScroller: () => {
       /* TODO: Implement mock function */
     },
@@ -37,7 +37,7 @@ const meta: Meta<typeof ContentItemAgePercentCoverPicker> = {
             contentItemAgePercentCoverPickerPercentOptionValue: 7,
             cost: "£1,000",
             monthlyPayout: "£1,000",
-            coverType: CoverType.common,
+            coverType: CoverType.Common,
           },
         ],
       },
@@ -48,7 +48,7 @@ const meta: Meta<typeof ContentItemAgePercentCoverPicker> = {
             contentItemAgePercentCoverPickerPercentOptionValue: 10,
             cost: "£1,500",
             monthlyPayout: "£1,500",
-            coverType: CoverType.epic,
+            coverType: CoverType.Epic,
           },
         ],
       },
@@ -59,13 +59,13 @@ const meta: Meta<typeof ContentItemAgePercentCoverPicker> = {
             contentItemAgePercentCoverPickerPercentOptionValue: 12,
             cost: "£2,000",
             monthlyPayout: "£2,000",
-            coverType: CoverType.rare,
+            coverType: CoverType.Rare,
           },
         ],
       },
     ],
 
-    answerKeyCoverTypeDefaultValue: CoverType.epic,
+    answerKeyCoverTypeDefaultValue: CoverType.Epic,
     userAge: 35,
     id: "agePercentCoverPicker",
     percentsToDefault: [7, 10, 12],
@@ -125,7 +125,7 @@ const meta: Meta<typeof ContentItemAgePercentCoverPicker> = {
           id: "https://yulife-develop.imgix.net/content/icons/right_arrow.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=da1b43660785c6b3a238491409ed856c",
           uri: "https://yulife-develop.imgix.net/content/icons/right_arrow.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=da1b43660785c6b3a238491409ed856c",
         },
-        buttonType: ContentItemButtonType.tertiary,
+        buttonType: ContentItemButtonType.Tertiary,
         contentItemButtonUri:
           "https://yulife-develop.imgix.net/content/icons/right_arrow.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=da1b43660785c6b3a238491409ed856c",
         value: "Test",
@@ -151,9 +151,9 @@ const meta: Meta<typeof ContentItemAgePercentCoverPicker> = {
           step: 1,
         },
         coverMap: [
-          { coverType: CoverType.common, max: 49 },
-          { coverType: CoverType.rare, max: 74 },
-          { coverType: CoverType.epic, max: 75 },
+          { coverType: CoverType.Common, max: 49 },
+          { coverType: CoverType.Rare, max: 74 },
+          { coverType: CoverType.Epic, max: 75 },
         ],
         answerKey: "selectedPremium",
         styleVariants: [

@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logEvent } from "../../helpers/logEvent";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { getCurrentWorld, getCurrentYuniverse } from "@utils";
+import { SduiAction } from "@graphql/__generated";
 
 const YuCoinPowerExplained = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const YuCoinPowerExplained = () => {
   const dismissOverlay = useCallback(async () => {
     await Navigation.dismissModal(MODALS.yuCoinPowerExplained);
     if (data?.getYuCoinPowerExplained?.button) {
-      const event = data?.getYuCoinPowerExplained?.button.event;
+      const event = data?.getYuCoinPowerExplained?.button.event as unknown as SduiAction;
       logEvent(dispatch, event);
     }
   }, [data, dispatch]);

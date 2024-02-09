@@ -1,5 +1,5 @@
 import React from "react";
-import { GetPersonalProductStep_getPersonalProductStep_absolute as GPPS_Absolute } from "@graphql/_core/schema";
+import { GetPersonalProductStepQuery } from "@graphql/__generated";
 import {
   AbsoluteContentItemImage,
   ProductStepCollapsingHeaderProductInfo,
@@ -8,8 +8,9 @@ import {
   ProductStepCollapsingHeaderAgePercentProductInfo,
 } from "../../subcomponents";
 
+type GPPS_Absolute = GetPersonalProductStepQuery["getPersonalProductStep"]["absolute"];
 interface Props {
-  absolute: GPPS_Absolute[];
+  absolute: GPPS_Absolute;
   headerHeight: number;
 }
 
@@ -24,7 +25,7 @@ export const Absolute = (props: Props) => {
 };
 
 const renderAbsoluteItemContent = (
-  { item, shouldAccountForHeader }: GPPS_Absolute,
+  { item, shouldAccountForHeader }: GPPS_Absolute[0],
   headerHeight: number
 ): JSX.Element => {
   switch (item.__typename) {

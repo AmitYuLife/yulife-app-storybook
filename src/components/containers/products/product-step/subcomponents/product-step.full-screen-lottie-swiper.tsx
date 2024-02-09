@@ -1,12 +1,12 @@
 import React, { memo, useContext, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FullScreenLottieSwiper } from "@organisms/full-screen-lottie-swiper/full-screen-lottie-swiper";
-import { ContentItemFullScreenLottieSwiper } from "@graphql/_core/schema/ContentItemFullScreenLottieSwiper";
+import { ContentItemFullScreenLottieSwiperFragment } from "@graphql/__generated";
 import { ProductStepContext } from "../product-step.context";
 import { getSduiLoadingForKey } from "@redux/server-driven-ui/sdui.selectors";
 import { sduiEventActionCreator } from "../utils/sduiEventActionCreator";
 
-type Props = ContentItemFullScreenLottieSwiper;
+type Props = ContentItemFullScreenLottieSwiperFragment;
 export const ProductStepFullScreenLottieSwiper = memo(({ button, close, ...props }: Props) => {
   const dispatch = useDispatch();
   const { productId, stepId, dynamicData, isLoading: isInLoadingContext } = useContext(ProductStepContext);

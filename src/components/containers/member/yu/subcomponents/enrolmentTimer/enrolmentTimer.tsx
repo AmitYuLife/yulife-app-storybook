@@ -2,13 +2,13 @@ import React, { FC, memo } from "react";
 import { ProcessingTimer } from "@molecules";
 import LinearGradient from "react-native-linear-gradient";
 import { mapServerStyles } from "@components/sdui";
-import { YuScreenEnrolTimer } from "@graphql/_core/schema";
 import { Style } from "@styles";
 import { Button } from "@components/molecules";
 import { StyleSheet, View } from "react-native";
 import { useSduiActionHandler } from "../../hooks/useSduiActionHandler";
+import { YuScreenEnrolTimerFragment } from "@graphql/__generated";
 
-export const EnrolmentTimer: FC<YuScreenEnrolTimer> = memo(
+export const EnrolmentTimer: FC<YuScreenEnrolTimerFragment> = memo(
   ({ heading, styles: serverStyles, secondsUntilTarget, button, backgroundGradientList }) => {
     const handlePress = useSduiActionHandler({ event: button?.event, onPress: button?.onPress });
 

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ContentItemTextInput } from "./contentItemTextInput";
-import { ContentItemFormTextInputType } from "@graphql/_core/schema/globalTypes";
+import { ContentItemFormTextInputType } from "@graphql/__generated";
 
 type Story = StoryObj<typeof ContentItemTextInput>;
 
@@ -15,7 +15,7 @@ const meta: Meta<typeof ContentItemTextInput> = {
     onChange: () => null,
     prefixValue: "+44",
     styles: [],
-    type: ContentItemFormTextInputType.number,
+    type: ContentItemFormTextInputType.Number,
     validation: [
       {
         validationName: "Please enter a valid contact number",

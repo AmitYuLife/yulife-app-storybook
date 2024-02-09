@@ -6,14 +6,12 @@ import Logger from "@services/logging/logger";
 import { YuScreenContext } from "../context/yu-screen.context";
 import { useDispatch } from "react-redux";
 import { useNavigationComponentDidAppear } from "@hooks";
-import { MobileOnboardingStepPerformed } from "@graphql/_core/schema/globalTypes";
-import { MobileOnboardingStepPerformed as MobileOnboardingStepPerformedNew, gql } from "@graphql/__generated";
-import { GetYuScreen_getYuScreen_onboarding } from "@graphql/_core/schema";
+import { GetYuScreenQuery, MobileOnboardingStepPerformed, gql } from "@graphql/__generated";
 
 export type OnboardingHandler = () => Promise<void> | void;
 
 export const useOnboardingButtonHandler = (
-  onboarding: GetYuScreen_getYuScreen_onboarding
+  onboarding: GetYuScreenQuery["getYuScreen"]["onboarding"]
 ): {
   shouldShowOnboarding: boolean;
   closeOnboarding: () => Promise<void>;
@@ -28,7 +26,7 @@ export const useOnboardingButtonHandler = (
    * Hide the onboarding screen when the user navigates to the pension screen.
    */
   useNavigationComponentDidAppear(() => {
-    if (onboarding?.id === MobileOnboardingStepPerformed.yuScreenOnboardingPension) {
+    if (onboarding?.id === MobileOnboardingStepPerformed.YuScreenOnboardingPension) {
       setShouldShowOnboarding(false);
     }
   }, ROUTES.pensionConnection);
@@ -36,7 +34,7 @@ export const useOnboardingButtonHandler = (
   const markOnboardingAsViewed = useCallback(async () => {
     try {
       // Mark the onboarding step as completed.
-      await performOnboarding({ variables: { step: onboarding?.id as unknown as MobileOnboardingStepPerformedNew } }); //remove unknown when we finish to refactor getYuScreen.gql
+      await performOnboarding({ variables: { step: onboarding?.id } });
     } catch (e) {
       Logger.error(e, { where: "use-onboarding-dismissal-handler-perform-onboarding" });
     }

@@ -3,7 +3,7 @@ import { HeroLockedIcon } from "@atoms/icon/hero-locked-icon";
 import { ScrollableContentOverlay } from "@components/modals/scrollable-content-overlay/scrollable-content-overlay";
 import Hint from "@components/molecules/hint/hint";
 import { RewardCard } from "@components/molecules/reward-card/reward-card";
-import { RemoteImage } from "@graphql/_core/schema";
+import { RemoteImage } from "@graphql/__generated";
 import { t } from "@locale";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
@@ -23,8 +23,8 @@ type RewardMilestoneDetailsProps = {
   secondaryColor: string;
   rewardImage: RemoteImage;
   hint?: {
-    label: string;
-    description: string;
+    label?: string;
+    description?: string;
   };
   modalTitle: string | null;
 };

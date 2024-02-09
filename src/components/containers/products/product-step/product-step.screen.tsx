@@ -2,13 +2,10 @@ import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Animated, Keyboard, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { Body, Header, Footer, Absolute, ProductStepScrollPicker } from "./sections";
 import { IProductStepScrollPicker, IStepComponentsLayout, ProductStepContext } from "./product-step.context";
-import {
-  GetPersonalProductStep_getPersonalProductStep_absolute,
-  GetPersonalProductStep_getPersonalProductStep_body,
-  GetPersonalProductStep_getPersonalProductStep_footer,
-  GetPersonalProductStep_getPersonalProductStep_header,
-} from "@graphql/_core/schema";
+import { GetPersonalProductStepQuery } from "@graphql/__generated";
 import { buildInitialSduiStepDynamicDataState } from "@utils/sduiData";
+
+type IGetPersonalProductStep = GetPersonalProductStepQuery["getPersonalProductStep"];
 
 interface Props {
   productId: string;
@@ -17,10 +14,10 @@ interface Props {
   stepId: string;
   style: ViewStyle;
   footerStyle: ViewStyle;
-  body: GetPersonalProductStep_getPersonalProductStep_body[];
-  header: GetPersonalProductStep_getPersonalProductStep_header[];
-  footer: GetPersonalProductStep_getPersonalProductStep_footer[];
-  absolute: GetPersonalProductStep_getPersonalProductStep_absolute[];
+  body: IGetPersonalProductStep["body"];
+  header: IGetPersonalProductStep["header"];
+  footer: IGetPersonalProductStep["footer"];
+  absolute: IGetPersonalProductStep["absolute"];
   isLoading: boolean;
 }
 

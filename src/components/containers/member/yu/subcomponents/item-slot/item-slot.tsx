@@ -8,10 +8,6 @@ import {
 } from "./styles";
 import { Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
-import {
-  GetYuScreen_getYuScreen_productSlots as ProductSlots,
-  YuScreenProductButtonAction,
-} from "@graphql/_core/schema";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { OnboardingHandler } from "../../hooks/useOnboardingButtonHandler";
 import {
@@ -25,9 +21,10 @@ import {
 import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
 import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
+import { GetYuScreenQuery, YuScreenProductButtonActionFragment } from "@graphql/__generated";
 
-export interface IItemSlotProps extends Omit<ProductSlots, "onPress"> {
-  onPress?: YuScreenProductButtonAction | OnboardingHandler;
+export interface IItemSlotProps extends Omit<GetYuScreenQuery["getYuScreen"]["productSlots"][0], "onPress"> {
+  onPress?: YuScreenProductButtonActionFragment | OnboardingHandler;
   socketType?: "yuscreen" | "onboarding";
 }
 

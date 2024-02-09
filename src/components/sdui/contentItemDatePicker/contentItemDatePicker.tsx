@@ -2,7 +2,7 @@ import React, { memo, useCallback, useEffect, useState } from "react";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { View } from "react-native";
-import { ContentItemDatePicker as GqlDatePicker } from "@graphql/_core/schema";
+import { ContentItemDatePickerFragment as GqlDatePicker } from "@graphql/__generated";
 import { Colours } from "@styles";
 import { TextTemplate } from "@atoms";
 import { TertiaryButton } from "@molecules";

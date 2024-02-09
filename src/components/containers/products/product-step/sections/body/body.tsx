@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useMemo } from "react";
 import { Animated, KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "react-native";
-import { GetPersonalProductStep_getPersonalProductStep_body as GPPS_Body } from "@graphql/_core/schema";
+import { GetPersonalProductStepQuery } from "@graphql/__generated";
 import { PRODUCT_STEP_BODY_SCROLL_VIEW } from "@ids";
 import { Style } from "@styles";
 import media from "@styles/media";
@@ -45,8 +45,9 @@ import {
 import { ProductStepContext } from "../../product-step.context";
 import { ProductStepContentItemGpDetails } from "../../subcomponents/product-step.gp-details";
 
+type GPPS_Body = GetPersonalProductStepQuery["getPersonalProductStep"]["body"];
 interface Props {
-  body: GPPS_Body[];
+  body: GPPS_Body;
   headerHeight: number;
 }
 
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-const renderItemContent = (item: GPPS_Body): JSX.Element => {
+const renderItemContent = (item: GPPS_Body[0]): JSX.Element => {
   switch (item.__typename) {
     case "ContentItemInfoCard":
       return <ContentItemInfoCard key={item.id} {...item} />;

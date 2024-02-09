@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { ContentItemDatePicker as GqlDatePicker } from "@graphql/_core/schema";
+import { ContentItemDatePickerFragment as GqlDatePicker } from "@graphql/__generated";
 import { ContentItemDatePicker } from "@components/sdui";
 import { useDynamicOnChange } from "../hooks/useDynamicOnChange";
 

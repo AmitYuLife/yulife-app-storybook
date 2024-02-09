@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { ContentItemRadio as GqlRadio } from "@graphql/_core/schema";
+import { ContentItemRadioFragment as GqlRadio } from "@graphql/__generated";
 import { Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { mapServerStyles } from "../_utils/mapServerStyles";

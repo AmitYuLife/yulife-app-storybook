@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { Image } from "@atoms";
-import { VariableRemoteImage } from "@graphql/_core/schema";
+import { VariableRemoteImage } from "@graphql/__generated";
 import { YULIFE_BUPA_LOGO } from "@ids";
 
 export const ProviderLogo = memo(({ image, width, height }: VariableRemoteImage) => {

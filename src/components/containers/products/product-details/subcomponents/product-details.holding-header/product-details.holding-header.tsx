@@ -1,13 +1,13 @@
 import React, { memo } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
-import { ContentItemProductDetailsHoldingHeader } from "@graphql/_core/schema";
+import { ContentItemProductDetailsHoldingHeaderFragment } from "@graphql/__generated";
 import { Image } from "./image";
 import { Title } from "./title";
 import { Description } from "./description";
 import LinearGradient from "react-native-linear-gradient";
 import { ProcessingTimer } from "@components/molecules";
 
-export const ProductDetailsHoldingHeader = memo((props: ContentItemProductDetailsHoldingHeader) => {
+export const ProductDetailsHoldingHeader = memo((props: ContentItemProductDetailsHoldingHeaderFragment) => {
   const { image, linearGradient, title, timer, description } = props;
 
   return (

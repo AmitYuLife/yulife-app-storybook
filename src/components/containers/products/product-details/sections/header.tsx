@@ -1,11 +1,12 @@
 import React from "react";
 import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
-import { GetYuScreenProductDetails_getYuScreenProductDetails_header as PropsHeader } from "@graphql/_core/schema";
 import { ProductDetailsHeaderBar } from "../subcomponents/product-details.header-bar/product-details.header-bar";
 import { ContentItemLinearGradient } from "@components/sdui";
+import { GetYuScreenProductDetailsQuery } from "@graphql/__generated";
 
+type IPropsHeader = GetYuScreenProductDetailsQuery["getYuScreenProductDetails"]["header"];
 interface Props {
-  header: PropsHeader[];
+  header: IPropsHeader;
   onLayout?: (e: LayoutChangeEvent) => void;
 }
 
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-const renderItemContent = (item: PropsHeader): JSX.Element => {
+const renderItemContent = (item: IPropsHeader[0]): JSX.Element => {
   switch (item.__typename) {
     case "ContentItemHeaderBar":
       return <ProductDetailsHeaderBar key={item.__typename} {...item} />;

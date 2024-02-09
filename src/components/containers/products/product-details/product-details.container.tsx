@@ -1,25 +1,21 @@
 import React, { memo } from "react";
 import { useQuery } from "@apollo/client";
-import { GQL_QUERY_GET_YU_SCREEN_PRODUCT_DETAILS } from "@graphql/products/getYuScreenProductDetails";
-import { GetYuScreenProductDetails, GetYuScreenProductDetailsVariables } from "@graphql/_core/schema";
 import { ProductDetailsScreen } from "./product-details.screen";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
+import { gql } from "@graphql/__generated";
 
 interface Props {
   productId: string;
 }
 
 const ProductDetailsContainer = memo(({ productId: customerProductId }: Props) => {
-  const { data, loading, error } = useQuery<GetYuScreenProductDetails, GetYuScreenProductDetailsVariables>(
-    GQL_QUERY_GET_YU_SCREEN_PRODUCT_DETAILS,
-    {
-      variables: {
-        customerProductId,
-      },
-      fetchPolicy: "no-cache",
-    }
-  );
+  const { data, loading, error } = useQuery(gql("GetYuScreenProductDetailsDocument"), {
+    variables: {
+      customerProductId,
+    },
+    fetchPolicy: "no-cache",
+  });
 
   if (error?.graphQLErrors?.length) {
     Navigation.pop(ROUTES.productDetails);

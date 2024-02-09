@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { ContentItemBeneficiariesSection as Props } from "@graphql/_core/schema";
+import { ContentItemBeneficiariesSectionFragment as Props } from "@graphql/__generated";
 import { mapServerStyles } from "..";
 import { Beneficiaries } from "./beneficiariesContainer";
 

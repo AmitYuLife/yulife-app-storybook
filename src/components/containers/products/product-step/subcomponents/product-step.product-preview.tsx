@@ -3,11 +3,7 @@ import { Animated, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import Markdown from "@components/molecules/markdown/markdown";
 import { TryOnYumojiPart } from "@organisms/yumoji/yumoji.try-on";
-import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
-import {
-  GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview as Props,
-  GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_percentageBox as PercentageBoxProps,
-} from "@graphql/_core/schema/GetPersonalProductStep";
+import { ContentItemPersonalProductPreviewFragment as Props, CoverType, YuWorld } from "@graphql/__generated";
 import { ProductStepContext } from "../product-step.context";
 import { Image, TextTemplate } from "@atoms";
 import { mapServerStyles } from "@components/sdui";
@@ -127,7 +123,7 @@ export const ProductStepProductPreview = memo((props: Props) => {
   );
 });
 
-function PercentageBox({ selectedValue, selectedCoverType, primaryColour, secondaryColour }: PercentageBoxProps) {
+function PercentageBox({ selectedValue, selectedCoverType, primaryColour, secondaryColour }: Props["percentageBox"]) {
   return (
     <Animated.View pointerEvents="none" style={[styles.overlayWrapper]}>
       <View

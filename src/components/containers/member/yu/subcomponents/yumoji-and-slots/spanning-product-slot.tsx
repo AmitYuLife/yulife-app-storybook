@@ -1,8 +1,8 @@
 import { Image, TextTemplate } from "@atoms";
-import { VariableRemoteImage } from "@graphql/_core/schema";
 import { SPONSOR_LOGO_IMAGE } from "@ids";
 import { View } from "react-native";
 import { styles } from "./yumoji-and-slots.styles";
+import { VariableRemoteImage } from "@graphql/__generated";
 
 interface Props {
   spanningProductSlot?: {

@@ -2,24 +2,20 @@ import React, { memo, useCallback, useMemo, useRef, useState } from "react";
 import { Animated, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { mapServerStyles } from "@components/sdui";
 import { Absolute, Body } from "./sections";
-import {
-  GetYuScreenProductDetails_getYuScreenProductDetails_body as PropsBody,
-  GetYuScreenProductDetails_getYuScreenProductDetails_absolute as PropsAbsolute,
-  GetYuScreenProductDetails_getYuScreenProductDetails_header as PropsHeader,
-  GetYuScreenProductDetails_getYuScreenProductDetails_footer as PropsFooter,
-  SduiStyle,
-} from "@graphql/_core/schema";
 import { UiContext } from "./product-details.context";
 import { Header } from "./sections/header";
 import { Footer } from "./sections/footer";
+import { GetYuScreenProductDetailsQuery, SduiStyle } from "@graphql/__generated";
+
+type IGetYuScreenProductDetails = GetYuScreenProductDetailsQuery["getYuScreenProductDetails"];
 
 interface Props {
-  body: PropsBody[];
-  header: PropsHeader[];
-  absolute: PropsAbsolute[];
-  footer: PropsFooter[];
-  containerStyles: SduiStyle[];
-  footerStyles: SduiStyle[];
+  body?: IGetYuScreenProductDetails["body"];
+  header?: IGetYuScreenProductDetails["header"];
+  absolute?: IGetYuScreenProductDetails["absolute"];
+  footer?: IGetYuScreenProductDetails["footer"];
+  containerStyles?: SduiStyle[];
+  footerStyles?: SduiStyle[];
 }
 
 export const ProductDetailsScreen = memo((props: Props) => {

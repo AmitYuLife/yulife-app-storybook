@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { View } from "react-native";
 import { CONTENT_ITEM_INPUT } from "@ids";
-import { ContentItemSliderInput as GqlTextInput } from "@graphql/_core/schema";
+import { ContentItemSliderInputFragment as GqlTextInput } from "@graphql/__generated";
 import { SliderInput } from "@molecules";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { useSduiOnChange } from "../_hooks/useSduiOnChange";

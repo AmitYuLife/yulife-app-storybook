@@ -3,25 +3,22 @@ import { View, StyleSheet } from "react-native";
 import { Image, TextTemplate, YuCoinLabel } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
-import {
-  SduiAction,
-  GetRewardsProductsList_getRewardsProductsList_onPress as OnPress,
-  GetRewardsProductsList_getRewardsProductsList_imageOverlay as ImageOverlay,
-} from "@graphql/_core/schema";
 import { useSelector, useDispatch } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
 import { useYuScreenOnPressHandler } from "@components/containers/member/yu/hooks/useYuScreenOnPressHandler";
 import { Source } from "react-native-fast-image";
 import { mapServerStyles } from "@components/sdui";
 import { PRODUCT_CARD_BOTTOM, PRODUCT_CARD_IMAGE, PRODUCT_CARD_TITLE } from "@ids";
+import { GetRewardsProductsListQuery, SduiAction } from "@graphql/__generated";
 
+type IGetRewardsProductsList = GetRewardsProductsListQuery["getRewardsProductsList"][0];
 interface IProductCardProps {
   backgroundImage?: Source;
   yuCoinPowerIncrease?: number;
   title: string;
   cta: string;
-  imageOverlay?: ImageOverlay;
-  onPress?: OnPress;
+  imageOverlay?: IGetRewardsProductsList["imageOverlay"];
+  onPress?: IGetRewardsProductsList["onPress"];
   event?: SduiAction;
 }
 

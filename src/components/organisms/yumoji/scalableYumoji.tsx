@@ -8,7 +8,7 @@ interface IYumojiPart {
   partType: string;
   hidesPartTypes: string[];
   remoteUrl: {
-    uri: string;
+    uri?: string;
     width?: number;
     height?: number;
   };

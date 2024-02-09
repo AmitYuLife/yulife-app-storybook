@@ -8,13 +8,9 @@ import { showYuModal } from "@navigation/root";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { truncate } from "@utils";
 import { useQuery } from "@apollo/client";
-import {
-  GetProductBeneficiaries,
-  GetProductBeneficiaries_getProductBeneficiaries_beneficiaries,
-} from "@graphql/_core/schema";
-import { GQL_QUERY_GET_PRODUCT_BENEFICIARIES } from "@graphql/products/getProductBeneficiaries";
 import { TEXT_TEMPLATE, ADD_BENEFICIARY, BENEFICIARY_DETAILS } from "@ids";
 import Logger from "@services/logging/logger";
+import { GetProductBeneficiariesQuery, gql } from "@graphql/__generated";
 
 interface IBeneficiariesProps {
   productId: string;
@@ -22,7 +18,7 @@ interface IBeneficiariesProps {
 }
 
 export const Beneficiaries = ({ productId, style }: IBeneficiariesProps) => {
-  const { data, error } = useQuery<GetProductBeneficiaries>(GQL_QUERY_GET_PRODUCT_BENEFICIARIES, {
+  const { data, error } = useQuery(gql("GetProductBeneficiariesDocument"), {
     variables: { productId },
     fetchPolicy: "cache-and-network",
   });
@@ -62,7 +58,7 @@ export const Beneficiaries = ({ productId, style }: IBeneficiariesProps) => {
 };
 
 interface IBeneficiariesDetailsProps {
-  beneficiaries: GetProductBeneficiaries_getProductBeneficiaries_beneficiaries[];
+  beneficiaries: GetProductBeneficiariesQuery["getProductBeneficiaries"]["beneficiaries"];
   onPress?: () => void;
 }
 

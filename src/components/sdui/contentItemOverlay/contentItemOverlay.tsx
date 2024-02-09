@@ -1,6 +1,6 @@
 import React, { ReactNode, memo } from "react";
 import { StyleSheet, View } from "react-native";
-import { ContentItemOverlay as GqlOverlay, ContentItemButton } from "@graphql/_core/schema";
+import { ContentItemOverlayFragment as GqlOverlay, ContentItemButtonFragment } from "@graphql/__generated";
 import Markdown from "@molecules/markdown/markdown";
 import { Colours, Style } from "@styles";
 import { Pad } from "@atoms";
@@ -10,7 +10,7 @@ const MARGIN = Style.adjust(32);
 const RADIUS = Style.adjust(16);
 
 type Props = GqlOverlay & {
-  Button: (props: Partial<ContentItemButton>) => ReactNode;
+  Button: (props: Partial<ContentItemButtonFragment>) => ReactNode;
 };
 
 export const ContentItemOverlay = memo(({ Button, markdown, buttons }: Props) => {

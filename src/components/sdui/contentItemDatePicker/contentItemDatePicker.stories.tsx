@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ContentItemDatePicker } from "./contentItemDatePicker";
-import { ContentItemButtonSize } from "@graphql/_core/schema/globalTypes";
+import { ContentItemButtonSize } from "@graphql/__generated";
 
 type Story = StoryObj<typeof ContentItemDatePicker>;
 

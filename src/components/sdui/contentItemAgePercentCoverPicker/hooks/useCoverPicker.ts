@@ -1,10 +1,13 @@
 import { useMemo } from "react";
-import { ContentItemAgePercentCoverPicker, ContentItemCoverPickerCustomCover } from "@graphql/_core/schema";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
+import {
+  ContentItemAgePercentCoverPickerFragment,
+  ContentItemCoverPickerCustomCoverFragment,
+  CoverType,
+} from "@graphql/__generated";
 
 interface UseCoverPicker {
-  pricing: ContentItemAgePercentCoverPicker["contentItemAgePercentCoverPickerOptions"];
-  customCover: ContentItemCoverPickerCustomCover;
+  pricing: ContentItemAgePercentCoverPickerFragment["contentItemAgePercentCoverPickerOptions"];
+  customCover: ContentItemCoverPickerCustomCoverFragment;
   maxSalaryPercent: number;
   percentsToDefault: number[];
   policyEndAge: number;

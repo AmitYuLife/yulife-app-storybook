@@ -2,7 +2,7 @@ import React, { ComponentProps, memo, useContext } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { useDispatch } from "react-redux";
 import { GenericHeading } from "@organisms";
-import { ContentItemHeaderBar as GqlHeaderBar } from "@graphql/_core/schema";
+import { ContentItemHeaderBarFragment as GqlHeaderBar } from "@graphql/__generated";
 import { Colours } from "@styles";
 import { useBackHandler } from "@hooks";
 import { ProductStepDetachedNavigationContext } from "../../product-step-detached-navigation.context";

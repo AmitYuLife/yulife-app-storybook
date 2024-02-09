@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ContentItemButton } from "./contentItemButton";
-import { ContentItemButtonSize, ContentItemButtonType, SduiActionType } from "@graphql/_core/schema/globalTypes";
+import { ContentItemButtonSize, ContentItemButtonType, SduiActionType } from "@graphql/__generated";
 
 type Story = StoryObj<typeof ContentItemButton>;
 
@@ -13,7 +13,7 @@ const meta: Meta<typeof ContentItemButton> = {
     backgroundColor: "#E30D76",
     borderColor: "#E30D76",
     buttonSize: ContentItemButtonSize.Fill,
-    buttonType: ContentItemButtonType.tertiary,
+    buttonType: ContentItemButtonType.Tertiary,
     containerStyles: null,
     contentItemButtonRightIcon: {
       id: "1",
@@ -24,7 +24,7 @@ const meta: Meta<typeof ContentItemButton> = {
     event: {
       payload:
         '{"name":"button_pressed","props":{"type":"start","journey_id":"daily_survey","step_id":"daily_survey_intro","sdui_location":"app"}}',
-      type: SduiActionType.SDUI_ACTION_LOG_EVENT,
+      type: SduiActionType.SduiActionLogEvent,
     },
     icon: {
       id: "1",
@@ -35,7 +35,7 @@ const meta: Meta<typeof ContentItemButton> = {
     onPress: {
       payload:
         '{"mutation":"submitSduiJourney","action":"PUSH","journeyId":"daily_survey","stepId":"daily_survey_intro","refetchQueries":["GetSduiJourney"]}',
-      type: SduiActionType.SDUI_ACTION_SEND_MUTATION,
+      type: SduiActionType.SduiActionSendMutation,
     },
     styles: null,
     textColor: "#FFFFFF",

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ContentItemConfirm } from "./contentItemConfirm";
-import { ContentItemConfirmCheckboxType } from "@graphql/_core/schema/globalTypes";
+import { ContentItemConfirmCheckboxType } from "@graphql/__generated";
 
 type Story = StoryObj<typeof ContentItemConfirm>;
 
@@ -18,7 +18,7 @@ const meta: Meta<typeof ContentItemConfirm> = {
       { property: "borderRadius", value: "8" },
       { property: "borderColor", value: "#ABABAD" },
     ],
-    checkboxType: ContentItemConfirmCheckboxType.cubic,
+    checkboxType: ContentItemConfirmCheckboxType.Cubic,
     answerKey: "answerKey",
     checked: true,
   },

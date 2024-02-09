@@ -1,0 +1,34 @@
+query GetYuScreen {
+  getYuScreen {
+    boxOptionCards {
+      ...YuScreenBoxOptionCard
+    }
+    onboarding {
+      ...YuScreenOnboarding
+    }
+    productSlots {
+      ...YuScreenProduct
+    }
+    spanningProductSlot {
+      ...YuScreenSpanningProductSlot
+    }
+    productCarousel {
+      ...YuScreenCarousel
+    }
+    surveyFooter {
+      ...YuScreenSurveyFooter
+    }
+    yumojiPrompt {
+      ...YuScreenYumojiPrompt
+    }
+    carrierLogo {
+      ...VariableRemoteImage
+    }
+    enrollCopy {
+      ...YuScreenEnrollCopy
+    }
+    enrolTimer {
+      ...YuScreenEnrolTimer
+    }
+  }
+}

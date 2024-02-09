@@ -1,0 +1,16 @@
+fragment YuScreenSurveyFooter on YuScreenSurveyFooter {
+  markdown
+  backgroundColour
+  button {
+    label
+    onPress {
+      ...SduiAction
+    }
+    event {
+      ...SduiAction
+    }
+  }
+  image {
+    ...RemoteImage
+  }
+}

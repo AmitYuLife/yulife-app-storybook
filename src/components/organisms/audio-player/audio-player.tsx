@@ -33,7 +33,7 @@ import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
 import TrackPlayer, { State, Event, useTrackPlayerEvents, PlaybackErrorEvent } from "react-native-track-player";
 import AudioPlayerService from "@services/audio-player";
 import LottieView from "lottie-react-native";
-import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema"; // this is temp until we refactor lottie types
+import { ContentItemLottieFragment as GqlLottie } from "@graphql/__generated"; // this is temp until we refactor lottie types
 
 export interface IAudioPlayerProps {
   source: string;

@@ -1,4 +1,4 @@
-import { SduiAction as GqlSduiAction } from "@graphql/_core/schema";
+import { SduiAction as GqlSduiAction } from "@graphql/__generated";
 import { DynamicData } from "@redux/server-driven-ui/sdui.types";
 import { VoidFunction } from "@utils";
 import { Dispatch } from "react";

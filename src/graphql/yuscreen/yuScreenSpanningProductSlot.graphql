@@ -1,0 +1,6 @@
+fragment YuScreenSpanningProductSlot on YuScreenSpanningProductSlot {
+  heading
+  images {
+    ...VariableRemoteImage
+  }
+}

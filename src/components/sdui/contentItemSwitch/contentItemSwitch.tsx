@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useState } from "react";
-import { ContentItemSwitch as GqlSwitch } from "@graphql/_core/schema";
+import { ContentItemSwitchFragment as GqlSwitch } from "@graphql/__generated";
 import { Switch } from "@molecules";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";

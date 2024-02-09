@@ -3,7 +3,7 @@ import { View, StyleSheet, ViewStyle } from "react-native";
 import { Image } from "@atoms";
 import { PackageType } from "@molecules";
 import { Style } from "@styles";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { CoverType } from "@graphql/__generated";
 import { TOP_RIGHT_ITEM_IMAGE } from "@ids";
 
 interface Props {

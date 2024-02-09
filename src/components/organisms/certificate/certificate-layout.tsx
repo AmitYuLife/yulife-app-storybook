@@ -4,12 +4,7 @@ import { Medal } from "./background-medal";
 import { mapCoverToColor, Style } from "@styles";
 import { ConcentricSet } from "./background-concentric";
 import { CornerFlowerSet } from "./background-corner-flower";
-
-enum CoverType {
-  common = "common",
-  epic = "epic",
-  rare = "rare",
-}
+import { CoverType } from "@graphql/__generated";
 
 interface Props {
   children: React.ReactChild | React.ReactChild[];

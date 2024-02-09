@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { Style } from "@styles";
 import { TouchableOpacityWithDelay, YuCoinPower } from "@components/molecules";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
-import { ContentItemYuCoinPower as Props } from "@graphql/_core/schema";
+import { ContentItemYuCoinPowerFragment as Props } from "@graphql/__generated";
 import { mapServerStyles } from "..";
 import { YUCOIN_POWER } from "@ids";
 import { View } from "react-native";

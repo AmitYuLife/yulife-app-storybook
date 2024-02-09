@@ -1,5 +1,5 @@
-import { ContentItemAgePercentCoverPicker_contentItemAgePercentCoverPickerOptions } from "@graphql/_core/schema";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { ContentItemAgePercentCoverPickerFragment, CoverType } from "@graphql/__generated";
+
 import { useMemo } from "react";
 
 type KeyedPricing = Record<
@@ -14,7 +14,9 @@ type KeyedPricing = Record<
   >
 >;
 
-export const useIndexedData = (pricing: ContentItemAgePercentCoverPicker_contentItemAgePercentCoverPickerOptions[]) => {
+export const useIndexedData = (
+  pricing: ContentItemAgePercentCoverPickerFragment["contentItemAgePercentCoverPickerOptions"]
+) => {
   const indexedData = useMemo(() => {
     const sortedPricing = [...pricing].sort((a, b) => a.age - b.age);
 

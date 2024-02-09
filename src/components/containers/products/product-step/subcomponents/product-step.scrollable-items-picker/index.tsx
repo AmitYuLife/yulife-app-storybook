@@ -1,6 +1,5 @@
 import React, { memo, useContext, useEffect, useMemo, useRef } from "react";
 import { View, FlatList as RNFlatList, Animated, NativeSyntheticEvent, NativeScrollEvent } from "react-native";
-import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollableItemsPicker as Props } from "@graphql/_core/schema/GetPersonalProductStep";
 import { ProductStepContext } from "../../product-step.context";
 import { mapServerStyles } from "@components/sdui";
 import { FlatList } from "@atoms/flat-list/flat-list";
@@ -9,11 +8,10 @@ import { ITEM_WIDTH, styles, highlightStyles } from "./product-step.scrollable-i
 import { getActiveIndex } from "./getActiveIndex";
 import { Colours } from "@styles";
 import { TextTemplate } from "@atoms";
-import { SduiStyle } from "@graphql/_core/schema";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { LOCAL_ANSWER_KEY } from "../../utils";
+import { CoverType, SduiStyle, ContentItemScrollableItemsPickerFragment } from "@graphql/__generated";
 
-export const ProductStepPercentPicker = memo((props: Props) => {
+export const ProductStepPercentPicker = memo((props: ContentItemScrollableItemsPickerFragment) => {
   let { current: canChangeDynamicData } = useRef(false);
   const { answerKey, styleVariants } = props;
   const { dynamicData, setDynamicData } = useContext(ProductStepContext);

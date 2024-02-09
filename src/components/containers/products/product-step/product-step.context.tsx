@@ -1,8 +1,8 @@
 import {
-  GetPersonalProductStep_getPersonalProductStep_body,
-  GetPersonalProductStepDetached_getPersonalProductStepDetached_body,
-  ContentItemScrollPicker as GqlScrollPicker,
-} from "@graphql/_core/schema";
+  GetPersonalProductStepQuery,
+  GetPersonalProductStepDetachedQuery,
+  ContentItemScrollPickerFragment as GqlScrollPicker,
+} from "@graphql/__generated";
 import { ProductStepDefaultFields, DynamicData } from "@redux/server-driven-ui/sdui.types";
 import { createContext, Dispatch, SetStateAction } from "react";
 import { Animated, LayoutChangeEvent } from "react-native";
@@ -26,8 +26,8 @@ export interface IProductStepContext extends ProductStepDefaultFields {
   setScrollPicker: Dispatch<SetStateAction<IProductStepScrollPicker>>;
   setDynamicData: Dispatch<SetStateAction<DynamicData>>;
   body:
-    | GetPersonalProductStep_getPersonalProductStep_body[]
-    | GetPersonalProductStepDetached_getPersonalProductStepDetached_body[];
+    | GetPersonalProductStepQuery["getPersonalProductStep"]["body"]
+    | GetPersonalProductStepDetachedQuery["getPersonalProductStepDetached"]["body"];
   /**
    * this is the scroll value that comes from the ScrollView onScroll event in
    * src/components/containers/products/product-step/sections/body/body.tsx

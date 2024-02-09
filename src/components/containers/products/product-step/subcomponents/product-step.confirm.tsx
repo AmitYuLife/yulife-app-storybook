@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useContext } from "react";
-import { ContentItemConfirm as GqlRadio } from "@graphql/_core/schema";
+import { ContentItemConfirmFragment as GqlRadio } from "@graphql/__generated";
 import { ContentItemConfirm } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
 

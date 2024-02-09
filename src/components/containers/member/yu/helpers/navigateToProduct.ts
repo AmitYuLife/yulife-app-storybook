@@ -1,5 +1,5 @@
+import { ProductAction } from "@graphql/__generated";
 import { normalisePersonalProductStep } from "@graphql/personalProduct";
-import { ProductAction } from "@graphql/_core/schema";
 import { pushToScreen, showYuModal } from "@navigation/root";
 import Logger from "@services/logging/logger";
 

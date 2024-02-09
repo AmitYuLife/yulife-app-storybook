@@ -11,16 +11,19 @@ import {
 import { Colours, Style } from "@styles";
 import { FlatList, Loading, SwipeArrowLeft, SwipeArrowRight, TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
-import { AvatarPartType, CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
-import {
-  GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_yuWorlds_yumojiParts as Part,
-  GetYumojiRemoteParts,
-} from "@graphql/_core/schema";
 import { Yumoji } from "./yumoji";
-
 import { useYumojiFittingRoom, AVATAR_WIDTH, AVATAR_HEIGHT } from "./hooks/useYumojiFittingRoom";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import {
+  AvatarPartType,
+  CoverType,
+  GetYumojiRemoteFittingRoomQuery,
+  GetYumojiRemotePartsQuery,
+  YuWorld,
+} from "@graphql/__generated";
+
+type Part = GetYumojiRemoteFittingRoomQuery["getYumojiRemoteFittingRoom"]["yuWorlds"][0]["yumojiParts"][0];
 
 enum ArrowDirection {
   LEFT = "left",
@@ -55,7 +58,7 @@ const HIT_SLOP = {
 };
 
 export const YumojiSwipeTryOn = memo(
-  ({ customerProductId, coverType = CoverType.common, onChange, flatListItemOverlayStyles, topText }: Props) => {
+  ({ customerProductId, coverType = CoverType.Common, onChange, flatListItemOverlayStyles, topText }: Props) => {
     const listRef = useRef(null as RNFlatList);
     const scrollToDefaultIndexDelay = useRef(null);
     const { current: scrollX } = useRef(new Animated.Value(0));
@@ -69,7 +72,7 @@ export const YumojiSwipeTryOn = memo(
     const dispatch = useDispatch();
 
     useEffect(() => {
-      setSelectedWorld(selectedYuWorld || YuWorld.forest);
+      setSelectedWorld(selectedYuWorld || YuWorld.Forest);
     }, [selectedYuWorld]);
 
     useEffect(() => {
@@ -192,7 +195,7 @@ export const YumojiSwipeTryOn = memo(
       item,
       index,
     }: {
-      item: GetYumojiRemoteParts["avatar"] & { yuWorld: string; type: string };
+      item: GetYumojiRemotePartsQuery["avatar"] & { yuWorld: string; type: string };
       index: number;
     }) => {
       switch (item.type) {

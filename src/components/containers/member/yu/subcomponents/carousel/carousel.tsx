@@ -1,11 +1,11 @@
 import { FlatList, TextTemplate } from "@atoms";
-import { YuScreenCarousel } from "@graphql/_core/schema";
 import { Style } from "@styles";
 import React, { ComponentProps, FC, memo, useRef } from "react";
 import { Animated, ListRenderItemInfo, StyleSheet, View } from "react-native";
 import { CarouselCard } from "./carousel-card";
+import { YuScreenCarouselFragment } from "@graphql/__generated";
 
-export const Carousel: FC<YuScreenCarousel> = memo(({ heading, items }) => {
+export const Carousel: FC<YuScreenCarouselFragment> = memo(({ heading, items }) => {
   const scrollX = useRef(new Animated.Value(0));
 
   if (!items?.length) {
@@ -29,19 +29,19 @@ export const Carousel: FC<YuScreenCarousel> = memo(({ heading, items }) => {
   );
 });
 
-const renderItem = (itemsLength: number) => ({
-  item,
-  index,
-}: ListRenderItemInfo<ComponentProps<typeof CarouselCard>>): React.ReactElement | null => (
-  <CarouselCard
-    {...item}
-    variant={item.variant}
-    style={{
-      marginRight: index === itemsLength - 1 ? Style.adjust(16) : 0,
-      marginLeft: itemsLength < 2 ? Style.adjust(24) : Style.adjust(16),
-    }}
-  />
-);
+const renderItem =
+  (itemsLength: number) =>
+  ({ item, index }: ListRenderItemInfo<ComponentProps<typeof CarouselCard>>): React.ReactElement | null =>
+    (
+      <CarouselCard
+        {...item}
+        variant={item.variant}
+        style={{
+          marginRight: index === itemsLength - 1 ? Style.adjust(16) : 0,
+          marginLeft: itemsLength < 2 ? Style.adjust(24) : Style.adjust(16),
+        }}
+      />
+    );
 
 const styles = StyleSheet.create({
   carouselWrapper: {

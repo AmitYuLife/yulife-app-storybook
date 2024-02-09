@@ -1,7 +1,6 @@
 import React, { useCallback, memo, useMemo, useState } from "react";
 import { StyleSheet, TextInput, View, ViewStyle } from "react-native";
 import { useDebouncedQuery } from "@hooks";
-import { GQL_GET_MEDICAL_PRACTICES } from "@graphql/products";
 import {
   MedicalPractices as MedicalPracticesGql,
   MedicalPracticesVariables,
@@ -16,6 +15,7 @@ import { GpManualEntry } from "./gpManualEntry";
 import { GpDoctorDetails } from "./gpDoctorDetails";
 import { GpSearchList } from "./gpSearchList";
 import { SEARCH_INPUT } from "@ids";
+import { gql } from "@graphql/__generated";
 
 interface Props {
   fields: Record<string, string>;
@@ -36,7 +36,7 @@ export const ContentItemGpDetails = memo(({ fields, onCompleteGp, onCompletePrac
   const [search, { loading, data, networkStatus, called }] = useDebouncedQuery<
     MedicalPracticesGql,
     MedicalPracticesVariables
-  >(GQL_GET_MEDICAL_PRACTICES, { fetchPolicy: "cache-and-network" });
+  >(gql("MedicalPracticesDocument"), { fetchPolicy: "cache-and-network" });
 
   const onChangeText = useCallback(
     (text: string) => {

@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { ContentItemBox as GqlProps } from "@graphql/_core/schema";
+import { ContentItemBoxFragment as GqlProps } from "@graphql/__generated";
 import { TapToCopy } from "@organisms";
 
 export const ContentItemBox = memo((props: GqlProps) => (

@@ -1,8 +1,11 @@
 import React, { memo, useMemo } from "react";
 import { Animated, StyleSheet, ViewStyle } from "react-native";
-import { ContentItemCollapsingHeaderAgePercentProductInfo as GqlProps } from "@graphql/_core/schema";
+import {
+  ContentItemCollapsingHeaderAgePercentProductInfoFragment as GqlProps,
+  CoverType,
+  YuWorld,
+} from "@graphql/__generated";
 import { CollapsingHeader } from "@components/molecules";
-import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
 import { useIndexedData } from "./hooks/useIndexedData";
 import { Content } from "./subcomponents/content";
 import { mapCoverTypeToColor } from "@styles";

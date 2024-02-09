@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { ContentItemMarkdown as GqlMarkdown } from "@graphql/_core/schema";
+import { ContentItemMarkdownFragment as GqlMarkdown } from "@graphql/__generated";
 import { HeadingAndCopy } from "@components/molecules";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 

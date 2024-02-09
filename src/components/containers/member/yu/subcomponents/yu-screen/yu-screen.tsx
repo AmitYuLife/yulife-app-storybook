@@ -4,8 +4,6 @@ import { YumojiAndSlots } from "../yumoji-and-slots/yumoji-and-slots";
 import { Carousel } from "../carousel/carousel";
 import { Survey } from "../survey/survey";
 import { EnrolmentTimer } from "../enrolmentTimer/enrolmentTimer";
-import { GetYuScreen } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_YU_SCREEN } from "@graphql/yuscreen/getYuScreen.gql";
 import { Onboarding } from "../onboarding/onboarding";
 import { YuScreenLayout } from "./yu-screen-layout";
 import { YuScreenSkeleton } from "./yu-screen-skeleton";
@@ -20,13 +18,14 @@ import { Style } from "@styles";
 import { Image } from "@atoms";
 import { ONBOARDING_SCREEN_V4, V4_YUSCREEN } from "@ids";
 import { BoxOptionCard } from "@components/molecules";
+import { gql } from "@graphql/__generated";
 
 interface Props {
   componentId: string;
 }
 
 export const YuScreen = memo(({ componentId }: Props) => {
-  const [, { data }] = useQueryOnScreenSeenOnce<GetYuScreen>(GQL_QUERY_GET_YU_SCREEN, ROUTES.yuScreen, {
+  const [, { data }] = useQueryOnScreenSeenOnce(gql("GetYuScreenDocument"), ROUTES.yuScreen, {
     fetchPolicy: "network-only",
   });
   const onboarding = data?.getYuScreen?.onboarding;

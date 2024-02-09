@@ -2,7 +2,7 @@ import { MediaPlayerScreen } from "@components/screens";
 import { ROUTES } from "@navigation/constants";
 import React, { useCallback, memo, useState, useEffect } from "react";
 import { Navigation } from "@navigation/main";
-import { Media } from "@graphql/_core/schema";
+import { MediaFragment } from "@graphql/__generated";
 import { useDispatch, useSelector } from "react-redux";
 import {
   challengeCancelAction,
@@ -18,7 +18,7 @@ import { Storage, StorageKey } from "@utils/storage";
 import { IVideoProgressStorage } from "@components/screens/member/media/media-player/media-player-progress.screen";
 import { usePopToQuestsRootOnNewDate } from "@hooks";
 
-interface IVideo extends Media {
+interface IVideo extends MediaFragment {
   reward: number;
   stars: number;
 }

@@ -1,16 +1,16 @@
-import { RNViewPointerEvents } from "@graphql/_core/schema/globalTypes";
+import { RnViewPointerEvents } from "@graphql/__generated";
 import { ComponentProps } from "react";
 import { View } from "react-native";
 
 type PointerEvents = ComponentProps<typeof View>["pointerEvents"];
 
-export function mapPointerEvents(props: RNViewPointerEvents): PointerEvents {
+export function mapPointerEvents(props: RnViewPointerEvents): PointerEvents {
   switch (props) {
-    case RNViewPointerEvents.AUTO:
+    case RnViewPointerEvents.Auto:
       return "auto";
-    case RNViewPointerEvents.BOX_NONE:
+    case RnViewPointerEvents.BoxNone:
       return "box-none";
-    case RNViewPointerEvents.BOX_ONLY:
+    case RnViewPointerEvents.BoxOnly:
       return "box-only";
     default:
       return "none";

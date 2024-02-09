@@ -6,7 +6,7 @@ import { ProgressItems } from "./progress-items";
 import { Controller } from "./controller";
 import { Dismiss } from "./dismiss";
 import { useDispatch } from "react-redux";
-import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
+import { ContentItemLottieFragment as GqlLottie } from "@graphql/__generated";
 import { ContentItemLottie } from "@components/sdui";
 import { TEXT_TEMPLATE } from "@ids";
 import { sduiEventActionCreator } from "@components/containers/products/product-step/utils/sduiEventActionCreator";
@@ -24,7 +24,7 @@ interface Props {
   close: {
     icon: {
       id: string;
-      uri: string;
+      uri?: string;
     };
     onPress: (currentIndex: number) => void;
   };
@@ -34,7 +34,7 @@ interface Props {
   autoPlaySpeedMs: number;
   theme: {
     primaryColor: string;
-    titleColor: string;
+    titleColor?: string;
     progressBarForegroundColor?: string;
     progressBarBackgroundColor?: string;
   };
@@ -44,9 +44,8 @@ export const FullScreenLottieSwiper = memo((props: Props) => {
   const dispatch = useDispatch();
   const { items, title, button, close, ctaMinVisibleIndex, dismissMinVisibleIndex, autoPlaySpeedMs, theme } = props;
   const animationRef = useRef(null as ReturnType<typeof Animated.timing>);
-  const { activeIndex, setActiveIndex, userInteractionToggler, setUserInteractionToggler, listRef } = useScrollHandler(
-    items
-  );
+  const { activeIndex, setActiveIndex, userInteractionToggler, setUserInteractionToggler, listRef } =
+    useScrollHandler(items);
 
   const params = useMemo(() => {
     const width = (Style.DEVICE_WIDTH - Style.adjust(24)) / items.length;
@@ -56,47 +55,49 @@ export const FullScreenLottieSwiper = memo((props: Props) => {
   }, [items.length]);
   const { width, interpolatedValue } = params;
 
-  const snapToOffsets = useMemo(() => Array.from({ length: items.length }).map((_, i) => i * Style.DEVICE_WIDTH), [
-    items.length,
-  ]);
+  const snapToOffsets = useMemo(
+    () => Array.from({ length: items.length }).map((_, i) => i * Style.DEVICE_WIDTH),
+    [items.length]
+  );
 
   const handleChangeActiveIndex = useCallback(
-    (increment: number, autoMove: boolean = false) => () => {
-      const min = 0;
-      const max = items.length - 1;
+    (increment: number, autoMove: boolean = false) =>
+      () => {
+        const min = 0;
+        const max = items.length - 1;
 
-      setActiveIndex((i) => {
-        const incremented = i + increment;
+        setActiveIndex((i) => {
+          const incremented = i + increment;
 
-        if (incremented - 1 < max) {
-          setUserInteractionToggler((val) => !val);
-        }
+          if (incremented - 1 < max) {
+            setUserInteractionToggler((val) => !val);
+          }
 
-        if (incremented < min) {
-          return i;
-        }
+          if (incremented < min) {
+            return i;
+          }
 
-        if (incremented > max) {
-          return i;
-        }
+          if (incremented > max) {
+            return i;
+          }
 
-        if (i !== incremented) {
-          dispatch(
-            sduiEventActionCreator("modal_movement", {
-              new_modal_name: items[incremented].id,
-              previous_modal_name: items[i].id,
-              interaction: !autoMove,
-              elapsed: autoMove,
-              direction: increment > 0 ? "Forwards" : "Backwards",
-              new_modal_index: incremented,
-              previous_modal_index: i,
-            })
-          );
-        }
+          if (i !== incremented) {
+            dispatch(
+              sduiEventActionCreator("modal_movement", {
+                new_modal_name: items[incremented].id,
+                previous_modal_name: items[i].id,
+                interaction: !autoMove,
+                elapsed: autoMove,
+                direction: increment > 0 ? "Forwards" : "Backwards",
+                new_modal_index: incremented,
+                previous_modal_index: i,
+              })
+            );
+          }
 
-        return incremented;
-      });
-    },
+          return incremented;
+        });
+      },
     [setActiveIndex, items.length]
   );
 

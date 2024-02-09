@@ -8,14 +8,15 @@ import { Colours, Style } from "@styles";
 import { Text } from "@atoms";
 import { Button, SecondaryButton } from "@molecules";
 import { BeneficiaryItem } from "./beneficiary-item";
-import { GetProductBeneficiaries_getProductBeneficiaries_beneficiaries as Beneficiary } from "@graphql/_core/schema";
+import { GetProductBeneficiariesQuery } from "@graphql/__generated";
 import { BENEFICIARY_DETAILS, BENEFICIARIES_PERCENTAGE_ERROR, BENEFICIARY_DONE, ADD_BENEFICIARY } from "@ids";
 import { showYuModal } from "@navigation/root";
 import { t } from "@locale";
 
+type IBeneficiaries = GetProductBeneficiariesQuery["getProductBeneficiaries"]["beneficiaries"];
 interface Props {
-  beneficiaries: Beneficiary[];
-  updateShareOfBenefit: (beneficiaries: Beneficiary[]) => void;
+  beneficiaries: IBeneficiaries;
+  updateShareOfBenefit: (beneficiaries: IBeneficiaries) => void;
   setShareLoading?: boolean;
   productId: string;
 }
@@ -31,7 +32,7 @@ export const BeneficiaryScreen = memo((props: Props) => {
   useBackHandler(handleClose);
   const { beneficiaries, setShareLoading, updateShareOfBenefit, productId } = props;
   const [focusIndex, setFocusIndex] = useState<number>(null);
-  const [localBeneficiaries, setLocalBeneficiaries] = useState<Beneficiary[]>(beneficiaries);
+  const [localBeneficiaries, setLocalBeneficiaries] = useState<IBeneficiaries>(beneficiaries);
 
   useEffect(() => {
     setLocalBeneficiaries(beneficiaries);
@@ -54,7 +55,7 @@ export const BeneficiaryScreen = memo((props: Props) => {
     : t("screens.products.beneficiary.labels.skip");
 
   const onBeneficiaryAllocatedAmountChanged = useCallback(
-    (beneficiary: Beneficiary, allocatedAmount: number) => {
+    (beneficiary: IBeneficiaries[0], allocatedAmount: number) => {
       const updateBeneficiaries = localBeneficiaries.map((b) => {
         if (b.id === beneficiary.id) {
           const allocatedAmountLimit =
@@ -85,7 +86,7 @@ export const BeneficiaryScreen = memo((props: Props) => {
   );
 
   const showAddBeneficiaryModal = useCallback(
-    (beneficiaryProductId: string, beneficiary?: Beneficiary) =>
+    (beneficiaryProductId: string, beneficiary?: IBeneficiaries[0]) =>
       showYuModal({
         component: {
           id: MODALS.addBeneficiary,

@@ -1,11 +1,11 @@
 import React, { memo, useMemo } from "react";
 import { AudioPlayer, VideoPlayer } from "@organisms";
-import { Media } from "@graphql/_core/schema";
 import { IVideoPlayerProps } from "@organisms/video-player/video-player";
 import { t } from "@locale";
 import { useUserFeatures } from "@hooks";
+import { MediaFragment } from "@graphql/__generated";
 
-interface IVideo extends Media {
+interface IVideo extends MediaFragment {
   reward: number;
   stars: number;
 }

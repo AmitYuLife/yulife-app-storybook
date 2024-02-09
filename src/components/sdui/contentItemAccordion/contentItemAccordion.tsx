@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { Accordion } from "@organisms";
 import { mapServerStyles } from "@components/sdui";
-import { ContentItemAccordion as Props } from "@graphql/_core/schema";
+import { ContentItemAccordionFragment as Props } from "@graphql/__generated";
 
 export const ContentItemAccordion = memo(({ styles, heading, headerIcon, infoIcon, items, subheading }: Props) => {
   const headerIconUri = useMemo(() => {

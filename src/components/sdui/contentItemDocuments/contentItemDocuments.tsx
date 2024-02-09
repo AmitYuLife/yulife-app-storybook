@@ -3,23 +3,18 @@ import { useDispatch } from "react-redux";
 import { Image } from "@atoms";
 import { TertiaryButton, YugiHeader } from "@molecules";
 import { Style } from "@styles";
-import {
-  GetPersonalProductStepDetachedDocuments_getPersonalProductStepDetachedDocuments_body_ContentItemPersonalProductDocuments as GqlDocuments,
-  GetPersonalProductStepDetachedDocuments_getPersonalProductStepDetachedDocuments_body_ContentItemPersonalProductDocuments_documents as GqlDocument,
-} from "@graphql/_core/schema";
+import { ContentItemPersonalProductDocumentsFragment as GqlDocuments } from "@graphql/__generated";
 import { Linking, Platform, ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
 import { sduiEventActionCreator } from "@components/containers/products/product-step/utils/sduiEventActionCreator";
 
-type Props = GqlDocuments;
-
-export const ContentItemDocuments = memo((props: Props) => {
+export const ContentItemDocuments = memo((props: GqlDocuments) => {
   const { documents, headingMarkdown, headingImage } = props;
 
   const dispatch = useDispatch();
 
-  const onPress = async (document: GqlDocument) => {
+  const onPress = async (document: GqlDocuments["documents"][0]) => {
     try {
       Platform.OS === "ios"
         ? handleOpenWebView({ uri: document.url, title: document.linkLabel })

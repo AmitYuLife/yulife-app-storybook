@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ContentItemHeaderBar } from "./contentItemHeaderBar";
-import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { SduiActionType } from "@graphql/__generated";
 
 type Story = StoryObj<typeof ContentItemHeaderBar>;
 
@@ -20,7 +20,7 @@ const meta: Meta<typeof ContentItemHeaderBar> = {
     onLeftIconPress: () => {
       /* Nothing to dooooo*/
     },
-    onRightIconPress: { payload: null, type: SduiActionType.SDUI_ACTION_GENERIC_NAVIGATE_BACK },
+    onRightIconPress: { payload: null, type: SduiActionType.SduiActionNavigateBack },
     publishKeyHeight: "DYNAMIC_HEIGHT_KEY_HEADER",
   },
 };

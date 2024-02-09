@@ -1,0 +1,26 @@
+query GetYumojiRemoteFittingRoom($customerProductId: String!, $coverType: CoverType!) {
+  getYumojiRemoteFittingRoom(customerProductId: $customerProductId, coverType: $coverType) {
+    id
+    selectedYuWorld
+    popover {
+      id
+      title
+      message
+    }
+    yuWorlds {
+      id
+      title
+      mainColor
+      secondaryColor
+      textColor
+      yumojiParts {
+        id
+        partType
+        remoteUrl {
+          id
+          uri(options: { width: 530, height: 1106 })
+        }
+      }
+    }
+  }
+}

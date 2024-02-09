@@ -1,7 +1,7 @@
 import React, { useContext, useMemo, useState } from "react";
 import { ScrollPickerModal } from "@components/modals";
 import { IProductStepScrollPicker, ProductStepContext } from "../../product-step.context";
-import { ContentItemScrollPicker_variants_wheels } from "@graphql/_core/schema";
+import { ContentItemScrollPickerFragment } from "@graphql/__generated";
 
 export const ProductStepScrollPicker = () => {
   const { scrollPicker, setScrollPicker, dynamicData, setDynamicData } = useContext(ProductStepContext);
@@ -109,7 +109,7 @@ const buildDisplayButtonLabel = (
   return "";
 };
 
-const buildItems = (wheel: ContentItemScrollPicker_variants_wheels) => {
+const buildItems = (wheel: ContentItemScrollPickerFragment["variants"][0]["wheels"][0]) => {
   return Array.from({ length: wheel.max - wheel.min + 1 }).map((_, i) => {
     const value = i + wheel.min;
 

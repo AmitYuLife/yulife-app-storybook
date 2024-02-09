@@ -1,14 +1,15 @@
 import React, { memo, useMemo } from "react";
 import { Platform, StyleSheet, View, ViewStyle } from "react-native";
-import { GetPersonalProductStep_getPersonalProductStep_footer as GPPS_Footer } from "@graphql/_core/schema";
+import { GetPersonalProductStepQuery } from "@graphql/__generated";
 import { ContentItemFade, ContentItemOverlay, ContentItemPad } from "@components/sdui";
 import { useKeyboardListeners } from "@hooks";
 import { ProductStepContentItemButton, ProductStepContentItemMultiButton } from "../../subcomponents";
 import media from "@styles/media";
 import { Style } from "@styles";
 
+type GPPS_Footer = GetPersonalProductStepQuery["getPersonalProductStep"]["footer"];
 interface Props {
-  footer: GPPS_Footer[];
+  footer: GPPS_Footer;
   footerStyle: ViewStyle;
 }
 
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-const renderItemContent = (item: GPPS_Footer): JSX.Element => {
+const renderItemContent = (item: GPPS_Footer[0]): JSX.Element => {
   switch (item.__typename) {
     case "ContentItemButton":
       return <ProductStepContentItemButton key={item.id} {...item} />;

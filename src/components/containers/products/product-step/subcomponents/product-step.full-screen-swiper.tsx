@@ -1,11 +1,11 @@
 import React, { memo, useContext, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { FullScreenSwiper } from "@organisms/full-screen-swiper/full-screen-swiper";
-import { ContentItemFullScreenSwiper } from "@graphql/_core/schema/ContentItemFullScreenSwiper";
+import { ContentItemFullScreenSwiperFragment } from "@graphql/__generated";
 import { ProductStepContext } from "../product-step.context";
 import { sduiEventActionCreator } from "../utils/sduiEventActionCreator";
 
-type Props = ContentItemFullScreenSwiper;
+type Props = ContentItemFullScreenSwiperFragment;
 export const ProductStepFullScreenSwiper = memo(({ button, close, ...props }: Props) => {
   const dispatch = useDispatch();
   const { productId, stepId, dynamicData } = useContext(ProductStepContext);

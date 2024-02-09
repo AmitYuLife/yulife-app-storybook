@@ -1,9 +1,9 @@
 import React, { memo } from "react";
 import { useDynamicOnChange } from "../hooks/useDynamicOnChange";
 import {
-  ContentItemDropdownInput as GqlInput,
-  ContentItemDropdownInputOptions as GqlOption,
-} from "@graphql/_core/schema";
+  ContentItemDropdownInputFragment as GqlInput,
+  ContentItemDropdownInputOptionsFragment as GqlOption,
+} from "@graphql/__generated";
 import { addCommasToNumber } from "@utils";
 import { ContentItemDropdownInputBase } from "@components/sdui/contentItemDropdownInput/contentItemDropdownInput";
 

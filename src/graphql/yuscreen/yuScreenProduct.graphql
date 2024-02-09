@@ -1,0 +1,32 @@
+fragment YuScreenProduct on YuScreenProduct {
+  id
+  leftText
+  leftTextColour
+  status
+  title
+  titleColour
+  text
+  backgroundColour
+  topShadowColour
+  bottomShadowColour
+  borderStyle
+  borderWidth
+  borderColor
+  leftBackgroundImage {
+    ...RemoteImage
+  }
+  rightIcon {
+    ...RemoteImage
+  }
+  rightStatusIcon {
+    ...RemoteImage
+  }
+  onPress {
+    ...YuScreenProductButtonAction
+  }
+  event {
+    ...SduiAction
+  }
+  showOnOnboarding
+  depressed
+}

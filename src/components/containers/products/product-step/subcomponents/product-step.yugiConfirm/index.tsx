@@ -7,14 +7,14 @@ import { TextTemplate } from "@atoms";
 import { Button, LottieView } from "@molecules";
 import { Style, TOP_BAR, Colours } from "@styles";
 import { FIB_INTRO_SCREEN } from "@ids";
-import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm } from "@graphql/_core/schema";
+import { ContentItemYugiConfirmFragment } from "@graphql/__generated";
 import { ArrowUp } from "./arrowUp";
 import { ProductStepContext } from "./../../product-step.context";
 import { getSduiLoadingForKey } from "@redux/server-driven-ui/sdui.selectors";
 
 const lottieJson = require("./yugi.json");
 
-type Props = GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm;
+type Props = ContentItemYugiConfirmFragment;
 
 export const ProductStepYugiConfirm = memo(function (props: Props) {
   const contextConsumer = useContext(ProductStepContext);

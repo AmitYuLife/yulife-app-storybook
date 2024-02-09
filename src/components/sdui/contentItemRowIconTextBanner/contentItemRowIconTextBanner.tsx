@@ -1,6 +1,6 @@
 import React, { memo, useContext, useMemo, useState } from "react";
 import { View } from "react-native";
-import { ContentItemRowIconTextBanner as Props } from "@graphql/_core/schema";
+import { ContentItemRowIconTextBannerFragment as IContentItemRowIconTextBanner } from "@graphql/__generated";
 import { mapServerStyles } from "@components/sdui";
 import InfoPanel from "@components/molecules/info-panel/info-panel";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,7 +21,7 @@ export const ContentItemRowIconTextBanner = memo(
     bannerButton,
     showIcon,
     containerActions,
-  }: Props) => {
+  }: IContentItemRowIconTextBanner) => {
     const [visible, setVisible] = useState(true);
     const dispatch = useDispatch();
     const { productId, stepId, dynamicData, isLoading: isInLoadingContext } = useContext(ProductStepContext);

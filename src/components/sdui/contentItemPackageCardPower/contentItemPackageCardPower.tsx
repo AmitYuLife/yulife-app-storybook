@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { ContentItemPackageCardPower as GqlPower } from "@graphql/_core/schema";
+import { ContentItemPackageCardPowerFragment as GqlPower } from "@graphql/__generated";
 import { PackageCardPerks } from "@components/molecules";
 import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";

@@ -3,7 +3,7 @@ import { KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "rea
 import { Button, PressableWithDelay, SecondaryButton } from "@molecules";
 import { Style, Colours } from "@styles";
 import { ContentItemLottie } from "@components/sdui";
-import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
+import { ContentItemLottieFragment as GqlLottie } from "@graphql/__generated";
 import { useTranslation } from "@hooks";
 import { Source } from "react-native-fast-image";
 import { CloseSvg, Image, TextTemplate } from "@atoms";

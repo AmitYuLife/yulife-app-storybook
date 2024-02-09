@@ -3,13 +3,9 @@ import { View, StyleSheet, ViewStyle } from "react-native";
 import { Image } from "@atoms";
 import { PackageType } from "@molecules";
 import { Style } from "@styles";
-import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
 import { useQuery } from "@apollo/client";
-import { GQL_QUERY_GET_YUMOJI_PART_URL_SET } from "@graphql/yuscreen/getYumojiPartUrlSet.gql";
-import { GetYumojiPartUrlSet, GetYumojiPartUrlSetVariables } from "@graphql/_core/schema/GetYumojiPartUrlSet";
-import { GQL_QUERY_GET_PRODUCT_YUMOJI_PART } from "@graphql/yuscreen/getProductYumojiPart";
-import { GetProductYumojiPart, GetProductYumojiPartVariables } from "@graphql/_core/schema/GetProductYumojiPart";
 import { COVER_TYPE } from "@ids";
+import { CoverType, YuWorld, gql } from "@graphql/__generated";
 
 interface Props {
   size?: number;
@@ -32,19 +28,20 @@ const NO_URLS = { itemUrl: "", itemBackgroundUrl: "" };
 
 export const SlotIcon = memo((props: Props) => {
   const { size = SIZE, backgroundUrl, customerProductId = "", shouldDisplayPackageType } = props;
-  const { data: getProductYumojiPartData, error: getProductYumojiPartError } = useQuery<
-    GetProductYumojiPart,
-    GetProductYumojiPartVariables
-  >(GQL_QUERY_GET_PRODUCT_YUMOJI_PART, {
-    variables: {
-      customerProductId,
-    },
-  });
+  const { data: getProductYumojiPartData, error: getProductYumojiPartError } = useQuery(
+    gql("GetProductYumojiPartDocument"),
+    {
+      variables: {
+        customerProductId,
+      },
+    }
+  );
 
-  const { data, loading, error: getYumojiPartUrlSetError } = useQuery<
-    GetYumojiPartUrlSet,
-    GetYumojiPartUrlSetVariables
-  >(GQL_QUERY_GET_YUMOJI_PART_URL_SET, {
+  const {
+    data,
+    loading,
+    error: getYumojiPartUrlSetError,
+  } = useQuery(gql("GetYumojiPartUrlSetDocument"), {
     variables: {
       partType: getProductYumojiPartData?.getProductYumojiPart.yumojiPartType,
     },
@@ -77,10 +74,10 @@ export const SlotIcon = memo((props: Props) => {
     };
   }, [size, shouldDisplayPackageType]);
   const wrapperStyle = useMemo(() => [styles.wrapper, dimensions], [dimensions]);
-  const backgroundUrlSource = useMemo(() => ({ uri: activeCoverWorldItem.itemBackgroundUrl || backgroundUrl }), [
-    activeCoverWorldItem,
-    backgroundUrl,
-  ]);
+  const backgroundUrlSource = useMemo(
+    () => ({ uri: activeCoverWorldItem.itemBackgroundUrl || backgroundUrl }),
+    [activeCoverWorldItem, backgroundUrl]
+  );
   const backgroundUrlSourceStyle = useMemo(() => [StyleSheet.absoluteFill, dimensions], [dimensions]);
   const itemUrlSource = useMemo(() => ({ uri: activeCoverWorldItem.itemUrl }), [activeCoverWorldItem]);
   const itemUrlSourceStyle = useMemo(() => [StyleSheet.absoluteFill, dimensions], [dimensions]);

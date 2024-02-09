@@ -1,11 +1,10 @@
 import React, { memo, useEffect } from "react";
-import { ContentItemAgePercentCoverPicker as GqlProps } from "@graphql/_core/schema";
+import { ContentItemAgePercentCoverPickerFragment as GqlProps, CoverType } from "@graphql/__generated";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { MultiFactorPricing } from "@components/molecules";
 import { usePackageCostBenefitCard } from "./hooks/usePackageCostBenefitCard";
 import { useLabelledHorizontalScroller } from "./hooks/useLabelledHorizontalScroller";
 import { useCoverPicker } from "./hooks/useCoverPicker";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { useIndexedData } from "./hooks/useIndexedData";
 import { useSafeData } from "./hooks/useSafeData";
 import { useInitialiseFromDynamicData } from "./hooks/useInitialiseFromDynamicData";
@@ -42,9 +41,8 @@ export const ContentItemAgePercentCoverPicker = memo((props: Props) => {
     onToggleAgeScroller,
   } = props;
   const pricing = props.contentItemAgePercentCoverPickerOptions;
-  const { keyedPricing, ageToMaxSalaryPercent, agesInYears, ageToIndex, salaryPercentToMaxAge } = useIndexedData(
-    pricing
-  );
+  const { keyedPricing, ageToMaxSalaryPercent, agesInYears, ageToIndex, salaryPercentToMaxAge } =
+    useIndexedData(pricing);
 
   const maxSalaryPercent = ageToMaxSalaryPercent[policyEndAge];
 

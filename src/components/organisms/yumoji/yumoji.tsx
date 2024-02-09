@@ -1,29 +1,28 @@
 import React, { memo, useMemo } from "react";
-import { GetYumojiRemoteParts_avatar } from "@graphql/_core/schema";
 import { ScalableYumoji } from "./scalableYumoji";
-import { AvatarPartType } from "@graphql/_core/schema/globalTypes";
+import { AvatarPartType, GetYumojiRemotePartsQuery } from "@graphql/__generated";
 
 interface IYumojiProps {
   width: number;
   height: number;
-  avatar: GetYumojiRemoteParts_avatar;
+  avatar: GetYumojiRemotePartsQuery["avatar"];
 }
 
 export const Yumoji = memo(({ width, height, avatar }: IYumojiProps) => {
   const items = useMemo(
     () => [
       { partType: "shadow", ...avatar.shadow },
-      { partType: AvatarPartType.head, ...avatar.head },
-      { partType: AvatarPartType.eyes, ...avatar.eyes },
-      { partType: AvatarPartType.hair, ...avatar.hair },
-      { partType: AvatarPartType.body, ...avatar.body },
-      { partType: AvatarPartType.chest, ...avatar.chest },
-      { partType: AvatarPartType.pants, ...avatar.pants },
-      { partType: AvatarPartType.gloves, ...avatar.gloves },
-      { partType: AvatarPartType.facialHair, ...avatar.facialHair },
-      { partType: AvatarPartType.glasses, ...avatar.glasses },
-      { partType: AvatarPartType.boots, ...avatar.boots },
-      { partType: AvatarPartType.headwear, ...avatar.headwear },
+      { partType: AvatarPartType.Hair, ...avatar.head },
+      { partType: AvatarPartType.Eyes, ...avatar.eyes },
+      { partType: AvatarPartType.Hair, ...avatar.hair },
+      { partType: AvatarPartType.Body, ...avatar.body },
+      { partType: AvatarPartType.Chest, ...avatar.chest },
+      { partType: AvatarPartType.Pants, ...avatar.pants },
+      { partType: AvatarPartType.Gloves, ...avatar.gloves },
+      { partType: AvatarPartType.FacialHair, ...avatar.facialHair },
+      { partType: AvatarPartType.Glasses, ...avatar.glasses },
+      { partType: AvatarPartType.Boots, ...avatar.boots },
+      { partType: AvatarPartType.Headwear, ...avatar.headwear },
     ],
     [avatar]
   );

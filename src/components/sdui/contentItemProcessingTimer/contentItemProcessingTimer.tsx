@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { ContentItemProcessingTimer as Props } from "@graphql/_core/schema";
+import { ContentItemProcessingTimerFragment as Props } from "@graphql/__generated";
 import { ProcessingTimer } from "@molecules";
 import { useDispatch } from "react-redux";
 

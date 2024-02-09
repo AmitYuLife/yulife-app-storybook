@@ -5,16 +5,9 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { useBackHandler } from "@hooks";
 import AddBeneficiaryModalScreen from "./add-beneficiary-modal.screen";
 import { useMutation } from "@apollo/client";
-import {
-  CreateOrUpdateBeneficiaryMutationTuple,
-  GQL_MUTATION_CREATE_OR_UPDATE_BENEFICIARY,
-} from "@graphql/products/createOrUpdateBeneficiary";
 import { GetProductBeneficiaries_getProductBeneficiaries_beneficiaries as Beneficiary } from "@graphql/_core/schema";
-import {
-  RemoveBeneficiaryFromProductMutationTuple,
-  GQL_MUTATION_REMOVE_BENEFICIARY_FROM_PRODUCT,
-} from "@graphql/products/deleteBeneficiary";
 import Logger from "@services/logging/logger";
+import { gql } from "@graphql/__generated";
 
 interface IProps {
   beneficiary: Beneficiary;
@@ -38,15 +31,13 @@ export default function AddBeneficiaryModal(props: IProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [
-    updateBeneficiaryForProduct,
-    { loading: updateBeneficiaryLoading },
-  ]: CreateOrUpdateBeneficiaryMutationTuple = useMutation(GQL_MUTATION_CREATE_OR_UPDATE_BENEFICIARY);
+  const [updateBeneficiaryForProduct, { loading: updateBeneficiaryLoading }] = useMutation(
+    gql("CreateOrUpdateBeneficiaryDocument")
+  );
 
-  const [
-    removeBeneficiaryFromProduct,
-    { loading: removeBeneficiaryLoading },
-  ]: RemoveBeneficiaryFromProductMutationTuple = useMutation(GQL_MUTATION_REMOVE_BENEFICIARY_FROM_PRODUCT);
+  const [removeBeneficiaryFromProduct, { loading: removeBeneficiaryLoading }] = useMutation(
+    gql("RemoveBeneficiaryFromProductDocument")
+  );
 
   const onSaveBeneficiary = useCallback(
     async (beneficiary: Beneficiary) => {

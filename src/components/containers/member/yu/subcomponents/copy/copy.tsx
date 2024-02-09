@@ -2,12 +2,12 @@ import React, { FC, memo } from "react";
 import { StyleSheet, View } from "react-native";
 import Markdown from "@components/molecules/markdown/markdown";
 import { mapServerStyles } from "@components/sdui";
-import { SduiStyle } from "@graphql/_core/schema";
+import { SduiStyle } from "@graphql/__generated";
 
 interface Props {
   title: string;
   description: string;
-  styles: SduiStyle[];
+  styles?: SduiStyle[];
 }
 
 export const Copy: FC<Props> = memo(({ title, description, styles: serverStyles }) => {

@@ -11,7 +11,7 @@ import { Style, TOP_BAR } from "@styles";
 import styles from "./daily-steps.screen.styles";
 import ReferralsPopover from "./referrals-popover";
 import { GetUserProfile_getUserProfile_surge } from "@graphql/_core/schema";
-import { GetDailyScreenCustomIconQuery } from "@graphql/__generated";
+import { ContentItemLottieFragment, GetDailyScreenCustomIconQuery } from "@graphql/__generated";
 import { SurgeModal, showFloatingModal } from "@components/modals";
 import { MODALS } from "@navigation/constants";
 import { InformationIcon } from "@atoms/icon/information-icon";
@@ -72,7 +72,11 @@ const DailyStepsScreen = ({
 
   const onSurgePress = useCallback(async () => {
     const children = <SurgeModal {...userSurge} />;
-    await showFloatingModal({ children, lottie: userSurge?.lottie, modalId: MODALS.surgeOverlay });
+    await showFloatingModal({
+      children,
+      lottie: userSurge?.lottie as unknown as ContentItemLottieFragment,
+      modalId: MODALS.surgeOverlay,
+    });
   }, [userSurge]);
 
   const getScreenProps = useMemo(

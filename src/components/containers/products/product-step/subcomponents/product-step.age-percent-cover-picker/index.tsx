@@ -1,9 +1,8 @@
 import React, { useContext, memo } from "react";
-import { ContentItemAgePercentCoverPicker as GqlProps } from "@graphql/_core/schema";
+import { ContentItemAgePercentCoverPickerFragment as GqlProps, CoverType } from "@graphql/__generated";
 import { ContentItemAgePercentCoverPicker } from "@components/sdui";
 import { useSetDefaultAnswer } from "../../hooks/useSetDefaultAnswer";
 import { ProductStepContext } from "../../product-step.context";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { useDispatch } from "react-redux";
 import { sduiEventActionCreator } from "../../utils/sduiEventActionCreator";
 
