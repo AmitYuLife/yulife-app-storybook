@@ -251,7 +251,7 @@ const routesForRegistration = [
   },
   {
     name: ROUTES.permissions,
-    component: require("../components/containers/member/permissions/permissions.container").default,
+    component: require("../components/containers/member/permissions/permissions-wrapper.container").default,
   },
   {
     name: ROUTES.leaderboardSettings,

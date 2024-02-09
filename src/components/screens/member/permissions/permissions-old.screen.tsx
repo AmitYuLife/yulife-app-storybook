@@ -31,7 +31,7 @@ interface IProps {
   onRightIconPress: () => void;
 }
 
-const PermissionsScreen = ({
+const PermissionsOldScreen = ({
   settingsPermissions,
   loading,
   updatePermissions,
@@ -140,4 +140,4 @@ const sparseMarkdownStyles = {
   },
 };
 
-export default memo(PermissionsScreen);
+export default memo(PermissionsOldScreen);
