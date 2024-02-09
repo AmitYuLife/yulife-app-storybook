@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { FitKitType, SduiActionType } from "./globalTypes";
+import { FitKitType, YuHealthDataType, YuHealthCapability, SduiActionType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetQuestMapLevel
@@ -17,6 +17,11 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_image {
 export interface GetQuestMapLevel_getQuestMapLevel_slots_historyImage {
   id: string;
   uri: string | null;
+}
+
+export interface GetQuestMapLevel_getQuestMapLevel_slots_yuHealth {
+  dataType: YuHealthDataType;
+  capabilities: YuHealthCapability[];
 }
 
 export interface GetQuestMapLevel_getQuestMapLevel_slots_details_image {
@@ -157,6 +162,7 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots {
   surgeMultiplier: number | null;
   bonusAmount: number | null;
   fitKitTypes: FitKitType[];
+  yuHealth: GetQuestMapLevel_getQuestMapLevel_slots_yuHealth | null;
   type: string | null;
   subtype: string | null;
   details: GetQuestMapLevel_getQuestMapLevel_slots_details | null;

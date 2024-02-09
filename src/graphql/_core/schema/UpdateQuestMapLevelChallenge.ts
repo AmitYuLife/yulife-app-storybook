@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ChallengePayload, FitKitType } from "./globalTypes";
+import { ChallengePayload, FitKitType, YuHealthDataType, YuHealthCapability } from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateQuestMapLevelChallenge
@@ -41,6 +41,11 @@ export interface UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_chall
   rating: number | null;
 }
 
+export interface UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_levelSlot_yuHealth {
+  dataType: YuHealthDataType;
+  capabilities: YuHealthCapability[];
+}
+
 export interface UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_levelSlot_milestones_target {
   steps: number | null;
   meditation: number | null;
@@ -60,6 +65,7 @@ export interface UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_level
   subtype: string | null;
   unit: string | null;
   fitKitTypes: FitKitType[] | null;
+  yuHealth: UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_levelSlot_yuHealth | null;
   shouldEndOnLastGoalAchieved: boolean | null;
   milestones: (UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_levelSlot_milestones | null)[] | null;
 }

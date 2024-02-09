@@ -22,6 +22,10 @@ fragment UserActiveChallenge on ActiveChallenge {
     unit
     shouldEndOnLastGoalAchieved
     fitKitTypes
+    yuHealth {
+      dataType
+      capabilities
+    }
     milestones {
       id
       XP

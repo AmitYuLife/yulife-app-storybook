@@ -1,6 +1,9 @@
 import { gql } from "@apollo/client";
+import { GQL_FRAGMENT_YU_HEALTH_OPTIONS } from "@graphql/_fragments/yuHealth.gql";
 
 export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
+  ${GQL_FRAGMENT_YU_HEALTH_OPTIONS}
+
   query GetQuestMapLevel($level: Int!, $yuniversalMap: Int) {
     getQuestMapLevel(level: $level, yuniversalMap: $yuniversalMap) {
       id
@@ -30,6 +33,9 @@ export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
         surgeMultiplier
         bonusAmount
         fitKitTypes
+        yuHealth {
+          ...YuHealthOptions
+        }
         type
         subtype
         details {

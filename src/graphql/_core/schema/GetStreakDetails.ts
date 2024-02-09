@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { SduiActionType } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: GetStreakDetails
 // ====================================================
@@ -12,10 +14,16 @@ export interface GetStreakDetails_getStreakDetails_hint_image {
   uri: string | null;
 }
 
+export interface GetStreakDetails_getStreakDetails_hint_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetStreakDetails_getStreakDetails_hint {
   label: string | null;
   description: string | null;
   image: GetStreakDetails_getStreakDetails_hint_image | null;
+  onPress: GetStreakDetails_getStreakDetails_hint_onPress | null;
 }
 
 export interface GetStreakDetails_getStreakDetails_goalMilestone_image {

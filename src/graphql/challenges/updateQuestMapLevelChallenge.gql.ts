@@ -4,8 +4,11 @@ import client from "@graphql/_core/client";
 import { ChallengePayload } from "@graphql/_core/schema/globalTypes";
 import { UpdateQuestMapLevelChallenge, UpdateQuestMapLevelChallengeVariables } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_QUEST_MAP_LEVEL } from "./getQuestMapLevel.gql";
+import { GQL_FRAGMENT_YU_HEALTH_OPTIONS } from "@graphql/_fragments/yuHealth.gql";
 
 export const GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
+  ${GQL_FRAGMENT_YU_HEALTH_OPTIONS}
+
   mutation UpdateQuestMapLevelChallenge($levelSlotId: String!, $contentId: String, $payload: ChallengePayload) {
     updateQuestMapLevelChallenge(levelSlotId: $levelSlotId, contentId: $contentId, payload: $payload) {
       challenge {
@@ -37,6 +40,9 @@ export const GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
         subtype
         unit
         fitKitTypes
+        yuHealth {
+          ...YuHealthOptions
+        }
         shouldEndOnLastGoalAchieved
         milestones {
           id
