@@ -77,8 +77,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     });
   });
 
-  // @update can't find challenge details or today's meditation screen matchers, otherwise scenario completes challenge and passes
-  // Detox also having trouble finding close button on meditation
+  // @update Need to extended challenge time. Not enough time for detox to assert + perform quick actions
   ScenarioSkip("I can successfully take and quit a Meditopia challenge in app", scenario.start, async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));

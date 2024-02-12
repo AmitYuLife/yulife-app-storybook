@@ -57,8 +57,7 @@ Feature("As a user I can use the streaks functionality", async () => {
             Then("I should be on the yucoin tab", then.idVisible(ids.DAILY_STEPS_SCREEN))
             Then("I should see my 1/5 streak", then.textVisible("1/5"))
             When("I tap 1/5", when.tapText("1/5"), async () => {
-                // @bug streak copy incorrect, getting "Start your streak" expected "Off to a good start"
-                // Then("I should see the streak screen", then.headingStartStreakCopyVisible(2))
+                Then("I should see the streak screen", then.headingStartStreakCopyVisible(2))
                 When("I tap take a challenge", when.tapText(t("Take a challenge")), async () => {
                     Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
                     Then("I should see the second challenge set is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(2)))

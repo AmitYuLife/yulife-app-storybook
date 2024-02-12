@@ -4,6 +4,7 @@ import { navigation } from "@navigation"
 import { screens } from "@appScreens"
 import { getLocalisedString as t } from "@i18n";
 import {expect} from 'detox'
+import { CUSTOMER_2 } from "@data";
 
 export const {
     textVisible,
@@ -22,7 +23,7 @@ export const {
 export const emailUnchanged = async (): Promise<void> => {
     const target = element(by.id(ids.INPUT_LOGIN_EMAIL));
     await expect(target).toBeVisible();
-    await expect(target).toHaveText("someone@yulife.com");
+    await expect(target).toHaveText(CUSTOMER_2.data.email);
 };
 
 export const passwordHidden = async (): Promise<void> => {
