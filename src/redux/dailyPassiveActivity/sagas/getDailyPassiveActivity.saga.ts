@@ -65,14 +65,13 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
 
     const inAppDailyMeditation: ReturnType<typeof getInAppDailyMeditation> = yield select(getInAppDailyMeditation);
 
-    const meditationResults: ChallengesPayload[] = !meditationPermissionGranted
-      ? null
-      : yield call(getMeditation, {
-          startTime: startTime,
-          endTime: endTime,
-          features: features,
-          inAppMeditation: inAppDailyMeditation,
-        });
+    const meditationResults: ChallengesPayload[] = yield call(getMeditation, {
+      startTime: startTime,
+      endTime: endTime,
+      features: features,
+      inAppMeditation: inAppDailyMeditation,
+      meditationPermissionGranted,
+    });
 
     let shouldQueryCycling = true;
     if (Platform.OS === "android") {
@@ -145,20 +144,24 @@ const getMeditation = async ({
   endTime,
   features,
   inAppMeditation,
+  meditationPermissionGranted,
 }: {
   startTime: Moment;
   endTime: Moment;
   features: IFeature;
   inAppMeditation: IAppDailyMeditationProps;
+  meditationPermissionGranted: boolean;
 }): Promise<ChallengesPayload[]> => {
   if (!features.tempGameEnableYuHealth) {
-    const meditationResponse = await queryFitKitSampleData({
-      startTime: startTime.format(),
-      endTime: endTime.format(),
-      features,
-      fitKitTypes: getMindfulSessionFitKitTypes(),
-      metaData: { file: "getDailyPassiveActivity.saga.getMeditation" },
-    });
+    const meditationResponse = !meditationPermissionGranted
+      ? null
+      : await queryFitKitSampleData({
+          startTime: startTime.format(),
+          endTime: endTime.format(),
+          features,
+          fitKitTypes: getMindfulSessionFitKitTypes(),
+          metaData: { file: "getDailyPassiveActivity.saga.getMeditation" },
+        });
 
     const meditation = parseMeditation(inAppMeditation, meditationResponse);
     if (!meditation.results?.length) {
@@ -168,17 +171,20 @@ const getMeditation = async ({
     return processResult(meditation, "MindfulSession", startTime, endTime);
   }
 
-  const yuHealthMeditation = await yuHealthAggregateQuery({
-    features,
-    metadata: { file: "getDailyPassiveActivity.saga.getMeditation" },
-    params: {
-      startTime: startTime.toDate(),
-      dataType: HealthDataType.mindfulMinutes,
-      endTime: endTime.toDate(),
-      bucketConfig: { value: 1, unit: BucketSize.day },
-    },
-  });
+  const yuHealthMeditation = !meditationPermissionGranted
+    ? []
+    : await yuHealthAggregateQuery({
+        features,
+        metadata: { file: "getDailyPassiveActivity.saga.getMeditation" },
+        params: {
+          startTime: startTime.toDate(),
+          dataType: HealthDataType.mindfulMinutes,
+          endTime: endTime.toDate(),
+          bucketConfig: { value: 1, unit: BucketSize.day },
+        },
+      });
 
+  // TODO: passive in-app meditation
   if (!yuHealthMeditation.length) {
     return [];
   }
