@@ -9,6 +9,7 @@ interface IProps {
   itemsIsLoading: boolean;
   isLoading: boolean;
   hasConsent: boolean;
+  hasLeaderboard: boolean;
   showYudokuEmptyMessage: boolean;
   onJoinLeaderboardPress: () => void;
 }
@@ -17,9 +18,14 @@ const LeaderboardListFooterComponent = ({
   itemsIsLoading,
   isLoading,
   hasConsent,
+  hasLeaderboard,
   onJoinLeaderboardPress,
   showYudokuEmptyMessage,
 }: IProps) => {
+  if (!hasLeaderboard) {
+    return <MissingLeaderboard />;
+  }
+
   if (itemsIsLoading || isLoading) {
     return <ListItemsLoading />;
   }
@@ -37,6 +43,14 @@ const EmptyYudoku = () => (
   <View style={styles.emptyYudoku}>
     <TextTemplate type="b2" textAlign="center">
       {t("sudoku.leaderboard.empty_description")}
+    </TextTemplate>
+  </View>
+);
+
+const MissingLeaderboard = () => (
+  <View style={styles.emptyYudoku}>
+    <TextTemplate type="b2" textAlign="center">
+      {t("screens.leaderboard.list.empty_leaderboard")}
     </TextTemplate>
   </View>
 );

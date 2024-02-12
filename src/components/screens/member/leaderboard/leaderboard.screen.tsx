@@ -231,6 +231,7 @@ export const LeaderboardScreen = ({
       <LeaderboardListFooterComponent
         itemsIsLoading={itemsIsLoading}
         isLoading={isLoading}
+        hasLeaderboard={!!activeLeaderboard}
         hasConsent={activeLeaderboard?.consent}
         showYudokuEmptyMessage={showYudokuEmptyMessage}
         onJoinLeaderboardPress={onJoinLeaderboardPress}

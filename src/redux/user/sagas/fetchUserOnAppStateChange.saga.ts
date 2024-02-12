@@ -20,7 +20,9 @@ export default function* fetchUserOnAppStateChangeSaga({ payload }: ReturnType<t
 
     if (state === "active" && !active.levelSlotId) {
       yield call(getUserDataSaga);
-      yield put(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.activeStreak] }));
+      yield put(
+        getUserDataStart({ types: [AppDataType.socialGroups, AppDataType.coinLedger, AppDataType.activeStreak] })
+      );
     }
   }
 }

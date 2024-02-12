@@ -11,7 +11,7 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import { IList } from "@organisms/tabs/tabs";
 import { GetMobileSocialGroupLeaderboards_getMobileSocialGroupLeaderboards as IGqlGroups } from "@graphql/_core/schema";
 import { showYuModal } from "@navigation/root";
-import { useUserFeatures } from "@hooks";
+import { useNavigationComponentDidAppear, useUserFeatures } from "@hooks";
 import {
   getActiveSocialGroup,
   getActiveSocialGroupLeaderboard,
@@ -25,6 +25,8 @@ import {
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { IConsents } from "@components/modals/join-leaderboard-overlay/join-leaderboard-overlay";
 import { SocialLeaderboardConstent, gql } from "@graphql/__generated";
+import { isEmpty } from "lodash";
+import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
 
 export const PAGE_SIZE = 501;
 
@@ -49,6 +51,12 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
       fetchPolicy: "network-only",
     }
   );
+
+  useNavigationComponentDidAppear(() => {
+    if (isEmpty(socialGroups)) {
+      dispatch(getUserDataStart({ types: [AppDataType.socialGroups] }));
+    }
+  }, componentId);
 
   const socialGroupsWithConsent = useMemo(
     () =>
@@ -129,6 +137,10 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
   }, [activeSocialGroup, dispatch, socialGroups]);
 
   const onJoinLeaderboardPress = useCallback(async () => {
+    if (!activeSocialGroup) {
+      return;
+    }
+
     const leaderboardConsent: { consents: SocialLeaderboardConstent[]; tracking: IConsents } = {
       consents: [],
       tracking: {},
