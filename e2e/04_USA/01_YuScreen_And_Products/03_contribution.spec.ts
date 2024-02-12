@@ -19,8 +19,8 @@ import {
   
   Feature("I am able to see sponsored by text/logos and box option types", async () => {
     // @update added to YUSCREEN_USA
-    // @flaky - can't find box options on bitrise
-    ScenarioSkip("I can see sponsored by text and logos in yuscreen if contribution_type none and can view the explore my insurance page",scenario.start, async () => {
+    // @flaky - testing one on nightly - can't find box options on bitrise - locally failing with image cut off
+    Scenario("I can see sponsored by text and logos in yuscreen if contribution_type none and can view the explore my insurance page",scenario.start, async () => {
       Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_5, AUTH_USA_5, true, "United States"),async () => {
         helper.ONBOARDING_YUSCREEN_USA(fixture.GapInEnrolVisOutEnrol);
         helper.SKIP_YUMOJI_CREATION(CUSTOMER_USA_5)
