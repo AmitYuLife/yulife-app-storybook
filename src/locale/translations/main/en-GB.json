@@ -750,7 +750,8 @@
         }
       },
       "list": {
-        "heading": "Leaderboards"
+        "heading": "Leaderboards",
+        "empty_leaderboard": "Sit tight, while we set up your leaderboard"
       },
       "pad": {
         "title": "keep pulling to refresh"
