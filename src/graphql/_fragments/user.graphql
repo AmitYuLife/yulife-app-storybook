@@ -104,7 +104,7 @@ fragment User on User {
       unit
       shouldEndOnLastGoalAchieved
       fitKitTypes
-      yuHealthTypes {
+      yuHealth {
         dataType
         capabilities
       }
