@@ -87,3 +87,4 @@ export { default as ProductCard } from "./product-card/product-card";
 export { default as ScrollThresholdView } from "./scroll-threshold-view/scroll-threshold-view";
 export { default as YuCoinPowerCard } from "./yucoin-power-card/yucoin-power-card";
 export { default as LottieView } from "./lottie-view/lottie-view";
+export { default as ActivityHistoryInfo } from "./activity-history-info/activity-history-info";
