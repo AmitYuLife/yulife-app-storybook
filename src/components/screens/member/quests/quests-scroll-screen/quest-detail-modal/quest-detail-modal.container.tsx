@@ -6,21 +6,15 @@ import { memo, useMemo } from "react";
 import { ChestCard } from "./__subcomponents/chest-card";
 import { View } from "react-native";
 import Hint from "@components/molecules/hint/hint";
-import { pushToScreen } from "@navigation/root";
-import { ROUTES } from "@navigation/constants";
-import { useSelector } from "react-redux";
-import { getRouteState } from "@redux/app/app.selectors";
-import { Navigation } from "@navigation/main";
 import { GiftUnlockedStarsSvg } from "@atoms/icon/gift-unlocked-stars";
 import { RewardCard } from "@components/molecules/reward-card/reward-card";
-import { GetGoalMilestoneDetails } from "@graphql/_core/schema";
 import { questDetailModalStyles } from "./quest-detail-modal.styles";
 import { HeroLockedIcon } from "@atoms/icon/hero-locked-icon";
 import { gql } from "@graphql/__generated";
-import { VoidFunction } from "@utils";
+import { useDispatch } from "react-redux";
 
 export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerProps) => {
-  const currentRoute = useSelector(getRouteState);
+  const dispatch = useDispatch();
 
   const calculated = useMemo(() => {
     const goals = !props.goals
@@ -33,38 +27,27 @@ export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerP
           return [...acc, { goalId: goal.goalId, milestoneId: goal.milestoneId }];
         }, []);
 
-    const pressHint: null | VoidFunction = !goals?.length
-      ? null
-      : () => {
-          pushToScreen(currentRoute, {
-            component: {
-              id: ROUTES.sduiStatic,
-              name: ROUTES.sduiStatic,
-              passProps: {
-                stepId: "game_mechanics_information",
-                dynamicId: currentRoute,
-              },
-            },
-          });
-          Navigation.dismissOverlayWithChild();
-        };
-
     return {
       heading: props.heading,
       HeaderIcon: HeroLockedIcon,
       ctaLabel: props.ctaLabelSubmit,
       dismissLabel: props.ctaLabelReject,
-      pressHint,
       goals,
     };
   }, [props]);
 
-  const { data, loading } = useQuery<GetGoalMilestoneDetails>(gql("GetGoalMilestoneDetailsDocument"), {
+  const { data, loading } = useQuery(gql("GetGoalMilestoneDetailsDocument"), {
     variables: {
       goals: calculated.goals,
     },
     fetchPolicy: "no-cache",
   });
+
+  const pressHint = useMemo(
+    () =>
+      data?.getGoalMilestoneDetails?.hint?.onPress ? () => dispatch(data.getGoalMilestoneDetails.hint.onPress) : null,
+    [data]
+  );
 
   return (
     <QuestDetailModal
@@ -110,7 +93,7 @@ export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerP
                     Element: <GiftUnlockedStarsSvg />,
                   }
                 }
-                onPress={calculated.pressHint}
+                onPress={pressHint}
               />
             </View>
           )}

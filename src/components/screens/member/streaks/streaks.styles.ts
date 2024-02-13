@@ -8,18 +8,24 @@ export default StyleSheet.create({
     position: "absolute",
     left: Style.adjust(24),
     right: Style.adjust(24),
-    bottom: Platform.select({
+    bottom: 0,
+    alignItems: "center",
+    paddingBottom: Platform.select({
       ios: 0,
       android: Style.adjust(24),
     }),
-    alignItems: "center",
   } as ViewStyle,
   bottomPad: {
     height: TOP_BAR.TOP_BAR_WITH_PAD,
     width: Style.DEVICE_WIDTH,
   },
   bottomPadLarge: {
-    height: Style.adjust(150),
+    height:
+      TOP_BAR.TOP_BAR_WITH_PAD +
+      Platform.select({
+        ios: Style.adjust(88),
+        android: Style.adjust(112),
+      }),
     width: Style.DEVICE_WIDTH,
   },
   buttonPrimaryWrapper: {
