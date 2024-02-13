@@ -7,6 +7,8 @@ function processFile(filePath) {
     const fileContents = fs.readFileSync(filePath, 'utf8')
     const lines = fileContents.split('\n')
     const comments = []
+    const tagType = process.argv[2]
+    const typedComments = []
 
     lines.forEach((line, lineNumber) => {
         let type = ''
@@ -36,7 +38,16 @@ function processFile(filePath) {
         }
     })
 
-    return comments
+    if(tagType){
+        comments.forEach(element => {
+            if (element.Type === tagType) {
+                typedComments.push(element)
+            }
+        });
+        return typedComments
+    }else{
+        return comments
+    }
 }
 
 function exploreDirectory(directory) {
