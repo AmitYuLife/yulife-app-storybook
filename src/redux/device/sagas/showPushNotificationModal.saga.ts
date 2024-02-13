@@ -4,8 +4,15 @@ import { getRouteState } from "../../app/app.selectors";
 import { getPushNotifications } from "../device.selectors";
 import { showYuModal } from "@navigation/root";
 import { getActiveLevel } from "@redux/levels/levels.selectors";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 export default function* showPushNotificationModalSaga() {
+  const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+
+  if (features.gameDisableGamePushNotificationsModal) {
+    return;
+  }
+
   const permissions: ReturnType<typeof getPushNotifications> = yield select(getPushNotifications);
   const activeChallenge: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
 
