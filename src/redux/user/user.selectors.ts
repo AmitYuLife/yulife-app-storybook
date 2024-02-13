@@ -67,10 +67,11 @@ export const getUserActiveEvents = createSelector(getUserEvents, (events) =>
 );
 
 export const getUserEventsWithAds = createSelector(getUserActiveEvents, getAdBanners, (events, banners) => {
-  const formatData = banners.map(({ id, imageUrl, navigateTo }) => ({
+  const formatData = banners.map(({ id, imageUrl, navigateTo, routeProps }) => ({
     id,
     imageUrl: imageUrl.uri,
     navigateTo,
+    routeProps,
   }));
 
   return [...events, ...formatData];

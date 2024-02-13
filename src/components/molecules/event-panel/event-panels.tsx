@@ -17,6 +17,7 @@ import { baseStyles } from "./event-panel.styles";
 interface IAdBanner {
   imageUrl: string;
   navigateTo: string;
+  routeProps?: string;
 }
 
 type IEvents = IEvent & IAdBanner;
@@ -69,6 +70,7 @@ const EventPanels = ({ events = [], componentId, onJoin }: IEventPanelsProps) =>
             <AdBanner
               imageUrl={item.imageUrl}
               navigateTo={item.navigateTo}
+              routeProps={item.routeProps}
               style={styles.adBannerImage}
               height={adHeight - Style.adjust(2)}
               width={CARD_WIDTH - Style.adjust(15)}
