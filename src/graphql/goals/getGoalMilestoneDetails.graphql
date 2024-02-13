@@ -21,6 +21,10 @@ query GetGoalMilestoneDetails($goals: [GetGoalMilestoneDetailsInput]) {
         id
         uri
       }
+      onPress {
+        type
+        payload
+      }
     }
   }
 }
