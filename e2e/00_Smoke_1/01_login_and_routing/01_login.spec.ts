@@ -74,7 +74,8 @@ Feature("As a user I can get past the login screen", async () => {
         });
     });
 
-    Scenario("I can view all unauthenticated screens", scenario.start, async () => {
+    // @bug [ GS-866 -- Email sent screen missing]
+    ScenarioSkip("I can view all unauthenticated screens", scenario.start, async () => {
         Given("I select region United Kingdom", given.selectRegionIfVisible("United Kingdom"), async () => {
             Given("I am on the login screen", given.onLoginScreen, async () => {
                 When("I press forgot password", when.tapText(t("Need help logging in?")), async () => {

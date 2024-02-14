@@ -17,7 +17,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                 Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
             })
             When("I tap leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-                Then("I should be on the leaderboard", then.textVisible(t('Join the Leaderboard?')))
+                Then("I should be on the leaderboard", then.textVisible(t('Sit tight, while we set up your leaderboard')))
             })
             When("I tap rewards", when.tapID(ids.NAV_BAR("rewards")), async () => {
                 Then("I should be on rewards", then.idVisible(ids.REWARDS_SCREEN))
