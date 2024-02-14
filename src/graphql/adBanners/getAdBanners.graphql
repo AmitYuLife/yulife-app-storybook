@@ -5,9 +5,9 @@ query GetAdBanners($place: String) {
       uri
     }
     navigateTo
+    navigateToType
+    routeProps
     startDate
     endDate
-    height
-    width
   }
 }
