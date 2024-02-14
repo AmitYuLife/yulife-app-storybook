@@ -6,7 +6,7 @@ import {
   IFetchActivityResponse,
   fetchActivityData,
   fetchYuHealthActivityData,
-} from "../../activity-history/activity-history.helpers";
+} from "../../activity-history/_legacy/activity-history.helpers";
 import moment from "moment";
 import { PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 
