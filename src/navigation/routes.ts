@@ -119,7 +119,7 @@ const routesForRegistration = [
   },
   {
     name: ROUTES.activityHistory,
-    component: require("../components/containers/member/activity-history/activity-history.container").default,
+    component: require("../components/containers/member/activity-history/index").default,
   },
   {
     name: ROUTES.challengesHistoryNew,

@@ -12,7 +12,7 @@ export { default as SignUpRewardContainer } from "./onboarding/signup-reward/sig
 // member containers
 export { default as MenuContainer } from "./member/menu/menu.container";
 export { default as SettingsContainer } from "./member/settings/_settings.container";
-export { default as ActivityHistoryContainer } from "./member/activity-history/activity-history.container";
+
 export { default as DebugContainer } from "./member/debug/debug.container";
 
 export { default as QuestsContainer } from "./member/quests/quests.container";
