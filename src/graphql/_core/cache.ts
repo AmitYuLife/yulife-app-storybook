@@ -1,4 +1,4 @@
-import { defaultDataIdFromObject, InMemoryCache } from "@apollo/client";
+import { defaultDataIdFromObject, InMemoryCache, TypePolicies } from "@apollo/client";
 
 const defaultYuLifeIdFromObject = (object: any) => `${object.__typename}-${object.id}`;
 
@@ -7,6 +7,7 @@ const dataIdFromObject = (object: any) => {
   switch (object.__typename) {
     case "APIConfigLeanplum":
       return `${object.__typename}-${object.appId}`;
+    case "AdBanner":
     case "Level":
     case "Duel":
     case "LevelSlot":
@@ -42,11 +43,26 @@ const dataIdFromObject = (object: any) => {
   }
 };
 
+const typePolicies: TypePolicies = {
+  Query: {
+    fields: {
+      getAdBanners: {
+        merge(_existing, incoming) {
+          return incoming;
+        },
+      },
+    },
+  },
+};
+
 let cache: InMemoryCache;
 
 export const gqlInMemoryCache = () => {
   if (!cache) {
-    cache = new InMemoryCache({ dataIdFromObject });
+    cache = new InMemoryCache({
+      dataIdFromObject,
+      typePolicies,
+    });
   }
 
   return cache;
