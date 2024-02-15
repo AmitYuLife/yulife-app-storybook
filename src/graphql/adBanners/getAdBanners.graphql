@@ -1,5 +1,6 @@
 query GetAdBanners($place: String) {
   getAdBanners(place: $place) {
+    __typename
     id
     imageUrl {
       uri
