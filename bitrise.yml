@@ -2042,7 +2042,7 @@ workflows:
   run-mongodb:
     steps:
     - script@1.2:
-        title: Install & Run MongoDB (mongodb-community@5.0)
+        title: Install & Run MongoDB (mongodb-community@6.0)
         inputs:
         - content: |-
             #!/usr/bin/env bash
@@ -2053,19 +2053,17 @@ workflows:
 
             brew update
             brew tap mongodb/brew
-            brew install mongodb-community@5.0
+            brew install mongodb-community@6.0
             brew tap homebrew/services
 
             # Add mongodb to PATH
-            echo 'export PATH="/opt/homebrew/opt/mongodb-community@5.0/bin:$PATH"' >> ~/.zshrc
+            echo 'export PATH="/opt/homebrew/opt/mongodb-community@6.0/bin:$PATH"' >> ~/.zshrc
 
             # Set detox port for MongoDb
             echo "  port: 27018" >> /opt/homebrew/etc/mongod.conf
 
-            # TODO: Fix me (this is a temporary hack to fix the issue with mongodb not starting)
-            sed -i '' 's/@service_startup ||= formula\.plist_startup\.present\?/@service_startup ||= formula.plist_name.present\?/' /opt/homebrew/Library/Taps/homebrew/homebrew-services/lib/service/formula_wrapper.rb
             # Start MongoDb
-            brew services start mongodb/brew/mongodb-community@5.0
+            brew services start mongodb/brew/mongodb-community@6.0
 
             echo 'MongoDb config...'
             cat /opt/homebrew/etc/mongod.conf
