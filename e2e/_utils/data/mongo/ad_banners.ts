@@ -5,7 +5,7 @@ import { BUSINESS_ACCOUNT_4 } from "../postgres/business";
 
 
 const type = "mongo"
-const modelName = "adbanners"
+const modelName = "ad_banners"
 
 export const AD_BANNER_1 = {
     type,
