@@ -60,7 +60,9 @@ export const RewardCard = ({
       <View style={styles.innerWrapper}>
         <View style={styles.row}>
           <View style={styles.textWrapper}>
-            <TextTemplate numberOfLines={2} type="l1b">{`${rewardQuantity} x ${rewardTitle}`}</TextTemplate>
+            <TextTemplate numberOfLines={2} type="l1b">{`${
+              rewardQuantity ? `${rewardQuantity} x ` : ""
+            }${rewardTitle}`}</TextTemplate>
             <TextTemplate type="l3">
               {t("screens.locked_reward_modal.progress_status", { target, progress })}
             </TextTemplate>
