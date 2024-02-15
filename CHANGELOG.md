@@ -7,6 +7,55 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.2.0] - 2024-02-15
+
+### Features
+
+- Feature VBUS-127: Add routeProps to AdBanner component, allowing navigation to journeys and static steps
+
+### Bugfixes
+
+- Bugfix GS: Empty social groups UX
+- Bugfix ENG-3729: In app daily passive meditation
+- Bugfix: Fix user graphql field name
+- Bugfix: Leaderboard consent not updating
+- Bugfix GS: Update hermes-engine pod lock
+- Bugfix: Stuck on login screen after trying to login
+
+### Tasks
+
+- Task: Create ActivityHistoryInfo and ActivityHistoryDay components for the new...
+- Task: Implement SDUI action dismiss overlay
+- Task: YuHealth GQL
+- Task: YuHealth permissions screen
+- Task: YuHealth daily screen
+- Task: YuHealth challenges
+- Task: DEVOP-1885: Prod: Migrate US to the new yulife-api TF module - API URL Update
+- Task: verifyAndAuthorizeCapability hook
+- Task: Move challenges list to old
+- Task: Move permissions to old
+- Task: YuHealth sagas
+- Task: Move daily steps container & content to old
+- Task: purge old challenge details screen
+- Task: purge old todays earning screen
+
+### Chores
+
+- Chore: Move Activity History to legacy folder
+- Chore GS: Android yarn scripts
+- Chore: Move sdui into new gql
+- Chore: here we go again, setState
+
+### Extra
+
+- Detox/fixes-14/02
+- Fix ENG-3808: Put Challenge Push Notification Modal behind toggle
+- Detox/get_skips_update
+- Detox/skip_updates
+- Detox/fixes-12/02
+- Detox/8_2_24_fixes
+- Detox/7_2_24_fixes
+
 ## [4.1.0] - 2024-02-07
 
 ### Bugfixes
