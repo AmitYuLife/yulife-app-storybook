@@ -1,3 +1,5 @@
+import { YuHealthCapability as TypeYuHealthCapability } from "@graphql/_core/schema/globalTypes";
+import { YuHealthCapability } from "@graphql/__generated";
 import { HealthPermissionStatus, HealthProviderCapability } from "@yu-life/react-native-yu-health";
 import { Alert, Linking } from "react-native";
 
@@ -47,3 +49,38 @@ export const shouldContinueWithPermissionStatus = (status: HealthPermissionStatu
 export const shouldRequestHealthPermission = (status: HealthPermissionStatus) => {
   return status === HealthPermissionStatus.notAsked || status === HealthPermissionStatus.denied;
 };
+
+type MergedCapability = YuHealthCapability | TypeYuHealthCapability;
+
+export function gqlCapabilityToCapability(
+  capability: (YuHealthCapability | TypeYuHealthCapability)[]
+): HealthProviderCapability[];
+export function gqlCapabilityToCapability(
+  capability: YuHealthCapability | TypeYuHealthCapability
+): HealthProviderCapability;
+export function gqlCapabilityToCapability(
+  capability: MergedCapability | MergedCapability[]
+): HealthProviderCapability | HealthProviderCapability[] {
+  if (Array.isArray(capability)) {
+    return capability.map(gqlCapabilityToCapability);
+  }
+
+  switch (capability) {
+    case YuHealthCapability.StepCount:
+      return HealthProviderCapability.STEP_COUNT;
+    case YuHealthCapability.MindfulMinutes:
+      return HealthProviderCapability.MINDFUL_MINUTES;
+    case YuHealthCapability.CyclingDistance:
+      return HealthProviderCapability.CYCLING_DISTANCE;
+    case YuHealthCapability.Activities:
+      return HealthProviderCapability.ACTIVITIES;
+    case YuHealthCapability.Calories:
+      return HealthProviderCapability.CALORIES;
+    case YuHealthCapability.HeartRate:
+      return HealthProviderCapability.HEART_RATE;
+    case YuHealthCapability.WorkoutMinutes:
+      return HealthProviderCapability.WORKOUT_MINUTES;
+  }
+
+  throw new Error(`Capability ${capability} not supported for conversion!`);
+}

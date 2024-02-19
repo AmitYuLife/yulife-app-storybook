@@ -18,7 +18,8 @@ import { IITem } from "@organisms/media-list-items/media-list-items";
 import { updateChallengeAppButton } from "@redux/levels/levels.actions";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { HealthProviderCapability } from "@yu-life/react-native-yu-health";
+import { gqlCapabilityToCapability } from "@utils";
+import { YuHealthOptions } from "@graphql/__generated";
 
 interface IProps {
   componentId: string;
@@ -26,6 +27,7 @@ interface IProps {
   levelSlotId: string;
   fitKitTypes: FitKitType[];
   tutorialUrl: string;
+  yuHealth: YuHealthOptions;
   content: IInternalContent[];
   reward: number;
   level: number;
@@ -37,6 +39,7 @@ const FiitMediaCategoryListContainer = ({
   fitKitTypes,
   content,
   reward,
+  yuHealth,
   tutorialUrl,
   level,
 }: IProps) => {
@@ -98,8 +101,7 @@ const FiitMediaCategoryListContainer = ({
         return;
       }
 
-      // TODO: From api
-      const shouldStart = await verifyAndAuthorizeCapability(HealthProviderCapability.ACTIVITIES);
+      const shouldStart = await verifyAndAuthorizeCapability(gqlCapabilityToCapability(yuHealth.capabilities));
       if (!shouldStart) {
         return;
       }
@@ -108,12 +110,13 @@ const FiitMediaCategoryListContainer = ({
       await createChallengeUsingFiitApp();
     },
     [
-      dispatch,
-      fitKitTypes,
-      authoriseFitKitTypes,
-      createChallengeUsingFiitApp,
-      verifyAndAuthorizeCapability,
       features.tempGameEnableYuHealth,
+      verifyAndAuthorizeCapability,
+      yuHealth,
+      dispatch,
+      createChallengeUsingFiitApp,
+      authoriseFitKitTypes,
+      fitKitTypes,
     ]
   );
 

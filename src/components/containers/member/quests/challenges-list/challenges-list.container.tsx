@@ -8,7 +8,7 @@ import { BlurProvider, IToggleBlur } from "@atoms";
 import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
 import { useQuery } from "@apollo/client";
 import { handleLinkPress } from "@services/app-link";
-import { getCurrentWorld } from "@utils";
+import { getCurrentWorld, gqlCapabilityToCapability } from "@utils";
 import { ChallengesLoading } from "@components/molecules";
 import getChallengeDetails from "@graphql/challenges/getQuestMapChallengeDetails.gql";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
@@ -18,7 +18,6 @@ import { YUNIVERSAL_LEVEL_SLOTS } from "@components/screens/member/quests/quests
 import { usePopToQuestsRootOnNewDate, useVerifyAndAuthorizeCapability } from "@hooks";
 import { ActiveLevelState, getActiveChallengeState } from "@redux/levels/levels.selectors";
 import { handleInternalContentChallenge, onPressChallengeTile } from "@utils/challenges";
-import { HealthProviderCapability } from "@yu-life/react-native-yu-health";
 
 export interface IChallengesListContainerProps {
   componentId: string;
@@ -113,7 +112,6 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
       setActiveSlot: setSlot,
       verifyAndAuthorizeCapability,
       showOverlay: showOverlayRef?.current,
-      capability: HealthProviderCapability.HEART_RATE,
     }),
     [authoriseFitKitTypes, componentId, createChallenge, level, verifyAndAuthorizeCapability]
   );
@@ -159,6 +157,8 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
         ...formattedSlot,
         currentWorld,
         onPress: async () => {
+          const capability = gqlCapabilityToCapability(levelSlot.yuHealth?.capabilities);
+
           await onPressChallengeTile({
             level,
             levelSlot,
@@ -168,8 +168,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
             setActiveSlot: setSlot,
             verifyAndAuthorizeCapability,
             showOverlay: showOverlayRef?.current,
-            // TODO: From api
-            capability: HealthProviderCapability.HEART_RATE,
+            capability,
           });
         },
       };
