@@ -40,6 +40,15 @@ export const groupHealthRewardProgressNames = [
     "Free Garmin Smartwatch"
 ]
 
+export const groupHealthRewardCarouselNames = [
+    "Exclusive Discounts",
+    "Massage Vouchers",
+    "Free Health Screening Kit",
+    "Free DNA Kit",
+    "Free Health Assessment",
+    "Free Smartwatch"
+]
+
 export const groupHealthRewardProgressLevels = [
     "5",
     "10",
@@ -123,6 +132,7 @@ export const donationMessage = "Your donation will help to give support to serio
 export const lockedLevelText = (level: number) => { return `Unlock at level ${level.toString()}`}
 export const takeChallengeText = "Almost there! Take a challenge to unlock your reward."
 export const moreRewardsAheadHeader = "More rewards ahead!"
+export const getMoreRewardsHeader = "Get more rewards!"
 export const moreRewardsAheadText = "Doing challenges every day helps you unlock more rewards faster."
 export const learnMoreButton = "Learn more"
 export const chestTease = "A chest full of YuCoin!"
@@ -139,3 +149,23 @@ export const ghiRewardIdsMinusUrban = [
 ]
 
 export const rewardsGameOnTheWayImg = "https://yulife-develop.imgix.net/bupa/images/rewards_on_the_way_2023-03-23.png?ixlib=js-3.2.1&w=981&h=714&s=4809f351b905b43bb783ab2519e188f7"
+
+// Learn More page
+
+export const learnMorePageHeader = "Unlock rewards as you progress through levels!"
+export const learnMorePageDesc = "Every day you conquer a challenge, you level up and get closer to unlocking cool rewards!\n\nBut hey, time's ticking — you've got just 6 days before your progress resets and the fun begins again. Keep rocking those challenges! 🚀"
+export const learnMorePageButton = "Take a challenge"
+export const learnMoreFAQ1 = "How do I level up?"
+export const learnMoreFAQ2 = "How do I claim my rewards?"
+export const learnMoreFAQ3 = "What happens when the time runs out?"
+export const learnMoreFAQ1Text = "Level up by completing at least one challenge per day on your quest map. Levelling up will get you one step closer to unlocking new rewards. You can only level up once per day so make sure to come back every day to unlock your rewards as quickly as possible."
+export const learnMoreFAQ2Text = [
+    "Claim your rewards on the Rewards page.",
+    "Let’s say you’ve unlocked your Garmin smartwatch after completing 200 levels since  you started levelling up for rewards. Head to the rewards page and look for “Garmin smartwatch”. Within that page, you’ll be able to find the steps that will help you ‌claim your Garmin watch. (If you’d prefer not to get a Garmin you can also make a donation to Great Ormond Street Hospital.)",
+    "Other rewards work in much the same way as well."
+]
+export const learnMoreFAQ3Text = "Once you start levelling up for rewards, you will have 365 days to level up as far as possible. After 365 days your progress will reset to 0 and you will start a new cycle of rewards. In the next rewards cycle you will get to unlock a new set of rewards while still having access to some of the rewards you previously unlocked."
+
+export const learnMoreFAQPage1 = [learnMoreFAQ1, learnMoreFAQ1Text]
+export const learnMoreFAQPage2 = [learnMoreFAQ2, ...learnMoreFAQ2Text]
+export const learnMoreFAQPage3 = [learnMoreFAQ3, learnMoreFAQ3Text]
