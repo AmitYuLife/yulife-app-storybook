@@ -36,7 +36,7 @@ function ChallengeSet({ challenges, tileColour, durationColour, durationTextColo
         </View>
         <View style={styles.rightColumnWrapper}>
           {challenges
-            .filter((_, i) => i % 2)
+            ?.filter((_, i) => i % 2)
             .map((challenge) => (
               <ChallengeTile
                 key={challenge.heading}

@@ -1,4 +1,7 @@
 import { TextTemplate } from "@atoms";
+import { Button } from "@components/molecules";
+import { setActiveYuHealthProvider } from "@redux/yu-health/yu-health.actions";
+import { getActiveProviderSelector } from "@redux/yu-health/yu-health.selectors";
 import { Style } from "@styles";
 import colours from "@styles/colours";
 import {
@@ -10,6 +13,7 @@ import {
 } from "@yu-life/react-native-yu-health";
 import { memo, useCallback, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 
 const getStateColor = (state: string) => {
   switch (state) {
@@ -31,6 +35,7 @@ interface IHealthProvider {
 }
 
 const YuHealthInfo = () => {
+  const dispatch = useDispatch();
   const [providerStatus, setProviderStatus] = useState<IHealthProvider[]>([]);
 
   const getStatus = useCallback(async () => {
@@ -53,8 +58,23 @@ const YuHealthInfo = () => {
     getStatus();
   }, [getStatus]);
 
+  const activeProvider = useSelector(getActiveProviderSelector);
+
+  const setActiveProvider = useCallback(
+    (provider: HealthProvider) => {
+      dispatch(setActiveYuHealthProvider(provider));
+    },
+    [dispatch]
+  );
+
   return (
-    <>
+    <View style={styles.container}>
+      <View style={styles.generalContainer}>
+        <TextTemplate type="b2b">YuHealth Info</TextTemplate>
+        <TextTemplate type="b2">
+          Active provider: <TextTemplate type="b2b">{activeProvider ?? "NONE!"}</TextTemplate>
+        </TextTemplate>
+      </View>
       {providerStatus.map((provider) => (
         <View style={styles.providerContainer} key={provider.name}>
           <View style={styles.providerHeaderContainer}>
@@ -64,17 +84,17 @@ const YuHealthInfo = () => {
             </TextTemplate>
           </View>
           <View style={styles.capabilities}>
-            {provider.capabilities?.map((capability) => (
-              <View style={styles.capability} key={capability}>
-                <TextTemplate type="b2" color={colours.yuscreen.white} key={capability}>
-                  {capability}
-                </TextTemplate>
+            <TextTemplate type="b2">Supported capabilities:</TextTemplate>
+            <TextTemplate type="b2b">{provider?.capabilities.join(", ")}</TextTemplate>
+            {activeProvider !== provider.name && provider.status === HealthProviderAvailability.available ? (
+              <View style={styles.setActiveButton}>
+                <Button label="Set active" onPress={() => setActiveProvider(provider.name)} />
               </View>
-            ))}
+            ) : null}
           </View>
         </View>
       ))}
-    </>
+    </View>
   );
 };
 
@@ -87,10 +107,21 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(6),
     backgroundColor: colours.products.fib.rare,
   },
+  generalContainer: {
+    padding: Style.adjust(10),
+  },
+  setActiveButton: {
+    marginTop: Style.adjust(10),
+  },
+  container: {
+    padding: Style.adjust(12),
+    gap: 10,
+  },
   capabilities: {
     flexDirection: "row",
     flexWrap: "wrap",
     marginTop: Style.adjust(20),
+    gap: 10,
   },
   providerContainer: {
     backgroundColor: colours.products.fib.rareLight,

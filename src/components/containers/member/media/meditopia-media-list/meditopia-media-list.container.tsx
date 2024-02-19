@@ -21,11 +21,13 @@ import { showYuModal } from "@navigation/root";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { HealthProviderCapability } from "@yu-life/react-native-yu-health";
+import { YuHealthOptions } from "@graphql/__generated";
+import { gqlCapabilityToCapability } from "@utils";
 
 interface IProps extends IInternalContent {
   componentId: string;
   createChallenge: (hideExternalLinks?: boolean) => void;
+  yuHealth: YuHealthOptions;
   levelSlotId: string;
   fitKitTypes: FitKitType[];
   tutorialUrl: string;
@@ -36,6 +38,7 @@ const MeditopiaMediaListContainer = ({
   createChallenge,
   levelSlotId,
   fitKitTypes,
+  yuHealth,
   contentMediaTags,
   title,
   description,
@@ -125,9 +128,7 @@ const MeditopiaMediaListContainer = ({
         return;
       }
 
-      // TODO: Get capability from API
-      const shouldStart = await verifyAndAuthorizeCapability(HealthProviderCapability.MINDFUL_MINUTES);
-
+      const shouldStart = await verifyAndAuthorizeCapability(gqlCapabilityToCapability(yuHealth.capabilities));
       if (!shouldStart) {
         return;
       }
@@ -136,12 +137,13 @@ const MeditopiaMediaListContainer = ({
       await createChallengeOnOtherAppSelected(appName, button);
     },
     [
-      dispatch,
-      fitKitTypes,
-      authoriseFitKitTypes,
-      verifyAndAuthorizeCapability,
       tempGameEnableYuHealth,
+      verifyAndAuthorizeCapability,
+      yuHealth,
+      dispatch,
       createChallengeOnOtherAppSelected,
+      authoriseFitKitTypes,
+      fitKitTypes,
     ]
   );
 

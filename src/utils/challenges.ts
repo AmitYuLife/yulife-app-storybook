@@ -18,7 +18,7 @@ interface IOnPressChallengeTileParams {
   showOverlay?: () => void;
   createChallenge: () => void;
   tempGameEnableYuHealth?: boolean;
-  capability?: HealthProviderCapability;
+  capability?: HealthProviderCapability[];
   levelSlot: GetQuestMapLevel_getQuestMapLevel_slots;
   setActiveSlot: (slot: GetQuestMapLevel_getQuestMapLevel_slots) => void;
   authoriseFitKitTypes: ReturnType<typeof useFitKit>["authoriseFitKitTypes"];
@@ -170,9 +170,11 @@ export const handleInternalContentChallenge = ({
           name: ROUTES.meditopiaMediaList,
           passProps: {
             createChallenge,
+            levelSlot,
             levelSlotId: levelSlot.id,
             fitKitTypes: levelSlot.fitKitTypes,
             tutorialUrl: levelSlot.details.tutorialUrl,
+            yuHealth: levelSlot.yuHealth,
             ...internalContent[0],
             level,
           },
@@ -192,6 +194,7 @@ export const handleInternalContentChallenge = ({
             fitKitTypes: levelSlot.fitKitTypes,
             tutorialUrl: levelSlot.details.tutorialUrl,
             content: internalContent,
+            yuHealth: levelSlot.yuHealth,
             reward: levelSlot.reward,
             level,
           },
