@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip, FeatureOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -10,7 +10,7 @@ import * as fixtures from "./_resources/fixtures"
 import { getLocalisedString as t } from "@i18n";
 import { CORE_REWARDS_URBAN_GHI_REWARDS } from "@data";
 import moment from "moment";
-import { textVisible } from "@navigation";
+import * as helpers from "./_resources/helpers"
 
 
 
@@ -23,16 +23,41 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I go to the store to select my region before returning to the YuScreen", when.setStoreRegion, async () => {
             When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
                 Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_1));
+                Then("I should see the more rewards ahead modal as this employee has the feature toggle on", then.moreRewardsAheadModalVisible(false))
+                Then("I shouldn't see the group health rewards heading as the feature toggle is hiding them", then.textNotVisible(constants.groupHealthRewardsHeading))
             })
         })
-        When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up"), async () => {
-            Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("0/6"))
-            Then("I can't see the sparkle animation due to not unlocking it yet", then.idNotVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.sparkleAnimation)))
+        When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
+            Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage("0", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
         })
-        When("I scroll until I can see all the progress info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_1, "down"), async () => {
-            Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(4))
+        helpers.carouselScroll(constants.groupHealthRewardCarouselNames)()
+        When("I scroll to the bottom of the page", when.swipeFromText(constants.learnMorePageHeader, "up", "fast"), async () => {
+            When("I click on the first FAQ", when.tapText(constants.learnMoreFAQ1), async () => {
+                Then("I am on the FAQ page for the first FAQ", then.onFAQPage(constants.learnMoreFAQPage1))
+            })
         })
-        When("I click to see the next reward I want to unlock", when.tapTextAtIndex(constants.groupHealthRewardProgressNames[0], 1), async () => {
+        When("I click to go back", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
+            When("I click on the second FAQ", when.tapText(constants.learnMoreFAQ2), async () => {
+                Then("I am on the FAQ page for the second FAQ", then.onFAQPage(constants.learnMoreFAQPage2))
+            })
+        })
+        When("I click to go back", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
+            When("I click on the third FAQ", when.tapText(constants.learnMoreFAQ3), async () => {
+                Then("I am on the FAQ page for the third FAQ", then.onFAQPage(constants.learnMoreFAQPage3))
+            })
+        })
+        When("I click to go back", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
+            When("I click to go back to the product details", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
+                When("I swipe to the top", when.swipeFromText("FAQs", "down", "fast"), async () => {
+                    When("I close the screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
+                        When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
+                            Then("I can see the game progress modal with the correct info", then.rewardStoreGameProgressVisible("0", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
+                        })
+                    })
+                })
+            })
+        })
+        When("I tap on the Boots reward", when.tapRewardInList(data.CORE_REWARDS_BOOTS_GHI_REWARDS), async () => {
             Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
             Then("I should see the correct information for the Boots reward tease", then.onRewardsTeasePage(fixtures.BOOTS_YORK_GHI_REWARDS_TEASE_PAGE_DETAILS))
         })
@@ -44,6 +69,22 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I should see the correct information for the York reward tease", then.onRewardsTeasePage(fixtures.BOOTS_YORK_GHI_REWARDS_TEASE_PAGE_DETAILS))
         })
         When("I tap the CTA button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
+            Then("I should see level 80 on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(80)))
+        })
+        When("I go to the yu screen", when.tapID(ids.NAV_BAR("yu")), async () => {
+            When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+                When("I scroll until I can see all the learn more modal", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_2, "down"), async () => {
+                    When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
+                        When("I tap to take a challenge", when.tapText(constants.learnMorePageButton), async () => {
+                            When("I wait to be redirected", when.wait(5000), async () => {
+                                Then("I appear on the challenge screen", then.idVisible(ids.CHALLENGE_SCREEN))
+                            })
+                        })
+                    })
+                })
+            })
+        }) 
+        When("I click to go back", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
             Then("I should see level 80", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(80)))
             // Then("I should see the reward icon on the next level", then.idVisible(ids.GHI_REWARD_ICON("80")))
         })
@@ -51,8 +92,8 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I see the half modal for level 81 being locked as this user has the toggle switched on", then.lockedLevelHalfModalVisible(81, false, true,))
         })
         When("I tap to close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
-            When("I tap level 81", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(85)), async () => {
-                Then("I see the half modal for level 81 being locked as this user has the toggle switched on", then.lockedLevelHalfModalVisible(85, true, true, "3 x Urban Massage Vouchers", "4 / 10"))
+            When("I tap level 85", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(85)), async () => {
+                Then("I see the half modal for level 85 being locked as this user has the toggle switched on", then.lockedLevelHalfModalVisible(85, true, true, "3 x Urban Massage Vouchers", "4 / 10"))
             })
         })
         When("I tap to close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
@@ -74,27 +115,32 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
             When("I tap level 85 again", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(85)), async () => {
-                Then("I see the half modal for level 81 being locked and the hint is gone due to me unlocking a reward", then.lockedLevelHalfModalVisible(85, true, false, "3 x Urban Massage Vouchers", "5 / 10"))
+                Then("I see the half modal for level 85 being locked and the hint is gone due to me unlocking a reward", then.lockedLevelHalfModalVisible(85, true, false, "3 x Urban Massage Vouchers", "5 / 10"))
             })
         })
         When("I tap to close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
             When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
                 When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
-                    When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down"), async () => {
-                        Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("1/6"))
-                        Then("I can see the sparkle animation due to unlocking the reward", then.idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.sparkleAnimation)))
+                    When("I scroll until I can see all the learn more modal", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_2, "down"), async () => {
+                        When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
+                            Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage("1", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
+                        })
                     })
                 })
             })
         })
-        When("I scroll until I can see all the progress info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_1, "down"), async () => {
-            Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(5))
-        })
-        When("I click to see the next reward I want to unlock", when.tapTextAtIndex(constants.groupHealthRewardProgressNames[0], 1), async () => {
-            When("I tap on the YorkTest reward", when.tapRewardInList(data.CORE_REWARDS_YORK_GHI_REWARDS), async () => {
-                Then("I should be on the rewards page for YorkTest", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-                Then("I should see all the reward information for YorkTest", then.onBootsAndYorkRewardsClaimPage(fixtures.YORK_REWARDS_CLAIM_PAGE_DETAILS, true))
+        When("I click to go back", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
+            When("I swipe to the top", when.swipeFromText("FAQs", "down", "fast"), async () => {
+                When("I close the screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
+                    When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
+                        Then("I can see the game progress modal with the correct info", then.rewardStoreGameProgressVisible("1", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
+                    })
+                })
             })
+        })
+        When("I tap on the YorkTest reward", when.tapRewardInList(data.CORE_REWARDS_YORK_GHI_REWARDS), async () => {
+            Then("I should be on the rewards page for YorkTest", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
+            Then("I should see all the reward information for YorkTest", then.onBootsAndYorkRewardsClaimPage(fixtures.YORK_REWARDS_CLAIM_PAGE_DETAILS, true))
         })
         When("I go back to the rewards screen", when.tapID(ids.BACK_BUTTON), async () => {
             When("I tap on the Boots reward", when.tapRewardInList(data.CORE_REWARDS_BOOTS_GHI_REWARDS), async () => {
@@ -113,15 +159,6 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
             When("I click to see the purchase history", when.tapText(t("Purchased")), async () => {
                 Then("I can see the purchase for today for the boots voucher", then.groupHealthRewardsPurchasedVisible(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS))
-            })
-        })
-        When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
-            When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
-                When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
-                    When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down"), async () => {
-                        Then("I can't see the sparkle animation due to purchasing the reward", then.idNotVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.sparkleAnimation)))
-                    })
-                })
             })
         })
      })

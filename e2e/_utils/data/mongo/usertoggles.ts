@@ -2094,7 +2094,8 @@ export const CUSTOMER_116_TOGGLES = {
       hasSmartPensionActive: true,
       enableProductGoals: true,
       useHalfModalsForQuestMap: true,
-      showQuestMapNotificationIcons: true
+      showQuestMapNotificationIcons: true,
+      showGoalProductRewardMilestones: true
     },
   },
 } as IDatabaseItem;

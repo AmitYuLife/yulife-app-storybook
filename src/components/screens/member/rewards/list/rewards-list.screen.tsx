@@ -5,7 +5,7 @@ import { Style, NAV_BAR, Colours } from "@styles";
 import { RewardsListLayout } from "../subcomponents/rewards-layout";
 import { RewardsListLoading } from "../subcomponents/rewards-loading";
 import FirstTimeStoreSelection from "./subcomponents/first-time-store-selection";
-import { REWARDS_LIST_SCREEN, REWARDS_LIST_SCREEN_SCROLL } from "@ids";
+import { REWARDS_LIST_SCREEN, REWARDS_LIST_SCREEN_SCROLL, REWARDS_STORE_GAME_PROGRESS } from "@ids";
 import { ChipList, ProductCard } from "@components/molecules";
 import { Stack } from "@atoms";
 import { StackDirection } from "@atoms/stack/stack";
@@ -100,7 +100,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
 
         if (goalProductMilestones?.goalProductMilestones) {
           return (
-            <View style={styles.rewardsEventPanel}>
+            <View style={styles.rewardsEventPanel} testID={REWARDS_STORE_GAME_PROGRESS}>
               <EventPanel
                 {...goalProductMilestones.goalProductMilestones}
                 type={"rewards"}

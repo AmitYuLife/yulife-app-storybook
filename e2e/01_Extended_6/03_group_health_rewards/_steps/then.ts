@@ -6,6 +6,7 @@ import { GHI_PAGE_INFO, GHI_REWARD_CLAIM_PAGE_DETAILS, GHI_TEASE_PAGE_DETAILS, G
 import { screens } from "@appScreens";
 import { readInbox } from "@yu-life/yulife-bdd-framework"
 import { expect } from 'detox'
+import { swipeFromText } from "./when";
 
 export const {
   scrollUntilTextVisible,
@@ -22,7 +23,8 @@ export const {
   textNotVisible,
   tapID,
   idVisibleAtIndex,
-  textVisibleAtIndex
+  textVisibleAtIndex,
+  testMultipleIndexesVisibility
 } = navigation.common;
 
 export const {
@@ -533,7 +535,7 @@ export const lockedLevelHalfModalVisible = (level: number, chest: boolean, hint:
   await idVisible(ids.CHALLENGE_LOCKED_ICON)()
 
   chest && await textVisible(constants.chestTease)()
-  hint && await moreRewardsAheadModalVisible()
+  hint && await moreRewardsAheadModalVisible(true)()
   reward && await textVisible(reward)()
   levels && await textVisible(`${levels} Levels completed`)()
 }
@@ -550,11 +552,12 @@ export const unlockedLevelHalfModalVisible = (reward: string, levels: string) =>
   await idVisible(ids.CHALLENGE_LOCKED_ICON)()
   await textVisible(reward)()
   await textVisible(`${levels} Levels completed`)()
-  await moreRewardsAheadModalVisible()
+  await moreRewardsAheadModalVisible(true)()
 }
 
-export const moreRewardsAheadModalVisible = async () => {
-  await textVisible(constants.moreRewardsAheadHeader)()
+export const moreRewardsAheadModalVisible = (modalView: boolean) => async () => {
+  const headerText = modalView ? constants.moreRewardsAheadHeader : constants.getMoreRewardsHeader
+  await textVisible(headerText)()
   await textVisible(constants.moreRewardsAheadText)()
   await textVisible(constants.learnMoreButton)()
 }
@@ -564,3 +567,33 @@ export const ghiRewardsTeaseVisible = async () => {
   await textVisible(constants.rewardsTeaseText)()
 }
 
+export const onGHIRewardsLearnMorePage = (unlocked: string, date: string) => async () => {
+  const timeToGameEnd = moment.duration(moment(date).diff(moment()));
+  const days = Math.floor(timeToGameEnd.asDays())
+
+  await idVisible(ids.TEXT_TEMPLATE(constants.learnMorePageHeader, "h2"))()
+  await textVisible(`${unlocked}/6 rewards unlocked`)()
+  await textVisible(`${days} days left`)()
+  await idVisible(ids.TEXT_TEMPLATE(constants.learnMorePageDesc, "b2"))()
+  await swipeFromText(constants.learnMorePageHeader, "up", "fast")()
+  await textVisible(constants.learnMorePageButton)()
+  await idVisible(ids.TEXT_TEMPLATE(constants.learnMoreFAQ1, "b2b"))()
+  await idVisible(ids.TEXT_TEMPLATE(constants.learnMoreFAQ2, "b2b"))()
+  await idVisible(ids.TEXT_TEMPLATE(constants.learnMoreFAQ3, "b2b"))()
+  await swipeFromText(constants.learnMoreFAQ3, "down", "fast")()
+}
+
+export const onFAQPage = (content: string []) => async () => {
+  content.forEach((text) => async () => {
+    await textVisible(text)()
+  })
+}
+
+export const rewardStoreGameProgressVisible = (unlocked: string, date: string) => async () => {
+  const timeToGameEnd = moment.duration(moment(date).diff(moment()));
+  const days = Math.floor(timeToGameEnd.asDays())
+
+  await idVisible(ids.REWARDS_STORE_GAME_PROGRESS)()
+  await idVisible(ids.EVENT_DESCRIPTION(`${unlocked}/6 rewards`))()
+  await textVisible(`${days} days left`)()
+}
