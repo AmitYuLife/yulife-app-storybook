@@ -1040,7 +1040,7 @@ PODS:
     - React-Core
   - react-native-webview (13.6.3):
     - React-Core
-  - react-native-yu-health (1.0.16):
+  - react-native-yu-health (1.0.20):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -1693,7 +1693,7 @@ SPEC CHECKSUMS:
   react-native-video: e9e6fe3ab11d515bd79abd5d81e07db538943c56
   react-native-view-shot: 6b7ed61d77d88580fed10954d45fad0eb2d47688
   react-native-webview: 88293a0f23eca8465c0433c023ec632930e644d0
-  react-native-yu-health: d937e8f71e5f0c8de14aa054b3e7045acf4fb649
+  react-native-yu-health: 78d76c2a3572e481e66123116d97c38c2373d56d
   React-nativeconfig: d7af5bae6da70fa15ce44f045621cf99ed24087c
   React-NativeModulesApple: 0123905d5699853ac68519607555a9a4f5c7b3ac
   React-perflogger: 8a1e1af5733004bdd91258dcefbde21e0d1faccd

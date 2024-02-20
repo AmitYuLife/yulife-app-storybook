@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { LoginMethod, IntercomHashMethod, FitKitType } from "./globalTypes";
+import { LoginMethod, IntercomHashMethod, FitKitType, YuHealthOptions } from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: LoginUser
@@ -146,6 +146,7 @@ export interface LoginUser_loginUser_user_activeChallenge_levelSlot {
   shouldEndOnLastGoalAchieved: boolean | null;
   fitKitTypes: FitKitType[] | null;
   milestones: (LoginUser_loginUser_user_activeChallenge_levelSlot_milestones | null)[] | null;
+  yuHealth: YuHealthOptions | null;
 }
 
 export interface LoginUser_loginUser_user_activeChallenge {

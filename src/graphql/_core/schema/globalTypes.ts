@@ -139,6 +139,31 @@ export enum FitKitType {
   Yoga = "Yoga",
 }
 
+export type YuHealthOptions = {
+  __typename?: "YuHealthOptions";
+  capabilities: Array<YuHealthCapability>;
+  dataType: YuHealthDataType;
+};
+
+export enum YuHealthCapability {
+  Activities = "ACTIVITIES",
+  Calories = "CALORIES",
+  CyclingDistance = "CYCLING_DISTANCE",
+  HeartRate = "HEART_RATE",
+  MindfulMinutes = "MINDFUL_MINUTES",
+  StepCount = "STEP_COUNT",
+  WorkoutMinutes = "WORKOUT_MINUTES",
+}
+
+export enum YuHealthDataType {
+  Calories = "CALORIES",
+  CyclingDistance = "CYCLING_DISTANCE",
+  HeartRate = "HEART_RATE",
+  MindfulMinutes = "MINDFUL_MINUTES",
+  StepCount = "STEP_COUNT",
+  WorkoutMinutes = "WORKOUT_MINUTES",
+}
+
 export enum GoalActionType {
   CLAIM_REWARD = "CLAIM_REWARD",
   CLOSE_EVENT = "CLOSE_EVENT",

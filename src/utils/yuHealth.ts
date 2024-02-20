@@ -1,6 +1,7 @@
 import { YuHealthCapability as TypeYuHealthCapability } from "@graphql/_core/schema/globalTypes";
-import { YuHealthCapability } from "@graphql/__generated";
-import { HealthPermissionStatus, HealthProviderCapability } from "@yu-life/react-native-yu-health";
+import { YuHealthDataType as TypeYuHealthDataType } from "@graphql/_core/schema/globalTypes";
+import { YuHealthCapability, YuHealthDataType } from "@graphql/__generated";
+import { HealthDataType, HealthPermissionStatus, HealthProviderCapability } from "@yu-life/react-native-yu-health";
 import { Alert, Linking } from "react-native";
 
 // The capabilities to request when connected
@@ -81,6 +82,30 @@ export function gqlCapabilityToCapability(
     case YuHealthCapability.WorkoutMinutes:
       return HealthProviderCapability.WORKOUT_MINUTES;
   }
+}
 
-  throw new Error(`Capability ${capability} not supported for conversion!`);
+type MergedDataType = YuHealthDataType | TypeYuHealthDataType;
+export function gqlDataTypeToDataType(dataType: MergedDataType[]): HealthDataType[];
+export function gqlDataTypeToDataType(dataType: MergedDataType): HealthDataType;
+export function gqlDataTypeToDataType(dataType: MergedDataType | MergedDataType[]): HealthDataType | HealthDataType[] {
+  if (Array.isArray(dataType)) {
+    return dataType.map(gqlDataTypeToDataType);
+  }
+
+  switch (dataType) {
+    case YuHealthDataType.StepCount:
+      return HealthDataType.steps;
+    case YuHealthDataType.MindfulMinutes:
+      return HealthDataType.mindfulMinutes;
+    case YuHealthDataType.CyclingDistance:
+      return HealthDataType.cyclingDistance;
+    case YuHealthDataType.WorkoutMinutes:
+      return HealthDataType.workoutMinutes;
+    case YuHealthDataType.Calories:
+      return HealthDataType.calories;
+    case YuHealthDataType.HeartRate:
+      return HealthDataType.heartRate;
+  }
+
+  throw new Error(`Data type ${dataType} not supported for conversion!`);
 }
