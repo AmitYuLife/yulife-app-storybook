@@ -1,4 +1,3 @@
-import { submitPersonalProductStep } from "@graphql/personalProduct";
 import { getRouteState } from "@redux/app/app.selectors";
 import { refreshUserProfile } from "@redux/user/user.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
@@ -6,6 +5,8 @@ import { Navigation } from "@navigation/main";
 import { call, select, put } from "redux-saga/effects";
 import { parseJSON } from "@utils";
 import { ProductStepAction } from "../sdui.types";
+import client from "@graphql/_core/client";
+import { gql } from "@graphql/__generated";
 
 export function* sduiActionProductUnderwritingStepFinishSaga(action: ProductStepAction) {
   const { productId, stepId, dynamicData, serverPayload } = action.payload;
@@ -17,14 +18,16 @@ export function* sduiActionProductUnderwritingStepFinishSaga(action: ProductStep
   const refetchQuery = userFeatures.yuScreenV4 ? "GetYuScreen" : "YuScreenProductSlots";
 
   try {
-    yield call(
-      submitPersonalProductStep,
-      {
-        productId,
-        stepId,
-        data: JSON.stringify({ ...serverDynamicData, ...dynamicData }),
-      },
-      [refetchQuery]
+    yield call(() =>
+      client().mutate({
+        mutation: gql("SubmitPersonalProductStepDocument"),
+        variables: {
+          productId,
+          stepId,
+          data: JSON.stringify({ ...serverDynamicData, ...dynamicData }),
+        },
+        refetchQueries: [refetchQuery],
+      })
     );
     yield put(refreshUserProfile());
     yield call(() => Navigation.pop(currentRoute));

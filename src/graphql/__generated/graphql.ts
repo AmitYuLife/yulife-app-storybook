@@ -2622,6 +2622,7 @@ export type CreateTeamMemberProduct = {
   additionalEarnings?: InputMaybe<Scalars["String"]["input"]>;
   baseSalary?: InputMaybe<Scalars["String"]["input"]>;
   baseSalaryCurrency?: InputMaybe<Scalars["String"]["input"]>;
+  benefit?: InputMaybe<Scalars["String"]["input"]>;
   category: Scalars["String"]["input"];
   employeePensionContribution?: InputMaybe<Scalars["String"]["input"]>;
   employerPensionContribution?: InputMaybe<Scalars["String"]["input"]>;
@@ -5031,7 +5032,6 @@ export type MutationLoginBusinessArgs = {
   method?: InputMaybe<LoginMethod>;
   password: Scalars["String"]["input"];
   source?: InputMaybe<LoginBusinessSource>;
-  tokenExpiration?: InputMaybe<Scalars["Int"]["input"]>;
   twoFactorToken?: InputMaybe<Scalars["String"]["input"]>;
 };
 
@@ -5110,7 +5110,6 @@ export type MutationRedeemRewardArgs = {
 
 export type MutationRefreshBusinessSessionArgs = {
   intercomHashMethod?: InputMaybe<IntercomHashMethod>;
-  tokenExpiration: Scalars["Int"]["input"];
 };
 
 export type MutationRefreshSessionArgs = {
@@ -6072,6 +6071,7 @@ export type Query = {
   getUserLeaderboards?: Maybe<Array<Maybe<Leaderboard>>>;
   getUserMobileConsent?: Maybe<MobileConsent>;
   getUserNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
+  getUserOnboardingConsents: UserOnboardingConsents;
   getUserOnboardings: UserOnboarding;
   getUserPassiveChallengesEarnRate?: Maybe<UserPassiveChallengesEarnRate>;
   getUserProfile: UserProfile;
@@ -7875,6 +7875,7 @@ export enum TeamPortalFieldType {
   Currency = "currency",
   Date = "date",
   Dropdown = "dropdown",
+  Markdown = "markdown",
   Radio = "radio",
   Text = "text",
   ToastInfo = "toastInfo",
@@ -8605,6 +8606,12 @@ export type UserOnboarding = {
   __typename?: "UserOnboarding";
   firstAppOpen: Scalars["Boolean"]["output"];
   signupComplete: Scalars["Boolean"]["output"];
+};
+
+export type UserOnboardingConsents = {
+  __typename?: "UserOnboardingConsents";
+  eula?: Maybe<Scalars["Boolean"]["output"]>;
+  privacyNotice?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type UserPassiveChallengesEarnRate = {
@@ -14187,6 +14194,12 @@ export type SubscribeToPerkMutation = {
   subscribeToPerk: { __typename?: "SubscribeToPerkResponse"; title: string; description: string; buttonLabel: string };
 };
 
+export type BackPersonalProductStepMutationVariables = Exact<{
+  productId: Scalars["String"]["input"];
+}>;
+
+export type BackPersonalProductStepMutation = { __typename?: "Mutation"; backPersonalProductStep?: boolean | null };
+
 export type GetPersonalProductStepQueryVariables = Exact<{
   productId: Scalars["String"]["input"];
 }>;
@@ -15475,6 +15488,23 @@ export type GetPersonalProductStepQuery = {
   } | null;
 };
 
+export type GetPersonalProductStepContinueModalQueryVariables = Exact<{
+  productId: Scalars["String"]["input"];
+}>;
+
+export type GetPersonalProductStepContinueModalQuery = {
+  __typename?: "Query";
+  copy?: {
+    __typename?: "PersonalProductStepContinueModal";
+    id: string;
+    heading: string;
+    subheading: string;
+    continueCtaLabel: string;
+    startOverCtaLabel: string;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  } | null;
+};
+
 export type GetPersonalProductStepDetachedQueryVariables = Exact<{
   productId: Scalars["String"]["input"];
   stepId: Scalars["String"]["input"];
@@ -15868,6 +15898,222 @@ export type GetPersonalProductStepDetachedQuery = {
     > | null;
   } | null;
 };
+
+export type GetPersonalProductStepDetachedDocumentsQueryVariables = Exact<{
+  productId: Scalars["String"]["input"];
+}>;
+
+export type GetPersonalProductStepDetachedDocumentsQuery = {
+  __typename?: "Query";
+  getPersonalProductStepDetachedDocuments?: {
+    __typename?: "ProductUnderwritingStep";
+    stepId: string;
+    customerProductId: string;
+    body?: Array<
+      | { __typename: "ContentItemAgePercentCoverPicker" }
+      | { __typename: "ContentItemAppDownloadPrompt" }
+      | { __typename: "ContentItemButton" }
+      | { __typename: "ContentItemCollapsingHeaderAgePercentProductInfo" }
+      | { __typename: "ContentItemCollapsingHeaderProductInfo" }
+      | { __typename: "ContentItemConfirm" }
+      | { __typename: "ContentItemCostPayoutBenefitCard" }
+      | { __typename: "ContentItemCoverPicker" }
+      | { __typename: "ContentItemDatePicker" }
+      | { __typename: "ContentItemDropdownInput" }
+      | { __typename: "ContentItemFade" }
+      | { __typename: "ContentItemForm" }
+      | { __typename: "ContentItemFullScreenLottieSwiper" }
+      | { __typename: "ContentItemFullScreenSwiper" }
+      | { __typename: "ContentItemGpDetails" }
+      | { __typename: "ContentItemHeaderBar" }
+      | { __typename: "ContentItemHint" }
+      | { __typename: "ContentItemImage" }
+      | { __typename: "ContentItemInfoButton" }
+      | { __typename: "ContentItemInfoCard" }
+      | { __typename: "ContentItemList" }
+      | { __typename: "ContentItemLottie" }
+      | { __typename: "ContentItemMarkdown" }
+      | { __typename: "ContentItemMultiButton" }
+      | { __typename: "ContentItemMultiSelect" }
+      | { __typename: "ContentItemOverlay" }
+      | { __typename: "ContentItemPackageCardPower" }
+      | { __typename: "ContentItemPackageCards" }
+      | { __typename: "ContentItemPad" }
+      | { __typename: "ContentItemPerks" }
+      | { __typename: "ContentItemPerksComparison" }
+      | {
+          __typename: "ContentItemPersonalProductDocuments";
+          id: string;
+          headingImage: {
+            __typename?: "ContentItemImage";
+            id: string;
+            image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+          };
+          headingMarkdown: {
+            __typename?: "ContentItemMarkdown";
+            id: string;
+            markdown: string;
+            parsedMarkdown?: string | null;
+          };
+          documents: Array<{
+            __typename?: "ContentItemPersonalProductDocument";
+            id: string;
+            linkLabel: string;
+            url: string;
+            rightIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+            leftIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          }>;
+        }
+      | { __typename: "ContentItemPersonalProductFaqs" }
+      | { __typename: "ContentItemPersonalProductInfo" }
+      | { __typename: "ContentItemPersonalProductPreview" }
+      | { __typename: "ContentItemPersonalProductReviewItem" }
+      | { __typename: "ContentItemPersonalProductSelectPaymentButton" }
+      | { __typename: "ContentItemProcessingTimer" }
+      | { __typename: "ContentItemProgressBar" }
+      | { __typename: "ContentItemProgressSteps" }
+      | { __typename: "ContentItemRadio" }
+      | { __typename: "ContentItemRewardsBanner" }
+      | { __typename: "ContentItemRowIconTextBanner" }
+      | { __typename: "ContentItemScrollPicker" }
+      | { __typename: "ContentItemScrollableItemsPicker" }
+      | { __typename: "ContentItemSearchPostcode" }
+      | { __typename: "ContentItemSelectedPackageAccordion" }
+      | { __typename: "ContentItemSelectedPackageCard" }
+      | { __typename: "ContentItemSelectedPackageCards" }
+      | { __typename: "ContentItemText" }
+      | { __typename: "ContentItemTextInput" }
+      | { __typename: "ContentItemYuCoinPower" }
+      | { __typename: "ContentItemYugiConfirm" }
+      | null
+    > | null;
+  } | null;
+};
+
+export type GetPersonalProductStepDetachedFaqsQueryVariables = Exact<{
+  productId: Scalars["String"]["input"];
+}>;
+
+export type GetPersonalProductStepDetachedFaqsQuery = {
+  __typename?: "Query";
+  getPersonalProductStepDetachedFaqs?: {
+    __typename?: "ProductUnderwritingStep";
+    stepId: string;
+    customerProductId: string;
+    body?: Array<
+      | { __typename: "ContentItemAgePercentCoverPicker" }
+      | { __typename: "ContentItemAppDownloadPrompt" }
+      | { __typename: "ContentItemButton" }
+      | { __typename: "ContentItemCollapsingHeaderAgePercentProductInfo" }
+      | { __typename: "ContentItemCollapsingHeaderProductInfo" }
+      | { __typename: "ContentItemConfirm" }
+      | { __typename: "ContentItemCostPayoutBenefitCard" }
+      | { __typename: "ContentItemCoverPicker" }
+      | { __typename: "ContentItemDatePicker" }
+      | { __typename: "ContentItemDropdownInput" }
+      | { __typename: "ContentItemFade" }
+      | { __typename: "ContentItemForm" }
+      | { __typename: "ContentItemFullScreenLottieSwiper" }
+      | { __typename: "ContentItemFullScreenSwiper" }
+      | { __typename: "ContentItemGpDetails" }
+      | { __typename: "ContentItemHeaderBar" }
+      | { __typename: "ContentItemHint" }
+      | { __typename: "ContentItemImage" }
+      | { __typename: "ContentItemInfoButton" }
+      | { __typename: "ContentItemInfoCard" }
+      | { __typename: "ContentItemList" }
+      | { __typename: "ContentItemLottie" }
+      | { __typename: "ContentItemMarkdown" }
+      | { __typename: "ContentItemMultiButton" }
+      | { __typename: "ContentItemMultiSelect" }
+      | { __typename: "ContentItemOverlay" }
+      | { __typename: "ContentItemPackageCardPower" }
+      | { __typename: "ContentItemPackageCards" }
+      | { __typename: "ContentItemPad" }
+      | { __typename: "ContentItemPerks" }
+      | { __typename: "ContentItemPerksComparison" }
+      | { __typename: "ContentItemPersonalProductDocuments" }
+      | {
+          __typename: "ContentItemPersonalProductFaqs";
+          id: string;
+          headingImage: {
+            __typename?: "ContentItemImage";
+            id: string;
+            image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+          };
+          headingMarkdown: {
+            __typename?: "ContentItemMarkdown";
+            id: string;
+            markdown: string;
+            parsedMarkdown?: string | null;
+          };
+          faqs: Array<{
+            __typename?: "ContentItemPersonalProductFaq";
+            id: string;
+            accessButtonText: string;
+            content: {
+              __typename?: "ContentItemMarkdown";
+              id: string;
+              markdown: string;
+              parsedMarkdown?: string | null;
+              title?: string | null;
+              styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+            };
+            links?: Array<{
+              __typename?: "ContentItemPersonalProductFaqLink";
+              id: string;
+              contentItemDocumentId: string;
+              label: string;
+            }> | null;
+          }>;
+        }
+      | { __typename: "ContentItemPersonalProductInfo" }
+      | { __typename: "ContentItemPersonalProductPreview" }
+      | { __typename: "ContentItemPersonalProductReviewItem" }
+      | { __typename: "ContentItemPersonalProductSelectPaymentButton" }
+      | { __typename: "ContentItemProcessingTimer" }
+      | { __typename: "ContentItemProgressBar" }
+      | { __typename: "ContentItemProgressSteps" }
+      | { __typename: "ContentItemRadio" }
+      | { __typename: "ContentItemRewardsBanner" }
+      | { __typename: "ContentItemRowIconTextBanner" }
+      | { __typename: "ContentItemScrollPicker" }
+      | { __typename: "ContentItemScrollableItemsPicker" }
+      | { __typename: "ContentItemSearchPostcode" }
+      | { __typename: "ContentItemSelectedPackageAccordion" }
+      | { __typename: "ContentItemSelectedPackageCard" }
+      | { __typename: "ContentItemSelectedPackageCards" }
+      | { __typename: "ContentItemText" }
+      | { __typename: "ContentItemTextInput" }
+      | { __typename: "ContentItemYuCoinPower" }
+      | { __typename: "ContentItemYugiConfirm" }
+      | null
+    > | null;
+  } | null;
+};
+
+export type NormalisePersonalProductStepMutationVariables = Exact<{
+  productId: Scalars["String"]["input"];
+}>;
+
+export type NormalisePersonalProductStepMutation = {
+  __typename?: "Mutation";
+  normalisePersonalProductStep?: boolean | null;
+};
+
+export type ResetPersonalProductStepMutationVariables = Exact<{
+  productId: Scalars["String"]["input"];
+}>;
+
+export type ResetPersonalProductStepMutation = { __typename?: "Mutation"; resetPersonalProductStep?: boolean | null };
+
+export type SubmitPersonalProductStepMutationVariables = Exact<{
+  stepId: Scalars["String"]["input"];
+  productId: Scalars["String"]["input"];
+  data: Scalars["String"]["input"];
+}>;
+
+export type SubmitPersonalProductStepMutation = { __typename?: "Mutation"; submitPersonalProductStep?: boolean | null };
 
 export type CreateOrUpdateBeneficiaryMutationVariables = Exact<{
   beneficiary?: InputMaybe<CustomerBeneficiaryUpdate>;
@@ -37210,6 +37456,39 @@ export const SubscribeToPerkDocument = {
     },
   ],
 } as unknown as DocumentNode<SubscribeToPerkMutation, SubscribeToPerkMutationVariables>;
+export const BackPersonalProductStepDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "BackPersonalProductStep" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "productId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backPersonalProductStep" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "productId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "productId" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<BackPersonalProductStepMutation, BackPersonalProductStepMutationVariables>;
 export const GetPersonalProductStepDocument = {
   kind: "Document",
   definitions: [
@@ -40336,6 +40615,64 @@ export const GetPersonalProductStepDocument = {
     },
   ],
 } as unknown as DocumentNode<GetPersonalProductStepQuery, GetPersonalProductStepQueryVariables>;
+export const GetPersonalProductStepContinueModalDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetPersonalProductStepContinueModal" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "productId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "copy" },
+            name: { kind: "Name", value: "getPersonalProductStepContinueModal" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "productId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "productId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "heading" } },
+                { kind: "Field", name: { kind: "Name", value: "subheading" } },
+                { kind: "Field", name: { kind: "Name", value: "continueCtaLabel" } },
+                { kind: "Field", name: { kind: "Name", value: "startOverCtaLabel" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetPersonalProductStepContinueModalQuery,
+  GetPersonalProductStepContinueModalQueryVariables
+>;
 export const GetPersonalProductStepDetachedDocument = {
   kind: "Document",
   definitions: [
@@ -41538,6 +41875,401 @@ export const GetPersonalProductStepDetachedDocument = {
     },
   ],
 } as unknown as DocumentNode<GetPersonalProductStepDetachedQuery, GetPersonalProductStepDetachedQueryVariables>;
+export const GetPersonalProductStepDetachedDocumentsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetPersonalProductStepDetachedDocuments" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "productId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getPersonalProductStepDetachedDocuments" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "productId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "productId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "stepId" } },
+                { kind: "Field", name: { kind: "Name", value: "customerProductId" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "body" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "ContentItemPersonalProductDocuments" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "headingImage" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "id" } },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "image" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        { kind: "Field", name: { kind: "Name", value: "id" } },
+                                        { kind: "Field", name: { kind: "Name", value: "uri" } },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "headingMarkdown" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "id" } },
+                                  { kind: "Field", name: { kind: "Name", value: "markdown" } },
+                                  { kind: "Field", name: { kind: "Name", value: "parsedMarkdown" } },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "documents" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "id" } },
+                                  { kind: "Field", name: { kind: "Name", value: "linkLabel" } },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "rightIcon" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        { kind: "Field", name: { kind: "Name", value: "id" } },
+                                        { kind: "Field", name: { kind: "Name", value: "uri" } },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "leftIcon" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        { kind: "Field", name: { kind: "Name", value: "id" } },
+                                        { kind: "Field", name: { kind: "Name", value: "uri" } },
+                                      ],
+                                    },
+                                  },
+                                  { kind: "Field", name: { kind: "Name", value: "url" } },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetPersonalProductStepDetachedDocumentsQuery,
+  GetPersonalProductStepDetachedDocumentsQueryVariables
+>;
+export const GetPersonalProductStepDetachedFaqsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetPersonalProductStepDetachedFaqs" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "productId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getPersonalProductStepDetachedFaqs" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "productId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "productId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "stepId" } },
+                { kind: "Field", name: { kind: "Name", value: "customerProductId" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "body" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "ContentItemPersonalProductFaqs" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "headingImage" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "id" } },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "image" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        { kind: "Field", name: { kind: "Name", value: "id" } },
+                                        { kind: "Field", name: { kind: "Name", value: "uri" } },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "headingMarkdown" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "id" } },
+                                  { kind: "Field", name: { kind: "Name", value: "markdown" } },
+                                  { kind: "Field", name: { kind: "Name", value: "parsedMarkdown" } },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "faqs" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "id" } },
+                                  { kind: "Field", name: { kind: "Name", value: "accessButtonText" } },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "content" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        { kind: "Field", name: { kind: "Name", value: "id" } },
+                                        { kind: "Field", name: { kind: "Name", value: "markdown" } },
+                                        { kind: "Field", name: { kind: "Name", value: "parsedMarkdown" } },
+                                        { kind: "Field", name: { kind: "Name", value: "title" } },
+                                        {
+                                          kind: "Field",
+                                          name: { kind: "Name", value: "styles" },
+                                          selectionSet: {
+                                            kind: "SelectionSet",
+                                            selections: [
+                                              { kind: "Field", name: { kind: "Name", value: "property" } },
+                                              { kind: "Field", name: { kind: "Name", value: "value" } },
+                                            ],
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "links" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        { kind: "Field", name: { kind: "Name", value: "id" } },
+                                        { kind: "Field", name: { kind: "Name", value: "contentItemDocumentId" } },
+                                        { kind: "Field", name: { kind: "Name", value: "label" } },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetPersonalProductStepDetachedFaqsQuery, GetPersonalProductStepDetachedFaqsQueryVariables>;
+export const NormalisePersonalProductStepDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "NormalisePersonalProductStep" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "productId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "normalisePersonalProductStep" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "productId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "productId" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<NormalisePersonalProductStepMutation, NormalisePersonalProductStepMutationVariables>;
+export const ResetPersonalProductStepDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "ResetPersonalProductStep" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "productId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "resetPersonalProductStep" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "productId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "productId" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ResetPersonalProductStepMutation, ResetPersonalProductStepMutationVariables>;
+export const SubmitPersonalProductStepDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SubmitPersonalProductStep" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "stepId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "productId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "data" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "submitPersonalProductStep" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "stepId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "stepId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "productId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "productId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "data" },
+                value: { kind: "Variable", name: { kind: "Name", value: "data" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SubmitPersonalProductStepMutation, SubmitPersonalProductStepMutationVariables>;
 export const CreateOrUpdateBeneficiaryDocument = {
   kind: "Document",
   definitions: [

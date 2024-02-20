@@ -4,20 +4,11 @@ import { Loading, TextTemplate, Image, Pad } from "@atoms";
 import { Button, LinkButton } from "@molecules";
 import { Style } from "@styles";
 import { useMutation, useQuery } from "@apollo/client";
-import {
-  GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_CONTINUE_MODAL,
-  GQL_MUTATION_RESET_PERSONAL_PRODUCT_STEP,
-} from "@graphql/personalProduct";
-import {
-  GetPersonalProductStepContinueModal as GqlModal,
-  GetPersonalProductStepContinueModalVariables as GqlModalVars,
-  ResetPersonalProductStep,
-  ResetPersonalProductStepVariables,
-} from "@graphql/_core/schema";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { GenericHeadingAbsolute, TOP_BAR_HEIGHT } from "@organisms";
+import { gql } from "@graphql/__generated";
 
 interface IProps {
   componentId?: string;
@@ -27,13 +18,12 @@ interface IProps {
 const IMAGE_SIZE = Style.adjust(Style.isAnyIphoneX() || Style.isTallAndroid() ? 320 : 240);
 
 export default function PersonalProductStepContinueModal({ productId, componentId }: IProps) {
-  const { data, loading } = useQuery<GqlModal, GqlModalVars>(GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_CONTINUE_MODAL, {
+  const { data, loading } = useQuery(gql("GetPersonalProductStepContinueModalDocument"), {
     variables: { productId },
     fetchPolicy: "no-cache",
   });
-  const [resetStep] = useMutation<ResetPersonalProductStep, ResetPersonalProductStepVariables>(
-    GQL_MUTATION_RESET_PERSONAL_PRODUCT_STEP
-  );
+
+  const [resetStep] = useMutation(gql("ResetPersonalProductStepDocument"));
 
   const handleClose = React.useCallback(() => Navigation.dismissModal(componentId), [componentId]);
 

@@ -1,0 +1,3 @@
+mutation SubmitPersonalProductStep($stepId: String!, $productId: String!, $data: String!) {
+  submitPersonalProductStep(stepId: $stepId, productId: $productId, data: $data)
+}

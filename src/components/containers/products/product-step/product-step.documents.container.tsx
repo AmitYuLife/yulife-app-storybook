@@ -1,17 +1,13 @@
 import React, { memo, useMemo, useState } from "react";
 import { ActivityIndicator, StyleSheet, View, ViewStyle, ScrollView, LayoutChangeEvent } from "react-native";
 import { useQuery } from "@apollo/client";
-import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED_DOCUMENTS } from "@graphql/personalProduct/getPersonalProductStepDetachedDocuments.gql";
-import { GetPersonalProductStepDetachedDocuments_getPersonalProductStepDetachedDocuments_body as GPPSSQ_Body } from "@graphql/_core/schema";
-import {
-  GetPersonalProductStepDetachedDocuments,
-  GetPersonalProductStepDetachedDocumentsVariables,
-} from "@graphql/_core/schema";
 import { ProductStepContentItemHeaderDetached } from "./subcomponents/detached/product-step.header.detached";
 import { ContentItemDocuments } from "@components/sdui";
 import { Style, TOP_BAR } from "@styles";
 import { ProductStepDetachedNavigationContext } from "./product-step-detached-navigation.context";
-import { SduiActionType } from "@graphql/__generated";
+import { SduiActionType, gql, GetPersonalProductStepDetachedDocumentsQuery } from "@graphql/__generated";
+
+type GPPSSQ_Body = GetPersonalProductStepDetachedDocumentsQuery["getPersonalProductStepDetachedDocuments"]["body"][0];
 
 const HEADER_HEIGHT_ESTIMATE = TOP_BAR.TOP_BAR_WITH_PAD;
 const EXTRA_PADDING = Style.adjust(32);
@@ -36,10 +32,7 @@ const ProductStepDetachedContainer = (props: any) => {
     });
   };
 
-  const { data, loading } = useQuery<
-    GetPersonalProductStepDetachedDocuments,
-    GetPersonalProductStepDetachedDocumentsVariables
-  >(GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED_DOCUMENTS, {
+  const { data, loading } = useQuery(gql("GetPersonalProductStepDetachedDocumentsDocument"), {
     variables: { productId },
     fetchPolicy: "no-cache",
   });
