@@ -2,7 +2,7 @@ import { navigation, textVisibleAtIndex } from "@navigation";
 import * as ids from "@ids"
 import * as constants from "../_resources/constants"
 import { screens } from "@appScreens";
-import { deeperEnvironmentSlot, yuScreenSlot } from "../_resources/types";
+import { deeperEnvironmentSlot, sassScreenContent, yuScreenSlot } from "../_resources/types";
 
 export const {
   scrollUntilTextVisible,
@@ -84,4 +84,18 @@ const provideCorrectYucoinPill = (owned: boolean, started: boolean) => {
 export const noProductsDeeperEnvironmentVisible = async () => {
   await idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.noProductsImg))()
   await idVisible(ids.TEXT_TEMPLATE(constants.noProductsMessage, "h3"))()
+}
+
+export const correctSassScreenVisible = (screen: sassScreenContent) => async () => {
+  await idVisible(ids.TEXT_TEMPLATE(screen.title))()
+  await idVisible(ids.TEXT_TEMPLATE(screen.heading, "h3"))()
+  screen.slots.forEach((slot) => async () => {
+    await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, slot.text,"down")()
+    await idVisible(ids.BOX_OPTION_TITLE(slot.title))()
+    await textVisible(slot.text)()
+    await idVisible(ids.RIGHT_SIDE_IMAGE_BOX_OPTION(slot.img))()
+  })
+  await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.sassScreenInfoMessage, "down")()
+  await textVisible(constants.sassScreenInfoMessage)()
+  await scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(screen.title),"up")()
 }

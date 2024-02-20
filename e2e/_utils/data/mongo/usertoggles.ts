@@ -2202,6 +2202,7 @@ export const CUSTOMER_123_TOGGLES = {
       showYuScreenFurtherProductList: true,
       hasCoveaFibActive: true,
       hasBupaDentActive: true,
+      enableSaasProductDetailsPage: true,
     },
   },
 } as IDatabaseItem;
