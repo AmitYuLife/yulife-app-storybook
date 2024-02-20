@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { IntercomHashMethod, FitKitType } from "./globalTypes";
+import { IntercomHashMethod, FitKitType, YuHealthOptions } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetCurrentUser
@@ -145,6 +145,7 @@ export interface GetCurrentUser_getCurrentUser_activeChallenge_levelSlot {
   unit: string | null;
   shouldEndOnLastGoalAchieved: boolean | null;
   fitKitTypes: FitKitType[] | null;
+  yuHealth: YuHealthOptions | null;
   milestones: (GetCurrentUser_getCurrentUser_activeChallenge_levelSlot_milestones | null)[] | null;
 }
 

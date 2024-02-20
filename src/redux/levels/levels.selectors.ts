@@ -2,6 +2,7 @@ import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { createSelector } from "reselect";
 import {
   CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot_milestones,
+  CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot_yuHealth,
   CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_yuniversalChest,
 } from "@graphql/_core/schema";
 import { IReduxState } from "../_core/reducers";
@@ -36,6 +37,7 @@ export interface IActiveLevel {
   fitKitTypes: FitKitType[];
   shouldEndOnLastGoalAchieved: boolean;
   milestones: CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot_milestones[];
+  yuHealth?: CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot_yuHealth;
   milestonesLog: any;
   rating: number;
   score: number;

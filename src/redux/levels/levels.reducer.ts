@@ -6,8 +6,8 @@ import {
   LoginUser,
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
   UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge as QuestMapActiveChallenge,
-  GetUserActiveChallenge_getUserActiveChallenge,
   GetUserCoinLedger_coinLedger,
+  GetUserActiveChallenge_getUserActiveChallenge,
 } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
@@ -171,6 +171,7 @@ const getUserSuccess = (state: ILevelsStore, data: GetCurrentUser): ILevelsStore
     subtype: data?.getCurrentUser?.activeChallenge?.levelSlot?.subtype || "",
     unit: data?.getCurrentUser?.activeChallenge?.levelSlot?.unit || state.active.unit || "",
     challengeIsActive: !!data?.getCurrentUser?.activeChallenge?.challenge?.id,
+    yuHealth: data.getCurrentUser?.activeChallenge?.levelSlot?.yuHealth,
   },
   challengesDoneToday: data?.getCurrentUser?.challengesDoneToday || 0,
   dailyChallengeAmountAvailable: data?.getCurrentUser?.dailyChallengeAmountAvailable,
@@ -182,6 +183,7 @@ const loginUserSuccess = (state: ILevelsStore, data: LoginUser): ILevelsStore =>
     ...state.active,
     shouldEndOnLastGoalAchieved: data?.loginUser?.user?.activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved,
     fitKitTypes: data?.loginUser?.user?.activeChallenge?.levelSlot?.fitKitTypes || [],
+    yuHealth: data?.loginUser?.user?.activeChallenge?.levelSlot?.yuHealth,
     endDateTime: data?.loginUser?.user?.activeChallenge?.challenge?.endDateTime || "",
     levelSlotId: data?.loginUser?.user?.activeChallenge?.challenge?.levelSlotId || "",
     milestones: data?.loginUser?.user?.activeChallenge?.levelSlot?.milestones || [],
@@ -214,6 +216,7 @@ const getActiveChallengeSuccess = (
     isLoading: false,
     shouldEndOnLastGoalAchieved: data?.levelSlot?.shouldEndOnLastGoalAchieved,
     fitKitTypes: data?.levelSlot?.fitKitTypes || [],
+    yuHealth: data?.levelSlot?.yuHealth,
     endDateTime: data?.challenge?.endDateTime || "",
     levelSlotId: data?.challenge?.levelSlotId || "",
     milestones: data?.levelSlot?.milestones || [],

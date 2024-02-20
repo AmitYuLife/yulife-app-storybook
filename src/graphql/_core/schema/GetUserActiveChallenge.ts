@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { FitKitType } from "./globalTypes";
+import { FitKitType, YuHealthOptions } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetUserActiveChallenge
@@ -50,6 +50,7 @@ export interface GetUserActiveChallenge_getUserActiveChallenge_levelSlot {
   unit: string | null;
   shouldEndOnLastGoalAchieved: boolean | null;
   fitKitTypes: FitKitType[] | null;
+  yuHealth: YuHealthOptions | null;
   milestones: (GetUserActiveChallenge_getUserActiveChallenge_levelSlot_milestones | null)[] | null;
 }
 

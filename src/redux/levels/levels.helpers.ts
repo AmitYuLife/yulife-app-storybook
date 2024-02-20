@@ -1,8 +1,8 @@
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import RNFitKit from "@services/fitkit/fitkit.service";
-import { queryPedometerFromDate } from "@yu-life/react-native-yu-health";
+import { HealthDataType, ISampleQueryResponse, queryPedometerFromDate } from "@yu-life/react-native-yu-health";
 import Logger from "@services/logging/logger";
-import { DATE_FORMAT_WITH_TZ, Unpacked, getStartAndEndDateTimesWithTimezone } from "@utils";
+import { DATE_FORMAT_WITH_TZ, Unpacked, getStartAndEndDateTimesWithTimezone, gqlDataTypeToDataType } from "@utils";
 import moment from "moment";
 import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
 import { IActiveLevel } from "./levels.selectors";
@@ -10,6 +10,7 @@ import { delay } from "@utils/misc";
 import { FitKitSampleType, GenericFitKitResponseType } from "@services/fitkit/fitkit.types";
 import { IFeature } from "@redux/user/user.reducer";
 import { Platform } from "react-native";
+import { yuHealthSampleQuery } from "@services/fitkit/yu-health.helpers";
 
 const PROTECTED_DATA_INACCESSIBLE_ERROR = "Protected health data is inaccessible";
 const RETRIES = 5;
@@ -23,7 +24,7 @@ export async function logEmptyResultDebugData({
   activeChallenge: IActiveLevel;
   blacklistApps: string[];
   features: IFeature;
-  result: Unpacked<typeof getEndResult>;
+  result: Unpacked<typeof getEndResultFitkit>;
 }) {
   const queryData = {
     startTime: moment().subtract(1, "day").startOf("day").format(),
@@ -47,7 +48,123 @@ export async function logEmptyResultDebugData({
   Logger.logMixpanelEvent("end_challenge_no_data", logData);
 }
 
-export async function getEndResult(
+/**
+ * YuHealth - getPedometerEndResult
+ * @remarks
+ * Gets the end results for a challenge that is steps
+ */
+const getPedometerEndResult = async (activeLevel: IActiveLevel, blacklistApps: string[], features: IFeature) => {
+  const { startDateTime, endDateTime, score } = activeLevel;
+
+  // If we are querying step count, we should use pedometer data instead of sample data
+  const { start, end } = getStartAndEndDateTimesWithTimezone(startDateTime, endDateTime);
+  const pedometerResults = await queryPedometerFromDate({
+    startTime: moment(start).toDate(),
+    endTime: moment(end).toDate(),
+    queryOptions: {
+      blacklistApps: blacklistApps,
+      disableUserEntries: features.disableUserEntries,
+    },
+  });
+
+  const pedometerValue = pedometerResults?.result.value ?? 0;
+
+  Logger.logMixpanelEvent("end_challenge_result", {
+    startDateTime,
+    endDateTime,
+    start,
+    end,
+    score,
+    pedometerValue,
+  });
+
+  const value = Math.max(pedometerValue, score);
+  return { value };
+};
+
+/**
+ * YuHealth - getNonPedometerEndResult
+ * @remarks
+ * Gets the end results for a challenge that is not steps
+ */
+const getNonPedometerEndResult = async ({
+  features,
+  activeLevel,
+  blacklistApps,
+}: {
+  activeLevel: IActiveLevel;
+  blacklistApps: string[];
+  features: IFeature;
+}) => {
+  const { startDateTime, endDateTime, yuHealth } = activeLevel;
+
+  const dataType = gqlDataTypeToDataType(yuHealth?.dataType);
+  const sharedParams = {
+    features,
+    queryOptions: { blacklistApps, disableUserEntries: features.disableUserEntries },
+    metadata: { file: "levels.helpers" },
+  };
+
+  const queryResult = await yuHealthSampleQuery({
+    params: {
+      dataType,
+      startTime: moment(startDateTime).toDate(),
+      endTime: moment(endDateTime).toDate(),
+    },
+    ...sharedParams,
+  });
+
+  // We do this to effectively filter blacklist apps, user entries etc which is impossible with aggregate queries
+  const sumSamples = (results: ISampleQueryResponse[]) => results.reduce((acc, item) => acc + item.value, 0);
+
+  if (queryResult.length > 0) {
+    return {
+      value: sumSamples(queryResult),
+    };
+  }
+
+  // 3rd party apps (calm/headspace/etc) are not consistent in saving the correct times if timezone is changed
+  // So we'll make an additional query to be 1 hour before and 1 hour after if we find no data on the initial query
+  const startEarly = moment(startDateTime).subtract(1, "hours").toDate();
+  const endLater = moment(endDateTime).add(1, "hours").toDate();
+  const earlyQueryResult = await yuHealthSampleQuery({
+    params: {
+      dataType,
+      startTime: startEarly,
+      endTime: endLater,
+    },
+    ...sharedParams,
+  });
+
+  if (earlyQueryResult.length > 0) {
+    return {
+      value: sumSamples(earlyQueryResult),
+    };
+  }
+
+  return {
+    value: 0,
+  };
+};
+
+export async function getEndResult(activeLevel: IActiveLevel, blacklistApps: string[], features: IFeature) {
+  if (!features.tempGameEnableYuHealth) {
+    return getEndResultFitkit(activeLevel, blacklistApps, features);
+  }
+
+  const { startDateTime, endDateTime, yuHealth } = activeLevel;
+  if (!yuHealth?.dataType) {
+    return { startDateTime, endDateTime, value: 0 };
+  }
+
+  if (gqlDataTypeToDataType(yuHealth.dataType) === HealthDataType.steps) {
+    return await getPedometerEndResult(activeLevel, blacklistApps, features);
+  }
+
+  return getNonPedometerEndResult({ activeLevel, blacklistApps, features });
+}
+
+export async function getEndResultFitkit(
   { startDateTime, endDateTime, score, subtype, fitKitTypes }: IActiveLevel,
   blackListApps: string[],
   features: Record<string, boolean> = {}
@@ -118,21 +235,8 @@ export async function getEndResult(
     // Android: queries google fit history, steps from sensor are stored in score
     // iOS: fetches steps from sensors
 
-    let pedometerValue;
-    if (features.tempGameEnableYuHealth) {
-      const pedometerResults = await queryPedometerFromDate({
-        startTime: moment(start).toDate(),
-        endTime: moment(end).toDate(),
-        queryOptions: {
-          blacklistApps: blackListApps,
-          disableUserEntries: features.disableUserEntries,
-        },
-      });
-      pedometerValue = pedometerResults?.result.value || 0;
-    } else {
-      const pedometerResults = await RNFitKit.queryPedometerFromDate(start, end, { blackListApps });
-      pedometerValue = pedometerResults?.steps || 0;
-    }
+    const pedometerResults = await RNFitKit.queryPedometerFromDate(start, end, { blackListApps });
+    const pedometerValue = pedometerResults?.steps || 0;
 
     Logger.logMixpanelEvent("end_challenge_result", {
       startDateTime,
