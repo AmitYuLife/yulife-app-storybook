@@ -24,6 +24,7 @@ export type ApiConfig = {
   mixpanelHost: Scalars["String"]["output"];
   mixpanelKey: Scalars["String"]["output"];
   sduiStaticDeeplinks: Array<ApiConfigSduiStaticDeepLink>;
+  sessionTimeout: Scalars["Int"]["output"];
   stripeKey: Scalars["String"]["output"];
   urls: ApiConfigUrls;
 };
@@ -13178,6 +13179,7 @@ export type GetPublicYuApiConfigQuery = {
     language: string;
     stripeKey: string;
     mixpanelKey: string;
+    sessionTimeout: number;
     urls: {
       __typename?: "APIConfigUrls";
       members: string;
@@ -33981,6 +33983,7 @@ export const GetPublicYuApiConfigDocument = {
                     ],
                   },
                 },
+                { kind: "Field", name: { kind: "Name", value: "sessionTimeout" } },
               ],
             },
           },

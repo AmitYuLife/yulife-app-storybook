@@ -62,6 +62,8 @@ export const getBlackListedNavBarTabs = createSelector(reducer, blackListedNavBa
 const userEvents = (state: State) => state.events || [];
 export const getUserEvents = createSelector(reducer, userEvents);
 
+export const sessionTimestamp = (state: State) => state.sessionTimestamp;
+
 export const getUserActiveEvents = createSelector(getUserEvents, (events) =>
   events.filter((event) => event.status !== UserProfileEventStatus.completed)
 );

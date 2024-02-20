@@ -1,6 +1,12 @@
 import { REHYDRATE } from "redux-persist";
 import { takeLatest } from "redux-saga/effects";
-import { AUTHENTICATED, SET_MAIN_ROOT, UPDATE_APP_STATE, UPDATE_CURRENT_ROUTE } from "../../app/app.actions";
+import {
+  AUTHENTICATED,
+  SET_MAIN_ROOT,
+  UPDATE_APP_STATE,
+  UPDATE_APP_STATE_ACTIVE,
+  UPDATE_CURRENT_ROUTE,
+} from "../../app/app.actions";
 import { CHALLENGE_RESET_SUCCESS } from "../../levels/levels.actions";
 import {
   FITKIT_CONSENT_AUTHORISED,
@@ -46,6 +52,7 @@ import fetchUserDataOnAuthenticatedSaga from "./fetchUserDataOnAuthenticated.sag
 import { generateUserDataSaga } from "../user.helpers";
 import getUserOnUpdatedDateSaga from "./getUserOnUpdatedDateSaga.saga";
 import setSuspendedTabs from "./setSuspendedTabs.saga";
+import trackUserSession from "./trackUserSession.saga";
 
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
@@ -75,4 +82,5 @@ export default [
   takeLatest([UPDATE_USER_PROFILE, UPDATE_USER_PROFILE_EVENTS], showEventFinishDialog),
   takeLatest(SET_DEVICE_LOCALE, changeUserLocaleSaga),
   takeLatest([REHYDRATE, UPDATE_USER_PROFILE], setSuspendedTabs),
+  takeLatest([UPDATE_APP_STATE_ACTIVE, AUTHENTICATED], trackUserSession),
 ];
