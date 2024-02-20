@@ -30,8 +30,8 @@ import {
   UPDATE_USER_GOAL,
   REMOVE_USER_PROFILE_EVENT,
   MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE,
+  GET_USER_SESSION_SUCCESS,
 } from "./user.actions";
-import { AUTHENTICATED } from "@redux/app/app.actions";
 import { reduceUserFeatures } from "./user.helpers";
 import moment from "moment";
 import { features } from "./features.data";
@@ -111,6 +111,7 @@ export interface IUserStore {
   };
   events: Partial<Events>[];
   tabNotifications: MobileTabs[];
+  sessionTimestamp: number;
 }
 
 export const getInitialState = (sessionCount: number = 0): IUserStore => ({
@@ -170,6 +171,7 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   },
   events: [],
   tabNotifications: [],
+  sessionTimestamp: 0,
 });
 
 export const userReducer = (state: IUserStore = getInitialState(), action: SyncAction): IUserStore => {
@@ -230,10 +232,11 @@ export const userReducer = (state: IUserStore = getInitialState(), action: SyncA
     case MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE:
       return markNotificationsAsViewedByType(state, action.payload);
 
-    case AUTHENTICATED:
+    case GET_USER_SESSION_SUCCESS:
       return {
         ...state,
         sessionCount: state.sessionCount + 1,
+        sessionTimestamp: Date.now(),
       };
     default:
       return state;

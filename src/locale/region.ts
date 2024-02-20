@@ -33,6 +33,7 @@ type RegionConfig = {
     stepId: string;
     dynamicRouteId?: string;
   }[];
+  sessionTimeout: number;
 };
 
 type RegionStorage = {

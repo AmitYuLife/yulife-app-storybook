@@ -8,7 +8,7 @@ import {
   setForceUpdateRoot,
   showUpdateAppModal,
 } from "@navigation/root";
-import { refreshUserToken } from "@redux/user/user.actions";
+import { getUserSessionSuccess, refreshUserToken } from "@redux/user/user.actions";
 import Logger from "@services/logging/logger";
 import { getToken } from "@services/storage";
 import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
@@ -23,7 +23,7 @@ interface IMainRootPayload {
   type: string;
 }
 
-interface TokenAndMobileUpgrateStatus {
+export interface ITokenAndMobileUpgradeStatus {
   tokenStatus: TokenStatus;
   mobileUpgrade: GetSession_mobileUpgradeRequired;
 }
@@ -39,32 +39,7 @@ export default function* setMainRootSaga({ payload }: IMainRootPayload) {
     if (connectionInfo.type === "none") {
       yield call(setOfflineRoot);
     } else {
-      const { tokenStatus, mobileUpgrade }: TokenAndMobileUpgrateStatus = yield call(getTokenAndMobileUpgrateStatus);
-
-      if (tokenStatus === "refreshing") {
-        yield put(refreshUserToken());
-      }
-
-      /**
-       * If tokenStatus is null means there is an error, do not set up
-       * authenticated root to avoid showing the app when some requests
-       * are timing out
-       **/
-      if (!!tokenStatus && tokenStatus !== "invalid") {
-        if (mobileUpgrade && !mobileUpgrade.isDismissable) {
-          yield call(setForceUpdateRoot, {
-            title: mobileUpgrade.title,
-            description: mobileUpgrade.message,
-            imageUrl: mobileUpgrade.imageUrl,
-          });
-        } else {
-          yield call(setAuthenticatedRoot);
-        }
-
-        if (mobileUpgrade && mobileUpgrade.isDismissable) {
-          showUpdateAppModal(mobileUpgrade.title, mobileUpgrade.message);
-        }
-      }
+      yield call(refreshUserSession, { coldStart: true });
     }
 
     yield put(setAuthenticated());
@@ -78,7 +53,45 @@ export default function* setMainRootSaga({ payload }: IMainRootPayload) {
   }
 }
 
-async function getTokenAndMobileUpgrateStatus(): Promise<TokenAndMobileUpgrateStatus> {
+interface IRefreshUserSessionArgs {
+  coldStart?: boolean;
+}
+
+export function* refreshUserSession({ coldStart }: IRefreshUserSessionArgs = {}) {
+  const { tokenStatus, mobileUpgrade }: ITokenAndMobileUpgradeStatus = yield call(getTokenAndMobileUpgradeStatus);
+
+  if (tokenStatus === "refreshing") {
+    yield put(refreshUserToken());
+  }
+
+  /**
+   * If tokenStatus is null means there is an error, do not set up
+   * authenticated root to avoid showing the app when some requests
+   * are timing out
+   **/
+  if (!!tokenStatus && tokenStatus !== "invalid") {
+    yield put(getUserSessionSuccess());
+    if (!coldStart) {
+      return;
+    }
+
+    if (mobileUpgrade && !mobileUpgrade.isDismissable) {
+      yield call(setForceUpdateRoot, {
+        title: mobileUpgrade.title,
+        description: mobileUpgrade.message,
+        imageUrl: mobileUpgrade.imageUrl,
+      });
+    } else if (coldStart) {
+      yield call(setAuthenticatedRoot);
+    }
+
+    if (mobileUpgrade && mobileUpgrade.isDismissable) {
+      showUpdateAppModal(mobileUpgrade.title, mobileUpgrade.message);
+    }
+  }
+}
+
+async function getTokenAndMobileUpgradeStatus(): Promise<ITokenAndMobileUpgradeStatus> {
   try {
     const { data, errors } = await getSession();
 

@@ -24,6 +24,7 @@ export type ApiConfig = {
   mixpanelHost: Scalars["String"]["output"];
   mixpanelKey: Scalars["String"]["output"];
   sduiStaticDeeplinks: Array<ApiConfigSduiStaticDeepLink>;
+  sessionTimeout: Scalars["Int"]["output"];
   stripeKey: Scalars["String"]["output"];
   urls: ApiConfigUrls;
 };
@@ -2622,6 +2623,7 @@ export type CreateTeamMemberProduct = {
   additionalEarnings?: InputMaybe<Scalars["String"]["input"]>;
   baseSalary?: InputMaybe<Scalars["String"]["input"]>;
   baseSalaryCurrency?: InputMaybe<Scalars["String"]["input"]>;
+  benefit?: InputMaybe<Scalars["String"]["input"]>;
   category: Scalars["String"]["input"];
   employeePensionContribution?: InputMaybe<Scalars["String"]["input"]>;
   employerPensionContribution?: InputMaybe<Scalars["String"]["input"]>;
@@ -5031,7 +5033,6 @@ export type MutationLoginBusinessArgs = {
   method?: InputMaybe<LoginMethod>;
   password: Scalars["String"]["input"];
   source?: InputMaybe<LoginBusinessSource>;
-  tokenExpiration?: InputMaybe<Scalars["Int"]["input"]>;
   twoFactorToken?: InputMaybe<Scalars["String"]["input"]>;
 };
 
@@ -5110,7 +5111,6 @@ export type MutationRedeemRewardArgs = {
 
 export type MutationRefreshBusinessSessionArgs = {
   intercomHashMethod?: InputMaybe<IntercomHashMethod>;
-  tokenExpiration: Scalars["Int"]["input"];
 };
 
 export type MutationRefreshSessionArgs = {
@@ -6072,6 +6072,7 @@ export type Query = {
   getUserLeaderboards?: Maybe<Array<Maybe<Leaderboard>>>;
   getUserMobileConsent?: Maybe<MobileConsent>;
   getUserNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
+  getUserOnboardingConsents: UserOnboardingConsents;
   getUserOnboardings: UserOnboarding;
   getUserPassiveChallengesEarnRate?: Maybe<UserPassiveChallengesEarnRate>;
   getUserProfile: UserProfile;
@@ -7875,6 +7876,7 @@ export enum TeamPortalFieldType {
   Currency = "currency",
   Date = "date",
   Dropdown = "dropdown",
+  Markdown = "markdown",
   Radio = "radio",
   Text = "text",
   ToastInfo = "toastInfo",
@@ -8605,6 +8607,12 @@ export type UserOnboarding = {
   __typename?: "UserOnboarding";
   firstAppOpen: Scalars["Boolean"]["output"];
   signupComplete: Scalars["Boolean"]["output"];
+};
+
+export type UserOnboardingConsents = {
+  __typename?: "UserOnboardingConsents";
+  eula?: Maybe<Scalars["Boolean"]["output"]>;
+  privacyNotice?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type UserPassiveChallengesEarnRate = {
@@ -13171,6 +13179,7 @@ export type GetPublicYuApiConfigQuery = {
     language: string;
     stripeKey: string;
     mixpanelKey: string;
+    sessionTimeout: number;
     urls: {
       __typename?: "APIConfigUrls";
       members: string;
@@ -33735,6 +33744,7 @@ export const GetPublicYuApiConfigDocument = {
                     ],
                   },
                 },
+                { kind: "Field", name: { kind: "Name", value: "sessionTimeout" } },
               ],
             },
           },

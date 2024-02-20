@@ -14,6 +14,7 @@ import { MobileTabs } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "./user.reducer";
 import { Connection } from "./user.selectors";
 import { GetUserSurgeQuery, AvatarRemoteFiles, JoinGoalMutation, MobileConsentInput } from "@graphql/__generated";
+import { createAction } from "@reduxjs/toolkit";
 
 export interface ISetIsUpdatingLeaderboardPayload {
   isLoading: boolean;
@@ -56,6 +57,7 @@ export const UPDATE_USER_SURGE = "UPDATE_USER_SURGE";
 export const UPDATE_USER_GOAL = "UPDATE_USER_GOAL";
 export const YUSCREEN_SYNCHRONISED = "YUSCREEN_SYNCHRONISED";
 export const MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE = "MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE";
+export const GET_USER_SESSION_SUCCESS = "GET_USER_SESSION_SUCCESS";
 
 export const refreshUserToken = () => ({
   type: REFRESH_USER_TOKEN,
@@ -229,3 +231,5 @@ export const markNotificationsAsViewedByType = (type: MobileTabs) => ({
   type: MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE,
   payload: { type },
 });
+
+export const getUserSessionSuccess = createAction(GET_USER_SESSION_SUCCESS);
