@@ -8,3 +8,15 @@ export interface deeperEnvironmentSlot {
     img: string,
     text: string
 }
+
+export interface sassPageSlot {
+    title: string,
+    text: string,
+    img: string
+}
+
+export interface sassScreenContent {
+    title: string,
+    heading: string,
+    slots: sassPageSlot[]
+}

@@ -1,4 +1,4 @@
-import { deeperEnvironmentSlot, yuScreenSlot } from "./types";
+import { deeperEnvironmentSlot, sassPageSlot, sassScreenContent, yuScreenSlot } from "./types";
 
 export const yulifeSaasProductSlot: yuScreenSlot = {
     name: "YuLife",
@@ -64,4 +64,46 @@ export const gHealthDeeperEnvironmentSlot: deeperEnvironmentSlot = {
     name: "Health Insurance",
     img: "https://yulife-develop.imgix.net/yuscreen-all-products/products/2023-09-22/ghi.svg?ixlib=js-3.2.1&w=360&h=312&s=f6d4c90e334f4caed211f26fb65bd6a1",
     text: "Your workplace health insurance from Bupa to support your mental, physical and financial wellbeing."
+}
+
+export const sassEarnYuCoinSlot: sassPageSlot = {
+    title: "Earn YuCoin",
+    text: "It’s as simple as doing daily walks, practicing mindfulness, and going for a cycle.",
+    img: "https://yulife-develop.imgix.net/products/saas/icons/YuCoin.svg?ixlib=js-3.2.1&w=144&h=144&s=b765eea65454f8f626616f37e93343b3"
+}
+
+export const sassTakeChallengesSlot: sassPageSlot = {
+    title: "Take daily challenges",
+    text: "Progress through levels to unlock challenges, chests, streaks, and more!",
+    img: "https://yulife-develop.imgix.net/products/saas/icons/Map.svg?ixlib=js-3.2.1&w=144&h=144&s=e243db78bf271d0478f003bf55a53e36"
+}
+
+export const sassGetRewardedSlot: sassPageSlot = {
+    title: "Get rewarded",
+    text: "Enjoy exclusive discounts and spend your YuCoin on popular brands.",
+    img: "https://yulife-develop.imgix.net/products/saas/icons/Chest.svg?ixlib=js-3.2.1&w=144&h=144&s=7aa57665b9b19f22fd33a08b4b2d1add"
+}
+
+export const sassEnjoyBenefitsSlot: sassPageSlot = {
+    title: "Enjoy your employee benefits",
+    text: "Accessible through your Wellbeing Hub.",
+    img: "https://yulife-develop.imgix.net/products/saas/icons/Lotus.svg?ixlib=js-3.2.1&w=144&h=144&s=532785cffe81bb9ea6b4cc3bd843e618"
+}
+
+export const sassCompeteWithColleaguesSlot: sassPageSlot = {
+    title: "Compete with colleagues",
+    text: "Check out your company leaderboard, and challenge your friends to step duels.",
+    img: "https://yulife-develop.imgix.net/products/saas/icons/Trophy.svg?ixlib=js-3.2.1&w=144&h=144&s=4cae42f47fa56d40504c3eec155195a8"
+}
+
+export const sassScreen: sassScreenContent = {
+    title: "YuLife",
+    heading: "What’s in your app?",
+    slots: [
+        sassEarnYuCoinSlot,
+        sassTakeChallengesSlot,
+        sassGetRewardedSlot,
+        sassEnjoyBenefitsSlot,
+        sassCompeteWithColleaguesSlot
+    ]
 }
