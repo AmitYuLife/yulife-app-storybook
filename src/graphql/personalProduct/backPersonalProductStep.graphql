@@ -1,0 +1,3 @@
+mutation BackPersonalProductStep($productId: String!) {
+  backPersonalProductStep(productId: $productId)
+}

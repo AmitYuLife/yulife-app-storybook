@@ -1,5 +1,5 @@
-import { ProductAction } from "@graphql/__generated";
-import { normalisePersonalProductStep } from "@graphql/personalProduct";
+import { ProductAction, gql } from "@graphql/__generated";
+import client from "@graphql/_core/client";
 import { pushToScreen, showYuModal } from "@navigation/root";
 import Logger from "@services/logging/logger";
 
@@ -10,7 +10,10 @@ export const navigateToProduct = async (
 ) => {
   if (shouldBeNormalised) {
     try {
-      await normalisePersonalProductStep({ productId });
+      client().mutate({
+        mutation: gql("NormalisePersonalProductStepDocument"),
+        variables: { productId },
+      });
     } catch (e) {
       Logger.error(e, { where: "navigate-to-product-normalise" });
     }

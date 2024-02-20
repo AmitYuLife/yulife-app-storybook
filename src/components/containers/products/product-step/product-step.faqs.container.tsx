@@ -3,14 +3,13 @@ import { ActivityIndicator, StyleSheet, View, ViewStyle, ScrollView, LayoutChang
 import { useDispatch } from "react-redux";
 import { useQuery } from "@apollo/client";
 import { ContentItemFaqs } from "@components/sdui";
-import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED_FAQS } from "@graphql/personalProduct/getPersonalProductStepDetachedFaqs.gql";
-import { GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body as GPPSSQ_Body } from "@graphql/_core/schema";
-import { GetPersonalProductStepDetachedFaqs, GetPersonalProductStepDetachedFaqsVariables } from "@graphql/_core/schema";
 import { ProductStepContentItemHeaderDetached } from "./subcomponents/detached/product-step.header.detached";
 import { Colours, Style, TOP_BAR } from "@styles";
 import { ProductStepDetachedNavigationContext } from "./product-step-detached-navigation.context";
 import { sduiEventActionCreator } from "./utils/sduiEventActionCreator";
-import { SduiActionType } from "@graphql/__generated";
+import { SduiActionType, gql, GetPersonalProductStepDetachedFaqsQuery } from "@graphql/__generated";
+
+type GPPSSQ_Body = GetPersonalProductStepDetachedFaqsQuery["getPersonalProductStepDetachedFaqs"]["body"];
 
 const HEADER_HEIGHT_ESTIMATE = TOP_BAR.TOP_BAR_WITH_PAD;
 const EXTRA_PADDING = Style.adjust(32);
@@ -39,13 +38,10 @@ const ProductStepDetachedContainer = (props: any) => {
     });
   };
 
-  const { data, loading } = useQuery<GetPersonalProductStepDetachedFaqs, GetPersonalProductStepDetachedFaqsVariables>(
-    GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED_FAQS,
-    {
-      variables: { productId },
-      fetchPolicy: "no-cache",
-    }
-  );
+  const { data, loading } = useQuery(gql("GetPersonalProductStepDetachedFaqsDocument"), {
+    variables: { productId },
+    fetchPolicy: "no-cache",
+  });
 
   const handleHeaderLayout = (event: LayoutChangeEvent) => {
     setHeaderHeight(event.nativeEvent.layout.height);
@@ -118,7 +114,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-const renderItemContent = (item: GPPSSQ_Body): JSX.Element => {
+const renderItemContent = (item: GPPSSQ_Body[0]): JSX.Element => {
   switch (item.__typename) {
     case "ContentItemPersonalProductFaqs":
       return <ContentItemFaqs key={item.id} {...item} />;
