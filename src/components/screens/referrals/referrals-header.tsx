@@ -66,13 +66,8 @@ const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => 
           />
         </View>
         {!tempGameEnableReferralQRCode ? null : (
-          <View style={styles.qrCode}>
-            <QRCode
-              size={QR_CODE_SIZE}
-              value={referralLink}
-              viewBox={`0 0 ${QR_CODE_SIZE} ${QR_CODE_SIZE} `}
-              data-testid={REFERRALS_QR_CODE}
-            />
+          <View style={styles.qrCode} testID={REFERRALS_QR_CODE}>
+            <QRCode size={QR_CODE_SIZE} value={referralLink} viewBox={`0 0 ${QR_CODE_SIZE} ${QR_CODE_SIZE} `} />
           </View>
         )}
         <TextTemplate type="l2b" textAlign="center">

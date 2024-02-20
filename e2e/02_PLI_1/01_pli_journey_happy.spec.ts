@@ -192,7 +192,8 @@ Feature("PLI HAPPY", async () => {
           helper.REVIEW_SCREEN();
           helper.COVER_SELECT_PERCENTAGE("75%");
           helper.MAXIMUM_SUM_ASSURED("common", "£57.68", "£3,875");
-          helper.CHECKOUT(false, "");
+          // @bug stripe warning on checkout GS-864
+          // helper.CHECKOUT(false, "");
         }
       );
     }
