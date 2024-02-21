@@ -42,8 +42,10 @@ const StreaksModal: React.FC<Props> = ({
   const shouldShowTimer = streakMax === streakCompleted && !!streakAwardId;
   const { timeRemaining } = useTimer({ nextStreakAvailableAt, shouldShowTimer });
   const [collectAward] = useMutation(gql("CollectAwardDocument"));
+
   const { data } = useQuery(gql("GetStreakDetailsDocument"), {
     fetchPolicy: "no-cache",
+    skip: !features.useStreakDetails,
   });
 
   const onSubmit = useSubmitHandler({ streakAwardId, onPressCtaPrimary, setLoading, collectAward });
