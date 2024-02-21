@@ -44,6 +44,8 @@ import {
 } from "@components/sdui";
 import { ProductStepContext } from "../../product-step.context";
 import { ProductStepContentItemGpDetails } from "../../subcomponents/product-step.gp-details";
+import { useSelector } from "react-redux";
+import { getUserFeatures } from "../../../../../../redux/user/user.selectors";
 
 type GPPS_Body = GetPersonalProductStepQuery["getPersonalProductStep"]["body"];
 interface Props {
@@ -74,6 +76,7 @@ export const Body = (props: Props) => {
   const { headerHeight } = props;
   const headerPadStyle = useMemo(() => ({ height: headerHeight + DEFAULT_EXTRA_TOP_PADDING }), [headerHeight]);
   const { scrollValue } = useContext(ProductStepContext);
+  const { tempDisableBounceOnProductSDUI } = useSelector(getUserFeatures);
 
   useEffect(() => {
     scrollValue?.setValue(0);
@@ -87,7 +90,7 @@ export const Body = (props: Props) => {
         showsVerticalScrollIndicator={false}
         style={styles.wrapper}
         testID={PRODUCT_STEP_BODY_SCROLL_VIEW}
-        bounces={false}
+        bounces={!tempDisableBounceOnProductSDUI}
       >
         {!headerHeight ? null : <View style={headerPadStyle} />}
         {props.body.map(renderItemContent)}
