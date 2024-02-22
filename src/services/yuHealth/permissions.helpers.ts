@@ -1,32 +1,8 @@
-import { Permission as AndroidSystemPermission } from "react-native";
-import { FitKitType } from "@graphql/_core/schema/globalTypes";
-import { PermissionStatus } from "@yu-life/react-native-fitkit";
 import { t } from "@locale";
 import { HealthProvider, HealthProviderCapability } from "@yu-life/react-native-yu-health";
-import { isiOS } from "@utils";
+import { isAndroid } from "@utils";
 
-type PermissionScope = "read" | "write";
-
-export interface Permissions {
-  identifier: string;
-  title: string;
-  requirement?: string;
-  description: string;
-  checkStatus: () => Promise<PermissionStatus>;
-  status?: PermissionStatus;
-  type?: FitKitType | AndroidSystemPermission;
-  scope?: PermissionScope;
-}
-
-export interface SettingsPermissions {
-  systemPermission: Permissions[];
-  healthPermission: Permissions[];
-  isGoogleFitAuthorised: boolean;
-  isSamsungHealthStepsAuthorised: boolean;
-  isSamsungHealthStepDailyTrendAuthorised: boolean;
-}
-
-const IOS_PROVIDER_PERMISSIONS = [
+const IOS_PROVIDER_PERMISSIONS: IPermission[] = [
   {
     identifier: "HKQuantityTypeIdentifierStepCount",
     title: t("permissions.ios.steps_read.title"),
@@ -61,6 +37,81 @@ const IOS_SYSTEM_PERMISSIONS = [
   },
 ];
 
+const ANDROID_SYSTEM_PERMISSIONS: IPermission[] = [
+  {
+    identifier: "system_activity_recognition_permission",
+    title: t("permissions.android.activity_recognition.title"),
+    requirement: t("permissions.android.activity_recognition.requirement"),
+    description: t("permissions.android.activity_recognition.description"),
+  },
+  {
+    identifier: "system_location_permission",
+    title: t("permissions.android.location.title"),
+    requirement: t("permissions.android.location.requirement"),
+    description: t("permissions.android.location.description"),
+  },
+];
+
+const SAMSUNG_HEALTH_PERMISSIONS: IPermission[] = [
+  {
+    identifier: "samsung_health_step_daily_trend",
+    title: t("permissions.android.samsung_steps_count_trend.title"),
+    requirement: t("permissions.android.samsung_steps_count_trend.requirement"),
+    description: t("permissions.android.samsung_steps_count_trend.description"),
+    capability: HealthProviderCapability.STEP_COUNT,
+  },
+  {
+    identifier: "samsung_health_step_count",
+    title: t("permissions.android.samsung_steps_count.title"),
+    requirement: t("permissions.android.samsung_steps_count.requirement"),
+    description: t("permissions.android.samsung_steps_count.description"),
+    capability: HealthProviderCapability.STEP_COUNT,
+  },
+  {
+    identifier: "samsung_health_mindful",
+    title: t("permissions.android.samsung_mindful.title"),
+    description: t("permissions.android.samsung_mindful.description"),
+    capability: HealthProviderCapability.MINDFUL_MINUTES,
+  },
+  {
+    identifier: "samsung_health_cycling",
+    title: t("permissions.android.samsung_cycling.title"),
+    description: t("permissions.android.samsung_cycling.description"),
+    capability: HealthProviderCapability.CYCLING_DISTANCE,
+  },
+];
+
+const GOOGLE_FIT_PERMISSIONS: IPermission[] = [
+  {
+    identifier: "google_fit_steps_mindfulness",
+    title: t("permissions.android.fitness_activity_read.title"),
+    requirement: t("permissions.android.fitness_activity_read.requirement"),
+    description: t("permissions.android.fitness_activity_read.description"),
+    capability: HealthProviderCapability.STEP_COUNT,
+  },
+  {
+    identifier: "google_fit_mindfulness",
+    title: t("permissions.android.mindfulness_read.title"),
+    requirement: t("permissions.android.mindfulness_read.requirement"),
+    description: t("permissions.android.mindfulness_read.description"),
+    capability: HealthProviderCapability.MINDFUL_MINUTES,
+  },
+  {
+    identifier: "google_fit_cycling",
+    title: t("permissions.android.distance_read.title"),
+    requirement: t("permissions.android.distance_read.requirement"),
+    description: t("permissions.android.distance_read.description"),
+    capability: HealthProviderCapability.CYCLING_DISTANCE,
+  },
+  {
+    identifier: "google_fit_workouts",
+    title: t("permissions.android.workouts_read.title"),
+    requirement: t("permissions.android.workouts_read.requirement"),
+    description: t("permissions.android.workouts_read.description"),
+    capability: HealthProviderCapability.ACTIVITIES,
+  },
+];
+
 export interface IPermission {
   identifier: string;
   title: string;
@@ -74,10 +125,16 @@ export interface IPermissionConfig {
   systemPermissions: IPermission[];
 }
 
-export const getPermissionsConfig = (_provider: HealthProvider): IPermissionConfig => {
-  // TODO: Select permissions based on provider
-  if (!isiOS()) {
-    return { providerPermissions: [], systemPermissions: [] };
+export const getPermissionsConfig = (activeProvider: HealthProvider): IPermissionConfig => {
+  if (isAndroid()) {
+    switch (activeProvider) {
+      case HealthProvider.googleFit:
+        return { providerPermissions: GOOGLE_FIT_PERMISSIONS, systemPermissions: ANDROID_SYSTEM_PERMISSIONS };
+      case HealthProvider.samsungHealth:
+        return { providerPermissions: SAMSUNG_HEALTH_PERMISSIONS, systemPermissions: ANDROID_SYSTEM_PERMISSIONS };
+      default:
+        return { providerPermissions: [], systemPermissions: ANDROID_SYSTEM_PERMISSIONS };
+    }
   }
 
   return { providerPermissions: IOS_PROVIDER_PERMISSIONS, systemPermissions: IOS_SYSTEM_PERMISSIONS };
