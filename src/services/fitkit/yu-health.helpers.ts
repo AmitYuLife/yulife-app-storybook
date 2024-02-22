@@ -35,6 +35,7 @@ export const yuHealthAggregateQuery = async ({
         metadata,
         params,
         type: `yu_health_aggregate_query_args`,
+        location: "yu-health",
       });
     }
 
@@ -46,6 +47,7 @@ export const yuHealthAggregateQuery = async ({
         params,
         results,
         type: `yu_health_aggregate_query_response`,
+        location: "yu-health",
       });
     }
 
@@ -56,6 +58,7 @@ export const yuHealthAggregateQuery = async ({
       params,
       metadata,
       type: `yu_health_aggregate_query_response_error`,
+      location: "yu-health",
     });
 
     return [];
@@ -90,7 +93,8 @@ export async function yuHealthSampleQuery({
       Logger.logMixpanelEvent("app_debug", {
         ...metadata,
         ...args,
-        type: `yu_health_raw_query_args`,
+        type: `yu_health_sample_query_args`,
+        location: "yu-health",
       });
     }
 
@@ -100,8 +104,8 @@ export async function yuHealthSampleQuery({
       Logger.logMixpanelEvent("app_debug", {
         ...metadata,
         results,
-        type: `yu_health_raw_query_results`,
-        location: "fitkit",
+        type: `yu_health_sample_query_results`,
+        location: "yu-health",
       });
     }
 
@@ -113,8 +117,8 @@ export async function yuHealthSampleQuery({
       ...metadata,
       error: e.message,
       params,
-      type: `yu_health_raw_query_error`,
-      location: "fitkit",
+      type: `yu_health_sample_query_error`,
+      location: "yu-health",
     });
 
     return [];
