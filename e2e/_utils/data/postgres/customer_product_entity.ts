@@ -1317,3 +1317,19 @@ export const CPE_DENTAL_RENEW_2 = {
         taken_up: true
     }
 } as IDatabaseItem
+
+export const CPE_135_GHI_FUTURE = {
+    type: "postgres",
+    modelName: "customer_product_entity",
+    data: {
+        customerId: customer.CUSTOMER_135_GHI_FUTURE.data.customerId,
+        customer_product_id: "YUCPID0000011421",
+        "earn_rate" : 0,
+        "start_date" : moment().add(1, "weeks").format("YYYY-MM-DD"),
+        "end_date" : "2199-12-31",
+        "is_banned_from_product" : false,
+        "archived" : false,
+        "taken_up" : true,
+        product_variant_id : "Bupa_GHealth_01_01",
+    }
+} as IDatabaseItem

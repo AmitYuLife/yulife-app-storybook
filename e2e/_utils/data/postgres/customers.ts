@@ -1984,3 +1984,16 @@ export const CUSTOMER_DENTAL_RENEW_2 = {
     status: "onboarded",
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_135_GHI_FUTURE = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Mustafa",
+    lastName: "Bundu",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem

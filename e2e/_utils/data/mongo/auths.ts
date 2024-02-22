@@ -1722,3 +1722,14 @@ export const AUTH_DENTAL_RENEW_2 = {
         userId: customer.CUSTOMER_DENTAL_RENEW_2.data.customerId,
     }
 } as IDatabaseItem
+
+export const AUTH_135 = {
+    type: "mongo",
+    modelName: "authpassword",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_135_GHI_FUTURE.data.customerId,
+    }
+}  as IDatabaseItem

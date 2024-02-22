@@ -2365,7 +2365,8 @@ export const CUSTOMER_133_TOGGLES = {
       hasSmartPensionActive: true,
       enableProductGoals: true,
       useHalfModalsForQuestMap: true,
-      showQuestMapNotificationIcons: true
+      showQuestMapNotificationIcons: true,
+      showGoalProductRewardMilestones: true
     },
   },
 } as IDatabaseItem;
@@ -2422,4 +2423,21 @@ export const CUSTOMER_DENTAL_RENEW_TOGGLES = {
         hasBupaDentActive: true,
       },
     },
+    } as IDatabaseItem;
+
+    export const CUSTOMER_135_TOGGLES = {
+      type: "mongo",
+      modelName: "usertoggles",
+      data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_135_GHI_FUTURE.data.customerId,
+        features: {
+          ...DEFAULT_TOGGLES.data.features,
+          hasSmartPensionActive: true,
+          enableProductGoals: true,
+          useHalfModalsForQuestMap: true,
+          showQuestMapNotificationIcons: true,
+          showGoalProductRewardMilestones: true
+        },
+      },
     } as IDatabaseItem;
