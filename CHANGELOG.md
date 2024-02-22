@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.3.0] - 2024-02-22
+
+### Bugfixes
+
+- Bugfix: Fix redundant overlay dismiss
+- Bugfix: Fix ad banner caching issue
+
+### Tasks
+
+- Task: Make stack use new 'gap' property
+- Task: Android permissions
+- Task VBUS-91: sdui product bounce
+- Task GS: Refresh User Session
+- Task: YuHealth challenges
+- Task: Use capabilities from API for starting challenges
+- Task: DEVOP-1871: Prod: Migrate UK to the new yulife-api TF module - API URL Update
+- Task DEVOP-1997: Update MongoDb version for detox tests
+
+### Chores
+
+- Chore: Hide streak details query behind toggle
+- Chore: Get personal product step faqs
+- Chore: Create ImpactListItem component
+
+### Extra
+
+- detox/vbus-57
+- Detox/fixes-20/02
+- detox:vbus-38 done
+- Detox/vbus 50
+- XSE-2337: Support reward card blank reward quantity
+- Detox/no leaderboard GS-869
+- fix ad banner stub
+- Hotfix: update model name
+
 ## [4.2.0] - 2024-02-15
 
 ### Features
