@@ -9,7 +9,6 @@ import { Colours, Style } from "@styles";
 import { useDispatch } from "react-redux";
 import { MODALS } from "@navigation/constants";
 import { Image, Stack, TextTemplate } from "@atoms";
-import { StackDirection } from "@atoms/stack/stack";
 import { useBackHandler, useUserFeatures } from "@hooks";
 import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
@@ -179,7 +178,7 @@ function ChallengeDetailsScreen({
           {!slot.bonusAmount ? null : (
             <View style={styles.card} testID={CHALLENGE_PAGE_BOOST_SLOT(slot.bonusAmount)}>
               <View style={styles.row}>
-                <Stack direction={StackDirection.horizontal}>
+                <Stack direction={"column"}>
                   <TextTemplate type="b2">{t("screens.challenges.details.extra_yucoin")}</TextTemplate>
                   <TouchableOpacityWithDelay onPress={onPressBonusInfoButton}>
                     <View ref={bonusInfoButtonRef}>

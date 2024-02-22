@@ -8,7 +8,6 @@ import FirstTimeStoreSelection from "./subcomponents/first-time-store-selection"
 import { REWARDS_LIST_SCREEN, REWARDS_LIST_SCREEN_SCROLL, REWARDS_STORE_GAME_PROGRESS } from "@ids";
 import { ChipList, ProductCard } from "@components/molecules";
 import { Stack } from "@atoms";
-import { StackDirection } from "@atoms/stack/stack";
 import HistoryAndStoreLocation from "./subcomponents/history-and-store-location";
 import { RewardsListItem } from "./rewards-list.item";
 import { EventPanel } from "@molecules";
@@ -171,7 +170,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
                     onChangeStorePress={onChangeStoreLocationPress}
                   />
                   {productsList.length === 0 ? null : (
-                    <Stack direction={StackDirection.horizontal} gap={Style.adjust(15)} style={styles.productWrapper}>
+                    <Stack direction={"row"} gap={Style.adjust(15)} style={styles.productWrapper}>
                       {productsList.map((product) => (
                         <ProductCard key={product.id} {...product} />
                       ))}

@@ -3,7 +3,6 @@ import { StyleSheet, View } from "react-native";
 import React, { memo, useMemo } from "react";
 import { GenericHeadingPad } from "@organisms";
 import { Stack, SkeletonLoading } from "@atoms";
-import { StackDirection } from "@atoms/stack/stack";
 import { PADDING_LARGE, yuCoinExplainedStyles } from "./yu-coin-power-explained";
 
 const YuCoinPowerExplainedSkeleton = () => {
@@ -27,7 +26,7 @@ const YuCoinPowerExplainedSkeleton = () => {
           </Stack>
           <Stack>
             <SkeletonLoading style={styles.skeletonTitle2} />
-            <Stack direction={StackDirection.horizontal}>
+            <Stack direction={"row"}>
               <SkeletonLoading style={styles.skeletonActivityPanel} />
               <SkeletonLoading style={styles.skeletonActivityPanel} />
               <SkeletonLoading style={styles.skeletonActivityPanel} />
@@ -35,7 +34,7 @@ const YuCoinPowerExplainedSkeleton = () => {
           </Stack>
           <Stack>
             <SkeletonLoading style={styles.skeletonTitle3} />
-            <Stack direction={StackDirection.horizontal}>
+            <Stack direction={"row"}>
               <SkeletonLoading style={styles.skeletonActivityPanel} />
               <SkeletonLoading style={styles.skeletonActivityPanel} />
               <SkeletonLoading style={styles.skeletonActivityPanel} />
