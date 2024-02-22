@@ -382,9 +382,11 @@ export const buildChestModalSubmitHandler = ({
       });
     }
 
-    if (useHalfModalsForQuestMap) {
+    if (useHalfModalsForQuestMap && !isNext) {
       Navigation.dismissOverlayWithChild();
-    } else {
+    }
+
+    if (!useHalfModalsForQuestMap) {
       dismissChestModal();
     }
   };
