@@ -962,3 +962,16 @@ export const CBP_GHI_REWARDS_11 = {
         "data" : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\", \"externalMembershipNumber\":\"12121212\"}"
     }       
 } as IDatabaseItem
+
+export const CBP_GHI_REWARDS_12 = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_13_GHI_REWARDS.product.data.product_id,
+        customer_product_id: cpe.CPE_135_GHI_FUTURE.data.customer_product_id,
+        "category_id" : "1",
+        "start_date" : moment().add(1, "weeks").format("YYYY-MM-DD"),
+        "archived" : false,
+        "data" : "{\"salary\":10000,\"workplacePostcode\":\"NW1 1LX\",\"country\":\"GB\",\"jobTitle\":\"Software Engineer\",\"dateOfBirth\":\"2000-01-21\",\"firstName\":\"Sarah\",\"lastName\":\"Smith\",\"sexAtBirth\":\"F\",\"addressLineOne\":\"57 Market St\",\"addressLineTwo\":\"Huddersfield\",\"addressPostCode\":\"HD3 4HX\",\"title\":\"Mrs\", \"externalMembershipNumber\":\"12121212\"}"
+    }       
+} as IDatabaseItem

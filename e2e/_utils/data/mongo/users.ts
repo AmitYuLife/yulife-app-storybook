@@ -2490,3 +2490,16 @@ export const USER_DENTAL_RENEW = {
       },
     },
     } as IDatabaseItem;
+
+    export const USER_135 = {
+      type: "mongo",
+      modelName: "users",
+      data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_135_GHI_FUTURE.data.customerId,
+        nickname: "Rewardsio",
+        isAvatarCreated: true,
+        avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+      },
+    } as IDatabaseItem;

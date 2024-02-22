@@ -567,16 +567,20 @@ export const ghiRewardsTeaseVisible = async () => {
   await textVisible(constants.rewardsTeaseText)()
 }
 
-export const onGHIRewardsLearnMorePage = (unlocked: string, date: string) => async () => {
+export const onGHIRewardsLearnMorePage = (started: boolean, unlocked: string, date: string) => async () => {
   const timeToGameEnd = moment.duration(moment(date).diff(moment()));
-  const days = Math.floor(timeToGameEnd.asDays())
+  const timeToGameStart = moment.duration(moment(date).endOf("day").diff(moment()));
+  const days = started ? Math.floor(timeToGameEnd.asDays()) : Math.floor(timeToGameStart.asDays())
+  const gameStartDate = moment(date).endOf("day").format("DD.MM.YYYY")
 
   await idVisible(ids.TEXT_TEMPLATE(constants.learnMorePageHeader, "h2"))()
-  await textVisible(`${unlocked}/6 rewards unlocked`)()
-  await textVisible(`${days} days left`)()
-  await idVisible(ids.TEXT_TEMPLATE(constants.learnMorePageDesc, "b2"))()
+  started && await textVisible(`${unlocked}/6 rewards unlocked`)()
+  started && await textVisible(`${days} days left`)()
+  !started && await textVisible(`Starts on ${gameStartDate}`)()
+  started && await idVisible(ids.TEXT_TEMPLATE(constants.learnMorePageDesc, "b2"))()
+  !started && await idVisible(ids.TEXT_TEMPLATE(constants.learnMoreTeaseDesc(days), "b2"))()
   await swipeFromText(constants.learnMorePageHeader, "up", "fast")()
-  await textVisible(constants.learnMorePageButton)()
+  started && await textVisible(constants.learnMorePageButton)()
   await idVisible(ids.TEXT_TEMPLATE(constants.learnMoreFAQ1, "b2b"))()
   await idVisible(ids.TEXT_TEMPLATE(constants.learnMoreFAQ2, "b2b"))()
   await idVisible(ids.TEXT_TEMPLATE(constants.learnMoreFAQ3, "b2b"))()

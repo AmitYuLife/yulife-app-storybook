@@ -28,7 +28,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
         When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
-            Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage("0", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
+            Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage(true, "0", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
         })
         helpers.carouselScroll(constants.groupHealthRewardCarouselNames)()
         When("I scroll to the bottom of the page", when.swipeFromText(constants.learnMorePageHeader, "up", "fast"), async () => {
@@ -123,7 +123,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
                     When("I scroll until I can see all the learn more modal", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_2, "down"), async () => {
                         When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
-                            Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage("1", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
+                            Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage(true, "1", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
                         })
                     })
                 })
@@ -757,14 +757,24 @@ Feature("I am able to see GHI Rewards in App", async () => {
         
      })
 
-     Scenario("Half modals display the correct tease for games starting in the future", scenario.start, async () => {
+     Scenario("Half modals display the correct tease for games starting in the future, and the learn more page shows the correct pre-start details", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("quests", data.CUSTOMER_133_GHI_FUTURE, data.AUTH_133), async () => {
             Then("I am on the quest screen", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
             Then("I should see level 22", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(22)))
         })
         When("I tap level 23", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(23)), async () => {
-            Then("I see the half modal for level 81 being locked as this user has the toggle switched on", then.lockedLevelHalfModalVisible(23, false, false,))
+            Then("I see the half modal for level 23 being locked as this user has the toggle switched on", then.lockedLevelHalfModalVisible(23, false, false,))
             Then("I see the tease for the rewards game starting soon", then.ghiRewardsTeaseVisible)
+        })
+        When("I tap to close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
+            When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
+                When("I confirm my selection", when.tapText("Confirm selection"), async () => {
+                    Then("I see the tease for the rewards game starting soon as I am over level 5", then.ghiRewardsTeaseVisible)
+                })
+            })
+        })
+        When("I click to learn more, as the user is above level 5 in the game", when.tapText(constants.learnMoreButton), async () => {
+            Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage(false, "0", data.GOAL_PARTICIPATION_14.data.startDateTime))
         })
         
      })
@@ -790,6 +800,43 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
                 
+     })
+
+     Scenario("The learn more tease does not show for users in the reward store before the game starts if they are below level 6", scenario.start, async () => {
+        Given("I login as a user", given.logInAndGoToTab("rewards", data.CUSTOMER_135_GHI_FUTURE, data.AUTH_135), async () => {
+            When("I confirm my selection", when.tapText("Confirm selection"), async () => {
+                Then("I am on the rewards screen", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1000)))
+                Then("I can't see the tease for the rewards game starting soon as I'm under level 6", then.textNotVisible(constants.rewardsTeaseText))
+            })
+        })
+        When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
+            Then("I should see level 5", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)))
+        })
+        When("I tap level 6", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(6)), async () => {
+            Then("I see the half modal for level 5 being locked as this user has the toggle switched on", then.lockedLevelHalfModalVisible(6, false, false,))
+            Then("I see the tease for the rewards game starting soon", then.ghiRewardsTeaseVisible)
+        })
+        When("I tap to close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
+            When("I tap level 5", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
+                When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
+                    When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+                        Then("I should see the well done screen", then.onChallengeComplete(3050, 5))
+                    })
+                })
+            })
+        })
+        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+            When("I wait 10 seconds", when.wait(10000), async () => {
+                Then("I should see the first day streak screen", then.textVisible("First day done!"))
+            })
+        })
+        When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
+            When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
+                When("I wait", when.wait(3000), async () => {
+                    Then("I see the tease for the rewards game starting soon as I'm now level 6", then.ghiRewardsTeaseVisible)
+                })
+            })
+        })
         
      })
 

@@ -154,6 +154,7 @@ export const rewardsGameOnTheWayImg = "https://yulife-develop.imgix.net/bupa/ima
 
 export const learnMorePageHeader = "Unlock rewards as you progress through levels!"
 export const learnMorePageDesc = "Every day you conquer a challenge, you level up and get closer to unlocking cool rewards!\n\nBut hey, time's ticking — you've got just 6 days before your progress resets and the fun begins again. Keep rocking those challenges! 🚀"
+export const learnMoreTeaseDesc = (days: number) => `Get ready for an exciting journey! Soon, taking a challenge each day will help you level up and get you closer to unlocking cool rewards.\n\nYou’ll have ${days.toString()} days to get those rewards before your progress resets and the fun begins again. In the meantime, keep rocking those challenges! 🚀`
 export const learnMorePageButton = "Take a challenge"
 export const learnMoreFAQ1 = "How do I level up?"
 export const learnMoreFAQ2 = "How do I claim my rewards?"
