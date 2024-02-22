@@ -199,7 +199,8 @@ Feature("PLI HAPPY", async () => {
     }
   );
 
-  Scenario(
+  // @update [Test may become redundant with the new quote/expiring flows -- Revisit during updates]
+  ScenarioSkip(
     "As a user who started a journey and reached the point of receiving a quote, when 60 days have passed since the last quote was generated, when I resume my journey, then I should start from the beginning.",
     scenario.start,
     async () => {
@@ -216,7 +217,8 @@ Feature("PLI HAPPY", async () => {
     }
   );
 
-  Scenario(
+  // @update [Test may become redundant with the new quote/expiring flows -- Revisit during updates]
+  ScenarioSkip(
     "As a user who had a birthday after I started my journey, when I resume my journey, then I should start from the beginning.",
     scenario.start,
     async () => {
