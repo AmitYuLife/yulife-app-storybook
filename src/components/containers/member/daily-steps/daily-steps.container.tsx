@@ -87,11 +87,6 @@ const DailyStepsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) =
     };
   }, [capabilityStatuses, isAuthorising, isUnavailable, verifyAndAuthorizeCapability]);
 
-  const showGreyScreen = useMemo(() => {
-    const { isUnauthorised } = contentProps;
-    return isUnauthorised;
-  }, [contentProps]);
-
   return (
     <DailyStepsScreen
       onCoinPress={navigateToTodayEarnings}
@@ -101,7 +96,7 @@ const DailyStepsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) =
       userSurge={userSurge}
       onLeftMenuPress={onLeftMenuPress}
       onNotificationPress={userFeatures.showNotificationCentre ? navigateToNotifications : undefined}
-      hasPermission={!showGreyScreen}
+      hasPermission={true}
       customIcon={data?.getDailyScreenCustomIcon}
       hasEvents={!!userEvents?.length}
       hideInformationIcon={isDailyScreenInformationIconHidden}

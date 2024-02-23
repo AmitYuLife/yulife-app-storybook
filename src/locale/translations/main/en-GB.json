@@ -358,6 +358,17 @@
         "heading": "you’re offline",
         "subheading": "Your steps will update when next online Last update: %{lastUpdate}"
       },
+      "disconnected": {
+        "unauthorised": {
+          "title": "Sync issue alert!",
+          "body": "We haven't received any health data today! Please make sure your permissions are up to date"
+        },
+        "unavailable": {
+          "title": "Can't see your health data!",
+          "body": "Please check your permissions so we can reward you for your activity."
+        },
+        "button": "Check permissions"
+      },
       "fitkit": {
         "help": {
           "title": "Help",

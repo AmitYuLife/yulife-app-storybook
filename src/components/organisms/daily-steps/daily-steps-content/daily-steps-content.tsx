@@ -1,7 +1,5 @@
 import React, { memo, useCallback } from "react";
 import { DailyStepsLoading } from "./subcontainers/daily-steps-loading";
-import { FitkitUnavailable } from "./subcontainers/fitkit-unavailable";
-import { FitkitUnauthorised } from "./subcontainers/fitkit-unauthorised";
 import { DailyStepsOnline } from "./subcontainers/daily-steps-online";
 import { bottomTabs, ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
@@ -14,13 +12,7 @@ export interface IDailyStepsContentProps {
   onConnect?: () => Promise<void>;
 }
 
-const DailyStepsContent = ({
-  isLoading,
-  hasAskedPreviously,
-  isUnavailable,
-  isUnauthorised,
-  onConnect,
-}: IDailyStepsContentProps) => {
+const DailyStepsContent = ({ isLoading, isUnavailable, isUnauthorised }: IDailyStepsContentProps) => {
   const onReferralsButtonPress = useCallback(
     () =>
       Navigation.push(ROUTES.dailySteps, {
@@ -48,21 +40,13 @@ const DailyStepsContent = ({
     return <DailyStepsLoading />;
   }
 
-  if (isUnavailable) {
-    return <FitkitUnavailable />;
-  }
-
-  if (isUnauthorised) {
-    return (
-      <FitkitUnauthorised
-        onPress={onConnect}
-        isIosMotionAuthorised={true}
-        hasRequestedPermission={hasAskedPreviously}
-      />
-    );
-  }
-
-  return <DailyStepsOnline onReferralsButtonPress={onReferralsButtonPress} />;
+  return (
+    <DailyStepsOnline
+      onReferralsButtonPress={onReferralsButtonPress}
+      isUnauthorised={isUnauthorised}
+      isUnavailable={isUnavailable}
+    />
+  );
 };
 
 export default memo(DailyStepsContent);

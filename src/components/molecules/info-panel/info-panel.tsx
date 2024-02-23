@@ -27,6 +27,7 @@ interface Props {
     disabled?: boolean;
   };
   showIcon?: boolean;
+  forceShowButton?: boolean;
   onClose?: () => void;
   containerOnPress?: () => void;
 }
@@ -38,15 +39,15 @@ const InfoPanel = ({
   wrapperStyle,
   titleMarkdown,
   button,
+  forceShowButton,
   showIcon,
   onClose,
   containerOnPress,
 }: Props) => {
   const { light, dark, icon, buttonIcon: ButtonIcon } = useMemo(() => getBannerTheme(type), [type]);
-  const additionalWrapperStyles = useMemo(
-    () => ({ paddingBottom: Style.adjust(button && !containerOnPress ? 8 : 16) }),
-    [button, containerOnPress]
-  );
+  const hasButton = (!!button && !containerOnPress) || forceShowButton;
+
+  const additionalWrapperStyles = useMemo(() => ({ paddingBottom: Style.adjust(hasButton ? 8 : 16) }), [hasButton]);
 
   // Container onPress trumps all other pressables - if this is present
   // they will not be rendered.
@@ -80,7 +81,7 @@ const InfoPanel = ({
             <Markdown markdownStyles={textMarkdownStyles} text={markdown} />
           </View>
         </View>
-        {button && !containerOnPress ? (
+        {hasButton ? (
           <View style={styles.buttonWrapper}>
             <Button
               disabled={button.disabled}

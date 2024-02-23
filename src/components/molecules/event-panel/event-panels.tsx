@@ -13,6 +13,7 @@ import { updateUserGoal } from "@redux/user/user.actions";
 import { t } from "@locale";
 import EventPanel, { IEventPanelProps } from "./event-panel";
 import { baseStyles } from "./event-panel.styles";
+import HealthPermissionPanel, { IHealthPermissionPanelProps } from "../health-permission-panel/health-permission-panel";
 
 interface IAdBanner {
   imageUrl: string;
@@ -21,7 +22,7 @@ interface IAdBanner {
 }
 
 type IEvents = IEvent & IAdBanner;
-type IEventPanelData = IEvents & {
+type IEventPanelData = Partial<IEvents> & {
   eventPanelMilestones?: IEventPanelProps["milestones"];
 };
 
@@ -29,13 +30,24 @@ interface IEventPanelsProps {
   componentId?: string;
   events: Partial<IEvents>[];
   currentWorld: number;
-  onJoin: (event: IEvent) => Promise<void>;
+  onJoin: (event: Partial<IEvent>) => Promise<void>;
+  healthPermissions: Omit<IHealthPermissionPanelProps, "width">;
 }
 
 const CARD_WIDTH = Style.DEVICE_WIDTH * 0.8 - 8;
 const INITIAL_PADDING = Style.DEVICE_WIDTH * 0.1 - 8;
 
-const EventPanels = ({ events = [], componentId, onJoin }: IEventPanelsProps) => {
+enum EventPanelType {
+  event = "event",
+  healthPermission = "healthPermission",
+}
+
+interface IEventListItems {
+  data?: Partial<IEventPanelData>;
+  type: EventPanelType;
+}
+
+const EventPanels = ({ healthPermissions, events = [], componentId, onJoin }: IEventPanelsProps) => {
   const dispatch = useDispatch();
   const [adHeight, setAdHeight] = useState(143);
   const currentLevel = useSelector(getCurrentLevel);
@@ -44,26 +56,34 @@ const EventPanels = ({ events = [], componentId, onJoin }: IEventPanelsProps) =>
 
   const snapToInterval = CARD_WIDTH + baseStyles.wrapper.marginHorizontal * 2;
 
-  const onLayout = useCallback(
-    (e: LayoutChangeEvent) => setAdHeight(e?.nativeEvent?.layout?.height || 148),
-    [adHeight]
-  );
+  const onLayout = useCallback((e: LayoutChangeEvent) => setAdHeight(e?.nativeEvent?.layout?.height || 148), []);
 
-  const data: Partial<IEventPanelData>[] = useMemo(
-    () =>
-      events.map((event) => ({
-        ...event,
-        eventPanelMilestones: event.milestones?.map((m) => ({
-          value: m.targetValue,
-          shouldAttractAttention: m.isClaimable,
-          rewardClaimed: m.rewardClaimed,
-        })),
-      })),
+  const data: IEventListItems[] = useMemo(
+    () => [
+      ...(healthPermissions ? [{ type: EventPanelType.healthPermission }] : []),
+      ...events.map((event) => {
+        const eventPanel: IEventPanelData = {
+          ...event,
+          id: event.id ?? "unknown",
+          stageId: event.stageId ?? "unknown",
+          eventPanelMilestones: event.milestones?.map((m) => ({
+            value: m.targetValue,
+            shouldAttractAttention: m.isClaimable,
+            rewardClaimed: m.rewardClaimed,
+          })),
+        };
+
+        return {
+          type: EventPanelType.event,
+          data: eventPanel,
+        };
+      }),
+    ],
     [events]
   );
 
-  const renderItem = useCallback(
-    ({ item }: ListRenderItemInfo<IEventPanelData>) => {
+  const renderEvent = useCallback(
+    ({ item }: ListRenderItemInfo<Partial<IEventPanelData>>) => {
       if (item.id.startsWith("ad-")) {
         return (
           <View style={styles.adBanners}>
@@ -128,7 +148,30 @@ const EventPanels = ({ events = [], componentId, onJoin }: IEventPanelsProps) =>
     [onJoin, componentId, adHeight, onLayout]
   );
 
-  const keyExtractor = useCallback((event: Partial<IEventPanelData>) => event.id, []);
+  const renderHealthPermission = useCallback(() => {
+    return <HealthPermissionPanel {...healthPermissions} width={CARD_WIDTH} />;
+  }, [healthPermissions]);
+
+  const renderItem = useCallback(
+    ({ item, ...info }: ListRenderItemInfo<IEventListItems>) => {
+      switch (item.type) {
+        case EventPanelType.event: {
+          if (!item.data) {
+            return null;
+          }
+
+          return renderEvent({ item: item.data, ...info });
+        }
+
+        case EventPanelType.healthPermission: {
+          return renderHealthPermission();
+        }
+      }
+    },
+    [renderEvent, renderHealthPermission]
+  );
+
+  const keyExtractor = useCallback((event: IEventListItems, index: number) => event?.data?.id ?? `${index}`, []);
 
   return (
     <View style={styles.flatListWrapper}>
