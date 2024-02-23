@@ -138,6 +138,8 @@ export const learnMoreButton = "Learn more"
 export const chestTease = "A chest full of YuCoin!"
 export const rewardsTeaseHeader = "Stay tuned!"
 export const rewardsTeaseText = "Soon you’ll unlock exciting rewards as you progress through levels."
+export const streakModalGameHeaderUnlocked = "Reward unlocked. You did it!"
+export const streakModalGameHeaderTease = "You’re one step closer to your next reward."
 
 export const ghiRewardIdsMinusUrban = [
     CORE_REWARDS_BOOTS_GHI_REWARDS.data._id,
