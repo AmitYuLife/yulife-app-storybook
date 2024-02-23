@@ -9,7 +9,6 @@ import { ReviewModalProps } from "@components/modals/app-review/app-review.modal
 import { setScreenViewForBurgerMenu } from "@navigation/utils";
 import { store } from "@redux/_core/store";
 import { IReduxState } from "@redux/_core/reducers";
-import { updateCurrentRoute } from "@redux/app/app.actions";
 import { Layout } from "react-native-navigation";
 import { MobileTabs } from "@graphql/_core/schema/globalTypes";
 
@@ -278,12 +277,7 @@ export const showYuModal = async <P>(props: Layout<P>) => {
 };
 
 export const pushToScreen = <P>(componentId: string, props: Layout<P>) => {
-  const dispatch = store.dispatch;
   const state = store.getState() as IReduxState;
-
-  // I know we already update the currentRoute on listenToComponentDidAppear
-  // but on slow android devices is not quicker enough
-  dispatch(updateCurrentRoute(props?.component.id));
 
   if (state?.app?.activeRoute === props?.component.id) {
     return;
