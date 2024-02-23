@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-video/android/src/main/java/com/brentvatne/exoplayer/ReactExoplayerView.java b/node_modules/react-native-video/android/src/main/java/com/brentvatne/exoplayer/ReactExoplayerView.java
+index 903705c..2425168 100644
+--- a/node_modules/react-native-video/android/src/main/java/com/brentvatne/exoplayer/ReactExoplayerView.java
++++ b/node_modules/react-native-video/android/src/main/java/com/brentvatne/exoplayer/ReactExoplayerView.java
+@@ -325,7 +325,7 @@ public class ReactExoplayerView extends FrameLayout implements
+         /* We want to be able to continue playing audio when switching tabs.
+          * Leave this here in case it causes issues.
+          */
+-        // stopPlayback();
++        stopPlayback();
+     }
+ 
+     // LifecycleEventListener implementation
