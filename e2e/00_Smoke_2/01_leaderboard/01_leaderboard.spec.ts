@@ -329,7 +329,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I should see the 'Sit tight' copy when I go to the leaderboard as a user whose company does not have a leaderboard setup", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_89, data.AUTH_89), async () => {
             When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
-                Then("I should see the sit tight copy", then.textVisible("Sit tight, while we set up your leaderboard", 2000))
+                Then("I should see the sit tight copy", then.checkCopyNoLeaderboard)
             })
         })
     })
