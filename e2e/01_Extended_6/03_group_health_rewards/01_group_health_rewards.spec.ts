@@ -98,7 +98,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I tap to close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
             When("I tap level 80", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(80)), async () => {
-                Then("I should see a screen telling me to take a challenge to unlock a my reward", then.unlockedLevelHalfModalVisible("1 x Exclusive Discounts", "4 / 5"))
+                Then("I should see a screen telling me to take a challenge to unlock a my reward", then.unlockedLevelHalfModalVisible("Exclusive Discounts", "4 / 5"))
             })
         })
         When("I tap the Let's go button to proceed", when.tapText("Let's go!"), async () => {
@@ -111,6 +111,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
             When("I wait 10 seconds", when.wait(10000), async () => {
                 Then("I should see the first day streak screen", then.textVisible("First day done!"))
+                Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, constants.groupHealthRewardCarouselNames[0], "5 / 5"))
             })
         })
         When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
@@ -600,7 +601,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
     })
 
-    Scenario("I can succesfully go through the GOSH Rewards journeys", scenario.start, async () => {
+    Scenario("I can succesfully go through the GOSH Rewards journeys and see the new streak information", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_127_GHI_REWARDS, data.AUTH_127), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
@@ -678,7 +679,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
     })
 
-    Scenario("I can succesfully go through the GOSH Rewards journeys", scenario.start, async () => {
+    Scenario("Users can still see vouchers they didn't use after they have left a company with the game active", scenario.start, async () => {
         Given("I deactivated the cbp for the expired product", given.archiveCustomerBusinessProductsByDate(moment().format("YYYY-MM-DD")), async () => {
             When("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_130_GHI_LEAVER, data.AUTH_130), async () => {
                 When("I go to the store to select my region before returning to the YuScreen", when.setStoreRegion, async () => {
@@ -776,6 +777,23 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I click to learn more, as the user is above level 5 in the game", when.tapText(constants.learnMoreButton), async () => {
             Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage(false, "0", data.GOAL_PARTICIPATION_14.data.startDateTime))
         })
+        When("I click to go back", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
+            When("I go to the quest tab", when.tapID(ids.NAV_BAR("quests")), async () => {
+                When("I tap level 22", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(22)), async () => {
+                    When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
+                        When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+                            Then("I should see the well done screen", then.onChallengeComplete(3050, 22))
+                        })
+                    })
+                })
+            })
+        })
+        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+            When("I wait 10 seconds", when.wait(10000), async () => {
+                Then("I should see the first day streak screen", then.textVisible("First day done!"))
+                Then("I see the tease for the rewards game starting soon on the streak screen", then.ghiRewardsTeaseVisible)
+            })
+        })
         
      })
 
@@ -835,6 +853,28 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 When("I wait", when.wait(3000), async () => {
                     Then("I see the tease for the rewards game starting soon as I'm now level 6", then.ghiRewardsTeaseVisible)
                 })
+            })
+        })
+        
+     })
+
+     Scenario("Users see the correct streak modal when mid-way to earning a gift", scenario.start, async () => {
+        Given("I login as a user", given.logInAndGoToTab("quests", data.CUSTOMER_136_GHI_REWARDS, data.AUTH_136), async () => {
+            Then("I should see level 15", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(15)))
+        })
+        When("I tap level 15", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(15)), async () => {
+            When("I tap the Let's go button to proceed", when.tapText("Let's go!"), async () => {
+                When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
+                    When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+                        Then("I should see the well done screen", then.onChallengeComplete(3050, 15))
+                    })
+                })
+            })
+        })
+        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+            When("I wait 10 seconds", when.wait(10000), async () => {
+                Then("I should see the first day streak screen", then.textVisible("First day done!"))
+                Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(false, "3 x Urban Massage Vouchers", "9 / 10"))
             })
         })
         

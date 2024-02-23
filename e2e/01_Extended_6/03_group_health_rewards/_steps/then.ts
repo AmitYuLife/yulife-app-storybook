@@ -601,3 +601,11 @@ export const rewardStoreGameProgressVisible = (unlocked: string, date: string) =
   await idVisible(ids.EVENT_DESCRIPTION(`${unlocked}/6 rewards`))()
   await textVisible(`${days} days left`)()
 }
+
+export const rewardGameStreakModalVisible = (unlocked: boolean, reward: string, levels: string) => async () => {
+  const modalHeader = unlocked? constants.streakModalGameHeaderUnlocked : constants.streakModalGameHeaderTease
+
+  await textVisible(modalHeader)()
+  await textVisible(reward)()
+  await textVisible(`${levels} Levels completed`)()
+}
