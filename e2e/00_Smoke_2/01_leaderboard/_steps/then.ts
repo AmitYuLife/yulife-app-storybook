@@ -33,6 +33,10 @@ export const {
     onChooseAvatarBodyScreen
 } = screens.yuscreen
 
+export const {
+    checkCopyNoLeaderboard
+  } = screens.leaderboard
+
 export const onLeaderboardWithoutConsent = async () => {
     await textVisible(leaderboardConsentHeading)()
     await swipeFromText(leaderboardConsentHeading, "up", "fast")()

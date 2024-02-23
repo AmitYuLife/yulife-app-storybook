@@ -232,22 +232,24 @@ export const FAQInfo = async () => {
     await expect(element(by.text(faq14))).toBeVisible();
 }
 
-export const paymentHistoryInfo = (amountPaid: string, payStatus: string, index= 0) => async () => {
-    const paymentText = "Payment History"
-    const todayDate = moment().format("DD/MM/YYYY")
-    const helpInfo = "See something that doesn't look right? Feel free to contact us via chat"
+export const paymentHistoryInfo = (amountPaid: string, payStatus: string, index = 0) => async () => {
+    const items = [
+        { text: "Payment History", waitTime: 0 },
+        { text: moment().format("DD/MM/YYYY"), waitTime: 2000 },
+        { text: amountPaid, waitTime: 0 },
+        { text: payStatus, waitTime: 0 },
+        { text: "See something that doesn't look right? Feel free to contact us via chat", waitTime: 2000 }
+    ];
 
-    await textVisible(paymentText)()
-    await textVisibleAtIndex(todayDate, index)()
-    await textVisible(amountPaid)()
-    await textVisibleAtIndex(payStatus, index)()
-    await textVisible(helpInfo)()
-}
+    for (const item of items) {
+        await textVisibleAtIndex(item.text, index, item.waitTime)();
+    }
+};
 
 export const cancelledNotificationVisible = async () => {
     const policyEndDate =  moment().add(7, "d").format("DD/MM/YYYY")
     const notification = `Your policy ends soon. In the meantime, you're still covered and can still make claims for treatment received up until ${policyEndDate}.`
- 
+
     await expect(element(by.text(notification))).toBeVisible();
  }
 

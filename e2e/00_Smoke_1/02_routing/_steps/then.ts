@@ -39,6 +39,9 @@ export const {
     scrollFromID
 } = navigation.scrolling
 
+export const {
+    checkCopyNoLeaderboard
+  } = screens.leaderboard
 
 export const statsCorrect = async () => {
     await expect(element(by.text("statistics"))).toBeVisible()
