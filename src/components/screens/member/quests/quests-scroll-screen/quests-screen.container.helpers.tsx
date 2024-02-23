@@ -35,7 +35,7 @@ export const goToChallengesList = ({
   levelAvailable,
   isChestLevel,
 }: GoToChallengesListProps) => {
-  if (isNavigatingFromModal) {
+  if (isNavigatingFromModal && useHalfModalsForQuestMap) {
     Navigation.dismissOverlayWithChild();
   }
 
