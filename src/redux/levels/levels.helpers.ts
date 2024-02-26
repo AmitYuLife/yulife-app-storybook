@@ -8,7 +8,7 @@ import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
 import { IActiveLevel } from "./levels.types";
 import { delay } from "@utils/misc";
 import { FitKitSampleType, GenericFitKitResponseType } from "@services/fitkit/fitkit.types";
-import { IFeature } from "@redux/user/user.reducer";
+import { IFeature } from "@redux/user/user.types";
 import { Platform } from "react-native";
 import { yuHealthSampleQuery } from "@services/fitkit/yu-health.helpers";
 

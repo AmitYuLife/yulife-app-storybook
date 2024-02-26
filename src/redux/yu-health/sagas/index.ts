@@ -5,7 +5,7 @@ import { YU_HEALTH_PERMISSIONS_REQUESTED, YU_HEALTH_SET_ACTIVE_PROVIDER } from "
 import setProviderSaga from "./setProvider.saga";
 import refreshCapabilityPermissionsSaga from "./refreshCapabilityPermissions.saga";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { IFeature } from "@redux/user/user.reducer";
+import { IFeature } from "@redux/user/user.types";
 import refreshProviderAvailabilitySaga from "./refreshProviderAvailability.saga";
 
 export default [

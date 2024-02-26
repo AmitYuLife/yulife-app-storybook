@@ -17,7 +17,7 @@ import { getInAppDailyMeditation } from "@redux/daily-meditation/daily-meditatio
 import { processResult, processYuHealthResult } from "@services/fitkit/helpers/sampleToAggregatedData";
 import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
 import { getAggregationCyclingConfiguration, getMindfulSessionFitKitTypes } from "@services/fitkit/fitkit.config";
-import { IFeature } from "@redux/user/user.reducer";
+import { IFeature } from "@redux/user/user.types";
 import { yuHealthAggregateQuery } from "@services/fitkit/yu-health.helpers";
 import { BucketSize, HealthDataType } from "@yu-life/react-native-yu-health";
 import { IAppDailyMeditationProps } from "@redux/daily-meditation/daily-meditation.reducer";

@@ -1,7 +1,6 @@
 import {
   GetCurrentUser,
   LoginUser,
-  UpdateMemberConsent,
   GetUserFeatures_getUserFeatures,
   GetUserConnections_getUserConnections,
   GetUserActiveChallenge_getUserActiveChallenge,
@@ -39,7 +38,6 @@ export const GET_USER_FEATURES_SUCCESS = "GET_USER_FEATURES_SUCCESS";
 export const GET_USER_CONNECTIONS_SUCCESS = "GET_USER_CONNECTIONS_SUCCESS";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 export const UPDATE_USER_CONSENT = "UPDATE_USER_CONSENT";
-export const UPDATE_USER_CONSENT_SUCCESS = "UPDATE_USER_CONSENT_SUCCESS";
 export const UPDATE_CONNECTION_START = "UPDATE_CONNECTION_START";
 export const UPDATE_CONNECTION_FAILED = "UPDATE_CONNECTION_FAILED";
 export const UPDATE_CONNECTION_SUCCESS = "UPDATE_CONNECTION_SUCCESS";
@@ -154,11 +152,6 @@ export const loginUserSuccess = (payload: LoginUser) => ({
 export const updateUserConsent = (payload: MobileConsentInput) => ({
   payload,
   type: UPDATE_USER_CONSENT,
-});
-
-export const updateUserConsentSuccess = (payload: UpdateMemberConsent) => ({
-  payload,
-  type: UPDATE_USER_CONSENT_SUCCESS,
 });
 
 export const updateConnectionStart = (payload: Connection) => ({

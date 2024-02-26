@@ -1,18 +1,12 @@
 import { REHYDRATE } from "redux-persist";
 import {
   GetCurrentUser,
-  GetCurrentUser_getCurrentUser_connections,
-  GetCurrentUser_getCurrentUser_leaderboards,
   LoginUser,
-  UpdateMemberConsent,
   GetUserProfile_getUserProfile,
-  GetUserProfile_getUserProfile_surge_lottie,
-  GetUserProfile_getUserProfile_events as Events,
   GetUserSurge_getUserSurge as IUserSurge,
   MarkMobileNotificationsAsViewedByTypeVariables,
 } from "@graphql/_core/schema";
-import { MobileConsentInput, MobileTabs } from "@graphql/_core/schema/globalTypes";
-import { SyncAction } from "../_core/types";
+import { MobileTabs, SyncAction } from "../_core/types";
 import {
   GET_USER_SUCCESS,
   LOGIN_USER_SUCCESS,
@@ -21,7 +15,6 @@ import {
   UPDATE_CONNECTION_FAILED,
   UPDATE_CONNECTION_START,
   UPDATE_CONNECTION_SUCCESS,
-  UPDATE_USER_CONSENT_SUCCESS,
   LOGOUT_SUCCESS,
   UPDATE_USER_PROFILE,
   UPDATE_USER_PROFILE_EVENTS,
@@ -34,26 +27,7 @@ import {
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
 import moment from "moment";
-import { features } from "./features.data";
-
-type FeatureKey = typeof features[number];
-
-export type IFeature = Record<FeatureKey, boolean>;
-
-export type ILeaderboard = GetCurrentUser_getCurrentUser_leaderboards & {
-  isLoading?: boolean;
-};
-
-type Connection = GetCurrentUser_getCurrentUser_connections & { isLoading?: boolean };
-type SurgeLottie = GetUserProfile_getUserProfile_surge_lottie;
-
-export enum MembershipTypes {
-  "YULIFE_LITE" = "Yulife Lite",
-  "INSTANT_GROUP" = "Instant Group",
-  "YULIFE_ALPHA" = "Yulife Alpha",
-}
-
-type SurgeActivity = "steps" | "meditation" | "all" | null;
+import { Events, IFeature, SurgeActivity, SurgeLottie, UserConnection } from "./user.types";
 
 export interface IUserStore {
   sessionCount: number;
@@ -62,10 +36,8 @@ export interface IUserStore {
   lastName: string;
   fullName: string;
   dateOfBirth: string;
-  businessAccountId: string;
   archived: boolean;
-  connections: Connection[];
-  consent: MobileConsentInput;
+  connections: UserConnection[];
   features: IFeature;
   earnRate: number;
   blackListedNavBarTabs: string[];
@@ -121,14 +93,12 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   firstName: "",
   lastName: "",
   fullName: "",
-  businessAccountId: "",
   dateOfBirth: moment().subtract(30, "years").toISOString(), // Default to 30 years old
-  consent: {},
   features: {},
   connections: [],
   blackListedNavBarTabs: [],
   earnRate: 0,
-  //check if we still need this
+  //TODO: check if we still need this
   surgeIntro: {
     visibility: false,
     activity: null,
@@ -192,9 +162,6 @@ export const userReducer = (state: IUserStore = getInitialState(), action: SyncA
 
     case LOGIN_USER_SUCCESS:
       return loginUserSuccess(state, action.payload);
-
-    case UPDATE_USER_CONSENT_SUCCESS:
-      return updateUserConsentSuccess(state, action.payload);
 
     case UPDATE_CONNECTION_START:
       return updateConnectionsLoading(state, action.payload, true);
@@ -319,17 +286,7 @@ const updatePersistedState = (persistedState: IUserStore) => {
 const getUserSuccess = (
   state: IUserStore,
   {
-    getCurrentUser: {
-      id,
-      firstName,
-      lastName,
-      fullName,
-      dateOfBirth,
-      mobileConsent,
-      userFeatures = [],
-      connections = [],
-      businessAccountId,
-    },
+    getCurrentUser: { id, firstName, lastName, fullName, dateOfBirth, userFeatures = [], connections = [] },
   }: GetCurrentUser
 ): IUserStore => {
   return {
@@ -341,10 +298,6 @@ const getUserSuccess = (
     fullName,
     dateOfBirth,
     connections,
-    businessAccountId,
-    consent: {
-      ...mobileConsent,
-    },
     features: userFeatures.reduce(reduceUserFeatures, {}),
   };
 };
@@ -353,17 +306,7 @@ const loginUserSuccess = (
   state: IUserStore,
   {
     loginUser: {
-      user: {
-        id,
-        firstName,
-        lastName,
-        fullName,
-        dateOfBirth,
-        mobileConsent,
-        userFeatures = [],
-        connections = [],
-        businessAccountId,
-      },
+      user: { id, firstName, lastName, fullName, dateOfBirth, userFeatures = [], connections = [] },
     },
   }: LoginUser
 ): IUserStore => {
@@ -375,20 +318,9 @@ const loginUserSuccess = (
     fullName,
     dateOfBirth,
     connections,
-    consent: {
-      ...mobileConsent,
-    },
     features: userFeatures.reduce(reduceUserFeatures, {}),
-    businessAccountId,
   };
 };
-
-const updateUserConsentSuccess = (state: IUserStore, { upsertMobileConsent }: UpdateMemberConsent): IUserStore => ({
-  ...state,
-  consent: {
-    ...upsertMobileConsent,
-  },
-});
 
 // Only updates loading states
 const updateConnectionsLoading = (state: IUserStore, payload: { name: string }, isLoading: boolean): IUserStore => ({
