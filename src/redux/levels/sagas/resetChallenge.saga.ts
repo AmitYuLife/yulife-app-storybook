@@ -6,7 +6,8 @@ import { Source } from "react-native-fast-image";
 import { Navigation } from "@navigation/main";
 import { call, put, select } from "redux-saga/effects";
 import { challengeResetSuccessAction } from "../levels.actions";
-import { getActiveLevel, getChallengesStatus, getCurrentLevel, IActiveLevel } from "../levels.selectors";
+import { getActiveLevel, getChallengesStatus, getCurrentLevel } from "../levels.selectors";
+import { IActiveLevel } from "../levels.types";
 import { IUnityData, getAssets } from "@components/screens/member/quests/quests-scroll-screen/unity-movies/unity.data";
 
 export default function* resetChallengeSaga() {
@@ -38,7 +39,6 @@ export function showEOTWChestModal(active: IActiveLevel, level: number, avatar: 
         title: active.yuniversalChest.title,
         level: level,
         levelId: active.levelSlotId,
-        items: active.yuniversalChest.items,
         assets,
         avatar,
         onPressCta: () => {

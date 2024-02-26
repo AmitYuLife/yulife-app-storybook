@@ -5,7 +5,7 @@ import Logger from "@services/logging/logger";
 import { DATE_FORMAT_WITH_TZ, Unpacked, getStartAndEndDateTimesWithTimezone, gqlDataTypeToDataType } from "@utils";
 import moment from "moment";
 import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
-import { IActiveLevel } from "./levels.selectors";
+import { IActiveLevel } from "./levels.types";
 import { delay } from "@utils/misc";
 import { FitKitSampleType, GenericFitKitResponseType } from "@services/fitkit/fitkit.types";
 import { IFeature } from "@redux/user/user.reducer";

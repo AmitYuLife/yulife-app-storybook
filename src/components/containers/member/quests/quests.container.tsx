@@ -6,13 +6,13 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { challengeCancelAction, challengeEndAction, challengeResetAction } from "@redux/levels/levels.actions";
 import {
-  ActiveLevelStatus,
   getActiveLevel,
   getChallengeIsActive,
   getHideExternalLinks,
   getVideoPlayerIsActive,
   getYuniversalProgress,
 } from "@redux/levels/levels.selectors";
+import { ActiveLevelStatus } from "@redux/levels/levels.types";
 import { displayStreaksCompletedAction } from "@redux/streaks/streaks.actions";
 import {
   ChallengeExitScreen,

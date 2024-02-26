@@ -13,7 +13,7 @@ import { showYuModal } from "@navigation/root";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { Storage, StorageKey } from "@utils/storage";
 import { TextTemplate, Image } from "@atoms";
-import { IActiveLevel } from "@redux/levels/levels.selectors";
+import { IActiveLevel } from "@redux/levels/levels.types";
 import { challengeCancelAction } from "@redux/levels/levels.actions";
 import { GenericFullScreenLoading, GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";

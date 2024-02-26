@@ -35,7 +35,7 @@ import {
   CHALLENGE_NO_DATA_DEFER,
 } from "./levels.actions";
 import { CHALLENGE_START_INITIAL_STEPS, ChallengeStartPayload } from "./levels.actions";
-import { ActiveLevelState, IActiveLevel, ActiveLevelStatus } from "./levels.selectors";
+import { ActiveLevelState, IActiveLevel, ActiveLevelStatus } from "./levels.types";
 export interface ILevelsStore {
   active: IActiveLevel;
   challengesDoneToday: number;

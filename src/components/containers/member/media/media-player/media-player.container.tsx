@@ -12,7 +12,8 @@ import {
 import { t } from "@locale";
 import { Modal } from "react-native";
 import { GenericModal } from "@components/modals";
-import { ActiveLevelState, getActiveLevel } from "@redux/levels/levels.selectors";
+import { getActiveLevel } from "@redux/levels/levels.selectors";
+import { ActiveLevelState } from "@redux/levels/levels.types";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { Storage, StorageKey } from "@utils/storage";
 import { IVideoProgressStorage } from "@components/screens/member/media/media-player/media-player-progress.screen";

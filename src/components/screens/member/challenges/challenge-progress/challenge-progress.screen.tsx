@@ -15,7 +15,8 @@ import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/g
 import { GetQuestMapLevelChallengeDetails, GetQuestMapLevelChallengeDetailsVariables } from "@graphql/_core/schema";
 import { fromGql } from "@organisms/top-bar/top-bar.helpers";
 import { useSelector } from "react-redux";
-import { IActiveLevel, getActiveChallengeAppButton } from "@redux/levels/levels.selectors";
+import { getActiveChallengeAppButton } from "@redux/levels/levels.selectors";
+import { IActiveLevel } from "@redux/levels/levels.types";
 import { handleLinkPress, openApp } from "@services/app-link";
 import { QuestionMarkIcon } from "@atoms/icon/question-mark-icon";
 import { t } from "@locale";
