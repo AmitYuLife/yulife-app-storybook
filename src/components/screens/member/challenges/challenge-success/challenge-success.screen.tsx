@@ -6,7 +6,7 @@ import { AnimatedPlusPoints, Button, CentredScreen, YucoinPowerButtonMini } from
 import { formatCyclingMetersToKmWithOneDecimal } from "../challenge-progress/subcomponents/progress-bar.helpers";
 import { getTheme } from "@theme";
 import { CHALLENGE_SUCCESS_SCREEN } from "@ids";
-import { IActiveLevel } from "@redux/levels/levels.selectors";
+import { IActiveLevel } from "@redux/levels/levels.types";
 import { Style } from "@styles";
 import { commonStyles } from "../challenge-failed/challenge-failed.screen.styles";
 import { useUserFeatures } from "@hooks";

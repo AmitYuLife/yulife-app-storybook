@@ -16,7 +16,8 @@ import { t } from "@locale";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { YUNIVERSAL_LEVEL_SLOTS } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/level/level-slots";
 import { usePopToQuestsRootOnNewDate, useVerifyAndAuthorizeCapability } from "@hooks";
-import { ActiveLevelState, getActiveChallengeState } from "@redux/levels/levels.selectors";
+import { getActiveChallengeState } from "@redux/levels/levels.selectors";
+import { ActiveLevelState } from "@redux/levels/levels.types";
 import { handleInternalContentChallenge, onPressChallengeTile } from "@utils/challenges";
 
 export interface IChallengesListContainerProps {
