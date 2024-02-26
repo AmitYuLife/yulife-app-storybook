@@ -920,7 +920,11 @@
       "startChallengeButtonLabel": "Start session"
     },
     "yu_coin_power_explained": {
-      "heading": "YuCoin Power"
+      "heading": "YuCoin Power",
+      "no_products": {
+        "title": "Power up to earn more YuCoin",
+        "description": "Your YuCoin Power boosts the amount of YuCoin you earn from each activity. Stay tuned for opportunities to level up your YuCoin Power in the future!"
+      }
     }
   },
   "permissions": {

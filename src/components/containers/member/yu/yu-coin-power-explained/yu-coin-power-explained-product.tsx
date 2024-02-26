@@ -46,7 +46,9 @@ const YuCoinPowerExplainedProduct = ({ product }: IYuCoinPowerExplainedProductPr
           <YucoinPowerButtonMicro style={styles.productCardYuCoin} yuCoinPower={`+${product.yuCoinPower}`} />
         </View>
         <View style={styles.productCardBody}>
-          <TextTemplate type="b1b">{product.title}</TextTemplate>
+          <TextTemplate color={Colours.neutral.n900} type="b1b">
+            {product.title}
+          </TextTemplate>
           <TextTemplate type="l1">{product.description}</TextTemplate>
           <Button
             size="Narrow"
