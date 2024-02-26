@@ -73,11 +73,47 @@ const YuCoinPowerExplained = () => {
     return loading ? previousData : data;
   }, [data, loading, previousData]);
 
+  const productPreviewSelection = useMemo((): React.ReactNode => {
+    const productPreviews = currentData?.getYuCoinPowerInfo?.productPreviews;
+
+    if (isEmpty(productPreviews?.items)) {
+      return (
+        <Stack style={styles.paddedSection}>
+          <TextTemplate color={Colours.neutral.n900} type="b1b">
+            {t("screens.yu_coin_power_explained.no_products.title")}
+          </TextTemplate>
+          <TextTemplate color={Colours.neutral.n900} type="l1">
+            {t("screens.yu_coin_power_explained.no_products.description")}
+          </TextTemplate>
+        </Stack>
+      );
+    }
+
+    return (
+      <Stack style={styles.paddedSection}>
+        <TextTemplate type="l1">{productPreviews.title}</TextTemplate>
+        {productPreviews.items.map((item) => (
+          <ProductSelect
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            image={item.image}
+            onPress={onProductToggle}
+            yuCoinPower={item.yuCoinPower}
+            description={item.description}
+            backgroundColor={item.backgroundColor}
+            isSelected={selectedPersonalProducts?.[item.id]}
+          />
+        ))}
+      </Stack>
+    );
+  }, [currentData, onProductToggle, selectedPersonalProducts]);
+
   if (isEmpty(currentData) && loading) {
     return <YuCoinPowerExplainedSkeleton />;
   }
 
-  const { getYuCoinPowerInfo: { yuCoin, productPreviews, sections = [], products = [] } = {} } = currentData;
+  const { getYuCoinPowerInfo: { yuCoin, sections = [], products = [] } = {} } = currentData;
 
   return (
     <>
@@ -94,29 +130,14 @@ const YuCoinPowerExplained = () => {
         </View>
 
         <Stack style={styles.wrapper} gap={Style.adjust(PADDING_LARGE)}>
-          {!productPreviews?.items?.length ? null : (
-            <Stack style={styles.paddedSection}>
-              <TextTemplate type="l1">{productPreviews.title}</TextTemplate>
-              {productPreviews?.items.map((item) => (
-                <ProductSelect
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  image={item.image}
-                  onPress={onProductToggle}
-                  yuCoinPower={item.yuCoinPower}
-                  description={item.description}
-                  backgroundColor={item.backgroundColor}
-                  isSelected={selectedPersonalProducts?.[item.id]}
-                />
-              ))}
-            </Stack>
-          )}
+          {productPreviewSelection}
 
           {sections.map((section) => (
             <Stack key={section.title}>
               <View style={styles.paddedSection}>
-                <TextTemplate type="b2b">{section.title}</TextTemplate>
+                <TextTemplate color={Colours.neutral.n900} type="b2b">
+                  {section.title}
+                </TextTemplate>
               </View>
               <FlashList
                 horizontal={true}
