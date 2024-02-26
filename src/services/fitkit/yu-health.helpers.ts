@@ -1,4 +1,4 @@
-import { IFeature } from "@redux/user/user.reducer";
+import { IFeature } from "@redux/user/user.types";
 import getClient from "@services/bugsnag";
 import Logger from "@services/logging/logger";
 import {

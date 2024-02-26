@@ -29,9 +29,6 @@ export const getUserName = createSelector(reducer, userNameSelector);
 const userFirstNameSelector = (state: State) => state.fullName;
 export const getUserFirstName = createSelector(reducer, userFirstNameSelector);
 
-const businessAccountIdSelector = (state: State) => state.businessAccountId;
-export const getBusinessAccountId = createSelector(reducer, businessAccountIdSelector);
-
 const currentUserIdSelector = (state: State) => state.id;
 export const getCurrentUserId = createSelector(reducer, currentUserIdSelector);
 
