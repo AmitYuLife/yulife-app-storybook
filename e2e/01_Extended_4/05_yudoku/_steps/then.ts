@@ -36,16 +36,16 @@ export const amOnSudokuHowToPlay = async () => {
 }
 
 export const amOnLeaderboardIntroModal = async () => {
-  await wait(2500)()
-  await textVisible("Join the daily Yudoku leaderboard?")()
+  await wait(2000)()
+  await textVisible("Join the daily Yudoku leaderboard?", 2000)()
 }
 
 export const canSeeStartPrompt = async () => {
-  await textVisible("Complete a Yudoku and be the first on the leaderboard today!")()
+  await textVisible("Complete a Yudoku and be the first on the leaderboard today!", 2000)()
 }
 
 export const canSeeEmptyLeaderboard = async () => {
-  await textVisible("Complete a Yudoku and be the first on the leaderboard today!")()
+  await textVisible("Complete a Yudoku and be the first on the leaderboard today!", 2000)()
 }
 
 export const amOnSudokuChallenge = async () => {
