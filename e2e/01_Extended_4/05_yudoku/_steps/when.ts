@@ -36,7 +36,7 @@ export const tapHowToPlay = async () => {
 }
 
 export const tapJoinTheLeaderboard = async () => {
-  await tapText("Join the daily leaderboard")()
+  await tapText("Join the daily leaderboard", 2000, true)()
 }
 
 export const tapJoinLeaderboardButton = async () => {
