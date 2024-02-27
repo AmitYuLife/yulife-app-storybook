@@ -12,6 +12,7 @@ import { questDetailModalStyles } from "./quest-detail-modal.styles";
 import { HeroLockedIcon } from "@atoms/icon/hero-locked-icon";
 import { gql } from "@graphql/__generated";
 import { useDispatch } from "react-redux";
+import { Style } from "@styles";
 
 export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerProps) => {
   const dispatch = useDispatch();
@@ -33,6 +34,9 @@ export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerP
       ctaLabel: props.ctaLabelSubmit,
       dismissLabel: props.ctaLabelReject,
       goals,
+      rewardCardWrapperStyle: {
+        marginTop: props.displayChestCard ? Style.adjust(-8) : 0,
+      },
     };
   }, [props]);
 
@@ -67,10 +71,9 @@ export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerP
       ) : (
         <>
           {!props.displayChestCard ? null : <ChestCard />}
-          <View style={questDetailModalStyles.listSpacer} />
-          {!data?.getGoalMilestoneDetails?.list
-            ? null
-            : data.getGoalMilestoneDetails.list.map((dataItem, dataItemIndex) => (
+          {!data?.getGoalMilestoneDetails?.list ? null : (
+            <View style={calculated.rewardCardWrapperStyle}>
+              {data.getGoalMilestoneDetails.list.map((dataItem, dataItemIndex) => (
                 <RewardCard
                   key={dataItemIndex}
                   progress={dataItem.progress}
@@ -82,6 +85,8 @@ export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerP
                   rewardImage={dataItem.image}
                 />
               ))}
+            </View>
+          )}
           {!data?.getGoalMilestoneDetails?.hint ? null : (
             <View style={questDetailModalStyles.hintWrapper}>
               <Hint

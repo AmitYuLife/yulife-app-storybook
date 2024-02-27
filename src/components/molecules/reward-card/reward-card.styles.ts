@@ -5,8 +5,11 @@ export const MAX_PROGRESS_WIDTH = Style.DEVICE_WIDTH - Style.adjust(52 * 2);
 export const MAX_UI_PROGRESS_PERCENTAGE = 1;
 
 export const rewardCardStyles = StyleSheet.create({
+  textPad: {
+    height: Style.adjust(4),
+  },
   wrapper: {
-    paddingTop: Style.adjust(10),
+    paddingTop: Style.adjust(22),
   },
   imageWrapper: {
     position: "absolute",
@@ -27,16 +30,17 @@ export const rewardCardStyles = StyleSheet.create({
     width: Style.adjust(57),
     height: Style.adjust(57),
     borderRadius: Style.adjust(56),
-    borderWidth: 1,
   },
   innerWrapper: {
     alignItems: "center",
     borderWidth: 1,
-    borderColor: Colours.neutral.n100,
+    borderColor: Colours.primary.p600,
     borderRadius: Style.adjust(16),
+    backgroundColor: Colours.primary.p40,
   },
   row: {
     flexDirection: "row",
+    minHeight: Style.adjust(76),
   },
   flex: {
     flex: 1,
@@ -44,11 +48,11 @@ export const rewardCardStyles = StyleSheet.create({
   textWrapper: {
     flex: 1,
     maxWidth: Style.adjust(195),
-    paddingTop: Style.adjust(34),
+    paddingTop: Style.adjust(18),
     paddingBottom: Style.adjust(2),
     paddingLeft: Style.adjust(16),
     marginRight: "auto",
-    minHeight: Style.adjust(84),
+    minHeight: Style.adjust(60),
   },
   worldCardWrapper: {
     position: "absolute",
@@ -109,7 +113,7 @@ export const rewardCardStyles = StyleSheet.create({
     backgroundColor: Colours.neutral.white,
     height: Style.adjust(8),
     borderWidth: 1,
-    borderColor: Colours.neutral.n200,
+    borderColor: Colours.primary.p600,
   },
   filledBar: {
     position: "absolute",
@@ -123,8 +127,8 @@ export const rewardCardStyles = StyleSheet.create({
   },
   barWrapper: {
     height: Style.adjust(32),
-    marginTop: Style.adjust(12),
     width: "100%",
+    marginTop: Style.adjust(4),
   },
   milestoneWrapper: {
     position: "absolute",
