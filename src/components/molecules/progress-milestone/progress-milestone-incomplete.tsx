@@ -11,7 +11,7 @@ interface Props {
 export const ProgressMilestoneIncomplete = memo(({ index, target }: Props) => (
   <>
     <View style={styles.iconWrapper}>
-      <StarIcon size={Style.adjust(12)} color={Colours.neutral.n200} />
+      <StarIcon size={Style.adjust(12)} color={Colours.primary.p60} />
     </View>
     {index + 1 === target ? null : <View style={styles.shimRight} />}
     <View style={styles.shimLeft} />
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
-    borderColor: Colours.neutral.n200,
+    borderColor: Colours.primary.p600,
     paddingBottom: 1,
   },
   shimRight: {

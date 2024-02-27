@@ -8,7 +8,7 @@ const meta: Meta<typeof RewardCard> = {
   parameters: {
     design: {
       type: "figma",
-      url: "figma url",
+      url: "https://www.figma.com/file/jydSYU8RrWiXc7ZxvMcaF5/Rewards-Game?type=design&node-id=371-88923&mode=design&t=9lEpBtI8VNYKMEz1-4",
     },
   },
   args: {
