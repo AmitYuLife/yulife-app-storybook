@@ -15,10 +15,10 @@ import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { t } from "@locale";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { YUNIVERSAL_LEVEL_SLOTS } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/level/level-slots";
-import { usePopToQuestsRootOnNewDate, useVerifyAndAuthorizeCapability } from "@hooks";
+import { usePopToQuestsRootOnNewDate, useUserFeatures, useVerifyAndAuthorizeCapability } from "@hooks";
 import { getActiveChallengeState } from "@redux/levels/levels.selectors";
-import { ActiveLevelState } from "@redux/levels/levels.types";
 import { handleInternalContentChallenge, onPressChallengeTile } from "@utils/challenges";
+import { ActiveLevelState } from "@redux/levels/levels.types";
 
 export interface IChallengesListContainerProps {
   componentId: string;
@@ -35,8 +35,9 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
 }) => {
   usePopToQuestsRootOnNewDate(level);
   const dispatch = useDispatch();
-  const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability();
+  const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { authoriseFitKitTypes } = useFitKit();
+  const { tempGameEnableYuHealth } = useUserFeatures();
   const [submitting, setSubmittingState] = useState(false);
   const [error, setErrorState] = useState<string | null>(null);
   const activeChallengeState = useSelector(getActiveChallengeState);
@@ -163,13 +164,14 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
           await onPressChallengeTile({
             level,
             levelSlot,
+            capability,
             componentId,
             createChallenge,
             authoriseFitKitTypes,
             setActiveSlot: setSlot,
+            tempGameEnableYuHealth,
             verifyAndAuthorizeCapability,
             showOverlay: showOverlayRef?.current,
-            capability,
           });
         },
       };
@@ -180,6 +182,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     currentWorld,
     createChallenge,
     authoriseFitKitTypes,
+    tempGameEnableYuHealth,
     verifyAndAuthorizeCapability,
     data?.getQuestMapLevel?.slots,
   ]);

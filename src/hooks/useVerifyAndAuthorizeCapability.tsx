@@ -1,3 +1,4 @@
+import HealthPermissionModal from "@components/modals/health-permission/health-permission.modal";
 import { MODALS } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { showYuModal } from "@navigation/root";
@@ -16,7 +17,11 @@ import { first, isEmpty } from "lodash";
 import { useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
 
-export const useVerifyAndAuthorizeCapability = () => {
+interface IVerifyAndAuthorizeCapabilityProps {
+  componentId?: string;
+}
+
+export const useVerifyAndAuthorizeCapability = (_props: IVerifyAndAuthorizeCapabilityProps = {}) => {
   const dispatch = useDispatch();
 
   /**
@@ -26,6 +31,7 @@ export const useVerifyAndAuthorizeCapability = () => {
   const handleUnsupportedCapability = useCallback(
     async (capability: HealthProviderCapability): Promise<boolean> => {
       const googleFitSupportedCapabilities = await getCapabilities();
+
       // TODO: This check is only needed because we don't have a generic switch modal yet
       // Will be added before release of YuHealth
       if (!googleFitSupportedCapabilities?.[HealthProvider.googleFit]?.includes(capability)) {
@@ -102,29 +108,26 @@ export const useVerifyAndAuthorizeCapability = () => {
   const handlePermissionRequestModal = useCallback(
     async (capabilities: HealthProviderCapability[]) => {
       return new Promise<boolean>((res) => {
-        showYuModal({
-          component: {
-            id: MODALS.healthPermission,
-            name: MODALS.healthPermission,
-            passProps: {
-              capabilities,
-              onCancel: async () => {
-                Navigation.dismissModal(MODALS.healthPermission);
-                res(false);
-              },
-              onClose: async () => {
-                res(false);
-              },
-              onRequestPermissions: async () => {
-                Navigation.dismissModal(MODALS.healthPermission);
+        const modal = (
+          <HealthPermissionModal
+            capabilities={[
+              HealthProviderCapability.STEP_COUNT,
+              HealthProviderCapability.ACTIVITIES,
+              HealthProviderCapability.CYCLING_DISTANCE,
+            ]}
+            onCancel={() => {
+              Navigation.dismissOverlayWithChild();
+              return res(false);
+            }}
+            onRequestPermissions={async () => {
+              const result = await requestCapabilityPermissions(capabilities);
+              Navigation.dismissOverlayWithChild();
+              return res(result);
+            }}
+          />
+        );
 
-                // Actually ask for the permission (system & provider)
-                const result = await requestCapabilityPermissions(capabilities);
-                res(result);
-              },
-            },
-          },
-        });
+        Navigation.showOverlayWithChild(modal, false);
       });
     },
     [requestCapabilityPermissions]
