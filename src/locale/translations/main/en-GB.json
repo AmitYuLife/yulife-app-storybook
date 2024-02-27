@@ -1377,6 +1377,21 @@
       "steps": "Steps",
       "meditation": "Meditation",
       "cycling": "Cycling"
+    },
+    "capabilitiesRequest": {
+      "capabilities": {
+        "steps": "steps",
+        "meditation": "meditation",
+        "cycling": "cycling",
+        "heartRate": "heart rate",
+        "workouts": "workouts",
+        "calories": "calories"
+      },
+      "join": "and",
+      "header": "Permissions needed",
+      "body": "To proceed, we kindly need your permissions for",
+      "continue": "Let's connect",
+      "cancel": "Cancel"
     }
   },
   "sudoku": {

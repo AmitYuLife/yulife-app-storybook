@@ -26,7 +26,7 @@ const DailyStepsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) =
   const currentLevel = useSelector(getCurrentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
   const userEvents = useSelector(getUserEventsWithAds);
-  const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability();
+  const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const userNotification = useSelector(getUserNotification);
   const currentYuniverse = getCurrentYuniverse(currentLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);

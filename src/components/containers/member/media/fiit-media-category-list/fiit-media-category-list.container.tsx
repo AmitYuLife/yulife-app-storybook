@@ -42,11 +42,12 @@ const FiitMediaCategoryListContainer = ({
   yuHealth,
   tutorialUrl,
   level,
+  componentId,
 }: IProps) => {
   const dispatch = useDispatch();
   const features = useUserFeatures();
   const { authoriseFitKitTypes } = useFitKit();
-  const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability();
+  const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const [otherAppLoading, setOtherAppLoading] = useState("");
   const onLeftIconPress = useCallback(() => Navigation.popTo(ROUTES.questsChallengesList), []);
   const onRightIconPress = useCallback(() => Navigation.popTo(ROUTES.quests), []);

@@ -35,7 +35,7 @@ const PermissionsContainer = ({ componentId }: IProps) => {
 
   const permissions = useMemo(() => getPermissionsConfig(activeProvider), [activeProvider]);
 
-  const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability();
+  const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const onPermissionRequest = useCallback(
     async (capability: HealthProviderCapability) => {
       await verifyAndAuthorizeCapability(capability);

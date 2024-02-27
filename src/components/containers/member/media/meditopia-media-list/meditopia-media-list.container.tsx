@@ -38,6 +38,7 @@ const MeditopiaMediaListContainer = ({
   createChallenge,
   levelSlotId,
   fitKitTypes,
+  componentId,
   yuHealth,
   contentMediaTags,
   title,
@@ -52,7 +53,7 @@ const MeditopiaMediaListContainer = ({
   const dispatch = useDispatch();
   const { tempGameEnableYuHealth } = useUserFeatures();
   const { authoriseFitKitTypes } = useFitKit();
-  const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability();
+  const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { data, loading } = useQuery<GetQuestMapLevelChallengeContent, GetQuestMapLevelChallengeContentVariables>(
     GQL_QUERY_GET_QUEST_MAP_CHALLENGE_CONTENT,
     {
