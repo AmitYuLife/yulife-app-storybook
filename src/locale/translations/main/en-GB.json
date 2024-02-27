@@ -1361,6 +1361,24 @@
     "resume": "Resume Meditation",
     "paused": "Meditation Paused"
   },
+  "yu_health": {
+    "providers": {
+      "samsungHealth": "Samsung Health",
+      "googleFit": "Google Fit",
+      "healthKit": "Apple Health",
+      "healthConnect": "Health Connect"
+    },
+    "activitySelection": {
+      "recommended": "Recommended",
+      "optional": "Optional",
+      "title": "Activities to earn YuCoin"
+    },
+    "activityTypes": {
+      "steps": "Steps",
+      "meditation": "Meditation",
+      "cycling": "Cycling"
+    }
+  },
   "sudoku": {
     "difficulty": {
       "easy": "Easy",

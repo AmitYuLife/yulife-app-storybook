@@ -1,0 +1,75 @@
+import React, { memo } from "react";
+import { Stack, TextTemplate } from "@atoms";
+import { BoxOption } from "@molecules";
+import { Colours, Style } from "@styles";
+import { StyleSheet, View } from "react-native";
+import { ArrowButton } from "@components/molecules/arrow-button";
+import HealthProviderLogo from "@components/molecules/health-provider-logo/health-provider-logo";
+import { HealthProvider } from "@yu-life/react-native-yu-health";
+import { HEALTH_PROVIDER_OPTIONS } from "@services/yuHealth/supported-health-types";
+import { useTranslation } from "@hooks";
+
+interface IProps {
+  provider: HealthProvider;
+  onPress: () => void;
+}
+
+const HealthProviderItem = ({ provider, onPress }: IProps) => {
+  const options = HEALTH_PROVIDER_OPTIONS[provider];
+  const t = useTranslation(["yu_health.activitySelection.recommended", "yu_health.activitySelection.optional"]);
+  if (!options) {
+    return null;
+  }
+
+  return (
+    <BoxOption onPress={onPress} isSelected={false} innerWrapperStyle={styles.boxOption}>
+      <Stack gap={Style.adjust(16)} direction="row" style={styles.wrapper}>
+        <View style={styles.image}>
+          <HealthProviderLogo provider={provider} size={Style.adjust(68)} />
+        </View>
+        <View style={styles.details}>
+          <TextTemplate type="b2b">{options?.label}</TextTemplate>
+          <View style={styles.description}>
+            <TextTemplate type="l1" color={options?.isRecommended ? Colours.primary.p300 : undefined}>
+              {options?.isRecommended
+                ? t["yu_health.activitySelection.recommended"]
+                : t["yu_health.activitySelection.optional"]}
+            </TextTemplate>
+          </View>
+        </View>
+        <View style={styles.arrow}>
+          <ArrowButton color={Colours.primary.p600} />
+        </View>
+      </Stack>
+    </BoxOption>
+  );
+};
+
+const styles = StyleSheet.create({
+  boxOption: {
+    justifyContent: "center",
+  },
+  wrapper: {
+    flexDirection: "row",
+    paddingRight: 8,
+    paddingLeft: 16,
+    alignItems: "center",
+  },
+  image: {
+    marginLeft: Style.adjust(8),
+  },
+  details: {
+    flexDirection: "column",
+    justifyContent: "center",
+    flex: 1,
+  },
+  description: {
+    marginTop: Style.adjust(4),
+  },
+  arrow: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
+export default memo(HealthProviderItem);
