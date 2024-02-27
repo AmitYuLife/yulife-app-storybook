@@ -4,10 +4,11 @@ import { Style } from "@styles";
 
 interface IProps {
   color?: string;
+  size?: number;
 }
 
-export const MindfulnessIcon = memo(({ color = "#5A5A5C" }: IProps) => (
-  <Svg width={Style.adjust(16)} height={Style.adjust(16)} viewBox="0 0 16 16" fill="none">
+export const MindfulnessIcon = memo(({ size = Style.adjust(16), color = "#5A5A5C" }: IProps) => (
+  <Svg width={size} height={size} viewBox="0 0 16 16" fill="none">
     <Path
       fillRule="evenodd"
       clipRule="evenodd"
