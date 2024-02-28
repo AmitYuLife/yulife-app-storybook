@@ -27,7 +27,7 @@ const chestCardStyles = StyleSheet.create({
   },
   textWrapper: {
     flex: 1,
-    paddingLeft: Style.adjust(24),
+    paddingLeft: Style.adjust(16),
   },
   chestImageWrapper: {
     marginLeft: "auto",

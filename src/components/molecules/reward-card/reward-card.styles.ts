@@ -15,6 +15,10 @@ export const rewardCardStyles = StyleSheet.create({
     position: "absolute",
     top: Style.adjust(16),
     right: Style.adjust(12),
+    borderRadius: 999,
+    overflow: "hidden",
+    width: Style.adjust(56),
+    height: Style.adjust(56),
   },
   sparks: {
     position: "absolute",
@@ -29,14 +33,15 @@ export const rewardCardStyles = StyleSheet.create({
     right: Style.adjust(11),
     width: Style.adjust(57),
     height: Style.adjust(57),
-    borderRadius: Style.adjust(56),
+    borderRadius: 999,
+    borderWidth: 1,
   },
   innerWrapper: {
     alignItems: "center",
     borderWidth: 1,
-    borderColor: Colours.primary.p600,
+    borderColor: Colours.neutral.n150,
     borderRadius: Style.adjust(16),
-    backgroundColor: Colours.primary.p40,
+    backgroundColor: Colours.neutral.n50,
   },
   row: {
     flexDirection: "row",
@@ -48,11 +53,11 @@ export const rewardCardStyles = StyleSheet.create({
   textWrapper: {
     flex: 1,
     maxWidth: Style.adjust(195),
-    paddingTop: Style.adjust(18),
-    paddingBottom: Style.adjust(2),
     paddingLeft: Style.adjust(16),
     marginRight: "auto",
     minHeight: Style.adjust(60),
+    height: "100%",
+    justifyContent: "center",
   },
   worldCardWrapper: {
     position: "absolute",

@@ -231,6 +231,7 @@ export default {
     white: "#FFFFFF",
     n50: "#FAFAFE",
     n100: "#E7E7EB",
+    n150: "#E3E3E1",
     n200: "#D3D3D6",
     n250: "#D9D9D7",
     n300: "#BFBFC2",
