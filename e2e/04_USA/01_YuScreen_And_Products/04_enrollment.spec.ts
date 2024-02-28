@@ -42,8 +42,9 @@ import {
         helper.CHECK_ENROLLMENT_OPTIONS_PRE_ACTIVE(fixture.CancerInsuranceBox)
         // clicks into the product information and checks page contents
         helper.CHECK_PCP_PRODUCT(fixture.CancerInsuranceBox, fixture.Guardian_CAN)
-        // checks the contents of the legal page and then presses back twice
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(fixture.Guardian_CAN, "pcp");
+        When(`I tap on the legal information`, when.tapText(fixture.Legal_Information), async () => {
+          Then(`I should see correct legal stuff of cancer insurance`, then.onLegalStuffPage(fixture.Guardian_CAN))
+        })
 
       });
     });
@@ -73,12 +74,16 @@ import {
         When(`I swipe up the page`, when.scrollUntilTextVisible(id.YUSCREEN_SCROLL_VIEW, `${CUSTOMER_USA_13.data.firstName} ${CUSTOMER_USA_13.data.lastName}`, "up"), async () => {
           Then(`I should see the top text`, then.textVisible(`${CUSTOMER_USA_13.data.firstName} ${CUSTOMER_USA_13.data.lastName}`))
         })
-        // clicking the product in the slot position to get to the next information page and checking its correct
-        helper.SLOT_YU_SCREEN_PRODUCT_CHECK(fixture.Guardian_CRI);
-        // checks the contents of the legal page and then presses back twice
-        helper.LEGAL_STUFF_CHECK_AND_BACK_TO_MORE_PROTECTION(fixture.Guardian_CRI, "Yu Screen");
+        When("I wait", when.wait(2000), async () => {
+          When(`I tap on slot critical illness`, when.attemptToTapSlot(fixture.Guardian_CRI), async () => {
+              Then(`I should see product card with description critical illness`, then.onMoreProtectionProductsCard(fixture.Guardian_CRI))
+          })
+      })
+      When(`I tap on the legal information`, when.tapText(fixture.Legal_Information), async () => {
+        Then(`I should see correct legal stuff of critical illness`, then.onLegalStuffPage(fixture.Guardian_CRI))
+      })
 
-      });
+    });
     });
 
     // @flaky - can't find box options on bitrise

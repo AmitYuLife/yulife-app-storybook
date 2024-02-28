@@ -60,7 +60,7 @@ export const { swipeToID, swipeFromText, scrollUntilIdVisible, scrollUntilTextVi
 
 export const onboardingUsYuscreenV4 = (packType: string, yuCoinPower: string) => async () => {
   const earnRate0 = "1"; // If product having 0 earn rate will get 1
-  await textVisible(text.yuCoinText)();
+  await textVisibleAtIndex(text.yuCoinText, 0)();
   await textVisible(text.powerText)();
 
   switch (packType) {
@@ -82,9 +82,9 @@ export const onboardingUsYuscreenV4 = (packType: string, yuCoinPower: string) =>
     case "CRI/SPDIS/ACC":
       await textVisible(yuCoinPower)();
       await textVisible(earnRate0)();
-      await textVisible(text.Guardian_CRI.slotAbreviation)();
       await textVisible(text.Guardian_SPDIS.slotAbreviation)();      
-      await textVisible(text.Guardian_ACC.heading)();
+      await textVisible(text.Guardian_VLTD.slotAbreviation)();
+      await textVisible(text.Guardian_VSTD.slotAbreviation)();
       await textVisible(text.moreInsurance)();
       break;
     case "ACCSICK/CAN/VLIF":
@@ -120,7 +120,7 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
   await expect(element(by.text(text.createYumujiHeading))).toBeVisible();
   await expect(element(by.text(text.createYumujiText))).toBeVisible();
   await expect(element(by.text(text.createYumujiCTA))).toBeVisible();
-  await textVisible("YuCoin")();
+  await textVisibleAtIndex("YuCoin", 0)();
   await textVisible("Power")();
 
   switch (packType) {
@@ -128,7 +128,7 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       await textVisible(yuCoinPower, 0)();
       await expect(element(by.text(text.WellbeingProduct))).toBeVisible();
       await expect(element(by.text(text.Guardian_DENPPO.heading))).toBeVisible();
-      await expect(element(by.text(text.Guardian_TLIF.slotAbreviation))).toBeVisible();
+      await expect(element(by.text(text.Guardian_DENHMO.slotAbreviation))).toBeVisible();
       await expect(element(by.text(text.Guardian_DENCHOI.slotAbreviation))).toBeVisible();
       if (device.name.includes("(iPhone 14 Pro)")) {
         await expect(element(by.text(text.MoreProtection))).toBeVisible();
@@ -148,7 +148,7 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       await textVisible(text.Guardian_ADD.slotAbreviation)();
       await textVisible(text.Guardian_STD.slotAbreviation)();
       await textVisible(text.Guardian_LTD.slotAbreviation)();
-      await textVisible(text.Guardian_HI.slotAbreviation)();
+      await textVisible(text.Guardian_VADD.slotAbreviation)();
       if (device.name.includes("(iPhone 14 Pro)")) {
         await expect(element(by.text(text.MoreProtection))).toBeVisible();
       }
@@ -167,7 +167,7 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       await textVisible(text.Guardian_VLTD.slotAbreviation)();
       await textVisible(text.Guardian_SPDIS.slotAbreviation)();
       await textVisible(text.Guardian_ACC.heading)();
-      await textVisible(text.Guardian_CRI.slotAbreviation)();
+      await textVisible(text.Guardian_VSTD.slotAbreviation)();
       if (device.name.includes("(iPhone 14 Pro)")) {
         await expect(element(by.text(text.MoreProtection))).toBeVisible();
       }
@@ -208,6 +208,7 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
 };
 
 export const onMoreProtectionProductsCard = (copyText: USProductData) => async () => {
+  const visionOrCancerProd = copyText.id === "Guardian_CAN" || copyText.id === "Guardian_VIS" ? true : false
   await textVisible(copyText.heading)();
   await textVisible(copyText.description)();
   await idVisible(CONTENT_MIDDLE_ITEM_IMAGE(text.Guardian_ImageUrl))();
@@ -216,10 +217,11 @@ export const onMoreProtectionProductsCard = (copyText: USProductData) => async (
   await textVisible(copyText.markdownTitle_1)();
   await idVisible(CONTENT_SMALL_IMAGE_CARD_URL(copyText.image_1))();
   await textVisible(copyText.markdownSubTitle_1)();
+  visionOrCancerProd && await idVisible(CONTENT_SMALL_IMAGE_CARD_URL(copyText.image_2))();
 
   await swipeFromText(copyText.markdownTitle_2, "up", "slow", 0.3)();
 
-  await idVisible(CONTENT_SMALL_IMAGE_CARD_URL(copyText.image_2))();
+  !visionOrCancerProd && await idVisible(CONTENT_SMALL_IMAGE_CARD_URL(copyText.image_2))();
   await textVisible(copyText.markdownSubTitle_2)();
   await idVisible(CONTENT_SMALL_IMAGE_CARD_URL(copyText.image_3))();
   await textVisible(copyText.markdownSubTitle_3)()
@@ -344,11 +346,12 @@ export const onDescriptionProductCard = (copyText: USProductData) => async () =>
     await idVisible(BOX_OPTION_TITLE(copyText.boxTitle))();
   } else {
     await textVisible(copyText.boxTitle)();
-    await textVisible(copyText.boxDescription)();
+    await textVisible(copyText.shortDescription)();
   }
 };
 
 export const onLegalStuffPage = (copyText: USProductData) => async () => {
+  await swipeFromText(copyText.legalStuff_1, "down", "fast")();
   await textVisible(text.Legal_Stuff)();
   await textVisible(copyText.legalStuff_1)();
   await textVisible(copyText.legalStuff_2)();
