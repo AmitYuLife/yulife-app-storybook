@@ -50,3 +50,5 @@ export { default as AvPlayerTimer } from "./av-player-timer/av-player-timer";
 export { default as AvPlayerProgressBar } from "./av-player-progress-bar/av-player-progress-bar";
 export { default as AudioPlayer } from "./audio-player/audio-player";
 export { default as ActivityHistoryDay } from "./activity-history-day/activity-history-day";
+export { default as EnterpriseRewardItem } from "./enterprise-reward-item/enterprise-reward-item";
+export { default as EnterpriseRewardList } from "./enterprise-reward-list/enterprise-reward-list";
