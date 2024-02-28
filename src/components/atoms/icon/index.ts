@@ -60,6 +60,7 @@ import { SearchIcon } from "./search-icon";
 import { FaqIcon } from "./faq-icon";
 import { HealthAppIcon } from "./health-app-icon";
 import { TrophyIcon } from "./trophy-icon";
+import { SuccessIcon } from "./success-icon";
 
 export default {
   GlobeIcon,
@@ -126,4 +127,5 @@ export default {
   FaqIcon,
   HealthAppIcon,
   TrophyIcon,
+  SuccessIcon,
 };
