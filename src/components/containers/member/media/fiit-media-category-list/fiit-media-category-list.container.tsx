@@ -96,7 +96,7 @@ const FiitMediaCategoryListContainer = ({
           });
         }
 
-        dispatch(updateChallengeAppButton(button));
+        dispatch(updateChallengeAppButton({ appButton: button }));
         await createChallengeUsingFiitApp();
         return;
       }
@@ -106,7 +106,7 @@ const FiitMediaCategoryListContainer = ({
         return;
       }
 
-      dispatch(updateChallengeAppButton(button));
+      dispatch(updateChallengeAppButton({ appButton: button }));
       await createChallengeUsingFiitApp();
     },
     [

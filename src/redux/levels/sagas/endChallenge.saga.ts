@@ -81,7 +81,15 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
         }
 
         if (challengeData) {
-          yield put(challengeEndSuccessAction(challengeData.challenge));
+          yield put(
+            challengeEndSuccessAction({
+              milestonesLog: challengeData.challenge?.milestoneLog,
+              coins: challengeData.challenge?.yuCoinAwarded,
+              level: challengeData.challenge?.level,
+              rating: challengeData.challenge?.rating,
+              incomingData: challengeData.challenge?.incomingData,
+            })
+          );
         } else {
           yield put(challengeResetSuccessAction());
         }

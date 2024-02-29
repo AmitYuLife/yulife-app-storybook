@@ -21,8 +21,8 @@ import {
   challengeResetSuccessAction,
   challengeUpdateSuccessAction,
   challengeIsActive,
-  ChallengeStartPayload,
 } from "../levels.actions";
+import { ChallengeStartPayload } from "../levels.types";
 import { DETOX_ENABLED } from "@services/socket";
 import { Task } from "redux-saga";
 import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
@@ -68,7 +68,15 @@ export function* startTracking(
         const { data } = yield call(UpdateQuestMapLevelChallenge, { levelSlotId, payload: results });
         const challengeData: UpdateQuestMapActiveChallenge = data?.updateQuestMapLevelChallenge;
 
-        yield put(challengeUpdateSuccessAction(challengeData?.challenge));
+        yield put(
+          challengeUpdateSuccessAction({
+            coins: data?.yuCoinAwarded,
+            isCompleted: (data?.status || "") === "completed",
+            milestonesLog: data?.milestoneLog,
+            rating: data?.rating,
+            incomingData: data?.incomingData,
+          })
+        );
 
         if ((challengeData?.challenge?.status || "") === "completed") {
           yield put(cancelLocalPush());

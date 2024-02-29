@@ -12,10 +12,7 @@ export interface ILevelsStore {
 }
 
 export interface IActiveLevel {
-  chest: {
-    type: string;
-    value: number;
-  };
+  chest: Chest;
   yuniversalChest: YuniversalChest | null;
   coins: number;
   endDateTime: string;
@@ -62,6 +59,11 @@ export interface IActiveLevel {
   levelState: ActiveLevelState;
 }
 
+export interface Chest {
+  type: string;
+  value: number;
+}
+
 export interface YuniversalChest {
   chestType: RewardsChestType;
   title: string;
@@ -105,7 +107,8 @@ export enum RewardsChestType {
   OCEAN = "OCEAN",
 }
 
-export type IGetActiveChallengeSuccessData = Pick<
+// Actions payload
+export type GetActiveChallengeSuccessDataPayload = Pick<
   IActiveLevel,
   | "shouldEndOnLastGoalAchieved"
   | "fitKitTypes"
@@ -120,7 +123,68 @@ export type IGetActiveChallengeSuccessData = Pick<
   | "challengeIsActive"
 >;
 
-export type IGetUserSuccessData = {
+export type GetUserSuccessDataPayload = {
   challengesDoneToday: number;
   dailyChallengeAmountAvailable: number;
-} & IGetActiveChallengeSuccessData;
+} & GetActiveChallengeSuccessDataPayload;
+
+export type ChallengeUpdateSuccessPayload = { incomingData: ChallengeIncomingData } & Pick<
+  IActiveLevel,
+  "coins" | "isCompleted" | "milestonesLog" | "rating"
+>;
+
+export type ChallengeEndSuccessPayload = { incomingData: ChallengeIncomingData } & Pick<
+  IActiveLevel,
+  "coins" | "level" | "milestonesLog" | "rating"
+>;
+
+export type UpdateChallengeAppButtonPayload = Pick<IActiveLevel, "appButton">;
+
+export type ChallengeStartActionPayload = {
+  levelSlotId: string;
+  challengeStartSuccessPayload?: Record<string, string | boolean | number>;
+  createQuestMapLevelChallengeVariables: {
+    levelSlotId: string;
+    contentId?: string | null;
+  };
+};
+
+export type ChallengeStartPayload = {
+  createQuestMapLevelChallenge: {
+    hideExternalLinks: boolean | null;
+    challenge: {
+      startDateTime: string;
+      endDateTime: string;
+      level: number | null;
+      levelSlotId: string | null;
+    };
+    levelSlot: {
+      subtype: string;
+      fitKitTypes: FitKitType[];
+      shouldEndOnLastGoalAchieved: boolean;
+      unit: string;
+      milestones: Milestones[];
+    };
+    chest: Chest | null;
+    yuniversalChest: YuniversalChest | null;
+  };
+  levelSlotId: string;
+  videoPlayerIsActive?: boolean;
+  videoDuration?: number;
+};
+
+export type FinishInAppMediaChallengeActionPayload = {
+  video: {
+    id: string;
+    duration?: number;
+  };
+  eventType: string;
+};
+
+export interface ChallengeIncomingData {
+  steps?: number;
+  meditation?: number;
+  distance?: number;
+  duration?: number;
+  calories?: number;
+}
