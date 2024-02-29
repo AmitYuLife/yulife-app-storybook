@@ -10,7 +10,8 @@ export interface AsyncAction extends SyncAction {
   promise?: Promise<any>;
 }
 
-export interface Milestones {
+export interface Milestone {
+  coins: number | null;
   target: MilestoneTarget | null;
 }
 
@@ -91,4 +92,30 @@ export enum MobileTabs {
   quests = "quests",
   rewards = "rewards",
   yuScreen = "yuScreen",
+}
+
+export enum DistanceMeasurementType {
+  km = "km",
+  mi = "mi",
+}
+
+export interface ChallengeIncomingData {
+  steps?: number;
+  meditation?: number;
+  distance?: number;
+  duration?: number;
+  calories?: number;
+}
+
+export interface Challenge {
+  updatedAt: number | null;
+  yuCoinAwarded: number | null;
+  incomingData: ChallengeIncomingData | null;
+}
+
+export interface PassiveExchangeRate {
+  yucoin: number | null;
+  steps: number | null;
+  meditation: number | null;
+  surge: number | null;
 }

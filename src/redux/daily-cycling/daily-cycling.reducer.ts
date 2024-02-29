@@ -3,7 +3,6 @@ import { REHYDRATE } from "redux-persist";
 import {
   GetCurrentUser,
   LoginUser,
-  UpsertDailyPassives_upsertDailyPassives_challenges as Challenge,
   GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate,
 } from "@graphql/_core/schema";
 import {
@@ -13,14 +12,12 @@ import {
   LOGOUT_SUCCESS,
   UPDATE_USER_PROFILE,
 } from "../user/user.actions";
-import { SyncAction } from "@redux/_core/types";
+import { SyncAction, Challenge, DistanceMeasurementType } from "@redux/_core/types";
 import {
   UPDATE_DAILY_CYCLING_SUCCESS,
   UPDATE_DAILY_CYCLING_EMPTY_RESULT,
-  PassiveCyclingMilestones,
   UPDATE_DAILY_CYCLING_DISTANCE_MEASUREMENT_TYPE,
 } from "./daily-cycling.actions";
-import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
 import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
 import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
 
@@ -28,14 +25,12 @@ export interface IDailyCyclingStore {
   cyclingMeasurement: DistanceMeasurementType;
   dailyCycling: number;
   lastUpdated: string;
-  cyclingPassiveMilestones: PassiveCyclingMilestones;
 }
 
 export const getInitialState = (): IDailyCyclingStore => ({
   cyclingMeasurement: DistanceMeasurementType.km,
   dailyCycling: 0,
   lastUpdated: moment().startOf("day").format(),
-  cyclingPassiveMilestones: [],
 });
 
 const dailyCyclingReducer = (state: IDailyCyclingStore = getInitialState(), action: SyncAction): IDailyCyclingStore => {

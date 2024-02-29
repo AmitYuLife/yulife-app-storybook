@@ -2,7 +2,8 @@ import upsertDailyPassives from "@graphql/challenges/upsertDailyPassives.gql";
 import { call, put, spawn, select } from "redux-saga/effects";
 import { mapPedometerResults } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
-import { ExchangeRate, getDailyStepsSyncState } from "@redux/daily-steps/daily-steps.selectors";
+import { getDailyStepsSyncState } from "@redux/daily-steps/daily-steps.selectors";
+import { PassiveExchangeRate } from "@redux/_core/types";
 import { updatePedometerSuccessAction } from "@redux/pedometer/pedometer.actions";
 import {
   updateDailyStepsFailed,
@@ -60,7 +61,7 @@ const getRandomRequestBase = (x = 50, y = 150) => Math.floor(Math.random() * (y 
  * @param newSteps Incoming steps from the pedometer
  * @param oldSteps Stored steps that were sent to the API
  */
-function checkIfAPIRequestNeeded(newSteps: number, oldSteps: number, exchangeRate: ExchangeRate) {
+function checkIfAPIRequestNeeded(newSteps: number, oldSteps: number, exchangeRate: PassiveExchangeRate) {
   const stepsMilestone = exchangeRate?.steps || 2000;
   const newIsMuchHigherThanOld = newSteps - oldSteps >= getRandomRequestBase();
   const newIsMilestone = Math.floor(newSteps / stepsMilestone) > Math.floor(oldSteps / stepsMilestone);

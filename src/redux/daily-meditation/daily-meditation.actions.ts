@@ -1,12 +1,9 @@
-import { UpsertDailyPassives_upsertDailyPassives_challenges as Challenge } from "@graphql/_core/schema";
+import { Challenge } from "@redux/_core/types";
+import { IAppMeditationPayload } from "./daily-meditation.types";
+
 export const UPDATE_DAILY_MEDITATION_SUCCESS = "UPDATE_DAILY_MEDITATION";
 export const UPDATE_DAILY_MEDITATION_EMPTY_RESULT = "UPDATE_DAILY_MEDITATION_EMPTY_RESULT";
 export const UPDATE_IN_APP_MEDITATION = "UPDATE_IN_APP_MEDITATION";
-
-export interface IAppMeditationPayload {
-  duration: number;
-  createdAt: number;
-}
 
 export const updateDailyMeditation = (payload: Challenge) => ({
   payload,
