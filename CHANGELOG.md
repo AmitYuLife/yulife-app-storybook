@@ -7,6 +7,49 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.4.0] - 2024-02-29
+
+### Bugfixes
+
+- Bugfix: Fix making api request every step
+- Bugfix: Bump react native fitkit
+- Bugfix: ComponentId not found on chest modal
+- Bugfix: VideoPlayer component not stopping when component unmount on android
+
+### Tasks
+
+- Task: Fix redux types
+- Task VBUS-151: Reward card redesign
+- Task: YuHealth permission request modal
+- Task VBUS-151: Redesign half-screen quest modal chest card, reward card, and modal header
+- Task: YuHealth UI
+- Task: add message when no products are available on the yucoin power explained screen
+- Task: Remove current route update from navigation
+- Task: 50 shades of gray screen
+- Task: YuHealth log improvements
+
+### Chores
+
+- Chore: is syncing improvements
+- Chore: Levels redux type part 2
+- Chore: Create EnterpriseRewardItem and EnterpriseRewardList
+- Chore: Change yuicon snippet to use size instead of width and height
+- Chore: User reducer types part 1
+- Chore: Levels redux type part 1
+
+### Extra
+
+- Detox/fixes-29/02
+- Purge: legacy toggles
+- detox/usa-fixes-29/02
+- detox/usa-fixes-28/02
+- refactored USA test spec 1
+- Detox/fixes-27/02
+- Detox/fix-26/02
+- Detox/fixes-23/02
+- detox/vbus-51
+- Detox/skip-22/02
+
 ## [4.3.0] - 2024-02-22
 
 ### Bugfixes
