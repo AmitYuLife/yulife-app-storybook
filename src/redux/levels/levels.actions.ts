@@ -1,13 +1,12 @@
 import { createAction } from "@reduxjs/toolkit";
 import {
-  CreateQuestMapLevelChallenge,
-  SubmitUnityVariables,
-  UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge as QuestMapActiveChallenge,
-  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
-  CreateQuestMapLevelChallengeVariables,
-} from "@graphql/_core/schema";
-
-import { MediaFragment } from "@graphql/__generated";
+  ChallengeEndSuccessPayload,
+  ChallengeStartActionPayload,
+  ChallengeStartPayload,
+  ChallengeUpdateSuccessPayload,
+  FinishInAppMediaChallengeActionPayload,
+  UpdateChallengeAppButtonPayload,
+} from "./levels.types";
 
 export const CHALLENGE_SUBMIT_UNITY = "CHALLENGE_SUBMIT_UNITY";
 
@@ -39,25 +38,13 @@ export const CHALLENGE_CANCEL_FAIL = "CHALLENGE_CANCEL_FAIL";
 
 export const UPDATE_CHALLENGE_APP_BUTTON = "UPDATE_CHALLENGE_APP_BUTTON";
 
-export type ChallengeStartPayload = CreateQuestMapLevelChallenge & {
-  levelSlotId: string;
-  videoPlayerIsActive?: boolean;
-  videoDuration?: number;
-};
-
-type ChallengeStartActionPayload = {
-  levelSlotId: string;
-  challengeStartSuccessPayload?: Record<string, string | boolean | number>;
-  createQuestMapLevelChallengeVariables: CreateQuestMapLevelChallengeVariables;
-};
-
-export const submitUnityAction = createAction<SubmitUnityVariables>(CHALLENGE_SUBMIT_UNITY);
+export const submitUnityAction = createAction<{ levelId: string }>(CHALLENGE_SUBMIT_UNITY);
 
 export const challengeStartSuccessAction = createAction<ChallengeStartPayload>(CHALLENGE_START_SUCCESS);
 
 export const pedometerStepsChallengeStarted = createAction<number>(CHALLENGE_START_INITIAL_STEPS);
 
-export const challengeUpdateSuccessAction = createAction<QuestMapActiveChallenge>(CHALLENGE_UPDATE_SUCCESS);
+export const challengeUpdateSuccessAction = createAction<ChallengeUpdateSuccessPayload>(CHALLENGE_UPDATE_SUCCESS);
 
 export const challengeContinueAction = createAction(CHALLENGE_CONTINUE);
 
@@ -69,7 +56,7 @@ export const challengeEndAction = createAction(CHALLENGE_END, function prepare(p
 
 export const challengeEndFailAction = createAction(CHALLENGE_END_FAIL);
 
-export const challengeEndSuccessAction = createAction<QuestMapActiveChallenge>(CHALLENGE_END_SUCCESS);
+export const challengeEndSuccessAction = createAction<ChallengeEndSuccessPayload>(CHALLENGE_END_SUCCESS);
 
 export const challengeNoDataDeferAction = createAction(CHALLENGE_NO_DATA_DEFER);
 
@@ -83,11 +70,10 @@ export const challengeCancelAction = createAction(CHALLENGE_CANCEL);
 
 export const challengeIsActive = createAction(CHALLENGE_IS_ACTIVE);
 
-export const updateChallengeAppButton = createAction<Partial<IButton>>(UPDATE_CHALLENGE_APP_BUTTON);
+export const updateChallengeAppButton = createAction<UpdateChallengeAppButtonPayload>(UPDATE_CHALLENGE_APP_BUTTON);
 
-export const finishInAppMediaChallengeAction = createAction<{ video: MediaFragment; eventType: string }>(
-  FINISH_IN_APP_MEDIA_CHALLENGE
-);
+export const finishInAppMediaChallengeAction =
+  createAction<FinishInAppMediaChallengeActionPayload>(FINISH_IN_APP_MEDIA_CHALLENGE);
 
 export const challengeStartAction = createAction<ChallengeStartActionPayload>(CHALLENGE_START);
 

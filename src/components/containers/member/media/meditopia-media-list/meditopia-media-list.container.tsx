@@ -89,7 +89,7 @@ const MeditopiaMediaListContainer = ({
       setOtherAppLoading(appName);
       try {
         await createChallenge(false);
-        dispatch(updateChallengeAppButton(appName === "otherApp" ? otherApp : button));
+        dispatch(updateChallengeAppButton({ appButton: appName === "otherApp" ? otherApp : button }));
       } catch (err) {
         Logger.error(err, { location: "media-list.container.handleOpenApp" });
       } finally {

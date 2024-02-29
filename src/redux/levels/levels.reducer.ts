@@ -4,8 +4,6 @@ import { addSecondsToChallengeEndDateTime, getCurrentPlanetByLevel, Planets } fr
 import {
   GetCurrentUser,
   LoginUser,
-  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
-  UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge as QuestMapActiveChallenge,
   GetUserCoinLedger_coinLedger,
   GetUserActiveChallenge_getUserActiveChallenge,
 } from "@graphql/_core/schema";
@@ -34,8 +32,18 @@ import {
   UPDATE_CHALLENGE_APP_BUTTON,
   CHALLENGE_NO_DATA_DEFER,
 } from "./levels.actions";
-import { CHALLENGE_START_INITIAL_STEPS, ChallengeStartPayload } from "./levels.actions";
-import { ActiveLevelState, IActiveLevel, ActiveLevelStatus } from "./levels.types";
+import { CHALLENGE_START_INITIAL_STEPS } from "./levels.actions";
+import {
+  ActiveLevelState,
+  IActiveLevel,
+  ActiveLevelStatus,
+  ChallengeUpdateSuccessPayload,
+  ChallengeIncomingData,
+  ChallengeEndSuccessPayload,
+  UpdateChallengeAppButtonPayload,
+  ChallengeStartPayload,
+} from "./levels.types";
+
 export interface ILevelsStore {
   active: IActiveLevel;
   challengesDoneToday: number;
@@ -296,31 +304,31 @@ const challengeStartFail = (state: ILevelsStore): ILevelsStore => ({
   },
 });
 
-const challengeUpdateSuccess = (state: ILevelsStore, challenge: QuestMapActiveChallenge): ILevelsStore => ({
+const challengeUpdateSuccess = (state: ILevelsStore, data: ChallengeUpdateSuccessPayload): ILevelsStore => ({
   ...state,
   active: {
     ...state.active,
-    coins: challenge?.yuCoinAwarded || 0,
-    isCompleted: (challenge?.status || "") === "completed",
-    milestonesLog: challenge?.milestoneLog || [],
-    rating: challenge?.rating || 0,
-    score: getScore(challenge?.incomingData) || 0,
+    coins: data?.coins || 0,
+    isCompleted: data?.isCompleted,
+    milestonesLog: data?.milestonesLog || [],
+    rating: data?.rating || 0,
+    score: getScore(data?.incomingData) || 0,
     isLoading: false,
   },
 });
 
-const challengeEndSuccess = (state: ILevelsStore, challenge: QuestMapActiveChallenge): ILevelsStore => ({
+const challengeEndSuccess = (state: ILevelsStore, data: ChallengeEndSuccessPayload): ILevelsStore => ({
   ...state,
   active: {
     ...state.active,
-    coins: challenge?.yuCoinAwarded || state.active.coins,
-    level: challenge?.level || state.active.level,
+    coins: data?.coins || state.active.coins,
+    level: data?.level || state.active.level,
     isLoading: false,
-    milestonesLog: challenge?.milestoneLog || state.active?.milestonesLog || [],
-    rating: challenge?.rating || state.active.rating,
-    score: getScore(challenge?.incomingData) || state.active.score,
+    milestonesLog: data?.milestonesLog || state.active?.milestonesLog || [],
+    rating: data?.rating || state.active.rating,
+    score: getScore(data?.incomingData) || state.active.score,
     status:
-      (challenge?.milestoneLog || state.active?.milestonesLog || []).length > 0
+      (data?.milestonesLog || state.active?.milestonesLog || []).length > 0
         ? ActiveLevelStatus.success
         : ActiveLevelStatus.failed,
     challengeIsActive: false,
@@ -349,12 +357,12 @@ const challengeResetFail = (state: ILevelsStore): ILevelsStore => ({
   },
 });
 
-const updateChallengeAppButton = (state: ILevelsStore, button: IButton): ILevelsStore => ({
+const updateChallengeAppButton = (state: ILevelsStore, data: UpdateChallengeAppButtonPayload): ILevelsStore => ({
   ...state,
   active: {
     ...state.active,
     appButton: {
-      ...button,
+      ...data.appButton,
     },
   },
 });
@@ -399,7 +407,7 @@ const challengeLoading = (state: ILevelsStore, isLoading: boolean): ILevelsStore
   },
 });
 
-const getScore = (data: QuestMapActiveChallenge["incomingData"]) => {
+const getScore = (data: ChallengeIncomingData) => {
   if (!data) {
     return 0;
   }

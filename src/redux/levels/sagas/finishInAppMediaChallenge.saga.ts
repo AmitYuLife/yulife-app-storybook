@@ -49,7 +49,15 @@ export default function* finishInAppMediaChallengeSaga({
       return;
     }
 
-    yield put(challengeEndSuccessAction({ ...challenge }));
+    yield put(
+      challengeEndSuccessAction({
+        milestonesLog: challenge?.milestoneLog,
+        coins: challenge?.yuCoinAwarded,
+        level: challenge?.level,
+        rating: challenge?.rating,
+        incomingData: challenge?.incomingData,
+      })
+    );
 
     if (eventType === "mindfullness") {
       if (moment().diff(inAppMeditation.lastUpdated, "minutes") < MEDITATION_ANTI_CHEAT_MINUTES) {

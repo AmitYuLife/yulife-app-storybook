@@ -1,4 +1,3 @@
-import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import RNFitKit from "@services/fitkit/fitkit.service";
 import { HealthDataType, ISampleQueryResponse, queryPedometerFromDate } from "@yu-life/react-native-yu-health";
 import Logger from "@services/logging/logger";
@@ -11,6 +10,7 @@ import { FitKitSampleType, GenericFitKitResponseType } from "@services/fitkit/fi
 import { IFeature } from "@redux/user/user.types";
 import { Platform } from "react-native";
 import { yuHealthSampleQuery } from "@services/fitkit/yu-health.helpers";
+import { FitKitType } from "@redux/_core/types";
 
 const PROTECTED_DATA_INACCESSIBLE_ERROR = "Protected health data is inaccessible";
 const RETRIES = 5;

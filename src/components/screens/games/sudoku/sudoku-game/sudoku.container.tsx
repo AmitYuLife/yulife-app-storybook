@@ -26,7 +26,6 @@ import {
   SubmitSudokuSolutionMutation,
   GetSudokuBoardQuery,
 } from "@graphql/__generated";
-import { UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge } from "@graphql/_core/schema"; // TODO: purge when migrating challenge
 
 export interface ISodukuBoard {
   puzzle: SudokuBoard;
@@ -190,9 +189,12 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
         if (result) {
           dispatch(
             challengeEndSuccessAction({
-              ...result.submitSudokuSolution,
-              createdAt: 1,
-            } as unknown as UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge)
+              milestonesLog: result.submitSudokuSolution.milestoneLog,
+              coins: result.submitSudokuSolution.yuCoinAwarded,
+              level: result.submitSudokuSolution.level,
+              rating: result.submitSudokuSolution.rating,
+              incomingData: result.submitSudokuSolution.incomingData,
+            })
           );
 
           navigateToCompleted(
