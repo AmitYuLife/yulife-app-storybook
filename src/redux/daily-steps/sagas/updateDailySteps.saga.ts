@@ -17,10 +17,11 @@ export default function* updateDailyStepsSaga({ payload }: ReturnType<typeof upd
     const state: ReturnType<typeof getDailyStepsSyncState> = yield select(getDailyStepsSyncState);
     const { isSyncing, isServerFetchedThisSession, serverSteps, exchangeRate } = state;
 
-    if (
-      !isSyncing &&
-      (!isServerFetchedThisSession || checkIfAPIRequestNeeded(payload.steps, serverSteps, exchangeRate))
-    ) {
+    const shouldSyncToRemote =
+      !isSyncing && (!isServerFetchedThisSession || checkIfAPIRequestNeeded(payload.steps, serverSteps, exchangeRate));
+
+    // we wanna avoid making API requests for every single 1-2 steps
+    if (shouldSyncToRemote) {
       yield put(startStepsSyncing());
       const { data } = yield call(upsertDailyPassives, [mapPedometerResults(payload)]);
       const mutationResult = data?.upsertPassiveChallenges || data?.upsertDailyPassives;
@@ -33,9 +34,10 @@ export default function* updateDailyStepsSaga({ payload }: ReturnType<typeof upd
           })
         );
       }
-    } else {
-      yield put(updateDailyStepsSuccessFromLocal(payload.steps));
     }
+
+    // always update local steps for the best UX
+    yield put(updateDailyStepsSuccessFromLocal(payload.steps));
   } catch (e) {
     yield spawn(() => {
       Logger.error(e, { event: "updateDailySteps" });

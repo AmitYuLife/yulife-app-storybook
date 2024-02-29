@@ -193,7 +193,7 @@ const updateDailyStepsSuccessFromRemote = (state: IDailyStepsStore, { challenge 
   const lastUpdated = moment.unix(challenge.updatedAt).format();
   return {
     ...state,
-    dailySteps: challenge.incomingData.steps,
+    dailySteps: Math.max(state.dailySteps, challenge.incomingData.steps), // for cases when the wearables data is higher than the current device's data
     serverSteps: challenge.incomingData.steps,
     isFetching: false,
     isSyncing: false,
