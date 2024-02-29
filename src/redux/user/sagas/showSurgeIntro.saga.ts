@@ -19,17 +19,12 @@ export default function* showSurgeIntroSaga() {
     const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
     const hasShowSurgeFeature = !!(features && features.showSurge);
-    const hasPassiveMeditation = !!(features && features.usePassiveMeditation);
 
     const stepsSurgeMultiplier = payload?.getCurrentUser?.passiveSteps?.exchange?.surge || 1;
     const meditationSurgeMultiplier = payload?.getCurrentUser?.passiveMeditation?.exchange?.surge || 1;
 
     if (hasShowSurgeFeature) {
-      if (
-        hasPassiveMeditation &&
-        meditationSurgeMultiplier !== cachedMeditationSurgeMultiplier &&
-        meditationSurgeMultiplier > 1
-      ) {
+      if (meditationSurgeMultiplier !== cachedMeditationSurgeMultiplier && meditationSurgeMultiplier > 1) {
         yield put(
           setShowSurgeIntro({
             visibility: true,

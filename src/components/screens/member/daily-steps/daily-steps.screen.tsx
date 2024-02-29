@@ -27,7 +27,6 @@ import DailyStepsContent, {
 import { useUserFeatures } from "@hooks";
 
 interface IProps extends IConnectedScreenProps {
-  showCounter?: boolean;
   hasPermission: boolean;
   onCoinPress: () => void;
   onNotificationPress?: () => void;
