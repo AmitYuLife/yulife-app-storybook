@@ -188,12 +188,12 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       await textVisible(text.Guardian_ACCSICK.slotAbreviation)();
       await textVisible(text.Guardian_VLIF.slotAbreviation)();
       if (device.name.includes("(iPhone 14 Pro)")) {
-        await expect(element(by.text(text.MoreProtection))).toBeNotVisible();
-        await expect(element(by.text(text.activeEnrollmentButtonMessage))).toBeNotVisible();
+        await expect(element(by.text(text.MoreProtection))).not.toBeVisible();
+        await expect(element(by.text(text.activeEnrollmentButtonMessage))).not.toBeVisible();
       }
       await swipeFromText(text.Guardian_VLIF.slotAbreviation, "up", "fast")();
       if (device.name.includes("(iPhone SE (3rd generation))")) {
-        await expect(element(by.text(text.activeEnrollmentButtonMessage))).toBeNotVisible();
+        await expect(element(by.text(text.activeEnrollmentButtonMessage))).not.toBeVisible();
         await expect(element(by.text(text.ClosedEnrolment))).toBeVisible();
       }
       await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.SurveyText, "down")();

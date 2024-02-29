@@ -19,14 +19,20 @@ export const {
     onDailySteps
 } = screens.dailySteps
 
-export const referralsPopoverVisible = async () => {
-    await expect(element(by.text("Invite colleagues"))).toBeVisible()
-    await expect(element(by.text("Share the love and get 1000 YuCoin for every referral."))).toBeVisible()
-}
+export const referralsPopoverVisible = async (): Promise<void> => {
+    const popoverTitle = element(by.text("Invite colleagues"));
+    const popoverText = element(by.text("Share the love and get 1000 YuCoin for every referral."));
+
+    await waitFor(popoverTitle).toExist().withTimeout(2000);
+    await waitFor(popoverText).toExist().withTimeout(1000);
+
+    await expect(popoverTitle).toBeVisible();
+    await expect(popoverText).toBeVisible();
+};
 
 export const referralsPopoverNotVisible = async () => {
-    await expect(element(by.text("Invite colleagues"))).toBeNotVisible
-    await expect(element(by.text("Share the love and get 300 YuCoin for every referral."))).toBeNotVisible()
+    await expect(element(by.text("Invite colleagues"))).not.toBeVisible()
+    await expect(element(by.text("Share the love and get 300 YuCoin for every referral."))).not.toBeVisible()
 }
 
 export const isOnInivteColleaguePage = async () => {

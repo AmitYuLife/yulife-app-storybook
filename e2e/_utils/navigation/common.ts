@@ -116,8 +116,8 @@ export const textVisible = (text: string, waitTime = 0) => async () => {
 
 export const textNotVisible = (text: string, waitTime = 0) => async () => {
     const target = element(by.text(text))
-    await waitFor(target).toBeNotVisible().withTimeout(waitTime)
-    await expect(target).toBeNotVisible()
+    await waitFor(target).not.toBeVisible().withTimeout(waitTime)
+    await expect(target).not.toBeVisible();
 }
 
 
@@ -138,10 +138,10 @@ export const tryTapID = (id: string, waitTime = 0) => async () => {
     await waitFor(target).toBeVisible().withTimeout(waitTime)
     try {
         await target.tap()
-        await expect(target).toBeNotVisible()
+        await expect(target).not.toBeVisible()
     } catch (e) {
         await target.tap()
-        await expect(target).toBeNotVisible()
+        await expect(target).not.toBeVisible()
     }
 }
 
@@ -150,10 +150,10 @@ export const tryTapText = (text: string, waitTime = 0) => async () => {
     await waitFor(target).toBeVisible().withTimeout(waitTime)
     try {
         await target.tap()
-        await expect(target).toBeNotVisible()
+        await expect(target).not.toBeVisible()
     } catch (e) {
         await target.tap()
-        await expect(target).toBeNotVisible()
+        await expect(target).not.toBeVisible()
     }
 }
 
@@ -178,8 +178,8 @@ export const idVisible = (id: string, waitTime = 0) => async () => {
 
 export const idNotVisible = (id: string, waitTime = 0) => async () => {
     const target = element(by.id(id))
-    await waitFor(target).toBeNotVisible().withTimeout(waitTime)
-    await expect(target).toBeNotVisible()
+    await waitFor(target).not.toBeVisible().withTimeout(waitTime)
+    await expect(target).not.toBeVisible()
 }
 
 export const idVisibleAtIndex = (id: string, index: number, waitTime = 0) => async () => {
@@ -223,7 +223,7 @@ export const multipleTextVisible = (textArr: string[]) => async () => {
 export const multipleTextNotVisible = (textArr: string[], waitTime = 0) => async () => {
     await wait(waitTime)()
     for (const i of textArr) {
-        await expect(element(by.text(i))).toBeNotVisible()
+        await expect(element(by.text(i))).not.toBeVisible()
     }
 }
 
