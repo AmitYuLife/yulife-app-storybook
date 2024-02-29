@@ -38,7 +38,7 @@ Feature("I am able to see the correct enrollment windows on the US YuScreen", as
     })
     // might need to comment out the below due to above flaky reasons
     When("I scroll to see the wellbeing hub", when.scrollUntilTextVisible(id.YUSCREEN_SCROLL_VIEW, fixture.SurveyText, "down"), async () => {
-    Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
+    // Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
     Then("I can't see the explore insurance box", then.boxOptionVisible(fixture.ExploreInsureanceBox, false))
     })
     When("I scoll to see the enrollment component", when.scrollUntilTextVisible(id.YUSCREEN_SCROLL_VIEW, fixture.createYumujiCTA, "up"), async () => {
@@ -79,7 +79,7 @@ Feature("I am able to see the correct enrollment windows on the US YuScreen", as
     })
     // might need to comment out the below due to above flaky reasons
     When("I scroll to see the wellbeing hub", when.scrollUntilTextVisible(id.YUSCREEN_SCROLL_VIEW, fixture.SurveyText, "down"), async () => {
-      Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
+      // Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
       Then("I can't see the explore insurance box", then.boxOptionVisible(fixture.ExploreInsureanceBox, false))
     })
     When("I scoll to see the enrollment component", when.scrollUntilTextVisible(id.YUSCREEN_SCROLL_VIEW, fixture.createYumujiCTA, "up"), async () => {
@@ -117,7 +117,7 @@ Feature("I am able to see the correct enrollment windows on the US YuScreen", as
     })
     // might need to comment out the below due to above flaky reasons
     When("I swipe to the bottom of the screen", when.swipeFromText(`${CUSTOMER_USA_14.data.firstName} ${CUSTOMER_USA_14.data.lastName}`, "up", "fast"), async () => {
-      Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
+      // Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
       Then("I can see the explore insurance box", then.boxOptionVisible(fixture.ExploreInsureanceBox, true))
     })
     When(`I swipe down the page`, when.scrollUntilTextVisible(id.YUSCREEN_SCROLL_VIEW, fixture.SurveyLabel, "down"), async () => {

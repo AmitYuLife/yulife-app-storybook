@@ -144,9 +144,7 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       if (device.name.includes("(iPhone SE (3rd generation))")) {
         await swipeFromText(text.activeEnrollmentButtonMessage, "up", "fast")();
       }
-      await expect(
-        element(by.text(`${text.enrollmentMessage} ${moment(BPEEW_USA_1_DENPPO.data.enrolment_end_date).format("MM/DD/YYYY")}`))
-      ).toBeVisible();
+      await enrollmentMessageVisible(moment(BPEEW_USA_1_DENPPO.data.enrolment_end_date).format("MM/DD/YYYY"), "active")()
       await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.SurveyText, "down")();
       await howToEnrollTexts();
       break;
@@ -163,9 +161,7 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       if (device.name.includes("(iPhone SE (3rd generation))")) {
         await swipeFromText(text.activeEnrollmentButtonMessage, "up", "fast")();
       }
-      await expect(
-        element(by.text(`${text.enrollmentMessage} ${moment(BPEEW_USA_2_ADD.data.enrolment_end_date).format("MM/DD/YYYY")}`))
-      ).toBeVisible();
+      await enrollmentMessageVisible(moment(BPEEW_USA_2_ADD.data.enrolment_end_date).format("MM/DD/YYYY"), "active")()
       await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.SurveyText, "down")();
       await howToEnrollTexts();
       break;
@@ -182,9 +178,7 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       if (device.name.includes("(iPhone SE (3rd generation))")) {
         await swipeFromText(text.activeEnrollmentButtonMessage, "up", "fast")();
       }
-      await expect(
-        element(by.text(`${text.enrollmentMessage} ${moment(BPEEW_USA_3_ACC.data.enrolment_end_date).format("MM/DD/YYYY")}`))
-      ).toBeVisible();
+      await enrollmentMessageVisible(moment(BPEEW_USA_3_ACC.data.enrolment_end_date).format("MM/DD/YYYY"), "active")()
       await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.SurveyText, "down")();
       await howToEnrollTexts();
       break;

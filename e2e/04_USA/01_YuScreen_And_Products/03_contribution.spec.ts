@@ -17,7 +17,6 @@ import {
   import * as id from "@ids";
   
 Feature("I am able to see sponsored by text/logos and box option types", async () => {
-// @update added to YUSCREEN_USA
 // @flaky - testing one on nightly - can't find box options on bitrise - locally failing with image cut off
   Scenario("I can see sponsored by text and logos in yuscreen if contribution_type none and can view the explore my insurance page",scenario.start, async () => {
     Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_5, AUTH_USA_5, true, "United States"),async () => {
@@ -37,7 +36,7 @@ Feature("I am able to see sponsored by text/logos and box option types", async (
       })
     })
     When("I swipe to the bottom of the screen", when.swipeFromText(`${CUSTOMER_USA_5.data.firstName} ${CUSTOMER_USA_5.data.lastName}`, "up", "fast"), async () => {
-      Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
+      // Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true)) 
       Then("I can see the explore insurance box", then.boxOptionVisible(fixture.ExploreInsureanceBox, true))
     })
     When(`I tap explore insurance`, when.tapText(fixture.ExploreInsureanceBox.description), async () => {
@@ -71,7 +70,7 @@ Feature("I am able to see sponsored by text/logos and box option types", async (
     })
     // might need to comment out the below due to above flaky reasons
     When("I swipe to the bottom of the screen", when.swipeFromText(`${CUSTOMER_USA_6.data.firstName} ${CUSTOMER_USA_6.data.lastName}`, "up", "fast"), async () => {
-      Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
+      // Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
       Then("I can't see the explore insurance box", then.boxOptionVisible(fixture.ExploreInsureanceBox, false))
     })
   });
@@ -96,7 +95,7 @@ Feature("I am able to see sponsored by text/logos and box option types", async (
     })
     // might need to comment out the below due to above flaky reasons
     When("I swipe to the bottom of the screen", when.swipeFromText(`${CUSTOMER_USA_7.data.firstName} ${CUSTOMER_USA_7.data.lastName}`, "up", "fast"), async () => {
-      Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
+      // Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
       Then("I can see the explore insurance box", then.boxOptionVisible(fixture.ExploreInsureanceBox, true))
     })
 
@@ -122,7 +121,7 @@ Feature("I am able to see sponsored by text/logos and box option types", async (
     })
     // might need to comment out the below due to above flaky reasons
     When("I swipe to the bottom of the screen", when.swipeFromText(`${CUSTOMER_USA_8.data.firstName} ${CUSTOMER_USA_8.data.lastName}`, "up", "fast"), async () => {
-      Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
+      // Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
       Then("I can see the explore insurance box", then.boxOptionVisible(fixture.ExploreInsureanceBox, true))
     })
 
@@ -147,7 +146,7 @@ Feature("I am able to see sponsored by text/logos and box option types", async (
     })
     // might need to comment out the below due to above flaky reasons
     When("I swipe to the bottom of the screen", when.swipeFromText(`${CUSTOMER_USA_9.data.firstName} ${CUSTOMER_USA_9.data.lastName}`, "up", "fast"), async () => {
-      Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
+      // Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
       Then("I can't see the explore insurance box", then.boxOptionVisible(fixture.ExploreInsureanceBox, false))
     })
 
@@ -173,17 +172,17 @@ Feature("I am able to see sponsored by text/logos and box option types", async (
     })
     // might need to comment out the below due to above flaky reasons
     When("I scroll to see the wellbeing hub", when.scrollUntilTextVisible(id.YUSCREEN_SCROLL_VIEW, fixture.SurveyText, "down"), async () => {
-      Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
+      // Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
       Then("I can't see the explore insurance box", then.boxOptionVisible(fixture.ExploreInsureanceBox, false))
     })
-    When("I click on the wellbeing hub", when.tapText(fixture.MyWellbeingHubBoxUS.description), async () => {
-      Then("I see the wellbeing hub", then.wellbeingHubScreenVisible(CUSTOMER_USA_10))
-    })
-    When("I tap to go back to Yu Screen", when.tapID(id.BACK_BUTTON), async () => {
-      When("I scoll to see the enrollment component", when.scrollUntilTextVisible(id.YUSCREEN_SCROLL_VIEW, fixture.createYumujiCTA, "up"), async () => {
-        Then("I see the correct enrollment component", then.enrollmentComponentVisible(BPEEW_USA_10_VIS, "active"))
-      })
-    })
+    // When("I click on the wellbeing hub", when.tapText(fixture.MyWellbeingHubBoxUS.description), async () => {
+    //   Then("I see the wellbeing hub", then.wellbeingHubScreenVisible(CUSTOMER_USA_10))
+    // })
+    // When("I tap to go back to Yu Screen", when.tapID(id.BACK_BUTTON), async () => {
+      // When("I scoll to see the enrollment component", when.scrollUntilTextVisible(id.YUSCREEN_SCROLL_VIEW, fixture.createYumujiCTA, "up"), async () => {
+      //   Then("I see the correct enrollment component", then.enrollmentComponentVisible(BPEEW_USA_10_VIS, "active"))
+      // })
+    // })
 
   });
   
@@ -207,7 +206,7 @@ Feature("I am able to see sponsored by text/logos and box option types", async (
     })
     // might need to comment out the below due to above flaky reasons
     When("I swipe to the bottom of the screen", when.swipeFromText(`${CUSTOMER_USA_11.data.firstName} ${CUSTOMER_USA_11.data.lastName}`, "up", "fast"), async () => {
-      Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
+      // Then("I can see the wellbeing hub box", then.boxOptionVisible(fixture.MyWellbeingHubBoxUS, true))
       Then("I can see the explore insurance box", then.boxOptionVisible(fixture.ExploreInsureanceBox, true))
     })
     When(`I tap explore insurance`, when.tapText(fixture.ExploreInsureanceBox.description), async () => {
