@@ -764,6 +764,7 @@ workflows:
             # debug log
             set -x
 
+            npm install -g forever
             forever stop -o build/app/index.js
             node ./scripts/get-test-results.js | envman add --key E2E_RESULTS
             cp ~/temp-repos/yulife-api-server/api-stdout.txt ./e2e-report
@@ -1212,6 +1213,7 @@ workflows:
             # debug log
             set -x
 
+            npm install -g forever
             forever stop -o build/app/index.js
             node ./scripts/get-test-results.js | envman add --key E2E_RESULTS
             cp ~/temp-repos/yulife-api-server/api-stdout.txt ./e2e-report
@@ -1557,6 +1559,7 @@ workflows:
             # debug log
             set -x
 
+            npm install -g forever
             forever stop -o build/app/index.js
             node ./scripts/get-test-results.js | envman add --key E2E_RESULTS
             cp ~/temp-repos/yulife-api-server/api-stdout.txt ./e2e-report
