@@ -1,12 +1,11 @@
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
 import {
+  LoginUser,
   GetCurrentUser,
-  UpsertDailyPassives_upsertDailyPassives_challenges as Challenge,
   GetUserProfile_getUserProfile_gameSettings as GameSettings,
   GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate,
 } from "@graphql/_core/schema";
-import { LoginUser } from "@graphql/_core/schema";
 import {
   PEDOMETER_UPDATES_NO_NEW_DATA,
   PEDOMETER_UPDATES_START,
@@ -27,8 +26,7 @@ import {
   START_STEPS_SYNCING,
   CHANGE_PANEL_VISIBILITY,
 } from "./daily-steps.actions";
-import { SyncAction } from "@redux/_core/types";
-import { ExchangeRate, PassiveStepsMilestones } from "./daily-steps.selectors";
+import { SyncAction, Challenge, PassiveExchangeRate } from "@redux/_core/types";
 import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
 
 const MAX_ANOMALY_DETECTION_WINDOW_MS = 10000; // in ms
@@ -49,8 +47,7 @@ export interface IDailyStepsStore {
    * @description
    * The default exchange rate is 1 yucoin for 2000 steps. But that varies
    */
-  exchangeRate: ExchangeRate;
-  stepsPassiveMilestones: PassiveStepsMilestones;
+  exchangeRate: PassiveExchangeRate;
   /**
    * @description
    * Describes if we're fetching the results from the pedometer
@@ -93,7 +90,6 @@ export const getInitialState = (): IDailyStepsStore => ({
     meditation: null,
     surge: 1,
   },
-  stepsPassiveMilestones: [],
   isFetching: true,
   isSyncing: false,
   isServerFetchedThisSession: false,

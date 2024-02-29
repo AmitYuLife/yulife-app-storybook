@@ -1,4 +1,4 @@
-import { UpsertDailyPassives_upsertDailyPassives_challenges as Challenge } from "@graphql/_core/schema";
+import { Challenge } from "@redux/_core/types";
 import { SyncAction } from "../_core/types";
 
 export const START_DAILY_STEPS = "START_DAILY_STEPS";

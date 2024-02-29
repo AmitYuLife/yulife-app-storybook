@@ -1,12 +1,5 @@
 import { createSelector } from "reselect";
-import {
-  GetCurrentUser_getCurrentUser_passiveSteps_exchange,
-  GetCurrentUser_getCurrentUser_passiveSteps_levelSlot_milestones,
-} from "@graphql/_core/schema";
 import { IReduxState } from "../_core/reducers";
-
-export type ExchangeRate = GetCurrentUser_getCurrentUser_passiveSteps_exchange;
-export type PassiveStepsMilestones = GetCurrentUser_getCurrentUser_passiveSteps_levelSlot_milestones[];
 
 type State = IReduxState["dailySteps"];
 const reducer = (state: IReduxState) => state.dailySteps;
@@ -27,10 +20,6 @@ const dailyStepsSyncSelector = ({ isServerFetchedThisSession, serverSteps, isSyn
   exchangeRate,
 });
 export const getDailyStepsSyncState = createSelector(reducer, dailyStepsSyncSelector);
-
-const stepsAwardedMilestonesLengthSelector = (state: State) =>
-  (state.stepsPassiveMilestones || []).filter((milestone) => milestone.coins > 0).length;
-export const getStepsAwardedMilestonesLength = createSelector(reducer, stepsAwardedMilestonesLengthSelector);
 
 const maxStepsAnomalyWindowMs = (state: State) => state.maxStepsAnomalyWindowMs;
 export const getMaxStepsAnomalyWindowMs = createSelector(reducer, maxStepsAnomalyWindowMs);

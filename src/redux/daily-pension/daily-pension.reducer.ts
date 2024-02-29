@@ -3,7 +3,7 @@ import { REHYDRATE } from "redux-persist";
 import { LOGOUT_SUCCESS } from "../user/user.actions";
 import { SyncAction } from "@redux/_core/types";
 import { UPDATE_DAILY_PENSION_SUCCESS } from "./daily-pension.actions";
-import { GetCurrentUser_getDailyPensionContribution as DailyPension } from "@graphql/_core/schema";
+import { DailyPension } from "./daily-pension.types";
 import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
 import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
 

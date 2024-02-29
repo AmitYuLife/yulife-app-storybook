@@ -6,7 +6,7 @@ import Logger from "@services/logging/logger";
 import { UPDATE_APP_STATE } from "../../app/app.actions";
 import { getUserFeatures } from "../../user/user.selectors";
 import upsertDailyPassives from "@graphql/challenges/upsertDailyPassives.gql";
-import { IAppMeditationPayload, updateDailyMeditation } from "@redux/daily-meditation/daily-meditation.actions";
+import { updateDailyMeditation } from "@redux/daily-meditation/daily-meditation.actions";
 import { updateDailyCycling } from "@redux/daily-cycling/daily-cycling.actions";
 import { PermissionsAndroid, Platform } from "react-native";
 import { totalCoinsUpdated } from "@redux/coins/coins.actions";
@@ -21,6 +21,7 @@ import { IFeature } from "@redux/user/user.types";
 import { yuHealthAggregateQuery } from "@services/fitkit/yu-health.helpers";
 import { BucketSize, HealthDataType } from "@yu-life/react-native-yu-health";
 import { IAppDailyMeditationProps } from "@redux/daily-meditation/daily-meditation.reducer";
+import { IAppMeditationPayload } from "@redux/daily-meditation/daily-meditation.types";
 
 export default function* getDailyPassiveActivity(dataPayload: { payload: string; type: string }) {
   const { payload: appState, type } = dataPayload || {};

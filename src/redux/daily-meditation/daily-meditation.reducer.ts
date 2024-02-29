@@ -3,7 +3,6 @@ import { REHYDRATE } from "redux-persist";
 import {
   GetCurrentUser,
   LoginUser,
-  UpsertDailyPassives_upsertDailyPassives_challenges as Challenge,
   GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate,
 } from "@graphql/_core/schema";
 import {
@@ -13,15 +12,14 @@ import {
   LOGOUT_SUCCESS,
 } from "../user/user.actions";
 import {
-  IAppMeditationPayload,
   UPDATE_DAILY_MEDITATION_EMPTY_RESULT,
   UPDATE_DAILY_MEDITATION_SUCCESS,
   UPDATE_IN_APP_MEDITATION,
 } from "./daily-meditation.actions";
-import { PassiveMeditationMilestones, ExchangeRateMeditation as ExchangeRate } from "./daily-meditation.selectors";
-import { SyncAction } from "@redux/_core/types";
+import { SyncAction, Challenge, PassiveExchangeRate } from "@redux/_core/types";
 import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
 import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
+import { IAppMeditationPayload } from "./daily-meditation.types";
 
 export interface IAppDailyMeditationProps {
   duration: number;
@@ -32,8 +30,7 @@ export interface IAppDailyMeditationProps {
 export interface IDailyMeditationStore {
   dailyMeditation: number;
   inAppMeditation: IAppDailyMeditationProps;
-  exchangeRate: ExchangeRate;
-  meditationPassiveMilestones: PassiveMeditationMilestones;
+  exchangeRate: PassiveExchangeRate;
   lastUpdated: string;
 }
 
@@ -50,7 +47,6 @@ export const getInitialState = (): IDailyMeditationStore => ({
     lastUpdated: "",
     createdAt: null,
   },
-  meditationPassiveMilestones: [],
   lastUpdated: moment().startOf("day").format(),
 });
 

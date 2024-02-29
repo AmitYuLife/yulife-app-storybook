@@ -1,4 +1,4 @@
-import { FitKitType, Milestones, YuHealthOptions } from "@redux/_core/types";
+import { FitKitType, Milestone, YuHealthOptions } from "@redux/_core/types";
 
 export interface ILevelsStore {
   active: IActiveLevel;
@@ -23,7 +23,7 @@ export interface IActiveLevel {
   levelSlotId: string;
   fitKitTypes: FitKitType[];
   shouldEndOnLastGoalAchieved: boolean;
-  milestones: Milestones[];
+  milestones: Milestone[];
   yuHealth?: YuHealthOptions;
   milestonesLog: any;
   rating: number;
@@ -163,7 +163,7 @@ export type ChallengeStartPayload = {
       fitKitTypes: FitKitType[];
       shouldEndOnLastGoalAchieved: boolean;
       unit: string;
-      milestones: Milestones[];
+      milestones: Milestone[];
     };
     chest: Chest | null;
     yuniversalChest: YuniversalChest | null;

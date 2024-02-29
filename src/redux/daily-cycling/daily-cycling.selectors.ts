@@ -1,6 +1,6 @@
-import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
 import { createSelector } from "reselect";
 import { IReduxState } from "../_core/reducers";
+import { DistanceMeasurementType } from "@redux/_core/types";
 
 export const METER_TO_MILES = 0.000621371;
 export const KM_TO_METERS = 1000;
