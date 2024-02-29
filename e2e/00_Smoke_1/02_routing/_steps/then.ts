@@ -113,6 +113,6 @@ export const onPermissionsPage = (status: string) => async () => {
     }
     else if (status === "authorised") {
         await idVisibleAtIndex(ids.STATUS_ICON(status), 4)
-        await expect(element(by.text(permissionSettings.ios.statusUnknown.unknownStatusText))).toBeNotVisible()
+        await expect(element(by.text(permissionSettings.ios.statusUnknown.unknownStatusText))).not.toBeVisible();
     }
 }

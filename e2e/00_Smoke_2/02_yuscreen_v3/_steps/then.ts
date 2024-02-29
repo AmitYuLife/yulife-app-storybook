@@ -21,9 +21,9 @@ export const {
 } = navigation.scrolling
 
 export const alphaProductsNotVisible = async()=>{
-    await expect(element(by.id(ids.AVATAR_ITEM("compass", "active")))).toBeNotVisible()
-    await expect(element(by.id(ids.AVATAR_ITEM("binoculars", "active")))).toBeNotVisible()
-    await expect(element(by.id(ids.AVATAR_ITEM("map", "active")))).toBeNotVisible()
+    await expect(element(by.id(ids.AVATAR_ITEM("compass", "active")))).not.toBeVisible()
+    await expect(element(by.id(ids.AVATAR_ITEM("binoculars", "active")))).not.toBeVisible()
+    await expect(element(by.id(ids.AVATAR_ITEM("map", "active")))).not.toBeVisible()
 }
 
 export const avatarItemVisible = (avatarItem: string, status: string) => async () => {

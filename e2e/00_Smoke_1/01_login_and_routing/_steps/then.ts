@@ -50,7 +50,7 @@ export const isOnLoginScreen = async (): Promise<void> => {
 
 export const notOnLoginScreen = async (): Promise<void> => {
     const target = element(by.text(t("Welcome!")));
-    await expect(target).toBeNotVisible();
+    await expect(target).not.toBeVisible()
 };
 
 export const healthAppPromptVisible = async (): Promise<void> => {
