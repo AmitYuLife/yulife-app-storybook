@@ -126,10 +126,10 @@ const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: 
       return updateDailyStepsLocal(state, action.payload);
 
     case UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE:
-      return updateDailyStepsSuccess(state, action.payload);
+      return updateDailyStepsSuccessFromRemote(state, action.payload);
 
     case UPDATE_DAILY_STEPS_FAILED:
-      return { ...state, isFetching: false };
+      return { ...state, isFetching: false, isSyncing: false };
 
     case PEDOMETER_START:
       return { ...state, isServerFetchedThisSession: false };
@@ -189,7 +189,7 @@ const updateUserProfile = (state: IDailyStepsStore, gameSettings: GameSettings) 
   blackListApps: gameSettings?.blackListApps?.steps,
 });
 
-const updateDailyStepsSuccess = (state: IDailyStepsStore, { challenge }: { challenge: Challenge }) => {
+const updateDailyStepsSuccessFromRemote = (state: IDailyStepsStore, { challenge }: { challenge: Challenge }) => {
   const lastUpdated = moment.unix(challenge.updatedAt).format();
   return {
     ...state,
@@ -204,7 +204,6 @@ const updateDailyStepsSuccess = (state: IDailyStepsStore, { challenge }: { chall
 
 const updateDailyStepsLocal = (state: IDailyStepsStore, dailySteps: number) => ({
   ...state,
-  isSyncing: false,
   dailySteps: Math.max(state.dailySteps, dailySteps),
 });
 
