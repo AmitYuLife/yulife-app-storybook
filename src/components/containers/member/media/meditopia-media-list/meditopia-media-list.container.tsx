@@ -149,7 +149,6 @@ const MeditopiaMediaListContainer = ({
   );
 
   const moreInformationPress = useCallback(() => {
-    // this needs to change newSduiRewards when the old rewardsDetails is purged
     dispatch(
       logMixpanelEventActionCreator("button_pressed", {
         button_id: "promotion_reward_meditopia",

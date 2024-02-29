@@ -6,7 +6,7 @@ import { ActivityList, Button, Counter, EventPanels, Panel, PressableWithDelay }
 import { displaySecondsAsMinutes, getCurrentWorld } from "@utils";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
 import { Style, NAV_BAR } from "@styles";
-import { getUserEventsWithAds, getUserFeatures } from "@redux/user/user.selectors";
+import { getUserEventsWithAds } from "@redux/user/user.selectors";
 import { getDailyPanelSelector, getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
@@ -47,7 +47,6 @@ export const DailyStepsOnline = memo(
     const dailySteps = useSelector(getDailySteps);
     const dailyPension = useSelector(getDailyPensionContribution);
     const dailyEarnedCoins = useSelector(getDailyEarnedCoins);
-    const { usePassiveMeditation } = useSelector(getUserFeatures);
     const { availableForToday, isAvailable } = useSelector(getChallengesStatus);
     const showPanel = useSelector(getDailyPanelSelector);
     const mindfulTotal = displaySecondsAsMinutes(dailyMeditation);
@@ -189,7 +188,7 @@ export const DailyStepsOnline = memo(
                 textColor={dailyStepsScreen.textStyle.color}
                 steps={dailySteps}
                 cycling={dailyCycling}
-                mindfulness={usePassiveMeditation && dailyMeditation > 0 ? mindfulTotalToDisplay : null}
+                mindfulness={dailyMeditation > 0 ? mindfulTotalToDisplay : null}
                 isPensionActive={dailyPension.active}
                 pension={dailyPension.contribution}
                 stepsAccessibilityLabel={t("screens.daily.daily_passive.steps.accessibility_label", {
