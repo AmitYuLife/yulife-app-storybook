@@ -13,6 +13,8 @@ import { QUESTS_SCREEN_YUNIVERSAL } from "@ids";
 import { getUserAvatar, getUserFeatures } from "@redux/user/user.selectors";
 import { submitUnityAction } from "@redux/levels/levels.actions";
 import { LottieView } from "@molecules";
+import { GetMobileGameWeekliesQuery } from "@graphql/__generated";
+import { WeeklyQuestsButton } from "../weeklies/weeklies.button";
 
 const BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversal_quest_map_1.json");
 
@@ -21,6 +23,7 @@ interface IProps extends IConnectedScreenProps {
   yuniversalLevel: number;
   yuniversalMap: number;
   levelList: GetQuestMap_levels[];
+  weeklies?: GetMobileGameWeekliesQuery["getMobileGameWeeklies"];
 }
 
 const _YuniversalQuestsScreen: FC<IProps> = ({
@@ -29,6 +32,7 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
   yuniversalMap,
   levelList,
   onLeftMenuPress,
+  weeklies,
 }) => {
   const dispatch = useDispatch();
   const challengesStatus = useSelector(getChallengesStatus);
@@ -77,6 +81,9 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
       )}
       <View style={styles.topBarWrapper}>
         <TopBar type="white" onPressLeftIcon={onLeftMenuPress} />
+      </View>
+      <View style={styles.leftIconList}>
+        <WeeklyQuestsButton isVisible={features?.showWeeklies} weeklies={weeklies} />
       </View>
       <NavBar activeIndex={1} />
     </View>
