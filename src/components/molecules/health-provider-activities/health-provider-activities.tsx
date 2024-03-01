@@ -20,23 +20,23 @@ interface ISupportedTypeOptions {
   icon: ReactNode;
 }
 
-const SUPPORTED_TYPE_VALUES: Record<SupportedHealthTypes, ISupportedTypeOptions> = {
-  [SupportedHealthTypes.steps]: {
-    label: t("yu_health.activityTypes.steps"),
-    icon: <StepsIcon width={20} height={20} />,
-  },
-  [SupportedHealthTypes.meditation]: {
-    label: t("yu_health.activityTypes.meditation"),
-    icon: <MindfulnessIcon size={20} />,
-  },
-  [SupportedHealthTypes.cycling]: {
-    label: t("yu_health.activityTypes.cycling"),
-    icon: <CyclingIcon width={20} height={20} />,
-  },
-};
-
 const HealthProviderActivities = ({ style, supportedTypes }: IProps) => {
   const wrapperStyle = useMemo(() => [styles.wrapper, style], [style]);
+
+  const SUPPORTED_TYPE_VALUES: Record<SupportedHealthTypes, ISupportedTypeOptions> = {
+    [SupportedHealthTypes.steps]: {
+      label: t("yu_health.activityTypes.steps"),
+      icon: <StepsIcon width={20} height={20} />,
+    },
+    [SupportedHealthTypes.meditation]: {
+      label: t("yu_health.activityTypes.meditation"),
+      icon: <MindfulnessIcon size={20} />,
+    },
+    [SupportedHealthTypes.cycling]: {
+      label: t("yu_health.activityTypes.cycling"),
+      icon: <CyclingIcon width={20} height={20} />,
+    },
+  };
 
   return (
     <Stack style={wrapperStyle}>

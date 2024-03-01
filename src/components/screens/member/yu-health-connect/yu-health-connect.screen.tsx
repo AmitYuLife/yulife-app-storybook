@@ -1,0 +1,122 @@
+import React, { memo, useCallback, useMemo } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { TextTemplate } from "@atoms";
+import { Button, InfoPanel, SecondaryButton } from "@molecules";
+import { Style, TOP_BAR } from "@styles";
+import { MODALS } from "@navigation/constants";
+import { Navigation } from "@navigation/main";
+import { useBackHandler, useTranslation } from "@hooks";
+import Stack from "@atoms/stack/stack";
+import HealthProviderItem from "@organisms/health-provider-item/health-provider-item";
+import { HealthProvider } from "@yu-life/react-native-yu-health";
+import HealthProviderActivities from "@components/molecules/health-provider-activities/health-provider-activities";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import { HEALTH_PROVIDER_OPTIONS, SupportedHealthTypes } from "@services/yuHealth/supported-health-types";
+import { isAndroid } from "@utils";
+import { YugiHealthConnectIcon } from "@atoms/icon/yugi-health-connect-icon";
+
+interface IYuHealthConnectScreenProps {
+  onChangeProvider: () => void;
+  onConnect: () => void;
+  onCancel: () => void;
+  onOpenExplanation: () => void;
+  activeProvider: HealthProvider;
+}
+
+const YuHealthConnectScreen = ({
+  onChangeProvider,
+  onCancel,
+  onOpenExplanation,
+  onConnect,
+  activeProvider,
+}: IYuHealthConnectScreenProps) => {
+  const options = useMemo(() => HEALTH_PROVIDER_OPTIONS[activeProvider], [activeProvider]);
+
+  const t = useTranslation([
+    "yu_health.connect.not_available",
+    "yu_health.connect.title",
+    "yu_health.connect.body",
+    "yu_health.connect.why",
+    "yu_health.connect.button",
+  ]);
+
+  const onModalClose = useCallback(() => {
+    return Navigation.dismissModal(MODALS.switchToGoogleFit);
+  }, []);
+
+  const hasUnsupportedTypes = useMemo(() => {
+    if (!options) {
+      return false;
+    }
+
+    return options.supportedTypes.length < Object.values(SupportedHealthTypes).length;
+  }, [options]);
+
+  useBackHandler(() => {
+    onModalClose();
+    return true;
+  });
+
+  return (
+    <>
+      <GenericHeadingPad />
+
+      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+        <View style={styles.wrapper}>
+          <Stack style={styles.content}>
+            <View>
+              <View style={styles.title}>
+                <YugiHealthConnectIcon size={Style.adjust(80)} />
+              </View>
+              <View style={styles.message}>
+                <TextTemplate type="b2" textAlign="center">
+                  {t["yu_health.connect.body"]}
+                </TextTemplate>
+              </View>
+            </View>
+
+            <Stack gap={Style.adjust(14)}>
+              {isAndroid() ? <HealthProviderItem provider={activeProvider} onPress={onChangeProvider} /> : null}
+              <HealthProviderActivities supportedTypes={options?.supportedTypes} />
+
+              {hasUnsupportedTypes ? (
+                <InfoPanel markdown={t["yu_health.connect.not_available"]} type="info" showIcon={true} />
+              ) : null}
+            </Stack>
+          </Stack>
+
+          <Stack gap={Style.adjust(2)}>
+            <SecondaryButton label={t["yu_health.connect.why"]} onPress={onOpenExplanation} />
+            <Button label={t["yu_health.connect.button"]} onPress={onConnect} />
+          </Stack>
+        </View>
+      </ScrollView>
+
+      <GenericHeadingAbsolute heading={t["yu_health.connect.title"]} onRightIconPress={onCancel} />
+    </>
+  );
+};
+
+const styles = StyleSheet.create({
+  wrapper: {
+    paddingHorizontal: Style.adjust(28),
+    minHeight: Style.DEVICE_HEIGHT - TOP_BAR.TOP_BAR_WITH_PAD - Style.adjust(30),
+  },
+  scrollView: {
+    flex: 1,
+  },
+  content: {
+    flex: 1,
+  },
+  title: {
+    marginTop: Style.adjust(24),
+    marginBottom: Style.adjust(16),
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  message: {
+    marginBottom: Style.adjust(16),
+  },
+});
+
+export default memo(YuHealthConnectScreen);

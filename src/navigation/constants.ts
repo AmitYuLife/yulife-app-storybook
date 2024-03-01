@@ -27,6 +27,8 @@ export const ROUTES = {
   challengesHistoryNew: "yulife.member.ActivityHistoryNew",
   duelsHub: "yulife.member.DuelsHub",
   duelsSearch: "yulife.member.DuelsSearch",
+  yuHealthConnect: "yulife.member.yuHealthConnect",
+  yuHealthConnectSelect: "yulife.member.yuHealthConnectSelect",
 
   // leaderboard
   leaderboard: "yulife.member.Leaderboards",

@@ -110,11 +110,7 @@ export const useVerifyAndAuthorizeCapability = (_props: IVerifyAndAuthorizeCapab
       return new Promise<boolean>((res) => {
         const modal = (
           <HealthPermissionModal
-            capabilities={[
-              HealthProviderCapability.STEP_COUNT,
-              HealthProviderCapability.ACTIVITIES,
-              HealthProviderCapability.CYCLING_DISTANCE,
-            ]}
+            capabilities={capabilities}
             onCancel={() => {
               Navigation.dismissOverlayWithChild();
               return res(false);

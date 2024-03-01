@@ -1,8 +1,15 @@
 import { YuHealthCapability as TypeYuHealthCapability } from "@graphql/_core/schema/globalTypes";
 import { YuHealthDataType as TypeYuHealthDataType } from "@graphql/_core/schema/globalTypes";
 import { YuHealthCapability, YuHealthDataType } from "@graphql/__generated";
-import { HealthDataType, HealthPermissionStatus, HealthProviderCapability } from "@yu-life/react-native-yu-health";
+import {
+  HealthDataType,
+  HealthPermissionStatus,
+  HealthProvider,
+  HealthProviderAvailability,
+  HealthProviderCapability,
+} from "@yu-life/react-native-yu-health";
 import { Alert, Linking } from "react-native";
+import { isAndroid } from "./device";
 
 // The capabilities to request when connected
 export const YU_HEALTH_DEFAULT_CAPABILITIES = [
@@ -35,6 +42,22 @@ export const openSettingsAlert = () => async () => {
       },
     },
   ]);
+};
+
+const RECOMMENDED_ORDER = [HealthProvider.googleFit, HealthProvider.healthKit, HealthProvider.samsungHealth];
+
+export const getRecommendedProvider = ({
+  providerAvailabilities,
+}: {
+  providerAvailabilities: Record<HealthProvider, HealthProviderAvailability>;
+}): HealthProvider => {
+  for (const recommended of RECOMMENDED_ORDER) {
+    if (providerAvailabilities[recommended] === HealthProviderAvailability.available) {
+      return recommended;
+    }
+  }
+
+  return isAndroid() ? HealthProvider.googleFit : HealthProvider.healthKit;
 };
 
 /**

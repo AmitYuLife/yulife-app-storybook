@@ -39,13 +39,13 @@ const IOS_SYSTEM_PERMISSIONS = [
 
 const ANDROID_SYSTEM_PERMISSIONS: IPermission[] = [
   {
-    identifier: "system_activity_recognition_permission",
+    identifier: "android.permission.ACTIVITY_RECOGNITION",
     title: t("permissions.android.activity_recognition.title"),
     requirement: t("permissions.android.activity_recognition.requirement"),
     description: t("permissions.android.activity_recognition.description"),
   },
   {
-    identifier: "system_location_permission",
+    identifier: "android.permission.ACCESS_FINE_LOCATION",
     title: t("permissions.android.location.title"),
     requirement: t("permissions.android.location.requirement"),
     description: t("permissions.android.location.description"),
@@ -54,57 +54,57 @@ const ANDROID_SYSTEM_PERMISSIONS: IPermission[] = [
 
 const SAMSUNG_HEALTH_PERMISSIONS: IPermission[] = [
   {
-    identifier: "samsung_health_step_daily_trend",
+    identifier: "stepCount",
     title: t("permissions.android.samsung_steps_count_trend.title"),
     requirement: t("permissions.android.samsung_steps_count_trend.requirement"),
     description: t("permissions.android.samsung_steps_count_trend.description"),
     capability: HealthProviderCapability.STEP_COUNT,
   },
   {
-    identifier: "samsung_health_step_count",
+    identifier: "stepCount",
     title: t("permissions.android.samsung_steps_count.title"),
     requirement: t("permissions.android.samsung_steps_count.requirement"),
     description: t("permissions.android.samsung_steps_count.description"),
     capability: HealthProviderCapability.STEP_COUNT,
   },
   {
-    identifier: "samsung_health_mindful",
+    identifier: "mindfulMinutes",
     title: t("permissions.android.samsung_mindful.title"),
     description: t("permissions.android.samsung_mindful.description"),
     capability: HealthProviderCapability.MINDFUL_MINUTES,
   },
   {
-    identifier: "samsung_health_cycling",
-    title: t("permissions.android.samsung_cycling.title"),
-    description: t("permissions.android.samsung_cycling.description"),
+    identifier: "cyclingDistance",
+    title: t("permissions.android.samsung_cycling.titleSupported"),
+    description: t("permissions.android.samsung_cycling.descriptionSupported"),
     capability: HealthProviderCapability.CYCLING_DISTANCE,
   },
 ];
 
 const GOOGLE_FIT_PERMISSIONS: IPermission[] = [
   {
-    identifier: "google_fit_steps_mindfulness",
+    identifier: "stepCount",
     title: t("permissions.android.fitness_activity_read.title"),
     requirement: t("permissions.android.fitness_activity_read.requirement"),
     description: t("permissions.android.fitness_activity_read.description"),
     capability: HealthProviderCapability.STEP_COUNT,
   },
   {
-    identifier: "google_fit_mindfulness",
+    identifier: "mindfulMinutes",
     title: t("permissions.android.mindfulness_read.title"),
     requirement: t("permissions.android.mindfulness_read.requirement"),
     description: t("permissions.android.mindfulness_read.description"),
     capability: HealthProviderCapability.MINDFUL_MINUTES,
   },
   {
-    identifier: "google_fit_cycling",
+    identifier: "cyclingDistance",
     title: t("permissions.android.distance_read.title"),
     requirement: t("permissions.android.distance_read.requirement"),
     description: t("permissions.android.distance_read.description"),
     capability: HealthProviderCapability.CYCLING_DISTANCE,
   },
   {
-    identifier: "google_fit_workouts",
+    identifier: "activities",
     title: t("permissions.android.workouts_read.title"),
     requirement: t("permissions.android.workouts_read.requirement"),
     description: t("permissions.android.workouts_read.description"),
