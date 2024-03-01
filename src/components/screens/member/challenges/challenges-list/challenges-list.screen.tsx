@@ -42,6 +42,11 @@ class ChallengesListScreen extends Component<IProps, IState> {
     hideChallengeTiles: true,
   };
 
+  constructor(props: IProps) {
+    super(props);
+    this.handleBackPress = this.handleBackPress.bind(this);
+  }
+
   private handleBackPress() {
     this.props.onPressLeftIcon();
     return true;
