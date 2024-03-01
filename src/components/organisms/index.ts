@@ -52,3 +52,4 @@ export { default as AudioPlayer } from "./audio-player/audio-player";
 export { default as ActivityHistoryDay } from "./activity-history-day/activity-history-day";
 export { default as EnterpriseRewardItem } from "./enterprise-reward-item/enterprise-reward-item";
 export { default as EnterpriseRewardList } from "./enterprise-reward-list/enterprise-reward-list";
+export { default as EnterpriseRewardInfo } from "./enterprise-reward-info/enterprise-reward-info";
