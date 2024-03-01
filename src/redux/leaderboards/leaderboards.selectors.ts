@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
 import { IReduxState } from "../_core/reducers";
 import { shallowEqual } from "react-redux";
-import { SocialGroupLeaderboardConfigId } from "@graphql/_core/schema/globalTypes";
+import { SocialGroupLeaderboardConfigId } from "./leaderboards.types";
 
 type State = IReduxState["leaderboard"];
 const reducer = (state: IReduxState) => state.leaderboard;

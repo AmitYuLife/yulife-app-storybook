@@ -4,7 +4,7 @@ import { Image, TextTemplate } from "@atoms";
 import { t } from "@locale";
 import { Style } from "@styles";
 import { Switch } from "@molecules";
-import { ISocialGroup } from "@redux/leaderboards/leaderboards.reducer";
+import { ISocialGroup } from "@redux/leaderboards/leaderboards.types";
 import { LEADERBOARD_DESC, LEADERBOARD_SWITCH, LEADERBOARD_TITLE } from "@ids";
 
 export type IConsents = Record<string, { consent: boolean; name: string }>;

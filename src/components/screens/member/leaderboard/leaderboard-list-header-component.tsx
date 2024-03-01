@@ -6,7 +6,7 @@ import { LeaderboardNavigation, TouchableOpacityWithDelay, Yumoji } from "@molec
 import { QuestionOutlineIcon } from "@atoms/icon/question-outline-icon";
 import { ITop3, styles } from "./leaderboard.screen";
 import { TrophyIcon } from "@atoms/icon/trophy-icon";
-import { ISocialGroup } from "@redux/leaderboards/leaderboards.reducer";
+import { ISocialGroup } from "@redux/leaderboards/leaderboards.types";
 import { LEADERBOARD_INFO_BUTTON } from "@ids";
 
 interface IProps {

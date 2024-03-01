@@ -11,7 +11,7 @@ import LeaderboardListFooterComponent from "./leaderboard-list-footer-componet";
 import LeaderboardListHeaderComponent from "./leaderboard-list-header-component";
 import LeaderboardListItem from "./leaderboard-list-item";
 import LeaderboardListTabs from "./leaderboard-list-tabs";
-import { ISocialGroup, ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.reducer";
+import { ISocialGroup, ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.types";
 import { GetMobileSocialGroupLeaderboardItemsQuery } from "@graphql/__generated";
 
 export interface ITop3 {

@@ -1,13 +1,13 @@
-import { GetMobileHints_getMobileHints, Hint } from "@graphql/_core/schema";
+import { IHint } from "./hints.types";
 export const UPDATE_HINTS_SUCCESS = "UPDATE_HINTS_SUCCESS";
 export const CYCLE_HINT = "CYCLE_HINT";
 
-export const updateHintsSuccess = (payload: GetMobileHints_getMobileHints[]) => ({
+export const updateHintsSuccess = (payload: IHint[]) => ({
   payload,
   type: UPDATE_HINTS_SUCCESS,
 });
 
-export const cycleHint = (payload: { shownHint: Hint }) => ({
+export const cycleHint = (payload: { shownHint: IHint }) => ({
   payload,
   type: CYCLE_HINT,
 });

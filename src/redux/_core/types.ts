@@ -119,3 +119,8 @@ export interface PassiveExchangeRate {
   meditation: number | null;
   surge: number | null;
 }
+
+export interface Image {
+  id: string;
+  uri: string | null;
+}

@@ -2,7 +2,7 @@ import { Tabs } from "@organisms";
 import { memo, useMemo } from "react";
 import { View } from "react-native";
 import { styles } from "./leaderboard.screen";
-import { ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.reducer";
+import { ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.types";
 import { Style } from "@styles";
 
 interface ITabsProps {
