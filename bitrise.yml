@@ -533,11 +533,6 @@ workflows:
         - workflows: ios-detox-run-iphone-14-pro-pli-1-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run PLI tests: iPhone 14 Pro PLI 2'
-        inputs:
-        - workflows: ios-detox-run-iphone-14-pro-pli-2-70
-        - access_token: $BITRISE_API_TOKEN
-    - build-router-start@0:
         title: 'Run dental tests: iPhone 14 Pro Dental'
         inputs:
         - workflows: ios-detox-run-iphone-14-pro-dental-70
@@ -1111,34 +1106,6 @@ workflows:
       opts:
         is_expand: false
     - DETOX_TEST_TYPE: pli:1
-      opts:
-        is_expand: false
-    steps:
-    - script@1:
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
-            set -o pipefail
-            # debug log
-            set -x
-
-            # write your script here
-            echo "Hello World!"
-            echo "This is $DETOX_TEST_TYPE"
-    meta:
-      bitrise.io:
-        stack: osx-xcode-14.3.x-ventura
-  ios-detox-run-iphone-14-pro-pli-2-70:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 14 Pro
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: pli:2
       opts:
         is_expand: false
     steps:

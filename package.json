@@ -20,7 +20,6 @@
     "detox:extended:6": "yarn detox:test:base:uk e2e/01_Extended_6/**/*.spec.ts",
     "detox:extended": "yarn detox:test:base:uk e2e/01_Extended_*/**/*.spec.ts",
     "detox:pli:1": "yarn detox:test:base:uk e2e/02_PLI_1/*.spec.ts",
-    "detox:pli:2": "yarn detox:test:base:uk e2e/02_PLI_2/*.spec.ts",
     "detox:report": "open e2e-report/jest_html_reporters.html",
     "detox:smoke:1": "yarn detox:test:base:uk e2e/00_Smoke_1/**/*.spec.ts",
     "detox:smoke:2": "yarn detox:test:base:uk e2e/00_Smoke_2/**/*.spec.ts",
