@@ -1,6 +1,6 @@
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { Linking, Platform, ScrollView, StyleSheet, View } from "react-native";
 import { t } from "@locale";
 import { TextTemplate } from "@atoms";
@@ -22,6 +22,7 @@ import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { isiOS } from "@utils";
+import { HEALTH_PROVIDER_OPTIONS } from "@services/yuHealth/supported-health-types";
 
 interface IPermissionsScreenProps {
   activeProvider?: HealthProvider;
@@ -47,7 +48,10 @@ const PermissionsScreen = ({
   const openSettings = useCallback(() => Linking.openSettings(), []);
 
   const showConnectButtonHealthSection = permissionStatuses?.providerPermissions.find(
-    (item) => item.status === HealthPermissionStatus.denied || item.status === HealthPermissionStatus.notAsked
+    (item) =>
+      !activeProvider ||
+      item.status === HealthPermissionStatus.denied ||
+      item.status === HealthPermissionStatus.notAsked
   );
 
   const openHealthApp = useCallback(() => {
@@ -71,6 +75,10 @@ const PermissionsScreen = ({
 
     showTooltipPopupRelativeToView({ viewRef, children });
   }, []);
+
+  const activeProviderTitle = useMemo(() => {
+    return HEALTH_PROVIDER_OPTIONS[activeProvider]?.label ?? activeProvider;
+  }, [activeProvider]);
 
   return (
     <View style={styles.wrapper}>
@@ -96,14 +104,16 @@ const PermissionsScreen = ({
           leftIcon={<ChainIcon />}
         />
 
-        <HealthPermissionSection
-          isLoading={isLoading}
-          onPermissionRequest={onPermissionRequest}
-          showInfoPopup={showPopup}
-          permissionStatuses={permissionStatuses?.providerPermissions}
-          sectionTitle={activeProvider}
-          permissions={permissions?.providerPermissions}
-        />
+        {activeProvider ? (
+          <HealthPermissionSection
+            isLoading={isLoading}
+            onPermissionRequest={onPermissionRequest}
+            showInfoPopup={showPopup}
+            permissionStatuses={permissionStatuses?.providerPermissions}
+            sectionTitle={activeProviderTitle}
+            permissions={permissions?.providerPermissions}
+          />
+        ) : null}
 
         {showConnectButtonHealthSection ? (
           <Button
