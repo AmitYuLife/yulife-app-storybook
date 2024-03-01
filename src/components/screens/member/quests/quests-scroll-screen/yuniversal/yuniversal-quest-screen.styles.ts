@@ -1,5 +1,5 @@
 import { StyleSheet, ViewStyle, ImageStyle } from "react-native";
-import { Style, Media } from "@styles";
+import { Style, Media, TOP_BAR } from "@styles";
 import { PADDING_TOP } from "@styles/top-bar.styles";
 
 export const LEVELS_WRAPPER_HEIGHT = (Style.DEVICE_WIDTH * 812) / 375;
@@ -26,5 +26,12 @@ export default StyleSheet.create({
     bottom: Style.DEVICE_HEIGHT > Media.DEVICES.iPhone8.height ? 0 : Style.adjust(-40),
     width: Style.DEVICE_WIDTH,
     height: (Style.DEVICE_WIDTH * 812) / 375,
+  } as ViewStyle,
+  leftIconList: {
+    position: "absolute",
+    left: Style.adjust(16),
+    top: TOP_BAR.TOP_BAR_WITH_PAD,
+    alignItems: "center",
+    justifyContent: "center",
   } as ViewStyle,
 });

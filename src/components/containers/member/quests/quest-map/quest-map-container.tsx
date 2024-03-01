@@ -266,6 +266,7 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
           yuniversalLevel={yuniversalLevel}
           yuniversalMap={yuniversalMap}
           levelList={levelsList}
+          weeklies={weeklies?.getMobileGameWeeklies}
           onLeftMenuPress={onLeftMenuPress}
         />
       ) : null}
