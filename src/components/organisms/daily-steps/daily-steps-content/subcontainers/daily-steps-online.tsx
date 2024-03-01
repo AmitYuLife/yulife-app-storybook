@@ -148,7 +148,7 @@ export const DailyStepsOnline = memo(
           name: ROUTES.todayEarnings,
         },
       });
-    }, []);
+    }, [features.tempGameEnableYuHealth, fitkit.authorised]);
 
     const healthPermissions = useMemo((): Omit<IHealthPermissionPanelProps, "width"> => {
       if (!((isUnauthorised || isUnavailable) && features.tempGameEnableYuHealth)) {
@@ -156,6 +156,17 @@ export const DailyStepsOnline = memo(
       }
 
       const onPress = () => {
+        // If they have not setup a provider yet, go to the connect screen
+        if (isUnavailable) {
+          return Navigation.push(ROUTES.dailySteps, {
+            component: {
+              id: ROUTES.yuHealthConnect,
+              name: ROUTES.yuHealthConnect,
+            },
+          });
+        }
+
+        // Otherwise go to settings -> activity permissions
         Navigation.push(ROUTES.dailySteps, {
           component: {
             id: ROUTES.permissions,

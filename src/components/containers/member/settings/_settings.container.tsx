@@ -4,7 +4,7 @@ import { Navigation } from "@navigation/main";
 import { useSelector, useDispatch } from "react-redux";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { updateConnectionStart } from "@redux/user/user.actions";
-import { Connection, getUserConnections, getUserFeatures } from "@redux/user/user.selectors";
+import { Connection, getUserConnections } from "@redux/user/user.selectors";
 import { SettingsScreen } from "@screens/index";
 import { useQuery, useMutation, useApolloClient } from "@apollo/client";
 import { gql, NotificationSettingsProps } from "@graphql/__generated";
@@ -13,6 +13,8 @@ import { ScrollPickerModal } from "@components/modals";
 import { showYuModal } from "@navigation/root";
 import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
 import { t, getCurrentLocale } from "@locale";
+import { useUserFeatures } from "@hooks";
+import { getActiveProviderSelector } from "@redux/yu-health/yu-health.selectors";
 
 interface IOwnProps {
   componentId: string;
@@ -24,8 +26,9 @@ function SettingsContainer({ componentId }: IOwnProps) {
   const dispatch = useDispatch();
 
   const connections = useSelector(getUserConnections);
-  const features = useSelector(getUserFeatures);
+  const features = useUserFeatures();
   const cyclingMeasurement = useSelector(getDailyCyclingMeasurement);
+  const activeProvider = useSelector(getActiveProviderSelector);
 
   const [isTimeModalVisible, setIsTimeModalVisible] = useState<boolean>(false);
   const [modalDate, setModalDate] = useState<string>(null);
@@ -143,6 +146,17 @@ function SettingsContainer({ componentId }: IOwnProps) {
           description: t("screens.permissions.description"),
           value: "",
           onPress: () => {
+            if (features.tempGameEnableYuHealth && !activeProvider) {
+              Navigation.push(ROUTES.dailySteps, {
+                component: {
+                  id: ROUTES.yuHealthConnect,
+                  name: ROUTES.yuHealthConnect,
+                },
+              });
+
+              return;
+            }
+
             Navigation.push(ROUTES.settings, {
               component: {
                 id: ROUTES.permissions,
@@ -181,7 +195,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
         },
       ],
     }),
-    [cyclingMeasurement, features.showLangSelector]
+    [activeProvider, cyclingMeasurement, features.showLangSelector, features.tempGameEnableYuHealth]
   );
 
   const connection = {

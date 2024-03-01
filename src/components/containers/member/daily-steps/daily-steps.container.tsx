@@ -31,7 +31,7 @@ const DailyStepsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) =
   const currentYuniverse = getCurrentYuniverse(currentLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const capabilityStatuses = useSelector(getCapabilityStatuses);
-  const { isAuthorising, isUnavailable } = useSelector(getYuHealthState);
+  const { isAuthorising, isUnavailable, activeProvider } = useSelector(getYuHealthState);
   const hasDailyScreenCustomIcon = userNotification?.hasDailyScreenCustomIcon;
   const isDailyScreenInformationIconHidden = useSelector(dailyScreenInformationIcon);
 
@@ -80,12 +80,12 @@ const DailyStepsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) =
       isLoading: isAuthorising,
       isUnauthorised: !isAuthorising && capabilityStatuses?.STEP_COUNT !== HealthPermissionStatus.granted,
       hasAskedPreviously: !(!capabilityStatuses || capabilityStatuses?.STEP_COUNT === HealthPermissionStatus.notAsked),
-      isUnavailable: isUnavailable,
+      isUnavailable: isUnavailable || !activeProvider,
       onConnect: async () => {
         await verifyAndAuthorizeCapability(YU_HEALTH_DEFAULT_CAPABILITIES, { skipPreliminaryModal: true });
       },
     };
-  }, [capabilityStatuses, isAuthorising, isUnavailable, verifyAndAuthorizeCapability]);
+  }, [activeProvider, capabilityStatuses, isAuthorising, isUnavailable, verifyAndAuthorizeCapability]);
 
   return (
     <DailyStepsScreen

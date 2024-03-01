@@ -574,6 +574,7 @@
         "secondary_button": "System Settings"
       },
       "health_section": {
+        "header": "System permissions",
         "ios_header": "Apple Health Permissions",
         "android_header": "Google Fit Permissions",
         "samsung_header": "Samsung Health Permissions"
@@ -980,7 +981,9 @@
       },
       "samsung_cycling": {
         "title": "Cycling (Unsupported)",
-        "description": "Cycling is not supported by Samsung Health. To get rewarded switch to Google Fit."
+        "description": "Cycling is not supported by Samsung Health. To get rewarded switch to Google Fit.",
+        "titleSupported": "Cycling",
+        "descriptionSupported": "Needed by the YuLife app to get cycling/biking data tracked in your Samsung Health account."
       },
       "alert": {
         "deny": "Maybe later",
@@ -1368,6 +1371,11 @@
       "healthKit": "Apple Health",
       "healthConnect": "Health Connect"
     },
+    "explanation": {
+      "title": "Why do I need this?",
+      "body": "We need this so we know when to reward you for your activity, all while tracking your progress. Rest assured, your data is always under lock and key with us.",
+      "button": "Got it!"
+    },
     "activitySelection": {
       "recommended": "Recommended",
       "optional": "Optional",
@@ -1377,6 +1385,10 @@
       "steps": "Steps",
       "meditation": "Meditation",
       "cycling": "Cycling"
+    },
+    "select": {
+      "choose": "Choose",
+      "confirm": "Confirm"
     },
     "capabilitiesRequest": {
       "capabilities": {
@@ -1392,6 +1404,10 @@
       "body": "To proceed, we kindly need your permissions for",
       "continue": "Let's connect",
       "cancel": "Cancel"
+    },
+    "connect": {
+      "not_available": "Some features may not be available to you. You might miss our on YuCoin. You can try another service",
+      "title": "Connection setup"
     }
   },
   "sudoku": {

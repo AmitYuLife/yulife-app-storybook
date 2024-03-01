@@ -338,6 +338,16 @@ const routesForRegistration = [
     component: require("../components/containers/perk/perk-subscription-info.container").default,
   },
 
+  // yu health
+  {
+    name: ROUTES.yuHealthConnect,
+    component: require("../components/containers/member/yu-health-connect/yu-health-connect.container").default,
+  },
+  {
+    name: ROUTES.yuHealthConnectSelect,
+    component: require("../components/containers/member/yu-health-connect/yu-health-connect-select.container").default,
+  },
+
   // modals
   {
     name: MODALS.yuCoinPowerExplained,

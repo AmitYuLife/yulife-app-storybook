@@ -22,15 +22,15 @@ const HealthProviderItem = ({ provider, onPress }: IProps) => {
   }
 
   return (
-    <BoxOption onPress={onPress} isSelected={false} innerWrapperStyle={styles.boxOption}>
+    <BoxOption innerHeight={Style.adjust(90)} onPress={onPress} isSelected={false} innerWrapperStyle={styles.boxOption}>
       <Stack gap={Style.adjust(16)} direction="row" style={styles.wrapper}>
         <View style={styles.image}>
-          <HealthProviderLogo provider={provider} size={Style.adjust(68)} />
+          <HealthProviderLogo provider={provider} size={Style.adjust(58)} />
         </View>
         <View style={styles.details}>
           <TextTemplate type="b2b">{options?.label}</TextTemplate>
           <View style={styles.description}>
-            <TextTemplate type="l1" color={options?.isRecommended ? Colours.primary.p300 : undefined}>
+            <TextTemplate type="l1">
               {options?.isRecommended
                 ? t["yu_health.activitySelection.recommended"]
                 : t["yu_health.activitySelection.optional"]}
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   description: {
-    marginTop: Style.adjust(4),
+    marginTop: Style.adjust(2),
   },
   arrow: {
     alignItems: "center",

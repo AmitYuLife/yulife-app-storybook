@@ -6,4 +6,6 @@ export const getActiveProviderSelector = (state: IReduxState): HealthProvider | 
 
 export const getCapabilityStatuses = (state: IReduxState) => state.yuHealth.capabilityStatuses;
 
+export const getProviderAvailabilities = (state: IReduxState) => state.yuHealth.providerAvailabilities;
+
 export const getYuHealthState = (state: IReduxState) => state.yuHealth;

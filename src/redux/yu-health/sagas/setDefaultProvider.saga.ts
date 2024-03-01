@@ -5,10 +5,11 @@ import {
   HealthProviderAvailability,
   HealthProviderCapability,
   getAvailabilityStatus,
+  hasPermission,
   hasPermissions,
 } from "@yu-life/react-native-yu-health";
 import { setActiveYuHealthProvider } from "../yu-health.actions";
-import { isiOS } from "@utils";
+import { isiOS, shouldContinueWithPermissionStatus } from "@utils";
 
 // Set YuHealth's provider based on existing provider from fitkit
 export default function* setDefaultProviderSaga(): unknown {
@@ -19,7 +20,11 @@ export default function* setDefaultProviderSaga(): unknown {
   }
 
   if (isiOS()) {
-    yield put(setActiveYuHealthProvider(HealthProvider.healthKit));
+    const hasHealthKitPermissions = yield hasPermission(HealthProviderCapability.STEP_COUNT, HealthProvider.healthKit);
+    if (hasHealthKitPermissions) {
+      yield put(setActiveYuHealthProvider(HealthProvider.healthKit));
+    }
+
     return;
   }
 
@@ -29,8 +34,9 @@ export default function* setDefaultProviderSaga(): unknown {
   ]);
 
   if (availableProviders[HealthProvider.googleFit] === HealthProviderAvailability.available) {
-    const authorisedGoogleFit = yield hasPermissions([HealthProviderCapability.STEP_COUNT], HealthProvider.googleFit);
-    if (authorisedGoogleFit[HealthProviderCapability.STEP_COUNT]) {
+    const authorisedGoogleFit = yield hasPermission(HealthProviderCapability.STEP_COUNT, HealthProvider.googleFit);
+
+    if (shouldContinueWithPermissionStatus(authorisedGoogleFit)) {
       yield put(setActiveYuHealthProvider(HealthProvider.googleFit));
       return;
     }
@@ -43,7 +49,7 @@ export default function* setDefaultProviderSaga(): unknown {
     );
 
     // If Google Fit is not authorised, and Samsung Health is then the existing provider is Samsung Health
-    if (authorisedSamsungHealth[HealthProviderCapability.STEP_COUNT]) {
+    if (shouldContinueWithPermissionStatus(authorisedSamsungHealth)) {
       yield put(setActiveYuHealthProvider(HealthProvider.samsungHealth));
       return;
     }

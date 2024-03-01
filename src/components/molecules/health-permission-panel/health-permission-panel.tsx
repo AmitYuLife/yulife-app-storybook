@@ -23,17 +23,15 @@ const HealthPermissionPanel = ({ width, onPress, isUnavailable, isUnauthorised }
     if (isUnavailable) {
       return {
         title: t["screens.daily.disconnected.unavailable.title"],
-        body: "Please check your permissions so we can reward you for your activity.",
+        body: t["screens.daily.disconnected.unavailable.body"],
       };
     }
 
-    if (isUnauthorised) {
-      return {
-        title: t["screens.daily.disconnected.unauthorised.title"],
-        body: "We haven't received any health data today! Make sure your permissions are up to date.",
-      };
-    }
-  }, [isUnauthorised, isUnavailable, t]);
+    return {
+      title: t["screens.daily.disconnected.unauthorised.title"],
+      body: t["screens.daily.disconnected.unauthorised.body"],
+    };
+  }, [isUnavailable, t]);
 
   const button = useMemo(() => {
     return {
@@ -46,6 +44,10 @@ const HealthPermissionPanel = ({ width, onPress, isUnavailable, isUnauthorised }
   }, [t]);
 
   const wrapperStyle = useMemo((): ViewStyle => ({ justifyContent: "flex-end", width }), [width]);
+
+  if (!isUnavailable && !isUnauthorised) {
+    return null;
+  }
 
   return (
     <View style={wrapperStyle}>
