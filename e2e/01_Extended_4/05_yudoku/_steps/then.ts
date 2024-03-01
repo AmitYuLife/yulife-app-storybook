@@ -5,6 +5,7 @@ import { CUSTOMER_86, SUDOKU_ANSWER_71, USER_STAT_86 } from "@data";
 import { getDuration } from "@socket";
 import { getFullName } from "_utils/users";
 import { UserLeaderboardListItem } from "../_resources/types";
+import { expect } from 'detox'
 
 export const {
   scrollUntilTextVisible,
@@ -35,9 +36,11 @@ export const amOnSudokuHowToPlay = async () => {
   await textVisible("How to play Yudoku")()
 }
 
-export const amOnLeaderboardIntroModal = async () => {
-  await wait(2000)()
-  await textVisible("Join the daily Yudoku leaderboard?", 2000)()
+export const amOnLeaderboardIntroModal = async (): Promise<void> => {
+  const modalText = element(by.text("Join the daily Yudoku leaderboard?"));
+
+  await waitFor(modalText).toExist().withTimeout(3000);
+  await expect(modalText).toBeVisible(50);
 }
 
 export const canSeeStartPrompt = async () => {

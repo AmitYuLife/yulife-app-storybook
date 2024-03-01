@@ -30,12 +30,6 @@ export const pliProductSlot: yuScreenSlot = {
     img: "https://yulife-develop.imgix.net/yuscreen/slots/product-items/colour/forest/chest-common-18-7-22.svg?ixlib=js-3.2.1&w=156&h=129&s=41e4c5a712288f47e94288b4d062ee7a"
 }
 
-export const pliDeeperEnvironmentSlot: deeperEnvironmentSlot = {
-    name: "Personal Life Insurance",
-    img: "https://yulife-develop.imgix.net/yuscreen-all-products/products/2023-09-22/pli.svg?ixlib=js-3.2.1&w=360&h=312&s=d1ac5b86a9e4ed898b9c9e3c4f9569da",
-    text: "Should you pass away, we’ll pay out the above to your beneficiary every month until the end of the policy."
-}
-
 export const yulifeDeeperEnvironmentSlot: deeperEnvironmentSlot = {
     name: "YuLife",
     img: "https://yulife-develop.imgix.net/yuscreen-all-products/products/2023-09-22/wellbeing.svg?ixlib=js-3.2.1&w=360&h=312&s=1a76b9eaeb49780da35499b466862b08",
