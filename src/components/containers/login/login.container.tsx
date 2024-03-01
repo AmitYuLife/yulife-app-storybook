@@ -18,7 +18,7 @@ import { Navigation } from "@navigation/main";
 import { validateEmail } from "@utils/email";
 import { LoginUser } from "@graphql/_core/schema";
 import { setRegionConfig } from "@redux/app/app.actions";
-import { useMutatationAllRegions } from "@hooks";
+import { useMutatationAllRegions, useUserFeatures } from "@hooks";
 import DeviceInfo from "react-native-device-info";
 import client from "@graphql/_core/client";
 import { gql } from "@graphql/__generated";
@@ -49,6 +49,7 @@ const LoginContainer: React.FC<Props> = ({
   const [passwordError, setPasswordError] = useState("");
   const [sessionExpiredError, setSessionExpiredError] = useState(hasSessionExpiredError ? SESSION_EXPIRED_ERROR : "");
   const [wasLoginCalled, setWasLogginCalled] = useState(false);
+  const features = useUserFeatures();
 
   const isFormValid = useMemo(() => !(validateEmail(email) || validatePassword(password)), [email, password]);
   const {
@@ -83,7 +84,12 @@ const LoginContainer: React.FC<Props> = ({
       Keyboard.dismiss();
 
       if (!authorised) {
-        const route = ROUTES.onboardingFitKitConnect;
+        let route = ROUTES.yuHealthConnect;
+
+        if (!features?.tempGameEnableYuHealth) {
+          route = ROUTES.onboardingFitKitConnect;
+        }
+
         Navigation.push(componentId, {
           component: {
             id: route,

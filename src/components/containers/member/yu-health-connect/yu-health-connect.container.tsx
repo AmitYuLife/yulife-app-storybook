@@ -12,9 +12,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 interface IYuHealthConnectContainerProps {
   componentId: string;
+  navigateToNext?: () => void;
 }
 
-const YuHealthConnectContainer = ({ componentId }: IYuHealthConnectContainerProps) => {
+const YuHealthConnectContainer = ({ componentId, navigateToNext }: IYuHealthConnectContainerProps) => {
   const currentProvider = useSelector(getActiveProviderSelector);
   const providerAvailabilities = useSelector(getProviderAvailabilities);
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability();
@@ -48,16 +49,21 @@ const YuHealthConnectContainer = ({ componentId }: IYuHealthConnectContainerProp
     });
   }, [activeProvider, componentId]);
 
-  const onCancel = useCallback(() => {
+  const onFinish = useCallback(() => {
+    if (navigateToNext) {
+      navigateToNext();
+      return;
+    }
+
     Navigation.pop(componentId);
-  }, [componentId]);
+  }, [componentId, navigateToNext]);
 
   const onConnect = useCallback(async () => {
     dispatch(setActiveYuHealthProvider(activeProvider));
     await verifyAndAuthorizeCapability(YU_HEALTH_DEFAULT_CAPABILITIES, { skipPreliminaryModal: true });
 
-    onCancel();
-  }, [activeProvider, dispatch, onCancel, verifyAndAuthorizeCapability]);
+    onFinish();
+  }, [activeProvider, dispatch, onFinish, verifyAndAuthorizeCapability]);
 
   const onOpenExplanation = useCallback(() => {
     const modal = (
@@ -77,7 +83,7 @@ const YuHealthConnectContainer = ({ componentId }: IYuHealthConnectContainerProp
       onChangeProvider={onChangeProvider}
       onOpenExplanation={onOpenExplanation}
       activeProvider={activeProvider}
-      onCancel={onCancel}
+      onCancel={onFinish}
     />
   );
 };
