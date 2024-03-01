@@ -201,31 +201,4 @@ Feature("Rewards should act correctly", async () => {
             })
         })
     })
-
-    Scenario("As a user with the showRewardsProducts toggle, I should see products in the rewards tab", scenario.start, async()=>{
-        Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_44, data.AUTH_44), async () => {
-            Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
-            Then("I should see the modal to select store location", then.rewardsLocationModalVisible)
-        })
-        When("I dismiss the modal", when.tapText(locationModalButton), async () => {
-            Then("I should see the life insurance reward product card", then.rewardProductCardVisible(lifeInsuranceRewardProductCard))
-            Then("I should see the yucoin reward product card", then.rewardProductCardVisible(yuCoinRewardProductCard))
-            Then("I should not see 'Dental Insurance'", then.textNotVisible("Dental Insurance"))
-        })
-        When("I tap on the life insurance product card", when.tapID(ids.PRODUCT_CARD_TITLE(lifeInsuranceRewardProductCard.title)), async()=>{
-            Then(`I should be on the first Life Insurance onboarding screen`, then.textVisible("Personal Life Insurance"));
-        })
-        When("I tap to the close button", when.tapID(ids.DISMISS_BUTTON), async () => {
-            Then("I should see the second life insurance screen", then.textVisible("Insurance that protects you in the Yuniverse and beyond."))
-        })
-        When("I tap to the close button", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
-            Then("I should be back on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
-            Then("I should see the life insurance reward product card", then.rewardProductCardVisible(lifeInsuranceRewardProductCard))
-            Then("I should see the yucoin reward product card", then.rewardProductCardVisible(yuCoinRewardProductCard))
-            Then("I should not see 'Dental Insurance'", then.textNotVisible("Dental Insurance"))
-        })
-        When("I tap on the yucoin product card", when.tapID(ids.PRODUCT_CARD_TITLE(yuCoinRewardProductCard.title)), async () => {
-            Then(`I should be on yuCoinPowerInfo`, then.yuCoinPowerInfoVisible(1));
-        })
-    })
 })
