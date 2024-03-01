@@ -38,16 +38,22 @@ const PermissionsContainer = ({ componentId }: IProps) => {
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const onPermissionRequest = useCallback(
     async (capability: HealthProviderCapability) => {
-      await verifyAndAuthorizeCapability(capability);
+      await verifyAndAuthorizeCapability(capability, { skipPreliminaryModal: true });
       refreshPermissions();
     },
     [refreshPermissions, verifyAndAuthorizeCapability]
   );
 
   const onConnect = useCallback(async () => {
-    await verifyAndAuthorizeCapability(YU_HEALTH_ALL_CAPABILITIES);
+    Navigation.push(componentId, {
+      component: {
+        id: ROUTES.yuHealthConnect,
+        name: ROUTES.yuHealthConnect,
+      },
+    });
+
     refreshPermissions();
-  }, [refreshPermissions, verifyAndAuthorizeCapability]);
+  }, [componentId, refreshPermissions]);
 
   useEffect(() => {
     refreshPermissions();
