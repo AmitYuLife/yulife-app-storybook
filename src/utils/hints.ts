@@ -1,4 +1,5 @@
-import { HintScreenType, IHintsStore } from "@redux/hints/hints.reducer";
+import { IHintsStore } from "@redux/hints/hints.reducer";
+import { HintScreenType } from "@redux/hints/hints.types";
 import { Hint as HintType } from "@graphql/_core/schema";
 
 export const getHint = ({

@@ -1,24 +1,7 @@
 import { LOGOUT_SUCCESS } from "../user/user.actions";
 import { SyncAction } from "@redux/_core/types";
 import { CYCLE_HINT, UPDATE_HINTS_SUCCESS } from "./hints.actions";
-import { Hint } from "@graphql/_core/schema";
-
-import { ROUTES } from "@navigation/constants";
-
-export type HintScreenType = typeof ROUTES[keyof typeof ROUTES];
-interface IHint {
-  id: string;
-  title: string;
-  description: string;
-  image: { id: string; uri: string };
-  screenWhitelist: HintScreenType[];
-  screenBlacklist: HintScreenType[];
-}
-
-interface IShownHint {
-  id: string;
-  showCount: number;
-}
+import { IHint, IShownHint } from "./hints.types";
 
 export interface IHintsStore {
   hints: IHint[];
@@ -47,7 +30,7 @@ const hintsReducer = (state: IHintsStore = getInitialState(), action: SyncAction
   }
 };
 
-const cycleHint = (state: IHintsStore, payload: { shownHint: Hint }) => {
+const cycleHint = (state: IHintsStore, payload: { shownHint: IHint }) => {
   if (!payload.shownHint) {
     return state;
   }

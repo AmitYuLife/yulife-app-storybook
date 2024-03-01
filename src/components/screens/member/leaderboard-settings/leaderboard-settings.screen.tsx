@@ -7,7 +7,7 @@ import { useTranslation } from "@hooks";
 import { FlashList } from "@shopify/flash-list";
 import LeaderboardToggle, { IChangeConsentProps } from "@organisms/leaderboard-toggle/leaderboard-toggle";
 import colours from "@styles/colours";
-import { ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.reducer";
+import { ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.types";
 
 interface ILeaderboardItem extends ISocialGroupLeaderboard {
   socialGroupId: string;

@@ -4,7 +4,7 @@ import { Radio, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { PressableWithDelay } from "@molecules";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
-import { ISocialGroup } from "@redux/leaderboards/leaderboards.reducer";
+import { ISocialGroup } from "@redux/leaderboards/leaderboards.types";
 import { useSelector } from "react-redux";
 import { getActiveSocialGroup } from "@redux/leaderboards/leaderboards.selectors";
 import { COMMUNITY_LIST_ITEM, LEADERBOARD_COMMUNITY_LIST } from "@ids";

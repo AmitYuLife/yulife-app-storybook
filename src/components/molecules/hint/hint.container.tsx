@@ -1,6 +1,6 @@
 import React from "react";
 import Hint from "./hint";
-import { HintScreenType } from "@redux/hints/hints.reducer";
+import { HintScreenType } from "@redux/hints/hints.types";
 import { View, ViewStyle } from "react-native";
 import { useHint } from "@hooks";
 

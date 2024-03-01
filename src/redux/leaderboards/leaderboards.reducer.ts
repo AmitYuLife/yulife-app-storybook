@@ -1,9 +1,6 @@
 import { REHYDRATE } from "redux-persist";
 import { SyncAction } from "@redux/_core/types";
-import {
-  SearchLeaderboardUser_searchLeaderboardUser as SearchItem,
-  GetMobileSocialGroupLeaderboards_getMobileSocialGroupLeaderboards as ISocialGroupData,
-} from "@graphql/_core/schema";
+import { SearchLeaderboardUser as SearchItem, ISocialGroup } from "./leaderboards.types";
 import {
   ADD_RECENT_SEARCH_ITEM,
   UPDATE_SOCIAL_GROUP_LEADERBOARDS_SUCCESS,
@@ -15,30 +12,6 @@ import {
 import { LOGOUT_SUCCESS } from "@redux/user/user.actions";
 
 const MAX_SEARCH_ITEMS = 50;
-
-export interface ISocialGroupLeaderboard {
-  leaderboardId: string;
-  name: string;
-  description: string;
-  shortDescription: string;
-  leaderboardConfigId: string;
-  consent: boolean;
-  isLocked: boolean;
-  icon: {
-    id: string;
-    uri: string;
-  };
-  selectedIcon: {
-    id: string;
-    uri: string;
-  };
-}
-
-export interface ISocialGroup {
-  socialGroupId: string;
-  name: string;
-  leaderboards: ISocialGroupLeaderboard[];
-}
 
 export interface ILeaderboardsStore {
   socialGroups: ISocialGroup[];
@@ -102,7 +75,7 @@ const addRecent = (state: ILeaderboardsStore, { item: searchItem }: { item: Sear
 
 const updateSocialGroupLeaderboardsSuccess = (
   state: ILeaderboardsStore,
-  socialGroupsData: ISocialGroupData[]
+  socialGroupsData: ISocialGroup[]
 ): ILeaderboardsStore => {
   const activeLeaderboardConfigId = state.socialGroups
     ?.find((socialGroup) => socialGroup.socialGroupId === state.activeSocialGroupId)

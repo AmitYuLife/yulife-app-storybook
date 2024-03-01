@@ -19,13 +19,8 @@ import { challengeEndSuccessAction } from "@redux/levels/levels.actions";
 import { Alert } from "react-native";
 import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
 import { getActiveSocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
-import {
-  gql,
-  SocialGroupLeaderboardConfigId,
-  SudokuDifficulty,
-  SubmitSudokuSolutionMutation,
-  GetSudokuBoardQuery,
-} from "@graphql/__generated";
+import { gql, SudokuDifficulty, SubmitSudokuSolutionMutation, GetSudokuBoardQuery } from "@graphql/__generated";
+import { SocialGroupLeaderboardConfigId } from "@redux/leaderboards/leaderboards.types";
 
 export interface ISodukuBoard {
   puzzle: SudokuBoard;
@@ -48,7 +43,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
 
   const canRefetch = useMemo(
     () =>
-      activeLeaderboard?.leaderboardConfigId === SocialGroupLeaderboardConfigId.Dailysudoku &&
+      activeLeaderboard?.leaderboardConfigId === SocialGroupLeaderboardConfigId.dailysudoku &&
       activeLeaderboard?.consent,
     [activeLeaderboard]
   );
