@@ -578,7 +578,8 @@
         "ios_header": "Apple Health Permissions",
         "android_header": "Google Fit Permissions",
         "samsung_header": "Samsung Health Permissions"
-      }
+      },
+      "switch_button": "Switch service"
     },
     "event": {
       "reward_claimed": "Claimed",
@@ -1387,7 +1388,7 @@
       "cycling": "Cycling"
     },
     "select": {
-      "choose": "Choose",
+      "choose": "Choose a service",
       "confirm": "Confirm"
     },
     "capabilitiesRequest": {
@@ -1407,7 +1408,10 @@
     },
     "connect": {
       "not_available": "Some features may not be available to you. You might miss our on YuCoin. You can try another service",
-      "title": "Connection setup"
+      "title": "Connection setup",
+      "why": "Why do I need to do this?",
+      "button": "Let's connect",
+      "body": "Connect a service so we can reward you for your daily activities. You can adjust this in your device settings at any time."
     }
   },
   "sudoku": {

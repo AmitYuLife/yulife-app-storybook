@@ -15,13 +15,11 @@ import {
   HealthProviderCapability,
   ICapabilityPermissions,
 } from "@yu-life/react-native-yu-health";
-import { openAppleHealthPrivacy, openGoogleFitApp } from "@services/app-link";
 import HealthPermissionSection from "@organisms/permissions/health-permission-section";
 import Markdown from "@components/molecules/markdown/markdown";
 import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
-import { isiOS } from "@utils";
 import { HEALTH_PROVIDER_OPTIONS } from "@services/yuHealth/supported-health-types";
 
 interface IPermissionsScreenProps {
@@ -31,6 +29,7 @@ interface IPermissionsScreenProps {
   onPermissionRequest: (capability: HealthProviderCapability) => void;
   onLeftIconPress: () => void;
   onRightIconPress: () => void;
+  onOpenSwitch: () => void;
   onConnect: () => void;
   permissionStatuses: ICapabilityPermissions;
 }
@@ -42,6 +41,7 @@ const PermissionsScreen = ({
   activeProvider,
   permissionStatuses,
   permissions,
+  onOpenSwitch,
   onLeftIconPress,
   onRightIconPress,
 }: IPermissionsScreenProps) => {
@@ -53,16 +53,6 @@ const PermissionsScreen = ({
       item.status === HealthPermissionStatus.denied ||
       item.status === HealthPermissionStatus.notAsked
   );
-
-  const openHealthApp = useCallback(() => {
-    if (isiOS()) {
-      openAppleHealthPrivacy();
-      return;
-    }
-
-    // TODO: Determine what to open
-    openGoogleFitApp();
-  }, []);
 
   const showPopup = useCallback((viewRef: React.MutableRefObject<View>, markdown: string) => {
     const onDismiss = () => Navigation.dismissOverlay(MODALS.blurredOverlay);
@@ -126,9 +116,9 @@ const PermissionsScreen = ({
         ) : (
           <SecondaryButton
             size="Fill"
-            label={activeProvider}
+            label={t("screens.permissions.switch_button")}
             wrapperStyle={permissionsStyles.paddingHorizontal24}
-            onPress={openHealthApp}
+            onPress={onOpenSwitch}
             leftIcon={<ChainIcon />}
           />
         )}
