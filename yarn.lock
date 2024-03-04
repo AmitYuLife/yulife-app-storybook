@@ -7054,10 +7054,10 @@
   resolved "https://gitlab.com/api/v4/projects/52134022/packages/npm/@yu-life/react-native-yu-health/-/@yu-life/react-native-yu-health-1.0.20.tgz#243d597e121be88b37e3131bba4419393d982904"
   integrity sha1-JD1ZfhIb6Is34xMbukQZOT2YKQQ=
 
-"@yu-life/yulife-bdd-framework@0.0.70":
-  version "0.0.70"
-  resolved "https://gitlab.com/api/v4/projects/23052792/packages/npm/@yu-life/yulife-bdd-framework/-/@yu-life/yulife-bdd-framework-0.0.70.tgz#e708a6adeb44d926927004b6c54c6d6aafd82f47"
-  integrity sha1-5wimretE2SaScAS2xUxtaq/YL0c=
+"@yu-life/yulife-bdd-framework@0.0.72":
+  version "0.0.72"
+  resolved "https://gitlab.com/api/v4/projects/23052792/packages/npm/@yu-life/yulife-bdd-framework/-/@yu-life/yulife-bdd-framework-0.0.72.tgz#5741b2aed7fcfd458b0d1efb753b0d052751ccf5"
+  integrity sha1-V0Gyrtf8/UWLDR77dTsNBSdRzPU=
   dependencies:
     axios "^0.21.0"
     bcryptjs "^2.4.3"

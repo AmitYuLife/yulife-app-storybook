@@ -38,7 +38,7 @@ beforeAll(async () => {
 });
 
 //comment out for detox debugging/dev
-// afterAll(async () => {
-//   await socketServer.close();
-//   await dataManager.resetData();
-// });
+afterAll(async () => {
+  await socketServer.close();
+  await dataManager.resetData();
+});
