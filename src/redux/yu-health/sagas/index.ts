@@ -1,7 +1,11 @@
 import { AUTHENTICATED } from "@redux/app/app.actions";
 import { select, take, takeLatest } from "redux-saga/effects";
 import setDefaultProviderSaga from "./setDefaultProvider.saga";
-import { YU_HEALTH_PERMISSIONS_REQUESTED, YU_HEALTH_SET_ACTIVE_PROVIDER } from "../yu-health.actions";
+import {
+  YU_HEALTH_PERMISSIONS_REQUESTED,
+  YU_HEALTH_REFRESH_CAPABILITY_PERMISSIONS,
+  YU_HEALTH_SET_ACTIVE_PROVIDER,
+} from "../yu-health.actions";
 import setProviderSaga from "./setProvider.saga";
 import refreshCapabilityPermissionsSaga from "./refreshCapabilityPermissions.saga";
 import { getUserFeatures } from "@redux/user/user.selectors";
@@ -22,6 +26,7 @@ export default [
   // Refresh permissions in the store on authenticate, and after permissions have been requested
   takeLatest([AUTHENTICATED, LOGIN_USER_SUCCESS], yuHealthFeatureGuard(refreshCapabilityPermissionsSaga)),
   takeLatest(YU_HEALTH_PERMISSIONS_REQUESTED, yuHealthFeatureGuard(refreshCapabilityPermissionsSaga)),
+  takeLatest(YU_HEALTH_REFRESH_CAPABILITY_PERMISSIONS, yuHealthFeatureGuard(refreshCapabilityPermissionsSaga)),
 
   // Store the status of providers
   takeLatest([AUTHENTICATED, LOGIN_USER_SUCCESS], yuHealthFeatureGuard(refreshProviderAvailabilitySaga)),

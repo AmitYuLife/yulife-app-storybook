@@ -7,10 +7,13 @@ import { HealthPermissionStatus, HealthProviderCapability } from "@yu-life/react
 import { memo } from "react";
 import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useSelector } from "react-redux";
+import { Button } from "@components/molecules";
+import { useDispatch } from "react-redux";
+import { refreshCapabilityPermissions } from "@redux/yu-health/yu-health.actions";
 
 const YuHealthChallenges = () => {
+  const dispatch = useDispatch();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability();
-
   const capabilityStatuses = useSelector(getCapabilityStatuses);
 
   const getCapabilityColor = (capability: HealthProviderCapability) => {
@@ -30,6 +33,14 @@ const YuHealthChallenges = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.buttonContainer}>
+        <Button
+          label="Manual status refresh"
+          onPress={() => {
+            dispatch(refreshCapabilityPermissions());
+          }}
+        />
+      </View>
       {Object.values(HealthProviderCapability).map((capability) => {
         return (
           <TouchableOpacity
@@ -65,6 +76,10 @@ const styles = StyleSheet.create({
     borderRadius: Style.adjust(8),
     minHeight: 80,
     backgroundColor: colours.products.fib.rare,
+  },
+  buttonContainer: {
+    width: "100%",
+    justifyContent: "center",
   },
 });
 

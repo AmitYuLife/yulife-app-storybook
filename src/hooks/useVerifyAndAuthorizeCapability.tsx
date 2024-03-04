@@ -142,12 +142,10 @@ export const useVerifyAndAuthorizeCapability = (_props: IVerifyAndAuthorizeCapab
       const status = await hasPermissions(capabilities);
 
       const unsupportedCapability = first(
-        Object.entries(status)
-          .find(([_capability, permissionStatus]) => {
-            return permissionStatus === HealthPermissionStatus.unsupported;
-          })
-          ?.map(([healthCapability]) => healthCapability as HealthProviderCapability)
-      );
+        Object.entries(status).find(([_capability, permissionStatus]) => {
+          return permissionStatus === HealthPermissionStatus.unsupported;
+        })
+      ) as HealthProviderCapability;
 
       if (unsupportedCapability) {
         const shouldRetry = await handleUnsupportedCapability(unsupportedCapability);
