@@ -49,8 +49,12 @@ const RECOMMENDED_ORDER = [HealthProvider.googleFit, HealthProvider.healthKit, H
 export const getRecommendedProvider = ({
   providerAvailabilities,
 }: {
-  providerAvailabilities: Record<HealthProvider, HealthProviderAvailability>;
+  providerAvailabilities?: Record<HealthProvider, HealthProviderAvailability>;
 }): HealthProvider => {
+  if (!providerAvailabilities) {
+    return null;
+  }
+
   for (const recommended of RECOMMENDED_ORDER) {
     if (providerAvailabilities[recommended] === HealthProviderAvailability.available) {
       return recommended;

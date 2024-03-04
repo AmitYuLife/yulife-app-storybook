@@ -1,12 +1,12 @@
 import HealthPermissionExplanationModal from "@components/modals/health-permission-explanation/health-permission-explanation.modal";
 import YuHealthConnectScreen from "@components/screens/member/yu-health-connect/yu-health-connect.screen";
-import { useVerifyAndAuthorizeCapability } from "@hooks";
+import { useBackHandler, useVerifyAndAuthorizeCapability } from "@hooks";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { setActiveYuHealthProvider } from "@redux/yu-health/yu-health.actions";
 import { getActiveProviderSelector, getProviderAvailabilities } from "@redux/yu-health/yu-health.selectors";
 import { YU_HEALTH_DEFAULT_CAPABILITIES, getRecommendedProvider } from "@utils";
-import { HealthProvider } from "@yu-life/react-native-yu-health";
+import { HealthProvider, getCapabilities } from "@yu-life/react-native-yu-health";
 import { memo, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -58,9 +58,21 @@ const YuHealthConnectContainer = ({ componentId, navigateToNext }: IYuHealthConn
     Navigation.pop(componentId);
   }, [componentId, navigateToNext]);
 
+  useBackHandler(() => {
+    onFinish();
+    return false;
+  });
+
   const onConnect = useCallback(async () => {
     dispatch(setActiveYuHealthProvider(activeProvider));
-    await verifyAndAuthorizeCapability(YU_HEALTH_DEFAULT_CAPABILITIES, { skipPreliminaryModal: true });
+
+    const providerCapabilities = await getCapabilities();
+    const supportedCapabilities = providerCapabilities[activeProvider];
+    const capabilities = YU_HEALTH_DEFAULT_CAPABILITIES.filter((capability) =>
+      supportedCapabilities.includes(capability)
+    );
+
+    await verifyAndAuthorizeCapability(capabilities, { skipPreliminaryModal: true });
 
     onFinish();
   }, [activeProvider, dispatch, onFinish, verifyAndAuthorizeCapability]);

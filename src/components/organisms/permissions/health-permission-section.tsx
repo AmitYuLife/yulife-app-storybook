@@ -49,7 +49,7 @@ const HealthPermissionSection = ({
 
         return (
           <PermissionItem
-            key={identifier}
+            key={`${identifier}-${title}`}
             title={title}
             status={status}
             description={description}

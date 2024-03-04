@@ -18,10 +18,12 @@ import { Navigation } from "@navigation/main";
 import { validateEmail } from "@utils/email";
 import { LoginUser } from "@graphql/_core/schema";
 import { setRegionConfig } from "@redux/app/app.actions";
-import { useMutatationAllRegions, useUserFeatures } from "@hooks";
+import { useMutatationAllRegions } from "@hooks";
 import DeviceInfo from "react-native-device-info";
 import client from "@graphql/_core/client";
 import { gql } from "@graphql/__generated";
+import { IFeature } from "@redux/user/user.types";
+import { reduceUserFeatures } from "@redux/user/user.helpers";
 
 const trimGraphQLError = (message: string = "") => message.replace(/^GraphQL error: /, "");
 
@@ -49,7 +51,6 @@ const LoginContainer: React.FC<Props> = ({
   const [passwordError, setPasswordError] = useState("");
   const [sessionExpiredError, setSessionExpiredError] = useState(hasSessionExpiredError ? SESSION_EXPIRED_ERROR : "");
   const [wasLoginCalled, setWasLogginCalled] = useState(false);
-  const features = useUserFeatures();
 
   const isFormValid = useMemo(() => !(validateEmail(email) || validatePassword(password)), [email, password]);
   const {
@@ -64,7 +65,15 @@ const LoginContainer: React.FC<Props> = ({
   );
 
   const goToNext = useCallback(
-    async (authorised: boolean, onboarded: boolean) => {
+    async ({
+      authorised,
+      onboarded,
+      userFeatures,
+    }: {
+      authorised: boolean;
+      onboarded: boolean;
+      userFeatures: IFeature;
+    }) => {
       const navigateToNext = () => {
         if (!onboarded) {
           const route = ROUTES.onboardingSignUpReward;
@@ -86,7 +95,7 @@ const LoginContainer: React.FC<Props> = ({
       if (!authorised) {
         let route = ROUTES.yuHealthConnect;
 
-        if (!features?.tempGameEnableYuHealth) {
+        if (!userFeatures?.tempGameEnableYuHealth) {
           route = ROUTES.onboardingFitKitConnect;
         }
 
@@ -147,7 +156,11 @@ const LoginContainer: React.FC<Props> = ({
         dispatch(loginUserSuccess(needle.data));
 
         // no need to send the user to healthkit-connect if device is an ipad
-        await goToNext(Style.isIPad() ? true : fitkitAuthorised, needle.data.loginUser.user.redeemedOnboarding);
+        await goToNext({
+          authorised: Style.isIPad() ? true : fitkitAuthorised,
+          onboarded: needle.data.loginUser.user.redeemedOnboarding,
+          userFeatures: needle?.data?.loginUser?.user?.userFeatures?.reduce(reduceUserFeatures, {}),
+        });
       } else {
         handleError(t("screens.login.accessibility.alert_error_default_message"));
       }
@@ -180,20 +193,7 @@ const LoginContainer: React.FC<Props> = ({
         handleError(trimGraphQLError(e?.message));
       }
     }
-  }, [
-    email,
-    isUsingOtp,
-    password,
-    otp,
-    handleError,
-    dispatch,
-    goToNext,
-    isFormValid,
-    loginUser,
-    logins,
-    isFormValid,
-    loginForRegion,
-  ]);
+  }, [email, isUsingOtp, password, otp, handleError, isFormValid, loginUser, loginForRegion]);
 
   const onResetPassword = useCallback(async () => {
     await Navigation.push(componentId, {
@@ -245,7 +245,7 @@ const LoginContainer: React.FC<Props> = ({
             onSelect: (r: REGION) => loginForRegion(r),
           }
         : undefined,
-    [logins.length, loginForRegion]
+    [logins, loginForRegion]
   );
 
   return (

@@ -1,5 +1,5 @@
 import { AUTHENTICATED } from "@redux/app/app.actions";
-import { select, takeLatest } from "redux-saga/effects";
+import { select, take, takeLatest } from "redux-saga/effects";
 import setDefaultProviderSaga from "./setDefaultProvider.saga";
 import { YU_HEALTH_PERMISSIONS_REQUESTED, YU_HEALTH_SET_ACTIVE_PROVIDER } from "../yu-health.actions";
 import setProviderSaga from "./setProvider.saga";
@@ -7,17 +7,24 @@ import refreshCapabilityPermissionsSaga from "./refreshCapabilityPermissions.sag
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { IFeature } from "@redux/user/user.types";
 import refreshProviderAvailabilitySaga from "./refreshProviderAvailability.saga";
+import {
+  GET_ALL_USER_DATA_SUCCESS,
+  GET_USER_FEATURES_SUCCESS,
+  GET_USER_SUCCESS,
+  LOGIN_USER_SUCCESS,
+} from "@redux/user/user.actions";
+import { isEmpty } from "lodash";
 
 export default [
   // Try and set a default provider if we don't have one in the store
-  takeLatest(AUTHENTICATED, yuHealthFeatureGuard(setDefaultProviderSaga)),
+  takeLatest([AUTHENTICATED, LOGIN_USER_SUCCESS], yuHealthFeatureGuard(setDefaultProviderSaga)),
 
   // Refresh permissions in the store on authenticate, and after permissions have been requested
-  takeLatest(AUTHENTICATED, yuHealthFeatureGuard(refreshCapabilityPermissionsSaga)),
+  takeLatest([AUTHENTICATED, LOGIN_USER_SUCCESS], yuHealthFeatureGuard(refreshCapabilityPermissionsSaga)),
   takeLatest(YU_HEALTH_PERMISSIONS_REQUESTED, yuHealthFeatureGuard(refreshCapabilityPermissionsSaga)),
 
   // Store the status of providers
-  takeLatest(AUTHENTICATED, yuHealthFeatureGuard(refreshProviderAvailabilitySaga)),
+  takeLatest([AUTHENTICATED, LOGIN_USER_SUCCESS], yuHealthFeatureGuard(refreshProviderAvailabilitySaga)),
 
   // Set an active provider
   takeLatest(YU_HEALTH_SET_ACTIVE_PROVIDER, yuHealthFeatureGuard(setProviderSaga)),
@@ -27,7 +34,12 @@ export default [
 // eslint-disable-next-line @typescript-eslint/ban-types
 function yuHealthFeatureGuard<T extends Function>(saga: T) {
   return function* yuHealthFeatureGuardSaga(...args: T extends (...args: infer A) => unknown ? A : never) {
-    const features: IFeature = yield select(getUserFeatures);
+    let features: IFeature = yield select(getUserFeatures);
+    if (isEmpty(features)) {
+      yield take([AUTHENTICATED, GET_ALL_USER_DATA_SUCCESS, GET_USER_SUCCESS, GET_USER_FEATURES_SUCCESS]);
+      features = yield select(getUserFeatures);
+    }
+
     if (!features.tempGameEnableYuHealth) {
       return;
     }

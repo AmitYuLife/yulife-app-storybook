@@ -65,6 +65,7 @@ const PermissionsContainer = ({ componentId }: IProps) => {
       permissions={permissions}
       onConnect={onConnect}
       activeProvider={activeProvider}
+      onOpenSwitch={onConnect}
       permissionStatuses={permissionStatus}
       onPermissionRequest={onPermissionRequest}
       onLeftIconPress={onLeftIconPress}
