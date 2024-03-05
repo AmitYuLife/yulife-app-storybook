@@ -1030,19 +1030,8 @@ export const BUSINESS_EMPLOYEE_PLI_3 = {
     type: "postgres",
     modelName: "business_employee",
     data: {
-        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
+        business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
         customer_id: customer.CUSTOMER_PLI_3.data.customerId,
-        employment_start_date: moment().subtract(8, "months").toDate(),
-        employment_leave_date: moment().add(10, "years").toDate()
-    }
-} as IDatabaseItem
-
-export const BUSINESS_EMPLOYEE_PLI_4 = {
-    type: "postgres",
-    modelName: "business_employee",
-    data: {
-        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
-        customer_id: customer.CUSTOMER_PLI_4.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }

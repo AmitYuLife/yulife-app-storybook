@@ -1,5 +1,6 @@
 import { navigation } from "@utils";
 import {
+  CONTENT_MIDDLE_ITEM_IMAGE,
   DATE_INPUT,
   PERCENTAGE_COVERED,
   PRODUCT_STEP_BODY_SCROLL_VIEW,
@@ -9,17 +10,13 @@ import { screens } from "@appScreens";
 import { scrollUntilTextVisible } from "_utils/navigation/scrolling";
 import moment from "moment";
 import { expect } from 'detox'
+import { PLICoverLevel } from "02_PLI_1/_resources/types";
+import { pliHoldingHeader, pliHoldingImg, pliHoldingMessage, viewAccDeathPolicy } from "02_PLI_1/_resources/constants";
 
 export const { idVisible, textVisible, idNotVisible, textNotVisible, multipleTextVisible, textVisibleAtIndex } =
   navigation.common;
 
 export const { onYuscreenV3, onYuscreenV4 } = screens.yuscreen;
-
-const add30Years = moment().add(30, "y").format("Do MMMM YYYY");
-const add30YearsFormatedMonth = moment().add(30, "y").format("Do MMM YYYY");
-
-const payoutUntil = `a month until\n${add30Years}`;
-const payoutUntilFormatedMonth = `a month until\n${add30YearsFormatedMonth}`;
 
 const inEvent = "In the event of your passing, we'll pay out:";
 
@@ -27,13 +24,6 @@ const rarePrice = "£1,041.67";
 export const rareMonthPrice = "£12.31";
 const rareMonthPricePregnancy = "£12.59";
 
-const commonPrice = "£520.83";
-const commonMonthPrice = "£6.85";
-const commonMonthPregnantPrice = "£7.02";
-
-const epicPrice = "£1,562.50";
-const epicMonthPrice = "£20.09";
-const epicMonthPregnantPrice = "£20.53";
 
 const alsoBenefit = "You'll also benefit from:";
 const chestRewardsTitle = "Increased Chest Reward";
@@ -129,123 +119,81 @@ export const isOnCoverLevelScreen = async () => {
   await expect(element(by.id(PERCENTAGE_COVERED(75)))).toBeVisible();
 };
 
-export const packageVisible = (packageType: any) => async () => {
+export const packageVisible = (cover: PLICoverLevel) => async () => {
   const customsPercentage = "Or, choose a custom percentage";
   const policyStops = "Your policy is set to end when you are 60 years old**. To amend click here";
   const firstCondition = "*Prices are subject to change in the case of further medical information assessment.";
-  const secondCondition =
-    "**The policy will stop on the policy anniversary in the year of the age selected, not on the date you turn that age.";
+  const secondCondition = "**The policy will stop on the policy anniversary in the year of the age selected, not on the date you turn that age.";
 
-  switch (packageType) {
-    case "Common":
-      await expect(element(by.text("25%"))).toBeVisible();
-      await expect(element(by.text(customsPercentage))).toBeVisible();
-      await expect(element(by.text(`${commonMonthPrice}*`))).toBeVisible();
-      await expect(element(by.text("per month"))).toBeVisible();
-      await expect(element(by.id(TEXT_TEMPLATE(inEvent)))).toBeVisible();
-      await expect(element(by.text(commonPrice))).toBeVisible();
-      await expect(element(by.text(payoutUntil))).toBeVisible();
-      await expect(element(by.text(policyStops))).toBeVisible();
-      await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down")();
-      await expect(element(by.text("Documents"))).toBeVisible();
-      await expect(element(by.text("FAQs"))).toBeVisible();
-      await expect(element(by.text(firstCondition))).toBeVisible();
-      await expect(element(by.text(secondCondition))).toBeVisible();
-      await expect(element(by.text(`${commonMonthPrice} / month`))).toBeVisible();
-      await expect(element(by.text("25% of your salary covered"))).toBeVisible();
-      await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Select your cover", "up")();
-      break;
-    case "Rare":
-      await expect(element(by.text("50%"))).toBeVisible();
-      await expect(element(by.text(customsPercentage))).toBeVisible();
-      await expect(element(by.text(`${rareMonthPrice}*`))).toBeVisible();
-      await expect(element(by.text("per month"))).toBeVisible();
-      await expect(element(by.text(inEvent))).toBeVisible();
-      await expect(element(by.text(rarePrice))).toBeVisible();
-      await expect(element(by.text(payoutUntil))).toBeVisible();
-      await expect(element(by.text(policyStops))).toBeVisible();
-      await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down")();
-      await expect(element(by.text("Documents"))).toBeVisible();
-      await expect(element(by.text("FAQs"))).toBeVisible();
-      await expect(element(by.text(firstCondition))).toBeVisible();
-      await expect(element(by.text(secondCondition))).toBeVisible();
-      await expect(element(by.text(`${rareMonthPrice} / month`))).toBeVisible();
-      await expect(element(by.text("50% of your salary covered"))).toBeVisible();
-      await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Select your cover", "up")();
-      break;
-    case "Epic":
-      await expect(element(by.text("75%"))).toBeVisible();
-      await expect(element(by.text(customsPercentage))).toBeVisible();
-      await expect(element(by.text(`${epicMonthPrice}*`))).toBeVisible();
-      await expect(element(by.text("per month"))).toBeVisible();
-      await expect(element(by.text(inEvent))).toBeVisible();
-      await expect(element(by.text(epicPrice))).toBeVisible();
-      await expect(element(by.text(payoutUntil))).toBeVisible();
-      await expect(element(by.text(policyStops))).toBeVisible();
-      await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down")();
-      await expect(element(by.text("Documents"))).toBeVisible();
-      await expect(element(by.text("FAQs"))).toBeVisible();
-      await expect(element(by.text(firstCondition))).toBeVisible();
-      await expect(element(by.text(secondCondition))).toBeVisible();
-      await expect(element(by.text(`${epicMonthPrice} / month`))).toBeVisible();
-      await expect(element(by.text("75% of your salary covered"))).toBeVisible();
-      await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Select your cover", "up")();
-      break;
-    default:
-      break;
+
+  await textVisible(cover.percent)()
+  await textVisible(customsPercentage)()
+  await textVisible(`${cover.pricePerMonth}*`)()
+  await textVisible("per month")()
+  await idVisible(TEXT_TEMPLATE(inEvent))()
+  await textVisible(cover.payout)()
+  await textVisible(`a month until\n${cover.payoutUntil}`)()
+  await textVisible(policyStops)()
+  await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down")()
+  await textVisible("Documents")()
+  await textVisible("FAQs")()
+  await textVisible(firstCondition)()
+  await textVisible(secondCondition)()
+  await textVisible(`${cover.pricePerMonth} / month`)()
+  await textVisible(`${cover.percent} of your salary covered`)()
+  await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Select your cover", "up")();
   }
-};
 
 export const isOnDocumentsScreen = async () => {
   const docHeaderText = "Your policy docs, in one easy place.";
 
-  await expect(element(by.text(docHeaderText))).toBeVisible();
-  await expect(element(by.text("Policy Wording"))).toBeVisible();
-  await expect(element(by.text("Policy Summary"))).toBeVisible();
-  await expect(element(by.text("Terms of Business"))).toBeVisible();
-  await expect(element(by.text("Privacy Policy"))).toBeVisible();
+  await textVisible(docHeaderText)()
+  await textVisible("Policy Wording")()
+  await textVisible("Policy Summary")()
+  await textVisible("Terms of Business")()
+  await textVisible("Privacy Policy")()
 };
 
-export const packageSummaryVisible = (packageType: string, totalprice: string, montlyprice: string) => async () => {
+export const packageSummaryVisible = (packageType: string, totalprice: string, monthlyprice: string) => async () => {
   switch (packageType) {
     case "common":
-      await expect(element(by.text(montlyprice))).toBeVisible();
-      await expect(element(by.text("per month"))).toBeVisible();
-      await expect(element(by.text(totalprice))).toBeVisible();
-      await expect(element(by.text(alsoBenefit))).toBeVisible();
-      await expect(element(by.text(chestRewardsTitle))).toBeVisible();
-      await expect(element(by.text(chestRewardsCopy))).toBeVisible();
-      await expect(element(by.text(policyinfo))).toBeVisible();
+      await textVisible(monthlyprice)()
+      await textVisible("per month")()
+      await textVisible(totalprice)()
+      await textVisible(alsoBenefit)()
+      await textVisible(chestRewardsTitle)()
+      await textVisible(chestRewardsCopy)()
+      await textVisible(policyinfo)()
       await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down")();
-      await expect(element(by.text("FAQ"))).toBeVisible();
+      await textVisible("FAQ")()
       break;
     case "rare":
-      await expect(element(by.text(montlyprice))).toBeVisible();
-      await expect(element(by.text("per month"))).toBeVisible();
-      await expect(element(by.text(totalprice))).toBeVisible();
-      await expect(element(by.text(alsoBenefit))).toBeVisible();
-      await expect(element(by.text(chestRewardsTitle))).toBeVisible();
-      await expect(element(by.text(chestRewardsCopy))).toBeVisible();
-      await expect(element(by.text(streakBountyTitle))).toBeVisible();
-      await expect(element(by.text(streakBountyCopy))).toBeVisible();
-      await expect(element(by.text(policyinfo))).toBeVisible();
+      await textVisible(monthlyprice)()
+      await textVisible("per month")()
+      await textVisible(totalprice)()
+      await textVisible(alsoBenefit)()
+      await textVisible(chestRewardsTitle)()
+      await textVisible(chestRewardsCopy)()
+      await textVisible(streakBountyTitle)()
+      await textVisible(streakBountyCopy)()
+      await textVisible(policyinfo)()
       await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down")();
-      await expect(element(by.text("FAQ"))).toBeVisible();
+      await textVisible("FAQ")()
       break;
     case "epic":
-      await expect(element(by.text(montlyprice))).toBeVisible();
-      await expect(element(by.text("per month"))).toBeVisible();
-      await expect(element(by.text(totalprice))).toBeVisible();
-      await expect(element(by.text(alsoBenefit))).toBeVisible();
-      await expect(element(by.text(chestRewardsTitle))).toBeVisible();
-      await expect(element(by.text(chestRewardsCopy))).toBeVisible();
-      await expect(element(by.text(streakBountyTitle))).toBeVisible();
-      await expect(element(by.text(streakBountyCopy))).toBeVisible();
-      await expect(element(by.text(stepLimitTitle))).toBeVisible();
-      await expect(element(by.text(stepLimitCopy))).toBeVisible();
-      await expect(element(by.text(policyinfo))).toBeVisible();
+      await textVisible(monthlyprice)()
+      await textVisible("per month")()
+      await textVisible(totalprice)()
+      await textVisible(alsoBenefit)()
+      await textVisible(chestRewardsTitle)()
+      await textVisible(chestRewardsCopy)()
+      await textVisible(streakBountyTitle)()
+      await textVisible(streakBountyCopy)()
+      await textVisible(stepLimitTitle)()
+      await textVisible(stepLimitCopy)()
+      await textVisible(policyinfo)()
       await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down")();
-      await expect(element(by.text("FAQ"))).toBeVisible();
+      await textVisible("FAQ")()
       break;
     default:
       break;
@@ -259,9 +207,17 @@ export const multiFactorPriceChange =
     const addYearsCovered = moment().add(yearsCovered, "y").format("Do MMMM YYYY");
     const payoutUntil = `a month until\n${addYearsCovered}`;
 
-    await expect(element(by.text(`${priceMonthPrice}*`))).toBeVisible();
-    await expect(element(by.text("per month"))).toBeVisible();
-    await expect(element(by.text(payOutAmmount))).toBeVisible();
-    await expect(element(by.text(payoutUntil))).toBeVisible();
-    await expect(element(by.text(policyStops))).toBeVisible();
+    await textVisible(`${priceMonthPrice}*`)()
+    await textVisible("per month")()
+    await textVisible(payOutAmmount)()
+    await textVisible(payoutUntil)()
+    await textVisible(policyStops)()
   };
+
+
+  export const pliHoldingPageVisible = async () => {
+    await idVisible(CONTENT_MIDDLE_ITEM_IMAGE(pliHoldingImg))()
+    await idVisible(TEXT_TEMPLATE(pliHoldingHeader, "h1"))()
+    await idVisible(TEXT_TEMPLATE(pliHoldingMessage, "b2"))()
+    await textVisible(viewAccDeathPolicy)()
+  }

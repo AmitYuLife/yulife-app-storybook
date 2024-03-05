@@ -656,19 +656,6 @@ export const CUSTOMER_PLI_3 = {
   },
 } as IDatabaseItem;
 
-export const CUSTOMER_PLI_4 = {
-  type,
-  modelName,
-  data: {
-    customerId: generateRandomMongoId(),
-    email: generateRandomInbox(),
-    firstName: "Akio",
-    lastName: "Haruko",
-    dateOfBirth: moment().subtract(35, "years").toDate(),
-    status: "onboarded",
-  },
-} as IDatabaseItem;
-
 export const CUSTOMER_PLI_5 = {
   type,
   modelName,

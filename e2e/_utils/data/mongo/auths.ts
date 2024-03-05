@@ -778,17 +778,6 @@ export const AUTH_PLI_3 = {
     }
 } as IDatabaseItem
 
-export const AUTH_PLI_4 = {
-    type,
-    modelName,
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.61.111",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_PLI_4.data.customerId,
-    }
-} as IDatabaseItem
-
 export const AUTH_PLI_5 = {
     type,
     modelName,

@@ -1,98 +1,136 @@
-import {
-  Feature,
-  Scenario,
-  Given,
-  When,
-  Then,
-  ScenarioOnly,
-  FeatureOnly,
-  ScenarioSkip,
-  FeatureSkip,
-} from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
 import * as then from "./_steps/then";
-import * as helper from "./_resources/helpers";
-import {
-  CUSTOMER_37,
-  AUTH_37,
-  CUSTOMER_PLI_2,
-  AUTH_PLI_2,
-  CUSTOMER_PLI_3,
-  AUTH_PLI_3,
-  CUSTOMER_PLI_4,
-  AUTH_PLI_4,
-  CUSTOMER_44,
-  AUTH_44,
-} from "@data";
-import * as helper_V4 from "00_Smoke_4/01_yuscreen_v4/_resources/helpers";
+import { CUSTOMER_37, AUTH_37, CUSTOMER_PLI_2, AUTH_PLI_2, CUSTOMER_PLI_3, AUTH_PLI_3 } from "@data";
+import { PLICommonPlan, PLIEpicPlan, PLIRarePlan } from "./_resources/fixtures";
+import { BACK_BUTTON, DATE_PICKER, EDIT_BUTTON, GENERIC_SCREEN_HEADING, HORIZONTAL_SCROLLER, PACKAGE_INFO, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_NUMBER_PICKER, SCROLL_PICKER_ACTIVE_ITEM } from "@ids";
+import { viewAccDeathPolicy } from "./_resources/constants";
 
 Feature("PLI HAPPY", async () => {
-  // @update [PLI removed - keeping here for the time being to salvage some of the functionality for the new tests]
-  ScenarioSkip(
-    "As a completely healthy male user with Covea FIB enabled, I should be able to purchase PLI, Only allow previously used card for purchase of new product",
-    scenario.start,
-    async () => {
-      Given(
-        "I login as a user with Covea FIB enabled",
-        given.loginToYuScreen(false, CUSTOMER_37, AUTH_37),
-        async () => {
-          helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "10");
-          helper_V4.YUSCREEN_V4(CUSTOMER_37, "LifeInsurance", "10");
-          helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
-          helper.ONBOARDING();
-          helper.INTRO_START();
-          helper.INTRO_INFO();
-          helper.INTRO_HONESTY();
-          helper.UNDERWRITING_NAME();
-          helper.UNDERWRITING_DOB(30);
-          helper.UNDERWRITING_SALARY("25000");
-          helper.UNDERWRITING_CITIZEN("Yes");
-          helper.UNDERWRITING_EMPLOYMENT("No");
-          helper.UNDERWRITING_HEIGHT("160 cm");
-          helper.UNDERWRITING_WEIGHT("60 kg");
-          helper.UNDERWRITING_CIGARETTES("Never");
-          helper.UNDERWRITING_CIGARS("Never");
-          helper.UNDERWRITING_SMOKING_ALTERNATIVES("Never");
-          helper.UNDERWRITING_ALCOHOL("2 drinks");
-          helper.UNDERWRITING_CANNABIS("Never");
-          helper.UNDERWRITING_RECREATIONAL_DRUGS("Never");
-          helper.UNDERWRITING_COUNSELLING("No");
-          helper.UNDERWRITING_SEX("Male");
-          helper.UNDERWRITING_DIAGNOSED_WITH("No");
-          helper.UNDERWRITING_MANY_CONSULTATIONS("No");
-          helper.UNDERWRITING_AWAITING_TESTS("No");
-          helper.UNDERWRITING_SYMPTOMS("No");
-          helper.UNDERWRITING_COVID_HOSPITAL("No");
-          helper.UNDERWRITING_COVID_EXPOSURE("No");
-          helper.UNDERWRITING_OTHER_POLICIES("No");
-          helper.REVIEW_SCREEN();
-          helper.COVER_PRICE_CHECK("70");
-          helper.COVER_STYLE_SELECTION("rare", "62%", "£20.94", "£1,291.67");
-          // @bug stripe warning on checkout GS-864
-          // helper.CHECKOUT(true, "Rare");
-          // helper.REVIEW_YUSCREEN();
-        }
-      );
-    }
-  );
 
-  // @update [Test may become redundant with the new quote/expiring flows -- Revisit during updates - Rogers will rework this as part of his ticket]
-  ScenarioSkip(
-    "As a user who started a journey and reached the point of receiving a quote, when 60 days have passed since the last quote was generated, when I resume my journey, then I should start from the beginning.",
-    scenario.start,
-    async () => {
-      Given(
-        "I login as a user with Covea FIB enabled",
-        given.loginToYuScreen(false, CUSTOMER_PLI_2, AUTH_PLI_2),
-        async () => {
-          helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "1");
-          helper_V4.YUSCREEN_V4(CUSTOMER_PLI_2, "LifeInsurance", "1");
-          helper.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
-          helper.ONBOARDING();
+  Scenario("A user with a quote within the last 60 days can still see and finish their PLI journey", scenario.start,async () => {
+      Given("I login as a user with Covea FIB enabled and a quote from 59 days ago",given.loginToYuScreen(false, CUSTOMER_37, AUTH_37), async () => {
+        When(`I tap Check out my power`, when.tapText("Check out my power"), async () => {
+          When("I swipe down the screen", when.swipeFromText("Create your Yumoji to step into the Yuniverse", "up", "slow"), async () => {
+            When("I tap I'll do this later", when.tapText("I'll do this later"), async () => {
+              Then(`I should be on YuScreen V4 and see PLI only`, then.onYuscreenV4(CUSTOMER_37, "PliOnly", "10"));
+            });
+          });
         });
+      });
+      When("I swipe up the screen", when.swipeFromText("Share your thoughts", "down", "fast"), async () => {
+        When("I swipe up the screen again", when.swipeFromText("Browse more protection", "down", "fast"), async () => {
+          When("I click on the life insurance product", when.tapText("Life Insurance"), async () => {
+            When("I wait", when.wait(5000), async () => {
+              When("I tap on 25% Common cover", when.tapText("25%"), async () => {
+                Then("I should see corect Common plan", then.packageVisible(PLICommonPlan));
+              });
+            })
+          })
+        })
+      })
+      When("I tap on 75% Epic cover", when.tapText("75%"), async () => {
+        Then("I should see corect Epic plan", then.packageVisible(PLIEpicPlan));
+      });
+      When("I tap on 50% Rare cover", when.tapText("50%"), async () => {
+        Then("I should see corect Rare plan", then.packageVisible(PLIRarePlan));
+      });
+      When("I Edit this screen", when.tapID(EDIT_BUTTON), async () => {
+        Then(`I should have selected 60`, then.idVisible(SCROLL_PICKER_ACTIVE_ITEM("60")));
+      });
+      When(`I choose 35`, when.swipeOnPicker(DATE_PICKER, SCROLL_PICKER_ACTIVE_ITEM("35"), "left"), async () => {
+        Then(`I should have selected "35"`, then.idVisible(SCROLL_PICKER_ACTIVE_ITEM("35")));
+        Then(`I should see corect Price changed according when i am  "35" years`, then.multiFactorPriceChange(22, "£7.05", "£2,083.33", 35));
+      });
+      When(`I choose 61`, when.swipeOnPicker(DATE_PICKER, SCROLL_PICKER_ACTIVE_ITEM("61"), "right", 200), async () => {
+          Then(`I should have selected 61`, then.idVisible(SCROLL_PICKER_ACTIVE_ITEM("61")));
+          Then(`I should see corect Price changed according when I am 62`, then.multiFactorPriceChange(22, "£18.53", "£2,083.33", 61));
+        });
+      When("I tap on percentage choose", when.tapText("Or, choose a custom percentage"), async () => {
+        Then(`I should see selected 50 % by default`, then.idVisible(SCROLL_NUMBER_PICKER(50), 4000));
+      });
+      When(`I choose 62%`, when.swipeOnPicker(HORIZONTAL_SCROLLER, SCROLL_NUMBER_PICKER(64), "right"), async () => {
+        Then(`I should have selected 62`, then.idVisible(SCROLL_PICKER_ACTIVE_ITEM("62")));
+        Then("I should see correct price package appearing", then.multiFactorPriceChange(22, "£23.14", "£2,583.33", 61));
+      })
+      When("I scroll and tap on Documents", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Documents", "down"), async () => {
+          Then("I shoul be on Documents page", then.isOnDocumentsScreen);
+      });
+      When("I tap to go back to Summary screen", when.tapID(BACK_BUTTON), async () => {
+        Then("I should see again Documnets Button", then.textVisible("Documents"));
+      });
+      When("I scroll to the bottom and tap Continue", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
+        Then("I should be on the next page", then.textNotVisible("Select your cover"));
+      });
+      
+      When("I scroll to the left", when.scrollFromID(PACKAGE_INFO, "left", "slow", 0.4), async () => {
+        Then(`I should see Ocean Explorer`, then.textVisible("Ocean Explorer"));
+      });
+      When("I scroll to the left", when.scrollFromID(PACKAGE_INFO, "left", "slow", 0.4), async () => {
+        Then(`I should see Desert Trailblazer`, then.textVisible("Desert Trailblazer"));
+      });
+      When("I scroll to the left", when.scrollFromID(PACKAGE_INFO, "left", "slow", 0.4), async () => {
+        Then(`I should see Mountain Adventurer`, then.textVisible("Mountain Adventurer"));
+      });
+      When("I scroll to the right", when.scrollFromID(PACKAGE_INFO, "right", "fast", 1.0), async () => {
+        When("I scroll to the right", when.scrollFromID(PACKAGE_INFO, "right", "fast", 1.0), async () => {
+          Then(`I should see Forest Pathfinder`, then.textVisible("Forest Pathfinder"));
+          Then(`I should see the style header`, then.textVisible("Almost there, choose a style for your Rare chest"));
+          Then(`I should see the style subheader`, then.textVisible("from any of our worlds: Forest, Ocean, Desert or Mountain!"));
+        });
+      });
+      When("I tap Continue", when.tapText("Continue"), async () => {
+        Then("I should be on the next page", then.textNotVisible("Almost there, choose a style for your Rare chest"));
+        Then("I should see Summary page", then.textVisible("Summary"));
+        // this defaults to the one in the old quote, expected behaviour
+        Then("I should see correct package selected for the original quote, not what I just selected", then.packageSummaryVisible("rare", "£30.13", "£3,125"));
+      });
+      When("I scroll and tap on Documents", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Documents", "down"), async () => {
+          Then("I shoul be on Documents page", then.isOnDocumentsScreen);
+        });
+      When("I tap to go back to Summary screen", when.tapID(BACK_BUTTON), async () => {
+        Then("I should see again Documents Button", then.textVisible("Documents"));
+      });
+      // rest of the test not able to be done due to @bug stripe warning on checkout GS-864
+      //helper.CHECKOUT(true, "Rare");
+      //helper.REVIEW_YUSCREEN();
     });
+
+  Scenario("A user who had a quote started over 60 days ago can no longer see and finish their journey", scenario.start, async () => {
+      Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false, CUSTOMER_PLI_2, AUTH_PLI_2), async () => {
+        When(`I tap Check out my power`, when.tapText("Check out my power"), async () => {
+          When("I swipe down the screen", when.swipeFromText("Create your Yumoji to step into the Yuniverse", "up", "slow"), async () => {
+            When("I tap I'll do this later", when.tapText("I'll do this later"), async () => {
+              Then(`I should be on YuScreen V4 and see no PLI`, then.onYuscreenV4(CUSTOMER_PLI_2, "noPLI", "1"));
+            });
+          });
+        });
+      });
+    });
+
+  Scenario("A user who had a medical holding can see and finish their journey", scenario.start, async () => {
+    Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false, CUSTOMER_PLI_3, AUTH_PLI_3), async () => {
+      When(`I tap Check out my power`, when.tapText("Check out my power"), async () => {
+        When("I swipe down the screen", when.swipeFromText("Create your Yumoji to step into the Yuniverse", "up", "slow"), async () => {
+          When("I tap I'll do this later", when.tapText("I'll do this later"), async () => {
+            Then(`I should be on YuScreen V4 and see PLI in the holding state`, then.onYuscreenV4(CUSTOMER_PLI_3, "holdingPLI", "1"));
+          })
+        })
+      })
+    })
+    When("I swipe up the screen", when.swipeFromText("Share your thoughts", "down", "fast"), async () => {
+      When("I swipe up the screen again", when.swipeFromText("Browse more protection", "down", "fast"), async () => {
+        When("I click on the life insurance product", when.tapText("Life Insurance"), async () => {
+          Then("I should see the medical holding page", then.pliHoldingPageVisible)
+        })
+      })
+    })
+    When("I click to see the acc death policy", when.tapText(viewAccDeathPolicy), async () => {
+      Then("I am on the policy page", then.idVisible(GENERIC_SCREEN_HEADING("Accidental Death Benefit")))
+    })
   
-  
-});
+  })
+
+})
