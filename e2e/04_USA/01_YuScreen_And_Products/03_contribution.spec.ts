@@ -41,7 +41,7 @@ Feature("I am able to see sponsored by text/logos and box option types", async (
     })
     When(`I tap explore insurance`, when.tapText(fixture.ExploreInsureanceBox.description), async () => {
       When("I wait", when.wait(2000), async () => {
-          // Then("I'm on the pcp page", then.onPCPPage()) @bug [vbus-179]
+          Then("I'm on the pcp page", then.onPCPPage())
           Then("I can see the info panel", then.infoPanelVisible(true))
           Then("I can see the vision insurance box", then.boxOptionVisible(fixture.VisionInsuranceBox, true))
           Then("I can NOT see the arrow button to go deeper into the product info", then.idNotVisible(id.ARROW_BUTTON))
@@ -211,7 +211,7 @@ Feature("I am able to see sponsored by text/logos and box option types", async (
     })
     When(`I tap explore insurance`, when.tapText(fixture.ExploreInsureanceBox.description), async () => {
       When("I wait", when.wait(2000), async () => {
-          // Then("I'm on the pcp page", then.onPCPPage()) @bug [vbus-179] [GS-863]
+          Then("I'm on the pcp page", then.onPCPPage())
           Then("I can see the info panel", then.infoPanelVisible(true))
           Then("I can see the vision insurance box", then.boxOptionVisible(fixture.CancerInsuranceBox, true))
           Then("I can NOT see the arrow button to go deeper into the product info", then.idNotVisible(id.ARROW_BUTTON))
