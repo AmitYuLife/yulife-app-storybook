@@ -181,35 +181,6 @@ export const CUSTOMER_PLI_PROGRESSION_13 = {
         "session_id" : "c6ac7c02-7f17-4129-a132-e28281e63e07"
     },
 }
-
-export const CUSTOMER_PLI_PROGRESSION_15 = {
-    type: "postgres",
-    modelName,
-    data: {
-        "customer_product_progression_id" : generateRandomPostgresId(),
-        "customer_product_id" : "YUCPID0000000139",
-        "step_id" : "Covea_FIB_02_underwriting_salary",
-        "step_data" : "{\"salary\":15000}",
-        "archived" : false,
-        "archived_at" : null,
-        "created_by_id" : null,
-        "modified_at" : "2022-08-01T14:02:29.725Z",
-        "modified_by_id" : null,
-        "archive_reason" : null,
-        "session_id" : "c6ac7c02-7f17-4111-a132-e28281e63e07",
-    },
-}
-
-export const CUSTOMER_QUOTE_PLI_15_UPDATE = {
-    type: "postgres",
-    modelName,
-    updateKey: "customer_product_progression_id",
-    data: {
-        customer_product_progression_id: CUSTOMER_PLI_PROGRESSION_15.data.customer_product_progression_id,
-        created_at : moment().subtract(31, "days").format(),
-    }
-}
-
     
 export const CUSTOMER_PLI_PROGRESSION_16 = {
     type: "postgres",

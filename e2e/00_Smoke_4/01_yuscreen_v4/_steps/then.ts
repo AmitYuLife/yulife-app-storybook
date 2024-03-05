@@ -89,8 +89,6 @@ export const productSlotsAreCorrect = (status: string) => async () => {
   }
   if (status === "dental only") {
     await expect(element(by.id(ids.BACKGROUND_COLOUR_PRODUCT("#F7F3FF")))).toBeVisible(50); // dental insurance button
-    await expect(element(by.id(ids.BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(0)).toBeVisible(); // life insurance button
-    await expect(element(by.id(ids.BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(1)).toBeVisible(); // more protection coming soon button
   }
   if (status === "groupDental") {
     await expect(element(by.id(ids.BACKGROUND_COLOUR_PRODUCT("#FAFAFE"))).atIndex(0)).toBeVisible(); // life insurance button
@@ -187,13 +185,6 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await textNotVisible(fixture.availableProducts)();
       await textVisible(fixture.allPoweredUp)();
       break;
-    case "dentalAndPli":
-      await textVisible(yuCoinPower, 0)();
-      await textVisibleAtIndex(fixture.yuCoinText, 0)();
-      await textVisible(fixture.powerText)();
-      await textVisible(fixture.availableProducts)();
-      await textNotVisible(fixture.noProductText)();
-      break;
     case "3 Products Slots":
       await textVisible(yuCoinPower)(); // 31
       await textVisibleAtIndex(fixture.yuCoinText, 0)();
@@ -203,8 +194,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await textVisibleAtIndex(fixture.productYuCoin, 0)();
       await textVisible(fixture.criticalIllness)();
       await textVisibleAtIndex(fixture.productYuCoin, 1)();
-      await textVisible(fixture.incomeProtection)();
-      await textVisible(fixture.availableProducts)();
+      await textVisible(fixture.lifeInsurance)();
       break;
       case "3 Products Slots Started":
       await textVisible(yuCoinPower)(); // 31

@@ -175,43 +175,6 @@ export const YUCOIN_POWER_CHECK = async (customer: any, yuCoinPower: number) => 
   });
 };
 
-export const CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED = async (productButton: string) => {
-  When("I swipe up ", when.swipeFromText("More protection coming soon", "down", "fast"), async () => {
-    When(`I tap on ${productButton}`, when.tapText(productButton), async () => {
-      Then(`I should payment overdue screen`, then.paymentOverdueInfo);
-      When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
-        Then("I should be able to see Dental insurance", then.textVisible(productButton));
-      });
-    });
-  })
-};
-
-export const YUSCREEN_V4 = async (
-  customer: any,
-  packType: string,
-  yuCoinPower: string,
-  buttonText = "Check out my power"
-) => {
-  const yuMojiBuilder = "Create your Yumoji to step into the Yuniverse";
-
-  When(`I tap ${buttonText}`, when.tapText(buttonText), async () => {
-    Then(`I should see ${yuMojiBuilder}`, then.textVisible(yuMojiBuilder));
-  });
-  When(
-    "I swipe down the screen",
-    when.swipeFromText("Create your Yumoji to step into the Yuniverse", "up", "slow"),
-    async () => {
-      When("I tap I'll do this later", when.tapText("I'll do this later"), async () => {
-        Then(`I should be on YuScreen V4 and see ${packType}`, then.onYuscreenV4(customer, packType, yuCoinPower));
-      });
-    }
-  );
-};
-
-export const ONBOARDING_YUSCREEN = async (packType: string, yuCoinPower: string) => {
-  Then(`I should see the onboarding Yuscreen and see ${packType}`, then.onboardingYuscreenV4(packType, yuCoinPower));
-};
-
 export const GROUP_DENTAL_PRODUCT_VIEW = async (packageType: string, yuCoinPower: string, dentalType: "Plan" | "Choice", membershipNumber?: string) => {
   const productText = dentalType === "Plan" ? "Dental Cover" : "Bupa Dental Choice"
 
@@ -311,12 +274,6 @@ export const CHECKOUT_PROCESS = async () => {
     When("I press Done", when.tapText("Done"), async () => {
       Then("I should see Ordo confirmation image", then.idVisible(CONTENT_MIDDLE_ITEM_IMAGE(ordoToothBrushConfirmationImage)));
     });
-  });
-};
-
-export const GROUP_HEALTH_PRODUCT_VIEW = async (startDate: any, dependentName:any, yuCoinPower: string) => {
-  When(`I tap Health Insurance`, when.tapText("Health Insurance"), async () => {
-    Then("I should see correct product details", then.GHIProductInfo(startDate, dependentName, yuCoinPower));
   });
 };
 
