@@ -2,27 +2,17 @@ import * as React from "react";
 import { TextTemplate } from "@atoms";
 import { StyleSheet, View } from "react-native";
 import { Colours, Style } from "@styles";
-import { get } from "lodash";
 import { memo, useMemo } from "react";
 import { HealthProviderCapability } from "@yu-life/react-native-yu-health";
 import { Button, SecondaryButton } from "@components/molecules";
 import { useTranslation } from "@hooks";
+import { joinCapabilities } from "@utils";
 
 interface IHealthPermissionModalProps {
   capabilities: HealthProviderCapability[];
   onRequestPermissions: () => void;
   onCancel: () => void;
 }
-
-const CAPABILITY_TRANSLATIONS: Record<HealthProviderCapability, string> = {
-  [HealthProviderCapability.STEP_COUNT]: "yu_health.capabilitiesRequest.capabilities.steps",
-  [HealthProviderCapability.MINDFUL_MINUTES]: "yu_health.capabilitiesRequest.capabilities.meditation",
-  [HealthProviderCapability.CYCLING_DISTANCE]: "yu_health.capabilitiesRequest.capabilities.cycling",
-  [HealthProviderCapability.HEART_RATE]: "yu_health.capabilitiesRequest.capabilities.heartRate",
-  [HealthProviderCapability.WORKOUT_MINUTES]: "yu_health.capabilitiesRequest.capabilities.workouts",
-  [HealthProviderCapability.ACTIVITIES]: "yu_health.capabilitiesRequest.capabilities.workouts",
-  [HealthProviderCapability.CALORIES]: "yu_health.capabilitiesRequest.capabilities.calories",
-};
 
 const HealthPermissionModal = ({ onRequestPermissions, onCancel, capabilities }: IHealthPermissionModalProps) => {
   const t = useTranslation([
@@ -40,14 +30,8 @@ const HealthPermissionModal = ({ onRequestPermissions, onCancel, capabilities }:
   ]);
 
   const copy = useMemo(() => {
-    return capabilities
-      .map((capability) => get(t, CAPABILITY_TRANSLATIONS[capability]))
-      .filter(Boolean)
-      .reduce(
-        (acc, curr, index, array) =>
-          acc + (index < array.length - 1 ? ", " : ` ${t["yu_health.capabilitiesRequest.join"]} `) + curr
-      );
-  }, [capabilities, t]);
+    return joinCapabilities(capabilities);
+  }, [capabilities]);
 
   return (
     <View style={styles.wrapper}>

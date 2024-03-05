@@ -1,38 +1,78 @@
 import HealthPermissionExplanationModal from "@components/modals/health-permission-explanation/health-permission-explanation.modal";
 import YuHealthConnectScreen from "@components/screens/member/yu-health-connect/yu-health-connect.screen";
 import { useBackHandler, useVerifyAndAuthorizeCapability } from "@hooks";
+import { t } from "@locale";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { setActiveYuHealthProvider } from "@redux/yu-health/yu-health.actions";
 import { getActiveProviderSelector, getProviderAvailabilities } from "@redux/yu-health/yu-health.selectors";
-import { YU_HEALTH_DEFAULT_CAPABILITIES, getRecommendedProvider } from "@utils";
-import { HealthProvider, getCapabilities } from "@yu-life/react-native-yu-health";
-import { memo, useCallback, useEffect, useState } from "react";
+import { HEALTH_PROVIDER_OPTIONS } from "@services/yuHealth/supported-health-types";
+import {
+  PROVIDER_RECOMMENDED_ORDER,
+  YU_HEALTH_DEFAULT_CAPABILITIES,
+  getRecommendedProvider,
+  joinCapabilities,
+} from "@utils";
+import { HealthProvider, HealthProviderCapability, getCapabilities } from "@yu-life/react-native-yu-health";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 interface IYuHealthConnectContainerProps {
   componentId: string;
-  navigateToNext?: () => void;
+  navigateToNext?: (didSwitch: boolean) => void;
+  unsupportedCapabilities?: HealthProviderCapability[];
+  availableProviders?: HealthProvider[];
 }
 
-const YuHealthConnectContainer = ({ componentId, navigateToNext }: IYuHealthConnectContainerProps) => {
-  const currentProvider = useSelector(getActiveProviderSelector);
-  const providerAvailabilities = useSelector(getProviderAvailabilities);
-  const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability();
-  const [activeProvider, setActiveProvider] = useState<HealthProvider>();
+const YuHealthConnectContainer = ({
+  componentId,
+  navigateToNext,
+  availableProviders,
+  unsupportedCapabilities,
+}: IYuHealthConnectContainerProps) => {
   const dispatch = useDispatch();
+  const activeProvider = useSelector(getActiveProviderSelector);
+  const providerAvailabilities = useSelector(getProviderAvailabilities);
+  const [selectedProvider, setSelectedProvider] = useState<HealthProvider>();
+  const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
 
   useEffect(() => {
-    if (!activeProvider && currentProvider) {
-      setActiveProvider(currentProvider);
+    if (!selectedProvider && activeProvider) {
+      // If we pass available providers (providers that are supported for a specific capability)
+      // and our current provider isn't in the list, we display the recommended provider instead
+      // of the current provider
+      if (availableProviders && !availableProviders.includes(activeProvider)) {
+        const provider = PROVIDER_RECOMMENDED_ORDER.find((healthProvider) =>
+          availableProviders.includes(healthProvider)
+        );
+
+        setSelectedProvider(provider || activeProvider);
+        return;
+      }
+
+      setSelectedProvider(activeProvider);
       return;
     }
 
-    if (!activeProvider) {
+    if (!selectedProvider) {
       const provider = getRecommendedProvider({ providerAvailabilities });
-      setActiveProvider(provider);
+      setSelectedProvider(provider);
     }
-  }, [activeProvider, currentProvider, providerAvailabilities]);
+  }, [selectedProvider, availableProviders, activeProvider, providerAvailabilities]);
+
+  const bodyCopy = useMemo(() => {
+    if (unsupportedCapabilities) {
+      const unsupportedCopy = joinCapabilities(unsupportedCapabilities);
+      const provider = HEALTH_PROVIDER_OPTIONS[activeProvider];
+      if (!provider) {
+        return "";
+      }
+
+      return t("yu_health.connect.unsupported", { provider: provider.label, capabilities: unsupportedCopy });
+    }
+
+    return t("yu_health.connect.body");
+  }, [activeProvider, unsupportedCapabilities]);
 
   const onChangeProvider = useCallback(() => {
     Navigation.push(componentId, {
@@ -40,42 +80,46 @@ const YuHealthConnectContainer = ({ componentId, navigateToNext }: IYuHealthConn
         id: ROUTES.yuHealthConnectSelect,
         name: ROUTES.yuHealthConnectSelect,
         passProps: {
-          initialProvider: activeProvider,
+          initialProvider: selectedProvider,
+          availableProviders,
           onChangeProvider: (provider: HealthProvider) => {
-            setActiveProvider(provider);
+            setSelectedProvider(provider);
           },
         },
       },
     });
-  }, [activeProvider, componentId]);
+  }, [selectedProvider, availableProviders, componentId]);
 
-  const onFinish = useCallback(() => {
-    if (navigateToNext) {
-      navigateToNext();
-      return;
-    }
+  const onFinish = useCallback(
+    (didSwitch?: boolean) => {
+      if (navigateToNext) {
+        navigateToNext(!!didSwitch);
+        return;
+      }
 
-    Navigation.pop(componentId);
-  }, [componentId, navigateToNext]);
+      Navigation.pop(componentId);
+    },
+    [componentId, navigateToNext]
+  );
 
   useBackHandler(() => {
-    onFinish();
+    onFinish(false);
     return false;
   });
 
   const onConnect = useCallback(async () => {
-    dispatch(setActiveYuHealthProvider(activeProvider));
+    dispatch(setActiveYuHealthProvider(selectedProvider));
 
     const providerCapabilities = await getCapabilities();
-    const supportedCapabilities = providerCapabilities[activeProvider];
+    const supportedCapabilities = providerCapabilities[selectedProvider];
     const capabilities = YU_HEALTH_DEFAULT_CAPABILITIES.filter((capability) =>
       supportedCapabilities.includes(capability)
     );
 
     await verifyAndAuthorizeCapability(capabilities, { skipPreliminaryModal: true });
 
-    onFinish();
-  }, [activeProvider, dispatch, onFinish, verifyAndAuthorizeCapability]);
+    onFinish(true);
+  }, [selectedProvider, dispatch, onFinish, verifyAndAuthorizeCapability]);
 
   const onOpenExplanation = useCallback(() => {
     const modal = (
@@ -94,8 +138,9 @@ const YuHealthConnectContainer = ({ componentId, navigateToNext }: IYuHealthConn
       onConnect={onConnect}
       onChangeProvider={onChangeProvider}
       onOpenExplanation={onOpenExplanation}
-      activeProvider={activeProvider}
+      activeProvider={selectedProvider}
       onCancel={onFinish}
+      body={bodyCopy}
     />
   );
 };

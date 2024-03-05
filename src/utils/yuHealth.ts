@@ -10,6 +10,7 @@ import {
 } from "@yu-life/react-native-yu-health";
 import { Alert, Linking } from "react-native";
 import { isAndroid } from "./device";
+import { t } from "@locale";
 
 // The capabilities to request when connected
 export const YU_HEALTH_DEFAULT_CAPABILITIES = [
@@ -44,7 +45,11 @@ export const openSettingsAlert = () => async () => {
   ]);
 };
 
-const RECOMMENDED_ORDER = [HealthProvider.googleFit, HealthProvider.healthKit, HealthProvider.samsungHealth];
+export const PROVIDER_RECOMMENDED_ORDER = [
+  HealthProvider.googleFit,
+  HealthProvider.healthKit,
+  HealthProvider.samsungHealth,
+];
 
 export const getRecommendedProvider = ({
   providerAvailabilities,
@@ -55,13 +60,33 @@ export const getRecommendedProvider = ({
     return null;
   }
 
-  for (const recommended of RECOMMENDED_ORDER) {
+  for (const recommended of PROVIDER_RECOMMENDED_ORDER) {
     if (providerAvailabilities[recommended] === HealthProviderAvailability.available) {
       return recommended;
     }
   }
 
   return isAndroid() ? HealthProvider.googleFit : HealthProvider.healthKit;
+};
+
+const CAPABILITY_TRANSLATIONS: Record<HealthProviderCapability, string> = {
+  [HealthProviderCapability.STEP_COUNT]: "yu_health.capabilitiesRequest.capabilities.steps",
+  [HealthProviderCapability.MINDFUL_MINUTES]: "yu_health.capabilitiesRequest.capabilities.meditation",
+  [HealthProviderCapability.CYCLING_DISTANCE]: "yu_health.capabilitiesRequest.capabilities.cycling",
+  [HealthProviderCapability.HEART_RATE]: "yu_health.capabilitiesRequest.capabilities.heartRate",
+  [HealthProviderCapability.WORKOUT_MINUTES]: "yu_health.capabilitiesRequest.capabilities.workouts",
+  [HealthProviderCapability.ACTIVITIES]: "yu_health.capabilitiesRequest.capabilities.workouts",
+  [HealthProviderCapability.CALORIES]: "yu_health.capabilitiesRequest.capabilities.calories",
+};
+
+export const joinCapabilities = (capabilities: HealthProviderCapability[]) => {
+  return capabilities
+    .map((capability) => t(CAPABILITY_TRANSLATIONS[capability]))
+    .filter(Boolean)
+    .reduce(
+      (acc, curr, index, array) =>
+        acc + (index < array.length - 1 ? ", " : ` ${t("yu_health.capabilitiesRequest.join")} `) + curr
+    );
 };
 
 /**

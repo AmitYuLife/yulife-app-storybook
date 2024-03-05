@@ -10,10 +10,11 @@ import { useSelector } from "react-redux";
 import { Button } from "@components/molecules";
 import { useDispatch } from "react-redux";
 import { refreshCapabilityPermissions } from "@redux/yu-health/yu-health.actions";
+import { ROUTES } from "@navigation/constants";
 
 const YuHealthChallenges = () => {
   const dispatch = useDispatch();
-  const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability();
+  const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId: ROUTES.yuHealthDebug });
   const capabilityStatuses = useSelector(getCapabilityStatuses);
 
   const getCapabilityColor = (capability: HealthProviderCapability) => {

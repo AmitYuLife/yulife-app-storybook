@@ -1,12 +1,14 @@
 import HealthPermissionModal from "@components/modals/health-permission/health-permission.modal";
-import { MODALS } from "@navigation/constants";
+import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
-import { showYuModal } from "@navigation/root";
-import { setActiveYuHealthProvider, yuHealthPermissionsRequested } from "@redux/yu-health/yu-health.actions";
+import { yuHealthPermissionsRequested } from "@redux/yu-health/yu-health.actions";
+import { getProviderAvailabilities } from "@redux/yu-health/yu-health.selectors";
+import Logger from "@services/logging/logger";
 import { openSettingsAlert, shouldContinueWithPermissionStatus, shouldRequestHealthPermission } from "@utils";
 import {
   HealthPermissionStatus,
   HealthProvider,
+  HealthProviderAvailability,
   HealthProviderCapability,
   getCapabilities,
   hasPermission,
@@ -15,14 +17,15 @@ import {
 } from "@yu-life/react-native-yu-health";
 import { first, isEmpty } from "lodash";
 import { useCallback, useMemo } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 interface IVerifyAndAuthorizeCapabilityProps {
-  componentId?: string;
+  componentId: string;
 }
 
-export const useVerifyAndAuthorizeCapability = (_props: IVerifyAndAuthorizeCapabilityProps = {}) => {
+export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAuthorizeCapabilityProps) => {
   const dispatch = useDispatch();
+  const providerAvailabilities = useSelector(getProviderAvailabilities);
 
   /**
    * Handle unsupported capability
@@ -30,39 +33,45 @@ export const useVerifyAndAuthorizeCapability = (_props: IVerifyAndAuthorizeCapab
    */
   const handleUnsupportedCapability = useCallback(
     async (capability: HealthProviderCapability): Promise<boolean> => {
-      const googleFitSupportedCapabilities = await getCapabilities();
+      const providerStatuses = await getCapabilities();
+      const availableProviders = Object.entries(providerStatuses)
+        .filter(([provider]) => {
+          return providerAvailabilities[provider as HealthProvider] === HealthProviderAvailability.available;
+        })
+        .filter(([_, capabilities]) => {
+          return capabilities.includes(capability);
+        })
+        .map(([provider]) => provider as HealthProvider);
 
-      // TODO: This check is only needed because we don't have a generic switch modal yet
-      // Will be added before release of YuHealth
-      if (!googleFitSupportedCapabilities?.[HealthProvider.googleFit]?.includes(capability)) {
-        // Google Fit does not support this capability (never the case right now)
-        throw new Error(`Current provider does not support ${capability}, but neither does Google Fit`);
+      if (isEmpty(availableProviders)) {
+        Logger.error(new Error(`No available providers for this capability: ${capability}`), {
+          file: "useVerifyAndAuthorizeCapability",
+          capability,
+          providerStatuses: JSON.stringify(providerStatuses),
+          providerAvailabilities: JSON.stringify(providerAvailabilities),
+        });
+
+        return false;
       }
 
-      // TODO: This will open our generic switch modal in the future
-      const hasSwitched = await new Promise<boolean>((res) => {
-        showYuModal({
+      return new Promise((res) => {
+        Navigation.push(componentId, {
           component: {
-            id: MODALS.switchToGoogleFit,
-            name: MODALS.switchToGoogleFit,
+            id: ROUTES.yuHealthConnect,
+            name: ROUTES.yuHealthConnect,
             passProps: {
-              onClose: () => {
-                res(false);
-              },
-              onConnect: () => {
-                dispatch(setActiveYuHealthProvider(HealthProvider.googleFit));
-                res(true);
+              availableProviders: availableProviders,
+              unsupportedCapabilities: [capability],
+              navigateToNext: (didSwitch: boolean) => {
+                Navigation.pop(ROUTES.yuHealthConnect);
+                return res(didSwitch);
               },
             },
           },
         });
       });
-
-      // If the user has switched provider, we should retry authorising the capability
-      // If they haven't we should just exit
-      return hasSwitched;
     },
-    [dispatch]
+    [componentId, providerAvailabilities]
   );
 
   /** Gets an array of capabilities and returns ones which need to requested */

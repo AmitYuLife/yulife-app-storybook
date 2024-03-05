@@ -8,22 +8,28 @@ import { useSelector } from "react-redux";
 interface IYuHealthConnectContainerProps {
   componentId: string;
   initialProvider?: HealthProvider;
+  availableProviders?: HealthProvider[];
   onChangeProvider: (provider: HealthProvider) => void;
 }
 
 const YuHealthConnectContainer = ({
   componentId,
-  onChangeProvider,
   initialProvider,
+  onChangeProvider,
+  availableProviders,
 }: IYuHealthConnectContainerProps) => {
   const [activeProvider, setActiveProvider] = useState<HealthProvider>(initialProvider);
   const providerAvailabilities = useSelector(getProviderAvailabilities);
 
   const providers = useMemo(() => {
+    if (availableProviders) {
+      return availableProviders;
+    }
+
     return Object.values(HealthProvider).filter(
       (provider) => providerAvailabilities[provider] === HealthProviderAvailability.available
     );
-  }, [providerAvailabilities]);
+  }, [availableProviders, providerAvailabilities]);
 
   const onConfirm = useCallback(() => {
     onChangeProvider?.(activeProvider);
