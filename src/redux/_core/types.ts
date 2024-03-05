@@ -124,3 +124,8 @@ export interface Image {
   id: string;
   uri: string | null;
 }
+
+export interface UserFeatures {
+  name: string | null;
+  value: boolean | null;
+}

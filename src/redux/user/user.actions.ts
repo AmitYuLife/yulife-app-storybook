@@ -1,5 +1,4 @@
 import {
-  GetCurrentUser,
   LoginUser,
   GetUserFeatures_getUserFeatures,
   GetUserConnections_getUserConnections,
@@ -14,6 +13,7 @@ import { IUserStore } from "./user.reducer";
 import { Connection } from "./user.selectors";
 import { GetUserSurgeQuery, AvatarRemoteFiles, JoinGoalMutation, MobileConsentInput } from "@graphql/__generated";
 import { createAction } from "@reduxjs/toolkit";
+import { IGetUserSuccessPayload } from "./user.types";
 
 export interface ISetIsUpdatingLeaderboardPayload {
   isLoading: boolean;
@@ -139,7 +139,7 @@ export const yuScreenSynchronised = () => ({
   type: YUSCREEN_SYNCHRONISED,
 });
 
-export const getUserSuccess = (payload: GetCurrentUser) => ({
+export const getUserSuccess = (payload: IGetUserSuccessPayload) => ({
   payload,
   type: GET_USER_SUCCESS as typeof GET_USER_SUCCESS,
 });

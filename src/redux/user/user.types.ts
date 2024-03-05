@@ -1,5 +1,12 @@
-import { SduiActionType } from "@redux/_core/types";
+import { SduiActionType, UserFeatures } from "@redux/_core/types";
 import { features } from "./features.data";
+import { IDailyStepsGetUserSuccessPayload } from "@redux/daily-steps/daily-steps.types";
+import { IDailyMeditationGetCurrentUserPayload } from "@redux/daily-meditation/daily-meditation.types";
+import { ICoinsTodayEarned } from "@redux/coins/coins.types";
+import { ILevelGetUserSuccessDataPayload } from "@redux/levels/levels.types";
+import { IOnboardingGetUserSuccessPayload } from "@redux/onboarding/onboarding.types";
+import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
+import { IUserStore } from "./user.reducer";
 
 export type UserConnection = Connections & { isLoading?: boolean };
 
@@ -94,3 +101,17 @@ export interface EventsMilestones {
   rewardClaimed: boolean;
   isClaimable: boolean;
 }
+
+export type IUserGetUserSuccessPayload = {
+  user: Pick<IUserStore, "id" | "firstName" | "lastName" | "fullName" | "dateOfBirth" | "connections"> & {
+    userFeatures: UserFeatures[];
+  };
+};
+
+export type IGetUserSuccessPayload = IUserGetUserSuccessPayload &
+  IDailyStepsGetUserSuccessPayload &
+  IDailyMeditationGetCurrentUserPayload &
+  ICoinsTodayEarned &
+  ILevelGetUserSuccessDataPayload &
+  IOnboardingGetUserSuccessPayload &
+  IStreaksGetUserSuccessPayload;

@@ -7,6 +7,8 @@ import { Unpacked } from "@utils";
 import { getUserSuccess, setUserNoAccessAction } from "../user.actions";
 import setLoggerIdentity from "./setLoggerIdentity.helper";
 import { updateDailyPensionSuccess } from "@redux/daily-pension/daily-pension.actions";
+import { IGetUserSuccessPayload } from "../user.types";
+import { GetCurrentUser } from "@graphql/_core/schema";
 
 // TODO: Purge when getAllUserData is live
 export default function* getUserDataSaga() {
@@ -27,7 +29,7 @@ export default function* getUserDataSaga() {
       if (isArchived) {
         yield put(setUserNoAccessAction());
       } else {
-        yield put(getUserSuccess(data));
+        yield put(getUserSuccess(toGetUserSuccessPayload(data)));
 
         if (data?.getDailyPensionContribution) {
           yield put(updateDailyPensionSuccess(data.getDailyPensionContribution));
@@ -38,3 +40,41 @@ export default function* getUserDataSaga() {
     Logger.error(e, { event: "getUserData" });
   }
 }
+
+const toGetUserSuccessPayload = (data: GetCurrentUser): IGetUserSuccessPayload => ({
+  todayActivity: data?.getCurrentUser?.todayActivity,
+  onboarding: { redeemedOnboarding: data?.getCurrentUser?.redeemedOnboarding },
+  activeStreak: data?.getCurrentUser?.activeStreak,
+  passiveSteps: {
+    exchangeRate: data?.getCurrentUser?.passiveSteps?.exchange,
+  },
+  passiveMeditation: {
+    exchangeRate: data?.getCurrentUser?.passiveMeditation?.exchange,
+  },
+  user: {
+    id: data?.getCurrentUser?.id,
+    firstName: data?.getCurrentUser?.firstName,
+    lastName: data?.getCurrentUser?.lastName,
+    fullName: data?.getCurrentUser?.fullName,
+    dateOfBirth: data?.getCurrentUser?.dateOfBirth,
+    connections: data?.getCurrentUser?.connections,
+    userFeatures: data?.getCurrentUser?.userFeatures,
+  },
+  levels: {
+    activeChallenge: {
+      shouldEndOnLastGoalAchieved: data?.getCurrentUser?.activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved,
+      fitKitTypes: data?.getCurrentUser?.activeChallenge?.levelSlot?.fitKitTypes,
+      endDateTime: data?.getCurrentUser?.activeChallenge?.challenge?.endDateTime,
+      levelSlotId: data?.getCurrentUser?.activeChallenge?.challenge?.levelSlotId,
+      milestones: data?.getCurrentUser?.activeChallenge?.levelSlot?.milestones,
+      rating: data?.getCurrentUser?.activeChallenge?.challenge?.rating,
+      startDateTime: data?.getCurrentUser?.activeChallenge?.challenge?.startDateTime,
+      subtype: data?.getCurrentUser?.activeChallenge?.levelSlot?.subtype,
+      unit: data?.getCurrentUser?.activeChallenge?.levelSlot?.unit,
+      challengeIsActive: !!data?.getCurrentUser?.activeChallenge?.challenge?.id,
+      yuHealth: data.getCurrentUser?.activeChallenge?.levelSlot?.yuHealth,
+    },
+    challengesDoneToday: data?.getCurrentUser?.challengesDoneToday,
+    dailyChallengeAmountAvailable: data?.getCurrentUser?.dailyChallengeAmountAvailable,
+  },
+});

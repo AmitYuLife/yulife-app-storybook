@@ -1,5 +1,5 @@
 import { REHYDRATE } from "redux-persist";
-import { GetCurrentUser, LoginUser } from "@graphql/_core/schema";
+import { LoginUser } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import {
@@ -9,6 +9,7 @@ import {
   SET_DAILY_SCREEN_INFORMATION_ICON,
 } from "./onboarding.actions";
 import { AUTHENTICATED } from "@redux/app/app.actions";
+import { IOnboardingGetUserSuccessPayload } from "./onboarding.types";
 
 export interface IOnboardingStore {
   redeemedOnboarding: boolean;
@@ -121,12 +122,9 @@ const setRedeemedOnboarding = (state: IOnboardingStore, reward: number) => ({
   reward,
 });
 
-const getUserSuccess = (
-  state: IOnboardingStore,
-  { getCurrentUser: { redeemedOnboarding } }: GetCurrentUser
-): IOnboardingStore => ({
+const getUserSuccess = (state: IOnboardingStore, res: IOnboardingGetUserSuccessPayload): IOnboardingStore => ({
   ...state,
-  redeemedOnboarding,
+  redeemedOnboarding: res.onboarding.redeemedOnboarding,
 });
 
 const loginUserSuccess = (

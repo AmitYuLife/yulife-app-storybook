@@ -2,7 +2,6 @@ import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import moment from "moment";
 import { addSecondsToChallengeEndDateTime, getCurrentPlanetByLevel, Planets } from "@utils";
 import {
-  GetCurrentUser,
   LoginUser,
   GetUserCoinLedger_coinLedger,
   GetUserActiveChallenge_getUserActiveChallenge,
@@ -42,6 +41,7 @@ import {
   ChallengeEndSuccessPayload,
   UpdateChallengeAppButtonPayload,
   ChallengeStartPayload,
+  ILevelGetUserSuccessDataPayload,
 } from "./levels.types";
 
 export interface ILevelsStore {
@@ -164,32 +164,33 @@ const levelsReducer = (state: ILevelsStore = getInitialState(), action: SyncActi
 
 export default levelsReducer;
 
-const getUserSuccess = (state: ILevelsStore, data: GetCurrentUser): ILevelsStore => ({
+const getUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPayload): ILevelsStore => ({
   ...state,
   active: {
     ...state.active,
     isLoading: false,
-    shouldEndOnLastGoalAchieved: data?.getCurrentUser?.activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved,
-    fitKitTypes: data?.getCurrentUser?.activeChallenge?.levelSlot?.fitKitTypes || [],
-    endDateTime: data?.getCurrentUser?.activeChallenge?.challenge?.endDateTime || "",
-    levelSlotId: data?.getCurrentUser?.activeChallenge?.challenge?.levelSlotId || "",
-    milestones: data?.getCurrentUser?.activeChallenge?.levelSlot?.milestones || [],
-    rating: data?.getCurrentUser?.activeChallenge?.challenge?.rating || state.active.rating || 0,
-    startDateTime: data?.getCurrentUser?.activeChallenge?.challenge?.startDateTime || "",
-    subtype: data?.getCurrentUser?.activeChallenge?.levelSlot?.subtype || "",
-    unit: data?.getCurrentUser?.activeChallenge?.levelSlot?.unit || state.active.unit || "",
-    challengeIsActive: !!data?.getCurrentUser?.activeChallenge?.challenge?.id,
-    yuHealth: data.getCurrentUser?.activeChallenge?.levelSlot?.yuHealth,
+    shouldEndOnLastGoalAchieved: data?.levels?.activeChallenge?.shouldEndOnLastGoalAchieved || false,
+    fitKitTypes: data?.levels?.activeChallenge?.fitKitTypes || [],
+    endDateTime: data?.levels?.activeChallenge?.endDateTime || "",
+    levelSlotId: data?.levels?.activeChallenge?.levelSlotId || "",
+    milestones: data?.levels?.activeChallenge?.milestones || [],
+    rating: data?.levels?.activeChallenge?.rating || state.active.rating || 0,
+    startDateTime: data?.levels?.activeChallenge?.startDateTime || "",
+    subtype: data?.levels?.activeChallenge?.subtype || "",
+    unit: data?.levels?.activeChallenge?.unit || state.active.unit || "",
+    challengeIsActive: data?.levels?.activeChallenge?.challengeIsActive,
+    yuHealth: data?.levels?.activeChallenge?.yuHealth,
   },
-  challengesDoneToday: data?.getCurrentUser?.challengesDoneToday || 0,
-  dailyChallengeAmountAvailable: data?.getCurrentUser?.dailyChallengeAmountAvailable,
+  challengesDoneToday: data?.levels?.challengesDoneToday || 0,
+  dailyChallengeAmountAvailable: data?.levels?.dailyChallengeAmountAvailable,
 });
 
 const loginUserSuccess = (state: ILevelsStore, data: LoginUser): ILevelsStore => ({
   ...state,
   active: {
     ...state.active,
-    shouldEndOnLastGoalAchieved: data?.loginUser?.user?.activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved,
+    shouldEndOnLastGoalAchieved:
+      data?.loginUser?.user?.activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved || false,
     fitKitTypes: data?.loginUser?.user?.activeChallenge?.levelSlot?.fitKitTypes || [],
     yuHealth: data?.loginUser?.user?.activeChallenge?.levelSlot?.yuHealth,
     endDateTime: data?.loginUser?.user?.activeChallenge?.challenge?.endDateTime || "",
@@ -222,7 +223,7 @@ const getActiveChallengeSuccess = (
   active: {
     ...state.active,
     isLoading: false,
-    shouldEndOnLastGoalAchieved: data?.levelSlot?.shouldEndOnLastGoalAchieved,
+    shouldEndOnLastGoalAchieved: data?.levelSlot?.shouldEndOnLastGoalAchieved || false,
     fitKitTypes: data?.levelSlot?.fitKitTypes || [],
     yuHealth: data?.levelSlot?.yuHealth,
     endDateTime: data?.challenge?.endDateTime || "",
@@ -269,7 +270,7 @@ const challengeStartSuccess = (
       value: chest?.value || null,
     },
     yuniversalChest,
-    shouldEndOnLastGoalAchieved: levelSlot.shouldEndOnLastGoalAchieved,
+    shouldEndOnLastGoalAchieved: levelSlot.shouldEndOnLastGoalAchieved || false,
     fitKitTypes: levelSlot.fitKitTypes,
     endDateTime: addSecondsToChallengeEndDateTime(challenge.endDateTime),
     level: challenge.level,

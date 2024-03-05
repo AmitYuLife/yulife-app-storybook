@@ -2,7 +2,6 @@ import moment from "moment";
 import { REHYDRATE } from "redux-persist";
 import {
   LoginUser,
-  GetCurrentUser,
   GetUserProfile_getUserProfile_gameSettings as GameSettings,
   GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate,
 } from "@graphql/_core/schema";
@@ -28,6 +27,7 @@ import {
 } from "./daily-steps.actions";
 import { SyncAction, Challenge, PassiveExchangeRate } from "@redux/_core/types";
 import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
+import { IDailyStepsGetUserSuccessPayload } from "./daily-steps.types";
 
 const MAX_ANOMALY_DETECTION_WINDOW_MS = 10000; // in ms
 
@@ -203,10 +203,9 @@ const updateDailyStepsLocal = (state: IDailyStepsStore, dailySteps: number) => (
   dailySteps: Math.max(state.dailySteps, dailySteps),
 });
 
-const getUserSuccess = (state: IDailyStepsStore, res: GetCurrentUser) => ({
+const getUserSuccess = (state: IDailyStepsStore, res: IDailyStepsGetUserSuccessPayload) => ({
   ...state,
-  exchangeRate: res?.getCurrentUser?.passiveSteps?.exchange || getInitialState().exchangeRate,
-  stepsPassiveMilestones: res?.getCurrentUser?.passiveSteps?.levelSlot?.milestones || [],
+  exchangeRate: res?.passiveSteps?.exchangeRate || getInitialState().exchangeRate,
 });
 
 const getPassiveChallengesEarnRateSuccess = (
@@ -215,13 +214,11 @@ const getPassiveChallengesEarnRateSuccess = (
 ) => ({
   ...state,
   exchangeRate: res?.STEPS?.exchange || getInitialState().exchangeRate,
-  stepsPassiveMilestones: res?.STEPS?.levelSlot?.milestones || [],
 });
 
 const loginUserSuccess = (state: IDailyStepsStore, res: LoginUser) => ({
   ...state,
   exchangeRate: res?.loginUser?.user?.passiveSteps?.exchange || getInitialState().exchangeRate,
-  stepsPassiveMilestones: res?.loginUser?.user?.passiveSteps?.levelSlot?.milestones || [],
 });
 
 const changePanelVisibility = (state: IDailyStepsStore, payload: boolean): IDailyStepsStore => ({

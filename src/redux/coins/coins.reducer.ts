@@ -14,11 +14,9 @@ import { UPDATE_DAILY_CYCLING_SUCCESS } from "@redux/daily-cycling/daily-cycling
 import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
 import { UPDATE_DAILY_PENSION_SUCCESS } from "@redux/daily-pension/daily-pension.actions";
 import {
-  GetCurrentUser_getCurrentUser_todayActivity,
   Challenge,
   GetCurrentUser_getDailyPensionContribution as DailyPension,
   LoginUser,
-  GetCurrentUser,
   GetUserCoinLedger_coinLedger,
   GetUserTodayActivity_todayActivity,
 } from "@graphql/_core/schema";
@@ -30,6 +28,7 @@ import {
   GET_USER_TODAY_ACTIVITY_SUCCESS,
 } from "@redux/user/user.actions";
 import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
+import { ChallengeCoinsEarned, ICoinsTodayEarned } from "./coins.types";
 
 export interface ICoinsStore {
   dailyChallengeEarned: number; // number of coins earned in the current day through challenges
@@ -146,7 +145,7 @@ const updatePersistedState = (persistedState: ICoinsStore) => {
   return { ...persistedState };
 };
 
-const sumCompletedChallenges = (challenges: GetCurrentUser_getCurrentUser_todayActivity[] = []): number =>
+const sumCompletedChallenges = (challenges: ChallengeCoinsEarned[] = []): number =>
   challenges.reduce((prev, challenge) => prev + challenge.earned, 0);
 
 const updateDailyStepsSuccess = (
@@ -198,9 +197,9 @@ const todayActivitySuccess = (
   lastUpdated: moment().format(DATE_FORMAT),
 });
 
-const getUserSuccess = (state: ICoinsStore, { getCurrentUser }: GetCurrentUser): ICoinsStore => ({
+const getUserSuccess = (state: ICoinsStore, res: ICoinsTodayEarned): ICoinsStore => ({
   ...state,
-  dailyChallengeEarned: sumCompletedChallenges(getCurrentUser?.todayActivity),
+  dailyChallengeEarned: sumCompletedChallenges(res?.todayActivity),
   lastUpdated: moment().format(DATE_FORMAT),
 });
 
