@@ -7,7 +7,6 @@ import Logger from "@services/logging/logger";
 import { openSettingsAlert, shouldContinueWithPermissionStatus, shouldRequestHealthPermission } from "@utils";
 import {
   HealthPermissionStatus,
-  HealthProvider,
   HealthProviderAvailability,
   HealthProviderCapability,
   getCapabilities,
@@ -15,7 +14,7 @@ import {
   hasPermissions,
   requestPermissions,
 } from "@yu-life/react-native-yu-health";
-import { first, isEmpty } from "lodash";
+import { isEmpty } from "lodash";
 import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -36,12 +35,12 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
       const providerStatuses = await getCapabilities();
       const availableProviders = Object.entries(providerStatuses)
         .filter(([provider]) => {
-          return providerAvailabilities[provider as HealthProvider] === HealthProviderAvailability.available;
+          return providerAvailabilities[provider] === HealthProviderAvailability.available;
         })
         .filter(([_, capabilities]) => {
           return capabilities.includes(capability);
         })
-        .map(([provider]) => provider as HealthProvider);
+        .map(([provider]) => provider);
 
       if (isEmpty(availableProviders)) {
         Logger.error(new Error(`No available providers for this capability: ${capability}`), {
@@ -150,11 +149,10 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
       const capabilities = Array.isArray(capability) ? capability : [capability];
       const status = await hasPermissions(capabilities);
 
-      const unsupportedCapability = first(
+      const [unsupportedCapability] =
         Object.entries(status).find(([_capability, permissionStatus]) => {
           return permissionStatus === HealthPermissionStatus.unsupported;
-        })
-      ) as HealthProviderCapability;
+        }) || [];
 
       if (unsupportedCapability) {
         const shouldRetry = await handleUnsupportedCapability(unsupportedCapability);
