@@ -245,7 +245,9 @@ const LoginContainer: React.FC<Props> = ({
             onSelect: (r: REGION) => loginForRegion(r),
           }
         : undefined,
-    [logins, loginForRegion]
+    // Logins is mutated (it's a ref)! Don't change the dependency array
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [logins.length, loginForRegion]
   );
 
   return (
