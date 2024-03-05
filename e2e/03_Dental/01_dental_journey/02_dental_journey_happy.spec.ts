@@ -22,49 +22,6 @@ import { ordoAvailableImage, ordoNotAvailableImage } from "./_resources/constant
 import moment from "moment";
 
 Feature("DENTAL HAPPY", async () => {
-  // @update [Dental has been removed]
-  ScenarioSkip("I can buy Dental and PLI ,only allow previously used card for purchase of new product", scenario.start, async () => {
-      Given("I login as a user with Bupa Dental enabled", given.loginToYuScreen(false, CUSTOMER_37, AUTH_37), async () => {
-          helper_V4.ONBOARDING_YUSCREEN("dentalAndPli", "10");
-          helper_V4.YUSCREEN_V4(CUSTOMER_37, "dentalAndPli", "10");
-          helper_pli.GET_PRODUCT("Dental", "Dental Insurance");
-          helper.ONBOARDING();
-          helper.INFORMATION();
-          helper.PLANS();
-          helper.PACKAGE_DETAILS("Epic");
-          helper.ADD_EDIT_PAYMENT_DETAILS();
-          helper.CHECKOUT();
-          helper_pli.GET_PRODUCT("Life Insurance", "Personal Life Insurance");
-          helper_pli.ONBOARDING();
-          helper_pli.FAST_INTRO_START();
-          helper_pli.UNDERWRITING_NAME();
-          helper_pli.UNDERWRITING_DOB(30);
-          helper_pli.UNDERWRITING_SALARY("25000");
-          helper_pli.UNDERWRITING_CITIZEN("Yes");
-          helper_pli.UNDERWRITING_EMPLOYMENT("No");
-          helper_pli.UNDERWRITING_HEIGHT("160 cm");
-          helper_pli.UNDERWRITING_WEIGHT("60 kg");
-          helper_pli.UNDERWRITING_CIGARETTES("Never");
-          helper_pli.UNDERWRITING_CIGARS("Never");
-          helper_pli.UNDERWRITING_SMOKING_ALTERNATIVES("Never");
-          helper_pli.UNDERWRITING_ALCOHOL("2 drinks");
-          helper_pli.UNDERWRITING_CANNABIS("Never");
-          helper_pli.UNDERWRITING_RECREATIONAL_DRUGS("Never");
-          helper_pli.UNDERWRITING_COUNSELLING("No");
-          helper_pli.UNDERWRITING_SEX("Male");
-          helper_pli.UNDERWRITING_DIAGNOSED_WITH("No");
-          helper_pli.UNDERWRITING_MANY_CONSULTATIONS("No");
-          helper_pli.UNDERWRITING_AWAITING_TESTS("No");
-          helper_pli.UNDERWRITING_SYMPTOMS("No");
-          helper_pli.UNDERWRITING_COVID_HOSPITAL("No");
-          helper_pli.UNDERWRITING_COVID_EXPOSURE("No");
-          helper_pli.UNDERWRITING_OTHER_POLICIES("No");
-          helper_pli.FAST_REVIEW_SCREEN();
-          helper_pli.FAST_CHECKOUT(true, "Common");
-        }
-      );
-    }
-  );
 
   // @update [Dental has been removed]
   ScenarioSkip("Dental product view", scenario.start, async () => {

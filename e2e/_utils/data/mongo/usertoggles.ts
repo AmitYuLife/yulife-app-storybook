@@ -996,16 +996,6 @@ export const CUSTOMER_PLI_3_TOGGLES = {
   },
 } as IDatabaseItem;
 
-export const CUSTOMER_PLI_4_TOGGLES = {
-  type: "mongo",
-  modelName: "usertoggles",
-  data: {
-    _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_PLI_4.data.customerId,
-    features: allTogglesTrueFor_PLI.data.features
-  },
-} as IDatabaseItem;
-
 export const CUSTOMER_PLI_5_TOGGLES = {
   type: "mongo",
   modelName: "usertoggles",

@@ -1679,25 +1679,6 @@ export const USER_PLI_3 = {
   },
 } as IDatabaseItem;
 
-export const USER_PLI_4 = {
-  type: "mongo",
-  modelName: "users",
-  data: {
-    _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_PLI_4.data.customerId,
-    products: [
-      {
-        productId: generateRandomMongoId(),
-        productType: "Yulife",
-        option: "epic",
-        type: "employer",
-        earnRate: 1,
-      },
-    ],
-    earnRate: 1,
-  },
-} as IDatabaseItem;
-
 export const USER_PLI_5 = {
   type: "mongo",
   modelName: "users",

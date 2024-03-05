@@ -1514,22 +1514,6 @@ export const USER_ONBOARDING_PLI_3 = {
   },
 } as IDatabaseItem;
 
-export const USER_ONBOARDING_PLI_4 = {
-  type,
-  modelName,
-  data: {
-    _id: generateRandomMongoId(),
-    userId: user.USER_PLI_4.data.userId,
-    businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
-    businessName: "Bonus Onboarding Ltd.",
-    performedSteps: {
-      personalLifeIntro: true,
-      newYumojiBuilder: true,
-      firstAppOpen: true,
-    },
-  },
-} as IDatabaseItem;
-
 export const USER_ONBOARDING_PLI_5 = {
   type,
   modelName,
