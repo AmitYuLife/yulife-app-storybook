@@ -47,8 +47,11 @@ export const canSeeStartPrompt = async () => {
   await textVisible("Complete a Yudoku and be the first on the leaderboard today!", 2000)()
 }
 
-export const canSeeEmptyLeaderboard = async () => {
-  await textVisible("Complete a Yudoku and be the first on the leaderboard today!", 2000)()
+export const canSeeEmptyLeaderboard = async (): Promise<void> => {
+  const emptyStateText = element(by.text("Complete a Yudoku and be the first on the leaderboard today!"));
+
+  await waitFor(emptyStateText).toExist().withTimeout(3000);
+  await expect(emptyStateText).toBeVisible(50);
 }
 
 export const amOnSudokuChallenge = async () => {

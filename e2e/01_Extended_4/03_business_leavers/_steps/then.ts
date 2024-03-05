@@ -1,4 +1,4 @@
-import { idVisibleAtIndex, navigation } from "@navigation";
+import { idNotVisible, idVisibleAtIndex, navigation, tapIDNotBeingVisible, textNotVisible } from "@navigation";
 import { leaverProductSlot } from "../_resources/types";
 import * as ids from "@ids"
 import { availableAnytime, leaversProductBackgroundImg } from "../_resources/constants";
@@ -12,10 +12,10 @@ export const {
   wait,
 } = navigation.common;
 
-export const leaverProductSlotVisible = (product: leaverProductSlot, index: number) => async () => {
-  await idVisible(ids.SLOT_TITLE(product.name))()
-  await textVisibleAtIndex(availableAnytime, index)()
-  await textVisible(`+${product.yucoin.toString()}`)()
-  await idVisible(ids.RIGHT_SIDE_IMAGE_SLOT(product.img))()
-  await idVisibleAtIndex(ids.LEFT_SIDE_BACKGROUD_IMAGE_SLOT(leaversProductBackgroundImg), index)()
+export const leaverProductSlotNotVisible = (product: leaverProductSlot, waitTime: number) => async () => {
+  await idNotVisible(ids.SLOT_TITLE(product.name))()
+  await textNotVisible(availableAnytime)()
+  await textNotVisible(`+${product.yucoin.toString()}`)()
+  await idNotVisible(ids.RIGHT_SIDE_IMAGE_SLOT(product.img))()
+  await idNotVisible(ids.LEFT_SIDE_BACKGROUD_IMAGE_SLOT(leaversProductBackgroundImg), waitTime)()
 }
