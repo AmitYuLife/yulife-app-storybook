@@ -20,8 +20,8 @@ export default function* showSurgeIntroSaga() {
 
     const hasShowSurgeFeature = !!(features && features.showSurge);
 
-    const stepsSurgeMultiplier = payload?.getCurrentUser?.passiveSteps?.exchange?.surge || 1;
-    const meditationSurgeMultiplier = payload?.getCurrentUser?.passiveMeditation?.exchange?.surge || 1;
+    const stepsSurgeMultiplier = payload?.passiveSteps?.exchangeRate?.surge || 1;
+    const meditationSurgeMultiplier = payload?.passiveMeditation?.exchangeRate?.surge || 1;
 
     if (hasShowSurgeFeature) {
       if (meditationSurgeMultiplier !== cachedMeditationSurgeMultiplier && meditationSurgeMultiplier > 1) {

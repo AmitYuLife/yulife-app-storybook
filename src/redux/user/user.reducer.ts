@@ -1,6 +1,5 @@
 import { REHYDRATE } from "redux-persist";
 import {
-  GetCurrentUser,
   LoginUser,
   GetUserProfile_getUserProfile,
   GetUserSurge_getUserSurge as IUserSurge,
@@ -27,7 +26,7 @@ import {
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
 import moment from "moment";
-import { Events, IFeature, SurgeActivity, SurgeLottie, UserConnection } from "./user.types";
+import { Events, IFeature, IUserGetUserSuccessPayload, SurgeActivity, SurgeLottie, UserConnection } from "./user.types";
 
 export interface IUserStore {
   sessionCount: number;
@@ -283,22 +282,17 @@ const updatePersistedState = (persistedState: IUserStore) => {
   return newState;
 };
 
-const getUserSuccess = (
-  state: IUserStore,
-  {
-    getCurrentUser: { id, firstName, lastName, fullName, dateOfBirth, userFeatures = [], connections = [] },
-  }: GetCurrentUser
-): IUserStore => {
+const getUserSuccess = (state: IUserStore, res: IUserGetUserSuccessPayload): IUserStore => {
   return {
     ...state,
-    id,
+    id: res?.user?.id,
     archived: false,
-    firstName,
-    lastName,
-    fullName,
-    dateOfBirth,
-    connections,
-    features: userFeatures.reduce(reduceUserFeatures, {}),
+    firstName: res?.user?.firstName,
+    lastName: res?.user?.lastName,
+    fullName: res?.user?.fullName,
+    dateOfBirth: res?.user?.dateOfBirth,
+    connections: res?.user?.connections || [],
+    features: (res?.user?.userFeatures || []).reduce(reduceUserFeatures, {}),
   };
 };
 

@@ -1,10 +1,6 @@
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
-import {
-  GetCurrentUser,
-  LoginUser,
-  GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate,
-} from "@graphql/_core/schema";
+import { LoginUser, GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate } from "@graphql/_core/schema";
 import {
   GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS,
   GET_USER_SUCCESS,
@@ -19,7 +15,7 @@ import {
 import { SyncAction, Challenge, PassiveExchangeRate } from "@redux/_core/types";
 import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
 import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
-import { IAppMeditationPayload } from "./daily-meditation.types";
+import { IAppMeditationPayload, IDailyMeditationGetCurrentUserPayload } from "./daily-meditation.types";
 
 export interface IAppDailyMeditationProps {
   duration: number;
@@ -139,10 +135,9 @@ const resetDailyMeditationState = (state: IDailyMeditationStore) => ({
   lastUpdated: moment().format(),
 });
 
-const getUserSuccess = (state: IDailyMeditationStore, res: GetCurrentUser) => ({
+const getUserSuccess = (state: IDailyMeditationStore, res: IDailyMeditationGetCurrentUserPayload) => ({
   ...state,
-  exchangeRate: res?.getCurrentUser?.passiveMeditation?.exchange || getInitialState().exchangeRate,
-  meditationPassiveMilestones: res?.getCurrentUser?.passiveMeditation?.levelSlot?.milestones || [],
+  exchangeRate: res?.passiveMeditation?.exchangeRate || getInitialState().exchangeRate,
 });
 
 const getPassiveChallengesEarnRateSuccess = (
@@ -151,13 +146,11 @@ const getPassiveChallengesEarnRateSuccess = (
 ) => ({
   ...state,
   exchangeRate: res?.MEDITATION.exchange || getInitialState().exchangeRate,
-  meditationPassiveMilestones: res?.MEDITATION?.levelSlot?.milestones || [],
 });
 
 const loginUserSuccess = (state: IDailyMeditationStore, res: LoginUser) => ({
   ...state,
   exchangeRate: res?.loginUser?.user?.passiveMeditation?.exchange || getInitialState().exchangeRate,
-  meditationPassiveMilestones: res?.loginUser?.user?.passiveMeditation?.levelSlot?.milestones || [],
 });
 
 const updateInAppMeditation = (state: IDailyMeditationStore, payload: IAppMeditationPayload): IDailyMeditationStore => {

@@ -1,4 +1,4 @@
-import { GetCurrentUser, GetUserActiveStreak_getUserActiveStreak, LoginUser } from "@graphql/_core/schema";
+import { GetUserActiveStreak_getUserActiveStreak, LoginUser } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import {
   GET_USER_ACTIVE_STREAK_SUCCESS,
@@ -6,6 +6,7 @@ import {
   LOGIN_USER_SUCCESS,
   LOGOUT_SUCCESS,
 } from "../user/user.actions";
+import { IStreaksGetUserSuccessPayload } from "./streaks.types";
 
 export interface IStreaksStore {
   id: string;
@@ -62,8 +63,8 @@ const streaksReducer = (state: IStreaksStore = getInitialState(), action: SyncAc
 
 export default streaksReducer;
 
-const getUserSuccess = (state: IStreaksStore, data: GetCurrentUser): IStreaksStore => {
-  const activeStreak = data?.getCurrentUser?.activeStreak || DEFAULT_ACTIVE_STREAK;
+const getUserSuccess = (state: IStreaksStore, data: IStreaksGetUserSuccessPayload): IStreaksStore => {
+  const activeStreak = data?.activeStreak || DEFAULT_ACTIVE_STREAK;
 
   return {
     ...state,

@@ -123,10 +123,13 @@ export type GetActiveChallengeSuccessDataPayload = Pick<
   | "challengeIsActive"
 >;
 
-export type GetUserSuccessDataPayload = {
-  challengesDoneToday: number;
-  dailyChallengeAmountAvailable: number;
-} & GetActiveChallengeSuccessDataPayload;
+export type ILevelGetUserSuccessDataPayload = {
+  levels: {
+    activeChallenge: GetActiveChallengeSuccessDataPayload;
+    challengesDoneToday: number;
+    dailyChallengeAmountAvailable: number;
+  };
+};
 
 export type ChallengeUpdateSuccessPayload = { incomingData: ChallengeIncomingData } & Pick<
   IActiveLevel,
