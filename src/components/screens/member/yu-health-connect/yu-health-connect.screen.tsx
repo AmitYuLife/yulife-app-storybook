@@ -16,26 +16,27 @@ import { isAndroid } from "@utils";
 import { YugiHealthConnectIcon } from "@atoms/icon/yugi-health-connect-icon";
 
 interface IYuHealthConnectScreenProps {
-  onChangeProvider: () => void;
-  onConnect: () => void;
+  body?: string;
   onCancel: () => void;
+  onConnect: () => void;
+  onChangeProvider: () => void;
   onOpenExplanation: () => void;
   activeProvider: HealthProvider;
 }
 
 const YuHealthConnectScreen = ({
-  onChangeProvider,
+  body,
   onCancel,
-  onOpenExplanation,
   onConnect,
   activeProvider,
+  onChangeProvider,
+  onOpenExplanation,
 }: IYuHealthConnectScreenProps) => {
   const options = useMemo(() => HEALTH_PROVIDER_OPTIONS[activeProvider], [activeProvider]);
 
   const t = useTranslation([
     "yu_health.connect.not_available",
     "yu_health.connect.title",
-    "yu_health.connect.body",
     "yu_health.connect.why",
     "yu_health.connect.button",
   ]);
@@ -70,7 +71,7 @@ const YuHealthConnectScreen = ({
               </View>
               <View style={styles.message}>
                 <TextTemplate type="b2" textAlign="center">
-                  {t["yu_health.connect.body"]}
+                  {body}
                 </TextTemplate>
               </View>
             </View>

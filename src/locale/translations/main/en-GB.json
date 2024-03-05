@@ -1411,7 +1411,8 @@
       "title": "Connection setup",
       "why": "Why do I need to do this?",
       "button": "Let's connect",
-      "body": "Connect a service so we can reward you for your daily activities. You can adjust this in your device settings at any time."
+      "body": "Connect a service so we can reward you for your daily activities. You can adjust this in your device settings at any time.",
+      "unsupported": "Sadly %{capabilities} is unsupported by %{provider}. To access this and the ability to earn YuCoin consider switching:"
     }
   },
   "sudoku": {
