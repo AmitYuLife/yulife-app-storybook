@@ -9,7 +9,7 @@ import {
 } from "../app.actions";
 
 import listenToAppStateSaga from "./listenToAppState.saga";
-import listenToLinkingSaga from "./listenToIOSLinking.saga";
+import listenToDeepLinkingSaga from "./listenToDeepLinking.saga";
 import listenToComponentDidAppear from "./listenToComponentDidAppear";
 import listenToComponentDidDisappear from "./listenToComponentDidDisappear";
 import listenToNetworkStateSaga from "./listenToNetworkState.saga";
@@ -32,7 +32,7 @@ export default [
   takeLatest(AUTHENTICATED, listenOnDateChangeSaga),
   takeLatest("INIT", listenToComponentDidAppear),
   takeLatest("INIT", listenToComponentDidDisappear),
-  takeLatest("INIT", listenToLinkingSaga),
+  takeLatest("INIT", listenToDeepLinkingSaga),
   takeLatest("INIT", listenToMemoryWarning),
   takeLatest("INIT", loggingNetworkState),
   takeLatest(["INIT", SET_REGION_CONFIG, SET_MAIN_ROOT], hydrateApiConfig),

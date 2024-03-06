@@ -1,3 +1,5 @@
+import moment from "moment";
+import { Linking } from "react-native";
 import getSession from "@graphql/user/getSession.gql";
 import deepLink from "@navigation/deepLink";
 import {
@@ -12,16 +14,11 @@ import { getUserSessionSuccess, refreshUserToken } from "@redux/user/user.action
 import Logger from "@services/logging/logger";
 import { getToken } from "@services/storage";
 import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
-import moment from "moment";
-import { call, put } from "redux-saga/effects";
+import { call, delay, put, select } from "redux-saga/effects";
 import { setAuthenticated, setUnauthenticated } from "../app.actions";
 import { Unpacked } from "@utils";
 import { GetSession_mobileUpgradeRequired } from "@graphql/_core/schema";
-
-interface IMainRootPayload {
-  payload: string;
-  type: string;
-}
+import { getRouteState } from "../app.selectors";
 
 export interface ITokenAndMobileUpgradeStatus {
   tokenStatus: TokenStatus;
@@ -30,7 +27,7 @@ export interface ITokenAndMobileUpgradeStatus {
 
 type TokenStatus = "refreshing" | "valid" | "invalid" | null;
 
-export default function* setMainRootSaga({ payload }: IMainRootPayload) {
+export default function* setMainRootSaga() {
   const token: Unpacked<typeof getToken> = yield call(getToken);
 
   if (token) {
@@ -48,8 +45,13 @@ export default function* setMainRootSaga({ payload }: IMainRootPayload) {
     yield put(setUnauthenticated());
   }
 
-  if (payload) {
-    yield call(deepLink.init, payload, !!token);
+  const url: string = yield call(Linking.getInitialURL);
+
+  if (url) {
+    // a small delay for a better UX
+    yield delay(200);
+    const currentRoute: string = yield select(getRouteState);
+    yield call(deepLink.init, url, !!token, currentRoute);
   }
 }
 

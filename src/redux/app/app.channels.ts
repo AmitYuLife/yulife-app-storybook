@@ -61,7 +61,7 @@ export function appComponentDidDisappearChannel() {
   });
 }
 
-export function iosLinkingChannel() {
+export function linkingChannel() {
   return eventChannel((emitter) => {
     const linking = Linking.addEventListener("url", emitter);
 
