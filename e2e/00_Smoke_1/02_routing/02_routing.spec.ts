@@ -7,9 +7,10 @@ import * as ids from "@ids";
 import * as data from "@data";
 import { getLocalisedString as t } from "@i18n";
 import { locationModalButton } from "00_Smoke_1/03_Rewards/_resources/constants";
+import { translations } from "@app/locale/translations"
+
 
 Feature("As a user I can navigate through member routes correctly", async () => {
-
     Scenario("I can view the core screens of the app", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(), async () => {
             Then("I should see the daily steps screen", then.onDailySteps())
@@ -232,6 +233,40 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         })
         When("I tap permissions settings", when.tapIDAtIndex(ids.ARROW_BUTTON, 1), async () => {
             Then("I should correct detail and icons when authorised", then.onPermissionsPage("authorised"))
+        })
+    })
+
+    Scenario("I can successfully change client language to differ from server langauge", scenario.start, async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2, true), async () => {
+            Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
+        })
+        When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
+            Then("I should see the menu items", then.menuItemsVisible)
+        })
+        When("I tap settings",when.tapMenuItem(t("Settings")), async () => {
+            Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500))
+        })
+        When("I scroll down", when.scrollUntilTextVisible(ids.SETTINGS_SCREEN_SCROLL, t("Language"), "down"), async () => {
+            Then("I should see the pre-selected server language is en-GB", then.languageSettingVisible("en-GB"))
+        })
+        When("I tap the language options", when.tapText(t("Language")), async () => {
+            Then("I should be on the langauge selector screen", then.languageSelectorVisible)
+            Then("I should see all the available languages listed", then.allLanguagesVsible)
+        })
+        When("I tap to select Spanish option", when.tapText(t(`${translations["es-US"].flag} ${translations["es-US"].name}`)), async () => {
+            Then("I should see the menu icon on the top left", then.idVisible(ids.MENU_ICON, 1500))
+            Then("I should see that the client language has successfully changed in Spanish", then.textVisible("200 YuCoin hoy"))
+        })
+    })
+
+    Scenario("I can successfully deep link when app is minimised", scenario.start, async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2, true), async () => {
+            Then("I should see the menu icon on the top left", then.idVisible(ids.MENU_ICON, 1500))
+        })
+        When("I minimise the app pressing the home button", when.minimiseApp, async () => {
+            When("I follow the deep link", when.goToQuestsScreen, async () => {
+                Then("I should successfully be on the quest screen", then.idVisible(ids.QUESTS_SCREEN(0)))
+            })
         })
     })
 })

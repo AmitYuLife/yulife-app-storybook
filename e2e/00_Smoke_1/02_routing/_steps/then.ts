@@ -2,7 +2,8 @@ import { screens } from "@appScreens"
 import { navigation } from "@utils"
 import { permissionSettings } from "../_resources/fixtures"
 import * as ids from "@ids"
-import {expect} from 'detox'
+import { expect } from 'detox'
+import { translations } from "@app/locale/translations"
 export { rewardsLocationModalVisible } from "../../03_Rewards/_steps/then"
 
 export const {
@@ -114,5 +115,29 @@ export const onPermissionsPage = (status: string) => async () => {
     else if (status === "authorised") {
         await idVisibleAtIndex(ids.STATUS_ICON(status), 4)
         await expect(element(by.text(permissionSettings.ios.statusUnknown.unknownStatusText))).not.toBeVisible();
+    }
+}
+
+export const languageSettingVisible = (langauge: string) => async () => {
+    await expect(element(by.text("Language"))).toBeVisible()
+    await expect(element(by.text("Select your language"))).toBeVisible()
+    await expect(element(by.text(langauge))).toBeVisible()
+}
+
+export const languageSelectorVisible = async () => {
+    await expect(element(by.id(ids.GAME_SETTINGS_LANGUAGE_SELECTOR_SCREEN))).toBeVisible()
+}
+
+export const allLanguagesVsible = async () => {
+    const languages = Object.keys(translations);
+
+    for (const language of languages) {
+      const translation = translations[language];
+
+      if ((!translation.isEnabled && !translation.isEnabledForTest) || !translation.flag) {
+        continue;
+      }
+
+    await expect(element(by.text(`${translation.flag} ${translation.name}`))).toBeVisible()
     }
 }
