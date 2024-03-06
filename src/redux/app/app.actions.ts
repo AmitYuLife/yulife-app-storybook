@@ -55,7 +55,6 @@ export const checkConnection = (hasDelay = false) => ({
   payload: { hasDelay },
 });
 
-export const setMainRoot = (url: string) => ({
-  payload: url,
+export const setMainRoot = () => ({
   type: SET_MAIN_ROOT,
 });
