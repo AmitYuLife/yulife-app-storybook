@@ -223,6 +223,7 @@ const documents = {
   CompleteInAppYuniversityModuleChapterDocument: types.CompleteInAppYuniversityModuleChapterDocument,
   GetInAppYuniversityCoursesDocument: types.GetInAppYuniversityCoursesDocument,
   GetInAppYuniversityCourseModuleDetailsDocument: types.GetInAppYuniversityCourseModuleDetailsDocument,
+  GetYuScreenV5Document: types.GetYuScreenV5Document,
   GetProductYumojiPartDocument: types.GetProductYumojiPartDocument,
   GetYuScreenDocument: types.GetYuScreenDocument,
   GetYuScreenProductListDocument: types.GetYuScreenProductListDocument,
@@ -1238,6 +1239,10 @@ export function gql(
 export function gql(
   source: "GetInAppYuniversityCourseModuleDetailsDocument"
 ): typeof documents["GetInAppYuniversityCourseModuleDetailsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetYuScreenV5Document"): typeof documents["GetYuScreenV5Document"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
