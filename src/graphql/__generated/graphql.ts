@@ -3381,28 +3381,11 @@ export type EngagementDashboardPeriodActivityTargets = {
   streaks: Scalars["Float"]["output"];
 };
 
-export type EngagementDashboardPeriodHistory = {
-  __typename?: "EngagementDashboardPeriodHistory";
-  acknowledgements: EngagementDashboardUserAcknowledgements;
-  endDate: Scalars["String"]["output"];
-  id: Scalars["String"]["output"];
-  startDate: Scalars["String"]["output"];
-  totalRebateEarned: Scalars["Float"]["output"];
-};
-
 export enum EngagementDashboardPeriodWrapUpIllustration {
   Calendar = "calendar",
   Chest = "chest",
   Trophy = "trophy",
 }
-
-export type EngagementDashboardPeriodWrapUpItem = {
-  __typename?: "EngagementDashboardPeriodWrapUpItem";
-  description: Scalars["String"]["output"];
-  heading: Scalars["String"]["output"];
-  illustration: EngagementDashboardPeriodWrapUpIllustration;
-  tooltip?: Maybe<Scalars["String"]["output"]>;
-};
 
 export type EngagementDashboardProgress = {
   __typename?: "EngagementDashboardProgress";
@@ -4431,7 +4414,6 @@ export enum MobileOnboardingStepPerformed {
   PassiveCycling = "passiveCycling",
   PersonalProductLaunchDental = "personalProductLaunchDental",
   PersonalProductLaunchDentalAndPli = "personalProductLaunchDentalAndPli",
-  PersonalProductLaunchPli = "personalProductLaunchPLI",
   ReferralsPopover = "referralsPopover",
   YuScreenChest = "yuScreenChest",
   YuScreenChestPurchased = "yuScreenChestPurchased",
@@ -5946,8 +5928,6 @@ export type Query = {
   getEngagementDashboardDownloadRate: TeamAnalyticsDashboardWidget;
   getEngagementDashboardLastMonthsActivityData: TeamAnalyticsDashboardWidget;
   getEngagementDashboardPeriod: EngagementDashboardPeriod;
-  getEngagementDashboardPeriodHistory: Array<EngagementDashboardPeriodHistory>;
-  getEngagementDashboardPeriodWrapUp: Array<EngagementDashboardPeriodWrapUpItem>;
   getEngagementDashboardTasks: Array<EngagementDashboardTask>;
   getGoalDetails?: Maybe<GoalDetails>;
   getGoalMilestoneDetails: GoalMilestoneDetails;
@@ -6093,6 +6073,7 @@ export type Query = {
   getYuScreenProductList?: Maybe<YuScreenProductList>;
   getYuScreenProductSlots?: Maybe<YuScreenProducts>;
   getYuScreenProductSurvey: YuScreenProductSurvey;
+  getYuScreenV5?: Maybe<YuScreenV5>;
   getYuStoreCSMs: Array<YuStoreImage>;
   getYuStoreCredit: EngagementDashboardYuStoreCredit;
   getYuStorePerks: Array<YuStorePerk>;
@@ -6212,6 +6193,7 @@ export type QueryGetBusinessTagsArgs = {
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   offset?: InputMaybe<Scalars["Int"]["input"]>;
   search?: InputMaybe<Scalars["String"]["input"]>;
+  tagIds?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
 };
 
 /** Default types to be extended / root query */
@@ -6269,11 +6251,6 @@ export type QueryGetEmployeesArgs = {
 /** Default types to be extended / root query */
 export type QueryGetEngagementDashboardClaimableActivitiesForCategoryArgs = {
   category: EngagementDashboardActivityCategory;
-};
-
-/** Default types to be extended / root query */
-export type QueryGetEngagementDashboardPeriodWrapUpArgs = {
-  periodId: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -7577,6 +7554,7 @@ export type TeamAnalyticsDashboardLegend = {
   key?: Maybe<Scalars["String"]["output"]>;
   name: Scalars["String"]["output"];
   style?: Maybe<Scalars["String"]["output"]>;
+  tooltip?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type TeamAnalyticsDashboardWidget = {
@@ -9394,6 +9372,11 @@ export type YuScreenSurveyFooterButton = {
   event?: Maybe<SduiAction>;
   label: Scalars["String"]["output"];
   onPress: SduiAction;
+};
+
+export type YuScreenV5 = {
+  __typename?: "YuScreenV5";
+  name?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type YuScreenYumojiPrompt = {
@@ -13025,7 +13008,7 @@ export type GetAdBannersQueryVariables = Exact<{
 export type GetAdBannersQuery = {
   __typename?: "Query";
   getAdBanners?: Array<{
-    __typename?: "AdBanner";
+    __typename: "AdBanner";
     id: string;
     navigateTo: string;
     navigateToType: string;
@@ -17413,6 +17396,13 @@ export type GetInAppYuniversityCourseModuleDetailsQuery = {
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     } | null;
   };
+};
+
+export type GetYuScreenV5QueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetYuScreenV5Query = {
+  __typename?: "Query";
+  getYuScreenV5?: { __typename?: "YuScreenV5"; name?: string | null } | null;
 };
 
 export type GetProductYumojiPartQueryVariables = Exact<{
@@ -33521,6 +33511,7 @@ export const GetAdBannersDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
@@ -46771,6 +46762,29 @@ export const GetInAppYuniversityCourseModuleDetailsDocument = {
   GetInAppYuniversityCourseModuleDetailsQuery,
   GetInAppYuniversityCourseModuleDetailsQueryVariables
 >;
+export const GetYuScreenV5Document = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetYuScreenV5" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getYuScreenV5" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "name" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetYuScreenV5Query, GetYuScreenV5QueryVariables>;
 export const GetProductYumojiPartDocument = {
   kind: "Document",
   definitions: [
