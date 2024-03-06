@@ -1349,3 +1349,59 @@ export const CPE_PLI_HOLDING = {
         taken_up: false
     }
 } as IDatabaseItem
+
+export const CPE_DENTAL_RENEW_RGL = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011424",
+        customer_id: customer.CUSTOMER_DENTAL_RENEW_2.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "AIG_ReGL_01_01",
+        archived: false,
+        taken_up: true,
+        start_date : moment().subtract(1, "weeks").format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem
+
+export const CPE_DENTAL_RENEW_GIP = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011425",
+        customer_id: customer.CUSTOMER_DENTAL_RENEW_2.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "AIG_GIP_01_01",
+        archived: false,
+        taken_up: true,
+        start_date : moment().subtract(1, "weeks").format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem
+
+export const CPE_DENTAL_RENEW_GCI = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011426",
+        customer_id: customer.CUSTOMER_DENTAL_RENEW_2.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "AIG_GCI_01_01",
+        archived: false,
+        taken_up: true,
+        start_date : moment().subtract(1, "weeks").format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem
+
+export const CPE_DENTAL_RENEW_WELLBEING = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011427",
+        customer_id: customer.CUSTOMER_DENTAL_RENEW_2.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "YuLife_Wellbeing_01_01",
+        archived: false,
+        taken_up: true,
+        start_date : moment().subtract(1, "weeks").format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem

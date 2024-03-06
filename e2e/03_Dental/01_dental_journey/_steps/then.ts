@@ -1,10 +1,11 @@
 import { navigation } from "@utils"
-import { DATE_INPUT, INFO_PANEL_IMAGE, MARKDOWN_TEXT, PERCENTAGE_COVERED, PRODUCT_STEP_BODY_SCROLL_VIEW, WARNING_BANNER, YUGI_INFO_BANNER_IMAGE, YULIFE_BUPA_LOGO } from "@ids"
+import { DATE_INPUT, INFO_PANEL_IMAGE, MARKDOWN_TEXT, PERCENTAGE_COVERED, PRODUCT_STEP_BODY_SCROLL_VIEW, TEXT_TEMPLATE, WARNING_BANNER, YUGI_INFO_BANNER_IMAGE, YULIFE_BUPA_LOGO } from "@ids"
 import { screens } from "@appScreens"
 import moment from "moment"
 export { onYuscreenV4 } from "_utils/appScreens/yuscreen"
 import { expect } from 'detox'
 import { dentalCancellationMessage, dentalCancellationYugi, dentalCancelledMessage, dentalCancelledYugi } from "../_resources/constants"
+export { deeperProductSlotEnviornmentVisible, noProductsDeeperEnvironmentVisible } from "../../../01_Extended_6/04_MPP/_steps/then"
 
 export const {
     idVisible,
@@ -260,4 +261,10 @@ export const cancelledNotificationVisible = async () => {
     await idVisible(YUGI_INFO_BANNER_IMAGE(yugiMessage))()
     await idVisible(INFO_PANEL_IMAGE(yugiMessage))()
     await idVisible(WARNING_BANNER(cancellationMessage))()
+ }
+
+ export const policyEndedPillVisible = async () => {
+    await idVisible(TEXT_TEMPLATE("0", "b2b"))()
+    await idVisible(TEXT_TEMPLATE("Policy", "l4b"))()
+    await idVisible(TEXT_TEMPLATE("Ended", "l4b"))()
  }

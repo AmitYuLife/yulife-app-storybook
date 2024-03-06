@@ -2415,6 +2415,7 @@ export const CUSTOMER_DENTAL_RENEW_TOGGLES = {
         yuScreenV4: false,
         hasCoveaFibActive: true,
         hasBupaDentActive: true,
+        showYuScreenFurtherProductList: true,
       },
     },
     } as IDatabaseItem;
