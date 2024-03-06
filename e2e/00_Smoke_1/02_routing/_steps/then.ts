@@ -132,12 +132,12 @@ export const allLanguagesVsible = async () => {
     const languages = Object.keys(translations);
 
     for (const language of languages) {
-      const translation = translations[language];
+        const translation = translations[language];
 
-      if ((!translation.isEnabled && !translation.isEnabledForTest) || !translation.flag) {
-        continue;
-      }
+        if ((!translation.isEnabled && !translation.isEnabledForTest) || !translation.flag) {
+            continue;
+        }
 
-    await expect(element(by.text(`${translation.flag} ${translation.name}`))).toBeVisible()
+        await expect(element(by.text(`${translation.flag} ${translation.name}`))).toBeVisible()
     }
 }

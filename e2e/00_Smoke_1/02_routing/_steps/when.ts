@@ -27,6 +27,10 @@ export const {
     swipeFromText
 } = navigation.scrolling
 
-export const goToQuestsScreen = async () =>{
+export const goToQuestsScreen = async () => {
     await device.launchApp({ url: "yulifeapp://yulife/quests" });
+}
+
+export const goToleaderboardScreen = async () => {
+    await device.launchApp({ url: "yulifeapp://yulife/leaderboard" });
 }
