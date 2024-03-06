@@ -269,4 +269,15 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             })
         })
     })
+
+    Scenario("I can successfully deep link from a cold start when app is closed", scenario.start, async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2, true), async () => {
+            Then("I should see the menu icon on the top left", then.idVisible(ids.MENU_ICON, 1500))
+        })
+        When("I terminated the app", when.terminateApp, async () => {
+            When("I follow the deep link", when.goToleaderboardScreen, async () => {
+                Then("I should successfully be on the leaderboard", then.idVisible(ids.LEADERBOARD_SCROLL_LIST, 3000))
+            })
+        })
+    })
 })
