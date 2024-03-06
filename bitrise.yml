@@ -19,7 +19,6 @@ app:
   - BITRISE_PROJECT_PATH: ios/YuLife.xcworkspace
     opts:
       is_expand: false
-  - RELEASE_ENVIRONMENT: uat
   - XCODE_EXPORT_METHOD: development
   - APP_VERSION: 0.0.1
   - BUNDLE_ID: com.yulife.develop
@@ -489,6 +488,7 @@ workflows:
     - DISPLAY_NAME: YuLife (UAT)
       opts:
         is_expand: false
+    - RELEASE_ENVIRONMENT: uat
     steps:
     - script@1:
         title: Set bitrise build number
@@ -1829,6 +1829,7 @@ workflows:
     - DISPLAY_NAME: YuLife (develop)
       opts:
         is_expand: false
+    - RELEASE_ENVIRONMENT: develop
     steps:
     - script@1:
         title: Set bitrise build number
@@ -2017,6 +2018,7 @@ workflows:
     - DISPLAY_NAME: YuLife
       opts:
         is_expand: false
+    - RELEASE_ENVIRONMENT: production
     steps:
     - script@1.1.6:
         title: Log info.plist
