@@ -17,7 +17,7 @@ import * as helper from "./_steps/helpers";
 import { CUSTOMER_DENTAL_1, CUSTOMER_37, AUTH_37, AUTH_DENTAL_1, CORE_REWARDS_ORDO_REWARDS, PAYMENT_PLAN_DENTAL_1, CUSTOMER_DENTAL_RENEW, AUTH_DENTAL_RENEW, CUSTOMER_DENTAL_RENEW_2, AUTH_DENTAL_RENEW_2 } from "@data";
 import * as helper_pli from "02_PLI_1/_resources/helpers";
 import * as helper_V4 from "00_Smoke_4/01_yuscreen_v4/_resources/helpers";
-import { BACK_BUTTON, BUTTON_CLOSE, CONTENT_MIDDLE_ITEM_IMAGE, NAV_BAR, REWARD_ITEM } from "@ids";
+import { BACK_BUTTON, BOX_OPTION_TITLE, BUTTON_CLOSE, CONTENT_MIDDLE_ITEM_IMAGE, NAV_BAR, REWARD_ITEM, SLOT_TITLE } from "@ids";
 import { ordoAvailableImage, ordoNotAvailableImage } from "./_resources/constants";
 import moment from "moment";
 
@@ -92,12 +92,24 @@ Feature("DENTAL HAPPY", async () => {
     Given("I run the sunset worker", given.sunsetPersonalDentalWorker("2024-02-01"), async () => {
       Given("I run the cancel worker", given.cancelPersonalDentalWorker("2024-02-01"), async () => {
         When("I login as a user with Bupa Dental product approved", when.loginToYuScreen(false, CUSTOMER_DENTAL_RENEW_2, AUTH_DENTAL_RENEW_2), async () => {
-          When(`I tap Dental insurance`, when.tapText("Bupa Dental Plan for YuLife"), async () => {
-            Then("I see the warning message about my personal dental having been cancelled", then.personalDentalCancelledModalVisible(true, moment().format("DD/MM/YYYY")))
-          })
+          When("I click to see all protection", when.tapID(SLOT_TITLE("See all protection")), async () => {
+            Then("I appear on the deeper environment page", then.deeperProductSlotEnviornmentVisible(40))
         })
       })
     })
+  })
+  When("I tap available", when.tapText("Available"), async () => {
+    Then("I can see the now available products page", then.noProductsDeeperEnvironmentVisible)
+  })
+  When("I click Owned", when.tapText("Owned"), async () => {
+    When("I scroll to the bottom", when.swipeFromText("Owned", "up", "fast"), async () => {
+      Then("I can see personal dental at the bottom", then.idVisible(BOX_OPTION_TITLE("Bupa Dental Plan for YuLife")))
+      Then("I can see the pill showing the product is expired", then.policyEndedPillVisible)
+    })
+  })
+  When(`I tap Dental insurance`, when.tapText("Bupa Dental Plan for YuLife"), async () => {
+    Then("I see the warning message about my personal dental having been cancelled", then.personalDentalCancelledModalVisible(true, moment().format("DD/MM/YYYY")))
+  })
   });
 
 });

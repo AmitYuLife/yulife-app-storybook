@@ -1,6 +1,6 @@
 
 import { Carrier, ProductCode, generateProductRecords } from "@yu-life/yulife-bdd-framework";
-import { BUSINESS_ACCOUNT_10_GHI_REWARDS, BUSINESS_ACCOUNT_11_MPP, BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_6, BUSINESS_ACCOUNT_GDent_9, BUSINESS_ACCOUNT_GHI_8 } from "./business";
+import { BUSINESS_ACCOUNT_10_GHI_REWARDS, BUSINESS_ACCOUNT_11_MPP, BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5, BUSINESS_ACCOUNT_6, BUSINESS_ACCOUNT_GDent_9, BUSINESS_ACCOUNT_GHI_8 } from "./business";
 import moment from "moment";
 import { GOAL_PRODUCTS_1, GOAL_PRODUCTS_2 } from "../mongo/goal_products";
 
@@ -65,6 +65,40 @@ export const BUSINESS_PRODUCT_4_GDental_CHOICE = generateProductRecords({
   policyName: "Justice League Policy GDental",
   businessAccountId:  BUSINESS_ACCOUNT_6.data.business_account_id,
   startDate: "2020-02-02T00:00:00Z",
+});
+
+export const BUSINESS_PRODUCT_5_RGL = generateProductRecords({
+  productCode: ProductCode.registeredGroupLife,
+  carrier: Carrier.AIG,
+  productId: "YUG1210113",
+  policyName: "Justice League Policy RGL",
+  businessAccountId:  BUSINESS_ACCOUNT_5.data.business_account_id,
+  startDate: "2020-02-02T00:00:00Z",
+});
+
+export const BUSINESS_PRODUCT_5_GIP = generateProductRecords({
+  productCode: ProductCode.groupIncomeProtection,
+  carrier: Carrier.AIG,
+  productId: "YUG1210114",
+  policyName: "Justice League Policy GIP",
+  businessAccountId:  BUSINESS_ACCOUNT_5.data.business_account_id,
+  startDate: "2020-02-02T00:00:00Z",
+});
+
+export const BUSINESS_PRODUCT_5_GCI = generateProductRecords({
+  productCode: ProductCode.groupIncomeProtection,
+  carrier: Carrier.AIG,
+  productId: "YUG1210115",
+  policyName: "Justice League Policy GCI",
+  businessAccountId:  BUSINESS_ACCOUNT_5.data.business_account_id,
+  startDate: "2020-02-02T00:00:00Z",
+});
+
+export const BUSINESS_PRODUCT_5_WB = generateProductRecords({
+  productCode: ProductCode.wellbeingAccess,
+  carrier: Carrier.YuLife,
+  productId: "YUG1210116",
+  businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
 });
 
 export const BUSINESS_PRODUCT_FUTURE = generateProductRecords({
