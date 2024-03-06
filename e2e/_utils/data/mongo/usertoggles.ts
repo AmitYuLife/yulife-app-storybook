@@ -60,7 +60,9 @@ export const CUSTOMER_2_TOGGLES = {
       showYucoinPowerButton: true,
       tempGameTodayYuCoinCheckIns:true,
       showDailySurvey:true,
-      showNotificationCentre:true
+      showNotificationCentre:true,
+      showLangSelector: true,
+      showAllLanguages: true,
     },
   },
 } as IDatabaseItem;

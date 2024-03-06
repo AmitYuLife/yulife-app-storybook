@@ -29,6 +29,10 @@ export const terminateApp = async () => {
     await device.terminateApp();
 }
 
+export const minimiseApp = async () => {
+    await device.sendToHome();
+}
+
 export const restartWithoutDelete = async () => {
     await device.terminateApp();
     await device.launchApp({ delete: false });

@@ -7,7 +7,9 @@ export const {
     tapIDAtPoint,
     wait,
     tapIDAtIndex,
-    dismissNotificationScreenIfVisible
+    dismissNotificationScreenIfVisible,
+    terminateApp,
+    minimiseApp
 } = navigation.common
 
 export const {
@@ -24,3 +26,7 @@ export const {
     scrollUntilTextVisible,
     swipeFromText
 } = navigation.scrolling
+
+export const goToQuestsScreen = async () =>{
+    await device.launchApp({ url: "yulifeapp://yulife/quests" });
+}
