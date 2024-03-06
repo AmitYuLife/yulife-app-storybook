@@ -10,6 +10,7 @@ export default function* getAdBannersSaga() {
   const userNotification: ReturnType<typeof getUserNotification> = yield select(getUserNotification);
 
   if (!userNotification.hasAdBanners) {
+    yield put(addAdBanners([]));
     return;
   }
 
@@ -22,7 +23,7 @@ export default function* getAdBannersSaga() {
       })
     );
 
-    if (result?.data?.getAdBanners.length) {
+    if (result?.data?.getAdBanners) {
       yield put(addAdBanners(result.data.getAdBanners));
     }
   } catch (error) {
