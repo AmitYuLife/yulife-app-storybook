@@ -194,7 +194,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await textVisibleAtIndex(fixture.productYuCoin, 0)();
       await textVisible(fixture.criticalIllness)();
       await textVisibleAtIndex(fixture.productYuCoin, 1)();
-      await textVisible(fixture.lifeInsurance)();
+      await textVisible(fixture.incomeProtection)();
       break;
       case "3 Products Slots Started":
       await textVisible(yuCoinPower)(); // 31

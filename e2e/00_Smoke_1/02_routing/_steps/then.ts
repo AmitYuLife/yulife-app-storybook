@@ -118,10 +118,10 @@ export const onPermissionsPage = (status: string) => async () => {
     }
 }
 
-export const languageSettingVisible = (langauge: string) => async () => {
+export const languageSettingVisible = (language: string) => async () => {
     await expect(element(by.text("Language"))).toBeVisible()
-    await expect(element(by.text("Select your language"))).toBeVisible()
-    await expect(element(by.text(langauge))).toBeVisible()
+    await expect(element(by.text("Select your language"))).toBeVisible(45)
+    await expect(element(by.text(language))).toBeVisible()
 }
 
 export const languageSelectorVisible = async () => {

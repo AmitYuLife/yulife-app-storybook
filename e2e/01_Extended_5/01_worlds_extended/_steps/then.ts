@@ -197,12 +197,12 @@ export const challengesAndYuCoinsAwardedVisible = async () => {
 }
 
 export const yunityChestAwardsVisible = (user: typeof USER_1, levelsBoosted: number) => async () => {
-    const yuCoinEarned = user.data.earnRate * 50;
-    
+    const yuCoinEarned = user.data.earnRate * 30;
+
     if (levelsBoosted > 1) {
-        await idVisibleAtIndex(ids.YUNITY_CARD(`${levelsBoosted} Levels\nBoost`), 0)() 
+        await idVisibleAtIndex(ids.YUNITY_CARD(`${levelsBoosted} Levels\nBoost`), 0)()
     } else {
-        await idVisibleAtIndex(ids.YUNITY_CARD(`1 Level\nBoost`), 0)() 
-    } 
-    await idVisibleAtIndex(ids.YUNITY_CARD(`${yuCoinEarned}\nYuCoin`), 0)() 
+        await idVisibleAtIndex(ids.YUNITY_CARD(`1 Level\nBoost`), 0)()
+    }
+    await idVisibleAtIndex(ids.YUNITY_CARD(`${yuCoinEarned}\nYuCoin`), 0)()
 }

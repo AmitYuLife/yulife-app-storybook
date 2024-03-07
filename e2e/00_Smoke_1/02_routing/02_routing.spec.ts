@@ -246,7 +246,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         When("I tap settings",when.tapMenuItem(t("Settings")), async () => {
             Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500))
         })
-        When("I scroll down", when.scrollUntilTextVisible(ids.SETTINGS_SCREEN_SCROLL, t("Language"), "down"), async () => {
+        When("I scroll down", when.scrollFromID(ids.SETTINGS_SCREEN_SCROLL, "up", "slow", 0.4), async () => {
             Then("I should see the pre-selected server language is en-GB", then.languageSettingVisible("en-GB"))
         })
         When("I tap the language options", when.tapText(t("Language")), async () => {

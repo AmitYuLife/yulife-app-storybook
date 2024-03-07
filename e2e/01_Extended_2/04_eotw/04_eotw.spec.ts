@@ -191,7 +191,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should be on the celestial chest screen", then.celestialChestEarned)
         })
         When("I tap open the chest", when.tapText("Open the chest"), async () => {
-            Then("I can see the 3 celestial chest rewards, which each earn me my earn rate (6) * 100", then.celestialChestAwardsVisible(data.USER_70))
+            Then("I can see the 3 celestial chest rewards, which each earn me my earn rate (6) * 50", then.celestialChestAwardsVisible(data.USER_70))
         })
         When("I tap claim rewards", when.tapText("Claim rewards"), async () => {
             Then("I am on the space travel screen", then.idVisible(ids.SPACE_TRAVEL_SCREEN))
@@ -217,7 +217,7 @@ Feature("End of the world/Yuniverse", async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 When("I tap done", when.tapText("Done"), async () => {
                     Then("I should see the level 201 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)))
-                    Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(18626)))
+                    Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(18326)))
                 })
             })
         })
@@ -233,7 +233,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("Brisk Walk", 800), async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 Then("I should see the level 201 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)))
-                Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(18656)))
+                Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(18356)))
             })
         })
         When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
@@ -248,7 +248,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I complete a long walk challenge at level 201", when.selectAndCompleteWalkingChallenge("Long Walk", 2000), async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 Then("I should see the level 201 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)))
-                Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(18686)))
+                Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(18386)))
             })
         })
         When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
@@ -264,7 +264,7 @@ Feature("End of the world/Yuniverse", async () => {
             When("I tap collect", when.tapText("Collect"), async () => {
                 Then("I should see the level 201 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)))
                 Then("I should see level 201 has 3 stars", then.idVisible(ids.LEVEL_STAR_COUNT(3)))
-                Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(18698)))
+                Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(18398)))
             })
         })
         When("I tap level 201", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(201)), async () => {
@@ -301,7 +301,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should be on the celestial chest screen", then.celestialChestEarned)
         })
         When("I tap open the chest", when.tapText("Open the chest"), async () => {
-            Then("I can see the 3 celestial chest rewards, which earns me my earn rate (9) * 100", then.celestialChestAwardsVisible(data.USER_78))
+            Then("I can see the 3 celestial chest rewards, which earns me my earn rate (9) * 50", then.celestialChestAwardsVisible(data.USER_78))
         })
     })
 
@@ -327,7 +327,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I click the close button", when.tapText("Close"), async () => {
             Then('I can no longer see the modal', then.textNotVisible("Weekly quests"))
             Then("I should see the Weekly Quests activty icon with no badge", then.idVisible(ids.WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), false)))
-        }) 
+        })
         When("I tap level 201 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(201)), async () => {
             When("I complete a short stroll challenge at level 201", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
                 When("I tap collect", when.tapText("Collect"), async () => {
@@ -342,7 +342,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I click the close button", when.tapText("Close"), async () => {
             Then('I can no longer see the modal', then.textNotVisible("Weekly quests"))
-        }) 
+        })
         When("I tap level 201 button a second time", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(201)), async () => {
             When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("Brisk Walk", 800), async () => {
                 When("I tap collect", when.tapText("Collect"), async () => {
@@ -362,7 +362,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then('I can no longer see the modal', then.textNotVisible("Weekly quests"))
             Then("I should see the Weekly Quests activty icon with the badge", then.idVisible(ids.WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), false)))
             Then("I can see the Icon has changed to the Done state", then.textVisible("Done"))
-        }) 
+        })
     })
 
     Scenario("I complete level 400, enter EOTW with a yucoin surge of 2 and take 4 challenges at level 1", scenario.start, () => {
@@ -403,7 +403,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should be on the celestial chest screen", then.celestialChestEarned)
         })
         When("I tap open the chest", when.tapText("Open the chest"), async () => {
-            Then("I can see the 3 celestial chest rewards, which each earn me my earn rate (6) * 100", then.celestialChestAwardsVisible(data.USER_90))
+            Then("I can see the 3 celestial chest rewards, which each earn me my earn rate (6) * 50", then.celestialChestAwardsVisible(data.USER_90))
         })
         When("I tap claim rewards", when.tapText("Claim rewards"), async () => {
             Then("I am on the space travel screen", then.idVisible(ids.SPACE_TRAVEL_SCREEN))

@@ -58,7 +58,7 @@ export const mountainTwoRewardsVisible = (level400 = false) => async () => {
     await textVisible("6 Levels\nBoost")()
     await textVisible("The Yuniversal\nReflection")()
     if (level400) {
-        await textVisible("500\nYuCoin")()
+        await textVisible("300\nYuCoin")()
     }
 }
 
@@ -111,10 +111,10 @@ export const celestialChestEarned = async () => {
 } 
 
 export const celestialChestAwardsVisible = (user: typeof USER_1) => async () => {
-    const yuCoinEarnt = user.data.earnRate * 100
+    const yuCoinEarnt = user.data.earnRate * 50
 
     await textVisible("You have earned")()
-    await idVisible(ids.CELESTIAL_CARD("25\nDonations"))() 
+    await idVisible(ids.CELESTIAL_CARD("3\nDonations"))() 
     await idVisible(ids.CELESTIAL_CARD(`${yuCoinEarnt}\nYuCoin`))() 
 }
 
