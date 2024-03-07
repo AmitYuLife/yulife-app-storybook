@@ -44,6 +44,9 @@ export function* sduiActionNavigateSaga({ payload }: ProductStepAction) {
         component: {
           id: routeId,
           name: routeId,
+          options: {
+            popGesture: false,
+          },
           passProps: {
             ...otherProps,
             ...(props || {}),
