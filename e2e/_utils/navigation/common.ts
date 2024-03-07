@@ -345,6 +345,7 @@ export const restartWithoutDeleteTwoTimes = async () => {
     await device.terminateApp();
     await device.launchApp({ delete: false });
     await dismissNewLooksModalIfVisible()
+    await wait(2000)()
 }
 
 export const idExist = (id: string, waitTime = 0) => async () => {

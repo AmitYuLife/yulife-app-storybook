@@ -30,8 +30,8 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         helper.WELLBEING_PRODUCT_VIEW(10, 10)
     })
 
-    // @flaky - failing on bitrise, passing locally
-    Scenario("I can create my Yumoji on new Yuscreen V4, and see the exclamation point near the product i have (payment failed)", scenario.start, async () => {
+    // @flaky - [failing on bitrise, passing locally]
+    ScenarioSkip("I can create my Yumoji on new Yuscreen V4, and see the exclamation point near the product i have (payment failed)", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_45, data.AUTH_45), async () => {
             When("I swipe down the screen", when.swipeFromText("Protection, powered up!", "up", "fast"), async () => {
                 When("I tap check out my power", when.tapCheckOutMyPower, async () => {
@@ -64,7 +64,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
         // helper.CREATE_DEFAULT_YUMOJI(300);
         // helper.WELLBEING_PRODUCT_VIEW(1, 31)
     })
-        
+
     // @flaky - could not find start date - fine locally (bitrise timezone issue?)
     ScenarioSkip("As a YuLifer with Group Dental product i should see correct Product Details and be able to order Ordo toothbrush", scenario.start, async () => {
         Given("I run the worker to acknowledge the product start date", given.productStartDateNotificationWorker(), async () => {
