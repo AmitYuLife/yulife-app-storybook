@@ -153,7 +153,7 @@ const getMeditation = async ({
   inAppMeditation: IAppDailyMeditationProps;
   meditationPermissionGranted: boolean;
 }): Promise<ChallengesPayload[]> => {
-  if (!features.tempGameEnableYuHealth) {
+  if (!features.tempGameEnableReleaseYuHealth) {
     const meditationResponse = !meditationPermissionGranted
       ? null
       : await queryFitKitSampleData({
@@ -202,7 +202,7 @@ const getCycling = async ({
   endTime: Moment;
   features: IFeature;
 }): Promise<ChallengesPayload[]> => {
-  if (!features.tempGameEnableYuHealth) {
+  if (!features.tempGameEnableReleaseYuHealth) {
     const cyclingConfig = getAggregationCyclingConfiguration(features);
 
     const response = await queryFitKitAggregatedData({

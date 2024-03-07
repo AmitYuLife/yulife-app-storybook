@@ -7,9 +7,9 @@ import DailyStepsContainer from "./daily-steps.container";
 type Props = IMainTabsProps;
 
 const DailyStepsWrapper = (props: Props) => {
-  const { tempGameEnableYuHealth } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealth } = useUserFeatures();
 
-  if (!tempGameEnableYuHealth) {
+  if (!tempGameEnableReleaseYuHealth) {
     return <DailyStepsOldContainer {...props} />;
   }
 

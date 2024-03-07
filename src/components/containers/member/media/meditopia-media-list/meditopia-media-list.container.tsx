@@ -51,7 +51,7 @@ const MeditopiaMediaListContainer = ({
 }: IProps) => {
   const [otherAppLoading, setOtherAppLoading] = useState("");
   const dispatch = useDispatch();
-  const { tempGameEnableYuHealth } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealth } = useUserFeatures();
   const { authoriseFitKitTypes } = useFitKit();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { data, loading } = useQuery<GetQuestMapLevelChallengeContent, GetQuestMapLevelChallengeContentVariables>(
@@ -101,7 +101,7 @@ const MeditopiaMediaListContainer = ({
 
   const handleOtherMeditationApp = useCallback(
     async (appName: string, button?: IButton) => {
-      if (!tempGameEnableYuHealth) {
+      if (!tempGameEnableReleaseYuHealth) {
         const activityFromGoogleFitAuthorised = await RNFitKit.isAuthorised({
           read: [],
           platform: "GoogleFit",
@@ -138,7 +138,7 @@ const MeditopiaMediaListContainer = ({
       await createChallengeOnOtherAppSelected(appName, button);
     },
     [
-      tempGameEnableYuHealth,
+      tempGameEnableReleaseYuHealth,
       verifyAndAuthorizeCapability,
       yuHealth,
       dispatch,
