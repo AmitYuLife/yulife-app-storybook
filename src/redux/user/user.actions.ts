@@ -1,8 +1,4 @@
-import {
-  LoginUser,
-  GetUserFeatures_getUserFeatures,
-  GetUserConnections_getUserConnections,
-} from "@graphql/_core/schema";
+import { GetUserFeatures_getUserFeatures, GetUserConnections_getUserConnections } from "@graphql/_core/schema";
 import { MobileTabs } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "./user.reducer";
 import { Connection } from "./user.selectors";
@@ -13,6 +9,8 @@ import {
   IGetUserSuccessPayload,
   IAppDataTypePayload,
   AppDataType,
+  IUpdateUserProfilePayload,
+  ILoginUserPayload,
 } from "./user.types";
 import { GetActiveChallengeSuccessDataPayload } from "@redux/levels/levels.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
@@ -108,7 +106,7 @@ export const yuScreenSynchronised = createAction(YUSCREEN_SYNCHRONISED);
 
 export const getUserSuccess = createAction<IGetUserSuccessPayload>(GET_USER_SUCCESS);
 
-export const loginUserSuccess = createAction<LoginUser>(LOGIN_USER_SUCCESS);
+export const loginUserSuccess = createAction<ILoginUserPayload>(LOGIN_USER_SUCCESS);
 
 export const updateUserConsent = createAction<MobileConsentInput>(UPDATE_USER_CONSENT);
 
@@ -128,7 +126,7 @@ export const openMyAccount = createAction(OPEN_MY_ACCOUNT);
 
 export const setShowSurgeIntro = createAction<IUserStore["surgeIntro"]>(SET_SHOW_SURGE_INTRO);
 
-export const updateUserProfile = createAction<Partial<IUserStore>>(UPDATE_USER_PROFILE);
+export const updateUserProfile = createAction<IUpdateUserProfilePayload>(UPDATE_USER_PROFILE);
 
 export const updateUserProfileEvents = createAction<IUserStore["events"]>(UPDATE_USER_PROFILE_EVENTS);
 

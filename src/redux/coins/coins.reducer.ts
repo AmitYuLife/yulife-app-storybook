@@ -13,7 +13,7 @@ import { UPDATE_TOTAL_COINS } from "./coins.actions";
 import { UPDATE_DAILY_CYCLING_SUCCESS } from "@redux/daily-cycling/daily-cycling.actions";
 import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
 import { UPDATE_DAILY_PENSION_SUCCESS } from "@redux/daily-pension/daily-pension.actions";
-import { Challenge, LoginUser } from "@graphql/_core/schema";
+import { Challenge } from "@graphql/_core/schema";
 import {
   LOGIN_USER_SUCCESS,
   GET_USER_SUCCESS,
@@ -169,10 +169,10 @@ const updateDailyPension = (state: ICoinsStore, pension: DailyPension): ICoinsSt
   dailyPensionEarned: pension?.yuCoinAwarded || 0,
 });
 
-const loginUserSuccess = (state: ICoinsStore, { loginUser }: LoginUser): ICoinsStore => {
+const loginUserSuccess = (state: ICoinsStore, res: ICoinsTodayEarned): ICoinsStore => {
   return {
     ...state,
-    dailyChallengeEarned: sumCompletedChallenges(loginUser?.user?.todayActivity),
+    dailyChallengeEarned: sumCompletedChallenges(res?.todayActivity),
     lastUpdated: moment().format(DATE_FORMAT),
   };
 };

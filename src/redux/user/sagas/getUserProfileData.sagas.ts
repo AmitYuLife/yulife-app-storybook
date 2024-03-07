@@ -24,7 +24,15 @@ export default function* getUserProfileData({ payload: appState, type }: Params 
   try {
     const { data: userProfile }: Unpacked<typeof getUserProfile> = yield call(getUserProfile);
     if (userProfile?.getUserProfile) {
-      yield put(updateUserProfile(userProfile?.getUserProfile));
+      yield put(
+        updateUserProfile({
+          ...userProfile?.getUserProfile,
+          stepsGameSettings: {
+            maxStepsAnomalyWindowMs: userProfile?.getUserProfile?.gameSettings.maxStepsAnomalyWindowMs,
+            blackListApps: userProfile?.getUserProfile?.gameSettings.blackListApps.steps,
+          },
+        })
+      );
     }
   } catch (e) {
     yield spawn(() => {

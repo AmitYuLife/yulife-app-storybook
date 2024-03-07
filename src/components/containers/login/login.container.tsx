@@ -12,7 +12,7 @@ import { setAuthenticated } from "@redux/app/app.actions";
 import { loginUserSuccess } from "@redux/user/user.actions";
 import { setToken } from "@services/storage";
 import { LoginScreen } from "@screens";
-import { validatePassword } from "./login.helpers";
+import { validatePassword, toLoginUserSuccessPayload } from "./login.helpers";
 import { REGION, t, region as regionService } from "@locale";
 import { Navigation } from "@navigation/main";
 import { validateEmail } from "@utils/email";
@@ -153,7 +153,7 @@ const LoginContainer: React.FC<Props> = ({
       const needle = loginOptions.find((d) => d.region === r);
       if (needle?.data?.loginUser?.token) {
         await setToken(needle.data.loginUser.token);
-        dispatch(loginUserSuccess(needle.data));
+        dispatch(loginUserSuccess(toLoginUserSuccessPayload(needle.data)));
 
         // no need to send the user to healthkit-connect if device is an ipad
         await goToNext({
@@ -241,9 +241,9 @@ const LoginContainer: React.FC<Props> = ({
     () =>
       logins.length > 1
         ? {
-            restrictTo: logins.map((d) => d.region),
-            onSelect: (r: REGION) => loginForRegion(r),
-          }
+          restrictTo: logins.map((d) => d.region),
+          onSelect: (r: REGION) => loginForRegion(r),
+        }
         : undefined,
     // Logins is mutated (it's a ref)! Don't change the dependency array
     // eslint-disable-next-line react-hooks/exhaustive-deps

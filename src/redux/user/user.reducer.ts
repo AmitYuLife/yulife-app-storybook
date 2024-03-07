@@ -1,6 +1,5 @@
 import { REHYDRATE } from "redux-persist";
 import {
-  LoginUser,
   GetUserProfile_getUserProfile,
   GetUserSurge_getUserSurge as IUserSurge,
   MarkMobileNotificationsAsViewedByTypeVariables,
@@ -296,23 +295,16 @@ const getUserSuccess = (state: IUserStore, res: IUserGetUserSuccessPayload): IUs
   };
 };
 
-const loginUserSuccess = (
-  state: IUserStore,
-  {
-    loginUser: {
-      user: { id, firstName, lastName, fullName, dateOfBirth, userFeatures = [], connections = [] },
-    },
-  }: LoginUser
-): IUserStore => {
+const loginUserSuccess = (state: IUserStore, res: IUserGetUserSuccessPayload): IUserStore => {
   return {
     ...state,
-    id,
-    firstName,
-    lastName,
-    fullName,
-    dateOfBirth,
-    connections,
-    features: userFeatures.reduce(reduceUserFeatures, {}),
+    id: res?.user?.id,
+    firstName: res?.user?.firstName,
+    lastName: res?.user?.lastName,
+    fullName: res?.user?.fullName,
+    dateOfBirth: res?.user?.dateOfBirth,
+    connections: res?.user?.connections || [],
+    features: (res?.user?.userFeatures || []).reduce(reduceUserFeatures, {}),
   };
 };
 

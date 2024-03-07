@@ -1,5 +1,4 @@
 import { REHYDRATE } from "redux-persist";
-import { LoginUser } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import {
@@ -127,14 +126,7 @@ const getUserSuccess = (state: IOnboardingStore, res: IOnboardingGetUserSuccessP
   redeemedOnboarding: res.onboarding.redeemedOnboarding,
 });
 
-const loginUserSuccess = (
-  state: IOnboardingStore,
-  {
-    loginUser: {
-      user: { redeemedOnboarding },
-    },
-  }: LoginUser
-): IOnboardingStore => ({
+const loginUserSuccess = (state: IOnboardingStore, res: IOnboardingGetUserSuccessPayload): IOnboardingStore => ({
   ...state,
-  redeemedOnboarding,
+  redeemedOnboarding: res.onboarding.redeemedOnboarding,
 });

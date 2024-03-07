@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
-import { Challenge } from "@redux/_core/types";
+import { IDailyStepsFromRemotePayload } from "./daily-steps.types";
 
 export const START_DAILY_STEPS = "START_DAILY_STEPS";
 export const START_STEPS_SYNCING = "START_STEPS_SYNCING";
@@ -13,7 +13,7 @@ export const startDailySteps = createAction(START_DAILY_STEPS);
 
 export const startStepsSyncing = createAction(START_STEPS_SYNCING);
 
-export const updateDailyStepsSuccessFromRemote = createAction<{ challenge: Challenge; currentBalance: number }>(
+export const updateDailyStepsSuccessFromRemote = createAction<IDailyStepsFromRemotePayload>(
   UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE
 );
 
