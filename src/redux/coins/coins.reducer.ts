@@ -13,13 +13,7 @@ import { UPDATE_TOTAL_COINS } from "./coins.actions";
 import { UPDATE_DAILY_CYCLING_SUCCESS } from "@redux/daily-cycling/daily-cycling.actions";
 import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
 import { UPDATE_DAILY_PENSION_SUCCESS } from "@redux/daily-pension/daily-pension.actions";
-import {
-  Challenge,
-  GetCurrentUser_getDailyPensionContribution as DailyPension,
-  LoginUser,
-  GetUserCoinLedger_coinLedger,
-  GetUserTodayActivity_todayActivity,
-} from "@graphql/_core/schema";
+import { Challenge, LoginUser } from "@graphql/_core/schema";
 import {
   LOGIN_USER_SUCCESS,
   GET_USER_SUCCESS,
@@ -28,7 +22,8 @@ import {
   GET_USER_TODAY_ACTIVITY_SUCCESS,
 } from "@redux/user/user.actions";
 import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
-import { ChallengeCoinsEarned, ICoinsTodayEarned } from "./coins.types";
+import { ChallengeCoinsEarned, ICoinsStoreGetCoinLedger, ICoinsTodayEarned } from "./coins.types";
+import { DailyPension } from "@redux/daily-pension/daily-pension.types";
 
 export interface ICoinsStore {
   dailyChallengeEarned: number; // number of coins earned in the current day through challenges
@@ -182,18 +177,15 @@ const loginUserSuccess = (state: ICoinsStore, { loginUser }: LoginUser): ICoinsS
   };
 };
 
-const coinLedgerSuccess = (state: ICoinsStore, coinLedger: GetUserCoinLedger_coinLedger): ICoinsStore => ({
+const coinLedgerSuccess = (state: ICoinsStore, coinLedger: ICoinsStoreGetCoinLedger): ICoinsStore => ({
   ...state,
-  total: coinLedger?.currentBalance || state.total,
+  total: coinLedger?.total || state.total,
   lastUpdated: moment().format(DATE_FORMAT),
 });
 
-const todayActivitySuccess = (
-  state: ICoinsStore,
-  todayActivity: GetUserTodayActivity_todayActivity[]
-): ICoinsStore => ({
+const todayActivitySuccess = (state: ICoinsStore, res: ICoinsTodayEarned): ICoinsStore => ({
   ...state,
-  dailyChallengeEarned: sumCompletedChallenges(todayActivity),
+  dailyChallengeEarned: sumCompletedChallenges(res?.todayActivity),
   lastUpdated: moment().format(DATE_FORMAT),
 });
 

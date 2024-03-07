@@ -1,11 +1,7 @@
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import moment from "moment";
 import { addSecondsToChallengeEndDateTime, getCurrentPlanetByLevel, Planets } from "@utils";
-import {
-  LoginUser,
-  GetUserCoinLedger_coinLedger,
-  GetUserActiveChallenge_getUserActiveChallenge,
-} from "@graphql/_core/schema";
+import { LoginUser } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
 import {
@@ -42,6 +38,8 @@ import {
   UpdateChallengeAppButtonPayload,
   ChallengeStartPayload,
   ILevelGetUserSuccessDataPayload,
+  GetActiveChallengeSuccessDataPayload,
+  ILevelsStoreGetCoinLedger,
 } from "./levels.types";
 
 export interface ILevelsStore {
@@ -206,34 +204,31 @@ const loginUserSuccess = (state: ILevelsStore, data: LoginUser): ILevelsStore =>
   dailyChallengeAmountAvailable: data?.loginUser?.user?.dailyChallengeAmountAvailable,
 });
 
-const getCoinLedgerSuccess = (state: ILevelsStore, data: GetUserCoinLedger_coinLedger): ILevelsStore => ({
+const getCoinLedgerSuccess = (state: ILevelsStore, data: ILevelsStoreGetCoinLedger): ILevelsStore => ({
   ...state,
-  level: data?.currentLevel || 1,
+  level: data?.level || 1,
   yuniversalMap: data?.yuniversalMap || 0,
   yuniversalLevel: data?.yuniversalLevel || 0,
   nextLevelAvailableAt: data?.nextLevelAvailableAt || "",
-  currentPlanet: getCurrentPlanetByLevel(data?.currentLevel || 1),
+  currentPlanet: getCurrentPlanetByLevel(data?.level || 1),
 });
 
-const getActiveChallengeSuccess = (
-  state: ILevelsStore,
-  data: GetUserActiveChallenge_getUserActiveChallenge
-): ILevelsStore => ({
+const getActiveChallengeSuccess = (state: ILevelsStore, data: GetActiveChallengeSuccessDataPayload): ILevelsStore => ({
   ...state,
   active: {
     ...state.active,
     isLoading: false,
-    shouldEndOnLastGoalAchieved: data?.levelSlot?.shouldEndOnLastGoalAchieved || false,
-    fitKitTypes: data?.levelSlot?.fitKitTypes || [],
-    yuHealth: data?.levelSlot?.yuHealth,
-    endDateTime: data?.challenge?.endDateTime || "",
-    levelSlotId: data?.challenge?.levelSlotId || "",
-    milestones: data?.levelSlot?.milestones || [],
-    rating: data?.challenge?.rating || state.active.rating || 0,
-    startDateTime: data?.challenge?.startDateTime || "",
-    subtype: data?.levelSlot?.subtype || "",
-    unit: data?.levelSlot?.unit || state.active.unit || "",
-    challengeIsActive: !!data?.challenge?.id,
+    shouldEndOnLastGoalAchieved: data?.shouldEndOnLastGoalAchieved || false,
+    fitKitTypes: data?.fitKitTypes || [],
+    yuHealth: data?.yuHealth,
+    endDateTime: data?.endDateTime || "",
+    levelSlotId: data?.levelSlotId || "",
+    milestones: data?.milestones || [],
+    rating: data?.rating || state.active.rating || 0,
+    startDateTime: data?.startDateTime || "",
+    subtype: data?.subtype || "",
+    unit: data?.unit || state.active.unit || "",
+    challengeIsActive: data?.challengeIsActive,
   },
 });
 

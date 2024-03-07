@@ -6,7 +6,8 @@ import { useMutation, useQuery } from "@apollo/client";
 import { AnswerInput } from "@graphql/_core/schema/globalTypes";
 import { FeedbackForm } from "@organisms";
 import { useDispatch } from "react-redux";
-import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
+import { getUserDataStart } from "@redux/user/user.actions";
+import { AppDataType } from "@redux/user/user.types";
 import Logger from "@services/logging/logger";
 import { gql } from "@graphql/__generated";
 

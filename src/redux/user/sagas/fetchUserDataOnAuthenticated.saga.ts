@@ -1,5 +1,6 @@
 import { put } from "redux-saga/effects";
-import { AppDataType, getUserDataStart } from "../user.actions";
+import { getUserDataStart } from "../user.actions";
+import { AppDataType } from "../user.types";
 
 export default function* fetchUserDataOnAuthenticatedSaga() {
   // TODO: Incorporate more data types as reducers from getCurrentUser/loginUser are removed

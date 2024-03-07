@@ -26,7 +26,8 @@ import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { IConsents } from "@components/modals/join-leaderboard-overlay/join-leaderboard-overlay";
 import { SocialLeaderboardConstent, gql } from "@graphql/__generated";
 import { isEmpty } from "lodash";
-import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
+import { getUserDataStart } from "@redux/user/user.actions";
+import { AppDataType } from "@redux/user/user.types";
 
 export const PAGE_SIZE = 501;
 

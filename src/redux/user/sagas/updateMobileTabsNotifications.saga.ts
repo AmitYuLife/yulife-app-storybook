@@ -21,7 +21,7 @@ export default function* updateMobileTabsNotifications() {
     const tabNotifications: ReturnType<typeof getTabNotifications> = yield select(getTabNotifications);
 
     if (currentMobileTab && tabNotifications.includes(currentMobileTab)) {
-      yield put(markNotificationsAsViewedByType(currentMobileTab));
+      yield put(markNotificationsAsViewedByType({ type: currentMobileTab }));
     }
   } catch (e) {
     yield spawn(() => {

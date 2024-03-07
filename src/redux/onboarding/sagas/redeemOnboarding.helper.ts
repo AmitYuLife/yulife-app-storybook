@@ -1,7 +1,8 @@
 import upsertOnboardingChallenge from "@graphql/challenges/upsertOnboardingChallenge.gql";
 import Logger from "@services/logging/logger";
 import { call, put, spawn } from "redux-saga/effects";
-import { AppDataType, getUserDataStart, getUserStart } from "../../user/user.actions";
+import { getUserDataStart, getUserStart } from "../../user/user.actions";
+import { AppDataType } from "../../user/user.types";
 import { setRedeemedOnboarding } from "../onboarding.actions";
 
 export default function* redeemOnboarding() {

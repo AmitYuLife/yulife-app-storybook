@@ -6,7 +6,7 @@ import { GQL_FRAGMENT_USER_COIN_LEDGER } from "@graphql/_fragments/userCoinLedge
 import { GQL_FRAGMENT_USER_TODAY_ACTIVITY } from "@graphql/_fragments/userTodayActivity.gql";
 import { GQL_FRAGMENT_USER_ACTIVE_CHALLENGE } from "@graphql/_fragments/userActiveChallenge.gql";
 import { GQL_FRAGMENT_USER_PASSIVE_CHALLENGES_EARN_RATE } from "./getUserPassiveChallengesEarnRate.gql";
-import { AppDataType, IAppDataTypePayload } from "@redux/user/user.actions";
+import { AppDataType, IAppDataTypePayload } from "@redux/user/user.types";
 import {
   GetDailyPensionContribution_getDailyPensionContribution,
   GetMobileHints_getMobileHints,
@@ -112,7 +112,7 @@ export const generateQuery = (types: AppDataType[], overrideQueryName?: string) 
 
 export interface GetAllUserDataResponse {
   [AppDataType.coinLedger]: GetUserCoinLedger_coinLedger;
-  [AppDataType.todayActivity]: GetUserTodayActivity_todayActivity;
+  [AppDataType.todayActivity]: GetUserTodayActivity_todayActivity[];
   [AppDataType.passiveChallengesEarnRate]: GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate;
   [AppDataType.activeStreak]: GetUserActiveStreak_getUserActiveStreak;
   [AppDataType.activeChallenge]: GetUserActiveChallenge_getUserActiveChallenge;

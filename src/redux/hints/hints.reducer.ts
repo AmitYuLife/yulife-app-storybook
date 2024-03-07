@@ -1,7 +1,7 @@
 import { LOGOUT_SUCCESS } from "../user/user.actions";
 import { SyncAction } from "@redux/_core/types";
 import { CYCLE_HINT, UPDATE_HINTS_SUCCESS } from "./hints.actions";
-import { IHint, IShownHint } from "./hints.types";
+import { IGetHintsSuccessPayload, IHint, IShownHint } from "./hints.types";
 
 export interface IHintsStore {
   hints: IHint[];
@@ -19,7 +19,7 @@ const hintsReducer = (state: IHintsStore = getInitialState(), action: SyncAction
       return getInitialState();
 
     case UPDATE_HINTS_SUCCESS:
-      return { ...state, hints: action.payload };
+      return updateHintsSuccess(state, action.payload);
 
     case CYCLE_HINT: {
       return cycleHint(state, action.payload);
@@ -29,6 +29,11 @@ const hintsReducer = (state: IHintsStore = getInitialState(), action: SyncAction
       return state;
   }
 };
+
+const updateHintsSuccess = (state: IHintsStore, payload: IGetHintsSuccessPayload) => ({
+  ...state,
+  hints: payload.hints,
+});
 
 const cycleHint = (state: IHintsStore, payload: { shownHint: IHint }) => {
   if (!payload.shownHint) {

@@ -23,9 +23,10 @@ import {
   REFRESH_USER_PROFILE_EVENTS,
   UPDATE_USER_PROFILE_EVENTS,
   GET_ALL_USER_DATA_START,
-  AppDataType,
   MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE,
 } from "../user.actions";
+
+import { AppDataType } from "../user.types";
 
 import fetchConnectionsSaga from "./fetchConnectionsSaga.sagas";
 import fetchUserOnAppStateChangeSaga from "./fetchUserOnAppStateChange.saga";

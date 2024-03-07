@@ -2,22 +2,39 @@ import { call, put } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
-import getAllUserData, { GetAllUserDataResponse } from "@graphql/user/getAllUserData.gql";
+import getAllUserData from "@graphql/user/getAllUserData.gql";
 import {
   getUserPassiveChallengesEarnRateSuccess,
   getUserActiveChallengeSuccess,
   getUserActiveStreakSuccess,
-  AppDataType,
   getUserTodayActivitySuccess,
   getUserCoinLedgerSuccess,
-  IAppDataTypePayload,
 } from "../user.actions";
+import { AppDataType, IAppDataTypePayload } from "../user.types";
 import { Action } from "@reduxjs/toolkit";
 import { updateDailyPensionSuccess } from "@redux/daily-pension/daily-pension.actions";
 import { updateHintsSuccess } from "@redux/hints/hints.actions";
 import { updateSocialGroupLeaderboardsSuccess } from "@redux/leaderboards/leaderboards.actions";
+import { GetActiveChallengeSuccessDataPayload } from "@redux/levels/levels.types";
+import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
+import { ICoinsTodayEarned, IGetCoinLedgerSuccessPayload } from "@redux/coins/coins.types";
+import { IPassiveChallengesEarnRateSuccessPayload } from "../user.types";
+import { DailyPension } from "@redux/daily-pension/daily-pension.types";
+import { IGetHintsSuccessPayload } from "@redux/hints/hints.types";
+import { IGetSocialGroupsSuccessPayload } from "@redux/leaderboards/leaderboards.types";
+import { toUserDataReduxType } from "./getAllUserData.helper";
 
-const SUCCESS_ACTIONS: Record<AppDataType, (data: GetAllUserDataResponse[AppDataType]) => Action> = {
+type SuccessActionsDataTypes =
+  | GetActiveChallengeSuccessDataPayload
+  | IStreaksGetUserSuccessPayload
+  | IGetCoinLedgerSuccessPayload
+  | ICoinsTodayEarned
+  | IPassiveChallengesEarnRateSuccessPayload
+  | DailyPension
+  | IGetHintsSuccessPayload
+  | IGetSocialGroupsSuccessPayload;
+
+const SUCCESS_ACTIONS: Record<AppDataType, (data: SuccessActionsDataTypes) => Action> = {
   [AppDataType.activeChallenge]: getUserActiveChallengeSuccess,
   [AppDataType.activeStreak]: getUserActiveStreakSuccess,
   [AppDataType.coinLedger]: getUserCoinLedgerSuccess,
@@ -41,7 +58,7 @@ export default function* getAllUserDataSaga({
       if (data) {
         for (const type of types) {
           if (SUCCESS_ACTIONS[type]) {
-            yield put(SUCCESS_ACTIONS[type](data[type]));
+            yield put(SUCCESS_ACTIONS[type](toUserDataReduxType(type, data[type])));
           }
         }
       }

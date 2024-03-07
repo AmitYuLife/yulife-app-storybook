@@ -191,3 +191,8 @@ export interface ChallengeIncomingData {
   duration?: number;
   calories?: number;
 }
+
+export type ILevelsStoreGetCoinLedger = Pick<
+  ILevelsStore,
+  "level" | "yuniversalMap" | "yuniversalLevel" | "nextLevelAvailableAt"
+>;

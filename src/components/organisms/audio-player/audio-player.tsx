@@ -30,7 +30,8 @@ import { getActiveLevel, getVideoPlayerIsActive } from "@redux/levels/levels.sel
 import { IActiveLevel } from "@redux/levels/levels.types";
 import { HourglassIcon } from "@atoms/icon/hourglass-icon";
 import { t } from "@locale";
-import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
+import { getUserDataStart } from "@redux/user/user.actions";
+import { AppDataType } from "@redux/user/user.types";
 import TrackPlayer, { State, Event, useTrackPlayerEvents, PlaybackErrorEvent } from "react-native-track-player";
 import AudioPlayerService from "@services/audio-player";
 import LottieView from "lottie-react-native";
