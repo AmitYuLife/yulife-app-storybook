@@ -4,8 +4,14 @@ import {
   HealthProviderAvailability,
   HealthProviderCapability,
 } from "@yu-life/react-native-yu-health";
-import { refreshProviderAvailability, setActiveYuHealthProvider, updateCapabilityStatuses } from "./yu-health.actions";
+import {
+  refreshProviderAvailability,
+  setActiveYuHealthProvider,
+  setYuHealthStatus,
+  updateCapabilityStatuses,
+} from "./yu-health.actions";
 import { createReducer } from "@reduxjs/toolkit";
+import { YuHealthStatus } from "./yu-health.types";
 
 export interface IYuHealthStore {
   /**
@@ -13,9 +19,9 @@ export interface IYuHealthStore {
    */
   activeProvider: HealthProvider | null;
   /**
-   * Is a health provder currently authorising (is their modal open)
+   * Are we loading / authorising / ready
    */
-  isAuthorising?: boolean;
+  status?: YuHealthStatus;
   /**
    * Permission status of capabilities
    */
@@ -32,6 +38,7 @@ export interface IYuHealthStore {
 
 export const getInitialYuHealthState = (): IYuHealthStore => ({
   activeProvider: null,
+  status: YuHealthStatus.loading,
 });
 
 const yuHealthReducer = createReducer(getInitialYuHealthState(), (builder) => {
@@ -41,6 +48,10 @@ const yuHealthReducer = createReducer(getInitialYuHealthState(), (builder) => {
 
   builder.addCase(updateCapabilityStatuses, (state, action) => {
     state.capabilityStatuses = action.payload;
+  });
+
+  builder.addCase(setYuHealthStatus, (state, action) => {
+    state.status = action.payload;
   });
 
   builder.addCase(refreshProviderAvailability, (state, action) => {

@@ -1,8 +1,9 @@
 import HealthPermissionModal from "@components/modals/health-permission/health-permission.modal";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
-import { yuHealthPermissionsRequested } from "@redux/yu-health/yu-health.actions";
+import { setYuHealthStatus, yuHealthPermissionsRequested } from "@redux/yu-health/yu-health.actions";
 import { getProviderAvailabilities } from "@redux/yu-health/yu-health.selectors";
+import { YuHealthStatus } from "@redux/yu-health/yu-health.types";
 import Logger from "@services/logging/logger";
 import { openSettingsAlert, shouldContinueWithPermissionStatus, shouldRequestHealthPermission } from "@utils";
 import {
@@ -100,7 +101,10 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
       }
 
       if (capabilitiesToRequest.length > 0) {
+        dispatch(setYuHealthStatus(YuHealthStatus.authorising));
         const permissionResponse = await requestPermissions(capabilitiesToRequest);
+        dispatch(setYuHealthStatus(YuHealthStatus.ready));
+
         dispatch(yuHealthPermissionsRequested());
 
         // Check if any of the requested permissions did not pass the check

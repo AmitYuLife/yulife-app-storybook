@@ -1,6 +1,7 @@
 import YuHealthConnectSelectScreen from "@components/screens/member/yu-health-connect/yu-health-connect-select.screen";
 import { Navigation } from "@navigation/main";
 import { getProviderAvailabilities } from "@redux/yu-health/yu-health.selectors";
+import { SUPPORTED_PROVIDERS } from "@utils";
 import { HealthProvider, HealthProviderAvailability } from "@yu-life/react-native-yu-health";
 import { memo, useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
@@ -26,7 +27,7 @@ const YuHealthConnectContainer = ({
       return availableProviders;
     }
 
-    return Object.values(HealthProvider).filter(
+    return SUPPORTED_PROVIDERS.filter(
       (provider) => providerAvailabilities[provider] === HealthProviderAvailability.available
     );
   }, [availableProviders, providerAvailabilities]);
