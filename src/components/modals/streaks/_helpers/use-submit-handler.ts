@@ -1,6 +1,7 @@
 import { ApolloCache, DefaultContext, FetchResult, MutationFunctionOptions } from "@apollo/client";
 import { CollectAwardMutation, Exact } from "@graphql/__generated";
-import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
+import { getUserDataStart } from "@redux/user/user.actions";
+import { AppDataType } from "@redux/user/user.types";
 import { VoidFunction } from "@utils";
 import { useDispatch } from "react-redux";
 

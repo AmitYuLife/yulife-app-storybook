@@ -3,7 +3,8 @@ import { eventState } from "@components/screens/member/events/collect-event-rewa
 import { t } from "@locale";
 import { MODALS } from "@navigation/constants";
 import { IReward } from "@organisms/event-reward/event-reward";
-import { AppDataType, getUserDataStart, getUserStart, refreshUserProfileEvents } from "@redux/user/user.actions";
+import { getUserDataStart, getUserStart, refreshUserProfileEvents } from "@redux/user/user.actions";
+import { AppDataType } from "@redux/user/user.types";
 import { CollectEventRewardScreen } from "@screens";
 import Logger from "@services/logging/logger";
 import { delay } from "@utils/misc";

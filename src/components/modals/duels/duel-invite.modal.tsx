@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
+import { getUserDataStart } from "@redux/user/user.actions";
+import { AppDataType } from "@redux/user/user.types";
 import { useMutation, useQuery } from "@apollo/client";
 import { Alert, View } from "react-native";
 import moment from "moment";

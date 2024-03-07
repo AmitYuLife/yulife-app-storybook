@@ -16,3 +16,5 @@ export interface IShownHint {
   id: string;
   showCount: number;
 }
+
+export type IGetHintsSuccessPayload = { hints: IHint[] };

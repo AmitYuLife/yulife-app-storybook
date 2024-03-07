@@ -1,6 +1,10 @@
 import { REHYDRATE } from "redux-persist";
 import { SyncAction } from "@redux/_core/types";
-import { SearchLeaderboardUser as SearchItem, ISocialGroup } from "./leaderboards.types";
+import {
+  SearchLeaderboardUser as SearchItem,
+  ISocialGroup,
+  IGetSocialGroupsSuccessPayload,
+} from "./leaderboards.types";
 import {
   ADD_RECENT_SEARCH_ITEM,
   UPDATE_SOCIAL_GROUP_LEADERBOARDS_SUCCESS,
@@ -75,7 +79,7 @@ const addRecent = (state: ILeaderboardsStore, { item: searchItem }: { item: Sear
 
 const updateSocialGroupLeaderboardsSuccess = (
   state: ILeaderboardsStore,
-  socialGroupsData: ISocialGroup[]
+  { socialGroups: socialGroupsData }: IGetSocialGroupsSuccessPayload
 ): ILeaderboardsStore => {
   const activeLeaderboardConfigId = state.socialGroups
     ?.find((socialGroup) => socialGroup.socialGroupId === state.activeSocialGroupId)

@@ -8,6 +8,17 @@ import { IOnboardingGetUserSuccessPayload } from "@redux/onboarding/onboarding.t
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
 import { IUserStore } from "./user.reducer";
 
+export enum AppDataType {
+  coinLedger = "coinLedger",
+  todayActivity = "todayActivity",
+  passiveChallengesEarnRate = "passiveChallengesEarnRate",
+  activeStreak = "activeStreak",
+  activeChallenge = "activeChallenge",
+  dailyPension = "dailyPension",
+  hints = "hints",
+  socialGroups = "socialGroups",
+}
+
 export type UserConnection = Connections & { isLoading?: boolean };
 
 type FeatureKey = typeof features[number];
@@ -15,6 +26,11 @@ type FeatureKey = typeof features[number];
 export type IFeature = Record<FeatureKey, boolean>;
 
 export type SurgeActivity = "steps" | "meditation" | "all" | null;
+
+export interface IAppDataTypePayload {
+  types: AppDataType[];
+  overrideQueryName?: string;
+}
 
 export interface Connections {
   name: string;
@@ -115,3 +131,6 @@ export type IGetUserSuccessPayload = IUserGetUserSuccessPayload &
   ILevelGetUserSuccessDataPayload &
   IOnboardingGetUserSuccessPayload &
   IStreaksGetUserSuccessPayload;
+
+export type IPassiveChallengesEarnRateSuccessPayload = IDailyStepsGetUserSuccessPayload &
+  IDailyMeditationGetCurrentUserPayload;

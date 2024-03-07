@@ -1,4 +1,4 @@
-import { GetUserActiveStreak_getUserActiveStreak, LoginUser } from "@graphql/_core/schema";
+import { LoginUser } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import {
   GET_USER_ACTIVE_STREAK_SUCCESS,
@@ -85,14 +85,12 @@ const loginUserSuccess = (state: IStreaksStore, data: LoginUser): IStreaksStore 
   };
 };
 
-const getActiveStreakSuccess = (
-  state: IStreaksStore,
-  data: GetUserActiveStreak_getUserActiveStreak = DEFAULT_ACTIVE_STREAK
-): IStreaksStore => {
+const getActiveStreakSuccess = (state: IStreaksStore, data: IStreaksGetUserSuccessPayload): IStreaksStore => {
+  const activeStreak = data?.activeStreak || DEFAULT_ACTIVE_STREAK;
   return {
     ...state,
-    isAvailable: !!data.id,
-    isRedeemed: data.streak === data.maxStreak && !data.streakAwardId,
-    ...data,
+    isAvailable: !!activeStreak.id,
+    isRedeemed: activeStreak.streak === activeStreak.maxStreak && !activeStreak.streakAwardId,
+    ...activeStreak,
   };
 };

@@ -42,7 +42,8 @@ import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 import { ContentItemLottie as GqlLottie } from "@graphql/__generated";
 import { HourglassIcon } from "@atoms/icon/hourglass-icon";
 import { t } from "@locale";
-import { AppDataType, getUserDataStart } from "@redux/user/user.actions";
+import { getUserDataStart } from "@redux/user/user.actions";
+import { AppDataType } from "@redux/user/user.types";
 
 export interface IVideoPlayerProps {
   source: string;

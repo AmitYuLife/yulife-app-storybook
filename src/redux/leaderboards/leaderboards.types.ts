@@ -28,3 +28,5 @@ export interface ISocialGroup {
   name: string;
   leaderboards: ISocialGroupLeaderboard[];
 }
+
+export type IGetSocialGroupsSuccessPayload = { socialGroups: ISocialGroup[] };

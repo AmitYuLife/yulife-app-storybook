@@ -1,10 +1,6 @@
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
-import {
-  LoginUser,
-  GetUserProfile_getUserProfile_gameSettings as GameSettings,
-  GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate,
-} from "@graphql/_core/schema";
+import { LoginUser, GetUserProfile_getUserProfile_gameSettings as GameSettings } from "@graphql/_core/schema";
 import {
   PEDOMETER_UPDATES_NO_NEW_DATA,
   PEDOMETER_UPDATES_START,
@@ -208,12 +204,9 @@ const getUserSuccess = (state: IDailyStepsStore, res: IDailyStepsGetUserSuccessP
   exchangeRate: res?.passiveSteps?.exchangeRate || getInitialState().exchangeRate,
 });
 
-const getPassiveChallengesEarnRateSuccess = (
-  state: IDailyStepsStore,
-  res: GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate
-) => ({
+const getPassiveChallengesEarnRateSuccess = (state: IDailyStepsStore, res: IDailyStepsGetUserSuccessPayload) => ({
   ...state,
-  exchangeRate: res?.STEPS?.exchange || getInitialState().exchangeRate,
+  exchangeRate: res?.passiveSteps?.exchangeRate || getInitialState().exchangeRate,
 });
 
 const loginUserSuccess = (state: IDailyStepsStore, res: LoginUser) => ({

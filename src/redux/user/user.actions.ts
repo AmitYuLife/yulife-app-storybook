@@ -2,18 +2,21 @@ import {
   LoginUser,
   GetUserFeatures_getUserFeatures,
   GetUserConnections_getUserConnections,
-  GetUserActiveChallenge_getUserActiveChallenge,
-  GetUserActiveStreak_getUserActiveStreak,
-  GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate,
-  GetUserCoinLedger_coinLedger,
-  GetUserTodayActivity_todayActivity,
 } from "@graphql/_core/schema";
 import { MobileTabs } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "./user.reducer";
 import { Connection } from "./user.selectors";
 import { GetUserSurgeQuery, AvatarRemoteFiles, JoinGoalMutation, MobileConsentInput } from "@graphql/__generated";
 import { createAction } from "@reduxjs/toolkit";
-import { IGetUserSuccessPayload } from "./user.types";
+import {
+  IPassiveChallengesEarnRateSuccessPayload,
+  IGetUserSuccessPayload,
+  IAppDataTypePayload,
+  AppDataType,
+} from "./user.types";
+import { GetActiveChallengeSuccessDataPayload } from "@redux/levels/levels.types";
+import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
+import { ICoinsTodayEarned, IGetCoinLedgerSuccessPayload } from "@redux/coins/coins.types";
 
 export interface ISetIsUpdatingLeaderboardPayload {
   isLoading: boolean;
@@ -73,156 +76,72 @@ export const setUserNoAccessAction = () => ({
   type: SET_USER_NO_ACCESS,
 });
 
-export enum AppDataType {
-  coinLedger = "coinLedger",
-  todayActivity = "todayActivity",
-  passiveChallengesEarnRate = "passiveChallengesEarnRate",
-  activeStreak = "activeStreak",
-  activeChallenge = "activeChallenge",
-  dailyPension = "dailyPension",
-  hints = "hints",
-  socialGroups = "socialGroups",
-}
+export const getUserDataStart = createAction(
+  GET_ALL_USER_DATA_START,
+  (payload: IAppDataTypePayload = { types: Object.values(AppDataType) }) => ({
+    payload,
+  })
+);
 
-export interface IAppDataTypePayload {
-  types: AppDataType[];
-  overrideQueryName?: string;
-}
+export const getUserStart = createAction(GET_USER_START);
 
-export const getUserDataStart = (payload: IAppDataTypePayload = { types: Object.values(AppDataType) }) => ({
-  type: GET_ALL_USER_DATA_START,
+export const getUserPassiveChallengesEarnRateSuccess = createAction<IPassiveChallengesEarnRateSuccessPayload>(
+  GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS
+);
+
+export const getUserFeaturesSuccess = createAction<GetUserFeatures_getUserFeatures[]>(GET_USER_FEATURES_SUCCESS);
+
+export const getUserCoinLedgerSuccess = createAction<IGetCoinLedgerSuccessPayload>(GET_USER_COIN_LEDGER_SUCCESS);
+
+export const getUserTodayActivitySuccess = createAction<ICoinsTodayEarned>(GET_USER_TODAY_ACTIVITY_SUCCESS);
+
+export const getUserConnectionsSuccess =
+  createAction<GetUserConnections_getUserConnections[]>(GET_USER_CONNECTIONS_SUCCESS);
+
+export const getUserActiveChallengeSuccess = createAction<GetActiveChallengeSuccessDataPayload>(
+  GET_USER_ACTIVE_CHALLENGE_SUCCESS
+);
+
+export const getUserActiveStreakSuccess = createAction<IStreaksGetUserSuccessPayload>(GET_USER_ACTIVE_STREAK_SUCCESS);
+
+export const yuScreenSynchronised = createAction(YUSCREEN_SYNCHRONISED);
+
+export const getUserSuccess = createAction<IGetUserSuccessPayload>(GET_USER_SUCCESS);
+
+export const loginUserSuccess = createAction<LoginUser>(LOGIN_USER_SUCCESS);
+
+export const updateUserConsent = createAction<MobileConsentInput>(UPDATE_USER_CONSENT);
+
+export const updateConnectionStart = createAction(UPDATE_CONNECTION_START, (payload: Connection) => ({
   payload,
-});
+}));
 
-export const getUserStart = () => ({
-  type: GET_USER_START,
-});
+export const updateConnectionFailed = createAction<Connection>(UPDATE_CONNECTION_FAILED);
 
-export const getUserPassiveChallengesEarnRateSuccess = (
-  payload: GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate
-) => ({
-  payload,
-  type: GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS as typeof GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS,
-});
+export const updateConnectionSuccess = createAction<Connection>(UPDATE_CONNECTION_SUCCESS);
 
-export const getUserFeaturesSuccess = (payload: GetUserFeatures_getUserFeatures[]) => ({
-  payload,
-  type: GET_USER_FEATURES_SUCCESS as typeof GET_USER_FEATURES_SUCCESS,
-});
+export const logOutStart = createAction(LOGOUT_START);
 
-export const getUserCoinLedgerSuccess = (payload: GetUserCoinLedger_coinLedger) => ({
-  payload,
-  type: GET_USER_COIN_LEDGER_SUCCESS as typeof GET_USER_COIN_LEDGER_SUCCESS,
-});
+export const logOutSuccess = createAction(LOGOUT_SUCCESS);
 
-export const getUserTodayActivitySuccess = (payload: GetUserTodayActivity_todayActivity) => ({
-  payload,
-  type: GET_USER_TODAY_ACTIVITY_SUCCESS as typeof GET_USER_TODAY_ACTIVITY_SUCCESS,
-});
+export const openMyAccount = createAction(OPEN_MY_ACCOUNT);
 
-export const getUserConnectionsSuccess = (payload: GetUserConnections_getUserConnections[]) => ({
-  payload,
-  type: GET_USER_CONNECTIONS_SUCCESS as typeof GET_USER_CONNECTIONS_SUCCESS,
-});
+export const setShowSurgeIntro = createAction<IUserStore["surgeIntro"]>(SET_SHOW_SURGE_INTRO);
 
-export const getUserActiveChallengeSuccess = (payload: GetUserActiveChallenge_getUserActiveChallenge) => ({
-  payload,
-  type: GET_USER_ACTIVE_CHALLENGE_SUCCESS as typeof GET_USER_ACTIVE_CHALLENGE_SUCCESS,
-});
+export const updateUserProfile = createAction<Partial<IUserStore>>(UPDATE_USER_PROFILE);
 
-export const getUserActiveStreakSuccess = (payload: GetUserActiveStreak_getUserActiveStreak) => ({
-  payload,
-  type: GET_USER_ACTIVE_STREAK_SUCCESS as typeof GET_USER_ACTIVE_STREAK_SUCCESS,
-});
+export const updateUserProfileEvents = createAction<IUserStore["events"]>(UPDATE_USER_PROFILE_EVENTS);
 
-export const yuScreenSynchronised = () => ({
-  type: YUSCREEN_SYNCHRONISED,
-});
+export const removeUserProfileEvent = createAction<string>(REMOVE_USER_PROFILE_EVENT);
 
-export const getUserSuccess = (payload: IGetUserSuccessPayload) => ({
-  payload,
-  type: GET_USER_SUCCESS as typeof GET_USER_SUCCESS,
-});
+export const refreshUserProfileEvents = createAction(REFRESH_USER_PROFILE_EVENTS);
 
-export const loginUserSuccess = (payload: LoginUser) => ({
-  payload,
-  type: LOGIN_USER_SUCCESS,
-});
+export const updateUserGoal = createAction<Partial<JoinGoalMutation["joinGoal"]>>(UPDATE_USER_GOAL);
 
-export const updateUserConsent = (payload: MobileConsentInput) => ({
-  payload,
-  type: UPDATE_USER_CONSENT,
-});
+export const updateUserAvatarRemoteFiles = createAction<AvatarRemoteFiles>(UPDATE_USER_AVATAR);
 
-export const updateConnectionStart = (payload: Connection) => ({
-  payload,
-  type: UPDATE_CONNECTION_START,
-});
+export const updateUserSurge = createAction<GetUserSurgeQuery["getUserSurge"]>(UPDATE_USER_SURGE);
 
-export const updateConnectionFailed = (payload: Connection) => ({
-  payload,
-  type: UPDATE_CONNECTION_FAILED,
-});
-
-export const updateConnectionSuccess = (payload: Connection) => ({
-  payload,
-  type: UPDATE_CONNECTION_SUCCESS,
-});
-
-export const logOutStart = () => ({
-  type: LOGOUT_START as typeof LOGOUT_START,
-});
-
-export const logOutSuccess = () => ({
-  type: LOGOUT_SUCCESS as typeof LOGOUT_SUCCESS,
-});
-
-export const openMyAccount = () => ({
-  type: OPEN_MY_ACCOUNT,
-});
-
-export const setShowSurgeIntro = (payload: IUserStore["surgeIntro"]) => ({
-  type: SET_SHOW_SURGE_INTRO,
-  payload,
-});
-
-export const updateUserProfile = (payload: Partial<IUserStore>) => ({
-  type: UPDATE_USER_PROFILE,
-  payload,
-});
-
-export const updateUserProfileEvents = (payload: IUserStore["events"]) => ({
-  type: UPDATE_USER_PROFILE_EVENTS,
-  payload,
-});
-
-export const removeUserProfileEvent = (payload: string) => ({
-  type: REMOVE_USER_PROFILE_EVENT,
-  payload,
-});
-
-export const refreshUserProfileEvents = () => ({
-  type: REFRESH_USER_PROFILE_EVENTS,
-});
-
-export const updateUserGoal = (payload: Partial<JoinGoalMutation["joinGoal"]>) => ({
-  type: UPDATE_USER_GOAL,
-  payload,
-});
-
-export const updateUserAvatarRemoteFiles = (payload: AvatarRemoteFiles) => ({
-  type: UPDATE_USER_AVATAR,
-  payload,
-});
-
-export const updateUserSurge = (payload: GetUserSurgeQuery["getUserSurge"]) => ({
-  type: UPDATE_USER_SURGE,
-  payload,
-});
-
-export const markNotificationsAsViewedByType = (type: MobileTabs) => ({
-  type: MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE,
-  payload: { type },
-});
+export const markNotificationsAsViewedByType = createAction<{ type: MobileTabs }>(MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE);
 
 export const getUserSessionSuccess = createAction(GET_USER_SESSION_SUCCESS);
