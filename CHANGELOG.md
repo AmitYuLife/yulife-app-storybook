@@ -7,6 +7,55 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.5.0] - 2024-03-07
+
+### Bugfixes
+
+- Bugfix: Move RELEASE_ENVIRONMENT env var to ios workflows
+- Bugfix VBUS-179: Explore Insurance Logos Cropped
+- Bugfix ENG-3879: Cannot read property onPressLeftIcon of undefined
+- Bugfix GS: Add missing space weeklies
+
+### Tasks
+
+- Task DEVOP-2196: Bump bugsnag version to support RN 73
+- Task VBUS-170: Create YuScreen V5
+- Task: YuHealth upgrade & types
+- Task: Switch to available provider when capability is unsupported
+- Task: Login fix
+- Task: Unsupported capability fixes
+- Task: YuHealth improvements
+- Task: YuHealth permission changes
+- Task: no retry for SubscribeToPerk & RedeemMobileSduiReward
+- Task: YuHealth login
+- Task: YuHealth integration
+
+### Chores
+
+- Chore: Get user success redux types
+- Chore: Hints and social leaderboard redux types
+- Chore: Create EnterpriseRewardInfo component
+- Chore: Passive challenges redux types
+
+### Improvements
+
+- Hotfix: deep linking improvements
+
+### Extra
+
+- detox: vbus-6
+- detox: vbus-141
+- Detox/deep-link-cold-start
+- Detox/language-switch-deep-link
+- Fix: Remove ad banners if user has none
+- detox:vbus-179
+- detox: cleaning-functions
+- Detox/fixes-05/03
+- Detox/vbus 45
+- Detox/bitrise-fix-04/03
+- detox/pli-fixes
+- Detox/fixes-01/03
+
 ## [4.4.0] - 2024-02-29
 
 ### Bugfixes
