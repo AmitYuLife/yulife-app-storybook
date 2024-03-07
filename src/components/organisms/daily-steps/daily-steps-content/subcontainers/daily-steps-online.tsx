@@ -136,7 +136,7 @@ export const DailyStepsOnline = memo(
     const yuCoinTodayText = useMemo(() => `${t("yu_coin.camel_case")} ${t("period.today")}`, [locale]);
 
     const navigateToTodayEarnings = useCallback(() => {
-      if (!features.tempGameEnableYuHealth) {
+      if (!features.tempGameEnableReleaseYuHealth) {
         if (!fitkit.authorised) {
           return;
         }
@@ -148,10 +148,10 @@ export const DailyStepsOnline = memo(
           name: ROUTES.todayEarnings,
         },
       });
-    }, [features.tempGameEnableYuHealth, fitkit.authorised]);
+    }, [features.tempGameEnableReleaseYuHealth, fitkit.authorised]);
 
     const healthPermissions = useMemo((): Omit<IHealthPermissionPanelProps, "width"> => {
-      if (!((isUnauthorised || isUnavailable) && features.tempGameEnableYuHealth)) {
+      if (!((isUnauthorised || isUnavailable) && features.tempGameEnableReleaseYuHealth)) {
         return;
       }
 
@@ -176,7 +176,7 @@ export const DailyStepsOnline = memo(
       };
 
       return { isUnauthorised, isUnavailable, onPress };
-    }, [features.tempGameEnableYuHealth, isUnauthorised, isUnavailable]);
+    }, [features.tempGameEnableReleaseYuHealth, isUnauthorised, isUnavailable]);
 
     const showEventPanel = isUnavailable || isUnauthorised || events.length > 0;
 

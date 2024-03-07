@@ -11,9 +11,9 @@ interface IChallengesListProps {
 }
 
 const ChallengesListWrapper = (props: IChallengesListProps) => {
-  const { tempGameEnableYuHealth } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealth } = useUserFeatures();
 
-  if (!tempGameEnableYuHealth) {
+  if (!tempGameEnableReleaseYuHealth) {
     return <ChallengesListOldContainer {...props} />;
   }
 

@@ -136,7 +136,7 @@ interface IFetchActivityRequest {
 }
 
 export const fetchActivityData = async ({ features, stepsBlackListApps, start, end }: IFetchActivityRequest) => {
-  if (!features.tempGameEnableYuHealth) {
+  if (!features.tempGameEnableReleaseYuHealth) {
     return fetchFitkitActivityData({ features, stepsBlackListApps, start, end });
   }
 

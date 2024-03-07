@@ -95,7 +95,7 @@ const LoginContainer: React.FC<Props> = ({
       if (!authorised) {
         let route = ROUTES.yuHealthConnect;
 
-        if (!userFeatures?.tempGameEnableYuHealth) {
+        if (!userFeatures?.tempGameEnableReleaseYuHealth) {
           route = ROUTES.onboardingFitKitConnect;
         }
 

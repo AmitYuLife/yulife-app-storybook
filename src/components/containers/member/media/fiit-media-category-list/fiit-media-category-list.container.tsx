@@ -74,7 +74,7 @@ const FiitMediaCategoryListContainer = ({
 
   const handleFiitApp = useCallback(
     async (_: string, button?: IButton) => {
-      if (!features.tempGameEnableYuHealth) {
+      if (!features.tempGameEnableReleaseYuHealth) {
         const activityFromGoogleFitAuthorised = await RNFitKit.isAuthorised({
           read: [],
           platform: "GoogleFit",
@@ -111,7 +111,7 @@ const FiitMediaCategoryListContainer = ({
       await createChallengeUsingFiitApp();
     },
     [
-      features.tempGameEnableYuHealth,
+      features.tempGameEnableReleaseYuHealth,
       verifyAndAuthorizeCapability,
       yuHealth,
       dispatch,
