@@ -1,26 +1,46 @@
 import { HealthProvider, HealthProviderCapability, hasPermissions } from "@yu-life/react-native-yu-health";
-import { put, select, take } from "redux-saga/effects";
-import { YU_HEALTH_SET_ACTIVE_PROVIDER, updateCapabilityStatuses } from "../yu-health.actions";
+import { delay, put, select, take } from "redux-saga/effects";
+import { YU_HEALTH_SET_ACTIVE_PROVIDER, setYuHealthStatus, updateCapabilityStatuses } from "../yu-health.actions";
 import { getActiveProviderSelector } from "../yu-health.selectors";
 import { PayloadAction } from "@reduxjs/toolkit";
 import Logger from "@services/logging/logger";
+import { YuHealthStatus } from "../yu-health.types";
 
 export default function* refreshCapabilityPermissionsSaga() {
-  try {
-    let activeProvider: HealthProvider = yield select(getActiveProviderSelector);
-    if (!activeProvider) {
-      // Wait until an active provider has been set
-      const setAction: PayloadAction<HealthProvider> = yield take(YU_HEALTH_SET_ACTIVE_PROVIDER);
-      activeProvider = setAction.payload;
+  yield put(setYuHealthStatus(YuHealthStatus.loading));
+
+  let retries = 0;
+  let didComplete = false;
+
+  do {
+    retries++;
+    try {
+      let activeProvider: HealthProvider = yield select(getActiveProviderSelector);
+      if (!activeProvider) {
+        // Wait until an active provider has been set
+        yield put(setYuHealthStatus(YuHealthStatus.ready));
+
+        const setAction: PayloadAction<HealthProvider> = yield take(YU_HEALTH_SET_ACTIVE_PROVIDER);
+        activeProvider = setAction.payload;
+      }
+
+      const status: Awaited<ReturnType<typeof hasPermissions>> = yield hasPermissions(
+        Object.values(HealthProviderCapability),
+        activeProvider
+      );
+
+      didComplete = true;
+      yield put(setYuHealthStatus(YuHealthStatus.ready));
+      yield put(updateCapabilityStatuses(status));
+    } catch (e) {
+      // Sometimes, when the app is first opened, the health data service (specifically for Samsung Health)
+      // is not yet available. So we can retry this a few times
+      if (retries >= 3) {
+        Logger.error(e, { file: "refreshCapabilityPermissions.saga" });
+        yield put(setYuHealthStatus(YuHealthStatus.error));
+      }
+
+      yield delay(4000);
     }
-
-    const status: Awaited<ReturnType<typeof hasPermissions>> = yield hasPermissions(
-      Object.values(HealthProviderCapability),
-      activeProvider
-    );
-
-    yield put(updateCapabilityStatuses(status));
-  } catch (e) {
-    Logger.error(e, { file: "refreshCapabilityPermissions.saga" });
-  }
+  } while (!didComplete && retries < 3);
 }

@@ -1,5 +1,5 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { useVerifyAndAuthorizeCapability } from "@hooks";
+import React, { memo, useCallback, useMemo, useState } from "react";
+import { useNavigationComponentDidAppear, useVerifyAndAuthorizeCapability } from "@hooks";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import {
@@ -8,17 +8,18 @@ import {
   getPermissionStatusOfCapabilities,
 } from "@yu-life/react-native-yu-health";
 import { useSelector } from "react-redux";
-import { getActiveProviderSelector, getYuHealthState } from "@redux/yu-health/yu-health.selectors";
+import { getActiveProviderSelector, getYuHealthStatus } from "@redux/yu-health/yu-health.selectors";
 import { getPermissionsConfig } from "@services/yuHealth/permissions.helpers";
 import { YU_HEALTH_ALL_CAPABILITIES } from "@utils";
 import PermissionsScreen from "@components/screens/member/permissions/permissions.screen";
+import { YuHealthStatus } from "@redux/yu-health/yu-health.types";
 
 interface IProps {
   componentId: string;
 }
 
 const PermissionsContainer = ({ componentId }: IProps) => {
-  const { isAuthorising } = useSelector(getYuHealthState);
+  const yuHealthStatus = useSelector(getYuHealthStatus);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const activeProvider = useSelector(getActiveProviderSelector);
   const onLeftIconPress = useCallback(() => Navigation.pop(ROUTES.permissions), []);
@@ -55,13 +56,11 @@ const PermissionsContainer = ({ componentId }: IProps) => {
     refreshPermissions();
   }, [componentId, refreshPermissions]);
 
-  useEffect(() => {
-    refreshPermissions();
-  }, [refreshPermissions]);
+  useNavigationComponentDidAppear(refreshPermissions);
 
   return (
     <PermissionsScreen
-      isLoading={isAuthorising || isLoading}
+      isLoading={yuHealthStatus !== YuHealthStatus.ready || isLoading}
       permissions={permissions}
       onConnect={onConnect}
       activeProvider={activeProvider}

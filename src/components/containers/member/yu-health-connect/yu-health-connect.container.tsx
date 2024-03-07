@@ -5,7 +5,12 @@ import { t } from "@locale";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { setActiveYuHealthProvider } from "@redux/yu-health/yu-health.actions";
-import { getActiveProviderSelector, getProviderAvailabilities } from "@redux/yu-health/yu-health.selectors";
+import {
+  getActiveProviderSelector,
+  getProviderAvailabilities,
+  getYuHealthStatus,
+} from "@redux/yu-health/yu-health.selectors";
+import { YuHealthStatus } from "@redux/yu-health/yu-health.types";
 import { HEALTH_PROVIDER_OPTIONS } from "@services/yuHealth/supported-health-types";
 import {
   PROVIDER_RECOMMENDED_ORDER,
@@ -31,10 +36,13 @@ const YuHealthConnectContainer = ({
   unsupportedCapabilities,
 }: IYuHealthConnectContainerProps) => {
   const dispatch = useDispatch();
+  const yuHealthStatus = useSelector(getYuHealthStatus);
   const activeProvider = useSelector(getActiveProviderSelector);
   const providerAvailabilities = useSelector(getProviderAvailabilities);
   const [selectedProvider, setSelectedProvider] = useState<HealthProvider>();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
+
+  const isLoading = yuHealthStatus !== YuHealthStatus.ready;
 
   useEffect(() => {
     if (!selectedProvider && activeProvider) {
@@ -75,6 +83,10 @@ const YuHealthConnectContainer = ({
   }, [activeProvider, unsupportedCapabilities]);
 
   const onChangeProvider = useCallback(() => {
+    if (isLoading) {
+      return;
+    }
+
     Navigation.push(componentId, {
       component: {
         id: ROUTES.yuHealthConnectSelect,
@@ -88,7 +100,7 @@ const YuHealthConnectContainer = ({
         },
       },
     });
-  }, [selectedProvider, availableProviders, componentId]);
+  }, [isLoading, componentId, selectedProvider, availableProviders]);
 
   const onFinish = useCallback(
     (didSwitch?: boolean) => {
@@ -103,7 +115,10 @@ const YuHealthConnectContainer = ({
   );
 
   useBackHandler(() => {
-    onFinish(false);
+    if (!isLoading) {
+      onFinish(false);
+    }
+
     return false;
   });
 
@@ -135,6 +150,7 @@ const YuHealthConnectContainer = ({
 
   return (
     <YuHealthConnectScreen
+      isLoading={isLoading}
       onConnect={onConnect}
       onChangeProvider={onChangeProvider}
       onOpenExplanation={onOpenExplanation}

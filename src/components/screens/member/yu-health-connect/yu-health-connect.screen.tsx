@@ -17,6 +17,7 @@ import { YugiHealthConnectIcon } from "@atoms/icon/yugi-health-connect-icon";
 
 interface IYuHealthConnectScreenProps {
   body?: string;
+  isLoading?: boolean;
   onCancel: () => void;
   onConnect: () => void;
   onChangeProvider: () => void;
@@ -27,6 +28,7 @@ interface IYuHealthConnectScreenProps {
 const YuHealthConnectScreen = ({
   body,
   onCancel,
+  isLoading,
   onConnect,
   activeProvider,
   onChangeProvider,
@@ -88,7 +90,7 @@ const YuHealthConnectScreen = ({
 
           <Stack gap={Style.adjust(2)}>
             <SecondaryButton label={t["yu_health.connect.why"]} onPress={onOpenExplanation} />
-            <Button label={t["yu_health.connect.button"]} onPress={onConnect} />
+            <Button isLoading={isLoading} label={t["yu_health.connect.button"]} onPress={onConnect} />
           </Stack>
         </View>
       </ScrollView>

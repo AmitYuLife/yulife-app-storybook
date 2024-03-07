@@ -5,6 +5,7 @@ import {
   HealthProviderAvailability,
   HealthProviderCapability,
 } from "@yu-life/react-native-yu-health";
+import { YuHealthStatus } from "./yu-health.types";
 
 export const YU_HEALTH_SET_ACTIVE_PROVIDER = "YU_HEALTH_SET_ACTIVE_PROVIDER";
 export const YU_HEALTH_REFRESH_ALL_CAPABILITY_PERMISSIONS = "YU_HEALTH_REFRESH_ALL_CAPABILITY_PERMISSIONS";
@@ -12,6 +13,7 @@ export const YU_HEALTH_UPDATE_CAPABILITY_STATUSES = "YU_HEALTH_UPDATE_CAPABILITY
 export const YU_HEALTH_UPDATE_PROVIDER_AVAILABILITY = "YU_HEALTH_UPDATE_PROVIDER_AVAILABILITY";
 export const YU_HEALTH_PERMISSIONS_REQUESTED = "YU_HEALTH_PERMISSIONS_REQUESTED";
 export const YU_HEALTH_REFRESH_CAPABILITY_PERMISSIONS = "YU_HEALTH_REFRESH_CAPABILITY_PERMISSIONS";
+export const YU_HEALTH_SET_STATUS = "YU_HEALTH_SET_STATUS";
 
 /* Dispatched when YuHealth permissions have potentially changed */
 export const yuHealthPermissionsRequested = createAction<null, "YU_HEALTH_PERMISSIONS_REQUESTED">(
@@ -36,3 +38,5 @@ export const updateCapabilityStatuses = createAction<
 export const refreshCapabilityPermissions = createAction<null, "YU_HEALTH_REFRESH_CAPABILITY_PERMISSIONS">(
   YU_HEALTH_REFRESH_CAPABILITY_PERMISSIONS
 );
+
+export const setYuHealthStatus = createAction<YuHealthStatus, "YU_HEALTH_SET_STATUS">(YU_HEALTH_SET_STATUS);

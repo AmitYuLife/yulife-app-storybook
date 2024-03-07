@@ -1,4 +1,4 @@
-import { AUTHENTICATED } from "@redux/app/app.actions";
+import { AUTHENTICATED, SET_MAIN_ROOT } from "@redux/app/app.actions";
 import { select, take, takeLatest } from "redux-saga/effects";
 import setDefaultProviderSaga from "./setDefaultProvider.saga";
 import {
@@ -18,8 +18,12 @@ import {
   LOGIN_USER_SUCCESS,
 } from "@redux/user/user.actions";
 import { isEmpty } from "lodash";
+import resetYuHealthStatusSaga from "./resetYuHealthStatus.saga";
 
 export default [
+  // Reset the persisted status of YuHealth
+  takeLatest(SET_MAIN_ROOT, yuHealthFeatureGuard(resetYuHealthStatusSaga)),
+
   // Try and set a default provider if we don't have one in the store
   takeLatest([AUTHENTICATED, LOGIN_USER_SUCCESS], yuHealthFeatureGuard(setDefaultProviderSaga)),
 

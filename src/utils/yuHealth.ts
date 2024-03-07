@@ -27,6 +27,9 @@ export const YU_HEALTH_ALL_CAPABILITIES = [
   HealthProviderCapability.ACTIVITIES,
 ];
 
+// Supported providers
+export const SUPPORTED_PROVIDERS = [HealthProvider.googleFit, HealthProvider.healthKit, HealthProvider.samsungHealth];
+
 /**
  * Open settings when user has declined system permission
  */

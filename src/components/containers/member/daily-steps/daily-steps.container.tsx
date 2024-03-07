@@ -18,6 +18,7 @@ import { hideDailyScreenInformationIcon } from "@redux/onboarding/onboarding.act
 import { getCapabilityStatuses, getYuHealthState } from "@redux/yu-health/yu-health.selectors";
 import { HealthPermissionStatus } from "@yu-life/react-native-yu-health";
 import { IDailyStepsContentProps } from "@organisms/daily-steps/daily-steps-content/daily-steps-content";
+import { YuHealthStatus } from "@redux/yu-health/yu-health.types";
 
 const DailyStepsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const DailyStepsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) =
   const currentYuniverse = getCurrentYuniverse(currentLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const capabilityStatuses = useSelector(getCapabilityStatuses);
-  const { isAuthorising, isUnavailable, activeProvider } = useSelector(getYuHealthState);
+  const { status, isUnavailable, activeProvider } = useSelector(getYuHealthState);
   const hasDailyScreenCustomIcon = userNotification?.hasDailyScreenCustomIcon;
   const isDailyScreenInformationIconHidden = useSelector(dailyScreenInformationIcon);
 
@@ -76,16 +77,18 @@ const DailyStepsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) =
   useTapBackTwiceToExit(componentId);
 
   const contentProps = useMemo((): IDailyStepsContentProps => {
+    const isLoading = status !== YuHealthStatus.ready;
+
     return {
-      isLoading: isAuthorising,
-      isUnauthorised: !isAuthorising && capabilityStatuses?.STEP_COUNT !== HealthPermissionStatus.granted,
+      isLoading,
+      isUnauthorised: !isLoading && capabilityStatuses?.STEP_COUNT !== HealthPermissionStatus.granted,
       hasAskedPreviously: !(!capabilityStatuses || capabilityStatuses?.STEP_COUNT === HealthPermissionStatus.notAsked),
       isUnavailable: isUnavailable || !activeProvider,
       onConnect: async () => {
         await verifyAndAuthorizeCapability(YU_HEALTH_DEFAULT_CAPABILITIES, { skipPreliminaryModal: true });
       },
     };
-  }, [activeProvider, capabilityStatuses, isAuthorising, isUnavailable, verifyAndAuthorizeCapability]);
+  }, [activeProvider, capabilityStatuses, status, isUnavailable, verifyAndAuthorizeCapability]);
 
   return (
     <DailyStepsScreen
