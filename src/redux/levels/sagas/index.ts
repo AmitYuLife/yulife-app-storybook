@@ -1,5 +1,5 @@
 import { takeLatest, takeLeading } from "redux-saga/effects";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../../user/user.actions";
+import { GET_USER_ACTIVE_CHALLENGE_SUCCESS, GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../../user/user.actions";
 import {
   CHALLENGE_END,
   CHALLENGE_END_FAIL,
@@ -26,7 +26,7 @@ import resetChallengeSuccessSaga from "./resetChallengeSuccessSaga.saga";
 export default [
   // startChallenges(),
   takeLatest(CHALLENGE_START_SUCCESS, startChallengeSuccessSaga),
-  takeLatest([GET_USER_SUCCESS, LOGIN_USER_SUCCESS], startChallengeIfActiveSaga),
+  takeLatest([GET_USER_SUCCESS, LOGIN_USER_SUCCESS, GET_USER_ACTIVE_CHALLENGE_SUCCESS], startChallengeIfActiveSaga),
   takeLatest(CHALLENGE_RESET, resetChallengeSaga),
   takeLatest(CHALLENGE_END, endChallengeSaga),
   takeLatest(CHALLENGE_END_FAIL, endChallengeFailSaga),
