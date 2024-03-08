@@ -22,3 +22,4 @@ export * from "./useHint";
 export * from "./useMutationAllRegions";
 export * from "./usePopToQuestsRootOnNewDate";
 export * from "./useVerifyAndAuthorizeCapability";
+export * from "./useScreenReaderChange";
