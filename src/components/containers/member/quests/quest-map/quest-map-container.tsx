@@ -20,7 +20,7 @@ import { submitUnityAction } from "@redux/levels/levels.actions";
 import Unity from "@components/screens/member/quests/quests-scroll-screen/unity-movies/unity";
 import { YuniversalQuestsScreen } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/yuniversal-quest-screen";
 import { ROUTES } from "@navigation/constants";
-import { useQueryOnScreenSeen } from "@hooks";
+import { useQueryOnScreenSeen, useScreenReaderChange } from "@hooks";
 import { getEpisode, getLevelStatus, getMinLevel, getSeperator } from "./quest-map-helpers";
 import { first } from "lodash";
 import QuestMapScreen from "./quest-map.screen";
@@ -48,12 +48,14 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
   const currentLevel = useSelector(getCurrentLevel);
   const [levelId, setLevelId] = useState<string>(null);
   const [unity, setUnity] = useState<number | null>(null);
+
   const challengesStatus = useSelector(getChallengesStatus);
   const [repeatedUnity, setRepeatedUnity] = useState(false);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const features = useSelector(getUserFeatures);
 
   const nextLevelAvailableAt = useSelector(getNextLevelAvailableAt);
+  const isScreenReaderEnabled = useScreenReaderChange();
 
   const levelsList = useMemo(() => data?.levels.filter((level) => level.level) || [], [data]);
 
@@ -268,6 +270,7 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
           levelList={levelsList}
           weeklies={weeklies?.getMobileGameWeeklies}
           onLeftMenuPress={onLeftMenuPress}
+          isScreenReaderEnabled={isScreenReaderEnabled}
         />
       ) : null}
       {!unity && !yuniversalMap ? (
@@ -278,6 +281,7 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
           currentLevel={currentLevel}
           snapOffsets={snapOffsets}
           itemHeights={itemHeights}
+          isScreenReaderEnabled={isScreenReaderEnabled}
         />
       ) : null}
     </>

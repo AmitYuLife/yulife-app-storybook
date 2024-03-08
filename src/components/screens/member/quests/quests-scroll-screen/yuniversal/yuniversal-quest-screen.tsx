@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback } from "react";
+import React, { FC, memo, useCallback, useMemo } from "react";
 import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getChallengesStatus, getCurrentLevel, getNextLevelAvailableAt } from "@redux/levels/levels.selectors";
@@ -15,7 +15,7 @@ import { submitUnityAction } from "@redux/levels/levels.actions";
 import { LottieView } from "@molecules";
 import { GetMobileGameWeekliesQuery } from "@graphql/__generated";
 import { WeeklyQuestsButton } from "../weeklies/weeklies.button";
-
+import QuestMapEpisodeAccessibility from "@components/containers/member/quests/quest-map/quest-map-episode-accessibility";
 const BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversal_quest_map_1.json");
 
 interface IProps extends IConnectedScreenProps {
@@ -24,6 +24,7 @@ interface IProps extends IConnectedScreenProps {
   yuniversalMap: number;
   levelList: GetQuestMap_levels[];
   weeklies?: GetMobileGameWeekliesQuery["getMobileGameWeeklies"];
+  isScreenReaderEnabled: boolean;
 }
 
 const _YuniversalQuestsScreen: FC<IProps> = ({
@@ -33,6 +34,7 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
   levelList,
   onLeftMenuPress,
   weeklies,
+  isScreenReaderEnabled,
 }) => {
   const dispatch = useDispatch();
   const challengesStatus = useSelector(getChallengesStatus);
@@ -61,6 +63,20 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
     features.useHalfModalsForQuestMap
   );
 
+  const formatLevelsForAccessibility = useMemo(
+    () =>
+      levelMap.map((level) => ({
+        level: level.text,
+        isActive: level.isActive,
+        isDone: !level.isActive && !level?.icon,
+        isNext: !!level.nextLevelAvailableAt,
+        isChestLevel: level?.icon === "chest",
+        nextAvailableAt: level.nextLevelAvailableAt,
+        onPress: level.onPress,
+      })),
+    [levelMap]
+  );
+
   return (
     <View style={styles.container} testID={QUESTS_SCREEN_YUNIVERSAL(yuniversalLevel)}>
       <LottieView
@@ -72,15 +88,19 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
       />
       {!levelMap?.length ? null : (
         <View style={styles.levelsWrapper}>
-          <YuniversalQuestSvg width={LEVELS_WRAPPER_WIDTH} height={LEVELS_WRAPPER_HEIGHT}>
-            {levelMap.map((level) => (
-              <LevelBubble {...level} key={level.text} />
-            ))}
-          </YuniversalQuestSvg>
+          {isScreenReaderEnabled ? (
+            <QuestMapEpisodeAccessibility items={formatLevelsForAccessibility} />
+          ) : (
+            <YuniversalQuestSvg width={LEVELS_WRAPPER_WIDTH} height={LEVELS_WRAPPER_HEIGHT}>
+              {levelMap.map((level) => (
+                <LevelBubble {...level} key={level.text} />
+              ))}
+            </YuniversalQuestSvg>
+          )}
         </View>
       )}
       <View style={styles.topBarWrapper}>
-        <TopBar type="white" onPressLeftIcon={onLeftMenuPress} />
+        <TopBar type={isScreenReaderEnabled ? "default" : "white"} onPressLeftIcon={onLeftMenuPress} />
       </View>
       <View style={styles.leftIconList}>
         <WeeklyQuestsButton isVisible={features?.showWeeklies} weeklies={weeklies} />

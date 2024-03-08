@@ -14,6 +14,7 @@ import { GetMobileGameWeekliesQuery } from "@graphql/__generated";
 import { getTopBarType } from "./quest-map-helpers";
 import { QUESTS_SCREEN } from "@ids";
 import { getCurrentWorld } from "@utils";
+import QuestMapEpisodeAccessibility from "./quest-map-episode-accessibility";
 
 interface IQuestMapScreenProps extends IConnectedScreenProps {
   currentLevel: number;
@@ -21,6 +22,7 @@ interface IQuestMapScreenProps extends IConnectedScreenProps {
   itemHeights: number[];
   items?: IQuestMapItem[];
   weeklies?: GetMobileGameWeekliesQuery["getMobileGameWeeklies"];
+  isScreenReaderEnabled: boolean;
 }
 
 const VIEWABILITY_CONFIG = {
@@ -45,10 +47,17 @@ const QuestMapScreen = ({
   onLeftMenuPress,
   currentLevel,
   snapOffsets,
+  isScreenReaderEnabled,
 }: IQuestMapScreenProps) => {
   const features = useUserFeatures();
   const flashlistRef = useRef<FlashList<IQuestMapItem>>(null);
   const [topBarType, setTopBarType] = useState(getTopBarType(currentLevel));
+  const nextLevelIndex = useMemo(() => items.findIndex((item) => item.levels.find((level) => level.isNext)), [items]);
+
+  const itemsForScreenReader = useMemo(
+    () => first(items.slice(nextLevelIndex, nextLevelIndex + 7)),
+    [items, nextLevelIndex]
+  );
 
   const renderItem = useCallback(
     ({ item, index }: ListRenderItemInfo<IQuestMapItem>) => {
@@ -119,28 +128,32 @@ const QuestMapScreen = ({
   return (
     <SafeAreaView style={styles.container} testID={QUESTS_SCREEN(getCurrentWorld(currentLevel))}>
       <View style={styles.questContainer}>
-        <FlashList
-          data={items}
-          inverted={true}
-          bounces={false}
-          ref={flashlistRef}
-          onLoad={scrollToLevel}
-          estimatedItemSize={755}
-          drawDistance={Style.DEVICE_HEIGHT * 2}
-          renderItem={renderItem}
-          keyExtractor={keyExtractor}
-          snapToOffsets={snapOffsets}
-          onViewableItemsChanged={onViewableItemsChanged}
-          disableIntervalMomentum={true}
-          overrideItemLayout={overrideItemLayout}
-          showsVerticalScrollIndicator={false}
-          decelerationRate={DECELERATION_RATE}
-          viewabilityConfig={VIEWABILITY_CONFIG}
-        />
+        {isScreenReaderEnabled ? (
+          <QuestMapEpisodeAccessibility items={itemsForScreenReader?.levels} />
+        ) : (
+          <FlashList
+            data={items}
+            inverted={true}
+            bounces={false}
+            ref={flashlistRef}
+            onLoad={scrollToLevel}
+            estimatedItemSize={755}
+            drawDistance={Style.DEVICE_HEIGHT * 2}
+            renderItem={renderItem}
+            keyExtractor={keyExtractor}
+            snapToOffsets={snapOffsets}
+            onViewableItemsChanged={onViewableItemsChanged}
+            disableIntervalMomentum={true}
+            overrideItemLayout={overrideItemLayout}
+            showsVerticalScrollIndicator={false}
+            decelerationRate={DECELERATION_RATE}
+            viewabilityConfig={VIEWABILITY_CONFIG}
+          />
+        )}
       </View>
 
       <View style={styles.header}>
-        <TopBar type={topBarType} onPressLeftIcon={onLeftMenuPress} />
+        <TopBar type={isScreenReaderEnabled ? "default" : topBarType} onPressLeftIcon={onLeftMenuPress} />
       </View>
 
       <View style={styles.leftIconList}>
@@ -167,7 +180,6 @@ const styles = {
     ...StyleSheet.absoluteFillObject,
     ...scrollViewAdjustPosition(),
   },
-  flashList: {},
   leftIconList: {
     position: "absolute",
     left: Style.adjust(16),
