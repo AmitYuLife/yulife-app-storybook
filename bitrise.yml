@@ -584,14 +584,14 @@ workflows:
             nvm use
             npm i -g yarn
             yarn install --frozen-lockfile
-    - restore-cocoapods-cache@1: {}
+    #- restore-cocoapods-cache@1: {}
     - script:
         inputs:
         - content: |
             #!/bin/bash
             envman add --key NO_FLIPPER --value 1
     - cocoapods-install@2: {}
-    - save-cocoapods-cache@1: {}
+    #- save-cocoapods-cache@1: {}
     - script@1.2:
         title: yarn translations:download
         inputs:
@@ -1898,7 +1898,7 @@ workflows:
             BUGSNAG_RELEASE_ENVIRONMENT
     meta:
       bitrise.io:
-        stack: osx-xcode-14.3.x-ventura
+        stack: osx-xcode-15.3.x
   ios-git-checkout:
     steps:
     - activate-ssh-key@4.1:
@@ -2002,7 +2002,7 @@ workflows:
             cat ios/YuLife/Info.plist
     meta:
       bitrise.io:
-        stack: osx-xcode-14.3.x-ventura
+        stack: osx-xcode-15.3.x
   ios-production:
     before_run:
     - ios-primary
@@ -2109,7 +2109,7 @@ workflows:
             BUGSNAG_RELEASE_ENVIRONMENT
     meta:
       bitrise.io:
-        stack: osx-xcode-14.3.x-ventura
+        stack: osx-xcode-15.3.x
   ios-pull-request: {}
   ios-set-uat-env-vars:
     steps:
