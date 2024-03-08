@@ -30,6 +30,7 @@ const SHADOW_HEIGHT = media.select(
 );
 
 const DEFAULT_INNER_HEIGHT = Style.adjust(104);
+export const BOX_OPTION_BORDER_RADIUS = Style.adjust(16);
 
 const BoxOption = memo(
   ({
@@ -100,11 +101,11 @@ const useAnimation = ({ isSelected, isPressedIn }: Partial<Props> & { isPressedI
 
 const styles = StyleSheet.create({
   wrapper: {
-    borderRadius: Style.adjust(16),
+    borderRadius: BOX_OPTION_BORDER_RADIUS,
     overflow: "hidden",
   } as ViewStyle,
   innerWrapper: {
-    borderRadius: Style.adjust(16),
+    borderRadius: BOX_OPTION_BORDER_RADIUS,
     borderWidth: 1,
     borderColor: Colours.neutral.n100,
     backgroundColor: Colours.neutral.white,
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
   shadowWrapper: {
     position: "absolute",
     top: SHADOW_HEIGHT,
-    borderRadius: Style.adjust(16),
+    borderRadius: BOX_OPTION_BORDER_RADIUS,
     left: 0,
     right: 0,
     bottom: 0,
