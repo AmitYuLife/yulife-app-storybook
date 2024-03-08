@@ -7,8 +7,9 @@ import { YumojiItemLabel } from "./yumoji-item-label";
 import { Colours, Style } from "@styles";
 import { GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items as YumojiBuilderItemsForCategoryItems } from "@graphql/_core/schema";
 import FastImage from "react-native-fast-image";
+
 import { COLOUR, YUMOJI_PART_ID } from "@ids";
-import { BoxOption } from "@molecules";
+import { BOX_OPTION_BORDER_RADIUS, BoxOption } from "@molecules";
 
 export interface ItemListItems extends YumojiBuilderItemsForCategoryItems {
   isSelected: boolean;
@@ -136,7 +137,12 @@ const styles = StyleSheet.create({
   itemWrapper: {
     margin: itemMargin,
   },
-  loadingBox: { position: "absolute", width: boxWidth + 5, height: boxHeight + 5 },
+  loadingBox: {
+    position: "absolute",
+    width: boxWidth + 5,
+    height: boxHeight + 5,
+    borderRadius: BOX_OPTION_BORDER_RADIUS,
+  },
   itemPadding: {
     padding: Style.adjust(4),
     alignItems: "center",

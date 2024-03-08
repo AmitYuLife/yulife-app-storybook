@@ -59,7 +59,7 @@ export { default as LabelWithImages } from "./label-with-images/label-with-image
 export { default as LabelledHorizontalScroller } from "./labelled-horizontal-scroller/labelled-horizontal-scroller";
 export { default as MultiFactorPricing } from "./multi-factor-pricing/multi-factor-pricing";
 export { default as CostPayoutBenefitCard } from "./cost-payout-benefit-card/cost-payout-benefit-card";
-export { default as BoxOption } from "./box-option/box-option";
+export { default as BoxOption, BOX_OPTION_BORDER_RADIUS } from "./box-option/box-option";
 export { default as CheckBox } from "./check-box/check-box";
 export { default as CentredScreen } from "./centred-screen/centred-screen";
 export { default as Panel } from "./panel/panel";
