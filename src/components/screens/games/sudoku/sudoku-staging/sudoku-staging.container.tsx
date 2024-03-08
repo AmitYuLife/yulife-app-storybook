@@ -14,7 +14,7 @@ import { ActiveLevelState } from "@redux/levels/levels.types";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/getQuestMapChallengeDetails.gql";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { usePopToQuestsRootOnNewDate, useQueryOnScreenSeen } from "@hooks";
+import { useBackHandler, usePopToQuestsRootOnNewDate, useQueryOnScreenSeen } from "@hooks";
 import { challengeStartAction } from "@redux/levels/levels.actions";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getActiveYudokuLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
@@ -40,6 +40,11 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
   });
 
   usePopToQuestsRootOnNewDate(level);
+
+  useBackHandler(() => {
+    onBack();
+    return true;
+  });
 
   const showSecondAttemptDisclaimer = useMemo(() => {
     return !data?.getSudokuBoard?.leaderboardEligible;
