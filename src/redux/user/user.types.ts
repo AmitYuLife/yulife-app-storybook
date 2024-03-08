@@ -1,6 +1,9 @@
 import { SduiActionType, UserFeatures } from "@redux/_core/types";
 import { features } from "./features.data";
-import { IDailyStepsGetUserSuccessPayload } from "@redux/daily-steps/daily-steps.types";
+import {
+  IDailyStepsGetUserSuccessPayload,
+  IDailyStepsUpdateUserProfilePayload,
+} from "@redux/daily-steps/daily-steps.types";
 import { IDailyMeditationGetCurrentUserPayload } from "@redux/daily-meditation/daily-meditation.types";
 import { ICoinsTodayEarned } from "@redux/coins/coins.types";
 import { ILevelGetUserSuccessDataPayload } from "@redux/levels/levels.types";
@@ -134,3 +137,7 @@ export type IGetUserSuccessPayload = IUserGetUserSuccessPayload &
 
 export type IPassiveChallengesEarnRateSuccessPayload = IDailyStepsGetUserSuccessPayload &
   IDailyMeditationGetCurrentUserPayload;
+
+export type IUpdateUserProfilePayload = Partial<IUserStore> & IDailyStepsUpdateUserProfilePayload;
+
+export type ILoginUserPayload = { intercomHash: string } & IGetUserSuccessPayload;

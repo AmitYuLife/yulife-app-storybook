@@ -5,7 +5,7 @@ import redeemOnboarding from "./redeemOnboarding.helper";
 
 export default function* onboardOnLogin({ payload }: ReturnType<typeof loginUserSuccess>) {
   try {
-    if (!payload.loginUser.user.redeemedOnboarding) {
+    if (!payload.onboarding.redeemedOnboarding) {
       yield call(redeemOnboarding);
     }
   } catch (e) {

@@ -1,7 +1,6 @@
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import moment from "moment";
 import { addSecondsToChallengeEndDateTime, getCurrentPlanetByLevel, Planets } from "@utils";
-import { LoginUser } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
 import {
@@ -183,25 +182,24 @@ const getUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPaylo
   dailyChallengeAmountAvailable: data?.levels?.dailyChallengeAmountAvailable,
 });
 
-const loginUserSuccess = (state: ILevelsStore, data: LoginUser): ILevelsStore => ({
+const loginUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPayload): ILevelsStore => ({
   ...state,
   active: {
     ...state.active,
-    shouldEndOnLastGoalAchieved:
-      data?.loginUser?.user?.activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved || false,
-    fitKitTypes: data?.loginUser?.user?.activeChallenge?.levelSlot?.fitKitTypes || [],
-    yuHealth: data?.loginUser?.user?.activeChallenge?.levelSlot?.yuHealth,
-    endDateTime: data?.loginUser?.user?.activeChallenge?.challenge?.endDateTime || "",
-    levelSlotId: data?.loginUser?.user?.activeChallenge?.challenge?.levelSlotId || "",
-    milestones: data?.loginUser?.user?.activeChallenge?.levelSlot?.milestones || [],
-    rating: data?.loginUser?.user?.activeChallenge?.challenge?.rating || state.active.rating || 0,
-    startDateTime: data?.loginUser?.user?.activeChallenge?.challenge?.startDateTime || "",
-    subtype: data?.loginUser?.user?.activeChallenge?.levelSlot?.subtype || "",
-    unit: data?.loginUser?.user?.activeChallenge?.levelSlot?.unit || state.active.unit || "",
-    challengeIsActive: !!data?.loginUser?.user?.activeChallenge?.challenge?.id,
+    shouldEndOnLastGoalAchieved: data?.levels?.activeChallenge?.shouldEndOnLastGoalAchieved || false,
+    fitKitTypes: data?.levels?.activeChallenge?.fitKitTypes || [],
+    yuHealth: data?.levels?.activeChallenge?.yuHealth,
+    endDateTime: data?.levels?.activeChallenge?.endDateTime || "",
+    levelSlotId: data?.levels?.activeChallenge?.levelSlotId || "",
+    milestones: data?.levels?.activeChallenge?.milestones || [],
+    rating: data?.levels?.activeChallenge?.rating || state.active.rating || 0,
+    startDateTime: data?.levels?.activeChallenge?.startDateTime || "",
+    subtype: data?.levels?.activeChallenge?.subtype || "",
+    unit: data?.levels?.activeChallenge?.unit || state.active.unit || "",
+    challengeIsActive: data?.levels?.activeChallenge?.challengeIsActive,
   },
-  challengesDoneToday: data?.loginUser?.user?.challengesDoneToday || 0,
-  dailyChallengeAmountAvailable: data?.loginUser?.user?.dailyChallengeAmountAvailable,
+  challengesDoneToday: data?.levels?.challengesDoneToday || 0,
+  dailyChallengeAmountAvailable: data?.levels?.dailyChallengeAmountAvailable,
 });
 
 const getCoinLedgerSuccess = (state: ILevelsStore, data: ILevelsStoreGetCoinLedger): ILevelsStore => ({

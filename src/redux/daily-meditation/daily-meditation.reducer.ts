@@ -1,6 +1,5 @@
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
-import { LoginUser } from "@graphql/_core/schema";
 import {
   GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS,
   GET_USER_SUCCESS,
@@ -148,9 +147,9 @@ const getPassiveChallengesEarnRateSuccess = (
   exchangeRate: res?.passiveMeditation?.exchangeRate || getInitialState().exchangeRate,
 });
 
-const loginUserSuccess = (state: IDailyMeditationStore, res: LoginUser) => ({
+const loginUserSuccess = (state: IDailyMeditationStore, res: IDailyMeditationGetCurrentUserPayload) => ({
   ...state,
-  exchangeRate: res?.loginUser?.user?.passiveMeditation?.exchange || getInitialState().exchangeRate,
+  exchangeRate: res?.passiveMeditation?.exchangeRate || getInitialState().exchangeRate,
 });
 
 const updateInAppMeditation = (state: IDailyMeditationStore, payload: IAppMeditationPayload): IDailyMeditationStore => {

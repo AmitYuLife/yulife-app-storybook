@@ -1,6 +1,5 @@
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
-import { LoginUser, GetUserProfile_getUserProfile_gameSettings as GameSettings } from "@graphql/_core/schema";
 import {
   PEDOMETER_UPDATES_NO_NEW_DATA,
   PEDOMETER_UPDATES_START,
@@ -23,7 +22,7 @@ import {
 } from "./daily-steps.actions";
 import { SyncAction, Challenge, PassiveExchangeRate } from "@redux/_core/types";
 import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
-import { IDailyStepsGetUserSuccessPayload } from "./daily-steps.types";
+import { IDailyStepsGetUserSuccessPayload, IDailyStepsUpdateUserProfilePayload } from "./daily-steps.types";
 
 const MAX_ANOMALY_DETECTION_WINDOW_MS = 10000; // in ms
 
@@ -175,10 +174,10 @@ const updatePersistedState = (state: IDailyStepsStore, persistedState: IDailySte
   return { ...persistedState, isServerFetchedThisSession: false };
 };
 
-const updateUserProfile = (state: IDailyStepsStore, gameSettings: GameSettings) => ({
+const updateUserProfile = (state: IDailyStepsStore, res: IDailyStepsUpdateUserProfilePayload) => ({
   ...state,
-  maxStepsAnomalyWindowMs: gameSettings?.maxStepsAnomalyWindowMs,
-  blackListApps: gameSettings?.blackListApps?.steps,
+  maxStepsAnomalyWindowMs: res?.stepsGameSettings?.maxStepsAnomalyWindowMs,
+  blackListApps: res?.stepsGameSettings?.blackListApps,
 });
 
 const updateDailyStepsSuccessFromRemote = (state: IDailyStepsStore, { challenge }: { challenge: Challenge }) => {
@@ -209,9 +208,9 @@ const getPassiveChallengesEarnRateSuccess = (state: IDailyStepsStore, res: IDail
   exchangeRate: res?.passiveSteps?.exchangeRate || getInitialState().exchangeRate,
 });
 
-const loginUserSuccess = (state: IDailyStepsStore, res: LoginUser) => ({
+const loginUserSuccess = (state: IDailyStepsStore, res: IDailyStepsGetUserSuccessPayload) => ({
   ...state,
-  exchangeRate: res?.loginUser?.user?.passiveSteps?.exchange || getInitialState().exchangeRate,
+  exchangeRate: res?.passiveSteps?.exchangeRate || getInitialState().exchangeRate,
 });
 
 const changePanelVisibility = (state: IDailyStepsStore, payload: boolean): IDailyStepsStore => ({
