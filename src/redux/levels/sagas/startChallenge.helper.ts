@@ -70,11 +70,11 @@ export function* startTracking(
 
         yield put(
           challengeUpdateSuccessAction({
-            coins: data?.yuCoinAwarded,
-            isCompleted: (data?.status || "") === "completed",
-            milestonesLog: data?.milestoneLog,
-            rating: data?.rating,
-            incomingData: data?.incomingData,
+            coins: challengeData?.challenge.yuCoinAwarded,
+            isCompleted: (challengeData?.challenge.status || "") === "completed",
+            milestonesLog: challengeData?.challenge.milestoneLog,
+            rating: challengeData?.challenge.rating,
+            incomingData: challengeData?.challenge.incomingData,
           })
         );
 
