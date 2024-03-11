@@ -257,6 +257,9 @@ dependencies {
     implementation project(':leanplum_react-native-sdk')
     implementation 'com.leanplum:leanplum-fcm:7.0.1'
 
+    // Health Connect
+    implementation "androidx.health.connect:connect-client:1.1.0-alpha06"
+
     // Firebase
     implementation 'com.google.firebase:firebase-core:17.5.0'
     implementation 'com.google.firebase:firebase-messaging:22.0.0'

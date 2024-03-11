@@ -28,7 +28,12 @@ export const YU_HEALTH_ALL_CAPABILITIES = [
 ];
 
 // Supported providers
-export const SUPPORTED_PROVIDERS = [HealthProvider.googleFit, HealthProvider.healthKit, HealthProvider.samsungHealth];
+export const SUPPORTED_PROVIDERS = [
+  HealthProvider.googleFit,
+  HealthProvider.healthKit,
+  HealthProvider.samsungHealth,
+  HealthProvider.healthConnect,
+];
 
 /**
  * Open settings when user has declined system permission
@@ -52,6 +57,7 @@ export const PROVIDER_RECOMMENDED_ORDER = [
   HealthProvider.googleFit,
   HealthProvider.healthKit,
   HealthProvider.samsungHealth,
+  HealthProvider.healthConnect,
 ];
 
 export const getRecommendedProvider = ({
