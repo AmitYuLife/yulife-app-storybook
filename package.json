@@ -97,7 +97,7 @@
     "@stripe/stripe-react-native": "0.35.0",
     "@use-it/interval": "^1.0.0",
     "@yu-life/react-native-fitkit": "1.0.38",
-    "@yu-life/react-native-yu-health": "1.2.0",
+    "@yu-life/react-native-yu-health": "1.2.1",
     "@yu-life/yulife-bdd-framework": "0.0.72",
     "@yu-life/yulife-tolgee-cli": "1.0.0",
     "apollo-cache-persist": "^0.1.1",
