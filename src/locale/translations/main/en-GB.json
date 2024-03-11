@@ -946,6 +946,27 @@
         "requirement": "Required for: Cycling",
         "description": "Needed by the YuLife app to get activity data from your phone."
       },
+      "health_connect": {
+        "steps": {
+          "title": "Steps",
+          "requirement": "Requires: Steps",
+          "description": "Needed by the YuLife app to read steps data tracked by Health Connect."
+        },
+        "cycling": {
+          "title": "Cycling",
+          "requirement": "Requires: Distance",
+          "description": "Needed by the YuLife app to get cycling distance data tracked by Health Connect."
+        },
+        "meditation": {
+          "title": "Mindful minutes",
+          "description": "Meditation is not supported by Health Connect. To get rewarded switch to Google Fit."
+        },
+        "exercise": {
+          "title": "Workouts",
+          "requirement": "Requires: Exercise",
+          "description": "Needed by the YuLife app to get workout (e.g. Fiit) data tracked by Health Connect."
+        }
+      },
       "fitness_activity_read": {
         "title": "Steps",
         "requirement": "Requires: Physical Recognition",

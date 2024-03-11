@@ -112,6 +112,36 @@ const GOOGLE_FIT_PERMISSIONS: IPermission[] = [
   },
 ];
 
+const HEALTH_CONNECT_PERMISSIONS: IPermission[] = [
+  {
+    identifier: "stepCount",
+    title: t("permissions.android.health_connect.steps.title"),
+    requirement: t("permissions.android.health_connect.steps.requirement"),
+    description: t("permissions.android.health_connect.steps.description"),
+    capability: HealthProviderCapability.STEP_COUNT,
+  },
+  {
+    identifier: "mindfulMinutes",
+    title: t("permissions.android.health_connect.meditation.title"),
+    description: t("permissions.android.health_connect.meditation.description"),
+    capability: HealthProviderCapability.MINDFUL_MINUTES,
+  },
+  {
+    identifier: "cyclingDistance",
+    title: t("permissions.android.health_connect.cycling.title"),
+    requirement: t("permissions.android.health_connect.cycling.requirement"),
+    description: t("permissions.android.health_connect.cycling.description"),
+    capability: HealthProviderCapability.CYCLING_DISTANCE,
+  },
+  {
+    identifier: "activities",
+    title: t("permissions.android.health_connect.exercise.title"),
+    requirement: t("permissions.android.health_connect.exercise.requirement"),
+    description: t("permissions.android.health_connect.exercise.description"),
+    capability: HealthProviderCapability.ACTIVITIES,
+  },
+];
+
 export interface IPermission {
   identifier: string;
   title: string;
@@ -132,6 +162,8 @@ export const getPermissionsConfig = (activeProvider: HealthProvider): IPermissio
         return { providerPermissions: GOOGLE_FIT_PERMISSIONS, systemPermissions: ANDROID_SYSTEM_PERMISSIONS };
       case HealthProvider.samsungHealth:
         return { providerPermissions: SAMSUNG_HEALTH_PERMISSIONS, systemPermissions: ANDROID_SYSTEM_PERMISSIONS };
+      case HealthProvider.healthConnect:
+        return { providerPermissions: HEALTH_CONNECT_PERMISSIONS, systemPermissions: ANDROID_SYSTEM_PERMISSIONS };
       default:
         return { providerPermissions: [], systemPermissions: ANDROID_SYSTEM_PERMISSIONS };
     }
