@@ -249,7 +249,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
                 })
             })
         })
-        When("I swipe to the bottom", when.swipeFromText("Savings", "up", "fast"), async () => {
+        When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
             Then("I can see the Additional rewards heading", then.textVisible("Additional rewards"))
             Then("I can see I earned Bonus YuCoin", then.textVisible("Bonus YuCoin award"))
             Then("I can see I earned from a duel", then.textVisible("Duel YuCoin award"))

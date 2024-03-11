@@ -17,13 +17,13 @@ export const deactivateGDentWorker = (execute:boolean, date: string) => async ()
 }
 
 export const cancelPersonalDentalWorker = (date: string) => async () => {
-  await dataManager.triggerWorkerTask("PersonalProducts.CancelBupaPolicyByEndDate", {
+  await dataManager.triggerWorkerTask("PersonalProducts.Dental.CancelBupaPolicyByEndDate", {
   date: date,
   })
 }
 
 export const sunsetPersonalDentalWorker = (date: string) => async () => {
-  await dataManager.triggerWorkerTask("PersonalProducts.SunsetBupaPolicies", {
+  await dataManager.triggerWorkerTask("PersonalProducts.Dental.SunsetBupaPolicies", {
   date: date,
   test: false,
   cancelStripeSubscription: false

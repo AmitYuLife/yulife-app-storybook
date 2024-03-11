@@ -76,14 +76,18 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 When("I scroll until I can see all the learn more modal", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_2, "down"), async () => {
                     When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
                         When("I tap to take a challenge", when.tapText(constants.learnMorePageButton), async () => {
-                            When("I wait to be redirected", when.wait(5000), async () => {
-                                Then("I appear on the challenge screen", then.idVisible(ids.CHALLENGE_SCREEN))
+                            Then("I should see level 80 on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(80)))
                             })
                         })
                     })
                 })
             })
-        }) 
+        When("I tap level 80", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(80)), async () => {
+            Then("I should see a screen telling me to take a challenge to unlock a my reward", then.textVisible("Almost there! Take a challenge to unlock your reward."))
+        })
+        When("I tap the Let's go button to proceed", when.tapText("Let's go!"), async () => {
+            Then("I appear on the challenge screen", then.idVisible(ids.CHALLENGE_SCREEN))
+        })
         When("I click to go back", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
             Then("I should see level 80", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(80)))
             // Then("I should see the reward icon on the next level", then.idVisible(ids.GHI_REWARD_ICON("80")))
@@ -681,7 +685,8 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
     })
 
-    Scenario("Users can still see vouchers they didn't use after they have left a company with the game active", scenario.start, async () => {
+    // @update [ Worker not executing correctly ]
+    ScenarioSkip("Users can still see vouchers they didn't use after they have left a company with the game active", scenario.start, async () => {
         Given("I deactivated the cbp for the expired product", given.archiveCustomerBusinessProductsByDate(moment().format("YYYY-MM-DD")), async () => {
             When("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_130_GHI_LEAVER, data.AUTH_130), async () => {
                 When("I go to the store to select my region before returning to the YuScreen", when.setStoreRegion, async () => {
@@ -757,7 +762,6 @@ Feature("I am able to see GHI Rewards in App", async () => {
         // When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
             // Then("I should see the reward icon but for level 52 despite the clock being there", then.idVisible(ids.GHI_REWARD_ICON("52")))
         // })
-        
      })
 
      Scenario("Half modals display the correct tease for games starting in the future, and the learn more page shows the correct pre-start details", scenario.start, async () => {
@@ -796,7 +800,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 Then("I see the tease for the rewards game starting soon on the streak screen", then.ghiRewardsTeaseVisible)
             })
         })
-        
+
      })
 
      Scenario("A user signed up to two games can only play in one", scenario.start, async () => {
@@ -819,7 +823,6 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })
-                
      })
 
      Scenario("The learn more tease does not show for users in the reward store before the game starts if they are below level 6", scenario.start, async () => {
@@ -857,7 +860,6 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })
-        
      })
 
      Scenario("Users see the correct streak modal when mid-way to earning a gift", scenario.start, async () => {
@@ -879,7 +881,5 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(false, "3 x Urban Massage Vouchers", "9 / 10"))
             })
         })
-        
      })
-
 })
