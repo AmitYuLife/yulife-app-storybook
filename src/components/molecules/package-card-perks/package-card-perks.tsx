@@ -1,8 +1,7 @@
 import React, { memo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { Source } from "react-native-fast-image";
 import { Colours, Style } from "@styles";
-import { Image, TextTemplate } from "@atoms";
+import { Image, Source, TextTemplate } from "@atoms";
 import { RemoteImage } from "@graphql/__generated";
 
 interface Props {

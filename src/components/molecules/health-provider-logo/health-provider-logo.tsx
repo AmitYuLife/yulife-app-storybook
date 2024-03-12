@@ -1,8 +1,7 @@
-import { Image } from "@atoms";
+import { Image, Source } from "@atoms";
 import { Style } from "@styles";
 import { HealthProvider } from "@yu-life/react-native-yu-health";
 import { memo } from "react";
-import { Source } from "react-native-fast-image";
 
 const HEALTH_PROVIDER_LOGOS: Record<HealthProvider, Source> = {
   [HealthProvider.googleFit]: require("./logos/google-fit.webp"),

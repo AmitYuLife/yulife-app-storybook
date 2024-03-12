@@ -1,4 +1,3 @@
-import FastImage from "react-native-fast-image";
 import { Navigation } from "@navigation/main";
 import { call, delay, select, spawn, take } from "redux-saga/effects";
 import { MODALS } from "@navigation/constants";
@@ -13,6 +12,7 @@ import { OptionsStatusBar } from "react-native-navigation";
 import { QueryResult } from "@apollo/client";
 import { GetMobileWhatsNewModalQuery, gql } from "@graphql/__generated";
 import client from "@graphql/_core/client";
+import { prefetchImages } from "@atoms";
 
 export function* getMobileWhatsNewModalSaga(dataPayload: { payload: string; type: string }) {
   const { payload: appState, type } = dataPayload || {};
@@ -39,7 +39,12 @@ export function* getMobileWhatsNewModalSaga(dataPayload: { payload: string; type
 
     if (data?.getMobileWhatsNewModal) {
       const preloadAssets = data.getMobileWhatsNewModal.items.map((item) => item.backgroundImage);
-      yield call(FastImage.preload, preloadAssets);
+
+      yield call(
+        prefetchImages,
+        preloadAssets.map((asset) => asset.uri)
+      );
+
       yield delay(1000);
 
       const activeModal: ReturnType<typeof getModalState> = yield select(getModalState);

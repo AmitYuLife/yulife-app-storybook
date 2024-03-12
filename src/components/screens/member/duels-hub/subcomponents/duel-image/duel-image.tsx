@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { AvatarEmpty } from "@components/molecules";
 import { emptyStyles, filledStyles } from "./duel-image.styles";
-import FastImage from "react-native-fast-image";
+import { RawImage } from "@atoms";
 
 //TODO: Move this component outside of duels since were using it in many different places now
 
@@ -17,7 +17,7 @@ export default function DuelImage({ uri, size = "small" }: { uri: string; size?:
 
   return (
     <View style={[filledStyles.wrapper, size === "small" ? filledStyles.small : filledStyles.medium]}>
-      <FastImage source={{ uri }} style={size === "small" ? filledStyles.imageSmall : filledStyles.imageMedium} />
+      <RawImage source={{ uri }} style={size === "small" ? filledStyles.imageSmall : filledStyles.imageMedium} />
     </View>
   );
 }

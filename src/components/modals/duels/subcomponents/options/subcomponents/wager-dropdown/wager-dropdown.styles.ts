@@ -1,6 +1,6 @@
 import { StyleSheet, ViewStyle, TextStyle } from "react-native";
-import { ImageStyle } from "react-native-fast-image";
 import { Colours, Style } from "@styles/index";
+import { ImageStyle } from "@atoms";
 
 export const DUEL_WAGER_BUTTON_HEIGHT = Style.adjust(84);
 export const DUEL_WAGER_BUTTON_TOP_MARGIN = Style.adjust(20);

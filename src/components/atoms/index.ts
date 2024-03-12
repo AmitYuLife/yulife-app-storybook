@@ -26,7 +26,7 @@ export { default as AddressIcon } from "./address-icon/address-icon";
 export * from "./gp-icons";
 export { default as Icon } from "./icon";
 export { default as ProductColorTheme } from "./product-color-theme";
-export { Image } from "./image/image";
+export * from "./image/image";
 export { default as SkeletonLoading } from "./skeleton-loading/skeleton-loading";
 export { default as Wrapper } from "./wrapper/wrapper";
 export { default as DarkScreen } from "./dark-screen/dark-screen";

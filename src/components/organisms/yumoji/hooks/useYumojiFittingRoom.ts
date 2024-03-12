@@ -1,8 +1,8 @@
-import { Source } from "react-native-fast-image";
 import { useQuery } from "@apollo/client";
 import { Style } from "@styles";
 import { cache } from "@services/image";
 import { CoverType, gql, GetYumojiRemoteFittingRoomQuery } from "@graphql/__generated";
+import { Source } from "@atoms";
 
 export const AVATAR_WIDTH = Style.adjust(160) * 0.73;
 export const AVATAR_HEIGHT = Style.adjust(328) * 0.73;
@@ -19,8 +19,8 @@ export function useYumojiFittingRoom({ customerProductId, coverType }: Args) {
   const tryOn = useQuery(gql("GetYumojiRemoteFittingRoomDocument"), {
     variables: { customerProductId, coverType },
     fetchPolicy: "no-cache",
-    onCompleted: (data) => {
-      cache(
+    onCompleted: async (data) => {
+      await cache(
         data.getYumojiRemoteFittingRoom.yuWorlds
           .map((world) => world.yumojiParts)
           .reduce((allImages, worldImages) => {

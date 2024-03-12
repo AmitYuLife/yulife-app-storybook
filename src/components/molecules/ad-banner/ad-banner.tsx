@@ -1,13 +1,12 @@
 import React, { memo, useCallback } from "react";
 import { PressableWithDelay } from "@molecules";
 import { Style } from "@styles";
-import { Image } from "@atoms";
+import { Image, ImageStyle } from "@atoms";
 import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
 import { Navigation } from "@navigation/main";
 import { handleLinkPress } from "@services/app-link";
 import { StyleProp } from "react-native";
-import { ImageStyle } from "react-native-fast-image";
 import { AD_BANNERS } from "@ids";
 import { labels } from "@navigation/root";
 

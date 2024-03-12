@@ -2,13 +2,13 @@ import { t } from "@locale";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { getUserAvatar } from "@redux/user/user.selectors";
-import { Source } from "react-native-fast-image";
 import { Navigation } from "@navigation/main";
 import { call, put, select } from "redux-saga/effects";
 import { challengeResetSuccessAction } from "../levels.actions";
 import { getActiveLevel, getChallengesStatus, getCurrentLevel } from "../levels.selectors";
 import { IActiveLevel } from "../levels.types";
 import { IUnityData, getAssets } from "@components/screens/member/quests/quests-scroll-screen/unity-movies/unity.data";
+import { Source } from "@atoms";
 
 export default function* resetChallengeSaga() {
   const { done }: ReturnType<typeof getChallengesStatus> = yield select(getChallengesStatus);

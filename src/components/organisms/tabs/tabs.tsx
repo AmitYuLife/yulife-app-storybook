@@ -1,7 +1,6 @@
-import { Source } from "react-native-fast-image";
 import React, { memo, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Image, SkeletonLoading, TextTemplate } from "@atoms";
+import { Image, Source, SkeletonLoading, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { PressableWithDelay } from "@molecules";
 import { LEADBOARD_TAB } from "@ids";

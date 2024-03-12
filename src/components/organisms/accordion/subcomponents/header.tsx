@@ -1,7 +1,6 @@
 import React, { memo, useMemo } from "react";
 import { Animated, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
-import { Source } from "react-native-fast-image";
-import { Image, TextTemplate } from "@atoms";
+import { Image, Source, TextTemplate } from "@atoms";
 import { PressableWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
 

@@ -1,10 +1,9 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 import groovy.json.JsonSlurper;
 
-
 buildscript {
     ext {
-        kotlin_version = "1.8.10"
+        kotlin_version = "1.9.21"
         kotlinCoroutineVersion = "1.7.0"
         RNNKotlinCoroutinesCore = kotlinCoroutineVersion
         RNNKotlinVersion = kotlin_version

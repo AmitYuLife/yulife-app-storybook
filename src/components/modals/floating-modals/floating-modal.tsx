@@ -5,8 +5,7 @@ import { Style, Colours } from "@styles";
 import { ContentItemLottie } from "@components/sdui";
 import { ContentItemLottieFragment as GqlLottie } from "@graphql/__generated";
 import { useTranslation } from "@hooks";
-import { Source } from "react-native-fast-image";
-import { CloseSvg, Image, TextTemplate } from "@atoms";
+import { CloseSvg, Image, Source, TextTemplate } from "@atoms";
 import Logger from "@services/logging/logger";
 
 type FloatingModalComponent = (props: IFloatingModalContentProps) => ReactNode;

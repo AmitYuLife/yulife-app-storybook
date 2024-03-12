@@ -1,11 +1,10 @@
 import * as React from "react";
 import { useState } from "react";
 import { View } from "react-native";
-import { Image, TextTemplate } from "@atoms";
+import { Image, Source, TextTemplate } from "@atoms";
 import { Button, SecondaryButton } from "@molecules";
 import styles from "./generic.styles";
 import { GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA } from "@ids";
-import { Source } from "react-native-fast-image";
 
 type ButtonProps = React.ComponentProps<typeof Button>;
 export interface IGenericModalProps {

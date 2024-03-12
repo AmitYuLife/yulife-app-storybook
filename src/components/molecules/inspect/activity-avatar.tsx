@@ -1,8 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { TextTemplate } from "@atoms";
+import { RawImage, ImageStyle, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
-import FastImage, { ImageStyle } from "react-native-fast-image";
 import { EmptyMaleBody } from "../yumoji/assets/empty-male-body-svg";
 import { COMPARISON_NAMES, USER_YUMOJI_AVATAR, EMPTY_USER_YUMOJI_AVATAR } from "@ids";
 
@@ -37,7 +36,7 @@ const ActivityAvatar = ({ name, avatarUri, opponent, inspectOtherUser, testID }:
         </View>
         <View style={styles.smallAvatarWrapper}>
           {avatarUri ? (
-            <FastImage
+            <RawImage
               resizeMode="contain"
               source={{ uri: avatarUri }}
               style={styles.image}

@@ -1,8 +1,8 @@
 import React, { ComponentProps, Ref, memo, useCallback, useMemo } from "react";
 import { Animated, StyleSheet, View, ViewStyle } from "react-native";
-import { Source } from "react-native-fast-image";
 import { Colours, Style } from "@styles";
 import { Item } from "./item";
+import { Source } from "@atoms";
 
 type ItemProp = ComponentProps<typeof Item>;
 interface Props {

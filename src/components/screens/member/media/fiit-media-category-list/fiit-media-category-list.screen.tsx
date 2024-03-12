@@ -1,6 +1,5 @@
 import React, { memo, useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { Source } from "react-native-fast-image";
 import {
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButtons,
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward as IPromotionReward,
@@ -11,6 +10,7 @@ import { Colours, Style } from "@styles";
 import { IITem } from "@organisms/media-list-items/media-list-items";
 import { t } from "@locale";
 import { FIIT_CATEGORY_LIST_SCREEN } from "@ids";
+import { Source } from "@atoms";
 
 interface IProps {
   title: string;

@@ -1,13 +1,12 @@
-import { Source } from "react-native-fast-image";
 import LinearGradient from "react-native-linear-gradient";
 import { Animated, NativeScrollEvent, Platform, View } from "react-native";
 import React, { useCallback, useMemo, useRef, useState } from "react";
 
 import { t } from "@locale";
 import { Colours, Style } from "@styles";
-import { Image } from "@atoms/image/image";
+import { Image } from "@atoms";
 import { addCommasToNumber } from "@utils";
-import { ProgressBar, TextTemplate } from "@atoms";
+import { Source, ProgressBar, TextTemplate } from "@atoms";
 import { IReward } from "@organisms/event-reward/event-reward";
 import { EVENT_DIALOG_SCREEN, EVENT_DIALOG_SCREEN_SCROLL } from "@ids";
 import { UserProfileEventStatus } from "@graphql/_core/schema/globalTypes";

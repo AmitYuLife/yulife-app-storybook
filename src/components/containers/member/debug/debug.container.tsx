@@ -16,6 +16,7 @@ import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { IDebugItem } from "@components/screens/member/debug/debug.screen";
 import { showYuModal } from "@navigation/root";
 import { clearApolloCache } from "@graphql/_core/clearCache";
+import { clearImageDiskCache, clearImageMemoryCache } from "@atoms";
 
 interface IDebugContainerProps {
   componentId: string;
@@ -36,6 +37,8 @@ enum DebugCodes {
   playGround = "play-ground",
   workoutDebug = "workout-debug",
   yuHealthDebug = "yu-health-debug",
+  clearExpoDiskCache = "clear-expo-disk-cache",
+  clearExpoMemoryCache = "clear-expo-memory-cache",
 }
 
 const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
@@ -167,6 +170,12 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                 case DebugCodes.clearApolloCachedData:
                   await clearApolloCache();
                   return Alert.alert("Apollo cache cleared");
+                case DebugCodes.clearExpoDiskCache:
+                  await clearImageDiskCache();
+                  return Alert.alert("expo-image disk cache cleared");
+                case DebugCodes.clearExpoMemoryCache:
+                  await clearImageMemoryCache();
+                  return Alert.alert("expo-image memory cache cleared");
               }
 
               await resetData({ variables: { code } });

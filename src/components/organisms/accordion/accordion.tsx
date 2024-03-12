@@ -1,12 +1,12 @@
 import React, { ComponentProps, memo, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Animated, DimensionValue, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
-import { Source } from "react-native-fast-image";
 import { Header } from "./subcomponents/header";
 import { Content } from "./subcomponents/content";
 import { Item } from "./subcomponents/item";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useDispatch } from "react-redux";
 import { ProductStepContext } from "@components/containers/products/product-step/product-step.context";
+import { Source } from "@atoms";
 
 interface Props {
   header: string;

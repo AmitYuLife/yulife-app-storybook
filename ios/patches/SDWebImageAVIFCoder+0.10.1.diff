@@ -1,0 +1,22 @@
+diff --git a/cocoapods-patch-20240306-26626-bvy3ru/SDWebImageAVIFCoder/SDWebImageAVIFCoder/Classes/SDImageAVIFCoder.m b/Pods/SDWebImageAVIFCoder/SDWebImageAVIFCoder/Classes/SDImageAVIFCoder.m
+index d5c30af4a..203e8a30b 100644
+--- a/cocoapods-patch-20240306-26626-bvy3ru/SDWebImageAVIFCoder/SDWebImageAVIFCoder/Classes/SDImageAVIFCoder.m
++++ b/Pods/SDWebImageAVIFCoder/SDWebImageAVIFCoder/Classes/SDImageAVIFCoder.m
+@@ -137,7 +137,7 @@ - (UIImage *)decodedImageWithData:(NSData *)data options:(SDImageCoderOptions *)
+     BOOL hasAnimation = decoder->imageCount > 1;
+     uint32_t width = decoder->image->width;
+     uint32_t height = decoder->image->height;
+-    CGSize scaledSize = [SDImageCoderHelper scaledSizeWithImageSize:CGSizeMake(width, height) scaleSize:thumbnailSize preserveAspectRatio:preserveAspectRatio shouldScaleUp:NO];
++    CGSize scaledSize = CGSizeMake(width, height);
+     
+     // Static image
+     if (!hasAnimation || decodeFirstFrame) {
+@@ -418,7 +418,7 @@ - (UIImage *)animatedImageFrameAtIndex:(NSUInteger)index {
+     if (!originImageRef) {
+         return nil;
+     }
+-    CGSize scaledSize = [SDImageCoderHelper scaledSizeWithImageSize:CGSizeMake(width, height) scaleSize:_thumbnailSize preserveAspectRatio:_preserveAspectRatio shouldScaleUp:NO];
++    CGSize scaledSize = CGSizeMake(width, height);
+     // TODO: optimization using vImageScale directly during transform
+     CGImageRef imageRef = [SDImageCoderHelper CGImageCreateScaled:originImageRef size:scaledSize];
+     CGImageRelease(originImageRef);

@@ -3,10 +3,9 @@ import { View, StyleSheet } from "react-native";
 import { Colours, Style } from "@styles";
 import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilder";
 import { Button } from "@molecules";
-import { TextTemplate } from "@atoms";
+import { RawImage, TextTemplate } from "@atoms";
 import { yumojiWrapperWidth } from "../yumoji-and-slots/yumoji-and-slots.styles";
 import { GetYuScreen_getYuScreen_yumojiPrompt as Props } from "@graphql/_core/schema";
-import FastImage from "react-native-fast-image";
 
 export const BUTTON_HEIGHT = Style.adjust(48);
 
@@ -19,7 +18,7 @@ const PROMPT_WIDTH = yumojiWrapperWidth - Style.adjust(30);
 
 export const CreateYumojiPrompt: FC<Props> = memo(({ buttonText, heading, text }) => (
   <View style={styles.wrapper}>
-    <FastImage style={styles.yucoinImage} source={YUCOIN_IMAGE} />
+    <RawImage style={styles.yucoinImage} source={YUCOIN_IMAGE} />
     <View style={styles.contentWrapper}>
       <TextTemplate textAlign="center" type="h3">
         {heading}
