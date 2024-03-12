@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { IntercomHashMethod, FitKitType, YuHealthOptions } from "./globalTypes";
+import { IntercomHashMethod, FitKitType, YuHealthOptions, ActiveChallengeSourceType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetCurrentUser
@@ -122,6 +122,7 @@ export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge {
   rating: number | null;
   subtype: string | null;
   yuCoinAwarded: number | null;
+  createdBySource: ActiveChallengeSourceType | null;
   incomingData: GetCurrentUser_getCurrentUser_activeChallenge_challenge_incomingData | null;
 }
 

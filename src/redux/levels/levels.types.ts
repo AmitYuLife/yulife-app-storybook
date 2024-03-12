@@ -11,6 +11,11 @@ export interface ILevelsStore {
   currentPlanet: string;
 }
 
+export enum ChallengeSourceType {
+  phone = "phone",
+  watch = "watch",
+}
+
 export interface IActiveLevel {
   chest: Chest;
   yuniversalChest: YuniversalChest | null;
@@ -22,6 +27,7 @@ export interface IActiveLevel {
   level: number;
   levelSlotId: string;
   fitKitTypes: FitKitType[];
+  createdBySource: ChallengeSourceType;
   shouldEndOnLastGoalAchieved: boolean;
   milestones: Milestone[];
   yuHealth?: YuHealthOptions;
@@ -115,6 +121,7 @@ export type GetActiveChallengeSuccessDataPayload = Pick<
   | "yuHealth"
   | "endDateTime"
   | "levelSlotId"
+  | "createdBySource"
   | "milestones"
   | "rating"
   | "startDateTime"

@@ -10,6 +10,7 @@ import {
 import { getActiveLevel } from "../levels.selectors";
 import createQuestMapLevelChallenge from "@graphql/challenges/createQuestMapLevelChallenge.gql";
 import { Unpacked } from "@utils";
+import { ActiveChallengeSourceType } from "@graphql/_core/schema/globalTypes";
 
 export default function* startChallengeSaga({ payload }: ReturnType<typeof challengeStartAction>) {
   try {
@@ -34,10 +35,10 @@ export default function* startChallengeSaga({ payload }: ReturnType<typeof chall
       }
     }
 
-    const { data }: Unpacked<typeof createQuestMapLevelChallenge> = yield call(
-      createQuestMapLevelChallenge,
-      createQuestMapLevelChallengeVariables
-    );
+    const { data }: Unpacked<typeof createQuestMapLevelChallenge> = yield call(createQuestMapLevelChallenge, {
+      ...createQuestMapLevelChallengeVariables,
+      createdBySource: ActiveChallengeSourceType.phone,
+    });
 
     if (data?.createQuestMapLevelChallenge) {
       yield put(

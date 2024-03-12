@@ -3,7 +3,13 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { FitKitType, YuHealthDataType, YuHealthCapability, RewardsChestType } from "./globalTypes";
+import {
+  FitKitType,
+  YuHealthDataType,
+  YuHealthCapability,
+  RewardsChestType,
+  ActiveChallengeSourceType,
+} from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CreateQuestMapLevelChallenge
@@ -94,4 +100,5 @@ export interface CreateQuestMapLevelChallenge {
 export interface CreateQuestMapLevelChallengeVariables {
   levelSlotId: string;
   contentId?: string | null;
+  createdBySource?: ActiveChallengeSourceType;
 }

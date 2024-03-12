@@ -72,7 +72,7 @@ export type CreateQuestMapLevelChallengeMutationTuple = MutationTuple<
   CreateQuestMapLevelChallengeVariables
 >;
 
-const createQuestMapLevelChallenge = (variables: { levelSlotId: string; contentId?: string }) =>
+const createQuestMapLevelChallenge = (variables: CreateQuestMapLevelChallengeVariables) =>
   client().mutate<CreateQuestMapLevelChallenge, CreateQuestMapLevelChallengeVariables>({
     mutation: GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE,
     variables,

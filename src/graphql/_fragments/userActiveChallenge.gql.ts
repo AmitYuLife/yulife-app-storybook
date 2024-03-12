@@ -12,6 +12,7 @@ export const GQL_FRAGMENT_USER_ACTIVE_CHALLENGE = gql`
       status
       endDateTime
       startDateTime
+      createdBySource
       rating
       subtype
       yuCoinAwarded

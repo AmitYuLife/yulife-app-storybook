@@ -39,6 +39,7 @@ import {
   ILevelGetUserSuccessDataPayload,
   GetActiveChallengeSuccessDataPayload,
   ILevelsStoreGetCoinLedger,
+  ChallengeSourceType,
 } from "./levels.types";
 
 export interface ILevelsStore {
@@ -81,6 +82,7 @@ export const getInitialState = (): ILevelsStore => ({
     hideExternalLinks: true,
     appButton: null,
     levelState: null,
+    createdBySource: null,
   },
   challengesDoneToday: 0,
   dailyChallengeAmountAvailable: 1,
@@ -176,6 +178,7 @@ const getUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPaylo
     subtype: data?.levels?.activeChallenge?.subtype || "",
     unit: data?.levels?.activeChallenge?.unit || state.active.unit || "",
     challengeIsActive: data?.levels?.activeChallenge?.challengeIsActive,
+    createdBySource: data?.levels?.activeChallenge?.createdBySource,
     yuHealth: data?.levels?.activeChallenge?.yuHealth,
   },
   challengesDoneToday: data?.levels?.challengesDoneToday || 0,
@@ -197,6 +200,7 @@ const loginUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPay
     subtype: data?.levels?.activeChallenge?.subtype || "",
     unit: data?.levels?.activeChallenge?.unit || state.active.unit || "",
     challengeIsActive: data?.levels?.activeChallenge?.challengeIsActive,
+    createdBySource: data?.levels?.activeChallenge?.createdBySource,
   },
   challengesDoneToday: data?.levels?.challengesDoneToday || 0,
   dailyChallengeAmountAvailable: data?.levels?.dailyChallengeAmountAvailable,
@@ -227,6 +231,7 @@ const getActiveChallengeSuccess = (state: ILevelsStore, data: GetActiveChallenge
     subtype: data?.subtype || "",
     unit: data?.unit || state.active.unit || "",
     challengeIsActive: data?.challengeIsActive,
+    createdBySource: data?.createdBySource,
   },
 });
 
@@ -277,6 +282,7 @@ const challengeStartSuccess = (
     videoPlayerIsActive,
     hideExternalLinks, // TODO: Delete this after our meditopia player goes live for everyone
     levelState: ActiveLevelState.START_CHALLENGE_SUCCEED,
+    createdBySource: ChallengeSourceType.phone,
   },
 });
 

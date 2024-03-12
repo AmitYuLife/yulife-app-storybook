@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { FitKitType, YuHealthOptions } from "./globalTypes";
+import { FitKitType, YuHealthOptions, ActiveChallengeSourceType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetUserActiveChallenge
@@ -27,6 +27,7 @@ export interface GetUserActiveChallenge_getUserActiveChallenge_challenge {
   rating: number | null;
   subtype: string | null;
   yuCoinAwarded: number | null;
+  createdBySource: ActiveChallengeSourceType;
   incomingData: GetUserActiveChallenge_getUserActiveChallenge_challenge_incomingData | null;
 }
 

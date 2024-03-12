@@ -19,6 +19,7 @@ export default function* startChallengeIfActiveSaga() {
       levelSlotId,
       fitKitTypes,
       startDateTime,
+      createdBySource,
       initialPedometerResult,
       shouldEndOnLastGoalAchieved,
     }: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
@@ -65,6 +66,7 @@ export default function* startChallengeIfActiveSaga() {
         startDateTime,
         videoPlayerIsActive,
         shouldEndOnLastGoalAchieved,
+        createdBySource,
       });
     }
   } catch (error) {

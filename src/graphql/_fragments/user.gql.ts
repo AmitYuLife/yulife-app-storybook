@@ -94,6 +94,7 @@ export const GQL_FRAGMENT_USER = gql`
         levelSlotId
         status
         endDateTime
+        createdBySource
         startDateTime
         rating
         subtype

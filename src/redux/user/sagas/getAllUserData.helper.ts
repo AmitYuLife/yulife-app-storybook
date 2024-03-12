@@ -10,12 +10,13 @@ import {
   GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate,
   GetUserTodayActivity_todayActivity,
 } from "@graphql/_core/schema";
-import { GetActiveChallengeSuccessDataPayload } from "@redux/levels/levels.types";
+import { ChallengeSourceType, GetActiveChallengeSuccessDataPayload } from "@redux/levels/levels.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
 import { ICoinsTodayEarned, IGetCoinLedgerSuccessPayload } from "@redux/coins/coins.types";
 import { IPassiveChallengesEarnRateSuccessPayload } from "../user.types";
 import { DailyPension } from "@redux/daily-pension/daily-pension.types";
 import { IGetHintsSuccessPayload } from "@redux/hints/hints.types";
+import { ActiveChallengeSourceType } from "@graphql/_core/schema/globalTypes";
 
 export const toUserDataReduxType = (type: AppDataType, data: GetAllUserDataResponse[AppDataType]) => {
   switch (type) {
@@ -40,6 +41,15 @@ export const toUserDataReduxType = (type: AppDataType, data: GetAllUserDataRespo
   }
 };
 
+export const toChallengeSourceType = (source?: ActiveChallengeSourceType): ChallengeSourceType => {
+  switch (source) {
+    case ActiveChallengeSourceType.phone:
+      return ChallengeSourceType.phone;
+    case ActiveChallengeSourceType.watch:
+      return ChallengeSourceType.watch;
+  }
+};
+
 const toActiveChallenge = (
   activeChallenge: GetUserActiveChallenge_getUserActiveChallenge
 ): GetActiveChallengeSuccessDataPayload => ({
@@ -48,6 +58,7 @@ const toActiveChallenge = (
   yuHealth: activeChallenge?.levelSlot?.yuHealth,
   endDateTime: activeChallenge?.challenge?.endDateTime || "",
   levelSlotId: activeChallenge?.challenge?.levelSlotId || "",
+  createdBySource: toChallengeSourceType(activeChallenge?.challenge?.createdBySource),
   milestones: activeChallenge?.levelSlot?.milestones || [],
   rating: activeChallenge?.challenge?.rating,
   startDateTime: activeChallenge?.challenge?.startDateTime || "",

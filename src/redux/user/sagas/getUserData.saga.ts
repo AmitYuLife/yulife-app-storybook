@@ -9,6 +9,7 @@ import setLoggerIdentity from "./setLoggerIdentity.helper";
 import { updateDailyPensionSuccess } from "@redux/daily-pension/daily-pension.actions";
 import { IGetUserSuccessPayload } from "../user.types";
 import { GetCurrentUser } from "@graphql/_core/schema";
+import { toChallengeSourceType } from "./getAllUserData.helper";
 
 // TODO: Purge when getAllUserData is live
 export default function* getUserDataSaga() {
@@ -73,6 +74,7 @@ const toGetUserSuccessPayload = (data: GetCurrentUser): IGetUserSuccessPayload =
       unit: data?.getCurrentUser?.activeChallenge?.levelSlot?.unit,
       challengeIsActive: !!data?.getCurrentUser?.activeChallenge?.challenge?.id,
       yuHealth: data.getCurrentUser?.activeChallenge?.levelSlot?.yuHealth,
+      createdBySource: toChallengeSourceType(data?.getCurrentUser?.activeChallenge?.challenge?.createdBySource),
     },
     challengesDoneToday: data?.getCurrentUser?.challengesDoneToday,
     dailyChallengeAmountAvailable: data?.getCurrentUser?.dailyChallengeAmountAvailable,

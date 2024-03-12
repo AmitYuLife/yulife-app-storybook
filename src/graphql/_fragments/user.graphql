@@ -88,6 +88,7 @@ fragment User on User {
       levelSlotId
       status
       endDateTime
+      createdBySource
       startDateTime
       rating
       subtype

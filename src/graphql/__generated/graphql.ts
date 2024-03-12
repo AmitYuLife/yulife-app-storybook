@@ -52,6 +52,7 @@ export type ApiConfigSduiStaticDeepLink = {
 
 export type ApiConfigUrls = {
   __typename?: "APIConfigUrls";
+  cookiePolicy: Scalars["String"]["output"];
   eula: Scalars["String"]["output"];
   members: Scalars["String"]["output"];
   privacyPolicy: Scalars["String"]["output"];
@@ -142,6 +143,11 @@ export type ActiveChallengeByLevelSlotIdResponse = {
   challenge: Challenge;
   totalPauseDuration: Scalars["Int"]["output"];
 };
+
+export enum ActiveChallengeSourceType {
+  Phone = "phone",
+  Watch = "watch",
+}
 
 export type ActiveMultiplier = {
   __typename?: "ActiveMultiplier";
@@ -444,6 +450,7 @@ export type BulkMemberImport = {
   id: Scalars["ID"]["output"];
   importType: BulkMemberImportType;
   preview?: Maybe<BulkMemberImportPreview>;
+  processActionBlocked?: Maybe<Scalars["String"]["output"]>;
   source: Scalars["String"]["output"];
   status: BulkUploadStatus;
   uploadUrl?: Maybe<Scalars["String"]["output"]>;
@@ -667,6 +674,7 @@ export enum BusinessAccessPermission {
   EditEmployee = "editEmployee",
   ExportEmployees = "exportEmployees",
   ManageAdmins = "manageAdmins",
+  ManageCustomValues = "manageCustomValues",
   ManageEngagementDashboard = "manageEngagementDashboard",
   ManageExternalIntegrations = "manageExternalIntegrations",
   ManageLeaderboards = "manageLeaderboards",
@@ -826,6 +834,7 @@ export type Challenge = {
   /** @deprecated Not supported anymore. */
   challengeTemplateId?: Maybe<Scalars["String"]["output"]>;
   createdAt?: Maybe<Scalars["Int"]["output"]>;
+  createdBySource?: Maybe<ActiveChallengeSourceType>;
   /** @deprecated Not supported anymore. */
   currentData?: Maybe<Scalars["Int"]["output"]>;
   /** @deprecated Not supported anymore. */
@@ -2659,6 +2668,23 @@ export type CreateTeamSocialGroupInput = {
   query: SearchQueryInput;
 };
 
+export enum CustomValueType {
+  BusinessTagLabels = "businessTagLabels",
+  BusinessUnit = "businessUnit",
+  ContractType = "contractType",
+  Department = "department",
+  EmploymentStatus = "employmentStatus",
+  PayGrade = "payGrade",
+  WorkArrangement = "workArrangement",
+  WorkLocationCountry = "workLocationCountry",
+}
+
+export type CustomValueTypeData = {
+  __typename?: "CustomValueTypeData";
+  label: Scalars["String"]["output"];
+  type: CustomValueType;
+};
+
 export type CustomerBeneficiary = {
   __typename?: "CustomerBeneficiary";
   firstName: Scalars["String"]["output"];
@@ -3794,6 +3820,7 @@ export type HrisConnection = {
   config?: Maybe<HrisConfig>;
   hrisType?: Maybe<Scalars["String"]["output"]>;
   lastSyncedAt?: Maybe<Scalars["String"]["output"]>;
+  name?: Maybe<Scalars["String"]["output"]>;
   percentageBasedDataSample?: Maybe<Array<HrisSampleItem>>;
   sampleResult?: Maybe<HrisSampleResult>;
   sampleSize?: Maybe<Scalars["Int"]["output"]>;
@@ -4059,16 +4086,6 @@ export type LeaderboardItem = {
   steps?: Maybe<Scalars["Float"]["output"]>;
   userId?: Maybe<Scalars["ID"]["output"]>;
   value?: Maybe<Scalars["Float"]["output"]>;
-};
-
-export type Level = {
-  __typename?: "Level";
-  id?: Maybe<Scalars["String"]["output"]>;
-  level?: Maybe<Scalars["Int"]["output"]>;
-  levelChestId?: Maybe<Scalars["String"]["output"]>;
-  name?: Maybe<Scalars["String"]["output"]>;
-  rating?: Maybe<Scalars["Int"]["output"]>;
-  slots?: Maybe<Array<Maybe<LevelSlot>>>;
 };
 
 export type LevelSlot = {
@@ -4910,6 +4927,7 @@ export type MutationCreateBusinessTagArgs = {
 
 export type MutationCreateQuestMapLevelChallengeArgs = {
   contentId?: InputMaybe<Scalars["String"]["input"]>;
+  createdBySource?: InputMaybe<ActiveChallengeSourceType>;
   levelSlotId: Scalars["String"]["input"];
 };
 
@@ -5895,9 +5913,8 @@ export type Query = {
   getContactDetails?: Maybe<GetPersonalContactDetailsResponse>;
   getCountOfBusinessTagSocialGroups: Scalars["Int"]["output"];
   getCurrentFeatures: Array<UserFeature>;
-  getCurrentLevel?: Maybe<Level>;
-  getCurrentQuestLevels?: Maybe<Array<Maybe<Level>>>;
   getCurrentUser?: Maybe<User>;
+  getCustomValueTypes: GetCustomValueTypesResponse;
   getCustomerMatcherFields: Array<CustomerMatcherField>;
   getCustomerProductFromProductId?: Maybe<CustomerProductData>;
   getDailyPensionContribution: DailyPensionContribution;
@@ -5997,7 +6014,6 @@ export type Query = {
   getQuestMapLevelChallengeContent?: Maybe<Array<Maybe<QuestMapLevelChallengeContent>>>;
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
-  getRandomNumber?: Maybe<RandomNumber>;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
   getReferralBackground: RemoteImage;
@@ -6878,12 +6894,6 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
-
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
 
 export type RedeemSteps = {
   __typename?: "RedeemSteps";
@@ -9734,6 +9744,11 @@ export type YumojiRemoteParts = {
   id: Scalars["ID"]["output"];
   pants: YumojiRemotePart;
   shadow: YumojiRemotePart;
+};
+
+export type GetCustomValueTypesResponse = {
+  __typename?: "getCustomValueTypesResponse";
+  customValues: Array<CustomValueTypeData>;
 };
 
 export type UpdateUserAvatarResponse = {
@@ -12800,6 +12815,7 @@ export type UserFragment = {
       levelSlotId?: string | null;
       status?: string | null;
       endDateTime?: string | null;
+      createdBySource?: ActiveChallengeSourceType | null;
       startDateTime?: string | null;
       rating?: number | null;
       subtype?: string | null;
@@ -30984,6 +31000,7 @@ export const UserFragmentDoc = {
                       { kind: "Field", name: { kind: "Name", value: "levelSlotId" } },
                       { kind: "Field", name: { kind: "Name", value: "status" } },
                       { kind: "Field", name: { kind: "Name", value: "endDateTime" } },
+                      { kind: "Field", name: { kind: "Name", value: "createdBySource" } },
                       { kind: "Field", name: { kind: "Name", value: "startDateTime" } },
                       { kind: "Field", name: { kind: "Name", value: "rating" } },
                       { kind: "Field", name: { kind: "Name", value: "subtype" } },

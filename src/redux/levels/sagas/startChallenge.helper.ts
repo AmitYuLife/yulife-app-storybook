@@ -22,7 +22,7 @@ import {
   challengeUpdateSuccessAction,
   challengeIsActive,
 } from "../levels.actions";
-import { ChallengeStartPayload } from "../levels.types";
+import { ChallengeSourceType, ChallengeStartPayload, IActiveLevel } from "../levels.types";
 import { DETOX_ENABLED } from "@services/socket";
 import { Task } from "redux-saga";
 import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
@@ -110,7 +110,8 @@ type Args = Omit<CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_chall
     CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot,
     "shouldEndOnLastGoalAchieved" | "fitKitTypes" | "subtype"
   > &
-  Pick<ChallengeStartPayload, "videoPlayerIsActive">;
+  Pick<ChallengeStartPayload, "videoPlayerIsActive"> &
+  Pick<IActiveLevel, "createdBySource">;
 
 export default function* startChallenge({
   shouldEndOnLastGoalAchieved,
@@ -120,10 +121,11 @@ export default function* startChallenge({
   endDateTime,
   fitKitTypes,
   videoPlayerIsActive,
+  createdBySource,
 }: Args) {
   let challengeTask: Task;
 
-  if (fitKitTypes.length) {
+  if (fitKitTypes.length && createdBySource !== ChallengeSourceType.watch) {
     // We don't want to track time when playing sudoku as we want the user to be able to start & then finish after midnight.
     // The challenge will be auto cancelled by quests.container if they go back to the map after the day has ended,
     // but if they are still playing the game, we will allow them to finish.
