@@ -1,6 +1,6 @@
 import React from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
-import { CloseSvg, TextTemplate } from "@atoms";
+import { CloseSvg, RawImage, TextTemplate } from "@atoms";
 import { Button, PressableWithDelay } from "@molecules";
 import { DEFAULT_HEIGHT as buttonHeight } from "@components/molecules/button/button.styles";
 import { Colours, Style } from "@styles";
@@ -9,7 +9,6 @@ import navBar from "@styles/nav-bar.styles";
 import { YuCoinPower } from "../yu-coin-power/yu-coin-power";
 import { ItemSlot } from "../item-slot/item-slot";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
-import FastImage from "react-native-fast-image";
 import { View as AnimatedView } from "react-native-animatable";
 import { BUTTON_CLOSE_ONBOARDING, ONBOARDING_SCREEN, ONBOARDING_SCREEN_MARKDOWN } from "@ids";
 import { OnboardingHandler } from "../../hooks/useOnboardingButtonHandler";
@@ -41,11 +40,11 @@ export const Onboarding = ({ onboarding, onPress, onClose }: IOnboardingProps) =
 
   return (
     <AnimatedView useNativeDriver={true} animation="fadeInUpBig" duration={500} style={styles.container}>
-      <FastImage style={styles.backgroundImage} source={BACKGROUND_IMAGE} />
+      <RawImage style={styles.backgroundImage} source={BACKGROUND_IMAGE} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.contentWrapper} testID={ONBOARDING_SCREEN}>
           <View style={styles.itemSlotContainer}>
-            <FastImage style={styles.itemSlotContainerImage} source={ITEM_SLOT_CONTAINER_IMAGE} />
+            <RawImage style={styles.itemSlotContainerImage} source={ITEM_SLOT_CONTAINER_IMAGE} />
             {isYuCoinPowerDisplayed ? (
               <View style={styles.yuCoinPower}>
                 <YuCoinPower pressable={false} />
@@ -58,7 +57,7 @@ export const Onboarding = ({ onboarding, onPress, onClose }: IOnboardingProps) =
             </View>
             {overlayImage ? (
               <View pointerEvents="none" style={styles.overlayImageWrapper}>
-                <FastImage resizeMode="contain" style={styles.overlayImage} source={overlayImage} />
+                <RawImage resizeMode="contain" style={styles.overlayImage} source={overlayImage} />
               </View>
             ) : null}
           </View>

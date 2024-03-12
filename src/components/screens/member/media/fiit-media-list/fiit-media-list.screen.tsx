@@ -1,12 +1,12 @@
 import React, { memo, useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { Source } from "react-native-fast-image";
 import { GenericHeadingPad, MediaListItems, GenericHeadingAbsolute } from "@organisms";
 import { MediaListHeader } from "@molecules";
 import { Colours, Style } from "@styles";
 import { IITem } from "@organisms/media-list-items/media-list-items";
 import { FIIT_MEDIA_SCROLL_VIEW } from "@ids";
 import { GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_providerLogo } from "@graphql/_core/schema";
+import { Source } from "@atoms";
 
 interface IProps {
   title: string;

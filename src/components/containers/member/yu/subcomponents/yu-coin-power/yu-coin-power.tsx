@@ -1,12 +1,11 @@
 import React, { FC, memo } from "react";
 import { StyleSheet, View } from "react-native";
-import { Text } from "@atoms";
+import { RawImage, Text } from "@atoms";
 import { Style } from "@styles";
 import { getUserEarnRate } from "@redux/user/user.selectors";
 import { useSelector } from "react-redux";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { showYuCoinPowerExplainedOverlay } from "../../navigation/showYuCoinPowerExplainedOverlay";
-import FastImage from "react-native-fast-image";
 import { YUCOIN_POWER_V4_SCREEN } from "@ids";
 import { t } from "@locale";
 
@@ -22,7 +21,7 @@ export const YuCoinPower: FC<Props> = memo(({ pressable = true }) => {
 
   return (
     <YuCoinPowerWrapper onPress={pressable ? showYuCoinPowerExplainedOverlay : null} style={styles.ycWrapperOuter}>
-      <FastImage style={styles.ycPowerBg} source={pressable ? YUCOIN_POWER_INTERACTIVE_IMAGE : YUCOIN_POWER_IMAGE} />
+      <RawImage style={styles.ycPowerBg} source={pressable ? YUCOIN_POWER_INTERACTIVE_IMAGE : YUCOIN_POWER_IMAGE} />
       <Yc />
     </YuCoinPowerWrapper>
   );

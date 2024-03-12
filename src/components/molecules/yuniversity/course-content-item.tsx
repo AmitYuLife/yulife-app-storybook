@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { TextTemplate } from "@atoms";
-import { Image } from "@atoms/image/image";
+import { Image } from "@atoms";
 import { BoxOption } from "@molecules";
 import { Colours, Style } from "@styles";
 import { StyleSheet, View } from "react-native";

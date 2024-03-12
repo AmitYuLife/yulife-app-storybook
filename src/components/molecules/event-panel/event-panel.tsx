@@ -4,9 +4,8 @@ import { Colours, Style } from "@styles";
 import { baseStyles, rewardsEventPanelStyles } from "./event-panel.styles";
 import { Button, PressableWithDelay } from "@molecules";
 import { EVENT_DESCRIPTION, NEW_EVENT_ICON } from "@ids";
-import { Image, ProgressBar, TextTemplate } from "@atoms";
+import { Image, Source, ProgressBar, TextTemplate } from "@atoms";
 import { ArrowButton } from "../arrow-button";
-import { Source } from "react-native-fast-image";
 
 export interface IEventPanelProps {
   type: "goal" | "rewards";

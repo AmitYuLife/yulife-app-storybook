@@ -1,6 +1,6 @@
 import { Style } from "@styles";
 import { StyleSheet, Platform, ViewStyle } from "react-native";
-import { ImageStyle } from "react-native-fast-image";
+import { ImageStyle } from "@atoms";
 
 const scaleAvatarBasedOnDeviceHeight = (width: number) => {
   const MAGIC_NUMBER = 875;

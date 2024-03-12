@@ -1,11 +1,11 @@
 import React, { useMemo, FC, memo, useState, useEffect, useCallback } from "react";
-import { Image } from "@atoms";
+import { Image, ImageCachePolicy, Source } from "@atoms";
 import { StyleProp, View, ViewStyle } from "react-native";
-import { Source } from "react-native-fast-image";
 import { shallowEqual } from "react-redux";
 
 interface IProps {
   source: Source | number;
+  allowDownscaling?: boolean;
   transform: {
     // relative offset left
     left?: number;
@@ -20,6 +20,7 @@ interface IProps {
   containerHeight: number;
   containerWidth: number;
   suppressLoadingUi?: boolean;
+  cachePolicy?: ImageCachePolicy;
   onInitialLoad?: () => void;
 }
 export const sourceKeyExtractor = (source: Source | number) => {
@@ -27,7 +28,16 @@ export const sourceKeyExtractor = (source: Source | number) => {
 };
 
 export const CroppedImage: FC<IProps> = memo(
-  ({ transform, source, containerHeight, containerWidth, suppressLoadingUi, onInitialLoad }) => {
+  ({
+    transform,
+    source,
+    containerHeight,
+    containerWidth,
+    suppressLoadingUi,
+    onInitialLoad,
+    allowDownscaling,
+    cachePolicy,
+  }) => {
     const { left = 0, top = 0, zoom = 1, height, width } = transform || {};
     const scale = (height && width ? containerWidth / width : 1) * zoom;
     const scaledWidth = scale * (width || containerWidth);
@@ -81,21 +91,25 @@ export const CroppedImage: FC<IProps> = memo(
           <Image
             style={imageStyle}
             width={scaledWidth}
+            allowDownscaling={allowDownscaling}
             key={sourceKeyExtractor(sources.currentSource)}
             source={sources.currentSource}
             suppressLoadingUi={suppressLoadingUi}
             resizeMode={"contain"}
+            cachePolicy={cachePolicy}
           />
         ) : null}
         {sources.loadingSource ? (
           <Image
             style={imageStyle}
             width={scaledWidth}
+            allowDownscaling={allowDownscaling}
             key={sourceKeyExtractor(sources.loadingSource)}
             source={sources.loadingSource}
             suppressLoadingUi={suppressLoadingUi}
             onLoad={onLoad}
             resizeMode={"cover"}
+            cachePolicy={cachePolicy}
           />
         ) : null}
       </View>

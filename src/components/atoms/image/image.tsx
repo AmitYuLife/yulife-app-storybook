@@ -1,20 +1,50 @@
 import React, { memo, useMemo, useState, useCallback } from "react";
 import { StyleSheet, View, ViewStyle, ActivityIndicator, StyleProp, ColorValue, Image as RNImage } from "react-native";
-import FastImage, { FastImageProps, ImageStyle, OnLoadEvent, ResizeMode, Source } from "react-native-fast-image";
+import { Image as ExpoImage, ImageLoadEventData, ImageSource as Source, ImageStyle, ImageProps } from "expo-image";
 import { Colours } from "@styles";
 import { shallowEqual } from "react-redux";
 import { isWeb } from "@utils";
+import { round } from "lodash";
+import { useUserFeatures } from "@hooks";
 
-interface Props {
-  width: number;
+const PIXEL_FIX: number = 1;
+
+export enum ImageCachePolicy {
+  /**
+   * Image is not cached at all.
+   */
+  none = "none",
+  /**
+   * Image is queried from the disk cache if exists, otherwise it's downloaded and then stored on the disk.
+   */
+  disk = "disk",
+  /**
+   * Image is cached in memory. Might be useful when we render a high-resolution picture many times.
+   * Memory cache may be purged very quickly to prevent high memory usage and the risk of out of memory exceptions.
+   */
+  memory = "memory",
+  /**
+   * Image is cached in memory, but with a fallback to the disk cache.
+   */
+  memoryDisk = "memory-disk",
+}
+
+export interface IImageProps {
+  width?: number;
   height?: number;
   loadingHeight?: number;
+  allowDownscaling?: boolean;
   style?: StyleProp<ViewStyle>;
+  cachePolicy?: ImageCachePolicy;
   imageStyle?: StyleProp<ImageStyle>;
   source: Source | number;
   theme?: "light" | "dark";
   testID?: string;
-  resizeMode?: ResizeMode;
+  resizeMode?: "contain" | "cover" | "stretch" | "center";
+  /**
+   * Has some known issues
+   * @url https://github.com/expo/expo/issues/21530
+   */
   tintColor?: ColorValue;
   /**
    * suppresses loading ui
@@ -23,42 +53,44 @@ interface Props {
    */
   suppressLoadingUi?: boolean;
   CustomLoader?: React.ReactNode;
-  onLoad?: (event: OnLoadEvent) => void;
-  accessible?: FastImageProps["accessible"];
-  accessibilityLabel?: FastImageProps["accessibilityLabel"];
+  onLoad?: (event: ImageLoadEventData) => void;
+  accessible?: boolean;
+  accessibilityLabel?: string;
 }
 
 export const Image = memo(
-  (props: Props) => {
-    const {
+  ({
+    style,
+    source,
+    testID,
+    onLoad,
+    tintColor,
+    imageStyle,
+    accessible,
+    CustomLoader,
+    loadingHeight,
+    theme = "light",
+    width: propWidth,
+    allowDownscaling,
+    suppressLoadingUi,
+    accessibilityLabel,
+    height: propHeight = 0,
+    resizeMode = "contain",
+  }: IImageProps) => {
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [nativeSize, setNativeSize] = useState<{ width: number; height: number }>({
+      height: propHeight,
       width: propWidth,
-      height: propHeight = 0,
-      loadingHeight,
-      style,
-      imageStyle,
-      theme = "light",
-      source,
-      testID,
-      resizeMode = "contain",
-      suppressLoadingUi,
-      tintColor,
-      onLoad,
-      accessible,
-      accessibilityLabel,
-      CustomLoader,
-    } = props;
-
-    const [isLoading, setIsLoading] = useState(true);
-    const [nativeSize, setNativeSize] = useState({ height: propHeight, width: propWidth });
+    });
 
     const handleLoadStart = useCallback(() => setIsLoading(true), []);
 
     const handleLoadState = useCallback(
-      (event: OnLoadEvent) => {
-        const {
-          nativeEvent: { width: nativeWidth, height: nativeHeight },
-        } = event;
+      (event: ImageLoadEventData) => {
+        const { width: nativeWidth, height: nativeHeight } = event.source;
+
         setIsLoading(false);
+
         if (onLoad) {
           onLoad(event);
         }
@@ -76,46 +108,72 @@ export const Image = memo(
 
         // In rare occasions nativeWidth can be 0
         const nativeDimensions = { width: nativeWidth || propWidth, height: nativeHeight };
+
         if (!shallowEqual(nativeDimensions, nativeSize)) {
           setNativeSize(nativeDimensions);
         }
       },
-      [propHeight, propWidth]
+
+      [propHeight, propWidth, nativeSize, source, onLoad]
     );
 
-    const dimensions = useMemo(() => {
-      const calcHeight = loadingHeight || propHeight || (nativeSize.height / nativeSize.width) * propWidth;
-      return { width: propWidth, height: calcHeight };
+    const dimensions = useMemo((): ImageStyle => {
+      const roundedHeight = round(propHeight);
+      const roundedWidth = round(propWidth);
+
+      // We round the height to 2 decimal places to avoid
+      // floating point issues that can cause infinite loops
+      const calculatedHeight = round(nativeSize.height / nativeSize.width, 2) * roundedWidth;
+      const height = loadingHeight || roundedHeight || calculatedHeight;
+
+      // The image must be at least 1px to trigger the `onLoad` event
+      // It must also be a little visible to trigger the `onLoad` event
+      return {
+        height: height || PIXEL_FIX,
+        width: roundedWidth || PIXEL_FIX,
+        opacity: height === 0 ? 0.1 : 1,
+      };
     }, [propHeight, propWidth, loadingHeight, nativeSize]);
 
     const containerStyle = useMemo(() => [styles.wrapper, dimensions, style], [dimensions, style]);
+    const themeColor = useMemo(() => (theme === "light" ? Colours.neutral.white : Colours.primary.p600), [theme]);
+    const imageStyles = useMemo(() => [dimensions, imageStyle, { tintColor }], [dimensions, imageStyle, tintColor]);
 
-    const imageStyles = useMemo(() => [dimensions, imageStyle], [dimensions, imageStyle]);
+    const loadingSpinner = useMemo(() => {
+      if (suppressLoadingUi || !isLoading) {
+        return null;
+      }
+
+      return <View style={styles.loader}>{CustomLoader || <ActivityIndicator size="large" color={themeColor} />}</View>;
+    }, [isLoading, suppressLoadingUi, CustomLoader, themeColor]);
 
     return (
       <View pointerEvents="none" style={containerStyle} testID={testID}>
-        <FastImage
+        <RawImage
           onLoadStart={handleLoadStart}
           onLoad={handleLoadState}
           style={imageStyles}
           source={source}
           resizeMode={resizeMode}
-          tintColor={tintColor}
           accessible={accessible}
+          allowDownscaling={allowDownscaling}
           accessibilityLabel={accessibilityLabel}
         />
-        <Loading
-          isLoading={isLoading}
-          suppressLoadingUi={suppressLoadingUi}
-          theme={theme}
-          CustomLoader={CustomLoader}
-        />
+        {loadingSpinner}
       </View>
     );
   },
   ({ source: prevSource, ...prevProps }, { source: nextSource, ...nextProp }) =>
     shallowEqual(prevProps, nextProp) && shallowEqual(prevSource, nextSource)
 );
+
+export const RawImage = ({ cachePolicy, ...props }: ImageProps) => {
+  const { gameEnableExpoImageDiskCachingPolicy } = useUserFeatures();
+
+  const defaultCachePolicy = gameEnableExpoImageDiskCachingPolicy ? ImageCachePolicy.disk : ImageCachePolicy.memoryDisk;
+
+  return <ExpoImage cachePolicy={cachePolicy || defaultCachePolicy} {...props} />;
+};
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -129,21 +187,10 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-type LoadingProps = {
-  isLoading: boolean;
-  suppressLoadingUi: Props["suppressLoadingUi"];
-  theme: Props["theme"];
-  CustomLoader?: Props["CustomLoader"];
-};
+const {
+  prefetch: prefetchImages,
+  clearDiskCache: clearImageDiskCache,
+  clearMemoryCache: clearImageMemoryCache,
+} = ExpoImage;
 
-const Loading = ({ isLoading, suppressLoadingUi, theme, CustomLoader }: LoadingProps) => {
-  if (!suppressLoadingUi && isLoading) {
-    return (
-      <View style={styles.loader}>{CustomLoader || <ActivityIndicator size="large" color={getColor(theme)} />}</View>
-    );
-  }
-
-  return null;
-};
-
-const getColor = (theme: Props["theme"]) => (theme === "light" ? Colours.neutral.white : Colours.primary.p600);
+export { Source, ImageStyle, clearImageDiskCache, clearImageMemoryCache, prefetchImages };

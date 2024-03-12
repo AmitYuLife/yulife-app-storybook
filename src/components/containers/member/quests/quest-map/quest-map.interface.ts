@@ -1,6 +1,6 @@
+import { Source } from "@atoms";
 import { GetQuestMap_levels } from "@graphql/_core/schema";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
-import { Source } from "react-native-fast-image";
 
 export interface IEpisodeLevelConfig {
   /**

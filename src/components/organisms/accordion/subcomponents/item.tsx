@@ -1,9 +1,8 @@
 import React, { memo, useCallback, useContext, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { Image, TextTemplate } from "@atoms";
+import { Image, Source, TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Colours, Style } from "@styles";
-import { Source } from "react-native-fast-image";
 import { SduiAction } from "@graphql/__generated";
 import { useDispatch } from "react-redux";
 import { ProductStepContext } from "@components/containers/products/product-step/product-step.context";

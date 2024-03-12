@@ -59,6 +59,10 @@ target 'YuLife' do
   plugin 'cocoapods-bugsnag'
 
   pod 'RNFitKit', :path => '../node_modules/@yu-life/react-native-fitkit/ios'
+  pod 'SDWebImage', '5.11.1'
+  pod 'SDWebImageWebPCoder', '0.8.4'
+  pod 'SDWebImageAVIFCoder', '0.10.1'
+  pod 'SDWebImageSVGCoder', '1.7.0'
 
   dynamic_frameworks = ['Leanplum-iOS-SDK', 'CleverTap-iOS-SDK', 'SDWebImage']
   pre_install do |installer|

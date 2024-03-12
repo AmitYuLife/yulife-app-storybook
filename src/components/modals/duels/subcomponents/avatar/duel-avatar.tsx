@@ -1,8 +1,8 @@
 import React from "react";
 import { Animated, Easing, View, ViewStyle } from "react-native";
 import { AvatarEmpty } from "@molecules";
-import FastImage from "react-native-fast-image";
 import styles from "./duel-avatar.styles";
+import { RawImage } from "@atoms";
 
 interface IProps {
   reverse?: boolean;
@@ -109,12 +109,12 @@ function _DuelAvatar({ reverse, uri, shouldAnimate = true }: IProps) {
         >
           <Animated.View style={{ opacity }}>
             {uri ? (
-              <FastImage resizeMode="contain" source={{ uri }} style={styles.image} />
+              <RawImage resizeMode="contain" source={{ uri }} style={styles.image} />
             ) : (
               <AvatarEmpty style={styles.image} />
             )}
           </Animated.View>
-          <FastImage
+          <RawImage
             style={styles.border}
             resizeMode="contain"
             source={require("../../../../../../assets/duels/yucoin.png")}

@@ -63,10 +63,11 @@ function _ScalableYumoji(props: IProps) {
         <View style={getWrapperStyles(partType, hiddenPartTypes)}>
           <CroppedImage
             transform={preview}
+            allowDownscaling={false}
             key={`${bodyType}_${partType}`}
             containerWidth={styles.width}
             containerHeight={styles.height}
-            source={{ uri, downScale: false }}
+            source={{ uri }}
             suppressLoadingUi={true}
             onInitialLoad={onImageLoaded}
           />

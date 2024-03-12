@@ -1,9 +1,9 @@
+import { RawImage } from "@atoms";
 import { Rank } from "@atoms/icon/rank";
 import { EmptyMaleBody } from "@components/molecules/yumoji/assets/empty-male-body-svg";
 import { Colours, Style } from "@styles";
 import { memo } from "react";
 import { StyleSheet, View } from "react-native";
-import FastImage from "react-native-fast-image";
 
 interface IProps {
   uri: string;
@@ -13,7 +13,7 @@ const SudokuLeaderboardAvatar = ({ uri }: IProps) => {
   return (
     <View style={filledStyles.wrapper}>
       <View style={filledStyles.avatarWrapper}>
-        {!uri ? <EmptyMaleBody /> : <FastImage source={{ uri }} style={filledStyles.image} />}
+        {!uri ? <EmptyMaleBody /> : <RawImage source={{ uri }} style={filledStyles.image} />}
       </View>
       <View style={filledStyles.rankWrapper}>
         <Rank isWinner={true} isDraw={false} size={25} />

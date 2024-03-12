@@ -1,11 +1,12 @@
 import React, { forwardRef, memo } from "react";
 import LottieView, { LottieViewProps } from "lottie-react-native";
 import { useGetLottieJson } from "@hooks";
-import { Loading } from "@atoms";
+import { Loading, Source } from "@atoms";
 import { View } from "react-native";
 
-export interface ILottieProps extends LottieViewProps {
+export interface ILottieProps extends Omit<LottieViewProps, "source"> {
   suppressLoadingUi?: boolean;
+  source: Source | string;
 }
 
 const LottieWrapper = forwardRef<LottieView, ILottieProps>((props, ref) => {

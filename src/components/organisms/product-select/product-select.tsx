@@ -1,9 +1,8 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { PowerCoin, Image, TextTemplate } from "@atoms";
+import { PowerCoin, Image, TextTemplate, Source } from "@atoms";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { BoxOption } from "@molecules";
 import { Colours, Style } from "@styles";
-import { Source } from "react-native-fast-image";
 import { CheckBoxType } from "@components/molecules/check-box/check-box-type";
 
 interface IProductSelectProps {

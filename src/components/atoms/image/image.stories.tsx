@@ -17,6 +17,7 @@ const meta: Meta<typeof Image> = {
     },
     width: 228,
     height: 120,
+    suppressLoadingUi: true,
   },
 };
 

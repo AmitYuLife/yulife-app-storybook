@@ -11,8 +11,8 @@ import {
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButtons,
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward as IPromotionReward,
 } from "@graphql/_core/schema";
-import { Source } from "react-native-fast-image";
 import { USE_OTHER_APP_BUTTON, TODAYS_MEDITATION_SCREEN } from "@ids";
+import { Source } from "@atoms";
 
 interface IProps {
   videos: IITem[];

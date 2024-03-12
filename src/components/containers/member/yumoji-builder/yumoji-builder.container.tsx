@@ -81,8 +81,8 @@ const YumojiBuilderContainer = () => {
   }, [handleAvatarUpdate, translations]);
 
   useQuery<GetYumojiBuilderCategoryList>(GQL_QUERY_GET_YUMOJI_BUILDER_CATEGORY_LIST, {
-    onCompleted: ({ getYumojiBuilderCategoryList }) => {
-      cache(getYumojiBuilderCategoryList.map(({ icon: { uri } }) => ({ uri })));
+    onCompleted: async ({ getYumojiBuilderCategoryList }) => {
+      await cache(getYumojiBuilderCategoryList.map(({ icon: { uri } }) => ({ uri })));
       dispatch({ type: ActionTypes.SET_CATEGORIES, payload: getYumojiBuilderCategoryList });
     },
     fetchPolicy: "cache-and-network",
@@ -93,8 +93,8 @@ const YumojiBuilderContainer = () => {
     GetYumojiBuilderInitialPartsVariables
   >(GQL_QUERY_GET_YUMOJI_BUILDER_INITIAL_PARTS, {
     fetchPolicy: "cache-and-network",
-    onCompleted: (data) => {
-      cache(data?.getYumojiBuilderInitialParts.map(({ remoteUrl: { uri } }) => ({ uri })));
+    onCompleted: async (data) => {
+      await cache(data?.getYumojiBuilderInitialParts.map(({ remoteUrl: { uri } }) => ({ uri })));
       dispatch({ type: ActionTypes.INITIAL_STATE, payload: data?.getYumojiBuilderInitialParts });
     },
   });

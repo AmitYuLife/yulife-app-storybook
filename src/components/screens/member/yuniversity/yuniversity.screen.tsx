@@ -1,11 +1,10 @@
 import React, { FC, useCallback, useMemo, useRef, useState, memo } from "react";
-import { TextTemplate } from "@atoms";
-import { Image } from "@atoms/image/image";
+import { Source, TextTemplate } from "@atoms";
+import { Image } from "@atoms";
 import Markdown from "@components/molecules/markdown/markdown";
 import { GenericHeadingAbsolute, ModuleContentItem } from "@organisms";
 import { Style } from "@styles";
 import { Animated, NativeScrollEvent, View } from "react-native";
-import { Source } from "react-native-fast-image";
 import style, { CONTENT_MARGIN_TOP, HEADER_HEIGHT, TITLE_HEIGHT } from "./styles";
 import { CPD_COURSES_SCREEN } from "@ids";
 import { GetInAppYuniversityCoursesQuery } from "@graphql/__generated";

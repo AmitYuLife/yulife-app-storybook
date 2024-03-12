@@ -1,5 +1,5 @@
+import { ImageStyle } from "@atoms";
 import { StyleSheet, ImageStyle as RnImageStyle, ViewStyle } from "react-native";
-import { ImageStyle } from "react-native-fast-image";
 import { Style } from "@styles";
 
 const AVATAR_SM = Style.adjust(42);

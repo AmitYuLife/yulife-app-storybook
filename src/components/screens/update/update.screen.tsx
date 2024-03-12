@@ -1,9 +1,8 @@
-import { Text } from "@atoms";
+import { RawImage, Text } from "@atoms";
 import { Button } from "@molecules";
 import { Colours, Style } from "@styles";
 import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
-import FastImage from "react-native-fast-image";
 
 interface IProps {
   title: string;
@@ -19,7 +18,7 @@ export const UpdateScreen = memo(function (props: IProps) {
   return (
     <View style={styles.wrapper}>
       <View style={styles.imageWrapper}>
-        <FastImage source={{ uri: imageUrl }} style={styles.image} />
+        <RawImage source={{ uri: imageUrl }} style={styles.image} />
       </View>
       <View>
         <Text bold={true} style={styles.title}>

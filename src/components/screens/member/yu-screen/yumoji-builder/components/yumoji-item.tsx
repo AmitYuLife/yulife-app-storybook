@@ -1,15 +1,14 @@
 import React, { memo, useCallback, useMemo, useRef, useState } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
-import { SkeletonLoading } from "@atoms";
+import { ImageCachePolicy, RawImage, SkeletonLoading } from "@atoms";
 import { CroppedImage } from "./croppedImage";
 import ColorPreview from "./colorPreview";
 import { YumojiItemLabel } from "./yumoji-item-label";
 import { Colours, Style } from "@styles";
 import { GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items as YumojiBuilderItemsForCategoryItems } from "@graphql/_core/schema";
-import FastImage from "react-native-fast-image";
-
 import { COLOUR, YUMOJI_PART_ID } from "@ids";
 import { BOX_OPTION_BORDER_RADIUS, BoxOption } from "@molecules";
+import { useUserFeatures } from "@hooks";
 
 export interface ItemListItems extends YumojiBuilderItemsForCategoryItems {
   isSelected: boolean;
@@ -31,6 +30,7 @@ export const itemHeight = boxHeight + 2 * itemMargin;
 export const YumojiItem = memo(
   ({ item, loading, onItemPress }: IProps) => {
     const [partsLoading, setPartsLoading] = useState(!!item?.parts?.filter((part) => part?.remoteUrl?.uri).length);
+    const { gameEnableExpoImageDiskCachingPolicyInYumojiBuilder } = useUserFeatures();
     const loadingCounter = useRef(item?.parts?.filter((part) => part?.remoteUrl?.uri).length || 0);
 
     const onPress = useCallback(() => {
@@ -54,7 +54,8 @@ export const YumojiItem = memo(
           {item?.parts
             ?.filter((part) => part?.remoteUrl?.uri)
             ?.map(({ remoteUrl: { uri } }) => (
-              <FastImage onLoad={onImageLoaded} key={uri} source={{ uri }} />
+              // must have at least 1px visible to trigger onLoad
+              <RawImage onLoad={onImageLoaded} key={uri} source={{ uri }} style={styles.hiddenImageStyle} />
             ))}
         </View>
       );
@@ -71,15 +72,19 @@ export const YumojiItem = memo(
         );
       }
 
+      const cachePolicy = gameEnableExpoImageDiskCachingPolicyInYumojiBuilder ? ImageCachePolicy.disk : undefined;
+
       return (
         <CroppedImage
+          suppressLoadingUi={true}
+          cachePolicy={cachePolicy}
           source={item?.preview?.image}
           transform={item?.preview?.transform}
           containerHeight={previewSize}
           containerWidth={previewSize}
         />
       );
-    }, [item]);
+    }, [item, gameEnableExpoImageDiskCachingPolicyInYumojiBuilder]);
 
     const label = useMemo(() => {
       if (!item.label) {

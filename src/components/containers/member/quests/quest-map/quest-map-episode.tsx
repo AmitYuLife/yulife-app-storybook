@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { IQuestMapItem } from "./quest-map.interface";
 import EpisodeLevels from "./episode-levels";
-import FastImage from "react-native-fast-image";
+import { RawImage } from "@atoms";
 
 export interface IQuestMapDayProps {
   episode: IQuestMapItem;
@@ -32,12 +32,12 @@ const QuestMapEpisode = ({ episode, height }: IQuestMapDayProps) => {
   return (
     <View pointerEvents="box-none">
       {episode?.seperator ? (
-        <FastImage source={episode.seperator.background} style={{ ...styles.seperator, height: seperatorHeight }} />
+        <RawImage source={episode.seperator.background} style={{ ...styles.seperator, height: seperatorHeight }} />
       ) : null}
 
       <View style={backgroundContainerStyle} pointerEvents="box-none">
         <View style={lottieStyles} pointerEvents="none">
-          <FastImage source={episode.episodeConfig.background} style={lottieStyles} resizeMode="contain" />
+          <RawImage source={episode.episodeConfig.background} style={lottieStyles} resizeMode="contain" />
         </View>
         {!episode.levels?.length ? null : (
           <EpisodeLevels

@@ -1,11 +1,10 @@
 import React, { FC } from "react";
 import { View } from "react-native";
-import { Text } from "@atoms";
+import { RawImage, Text } from "@atoms";
 import { t } from "@locale";
 import styles from "./wager-dropdown.styles";
 import images from "./wager-dropdown.images";
 import DuelYucoin from "@screens/member/duels-hub/subcomponents/duel-entry/yucoin";
-import FastImage from "react-native-fast-image";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 
 interface IProps {
@@ -32,7 +31,7 @@ const WagerDropdown: FC<IProps> = ({ yucoin, pickerAmountLabel, onPress }) => {
             ) : null}
           </View>
         </View>
-        <FastImage style={styles.dropdownArrow} source={images.arrow} />
+        <RawImage style={styles.dropdownArrow} source={images.arrow} />
       </View>
     </TouchableOpacityWithDelay>
   );

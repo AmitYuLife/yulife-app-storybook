@@ -1,17 +1,16 @@
 import React, { memo, PropsWithChildren } from "react";
-import { Image as RNImage, ImageSourcePropType, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native";
+import { Image as RNImage, ImageStyle, SafeAreaView, View, ViewStyle } from "react-native";
 import styles from "./centred-screen.styles";
 import { Style } from "@styles";
-import { Image } from "@atoms";
 import { IScreen } from "@theme";
-import { Source } from "react-native-fast-image";
 import { LottieView } from "@molecules";
+import { Image, Source } from "@atoms";
 
 interface Props {
   children?: React.ReactNode;
   testID?: string;
   BackgroundGradient?: JSX.Element;
-  backgroundImage?: ImageSourcePropType & Source & string;
+  backgroundImage?: Source;
   style?: ViewStyle | ImageStyle;
   isLottie?: boolean;
   isFullScreen?: boolean;

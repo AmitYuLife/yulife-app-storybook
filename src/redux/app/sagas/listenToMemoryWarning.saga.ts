@@ -1,4 +1,4 @@
-import FastImage from "react-native-fast-image";
+import { clearImageMemoryCache } from "@atoms";
 import { call, take } from "redux-saga/effects";
 import { memoryWarningChannel } from "../app.channels";
 
@@ -6,8 +6,8 @@ export default function* listenToMemoryWarning() {
   const memoryWarning: ReturnType<typeof memoryWarningChannel> = yield call(memoryWarningChannel);
   const isRunningOutOfMemory: boolean = yield take(memoryWarning);
 
+  //Clean memory cache to free some space
   if (isRunningOutOfMemory) {
-    //Clean FastImage memory cache to free some space
-    yield call(FastImage.clearMemoryCache);
+    yield call(clearImageMemoryCache);
   }
 }

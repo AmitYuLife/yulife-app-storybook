@@ -3,9 +3,8 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { View, ViewStyle } from "react-native";
 import { Style } from "@styles";
 import { useDispatch } from "react-redux";
-import { Image, TextTemplate } from "@atoms";
+import { Image, Source, TextTemplate } from "@atoms";
 import { ITextTemplateType } from "@atoms/text/text-template";
-import { Source } from "react-native-fast-image";
 import { SduiAction } from "@graphql/__generated";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
