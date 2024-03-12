@@ -1920,11 +1920,11 @@ workflows:
 
             cd ./ios
             xcodebuild -showBuildSettings | grep -i 'bundle'
-    - set-ios-product-bundle-identifier@1.1.3:
+    - script@1.2:
         title: Set BUNDLE_ID
         inputs:
-        - new_bundle_identifier: $BUNDLE_ID
-        - project_path: ios/yulife.xcodeproj
+        - content: |-
+            ./scripts/set-bundle-identifier.sh $BUNDLE_ID
     - set-ios-info-plist-unified@1:
         title: Set BUNDLE_DISPLAY_NAME
         inputs:
