@@ -1,5 +1,5 @@
 import { useSduiBodyScrollValue } from "@components/sdui/_hooks/useSduiBodyScrollValue";
-import { ContentItem } from "@graphql/_core/schema";
+import { ContentItem } from "@graphql/__generated";
 import { useSafeAreaViewOffset } from "@hooks";
 import { SDUI_BODY_SCROLL } from "@ids";
 import React, { useEffect, useRef } from "react";

@@ -1,0 +1,16 @@
+query GetSduiStaticStep($stepId: String!, $journeyId: String, $dynamicId: String) {
+  getSduiStaticStep(stepId: $stepId, journeyId: $journeyId, dynamicId: $dynamicId) {
+    stepId
+    stepData
+    body {
+      ...ContentItem
+    }
+    absolute {
+      ...AbsoluteContentItem
+    }
+    containerStyles {
+      ...SduiStyle
+    }
+    isSafeAreaView
+  }
+}

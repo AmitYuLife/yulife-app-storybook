@@ -1,9 +1,9 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import { SduiScreen } from "@components/screens";
-import { GQL_QUERY_GET_SDUI_STATIC_STEP } from "@graphql/sduiStatic";
 import { SduiStaticLayout } from "./sdui-static.layout";
 import { SduiProvider } from "@components/sdui/_context/SduiProvider";
 import { useQueryOnScreenSeen } from "@hooks";
+import { gql } from "@graphql/__generated";
 
 interface SduiStaticProps {
   stepId: string;
@@ -15,7 +15,7 @@ interface SduiStaticProps {
 
 const SduiStatic = ({ stepId, dynamicId, journeyId, shouldRefetchOnScreenSeen, componentId }: SduiStaticProps) => {
   const [, { data, loading }] = useQueryOnScreenSeen(
-    GQL_QUERY_GET_SDUI_STATIC_STEP,
+    gql("GetSduiStaticStepDocument"),
     componentId,
     {
       variables: {
@@ -30,10 +30,12 @@ const SduiStatic = ({ stepId, dynamicId, journeyId, shouldRefetchOnScreenSeen, c
     }
   );
 
+  const typecastedData = data?.getSduiStaticStep as ComponentProps<typeof SduiScreen>;
+
   return (
-    <SduiStaticLayout isLoading={loading || !data?.getSduiStaticStep}>
-      <SduiProvider isLoading={loading || !data?.getSduiStaticStep}>
-        <SduiScreen {...(data?.getSduiStaticStep || {})} />
+    <SduiStaticLayout isLoading={loading || !typecastedData}>
+      <SduiProvider isLoading={loading || !typecastedData}>
+        <SduiScreen {...(typecastedData || {})} />
       </SduiProvider>
     </SduiStaticLayout>
   );
