@@ -28,7 +28,7 @@ import {
   ContentItemSliderInput,
   ContentItemTextAreaInput,
 } from "@components/sdui";
-import { ContentItem } from "@graphql/_core/schema";
+import { ContentItem } from "@graphql/__generated";
 
 export const componentMap = {
   ContentItemMarkdown,

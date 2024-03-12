@@ -1,11 +1,7 @@
 import { mapServerStyles } from "@components/sdui";
 import { SduiDispatchContext } from "@components/sdui/_context/SduiProvider";
 import { SduiLocalActionTypes } from "@components/sdui/_types/sdui.types";
-import {
-  AbsoluteContentItem,
-  ContentItem,
-  GetSduiJourney_getSduiJourney_containerStyles as ContainerStyle,
-} from "@graphql/_core/schema";
+import { AbsoluteContentItem, ContentItem, SduiStyle } from "@graphql/__generated";
 import { buildInitialSduiStepDynamicDataState } from "@utils/sduiData";
 import React, { memo, useContext, useEffect, useMemo } from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "react-native";
@@ -15,7 +11,7 @@ import { SDUI_SCREEN_SCROLL_VIEW } from "@ids";
 interface Props {
   body?: ContentItem[];
   absolute?: AbsoluteContentItem[];
-  containerStyles?: ContainerStyle[];
+  containerStyles?: Array<SduiStyle>;
   stepData?: string;
   stepId?: string;
   isSafeAreaView?: boolean;

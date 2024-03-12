@@ -3,7 +3,7 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { mapDynamicServerStyles, mapServerStyles } from "@components/sdui";
 import { renderItemContent } from "../renderer";
 import { SduiStateContext } from "@components/sdui/_context/SduiProvider";
-import { AbsoluteContentItem } from "@graphql/_core/schema";
+import { AbsoluteContentItem } from "@graphql/__generated";
 
 interface Props {
   items: Array<AbsoluteContentItem>;

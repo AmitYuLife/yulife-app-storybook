@@ -208,6 +208,7 @@ const documents = {
   GetMobileRewardsListDocument: types.GetMobileRewardsListDocument,
   GetRewardsProductsListDocument: types.GetRewardsProductsListDocument,
   UpdateMobileRewardStoreLocationDocument: types.UpdateMobileRewardStoreLocationDocument,
+  GetSduiStaticStepDocument: types.GetSduiStaticStepDocument,
   GetMobileSocialGroupLeaderboardItemsDocument: types.GetMobileSocialGroupLeaderboardItemsDocument,
   GetMobileSocialGroupLeaderboardsDocument: types.GetMobileSocialGroupLeaderboardsDocument,
   UpdateMobileSocialLeaderboardConsentsDocument: types.UpdateMobileSocialLeaderboardConsentsDocument,
@@ -1163,6 +1164,10 @@ export function gql(source: "GetRewardsProductsListDocument"): typeof documents[
 export function gql(
   source: "UpdateMobileRewardStoreLocationDocument"
 ): typeof documents["UpdateMobileRewardStoreLocationDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetSduiStaticStepDocument"): typeof documents["GetSduiStaticStepDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

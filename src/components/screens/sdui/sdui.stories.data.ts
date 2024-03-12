@@ -1,10 +1,11 @@
-import { ContentItem, AbsoluteContentItem } from "@graphql/_core/schema";
 import {
   ContentItemButtonType,
   ContentItemProgressBarType,
-  RNViewPointerEvents,
   SduiActionType,
-} from "@graphql/_core/schema/globalTypes";
+  ContentItem,
+  AbsoluteContentItem,
+  RnViewPointerEvents,
+} from "@graphql/__generated";
 
 const DYNAMIC_HEIGHT_KEY_HEADER = "DYNAMIC_HEIGHT_KEY_HEADER";
 const DYNAMIC_HEIGHT_KEY_PROGRESS = "DYNAMIC_HEIGHT_KEY_PROGRESS";
@@ -31,7 +32,7 @@ const body: Array<ContentItem> = [
     id: DYNAMIC_HEIGHT_KEY_HEADER,
     amount: 0,
     styles: [],
-    pointerEvents: RNViewPointerEvents.NONE,
+    pointerEvents: RnViewPointerEvents.None,
     dynamicStyles: [{ property: "marginTop", value: DYNAMIC_HEIGHT_KEY_HEADER, defaultValue: "0" }],
   },
   {
@@ -39,7 +40,7 @@ const body: Array<ContentItem> = [
     id: DYNAMIC_HEIGHT_KEY_PROGRESS,
     amount: BODY_HEADER_MARGIN,
     styles: [],
-    pointerEvents: RNViewPointerEvents.NONE,
+    pointerEvents: RnViewPointerEvents.None,
     dynamicStyles: [{ property: "marginTop", value: DYNAMIC_HEIGHT_KEY_PROGRESS, defaultValue: "0" }],
   },
   {
@@ -95,7 +96,7 @@ const body: Array<ContentItem> = [
   {
     __typename: "ContentItemPad",
     id: "BOTTOM-PAD",
-    pointerEvents: RNViewPointerEvents.NONE,
+    pointerEvents: RnViewPointerEvents.None,
     amount: 0,
     styles: [{ property: "height", value: "120" }],
     dynamicStyles: null,
@@ -112,13 +113,13 @@ const absolute: Array<AbsoluteContentItem> = [
       id: "header-bar",
       logo: "yulife",
       leftIcon: "BACK",
-      contentItemHeaderBarRightIcon: "CLOSE",
+      rightIcon: "CLOSE",
       onLeftIconPress: {
-        type: SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP,
+        type: SduiActionType.SduiActionProductUnderwritingStepPop,
         payload: null,
       },
       onRightIconPress: {
-        type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK,
+        type: SduiActionType.SduiActionNavigateBack,
         payload:
           '{"title":"Are you sure you want to leave?","message":"Don\'t worry, you can pick up where you left off when you return within 30 days.","cancelLabel":"Cancel","confirmLabel":"Exit"}',
       },
@@ -141,7 +142,7 @@ const absolute: Array<AbsoluteContentItem> = [
       id: "progress-bar",
       maxLength: 1000,
       currentPosition: 320,
-      progressType: ContentItemProgressBarType.yuCoin,
+      type: ContentItemProgressBarType.YuCoin,
       publishKeyHeight: DYNAMIC_HEIGHT_KEY_PROGRESS,
     },
   },
@@ -156,7 +157,7 @@ const absolute: Array<AbsoluteContentItem> = [
     item: {
       __typename: "ContentItemPad",
       id: "BOTTOM-PAD",
-      pointerEvents: RNViewPointerEvents.NONE,
+      pointerEvents: RnViewPointerEvents.None,
       amount: null,
       dynamicStyles: null,
       styles: [
@@ -176,24 +177,23 @@ const absolute: Array<AbsoluteContentItem> = [
     item: {
       __typename: "ContentItemButton",
 
-      contentItemButtonUri: null,
       value: null,
       event: null,
       icon: null,
-      contentItemButtonRightIcon: null,
+      rightIcon: null,
       styles: null,
       containerStyles: null,
       buttonSize: null,
 
       id: "1",
       label: "Continue",
-      buttonType: ContentItemButtonType.primary,
+      type: ContentItemButtonType.Primary,
       borderColor: "#E30D76",
       backgroundColor: "#E30D76",
       textColor: "#FFFFFF",
       disabledState,
       onPress: {
-        type: SduiActionType.SDUI_ACTION_SEND_MUTATION,
+        type: SduiActionType.SduiActionSendMutation,
         payload: JSON.stringify({
           mutation: "submitSduiJourney",
           action: "action",
