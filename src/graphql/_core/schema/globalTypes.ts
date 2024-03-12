@@ -34,6 +34,11 @@ export enum AvatarPartType {
   pants = "pants",
 }
 
+export enum ActiveChallengeSourceType {
+  phone = "phone",
+  watch = "watch",
+}
+
 export enum BuffArea {
   chest = "chest",
   meditationMilestone = "meditationMilestone",

@@ -38,6 +38,7 @@ export { default as ChallengeUnavailableScreen } from "./member/challenges/chall
 export { default as ChallengeDetailsScreen } from "./member/challenges/challenge-details/challenge-details.screen";
 export { default as ChallengesListScreen } from "./member/challenges/challenges-list/challenges-list.screen";
 export { default as ChallengeExitScreen } from "./member/challenges/challenge-exit/challenge-exit.screen";
+export { default as ChallengeWatchProgress } from "./member/challenges/challenge-watch-progress/challenge-watch-progress.screen";
 
 // rewards screens
 export { default as PurchasedListScreen } from "./member/rewards/purchased/rewards-purchased.screen";

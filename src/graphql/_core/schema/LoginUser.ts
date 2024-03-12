@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { LoginMethod, IntercomHashMethod, FitKitType, YuHealthOptions } from "./globalTypes";
+import { LoginMethod, IntercomHashMethod, FitKitType, YuHealthOptions, ActiveChallengeSourceType } from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: LoginUser
@@ -122,6 +122,7 @@ export interface LoginUser_loginUser_user_activeChallenge_challenge {
   rating: number | null;
   subtype: string | null;
   yuCoinAwarded: number | null;
+  createdBySource: ActiveChallengeSourceType | null;
   incomingData: LoginUser_loginUser_user_activeChallenge_challenge_incomingData | null;
 }
 

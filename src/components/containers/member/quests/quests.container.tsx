@@ -12,13 +12,14 @@ import {
   getVideoPlayerIsActive,
   getYuniversalProgress,
 } from "@redux/levels/levels.selectors";
-import { ActiveLevelStatus } from "@redux/levels/levels.types";
+import { ActiveLevelStatus, ChallengeSourceType } from "@redux/levels/levels.types";
 import { displayStreaksCompletedAction } from "@redux/streaks/streaks.actions";
 import {
   ChallengeExitScreen,
   ChallengeFailedScreen,
   ChallengeProgressScreen,
   ChallengeSuccessScreen,
+  ChallengeWatchProgress,
   MediaPlayerProgressScreen,
   QuestsScreenOffline,
 } from "@screens";
@@ -115,6 +116,10 @@ const QuestsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
 
   const renderProgressScreen = useCallback(
     ({ showOverlay }: { showOverlay: () => void }) => {
+      if (activeLevel.createdBySource === ChallengeSourceType.watch && features?.tempGameEnableYuWatch) {
+        return <ChallengeWatchProgress onLeftMenuPress={onLeftMenuPress} onCancel={showOverlay} />;
+      }
+
       if (activeLevel.subtype === "sudoku") {
         return (
           <SudokuProgressScreen

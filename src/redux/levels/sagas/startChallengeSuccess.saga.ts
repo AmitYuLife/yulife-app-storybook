@@ -5,6 +5,7 @@ import { challengeStartSuccessAction, pedometerStepsChallengeStarted } from "../
 import setInitialSteps from "./setInitialSteps.helper";
 import startChallenge from "./startChallenge.helper";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import { ChallengeSourceType } from "../levels.types";
 import moment from "moment";
 
 export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeof challengeStartSuccessAction>) {
@@ -41,6 +42,7 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
       fitKitTypes,
       shouldEndOnLastGoalAchieved,
       videoPlayerIsActive,
+      createdBySource: ChallengeSourceType.phone,
     });
   }
 }
