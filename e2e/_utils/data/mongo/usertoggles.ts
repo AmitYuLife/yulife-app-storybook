@@ -2454,3 +2454,19 @@ export const CUSTOMER_DENTAL_RENEW_TOGGLES = {
         },
       },
     } as IDatabaseItem;
+
+    export const CUSTOMER_137_TOGGLES = {
+      type: "mongo",
+      modelName: "usertoggles",
+      data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_137.data.customerId,
+        features: {
+          ...DEFAULT_TOGGLES.data.features,
+          yuScreenV4: true,
+          hasCoveaFibActive: false,
+          hasBupaDentActive: false,
+          tempEnableYuScreenV5: true
+        },
+      },
+    } as IDatabaseItem;

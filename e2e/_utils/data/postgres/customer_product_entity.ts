@@ -1405,3 +1405,16 @@ export const CPE_DENTAL_RENEW_WELLBEING = {
         start_date : moment().subtract(1, "weeks").format("YYYY-MM-DD"),
     }
 } as IDatabaseItem
+
+export const CPE_137_WELLBEING = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011428",
+        customer_id: customer.CUSTOMER_137.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "YuLife_Wellbeing_01_01",
+        archived: false,
+        taken_up: true
+    }
+} as IDatabaseItem
