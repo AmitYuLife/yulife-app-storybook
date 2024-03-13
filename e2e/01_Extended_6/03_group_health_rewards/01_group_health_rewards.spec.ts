@@ -685,8 +685,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
     })
 
-    // @update [ Worker not executing correctly ]
-    ScenarioSkip("Users can still see vouchers they didn't use after they have left a company with the game active", scenario.start, async () => {
+    Scenario("Users can still see vouchers they didn't use after they have left a company with the game active", scenario.start, async () => {
         Given("I deactivated the cbp for the expired product", given.archiveCustomerBusinessProductsByDate(moment().format("YYYY-MM-DD")), async () => {
             When("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_130_GHI_LEAVER, data.AUTH_130), async () => {
                 When("I go to the store to select my region before returning to the YuScreen", when.setStoreRegion, async () => {

@@ -10,7 +10,7 @@ export const {
 
 
 export const deactivateGDentWorker = (execute:boolean, date: string) => async () => {
-    await dataManager.triggerWorkerTask("Enrolment.EndOfGDentEnrolment", {
+    await dataManager.triggerWorkerTask("GroupAdmin.Enrolment.EndOfGDentEnrolment", {
 		execute: execute,
 		date: date,
     })
