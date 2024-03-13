@@ -9,7 +9,6 @@ import { BACK_BUTTON, DATE_PICKER, EDIT_BUTTON, GENERIC_SCREEN_HEADING, HORIZONT
 import { viewAccDeathPolicy } from "./_resources/constants";
 
 Feature("PLI HAPPY", async () => {
-
   Scenario("A user with a quote within the last 60 days can still see and finish their PLI journey", scenario.start,async () => {
       Given("I login as a user with Covea FIB enabled and a quote from 59 days ago",given.loginToYuScreen(false, CUSTOMER_37, AUTH_37), async () => {
         When(`I tap Check out my power`, when.tapText("Check out my power"), async () => {
@@ -120,17 +119,11 @@ Feature("PLI HAPPY", async () => {
         })
       })
     })
-    When("I swipe up the screen", when.swipeFromText("Share your thoughts", "down", "fast"), async () => {
-      When("I swipe up the screen again", when.swipeFromText("Browse more protection", "down", "fast"), async () => {
-        When("I click on the life insurance product", when.tapText("Life Insurance"), async () => {
-          Then("I should see the medical holding page", then.pliHoldingPageVisible)
-        })
-      })
+    When("I click on the life insurance product", when.tapText("Life Insurance"), async () => {
+      Then("I should see the medical holding page", then.pliHoldingPageVisible)
     })
     When("I click to see the acc death policy", when.tapText(viewAccDeathPolicy), async () => {
       Then("I am on the policy page", then.idVisible(GENERIC_SCREEN_HEADING("Accidental Death Benefit")))
     })
-  
   })
-
 })

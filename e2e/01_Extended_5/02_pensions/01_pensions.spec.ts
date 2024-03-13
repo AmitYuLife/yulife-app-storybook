@@ -12,8 +12,7 @@ import { calculateDailyContribution, calculateInProgressContribution, calculateP
 Feature("Smart Pension", async () => {
   Scenario("I can see an active connected pension", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_111, data.AUTH_111), async () => {
-      // @flaky [YuCoin value keeps switching between 17704 and 17703]
-      // Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17704)))
+      Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
       When("I go to the Yu tab", when.navigateTo("yu"), async () => {
         Then("I do not see the onboarding screen as I have a connection", then.cannotSeePensionOnboarding)
         Then("I can see the slot has no yucoin icon", then.idNotVisible(ids.RIGHT_STATUS_ICON))
@@ -23,8 +22,8 @@ Feature("Smart Pension", async () => {
     When('I swipe to the bottom', when.swipeFromText(`${data.CUSTOMER_111.data.firstName} ${data.CUSTOMER_111.data.lastName}`, "up", "fast"), async () => {
       Then("I cannot see the caoursel item", then.idNotVisible(ids.CAROUSEL_CARD_BUTTON("**Connect your Pension**")))
     })
-    When('I swipe up', when.swipeFromText("Browse more protection", "down", "fast"), async () => {
-      When("I tap the pension slot", when.tapID(ids.SLOT_TITLE("Pension Contributions")), async () => {
+    When('I swipe up', when.scrollFromID(ids.V4_YUSCREEN, "down", "fast", 0.5), async () => {
+      When("I tap the pension slot", when.tapID(ids.SLOT_TITLE("Pension Contributions"), 1000), async () => {
         Then("I can see an active pension contribution page", then.canSeePensionContributionPage("active", PensionInfoUser111, "5"))
       })
     })
