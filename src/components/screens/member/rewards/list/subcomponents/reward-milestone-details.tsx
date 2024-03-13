@@ -40,8 +40,8 @@ export const RewardMilestoneDetails = ({
   hint,
   modalTitle,
 }: RewardMilestoneDetailsProps) => {
-  const hasCompleteRewardCardInfo =
-    target && rewardQuantity && rewardTitle && primaryColor && secondaryColor && rewardImage;
+  const hasCompleteRewardCardInfo = target && rewardTitle && primaryColor && secondaryColor && rewardImage;
+
   const currentRoute = useSelector(getRouteState);
 
   const calculated = useMemo(() => {
