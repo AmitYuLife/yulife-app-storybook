@@ -219,7 +219,7 @@ export const onYuscreenV3 = (customer: any) => async () => {
   await expect(element(by.id(YUSCREEN_V3(true)))).toBeVisible();
 };
 
-export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: string) => async () => {
+export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: string, createYuMoji = true) => async () => {
   const firstName = customer.data.firstName;
   const lastName = customer.data.lastName;
   const createYumujiHeading = "Earn 100 YuCoin";
@@ -246,9 +246,9 @@ export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: strin
 
   await textVisible(`${firstName} ${lastName}`)();
   await idVisible(V4_YUSCREEN)()
-  await textVisible(createYumujiHeading)();
-  await textVisible(createYumujiText)();
-  await textVisible(createYumujiCTA)();
+  createYuMoji && await textVisible(createYumujiHeading)();
+  createYuMoji && await textVisible(createYumujiText)();
+  createYuMoji && await textVisible(createYumujiCTA)();
   await textVisibleAtIndex(yuCoinPower, 0)();
   await textVisibleAtIndex("YuCoin", 0)();
   await textVisible("Power")();
