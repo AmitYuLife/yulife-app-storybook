@@ -7,6 +7,44 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.6.0] - 2024-03-13
+
+### Bugfixes
+
+- Bugfix: Remove reward quantity as required for rendering reward card
+- Bugfix: Challenge meditation/workout not showing success
+- Bugfix ENG-3831: Blind user unable to take quest
+- Bugfix: startChallengeIfActive on GET_USER_ACTIVE_CHALLENGE_SUCCESS
+
+### Tasks
+
+- Task: replace react-native-fast-image with expo-image
+- Task: SafeAreaView on SDUI static
+- Task: Fetch & send createdBySource on active challenge
+- Task: Replace bundle identifier step with script
+- Task: Add health connect settings
+- Task: Bump yuhealth
+- Task: Add Health Connect
+- Task: update yumoji item skeleton border radius
+- Task: Improve back handler navigation for yudoku
+- Task: Rename YuHealth toggle
+- Task: Bump yu health
+- Task: YuHealth release
+
+### Chores
+
+- Chore GS: Xcode 15.3 support
+- Chore: Only remove popGesture from the sdui navigation
+- Chore: Login user redux types
+- Chore: Redux types for get all user data
+
+### Extra
+
+- Detox/fixes-13/03
+- detox: vbus-170
+- Detox/fixes-11/03
+- Detox/fixes-07/03
+
 ## [4.5.0] - 2024-03-07
 
 ### Bugfixes
