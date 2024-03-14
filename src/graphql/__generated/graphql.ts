@@ -2668,6 +2668,13 @@ export type CreateTeamSocialGroupInput = {
   query: SearchQueryInput;
 };
 
+export type CustomValue = {
+  __typename?: "CustomValue";
+  description?: Maybe<Scalars["String"]["output"]>;
+  numberOfPeople: Scalars["Int"]["output"];
+  value: Scalars["String"]["output"];
+};
+
 export enum CustomValueType {
   BusinessTagLabels = "businessTagLabels",
   BusinessUnit = "businessUnit",
@@ -2676,7 +2683,7 @@ export enum CustomValueType {
   EmploymentStatus = "employmentStatus",
   PayGrade = "payGrade",
   WorkArrangement = "workArrangement",
-  WorkLocationCountry = "workLocationCountry",
+  WorkLocationName = "workLocationName",
 }
 
 export type CustomValueTypeData = {
@@ -3599,6 +3606,13 @@ export type GetBusinessTagsResponse = {
   __typename?: "GetBusinessTagsResponse";
   businessTags: Array<BusinessTag>;
   count: Scalars["Int"]["output"];
+  totalCount: Scalars["Int"]["output"];
+};
+
+export type GetCustomValuesResponse = {
+  __typename?: "GetCustomValuesResponse";
+  count: Scalars["Int"]["output"];
+  customValues: Array<CustomValue>;
   totalCount: Scalars["Int"]["output"];
 };
 
@@ -5915,6 +5929,7 @@ export type Query = {
   getCurrentFeatures: Array<UserFeature>;
   getCurrentUser?: Maybe<User>;
   getCustomValueTypes: GetCustomValueTypesResponse;
+  getCustomValues: GetCustomValuesResponse;
   getCustomerMatcherFields: Array<CustomerMatcherField>;
   getCustomerProductFromProductId?: Maybe<CustomerProductData>;
   getDailyPensionContribution: DailyPensionContribution;
@@ -5978,6 +5993,7 @@ export type Query = {
   getMobileRewardsList: MobileRewardsList;
   getMobileSocialGroupLeaderboardItems: Array<SocialGroupLeaderboardItem>;
   getMobileSocialGroupLeaderboards: Array<SocialGroupLeaderboardGroup>;
+  getMobileUserActivityHistory?: Maybe<Array<Maybe<UserActivityHistory>>>;
   getMobileWhatsNewModal?: Maybe<MobileWhatsNewModal>;
   getMonthlyActiveUsersPercentage: MonthlyActiveUsersPercentage;
   /** Fetch the data that can be viewed from the My Account section of yulife-member-static */
@@ -6014,6 +6030,7 @@ export type Query = {
   getQuestMapLevelChallengeContent?: Maybe<Array<Maybe<QuestMapLevelChallengeContent>>>;
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
+  getRandomNumber?: Maybe<RandomNumber>;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
   getReferralBackground: RemoteImage;
@@ -6223,6 +6240,15 @@ export type QueryGetCurrentFeaturesArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetCustomValuesArgs = {
+  customValueType: CustomValueType;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<OrderBy>;
+  search?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
 export type QueryGetCustomerMatcherFieldsArgs = {
   options?: InputMaybe<CustomerMatchingRuleOptionsInput>;
 };
@@ -6366,6 +6392,12 @@ export type QueryGetMobileSocialGroupLeaderboardItemsArgs = {
   leaderboardId: Scalars["String"]["input"];
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   targetId?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetMobileUserActivityHistoryArgs = {
+  endDate: Scalars["String"]["input"];
+  startDate: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -6895,6 +6927,12 @@ export enum RnViewPointerEvents {
   None = "NONE",
 }
 
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
+
 export type RedeemSteps = {
   __typename?: "RedeemSteps";
   id?: Maybe<Scalars["ID"]["output"]>;
@@ -7354,6 +7392,7 @@ export type StaticStepData = {
   absolute?: Maybe<Array<AbsoluteContentItem>>;
   body?: Maybe<Array<ContentItem>>;
   containerStyles?: Maybe<Array<SduiStyle>>;
+  /** Supported RN version 4.6.0 */
   isSafeAreaView?: Maybe<Scalars["Boolean"]["output"]>;
   stepData?: Maybe<Scalars["String"]["output"]>;
   stepId: Scalars["String"]["output"];
@@ -8507,6 +8546,32 @@ export type User = {
 
 export type UserPassiveChallengeArgs = {
   id?: InputMaybe<PassiveChallengeType>;
+};
+
+export type UserActivityHistory = {
+  __typename?: "UserActivityHistory";
+  historyItems: Array<Maybe<UserActivityHistoryItems>>;
+  id: Scalars["ID"]["output"];
+  leftIcon: RemoteImage;
+  level: Scalars["String"]["output"];
+  rightIcon?: Maybe<RemoteImage>;
+  title: Scalars["String"]["output"];
+  yucoin?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type UserActivityHistoryItem = {
+  __typename?: "UserActivityHistoryItem";
+  leftIcon: RemoteImage;
+  rightIcon: RemoteImage;
+  stars?: Maybe<Scalars["Int"]["output"]>;
+  title: Scalars["String"]["output"];
+  yucoin?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type UserActivityHistoryItems = {
+  __typename?: "UserActivityHistoryItems";
+  activityItems: Array<Maybe<UserActivityHistoryItem>>;
+  title: Scalars["String"]["output"];
 };
 
 export type UserAvatar = {
@@ -18125,6 +18190,36 @@ export type GetTodayEarningsQuery = {
       }>;
     }>;
   };
+};
+
+export type GetMobileUserActivityHistoryQueryVariables = Exact<{
+  startDate: Scalars["String"]["input"];
+  endDate: Scalars["String"]["input"];
+}>;
+
+export type GetMobileUserActivityHistoryQuery = {
+  __typename?: "Query";
+  getMobileUserActivityHistory?: Array<{
+    __typename?: "UserActivityHistory";
+    id: string;
+    title: string;
+    level: string;
+    yucoin?: string | null;
+    leftIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    rightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    historyItems: Array<{
+      __typename?: "UserActivityHistoryItems";
+      title: string;
+      activityItems: Array<{
+        __typename?: "UserActivityHistoryItem";
+        title: string;
+        yucoin?: string | null;
+        stars?: number | null;
+        leftIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        rightIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      } | null>;
+    } | null>;
+  } | null> | null;
 };
 
 export type GetStreakDetailsQueryVariables = Exact<{ [key: string]: never }>;
@@ -48697,6 +48792,124 @@ export const GetTodayEarningsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetTodayEarningsQuery, GetTodayEarningsQueryVariables>;
+export const GetMobileUserActivityHistoryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileUserActivityHistory" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "startDate" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "endDate" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getMobileUserActivityHistory" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "startDate" },
+                value: { kind: "Variable", name: { kind: "Name", value: "startDate" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "endDate" },
+                value: { kind: "Variable", name: { kind: "Name", value: "endDate" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "level" } },
+                { kind: "Field", name: { kind: "Name", value: "yucoin" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "leftIcon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "rightIcon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "historyItems" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "activityItems" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "title" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "leftIcon" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "id" } },
+                                  { kind: "Field", name: { kind: "Name", value: "uri" } },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "rightIcon" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "id" } },
+                                  { kind: "Field", name: { kind: "Name", value: "uri" } },
+                                ],
+                              },
+                            },
+                            { kind: "Field", name: { kind: "Name", value: "yucoin" } },
+                            { kind: "Field", name: { kind: "Name", value: "stars" } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetMobileUserActivityHistoryQuery, GetMobileUserActivityHistoryQueryVariables>;
 export const GetStreakDetailsDocument = {
   kind: "Document",
   definitions: [

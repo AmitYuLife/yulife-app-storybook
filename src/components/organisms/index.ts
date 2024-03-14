@@ -53,3 +53,5 @@ export { default as ActivityHistoryDay } from "./activity-history-day/activity-h
 export { default as EnterpriseRewardItem } from "./enterprise-reward-item/enterprise-reward-item";
 export { default as EnterpriseRewardList } from "./enterprise-reward-list/enterprise-reward-list";
 export { default as EnterpriseRewardInfo } from "./enterprise-reward-info/enterprise-reward-info";
+export { default as ActivityHistoryHeader } from "./activity-history-header/activity-history-header";
+export { default as ActivityHistoryDaySkeleton } from "./activity-history-day/activity-history-day-skeleton";

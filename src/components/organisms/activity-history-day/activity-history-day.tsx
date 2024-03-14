@@ -1,14 +1,14 @@
 import { StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import ActivityHistoryInfo, {
   IActivityHistoryInfoItems,
 } from "@components/molecules/activity-history-info/activity-history-info";
 
 // Temp type:
 interface RemoteImage {
-  uri: string;
+  uri?: string;
   id: string;
 }
 interface IHistoryItems {
@@ -16,34 +16,40 @@ interface IHistoryItems {
   activityItems: IActivityHistoryInfoItems[];
 }
 
-interface IProps {
+export interface IActivityHistoryDay {
+  id: string;
   title: string;
-  subTitle: string;
-  yucoin: string;
+  level: string;
+  yucoin?: string;
   leftIcon: RemoteImage;
-  rightIcon: RemoteImage;
+  rightIcon?: RemoteImage;
   historyItems: IHistoryItems[];
 }
 
-const ActivityHistoryDay = ({ title, subTitle, yucoin, historyItems, leftIcon, rightIcon }: IProps) => {
+const ActivityHistoryDay = ({ title, level, yucoin, historyItems, leftIcon, rightIcon }: IActivityHistoryDay) => {
+  const filterEmptyActivityItems = useMemo(() => historyItems.filter((e) => e.activityItems.length), [historyItems]);
   return (
     <View>
-      <View style={styles.wrapper}>
+      <View style={activityHistoryDayStyles.wrapper}>
         <TextTemplate type="b1b">{title}</TextTemplate>
-        <View style={styles.container}>
-          <View style={styles.leftIcon}>
+        <View style={activityHistoryDayStyles.container}>
+          <View style={activityHistoryDayStyles.leftIcon}>
             <Image source={leftIcon} {...IMAGE_SIZE} />
           </View>
-          <TextTemplate type="l1b">{subTitle}</TextTemplate>
-          <View style={styles.rightIcon}>
-            <TextTemplate type="l1b">{yucoin}</TextTemplate>
-            <Image source={rightIcon} style={styles.yucoin} {...IMAGE_SIZE} />
-          </View>
+          <TextTemplate type="l1b">{level}</TextTemplate>
+          {!yucoin ? null : (
+            <View style={activityHistoryDayStyles.rightIcon}>
+              <TextTemplate type="l1b">{yucoin}</TextTemplate>
+              <Image source={rightIcon} style={activityHistoryDayStyles.yucoin} {...IMAGE_SIZE} />
+            </View>
+          )}
         </View>
       </View>
-      {historyItems.map((item, index) => (
-        <ActivityHistoryInfo key={index} {...item} isLastItem={historyItems.length - 1 === index} />
-      ))}
+      {filterEmptyActivityItems
+        .filter((e) => e.activityItems.length)
+        .map((item, index) => (
+          <ActivityHistoryInfo key={index} {...item} isLastItem={filterEmptyActivityItems.length - 1 === index} />
+        ))}
     </View>
   );
 };
@@ -53,7 +59,7 @@ const IMAGE_SIZE = {
   height: Style.adjust(16),
 };
 
-const styles = StyleSheet.create({
+export const activityHistoryDayStyles = StyleSheet.create({
   wrapper: {
     marginTop: Style.adjust(24),
     padding: Style.adjust(16),

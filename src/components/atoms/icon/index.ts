@@ -61,6 +61,8 @@ import { FaqIcon } from "./faq-icon";
 import { HealthAppIcon } from "./health-app-icon";
 import { TrophyIcon } from "./trophy-icon";
 import { SuccessIcon } from "./success-icon";
+import { RefreshIcon } from "./refresh-icon";
+import { ActivityHistoryCalendarIcon } from "./activity-history-calendar-icon";
 
 export default {
   GlobeIcon,
@@ -128,4 +130,6 @@ export default {
   HealthAppIcon,
   TrophyIcon,
   SuccessIcon,
+  RefreshIcon,
+  ActivityHistoryCalendarIcon,
 };

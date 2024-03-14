@@ -1,7 +1,7 @@
 import { GetActivityHistory_getActivityHistoryWithLevels_sources as Sources } from "@graphql/_core/schema";
 import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import { IFeature } from "@redux/user/user.types";
-import { ItemProps } from "@screens/member/activity-history-levels/activity-history-levels.item";
+import { ItemProps } from "@components/screens/member/activity-history-levels/activity-history-levels.item";
 import {
   getAggregationCyclingConfiguration,
   getAggregationStepCountConfiguration,

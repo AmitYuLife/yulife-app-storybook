@@ -5,6 +5,7 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import { t } from "@locale";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import styles from "../generic-heading.styles";
+import { RefreshIcon } from "@atoms/icon/refresh-icon";
 
 interface IProps {
   icon: LeftIcon;
@@ -34,6 +35,8 @@ const getIcon = (icon: LeftIcon, color?: string) => {
       return <Back color={color} />;
     case LeftIcon.CLOSE.toLowerCase():
       return <CloseSvg stroke={color} />;
+    case LeftIcon.REFRESH.toLowerCase():
+      return <RefreshIcon />;
     default:
       return null;
   }

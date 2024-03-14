@@ -13,6 +13,7 @@ export enum LeftIcon {
   MENU = "Menu",
   BACK = "Back",
   CLOSE = "Close",
+  REFRESH = "Refresh",
   NOTIFICATIONS = "Notifications",
 }
 
