@@ -5,15 +5,15 @@ import { StyleSheet, View } from "react-native";
 
 // Temp type:
 interface RemoteImage {
-  uri: string;
+  uri?: string;
   id: string;
 }
 export interface IActivityHistoryInfoItems {
   title: string;
   leftIcon: RemoteImage;
   rightIcon: RemoteImage;
-  yucoin: string;
-  stars: number;
+  yucoin?: string;
+  stars?: number;
 }
 
 interface IProps {
@@ -25,7 +25,7 @@ interface IProps {
 const ActivityHistoryInfo = ({ title, activityItems, isLastItem }: IProps) => {
   const wrapperStyle = useMemo(
     () => ({
-      ...styles.wrapper,
+      ...activityHistoryInfoStyles.wrapper,
       ...(isLastItem && {
         borderBottomWidth: 1,
         borderBottomLeftRadius: 8,
@@ -39,16 +39,16 @@ const ActivityHistoryInfo = ({ title, activityItems, isLastItem }: IProps) => {
     <View style={wrapperStyle}>
       <TextTemplate type="b2b">{title}</TextTemplate>
       {activityItems.map((item, index) => (
-        <View key={index} style={styles.activityWrapper}>
-          <View style={styles.leftImage}>
+        <View key={index} style={activityHistoryInfoStyles.activityWrapper}>
+          <View style={activityHistoryInfoStyles.leftImage}>
             <Image source={item.leftIcon} {...IMAGE_SIZE} />
           </View>
-          <TextTemplate type="l1" color={item.yucoin ? COLOURS.enabled : COLOURS.disabled}>
+          <TextTemplate type="l1" color={!item.yucoin ? COLOURS.disabled : COLOURS.enabled}>
             {item.title}
           </TextTemplate>
-          <View style={styles.yucoinWrapper}>
-            {!item.yucoin ? null : (
-              <View style={styles.stars}>
+          <View style={activityHistoryInfoStyles.yucoinWrapper}>
+            {!item.stars ? null : (
+              <View style={activityHistoryInfoStyles.stars}>
                 {Array.from({ length: item.stars }).map((_, i) => (
                   <View key={i}>
                     <StarInline filled={true} />
@@ -56,15 +56,15 @@ const ActivityHistoryInfo = ({ title, activityItems, isLastItem }: IProps) => {
                 ))}
               </View>
             )}
-            {item.yucoin ? (
-              <>
-                <TextTemplate type="l1b">{item.yucoin}</TextTemplate>
-                <Image source={item.rightIcon} style={styles.yucoin} {...IMAGE_SIZE} />
-              </>
-            ) : (
-              <TextTemplate type="l1b" color={item.yucoin ? COLOURS.enabled : COLOURS.disabled}>
+            {!item.yucoin || item.yucoin === "0" ? (
+              <TextTemplate type="l1b" color={COLOURS.disabled}>
                 -
               </TextTemplate>
+            ) : (
+              <>
+                <TextTemplate type="l1b">{item.yucoin}</TextTemplate>
+                <Image source={item.rightIcon} style={activityHistoryInfoStyles.yucoin} {...IMAGE_SIZE} />
+              </>
             )}
           </View>
         </View>
@@ -83,7 +83,7 @@ const IMAGE_SIZE = {
   height: Style.adjust(16),
 };
 
-const styles = StyleSheet.create({
+export const activityHistoryInfoStyles = StyleSheet.create({
   wrapper: {
     backgroundColor: "#FAFAFE",
     padding: Style.adjust(16),

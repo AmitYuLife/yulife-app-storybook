@@ -1,0 +1,32 @@
+query GetMobileUserActivityHistory($startDate: String!, $endDate: String!) {
+  getMobileUserActivityHistory(startDate: $startDate, endDate: $endDate) {
+    id
+    title
+    level
+    yucoin
+    leftIcon {
+      id
+      uri
+    }
+    rightIcon {
+      id
+      uri
+    }
+    historyItems {
+      title
+      activityItems {
+        title
+        leftIcon {
+          id
+          uri
+        }
+        rightIcon {
+          id
+          uri
+        }
+        yucoin
+        stars
+      }
+    }
+  }
+}

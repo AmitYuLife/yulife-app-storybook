@@ -895,7 +895,7 @@
       "header_level": "level",
       "header_mid": "activity & progress",
       "header_right": "yucoin",
-      "heading": "activity history"
+      "heading": "Activity history"
     },
     "video_player": {
       "session_complete": "Session complete.",
@@ -927,6 +927,9 @@
         "title": "Power up to earn more YuCoin",
         "description": "Your YuCoin Power boosts the amount of YuCoin you earn from each activity. Stay tuned for opportunities to level up your YuCoin Power in the future!"
       }
+    },
+    "activity_history": {
+      "empty_message": "Looks like you haven't completed any activities yet. Begin your wellbeing journey today with some challenges."
     }
   },
   "permissions": {

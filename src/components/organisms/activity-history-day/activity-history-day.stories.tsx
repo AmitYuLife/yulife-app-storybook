@@ -13,7 +13,7 @@ const meta: Meta<typeof ActivityHistoryDay> = {
   },
   args: {
     title: "16 November",
-    subTitle: "Level 434",
+    level: "Level 434",
     yucoin: "2,715",
     leftIcon: {
       id: "test",

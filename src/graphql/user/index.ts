@@ -1,4 +1,4 @@
-export * from "./getActivityHistory.gql";
+export * from "./getActivityHistoryWithLevels.gql";
 export * from "./getCurrentUser.gql";
 export * from "./getMagicLink.gql";
 export * from "./getSession.gql";

@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const GQL_QUERY_GET_ACTIVITY_HISTORY = gql`
-  query GetActivityHistory($monthsAgo: Int, $isFullActivity: Boolean) {
+  query GetActivityHistoryWithLevels($monthsAgo: Int, $isFullActivity: Boolean) {
     getActivityHistoryWithLevels(monthsAgo: $monthsAgo, isFullActivity: $isFullActivity) {
       id
       steps
