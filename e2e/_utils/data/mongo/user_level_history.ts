@@ -5,7 +5,7 @@ import { USER_132, USER_40, USER_64, USER_67, USER_68, USER_7, USER_70, USER_72,
 
 export const CHALLENGE_HISTORY_7 = {
     type:"mongo",
-    modelName:"challengehistory",
+    modelName:"user_level_history",
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_7.data.userId,
@@ -14,7 +14,7 @@ export const CHALLENGE_HISTORY_7 = {
 
 export const CHALLENGE_HISTORY_40 = {
     type:"mongo",
-    modelName:"challengehistory",
+    modelName:"user_level_history",
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_40.data.userId,
@@ -23,7 +23,7 @@ export const CHALLENGE_HISTORY_40 = {
 
 export const CHALLENGE_HISTORY_64 = {
     type:"mongo",
-    modelName:"challengehistory",
+    modelName:"user_level_history",
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_64.data.userId,
@@ -32,7 +32,7 @@ export const CHALLENGE_HISTORY_64 = {
 
 export const CHALLENGE_HISTORY_67 = {
     type:"mongo",
-    modelName:"challengehistory",
+    modelName:"user_level_history",
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_67.data.userId,
@@ -41,7 +41,7 @@ export const CHALLENGE_HISTORY_67 = {
 
 export const CHALLENGE_HISTORY_68 = {
     type:"mongo",
-    modelName:"challengehistory",
+    modelName:"user_level_history",
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_68.data.userId,
@@ -50,7 +50,7 @@ export const CHALLENGE_HISTORY_68 = {
 
 export const CHALLENGE_HISTORY_70 = {
     type:"mongo",
-    modelName:"challengehistory",
+    modelName:"user_level_history",
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_70.data.userId,
@@ -59,7 +59,7 @@ export const CHALLENGE_HISTORY_70 = {
 
 export const CHALLENGE_HISTORY_72 = {
     type:"mongo",
-    modelName:"challengehistory",
+    modelName:"user_level_history",
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_72.data.userId,
@@ -68,7 +68,7 @@ export const CHALLENGE_HISTORY_72 = {
 
 export const CHALLENGE_HISTORY_76 = {
     type:"mongo",
-    modelName:"challengehistory",
+    modelName:"user_level_history",
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_76.data.userId,
@@ -78,7 +78,7 @@ export const CHALLENGE_HISTORY_76 = {
 
 export const CHALLENGE_HISTORY_84 = {
     type:"mongo",
-    modelName:"challengehistory",
+    modelName:"user_level_history",
     data: {
         "_id": generateRandomMongoId(),
         "userId": CUSTOMER_84.data.customerId,
@@ -102,7 +102,7 @@ export const CHALLENGE_HISTORY_84 = {
 
 export const CHALLENGE_HISTORY_86 = {
     type:"mongo",
-    modelName:"challengehistory",
+    modelName:"user_level_history",
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_86.data.userId,
@@ -111,7 +111,7 @@ export const CHALLENGE_HISTORY_86 = {
 
 export const CHALLENGE_HISTORY_91 = {
     type:"mongo",
-    modelName:"challengehistory",
+    modelName:"user_level_history",
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_91.data.userId,
@@ -120,7 +120,7 @@ export const CHALLENGE_HISTORY_91 = {
 
 export const CHALLENGE_HISTORY_132 = {
     type:"mongo",
-    modelName:"challengehistory",
+    modelName:"user_level_history",
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_132.data.customerId,
