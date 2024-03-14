@@ -18,6 +18,7 @@
 		1F28306C296CDE360008DC9C /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F283066296CDE360008DC9C /* OpenSans-Regular.ttf */; };
 		585C27A26D85B6EE091A1B6A /* libPods-YuLife.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C28176D4D3D625EC9D78B /* libPods-YuLife.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8A41160D2BA1BBEB00CFF087 /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A41160C2BA1BBEB00CFF087 /* WatchConnectivity.framework */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		6C2E3173556A471DD304B334 /* Pods-YuLife.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife.debug.xcconfig"; path = "Target Support Files/Pods-YuLife/Pods-YuLife.debug.xcconfig"; sourceTree = "<group>"; };
 		7A4D352CD337FB3A3BF06240 /* Pods-YuLife.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife.release.xcconfig"; path = "Target Support Files/Pods-YuLife/Pods-YuLife.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = YuLife/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8A41160C2BA1BBEB00CFF087 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-YuLife/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -49,6 +51,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				585C27A26D85B6EE091A1B6A /* libPods-YuLife.a in Frameworks */,
+				8A41160D2BA1BBEB00CFF087 /* WatchConnectivity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +82,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8A41160C2BA1BBEB00CFF087 /* WatchConnectivity.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				320C28176D4D3D625EC9D78B /* libPods-YuLife.a */,
 			);
