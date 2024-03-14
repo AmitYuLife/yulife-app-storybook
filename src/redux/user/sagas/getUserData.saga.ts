@@ -3,7 +3,7 @@ import { expireSession } from "@navigation/root";
 import { getToken } from "@services/storage";
 import { call, put, spawn } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
-import { Unpacked } from "@utils";
+import { Unpacked, toYuHealthReduxType } from "@utils";
 import { getUserSuccess, setUserNoAccessAction } from "../user.actions";
 import setLoggerIdentity from "./setLoggerIdentity.helper";
 import { updateDailyPensionSuccess } from "@redux/daily-pension/daily-pension.actions";
@@ -73,7 +73,7 @@ const toGetUserSuccessPayload = (data: GetCurrentUser): IGetUserSuccessPayload =
       subtype: data?.getCurrentUser?.activeChallenge?.levelSlot?.subtype,
       unit: data?.getCurrentUser?.activeChallenge?.levelSlot?.unit,
       challengeIsActive: !!data?.getCurrentUser?.activeChallenge?.challenge?.id,
-      yuHealth: data.getCurrentUser?.activeChallenge?.levelSlot?.yuHealth,
+      yuHealth: toYuHealthReduxType(data.getCurrentUser?.activeChallenge?.levelSlot?.yuHealth),
       createdBySource: toChallengeSourceType(data?.getCurrentUser?.activeChallenge?.challenge?.createdBySource),
     },
     challengesDoneToday: data?.getCurrentUser?.challengesDoneToday,

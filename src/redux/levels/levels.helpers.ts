@@ -1,7 +1,7 @@
 import RNFitKit from "@services/fitkit/fitkit.service";
 import { HealthDataType, ISampleQueryResponse, queryPedometerFromDate } from "@yu-life/react-native-yu-health";
 import Logger from "@services/logging/logger";
-import { DATE_FORMAT_WITH_TZ, Unpacked, getStartAndEndDateTimesWithTimezone, gqlDataTypeToDataType } from "@utils";
+import { DATE_FORMAT_WITH_TZ, Unpacked, getStartAndEndDateTimesWithTimezone } from "@utils";
 import moment from "moment";
 import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
 import { IActiveLevel } from "./levels.types";
@@ -98,7 +98,7 @@ const getNonPedometerEndResult = async ({
 }) => {
   const { startDateTime, endDateTime, yuHealth } = activeLevel;
 
-  const dataType = gqlDataTypeToDataType(yuHealth?.dataType);
+  const dataType = yuHealth?.dataType;
   const sharedParams = {
     features,
     queryOptions: { blacklistApps, disableUserEntries: features.disableUserEntries },
@@ -157,7 +157,7 @@ export async function getEndResult(activeLevel: IActiveLevel, blacklistApps: str
     return { startDateTime, endDateTime, value: 0 };
   }
 
-  if (gqlDataTypeToDataType(yuHealth.dataType) === HealthDataType.steps) {
+  if (yuHealth.dataType === HealthDataType.steps) {
     return await getPedometerEndResult(activeLevel, blacklistApps, features);
   }
 

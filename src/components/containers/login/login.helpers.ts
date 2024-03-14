@@ -2,6 +2,7 @@ import { LoginUser } from "@graphql/_core/schema";
 import { t } from "@locale";
 import { toChallengeSourceType } from "@redux/user/sagas/getAllUserData.helper";
 import { ILoginUserPayload } from "@redux/user/user.types";
+import { toYuHealthReduxType } from "@utils";
 
 export const validatePassword = (password: string): string => {
   if (!password) {
@@ -47,7 +48,7 @@ export const toLoginUserSuccessPayload = (data: LoginUser): ILoginUserPayload =>
       subtype: data?.loginUser?.user?.activeChallenge?.levelSlot?.subtype,
       unit: data?.loginUser?.user?.activeChallenge?.levelSlot?.unit,
       challengeIsActive: !!data?.loginUser?.user?.activeChallenge?.challenge?.id,
-      yuHealth: data.loginUser?.user?.activeChallenge?.levelSlot?.yuHealth,
+      yuHealth: toYuHealthReduxType(data.loginUser?.user?.activeChallenge?.levelSlot?.yuHealth),
       createdBySource: toChallengeSourceType(data?.loginUser?.user?.activeChallenge?.challenge?.createdBySource),
     },
     challengesDoneToday: data?.loginUser?.user?.challengesDoneToday,
