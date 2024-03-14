@@ -1,3 +1,5 @@
+import { HealthDataType, HealthProviderCapability } from "@yu-life/react-native-yu-health";
+
 export interface SyncAction<Payload = any> {
   // tslint:disable-line
   type: string;
@@ -24,16 +26,8 @@ export interface MilestoneTarget {
 }
 
 export interface YuHealthOptions {
-  dataType: YuHealthDataType;
-}
-
-export enum YuHealthDataType {
-  Calories = "CALORIES",
-  CyclingDistance = "CYCLING_DISTANCE",
-  HeartRate = "HEART_RATE",
-  MindfulMinutes = "MINDFUL_MINUTES",
-  StepCount = "STEP_COUNT",
-  WorkoutMinutes = "WORKOUT_MINUTES",
+  dataType: HealthDataType;
+  capabilities: HealthProviderCapability[];
 }
 
 export enum FitKitType {

@@ -1,6 +1,6 @@
 import { YuHealthCapability as TypeYuHealthCapability } from "@graphql/_core/schema/globalTypes";
 import { YuHealthDataType as TypeYuHealthDataType } from "@graphql/_core/schema/globalTypes";
-import { YuHealthCapability, YuHealthDataType } from "@graphql/__generated";
+import { YuHealthCapability, YuHealthDataType, YuHealthOptions as YuHealthOptionsGql } from "@graphql/__generated";
 import {
   HealthDataType,
   HealthPermissionStatus,
@@ -11,6 +11,7 @@ import {
 import { Alert, Linking } from "react-native";
 import { isAndroid } from "./device";
 import { t } from "@locale";
+import { YuHealthOptions as YuHealthOptionsRedux } from "@redux/_core/types";
 
 // The capabilities to request when connected
 export const YU_HEALTH_DEFAULT_CAPABILITIES = [
@@ -170,3 +171,14 @@ export function gqlDataTypeToDataType(dataType: MergedDataType | MergedDataType[
 
   throw new Error(`Data type ${dataType} not supported for conversion!`);
 }
+
+export const toYuHealthReduxType = (gql: YuHealthOptionsGql): YuHealthOptionsRedux => {
+  if (!gql) {
+    return undefined;
+  }
+
+  return {
+    dataType: gqlDataTypeToDataType(gql.dataType),
+    capabilities: gqlCapabilityToCapability(gql.capabilities),
+  };
+};
