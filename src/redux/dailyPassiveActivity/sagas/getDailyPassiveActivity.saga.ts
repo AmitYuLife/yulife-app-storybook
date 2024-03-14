@@ -19,7 +19,7 @@ import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
 import { getAggregationCyclingConfiguration, getMindfulSessionFitKitTypes } from "@services/fitkit/fitkit.config";
 import { IFeature } from "@redux/user/user.types";
 import { yuHealthAggregateQuery } from "@services/fitkit/yu-health.helpers";
-import { BucketSize, HealthDataType } from "@yu-life/react-native-yu-health";
+import { BucketSize, HealthDataType, IAggregateQueryResponse } from "@yu-life/react-native-yu-health";
 import { IAppDailyMeditationProps } from "@redux/daily-meditation/daily-meditation.reducer";
 import { IAppMeditationPayload } from "@redux/daily-meditation/daily-meditation.types";
 
@@ -164,12 +164,12 @@ const getMeditation = async ({
           metaData: { file: "getDailyPassiveActivity.saga.getMeditation" },
         });
 
-    const meditation = parseMeditation(inAppMeditation, meditationResponse);
-    if (!meditation.results?.length) {
+    const fitkitAndInAppMeditation = parseMeditation(inAppMeditation, meditationResponse);
+    if (!fitkitAndInAppMeditation.results?.length) {
       return [];
     }
 
-    return processResult(meditation, "MindfulSession", startTime, endTime);
+    return processResult(fitkitAndInAppMeditation, "MindfulSession", startTime, endTime);
   }
 
   const yuHealthMeditation = !meditationPermissionGranted
@@ -185,12 +185,13 @@ const getMeditation = async ({
         },
       });
 
-  // TODO: passive in-app meditation
-  if (!yuHealthMeditation.length) {
+  const yuHealthAndInAppMeditation = parseYuHealthMeditation(inAppMeditation, yuHealthMeditation);
+
+  if (!yuHealthAndInAppMeditation.length) {
     return [];
   }
 
-  return processYuHealthResult(yuHealthMeditation, startTime, endTime, PassiveChallengeType.MEDITATION);
+  return processYuHealthResult(yuHealthAndInAppMeditation, startTime, endTime, PassiveChallengeType.MEDITATION);
 };
 
 const getCycling = async ({
@@ -236,6 +237,31 @@ const getCycling = async ({
   }
 
   return processYuHealthResult(yuHealthCycling, startTime, endTime, PassiveChallengeType.CYCLING);
+};
+
+const parseYuHealthMeditation = (
+  inAppMeditation: IAppMeditationPayload,
+  yuHealthMeditation: IAggregateQueryResponse[]
+): IAggregateQueryResponse[] => {
+  const inAppMeditationResponse: IAggregateQueryResponse = {
+    value: inAppMeditation.duration,
+    endTime: moment().toDate(),
+    startTime: inAppMeditation.createdAt ? moment.unix(inAppMeditation.createdAt).toDate() : moment().toDate(),
+  };
+
+  if (!yuHealthMeditation.length && !inAppMeditation.duration) {
+    return [];
+  }
+
+  if (!yuHealthMeditation.length && inAppMeditation.duration) {
+    return [inAppMeditationResponse];
+  }
+
+  if (yuHealthMeditation.length && !inAppMeditation.duration) {
+    return yuHealthMeditation;
+  }
+
+  return [...yuHealthMeditation, inAppMeditationResponse];
 };
 
 const parseMeditation = (
