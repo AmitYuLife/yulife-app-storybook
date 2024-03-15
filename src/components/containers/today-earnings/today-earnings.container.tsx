@@ -8,7 +8,7 @@ import { Navigation } from "@navigation/main";
 import { FitKitType, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { useDispatch, useSelector } from "react-redux";
-import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
+import { getLocalSteps } from "@redux/daily-steps/daily-steps.selectors";
 import moment from "moment";
 import { GQL_MUTATION_UPSERT_DAILY_PASSIVES } from "@graphql/challenges/upsertDailyPassives.gql";
 import { useBackHandler } from "@hooks";
@@ -30,7 +30,7 @@ const TodayEarningsContainer = ({ componentId, closeNavigationOption }: IProps) 
   const [permissionIsLoading, setPermissionIsLoading] = useState(true);
   const [isGoogleFitAuthorised, setIsGoogleFitAuthorised] = useState(false);
   const { authoriseFitKitTypes } = useFitKit();
-  const dailySteps = useSelector(getDailySteps);
+  const localSteps = useSelector(getLocalSteps);
   const pedometerLastUpdate = useSelector(getLastUpdated);
   const currentLevel = useSelector(getCurrentLevel);
   const currentYuniverse = getCurrentYuniverse(currentLevel);
@@ -76,7 +76,7 @@ const TodayEarningsContainer = ({ componentId, closeNavigationOption }: IProps) 
       variables: {
         payload: [
           {
-            value: lastUpdate !== today ? 0 : dailySteps,
+            value: lastUpdate !== today ? 0 : localSteps,
             endDateTime: moment().format(),
             startDateTime: moment().startOf("day").format(),
             type: PassiveChallengeType.STEPS,
@@ -85,7 +85,7 @@ const TodayEarningsContainer = ({ componentId, closeNavigationOption }: IProps) 
       },
     });
     await getTodaysEarnings();
-  }, [dailySteps, getTodaysEarnings, upsertDailyPassives, pedometerLastUpdate, dispatch]);
+  }, [localSteps, getTodaysEarnings, upsertDailyPassives, pedometerLastUpdate, dispatch]);
 
   useEffect(() => {
     (async () => {
