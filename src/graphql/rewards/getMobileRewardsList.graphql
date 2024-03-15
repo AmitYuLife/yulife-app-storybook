@@ -30,9 +30,13 @@ query GetMobileRewardsList($tag: String) {
         image {
           ...RemoteImage
         }
+        overlayImage {
+          ...RemoteImage
+        }
         theme {
           primaryColor
           secondaryColor
+          overlayColor
         }
         hint {
           label

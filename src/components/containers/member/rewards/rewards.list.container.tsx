@@ -100,8 +100,9 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
       }
 
       if (useHalfModalsForRewardDetails && reward.teaseDetails) {
-        const { target, progress, rewardQuantity, theme, image, hint, modalTitle } = reward.teaseDetails || {};
-        const { primaryColor, secondaryColor } = theme || {};
+        const { target, progress, rewardQuantity, theme, image, overlayImage, hint, modalTitle } =
+          reward.teaseDetails || {};
+        const { primaryColor, secondaryColor, overlayColor } = theme || {};
 
         return Navigation.showOverlayWithChild(
           <RewardMilestoneDetails
@@ -112,6 +113,8 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
             rewardTitle={reward.name}
             primaryColor={primaryColor}
             secondaryColor={secondaryColor}
+            overlayColor={overlayColor}
+            overlayImage={overlayImage}
             rewardImage={image}
             hint={hint}
           />

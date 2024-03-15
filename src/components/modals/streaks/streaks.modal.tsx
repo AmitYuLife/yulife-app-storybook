@@ -118,7 +118,9 @@ const StreaksModal: React.FC<Props> = ({
                   rewardTitle={data.getStreakDetails.goalMilestone.rewardTitle}
                   primaryColor={data.getStreakDetails.goalMilestone.theme.primaryColor}
                   secondaryColor={data.getStreakDetails.goalMilestone.theme.secondaryColor}
+                  overlayColor={data.getStreakDetails.goalMilestone.theme.overlayColor}
                   rewardImage={data.getStreakDetails.goalMilestone.image}
+                  overlayImage={data.getStreakDetails.goalMilestone.overlayImage}
                   showSparks={data.getStreakDetails.goalMilestone.showSparks}
                 />
               </View>

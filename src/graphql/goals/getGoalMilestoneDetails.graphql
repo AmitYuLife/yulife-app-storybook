@@ -6,20 +6,23 @@ query GetGoalMilestoneDetails($goals: [GetGoalMilestoneDetailsInput]) {
       target
       rewardQuantity
       image {
+        ...RemoteImage
+      }
+      overlayImage {
         id
         uri
       }
       theme {
         primaryColor
         secondaryColor
+        overlayColor
       }
     }
     hint {
       label
       description
       image {
-        id
-        uri
+        ...RemoteImage
       }
       onPress {
         type

@@ -15,7 +15,12 @@ type RewardCardProps = {
   rewardQuantity: number;
   primaryColor: string;
   secondaryColor: string;
+  overlayColor: string;
   rewardImage: {
+    id: string;
+    uri?: string;
+  };
+  overlayImage?: {
     id: string;
     uri?: string;
   };
@@ -31,6 +36,8 @@ export const RewardCard = ({
   secondaryColor,
   rewardImage,
   showSparks,
+  overlayColor,
+  overlayImage,
 }: RewardCardProps) => {
   const calculated = useMemo(() => {
     const filledBarWidth = {
@@ -85,7 +92,17 @@ export const RewardCard = ({
           <View style={styles.imageWrapper}>
             <Image suppressLoadingUi={true} width={Style.adjust(56)} source={{ uri: rewardImage.uri }} />
           </View>
-          <View style={StyleSheet.flatten([styles.imageOverlay, { borderColor: secondaryColor }])} />
+          <View
+            style={StyleSheet.flatten([
+              styles.imageOverlay,
+              { borderColor: secondaryColor, backgroundColor: overlayColor },
+            ])}
+          />
+          {!overlayImage ? null : (
+            <View style={styles.overlayImageWrapper}>
+              <Image suppressLoadingUi={true} width={Style.adjust(42)} source={{ uri: overlayImage.uri }} />
+            </View>
+          )}
         </View>
       )}
       {!showSparks ? null : (

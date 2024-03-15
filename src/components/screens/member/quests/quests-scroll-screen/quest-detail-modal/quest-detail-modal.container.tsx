@@ -82,7 +82,9 @@ export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerP
                   rewardTitle={dataItem.rewardTitle}
                   primaryColor={dataItem.theme.primaryColor}
                   secondaryColor={dataItem.theme.secondaryColor}
+                  overlayColor={dataItem.theme.overlayColor}
                   rewardImage={dataItem.image}
+                  overlayImage={dataItem.overlayImage}
                 />
               ))}
             </View>
