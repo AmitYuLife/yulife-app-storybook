@@ -155,7 +155,7 @@ export default dailyStepsReducer;
 
 const updatePersistedState = (state: IDailyStepsStore, persistedState: IDailyStepsStore) => {
   if (!persistedState.lastUpdated) {
-    return { ...state, isServerFetchedThisSession: false };
+    return { ...state, isServerFetchedThisSession: false, isSyncing: false };
   }
 
   const lastUpdated = moment(persistedState.lastUpdated).startOf("day").format();
@@ -166,12 +166,13 @@ const updatePersistedState = (state: IDailyStepsStore, persistedState: IDailySte
       ...persistedState,
       dailySteps: 0,
       serverSteps: 0,
+      isSyncing: false,
       isFetching: true,
       isServerFetchedThisSession: false,
     };
   }
 
-  return { ...persistedState, isServerFetchedThisSession: false };
+  return { ...persistedState, isSyncing: false, isServerFetchedThisSession: false };
 };
 
 const updateUserProfile = (state: IDailyStepsStore, res: IDailyStepsUpdateUserProfilePayload) => ({
@@ -193,9 +194,10 @@ const updateDailyStepsSuccessFromRemote = (state: IDailyStepsStore, { challenge 
   };
 };
 
-const updateDailyStepsLocal = (state: IDailyStepsStore, dailySteps: number) => ({
+const updateDailyStepsLocal = (state: IDailyStepsStore, localSteps: number) => ({
   ...state,
-  dailySteps: Math.max(state.dailySteps, dailySteps),
+  localSteps,
+  dailySteps: Math.max(state.dailySteps, localSteps),
 });
 
 const getUserSuccess = (state: IDailyStepsStore, res: IDailyStepsGetUserSuccessPayload) => ({
