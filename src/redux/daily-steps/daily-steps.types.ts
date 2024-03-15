@@ -7,4 +7,4 @@ export type IDailyStepsUpdateUserProfilePayload = {
   stepsGameSettings: Pick<IDailyStepsStore, "maxStepsAnomalyWindowMs" | "blackListApps">;
 };
 
-export type IDailyStepsFromRemotePayload = { challenge: Challenge; currentBalance: number };
+export type IDailyStepsFromRemotePayload = { challenge: Challenge; sentSteps?: number; currentBalance: number };

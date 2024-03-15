@@ -7,7 +7,7 @@ const reducer = (state: IReduxState) => state.dailySteps;
 const dailyStepsSelector = (state: State) => state.dailySteps;
 export const getDailySteps = createSelector(reducer, dailyStepsSelector);
 
-const localStepsSelector = (state: State) => state.dailySteps;
+const localStepsSelector = (state: State) => state.localSteps || 0;
 export const getLocalSteps = createSelector(reducer, localStepsSelector);
 
 const exchangeRateSelector = (state: State) => state.exchangeRate;
