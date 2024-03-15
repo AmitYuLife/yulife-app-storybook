@@ -23,9 +23,13 @@ query GetStreakDetails {
         id
         uri
       }
+      overlayImage {
+        ...RemoteImage
+      }
       theme {
         primaryColor
         secondaryColor
+        overlayColor
       }
     }
   }

@@ -21,7 +21,9 @@ type RewardMilestoneDetailsProps = {
   rewardTitle: string;
   primaryColor: string;
   secondaryColor: string;
+  overlayColor: string;
   rewardImage: RemoteImage;
+  overlayImage: RemoteImage;
   hint?: {
     label?: string;
     description?: string;
@@ -36,9 +38,11 @@ export const RewardMilestoneDetails = ({
   rewardTitle,
   primaryColor,
   secondaryColor,
+  overlayColor,
   rewardImage,
   hint,
   modalTitle,
+  overlayImage,
 }: RewardMilestoneDetailsProps) => {
   const hasCompleteRewardCardInfo = target && rewardTitle && primaryColor && secondaryColor && rewardImage;
 
@@ -84,6 +88,8 @@ export const RewardMilestoneDetails = ({
             primaryColor={primaryColor}
             secondaryColor={secondaryColor}
             rewardImage={rewardImage}
+            overlayColor={overlayColor}
+            overlayImage={overlayImage}
           />
         </>
       )}

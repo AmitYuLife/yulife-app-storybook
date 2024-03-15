@@ -20,6 +20,17 @@ export const rewardCardStyles = StyleSheet.create({
     width: Style.adjust(56),
     height: Style.adjust(56),
   },
+  overlayImageWrapper: {
+    position: "absolute",
+    top: Style.adjust(16),
+    right: Style.adjust(12),
+    borderRadius: 999,
+    overflow: "hidden",
+    width: Style.adjust(56),
+    height: Style.adjust(56),
+    justifyContent: "center",
+    alignItems: "center",
+  },
   sparks: {
     position: "absolute",
     top: 0,

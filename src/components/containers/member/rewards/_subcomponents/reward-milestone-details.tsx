@@ -21,6 +21,7 @@ type RewardMilestoneDetailsProps = {
   rewardTitle: string;
   primaryColor: string;
   secondaryColor: string;
+  overlayColor: string;
   rewardImage: RemoteImage;
 };
 
@@ -32,6 +33,7 @@ export const RewardMilestoneDetails = memo(
     rewardTitle,
     primaryColor,
     secondaryColor,
+    overlayColor,
     rewardImage,
   }: RewardMilestoneDetailsProps) => {
     const currentRoute = useSelector(getRouteState);
@@ -73,6 +75,7 @@ export const RewardMilestoneDetails = memo(
           rewardTitle={rewardTitle}
           primaryColor={primaryColor}
           secondaryColor={secondaryColor}
+          overlayColor={overlayColor}
           rewardImage={rewardImage}
         />
         <View style={styles.space} />
