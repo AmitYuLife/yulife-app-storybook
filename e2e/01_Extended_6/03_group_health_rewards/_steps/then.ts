@@ -567,20 +567,28 @@ export const ghiRewardsTeaseVisible = async () => {
   await textVisible(constants.rewardsTeaseText)()
 }
 
-export const onGHIRewardsLearnMorePage = (started: boolean, unlocked: string, date: string) => async () => {
+export const onGHIRewardsLearnMorePage = (state: "started" | "pre" | "finished", unlocked: string, date: string) => async () => {
   const timeToGameEnd = moment.duration(moment(date).diff(moment()));
   const timeToGameStart = moment.duration(moment(date).endOf("day").diff(moment()));
-  const days = started ? Math.floor(timeToGameEnd.asDays()) : Math.floor(timeToGameStart.asDays())
+  const days = state === "started" || state === "finished" ? Math.floor(timeToGameEnd.asDays()) : Math.floor(timeToGameStart.asDays())
   const gameStartDate = moment(date).endOf("day").format("DD.MM.YYYY")
+  let description = ""
+  if (state === "started") {
+    description = constants.learnMorePageDesc
+  } else if (state === "pre") {
+    description = constants.learnMoreTeaseDesc(days)
+  } else if (state === "finished") {
+    description = constants.learnMoreFinishedDec
+  }
+
 
   await idVisible(ids.TEXT_TEMPLATE(constants.learnMorePageHeader, "h2"))()
-  started && await textVisible(`${unlocked}/6 rewards unlocked`)()
-  started && await textVisible(`${days} days left`)()
-  !started && await textVisible(`Starts on ${gameStartDate}`)()
-  started && await idVisible(ids.TEXT_TEMPLATE(constants.learnMorePageDesc, "b2"))()
-  !started && await idVisible(ids.TEXT_TEMPLATE(constants.learnMoreTeaseDesc(days), "b2"))()
+  state !== "pre" && await textVisible(`${unlocked}/6 rewards unlocked`)()
+  state !== "pre" && await textVisible(`${days} days left`)()
+  state === "pre" && await textVisible(`Starts on ${gameStartDate}`)()
+  await idVisible(ids.TEXT_TEMPLATE(description, "b2"))()
   await swipeFromText(constants.learnMorePageHeader, "up", "fast")()
-  started && await textVisible(constants.learnMorePageButton)()
+  state !== "pre" && await textVisible(constants.learnMorePageButton)()
   await idVisible(ids.TEXT_TEMPLATE(constants.learnMoreFAQ1, "b2b"))()
   await idVisible(ids.TEXT_TEMPLATE(constants.learnMoreFAQ2, "b2b"))()
   await idVisible(ids.TEXT_TEMPLATE(constants.learnMoreFAQ3, "b2b"))()

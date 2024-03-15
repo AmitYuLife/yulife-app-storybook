@@ -28,7 +28,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
         When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
-            Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage(true, "0", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
+            Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage("started", "0", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
         })
         helpers.carouselScroll(constants.groupHealthRewardCarouselNames)()
         When("I scroll to the bottom of the page", when.swipeFromText(constants.learnMorePageHeader, "up", "fast"), async () => {
@@ -128,7 +128,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
                     When("I scroll until I can see all the learn more modal", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_2, "down"), async () => {
                         When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
-                            Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage(true, "1", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
+                            Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage("started", "1", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
                         })
                     })
                 })
@@ -530,56 +530,72 @@ Feature("I am able to see GHI Rewards in App", async () => {
     })
 
     Scenario("I can succesfully go through the Garmin Rewards journeys", scenario.start, async () => {
-        Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_121_GHI_REWARDS, data.AUTH_121), async () => {
-            Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
-        })
-        When("I go to the store to select my region before returning to the YuScreen", when.setStoreRegion, async () => {
-            When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
-                Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_2));
+        Given("I login as a user", given.logInAndGoToTab("rewards", data.CUSTOMER_121_GHI_REWARDS, data.AUTH_121), async () => {
+            When("I confirm my language selection", when.tapText("Confirm selection", 2000), async () => {
+                Then("I can see the game progress modal with the correct info", then.rewardStoreGameProgressVisible("5", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
             })
         })
-        When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up"), async () => {
-            Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("5/6"))
-        })
-        When("I scroll until I can see all the progress info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_1, "down"), async () => {
-            Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(199))
-        })
-        When("I click to see the next reward I want to unlock", when.tapText(constants.groupHealthRewardProgressNames[5]), async () => {
+        When("I tap on the Garmin reward", when.tapRewardInList(data.CORE_REWARDS_GARMIN_GHI_REWARDS), async () => {
             Then("I should be on the tease page", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-            Then("I should see the correct information for the Garmin reward tease", then.onRewardsTeasePage(fixtures.GARMIN_GHI_REWARDS_TEASE_PAGE_DETAILS))
+             Then("I should see the correct information for the Garmin reward tease", then.onRewardsTeasePage(fixtures.GARMIN_GHI_REWARDS_TEASE_PAGE_DETAILS))
+        })
+        When("I go back to the rewards screen", when.tryTapIdMultipleIndexes(ids.BUTTON_CLOSE, 3), async () => {
+            When("I navigate to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+                When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+                    Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_2));
+                    Then("I should see the more rewards ahead modal as this employee has the feature toggle on", then.moreRewardsAheadModalVisible(false))
+                    Then("I shouldn't see the group health rewards heading as the feature toggle is hiding them", then.textNotVisible(constants.groupHealthRewardsHeading))
+                })
+            })
+        })
+        When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
+            Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage("started", "5", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
         })
         When("I tap the CTA button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
             Then("I should see level 241", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(241)))
         })
         When("I tap level 241", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(241)), async () => {
-            When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
-                When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
-                    Then("I should see the well done screen", then.onChallengeComplete(3050, 241))
-                })
+            Then("I should see a screen telling me to take a challenge to unlock a my reward", then.textVisible("Almost there! Take a challenge to unlock your reward."))
+        })
+        When("I tap the Let's go button to proceed", when.tapText("Let's go!"), async () => {
+            Then("I appear on the challenge screen", then.idVisible(ids.CHALLENGE_SCREEN))
+        })
+        When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
+            When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+                Then("I should see the well done screen", then.onChallengeComplete(3050, 241))
             })
         })
         When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
             When("I wait 10 seconds", when.wait(10000), async () => {
                 Then("I should see the first day streak screen", then.textVisible("First day done!"))
+                Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, "1 x Free Garmin Smartwatch", "200 / 200"))
             })
         })
         When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
             When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
                 When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
-                    When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down"), async () => {
-                        Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("6/6"))
+                    When("I scroll until I can see all the learn more modal", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_2, "down"), async () => {
+                        When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
+                            Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage("finished", "6", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
+                        })
                     })
                 })
             })
         })
-        When("I scroll until I can see all the progress info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_1, "down"), async () => {
-            Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(200))
-        })
-        When("I click to see the next reward I want to unlock", when.tapText(constants.groupHealthRewardProgressNames[5]), async () => {
-            When("I tap on the Garmin reward", when.tapRewardInList(data.CORE_REWARDS_GARMIN_GHI_REWARDS), async () => {
-                Then("I should be on the rewards page for Garmin", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-                Then("I should see all the reward information for Garmin", then.onGarminRewardsClaimPage(fixtures.GARMIN_REWARDS_CLAIM_PAGE_DETAILS, true, 1))
+        When("I click to go back", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
+            When("I swipe to the top", when.swipeFromText("FAQs", "down", "fast"), async () => {
+                When("I close the screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
+                    When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
+                        When("I swipe to the top of the page", when.swipeFromText("Garmin Smartwatch", "down", "fast"), async () => {
+                            Then("I can see the game progress modal with the correct info", then.rewardStoreGameProgressVisible("6", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
+                        })
+                    })
+                })
             })
+        })
+        When("I tap on the Garmin reward", when.tapRewardInList(data.CORE_REWARDS_GARMIN_GHI_REWARDS), async () => {
+            Then("I should be on the rewards page for Garmin", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
+            Then("I should see all the reward information for Garmin", then.onGarminRewardsClaimPage(fixtures.GARMIN_REWARDS_CLAIM_PAGE_DETAILS, true, 1))
         })
         When("I click to claim my voucher", when.tapText(fixtures.BUPA_REWARDS_CLAIM_PAGE_DETAILS.buttonText), async () => {
             Then("I should see I have a choice to select a reward", then.textVisible(constants.selectReward))
@@ -780,7 +796,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
         When("I click to learn more, as the user is above level 5 in the game", when.tapText(constants.learnMoreButton), async () => {
-            Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage(false, "0", data.GOAL_PARTICIPATION_14.data.startDateTime))
+            Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage("pre", "0", data.GOAL_PARTICIPATION_14.data.startDateTime))
         })
         When("I click to go back", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
             When("I go to the quest tab", when.tapID(ids.NAV_BAR("quests")), async () => {
