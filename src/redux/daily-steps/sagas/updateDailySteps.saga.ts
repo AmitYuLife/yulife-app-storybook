@@ -24,14 +24,16 @@ export default function* updateDailyStepsSaga({ payload }: ReturnType<typeof upd
     // we wanna avoid making API requests for every single 1-2 steps
     if (shouldSyncToRemote) {
       yield put(startStepsSyncing());
-      const { data } = yield call(upsertDailyPassives, [mapPedometerResults(payload)]);
-      const mutationResult = data?.upsertPassiveChallenges || data?.upsertDailyPassives;
+      const { data }: Awaited<ReturnType<typeof upsertDailyPassives>> = yield call(upsertDailyPassives, [
+        mapPedometerResults(payload),
+      ]);
 
-      if (mutationResult?.challenges?.length) {
+      if (data?.upsertDailyPassives?.challenges?.length) {
         yield put(
           updateDailyStepsSuccessFromRemote({
-            challenge: mutationResult.challenges[0],
-            currentBalance: mutationResult.currentBalance,
+            sentSteps: payload.steps,
+            challenge: data?.upsertDailyPassives.challenges[0],
+            currentBalance: data?.upsertDailyPassives.currentBalance,
           })
         );
       }

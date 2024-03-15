@@ -34,8 +34,13 @@ export interface IDailyStepsStore {
   dailySteps: number;
   /**
    * @description
+   * The value of steps from local pedometer
+   */
+  localSteps: number;
+  /**
+   * @description
    * We don't wanna make an API request every 1-2 steps,
-   * hence we need to store what's the latest server steps value
+   * hence we need to store what we last sent to the server
    */
   serverSteps: number;
   /**
@@ -85,6 +90,7 @@ export const getInitialState = (): IDailyStepsStore => ({
     meditation: null,
     surge: 1,
   },
+  localSteps: 0,
   isFetching: true,
   isSyncing: false,
   isServerFetchedThisSession: false,
@@ -181,12 +187,15 @@ const updateUserProfile = (state: IDailyStepsStore, res: IDailyStepsUpdateUserPr
   blackListApps: res?.stepsGameSettings?.blackListApps,
 });
 
-const updateDailyStepsSuccessFromRemote = (state: IDailyStepsStore, { challenge }: { challenge: Challenge }) => {
+const updateDailyStepsSuccessFromRemote = (
+  state: IDailyStepsStore,
+  { challenge, sentSteps }: { challenge: Challenge; sentSteps: number }
+) => {
   const lastUpdated = moment.unix(challenge.updatedAt).format();
   return {
     ...state,
     dailySteps: Math.max(state.dailySteps, challenge.incomingData.steps), // for cases when the wearables data is higher than the current device's data
-    serverSteps: challenge.incomingData.steps,
+    serverSteps: sentSteps,
     isFetching: false,
     isSyncing: false,
     isServerFetchedThisSession: true,
