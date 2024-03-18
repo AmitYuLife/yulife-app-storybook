@@ -110,7 +110,7 @@ Feature("CPD/Yuniversity", async () => {
             })
         })
         When("I pull down the activity history page to refresh", when.swipeFromText(twoDaysAgoDate, "down", "fast"), async () => {
-            When("I tap the close button", when.closeScreen("activity history"), async () => {
+            When("I tap the close button", when.closeScreen("Activity history"), async () => {
                 Then("I should now have 420 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(420)))
                 Then("I should see '400 YuCoin today'", then.textVisible("400 YuCoin today"))
             })

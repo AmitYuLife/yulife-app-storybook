@@ -33,7 +33,7 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
             Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
             Then("I should see the historical cycle records from the previous 3 days loaded in meaning the refresh has worked", then.canSeePreviousDaysCycling)
         })
-        When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER(t("activity history"))), async () => {
+        When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER(t("Activity history"))), async () => {
             Then("I should be on the yucoin tab and can see daily cycling", then.onDailyCycling("7.5 km", 40))
         })
     })

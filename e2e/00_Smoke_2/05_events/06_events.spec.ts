@@ -9,7 +9,6 @@ import { twoDaysAgoDate } from "./_resources/consts";
 import { getLocalisedString as t } from "@i18n";
 
 Feature("As a user I can opt in and take an event", async () => {
-    
     Scenario("I can take and complete a 3 star challenge event and hit all the event milestones", scenario.start, async () => {
         Given("I login and go to yucoin page", given.logInAndGoToTab("yucoin", data.CUSTOMER_72, data.AUTH_72), async () => {
             Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
@@ -169,7 +168,7 @@ Feature("As a user I can opt in and take an event", async () => {
         When("I pull down the activity history page to refresh", when.swipeFromText(twoDaysAgoDate, "down", "fast"), async () => {
             Then("I should see the historical steps from yesterday loaded in meaning the refresh has worked", then.canSeeYesterdaysSteps)
         })
-        When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER(t("activity history"))), async () => {
+        When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER(t("Activity history"))), async () => {
             When("I join the challenge", when.tapText(t("Join")), async () => {
                 When("I click confirm", when.tapText(t("Confirm")), async () => {
                     Then("I should be on the event screen", then.onEventDetailsScreen(data.GOALS_5))
