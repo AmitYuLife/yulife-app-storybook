@@ -45,7 +45,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             Then("I should see  13:20 mindful mins in activity history", then.textVisible("13:20 mindful mins"))
             Then("I should see 11.3 km cycled in activity history", then.textVisible("11.3 km cycled"))
         })
-        When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER(t("activity history"))), async () => {
+        When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER(t("Activity history"))), async () => {
             Then("I should be the yucoin tab", then.onDailySteps())
         })
         When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {

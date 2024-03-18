@@ -393,7 +393,7 @@ export const weeklyQuestsTimeRemaining = () => {
     }
 }
 
-export const closeScreen = (option: "button_only" | "yulife" | "activity history") => async () => {
+export const closeScreen = (option: "button_only" | "yulife" | "Activity history") => async () => {
     await tapID(BUTTON_CLOSE_HEADER(option))()
 }
 
