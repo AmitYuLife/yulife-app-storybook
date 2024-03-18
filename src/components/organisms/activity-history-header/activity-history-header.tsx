@@ -3,9 +3,9 @@ import { StyleSheet, View } from "react-native";
 import { BottomShadow, TextTemplate } from "@atoms";
 import { PressableWithDelay } from "@molecules";
 import { Style, Colours } from "@styles";
-import moment from "moment";
-import { last } from "lodash";
+import { last, upperFirst } from "lodash";
 import { DATE_FORMAT } from "@utils";
+import moment from "moment";
 
 type ISelectedMonth = {
   startDate: string;
@@ -46,7 +46,7 @@ const getMonths = () => {
   return Array.from({ length: 3 }).map((_, index) => {
     const month = moment().month(currentMonth - 2 + index);
     return {
-      label: month.format("MMMM"),
+      label: upperFirst(month.format("MMMM")),
       value: {
         startDate: month.startOf("month").format(DATE_FORMAT),
         endDate: month.endOf("month").format(DATE_FORMAT),
