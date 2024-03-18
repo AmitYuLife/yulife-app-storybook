@@ -14,3 +14,8 @@ export const synchroniseProductGoalParticipants = (prod: string) => async () => 
   businessProductId: prod,
   })
 }
+
+export const createNextSeasonParticipations = async () => {
+  await dataManager.triggerWorkerTask("Game.Goals.CreateNextSeasonParticipations", {
+  })
+}

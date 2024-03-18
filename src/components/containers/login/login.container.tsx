@@ -241,9 +241,9 @@ const LoginContainer: React.FC<Props> = ({
     () =>
       logins.length > 1
         ? {
-          restrictTo: logins.map((d) => d.region),
-          onSelect: (r: REGION) => loginForRegion(r),
-        }
+            restrictTo: logins.map((d) => d.region),
+            onSelect: (r: REGION) => loginForRegion(r),
+          }
         : undefined,
     // Logins is mutated (it's a ref)! Don't change the dependency array
     // eslint-disable-next-line react-hooks/exhaustive-deps
