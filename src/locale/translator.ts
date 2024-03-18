@@ -3,6 +3,7 @@ import { NativeModules } from "react-native";
 import { DETOX_ENABLED } from "@services/socket";
 import { translations, Language, Translation } from "./translations";
 import { IS_DEVELOP, isWeb, isiOS } from "@utils";
+import moment from "moment";
 
 class Translator {
   private dict: Polyglot;
@@ -63,6 +64,8 @@ class Translator {
     }
 
     const phrases = translations[locale].load();
+    translations[locale].momentLocale();
+    moment.locale(locale);
 
     if (!phrases) {
       return;
