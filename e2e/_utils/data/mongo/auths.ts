@@ -1741,6 +1741,17 @@ export const AUTH_137 = {
         ...AUTH_TEMPLATE.data,
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_137.data.customerId,
+        userId: customer.CUSTOMER_137_GHI_REWARDS.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_138 = {
+    type: "mongo",
+    modelName: "authpassword",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_138.data.customerId,
     }
 }  as IDatabaseItem

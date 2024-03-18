@@ -1406,12 +1406,27 @@ export const CPE_DENTAL_RENEW_WELLBEING = {
     }
 } as IDatabaseItem
 
-export const CPE_137_WELLBEING = {
+export const CPE_137_GHI_REWARDS = {
+    type: "postgres",
+    modelName: "customer_product_entity",
+    data: {
+        customerId: customer.CUSTOMER_137_GHI_REWARDS.data.customerId,
+        customer_product_id: "YUCPID0000011428",
+        "earn_rate" : 0,
+        "start_date" : moment().subtract(1, "years").format("YYYY-MM-DD"),
+        "is_banned_from_product" : false,
+        "archived" : false,
+        "taken_up" : true,
+        product_variant_id : "Bupa_GHealth_01_01",
+    }
+} as IDatabaseItem
+
+export const CPE_138_WELLBEING = {
     type,
     modelName,
     data: {
-        customer_product_id: "YUCPID0000011428",
-        customer_id: customer.CUSTOMER_137.data.customerId,
+        customer_product_id: "YUCPID0000011429",
+        customer_id: customer.CUSTOMER_138.data.customerId,
         earn_rate: 10,
         product_variant_id: "YuLife_Wellbeing_01_01",
         archived: false,

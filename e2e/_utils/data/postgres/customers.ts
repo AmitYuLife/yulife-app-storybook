@@ -1998,7 +1998,20 @@ export const CUSTOMER_136_GHI_REWARDS = {
   },
 } as IDatabaseItem
 
-export const CUSTOMER_137 = {
+export const CUSTOMER_137_GHI_REWARDS = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Brendan",
+    lastName: "Galloway",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+
+export const CUSTOMER_138 = {
   type: "postgres",
   modelName: "customer",
   data: {

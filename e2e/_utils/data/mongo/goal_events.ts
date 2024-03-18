@@ -1,6 +1,6 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import { GOALS_1, GOALS_2, GOALS_3, GOALS_4, GOALS_5 } from "./goals";
-import { GOAL_PRODUCTS_1 } from "./goal_products";
+import { GOAL_PRODUCTS_1, GOAL_PRODUCTS_2, GOAL_PRODUCTS_3 } from "./goal_products";
 import { WEEKLY_GOAL_1 } from "./goal_weeklies";
 
 const type = "mongo"
@@ -80,6 +80,30 @@ export const GOAL_EVENTS_6_GHI_REWARDS = {
     modelName,
     data:{
         goal: GOAL_PRODUCTS_1.data._id,
+        parentType: "goal_products",
+        type: "user_levelled_up",
+        targetValue: 200,
+        goalWeight: 1,
+    }
+} as IDatabaseItem
+
+export const GOAL_EVENTS_7_GHI_REWARDS = {
+    type,
+    modelName,
+    data:{
+        goal: GOAL_PRODUCTS_2.data._id,
+        parentType: "goal_products",
+        type: "user_levelled_up",
+        targetValue: 4,
+        goalWeight: 1,
+    }
+} as IDatabaseItem
+
+export const GOAL_EVENTS_8_GHI_REWARDS = {
+    type,
+    modelName,
+    data:{
+        goal: GOAL_PRODUCTS_3.data._id,
         parentType: "goal_products",
         type: "user_levelled_up",
         targetValue: 200,

@@ -1329,8 +1329,21 @@ export const USER_GAME_STATE_137 = {
     modelName: "user_game_state",
     data: {
         _id: generateRandomMongoId(),
-        customerId: customer.CUSTOMER_137.data.customerId,
-        userId: customer.CUSTOMER_137.data.customerId,
+        customerId: customer.CUSTOMER_137_GHI_REWARDS.data.customerId,
+        userId: customer.CUSTOMER_137_GHI_REWARDS.data.customerId,
+        currentBalance: 800,
+        currentStreak: 0,
+        currentLevel: 315
+    }
+} as IDatabaseItem
+
+export const USER_GAME_STATE_138 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_138.data.customerId,
+        userId: customer.CUSTOMER_138.data.customerId,
         currentBalance: 800,
         currentStreak: 0,
         currentLevel: 48

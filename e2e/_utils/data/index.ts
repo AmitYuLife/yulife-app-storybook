@@ -75,4 +75,5 @@ export * from "./mongo/user_statistics"
 export * from "./mongo/core_reward_user_restriction"
 export * from "./mongo/partner_vouchers"
 export * from "./mongo/wellbeing_hub_category"
+export * from "./mongo/goal_rewards"
 
