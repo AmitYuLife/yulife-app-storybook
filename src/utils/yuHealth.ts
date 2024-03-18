@@ -33,7 +33,7 @@ export const SUPPORTED_PROVIDERS = [
   HealthProvider.googleFit,
   HealthProvider.healthKit,
   HealthProvider.samsungHealth,
-  HealthProvider.healthConnect,
+  // HealthProvider.healthConnect,
 ];
 
 /**
