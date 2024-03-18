@@ -13,6 +13,7 @@ import LeaderboardListItem from "./leaderboard-list-item";
 import LeaderboardListTabs from "./leaderboard-list-tabs";
 import { ISocialGroup, ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.types";
 import { GetMobileSocialGroupLeaderboardItemsQuery } from "@graphql/__generated";
+import { useUserFeatures } from "@hooks";
 
 export interface ITop3 {
   top1?: string;
@@ -80,6 +81,8 @@ export const LeaderboardScreen = ({
 }: IProps) => {
   const scrollValue = useRef(new Animated.Value(0)).current;
   const flashList: RefObject<_FlashList<SocialGroupLeaderboardItem>> = useRef();
+  const { tempGameEnableAnimatedLeaderboardRays } = useUserFeatures();
+
   const showYudokuEmptyMessage = useMemo(
     () => !items.length && activeLeaderboard?.leaderboardConfigId === SocialGroupLeaderboardConfigId.dailysudoku,
     [items.length, activeLeaderboard]
@@ -158,6 +161,7 @@ export const LeaderboardScreen = ({
             showDuels={showDuels}
             showSearch={showSearch}
             showTrophy={showTrophy}
+            enableAnimatedRays={tempGameEnableAnimatedLeaderboardRays}
             ranks={ranks}
             onLeftNavigationPress={onLeftNavigationPress}
             onDuelPress={onDuelPress}
@@ -172,21 +176,22 @@ export const LeaderboardScreen = ({
       );
     },
     [
-      onItemPress,
-      currentUserInfo,
-      activeSocialGroup,
-      activeLeaderboard,
-      itemsIsLoading,
-      onUpdateActiveLeaderboard,
+      ranks,
       opacity,
       showDuels,
       showSearch,
       showTrophy,
-      ranks,
-      onLeftNavigationPress,
+      onItemPress,
       onDuelPress,
       onSearchPress,
+      itemsIsLoading,
+      currentUserInfo,
+      activeSocialGroup,
+      activeLeaderboard,
       onQuestionMarkPress,
+      onLeftNavigationPress,
+      onUpdateActiveLeaderboard,
+      tempGameEnableAnimatedLeaderboardRays,
     ]
   );
 

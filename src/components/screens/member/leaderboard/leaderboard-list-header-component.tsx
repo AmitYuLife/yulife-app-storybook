@@ -17,6 +17,7 @@ interface IProps {
   onLeftNavigationPress: () => void;
   onDuelPress: () => void;
   onSearchPress: () => void;
+  enableAnimatedRays?: boolean;
   onQuestionMarkPress: () => void;
   activeSocialGroup: ISocialGroup;
   navigationDescription: string;
@@ -30,6 +31,7 @@ const LeaderboardListHeaderComponent = ({
   showSearch,
   activeSocialGroup,
   onLeftNavigationPress,
+  enableAnimatedRays,
   onDuelPress,
   onSearchPress,
   navigationDescription,
@@ -39,7 +41,7 @@ const LeaderboardListHeaderComponent = ({
   <View style={styles.headerWrapper}>
     <View style={[styles.podiumWrapper]}>
       <Animated.View style={[styles.podium, { opacity }]}>
-        <Podium />
+        <Podium enableAnimatedRays={enableAnimatedRays} />
       </Animated.View>
       <Animated.View style={[styles.avatarsWrapper, { opacity }]}>
         <View style={[styles.avatars, styles.avatarTop2]}>
