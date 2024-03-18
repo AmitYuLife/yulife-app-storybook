@@ -19,6 +19,8 @@ Feature("CPD/Yuniversity", async () => {
         })
         When("I tap Wellbeing Hub", when.tapID(ids.MENU_ITEM("Wellbeing Hub")), async () => {
             Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN))
+        })
+        When("I scroll down", when.scrollFromID(ids.WELLBEING_HUB_SCREEN, "up", "slow", 0.2), async () => {
             Then("I can see Yuniversity in the wellbeing hub", then.canSeeYuniversityWellbeingHub)
         })
         When("I tap on Yuniversity", when.tapText("Yuniversity"), async () => {

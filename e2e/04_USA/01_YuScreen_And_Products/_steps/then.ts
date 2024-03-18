@@ -137,7 +137,7 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       await expect(element(by.text(text.Guardian_DENPPO.heading))).toBeVisible();
       await expect(element(by.text(text.Guardian_DENHMO.slotAbreviation))).toBeVisible();
       await expect(element(by.text(text.Guardian_DENCHOI.slotAbreviation))).toBeVisible();
-      if (device.name.includes("(iPhone 14 Pro)")) {
+      if (device.name.includes("(iPhone 15 Pro Max)")) {
         await expect(element(by.text(text.MoreProtection))).toBeVisible();
       }
       await scrollUntilIdVisible(YUSCREEN_SCROLL_VIEW, COUNTDOWN_COMPONENT, "down")();
@@ -154,7 +154,7 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       await textVisible(text.Guardian_STD.slotAbreviation)();
       await textVisible(text.Guardian_LTD.slotAbreviation)();
       await textVisible(text.Guardian_VADD.slotAbreviation)();
-      if (device.name.includes("(iPhone 14 Pro)")) {
+      if (device.name.includes("(iPhone 15 Pro Max)")) {
         await expect(element(by.text(text.MoreProtection))).toBeVisible();
       }
       await scrollUntilIdVisible(YUSCREEN_SCROLL_VIEW, COUNTDOWN_COMPONENT, "down")();
@@ -171,7 +171,7 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       await textVisible(text.Guardian_SPDIS.slotAbreviation)();
       await textVisible(text.Guardian_ACC.heading)();
       await textVisible(text.Guardian_VSTD.slotAbreviation)();
-      if (device.name.includes("(iPhone 14 Pro)")) {
+      if (device.name.includes("(iPhone 15 Pro Max)")) {
         await expect(element(by.text(text.MoreProtection))).toBeVisible();
       }
       await scrollUntilIdVisible(YUSCREEN_SCROLL_VIEW, COUNTDOWN_COMPONENT, "down")();
@@ -187,7 +187,7 @@ export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: st
       await textVisible(text.Guardian_CAN.heading)();
       await textVisible(text.Guardian_ACCSICK.slotAbreviation)();
       await textVisible(text.Guardian_VLIF.slotAbreviation)();
-      if (device.name.includes("(iPhone 14 Pro)")) {
+      if (device.name.includes("(iPhone 15 Pro Max)")) {
         await expect(element(by.text(text.MoreProtection))).not.toBeVisible();
         await expect(element(by.text(text.activeEnrollmentButtonMessage))).not.toBeVisible();
       }

@@ -117,7 +117,7 @@ export const tapIllDoThisLater = async () => {
 export const closeScreen = async () => {
   let buttonIndex = 0;
 
-  if (device.name.includes("(iPhone 14 Pro)")) {
+  if (device.name.includes("(iPhone 15 Pro Max)")) {
     buttonIndex = 1;
   }
 

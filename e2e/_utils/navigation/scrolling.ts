@@ -125,7 +125,7 @@ export const swipeToID =
 export const activityHistoryScrollStepDataCorrect = async () => {
   let scrollPercentage = 0;
 
-  if (device.name.includes("(iPhone 14 Pro)")) {
+  if (device.name.includes("(iPhone 15 Pro Max)")) {
     scrollPercentage = 0.1;
   } else {
     scrollPercentage = 0.13;
@@ -143,7 +143,7 @@ export const formatCyclingMetersToKmWithOneDecimal = (meters: number): string =>
 export const activityHistoryScrollCyclingDataCorrect = async () => {
   let scrollPercentage = 0;
 
-  if (device.name.includes("(iPhone 14 Pro)")) {
+  if (device.name.includes("(iPhone 15 Pro Max)")) {
     scrollPercentage = 0.13;
   } else {
     scrollPercentage = 0.19;
@@ -163,7 +163,7 @@ export function formatMindfulMins(totalSeconds: number) {
 export const activityHistoryScrollMinsDataCorrect = async () => {
   let scrollPercentage = 0;
 
-  if (device.name.includes("(iPhone 14 Pro)")) {
+  if (device.name.includes("(iPhone 15 Pro Max)")) {
     scrollPercentage = 0.13;
   } else {
     scrollPercentage = 0.16;
