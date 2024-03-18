@@ -1,9 +1,10 @@
 import { Tabs } from "@organisms";
 import { memo, useMemo } from "react";
 import { View } from "react-native";
-import { styles } from "./leaderboard.screen";
+import { styles as leaderboardStyles } from "./leaderboard.screen";
 import { ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.types";
 import { Style } from "@styles";
+import { BottomShadow } from "@atoms";
 
 interface ITabsProps {
   itemsIsLoading: boolean;
@@ -38,8 +39,11 @@ const LeaderboardTabs = ({ leaderboards = [], activeLeaderboard, itemsIsLoading,
   );
 
   return (
-    <View style={styles.tabs}>
-      <Tabs list={list} isLoading={itemsIsLoading} initialLoading={!leaderboards?.length} defaultTab={selectedTab} />
+    <View>
+      <View style={leaderboardStyles.tabs}>
+        <Tabs list={list} isLoading={itemsIsLoading} initialLoading={!leaderboards?.length} defaultTab={selectedTab} />
+        <BottomShadow />
+      </View>
     </View>
   );
 };
