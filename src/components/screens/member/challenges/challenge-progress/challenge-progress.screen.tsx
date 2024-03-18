@@ -112,7 +112,8 @@ function ChallengeProgressScreen({
       <GenericHeadingPad />
       <Image
         width={Style.DEVICE_WIDTH}
-        resizeMode="contain"
+        height={Style.DEVICE_HEIGHT}
+        resizeMode="cover"
         style={styles.backgroundImage}
         source={assets.backgroundImage}
       />
