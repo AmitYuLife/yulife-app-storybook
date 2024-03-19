@@ -63,6 +63,7 @@ export const CUSTOMER_2_TOGGLES = {
       showNotificationCentre:true,
       showLangSelector: true,
       showAllLanguages: true,
+      tempGameEnableNewActivityHistory:true
     },
   },
 } as IDatabaseItem;

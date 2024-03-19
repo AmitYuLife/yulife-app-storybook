@@ -1,4 +1,5 @@
 import { Image, StarInline, TextTemplate } from "@atoms";
+import { ACTIVITY_HISTORY_CHALLENGE_VALUE } from "@ids";
 import { Style } from "@styles";
 import React, { memo, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
@@ -43,7 +44,7 @@ const ActivityHistoryInfo = ({ title, activityItems, isLastItem }: IProps) => {
           <View style={activityHistoryInfoStyles.leftImage}>
             <Image source={item.leftIcon} {...IMAGE_SIZE} />
           </View>
-          <TextTemplate type="l1" color={!item.yucoin ? COLOURS.disabled : COLOURS.enabled}>
+          <TextTemplate type="l1" color={!item.yucoin ? COLOURS.disabled : COLOURS.enabled} testID={ACTIVITY_HISTORY_CHALLENGE_VALUE(item.title)}>
             {item.title}
           </TextTemplate>
           <View style={activityHistoryInfoStyles.yucoinWrapper}>
