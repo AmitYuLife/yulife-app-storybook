@@ -40,12 +40,13 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             Then("I should see the menu items", then.menuItemsVisible)
         })
         When("I tap activity history", when.tapMenuItem(t("Activity History")), async () => {
-            Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
-            Then("I should see 309 done in activity history", then.textVisible("309 steps"))
-            Then("I should see  13:20 mindful mins in activity history", then.textVisible("13:20 mindful mins"))
-            Then("I should see 11.3 km cycled in activity history", then.textVisible("11.3 km cycled"))
+            Then("I should be on activity history", then.textVisible("Activity history"))
+            Then("I should see 309 steps", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("309 Steps")))
+            Then("I should see 309 phone steps", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("Phone: 309 Steps")))
+            Then("I should see 13:20 mindful mins", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("11.3 km Cycling")))
+            Then("I should see 11.3 km cycled", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("13 Mindful mins")))
         })
-        When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER(t("Activity history"))), async () => {
+        When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER("Activity history")), async () => {
             Then("I should be the yucoin tab", then.onDailySteps())
         })
         When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
