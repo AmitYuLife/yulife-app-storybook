@@ -10,8 +10,7 @@ import { DefaultStepsLeaderboard, DefaultYudokuLeaderboard, User16LeaderboardIte
 import { getFullName } from "_utils/users";
 
 Feature("As a user I can see my achievements on the leaderboard", async () => {
-    // @bug - leaderboard not loading after join + refresh, RN warning: ""
-    ScenarioSkip("I can consent to my company leaderboard", scenario.start, async () => {
+    Scenario("I can consent to my company leaderboard", scenario.start, async () => {
         Given("I login", given.loginAsUser(data.CUSTOMER_16, data.AUTH_16), async () => {
             When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard screen without consent", then.onLeaderboardWithoutConsent)
@@ -42,8 +41,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
-    // @bug leaderboard not turning off
-    ScenarioSkip("I can change consent to a leaderboard I belong to", scenario.start, async () => {
+    Scenario("I can change consent to a leaderboard I belong to", scenario.start, async () => {
         Given("I login", given.loginAsUser(data.CUSTOMER_17, data.AUTH_17), async () => {
             When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)))
