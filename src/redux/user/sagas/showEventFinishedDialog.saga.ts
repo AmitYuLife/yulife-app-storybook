@@ -1,4 +1,3 @@
-import { GetUserProfile_getUserProfile_events as Events } from "@graphql/_core/schema";
 import { t } from "@locale";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
@@ -11,6 +10,7 @@ import { IUserStore } from "../user.reducer";
 import { GetGoalDetailsQuery, gql } from "@graphql/__generated";
 import client from "@graphql/_core/client";
 import { ApolloQueryResult } from "@apollo/client";
+import { Events } from "../user.types";
 
 function* showCompletedEvents(completedEvents: Partial<Events>[]) {
   const activeRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
@@ -75,7 +75,7 @@ function* showFailedEvents(failedEvents: Partial<Events>[]) {
 export default function* showEventFinishDialog({
   payload,
 }: ReturnType<typeof updateUserProfileEvents> | ReturnType<typeof updateUserProfile>) {
-  const events = (payload as Partial<IUserStore>)?.events || (payload as Partial<Events>[]);
+  const events = (payload as Partial<IUserStore>)?.events;
 
   const { failedEvents, completedEvents } = events
     .filter((event) => event.status === "completed")

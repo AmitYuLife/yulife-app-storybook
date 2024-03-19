@@ -213,6 +213,8 @@ const documents = {
     GetTodayEarningsDocument: types.GetTodayEarningsDocument,
     GetMobileUserActivityHistoryDocument: types.GetMobileUserActivityHistoryDocument,
     GetStreakDetailsDocument: types.GetStreakDetailsDocument,
+    GetUserProfileDocument: types.GetUserProfileDocument,
+    GetUserProfileEventsDocument: types.GetUserProfileEventsDocument,
     ClaimMobileGameWeeklyRewardsDocument: types.ClaimMobileGameWeeklyRewardsDocument,
     GetMobileGameWeekliesDocument: types.GetMobileGameWeekliesDocument,
     JoinWeeklyGoalDocument: types.JoinWeeklyGoalDocument,
@@ -1057,6 +1059,14 @@ export function gql(source: "GetMobileUserActivityHistoryDocument"): (typeof doc
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetStreakDetailsDocument"): (typeof documents)["GetStreakDetailsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetUserProfileDocument"): (typeof documents)["GetUserProfileDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetUserProfileEventsDocument"): (typeof documents)["GetUserProfileEventsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

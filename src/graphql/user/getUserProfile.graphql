@@ -1,0 +1,54 @@
+query GetUserProfile {
+  getUserProfile {
+    gameSettings {
+      cyclingMeasurement
+      maxStepsAnomalyWindowMs
+      blackListedNavBarTabs
+      blackListApps {
+        steps
+      }
+    }
+    surge {
+      endDateTime
+      multiplier
+      title
+      description
+      lottie {
+        ...ContentItemLottie
+      }
+    }
+    earnRate
+    avatar {
+      isAvatarCreated
+      avatarRemoteFiles {
+        svgFull: image(options: { format: svg })
+        pngFull: image
+        pngMini: image(options: { width: 66.25, height: 138.25 })
+      }
+    }
+    passiveChallengesLastUpdate {
+      cycling
+      meditation
+      steps
+    }
+    passiveHourlyActivityLastUpdate {
+      steps
+    }
+    endPointsVersion {
+      getMobileCopy
+      getMobileAssets
+    }
+    notification {
+      hasDuels
+      hasPendingForm
+      hasMobileWhatsNewModal
+      hasAppReview
+      hasDailyScreenCustomIcon
+      hasAdBanners
+    }
+    events {
+      ...UserProfileEvents
+    }
+    tabNotifications
+  }
+}

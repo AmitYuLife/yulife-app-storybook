@@ -22,7 +22,6 @@ import { REFERRALS_BUTTON_HOMEPAGE } from "@ids";
 import { ROUTES } from "@navigation/constants";
 import { updateUserGoal } from "@redux/user/user.actions";
 import { useMutation } from "@apollo/client";
-import { GetUserProfile_getUserProfile_events as Events } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
 import { Navigation } from "@navigation/main";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
@@ -30,7 +29,7 @@ import { t, getCurrentLocale } from "@locale";
 import { getTheme } from "@theme";
 import { changePanelVisibility } from "@redux/daily-steps/daily-steps.actions";
 import { getDailyPensionContribution } from "@redux/daily-pension/daily-pension.selectors";
-import { gql } from "@graphql/__generated";
+import { UserProfileEvents, gql } from "@graphql/__generated";
 import { useUserFeatures } from "@hooks";
 import { IHealthPermissionPanelProps } from "@components/molecules/health-permission-panel/health-permission-panel";
 
@@ -99,7 +98,7 @@ export const DailyStepsOnline = memo(
     );
 
     const joinGoal = useCallback(
-      async (event: Events) => {
+      async (event: UserProfileEvents) => {
         return new Promise<void>((resolve, reject) =>
           Alert.alert(t("screens.daily.join_event.title"), t("screens.daily.join_event.description"), [
             {

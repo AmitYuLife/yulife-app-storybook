@@ -1,5 +1,5 @@
+import { MobileTabs } from "@graphql/__generated";
 import { Colours } from "../../../styles";
-import { MobileTabs } from "@graphql/_core/schema/globalTypes";
 
 export interface INavBarColourScheme {
   active: string;

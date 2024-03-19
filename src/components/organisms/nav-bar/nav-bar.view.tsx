@@ -9,8 +9,8 @@ import styles from "./nav-bar.styles";
 import useInterval from "@use-it/interval";
 import { IIconProps, NavBarProps } from "./nav-bar.helpers";
 import { t } from "@locale";
-import { MobileTabs } from "@graphql/_core/schema/globalTypes";
 import { noop } from "@utils";
+import { MobileTabs } from "@graphql/__generated";
 
 const NavBarView = (props: NavBarProps) => {
   const {
@@ -37,7 +37,7 @@ const NavBarView = (props: NavBarProps) => {
 
   const notifications: Partial<Record<MobileTabs, boolean>> = useMemo(
     () => ({
-      [MobileTabs.quests]: hasQuestNotification,
+      [MobileTabs.Quests]: hasQuestNotification,
     }),
     [hasQuestNotification]
   );

@@ -1,9 +1,4 @@
 import { REHYDRATE } from "redux-persist";
-import {
-  GetUserProfile_getUserProfile,
-  GetUserSurge_getUserSurge as IUserSurge,
-  MarkMobileNotificationsAsViewedByTypeVariables,
-} from "@graphql/_core/schema";
 import { MobileTabs, SyncAction } from "../_core/types";
 import {
   GET_USER_SUCCESS,
@@ -25,7 +20,16 @@ import {
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
 import moment from "moment";
-import { Events, IFeature, IUserGetUserSuccessPayload, SurgeActivity, SurgeLottie, UserConnection } from "./user.types";
+import {
+  Events,
+  IFeature,
+  IUserGetUserSuccessPayload,
+  MarkNotificationsAsViewedByTypePayload,
+  SurgeActivity,
+  UserSurge,
+  UserConnection,
+  IUpdateUserProfilePayload,
+} from "./user.types";
 
 export interface IUserStore {
   sessionCount: number;
@@ -44,31 +48,25 @@ export interface IUserStore {
     activity: SurgeActivity;
     rate: number;
   };
-  surge: {
-    endDateTime: string;
-    multiplier: string;
-    title: string;
-    description: string;
-    lottie: SurgeLottie;
-  };
+  surge: UserSurge;
   avatar: {
-    isAvatarCreated: boolean;
-    avatarRemoteFiles: {
-      svgFull: string;
-      pngFull: string;
-      pngMini: string;
+    isAvatarCreated?: boolean;
+    avatarRemoteFiles?: {
+      svgFull?: string;
+      pngFull?: string;
+      pngMini?: string;
     };
   };
   passiveChallengesLastUpdate: {
-    cycling: string;
-    meditation: string;
-    steps: string;
+    cycling?: string;
+    meditation?: string;
+    steps?: string;
   };
   passiveHourlyActivityLastUpdate: {
-    steps: string;
+    steps?: string;
   };
   endPointsVersion: {
-    getMobileCopy: string;
+    getMobileCopy?: string;
     getMobileAssets: string;
   };
   notification: {
@@ -336,9 +334,9 @@ const updateSurgeIntro = (state: IUserStore, surgeIntro: IUserStore["surgeIntro"
   surgeIntro,
 });
 
-const updateUserProfile = (state: IUserStore, payload: GetUserProfile_getUserProfile) => ({
+const updateUserProfile = (state: IUserStore, payload: IUpdateUserProfilePayload) => ({
   ...state,
-  blackListedNavBarTabs: payload.gameSettings?.blackListedNavBarTabs || state.blackListedNavBarTabs || [],
+  blackListedNavBarTabs: payload.blackListedNavBarTabs || state.blackListedNavBarTabs || [],
   earnRate: payload.earnRate,
   surge: {
     ...payload.surge,
@@ -383,17 +381,14 @@ const updateUserGoal = (state: IUserStore, payload: Events): IUserStore => ({
   }),
 });
 
-const updateUserSurge = (state: IUserStore, payload: IUserSurge) => ({
+const updateUserSurge = (state: IUserStore, payload: UserSurge) => ({
   ...state,
   surge: {
     ...payload,
   },
 });
 
-const markNotificationsAsViewedByType = (
-  state: IUserStore,
-  payload: MarkMobileNotificationsAsViewedByTypeVariables
-) => ({
+const markNotificationsAsViewedByType = (state: IUserStore, payload: MarkNotificationsAsViewedByTypePayload) => ({
   ...state,
   tabNotifications: state.tabNotifications.filter((it) => it !== payload.type),
 });

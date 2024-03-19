@@ -1,4 +1,4 @@
-import { SduiActionType, UserFeatures } from "@redux/_core/types";
+import { MobileTabs, SduiActionType, UserFeatures } from "@redux/_core/types";
 import { features } from "./features.data";
 import {
   IDailyStepsGetUserSuccessPayload,
@@ -36,9 +36,17 @@ export interface IAppDataTypePayload {
 }
 
 export interface Connections {
-  name: string;
-  isConnected: boolean;
-  lastUpdated: number;
+  name?: string;
+  isConnected?: boolean;
+  lastUpdated?: number;
+}
+
+export interface UserSurge {
+  endDateTime: string;
+  multiplier: string;
+  title: string;
+  description: string;
+  lottie: SurgeLottie;
 }
 
 export interface SurgeLottie {
@@ -46,9 +54,9 @@ export interface SurgeLottie {
   uri: string;
   autoPlay: boolean;
   loop: boolean;
-  styles: SurgeLottieStyles[];
-  onAnimationEnd: OnAnimationEnd;
-  aspectRatio: number;
+  styles?: SurgeLottieStyles[];
+  onAnimationEnd?: OnAnimationEnd;
+  aspectRatio?: number;
 }
 
 export interface SurgeLottieStyles {
@@ -58,7 +66,7 @@ export interface SurgeLottieStyles {
 
 export interface OnAnimationEnd {
   type: SduiActionType;
-  payload: string;
+  payload?: string;
 }
 
 export interface Events {
@@ -82,12 +90,12 @@ export interface Events {
 }
 
 export enum UserProfileEventStatus {
-  active = "active",
-  completed = "completed",
+  Active = "active",
+  Completed = "completed",
 }
 
 export interface Icon {
-  uri: string;
+  uri?: string;
 }
 
 export interface EventsChallenges {
@@ -97,14 +105,15 @@ export interface EventsChallenges {
 
 export interface EventsTags {
   tag: string;
-  joined: string;
+  joined?: string;
   icon: Icon;
 }
 
 export interface EventsBadge {
+  id?: string;
   text: string;
   icon: Icon;
-  backgroundColor: string;
+  backgroundColor?: string;
 }
 
 export interface EventsProgressBar {
@@ -114,11 +123,11 @@ export interface EventsProgressBar {
 
 export interface EventsMilestones {
   targetValue: number;
-  image: Icon;
-  animated: boolean;
-  rewardId: string;
-  rewardClaimed: boolean;
-  isClaimable: boolean;
+  image?: Icon;
+  animated?: boolean;
+  rewardId?: string;
+  rewardClaimed?: boolean;
+  isClaimable?: boolean;
 }
 
 export type IUserGetUserSuccessPayload = {
@@ -141,3 +150,15 @@ export type IPassiveChallengesEarnRateSuccessPayload = IDailyStepsGetUserSuccess
 export type IUpdateUserProfilePayload = Partial<IUserStore> & IDailyStepsUpdateUserProfilePayload;
 
 export type ILoginUserPayload = { intercomHash: string } & IGetUserSuccessPayload;
+
+export type MarkNotificationsAsViewedByTypePayload = { type: MobileTabs };
+
+export type UpdateUserAvatarRemoteFilesPayload = IUserStore["avatar"]["avatarRemoteFiles"];
+
+export type UpdateUserConsentPayload = {
+  companyLeaderboard?: boolean;
+  marketing?: boolean;
+  mobileHealth?: boolean;
+  pushNotifications?: boolean;
+  workspaceLeaderboard?: boolean;
+};

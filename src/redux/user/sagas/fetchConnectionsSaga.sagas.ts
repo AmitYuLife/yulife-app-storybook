@@ -6,18 +6,15 @@ import Logger from "@services/logging/logger";
 import { call, put, select } from "redux-saga/effects";
 import { getActiveLevel } from "../../levels/levels.selectors";
 import { updateConnectionSuccess } from "../user.actions";
-import { Connection, getUserConnections } from "../user.selectors";
-
-interface IConnectionWithLoading extends Connection {
-  isLoading?: boolean;
-}
+import { getUserConnections } from "../user.selectors";
+import { UserConnection } from "../user.types";
 
 export default function* fetchConnectionsSaga({ payload }: ReturnType<typeof updateAppState>) {
   try {
     const active: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
     const connections: ReturnType<typeof getUserConnections> = yield select(getUserConnections);
-    const loadingConnections: IConnectionWithLoading[] = connections.filter(
-      (connection: IConnectionWithLoading) => connection.isLoading
+    const loadingConnections: UserConnection[] = connections.filter(
+      (connection: UserConnection) => connection.isLoading
     );
     // fetchUserOnAppState is called on appState is active && there is no active level
     // case is for the opposite & that there is a connection that is loading
