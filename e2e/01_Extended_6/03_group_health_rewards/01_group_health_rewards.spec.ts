@@ -191,7 +191,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(1)))
             Then("I should see the reward icon on the next level in Yuniversal", then.idVisible(ids.GHI_REWARD_ICON("I")))
         })
-        When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(187, 537), async () => {
+        When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(185, 588), async () => {
             When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
                 When("I walk over 3000 steps", when.sendSteps(3050, 40000), async () => {
                     Then("I should see the well done screen", then.textVisible(t("Collect")))

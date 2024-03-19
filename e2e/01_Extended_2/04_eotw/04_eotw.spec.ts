@@ -32,7 +32,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
             Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(1)))
         })
-        When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(1, 187, 537), async () => {
+        When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(1, 185, 588), async () => {
             Then("I should be on the quest screen and see 5 challenges unlocked", then.yuniverseChallengesVisible)
             // @update [need to adjust canSeeChallengeTiles to check for a range of values]
             // Then("I should see the 2x surge yucoin value for the 5 unlocked challenges", then.canSeeChallengeTiles(data.USER_69, "boost"))
@@ -65,7 +65,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I tap take a challenge", when.tapText("Take a challenge (3 left)"), async () => {
             Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(2)))
         })
-        When("I tap level 1 button a second time", when.tapYuniverseLevelAfterFirstTime(187, 537), async () => {
+        When("I tap level 1 button a second time", when.tapYuniverseLevelAfterFirstTime(185, 588), async () => {
             Then("I should be on the quest screen and see all 5 challenges available to me to take", then.yuniverseChallengesVisible)
         })
 
@@ -95,7 +95,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I tap take a challenge", when.tapText("Take a challenge (2 left)"), async () => {
             Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(2)))
         })
-        When("I tap level 1 button a third time", when.tapYuniverseLevelAfterFirstTime(187, 537), async () => {
+        When("I tap level 1 button a third time", when.tapYuniverseLevelAfterFirstTime(185, 588), async () => {
             Then("I should be on the quest screen and see all 5 challenges available to me to take", then.yuniverseChallengesVisible)
         })
 
@@ -127,7 +127,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I tap take a challenge", when.tapText("Take a challenge (1 left)"), async () => {
             Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(2)))
         })
-        When("I tap level 1 button a fourth time", when.tapYuniverseLevelAfterFirstTime(187, 537), async () => {
+        When("I tap level 1 button a fourth time", when.tapYuniverseLevelAfterFirstTime(185, 588), async () => {
             Then("I should be on the quest screen and see all 5 challenges available to me to take", then.yuniverseChallengesVisible)
         })
 
@@ -385,7 +385,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
             Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(1)))
         })
-        When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(1, 187, 537, 430), async () => {
+        When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(1, 185, 588, 430), async () => {
             Then("I should be on the quest screen and see 5 challenges unlocked", then.yuniverseChallengesVisible)
             // @update [need to adjust canSeeChallengeTiles to check for a range of values]
             // Then("I should see the boosted yucoin value for the 5 unlocked challenges", then.canSeeChallengeTiles(data.USER_89, "boost"))

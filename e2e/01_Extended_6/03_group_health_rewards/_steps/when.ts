@@ -54,7 +54,7 @@ export const chooseCorrectDoB = (age: number) => async () => {
 };
 
 export const tapYuniverseLevelForFirstTime = (x: number, y: number) => async () => {
-  await element(by.id(ids.QUESTS_SCREEN_YUNIVERSAL(1))).tapAtPoint({x:x, y:y});
+  await element(by.id(ids.QUESTS_SCREEN_YUNIVERSAL(1))).tap({x:x, y:y});
 }
 
 export const setStoreRegion = async () => {
