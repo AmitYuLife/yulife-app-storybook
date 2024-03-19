@@ -55,7 +55,7 @@ export const tapYuniverseLevelForFirstTime = (questScreen: number, xCoordinate: 
 }
 
 export const tapYuniverseLevelAfterFirstTime = (x: number, y: number) => async () => {
-    await element(by.id(ids.QUESTS_SCREEN_YUNIVERSAL(2))).tapAtPoint({x:x, y:y});
+    await element(by.id(ids.QUESTS_SCREEN_YUNIVERSAL(2))).tap({x:x, y:y});
 }
 
 export const triggerAppUpdateState = async (): Promise<void> => {
