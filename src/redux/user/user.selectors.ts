@@ -1,12 +1,7 @@
 import { createSelector } from "reselect";
-import { GetCurrentUser_getCurrentUser_leaderboards } from "@graphql/_core/schema";
-import { GetConnectionsQuery } from "@graphql/__generated";
 import { IReduxState } from "../_core/reducers";
 import { getAdBanners } from "../ad-banners/ad-banners.selectors";
-import { UserProfileEventStatus } from "@graphql/_core/schema/globalTypes";
-
-export type Connection = GetConnectionsQuery["getCurrentUser"]["connections"][0];
-export type Leaderboard = GetCurrentUser_getCurrentUser_leaderboards;
+import { UserProfileEventStatus } from "./user.types";
 
 type State = IReduxState["user"];
 const reducer = (state: IReduxState) => state.user;
@@ -62,7 +57,7 @@ export const getUserEvents = createSelector(reducer, userEvents);
 export const sessionTimestamp = (state: State) => state.sessionTimestamp;
 
 export const getUserActiveEvents = createSelector(getUserEvents, (events) =>
-  events.filter((event) => event.status !== UserProfileEventStatus.completed)
+  events.filter((event) => event.status !== UserProfileEventStatus.Completed)
 );
 
 export const getUserEventsWithAds = createSelector(getUserActiveEvents, getAdBanners, (events, banners) => {

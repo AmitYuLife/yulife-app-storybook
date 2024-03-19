@@ -4,7 +4,7 @@ import { Navigation } from "@navigation/main";
 import { useSelector, useDispatch } from "react-redux";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { updateConnectionStart } from "@redux/user/user.actions";
-import { Connection, getUserConnections } from "@redux/user/user.selectors";
+import { getUserConnections } from "@redux/user/user.selectors";
 import { SettingsScreen } from "@screens/index";
 import { useQuery, useMutation, useApolloClient } from "@apollo/client";
 import { gql, NotificationSettingsProps } from "@graphql/__generated";
@@ -15,6 +15,7 @@ import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.s
 import { t, getCurrentLocale } from "@locale";
 import { useUserFeatures } from "@hooks";
 import { getActiveProviderSelector } from "@redux/yu-health/yu-health.selectors";
+import { UserConnection } from "@redux/user/user.types";
 
 interface IOwnProps {
   componentId: string;
@@ -88,7 +89,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
   );
 
   const handleConnectionItemPress = React.useCallback(
-    (c: Connection) => () => {
+    (c: UserConnection) => () => {
       dispatch(updateConnectionStart(c));
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -96,7 +97,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
   );
 
   const handleConnectionInfoPress = React.useCallback(
-    (c: Connection) => () => {
+    (c: UserConnection) => () => {
       const connectionName = c.name.charAt(0).toUpperCase() + c.name.slice(1);
       // TODO: we probably need to add a `type` so we know if it's a device or an app
       let heading = t("screens.settings.info.heading", { connection: connectionName });

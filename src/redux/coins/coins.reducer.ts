@@ -2,7 +2,7 @@ import moment from "moment";
 import { REHYDRATE } from "redux-persist";
 import { DATE_FORMAT } from "@utils";
 
-import { SyncAction } from "../_core/types";
+import { Challenge, SyncAction } from "../_core/types";
 import {
   UPDATE_DAILY_MEDITATION_EMPTY_RESULT,
   UPDATE_DAILY_MEDITATION_SUCCESS,
@@ -13,7 +13,6 @@ import { UPDATE_TOTAL_COINS } from "./coins.actions";
 import { UPDATE_DAILY_CYCLING_SUCCESS } from "@redux/daily-cycling/daily-cycling.actions";
 import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
 import { UPDATE_DAILY_PENSION_SUCCESS } from "@redux/daily-pension/daily-pension.actions";
-import { Challenge } from "@graphql/_core/schema";
 import {
   LOGIN_USER_SUCCESS,
   GET_USER_SUCCESS,

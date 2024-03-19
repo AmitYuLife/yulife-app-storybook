@@ -1,12 +1,16 @@
-import getUserProfileEvents from "@graphql/user/getUserProfileEvents.gql";
 import { call, put, spawn } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
-import { Unpacked } from "@utils";
 import { updateUserProfileEvents } from "@redux/user/user.actions";
+import client from "@graphql/_core/client";
+import { GetUserProfileEventsQuery, gql } from "@graphql/__generated";
+import { QueryResult } from "@apollo/client";
 
 export default function* getUserProfileEventsData() {
   try {
-    const { data }: Unpacked<typeof getUserProfileEvents> = yield call(getUserProfileEvents);
+    const { data }: QueryResult<GetUserProfileEventsQuery> = yield call(() =>
+      client().query({ query: gql("GetUserProfileEventsDocument"), fetchPolicy: "network-only" })
+    );
+
     if (data?.getUserProfileEvents) {
       yield put(updateUserProfileEvents(data?.getUserProfileEvents));
     }

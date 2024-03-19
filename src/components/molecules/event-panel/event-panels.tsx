@@ -3,7 +3,6 @@ import { StyleSheet, View, Platform, LayoutChangeEvent, FlatList, ListRenderItem
 import { Style, NAV_BAR } from "@styles";
 import { AdBanner } from "@molecules";
 import { FLAT_LIST_EVENTS } from "@ids";
-import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 import { getTheme } from "@theme";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +13,7 @@ import { t } from "@locale";
 import EventPanel, { IEventPanelProps } from "./event-panel";
 import { baseStyles } from "./event-panel.styles";
 import HealthPermissionPanel, { IHealthPermissionPanelProps } from "../health-permission-panel/health-permission-panel";
+import { GetUserProfileQuery } from "@graphql/__generated";
 
 interface IAdBanner {
   imageUrl: string;
@@ -21,7 +21,9 @@ interface IAdBanner {
   routeProps?: string;
 }
 
-type IEvents = IEvent & IAdBanner;
+type UserProfileEvents = GetUserProfileQuery["getUserProfile"]["events"][0];
+
+type IEvents = UserProfileEvents & IAdBanner;
 type IEventPanelData = Partial<IEvents> & {
   eventPanelMilestones?: IEventPanelProps["milestones"];
 };
@@ -30,7 +32,7 @@ interface IEventPanelsProps {
   componentId?: string;
   events: Partial<IEvents>[];
   currentWorld: number;
-  onJoin: (event: Partial<IEvent>) => Promise<void>;
+  onJoin: (event: Partial<UserProfileEvents>) => Promise<void>;
   healthPermissions: Omit<IHealthPermissionPanelProps, "width">;
 }
 
