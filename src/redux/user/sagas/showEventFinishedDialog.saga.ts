@@ -75,7 +75,7 @@ function* showFailedEvents(failedEvents: Partial<Events>[]) {
 export default function* showEventFinishDialog({
   payload,
 }: ReturnType<typeof updateUserProfileEvents> | ReturnType<typeof updateUserProfile>) {
-  const events = (payload as Partial<IUserStore>)?.events;
+  const events = (payload as Partial<IUserStore>)?.events || (payload as Partial<Events>[]);
 
   const { failedEvents, completedEvents } = events
     .filter((event) => event.status === "completed")
