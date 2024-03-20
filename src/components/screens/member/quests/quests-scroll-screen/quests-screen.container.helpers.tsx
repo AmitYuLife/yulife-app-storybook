@@ -23,6 +23,7 @@ type GoToChallengesListProps = Pick<QuestDetailModalContainerProps, "name" | "le
   isNavigatingFromModal: boolean;
   levelAvailable: boolean;
   isChestLevel?: boolean;
+  unlocksReward: boolean;
 };
 export const goToChallengesList = ({
   componentId,
@@ -34,6 +35,7 @@ export const goToChallengesList = ({
   isNavigatingFromModal,
   levelAvailable,
   isChestLevel,
+  unlocksReward,
 }: GoToChallengesListProps) => {
   if (isNavigatingFromModal && useHalfModalsForQuestMap) {
     Navigation.dismissOverlayWithChild();
@@ -58,13 +60,13 @@ export const goToChallengesList = ({
     });
   };
 
-  const heading = t("screens.challenge_next_modal.heading");
-  const ctaLabelSubmit = t("screens.challenge_next_modal.cta_submit");
-  const ctaLabelReject = t("screens.challenge_next_modal.cta_reject");
-
   if (!goals?.length || !levelAvailable || !useHalfModalsForQuestMap || isNavigatingFromModal) {
     return goToQuestChallengesList();
   }
+
+  const heading = unlocksReward ? t("screens.challenge_next_modal.heading") : t("screens.challenge_next_modal.tease");
+  const ctaLabelSubmit = t("screens.challenge_next_modal.cta_submit");
+  const ctaLabelReject = t("screens.challenge_next_modal.cta_reject");
 
   return Navigation.showOverlayWithChild(
     <QuestDetailModalContainer
@@ -331,6 +333,7 @@ export const getIsLevelAvailable = (nextAvailableAt: string): boolean => {
 };
 
 type HandlePressLevelItemParams = {
+  unlocksReward: boolean;
   componentId: string;
   itemLevel: GetQuestMap_levels;
   nextLevelAvailableAt: string;
@@ -359,6 +362,7 @@ type BuildChestModalSubmitHandler = {
   goals: Array<{ goalId: string; milestoneId: string }>;
   yuniversalMap: number;
   levelAvailable: boolean;
+  unlocksReward: boolean;
 };
 export const buildChestModalSubmitHandler = ({
   isNext,
@@ -368,6 +372,7 @@ export const buildChestModalSubmitHandler = ({
   goals,
   yuniversalMap,
   levelAvailable,
+  unlocksReward,
 }: BuildChestModalSubmitHandler) => {
   return () => {
     if (isNext) {
@@ -379,6 +384,7 @@ export const buildChestModalSubmitHandler = ({
         yuniversalMap,
         isNavigatingFromModal: true,
         levelAvailable,
+        unlocksReward,
       });
     }
 
@@ -425,6 +431,7 @@ export const handlePressLevelItem =
       isNext: levelStatus.isNext,
       isNavigatingFromModal: false,
       levelAvailable,
+      unlocksReward: !!itemLevel.notificationIcon,
     };
 
     switch (action) {

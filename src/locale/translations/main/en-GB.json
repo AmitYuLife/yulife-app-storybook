@@ -671,7 +671,8 @@
     "challenge_next_modal": {
       "heading": "Almost there! Take a challenge to unlock your reward.",
       "cta_submit": "Let's go!",
-      "cta_reject": "Maybe later"
+      "cta_reject": "Maybe later",
+      "tease": "Keep levelling up to unlock rewards"
     },
     "challenge_unavailable_modal": {
       "next_available_at": "This level will be available in %{text}"
