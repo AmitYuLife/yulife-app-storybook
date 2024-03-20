@@ -14,8 +14,7 @@ Feature("Surges work as intended", async () => {
             Then("I should see I have 200 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
         })
         When("I tap level 1", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-            // @update [need to adjust canSeeChallengeTiles to check for a range of values]
-            // Then("I can see tge surged challenge tiles", then.canSeeChallengeTiles(data.USER_34, "surge", COIN_MULTIPLIER_1.data.multiple))
+            Then("I can see tge surged challenge tiles", then.canSeeChallengeTiles(data.USER_34, "surge", COIN_MULTIPLIER_1.data.multiple))
             Then("I can see the surge icon", then.idVisibleAtIndex(ids.CHALLENGE_TILE_SURGE_ICON, 0))
         })
         When("I complete a short stroll challenge", when.completeShortStroll(300, 40000), async () => {
@@ -47,8 +46,7 @@ Feature("Surges work as intended", async () => {
             Then("I should see I have 200 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
         })
         When("I tap level 1", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
-              // @update [need to adjust canSeeChallengeTiles to check for a range of values]
-            // Then("I should see the reward values are normal", then.canSeeChallengeTiles(data.USER_1))
+            Then("I should see the reward values are normal", then.canSeeChallengeTiles(data.USER_1))
             When("I complete a short stroll challenge", when.completeShortStroll(300, 40000), async () => {
                 Then("I should see the well done screen", then.textVisible("Well done!"))
                 Then("I should see +20 reward", then.idVisible(ids.CHALLENGE_REWARD(20)))

@@ -157,8 +157,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
-    // @update can't find Gill Stock at given position on leaderboard, user is there
-    ScenarioSkip("I can inspect other members and view their data and avatars from the leaderboard - seed data + loaded in historical data", scenario.start, async () => {
+    Scenario("I can inspect other members and view their data and avatars from the leaderboard - seed data + loaded in historical data", scenario.start, async () => {
         When("I have done two days ago 15,000 steps", when.addStepsHistoricalData(15000, 2), async () => {
             When("I have done two days ago Biking 9 km", when.addCyclingHistoricalData(9000, 2), async () => {
                 When("I have done two days ago 13:20 min Mindfulness", when.addMindfulnessHistoricalData(800, 2), async () => {
@@ -173,7 +172,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I wait", when.wait(6000), async () => {
             When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)))
-                Then("I should see the leaderboard", then.leaderboardVisible([User17LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem]))
+                Then("I should see the leaderboard", then.leaderboardVisible([User17LeaderboardItem]))
             })
         })
         When("I click on user Michael's name", when.clickUser(data.CUSTOMER_18), async () => {

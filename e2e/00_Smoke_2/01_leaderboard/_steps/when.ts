@@ -63,9 +63,11 @@ export const wait3secs = async () => {
     await wait(3000)()
 }
 
-export const tapTab = (tabName: string, shouldSwipe = false,  direction?: Detox.Direction,) => async () => {
+export const tapTab = (tabName: string, shouldSwipe = false,  direction?: Detox.Direction, swipeName?:string) => async () => {
     if (shouldSwipe) {
-        await swipeToID(ids.CATEGORY_TYPE(tabName), ids.YUMOJI_PART_ID(tabName), direction, 1)()
+        let x = tabName
+        if (swipeName) x = swipeName
+        await swipeToID(ids.CATEGORY_TYPE(x), ids.YUMOJI_PART_ID(tabName), direction, 1)()
     }
     const tab = element(by.id(ids.CATEGORY_TYPE(tabName)))
     await tab.tap()

@@ -34,8 +34,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(1, 185, 588), async () => {
             Then("I should be on the quest screen and see 5 challenges unlocked", then.yuniverseChallengesVisible)
-            // @update [need to adjust canSeeChallengeTiles to check for a range of values]
-            // Then("I should see the 2x surge yucoin value for the 5 unlocked challenges", then.canSeeChallengeTiles(data.USER_69, "boost"))
+            Then("I should see the 2x surge yucoin value for the 5 unlocked challenges", then.canSeeChallengeTiles(data.USER_69, "boost"))
         })
 
         // first challenge - short stroll
@@ -387,8 +386,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(1, 185, 588, 430), async () => {
             Then("I should be on the quest screen and see 5 challenges unlocked", then.yuniverseChallengesVisible)
-            // @update [need to adjust canSeeChallengeTiles to check for a range of values]
-            // Then("I should see the boosted yucoin value for the 5 unlocked challenges", then.canSeeChallengeTiles(data.USER_89, "boost"))
+            Then("I should see the boosted yucoin value for the 5 unlocked challenges", then.canSeeChallengeTiles(data.USER_89, "boost"))
         })
     })
 

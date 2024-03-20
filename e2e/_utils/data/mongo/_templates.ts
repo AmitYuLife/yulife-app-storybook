@@ -299,6 +299,7 @@ export const DEFAULT_TOGGLES = {
       enableChallengeBonuses: true,
       tempGameEnableNewYumojiHeadwearGlassesHair: true,
       showYumojiHeadwear: true,
+      newChallengeList: true
     },
   },
 } as IDatabaseItem;
