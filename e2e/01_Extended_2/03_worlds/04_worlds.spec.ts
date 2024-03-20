@@ -32,7 +32,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see the challenge I just completed with the correct stars", then.onChallengeHistory("Meditation", "20", 1, 5))
         })
         When("I tap full history", when.tapText("Full activity history"), async () => {
-            Then("I should be on the activity history", then.textVisible("activity history"))
+            Then("I should be on the activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
         })
     })
 
