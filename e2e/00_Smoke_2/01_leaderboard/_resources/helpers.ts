@@ -53,7 +53,7 @@ export const CREATE_AVATAR = (customer: any) => async () => {
         Then("I should be on the Eye Colour tab", then.textVisible("Eye Colour"))
     })
     When("I select a colour", when.tapColour("#3C9172"), async () => {
-        When("I tap the accessories tab", when.tapTab("glasses", true, "left"), async () => {
+        When("I tap the accessories tab", when.tapTab("glasses", true, "left", "eyeColour"), async () => {
             Then("I should be on the Accessories tab", then.textVisible("Accessories"))
         })
     })

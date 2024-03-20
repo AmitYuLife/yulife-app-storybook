@@ -308,7 +308,7 @@ export const closeQuitChallengeScreen = async () => {
 }
 
 export const exitMeditopiaChallenge = async () => {
-  await navigateViaID(ids.GENERIC_SCREEN_CTA(t("Exit challenge")))
+  await navigateViaID(ids.GENERIC_SCREEN_CTA("Exit challenge"))
 }
 
 export const onChooseMeditopiaContentScreen = async () => {
