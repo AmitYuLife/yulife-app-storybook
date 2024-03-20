@@ -98,6 +98,7 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
           nextLevelAvailableAt,
           useHalfModalsForQuestMap: features.useHalfModalsForQuestMap,
           goals: itemLevel.goals,
+          unlocksReward: !!itemLevel.notificationIcon,
           handlePressShowChestModal: buildChestModalSubmitHandler({
             isNext: levelStatus.isNext,
             componentId,
@@ -106,6 +107,7 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
             yuniversalMap,
             goals: itemLevel.goals,
             levelAvailable: getIsLevelAvailable(nextLevelAvailableAt),
+            unlocksReward: !!itemLevel.notificationIcon,
           }),
         }),
       };

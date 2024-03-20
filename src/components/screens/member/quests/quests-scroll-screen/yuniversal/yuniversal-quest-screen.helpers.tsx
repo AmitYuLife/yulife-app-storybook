@@ -196,6 +196,7 @@ const getLevelProps = (
             goals: level.goals,
             isNavigatingFromModal: false,
             levelAvailable: getIsLevelAvailable(nextLevelAvailableAt),
+            unlocksReward: !!level.notificationIcon,
           }),
         notificationBorderWidth: 2,
       };
@@ -291,6 +292,7 @@ const getLevelProps = (
               isNext: false,
               goals: level.goals,
               levelAvailable: false,
+              unlocksReward: !!level.notificationIcon,
             }),
           }),
       };
