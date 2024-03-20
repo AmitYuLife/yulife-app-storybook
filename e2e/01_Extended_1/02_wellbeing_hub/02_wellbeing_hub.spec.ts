@@ -169,8 +169,10 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
                 })
             })
         })
-        When("I click to see Blua Health", when.tapID(ids.TEXT_TEMPLATE(fixture.bluaHealthItem.title)), async () => {
-            Then("I am on the Blua Health page", then.onCorrectWellbeingItemPage(fixture.bluaHealthItem))
+        When("I scroll up", when.scrollFromID(ids.WELLBEING_HUB_SCROLL_VIEW, "down", "slow", 0.3), async () => {
+            When("I click to see Blua Health", when.tapID(ids.TEXT_TEMPLATE(fixture.bluaHealthItem.title)), async () => {
+                Then("I am on the Blua Health page", then.onCorrectWellbeingItemPage(fixture.bluaHealthItem))
+            })
         })
         When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
             When("I click to see Anytime Helpline", when.tapID(ids.TEXT_TEMPLATE(fixture.anytimeHelplineItem.title)), async () => {
@@ -188,8 +190,10 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
             })
         })
         When("I click to go back", when.tapID(ids.BACK_BUTTON), async () => {
-            When("I click to see Direct Access", when.tapID(ids.TEXT_TEMPLATE(fixture.directAccessItem.title)), async () => {
-                Then("I am on the Direct Access page", then.onCorrectWellbeingItemPage(fixture.directAccessItem))
+            When("I scroll down", when.scrollFromID(ids.WELLBEING_HUB_SCROLL_VIEW, "up", "slow", 0.4), async () => {
+                When("I click to see Direct Access", when.tapID(ids.TEXT_TEMPLATE(fixture.directAccessItem.title)), async () => {
+                    Then("I am on the Direct Access page", then.onCorrectWellbeingItemPage(fixture.directAccessItem))
+                })
             })
         })
     })
