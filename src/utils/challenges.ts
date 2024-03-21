@@ -11,6 +11,7 @@ import RNFitKit from "@yu-life/react-native-fitkit";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { HealthProviderCapability } from "@yu-life/react-native-yu-health";
 import { useVerifyAndAuthorizeCapability } from "@hooks";
+import { toFitKitGqlType } from "./fitkit";
 
 interface IOnPressChallengeTileParams {
   level: number;
@@ -118,7 +119,7 @@ export const onPressChallengeTileFitkit = async ({
         name: MODALS.switchToGoogleFit,
         passProps: {
           onConnect: async () => {
-            await authoriseFitKitTypes(levelSlot.fitKitTypes);
+            await authoriseFitKitTypes(toFitKitGqlType(levelSlot.fitKitTypes));
           },
           onConnected: () => {
             showOverlay();

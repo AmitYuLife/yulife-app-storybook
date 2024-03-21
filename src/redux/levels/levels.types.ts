@@ -66,8 +66,8 @@ export interface IActiveLevel {
 }
 
 export interface Chest {
-  type: string;
-  value: number;
+  type?: string;
+  value?: number;
 }
 
 export interface YuniversalChest {
@@ -106,11 +106,11 @@ export enum ActiveLevelState {
 }
 
 export enum RewardsChestType {
-  CELESTIAL = "CELESTIAL",
-  DESERT = "DESERT",
-  FOREST = "FOREST",
-  MOUNTAIN = "MOUNTAIN",
-  OCEAN = "OCEAN",
+  Celestial = "CELESTIAL",
+  Desert = "DESERT",
+  Forest = "FOREST",
+  Mountain = "MOUNTAIN",
+  Ocean = "OCEAN",
 }
 
 // Actions payload
@@ -161,22 +161,23 @@ export type ChallengeStartActionPayload = {
 
 export type ChallengeStartPayload = {
   createQuestMapLevelChallenge: {
-    hideExternalLinks: boolean | null;
-    challenge: {
-      startDateTime: string;
-      endDateTime: string;
-      level: number | null;
-      levelSlotId: string | null;
+    hideExternalLinks?: boolean | null;
+    challenge?: {
+      startDateTime?: string;
+      endDateTime?: string;
+      level?: number | null;
+      levelSlotId?: string | null;
     };
-    levelSlot: {
-      subtype: string;
-      fitKitTypes: FitKitType[];
-      shouldEndOnLastGoalAchieved: boolean;
-      unit: string;
-      milestones: Milestone[];
+    levelSlot?: {
+      subtype?: string;
+      fitKitTypes?: FitKitType[];
+      yuHealth?: YuHealthOptions;
+      shouldEndOnLastGoalAchieved?: boolean;
+      unit?: string;
+      milestones?: Milestone[];
     };
-    chest: Chest | null;
-    yuniversalChest: YuniversalChest | null;
+    chest?: Chest | null;
+    yuniversalChest?: YuniversalChest | null;
   };
   levelSlotId: string;
   videoPlayerIsActive?: boolean;

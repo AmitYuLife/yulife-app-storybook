@@ -22,6 +22,7 @@ import { SecondaryButton } from "@components/molecules";
 import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
+import { toFitKitGqlType } from "@utils/fitkit";
 
 interface IProps {
   loading: boolean;
@@ -80,7 +81,7 @@ const PermissionsOldScreen = ({
       ? []
       : healthPermission.filter((item) => item.scope === "read").map((item) => item.type as FitKitType);
 
-    await authoriseFitKitTypes(fitkitTypesRead, platform, true);
+    await authoriseFitKitTypes(toFitKitGqlType(fitkitTypesRead), platform, true);
 
     if (Platform.OS === "ios") {
       await updatePermissions();

@@ -8,9 +8,10 @@ import {
   CHALLENGE_RESET_FAIL,
 } from "../levels.actions";
 import { getActiveLevel } from "../levels.selectors";
-import createQuestMapLevelChallenge from "@graphql/challenges/createQuestMapLevelChallenge.gql";
-import { Unpacked } from "@utils";
-import { ActiveChallengeSourceType } from "@graphql/_core/schema/globalTypes";
+import client from "@graphql/_core/client";
+import { QueryResult } from "@apollo/client";
+import { CreateQuestMapLevelChallengeMutation, gql, ActiveChallengeSourceType } from "@graphql/__generated";
+import { toYuHealthReduxType } from "@utils";
 
 export default function* startChallengeSaga({ payload }: ReturnType<typeof challengeStartAction>) {
   try {
@@ -35,15 +36,28 @@ export default function* startChallengeSaga({ payload }: ReturnType<typeof chall
       }
     }
 
-    const { data }: Unpacked<typeof createQuestMapLevelChallenge> = yield call(createQuestMapLevelChallenge, {
-      ...createQuestMapLevelChallengeVariables,
-      createdBySource: ActiveChallengeSourceType.phone,
-    });
+    const { data }: QueryResult<CreateQuestMapLevelChallengeMutation> = yield call(() =>
+      client().mutate({
+        mutation: gql("CreateQuestMapLevelChallengeDocument"),
+        variables: {
+          ...createQuestMapLevelChallengeVariables,
+          createdBySource: ActiveChallengeSourceType.Phone,
+        },
+        errorPolicy: "ignore",
+      })
+    );
 
     if (data?.createQuestMapLevelChallenge) {
+      const { levelSlot } = data.createQuestMapLevelChallenge;
       yield put(
         challengeStartSuccessAction({
-          createQuestMapLevelChallenge: data?.createQuestMapLevelChallenge,
+          createQuestMapLevelChallenge: {
+            ...data.createQuestMapLevelChallenge,
+            levelSlot: {
+              ...levelSlot,
+              yuHealth: toYuHealthReduxType(levelSlot.yuHealth),
+            },
+          },
           ...challengeStartSuccessPayload,
           levelSlotId,
         })

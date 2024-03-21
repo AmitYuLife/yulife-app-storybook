@@ -5,7 +5,6 @@ import DateTimePicker from "react-native-modal-datetime-picker";
 import { View, Alert, ScrollView, StyleSheet, Platform } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Button, TertiaryButton } from "@molecules";
-import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { Colours, Style } from "@styles";
 import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
 import { CheckBox } from "@components/molecules";
@@ -14,6 +13,7 @@ import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { getAdditionalCyclingFitnessActivities } from "@services/fitkit/helpers/additionalCyclingActivities";
 import Logger from "@services/logging/logger";
+import { FitKitType } from "@graphql/__generated";
 
 interface Props {
   onClose: () => void;
@@ -281,7 +281,7 @@ const typePickerItemsIOS = [
   {
     label: "Workout",
     value: "Workout",
-    types: [FitKitType.Flexibility, FitKitType.HIIT, FitKitType.Strength, FitKitType.Yoga, FitKitType.Pilates],
+    types: [FitKitType.Flexibility, FitKitType.Hiit, FitKitType.Strength, FitKitType.Yoga, FitKitType.Pilates],
   },
   {
     label: "Mindful Session",

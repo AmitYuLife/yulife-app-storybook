@@ -12,14 +12,13 @@ import { useBackHandler, usePopToQuestsRootOnNewDate, useUserFeatures, useVerify
 import RNFitKit from "@yu-life/react-native-fitkit";
 import { showYuModal } from "@navigation/root";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { handleLinkPress } from "@services/app-link";
 import { IITem } from "@organisms/media-list-items/media-list-items";
 import { updateChallengeAppButton } from "@redux/levels/levels.actions";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { gqlCapabilityToCapability } from "@utils";
-import { YuHealthOptions } from "@graphql/__generated";
+import { YuHealthOptions, FitKitType } from "@graphql/__generated";
 
 interface IProps {
   componentId: string;

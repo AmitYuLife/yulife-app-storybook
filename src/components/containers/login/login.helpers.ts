@@ -3,6 +3,7 @@ import { t } from "@locale";
 import { toChallengeSourceType } from "@redux/user/sagas/getAllUserData.helper";
 import { ILoginUserPayload } from "@redux/user/user.types";
 import { toYuHealthReduxType } from "@utils";
+import { toFitKitGqlType } from "@utils/fitkit";
 
 export const validatePassword = (password: string): string => {
   if (!password) {
@@ -39,7 +40,7 @@ export const toLoginUserSuccessPayload = (data: LoginUser): ILoginUserPayload =>
   levels: {
     activeChallenge: {
       shouldEndOnLastGoalAchieved: data?.loginUser?.user?.activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved,
-      fitKitTypes: data?.loginUser?.user?.activeChallenge?.levelSlot?.fitKitTypes,
+      fitKitTypes: toFitKitGqlType(data?.loginUser?.user?.activeChallenge?.levelSlot?.fitKitTypes),
       endDateTime: data?.loginUser?.user?.activeChallenge?.challenge?.endDateTime,
       levelSlotId: data?.loginUser?.user?.activeChallenge?.challenge?.levelSlotId,
       milestones: data?.loginUser?.user?.activeChallenge?.levelSlot?.milestones,

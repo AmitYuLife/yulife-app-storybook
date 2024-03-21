@@ -13,8 +13,8 @@ export interface AsyncAction extends SyncAction {
 }
 
 export interface Milestone {
-  coins: number | null;
-  target: MilestoneTarget | null;
+  coins?: number | null;
+  target?: MilestoneTarget | null;
 }
 
 export interface MilestoneTarget {
@@ -44,7 +44,7 @@ export enum FitKitType {
   Distance = "Distance",
   Flexibility = "Flexibility",
   GuidedBreathing = "GuidedBreathing",
-  HIIT = "HIIT",
+  Hiit = "HIIT",
   HeartRate = "HeartRate",
   MindfulSession = "MindfulSession",
   Pilates = "Pilates",

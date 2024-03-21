@@ -5,7 +5,7 @@ import { UpsertDailyPassives, UpsertDailyPassivesVariables } from "@graphql/_cor
 import RNFitKit from "@yu-life/react-native-fitkit";
 import React, { useCallback, useEffect, useState } from "react";
 import { Navigation } from "@navigation/main";
-import { FitKitType, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
+import { PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { getLocalSteps } from "@redux/daily-steps/daily-steps.selectors";
@@ -17,7 +17,7 @@ import { DATE_FORMAT, getCurrentWorld, getCurrentYuniverse } from "@utils";
 import { restartPedometerOnNewDay } from "@redux/pedometer/pedometer.actions";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { Storage, StorageKey } from "@utils/storage";
-import { gql } from "@graphql/__generated";
+import { FitKitType, gql } from "@graphql/__generated";
 
 interface IProps {
   componentId: string;

@@ -25,6 +25,7 @@ import { usePopToQuestsRootOnNewDate } from "@hooks";
 import { getActiveChallengeState } from "@redux/levels/levels.selectors";
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import { onPressChallengeTile } from "@utils/challenges";
+import { toFitKitGqlType } from "@utils/fitkit";
 
 interface IProps {
   componentId: string;
@@ -70,14 +71,14 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
 
   const handleNavPress = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
 
-  const createChallenge = async () => {
+  const createChallenge = useCallback(async () => {
     try {
       setSubmittingState(true);
       if (slot.fitKitTypes?.length && !DETOX_ENABLED) {
         // if we'll add new challenges that will require diff permissions that we ask for
         // Step, Mindfulness and FiiT challenges we should ask permissions fro Samsung as well
         if (!isSamsung()) {
-          await authoriseFitKitTypes(slot.fitKitTypes);
+          await authoriseFitKitTypes(toFitKitGqlType(slot.fitKitTypes));
         }
       }
 
@@ -93,7 +94,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
       setError();
       setSubmittingState(false);
     }
-  };
+  }, [authoriseFitKitTypes, setError, dispatch, slot]);
 
   useEffect(() => {
     if (!submitting) {

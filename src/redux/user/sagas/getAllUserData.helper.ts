@@ -18,6 +18,7 @@ import { DailyPension } from "@redux/daily-pension/daily-pension.types";
 import { IGetHintsSuccessPayload } from "@redux/hints/hints.types";
 import { ActiveChallengeSourceType } from "@graphql/_core/schema/globalTypes";
 import { toYuHealthReduxType } from "@utils";
+import { toFitKitGqlType } from "@utils/fitkit";
 
 export const toUserDataReduxType = (type: AppDataType, data: GetAllUserDataResponse[AppDataType]) => {
   switch (type) {
@@ -55,7 +56,7 @@ const toActiveChallenge = (
   activeChallenge: GetUserActiveChallenge_getUserActiveChallenge
 ): GetActiveChallengeSuccessDataPayload => ({
   shouldEndOnLastGoalAchieved: activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved,
-  fitKitTypes: activeChallenge?.levelSlot?.fitKitTypes || [],
+  fitKitTypes: toFitKitGqlType(activeChallenge?.levelSlot?.fitKitTypes) || [],
   yuHealth: toYuHealthReduxType(activeChallenge?.levelSlot?.yuHealth),
   endDateTime: activeChallenge?.challenge?.endDateTime || "",
   levelSlotId: activeChallenge?.challenge?.levelSlotId || "",
