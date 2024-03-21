@@ -7,6 +7,48 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.7.0] - 2024-03-21
+
+### Bugfixes
+
+- Bugfix: Show event finish dialog payload
+- Bugfix: Pedometer
+- Bugfix: Pedometer fixes
+- Bugfix ENG-3875: fix issue where leanplum notification images would not load
+
+### Tasks
+
+- Task: Animated rays
+- Task: Challenge progress screen image
+- Task: Remove Health Connect
+- Task VBUS-213: Add reward overlay image to allow reward logos on the rewards component
+- Task: YuHealth data type for redux
+- Task: Add YuWatch library
+- Task: Add BottomShadow stories
+- Task GS-860: Activity History Redesign
+- Task: Parse in-app meditation for yu-health
+
+### Chores
+
+- Chore: User redux types migration
+- Chore: Create wrapper for moment with locale
+- Chore: Upgrade RN 0.73.6
+
+### Extra
+
+- detox/updates_march
+- Detox/fixes-20/03
+- VBUS-216: Show next milestone teaser on current level
+- Detox/fixes-19/03
+- Detox/bug unskips
+- Detox/activity history GS-860
+- Detox/fix-iphone15
+- Detox: vbus 93
+- Detox/fixes-18/03
+- Detox: upgrade xcode 15.3 and change device to iphone 15 pro max
+- detox: vbus-204
+- Detox/user-level-history
+
 ## [4.6.0] - 2024-03-13
 
 ### Bugfixes
