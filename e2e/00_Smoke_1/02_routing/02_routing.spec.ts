@@ -250,11 +250,11 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         When("I scroll down", when.scrollFromID(ids.SETTINGS_SCREEN_SCROLL, "up", "slow", 0.4), async () => {
             Then("I should see the pre-selected server language is en-GB", then.languageSettingVisible("en-GB"))
         })
-        When("I tap the language options", when.tapText(t("Language")), async () => {
+        When("I tap the language options", when.tapText(t("Language"), 2000, true), async () => {
             Then("I should be on the langauge selector screen", then.languageSelectorVisible)
             Then("I should see all the available languages listed", then.allLanguagesVsible)
         })
-        When("I tap to select Spanish option", when.tapText(t(`${translations["es-US"].flag} ${translations["es-US"].name}`)), async () => {
+        When("I tap to select Spanish option", when.tapText(t(`${translations["es-US"].flag} ${translations["es-US"].name}`), 2000, true), async () => {
             Then("I should see the menu icon on the top left", then.idVisible(ids.MENU_ICON, 1500))
             Then("I should see that the client language has successfully changed in Spanish", then.textVisible("200 YuCoin hoy"))
         })

@@ -23,7 +23,7 @@ Feature("CPD/Yuniversity", async () => {
         When("I scroll down", when.scrollFromID(ids.WELLBEING_HUB_SCREEN, "up", "slow", 0.2), async () => {
             Then("I can see Yuniversity in the wellbeing hub", then.canSeeYuniversityWellbeingHub)
         })
-        When("I tap on Yuniversity", when.tapText("Yuniversity"), async () => {
+        When("I tap on Yuniversity", when.tapText("Yuniversity", 2000), async () => {
             Then("I should be able to see the CPD Courses screen", then.idVisible(ids.CPD_COURSES_SCREEN))
             Then("I should see the details for Course 1", then.canSeeCourseDetails(data.YUNIVERSITY_COURSE_1))
             Then("I should see should be able to see the thumbnail for module 1 with the correct details", then.canSeeModuleThumbnail(data.YUNIVERSITY_COURSE_MODULE_1, 0))
@@ -32,7 +32,7 @@ Feature("CPD/Yuniversity", async () => {
         When("I click to leave the CPD page", when.tapID(ids.BACK_BUTTON), async () => {
             Then("I should be back on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN))
         })
-        When("I tap on Yuniversity", when.tapText("Yuniversity"), async () => {
+        When("I tap on Yuniversity", when.tapText("Yuniversity", 2000), async () => {
             Then("I should be able to see the CPD Courses screen", then.idVisible(ids.CPD_COURSES_SCREEN))
         })
         When("I tap on Module One", when.tapModule(data.YUNIVERSITY_COURSE_MODULE_1), async () => {
@@ -51,10 +51,10 @@ Feature("CPD/Yuniversity", async () => {
                 Then("I can see the 'Certificate' section", then.canSeeCerificateSection)
             })
         })
-        When("I tap on 'Take the quiz'", when.tapTextAtIndex("Take the quiz"), async () => {
+        When("I tap on 'Take the quiz'", when.tapTextAtIndex("Take the quiz", 2000), async () => {
             Then("The button is disabled - I stay on the page", then.canSeeModuleQuizSection)
         })
-        When("I tap to view the certificate'", when.tapTextAtIndex("View", 1), async () => {
+        When("I tap to view the certificate'", when.tapTextAtIndex("View", 1, 2000), async () => {
             Then("The button is disabled - I stay on the page", then.canSeeCerificateSection)
         })
         When("I swipe up the screen to see the chapters", when.scrollToChapter(data.YUNIVERSITY_COURSE_MODULE_1, 1, "up"), async () => {
@@ -73,7 +73,7 @@ Feature("CPD/Yuniversity", async () => {
             Then("I can see that chapter has been marked 'Completed'", then.chapterComplete(3))
         })
         When("I swipe down the screen to the bottom", when.swipeFromText("Module notes", "up", "slow", 0.4), async () => {
-            When("I tap on 'Take the quiz'", when.tapText("Take the quiz"), async () => {
+            When("I tap on 'Take the quiz'", when.tapText("Take the quiz", 2000), async () => {
                 Then("I should be on the 'Take the quiz' page", then.canSeeQuizPage(data.YUNIVERSITY_COURSE_MODULE_1))
             })
         })
@@ -87,12 +87,12 @@ Feature("CPD/Yuniversity", async () => {
                 Then("I can see I have successfully completed the quiz", then.quizComplete(6))
             })
         })
-        When("I tap 'Done'", when.tapText("Done"), async () => {
+        When("I tap 'Done'", when.tapText("Done", 2000), async () => {
             Then("I should be back on the course detail screen", then.idVisible(ids.CPD_COURSE_DETAIL_SCREEN))
             Then("I should see that I have successfully completed the quiz", then.textVisible("Module quiz completed"))
         })
         When("I scroll to the bottom of the screen", when.swipeFromText("Take the quiz", "up", "slow"), async () => {
-            When("I tap to view the certificate'", when.tapTextAtIndex("View", 1), async () => {
+            When("I tap to view the certificate'", when.tapTextAtIndex("View", 1, 2000), async () => {
                 Then("I should be be able to see the certificate", then.idVisible(ids.CPD_CERTIFICATE))
                 Then("I can see the details on the certificate are correct", then.canSeeCertificateDetails(data.YUNIVERSITY_COURSE_MODULE_1, data.CUSTOMER_20, data.BUSINESS_ACCOUNT_2))
             })

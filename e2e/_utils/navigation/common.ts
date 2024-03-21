@@ -408,7 +408,7 @@ export const tapYuCoinIcon = async () => {
 export const dismissNotificationScreenIfVisible = async () => {
     try {
         await expect(element(by.text(t("don't miss out")))).toBeVisible()
-        await tapText(t("maybe later"))()
+        await tapText(t("maybe later"), 2000)()
     } catch (e) {
 
     }
