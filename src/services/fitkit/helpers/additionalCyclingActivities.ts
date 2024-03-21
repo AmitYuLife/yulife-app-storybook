@@ -1,4 +1,4 @@
-import { FitKitType } from "@graphql/_core/schema/globalTypes";
+import { FitKitType } from "@graphql/__generated";
 import { IUserStore } from "@redux/user/user.reducer";
 import { Platform } from "react-native";
 

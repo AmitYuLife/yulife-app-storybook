@@ -18,10 +18,9 @@ import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-p
 import { isSamsung } from "@utils/device";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import { FitKitTypes } from "@services/fitkit/fitkit.service";
-import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { useTranslation } from "@hooks";
-import { GetTodayEarningsQuery } from "@graphql/__generated";
+import { GetTodayEarningsQuery, FitKitType } from "@graphql/__generated";
 
 type IActivityFeed = GetTodayEarningsQuery["getTodayEarnings"]["activityFeed"][0];
 

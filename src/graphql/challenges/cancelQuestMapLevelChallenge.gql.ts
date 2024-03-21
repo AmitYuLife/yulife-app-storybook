@@ -1,20 +1,9 @@
-import { gql } from "@apollo/client";
-import client from "../_core/client";
-
-import { CancelQuestMapLevelChallenge, CancelQuestMapLevelChallengeVariables } from "@graphql/_core/schema";
-
-export const GQL_MUTATION_CANCEL_MAP_LEVEL_CHALLENGE = gql`
-  mutation CancelQuestMapLevelChallenge($levelSlotId: String!) {
-    cancelQuestMapLevelChallenge(levelSlotId: $levelSlotId) {
-      levelSlotId
-      status
-    }
-  }
-`;
+import client from "@graphql/_core/client";
+import { gql } from "@graphql/__generated";
 
 const cancelQuestMapLevelChallenge = (levelSlotId: string) =>
-  client().mutate<CancelQuestMapLevelChallenge, CancelQuestMapLevelChallengeVariables>({
-    mutation: GQL_MUTATION_CANCEL_MAP_LEVEL_CHALLENGE,
+  client().mutate({
+    mutation: gql("CancelQuestMapLevelChallengeDocument"),
     variables: { levelSlotId },
     errorPolicy: "ignore",
   });

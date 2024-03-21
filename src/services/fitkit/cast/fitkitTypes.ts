@@ -1,6 +1,7 @@
 import { Platform } from "react-native";
 import { FitKitTypes } from "@services/fitkit/fitkit.service";
-import { FitKitType, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
+import { PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
+import { FitKitType } from "@graphql/__generated";
 
 export const mapGqlFitKitTypeToFitKitType = (gqlType: FitKitType) => {
   switch (gqlType) {
@@ -51,7 +52,7 @@ export const mapGqlFitKitTypeToFitKitType = (gqlType: FitKitType) => {
         android: FitKitTypes.Types.MixedMartialArts,
         ios: FitKitTypes.Types.Flexibility,
       });
-    case FitKitType.HIIT:
+    case FitKitType.Hiit:
       return Platform.select({
         android: FitKitTypes.Types.HighIntensityIntervalTraining,
         ios: FitKitTypes.Types.MixedCardio,

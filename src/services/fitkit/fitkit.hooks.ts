@@ -2,7 +2,6 @@ import { useCallback, useEffect } from "react";
 import { Alert, Linking, Platform } from "react-native";
 import RNFitKit, { FitKitAuthOptions, FitKitHealthTrackingPlatform, FitKitTypes } from "./fitkit.service";
 import Logger from "@services/logging/logger";
-import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { mapGqlFitKitTypeToFitKitType } from "./cast/fitkitTypes";
 import { DATE_FORMAT_WITH_TZ, isSamsung } from "@utils";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,6 +16,7 @@ import { AndroidSystemPermissionsConfig, FitKitAndroidSystemPermission } from ".
 import { requestAndroidSystemPermissions } from "./fitkit.system-permissions";
 import moment from "moment";
 import { Storage, StorageKey } from "@utils/storage";
+import { FitKitType } from "@graphql/__generated";
 
 export function useFitKit() {
   const dispatch = useDispatch();

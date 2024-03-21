@@ -19,9 +19,8 @@ import { useBackHandler, usePopToQuestsRootOnNewDate, useUserFeatures, useVerify
 import RNFitKit from "@yu-life/react-native-fitkit";
 import { showYuModal } from "@navigation/root";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { YuHealthOptions } from "@graphql/__generated";
+import { YuHealthOptions, FitKitType } from "@graphql/__generated";
 import { gqlCapabilityToCapability } from "@utils";
 
 interface IProps extends IInternalContent {

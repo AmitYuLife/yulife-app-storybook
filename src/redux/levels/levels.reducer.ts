@@ -270,6 +270,7 @@ const challengeStartSuccess = (
     yuniversalChest,
     shouldEndOnLastGoalAchieved: levelSlot.shouldEndOnLastGoalAchieved || false,
     fitKitTypes: levelSlot.fitKitTypes,
+    yuHealth: levelSlot.yuHealth,
     endDateTime: addSecondsToChallengeEndDateTime(challenge.endDateTime),
     level: challenge.level,
     levelSlotId: challenge.levelSlotId,

@@ -1,9 +1,7 @@
 import cancelQuestMapLevelChallenge from "@graphql/challenges/cancelQuestMapLevelChallenge.gql";
 import UpdateQuestMapLevelChallenge from "@graphql/challenges/updateQuestMapLevelChallenge.gql";
-import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import {
   CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_challenge,
-  CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot,
   UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge as UpdateQuestMapActiveChallenge,
 } from "@graphql/_core/schema";
 import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
@@ -26,6 +24,7 @@ import { ChallengeSourceType, ChallengeStartPayload, IActiveLevel } from "../lev
 import { DETOX_ENABLED } from "@services/socket";
 import { Task } from "redux-saga";
 import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
+import { CreateQuestMapLevelChallengeMutation, FitKitType } from "@graphql/__generated";
 
 export function* startTracking(
   levelSlotId: string,
@@ -107,7 +106,7 @@ export function* startTrackingTime(endDateTime: string) {
 
 type Args = Omit<CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_challenge, "level" | "status"> &
   Pick<
-    CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot,
+    CreateQuestMapLevelChallengeMutation["createQuestMapLevelChallenge"]["levelSlot"],
     "shouldEndOnLastGoalAchieved" | "fitKitTypes" | "subtype"
   > &
   Pick<ChallengeStartPayload, "videoPlayerIsActive"> &

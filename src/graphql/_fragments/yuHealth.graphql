@@ -1,0 +1,4 @@
+fragment YuHealthOptions on YuHealthOptions {
+  dataType
+  capabilities
+}

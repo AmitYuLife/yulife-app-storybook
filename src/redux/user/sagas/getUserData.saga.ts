@@ -10,6 +10,7 @@ import { updateDailyPensionSuccess } from "@redux/daily-pension/daily-pension.ac
 import { IGetUserSuccessPayload } from "../user.types";
 import { GetCurrentUser } from "@graphql/_core/schema";
 import { toChallengeSourceType } from "./getAllUserData.helper";
+import { toFitKitGqlType } from "@utils/fitkit";
 
 // TODO: Purge when getAllUserData is live
 export default function* getUserDataSaga() {
@@ -64,7 +65,7 @@ const toGetUserSuccessPayload = (data: GetCurrentUser): IGetUserSuccessPayload =
   levels: {
     activeChallenge: {
       shouldEndOnLastGoalAchieved: data?.getCurrentUser?.activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved,
-      fitKitTypes: data?.getCurrentUser?.activeChallenge?.levelSlot?.fitKitTypes,
+      fitKitTypes: toFitKitGqlType(data?.getCurrentUser?.activeChallenge?.levelSlot?.fitKitTypes),
       endDateTime: data?.getCurrentUser?.activeChallenge?.challenge?.endDateTime,
       levelSlotId: data?.getCurrentUser?.activeChallenge?.challenge?.levelSlotId,
       milestones: data?.getCurrentUser?.activeChallenge?.levelSlot?.milestones,

@@ -1,0 +1,62 @@
+mutation CreateQuestMapLevelChallenge(
+  $levelSlotId: String!
+  $contentId: String
+  $createdBySource: ActiveChallengeSourceType
+) {
+  createQuestMapLevelChallenge(levelSlotId: $levelSlotId, contentId: $contentId, createdBySource: $createdBySource) {
+    hideExternalLinks
+    challenge {
+      level
+      levelSlotId
+      status
+      startDateTime
+      endDateTime
+    }
+    levelSlot {
+      subtype
+      unit
+      shouldEndOnLastGoalAchieved
+      fitKitTypes
+      yuHealth {
+        ...YuHealthOptions
+      }
+      milestones {
+        id
+        XP
+        coins
+        target {
+          steps
+          meditation
+          distance
+          duration
+          calories
+        }
+      }
+    }
+    nextLevelAvailableAt
+    chest {
+      type
+      value
+    }
+    yuniversalChest {
+      chestType
+      title
+      items {
+        icon {
+          id
+          uri(options: { width: 180, height: 180 })
+        }
+        description
+        backgroundColour
+        shadowColour
+        textColour
+        starColour
+        tooltip {
+          title
+          description
+          cta
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,8 @@
-import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "@redux/user/user.reducer";
 import { Platform } from "react-native";
 import { AggregationType, TimeRange } from "./fitkit.types";
 import { getAdditionalCyclingFitnessActivities } from "./helpers/additionalCyclingActivities";
+import { FitKitType } from "@graphql/__generated";
 
 export const getAggregationCyclingConfiguration = (features: IUserStore["features"]) => {
   const additionalFitnessActivities = getAdditionalCyclingFitnessActivities(features);
