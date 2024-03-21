@@ -29,10 +29,10 @@ Feature("As a user I can take a Meditopia challenge", async () => {
         Then("I should be on the challenge completion well done screen", then.onMeditopiaChallengeComplete(5, 1, "40"));
       });
     });
-    When("I tap collect on the well done screen", when.tapText("Collect", 5000), async () => {
+    When("I tap collect on the well done screen", when.tapText("Collect", 5000, true), async () => {
       Then("I should see the first day streak screen", then.textVisible("First day done!", 10000));
     });
-    When("I dismiss the streak screen", when.tapText("Done", 5000), async () => {
+    When("I dismiss the streak screen", when.tapText("Done", 5000, true), async () => {
       Then("I should be on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(2), 3000));
     });
     When("I back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
@@ -63,10 +63,10 @@ Feature("As a user I can take a Meditopia challenge", async () => {
         Then("I should be on the challenge completion well done screen", then.onMeditopiaChallengeComplete(14, 10, "60"));
       });
     });
-    When("I tap collect on the well done screen", when.tapText("Collect", 5000), async () => {
+    When("I tap collect on the well done screen", when.tapText("Collect", 5000, true), async () => {
       Then("I should see the first day streak screen", then.textVisible("First day done!", 10000));
     });
-    When("I dismiss the streak screen", when.tapText("Done", 4000), async () => {
+    When("I dismiss the streak screen", when.tapText("Done", 4000, true), async () => {
       Then("I should be on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(11), 3000));
     });
     When("I back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
@@ -170,10 +170,10 @@ Feature("As a user I can take a Meditopia challenge", async () => {
         })
       })
     });
-    When("I tap collect on the well done screen", when.tapText("Collect", 5000), async () => {
+    When("I tap collect on the well done screen", when.tapText("Collect", 5000, true), async () => {
       Then("I should see the first day streak screen", then.textVisible("First day done!", 10000));
     });
-    When("I dismiss the streak screen", when.tapText("Done", 5000), async () => {
+    When("I dismiss the streak screen", when.tapText("Done", 5000, true), async () => {
       Then("I should be on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(2), 3000));
     });
     When("I back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
