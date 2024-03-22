@@ -1,5 +1,5 @@
+import { CoverType, SduiActionType } from "@redux/_core/types";
 import { SDUI_ACTION_SET_LOADING_STATE } from "./sdui.actions";
-import { CoverType, SduiActionType } from "@graphql/__generated";
 export type DynamicDataType = string | boolean | number | string[] | CoverType;
 export type DynamicData = Record<string, DynamicDataType>;
 

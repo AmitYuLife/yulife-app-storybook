@@ -8,7 +8,6 @@ import {
   ILoginUserPayload,
   AppDataType,
   MarkNotificationsAsViewedByTypePayload,
-  Connections,
   UserSurge,
   UpdateUserAvatarRemoteFilesPayload,
   Events,
@@ -18,7 +17,6 @@ import {
 import { GetActiveChallengeSuccessDataPayload } from "@redux/levels/levels.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
 import { ICoinsTodayEarned, IGetCoinLedgerSuccessPayload } from "@redux/coins/coins.types";
-import { UserFeatures } from "@redux/_core/types";
 
 export interface ISetIsUpdatingLeaderboardPayload {
   isLoading: boolean;
@@ -39,8 +37,6 @@ export const GET_USER_ACTIVE_CHALLENGE_SUCCESS = "GET_USER_ACTIVE_CHALLENGE_SUCC
 export const GET_USER_ACTIVE_STREAK_SUCCESS = "GET_USER_ACTIVE_STREAK_SUCCESS";
 export const GET_USER_COIN_LEDGER_SUCCESS = "GET_USER_COIN_LEDGER_SUCCESS";
 export const GET_USER_TODAY_ACTIVITY_SUCCESS = "GET_USER_TODAY_ACTIVITY_SUCCESS";
-export const GET_USER_FEATURES_SUCCESS = "GET_USER_FEATURES_SUCCESS";
-export const GET_USER_CONNECTIONS_SUCCESS = "GET_USER_CONNECTIONS_SUCCESS";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 export const UPDATE_USER_CONSENT = "UPDATE_USER_CONSENT";
 export const UPDATE_CONNECTION_START = "UPDATE_CONNECTION_START";
@@ -84,20 +80,12 @@ export const getUserPassiveChallengesEarnRateSuccess = createAction<
   "GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS"
 >(GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS);
 
-export const getUserFeaturesSuccess = createAction<UserFeatures[], "GET_USER_FEATURES_SUCCESS">(
-  GET_USER_FEATURES_SUCCESS
-);
-
 export const getUserCoinLedgerSuccess = createAction<IGetCoinLedgerSuccessPayload, "GET_USER_COIN_LEDGER_SUCCESS">(
   GET_USER_COIN_LEDGER_SUCCESS
 );
 
 export const getUserTodayActivitySuccess = createAction<ICoinsTodayEarned, "GET_USER_TODAY_ACTIVITY_SUCCESS">(
   GET_USER_TODAY_ACTIVITY_SUCCESS
-);
-
-export const getUserConnectionsSuccess = createAction<Connections[], "GET_USER_CONNECTIONS_SUCCESS">(
-  GET_USER_CONNECTIONS_SUCCESS
 );
 
 export const getUserActiveChallengeSuccess = createAction<
