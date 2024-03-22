@@ -196,18 +196,6 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await textVisibleAtIndex(fixture.productYuCoin, 1)();
       await textVisible(fixture.incomeProtection)();
       break;
-      case "3 Products Slots Started":
-      await textVisible(yuCoinPower)(); // 31
-      await textVisibleAtIndex(fixture.yuCoinText, 0)();
-      await textVisible(fixture.powerText)();
-      await textVisible(fixture.wellbeingAccessText)();
-      await textVisible(paidBy)();
-      await textVisibleAtIndex(fixture.productYuCoin, 0)();
-      await textVisible(fixture.criticalIllness)();
-      await textVisibleAtIndex(fixture.productYuCoin, 1)();
-      await textVisible(fixture.incomeProtection)();
-      await textVisible(fixture.availableProducts)();
-      break;
     case "groupDental":
       await textVisibleAtIndex(yuCoinPower, 0)();
       await textVisibleAtIndex(fixture.yuCoinText, 0)();
@@ -215,7 +203,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await textVisibleAtIndex(fixture.dentalYuCoin, 1)();
       await textVisible(fixture.groupDental)();
       await textVisible(paidBy)();
-      await textVisible(fixture.availableProducts)();
+      await textVisible(fixture.allPoweredUp)();
       break;
     case "0EarnRate":
       await textVisible(fixture.incomeProtection)();
@@ -223,14 +211,6 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await textNotVisible(fixture.noProductText)();
       await textNotVisible(paidBy)();
       await textVisible(yuCoinPower)();
-      break;
-    case "LifeInsurance":
-      await textVisibleAtIndex(yuCoinPower, 0)();
-      await textVisibleAtIndex(yuCoinPower, 1)();
-      await textVisibleAtIndex(fixture.yuCoinText, 0)();
-      await textVisible(fixture.powerText)();
-      await textVisible(fixture.lifeInsurance)();
-      await textVisible(fixture.availableProducts)();
       break;
     case "GHI_FUTURE":
       await textVisibleAtIndex(yuCoinPower, 0)();

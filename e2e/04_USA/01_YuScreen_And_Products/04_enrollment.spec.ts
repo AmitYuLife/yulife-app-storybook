@@ -7,6 +7,7 @@ import {
     Then,
     FeatureOnly,
     ScenarioSkip,
+    FeatureSkip,
   } from "@yu-life/yulife-bdd-framework";
   import * as then from "./_steps/then";
   import * as when from "./_steps/when";
@@ -17,7 +18,8 @@ import {
   import * as fixture from "./_resources/fixture";
   import * as id from "@ids";
 
-Feature("I am able to see the correct enrollment windows on the US YuScreen", async () => {
+  // @skip - skipping as currently not offering any of these products
+FeatureSkip("I am able to see the correct enrollment windows on the US YuScreen", async () => {
   // @flaky - can't find box options on bitrise
   Scenario("I can see the correct US pre-enrollment YuScreen",scenario.start, async () => {
     Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_12, AUTH_USA_12, true, "United States"),async () => {

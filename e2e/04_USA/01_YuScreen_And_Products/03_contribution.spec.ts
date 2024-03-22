@@ -6,6 +6,7 @@ import {
     When,
     Then,
     ScenarioSkip,
+    FeatureSkip,
   } from "@yu-life/yulife-bdd-framework";
   import * as then from "./_steps/then";
   import * as when from "./_steps/when";
@@ -15,9 +16,10 @@ import {
   import { BPEEW_USA_10_VIS, CUSTOMER_USA_10, CUSTOMER_USA_11, CUSTOMER_USA_15, CUSTOMER_USA_5, CUSTOMER_USA_6, CUSTOMER_USA_7, CUSTOMER_USA_8, CUSTOMER_USA_9 } from "../_data";
   import * as fixture from "./_resources/fixture";
   import * as id from "@ids";
-  
-Feature("I am able to see sponsored by text/logos and box option types", async () => {
-// @flaky - testing one on nightly - can't find box options on bitrise - locally failing with image cut off
+
+  // @skip - skipping as currently not offering any of these products
+FeatureSkip("I am able to see sponsored by text/logos and box option types", async () => {
+// @flaky - testing one on nightly - can't find box options on bitrise
   Scenario("I can see sponsored by text and logos in yuscreen if contribution_type none and can view the explore my insurance page",scenario.start, async () => {
     Given("I login as a user",given.logInAndGoToTab("yu", CUSTOMER_USA_5, AUTH_USA_5, true, "United States"),async () => {
       Then("I see the correct onboarding screen info", then.correctUSAOnboardingScreenVisible(fixture.GapInEnrolVisOutEnrol))
