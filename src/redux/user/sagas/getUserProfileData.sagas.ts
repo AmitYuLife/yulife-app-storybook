@@ -31,9 +31,10 @@ export default function* getUserProfileData({ payload: appState, type }: Params 
       yield put(
         updateUserProfile({
           ...userProfile?.getUserProfile,
+          blackListedNavBarTabs: userProfile.getUserProfile?.gameSettings?.blackListedNavBarTabs,
           stepsGameSettings: {
-            maxStepsAnomalyWindowMs: userProfile?.getUserProfile?.gameSettings.maxStepsAnomalyWindowMs,
-            blackListApps: userProfile?.getUserProfile?.gameSettings.blackListApps.steps,
+            maxStepsAnomalyWindowMs: userProfile.getUserProfile?.gameSettings.maxStepsAnomalyWindowMs,
+            blackListApps: userProfile.getUserProfile?.gameSettings.blackListApps.steps,
           },
         })
       );
