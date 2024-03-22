@@ -37,6 +37,7 @@ enum DebugCodes {
   playGround = "play-ground",
   workoutDebug = "workout-debug",
   yuHealthDebug = "yu-health-debug",
+  testJourney = "test-journey",
   clearExpoDiskCache = "clear-expo-disk-cache",
   clearExpoMemoryCache = "clear-expo-memory-cache",
 }
@@ -76,6 +77,29 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
           onPress: async () => {
             try {
               switch (code) {
+                case DebugCodes.testJourney: {
+                  return Alert.prompt("Visit a Journey", "Enter the Journey ID", [
+                    {
+                      text: "Cancel",
+                      style: "cancel",
+                    },
+                    {
+                      text: "Visit",
+                      onPress: (value) => {
+                        return Navigation.push(componentId, {
+                          component: {
+                            id: ROUTES.journey,
+                            name: ROUTES.journey,
+                            passProps: {
+                              journeyId: value,
+                            },
+                          },
+                        });
+                      },
+                    },
+                  ]);
+                }
+
                 case DebugCodes.features:
                   return Navigation.push(componentId, {
                     component: {
