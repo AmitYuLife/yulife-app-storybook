@@ -41,7 +41,8 @@ import {
   yuMojiBuilder,
 } from "./_resources/fixture";
 
-Feature("I am able to see Product Details in US YU Screen ", async () => {
+// @skip - skipping as currently not offering any of these products
+FeatureSkip("I am able to see Product Details in US YU Screen ", async () => {
   Scenario("I can see all product details Wellbeing/DENPPO/DENHMO/DENCHOI/TLIF/VIS", scenario.start, async () => {
     Given("I login with earn rate 0 from WellbeingProduct", given.logInAndGoToTab("yu", CUSTOMER_USA_1, AUTH_USA_1, true, "United States"), async () => {
         When("I wait", when.wait(2500), async()=>{
