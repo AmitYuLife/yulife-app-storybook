@@ -81,6 +81,12 @@ export enum SduiActionType {
   SduiActionUpdateDynamicStyles = "SDUI_ACTION_UPDATE_DYNAMIC_STYLES",
 }
 
+export enum CoverType {
+  Common = "common",
+  Epic = "epic",
+  Rare = "rare",
+}
+
 export enum MobileTabs {
   DailySteps = "dailySteps",
   Leaderboard = "leaderboard",

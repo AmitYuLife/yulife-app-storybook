@@ -11,12 +11,7 @@ import refreshCapabilityPermissionsSaga from "./refreshCapabilityPermissions.sag
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { IFeature } from "@redux/user/user.types";
 import refreshProviderAvailabilitySaga from "./refreshProviderAvailability.saga";
-import {
-  GET_ALL_USER_DATA_SUCCESS,
-  GET_USER_FEATURES_SUCCESS,
-  GET_USER_SUCCESS,
-  LOGIN_USER_SUCCESS,
-} from "@redux/user/user.actions";
+import { GET_ALL_USER_DATA_SUCCESS, GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "@redux/user/user.actions";
 import { isEmpty } from "lodash";
 import resetYuHealthStatusSaga from "./resetYuHealthStatus.saga";
 
@@ -45,7 +40,7 @@ function yuHealthFeatureGuard<T extends Function>(saga: T) {
   return function* yuHealthFeatureGuardSaga(...args: T extends (...args: infer A) => unknown ? A : never) {
     let features: IFeature = yield select(getUserFeatures);
     if (isEmpty(features)) {
-      yield take([AUTHENTICATED, GET_ALL_USER_DATA_SUCCESS, GET_USER_SUCCESS, GET_USER_FEATURES_SUCCESS]);
+      yield take([AUTHENTICATED, GET_ALL_USER_DATA_SUCCESS, GET_USER_SUCCESS]);
       features = yield select(getUserFeatures);
     }
 
