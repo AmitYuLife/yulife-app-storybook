@@ -1,5 +1,5 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { GOALS_1, GOALS_2, GOALS_3, GOALS_4, GOALS_5 } from "./goals";
+import { GOALS_1, GOALS_2, GOALS_3, GOALS_4, GOALS_5, GOALS_6 } from "./goals";
 import { GOAL_PRODUCTS_1, GOAL_PRODUCTS_2, GOAL_PRODUCTS_3 } from "./goal_products";
 import { WEEKLY_GOAL_1 } from "./goal_weeklies";
 
@@ -109,4 +109,20 @@ export const GOAL_EVENTS_8_GHI_REWARDS = {
         targetValue: 200,
         goalWeight: 1,
     }
+} as IDatabaseItem
+
+export const GOAL_EVENTS_9_GHI_REWARDS = {
+    type,
+    modelName,
+    data: {
+        "_id": generateRandomMongoId(),
+        "parentType": "goals",
+        "goal": GOALS_6.data._id,
+        "type": "journey_milestone_reached",
+        "dynamicId": "financial_wellness_quiz_completed",
+        "targetValue": 1,
+        "goalWeight": 1,
+        "_migrated": true,
+        "__v": 0
+      }
 } as IDatabaseItem

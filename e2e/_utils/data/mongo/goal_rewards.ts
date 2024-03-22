@@ -24,7 +24,7 @@ export const GOAL_REWARDS_1 = {
           user_levelled_up: 150
         },
         createdAt: {
-          "$date": moment().subtract(30, "days").format("YYYY-MM-DDTHH:MM:SS")
+          "$date": moment().subtract(30, "days").format("YYYY-MM-DDTHH:mm:ss")
         },
         earnRateBased: true,
         goal: GOAL_PRODUCTS_3.data._id,
@@ -33,7 +33,7 @@ export const GOAL_REWARDS_1 = {
         rewardQuantity: null,
         rewardType: "core_reward",
         rewardValue: null,
-        claimedDateTime: moment().subtract(30, "days").format("YYYY-MM-DDTHH:MM:SS")
+        claimedDateTime: moment().subtract(30, "days").format("YYYY-MM-DDTHH:mm:ss")
       }
 } as IDatabaseItem
 
