@@ -10,8 +10,8 @@ import { screens } from "@appScreens";
 import { scrollUntilTextVisible } from "_utils/navigation/scrolling";
 import moment from "moment";
 import { expect } from 'detox'
-import { PLICoverLevel } from "02_PLI_1/_resources/types";
-import { pliHoldingHeader, pliHoldingImg, pliHoldingMessage, viewAccDeathPolicy } from "02_PLI_1/_resources/constants";
+import { PLICoverLevel } from "02_PLI_1/01_PLI/_resources/types";
+import { pliHoldingHeader, pliHoldingImg, pliHoldingMessage, viewAccDeathPolicy } from "02_PLI_1/01_PLI/_resources/constants";
 
 export const { idVisible, textVisible, idNotVisible, textNotVisible, multipleTextVisible, textVisibleAtIndex } =
   navigation.common;

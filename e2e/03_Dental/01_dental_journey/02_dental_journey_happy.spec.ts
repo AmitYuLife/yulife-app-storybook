@@ -15,7 +15,7 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as helper from "./_steps/helpers";
 import { CUSTOMER_DENTAL_1, CUSTOMER_37, AUTH_37, AUTH_DENTAL_1, CORE_REWARDS_ORDO_REWARDS, PAYMENT_PLAN_DENTAL_1, CUSTOMER_DENTAL_RENEW, AUTH_DENTAL_RENEW, CUSTOMER_DENTAL_RENEW_2, AUTH_DENTAL_RENEW_2 } from "@data";
-import * as helper_pli from "02_PLI_1/_resources/helpers";
+import * as helper_pli from "02_PLI_1/01_PLI/_resources/helpers";
 import * as helper_V4 from "00_Smoke_4/01_yuscreen_v4/_resources/helpers";
 import { BACK_BUTTON, BOX_OPTION_TITLE, BUTTON_CLOSE, CONTENT_MIDDLE_ITEM_IMAGE, NAV_BAR, REWARD_ITEM, SLOT_TITLE } from "@ids";
 import { ordoAvailableImage, ordoNotAvailableImage } from "./_resources/constants";

@@ -1,5 +1,5 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { GOALS_1, GOALS_2, GOALS_3, GOALS_4, GOALS_5 } from "./goals";
+import { GOALS_1, GOALS_2, GOALS_3, GOALS_4, GOALS_5, GOALS_6 } from "./goals";
 import { GOAL_PRODUCTS_1, GOAL_PRODUCTS_3 } from "./goal_products";
 import { WEEKLY_GOAL_1 } from "./goal_weeklies";
 
@@ -668,5 +668,30 @@ export const GOAL_REWARD_MILESTONE_28_GHI_REWARDS = {
     }
 };
 
-
+export const GOAL_REWARD_MILESTONE_29_GHI_REWARDS = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        parentType: "goals",
+        goal: GOALS_6.data._id,
+        targetValue: 1,
+        rewardType: "coin",
+        rewardValue: 0,
+        earnRateBased: false,
+        rewardTitle: {
+          "en-GB": "YuCoin",
+          "ja-JP": "ユーコイン"
+        },
+        rewardDescription: {
+          "en-GB": "1 quiz",
+          "ja-JP": "1クイズ"
+        },
+        rewardBackgroundImageKey: "",
+        rewardImageKey: "imgix::cms/1709633296566_YuCoin.png",
+        animated: false,
+        _migrated: true,
+        __v: 0
+      }
+};
 
