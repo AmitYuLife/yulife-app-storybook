@@ -32,6 +32,8 @@ export enum ImageCachePolicy {
 export interface IImageProps {
   width?: number;
   height?: number;
+  transition?: number;
+  placeholder?: Source;
   loadingHeight?: number;
   allowDownscaling?: boolean;
   style?: StyleProp<ViewStyle>;
@@ -67,6 +69,8 @@ export const Image = memo(
     tintColor,
     imageStyle,
     accessible,
+    transition,
+    placeholder,
     CustomLoader,
     loadingHeight,
     theme = "light",
@@ -154,8 +158,10 @@ export const Image = memo(
           onLoad={handleLoadState}
           style={imageStyles}
           source={source}
+          transition={transition}
           resizeMode={resizeMode}
           accessible={accessible}
+          placeholder={placeholder}
           allowDownscaling={allowDownscaling}
           accessibilityLabel={accessibilityLabel}
         />
