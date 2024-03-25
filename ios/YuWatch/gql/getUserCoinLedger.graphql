@@ -1,0 +1,9 @@
+query GetUserCoinLedger {
+  coinLedger: getUserCoinLedger {
+    currentBalance
+    currentLevel
+    yuniversalMap
+    yuniversalLevel
+    nextLevelAvailableAt
+  }
+}

@@ -1,0 +1,15 @@
+ mutation UpsertDailyPassives($payload: [ChallengesPayload!]!) {
+    upsertDailyPassives(payload: $payload) {
+      challenges {
+        updatedAt
+        yuCoinAwarded
+        incomingData {
+          steps
+          meditation
+          distance
+        }
+      }
+      totalCoins
+      currentBalance
+    }
+  }

@@ -1,0 +1,37 @@
+{
+  "schemaNamespace": "yulife",
+  "schemaDownload": {
+    "downloadMethod": {
+      "introspection": {
+        "endpointURL": "http://localhost:5000/graphql",
+        "httpMethod": {
+          "POST": {}
+        },
+        "includeDeprecatedInputValues": false,
+        "outputFormat": "SDL"
+      }
+    },
+    "downloadTimeout": 60,
+    "outputPath": "./ios/YuWatch/schema.graphql"
+  },
+  "input": {
+    "operationSearchPaths": ["ios/YuWatch/gql/*.graphql"],
+    "schemaSearchPaths": ["ios/YuWatch/schema.graphql"]
+  },
+  "output": {
+    "testMocks": {
+      "none": {}
+    },
+    "schemaTypes": {
+      "path": "./ios/YuWatch/generated",
+      "moduleType": {
+        "embeddedInTarget": {
+          "name": "YuWatch"
+        }
+      }
+    },
+    "operations": {
+      "inSchemaModule": {}
+    }
+  }
+}

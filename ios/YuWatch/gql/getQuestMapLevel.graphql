@@ -1,0 +1,36 @@
+query GetQuestMapLevel($level: Int!, $yuniversalMap: Int) {
+  getQuestMapLevel(level: $level, yuniversalMap: $yuniversalMap) {
+    id
+    __typename
+    level
+    levelChest
+    date
+    slots {
+      __typename
+      id
+      heading
+      duration
+      availableAtLevel
+      isLocked
+      isCompleted
+      reward
+      hasSurge
+      hasBonus
+      surgeMultiplier
+      bonusAmount
+      fitKitTypes
+      type
+      subtype
+      details {
+        heading
+        milestones {
+            id
+            target
+            rewardAmount
+            rewardType
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,32 @@
+mutation UpdateQuestMapLevelChallenge($levelSlotId: String!, $contentId: String, $payload: ChallengePayload) {
+    updateQuestMapLevelChallenge(levelSlotId: $levelSlotId, contentId: $contentId, payload: $payload) {
+      challenge {
+        id
+        level
+        levelSlotId
+        status
+        startDateTime
+        createdBySource
+        endDateTime
+        createdAt
+        incomingData {
+          steps
+          meditation
+          distance
+          duration
+          calories
+        }
+        milestoneLog {
+          data {
+            steps
+            meditation
+            distance
+            duration
+            calories
+          }
+        }
+        yuCoinAwarded
+        rating
+      }
+    }
+  }

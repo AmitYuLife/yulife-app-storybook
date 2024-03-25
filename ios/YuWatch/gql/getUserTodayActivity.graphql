@@ -1,0 +1,25 @@
+
+fragment UserTodayActivity on ActivityHistoryChallenge {
+  id
+  earned
+  milestones
+  name
+  score
+}
+
+fragment UserDailyPensionContribution on DailyPensionContribution {
+  id
+  active
+  yuCoinAwarded
+  contribution
+}
+
+query GetTodayActivity {
+  getUserTodayActivity {
+    ...UserTodayActivity
+  }
+  getDailyPensionContribution {
+    ...UserDailyPensionContribution
+  }
+  
+}

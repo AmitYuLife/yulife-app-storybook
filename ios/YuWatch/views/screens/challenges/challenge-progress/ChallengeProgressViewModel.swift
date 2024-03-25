@@ -1,0 +1,263 @@
+import Foundation
+import SwiftUI
+import Combine
+
+class ChallengeProgressViewModel: ObservableObject {
+  @ObservedObject var pedometerModel = PedometerModel.shared
+  @ObservedObject var activeChallengeModel = ActiveChallengeModel.shared
+  @Published var progresses: [CGFloat] = []
+  @Published var countdownString = "00:00"
+  @Published var isUpdating = false
+  @Published var isCancelOpen = false
+  @Published var isSubmittingOpen = false
+  @Published var isErrorOpen = false
+  @Published var steps: Int {
+    didSet {
+      updateProgresses()
+    }
+  }
+  
+  private var hasChallengeEnded = false {
+    didSet {
+      Task { await updateSteps() }
+      
+      if(self.hasChallengeEnded) {
+        self.isSubmittingOpen = true
+        killTimers()
+      }
+    }
+  }
+  private var cancellables = Set<AnyCancellable>()
+  private var serverUpdateTimer: Timer?
+  private var uiCountdownTimer: Timer?
+  private var initialSteps = -1
+  // The steps that we got from local storage
+  private var additionalSteps = 0
+  // The last steps we sent the server
+  private var lastUpdatedSteps = 0
+  // The index of the last milestone we reached
+  private var lastReachedMilestone: Int = 0
+ 
+  private var activeChallenge: ActiveChallenge? {
+    didSet {
+      initialSteps = pedometerModel.todaySteps
+    
+      startCountdownTimer()
+      updateProgresses()
+      }
+  }
+
+  init() {
+    self.additionalSteps = ActiveChallengeModel.shared.localActiveChallengeValue
+    self.steps = additionalSteps
+    
+    fetchActiveChallenge()
+    setupSubscriptions()
+  }
+  
+  private func fetchActiveChallenge() {
+    Task {
+      do {
+        let activeChallenge = try await ActiveChallengeModel.shared.getActiveChallenge()
+        self.activeChallenge = activeChallenge
+      } catch {
+        print("Error retrieving active challenge: \(error.localizedDescription)")
+      }
+    }
+  }
+  
+  // MARK: - Setup Subscriptions
+  private func setupSubscriptions() {
+    setupActiveChallengeSubscription()
+    setupPedometerModelSubscription()
+  }
+  
+  private func setupActiveChallengeSubscription() {
+    activeChallengeModel.$activeChallenge
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] activeChallenge in
+        self?.handleActiveChallengeChange(activeChallenge: activeChallenge)
+      }
+      .store(in: &cancellables)
+  }
+  
+  private func setupPedometerModelSubscription() {
+    pedometerModel.$todaySteps
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] todaySteps in
+        if(self?.hasChallengeEnded != true) {
+          print("Today steps has changed! \(todaySteps)")
+          self?.handleTodayStepsChange(todaySteps: todaySteps)
+        }
+      }
+      .store(in: &cancellables)
+  }
+  
+  // MARK: - Subscription handlers
+  private func handleActiveChallengeChange(activeChallenge: ActiveChallenge?) {
+    guard activeChallenge != nil else {
+      StateModel.shared.setRoot(stack: .home)
+      return
+    }
+    
+    let storedId = activeChallengeModel.getSavedChallenge()
+    if storedId != activeChallenge?.challenge?.id {
+      StateModel.shared.setRoot(stack: .home)
+    }
+  }
+  
+  private func handleTodayStepsChange(todaySteps: Int) {
+    guard !hasChallengeEnded else { return }
+    if(initialSteps == -1) { return }
+    print("All of today steps: \(todaySteps), initialSteps: \(initialSteps), additionalSteps: \(additionalSteps)")
+    steps = (todaySteps - initialSteps) + additionalSteps
+    print("Handle today steps change!")
+    
+  }
+  
+  private func updateProgresses() {
+    guard let milestones = activeChallenge?.levelSlot?.challengeMilestones, !milestones.isEmpty else {
+      progresses = []
+      return
+    }
+    
+    if(activeChallengeModel.localActiveChallengeValue != steps) {
+      activeChallengeModel.setLocalActiveChallengeValue(steps: steps)
+    }
+    
+    var cumulativeSteps = 0
+    progresses = milestones.enumerated().compactMap { index, milestone in
+      guard let targetSteps = milestone.healthTargets?.steps, targetSteps > cumulativeSteps else { return nil }
+      
+      let progress = Double(steps - cumulativeSteps) / Double(targetSteps - cumulativeSteps)
+      cumulativeSteps = targetSteps
+      
+      if lastReachedMilestone < index {
+        lastReachedMilestone = index
+        VibrateManager.shared.vibrate(type: .success)
+      }
+      
+      return min(max(progress, 0.0), 1.0)
+    }
+  }
+  
+  var fakeError = false;
+  func updateSteps() async {
+    guard !isUpdating, steps != lastUpdatedSteps || hasChallengeEnded else { return }
+    
+    isUpdating = true
+    
+    do {
+
+      if(hasChallengeEnded && !fakeError){
+        fakeError = true;
+        isUpdating = false
+        throw NSError(domain: "my error domain", code: 42)
+      }
+      
+      guard let updateResponse = try await ActiveChallengeModel.shared.updateActiveChallenge(steps: steps) else {
+        print("No response from challenge update.")
+        isUpdating = false
+        print("failed!")
+        throw NSError(domain: "com.yulife", code: 421)
+      }
+      
+      ActiveChallengeModel.shared.setActiveChallenge(activeChallenge: ActiveChallenge(challenge:updateResponse))
+      
+      lastUpdatedSteps = steps
+      switch updateResponse.status {
+      case "cancelled":
+        killTimers()
+        ActiveChallengeModel.shared.setActiveChallenge(activeChallenge: nil)
+        StateModel.shared.setRoot(stack: .home)
+      case "completed":
+        handleChallengeCompleted(updateResponse: updateResponse)
+      default:
+        break
+      }
+    } catch {
+      print("Update challenge error: \(error.localizedDescription)")
+      isErrorOpen = hasChallengeEnded
+    }
+    isUpdating = false
+  }
+  
+  private func handleChallengeCompleted(updateResponse: ChallengeProtocol) {
+    killTimers()
+    if let yuCoinAwarded = updateResponse.yuCoinAwarded, yuCoinAwarded > 0 {
+      ActiveChallengeModel.shared.onChallengeCompleted()
+    }
+    
+    DispatchQueue.main.async {
+      ConnectivityModel.shared.refetchAppData(dataTypes: [.activeChallenge, .coinLedger, .todayActivity])
+      StateModel.shared.setRoot(stack: .challengeComplete)
+    }
+  }
+  
+  private func startCountdownTimer() {
+    guard let endDate = activeChallenge?.challenge?.endDateTime.flatMap(ISO8601DateFormatter().date) else { return }
+    
+    self.updateCountdownTimer(targetDate: endDate)
+    uiCountdownTimer?.invalidate()
+    uiCountdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+      self.updateCountdownTimer(targetDate: endDate)
+    }
+  }
+  
+  private func updateCountdownTimer(targetDate: Date) {
+    let now = Date()
+    let remainingTime = targetDate.timeIntervalSince(now)
+    
+    if remainingTime <= 0 {
+      print("Setting has challenge ended to true")
+      uiCountdownTimer?.invalidate()
+      hasChallengeEnded = true
+      countdownString = "00:00"
+    } else {
+      let hours = Int(remainingTime) / 3600
+      let minutes = Int(remainingTime) / 60 % 60
+      let seconds = Int(remainingTime) % 60
+      
+      countdownString = hours > 0 ?
+      String(format: "%02d:%02d:%02d", hours, minutes, seconds) :
+      String(format: "%02d:%02d", minutes, seconds)
+    }
+  }
+  
+  // MARK: - Timer Management
+  func killTimers() {
+    serverUpdateTimer?.invalidate()
+    uiCountdownTimer?.invalidate()
+    
+    serverUpdateTimer = nil
+    uiCountdownTimer = nil
+  }
+  
+  func fakeAddSteps() {
+    steps += 69;
+  }
+  
+
+  func onCancelClosed() {
+    if hasChallengeEnded {
+      isErrorOpen = true
+    }
+  }
+  
+  func onErrorClosed() {
+    isCancelOpen = true
+  }
+  
+  func onAppear() {
+    serverUpdateTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
+      Task {
+        await self.updateSteps()
+      }
+    }
+  }
+    
+    func onDisappear() {
+      killTimers()
+    }
+  }
+  

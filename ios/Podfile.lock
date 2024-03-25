@@ -1,4 +1,7 @@
 PODS:
+  - Apollo (1.9.2):
+    - Apollo/Core (= 1.9.2)
+  - Apollo/Core (1.9.2)
   - boost (1.83.0)
   - BugsnagReactNative (7.22.5):
     - React-Core
@@ -1316,6 +1319,7 @@ PODS:
   - Yoga (1.14.0)
 
 DEPENDENCIES:
+  - Apollo
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
   - "BugsnagReactNative (from `../node_modules/@bugsnag/react-native`)"
   - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
@@ -1435,6 +1439,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Apollo
     - CleverTap-iOS-SDK
     - CocoaAsyncSocket
     - Flipper
@@ -1652,6 +1657,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  Apollo: 3dc53a7422184ea21f01d4bcbc0fafee1c2a3497
   boost: d3f49c53809116a5d38da093a8aa78bf551aed09
   BugsnagReactNative: 2f3550f37f30b9701e3517bf17743b676b5a2fb1
   BVLinearGradient: 880f91a7854faff2df62518f0281afb1c60d49a3
