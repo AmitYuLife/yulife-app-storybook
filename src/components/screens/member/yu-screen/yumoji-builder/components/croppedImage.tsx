@@ -4,6 +4,7 @@ import { StyleProp, View, ViewStyle } from "react-native";
 import { shallowEqual } from "react-redux";
 
 interface IProps {
+  transition?: number;
   source: Source | number;
   allowDownscaling?: boolean;
   transform: {
@@ -19,6 +20,7 @@ interface IProps {
   };
   containerHeight: number;
   containerWidth: number;
+  placeholder?: Source;
   suppressLoadingUi?: boolean;
   cachePolicy?: ImageCachePolicy;
   onInitialLoad?: () => void;
@@ -31,6 +33,8 @@ export const CroppedImage: FC<IProps> = memo(
   ({
     transform,
     source,
+    transition,
+    placeholder,
     containerHeight,
     containerWidth,
     suppressLoadingUi,
@@ -91,18 +95,21 @@ export const CroppedImage: FC<IProps> = memo(
           <Image
             style={imageStyle}
             width={scaledWidth}
+            placeholder={placeholder}
             allowDownscaling={allowDownscaling}
             key={sourceKeyExtractor(sources.currentSource)}
             source={sources.currentSource}
             suppressLoadingUi={suppressLoadingUi}
             resizeMode={"contain"}
             cachePolicy={cachePolicy}
+            transition={transition}
           />
         ) : null}
         {sources.loadingSource ? (
           <Image
             style={imageStyle}
             width={scaledWidth}
+            placeholder={placeholder}
             allowDownscaling={allowDownscaling}
             key={sourceKeyExtractor(sources.loadingSource)}
             source={sources.loadingSource}
@@ -110,6 +117,7 @@ export const CroppedImage: FC<IProps> = memo(
             onLoad={onLoad}
             resizeMode={"cover"}
             cachePolicy={cachePolicy}
+            transition={transition}
           />
         ) : null}
       </View>
